@@ -1,26 +1,25 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getClasses, createMount, describeConformance, act, createClientRender } from 'test/utils';
-import Checkbox from './Checkbox';
-import FormControl from '../FormControl';
-import IconButton from '../IconButton';
+import { createMount, describeConformanceV5, act, createClientRender } from 'test/utils';
+import Checkbox, { checkboxClasses as classes } from '@material-ui/core/Checkbox';
+import FormControl from '@material-ui/core/FormControl';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<Checkbox />', () => {
   const render = createClientRender();
-  let classes;
   const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<Checkbox />);
-  });
-
-  describeConformance(<Checkbox checked />, () => ({
+  describeConformanceV5(<Checkbox checked />, () => ({
     classes,
-    inheritComponent: IconButton,
+    inheritComponent: ButtonBase,
+    render,
     mount,
+    muiName: 'MuiCheckbox',
+    testVariantProps: { variant: 'foo' },
+    testStateOverrides: { prop: 'color', value: 'secondary', styleKey: 'colorSecondary' },
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp', 'rootClass'],
   }));
 
   it('should have the classes required for Checkbox', () => {
@@ -42,7 +41,7 @@ describe('<Checkbox />', () => {
   });
 
   it('flips the checked property when clicked and calls onchange with the checked state', () => {
-    const handleChange = spy((event) => event.persist());
+    const handleChange = spy();
     const { getByRole } = render(<Checkbox onChange={handleChange} />);
 
     act(() => {

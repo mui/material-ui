@@ -1,30 +1,22 @@
 import * as React from 'react';
-import {
-  createClientRender,
-  getClasses,
-  createMount,
-  describeConformance,
-  screen,
-} from 'test/utils';
+import { createClientRender, createMount, describeConformanceV5, screen } from 'test/utils';
 import { expect } from 'chai';
 import Button from '@material-ui/core/Button';
-import LoadingButton from './LoadingButton';
+import LoadingButton, { loadingButtonClasses as classes } from '@material-ui/lab/LoadingButton';
 
 describe('<LoadingButton />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<LoadingButton>Hello World</LoadingButton>);
-  });
-
-  describeConformance(<LoadingButton>Conformance?</LoadingButton>, () => ({
+  describeConformanceV5(<LoadingButton>Conformance?</LoadingButton>, () => ({
     classes,
     inheritComponent: Button,
+    render,
     mount,
+    muiName: 'MuiLoadingButton',
+    testVariantProps: { loading: true },
     refInstanceof: window.HTMLButtonElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('is in tab-order by default', () => {
@@ -33,37 +25,45 @@ describe('<LoadingButton />', () => {
     expect(screen.getByRole('button')).to.have.property('tabIndex', 0);
   });
 
-  describe('prop: pending', () => {
+  it('prop: classes can be appended to MuiButton', () => {
+    render(<LoadingButton variant="outlined" classes={{ outlined: 'loading-button-outlined' }} />);
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class('MuiButton-outlined');
+    expect(button).to.have.class('loading-button-outlined');
+  });
+
+  describe('prop: loading', () => {
     it('disables the button', () => {
-      render(<LoadingButton pending />);
+      render(<LoadingButton loading />);
 
       const button = screen.getByRole('button');
       expect(button).to.have.property('tabIndex', -1);
       expect(button).to.have.property('disabled', true);
     });
 
-    it('cannot be enabled while `pending`', () => {
-      render(<LoadingButton disabled={false} pending />);
+    it('cannot be enabled while `loading`', () => {
+      render(<LoadingButton disabled={false} loading />);
 
       expect(screen.getByRole('button')).to.have.property('disabled', true);
     });
   });
 
-  describe('prop: pendingIndicator', () => {
+  describe('prop: loadingIndicator', () => {
     it('is not rendered by default', () => {
-      render(<LoadingButton pendingIndicator="pending">Test</LoadingButton>);
+      render(<LoadingButton loadingIndicator="loading">Test</LoadingButton>);
 
       expect(screen.getByRole('button')).to.have.text('Test');
     });
 
-    it('is rendered before the children when `pending`', () => {
+    it('is rendered before the children when `loading`', () => {
       render(
-        <LoadingButton pendingIndicator="pending..." pending>
+        <LoadingButton loadingIndicator="loading..." loading>
           Test
         </LoadingButton>,
       );
 
-      expect(screen.getByRole('button')).to.have.text('pending...Test');
+      expect(screen.getByRole('button')).to.have.text('loading...Test');
     });
   });
 });

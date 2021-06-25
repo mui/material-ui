@@ -1,10 +1,15 @@
-import findPages from /* preval */ 'docs/src/modules/utils/findPages';
+import pagesApi from './pagesApi';
 
 export interface MuiPage {
   pathname: string;
   children?: MuiPage[];
   disableDrawer?: boolean;
-  displayNav?: boolean;
+  /**
+   * Pages are considered to be ordered depth-first.
+   * If a page should be excluded from this order, set `order: false`.
+   * You want to set `ordered: false` if you don't want the page to appear in an ordered list e.g. for previous/next page navigation.
+   */
+  ordered?: boolean;
   /**
    * Props spread to the Link component
    */
@@ -16,7 +21,11 @@ export interface MuiPage {
   title?: string;
 }
 
-const pages: MuiPage[] = [
+export interface OrderedMuiPage extends MuiPage {
+  ordered?: true;
+}
+
+const pages: readonly MuiPage[] = [
   {
     pathname: '/getting-started',
     children: [
@@ -41,7 +50,7 @@ const pages: MuiPage[] = [
           { pathname: '/components/box' },
           { pathname: '/components/container' },
           { pathname: '/components/grid' },
-          { pathname: '/components/hidden' },
+          { pathname: '/components/stack' },
           { pathname: '/components/image-list' },
         ],
       },
@@ -125,18 +134,23 @@ const pages: MuiPage[] = [
             pathname: '/components/data-grid',
             subheader: '/components/data-grid/overview',
           },
+          { pathname: '/components/data-grid/demo' },
           { pathname: '/components/data-grid/getting-started' },
+          { pathname: '/components/data-grid/layout' },
           { pathname: '/components/data-grid/columns' },
           { pathname: '/components/data-grid/rows' },
-          { pathname: '/components/data-grid/filtering', title: '🚧 Filtering' },
+          { pathname: '/components/data-grid/editing' },
+          { pathname: '/components/data-grid/sorting' },
+          { pathname: '/components/data-grid/filtering' },
           { pathname: '/components/data-grid/pagination' },
           { pathname: '/components/data-grid/selection' },
-          { pathname: '/components/data-grid/editing', title: '🚧 Editing' },
-          { pathname: '/components/data-grid/rendering' },
-          { pathname: '/components/data-grid/export', title: '🚧 Export & Import' },
-          { pathname: '/components/data-grid/localization', title: '🚧 Localization' },
-          { pathname: '/components/data-grid/group-pivot', title: '🚧 Group & Pivot' },
+          { pathname: '/components/data-grid/export' },
+          { pathname: '/components/data-grid/components' },
+          { pathname: '/components/data-grid/style' },
+          { pathname: '/components/data-grid/localization' },
+          { pathname: '/components/data-grid/virtualization' },
           { pathname: '/components/data-grid/accessibility' },
+          { pathname: '/components/data-grid/group-pivot', title: '🚧 Group & Pivot' },
         ],
       },
       {
@@ -183,8 +197,20 @@ const pages: MuiPage[] = [
     title: 'Component API',
     pathname: '/api-docs',
     children: [
-      ...findPages[0].children!,
-      ...[{ pathname: '/api-docs/data-grid' }, { pathname: '/api-docs/x-grid' }],
+      ...pagesApi,
+      {
+        pathname: '/api-docs/data-grid',
+        title: 'Data Grid',
+        children: [
+          { pathname: '/api-docs/data-grid', title: 'API Reference' },
+          { pathname: '/api-docs/data-grid/data-grid' },
+          { pathname: '/api-docs/data-grid/x-grid' },
+          { pathname: '/api-docs/data-grid/grid-api' },
+          { pathname: '/api-docs/data-grid/grid-col-def' },
+          { pathname: '/api-docs/data-grid/grid-cell-params' },
+          { pathname: '/api-docs/data-grid/grid-row-params' },
+        ],
+      },
     ]
       .sort((a, b) =>
         a.pathname.replace('/api-docs/', '').localeCompare(b.pathname.replace('/api-docs/', '')),
@@ -198,9 +224,11 @@ const pages: MuiPage[] = [
     children: [
       { pathname: '/system/basics' },
       { pathname: '/system/properties' },
+      { pathname: '/system/the-sx-prop', title: 'The sx prop' },
       { pathname: '/system/borders' },
       { pathname: '/system/display' },
       { pathname: '/system/flexbox' },
+      { pathname: '/system/grid' },
       { pathname: '/system/palette' },
       { pathname: '/system/positions' },
       { pathname: '/system/shadows' },
@@ -209,6 +237,7 @@ const pages: MuiPage[] = [
       { pathname: '/system/screen-readers' },
       { pathname: '/system/typography' },
       { pathname: '/system/advanced' },
+      { pathname: '/system/box' },
     ],
   },
   {
@@ -233,23 +262,27 @@ const pages: MuiPage[] = [
           { pathname: '/customization/breakpoints' },
           { pathname: '/customization/density' },
           { pathname: '/customization/z-index', title: 'z-index' },
-          { pathname: '/customization/globals' },
           { pathname: '/customization/transitions' },
+          { pathname: '/customization/theme-components', title: 'Components' },
+          { pathname: '/customization/default-theme', title: 'Default Theme' },
         ],
       },
-      { pathname: '/customization/components' },
+      { pathname: '/customization/how-to-customize' },
       { pathname: '/customization/color' },
-      { pathname: '/customization/default-theme', title: 'Default Theme' },
+      { pathname: '/customization/styled', title: 'styled' },
     ],
   },
   {
     pathname: '/guides',
+    title: 'How To Guides',
     children: [
       { pathname: '/guides/api', title: 'API Design Approach' },
       { pathname: '/guides/typescript', title: 'TypeScript' },
       { pathname: '/guides/interoperability', title: 'Style Library Interoperability' },
+      { pathname: '/guides/styled-engine' },
       { pathname: '/guides/minimizing-bundle-size' },
       { pathname: '/guides/composition' },
+      { pathname: '/guides/routing' },
       { pathname: '/guides/server-rendering' },
       { pathname: '/guides/responsive-ui', title: 'Responsive UI' },
       { pathname: '/guides/pickers-migration', title: 'Migration from @material-ui/pickers' },
@@ -285,8 +318,8 @@ const pages: MuiPage[] = [
       { pathname: '/discover-more/languages' },
     ],
   },
-  { pathname: '/versions', displayNav: false },
-  { pathname: '/', displayNav: false, disableDrawer: true },
+  { pathname: '/versions', ordered: false },
+  { pathname: '/', ordered: false, disableDrawer: true },
   { pathname: 'https://medium.com/material-ui', title: 'Blog' },
 ];
 

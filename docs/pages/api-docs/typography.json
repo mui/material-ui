@@ -9,24 +9,11 @@
     },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
-    "color": {
-      "type": {
-        "name": "enum",
-        "description": "'error'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'initial'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'textPrimary'<br>&#124;&nbsp;'textSecondary'"
-      },
-      "default": "'initial'"
-    },
     "component": { "type": { "name": "elementType" } },
-    "display": {
-      "type": {
-        "name": "enum",
-        "description": "'block'<br>&#124;&nbsp;'initial'<br>&#124;&nbsp;'inline'"
-      },
-      "default": "'initial'"
-    },
     "gutterBottom": { "type": { "name": "bool" } },
     "noWrap": { "type": { "name": "bool" } },
     "paragraph": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
         "name": "union",
@@ -63,15 +50,7 @@
       "alignJustify",
       "noWrap",
       "gutterBottom",
-      "paragraph",
-      "colorInherit",
-      "colorPrimary",
-      "colorSecondary",
-      "colorTextPrimary",
-      "colorTextSecondary",
-      "colorError",
-      "displayInline",
-      "displayBlock"
+      "paragraph"
     ],
     "globalClasses": {},
     "name": "MuiTypography"
@@ -81,5 +60,6 @@
   "filename": "/packages/material-ui/src/Typography/Typography.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/breadcrumbs/\">Breadcrumbs</a></li>\n<li><a href=\"/components/typography/\">Typography</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": true
 }

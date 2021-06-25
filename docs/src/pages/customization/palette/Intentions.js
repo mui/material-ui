@@ -1,7 +1,13 @@
 import * as React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, useTheme, rgbToHex } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import {
+  createTheme,
+  ThemeProvider,
+  useTheme,
+  rgbToHex,
+} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,11 +24,12 @@ const useStyles = makeStyles((theme) => ({
       height: theme.spacing(6),
       marginRight: theme.spacing(1),
       borderRadius: theme.shape.borderRadius,
+      boxShadow: 'inset 0 2px 4px 0 rgba(0, 0, 0, .06)',
     },
   },
 }));
 
-export default function Intentions() {
+function IntentionsInner() {
   const classes = useStyles();
   const theme = useTheme();
 
@@ -31,7 +38,7 @@ export default function Intentions() {
       <div style={{ backgroundColor: color }} />
       <div>
         <Typography variant="body2">{name}</Typography>
-        <Typography variant="body2" color="textSecondary">
+        <Typography variant="body2" color="text.secondary">
           {rgbToHex(color)}
         </Typography>
       </div>
@@ -89,5 +96,15 @@ export default function Intentions() {
         {item(theme.palette.success.dark, 'palette.success.dark')}
       </Grid>
     </div>
+  );
+}
+
+const defaultTheme = createTheme();
+
+export default function Intentions() {
+  return (
+    <ThemeProvider theme={defaultTheme}>
+      <IntentionsInner />
+    </ThemeProvider>
   );
 }

@@ -6,15 +6,19 @@
     "padding": {
       "type": {
         "name": "enum",
-        "description": "'checkbox'<br>&#124;&nbsp;'default'<br>&#124;&nbsp;'none'"
+        "description": "'checkbox'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'normal'"
       },
-      "default": "'default'"
+      "default": "'normal'"
     },
     "size": {
-      "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
+      "type": {
+        "name": "union",
+        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+      },
       "default": "'medium'"
     },
-    "stickyHeader": { "type": { "name": "bool" } }
+    "stickyHeader": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "Table",
   "styles": { "classes": ["root", "stickyHeader"], "globalClasses": {}, "name": "MuiTable" },
@@ -23,5 +27,6 @@
   "filename": "/packages/material-ui/src/Table/Table.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tables/\">Tables</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

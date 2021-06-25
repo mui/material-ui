@@ -19,10 +19,10 @@ function getValue(themeMapping, transform, propValueFinal, userValue = propValue
     value = themeMapping[propValueFinal] || userValue;
   } else {
     value = getPath(themeMapping, propValueFinal) || userValue;
+  }
 
-    if (transform) {
-      value = transform(value);
-    }
+  if (transform) {
+    value = transform(value);
   }
 
   return value;

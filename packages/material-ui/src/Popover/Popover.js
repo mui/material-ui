@@ -1,19 +1,24 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import {
   chainPropTypes,
+  integerPropType,
   elementTypeAcceptingRef,
   refType,
   HTMLElementType,
 } from '@material-ui/utils';
-import clsx from 'clsx';
+import styled from '../styles/styled';
+import useThemeProps from '../styles/useThemeProps';
 import debounce from '../utils/debounce';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
-import withStyles from '../styles/withStyles';
-import Modal from '../Modal';
+import useForkRef from '../utils/useForkRef';
 import Grow from '../Grow';
+import Modal from '../Modal';
 import Paper from '../Paper';
+import { getPopoverUtilityClass } from './popoverClasses';
 
 export function getOffsetTop(rect, vertical) {
   let offset = 0;
@@ -49,42 +54,47 @@ function getTransformOriginValue(transformOrigin) {
     .join(' ');
 }
 
-// Sum the scrollTop between two elements.
-function getScrollParent(parent, child) {
-  let element = child;
-  let scrollTop = 0;
-
-  while (element && element !== parent) {
-    element = element.parentElement;
-    scrollTop += element.scrollTop;
-  }
-  return scrollTop;
-}
-
 function getAnchorEl(anchorEl) {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
 }
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {},
-  /* Styles applied to the `Paper` component. */
-  paper: {
-    position: 'absolute',
-    overflowY: 'auto',
-    overflowX: 'hidden',
-    // So we see the popover when it's empty.
-    // It's most likely on issue on userland.
-    minWidth: 16,
-    minHeight: 16,
-    maxWidth: 'calc(100% - 32px)',
-    maxHeight: 'calc(100% - 32px)',
-    // We disable the focus ring for mouse, touch and keyboard users.
-    outline: 0,
-  },
+const useUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+    paper: ['paper'],
+  };
+
+  return composeClasses(slots, getPopoverUtilityClass, classes);
 };
 
-const Popover = React.forwardRef(function Popover(props, ref) {
+const PopoverRoot = styled(Modal, {
+  name: 'MuiPopover',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({});
+
+const PopoverPaper = styled(Paper, {
+  name: 'MuiPopover',
+  slot: 'Paper',
+  overridesResolver: (props, styles) => styles.paper,
+})({
+  position: 'absolute',
+  overflowY: 'auto',
+  overflowX: 'hidden',
+  // So we see the popover when it's empty.
+  // It's most likely on issue on userland.
+  minWidth: 16,
+  minHeight: 16,
+  maxWidth: 'calc(100% - 32px)',
+  maxHeight: 'calc(100% - 32px)',
+  // We disable the focus ring for mouse, touch and keyboard users.
+  outline: 0,
+});
+
+const Popover = React.forwardRef(function Popover(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiPopover' });
   const {
     action,
     anchorEl,
@@ -95,11 +105,9 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     anchorPosition,
     anchorReference = 'anchorEl',
     children,
-    classes,
     className,
     container: containerProp,
     elevation = 8,
-    getContentAnchorEl,
     marginThreshold = 16,
     open,
     PaperProps = {},
@@ -113,103 +121,78 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     ...other
   } = props;
   const paperRef = React.useRef();
+  const handlePaperRef = useForkRef(paperRef, PaperProps.ref);
+
+  const styleProps = {
+    ...props,
+    anchorOrigin,
+    anchorReference,
+    elevation,
+    marginThreshold,
+    PaperProps,
+    transformOrigin,
+    TransitionComponent,
+    transitionDuration: transitionDurationProp,
+    TransitionProps,
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   // Returns the top/left offset of the position
   // to attach to on the anchor element (or body if none is provided)
-  const getAnchorOffset = React.useCallback(
-    (contentAnchorOffset) => {
-      if (anchorReference === 'anchorPosition') {
-        if (process.env.NODE_ENV !== 'production') {
-          if (!anchorPosition) {
-            console.error(
-              'Material-UI: You need to provide a `anchorPosition` prop when using ' +
-                '<Popover anchorReference="anchorPosition" />.',
-            );
-          }
-        }
-        return anchorPosition;
-      }
-
-      const resolvedAnchorEl = getAnchorEl(anchorEl);
-
-      // If an anchor element wasn't provided, just use the parent body element of this Popover
-      const anchorElement =
-        resolvedAnchorEl && resolvedAnchorEl.nodeType === 1
-          ? resolvedAnchorEl
-          : ownerDocument(paperRef.current).body;
-      const anchorRect = anchorElement.getBoundingClientRect();
-
+  const getAnchorOffset = React.useCallback(() => {
+    if (anchorReference === 'anchorPosition') {
       if (process.env.NODE_ENV !== 'production') {
-        const box = anchorElement.getBoundingClientRect();
-
-        if (
-          process.env.NODE_ENV !== 'test' &&
-          box.top === 0 &&
-          box.left === 0 &&
-          box.right === 0 &&
-          box.bottom === 0
-        ) {
-          console.warn(
-            [
-              'Material-UI: The `anchorEl` prop provided to the component is invalid.',
-              'The anchor element should be part of the document layout.',
-              "Make sure the element is present in the document or that it's not display none.",
-            ].join('\n'),
+        if (!anchorPosition) {
+          console.error(
+            'Material-UI: You need to provide a `anchorPosition` prop when using ' +
+              '<Popover anchorReference="anchorPosition" />.',
           );
         }
       }
+      return anchorPosition;
+    }
 
-      const anchorVertical = contentAnchorOffset === 0 ? anchorOrigin.vertical : 'center';
+    const resolvedAnchorEl = getAnchorEl(anchorEl);
 
-      return {
-        top: anchorRect.top + getOffsetTop(anchorRect, anchorVertical),
-        left: anchorRect.left + getOffsetLeft(anchorRect, anchorOrigin.horizontal),
-      };
-    },
-    [anchorEl, anchorOrigin.horizontal, anchorOrigin.vertical, anchorPosition, anchorReference],
-  );
+    // If an anchor element wasn't provided, just use the parent body element of this Popover
+    const anchorElement =
+      resolvedAnchorEl && resolvedAnchorEl.nodeType === 1
+        ? resolvedAnchorEl
+        : ownerDocument(paperRef.current).body;
+    const anchorRect = anchorElement.getBoundingClientRect();
 
-  // Returns the vertical offset of inner content to anchor the transform on if provided
-  const getContentAnchorOffset = React.useCallback(
-    (element) => {
-      let contentAnchorOffset = 0;
+    if (process.env.NODE_ENV !== 'production') {
+      const box = anchorElement.getBoundingClientRect();
 
-      if (getContentAnchorEl && anchorReference === 'anchorEl') {
-        const contentAnchorEl = getContentAnchorEl(element);
-
-        if (contentAnchorEl && element.contains(contentAnchorEl)) {
-          const scrollTop = getScrollParent(element, contentAnchorEl);
-          contentAnchorOffset =
-            contentAnchorEl.offsetTop + contentAnchorEl.clientHeight / 2 - scrollTop || 0;
-        }
-
-        // != the default value
-        if (process.env.NODE_ENV !== 'production') {
-          if (anchorOrigin.vertical !== 'top') {
-            console.error(
-              [
-                'Material-UI: You can not change the default `anchorOrigin.vertical` value ',
-                'when also providing the `getContentAnchorEl` prop to the popover component.',
-                'Only use one of the two props.',
-                'Set `getContentAnchorEl` to `null | undefined`' +
-                  ' or leave `anchorOrigin.vertical` unchanged.',
-              ].join('\n'),
-            );
-          }
-        }
+      if (
+        process.env.NODE_ENV !== 'test' &&
+        box.top === 0 &&
+        box.left === 0 &&
+        box.right === 0 &&
+        box.bottom === 0
+      ) {
+        console.warn(
+          [
+            'Material-UI: The `anchorEl` prop provided to the component is invalid.',
+            'The anchor element should be part of the document layout.',
+            "Make sure the element is present in the document or that it's not display none.",
+          ].join('\n'),
+        );
       }
+    }
 
-      return contentAnchorOffset;
-    },
-    [anchorOrigin.vertical, anchorReference, getContentAnchorEl],
-  );
+    return {
+      top: anchorRect.top + getOffsetTop(anchorRect, anchorOrigin.vertical),
+      left: anchorRect.left + getOffsetLeft(anchorRect, anchorOrigin.horizontal),
+    };
+  }, [anchorEl, anchorOrigin.horizontal, anchorOrigin.vertical, anchorPosition, anchorReference]);
 
-  // Return the base transform origin using the element
-  // and taking the content anchor offset into account if in use
+  // Returns the base transform origin using the element
   const getTransformOrigin = React.useCallback(
-    (elemRect, contentAnchorOffset = 0) => {
+    (elemRect) => {
       return {
-        vertical: getOffsetTop(elemRect, transformOrigin.vertical) + contentAnchorOffset,
+        vertical: getOffsetTop(elemRect, transformOrigin.vertical),
         horizontal: getOffsetLeft(elemRect, transformOrigin.horizontal),
       };
     },
@@ -218,15 +201,13 @@ const Popover = React.forwardRef(function Popover(props, ref) {
 
   const getPositioningStyle = React.useCallback(
     (element) => {
-      // Check if the parent has requested anchoring on an inner content node
-      const contentAnchorOffset = getContentAnchorOffset(element);
       const elemRect = {
         width: element.offsetWidth,
         height: element.offsetHeight,
       };
 
       // Get the transform origin point on the element itself
-      const elemTransformOrigin = getTransformOrigin(elemRect, contentAnchorOffset);
+      const elemTransformOrigin = getTransformOrigin(elemRect);
 
       if (anchorReference === 'none') {
         return {
@@ -236,8 +217,8 @@ const Popover = React.forwardRef(function Popover(props, ref) {
         };
       }
 
-      // Get the offset of of the anchoring element
-      const anchorOffset = getAnchorOffset(contentAnchorOffset);
+      // Get the offset of the anchoring element
+      const anchorOffset = getAnchorOffset();
 
       // Calculate element positioning
       let top = anchorOffset.top - elemTransformOrigin.vertical;
@@ -294,14 +275,7 @@ const Popover = React.forwardRef(function Popover(props, ref) {
         transformOrigin: getTransformOriginValue(elemTransformOrigin),
       };
     },
-    [
-      anchorEl,
-      anchorReference,
-      getAnchorOffset,
-      getContentAnchorOffset,
-      getTransformOrigin,
-      marginThreshold,
-    ],
+    [anchorEl, anchorReference, getAnchorOffset, getTransformOrigin, marginThreshold],
   );
 
   const setPositioningStyles = React.useCallback(() => {
@@ -379,35 +353,36 @@ const Popover = React.forwardRef(function Popover(props, ref) {
     containerProp || (anchorEl ? ownerDocument(getAnchorEl(anchorEl)).body : undefined);
 
   return (
-    <Modal
+    <PopoverRoot
+      BackdropProps={{ invisible: true }}
+      className={clsx(classes.root, className)}
       container={container}
       open={open}
       ref={ref}
-      BackdropProps={{ invisible: true }}
-      className={clsx(classes.root, className)}
+      styleProps={styleProps}
       {...other}
     >
       <TransitionComponent
         appear
         in={open}
-        timeout={transitionDuration}
         onEntering={handleEntering}
+        timeout={transitionDuration}
         {...TransitionProps}
       >
-        <Paper
+        <PopoverPaper
           elevation={elevation}
-          ref={paperRef}
           {...PaperProps}
+          ref={handlePaperRef}
           className={clsx(classes.paper, PaperProps.className)}
         >
           {children}
-        </Paper>
+        </PopoverPaper>
       </TransitionComponent>
-    </Modal>
+    </PopoverRoot>
   );
 });
 
-Popover.propTypes = {
+Popover.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -418,7 +393,7 @@ Popover.propTypes = {
    */
   action: refType,
   /**
-   * A HTML element, or a function that returns it.
+   * An HTML element, or a function that returns one.
    * It's used to set the position of the popover.
    */
   anchorEl: chainPropTypes(PropTypes.oneOfType([HTMLElementType, PropTypes.func]), (props) => {
@@ -477,17 +452,15 @@ Popover.propTypes = {
       .isRequired,
   }),
   /**
-   * This is the position that may be used
-   * to set the position of the popover.
-   * The coordinates are relative to
-   * the application's client area.
+   * This is the position that may be used to set the position of the popover.
+   * The coordinates are relative to the application's client area.
    */
   anchorPosition: PropTypes.shape({
     left: PropTypes.number.isRequired,
     top: PropTypes.number.isRequired,
   }),
   /**
-   * This determines which anchor prop to refer to to set
+   * This determines which anchor prop to refer to when setting
    * the position of the popover.
    * @default 'anchorEl'
    */
@@ -505,7 +478,7 @@ Popover.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * A HTML element, component instance, or function that returns either.
+   * An HTML element, component instance, or function that returns either.
    * The `container` will passed to the Modal component.
    *
    * By default, it uses the body of the anchorEl's top-level document object,
@@ -519,16 +492,7 @@ Popover.propTypes = {
    * The elevation of the popover.
    * @default 8
    */
-  elevation: PropTypes.number,
-  /**
-   * This function is called in order to retrieve the content anchor element.
-   * It's the opposite of the `anchorEl` prop.
-   * The content anchor element should be an element inside the popover.
-   * It's used to correctly scroll and set the position of the popover.
-   * The positioning strategy tries to make the content anchor element just above the
-   * anchor element.
-   */
-  getContentAnchorEl: PropTypes.func,
+  elevation: integerPropType,
   /**
    * Specifies how close to the edge of the window the popover can appear.
    * @default 16
@@ -540,7 +504,7 @@ Popover.propTypes = {
    */
   onClose: PropTypes.func,
   /**
-   * If `true`, the popover is visible.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
   /**
@@ -550,6 +514,10 @@ Popover.propTypes = {
   PaperProps: PropTypes /* @typescript-to-proptypes-ignore */.shape({
     component: elementTypeAcceptingRef,
   }),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
   /**
    * This is the point on the popover which
    * will attach to the anchor's origin.
@@ -597,4 +565,4 @@ Popover.propTypes = {
   TransitionProps: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiPopover' })(Popover);
+export default Popover;

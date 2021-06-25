@@ -4,11 +4,12 @@ import Chip from '@material-ui/core/Chip';
 import Tooltip from '@material-ui/core/Tooltip';
 import SketchIcon from 'docs/src/modules/components/SketchIcon';
 import FigmaIcon from 'docs/src/modules/components/FigmaIcon';
+import AdobeXDIcon from 'docs/src/modules/components/AdobeXDIcon';
 import BundleSizeIcon from 'docs/src/modules/components/BundleSizeIcon';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import W3CIcon from 'docs/src/modules/components/W3CIcon';
 import MaterialDesignIcon from 'docs/src/modules/components/MaterialDesignIcon';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const useStyles = makeStyles((theme) => ({
@@ -123,13 +124,13 @@ export default function ComponentLinkHeader(props) {
               component="a"
               variant="outlined"
               rel="nofollow"
-              href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
-              icon={<SketchIcon />}
+              href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
+              icon={<FigmaIcon />}
               data-ga-event-category="ComponentLinkHeader"
               data-ga-event-action="click"
-              data-ga-event-label="Sketch"
+              data-ga-event-label="Figma"
               data-ga-event-split="0.1"
-              label="Sketch"
+              label="Figma"
             />
           </li>
           <li>
@@ -139,13 +140,29 @@ export default function ComponentLinkHeader(props) {
               component="a"
               variant="outlined"
               rel="nofollow"
-              href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
-              icon={<FigmaIcon />}
+              href="https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
+              icon={<AdobeXDIcon />}
               data-ga-event-category="ComponentLinkHeader"
               data-ga-event-action="click"
-              data-ga-event-label="Figma"
+              data-ga-event-label="Adobe XD"
               data-ga-event-split="0.1"
-              label="Figma"
+              label="Adobe"
+            />
+          </li>
+          <li>
+            <Chip
+              clickable
+              role={undefined}
+              component="a"
+              variant="outlined"
+              rel="nofollow"
+              href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
+              icon={<SketchIcon />}
+              data-ga-event-category="ComponentLinkHeader"
+              data-ga-event-action="click"
+              data-ga-event-label="Sketch"
+              data-ga-event-split="0.1"
+              label="Sketch"
             />
           </li>
         </React.Fragment>

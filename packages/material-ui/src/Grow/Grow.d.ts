@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Omit } from '@material-ui/types';
 import { TransitionProps } from '../transitions/transition';
 
 export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
@@ -14,7 +13,12 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
    */
   children?: React.ReactElement<any, any>;
   /**
-   * If `true`, show the component; triggers the enter or exit animation.
+   * The transition timing function.
+   * You may specify a single easing or a object containing enter and exit values.
+   */
+  easing?: TransitionProps['easing'];
+  /**
+   * If `true`, the component will transition in.
    */
   in?: boolean;
   ref?: React.Ref<unknown>;
@@ -32,6 +36,7 @@ export interface GrowProps extends Omit<TransitionProps, 'timeout'> {
  * The Grow transition is used by the [Tooltip](https://material-ui.com/components/tooltips/) and
  * [Popover](https://material-ui.com/components/popover/) components.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
+ *
  * Demos:
  *
  * - [Popover](https://material-ui.com/components/popover/)

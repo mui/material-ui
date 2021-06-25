@@ -49,7 +49,22 @@ export default function PlainCssSlider() {
 
 ### CSS 注入顺序⚠️
 
-**注意：** 大多数的 CSS-in-JS 解决方案是在 HTML `<head>` 的底部注入它们的样式，这会导致你的自定义样式被 Material-UI 的样式规则所覆盖。 如果你有移除 **!important** 的需求，那么就需要改变 CSS 注入顺序。 下面就为大家演示一下如何对默认的样式引擎 - emotion 进行操作：
+**注意：** 大多数的 CSS-in-JS 解决方案是在 HTML `<head>` 的底部注入它们的样式，这会导致你的自定义样式被 Material-UI 的样式规则所覆盖。 如果你有移除 **!important** 的需求，那么就需要改变 CSS 注入顺序。 Here's a demo of how it can be done in Material-UI:
+
+```jsx
+import * as React from 'react';
+import { StyledEngineProvider } from '@material-ui/core/styles';
+
+export default function GlobalCssPriority() {
+  return (
+    <StyledEngineProvider injectFirst>
+      {/* Your component tree. 现在你可以覆盖 Material-UI 的样式。 */}
+    </StyledEngineProvider>
+  );
+}
+```
+
+**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. 下面是一个示例：
 
 ```jsx
 import * as React from 'react';
@@ -64,11 +79,13 @@ const cache = createCache({
 export default function PlainCssPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* 这里是你的组件树。 现在你可以覆盖 Material-UI 的样式。 */}
+      {这里编写你的组件树。 现在你可以覆盖 Material-UI 的样式。 */}
     </CacheProvider>
   );
 }
 ```
+
+**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
 
 ### 更深层的元素
 
@@ -111,7 +128,7 @@ export default function PlainCssSliderDeep1() {
 }
 ```
 
-上面的演示依赖于 [默认的` className `值](/styles/advanced/#with-material-ui-core)，但是你也可以使用 `componentsProps` API 来提供你自己的类名。
+上面的演示依赖于 [默认的`className`值](/styles/advanced/#with-material-ui-core)，但是你也可以使用 `componentsProps` API 来提供你自己的类名。
 
 **PlainCssSliderDeep2.css**
 
@@ -182,7 +199,22 @@ export default function GlobalCssSlider() {
 
 ### CSS 注入顺序⚠️
 
-**注意：** 大多数的 CSS-in-JS 解决方案是在 HTML `<head>` 的底部注入它们的样式，这会导致你的自定义样式被 Material-UI 的样式规则所覆盖。 如果你有移除 **!important** 的需求，那么就需要改变 CSS 注入顺序。 下面就为大家演示一下如何对默认的样式引擎 - emotion 进行操作：
+**注意：** 大多数的 CSS-in-JS 解决方案是在 HTML `<head>` 的底部注入它们的样式，这会导致你的自定义样式被 Material-UI 的样式规则所覆盖。 如果你有移除 **!important** 的需求，那么就需要改变 CSS 注入顺序。 Here's a demo of how it can be done in Material-UI:
+
+```jsx
+import * as React from 'react';
+import { StyledEngineProvider } from '@material-ui/core/styles';
+
+export default function GlobalCssPriority() {
+  return (
+    <StyledEngineProvider injectFirst>
+      {/* Your component tree. 现在你可以覆盖 Material-UI 的样式。 */}
+    </StyledEngineProvider>
+  );
+}
+```
+
+**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. 下面是一个示例：
 
 ```jsx
 import * as React from 'react';
@@ -202,6 +234,8 @@ export default function GlobalCssPriority() {
   );
 }
 ```
+
+**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
 
 ### 更深层的元素
 
@@ -241,13 +275,13 @@ export default function GlobalCssSliderDeep() {
 
 ## Styled Components
 
-![stars](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/styled-components.svg?)
+![stars](https://img.shields.io/github/stars/styled-components/styled-components.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/styled-components.svg)
 
 ### 改变默认的样式引擎
 
 默认情况下，Material-UI 组件使用 emotion 来作为它们的样式引擎。 但是，如果你想使用 `styled-components` 的话，那么你可以参考这个 [示例项目](https://github.com/mui-org/material-ui/blob/next/examples/create-react-app-with-styled-components) 来配置你的应用程序。 按照这种方法来配置的话，则可以减少捆绑包的大小，并且无需配置 CSS 注入顺序。
 
-在正确配置了样式引擎之后，你可以使用 `@material-ui/core/styles` 中的 `experimentalStyled()` 工具集来直接访问主题。
+After the style engine is configured properly, you can use the [`styled()`](/customization/styled/) utility from `@material-ui/core/styles` and have direct access to the theme.
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
@@ -256,7 +290,7 @@ export default function GlobalCssSliderDeep() {
 ```jsx
 import * as React from 'react';
 import Slider from '@material-ui/core/Slider';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 
 const CustomizedSlider = styled(Slider)`
   color: #20b2aa;
@@ -277,40 +311,13 @@ export default function StyledComponents() {
 
 以下示例除了覆盖滑块本身的自定义样式外，还覆盖了滑块的 `thumb` 样式。
 
-{{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "defaultCodeOpen": false}}
+{{"demo": "pages/guides/interoperability/StyledComponentsDeep.js", "defaultCodeOpen": true}}
+
+上面的演示依赖于 [默认的`className`值](/styles/advanced/#with-material-ui-core)，但是你也可以使用 `componentsProps` API 来提供你自己的类名。
 
 ```jsx
 import * as React from 'react';
-import Slider from '@material-ui/core/Slider';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
-
-const CustomizedSlider = styled(Slider)`
-  color: #20b2aa;
-
-  :hover {
-    color: #2e8b57;
-  }
-
-  & .MuiSlider-thumb {
-    border-radius: 1px;
-  }
-`;
-
-export default function StyledComponentsDeep1() {
-  return (
-    <div>
-      <Slider defaultValue={30} />
-      <CustomizedSlider defaultValue={30} />
-    </div>
-  );
-}
-```
-
-上面的演示依赖于 [默认的` className `值](/styles/advanced/#with-material-ui-core)，但是你也可以使用 `componentsProps` API 来提供你自己的类名。
-
-```jsx
-import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 
 const CustomizedSlider = styled((props) => (
@@ -361,7 +368,26 @@ const CustomizedSlider = styled(Slider)(
 
 ### Portals（传送门组件）
 
-代办：在使用新的样式引擎实现传送门（portal）后，将会填写这部分内容。
+[传送门组件](/components/portal/)提供了一种一流的方法，它将子元素渲染在其父组件的 DOM 层次结构之外的 DOM 节点中。 当您使用这样的 styled-components 规范其 CSS 的方式时，可能会遇到一些无法附着样式的问题。
+
+For example, if you attempt to style the `tooltip` generated by the [Tooltip](/components/tooltip/) component, you will need to pass along the `className` property to the element being rendered outside of it's DOM hierarchy. 下面的示例演示了一个变通办法：
+
+```jsx
+import * as React from 'react';
+import { styled } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Tooltip from '@material-ui/core/Tooltip';
+
+const StyledTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))`
+  & .MuiTooltip-tooltip {
+    background: navy;
+  }
+`;
+```
+
+{{"demo": "pages/guides/interoperability/StyledComponentsPortal.js"}}
 
 ## CSS Modules
 
@@ -388,9 +414,9 @@ const CustomizedSlider = styled(Slider)(
 **CssModulesSlider.js**
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import Slider from '@material-ui/core/Slider';
-// webpack，parcel 或者其他工具将会把 CSS 注入到该页面
+// webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesSlider.module.css';
 
 export default function CssModulesSlider() {
@@ -405,7 +431,22 @@ export default function CssModulesSlider() {
 
 ### CSS 注入顺序⚠️
 
-**注意：** 大多数的 CSS-in-JS 解决方案是在 HTML `<head>` 的底部注入它们的样式，这会导致你的自定义样式被 Material-UI 的样式规则所覆盖。 如果你有移除 **!important** 的需求，那么就需要改变 CSS 注入顺序。 下面就为大家演示一下如何对默认的样式引擎 - emotion 进行操作：
+**注意：** 大多数的 CSS-in-JS 解决方案是在 HTML `<head>` 的底部注入它们的样式，这会导致你的自定义样式被 Material-UI 的样式规则所覆盖。 如果你有移除 **!important** 的需求，那么就需要改变 CSS 注入顺序。 Here's a demo of how it can be done in Material-UI:
+
+```jsx
+import * as React from 'react';
+import { StyledEngineProvider } from '@material-ui/core/styles';
+
+export default function GlobalCssPriority() {
+  return (
+    <StyledEngineProvider injectFirst>
+      {/* Your component tree. 现在你可以覆盖 Material-UI 的样式。 */}
+    </StyledEngineProvider>
+  );
+}
+```
+
+**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. 下面是一个示例：
 
 ```jsx
 import * as React from 'react';
@@ -425,6 +466,8 @@ export default function CssModulesPriority() {
   );
 }
 ```
+
+**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
 
 ### 更深层的元素
 
@@ -453,8 +496,8 @@ export default function CssModulesPriority() {
 **CssModulesSliderDeep1.js**
 
 ```jsx
-import React from 'react';
-// webpack，parcel 或者其他工具将会把 CSS 注入到该页面
+import * as React from 'react';
+// webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep1.module.css';
 import Slider from '@material-ui/core/Slider';
 
@@ -468,7 +511,7 @@ export default function CssModulesSliderDeep1() {
 }
 ```
 
-上面的演示依赖于 [默认的` className `值](/styles/advanced/#with-material-ui-core)，但是你也可以使用 `componentsProps` API 来提供你自己的类名。
+上面的演示依赖于 [默认的`className`值](/styles/advanced/#with-material-ui-core)，但是你也可以使用 `componentsProps` API 来提供你自己的类名。
 
 **CssModulesSliderDeep2.module.css**
 
@@ -489,8 +532,8 @@ export default function CssModulesSliderDeep1() {
 **CssModulesSliderDeep2.js**
 
 ```jsx
-import React from 'react';
-// webpack，parcel 或者其他工具将会把 CSS 注入到该页面
+import * as React from 'react';
+// webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep2.module.css';
 import Slider from '@material-ui/core/Slider';
 
@@ -510,39 +553,13 @@ export default function CssModulesSliderDeep2() {
 
 ## Emotion
 
-![stars](https://img.shields.io/github/stars/emotion-js/emotion.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/emotion.svg?)
+![stars](https://img.shields.io/github/stars/emotion-js/emotion.svg?style=social&label=Star) ![npm](https://img.shields.io/npm/dm/@emotion/react.svg)
 
 ### `css` 属性
 
 Emotion 的 **css()** 方法与 Material-UI 无缝协作。
 
-{{"demo": "pages/guides/interoperability/EmotionCSS.js", "hideToolbar": true}}
-
-[![编辑按钮](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/emotion-interoperability-idymy)
-
-```jsx
-/** @jsx jsx */
-import { jsx, css } from '@emotion/react';
-import Slider from '@material-ui/core/Slider';
-
-export default function EmotionCSS() {
-  return (
-    <div>
-      <Slider defaultValue={30} />
-      <Slider
-        defaultValue={30}
-        css={css`
-          color: #20b2aa;
-
-          :hover {
-            color: #2e8b57;
-          }
-        `}
-      />
-    </div>
-  );
-}
-```
+{{"demo": "pages/guides/interoperability/EmotionCSS.js", "defaultCodeOpen": true}}
 
 ### 主题
 

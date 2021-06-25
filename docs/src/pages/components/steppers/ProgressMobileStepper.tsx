@@ -1,19 +1,11 @@
 import * as React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 400,
-    flexGrow: 1,
-  },
-});
-
 export default function ProgressMobileStepper() {
-  const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -31,7 +23,7 @@ export default function ProgressMobileStepper() {
       steps={6}
       position="static"
       activeStep={activeStep}
-      className={classes.root}
+      sx={{ maxWidth: 400, flexGrow: 1 }}
       nextButton={
         <Button size="small" onClick={handleNext} disabled={activeStep === 5}>
           Next

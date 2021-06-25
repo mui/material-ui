@@ -1,18 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  getClasses,
-  createMount,
-  describeConformance,
-  act,
-  createClientRender,
-  fireEvent,
-} from 'test/utils';
+import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
 import { useFakeTimers } from 'sinon';
 import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
-import Fab from '@material-ui/core/Fab';
-import SpeedDialAction from './SpeedDialAction';
+import { fabClasses } from '@material-ui/core/Fab';
+import SpeedDialAction, {
+  speedDialActionClasses as classes,
+} from '@material-ui/core/SpeedDialAction';
 
 describe('<SpeedDialAction />', () => {
   let clock;
@@ -24,24 +19,21 @@ describe('<SpeedDialAction />', () => {
     clock.restore();
   });
 
-  const mount = createMount({ strict: true });
+  const mount = createMount();
   const render = createClientRender();
-  let classes;
-  let fabClasses;
 
-  before(() => {
-    classes = getClasses(<SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />);
-    fabClasses = getClasses(<Fab>Fab</Fab>);
-  });
-
-  describeConformance(
+  describeConformanceV5(
     <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />,
     () => ({
       classes,
       inheritComponent: Tooltip,
       mount,
+      render,
       refInstanceof: window.HTMLButtonElement,
-      skip: ['componentProp', 'reactTestRenderer'],
+      muiName: 'MuiSpeedDialAction',
+      testRootOverrides: { slotName: 'fab' },
+      testVariantProps: { tooltipPlacement: 'right' },
+      skip: ['componentProp', 'reactTestRenderer', 'componentsProp'],
     }),
   );
 
@@ -68,6 +60,22 @@ describe('<SpeedDialAction />', () => {
       <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />,
     );
     expect(container.querySelector('button')).to.have.class(fabClasses.root);
+  });
+
+  it('should have accessible name if tooltipOpen={true}', () => {
+    const { getByRole } = render(
+      <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" tooltipOpen />,
+    );
+    const target = getByRole('menuitem');
+    expect(target).toHaveAccessibleName('placeholder');
+  });
+
+  it('should have accessible name if tooltipOpen={false}', () => {
+    const { getByRole } = render(
+      <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />,
+    );
+    const target = getByRole('menuitem');
+    expect(target).toHaveAccessibleName('placeholder');
   });
 
   it('should render the button with the fab class', () => {

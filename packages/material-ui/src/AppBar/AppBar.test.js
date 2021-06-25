@@ -1,23 +1,23 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import AppBar from './AppBar';
-import Paper from '../Paper';
+import { createMount, createClientRender, describeConformanceV5, screen } from 'test/utils';
+import AppBar, { appBarClasses as classes } from '@material-ui/core/AppBar';
+import Paper from '@material-ui/core/Paper';
 
 describe('<AppBar />', () => {
-  const mount = createMount();
-  let classes;
   const render = createClientRender();
-  before(() => {
-    classes = getClasses(<AppBar>Hello World</AppBar>);
-  });
+  const mount = createMount();
 
-  describeConformance(<AppBar>Conformance?</AppBar>, () => ({
+  describeConformanceV5(<AppBar>Conformance?</AppBar>, () => ({
     classes,
     inheritComponent: Paper,
+    render,
     mount,
+    muiName: 'MuiAppBar',
     refInstanceof: window.HTMLElement,
-    skip: ['componentProp'],
+    testVariantProps: { position: 'relative' },
+    testStateOverrides: { prop: 'color', value: 'secondary', styleKey: 'colorSecondary' },
+    skip: ['componentsProp'],
   }));
 
   it('should render with the root class and primary', () => {
@@ -25,7 +25,7 @@ describe('<AppBar />', () => {
     const appBar = container.firstChild;
     expect(appBar).to.have.class(classes.root);
     expect(appBar).to.have.class(classes.colorPrimary);
-    expect(appBar).to.not.have.class(classes.colorSecondary);
+    expect(appBar).not.to.have.class(classes.colorSecondary);
   });
 
   it('should render a primary app bar', () => {
@@ -33,15 +33,27 @@ describe('<AppBar />', () => {
     const appBar = container.firstChild;
     expect(appBar).to.have.class(classes.root);
     expect(appBar).to.have.class(classes.colorPrimary);
-    expect(appBar).to.not.have.class(classes.colorSecondary);
+    expect(appBar).not.to.have.class(classes.colorSecondary);
   });
 
   it('should render an secondary app bar', () => {
     const { container } = render(<AppBar color="secondary">Hello World</AppBar>);
     const appBar = container.firstChild;
     expect(appBar).to.have.class(classes.root);
-    expect(appBar).to.not.have.class(classes.colorPrimary);
+    expect(appBar).not.to.have.class(classes.colorPrimary);
     expect(appBar).to.have.class(classes.colorSecondary);
+  });
+
+  it('should change elevation', () => {
+    render(
+      <AppBar data-testid="root" elevation={5} classes={{ elevation5: 'app-bar-elevation-5' }}>
+        Hello World
+      </AppBar>,
+    );
+
+    const appBar = screen.getByTestId('root');
+    expect(appBar).not.to.have.class(classes.elevation5);
+    expect(appBar).not.to.have.class('app-bar-elevation-5');
   });
 
   describe('Dialog', () => {

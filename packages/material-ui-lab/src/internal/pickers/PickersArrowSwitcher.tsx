@@ -1,20 +1,30 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import { createStyles, WithStyles, withStyles, Theme, useTheme } from '@material-ui/core/styles';
-import IconButton, { IconButtonProps } from '@material-ui/core/IconButton';
+import { useTheme, styled } from '@material-ui/core/styles';
+import IconButton from '@material-ui/core/IconButton';
 import ArrowLeftIcon from '../svg-icons/ArrowLeft';
 import ArrowRightIcon from '../svg-icons/ArrowRight';
 
 export interface ExportedArrowSwitcherProps {
   /**
-   * Left arrow icon.
+   * The components used for each slot.
+   * Either a string to use a HTML element or a component.
+   * @default {}
    */
-  leftArrowIcon?: React.ReactNode;
+  components?: {
+    LeftArrowButton?: React.ElementType;
+    LeftArrowIcon?: React.ElementType;
+    RightArrowButton?: React.ElementType;
+    RightArrowIcon?: React.ElementType;
+  };
   /**
-   * Right arrow icon.
+   * The props used for each slot inside.
+   * @default {}
    */
-  rightArrowIcon?: React.ReactNode;
+  componentsProps?: {
+    leftArrowButton?: any;
+    rightArrowButton?: any;
+  };
   /**
    * Left arrow icon aria-label text.
    */
@@ -23,106 +33,108 @@ export interface ExportedArrowSwitcherProps {
    * Right arrow icon aria-label text.
    */
   rightArrowButtonText?: string;
-  /**
-   * Props to pass to left arrow button.
-   */
-  leftArrowButtonProps?: Partial<IconButtonProps>;
-  /**
-   * Props to pass to right arrow button.
-   */
-  rightArrowButtonProps?: Partial<IconButtonProps>;
 }
 
 interface ArrowSwitcherProps extends ExportedArrowSwitcherProps, React.HTMLProps<HTMLDivElement> {
+  children?: React.ReactNode;
   isLeftDisabled: boolean;
   isLeftHidden?: boolean;
   isRightDisabled: boolean;
   isRightHidden?: boolean;
   onLeftClick: () => void;
   onRightClick: () => void;
-  text?: string;
 }
 
-export const styles = (theme: Theme) =>
-  createStyles({
-    root: {},
-    iconButton: {
-      zIndex: 1,
-      backgroundColor: theme.palette.background.paper,
-    },
-    previousMonthButtonMargin: {
-      marginRight: 24,
-    },
-    hidden: {
-      visibility: 'hidden',
-    },
-  });
+const PickersArrowSwitcherRoot = styled('div', { skipSx: true })<{
+  styleProps: ArrowSwitcherProps;
+}>({
+  display: 'flex',
+});
 
-export type PickersArrowSwitcherClassKey = keyof WithStyles<typeof styles>['classes'];
+const PickersArrowSwitcherSpacer = styled('div', { skipSx: true })<{
+  styleProps: ArrowSwitcherProps;
+}>(({ theme }) => ({
+  width: theme.spacing(3),
+}));
 
-const PickersArrowSwitcher = React.forwardRef<
-  HTMLDivElement,
-  ArrowSwitcherProps & WithStyles<typeof styles>
->((props, ref) => {
+const PickersArrowSwitcherButton = styled(IconButton, { skipSx: true })<{
+  styleProps: ArrowSwitcherProps & { hidden: boolean };
+}>(({ styleProps }) => ({
+  ...(styleProps.hidden && {
+    visibility: 'hidden',
+  }),
+}));
+
+const PickersArrowSwitcher = React.forwardRef(function PickersArrowSwitcher(
+  props: Omit<ArrowSwitcherProps, 'as'>,
+  ref: React.Ref<HTMLDivElement>,
+) {
   const {
-    classes,
+    children,
     className,
+    components = {},
+    componentsProps = {},
     isLeftDisabled,
     isLeftHidden,
     isRightDisabled,
     isRightHidden,
-    leftArrowButtonProps,
     leftArrowButtonText,
-    leftArrowIcon = <ArrowLeftIcon />,
     onLeftClick,
     onRightClick,
-    rightArrowButtonProps,
     rightArrowButtonText,
-    rightArrowIcon = <ArrowRightIcon />,
-    text,
     ...other
   } = props;
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
 
+  const leftArrowButtonProps = componentsProps.leftArrowButton || {};
+  const LeftArrowIcon = components.LeftArrowIcon || ArrowLeftIcon;
+
+  const rightArrowButtonProps = componentsProps.rightArrowButton || {};
+  const RightArrowIcon = components.RightArrowIcon || ArrowRightIcon;
+
+  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
+  const styleProps = { ...props };
+
   return (
-    <div className={clsx(classes.root, className)} ref={ref} {...other}>
-      <IconButton
+    <PickersArrowSwitcherRoot ref={ref} className={className} styleProps={styleProps} {...other}>
+      <PickersArrowSwitcherButton
+        as={components.LeftArrowButton}
         size="small"
-        aria-hidden={isLeftHidden}
         aria-label={leftArrowButtonText}
-        {...leftArrowButtonProps}
+        title={leftArrowButtonText}
         disabled={isLeftDisabled}
+        edge="end"
         onClick={onLeftClick}
-        className={clsx(classes.iconButton, leftArrowButtonProps?.className, {
-          [classes.hidden]: isLeftHidden,
-          [classes.previousMonthButtonMargin]: !text,
-        })}
+        {...leftArrowButtonProps}
+        className={leftArrowButtonProps.className}
+        styleProps={{ ...styleProps, ...leftArrowButtonProps, hidden: isLeftHidden }}
       >
-        {isRtl ? rightArrowIcon : leftArrowIcon}
-      </IconButton>
-      {text && (
-        <Typography variant="subtitle1" display="inline">
-          {text}
+        {isRtl ? <RightArrowIcon /> : <LeftArrowIcon />}
+      </PickersArrowSwitcherButton>
+      {children ? (
+        <Typography variant="subtitle1" component="span">
+          {children}
         </Typography>
+      ) : (
+        <PickersArrowSwitcherSpacer styleProps={styleProps} />
       )}
-      <IconButton
+      <PickersArrowSwitcherButton
+        as={components.RightArrowButton}
         size="small"
-        aria-hidden={isRightHidden}
         aria-label={rightArrowButtonText}
-        {...rightArrowButtonProps}
+        title={rightArrowButtonText}
+        edge="start"
         disabled={isRightDisabled}
         onClick={onRightClick}
-        className={clsx(classes.iconButton, rightArrowButtonProps?.className, {
-          [classes.hidden]: isRightHidden,
-        })}
+        {...rightArrowButtonProps}
+        className={rightArrowButtonProps.className}
+        styleProps={{ ...styleProps, ...rightArrowButtonProps, hidden: isRightHidden }}
       >
-        {isRtl ? leftArrowIcon : rightArrowIcon}
-      </IconButton>
-    </div>
+        {isRtl ? <LeftArrowIcon /> : <RightArrowIcon />}
+      </PickersArrowSwitcherButton>
+    </PickersArrowSwitcherRoot>
   );
 });
 
-export default withStyles(styles, { name: 'MuiPickersArrowSwitcher' })(
-  React.memo(PickersArrowSwitcher),
-);
+export default PickersArrowSwitcher;

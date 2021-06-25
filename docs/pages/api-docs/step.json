@@ -6,8 +6,9 @@
     "completed": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
     "expanded": { "type": { "name": "bool" } },
-    "index": { "type": { "name": "number" } },
-    "last": { "type": { "name": "bool" } }
+    "index": { "type": { "name": "custom", "description": "integer" } },
+    "last": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "Step",
   "styles": {
@@ -20,5 +21,6 @@
   "filename": "/packages/material-ui/src/Step/Step.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/steppers/\">Steppers</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

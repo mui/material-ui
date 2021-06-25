@@ -9,7 +9,7 @@ materialDesign: https://material.io/components/app-bars-top
 
 <p class="description">In der App-Bar werden Informationen und Aktionen angezeigt, die sich auf den aktuellen Bildschirm beziehen.</p>
 
-Die [obere App-Bar](https://material.io/design/components/app-bars-top.html) liefert Inhalte und Aktionen auf dem aktuellen Bildschirm. Sie wird für Branding, Bildschirmtitel, Navigation und Aktionen verwendet.
+Die [obere App-Bar](https://material.io/design/components/app-bars-top.html) liefert Inhalte und Aktionen auf dem aktuellen Bildschirm. It's used for branding, screen titles, navigation, and actions.
 
 It can transform into a contextual action bar or be used as a navbar.
 
@@ -72,21 +72,18 @@ function App() {
 3. You can use `theme.mixins.toolbar` CSS:
 
 ```jsx
-const useStyles = makeStyles(theme => ({
-  offset: theme.mixins.toolbar,
-}))
+const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 function App() {
-  const classes = useStyles();
   return (
     <React.Fragment>
       <AppBar position="fixed">
         <Toolbar>{/* content */}</Toolbar>
       </AppBar>
-      <div className={classes.offset} />
+      <Offset />
     </React.Fragment>
-  )
-};
+  );
+}
 ```
 
 ## Scrollen
@@ -115,11 +112,11 @@ Beim Scrollen erscheint ein schwebender Button, um einfach wieder zum Seitenanfa
 
 #### Parameter
 
-1. `options` (*Object* [optional]):
+1. `options` (_object_ [optional]):
 
-   - `options.disableHysteresis` (*Boolean* [optional]): Standardeinstellung ist `false`. Hysterese deaktivieren. Die Bildlaufrichtung wird beim Bestimmen des `trigger`-Werts ignoriert.
+   - `options.disableHysteresis` (_bool_ [optional]): Defaults to `false`. Hysterese deaktivieren. Die Bildlaufrichtung wird beim Bestimmen des `trigger`-Werts ignoriert.
    - `options.target` (*Node* [optional]): Standardwert `window`.
-   - `options.threshold` (*Number* [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll strictly crosses this threshold (exclusive).
+   - `options.threshold` (*number* [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll strictly crosses this threshold (exclusive).
 
 #### Rückgabewerte
 
@@ -138,4 +135,28 @@ function HideOnScroll(props) {
     </Slide>
   );
 }
+```
+
+## Enable Color on Dark
+
+Following the [Material Design guidelines](https://material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the AppBar in dark mode. You can override this behavior by setting the `enableColorOnDark` prop to `true`.
+
+```jsx
+// Specific element via prop
+<AppBar enableColorOnDark />
+
+// Affect all AppBars via theme
+<ThemeProvider
+  theme={createTheme({
+    components: {
+      MuiAppBar: {
+        defaultProps: {
+          enableColorOnDark: true,
+        },
+      },
+    },
+  })}
+>
+  <AppBar />
+</ThemeProvider>
 ```

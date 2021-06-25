@@ -4,8 +4,8 @@
     "classes": { "type": { "name": "object" } },
     "color": {
       "type": {
-        "name": "enum",
-        "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
+        "name": "union",
+        "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
       "default": "'primary'"
     },
@@ -19,12 +19,13 @@
     "href": { "type": { "name": "string" } },
     "size": {
       "type": {
-        "name": "enum",
-        "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
+        "name": "union",
+        "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;string"
       },
       "default": "'medium'"
     },
     "startIcon": { "type": { "name": "node" } },
+    "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
         "name": "union",
@@ -37,14 +38,16 @@
   "styles": {
     "classes": [
       "root",
-      "label",
       "text",
+      "textInherit",
       "textPrimary",
       "textSecondary",
       "outlined",
+      "outlinedInherit",
       "outlinedPrimary",
       "outlinedSecondary",
       "contained",
+      "containedInherit",
       "containedPrimary",
       "containedSecondary",
       "disableElevation",
@@ -52,12 +55,16 @@
       "disabled",
       "colorInherit",
       "textSizeSmall",
+      "textSizeMedium",
       "textSizeLarge",
       "outlinedSizeSmall",
+      "outlinedSizeMedium",
       "outlinedSizeLarge",
       "containedSizeSmall",
+      "containedSizeMedium",
       "containedSizeLarge",
       "sizeSmall",
+      "sizeMedium",
       "sizeLarge",
       "fullWidth",
       "startIcon",
@@ -74,5 +81,6 @@
   "filename": "/packages/material-ui/src/Button/Button.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/button-group/\">Button Group</a></li>\n<li><a href=\"/components/buttons/\">Buttons</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

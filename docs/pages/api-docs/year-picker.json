@@ -1,0 +1,15 @@
+{
+  "props": {
+    "onYearChange": { "type": { "name": "func" } },
+    "shouldDisableYear": { "type": { "name": "func" } }
+  },
+  "name": "YearPicker",
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiYearPicker" },
+  "spread": false,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui-lab/src/YearPicker/YearPicker.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/date-picker/\">Date Picker</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

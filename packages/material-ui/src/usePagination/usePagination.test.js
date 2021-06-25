@@ -1,9 +1,21 @@
-import { renderHook } from '@testing-library/react-hooks';
+import * as React from 'react';
+import { createClientRender } from 'test/utils';
 import { expect } from 'chai';
-import usePagination from './usePagination';
+import usePagination from '@material-ui/core/usePagination';
 
 describe('usePagination', () => {
+  const render = createClientRender();
   const serialize = (items) => items.map((item) => (item.type === 'page' ? item.page : item.type));
+
+  const renderHook = (useHook) => {
+    const result = {};
+    const TestCase = () => {
+      result.current = useHook();
+      return null;
+    };
+    render(<TestCase />);
+    return { result };
+  };
 
   it('has one page by default', () => {
     const { items } = renderHook(() => usePagination()).result.current;
@@ -52,18 +64,16 @@ describe('usePagination', () => {
   });
 
   it('has an enabled first button when showFirstButton === true && page > 1', () => {
-    const { items } = renderHook(() =>
-      usePagination({ showFirstButton: true, count: 2, page: 2 }),
-    ).result.current;
+    const { items } = renderHook(() => usePagination({ showFirstButton: true, count: 2, page: 2 }))
+      .result.current;
     expect(items[0]).to.have.property('type', 'first');
     expect(items[0]).to.have.property('disabled', false);
     expect(items[0]).to.have.property('page', 1);
   });
 
   it('has an enabled last button when showLastButton === true && page < count', () => {
-    const { items } = renderHook(() =>
-      usePagination({ showLastButton: true, count: 2 }),
-    ).result.current;
+    const { items } = renderHook(() => usePagination({ showLastButton: true, count: 2 })).result
+      .current;
     expect(items[4]).to.have.property('type', 'last');
     expect(items[4]).to.have.property('disabled', false);
     expect(items[4]).to.have.property('page', 2);
@@ -105,9 +115,8 @@ describe('usePagination', () => {
   });
 
   it('can have a reduced siblingCount', () => {
-    const { items } = renderHook(() =>
-      usePagination({ count: 7, page: 4, siblingCount: 0 }),
-    ).result.current;
+    const { items } = renderHook(() => usePagination({ count: 7, page: 4, siblingCount: 0 })).result
+      .current;
     expect(items).to.have.length(7);
     expect(items[2]).to.have.property('type', 'start-ellipsis');
     expect(items[3]).to.have.property('page', 4);
@@ -115,9 +124,8 @@ describe('usePagination', () => {
   });
 
   it('can have an increased siblingCount', () => {
-    const { items } = renderHook(() =>
-      usePagination({ count: 11, page: 6, siblingCount: 2 }),
-    ).result.current;
+    const { items } = renderHook(() => usePagination({ count: 11, page: 6, siblingCount: 2 }))
+      .result.current;
     expect(items).to.have.length(11);
     expect(items[2]).to.have.property('type', 'start-ellipsis');
     expect(items[3]).to.have.property('page', 4);
@@ -129,9 +137,8 @@ describe('usePagination', () => {
   });
 
   it('can have an increased boundaryCount', () => {
-    const { items } = renderHook(() =>
-      usePagination({ count: 11, page: 6, boundaryCount: 2 }),
-    ).result.current;
+    const { items } = renderHook(() => usePagination({ count: 11, page: 6, boundaryCount: 2 }))
+      .result.current;
     expect(items).to.have.length(11);
     expect(items[1]).to.have.property('page', 1);
     expect(items[2]).to.have.property('page', 2);

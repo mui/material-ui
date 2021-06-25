@@ -1,27 +1,25 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import FormControl from '../FormControl';
-import Input from '../Input';
-import OutlinedInput from '../OutlinedInput';
-import TextField from './TextField';
-import MenuItem from '../MenuItem';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
+import FormControl from '@material-ui/core/FormControl';
+import { inputBaseClasses } from '@material-ui/core/InputBase';
+import MenuItem from '@material-ui/core/MenuItem';
+import { outlinedInputClasses } from '@material-ui/core/OutlinedInput';
+import TextField, { textFieldClasses as classes } from '@material-ui/core/TextField';
 
 describe('<TextField />', () => {
-  let classes;
   const mount = createMount();
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<TextField variant="standard" />);
-  });
-
-  describeConformance(<TextField variant="standard" />, () => ({
+  describeConformanceV5(<TextField variant="standard" />, () => ({
     classes,
     inheritComponent: FormControl,
+    render,
     mount,
+    muiName: 'MuiTextField',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    testVariantProps: { variant: 'outlined' },
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   describe('structure', () => {
@@ -32,14 +30,14 @@ describe('<TextField />', () => {
     });
 
     it('should forward the multiline prop to Input', () => {
-      const inputClasses = getClasses(<Input />);
       const { getByRole } = render(<TextField variant="standard" multiline />);
 
-      expect(getByRole('textbox', { hidden: false })).to.have.class(inputClasses.inputMultiline);
+      expect(getByRole('textbox', { hidden: false })).to.have.class(
+        inputBaseClasses.inputMultiline,
+      );
     });
 
     it('should forward the fullWidth prop to Input', () => {
-      const inputClasses = getClasses(<Input />);
       const { getByTestId } = render(
         <TextField
           variant="standard"
@@ -48,7 +46,7 @@ describe('<TextField />', () => {
         />,
       );
 
-      expect(getByTestId('mui-input-base-root')).to.have.class(inputClasses.fullWidth);
+      expect(getByTestId('mui-input-base-root')).to.have.class(inputBaseClasses.fullWidth);
     });
   });
 
@@ -126,7 +124,6 @@ describe('<TextField />', () => {
     });
 
     it('should set shrink prop on outline from label', () => {
-      const outlinedInputClasses = getClasses(<OutlinedInput />);
       const { container } = render(<TextField InputLabelProps={{ shrink: true }} classes={{}} />);
 
       expect(container.querySelector('fieldset')).to.have.class(
@@ -206,6 +203,16 @@ describe('<TextField />', () => {
       const input = container.querySelector('input[aria-hidden]');
       expect(input).not.to.have.attribute('id');
       expect(input).not.to.have.attribute('aria-describedby');
+    });
+
+    it('renders a combobox with the appropriate accessible description', () => {
+      const { getByRole } = render(
+        <TextField select id="aria-test" helperText="Foo bar" value="10">
+          <MenuItem value={10}>Ten</MenuItem>
+        </TextField>,
+      );
+
+      expect(getByRole('button')).toHaveAccessibleDescription('Foo bar');
     });
   });
 });

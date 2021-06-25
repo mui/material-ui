@@ -1,56 +1,75 @@
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { integerPropType } from '@material-ui/utils';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
 import * as React from 'react';
 import { isFragment } from 'react-is';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
-import isMuiElement from '../utils/isMuiElement';
 import ImageListContext from '../ImageList/ImageListContext';
+import styled from '../styles/styled';
+import useThemeProps from '../styles/useThemeProps';
+import isMuiElement from '../utils/isMuiElement';
+import imageListItemClasses, { getImageListItemUtilityClass } from './imageListItemClasses';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {
-    display: 'inline-block',
-    position: 'relative',
-    lineHeight: 0, // 🤷🏻‍♂️Fixes masonry item gap
+const useUtilityClasses = (styleProps) => {
+  const { classes, variant } = styleProps;
+
+  const slots = {
+    root: ['root', variant],
+    img: ['img'],
+  };
+
+  return composeClasses(slots, getImageListItemUtilityClass, classes);
+};
+
+const ImageListItemRoot = styled('li', {
+  name: 'MuiImageListItem',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return [
+      { [`& .${imageListItemClasses.img}`]: styles.img },
+      styles.root,
+      styles[styleProps.variant],
+    ];
   },
-  /* Styles applied to an `img` element to ensure it covers the item. */
-  img: {
-    objectFit: 'cover',
-    width: '100%',
-    height: '100%',
-  },
+})(({ styleProps }) => ({
+  display: 'inline-block',
+  position: 'relative',
+  lineHeight: 0, // 🤷🏻‍♂️Fixes masonry item gap
   /* Styles applied to the root element if `variant="standard"`. */
-  standard: {
+  ...(styleProps.variant === 'standard' && {
     // For titlebar under list item
     display: 'flex',
     flexDirection: 'column',
-    '& $img': {
-      height: 'auto',
-      flexGrow: 1,
-    },
-  },
+  }),
   /* Styles applied to the root element if `variant="woven"`. */
-  woven: {
+  ...(styleProps.variant === 'woven' && {
     height: '100%',
     alignSelf: 'center',
-    '&:nth-child(even)': {
+    '&:nth-of-type(even)': {
       height: '70%',
     },
+  }),
+  [`& .${imageListItemClasses.img}`]: {
+    objectFit: 'cover',
+    width: '100%',
+    height: '100%',
+    ...(styleProps.variant === 'standard' && {
+      height: 'auto',
+      flexGrow: 1,
+    }),
   },
-};
+}));
 
-const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
+const ImageListItem = React.forwardRef(function ImageListItem(inProps, ref) {
+  const props = useThemeProps({
+    props: inProps,
+    name: 'MuiImageListItem',
+  });
+
   // TODO: - Use jsdoc @default?: "cols rows default values are for docs only"
-  const {
-    children,
-    classes,
-    className,
-    cols = 1,
-    component: Component = 'li',
-    rows = 1,
-    style,
-    ...other
-  } = props;
+  const { children, className, cols = 1, component = 'li', rows = 1, style, ...other } = props;
 
   const { rowHeight = 'auto', gap, variant } = React.useContext(ImageListContext);
 
@@ -61,8 +80,21 @@ const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
     height = rowHeight * rows + gap * (rows - 1);
   }
 
+  const styleProps = {
+    ...props,
+    cols,
+    component,
+    gap,
+    rowHeight,
+    rows,
+    variant,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <Component
+    <ImageListItemRoot
+      as={component}
       className={clsx(classes.root, classes[variant], className)}
       ref={ref}
       style={{
@@ -72,6 +104,7 @@ const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
         marginBottom: variant === 'masonry' ? gap : undefined,
         ...style,
       }}
+      styleProps={styleProps}
       {...other}
     >
       {React.Children.map(children, (child) => {
@@ -98,17 +131,17 @@ const ImageListItem = React.forwardRef(function ImageListItem(props, ref) {
 
         return child;
       })}
-    </Component>
+    </ImageListItemRoot>
   );
 });
 
-ImageListItem.propTypes = {
+ImageListItem.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * While you can pass any node as children, the main use case is for an img.
+   * The content of the component, normally an `<img>`.
    */
   children: PropTypes.node,
   /**
@@ -123,7 +156,7 @@ ImageListItem.propTypes = {
    * Width of the item in number of grid columns.
    * @default 1
    */
-  cols: PropTypes.number,
+  cols: integerPropType,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -133,11 +166,15 @@ ImageListItem.propTypes = {
    * Height of the item in number of grid rows.
    * @default 1
    */
-  rows: PropTypes.number,
+  rows: integerPropType,
   /**
    * @ignore
    */
   style: PropTypes.object,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiImageListItem' })(ImageListItem);
+export default ImageListItem;

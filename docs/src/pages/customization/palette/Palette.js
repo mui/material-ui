@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { purple } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       // Purple and green play nicely together.

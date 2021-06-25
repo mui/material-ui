@@ -48,7 +48,8 @@ async function main(distTag) {
   fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}${os.EOL}`);
 }
 
-main(process.env.TYPESCRIPT_DIST_TAG).catch((error) => {
+const [distTag = process.env.TYPESCRIPT_DIST_TAG] = process.argv.slice(2);
+main(distTag).catch((error) => {
   console.error(error);
   process.exit(1);
 });

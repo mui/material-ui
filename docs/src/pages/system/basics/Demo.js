@@ -50,7 +50,7 @@ export default function Demo() {
             backgroundColor: (theme) => alpha(theme.palette.primary.main, 0.1),
             borderRadius: '5px',
             color: 'primary.main',
-            fontWeight: 'fontWeightMedium',
+            fontWeight: 'medium',
             display: 'flex',
             fontSize: 12,
             alignItems: 'center',

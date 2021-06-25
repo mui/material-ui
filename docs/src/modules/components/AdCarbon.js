@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import loadScript from 'docs/src/modules/utils/loadScript';
 import AdDisplay from 'docs/src/modules/components/AdDisplay';
 import { adStylesObject } from 'docs/src/modules/components/ad.styles';
@@ -26,11 +26,20 @@ function AdCarbonImage() {
   const ref = React.useRef(null);
 
   React.useEffect(() => {
-    const script = loadScript(
-      'https://cdn.carbonads.com/carbon.js?serve=CKYIL27L&placement=material-uicom',
-      ref.current,
-    );
-    script.id = '_carbonads_js';
+    // The isolation logic of carbonads is flawed.
+    // Once the script starts loading, it will asynchronous resolve, with no way to stop it.
+    // This leads to duplication of the ad. To solve the issue, we debounce the load action.
+    const load = setTimeout(() => {
+      const script = loadScript(
+        'https://cdn.carbonads.com/carbon.js?serve=CKYIL27L&placement=material-uicom',
+        ref.current,
+      );
+      script.id = '_carbonads_js';
+    });
+
+    return () => {
+      clearTimeout(load);
+    };
   }, []);
 
   return <span ref={ref} />;
@@ -50,8 +59,8 @@ export function AdCarbonInline(props) {
         }
 
         attempt += 1;
-        const request = await fetch('https://srv.buysellads.com/ads/CE7DC23W.json');
-        const data = await request.json();
+        const response = await fetch('https://srv.buysellads.com/ads/CE7DC23W.json');
+        const data = await response.json();
         // Inspired by https://github.com/Semantic-Org/Semantic-UI-React/blob/2c7134128925dd831de85011e3eb0ec382ba7f73/docs/src/components/CarbonAd/CarbonAdNative.js#L9
         const sanitizedAd = data.ads
           .filter((item) => Object.keys(item).length > 0)

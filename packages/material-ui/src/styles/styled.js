@@ -1,14 +1,13 @@
-import { styled as styledWithoutDefault } from '@material-ui/styles';
+import { createStyled, shouldForwardProp } from '@material-ui/system';
 import defaultTheme from './defaultTheme';
 
-const styled = (Component) => {
-  const componentCreator = styledWithoutDefault(Component);
+export const rootShouldForwardProp = (prop) => shouldForwardProp(prop) && prop !== 'classes';
 
-  return (style, options) =>
-    componentCreator(style, {
-      defaultTheme,
-      ...options,
-    });
-};
+export const slotShouldForwardProp = shouldForwardProp;
+
+const styled = createStyled({
+  defaultTheme,
+  rootShouldForwardProp,
+});
 
 export default styled;

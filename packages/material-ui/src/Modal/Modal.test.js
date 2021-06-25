@@ -9,17 +9,16 @@ import {
   fireEvent,
   within,
   createMount,
-  describeConformance,
+  describeConformanceV5,
+  screen,
 } from 'test/utils';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
-import Fade from '../Fade';
-import Backdrop from '../Backdrop';
-import Modal from './Modal';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import Fade from '@material-ui/core/Fade';
+import Modal, { modalClasses as classes } from '@material-ui/core/Modal';
 
 describe('<Modal />', () => {
-  const mount = createMount({ strict: true });
   const render = createClientRender();
+  const mount = createMount();
   let savedBodyStyle;
 
   before(() => {
@@ -30,19 +29,24 @@ describe('<Modal />', () => {
     document.body.setAttribute('style', savedBodyStyle);
   });
 
-  describeConformance(
+  describeConformanceV5(
     <Modal open>
       <div />
     </Modal>,
     () => ({
+      classes,
       inheritComponent: 'div',
+      render,
       mount,
+      muiName: 'MuiModal',
       refInstanceof: window.HTMLDivElement,
+      testVariantProps: { hideBackdrop: true },
       skip: [
-        'rootClass',
-        'componentProp',
-        // https://github.com/facebook/react/issues/11565
-        'reactTestRenderer',
+        'rootClass', // portal, can't determin the root
+        'componentsProp', // TODO isRTL is leaking, why do we even have it in the first place?
+        'themeDefaultProps', // portal, can't determin the root
+        'themeStyleOverrides', // portal, can't determin the root
+        'reactTestRenderer', // portal https://github.com/facebook/react/issues/11565
       ],
     }),
   );
@@ -60,7 +64,7 @@ describe('<Modal />', () => {
     });
 
     it('should consume theme default props', () => {
-      const theme = createMuiTheme({ components: { MuiModal: { defaultProps: { container } } } });
+      const theme = createTheme({ components: { MuiModal: { defaultProps: { container } } } });
       render(
         <ThemeProvider theme={theme}>
           <Modal open>
@@ -107,18 +111,23 @@ describe('<Modal />', () => {
   });
 
   describe('backdrop', () => {
-    it('should render a backdrop with a fade transition', () => {
-      const wrapper = mount(
-        <Modal open BackdropComponent={Backdrop}>
+    it('can render a custom backdrop component', () => {
+      function TestBackdrop(props) {
+        const { open } = props;
+        if (!open) {
+          return null;
+        }
+
+        return <div data-testid="backdrop" />;
+      }
+
+      render(
+        <Modal open BackdropComponent={TestBackdrop}>
           <div />
         </Modal>,
       );
 
-      const backdrop = wrapper.find(Backdrop);
-      expect(backdrop.exists()).to.equal(true);
-
-      const transition = backdrop.find(Fade);
-      expect(transition.props()).to.have.property('in', true);
+      expect(screen.getByTestId('backdrop')).not.to.equal(null);
     });
 
     it('should render a backdrop component into the portal before the modal content', () => {
@@ -137,14 +146,21 @@ describe('<Modal />', () => {
     });
 
     it('should pass prop to the transition component', () => {
-      const wrapper = mount(
-        <Modal open BackdropComponent={Backdrop} BackdropProps={{ transitionDuration: 200 }}>
+      function TestBackdrop(props) {
+        const { open, transitionDuration } = props;
+        if (!open) {
+          return null;
+        }
+
+        return <div data-testid="backdrop" data-timeout={transitionDuration} />;
+      }
+      render(
+        <Modal open BackdropComponent={TestBackdrop} BackdropProps={{ transitionDuration: 200 }}>
           <div />
         </Modal>,
       );
 
-      const transition = wrapper.find(Fade);
-      expect(transition.props()).to.have.property('timeout', 200);
+      expect(screen.getByTestId('backdrop')).to.have.attribute('data-timeout', '200');
     });
 
     it('should attach a handler to the backdrop that fires onClose', () => {
@@ -298,7 +314,7 @@ describe('<Modal />', () => {
       expect(handleKeyDown).to.have.property('callCount', 0);
     });
 
-    it('should not call onClose when `disableEscapeKeyDown=true`', () => {
+    it('should not call onClose when `disableEscapeKeyDown={true}`', () => {
       const handleKeyDown = spy();
       const onCloseSpy = spy();
       const { getByTestId } = render(

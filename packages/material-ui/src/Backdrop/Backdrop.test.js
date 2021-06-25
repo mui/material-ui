@@ -1,25 +1,25 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import Backdrop from './Backdrop';
-import Fade from '../Fade';
+import { spy, useFakeTimers } from 'sinon';
+import { createMount, createClientRender, describeConformanceV5, act } from 'test/utils';
+import Backdrop, { backdropClasses as classes } from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
 
 describe('<Backdrop />', () => {
-  const mount = createMount({ strict: true });
   const render = createClientRender();
-  let classes;
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<Backdrop open />);
-  });
-
-  describeConformance(<Backdrop open />, () => ({
+  describeConformanceV5(<Backdrop open />, () => ({
     classes,
     inheritComponent: Fade,
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
+    muiName: 'MuiBackdrop',
+    testVariantProps: { invisible: true },
     skip: [
       'componentProp',
+      'componentsProp',
       // react-transition-group issue
       'reactTestRenderer',
     ],
@@ -32,5 +32,35 @@ describe('<Backdrop />', () => {
       </Backdrop>,
     );
     expect(container.querySelector('h1')).to.have.text('Hello World');
+  });
+
+  describe('prop: transitionDuration', () => {
+    /**
+     * @type {ReturnType<typeof useFakeTimers>}
+     */
+    let clock;
+    beforeEach(() => {
+      clock = useFakeTimers();
+    });
+    afterEach(() => {
+      clock.restore();
+    });
+
+    it('delays appearance of its children', () => {
+      const handleEntered = spy();
+      render(
+        <Backdrop open transitionDuration={1954} onEntered={handleEntered}>
+          <div />
+        </Backdrop>,
+      );
+
+      expect(handleEntered.callCount).to.equal(0);
+
+      act(() => {
+        clock.tick(1954);
+      });
+
+      expect(handleEntered.callCount).to.equal(1);
+    });
   });
 });

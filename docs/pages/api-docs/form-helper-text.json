@@ -9,6 +9,7 @@
     "focused": { "type": { "name": "bool" } },
     "margin": { "type": { "name": "enum", "description": "'dense'" } },
     "required": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
         "name": "enum",
@@ -41,5 +42,6 @@
   "filename": "/packages/material-ui/src/FormHelperText/FormHelperText.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

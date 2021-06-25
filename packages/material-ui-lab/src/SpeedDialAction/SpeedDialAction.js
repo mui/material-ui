@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import SpeedDialAction from '@material-ui/core/SpeedDialAction';
 
 let warnedOnce = false;

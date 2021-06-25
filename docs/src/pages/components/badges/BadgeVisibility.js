@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Badge from '@material-ui/core/Badge';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
@@ -9,21 +9,7 @@ import MailIcon from '@material-ui/icons/Mail';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    '& > *': {
-      marginBottom: theme.spacing(2),
-    },
-    '& .MuiBadge-root': {
-      marginRight: theme.spacing(4),
-    },
-  },
-}));
-
 export default function BadgeVisibility() {
-  const classes = useStyles();
   const [count, setCount] = React.useState(1);
   const [invisible, setInvisible] = React.useState(false);
 
@@ -32,7 +18,19 @@ export default function BadgeVisibility() {
   };
 
   return (
-    <div className={classes.root}>
+    <Box
+      sx={{
+        color: 'action.active',
+        display: 'flex',
+        flexDirection: 'column',
+        '& > *': {
+          marginBottom: 2,
+        },
+        '& .MuiBadge-root': {
+          marginRight: 4,
+        },
+      }}
+    >
       <div>
         <Badge color="secondary" badgeContent={count}>
           <MailIcon />
@@ -61,10 +59,11 @@ export default function BadgeVisibility() {
           <MailIcon />
         </Badge>
         <FormControlLabel
+          sx={{ color: 'text.primary' }}
           control={<Switch checked={!invisible} onChange={handleBadgeVisibility} />}
           label="Show Badge"
         />
       </div>
-    </div>
+    </Box>
   );
 }

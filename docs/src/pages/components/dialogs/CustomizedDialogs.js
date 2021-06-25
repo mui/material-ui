@@ -1,59 +1,52 @@
 import * as React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
+import { styled } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
-import MuiDialogContent from '@material-ui/core/DialogContent';
-import MuiDialogActions from '@material-ui/core/DialogActions';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 
-const styles = (theme) => ({
-  root: {
-    margin: 0,
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuDialogContent-root': {
     padding: theme.spacing(2),
   },
-  closeButton: {
-    position: 'absolute',
-    right: theme.spacing(1),
-    top: theme.spacing(1),
-    color: theme.palette.grey[500],
+  '& .MuDialogActions-root': {
+    padding: theme.spacing(1),
   },
-});
+}));
 
-const DialogTitle = withStyles(styles)((props) => {
-  const { children, classes, onClose, ...other } = props;
+const BootstrapDialogTitle = (props) => {
+  const { children, onClose, ...other } = props;
+
   return (
-    <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <Typography variant="h6" component="div">
-        {children}
-      </Typography>
+    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+      {children}
       {onClose ? (
         <IconButton
           aria-label="close"
-          className={classes.closeButton}
           onClick={onClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
         >
           <CloseIcon />
         </IconButton>
       ) : null}
-    </MuiDialogTitle>
+    </DialogTitle>
   );
-});
+};
 
-const DialogContent = withStyles((theme) => ({
-  root: {
-    padding: theme.spacing(2),
-  },
-}))(MuiDialogContent);
-
-const DialogActions = withStyles((theme) => ({
-  root: {
-    margin: 0,
-    padding: theme.spacing(1),
-  },
-}))(MuiDialogActions);
+BootstrapDialogTitle.propTypes = {
+  children: PropTypes.node,
+  onClose: PropTypes.func.isRequired,
+};
 
 export default function CustomizedDialogs() {
   const [open, setOpen] = React.useState(false);
@@ -70,14 +63,14 @@ export default function CustomizedDialogs() {
       <Button variant="outlined" onClick={handleClickOpen}>
         Open dialog
       </Button>
-      <Dialog
+      <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
       >
-        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
           Modal title
-        </DialogTitle>
+        </BootstrapDialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
             Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
@@ -99,7 +92,7 @@ export default function CustomizedDialogs() {
             Save changes
           </Button>
         </DialogActions>
-      </Dialog>
+      </BootstrapDialog>
     </div>
   );
 }

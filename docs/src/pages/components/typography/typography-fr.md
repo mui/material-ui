@@ -27,14 +27,17 @@ Afficher ci-dessous est un exemple de balisage de lien utilisé pour charger la 
 
 ## Installer via npm
 
-Vous pouvez [l'installer](https://www.npmjs.com/package/fontsource-roboto) en tapant la commande ci-dessous dans votre terminal :
+Vous pouvez [l'installer](https://www.npmjs.com/package/@fontsource/roboto) en tapant la commande ci-dessous dans votre terminal :
 
-`npm install fontsource-roboto`
+`npm install @fontsource/roboto`
 
 Ensuite, vous pouvez l'importer dans votre point d'entrée.
 
 ```js
-import 'fontsource-roboto';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 ```
 
 For more info check out [Fontsource](https://github.com/fontsource/fontsource).
@@ -55,21 +58,22 @@ In some situations you might not be able to use the `Typography` component. Hope
 
 ## Changing the semantic element
 
-The Typography component uses the `variantMapping` property to associate a UI variant with a semantic element. It’s important to realize that the style of a typography is independent from the semantic underlying element.
+The Typography component uses the `variantMapping` property to associate a UI variant with a semantic element. It's important to realize that the style of a typography component is independent from the semantic underlying element.
 
 - You can change the underlying element for a one time occasion with the `component` property:
 
 ```jsx
 {/* There is already an h1 in the page, let's not duplicate it. */}
 <Typography variant="h1" component="h2">
-  h1. Heading
-</Typography>
+  h1. */}
+<Typography variant="h1" component="h2">
+  h1.
 ```
 
-- You can change the mapping [globally using the theme](/customization/globals/#default-props):
+- You can change the mapping [globally using the theme](/customization/theme-components/#default-props):
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   props: {
     MuiTypography: {
       variantMapping: {
@@ -87,6 +91,18 @@ const theme = createMuiTheme({
     },
   },
 });
+```
+
+## Adding & disabling variants
+
+In addition to using the default typography variants, you can add custom ones, or disable any you don't need. See the [Adding & disabling variants](/customization/typography/#adding-amp-disabling-variants) example for more info.
+
+## System props
+
+As a CSS utility component, the `Typography` supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top:
+
+```jsx
+<Typography mt={2}>
 ```
 
 ## Accessibilité

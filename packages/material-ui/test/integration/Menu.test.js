@@ -93,7 +93,7 @@ describe('<Menu /> integration', () => {
   it('does not gain any focus when mounted ', () => {
     const { getByRole } = render(<ButtonMenu />);
 
-    expect(getByRole('menu', { hidden: true })).to.not.contain(document.activeElement);
+    expect(getByRole('menu', { hidden: true })).not.to.contain(document.activeElement);
   });
 
   it('should focus the first item on open', () => {

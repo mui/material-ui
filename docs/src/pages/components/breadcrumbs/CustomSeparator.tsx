@@ -1,19 +1,9 @@
 import * as React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import Stack from '@material-ui/core/Stack';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& > * + *': {
-        marginTop: theme.spacing(2),
-      },
-    },
-  }),
-);
 
 function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
   event.preventDefault();
@@ -21,52 +11,38 @@ function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
 }
 
 export default function CustomSeparator() {
-  const classes = useStyles();
+  const breadcrumbs = [
+    <Link underline="hover" key="1" color="inherit" href="/" onClick={handleClick}>
+      Material-UI
+    </Link>,
+    <Link
+      underline="hover"
+      key="2"
+      color="inherit"
+      href="/getting-started/installation/"
+      onClick={handleClick}
+    >
+      Core
+    </Link>,
+    <Typography key="3" color="text.primary">
+      Breadcrumb
+    </Typography>,
+  ];
 
   return (
-    <div className={classes.root}>
+    <Stack spacing={2}>
       <Breadcrumbs separator="›" aria-label="breadcrumb">
-        <Link color="inherit" href="/" onClick={handleClick}>
-          Material-UI
-        </Link>
-        <Link
-          color="inherit"
-          href="/getting-started/installation/"
-          onClick={handleClick}
-        >
-          Core
-        </Link>
-        <Typography color="textPrimary">Breadcrumb</Typography>
+        {breadcrumbs}
       </Breadcrumbs>
       <Breadcrumbs separator="-" aria-label="breadcrumb">
-        <Link color="inherit" href="/" onClick={handleClick}>
-          Material-UI
-        </Link>
-        <Link
-          color="inherit"
-          href="/getting-started/installation/"
-          onClick={handleClick}
-        >
-          Core
-        </Link>
-        <Typography color="textPrimary">Breadcrumb</Typography>
+        {breadcrumbs}
       </Breadcrumbs>
       <Breadcrumbs
         separator={<NavigateNextIcon fontSize="small" />}
         aria-label="breadcrumb"
       >
-        <Link color="inherit" href="/" onClick={handleClick}>
-          Material-UI
-        </Link>
-        <Link
-          color="inherit"
-          href="/getting-started/installation/"
-          onClick={handleClick}
-        >
-          Core
-        </Link>
-        <Typography color="textPrimary">Breadcrumb</Typography>
+        {breadcrumbs}
       </Breadcrumbs>
-    </div>
+    </Stack>
   );
 }

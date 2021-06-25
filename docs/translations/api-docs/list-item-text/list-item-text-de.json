@@ -8,19 +8,35 @@
     "primary": "The main content element.",
     "primaryTypographyProps": "These props will be forwarded to the primary typography component (as long as disableTypography is not <code>true</code>).",
     "secondary": "The secondary content element.",
-    "secondaryTypographyProps": "These props will be forwarded to the secondary typography component (as long as disableTypography is not <code>true</code>)."
+    "secondaryTypographyProps": "These props will be forwarded to the secondary typography component (as long as disableTypography is not <code>true</code>).",
+    "sx": "Die Einstellung, die das Definieren von Überschreibungen, sowie zusätzlichen CSS-Styles erlaubt. Weitere Details finden Sie auf der <a href=\"/system/basics/#the-sx-prop\">`sx` Seite</a>."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "multiline": {
-      "description": "Styles applied to the `Typography` components if primary and secondary are set."
+    "root": {
+      "description": "Styles applied to the root element."
     },
-    "dense": { "description": "Styles applied to the `Typography` components if dense." },
+    "multiline": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Typography component",
+      "conditions": "primary and secondary are set"
+    },
+    "dense": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Typography component",
+      "conditions": "dense"
+    },
     "inset": {
-      "description": "Styles applied to the root element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
       "conditions": "<code>inset={true}</code>"
     },
-    "primary": { "description": "Styles applied to the primary `Typography` component." },
-    "secondary": { "description": "Styles applied to the secondary `Typography` component." }
+    "primary": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the primary `Typography` component"
+    },
+    "secondary": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the secondary `Typography` component"
+    }
   }
 }

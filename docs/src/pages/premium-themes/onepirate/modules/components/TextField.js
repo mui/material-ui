@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 import MuiTextField from '@material-ui/core/TextField';
 
 const inputSyleMapping = {
@@ -32,22 +32,22 @@ const styles = (theme) => ({
     },
   },
   disabled: {},
-  [inputSyleMapping['small']]: {
+  [inputSyleMapping.small]: {
     fontSize: 14,
     padding: theme.spacing(1),
     width: `calc(100% - ${theme.spacing(2)})`,
   },
-  [inputSyleMapping['medium']]: {
+  [inputSyleMapping.medium]: {
     fontSize: 16,
     padding: theme.spacing(2),
     width: `calc(100% - ${theme.spacing(4)})`,
   },
-  [inputSyleMapping['large']]: {
+  [inputSyleMapping.large]: {
     fontSize: 18,
     padding: 20,
     width: `calc(100% - ${20 * 2}px)`,
   },
-  [inputSyleMapping['xlarge']]: {
+  [inputSyleMapping.xlarge]: {
     fontSize: 20,
     padding: 25,
     width: `calc(100% - ${25 * 2}px)`,

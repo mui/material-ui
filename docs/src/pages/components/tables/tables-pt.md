@@ -1,16 +1,16 @@
 ---
-title: React Table component
+title: Componente React Tabela
 components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 githubLabel: 'component: Table'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#table'
 materialDesign: https://material.io/components/data-tables
 ---
 
-# Table
+# Tabela
 
 <p class="description">Tabelas exibem conjuntos de dados. Elas podem ser totalmente customizadas.</p>
 
-[Tabelas](https://material.io/design/components/data-tables.html) apresentam informações de uma forma fácil de visualizar, de modo que os usuários podem procurar por padrões e percepções. Elas podem ser incorporadas no conteúdo principal, assim como cartões. They can include:
+Tables display information in a way that's easy to scan, so that users can look for patterns and insights. Elas podem ser incorporadas no conteúdo principal, assim como cartões. Elas podem incluir:
 
 - Uma visualização correspondente
 - Navegação
@@ -24,11 +24,13 @@ Um exemplo simples sem frescuras.
 
 Uma tabela de dados contém uma linha de cabeçalho no topo que lista os nomes das colunas, seguidas pelas linhas dos dados.
 
-## Classificando & Selecionando
+## Tabela de dados
 
-The `Table` component has a close mapping to the native `<table>` elements. This constraint makes building rich data tables challenging.
+O componente `Table` tem um mapeamento próximo dos elementos nativos de `<table>`. Este requisito torna a construção de tabelas de dados ricas e desafiadora.
 
-The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused around handling a large amounts of tabular data. While it comes with a more rigid structure, in exchange, you gain more powerful features.
+The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data. Enquanto vem com uma estrutura mais rígida, em troca, você ganha recursos poderosos.
+
+{{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
 
 ## Tabela Simples
 
@@ -46,7 +48,7 @@ A tabela recebeu uma largura fixa para demonstrar a rolagem horizontal. Para imp
 
 ## Tabelas Customizadas
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
@@ -72,15 +74,15 @@ A propriedade `Action` do componente `TablePagination` permite a implementação
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
-## Cabeçalho fixo
+## Sticky header
 
-Um exemplo de uma tabela com linhas roláveis e cabeçalhos de coluna fixos. It leverages the `stickyHeader` prop.<br /> (⚠️ no IE11 support)
+Here is an example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop. (⚠️ no IE 11 support)
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
-## Column grouping
+## Agrupando colunas
 
-You can group column headers by rendering multiple table rows inside a table head:
+Você pode agrupar cabeçalhos de coluna renderizando várias linhas de tabela dentro de um cabeçalho de tabela:
 
 ```jsx
 <TableHead>
@@ -115,6 +117,6 @@ No exemplo a seguir, nós demonstramos como usar [react-virtualized](https://git
 
 ### Caption
 
-Um caption funciona como um título para uma tabela. A maioria dos leitores de tela anunciam o conteúdo dos captions. Os captions ajudam os usuários a encontrar uma tabela e a entender o que ela representa e decidir se querem lê-la.
+Um caption funciona como um título para uma tabela. A maioria dos leitores de tela anunciam o conteúdo dos captions. Captions help users to find a table and understand what it's about and decide if they want to read it.
 
 {{"demo": "pages/components/tables/AcccessibleTable.js", "bg": true}}

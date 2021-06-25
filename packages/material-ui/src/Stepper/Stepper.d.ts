@@ -1,6 +1,9 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
+import { StepperClasses } from './stepperClasses';
 
 export type Orientation = 'horizontal' | 'vertical';
 
@@ -24,16 +27,7 @@ export interface StepperProps extends StandardProps<PaperProps> {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if `orientation="horizontal"`. */
-    horizontal?: string;
-    /** Styles applied to the root element if `orientation="vertical"`. */
-    vertical?: string;
-    /** Styles applied to the root element if `alternativeLabel={true}`. */
-    alternativeLabel?: string;
-  };
+  classes?: Partial<StepperClasses>;
   /**
    * An element to be placed between each step.
    * @default <StepConnector />
@@ -45,10 +39,14 @@ export interface StepperProps extends StandardProps<PaperProps> {
    */
   nonLinear?: boolean;
   /**
-   * The stepper orientation (layout flow direction).
+   * The component orientation (layout flow direction).
    * @default 'horizontal'
    */
   orientation?: Orientation;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type StepperClasskey = keyof NonNullable<StepperProps['classes']>;

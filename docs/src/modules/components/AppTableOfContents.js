@@ -3,7 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -79,10 +79,10 @@ function getItemsClient(headings) {
 const noop = () => {};
 
 function useThrottledOnScroll(callback, delay) {
-  const throttledCallback = React.useMemo(() => (callback ? throttle(callback, delay) : noop), [
-    callback,
-    delay,
-  ]);
+  const throttledCallback = React.useMemo(
+    () => (callback ? throttle(callback, delay) : noop),
+    [callback, delay],
+  );
 
   React.useEffect(() => {
     if (throttledCallback === noop) {
@@ -186,7 +186,7 @@ export default function AppTableOfContents(props) {
     <Link
       display="block"
       color={activeState === item.hash ? 'textPrimary' : 'textSecondary'}
-      href={`${activePage.pathname}#${item.hash}`}
+      href={`${activePage.linkProps?.as ?? activePage.pathname}#${item.hash}`}
       underline="none"
       onClick={handleClick(item.hash)}
       className={clsx(

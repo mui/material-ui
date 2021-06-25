@@ -1,9 +1,9 @@
 {
   "name": "@material-ui/styled-engine-sc",
-  "version": "5.0.0-alpha.18",
+  "version": "5.0.0-alpha.35",
   "private": false,
   "author": "Material-UI Team",
-  "description": "Material-UI Styled - Wrapper package for styled-components.",
+  "description": "styled() API wrapper package for styled-components.",
   "main": "./src/index.js",
   "keywords": [
     "react",
@@ -34,10 +34,12 @@
     "build:copy-files": "node ../../scripts/copy-files.js",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build --tag next",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-styles/**/*.test.{js,ts,tsx}'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-styled-engine-sc/**/*.test.{js,ts,tsx}'",
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
-  "dependencies": {},
+  "dependencies": {
+    "prop-types": "^15.7.2"
+  },
   "peerDependencies": {
     "@types/styled-components": "^5.1.3",
     "styled-components": "^5.0.0"
@@ -52,6 +54,6 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12.0.0"
   }
 }

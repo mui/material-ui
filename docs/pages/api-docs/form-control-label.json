@@ -1,9 +1,11 @@
 {
   "props": {
+    "control": { "type": { "name": "element" }, "required": true },
     "checked": { "type": { "name": "bool" } },
     "classes": { "type": { "name": "object" } },
-    "control": { "type": { "name": "element" }, "required": true },
+    "componentProps": { "type": { "name": "object" }, "default": "{}" },
     "disabled": { "type": { "name": "bool" } },
+    "disableTypography": { "type": { "name": "bool" } },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },
     "label": { "type": { "name": "node" } },
     "labelPlacement": {
@@ -14,6 +16,7 @@
       "default": "'end'"
     },
     "onChange": { "type": { "name": "func" } },
+    "sx": { "type": { "name": "object" } },
     "value": { "type": { "name": "any" } }
   },
   "name": "FormControlLabel",
@@ -34,5 +37,6 @@
   "filename": "/packages/material-ui/src/FormControlLabel/FormControlLabel.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/checkboxes/\">Checkboxes</a></li>\n<li><a href=\"/components/radio-buttons/\">Radio Buttons</a></li>\n<li><a href=\"/components/switches/\">Switches</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

@@ -1,185 +1,229 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useThemeVariants } from '@material-ui/styles';
-import withStyles from '../styles/withStyles';
-import { alpha } from '../styles/colorManipulator';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { alpha } from '@material-ui/system';
+import styled from '../styles/styled';
+import useThemeProps from '../styles/useThemeProps';
+import { getDividerUtilityClass } from './dividerClasses';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
+const useUtilityClasses = (styleProps) => {
+  const { absolute, children, classes, flexItem, light, orientation, textAlign, variant } =
+    styleProps;
+
+  const slots = {
+    root: [
+      'root',
+      absolute && 'absolute',
+      variant,
+      light && 'light',
+      orientation === 'vertical' && 'vertical',
+      flexItem && 'flexItem',
+      children && 'withChildren',
+      children && orientation === 'vertical' && 'withChildrenVertical',
+      textAlign === 'right' && orientation !== 'vertical' && 'textAlignRight',
+      textAlign === 'left' && orientation !== 'vertical' && 'textAlignLeft',
+    ],
+    wrapper: ['wrapper', orientation === 'vertical' && 'wrapperVertical'],
+  };
+
+  return composeClasses(slots, getDividerUtilityClass, classes);
+};
+
+const DividerRoot = styled('div', {
+  name: 'MuiDivider',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return [
+      styles.root,
+      styleProps.absolute && styles.absolute,
+      styles[styleProps.variant],
+      styleProps.light && styles.light,
+      styleProps.orientation === 'vertical' && styles.vertical,
+      styleProps.flexItem && styles.flexItem,
+      styleProps.children && styles.withChildren,
+      styleProps.children && styleProps.orientation === 'vertical' && styles.withChildrenVertical,
+      styleProps.textAlign === 'right' &&
+        styleProps.orientation !== 'vertical' &&
+        styles.textAlignRight,
+      styleProps.textAlign === 'left' &&
+        styleProps.orientation !== 'vertical' &&
+        styles.textAlignLeft,
+    ];
+  },
+})(
+  ({ theme, styleProps }) => ({
+    /* Styles applied to the root element. */
     margin: 0, // Reset browser default style.
     flexShrink: 0,
     borderWidth: 0,
     borderStyle: 'solid',
     borderColor: theme.palette.divider,
     borderBottomWidth: 'thin',
-  },
-  /* Styles applied to the root element if `absolute={true}`. */
-  absolute: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    width: '100%',
-  },
-  /* Styles applied to the root element if `variant="inset"`. */
-  inset: {
-    marginLeft: 72,
-  },
-  /* Styles applied to the root element if `variant="fullWidth"`. */
-  fullWidth: {},
-  /* Styles applied to the root element if `light={true}`. */
-  light: {
-    borderColor: alpha(theme.palette.divider, 0.08),
-  },
-  /* Styles applied to the root element if `variant="middle"`. */
-  middle: {
-    marginLeft: theme.spacing(2),
-    marginRight: theme.spacing(2),
-  },
-  /* Styles applied to the root element if `orientation="vertical"`. */
-  vertical: {
-    height: '100%',
-    borderBottomWidth: 0,
-    borderRightWidth: 'thin',
-  },
-  /* Styles applied to the root element if `flexItem={true}`. */
-  flexItem: {
-    alignSelf: 'stretch',
-    height: 'auto',
-  },
-  /* Styles applied to the root element if divider have text. */
-  withChildren: {
-    display: 'flex',
-    whiteSpace: 'nowrap',
-    textAlign: 'center',
-    border: 0,
-    '&::before, &::after': {
-      position: 'relative',
+    /* Styles applied to the root element if `absolute={true}`. */
+    ...(styleProps.absolute && {
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
       width: '100%',
-      borderColor: theme.palette.divider,
-      borderTop: 'thin',
-      borderLeft: 0,
-      borderRight: 0,
-      borderBottom: 0,
-      borderStyle: 'solid',
-      top: '50%',
-      content: '""',
-      transform: 'translateY(50%)',
-    },
-  },
-  /* Styles applied to the root element if divider have text and `orientation="vertical"`. */
-  withChildrenVertical: {
-    flexDirection: 'column',
-    '&::before, &::after': {
+    }),
+    /* Styles applied to the root element if `light={true}`. */
+    ...(styleProps.light && {
+      borderColor: alpha(theme.palette.divider, 0.08),
+    }),
+    /* Styles applied to the root element if `variant="inset"`. */
+    ...(styleProps.variant === 'inset' && {
+      marginLeft: 72,
+    }),
+    /* Styles applied to the root element if `variant="middle"` and `orientation="horizontal"`. */
+    ...(styleProps.variant === 'middle' &&
+      styleProps.orientation === 'horizontal' && {
+        marginLeft: theme.spacing(2),
+        marginRight: theme.spacing(2),
+      }),
+    /* Styles applied to the root element if `variant="middle"` and `orientation="vertical"`. */
+    ...(styleProps.variant === 'middle' &&
+      styleProps.orientation === 'vertical' && {
+        marginTop: theme.spacing(1),
+        marginBottom: theme.spacing(1),
+      }),
+    /* Styles applied to the root element if `orientation="vertical"`. */
+    ...(styleProps.orientation === 'vertical' && {
       height: '100%',
-      top: '0%',
-      left: '50%',
-      borderColor: theme.palette.divider,
-      borderTop: 0,
-      borderLeft: 'thin',
-      borderStyle: 'solid',
-      transform: 'translateX(0%)',
-    },
+      borderBottomWidth: 0,
+      borderRightWidth: 'thin',
+    }),
+    /* Styles applied to the root element if `flexItem={true}`. */
+    ...(styleProps.flexItem && {
+      alignSelf: 'stretch',
+      height: 'auto',
+    }),
+  }),
+  ({ theme, styleProps }) => ({
+    /* Styles applied to the root element if divider have text. */
+    ...(styleProps.children && {
+      display: 'flex',
+      whiteSpace: 'nowrap',
+      textAlign: 'center',
+      border: 0,
+      '&::before, &::after': {
+        position: 'relative',
+        width: '100%',
+        borderTop: `thin solid ${theme.palette.divider}`,
+        top: '50%',
+        content: '""',
+        transform: 'translateY(50%)',
+      },
+    }),
+  }),
+  ({ theme, styleProps }) => ({
+    /* Styles applied to the root element if divider have text and `orientation="vertical"`. */
+    ...(styleProps.children &&
+      styleProps.orientation === 'vertical' && {
+        flexDirection: 'column',
+        '&::before, &::after': {
+          height: '100%',
+          top: '0%',
+          left: '50%',
+          borderTop: 0,
+          borderLeft: `thin solid ${theme.palette.divider}`,
+          transform: 'translateX(0%)',
+        },
+      }),
+  }),
+  ({ styleProps }) => ({
+    /* Styles applied to the root element if `textAlign="right" orientation="horizontal"`. */
+    ...(styleProps.textAlign === 'right' &&
+      styleProps.orientation !== 'vertical' && {
+        '&::before': {
+          width: '90%',
+        },
+        '&::after': {
+          width: '10%',
+        },
+      }),
+    /* Styles applied to the root element if `textAlign="left" orientation="horizontal"`. */
+    ...(styleProps.textAlign === 'left' &&
+      styleProps.orientation !== 'vertical' && {
+        '&::before': {
+          width: '10%',
+        },
+        '&::after': {
+          width: '90%',
+        },
+      }),
+  }),
+);
+
+const DividerWrapper = styled('span', {
+  name: 'MuiDivider',
+  slot: 'Wrapper',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return [styles.wrapper, styleProps.orientation === 'vertical' && styles.wrapperVertical];
   },
-  /* Styles applied to the root element if `textAlign="right" orientation="horizontal"`. */
-  textAlignRight: {
-    '&::before': {
-      width: '90%',
-    },
-    '&::after': {
-      width: '10%',
-    },
-  },
-  /* Styles applied to the root element if `textAlign="left" orientation="horizontal"`. */
-  textAlignLeft: {
-    '&::before': {
-      width: '10%',
-    },
-    '&::after': {
-      width: '90%',
-    },
-  },
-  /* Styles applied to the span children element if `orientation="horizontal"`. */
-  wrapper: {
-    display: 'inline-block',
-    paddingLeft: theme.spacing(1.2),
-    paddingRight: theme.spacing(1.2),
-  },
-  /* Styles applied to the span children element if `orientation="vertical"`. */
-  wrapperVertical: {
+})(({ theme, styleProps }) => ({
+  display: 'inline-block',
+  paddingLeft: theme.spacing(1.2),
+  paddingRight: theme.spacing(1.2),
+  ...(styleProps.orientation === 'vertical' && {
     paddingTop: theme.spacing(1.2),
     paddingBottom: theme.spacing(1.2),
-  },
-});
+  }),
+}));
 
-const Divider = React.forwardRef(function Divider(props, ref) {
+const Divider = React.forwardRef(function Divider(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiDivider' });
   const {
     absolute = false,
-    classes,
-    className,
     children,
-    component: Component = children ? 'div' : 'hr',
+    className,
+    component = children ? 'div' : 'hr',
     flexItem = false,
     light = false,
     orientation = 'horizontal',
-    role = Component !== 'hr' ? 'separator' : undefined,
+    role = component !== 'hr' ? 'separator' : undefined,
     textAlign = 'center',
     variant = 'fullWidth',
     ...other
   } = props;
 
-  const themeVariantsClasses = useThemeVariants(
-    {
-      ...props,
-      absolute,
-      component: Component,
-      flexItem,
-      light,
-      orientation,
-      role,
-      textAlign,
-      variant,
-    },
-    'MuiDivider',
-  );
+  const styleProps = {
+    ...props,
+    absolute,
+    component,
+    flexItem,
+    light,
+    orientation,
+    role,
+    textAlign,
+    variant,
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   return (
-    <Component
-      className={clsx(
-        classes.root,
-        classes[variant],
-        {
-          [classes.absolute]: absolute,
-          [classes.flexItem]: flexItem,
-          [classes.light]: light,
-          [classes.vertical]: orientation === 'vertical',
-          [classes.withChildren]: children,
-          [classes.withChildrenVertical]: children && orientation === 'vertical',
-          [classes.textAlignRight]: textAlign === 'right' && orientation !== 'vertical',
-          [classes.textAlignLeft]: textAlign === 'left' && orientation !== 'vertical',
-        },
-        themeVariantsClasses,
-        className,
-      )}
+    <DividerRoot
+      as={component}
+      className={clsx(classes.root, className)}
       role={role}
       ref={ref}
+      styleProps={styleProps}
       {...other}
     >
       {children ? (
-        <span
-          className={clsx(classes.wrapper, {
-            [classes.wrapperVertical]: orientation === 'vertical',
-          })}
-        >
+        <DividerWrapper className={classes.wrapper} styleProps={styleProps}>
           {children}
-        </span>
+        </DividerWrapper>
       ) : null}
-    </Component>
+    </DividerRoot>
   );
 });
 
-Divider.propTypes = {
+Divider.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -218,14 +262,18 @@ Divider.propTypes = {
    */
   light: PropTypes.bool,
   /**
-   * The divider orientation.
+   * The component orientation.
    * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * @ignore
    */
-  role: PropTypes.string,
+  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
   /**
    * The text alignment.
    * @default 'center'
@@ -241,4 +289,4 @@ Divider.propTypes = {
   ]),
 };
 
-export default withStyles(styles, { name: 'MuiDivider' })(Divider);
+export default Divider;

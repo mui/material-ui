@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -13,24 +13,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Switch from '@material-ui/core/Switch';
 
-const useStyles = makeStyles((theme) => ({
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    margin: 'auto',
-    width: 'fit-content',
-  },
-  formControl: {
-    marginTop: theme.spacing(2),
-    minWidth: 120,
-  },
-  formControlLabel: {
-    marginTop: theme.spacing(1),
-  },
-}));
-
 export default function MaxWidthDialog() {
-  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [fullWidth, setFullWidth] = React.useState(true);
   const [maxWidth, setMaxWidth] = React.useState('sm');
@@ -61,20 +44,29 @@ export default function MaxWidthDialog() {
         maxWidth={maxWidth}
         open={open}
         onClose={handleClose}
-        aria-labelledby="max-width-dialog-title"
       >
-        <DialogTitle id="max-width-dialog-title">Optional sizes</DialogTitle>
+        <DialogTitle>Optional sizes</DialogTitle>
         <DialogContent>
           <DialogContentText>
             You can set my maximum width and whether to adapt or not.
           </DialogContentText>
-          <form className={classes.form} noValidate>
-            <FormControl className={classes.formControl}>
+          <Box
+            noValidate
+            component="form"
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              m: 'auto',
+              width: 'fit-content',
+            }}
+          >
+            <FormControl sx={{ mt: 2, minWidth: 120 }}>
               <InputLabel htmlFor="max-width">maxWidth</InputLabel>
               <Select
                 autoFocus
                 value={maxWidth}
                 onChange={handleMaxWidthChange}
+                label="maxWidth"
                 inputProps={{
                   name: 'max-width',
                   id: 'max-width',
@@ -89,13 +81,13 @@ export default function MaxWidthDialog() {
               </Select>
             </FormControl>
             <FormControlLabel
-              className={classes.formControlLabel}
+              sx={{ mt: 1 }}
               control={
                 <Switch checked={fullWidth} onChange={handleFullWidthChange} />
               }
               label="Full width"
             />
-          </form>
+          </Box>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Close</Button>

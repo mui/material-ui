@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -16,10 +16,7 @@ export default function InputSlider() {
     30,
   );
 
-  const handleSliderChange = (
-    event: React.SyntheticEvent,
-    newValue: number | number[],
-  ) => {
+  const handleSliderChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue);
   };
 

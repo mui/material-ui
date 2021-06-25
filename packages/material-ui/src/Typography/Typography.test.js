@@ -1,32 +1,26 @@
 // @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createClientRender, createMount, describeConformance } from 'test/utils';
-import Typography from './Typography';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
+import Typography, { typographyClasses as classes } from '@material-ui/core/Typography';
 
 describe('<Typography />', () => {
+  const render = createClientRender();
   /**
    * @type {ReturnType<typeof createMount>}
    */
   const mount = createMount();
-  /**
-   * // we test at runtime that this is equal to
-   * Record<import('./Typography').TypographyClassKey, string>
-   * @type {Record<string, string>}
-   */
-  let classes;
 
-  const render = createClientRender();
-
-  before(() => {
-    classes = getClasses(<Typography />);
-  });
-
-  describeConformance(<Typography />, () => ({
+  describeConformanceV5(<Typography />, () => ({
     classes,
     inheritComponent: 'p',
+    render,
     mount,
     refInstanceof: window.HTMLParagraphElement,
+    muiName: 'MuiTypography',
+    testVariantProps: { variant: 'dot' },
+    testStateOverrides: { prop: 'variant', value: 'h2', styleKey: 'h2' },
+    skip: ['componentsProp'],
   }));
 
   it('should render the text', () => {
@@ -50,39 +44,28 @@ describe('<Typography />', () => {
 
     expect(container.firstChild).to.have.class(classes.alignCenter);
   });
-  ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1', 'body2', 'body1', 'caption', 'button'].forEach(
-    (variant) => {
-      it(`should render ${variant} text`, () => {
-        // @ts-ignore literal/tuple type widening
-        const { container } = render(<Typography variant={variant}>Hello</Typography>);
-
-        expect(classes[variant] != null).to.equal(true);
-        expect(container.firstChild).to.have.class(classes[variant]);
-      });
-    },
-  );
-
   [
-    ['primary', 'colorPrimary'],
-    ['textSecondary', 'colorTextSecondary'],
-    ['secondary', 'colorSecondary'],
-    ['inherit', 'colorInherit'],
-    ['error', 'colorError'],
-  ].forEach(([color, className]) => {
-    it(`should render ${color} color`, () => {
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'subtitle1',
+    'body2',
+    'body1',
+    'caption',
+    'button',
+    'overline',
+  ].forEach((variant) => {
+    it(`should render ${variant} text`, () => {
       // @ts-ignore literal/tuple type widening
-      const { container } = render(<Typography color={color}>Hello</Typography>);
+      const { container } = render(<Typography variant={variant}>Hello</Typography>);
 
-      expect(classes[className] != null).to.equal(true);
-      expect(container.firstChild).to.have.class(classes[className]);
-    });
-  });
+      expect(classes).to.have.property(variant);
 
-  describe('prop: color', () => {
-    it('should inherit the color', () => {
-      const { container } = render(<Typography color="inherit">Hello</Typography>);
-
-      expect(container.firstChild).to.have.class(classes.colorInherit);
+      // @ts-ignore
+      expect(container.firstChild).to.have.class(classes[variant]);
     });
   });
 
@@ -134,29 +117,14 @@ describe('<Typography />', () => {
     });
   });
 
-  describe('prop: display', () => {
-    it('should render with displayInline class in display="inline"', () => {
-      const { container } = render(<Typography display="inline">Hello</Typography>);
+  it('combines system properties with the sx prop', () => {
+    const { container } = render(<Typography mt={2} mr={1} sx={{ marginRight: 5, mb: 2 }} />);
 
-      expect(container.firstChild).to.have.class(classes.root);
-      expect(container.firstChild).to.have.class(classes.displayInline);
-      expect(container.firstChild).not.to.have.class(classes.displayBlock);
-    });
-
-    it('should render with displayInline class in display="block"', () => {
-      const { container } = render(<Typography display="block">Hello</Typography>);
-
-      expect(container.firstChild).to.have.class(classes.root);
-      expect(container.firstChild).to.have.class(classes.displayBlock);
-      expect(container.firstChild).not.to.have.class(classes.displayInline);
-    });
-
-    it('should render with no display classes if display="initial"', () => {
-      const { container } = render(<Typography display="initial">Hello</Typography>);
-
-      expect(container.firstChild).to.have.class(classes.root);
-      expect(container.firstChild).not.to.have.class(classes.displayBlock);
-      expect(container.firstChild).not.to.have.class(classes.displayInline);
+    // @ts-ignore issue with typings on `toHaveComputedStyle`
+    expect(container.firstChild).toHaveComputedStyle({
+      marginTop: '16px',
+      marginRight: '40px',
+      marginBottom: '16px',
     });
   });
 });

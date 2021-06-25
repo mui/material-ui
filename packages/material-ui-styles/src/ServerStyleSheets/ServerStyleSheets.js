@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { SheetsRegistry } from 'jss';
 import StylesProvider from '../StylesProvider';
 import createGenerateClassName from '../createGenerateClassName';

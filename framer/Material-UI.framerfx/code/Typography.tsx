@@ -4,14 +4,6 @@ import MuiTypography from '@material-ui/core/Typography';
 
 interface Props {
   align: 'center' | 'inherit' | 'justify' | 'left' | 'right';
-  color:
-    | 'error'
-    | 'inherit'
-    | 'initial'
-    | 'primary'
-    | 'secondary'
-    | 'textPrimary'
-    | 'textSecondary';
   noWrap: boolean;
   label: string;
   width: number | string;
@@ -25,7 +17,6 @@ export function Typography(props: Props): JSX.Element {
 
 Typography.defaultProps = {
   align: 'inherit' as 'inherit',
-  color: 'initial' as 'initial',
   noWrap: false,
   label: 'Typography',
   width: 100,
@@ -37,19 +28,6 @@ addPropertyControls(Typography, {
     type: ControlType.Enum,
     title: 'Align',
     options: ['center', 'inherit', 'justify', 'left', 'right'],
-  },
-  color: {
-    type: ControlType.Enum,
-    title: 'Color',
-    options: [
-      'error',
-      'inherit',
-      'initial',
-      'primary',
-      'secondary',
-      'textPrimary',
-      'textSecondary',
-    ],
   },
   noWrap: {
     type: ControlType.Boolean,

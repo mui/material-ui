@@ -14,9 +14,7 @@ export default function Why() {
       }}
     >
       <Box sx={{ color: 'text.secondary' }}>Sessions</Box>
-      <Box
-        sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'fontWeightMedium' }}
-      >
+      <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'medium' }}>
         98.3 K
       </Box>
       <Box
@@ -27,14 +25,14 @@ export default function Why() {
         sx={{
           color: 'success.dark',
           display: 'inline',
-          fontWeight: 'fontWeightMedium',
+          fontWeight: 'medium',
           mx: 0.5,
         }}
       >
         18.77%
       </Box>
       <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 12 }}>
-        vs last week
+        vs. last week
       </Box>
     </Box>
   );

@@ -1,47 +1,36 @@
 import * as React from 'react';
-import {
-  alpha,
-  ThemeProvider,
-  useTheme,
-  withStyles,
-  makeStyles,
-  createMuiTheme,
-} from '@material-ui/core/styles';
+import { alpha, styled } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
+import Box from '@material-ui/core/Box';
 import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
-import { green } from '@material-ui/core/colors';
 
-const CssTextField = withStyles({
-  root: {
-    '& label.Mui-focused': {
-      color: 'green',
+const CssTextField = styled(TextField)({
+  '& label.Mui-focused': {
+    color: 'green',
+  },
+  '& .MuiInput-underline:after': {
+    borderBottomColor: 'green',
+  },
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      borderColor: 'red',
     },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: 'green',
+    '&:hover fieldset': {
+      borderColor: 'yellow',
     },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'red',
-      },
-      '&:hover fieldset': {
-        borderColor: 'yellow',
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: 'green',
-      },
+    '&.Mui-focused fieldset': {
+      borderColor: 'green',
     },
   },
-})(TextField);
+});
 
-const BootstrapInput = withStyles((theme) => ({
-  root: {
-    'label + &': {
-      marginTop: theme.spacing(3),
-    },
+const BootstrapInput = styled(InputBase)(({ theme }) => ({
+  'label + &': {
+    marginTop: theme.spacing(3),
   },
-  input: {
+  '& .MuiInputBase-input': {
     borderRadius: 4,
     position: 'relative',
     backgroundColor: theme.palette.mode === 'light' ? '#fcfcfb' : '#2b2b2b',
@@ -72,10 +61,12 @@ const BootstrapInput = withStyles((theme) => ({
       borderColor: theme.palette.primary.main,
     },
   },
-}))(InputBase);
+}));
 
-const useStylesReddit = makeStyles((theme) => ({
-  root: {
+const RedditTextField = styled((props) => (
+  <TextField InputProps={{ disableUnderline: true }} {...props} />
+))(({ theme }) => ({
+  '& .MuiFilledInput-root': {
     border: '1px solid #e2e2e1',
     overflow: 'hidden',
     borderRadius: 4,
@@ -88,86 +79,41 @@ const useStylesReddit = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: 'transparent',
     },
-    '&$focused': {
+    '&.Mui-focused': {
       backgroundColor: 'transparent',
       boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 2px`,
       borderColor: theme.palette.primary.main,
     },
   },
-  focused: {},
 }));
 
-function RedditTextField(props) {
-  const classes = useStylesReddit();
-
-  return <TextField InputProps={{ classes, disableUnderline: true }} {...props} />;
-}
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
+const ValidationTextField = styled(TextField)({
+  '& input:valid + fieldset': {
+    borderColor: 'green',
+    borderWidth: 2,
   },
-  margin: {
-    margin: theme.spacing(1),
+  '& input:invalid + fieldset': {
+    borderColor: 'red',
+    borderWidth: 2,
   },
-}));
-
-const ValidationTextField = withStyles({
-  root: {
-    '& input:valid + fieldset': {
-      borderColor: 'green',
-      borderWidth: 2,
-    },
-    '& input:invalid + fieldset': {
-      borderColor: 'red',
-      borderWidth: 2,
-    },
-    '& input:valid:focus + fieldset': {
-      borderLeftWidth: 6,
-      padding: '4px !important', // override inline-style
-    },
+  '& input:valid:focus + fieldset': {
+    borderLeftWidth: 6,
+    padding: '4px !important', // override inline-style
   },
-})(TextField);
+});
 
 export default function CustomizedInputs() {
-  const classes = useStyles();
-  const theme = useTheme();
-
-  const newTheme = createMuiTheme({
-    palette: {
-      mode: theme.palette.mode,
-      primary: green,
-    },
-  });
-
   return (
-    <form className={classes.root} noValidate>
-      <CssTextField
-        className={classes.margin}
-        id="custom-css-standard-input"
-        label="Custom CSS"
-        variant="standard"
-      />
-      <CssTextField
-        className={classes.margin}
-        label="Custom CSS"
-        id="custom-css-outlined-input"
-      />
-      <ThemeProvider theme={newTheme}>
-        <TextField
-          className={classes.margin}
-          label="ThemeProvider"
-          id="mui-theme-provider-standard-input"
-          variant="standard"
-        />
-        <TextField
-          className={classes.margin}
-          label="ThemeProvider"
-          id="mui-theme-provider-outlined-input"
-        />
-      </ThemeProvider>
-      <FormControl className={classes.margin}>
+    <Box
+      component="form"
+      noValidate
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: { sm: '1fr 1fr' },
+        gap: 2,
+      }}
+    >
+      <FormControl variant="standard">
         <InputLabel shrink htmlFor="bootstrap-input">
           Bootstrap
         </InputLabel>
@@ -175,24 +121,19 @@ export default function CustomizedInputs() {
       </FormControl>
       <RedditTextField
         label="Reddit"
-        className={classes.margin}
         defaultValue="react-reddit"
-        variant="filled"
         id="reddit-input"
+        variant="filled"
+        style={{ marginTop: 11 }}
       />
-      <InputBase
-        className={classes.margin}
-        defaultValue="Naked input"
-        inputProps={{ 'aria-label': 'naked' }}
-      />
+      <CssTextField label="Custom CSS" id="custom-css-outlined-input" />
       <ValidationTextField
-        className={classes.margin}
         label="CSS validation style"
         required
         variant="outlined"
         defaultValue="Success"
         id="validation-outlined-input"
       />
-    </form>
+    </Box>
   );
 }

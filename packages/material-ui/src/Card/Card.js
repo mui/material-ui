@@ -1,30 +1,58 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { chainPropTypes } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import styled from '../styles/styled';
+import useThemeProps from '../styles/useThemeProps';
 import Paper from '../Paper';
-import withStyles from '../styles/withStyles';
+import { getCardUtilityClass } from './cardClasses';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {
-    overflow: 'hidden',
-  },
+const useUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+  };
+
+  return composeClasses(slots, getCardUtilityClass, classes);
 };
 
-const Card = React.forwardRef(function Card(props, ref) {
-  const { classes, className, raised = false, ...other } = props;
+const CardRoot = styled(Paper, {
+  name: 'MuiCard',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(() => {
+  /* Styles applied to the root element. */
+  return {
+    overflow: 'hidden',
+  };
+});
+
+const Card = React.forwardRef(function Card(inProps, ref) {
+  const props = useThemeProps({
+    props: inProps,
+    name: 'MuiCard',
+  });
+
+  const { className, raised = false, ...other } = props;
+
+  const styleProps = { ...props, raised };
+
+  const classes = useUtilityClasses(styleProps);
 
   return (
-    <Paper
+    <CardRoot
       className={clsx(classes.root, className)}
-      elevation={raised ? 8 : 1}
+      elevation={raised ? 8 : undefined}
       ref={ref}
+      styleProps={styleProps}
       {...other}
     />
   );
 });
 
-Card.propTypes = {
+Card.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -45,7 +73,19 @@ Card.propTypes = {
    * If `true`, the card will use raised styling.
    * @default false
    */
-  raised: PropTypes.bool,
+  raised: chainPropTypes(PropTypes.bool, (props) => {
+    if (props.raised && props.variant === 'outlined') {
+      return new Error(
+        'Material-UI: Combining `raised={true}` with `variant="outlined"` has no effect.',
+      );
+    }
+
+    return null;
+  }),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiCard' })(Card);
+export default Card;

@@ -1,4 +1,4 @@
-import nested from '../ThemeProvider/nested';
+import { unstable_nested as nested } from '@material-ui/private-theming/ThemeProvider';
 
 /**
  * This is the list of the style rule name we use as drop in replacement for the built-in

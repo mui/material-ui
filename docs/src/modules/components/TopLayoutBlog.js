@@ -1,12 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import { useRouter } from 'next/router';
 import Link from '@material-ui/core/Link';
+import Typography from '@material-ui/core/Typography';
 import Avatar from '@material-ui/core/Avatar';
+import Stack from '@material-ui/core/Stack';
 import AppFooter from 'docs/src/modules/components/AppFooter';
 import { exactProp } from '@material-ui/utils';
 import MarkdownElement from './MarkdownElement';
@@ -15,6 +18,10 @@ const authors = {
   oliviertassinari: {
     name: 'Olivier Tassinari',
     github: 'oliviertassinari',
+  },
+  mbrookes: {
+    name: 'Matt Brookes',
+    github: 'mbrookes',
   },
 };
 
@@ -61,10 +68,9 @@ const styles = (theme) => ({
     ...theme.typography.body2,
   },
   avatar: {
-    marginTop: theme.spacing(-1),
     display: 'flex',
     alignItems: 'center',
-    marginBottom: theme.spacing(5),
+    paddingBottom: theme.spacing(5),
     fontWeight: theme.typography.fontWeightMedium,
     '& .MuiAvatar-root': {
       marginRight: theme.spacing(1),
@@ -95,7 +101,8 @@ function TopLayoutBlog(props) {
           <Link
             href="https://medium.com/material-ui"
             rel="nofollow"
-            color="textSecondary"
+            color="text.secondary"
+            variant="body2"
             className={classes.back}
           >
             {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
@@ -114,12 +121,14 @@ function TopLayoutBlog(props) {
               <MarkdownElement>
                 <h1>{headers.title}</h1>
               </MarkdownElement>
-              {headers.authors.map((author) => (
-                <div className={classes.avatar}>
-                  <Avatar src={`https://github.com/${authors[author].github}.png`} />
-                  {authors[author].name}
-                </div>
-              ))}
+              <Stack direction="row" spacing={3}>
+                {headers.authors.map((author) => (
+                  <div key={author} className={classes.avatar}>
+                    <Avatar src={`https://github.com/${authors[author].github}.png`} />
+                    <Typography>{authors[author].name}</Typography>
+                  </div>
+                ))}
+              </Stack>
             </React.Fragment>
           ) : null}
           {rendered.map((chunk, index) => {
@@ -141,4 +150,5 @@ if (process.env.NODE_ENV !== 'production') {
   TopLayoutBlog.propTypes = exactProp(TopLayoutBlog.propTypes);
 }
 
-export default withStyles(styles)(TopLayoutBlog);
+const defaultTheme = createTheme();
+export default withStyles(styles, { defaultTheme })(TopLayoutBlog);

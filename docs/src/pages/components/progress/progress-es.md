@@ -24,6 +24,10 @@ Los indicadores **determinados** muestran cuánto durará una operación.
 
 {{"demo": "pages/components/progress/CircularIndeterminate.js"}}
 
+### Circular color
+
+{{"demo": "pages/components/progress/CircularColor.js"}}
+
 ### Circular determinate
 
 {{"demo": "pages/components/progress/CircularDeterminate.js"}}
@@ -41,6 +45,10 @@ Los indicadores **determinados** muestran cuánto durará una operación.
 ### Linear indeterminate
 
 {{"demo": "pages/components/progress/LinearIndeterminate.js"}}
+
+### Linear color
+
+{{"demo": "pages/components/progress/LinearColor.js"}}
 
 ### Linear determinate
 
@@ -77,7 +85,7 @@ function Progress(props) {
 
 ## Customized progress
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here are some examples of customizing the component. Puedes aprender más sobre esto en la [sección Personalizando Componentes de la documentación](/customization/how-to-customize/).
 
 {{"demo": "pages/components/progress/CustomizedProgressBars.js", "defaultCodeOpen": false}}
 
@@ -111,9 +119,9 @@ If you need to perform 30 re-renders per second or more, we recommend disabling 
 }
 ```
 
-### IE11
+### IE 11
 
-The circular progress component animation on IE11 is degraded. The stroke dash animation is not working (equivalent to `disableShrink`) and the circular animation wobbles. You can solve the latter with:
+The circular progress component animation on IE 11 is degraded. The stroke dash animation is not working (equivalent to `disableShrink`) and the circular animation wobbles. You can solve the latter with:
 
 ```css
 .MuiCircularProgress-indeterminate {

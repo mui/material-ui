@@ -1,25 +1,48 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import styled from '../styles/styled';
+import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
+import { getAppBarUtilityClass } from './appBarClasses';
 
-export const styles = (theme) => {
+const useUtilityClasses = (styleProps) => {
+  const { color, position, classes } = styleProps;
+
+  const slots = {
+    root: ['root', `color${capitalize(color)}`, `position${capitalize(position)}`],
+  };
+
+  return composeClasses(slots, getAppBarUtilityClass, classes);
+};
+
+const AppBarRoot = styled(Paper, {
+  name: 'MuiAppBar',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return [
+      styles.root,
+      styles[`position${capitalize(styleProps.position)}`],
+      styles[`color${capitalize(styleProps.color)}`],
+    ];
+  },
+})(({ theme, styleProps }) => {
   const backgroundColorDefault =
     theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[900];
 
   return {
     /* Styles applied to the root element. */
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      width: '100%',
-      boxSizing: 'border-box', // Prevent padding issue with the Modal and fixed positioned AppBar.
-      flexShrink: 0,
-    },
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+    boxSizing: 'border-box', // Prevent padding issue with the Modal and fixed positioned AppBar.
+    flexShrink: 0,
     /* Styles applied to the root element if `position="fixed"`. */
-    positionFixed: {
+    ...(styleProps.position === 'fixed' && {
       position: 'fixed',
       zIndex: theme.zIndex.appBar,
       top: 0,
@@ -29,71 +52,89 @@ export const styles = (theme) => {
         // Prevent the app bar to be visible on each printed page.
         position: 'absolute',
       },
-    },
+    }),
     /* Styles applied to the root element if `position="absolute"`. */
-    positionAbsolute: {
+    ...(styleProps.position === 'absolute' && {
       position: 'absolute',
       zIndex: theme.zIndex.appBar,
       top: 0,
       left: 'auto',
       right: 0,
-    },
+    }),
     /* Styles applied to the root element if `position="sticky"`. */
-    positionSticky: {
+    ...(styleProps.position === 'sticky' && {
       // ⚠️ sticky is not supported by IE11.
       position: 'sticky',
       zIndex: theme.zIndex.appBar,
       top: 0,
       left: 'auto',
       right: 0,
-    },
+    }),
     /* Styles applied to the root element if `position="static"`. */
-    positionStatic: {
+    ...(styleProps.position === 'static' && {
       position: 'static',
-    },
+    }),
     /* Styles applied to the root element if `position="relative"`. */
-    positionRelative: {
+    ...(styleProps.position === 'relative' && {
       position: 'relative',
-    },
+    }),
     /* Styles applied to the root element if `color="default"`. */
-    colorDefault: {
+    ...(styleProps.color === 'default' && {
       backgroundColor: backgroundColorDefault,
       color: theme.palette.getContrastText(backgroundColorDefault),
-    },
-    /* Styles applied to the root element if `color="primary"`. */
-    colorPrimary: {
-      backgroundColor: theme.palette.primary.main,
-      color: theme.palette.primary.contrastText,
-    },
-    /* Styles applied to the root element if `color="secondary"`. */
-    colorSecondary: {
-      backgroundColor: theme.palette.secondary.main,
-      color: theme.palette.secondary.contrastText,
-    },
+    }),
+    /* Styles applied to the root element if colors comes from palette. */
+    ...(styleProps.color &&
+      styleProps.color !== 'default' &&
+      styleProps.color !== 'inherit' &&
+      styleProps.color !== 'transparent' && {
+        backgroundColor: theme.palette[styleProps.color].main,
+        color: theme.palette[styleProps.color].contrastText,
+      }),
     /* Styles applied to the root element if `color="inherit"`. */
-    colorInherit: {
+    ...(styleProps.color === 'inherit' && {
       color: 'inherit',
-    },
+    }),
     /* Styles applied to the root element if `color="transparent"`. */
-    colorTransparent: {
+    ...(styleProps.color === 'transparent' && {
       backgroundColor: 'transparent',
       color: 'inherit',
-    },
+    }),
+    ...(theme.palette.mode === 'dark' &&
+      !styleProps.enableColorOnDark && {
+        backgroundColor: null,
+        color: null,
+      }),
   };
-};
+});
 
-const AppBar = React.forwardRef(function AppBar(props, ref) {
-  const { classes, className, color = 'primary', position = 'fixed', ...other } = props;
+const AppBar = React.forwardRef(function AppBar(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiAppBar' });
+  const {
+    className,
+    color = 'primary',
+    enableColorOnDark = false,
+    position = 'fixed',
+    ...other
+  } = props;
+
+  const styleProps = {
+    ...props,
+    color,
+    position,
+    enableColorOnDark,
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   return (
-    <Paper
+    <AppBarRoot
       square
       component="header"
+      styleProps={styleProps}
       elevation={4}
       className={clsx(
         classes.root,
-        classes[`position${capitalize(position)}`],
-        classes[`color${capitalize(color)}`],
         {
           'mui-fixed': position === 'fixed', // Useful for the Dialog
         },
@@ -105,7 +146,7 @@ const AppBar = React.forwardRef(function AppBar(props, ref) {
   );
 });
 
-AppBar.propTypes = {
+AppBar.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -126,7 +167,15 @@ AppBar.propTypes = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary', 'transparent']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary', 'transparent']),
+    PropTypes.string,
+  ]),
+  /**
+   * If true, the `color` prop is applied in dark mode.
+   * @default false
+   */
+  enableColorOnDark: PropTypes.bool,
   /**
    * The positioning type. The behavior of the different options is described
    * [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).
@@ -134,6 +183,10 @@ AppBar.propTypes = {
    * @default 'fixed'
    */
   position: PropTypes.oneOf(['absolute', 'fixed', 'relative', 'static', 'sticky']),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiAppBar' })(AppBar);
+export default AppBar;

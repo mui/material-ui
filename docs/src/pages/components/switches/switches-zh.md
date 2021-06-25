@@ -9,19 +9,35 @@ materialDesign: 'https://material.io/components/selection-controls#switches'
 
 <p class="description">开关控制能切换单个设置的开/关两个状态。</p>
 
-开关组件是在移动设备上调整设置的首选方式。 开关控制的选项，以及它当前所处的状态，都应该在相应的描述标签中明确说明。
+开关组件是在移动设备上调整设置的首选方式。 The option that the switch controls, as well as the state it's in, should be made clear from the corresponding inline label.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## 基本的开关
 
-{{"demo": "pages/components/switches/Switches.js"}}
+{{"demo": "pages/components/switches/BasicSwitches.js"}}
 
-## 带有 FormControlLabel 的开关
+## 标签
 
-借助 `FormControlLabel` 组件，`Switch`能够提供一些描述。
+You can provide a label to the `Switch` thanks to the `FormControlLabel` component.
 
 {{"demo": "pages/components/switches/SwitchLabels.js"}}
+
+## Size 大小
+
+Use the `size` prop to change the size of the switch.
+
+{{"demo": "pages/components/switches/SwitchesSize.js"}}
+
+## Color 颜色
+
+{{"demo": "pages/components/switches/ColorSwitches.js"}}
+
+## Controlled
+
+You can control the switch with the `checked` and `onChange` props:
+
+{{"demo": "pages/components/switches/ControlledSwitches.js"}}
 
 ## 带有 FormGroup 的开关
 
@@ -31,17 +47,11 @@ materialDesign: 'https://material.io/components/selection-controls#switches'
 
 ## 自定义样式开关
 
-你可以参考以下一些例子来自定义组件。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
 🎨 如果您还在寻找灵感，您可以查看一下 [MUI Treasury 自定义的例子](https://mui-treasury.com/components/button)。
-
-## 尺寸
-
-想用一些优雅的小开关？ 试着使用 `size` 属性吧。
-
-{{"demo": "pages/components/switches/SwitchesSize.js"}}
 
 ## 标签放置
 

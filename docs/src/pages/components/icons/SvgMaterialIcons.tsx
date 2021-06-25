@@ -14,21 +14,10 @@ import DeleteForeverSharpIcon from '@material-ui/icons/DeleteForeverSharp';
 import ThreeDRotationIcon from '@material-ui/icons/ThreeDRotation';
 import FourKIcon from '@material-ui/icons/FourK';
 import ThreeSixtyIcon from '@material-ui/icons/ThreeSixty';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      color: theme.palette.text.primary,
-    },
-  }),
-);
 
 export default function SvgMaterialIcons() {
-  const classes = useStyles();
-
   return (
-    <Grid container className={classes.root}>
+    <Grid container sx={{ color: 'text.primary' }}>
       <Grid item xs={4}>
         <Typography>Filled</Typography>
       </Grid>

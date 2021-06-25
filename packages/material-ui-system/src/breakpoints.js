@@ -5,11 +5,11 @@ import merge from './merge';
 // The breakpoint **start** at this value.
 // For instance with the first breakpoint xs: [xs, sm[.
 const values = {
-  xs: 0,
-  sm: 600,
-  md: 960,
-  lg: 1280,
-  xl: 1920,
+  xs: 0, // phone
+  sm: 600, // tablets
+  md: 900, // small laptop
+  lg: 1200, // desktop
+  xl: 1536, // large screens
 };
 
 const defaultBreakpoints = {
@@ -20,14 +20,10 @@ const defaultBreakpoints = {
 };
 
 export function handleBreakpoints(props, propValue, styleFromPropValue) {
-  if (process.env.NODE_ENV !== 'production') {
-    if (!props.theme) {
-      console.error('Material-UI: You are calling a style function without a theme value.');
-    }
-  }
+  const theme = props.theme || {};
 
   if (Array.isArray(propValue)) {
-    const themeBreakpoints = props.theme.breakpoints || defaultBreakpoints;
+    const themeBreakpoints = theme.breakpoints || defaultBreakpoints;
     return propValue.reduce((acc, item, index) => {
       acc[themeBreakpoints.up(themeBreakpoints.keys[index])] = styleFromPropValue(propValue[index]);
       return acc;
@@ -35,11 +31,12 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
   }
 
   if (typeof propValue === 'object') {
-    const themeBreakpoints = props.theme.breakpoints || defaultBreakpoints;
+    const themeBreakpoints = theme.breakpoints || defaultBreakpoints;
     return Object.keys(propValue).reduce((acc, breakpoint) => {
       // key is breakpoint
       if (Object.keys(themeBreakpoints.values || values).indexOf(breakpoint) !== -1) {
-        acc[themeBreakpoints.up(breakpoint)] = styleFromPropValue(propValue[breakpoint]);
+        const mediaKey = themeBreakpoints.up(breakpoint);
+        acc[mediaKey] = styleFromPropValue(propValue[breakpoint], breakpoint);
       } else {
         const cssKey = breakpoint;
         acc[cssKey] = propValue[cssKey];
@@ -55,13 +52,14 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
 
 function breakpoints(styleFunction) {
   const newStyleFunction = (props) => {
+    const theme = props.theme || {};
     const base = styleFunction(props);
-    const themeBreakpoints = props.theme.breakpoints || defaultBreakpoints;
+    const themeBreakpoints = theme.breakpoints || defaultBreakpoints;
 
     const extended = themeBreakpoints.keys.reduce((acc, key) => {
       if (props[key]) {
         acc = acc || {};
-        acc[themeBreakpoints.up(key)] = styleFunction({ theme: props.theme, ...props[key] });
+        acc[themeBreakpoints.up(key)] = styleFunction({ theme, ...props[key] });
       }
       return acc;
     }, null);

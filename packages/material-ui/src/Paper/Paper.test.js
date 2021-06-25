@@ -1,24 +1,25 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
-import Paper from './Paper';
-import { createMuiTheme, ThemeProvider } from '../styles';
+import PropTypes from 'prop-types';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
+import Paper, { paperClasses as classes } from '@material-ui/core/Paper';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 describe('<Paper />', () => {
-  const mount = createMount();
   const render = createClientRender();
-  let classes;
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<Paper />);
-  });
-
-  describeConformance(<Paper />, () => ({
+  describeConformanceV5(<Paper />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
+    muiName: 'MuiPaper',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'header',
+    testVariantProps: { variant: 'rounded' },
+    testStateOverrides: { prop: 'elevation', value: 10, styleKey: 'elevation10' },
+    skip: ['componentsProp'],
   }));
 
   describe('prop: square', () => {
@@ -71,7 +72,7 @@ describe('<Paper />', () => {
   });
 
   it('allows custom elevations via theme.shadows', () => {
-    const theme = createMuiTheme();
+    const theme = createTheme();
     theme.shadows.push('20px 20px');
     const { getByTestId } = render(
       <ThemeProvider theme={theme}>
@@ -82,11 +83,30 @@ describe('<Paper />', () => {
     expect(getByTestId('root')).to.have.class('custom-elevation');
   });
 
-  it('warns if the given `elevation` is not implemented in the theme', () => {
-    expect(() => {
-      render(<Paper elevation={25} />);
-    }).toErrorDev(
-      'Material-UI: The elevation provided <Paper elevation={25}> is not available in the theme.',
-    );
+  describe('warnings', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+    });
+
+    it('warns if the given `elevation` is not implemented in the theme', () => {
+      expect(() => {
+        render(<Paper elevation={25} />);
+      }).toErrorDev(
+        'Material-UI: The elevation provided <Paper elevation={25}> is not available in the theme.',
+      );
+    });
+
+    it('warns if `elevation={numberGreaterThanZero}` is used with `variant="outlined"`', () => {
+      expect(() => {
+        PropTypes.checkPropTypes(
+          Paper.propTypes,
+          { elevation: 5, variant: 'outlined' },
+          'prop',
+          'MockedName',
+        );
+      }).toErrorDev([
+        'Material-UI: Combining `elevation={5}` with `variant="outlined"` has no effect. Either use `elevation={0}` or use a different `variant`.',
+      ]);
+    });
   });
 });

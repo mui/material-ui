@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { SOURCE_CODE_REPO } from 'docs/src/modules/constants';
 import Demo from 'docs/src/modules/components/Demo';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { exactProp } from '@material-ui/utils';
@@ -8,6 +7,7 @@ import ComponentLinkHeader from 'docs/src/modules/components/ComponentLinkHeader
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 
+// TODO: Only import on demand via @material-ui/markdown/loader
 const markdownComponents = {
   'modules/components/ComponentLinkHeader.js': ComponentLinkHeader,
 };
@@ -78,7 +78,7 @@ function MarkdownDocs(props) {
             }}
             disableAd={disableAd}
             demoOptions={renderedMarkdownOrDemo}
-            githubLocation={`${SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}/docs/src/${name}`}
+            githubLocation={`${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}/docs/src/${name}`}
           />
         );
       })}

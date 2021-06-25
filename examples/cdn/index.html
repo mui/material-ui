@@ -22,11 +22,11 @@ const {
   ThemeProvider,
   Typography,
   Container,
-  makeStyles,
   createMuiTheme,
   Box,
   SvgIcon,
   Link,
+  StyledEngineProvider,
 } = MaterialUI;
 
 // Create a theme instance.
@@ -41,9 +41,6 @@ const theme = createMuiTheme({
     error: {
       main: colors.red.A400,
     },
-    background: {
-      default: '#fff',
-    },
   },
 });
 
@@ -55,21 +52,10 @@ function LightBulbIcon(props) {
   );
 }
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    margin: theme.spacing(6, 0, 3),
-  },
-  lightBulb: {
-    verticalAlign: 'middle',
-    marginRight: theme.spacing(1),
-  },
-}));
-
 function ProTip() {
-  const classes = useStyles();
   return (
-    <Typography className={classes.root} color="textSecondary">
-      <LightBulbIcon className={classes.lightBulb} />
+    <Typography sx={{ mt: 6, mb: 3 }} color="text.secondary">
+      <LightBulbIcon sx={{ mr: 1, verticalAlign: 'top' }} />
       Pro tip: See more{' '}
       <Link href="https://material-ui.com/getting-started/templates/">
         templates
@@ -81,7 +67,7 @@ function ProTip() {
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
+    <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
         Your Website
@@ -95,7 +81,7 @@ function Copyright() {
 function App() {
   return (
     <Container maxWidth="sm">
-      <Box my={4}>
+      <Box sx={{ my: 4 }}>
         <Typography variant="h4" component="h1" gutterBottom>
           CDN v5-alpha example
         </Typography>
@@ -107,11 +93,14 @@ function App() {
 }
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-    <CssBaseline />
-    <App />
-  </ThemeProvider>,
+  // TODO v5: remove once migration to emotion is completed
+  <StyledEngineProvider injectFirst>
+    <ThemeProvider theme={theme}>
+      {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+      <CssBaseline />
+      <App />
+    </ThemeProvider>
+  </StyledEngineProvider>,
   document.querySelector('#root'),
 );
     </script>

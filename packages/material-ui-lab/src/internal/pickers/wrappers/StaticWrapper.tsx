@@ -1,36 +1,36 @@
 import * as React from 'react';
-import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import { DIALOG_WIDTH } from '../constants/dimensions';
 import { WrapperVariantContext, IsStaticVariantContext } from './WrapperVariantContext';
-import { StaticWrapperProps, PrivateWrapperProps } from './WrapperProps';
 
-const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      overflow: 'hidden',
-      minWidth: DIALOG_WIDTH,
-      display: 'flex',
-      flexDirection: 'column',
-      backgroundColor: theme.palette.background.paper,
-    },
-  });
+export interface StaticWrapperProps {
+  children?: React.ReactNode;
+  /**
+   * Force static wrapper inner components to be rendered in mobile or desktop mode.
+   */
+  displayStaticWrapperAs: 'desktop' | 'mobile';
+}
 
-const StaticWrapper: React.FC<
-  PrivateWrapperProps & StaticWrapperProps & WithStyles<typeof styles>
-> = (props) => {
-  const { classes, displayStaticWrapperAs = 'mobile', children } = props;
+const StaticWrapperRoot = styled('div', { skipSx: true })(({ theme }) => ({
+  overflow: 'hidden',
+  minWidth: DIALOG_WIDTH,
+  display: 'flex',
+  flexDirection: 'column',
+  backgroundColor: theme.palette.background.paper,
+}));
+
+function StaticWrapper(props: StaticWrapperProps) {
+  const { displayStaticWrapperAs, children } = props;
 
   const isStatic = true;
 
   return (
     <IsStaticVariantContext.Provider value={isStatic}>
       <WrapperVariantContext.Provider value={displayStaticWrapperAs}>
-        <div className={classes.root}>{children}</div>
+        <StaticWrapperRoot>{children}</StaticWrapperRoot>
       </WrapperVariantContext.Provider>
     </IsStaticVariantContext.Provider>
   );
-};
+}
 
-export default withStyles(styles, { name: 'MuiPickersStaticWrapper' })(StaticWrapper) as React.FC<
-  PrivateWrapperProps & StaticWrapperProps
->;
+export default StaticWrapper;

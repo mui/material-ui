@@ -1,5 +1,5 @@
 ---
-title: React Select component
+title: Componente React Seleção
 components: Select, NativeSelect
 githubLabel: 'component: Select'
 ---
@@ -24,19 +24,21 @@ Se você estiver procurando por recursos mais avançados, como combobox, seleç�
 
 ## Propriedades
 
-### Filled and outlined variants
+O componente seleção é implementado como um elemento `<input>` personalizado do [InputBase](/api/input-base/). It extends the [text field components](/components/text-fields) sub-components, either the [OutlinedInput](/api/outlined-input/), [Input](/api/input/), or [FilledInput](/api/filled-input/), depending on the variant selected. Ele compartilha os mesmos estilos e muitas das mesmas propriedades. Consulte a página da API do respectivo componente para obter detalhes.
 
-{{"demo": "pages/components/selects/NativeSelects.js"}}
+### Filled and standard variants
 
-### Labels and helper text
+{{"demo": "pages/components/selects/SelectVariants.js"}}
+
+### Rótulos e texto de ajuda
 
 {{"demo": "pages/components/selects/SelectLabels.js"}}
 
-### Auto width
+### Largura automática
 
 {{"demo": "pages/components/selects/SelectAutoWidth.js"}}
 
-### Other props
+### Outras propriedades
 
 {{"demo": "pages/components/selects/SelectOtherProps.js"}}
 
@@ -52,9 +54,9 @@ O componente wrapper `TextField` é um controle de formulário completo, incluin
 
 ## Seleções customizadas
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
-O primeiro passo é estilizar o componente `InputBase`. Uma vez estilizado, você pode usá-lo diretamente como um campo de texto ou fornecê-lo à propriedade `input` da seleção para ter um campo `select`.
+O primeiro passo é estilizar o componente `InputBase`. Uma vez estilizado, você pode usá-lo diretamente como um campo de texto ou fornecê-lo à propriedade `input` da seleção para ter um campo `select`. Notice that the `"standard"` variant is easier to customize, since it does not wrap the contents in a `fieldset`/`legend` markup.
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
@@ -70,29 +72,29 @@ Como na seleção única, você pode extrair o novo valor acessando `event.targe
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 
-### Checkmarks
+### Marcações
 
 {{"demo": "pages/components/selects/MultipleSelectCheckmarks.js"}}
 
 ### Chip
 
-Alternativamente, um `TextField` com `id` e `label` cria a marcação adequada e ids para você:
+{{"demo": "pages/components/selects/MultipleSelectChip.js"}}
 
 ### Placeholder
 
-Para uma [seleção nativa](#native-select), você deve utilizar um rótulo fornecendo o atributo `id` do elemento de seleção para o atributo `htmlFor` do `InputLabel`:
+{{"demo": "pages/components/selects/MultipleSelectPlaceholder.js"}}
 
-### Native
+### Nativo
 
 {{"demo": "pages/components/selects/MultipleSelectNative.js"}}
 
-## Com uma caixa de Diálogo
+## Seleção aberta controlada
 
 {{"demo": "pages/components/selects/ControlledOpenSelect.js"}}
 
-## Agrupando
+## Com um diálogo
 
-Embora não seja recomendado pela especificação do Material Design, você pode usar uma seleção dentro de um diálogo.
+While it's discouraged by the Material Design guidelines, you can use a select inside a dialog.
 
 {{"demo": "pages/components/selects/DialogSelect.js"}}
 

@@ -11,7 +11,7 @@ materialDesign: https://material.io/components/buttons-floating-action-button
 
 Un [botón de acción flotante](https://material.io/design/components/buttons-floating-action-button.html)aparece delante de todo el contenido de la pantalla, típicamente como una forma circular con un icono en su centro. Los FABs vienen en dos tipos: regulares y extendidos.
 
-Sólo usa un FAB si es la forma más adecuada de presentar la acción principal de una pantalla. Sólo usa un FAB si es la forma más adecuada de presentar la acción principal de una pantalla.
+Sólo usa un FAB si es la forma más adecuada de presentar la acción principal de una pantalla. Only use a FAB if it is the most suitable way to present a screen's primary action.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -21,9 +21,11 @@ Sólo usa un FAB si es la forma más adecuada de presentar la acción principal 
 
 ## Tamaño
 
-Usa el `tamaño` para botones de acción flotante más grandes o más pequeños.
+By default, the size is `large`. Use the `size` prop for smaller floating action buttons.
 
 {{"demo": "pages/components/floating-action-button/FloatingActionButtonSize.js"}}
+
+{{"demo": "pages/components/floating-action-button/FloatingActionButtonExtendedSize.js"}}
 
 ## Animación
 

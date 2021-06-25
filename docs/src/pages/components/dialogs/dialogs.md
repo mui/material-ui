@@ -44,7 +44,7 @@ Users should be able to understand the choices based on the title and button tex
 If a title is required:
 
 - Use a clear question or statement with an explanation in the content area, such as "Erase USB storage?".
-- Avoid apologies, ambiguity, or questions, such as “Warning!” or “Are you sure?”
+- Avoid apologies, ambiguity, or questions, such as "Warning!" or "Are you sure?"
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
@@ -64,7 +64,7 @@ For example, if your site prompts for potential subscribers to fill in their ema
 ## Customized dialogs
 
 Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/components/).
+[overrides documentation page](/customization/how-to-customize/).
 
 The dialog has a close button added to aide usability.
 
@@ -101,9 +101,9 @@ function MyComponent() {
 ## Confirmation dialogs
 
 Confirmation dialogs require users to explicitly confirm their choice before an option is committed.
-For example, users can listen to multiple ringtones but only make a final selection upon touching “OK”.
+For example, users can listen to multiple ringtones but only make a final selection upon touching "OK".
 
-Touching “Cancel” in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
+Touching "Cancel" in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
@@ -117,7 +117,7 @@ This will make the entire dialog draggable.
 
 ## Scrolling long content
 
-When dialogs become too long for the user’s viewport or device, they scroll.
+When dialogs become too long for the user's viewport or device, they scroll.
 
 - `scroll=paper` the content of the dialog scrolls within the paper element.
 - `scroll=body` the content of the dialog scrolls within the body element.

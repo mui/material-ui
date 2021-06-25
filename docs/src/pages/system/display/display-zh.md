@@ -77,7 +77,7 @@
 </Box>
 ```
 
-## Text overflow
+## 文本溢出（Text overflow）
 
 {{"demo": "pages/system/display/TextOverflow.js", "defaultCodeOpen": false}}
 
@@ -103,7 +103,7 @@
 </Box>
 ```
 
-## White space
+## 空格（White space）
 
 {{"demo": "pages/system/display/WhiteSpace.js", "defaultCodeOpen": false}}
 

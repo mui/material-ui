@@ -30,17 +30,17 @@ Material-UI **不会**自动加载 *Roboto* 字体。 你负责加载你的应�
 
 ## 通过 npm 安装
 
-通过在终端键入以下命令，你可以这样 [安装字体](https://www.npmjs.com/package/fontsource-roboto)：
+通过在终端键入以下命令，你可以这样 [安装字体](https://www.npmjs.com/package/@fontsource/roboto)：
 
-`npm install fontsource-roboto`
+`npm install @fontsource/roboto`
 
 然后，你可以在开始文件中导入：
 
 ```js
-import 'fontsource-roboto/300.css';
-import 'fontsource-roboto/400.css';
-import 'fontsource-roboto/500.css';
-import 'fontsource-roboto/700.css';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 ```
 
 有关更多信息请查看 [Fontsource](https://github.com/fontsource/fontsource)。
@@ -61,7 +61,7 @@ import 'fontsource-roboto/700.css';
 
 ## 改变语义元素
 
-文字铸排组件通过 `variantMapping` 属性关联了一种 UI 变体和某一种语义元素。 请注意，文字的样式是和最底层的语义元素分开的。
+文字铸排组件通过 `variantMapping` 属性关联了一种 UI 变体和某一种语义元素。 重要的是要意识到排版组件的风格是独立于语义基础元素的。
 
 - 使用 `component` 属性，您可以一次性改变底层元素的样式：
 
@@ -74,10 +74,10 @@ import 'fontsource-roboto/700.css';
 </Typography>;
 ```
 
-- 您也可以 [使用 theme](/customization/globals/#default-props) 来修改全局字体映射。
+- 您也可以 [使用 theme](/customization/theme-components/#default-props) 来修改全局字体映射。
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiTypography: {
       defaultProps: {
@@ -97,6 +97,18 @@ const theme = createMuiTheme({
     },
   },
 });
+```
+
+## 添加 & 禁用变体
+
+除了使用默认的排版变体外，你还可以添加自定义的排版，或者禁用任何你不需要的排版。 更多信息请参见 [添加 & 禁用变体](/customization/typography/#adding-amp-disabling-variants) 示例。
+
+## System props
+
+As a CSS utility component, the `Typography` supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top:
+
+```jsx
+<Typography mt={2}>
 ```
 
 ## 无障碍设计

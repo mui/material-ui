@@ -32,7 +32,7 @@ function NoSsr(props) {
   return <React.Fragment>{mountedState ? children : fallback}</React.Fragment>;
 }
 
-NoSsr.propTypes = {
+NoSsr.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

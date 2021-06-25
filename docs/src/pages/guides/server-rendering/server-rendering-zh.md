@@ -8,14 +8,14 @@
 
 Material-UI 最初设计受到了在服务器端渲染的约束，但是您可以完全负责它的正确整合。 为页面提供所需的 CSS 是至关重要的，否则页面只会渲染 HTML 而等待客户端注入 CSS，从而导致浏览器样式闪烁（FOUC）。 若想将样式注入客户端，我们需要：
 
-1. 在每个请求上创建一个全新的 [`ServerStyleSheets`](/styles/api/#serverstylesheets) 实例。
+1. Create a fresh, new [`emotion cache`](https://emotion.sh/docs/@emotion/cache) instance on every request.
 2. 用服务端收集器渲染 React 树组件。
 3. 将 CSS 单独拿出。
 4. 将 CSS 传递给客户端。
 
-在删除服务器端注入的 CSS 之前，客户端将第二次注入 CSS。
+On the client-side, the CSS will be injected a second time before removing the server-side injected CSS.
 
-## 配置
+## Setting up
 
 在下面的配置中，我们将了解如何设置服务器端的渲染。
 
@@ -26,11 +26,11 @@ Material-UI 最初设计受到了在服务器端渲染的约束，但是您可�
 `theme.js`
 
 ```js
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
 
 // 创建一个主题的实例。
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: '#556cd6',
@@ -41,9 +41,6 @@ const theme = createMuiTheme({
     error: {
       main: red.A400,
     },
-    background: {
-      default: '#fff',
-    },
   },
 });
 
@@ -52,7 +49,7 @@ export default theme;
 
 ### 服务器端
 
-下面的大纲可以大致展现一下服务器端。 我们将使用 [app.use](https://expressjs.com/en/api.html) 建立一个 [Express 中间件](https://expressjs.com/en/guide/using-middleware.html) 来处理所有进入服务器的请求。 如果您不熟悉 Express 或中间件（middleware）的概念，那么只需要知道每次服务器收到请求时都会调用 handleRender 函数就可以了。
+下面的大纲可以大致展现一下服务器端。 We are going to set up an [Express middleware](https://expressjs.com/en/guide/using-middleware.html) using [app.use](https://expressjs.com/en/api.html) to handle all requests that come into the server. If you're unfamiliar with Express or middleware, know that the `handleRender` function will be called every time the server receives a request.
 
 `server.js`
 
@@ -77,27 +74,29 @@ const port = 3000;
 app.listen(port);
 ```
 
-### 处理请求
+### Handling the request
 
-对于每次请求，我们首先需要做的是创建一个 `ServerStyleSheets`。
+The first thing that we need to do on every request is to create a new `emotion cache`.
 
-当渲染时，我们将把根组件 `App` 包裹在 [`StylesProvider`](/styles/api/#stylesprovider) 和 [`ThemeProvider`](/styles/api/#themeprovider) 中，这样组件树中的所有组件都可以使用样式配置和 `theme`。
+When rendering, we will wrap `App`, the root component, inside a [`CacheProvider`](https://emotion.sh/docs/cache-provider) and [`ThemeProvider`](/styles/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
 
-服务端渲染的关键步骤是，在将组件的初始 HTML 发送到客户端**之前**，就开始进行渲染。 我们用 [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html) 来实现此操作。
+The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client-side. 我们用 [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html) 来实现此操作。
 
-然后我们就可以使用 `sheets.toString()` 方法从`表单（sheets）`中获取 CSS。 由于我们也使用 emotion 作为默认的样式引擎，所以我们也需要从 emotion 实例中提取样式。 为此，我们需要为客户端和服务端共享相同的缓存定义：
+Material-UI is using emotion as its default styled engine. We need to extract the styles from the emotion instance. For this, we need to share the same cache configuration for both the client and server:
 
-`cache.js`
+`getCache.js`
 
 ```js
 import createCache from '@emotion/cache';
 
-const cache = createCache({ key: 'css' });
-
-export default cache;
+export default function getCache() {
+  const cache = createCache({ key: 'css' });
+  cache.compat = true;
+  return cache;
+}
 ```
 
-这样做之后，我们就可以在服务器上创建新的 Emotion 实例，并用它来提取 html 的关键样式。
+With this we are creating new emotion cache instance and using this to extract the critical styles for the html as well.
 
 我们将看到在 `renderFullPage` 函数中，是如何传递这些信息的。
 
@@ -105,52 +104,51 @@ export default cache;
 import express from 'express';
 import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets, ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/core/styles';
 import createEmotionServer from '@emotion/server/create-instance';
 import App from './App';
 import theme from './theme';
-import cache from './cache';
-
-const { extractCritical } = createEmotionServer(cache);
+import getCache from './getCache';
 
 function handleRender(req, res) {
-  const sheets = new ServerStyleSheets();
+  const cache = getCache();
+  const { extractCriticalToChunks, constructStyleTagsFromChunks } =
+    createEmotionServer(cache);
 
-  // 将组件渲染成字符串
+  // Render the component to a string.
   const html = ReactDOMServer.renderToString(
-    sheets.collect(
-      <CacheProvider value={cache}>
-        <ThemeProvider theme={theme}>
-          <App />
-        </ThemeProvider>
-      </CacheProvider>,
-    ),
+    <CacheProvider value={cache}>
+      <ThemeProvider theme={theme}>
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+    </CacheProvider>,
   );
 
-  // 从 sheet 中抓取 CSS。
-  const css = sheets.toString();
+  // Grab the CSS from emotion
+  const emotionChunks = extractCriticalToChunks(html);
+  const emotionCss = constructStyleTagsFromChunks(emotionChunks);
 
-  // 从 emotion 中抓取 CSS
-  const styles = extractCritical(html);
-
-  // 将渲染好的页面发回给客户端。
-  res.send(renderFullPage(html, `${css} ${styles.css}`));
+  // Send the rendered page back to the client.
+  res.send(renderFullPage(html, emotionCss));
 }
 
 const app = express();
 
 app.use('/build', express.static('build'));
 
-// 每当服务器端接收到一个请求时，这个功能就会被触发。
+// This is fired every time the server-side receives a request.
 app.use(handleRender);
 
 const port = 3000;
 app.listen(port);
 ```
 
-### 注入组件的初始 HTML 和 CSS
+### Inject initial component HTML and CSS
 
-服务端渲染的最后一步，则是将初始组件的 HTML 和 CSS 注入到客户端要渲染的模板当中。
+The final step on the server-side is to inject the initial component HTML and CSS into a template to be rendered on the client-side.
 
 ```js
 function renderFullPage(html, css) {
@@ -158,8 +156,10 @@ function renderFullPage(html, css) {
     <!DOCTYPE html>
     <html>
       <head>
-        <title>我的页面</title>
-        <style id="jss-server-side">${css}</style>
+        <title>My page</title>
+        ${css}
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
       </head>
       <body>
         <div id="root">${html}</div>
@@ -169,32 +169,28 @@ function renderFullPage(html, css) {
 }
 ```
 
-### 客户端
+### The client-side
 
-客户端则是简单明了的。 我们只需要移除服务器端生成的 CSS。 让我们来看看客户端的文件：
+The client-side is straightforward. All we need to do is use the same cache configuration as the server-side. 让我们来看看客户端的文件：
 
 `client.js`
 
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { CacheProvider } from '@emotion/react';
 import App from './App';
 import theme from './theme';
-import cache from './cache';
+import getCache from './getCache';
 
 function Main() {
-  React.useEffect(() => {
-    const jssStyles = document.querySelector('#jss-server-side');
-    if (jssStyles) {
-      jssStyles.parentElement.removeChild(jssStyles);
-    }
-  }, []);
-
   return (
-    <CacheProvider value={cache}>
+    <CacheProvider value={getCache}>
       <ThemeProvider theme={theme}>
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
         <App />
       </ThemeProvider>
     </CacheProvider>
@@ -206,11 +202,11 @@ ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 
 ## 参考实现
 
-你可以在 [GitHub仓库](https://github.com/mui-org/material-ui) 的 [`/examples`](https://github.com/mui-org/material-ui/tree/next/examples) 文件夹下找到我们托管的不同范例项目。
+We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/HEAD/examples) folder:
 
-- [本教程的参考实现](https://github.com/mui-org/material-ui/tree/next/examples/ssr)
-- [Gatsby](https://github.com/mui-org/material-ui/tree/next/examples/gatsby)
-- [Next.js](https://github.com/mui-org/material-ui/tree/next/examples/nextjs) （[TypeScript 版本](https://github.com/mui-org/material-ui/tree/next/examples/nextjs-with-typescript)）
+- [本教程的参考实现](https://github.com/mui-org/material-ui/tree/HEAD/examples/ssr)
+- [Gatsby](https://github.com/mui-org/material-ui/tree/HEAD/examples/gatsby)
+- [Next.js](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs) ([TypeScript version](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs-with-typescript))
 
 ## 故障排除（Troubleshooting）
 

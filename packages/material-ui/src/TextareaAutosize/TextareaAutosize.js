@@ -64,11 +64,11 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
       getStyleValue(computedStyle, 'border-top-width');
 
     // The height of the inner content
-    const innerHeight = inputShallow.scrollHeight - padding;
+    const innerHeight = inputShallow.scrollHeight;
 
     // Measure height of a textarea with a single row
     inputShallow.value = 'x';
-    const singleRowHeight = inputShallow.scrollHeight - padding;
+    const singleRowHeight = inputShallow.scrollHeight;
 
     // The height of the outer content
     let outerHeight = innerHeight;
@@ -173,13 +173,17 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
         readOnly
         ref={shadowRef}
         tabIndex={-1}
-        style={{ ...styles.shadow, ...style }}
+        style={{
+          ...styles.shadow,
+          ...style,
+          padding: 0,
+        }}
       />
     </React.Fragment>
   );
 });
 
-TextareaAutosize.propTypes = {
+TextareaAutosize.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

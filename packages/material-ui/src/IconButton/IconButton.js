@@ -2,18 +2,50 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
-import withStyles from '../styles/withStyles';
-import { alpha } from '../styles/colorManipulator';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { alpha } from '@material-ui/system';
+import styled from '../styles/styled';
+import useThemeProps from '../styles/useThemeProps';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
+import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
+const useUtilityClasses = (styleProps) => {
+  const { classes, disabled, color, edge, size } = styleProps;
+
+  const slots = {
+    root: [
+      'root',
+      disabled && 'disabled',
+      color !== 'default' && `color${capitalize(color)}`,
+      edge && `edge${capitalize(edge)}`,
+      `size${capitalize(size)}`,
+    ],
+  };
+
+  return composeClasses(slots, getIconButtonUtilityClass, classes);
+};
+
+const IconButtonRoot = styled(ButtonBase, {
+  name: 'MuiIconButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return [
+      styles.root,
+      styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`],
+      styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`],
+      styles[`size${capitalize(styleProps.size)}`],
+    ];
+  },
+})(
+  ({ theme, styleProps }) => ({
+    /* Styles applied to the root element. */
     textAlign: 'center',
     flex: '0 0 auto',
     fontSize: theme.typography.pxToRem(24),
-    padding: 12,
+    padding: 8,
     borderRadius: '50%',
     overflow: 'visible', // Explicitly set the default value to solve a bug on IE11.
     color: theme.palette.action.active,
@@ -27,76 +59,60 @@ export const styles = (theme) => ({
         backgroundColor: 'transparent',
       },
     },
-    '&$disabled': {
+    /* Styles applied to the root element if `edge="start"`. */
+    ...(styleProps.edge === 'start' && {
+      marginLeft: styleProps.size === 'small' ? -3 : -12,
+    }),
+    /* Styles applied to the root element if `edge="end"`. */
+    ...(styleProps.edge === 'end' && {
+      marginRight: styleProps.size === 'small' ? -3 : -12,
+    }),
+  }),
+  ({ theme, styleProps }) => ({
+    /* Styles applied to the root element if `color="inherit"`. */
+    ...(styleProps.color === 'inherit' && {
+      color: 'inherit',
+    }),
+    ...(styleProps.color !== 'inherit' &&
+      styleProps.color !== 'default' && {
+        color: theme.palette[styleProps.color].main,
+        '&:hover': {
+          backgroundColor: alpha(
+            theme.palette[styleProps.color].main,
+            theme.palette.action.hoverOpacity,
+          ),
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            backgroundColor: 'transparent',
+          },
+        },
+      }),
+    /* Styles applied to the root element if `size="small"`. */
+    ...(styleProps.size === 'small' && {
+      padding: 5,
+      fontSize: theme.typography.pxToRem(18),
+    }),
+    ...(styleProps.size === 'large' && {
+      padding: 12,
+      fontSize: theme.typography.pxToRem(28),
+    }),
+    /* Styles applied to the root element if `disabled={true}`. */
+    [`&.${iconButtonClasses.disabled}`]: {
       backgroundColor: 'transparent',
       color: theme.palette.action.disabled,
     },
-  },
-  /* Styles applied to the root element if `edge="start"`. */
-  edgeStart: {
-    marginLeft: -12,
-    '$sizeSmall&': {
-      marginLeft: -3,
-    },
-  },
-  /* Styles applied to the root element if `edge="end"`. */
-  edgeEnd: {
-    marginRight: -12,
-    '$sizeSmall&': {
-      marginRight: -3,
-    },
-  },
-  /* Styles applied to the root element if `color="inherit"`. */
-  colorInherit: {
-    color: 'inherit',
-  },
-  /* Styles applied to the root element if `color="primary"`. */
-  colorPrimary: {
-    color: theme.palette.primary.main,
-    '&:hover': {
-      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
-    },
-  },
-  /* Styles applied to the root element if `color="secondary"`. */
-  colorSecondary: {
-    color: theme.palette.secondary.main,
-    '&:hover': {
-      backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
-      },
-    },
-  },
-  /* Pseudo-class applied to the root element if `disabled={true}`. */
-  disabled: {},
-  /* Styles applied to the root element if `size="small"`. */
-  sizeSmall: {
-    padding: 3,
-    fontSize: theme.typography.pxToRem(18),
-  },
-  /* Styles applied to the children container element. */
-  label: {
-    width: '100%',
-    display: 'flex',
-    alignItems: 'inherit',
-    justifyContent: 'inherit',
-  },
-});
+  }),
+);
 
 /**
  * Refer to the [Icons](/components/icons/) section of the documentation
  * regarding the available icon options.
  */
-const IconButton = React.forwardRef(function IconButton(props, ref) {
+const IconButton = React.forwardRef(function IconButton(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiIconButton' });
   const {
     edge = false,
     children,
-    classes,
     className,
     color = 'default',
     disabled = false,
@@ -105,37 +121,39 @@ const IconButton = React.forwardRef(function IconButton(props, ref) {
     ...other
   } = props;
 
+  const styleProps = {
+    ...props,
+    edge,
+    color,
+    disabled,
+    disableFocusRipple,
+    size,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <ButtonBase
-      className={clsx(
-        classes.root,
-        {
-          [classes[`color${capitalize(color)}`]]: color !== 'default',
-          [classes.disabled]: disabled,
-          [classes[`size${capitalize(size)}`]]: size !== 'medium',
-          [classes.edgeStart]: edge === 'start',
-          [classes.edgeEnd]: edge === 'end',
-        },
-        className,
-      )}
+    <IconButtonRoot
+      className={clsx(classes.root, className)}
       centerRipple
       focusRipple={!disableFocusRipple}
       disabled={disabled}
       ref={ref}
+      styleProps={styleProps}
       {...other}
     >
-      <span className={classes.label}>{children}</span>
-    </ButtonBase>
+      {children}
+    </IconButtonRoot>
   );
 });
 
-IconButton.propTypes = {
+IconButton.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The icon element.
+   * The icon to display.
    */
   children: chainPropTypes(PropTypes.node, (props) => {
     const found = React.Children.toArray(props.children).some(
@@ -166,9 +184,21 @@ IconButton.propTypes = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'default'
    */
-  color: PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf([
+      'inherit',
+      'default',
+      'primary',
+      'secondary',
+      'error',
+      'info',
+      'success',
+      'warning',
+    ]),
+    PropTypes.string,
+  ]),
   /**
-   * If `true`, the button is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -181,7 +211,7 @@ IconButton.propTypes = {
    * If `true`, the ripple effect is disabled.
    *
    * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
-   * to highlight the element by applying separate styles with the `focusVisibleClassName`.
+   * to highlight the element by applying separate styles with the `.Mui-focusedVisible` class.
    * @default false
    */
   disableRipple: PropTypes.bool,
@@ -194,11 +224,18 @@ IconButton.propTypes = {
    */
   edge: PropTypes.oneOf(['end', 'start', false]),
   /**
-   * The size of the button.
+   * The size of the component.
    * `small` is equivalent to the dense button styling.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['small', 'medium', 'large']),
+    PropTypes.string,
+  ]),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiIconButton' })(IconButton);
+export default IconButton;

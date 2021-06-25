@@ -1,60 +1,86 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useThemeVariants } from '@material-ui/styles';
-import withStyles from '../styles/withStyles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import styled from '../styles/styled';
+import useThemeProps from '../styles/useThemeProps';
 import Person from '../internal/svg-icons/Person';
+import { getAvatarUtilityClass } from './avatarClasses';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexShrink: 0,
-    width: 40,
-    height: 40,
-    fontFamily: theme.typography.fontFamily,
-    fontSize: theme.typography.pxToRem(20),
-    lineHeight: 1,
-    borderRadius: '50%',
-    overflow: 'hidden',
-    userSelect: 'none',
+const useUtilityClasses = (styleProps) => {
+  const { classes, variant, colorDefault } = styleProps;
+
+  const slots = {
+    root: ['root', variant, colorDefault && 'colorDefault'],
+    img: ['img'],
+    fallback: ['fallback'],
+  };
+
+  return composeClasses(slots, getAvatarUtilityClass, classes);
+};
+
+const AvatarRoot = styled('div', {
+  name: 'MuiAvatar',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return [
+      styles.root,
+      styles[styleProps.variant],
+      styleProps.colorDefault && styles.colorDefault,
+    ];
   },
-  /* Styles applied to the root element if not `src` or `srcSet`. */
-  colorDefault: {
+})(({ theme, styleProps }) => ({
+  position: 'relative',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  flexShrink: 0,
+  width: 40,
+  height: 40,
+  fontFamily: theme.typography.fontFamily,
+  fontSize: theme.typography.pxToRem(20),
+  lineHeight: 1,
+  borderRadius: '50%',
+  overflow: 'hidden',
+  userSelect: 'none',
+  ...(styleProps.variant === 'rounded' && {
+    borderRadius: theme.shape.borderRadius,
+  }),
+  ...(styleProps.variant === 'square' && {
+    borderRadius: 0,
+  }),
+  ...(styleProps.colorDefault && {
     color: theme.palette.background.default,
     backgroundColor:
       theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
-  },
-  /* Styles applied to the root element if `variant="circular"`. */
-  circular: {},
-  /* Styles applied to the root element if `variant="rounded"`. */
-  rounded: {
-    borderRadius: theme.shape.borderRadius,
-  },
-  /* Styles applied to the root element if `variant="square"`. */
-  square: {
-    borderRadius: 0,
-  },
-  /* Styles applied to the img element if either `src` or `srcSet` is defined. */
-  img: {
-    width: '100%',
-    height: '100%',
-    textAlign: 'center',
-    // Handle non-square image. The property isn't supported by IE11.
-    objectFit: 'cover',
-    // Hide alt text.
-    color: 'transparent',
-    // Hide the image broken icon, only works on Chrome.
-    textIndent: 10000,
-  },
-  /* Styles applied to the fallback icon */
-  fallback: {
-    width: '75%',
-    height: '75%',
-  },
+  }),
+}));
+
+const AvatarImg = styled('img', {
+  name: 'MuiAvatar',
+  slot: 'Img',
+  overridesResolver: (props, styles) => styles.img,
+})({
+  width: '100%',
+  height: '100%',
+  textAlign: 'center',
+  // Handle non-square image. The property isn't supported by IE11.
+  objectFit: 'cover',
+  // Hide alt text.
+  color: 'transparent',
+  // Hide the image broken icon, only works on Chrome.
+  textIndent: 10000,
+});
+
+const AvatarFallback = styled(Person, {
+  name: 'MuiAvatar',
+  slot: 'Fallback',
+  overridesResolver: (props, styles) => styles.fallback,
+})({
+  width: '75%',
+  height: '75%',
 });
 
 function useLoaded({ src, srcSet }) {
@@ -69,10 +95,6 @@ function useLoaded({ src, srcSet }) {
 
     let active = true;
     const image = new Image();
-    image.src = src;
-    if (srcSet) {
-      image.srcset = srcSet;
-    }
     image.onload = () => {
       if (!active) {
         return;
@@ -85,6 +107,10 @@ function useLoaded({ src, srcSet }) {
       }
       setLoaded('error');
     };
+    image.src = src;
+    if (srcSet) {
+      image.srcset = srcSet;
+    }
 
     return () => {
       active = false;
@@ -94,13 +120,13 @@ function useLoaded({ src, srcSet }) {
   return loaded;
 }
 
-const Avatar = React.forwardRef(function Avatar(props, ref) {
+const Avatar = React.forwardRef(function Avatar(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiAvatar' });
   const {
     alt,
     children: childrenProp,
-    classes,
     className,
-    component: Component = 'div',
+    component = 'div',
     imgProps,
     sizes,
     src,
@@ -109,15 +135,6 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
     ...other
   } = props;
 
-  const themeVariantsClasses = useThemeVariants(
-    {
-      ...props,
-      component: Component,
-      variant,
-    },
-    'MuiAvatar',
-  );
-
   let children = null;
 
   // Use a hook instead of onError on the img element to support server-side rendering.
@@ -125,13 +142,23 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
   const hasImg = src || srcSet;
   const hasImgNotFailing = hasImg && loaded !== 'error';
 
+  const styleProps = {
+    ...props,
+    colorDefault: !hasImgNotFailing,
+    component,
+    variant,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   if (hasImgNotFailing) {
     children = (
-      <img
+      <AvatarImg
         alt={alt}
         src={src}
         srcSet={srcSet}
         sizes={sizes}
+        styleProps={styleProps}
         className={classes.img}
         {...imgProps}
       />
@@ -141,30 +168,23 @@ const Avatar = React.forwardRef(function Avatar(props, ref) {
   } else if (hasImg && alt) {
     children = alt[0];
   } else {
-    children = <Person className={classes.fallback} />;
+    children = <AvatarFallback className={classes.fallback} />;
   }
 
   return (
-    <Component
-      className={clsx(
-        classes.root,
-        classes.system,
-        classes[variant],
-        {
-          [classes.colorDefault]: !hasImgNotFailing,
-        },
-        themeVariantsClasses,
-        className,
-      )}
+    <AvatarRoot
+      as={component}
+      styleProps={styleProps}
+      className={clsx(classes.root, className)}
       ref={ref}
       {...other}
     >
       {children}
-    </Component>
+    </AvatarRoot>
   );
 });
 
-Avatar.propTypes = {
+Avatar.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -193,7 +213,7 @@ Avatar.propTypes = {
    */
   component: PropTypes.elementType,
   /**
-   * Attributes applied to the `img` element if the component is used to display an image.
+   * <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes">Attributes</a> applied to the `img` element if the component is used to display an image.
    * It can be used to listen for the loading error event.
    */
   imgProps: PropTypes.object,
@@ -211,6 +231,10 @@ Avatar.propTypes = {
    */
   srcSet: PropTypes.string,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The shape of the avatar.
    * @default 'circular'
    */
@@ -220,4 +244,4 @@ Avatar.propTypes = {
   ]),
 };
 
-export default withStyles(styles, { name: 'MuiAvatar' })(Avatar);
+export default Avatar;

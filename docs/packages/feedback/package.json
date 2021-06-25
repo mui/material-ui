@@ -1,6 +1,6 @@
 {
   "name": "feedback",
-  "version": "1.0.0",
+  "version": "5.0.0-alpha.24",
   "description": "Store and retrieve page ratings and comments",
   "main": "./index.js",
   "license": "MIT",

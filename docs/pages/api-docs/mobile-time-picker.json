@@ -1,0 +1,90 @@
+{
+  "props": {
+    "onChange": { "type": { "name": "func" }, "required": true },
+    "renderInput": { "type": { "name": "func" }, "required": true },
+    "acceptRegex": {
+      "type": { "name": "instanceOf", "description": "RegExp" },
+      "default": "/\\dap/gi"
+    },
+    "ampm": { "type": { "name": "bool" } },
+    "ampmInClock": { "type": { "name": "bool" } },
+    "cancelText": { "type": { "name": "node" }, "default": "\"CANCEL\"" },
+    "className": { "type": { "name": "string" } },
+    "clearable": { "type": { "name": "bool" } },
+    "clearText": { "type": { "name": "node" }, "default": "\"CLEAR\"" },
+    "components": {
+      "type": { "name": "shape", "description": "{ OpenPickerIcon?: elementType }" }
+    },
+    "DialogProps": { "type": { "name": "object" } },
+    "disableCloseOnSelect": {
+      "type": { "name": "bool" },
+      "default": "`true` for Desktop, `false` for Mobile (based on the chosen wrapper and `desktopModeMediaQuery` prop)."
+    },
+    "disabled": { "type": { "name": "bool" } },
+    "disableIgnoringDatePartForTimeValidation": { "type": { "name": "bool" } },
+    "disableMaskedInput": { "type": { "name": "bool" } },
+    "disableOpenPicker": { "type": { "name": "bool" } },
+    "getClockLabelText": {
+      "type": { "name": "func" },
+      "default": "<TDate extends any>(\n  view: ClockView,\n  time: TDate | null,\n  adapter: MuiPickersAdapter<TDate>,\n) =>\n  `Select ${view}. ${\n    time === null ? 'No time selected' : `Selected time is ${adapter.format(time, 'fullTime')}`\n  }`"
+    },
+    "getOpenDialogAriaText": {
+      "type": { "name": "func" },
+      "default": "(value, utils) => `Choose date, selected date is ${utils.format(utils.date(value), 'fullDate')}`"
+    },
+    "InputAdornmentProps": { "type": { "name": "object" } },
+    "inputFormat": { "type": { "name": "string" } },
+    "inputRef": {
+      "type": { "name": "union", "description": "func<br>&#124;&nbsp;{ current?: object }" }
+    },
+    "mask": { "type": { "name": "string" } },
+    "minutesStep": { "type": { "name": "number" }, "default": "1" },
+    "okText": { "type": { "name": "node" }, "default": "\"OK\"" },
+    "onAccept": { "type": { "name": "func" } },
+    "onClose": { "type": { "name": "func" } },
+    "onError": { "type": { "name": "func" } },
+    "onOpen": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" } },
+    "OpenPickerButtonProps": { "type": { "name": "object" } },
+    "openTo": {
+      "type": {
+        "name": "enum",
+        "description": "'hours'<br>&#124;&nbsp;'minutes'<br>&#124;&nbsp;'seconds'"
+      }
+    },
+    "orientation": {
+      "type": { "name": "enum", "description": "'landscape'<br>&#124;&nbsp;'portrait'" }
+    },
+    "readOnly": { "type": { "name": "bool" } },
+    "rifmFormatter": { "type": { "name": "func" } },
+    "shouldDisableTime": { "type": { "name": "func" } },
+    "showTodayButton": { "type": { "name": "bool" } },
+    "showToolbar": { "type": { "name": "bool" } },
+    "todayText": { "type": { "name": "node" }, "default": "\"TODAY\"" },
+    "ToolbarComponent": { "type": { "name": "elementType" }, "default": "TimePickerToolbar" },
+    "toolbarFormat": { "type": { "name": "string" } },
+    "toolbarPlaceholder": { "type": { "name": "node" }, "default": "\"–\"" },
+    "toolbarTitle": { "type": { "name": "node" }, "default": "\"SELECT DATE\"" },
+    "value": {
+      "type": {
+        "name": "union",
+        "description": "any<br>&#124;&nbsp;Date<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
+      }
+    },
+    "views": {
+      "type": {
+        "name": "arrayOf",
+        "description": "Array&lt;'hours'<br>&#124;&nbsp;'minutes'<br>&#124;&nbsp;'seconds'&gt;"
+      }
+    }
+  },
+  "name": "MobileTimePicker",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": false,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui-lab/src/MobileTimePicker/MobileTimePicker.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/time-picker/\">Time Picker</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

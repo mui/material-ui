@@ -15,7 +15,7 @@ export default function SxPropBoxMaterialUI() {
             borderColor: 'white',
             backgroundColor: ['primary.main', 'text.primary', 'background.paper'],
             borderStyle: ['dashed', 'solid', 'dotted'],
-            ':hover': {
+            '&:hover': {
               backgroundColor: (theme) => theme.palette.secondary.dark,
             },
           }}

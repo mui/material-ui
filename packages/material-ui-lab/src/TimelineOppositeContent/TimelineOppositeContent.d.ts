@@ -1,5 +1,8 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '@material-ui/core/styles';
 import { InternalStandardProps as StandardProps, TypographyProps } from '@material-ui/core';
+import { TimelineOppositeContentClasses } from './timelineOppositeContentClasses';
 
 export interface TimelineOppositeContentProps extends StandardProps<TypographyProps> {
   /**
@@ -9,17 +12,12 @@ export interface TimelineOppositeContentProps extends StandardProps<TypographyPr
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if `align="right"`. */
-    alignRight?: string;
-  };
+  classes?: Partial<TimelineOppositeContentClasses>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
-
-export type TimelineOppositeContentClassKey = keyof NonNullable<
-  TimelineOppositeContentProps['classes']
->;
 
 /**
  *
@@ -32,4 +30,8 @@ export type TimelineOppositeContentClassKey = keyof NonNullable<
  * - [TimelineOppositeContent API](https://material-ui.com/api/timeline-opposite-content/)
  * - inherits [Typography API](https://material-ui.com/api/typography/)
  */
-export default function TimelineOppositeContent(props: TimelineOppositeContentProps): JSX.Element;
+declare const TimelineOppositeContent: ((props: TimelineOppositeContentProps) => JSX.Element) & {
+  muiName: string;
+};
+
+export default TimelineOppositeContent;

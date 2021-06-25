@@ -1,28 +1,55 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import styled from '../styles/styled';
+import useThemeProps from '../styles/useThemeProps';
+import { getAccordionDetailsUtilityClass } from './accordionDetailsClasses';
 
-export const styles = (theme) => ({
+const useUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+  };
+
+  return composeClasses(slots, getAccordionDetailsUtilityClass, classes);
+};
+
+const AccordionDetailsRoot = styled('div', {
+  name: 'MuiAccordionDetails',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(({ theme }) => ({
   /* Styles applied to the root element. */
-  root: {
-    padding: theme.spacing(1, 2, 2),
-  },
+  padding: theme.spacing(1, 2, 2),
+}));
+
+const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiAccordionDetails' });
+  const { className, ...other } = props;
+  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
+  const styleProps = { ...props };
+
+  const classes = useUtilityClasses(styleProps);
+
+  return (
+    <AccordionDetailsRoot
+      className={clsx(classes.root, className)}
+      ref={ref}
+      styleProps={styleProps}
+      {...other}
+    />
+  );
 });
 
-const AccordionDetails = React.forwardRef(function AccordionDetails(props, ref) {
-  const { classes, className, ...other } = props;
-
-  return <div className={clsx(classes.root, className)} ref={ref} {...other} />;
-});
-
-AccordionDetails.propTypes = {
+AccordionDetails.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The content of the accordion details.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
@@ -33,6 +60,10 @@ AccordionDetails.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiAccordionDetails' })(AccordionDetails);
+export default AccordionDetails;

@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DateRangePicker, { DateRange } from '@material-ui/lab/DateRangePicker';
-import DateRangeDelimiter from '@material-ui/lab/DateRangeDelimiter';
+import Box from '@material-ui/core/Box';
 
 function getWeeksAfter(date: Date | null, amount: number) {
   return date ? addWeeks(date, amount) : undefined;
@@ -24,9 +24,9 @@ export default function MinMaxDateRangePicker() {
         }}
         renderInput={(startProps, endProps) => (
           <React.Fragment>
-            <TextField {...startProps} variant="standard" />
-            <DateRangeDelimiter> to </DateRangeDelimiter>
-            <TextField {...endProps} variant="standard" />
+            <TextField {...startProps} />
+            <Box sx={{ mx: 2 }}> to </Box>
+            <TextField {...endProps} />
           </React.Fragment>
         )}
       />

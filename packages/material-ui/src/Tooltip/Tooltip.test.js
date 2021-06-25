@@ -2,9 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   act,
   createClientRender,
   fireEvent,
@@ -14,8 +13,8 @@ import {
   programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
 import { camelCase } from 'lodash/string';
-import Tooltip, { testReset } from './Tooltip';
-import Input from '../Input';
+import Tooltip, { tooltipClasses as classes } from '@material-ui/core/Tooltip';
+import { testReset } from './Tooltip';
 
 async function raf() {
   return new Promise((resolve) => {
@@ -46,29 +45,26 @@ describe('<Tooltip />', () => {
     });
   });
 
-  const mount = createMount({ strict: true });
-  let classes;
+  const mount = createMount();
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(
-      <Tooltip title="Hello World">
-        <button type="submit">Hello World</button>
-      </Tooltip>,
-    );
-  });
-
-  describeConformance(
-    <Tooltip title="Hello World">
+  describeConformanceV5(
+    <Tooltip title="Hello World" open>
       <button type="submit">Hello World</button>
     </Tooltip>,
     () => ({
       classes,
       inheritComponent: 'button',
+      render,
       mount,
+      muiName: 'MuiTooltip',
       refInstanceof: window.HTMLButtonElement,
+      testRootOverrides: { slotName: 'popper', slotClassName: classes.popper },
+      testDeepOverrides: { slotName: 'tooltip', slotClassName: classes.tooltip },
       skip: [
         'componentProp',
+        'componentsProp',
+        'themeVariants',
         // react-transition-group issue
         'reactTestRenderer',
       ],
@@ -93,7 +89,7 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
 
-      expect(getByRole('button')).to.not.have.attribute('title', 'Hello World');
+      expect(getByRole('button')).not.to.have.attribute('title', 'Hello World');
     });
   });
 
@@ -359,14 +355,19 @@ describe('<Tooltip />', () => {
   });
 
   it('is dismissable by pressing Escape', () => {
+    const handleClose = spy();
     const transitionTimeout = 0;
     render(
-      <Tooltip enterDelay={0} TransitionProps={{ timeout: transitionTimeout }} title="Movie quote">
-        <button autoFocus>Hello, Dave!</button>
+      <Tooltip
+        enterDelay={0}
+        onClose={handleClose}
+        open
+        TransitionProps={{ timeout: transitionTimeout }}
+        title="Movie quote"
+      >
+        <button />
       </Tooltip>,
     );
-
-    expect(screen.getByRole('tooltip')).not.toBeInaccessible();
 
     act(() => {
       fireEvent.keyDown(
@@ -380,7 +381,7 @@ describe('<Tooltip />', () => {
       clock.tick(transitionTimeout);
     });
 
-    expect(screen.queryByRole('tooltip')).to.equal(null);
+    expect(handleClose.callCount).to.equal(1);
   });
 
   describe('touch screen', () => {
@@ -459,11 +460,12 @@ describe('<Tooltip />', () => {
     });
 
     it('should handle autoFocus + onFocus forwarding', () => {
+      const handleFocus = spy();
       const AutoFocus = (props) => (
         <div>
           {props.open ? (
             <Tooltip enterDelay={100} title="Title">
-              <Input value="value" autoFocus />
+              <input autoFocus onFocus={handleFocus} />
             </Tooltip>
           ) : null}
         </div>
@@ -477,6 +479,7 @@ describe('<Tooltip />', () => {
       });
 
       expect(getByRole('tooltip')).toBeVisible();
+      expect(handleFocus.callCount).to.equal(1);
     });
   });
 

@@ -2,41 +2,72 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { integerPropType } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import styled from '../styles/styled';
+import useThemeProps from '../styles/useThemeProps';
 import Typography from '../Typography';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
+import breadcrumbsClasses, { getBreadcrumbsUtilityClass } from './breadcrumbsClasses';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {},
-  /* Styles applied to the ol element. */
-  ol: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    padding: 0,
-    margin: 0,
-    listStyle: 'none',
-  },
-  /* Styles applied to the li element. */
-  li: {},
-  /* Styles applied to the separator element. */
-  separator: {
-    display: 'flex',
-    userSelect: 'none',
-    marginLeft: 8,
-    marginRight: 8,
-  },
+const useUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+    li: ['li'],
+    ol: ['ol'],
+    separator: ['separator'],
+  };
+
+  return composeClasses(slots, getBreadcrumbsUtilityClass, classes);
 };
 
-function insertSeparators(items, className, separator) {
+const BreadcrumbsRoot = styled(Typography, {
+  name: 'MuiBreadcrumbs',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    return [{ [`& .${breadcrumbsClasses.li}`]: styles.li }, styles.root];
+  },
+})({});
+
+const BreadcrumbsOl = styled('ol', {
+  name: 'MuiBreadcrumbs',
+  slot: 'Ol',
+  overridesResolver: (props, styles) => styles.ol,
+})({
+  display: 'flex',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+  padding: 0,
+  margin: 0,
+  listStyle: 'none',
+});
+
+const BreadcrumbsSeparator = styled('li', {
+  name: 'MuiBreadcrumbs',
+  slot: 'Separator',
+  overridesResolver: (props, styles) => styles.separator,
+})({
+  display: 'flex',
+  userSelect: 'none',
+  marginLeft: 8,
+  marginRight: 8,
+});
+
+function insertSeparators(items, className, separator, styleProps) {
   return items.reduce((acc, current, index) => {
     if (index < items.length - 1) {
       acc = acc.concat(
         current,
-        <li aria-hidden key={`separator-${index}`} className={className}>
+        <BreadcrumbsSeparator
+          aria-hidden
+          key={`separator-${index}`}
+          className={className}
+          styleProps={styleProps}
+        >
           {separator}
-        </li>,
+        </BreadcrumbsSeparator>,
       );
     } else {
       acc.push(current);
@@ -46,12 +77,12 @@ function insertSeparators(items, className, separator) {
   }, []);
 }
 
-const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
+const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiBreadcrumbs' });
   const {
     children,
-    classes,
     className,
-    component: Component = 'nav',
+    component = 'nav',
     expandText = 'Show path',
     itemsAfterCollapse = 1,
     itemsBeforeCollapse = 1,
@@ -61,6 +92,19 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
   } = props;
 
   const [expanded, setExpanded] = React.useState(false);
+
+  const styleProps = {
+    ...props,
+    component,
+    expanded,
+    expandText,
+    itemsAfterCollapse,
+    itemsBeforeCollapse,
+    maxItems,
+    separator,
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   const listRef = React.useRef(null);
   const renderItemsBeforeAndAfter = (allItems) => {
@@ -120,33 +164,35 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(props, ref) {
     ));
 
   return (
-    <Typography
+    <BreadcrumbsRoot
       ref={ref}
-      component={Component}
-      color="textSecondary"
+      component={component}
+      color="text.secondary"
       className={clsx(classes.root, className)}
+      styleProps={styleProps}
       {...other}
     >
-      <ol className={classes.ol} ref={listRef}>
+      <BreadcrumbsOl className={classes.ol} ref={listRef} styleProps={styleProps}>
         {insertSeparators(
           expanded || (maxItems && allItems.length <= maxItems)
             ? allItems
             : renderItemsBeforeAndAfter(allItems),
           classes.separator,
           separator,
+          styleProps,
         )}
-      </ol>
-    </Typography>
+      </BreadcrumbsOl>
+    </BreadcrumbsRoot>
   );
 });
 
-Breadcrumbs.propTypes = {
+Breadcrumbs.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The breadcrumb children.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
@@ -173,24 +219,28 @@ Breadcrumbs.propTypes = {
    * If max items is exceeded, the number of items to show after the ellipsis.
    * @default 1
    */
-  itemsAfterCollapse: PropTypes.number,
+  itemsAfterCollapse: integerPropType,
   /**
    * If max items is exceeded, the number of items to show before the ellipsis.
    * @default 1
    */
-  itemsBeforeCollapse: PropTypes.number,
+  itemsBeforeCollapse: integerPropType,
   /**
    * Specifies the maximum number of breadcrumbs to display. When there are more
    * than the maximum number, only the first `itemsBeforeCollapse` and last `itemsAfterCollapse`
    * will be shown, with an ellipsis in between.
    * @default 8
    */
-  maxItems: PropTypes.number,
+  maxItems: integerPropType,
   /**
    * Custom separator node.
    * @default '/'
    */
   separator: PropTypes.node,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiBreadcrumbs' })(Breadcrumbs);
+export default Breadcrumbs;

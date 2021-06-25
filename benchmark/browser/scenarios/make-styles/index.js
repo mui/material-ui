@@ -1,21 +1,27 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: 200,
-    height: 200,
-    borderWidth: 3,
-    borderColor: 'white',
-    ':hover': {
-      backgroundColor: theme.palette.secondary.dark,
+const defaultTheme = createTheme();
+
+const useStyles = makeStyles(
+  (theme) => ({
+    root: {
+      width: 200,
+      height: 200,
+      borderWidth: 3,
+      borderColor: 'white',
+      '&:hover': {
+        backgroundColor: theme.palette.secondary.dark,
+      },
+      [theme.breakpoints.up('sm')]: {
+        backgroundColor: theme.palette.primary.main,
+        borderStyle: 'dashed',
+      },
     },
-    [theme.breakpoints.up('sm')]: {
-      backgroundColor: theme.palette.primary.main,
-      borderStyle: 'dashed',
-    },
-  },
-}));
+  }),
+  { defaultTheme },
+);
 
 const Div = React.forwardRef(function Div(props, ref) {
   const classes = useStyles();

@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PaginationItem from '@material-ui/core/PaginationItem';
 
 let warnedOnce = false;

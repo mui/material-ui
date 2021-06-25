@@ -1,16 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  getClasses,
-  createMount,
-  describeConformance,
-  act,
-  createClientRender,
-  fireEvent,
-} from 'test/utils';
-import Link from './Link';
-import Typography from '../Typography';
+import { createMount, act, createClientRender, fireEvent, describeConformanceV5 } from 'test/utils';
+import Link, { linkClasses as classes } from '@material-ui/core/Link';
+import Typography, { typographyClasses } from '@material-ui/core/Typography';
 
 function focusVisible(element) {
   act(() => {
@@ -21,36 +14,35 @@ function focusVisible(element) {
 }
 
 describe('<Link />', () => {
-  const mount = createMount();
   const render = createClientRender();
-  let classes;
-  let typographyClasses;
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<Link href="/">Home</Link>);
-    typographyClasses = getClasses(<Typography />);
-  });
-
-  describeConformance(<Link href="/">Home</Link>, () => ({
+  describeConformanceV5(<Link href="/">Home</Link>, () => ({
     classes,
     inheritComponent: Typography,
+    render,
     mount,
+    muiName: 'MuiLink',
     refInstanceof: window.HTMLAnchorElement,
+    testVariantProps: { color: 'secondary', variant: 'h1' },
+    testStateOverrides: { prop: 'underline', value: 'always', styleKey: 'underlineAlways' },
+    skip: ['componentsProp'],
   }));
 
   it('should render children', () => {
     const { queryByText } = render(<Link href="/">Home</Link>);
 
-    expect(queryByText('Home')).to.not.equal(null);
+    expect(queryByText('Home')).not.to.equal(null);
   });
 
   it('should pass props to the <Typography> component', () => {
     const { container } = render(
-      <Link href="/" color="primary">
+      <Link href="/" variant="body2" classes={{ body2: 'link-body2' }}>
         Test
       </Link>,
     );
-    expect(container.firstChild).to.have.class(typographyClasses.colorPrimary);
+    expect(container.firstChild).to.have.class(typographyClasses.body2);
+    expect(container.firstChild).not.to.have.class('link-body2');
   });
 
   describe('event callbacks', () => {
@@ -82,7 +74,7 @@ describe('<Link />', () => {
       const { container } = render(<Link href="/">Home</Link>);
       const anchor = container.querySelector('a');
 
-      expect(anchor).to.not.have.class(classes.focusVisible);
+      expect(anchor).not.to.have.class(classes.focusVisible);
 
       focusVisible(anchor);
 
@@ -92,7 +84,7 @@ describe('<Link />', () => {
         anchor.blur();
       });
 
-      expect(anchor).to.not.have.class(classes.focusVisible);
+      expect(anchor).not.to.have.class(classes.focusVisible);
     });
   });
 });

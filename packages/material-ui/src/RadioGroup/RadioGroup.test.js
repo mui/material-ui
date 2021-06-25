@@ -3,15 +3,13 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
 import { createMount, describeConformance, act, createClientRender, fireEvent } from 'test/utils';
-import FormGroup from '../FormGroup';
-import Radio from '../Radio';
-import RadioGroup from './RadioGroup';
-import useRadioGroup from './useRadioGroup';
+import FormGroup from '@material-ui/core/FormGroup';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup, { useRadioGroup } from '@material-ui/core/RadioGroup';
 
 describe('<RadioGroup />', () => {
-  // StrictModeViolation: test uses #simulate
-  const mount = createMount({ strict: false });
-  const render = createClientRender({ strict: true });
+  const mount = createMount();
+  const render = createClientRender();
 
   describeConformance(<RadioGroup value="" />, () => ({
     classes: {},

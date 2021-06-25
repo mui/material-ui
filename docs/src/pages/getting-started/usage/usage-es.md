@@ -32,7 +32,7 @@ Así es! Esto es todo lo que necesitas para empezar, como podrás comprobar con 
 
 ## Globales
 
-La experiencia de uso de Material-UI puede mejorar con algunas globales importantes que deberás tener en cuenta.
+Material-UI usage experience can be improved with a handful of important globals that you'll need to be aware of.
 
 ### Meta tag responsivo
 
@@ -56,4 +56,4 @@ Ahora que tienes una idea de la organización básica, es hora de aprender más 
 
 - Cómo proporcionar [la fuente y tipografía de Material Design](/components/typography/).
 - Cómo aprovechar la [solución de plantilla](/customization/theming/).
-- Cómo [reemplazar](/customization/components/) el aspecto de los componentes.
+- Cómo [reemplazar](/customization/how-to-customize/) el aspecto de los componentes.

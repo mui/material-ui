@@ -20,7 +20,6 @@ describe('compose', () => {
     expect(palette.filterProps.length).to.equal(2);
     expect(
       palette({
-        theme: {},
         color: 'red',
         bgcolor: 'gree',
       }),

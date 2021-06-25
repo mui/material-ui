@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { useIsomorphicEffect } from './useKeyDown';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
 import { arrayIncludes } from '../utils';
-import { BasePickerProps } from '../typings/BasePicker';
 import { AllAvailableViews } from '../typings/Views';
 
-// tslint:disable deprecation
-const getOrientation = () => {
+type Orientation = 'portrait' | 'landscape';
+
+function getOrientation(): Orientation {
   if (typeof window === 'undefined') {
     return 'portrait';
   }
@@ -14,23 +14,21 @@ const getOrientation = () => {
     return Math.abs(window.screen.orientation.angle) === 90 ? 'landscape' : 'portrait';
   }
 
-  // Support IOS safar
+  // Support IOS safari
   if (window.orientation) {
     return Math.abs(Number(window.orientation)) === 90 ? 'landscape' : 'portrait';
   }
 
   return 'portrait';
-};
+}
 
 export function useIsLandscape(
-  views: AllAvailableViews[],
-  customOrientation?: BasePickerProps['orientation'],
+  views: readonly AllAvailableViews[],
+  customOrientation: Orientation | undefined,
 ): boolean {
-  const [orientation, setOrientation] = React.useState<BasePickerProps['orientation']>(
-    getOrientation(),
-  );
+  const [orientation, setOrientation] = React.useState(getOrientation);
 
-  useIsomorphicEffect(() => {
+  useEnhancedEffect(() => {
     const eventHandler = () => {
       setOrientation(getOrientation());
     };

@@ -1,4 +1,7 @@
-import { OverridableComponent, OverridableTypeMap, OverrideProps } from '../OverridableComponent';
+import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@material-ui/types';
+import { SliderUnstyledClasses } from './sliderUnstyledClasses';
+
+export interface SliderStylePropsOverrides {}
 
 export interface Mark {
   value: number;
@@ -28,42 +31,8 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
     'aria-valuetext'?: string;
     /**
      * Override or extend the styles applied to the component.
-     * @default {}
      */
-    classes?: {
-      /** Class name applied to the root element. */
-      root?: string;
-      /** Class name applied to the root element if `marks` is provided with at least one label. */
-      marked?: string;
-      /** Class name applied to the root element if `orientation="vertical"`. */
-      vertical?: string;
-      /** Pseudo-class applied to the root and thumb element if `disabled={true}`. */
-      disabled?: string;
-      /** Class name applied to the rail element. */
-      rail?: string;
-      /** Class name applied to the track element. */
-      track?: string;
-      /** Class name applied to the track element if `track={false}`. */
-      trackFalse?: string;
-      /** Class name applied to the track element if `track="inverted"`. */
-      trackInverted?: string;
-      /** Class name applied to the thumb element. */
-      thumb?: string;
-      /** Pseudo-class applied to the thumb element if it's active. */
-      active?: string;
-      /** Pseudo-class applied to the thumb element if keyboard focused. */
-      focusVisible?: string;
-      /** Class name applied to the thumb label element. */
-      valueLabel?: string;
-      /** Class name applied to the mark element. */
-      mark?: string;
-      /** Class name applied to the mark element if active (depending on the value). */
-      markActive?: string;
-      /** Class name applied to the mark label element. */
-      markLabel?: string;
-      /** Class name applied to the mark label element if active (depending on the value). */
-      markLabelActive?: string;
-    };
+    classes?: Partial<SliderUnstyledClasses>;
     /**
      * The components used for each slot inside the Slider.
      * Either a string to use a HTML element or a component.
@@ -84,53 +53,69 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
      */
     componentsProps?: {
       root?: {
-        as: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
+        as?: React.ElementType;
+        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
+          SliderStylePropsOverrides;
       };
       track?: {
         as?: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
+        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
+          SliderStylePropsOverrides;
       };
       rail?: {
         as?: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
+        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
+          SliderStylePropsOverrides;
       };
       thumb?: {
         as?: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
+        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
+          SliderStylePropsOverrides;
       };
       mark?: {
         as?: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
+        styleProps?: Omit<
+          SliderUnstyledTypeMap<P, D>['props'],
+          'components' | 'componentsProps'
+        > & { markActive?: boolean } & SliderStylePropsOverrides;
       };
       markLabel?: {
         as?: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
+        styleProps?: Omit<
+          SliderUnstyledTypeMap<P, D>['props'],
+          'components' | 'componentsProps'
+        > & { markLabelActive?: boolean } & SliderStylePropsOverrides;
       };
       valueLabel?: {
         as?: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
+        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
+          SliderStylePropsOverrides;
       };
     };
     /**
-     * The default element value. Use when the component is not controlled.
+     * The default value. Use when the component is not controlled.
      */
     defaultValue?: number | number[];
     /**
-     * If `true`, the slider is disabled.
+     * If `true`, the component is disabled.
      * @default false
      */
     disabled?: boolean;
     /**
+     * If `true`, the active thumb doesn't swap when moving pointer over a thumb while dragging another thumb.
+     * @default false
+     */
+    disableSwap?: boolean;
+    /**
      * Accepts a function which returns a string value that provides a user-friendly name for the thumb labels of the slider.
-     *
+     * This is important for screen reader users.
      * @param {number} index The thumb label's index to format.
      * @returns {string}
      */
     getAriaLabel?: (index: number) => string;
     /**
      * Accepts a function which returns a string value that provides a user-friendly name for the current value of the slider.
-     *
+     * This is important for screen reader users.
      * @param {number} value The thumb label's value to format.
      * @param {number} index The thumb label's index to format.
      * @returns {string}
@@ -167,19 +152,22 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
     /**
      * Callback function that is fired when the slider's value changed.
      *
-     * @param {object} event The event source of the callback. **Warning**: This is a generic event not a change event.
+     * @param {object} event The event source of the callback.
+     * You can pull out the new value by accessing `event.target.value` (any).
+     * **Warning**: This is a generic event not a change event.
      * @param {number | number[]} value The new value.
+     * @param {number} activeThumb Index of the currently moved thumb.
      */
-    onChange?: (event: React.SyntheticEvent, value: number | number[]) => void;
+    onChange?: (event: Event, value: number | number[], activeThumb: number) => void;
     /**
      * Callback function that is fired when the `mouseup` is triggered.
      *
      * @param {object} event The event source of the callback. **Warning**: This is a generic event not a change event.
      * @param {number | number[]} value The new value.
      */
-    onChangeCommitted?: (event: React.SyntheticEvent, value: number | number[]) => void;
+    onChangeCommitted?: (event: React.SyntheticEvent | Event, value: number | number[]) => void;
     /**
-     * The slider orientation.
+     * The component orientation.
      * @default 'horizontal'
      */
     orientation?: 'horizontal' | 'vertical';
@@ -197,6 +185,10 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
      * @default 1
      */
     step?: number | null;
+    /**
+     * Tab index attribute of the hidden `input` element.
+     */
+    tabIndex?: number;
     /**
      * The track presentation:
      *
@@ -260,9 +252,7 @@ declare const SliderUnstyled: OverridableComponent<SliderUnstyledTypeMap>;
 
 export type SliderUnstyledProps<
   D extends React.ElementType = SliderUnstyledTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<SliderUnstyledTypeMap<P, D>, D>;
-
-export type SliderUnstyledClassKey = keyof NonNullable<SliderUnstyledTypeMap['props']['classes']>;
 
 export default SliderUnstyled;

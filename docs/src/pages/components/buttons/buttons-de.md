@@ -20,7 +20,19 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Eigenständige Buttons
+## Basic Button
+
+The `Button` comes with three variants: text (default), contained, and outlined.
+
+{{"demo": "pages/components/buttons/BasicButtons.js"}}
+
+### Text buttons
+
+[Text buttons](https://material.io/components/buttons#text-button) are typically used for less-pronounced actions, including those located: in dialogs, in cards. In Karten helfen Text-Buttons dabei, den Karteninhalt zu betonen.
+
+{{"demo": "pages/components/buttons/TextButtons.js"}}
+
+### Contained buttons
 
 [Contained buttons](https://material.io/design/components/buttons.html#contained-button) sind hervorgehoben und unterscheiden sich durch die Verwendung von Höhe und Füllung. Sie enthalten primäre Aktionen einer Anwendung.
 
@@ -30,20 +42,9 @@ Die Erhöhung kann mit der `disableElevation`-Prop deaktiviert werden.
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
-## Text-Buttons
+### Outlined buttons
 
-In Karten helfen Text Buttons dabei, den Karteninhalt hervorzuheben.
-
-- In Dialogen
-- In Karten
-
-In Karten helfen Text-Buttons dabei, den Karteninhalt zu betonen.
-
-{{"demo": "pages/components/buttons/TextButtons.js"}}
-
-## Umrandete Buttons
-
-[Outlined Buttons](https://material.io/design/components/buttons.html#outlined-button) sind Buttons mit mittlerer Betonung. Sie enthalten wichtige Aktionen, aber nicht die primäre Aktion einer Anwendung.
+[Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important but aren't the primary action in an app.
 
 Umrandete Buttons haben eine geringere Betonung als eigenständige Buttons, aber eine stärkere als Text-Buttons.
 
@@ -59,23 +60,29 @@ All components accept an `onClick` handler that is applied to the root DOM eleme
 
 Note that the documentation [avoids](/guides/api/#native-properties) mentioning native props (there are a lot) in the API section of the components.
 
+## Farbe (Color)
+
+{{"demo": "pages/components/buttons/ColorButtons.js"}}
+
+In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info.
+
+## Größen
+
+For larger or smaller buttons, use the `size` prop.
+
+{{"demo": "pages/components/buttons/ButtonSizes.js"}}
+
 ## Upload-Button
 
 {{"demo": "pages/components/buttons/UploadButtons.js"}}
 
-## Größen
-
-Fancy larger or smaller buttons? Verwende die Eigenschaft `size`.
-
-{{"demo": "pages/components/buttons/ButtonSizes.js"}}
-
 ## Buttons mit Symbolen und Beschriftung
 
-Manchmal möchten Sie möglicherweise Symbole für bestimmte Schaltflächen, um die UX der Anwendung zu verbessern, da Logos leichter als einfacher Text erkannt werden. Wenn Sie beispielsweise eine Schaltfläche zum Löschen haben, können Sie sie mit einem Mülleimer-Symbol kennzeichnen.
+Sometimes you might want to have icons for certain buttons to enhance the UX of the application as we recognize logos more easily than plain text. Wenn Sie beispielsweise eine Schaltfläche zum Löschen haben, können Sie sie mit einem Mülleimer-Symbol kennzeichnen.
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## Icon Buttons
+## Icon button
 
 Icon Buttons finden Sie häufig in App-Bars und Toolbars.
 
@@ -83,9 +90,15 @@ Icons eignen sich auch für Umschaltflächen, mit denen eine einzelne Auswahl au
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
+### Größen
+
+For larger or smaller icon buttons, use the `size` prop.
+
+{{"demo": "pages/components/buttons/IconButtonSizes.js"}}
+
 ## Benutzerdefinierte Buttons
 
-Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/how-to-customize/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
@@ -93,7 +106,7 @@ Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf de
 
 ## Komplexe Buttons
 
-The loading buttons can show pending state and disable interactions.
+The loading buttons can show loading state and disable interactions.
 
 {{"demo": "pages/components/buttons/LoadingButtons.js"}}
 
@@ -101,17 +114,15 @@ Hier ist ein [Integrationsbeispiel mit react-router](/guides/composition/#button
 
 {{"demo": "pages/components/buttons/LoadingButtonsTransition.js"}}
 
-## Komplexe Buttons
+## Complex buttons
 
-Die Text Buttons, die Contained Buttons, die Floatin Action Buttons und die Icon Buttons basieren auf derselben Komponente: der `ButtonBase`. Sie können die Vorteile dieser grundlegenden Komponente zum erstellen von benutzerdefinierten Interaktionen nutzen.
+Die Text Buttons, die Contained Buttons, die Floatin Action Buttons und die Icon Buttons basieren auf derselben Komponente: der `ButtonBase`. You can take advantage of this lower-level component to build custom interactions.
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 
 ## Drittanbieter-Routing Bibliothek
 
-Ein häufig gebrauchtes Feature ist das Wechseln zu einer anderen Seite als Button-Aktion. Ein häufig gebrauchtes Feature ist das Wechseln zu einer anderen Seite als Button-Aktion. Für bestimmte Fokus-Polyfills erfordert `ButtonBase` jedoch den DOM-Knoten der bereitgestellten Komponente. Dies wird erreicht, indem der Komponente ein Ref zugeordnet wird und erwartet wird, dass die Komponente diesen Ref an den zugrunde liegenden DOM-Knoten weiterleitet. Given that many of the interactive components rely on `ButtonBase`, you should be able to take advantage of it everywhere.
-
-Hier ist ein [Integrationsbeispiel mit react-router](/guides/composition/#button).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. Ein häufig gebrauchtes Feature ist das Wechseln zu einer anderen Seite als Button-Aktion. Here is a [more detailed guide](/guides/routing/#button).
 
 ## Einschränkungen
 
@@ -121,7 +132,7 @@ The ButtonBase component sets `pointer-events: none;` on disabled buttons, which
 
 If you wish to use `not-allowed`, you have two options:
 
-1. **Nur CSS**. You can remove the pointer events style on the disabled state of the `<button>` element:
+1. **Nur CSS**. You can remove the pointer-events style on the disabled state of the `<button>` element:
 
 ```css
 .MuiButtonBase-root:disabled {

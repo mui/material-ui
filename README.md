@@ -6,7 +6,7 @@
 
 <div align="center">
 
-[React](https://reactjs.org/) components for faster and simpler web development. Build your own design system, or start with [Material Design](https://material.io/design/introduction/).
+Quickly build beautiful [React](https://reactjs.org/) apps. Material-UI is a simple and customizable component library to build faster, beautiful, and more accessible React applications. Follow your own design system, or start with [Material Design](https://material.io/design/introduction/).
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mui-org/material-ui/blob/master/LICENSE)
 [![npm latest package](https://img.shields.io/npm/v/@material-ui/core/latest.svg)](https://www.npmjs.com/package/@material-ui/core)
@@ -50,10 +50,10 @@ yarn add @material-ui/core@next @emotion/react @emotion/styled
 
 <details>
   <summary>Older versions</summary>
-  
-  - **[v3.x](https://v3.material-ui.com/)** ([Migration from v3 to v4](https://material-ui.com/guides/migration-v3/))
-  - **[v0.x](https://v0.material-ui.com/)** ([Migration to v1](https://material-ui.com/guides/migration-v0x/))
-  
+
+- **[v3.x](https://v3.material-ui.com/)** ([Migration from v3 to v4](https://material-ui.com/guides/migration-v3/))
+- **[v0.x](https://v0.material-ui.com/)** ([Migration to v1](https://material-ui.com/guides/migration-v0x/))
+
 </details>
 
 Please note that `@next` will only point to pre-releases; to get the latest stable release use `@latest` instead.
@@ -83,6 +83,13 @@ via [OpenCollective](https://opencollective.com/material-ui)
 <p style="display: flex; justify-content: center; flex-wrap: wrap;">
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="textemall" href="https://www.text-em-all.com" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/callemall/a6946da/logo/96.png" srcset="https://images.opencollective.com/callemall/a6946da/logo/192.png 2x" alt="call-em-all" title="Mass Text Messaging & Automated Calling" height="96" width="96" loading="lazy"></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="canadacasino" href="https://www.canadacasino.ca/" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/canadacasino/5b19004/logo/96.png" srcset="https://images.opencollective.com/canadacasino/5b19004/logo/192.png 2x" alt="canadacasino" loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="hoodiebees" href="https://hoodiebees.com/" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/hoodiebees1/617b451/logo/96.png" srcset="https://images.opencollective.com/hoodiebees1/617b451/logo/192.png 2x" alt="hoodiebees" loading="lazy" /></a>
+</p>
+
+Direct
+
+<p style="display: flex; justify-content: center; flex-wrap: wrap;">
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="elevator" href="https://www.elevatormag.com/" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://material-ui.com/static/sponsors/elevator.png" alt="elevator" title="The dopest new hip hop, upcoming artsits, music news, culture, and style" height="57" width="191" loading="lazy"></a>
 </p>
 
 Gold Sponsors are those who have pledged \$500/month or more to Material-UI.
@@ -96,7 +103,7 @@ See the full list of [our backers](https://material-ui.com/discover-more/backers
 Here is a quick example to get you started, **it's all you need**:
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import ReactDOM from 'react-dom';
 import Button from '@material-ui/core/Button';
 
@@ -157,10 +164,6 @@ These great services sponsor Material-UI's core infrastructure:
 [<img loading="lazy" alt="GitHub" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" height="25">](https://github.com/)
 
 GitHub allows us to host the Git repository.
-
-[<img loading="lazy" alt="CircleCI" src="https://assets.brandfolder.com/otz6k5-cj8pew-e4rk9u/element.png?v=1501538594" height="32">](https://circleci.com/)
-
-CircleCI allows us to run the test suite.
 
 [<img loading="lazy" alt="Netlify" src="https://cdn.netlify.com/15ecf59b59c9d04b88097c6b5d2c7e8a7d1302d0/1b6d6/img/press/logos/full-logo-light.svg" height="30">](https://www.netlify.com/)
 

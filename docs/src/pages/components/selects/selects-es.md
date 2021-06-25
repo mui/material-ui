@@ -24,7 +24,9 @@ If you are looking for more advanced features, like combobox, multiselect, autoc
 
 ## Props
 
-### Filled and outlined variants
+The Select component is implemented as a custom `<input>` element of the [InputBase](/api/input-base/). It extends the [text field components](/components/text-fields) sub-components, either the [OutlinedInput](/api/outlined-input/), [Input](/api/input/), or [FilledInput](/api/filled-input/), depending on the variant selected. It shares the same styles and many of the same props. Refer to the respective component's API page for details.
+
+### Filled and standard variants
 
 {{"demo": "pages/components/selects/NativeSelects.js"}}
 
@@ -52,9 +54,9 @@ El componente `TextField` es un control de formulario completo, incluyendo una e
 
 ## Selecciones personalizadas
 
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/components/).
+Here are some examples of customizing the component. Puedes aprender más sobre esto en la [sección Personalizando Componentes de la documentación](/customization/how-to-customize/).
 
-The first step is to style the `InputBase` component. El componente `TextField` es un control de formulario completo, incluyendo una etiqueta, el campo de texto y texto de ayuda.
+The first step is to style the `InputBase` component. El componente `TextField` es un control de formulario completo, incluyendo una etiqueta, el campo de texto y texto de ayuda. Notice that the `"standard"` variant is easier to customize, since it does not wrap the contents in a `fieldset`/`legend` markup.
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
@@ -92,7 +94,7 @@ Alternatively a `TextField` with an `id` and `label` creates the proper markup a
 
 ## With a dialog
 
-While it's discouraged by the Material Design specification, you can use a select inside a dialog.
+While it's discouraged by the Material Design guidelines, you can use a select inside a dialog.
 
 {{"demo": "pages/components/selects/DialogSelect.js"}}
 

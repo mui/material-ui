@@ -1,26 +1,25 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
-import { createMuiTheme, ThemeProvider } from '../styles';
-import Pagination from './Pagination';
+import { createMount, describeConformanceV5, createClientRender } from 'test/utils';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import Pagination, { paginationClasses as classes } from '@material-ui/core/Pagination';
 
 describe('<Pagination />', () => {
-  let classes;
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<Pagination />);
-  });
-
-  describeConformance(<Pagination />, () => ({
+  describeConformanceV5(<Pagination />, () => ({
     classes,
     inheritComponent: 'nav',
+    render,
     mount,
+    muiName: 'MuiPagination',
     refInstanceof: window.HTMLElement,
-
-    skip: ['componentProp'],
+    testDeepOverrides: { slotName: 'ul', slotClassName: classes.ul },
+    testVariantProps: { variant: 'foo' },
+    testStateOverrides: { prop: 'variant', value: 'outlined', styleKey: 'outlined' },
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render', () => {
@@ -53,7 +52,7 @@ describe('<Pagination />', () => {
   it('renders controls with correct order in rtl theme', () => {
     const { getAllByRole } = render(
       <ThemeProvider
-        theme={createMuiTheme({
+        theme={createTheme({
           direction: 'rtl',
         })}
       >
@@ -74,7 +73,7 @@ describe('<Pagination />', () => {
   it('renders correct amount of buttons on correct order when boundaryCount is zero', () => {
     const { getAllByRole } = render(
       <ThemeProvider
-        theme={createMuiTheme({
+        theme={createTheme({
           direction: 'rtl',
         })}
       >

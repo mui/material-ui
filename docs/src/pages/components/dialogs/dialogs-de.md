@@ -41,7 +41,7 @@ Use title bar alerts only for high-risk situations, such as the potential loss o
 Falls ein Titel erforderlich ist:
 
 - Verwenden Sie eine klare Frage oder eine Erklärung mit einer Erläuterung im Inhaltsbereich, z. B. "USB-Speicher löschen?".
-- Vermeiden Sie Entschuldigungen, Unklarheiten oder Fragen wie "Warnung!" oder "Sind Sie sicher?"
+- Avoid apologies, ambiguity, or questions, such as "Warning!" or "Are you sure?"
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
@@ -59,7 +59,7 @@ Formulardialoge ermöglichen Benutzern das Ausfüllen von Formularfeldern innerh
 
 ## Benutzerdefinierter Dialoge
 
-Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/how-to-customize/).
 
 Das Dialogfeld verfügt über eine Schaltfläche zum Schließen, um die Benutzerfreundlichkeit zu verbessern.
 
@@ -94,9 +94,9 @@ function MyComponent() {
 
 ## Bestätigungsdialoge
 
-Bestätigungsdialogfelder erfordern, dass Benutzer ihre Wahl explizit bestätigen, bevor eine Option festgelegt wird. Zum Beispiel können Benutzer mehrere Klingeltöne hören, sie müssen jedoch nur eine endgültige Auswahl treffen, wenn Sie auf „OK“ tippen.
+Bestätigungsdialogfelder erfordern, dass Benutzer ihre Wahl explizit bestätigen, bevor eine Option festgelegt wird. For example, users can listen to multiple ringtones but only make a final selection upon touching "OK".
 
-Durch Berühren von „Abbrechen“ in einem Bestätigungsdialogfeld oder durch Drücken von Zurück wird die Aktion abgebrochen, alle Änderungen verworfen und das Dialogfeld geschlossen.
+Touching "Cancel" in a confirmation dialog, or pressing Back, cancels the action, discards any changes, and closes the dialog.
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
@@ -108,7 +108,7 @@ Sie können einen ziehbaren Dialog erstellen, indem Sie [react-draggable](https:
 
 ## Blättern von langen Inhalten
 
-Wenn Dialoge für das Ansichtsfenster oder das Gerät des Benutzers zu lang werden, scrollen diese.
+When dialogs become too long for the user's viewport or device, they scroll.
 
 - `scroll=paper`: Der Inhalt des Dialogs scrollt innerhalb des Papierelements.
 - `scroll=body`: Der Inhalt des Dialogs scrollt innerhalb des Body-Elements.

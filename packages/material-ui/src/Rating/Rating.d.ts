@@ -1,56 +1,28 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { OverridableStringUnion } from '@material-ui/types';
+import { InternalStandardProps as StandardProps, Theme } from '..';
+import { RatingClasses } from './ratingClasses';
 
 export interface IconContainerProps extends React.HTMLAttributes<HTMLSpanElement> {
   value: number;
 }
+
+export interface RatingPropsSizeOverrides {}
 
 export interface RatingProps
   extends StandardProps<React.HTMLAttributes<HTMLSpanElement>, 'children' | 'onChange'> {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if `size="small"`. */
-    sizeSmall?: string;
-    /** Styles applied to the root element if `size="large"`. */
-    sizeLarge?: string;
-    /** Styles applied to the root element if `readOnly={true}`. */
-    readOnly?: string;
-    /** Pseudo-class applied to the root element if `disabled={true}`. */
-    disabled?: string;
-    /** Pseudo-class applied to the root element if keyboard focused. */
-    focusVisible?: string;
-    /** Visually hide an element. */
-    visuallyHidden?: string;
-    /** Styles applied to the label elements. */
-    label?: string;
-    /** Styles applied to the label of the "no value" input when it is active. */
-    labelEmptyValueActive?: string;
-    /** Styles applied to the icon wrapping elements. */
-    icon?: string;
-    /** Styles applied to the icon wrapping elements when empty. */
-    iconEmpty?: string;
-    /** Styles applied to the icon wrapping elements when filled. */
-    iconFilled?: string;
-    /** Styles applied to the icon wrapping elements when hover. */
-    iconHover?: string;
-    /** Styles applied to the icon wrapping elements when focus. */
-    iconFocus?: string;
-    /** Styles applied to the icon wrapping elements when active. */
-    iconActive?: string;
-    /** Styles applied to the icon wrapping elements when decimals are necessary. */
-    decimal?: string;
-  };
+  classes?: Partial<RatingClasses>;
   /**
    * The default value. Use when the component is not controlled.
    * @default null
    */
   defaultValue?: number;
   /**
-   * If `true`, the rating is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled?: boolean;
@@ -66,6 +38,7 @@ export interface RatingProps
   emptyLabelText?: React.ReactNode;
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.
+   * This is important for screen reader users.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
    * @param {number} value The rating label's value to format.
@@ -75,6 +48,11 @@ export interface RatingProps
    * }
    */
   getLabelText?: (value: number) => string;
+  /**
+   * If `true`, only the selected icon will be highlighted.
+   * @default false
+   */
+  highlightSelectedOnly?: boolean;
   /**
    * The icon to display.
    * @default <Star fontSize="inherit" />
@@ -102,7 +80,7 @@ export interface RatingProps
   /**
    * Callback fired when the value changes.
    * @param {object} event The event source of the callback.
-   * @param {number} value The new value.
+   * @param {number|null} value The new value.
    */
   onChange?: (event: React.SyntheticEvent, value: number | null) => void;
   /**
@@ -122,17 +100,19 @@ export interface RatingProps
    */
   readOnly?: boolean;
   /**
-   * The size of the rating.
+   * The size of the component.
    * @default 'medium'
    */
-  size?: 'small' | 'medium' | 'large';
+  size?: OverridableStringUnion<'small' | 'medium' | 'large', RatingPropsSizeOverrides>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * The rating value.
    */
   value?: number | null;
 }
-
-export type RatingClassKey = keyof NonNullable<RatingProps['classes']>;
 
 /**
  *

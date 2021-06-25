@@ -70,15 +70,21 @@ Cet exemple montre également comment retarder la transition d'entrée.
 
 {{"demo": "pages/components/transitions/SimpleZoom.js", "bg": true}}
 
+## TransitionGroup
+
+To animate a component when it is mounted or unmounted, you can use the [`TransitionGroup`](https://reactcommunity.org/react-transition-group/transition-group) component from _react-transition-group_. As components are added or removed, the `in` prop is toggled automatically by `TransitionGroup`.
+
+{{"demo": "pages/components/transitions/TransitionGroupExample.js"}}
+
 ## TransitionComponent prop
 
 Some Material-UI components use these transitions internally. These accept a `TransitionComponent` prop to customize the default transition. You can use any of the above components or your own. It should respect the following conditions:
 
 - Accepts an `in` prop. This corresponds to the open/close state.
 - Appeler la propriété de callback `onEnter` lorsque la transition d'entrée démarre.
-- Appeler la propriété de callback `onExited` lorsque la transition de sortie est terminée. Call the `onExited` callback prop when the exit transition is completed.
+- Appeler la propriété de callback `onExited` lorsque la transition de sortie est terminée. Appeler la propriété de callback `onExited` lorsque la transition de sortie est terminée.
 
-For more information on creating a custom transition, visit the [React Transition Group Transition docs](http://reactcommunity.org/react-transition-group/transition). You can also visit the dedicated sections of some of the components:
+For more information on creating a custom transition, visit the _react-transition-group_ [`Transition` documentation](http://reactcommunity.org/react-transition-group/transition). You can also visit the dedicated sections of some of the components:
 
 - [Modal](/components/modal/#transitions)
 - [Dialog](/components/dialogs/#transitions)

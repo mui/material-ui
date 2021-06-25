@@ -1,37 +1,31 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
+import { Theme } from '..';
+import { AccordionSummaryClasses } from './accordionSummaryClasses';
 
 export type AccordionSummaryTypeMap<
   P = {},
-  D extends React.ElementType = 'div'
+  D extends React.ElementType = 'div',
 > = ExtendButtonBaseTypeMap<{
   props: P & {
     /**
-     * The content of the accordion summary.
+     * The content of the component.
      */
     children?: React.ReactNode;
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Pseudo-class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`. */
-      expanded?: string;
-      /** Pseudo-class applied to the ButtonBase root element if the button is keyboard focused. */
-      focusVisible?: string;
-      /** Pseudo-class applied to the root element if `disabled={true}`. */
-      disabled?: string;
-      /** Styles applied to the children wrapper element. */
-      content?: string;
-      /** Styles applied to the `expandIcon`'s wrapper element. */
-      expandIconWrapper?: string;
-    };
+    classes?: Partial<AccordionSummaryClasses>;
     /**
      * The icon to display as the expand indicator.
      */
     expandIcon?: React.ReactNode;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }>;
@@ -49,13 +43,9 @@ export type AccordionSummaryTypeMap<
  */
 declare const AccordionSummary: ExtendButtonBase<AccordionSummaryTypeMap>;
 
-export type AccordionSummaryClassKey = keyof NonNullable<
-  AccordionSummaryTypeMap['props']['classes']
->;
-
 export type AccordionSummaryProps<
   D extends React.ElementType = AccordionSummaryTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<AccordionSummaryTypeMap<P, D>, D>;
 
 export default AccordionSummary;

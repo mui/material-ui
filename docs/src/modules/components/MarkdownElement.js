@@ -1,7 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { createTheme, alpha, darken } from '@material-ui/core/styles';
 
 const styles = (theme) => ({
   root: {
@@ -35,7 +36,9 @@ const styles = (theme) => ({
       padding: '0 3px',
       color: theme.palette.text.primary,
       backgroundColor:
-        theme.palette.mode === 'light' ? 'rgba(255, 229, 100, 0.2)' : 'rgba(255, 229, 100, 0.2)',
+        theme.palette.mode === 'light'
+          ? 'rgba(255, 229, 100, 0.2)'
+          : alpha(theme.palette.primary.main, 0.08),
       fontSize: '.85em',
       borderRadius: 2,
     },
@@ -132,6 +135,9 @@ const styles = (theme) => ({
       '& .required': {
         color: theme.palette.mode === 'light' ? '#006500' : '#a5ffa5',
       },
+      '& .optional': {
+        color: theme.palette.type === 'light' ? '#080065' : '#a5b3ff',
+      },
       '& .prop-type': {
         fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
         color: theme.palette.mode === 'light' ? '#932981' : '#ffb6ec',
@@ -170,10 +176,17 @@ const styles = (theme) => ({
     '& a, & a code': {
       // Style taken from the Link component
       color: theme.palette.primary.main,
-      textDecoration: 'none',
+      textDecoration: 'underline',
+      textDecorationColor: alpha(theme.palette.primary.main, 0.4),
       '&:hover': {
-        textDecoration: 'underline',
+        textDecorationColor: 'inherit',
       },
+    },
+    '& a code': {
+      color:
+        theme.palette.mode === 'dark'
+          ? theme.palette.primary.main
+          : darken(theme.palette.primary.main, 0.04),
     },
     '& img, video': {
       maxWidth: '100%',
@@ -185,25 +198,29 @@ const styles = (theme) => ({
     '& hr': {
       height: 1,
       margin: theme.spacing(6, 0),
-      border: 'none',
+      border: 0,
       flexShrink: 0,
       backgroundColor: theme.palette.divider,
     },
-    '& kbd': {
+    '& kbd.key': {
       // Style taken from GitHub
-      padding: '2px 5px',
-      font: '11px Consolas,Liberation Mono,Menlo,monospace',
+      padding: '4px 5px',
+      display: 'inline-block',
+      whiteSpace: 'nowrap',
+      margin: '0 1px',
+      font: '11px SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace',
       lineHeight: '10px',
-      color: '#444d56',
+      color: theme.palette.text.primary,
       verticalAlign: 'middle',
-      backgroundColor: '#fafbfc',
-      border: '1px solid #d1d5da',
-      borderRadius: 3,
-      boxShadow: 'inset 0 -1px 0 #d1d5da',
+      backgroundColor: theme.palette.mode === 'dark' ? 'transparent' : '#fafbfc',
+      border: `1px solid ${theme.palette.mode === 'dark' ? '#6e7681' : '#d1d5da'}`,
+      borderRadius: 6,
+      boxShadow: `inset 0 -1px 0 ${theme.palette.mode === 'dark' ? '#6e7681' : '#d1d5da'}`,
     },
   },
 });
-const useStyles = makeStyles(styles, { name: 'MarkdownElement', flip: false });
+const defaultTheme = createTheme();
+const useStyles = makeStyles(styles, { name: 'MarkdownElement', flip: false, defaultTheme });
 
 const MarkdownElement = React.forwardRef(function MarkdownElement(props, ref) {
   const { className, renderedMarkdown, ...other } = props;

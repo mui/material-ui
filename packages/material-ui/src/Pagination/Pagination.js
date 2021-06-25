@@ -1,27 +1,47 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles, useThemeVariants } from '../styles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { integerPropType } from '@material-ui/utils';
+import useThemeProps from '../styles/useThemeProps';
+import { getPaginationUtilityClass } from './paginationClasses';
 import usePagination from '../usePagination';
 import PaginationItem from '../PaginationItem';
+import styled from '../styles/styled';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {},
-  /* Styles applied to the ul element. */
-  ul: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    padding: 0,
-    margin: 0,
-    listStyle: 'none',
-  },
-  /* Styles applied to the root element if `variant="outlined"`. */
-  outlined: {},
-  /* Styles applied to the root element if `variant="text"`. */
-  text: {},
+const useUtilityClasses = (styleProps) => {
+  const { classes, variant } = styleProps;
+
+  const slots = {
+    root: ['root', variant],
+    ul: ['ul'],
+  };
+
+  return composeClasses(slots, getPaginationUtilityClass, classes);
 };
+
+const PaginationRoot = styled('nav', {
+  name: 'MuiPagination',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return [styles.root, styles[styleProps.variant]];
+  },
+})({});
+
+const PaginationUl = styled('ul', {
+  name: 'MuiPagination',
+  slot: 'Ul',
+  overridesResolver: (props, styles) => styles.ul,
+})({
+  display: 'flex',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+  padding: 0,
+  margin: 0,
+  listStyle: 'none',
+});
 
 function defaultGetAriaLabel(type, page, selected) {
   if (type === 'page') {
@@ -30,10 +50,10 @@ function defaultGetAriaLabel(type, page, selected) {
   return `Go to ${type} page`;
 }
 
-const Pagination = React.forwardRef(function Pagination(props, ref) {
+const Pagination = React.forwardRef(function Pagination(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiPagination' });
   const {
     boundaryCount = 1,
-    classes,
     className,
     color = 'standard',
     count = 1,
@@ -56,36 +76,36 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
 
   const { items } = usePagination({ ...props, componentName: 'Pagination' });
 
-  const themeVariantsClasses = useThemeVariants(
-    {
-      ...props,
-      boundaryCount,
-      color,
-      count,
-      defaultPage,
-      disabled,
-      getItemAriaLabel,
-      hideNextButton,
-      hidePrevButton,
-      renderItem,
-      shape,
-      showFirstButton,
-      showLastButton,
-      siblingCount,
-      size,
-      variant,
-    },
-    'MuiPaginationItem',
-  );
+  const styleProps = {
+    ...props,
+    boundaryCount,
+    color,
+    count,
+    defaultPage,
+    disabled,
+    getItemAriaLabel,
+    hideNextButton,
+    hidePrevButton,
+    renderItem,
+    shape,
+    showFirstButton,
+    showLastButton,
+    siblingCount,
+    size,
+    variant,
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   return (
-    <nav
+    <PaginationRoot
       aria-label="pagination navigation"
-      className={clsx(classes.root, classes[variant], themeVariantsClasses, className)}
+      className={clsx(classes.root, className)}
+      styleProps={styleProps}
       ref={ref}
       {...other}
     >
-      <ul className={classes.ul}>
+      <PaginationUl className={classes.ul} styleProps={styleProps}>
         {items.map((item, index) => (
           <li key={index}>
             {renderItem({
@@ -98,14 +118,14 @@ const Pagination = React.forwardRef(function Pagination(props, ref) {
             })}
           </li>
         ))}
-      </ul>
-    </nav>
+      </PaginationUl>
+    </PaginationRoot>
   );
 });
 
 // @default tags synced with default values from usePagination
 
-Pagination.propTypes = {
+Pagination.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -114,7 +134,7 @@ Pagination.propTypes = {
    * Number of always visible pages at the beginning and end.
    * @default 1
    */
-  boundaryCount: PropTypes.number,
+  boundaryCount: integerPropType,
   /**
    * Override or extend the styles applied to the component.
    */
@@ -127,17 +147,20 @@ Pagination.propTypes = {
    * The active color.
    * @default 'standard'
    */
-  color: PropTypes.oneOf(['primary', 'secondary', 'standard']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['primary', 'secondary', 'standard']),
+    PropTypes.string,
+  ]),
   /**
    * The total number of pages.
    * @default 1
    */
-  count: PropTypes.number,
+  count: integerPropType,
   /**
    * The page selected by default when the component is uncontrolled.
    * @default 1
    */
-  defaultPage: PropTypes.number,
+  defaultPage: integerPropType,
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -145,9 +168,9 @@ Pagination.propTypes = {
   disabled: PropTypes.bool,
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
+   * This is important for screen reader users.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
-   *
    * @param {string} type The link or button type to format ('page' | 'first' | 'last' | 'next' | 'previous'). Defaults to 'page'.
    * @param {number} page The page number to format.
    * @param {bool} selected If true, the current page is selected.
@@ -174,10 +197,9 @@ Pagination.propTypes = {
   /**
    * The current page.
    */
-  page: PropTypes.number,
+  page: integerPropType,
   /**
    * Render the item.
-   *
    * @param {PaginationRenderItemParams} params The props to spread on a PaginationItem.
    * @returns {ReactNode}
    * @default (item) => <PaginationItem {...item} />
@@ -202,12 +224,19 @@ Pagination.propTypes = {
    * Number of always visible pages before and after the current page.
    * @default 1
    */
-  siblingCount: PropTypes.number,
+  siblingCount: integerPropType,
   /**
-   * The size of the pagination component.
+   * The size of the component.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['large', 'medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['large', 'medium', 'small']),
+    PropTypes.string,
+  ]),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
   /**
    * The variant to use.
    * @default 'text'
@@ -218,4 +247,4 @@ Pagination.propTypes = {
   ]),
 };
 
-export default withStyles(styles, { name: 'MuiPagination' })(Pagination);
+export default Pagination;

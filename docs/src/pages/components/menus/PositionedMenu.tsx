@@ -5,11 +5,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 export default function PositionedMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-
+  const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
-
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -17,21 +16,22 @@ export default function PositionedMenu() {
   return (
     <div>
       <Button
+        id="demo-positioned-button"
         aria-controls="demo-positioned-menu"
         aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        Open Menu
+        Dashboard
       </Button>
       <Menu
         id="demo-positioned-menu"
+        aria-labelledby="demo-positioned-button"
         anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
+        open={open}
         onClose={handleClose}
-        getContentAnchorEl={null}
         anchorOrigin={{
-          vertical: 'bottom',
+          vertical: 'top',
           horizontal: 'left',
         }}
         transformOrigin={{

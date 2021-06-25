@@ -1,34 +1,22 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  getClasses,
-  createMount,
-  describeConformance,
-  act,
-  createClientRender,
-  screen,
-} from 'test/utils';
-import Breadcrumbs from './Breadcrumbs';
+import { createMount, describeConformanceV5, act, createClientRender, screen } from 'test/utils';
+import Breadcrumbs, { breadcrumbsClasses as classes } from '@material-ui/core/Breadcrumbs';
 
 describe('<Breadcrumbs />', () => {
-  const mount = createMount();
-  let classes;
   const render = createClientRender();
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(
-      <Breadcrumbs>
-        <span>Hello World</span>
-      </Breadcrumbs>,
-    );
-  });
-
-  describeConformance(<Breadcrumbs>Conformance?</Breadcrumbs>, () => ({
+  describeConformanceV5(<Breadcrumbs>Conformance?</Breadcrumbs>, () => ({
     classes,
     inheritComponent: 'nav',
+    render,
     mount,
+    muiName: 'MuiBreadcrumbs',
     refInstanceof: window.HTMLElement,
     testComponentPropWith: 'div',
+    testVariantProps: { separator: '=' },
+    skip: ['componentsProp'],
   }));
 
   it('should render inaccessible separators between each listitem', () => {
@@ -68,7 +56,7 @@ describe('<Breadcrumbs />', () => {
   it('should expand when `BreadcrumbCollapsed` is clicked', () => {
     const { getAllByRole, getByRole, getByText } = render(
       <Breadcrumbs>
-        <span tabIndex="-1">first</span>
+        <span tabIndex={-1}>first</span>
         <span>second</span>
         <span>third</span>
         <span>fourth</span>
@@ -100,7 +88,9 @@ describe('<Breadcrumbs />', () => {
       );
     }).toErrorDev([
       'Material-UI: You have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
-      'Material-UI: You have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
+      // strict mode renders twice
+      React.version.startsWith('16') &&
+        'Material-UI: You have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
     ]);
     expect(screen.getAllByRole('listitem', { hidden: false })).to.have.length(4);
     expect(screen.getByRole('list')).to.have.text('first/second/third/fourth');

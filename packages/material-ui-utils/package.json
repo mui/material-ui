@@ -1,9 +1,9 @@
 {
   "name": "@material-ui/utils",
-  "version": "5.0.0-alpha.18",
+  "version": "5.0.0-alpha.36",
   "private": false,
   "author": "Material-UI Team",
-  "description": "Material-UI Utils - Utility functions for Material-UI.",
+  "description": "Utility functions for React components.",
   "main": "./src/index.ts",
   "keywords": [
     "react",
@@ -28,22 +28,21 @@
     "build:node": "node ../../scripts/build node",
     "build:stable": "node ../../scripts/build stable",
     "build:copy-files": "node ../../scripts/copy-files.js",
-    "build:types": "tsc -p tsconfig.build.json",
+    "build:types": "node ../../scripts/buildTypes",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build --tag next",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-utils/**/*.test.{js,ts,tsx}'",
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "peerDependencies": {
-    "react": "^16.8.0 || ^17.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0"
+    "react": "^17.0.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
     "@types/prop-types": "^15.7.3",
     "@types/react-is": "^16.7.1 || ^17.0.0",
     "prop-types": "^15.7.2",
-    "react-is": "^16.8.0 || ^17.0.0"
+    "react-is": "^17.0.0"
   },
   "devDependencies": {
     "@babel/helper-module-imports": "^7.8.3",
@@ -56,6 +55,6 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12.0.0"
   }
 }

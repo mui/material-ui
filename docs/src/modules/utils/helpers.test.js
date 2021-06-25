@@ -2,6 +2,14 @@ import { expect } from 'chai';
 import { getDependencies } from './helpers';
 
 describe('docs getDependencies helpers', () => {
+  before(() => {
+    process.env.SOURCE_CODE_REPO = 'https://github.com/mui-org/material-ui';
+  });
+
+  after(() => {
+    delete process.env.SOURCE_CODE_REPO;
+  });
+
   const s1 = `
 import * as React from 'react';
 import PropTypes from 'prop-types';

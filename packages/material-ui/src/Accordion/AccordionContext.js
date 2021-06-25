@@ -2,7 +2,7 @@ import * as React from 'react';
 
 /**
  * @ignore - internal component.
- * @type {React.Context<{} | {expanded: boolean, disabled: boolean, toggle: () => void}>}
+ * @type {React.Context<{} | {expanded: boolean, disabled: boolean, disableGutters: boolean, toggle: () => void}>}
  */
 const AccordionContext = React.createContext({});
 

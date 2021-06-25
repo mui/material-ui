@@ -6,7 +6,7 @@
 
 Add a `ThemeProvider` to the top level of your app to pass a theme down the React component tree. Then, you can access the theme object in style functions.
 
-> This example creates a theme object for custom-built components. If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createMuiTheme()` method. Head to the the [theming section](/customization/theming/) to learn how to build your custom Material-UI theme.
+> This example creates a theme object for custom-built components. If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createTheme()` method. カスタムMaterial-UIテーマを構築する方法については、 [テーマセクション](/customization/theming/) を参照してください。
 
 ```jsx
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -64,7 +64,7 @@ const DeepChild = withTheme(DeepChildRaw);
 
 ### テーマのネスティング
 
-複数のテーマプロバイダーをネストできます。 これは、互いに異なる外観を持つアプリケーションのさまざまな領域を扱うときに非常に役立ちます。 これは、互いに異なる外観を持つアプリケーションのさまざまな領域を扱うときに非常に役立ちます。 これは、互いに異なる外観を持つアプリケーションのさまざまな領域を扱うときに非常に役立ちます。 これは、互いに異なる外観を持つアプリケーションのさまざまな領域を扱うときに非常に役立ちます。
+複数のテーマプロバイダーをネストできます。 これは、互いに異なる外観を持つアプリケーションのさまざまな領域を扱うときに非常に役立ちます。 これは、互いに異なる外観を持つアプリケーションのさまざまな領域を扱うときに非常に役立ちます。 これは、互いに異なる外観を持つアプリケーションのさまざまな領域を扱うときに非常に役立ちます。 これは、互いに異なる外観を持つアプリケーションのさまざまな領域を扱うときに非常に役立ちます。 これは、互いに異なる外観を持つアプリケーションのさまざまな領域を扱うときに非常に役立ちます。
 
 ```jsx
 <ThemeProvider theme={outerTheme}>
@@ -182,18 +182,15 @@ Of course, you are free to use additional plugins. Here is an example with the [
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
-import rtl from 'jss-rtl'
+import { StylesProvider, jssPreset } from '@material-ui/styles';
+import rtl from 'jss-rtl';
 
 const jss = create({
   plugins: [...jssPreset().plugins, rtl()],
 });
 
 export default function App() {
-  return (
-    <StylesProvider jss={jss}>
-      ... </StylesProvider>
-  );
+  return <StylesProvider jss={jss}>...</StylesProvider>;
 }
 ```
 
@@ -231,7 +228,7 @@ By default, the style tags are injected **last** in the `<head>` element of the 
 The `StylesProvider` component has an `injectFirst` prop to inject the style tags **first** in the head (less priority):
 
 ```jsx
-import { StylesProvider } from '@material-ui/core/styles';
+import { StylesProvider } from '@material-ui/styles';
 
 <StylesProvider injectFirst>
   {/* Your component tree.
@@ -241,8 +238,7 @@ import { StylesProvider } from '@material-ui/core/styles';
 
 <StylesProvider injectFirst>
   {/* Your component tree. */}
-</StylesProvider>
-      Now, you can override Material-UI's styles.
+</StylesProvider>;
 ```
 
 ### `makeStyles` / `withStyles` / `styled`
@@ -251,7 +247,7 @@ The injection of style tags happens in the **same order** as the `makeStyles` / 
 
 ```jsx
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 
 const useStylesBase = makeStyles({
   root: {
@@ -271,7 +267,7 @@ export default function MyComponent() {
   const classesBase = useStylesBase();
 
   // Order doesn't matter
-  const className = clsx(classes.root, classesBase.root)
+  const className = clsx(classes.root, classesBase.root);
 
   // color: red 🔴 wins.
   However, the class names are often non-deterministic.
@@ -296,7 +292,7 @@ The simplest approach is to add an HTML comment to the `<head>` that determines 
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -323,7 +319,7 @@ export default function App() {
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -342,17 +338,14 @@ codesandbox.io prevents access to the `<head>` element. To get around this issue
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
-import rtl from 'jss-rtl'
+import { StylesProvider, jssPreset } from '@material-ui/styles';
+
+const styleNode = document.createComment('jss-insertion-point');
+document.head.insertBefore(styleNode, document.head.firstChild);
 
 const jss = create({
-  plugins: [...jssPreset().plugins, rtl()],
-});
-
-export default function App() {
-  return (
-    <StylesProvider jss={jss}>
-      ...
+  ...jssPreset(),
+  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
   insertionPoint: 'jss-insertion-point',
 });
 
@@ -363,11 +356,11 @@ export default function App() {
 
 ## サーバーサイドレンダリング
 
-This example returns a string of HTML and inlines the critical CSS required, right before it’s used:
+This example returns a string of HTML and inlines the critical CSS required, right before it's used:
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@material-ui/core/styles';
+import { ServerStyleSheets } from '@material-ui/styles';
 
 function render() {
   const sheets = new ServerStyleSheets();

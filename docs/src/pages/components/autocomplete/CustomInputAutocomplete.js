@@ -1,37 +1,27 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import Autocomplete from '@material-ui/core/Autocomplete';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-  autocomplete: {
-    display: 'inline-block',
-  },
-  input: {
-    width: 200,
-    backgroundColor: theme.palette.background.paper,
-    color: theme.palette.getContrastText(theme.palette.background.paper),
-  },
-}));
 
 const options = ['Option 1', 'Option 2'];
 
 export default function CustomInputAutocomplete() {
-  const classes = useStyles();
   return (
     <label>
       Value:{' '}
       <Autocomplete
-        className={classes.autocomplete}
+        sx={{
+          display: 'inline-block',
+          '& input': {
+            width: 200,
+            bgcolor: 'background.paper',
+            color: (theme) =>
+              theme.palette.getContrastText(theme.palette.background.paper),
+          },
+        }}
         id="custom-input-demo"
         options={options}
         renderInput={(params) => (
           <div ref={params.InputProps.ref}>
-            <input
-              type="text"
-              {...params.inputProps}
-              className={clsx(classes.input, params.inputProps.className)}
-            />
+            <input type="text" {...params.inputProps} />
           </div>
         )}
       />

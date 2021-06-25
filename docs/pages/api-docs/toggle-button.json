@@ -1,23 +1,43 @@
 {
   "props": {
+    "value": { "type": { "name": "any" }, "required": true },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'standard'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+      },
+      "default": "'standard'"
+    },
     "disabled": { "type": { "name": "bool" } },
     "disableFocusRipple": { "type": { "name": "bool" } },
     "disableRipple": { "type": { "name": "bool" } },
+    "fullWidth": { "type": { "name": "bool" } },
     "selected": { "type": { "name": "bool" } },
     "size": {
       "type": {
-        "name": "enum",
-        "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
+        "name": "union",
+        "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
       },
       "default": "'medium'"
     },
-    "value": { "type": { "name": "any" }, "required": true }
+    "sx": { "type": { "name": "object" } }
   },
   "name": "ToggleButton",
   "styles": {
-    "classes": ["root", "disabled", "selected", "label", "sizeSmall", "sizeLarge"],
+    "classes": [
+      "root",
+      "disabled",
+      "selected",
+      "standard",
+      "primary",
+      "secondary",
+      "label",
+      "sizeSmall",
+      "sizeMedium",
+      "sizeLarge"
+    ],
     "globalClasses": { "disabled": "Mui-disabled", "selected": "Mui-selected" },
     "name": "MuiToggleButton"
   },
@@ -26,5 +46,6 @@
   "filename": "/packages/material-ui/src/ToggleButton/ToggleButton.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/toggle-button/\">Toggle Button</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

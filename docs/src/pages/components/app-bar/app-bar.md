@@ -9,7 +9,7 @@ materialDesign: https://material.io/components/app-bars-top
 
 <p class="description">The App Bar displays information and actions relating to the current screen.</p>
 
-The top App Bar provides content and actions related to the current screen. It’s used for branding, screen titles, navigation, and actions.
+The top App Bar provides content and actions related to the current screen. It's used for branding, screen titles, navigation, and actions.
 
 It can transform into a contextual action bar or be used as a navbar.
 
@@ -72,18 +72,15 @@ function App() {
 3. You can use `theme.mixins.toolbar` CSS:
 
 ```jsx
-const useStyles = makeStyles((theme) => ({
-  offset: theme.mixins.toolbar,
-}));
+const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 function App() {
-  const classes = useStyles();
   return (
     <React.Fragment>
       <AppBar position="fixed">
         <Toolbar>{/* content */}</Toolbar>
       </AppBar>
-      <div className={classes.offset} />
+      <Offset />
     </React.Fragment>
   );
 }
@@ -115,11 +112,11 @@ A floating action buttons appears on scroll to make it easy to get back to the t
 
 #### Arguments
 
-1. `options` (_Object_ [optional]):
+1. `options` (_object_ [optional]):
 
-   - `options.disableHysteresis` (_Boolean_ [optional]): Defaults to `false`. Disable the hysteresis. Ignore the scroll direction when determining the `trigger` value.
+   - `options.disableHysteresis` (_bool_ [optional]): Defaults to `false`. Disable the hysteresis. Ignore the scroll direction when determining the `trigger` value.
    - `options.target` (_Node_ [optional]): Defaults to `window`.
-   - `options.threshold` (_Number_ [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll strictly crosses this threshold (exclusive).
+   - `options.threshold` (_number_ [optional]): Defaults to `100`. Change the `trigger` value when the vertical scroll strictly crosses this threshold (exclusive).
 
 #### Returns
 
@@ -138,4 +135,29 @@ function HideOnScroll(props) {
     </Slide>
   );
 }
+```
+
+## Enable Color on Dark
+
+Following the [Material Design guidelines](https://material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the AppBar in dark mode.
+You can override this behavior by setting the `enableColorOnDark` prop to `true`.
+
+```jsx
+// Specific element via prop
+<AppBar enableColorOnDark />
+
+// Affect all AppBars via theme
+<ThemeProvider
+  theme={createTheme({
+    components: {
+      MuiAppBar: {
+        defaultProps: {
+          enableColorOnDark: true,
+        },
+      },
+    },
+  })}
+>
+  <AppBar />
+</ThemeProvider>
 ```

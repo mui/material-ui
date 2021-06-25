@@ -2,13 +2,13 @@
 
 <p class="description">Novo no Material-UI? É fácil de aprender, se você souber por onde começar! Este guia irá ajudá-lo a dar o pontapé inicial.</p>
 
-Desenvolvedores chegam ao Material-UI de diferentes culturas e com diferentes estilos de aprendizagem. Caso você prefira uma abordagem mais teórica ou prática, esperamos que você ache esta seção útil. Como qualquer tecnologia desconhecida, o Material-UI tem uma curva de aprendizagem. Com prática e paciência, você logo vai pegar o jeito.
+Desenvolvedores chegam ao Material-UI de diferentes culturas e com diferentes estilos de aprendizagem. Whether you prefer a more theoretical or practical approach, we hope you'll find this section helpful. Como qualquer tecnologia desconhecida, o Material-UI tem uma curva de aprendizagem. Com prática e paciência, você logo vai pegar o jeito.
 
-## Primeiro Exemplo
+## First example
 
-A [página de uso](/getting-started/usage/#quick-start) contém um pequeno exemplo de Material-UI com um editor interativo. Mesmo que você ainda não saiba nada sobre o Material-UI, tente alterar o código e veja como isso afeta o resultado.
+A [página de uso](/getting-started/usage/#quick-start) contém um pequeno exemplo de Material-UI com um editor interativo. Even if you don't know anything about Material-UI yet, try changing the code and see how it affects the result.
 
-## Projetos de exemplo
+## Example projects
 
 Há [alguns projetos de exemplo](/getting-started/example-projects/) disponíveis, fornecendo a infraestrutura necessária para desenvolver e implantar sites em React.
 
@@ -52,5 +52,5 @@ Ao começar a aprender o Material-UI, você pode encontrar postagens de blogs de
 
 [![cookbook](/static/blog/material-ui-v4-is-out/cookbook.png)](https://www.amazon.com/gp/product/1789615224/)
 
-- **Builder Book**: Aprenda como criar um aplicativo web totalmente com JavaScript a partir do zero, usando uma stack moderna de JavaScript e Material-UI.
-  - 📘 [The book](https://builderbook.org/book)
+- **Builder Book**: Learn how to build a full-stack JavaScript and SaaS web application from scratch, using a Modern JavaScript stack and Material-UI.
+  - 📘 [O livro](https://builderbook.org/)

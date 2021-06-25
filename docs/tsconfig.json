@@ -1,6 +1,6 @@
 {
   "extends": "../tsconfig.json",
-  "include": ["next-env.d.ts", "types", "src/**/*"],
+  "include": ["next-env.d.ts", "types", "src", "pages"],
   "compilerOptions": {
     "allowJs": true,
     "isolatedModules": true,

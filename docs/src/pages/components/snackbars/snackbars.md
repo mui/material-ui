@@ -10,7 +10,7 @@ waiAria: https://www.w3.org/TR/wai-aria-1.1/#alert
 
 <p class="description">Snackbars provide brief notifications. The component is also known as a toast.</p>
 
-Snackbars inform users of a process that an app has performed or will perform. They appear temporarily, towards the bottom of the screen. They shouldn’t interrupt the user experience, and they don’t require user input to disappear.
+Snackbars inform users of a process that an app has performed or will perform. They appear temporarily, towards the bottom of the screen. They shouldn't interrupt the user experience, and they don't require user input to disappear.
 
 Snackbars contain a single line of text directly related to the operation performed.
 They may contain a text action, but no icons. You can use them to display notifications.
@@ -30,7 +30,7 @@ A basic snackbar that aims to reproduce Google Keep's snackbar behavior.
 ## Customized snackbars
 
 Here are some examples of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/components/).
+[overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 
@@ -84,9 +84,9 @@ For more advanced use cases you might be able to take advantage of:
 
 This example demonstrates how to use [notistack](https://github.com/iamhosseindhv/notistack).
 notistack has an **imperative API** that makes it easy to display snackbars, without having to handle their open/close state.
-It also enables you to **stack** them on top of one another (although this is discouraged by the Material Design specification).
+It also enables you to **stack** them on top of one another (although this is discouraged by the Material Design guidelines).
 
-{{"demo": "pages/components/snackbars/IntegrationNotistack.js", "defaultCodeOpen": false}}
+TODO: Add example once notistack is compatible with v5 or replace with [#1824](https://github.com/mui-org/material-ui/issues/1824).
 
 ## Accessibility
 

@@ -1,5 +1,5 @@
 ---
-title: React Stepper component
+title: Componente React Assistente
 components: MobileStepper, Step, StepButton, StepConnector, StepContent, StepIcon, StepLabel, Stepper
 githubLabel: 'component: Stepper'
 materialDesign: https://material.io/archive/guidelines/components/steppers.html
@@ -20,7 +20,7 @@ materialDesign: https://material.io/archive/guidelines/components/steppers.html
 
 ## Assistente horizontal
 
-Horizontal steppers are ideal when the contents of one step depend on an earlier step.
+Assistente horizontal é ideal quando o conteúdo de uma etapa depende de uma etapa anterior.
 
 {{"demo": "pages/components/steppers/HorizontalLinearStepper.js", "bg": true}}
 
@@ -56,21 +56,29 @@ Os rótulos podem ser colocados abaixo do ícone da etapa, definindo a proprieda
 
 ### Não Linear - Rótulo Alternativo
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/steppers/CustomizedSteppers.js"}}
 
 ## Assistente vertical
 
-Vertical steppers are designed for narrow screen sizes. They are ideal for mobile. All the features of the horizontal stepper can be implemented.
+Assistentes verticais são projetados para telas com tamanhos estreitos. Eles são ideais para dispositivos móveis. Todas as características do assistente vertical podem ser implementadas.
 
 {{"demo": "pages/components/steppers/VerticalLinearStepper.js"}}
 
+### Texto
+
+The content of a step is unmounted when closed. If you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness it might be a good idea to keep the step mounted with:
+
+```jsx
+<StepContent TransitionProps={{ unmountOnExit: false }} />
+```
+
 ## Assistente Mobile
 
-Este componente implementa um assistente compacto adequado para um dispositivo mobile. It has more limited functionality than the vertical stepper. Veja [mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) para essa inspiração.
+Este componente implementa um assistente compacto adequado para um dispositivo mobile. Tem funcionalidades mais limitadas do que o assistente vertical. Veja [mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) para essa inspiração.
 
-The mobile stepper supports three variants to display progress through the available steps: text, dots, and progress.
+Use pontos quando o número de etapas não for grande.
 
 ### Texto
 
@@ -78,7 +86,7 @@ Use pontos quando o número de etapas não for grande.
 
 {{"demo": "pages/components/steppers/TextMobileStepper.js", "bg": true}}
 
-### Texto
+### Pontos
 
 Use uma barra de progresso quando houver muitas etapas, ou se houver etapas que precisem ser inseridas durante o processo (com base nas respostas de etapas anteriores).
 
@@ -86,7 +94,7 @@ Use uma barra de progresso quando houver muitas etapas, ou se houver etapas que 
 
 ### Pontos
 
-Use dots when the number of steps is small.
+Use pontos quando o número de etapas for pequeno.
 
 {{"demo": "pages/components/steppers/DotsMobileStepper.js", "bg": true}}
 

@@ -1,18 +1,9 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Popper from '@material-ui/core/Popper';
 import Fade from '@material-ui/core/Fade';
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    border: '1px solid',
-    padding: theme.spacing(1),
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
-
 export default function TransitionsPopper() {
-  const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -30,7 +21,9 @@ export default function TransitionsPopper() {
       <Popper id={id} open={open} anchorEl={anchorEl} transition>
         {({ TransitionProps }) => (
           <Fade {...TransitionProps} timeout={350}>
-            <div className={classes.paper}>The content of the Popper.</div>
+            <Box sx={{ border: 1, p: 1, bgcolor: 'background.paper' }}>
+              The content of the Popper.
+            </Box>
           </Fade>
         )}
       </Popper>

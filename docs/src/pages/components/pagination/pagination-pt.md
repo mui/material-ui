@@ -1,5 +1,5 @@
 ---
-title: React Pagination component
+title: Componente React Paginação
 components: Pagination, PaginationItem
 githubLabel: 'component: Pagination'
 ---
@@ -48,7 +48,7 @@ Você pode especificar quantos dígitos exibir a qualquer lado da página atual 
 
 ## `usePagination`
 
-For advanced customization use cases, we expose a headless `usePagination()` hook. Ele aceita quase as mesmas opções que o componente de paginação, menos todas as propriedades relacionadas à renderização de JSX. O componente de paginação usa este hook internamente.
+For advanced customization use cases, a headless `usePagination()` hook is exposed. Ele aceita quase as mesmas opções que o componente de paginação, menos todas as propriedades relacionadas à renderização de JSX. The Pagination component is built on this hook.
 
 ```jsx
 import { usePagination } from '@material-ui/core/Pagination';
@@ -64,7 +64,7 @@ Para a paginação de um conjunto grande de dados tabulares, você deve usar o c
 
 {{"demo": "pages/components/pagination/TablePagination.js"}}
 
-> ⚠️ Note that the `Pagination` page prop starts at 1 to match the requirement of including the value in the URL, while the `TablePagination` page prop stats at 0 to match the requirement of zero-based JavaScript arrays that comes with rendering a lot of tabular data.
+> ⚠️ Observe que a propriedade `Pagination` da página começa em 1 para corresponder ao requisito de incluir o valor na URL, enquanto a propriedade `TablePagination` da página começa em 0 para corresponder ao requisito de zero-based array do JavaScript arrays, que tem com renderização muitos dados tabulares.
 
 Você pode aprender mais sobre este caso de uso na [seção de tabela](/components/tables/#custom-pagination-options) da documentação.
 

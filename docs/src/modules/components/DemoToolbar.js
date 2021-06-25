@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import LZString from 'lz-string';
 import { useDispatch } from 'react-redux';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { useTheme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Fade from '@material-ui/core/Fade';
@@ -24,6 +25,7 @@ import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { useRouter } from 'next/router';
 
 function compress(object) {
   return LZString.compressToBase64(JSON.stringify(object))
@@ -54,6 +56,7 @@ const useDemoToolbarStyles = makeStyles(
           height: theme.spacing(6),
         },
         justifyContent: 'space-between',
+        alignItems: 'center',
       },
       toggleButtonGroup: {
         margin: '8px 0',
@@ -279,6 +282,11 @@ export default function DemoToolbar(props) {
     form.target = '_blank';
     form.action = 'https://codeSandbox.io/api/v1/sandboxes/define';
     addHiddenInput(form, 'parameters', parameters);
+    addHiddenInput(
+      form,
+      'query',
+      codeVariant === CODE_VARIANTS.TS ? 'file=/demo.tsx' : 'file=/demo.js',
+    );
     document.body.appendChild(form);
     form.submit();
     document.body.removeChild(form);
@@ -354,13 +362,79 @@ export default function DemoToolbar(props) {
     React.useRef(null),
   ];
   // if the code is not open we hide the first two language controls
-  const isFocusableControl = React.useCallback((index) => (codeOpen ? true : index >= 2), [
-    codeOpen,
-  ]);
+  const isFocusableControl = React.useCallback(
+    (index) => (codeOpen ? true : index >= 2),
+    [codeOpen],
+  );
   const { getControlProps, toolbarProps } = useToolbar(controlRefs, {
     defaultActiveIndex: 2,
     isFocusableControl,
   });
+
+  const devMenuItems = [];
+  if (process.env.STAGING === true) {
+    /* eslint-disable material-ui/no-hardcoded-labels -- staging only */
+    // eslint-disable-next-line react-hooks/rules-of-hooks -- process.env.STAGING never changes
+    const router = useRouter();
+
+    const defaultReviewID = process.env.GIT_REVIEW_ID ?? '20000';
+    devMenuItems.push(
+      <MenuItem
+        key="link-deploy-preview"
+        data-ga-event-category="demo"
+        data-ga-event-label={demoOptions.demo}
+        data-ga-event-action="link-deploy-preview"
+        component="a"
+        href={`https://deploy-preview-${defaultReviewID}--${process.env.NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
+        target="_blank"
+        rel="noopener nofollow"
+        onClick={handleMoreClose}
+      >
+        demo on PR #{defaultReviewID}
+      </MenuItem>,
+      <MenuItem
+        key="link-next"
+        data-ga-event-category="demo"
+        data-ga-event-label={demoOptions.demo}
+        data-ga-event-action="link-next"
+        component="a"
+        href={`https://next--${process.env.NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
+        target="_blank"
+        rel="noopener nofollow"
+        onClick={handleMoreClose}
+      >
+        demo on&#160;<code>next</code>
+      </MenuItem>,
+      <MenuItem
+        key="permalink"
+        data-ga-event-category="demo"
+        data-ga-event-label={demoOptions.demo}
+        data-ga-event-action="permalink"
+        component="a"
+        href={`${process.env.NETLIFY_DEPLOY_URL}${router.route}#${demoName}`}
+        target="_blank"
+        rel="noopener nofollow"
+        onClick={handleMoreClose}
+      >
+        demo permalink
+      </MenuItem>,
+      <MenuItem
+        key="link-master"
+        data-ga-event-category="demo"
+        data-ga-event-label={demoOptions.demo}
+        data-ga-event-action="link-master"
+        component="a"
+        href={`https://master--${process.env.NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
+        target="_blank"
+        rel="noopener nofollow"
+        onClick={handleMoreClose}
+      >
+        demo on&#160;<code>master</code>
+      </MenuItem>,
+    );
+
+    /* eslint-enable material-ui/no-hardcoded-labels */
+  }
 
   return (
     <React.Fragment>
@@ -407,6 +481,7 @@ export default function DemoToolbar(props) {
             placement="bottom"
           >
             <IconButton
+              size="large"
               aria-controls={openDemoSource ? demoSourceId : null}
               data-ga-event-category="demo"
               data-ga-event-label={demoOptions.demo}
@@ -425,6 +500,7 @@ export default function DemoToolbar(props) {
               placement="bottom"
             >
               <IconButton
+                size="large"
                 data-ga-event-category="demo"
                 data-ga-event-label={demoOptions.demo}
                 data-ga-event-action="codesandbox"
@@ -437,6 +513,7 @@ export default function DemoToolbar(props) {
           )}
           <Tooltip classes={{ popper: classes.tooltip }} title={t('copySource')} placement="bottom">
             <IconButton
+              size="large"
               data-ga-event-category="demo"
               data-ga-event-label={demoOptions.demo}
               data-ga-event-action="copy"
@@ -448,6 +525,7 @@ export default function DemoToolbar(props) {
           </Tooltip>
           <Tooltip classes={{ popper: classes.tooltip }} title={t('resetFocus')} placement="bottom">
             <IconButton
+              size="large"
               data-ga-event-category="demo"
               data-ga-event-label={demoOptions.demo}
               data-ga-event-action="reset-focus"
@@ -459,6 +537,7 @@ export default function DemoToolbar(props) {
           </Tooltip>
           <Tooltip classes={{ popper: classes.tooltip }} title={t('resetDemo')} placement="bottom">
             <IconButton
+              size="large"
               aria-controls={demoId}
               data-ga-event-category="demo"
               data-ga-event-label={demoOptions.demo}
@@ -470,6 +549,7 @@ export default function DemoToolbar(props) {
             </IconButton>
           </Tooltip>
           <IconButton
+            size="large"
             onClick={handleMoreClick}
             aria-label={t('seeMore')}
             aria-owns={anchorEl ? 'demo-menu-more' : undefined}
@@ -483,7 +563,6 @@ export default function DemoToolbar(props) {
             anchorEl={anchorEl}
             open={Boolean(anchorEl)}
             onClose={handleMoreClose}
-            getContentAnchorEl={null}
             anchorOrigin={{
               vertical: 'top',
               horizontal: 'right',
@@ -521,6 +600,7 @@ export default function DemoToolbar(props) {
             >
               {t('copySourceLinkTS')}
             </MenuItem>
+            {devMenuItems}
           </Menu>
         </div>
       </div>

@@ -1,24 +1,23 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
-import Paper from '../Paper';
-import SnackbarContent from './SnackbarContent';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
+import Paper from '@material-ui/core/Paper';
+import SnackbarContent, {
+  snackbarContentClasses as classes,
+} from '@material-ui/core/SnackbarContent';
 
 describe('<SnackbarContent />', () => {
-  const mount = createMount();
-  let classes;
   const render = createClientRender();
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<SnackbarContent message="message" />);
-  });
-
-  describeConformance(<SnackbarContent message="conform?" />, () => ({
+  describeConformanceV5(<SnackbarContent message="conform?" />, () => ({
     classes,
     inheritComponent: Paper,
+    render,
     mount,
+    muiName: 'MuiSnackbarContent',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp', 'themeVariants'],
   }));
 
   describe('prop: action', () => {

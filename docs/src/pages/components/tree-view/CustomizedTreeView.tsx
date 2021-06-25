@@ -1,14 +1,8 @@
 import * as React from 'react';
 import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
-import {
-  alpha,
-  makeStyles,
-  withStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { alpha, styled } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
-import TreeItem, { TreeItemProps } from '@material-ui/lab/TreeItem';
+import TreeItem, { TreeItemProps, treeItemClasses } from '@material-ui/lab/TreeItem';
 import Collapse from '@material-ui/core/Collapse';
 // web.cjs is required for IE11 support
 import { useSpring, animated } from 'react-spring/web.cjs';
@@ -65,44 +59,30 @@ function TransitionComponent(props: TransitionProps) {
   );
 }
 
-const StyledTreeItem = withStyles((theme: Theme) =>
-  createStyles({
-    iconContainer: {
-      '& .close': {
-        opacity: 0.3,
-      },
-    },
-    group: {
-      marginLeft: 15,
-      paddingLeft: 18,
-      borderLeft: `1px dashed ${alpha(theme.palette.text.primary, 0.4)}`,
-    },
-  }),
-)((props: TreeItemProps) => (
+const StyledTreeItem = styled((props: TreeItemProps) => (
   <TreeItem {...props} TransitionComponent={TransitionComponent} />
-));
-
-const useStyles = makeStyles(
-  createStyles({
-    root: {
-      height: 264,
-      flexGrow: 1,
-      maxWidth: 400,
+))(({ theme }) => ({
+  [`& .${treeItemClasses.iconContainer}`]: {
+    '& .close': {
+      opacity: 0.3,
     },
-  }),
-);
+  },
+  [`& .${treeItemClasses.group}`]: {
+    marginLeft: 15,
+    paddingLeft: 18,
+    borderLeft: `1px dashed ${alpha(theme.palette.text.primary, 0.4)}`,
+  },
+}));
 
 export default function CustomizedTreeView() {
-  const classes = useStyles();
-
   return (
     <TreeView
       aria-label="customized"
-      className={classes.root}
       defaultExpanded={['1']}
       defaultCollapseIcon={<MinusSquare />}
       defaultExpandIcon={<PlusSquare />}
       defaultEndIcon={<CloseSquare />}
+      sx={{ height: 264, flexGrow: 1, maxWidth: 400, overflowY: 'auto' }}
     >
       <StyledTreeItem nodeId="1" label="Main">
         <StyledTreeItem nodeId="2" label="Hello" />

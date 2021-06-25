@@ -8,8 +8,8 @@ As developers use and test the components and report issues, the maintainers lea
 
 For a component to be ready to move to the core, the following criteria are considered:
 
-- It needs to be **used**. The Material-UI team uses Google Analytics stats among other metrics to evaluate the usage of each component. A lab component with low usage either means that it isn't fully working yet or that there is a low demand for it.
-- It needs to match the **code quality** of the core components. It doesn't have to be perfect to be a part of the core, but the component should be reliable enough that developers can depend on it.
+- It needs to be **used**. The Material-UI team uses Google Analytics in the documentation (among other metrics) to evaluate the usage of each component. A lab component with low usage either means that it isn't fully working yet, or that there is low demand for it.
+- It needs to match the **code quality** of the core components. It doesn't have to be perfect to be part of the core, but the component should be reliable enough that developers can depend on it.
   - Each component needs **type definitions**. It is not currently required that a lab component is typed, but it would need to be typed to move to the core.
   - Requires good **test coverage**. Some of the lab components don't currently have comprehensive tests.
 - Can it be used as **leverage** to incentivize users to upgrade to the latest major release? The less fragmented the community is, the better.
@@ -40,12 +40,12 @@ yarn add @material-ui/core@next
 
 ## TypeScript
 
-In order to benefit from the [CSS overrides](/customization/globals/#css) and [default prop customization](/customization/globals/#default-props) with the theme, TypeScript users need to import the following types. Internally, it uses [module augmentation](/guides/typescript/#customization-of-theme) to extend the default theme structure with the extension components available in the lab.
+In order to benefit from the [CSS overrides](/customization/theme-components/#global-style-overrides) and [default prop customization](/customization/theme-components/#default-props) with the theme, TypeScript users need to import the following types. Internally, it uses [module augmentation](/guides/typescript/#customization-of-theme) to extend the default theme structure with the extension components available in the lab.
 
 ```tsx
 import '@material-ui/lab/themeAugmentation';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiTimeline: {
       styleOverrides: {

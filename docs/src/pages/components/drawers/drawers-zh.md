@@ -11,7 +11,7 @@ materialDesign: https://material.io/components/navigation-drawer
 
 用户能够通过 Navigation drawers（或者 “sidebars”）来访问目标地址和一些应用功能，例如切换帐户。 它们既可以永久在屏幕上，也可以由一个导航菜单图标控制。
 
-[Side sheets](https://material.io/design/components/sheets-side.html)主要在平板和桌面上作为辅助的平面使用。
+[Side sheets](https://material.io/components/sheets-side) 主要在平板和桌面上作为辅助侧边栏使用。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -37,12 +37,21 @@ materialDesign: https://material.io/components/navigation-drawer
 - iOS 有一个“滑动回退”功能，它会影响发现功能，所以必须禁用发现功能。
 
 ```jsx
-const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+const iOS =
+  typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
+<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />;
 ```
 
-### 保持安装（mounted）
+### 保持挂载（mounted）
+
+你可以使用 `ModalProps` 属性来确保临时抽屉不会被卸载，就像这样：
+
+如果你使用的是桌面设备，那么可以点击 "OPEN" 按钮来切换抽屉的显示。 如果你使用的设备是手机，那么可以在 CodeSandbox（“编辑”图标）中打开该演示，并尝试滑动抽屉。
+
+{{"demo": "pages/components/drawers/SwipeableEdgeDrawer.js", "iframe": true, "height": 400, "maxWidth": 300}}
+
+### 全高导航栏
 
 你可以使用 `ModalProps` 属性来确保临时抽屉不会被卸载，就像这样：
 
@@ -59,7 +68,7 @@ const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 ## 响应式的抽屉
 
-利用` Hidden `这个响应式的辅助组件，可以根据屏幕宽度显示不同类型的抽屉。 屏幕尺寸较小的时候会显示 `temporary` 抽屉，而更宽的屏幕则显示 `permanent` 抽屉。
+You can use the `temporary` variant to display a drawer for small screens and `permanent` for a drawer for wider screens.
 
 {{"demo": "pages/components/drawers/ResponsiveDrawer.js", "iframe": true}}
 

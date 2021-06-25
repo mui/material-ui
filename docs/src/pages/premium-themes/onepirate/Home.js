@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import ProductCategories from './modules/views/ProductCategories';
 import ProductSmokingHero from './modules/views/ProductSmokingHero';
 import AppFooter from './modules/views/AppFooter';

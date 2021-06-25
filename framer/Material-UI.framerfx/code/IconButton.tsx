@@ -5,9 +5,7 @@ import MuiBadge from '@material-ui/core/Badge';
 import { Icon } from './Icon';
 
 interface Props extends MuiIconButtonProps {
-  color: 'default' | 'inherit' | 'primary' | 'secondary';
   disabled: boolean;
-  size: 'medium' | 'small';
   icon: string;
   iconTheme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
   badgeContent: string;
@@ -31,9 +29,7 @@ export function IconButton(props: Props): JSX.Element {
 }
 
 IconButton.defaultProps = {
-  color: 'default' as 'default',
   disabled: false,
-  size: 'medium' as 'medium',
   icon: 'favorite',
   iconTheme: 'Filled' as 'Filled',
   badgeContent: '',
@@ -43,19 +39,9 @@ IconButton.defaultProps = {
 };
 
 addPropertyControls(IconButton, {
-  color: {
-    type: ControlType.Enum,
-    title: 'Color',
-    options: ['default', 'inherit', 'primary', 'secondary'],
-  },
   disabled: {
     type: ControlType.Boolean,
     title: 'Disabled',
-  },
-  size: {
-    type: ControlType.Enum,
-    title: 'Size',
-    options: ['medium', 'small'],
   },
   icon: {
     type: ControlType.String,

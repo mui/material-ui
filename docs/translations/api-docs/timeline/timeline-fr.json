@@ -1,23 +1,30 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "align": "The position where the timeline&#39;s content should appear.",
-    "children": "The content of the component.",
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details."
+    "children": "Le contenu du composant.",
+    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "className": "className applied to the root element.",
+    "position": "The position where the TimelineContent should appear relative to the time axis.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "alignLeft": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>align=\"left\"</code>"
+    "root": {
+      "description": "Styles applied to the root element."
     },
-    "alignRight": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>align=\"right\"</code>"
+    "positionLeft": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>position=\"left\"</code>"
     },
-    "alignAlternate": {
-      "description": "Styles applied to the root element if {{conditions}}.",
-      "conditions": "<code>align=\"alternate\"</code>"
+    "positionRight": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>position=\"right\"</code>"
+    },
+    "positionAlternate": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>position=\"alternate\"</code>"
     }
   }
 }

@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
+import { StepClasses } from './stepClasses';
 
 export interface StepProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -13,24 +15,13 @@ export interface StepProps extends StandardProps<React.HTMLAttributes<HTMLDivEle
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if `orientation="horizontal"`. */
-    horizontal?: string;
-    /** Styles applied to the root element if `orientation="vertical"`. */
-    vertical?: string;
-    /** Styles applied to the root element if `alternativeLabel={true}`. */
-    alternativeLabel?: string;
-    /** Pseudo-class applied to the root element if `completed={true}`. */
-    completed?: string;
-  };
+  classes?: Partial<StepClasses>;
   /**
    * Mark the step as completed. Is passed to child components.
    */
   completed?: boolean;
   /**
-   * Mark the step as disabled, will also disable the button if
+   * If `true`, the step is disabled, will also disable the button if
    * `StepButton` is a child of `Step`. Is passed to child components.
    */
   disabled?: boolean;
@@ -49,6 +40,10 @@ export interface StepProps extends StandardProps<React.HTMLAttributes<HTMLDivEle
    * The prop defaults to the value inherited from the parent Stepper component.
    */
   last?: boolean;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export type StepClasskey = keyof NonNullable<StepProps['classes']>;

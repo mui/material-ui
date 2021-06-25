@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import NoSsr from '@material-ui/core/NoSsr';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 const data = { name: 'Frozen yoghurt', calories: 159, fat: 6.0, carbs: 24, protein: 4.0 };
 const rows = Array.from(new Array(100)).map(() => data);
 
-function TableMui() {
+export default function TableMui() {
   return (
     <NoSsr defer>
       <Table>
@@ -39,5 +39,3 @@ function TableMui() {
     </NoSsr>
   );
 }
-
-export default TableMui;

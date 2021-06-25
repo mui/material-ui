@@ -1,0 +1,37 @@
+{
+  "props": {
+    "day": { "type": { "name": "any" }, "required": true },
+    "outsideCurrentMonth": { "type": { "name": "bool" }, "required": true },
+    "allowSameDateSelection": { "type": { "name": "bool" } },
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "disabled": { "type": { "name": "bool" } },
+    "disableHighlightToday": { "type": { "name": "bool" } },
+    "disableMargin": { "type": { "name": "bool" } },
+    "selected": { "type": { "name": "bool" } },
+    "showDaysOutsideCurrentMonth": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } },
+    "today": { "type": { "name": "bool" } }
+  },
+  "name": "PickersDay",
+  "styles": {
+    "classes": [
+      "root",
+      "dayWithMargin",
+      "dayOutsideMonth",
+      "hiddenDaySpacingFiller",
+      "today",
+      "selected",
+      "disabled"
+    ],
+    "globalClasses": { "selected": "Mui-selected", "disabled": "Mui-disabled" },
+    "name": "MuiPickersDay"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/material-ui-lab/src/PickersDay/PickersDay.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/date-picker/\">Date Picker</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

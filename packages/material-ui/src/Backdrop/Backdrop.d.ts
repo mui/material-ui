@@ -1,43 +1,46 @@
 import * as React from 'react';
-import { Omit, InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import {
+  ExtendBackdropUnstyledTypeMap,
+  BackdropUnstyledTypeMap,
+} from '@material-ui/unstyled/BackdropUnstyled';
 import { FadeProps } from '../Fade';
 import { TransitionProps } from '../transitions/transition';
+import { Theme } from '../styles';
+import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 
-export interface BackdropProps
-  extends StandardProps<
-    React.HTMLAttributes<HTMLDivElement> & Partial<Omit<FadeProps, 'children'>>
-  > {
-  /**
-   * The content of the component.
-   */
-  children?: React.ReactNode;
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if `invisible={true}`. */
-    invisible?: string;
-  };
-  /**
-   * If `true`, the backdrop is invisible.
-   * It can be used when rendering a popover or a custom select component.
-   * @default false
-   */
-  invisible?: boolean;
-  /**
-   * If `true`, the backdrop is open.
-   */
-  open: boolean;
-  /**
-   * The duration for the transition, in milliseconds.
-   * You may specify a single timeout for all transitions, or individually with an object.
-   */
-  transitionDuration?: TransitionProps['timeout'];
-}
+export type BackdropTypeMap<
+  D extends React.ElementType = 'span',
+  P = {},
+> = ExtendBackdropUnstyledTypeMap<{
+  props: P &
+    Partial<Omit<FadeProps, 'children'>> & {
+      /**
+       * Override or extend the styles applied to the component.
+       */
+      classes?: BackdropUnstyledTypeMap['props']['classes'];
+      /**
+       * If `true`, the component is shown.
+       */
+      open: boolean;
+      /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
+      sx?: SxProps<Theme>;
+      /**
+       * The duration for the transition, in milliseconds.
+       * You may specify a single timeout for all transitions, or individually with an object.
+       */
+      transitionDuration?: TransitionProps['timeout'];
+    };
+  defaultComponent: D;
+}>;
 
-export type BackdropClassKey = keyof NonNullable<BackdropProps['classes']>;
+type BackdropRootProps = NonNullable<BackdropTypeMap['props']['componentsProps']>['root'];
+
+export const BackdropRoot: React.FC<BackdropRootProps>;
+
+export type BackdropClassKey = keyof NonNullable<BackdropTypeMap['props']['classes']>;
 
 /**
  *
@@ -50,4 +53,16 @@ export type BackdropClassKey = keyof NonNullable<BackdropProps['classes']>;
  * - [Backdrop API](https://material-ui.com/api/backdrop/)
  * - inherits [Fade API](https://material-ui.com/api/fade/)
  */
-export default function Backdrop(props: BackdropProps): JSX.Element;
+
+declare const Backdrop: OverridableComponent<BackdropTypeMap>;
+
+export type BackdropClasses = Record<BackdropClassKey, string>;
+
+export const backdropClasses: BackdropClasses;
+
+export type BackdropProps<
+  D extends React.ElementType = BackdropTypeMap['defaultComponent'],
+  P = {},
+> = OverrideProps<BackdropTypeMap<D, P>, D>;
+
+export default Backdrop;

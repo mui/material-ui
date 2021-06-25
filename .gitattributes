@@ -1,8 +1,13 @@
 # Set the default behavior, in case people don't have core.autocrlf set.
-* text=auto
+* text=auto eol=lf
 # Undo the GitHub's default
 # https://github.com/github/linguist/blob/96ad1185828f44bb9b774328a584551ee57ed264/lib/linguist/vendor.yml#L177
 packages/**/*.d.ts -linguist-vendored
 # These icons are imported from Google.
 # Kept so that we can review the impact when changing the generation script.
-packages/material-ui-icons/src/*.js linguist-vendored
+packages/material-ui-icons/lib linguist-generated
+packages/material-ui-icons/material-icons linguist-vendored
+# bundling fixtures
+test/fixtures/bundling/node-esm/index.js linguist-generated
+test/fixtures/bundling/next-webpack4/pages/index.js linguist-generated
+test/fixtures/bundling/packages.js linguist-generated

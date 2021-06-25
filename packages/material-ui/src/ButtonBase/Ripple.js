@@ -1,26 +1,25 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import useEventCallback from '../utils/useEventCallback';
-import useEnhancedEffect from '../utils/useEnhancedEffect';
 
 /**
  * @ignore - internal component.
  */
 function Ripple(props) {
   const {
+    className,
     classes,
     pulsate = false,
     rippleX,
     rippleY,
     rippleSize,
     in: inProp,
-    onExited = () => {},
+    onExited,
     timeout,
   } = props;
   const [leaving, setLeaving] = React.useState(false);
 
-  const rippleClassName = clsx(classes.ripple, classes.rippleVisible, {
+  const rippleClassName = clsx(className, classes.ripple, classes.rippleVisible, {
     [classes.ripplePulsate]: pulsate,
   });
 
@@ -36,21 +35,19 @@ function Ripple(props) {
     [classes.childPulsate]: pulsate,
   });
 
-  const handleExited = useEventCallback(onExited);
-  // Ripple is used for user feedback (e.g. click or press) so we want to apply styles with the highest priority
-  useEnhancedEffect(() => {
-    if (!inProp) {
-      // react-transition-group#onExit
-      setLeaving(true);
-
+  if (!inProp && !leaving) {
+    setLeaving(true);
+  }
+  React.useEffect(() => {
+    if (!inProp && onExited != null) {
       // react-transition-group#onExited
-      const timeoutId = setTimeout(handleExited, timeout);
+      const timeoutId = setTimeout(onExited, timeout);
       return () => {
         clearTimeout(timeoutId);
       };
     }
     return undefined;
-  }, [handleExited, inProp, timeout]);
+  }, [onExited, inProp, timeout]);
 
   return (
     <span className={rippleClassName} style={rippleStyles}>
@@ -65,6 +62,7 @@ Ripple.propTypes = {
    * See [CSS API](#css) below for more details.
    */
   classes: PropTypes.object.isRequired,
+  className: PropTypes.string,
   /**
    * @ignore - injected from TransitionGroup
    */

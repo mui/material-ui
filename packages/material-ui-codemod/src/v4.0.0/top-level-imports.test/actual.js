@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import Tab from '@material-ui/core/Tab';
@@ -51,8 +51,6 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import Grow from '@material-ui/core/Grow';
 import TableFooter from '@material-ui/core/TableFooter';
-import withWidth from '@material-ui/core/withWidth';
-import { isWidthUp } from '@material-ui/core/withWidth';
 import Zoom from '@material-ui/core/Zoom';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import ListSubheader from '@material-ui/core/ListSubheader';

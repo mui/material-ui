@@ -5,7 +5,7 @@ import { elementAcceptingRef } from '@material-ui/utils';
 import debounce from '../utils/debounce';
 import useForkRef from '../utils/useForkRef';
 import useTheme from '../styles/useTheme';
-import { duration } from '../styles/transitions';
+import { duration, easing } from '../styles/createTransitions';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import { ownerWindow } from '../utils';
 
@@ -59,6 +59,11 @@ export function setTranslateValue(direction, node) {
   }
 }
 
+const defaultEasing = {
+  enter: easing.easeOut,
+  exit: easing.sharp,
+};
+
 const defaultTimeout = {
   enter: duration.enteringScreen,
   exit: duration.leavingScreen,
@@ -73,6 +78,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     appear = true,
     children,
     direction = 'down',
+    easing: easingProp = defaultEasing,
     in: inProp,
     onEnter,
     onEntered,
@@ -114,7 +120,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
   const handleEntering = normalizedTransitionCallback((node, isAppearing) => {
     const transitionProps = getTransitionProps(
-      { timeout, style },
+      { timeout, style, easing: easingProp },
       {
         mode: 'enter',
       },
@@ -122,12 +128,10 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
     node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
       ...transitionProps,
-      easing: theme.transitions.easing.easeOut,
     });
 
     node.style.transition = theme.transitions.create('transform', {
       ...transitionProps,
-      easing: theme.transitions.easing.easeOut,
     });
 
     node.style.webkitTransform = 'none';
@@ -142,7 +146,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
   const handleExit = normalizedTransitionCallback((node) => {
     const transitionProps = getTransitionProps(
-      { timeout, style },
+      { timeout, style, easing: easingProp },
       {
         mode: 'exit',
       },
@@ -150,12 +154,10 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
     node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
       ...transitionProps,
-      easing: theme.transitions.easing.sharp,
     });
 
     node.style.transition = theme.transitions.create('transform', {
       ...transitionProps,
-      easing: theme.transitions.easing.sharp,
     });
 
     setTranslateValue(direction, node);
@@ -238,7 +240,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
   );
 });
 
-Slide.propTypes = {
+Slide.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -259,7 +261,22 @@ Slide.propTypes = {
    */
   direction: PropTypes.oneOf(['down', 'left', 'right', 'up']),
   /**
-   * If `true`, show the component; triggers the enter or exit animation.
+   * The transition timing function.
+   * You may specify a single easing or a object containing enter and exit values.
+   * @default {
+   *   enter: easing.easeOut,
+   *   exit: easing.sharp,
+   * }
+   */
+  easing: PropTypes.oneOfType([
+    PropTypes.shape({
+      enter: PropTypes.string,
+      exit: PropTypes.string,
+    }),
+    PropTypes.string,
+  ]),
+  /**
+   * If `true`, the component will transition in.
    */
   in: PropTypes.bool,
   /**

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles, useTheme } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import { styled, useTheme } from '@material-ui/core/styles';
 import * as colors from '@material-ui/core/colors';
 
 const mainColors = [
@@ -20,51 +20,41 @@ const mainColors = [
   'Amber',
   'Orange',
   'Deep Orange',
+  'Brown',
+  'Grey',
+  'Blue Grey',
 ];
-const neutralColors = ['Brown', 'Grey', 'Blue Grey'];
+
 const mainPalette = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 const altPalette = ['A100', 'A200', 'A400', 'A700'];
 
-export const styles = (theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
+const ColorGroup = styled('ul', { name: 'ColorGroup' })(({ theme }) => ({
+  padding: 0,
+  margin: theme.spacing(0, 2, 2, 0),
+  flexGrow: 1,
+  [theme.breakpoints.up('sm')]: {
+    flexGrow: 0,
+    width: '30%',
   },
-  name: {
-    marginBottom: 60,
-  },
-  blockSpace: {
-    height: 4,
-  },
-  colorContainer: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  colorGroup: {
-    padding: 0,
-    margin: theme.spacing(0, 2, 2, 0),
-    flexGrow: 1,
-    [theme.breakpoints.up('sm')]: {
-      flexGrow: 0,
-      width: '30%',
-    },
-  },
-  colorValue: {
-    ...theme.typography.caption,
-    color: 'inherit',
-    fontWeight: 'inherit',
-  },
-  body2: theme.typography.body2,
-});
+}));
 
-function getColorBlock(classes, theme, colorName, colorValue, colorTitle) {
+const ColorValue = styled('span', { name: 'ColorValue' })(({ theme }) => ({
+  ...theme.typography.caption,
+  color: 'inherit',
+  fontWeight: 'inherit',
+}));
+
+const ColorBlock = styled('li', { name: 'ColorBlock' })(
+  ({ theme }) => theme.typography.body2,
+);
+
+function getColorBlock(theme, colorName, colorValue, colorTitle) {
   const bgColor = colors[colorName][colorValue];
   const fgColor = theme.palette.getContrastText(bgColor);
 
   let blockTitle;
   if (colorTitle) {
-    blockTitle = <div className={classes.name}>{colorName}</div>;
+    blockTitle = <Box sx={{ mb: '60px' }}>{colorName}</Box>;
   }
 
   let rowStyle = {
@@ -82,69 +72,61 @@ function getColorBlock(classes, theme, colorName, colorValue, colorTitle) {
   }
 
   return (
-    <li style={rowStyle} key={colorValue} className={classes.body2}>
+    <ColorBlock style={rowStyle} key={colorValue}>
       {blockTitle}
-      <div className={classes.colorContainer}>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
         <span>{colorValue}</span>
-        <span className={classes.colorValue}>{bgColor}</span>
-      </div>
-    </li>
+        <ColorValue>{bgColor}</ColorValue>
+      </Box>
+    </ColorBlock>
   );
 }
 
 function getColorGroup(options) {
-  const { classes, theme, color, showAltPalette } = options;
+  const { theme, color, showAltPalette } = options;
   const cssColor = color
     .replace(' ', '')
     .replace(color.charAt(0), color.charAt(0).toLowerCase());
   let colorsList = [];
   colorsList = mainPalette.map((mainValue) =>
-    getColorBlock(classes, theme, cssColor, mainValue),
+    getColorBlock(theme, cssColor, mainValue),
   );
 
   if (showAltPalette) {
     altPalette.forEach((altValue) => {
-      colorsList.push(getColorBlock(classes, theme, cssColor, altValue));
+      colorsList.push(getColorBlock(theme, cssColor, altValue));
     });
   }
 
   return (
-    <ul className={classes.colorGroup} key={cssColor}>
-      {getColorBlock(classes, theme, cssColor, 500, true)}
-      <div className={classes.blockSpace} />
+    <ColorGroup key={cssColor}>
+      {getColorBlock(theme, cssColor, 500, true)}
+      <Box sx={{ height: 4, listStyle: 'none' }} component="li" role="separator" />
       {colorsList}
-    </ul>
+    </ColorGroup>
   );
 }
 
-function Color(props) {
-  const { classes } = props;
+function Color() {
   const theme = useTheme();
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
       {mainColors.map((mainColor) =>
         getColorGroup({
-          classes,
           theme,
           color: mainColor,
           showAltPalette: true,
         }),
       )}
-      {neutralColors.map((neutralColor) =>
-        getColorGroup({
-          classes,
-          theme,
-          color: neutralColor,
-          showAltPalette: false,
-        }),
-      )}
-    </div>
+    </Box>
   );
 }
 
-Color.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Color);
+export default Color;

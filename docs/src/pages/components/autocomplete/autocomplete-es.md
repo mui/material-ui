@@ -66,7 +66,7 @@ Selecciona uno de los 248 países.
 
 El componente tiene dos estados que pueden ser controlados:
 
-1. el "valor" del estado con la combinación de props `value`/`onChange`. Este estado representa el valor seleccionado por el usuario, por ejemplo al pulsar <kbd>Enter</kbd>.
+1. el "valor" del estado con la combinación de props `value`/`onChange`. Este estado representa el valor seleccionado por el usuario, por ejemplo al pulsar <kbd class="key">Enter</kbd>.
 2. el estado "valor de entrada" con la combinación de props `inputValue`/`onInputChange`. Este estado representa el valor mostrado en el campo de texto.
 
 > ⚠️ Estos dos estados son aislados, deben ser controlados de forma independiente.
@@ -89,7 +89,7 @@ Si pretendes usar este modo para una experiencia similar a un [combo box](#combo
 
 - `selectOnFocus` que ayuda al usuario a borrar el valor seleccionado.
 - `clearOnBlur` que ayuda a que el usuario introduzca un nuevo valor.
-- `handleHomeEndKeys` para mover el foco dentro de la ventana emergente con las claves <kbd>Home</kbd> y <kbd>End</kbd>.
+- `handleHomeEndKeys` para mover el foco dentro de la ventana emergente con las claves <kbd class="key">Home</kbd> y <kbd class="key">End</kbd>.
 - Una última opción, por ejemplo `Agregar "SU BÚSQUEDA"`.
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
@@ -290,9 +290,9 @@ If you would like to prevent the default key handler behavior, you can set the e
 
 ### autocompletar/autorellenar
 
-Los navegadores tienen heurísticos para ayudar a los usuarios a rellenar el formulario. Sin embargo, puede dañar la experiencia de usuario del componente.
+Browsers have heuristics to help the user fill in form inputs. However, this can harm the UX of the component.
 
-By default, the component disables the **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). A possible workaround is to remove the `id` to have the component generate a random one.
+By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). A possible workaround is to remove the `id` to have the component generate a random one.
 
 In addition to remembering past entered values, the browser might also propose **autofill** suggestions (saved login, address, or payment details). En el caso de que desees evitar el autorellenar, puedes intentar lo siguiente:
 
@@ -300,11 +300,13 @@ In addition to remembering past entered values, the browser might also propose *
 - Set `autoComplete="new-password"` (some browsers will suggest a strong password for inputs with this attribute setting):
 
   ```jsx
-  inputProps={{
-        ...params.inputProps,
-        autoComplete: 'new-password',
-      }}
-      /&#062;
+  <TextField
+    {...params}
+    inputProps={{
+      ...params.inputProps,
+      autoComplete: 'new-password',
+    }}
+  />
   ```
 
 Read [the guide on MDN](https://developer.mozilla.org/en-US/docs/Web/Security/Securing_your_site/Turning_off_form_autocompletion) for more details.

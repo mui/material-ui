@@ -2,13 +2,13 @@
 
 <p class="description">您是第一次接触 Material-UI 吗? 如果你知道从哪里开始，就很容易学会！ 而接下来的教程将帮助你快速入门。</p>
 
-学习 Material-UI 的开发者来自于不同的背景，也使用着不同的学习方法。 无论您是更偏向理论还是实践的学习方法，我们都希望本节对您有所帮助。 与任何新技术一样，Material-UI 的确有一个学习曲线。 有了练习和耐心，你很快就会掌握其中的诀窍。
+学习 Material-UI 的开发者来自于不同的背景，也使用着不同的学习方法。 Whether you prefer a more theoretical or practical approach, we hope you'll find this section helpful. 与任何新技术一样，Material-UI 的确有一个学习曲线。 与任何新技术一样，Material-UI 的确有一个学习曲线。 有了练习和耐心，你很快就会掌握其中的诀窍。
 
-## 第一个例子
+## First example
 
-您可以在 [用法页面](/getting-started/usage/#quick-start) 找到一个带有实时编辑器的小小的 Material-UI 示例。 即使您还不了解有关 Material-UI 的任何信息，请尝试改变代码并看一下它对结果的影响。
+您可以在 [用法页面](/getting-started/usage/#quick-start) 找到一个带有实时编辑器的小小的 Material-UI 示例。 Even if you don't know anything about Material-UI yet, try changing the code and see how it affects the result.
 
-## 示例项目
+## Example projects
 
 我们托管了 [一些范例项目](/getting-started/example-projects/)，他们都提供了开发和部署一个 React 网站所必须的架构。
 
@@ -52,5 +52,5 @@
 
 [![参考手册](/static/blog/material-ui-v4-is-out/cookbook.png)](https://www.amazon.com/gp/product/1789615224/)
 
-- **Builder Book**：学习如何使用 Modern JavaScript 堆栈和 Material-UI 来从头开始创建一个全栈 JavaScript Web 应用程序。
-  - 📘 [The book](https://builderbook.org/book)
+- **Builder Book**: Learn how to build a full-stack JavaScript and SaaS web application from scratch, using a Modern JavaScript stack and Material-UI.
+  - 📘 [书](https://builderbook.org/)

@@ -3,29 +3,29 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
   createClientRender,
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   createServerRender,
 } from 'test/utils';
-import ButtonBase from '../ButtonBase';
-import ToggleButton from './ToggleButton';
+import ToggleButton, { toggleButtonClasses as classes } from '@material-ui/core/ToggleButton';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<ToggleButton />', () => {
-  const mount = createMount();
-  let classes;
   const render = createClientRender();
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<ToggleButton value="classes">Hello World</ToggleButton>);
-  });
-
-  describeConformance(<ToggleButton value="X">Hello, World!</ToggleButton>, () => ({
+  describeConformanceV5(<ToggleButton value="X">Hello, World!</ToggleButton>, () => ({
     classes,
     inheritComponent: ButtonBase,
+    render,
     mount,
+    muiName: 'MuiToggleButton',
+    testVariantProps: { variant: 'foo' },
+    testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
+    testStateOverrides: { prop: 'size', value: 'large', styleKey: 'sizeLarge' },
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'div',
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('adds the `selected` class to the root element if selected={true}', () => {
@@ -36,6 +36,18 @@ describe('<ToggleButton />', () => {
     );
 
     expect(getByTestId('root')).to.have.class(classes.selected);
+  });
+
+  describe('prop: color', () => {
+    it('adds the class if color="primary"', () => {
+      const { getByTestId } = render(
+        <ToggleButton data-testid="root" color="primary" value="hello">
+          Hello World
+        </ToggleButton>,
+      );
+
+      expect(getByTestId('root')).to.have.class(classes.primary);
+    });
   });
 
   it('should render a disabled button if `disabled={true}`', () => {
@@ -131,8 +143,8 @@ describe('<ToggleButton />', () => {
     const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
 
     it('should server-side render', () => {
-      const markup = serverRender(<ToggleButton value="hello">Hello World</ToggleButton>);
-      expect(markup.text()).to.equal('Hello World');
+      const container = serverRender(<ToggleButton value="hello">Hello World</ToggleButton>);
+      expect(container.firstChild).to.have.text('Hello World');
     });
   });
 });

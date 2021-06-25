@@ -8,7 +8,7 @@ Die Paketgröße von Material-UI wird sehr ernst genommen. Size snapshots are ta
 
 ## When and how to use tree-shaking?
 
-Tree-shaking of Material-UI works out of the box in modern frameworks. Material-UI exposes its full API on the top-level `material-ui` import. If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimised bundle size automatically:
+Tree-shaking of Material-UI works out of the box in modern frameworks. Material-UI exposes its full API on the top-level `material-ui` import. If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
 
 ```js
 import { Button, TextField } from '@material-ui/core';
@@ -105,6 +105,7 @@ Wählen Sie eines der folgenden Plugins:
       'babel-plugin-import',
       {
         libraryName: '@material-ui/core',
+        libraryDirectory: '',
         camel2DashComponentName: false,
       },
       'core',
@@ -113,6 +114,7 @@ Wählen Sie eines der folgenden Plugins:
       'babel-plugin-import',
       {
         libraryName: '@material-ui/icons',
+        libraryDirectory: '',
         camel2DashComponentName: false,
       },
       'icons',
@@ -156,11 +158,10 @@ Create a `config-overrides.js` file in the root directory:
 
 ```js
 /* config-overrides.js */
-  const { useBabelRc, override } = require('customize-cra')
+/* eslint-disable react-hooks/rules-of-hooks */
+const { useBabelRc, override } = require('customize-cra');
 
-  module.exports = override(
-    useBabelRc()
-  );
+module.exports = override(useBabelRc());
 ```
 
 If you wish, `babel-plugin-import` can be configured through `config-overrides.js` instead of `.babelrc` by using this [configuration](https://github.com/arackaf/customize-cra/blob/master/api.md#fixbabelimportslibraryname-options).
@@ -172,24 +173,6 @@ Modify your `package.json` start command:
 - "start": "react-scripts start"
 +  "start": "react-app-rewired start"
   }
-```
-
-Note: You may run into errors like these:
-
-> Module not found: Can't resolve '@material-ui/core/makeStyles' in '/your/project'
-
-This is because `@material-ui/styles` is re-exported through `core`, but the full import is not allowed.
-
-You have an import like this in your code:
-
-```js
-import { makeStyles, createStyles } from '@material-ui/core';
-```
-
-The fix is simple, define the import separately:
-
-```js
-import { makeStyles, createStyles } from '@material-ui/core/styles';
 ```
 
 Enjoy significantly faster start times.

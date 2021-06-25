@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import loadScript from 'docs/src/modules/utils/loadScript';
 import adStyles from 'docs/src/modules/components/ad.styles';
 import { adShape } from 'docs/src/modules/components/AdManager';

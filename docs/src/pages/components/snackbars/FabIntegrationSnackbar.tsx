@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import GlobalStyles from '@material-ui/core/GlobalStyles';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -10,42 +10,24 @@ import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import Snackbar from '@material-ui/core/Snackbar';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    '@global': {
-      body: {
-        backgroundColor: theme.palette.background.paper,
-      },
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    fab: {
-      position: 'absolute',
-      bottom: theme.spacing(2),
-      right: theme.spacing(2),
-    },
-    snackbar: {
-      [theme.breakpoints.down('sm')]: {
-        bottom: 90,
-      },
-    },
-  }),
-);
+import { Theme } from '@material-ui/core/styles';
 
 export default function FabIntegrationSnackbar() {
-  const classes = useStyles();
-
   return (
     <React.Fragment>
       <CssBaseline />
+      {/* TODO: Fix theme type in GlobalStyles */}
+      <GlobalStyles
+        styles={(theme) => ({
+          body: { backgroundColor: (theme as Theme).palette.background.paper },
+        })}
+      />
       <div>
         <AppBar position="static" color="primary">
           <Toolbar>
             <IconButton
               edge="start"
-              className={classes.menuButton}
+              sx={{ mr: 2 }}
               color="inherit"
               aria-label="menu"
             >
@@ -56,7 +38,14 @@ export default function FabIntegrationSnackbar() {
             </Typography>
           </Toolbar>
         </AppBar>
-        <Fab color="secondary" className={classes.fab}>
+        <Fab
+          color="secondary"
+          sx={{
+            position: 'absolute',
+            bottom: (theme) => theme.spacing(2),
+            right: (theme) => theme.spacing(2),
+          }}
+        >
           <AddIcon />
         </Fab>
         <Snackbar
@@ -68,7 +57,7 @@ export default function FabIntegrationSnackbar() {
               Undo
             </Button>
           }
-          className={classes.snackbar}
+          sx={{ bottom: { xs: 90, sm: 0 } }}
         />
       </div>
     </React.Fragment>

@@ -1,7 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import { useTheme, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { useTheme } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
@@ -42,7 +43,7 @@ export default function DiamondSponsors(props) {
 
   return (
     <div className={classes.root}>
-      <Typography variant="caption" color="textSecondary" display="block" gutterBottom>
+      <Typography variant="caption" color="text.secondary" display="block" gutterBottom>
         {t('diamondSponsors')}
       </Typography>
       <a
@@ -57,7 +58,7 @@ export default function DiamondSponsors(props) {
         <img
           width="125"
           height="35"
-          src={`/static/ads-in-house/octopus-${theme.palette.mode}.png`}
+          src={`/static/sponsors/octopus-${theme.palette.mode}.png`}
           alt="octopus"
           title="Repeatable, reliable deployments"
           loading="lazy"
@@ -75,7 +76,7 @@ export default function DiamondSponsors(props) {
         <img
           width="125"
           height="35"
-          src={`/static/ads-in-house/doit-intl.png`}
+          src={`/static/sponsors/doit-intl.png`}
           alt="doit-intl"
           title="Management Platform for Google Cloud and AWS"
           loading="lazy"

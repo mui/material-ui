@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import { exactProp } from '@material-ui/utils';
 import NoSsr from '@material-ui/core/NoSsr';
 import Head from 'docs/src/modules/components/Head';
@@ -44,6 +44,11 @@ const useStyles = makeStyles((theme) => ({
       width: 'calc(100% - 175px - 240px)',
     },
   },
+  disableToc: {
+    [theme.breakpoints.up('lg')]: {
+      marginRight: '5%',
+    },
+  },
 }));
 
 function AppLayoutDocs(props) {
@@ -75,6 +80,7 @@ function AppLayoutDocs(props) {
           className={clsx(classes.root, {
             [classes.ad]: !disableAd,
             [classes.toc]: !disableToc,
+            [classes.disableToc]: disableToc,
           })}
         >
           <AppContainer className={classes.container}>

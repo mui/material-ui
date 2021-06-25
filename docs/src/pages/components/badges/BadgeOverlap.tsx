@@ -1,34 +1,18 @@
 import * as React from 'react';
-import clsx from 'clsx';
-import { Theme, createStyles, makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import Stack from '@material-ui/core/Stack';
 import Badge from '@material-ui/core/Badge';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-    shape: {
-      backgroundColor: theme.palette.primary.main,
-      width: 40,
-      height: 40,
-    },
-    shapeCircle: {
-      borderRadius: '50%',
-    },
-  }),
+const shapeStyles = { bgcolor: 'primary.main', width: 40, height: 40 };
+const shapeCircleStyles = { borderRadius: '50%' };
+const rectangle = <Box component="span" sx={shapeStyles} />;
+const circle = (
+  <Box component="span" sx={{ ...shapeStyles, ...shapeCircleStyles }} />
 );
 
 export default function BadgeOverlap() {
-  const classes = useStyles();
-
-  const rectangle = <div className={classes.shape} />;
-  const circle = <div className={clsx(classes.shape, classes.shapeCircle)} />;
-
   return (
-    <div className={classes.root}>
+    <Stack spacing={3} direction="row">
       <Badge color="secondary" badgeContent=" ">
         {rectangle}
       </Badge>
@@ -41,6 +25,6 @@ export default function BadgeOverlap() {
       <Badge color="secondary" overlap="circular" badgeContent=" " variant="dot">
         {circle}
       </Badge>
-    </div>
+    </Stack>
   );
 }

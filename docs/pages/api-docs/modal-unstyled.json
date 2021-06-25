@@ -1,0 +1,40 @@
+{
+  "props": {
+    "children": { "type": { "name": "custom", "description": "element" }, "required": true },
+    "open": { "type": { "name": "bool" }, "required": true },
+    "BackdropComponent": { "type": { "name": "elementType" } },
+    "BackdropProps": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" } },
+    "closeAfterTransition": { "type": { "name": "bool" } },
+    "component": { "type": { "name": "elementType" } },
+    "components": {
+      "type": { "name": "shape", "description": "{ Root?: elementType }" },
+      "default": "{}"
+    },
+    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
+    "disableAutoFocus": { "type": { "name": "bool" } },
+    "disableEnforceFocus": { "type": { "name": "bool" } },
+    "disableEscapeKeyDown": { "type": { "name": "bool" } },
+    "disablePortal": { "type": { "name": "bool" } },
+    "disableRestoreFocus": { "type": { "name": "bool" } },
+    "disableScrollLock": { "type": { "name": "bool" } },
+    "hideBackdrop": { "type": { "name": "bool" } },
+    "keepMounted": { "type": { "name": "bool" } },
+    "onBackdropClick": { "type": { "name": "func" } },
+    "onClose": { "type": { "name": "func" } }
+  },
+  "name": "ModalUnstyled",
+  "styles": {
+    "classes": ["root", "hidden"],
+    "globalClasses": { "root": "MuiModal-root", "hidden": "MuiModal-hidden" },
+    "name": null
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui-unstyled/src/ModalUnstyled/ModalUnstyled.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/modal/\">Modal</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

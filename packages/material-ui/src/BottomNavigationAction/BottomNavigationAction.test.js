@@ -2,31 +2,31 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   createClientRender,
   within,
   fireEvent,
 } from 'test/utils';
-import ButtonBase from '../ButtonBase';
-import BottomNavigationAction from './BottomNavigationAction';
+import BottomNavigationAction, {
+  bottomNavigationActionClasses as classes,
+} from '@material-ui/core/BottomNavigationAction';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<BottomNavigationAction />', () => {
-  const mount = createMount();
-  let classes;
   const render = createClientRender();
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<BottomNavigationAction />);
-  });
-
-  describeConformance(<BottomNavigationAction />, () => ({
+  describeConformanceV5(<BottomNavigationAction />, () => ({
     classes,
     inheritComponent: ButtonBase,
+    render,
     mount,
+    muiName: 'MuiBottomNavigationAction',
     refInstanceof: window.HTMLButtonElement,
-    skip: ['componentProp'],
+    testVariantProps: { showLabel: true },
+    testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('adds a `selected` class when selected', () => {

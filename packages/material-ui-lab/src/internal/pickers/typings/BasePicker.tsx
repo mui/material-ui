@@ -1,15 +1,11 @@
-import { ParsableDate } from '../constants/prop-types';
 import { AllAvailableViews } from './Views';
 
-export type CalendarAndClockProps<
-  TDate
-> = import('@material-ui/lab/DayPicker/DayPicker').ExportedDayPickerProps<TDate> &
-  import('@material-ui/lab/ClockPicker/ClockPicker').ExportedClockPickerProps<TDate>;
+export type CalendarAndClockProps<TDate> =
+  import('@material-ui/lab/CalendarPicker/CalendarPicker').ExportedCalendarPickerProps<TDate> &
+    import('@material-ui/lab/ClockPicker/ClockPicker').ExportedClockPickerProps<TDate>;
 
-export type ToolbarComponentProps<
-  TDate = unknown,
-  TView extends AllAvailableViews = AllAvailableViews
-> = CalendarAndClockProps<TDate> & {
+// TODO: TDate should be required
+export type ToolbarComponentProps<TDate = unknown> = CalendarAndClockProps<TDate> & {
   ampmInClock?: boolean;
   date: TDate;
   dateRangeIcon?: React.ReactNode;
@@ -18,88 +14,88 @@ export type ToolbarComponentProps<
   isLandscape: boolean;
   isMobileKeyboardViewOpen: boolean;
   onChange: import('../hooks/useViews').PickerOnChangeFn<TDate>;
-  openView: TView;
-  setOpenView: (view: TView) => void;
+  openView: AllAvailableViews;
+  setOpenView: (view: AllAvailableViews) => void;
   timeIcon?: React.ReactNode;
   toggleMobileKeyboardView: () => void;
   toolbarFormat?: string;
   toolbarPlaceholder?: React.ReactNode;
   toolbarTitle?: React.ReactNode;
-  views: TView[];
+  views: readonly AllAvailableViews[];
 };
 
-export interface BasePickerProps<TInputValue = ParsableDate, TDateValue = unknown> {
+export interface BasePickerProps<TInputValue, TDateValue> {
   /**
-   * The value of the picker.
+   * className applied to the root component.
    */
-  value: TInputValue;
-  /**
-   * Callback fired when the value (the selected date) changes. @DateIOType.
-   */
-  onChange: (date: TDateValue, keyboardInputValue?: string) => void;
+  className?: string;
   /**
    * If `true` the popup or dialog will immediately close after submitting full date.
    * @default `true` for Desktop, `false` for Mobile (based on the chosen wrapper and `desktopModeMediaQuery` prop).
    */
   disableCloseOnSelect?: boolean;
   /**
-   * Format string.
-   */
-  inputFormat?: string;
-  /**
    * If `true`, the picker and text field are disabled.
    */
   disabled?: boolean;
   /**
-   * Make picker read only.
+   * Format string.
    */
-  readOnly?: boolean;
+  inputFormat?: string;
   /**
    * Callback fired when date is accepted @DateIOType.
    */
-  onAccept?: (date: TDateValue | null) => void;
+  onAccept?: (date: TDateValue) => void;
   /**
-   * Callback fired when the popup requests to be opened.
-   * Use in controlled mode (see open).
+   * Callback fired when the value (the selected date) changes @DateIOType.
    */
-  onOpen?: () => void;
+  onChange: (date: TDateValue, keyboardInputValue?: string) => void;
   /**
    * Callback fired when the popup requests to be closed.
    * Use in controlled mode (see open).
    */
   onClose?: () => void;
   /**
-   * Control the popup or dialog open state.
+   * Callback fired when the popup requests to be opened.
+   * Use in controlled mode (see open).
    */
-  open?: boolean;
-  /**
-   * If `true`, show the toolbar even in desktop mode.
-   */
-  showToolbar?: boolean;
+  onOpen?: () => void;
   /**
    * Force rendering in particular orientation.
    */
   orientation?: 'portrait' | 'landscape';
   /**
+   * Control the popup or dialog open state.
+   */
+  open?: boolean;
+  /**
+   * Make picker read only.
+   */
+  readOnly?: boolean;
+  /**
+   * If `true`, show the toolbar even in desktop mode.
+   */
+  showToolbar?: boolean;
+  /**
    * Component that will replace default toolbar renderer.
    */
-  ToolbarComponent?: React.ComponentType<ToolbarComponentProps>;
+  ToolbarComponent?: React.JSXElementConstructor<ToolbarComponentProps>;
   /**
-   * Mobile picker title, displaying in the toolbar.
-   * @default "SELECT DATE"
+   * Date format, that is displaying in toolbar.
    */
-  toolbarTitle?: React.ReactNode;
+  toolbarFormat?: string;
   /**
    * Mobile picker date value placeholder, displaying if `value` === `null`.
    * @default "–"
    */
   toolbarPlaceholder?: React.ReactNode;
   /**
-   * Date format, that is displaying in toolbar.
+   * Mobile picker title, displaying in the toolbar.
+   * @default "SELECT DATE"
    */
-  toolbarFormat?: string;
+  toolbarTitle?: React.ReactNode;
   /**
-   * className applied to the root component.
+   * The value of the picker.
    */
-  className?: string;
+  value: TInputValue;
 }

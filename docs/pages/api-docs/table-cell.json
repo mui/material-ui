@@ -13,7 +13,7 @@
     "padding": {
       "type": {
         "name": "enum",
-        "description": "'checkbox'<br>&#124;&nbsp;'default'<br>&#124;&nbsp;'none'"
+        "description": "'checkbox'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'normal'"
       }
     },
     "scope": { "type": { "name": "string" } },
@@ -21,6 +21,7 @@
     "sortDirection": {
       "type": { "name": "enum", "description": "'asc'<br>&#124;&nbsp;'desc'<br>&#124;&nbsp;false" }
     },
+    "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
         "name": "enum",
@@ -36,6 +37,7 @@
       "body",
       "footer",
       "sizeSmall",
+      "sizeMedium",
       "paddingCheckbox",
       "paddingNone",
       "alignLeft",
@@ -52,5 +54,6 @@
   "filename": "/packages/material-ui/src/TableCell/TableCell.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tables/\">Tables</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

@@ -24,19 +24,19 @@ packageName: '@material-ui/lab'
 
 ⚠️ 浏览器支持的原生输入控件[并不是完美的](https://caniuse.com/#feat=input-datetime)。
 
-### Datepickers 日期选择器
+### 日期选择器
 
 示例展示了当 `type="date"` 时的原生的日期选择器 。
 
 {{"demo": "pages/components/pickers/DatePickers.js"}}
 
-### Date & Time pickers 日期和时间选择器
+### 日期和时间选择器
 
 这个例子通过 `type="datetime-local"` 实现了原生的日期和时间选择器。
 
 {{"demo": "pages/components/pickers/DateAndTimePickers.js"}}
 
-### Time pickers 时间选择器
+### 时间选择器
 
 这个例子通过 `type="time"` 实现了原生的时间选择器。
 

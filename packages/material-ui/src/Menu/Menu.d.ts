@@ -1,12 +1,15 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps } from '..';
 import { PopoverProps } from '../Popover';
 import { MenuListProps } from '../MenuList';
-import { InternalStandardProps as StandardProps } from '..';
-import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
+import { Theme } from '../styles';
+import { TransitionProps } from '../transitions/transition';
+import { MenuClasses } from './menuClasses';
 
-export interface MenuProps extends StandardProps<PopoverProps & Partial<TransitionHandlerProps>> {
+export interface MenuProps extends StandardProps<PopoverProps> {
   /**
-   * A HTML element, or a function that returns it.
+   * An HTML element, or a function that returns one.
    * It's used to set the position of the menu.
    */
   anchorEl?: PopoverProps['anchorEl'];
@@ -25,12 +28,7 @@ export interface MenuProps extends StandardProps<PopoverProps & Partial<Transiti
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the `Paper` component. */
-    paper?: string;
-    /** Styles applied to the `List` component via `MenuList`. */
-    list?: string;
-  };
+  classes?: Partial<MenuClasses>;
   /**
    * When opening the menu will not focus the active item but the `[role="menu"]`
    * unless `autoFocus` is also set to `false`. Not using the default means not
@@ -52,13 +50,17 @@ export interface MenuProps extends StandardProps<PopoverProps & Partial<Transiti
    */
   onClose?: PopoverProps['onClose'];
   /**
-   * If `true`, the menu is visible.
+   * If `true`, the component is shown.
    */
   open: boolean;
   /**
    * `classes` prop applied to the [`Popover`](/api/popover/) element.
    */
   PopoverClasses?: PopoverProps['classes'];
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * The length of the transition in `ms`, or 'auto'
    * @default 'auto'
@@ -71,14 +73,11 @@ export interface MenuProps extends StandardProps<PopoverProps & Partial<Transiti
    */
   TransitionProps?: TransitionProps;
   /**
-   * The variant to use. Use `menu` to prevent selected items from impacting the initial focus
-   * and the vertical alignment relative to the anchor element.
+   * The variant to use. Use `menu` to prevent selected items from impacting the initial focus.
    * @default 'selectedMenu'
    */
   variant?: 'menu' | 'selectedMenu';
 }
-
-export type MenuClassKey = keyof NonNullable<MenuProps['classes']>;
 
 /**
  *

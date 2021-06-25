@@ -73,7 +73,7 @@ function ListItemLink(props) {
 
 The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead. Let's change the `ListItemLink` component so `CustomLink` always reference the same component:
 
-```jsx
+```tsx
 import { Link } from 'react-router-dom';
 
 function ListItemLink(props) {
@@ -113,22 +113,6 @@ import { Link } from 'react-router-dom';
 ### Avec TypeScript
 
 You can find the details in the [TypeScript guide](/guides/typescript/#usage-of-component-prop).
-
-## Routing libraries
-
-The integration with third-party routing libraries is achieved with the `component` prop. The behavior is identical to the description of the prop above. Here are a few demos with [react-router-dom](https://github.com/ReactTraining/react-router). They cover the Button, Link, and List components. You can apply the same strategy with all the components (BottomNavigation, Card, etc.).
-
-### Button
-
-{{"demo": "pages/guides/composition/ButtonRouter.js"}}
-
-### Link
-
-{{"demo": "pages/guides/composition/LinkRouter.js"}}
-
-### List (Liste)
-
-{{"demo": "pages/guides/composition/ListRouter.js"}}
 
 ## Caveat with refs
 

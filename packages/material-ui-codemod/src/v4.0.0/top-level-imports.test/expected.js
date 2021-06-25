@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import {
   withStyles,
@@ -53,8 +53,6 @@ import {
   Input,
   Grow,
   TableFooter,
-  withWidth,
-  isWidthUp,
   Zoom,
   ClickAwayListener,
   ListSubheader,

@@ -1,39 +1,59 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { refType } from '@material-ui/utils';
 import InputBase from '../InputBase';
-import withStyles from '../styles/withStyles';
+import styled, { rootShouldForwardProp } from '../styles/styled';
+import useThemeProps from '../styles/useThemeProps';
+import inputClasses, { getInputUtilityClass } from './inputClasses';
+import {
+  rootOverridesResolver as inputBaseRootOverridesResolver,
+  inputOverridesResolver as inputBaseInputOverridesResolver,
+  InputBaseRoot,
+  InputBaseComponent as InputBaseInput,
+} from '../InputBase/InputBase';
 
-export const styles = (theme) => {
-  const light = theme.palette.mode === 'light';
-  const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
+const useUtilityClasses = (styleProps) => {
+  const { classes, disableUnderline } = styleProps;
+
+  const slots = {
+    root: ['root', !disableUnderline && 'underline'],
+    input: ['input'],
+  };
+
+  const composedClasses = composeClasses(slots, getInputUtilityClass, classes);
 
   return {
-    /* Styles applied to the root element. */
-    root: {
-      position: 'relative',
-    },
-    /* Styles applied to the root element if the component is a descendant of `FormControl`. */
-    formControl: {
+    ...classes, // forward classes to the InputBase
+    ...composedClasses,
+  };
+};
+
+const InputRoot = styled(InputBaseRoot, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiInput',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return [
+      ...inputBaseRootOverridesResolver(props, styles),
+      !styleProps.disableUnderline && styles.underline,
+    ];
+  },
+})(({ theme, styleProps }) => {
+  const light = theme.palette.mode === 'light';
+  const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
+  return {
+    position: 'relative',
+    ...(styleProps.formControl && {
       'label + &': {
         marginTop: 16,
       },
-    },
-    /* Styles applied to the root element if the component is focused. */
-    focused: {},
-    /* Styles applied to the root element if `disabled={true}`. */
-    disabled: {},
-    /* Styles applied to the root element if color secondary. */
-    colorSecondary: {
-      '&$underline:after': {
-        borderBottomColor: theme.palette.secondary.main,
-      },
-    },
-    /* Styles applied to the root element unless `disableUnderline={true}`. */
-    underline: {
+    }),
+    ...(!styleProps.disableUnderline && {
       '&:after': {
-        borderBottom: `2px solid ${theme.palette.primary.main}`,
+        borderBottom: `2px solid ${theme.palette[styleProps.color].main}`,
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -47,10 +67,10 @@ export const styles = (theme) => {
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      '&$focused:after': {
+      [`&.${inputClasses.focused}:after`]: {
         transform: 'scaleX(1)',
       },
-      '&$error:after': {
+      [`&.${inputClasses.error}:after`]: {
         borderBottomColor: theme.palette.error.main,
         transform: 'scaleX(1)', // error is always underlined in red
       },
@@ -67,40 +87,30 @@ export const styles = (theme) => {
         }),
         pointerEvents: 'none', // Transparent to the hover style.
       },
-      '&:hover:not($disabled):before': {
+      [`&:hover:not(.${inputClasses.disabled}):before`]: {
         borderBottom: `2px solid ${theme.palette.text.primary}`,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           borderBottom: `1px solid ${bottomLineColor}`,
         },
       },
-      '&$disabled:before': {
+      [`&.${inputClasses.disabled}:before`]: {
         borderBottomStyle: 'dotted',
       },
-    },
-    /* Pseudo-class applied to the root element if `error={true}`. */
-    error: {},
-    /* Styles applied to the `input` element if `size="small"`. */
-    sizeSmall: {},
-    /* Styles applied to the root element if `multiline={true}`. */
-    multiline: {},
-    /* Styles applied to the root element if `fullWidth={true}`. */
-    fullWidth: {},
-    /* Styles applied to the `input` element. */
-    input: {},
-    /* Styles applied to the `input` element if `size="small"`. */
-    inputSizeSmall: {},
-    /* Styles applied to the `input` element if `multiline={true}`. */
-    inputMultiline: {},
-    /* Styles applied to the `input` element if `type="search"`. */
-    inputTypeSearch: {},
+    }),
   };
-};
+});
 
-const Input = React.forwardRef(function Input(props, ref) {
+const InputInput = styled(InputBaseInput, {
+  name: 'MuiInput',
+  slot: 'Input',
+  overridesResolver: inputBaseInputOverridesResolver,
+})({});
+
+const Input = React.forwardRef(function Input(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiInput' });
   const {
     disableUnderline,
-    classes,
     fullWidth = false,
     inputComponent = 'input',
     multiline = false,
@@ -108,26 +118,26 @@ const Input = React.forwardRef(function Input(props, ref) {
     ...other
   } = props;
 
+  const classes = useUtilityClasses(props);
+
+  const styleProps = { disableUnderline };
+
   return (
     <InputBase
-      classes={{
-        ...classes,
-        root: clsx(classes.root, {
-          [classes.underline]: !disableUnderline,
-        }),
-        underline: null,
-      }}
+      components={{ Root: InputRoot, Input: InputInput }}
+      componentsProps={{ root: { styleProps } }}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
       multiline={multiline}
       ref={ref}
       type={type}
       {...other}
+      classes={classes}
     />
   );
 });
 
-Input.propTypes = {
+Input.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -150,13 +160,16 @@ Input.propTypes = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
-   * The default `input` element value. Use when the component is not controlled.
+   * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
   /**
-   * If `true`, the `input` element is disabled.
+   * If `true`, the component is disabled.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   disabled: PropTypes.bool,
@@ -250,6 +263,10 @@ Input.propTypes = {
    */
   startAdornment: PropTypes.node,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    * @default 'text'
    */
@@ -262,4 +279,4 @@ Input.propTypes = {
 
 Input.muiName = 'Input';
 
-export default withStyles(styles, { name: 'MuiInput' })(Input);
+export default Input;

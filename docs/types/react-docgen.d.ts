@@ -1,8 +1,40 @@
 declare module 'react-docgen' {
-  export type Handler = () => unknown;
+  import { namedTypes } from 'ast-types';
+  // `import { NodePath } from 'ast-types';` points to `const NodePath: NodePathConstructor` for unknown reasons.
+  import { NodePath as AstTypesNodePath } from 'ast-types/lib/node-path';
 
-  export const defaultHandlers: Handler[];
+  export type Node = namedTypes.Node;
 
+  // sound wrapper around `NodePath` from `ast-types` i.e. no `any`
+  export type NodePath<SpecificNode extends Node = Node, Value = unknown> = AstTypesNodePath<
+    SpecificNode,
+    Value | undefined
+  >;
+
+  export interface Documentation {
+    toObject(): ReactDocgenApi;
+  }
+
+  export type Handler = (
+    documentation: Documentation,
+    componentDefinition: NodePath,
+    importer: Importer,
+  ) => void;
+
+  export const defaultHandlers: readonly Handler[];
+
+  export type Importer = (path: NodePath, name: string) => NodePath | undefined;
+  export type Resolver = (
+    ast: ASTNode,
+    parser: unknown,
+    importer: Importer,
+  ) => NodePath | NodePath[] | undefined;
+
+  export namespace resolver {
+    export const findAllComponentDefinitions: Resolver;
+    export const findExportedComponentDefinition: Resolver;
+    export const findAllExportedComponentDefinitions: Resolver;
+  }
   export interface ReactDocgenApi {
     description: string;
     props: Record<string, PropDescriptor>;
@@ -25,7 +57,7 @@ declare module 'react-docgen' {
   }
   interface EnumPropTypeDescriptor extends BasePropTypeDescriptor {
     name: 'enum';
-    value: StringPropTypeDescriptor[];
+    value: readonly StringPropTypeDescriptor[];
   }
   interface ArrayPropTypeDescriptor extends BasePropTypeDescriptor {
     name: 'array';
@@ -70,7 +102,7 @@ declare module 'react-docgen' {
   }
   interface UnionPropTypeDescriptor extends BasePropTypeDescriptor {
     name: 'union';
-    value: PropTypeDescriptor[];
+    value: readonly PropTypeDescriptor[];
   }
   interface ElementTypePropTypeDescriptor extends BasePropTypeDescriptor {
     name: 'elementType';
@@ -105,7 +137,7 @@ declare module 'react-docgen' {
   export interface PropDescriptor {
     defaultValue?: { computed: boolean; value: string };
     // augmented by docs/src/modules/utils/defaultPropsHandler.js
-    jsdocDefaultValue?: { computed: boolean; value: string };
+    jsdocDefaultValue?: { computed?: boolean; value: string };
     description?: string;
     required?: boolean;
     /**
@@ -119,7 +151,7 @@ declare module 'react-docgen' {
   }
 
   export interface TypeApplicationPropType {
-    applications: string[];
+    applications: readonly string[];
     type: 'TypeApplication';
   }
 
@@ -129,7 +161,7 @@ declare module 'react-docgen' {
 
   export interface UnionPropType {
     type: 'UnionType';
-    elements: PropType[];
+    elements: readonly PropType[];
   }
 
   export type PropType =
@@ -140,8 +172,16 @@ declare module 'react-docgen' {
 
   export function parse(
     source: string,
-    unknown: null,
-    handlers: Handler[0],
-    options: { filename: string }
+    componentResolver: null | Resolver,
+    handlers: null | readonly Handler[],
+    options: { filename: string },
   ): any;
+
+  export namespace utils {
+    export function getPropertyName(path: NodePath): string | undefined;
+    export function isReactForwardRefCall(path: NodePath, importer: Importer): boolean;
+    export function printValue(path: NodePath): string;
+    export function resolveExportDeclaration(path: NodePath, importer: Importer): NodePath[];
+    export function resolveToValue(path: NodePath, importer: Importer): NodePath;
+  }
 }

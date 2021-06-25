@@ -27,11 +27,15 @@ Multiple selection allows for logically-grouped options, like bold, italic, and 
 
 {{"demo": "pages/components/toggle-button/ToggleButtonsMultiple.js"}}
 
-## Tailles
+## Size
 
 Fancy larger or smaller buttons? Use the `size` property.
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}
+
+## Couleur
+
+{{"demo": "pages/components/toggle-button/ColorToggleButton.js"}}
 
 ## Vertical buttons
 
@@ -65,7 +69,7 @@ const handleAlignment = (event, newAlignment) => {
 
 ## Customized toggle button
 
-Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/components/).
+Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/how-to-customize/).
 
 {{"demo": "pages/components/toggle-button/CustomizedDividers.js", "bg": true}}
 

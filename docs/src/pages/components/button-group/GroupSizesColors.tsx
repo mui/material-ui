@@ -1,45 +1,35 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-  }),
-);
+const buttons = [
+  <Button key="one">One</Button>,
+  <Button key="two">Two</Button>,
+  <Button key="three">Three</Button>,
+];
 
 export default function GroupSizesColors() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
-      <ButtonGroup size="small" aria-label="small outlined button group">
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        '& > *': {
+          m: 1,
+        },
+      }}
+    >
+      <ButtonGroup size="small" aria-label="small button group">
+        {buttons}
       </ButtonGroup>
-      <ButtonGroup color="secondary" aria-label="outlined secondary button group">
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
+      <ButtonGroup color="secondary" aria-label="medium secondary button group">
+        {buttons}
       </ButtonGroup>
-      <ButtonGroup
-        size="large"
-        color="primary"
-        aria-label="large outlined primary button group"
-      >
-        <Button>One</Button>
-        <Button>Two</Button>
-        <Button>Three</Button>
+      <ButtonGroup size="large" aria-label="large button group">
+        {buttons}
       </ButtonGroup>
-    </div>
+    </Box>
   );
 }

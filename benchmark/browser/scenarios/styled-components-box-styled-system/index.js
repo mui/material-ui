@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import styledComponents, {
   ThemeProvider as StyledComponentsThemeProvider,
 } from 'styled-components';
@@ -8,7 +8,7 @@ import { space, color, fontFamily, fontSize, compose } from 'styled-system';
 const styledSystem = compose(color, space, fontFamily, fontSize);
 const BoxStyledSystem = styledComponents('div')(styledSystem);
 
-const styledSystemTheme = createMuiTheme();
+const styledSystemTheme = createTheme();
 styledSystemTheme.breakpoints = ['40em', '52em', '64em'];
 styledSystemTheme.colors = styledSystemTheme.palette;
 styledSystemTheme.fontSizes = styledSystemTheme.typography;

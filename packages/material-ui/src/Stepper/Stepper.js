@@ -1,38 +1,56 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { integerPropType } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import useThemeProps from '../styles/useThemeProps';
+import styled from '../styles/styled';
+import { getStepperUtilityClass } from './stepperClasses';
 import StepConnector from '../StepConnector';
 import StepperContext from './StepperContext';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {
-    display: 'flex',
+const useUtilityClasses = (styleProps) => {
+  const { orientation, alternativeLabel, classes } = styleProps;
+  const slots = {
+    root: ['root', orientation, alternativeLabel && 'alternativeLabel'],
+  };
+
+  return composeClasses(slots, getStepperUtilityClass, classes);
+};
+
+const StepperRoot = styled('div', {
+  name: 'MuiStepper',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    return [
+      styles.root,
+      styles[styleProps.orientation],
+      styleProps.alternativeLabel && styles.alternativeLabel,
+    ];
   },
-  /* Styles applied to the root element if `orientation="horizontal"`. */
-  horizontal: {
+})(({ styleProps }) => ({
+  display: 'flex',
+  ...(styleProps.orientation === 'horizontal' && {
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  /* Styles applied to the root element if `orientation="vertical"`. */
-  vertical: {
+  }),
+  ...(styleProps.orientation === 'vertical' && {
     flexDirection: 'column',
-  },
-  /* Styles applied to the root element if `alternativeLabel={true}`. */
-  alternativeLabel: {
+  }),
+  ...(styleProps.alternativeLabel && {
     alignItems: 'flex-start',
-  },
-};
+  }),
+}));
 
 const defaultConnector = <StepConnector />;
 
-const Stepper = React.forwardRef(function Stepper(props, ref) {
+const Stepper = React.forwardRef(function Stepper(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiStepper' });
   const {
     activeStep = 0,
     alternativeLabel = false,
     children,
-    classes,
     className,
     connector = defaultConnector,
     nonLinear = false,
@@ -40,7 +58,15 @@ const Stepper = React.forwardRef(function Stepper(props, ref) {
     ...other
   } = props;
 
-  const childrenArray = React.Children.toArray(children);
+  const styleProps = {
+    ...props,
+    alternativeLabel,
+    orientation,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
+  const childrenArray = React.Children.toArray(children).filter(Boolean);
   const steps = childrenArray.map((step, index) => {
     return React.cloneElement(step, {
       index,
@@ -55,25 +81,19 @@ const Stepper = React.forwardRef(function Stepper(props, ref) {
 
   return (
     <StepperContext.Provider value={contextValue}>
-      <div
-        className={clsx(
-          classes.root,
-          classes[orientation],
-          {
-            [classes.alternativeLabel]: alternativeLabel,
-          },
-          className,
-        )}
+      <StepperRoot
+        styleProps={styleProps}
+        className={clsx(classes.root, className)}
         ref={ref}
         {...other}
       >
         {steps}
-      </div>
+      </StepperRoot>
     </StepperContext.Provider>
   );
 });
 
-Stepper.propTypes = {
+Stepper.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -83,7 +103,7 @@ Stepper.propTypes = {
    * Set to -1 to disable all the steps.
    * @default 0
    */
-  activeStep: PropTypes.number,
+  activeStep: integerPropType,
   /**
    * If set to 'true' and orientation is horizontal,
    * then the step label will be positioned under the icon.
@@ -113,10 +133,14 @@ Stepper.propTypes = {
    */
   nonLinear: PropTypes.bool,
   /**
-   * The stepper orientation (layout flow direction).
+   * The component orientation (layout flow direction).
    * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiStepper' })(Stepper);
+export default Stepper;

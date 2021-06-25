@@ -80,7 +80,7 @@ export default function useAutocomplete(props) {
     freeSolo = false,
     getOptionDisabled,
     getOptionLabel: getOptionLabelProp = (option) => option.label ?? option,
-    getOptionSelected = (option, value) => option === value,
+    isOptionEqualToValue = (option, value) => option === value,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
     id: idProp,
@@ -190,7 +190,7 @@ export default function useAutocomplete(props) {
           if (
             filterSelectedOptions &&
             (multiple ? value : [value]).some(
-              (value2) => value2 !== null && getOptionSelected(option, value2),
+              (value2) => value2 !== null && isOptionEqualToValue(option, value2),
             )
           ) {
             return false;
@@ -211,7 +211,7 @@ export default function useAutocomplete(props) {
   if (process.env.NODE_ENV !== 'production') {
     if (value !== null && !freeSolo && options.length > 0) {
       const missingValue = (multiple ? value : [value]).filter(
-        (value2) => !options.some((option) => getOptionSelected(option, value2)),
+        (value2) => !options.some((option) => isOptionEqualToValue(option, value2)),
       );
 
       if (missingValue.length > 0) {
@@ -223,7 +223,7 @@ export default function useAutocomplete(props) {
                 ? JSON.stringify(missingValue)
                 : JSON.stringify(missingValue[0])
             }\`.`,
-            'You can use the `getOptionSelected` prop to customize the equality test.',
+            'You can use the `isOptionEqualToValue` prop to customize the equality test.',
           ].join('\n'),
         );
       }
@@ -296,9 +296,9 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    const prev = listboxRef.current.querySelector('[data-focus]');
+    const prev = listboxRef.current.querySelector('[role="option"].Mui-focused');
     if (prev) {
-      prev.removeAttribute('data-focus');
+      prev.classList.remove('Mui-focused');
       prev.classList.remove('Mui-focusVisible');
     }
 
@@ -320,7 +320,7 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    option.setAttribute('data-focus', 'true');
+    option.classList.add('Mui-focused');
     if (reason === 'keyboard') {
       option.classList.add('Mui-focusVisible');
     }
@@ -443,13 +443,13 @@ export default function useAutocomplete(props) {
       if (
         multiple &&
         currentOption &&
-        findIndex(value, (val) => getOptionSelected(currentOption, val)) !== -1
+        findIndex(value, (val) => isOptionEqualToValue(currentOption, val)) !== -1
       ) {
         return;
       }
 
       const itemIndex = findIndex(filteredOptions, (optionItem) =>
-        getOptionSelected(optionItem, valueItem),
+        isOptionEqualToValue(optionItem, valueItem),
       );
       if (itemIndex === -1) {
         changeHighlightedIndex({ diff: 'reset' });
@@ -467,7 +467,7 @@ export default function useAutocomplete(props) {
 
     // Restore the focus to the previous index.
     setHighlightedIndex({ index: highlightedIndexRef.current });
-    // Ignore filteredOptions (and options, getOptionSelected, getOptionLabel) not to break the scroll position
+    // Ignore filteredOptions (and options, isOptionEqualToValue, getOptionLabel) not to break the scroll position
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     // Only sync the highlighted index when the option switch between empty and not
@@ -492,6 +492,24 @@ export default function useAutocomplete(props) {
 
     syncHighlightedIndex();
   });
+
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (!inputRef.current || inputRef.current.nodeName !== 'INPUT') {
+        console.error(
+          [
+            `Material-UI: Unable to find the input element. It was resolved to ${inputRef.current} while an HTMLInputElement was expected.`,
+            `Instead, ${componentName} expects an input element.`,
+            '',
+            componentName === 'useAutocomplete'
+              ? 'Make sure you have binded getInputProps correctly and that the normal ref/effect resolutions order is guaranteed.'
+              : 'Make sure you have customized the input component correctly.',
+          ].join('\n'),
+        );
+      }
+    }, [componentName]);
+  }
 
   React.useEffect(() => {
     syncHighlightedIndex();
@@ -536,7 +554,7 @@ export default function useAutocomplete(props) {
 
   const isTouch = React.useRef(false);
 
-  const selectNewValue = (event, option, reasonProp = 'select-option', origin = 'options') => {
+  const selectNewValue = (event, option, reasonProp = 'selectOption', origin = 'options') => {
     let reason = reasonProp;
     let newValue = option;
 
@@ -544,25 +562,25 @@ export default function useAutocomplete(props) {
       newValue = Array.isArray(value) ? value.slice() : [];
 
       if (process.env.NODE_ENV !== 'production') {
-        const matches = newValue.filter((val) => getOptionSelected(option, val));
+        const matches = newValue.filter((val) => isOptionEqualToValue(option, val));
 
         if (matches.length > 1) {
           console.error(
             [
-              `Material-UI: The \`getOptionSelected\` method of ${componentName} do not handle the arguments correctly.`,
+              `Material-UI: The \`isOptionEqualToValue\` method of ${componentName} do not handle the arguments correctly.`,
               `The component expects a single value to match a given option but found ${matches.length} matches.`,
             ].join('\n'),
           );
         }
       }
 
-      const itemIndex = findIndex(newValue, (valueItem) => getOptionSelected(option, valueItem));
+      const itemIndex = findIndex(newValue, (valueItem) => isOptionEqualToValue(option, valueItem));
 
       if (itemIndex === -1) {
         newValue.push(option);
       } else if (origin !== 'freeSolo') {
         newValue.splice(itemIndex, 1);
-        reason = 'remove-option';
+        reason = 'removeOption';
       }
     }
 
@@ -739,7 +757,7 @@ export default function useAutocomplete(props) {
               return;
             }
 
-            selectNewValue(event, option, 'select-option');
+            selectNewValue(event, option, 'selectOption');
 
             // Move the selection to the end.
             if (autoComplete) {
@@ -753,7 +771,7 @@ export default function useAutocomplete(props) {
               // Allow people to add new values before they submit the form.
               event.preventDefault();
             }
-            selectNewValue(event, inputValue, 'create-option', 'freeSolo');
+            selectNewValue(event, inputValue, 'createOption', 'freeSolo');
           }
           break;
         case 'Escape':
@@ -776,7 +794,7 @@ export default function useAutocomplete(props) {
             const index = focusedTag === -1 ? value.length - 1 : focusedTag;
             const newValue = value.slice();
             newValue.splice(index, 1);
-            handleValue(event, newValue, 'remove-option', {
+            handleValue(event, newValue, 'removeOption', {
               option: value[index],
             });
           }
@@ -854,7 +872,7 @@ export default function useAutocomplete(props) {
 
   const handleOptionClick = (event) => {
     const index = Number(event.currentTarget.getAttribute('data-option-index'));
-    selectNewValue(event, filteredOptions[index], 'select-option');
+    selectNewValue(event, filteredOptions[index], 'selectOption');
 
     isTouch.current = false;
   };
@@ -862,7 +880,7 @@ export default function useAutocomplete(props) {
   const handleTagDelete = (index) => (event) => {
     const newValue = value.slice();
     newValue.splice(index, 1);
-    handleValue(event, newValue, 'remove-option', {
+    handleValue(event, newValue, 'removeOption', {
       option: value[index],
     });
   };
@@ -1000,12 +1018,12 @@ export default function useAutocomplete(props) {
     }),
     getOptionProps: ({ index, option }) => {
       const selected = (multiple ? value : [value]).some(
-        (value2) => value2 != null && getOptionSelected(option, value2),
+        (value2) => value2 != null && isOptionEqualToValue(option, value2),
       );
       const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
 
       return {
-        key: index,
+        key: getOptionLabel(option),
         tabIndex: -1,
         role: 'option',
         id: `${id}-option-${index}`,

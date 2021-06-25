@@ -1,37 +1,31 @@
-// @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   createClientRender,
   fireEvent,
   screen,
 } from 'test/utils';
-import ListItem from '../ListItem';
-import ListItemSecondaryAction from '../ListItemSecondaryAction';
-import MenuItem from './MenuItem';
+import MenuItem, { menuItemClasses as classes } from '@material-ui/core/MenuItem';
+import ButtonBase from '@material-ui/core/ButtonBase';
+import ListContext from '../List/ListContext';
 
 describe('<MenuItem />', () => {
-  /**
-   * @type {Record<string, string>}
-   */
-  let classes;
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<MenuItem />);
-  });
-
-  describeConformance(<MenuItem />, () => ({
+  describeConformanceV5(<MenuItem />, () => ({
     classes,
-    inheritComponent: ListItem,
+    inheritComponent: ButtonBase,
+    render,
     mount,
     refInstanceof: window.HTMLLIElement,
     testComponentPropWith: 'a',
+    muiName: 'MuiMenuItem',
+    testVariantProps: { dense: true },
+    skip: ['componentsProp'],
   }));
 
   it('should render a focusable menuitem', () => {
@@ -132,31 +126,6 @@ describe('<MenuItem />', () => {
     });
   });
 
-  // Regression test for #10452.
-  // Kept for backwards compatibility.
-  // In the future we should have a better pattern for this UI.
-  it('should not fail with a li > li error message', () => {
-    const { rerender } = render(
-      <MenuItem>
-        <ListItemSecondaryAction>
-          <div />
-        </ListItemSecondaryAction>
-      </MenuItem>,
-    );
-
-    expect(document.querySelectorAll('li')).to.have.length(1);
-
-    rerender(
-      <MenuItem button={false}>
-        <ListItemSecondaryAction>
-          <div />
-        </ListItemSecondaryAction>
-      </MenuItem>,
-    );
-
-    expect(document.querySelectorAll('li')).to.have.length(1);
-  });
-
   it('can be disabled', () => {
     render(<MenuItem disabled />);
     const menuitem = screen.getByRole('menuitem');
@@ -164,12 +133,39 @@ describe('<MenuItem />', () => {
     expect(menuitem).to.have.attribute('aria-disabled', 'true');
   });
 
-  describe('prop: ListItemClasses', () => {
-    it('should be able to change the style of ListItem', () => {
-      render(<MenuItem ListItemClasses={{ disabled: 'bar' }} disabled />);
-      const menuitem = screen.getByRole('menuitem');
+  it('can be selected', () => {
+    render(<MenuItem selected />);
+    const menuitem = screen.getByRole('menuitem');
 
-      expect(menuitem).to.have.class('bar');
+    expect(menuitem).to.have.class(classes.selected);
+  });
+
+  it('prop: disableGutters', () => {
+    const { rerender } = render(<MenuItem />);
+    const menuitem = screen.getByRole('menuitem');
+
+    expect(menuitem).to.have.class(classes.gutters);
+
+    rerender(<MenuItem disableGutters />);
+
+    expect(menuitem).not.to.have.class(classes.gutters);
+  });
+
+  describe('context: dense', () => {
+    it('should forward the context', () => {
+      let context = null;
+      const { setProps } = render(
+        <MenuItem>
+          <ListContext.Consumer>
+            {(options) => {
+              context = options;
+            }}
+          </ListContext.Consumer>
+        </MenuItem>,
+      );
+      expect(context).to.have.property('dense', false);
+      setProps({ dense: true });
+      expect(context).to.have.property('dense', true);
     });
   });
 });

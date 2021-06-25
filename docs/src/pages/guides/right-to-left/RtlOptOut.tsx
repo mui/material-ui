@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { createTheme, Theme } from '@material-ui/core/styles';
 
-declare module '@material-ui/core/styles/withStyles' {
+declare module '@material-ui/core/styles' {
   // Augment the BaseCSSProperties so that we can control jss-rtl
   interface BaseCSSProperties {
     /**
@@ -11,8 +12,10 @@ declare module '@material-ui/core/styles/withStyles' {
   }
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
+const defaultTheme = createTheme();
+
+const useStyles = makeStyles(
+  (theme: Theme) => ({
     root: {
       width: '100%',
       marginTop: theme.spacing(4),
@@ -26,6 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
       textAlign: 'right',
     },
   }),
+  { defaultTheme },
 );
 
 export default function RtlOptOut() {

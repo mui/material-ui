@@ -1,6 +1,6 @@
 # Espaciado
 
-<p class="description">Una amplia gama de tipos de utilidades de relleno y márgenes receptivos cortos para modificar la apariencia de un elemento.</p>
+<p class="description">A wide range of shorthand responsive margin and padding utility classes to modify an element's appearance.</p>
 
 ## Notación
 
@@ -80,10 +80,12 @@ const theme = {
 
 ## Centrado Horizontal
 
+The CSS flex and grid display properties are often used to align elements at the center. However, you can also use `margin-left: auto;`, `margin-right: auto;`, and a width for horizontally centering:
+
 {{"demo": "pages/system/spacing/HorizontalCentering.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ mx: "auto" }}>…
+<Box sx={{ mx: "auto", width: 200 }}>…
 ```
 
 ## API

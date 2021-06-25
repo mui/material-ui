@@ -2,21 +2,16 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
-    "color": {
-      "type": {
-        "name": "enum",
-        "description": "'error'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'initial'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'textPrimary'<br>&#124;&nbsp;'textSecondary'"
-      },
-      "default": "'primary'"
-    },
+    "color": { "type": { "name": "any" }, "default": "'primary'" },
     "component": { "type": { "name": "custom", "description": "element type" } },
+    "sx": { "type": { "name": "object" } },
     "TypographyClasses": { "type": { "name": "object" } },
     "underline": {
       "type": {
         "name": "enum",
         "description": "'always'<br>&#124;&nbsp;'hover'<br>&#124;&nbsp;'none'"
       },
-      "default": "'hover'"
+      "default": "'always'"
     },
     "variant": {
       "type": {
@@ -44,5 +39,6 @@
   "filename": "/packages/material-ui/src/Link/Link.js",
   "inheritance": { "component": "Typography", "pathname": "/api/typography/" },
   "demos": "<ul><li><a href=\"/components/breadcrumbs/\">Breadcrumbs</a></li>\n<li><a href=\"/components/links/\">Links</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

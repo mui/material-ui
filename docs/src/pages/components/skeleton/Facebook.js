@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
@@ -11,22 +10,11 @@ import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Skeleton from '@material-ui/core/Skeleton';
 
-const useStyles = makeStyles((theme) => ({
-  card: {
-    maxWidth: 345,
-    margin: theme.spacing(2),
-  },
-  media: {
-    height: 190,
-  },
-}));
-
 function Media(props) {
   const { loading = false } = props;
-  const classes = useStyles();
 
   return (
-    <Card className={classes.card}>
+    <Card sx={{ maxWidth: 345, m: 2 }}>
       <CardHeader
         avatar={
           loading ? (
@@ -66,10 +54,10 @@ function Media(props) {
         }
       />
       {loading ? (
-        <Skeleton animation="wave" variant="rectangular" className={classes.media} />
+        <Skeleton sx={{ height: 190 }} animation="wave" variant="rectangular" />
       ) : (
         <CardMedia
-          className={classes.media}
+          sx={{ height: 190 }}
           image="https://pi.tedcdn.com/r/talkstar-photos.s3.amazonaws.com/uploads/72bda89f-9bbf-4685-910a-2f151c4f3a8a/NicolaSturgeon_2019T-embed.jpg?w=512"
           title="Ted talk"
         />
@@ -82,7 +70,7 @@ function Media(props) {
             <Skeleton animation="wave" height={10} width="80%" />
           </React.Fragment>
         ) : (
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Typography variant="body2" color="text.secondary" component="p">
             {
               "Why First Minister of Scotland Nicola Sturgeon thinks GDP is the wrong measure of a country's success:"
             }

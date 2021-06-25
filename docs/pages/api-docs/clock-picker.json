@@ -1,0 +1,49 @@
+{
+  "props": {
+    "date": { "type": { "name": "any" }, "required": true },
+    "onChange": { "type": { "name": "func" }, "required": true },
+    "ampm": { "type": { "name": "bool" } },
+    "ampmInClock": { "type": { "name": "bool" } },
+    "autoFocus": { "type": { "name": "bool" } },
+    "classes": { "type": { "name": "object" } },
+    "components": {
+      "type": {
+        "name": "shape",
+        "description": "{ LeftArrowButton?: elementType, LeftArrowIcon?: elementType, RightArrowButton?: elementType, RightArrowIcon?: elementType }"
+      }
+    },
+    "componentsProps": { "type": { "name": "object" } },
+    "disableIgnoringDatePartForTimeValidation": { "type": { "name": "bool" } },
+    "getClockLabelText": {
+      "type": { "name": "func" },
+      "default": "<TDate extends any>(\n  view: ClockView,\n  time: TDate | null,\n  adapter: MuiPickersAdapter<TDate>,\n) =>\n  `Select ${view}. ${\n    time === null ? 'No time selected' : `Selected time is ${adapter.format(time, 'fullTime')}`\n  }`"
+    },
+    "getHoursClockNumberText": {
+      "type": { "name": "func" },
+      "default": "(hours: string) => `${hours} hours`"
+    },
+    "getMinutesClockNumberText": {
+      "type": { "name": "func" },
+      "default": "(minutes: string) => `${minutes} minutes`"
+    },
+    "getSecondsClockNumberText": {
+      "type": { "name": "func" },
+      "default": "(seconds: string) => `${seconds} seconds`"
+    },
+    "leftArrowButtonText": { "type": { "name": "string" }, "default": "'open previous view'" },
+    "maxTime": { "type": { "name": "any" } },
+    "minTime": { "type": { "name": "any" } },
+    "minutesStep": { "type": { "name": "number" }, "default": "1" },
+    "rightArrowButtonText": { "type": { "name": "string" }, "default": "'open next view'" },
+    "shouldDisableTime": { "type": { "name": "func" } }
+  },
+  "name": "ClockPicker",
+  "styles": { "classes": ["arrowSwitcher"], "globalClasses": {}, "name": "MuiClockPicker" },
+  "spread": false,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui-lab/src/ClockPicker/ClockPicker.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/time-picker/\">Time Picker</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

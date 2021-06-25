@@ -1,7 +1,7 @@
 {
   "props": {
-    "children": { "type": { "name": "node" } },
-    "value": { "type": { "name": "string" }, "required": true }
+    "value": { "type": { "name": "string" }, "required": true },
+    "children": { "type": { "name": "node" } }
   },
   "name": "TabContext",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
@@ -9,5 +9,6 @@
   "filename": "/packages/material-ui-lab/src/TabContext/TabContext.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tabs/\">Tabs</a></li></ul>",
-  "styledComponent": true
+  "styledComponent": true,
+  "cssComponent": false
 }

@@ -1,5 +1,5 @@
 ---
-title: React Dialog component
+title: React Dialog コンポーネント
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 githubLabel: 'component: Dialog'
 materialDesign: https://material.io/components/dialogs
@@ -10,7 +10,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 <p class="description">ダイアログは、タスクについてユーザーに通知します。重要な情報を含める、決定を求める、または複数のタスクを伴うことができます。</p>
 
-[ダイアログ](https://material.io/design/components/dialogs.html) は、重要な情報を提供したり決定を求めたりするために、アプリのコンテンツの前に表示される [モーダル](/components/modal/) ウィンドウの一種です。 ダイアログは表示されるとアプリのすべての機能を無効にし、確認、却下、または必要な操作が行われるまで画面に表示されたままになります。
+Dialogは、重要な情報を提供したり決定を求めたりするために、アプリのコンテンツの前に表示される [モーダル](/components/modal/) ウィンドウの一種です。 ダイアログは表示されるとアプリのすべての機能を無効にし、確認、却下、または必要な操作が行われるまで画面に表示されたままになります。
 
 ダイアログは意図的に中断されるので、慎重にに使用する必要があります。
 
@@ -59,11 +59,11 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 ## Customized dialogs
 
-コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [こちら](/customization/how-to-customize/)を参照してください。
 
 ダイアログボックスには、操作性を高めるために閉じるボタンが追加されています。
 
-{{"demo":"pages/components/dialogs/CustomizedDialogs.js"}}
+{{"demo": "pages/components/dialogs/CustomizedDialogs.js"}}
 
 ## Full-screen dialogs
 
@@ -84,9 +84,9 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
-  return <Dialog fullScreen={fullScreen} />
+  return <Dialog fullScreen={fullScreen} />;
 }
 ```
 
@@ -94,21 +94,21 @@ function MyComponent() {
 
 ## 確認ダイアログ
 
-確認ダイアログでは、オプションを確定する前にユーザーが選択内容を明示的に確認する必要があります。 たとえば、ユーザーは複数の着信音を聞くことができますが、「OK」をタッチして最終的な選択を行うだけです。
+確認ダイアログでは、オプションを確定する前にユーザーが選択内容を明示的に確認する必要があります。 たとえば、着信音選択ダイアログでユーザーはさまざまな着信音を聞くことができますが、「OK」ボタンをクリックした後にのみ、選択が完了したことを意味します。
 
-確認ダイアログで[キャンセル] をタッチするか[戻る] を押すと、操作がキャンセルされ、変更が破棄されてダイアログが閉じます。
+確認ダイアログで「キャンセル」をタッチするか、「戻る」を押して操作をキャンセルすると、変更を破棄してダイアログを閉じます。
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
 ## ドラッグ可能なダイアログ
 
-[react-draggable](https://github.com/mzabriskie/react-draggable)を使用して、ドラッグ可能なダイアログを作成できます。 [react-draggable](https://github.com/mzabriskie/react-draggable)を使用して、ドラッグ可能なダイアログを作成できます。 これを行うには、インポートした`Draggable`コンポーネントを `Dialog` コンポーネントの`PaperComponent` として渡します。 これによりダイアログ全体がドラッグ可能になります。 これによりダイアログ全体がドラッグ可能になります。 [react-draggable](https://github.com/mzabriskie/react-draggable)を使用して、ドラッグ可能なダイアログを作成できます。 これを行うには、インポートした`Draggable`コンポーネントを `Dialog` コンポーネントの`PaperComponent` として渡します。 これによりダイアログ全体がドラッグ可能になります。 これによりダイアログ全体がドラッグ可能になります。 [react-draggable](https://github.com/mzabriskie/react-draggable)を使用して、ドラッグ可能なダイアログを作成できます。 これを行うには、インポートした`Draggable`コンポーネントを `Dialog` コンポーネントの`PaperComponent` として渡します。 これによりダイアログ全体がドラッグ可能になります。 これによりダイアログ全体がドラッグ可能になります。 これを行うには、インポートした`Draggable`コンポーネントを `Dialog` コンポーネントの`PaperComponent` として渡します。 これによりダイアログ全体がドラッグ可能になります。
+[react-draggable](https://github.com/mzabriskie/react-draggable)を使用して、ドラッグ可能なダイアログを作成できます。 [react-draggable](https://github.com/mzabriskie/react-draggable)を使用して、ドラッグ可能なダイアログを作成できます。 これを行うには、インポートした`Draggable`コンポーネントを `Dialog` コンポーネントの`PaperComponent` として渡します。 これによりダイアログ全体がドラッグ可能になります。 これによりダイアログ全体がドラッグ可能になります。 [react-draggable](https://github.com/mzabriskie/react-draggable)を使用して、ドラッグ可能なダイアログを作成できます。 これを行うには、インポートした`Draggable`コンポーネントを `Dialog` コンポーネントの`PaperComponent` として渡します。 これによりダイアログ全体がドラッグ可能になります。 これによりダイアログ全体がドラッグ可能になります。 [react-draggable](https://github.com/mzabriskie/react-draggable)を使用して、ドラッグ可能なダイアログを作成できます。 これを行うには、インポートした`Draggable`コンポーネントを `Dialog` コンポーネントの`PaperComponent` として渡します。 これによりダイアログ全体がドラッグ可能になります。 これによりダイアログ全体がドラッグ可能になります。 [react-draggable](https://github.com/mzabriskie/react-draggable)を使用して、ドラッグ可能なダイアログを作成できます。 これを行うには、インポートした`Draggable`コンポーネントを `Dialog` コンポーネントの`PaperComponent` として渡します。 これによりダイアログ全体がドラッグ可能になります。 これによりダイアログ全体がドラッグ可能になります。 これを行うには、インポートした`Draggable`コンポーネントを `Dialog` コンポーネントの`PaperComponent` として渡します。 これによりダイアログ全体がドラッグ可能になります。
 
 {{"demo": "pages/components/dialogs/DraggableDialog.js"}}
 
 ## 長いコンテンツをスクロールする
 
-ダイアログがユーザのビューポートまたはデバイスに対して長すぎる場合は、スクロールします。
+ビューポートやデバイスに対してダイアログが長くなりすぎると、スクロールします。
 
 - `scroll=paper`: paper要素内でダイアログボックスの内容がスクロールします。
 - `scroll=body`: ダイアログの内容がbody要素内をスクロールします。
@@ -119,7 +119,7 @@ function MyComponent() {
 
 ## パフォーマンス
 
-Follow the [Modal performance section](/components/modal/#performance).
+[Modal performance セクション](/components/modal/#performance) に従ってください。
 
 ## 制限事項
 

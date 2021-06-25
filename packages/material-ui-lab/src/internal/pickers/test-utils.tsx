@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { parseISO } from 'date-fns';
-import { createClientRender, fireEvent, screen } from 'test/utils';
+import { createClientRender, createMount, fireEvent, screen } from 'test/utils';
 import { queryHelpers, Matcher, MatcherOptions } from '@testing-library/react/pure';
 import { TransitionProps } from '@material-ui/core/transitions';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
@@ -38,18 +38,28 @@ interface PickerRenderOptions {
   locale?: string | object;
 }
 
+export function createPickerMount(options: { strict?: boolean } = {}) {
+  const mount = createMount(options);
+
+  return (node: React.ReactNode) =>
+    mount(<LocalizationProvider dateAdapter={AdapterClassToUse}>{node}</LocalizationProvider>);
+}
+
 export function createPickerRender({
   locale,
   ...renderOptions
-}: PickerRenderOptions & import('test/utils').RenderOptions) {
+}: PickerRenderOptions & import('test/utils').RenderOptions = {}) {
   const clientRender = createClientRender(renderOptions);
 
-  return (node: React.ReactNode) =>
-    clientRender(
+  function Wrapper({ children }: { children?: React.ReactNode }) {
+    return (
       <LocalizationProvider locale={locale} dateAdapter={AdapterClassToUse}>
-        {node}
-      </LocalizationProvider>,
+        {children}
+      </LocalizationProvider>
     );
+  }
+
+  return (node: React.ReactElement) => clientRender(node, { wrapper: Wrapper });
 }
 
 export const queryByMuiTest = queryHelpers.queryByAttribute.bind(null, 'data-mui-test');
@@ -80,10 +90,6 @@ export function getByMuiTest(...args: Parameters<typeof getAllByMuiTest>): Eleme
     `Unable to find an element by: [data-mui-test="${args[0]}"]`,
     document.body,
   );
-}
-
-export function openDesktopPicker() {
-  fireEvent.click(screen.getByLabelText(/choose date/i));
 }
 
 export function openMobilePicker() {

@@ -6,7 +6,7 @@
 
 In order to provide the maximum flexibility and performance,
 we need a way to know the nature of the child elements a component receives.
-To solve this problem we tag some of the components
+To solve this problem, we tag some of the components
 with a `muiName` static property when needed.
 
 You may, however, need to wrap a component in order to enhance it,
@@ -85,17 +85,20 @@ function ListItemLink(props) {
 The solution is simple: **avoid inline functions and pass a static component to the `component` prop** instead.
 Let's change the `ListItemLink` component so `CustomLink` always reference the same component:
 
-```jsx
-import { Link } from 'react-router-dom';
+```tsx
+import { Link, LinkProps } from 'react-router-dom';
 
 function ListItemLink(props) {
   const { icon, primary, to } = props;
 
   const CustomLink = React.useMemo(
     () =>
-      React.forwardRef((linkProps, ref) => (
-        <Link ref={ref} to={to} {...linkProps} />
-      )),
+      React.forwardRef<HTMLAnchorElement, Omit<RouterLinkProps, 'to'>>(function Link(
+        linkProps,
+        ref,
+      ) {
+        return <Link ref={ref} to={to} {...linkProps} />;
+      }),
     [to],
   );
 
@@ -127,25 +130,6 @@ The component providing the `component` prop (e.g. ListItem) might not forward a
 ### With TypeScript
 
 You can find the details in the [TypeScript guide](/guides/typescript/#usage-of-component-prop).
-
-## Routing libraries
-
-The integration with third-party routing libraries is achieved with the `component` prop.
-The behavior is identical to the description of the prop above.
-Here are a few demos with [react-router-dom](https://github.com/ReactTraining/react-router).
-They cover the Button, Link, and List components. You can apply the same strategy with all the components (BottomNavigation, Card, etc.).
-
-### Button
-
-{{"demo": "pages/guides/composition/ButtonRouter.js"}}
-
-### Link
-
-{{"demo": "pages/guides/composition/LinkRouter.js"}}
-
-### List
-
-{{"demo": "pages/guides/composition/ListRouter.js"}}
 
 ## Caveat with refs
 

@@ -10,7 +10,7 @@ githubLabel: 'component: Select'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 简单的选择器
+## 基础的选择器
 
 我们通常将菜单（Menus）放置在其所点击的元素上，这样的话能够确保当前选定的菜单项显示在点击的元素之上。
 
@@ -24,7 +24,9 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 
 ## 属性
 
-### 填充（Filled）和描边（outlined）变量
+选择器组件是通过自定义 [InputBase](/api/input-base/) 的 `<input>` 元素来实现的。 It extends the [text field components](/components/text-fields) sub-components, either the [OutlinedInput](/api/outlined-input/), [Input](/api/input/), or [FilledInput](/api/filled-input/), depending on the variant selected. 它有着相同的样式和许多相同的属性。 详情请参阅相应组件的 API 文档。
+
+### Filled and standard variants
 
 {{"demo": "pages/components/selects/SelectVariants.js"}}
 
@@ -52,9 +54,9 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 
 ## 自定义选择器
 
-你可以参考以下一些例子来自定义组件。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
-首先，需要设置 `InputBase` 组件的样式。 一旦设置好了样式，您就可以直接将其用作文本字段，也可以将其作为一个 `select` 字段提供给 select 组件的 `input` 属性。
+首先，需要设置 `InputBase` 组件的样式。 一旦设置好了样式，您就可以直接将其用作文本字段，也可以将其作为一个 `select` 字段提供给 select 组件的 `input` 属性。 Notice that the `"standard"` variant is easier to customize, since it does not wrap the contents in a `fieldset`/`legend` markup.
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
@@ -62,7 +64,7 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 
 ## 多重选择
 
-`Select` 组件也支持多项选择。 你可以通过使用 `multiple` 属性来启用它。
+`Select` 组件也支持多项选择。 `Select` 组件也支持多项选择。
 
 与单项选择一样，您可以通过访问 `onChange` 的回调函数中的 `event.target.value ` 来提取新的值。 它总是以一个数组的形式出现。
 
@@ -92,7 +94,7 @@ Select 组件的设计原理是和一个原生的 `<select>` 元素能够互相�
 
 ## 与对话框组件（Dialog）一起使用
 
-虽然 Material Design 的规范不鼓励这样做，但您还是可以在对话框组件中使用选择器。
+While it's discouraged by the Material Design guidelines, you can use a select inside a dialog.
 
 {{"demo": "pages/components/selects/DialogSelect.js"}}
 

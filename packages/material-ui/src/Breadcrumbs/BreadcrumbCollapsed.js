@@ -1,52 +1,56 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import withStyles from '../styles/withStyles';
-import { emphasize } from '../styles/colorManipulator';
+import { emphasize } from '@material-ui/system';
+import styled from '../styles/styled';
 import MoreHorizIcon from '../internal/svg-icons/MoreHoriz';
 import ButtonBase from '../ButtonBase';
 
-const styles = (theme) => ({
-  button: {
-    display: 'flex',
-    marginLeft: theme.spacing(0.5),
-    marginRight: theme.spacing(0.5),
-    backgroundColor: theme.palette.grey[100],
-    color: theme.palette.grey[700],
-    borderRadius: 2,
-    '&:hover, &:focus': {
-      backgroundColor: theme.palette.grey[200],
-    },
-    '&:active': {
-      boxShadow: theme.shadows[0],
-      backgroundColor: emphasize(theme.palette.grey[200], 0.12),
-    },
+const BreadcrumbCollapsedButton = styled(ButtonBase, { skipSx: true })(({ theme }) => ({
+  display: 'flex',
+  marginLeft: theme.spacing(0.5),
+  marginRight: theme.spacing(0.5),
+  ...(theme.palette.mode === 'light'
+    ? { backgroundColor: theme.palette.grey[100], color: theme.palette.grey[700] }
+    : { backgroundColor: theme.palette.grey[700], color: theme.palette.grey[100] }),
+  borderRadius: 2,
+  '&:hover, &:focus': {
+    ...(theme.palette.mode === 'light'
+      ? { backgroundColor: theme.palette.grey[200] }
+      : { backgroundColor: theme.palette.grey[600] }),
   },
-  icon: {
-    width: 24,
-    height: 16,
+  '&:active': {
+    boxShadow: theme.shadows[0],
+    ...(theme.palette.mode === 'light'
+      ? { backgroundColor: emphasize(theme.palette.grey[200], 0.12) }
+      : { backgroundColor: emphasize(theme.palette.grey[600], 0.12) }),
   },
+}));
+
+const BreadcrumbCollapsedIcon = styled(MoreHorizIcon)({
+  width: 24,
+  height: 16,
 });
 
 /**
  * @ignore - internal component.
  */
 function BreadcrumbCollapsed(props) {
-  const { classes, ...other } = props;
+  const styleProps = props;
 
   return (
     <li>
-      <ButtonBase className={classes.button} focusRipple {...other}>
-        <MoreHorizIcon className={classes.icon} />
-      </ButtonBase>
+      <BreadcrumbCollapsedButton focusRipple {...props} styleProps={styleProps}>
+        <BreadcrumbCollapsedIcon styleProps={styleProps} />
+      </BreadcrumbCollapsedButton>
     </li>
   );
 }
 
 BreadcrumbCollapsed.propTypes = {
   /**
-   * @ignore
+   * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  classes: PropTypes.object.isRequired,
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'PrivateBreadcrumbCollapsed' })(BreadcrumbCollapsed);
+export default BreadcrumbCollapsed;

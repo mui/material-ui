@@ -1,126 +1,141 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { createStyles, WithStyles, Theme, withStyles } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
 import ClockPointer from './ClockPointer';
 import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
-import { VIEW_HEIGHT } from '../internal/pickers/constants/dimensions';
-import { ClockViewType } from '../internal/pickers/constants/ClockType';
-import { getHours, getMinutes } from '../internal/pickers/time-utils';
-import { useGlobalKeyDown, keycode } from '../internal/pickers/hooks/useKeyDown';
-import {
-  WrapperVariantContext,
-  IsStaticVariantContext,
-} from '../internal/pickers/wrappers/WrapperVariantContext';
+import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
 import { PickerSelectionState } from '../internal/pickers/hooks/usePickerState';
 import { useMeridiemMode } from '../internal/pickers/hooks/date-helpers-hooks';
+import { ClockView, getHours, getMinutes } from './shared';
 
 export interface ClockProps<TDate> extends ReturnType<typeof useMeridiemMode> {
+  ampm: boolean;
+  ampmInClock: boolean;
+  autoFocus?: boolean;
+  children: readonly React.ReactNode[];
   date: TDate | null;
-  type: ClockViewType;
-  value: number;
-  isTimeDisabled: (timeValue: number, type: ClockViewType) => boolean;
-  children: React.ReactNode[];
-  onChange: (value: number, isFinish?: PickerSelectionState) => void;
-  ampm?: boolean;
-  minutesStep?: number;
-  ampmInClock?: boolean;
-  allowKeyboardControl?: boolean;
-  getClockLabelText: <TDate>(
-    view: 'hours' | 'minutes' | 'seconds',
-    time: TDate,
+  getClockLabelText: (
+    view: ClockView,
+    time: TDate | null,
     adapter: MuiPickersAdapter<TDate>,
   ) => string;
+  isTimeDisabled: (timeValue: number, type: ClockView) => boolean;
+  minutesStep?: number;
+  onChange: (value: number, isFinish?: PickerSelectionState) => void;
+  /**
+   * DOM id that the selected option should have
+   * Should only be `undefined` on the server
+   */
+  selectedId: string | undefined;
+  type: ClockView;
+  value: number;
 }
 
-export const styles = (theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      justifyContent: 'center',
-      position: 'relative',
-      minHeight: VIEW_HEIGHT,
-      alignItems: 'center',
-    },
-    clock: {
-      backgroundColor: 'rgba(0,0,0,.07)',
-      borderRadius: '50%',
-      height: 260,
-      width: 260,
-      position: 'relative',
-      pointerEvents: 'none',
-    },
-    squareMask: {
-      width: '100%',
-      height: '100%',
-      position: 'absolute',
-      pointerEvents: 'auto',
-      outline: 'none',
-      // Disable scroll capabilities.
-      touchAction: 'none',
-      userSelect: 'none',
-      '&:active': {
-        cursor: 'move',
-      },
-    },
-    pin: {
-      width: 6,
-      height: 6,
-      borderRadius: '50%',
-      backgroundColor: theme.palette.primary.main,
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-    },
-    amButton: {
-      zIndex: 1,
-      left: 8,
-      position: 'absolute',
-      bottom: 8,
-    },
-    pmButton: {
-      zIndex: 1,
-      position: 'absolute',
-      bottom: 8,
-      right: 8,
-    },
-    meridiemButtonSelected: {
+const ClockRoot = styled('div', { skipSx: true })(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  margin: theme.spacing(2),
+}));
+
+const ClockClock = styled('div', { skipSx: true })({
+  backgroundColor: 'rgba(0,0,0,.07)',
+  borderRadius: '50%',
+  height: 220,
+  width: 220,
+  flexShrink: 0,
+  position: 'relative',
+  pointerEvents: 'none',
+});
+
+const ClockSquareMask = styled('div', { skipSx: true })({
+  width: '100%',
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'auto',
+  outline: 0,
+  // Disable scroll capabilities.
+  touchAction: 'none',
+  userSelect: 'none',
+  '@media (pointer: fine)': {
+    cursor: 'pointer',
+    borderRadius: '50%',
+  },
+  '&:active': {
+    cursor: 'move',
+  },
+});
+
+const ClockPin = styled('div', { skipSx: true })(({ theme }) => ({
+  width: 6,
+  height: 6,
+  borderRadius: '50%',
+  backgroundColor: theme.palette.primary.main,
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+}));
+
+const ClockAmButton = styled(IconButton, { skipSx: true })<{ styleProps: ClockProps<any> }>(
+  ({ theme, styleProps }) => ({
+    zIndex: 1,
+    position: 'absolute',
+    bottom: 8,
+    left: 8,
+    ...(styleProps.meridiemMode === 'am' && {
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.primary.contrastText,
       '&:hover': {
         backgroundColor: theme.palette.primary.light,
       },
-    },
-  });
+    }),
+  }),
+);
 
-export type ClockClassKey = keyof WithStyles<typeof styles>['classes'];
+const ClockPmButton = styled(IconButton, { skipSx: true })<{ styleProps: ClockProps<any> }>(
+  ({ theme, styleProps }) => ({
+    zIndex: 1,
+    position: 'absolute',
+    bottom: 8,
+    right: 8,
+    ...(styleProps.meridiemMode === 'pm' && {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.primary.contrastText,
+      '&:hover': {
+        backgroundColor: theme.palette.primary.light,
+      },
+    }),
+  }),
+);
 
 /**
  * @ignore - internal component.
  */
-function Clock<TDate>(props: ClockProps<TDate> & WithStyles<typeof styles>) {
+function Clock<TDate>(props: ClockProps<TDate>) {
   const {
-    allowKeyboardControl,
     ampm,
-    ampmInClock = false,
-    children: numbersElementsArray,
-    classes,
+    ampmInClock,
+    autoFocus,
+    children,
     date,
+    getClockLabelText,
     handleMeridiemChange,
     isTimeDisabled,
     meridiemMode,
     minutesStep = 1,
     onChange,
+    selectedId,
     type,
     value,
-    getClockLabelText,
   } = props;
 
-  const utils = useUtils();
-  const isStatic = React.useContext(IsStaticVariantContext);
+  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
+  const styleProps = { ...props };
+
+  const utils = useUtils<TDate>();
   const wrapperVariant = React.useContext(WrapperVariantContext);
   const isMoving = React.useRef(false);
 
@@ -135,14 +150,14 @@ function Clock<TDate>(props: ClockProps<TDate> & WithStyles<typeof styles>) {
     onChange(newValue, isFinish);
   };
 
-  const setTime = (e: any, isFinish: PickerSelectionState) => {
-    let { offsetX, offsetY } = e;
+  const setTime = (event: MouseEvent | React.TouchEvent, isFinish: PickerSelectionState) => {
+    let { offsetX, offsetY } = event as MouseEvent;
 
-    if (typeof offsetX === 'undefined') {
-      const rect = e.target.getBoundingClientRect();
+    if (offsetX === undefined) {
+      const rect = ((event as React.TouchEvent).target as HTMLElement).getBoundingClientRect();
 
-      offsetX = e.changedTouches[0].clientX - rect.left;
-      offsetY = e.changedTouches[0].clientY - rect.top;
+      offsetX = (event as React.TouchEvent).changedTouches[0].clientX - rect.left;
+      offsetY = (event as React.TouchEvent).changedTouches[0].clientY - rect.top;
     }
 
     const newSelectedValue =
@@ -153,37 +168,31 @@ function Clock<TDate>(props: ClockProps<TDate> & WithStyles<typeof styles>) {
     handleValueChange(newSelectedValue, isFinish);
   };
 
-  const handleTouchMove = (e: React.TouchEvent) => {
+  const handleTouchMove = (event: React.TouchEvent) => {
     isMoving.current = true;
-    setTime(e, 'shallow');
+    setTime(event, 'shallow');
   };
 
-  const handleTouchEnd = (e: React.TouchEvent) => {
+  const handleTouchEnd = (event: React.TouchEvent) => {
     if (isMoving.current) {
-      setTime(e, 'finish');
+      setTime(event, 'finish');
       isMoving.current = false;
     }
   };
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    // MouseEvent.which is deprecated, but MouseEvent.buttons is not supported in Safari
-    const isButtonPressed =
-      // tslint:disable-next-line deprecation
-      typeof e.buttons === 'undefined' ? e.nativeEvent.which === 1 : e.buttons === 1;
-
-    if (isButtonPressed) {
-      setTime(e.nativeEvent, 'shallow');
+  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+    // event.buttons & PRIMARY_MOUSE_BUTTON
+    if (event.buttons > 0) {
+      setTime(event.nativeEvent, 'shallow');
     }
   };
 
-  const handleMouseUp = (e: React.MouseEvent) => {
+  const handleMouseUp = (event: React.MouseEvent) => {
     if (isMoving.current) {
       isMoving.current = false;
     }
 
-    setTime(e.nativeEvent, 'finish');
+    setTime(event.nativeEvent, 'finish');
   };
 
   const hasSelected = React.useMemo(() => {
@@ -195,21 +204,51 @@ function Clock<TDate>(props: ClockProps<TDate> & WithStyles<typeof styles>) {
   }, [type, value]);
 
   const keyboardControlStep = type === 'minutes' ? minutesStep : 1;
-  useGlobalKeyDown(Boolean(allowKeyboardControl ?? !isStatic) && !isMoving.current, {
-    [keycode.Home]: () => handleValueChange(0, 'partial'), // annulate both hours and minutes
-    [keycode.End]: () => handleValueChange(type === 'minutes' ? 59 : 23, 'partial'),
-    [keycode.ArrowUp]: () => handleValueChange(value + keyboardControlStep, 'partial'),
-    [keycode.ArrowDown]: () => handleValueChange(value - keyboardControlStep, 'partial'),
-  });
+
+  const listboxRef = React.useRef<HTMLDivElement>(null);
+  // Since this is rendered when a Popper is opened we can't use passive effects.
+  // Focusing in passive effects in Popper causes scroll jump.
+  useEnhancedEffect(() => {
+    if (autoFocus) {
+      // The ref not being resolved would be a bug in Material-UI.
+      listboxRef.current!.focus();
+    }
+  }, [autoFocus]);
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    // TODO: Why this early exit?
+    if (isMoving.current) {
+      return;
+    }
+
+    switch (event.key) {
+      case 'Home':
+        // annulate both hours and minutes
+        handleValueChange(0, 'partial');
+        event.preventDefault();
+        break;
+      case 'End':
+        handleValueChange(type === 'minutes' ? 59 : 23, 'partial');
+        event.preventDefault();
+        break;
+      case 'ArrowUp':
+        handleValueChange(value + keyboardControlStep, 'partial');
+        event.preventDefault();
+        break;
+      case 'ArrowDown':
+        handleValueChange(value - keyboardControlStep, 'partial');
+        event.preventDefault();
+        break;
+      default:
+      // do nothing
+    }
+  };
 
   return (
-    <div className={classes.root}>
-      <div className={classes.clock}>
-        <div
-          role="menu"
+    <ClockRoot>
+      <ClockClock>
+        <ClockSquareMask
           data-mui-test="clock"
-          tabIndex={-1}
-          className={classes.squareMask}
           onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
           onMouseUp={handleMouseUp}
@@ -217,54 +256,50 @@ function Clock<TDate>(props: ClockProps<TDate> & WithStyles<typeof styles>) {
         />
         {!isSelectedTimeDisabled && (
           <React.Fragment>
-            <div className={classes.pin} />
+            <ClockPin />
             {date && (
               <ClockPointer
                 type={type}
                 value={value}
                 isInner={isPointerInner}
                 hasSelected={hasSelected}
-                aria-live="polite"
-                aria-label={getClockLabelText(type, date, utils)}
               />
             )}
           </React.Fragment>
         )}
-        {numbersElementsArray}
-      </div>
+        <div
+          aria-activedescendant={selectedId}
+          aria-label={getClockLabelText(type, date, utils)}
+          ref={listboxRef}
+          role="listbox"
+          onKeyDown={handleKeyDown}
+          tabIndex={0}
+        >
+          {children}
+        </div>
+      </ClockClock>
       {ampm && (wrapperVariant === 'desktop' || ampmInClock) && (
         <React.Fragment>
-          <IconButton
+          <ClockAmButton
             data-mui-test="in-clock-am-btn"
             onClick={() => handleMeridiemChange('am')}
             disabled={meridiemMode === null}
-            className={clsx(classes.amButton, {
-              [classes.meridiemButtonSelected]: meridiemMode === 'am',
-            })}
+            styleProps={styleProps}
           >
             <Typography variant="caption">AM</Typography>
-          </IconButton>
-          <IconButton
+          </ClockAmButton>
+          <ClockPmButton
             disabled={meridiemMode === null}
             data-mui-test="in-clock-pm-btn"
             onClick={() => handleMeridiemChange('pm')}
-            className={clsx(classes.pmButton, {
-              [classes.meridiemButtonSelected]: meridiemMode === 'pm',
-            })}
+            styleProps={styleProps}
           >
             <Typography variant="caption">PM</Typography>
-          </IconButton>
+          </ClockPmButton>
         </React.Fragment>
       )}
-    </div>
+    </ClockRoot>
   );
 }
 
-Clock.propTypes = {
-  ampm: PropTypes.bool,
-  minutesStep: PropTypes.number,
-} as any;
-
-export default withStyles(styles, {
-  name: 'MuiClock',
-})(Clock) as <TDate>(props: ClockProps<TDate>) => JSX.Element;
+export default Clock;

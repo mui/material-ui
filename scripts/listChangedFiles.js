@@ -4,19 +4,18 @@
 const util = require('util');
 const childProcess = require('child_process');
 
-const execFileNode = util.promisify(childProcess.execFile);
-
-function execFile(command, args) {
-  return execFileNode(command, args, {
-    cwd: process.cwd(),
-    env: process.env,
-    encoding: 'utf-8',
-  });
-}
+const execFile = util.promisify(childProcess.execFile);
 
 async function execGitCmd(args) {
-  const gitResults = await execFile('git', args);
-  return gitResults.stdout.trim().toString().split('\n');
+  const gitResults = await execFile('git', args, {
+    // 128 MB instead of the default 1MB to prevent "maxbuffer exceeded" on large diffs e.g. when updating icons
+    maxBuffer: 128 * 1024 * 1024,
+  });
+  const stdout = gitResults.stdout.trim();
+  if (stdout === '') {
+    return [];
+  }
+  return stdout.split('\n');
 }
 
 async function listChangedFiles({ branch }) {

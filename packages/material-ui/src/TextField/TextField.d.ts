@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { OverridableStringUnion } from '@material-ui/types';
 import { InternalStandardProps as StandardProps } from '..';
 import { FormControlProps } from '../FormControl';
 import { FormHelperTextProps } from '../FormHelperText';
@@ -8,6 +10,11 @@ import { FilledInputProps } from '../FilledInput';
 import { OutlinedInputProps } from '../OutlinedInput';
 import { InputLabelProps } from '../InputLabel';
 import { SelectProps } from '../Select';
+import { Theme } from '../styles';
+import { TextFieldClasses } from './textFieldClasses';
+
+export interface TextFieldPropsColorOverrides {}
+export interface TextFieldPropsSizeOverrides {}
 
 export interface BaseTextFieldProps
   extends StandardProps<
@@ -33,21 +40,21 @@ export interface BaseTextFieldProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-  };
+  classes?: Partial<TextFieldClasses>;
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color?: 'primary' | 'secondary';
+  color?: OverridableStringUnion<
+    'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+    TextFieldPropsColorOverrides
+  >;
   /**
-   * The default value of the `input` element.
+   * The default value. Use when the component is not controlled.
    */
   defaultValue?: unknown;
   /**
-   * If `true`, the `input` element is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled?: boolean;
@@ -91,11 +98,7 @@ export interface BaseTextFieldProps
    */
   label?: React.ReactNode;
   /**
-   * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
-   */
-  margin?: 'none' | 'dense' | 'normal';
-  /**
-   * If `true`, a `textarea` element is rendered.instead of an input.
+   * If `true`, a `textarea` element is rendered instead of an input.
    * @default false
    */
   multiline?: boolean;
@@ -106,7 +109,7 @@ export interface BaseTextFieldProps
   onBlur?: InputBaseProps['onBlur'];
   onFocus?: StandardInputProps['onFocus'];
   /**
-   * The short hint displayed in the input before the user enters a value.
+   * The short hint displayed in the `input` before the user enters a value.
    */
   placeholder?: string;
   /**
@@ -137,9 +140,13 @@ export interface BaseTextFieldProps
    */
   SelectProps?: Partial<SelectProps>;
   /**
-   * The size of the text field.
+   * The size of the component.
    */
-  size?: 'small' | 'medium';
+  size?: OverridableStringUnion<'small' | 'medium', TextFieldPropsSizeOverrides>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    */
@@ -218,8 +225,6 @@ export interface OutlinedTextFieldProps extends BaseTextFieldProps {
 
 export type TextFieldProps = StandardTextFieldProps | FilledTextFieldProps | OutlinedTextFieldProps;
 
-export type TextFieldClassKey = keyof NonNullable<TextFieldProps['classes']>;
-
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).
  * It cannot be all things to all people, otherwise the API would grow out of control.
@@ -251,6 +256,7 @@ export type TextFieldClassKey = keyof NonNullable<TextFieldProps['classes']>;
  *
  * *   using the upper case props for passing values directly to the components
  * *   using the underlying components directly as shown in the demos
+ *
  * Demos:
  *
  * - [Autocomplete](https://material-ui.com/components/autocomplete/)

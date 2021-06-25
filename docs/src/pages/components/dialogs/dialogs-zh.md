@@ -41,7 +41,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 如果需要加上标题请:
 
 - 使用明确的问题或声明，并在内容区域对其做出解释，例如：“是否要清除 USB 上的内容？”。
-- 避免道歉、模棱两可或问一些问题，例如：“警告！” 或 “你确定吗?”
+- 避免使用道歉、模棱两可的内容或者问题，例如”警告！ “或者”你确定吗？ “
 
 {{"demo": "pages/components/dialogs/AlertDialog.js"}}
 
@@ -59,7 +59,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 ## 自定义对话框
 
-以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 该对话框加上了一个关闭按钮来辅助可用性。
 
@@ -94,9 +94,9 @@ function MyComponent() {
 
 ## 确认对话框
 
-确认型对话框明确要求用户在提交选项之前确认他们的选择。 比如说，用户可以听到多种铃声，但只有在点击 “OK” 后才意味着做出了选择。
+确认型对话框明确要求用户在提交选项之前确认他们的选择。 举个例子，用户可以听到多种铃声，但是只有在点击 “OK” 按钮后才意味着完成了选择。
 
-在确认对话框中触摸 "取消"，或按后退，将会导致当前操作的取消，放弃任何更改， 并关闭对话框。
+在确认对话框中点按“取消”或“返回（Back）”键，可取消操作，放弃任何更改，并关闭对话框。
 
 {{"demo": "pages/components/dialogs/ConfirmationDialog.js"}}
 
@@ -108,7 +108,7 @@ function MyComponent() {
 
 ## 长内容滚动
 
-考虑到用户有不同的视图大小，并且使用不同的设备，对话框会变得太长，这样的情况下，对话框是可滚动的。
+当对话框相对于用户的视口或设备来说太长时，它们就可以滚动。
 
 - 使用 `scroll=paper`，对话框的内容能在 paper 元素中滚动。
 - 使用 `scroll=body`，对话框的内容能在 body 元素中滚动。
@@ -119,7 +119,7 @@ function MyComponent() {
 
 ## 性能
 
-参考 [模态框性能部分](/components/modal/#performance)。
+参考[对话框性能部分](/components/modal/#performance)。
 
 ## 设计局限
 

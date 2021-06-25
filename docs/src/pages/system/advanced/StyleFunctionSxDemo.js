@@ -2,9 +2,9 @@ import * as React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { unstable_styleFunctionSx } from '@material-ui/system';
 import NoSsr from '@material-ui/core/NoSsr';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
-const theme = createMuiTheme();
+const theme = createTheme();
 
 const Div = styled('div')(unstable_styleFunctionSx);
 

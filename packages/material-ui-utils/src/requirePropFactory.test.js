@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import requirePropFactory from './requirePropFactory';
 
@@ -31,20 +32,42 @@ describe('requirePropFactory', () => {
       let props;
       let propName;
 
-      it('should return null for propName not in props', () => {
-        propName = 'propName';
-        props = {};
-        const result = requirePropValidator(props, propName, undefined, undefined, undefined);
-        expect(result).to.equal(null);
+      beforeEach(() => {
+        PropTypes.resetWarningCache();
       });
 
-      it('should return null for propName and requiredProp in props', () => {
+      it('should not warn for propName not in props', () => {
+        propName = 'propName';
+        props = {};
+
+        expect(() => {
+          PropTypes.checkPropTypes(
+            {
+              [propName]: requirePropValidator,
+            },
+            props,
+            'prop',
+            componentNameInError,
+          );
+        }).not.toErrorDev();
+      });
+
+      it('should not warn for propName and requiredProp in props', () => {
         propName = 'propName';
         props = {};
         props[propName] = true;
         props[requiredPropName] = true;
-        const result = requirePropValidator(props, propName, undefined, undefined, undefined);
-        expect(result).to.equal(null);
+
+        expect(() => {
+          PropTypes.checkPropTypes(
+            {
+              [propName]: requirePropValidator,
+            },
+            props,
+            'prop',
+            componentNameInError,
+          );
+        }).not.toErrorDev();
       });
 
       describe('propName is in props and requiredProp not in props', () => {
@@ -59,12 +82,18 @@ describe('requirePropFactory', () => {
         });
 
         it('should return Error', () => {
-          expect(result).to.have.property('name');
-          expect(result.name).to.equal('Error');
-          expect(result).to.have.property('message');
-          expect(result.message.indexOf(propName) > -1).to.equal(true);
-          expect(result.message.indexOf(requiredPropName) > -1).to.equal(true);
-          expect(result.message.indexOf(componentNameInError) > -1).to.equal(true);
+          expect(() => {
+            PropTypes.checkPropTypes(
+              {
+                [propName]: requirePropValidator,
+              },
+              props,
+              'prop',
+              componentNameInError,
+            );
+          }).toErrorDev(
+            'Warning: Failed prop type: The prop `propName` of `componentNameInError` can only be used together with the `requiredPropName` prop.',
+          );
         });
 
         describe('propFullName given to validator', () => {
@@ -82,6 +111,58 @@ describe('requirePropFactory', () => {
             expect(result.message.indexOf(propName)).to.equal(-1);
           });
         });
+      });
+
+      it('should work with chained proptypes coming from the default props', () => {
+        const Test = () => null;
+        Test.propTypes = {
+          test: PropTypes.string,
+        };
+
+        const localProps = {};
+        const localPropName = 'test';
+        localProps[localPropName] = 'string';
+
+        const updatedPropChecker = requirePropFactory('Test', Test);
+
+        expect(() => {
+          PropTypes.checkPropTypes(
+            {
+              [localPropName]: updatedPropChecker('otherProp'),
+            },
+            localProps,
+            'prop',
+            'Test',
+          );
+        }).toErrorDev([
+          'Warning: Failed prop type: The prop `test` of `Test` can only be used together with the `otherProp` prop.',
+        ]);
+      });
+
+      it('should validate default prop types coming from the component', () => {
+        const Test = () => null;
+        Test.propTypes = {
+          test: PropTypes.string,
+        };
+
+        const localProps = {};
+        const localPropName = 'test';
+        localProps[localPropName] = true;
+
+        const updatedPropChecker = requirePropFactory('Test', Test);
+
+        expect(() => {
+          PropTypes.checkPropTypes(
+            {
+              [localPropName]: updatedPropChecker('otherProp'),
+            },
+            localProps,
+            'prop',
+            'Test',
+          );
+        }).toErrorDev([
+          'Warning: Failed prop type: Invalid prop `test` of type `boolean` supplied to `Test`, expected `string`.',
+        ]);
       });
     });
   });

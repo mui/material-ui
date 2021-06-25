@@ -1,25 +1,22 @@
 import * as React from 'react';
 import usePagination from '@material-ui/core/usePagination';
-import { makeStyles } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
-  ul: {
-    listStyle: 'none',
-    padding: 0,
-    margin: 0,
-    display: 'flex',
-  },
+const List = styled('ul')({
+  listStyle: 'none',
+  padding: 0,
+  margin: 0,
+  display: 'flex',
 });
 
 export default function UsePagination() {
-  const classes = useStyles();
   const { items } = usePagination({
     count: 10,
   });
 
   return (
     <nav>
-      <ul className={classes.ul}>
+      <List>
         {items.map(({ page, type, selected, ...item }, index) => {
           let children = null;
 
@@ -47,7 +44,7 @@ export default function UsePagination() {
 
           return <li key={index}>{children}</li>;
         })}
-      </ul>
+      </List>
     </nav>
   );
 }

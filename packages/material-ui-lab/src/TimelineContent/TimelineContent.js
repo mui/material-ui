@@ -2,45 +2,65 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { capitalize } from '@material-ui/core/utils';
-import { withStyles } from '@material-ui/core/styles';
+import { styled, useThemeProps } from '@material-ui/core/styles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Typography from '@material-ui/core/Typography';
 import TimelineContext from '../Timeline/TimelineContext';
-import TimelineItemContext from '../TimelineItem/TimelineItemContext';
+import { getTimelineContentUtilityClass } from './timelineContentClasses';
 
-export const styles = () => ({
+const useUtilityClasses = (styleProps) => {
+  const { position, classes } = styleProps;
+
+  const slots = {
+    root: ['root', `position${capitalize(position)}`],
+  };
+
+  return composeClasses(slots, getTimelineContentUtilityClass, classes);
+};
+
+const TimelineContentRoot = styled(Typography, {
+  name: 'MuiTimelineContent',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    return [styles.root, styles[`position${capitalize(styleProps.position)}`]];
+  },
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
-  root: {
-    flex: 1,
-    padding: '6px 16px',
-  },
-  /* Styles applied to the root element if `align="right"`. */
-  alignRight: {
+  flex: 1,
+  padding: '6px 16px',
+  textAlign: 'left',
+  /* Styles applied to the root element if `position="left"`. */
+  ...(styleProps.position === 'left' && {
     textAlign: 'right',
-  },
-});
+  }),
+}));
 
-const TimelineContent = React.forwardRef(function TimelineContent(props, ref) {
-  const { classes, className, ...other } = props;
+const TimelineContent = React.forwardRef(function TimelineContent(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiTimelineContent' });
+  const { className, ...other } = props;
 
-  const { align = 'left' } = React.useContext(TimelineContext);
-  const { classes: contextClasses = {} } = React.useContext(TimelineItemContext);
+  const { position: positionContext } = React.useContext(TimelineContext);
+
+  const styleProps = {
+    ...props,
+    position: positionContext || 'right',
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   return (
-    <Typography
+    <TimelineContentRoot
       component="div"
-      className={clsx(
-        classes.root,
-        contextClasses.content,
-        classes[`align${capitalize(align)}`],
-        className,
-      )}
+      className={clsx(classes.root, className)}
+      styleProps={styleProps}
       ref={ref}
       {...other}
     />
   );
 });
 
-TimelineContent.propTypes = {
+TimelineContent.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -57,6 +77,10 @@ TimelineContent.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTimelineContent' })(TimelineContent);
+export default TimelineContent;

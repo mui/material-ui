@@ -1,7 +1,7 @@
-import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
-import ImageList from './ImageList';
+import * as React from 'react';
+import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
+import ImageList, { imageListClasses as classes } from '@material-ui/core/ImageList';
 
 const itemsData = [
   {
@@ -17,24 +17,23 @@ const itemsData = [
 ];
 
 describe('<ImageList />', () => {
-  let classes;
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<ImageList />);
-  });
-
-  describeConformance(
+  describeConformanceV5(
     <ImageList>
       <div />
     </ImageList>,
     () => ({
       classes,
       inheritComponent: 'ul',
+      render,
       mount,
       refInstanceof: window.HTMLUListElement,
       testComponentPropWith: 'li',
+      muiName: 'MuiImageList',
+      testVariantProps: { variant: 'masonry' },
+      skip: ['componentProp', 'componentsProp'],
     }),
   );
 

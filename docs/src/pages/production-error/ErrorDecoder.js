@@ -1,24 +1,42 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import { styled } from '@material-ui/core/styles';
+import { styled, createTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import { render as renderMarkdown } from 'docs/src/modules/utils/parseMarkdown';
+import { renderInline as renderInlineMarkdown } from '@material-ui/markdown';
 
 const ErrorMessageSection = styled('div')({
   // reset display: block from Demo
   display: 'block',
 });
 
-// use elevation={2}
-const ErrorMessageMarkdown = styled(MarkdownElement)(({ theme }) => {
-  return {
-    boxShadow: theme.shadows['2'],
-    color: theme.palette.error.main,
-    padding: theme.spacing(1, 2),
-  };
-});
+const defaultTheme = createTheme();
+
+const useStyles = makeStyles(
+  (theme) => ({
+    root: {
+      boxShadow: theme.shadows['2'],
+      color: theme.palette.error.main,
+      padding: theme.spacing(1, 2),
+    },
+  }),
+  { defaultTheme },
+);
+
+const ErrorMessageMarkdown = (props) => {
+  const { className, ...other } = props;
+  const classes = useStyles();
+
+  return <MarkdownElement className={clsx(classes.root, className)} {...other} />;
+};
+
+ErrorMessageMarkdown.propTypes = {
+  className: PropTypes.string,
+};
 
 export default function ErrorDecoder() {
   const {
@@ -89,7 +107,7 @@ export default function ErrorDecoder() {
       return div.innerHTML;
     });
 
-    return renderMarkdown(readableMessage);
+    return renderInlineMarkdown(readableMessage);
   }, [args, code, data.errorCodes]);
 
   if (data.state === 'loading') {

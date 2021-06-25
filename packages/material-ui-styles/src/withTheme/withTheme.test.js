@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils';
-import { Input } from '@material-ui/core';
+import Input from '@material-ui/core/Input';
 import { isMuiElement } from '@material-ui/core/utils';
 import PropTypes from 'prop-types';
 import withTheme from './withTheme';
@@ -70,25 +70,6 @@ describe('withTheme', () => {
       render(<ThemedTarget ref={ref} />);
 
       expect(ref.current.nodeName).to.equal('DIV');
-    });
-
-    describe('innerRef', () => {
-      beforeEach(() => {
-        PropTypes.resetWarningCache();
-      });
-
-      it('is deprecated', () => {
-        const ThemedDiv = withTheme('div');
-
-        expect(() => {
-          PropTypes.checkPropTypes(
-            ThemedDiv.propTypes,
-            { innerRef: React.createRef() },
-            'prop',
-            'ThemedDiv',
-          );
-        }).toErrorDev('Warning: Failed prop type: Material-UI: The `innerRef` prop is deprecated');
-      });
     });
   });
 

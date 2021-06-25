@@ -1,26 +1,12 @@
 import * as React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
+import { useTheme } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Chip from '@material-ui/core/Chip';
-
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    maxWidth: 300,
-  },
-  chips: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  chip: {
-    margin: 2,
-  },
-}));
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -56,7 +42,6 @@ function getStyles(name, personName, theme) {
 }
 
 export default function MultipleSelectChip() {
-  const classes = useStyles();
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
 
@@ -66,21 +51,21 @@ export default function MultipleSelectChip() {
 
   return (
     <div>
-      <FormControl className={classes.formControl}>
-        <InputLabel id="demo-mutiple-chip-label">Chip</InputLabel>
+      <FormControl sx={{ m: 1, width: 300 }}>
+        <InputLabel id="demo-multiple-chip-label">Chip</InputLabel>
         <Select
-          labelId="demo-mutiple-chip-label"
-          id="demo-mutiple-chip"
+          labelId="demo-multiple-chip-label"
+          id="demo-multiple-chip"
           multiple
           value={personName}
           onChange={handleChange}
-          input={<Input id="select-multiple-chip" />}
+          input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
           renderValue={(selected) => (
-            <div className={classes.chips}>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
               {selected.map((value) => (
-                <Chip key={value} label={value} className={classes.chip} />
+                <Chip key={value} label={value} sx={{ m: '2px' }} />
               ))}
-            </div>
+            </Box>
           )}
           MenuProps={MenuProps}
         >

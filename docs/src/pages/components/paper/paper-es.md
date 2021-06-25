@@ -8,11 +8,11 @@ githubLabel: 'component: Paper'
 
 <p class="description">En Material Design, las propiedades físicas del papel son trasladadas a la pantalla. </p>
 
-El fondo de una aplicación asemeja la textura plana, opaca de una hoja de papel, y el comportamiento de una aplicación imita la habilidad del papel de ser redimensionado, barajado y agrupado en múltiples hojas.
+El fondo del elemento se asemeja a la textura plana y opaca de una hoja de papel e imita el comportamiento del papel para ser redimensionado, reorganizado y encuadernado en múltiples hojas.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Papel básico
+## Paper básico
 
 {{"demo": "pages/components/paper/SimplePaper.js", "bg": true}}
 
@@ -21,3 +21,9 @@ El fondo de una aplicación asemeja la textura plana, opaca de una hoja de papel
 Si necesitas una superficie con bordes, usa la propiedad `variant`.
 
 {{"demo": "pages/components/paper/Variants.js", "bg": "inline"}}
+
+## Elevation
+
+The elevation can be used to establish a hierachy between other content. In practical terms, the elevation controls the size of the shadow applied to the surface. In dark mode, raising the elevation also makes the surface lighter.
+
+{{"demo": "pages/components/paper/Elevation.js", "bg": "inline"}}

@@ -2,9 +2,8 @@ import * as React from 'react';
 import { MuiPickersAdapterContext } from '../../../LocalizationProvider';
 
 // Required for babel https://github.com/vercel/next.js/issues/7882. Replace with `export type` in future
-export type MuiPickersAdapter<
-  T = unknown
-> = import('../../../LocalizationProvider/LocalizationProvider').MuiPickersAdapter<T>;
+export type MuiPickersAdapter<TDate = unknown> =
+  import('../../../LocalizationProvider/LocalizationProvider').MuiPickersAdapter<TDate>;
 
 // TODO uncomment when syntax will be allowed by next babel
 function checkUtils(utils: MuiPickersAdapter | null) /* :asserts utils is MuiPickersAdapter */ {
@@ -22,7 +21,7 @@ export function useUtils<T = unknown>() {
   return utils as MuiPickersAdapter<T>;
 }
 
-export function useNow<TDate = unknown>() {
+export function useNow<TDate = unknown>(): TDate {
   const utils = useUtils<TDate>();
   const now = React.useRef(utils.date());
 

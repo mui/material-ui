@@ -1,20 +1,19 @@
 import * as React from 'react';
-import { getClasses, createMount, describeConformance } from 'test/utils';
-import AlertTitle from './AlertTitle';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
+import AlertTitle, { alertTitleClasses as classes } from '@material-ui/core/AlertTitle';
 
 describe('<AlertTitle />', () => {
+  const render = createClientRender();
   const mount = createMount();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<AlertTitle />);
-  });
-
-  describeConformance(<AlertTitle />, () => ({
+  describeConformanceV5(<AlertTitle />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
+    muiName: 'MuiAlertTitle',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    testStateOverrides: { styleKey: 'root' },
+    skip: ['componentsProp', 'themeVariants', 'themeDefaultProps'],
   }));
 });

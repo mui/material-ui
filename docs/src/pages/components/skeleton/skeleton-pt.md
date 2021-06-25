@@ -1,5 +1,5 @@
 ---
-title: React Skeleton component
+title: Componente React Skeleton
 components: Skeleton
 githubLabel: 'component: Skeleton'
 ---
@@ -8,7 +8,7 @@ githubLabel: 'component: Skeleton'
 
 <p class="description">Exiba uma visualização do espaço reservado de seu conteúdo antes que os dados sejam carregados, reduzindo a sensação de lentidão do tempo de carregamento.</p>
 
-Os dados dos seus componentes podem não estar imediatamente disponíveis. You can improve the perceived responsiveness of the page by using skeletons. Ele passa a sensação de que as coisas estão acontecendo imediatamente, então a informação é mostrada incrementalmente na tela (Cf. [Evite uso de progressos](https://www.lukew.com/ff/entry.asp?1797)).
+Os dados dos seus componentes podem não estar imediatamente disponíveis. Você pode melhorar a capacidade de resposta percebida da página usando skeletons. Ele passa a sensação de que as coisas estão acontecendo imediatamente, então a informação é mostrada incrementalmente na tela (Cf. [Evite uso de progressos](https://www.lukew.com/ff/entry.asp?1797)).
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -68,16 +68,22 @@ loading
 
 {{"demo": "pages/components/skeleton/SkeletonChildren.js", "defaultCodeOpen": false}}
 
+## Cor
+
+The color of the component can be customized by changing its `background-color` CSS property. This is especially useful when on a black background (as the skeleton will otherwise be invisible).
+
+{{"demo": "pages/components/skeleton/SkeletonColor.js", "bg": "inline"}}
+
 ## Acessibilidade
 
-Skeleton screens provide an alternative to the traditional spinner method. Em vez de mostrar um resumo abstrato na tela, telas com skeleton criam uma expectativa do que está por vir, reduzindo a sensação cognitiva do processo de carregamento.
+Telas com skeleton fornecem uma alternativa aos métodos tradicionais de feedback. Em vez de mostrar um resumo abstrato na tela, telas com skeleton criam uma expectativa do que está por vir, reduzindo a sensação cognitiva do processo de carregamento.
 
 A cor de fundo do skeleton usa uma quantidade menor de luminância para ser visível em boas condições (boa luz ambiente, boa tela, sem deficiência visual).
 
 ### ARIA
 
-None.
+Nenhum.
 
 ### Teclado
 
-The skeleton is not focusable.
+O skeleton não é focável.

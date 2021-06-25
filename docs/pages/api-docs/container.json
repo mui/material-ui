@@ -6,11 +6,12 @@
     "fixed": { "type": { "name": "bool" } },
     "maxWidth": {
       "type": {
-        "name": "enum",
-        "description": "'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xs'<br>&#124;&nbsp;false"
+        "name": "union",
+        "description": "'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;false<br>&#124;&nbsp;string"
       },
       "default": "'lg'"
-    }
+    },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "Container",
   "styles": {
@@ -32,5 +33,6 @@
   "filename": "/packages/material-ui/src/Container/Container.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/container/\">Container</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

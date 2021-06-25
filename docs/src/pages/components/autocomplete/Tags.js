@@ -2,23 +2,12 @@
 import * as React from 'react';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/core/Autocomplete';
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: 500,
-    '& > * + *': {
-      marginTop: theme.spacing(3),
-    },
-  },
-}));
+import Stack from '@material-ui/core/Stack';
 
 export default function Tags() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Stack spacing={3} sx={{ width: 500 }}>
       <Autocomplete
         multiple
         id="tags-standard"
@@ -69,7 +58,7 @@ export default function Tags() {
           />
         )}
       />
-    </div>
+    </Stack>
   );
 }
 

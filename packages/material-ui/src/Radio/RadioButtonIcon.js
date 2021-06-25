@@ -1,28 +1,21 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import RadioButtonUncheckedIcon from '../internal/svg-icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '../internal/svg-icons/RadioButtonChecked';
-import withStyles from '../styles/withStyles';
+import styled from '../styles/styled';
 
-export const styles = (theme) => ({
-  root: {
-    position: 'relative',
-    display: 'flex',
-    '&$checked $dot': {
-      transform: 'scale(1)',
-      transition: theme.transitions.create('transform', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.shortest,
-      }),
-    },
-  },
-  checked: {},
-  background: {
-    // Scale applied to prevent dot misalignment in Safari
-    transform: 'scale(1)',
-  },
-  dot: {
+const RadioButtonIconRoot = styled('span')({
+  position: 'relative',
+  display: 'flex',
+});
+
+const RadioButtonIconBackground = styled(RadioButtonUncheckedIcon, { skipSx: true })({
+  // Scale applied to prevent dot misalignment in Safari
+  transform: 'scale(1)',
+});
+
+const RadioButtonIconDot = styled(RadioButtonCheckedIcon, { skipSx: true })(
+  ({ theme, styleProps }) => ({
     left: 0,
     position: 'absolute',
     transform: 'scale(0)',
@@ -30,20 +23,33 @@ export const styles = (theme) => ({
       easing: theme.transitions.easing.easeIn,
       duration: theme.transitions.duration.shortest,
     }),
-  },
-});
+    ...(styleProps.checked && {
+      transform: 'scale(1)',
+      transition: theme.transitions.create('transform', {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.shortest,
+      }),
+    }),
+  }),
+);
 
 /**
  * @ignore - internal component.
  */
 function RadioButtonIcon(props) {
-  const { checked, classes, fontSize } = props;
+  const { checked = false, classes = {}, fontSize } = props;
+
+  const styleProps = { ...props, checked };
 
   return (
-    <div className={clsx(classes.root, { [classes.checked]: checked })}>
-      <RadioButtonUncheckedIcon fontSize={fontSize} className={classes.background} />
-      <RadioButtonCheckedIcon fontSize={fontSize} className={classes.dot} />
-    </div>
+    <RadioButtonIconRoot className={classes.root} styleProps={styleProps}>
+      <RadioButtonIconBackground
+        fontSize={fontSize}
+        className={classes.background}
+        styleProps={styleProps}
+      />
+      <RadioButtonIconDot fontSize={fontSize} className={classes.dot} styleProps={styleProps} />
+    </RadioButtonIconRoot>
   );
 }
 
@@ -56,12 +62,12 @@ RadioButtonIcon.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
-   * The size of the radio.
+   * The size of the component.
    * `small` is equivalent to the dense radio styling.
    */
-  fontSize: PropTypes.oneOf(['small', 'default']),
+  fontSize: PropTypes.oneOf(['small', 'medium']),
 };
 
-export default withStyles(styles, { name: 'PrivateRadioButtonIcon' })(RadioButtonIcon);
+export default RadioButtonIcon;

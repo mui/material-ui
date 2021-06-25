@@ -1,6 +1,6 @@
 ---
 title: React Badge（徽章）组件
-components: Badge
+components: Badge, BadgeUnstyled
 githubLabel: 'component: Badge'
 ---
 
@@ -18,7 +18,7 @@ githubLabel: 'component: Badge'
 
 ## 自定义徽章
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/components/) 中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
@@ -55,3 +55,19 @@ githubLabel: 'component: Badge'
 你可以使用 `anchorOrigin` 属性移把徽章组件移动到封装的元素的任何角落。
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
+
+## Unstyled
+
+The badge also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+
+```js
+import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
+```
+
+{{"demo": "pages/components/badges/UnstyledBadge.js"}}
+
+## 无障碍设计
+
+You can't rely on the content of the badge to be announced correctly. You should provide a full description, for instance, with `aria-label`:
+
+{{"demo": "pages/components/badges/AccessibleBadges.js"}}

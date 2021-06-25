@@ -9,19 +9,35 @@ materialDesign: 'https://material.io/components/selection-controls#switches'
 
 <p class="description">Переключатели изменяют состояние одного отдельного параметра между "включено" и "выключено".</p>
 
-[Переключатели](https://material.io/design/components/selection-controls.html#switches) – предпочтительный способ установки параметров на мобильных устройствах. Опция, которую контролирует переключатель, и её состояние должны быть четко описаны в соответствующей метке.
+[Переключатели](https://material.io/design/components/selection-controls.html#switches) – предпочтительный способ установки параметров на мобильных устройствах. The option that the switch controls, as well as the state it's in, should be made clear from the corresponding inline label.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Основные переключатели
 
-{{"demo": "pages/components/switches/Switches.js"}}
+{{"demo": "pages/components/switches/BasicSwitches.js"}}
 
-## Переключатель с FormControlLabel
+## Checkbox with FormGroup (Чекбоксы с FormGroup)
 
-`Switch` can be provided with a description thanks to the `FormControlLabel` component.
+You can provide a label to the `Switch` thanks to the `FormControlLabel` component.
 
 {{"demo": "pages/components/switches/SwitchLabels.js"}}
+
+## Size
+
+Use the `size` prop to change the size of the switch.
+
+{{"demo": "pages/components/switches/SwitchesSize.js"}}
+
+## Цвет
+
+{{"demo": "pages/components/switches/ColorSwitches.js"}}
+
+## Controlled
+
+You can control the switch with the `checked` and `onChange` props:
+
+{{"demo": "pages/components/switches/ControlledSwitches.js"}}
 
 ## Переключатели с FormGroup
 
@@ -31,17 +47,11 @@ materialDesign: 'https://material.io/components/selection-controls#switches'
 
 ## Кастомизация переключателей
 
-Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
+Ниже находятся примеры кастомизации компонента. Вы можете узнать об этом больше [в документации по переопределению свойств](/customization/how-to-customize/).
 
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/switch).
-
-## Размеры
-
-Fancy smaller switches? Use the `size` prop.
-
-{{"demo": "pages/components/switches/SwitchesSize.js"}}
 
 ## Расположение метки
 
@@ -51,7 +61,7 @@ Fancy smaller switches? Use the `size` prop.
 
 ## Бесплатно
 
-- [Чекбоксы. Switch (переключатели)](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
+- [Checkboxes или Switches](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8)
 
 ## Доступность
 

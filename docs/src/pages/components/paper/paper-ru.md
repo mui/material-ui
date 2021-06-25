@@ -8,7 +8,7 @@ githubLabel: 'component: Paper'
 
 <p class="description">В Material Design физические свойства бумаги переводятся на экран. </p>
 
-Фон приложения напоминает плоскую непрозрачную текстуру листа бумаги, а поведение приложения имитирует способность бумаги изменять размер, перетасовывать и связывать вместе в несколько листов.
+The background of an application resembles the flat, opaque texture of a sheet of paper, and an application's behavior mimics paper's ability to be re-sized, shuffled, and bound together in multiple sheets.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -21,3 +21,9 @@ githubLabel: 'component: Paper'
 If you need an outlined surface, use the `variant` prop.
 
 {{"demo": "pages/components/paper/Variants.js", "bg": "inline"}}
+
+## Elevation
+
+The elevation can be used to establish a hierachy between other content. In practical terms, the elevation controls the size of the shadow applied to the surface. In dark mode, raising the elevation also makes the surface lighter.
+
+{{"demo": "pages/components/paper/Elevation.js", "bg": "inline"}}

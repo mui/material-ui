@@ -2,7 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Interpolate from '@trendmicro/react-interpolate';
-import { withStyles } from '@material-ui/core/styles';
+import { styled, createTheme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
@@ -48,7 +49,25 @@ const styles = (theme) => ({
   version: {
     marginTop: theme.spacing(3),
   },
+  careers: {
+    display: 'flex',
+  },
 });
+
+const Badge = styled('span')(({ theme }) => ({
+  alignSelf: 'center',
+  padding: '1px 3px',
+  backgroundColor: theme.palette.mode === 'light' ? 'rgb(235, 87, 87)' : '#c55e5e',
+  color: '#fff',
+  borderRadius: 3,
+  marginLeft: 6,
+  fontSize: '10px',
+  lineHeight: '1.3',
+  textTransform: 'uppercase',
+  fontWeight: '600',
+  letterSpacing: '0.5px',
+  display: 'inline-block',
+}));
 
 function AppFooter(props) {
   const { classes } = props;
@@ -142,15 +161,18 @@ function AppFooter(props) {
                     Contact Us
                   </Link>
                 </li>
-                <li>
-                  <Link color="inherit" variant="body2" href="/company/jobs/">
-                    Jobs
+                <li className={classes.careers}>
+                  <Link color="inherit" variant="body2" href="/company/careers/">
+                    Careers
+                  </Link>
+                  <Link color="inherit" variant="body2" href="/company/careers/">
+                    <Badge>hiring</Badge>
                   </Link>
                 </li>
               </ul>
             </Grid>
           </Grid>
-          <Typography className={classes.version} color="textSecondary" variant="body2">
+          <Typography className={classes.version} color="text.secondary" variant="body2">
             <Interpolate
               replacement={{
                 versionNumber: (
@@ -188,4 +210,5 @@ AppFooter.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AppFooter);
+const defaultTheme = createTheme();
+export default withStyles(styles, { defaultTheme })(AppFooter);

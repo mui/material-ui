@@ -1,8 +1,8 @@
 # Sistema Material-UI
 
-<p class="description">Utilitários CSS para criar rapidamente um design customizado.</p>
+<p class="description">CSS utilities for rapidly laying out custom designs.</p>
 
-Material-UI vem com dezenas de componentes **pronto para uso** em seu package core. Esses componentes são um ponto de partida incrível, mas quando se trata de fazer seu site se destacar com um design customizado, pode ser mais simples começar de um estado sem estilos. Apresentando o sistema:
+Material-UI comes with dozens of **ready-to-use** components in the core. Esses componentes são um ponto de partida incrível, mas quando se trata de fazer seu site se destacar com um design customizado, pode ser mais simples começar de um estado sem estilos. Apresentando o sistema:
 
 O **sistema** permite que você crie rapidamente componentes de UI customizados utilizando os valores definidos no seu tema.
 
@@ -14,13 +14,27 @@ _(Redimensione a janela para ver os pontos de quebra responsivos)_
 
 ## Instalação
 
-```jsx
-// utilizando o npm
-npm install @material-ui/system
+<!-- #default-branch-switch -->
 
-// utilizando o yarn
-yarn add @material-ui/system
+```jsx
+// with npm
+npm install @material-ui/system@next @emotion/react @emotion/styled
+
+// with yarn
+yarn add @material-ui/system@next @emotion/react @emotion/styled
 ```
+
+Or if you want to use `styled-components` as a styling engine:
+
+```sh
+// with npm
+npm install @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
+
+// with yarn
+yarn add @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
+```
+
+Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
 
 ## Por que usar o sistema?
 
@@ -105,7 +119,7 @@ return (
   }}
 >
   <Box sx={{ color: 'text.secondary' }}>Sessions</Box>
-  <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'fontWeightMedium' }}>
+  <Box sx={{ color: 'text.primary', fontSize: 34, fontWeight: 'medium' }}>
     98.3 K
   </Box>
   <Box
@@ -116,14 +130,14 @@ return (
     sx={{
       color: 'success.dark',
       display: 'inline',
-      fontWeight: 'fontWeightMedium',
+      fontWeight: 'medium',
       mx: 0.5,
     }}
   >
     18.77%
   </Box>
   <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 12 }}>
-    em relação ultima semana
+    vs. last week
   </Box>
 </Box>
 ```
@@ -150,7 +164,7 @@ O sistema oferece acesso direto ao valor no tema. Fica mais fácil de lidar com 
 
 A propriedade `sx`, como a parte principal do sistema, resolve esses problemas, fornecendo uma maneira rápida & simples de aplicar os tokens de design corretos para propriedades CSS específicas diretamente a um elemento React. A [demonstração acima](#demo) mostra como ela pode ser usada para criar um design único.
 
-Esta propriedade fornece um super conjunto de CSS que mapeia valores diretamente do tema, dependendo da propriedade CSS usada. Além disso, permite uma maneira simples de definir valores responsivos que correspondem aos pontos de quebra definidos no tema.
+This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used. Além disso, permite uma maneira simples de definir valores responsivos que correspondem aos pontos de quebra definidos no tema.
 
 ### Quando usar ela?
 
@@ -172,14 +186,20 @@ Contras:
 
   | Benchmark                             | Fragmento de código         | Tempo normalizado |
   |:------------------------------------- |:--------------------------- | ----------------- |
-  | a. Renderizar 1.000 primitivos        | `<div className="…">` | 100ms             |
+  | a. Renderizar 1.000 Box               | `<div className="…">` | 100ms             |
   | b. Renderizar 1.000 componentes       | `<Div>`               | 120ms             |
   | c. Renderizar 1,000 styled components | `<StyledDiv>`         | 160ms             |
-  | d. Renderizar 1.000 Box               | `<Box sx={…}>`        | 370ms             |
+  | d. a. Renderizar 1.000 Box            | `<Box sx={…}>`        | 370ms             |
 
   _Vá até a [pasta de benchmark](https://github.com/mui-org/material-ui/tree/next/benchmark/browser) para uma reprodução dessas métricas._
 
   Nós acreditamos que para a maioria das situações é **rápido o suficiente**, mas há soluções alternativas simples onde a performance se torna crítica. Por exemplo, ao renderizar uma lista com muitos itens, você pode usar um seletor filho CSS para ter um único ponto de "injeção de estilo" (usando d. para o wrapper e a. para cada item).
+
+### API tradeoff
+
+Having the system under one prop (`sx`) helps to differentiate props defined for the sole purpose of CSS utilities, vs. those for component business logic. It's important for the **separation of concerns**. For instance, a `color` prop on a button impacts multiple states (hover, focus, etc.), not to be confused with the color CSS property.
+
+Only the `Box`, `Stack`, `Typography`, and `Grid` components accept the system properties as _props_ for the above reason. These components are designed to solve CSS problems, they are CSS component utilities.
 
 ## Uso
 
@@ -198,7 +218,7 @@ Existem muitas abreviações disponíveis para as propriedades do CSS. Estas sã
     color: 'primary.main', // theme.palette.primary.main
     m: 1, // margin: theme.spacing(1)
     p: {
-      sx: 1, // [theme.breakpoints.up('sx')]: : { padding: theme.spacing(1) }
+      xs: 1, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
     },
     zIndex: 'tooltip', // theme.zIndex.tooltip
   }}
@@ -256,7 +276,7 @@ Se você quiser ter valores responsivos para uma propriedade CSS, você pode usa
 
 #### 1. Pontos de quebra como um objeto
 
-A primeira opção para definir pontos de quebra é defini-los como um objeto, usando os pontos de quebra como chaves. Aqui está o exemplo anterior novamente, usando a sintaxe do objeto.
+A primeira opção para definir pontos de quebra é defini-los como um objeto, usando os pontos de quebra como chaves. Note that each breakpoint property matches the breakpoint and every larger breakpoint. For example, `width: { lg: 100 }` is equivalent to `theme.breakpoints.up('lg')`. Aqui está o exemplo anterior novamente, usando a sintaxe do objeto.
 
 {{"demo": "pages/system/basics/BreakpointsAsObject.js"}}
 
@@ -281,11 +301,12 @@ Você também pode especificar seus próprios pontos de quebras customizados, e 
 ```jsx
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   breakpoints: {
     values: {
+      mobile: 0,
       tablet: 640,
       laptop: 1024,
       desktop: 1280,
@@ -299,13 +320,12 @@ export default function CustomBreakpoints() {
       <Box
         sx={{
           width: {
-            tablet: 100,
+            mobile: 100,
             laptop: 300,
-            desktop: 500,
           },
         }}
       >
-        Este box tem uma largura responsiva
+        This box has a responsive width
       </Box>
     </ThemeProvider>
   );
@@ -349,10 +369,10 @@ Todos os componentes Material-UI do core suportarão a propriedade `sx`.
 
 ### 3. Componentes customizados
 
-Além dos componentes de Material-UI, você também pode adicionar a propriedade `sx` para seus componentes customizados, usando o utilitário `experimentalStyled` de `@material-ui/core/styles`.
+In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@material-ui/core/styles`.
 
 ```jsx
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 
 const Div = styled('div')``;
 ```

@@ -150,7 +150,7 @@ export function createUnarySpacing(theme) {
 }
 
 export function getValue(transformer, propValue) {
-  if (typeof propValue === 'string') {
+  if (typeof propValue === 'string' || propValue == null) {
     return propValue;
   }
 

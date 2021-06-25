@@ -3,7 +3,7 @@
     "aria-label": { "type": { "name": "custom", "description": "string" } },
     "aria-labelledby": { "type": { "name": "string" } },
     "aria-valuetext": { "type": { "name": "custom", "description": "string" } },
-    "classes": { "type": { "name": "object" }, "default": "{}" },
+    "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
     "components": {
       "type": {
@@ -17,6 +17,7 @@
       "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
     },
     "disabled": { "type": { "name": "bool" } },
+    "disableSwap": { "type": { "name": "bool" } },
     "getAriaLabel": { "type": { "name": "func" } },
     "getAriaValueText": { "type": { "name": "func" } },
     "isRtl": { "type": { "name": "bool" } },
@@ -38,6 +39,7 @@
     },
     "scale": { "type": { "name": "func" }, "default": "(x) => x" },
     "step": { "type": { "name": "number" }, "default": "1" },
+    "tabIndex": { "type": { "name": "number" } },
     "track": {
       "type": {
         "name": "enum",
@@ -64,6 +66,7 @@
       "marked",
       "vertical",
       "disabled",
+      "dragging",
       "rail",
       "track",
       "trackFalse",
@@ -72,6 +75,9 @@
       "active",
       "focusVisible",
       "valueLabel",
+      "valueLabelOpen",
+      "valueLabelCircle",
+      "valueLabelLabel",
       "mark",
       "markActive",
       "markLabel",
@@ -82,6 +88,7 @@
       "marked": "MuiSlider-marked",
       "vertical": "MuiSlider-vertical",
       "disabled": "Mui-disabled",
+      "dragging": "MuiSlider-dragging",
       "rail": "MuiSlider-rail",
       "track": "MuiSlider-track",
       "trackFalse": "MuiSlider-trackFalse",
@@ -90,6 +97,9 @@
       "active": "MuiSlider-active",
       "focusVisible": "Mui-focusVisible",
       "valueLabel": "MuiSlider-valueLabel",
+      "valueLabelOpen": "MuiSlider-valueLabelOpen",
+      "valueLabelCircle": "MuiSlider-valueLabelCircle",
+      "valueLabelLabel": "MuiSlider-valueLabelLabel",
       "mark": "MuiSlider-mark",
       "markActive": "MuiSlider-markActive",
       "markLabel": "MuiSlider-markLabel",
@@ -102,5 +112,6 @@
   "filename": "/packages/material-ui-unstyled/src/SliderUnstyled/SliderUnstyled.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/slider/\">Slider</a></li></ul>",
-  "styledComponent": true
+  "styledComponent": true,
+  "cssComponent": false
 }

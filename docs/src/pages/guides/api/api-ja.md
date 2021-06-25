@@ -24,7 +24,7 @@ Api設計が難しいのは、単純に見えるようにしても実際には�
 
 Props supplied to a component which are not explicitly documented are spread to the root element; for instance, the `className` prop is applied to the root.
 
-ここで、`MenuItem`のリプルを無効にするとします。 スプレッド動作を利用できます。 スプレッド動作を利用できます。 スプレッド動作を利用できます。 スプレッド動作を利用できます。 スプレッド動作を利用できます。
+ここで、`MenuItem`のリプルを無効にするとします。 スプレッド動作を利用できます。 スプレッド動作を利用できます。 スプレッド動作を利用できます。 スプレッド動作を利用できます。 スプレッド動作を利用できます。 スプレッド動作を利用できます。
 
 ```jsx
 <MenuItem disableRipple />
@@ -38,7 +38,7 @@ Props supplied to a component which are not explicitly documented are spread to 
 
 ### CSS クラス
 
-All components accept a [`classes`](/customization/components/#overriding-styles-with-classes) prop to customize the styles. クラス設計は、次の2つの制約に答えます: Material Design仕様を実装するのに十分なだけで、可能な限りクラス構造を単純にします。
+All components accept a [`classes`](/customization/how-to-customize/#overriding-styles-with-classes) prop to customize the styles. The classes design answers two constraints: to make the classes structure as simple as possible, while sufficient to implement the Material Design guidelines.
 
 - ルート要素に適用されるクラスは、常に`root`と呼ばれます。
 - 既定のスタイルはすべて1つのクラスにグループ化されます。
@@ -82,7 +82,7 @@ const styles = {
 
 ほとんどの制御対象コンポーネントは、`値`および`onChange`プロパティによって制御されます。 ただし、ディスプレイ関連の状態には、`open`/`onClose`/`onOpen`の組み合わせが使用されます。 In the cases where there are more events, we put the noun first, and then the verb, for example: `onPageChange`, `onRowsChange`.
 
-### boolean vs enum
+### boolean vs. enum
 
 コンポーネントのバリエーションのためのAPIを設計するには、次の二つのオプションがあります。 *boolean*; または*enum*を使用します。 たとえば、異なるタイプのボタンを選択します。 各オプションには長所と短所があります。
 
@@ -107,7 +107,7 @@ const styles = {
 
   このAPIはより冗長です： `<Button>`、`<Button variant="contained">`、`<Button variant="fab">`。
 
-  ただし、無効な組み合わせの使用を防ぎ、 は公開されるプロパティの数を制限し、 は将来新しい値を簡単にサポートできます。
+  However, it prevents an invalid combination from being used, bounds the number of props exposed, and can easily support new values in the future.
 
 Material-UIコンポーネントは、次の規則に従って2つのアプローチの組み合わせを使用します。
 
@@ -118,7 +118,7 @@ Going back to the previous button example; since it requires 3 possible values, 
 
 ### Ref
 
-`ref`はルート要素に転送されます。 `ref`はルート要素に転送されます。 This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element which the component renders. `ref`はルート要素に転送されます。 This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element which the component renders. If you pass a different component via the `component` prop, the ref will be attached to that component instead.
+` ref `はルート要素に転送されます。 `ref`はルート要素に転送されます。 This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element which the component renders. If you pass a different component via the `component` prop, the ref will be attached to that component instead.
 
 ## 用語集
 

@@ -1,3 +1,1 @@
-import createStyles from '@material-ui/styles/createStyles';
-
-export default createStyles;
+export default function createStyles(styles: any): never;

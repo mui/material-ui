@@ -34,17 +34,17 @@ Shown below is a sample link markup used to load the Roboto font from a CDN:
 
 ## Install with npm
 
-You can [install it](https://www.npmjs.com/package/fontsource-roboto) by typing the below command in your terminal:
+You can [install it](https://www.npmjs.com/package/@fontsource/roboto) by typing the below command in your terminal:
 
-`npm install fontsource-roboto`
+`npm install @fontsource/roboto`
 
 Then, you can import it in your entry-point.
 
 ```js
-import 'fontsource-roboto/300.css';
-import 'fontsource-roboto/400.css';
-import 'fontsource-roboto/500.css';
-import 'fontsource-roboto/700.css';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 ```
 
 For more info check out [Fontsource](https://github.com/fontsource/fontsource).
@@ -68,7 +68,7 @@ Hopefully, you might be able to take advantage of the [`typography`](/customizat
 ## Changing the semantic element
 
 The Typography component uses the `variantMapping` prop to associate a UI variant with a semantic element.
-It’s important to realize that the style of a typography component is independent from the semantic underlying element.
+It's important to realize that the style of a typography component is independent from the semantic underlying element.
 
 - You can change the underlying element for a one-off situation with the `component` prop:
 
@@ -81,10 +81,10 @@ It’s important to realize that the style of a typography component is independ
 </Typography>;
 ```
 
-- You can change the mapping [globally using the theme](/customization/globals/#default-props):
+- You can change the mapping [globally using the theme](/customization/theme-components/#default-props):
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiTypography: {
       defaultProps: {
@@ -104,6 +104,19 @@ const theme = createMuiTheme({
     },
   },
 });
+```
+
+## Adding & disabling variants
+
+In addition to using the default typography variants, you can add custom ones, or disable any you don't need. See the [Adding & disabling variants](/customization/typography/#adding-amp-disabling-variants) example for more info.
+
+## System props
+
+As a CSS utility component, the `Typography` supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component.
+For instance, a margin-top:
+
+```jsx
+<Typography mt={2}>
 ```
 
 ## Accessibility

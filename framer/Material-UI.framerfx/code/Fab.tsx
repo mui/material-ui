@@ -4,10 +4,8 @@ import MuiFab from '@material-ui/core/Fab';
 import { Icon } from './Icon';
 
 interface Props {
-  color: 'default' | 'inherit' | 'primary' | 'secondary';
   disabled: boolean;
   href?: string;
-  size: 'large' | 'medium' | 'small';
   icon: string;
   iconTheme: 'Filled' | 'Outlined' | 'Rounded' | 'TwoTone' | 'Sharp';
   label: string;
@@ -31,9 +29,7 @@ export function Fab(props: Props): JSX.Element {
 }
 
 Fab.defaultProps = {
-  color: 'default' as 'default',
   disabled: false,
-  size: 'large' as 'large',
   icon: 'add',
   iconTheme: 'Filled' as 'Filled',
   label: 'extended',
@@ -42,11 +38,6 @@ Fab.defaultProps = {
 };
 
 addPropertyControls(Fab, {
-  color: {
-    type: ControlType.Enum,
-    title: 'Color',
-    options: ['default', 'inherit', 'primary', 'secondary'],
-  },
   disabled: {
     type: ControlType.Boolean,
     title: 'Disabled',
@@ -54,11 +45,6 @@ addPropertyControls(Fab, {
   href: {
     type: ControlType.String,
     title: 'Href',
-  },
-  size: {
-    type: ControlType.Enum,
-    title: 'Size',
-    options: ['large', 'medium', 'small'],
   },
   icon: {
     type: ControlType.String,

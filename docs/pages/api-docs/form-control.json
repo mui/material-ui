@@ -3,7 +3,10 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "color": {
-      "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
+      "type": {
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      },
       "default": "'primary'"
     },
     "component": { "type": { "name": "elementType" } },
@@ -21,15 +24,19 @@
     },
     "required": { "type": { "name": "bool" } },
     "size": {
-      "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
+      "type": {
+        "name": "union",
+        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+      },
       "default": "'medium'"
     },
+    "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
         "name": "enum",
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
       },
-      "default": "'standard'"
+      "default": "'outlined'"
     }
   },
   "name": "FormControl",
@@ -43,5 +50,6 @@
   "filename": "/packages/material-ui/src/FormControl/FormControl.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/checkboxes/\">Checkboxes</a></li>\n<li><a href=\"/components/radio-buttons/\">Radio Buttons</a></li>\n<li><a href=\"/components/switches/\">Switches</a></li>\n<li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

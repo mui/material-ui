@@ -1,5 +1,8 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { ListSubheaderClasses } from './listSubheaderClasses';
 
 export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P & {
@@ -10,20 +13,7 @@ export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'li'
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Styles applied to the root element if `color="primary"`. */
-      colorPrimary?: string;
-      /** Styles applied to the root element if `color="inherit"`. */
-      colorInherit?: string;
-      /** Styles applied to the inner `component` element unless `disableGutters={true}`. */
-      gutters?: string;
-      /** Styles applied to the root element if `inset={true}`. */
-      inset?: string;
-      /** Styles applied to the root element unless `disableSticky={true}`. */
-      sticky?: string;
-    };
+    classes?: Partial<ListSubheaderClasses>;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'default'
@@ -44,6 +34,10 @@ export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'li'
      * @default false
      */
     inset?: boolean;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }
@@ -60,11 +54,9 @@ export interface ListSubheaderTypeMap<P = {}, D extends React.ElementType = 'li'
  */
 declare const ListSubheader: OverridableComponent<ListSubheaderTypeMap>;
 
-export type ListSubheaderClassKey = keyof NonNullable<ListSubheaderTypeMap['props']['classes']>;
-
 export type ListSubheaderProps<
   D extends React.ElementType = ListSubheaderTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<ListSubheaderTypeMap<P, D>, D>;
 
 export default ListSubheader;

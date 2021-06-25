@@ -23,6 +23,7 @@ export const componentSettings = {
       'sizes',
       'src',
       'srcSet',
+      'sx',
       // FIXME: `Union`
       'variant',
     ],
@@ -47,8 +48,11 @@ export const componentSettings = {
       'disableFocusRipple',
       'invisible',
       'overlap',
+      'components',
+      'componentsProps',
       // FIXME: `Union`
       'variant',
+      'sx',
     ],
     propValues: {
       icon: "''",
@@ -66,7 +70,7 @@ export const componentSettings = {
     template: 'badge.txt',
   },
   BottomNavigation: {
-    ignoredProps: ['children', 'onChange', 'ScrollButtonComponent', 'value'],
+    ignoredProps: ['children', 'onChange', 'ScrollButtonComponent', 'value', 'sx'],
     propValues: {
       icons: "['restore', 'favorite', 'location_on', 'folder']",
       labels: "['Recents', 'Favorites', 'Nearby', 'Saved']",
@@ -79,8 +83,11 @@ export const componentSettings = {
     ignoredProps: [
       'children',
       'disableFocusRipple',
+      'sx',
       // union not supported by framer ControlType
       // interface, control types and default value need to be hardcoded
+      'color',
+      'size',
       'variant',
     ],
     propValues: {
@@ -102,8 +109,11 @@ export const componentSettings = {
       'indeterminateIcon',
       'onChange',
       'required',
+      'sx',
       'type',
       'value',
+      'color',
+      'size',
     ],
     propValues: {
       label: "'Checkbox'",
@@ -120,7 +130,10 @@ export const componentSettings = {
       'children',
       'onDelete',
       // FIXME: `Union`
+      'sx',
       'variant',
+      'color',
+      'size',
     ],
     propValues: {
       avatarImageFile: "''",
@@ -137,7 +150,7 @@ export const componentSettings = {
     template: 'chip.txt',
   },
   CircularProgress: {
-    ignoredProps: ['disableShrink', 'size'],
+    ignoredProps: ['color', 'disableShrink', 'size', 'sx'],
     propValues: {
       width: 44,
       height: 44,
@@ -158,6 +171,9 @@ export const componentSettings = {
       'disableFocusRipple',
       // FIXME: `Union`
       'variant',
+      'color',
+      'size',
+      'sx',
     ],
     propValues: {
       icon: "'add'",
@@ -169,7 +185,7 @@ export const componentSettings = {
     template: 'fab.txt',
   },
   Icon: {
-    ignoredProps: ['children', 'fontSize'],
+    ignoredProps: ['children', 'fontSize', 'sx', 'color'],
     propValues: {
       icon: "'add'",
       theme: 'Filled',
@@ -179,7 +195,15 @@ export const componentSettings = {
     template: 'icon.txt',
   },
   IconButton: {
-    ignoredProps: ['children', 'edge', 'disableRipple', 'disableFocusRipple'],
+    ignoredProps: [
+      'children',
+      'color',
+      'size',
+      'edge',
+      'disableRipple',
+      'disableFocusRipple',
+      'sx',
+    ],
     propValues: {
       icon: "'favorite'",
       iconTheme: 'Filled',
@@ -191,7 +215,14 @@ export const componentSettings = {
     template: 'icon_button.txt',
   },
   ListItem: {
-    ignoredProps: ['children', 'ContainerComponent', 'ContainerProps'],
+    ignoredProps: [
+      'children',
+      'ContainerComponent',
+      'ContainerProps',
+      'components',
+      'componentsProps',
+      'sx',
+    ],
     propValues: {
       width: 568,
       height: 48,
@@ -208,7 +239,7 @@ export const componentSettings = {
     template: 'list_item.txt',
   },
   LinearProgress: {
-    ignoredProps: [],
+    ignoredProps: ['color', 'sx'],
     propValues: {
       width: 200,
       height: 5,
@@ -220,6 +251,7 @@ export const componentSettings = {
   },
   Paper: {
     ignoredProps: [
+      'sx',
       // FIXME: `Union`
       'variant',
     ],
@@ -231,7 +263,18 @@ export const componentSettings = {
     template: 'paper.txt',
   },
   Radio: {
-    ignoredProps: ['checked', 'checkedIcon', 'icon', 'onChange', 'required', 'type', 'value'],
+    ignoredProps: [
+      'checked',
+      'checkedIcon',
+      'icon',
+      'onChange',
+      'required',
+      'sx',
+      'type',
+      'value',
+      'color',
+      'size',
+    ],
     propValues: {
       label: "'Radio'",
       width: "'100%'",
@@ -266,6 +309,8 @@ export const componentSettings = {
       'valueLabelFormat',
       'marks',
       'sx',
+      // FIXME: `Union`
+      'color',
     ],
     propValues: {
       width: 160,
@@ -274,7 +319,7 @@ export const componentSettings = {
     template: 'slider.txt',
   },
   SnackbarContent: {
-    ignoredProps: ['action', 'role'],
+    ignoredProps: ['action', 'role', 'sx'],
     propValues: {
       width: 568,
       height: 48,
@@ -284,7 +329,18 @@ export const componentSettings = {
     template: 'snackbar_content.txt',
   },
   Switch: {
-    ignoredProps: ['checkedIcon', 'edge', 'icon', 'onChange', 'required', 'type', 'value'],
+    ignoredProps: [
+      'checkedIcon',
+      'edge',
+      'icon',
+      'onChange',
+      'required',
+      'sx',
+      'type',
+      'value',
+      'color',
+      'size',
+    ],
     propValues: {
       label: "'Switch'",
       width: 100,
@@ -296,6 +352,7 @@ export const componentSettings = {
   },
   Tabs: {
     ignoredProps: [
+      'sx',
       'action',
       'children',
       'onChange',
@@ -325,6 +382,9 @@ export const componentSettings = {
       'select',
       'type',
       'value',
+      'size',
+      'color',
+      'sx',
     ],
     propValues: {
       helperText: "''",
@@ -342,6 +402,7 @@ export const componentSettings = {
       'gutterBottom',
       'internalDeprecatedVariant',
       'paragraph',
+      'sx',
       // FIXME: `Union`
       'variant',
       'variantMapping',

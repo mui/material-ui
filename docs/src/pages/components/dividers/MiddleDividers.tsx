@@ -1,39 +1,16 @@
 import * as React from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import Stack from '@material-ui/core/Stack';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      maxWidth: 360,
-      backgroundColor: theme.palette.background.paper,
-    },
-    chip: {
-      margin: theme.spacing(0.5),
-    },
-    section1: {
-      margin: theme.spacing(3, 2),
-    },
-    section2: {
-      margin: theme.spacing(2),
-    },
-    section3: {
-      margin: theme.spacing(3, 1, 1),
-    },
-  }),
-);
-
 export default function MiddleDividers() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
-      <div className={classes.section1}>
+    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+      <Box sx={{ my: 3, mx: 2 }}>
         <Grid container alignItems="center">
           <Grid item xs>
             <Typography gutterBottom variant="h4" component="div">
@@ -46,26 +23,26 @@ export default function MiddleDividers() {
             </Typography>
           </Grid>
         </Grid>
-        <Typography color="textSecondary" variant="body2">
+        <Typography color="text.secondary" variant="body2">
           Pinstriped cornflower blue cotton blouse takes you on a walk to the park or
           just down the hall.
         </Typography>
-      </div>
+      </Box>
       <Divider variant="middle" />
-      <div className={classes.section2}>
+      <Box sx={{ m: 2 }}>
         <Typography gutterBottom variant="body1">
           Select type
         </Typography>
-        <div>
-          <Chip className={classes.chip} label="Extra Soft" />
-          <Chip className={classes.chip} color="primary" label="Soft" />
-          <Chip className={classes.chip} label="Medium" />
-          <Chip className={classes.chip} label="Hard" />
-        </div>
-      </div>
-      <div className={classes.section3}>
+        <Stack direction="row" spacing={1}>
+          <Chip label="Extra Soft" />
+          <Chip color="primary" label="Soft" />
+          <Chip label="Medium" />
+          <Chip label="Hard" />
+        </Stack>
+      </Box>
+      <Box sx={{ mt: 3, ml: 1, mb: 1 }}>
         <Button>Add to cart</Button>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }

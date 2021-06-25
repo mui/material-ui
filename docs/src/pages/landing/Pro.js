@@ -1,6 +1,6 @@
 import * as React from 'react';
-import classNames from 'classnames';
-import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/styles';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
@@ -34,7 +34,7 @@ export default function Pro() {
   return (
     <Link
       variant="body2"
-      className={classNames(classes.root, 'mui-fixed')}
+      className={clsx(classes.root, 'mui-fixed')}
       href="/getting-started/support/#professional-support-premium"
     >
       {t('getProfessionalSupport')}

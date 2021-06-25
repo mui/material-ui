@@ -7,7 +7,8 @@
     "primary": { "type": { "name": "node" } },
     "primaryTypographyProps": { "type": { "name": "object" } },
     "secondary": { "type": { "name": "node" } },
-    "secondaryTypographyProps": { "type": { "name": "object" } }
+    "secondaryTypographyProps": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "ListItemText",
   "styles": {
@@ -20,5 +21,6 @@
   "filename": "/packages/material-ui/src/ListItemText/ListItemText.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/lists/\">Lists</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

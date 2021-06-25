@@ -1,71 +1,92 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { alpha } from '@material-ui/system';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import { alpha } from '../styles/colorManipulator';
+import useThemeProps from '../styles/useThemeProps';
+import styled from '../styles/styled';
+import tableRowClasses, { getTableRowUtilityClass } from './tableRowClasses';
 
-export const styles = (theme) => ({
+const useUtilityClasses = (styleProps) => {
+  const { classes, selected, hover, head, footer } = styleProps;
+
+  const slots = {
+    root: ['root', selected && 'selected', hover && 'hover', head && 'head', footer && 'footer'],
+  };
+
+  return composeClasses(slots, getTableRowUtilityClass, classes);
+};
+
+const TableRowRoot = styled('tr', {
+  name: 'MuiTableRow',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return [styles.root, styleProps.head && styles.head, styleProps.footer && styles.footer];
+  },
+})(({ theme }) => ({
   /* Styles applied to the root element. */
-  root: {
-    color: 'inherit',
-    display: 'table-row',
-    verticalAlign: 'middle',
-    // We disable the focus ring for mouse, touch and keyboard users.
-    outline: 0,
-    '&$hover:hover': {
-      backgroundColor: theme.palette.action.hover,
-    },
-    '&$selected, &$selected:hover': {
-      backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.selectedOpacity),
+  color: 'inherit',
+  display: 'table-row',
+  verticalAlign: 'middle',
+  // We disable the focus ring for mouse, touch and keyboard users.
+  outline: 0,
+  [`&.${tableRowClasses.hover}:hover`]: {
+    backgroundColor: theme.palette.action.hover,
+  },
+  [`&.${tableRowClasses.selected}`]: {
+    backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+    '&:hover': {
+      backgroundColor: alpha(
+        theme.palette.primary.main,
+        theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+      ),
     },
   },
-  /* Pseudo-class applied to the root element if `selected={true}`. */
-  selected: {},
-  /* Pseudo-class applied to the root element if `hover={true}`. */
-  hover: {},
-  /* Styles applied to the root element if table variant="head". */
-  head: {},
-  /* Styles applied to the root element if table variant="footer". */
-  footer: {},
-});
+}));
 
 const defaultComponent = 'tr';
 /**
  * Will automatically set dynamic row height
  * based on the material table element parent (head, body, etc).
  */
-const TableRow = React.forwardRef(function TableRow(props, ref) {
+const TableRow = React.forwardRef(function TableRow(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiTableRow' });
   const {
-    classes,
     className,
-    component: Component = defaultComponent,
+    component = defaultComponent,
     hover = false,
     selected = false,
     ...other
   } = props;
   const tablelvl2 = React.useContext(Tablelvl2Context);
 
+  const styleProps = {
+    ...props,
+    component,
+    hover,
+    selected,
+    head: tablelvl2 && tablelvl2.variant === 'head',
+    footer: tablelvl2 && tablelvl2.variant === 'footer',
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <Component
+    <TableRowRoot
+      as={component}
       ref={ref}
-      className={clsx(
-        classes.root,
-        {
-          [classes.head]: tablelvl2 && tablelvl2.variant === 'head',
-          [classes.footer]: tablelvl2 && tablelvl2.variant === 'footer',
-          [classes.hover]: hover,
-          [classes.selected]: selected,
-        },
-        className,
-      )}
-      role={Component === defaultComponent ? null : 'row'}
+      className={clsx(classes.root, className)}
+      role={component === defaultComponent ? null : 'row'}
+      styleProps={styleProps}
       {...other}
     />
   );
 });
 
-TableRow.propTypes = {
+TableRow.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -97,6 +118,10 @@ TableRow.propTypes = {
    * @default false
    */
   selected: PropTypes.bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTableRow' })(TableRow);
+export default TableRow;

@@ -5,7 +5,7 @@
 Material-UI utiliza [un factor recomendado de escalado de 8px](https://material.io/design/layout/understanding-layout.html) por defecto.
 
 ```js
-const theme = createMuiTheme();
+const theme = createTheme();
 
 theme.spacing(2); // `${8 * 2}px` = '16px'
 ```
@@ -17,7 +17,7 @@ Puede cambiar la transformacin de espaciado proporcionando:
 - un número
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   spacing: 4,
 });
 
@@ -27,8 +27,8 @@ theme.spacing(2); // `${4 * 2}px` = '8px'
 - una función
 
 ```js
-const theme = createMuiTheme({
-  spacing: factor => `${0.25 * factor}rem`, // (Bootstrap strategy)
+const theme = createTheme({
+  spacing: (factor) => `${0.25 * factor}rem`, // (Bootstrap strategy)
 });
 
 theme.spacing(2); // = 0.25 * 2rem = 0.5rem = 8px
@@ -37,7 +37,7 @@ theme.spacing(2); // = 0.25 * 2rem = 0.5rem = 8px
 - una lista
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   spacing: [0, 4, 8, 16, 32, 64],
 });
 

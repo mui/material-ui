@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -28,28 +29,28 @@ const activeCore = [
     name: 'Sebastian Silbermann',
     github: 'eps1lon',
     twitter: 'sebsilbermann',
-    flag: 'Community team',
+    flag: 'Core components team',
     location: 'Dresden, Germany',
   },
   {
     name: 'Damien Tassone',
     github: 'dtassone',
     twitter: 'madKakoO',
-    flag: 'Enterprise team',
-    location: 'London, UK',
+    flag: 'Advanced components team',
+    location: 'Barcelona, Spain',
   },
   {
     name: 'Marija Najdova',
     github: 'mnajdova',
     twitter: 'marijanajdova',
-    flag: 'Community team',
+    flag: 'Core components team',
     location: 'Skopje, North Macedonia',
   },
   {
     name: 'Danail Hadjiatanasov',
     github: 'DanailH',
     twitter: 'danail_h',
-    flag: 'Enterprise team',
+    flag: 'Advanced components team',
     location: 'Amsterdam, Netherlands',
   },
   {
@@ -58,6 +59,26 @@ const activeCore = [
     twitter: 'JoshWooding_',
     flag: 'Community member, J.P. Morgan',
     location: 'London, UK',
+  },
+  {
+    name: 'Matheus Wichman',
+    github: 'm4theushw',
+    flag: 'Advanced components team',
+    location: 'Esteio, Brazil',
+  },
+  {
+    name: 'Michał Dudak',
+    github: 'michaldudak',
+    twitter: 'michaldudak',
+    flag: 'Core components team',
+    location: 'Silesia, Poland',
+  },
+  {
+    name: 'Siriwat Kunaporn',
+    github: 'siriwatknp',
+    twitter: 'siriwatknp',
+    flag: 'Core components team',
+    location: 'Bangkok, Thailand',
   },
 ];
 
@@ -192,10 +213,10 @@ function Group(props) {
                     <Typography component="h3" variant="h6">
                       {member.name}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary">
+                    <Typography variant="body2" color="text.secondary">
                       {member.flag}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary">
+                    <Typography variant="body2" color="text.secondary">
                       {member.location}
                     </Typography>
                     <Grid container>
@@ -204,6 +225,8 @@ function Group(props) {
                           aria-label="github"
                           component="a"
                           href={`https://github.com/${member.github}`}
+                          target="_blank"
+                          rel="noopener"
                           className={classes.icon}
                         >
                           <GitHubIcon fontSize="inherit" />
@@ -214,6 +237,8 @@ function Group(props) {
                           aria-label="twitter"
                           component="a"
                           href={`https://twitter.com/${member.twitter}`}
+                          target="_blank"
+                          rel="noopener"
                           className={classes.icon}
                         >
                           <TwitterIcon fontSize="inherit" />
@@ -268,4 +293,5 @@ They advise us from time-to-time.`}
   );
 }
 
-export default withStyles(styles)(Team);
+const defaultTheme = createTheme();
+export default withStyles(styles, { defaultTheme })(Team);

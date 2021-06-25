@@ -1,101 +1,116 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import useThemeProps from '../styles/useThemeProps';
+import styled from '../styles/styled';
+import { getContainerUtilityClass } from './containerClasses';
 import capitalize from '../utils/capitalize';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
+const useUtilityClasses = (styleProps) => {
+  const { classes, fixed, disableGutters, maxWidth } = styleProps;
+
+  const slots = {
+    root: [
+      'root',
+      maxWidth && `maxWidth${capitalize(String(maxWidth))}`,
+      fixed && 'fixed',
+      disableGutters && 'disableGutters',
+    ],
+  };
+
+  return composeClasses(slots, getContainerUtilityClass, classes);
+};
+
+const ContainerRoot = styled('div', {
+  name: 'MuiContainer',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return [
+      styles.root,
+      styles[`maxWidth${capitalize(String(styleProps.maxWidth))}`],
+      styleProps.fixed && styles.fixed,
+      styleProps.disableGutters && styles.disableGutters,
+    ];
+  },
+})(
+  ({ theme, styleProps }) => ({
     width: '100%',
     marginLeft: 'auto',
     boxSizing: 'border-box',
     marginRight: 'auto',
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(2),
     display: 'block', // Fix IE11 layout when used with main.
-    [theme.breakpoints.up('sm')]: {
-      paddingLeft: theme.spacing(3),
-      paddingRight: theme.spacing(3),
-    },
-  },
-  /* Styles applied to the root element if `disableGutters={true}`. */
-  disableGutters: {
-    paddingLeft: 0,
-    paddingRight: 0,
-  },
-  /* Styles applied to the root element if `fixed={true}`. */
-  fixed: Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
-    const value = theme.breakpoints.values[breakpoint];
+    ...(!styleProps.disableGutters && {
+      paddingLeft: theme.spacing(2),
+      paddingRight: theme.spacing(2),
+      [theme.breakpoints.up('sm')]: {
+        paddingLeft: theme.spacing(3),
+        paddingRight: theme.spacing(3),
+      },
+    }),
+  }),
+  ({ theme, styleProps }) =>
+    styleProps.fixed &&
+    Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
+      const value = theme.breakpoints.values[breakpoint];
 
-    if (value !== 0) {
-      acc[theme.breakpoints.up(breakpoint)] = {
-        maxWidth: `${value}${theme.breakpoints.unit}`,
-      };
-    }
-    return acc;
-  }, {}),
-  /* Styles applied to the root element if `maxWidth="xs"`. */
-  maxWidthXs: {
-    [theme.breakpoints.up('xs')]: {
-      maxWidth: Math.max(theme.breakpoints.values.xs, 444),
-    },
-  },
-  /* Styles applied to the root element if `maxWidth="sm"`. */
-  maxWidthSm: {
-    [theme.breakpoints.up('sm')]: {
-      maxWidth: `${theme.breakpoints.values.sm}${theme.breakpoints.unit}`,
-    },
-  },
-  /* Styles applied to the root element if `maxWidth="md"`. */
-  maxWidthMd: {
-    [theme.breakpoints.up('md')]: {
-      maxWidth: `${theme.breakpoints.values.md}${theme.breakpoints.unit}`,
-    },
-  },
-  /* Styles applied to the root element if `maxWidth="lg"`. */
-  maxWidthLg: {
-    [theme.breakpoints.up('lg')]: {
-      maxWidth: `${theme.breakpoints.values.lg}${theme.breakpoints.unit}`,
-    },
-  },
-  /* Styles applied to the root element if `maxWidth="xl"`. */
-  maxWidthXl: {
-    [theme.breakpoints.up('xl')]: {
-      maxWidth: `${theme.breakpoints.values.xl}${theme.breakpoints.unit}`,
-    },
-  },
-});
+      if (value !== 0) {
+        acc[theme.breakpoints.up(breakpoint)] = {
+          maxWidth: `${value}${theme.breakpoints.unit}`,
+        };
+      }
+      return acc;
+    }, {}),
+  ({ theme, styleProps }) => ({
+    ...(styleProps.maxWidth === 'xs' && {
+      [theme.breakpoints.up('xs')]: {
+        maxWidth: Math.max(theme.breakpoints.values.xs, 444),
+      },
+    }),
+    ...(styleProps.maxWidth &&
+      styleProps.maxWidth !== 'xs' && {
+        [theme.breakpoints.up(styleProps.maxWidth)]: {
+          maxWidth: `${theme.breakpoints.values[styleProps.maxWidth]}${theme.breakpoints.unit}`,
+        },
+      }),
+  }),
+);
 
-const Container = React.forwardRef(function Container(props, ref) {
+const Container = React.forwardRef(function Container(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiContainer' });
   const {
-    classes,
     className,
-    component: Component = 'div',
+    component = 'div',
     disableGutters = false,
     fixed = false,
     maxWidth = 'lg',
     ...other
   } = props;
 
+  const styleProps = {
+    ...props,
+    component,
+    disableGutters,
+    fixed,
+    maxWidth,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <Component
-      className={clsx(
-        classes.root,
-        {
-          [classes.fixed]: fixed,
-          [classes.disableGutters]: disableGutters,
-          [classes[`maxWidth${capitalize(String(maxWidth))}`]]: maxWidth !== false,
-        },
-        className,
-      )}
+    <ContainerRoot
+      as={component}
+      styleProps={styleProps}
+      className={clsx(classes.root, className)}
       ref={ref}
       {...other}
     />
   );
 });
 
-Container.propTypes = {
+Container.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -136,7 +151,14 @@ Container.propTypes = {
    * Set to `false` to disable `maxWidth`.
    * @default 'lg'
    */
-  maxWidth: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs', false]),
+  maxWidth: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false]),
+    PropTypes.string,
+  ]),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiContainer' })(Container);
+export default Container;

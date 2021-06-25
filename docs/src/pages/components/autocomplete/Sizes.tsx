@@ -1,26 +1,13 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
+import Stack from '@material-ui/core/Stack';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/core/Autocomplete';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: 500,
-      '& > * + *': {
-        marginTop: theme.spacing(2),
-      },
-    },
-  }),
-);
-
 export default function Sizes() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Stack spacing={2} sx={{ width: 500 }}>
       <Autocomplete
         id="size-small-standard"
         size="small"
@@ -124,7 +111,7 @@ export default function Sizes() {
           />
         )}
       />
-    </div>
+    </Stack>
   );
 }
 

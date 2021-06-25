@@ -7,32 +7,64 @@
     "input": "An <code>Input</code> element; does not have to be a material-ui specific <code>Input</code>.",
     "inputProps": "Attributes applied to the <code>select</code> element.",
     "onChange": "Callback fired when a menu item is selected.<br><br><strong>Signature:</strong><br><code>function(event: object) =&gt; void</code><br><em>event:</em> The event source of the callback. You can pull out the new value by accessing <code>event.target.value</code> (string).",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
     "value": "The <code>input</code> value. The DOM API casts this to a string.",
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the select component `root` class." },
-    "select": { "description": "Styles applied to the select component `select` class." },
+    "root": {
+      "description": "Styles applied to the root element."
+    },
+    "select": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the select component `select` class"
+    },
     "filled": {
-      "description": "Styles applied to the select component if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the select component",
       "conditions": "<code>variant=\"filled\"</code>"
     },
     "outlined": {
-      "description": "Styles applied to the select component if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the select component",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
-    "selectMenu": { "description": "Styles applied to the select component `selectMenu` class." },
-    "disabled": { "description": "Pseudo-class applied to the select component `disabled` class." },
-    "icon": { "description": "Styles applied to the icon component." },
-    "iconOpen": { "description": "Styles applied to the icon component if the popup is open." },
+    "standard": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the select component",
+      "conditions": "<code>variant=\"standard\"</code>"
+    },
+    "disabled": {
+      "description": "Pseudo-class applied to {{nodeName}}.",
+      "nodeName": "the select component `disabled` class"
+    },
+    "icon": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the icon component"
+    },
+    "iconOpen": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the icon component",
+      "conditions": "the popup is open"
+    },
     "iconFilled": {
-      "description": "Styles applied to the icon component if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the icon component",
       "conditions": "<code>variant=\"filled\"</code>"
     },
     "iconOutlined": {
-      "description": "Styles applied to the icon component if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the icon component",
       "conditions": "<code>variant=\"outlined\"</code>"
     },
-    "nativeInput": { "description": "Styles applied to the underlying native input component." }
+    "iconStandard": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the icon component",
+      "conditions": "<code>variant=\"standard\"</code>"
+    },
+    "nativeInput": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the underlying native input component"
+    }
   }
 }

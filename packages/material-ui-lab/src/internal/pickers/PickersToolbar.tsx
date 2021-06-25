@@ -3,84 +3,91 @@ import clsx from 'clsx';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import { createStyles, WithStyles, withStyles, Theme } from '@material-ui/core/styles';
-import Toolbar, { ToolbarProps } from '@material-ui/core/Toolbar';
-import { ExtendMui } from './typings/helpers';
+import { styled } from '@material-ui/core/styles';
+import { generateUtilityClasses } from '@material-ui/unstyled';
 import PenIcon from '../svg-icons/Pen';
 import CalendarIcon from '../svg-icons/Calendar';
+import ClockIcon from '../svg-icons/Clock';
 import { ToolbarComponentProps } from './typings/BasePicker';
 
-export const styles = (theme: Theme) => {
-  const toolbarBackground =
-    theme.palette.mode === 'light' ? theme.palette.primary.main : theme.palette.background.default;
+export interface PickersToolbarProps
+  extends Pick<
+    ToolbarComponentProps,
+    'getMobileKeyboardInputViewButtonText' | 'isMobileKeyboardViewOpen' | 'toggleMobileKeyboardView'
+  > {
+  className?: string;
+  viewType?: 'calendar' | 'clock';
+  isLandscape: boolean;
+  landscapeDirection?: 'row' | 'column';
+  penIconClassName?: string;
+  toolbarTitle: React.ReactNode;
+}
 
-  return createStyles({
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'flex-start',
-      justifyContent: 'space-between',
-      paddingTop: 16,
-      paddingBottom: 16,
-      backgroundColor: toolbarBackground,
-      color: theme.palette.getContrastText(toolbarBackground),
-    },
-    toolbarLandscape: {
+const classes = generateUtilityClasses('PrivatePickersToolbar', ['root', 'dateTitleContainer']);
+
+const PickersToolbarRoot = styled('div', { skipSx: true })<{ styleProps: PickersToolbarProps }>(
+  ({ theme, styleProps }) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+    padding: theme.spacing(2, 3),
+    ...(styleProps.isLandscape && {
       height: 'auto',
       maxWidth: 160,
       padding: 16,
       justifyContent: 'flex-start',
       flexWrap: 'wrap',
-    },
-    dateTitleContainer: {
-      flex: 1,
-    },
-  });
-};
+    }),
+  }),
+);
 
-export type PickersToolbarClassKey = keyof WithStyles<typeof styles>['classes'];
+const PickersToolbarGrid = styled(Grid, { skipSx: true })({
+  flex: 1,
+});
 
-export interface PickersToolbarProps
-  extends ExtendMui<ToolbarProps>,
-    Pick<
-      ToolbarComponentProps,
-      | 'getMobileKeyboardInputViewButtonText'
-      | 'isMobileKeyboardViewOpen'
-      | 'toggleMobileKeyboardView'
-    > {
-  toolbarTitle: React.ReactNode;
-  landscapeDirection?: 'row' | 'column';
-  isLandscape: boolean;
-  penIconClassName?: string;
-}
+const getViewTypeIcon = (viewType: 'calendar' | 'clock') =>
+  viewType === 'clock' ? <ClockIcon color="inherit" /> : <CalendarIcon color="inherit" />;
 
-function defaultGetKeyboardInputSwitchingButtonText(isKeyboardInputOpen: boolean) {
+function defaultGetKeyboardInputSwitchingButtonText(
+  isKeyboardInputOpen: boolean,
+  viewType: 'calendar' | 'clock',
+) {
   return isKeyboardInputOpen
-    ? 'text input view is open, go to calendar view'
-    : 'calendar view is open, go to text input view';
+    ? `text input view is open, go to ${viewType} view`
+    : `${viewType} view is open, go to text input view`;
 }
 
-const PickerToolbar: React.FC<PickersToolbarProps & WithStyles<typeof styles>> = ({
-  children,
-  classes,
-  className,
-  getMobileKeyboardInputViewButtonText = defaultGetKeyboardInputSwitchingButtonText,
-  isLandscape,
-  isMobileKeyboardViewOpen,
-  landscapeDirection = 'column',
-  penIconClassName,
-  toggleMobileKeyboardView,
-  toolbarTitle,
-}) => {
+const PickersToolbar = React.forwardRef<
+  HTMLDivElement,
+  React.PropsWithChildren<PickersToolbarProps>
+>(function PickersToolbar(props, ref) {
+  const {
+    children,
+    className,
+    getMobileKeyboardInputViewButtonText = defaultGetKeyboardInputSwitchingButtonText,
+    isLandscape,
+    isMobileKeyboardViewOpen,
+    landscapeDirection = 'column',
+    penIconClassName,
+    toggleMobileKeyboardView,
+    toolbarTitle,
+    viewType = 'calendar',
+  } = props;
+
+  const styleProps = { ...props };
+
   return (
-    <Toolbar
+    <PickersToolbarRoot
+      ref={ref}
       data-mui-test="picker-toolbar"
-      className={clsx(classes.root, { [classes.toolbarLandscape]: isLandscape }, className)}
+      className={clsx(classes.root, className)}
+      styleProps={styleProps}
     >
-      <Typography data-mui-test="picker-toolbar-title" color="inherit" variant="overline">
+      <Typography data-mui-test="picker-toolbar-title" color="text.secondary" variant="overline">
         {toolbarTitle}
       </Typography>
-      <Grid
+      <PickersToolbarGrid
         container
         justifyContent="space-between"
         className={classes.dateTitleContainer}
@@ -93,17 +100,13 @@ const PickerToolbar: React.FC<PickersToolbarProps & WithStyles<typeof styles>> =
           className={penIconClassName}
           color="inherit"
           data-mui-test="toggle-mobile-keyboard-view"
-          aria-label={getMobileKeyboardInputViewButtonText(isMobileKeyboardViewOpen)}
+          aria-label={getMobileKeyboardInputViewButtonText(isMobileKeyboardViewOpen, viewType)}
         >
-          {isMobileKeyboardViewOpen ? (
-            <CalendarIcon color="inherit" />
-          ) : (
-            <PenIcon color="inherit" />
-          )}
+          {isMobileKeyboardViewOpen ? getViewTypeIcon(viewType) : <PenIcon color="inherit" />}
         </IconButton>
-      </Grid>
-    </Toolbar>
+      </PickersToolbarGrid>
+    </PickersToolbarRoot>
   );
-};
+});
 
-export default withStyles(styles, { name: 'MuiPickersToolbar' })(PickerToolbar);
+export default PickersToolbar;

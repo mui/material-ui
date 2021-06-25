@@ -1,39 +1,53 @@
 /* eslint-disable jsx-a11y/anchor-has-content */
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import NextLink from 'next/link';
 import MuiLink from '@material-ui/core/Link';
 
-const NextComposed = React.forwardRef(function NextComposed(props, ref) {
-  // eslint-disable-next-line react/prop-types
-  const { as, href, replace, scroll, passHref, shallow, prefetch, ...other } = props;
+export const NextLinkComposed = React.forwardRef(function NextLinkComposed(props, ref) {
+  const { to, linkAs, href, replace, scroll, passHref, shallow, prefetch, locale, ...other } =
+    props;
 
   return (
     <NextLink
-      href={href}
+      href={to}
       prefetch={prefetch}
-      as={as}
+      as={linkAs}
       replace={replace}
       scroll={scroll}
       shallow={shallow}
       passHref={passHref}
+      locale={locale}
     >
       <a ref={ref} {...other} />
     </NextLink>
   );
 });
 
+NextLinkComposed.propTypes = {
+  href: PropTypes.any,
+  linkAs: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  locale: PropTypes.string,
+  passHref: PropTypes.bool,
+  prefetch: PropTypes.bool,
+  replace: PropTypes.bool,
+  scroll: PropTypes.bool,
+  shallow: PropTypes.bool,
+  to: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
+};
+
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
-function Link(props) {
+const Link = React.forwardRef(function Link(props, ref) {
   const {
-    href,
     activeClassName = 'active',
+    as: linkAs,
     className: classNameProps,
-    innerRef,
-    naked,
+    href,
+    noLinkStyle,
+    role, // Link don't have roles.
     ...other
   } = props;
 
@@ -43,24 +57,40 @@ function Link(props) {
     [activeClassName]: router.pathname === pathname && activeClassName,
   });
 
-  if (naked) {
-    return <NextComposed className={className} ref={innerRef} href={href} {...other} />;
+  const isExternal =
+    typeof href === 'string' && (href.indexOf('http') === 0 || href.indexOf('mailto:') === 0);
+
+  if (isExternal) {
+    if (noLinkStyle) {
+      return <a className={className} href={href} ref={ref} {...other} />;
+    }
+
+    return <MuiLink className={className} href={href} ref={ref} {...other} />;
+  }
+
+  if (noLinkStyle) {
+    return <NextLinkComposed className={className} ref={ref} to={href} {...other} />;
   }
 
   return (
-    <MuiLink component={NextComposed} className={className} ref={innerRef} href={href} {...other} />
+    <MuiLink
+      component={NextLinkComposed}
+      linkAs={linkAs}
+      className={className}
+      ref={ref}
+      to={href}
+      {...other}
+    />
   );
-}
+});
 
 Link.propTypes = {
   activeClassName: PropTypes.string,
-  as: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  as: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   className: PropTypes.string,
-  href: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  naked: PropTypes.bool,
-  onClick: PropTypes.func,
-  prefetch: PropTypes.bool,
+  href: PropTypes.any,
+  noLinkStyle: PropTypes.bool,
+  role: PropTypes.string,
 };
 
-export default React.forwardRef((props, ref) => <Link {...props} innerRef={ref} />);
+export default Link;

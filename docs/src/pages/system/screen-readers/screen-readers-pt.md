@@ -4,10 +4,14 @@
 
 ## Elementos ocultos visualmente
 
-O utilitário de estilo visualmente oculto fornece um mecanismo comum para ocultar elementos visualmente, mas disponibilizando-os para a tecnologia de assistência.
+The visually hidden style utility provides a common mechanism for hidings elements visually, but making them available for assistive technology. It's a simple style object of type `React.CSSProperties`.
 
-### Uso
+{{"demo": "pages/system/screen-readers/VisuallyHiddenUsage.js", "defaultCodeOpen": true}}
 
-O utilitário de estilo visualmente oculto pode ajudar a fornecer o contexto para ler mais links.
+If you don't have a strict CSP policy in place, you can also do:
 
-{{"demo": "pages/system/screen-readers/VisuallyHiddenUsage.js"}}
+```jsx
+import { visuallyHidden } from '@material-ui/utils';
+
+<div style={visuallyHidden}>about how to visually hide elements</div>;
+```

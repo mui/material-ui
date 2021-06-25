@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Omit } from '@material-ui/types';
 import { DrawerProps } from '../Drawer';
 
 export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'open'> {
@@ -22,7 +21,7 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
    */
   disableSwipeToOpen?: boolean;
   /**
-   * Affects how far the drawer must be opened/closed to change his state.
+   * Affects how far the drawer must be opened/closed to change its state.
    * Specified as percent (0-1) of the width of the drawer
    * @default 0.52
    */
@@ -47,7 +46,7 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
    */
   onOpen: React.ReactEventHandler<{}>;
   /**
-   * If `true`, the drawer is open.
+   * If `true`, the component is shown.
    */
   open: boolean;
   /**
@@ -73,6 +72,6 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
  * - [SwipeableDrawer API](https://material-ui.com/api/swipeable-drawer/)
  * - inherits [Drawer API](https://material-ui.com/api/drawer/)
  */
-declare const SwipeableDrawer: React.ComponentType<SwipeableDrawerProps>;
+declare const SwipeableDrawer: React.JSXElementConstructor<SwipeableDrawerProps>;
 
 export default SwipeableDrawer;

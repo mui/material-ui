@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
-import { spy, stub, useFakeTimers } from 'sinon';
-import { act, createClientRender, fireEvent, screen } from 'test/utils';
+import { spy, useFakeTimers } from 'sinon';
+import { act, createClientRender, fireEvent, fireDiscreteEvent, screen } from 'test/utils';
 import Portal from '../Portal';
 import ClickAwayListener from './ClickAwayListener';
 
@@ -32,7 +32,7 @@ describe('<ClickAwayListener />', () => {
    */
   function render(...args) {
     const result = clientRender(...args);
-    clock.next();
+    clock.tick(0);
     return result;
   }
 
@@ -160,50 +160,103 @@ describe('<ClickAwayListener />', () => {
       expect(handleClickAway.callCount).to.equal(0);
 
       fireEvent.click(getByText('Stop inside a portal'));
-      // True-negative, we don't have enough information to do otherwise.
-      expect(handleClickAway.callCount).to.equal(1);
+      // undesired behavior in React 16
+      expect(handleClickAway.callCount).to.equal(React.version.startsWith('16') ? 1 : 0);
     });
 
-    it('should not be called during the same event that mounted the ClickAwayListener', () => {
-      function Test() {
-        const [open, setOpen] = React.useState(false);
+    ['onClick', 'onClickCapture'].forEach((eventListenerName) => {
+      it(`should not be called when ${eventListenerName} mounted the listener`, () => {
+        function Test() {
+          const [open, setOpen] = React.useState(false);
+
+          return (
+            <React.Fragment>
+              <button data-testid="trigger" {...{ [eventListenerName]: () => setOpen(true) }} />
+              {open &&
+                ReactDOM.createPortal(
+                  <ClickAwayListener onClickAway={() => setOpen(false)}>
+                    <div data-testid="child" />
+                  </ClickAwayListener>,
+                  // Needs to be an element between the react root we render into and the element where CAL attaches its native listener (now: `document`).
+                  document.body,
+                )}
+            </React.Fragment>
+          );
+        }
+        render(<Test />);
+
+        fireDiscreteEvent.click(screen.getByTestId('trigger'));
+
+        expect(screen.getByTestId('child')).not.to.equal(null);
+      });
+    });
+
+    it('should be called if an element is interleaved between mousedown and mouseup', () => {
+      /**
+       * @param {Element} element
+       * @returns {Element[]}
+       */
+      function ancestorElements(element) {
+        const ancestors = [];
+        let ancestor = element;
+        while (ancestor !== null) {
+          ancestors.unshift(ancestor);
+          ancestor = ancestor.parentElement;
+        }
+        return ancestors;
+      }
+
+      /**
+       * @param {Element} elementA
+       * @param {Element} elementB
+       * @returns {Element}
+       */
+      function findNearestCommonAncestor(elementA, elementB) {
+        const ancestorsA = ancestorElements(elementA);
+        const ancestorsB = ancestorElements(elementB);
+
+        if (ancestorsA[0] !== ancestorsB[0]) {
+          throw new Error('A and B share no common ancestor');
+        }
+
+        for (let index = 1; index < ancestorsA.length; index += 1) {
+          if (ancestorsA[index] !== ancestorsB[index]) {
+            return ancestorsA[index - 1];
+          }
+        }
+
+        throw new Error('Unreachable reached. This is a bug in findNearestCommonAncestor');
+      }
+
+      const onClickAway = spy();
+      function ClickAwayListenerMouseDownPortal() {
+        const [open, toggleOpen] = React.useReducer((flag) => !flag, false);
 
         return (
-          <React.Fragment>
-            <button data-testid="trigger" onClick={() => setOpen(true)} />
-            {open &&
-              ReactDOM.createPortal(
-                <ClickAwayListener onClickAway={() => setOpen(false)}>
-                  <div data-testid="child" />
-                </ClickAwayListener>,
-                // Needs to be an element between the react root we render into and the element where CAL attaches its native listener (now: `document`).
-                document.body,
-              )}
-          </React.Fragment>
+          <ClickAwayListener onClickAway={onClickAway}>
+            <div data-testid="trigger" onMouseDown={toggleOpen}>
+              {open &&
+                // interleave an element during mousedown so that the following mouseup would not be targetted at the mousedown target.
+                // This results in the click event being targetted at the nearest common ancestor.
+                ReactDOM.createPortal(
+                  <div data-testid="interleaved-element">Portaled Div</div>,
+                  document.body,
+                )}
+            </div>
+          </ClickAwayListener>
         );
       }
-      render(<Test />);
+      render(<ClickAwayListenerMouseDownPortal />);
+      const mouseDownTarget = screen.getByTestId('trigger');
 
-      const consoleSpy = stub(console, 'error');
-      try {
-        // can't wrap in `act()` since that changes update semantics.
-        // We want to simulate a discrete update.
-        // `act()` currently triggers a batched update: https://github.com/facebook/react/blob/3fbd47b86285b6b7bdeab66d29c85951a84d4525/packages/react-reconciler/src/ReactFiberWorkLoop.old.js#L1061-L1064
-        screen.getByTestId('trigger').click();
+      fireDiscreteEvent.mouseDown(mouseDownTarget);
+      const mouseUpTarget = screen.getByTestId('interleaved-element');
+      // https://w3c.github.io/uievents/#events-mouseevent-event-order
+      const clickTarget = findNearestCommonAncestor(mouseDownTarget, mouseUpTarget);
+      fireDiscreteEvent.mouseUp(mouseUpTarget);
+      fireDiscreteEvent.click(clickTarget);
 
-        const missingActWarningsEnabled = typeof jest !== 'undefined';
-        if (missingActWarningsEnabled) {
-          expect(
-            consoleSpy.alwaysCalledWithMatch('not wrapped in act(...)'),
-            consoleSpy.args,
-          ).to.equal(true);
-        } else {
-          expect(consoleSpy.callCount).to.equal(0);
-        }
-        expect(screen.getByTestId('child')).not.to.equal(null);
-      } finally {
-        consoleSpy.restore();
-      }
+      expect(onClickAway.callCount).to.equal(1);
     });
   });
 

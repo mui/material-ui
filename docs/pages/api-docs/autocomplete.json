@@ -1,5 +1,7 @@
 {
   "props": {
+    "options": { "type": { "name": "array" }, "required": true },
+    "renderInput": { "type": { "name": "func" }, "required": true },
     "autoComplete": { "type": { "name": "bool" } },
     "autoHighlight": { "type": { "name": "bool" } },
     "autoSelect": { "type": { "name": "bool" } },
@@ -38,13 +40,13 @@
       "type": { "name": "func" },
       "default": "(option) => option.label ?? option"
     },
-    "getOptionSelected": { "type": { "name": "func" } },
     "groupBy": { "type": { "name": "func" } },
     "handleHomeEndKeys": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
     "id": { "type": { "name": "string" } },
     "includeInputInList": { "type": { "name": "bool" } },
     "inputValue": { "type": { "name": "string" } },
-    "limitTags": { "type": { "name": "number" }, "default": "-1" },
+    "isOptionEqualToValue": { "type": { "name": "func" } },
+    "limitTags": { "type": { "name": "custom", "description": "integer" }, "default": "-1" },
     "ListboxComponent": { "type": { "name": "elementType" }, "default": "'ul'" },
     "ListboxProps": { "type": { "name": "object" } },
     "loading": { "type": { "name": "bool" } },
@@ -59,20 +61,22 @@
     "open": { "type": { "name": "bool" } },
     "openOnFocus": { "type": { "name": "bool" } },
     "openText": { "type": { "name": "string" }, "default": "'Open'" },
-    "options": { "type": { "name": "array" }, "required": true },
     "PaperComponent": { "type": { "name": "elementType" }, "default": "Paper" },
     "PopperComponent": { "type": { "name": "elementType" }, "default": "Popper" },
     "popupIcon": { "type": { "name": "node" }, "default": "<ArrowDropDownIcon />" },
     "renderGroup": { "type": { "name": "func" } },
-    "renderInput": { "type": { "name": "func" }, "required": true },
     "renderOption": { "type": { "name": "func" } },
     "renderTags": { "type": { "name": "func" } },
     "selectOnFocus": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
     "size": {
-      "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
+      "type": {
+        "name": "union",
+        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+      },
       "default": "'medium'"
     },
-    "value": { "type": { "name": "any" } }
+    "sx": { "type": { "name": "object" } },
+    "value": { "type": { "name": "custom", "description": "any" } }
   },
   "name": "Autocomplete",
   "styles": {
@@ -82,6 +86,7 @@
       "focused",
       "tag",
       "tagSizeSmall",
+      "tagSizeMedium",
       "hasPopupIcon",
       "hasClearIcon",
       "inputRoot",
@@ -109,5 +114,6 @@
   "filename": "/packages/material-ui/src/Autocomplete/Autocomplete.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/autocomplete/\">Autocomplete</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

@@ -1,31 +1,12 @@
 import * as React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import { useTheme } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 400,
-    flexGrow: 1,
-  },
-  header: {
-    display: 'flex',
-    alignItems: 'center',
-    height: 50,
-    paddingLeft: theme.spacing(2),
-    backgroundColor: theme.palette.background.default,
-  },
-  stepContent: {
-    height: 255,
-    maxWidth: 400,
-    width: '100%',
-    padding: theme.spacing(2),
-  },
-}));
 
 const steps = [
   {
@@ -49,7 +30,6 @@ const steps = [
 ];
 
 export default function TextMobileStepper() {
-  const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = steps.length;
@@ -63,11 +43,23 @@ export default function TextMobileStepper() {
   };
 
   return (
-    <div className={classes.root}>
-      <Paper square elevation={0} className={classes.header}>
+    <Box sx={{ maxWidth: 400, flexGrow: 1 }}>
+      <Paper
+        square
+        elevation={0}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          height: 50,
+          pl: 2,
+          bgcolor: 'background.default',
+        }}
+      >
         <Typography>{steps[activeStep].label}</Typography>
       </Paper>
-      <div className={classes.stepContent}>{steps[activeStep].description}</div>
+      <Box sx={{ height: 255, maxWidth: 400, width: '100%', p: 2 }}>
+        {steps[activeStep].description}
+      </Box>
       <MobileStepper
         steps={maxSteps}
         position="static"
@@ -97,6 +89,6 @@ export default function TextMobileStepper() {
           </Button>
         }
       />
-    </div>
+    </Box>
   );
 }

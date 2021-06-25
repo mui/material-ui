@@ -3,8 +3,9 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
-    "elevation": { "type": { "name": "number" }, "default": "1" },
+    "elevation": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
     "square": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
         "name": "union",
@@ -54,5 +55,6 @@
   "filename": "/packages/material-ui/src/Paper/Paper.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/cards/\">Cards</a></li>\n<li><a href=\"/components/paper/\">Paper</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

@@ -1,30 +1,22 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { OverridableStringUnion } from '@material-ui/types';
+import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { ImageListClasses } from './imageListClasses';
 
 export interface ImageListPropsVariantOverrides {}
-export type ImageListVariantDefaults = Record<'masonry' | 'quilted' | 'standard' | 'woven', true>;
+
 export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
   props: P & {
     /**
-     * Items that will be in the image list.
+     * The content of the component, normally `ImageListItem`s.
      */
     children: NonNullable<React.ReactNode>;
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Styles applied to the root element if `variant="masonry"`. */
-      masonry?: string;
-      /** Styles applied to the root element if `variant="quilted"`. */
-      quilted?: string;
-      /** Styles applied to the root element if `variant="standard"`. */
-      standard?: string;
-      /** Styles applied to the root element if `variant="woven"`. */
-      woven?: string;
-    };
+    classes?: Partial<ImageListClasses>;
     /**
      * Number of columns.
      * @default 2
@@ -41,10 +33,17 @@ export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     rowHeight?: number | 'auto';
     /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
+    /**
      * The variant to use.
      * @default 'standard'
      */
-    variant?: OverridableStringUnion<ImageListVariantDefaults, ImageListPropsVariantOverrides>;
+    variant?: OverridableStringUnion<
+      'masonry' | 'quilted' | 'standard' | 'woven',
+      ImageListPropsVariantOverrides
+    >;
   };
   defaultComponent: D;
 }
@@ -60,11 +59,9 @@ export interface ImageListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
  */
 declare const ImageList: OverridableComponent<ImageListTypeMap>;
 
-export type ImageListClassKey = keyof NonNullable<ImageListTypeMap['props']['classes']>;
-
 export type ImageListProps<
   D extends React.ElementType = ImageListTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<ImageListTypeMap<P, D>, D>;
 
 export default ImageList;

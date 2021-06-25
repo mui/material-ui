@@ -17,23 +17,52 @@
     "rowsPerPageOptions": "Customizes the options of the rows per page select field. If less than two options are available, no select field will be displayed.",
     "SelectProps": "Props applied to the rows per page <a href=\"/api/select/\"><code>Select</code></a> element.",
     "showFirstButton": "If <code>true</code>, show the first-page button.",
-    "showLastButton": "If <code>true</code>, show the last-page button."
+    "showLastButton": "If <code>true</code>, show the last-page button.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "toolbar": { "description": "Styles applied to the Toolbar component." },
-    "spacer": { "description": "Styles applied to the spacer element." },
-    "caption": {
-      "description": "Styles applied to the caption Typography components if {{conditions}}.",
-      "conditions": "<code>variant=\"caption\"</code>"
+    "root": {
+      "description": "Styles applied to the root element."
     },
-    "selectRoot": { "description": "Styles applied to the Select component root element." },
-    "select": { "description": "Styles applied to the Select component `select` class." },
-    "selectIcon": { "description": "Styles applied to the Select component `icon` class." },
-    "input": { "description": "Styles applied to the `InputBase` component." },
-    "menuItem": { "description": "Styles applied to the MenuItem component." },
+    "toolbar": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Toolbar component"
+    },
+    "spacer": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the spacer element"
+    },
+    "selectLabel": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the select label Typography element"
+    },
+    "selectRoot": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Select component root element"
+    },
+    "select": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Select component `select` class"
+    },
+    "selectIcon": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Select component `icon` class"
+    },
+    "input": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Select component root element"
+    },
+    "menuItem": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the MenuItem component"
+    },
+    "displayedRows": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the displayed rows Typography element"
+    },
     "actions": {
-      "description": "Styles applied to the internal `TablePaginationActions` component."
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the internal `TablePaginationActions` component"
     }
   }
 }

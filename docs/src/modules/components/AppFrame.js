@@ -1,7 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Router, { useRouter } from 'next/router';
-import { withStyles } from '@material-ui/core/styles';
+import { useRouter } from 'next/router';
+import { createTheme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 import NProgress from 'nprogress';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MuiLink from '@material-ui/core/Link';
@@ -25,7 +26,7 @@ import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
-import { LANGUAGES_LABEL, SOURCE_CODE_REPO } from 'docs/src/modules/constants';
+import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
@@ -33,17 +34,24 @@ import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
 
-Router.onRouteChangeStart = () => {
-  NProgress.start();
-};
+function NextNProgressBar() {
+  const router = useRouter();
+  React.useEffect(() => {
+    const nProgressStart = () => NProgress.start();
+    const nProgressDone = () => NProgress.done();
 
-Router.onRouteChangeComplete = () => {
-  NProgress.done();
-};
+    router.events.on('routeChangeStart', nProgressStart);
+    router.events.on('routeChangeComplete', nProgressDone);
+    router.events.on('routeChangeError', nProgressDone);
+    return () => {
+      router.events.off('routeChangeStart', nProgressStart);
+      router.events.off('routeChangeComplete', nProgressDone);
+      router.events.off('routeChangeError', nProgressDone);
+    };
+  }, [router]);
 
-Router.onRouteChangeError = () => {
-  NProgress.done();
-};
+  return <NProgressBar />;
+}
 
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
 function DeferredAppSearch() {
@@ -77,7 +85,9 @@ const styles = (theme) => ({
   },
   root: {
     display: 'flex',
-    backgroundColor: theme.palette.background.level1,
+    ...(theme.palette.mode === 'dark' && {
+      backgroundColor: theme.palette.grey[900],
+    }),
   },
   grow: {
     flex: '1 1 auto',
@@ -105,8 +115,6 @@ const styles = (theme) => ({
     },
   },
   appBar: {
-    color: theme.palette.mode === 'light' ? null : '#fff',
-    backgroundColor: theme.palette.mode === 'light' ? null : theme.palette.background.level2,
     transition: theme.transitions.create('width'),
   },
   language: {
@@ -189,7 +197,7 @@ function AppFrame(props) {
 
   return (
     <div className={classes.root}>
-      <NProgressBar />
+      <NextNProgressBar />
       <CssBaseline />
       <MuiLink color="secondary" className={classes.skipNav} href="#main-content">
         {t('appFrame.skipToContent')}
@@ -198,6 +206,7 @@ function AppFrame(props) {
       <AppBar className={appBarClassName}>
         <Toolbar>
           <IconButton
+            size="large"
             edge="start"
             color="inherit"
             aria-label={t('appFrame.openDrawer')}
@@ -268,7 +277,7 @@ function AppFrame(props) {
             </Menu>
           </NoSsr>
           <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-            <IconButton color="inherit" onClick={handleSettingsDrawerOpen}>
+            <IconButton color="inherit" size="large" onClick={handleSettingsDrawerOpen}>
               <SettingsIcon />
             </IconButton>
           </Tooltip>
@@ -277,9 +286,10 @@ function AppFrame(props) {
             <IconButton
               component="a"
               color="inherit"
-              href={SOURCE_CODE_REPO}
+              href={process.env.SOURCE_CODE_REPO}
               data-ga-event-category="header"
               data-ga-event-action="github"
+              size="large"
             >
               <GitHubIcon />
             </IconButton>
@@ -302,7 +312,8 @@ function AppFrame(props) {
 AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
   classes: PropTypes.object.isRequired,
-  disableDrawer: PropTypes.node,
+  disableDrawer: PropTypes.bool,
 };
 
-export default withStyles(styles)(AppFrame);
+const defaultTheme = createTheme();
+export default withStyles(styles, { defaultTheme })(AppFrame);

@@ -2,6 +2,12 @@
   "props": {
     "appear": { "type": { "name": "bool" }, "default": "true" },
     "children": { "type": { "name": "custom", "description": "element" } },
+    "easing": {
+      "type": {
+        "name": "union",
+        "description": "{ enter?: string, exit?: string }<br>&#124;&nbsp;string"
+      }
+    },
     "in": { "type": { "name": "bool" } },
     "timeout": {
       "type": {
@@ -21,5 +27,6 @@
     "pathname": "https://reactcommunity.org/react-transition-group/transition#Transition-props"
   },
   "demos": "<ul><li><a href=\"/components/popover/\">Popover</a></li>\n<li><a href=\"/components/transitions/\">Transitions</a></li></ul>",
-  "styledComponent": true
+  "styledComponent": true,
+  "cssComponent": false
 }

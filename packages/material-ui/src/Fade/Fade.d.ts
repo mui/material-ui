@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Omit } from '..';
 import { TransitionProps } from '../transitions/transition';
 
 export interface FadeProps extends Omit<TransitionProps, 'children'> {
@@ -13,6 +12,11 @@ export interface FadeProps extends Omit<TransitionProps, 'children'> {
    * A single child content element.
    */
   children?: React.ReactElement<any, any>;
+  /**
+   * The transition timing function.
+   * You may specify a single easing or a object containing enter and exit values.
+   */
+  easing?: TransitionProps['easing'];
   /**
    * If `true`, the component will transition in.
    */
@@ -32,6 +36,7 @@ export interface FadeProps extends Omit<TransitionProps, 'children'> {
 /**
  * The Fade transition is used by the [Modal](https://material-ui.com/components/modal/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
+ *
  * Demos:
  *
  * - [Transitions](https://material-ui.com/components/transitions/)

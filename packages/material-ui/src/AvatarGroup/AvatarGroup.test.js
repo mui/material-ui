@@ -1,25 +1,28 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
+import { createMount, describeConformanceV5, createClientRender } from 'test/utils';
 import Avatar from '@material-ui/core/Avatar';
-import AvatarGroup from './AvatarGroup';
+import AvatarGroup, { avatarGroupClasses as classes } from '@material-ui/core/AvatarGroup';
 
 describe('<AvatarGroup />', () => {
-  const mount = createMount();
-  let classes;
   const render = createClientRender();
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<AvatarGroup />);
-  });
-
-  describeConformance(<AvatarGroup />, () => ({
-    classes,
-    inheritComponent: 'div',
-    mount,
-    refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
-  }));
+  describeConformanceV5(
+    <AvatarGroup>
+      <div />
+    </AvatarGroup>,
+    () => ({
+      classes,
+      inheritComponent: 'div',
+      render,
+      mount,
+      muiName: 'MuiAvatarGroup',
+      refInstanceof: window.HTMLDivElement,
+      testVariantProps: { max: 10, spacing: 'small', variant: 'square' },
+      skip: ['componentProp', 'componentsProp'],
+    }),
+  );
 
   it('should display all the avatars', () => {
     const { container } = render(
@@ -60,8 +63,8 @@ describe('<AvatarGroup />', () => {
       avatarGroup.childNodes.length,
     );
     expect(avatar).to.have.class('MuiAvatar-circular');
-    expect(avatar).to.not.have.class('MuiAvatar-rounded');
-    expect(avatar).to.not.have.class('MuiAvatar-square');
+    expect(avatar).not.to.have.class('MuiAvatar-rounded');
+    expect(avatar).not.to.have.class('MuiAvatar-square');
   });
 
   it('should display all avatars with the specified variant', () => {
@@ -76,8 +79,8 @@ describe('<AvatarGroup />', () => {
       avatarGroup.childNodes.length,
     );
     expect(avatar).to.have.class('MuiAvatar-square');
-    expect(avatar).to.not.have.class('MuiAvatar-circular');
-    expect(avatar).to.not.have.class('MuiAvatar-rounded');
+    expect(avatar).not.to.have.class('MuiAvatar-circular');
+    expect(avatar).not.to.have.class('MuiAvatar-rounded');
   });
 
   it("should respect child's avatar variant prop if specified", () => {
@@ -89,7 +92,7 @@ describe('<AvatarGroup />', () => {
     const avatarGroup = container.firstChild;
     const roundedAvatar = avatarGroup.firstChild;
     expect(roundedAvatar).to.have.class('MuiAvatar-rounded');
-    expect(roundedAvatar).to.not.have.class('MuiAvatar-circular');
-    expect(roundedAvatar).to.not.have.class('MuiAvatar-square');
+    expect(roundedAvatar).not.to.have.class('MuiAvatar-circular');
+    expect(roundedAvatar).not.to.have.class('MuiAvatar-square');
   });
 });

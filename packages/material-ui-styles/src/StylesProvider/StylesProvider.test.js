@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { expect } from 'chai';
 import { create, SheetsRegistry } from 'jss';
@@ -68,7 +68,7 @@ describe('StylesProvider', () => {
     };
 
     function assertRendering(markup, sheetsRegistry) {
-      expect(markup.match('Hello World')).to.not.equal(null);
+      expect(markup.match('Hello World')).not.to.equal(null);
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.toString().length > 10).to.equal(true);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({

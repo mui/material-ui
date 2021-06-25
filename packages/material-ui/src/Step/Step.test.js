@@ -1,31 +1,24 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import Step from './Step';
-import Stepper from '../Stepper';
-import StepLabel from '../StepLabel';
-import StepButton from '../StepButton';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
+import Step, { stepClasses as classes } from '@material-ui/core/Step';
+import Stepper from '@material-ui/core/Stepper';
+import StepLabel, { stepLabelClasses } from '@material-ui/core/StepLabel';
+import StepButton, { stepButtonClasses } from '@material-ui/core/StepButton';
 
 describe('<Step />', () => {
-  let classes;
-  let stepButtonClasses;
-  let stepLabelClasses;
+  const render = createClientRender();
   const mount = createMount();
 
-  const render = createClientRender();
-
-  before(() => {
-    classes = getClasses(<Step />);
-    stepButtonClasses = getClasses(<StepButton />);
-    stepLabelClasses = getClasses(<StepLabel />);
-  });
-
-  describeConformance(<Step />, () => ({
+  describeConformanceV5(<Step />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
+    muiName: 'MuiStep',
+    testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('merges styles and other props into the root node', () => {

@@ -2,188 +2,196 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
-import {
-  SliderUnstyled,
+import { generateUtilityClasses, isHostComponent } from '@material-ui/unstyled';
+import SliderUnstyled, {
   SliderValueLabelUnstyled,
   sliderUnstyledClasses,
   getSliderUtilityClass,
-  isHostComponent,
-} from '@material-ui/unstyled';
+} from '@material-ui/unstyled/SliderUnstyled';
+import { alpha, lighten, darken } from '@material-ui/system';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
-import { alpha, lighten, darken } from '../styles/colorManipulator';
+import styled from '../styles/styled';
+import useTheme from '../styles/useTheme';
 import capitalize from '../utils/capitalize';
 
 export const sliderClasses = {
   ...sliderUnstyledClasses,
-  colorPrimary: getSliderUtilityClass('colorPrimary'),
-  colorSecondary: getSliderUtilityClass('colorSecondary'),
-  thumbColorPrimary: getSliderUtilityClass('thumbColorPrimary'),
-  thumbColorSecondary: getSliderUtilityClass('thumbColorSecondary'),
+  ...generateUtilityClasses('MuiSlider', [
+    'colorPrimary',
+    'colorSecondary',
+    'thumbColorPrimary',
+    'thumbColorSecondary',
+    'sizeSmall',
+    'thumbSizeSmall',
+  ]),
 };
 
-const overridesResolver = (props, styles) => {
-  const {
-    color = 'primary',
-    marks: marksProp = false,
-    max = 100,
-    min = 0,
-    orientation = 'horizontal',
-    step = 1,
-    track = 'normal',
-  } = props;
+export const SliderRoot = styled('span', {
+  name: 'MuiSlider',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-  const marks =
-    marksProp === true && step !== null
-      ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
-          value: min + step * index,
-        }))
-      : marksProp || [];
+    const marks =
+      styleProps.marksProp === true && styleProps.step !== null
+        ? [...Array(Math.floor((styleProps.max - styleProps.min) / styleProps.step) + 1)].map(
+            (_, index) => ({
+              value: styleProps.min + styleProps.step * index,
+            }),
+          )
+        : styleProps.marksProp || [];
 
-  const marked = marks.length > 0 && marks.some((mark) => mark.label);
+    const marked = marks.length > 0 && marks.some((mark) => mark.label);
 
-  const styleOverrides = {
-    ...styles.root,
-    ...styles[`color${capitalize(color)}`],
-    [`&.${sliderClasses.disabled}`]: styles.disabled,
-    ...(marked && styles.marked),
-    ...(orientation === 'vertical' && styles.vertical),
-    ...(track === 'inverted' && styles.trackInverted),
-    ...(track === false && styles.trackFalse),
-    [`& .${sliderClasses.rail}`]: styles.rail,
-    [`& .${sliderClasses.track}`]: styles.track,
-    [`& .${sliderClasses.mark}`]: styles.mark,
-    [`& .${sliderClasses.markLabel}`]: styles.markLabel,
-    [`& .${sliderClasses.valueLabel}`]: styles.valueLabel,
-    [`& .${sliderClasses.thumb}`]: {
-      ...styles.thumb,
-      ...styles[`thumbColor${capitalize(color)}`],
-      [`&.${sliderClasses.disabled}`]: styles.disabled,
-    },
-  };
-
-  return styleOverrides;
-};
-
-export const SliderRoot = experimentalStyled(
-  'span',
-  {},
-  { muiName: 'MuiSlider', overridesResolver },
-)((props) => ({
-  height: 2,
-  width: '100%',
+    return [
+      styles.root,
+      styles[`color${capitalize(styleProps.color)}`],
+      styleProps.size !== 'medium' && styles[`size${capitalize(styleProps.size)}`],
+      marked && styles.marked,
+      styleProps.orientation === 'vertical' && styles.vertical,
+      styleProps.track === 'inverted' && styles.trackInverted,
+      styleProps.track === false && styles.trackFalse,
+    ];
+  },
+})(({ theme, styleProps }) => ({
+  borderRadius: 12,
   boxSizing: 'content-box',
-  padding: '13px 0',
   display: 'inline-block',
   position: 'relative',
   cursor: 'pointer',
   touchAction: 'none',
-  color: props.theme.palette.primary.main,
+  color: theme.palette[styleProps.color].main,
   WebkitTapHighlightColor: 'transparent',
-  ...(props.styleProps.color === 'secondary' && {
-    color: props.theme.palette.secondary.main,
-  }),
-  [`&.${sliderClasses.disabled}`]: {
-    pointerEvents: 'none',
-    cursor: 'default',
-    color: props.theme.palette.grey[400],
-  },
-  ...(props.styleProps.orientation === 'vertical' && {
-    width: 2,
-    height: '100%',
-    padding: '0 13px',
-  }),
-  // The primary input mechanism of the device includes a pointing device of limited accuracy.
-  '@media (pointer: coarse)': {
-    // Reach 42px touch target, about ~8mm on screen.
-    padding: '20px 0',
-    ...(props.styleProps.orientation === 'vertical' && {
-      padding: '0 20px',
+  ...(styleProps.orientation === 'horizontal' && {
+    height: 4,
+    width: '100%',
+    padding: '13px 0',
+    // The primary input mechanism of the device includes a pointing device of limited accuracy.
+    '@media (pointer: coarse)': {
+      // Reach 42px touch target, about ~8mm on screen.
+      padding: '20px 0',
+    },
+    ...(styleProps.size === 'small' && {
+      height: 2,
     }),
-  },
+    ...(styleProps.marked && {
+      marginBottom: 20,
+    }),
+  }),
+  ...(styleProps.orientation === 'vertical' && {
+    height: '100%',
+    width: 4,
+    padding: '0 13px',
+    // The primary input mechanism of the device includes a pointing device of limited accuracy.
+    '@media (pointer: coarse)': {
+      // Reach 42px touch target, about ~8mm on screen.
+      padding: '0 20px',
+    },
+    ...(styleProps.size === 'small' && {
+      width: 2,
+    }),
+    ...(styleProps.marked && {
+      marginRight: 44,
+    }),
+  }),
   '@media print': {
     colorAdjust: 'exact',
   },
-  ...(props.styleProps.marked && {
-    marginBottom: 20,
-    ...(props.styleProps.orientation === 'vertical' && {
-      marginBottom: 'auto',
-      marginRight: 20,
-    }),
-  }),
-  [`& .${sliderClasses.valueLabelCircle}`]: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 32,
-    height: 32,
-    borderRadius: '50% 50% 50% 0',
-    backgroundColor: 'currentColor',
-    transform: 'rotate(-45deg)',
+  [`&.${sliderClasses.disabled}`]: {
+    pointerEvents: 'none',
+    cursor: 'default',
+    color: theme.palette.grey[400],
   },
-  [`& .${sliderClasses.valueLabelLabel}`]: {
-    color: props.theme.palette.primary.contrastText,
-    transform: 'rotate(45deg)',
-    textAlign: 'center',
+  [`&.${sliderClasses.dragging}`]: {
+    [`& .${sliderClasses.thumb}, & .${sliderClasses.track}`]: {
+      transition: 'none',
+    },
   },
 }));
 
-export const SliderRail = experimentalStyled(
-  'span',
-  {},
-  { muiName: 'MuiSlider-rail' },
-)((props) => ({
+export const SliderRail = styled('span', {
+  name: 'MuiSlider',
+  slot: 'Rail',
+  overridesResolver: (props, styles) => styles.rail,
+})(({ styleProps }) => ({
   display: 'block',
   position: 'absolute',
-  width: '100%',
-  height: 2,
-  borderRadius: 1,
+  borderRadius: 'inherit',
   backgroundColor: 'currentColor',
   opacity: 0.38,
-  ...(props.styleProps.orientation === 'vertical' && {
-    height: '100%',
-    width: 2,
+  ...(styleProps.orientation === 'horizontal' && {
+    width: '100%',
+    height: 'inherit',
+    top: '50%',
+    transform: 'translateY(-50%)',
   }),
-  ...(props.styleProps.track === 'inverted' && {
+  ...(styleProps.orientation === 'vertical' && {
+    height: '100%',
+    width: 'inherit',
+    left: '50%',
+    transform: 'translateX(-50%)',
+  }),
+  ...(styleProps.track === 'inverted' && {
     opacity: 1,
   }),
 }));
 
-export const SliderTrack = experimentalStyled(
-  'span',
-  {},
-  { muiName: 'MuiSlider-track' },
-)((props) => ({
-  display: 'block',
-  position: 'absolute',
-  height: 2,
-  borderRadius: 1,
-  backgroundColor: 'currentColor',
-  ...(props.styleProps.orientation === 'vertical' && {
-    width: 2,
-  }),
-  ...(props.styleProps.track === false && {
-    display: 'none',
-  }),
-  ...(props.styleProps.track === 'inverted' && {
-    backgroundColor:
-      // Same logic as the LinearProgress track color
-      props.theme.palette.mode === 'light'
-        ? lighten(props.theme.palette.primary.main, 0.62)
-        : darken(props.theme.palette.primary.main, 0.5),
-  }),
-}));
+export const SliderTrack = styled('span', {
+  name: 'MuiSlider',
+  slot: 'Track',
+  overridesResolver: (props, styles) => styles.track,
+})(({ theme, styleProps }) => {
+  const color = // Same logic as the LinearProgress track color
+    theme.palette.mode === 'light'
+      ? lighten(theme.palette[styleProps.color].main, 0.62)
+      : darken(theme.palette[styleProps.color].main, 0.5);
+  return {
+    display: 'block',
+    position: 'absolute',
+    borderRadius: 'inherit',
+    border: '1px solid currentColor',
+    backgroundColor: 'currentColor',
+    transition: theme.transitions.create(['left', 'width', 'bottom', 'height'], {
+      duration: theme.transitions.duration.shortest,
+    }),
+    ...(styleProps.size === 'small' && {
+      border: 'none',
+    }),
+    ...(styleProps.orientation === 'horizontal' && {
+      height: 'inherit',
+      top: '50%',
+      transform: 'translateY(-50%)',
+    }),
+    ...(styleProps.orientation === 'vertical' && {
+      width: 'inherit',
+      left: '50%',
+      transform: 'translateX(-50%)',
+    }),
+    ...(styleProps.track === false && {
+      display: 'none',
+    }),
+    ...(styleProps.track === 'inverted' && {
+      backgroundColor: color,
+      borderColor: color,
+    }),
+  };
+});
 
-export const SliderThumb = experimentalStyled(
-  'span',
-  {},
-  { muiName: 'MuiSlider-thumb' },
-)((props) => ({
+export const SliderThumb = styled('span', {
+  name: 'MuiSlider',
+  slot: 'Thumb',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    return [
+      styles.thumb,
+      styles[`thumbColor${capitalize(styleProps.color)}`],
+      styleProps.size !== 'medium' && styles[`thumbSize${capitalize(styleProps.size)}`],
+    ];
+  },
+})(({ theme, styleProps }) => ({
   position: 'absolute',
-  width: 12,
-  height: 12,
-  marginLeft: -6,
-  marginTop: -5,
+  width: 20,
+  height: 20,
   boxSizing: 'border-box',
   borderRadius: '50%',
   outline: 0,
@@ -191,115 +199,151 @@ export const SliderThumb = experimentalStyled(
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  transition: props.theme.transitions.create(['box-shadow'], {
-    duration: props.theme.transitions.duration.shortest,
+  transition: theme.transitions.create(['box-shadow', 'left', 'bottom'], {
+    duration: theme.transitions.duration.shortest,
   }),
+  ...(styleProps.size === 'small' && {
+    width: 12,
+    height: 12,
+  }),
+  ...(styleProps.orientation === 'horizontal' && {
+    top: '50%',
+    transform: 'translate(-50%, -50%)',
+  }),
+  ...(styleProps.orientation === 'vertical' && {
+    left: '50%',
+    transform: 'translate(-50%, 50%)',
+  }),
+  '&:before': {
+    position: 'absolute',
+    content: '""',
+    borderRadius: 'inherit',
+    width: '100%',
+    height: '100%',
+    boxShadow: theme.shadows[2],
+    ...(styleProps.size === 'small' && {
+      boxShadow: 'none',
+    }),
+  },
   '&::after': {
     position: 'absolute',
     content: '""',
     borderRadius: '50%',
-    // reach 42px hit target (2 * 15 + thumb diameter)
-    left: -15,
-    top: -15,
-    right: -15,
-    bottom: -15,
+    // 42px is the hit target
+    width: 42,
+    height: 42,
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
   },
   [`&:hover, &.${sliderClasses.focusVisible}`]: {
-    boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.primary.main, 0.16)}`,
+    boxShadow: `0px 0px 0px 8px ${alpha(theme.palette[styleProps.color].main, 0.16)}`,
     '@media (hover: none)': {
       boxShadow: 'none',
     },
   },
   [`&.${sliderClasses.active}`]: {
-    boxShadow: `0px 0px 0px 14px ${alpha(props.theme.palette.primary.main, 0.16)}`,
+    boxShadow: `0px 0px 0px 14px ${alpha(theme.palette[styleProps.color].main, 0.16)}`,
   },
   [`&.${sliderClasses.disabled}`]: {
-    width: 8,
-    height: 8,
-    marginLeft: -4,
-    marginTop: -3,
     '&:hover': {
       boxShadow: 'none',
     },
   },
-  [`&.${sliderClasses.vertical}`]: {
-    marginLeft: -5,
-    marginBottom: -6,
-  },
-  [`&.${sliderClasses.vertical}&.${sliderClasses.disabled}`]: {
-    marginLeft: -3,
-    marginBottom: -4,
-  },
-  ...(props.styleProps.color === 'secondary' && {
-    [`&:hover, &.${sliderClasses.focusVisible}`]: {
-      boxShadow: `0px 0px 0px 8px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
-    },
-    [`&.${sliderClasses.active}`]: {
-      boxShadow: `0px 0px 0px 14px ${alpha(props.theme.palette.secondary.main, 0.16)}`,
-    },
-  }),
 }));
 
-export const SliderValueLabel = experimentalStyled(SliderValueLabelUnstyled)((props) => ({
-  // IE 11 centering bug, to remove from the customization demos once no longer supported
-  left: 'calc(-50% - 4px)',
+export const SliderValueLabel = styled(SliderValueLabelUnstyled, {
+  name: 'MuiSlider',
+  slot: 'ValueLabel',
+  overridesResolver: (props, styles) => styles.valueLabel,
+})(({ theme, styleProps }) => ({
   [`&.${sliderClasses.valueLabelOpen}`]: {
-    transform: 'scale(1) translateY(-10px)',
+    transform: 'translateY(-100%) scale(1)',
   },
   zIndex: 1,
-  ...props.theme.typography.body2,
-  fontSize: props.theme.typography.pxToRem(12),
-  lineHeight: 1.2,
-  transition: props.theme.transitions.create(['transform'], {
-    duration: props.theme.transitions.duration.shortest,
+  whiteSpace: 'nowrap',
+  ...theme.typography.body2,
+  fontWeight: 500,
+  transition: theme.transitions.create(['transform'], {
+    duration: theme.transitions.duration.shortest,
   }),
-  top: -34,
+  top: -10,
   transformOrigin: 'bottom center',
-  transform: 'scale(0)',
+  transform: 'translateY(-100%) scale(0)',
   position: 'absolute',
+  backgroundColor: theme.palette.grey[600],
+  borderRadius: 2,
+  color: theme.palette.common.white,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  padding: '0.25rem 0.75rem',
+  ...(styleProps.size === 'small' && {
+    fontSize: theme.typography.pxToRem(12),
+    padding: '0.25rem 0.5rem',
+  }),
+  '&:before': {
+    position: 'absolute',
+    content: '""',
+    width: 8,
+    height: 8,
+    bottom: 0,
+    left: '50%',
+    transform: 'translate(-50%, 50%) rotate(45deg)',
+    backgroundColor: 'inherit',
+  },
 }));
 
-export const SliderMark = experimentalStyled(
-  'span',
-  {},
-  { muiName: 'MuiSlider-mark' },
-)((props) => ({
+export const SliderMark = styled('span', {
+  name: 'MuiSlider',
+  slot: 'Mark',
+  overridesResolver: (props, styles) => styles.mark,
+})(({ theme, styleProps }) => ({
   position: 'absolute',
   width: 2,
   height: 2,
   borderRadius: 1,
   backgroundColor: 'currentColor',
-  [`&.${sliderClasses.markActive}`]: {
-    backgroundColor: props.theme.palette.background.paper,
+  ...(styleProps.orientation === 'horizontal' && {
+    top: '50%',
+    transform: 'translate(-1px, -50%)',
+  }),
+  ...(styleProps.orientation === 'vertical' && {
+    left: '50%',
+    transform: 'translate(-50%, 1px)',
+  }),
+  ...(styleProps.markActive && {
+    backgroundColor: theme.palette.background.paper,
     opacity: 0.8,
-  },
+  }),
 }));
 
-export const SliderMarkLabel = experimentalStyled(
-  'span',
-  {},
-  { muiName: 'MuiSlider-markLabel' },
-)((props) => ({
-  ...props.theme.typography.body2,
-  color: props.theme.palette.text.secondary,
+export const SliderMarkLabel = styled('span', {
+  name: 'MuiSlider',
+  slot: 'MarkLabel',
+  overridesResolver: (props, styles) => styles.markLabel,
+})(({ theme, styleProps }) => ({
+  ...theme.typography.body2,
+  color: theme.palette.text.secondary,
   position: 'absolute',
-  top: 26,
-  transform: 'translateX(-50%)',
   whiteSpace: 'nowrap',
-  ...(props.styleProps.orientation === 'vertical' && {
-    top: 'auto',
-    left: 26,
-    transform: 'translateY(50%)',
+  ...(styleProps.orientation === 'horizontal' && {
+    top: 30,
+    transform: 'translateX(-50%)',
+    '@media (pointer: coarse)': {
+      top: 40,
+    },
   }),
-  '@media (pointer: coarse)': {
-    top: 40,
-    ...(props.styleProps.orientation === 'vertical' && {
-      left: 31,
-    }),
-  },
-  [`&.${sliderClasses.markLabelActive}`]: {
-    color: props.theme.palette.text.primary,
-  },
+  ...(styleProps.orientation === 'vertical' && {
+    left: 36,
+    transform: 'translateY(50%)',
+    '@media (pointer: coarse)': {
+      left: 44,
+    },
+  }),
+  ...(styleProps.markLabelActive && {
+    color: theme.palette.text.primary,
+  }),
 }));
 
 SliderRoot.propTypes = {
@@ -349,20 +393,24 @@ SliderRoot.propTypes = {
   }),
 };
 
-const extendSliderClasses = (props) => {
-  const { color, classes = {} } = props;
+const extendUtilityClasses = (styleProps) => {
+  const { color, size, classes = {} } = styleProps;
 
   return {
     ...classes,
     root: clsx(
       classes.root,
-      getSliderUtilityClass[`color${capitalize(color)}`],
-      sliderClasses[`color${capitalize(color)}`],
+      getSliderUtilityClass(`color${capitalize(color)}`),
+      classes[`color${capitalize(color)}`],
+      size && getSliderUtilityClass(`size${capitalize(size)}`),
+      size && classes[`size${capitalize(size)}`],
     ),
     thumb: clsx(
       classes.thumb,
-      getSliderUtilityClass[`thumbColor${capitalize(color)}`],
-      sliderClasses[`thumbColor${capitalize(color)}`],
+      getSliderUtilityClass(`thumbColor${capitalize(color)}`),
+      classes[`thumbColor${capitalize(color)}`],
+      size && getSliderUtilityClass(`thumbSize${capitalize(size)}`),
+      size && classes[`thumbSize${capitalize(size)}`],
     ),
   };
 };
@@ -373,13 +421,26 @@ const shouldSpreadStyleProps = (Component) => {
 
 const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
-  const { components = {}, componentsProps = {}, color = 'primary', ...other } = props;
 
-  const classes = extendSliderClasses({ ...props, color });
+  const theme = useTheme();
+  const isRtl = theme.direction === 'rtl';
+
+  const {
+    components = {},
+    componentsProps = {},
+    color = 'primary',
+    size = 'medium',
+    ...other
+  } = props;
+
+  const styleProps = { ...props, color, size };
+
+  const classes = extendUtilityClasses(styleProps);
 
   return (
     <SliderUnstyled
       {...other}
+      isRtl={isRtl}
       components={{
         Root: SliderRoot,
         Rail: SliderRail,
@@ -395,13 +456,25 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
         root: {
           ...componentsProps.root,
           ...(shouldSpreadStyleProps(components.Root) && {
-            styleProps: { ...componentsProps.root?.styleProps, color },
+            styleProps: { ...componentsProps.root?.styleProps, color, size },
           }),
         },
         thumb: {
           ...componentsProps.thumb,
           ...(shouldSpreadStyleProps(components.Thumb) && {
-            styleProps: { ...componentsProps.thumb?.styleProps, color },
+            styleProps: { ...componentsProps.thumb?.styleProps, color, size },
+          }),
+        },
+        track: {
+          ...componentsProps.track,
+          ...(shouldSpreadStyleProps(components.Track) && {
+            styleProps: { ...componentsProps.track?.styleProps, color, size },
+          }),
+        },
+        valueLabel: {
+          ...componentsProps.valueLabel,
+          ...(shouldSpreadStyleProps(components.ValueLabel) && {
+            styleProps: { ...componentsProps.valueLabel?.styleProps, color, size },
           }),
         },
       }}
@@ -411,7 +484,7 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
   );
 });
 
-Slider.propTypes = {
+Slider.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -454,14 +527,16 @@ Slider.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * @default {}
    */
   classes: PropTypes.object,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * The components used for each slot inside the Slider.
    * Either a string to use a HTML element or a component.
@@ -482,24 +557,29 @@ Slider.propTypes = {
    */
   componentsProps: PropTypes.object,
   /**
-   * The default element value. Use when the component is not controlled.
+   * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
   /**
-   * If `true`, the slider is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
   /**
+   * If `true`, the active thumb doesn't swap when moving pointer over a thumb while dragging another thumb.
+   * @default false
+   */
+  disableSwap: PropTypes.bool,
+  /**
    * Accepts a function which returns a string value that provides a user-friendly name for the thumb labels of the slider.
-   *
+   * This is important for screen reader users.
    * @param {number} index The thumb label's index to format.
    * @returns {string}
    */
   getAriaLabel: PropTypes.func,
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current value of the slider.
-   *
+   * This is important for screen reader users.
    * @param {number} value The thumb label's value to format.
    * @param {number} index The thumb label's index to format.
    * @returns {string}
@@ -544,8 +624,11 @@ Slider.propTypes = {
   /**
    * Callback function that is fired when the slider's value changed.
    *
-   * @param {object} event The event source of the callback. **Warning**: This is a generic event not a change event.
+   * @param {object} event The event source of the callback.
+   * You can pull out the new value by accessing `event.target.value` (any).
+   * **Warning**: This is a generic event not a change event.
    * @param {number | number[]} value The new value.
+   * @param {number} activeThumb Index of the currently moved thumb.
    */
   onChange: PropTypes.func,
   /**
@@ -556,7 +639,7 @@ Slider.propTypes = {
    */
   onChangeCommitted: PropTypes.func,
   /**
-   * The slider orientation.
+   * The component orientation.
    * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
@@ -565,6 +648,11 @@ Slider.propTypes = {
    * @default (x) => x
    */
   scale: PropTypes.func,
+  /**
+   * The size of the slider.
+   * @default 'medium'
+   */
+  size: PropTypes.oneOf(['medium', 'small']),
   /**
    * The granularity with which the slider can step through values. (A "discrete" slider.)
    * The `min` prop serves as the origin for the valid values.
@@ -578,6 +666,10 @@ Slider.propTypes = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.object,
+  /**
+   * Tab index attribute of the hidden `input` element.
+   */
+  tabIndex: PropTypes.number,
   /**
    * The track presentation:
    *

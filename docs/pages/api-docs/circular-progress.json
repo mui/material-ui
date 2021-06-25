@@ -3,8 +3,8 @@
     "classes": { "type": { "name": "object" } },
     "color": {
       "type": {
-        "name": "enum",
-        "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
+        "name": "union",
+        "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
       "default": "'primary'"
     },
@@ -13,6 +13,7 @@
       "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" },
       "default": "40"
     },
+    "sx": { "type": { "name": "object" } },
     "thickness": { "type": { "name": "number" }, "default": "3.6" },
     "value": { "type": { "name": "number" }, "default": "0" },
     "variant": {
@@ -42,5 +43,6 @@
   "filename": "/packages/material-ui/src/CircularProgress/CircularProgress.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/progress/\">Progress</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

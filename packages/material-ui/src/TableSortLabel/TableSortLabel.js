@@ -1,68 +1,94 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import clsx from 'clsx';
-import ArrowDownwardIcon from '../internal/svg-icons/ArrowDownward';
-import withStyles from '../styles/withStyles';
+import PropTypes from 'prop-types';
+import * as React from 'react';
 import ButtonBase from '../ButtonBase';
+import ArrowDownwardIcon from '../internal/svg-icons/ArrowDownward';
+import styled from '../styles/styled';
+import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
+import tableSortLabelClasses, { getTableSortLabelUtilityClass } from './tableSortLabelClasses';
 
-export const styles = (theme) => ({
+const useUtilityClasses = (styleProps) => {
+  const { classes, direction, active } = styleProps;
+
+  const slots = {
+    root: ['root', active && 'active'],
+    icon: ['icon', `iconDirection${capitalize(direction)}`],
+  };
+
+  return composeClasses(slots, getTableSortLabelUtilityClass, classes);
+};
+
+const TableSortLabelRoot = styled(ButtonBase, {
+  name: 'MuiTableSortLabel',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return [styles.root, styleProps.active && styles.active];
+  },
+})(({ theme }) => ({
   /* Styles applied to the root element. */
-  root: {
-    cursor: 'pointer',
-    display: 'inline-flex',
-    justifyContent: 'flex-start',
-    flexDirection: 'inherit',
-    alignItems: 'center',
-    '&:focus': {
-      color: theme.palette.text.secondary,
-    },
-    '&:hover': {
-      color: theme.palette.text.secondary,
-      '& $icon': {
-        opacity: 0.5,
-      },
-    },
-    '&$active': {
-      color: theme.palette.text.primary,
-      // && instead of & is a workaround for https://github.com/cssinjs/jss/issues/1045
-      '&& $icon': {
-        opacity: 1,
-        color: theme.palette.text.secondary,
-      },
+  cursor: 'pointer',
+  display: 'inline-flex',
+  justifyContent: 'flex-start',
+  flexDirection: 'inherit',
+  alignItems: 'center',
+  '&:focus': {
+    color: theme.palette.text.secondary,
+  },
+  '&:hover': {
+    color: theme.palette.text.secondary,
+    [`& .${tableSortLabelClasses.icon}`]: {
+      opacity: 0.5,
     },
   },
-  /* Pseudo-class applied to the root element if `active={true}`. */
-  active: {},
+  [`&.${tableSortLabelClasses.active}`]: {
+    color: theme.palette.text.primary,
+    [`& .${tableSortLabelClasses.icon}`]: {
+      opacity: 1,
+      color: theme.palette.text.secondary,
+    },
+  },
+}));
+
+const TableSortLabelIcon = styled('span', {
+  name: 'MuiTableSortLabel',
+  slot: 'Icon',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return [styles.icon, styles[`iconDirection${capitalize(styleProps.direction)}`]];
+  },
+})(({ theme, styleProps }) => ({
   /* Styles applied to the icon component. */
-  icon: {
-    fontSize: 18,
-    marginRight: 4,
-    marginLeft: 4,
-    opacity: 0,
-    transition: theme.transitions.create(['opacity', 'transform'], {
-      duration: theme.transitions.duration.shorter,
-    }),
-    userSelect: 'none',
-  },
+  fontSize: 18,
+  marginRight: 4,
+  marginLeft: 4,
+  opacity: 0,
+  transition: theme.transitions.create(['opacity', 'transform'], {
+    duration: theme.transitions.duration.shorter,
+  }),
+  userSelect: 'none',
   /* Styles applied to the icon component if `direction="desc"`. */
-  iconDirectionDesc: {
+  ...(styleProps.direction === 'desc' && {
     transform: 'rotate(0deg)',
-  },
+  }),
   /* Styles applied to the icon component if `direction="asc"`. */
-  iconDirectionAsc: {
+  ...(styleProps.direction === 'asc' && {
     transform: 'rotate(180deg)',
-  },
-});
+  }),
+}));
 
 /**
  * A button based label for placing inside `TableCell` for column sorting.
  */
-const TableSortLabel = React.forwardRef(function TableSortLabel(props, ref) {
+const TableSortLabel = React.forwardRef(function TableSortLabel(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiTableSortLabel' });
   const {
     active = false,
     children,
-    classes,
     className,
     direction = 'asc',
     hideSortIcon = false,
@@ -70,25 +96,38 @@ const TableSortLabel = React.forwardRef(function TableSortLabel(props, ref) {
     ...other
   } = props;
 
+  const styleProps = {
+    ...props,
+    active,
+    direction,
+    hideSortIcon,
+    IconComponent,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <ButtonBase
-      className={clsx(classes.root, { [classes.active]: active }, className)}
+    <TableSortLabelRoot
+      className={clsx(classes.root, className)}
       component="span"
       disableRipple
+      styleProps={styleProps}
       ref={ref}
       {...other}
     >
       {children}
       {hideSortIcon && !active ? null : (
-        <IconComponent
-          className={clsx(classes.icon, classes[`iconDirection${capitalize(direction)}`])}
+        <TableSortLabelIcon
+          as={IconComponent}
+          className={clsx(classes.icon)}
+          styleProps={styleProps}
         />
       )}
-    </ButtonBase>
+    </TableSortLabelRoot>
   );
 });
 
-TableSortLabel.propTypes = {
+TableSortLabel.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -125,6 +164,10 @@ TableSortLabel.propTypes = {
    * @default ArrowDownwardIcon
    */
   IconComponent: PropTypes.elementType,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTableSortLabel' })(TableSortLabel);
+export default TableSortLabel;

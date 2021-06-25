@@ -7,6 +7,7 @@
     "disableTypography": { "type": { "name": "bool" } },
     "subheader": { "type": { "name": "node" } },
     "subheaderTypographyProps": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "object" } },
     "title": { "type": { "name": "node" } },
     "titleTypographyProps": { "type": { "name": "object" } }
   },
@@ -21,5 +22,6 @@
   "filename": "/packages/material-ui/src/CardHeader/CardHeader.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/cards/\">Cards</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

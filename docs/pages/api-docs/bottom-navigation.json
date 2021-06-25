@@ -5,6 +5,7 @@
     "component": { "type": { "name": "elementType" } },
     "onChange": { "type": { "name": "func" } },
     "showLabels": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } },
     "value": { "type": { "name": "any" } }
   },
   "name": "BottomNavigation",
@@ -14,5 +15,6 @@
   "filename": "/packages/material-ui/src/BottomNavigation/BottomNavigation.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/bottom-navigation/\">Bottom Navigation</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

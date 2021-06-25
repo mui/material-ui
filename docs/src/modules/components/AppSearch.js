@@ -1,8 +1,10 @@
 import * as React from 'react';
 import url from 'url';
+import clsx from 'clsx';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { alpha, useTheme, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { alpha, useTheme } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import SearchIcon from '@material-ui/icons/Search';
 import { handleEvent } from 'docs/src/modules/components/MarkdownLinks';
@@ -83,7 +85,7 @@ const useStyles = makeStyles(
       },
       '& $inputInput': {
         transition: theme.transitions.create('width'),
-        width: 120,
+        width: 140,
         '&:focus': {
           width: 170,
         },
@@ -104,6 +106,28 @@ const useStyles = makeStyles(
     inputInput: {
       padding: theme.spacing(1, 1, 1, 9),
     },
+    shortcut: {
+      fontSize: theme.typography.pxToRem(13),
+      lineHeight: '21px',
+      color: alpha(theme.palette.common.white, 0.8),
+      border: `1px solid ${alpha(theme.palette.common.white, 0.4)}`,
+      backgroundColor: alpha(theme.palette.common.white, 0.1),
+      padding: theme.spacing(0, 0.5),
+      position: 'absolute',
+      right: theme.spacing(1),
+      height: 23,
+      top: 'calc(50% - 11px)',
+      borderRadius: theme.shape.borderRadius,
+      transition: theme.transitions.create('opacity', {
+        duration: theme.transitions.duration.shortest,
+      }),
+      // So that clicks target the input.
+      // Makes the text non selectable but neither is the placeholder or adornment.
+      pointerEvents: 'none',
+      '&.Mui-focused': {
+        opacity: 0,
+      },
+    },
   }),
   { name: 'AppSearch' },
 );
@@ -116,6 +140,7 @@ const useStyles = makeStyles(
 export default function AppSearch() {
   const classes = useStyles();
   const inputRef = React.useRef(null);
+  const [focused, setFocused] = React.useState(false);
   const theme = useTheme();
   const userLanguage = useUserLanguage();
   const t = useTranslate();
@@ -124,11 +149,22 @@ export default function AppSearch() {
 
   React.useEffect(() => {
     const handleKeyDown = (nativeEvent) => {
-      if (
-        ['/', 's'].indexOf(nativeEvent.key) !== -1 &&
-        document.activeElement.nodeName === 'BODY' &&
-        document.activeElement !== inputRef.current
-      ) {
+      if (nativeEvent.defaultPrevented) {
+        return;
+      }
+
+      if (nativeEvent.key === 'Escape' && document.activeElement === inputRef.current) {
+        inputRef.current.blur();
+        return;
+      }
+
+      const matchMainShortcut =
+        (nativeEvent.ctrlKey || nativeEvent.metaKey) && nativeEvent.key === 'k';
+      const matchNonkeyboardNode =
+        ['INPUT', 'SELECT', 'TEXTAREA'].indexOf(document.activeElement.tagName) === -1 &&
+        !document.activeElement.isContentEditable;
+
+      if (matchMainShortcut && matchNonkeyboardNode) {
         nativeEvent.preventDefault();
         inputRef.current.focus();
       }
@@ -205,6 +241,8 @@ export default function AppSearch() {
     }
   }, [desktop, userLanguage]);
 
+  const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+
   return (
     <div className={classes.root} style={{ display: desktop ? 'flex' : 'none' }}>
       <div className={classes.search}>
@@ -219,11 +257,21 @@ export default function AppSearch() {
         type="search"
         id="docsearch-input"
         inputRef={inputRef}
+        onFocus={() => {
+          setFocused(true);
+        }}
+        onBlur={() => {
+          setFocused(false);
+        }}
         classes={{
           root: classes.inputRoot,
           input: classes.inputInput,
         }}
       />
+      <div className={clsx(classes.shortcut, { 'Mui-focused': focused })}>
+        {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+        {macOS ? '⌘' : 'Ctrl+'}K
+      </div>
     </div>
   );
 }

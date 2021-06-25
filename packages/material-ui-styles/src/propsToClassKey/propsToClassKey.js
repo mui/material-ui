@@ -1,13 +1,4 @@
-import MuiError from '@material-ui/utils/macros/MuiError.macro';
-
-// TODO: remove this once the capitalize method is moved to the @material-ui/utils package
-export function capitalize(string) {
-  if (typeof string !== 'string') {
-    throw new MuiError('Material-UI: capitalize(string) expects a string argument.');
-  }
-
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
+import { unstable_capitalize as capitalize } from '@material-ui/utils';
 
 function isEmpty(string) {
   return string.length === 0;
@@ -29,7 +20,9 @@ export default function propsToClassKey(props) {
       if (key === 'color') {
         classKey += isEmpty(classKey) ? props[key] : capitalize(props[key]);
       } else {
-        classKey += `${isEmpty(classKey) ? key : capitalize(key)}${capitalize(props[key])}`;
+        classKey += `${isEmpty(classKey) ? key : capitalize(key)}${capitalize(
+          props[key].toString(),
+        )}`;
       }
     });
 

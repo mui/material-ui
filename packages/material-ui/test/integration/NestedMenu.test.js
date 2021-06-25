@@ -37,8 +37,7 @@ function NestedMenu(props) {
 }
 
 describe('<NestedMenu> integration', () => {
-  // StrictModeViolation: Requires fake timers + act()
-  const render = createClientRender({ strict: false });
+  const render = createClientRender();
 
   it('should not be open', () => {
     const { queryAllByRole } = render(<NestedMenu />);

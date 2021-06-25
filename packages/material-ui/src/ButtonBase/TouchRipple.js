@@ -2,99 +2,125 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { TransitionGroup } from 'react-transition-group';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { keyframes } from '@material-ui/system';
+import styled from '../styles/styled';
+import useThemeProps from '../styles/useThemeProps';
 import Ripple from './Ripple';
+import touchRippleClasses from './touchRippleClasses';
 
 const DURATION = 550;
 export const DELAY_RIPPLE = 80;
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    overflow: 'hidden',
-    pointerEvents: 'none',
-    position: 'absolute',
-    zIndex: 0,
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    borderRadius: 'inherit',
-  },
-  /* Styles applied to the internal `Ripple` components `ripple` class. */
-  ripple: {
-    opacity: 0,
-    position: 'absolute',
-  },
-  /* Styles applied to the internal `Ripple` components `rippleVisible` class. */
-  rippleVisible: {
-    opacity: 0.3,
-    transform: 'scale(1)',
-    animation: `$enter ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
-  },
-  /* Styles applied to the internal `Ripple` components `ripplePulsate` class. */
-  ripplePulsate: {
-    animationDuration: `${theme.transitions.duration.shorter}ms`,
-  },
-  /* Styles applied to the internal `Ripple` components `child` class. */
-  child: {
-    opacity: 1,
-    display: 'block',
-    width: '100%',
-    height: '100%',
-    borderRadius: '50%',
-    backgroundColor: 'currentColor',
-  },
-  /* Styles applied to the internal `Ripple` components `childLeaving` class. */
-  childLeaving: {
-    opacity: 0,
-    animation: `$exit ${DURATION}ms ${theme.transitions.easing.easeInOut}`,
-  },
-  /* Styles applied to the internal `Ripple` components `childPulsate` class. */
-  childPulsate: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    animation: `$pulsate 2500ms ${theme.transitions.easing.easeInOut} 200ms infinite`,
-  },
-  '@keyframes enter': {
-    '0%': {
-      transform: 'scale(0)',
-      opacity: 0.1,
-    },
-    '100%': {
-      transform: 'scale(1)',
-      opacity: 0.3,
-    },
-  },
-  '@keyframes exit': {
-    '0%': {
-      opacity: 1,
-    },
-    '100%': {
-      opacity: 0,
-    },
-  },
-  '@keyframes pulsate': {
-    '0%': {
-      transform: 'scale(1)',
-    },
-    '50%': {
-      transform: 'scale(0.92)',
-    },
-    '100%': {
-      transform: 'scale(1)',
-    },
-  },
+const enterKeyframe = keyframes`
+  0% {
+    transform: scale(0);
+    opacity: 0.1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+`;
+
+const exitKeyframe = keyframes`
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+`;
+
+const pulsateKeyframe = keyframes`
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.92);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+`;
+
+export const TouchRippleRoot = styled('span', {
+  name: 'MuiTouchRipple',
+  slot: 'Root',
+  skipSx: true,
+})({
+  overflow: 'hidden',
+  pointerEvents: 'none',
+  position: 'absolute',
+  zIndex: 0,
+  top: 0,
+  right: 0,
+  bottom: 0,
+  left: 0,
+  borderRadius: 'inherit',
 });
+
+// This `styled()` function invokes keyframes. `styled-components` only supports keyframes
+// in string templates. Do not convert these styles in JS object as it will break.
+export const TouchRippleRipple = styled(Ripple, {
+  name: 'MuiTouchRipple',
+  slot: 'Ripple',
+})`
+  opacity: 0;
+  position: absolute;
+
+  &.${touchRippleClasses.rippleVisible} {
+    opacity: 0.3;
+    transform: scale(1);
+    animation-name: ${enterKeyframe};
+    animation-duration: ${DURATION}ms;
+    animation-timing-function: ${({ theme }) => theme.transitions.easing.easeInOut};
+  }
+
+  &.${touchRippleClasses.ripplePulsate} {
+    animation-duration: ${({ theme }) => theme.transitions.duration.shorter}ms;
+  }
+
+  & .${touchRippleClasses.child} {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: currentColor;
+  }
+
+  & .${touchRippleClasses.childLeaving} {
+    opacity: 0;
+    animation-name: ${exitKeyframe};
+    animation-duration: ${DURATION}ms;
+    animation-timing-function: ${({ theme }) => theme.transitions.easing.easeInOut};
+  }
+
+  & .${touchRippleClasses.childPulsate} {
+    position: absolute;
+    left: 0;
+    top: 0;
+    animation-name: ${pulsateKeyframe};
+    animation-duration: 2500ms;
+    animation-timing-function: ${({ theme }) => theme.transitions.easing.easeInOut};
+    animation-iteration-count: infinite;
+    animation-delay: 200ms;
+  }
+`;
 
 /**
  * @ignore - internal component.
  *
  * TODO v5: Make private
  */
-const TouchRipple = React.forwardRef(function TouchRipple(props, ref) {
-  const { center: centerProp = false, classes, className, ...other } = props;
+const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiTouchRipple' });
+
+  const { center: centerProp = false, classes = {}, className, ...other } = props;
   const [ripples, setRipples] = React.useState([]);
   const nextKey = React.useRef(0);
   const rippleCallback = React.useRef(null);
@@ -128,9 +154,16 @@ const TouchRipple = React.forwardRef(function TouchRipple(props, ref) {
 
       setRipples((oldRipples) => [
         ...oldRipples,
-        <Ripple
+        <TouchRippleRipple
           key={nextKey.current}
-          classes={classes}
+          classes={{
+            ripple: clsx(classes.ripple, touchRippleClasses.ripple),
+            rippleVisible: clsx(classes.rippleVisible, touchRippleClasses.rippleVisible),
+            ripplePulsate: clsx(classes.ripplePulsate, touchRippleClasses.ripplePulsate),
+            child: clsx(classes.child, touchRippleClasses.child),
+            childLeaving: clsx(classes.childLeaving, touchRippleClasses.childLeaving),
+            childPulsate: clsx(classes.childPulsate, touchRippleClasses.childPulsate),
+          }}
           timeout={DURATION}
           pulsate={pulsate}
           rippleX={rippleX}
@@ -239,7 +272,6 @@ const TouchRipple = React.forwardRef(function TouchRipple(props, ref) {
     // The touch interaction occurs too quickly.
     // We still want to show ripple effect.
     if (event.type === 'touchend' && startTimerCommit.current) {
-      event.persist();
       startTimerCommit.current();
       startTimerCommit.current = null;
       startTimer.current = setTimeout(() => {
@@ -270,11 +302,15 @@ const TouchRipple = React.forwardRef(function TouchRipple(props, ref) {
   );
 
   return (
-    <span className={clsx(classes.root, className)} ref={container} {...other}>
+    <TouchRippleRoot
+      className={clsx(classes.root, touchRippleClasses.root, className)}
+      ref={container}
+      {...other}
+    >
       <TransitionGroup component={null} exit>
         {ripples}
       </TransitionGroup>
-    </span>
+    </TouchRippleRoot>
   );
 });
 
@@ -288,11 +324,11 @@ TouchRipple.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object,
   /**
    * @ignore
    */
   className: PropTypes.string,
 };
 
-export default withStyles(styles, { flip: false, name: 'MuiTouchRipple' })(React.memo(TouchRipple));
+export default TouchRipple;

@@ -57,6 +57,7 @@ import { LinkProps } from '../Link';
 import { ListItemAvatarProps } from '../ListItemAvatar';
 import { ListItemIconProps } from '../ListItemIcon';
 import { ListItemProps } from '../ListItem';
+import { ListItemButtonProps } from '../ListItemButton';
 import { ListItemSecondaryActionProps } from '../ListItemSecondaryAction';
 import { ListItemTextProps } from '../ListItemText';
 import { ListProps } from '../List';
@@ -113,7 +114,6 @@ import { ToolbarProps } from '../Toolbar';
 import { TooltipProps } from '../Tooltip';
 import { TouchRippleProps } from '../ButtonBase/TouchRipple';
 import { TypographyProps } from '../Typography';
-import { WithWidthOptions } from '../withWidth';
 
 export type ComponentsProps = {
   [Name in keyof ComponentsPropsList]?: Partial<ComponentsPropsList[Name]>;
@@ -178,6 +178,7 @@ export interface ComponentsPropsList {
   MuiLink: LinkProps;
   MuiList: ListProps;
   MuiListItem: ListItemProps;
+  MuiListItemButton: ListItemButtonProps;
   MuiListItemAvatar: ListItemAvatarProps;
   MuiListItemIcon: ListItemIconProps;
   MuiListItemSecondaryAction: ListItemSecondaryActionProps;
@@ -235,5 +236,4 @@ export interface ComponentsPropsList {
   MuiTouchRipple: TouchRippleProps;
   MuiTypography: TypographyProps;
   MuiUseMediaQuery: useMediaQueryOptions;
-  MuiWithWidth: WithWidthOptions;
 }

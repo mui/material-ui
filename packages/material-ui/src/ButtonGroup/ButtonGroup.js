@@ -2,178 +2,176 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useThemeVariants } from '@material-ui/styles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { alpha } from '@material-ui/system';
 import capitalize from '../utils/capitalize';
-import { alpha } from '../styles/colorManipulator';
-import withStyles from '../styles/withStyles';
-import Button from '../Button';
+import styled from '../styles/styled';
+import useThemeProps from '../styles/useThemeProps';
+import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupClasses';
 
-// Force a side effect so we don't have any override priority issue.
-// eslint-disable-next-line @typescript-eslint/no-unused-expressions
-Button.styles;
+const overridesResolver = (props, styles) => {
+  const { styleProps } = props;
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    display: 'inline-flex',
-    borderRadius: theme.shape.borderRadius,
-  },
-  /* Styles applied to the root element if `variant="contained"`. */
-  contained: {
+  return [
+    { [`& .${buttonGroupClasses.grouped}`]: styles.grouped },
+    {
+      [`& .${buttonGroupClasses.grouped}`]: styles[`grouped${capitalize(styleProps.orientation)}`],
+    },
+    { [`& .${buttonGroupClasses.grouped}`]: styles[`grouped${capitalize(styleProps.variant)}`] },
+    {
+      [`& .${buttonGroupClasses.grouped}`]:
+        styles[`grouped${capitalize(styleProps.variant)}${capitalize(styleProps.orientation)}`],
+    },
+    {
+      [`& .${buttonGroupClasses.grouped}`]:
+        styles[`grouped${capitalize(styleProps.variant)}${capitalize(styleProps.color)}`],
+    },
+    styles.root,
+    styles[styleProps.variant],
+    styleProps.disableElevation === true && styles.disableElevation,
+    styleProps.fullWidth && styles.fullWidth,
+    styleProps.orientation === 'vertical' && styles.vertical,
+  ];
+};
+
+const useUtilityClasses = (styleProps) => {
+  const { classes, color, disabled, disableElevation, fullWidth, orientation, variant } =
+    styleProps;
+
+  const slots = {
+    root: [
+      'root',
+      variant,
+      orientation === 'vertical' && 'vertical',
+      fullWidth && 'fullWidth',
+      disableElevation && 'disableElevation',
+    ],
+    grouped: [
+      'grouped',
+      `grouped${capitalize(orientation)}`,
+      `grouped${capitalize(variant)}`,
+      `grouped${capitalize(variant)}${capitalize(orientation)}`,
+      color !== 'default' && `grouped${capitalize(variant)}${capitalize(color)}`,
+      disabled && 'disabled',
+    ],
+  };
+
+  return composeClasses(slots, getButtonGroupUtilityClass, classes);
+};
+
+const ButtonGroupRoot = styled('div', {
+  name: 'MuiButtonGroup',
+  slot: 'Root',
+  overridesResolver,
+})(({ theme, styleProps }) => ({
+  display: 'inline-flex',
+  borderRadius: theme.shape.borderRadius,
+  ...(styleProps.variant === 'contained' && {
     boxShadow: theme.shadows[2],
-  },
-  /* Styles applied to the root element if `variant="outlined"`. */
-  outlined: {},
-  /* Styles applied to the root element if `variant="text"`. */
-  text: {},
-  /* Styles applied to the root element if `disableElevation={true}`. */
-  disableElevation: {
+  }),
+  ...(styleProps.disableElevation && {
     boxShadow: 'none',
-  },
-  /* Pseudo-class applied to child elements if `disabled={true}`. */
-  disabled: {},
-  /* Styles applied to the root element if `fullWidth={true}`. */
-  fullWidth: {
+  }),
+  ...(styleProps.fullWidth && {
     width: '100%',
-  },
-  /* Styles applied to the root element if `orientation="vertical"`. */
-  vertical: {
+  }),
+  ...(styleProps.orientation === 'vertical' && {
     flexDirection: 'column',
-  },
-  /* Styles applied to the children. */
-  grouped: {
+  }),
+  [`& .${buttonGroupClasses.grouped}`]: {
     minWidth: 40,
-  },
-  /* Styles applied to the children if `orientation="horizontal"`. */
-  groupedHorizontal: {
-    '&:not(:first-child)': {
-      borderTopLeftRadius: 0,
-      borderBottomLeftRadius: 0,
+    '&:not(:first-of-type)': {
+      ...(styleProps.orientation === 'horizontal' && {
+        borderTopLeftRadius: 0,
+        borderBottomLeftRadius: 0,
+      }),
+      ...(styleProps.orientation === 'vertical' && {
+        borderTopRightRadius: 0,
+        borderTopLeftRadius: 0,
+      }),
+      ...(styleProps.variant === 'outlined' &&
+        styleProps.orientation === 'horizontal' && {
+          marginLeft: -1,
+        }),
+      ...(styleProps.variant === 'outlined' &&
+        styleProps.orientation === 'vertical' && {
+          marginTop: -1,
+        }),
     },
-    '&:not(:last-child)': {
-      borderTopRightRadius: 0,
-      borderBottomRightRadius: 0,
+    '&:not(:last-of-type)': {
+      ...(styleProps.orientation === 'horizontal' && {
+        borderTopRightRadius: 0,
+        borderBottomRightRadius: 0,
+      }),
+      ...(styleProps.orientation === 'vertical' && {
+        borderBottomRightRadius: 0,
+        borderBottomLeftRadius: 0,
+      }),
+      ...(styleProps.variant === 'text' &&
+        styleProps.orientation === 'horizontal' && {
+          borderRight: `1px solid ${
+            theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+          }`,
+        }),
+      ...(styleProps.variant === 'text' &&
+        styleProps.orientation === 'vertical' && {
+          borderBottom: `1px solid ${
+            theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+          }`,
+        }),
+      ...(styleProps.variant === 'text' &&
+        styleProps.color !== 'inherit' && {
+          borderColor: alpha(theme.palette[styleProps.color].main, 0.5),
+        }),
+      ...(styleProps.variant === 'outlined' &&
+        styleProps.orientation === 'horizontal' && {
+          borderRightColor: 'transparent',
+        }),
+      ...(styleProps.variant === 'outlined' &&
+        styleProps.orientation === 'vertical' && {
+          borderBottomColor: 'transparent',
+        }),
+      ...(styleProps.variant === 'contained' &&
+        styleProps.orientation === 'horizontal' && {
+          borderRight: `1px solid ${theme.palette.grey[400]}`,
+          [`&.${buttonGroupClasses.disabled}`]: {
+            borderRight: `1px solid ${theme.palette.action.disabled}`,
+          },
+        }),
+      ...(styleProps.variant === 'contained' &&
+        styleProps.orientation === 'vertical' && {
+          borderBottom: `1px solid ${theme.palette.grey[400]}`,
+          [`&.${buttonGroupClasses.disabled}`]: {
+            borderBottom: `1px solid ${theme.palette.action.disabled}`,
+          },
+        }),
+      ...(styleProps.variant === 'contained' &&
+        styleProps.color !== 'inherit' && {
+          borderColor: theme.palette[styleProps.color].dark,
+        }),
     },
-  },
-  /* Styles applied to the children if `orientation="vertical"`. */
-  groupedVertical: {
-    '&:not(:first-child)': {
-      borderTopRightRadius: 0,
-      borderTopLeftRadius: 0,
-    },
-    '&:not(:last-child)': {
-      borderBottomRightRadius: 0,
-      borderBottomLeftRadius: 0,
-    },
-  },
-  /* Styles applied to the children if `variant="text"`. */
-  groupedText: {},
-  /* Styles applied to the children if `variant="text"` and `orientation="horizontal"`. */
-  groupedTextHorizontal: {
-    '&:not(:last-child)': {
-      borderRight: `1px solid ${
-        theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-      }`,
-    },
-  },
-  /* Styles applied to the children if `variant="text"` and `orientation="vertical"`. */
-  groupedTextVertical: {
-    '&:not(:last-child)': {
-      borderBottom: `1px solid ${
-        theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-      }`,
-    },
-  },
-  /* Styles applied to the children if `variant="text"` and `color="primary"`. */
-  groupedTextPrimary: {
-    '&:not(:last-child)': {
-      borderColor: alpha(theme.palette.primary.main, 0.5),
-    },
-  },
-  /* Styles applied to the children if `variant="text"` and `color="secondary"`. */
-  groupedTextSecondary: {
-    '&:not(:last-child)': {
-      borderColor: alpha(theme.palette.secondary.main, 0.5),
-    },
-  },
-  /* Styles applied to the children if `variant="outlined"`. */
-  groupedOutlined: {},
-  /* Styles applied to the children if `variant="outlined"` and `orientation="horizontal"`. */
-  groupedOutlinedHorizontal: {
-    '&:not(:first-child)': {
-      marginLeft: -1,
-    },
-    '&:not(:last-child)': {
-      borderRightColor: 'transparent',
-    },
-  },
-  /* Styles applied to the children if `variant="outlined"` and `orientation="vertical"`. */
-  groupedOutlinedVertical: {
-    '&:not(:first-child)': {
-      marginTop: -1,
-    },
-    '&:not(:last-child)': {
-      borderBottomColor: 'transparent',
-    },
-  },
-  /* Styles applied to the children if `variant="outlined"` and `color="primary"`. */
-  groupedOutlinedPrimary: {
     '&:hover': {
-      borderColor: theme.palette.primary.main,
+      ...(styleProps.variant === 'outlined' &&
+        styleProps.color !== 'inherit' && {
+          borderColor: theme.palette[styleProps.color].main,
+        }),
+      ...(styleProps.variant === 'contained' && {
+        boxShadow: 'none',
+      }),
     },
-  },
-  /* Styles applied to the children if `variant="outlined"` and `color="secondary"`. */
-  groupedOutlinedSecondary: {
-    '&:hover': {
-      borderColor: theme.palette.secondary.main,
-    },
-  },
-  /* Styles applied to the children if `variant="contained"`. */
-  groupedContained: {
-    boxShadow: 'none',
-    '&:hover': {
+    ...(styleProps.variant === 'contained' && {
       boxShadow: 'none',
-    },
+    }),
   },
-  /* Styles applied to the children if `variant="contained"` and `orientation="horizontal"`. */
-  groupedContainedHorizontal: {
-    '&:not(:last-child)': {
-      borderRight: `1px solid ${theme.palette.grey[400]}`,
-      '&$disabled': {
-        borderRight: `1px solid ${theme.palette.action.disabled}`,
-      },
-    },
-  },
-  /* Styles applied to the children if `variant="contained"` and `orientation="vertical"`. */
-  groupedContainedVertical: {
-    '&:not(:last-child)': {
-      borderBottom: `1px solid ${theme.palette.grey[400]}`,
-      '&$disabled': {
-        borderBottom: `1px solid ${theme.palette.action.disabled}`,
-      },
-    },
-  },
-  /* Styles applied to the children if `variant="contained"` and `color="primary"`. */
-  groupedContainedPrimary: {
-    '&:not(:last-child)': {
-      borderColor: theme.palette.primary.dark,
-    },
-  },
-  /* Styles applied to the children if `variant="contained"` and `color="secondary"`. */
-  groupedContainedSecondary: {
-    '&:not(:last-child)': {
-      borderColor: theme.palette.secondary.dark,
-    },
-  },
-});
+}));
 
-const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
+const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiButtonGroup' });
   const {
     children,
-    classes,
     className,
     color = 'primary',
-    component: Component = 'div',
+    component = 'div',
     disabled = false,
     disableElevation = false,
     disableFocusRipple = false,
@@ -185,49 +183,29 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
     ...other
   } = props;
 
-  const themeVariantsClasses = useThemeVariants(
-    {
-      ...props,
-      color,
-      component: Component,
-      disabled,
-      disableElevation,
-      disableFocusRipple,
-      disableRipple,
-      fullWidth,
-      orientation,
-      size,
-      variant,
-    },
-    'MuiButtonGroup',
-  );
+  const styleProps = {
+    ...props,
+    color,
+    component,
+    disabled,
+    disableElevation,
+    disableFocusRipple,
+    disableRipple,
+    fullWidth,
+    orientation,
+    size,
+    variant,
+  };
 
-  const buttonClassName = clsx(
-    classes.grouped,
-    classes[`grouped${capitalize(orientation)}`],
-    classes[`grouped${capitalize(variant)}`],
-    classes[`grouped${capitalize(variant)}${capitalize(orientation)}`],
-    classes[`grouped${capitalize(variant)}${color !== 'default' ? capitalize(color) : ''}`],
-    {
-      [classes.disabled]: disabled,
-    },
-  );
+  const classes = useUtilityClasses(styleProps);
 
   return (
-    <Component
+    <ButtonGroupRoot
+      as={component}
       role="group"
-      className={clsx(
-        classes.root,
-        {
-          [classes.contained]: variant === 'contained',
-          [classes.vertical]: orientation === 'vertical',
-          [classes.fullWidth]: fullWidth,
-          [classes.disableElevation]: disableElevation,
-        },
-        themeVariantsClasses,
-        className,
-      )}
+      className={clsx(classes.root, className)}
       ref={ref}
+      styleProps={styleProps}
       {...other}
     >
       {React.Children.map(children, (child) => {
@@ -247,7 +225,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
         }
 
         return React.cloneElement(child, {
-          className: clsx(buttonClassName, child.props.className),
+          className: clsx(classes.grouped, child.props.className),
           color: child.props.color || color,
           disabled: child.props.disabled || disabled,
           disableElevation: child.props.disableElevation || disableElevation,
@@ -258,17 +236,17 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(props, ref) {
           variant: child.props.variant || variant,
         });
       })}
-    </Component>
+    </ButtonGroupRoot>
   );
 });
 
-ButtonGroup.propTypes = {
+ButtonGroup.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The content of the button group.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
@@ -283,14 +261,17 @@ ButtonGroup.propTypes = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes.oneOf(['inherit', 'primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['inherit', 'primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, the buttons are disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -315,16 +296,20 @@ ButtonGroup.propTypes = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * The group orientation (layout flow direction).
+   * The component orientation (layout flow direction).
    * @default 'horizontal'
    */
   orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
-   * The size of the button.
+   * The size of the component.
    * `small` is equivalent to the dense button styling.
    * @default 'medium'
    */
   size: PropTypes.oneOf(['large', 'medium', 'small']),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
   /**
    * The variant to use.
    * @default 'outlined'
@@ -335,4 +320,4 @@ ButtonGroup.propTypes = {
   ]),
 };
 
-export default withStyles(styles, { name: 'MuiButtonGroup' })(ButtonGroup);
+export default ButtonGroup;

@@ -1,5 +1,5 @@
 ---
-title: React Alert component
+title: Composant React Alerte
 components: Alert, AlertTitle
 githubLabel: 'component: Alert'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
@@ -43,7 +43,7 @@ Vous pouvez utiliser un [composant de transition](/components/transitions/) tel 
 
 La propriété `icon` vous permet d'ajouter une icône au début du composant d'alerte. Cela remplacera l'icône par défaut pour la sévérité spécifiée.
 
-Vous pouvez changer la sévérité par défaut pour le mapping d'icône avec la propriété `iconMapping`. Ceci peut être défini globalement en utilisant [la personnalisation du thème](/customization/globals/#default-props).
+Vous pouvez changer la sévérité par défaut pour le mapping d'icône avec la propriété `iconMapping`. Cela peut être défini globalement en utilisant la [personnalisation du thème](/customization/theme-components/#default-props).
 
 Définir la propriété `icon` à `false` supprimera complètement l'icône.
 

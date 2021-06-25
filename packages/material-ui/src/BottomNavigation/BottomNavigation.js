@@ -2,32 +2,61 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import styled from '../styles/styled';
+import useThemeProps from '../styles/useThemeProps';
+import { getBottomNavigationUtilityClass } from './bottomNavigationClasses';
 
-export const styles = (theme) => ({
+const useUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+  };
+
+  return composeClasses(slots, getBottomNavigationUtilityClass, classes);
+};
+
+const BottomNavigationRoot = styled('div', {
+  name: 'MuiBottomNavigation',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(({ theme }) => ({
   /* Styles applied to the root element. */
-  root: {
-    display: 'flex',
-    justifyContent: 'center',
-    height: 56,
-    backgroundColor: theme.palette.background.paper,
-  },
-});
+  display: 'flex',
+  justifyContent: 'center',
+  height: 56,
+  backgroundColor: theme.palette.background.paper,
+}));
 
-const BottomNavigation = React.forwardRef(function BottomNavigation(props, ref) {
+const BottomNavigation = React.forwardRef(function BottomNavigation(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiBottomNavigation' });
   const {
     children,
-    classes,
     className,
-    component: Component = 'div',
+    component = 'div',
     onChange,
     showLabels = false,
     value,
     ...other
   } = props;
 
+  const styleProps = {
+    ...props,
+    component,
+    showLabels,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <Component className={clsx(classes.root, className)} ref={ref} {...other}>
+    <BottomNavigationRoot
+      as={component}
+      className={clsx(classes.root, className)}
+      ref={ref}
+      styleProps={styleProps}
+      {...other}
+    >
       {React.Children.map(children, (child, childIndex) => {
         if (!React.isValidElement(child)) {
           return null;
@@ -53,11 +82,11 @@ const BottomNavigation = React.forwardRef(function BottomNavigation(props, ref) 
           onChange,
         });
       })}
-    </Component>
+    </BottomNavigationRoot>
   );
 });
 
-BottomNavigation.propTypes = {
+BottomNavigation.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -93,9 +122,13 @@ BottomNavigation.propTypes = {
    */
   showLabels: PropTypes.bool,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The value of the currently selected `BottomNavigationAction`.
    */
   value: PropTypes.any,
 };
 
-export default withStyles(styles, { name: 'MuiBottomNavigation' })(BottomNavigation);
+export default BottomNavigation;

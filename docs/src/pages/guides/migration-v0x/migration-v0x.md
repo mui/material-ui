@@ -4,9 +4,9 @@
 
 ## FAQ
 
-### Woah - the API is way different! Does that mean 1.0 is completely different, I’ll have to learn the basics all over again, and migrating will be practically impossible?
+### Woah - the API is way different! Does that mean 1.0 is completely different, I'll have to learn the basics all over again, and migrating will be practically impossible?
 
-I’m glad you asked! The answer is no. The core concepts haven’t changed.
+I'm glad you asked! The answer is no. The core concepts haven't changed.
 You will notice that the API provides more flexibility, but this has a cost –
 lower-level components that abstract less complexity.
 
@@ -17,7 +17,7 @@ The ecosystem has evolved a lot since then, we have also learned a lot.
 [@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding Material-UI from the **ground-up**
 taking advantage of this knowledge to address long-standing issues. To name some of the major changes:
 
-- New styling solution using CSS-in-JS (better [customization](/customization/components/) power, better performance)
+- New styling solution using CSS-in-JS (better [customization](/customization/how-to-customize/) power, better performance)
 - New theme handling (nesting, self-supporting, etc.)
 - Blazing fast documentation thanks to [Next.js](https://github.com/zeit/next.js)
 - Way better [test coverage](/guides/testing/) (99%+, run on all the major browsers, [visual regression tests](https://www.argos-ci.com/mui-org/material-ui))

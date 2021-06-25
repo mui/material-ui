@@ -1,7 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { refType } from '@material-ui/utils';
+import styled from '../styles/styled';
+import useThemeProps from '../styles/useThemeProps';
 import Input from '../Input';
 import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
@@ -9,7 +12,7 @@ import InputLabel from '../InputLabel';
 import FormControl from '../FormControl';
 import FormHelperText from '../FormHelperText';
 import Select from '../Select';
-import withStyles from '../styles/withStyles';
+import { getTextFieldUtilityClass } from './textFieldClasses';
 
 const variantComponent = {
   standard: Input,
@@ -17,10 +20,21 @@ const variantComponent = {
   outlined: OutlinedInput,
 };
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {},
+const useUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+  };
+
+  return composeClasses(slots, getTextFieldUtilityClass, classes);
 };
+
+const TextFieldRoot = styled(FormControl, {
+  name: 'MuiTextField',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({});
 
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).
@@ -54,12 +68,12 @@ export const styles = {
  * - using the upper case props for passing values directly to the components
  * - using the underlying components directly as shown in the demos
  */
-const TextField = React.forwardRef(function TextField(props, ref) {
+const TextField = React.forwardRef(function TextField(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiTextField' });
   const {
     autoComplete,
     autoFocus = false,
     children,
-    classes,
     className,
     color = 'primary',
     defaultValue,
@@ -91,6 +105,21 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     variant = 'outlined',
     ...other
   } = props;
+
+  const styleProps = {
+    ...props,
+    autoFocus,
+    color,
+    disabled,
+    error,
+    fullWidth,
+    multiline,
+    required,
+    select,
+    variant,
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   if (process.env.NODE_ENV !== 'production') {
     if (select && !children) {
@@ -154,7 +183,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
   );
 
   return (
-    <FormControl
+    <TextFieldRoot
       className={clsx(classes.root, className)}
       disabled={disabled}
       error={error}
@@ -163,6 +192,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
       required={required}
       color={color}
       variant={variant}
+      styleProps={styleProps}
       {...other}
     >
       {label && (
@@ -191,11 +221,11 @@ const TextField = React.forwardRef(function TextField(props, ref) {
           {helperText}
         </FormHelperText>
       )}
-    </FormControl>
+    </TextFieldRoot>
   );
 });
 
-TextField.propTypes = {
+TextField.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -227,13 +257,16 @@ TextField.propTypes = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
-   * The default value of the `input` element.
+   * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
   /**
-   * If `true`, the `input` element is disabled.
+   * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
@@ -285,6 +318,7 @@ TextField.propTypes = {
   label: PropTypes.node,
   /**
    * If `dense` or `normal`, will adjust vertical spacing of this and contained components.
+   * @default 'none'
    */
   margin: PropTypes.oneOf(['dense', 'none', 'normal']),
   /**
@@ -296,7 +330,7 @@ TextField.propTypes = {
    */
   minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * If `true`, a `textarea` element is rendered.instead of an input.
+   * If `true`, a `textarea` element is rendered instead of an input.
    * @default false
    */
   multiline: PropTypes.bool,
@@ -320,7 +354,7 @@ TextField.propTypes = {
    */
   onFocus: PropTypes.func,
   /**
-   * The short hint displayed in the input before the user enters a value.
+   * The short hint displayed in the `input` before the user enters a value.
    */
   placeholder: PropTypes.string,
   /**
@@ -343,9 +377,16 @@ TextField.propTypes = {
    */
   SelectProps: PropTypes.object,
   /**
-   * The size of the text field.
+   * The size of the component.
    */
-  size: PropTypes.oneOf(['medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.string,
+  ]),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
   /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    */
@@ -361,4 +402,4 @@ TextField.propTypes = {
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };
 
-export default withStyles(styles, { name: 'MuiTextField' })(TextField);
+export default TextField;

@@ -51,7 +51,7 @@ However, you can use different structures by providing a `getOptionLabel` prop.
 
 ### Playground
 
-Each of the following examples demonstrate one feature of the Autocomplete component.
+Each of the following examples demonstrates one feature of the Autocomplete component.
 
 {{"demo": "pages/components/autocomplete/Playground.js"}}
 
@@ -61,14 +61,14 @@ Choose one of the 248 countries.
 
 {{"demo": "pages/components/autocomplete/CountrySelect.js"}}
 
-### Controllable states
+### Controlled states
 
 The component has two states that can be controlled:
 
-1. the "value" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd>Enter</kbd>.
+1. the "value" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd class="key">Enter</kbd>.
 2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.
 
-> ⚠️ These two state are isolated, they should be controlled independently.
+> ⚠️ These two states are isolated, they should be controlled independently.
 
 {{"demo": "pages/components/autocomplete/ControllableStates.js"}}
 
@@ -88,7 +88,7 @@ If you intend to use this mode for a [combo box](#combo-box) like experience (an
 
 - `selectOnFocus` to helps the user clear the selected value.
 - `clearOnBlur` to helps the user to enter a new value.
-- `handleHomeEndKeys` to move focus inside the popup with the <kbd>Home</kbd> and <kbd>End</kbd> keys.
+- `handleHomeEndKeys` to move focus inside the popup with the <kbd class="key">Home</kbd> and <kbd class="key">End</kbd> keys.
 - A last option, for instance `Add "YOUR SEARCH"`.
 
 {{"demo": "pages/components/autocomplete/FreeSoloCreateOption.js"}}
@@ -111,10 +111,10 @@ otherwise you will notice duplicate headers.
 
 ## `useAutocomplete`
 
-For advanced customization use cases, we expose a headless `useAutocomplete()` hook.
+For advanced customization use cases, a headless `useAutocomplete()` hook is exposed.
 It accepts almost the same options as the Autocomplete component minus all the props
 related to the rendering of JSX.
-The Autocomplete component uses this hook internally.
+The Autocomplete component is built on this hook.
 
 ```jsx
 import useAutocomplete from '@material-ui/core/useAutocomplete';
@@ -230,14 +230,14 @@ import { createFilterOptions } from '@material-ui/core/Autocomplete';
 
 #### Arguments
 
-1. `config` (_Object_ [optional]):
+1. `config` (_object_ [optional]):
 
-- `config.ignoreAccents` (_Boolean_ [optional]): Defaults to `true`. Remove diacritics.
-- `config.ignoreCase` (_Boolean_ [optional]): Defaults to `true`. Lowercase everything.
-- `config.limit` (_Number_ [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
+- `config.ignoreAccents` (_bool_ [optional]): Defaults to `true`. Remove diacritics.
+- `config.ignoreCase` (_bool_ [optional]): Defaults to `true`. Lowercase everything.
+- `config.limit` (_number_ [optional]): Default to null. Limit the number of suggested options to be shown. For example, if `config.limit` is `100`, only the first `100` matching options are shown. It can be useful if a lot of options match and virtualization wasn't set up.
 - `config.matchFrom` (_'any' | 'start'_ [optional]): Defaults to `'any'`.
-- `config.stringify` (_Func_ [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
-- `config.trim` (_Boolean_ [optional]): Defaults to `false`. Remove trailing spaces.
+- `config.stringify` (_func_ [optional]): Controls how an option is converted into a string so that it can be matched against the input text fragment.
+- `config.trim` (_bool_ [optional]): Defaults to `false`. Remove trailing spaces.
 
 #### Returns
 
@@ -283,7 +283,7 @@ If you would like to prevent the default key handler behavior, you can set the e
   onKeyDown={(event) => {
     if (event.key === 'Enter') {
       // Prevent's default 'Enter' behavior.
-      event.defaultMuiPrevented = false;
+      event.defaultMuiPrevented = true;
       // your handler code
     }
   }}
@@ -294,10 +294,10 @@ If you would like to prevent the default key handler behavior, you can set the e
 
 ### autocomplete/autofill
 
-The browsers have heuristics to help the users fill the form inputs.
-However, it can harm the UX of the component.
+Browsers have heuristics to help the user fill in form inputs.
+However, this can harm the UX of the component.
 
-By default, the component disables the **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
+By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute.
 Google Chrome does not currently support this attribute setting ([Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)).
 A possible workaround is to remove the `id` to have the component generate a random one.
 

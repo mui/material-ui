@@ -37,10 +37,19 @@ Las siguientes propiedades son usadas en la web de documentación para una ópti
 - iOS tiene un gesto "deslizar para volver" que interfiere con la función de descubrimiento, por lo tanto esta debe ser deshabilitada.
 
 ```jsx
-const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
+const iOS =
+  typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
-<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />
+<SwipeableDrawer disableBackdropTransition={!iOS} disableDiscovery={iOS} />;
 ```
+
+### Swipeable edge
+
+You can configure the `SwipeableDrawer` to have a visible edge when closed.
+
+If you are on a desktop, you can toggle the drawer with the "OPEN" button. If you are on mobile, you can open the demo in CodeSandbox ("edit" icon) and swipe.
+
+{{"demo": "pages/components/drawers/SwipeableEdgeDrawer.js", "iframe": true, "height": 400, "maxWidth": 300}}
 
 ### Keep mounted
 
@@ -59,7 +68,7 @@ More details in the [Modal performance section](/components/modal/#performance).
 
 ## Drawer responsivo
 
-El componente utilitario responsivo `Hidden` permite mostrar diferentes tipos de cajones dependiendo del ancho de la pantalla. Un Drawer `temporary` se muestra para pantallas pequeñas mientras que un Drawer `permanent` se muestra para pantallas mas anchas.
+You can use the `temporary` variant to display a drawer for small screens and `permanent` for a drawer for wider screens.
 
 {{"demo": "pages/components/drawers/ResponsiveDrawer.js", "iframe": true}}
 

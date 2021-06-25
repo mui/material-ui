@@ -1,6 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -10,34 +8,11 @@ import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Grid from '@material-ui/core/Grid';
 import { green } from '@material-ui/core/colors';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Popover from '@material-ui/core/Popover';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-
-const styles = (theme) => ({
-  buttonWrapper: {
-    position: 'relative',
-    marginBottom: theme.spacing(4),
-  },
-  anchor: {
-    backgroundColor: green[500],
-    width: 10,
-    height: 10,
-    borderRadius: '50%',
-    position: 'absolute',
-  },
-  radioAnchor: {
-    color: green[600],
-    '&$checked': {
-      color: green[500],
-    },
-  },
-  checked: {},
-  typography: {
-    margin: theme.spacing(2),
-  },
-});
 
 const inlineStyles = {
   anchorVertical: {
@@ -64,8 +39,7 @@ const inlineStyles = {
   },
 };
 
-function AnchorPlayground(props) {
-  const { classes } = props;
+function AnchorPlayground() {
   const anchorRef = React.useRef();
 
   const [state, setState] = React.useState({
@@ -142,20 +116,28 @@ function AnchorPlayground(props) {
 `;
 
   const radioAnchorClasses = {
-    root: classes.radioAnchor,
-    checked: classes.checked,
+    color: green[600],
+    '&.Mui-checked': {
+      color: green[500],
+    },
   };
 
   return (
     <div>
       <Grid container justifyContent="center">
-        <Grid item className={classes.buttonWrapper}>
+        <Grid item sx={{ position: 'relative', mb: 4 }}>
           <Button ref={anchorRef} variant="contained" onClick={handleClickButton}>
             Open Popover
           </Button>
           {anchorReference === 'anchorEl' && (
-            <div
-              className={classes.anchor}
+            <Box
+              sx={{
+                bgcolor: green[500],
+                width: 10,
+                height: 10,
+                borderRadius: '50%',
+                position: 'absolute',
+              }}
               style={{
                 ...inlineStyles.anchorVertical[anchorOriginVertical],
                 ...inlineStyles.anchorHorizontal[anchorOriginHorizontal],
@@ -182,9 +164,7 @@ function AnchorPlayground(props) {
           horizontal: transformOriginHorizontal,
         }}
       >
-        <Typography className={classes.typography}>
-          The content of the Popover.
-        </Typography>
+        <Typography sx={{ m: 2 }}>The content of the Popover.</Typography>
       </Popover>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6}>
@@ -211,7 +191,7 @@ function AnchorPlayground(props) {
           </FormControl>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <FormControl className={classes.formControl}>
+          <FormControl variant="standard">
             <InputLabel htmlFor="position-top">anchorPosition.top</InputLabel>
             <Input
               id="position-top"
@@ -221,7 +201,7 @@ function AnchorPlayground(props) {
             />
           </FormControl>
           &nbsp;
-          <FormControl className={classes.formControl}>
+          <FormControl variant="standard">
             <InputLabel htmlFor="position-left">anchorPosition.left</InputLabel>
             <Input
               id="position-left"
@@ -242,17 +222,17 @@ function AnchorPlayground(props) {
             >
               <FormControlLabel
                 value="top"
-                control={<Radio classes={radioAnchorClasses} />}
+                control={<Radio sx={radioAnchorClasses} />}
                 label="Top"
               />
               <FormControlLabel
                 value="center"
-                control={<Radio classes={radioAnchorClasses} />}
+                control={<Radio sx={radioAnchorClasses} />}
                 label="Center"
               />
               <FormControlLabel
                 value="bottom"
-                control={<Radio classes={radioAnchorClasses} />}
+                control={<Radio sx={radioAnchorClasses} />}
                 label="Bottom"
               />
             </RadioGroup>
@@ -293,17 +273,17 @@ function AnchorPlayground(props) {
             >
               <FormControlLabel
                 value="left"
-                control={<Radio classes={radioAnchorClasses} />}
+                control={<Radio sx={radioAnchorClasses} />}
                 label="Left"
               />
               <FormControlLabel
                 value="center"
-                control={<Radio classes={radioAnchorClasses} />}
+                control={<Radio sx={radioAnchorClasses} />}
                 label="Center"
               />
               <FormControlLabel
                 value="right"
-                control={<Radio classes={radioAnchorClasses} />}
+                control={<Radio sx={radioAnchorClasses} />}
                 label="Right"
               />
             </RadioGroup>
@@ -343,8 +323,4 @@ function AnchorPlayground(props) {
   );
 }
 
-AnchorPlayground.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(AnchorPlayground);
+export default AnchorPlayground;

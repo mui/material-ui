@@ -1,5 +1,5 @@
 {
-  "props": { "children": { "type": { "name": "arrayOf", "description": "Array&lt;element&gt;" } } },
+  "props": { "children": { "type": { "name": "node" } } },
   "name": "TabList",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
@@ -7,5 +7,6 @@
   "filename": "/packages/material-ui-lab/src/TabList/TabList.js",
   "inheritance": { "component": "Tabs", "pathname": "/api/tabs/" },
   "demos": "<ul><li><a href=\"/components/tabs/\">Tabs</a></li></ul>",
-  "styledComponent": true
+  "styledComponent": true,
+  "cssComponent": false
 }

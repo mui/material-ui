@@ -1,21 +1,21 @@
 ---
-title: React Rating component
+title: Componente React Avaliação
 components: Rating
 githubLabel: 'component: Rating'
 waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
 ---
 
-# Rating
+# Avaliação
 
-<p class="description">Ratings provide insight regarding others’ opinions and experiences, and can allow the user to submit a rating of their own.</p>
+<p class="description">Avaliações fornecem informações sobre as opiniões e experiências dos outros e permitem que o usuário envie sua própria avaliação.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic rating
+## Avaliação básica
 
 {{"demo": "pages/components/rating/BasicRating.js"}}
 
-## Rating precision
+## Avaliação precisa
 
 A avaliação pode exibir qualquer número flutuante com a propriedade `value`. Use a propriedade `precision` para definir a alteração mínima do valor de incremento permitida.
 
@@ -23,21 +23,27 @@ A avaliação pode exibir qualquer número flutuante com a propriedade `value`. 
 
 ## Feedback ao passar o mouse
 
-You can display a label on hover to help the user pick the correct rating value. A demonstração usa a propriedade `onChangeActive`.
+Você pode exibir um rótulo ao passar o mouse para ajudar os usuários a escolher o valor de avaliação correto. A demonstração usa a propriedade `onChangeActive`.
 
 {{"demo": "pages/components/rating/HoverRating.js"}}
 
 ## Tamanhos
 
-For larger or smaller ratings use the `size` prop.
+Para avaliações maiores ou menores use a propriedade `size`.
 
 {{"demo": "pages/components/rating/RatingSize.js"}}
 
-## Customized rating
+## Avaliação customizada
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/rating/CustomizedRating.js"}}
+
+## Radio group
+
+The rating is implemented with a radio group, set `highlightSelectedOnly` to restore the natural behavior.
+
+{{"demo": "pages/components/rating/RadioGroupRating.js"}}
 
 ## Acessibilidade
 
@@ -45,18 +51,18 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 A acessibilidade neste componente conta com:
 
-- A radio group with its fields visually hidden. It contains six radio buttons, one for each star, and another for 0 stars that is checked by default. Be sure to provide a value for the `name` prop that is unique to the parent form.
-- Labels for the radio buttons containing actual text (“1 Star”, “2 Stars”, …). Be sure to provide a suitable function to the `getLabelText` prop when the page is in a language other than English. You can use the [included locales](https://material-ui.com/guides/localization/), or provide your own.
-- A visually distinct appearance for the rating icons. By default, the rating component uses both a difference of color and shape (filled and empty icons) to indicate the value. In the event that you are using color as the only means to indicate the value, the information should also be also displayed as text, as in this demo. This is important to match [success Criterion 1.4.1](https://www.w3.org/TR/WCAG21/#use-of-color) of WCAG2.1.
+- Um grupo de botões de opção com seus campos visualmente ocultos. Ele contém seis botões de opção, um para cada estrela e outro para 0 estrelas, que é marcado por padrão. Certifique-se de fornecer um valor para a propriedade `name` que é exclusivo para o formulário pai.
+- Rótulos para os botões de opção que contém o texto atual (“1 Estrela”, “2 Estrelas”, …). Certifique-se de fornecer uma função adequada para a propriedade `getLabelText` quando a página estiver em um idioma diferente de inglês. Você pode usar as [localidades incluídas](https://material-ui.com/guides/localization/), ou fornecer suas próprias.
+- Uma aparência visualmente distinta para os ícones de avaliação. Por padrão, o componente de avaliação usa uma diferença de cor e forma (ícones preenchidos e vazios) para indicar o valor. No caso de você usar cor como a única forma de indicar o valor, a informação também deve ser apresentada como texto, como nesta demonstração. Isto é importante para corresponder a [success Criterion 1.4.1](https://www.w3.org/TR/WCAG21/#use-of-color) do WCAG2.1.
 
 {{"demo": "pages/components/rating/TextRating.js"}}
 
 ### ARIA
 
-The read only rating has a role of "img", and an aria-label that describes the displayed rating.
+A avaliação de somente leitura tem uma regra de "img" e um aria-label que descreve a avaliação exibida.
 
 ### Teclado
 
-Because the rating component uses radio buttons, keyboard interaction follows the native browser behavior. Tab will focus the current rating, and cursor keys control the selected rating.
+Devido ao componente avaliação usar botões de opção, a interação do teclado segue o comportamento nativo do navegador. A tecla tab irá focar a avaliação atual e as teclas do cursor controlam a avaliação selecionada.
 
-The read only rating is not focusable.
+A avaliação de somente leitura não é focável.

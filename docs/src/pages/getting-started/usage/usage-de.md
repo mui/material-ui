@@ -32,7 +32,7 @@ Ja, das ist tatsächlich alles, das Sie für den Start brauchen. In dieser inter
 
 ## Globale Objekte
 
-Die Nutzungserfahrung mit der Material-UI kann mit einer Vielzahl wichtiger Globaler Objekte, die sie beachten müssen, verbessert werden.
+Material-UI usage experience can be improved with a handful of important globals that you'll need to be aware of.
 
 ### Responsiver meta-tag
 
@@ -56,4 +56,4 @@ Nun, da Sie eine Vorstellung von den grundlegenden Schritten haben, ist es an de
 
 - Wie man [die Material Design Schriftart und Typografie](/components/typography/) bereitstellt.
 - Wie man die [theming-Lösung nutzen kann](/customization/theming/).
-- Wie man das Aussehen und das Verhalten der Komponenten [überschreibt](/customization/components/).
+- Wie man das Aussehen und das Verhalten der Komponenten [überschreibt](/customization/how-to-customize/).

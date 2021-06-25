@@ -2,7 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
-import { alpha, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { alpha } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import NoSsr from '@material-ui/core/NoSsr';
@@ -105,6 +106,7 @@ const useStyles = makeStyles(
     /* Isolate the demo with an outline. */
     demoBgOutlined: {
       padding: theme.spacing(3),
+      backgroundColor: theme.palette.background.paper,
       border: `1px solid ${alpha(theme.palette.action.active, 0.12)}`,
       borderLeftWidth: 0,
       borderRightWidth: 0,
@@ -116,7 +118,7 @@ const useStyles = makeStyles(
     /* Prepare the background to display an inner elevation. */
     demoBgTrue: {
       padding: theme.spacing(3),
-      backgroundColor: theme.palette.background.level2,
+      backgroundColor: theme.palette.mode === 'dark' ? '#333' : theme.palette.grey[100],
     },
     /* Make no difference between the demo and the markdown. */
     demoBgInline: {
@@ -224,6 +226,7 @@ export default function Demo(props) {
 
   return (
     <div className={classes.root}>
+      <div className={classes.anchorLink} id={`${demoName}`} />
       <div
         className={clsx(classes.demo, {
           [classes.demoHiddenToolbar]: demoOptions.hideToolbar,

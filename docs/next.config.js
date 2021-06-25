@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const pkg = require('../package.json');
@@ -8,14 +7,12 @@ const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
 const workspaceRoot = path.join(__dirname, '../');
 
 /**
- * https://github.com/zeit/next.js/blob/287961ed9142a53f8e9a23bafb2f31257339ea98/packages/next/next-server/server/config.ts#L10
- * @typedef {'legacy' | 'blocking' | 'concurrent'} ReactRenderMode
+ * @typedef {'legacy' | 'root'} ReactRenderMode
  *
  * Values explained:
- * - legacy - `ReactDOM.render(<App />)`
- * - legacy-strict - `ReactDOM.render(<React.StrictMode><App /></React.StrictMode>, Element)`
- * - blocking - `ReactDOM.createSyncRoot(Element).render(<App />)`
- * - concurrent - `ReactDOM.createRoot(Element).render(<App />)`
+ * - legacy - `ReactDOM.render(<App />, container)`
+ * - legacy-strict - `ReactDOM.render(<React.StrictMode><App /></React.StrictMode>, container)`
+ * - concurrent - `ReactDOM.createRoot(container).render(<App />)`
  *
  * @type {ReactRenderMode | 'legacy-strict'}
  */
@@ -23,6 +20,15 @@ const reactMode = 'legacy';
 // eslint-disable-next-line no-console
 console.log(`Using React '${reactMode}' mode.`);
 const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD) && process.env.NETLIFY === 'true';
+const vercelDeploy = Boolean(process.env.VERCEL);
+
+const staging =
+  process.env.REPOSITORY_URL === undefined ||
+  /mui-org\/material-ui$/.test(process.env.REPOSITORY_URL);
+if (staging) {
+  // eslint-disable-next-line no-console
+  console.log(`Staging deploy of ${process.env.REPOSITORY_URL || 'local repository'}`);
+}
 
 module.exports = {
   typescript: {
@@ -31,19 +37,7 @@ module.exports = {
     ignoreBuildErrors: true,
   },
   webpack: (config, options) => {
-    const plugins = config.plugins.concat([
-      new webpack.DefinePlugin({
-        'process.env': {
-          COMMIT_REF: JSON.stringify(process.env.COMMIT_REF),
-          ENABLE_AD: JSON.stringify(process.env.ENABLE_AD),
-          GITHUB_AUTH: JSON.stringify(process.env.GITHUB_AUTH),
-          LIB_VERSION: JSON.stringify(pkg.version),
-          PULL_REQUEST: JSON.stringify(process.env.PULL_REQUEST === 'true'),
-          REACT_MODE: JSON.stringify(reactMode),
-          FEEDBACK_URL: JSON.stringify(process.env.FEEDBACK_URL),
-        },
-      }),
-    ]);
+    const plugins = config.plugins.slice();
 
     if (process.env.DOCS_STATS_ENABLED) {
       plugins.push(
@@ -51,6 +45,7 @@ module.exports = {
         new BundleAnalyzerPlugin({
           analyzerMode: 'server',
           generateStatsFile: true,
+          analyzerPort: options.isServer ? 8888 : 8889,
           // Will be available at `.next/stats.json`
           statsFilename: 'stats.json',
         }),
@@ -71,7 +66,9 @@ module.exports = {
 
       config.externals = [
         (context, request, callback) => {
-          const hasDependencyOnRepoPackages = ['notistack'].includes(request);
+          const hasDependencyOnRepoPackages = ['notistack', '@material-ui/data-grid'].includes(
+            request,
+          );
 
           if (hasDependencyOnRepoPackages) {
             return callback(null);
@@ -106,7 +103,7 @@ module.exports = {
           // transpile 3rd party packages with dependencies in this repository
           {
             test: /\.(js|mjs|jsx)$/,
-            include: /node_modules(\/|\\)notistack/,
+            include: /node_modules(\/|\\)(notistack|@material-ui(\/|\\)data-grid)/,
             use: {
               loader: 'babel-loader',
               options: {
@@ -121,13 +118,15 @@ module.exports = {
                         // all packages in this monorepo
                         '@material-ui/core': '../packages/material-ui/src',
                         '@material-ui/docs': '../packages/material-ui-docs/src',
-                        '@material-ui/icons': '../packages/material-ui-icons/src',
+                        '@material-ui/icons': '../packages/material-ui-icons/lib',
                         '@material-ui/lab': '../packages/material-ui-lab/src',
                         '@material-ui/styled-engine': '../packages/material-ui-styled-engine/src',
                         '@material-ui/styled-engine-sc':
                           '../packages/material-ui-styled-engine-sc/src',
                         '@material-ui/styles': '../packages/material-ui-styles/src',
                         '@material-ui/system': '../packages/material-ui-system/src',
+                        '@material-ui/private-theming':
+                          '../packages/material-ui-private-theming/src',
                         '@material-ui/utils': '../packages/material-ui-utils/src',
                         '@material-ui/unstyled': '../packages/material-ui-unstyled/src',
                       },
@@ -142,7 +141,7 @@ module.exports = {
           {
             test: /\.(js|mjs|tsx|ts)$/,
             include: [workspaceRoot],
-            exclude: /node_modules/,
+            exclude: /(node_modules|material-ui-icons)/,
             use: options.defaultLoaders.babel,
           },
         ]),
@@ -150,6 +149,22 @@ module.exports = {
     };
   },
   trailingSlash: true,
+  env: {
+    COMMIT_REF: process.env.COMMIT_REF,
+    ENABLE_AD: process.env.ENABLE_AD,
+    GITHUB_AUTH: process.env.GITHUB_AUTH,
+    GIT_REVIEW_ID: process.env.REVIEW_ID,
+    LIB_VERSION: pkg.version,
+    NETLIFY_DEPLOY_URL: process.env.DEPLOY_URL || 'http://localhost:3000',
+    NETLIFY_SITE_NAME: process.env.SITE_NAME || 'material-ui',
+    PULL_REQUEST: process.env.PULL_REQUEST === 'true',
+    REACT_MODE: reactMode,
+    FEEDBACK_URL: process.env.FEEDBACK_URL,
+    // #default-branch-switch
+    SOURCE_CODE_ROOT_URL: 'https://github.com/mui-org/material-ui/blob/next',
+    SOURCE_CODE_REPO: 'https://github.com/mui-org/material-ui',
+    STAGING: staging,
+  },
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.
   exportPathMap: () => {
@@ -176,7 +191,8 @@ module.exports = {
 
     // We want to speed-up the build of pull requests.
     // For crowdin PRs we want to build all locales for testing.
-    if (process.env.PULL_REQUEST === 'true' && !l10nPRInNetlify) {
+    // FIXME: Revert before merging
+    if (process.env.PULL_REQUEST === 'false' && !l10nPRInNetlify && !vercelDeploy) {
       // eslint-disable-next-line no-console
       console.log('Considering only English for SSR');
       traverse(pages, 'en');
@@ -191,7 +207,7 @@ module.exports = {
     return map;
   },
   experimental: {
-    reactMode: reactMode.startsWith('legacy') ? 'legacy' : reactMode,
+    reactRoot: !reactMode.startsWith('legacy'),
   },
   reactStrictMode: reactMode === 'legacy-strict',
   async rewrites() {

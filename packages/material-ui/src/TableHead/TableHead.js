@@ -1,15 +1,30 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
+import useThemeProps from '../styles/useThemeProps';
+import styled from '../styles/styled';
+import { getTableHeadUtilityClass } from './tableHeadClasses';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {
-    display: 'table-header-group',
-  },
+const useUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+  };
+
+  return composeClasses(slots, getTableHeadUtilityClass, classes);
 };
+
+const TableHeadRoot = styled('thead', {
+  name: 'MuiTableHead',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
+  /* Styles applied to the root element. */
+  display: 'table-header-group',
+});
 
 const tablelvl2 = {
   variant: 'head',
@@ -17,22 +32,32 @@ const tablelvl2 = {
 
 const defaultComponent = 'thead';
 
-const TableHead = React.forwardRef(function TableHead(props, ref) {
-  const { classes, className, component: Component = defaultComponent, ...other } = props;
+const TableHead = React.forwardRef(function TableHead(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiTableHead' });
+  const { className, component = defaultComponent, ...other } = props;
+
+  const styleProps = {
+    ...props,
+    component,
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   return (
     <Tablelvl2Context.Provider value={tablelvl2}>
-      <Component
+      <TableHeadRoot
+        as={component}
         className={clsx(classes.root, className)}
         ref={ref}
-        role={Component === defaultComponent ? null : 'rowgroup'}
+        role={component === defaultComponent ? null : 'rowgroup'}
+        styleProps={styleProps}
         {...other}
       />
     </Tablelvl2Context.Provider>
   );
 });
 
-TableHead.propTypes = {
+TableHead.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -54,6 +79,10 @@ TableHead.propTypes = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTableHead' })(TableHead);
+export default TableHead;

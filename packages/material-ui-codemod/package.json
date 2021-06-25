@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/codemod",
-  "version": "5.0.0-alpha.17",
+  "version": "5.0.0-alpha.35",
   "private": false,
   "author": "Material-UI Team",
   "description": "Codemod scripts for Material-UI.",
@@ -14,7 +14,7 @@
   "scripts": {
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-codemod/**/*.test.js'",
     "prebuild": "rimraf build",
-    "build": "node ../../scripts/build node --out-dir ./build && cp README.md build && cp package.json build",
+    "build": "node ../../scripts/build node --out-dir ./build && cpy README.md build && cpy package.json build",
     "release": "yarn build && npm publish --tag next"
   },
   "repository": {
@@ -30,14 +30,14 @@
     "jscodeshift-add-imports": "^1.0.1"
   },
   "devDependencies": {
-    "@types/jscodeshift": "0.7.2",
-    "jscodeshift": "^0.11.0"
+    "@types/jscodeshift": "0.11.0",
+    "jscodeshift": "^0.12.0"
   },
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12.0.0"
   }
 }

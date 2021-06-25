@@ -20,7 +20,19 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Botões Contidos
+## Basic Button
+
+The `Button` comes with three variants: text (default), contained, and outlined.
+
+{{"demo": "pages/components/buttons/BasicButtons.js"}}
+
+### Botões de texto
+
+[Text buttons](https://material.io/components/buttons#text-button) are typically used for less-pronounced actions, including those located: in dialogs, in cards. Em cartões, os botões de texto ajudam a manter a ênfase no conteúdo do cartão.
+
+{{"demo": "pages/components/buttons/TextButtons.js"}}
+
+### Botões contidos
 
 [Botões Contidos](https://material.io/design/components/buttons.html#contained-button) tem alta ênfase, distinguem-se pelo uso de elevação e preenchimento. Eles contém as principais ações da sua aplicação.
 
@@ -30,20 +42,9 @@ Você pode remover a elevação com a propriedade `disableElevation`.
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
-## Botões de Texto
+### Botões delineados
 
-Em cartões, os botões de texto ajudam a manter a ênfase no conteúdo do cartão.
-
-- Caixas de diálogo
-- Cartões
-
-Em cartões, os botões de texto ajudam a manter a ênfase no conteúdo do cartão.
-
-{{"demo": "pages/components/buttons/TextButtons.js"}}
-
-## Botões Delineados
-
-[Botões delineados](https://material.io/design/components/buttons.html#outlined-button) são botões com ênfase média. Eles contém ações que são importantes, mas não são as ações primárias de um aplicativo.
+[Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important but aren't the primary action in an app.
 
 Botões delineados são uma alternativa de menor ênfase comparado com botões contidos, ou uma uma alternativa de maior ênfase comparado com botões de texto.
 
@@ -59,23 +60,29 @@ Todos os componentes aceitam um método manipulador `onClick` que é aplicado ao
 
 Note que a documentação [evita](/guides/api/#native-properties) mencionar as propriedades nativas (existem várias) na seção de API dos componentes.
 
+## Cor
+
+{{"demo": "pages/components/buttons/ColorButtons.js"}}
+
+In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info.
+
+## Tamanhos
+
+For larger or smaller buttons, use the `size` prop.
+
+{{"demo": "pages/components/buttons/ButtonSizes.js"}}
+
 ## Botão de upload
 
 {{"demo": "pages/components/buttons/UploadButtons.js"}}
 
-## Tamanhos
-
-Gosta de botões maiores ou menores? Use a propriedade `size`.
-
-{{"demo": "pages/components/buttons/ButtonSizes.js"}}
-
 ## Botões com ícones e rótulo
 
-Às vezes você pode querer ter ícones para determinado botão para melhorar o UX do aplicativo, reconhecemos logotipos mais facilmente do que o texto puro. Por exemplo, se você tem um botão com a ação de "deletar", você pode rotulá-lo com o ícone de lata de lixo.
+Às vezes você pode querer ter ícones para certos botões para aprimorar a experiência do usuário, pois reconhecem logotipos mais facilmente do que texto. Por exemplo, se você tem um botão com a ação de "deletar", você pode rotulá-lo com o ícone de lata de lixo.
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
-## Botões de Ícone
+## Ícone do botão
 
 Botões de ícones são comumente encontrados em barras de aplicativos e barras de ferramentas.
 
@@ -83,9 +90,15 @@ Botões de ícones são comumente encontrados em barras de aplicativos e barras 
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
+### Tamanhos
+
+For larger or smaller icon buttons, use the `size` prop.
+
+{{"demo": "pages/components/buttons/IconButtonSizes.js"}}
+
 ## Botões customizados
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
@@ -93,7 +106,7 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 ## Botões de progresso
 
-Os botões de progresso podem mostrar o estado pendente e desativar as interações.
+The loading buttons can show loading state and disable interactions.
 
 {{"demo": "pages/components/buttons/LoadingButtons.js"}}
 
@@ -103,15 +116,13 @@ O componente ButtonBase define `pointer-events: none;` ao desabilitar os botões
 
 ## Botões complexos
 
-Os botões de texto, botões contidos, botões de ação flutuante e botões de ícone são construídos com base no mesmo componente: O componente `ButtonBase`. Você pode tirar vantagem deste componente de nível mais abstrato para construir interações customizadas.
+Os botões de texto, botões contidos, botões de ação flutuante e botões de ícone são construídos com base no mesmo componente: O componente `ButtonBase`. Você pode usar esse componente para construir interações diferentes.
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 
 ## Biblioteca de roteamento de terceiros
 
-Um caso de uso comum é usar o botão para acionar uma navegação para uma nova página. Um caso de uso comum é usar o botão para acionar uma navegação para uma nova página. No entanto, para alguns polyfills de foco, `ButtonBase` requer o nó DOM do componente fornecido. Isso é obtido anexando-se uma referência ao componente e esperando que o componente envie essa referência para o nó DOM subjacente. Dado que muitos dos componentes interativos dependem do `ButtonBase`, você deve ser capaz de tirar proveito em todos os lugares.
-
-Aqui está um [exemplo de integração com react-router](/guides/composition/#button).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. Um caso de uso comum é usar o botão para acionar uma navegação para uma nova página. Here is a [more detailed guide](/guides/routing/#button).
 
 ## Limitações
 
@@ -121,7 +132,7 @@ O componente ButtonBase define `pointer-events: none;` ao desabilitar os botões
 
 Se você deseja usar `not-allowed`, você tem duas opções:
 
-1. **Apenas com CSS**. Você pode modificar os estilos aplicados no seletor de estado disabled do elemento `<button>`:
+1. **Apenas com CSS**. You can remove the pointer-events style on the disabled state of the `<button>` element:
 
 ```css
 <span style={{ cursor: 'not-allowed' }}>

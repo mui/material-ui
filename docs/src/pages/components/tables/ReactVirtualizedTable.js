@@ -1,7 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
+import { createTheme } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import Paper from '@material-ui/core/Paper';
 import { AutoSizer, Column, Table } from 'react-virtualized';
@@ -143,7 +144,8 @@ MuiVirtualizedTable.propTypes = {
   rowHeight: PropTypes.number,
 };
 
-const VirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
+const defaultTheme = createTheme();
+const VirtualizedTable = withStyles(styles, { defaultTheme })(MuiVirtualizedTable);
 
 // ---
 

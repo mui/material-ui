@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger, react-hooks/exhaustive-deps */
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Tooltip from '@material-ui/core/Tooltip';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -137,6 +137,7 @@ export default function Notifications() {
       >
         <IconButton
           color="inherit"
+          size="large"
           ref={anchorRef}
           aria-controls={open ? 'notifications-popup' : undefined}
           aria-haspopup="true"
@@ -145,7 +146,7 @@ export default function Notifications() {
           data-ga-event-action="toggleNotifications"
         >
           <Badge
-            color="secondary"
+            color="error"
             badgeContent={
               messageList
                 ? messageList.reduce(
@@ -189,7 +190,7 @@ export default function Notifications() {
                             />
                           </Typography>
                           {message.date && (
-                            <Typography variant="caption" color="textSecondary">
+                            <Typography variant="caption" color="text.secondary">
                               {new Date(message.date).toLocaleDateString('en-US', {
                                 year: 'numeric',
                                 month: 'long',

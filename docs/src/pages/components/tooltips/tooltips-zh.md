@@ -16,17 +16,17 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 ## 简单的文字提示
 
-{{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
+{{"demo": "pages/components/tooltips/BasicTooltip.js"}}
 
 ## 文字提示的位置
 
-`Tooltip` 有 12 个**位置** 选项。 它们没有方向箭头，而是依靠代码指示的移动情况来移动文字提示的出现位置。
+`Tooltip` 有 12 个**位置** 选项。 它们没有方向箭头，而是依靠源头发出的运动来传递方向。
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
 ## 自定义文字提示
 
-你可以参考以下一些例子来自定义组件。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 

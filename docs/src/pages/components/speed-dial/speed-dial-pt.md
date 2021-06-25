@@ -1,8 +1,8 @@
 ---
-title: React Speed Dial component
+title: Componente React Acesso Rápido
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 githubLabel: 'component: SpeedDial'
-0: 'https://material.io/components/buttons-floating-action-button#types-of-transitions'
+materialDesign: 'https://material.io/components/buttons-floating-action-button#types-of-transitions'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 ---
 
@@ -20,6 +20,10 @@ O botão de ação flutuante pode exibir ações relacionadas.
 
 {{"demo": "pages/components/speed-dial/BasicSpeedDial.js"}}
 
+## Área de exemplos
+
+{{"demo": "pages/components/speed-dial/PlaygroundSpeedDial.js"}}
+
 ## Ícone de fechamento customizado
 
 Você pode fornecer um ícone alternativo para os estados de aberto e fechado usando as propriedades `icon` e `openIcon` do componente `SpeedDialIcon`.
@@ -34,9 +38,9 @@ Você pode fornecer um ícone alternativo para os estados de aberto e fechado us
 
 ## Dicas de ação fixadas
 
-The SpeedDialActions tooltips can be displayed persistently so that users don't have to long-press to see the tooltip on touch devices.
+Os SpeedDialActions podem exibir dicas de forma fixadas para que os usuários não precisem manter as ações pressionadas para ver a dica nos dispositivos de toque.
 
-It is enabled here across all devices for demo purposes, but in production it could use the `isTouch` logic to conditionally set the prop.
+A dica é ativada aqui em todos os dispositivos para fins de demonstração, mas em produção pode se usar uma lógica para definir condicionalmente a propriedade `isTouch`.
 
 {{"demo": "pages/components/speed-dial/SpeedDialTooltipOpen.js"}}
 
@@ -44,20 +48,20 @@ It is enabled here across all devices for demo purposes, but in production it co
 
 ### ARIA
 
-#### Required
+#### Requerido
 
-- You should provide an `ariaLabel` for the speed dial component.
-- You should provide a `tooltipTitle` for each speed dial action.
+- Você deve fornecer um `ariaLabel` para o componente de acesso rápido.
+- Você deve fornecer um `tooltipTitle` para cada ação do acesso rápido.
 
-#### Provided
+#### Fornecido
 
-- The Fab has `aria-haspopup`, `aria-expanded` and `aria-controls` attributes.
-- The speed dial actions container has `role="menu"` and `aria-orientation` set according to the direction.
-- The speed dial actions have `role="menuitem"`, and an `aria-describedby` attribute that references the associated tooltip.
+- O Fab possui os atributos `aria-haspopup`, `aria-expanded` e `aria-controls`.
+- As ações de acesso rápido tem `role="menu"` e `aria-direction` definidos de acordo com a direção.
+- As ações de acesso rápido tem `role="menuitem"`, e um atributo `aria-describedby` que faz referência à dica associada.
 
 ### Teclado
 
-- The speed dial opens on focus.
-- The Space and Enter keys trigger the selected speed dial action, and toggle the speed dial open state.
-- The cursor keys move focus to the next or previous speed dial action. (Note that any cursor direction can be used initially to open the speed dial. This enables the expected behavior for the actual or perceived orientation of the speed dial, for example for a screen reader user who perceives the speed dial as a drop-down menu.)
-- The Escape key closes the speed dial and, if a speed dial action was focused, returns focus to the Fab.
+- O acesso rápido abre ao receber foco.
+- As teclas de Espaço e Enter ativam a ação selecionado no acesso rápido, e alteram o estado de aberto do acesso rápido.
+- As teclas do cursor movem o foco para a ação seguinte ou anterior do acesso rápido. (Note que qualquer direção do cursor pode ser usada inicialmente para abrir o acesso rápido. Isto permite o comportamento esperado para a orientação atual ou percebida do acesso rápido, por exemplo, para um leitor de tela que entende o acesso rápido como um menu suspenso.)
+- A tecla de Escape fecha o acesso rápido e se uma ação do acesso rápido foi focada, retorna o foco para o seu botão de ação flutuante.

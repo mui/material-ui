@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Grid from '@material-ui/core/Grid';
@@ -15,92 +16,97 @@ import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
 import FormGroup from '@material-ui/core/FormGroup';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  scrollContainer: {
-    height: 400,
-    overflow: 'auto',
-    marginBottom: theme.spacing(3),
-  },
-  scroll: {
-    position: 'relative',
-    width: '230%',
-    backgroundColor: theme.palette.background.paper,
-    height: '230%',
-  },
-  legend: {
-    marginTop: theme.spacing(2),
-    maxWidth: 300,
-  },
-  paper: {
-    maxWidth: 400,
-    overflow: 'auto',
-  },
-  select: {
-    width: 200,
-  },
-  popper: {
-    zIndex: 1,
-    '&[data-popper-placement*="bottom"] $arrow': {
-      top: 0,
-      left: 0,
-      marginTop: '-0.9em',
+const defaultTheme = createTheme();
+
+const useStyles = makeStyles(
+  (theme) => ({
+    root: {
+      flexGrow: 1,
+    },
+    scrollContainer: {
+      height: 400,
+      overflow: 'auto',
+      marginBottom: theme.spacing(3),
+    },
+    scroll: {
+      position: 'relative',
+      width: '230%',
+      backgroundColor: theme.palette.background.paper,
+      height: '230%',
+    },
+    legend: {
+      marginTop: theme.spacing(2),
+      maxWidth: 300,
+    },
+    paper: {
+      maxWidth: 400,
+      overflow: 'auto',
+    },
+    select: {
+      width: 200,
+    },
+    popper: {
+      zIndex: 1,
+      '&[data-popper-placement*="bottom"] $arrow': {
+        top: 0,
+        left: 0,
+        marginTop: '-0.9em',
+        width: '3em',
+        height: '1em',
+        '&::before': {
+          borderWidth: '0 1em 1em 1em',
+          borderColor: `transparent transparent ${theme.palette.background.paper} transparent`,
+        },
+      },
+      '&[data-popper-placement*="top"] $arrow': {
+        bottom: 0,
+        left: 0,
+        marginBottom: '-0.9em',
+        width: '3em',
+        height: '1em',
+        '&::before': {
+          borderWidth: '1em 1em 0 1em',
+          borderColor: `${theme.palette.background.paper} transparent transparent transparent`,
+        },
+      },
+      '&[data-popper-placement*="right"] $arrow': {
+        left: 0,
+        marginLeft: '-0.9em',
+        height: '3em',
+        width: '1em',
+        '&::before': {
+          borderWidth: '1em 1em 1em 0',
+          borderColor: `transparent ${theme.palette.background.paper} transparent transparent`,
+        },
+      },
+      '&[data-popper-placement*="left"] $arrow': {
+        right: 0,
+        marginRight: '-0.9em',
+        height: '3em',
+        width: '1em',
+        '&::before': {
+          borderWidth: '1em 0 1em 1em',
+          borderColor: `transparent transparent transparent ${theme.palette.background.paper}`,
+        },
+      },
+    },
+    arrow: {
+      position: 'absolute',
+      fontSize: 7,
       width: '3em',
-      height: '1em',
-      '&::before': {
-        borderWidth: '0 1em 1em 1em',
-        borderColor: `transparent transparent ${theme.palette.background.paper} transparent`,
-      },
-    },
-    '&[data-popper-placement*="top"] $arrow': {
-      bottom: 0,
-      left: 0,
-      marginBottom: '-0.9em',
-      width: '3em',
-      height: '1em',
-      '&::before': {
-        borderWidth: '1em 1em 0 1em',
-        borderColor: `${theme.palette.background.paper} transparent transparent transparent`,
-      },
-    },
-    '&[data-popper-placement*="right"] $arrow': {
-      left: 0,
-      marginLeft: '-0.9em',
       height: '3em',
-      width: '1em',
       '&::before': {
-        borderWidth: '1em 1em 1em 0',
-        borderColor: `transparent ${theme.palette.background.paper} transparent transparent`,
+        content: '""',
+        margin: 'auto',
+        display: 'block',
+        width: 0,
+        height: 0,
+        borderStyle: 'solid',
       },
     },
-    '&[data-popper-placement*="left"] $arrow': {
-      right: 0,
-      marginRight: '-0.9em',
-      height: '3em',
-      width: '1em',
-      '&::before': {
-        borderWidth: '1em 0 1em 1em',
-        borderColor: `transparent transparent transparent ${theme.palette.background.paper}`,
-      },
-    },
-  },
-  arrow: {
-    position: 'absolute',
-    fontSize: 7,
-    width: '3em',
-    height: '3em',
-    '&::before': {
-      content: '""',
-      margin: 'auto',
-      display: 'block',
-      width: 0,
-      height: 0,
-      borderStyle: 'solid',
-    },
-  },
-}));
+  }),
+  { defaultTheme },
+);
 
 export default function ScrollPlayground() {
   const anchorRef = React.useRef(null);
@@ -142,39 +148,39 @@ export default function ScrollPlayground() {
   const classes = useStyles();
 
   const jsx = `
-  <Popper
-    placement="${placement}"
-    disablePortal={${disablePortal}}
-    modifiers={[
-      {
-          name: 'flip',
-          enabled: ${flip.enabled},
-          options: {
-            altBoundary: ${flip.altBoundary},
-            rootBoundary: '${flip.rootBoundary}',
-            padding: 8
-          }
+<Popper
+  placement="${placement}"
+  disablePortal={${disablePortal}}
+  modifiers={[
+    {
+      name: 'flip',
+      enabled: ${flip.enabled},
+      options: {
+        altBoundary: ${flip.altBoundary},
+        rootBoundary: '${flip.rootBoundary}',
+        padding: 8,
       },
-      {
-        name: 'preventOverflow',
-        enabled: ${preventOverflow.enabled},
-        options: {
-          altAxis: ${preventOverflow.altAxis},
-          altBoundary: ${preventOverflow.altBoundary},
-          tether: ${preventOverflow.tether},
-          rootBoundary: ${preventOverflow.rootBoundary},
-          padding: 8
-        }
+    },
+    {
+      name: 'preventOverflow',
+      enabled: ${preventOverflow.enabled},
+      options: {
+        altAxis: ${preventOverflow.altAxis},
+        altBoundary: ${preventOverflow.altBoundary},
+        tether: ${preventOverflow.tether},
+        rootBoundary: '${preventOverflow.rootBoundary}',
+        padding: 8,
       },
-      {
-        name: 'arrow',
-        enabled: ${arrow},
-        options: {
-            element: arrowRef,
-        }
+    },
+    {
+      name: 'arrow',
+      enabled: ${arrow},
+      options: {
+        element: arrowRef,
       },
-    ]}
-  >
+    },
+  ]}
+>
   `;
   const id = open ? 'scroll-playground' : null;
 
@@ -310,7 +316,7 @@ export default function ScrollPlayground() {
               }
               label="Disable portal"
             />
-            <Typography display="block" variant="caption" color="textSecondary">
+            <Typography display="block" variant="caption" color="text.secondary">
               (the children stay within it&apos;s parent DOM hierarchy)
             </Typography>
           </Grid>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import emotionStyled from '@emotion/styled';
 
 const Div = emotionStyled('div')(
@@ -18,7 +18,7 @@ const Div = emotionStyled('div')(
 `,
 );
 
-const theme = createMuiTheme();
+const theme = createTheme();
 
 export default function StyledEmotion() {
   return (

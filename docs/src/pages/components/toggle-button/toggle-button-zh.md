@@ -17,7 +17,7 @@ materialDesign: 'https://material.io/components/buttons#toggle-button'
 
 在唯一的选择中，选择一个选项就会取消其他的选择状态。
 
-在这个例子中，文本对齐切换按钮渲染了左、中、右和完全对齐文本（禁用）的选项，每次只有一个项目可供选择。
+In this example, text justification toggle buttons present options for left, center, right, and fully justified text (disabled), with only one item available for selection at a time.
 
 {{"demo": "pages/components/toggle-button/ToggleButtons.js"}}
 
@@ -27,11 +27,15 @@ materialDesign: 'https://material.io/components/buttons#toggle-button'
 
 {{"demo": "pages/components/toggle-button/ToggleButtonsMultiple.js"}}
 
-## 尺寸
+## Size 大小
 
-您想要一个大一点或者小一点的按钮吗？ 我们提供了 `size` 这个属性供您调整。
+For larger or smaller buttons, use the `size` prop.
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}
+
+## Color 颜色
+
+{{"demo": "pages/components/toggle-button/ColorToggleButton.js"}}
 
 ## 垂直排列的按钮
 
@@ -65,7 +69,7 @@ const handleAlignment = (event, newAlignment) => {
 
 ## 自定义切换按钮
 
-以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/toggle-button/CustomizedDividers.js", "bg": true}}
 

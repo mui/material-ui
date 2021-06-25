@@ -1,47 +1,82 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Typography from '../Typography';
+import useThemeProps from '../styles/useThemeProps';
+import styled from '../styles/styled';
+import cardHeaderClasses, { getCardHeaderUtilityClass } from './cardHeaderClasses';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: 16,
-  },
-  /* Styles applied to the avatar element. */
-  avatar: {
-    display: 'flex',
-    flex: '0 0 auto',
-    marginRight: 16,
-  },
-  /* Styles applied to the action element. */
-  action: {
-    flex: '0 0 auto',
-    alignSelf: 'flex-start',
-    marginTop: -4,
-    marginRight: -8,
-    marginBottom: -4,
-  },
-  /* Styles applied to the content wrapper element. */
-  content: {
-    flex: '1 1 auto',
-  },
-  /* Styles applied to the title Typography element. */
-  title: {},
-  /* Styles applied to the subheader Typography element. */
-  subheader: {},
+const useUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+    avatar: ['avatar'],
+    action: ['action'],
+    content: ['content'],
+    title: ['title'],
+    subheader: ['subheader'],
+  };
+
+  return composeClasses(slots, getCardHeaderUtilityClass, classes);
 };
 
-const CardHeader = React.forwardRef(function CardHeader(props, ref) {
+const CardHeaderRoot = styled('div', {
+  name: 'MuiCardHeader',
+  slot: 'Root',
+  overridesResolver: (props, styles) => ({
+    [`& .${cardHeaderClasses.title}`]: styles.title,
+    [`& .${cardHeaderClasses.subheader}`]: styles.subheader,
+    ...styles.root,
+  }),
+})({
+  /* Styles applied to the root element. */
+  display: 'flex',
+  alignItems: 'center',
+  padding: 16,
+});
+
+const CardHeaderAvatar = styled('div', {
+  name: 'MuiCardHeader',
+  slot: 'Avatar',
+  overridesResolver: (props, styles) => styles.avatar,
+})({
+  /* Styles applied to the avatar element. */
+  display: 'flex',
+  flex: '0 0 auto',
+  marginRight: 16,
+});
+
+const CardHeaderAction = styled('div', {
+  name: 'MuiCardHeader',
+  slot: 'Action',
+  overridesResolver: (props, styles) => styles.action,
+})({
+  /* Styles applied to the action element. */
+  flex: '0 0 auto',
+  alignSelf: 'flex-start',
+  marginTop: -4,
+  marginRight: -8,
+  marginBottom: -4,
+});
+
+const CardHeaderContent = styled('div', {
+  name: 'MuiCardHeader',
+  slot: 'Content',
+  overridesResolver: (props, styles) => styles.content,
+})({
+  /* Styles applied to the content wrapper element. */
+  flex: '1 1 auto',
+});
+
+const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiCardHeader' });
   const {
     action,
     avatar,
-    classes,
     className,
-    component: Component = 'div',
+    component = 'div',
     disableTypography = false,
     subheader: subheaderProp,
     subheaderTypographyProps,
@@ -49,6 +84,14 @@ const CardHeader = React.forwardRef(function CardHeader(props, ref) {
     titleTypographyProps,
     ...other
   } = props;
+
+  const styleProps = {
+    ...props,
+    component,
+    disableTypography,
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   let title = titleProp;
   if (title != null && title.type !== Typography && !disableTypography) {
@@ -71,7 +114,7 @@ const CardHeader = React.forwardRef(function CardHeader(props, ref) {
       <Typography
         variant={avatar ? 'body2' : 'body1'}
         className={classes.subheader}
-        color="textSecondary"
+        color="text.secondary"
         component="span"
         display="block"
         {...subheaderTypographyProps}
@@ -82,18 +125,33 @@ const CardHeader = React.forwardRef(function CardHeader(props, ref) {
   }
 
   return (
-    <Component className={clsx(classes.root, className)} ref={ref} {...other}>
-      {avatar && <div className={classes.avatar}>{avatar}</div>}
-      <div className={classes.content}>
+    <CardHeaderRoot
+      className={clsx(classes.root, className)}
+      as={component}
+      ref={ref}
+      styleProps={styleProps}
+      {...other}
+    >
+      {avatar && (
+        <CardHeaderAvatar className={classes.avatar} styleProps={styleProps}>
+          {avatar}
+        </CardHeaderAvatar>
+      )}
+
+      <CardHeaderContent className={classes.content} styleProps={styleProps}>
         {title}
         {subheader}
-      </div>
-      {action && <div className={classes.action}>{action}</div>}
-    </Component>
+      </CardHeaderContent>
+      {action && (
+        <CardHeaderAction className={classes.action} styleProps={styleProps}>
+          {action}
+        </CardHeaderAction>
+      )}
+    </CardHeaderRoot>
   );
 });
 
-CardHeader.propTypes = {
+CardHeader.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -103,7 +161,7 @@ CardHeader.propTypes = {
    */
   action: PropTypes.node,
   /**
-   * The Avatar for the Card Header.
+   * The Avatar element to display.
    */
   avatar: PropTypes.node,
   /**
@@ -141,7 +199,11 @@ CardHeader.propTypes = {
    */
   subheaderTypographyProps: PropTypes.object,
   /**
-   * The content of the Card Title.
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
+   * The content of the component.
    */
   title: PropTypes.node,
   /**
@@ -151,4 +213,4 @@ CardHeader.propTypes = {
   titleTypographyProps: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiCardHeader' })(CardHeader);
+export default CardHeader;

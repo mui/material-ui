@@ -28,7 +28,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ## 全局样式
 
-您能够注意到，有一些重要的全局变量，可以改善 Material-UI 的用户体验。
+Material-UI usage experience can be improved with a handful of important globals that you'll need to be aware of.
 
 ### 响应式元标记（meta tag）
 
@@ -52,4 +52,4 @@ Material-UI 提供了一个可选的 [CssBaseline](/components/css-baseline/) �
 
 - 如何提供 [Material Design 字体和文字铸排](/components/typography/)。
 - 如何使用[主题解决方案](/customization/theming/) 。
-- 如何 [覆盖](/customization/components/) 组件的呈现和观感。
+- 如何 [覆盖](/customization/how-to-customize/) 组件的呈现和观感。

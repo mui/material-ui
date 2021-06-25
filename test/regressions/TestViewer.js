@@ -1,7 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useFakeTimers } from 'sinon';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
+import { createTheme, StyledEngineProvider } from '@material-ui/core/styles';
 
 const styles = (theme) => ({
   '@global': {
@@ -71,9 +72,12 @@ function TestViewer(props) {
   }, []);
 
   return (
-    <div aria-busy={!ready} data-testid="testcase" className={classes.root}>
-      {children}
-    </div>
+    // TODO v5: remove once migration to emotion is completed
+    <StyledEngineProvider injectFirst>
+      <div aria-busy={!ready} data-testid="testcase" className={classes.root}>
+        {children}
+      </div>
+    </StyledEngineProvider>
   );
 }
 
@@ -82,4 +86,5 @@ TestViewer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TestViewer);
+const defaultTheme = createTheme();
+export default withStyles(styles, { defaultTheme })(TestViewer);

@@ -1,9 +1,9 @@
 {
   "name": "@material-ui/styled-engine",
-  "version": "5.0.0-alpha.18",
+  "version": "5.0.0-alpha.34",
   "private": false,
   "author": "Material-UI Team",
-  "description": "Material-UI Styled - Wrapper package for emotion.",
+  "description": "styled() API wrapper package for emotion.",
   "main": "./src/index.js",
   "keywords": [
     "react",
@@ -34,15 +34,18 @@
     "build:copy-files": "node ../../scripts/copy-files.js",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build --tag next",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-styles/**/*.test.{js,ts,tsx}'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-styled-engine/**/*.test.{js,ts,tsx}'",
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "dependencies": {
-    "@babel/runtime": "^7.4.4"
+    "@babel/runtime": "^7.4.4",
+    "@emotion/cache": "^11.0.0",
+    "prop-types": "^15.7.2"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
-    "@emotion/styled": "^11.0.0"
+    "@emotion/styled": "^11.0.0",
+    "react": "^17.0.0"
   },
   "peerDependenciesMeta": {
     "@emotion/react": {
@@ -57,6 +60,6 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12.0.0"
   }
 }

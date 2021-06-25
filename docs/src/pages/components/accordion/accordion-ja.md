@@ -1,5 +1,5 @@
 ---
-title: React Accordion component
+title: React アコーディオン コンポーネント
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 githubLabel: 'component: Accordion'
 materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
@@ -10,15 +10,15 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 <p class="description">Expansion panels(拡張パネル) には作成フローが含まれ、要素を簡単に編集できます。</p>
 
-[拡張パネル](https://material.io/archive/guidelines/components/expansion-panels.html)は 独立した軽量のコンテナであるか、カードなどの大きなサーフェスに接続されています。
+Reactアコーディオンコンポーネントは 単体で扱えるコンテナ、もしくはカードコンポーネントのようにより大きなコンポーネントと組み合わせて使います。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 > **注：** 拡張パネルについては、[Material Design guidelines](https://material.io/)では説明されていませんが、Material-UIでは引き続きサポートされます。 以前は"expansion panel"としてしられていたものです。
 
-## Simple Accordion
+## 基本の Accordionコンポーネント
 
-{{"demo": "pages/components/accordion/SimpleAccordion.js", "bg": true}}
+{{"demo": "pages/components/accordion/BasicAccordion.js", "bg": true}}
 
 ## Controlled Accordion
 
@@ -26,15 +26,15 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 
 {{"demo": "pages/components/accordion/ControlledAccordions.js", "bg": true}}
 
-## カスタマイズされた拡張パネル
+## アコーディオンコンポーネントのカスタマイズ
 
-コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [こちら](/customization/how-to-customize/)を参照してください。
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
 
 ## パフォーマンス
 
-Accordionsのコンテンツは、パネルが展開されていない場合でもデフォルトでマウントされます。 このデフォルトの動作では、サーバー側のレンダリングとSEOが考慮されています。 If you render expensive component trees inside your panels or simply render many panels it might be a good idea to change this default behavior by enabling the `unmountOnExit` in `TransitionProps`:
+Accordionsのコンテンツは、パネルが展開されていない場合でもデフォルトでマウントされます。 このデフォルトの動作では、サーバー側のレンダリングとSEOが考慮されています。 パネルの中で高価なコンポーネント ツリーをレンダリングしたり、単に多くのパネルをレンダリングする場合は、`TransitionProps` の `unmountOnExit` を有効にして、このデフォルトの動作を変更するのが良いでしょう。
 
 ```jsx
 <Accordion TransitionProps={{ unmountOnExit: true }} />

@@ -1,14 +1,176 @@
 import PropTypes from 'prop-types';
-import { ResponsiveTooltipWrapper } from '../internal/pickers/wrappers/ResponsiveWrapper';
-import { makeDateRangePicker } from './makeDateRangePicker';
+import * as React from 'react';
+import { useThemeProps } from '@material-ui/core/styles';
+import {
+  ResponsiveTooltipWrapper,
+  ResponsiveWrapperProps,
+} from '../internal/pickers/wrappers/ResponsiveWrapper';
+import { useUtils } from '../internal/pickers/hooks/useUtils';
+import { useParsedDate } from '../internal/pickers/hooks/date-helpers-hooks';
+import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
+import { RangeInput, DateRange } from './RangeTypes';
+import { useDateRangeValidation, ValidationProps } from '../internal/pickers/hooks/useValidation';
+import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
+import { DateRangePickerView, ExportedDateRangePickerViewProps } from './DateRangePickerView';
+import DateRangePickerInput, { ExportedDateRangePickerInputProps } from './DateRangePickerInput';
+import { parseRangeInputValue, DateRangeValidationError } from '../internal/pickers/date-utils';
+import { DateInputPropsLike } from '../internal/pickers/wrappers/WrapperProps';
+
+interface BaseDateRangePickerProps<TDate>
+  extends ExportedDateRangePickerViewProps<TDate>,
+    ValidationProps<DateRangeValidationError, RangeInput<TDate>>,
+    ExportedDateRangePickerInputProps {
+  /**
+   * The components used for each slot.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components?: ExportedDateRangePickerViewProps<TDate>['components'] &
+    ExportedDateRangePickerInputProps['components'];
+  /**
+   * Text for end input label and toolbar placeholder.
+   * @default 'End'
+   */
+  endText?: React.ReactNode;
+  /**
+   * Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
+   * @default '__/__/____'
+   */
+  mask?: ExportedDateRangePickerInputProps['mask'];
+  /**
+   * Min selectable date. @DateIOType
+   * @default defaultMinDate
+   */
+  minDate?: TDate;
+  /**
+   * Max selectable date. @DateIOType
+   * @default defaultMaxDate
+   */
+  maxDate?: TDate;
+  /**
+   * Callback fired when the value (the selected date range) changes @DateIOType.
+   */
+  onChange: (date: DateRange<TDate>, keyboardInputValue?: string) => void;
+  /**
+   * Text for start input label and toolbar placeholder.
+   * @default 'Start'
+   */
+  startText?: React.ReactNode;
+  /**
+   * The value of the date range picker.
+   */
+  value: RangeInput<TDate>;
+}
+
+const KeyboardDateInputComponent = DateRangePickerInput as unknown as React.FC<DateInputPropsLike>;
+const PureDateInputComponent = DateRangePickerInput as unknown as React.FC<DateInputPropsLike>;
+
+const rangePickerValueManager: PickerStateValueManager<any, any> = {
+  emptyValue: [null, null],
+  parseInput: parseRangeInputValue,
+  areValuesEqual: (utils, a, b) => utils.isEqual(a[0], b[0]) && utils.isEqual(a[1], b[1]),
+};
+
+export interface DateRangePickerProps<TDate>
+  extends BaseDateRangePickerProps<TDate>,
+    ResponsiveWrapperProps {}
+
+type DateRangePickerComponent = (<TDate>(
+  props: DateRangePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
+) => JSX.Element) & { propTypes: unknown };
 
 /**
- * @ignore - do not document.
+ *
+ * Demos:
+ *
+ * - [Date Range Picker](https://material-ui.com/components/date-range-picker/)
+ *
+ * API:
+ *
+ * - [DateRangePicker API](https://material-ui.com/api/date-range-picker/)
  */
-/* @GeneratePropTypes */
-const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', ResponsiveTooltipWrapper);
+const DateRangePicker = React.forwardRef(function DateRangePicker<TDate>(
+  inProps: DateRangePickerProps<TDate>,
+  ref: React.Ref<HTMLDivElement>,
+) {
+  const props = useThemeProps({ props: inProps, name: 'MuiDateRangePicker' });
 
-(DateRangePicker as any).propTypes = {
+  const {
+    calendars = 2,
+    value,
+    onChange,
+    mask = '__/__/____',
+    startText = 'Start',
+    endText = 'End',
+    inputFormat: passedInputFormat,
+    minDate: minDateProp = defaultMinDate as TDate,
+    maxDate: maxDateProp = defaultMaxDate as TDate,
+    ...other
+  } = props;
+
+  const utils = useUtils();
+  const minDate = useParsedDate(minDateProp);
+  const maxDate = useParsedDate(maxDateProp);
+  const [currentlySelectingRangeEnd, setCurrentlySelectingRangeEnd] = React.useState<
+    'start' | 'end'
+  >('start');
+
+  const pickerStateProps = {
+    ...other,
+    value,
+    onChange,
+  };
+
+  const restProps = {
+    ...other,
+    minDate,
+    maxDate,
+  };
+
+  const { pickerProps, inputProps, wrapperProps } = usePickerState<
+    RangeInput<TDate>,
+    DateRange<TDate>
+  >(pickerStateProps, rangePickerValueManager);
+
+  const validationError = useDateRangeValidation(props);
+
+  const DateInputProps = {
+    ...inputProps,
+    ...restProps,
+    currentlySelectingRangeEnd,
+    inputFormat: passedInputFormat || utils.formats.keyboardDate,
+    setCurrentlySelectingRangeEnd,
+    startText,
+    endText,
+    mask,
+    validationError,
+    ref,
+  };
+
+  return (
+    <ResponsiveTooltipWrapper
+      {...restProps}
+      {...wrapperProps}
+      DateInputProps={DateInputProps}
+      KeyboardDateInputComponent={KeyboardDateInputComponent}
+      PureDateInputComponent={PureDateInputComponent}
+    >
+      <DateRangePickerView<any>
+        open={wrapperProps.open}
+        DateInputProps={DateInputProps}
+        calendars={calendars}
+        currentlySelectingRangeEnd={currentlySelectingRangeEnd}
+        setCurrentlySelectingRangeEnd={setCurrentlySelectingRangeEnd}
+        startText={startText}
+        endText={endText}
+        {...pickerProps}
+        {...restProps}
+      />
+    </ResponsiveTooltipWrapper>
+  );
+}) as DateRangePickerComponent;
+
+DateRangePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -19,25 +181,28 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
    */
   acceptRegex: PropTypes.instanceOf(RegExp),
   /**
-   * Enables keyboard listener for moving between days in calendar.
-   * @default currentWrapper !== 'static'
-   */
-  allowKeyboardControl: PropTypes.bool,
-  /**
    * If `true`, `onChange` is fired on click even if the same date is selected.
    * @default false
    */
   allowSameDateSelection: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  autoFocus: PropTypes.bool,
   /**
    * The number of calendars that render on **desktop**.
    * @default 2
    */
   calendars: PropTypes.oneOf([1, 2, 3]),
   /**
-   * "CANCEL" Text message
+   * Cancel text message.
    * @default "CANCEL"
    */
   cancelText: PropTypes.node,
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
   /**
    * className applied to the root component.
    */
@@ -48,20 +213,31 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
    */
   clearable: PropTypes.bool,
   /**
-   * "CLEAR" Text message
+   * Clear text message.
    * @default "CLEAR"
    */
   clearText: PropTypes.node,
   /**
-   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing)
-   * ```jsx
-   * dateAdapter={new AdapterDateFns({ locale: ruLocale })}
-   * ```
+   * The components used for each slot.
+   * Either a string to use a HTML element or a component.
+   * @default {}
    */
-  dateAdapter: PropTypes.object,
+  components: PropTypes.shape({
+    LeftArrowButton: PropTypes.elementType,
+    LeftArrowIcon: PropTypes.elementType,
+    OpenPickerIcon: PropTypes.elementType,
+    RightArrowButton: PropTypes.elementType,
+    RightArrowIcon: PropTypes.elementType,
+    SwitchViewButton: PropTypes.elementType,
+    SwitchViewIcon: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
   /**
    * Default calendar month displayed when `value={null}`.
-   * @default `new Date()`
    */
   defaultCalendarMonth: PropTypes.any,
   /**
@@ -71,11 +247,11 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
    */
   desktopModeMediaQuery: PropTypes.string,
   /**
-   * Props to be passed directly to material-ui [Dialog](https://material-ui.com/components/dialogs)
+   * Props applied to the [`Dialog`](/api/dialog/) element.
    */
   DialogProps: PropTypes.object,
   /**
-   * if `true` after selecting `start` date  calendar will not automatically switch to the month of `end` date
+   * If `true`, after selecting `start` date calendar will not automatically switch to the month of `end` date.
    * @default false
    */
   disableAutoMonthSwitching: PropTypes.bool,
@@ -89,7 +265,6 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
    */
   disabled: PropTypes.bool,
   /**
-   * Disable future dates.
    * @default false
    */
   disableFuture: PropTypes.bool,
@@ -109,13 +284,12 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
    */
   disableOpenPicker: PropTypes.bool,
   /**
-   * Disable past dates.
    * @default false
    */
   disablePast: PropTypes.bool,
   /**
    * Text for end input label and toolbar placeholder.
-   * @default "end"
+   * @default 'End'
    */
   endText: PropTypes.node,
   /**
@@ -144,6 +318,15 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
    */
   InputProps: PropTypes.object,
   /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.object,
+    }),
+  ]),
+  /**
    * @ignore
    */
   key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -152,17 +335,9 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
    */
   label: PropTypes.node,
   /**
-   * Props to pass to left arrow button.
-   */
-  leftArrowButtonProps: PropTypes.object,
-  /**
    * Left arrow icon aria-label text.
    */
   leftArrowButtonText: PropTypes.string,
-  /**
-   * Left arrow icon.
-   */
-  leftArrowIcon: PropTypes.node,
   /**
    * If `true` renders `LoadingComponent` in calendar instead of calendar view.
    * Can be used to preload information and show it in calendar.
@@ -170,21 +345,22 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
    */
   loading: PropTypes.bool,
   /**
-   * Custom mask. Can be used to override generate from format. (e.g. __/__/____ __:__ or __/__/____ __:__ _M)
+   * Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
+   * @default '__/__/____'
    */
   mask: PropTypes.string,
   /**
    * Max selectable date. @DateIOType
-   * @default Date(2099-31-12)
+   * @default defaultMaxDate
    */
   maxDate: PropTypes.any,
   /**
    * Min selectable date. @DateIOType
-   * @default Date(1900-01-01)
+   * @default defaultMinDate
    */
   minDate: PropTypes.any,
   /**
-   * "OK" button text.
+   * Ok button text.
    * @default "OK"
    */
   okText: PropTypes.node,
@@ -193,7 +369,7 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
    */
   onAccept: PropTypes.func,
   /**
-   * Callback fired when the value (the selected date) changes. @DateIOType.
+   * Callback fired when the value (the selected date range) changes @DateIOType.
    */
   onChange: PropTypes.func.isRequired,
   /**
@@ -232,10 +408,6 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
    */
   OpenPickerButtonProps: PropTypes.object,
   /**
-   * Icon displaying for open picker button.
-   */
-  openPickerIcon: PropTypes.node,
-  /**
    * Force rendering in particular orientation.
    */
   orientation: PropTypes.oneOf(['landscape', 'portrait']),
@@ -249,12 +421,12 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
   readOnly: PropTypes.bool,
   /**
    * Disable heavy animations.
-   * @default /(android)/i.test(window.navigator.userAgent).
+   * @default typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent)
    */
   reduceAnimations: PropTypes.bool,
   /**
    * Custom renderer for `<DateRangePicker />` days. @DateIOType
-   * @example (date, DateRangeDayProps) => <DateRangePickerDay {...DateRangeDayProps} />
+   * @example (date, dateRangePickerDayProps) => <DateRangePickerDay {...dateRangePickerDayProps} />
    */
   renderDay: PropTypes.func,
   /**
@@ -268,7 +440,7 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
    *  renderInput={(startProps, endProps) => (
    *   <React.Fragment>
    *     <TextField {...startProps} />
-   *     <DateRangeDelimiter> to <DateRangeDelimiter>
+   *     <Box sx={{ mx: 2 }}> to </Box>
    *     <TextField {...endProps} />
    *   </React.Fragment>;
    *  )}
@@ -278,7 +450,7 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
   renderInput: PropTypes.func.isRequired,
   /**
    * Component displaying when passed `loading` true.
-   * @default () => "..."
+   * @default () => <span data-mui-test="loading-progress">...</span>
    */
   renderLoading: PropTypes.func,
   /**
@@ -286,24 +458,16 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
    */
   rifmFormatter: PropTypes.func,
   /**
-   * Props to pass to right arrow button.
-   */
-  rightArrowButtonProps: PropTypes.object,
-  /**
    * Right arrow icon aria-label text.
    */
   rightArrowButtonText: PropTypes.string,
-  /**
-   * Right arrow icon.
-   */
-  rightArrowIcon: PropTypes.node,
   /**
    * Disable specific date. @DateIOType
    */
   shouldDisableDate: PropTypes.func,
   /**
    * Disable specific years dynamically.
-   * Works like `shouldDisableDate` but for year selection view. @DateIOType.
+   * Works like `shouldDisableDate` but for year selection view @DateIOType.
    */
   shouldDisableYear: PropTypes.func,
   /**
@@ -312,7 +476,7 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
    */
   showDaysOutsideCurrentMonth: PropTypes.bool,
   /**
-   * If `true`, the today button will be displayed. **Note** that `showClearButton` has a higher priority.
+   * If `true`, the today button is displayed. **Note** that `showClearButton` has a higher priority.
    * @default false
    */
   showTodayButton: PropTypes.bool,
@@ -322,11 +486,11 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
   showToolbar: PropTypes.bool,
   /**
    * Text for start input label and toolbar placeholder.
-   * @default "Start"
+   * @default 'Start'
    */
   startText: PropTypes.node,
   /**
-   * "TODAY" Text message
+   * Today text message.
    * @default "TODAY"
    */
   todayText: PropTypes.node,
@@ -353,7 +517,7 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
    */
   TransitionComponent: PropTypes.elementType,
   /**
-   * The value of the picker.
+   * The value of the date range picker.
    */
   value: PropTypes.arrayOf(
     PropTypes.oneOfType([
@@ -363,10 +527,6 @@ const DateRangePicker = makeDateRangePicker('MuiPickersDateRangePicker', Respons
       PropTypes.string,
     ]),
   ).isRequired,
-};
-
-export type DateRangePickerProps = React.ComponentProps<typeof DateRangePicker>;
-
-export type DateRange<T> = import('./RangeTypes').DateRange<T>;
+} as any;
 
 export default DateRangePicker;

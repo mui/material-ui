@@ -1,8 +1,8 @@
 /* eslint-disable react/prefer-stateless-function */
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import React from 'react';
-import ReactDOM from 'react-dom';
 import elementAcceptingRef from './elementAcceptingRef';
 
 describe('elementAcceptingRef', () => {

@@ -1,34 +1,29 @@
 import * as React from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemButton from '@material-ui/core/ListItemButton';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import StarIcon from '@material-ui/icons/Star';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      maxWidth: 360,
-      backgroundColor: theme.palette.background.paper,
-    },
-  }),
-);
-
 export default function InsetList() {
-  const classes = useStyles();
-
   return (
-    <List component="nav" className={classes.root} aria-label="contacts">
-      <ListItem button>
-        <ListItemIcon>
-          <StarIcon />
-        </ListItemIcon>
-        <ListItemText primary="Chelsea Otakan" />
+    <List
+      sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+      aria-label="contacts"
+    >
+      <ListItem disablePadding>
+        <ListItemButton>
+          <ListItemIcon>
+            <StarIcon />
+          </ListItemIcon>
+          <ListItemText primary="Chelsea Otakan" />
+        </ListItemButton>
       </ListItem>
-      <ListItem button>
-        <ListItemText inset primary="Eric Hoffman" />
+      <ListItem disablePadding>
+        <ListItemButton>
+          <ListItemText inset primary="Eric Hoffman" />
+        </ListItemButton>
       </ListItem>
     </List>
   );

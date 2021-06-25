@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import NoSsr from '@material-ui/core/NoSsr';
@@ -33,7 +33,7 @@ const TableBody = createComponent('tbody');
 const data = { name: 'Frozen yoghurt', calories: 159, fat: 6.0, carbs: 24, protein: 4.0 };
 const rows = Array.from(new Array(100)).map(() => data);
 
-function TableHook() {
+export default function TableHook() {
   return (
     <NoSsr defer>
       <Table>
@@ -63,5 +63,3 @@ function TableHook() {
     </NoSsr>
   );
 }
-
-export default TableHook;

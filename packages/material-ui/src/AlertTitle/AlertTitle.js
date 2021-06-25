@@ -1,24 +1,52 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import styled from '../styles/styled';
+import useThemeProps from '../styles/useThemeProps';
 import Typography from '../Typography';
+import { getAlertTitleUtilityClass } from './alertTitleClasses';
 
-export const styles = (theme) => ({
+const useUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+  };
+
+  return composeClasses(slots, getAlertTitleUtilityClass, classes);
+};
+
+const AlertTitleRoot = styled(Typography, {
+  name: 'MuiAlertTitle',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(({ theme }) => {
   /* Styles applied to the root element. */
-  root: {
+  return {
     fontWeight: theme.typography.fontWeightMedium,
     marginTop: -2,
-  },
+  };
 });
 
-const AlertTitle = React.forwardRef(function AlertTitle(props, ref) {
-  const { classes, className, ...other } = props;
+const AlertTitle = React.forwardRef(function AlertTitle(inProps, ref) {
+  const props = useThemeProps({
+    props: inProps,
+    name: 'MuiAlertTitle',
+  });
+
+  const { className, ...other } = props;
+
+  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
+  const styleProps = { ...props };
+
+  const classes = useUtilityClasses(styleProps);
 
   return (
-    <Typography
+    <AlertTitleRoot
       gutterBottom
       component="div"
+      styleProps={styleProps}
       ref={ref}
       className={clsx(classes.root, className)}
       {...other}
@@ -26,7 +54,7 @@ const AlertTitle = React.forwardRef(function AlertTitle(props, ref) {
   );
 });
 
-AlertTitle.propTypes = {
+AlertTitle.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -43,6 +71,10 @@ AlertTitle.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiAlertTitle' })(AlertTitle);
+export default AlertTitle;

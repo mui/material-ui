@@ -14,7 +14,7 @@ Material-UI стремится обеспечить прочную основу 
 
 <!-- #default-branch-switch -->
 
-- 🚀 [невероятно быстро](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-benchmark/README.md#material-uistyles) ,
+- 🚀 [невероятно быстро](https://github.com/mui-org/material-ui/blob/HEAD/benchmark/server#material-uistyles) ,
 - 🧩 возможность расширения с помощью [плагина](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
 - ⚡️ решение использует [ JSS ](https://github.com/cssinjs/jss) в своей основе - [ высокая производительность ](https://github.com/cssinjs/jss/blob/master/docs/performance.md) компилятора JavaScript в CSS, который работает и во время выполнения и на стороне сервера.
 - 📦 Менее [ 15 КБ в архиве ](https://bundlephobia.com/result?p=@material-ui/styles) ; и не увеличивает размер пакета, если используется вместе с Material-UI.
@@ -41,7 +41,7 @@ yarn add @material-ui/styles
 
 ```jsx
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
@@ -70,7 +70,7 @@ export default function Hook() {
 
 ```jsx
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 
 const MyButton = styled(Button)({
@@ -95,7 +95,7 @@ export default function StyledComponents() {
 ```jsx
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 
 const styles = {
@@ -199,20 +199,24 @@ const useStyles = makeStyles(theme => ({
 
 {{"demo": "pages/styles/basics/StressTest.js"}}
 
-## Отличие @material-ui/core/styles от @material-ui/styles
+## Using the theme context
 
-Material-UI's styles are powered by the [@material-ui/styles](https://www.npmjs.com/package/@material-ui/styles) package, (built with JSS). This solution is [isolated](https://bundlephobia.com/result?p=@material-ui/styles). Он не имеет темы по умолчанию и может использоваться для стилизации приложений React, которые не используют компоненты Material-UI.
+Starting from v5, Material-UI no longer uses JSS as its default styling solution. If you still want to use the utilities exported by `@material-ui/styles`, you will need to provide the `theme` as part of the context. For this, you can use the `ThemeProvider` component available in `@material-ui/styles`, or, if you are already using `@material-ui/core`, you should use the one exported from `@material-ui/core/styles` so that the same `theme` is available for components from '@material-ui/core'.
 
-Чтобы уменьшить количество пакетов, устанавливаемых при использовании Material-UI, и упростить импорт, модули `@material-ui/styles` реэкспортируются из `@material-ui/core/styles` ,
-
-Чтобы устранить необходимость постоянного подключения темы, к реэкспортированным модулям применяется дефолтная тема Material-UI. Это относится к модулям: `makeStyles`, `styled`, `withTheme`, `useTheme` и `withStyles`
-
-For example:
-
-```js
-// Re-export with a default theme
-import { makeStyles } from '@material-ui/core/styles';
-
-// Original module with no default theme
+```jsx
 import { makeStyles } from '@material-ui/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+
+const theme = createMuiTheme();
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    color: theme.palette.primary.main,
+  }
+}));
+
+const App = (props) => {
+  const classes = useStyles();
+  return <ThemeProvider theme={theme}><div {...props} className={classes.root}></ThemeProvider>;
+}
 ```

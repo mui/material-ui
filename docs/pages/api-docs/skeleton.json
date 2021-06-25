@@ -11,6 +11,7 @@
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
     "height": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
+    "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
         "name": "union",
@@ -41,5 +42,6 @@
   "filename": "/packages/material-ui/src/Skeleton/Skeleton.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/skeleton/\">Skeleton</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

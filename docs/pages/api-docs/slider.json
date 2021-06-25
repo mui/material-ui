@@ -3,11 +3,15 @@
     "aria-label": { "type": { "name": "custom", "description": "string" } },
     "aria-labelledby": { "type": { "name": "string" } },
     "aria-valuetext": { "type": { "name": "custom", "description": "string" } },
-    "classes": { "type": { "name": "object" }, "default": "{}" },
+    "classes": { "type": { "name": "object" } },
     "color": {
-      "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
+      "type": {
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+      },
       "default": "'primary'"
     },
+    "component": { "type": { "name": "elementType" } },
     "components": {
       "type": {
         "name": "shape",
@@ -20,6 +24,7 @@
       "type": { "name": "union", "description": "Array&lt;number&gt;<br>&#124;&nbsp;number" }
     },
     "disabled": { "type": { "name": "bool" } },
+    "disableSwap": { "type": { "name": "bool" } },
     "getAriaLabel": { "type": { "name": "func" } },
     "getAriaValueText": { "type": { "name": "func" } },
     "isRtl": { "type": { "name": "bool" } },
@@ -40,8 +45,13 @@
       "default": "'horizontal'"
     },
     "scale": { "type": { "name": "func" }, "default": "(x) => x" },
+    "size": {
+      "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
+      "default": "'medium'"
+    },
     "step": { "type": { "name": "number" }, "default": "1" },
     "sx": { "type": { "name": "object" } },
+    "tabIndex": { "type": { "name": "number" } },
     "track": {
       "type": {
         "name": "enum",
@@ -59,8 +69,7 @@
     "valueLabelFormat": {
       "type": { "name": "union", "description": "func<br>&#124;&nbsp;string" },
       "default": "(x) => x"
-    },
-    "component": { "type": { "name": "elementType" } }
+    }
   },
   "name": "Slider",
   "styles": {
@@ -69,6 +78,7 @@
       "marked",
       "vertical",
       "disabled",
+      "dragging",
       "rail",
       "track",
       "trackFalse",
@@ -77,14 +87,19 @@
       "active",
       "focusVisible",
       "valueLabel",
+      "valueLabelOpen",
+      "valueLabelCircle",
+      "valueLabelLabel",
       "mark",
       "markActive",
       "markLabel",
       "markLabelActive",
       "colorPrimary",
       "colorSecondary",
+      "sizeSmall",
       "thumbColorPrimary",
-      "thumbColorSecondary"
+      "thumbColorSecondary",
+      "thumbSizeSmall"
     ],
     "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" },
     "name": "MuiSlider"
@@ -94,5 +109,6 @@
   "filename": "/packages/material-ui/src/Slider/Slider.js",
   "inheritance": { "component": "SliderUnstyled", "pathname": "/api/slider-unstyled/" },
   "demos": "<ul><li><a href=\"/components/slider/\">Slider</a></li></ul>",
-  "styledComponent": true
+  "styledComponent": true,
+  "cssComponent": false
 }

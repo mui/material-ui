@@ -1,5 +1,5 @@
 ---
-title: React Popper component
+title: Componente React Popper
 components: Popper
 githubLabel: 'component: Popper'
 ---
@@ -40,7 +40,7 @@ Como alternativa, você pode usar [react-spring](https://github.com/react-spring
 
 {{"demo": "pages/components/popper/SpringPopper.js"}}
 
-## Positioned popper
+## Popper posicionado
 
 {{"demo": "pages/components/popper/PositionedPopper.js"}}
 
@@ -48,9 +48,9 @@ Como alternativa, você pode usar [react-spring](https://github.com/react-spring
 
 {{"demo": "pages/components/popper/ScrollPlayground.js", "hideToolbar": true, "bg": true}}
 
-## Virtual element
+## Elemento virtual
 
-A propriedade `anchorEl` pode ser uma referência a um elemento DOM falso. You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
+A propriedade `anchorEl` pode ser uma referência a um elemento DOM falso. Você precisa criar um objeto com a estrutura definida como  [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
 
 Selecione parte do texto para ver o popper:
 

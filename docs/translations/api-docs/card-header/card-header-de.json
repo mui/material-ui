@@ -8,15 +8,33 @@
     "disableTypography": "If <code>true</code>, <code>subheader</code> and <code>title</code> won&#39;t be wrapped by a Typography component. This can be useful to render an alternative Typography variant by wrapping the <code>title</code> text, and optional <code>subheader</code> text with the Typography component.",
     "subheader": "The content of the component.",
     "subheaderTypographyProps": "These props will be forwarded to the subheader (as long as disableTypography is not <code>true</code>).",
-    "title": "The content of the Card Title.",
+    "sx": "Die Einstellung, die das Definieren von Überschreibungen, sowie zusätzlichen CSS-Styles erlaubt. Weitere Details finden Sie auf der <a href=\"/system/basics/#the-sx-prop\">`sx` Seite</a>.",
+    "title": "The content of the component.",
     "titleTypographyProps": "These props will be forwarded to the title (as long as disableTypography is not <code>true</code>)."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "avatar": { "description": "Styles applied to the avatar element." },
-    "action": { "description": "Styles applied to the action element." },
-    "content": { "description": "Styles applied to the content wrapper element." },
-    "title": { "description": "Styles applied to the title Typography element." },
-    "subheader": { "description": "Styles applied to the subheader Typography element." }
+    "root": {
+      "description": "Styles applied to the root element."
+    },
+    "avatar": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the avatar element"
+    },
+    "action": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the action element"
+    },
+    "content": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the content wrapper element"
+    },
+    "title": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the title Typography element"
+    },
+    "subheader": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the subheader Typography element"
+    }
   }
 }

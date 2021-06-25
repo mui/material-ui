@@ -4,8 +4,8 @@
     "classes": { "type": { "name": "object" } },
     "color": {
       "type": {
-        "name": "enum",
-        "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
+        "name": "union",
+        "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
       },
       "default": "'primary'"
     },
@@ -26,6 +26,7 @@
       },
       "default": "'medium'"
     },
+    "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
         "name": "union",
@@ -72,5 +73,6 @@
   "filename": "/packages/material-ui/src/ButtonGroup/ButtonGroup.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/button-group/\">Button Group</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

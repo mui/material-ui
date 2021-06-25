@@ -10,7 +10,9 @@
     "disableTouchRipple": { "type": { "name": "bool" } },
     "focusRipple": { "type": { "name": "bool" } },
     "focusVisibleClassName": { "type": { "name": "string" } },
+    "LinkComponent": { "type": { "name": "elementType" }, "default": "'a'" },
     "onFocusVisible": { "type": { "name": "func" } },
+    "sx": { "type": { "name": "object" } },
     "TouchRippleProps": { "type": { "name": "object" } }
   },
   "name": "ButtonBase",
@@ -24,5 +26,6 @@
   "filename": "/packages/material-ui/src/ButtonBase/ButtonBase.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/buttons/\">Buttons</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

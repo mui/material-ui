@@ -11,8 +11,8 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
   - **[Oben](https://material.io/design/components/app-bars-top.html) ✓**
   - **[Unten](https://material.io/design/components/app-bars-bottom.html) ✓**
 - **[Banner](https://material.io/design/components/banners.html)** ([ Kann zusammengesetzt werden ](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df))
-- **** [ Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓**(Veraltetes Material v1)**
-- ****[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)******
+- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)********
+- ****** [ Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓**(Veraltetes Material v1)****
   - **[ Text & enthaltene Schaltflächen (früher flach & angehoben)](https://material.io/design/components/buttons.html) ✓**
   - **[Schalter (Toggle buttons)](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/components/about-the-lab/))
   - **[Icon toggle buttons](https://material.io/design/components/buttons.html#toggle-button) ✓** (Custom Checkbox)
@@ -44,8 +44,8 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
-- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)****
-- **[Menus](https://material.io/design/components/menus.html) ✓**
+- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)********
+- ****[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)**********
   - [Types:](https://material.io/design/components/lists.html#types)
     - **Single line ✓**
     - **Two line ✓**
@@ -58,7 +58,7 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
     - **Expand/collapse ✓** (bzw. Verschachtelt)
     - **Switch ✓**
     - Reorder
-- **[Progress indicators](https://material.io/design/components/progress-indicators.html) ✓**
+- ******** [ Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓**(Veraltetes Material v1)******
   - **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (Can be composed)
     - [Cascade](https://material.io/design/components/menus.html#dropdown-menu)
   - [Exposed dropdown menus](https://material.io/design/components/menus.html#exposed-dropdown-menu)
@@ -85,7 +85,7 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
   - **[Fixed tabs](https://material.io/design/components/tabs.html#fixed-tabs) ✓**
   - **[Scrollable tabs](https://material.io/design/components/tabs.html#scrollable-tabs) ✓**
   - **[Mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) ✓**
-- **[Text fields](https://material.io/design/components/text-fields.html) ✓**
+- ******** [ Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓**(Veraltetes Material v1)******
   - **[Tooltips](https://material.io/design/components/tooltips.html) ✓**
   - **[Filled](https://material.io/design/components/text-fields.html#filled-text-field) ✓**
 - **[Outline](https://material.io/design/components/text-fields.html#outlined-text-field) ✓**

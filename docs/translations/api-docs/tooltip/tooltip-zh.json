@@ -5,7 +5,7 @@
     "children": "Tooltip reference element.<br>⚠️ <a href=\"/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "describeChild": "Set to <code>true</code> if the <code>title</code> acts as an accessible description. By default the <code>title</code> acts as an accessible label for the child.",
-    "disableFocusListener": "Do not respond to focus events.",
+    "disableFocusListener": "Do not respond to focus-visible events.",
     "disableHoverListener": "Do not respond to hover events.",
     "disableInteractive": "Makes a tooltip not interactive, i.e. it will close when the user hovers over the tooltip before the <code>leaveDelay</code> is expired.",
     "disableTouchListener": "Do not respond to long press touch events.",
@@ -18,47 +18,71 @@
     "leaveTouchDelay": "The number of milliseconds after the user stops touching an element before hiding the tooltip.",
     "onClose": "Callback fired when the component requests to be closed.<br><br><strong>Signature:</strong><br><code>function(event: object) =&gt; void</code><br><em>event:</em> The event source of the callback.",
     "onOpen": "Callback fired when the component requests to be open.<br><br><strong>Signature:</strong><br><code>function(event: object) =&gt; void</code><br><em>event:</em> The event source of the callback.",
-    "open": "If <code>true</code>, the tooltip is shown.",
+    "open": "Control the popup` open state.",
     "placement": "Tooltip placement.",
     "PopperComponent": "The component used for the popper.",
     "PopperProps": "Props applied to the <a href=\"/api/popper/\"><code>Popper</code></a> element.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
     "title": "Tooltip title. Zero-length titles string are never displayed.",
     "TransitionComponent": "The component used for the transition. <a href=\"/components/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component.",
     "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition\"><code>Transition</code></a> component."
   },
   "classDescriptions": {
-    "popper": { "description": "Styles applied to the Popper component." },
+    "popper": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the Popper component"
+    },
     "popperInteractive": {
-      "description": "Styles applied to the Popper component unless {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
+      "nodeName": "the Popper component",
       "conditions": "<code>disableInteractive={true}</code>"
     },
     "popperArrow": {
-      "description": "Styles applied to the Popper component if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the Popper component",
       "conditions": "<code>arrow={true}</code>"
     },
-    "tooltip": { "description": "Styles applied to the tooltip (label wrapper) element." },
+    "popperClose": {
+      "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
+      "nodeName": "the Popper component",
+      "conditions": "the tooltip is open"
+    },
+    "tooltip": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the tooltip (label wrapper) element"
+    },
     "tooltipArrow": {
-      "description": "Styles applied to the tooltip (label wrapper) element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the tooltip (label wrapper) element",
       "conditions": "<code>arrow={true}</code>"
     },
-    "arrow": { "description": "Styles applied to the arrow element." },
+    "arrow": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the arrow element"
+    },
     "touch": {
-      "description": "Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch."
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the tooltip (label wrapper) element",
+      "conditions": "the tooltip is opened by touch"
     },
     "tooltipPlacementLeft": {
-      "description": "Styles applied to the tooltip (label wrapper) element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the tooltip (label wrapper) element",
       "conditions": "<code>placement</code> contains \"left\""
     },
     "tooltipPlacementRight": {
-      "description": "Styles applied to the tooltip (label wrapper) element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the tooltip (label wrapper) element",
       "conditions": "<code>placement</code> contains \"right\""
     },
     "tooltipPlacementTop": {
-      "description": "Styles applied to the tooltip (label wrapper) element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the tooltip (label wrapper) element",
       "conditions": "<code>placement</code> contains \"top\""
     },
     "tooltipPlacementBottom": {
-      "description": "Styles applied to the tooltip (label wrapper) element if {{conditions}}.",
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the tooltip (label wrapper) element",
       "conditions": "<code>placement</code> contains \"bottom\""
     }
   }

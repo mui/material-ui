@@ -16,17 +16,17 @@ Quando ativada, [dicas](https://material.io/design/components/tooltips.html) exi
 
 ## Dicas simples
 
-{{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
+{{"demo": "pages/components/tooltips/BasicTooltip.js"}}
 
 ## Dicas posicionadas
 
-O `Tooltip` tem 12 **posicionamentos** para ser escolhido. Eles não têm setas direcionais; em vez disso, eles dependem do movimento que emana da fonte para transmitir direção.
+O `Tooltip` tem 12 **posicionamentos** para ser escolhido. They don't have directional arrows; instead, they rely on motion emanating from the source to convey direction.
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
 ## Dicas customizadas
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 
@@ -92,11 +92,9 @@ Por padrão os elementos desabilitados como `<button>` não disparam interaçõe
 ```jsx
 <Tooltip title="Você não tem permissão para esta tarefa">
   <span>
-    <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}>
-      Um botão desabilitado
-    </button>
-  </span>
-</Tooltip>
+    <button disabled={disabled} style={disabled ? <Tooltip title="Você não tem permissão para esta tarefa">
+  <span>
+    <button disabled={disabled} style={disabled ?
 ```
 
 ## Transições

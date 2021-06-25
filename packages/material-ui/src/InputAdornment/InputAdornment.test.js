@@ -1,32 +1,30 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import Typography from '../Typography';
-import InputAdornment from './InputAdornment';
-import TextField from '../TextField';
-import FormControl from '../FormControl';
-import Input from '../Input';
+import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
+import { typographyClasses } from '@material-ui/core/Typography';
+import InputAdornment, { inputAdornmentClasses as classes } from '@material-ui/core/InputAdornment';
+import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
 
 describe('<InputAdornment />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<InputAdornment position="start">foo</InputAdornment>);
-  });
-
-  describeConformance(<InputAdornment position="start">foo</InputAdornment>, () => ({
+  describeConformanceV5(<InputAdornment position="start">foo</InputAdornment>, () => ({
     classes,
     inheritComponent: 'div',
     mount,
+    render,
+    muiName: 'MuiInputAdornment',
+    testVariantProps: { color: 'primary' },
     refInstanceof: window.HTMLDivElement,
+    skip: ['componentsProp'],
     testComponentPropWith: 'span',
   }));
 
   it('should wrap text children in a Typography', () => {
     const { container } = render(<InputAdornment position="start">foo</InputAdornment>);
-    const typographyClasses = getClasses(<Typography />);
     const typography = container.querySelector(`.${typographyClasses.root}`);
 
     expect(typography).not.to.equal(null);
@@ -161,14 +159,13 @@ describe('<InputAdornment />', () => {
         foo
       </InputAdornment>,
     );
-    const typographyClasses = getClasses(<Typography />);
 
     expect(container.querySelector(`.${typographyClasses.root}`)).to.equal(null);
   });
 
   it('should render children', () => {
     const { container } = render(
-      <InputAdornment position="start">
+      <InputAdornment position="end">
         <div>foo</div>
       </InputAdornment>,
     );
@@ -177,10 +174,27 @@ describe('<InputAdornment />', () => {
     expect(adornment.firstChild).to.have.property('nodeName', 'DIV');
   });
 
+  describe('prop: position', () => {
+    it('should render span for vertical baseline alignment', () => {
+      const { container } = render(
+        <InputAdornment position="start">
+          <div>foo</div>
+        </InputAdornment>,
+      );
+      const adornment = container.firstChild;
+
+      expect(adornment.firstChild).to.have.tagName('span');
+      expect(adornment.firstChild).to.have.class('notranslate');
+      expect(adornment.childNodes[1]).to.have.tagName('div');
+    });
+  });
+
   it('applies a size small class inside <FormControl size="small" />', () => {
     const { getByTestId } = render(
       <FormControl size="small">
-        <InputAdornment data-testid="root">$</InputAdornment>
+        <InputAdornment position="start" data-testid="root">
+          $
+        </InputAdornment>
       </FormControl>,
     );
 
@@ -190,7 +204,9 @@ describe('<InputAdornment />', () => {
   it('applies a hiddenLabel class inside <FormControl hiddenLabel />', () => {
     const { getByTestId } = render(
       <FormControl hiddenLabel>
-        <InputAdornment data-testid="root">$</InputAdornment>
+        <InputAdornment position="start" data-testid="root">
+          $
+        </InputAdornment>
       </FormControl>,
     );
 

@@ -1,15 +1,14 @@
 import * as React from 'react';
 import { useFakeTimers } from 'sinon';
 import { expect } from 'chai';
-import { getClasses, createMount, describeConformance, act, createClientRender } from 'test/utils';
+import { createMount, describeConformanceV5, act, createClientRender } from 'test/utils';
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
 
 const cb = () => {};
 
 describe('<TouchRipple />', () => {
-  let classes;
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
   /**
    * @param {object} other props to spread to TouchRipple
@@ -44,20 +43,24 @@ describe('<TouchRipple />', () => {
     };
   }
 
-  before(() => {
-    classes = getClasses(<TouchRipple />);
-  });
-
-  describeConformance(<TouchRipple />, () => ({
-    classes,
+  describeConformanceV5(<TouchRipple />, () => ({
+    classes: {},
     inheritComponent: 'span',
+    render,
     mount,
     refInstanceof: Object,
-    skip: ['componentProp', 'refForwarding'],
+    muiName: 'MuiTouchRipple',
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'refForwarding',
+      'themeStyleOverrides',
+      'themeVariants',
+    ],
   }));
 
   describe('prop: center', () => {
-    it('should should compute the right ripple dimensions', () => {
+    it('should compute the right ripple dimensions', () => {
       const { instance, queryRipple } = renderTouchRipple({ center: true });
 
       act(() => {
@@ -156,14 +159,10 @@ describe('<TouchRipple />', () => {
     });
 
     it('should create a specific ripple', () => {
-      const {
-        instance,
-        queryAllActiveRipples,
-        queryAllStoppingRipples,
-        queryRipple,
-      } = renderTouchRipple({
-        center: true,
-      });
+      const { instance, queryAllActiveRipples, queryAllStoppingRipples, queryRipple } =
+        renderTouchRipple({
+          center: true,
+        });
       const clientX = 1;
       const clientY = 1;
 
@@ -242,7 +241,7 @@ describe('<TouchRipple />', () => {
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
       act(() => {
-        instance.stop({ type: 'touchend', persist: () => {} }, cb);
+        instance.stop({ type: 'touchend' }, cb);
       });
 
       expect(queryAllActiveRipples()).to.have.lengthOf(1);

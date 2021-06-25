@@ -1,6 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -9,25 +7,6 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-
-const styles = {
-  item: {
-    flexGrow: 1,
-  },
-  card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    flexGrow: 1,
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-  cardMedia: {
-    height: 0,
-    paddingTop: '65%',
-  },
-};
 
 function layouts(t) {
   return [
@@ -106,25 +85,31 @@ function layouts(t) {
   ];
 }
 
-function Templates(props) {
-  const { classes } = props;
+function Templates() {
   const t = useTranslate();
 
   return (
     <Grid container spacing={2}>
       {layouts(t).map((layout) => (
-        <Grid item sm={6} md={4} className={classes.item} key={layout.title}>
-          <Card className={classes.card}>
+        <Grid item sm={6} md={4} sx={{ flexGrow: 1 }} key={layout.title}>
+          <Card
+            sx={{
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              flexGrow: 1,
+            }}
+          >
             <CardMedia
               component="a"
               href={layout.href}
-              className={classes.cardMedia}
+              sx={{ height: 0, pt: '65%' }}
               image={layout.src}
               title={layout.title}
               rel="nofollow"
               target="_blank"
             />
-            <CardContent className={classes.cardContent}>
+            <CardContent sx={{ flexGrow: 1 }}>
               <Typography gutterBottom variant="h5" align="left" component="h2">
                 {layout.title}
               </Typography>
@@ -142,8 +127,4 @@ function Templates(props) {
   );
 }
 
-Templates.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Templates);
+export default Templates;

@@ -6,13 +6,15 @@
 
 ## 设计资源
 
-<a href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch" style="margin-left: 8px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-sketch.svg" alt="sketch" /></a>
-<a href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-figma.svg" alt="figma" /></a>
+<a href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma" style="margin-left: 8px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-figma.svg" alt="figma" /></a>
+<a href="https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-adobe-xd.svg" alt="adobe-xd" /></a>
+<a href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-sketch.svg" alt="sketch" /></a>
 
 一套可重复使用的设计工具组件已经面世，这些工具是为了配合 React 组件而设计的，它们可以帮助你制作优秀的产品。
 
-- [Sketch](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch)：大型 UI 套件，包含 600 多个手工制作的 Material-UI 符号。
 - [Figma](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-figma)：大型 UI 套件，包含 600 多个手工制作的 Material-UI 组件。
+- [Adobe XD](https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-adobe-xd)：大型 UI 套件，包含六百多个手工制作的 Material-UI 组件。
+- [Sketch](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch)：大型 UI 套件，包含 600 多个手工制作的 Material-UI 符号。
 - [Framer](https://packages.framer.com/package/material-ui/material-ui)：Material-UI 组件的小型 UI 套件
 
 ## 图像和图案
@@ -29,6 +31,7 @@
 
 - [Material-UI Snippets](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets)：提供编写提示的 VSCode 扩展。
 - [Material-UI Codemorphs](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs)：提供代码模块的 VSCode 扩展。
+- [eslint: detect unused classes](https://github.com/jens-ox/eslint-plugin-material-ui-unused-classes)：ESLint 插件检测到 `@material-ui/styles` 中未使用的类。
 
 ## Components 组件
 
@@ -61,10 +64,6 @@
 ### 图像
 
 - [material-ui-image](https://mui.wertarbyte.com/#material-ui-image)：图片在完全加载之前都是很简陋的。 使用 material 图像来物化它！ 它会像 material 图像的加载模式建议的一样淡入。
-
-### 分页组件 Pagination
-
-- [material-ui-flat-pagination](https://github.com/szmslab/material-ui-flat-pagination)：一个基于 Material-UI 的扁平化设计的分页组件。
 
 ### 日程表/日历
 

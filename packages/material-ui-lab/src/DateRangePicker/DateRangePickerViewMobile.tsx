@@ -1,11 +1,11 @@
 import * as React from 'react';
 import PickersCalendarHeader, {
   ExportedCalendarHeaderProps,
-} from '../DayPicker/PickersCalendarHeader';
+} from '../CalendarPicker/PickersCalendarHeader';
 import { DateRange } from './RangeTypes';
-import DateRangeDay from '../DateRangePickerDay/DateRangePickerDay';
+import DateRangePickerDay from '../DateRangePickerDay';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
-import PickersCalendar, { PickersCalendarProps } from '../DayPicker/PickersCalendar';
+import PickersCalendar, { PickersCalendarProps } from '../CalendarPicker/PickersCalendar';
 import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
 import { ExportedDesktopDateRangeCalendarProps } from './DateRangePickerViewDesktop';
 import {
@@ -28,7 +28,7 @@ interface DesktopDateRangeCalendarProps<TDate>
   changeMonth: (date: TDate) => void;
 }
 
-const onlyDateView = ['date'] as ['date'];
+const onlyDayView = ['day'] as const;
 
 /**
  * @ignore - internal component.
@@ -36,40 +36,34 @@ const onlyDateView = ['date'] as ['date'];
 export function DateRangePickerViewMobile<TDate>(props: DesktopDateRangeCalendarProps<TDate>) {
   const {
     changeMonth,
+    components,
+    componentsProps,
     date,
-    leftArrowButtonProps,
     leftArrowButtonText,
-    leftArrowIcon,
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    minDate: __minDate,
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    maxDate: __maxDate,
+    maxDate: maxDateProp,
+    minDate: minDateProp,
     onChange,
-    rightArrowButtonProps,
+    renderDay = (_, dayProps) => <DateRangePickerDay<TDate> {...dayProps} />,
     rightArrowButtonText,
-    rightArrowIcon,
-    renderDay = (_, dayProps) => <DateRangeDay<TDate> {...dayProps} />,
     ...other
   } = props;
 
   const utils = useUtils();
-  const minDate = __minDate || utils.date(defaultMinDate);
-  const maxDate = __maxDate || utils.date(defaultMaxDate);
+  const minDate = minDateProp || utils.date(defaultMinDate);
+  const maxDate = maxDateProp || utils.date(defaultMaxDate);
 
   return (
     <React.Fragment>
       <PickersCalendarHeader
-        openView="date"
-        views={onlyDateView}
-        onMonthChange={changeMonth as any}
+        components={components}
+        componentsProps={componentsProps}
         leftArrowButtonText={leftArrowButtonText}
-        leftArrowButtonProps={leftArrowButtonProps}
-        leftArrowIcon={leftArrowIcon}
-        rightArrowButtonProps={rightArrowButtonProps}
-        rightArrowButtonText={rightArrowButtonText}
-        rightArrowIcon={rightArrowIcon}
-        minDate={minDate}
         maxDate={maxDate}
+        minDate={minDate}
+        onMonthChange={changeMonth as any}
+        openView="day"
+        rightArrowButtonText={rightArrowButtonText}
+        views={onlyDayView}
         {...other}
       />
       <PickersCalendar<TDate>

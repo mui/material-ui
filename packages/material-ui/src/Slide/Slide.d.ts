@@ -18,7 +18,16 @@ export interface SlideProps extends TransitionProps {
    */
   direction?: 'left' | 'right' | 'up' | 'down';
   /**
-   * If `true`, show the component; triggers the enter or exit animation.
+   * The transition timing function.
+   * You may specify a single easing or a object containing enter and exit values.
+   * @default {
+   *   enter: easing.easeOut,
+   *   exit: easing.sharp,
+   * }
+   */
+  easing?: TransitionProps['easing'];
+  /**
+   * If `true`, the component will transition in.
    */
   in?: TransitionProps['in'];
   ref?: React.Ref<unknown>;
@@ -36,6 +45,7 @@ export interface SlideProps extends TransitionProps {
 /**
  * The Slide transition is used by the [Drawer](https://material-ui.com/components/drawers/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
+ *
  * Demos:
  *
  * - [Dialogs](https://material-ui.com/components/dialogs/)

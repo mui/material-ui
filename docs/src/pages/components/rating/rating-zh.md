@@ -7,7 +7,7 @@ waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
 
 # Rating 评分
 
-<p class="description">评分可以让用户深入了解他人的意见和经验，也可以让用户提交自己的评分。
+<p class="description">评分组件可以让用户深入了解他人的意见和经验，也可以让用户提交自己的评价。
 </p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
@@ -36,9 +36,15 @@ waiAria: 'https://www.w3.org/WAI/tutorials/forms/custom-controls/#a-star-rating'
 
 ## 自定义评分组件
 
-你可以参考以下一些例子来自定义组件。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/rating/CustomizedRating.js"}}
+
+## Radio group
+
+The rating is implemented with a radio group, set `highlightSelectedOnly` to restore the natural behavior.
+
+{{"demo": "pages/components/rating/RadioGroupRating.js"}}
 
 ## 无障碍设计
 

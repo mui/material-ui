@@ -54,7 +54,7 @@ const data = {
 
 ## Параметр ContentComponent
 
-Вы можете использовать параметр `ContentComponent`  и хук ` useTreeItem` для дальнейшей настройки поведения TreeItem.
+Вы можете использовать параметр `ContentComponent`  и хук `useTreeItem` для дальнейшей настройки поведения TreeItem.
 
 Такой, как ограничение раскрытия только нажатием иконки:
 

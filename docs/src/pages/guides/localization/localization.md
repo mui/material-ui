@@ -9,10 +9,10 @@ The default locale of Material-UI is English (United States). If you want to use
 Use the theme to configure the locale text globally:
 
 ```jsx
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { zhCN } from '@material-ui/core/locale';
 
-const theme = createMuiTheme(
+const theme = createTheme(
   {
     palette: {
       primary: { main: '#1976d2' },
@@ -37,9 +37,12 @@ const theme = createMuiTheme(
 | Arabic (Egypt)          | ar-EG               | `arEG`      |
 | Armenian                | hy-AM               | `hyAM`      |
 | Azerbaijani             | az-AZ               | `azAZ`      |
+| Bangla                  | bn-BD               | `bnBD`      |
 | Bulgarian               | bg-BG               | `bgBG`      |
 | Catalan                 | ca-ES               | `caES`      |
+| Chinese (Hong Kong)     | zh-HK               | `zhHK`      |
 | Chinese (Simplified)    | zh-CN               | `zhCN`      |
+| Chinese (Taiwan)        | zh-TW               | `zhTW`      |
 | Czech                   | cs-CZ               | `csCZ`      |
 | Dutch                   | nl-NL               | `nlNL`      |
 | English (United States) | en-US               | `enUS`      |
@@ -59,15 +62,16 @@ const theme = createMuiTheme(
 | Korean                  | ko-KR               | `koKR`      |
 | Persian                 | fa-IR               | `faIR`      |
 | Polish                  | pl-PL               | `plPL`      |
-| Portuguese (Brazil)     | pt-BR               | `ptBR`      |
 | Portuguese              | pt-PT               | `ptPT`      |
+| Portuguese (Brazil)     | pt-BR               | `ptBR`      |
 | Romanian                | ro-RO               | `roRO`      |
 | Russian                 | ru-RU               | `ruRU`      |
+| Sinhalese               | si-LK               | `siLK`      |
 | Slovak                  | sk-SK               | `skSK`      |
 | Spanish                 | es-ES               | `esES`      |
 | Swedish                 | sv-SE               | `svSE`      |
-| Turkish                 | tr-TR               | `trTR`      |
 | Thai                    | th-TH               | `thTH`      |
+| Turkish                 | tr-TR               | `trTR`      |
 | Ukrainian               | uk-UA               | `ukUA`      |
 | Vietnamese              | vi-VN               | `viVN`      |
 

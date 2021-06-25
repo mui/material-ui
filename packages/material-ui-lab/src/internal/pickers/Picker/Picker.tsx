@@ -1,76 +1,76 @@
 import * as React from 'react';
-import clsx from 'clsx';
-import { styled, createStyles, WithStyles, withStyles } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import { useViews } from '../hooks/useViews';
 import ClockPicker from '../../../ClockPicker/ClockPicker';
-import DayPicker from '../../../DayPicker/DayPicker';
+import { ClockPickerView } from '../../../ClockPicker';
+import CalendarPicker, { CalendarPickerView } from '../../../CalendarPicker';
 import { KeyboardDateInput } from '../KeyboardDateInput';
 import { useIsLandscape } from '../hooks/useIsLandscape';
-import { DIALOG_WIDTH, VIEW_HEIGHT } from '../constants/dimensions';
-import { WrapperVariantContext } from '../wrappers/WrapperVariantContext';
+import { WrapperVariant, WrapperVariantContext } from '../wrappers/WrapperVariantContext';
+import { DateInputPropsLike } from '../wrappers/WrapperProps';
 import { PickerSelectionState } from '../hooks/usePickerState';
 import { BasePickerProps, CalendarAndClockProps } from '../typings/BasePicker';
-import { WithViewsProps, SharedPickerProps } from './SharedPickerProps';
-import { AllAvailableViews, TimePickerView, DatePickerView } from '../typings/Views';
+import { AllAvailableViews } from '../typings/Views';
 import PickerView from './PickerView';
 
-export interface ExportedPickerProps<TView extends AllAvailableViews>
-  extends Omit<BasePickerProps, 'value' | 'onChange'>,
-    CalendarAndClockProps<unknown>,
-    WithViewsProps<TView> {
+export interface ExportedPickerProps
+  extends Omit<BasePickerProps<unknown, unknown>, 'value' | 'onChange'>,
+    CalendarAndClockProps<unknown> {
   dateRangeIcon?: React.ReactNode;
+  /**
+   * First view to show.
+   */
+  openTo?: AllAvailableViews;
   timeIcon?: React.ReactNode;
+  /**
+   * Array of views to show.
+   */
+  views?: readonly AllAvailableViews[];
 }
 
-export type PickerProps<
-  TView extends AllAvailableViews,
-  TInputValue = any,
-  TDateValue = any
-> = ExportedPickerProps<TView> & SharedPickerProps<TInputValue, TDateValue>;
+export interface PickerProps<TDateValue = any> extends ExportedPickerProps {
+  autoFocus?: boolean;
+  date: TDateValue;
+  DateInputProps: DateInputPropsLike;
+  isMobileKeyboardViewOpen: boolean;
+  onDateChange: (
+    date: TDateValue,
+    currentWrapperVariant: WrapperVariant,
+    isFinish?: PickerSelectionState,
+  ) => void;
+  toggleMobileKeyboardView: () => void;
+}
 
-export const MobileKeyboardInputView = styled('div')(
-  {
-    padding: '16px 24px',
-  },
-  { name: 'MuiPickersMobileKeyboardInputView' },
-);
-
-export const styles = createStyles({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  landscape: {
-    flexDirection: 'row',
-  },
-  pickerView: {
-    overflowX: 'hidden',
-    width: DIALOG_WIDTH,
-    maxHeight: VIEW_HEIGHT,
-    display: 'flex',
-    flexDirection: 'column',
-    margin: '0 auto',
-  },
+export const MobileKeyboardInputView = styled('div')({
+  padding: '16px 24px',
 });
 
-export type PickerClassKey = keyof WithStyles<typeof styles>['classes'];
+const PickerRoot = styled('div', { skipSx: true })<{ styleProps: { isLandscape: boolean } }>(
+  ({ styleProps }) => ({
+    display: 'flex',
+    flexDirection: 'column',
+    ...(styleProps.isLandscape && {
+      flexDirection: 'row',
+    }),
+  }),
+);
 
 const MobileKeyboardTextFieldProps = { fullWidth: true };
 
-const isDatePickerView = (view: AllAvailableViews): view is DatePickerView =>
-  view === 'year' || view === 'month' || view === 'date';
+const isDatePickerView = (view: AllAvailableViews): view is CalendarPickerView =>
+  view === 'year' || view === 'month' || view === 'day';
 
-const isTimePickerView = (view: AllAvailableViews): view is TimePickerView =>
+const isTimePickerView = (view: AllAvailableViews): view is ClockPickerView =>
   view === 'hours' || view === 'minutes' || view === 'seconds';
 
 function Picker({
-  classes,
+  autoFocus,
   className,
   date,
   DateInputProps,
   isMobileKeyboardViewOpen,
   onDateChange,
-  openTo = 'date',
+  openTo = 'day',
   orientation,
   showToolbar,
   toggleMobileKeyboardView,
@@ -78,9 +78,9 @@ function Picker({
   toolbarFormat,
   toolbarPlaceholder,
   toolbarTitle,
-  views = ['year', 'month', 'date', 'hours', 'minutes', 'seconds'],
+  views = ['year', 'month', 'day', 'hours', 'minutes', 'seconds'],
   ...other
-}: PickerProps<AllAvailableViews> & WithStyles<typeof styles>) {
+}: PickerProps) {
   const isLandscape = useIsLandscape(views, orientation);
   const wrapperVariant = React.useContext(WrapperVariantContext);
 
@@ -94,26 +94,22 @@ function Picker({
     [onDateChange, wrapperVariant],
   );
 
+  const handleViewChange = React.useCallback(() => {
+    if (isMobileKeyboardViewOpen) {
+      toggleMobileKeyboardView();
+    }
+  }, [isMobileKeyboardViewOpen, toggleMobileKeyboardView]);
+
   const { openView, nextView, previousView, setOpenView, handleChangeAndOpenNext } = useViews({
     view: undefined,
     views,
     openTo,
     onChange: handleDateChange,
+    onViewChange: handleViewChange,
   });
 
-  React.useEffect(() => {
-    if (isMobileKeyboardViewOpen && toggleMobileKeyboardView) {
-      toggleMobileKeyboardView();
-    }
-    // React on `openView` change
-  }, [openView]); // eslint-disable-line
-
   return (
-    <div
-      className={clsx(classes.root, className, {
-        [classes.landscape]: isLandscape,
-      })}
-    >
+    <PickerRoot styleProps={{ isLandscape }}>
       {toShowToolbar && (
         <ToolbarComponent
           {...other}
@@ -144,7 +140,8 @@ function Picker({
         ) : (
           <React.Fragment>
             {isDatePickerView(openView) && (
-              <DayPicker
+              <CalendarPicker
+                autoFocus={autoFocus}
                 date={date}
                 onViewChange={setOpenView}
                 onChange={handleChangeAndOpenNext}
@@ -157,6 +154,7 @@ function Picker({
             {isTimePickerView(openView) && (
               <ClockPicker
                 {...other}
+                autoFocus={autoFocus}
                 date={date}
                 view={openView}
                 onChange={handleChangeAndOpenNext}
@@ -170,8 +168,8 @@ function Picker({
           </React.Fragment>
         )}
       </PickerView>
-    </div>
+    </PickerRoot>
   );
 }
 
-export default withStyles(styles, { name: 'MuiPicker' })(Picker);
+export default Picker;

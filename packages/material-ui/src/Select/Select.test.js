@@ -2,50 +2,58 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   ErrorBoundary,
   act,
   createClientRender,
   fireEvent,
   screen,
 } from 'test/utils';
-import MenuItem from '../MenuItem';
-import Input from '../Input';
-import InputLabel from '../InputLabel';
-import Select from './Select';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import MenuItem from '@material-ui/core/MenuItem';
+import InputBase from '@material-ui/core/InputBase';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import Divider from '@material-ui/core/Divider';
+import classes from './selectClasses';
 
 describe('<Select />', () => {
-  let classes;
-  const mount = createMount({ strict: true });
-  // StrictModeViolation: triggers "not wrapped in act()" warnings from timers.
-  const render = createClientRender({ strict: false });
-
-  before(() => {
-    classes = getClasses(<Select />);
+  /**
+   * @type {ReturnType<typeof useFakeTimers>}
+   */
+  let clock;
+  beforeEach(() => {
+    clock = useFakeTimers();
   });
+  afterEach(() => {
+    clock.restore();
+  });
+  const mount = createMount();
+  const render = createClientRender();
 
-  describeConformance(<Select value="" />, () => ({
+  describeConformanceV5(<Select value="" />, () => ({
     classes,
-    inheritComponent: Input,
+    inheritComponent: OutlinedInput,
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp', 'rootClass'],
+    muiName: 'MuiSelect',
+    skip: ['componentProp', 'componentsProp', 'themeVariants', 'themeStyleOverrides'],
   }));
 
   describe('prop: inputProps', () => {
     it('should be able to provide a custom classes property', () => {
-      const { container } = render(
+      render(
         <Select
           inputProps={{
-            classes: { root: 'root' },
+            classes: { select: 'select' },
           }}
           value=""
         />,
       );
-
-      expect(container.querySelector(`.${classes.root}`)).to.have.class('root');
+      expect(document.querySelector(`.${classes.select}`)).to.have.class('select');
     });
   });
 
@@ -151,7 +159,9 @@ describe('<Select />', () => {
         </Select>,
       );
       const trigger = screen.getByRole('button');
-      trigger.focus();
+      act(() => {
+        trigger.focus();
+      });
 
       fireEvent.keyDown(trigger, { key });
       expect(screen.getByRole('listbox', { hidden: false })).not.to.equal(null);
@@ -169,9 +179,13 @@ describe('<Select />', () => {
       </Select>,
     );
     const button = getByRole('button');
-    button.focus();
+    act(() => {
+      button.focus();
+    });
 
-    button.blur();
+    act(() => {
+      button.blur();
+    });
 
     expect(handleBlur.callCount).to.equal(1);
     expect(handleBlur.firstCall.returnValue).to.equal('blur-testing');
@@ -246,7 +260,9 @@ describe('<Select />', () => {
         </Select>,
       );
       fireEvent.mouseDown(getByRole('button'));
-      getAllByRole('option')[1].click();
+      act(() => {
+        getAllByRole('option')[1].click();
+      });
 
       expect(onChangeHandler.calledOnce).to.equal(true);
       const selected = onChangeHandler.args[0][1];
@@ -265,7 +281,9 @@ describe('<Select />', () => {
       );
 
       fireEvent.mouseDown(getByRole('button'));
-      getAllByRole('option')[1].click();
+      act(() => {
+        getAllByRole('option')[1].click();
+      });
 
       expect(eventLog).to.deep.equal(['CHANGE_EVENT', 'CLOSE_EVENT']);
     });
@@ -280,7 +298,9 @@ describe('<Select />', () => {
         </Select>,
       );
       fireEvent.mouseDown(getByRole('button'));
-      getAllByRole('option')[1].click();
+      act(() => {
+        getAllByRole('option')[1].click();
+      });
 
       expect(onChangeHandler.callCount).to.equal(0);
     });
@@ -352,29 +372,19 @@ describe('<Select />', () => {
     });
 
     describe('warnings', () => {
-      let consoleWarnContainer = null;
-
-      beforeEach(() => {
-        consoleWarnContainer = console.warn;
-        console.warn = spy();
-      });
-
-      afterEach(() => {
-        console.warn = consoleWarnContainer;
-        consoleWarnContainer = null;
-      });
-
       it('warns when the value is not present in any option', () => {
-        render(
-          <Select value={20}>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>,
-        );
-        expect(console.warn.callCount).to.equal(2); // strict mode renders twice
-        expect(console.warn.args[0][0]).to.include(
+        expect(() =>
+          render(
+            <Select value={20}>
+              <MenuItem value={10}>Ten</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>
+            </Select>,
+          ),
+        ).toWarnDev([
           'Material-UI: You have provided an out-of-range value `20` for the select component.',
-        );
+          // strict mode renders twice
+          'Material-UI: You have provided an out-of-range value `20` for the select component.',
+        ]);
       });
     });
   });
@@ -412,10 +422,10 @@ describe('<Select />', () => {
       expect(getByRole('button', { hidden: true })).to.have.attribute('aria-expanded', 'true');
     });
 
-    specify('aria-expanded is not present if the listbox isnt displayed', () => {
+    specify('ARIA 1.2: aria-expanded="false" if the listbox isnt displayed', () => {
       const { getByRole } = render(<Select value="" />);
 
-      expect(getByRole('button')).not.to.have.attribute('aria-expanded');
+      expect(getByRole('button')).to.have.attribute('aria-expanded', 'false');
     });
 
     it('sets aria-disabled="true" when component is disabled', () => {
@@ -484,7 +494,7 @@ describe('<Select />', () => {
       const { getByRole } = render(<Select value="" />);
 
       // TODO what is the accessible name actually?
-      expect(getByRole('button')).to.not.have.attribute('aria-labelledby');
+      expect(getByRole('button')).not.to.have.attribute('aria-labelledby');
     });
 
     it('is labelled by itself when it has a name', () => {
@@ -548,6 +558,19 @@ describe('<Select />', () => {
 
       expect(getByRole('listbox')).to.have.attribute('aria-labelledby', 'select-label');
     });
+
+    it('should have appropriate accessible description when provided in props', () => {
+      const { getByRole } = render(
+        <React.Fragment>
+          <Select aria-describedby="select-helper-text" value="" />
+          <span id="select-helper-text">Helper text content</span>
+        </React.Fragment>,
+      );
+
+      const target = getByRole('button');
+      expect(target).to.have.attribute('aria-describedby', 'select-helper-text');
+      expect(target).toHaveAccessibleDescription('Helper text content');
+    });
   });
 
   describe('prop: readOnly', () => {
@@ -560,7 +583,9 @@ describe('<Select />', () => {
         { baseElement: document.body },
       );
       const trigger = screen.getByRole('button');
-      trigger.focus();
+      act(() => {
+        trigger.focus();
+      });
 
       fireEvent.keyDown(trigger, { key: 'ArrowDown' });
       expect(screen.queryByRole('listbox')).to.equal(null);
@@ -571,16 +596,6 @@ describe('<Select />', () => {
   });
 
   describe('prop: MenuProps', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
     it('should apply additional props to the Menu component', () => {
       const onEntered = spy();
       const { getByRole } = render(
@@ -659,16 +674,6 @@ describe('<Select />', () => {
   });
 
   describe('prop: open (controlled)', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
     it('should not focus on close controlled select', () => {
       function ControlledWrapper() {
         const [open, setOpen] = React.useState(false);
@@ -698,7 +703,7 @@ describe('<Select />', () => {
       expect(option).toHaveFocus();
       fireEvent.click(option);
 
-      expect(container.querySelectorAll('.Mui-focused').length).to.equal(0);
+      expect(container.querySelectorAll(classes.focused).length).to.equal(0);
       expect(openSelect).toHaveFocus();
     });
 
@@ -1010,7 +1015,7 @@ describe('<Select />', () => {
   });
 
   it('prevents the default when releasing Space on the children', () => {
-    const keyUpSpy = spy((event) => event.defaultPrevented);
+    const keyUpSpy = spy();
     render(
       <Select value="one" open>
         <MenuItem onKeyUp={keyUpSpy} value="one">
@@ -1022,7 +1027,7 @@ describe('<Select />', () => {
     fireEvent.keyUp(screen.getAllByRole('option')[0], { key: ' ' });
 
     expect(keyUpSpy.callCount).to.equal(1);
-    expect(keyUpSpy.returnValues[0]).to.equal(true);
+    expect(keyUpSpy.firstCall.args[0]).to.have.property('defaultPrevented', true);
   });
 
   it('should pass onClick prop to MenuItem', () => {
@@ -1108,5 +1113,87 @@ describe('<Select />', () => {
       </Select>,
     );
     expect(document.activeElement).to.equal(getByRole('button'));
+  });
+
+  it('should not override the event.target on mouse events', () => {
+    const handleChange = spy();
+    const handleClick = spy();
+    render(
+      <div onClick={handleClick}>
+        <Select open onChange={handleChange} value="second">
+          <MenuItem value="first" />
+          <MenuItem value="second" />
+        </Select>
+      </div>,
+    );
+
+    const options = screen.getAllByRole('option');
+    options[0].click();
+
+    expect(handleChange.callCount).to.equal(1);
+    expect(handleClick.callCount).to.equal(1);
+    expect(handleClick.firstCall.args[0]).to.have.property('target', options[0]);
+  });
+
+  it('should only select options', () => {
+    const handleChange = spy();
+    render(
+      <Select open onChange={handleChange} value="second">
+        <MenuItem value="first" />
+        <Divider />
+        <MenuItem value="second" />
+      </Select>,
+    );
+
+    const divider = document.querySelector('hr');
+    divider.click();
+    expect(handleChange.callCount).to.equal(0);
+  });
+
+  it('slots overrides should work', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const iconStyle = {
+      marginTop: '13px',
+    };
+
+    const nativeInputStyle = {
+      marginTop: '10px',
+    };
+
+    const theme = createTheme({
+      components: {
+        MuiSelect: {
+          styleOverrides: {
+            icon: iconStyle,
+            nativeInput: nativeInputStyle,
+          },
+        },
+      },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Select open value="first">
+          <MenuItem value="first" />
+          <MenuItem value="second" />
+        </Select>
+      </ThemeProvider>,
+    );
+
+    expect(container.getElementsByClassName(classes.icon)[0]).to.toHaveComputedStyle(iconStyle);
+    expect(container.getElementsByClassName(classes.nativeInput)[0]).to.toHaveComputedStyle(
+      nativeInputStyle,
+    );
+  });
+
+  it('should merge the class names', () => {
+    const { getByTestId } = render(
+      <Select className="foo" input={<InputBase data-testid="root" className="bar" />} value="" />,
+    );
+    expect(getByTestId('root')).to.have.class('foo');
+    expect(getByTestId('root')).to.have.class('bar');
   });
 });

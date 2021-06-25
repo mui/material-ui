@@ -1,37 +1,58 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { integerPropType } from '@material-ui/utils';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import PropTypes from 'prop-types';
+import * as React from 'react';
+import styled from '../styles/styled';
+import useThemeProps from '../styles/useThemeProps';
+import { getImageListUtilityClass } from './imageListClasses';
 import ImageListContext from './ImageListContext';
 
-export const styles = {
+const useUtilityClasses = (styleProps) => {
+  const { classes, variant } = styleProps;
+
+  const slots = {
+    root: ['root', variant],
+  };
+
+  return composeClasses(slots, getImageListUtilityClass, classes);
+};
+
+const ImageListRoot = styled('ul', {
+  name: 'MuiImageList',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return [styles.root, styles[styleProps.variant]];
+  },
+})(({ styleProps }) => {
   /* Styles applied to the root element. */
-  root: {
+  return {
     display: 'grid',
     overflowY: 'auto',
     listStyle: 'none',
     padding: 0,
-    WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
-  },
-  /* Styles applied to the root element if `variant="masonry"`. */
-  masonry: {
-    display: 'block',
-  },
-  /* Styles applied to the root element if `variant="quilted"`. */
-  quilted: {},
-  /* Styles applied to the root element if `variant="standard"`. */
-  standard: {},
-  /* Styles applied to the root element if `variant="woven"`. */
-  woven: {},
-};
+    // Add iOS momentum scrolling for iOS < 13.0
+    WebkitOverflowScrolling: 'touch',
+    /* Styles applied to the root element if `variant="masonry"`. */
+    ...(styleProps.variant === 'masonry' && {
+      display: 'block',
+    }),
+  };
+});
 
-const ImageList = React.forwardRef(function ImageList(props, ref) {
+const ImageList = React.forwardRef(function ImageList(inProps, ref) {
+  const props = useThemeProps({
+    props: inProps,
+    name: 'MuiImageList',
+  });
+
   const {
     children,
-    classes,
     className,
     cols = 2,
-    component: Component = 'ul',
+    component = 'ul',
     rowHeight = 'auto',
     gap = 4,
     style: styleProp,
@@ -39,11 +60,10 @@ const ImageList = React.forwardRef(function ImageList(props, ref) {
     ...other
   } = props;
 
-  const contextValue = React.useMemo(() => ({ rowHeight, gap, variant }), [
-    rowHeight,
-    gap,
-    variant,
-  ]);
+  const contextValue = React.useMemo(
+    () => ({ rowHeight, gap, variant }),
+    [rowHeight, gap, variant],
+  );
 
   React.useEffect(() => {
     if (process.env.NODE_ENV !== 'production') {
@@ -64,25 +84,31 @@ const ImageList = React.forwardRef(function ImageList(props, ref) {
       ? { columnCount: cols, columnGap: gap, ...styleProp }
       : { gridTemplateColumns: `repeat(${cols}, 1fr)`, gap, ...styleProp };
 
+  const styleProps = { ...props, component, gap, rowHeight, variant };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <Component
+    <ImageListRoot
+      as={component}
       className={clsx(classes.root, classes[variant], className)}
       ref={ref}
       style={style}
+      styleProps={styleProps}
       {...other}
     >
       <ImageListContext.Provider value={contextValue}>{children}</ImageListContext.Provider>
-    </Component>
+    </ImageListRoot>
   );
 });
 
-ImageList.propTypes = {
+ImageList.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * Items that will be in the image list.
+   * The content of the component, normally `ImageListItem`s.
    */
   children: PropTypes /* @typescript-to-proptypes-ignore */.node.isRequired,
   /**
@@ -97,7 +123,7 @@ ImageList.propTypes = {
    * Number of columns.
    * @default 2
    */
-  cols: PropTypes.number,
+  cols: integerPropType,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -118,6 +144,10 @@ ImageList.propTypes = {
    */
   style: PropTypes.object,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The variant to use.
    * @default 'standard'
    */
@@ -127,4 +157,4 @@ ImageList.propTypes = {
   ]),
 };
 
-export default withStyles(styles, { name: 'MuiImageList' })(ImageList);
+export default ImageList;

@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TransitionProps } from '../transitions/transition';
+import { CollapseClasses } from './collapseClasses';
 
 export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'> {
   /**
@@ -11,20 +13,7 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Pseudo-class applied to the root element if `orientation="horizontal"`. */
-    horizontal?: string;
-    /** Styles applied to the root element when the transition has entered. */
-    entered?: string;
-    /** Styles applied to the root element when the transition has exited and `collapsedSize` != 0px. */
-    hidden?: string;
-    /** Styles applied to the outer wrapper element. */
-    wrapper?: string;
-    /** Styles applied to the inner wrapper element. */
-    wrapperInner?: string;
-  };
+  classes?: Partial<CollapseClasses>;
   /**
    * The width (horizontal) or height (vertical) of the container when collapsed.
    * @default '0px'
@@ -36,11 +25,16 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
    */
   component?: React.ElementType<TransitionProps>;
   /**
+   * The transition timing function.
+   * You may specify a single easing or a object containing enter and exit values.
+   */
+  easing?: TransitionProps['easing'];
+  /**
    * If `true`, the component will transition in.
    */
   in?: boolean;
   /**
-   * The collapse transition orientation.
+   * The transition orientation.
    * @default 'vertical'
    */
   orientation?: 'horizontal' | 'vertical';
@@ -52,14 +46,17 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
    * @default duration.standard
    */
   timeout?: TransitionProps['timeout'] | 'auto';
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
-
-export type CollapseClassKey = keyof NonNullable<CollapseProps['classes']>;
 
 /**
  * The Collapse transition is used by the
  * [Vertical Stepper](https://material-ui.com/components/steppers/#vertical-stepper) StepContent component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
+ *
  * Demos:
  *
  * - [Cards](https://material-ui.com/components/cards/)

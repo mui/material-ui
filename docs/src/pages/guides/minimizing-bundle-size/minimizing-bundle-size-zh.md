@@ -8,7 +8,7 @@ Material-UI 的打包文件大小至关重要。 每一次提交代码时，我�
 
 ## 何时以及如何使用 tree-shaking?
 
-在现代框架中，Material-UI 的 Tree-shaking 可开箱即用。 Material-UI 在导入顶层的 `material-ui` 时会提供出其完整的 API。 如果你使用的是 ES6 模块和支持 tree-shaking 的打包程序（[`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)），那么你可以安全地使用命名的导入，并且仍然可以自动获得优化的捆绑包大小。
+在现代框架中，Material-UI 的 Tree-shaking 可开箱即用。 Material-UI 在导入顶层的 `material-ui` 时会提供出其完整的 API。 If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
 
 ```js
 import { Button, TextField } from '@material-ui/core';
@@ -105,6 +105,7 @@ import { Button, TextField } from '@material-ui/core';
       'babel-plugin-import',
       {
         libraryName: '@material-ui/core',
+        libraryDirectory: '',
         camel2DashComponentName: false,
       },
       'core',
@@ -113,6 +114,7 @@ import { Button, TextField } from '@material-ui/core';
       'babel-plugin-import',
       {
         libraryName: '@material-ui/icons',
+        libraryDirectory: '',
         camel2DashComponentName: false,
       },
       'icons',
@@ -156,6 +158,7 @@ import { Button, TextField } from '@material-ui/core';
 
 ```js
 /* config-overrides.js */
+/* eslint-disable react-hooks/rules-of-hooks */
 const { useBabelRc, override } = require('customize-cra');
 
 module.exports = override(useBabelRc());
@@ -175,24 +178,6 @@ module.exports = override(useBabelRc());
 +   "test": "react-app-rewired test",
     "eject": "react-scripts eject"
 }
-```
-
-注意：您可能会遇到如下错误：
-
-> Module not found: Can't resolve '@material-ui/core/makeStyles' in '/your/project'
-
-这是因为 `@material-ui/styles` 通过 `核心（core）` 重新导出，但是不允许完整的导入模块。
-
-您的代码中可能存在这样的模块导入方式：
-
-```js
-import { makeStyles, createStyles } from '@material-ui/core';
-```
-
-要解决它也很简单，您只需要这样单独定义导入模块：
-
-```js
-import { makeStyles, createStyles } from '@material-ui/core/styles';
 ```
 
 这样一来，你可以享受更快的启动时间了。

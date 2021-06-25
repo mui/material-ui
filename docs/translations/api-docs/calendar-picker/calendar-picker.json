@@ -1,0 +1,26 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "defaultCalendarMonth": "Default calendar month displayed when <code>value={null}</code>.",
+    "loading": "If <code>true</code> renders <code>LoadingComponent</code> in calendar instead of calendar view. Can be used to preload information and show it in calendar.",
+    "maxDate": "Max selectable date. @DateIOType",
+    "minDate": "Min selectable date. @DateIOType",
+    "onChange": "Callback fired on date change",
+    "onMonthChange": "Callback firing on month change. @DateIOType",
+    "onViewChange": "Callback fired on view change.",
+    "openTo": "Initially open view.",
+    "reduceAnimations": "Disable heavy animations.",
+    "renderLoading": "Component displaying when passed <code>loading</code> true.",
+    "shouldDisableDate": "Disable specific date. @DateIOType",
+    "shouldDisableYear": "Disable specific years dynamically. Works like <code>shouldDisableDate</code> but for year selection view @DateIOType.",
+    "view": "Controlled open view.",
+    "views": "Views for calendar picker."
+  },
+  "classDescriptions": {
+    "root": { "description": "Styles applied to the root element." },
+    "viewTransitionContainer": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the transition group element"
+    }
+  }
+}

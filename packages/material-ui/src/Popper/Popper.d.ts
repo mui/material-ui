@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Instance, VirtualElement, Options, OptionsGeneric } from '@popperjs/core';
-import { Omit } from '..';
 import { PortalProps } from '../Portal';
 
 export type PopperPlacementType = Options['placement'];
@@ -8,7 +7,7 @@ export type PopperPlacementType = Options['placement'];
 export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   ref?: React.Ref<HTMLDivElement>;
   /**
-   * A HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
+   * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
    * or a function that returns either.
    * It's used to set the position of the popper.
    * The return value will passed as the reference object of the Popper instance.
@@ -28,7 +27,7 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
         };
       }) => React.ReactNode);
   /**
-   * A HTML element or function that returns one.
+   * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
    *
    * By default, it uses the body of the top-level document object,
@@ -36,7 +35,7 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
    */
   container?: PortalProps['container'];
   /**
-   * The `children` will be inside the DOM hierarchy of the parent component.
+   * The `children` will be under the DOM hierarchy of the parent component.
    * @default false
    */
   disablePortal?: PortalProps['disablePortal'];
@@ -58,7 +57,7 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
    */
   modifiers?: Options['modifiers'];
   /**
-   * If `true`, the popper is visible.
+   * If `true`, the component is shown.
    */
   open: boolean;
   /**
@@ -84,6 +83,7 @@ export interface PopperProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
 
 /**
  * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
+ *
  * Demos:
  *
  * - [Autocomplete](https://material-ui.com/components/autocomplete/)

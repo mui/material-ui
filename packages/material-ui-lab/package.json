@@ -1,9 +1,9 @@
 {
   "name": "@material-ui/lab",
-  "version": "5.0.0-alpha.18",
+  "version": "5.0.0-alpha.38",
   "private": false,
   "author": "Material-UI Team",
-  "description": "Material-UI Lab - Incubator for Material-UI React components.",
+  "description": "Laboratory for new Material-UI modules.",
   "main": "./src/index.js",
   "keywords": [
     "react",
@@ -29,21 +29,21 @@
     "build:node": "node ../../scripts/build node",
     "build:stable": "node ../../scripts/build stable",
     "build:copy-files": "node ../../scripts/copy-files.js",
-    "build:types": "tsc -p tsconfig.build.json",
+    "build:types": "node ../../scripts/buildTypes",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build --tag next",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-lab/**/*.test.{js,ts,tsx}'",
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "peerDependencies": {
-    "@material-ui/core": "^5.0.0-alpha.18",
+    "@material-ui/core": "^5.0.0-alpha.36",
     "@types/react": "^16.8.6 || ^17.0.0",
     "date-fns": "^2.0.0",
     "dayjs": "^1.8.17",
     "luxon": "^1.21.3",
     "moment": "^2.24.0",
-    "react": "^16.8.0 || ^17.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0"
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -64,20 +64,21 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/system": "5.0.0-alpha.18",
-    "@material-ui/utils": "5.0.0-alpha.18",
-    "clsx": "^1.0.4",
-    "prop-types": "^15.7.2",
-    "react-is": "^16.8.0 || ^17.0.0",
     "@date-io/date-fns": "^2.10.6",
     "@date-io/dayjs": "^2.10.6",
     "@date-io/luxon": "^2.10.6",
     "@date-io/moment": "^2.10.6",
+    "@material-ui/system": "5.0.0-alpha.38",
+    "@material-ui/utils": "5.0.0-alpha.36",
+    "@material-ui/unstyled": "5.0.0-alpha.38",
+    "clsx": "^1.0.4",
+    "prop-types": "^15.7.2",
+    "react-is": "^17.0.0",
     "react-transition-group": "^4.4.1",
     "rifm": "^0.12.0"
   },
   "devDependencies": {
-    "@material-ui/types": "^5.1.0",
+    "@material-ui/types": "6.0.1",
     "@types/luxon": "^1.25.0",
     "date-fns": "^2.0.0",
     "dayjs": "^1.8.17",
@@ -89,6 +90,6 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12.0.0"
   }
 }

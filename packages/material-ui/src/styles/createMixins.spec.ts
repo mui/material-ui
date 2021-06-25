@@ -1,7 +1,7 @@
-import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
+import { createTheme, styled } from '@material-ui/core/styles';
 
 {
-  const theme = createMuiTheme({
+  const theme = createTheme({
     mixins: {
       toolbar: {
         background: '#fff',
@@ -15,8 +15,10 @@ import { createMuiTheme, makeStyles } from '@material-ui/core/styles';
       },
     },
   });
+}
 
-  const useStyles = makeStyles((theme) => ({
+{
+  const StyledComponent = styled('div')(({ theme }) => ({
     appBarSpacer: theme.mixins.toolbar,
     toolbarIcon: {
       display: 'flex',

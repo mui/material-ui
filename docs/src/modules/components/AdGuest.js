@@ -6,7 +6,7 @@ import { AdContext } from 'docs/src/modules/components/AdManager';
 export default function AdGuest(props) {
   const ad = React.useContext(AdContext);
 
-  if (!ad.portal.element) {
+  if (!ad.element) {
     return null;
   }
 
@@ -15,13 +15,13 @@ export default function AdGuest(props) {
       container={() => {
         const description = document.querySelector('.description');
 
-        if (ad.portal.element === description) {
+        if (ad.element === description) {
           description.classList.add('ad');
         } else {
           description.classList.remove('ad');
         }
 
-        return ad.portal.element;
+        return ad.element;
       }}
     >
       {props.children}

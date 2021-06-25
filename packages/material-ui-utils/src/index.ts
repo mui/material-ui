@@ -29,3 +29,6 @@ export {
   detectScrollType as unstable_detectScrollType,
   getNormalizedScrollLeft as unstable_getNormalizedScrollLeft,
 } from './scrollLeft';
+export { default as usePreviousProps } from './usePreviousProps';
+export { default as visuallyHidden } from './visuallyHidden';
+export { default as integerPropType } from './integerPropType';

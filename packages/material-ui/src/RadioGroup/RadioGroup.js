@@ -64,7 +64,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
   );
 });
 
-RadioGroup.propTypes = {
+RadioGroup.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -74,7 +74,7 @@ RadioGroup.propTypes = {
    */
   children: PropTypes.node,
   /**
-   * The default `input` element value. Use when the component is not controlled.
+   * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.string),

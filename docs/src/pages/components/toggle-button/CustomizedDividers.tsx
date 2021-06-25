@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  makeStyles,
-  withStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
 import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter';
 import FormatAlignRightIcon from '@material-ui/icons/FormatAlignRight';
@@ -19,31 +14,21 @@ import Paper from '@material-ui/core/Paper';
 import ToggleButton from '@material-ui/core/ToggleButton';
 import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    paper: {
-      display: 'flex',
-      border: `1px solid ${theme.palette.divider}`,
-      flexWrap: 'wrap',
-    },
-    divider: {
-      margin: theme.spacing(1, 0.5),
-    },
-  }),
-);
-
-const StyledToggleButtonGroup = withStyles((theme) => ({
-  grouped: {
+const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
+  '& .MuiToggleButtonGroup-grouped': {
     margin: theme.spacing(0.5),
-    border: 'none',
-    '&:not(:first-child)': {
+    border: 0,
+    '&.Mui-disabled': {
+      border: 0,
+    },
+    '&:not(:first-of-type)': {
       borderRadius: theme.shape.borderRadius,
     },
-    '&:first-child': {
+    '&:first-of-type': {
       borderRadius: theme.shape.borderRadius,
     },
   },
-}))(ToggleButtonGroup);
+}));
 
 export default function CustomizedDividers() {
   const [alignment, setAlignment] = React.useState('left');
@@ -63,11 +48,16 @@ export default function CustomizedDividers() {
     setAlignment(newAlignment);
   };
 
-  const classes = useStyles();
-
   return (
     <div>
-      <Paper elevation={0} className={classes.paper}>
+      <Paper
+        elevation={0}
+        sx={{
+          display: 'flex',
+          border: (theme) => `1px solid ${theme.palette.divider}`,
+          flexWrap: 'wrap',
+        }}
+      >
         <StyledToggleButtonGroup
           size="small"
           value={alignment}
@@ -88,7 +78,7 @@ export default function CustomizedDividers() {
             <FormatAlignJustifyIcon />
           </ToggleButton>
         </StyledToggleButtonGroup>
-        <Divider flexItem orientation="vertical" className={classes.divider} />
+        <Divider flexItem orientation="vertical" sx={{ mx: 0.5, my: 1 }} />
         <StyledToggleButtonGroup
           size="small"
           value={formats}

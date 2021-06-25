@@ -19,11 +19,11 @@ A basic timeline showing list of events.
 
 {{"demo": "pages/components/timeline/BasicTimeline.js"}}
 
-## Right-aligned timeline
+## Left-positioned timeline
 
-The timeline can be positioned on the right side of the events.
+The main content of the timeline can be positioned on the left side relative to the time axis.
 
-{{"demo": "pages/components/timeline/RightAlignedTimeline.js"}}
+{{"demo": "pages/components/timeline/LeftPositionedTimeline.js"}}
 
 ## Alternating timeline
 
@@ -33,7 +33,7 @@ The timeline can display the events on alternating sides.
 
 ## Color
 
-The `TimelineDot` can appear in different colors.
+The `TimelineDot` can appear in different colors from theme palette.
 
 {{"demo": "pages/components/timeline/ColorsTimeline.js"}}
 
@@ -50,6 +50,6 @@ The timeline can display content on opposite sides.
 ## Customized timeline
 
 Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/components/).
+[overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/timeline/CustomizedTimeline.js"}}

@@ -2,17 +2,17 @@ import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   act,
   createClientRender,
   fireEvent,
   queries,
 } from 'test/utils';
-import ListItemText from '../ListItemText';
-import ListItemSecondaryAction from '../ListItemSecondaryAction';
-import ListItem from './ListItem';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItem, { listItemClasses as classes } from '@material-ui/core/ListItem';
 import ListContext from '../List/ListContext';
 
 const NoContent = React.forwardRef(() => {
@@ -20,19 +20,18 @@ const NoContent = React.forwardRef(() => {
 });
 
 describe('<ListItem />', () => {
-  const mount = createMount({ strict: true });
   const render = createClientRender();
-  let classes;
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<ListItem />);
-  });
-
-  describeConformance(<ListItem />, () => ({
+  describeConformanceV5(<ListItem />, () => ({
     classes,
     inheritComponent: 'li',
+    render,
     mount,
     refInstanceof: window.HTMLLIElement,
+    muiName: 'MuiListItem',
+    testVariantProps: { dense: true },
+    skip: ['componentsProp'],
   }));
 
   it('should render with gutters classes', () => {
@@ -75,6 +74,14 @@ describe('<ListItem />', () => {
     });
   });
 
+  describe('action', () => {
+    it('should show action if provided', () => {
+      const { getByText } = render(<ListItem secondaryAction="foo" />);
+      expect(getByText('foo')).toBeVisible();
+    });
+  });
+
+  // TODO remove in v6 in favor of ListItemButton
   describe('secondary action', () => {
     it('should wrap with a container', () => {
       const { getByRole } = render(
@@ -165,7 +172,7 @@ describe('<ListItem />', () => {
       it('warns if it cant detect the secondary action properly', () => {
         expect(() => {
           PropTypes.checkPropTypes(
-            ListItem.Naked.propTypes,
+            ListItem.propTypes,
             {
               classes: {},
               children: [
@@ -189,6 +196,7 @@ describe('<ListItem />', () => {
     });
   });
 
+  // TODO remove in v6 in favor of ListItemButton
   describe('prop: focusVisibleClassName', () => {
     it('should merge the class names', () => {
       const { getByRole } = render(
@@ -204,5 +212,36 @@ describe('<ListItem />', () => {
       expect(button).to.have.class('focusVisibleClassName');
       expect(button).to.have.class(classes.focusVisible);
     });
+  });
+
+  it('container overrides should work', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const testStyle = {
+      marginTop: '13px',
+    };
+
+    const theme = createTheme({
+      components: {
+        MuiListItem: {
+          styleOverrides: {
+            container: testStyle,
+          },
+        },
+      },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <ListItem>
+          Test<ListItemSecondaryAction>SecondaryAction</ListItemSecondaryAction>
+        </ListItem>
+      </ThemeProvider>,
+    );
+
+    const listItemContainer = container.getElementsByClassName(classes.container)[0];
+    expect(listItemContainer).to.toHaveComputedStyle(testStyle);
   });
 });

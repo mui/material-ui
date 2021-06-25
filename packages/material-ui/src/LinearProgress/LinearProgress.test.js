@@ -1,29 +1,22 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  getClasses,
-  createMount,
-  describeConformance,
-  createClientRender,
-  screen,
-} from 'test/utils';
-import LinearProgress from './LinearProgress';
+import { createMount, createClientRender, screen, describeConformanceV5 } from 'test/utils';
+import LinearProgress, { linearProgressClasses as classes } from '@material-ui/core/LinearProgress';
 
 describe('<LinearProgress />', () => {
   const mount = createMount();
   const render = createClientRender();
-  let classes;
 
-  before(() => {
-    classes = getClasses(<LinearProgress />);
-  });
-
-  describeConformance(<LinearProgress />, () => ({
+  describeConformanceV5(<LinearProgress />, () => ({
     classes,
     inheritComponent: 'span',
+    render,
     mount,
+    muiName: 'MuiLinearProgress',
+    testDeepOverrides: { slotName: 'bar', slotClassName: classes.bar },
+    testVariantProps: { variant: 'determinate', value: 25 },
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render indeterminate variant by default', () => {

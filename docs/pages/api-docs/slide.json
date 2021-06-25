@@ -9,6 +9,13 @@
       },
       "default": "'down'"
     },
+    "easing": {
+      "type": {
+        "name": "union",
+        "description": "{ enter?: string, exit?: string }<br>&#124;&nbsp;string"
+      },
+      "default": "{\n  enter: easing.easeOut,\n  exit: easing.sharp,\n}"
+    },
     "in": { "type": { "name": "bool" } },
     "timeout": {
       "type": {
@@ -28,5 +35,6 @@
     "pathname": "https://reactcommunity.org/react-transition-group/transition#Transition-props"
   },
   "demos": "<ul><li><a href=\"/components/dialogs/\">Dialogs</a></li>\n<li><a href=\"/components/transitions/\">Transitions</a></li></ul>",
-  "styledComponent": true
+  "styledComponent": true,
+  "cssComponent": false
 }

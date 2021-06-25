@@ -20,13 +20,13 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 理想状态下，选择一个选项是会立刻执行此选项并且关闭整个菜单。
 
-**解疑**：与简单菜单不同，一个简单的对话框可以提供与列表项可用选项相关的额外细节，或提供与主要任务相关的导航或正交操作。 虽然它们可以显示相同的内容，但和基本对话框相比，我们更倾向于简单菜单，因为它对用户的当前上下文干预更少。
+**解疑**：与简单菜单不同，一个简单的对话框可以提供与列表项可用选项相关的额外细节，或提供与主要任务相关的导航或正交操作。 虽然它们都可以显示相同的内容，但是菜单组件比对话框组件更受欢迎，因为相比之下菜单组件对用户的干扰更小。
 
-{{"demo": "pages/components/menus/SimpleMenu.js"}}
+{{"demo": "pages/components/menus/BasicMenu.js"}}
 
 ## 选择菜单
 
-若用于选项的选择，当打开简单菜单的时候，它会通过一个锚元素来尝试与当前被选择的菜单的选择项垂直对齐，而初始的焦点集中于被选中的那个选项。 通过 `selected` 属性（在[ListItem](/api/list-item/)中），您能够设置当前被选中的选项。 若想要使用一个已被选的项目，且不影响初始的焦点或者菜单的垂直位置，您可以设置一下”菜单“的 `variant` 属性。
+If used for item selection, when opened, simple menus places the initial focus on the selected menu item. 通过 `selected` 属性（在[ListItem](/api/list-item/)中），您能够设置当前被选中的选项。 To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
 
@@ -46,7 +46,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 ## 自定义菜单
 
-以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/menus/CustomizedMenus.js"}}
 

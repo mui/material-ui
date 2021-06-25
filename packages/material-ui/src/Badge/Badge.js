@@ -1,194 +1,209 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useThemeVariants } from '@material-ui/styles';
-import withStyles from '../styles/withStyles';
+import { usePreviousProps } from '@material-ui/utils';
+import { generateUtilityClasses, isHostComponent } from '@material-ui/unstyled';
+import BadgeUnstyled, {
+  badgeUnstyledClasses,
+  getBadgeUtilityClass,
+} from '@material-ui/unstyled/BadgeUnstyled';
+import styled from '../styles/styled';
+import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
+
+export const badgeClasses = {
+  ...badgeUnstyledClasses,
+  ...generateUtilityClasses('MuiBadge', ['colorError', 'colorPrimary', 'colorSecondary']),
+};
 
 const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 4;
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    position: 'relative',
-    display: 'inline-flex',
-    // For correct alignment with the text.
-    verticalAlign: 'middle',
-    flexShrink: 0,
-  },
-  /* Styles applied to the badge `span` element. */
-  badge: {
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    alignContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    boxSizing: 'border-box',
-    fontFamily: theme.typography.fontFamily,
-    fontWeight: theme.typography.fontWeightMedium,
-    fontSize: theme.typography.pxToRem(12),
-    minWidth: RADIUS_STANDARD * 2,
-    lineHeight: 1,
-    padding: '0 6px',
-    height: RADIUS_STANDARD * 2,
-    borderRadius: RADIUS_STANDARD,
-    zIndex: 1, // Render the badge on top of potential ripples.
-    transition: theme.transitions.create('transform', {
-      easing: theme.transitions.easing.easeInOut,
-      duration: theme.transitions.duration.enteringScreen,
+const extendUtilityClasses = (styleProps) => {
+  const { color, classes = {} } = styleProps;
+
+  return {
+    ...classes,
+    badge: clsx(classes.badge, {
+      [getBadgeUtilityClass(`color${capitalize(color)}`)]: color !== 'default',
+      [classes[`color${capitalize(color)}`]]: color !== 'default',
     }),
+  };
+};
+
+const BadgeRoot = styled('span', {
+  name: 'MuiBadge',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
+  position: 'relative',
+  display: 'inline-flex',
+  // For correct alignment with the text.
+  verticalAlign: 'middle',
+  flexShrink: 0,
+});
+
+const BadgeBadge = styled('span', {
+  name: 'MuiBadge',
+  slot: 'Badge',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return [
+      styles.badge,
+      styles[styleProps.variant],
+      styles[
+        `anchorOrigin${capitalize(styleProps.anchorOrigin.vertical)}${capitalize(
+          styleProps.anchorOrigin.horizontal,
+        )}${capitalize(styleProps.overlap)}`
+      ],
+      styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`],
+      styleProps.invisible && styles.invisible,
+    ];
   },
-  /* Styles applied to the root element if `color="primary"`. */
-  colorPrimary: {
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.primary.contrastText,
-  },
-  /* Styles applied to the root element if `color="secondary"`. */
-  colorSecondary: {
-    backgroundColor: theme.palette.secondary.main,
-    color: theme.palette.secondary.contrastText,
-  },
-  /* Styles applied to the root element if `color="error"`. */
-  colorError: {
-    backgroundColor: theme.palette.error.main,
-    color: theme.palette.error.contrastText,
-  },
-  /* Styles applied to the root element if `variant="dot"`. */
-  dot: {
+})(({ theme, styleProps }) => ({
+  display: 'flex',
+  flexDirection: 'row',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
+  alignContent: 'center',
+  alignItems: 'center',
+  position: 'absolute',
+  boxSizing: 'border-box',
+  fontFamily: theme.typography.fontFamily,
+  fontWeight: theme.typography.fontWeightMedium,
+  fontSize: theme.typography.pxToRem(12),
+  minWidth: RADIUS_STANDARD * 2,
+  lineHeight: 1,
+  padding: '0 6px',
+  height: RADIUS_STANDARD * 2,
+  borderRadius: RADIUS_STANDARD,
+  zIndex: 1, // Render the badge on top of potential ripples.
+  transition: theme.transitions.create('transform', {
+    easing: theme.transitions.easing.easeInOut,
+    duration: theme.transitions.duration.enteringScreen,
+  }),
+  ...(styleProps.color !== 'default' && {
+    backgroundColor: theme.palette[styleProps.color].main,
+    color: theme.palette[styleProps.color].contrastText,
+  }),
+  ...(styleProps.variant === 'dot' && {
     borderRadius: RADIUS_DOT,
     height: RADIUS_DOT * 2,
     minWidth: RADIUS_DOT * 2,
     padding: 0,
-  },
-  /* Styles applied to the root element if `variant="standard"`. */
-  standard: {},
-  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangular"`. */
-  anchorOriginTopRightRectangular: {
-    top: 0,
-    right: 0,
-    transform: 'scale(1) translate(50%, -50%)',
-    transformOrigin: '100% 0%',
-    '&$invisible': {
-      transform: 'scale(0) translate(50%, -50%)',
-    },
-  },
-  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangular"`. */
-  anchorOriginBottomRightRectangular: {
-    bottom: 0,
-    right: 0,
-    transform: 'scale(1) translate(50%, 50%)',
-    transformOrigin: '100% 100%',
-    '&$invisible': {
-      transform: 'scale(0) translate(50%, 50%)',
-    },
-  },
-  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangular"`. */
-  anchorOriginTopLeftRectangular: {
-    top: 0,
-    left: 0,
-    transform: 'scale(1) translate(-50%, -50%)',
-    transformOrigin: '0% 0%',
-    '&$invisible': {
-      transform: 'scale(0) translate(-50%, -50%)',
-    },
-  },
-  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangular"`. */
-  anchorOriginBottomLeftRectangular: {
-    bottom: 0,
-    left: 0,
-    transform: 'scale(1) translate(-50%, 50%)',
-    transformOrigin: '0% 100%',
-    '&$invisible': {
-      transform: 'scale(0) translate(-50%, 50%)',
-    },
-  },
-  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }} overlap="circular"`. */
-  anchorOriginTopRightCircular: {
-    top: '14%',
-    right: '14%',
-    transform: 'scale(1) translate(50%, -50%)',
-    transformOrigin: '100% 0%',
-    '&$invisible': {
-      transform: 'scale(0) translate(50%, -50%)',
-    },
-  },
-  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circular"`. */
-  anchorOriginBottomRightCircular: {
-    bottom: '14%',
-    right: '14%',
-    transform: 'scale(1) translate(50%, 50%)',
-    transformOrigin: '100% 100%',
-    '&$invisible': {
-      transform: 'scale(0) translate(50%, 50%)',
-    },
-  },
-  /* Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }} overlap="circular"`. */
-  anchorOriginTopLeftCircular: {
-    top: '14%',
-    left: '14%',
-    transform: 'scale(1) translate(-50%, -50%)',
-    transformOrigin: '0% 0%',
-    '&$invisible': {
-      transform: 'scale(0) translate(-50%, -50%)',
-    },
-  },
-  /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circular"`. */
-  anchorOriginBottomLeftCircular: {
-    bottom: '14%',
-    left: '14%',
-    transform: 'scale(1) translate(-50%, 50%)',
-    transformOrigin: '0% 100%',
-    '&$invisible': {
-      transform: 'scale(0) translate(-50%, 50%)',
-    },
-  },
-  /* Pseudo-class to the badge `span` element if `invisible={true}`. */
-  invisible: {
+  }),
+  ...(styleProps.anchorOrigin.vertical === 'top' &&
+    styleProps.anchorOrigin.horizontal === 'right' &&
+    styleProps.overlap === 'rectangular' && {
+      top: 0,
+      right: 0,
+      transform: 'scale(1) translate(50%, -50%)',
+      transformOrigin: '100% 0%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(50%, -50%)',
+      },
+    }),
+  ...(styleProps.anchorOrigin.vertical === 'bottom' &&
+    styleProps.anchorOrigin.horizontal === 'right' &&
+    styleProps.overlap === 'rectangular' && {
+      bottom: 0,
+      right: 0,
+      transform: 'scale(1) translate(50%, 50%)',
+      transformOrigin: '100% 100%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(50%, 50%)',
+      },
+    }),
+  ...(styleProps.anchorOrigin.vertical === 'top' &&
+    styleProps.anchorOrigin.horizontal === 'left' &&
+    styleProps.overlap === 'rectangular' && {
+      top: 0,
+      left: 0,
+      transform: 'scale(1) translate(-50%, -50%)',
+      transformOrigin: '0% 0%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(-50%, -50%)',
+      },
+    }),
+  ...(styleProps.anchorOrigin.vertical === 'bottom' &&
+    styleProps.anchorOrigin.horizontal === 'left' &&
+    styleProps.overlap === 'rectangular' && {
+      bottom: 0,
+      left: 0,
+      transform: 'scale(1) translate(-50%, 50%)',
+      transformOrigin: '0% 100%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(-50%, 50%)',
+      },
+    }),
+  ...(styleProps.anchorOrigin.vertical === 'top' &&
+    styleProps.anchorOrigin.horizontal === 'right' &&
+    styleProps.overlap === 'circular' && {
+      top: '14%',
+      right: '14%',
+      transform: 'scale(1) translate(50%, -50%)',
+      transformOrigin: '100% 0%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(50%, -50%)',
+      },
+    }),
+  ...(styleProps.anchorOrigin.vertical === 'bottom' &&
+    styleProps.anchorOrigin.horizontal === 'right' &&
+    styleProps.overlap === 'circular' && {
+      bottom: '14%',
+      right: '14%',
+      transform: 'scale(1) translate(50%, 50%)',
+      transformOrigin: '100% 100%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(50%, 50%)',
+      },
+    }),
+  ...(styleProps.anchorOrigin.vertical === 'top' &&
+    styleProps.anchorOrigin.horizontal === 'left' &&
+    styleProps.overlap === 'circular' && {
+      top: '14%',
+      left: '14%',
+      transform: 'scale(1) translate(-50%, -50%)',
+      transformOrigin: '0% 0%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(-50%, -50%)',
+      },
+    }),
+  ...(styleProps.anchorOrigin.vertical === 'bottom' &&
+    styleProps.anchorOrigin.horizontal === 'left' &&
+    styleProps.overlap === 'circular' && {
+      bottom: '14%',
+      left: '14%',
+      transform: 'scale(1) translate(-50%, 50%)',
+      transformOrigin: '0% 100%',
+      [`&.${badgeClasses.invisible}`]: {
+        transform: 'scale(0) translate(-50%, 50%)',
+      },
+    }),
+  ...(styleProps.invisible && {
     transition: theme.transitions.create('transform', {
       easing: theme.transitions.easing.easeInOut,
       duration: theme.transitions.duration.leavingScreen,
     }),
-  },
-});
+  }),
+}));
 
-const usePreviousProps = (value) => {
-  const ref = React.useRef({});
-  React.useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-};
-
-const Badge = React.forwardRef(function Badge(props, ref) {
+const Badge = React.forwardRef(function Badge(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiBadge' });
   const {
-    anchorOrigin: anchorOriginProp = {
-      vertical: 'top',
-      horizontal: 'right',
-    },
-    badgeContent: badgeContentProp,
-    children,
-    classes,
-    className,
+    components = {},
+    componentsProps = {},
     color: colorProp = 'default',
-    component: ComponentProp = 'span',
     invisible: invisibleProp,
-    max: maxProp = 99,
-    overlap: overlapProp = 'rectangular',
+    badgeContent: badgeContentProp,
     showZero = false,
     variant: variantProp = 'standard',
     ...other
   } = props;
 
   const prevProps = usePreviousProps({
-    anchorOrigin: anchorOriginProp,
-    badgeContent: badgeContentProp,
     color: colorProp,
-    max: maxProp,
-    overlap: overlapProp,
-    variant: variantProp,
   });
 
   let invisible = invisibleProp;
@@ -200,63 +215,44 @@ const Badge = React.forwardRef(function Badge(props, ref) {
     invisible = true;
   }
 
-  const {
-    anchorOrigin = anchorOriginProp,
-    badgeContent,
-    color = colorProp,
-    max = maxProp,
-    overlap = overlapProp,
-    variant = variantProp,
-  } = invisible ? prevProps : props;
+  const { color = colorProp } = invisible ? prevProps : props;
 
-  const themeVariantsClasses = useThemeVariants(
-    {
-      ...props,
-      anchorOrigin,
-      badgeContent,
-      color,
-      component: ComponentProp,
-      invisible,
-      max,
-      overlap,
-      showZero,
-      variant,
-    },
-    'MuiBadge',
-  );
-
-  let displayValue = '';
-
-  if (variant !== 'dot') {
-    displayValue = badgeContent > max ? `${max}+` : badgeContent;
-  }
+  const styleProps = { ...props, invisible, color };
+  const classes = extendUtilityClasses(styleProps);
 
   return (
-    <ComponentProp className={clsx(classes.root, className)} ref={ref} {...other}>
-      {children}
-      <span
-        className={clsx(
-          classes.badge,
-          classes[variant],
-          classes[
-            `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(
-              anchorOrigin.horizontal,
-            )}${capitalize(overlap)}`
-          ],
-          {
-            [classes[`color${capitalize(color)}`]]: color !== 'default',
-            [classes.invisible]: invisible,
-          },
-          themeVariantsClasses,
-        )}
-      >
-        {displayValue}
-      </span>
-    </ComponentProp>
+    <BadgeUnstyled
+      invisible={invisibleProp}
+      badgeContent={badgeContentProp}
+      showZero={showZero}
+      variant={variantProp}
+      {...other}
+      components={{
+        Root: BadgeRoot,
+        Badge: BadgeBadge,
+        ...components,
+      }}
+      componentsProps={{
+        root: {
+          ...componentsProps.root,
+          ...((!components.Root || !isHostComponent(components.Root)) && {
+            styleProps: { ...componentsProps.root?.styleProps, color },
+          }),
+        },
+        badge: {
+          ...componentsProps.badge,
+          ...((!components.Thumb || !isHostComponent(components.Thumb)) && {
+            styleProps: { ...componentsProps.badge?.styleProps, color },
+          }),
+        },
+      }}
+      classes={classes}
+      ref={ref}
+    />
   );
 });
 
-Badge.propTypes = {
+Badge.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -285,19 +281,27 @@ Badge.propTypes = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'default'
    */
-  color: PropTypes.oneOf(['default', 'error', 'primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['default', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
-   * The component used for the root node.
+   * The components used for each slot inside the Badge.
    * Either a string to use a HTML element or a component.
+   * @default {}
    */
-  component: PropTypes.elementType,
+  components: PropTypes.shape({
+    Badge: PropTypes.elementType,
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Badge.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
   /**
    * If `true`, the badge is invisible.
    */
@@ -318,6 +322,10 @@ Badge.propTypes = {
    */
   showZero: PropTypes.bool,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The variant to use.
    * @default 'standard'
    */
@@ -327,4 +335,4 @@ Badge.propTypes = {
   ]),
 };
 
-export default withStyles(styles, { name: 'MuiBadge' })(Badge);
+export default Badge;

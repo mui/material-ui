@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Rating from '@material-ui/core/Rating';
 
 let warnedOnce = false;

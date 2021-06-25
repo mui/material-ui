@@ -16,19 +16,19 @@ When activated, Tooltips display a text label identifying an element, such as a 
 
 ## Basic tooltip
 
-{{"demo": "pages/components/tooltips/SimpleTooltips.js"}}
+{{"demo": "pages/components/tooltips/BasicTooltip.js"}}
 
 ## Positioned tooltips
 
 The `Tooltip` has 12 **placements** choice.
-They don’t have directional arrows; instead, they rely on motion emanating from the source to convey direction.
+They don't have directional arrows; instead, they rely on motion emanating from the source to convey direction.
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
 ## Customized tooltips
 
 Here are some examples of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/components/).
+[overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 

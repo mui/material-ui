@@ -3,7 +3,8 @@
     "action": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "message": { "type": { "name": "node" } },
-    "role": { "type": { "name": "string" }, "default": "'alert'" }
+    "role": { "type": { "name": "string" }, "default": "'alert'" },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "SnackbarContent",
   "styles": {
@@ -16,5 +17,6 @@
   "filename": "/packages/material-ui/src/SnackbarContent/SnackbarContent.js",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
   "demos": "<ul><li><a href=\"/components/snackbars/\">Snackbars</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

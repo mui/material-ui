@@ -56,7 +56,7 @@ materialDesign: https://material.io/archive/guidelines/components/steppers.html
 
 ### 自定义水平步骤条
 
-以下是自定义组件的一个示例。 您可以在[重写文档页](/customization/components/)中了解有关此内容的更多信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "pages/components/steppers/CustomizedSteppers.js"}}
 
@@ -66,11 +66,19 @@ materialDesign: https://material.io/archive/guidelines/components/steppers.html
 
 {{"demo": "pages/components/steppers/VerticalLinearStepper.js"}}
 
+### 文本
+
+步骤内容将在关闭时自动卸载。 若您需要提供内容给搜索引擎，亦或是在您的模态框内渲染复杂的组件树，同时还要达到最佳的优化性能，您一般需要以下代码来装载模态框：
+
+```jsx
+<StepContent TransitionProps={{ unmountOnExit: false }} />
+```
+
 ## 移动设备上的步骤条
 
 该组件实现了适用于移动设备上的紧凑型步骤条。 与垂直步骤条相比，它的功能更为有限。 如果你还在寻找灵感，请参阅 [移动设备上的步骤条](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps)。
 
-移动端的步骤条支持三种变量来显示可用步数的进度：文本、圆点和进度条。
+当前步骤数和总步骤数以文字形式显示。
 
 ### 文本
 
@@ -78,7 +86,7 @@ materialDesign: https://material.io/archive/guidelines/components/steppers.html
 
 {{"demo": "pages/components/steppers/TextMobileStepper.js", "bg": true}}
 
-### 具有轮播效果的文本
+### 点状
 
 这个演示使用 [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) 来创建一个轮播。
 

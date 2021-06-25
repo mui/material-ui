@@ -7,29 +7,25 @@ import {
   ErrorBoundary,
   fireEvent,
   screen,
-  describeConformance,
-  getClasses,
+  describeConformanceV5,
   createMount,
 } from 'test/utils';
 import Portal from '@material-ui/core/Portal';
-import TreeView from './TreeView';
-import TreeItem from '../TreeItem';
+import TreeView, { treeViewClasses as classes } from '@material-ui/lab/TreeView';
+import TreeItem from '@material-ui/lab/TreeItem';
 
 describe('<TreeView />', () => {
-  let classes;
-  const mount = createMount({ strict: true });
+  const mount = createMount();
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<TreeView />);
-  });
-
-  describeConformance(<TreeView />, () => ({
+  describeConformanceV5(<TreeView />, () => ({
     classes,
     inheritComponent: 'ul',
+    render,
     mount,
     refInstanceof: window.HTMLUListElement,
-    skip: ['componentProp'],
+    muiName: 'MuiTreeView',
+    skip: ['componentProp', 'componentsProp', 'themeVariants'],
   }));
 
   describe('warnings', () => {
@@ -70,6 +66,24 @@ describe('<TreeView />', () => {
       );
 
       fireEvent.click(screen.getByText('one'), { shiftKey: true });
+    });
+
+    it('should not crash when selecting multiple items in a deeply nested tree', () => {
+      render(
+        <TreeView multiSelect defaultExpanded={['1', '1.1', '2']}>
+          <TreeItem nodeId="1" label="Item 1">
+            <TreeItem nodeId="1.1" label="Item 1.1">
+              <TreeItem nodeId="1.1.1" data-testid="item-1.1.1" label="Item 1.1.1" />
+            </TreeItem>
+          </TreeItem>
+          <TreeItem nodeId="2" data-testid="item-2" label="Item 2" />
+        </TreeView>,
+      );
+      fireEvent.click(screen.getByText('Item 1.1.1'));
+      fireEvent.click(screen.getByText('Item 2'), { shiftKey: true });
+
+      expect(screen.getByTestId('item-1.1.1')).to.have.attribute('aria-selected', 'true');
+      expect(screen.getByTestId('item-2')).to.have.attribute('aria-selected', 'true');
     });
 
     it('should not crash on keydown on an empty tree', () => {
@@ -218,17 +232,17 @@ describe('<TreeView />', () => {
 
     const { getByTestId, getByText } = render(<MyComponent />);
 
-    expect(getByTestId('one')).to.not.have.attribute('aria-selected');
-    expect(getByTestId('two')).to.not.have.attribute('aria-selected');
+    expect(getByTestId('one')).not.to.have.attribute('aria-selected');
+    expect(getByTestId('two')).not.to.have.attribute('aria-selected');
 
     fireEvent.click(getByText('one'));
 
     expect(getByTestId('one')).to.have.attribute('aria-selected', 'true');
-    expect(getByTestId('two')).to.not.have.attribute('aria-selected');
+    expect(getByTestId('two')).not.to.have.attribute('aria-selected');
 
     fireEvent.click(getByText('two'));
 
-    expect(getByTestId('one')).to.not.have.attribute('aria-selected');
+    expect(getByTestId('one')).not.to.have.attribute('aria-selected');
     expect(getByTestId('two')).to.have.attribute('aria-selected', 'true');
   });
 

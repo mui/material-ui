@@ -1,6 +1,6 @@
 # Spacing
 
-<p class="description">簡単に要素のmarginとpaddingをレスポンシブに変更するためのユーティリティクラスです。</p>
+<p class="description">A wide range of shorthand responsive margin and padding utility classes to modify an element's appearance.</p>
 
 ## 表記
 
@@ -80,10 +80,12 @@ const theme = {
 
 ## 水平方向に中央寄せする
 
+The CSS flex and grid display properties are often used to align elements at the center. However, you can also use `margin-left: auto;`, `margin-right: auto;`, and a width for horizontally centering:
+
 {{"demo": "pages/system/spacing/HorizontalCentering.js", "defaultCodeOpen": false, "bg": true}}
 
 ```jsx
-<Box sx={{ mx: "auto" }}>…
+<Box sx={{ mx: "auto", width: 200 }}>…
 ```
 
 ## API

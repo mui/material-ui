@@ -24,6 +24,10 @@ Indicador **determinado** mostra quanto tempo uma operação vai demorar.
 
 {{"demo": "pages/components/progress/CircularIndeterminate.js"}}
 
+### Circular color
+
+{{"demo": "pages/components/progress/CircularColor.js"}}
+
 ### Circular determinado
 
 {{"demo": "pages/components/progress/CircularDeterminate.js"}}
@@ -41,6 +45,10 @@ Indicador **determinado** mostra quanto tempo uma operação vai demorar.
 ### Linear indeterminado
 
 {{"demo": "pages/components/progress/LinearIndeterminate.js"}}
+
+### Linear color
+
+{{"demo": "pages/components/progress/LinearColor.js"}}
 
 ### Linear determinado
 
@@ -77,7 +85,7 @@ function Progress(props) {
 
 ## Progresso customizado
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/components/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
 {{"demo": "pages/components/progress/CustomizedProgressBars.js", "defaultCodeOpen": false}}
 
@@ -89,7 +97,7 @@ Existem [3 limites importantes](https://www.nngroup.com/articles/response-times-
 
 ## Limitações
 
-### High CPU load
+### Alto carregamento da CPU
 
 Quando o processamento é particularmente lento, você pode perder a animação do traço ou ver raios aleatórios com CircularProgress. Para não bloquear o processo principal de renderização, você deve processar suas operações com um web worker ou por batch.
 
@@ -99,29 +107,29 @@ Quando não for possível, você pode utilizar a propriedade `disableShrink` par
 
 {{"demo": "pages/components/progress/CircularUnderLoad.js"}}
 
-### High frequency updates
+### Atualizações de alta frequência
 
-The `LinearProgress` uses a transition on the CSS transform property to provide a smooth update between different values. The default transition duration is 200ms. In the event a parent component updates the `value` prop too quickly, you will at least experience a 200ms delay between the re-render and the progress bar fully updated.
+O `LinearProgress` usa uma transição na propriedade de transformação do CSS para fornecer uma atualização suave entre valores diferentes. A duração de transição padrão é de 200ms. Caso um componente pai atualize a propriedade  `value` muito rapidamente, você irá perceber ao menos um atraso de 200ms entre a renderização e a barra de progresso totalmente atualizada.
 
-If you need to perform 30 re-renders per second or more, we recommend disabling the transition:
+Se você precisar executar 30 renderizações por segundo ou mais, recomendamos desabilitar a transição:
 
 ```css
 Indicadores de <a href="https://material.io/design/components/progress-indicators.html#linear-progress-indicators">progresso linear</a>.
 ```
 
-### IE11
+### IE 11
 
-The circular progress component animation on IE11 is degraded. The stroke dash animation is not working (equivalent to `disableShrink`) and the circular animation wobbles. You can solve the latter with:
+The circular progress component animation on IE 11 is degraded. A animação do traço não está funcionando (equivalente a `disableShrink`) e a animação circular oscila. Você pode resolver o último com:
 
 ```css
-.MuiCircularProgress-indeterminate {
+. MuiCircularProgress-indeterminate {
   animation: circular-rotate 1.4s linear infinite;
 }
 
 @keyframes circular-rotate {
   0% {
     transform: rotate(0deg);
-    /* Fix IE11 wobbly */
+    /* Corrige oscilações do IE11 */
     transform-origin: 50% 50%;
   }
   100% {

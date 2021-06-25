@@ -24,19 +24,19 @@ packageName: '@material-ui/lab'
 
 ⚠️ Los controles de entrada nativos compatibles con los navegadores [no son perfectos](https://caniuse.com/#feat=input-datetime).
 
-### Selectores de fecha
+### Date picker
 
 Un ejemplo del selector de fecha nativo con `type="date"`.
 
 {{"demo": "pages/components/pickers/DatePickers.js"}}
 
-### Selectores de fecha y hora
+### Date & Time picker
 
 Un ejemplo de selector de fecha y hora con `type="datetime-local"`.
 
 {{"demo": "pages/components/pickers/DateAndTimePickers.js"}}
 
-### Selectores de hora
+### Time picker
 
 Un ejemplo de un selector de hora nativo con `type="time"`.
 

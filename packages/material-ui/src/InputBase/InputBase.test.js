@@ -2,34 +2,25 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  getClasses,
-  createMount,
-  describeConformance,
-  act,
-  createClientRender,
-  fireEvent,
-} from 'test/utils';
-import FormControl, { useFormControl } from '../FormControl';
-import InputAdornment from '../InputAdornment';
-import InputBase from './InputBase';
-import TextField from '../TextField';
-import Select from '../Select';
+import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
+import FormControl, { useFormControl } from '@material-ui/core/FormControl';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
+import InputBase, { inputBaseClasses as classes } from '@material-ui/core/InputBase';
 
 describe('<InputBase />', () => {
-  let classes;
-  const mount = createMount();
   const render = createClientRender();
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<InputBase />);
-  });
-
-  describeConformance(<InputBase />, () => ({
+  describeConformanceV5(<InputBase />, () => ({
     classes,
     inheritComponent: 'div',
+    render,
     mount,
     refInstanceof: window.HTMLDivElement,
+    muiName: 'MuiInputBase',
+    testVariantProps: { size: 'small' },
     skip: ['componentProp'],
   }));
 

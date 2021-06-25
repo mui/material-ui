@@ -2,66 +2,83 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
-import withStyles from '../styles/withStyles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import useThemeProps from '../styles/useThemeProps';
+import styled from '../styles/styled';
+import { getCardMediaUtilityClass } from './cardMediaClasses';
 
-export const styles = {
-  /* Styles applied to the root element. */
-  root: {
-    display: 'block',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'center',
-  },
-  /* Styles applied to the root element if `component="video, audio, picture, iframe, or img"`. */
-  media: {
-    width: '100%',
-  },
-  /* Styles applied to the root element if `component="picture or img"`. */
-  img: {
-    // ⚠️ object-fit is not supported by IE11.
-    objectFit: 'cover',
-  },
+const useUtilityClasses = (styleProps) => {
+  const { classes, isMediaComponent, isImageComponent } = styleProps;
+
+  const slots = {
+    root: ['root', isMediaComponent && 'media', isImageComponent && 'img'],
+  };
+
+  return composeClasses(slots, getCardMediaUtilityClass, classes);
 };
 
+const CardMediaRoot = styled('div', {
+  name: 'MuiCardMedia',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    const { isMediaComponent, isImageComponent } = styleProps;
+
+    return [styles.root, isMediaComponent && styles.media, isImageComponent && styles.img];
+  },
+})(({ styleProps }) => ({
+  /* Styles applied to the root element. */
+  display: 'block',
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+  backgroundPosition: 'center',
+  /* Styles applied to the root element if `component="video, audio, picture, iframe, or img"`. */
+  ...(styleProps.isMediaComponent && {
+    width: '100%',
+  }),
+  /* Styles applied to the root element if `component="picture or img"`. */
+  ...(styleProps.isImageComponent && {
+    // ⚠️ object-fit is not supported by IE11.
+    objectFit: 'cover',
+  }),
+}));
+
 const MEDIA_COMPONENTS = ['video', 'audio', 'picture', 'iframe', 'img'];
+const IMAGE_COMPONENTS = ['picture', 'img'];
 
-const CardMedia = React.forwardRef(function CardMedia(props, ref) {
-  const {
-    children,
-    classes,
-    className,
-    component: Component = 'div',
-    image,
-    src,
-    style,
-    ...other
-  } = props;
+const CardMedia = React.forwardRef(function CardMedia(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiCardMedia' });
+  const { children, className, component = 'div', image, src, style, ...other } = props;
 
-  const isMediaComponent = MEDIA_COMPONENTS.indexOf(Component) !== -1;
+  const isMediaComponent = MEDIA_COMPONENTS.indexOf(component) !== -1;
   const composedStyle =
     !isMediaComponent && image ? { backgroundImage: `url("${image}")`, ...style } : style;
 
+  const styleProps = {
+    ...props,
+    component,
+    isMediaComponent,
+    isImageComponent: IMAGE_COMPONENTS.indexOf(component) !== -1,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <Component
-      className={clsx(
-        classes.root,
-        {
-          [classes.media]: isMediaComponent,
-          [classes.img]: ['picture', 'img'].indexOf(Component) !== -1,
-        },
-        className,
-      )}
+    <CardMediaRoot
+      className={clsx(classes.root, className)}
+      as={component}
       ref={ref}
       style={composedStyle}
+      styleProps={styleProps}
       src={isMediaComponent ? image || src : undefined}
       {...other}
     >
       {children}
-    </Component>
+    </CardMediaRoot>
   );
 });
 
-CardMedia.propTypes = {
+CardMedia.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -106,6 +123,10 @@ CardMedia.propTypes = {
    * @ignore
    */
   style: PropTypes.object,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiCardMedia' })(CardMedia);
+export default CardMedia;

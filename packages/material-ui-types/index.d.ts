@@ -23,20 +23,21 @@ export type ConsistentWith<DecorationTargetProps, InjectedProps> = {
  * additional {AdditionalProps}
  */
 export type PropInjector<InjectedProps, AdditionalProps = {}> = <
-  C extends React.ComponentType<ConsistentWith<React.ComponentProps<C>, InjectedProps>>
+  C extends React.JSXElementConstructor<ConsistentWith<React.ComponentProps<C>, InjectedProps>>,
 >(
-  component: C
-) => React.ComponentType<
-  Omit<JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>, keyof InjectedProps> &
+  component: C,
+) => React.JSXElementConstructor<
+  DistributiveOmit<JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>, keyof InjectedProps> &
     AdditionalProps
 >;
 
 /**
  * Remove properties `K` from `T`.
+ * Distributive for union types.
  *
  * @internal
  */
-export type Omit<T, K extends keyof any> = T extends any ? Pick<T, Exclude<keyof T, K>> : never;
+export type DistributiveOmit<T, K extends keyof any> = T extends any ? Omit<T, K> : never;
 
 /**
  * Generate a set of string literal types with the given default record `T` and
@@ -47,14 +48,16 @@ export type Omit<T, K extends keyof any> = T extends any ? Pick<T, Exclude<keyof
  *
  * @internal
  */
-export type OverridableStringUnion<T, U = {}> = GenerateStringUnion<Overwrite<T, U>>;
+export type OverridableStringUnion<T extends string | number, U = {}> = GenerateStringUnion<
+  Overwrite<Record<T, true>, U>
+>;
 
 /**
  * Like `T & U`, but using the value types from `U` where their properties overlap.
  *
  * @internal
  */
-export type Overwrite<T, U> = Omit<T, keyof U> & U;
+export type Overwrite<T, U> = DistributiveOmit<T, keyof U> & U;
 
 type GenerateStringUnion<T> = Extract<
   {
@@ -65,7 +68,7 @@ type GenerateStringUnion<T> = Extract<
 
 // https://stackoverflow.com/questions/53807517/how-to-test-if-two-types-are-exactly-the-same
 type IfEquals<T, U, Y = unknown, N = never> = (<G>() => G extends T ? 1 : 2) extends <
-  G
+  G,
 >() => G extends U ? 1 : 2
   ? Y
   : N;
@@ -82,3 +85,52 @@ type IfEquals<T, U, Y = unknown, N = never> = (<G>() => G extends T ? 1 : 2) ext
  * @param actual
  */
 export function expectType<Expected, Actual>(actual: IfEquals<Actual, Expected, Actual>): void;
+
+/**
+ * A component whose root component can be controlled via a `component` prop.
+ *
+ * Adjusts valid props based on the type of `component`.
+ */
+export interface OverridableComponent<M extends OverridableTypeMap> {
+  <C extends React.ElementType>(
+    props: {
+      /**
+       * The component used for the root node.
+       * Either a string to use a HTML element or a component.
+       */
+      component: C;
+    } & OverrideProps<M, C>,
+  ): JSX.Element;
+  (props: DefaultComponentProps<M>): JSX.Element;
+}
+
+/**
+ * Props of the component if `component={Component}` is used.
+ */
+// prettier-ignore
+export type OverrideProps<
+  M extends OverridableTypeMap,
+  C extends React.ElementType
+> = (
+  & BaseProps<M>
+  & DistributiveOmit<React.ComponentPropsWithRef<C>, keyof BaseProps<M>>
+);
+
+/**
+ * Props if `component={Component}` is NOT used.
+ */
+// prettier-ignore
+export type DefaultComponentProps<M extends OverridableTypeMap> =
+  & BaseProps<M>
+  & DistributiveOmit<React.ComponentPropsWithRef<M['defaultComponent']>, keyof BaseProps<M>>;
+
+/**
+ * Props defined on the component (+ common material-ui props).
+ */
+// prettier-ignore
+export type BaseProps<M extends OverridableTypeMap> = M['props'];
+
+export interface OverridableTypeMap {
+  props: {};
+  defaultComponent: React.ElementType;
+}

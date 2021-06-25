@@ -1,33 +1,55 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import styled from '../styles/styled';
+import useThemeProps from '../styles/useThemeProps';
 import Collapse from '../Collapse';
-import withStyles from '../styles/withStyles';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
+import { getStepContentUtilityClass } from './stepContentClasses';
 
-export const styles = (theme) => ({
+const useUtilityClasses = (styleProps) => {
+  const { classes, last } = styleProps;
+
+  const slots = { root: ['root', last && 'last'], transition: ['transition'] };
+
+  return composeClasses(slots, getStepContentUtilityClass, classes);
+};
+
+const StepContentRoot = styled('div', {
+  name: 'MuiStepContent',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return [styles.root, styleProps.last && styles.last];
+  },
+})(({ styleProps, theme }) => ({
   /* Styles applied to the root element. */
-  root: {
-    marginLeft: 12, // half icon
-    paddingLeft: 8 + 12, // margin + half icon
-    paddingRight: 8,
-    borderLeft: `1px solid ${
-      theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]
-    }`,
-  },
+  marginLeft: 12, // half icon
+  paddingLeft: 8 + 12, // margin + half icon
+  paddingRight: 8,
+  borderLeft: `1px solid ${
+    theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]
+  }`,
   /* Styles applied to the root element if `last={true}` (controlled by `Step`). */
-  last: {
+  ...(styleProps.last && {
     borderLeft: 'none',
-  },
-  /* Styles applied to the Transition component. */
-  transition: {},
-});
+  }),
+}));
 
-const StepContent = React.forwardRef(function StepContent(props, ref) {
+/* Styles applied to the Transition component. */
+const StepContentTransition = styled(Collapse, {
+  name: 'MuiStepContent',
+  slot: 'Transition',
+  overridesResolver: (props, styles) => styles.transition,
+})({});
+
+const StepContent = React.forwardRef(function StepContent(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiStepContent' });
   const {
     children,
-    classes,
     className,
     TransitionComponent = Collapse,
     transitionDuration: transitionDurationProp = 'auto',
@@ -37,6 +59,9 @@ const StepContent = React.forwardRef(function StepContent(props, ref) {
 
   const { orientation } = React.useContext(StepperContext);
   const { active, last, expanded } = React.useContext(StepContext);
+
+  const styleProps = { ...props, last };
+  const classes = useUtilityClasses(styleProps);
 
   if (process.env.NODE_ENV !== 'production') {
     if (orientation !== 'vertical') {
@@ -53,27 +78,34 @@ const StepContent = React.forwardRef(function StepContent(props, ref) {
   }
 
   return (
-    <div className={clsx(classes.root, { [classes.last]: last }, className)} ref={ref} {...other}>
-      <TransitionComponent
+    <StepContentRoot
+      className={clsx(classes.root, className)}
+      ref={ref}
+      styleProps={styleProps}
+      {...other}
+    >
+      <StepContentTransition
+        as={TransitionComponent}
         in={active || expanded}
         className={classes.transition}
+        styleProps={styleProps}
         timeout={transitionDuration}
         unmountOnExit
         {...TransitionProps}
       >
         {children}
-      </TransitionComponent>
-    </div>
+      </StepContentTransition>
+    </StepContentRoot>
   );
 });
 
-StepContent.propTypes = {
+StepContent.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * Step content.
+   * The content of the component.
    */
   children: PropTypes.node,
   /**
@@ -84,6 +116,10 @@ StepContent.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
@@ -113,4 +149,4 @@ StepContent.propTypes = {
   TransitionProps: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiStepContent' })(StepContent);
+export default StepContent;

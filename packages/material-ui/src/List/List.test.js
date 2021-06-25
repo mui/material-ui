@@ -1,24 +1,23 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
-import ListSubheader from '../ListSubheader';
-import List from './List';
-import ListItem from '../ListItem';
+import { createMount, describeConformanceV5, createClientRender } from 'test/utils';
+import ListSubheader, { listSubheaderClasses } from '@material-ui/core/ListSubheader';
+import ListItem, { listItemClasses } from '@material-ui/core/ListItem';
+import List, { listClasses as classes } from '@material-ui/core/List';
 
 describe('<List />', () => {
-  const mount = createMount();
   const render = createClientRender();
-  let classes;
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<List />);
-  });
-
-  describeConformance(<List />, () => ({
+  describeConformanceV5(<List />, () => ({
     classes,
     inheritComponent: 'ul',
+    render,
     mount,
+    muiName: 'MuiList',
     refInstanceof: window.HTMLUListElement,
+    testVariantProps: { disablePadding: true },
+    skip: ['componentsProp'],
   }));
 
   it('should render with padding classes', () => {
@@ -42,7 +41,6 @@ describe('<List />', () => {
 
     it('should render ListSubheader', () => {
       const { container } = render(<List subheader={<ListSubheader>Title</ListSubheader>} />);
-      const listSubheaderClasses = getClasses(<ListSubheader />);
       const item = container.querySelector('li');
 
       expect(item).to.have.class(listSubheaderClasses.root);
@@ -75,8 +73,6 @@ describe('<List />', () => {
           <ListItem />
         </List>,
       );
-
-      const listItemClasses = getClasses(<ListItem />);
 
       const liItems = container.querySelectorAll('li');
       for (let i = 0; i < liItems.length; i += 1) {

@@ -15,7 +15,7 @@ export default function Filter() {
       options={top100Films}
       getOptionLabel={(option) => option.title}
       filterOptions={filterOptions}
-      style={{ width: 300 }}
+      sx={{ width: 300 }}
       renderInput={(params) => <TextField {...params} label="Custom filter" />}
     />
   );

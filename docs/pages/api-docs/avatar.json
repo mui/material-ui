@@ -8,6 +8,7 @@
     "sizes": { "type": { "name": "string" } },
     "src": { "type": { "name": "string" } },
     "srcSet": { "type": { "name": "string" } },
+    "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
         "name": "union",
@@ -27,5 +28,6 @@
   "filename": "/packages/material-ui/src/Avatar/Avatar.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/avatars/\">Avatars</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

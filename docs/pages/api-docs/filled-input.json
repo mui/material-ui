@@ -3,16 +3,22 @@
     "autoComplete": { "type": { "name": "string" } },
     "autoFocus": { "type": { "name": "bool" } },
     "classes": { "type": { "name": "object" } },
-    "color": { "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+      }
+    },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
     "disableUnderline": { "type": { "name": "bool" } },
     "endAdornment": { "type": { "name": "node" } },
     "error": { "type": { "name": "bool" } },
     "fullWidth": { "type": { "name": "bool" } },
+    "hiddenLabel": { "type": { "name": "bool" } },
     "id": { "type": { "name": "string" } },
     "inputComponent": { "type": { "name": "elementType" }, "default": "'input'" },
-    "inputProps": { "type": { "name": "object" } },
+    "inputProps": { "type": { "name": "object" }, "default": "{}" },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },
     "margin": { "type": { "name": "enum", "description": "'dense'<br>&#124;&nbsp;'none'" } },
     "maxRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
@@ -25,6 +31,7 @@
     "required": { "type": { "name": "bool" } },
     "rows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "startAdornment": { "type": { "name": "node" } },
+    "sx": { "type": { "name": "object" } },
     "type": { "type": { "name": "string" }, "default": "'text'" },
     "value": { "type": { "name": "any" } }
   },
@@ -57,5 +64,6 @@
   "filename": "/packages/material-ui/src/FilledInput/FilledInput.js",
   "inheritance": { "component": "InputBase", "pathname": "/api/input-base/" },
   "demos": "<ul><li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
-  "styledComponent": false
+  "styledComponent": true,
+  "cssComponent": false
 }

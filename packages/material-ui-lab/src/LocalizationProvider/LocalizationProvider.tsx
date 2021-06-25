@@ -38,7 +38,7 @@ const LocalizationProvider: React.FC<LocalizationProviderProps> = (props) => {
   );
 };
 
-(LocalizationProvider as any).propTypes = {
+LocalizationProvider.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -94,6 +94,6 @@ const LocalizationProvider: React.FC<LocalizationProviderProps> = (props) => {
    * Locale for the date library you are using
    */
   locale: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-};
+} as any;
 
 export default LocalizationProvider;

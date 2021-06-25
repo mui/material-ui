@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import fse from 'fs-extra';
 import yargs from 'yargs';
 import path from 'path';
@@ -7,12 +6,13 @@ import Mustache from 'mustache';
 import Queue from 'modules/waterfall/Queue';
 import intersection from 'lodash/intersection';
 import globAsync from 'fast-glob';
-import SVGO from 'svgo';
+import * as svgo from 'svgo';
 
 export const RENAME_FILTER_DEFAULT = './renameFilters/default';
 export const RENAME_FILTER_MUI = './renameFilters/material-design-icons';
 
-let blacklistedIcons = [
+const blacklistedIcons = [
+  'AddChart', // Leads to inconsistent casing with `Addchart`
   '6FtApart', // Arbitrary covid related distance
   'MotionPhotosOn', // Google product
   'MotionPhotosPause', // Google product
@@ -25,64 +25,15 @@ let blacklistedIcons = [
   'ExposureZero', // Google product
   'VerticalDistribute', // Advanced text editor
   'HorizontalDistribute', // Advanced text editor
-];
-
-blacklistedIcons = blacklistedIcons.reduce((acc, item) => {
-  acc = acc.concat([item, `${item}Outlined`, `${item}Rounded`, `${item}Sharp`, `${item}TwoTone`]);
-
-  return acc;
+].reduce((iconsWithVariants, icon) => {
+  return iconsWithVariants.concat([
+    icon,
+    `${icon}Outlined`,
+    `${icon}Rounded`,
+    `${icon}Sharp`,
+    `${icon}TwoTone`,
+  ]);
 }, []);
-
-const svgo = new SVGO({
-  floatPrecision: 4,
-  plugins: [
-    { cleanupAttrs: true },
-    { removeDoctype: true },
-    { removeXMLProcInst: true },
-    { removeComments: true },
-    { removeMetadata: true },
-    { removeTitle: true },
-    { removeDesc: true },
-    { removeUselessDefs: true },
-    { removeXMLNS: true },
-    { removeEditorsNSData: true },
-    { removeEmptyAttrs: true },
-    { removeHiddenElems: true },
-    { removeEmptyText: true },
-    { removeEmptyContainers: true },
-    { removeViewBox: true },
-    { cleanupEnableBackground: true },
-    { minifyStyles: true },
-    { convertStyleToAttrs: true },
-    { convertColors: true },
-    { convertPathData: true },
-    { convertTransform: true },
-    { removeUnknownsAndDefaults: true },
-    { removeNonInheritableGroupAttrs: true },
-    {
-      removeUselessStrokeAndFill: {
-        // https://github.com/svg/svgo/issues/727#issuecomment-303115276
-        removeNone: true,
-      },
-    },
-    { removeUnusedNS: true },
-    { cleanupIDs: true },
-    { cleanupNumericValues: true },
-    { cleanupListOfValues: true },
-    { moveElemsAttrsToGroup: true },
-    { moveGroupAttrsToElems: true },
-    { collapseGroups: true },
-    { removeRasterImages: true },
-    { mergePaths: true },
-    { convertShapeToPath: true },
-    { sortAttrs: true },
-    { removeDimensions: true },
-    { removeAttrs: true },
-    { removeElementsByAttr: true },
-    { removeStyleElement: true },
-    { removeScriptElement: true },
-  ],
-});
 
 /**
  * Return Pascal-Cased component name.
@@ -134,20 +85,108 @@ function removeNoise(input, prevInput = null) {
   return removeNoise(output, input);
 }
 
-export async function cleanPaths({ svgPath, data }) {
+export function cleanPaths({ svgPath, data }) {
   // Remove hardcoded color fill before optimizing so that empty groups are removed
   const input = data
     .replace(/ fill="#010101"/g, '')
     .replace(/<rect fill="none" width="24" height="24"\/>/g, '')
     .replace(/<rect id="SVGID_1_" width="24" height="24"\/>/g, '');
 
-  const result = await svgo.optimize(input);
+  const result = svgo.optimize(input, {
+    floatPrecision: 4,
+    multipass: true,
+    plugins: [
+      { name: 'cleanupAttrs' },
+      { name: 'removeDoctype' },
+      { name: 'removeXMLProcInst' },
+      { name: 'removeComments' },
+      { name: 'removeMetadata' },
+      { name: 'removeTitle' },
+      { name: 'removeDesc' },
+      { name: 'removeUselessDefs' },
+      { name: 'removeXMLNS' },
+      { name: 'removeEditorsNSData' },
+      { name: 'removeEmptyAttrs' },
+      { name: 'removeHiddenElems' },
+      { name: 'removeEmptyText' },
+      { name: 'removeViewBox' },
+      { name: 'cleanupEnableBackground' },
+      { name: 'minifyStyles' },
+      { name: 'convertStyleToAttrs' },
+      { name: 'convertColors' },
+      { name: 'convertPathData' },
+      { name: 'convertTransform' },
+      { name: 'removeUnknownsAndDefaults' },
+      { name: 'removeNonInheritableGroupAttrs' },
+      {
+        name: 'removeUselessStrokeAndFill',
+        params: {
+          // https://github.com/svg/svgo/issues/727#issuecomment-303115276
+          removeNone: true,
+        },
+      },
+      { name: 'removeUnusedNS' },
+      { name: 'cleanupIDs' },
+      { name: 'cleanupNumericValues' },
+      { name: 'cleanupListOfValues' },
+      { name: 'moveElemsAttrsToGroup' },
+      { name: 'moveGroupAttrsToElems' },
+      { name: 'collapseGroups' },
+      { name: 'removeRasterImages' },
+      { name: 'mergePaths' },
+      { name: 'convertShapeToPath' },
+      { name: 'sortAttrs' },
+      { name: 'removeDimensions' },
+      { name: 'removeAttrs' },
+      { name: 'removeElementsByAttr' },
+      { name: 'removeStyleElement' },
+      { name: 'removeScriptElement' },
+      { name: 'removeEmptyContainers' },
+    ],
+  });
+
+  // True if the svg has multiple children
+  let childrenAsArray = false;
+  const jsxResult = svgo.optimize(result.data, {
+    plugins: [
+      {
+        name: 'svgAsReactFragment',
+        type: 'visitor',
+        fn: () => {
+          return {
+            root: {
+              enter(root) {
+                const [svg, ...rootChildren] = root.children;
+                if (rootChildren.length > 0) {
+                  throw new Error('Expected a single child of the root');
+                }
+                if (svg.type !== 'element' || svg.name !== 'svg') {
+                  throw new Error('Expected an svg element as the root child');
+                }
+
+                if (svg.children.length > 1) {
+                  childrenAsArray = true;
+                  svg.children.forEach((svgChild, index) => {
+                    svgChild.addAttr({ name: 'key', value: index });
+                    // Original name will be restored later
+                    // We just need a mechanism to convert the resulting
+                    // svg string into an array of JSX elements
+                    svgChild.renameElem(`SVGChild:${svgChild.name}`);
+                  });
+                }
+                root.spliceContent(0, svg.children.length, svg.children);
+              },
+            },
+          };
+        },
+      },
+    ],
+  });
 
   // Extract the paths from the svg string
   // Clean xml paths
-  let paths = result.data
-    .replace(/<svg[^>]*>/g, '')
-    .replace(/<\/svg>/g, '')
+  // TODO: Implement as svgo plugins instead
+  let paths = jsxResult.data
     .replace(/"\/>/g, '" />')
     .replace(/fill-opacity=/g, 'fillOpacity=')
     .replace(/xlink:href=/g, 'xlinkHref=')
@@ -167,16 +206,21 @@ export async function cleanPaths({ svgPath, data }) {
 
   paths = removeNoise(paths);
 
-  // Add a fragment when necessary.
-  if ((paths.match(/\/>/g) || []).length > 1) {
-    paths = `<React.Fragment>${paths}</React.Fragment>`;
+  if (childrenAsArray) {
+    const pathsCommaSeparated = paths
+      // handle self-closing tags
+      .replace(/key="\d+" \/>/g, '$&,')
+      // handle the rest
+      .replace(/<\/SVGChild:(\w+)>/g, '</$1>,');
+    paths = `[${pathsCommaSeparated}]`;
   }
+  paths = paths.replace(/SVGChild:/g, '');
 
   return paths;
 }
 
-async function worker({ svgPath, options, renameFilter, template }) {
-  process.stdout.write('.');
+async function worker({ progress, svgPath, options, renameFilter, template }) {
+  progress();
 
   const normalizedSvgPath = path.normalize(svgPath);
   const svgPathObj = path.parse(normalizedSvgPath);
@@ -187,15 +231,10 @@ async function worker({ svgPath, options, renameFilter, template }) {
   const destPath = renameFilter(svgPathObj, innerPath, options);
 
   const outputFileDir = path.dirname(path.join(options.outputDir, destPath));
-  const pathExists = await fse.pathExists(outputFileDir);
-
-  if (!pathExists) {
-    console.log(`Making dir: ${outputFileDir}`);
-    fse.mkdirpSync(outputFileDir);
-  }
+  await fse.ensureDir(outputFileDir);
 
   const data = await fse.readFile(svgPath, { encoding: 'utf8' });
-  const paths = await cleanPaths({ svgPath, data });
+  const paths = cleanPaths({ svgPath, data });
 
   const componentName = getComponentName(destPath);
 
@@ -212,103 +251,114 @@ async function worker({ svgPath, options, renameFilter, template }) {
   await fse.writeFile(absDestPath, fileString);
 }
 
-export async function main(options) {
-  try {
-    let originalWrite;
+export async function handler(options) {
+  const progress = options.disableLog ? () => {} : () => process.stdout.write('.');
 
-    options.glob = options.glob || '/**/*.svg';
-    options.innerPath = options.innerPath || '';
-    options.renameFilter = options.renameFilter || RENAME_FILTER_DEFAULT;
-    options.disableLog = options.disableLog || false;
+  rimraf.sync(`${options.outputDir}/*.js`); // Clean old files
 
-    // Disable console.log opt, used for tests
-    if (options.disableLog) {
-      originalWrite = process.stdout.write;
-      process.stdout.write = () => {};
-    }
-
-    rimraf.sync(`${options.outputDir}/*.js`); // Clean old files
-
-    let renameFilter = options.renameFilter;
-    if (typeof renameFilter === 'string') {
-      // eslint-disable-next-line global-require, import/no-dynamic-require
-      renameFilter = require(renameFilter).default;
-    }
-    if (typeof renameFilter !== 'function') {
-      throw Error('renameFilter must be a function');
-    }
-    const pathExists = await fse.pathExists(options.outputDir);
-    if (!pathExists) {
-      await fse.mkdir(options.outputDir);
-    }
-
-    const [svgPaths, template] = await Promise.all([
-      globAsync(path.join(options.svgDir, options.glob)),
-      fse.readFile(path.join(__dirname, 'templateSvgIcon.js'), {
-        encoding: 'utf8',
-      }),
-    ]);
-
-    const queue = new Queue(
-      (svgPath) =>
-        worker({
-          svgPath,
-          options,
-          renameFilter,
-          template,
-        }),
-      { concurrency: 8 },
-    );
-
-    queue.push(svgPaths);
-    await queue.wait({ empty: true });
-
-    let legacyFiles = await globAsync(path.join(__dirname, '/legacy', '*.js'));
-    legacyFiles = legacyFiles.map((file) => path.basename(file));
-    let generatedFiles = await globAsync(path.join(options.outputDir, '*.js'));
-    generatedFiles = generatedFiles.map((file) => path.basename(file));
-
-    if (intersection(legacyFiles, generatedFiles).length > 0) {
-      console.warn(intersection(legacyFiles, generatedFiles));
-      throw new Error('Duplicated icons in legacy folder');
-    }
-
-    await fse.copy(path.join(__dirname, '/legacy'), options.outputDir);
-    await fse.copy(path.join(__dirname, '/custom'), options.outputDir);
-
-    await generateIndex(options);
-
-    if (options.disableLog) {
-      // bring back stdout
-      process.stdout.write = originalWrite;
-    }
-  } catch (err) {
-    console.log(err);
+  let renameFilter = options.renameFilter;
+  if (typeof renameFilter === 'string') {
+    const renameFilterModule = await import(renameFilter);
+    renameFilter = renameFilterModule.default;
   }
+  if (typeof renameFilter !== 'function') {
+    throw Error('renameFilter must be a function');
+  }
+  await fse.ensureDir(options.outputDir);
+
+  const [svgPaths, template] = await Promise.all([
+    globAsync(path.join(options.svgDir, options.glob)),
+    fse.readFile(path.join(__dirname, 'templateSvgIcon.js'), {
+      encoding: 'utf8',
+    }),
+  ]);
+
+  const queue = new Queue(
+    (svgPath) =>
+      worker({
+        progress,
+        svgPath,
+        options,
+        renameFilter,
+        template,
+      }),
+    { concurrency: 8 },
+  );
+
+  queue.push(svgPaths);
+  await queue.wait({ empty: true });
+
+  let legacyFiles = await globAsync(path.join(__dirname, '/legacy', '*.js'));
+  legacyFiles = legacyFiles.map((file) => path.basename(file));
+  let generatedFiles = await globAsync(path.join(options.outputDir, '*.js'));
+  generatedFiles = generatedFiles.map((file) => path.basename(file));
+
+  const duplicatedIconsLegacy = intersection(legacyFiles, generatedFiles);
+  if (duplicatedIconsLegacy.length > 0) {
+    throw new Error(
+      `Duplicated icons in legacy folder. Either \n` +
+        `1. Remove these from the /legacy folder\n` +
+        `2. Add them to the blacklist to keep the legacy version\n` +
+        `The following icons are duplicated: \n${duplicatedIconsLegacy.join('\n')}`,
+    );
+  }
+
+  await fse.copy(path.join(__dirname, '/legacy'), options.outputDir);
+  await fse.copy(path.join(__dirname, '/custom'), options.outputDir);
+
+  await generateIndex(options);
 }
 
 if (require.main === module) {
-  const argv = yargs
-    .usage("Build JSX components from SVG's.\nUsage: $0")
-    .demand('output-dir')
-    .describe('output-dir', 'Directory to output jsx components')
-    .demand('svg-dir')
-    .describe('svg-dir', 'SVG directory')
-    .describe('glob', 'Glob to match inside of --svg-dir. Default **/*.svg')
-    .describe(
-      'inner-path',
-      '"Reach into" subdirs, since libraries like material-design-icons' +
-        ' use arbitrary build directories to organize icons' +
-        ' e.g. "action/svg/production/icon_3d_rotation_24px.svg"',
-    )
-    .describe(
-      'file-suffix',
-      'Filter only files ending with a suffix (pretty much only for @material-ui/icons)',
-    )
-    .describe(
-      'rename-filter',
-      `Path to JS module used to rename destination filename and path.
-        Default: ${RENAME_FILTER_DEFAULT}`,
-    ).argv;
-  main(argv);
+  yargs
+    .command({
+      command: '$0>',
+      description: "Build JSX components from SVG's.",
+      handler,
+      builder: (command) => {
+        command
+          .option('output-dir', {
+            required: true,
+            type: 'string',
+            describe: 'Directory to output jsx components',
+          })
+          .option('svg-dir', {
+            required: true,
+            type: 'string',
+            describe: 'Directory to output jsx components',
+          })
+          .option('glob', {
+            type: 'string',
+            describe: 'Glob to match inside of --svg-dir',
+            default: '**/*.svg',
+          })
+          .option('inner-path', {
+            type: 'string',
+            describe:
+              '"Reach into" subdirs, since libraries like material-design-icons' +
+              ' use arbitrary build directories to organize icons' +
+              ' e.g. "action/svg/production/icon_3d_rotation_24px.svg"',
+            default: '',
+          })
+          .option('file-suffix', {
+            type: 'string',
+            describe:
+              'Filter only files ending with a suffix (pretty much only for @material-ui/icons)',
+          })
+          .option('rename-filter', {
+            type: 'string',
+            describe: 'Path to JS module used to rename destination filename and path.',
+            default: RENAME_FILTER_DEFAULT,
+          })
+          .option('disable-log', {
+            type: 'boolean',
+            describe: 'If true, does not produce any output in STDOUT.',
+            default: false,
+          });
+      },
+    })
+    .help()
+    .strict(true)
+    .version(false)
+    .parse();
 }

@@ -1,6 +1,6 @@
 ---
-title: React Badge component
-components: Badge
+title: Composant React Badge
+components: Badge, BadgeUnstyled
 githubLabel: 'component: Badge'
 ---
 
@@ -10,7 +10,7 @@ githubLabel: 'component: Badge'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic badges
+## Badges Basique
 
 Exemples de badges contenant du texte, utilisant les couleurs primaires et secondaires. Le badge est appliqué aux enfants.
 
@@ -18,7 +18,7 @@ Exemples de badges contenant du texte, utilisant les couleurs primaires et secon
 
 ## Badges personnalisés
 
-Voici un exemple de personnalisation du composant. Vous pouvez en apprendre plus à ce sujet dans la [page de documentation](/customization/components/).
+Voici un exemple de personnalisation du composant. Vous pouvez en apprendre plus à ce sujet dans la [page de documentation](/customization/how-to-customize/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
@@ -55,3 +55,19 @@ You can use the `overlap` property to place the badge relative to the corner of 
 Vous pouvez utiliser le prop `anchorOrigin` pour déplacer le badge dans n'importe quel coin de l'élément enveloppé.
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
+
+## Unstyled
+
+The badge also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+
+```js
+import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
+```
+
+{{"demo": "pages/components/badges/UnstyledBadge.js"}}
+
+## Accessibilité
+
+You can't rely on the content of the badge to be announced correctly. You should provide a full description, for instance, with `aria-label`:
+
+{{"demo": "pages/components/badges/AccessibleBadges.js"}}

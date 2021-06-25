@@ -23,7 +23,7 @@ const tsConfig = typescriptToProptypes.loadConfig(path.resolve(__dirname, '../ts
 
 const babelConfig = {
   presets: ['@babel/preset-typescript'],
-  plugins: ['babel-plugin-unwrap-createstyles'],
+  plugins: [],
   generatorOpts: { retainLines: true },
   babelrc: false,
   configFile: false,
@@ -35,7 +35,9 @@ async function getFiles(root) {
   const files = [];
 
   await Promise.all(
-    (await fse.readdir(root)).map(async (name) => {
+    (
+      await fse.readdir(root)
+    ).map(async (name) => {
       const filePath = path.join(root, name);
       const stat = await fse.stat(filePath);
 

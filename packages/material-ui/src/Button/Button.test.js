@@ -1,31 +1,31 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import {
-  getClasses,
   createMount,
-  describeConformance,
+  describeConformanceV5,
   act,
   createClientRender,
   fireEvent,
   createServerRender,
 } from 'test/utils';
-import Button from './Button';
-import ButtonBase from '../ButtonBase';
+import Button, { buttonClasses as classes } from '@material-ui/core/Button';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<Button />', () => {
-  const mount = createMount();
   const render = createClientRender();
-  let classes;
+  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<Button>Hello World</Button>);
-  });
-
-  describeConformance(<Button>Conformance?</Button>, () => ({
+  describeConformanceV5(<Button startIcon="icon">Conformance?</Button>, () => ({
     classes,
     inheritComponent: ButtonBase,
+    render,
     mount,
     refInstanceof: window.HTMLButtonElement,
+    muiName: 'MuiButton',
+    testDeepOverrides: { slotName: 'startIcon', slotClassName: classes.startIcon },
+    testVariantProps: { variant: 'contained', fullWidth: true },
+    testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
+    skip: ['componentsProp'],
   }));
 
   it('should render with the root, text, and textPrimary classes but no others', () => {
@@ -272,23 +272,21 @@ describe('<Button />', () => {
   it('should render a button with startIcon', () => {
     const { getByRole } = render(<Button startIcon={<span>icon</span>}>Hello World</Button>);
     const button = getByRole('button');
-    const label = button.querySelector(`.${classes.label}`);
+    const startIcon = button.querySelector(`.${classes.startIcon}`);
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.text);
-    expect(label.firstChild).not.to.have.class(classes.endIcon);
-    expect(label.firstChild).to.have.class(classes.startIcon);
+    expect(startIcon).not.to.have.class(classes.endIcon);
   });
 
   it('should render a button with endIcon', () => {
     const { getByRole } = render(<Button endIcon={<span>icon</span>}>Hello World</Button>);
     const button = getByRole('button');
-    const label = button.querySelector(`.${classes.label}`);
+    const endIcon = button.querySelector(`.${classes.endIcon}`);
 
     expect(button).to.have.class(classes.root);
     expect(button).to.have.class(classes.text);
-    expect(label.lastChild).not.to.have.class(classes.startIcon);
-    expect(label.lastChild).to.have.class(classes.endIcon);
+    expect(endIcon).not.to.have.class(classes.startIcon);
   });
 
   it('should have a ripple by default', () => {
@@ -364,8 +362,8 @@ describe('<Button />', () => {
     });
 
     it('should server-side render', () => {
-      const markup = serverRender(<Button>Hello World</Button>);
-      expect(markup.text()).to.equal('Hello World');
+      const container = serverRender(<Button>Hello World</Button>);
+      expect(container.firstChild).to.have.text('Hello World');
     });
   });
 
@@ -377,5 +375,12 @@ describe('<Button />', () => {
     expect(button).not.to.have.attribute('role');
     expect(button).not.to.have.attribute('type');
     expect(button).to.have.attribute('href', 'https://google.com');
+  });
+
+  it('should forward classes to ButtonBase', () => {
+    const disabledClassName = 'testDisabledClassName';
+    const { container } = render(<Button disabled classes={{ disabled: disabledClassName }} />);
+
+    expect(container.querySelector('button')).to.have.class(disabledClassName);
   });
 });

@@ -4,15 +4,15 @@
 
 ## 常问问题
 
-### 哇—— API 看起来完全不一样！ 这是否意味着1.0完全不同，而我得重新学习基础知识，而迁移是几乎不可能的？
+### 哇—— API 看起来完全不一样！ Does that mean 1.0 is completely different, I'll have to learn the basics all over again, and migrating will be practically impossible?
 
-我很高兴你问了！ 答案是不。 我们的核心概念并没有改变。 您会注意到 API 提供了更多的灵活性，但这有一定的成本——一些更低级别的组件提取了较低的复杂性。
+I'm glad you asked! 答案是不。 答案是不。 The core concepts haven't changed. 您会注意到 API 提供了更多的灵活性，但这有一定的成本——一些更低级别的组件提取了较低的复杂性。
 
 ### 到底是什么带来了如此巨大的改变呢？
 
 Material-UI 这个项目是从[4年前](https://github.com/mui-org/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46)开始的。 在此期间，整个个生态系统发展了很多，我们也学到了很多东西。 [@nathanmarks](https://github.com/nathanmarks/) 启动了一项雄心勃勃的任务，将 Material-UI **重新启动**，并利用我们学到的知识，来解决一些长期存在的问题。 譬如这些主要的变化：
 
-- 我们采用 CSS-in-JS 这个新的样式方案（更好的[自定义](/customization/components/)的能力和整体性能）
+- New styling solution using CSS-in-JS (better [customization](/customization/how-to-customize/) power, better performance)
 - 新的主题处理 （有嵌套，自主支撑等。）
 - 感谢 [Next.js](https://github.com/zeit/next.js) 超快地创建文档
 - 更容易检测 [测试覆盖率](/guides/testing/) （99％以上，在所有主流浏览器上运行， [视觉回归测试](https://www.argos-ci.com/mui-org/material-ui)）
@@ -54,18 +54,16 @@ import { MuiThemeProvider as V0MuiThemeProvider } from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 const theme = createMuiTheme({
-  /* v1.x 的主题 */
+  /* v1.x 版本的主题 */
 });
 const themeV0 = getMuiTheme({
-  /* v0.x 的主题 */
+  /* v0.x 版本的主题 */
 });
 
 function App() {
   return (
     <MuiThemeProvider theme={theme}>
-      <V0MuiThemeProvider muiTheme={themeV0}>
-        {/*组件*/}
-      </V0MuiThemeProvider>
+      <V0MuiThemeProvider muiTheme={themeV0}>{/*Components*/}</V0MuiThemeProvider>
     </MuiThemeProvider>
   );
 }

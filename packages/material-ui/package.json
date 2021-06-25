@@ -1,10 +1,10 @@
 {
   "name": "@material-ui/core",
-  "version": "5.0.0-alpha.18",
+  "version": "5.0.0-alpha.38",
   "private": false,
   "author": "Material-UI Team",
+  "description": "Quickly build beautiful React apps. Material-UI is a simple and customizable component library to build faster, beautiful, and more accessible React applications. Follow your own design system, or start with Material Design.",
   "main": "./src/index.ts",
-  "description": "React components that implement Google's Material Design.",
   "keywords": [
     "react",
     "react-component",
@@ -33,19 +33,19 @@
     "build:stable": "node ../../scripts/build stable",
     "build:umd": "cross-env BABEL_ENV=stable rollup -c scripts/rollup.config.js",
     "build:copy-files": "node ../../scripts/copy-files.js",
-    "build:types": "tsc -p tsconfig.build.json",
-    "extract-error-codes": "cross-env MUI_EXTRACT_ERROR_CODES=true yarn build:modern",
+    "build:types": "node ../../scripts/buildTypes",
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "yarn build && npm publish build --tag next",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui/**/*.test.{js,ts,tsx}'",
-    "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json && tsc -p tsconfig.build.json"
+    "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json",
+    "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "peerDependencies": {
     "@emotion/react": "^11.0.0",
     "@emotion/styled": "^11.0.0",
     "@types/react": "^16.8.6 || ^17.0.0",
-    "react": "^16.8.0 || ^17.0.0",
-    "react-dom": "^16.8.0 || ^17.0.0"
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -60,27 +60,24 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/styled-engine": "5.0.0-alpha.18",
-    "@material-ui/styles": "5.0.0-alpha.18",
-    "@material-ui/system": "5.0.0-alpha.18",
-    "@material-ui/types": "5.1.0",
-    "@material-ui/unstyled": "5.0.0-alpha.18",
-    "@material-ui/utils": "5.0.0-alpha.18",
+    "@material-ui/system": "5.0.0-alpha.38",
+    "@material-ui/types": "6.0.1",
+    "@material-ui/unstyled": "5.0.0-alpha.38",
+    "@material-ui/utils": "5.0.0-alpha.36",
     "@popperjs/core": "^2.4.4",
     "@types/react-transition-group": "^4.2.0",
     "clsx": "^1.0.4",
     "csstype": "^3.0.2",
     "hoist-non-react-statics": "^3.3.2",
     "prop-types": "^15.7.2",
-    "react-is": "^16.8.0 || ^17.0.0",
+    "react-is": "^17.0.0",
     "react-transition-group": "^4.4.0"
   },
-  "devDependencies": {},
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12.0.0"
   }
 }

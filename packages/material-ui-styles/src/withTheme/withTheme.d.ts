@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ConsistentWith, Omit, PropInjector } from '@material-ui/types';
+import { ConsistentWith, DistributiveOmit, PropInjector } from '@material-ui/types';
 import { DefaultTheme } from '../defaultTheme';
 
 export interface WithThemeCreatorOption<Theme = DefaultTheme> {
@@ -8,12 +8,6 @@ export interface WithThemeCreatorOption<Theme = DefaultTheme> {
 
 export interface WithTheme<Theme = DefaultTheme> {
   theme: Theme;
-  /**
-   * Deprecated. Will be removed in v5. Refs are now automatically forwarded to
-   * the inner component.
-   * @deprecated since version 4.0
-   */
-  innerRef?: React.Ref<any>;
 }
 
 export interface ThemedComponentProps extends Partial<WithTheme> {
@@ -21,16 +15,19 @@ export interface ThemedComponentProps extends Partial<WithTheme> {
 }
 
 export function withThemeCreator<Theme = DefaultTheme>(
-  option?: WithThemeCreatorOption<Theme>
+  option?: WithThemeCreatorOption<Theme>,
 ): PropInjector<WithTheme<Theme>, ThemedComponentProps>;
 
 export default function withTheme<
   Theme,
-  C extends React.ComponentType<ConsistentWith<React.ComponentProps<C>, WithTheme<Theme>>>
+  C extends React.JSXElementConstructor<ConsistentWith<React.ComponentProps<C>, WithTheme<Theme>>>,
 >(
-  component: C
-): React.ComponentType<
-  Omit<JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>, keyof WithTheme<Theme>> &
+  component: C,
+): React.JSXElementConstructor<
+  DistributiveOmit<
+    JSX.LibraryManagedAttributes<C, React.ComponentProps<C>>,
+    keyof WithTheme<Theme>
+  > &
     Partial<WithTheme<Theme>> &
     ThemedComponentProps
 >;

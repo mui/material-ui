@@ -1,24 +1,24 @@
 ---
-title: React Accordion component
+title: React Accordion Komponente
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 githubLabel: 'component: Accordion'
 materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
 ---
 
-# Akkordeon (Accordion)
+# Accordion (Akkordeon)
 
 <p class="description">Erweiterungspanels (Tafeln) enthalten Erstellungsabläufe und ermöglichen die einfache Bearbeitung eines Elements.</p>
 
-[Ein Erweiterungspanel](https://material.io/archive/guidelines/components/expansion-panels.html) ist ein leichter Behälter, der entweder alleine stehen kann oder mit einer größeren Oberfläche verbunden ist, beispielsweise einer Karte.
+[Ein Erweiterungspanel](https://material.io/archive/guidelines/components/expansion-panels.html) ist ein leichter container, der entweder alleinstehend verwendet werden kann oder mit einer größeren Oberfläche verbunden ist, beispielsweise einer Karte.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> **Hinweis:** Diese Komponente ist zwar nicht mehr in den [Material-Design-Richtlinien](https://material.io/) dokumentiert, wird aber weiterhin von Material-UI unterstützt. It was formerly known as the "expansion panel".
+> **Hinweis:** Diese Komponente ist zwar nicht mehr in den [Material-Design-Richtlinien](https://material.io/) dokumentiert, wird aber weiterhin von Material-UI unterstützt. Es war früher als  "Erweiterungspanel" bekannt.
 
 ## Einfaches Erweiterungspanel
 
-{{"demo": "pages/components/accordion/SimpleAccordion.js", "bg": true}}
+{{"demo": "pages/components/accordion/BasicAccordion.js", "bg": true}}
 
 ## Kontrolliertes Akkordeon
 
@@ -28,7 +28,7 @@ Erweitern Sie das Standardbedienfeldverhalten, um ein Akkordeon mit der Komponen
 
 ## Individuelles Erweiterungspanel
 
-Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/components/).
+Hier ist ein Beispiel zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/how-to-customize/).
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
 

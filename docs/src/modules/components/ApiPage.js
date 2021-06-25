@@ -8,7 +8,6 @@ import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
-import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
 
 function PropsTable(props) {
   const { componentProps, propDescriptions } = props;
@@ -99,10 +98,9 @@ function ClassesTable(props) {
               dangerouslySetInnerHTML={{
                 __html:
                   classDescriptions[className] &&
-                  classDescriptions[className].description.replace(
-                    /{{conditions}}/,
-                    classDescriptions[className].conditions,
-                  ),
+                  classDescriptions[className].description
+                    .replace(/{{conditions}}/, classDescriptions[className].conditions)
+                    .replace(/{{nodeName}}/, classDescriptions[className].nodeName),
               }}
             />
           </tr>
@@ -118,15 +116,24 @@ ClassesTable.propTypes = {
   componentStyles: PropTypes.object.isRequired,
 };
 
-function getTransaltedHeader(t, header) {
+function getTranslatedHeader(t, header) {
   const translations = {
     import: t('api-docs.import'),
-    componentName: t('api-docs.componentName'),
+    'component-name': t('api-docs.componentName'),
     props: t('api-docs.props'),
     inheritance: t('api-docs.inheritance'),
     demos: t('api-docs.demos'),
     css: 'CSS',
   };
+
+  // TODO Drop runtime type-checking once we type-check this file
+  if (!translations.hasOwnProperty(header)) {
+    throw new TypeError(
+      `Unable to translate header '${header}'. Did you mean one of '${Object.keys(
+        translations,
+      ).join("', '")}'`,
+    );
+  }
 
   return translations[header] || header;
 }
@@ -134,19 +141,13 @@ function getTransaltedHeader(t, header) {
 function Heading(props) {
   const { hash, level: Level = 'h2' } = props;
   const t = useTranslate();
-  const kebabCaseHash = hash === 'componentName' ? 'component-name' : `${hash}`;
+  const headingId = `heading-${hash}`;
 
   return (
-    <Level>
-      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/anchor-has-content */}
-      <a className="anchor-link" id={kebabCaseHash} />
-      {getTransaltedHeader(t, hash)}
-      <a
-        className="anchor-link-style"
-        aria-hidden="true"
-        aria-label="anchor"
-        href={`#${kebabCaseHash}`}
-      >
+    <Level id={headingId}>
+      <span className="anchor-link" id={hash} />
+      {getTranslatedHeader(t, hash)}
+      <a aria-labelledby={headingId} className="anchor-link-style" href={`#${hash}`} tabIndex={-1}>
         <svg>
           <use xlinkHref="#anchor-link-icon" />
         </svg>
@@ -166,6 +167,7 @@ function ApiDocs(props) {
   const userLanguage = useUserLanguage();
 
   const {
+    cssComponent,
     demos,
     filename,
     forwardsRefTo,
@@ -173,11 +175,17 @@ function ApiDocs(props) {
     name: componentName,
     props: componentProps,
     spread,
+    // TODO: Drop once migration to emotion is complete since this will always be true.
     styledComponent,
     styles: componentStyles,
   } = pageContent;
 
-  const { componentDescription, classDescriptions, propDescriptions } = descriptions[userLanguage];
+  const {
+    componentDescription,
+    componentDescriptionToc = [],
+    classDescriptions,
+    propDescriptions,
+  } = descriptions[userLanguage];
   const description = t('api-docs.pageDescription').replace(/{{name}}/, componentName);
 
   const source = filename
@@ -188,28 +196,26 @@ function ApiDocs(props) {
     // convert things like `/Table/Table.js` to ``
     .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
 
-  const sections = [
-    'import',
-    componentStyles.name && 'component-name',
-    'props',
-    componentStyles.classes && 'css',
-    'demos',
-  ];
+  function createTocEntry(sectionName) {
+    return {
+      text: getTranslatedHeader(t, sectionName),
+      hash: sectionName,
+      children: [
+        ...(sectionName === 'props' && inheritance
+          ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
+          : []),
+      ],
+    };
+  }
 
-  const toc = [];
-  sections.forEach((sectionName) => {
-    if (sectionName) {
-      toc.push({
-        text: getTransaltedHeader(t, sectionName),
-        hash: sectionName,
-        children: [
-          ...(sectionName === 'props' && inheritance
-            ? [{ text: t('api-docs.inheritance'), hash: 'inheritance', children: [] }]
-            : []),
-        ],
-      });
-    }
-  });
+  const toc = [
+    createTocEntry('import'),
+    ...componentDescriptionToc,
+    componentStyles.name && createTocEntry('component-name'),
+    createTocEntry('props'),
+    componentStyles.classes && createTocEntry('css'),
+    createTocEntry('demos'),
+  ].filter(Boolean);
 
   // The `ref` is forwarded to the root element.
   let refHint = t('api-docs.refRootElement');
@@ -266,7 +272,7 @@ import { ${componentName} } from '${source}';`}
         ) : null}
         {componentStyles.name && (
           <React.Fragment>
-            <Heading hash="componentName" />
+            <Heading hash="component-name" />
             <span
               dangerouslySetInnerHTML={{
                 __html: t('api-docs.styleOverrides').replace(
@@ -278,11 +284,21 @@ import { ${componentName} } from '${source}';`}
           </React.Fragment>
         )}
         <Heading hash="props" />
+        <p dangerouslySetInnerHTML={{ __html: spreadHint }} />
         <PropsTable componentProps={componentProps} propDescriptions={propDescriptions} />
         <br />
+        {cssComponent && (
+          <React.Fragment>
+            <span
+              dangerouslySetInnerHTML={{
+                __html: t('api-docs.cssComponent').replace(/{{name}}/, componentName),
+              }}
+            />
+            <br />
+            <br />
+          </React.Fragment>
+        )}
         <span dangerouslySetInnerHTML={{ __html: refHint }} />
-        <br />
-        <span dangerouslySetInnerHTML={{ __html: spreadHint }} />
         {inheritance && (
           <React.Fragment>
             <Heading hash="inheritance" level="h3" />
@@ -316,7 +332,7 @@ import { ${componentName} } from '${source}';`}
                 dangerouslySetInnerHTML={{
                   __html: t('api-docs.overrideStylesJss').replace(
                     /{{URL}}/,
-                    `${SOURCE_CODE_ROOT_URL}${filename}`,
+                    `${process.env.SOURCE_CODE_ROOT_URL}${filename}`,
                   ),
                 }}
               />

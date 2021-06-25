@@ -1,59 +1,75 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import capitalize from '../utils/capitalize';
-import withStyles from '../styles/withStyles';
+import useThemeProps from '../styles/useThemeProps';
+import styled from '../styles/styled';
+import formLabelClasses, { getFormLabelUtilityClasses } from './formLabelClasses';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    color: theme.palette.text.secondary,
-    ...theme.typography.body1,
-    lineHeight: 1,
-    padding: 0,
-    '&$focused': {
-      color: theme.palette.primary.main,
-    },
-    '&$disabled': {
-      color: theme.palette.text.disabled,
-    },
-    '&$error': {
-      color: theme.palette.error.main,
-    },
-  },
-  /* Styles applied to the root element if the color is secondary. */
-  colorSecondary: {
-    '&$focused': {
-      color: theme.palette.secondary.main,
-    },
-  },
-  /* Pseudo-class applied to the root element if `focused={true}`. */
-  focused: {},
-  /* Pseudo-class applied to the root element if `disabled={true}`. */
-  disabled: {},
-  /* Pseudo-class applied to the root element if `error={true}`. */
-  error: {},
-  /* Pseudo-class applied to the root element if `filled={true}`. */
-  filled: {},
-  /* Pseudo-class applied to the root element if `required={true}`. */
-  required: {},
-  /* Styles applied to the asterisk element. */
-  asterisk: {
-    '&$error': {
-      color: theme.palette.error.main,
-    },
-  },
-});
+const useUtilityClasses = (styleProps) => {
+  const { classes, color, focused, disabled, error, filled, required } = styleProps;
+  const slots = {
+    root: [
+      'root',
+      `color${capitalize(color)}`,
+      disabled && 'disabled',
+      error && 'error',
+      filled && 'filled',
+      focused && 'focused',
+      required && 'required',
+    ],
+    asterisk: ['asterisk', error && 'error'],
+  };
 
-const FormLabel = React.forwardRef(function FormLabel(props, ref) {
+  return composeClasses(slots, getFormLabelUtilityClasses, classes);
+};
+
+export const FormLabelRoot = styled('label', {
+  name: 'MuiFormLabel',
+  slot: 'Root',
+  overridesResolver: ({ styleProps }, styles) => {
+    return {
+      ...styles.root,
+      ...(styleProps.color === 'secondary' && styles.colorSecondary),
+      ...(styleProps.filled && styles.filled),
+    };
+  },
+})(({ theme, styleProps }) => ({
+  color: theme.palette.text.secondary,
+  ...theme.typography.body1,
+  lineHeight: '1.4375em',
+  padding: 0,
+  [`&.${formLabelClasses.focused}`]: {
+    color: theme.palette[styleProps.color].main,
+  },
+  [`&.${formLabelClasses.disabled}`]: {
+    color: theme.palette.text.disabled,
+  },
+  [`&.${formLabelClasses.error}`]: {
+    color: theme.palette.error.main,
+  },
+}));
+
+const AsteriskComponent = styled('span', {
+  name: 'MuiFormLabel',
+  slot: 'Asterisk',
+  overridesResolver: (props, styles) => styles.asterisk,
+})(({ theme }) => ({
+  [`&.${formLabelClasses.error}`]: {
+    color: theme.palette.error.main,
+  },
+}));
+
+const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiFormLabel' });
   const {
     children,
-    classes,
     className,
     color,
-    component: Component = 'label',
+    component = 'label',
     disabled,
     error,
     filled,
@@ -69,39 +85,38 @@ const FormLabel = React.forwardRef(function FormLabel(props, ref) {
     states: ['color', 'required', 'focused', 'disabled', 'error', 'filled'],
   });
 
+  const styleProps = {
+    ...props,
+    color: fcs.color || 'primary',
+    component,
+    disabled: fcs.disabled,
+    error: fcs.error,
+    filled: fcs.filled,
+    focused: fcs.focused,
+    required: fcs.required,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <Component
-      className={clsx(
-        classes.root,
-        classes[`color${capitalize(fcs.color || 'primary')}`],
-        {
-          [classes.disabled]: fcs.disabled,
-          [classes.error]: fcs.error,
-          [classes.filled]: fcs.filled,
-          [classes.focused]: fcs.focused,
-          [classes.required]: fcs.required,
-        },
-        className,
-      )}
+    <FormLabelRoot
+      as={component}
+      styleProps={styleProps}
+      className={clsx(classes.root, className)}
       ref={ref}
       {...other}
     >
       {children}
       {fcs.required && (
-        <span
-          aria-hidden
-          className={clsx(classes.asterisk, {
-            [classes.error]: fcs.error,
-          })}
-        >
+        <AsteriskComponent styleProps={styleProps} aria-hidden className={classes.asterisk}>
           &thinsp;{'*'}
-        </span>
+        </AsteriskComponent>
       )}
-    </Component>
+    </FormLabelRoot>
   );
 });
 
-FormLabel.propTypes = {
+FormLabel.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -121,7 +136,7 @@ FormLabel.propTypes = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'success', 'warning']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -132,7 +147,7 @@ FormLabel.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the label should be displayed in an error state.
+   * If `true`, the label is displayed in an error state.
    */
   error: PropTypes.bool,
   /**
@@ -147,6 +162,10 @@ FormLabel.propTypes = {
    * If `true`, the label will indicate that the `input` is required.
    */
   required: PropTypes.bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiFormLabel' })(FormLabel);
+export default FormLabel;

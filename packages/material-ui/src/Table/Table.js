@@ -1,61 +1,92 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import TableContext from './TableContext';
+import useThemeProps from '../styles/useThemeProps';
+import styled from '../styles/styled';
+import { getTableUtilityClass } from './tableClasses';
 
-export const styles = (theme) => ({
+const useUtilityClasses = (styleProps) => {
+  const { classes, stickyHeader } = styleProps;
+
+  const slots = {
+    root: ['root', stickyHeader && 'stickyHeader'],
+  };
+
+  return composeClasses(slots, getTableUtilityClass, classes);
+};
+
+const TableRoot = styled('table', {
+  name: 'MuiTable',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+
+    return [styles.root, styleProps.stickyHeader && styles.stickyHeader];
+  },
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
-  root: {
-    display: 'table',
-    width: '100%',
-    borderCollapse: 'collapse',
-    borderSpacing: 0,
-    '& caption': {
-      ...theme.typography.body2,
-      padding: theme.spacing(2),
-      color: theme.palette.text.secondary,
-      textAlign: 'left',
-      captionSide: 'bottom',
-    },
+  display: 'table',
+  width: '100%',
+  borderCollapse: 'collapse',
+  borderSpacing: 0,
+  '& caption': {
+    ...theme.typography.body2,
+    padding: theme.spacing(2),
+    color: theme.palette.text.secondary,
+    textAlign: 'left',
+    captionSide: 'bottom',
   },
   /* Styles applied to the root element if `stickyHeader={true}`. */
-  stickyHeader: {
+  ...(styleProps.stickyHeader && {
     borderCollapse: 'separate',
-  },
-});
+  }),
+}));
 
 const defaultComponent = 'table';
 
-const Table = React.forwardRef(function Table(props, ref) {
+const Table = React.forwardRef(function Table(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiTable' });
   const {
-    classes,
     className,
-    component: Component = defaultComponent,
-    padding = 'default',
+    component = defaultComponent,
+    padding = 'normal',
     size = 'medium',
     stickyHeader = false,
     ...other
   } = props;
-  const table = React.useMemo(() => ({ padding, size, stickyHeader }), [
+
+  const styleProps = {
+    ...props,
+    component,
     padding,
     size,
     stickyHeader,
-  ]);
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
+  const table = React.useMemo(
+    () => ({ padding, size, stickyHeader }),
+    [padding, size, stickyHeader],
+  );
 
   return (
     <TableContext.Provider value={table}>
-      <Component
-        role={Component === defaultComponent ? null : 'table'}
+      <TableRoot
+        as={component}
+        role={component === defaultComponent ? null : 'table'}
         ref={ref}
-        className={clsx(classes.root, { [classes.stickyHeader]: stickyHeader }, className)}
+        className={clsx(classes.root, className)}
+        styleProps={styleProps}
         {...other}
       />
     </TableContext.Provider>
   );
 });
 
-Table.propTypes = {
+Table.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -79,14 +110,17 @@ Table.propTypes = {
   component: PropTypes.elementType,
   /**
    * Allows TableCells to inherit padding of the Table.
-   * @default 'default'
+   * @default 'normal'
    */
-  padding: PropTypes.oneOf(['checkbox', 'default', 'none']),
+  padding: PropTypes.oneOf(['checkbox', 'none', 'normal']),
   /**
    * Allows TableCells to inherit size of the Table.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * Set the header sticky.
    *
@@ -94,6 +128,10 @@ Table.propTypes = {
    * @default false
    */
   stickyHeader: PropTypes.bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTable' })(Table);
+export default Table;

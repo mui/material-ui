@@ -2,12 +2,15 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { HTMLElementType } from '@material-ui/utils';
-import withStyles from '../styles/withStyles';
-import Popover from '../Popover';
 import MenuList from '../MenuList';
-import setRef from '../utils/setRef';
+import Paper from '../Paper';
+import Popover from '../Popover';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import useTheme from '../styles/useTheme';
+import useThemeProps from '../styles/useThemeProps';
+import { getMenuUtilityClass } from './menuClasses';
 
 const RTL_ORIGIN = {
   vertical: 'top',
@@ -19,28 +22,53 @@ const LTR_ORIGIN = {
   horizontal: 'left',
 };
 
-export const styles = {
-  /* Styles applied to the `Paper` component. */
-  paper: {
-    // specZ: The maximum height of a simple menu should be one or more rows less than the view
-    // height. This ensures a tapable area outside of the simple menu with which to dismiss
-    // the menu.
-    maxHeight: 'calc(100% - 96px)',
-    // Add iOS momentum scrolling.
-    WebkitOverflowScrolling: 'touch',
-  },
-  /* Styles applied to the `List` component via `MenuList`. */
-  list: {
-    // We disable the focus ring for mouse, touch and keyboard users.
-    outline: 0,
-  },
+const useUtilityClasses = (styleProps) => {
+  const { classes } = styleProps;
+
+  const slots = {
+    root: ['root'],
+    paper: ['paper'],
+    list: ['list'],
+  };
+
+  return composeClasses(slots, getMenuUtilityClass, classes);
 };
 
-const Menu = React.forwardRef(function Menu(props, ref) {
+const MenuRoot = styled(Popover, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiMenu',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({});
+
+const MenuPaper = styled(Paper, {
+  name: 'MuiMenu',
+  slot: 'Paper',
+  overridesResolver: (props, styles) => styles.paper,
+})({
+  // specZ: The maximum height of a simple menu should be one or more rows less than the view
+  // height. This ensures a tapable area outside of the simple menu with which to dismiss
+  // the menu.
+  maxHeight: 'calc(100% - 96px)',
+  // Add iOS momentum scrolling for iOS < 13.0
+  WebkitOverflowScrolling: 'touch',
+});
+
+const MenuMenuList = styled(MenuList, {
+  name: 'MuiMenu',
+  slot: 'List',
+  overridesResolver: (props, styles) => styles.list,
+})({
+  // We disable the focus ring for mouse, touch and keyboard users.
+  outline: 0,
+});
+
+const Menu = React.forwardRef(function Menu(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiMenu' });
+
   const {
     autoFocus = true,
     children,
-    classes,
     disableAutoFocusItem = false,
     MenuListProps = {},
     onClose,
@@ -48,18 +76,31 @@ const Menu = React.forwardRef(function Menu(props, ref) {
     PaperProps = {},
     PopoverClasses,
     transitionDuration = 'auto',
-    variant = 'selectedMenu',
     TransitionProps: { onEntering, ...TransitionProps } = {},
+    variant = 'selectedMenu',
     ...other
   } = props;
+
   const theme = useTheme();
+  const isRtl = theme.direction === 'rtl';
+
+  const styleProps = {
+    ...props,
+    autoFocus,
+    disableAutoFocusItem,
+    MenuListProps,
+    onEntering,
+    PaperProps,
+    transitionDuration,
+    TransitionProps,
+    variant,
+  };
+
+  const classes = useUtilityClasses(styleProps);
 
   const autoFocusItem = autoFocus && !disableAutoFocusItem && open;
 
   const menuListActionsRef = React.useRef(null);
-  const contentAnchorRef = React.useRef(null);
-
-  const getContentAnchorEl = () => contentAnchorRef.current;
 
   const handleEntering = (element, isAppearing) => {
     if (menuListActionsRef.current) {
@@ -115,40 +156,32 @@ const Menu = React.forwardRef(function Menu(props, ref) {
     }
   });
 
-  const items = React.Children.map(children, (child, index) => {
-    if (index === activeItemIndex) {
-      return React.cloneElement(child, {
-        ref: (instance) => {
-          contentAnchorRef.current = instance;
-          setRef(child.ref, instance);
-        },
-      });
-    }
-
-    return child;
-  });
-
   return (
-    <Popover
-      getContentAnchorEl={getContentAnchorEl}
+    <MenuRoot
       classes={PopoverClasses}
       onClose={onClose}
-      anchorOrigin={theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
-      transformOrigin={theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: isRtl ? 'right' : 'left',
+      }}
+      transformOrigin={isRtl ? RTL_ORIGIN : LTR_ORIGIN}
       PaperProps={{
+        component: MenuPaper,
         ...PaperProps,
         classes: {
           ...PaperProps.classes,
           root: classes.paper,
         },
       }}
+      className={classes.root}
       open={open}
       ref={ref}
       transitionDuration={transitionDuration}
       TransitionProps={{ onEntering: handleEntering, ...TransitionProps }}
+      styleProps={styleProps}
       {...other}
     >
-      <MenuList
+      <MenuMenuList
         onKeyDown={handleListKeyDown}
         actions={menuListActionsRef}
         autoFocus={autoFocus && (activeItemIndex === -1 || disableAutoFocusItem)}
@@ -157,19 +190,19 @@ const Menu = React.forwardRef(function Menu(props, ref) {
         {...MenuListProps}
         className={clsx(classes.list, MenuListProps.className)}
       >
-        {items}
-      </MenuList>
-    </Popover>
+        {children}
+      </MenuMenuList>
+    </MenuRoot>
   );
 });
 
-Menu.propTypes = {
+Menu.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * A HTML element, or a function that returns it.
+   * An HTML element, or a function that returns one.
    * It's used to set the position of the menu.
    */
   anchorEl: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -213,7 +246,7 @@ Menu.propTypes = {
    */
   onClose: PropTypes.func,
   /**
-   * If `true`, the menu is visible.
+   * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
   /**
@@ -224,6 +257,10 @@ Menu.propTypes = {
    * `classes` prop applied to the [`Popover`](/api/popover/) element.
    */
   PopoverClasses: PropTypes.object,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
   /**
    * The length of the transition in `ms`, or 'auto'
    * @default 'auto'
@@ -244,11 +281,10 @@ Menu.propTypes = {
    */
   TransitionProps: PropTypes.object,
   /**
-   * The variant to use. Use `menu` to prevent selected items from impacting the initial focus
-   * and the vertical alignment relative to the anchor element.
+   * The variant to use. Use `menu` to prevent selected items from impacting the initial focus.
    * @default 'selectedMenu'
    */
   variant: PropTypes.oneOf(['menu', 'selectedMenu']),
 };
 
-export default withStyles(styles, { name: 'MuiMenu' })(Menu);
+export default Menu;

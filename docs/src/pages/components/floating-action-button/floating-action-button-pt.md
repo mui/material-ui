@@ -11,7 +11,7 @@ materialDesign: https://material.io/components/buttons-floating-action-button
 
 Um [botão de ação flutuante](https://material.io/design/components/buttons-floating-action-button.html) aparece na frente de todo conteudo da tela, tipicamente em uma forma circular com um ícone em seu centro. BAFs podem ser de dois tipos: regular e estendido.
 
-Use um BAF apenas se for a maneira mais adequada para apresentar a ação principal de uma tela. Use um BAF apenas se for a maneira mais adequada para apresentar a ação principal de uma tela.
+Use um BAF apenas se for a maneira mais adequada para apresentar a ação principal de uma tela. Only use a FAB if it is the most suitable way to present a screen's primary action.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -21,9 +21,11 @@ Use um BAF apenas se for a maneira mais adequada para apresentar a ação princi
 
 ## Tamanho
 
-Use a propriedade `size` para aumentar ou diminuir botões de ação flutuante.
+By default, the size is `large`. Use the `size` prop for smaller floating action buttons.
 
 {{"demo": "pages/components/floating-action-button/FloatingActionButtonSize.js"}}
+
+{{"demo": "pages/components/floating-action-button/FloatingActionButtonExtendedSize.js"}}
 
 ## Animação
 

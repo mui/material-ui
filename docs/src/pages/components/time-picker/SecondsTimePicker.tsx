@@ -3,13 +3,14 @@ import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import TimePicker from '@material-ui/lab/TimePicker';
+import Stack from '@material-ui/core/Stack';
 
 export default function SecondsTimePicker() {
   const [value, setValue] = React.useState<Date | null>(new Date());
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <div style={{ width: 300 }}>
+      <Stack spacing={3}>
         <TimePicker
           ampm={false}
           openTo="hours"
@@ -21,9 +22,7 @@ export default function SecondsTimePicker() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => (
-            <TextField {...params} margin="normal" variant="standard" />
-          )}
+          renderInput={(params) => <TextField {...params} />}
         />
         <TimePicker
           ampmInClock
@@ -35,11 +34,9 @@ export default function SecondsTimePicker() {
           onChange={(newValue) => {
             setValue(newValue);
           }}
-          renderInput={(params) => (
-            <TextField {...params} margin="normal" variant="standard" />
-          )}
+          renderInput={(params) => <TextField {...params} />}
         />
-      </div>
+      </Stack>
     </LocalizationProvider>
   );
 }
