@@ -24,10 +24,7 @@ const ImageListRoot = styled('ul', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...styles[styleProps.variant],
-    };
+    return [styles.root, styles[styleProps.variant]];
   },
 })(({ styleProps }) => {
   /* Styles applied to the root element. */

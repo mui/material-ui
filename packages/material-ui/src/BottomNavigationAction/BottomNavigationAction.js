@@ -28,10 +28,7 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...(!styleProps.showLabel && !styleProps.selected && styles.iconOnly),
-    };
+    return [styles.root, !styleProps.showLabel && !styleProps.selected && styles.iconOnly];
   },
 })(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */

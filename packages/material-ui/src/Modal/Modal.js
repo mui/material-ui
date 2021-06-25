@@ -19,10 +19,7 @@ const ModalRoot = styled('div', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...(!styleProps.open && styleProps.exited && styles.hidden),
-    };
+    return [styles.root, !styleProps.open && styleProps.exited && styles.hidden];
   },
 })(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */

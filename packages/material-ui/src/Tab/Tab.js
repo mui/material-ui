@@ -34,13 +34,13 @@ const TabRoot = styled(ButtonBase, {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...(styleProps.label && styleProps.icon && styles.labelIcon),
-      ...styles[`textColor${capitalize(styleProps.textColor)}`],
-      ...(styleProps.fullWidth && styles.fullWidth),
-      ...(styleProps.wrapped && styles.wrapped),
-    };
+    return [
+      styles.root,
+      styleProps.label && styleProps.icon && styles.labelIcon,
+      styles[`textColor${capitalize(styleProps.textColor)}`],
+      styleProps.fullWidth && styles.fullWidth,
+      styleProps.wrapped && styles.wrapped,
+    ];
   },
 })(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */

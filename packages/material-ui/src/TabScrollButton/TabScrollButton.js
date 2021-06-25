@@ -27,10 +27,7 @@ const TabScrollButtonRoot = styled(ButtonBase, {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...(styleProps.orientation && styles[styleProps.orientation]),
-    };
+    return [styles.root, styleProps.orientation && styles[styleProps.orientation]];
   },
 })(({ styleProps }) => ({
   /* Styles applied to the root element. */

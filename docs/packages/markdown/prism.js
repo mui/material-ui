@@ -1,13 +1,13 @@
-import prism from 'prismjs';
-import 'prismjs/components/prism-css';
-import 'prismjs/components/prism-diff';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-json';
-import 'prismjs/components/prism-jsx';
-import 'prismjs/components/prism-markup';
-import 'prismjs/components/prism-tsx';
+const prism = require('prismjs');
+require('prismjs/components/prism-css');
+require('prismjs/components/prism-diff');
+require('prismjs/components/prism-javascript');
+require('prismjs/components/prism-json');
+require('prismjs/components/prism-jsx');
+require('prismjs/components/prism-markup');
+require('prismjs/components/prism-tsx');
 
-export default function highlight(code, language) {
+function highlight(code, language) {
   let prismLanguage;
   switch (language) {
     case 'ts':
@@ -42,3 +42,5 @@ export default function highlight(code, language) {
 
   return prism.highlight(code, prismLanguage);
 }
+
+module.exports = highlight;

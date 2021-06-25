@@ -31,14 +31,14 @@ export const TypographyRoot = styled('span', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...(styleProps.variant && styles[styleProps.variant]),
-      ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
-      ...(styleProps.noWrap && styles.noWrap),
-      ...(styleProps.gutterBottom && styles.gutterBottom),
-      ...(styleProps.paragraph && styles.paragraph),
-    };
+    return [
+      styles.root,
+      styleProps.variant && styles[styleProps.variant],
+      styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`],
+      styleProps.noWrap && styles.noWrap,
+      styleProps.gutterBottom && styles.gutterBottom,
+      styleProps.paragraph && styles.paragraph,
+    ];
   },
 })(({ theme, styleProps }) => ({
   margin: 0,
