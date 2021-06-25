@@ -3,11 +3,16 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { exactProp } from '@material-ui/utils';
+import { styled } from '@material-ui/core/styles';
+import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
+import InfoOutlined from '@material-ui/icons/InfoOutlined';
+
+const Asterisk = styled('abbr')(({ theme }) => ({ color: theme.palette.error.main }));
 
 function PropsTable(props) {
   const { componentProps, propDescriptions } = props;
@@ -31,14 +36,28 @@ function PropsTable(props) {
             propData.description !== '@ignore' && (
               <tr key={propName}>
                 <td align="left">
-                  <span className={clsx('prop-name', propData.required ? 'required' : null)}>
-                    {propName}
-                    {propData.required ? (
-                      <sup>
-                        <abbr title="required">*</abbr>
-                      </sup>
-                    ) : null}
-                  </span>
+                  <Tooltip arrow title={propData.deprecationInfo || ''} placement="bottom-start">
+                    <span className={clsx('prop-name', propData.required ? 'required' : null)}>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          display: 'inline-block',
+                          textDecoration: propData.deprecated ? 'line-through' : 'auto',
+                          fontFamily: 'inherit',
+                        }}
+                      >
+                        {propName}
+                      </Typography>
+                      {propData.required && (
+                        <sup>
+                          <Asterisk title="required">*</Asterisk>
+                        </sup>
+                      )}
+                      {propData.deprecationInfo && (
+                        <InfoOutlined sx={{ fontSize: 18, color: 'secondary.main' }} />
+                      )}
+                    </span>
+                  </Tooltip>
                 </td>
                 <td align="left">
                   <span

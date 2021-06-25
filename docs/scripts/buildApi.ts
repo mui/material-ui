@@ -833,6 +833,8 @@ async function buildDocs(options: {
     default: string | undefined;
     required: boolean | undefined;
     type: { name: string | undefined; description: string | undefined };
+    deprecated: true | undefined;
+    deprecationInfo: string | undefined;
   }>(
     Object.entries(reactApi.props).map(([propName, propDescriptor]) => {
       let prop: DescribeablePropDescriptor | null;
@@ -874,6 +876,8 @@ async function buildDocs(options: {
         /\.isRequired/.test(prop.type.raw) ||
         (chainedPropType !== false && chainedPropType.required);
 
+      const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
+
       return [
         propName,
         {
@@ -885,6 +889,8 @@ async function buildDocs(options: {
           default: defaultValue,
           // undefined values are not serialized => saving some bytes
           required: requiredProp || undefined,
+          deprecated: !!deprecation || undefined,
+          deprecationInfo: (deprecation?.groups?.info || '').trim() || undefined,
         },
       ];
     }),
