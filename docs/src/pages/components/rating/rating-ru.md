@@ -7,17 +7,17 @@ components: Rating
 
 <p class="description">Ratings provide insight regarding others’ opinions and experiences with a product. Users can also rate products they’ve purchased.</p>
 
-## Simple ratings
+## Простой рейтинг
 
 {{"demo": "pages/components/rating/SimpleRating.js"}}
 
-## Customized ratings
+## Настраиваемый рейтинг
 
 Ниже находятся примеры кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/components/).
 
 {{"demo": "pages/components/rating/CustomizedRatings.js"}}
 
-## Hover feedback
+## Обратная связь при событии "hover"
 
 You can display a label on hover to help users pick the correct rating value. The demo uses the `onChangeActive` prop.
 
