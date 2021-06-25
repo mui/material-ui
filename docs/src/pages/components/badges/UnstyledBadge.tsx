@@ -73,7 +73,7 @@ function BadgeContent() {
 export default function UnstyledBadge() {
   return (
     <Box
-      sx={{ '& > :not(style) + :not(style)': { ml: (theme) => theme.spacing(4) } }}
+      sx={{ '& > :not(style) + :not(style)': { ml: 4 } }}
     >
       <StyledBadge badgeContent={5} overlap="circular">
         <BadgeContent />
