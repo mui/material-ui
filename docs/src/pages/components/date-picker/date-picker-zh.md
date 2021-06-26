@@ -43,7 +43,7 @@ The date picker is rendered as a modal dialog on mobile, and a textbox with a po
 
 ## 静态模式
 
-It's possible to render any date picker without the modal/popover and text field. 这样的话就可以帮助进一步定制弹出提示/模态框的容器。
+It's possible to render any date picker without the modal/popover and text field. 这样的话就可以帮助进一步定制弹出提示/模态框的容器。 这样的话就可以帮助进一步定制弹出提示/模态框的容器。
 
 {{"demo": "pages/components/date-picker/StaticDatePickerDemo.js", "bg": true}}
 
@@ -54,7 +54,7 @@ It's possible to render any date picker without the modal/popover and text field
 - The `MobileDatePicker` component works best for touch devices and small screens.
 - The `DesktopDatePicker` component works best for mouse devices and large screens.
 
-By default, the `DatePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。
+By default, the `DatePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。
 
 {{"demo": "pages/components/date-picker/ResponsiveDatePickers.js"}}
 
@@ -84,19 +84,19 @@ Install `date-fns-jalali` and use `@date-io/date-fns-jalali` adapter to support 
 
 ## 横竖方向
 
-For ease of use, the date picker will automatically change the layout between portrait and landscape by subscription to the `window.orientation` change. 你可以使用 `orientation` 属性来强行指定布局。
+For ease of use, the date picker will automatically change the layout between portrait and landscape by subscription to the `window.orientation` change. 你可以使用 `orientation` 属性来强行指定布局。 你可以使用 `orientation` 属性来强行指定布局。
 
 {{"demo": "pages/components/date-picker/StaticDatePickerLandscape.js", "bg": true}}
 
 ## 子组件
 
-Some lower-level sub-components (`CalendarPicker`, `MonthPicker`, and `YearPicker`) are also exported. 这些都是在没有包装器或外部逻辑（屏蔽输入、日期值解析和验证等）的情况下渲染的。
+Some lower-level sub-components (`CalendarPicker`, `MonthPicker`, and `YearPicker`) are also exported. 这些都是在没有包装器或外部逻辑（屏蔽输入、日期值解析和验证等）的情况下渲染的。 这些都是在没有包装器或外部逻辑（屏蔽输入、日期值解析和验证等）的情况下渲染的。
 
 {{"demo": "pages/components/date-picker/SubComponentsPickers.js"}}
 
 ## 自定义输入组件
 
-You can customize the rendering of the input with the `renderInput` prop. 请确保 `ref` 和 `inputProps` 都以正确的方式传入到所定制的输入组件。
+You can customize the rendering of the input with the `renderInput` prop. 请确保 `ref` 和 `inputProps` 都以正确的方式传入到所定制的输入组件。 请确保 `ref` 和 `inputProps` 都以正确的方式传入到所定制的输入组件。
 
 {{"demo": "pages/components/date-picker/CustomInput.js"}}
 
@@ -111,3 +111,9 @@ You can customize the rendering of the input with the `renderInput` prop. 请确
 有些时候可能有在日历中显示额外信息的需求。 下面是一个使用 `onMonthChange`、`loading` 和 `renderDay` 属性来预取并显示服务器端数据的例子。
 
 {{"demo": "pages/components/date-picker/ServerRequestDatePicker.js"}}
+
+## 辅助文本
+
+You can show a helper text with the date format accepted.
+
+{{"demo": "pages/components/date-picker/HelperText.js"}}
