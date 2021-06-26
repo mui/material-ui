@@ -6,15 +6,15 @@ githubLabel: 'component: Popper'
 
 # Popper
 
-<p class="description">Popperを使用すると、一部のコンテンツを別のコンテンツの上に表示できます。 これは、react-popperの代替です。</p>
+<p class="description">Popperを使用すると、一部のコンテンツを別のコンテンツの上に表示できます。 これは、react-popperの代替です。 これは、react-popperの代替です。</p>
 
 `Popper` コンポーネントのいくつかの重要な機能：
 
 - Popperは、サードパーティのライブラリ([Popper.js](https://github.com/popperjs/popper-core))を使います。
-- これは、react-popperの代替API です。 シンプルさを目指しています。
+- これは、react-popperの代替API です。 シンプルさを目指しています。 シンプルさを目指しています。
 - 📦 [gzip形式のファイル(8 kB)](/size-snapshot).
-- レンダリングの問題を回避するため、子はドキュメントの本文に対して [`Portal`](/components/portal/)となります。 `disablePortal`この動作を無効にできます。 `disablePortal`この動作を無効にできます。 `disablePortal`この動作を無効にできます。 `disablePortal`この動作を無効にできます。 `disablePortal`この動作を無効にできます。 `disablePortal`この動作を無効にできます。
-- スクロールは、 [`Popover`](/components/popover/)コンポーネントのようにブロックされません。 ポッパーの配置は、ビューポートの利用可能な領域で更新されます。
+- レンダリングの問題を回避するため、子はドキュメントの本文に対して [`Portal`](/components/portal/)となります。 `disablePortal`この動作を無効にできます。 `disablePortal`この動作を無効にできます。 `disablePortal`この動作を無効にできます。 `disablePortal`この動作を無効にできます。 `disablePortal`この動作を無効にできます。 `disablePortal`この動作を無効にできます。 `disablePortal`この動作を無効にできます。
+- スクロールは、 [`Popover`](/components/popover/)コンポーネントのようにブロックされません。 ポッパーの配置は、ビューポートの利用可能な領域で更新されます。 ポッパーの配置は、ビューポートの利用可能な領域で更新されます。
 - クリックしても `Popper` コンポーネントは非表示になりません。 クリックしても `Popper` コンポーネントは非表示になりません。 この動作が必要な場合は、 [`ClickAwayListener`](/components/click-away-listener/) 使用することができます - [メニュードキュメンテーションセクション](/components/menus/#menulist-composition)例を参照してください。 クリックしても `Popper` コンポーネントは非表示になりません。 この動作が必要な場合は、 [`ClickAwayListener`](/components/click-away-listener/) 使用することができます - [メニュードキュメンテーションセクション](/components/menus/#menulist-composition)例を参照してください。 クリックしても `Popper` コンポーネントは非表示になりません。 この動作が必要な場合は、 [`ClickAwayListener`](/components/click-away-listener/) 使用することができます - [メニュードキュメンテーションセクション](/components/menus/#menulist-composition)例を参照してください。 クリックしても `Popper` コンポーネントは非表示になりません。 この動作が必要な場合は、 [`ClickAwayListener`](/components/click-away-listener/) 使用することができます - [メニュードキュメンテーションセクション](/components/menus/#menulist-composition)例を参照してください。 この動作が必要な場合は、 [`ClickAwayListener`](/components/click-away-listener/) 使用することができます - [メニュードキュメンテーションセクション](/components/menus/#menulist-composition)例を参照してください。
 - `anchorEl` は、新しい `Popper.js` インスタンスを作成するための参照オブジェクトとして渡されます。
 
