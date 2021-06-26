@@ -181,19 +181,17 @@ Not all the plugins are available in Material-UI by default. The following (whic
 Of course, you are free to use additional plugins. Here is an example with the [jss-rtl](https://github.com/alitaheri/jss-rtl) plugin.
 
 ```jsx
-import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/core/styles';
-import rtl from 'jss-rtl'
-
-const jss = create({
-  plugins: [...jssPreset().plugins, rtl()],
+insertionPoint: 'jss-insertion-point',
 });
 
 export default function App() {
-  return (
-    <StylesProvider jss={jss}>
-      ... </StylesProvider>
-  );
+  return <StylesProvider jss={jss}>...</StylesProvider>;
+}
+  insertionPoint: 'jss-insertion-point',
+});
+
+export default function App() {
+  return <StylesProvider jss={jss}>...</StylesProvider>;
 }
 ```
 
@@ -237,12 +235,18 @@ The `StylesProvider` component has an `injectFirst` prop to inject the style tag
 
 <StylesProvider injectFirst>
   {/* Your component tree.
-      */}
-</StylesProvider>
-      import { StylesProvider } from '@material-ui/core/styles';
+      import { create } from 'jss';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import rtl from 'jss-rtl'
 
-<StylesProvider injectFirst>
-  {/* Your component tree. */}
+const jss = create({
+  plugins: [...jssPreset().plugins, rtl()],
+});
+
+export default function App() {
+  return (
+    <StylesProvider jss={jss}>
+      ... */}
 </StylesProvider>
       Now, you can override Material-UI's styles.
 ```
@@ -297,12 +301,18 @@ The simplest approach is to add an HTML comment to the `<head>` that determines 
 ```
 
 ```jsx
-insertionPoint: 'jss-insertion-point',
+import { create } from 'jss';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import rtl from 'jss-rtl'
+
+const jss = create({
+  plugins: [...jssPreset().plugins, rtl()],
 });
 
 export default function App() {
-  return <StylesProvider jss={jss}>...</StylesProvider>;
-}
+  return (
+    <StylesProvider jss={jss}>
+      ...
   insertionPoint: 'jss-insertion-point',
 });
 
@@ -324,12 +334,18 @@ export default function App() {
 ```
 
 ```jsx
-insertionPoint: 'jss-insertion-point',
+import { create } from 'jss';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import rtl from 'jss-rtl'
+
+const jss = create({
+  plugins: [...jssPreset().plugins, rtl()],
 });
 
 export default function App() {
-  return <StylesProvider jss={jss}>...</StylesProvider>;
-}
+  return (
+    <StylesProvider jss={jss}>
+      ...
   insertionPoint: 'jss-insertion-point',
 });
 
