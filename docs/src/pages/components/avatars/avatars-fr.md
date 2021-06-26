@@ -22,7 +22,7 @@ Les avatars contenant des caractères simples peuvent être créés en passant u
 
 {{"demo": "pages/components/avatars/LetterAvatars.js"}}
 
-You can use different background colors for the avatar. The following demo generates the color based on the name of the person.
+Vous pouvez utiliser différentes couleurs d'arrière-plan pour l'avatar. La démo suivante génère la couleur en fonction du nom de la personne.
 
 {{"demo": "pages/components/avatars/BackgroundLetterAvatars.js"}}
 
