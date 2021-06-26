@@ -75,6 +75,18 @@ return (
     </Box>
   </ThemeProvider>
 );
+return (
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <Box
+      sx={{
+        fontFamily: 'Raleway',
+      }}
+    >
+      Raleway
+    </Box>
+  </ThemeProvider>
+);
 ```
 
 Note that if you want to add additional `@font-face` declarations, you need to use the string CSS template syntax for adding style overrides, so that the previosly defined `@font-face` declarations won't be replaced.
@@ -90,6 +102,9 @@ const theme = createTheme({
   typography: {
     // In Chinese and Japanese the characters are usually larger,
     // so a smaller fontsize may be appropriate.
+    fontSize: 12,
+  },
+});
     fontSize: 12,
   },
 });
@@ -155,6 +170,9 @@ const theme = createTheme({
     htmlFontSize: 10,
   },
 });
+    htmlFontSize: 10,
+  },
+});
 ```
 
 ```css
@@ -209,7 +227,7 @@ const theme = createTheme({
 
 除了使用默认的排版变体外，你还可以添加自定义的排版，或者禁用任何你不需要的排版。 Here is what you need to do:
 
-**Step 1. Step 1. Step 1. Update the theme's typography object**
+**Step 1. Step 1. Step 1. Step 1. Update the theme's typography object**
 
 ```js
 const theme = createTheme({
@@ -223,11 +241,11 @@ const theme = createTheme({
 });
 ```
 
-**Step 2. Step 2. Step 2. Update the necessary typings (if you are using TypeScript)**
+**Step 2. Step 2. Step 2. Step 2. Update the necessary typings (if you are using TypeScript)**
 
 > If you aren't using TypeScript you should skip this step.
 
-You need to make sure that the typings for the theme's `typography` variants and the `Typogrpahy`'s `variant` prop reflects the new set of variants.
+You need to make sure that the typings for the theme's `typography` variants and the `Typography`'s `variant` prop reflects the new set of variants.
 
 <!-- Tested with packages/material-ui/test/typescript/augmentation/typographyVariants.spec.ts -->
 
@@ -252,7 +270,7 @@ declare module '@material-ui/core/Typography' {
 }
 ```
 
-**Step 3. Step 3. Step 3. You can now use the new variant**
+**Step 3. Step 3. Step 3. Step 3. You can now use the new variant**
 
 {{"demo": "pages/customization/typography/TypographyCustomVariant.js", "hideToolbar": true}}
 
