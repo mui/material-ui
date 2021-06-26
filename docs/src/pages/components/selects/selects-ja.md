@@ -31,9 +31,9 @@ components: Select, NativeSelect
 
 ## カスタマイズされた選択
 
-コンポーネントのカスタマイズの例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズの例を次に示します。 詳細については、 [overrides documentation page](/customization/components/)を参照してください。
 
-最初のステップは、 `InputBase` コンポーネントのスタイル設定です。 スタイルを設定したら、テキストフィールドとして直接使用するか、select `input` プロパティに提供して、 `select` フィールドを作成できます。
+最初のステップは、 `InputBase` コンポーネントのスタイル設定です。 最初のステップは、 `InputBase` コンポーネントのスタイル設定です。 スタイルを設定したら、テキストフィールドとして直接使用するか、select `input` プロパティに提供して、 `select` フィールドを作成できます。
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
@@ -41,9 +41,9 @@ components: Select, NativeSelect
 
 ## 複数選択
 
-`Select` コンポーネントは、複数の選択を処理できます。 `multiple` プロパティで有効になります。
+`Select` コンポーネントは、複数の選択を処理できます。 `multiple` プロパティで有効になります。 `multiple` プロパティで有効になります。
 
-単一選択の場合と同様に、 `onChange` コールバックで `event.target.value` にアクセスすることにより、新しい値を引き出すことができます。 常に配列です。 常に配列です。 常に配列です。 常に配列です。 常に配列です。 常に配列です。
+単一選択の場合と同様に、 `onChange` コールバックで `event.target.value` にアクセスすることにより、新しい値を引き出すことができます。 常に配列です。 常に配列です。 常に配列です。 常に配列です。 常に配列です。 常に配列です。 常に配列です。
 
 {{"demo": "pages/components/selects/MultipleSelect.js"}}
 
