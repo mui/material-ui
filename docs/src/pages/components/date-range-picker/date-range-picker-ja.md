@@ -10,7 +10,7 @@ materialDesign: https://material.io/components/date-pickers
 
 <p class="description">日付の範囲を選択することができます。</p>
 
-> ⚠️ Pro component <br /><br /> The date range picker is intended for Material-UI X Pro, a commercial set of advanced components built on top of the community edition (MIT license). <br /><br /> この有料コンポーネントには、リッチなData Gridや、カレンダーによる日付範囲入力コンポーネント、ドラッグ&ドロップできるツリービューなどがあります。 お求めやすい価格にて[提供](https://material-ui.com/store/items/material-ui-pro/) しております。
+> <br /><br /> この有料コンポーネントには、リッチなData Gridや、カレンダーによる日付範囲入力コンポーネント、ドラッグ&ドロップできるツリービューなどがあります。 ⚠️ Pro component <br /><br /> The date range picker is intended for Material-UI X Pro, a commercial set of advanced components built on top of the community edition (MIT license). お求めやすい価格にて[提供](https://material-ui.com/store/items/material-ui-pro/) しております。
 
 日付範囲の入力コンポーネントを使うことによって、ユーザーは直感的に日付の範囲を選択できるようになります。
 
