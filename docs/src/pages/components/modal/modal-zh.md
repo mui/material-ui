@@ -38,7 +38,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 
 - 📦 [4.7kB 已压缩的包](https://bundlephobia.com/result?p=@material-ui/unstyled@next)
 
-The modal also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+The modal also comes with an unstyled version. The backdrop also comes with the unstyled package. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
 import ModalUnstyled from '@material-ui/unstyled/ModalUnstyled';
@@ -79,7 +79,7 @@ Modals can be nested, for example a select within a dialog, but stacking of more
 
 {{"demo": "pages/components/modal/KeepMountedModal.js", "defaultCodeOpen": false}}
 
-As with any performance optimization, this is not a silver bullet. Be sure to identify bottlenecks first, and then try out these optimization strategies.
+As with any performance optimization, this is not a silver bullet. As with any performance optimization, this is not a silver bullet. Be sure to identify bottlenecks first, and then try out these optimization strategies.
 
 ## 服务端渲染的模态框
 
@@ -113,4 +113,4 @@ This is done for accessibility purposes. However, it might create issues. 如果
   ```
 
 - 这篇 [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/dialog.html) 里的方法帮助你通过模态窗口里的内容，为最相关的元素设置初始焦点。
-- 请记住，“模态窗口” 覆盖在主窗口或者另一个模态窗口上。 一个模态框下的窗口都是 **（惰性的）inert** 。 也就是说，用户不能与当前处于活跃状态下的模态框之外的内容进行交互。 因为这可能会造成[冲突行为](#focus-trap)。
+- 请记住，“模态窗口” 覆盖在主窗口或者另一个模态窗口上。 请记住，“模态窗口” 覆盖在主窗口或者另一个模态窗口上。 也就是说，用户不能与当前处于活跃状态下的模态框之外的内容进行交互。 因为这可能会造成[冲突行为](#focus-trap)。
