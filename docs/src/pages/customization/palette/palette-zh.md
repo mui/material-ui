@@ -88,6 +88,9 @@ const theme = createTheme({
     contrastThreshold: 3,
     // 使用下面的函数用于将颜色的亮度在其调色板中
     // 移动大约两个指数。
+    contrastThreshold: 3,
+    // 使用下面的函数用于将颜色的亮度在其调色板中
+    // 移动大约两个指数。
     // 例如，从红色 500（Red 500）切换到 红色 300（Red 300）或 红色 700（Red 700）。
     tonalOffset: 0.2,
   },
@@ -184,7 +187,7 @@ declare module '@material-ui/core/styles/createPalette' {
 
 ## 暗色模式
 
-Material-UI comes with two palette modes: light (the default) and dark. 你可以通过设置 `mode: 'dark'` 来启用夜间模式。
+Material-UI comes with two palette modes: light (the default) and dark. 你可以通过设置 `mode: 'dark'` 来启用夜间模式。 你可以通过设置 `mode: 'dark'` 来启用夜间模式。
 
 ```js
 const darkTheme = createTheme({
@@ -194,7 +197,7 @@ const darkTheme = createTheme({
 });
 ```
 
-While it's only a single value change, the `createTheme` helper modifies several palette values. The colors modified by the palette mode are the following:
+While it's only a single value change, the `createTheme` helper modifies several palette values. The colors modified by the palette mode are the following: The colors modified by the palette mode are the following:
 
 {{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideToolbar": true}}
 
@@ -226,6 +229,18 @@ function App() {
       createTheme({
         palette: {
           mode: prefersDarkMode ? 'dark' : 'light',
+        },
+      }),
+    [prefersDarkMode],
+  );
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Routes />
+    </ThemeProvider>
+  );
+} 'dark' : 'light',
         },
       }),
     [prefersDarkMode],
