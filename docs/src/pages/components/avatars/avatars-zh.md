@@ -22,7 +22,7 @@ githubLabel: 'component: Avatar'
 
 {{"demo": "pages/components/avatars/LetterAvatars.js"}}
 
-您可以为头像使用不同的背景颜色。 下面的演示根据人的姓名生成颜色。
+You can use different background colors for the avatar. The following demo generates the color based on the name of the person. 下面的演示根据人的姓名生成颜色。
 
 {{"demo": "pages/components/avatars/BackgroundLetterAvatars.js"}}
 
