@@ -86,4 +86,4 @@ An example of rendering multiple chips from an array of values. チップを削�
 
 ## アクセシビリティ
 
-チップが削除またはクリック可能な場合は、タブの順序でボタンになります。 When the Chip is focused (e.g. when tabbing) releasing (`keyup` event) `Backspace` or `Delete` will call the `onDelete` handler while releasing `Escape` will blur the Chip.
+チップが削除またはクリック可能な場合は、タブの順序でボタンになります。 チップが削除またはクリック可能な場合は、タブの順序でボタンになります。 When the Chip is focused (e.g. when tabbing) releasing (`keyup` event) `Backspace` or `Delete` will call the `onDelete` handler while releasing `Escape` will blur the Chip.
