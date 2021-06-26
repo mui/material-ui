@@ -43,7 +43,7 @@ We avoid documenting native properties supported by the DOM like [`className`](/
 
 ### CSS Classes
 
-All components accept a `classes` prop to customize the styles.
+All components accept a [`classes`](/customization/how-to-customize/#overriding-styles-with-classes) prop to customize the styles.
 The classes design answers two constraints:
 to make the classes structure as simple as possible, while sufficient to implement the Material Design guidelines.
 
@@ -61,6 +61,18 @@ to make the classes structure as simple as possible, while sufficient to impleme
   We already **have to do it** for the pseudo-classes (`:hover`, `:focus`, etc.).
   It allows much more control at the cost of more boilerplate.
   Hopefully, it's also more intuitive.
+
+```js
+const styles = {
+  root: {
+    color: green[600],
+    '&$checked': {
+      color: green[500],
+    },
+  },
+  checked: {},
+};
+```
 
 ### Nested components
 
