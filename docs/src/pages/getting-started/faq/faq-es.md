@@ -255,6 +255,7 @@ function handleRender(req, res) {
 
   // Render the component to a string.
   const html = ReactDOMServer.renderToString(
+  const html = ReactDOMServer.renderToString(
 ```
 
 ### React class name hydration mismatch
@@ -273,11 +274,7 @@ The class names value relies on the concept of [class name generator](/styles/ad
 
   ```diff
   -// Create a new class name generator.
-  -const generateClassName = createGenerateClassName();
-
-function handleRender(req, res) {
-
-+ // Create a new class name generator.
+  -// Create a sheets instance.
   -const generateClassName = createGenerateClassName();
 
 function handleRender(req, res) {
@@ -286,6 +283,7 @@ function handleRender(req, res) {
 
     // Render the component to a string.
     const html = ReactDOMServer.renderToString(
+  const html = ReactDOMServer.renderToString(
   ```
 
 - You need to verify that your client and server are running the **exactly the same version** of Material-UI. It is possible that a mismatch of even minor versions can cause styling problems. To check version numbers, run `npm list @material-ui/core` in the environment where you build your application and also in your deployment environment.
