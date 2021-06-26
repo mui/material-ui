@@ -77,8 +77,8 @@ const handleAlignment = (event, newAlignment) => {
 
 ### ARIA
 
-- ToggleButtonGroup には `role="group"` が付与されています。 `aria-label="label"`, `aria-labelledby="id"` または `<label>` でアクセシビリティのためにラベルを指定する必要があります。
-- ToggleButton は、ボタンの状態によって `aria-pressed="<bool>"` を設定します。 各ボタンに `aria-label` を付けてください。
+- ToggleButtonGroup には `role="group"` が付与されています。 `aria-label="label"`, `aria-labelledby="id"` または `<label>` でアクセシビリティのためにラベルを指定する必要があります。 `aria-label="label"`, `aria-labelledby="id"` または `<label>` でアクセシビリティのためにラベルを指定する必要があります。
+- ToggleButton は、ボタンの状態によって `aria-pressed="<bool>"` を設定します。 各ボタンに `aria-label` を付けてください。 各ボタンに `aria-label` を付けてください。
 
 ### Keyboard
 
