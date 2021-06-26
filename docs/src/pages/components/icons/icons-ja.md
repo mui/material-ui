@@ -15,7 +15,7 @@ Material-UIはアイコンについて、3種類の提供方法をサポート�
 
 ## マテリアルアイコン（Material Icons）
 
-Material Designでは1,100以上の公式アイコンが標準化されており、それぞれ5つのテーマに分かれています。(下記参照) SVGアイコンは、@material-ui/iconsパッケージのReactコンポーネントとしてそれぞれエクスポートされています。 [これらのアイコンの一覧を検索](/components/material-icons/)することが出来ます。
+Material Designでは1,100以上の公式アイコンが標準化されており、それぞれ5つのテーマに分かれています。(下記参照) Material Designでは1,100以上の公式アイコンが標準化されており、それぞれ5つのテーマに分かれています。(下記参照) SVGアイコンは、@material-ui/iconsパッケージのReactコンポーネントとしてそれぞれエクスポートされています。 [これらのアイコンの一覧を検索](/components/material-icons/)することが出来ます。 [これらのアイコンの一覧を検索](/components/material-icons/)することが出来ます。
 
 ### インストール
 
@@ -58,7 +58,7 @@ yarn add @material-ui/core
   import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
   ```
 
-The safest is Option 1 but Option 2 can yield the best developer experience. 2番目の方法を使用する前に [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) に従ってください。 The configuration of a Babel plugin is encouraged.
+The safest is Option 1 but Option 2 can yield the best developer experience. 2番目の方法を使用する前に [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) に従ってください。 The configuration of a Babel plugin is encouraged. The configuration of a Babel plugin is encouraged.
 
 Each icon also has a "theme": Filled (default), Outlined, Rounded, Two tone and Sharp. If you want to import the icon component with a theme other than default, append the theme name to the icon name. 例えば `@material-ui/icons/Delete` アイコンには次のものが含まれます:
 
@@ -68,7 +68,7 @@ Each icon also has a "theme": Filled (default), Outlined, Rounded, Two tone and 
 - `@material-ui/icons/DeleteTwoTone` としてエクスポートされた Twotone テーマ
 - `@material-ui/icons/DeleteSharp` としてエクスポートされた Sharpテーマ
 
-> 備考: Material Designの仕様では「snake_case」命名規則を使って名前を付けています(例えば`delete_forever`,、`add_a_photo`)が、`@material-ui/icons` ではそれぞれのアイコンを「PascalCase」命名規則を用いてエクスポートしています(例えば `DeleteForever`、`AddAPhoto`)。 There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
+> 備考: Material Designの仕様では「snake_case」命名規則を使って名前を付けています(例えば`delete_forever`,、`add_a_photo`)が、`@material-ui/icons` ではそれぞれのアイコンを「PascalCase」命名規則を用いてエクスポートしています(例えば `DeleteForever`、`AddAPhoto`)。 There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`. There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
@@ -160,7 +160,7 @@ import Icon from '@material-ui/core/Icon';
 <Icon>star</Icon>
 ```
 
-デフォルトでは、アイコンは現在のテキストの色を継承します。 必要に応じて、テーマの色のプロパティのいずれかを使用して、アイコンの色を設定することができます。`primary`, `secondary`, `action`, `error`, `disabled` です。
+デフォルトでは、アイコンは現在のテキストの色を継承します。 デフォルトでは、アイコンは現在のテキストの色を継承します。 必要に応じて、テーマの色のプロパティのいずれかを使用して、アイコンの色を設定することができます。`primary`, `secondary`, `action`, `error`, `disabled` です。
 
 ### Font Material icons
 
