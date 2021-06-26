@@ -220,9 +220,7 @@ import { StylesProvider } from '@material-ui/styles';
 
 function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
-}
-
-ReactDOM.render(<App />, document.querySelector('#app'));
+} ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
 ## `ThemeProvider`
@@ -330,7 +328,7 @@ const styles = {
 };
 
 @withStyles(styles)
-class MyComponent extends React.Component {
+class MyComponent extends React. Component {
   render() {
     return <div className={this.props.classes.root} />;
   }
