@@ -6,7 +6,7 @@
 
 若您想将主题传递到 React 组件树，请将添加 `ThemeProvider` 包装到应用程序的顶层。 然后，您可以在样式函数中访问主题对象。
 
-> 此示例为自定义组件创建了一个主题对象（theme object）。 If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createTheme()` method. 请前往 [theming 部分](/customization/theming/) 学习如何构建自己的 Material-UI 主题。
+> 此示例为自定义组件创建了一个主题对象（theme object）。 If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createTheme()` method. 请前往 [theming 部分](/customization/theming/) 学习如何构建自己的 Material-UI 主题。 请前往 [theming 部分](/customization/theming/) 学习如何构建自己的 Material-UI 主题。
 
 ```jsx
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -227,8 +227,7 @@ import { StylesProvider } from '@material-ui/styles';
 
 <StylesProvider injectFirst>
   {/* 你的组件树。
-      样式化组件可以覆盖 Material-UI 的样式。 */}
-</StylesProvider>;
+      样式化组件可以覆盖 Material-UI 的样式。 样式化组件可以覆盖 Material-UI 的样式。
 ```
 
 ### `makeStyles` / `withStyles` / `styled`
@@ -262,6 +261,8 @@ export default function MyComponent() {
   // color: red 🔴 wins.
   return <div className={className} />;
 }
+  return <div className={className} />;
+}
 ```
 
 Hook 调用顺序和类名顺序**不影响**注入属性权重 。
@@ -282,12 +283,7 @@ JSS [提供了一种机制](https://github.com/cssinjs/jss/blob/master/docs/setu
 ```
 
 ```jsx
-import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
-
-const jss = create({
-  ...jssPreset(),
-  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+JSS <a href="https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point">提供了一种机制</a> 来控制这种情况。
   insertionPoint: 'jss-insertion-point',
 });
 
@@ -308,12 +304,7 @@ export default function App() {
 ```
 
 ```jsx
-import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
-
-const jss = create({
-  ...jssPreset(),
-  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+JSS <a href="https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point">提供了一种机制</a> 来控制这种情况。
   insertionPoint: document.getElementById('jss-insertion-point'),
 });
 
@@ -336,6 +327,12 @@ document.head.insertBefore(styleNode, document.head.firstChild);
 const jss = create({
   ...jssPreset(),
   // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  insertionPoint: 'jss-insertion-point',
+});
+
+export default function App() {
+  return <StylesProvider jss={jss}>...</StylesProvider>;
+}
   insertionPoint: 'jss-insertion-point',
 });
 
