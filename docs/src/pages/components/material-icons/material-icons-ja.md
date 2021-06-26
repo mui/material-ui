@@ -11,4 +11,4 @@ components: Icon, SvgIcon
 
 {{"demo": "pages/components/material-icons/SearchIcons.js", "hideToolbar": true, "bg": true}}
 
-ℹ️ 同義語の検索をサポートしています。 "hamburger"や"logout"で検索してみてください。
+ℹ️ 同義語の検索をサポートしています。 ℹ️ 同義語の検索をサポートしています。 "hamburger"や"logout"で検索してみてください。
