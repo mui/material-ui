@@ -39,7 +39,7 @@ const theme = createTheme({
       main: '#19857b',
     },
     error: {
-      main: red.A400,
+      main: red. A400,
     },
   },
 });
@@ -195,9 +195,7 @@ function Main() {
       </ThemeProvider>
     </CacheProvider>
   );
-}
-
-ReactDOM.hydrate(<Main />, document.querySelector('#root'));
+} ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 ```
 
 ## Implementações de referência
