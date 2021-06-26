@@ -94,7 +94,7 @@ Here are some examples of customizing the component. Vous pouvez en apprendre pl
 
 **AVERTISSEMENT** : Chrome, Safari et les versions plus récentes d'Edge, c'est-à-dire que tout navigateur basé sur WebKit expose `<Slider orientation="vertical" />` comme horizontal ([problème de chrome #1158217](https://bugs.chromium.org/p/chromium/issues/detail?id=1158217)). En appliquant la propriété `-webkit-appearance: slider-vertical;` le curseur est exposé comme vertical.
 
-En appliquant la propriétés  `-webkit-appearance: slider-vertical;` la navigation au clavier pour les touches horizontales (<kbd class="key">flèche gauche</kbd>, <kbd class="key">flèche droite</kbd>) est inversée ([problème de chrome #1162640](https://bugs. chromium.org/p/chromium/issues/detail?id=1162640)). Habituellement, haut et droite devrait augmenter, gauche et bas devrait diminuer la valeur. Si vous appliquez `-webkit-appearance` vous pouvez empêcher la navigation du clavier pour les touches fléchées horizontales pour un curseur vraiment vertical. Cela peut être moins déroutant pour les utilisateurs par rapport à un changement de direction.
+En appliquant la propriétés  `-webkit-appearance: slider-vertical;` la navigation au clavier pour les touches horizontales (<kbd class="key">flèche gauche</kbd>, <kbd class="key">flèche droite</kbd>) est inversée (\[problème de chrome #1162640\](https://bugs. chromium.org/p/chromium/issues/detail?id=1162640)). Habituellement, haut et droite devrait augmenter, gauche et bas devrait diminuer la valeur. Si vous appliquez `-webkit-appearance` vous pouvez empêcher la navigation du clavier pour les touches fléchées horizontales pour un curseur vraiment vertical. Cela peut être moins déroutant pour les utilisateurs par rapport à un changement de direction.
 
 {{"demo": "pages/components/slider/VerticalAccessibleSlider.js"}}
 
@@ -128,7 +128,7 @@ Dans la démo suivante, la valeur _x_ représente la valeur _2^x_. Chaque augmen
 
 - 📦 [22 kB gzipped](/size-snapshot) (but only +8 kB when used together with other Material-UI components).
 
-The slider also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+The slider also comes with an unstyled version. Idéal pour effectuer de lourdes personnalisations et minimiser la taille des paquets.
 
 ```js
 import SliderUnstyled from '@material-ui/unstyled/SliderUnstyled';
