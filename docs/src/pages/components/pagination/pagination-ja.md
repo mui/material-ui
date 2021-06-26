@@ -45,7 +45,7 @@ You can specify how many digits to display either side of current page with the 
 
 ## `usePagination`
 
-高度なカスタマイズのユースケースでは、ヘッドレスな`usePagination()` フックを公開しています。 It accepts almost the same options as the Pagination component minus all the props related to the rendering of JSX. The Pagination component uses this hook internally.
+高度なカスタマイズのユースケースでは、ヘッドレスな`usePagination()` フックを公開しています。 高度なカスタマイズのユースケースでは、ヘッドレスな`usePagination()` フックを公開しています。 It accepts almost the same options as the Pagination component minus all the props related to the rendering of JSX. The Pagination component uses this hook internally.
 
 ```jsx
 import { usePagination } from '@material-ui/lab/Pagination';
@@ -55,7 +55,7 @@ import { usePagination } from '@material-ui/lab/Pagination';
 
 ## Table pagination
 
-`Pagination` コンポーネントは、無限ローディングが使用されない場合に任意のアイテムのリストをページネーションするように設計されています。 It's preferred in contexts where SEO is important, for instance, a blog.
+`Pagination` コンポーネントは、無限ローディングが使用されない場合に任意のアイテムのリストをページネーションするように設計されています。 It's preferred in contexts where SEO is important, for instance, a blog. It's preferred in contexts where SEO is important, for instance, a blog.
 
 For the pagination of a large set of tabular data, you should use the `TablePagination` component.
 
