@@ -5,7 +5,7 @@ githubLabel: 'hook: useMediaQuery'
 
 # useMediaQuery
 
-<p class="description">これは、ReactのCSSメディアクエリフックです。 CSSメディアクエリへの一致をリッスンします。 クエリが一致するかどうかに基づいてコンポーネントをレンダリングできます。 CSSメディアクエリへの一致をリッスンします。 クエリが一致するかどうかに基づいてコンポーネントをレンダリングできます。 CSSメディアクエリへの一致をリッスンします。 クエリが一致するかどうかに基づいてコンポーネントをレンダリングできます。 CSSメディアクエリへの一致をリッスンします。 クエリが一致するかどうかに基づいてコンポーネントをレンダリングできます。 CSSメディアクエリへの一致をリッスンします。 クエリが一致するかどうかに基づいてコンポーネントをレンダリングできます。</p>
+<p class="description">これは、ReactのCSSメディアクエリフックです。 CSSメディアクエリへの一致をリッスンします。 クエリが一致するかどうかに基づいてコンポーネントをレンダリングできます。 CSSメディアクエリへの一致をリッスンします。 クエリが一致するかどうかに基づいてコンポーネントをレンダリングできます。 CSSメディアクエリへの一致をリッスンします。 クエリが一致するかどうかに基づいてコンポーネントをレンダリングできます。 CSSメディアクエリへの一致をリッスンします。 クエリが一致するかどうかに基づいてコンポーネントをレンダリングできます。 これは、ReactのCSSメディアクエリフックです。 CSSメディアクエリへの一致をリッスンします。 クエリが一致するかどうかに基づいてコンポーネントをレンダリングできます。 CSSメディアクエリへの一致をリッスンします。 クエリが一致するかどうかに基づいてコンポーネントをレンダリングできます。 CSSメディアクエリへの一致をリッスンします。 クエリが一致するかどうかに基づいてコンポーネントをレンダリングできます。 CSSメディアクエリへの一致をリッスンします。 クエリが一致するかどうかに基づいてコンポーネントをレンダリングできます。 CSSメディアクエリへの一致をリッスンします。 クエリが一致するかどうかに基づいてコンポーネントをレンダリングできます。 クエリが一致するかどうかに基づいてコンポーネントをレンダリングできます。</p>
 
 主な機能の一部：
 
@@ -18,7 +18,7 @@ githubLabel: 'hook: useMediaQuery'
 
 ## 単純なメディアクエリ
 
-フックの最初の引数にメディアクエリを提供する必要があります。 The media query string can be any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/customization/palette/#user-preference).
+フックの最初の引数にメディアクエリを提供する必要があります。 フックの最初の引数にメディアクエリを提供する必要があります。 The media query string can be any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/customization/palette/#user-preference).
 
 {{"demo": "pages/components/use-media-query/SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
@@ -66,7 +66,7 @@ JavaScriptオブジェクトからメディアクエリ文字列を生成する�
 
 You need an implementation of [matchMedia](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia) in your test environment.
 
-たとえば、 [jsdomはまだサポートしていません](https://github.com/jsdom/jsdom/blob/master/test/web-platform-tests/to-upstream/html/browsers/the-window-object/window-properties-dont-upstream.html)。 ポリフィルしたほうがいいですよ。 Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate it is recommended. ポリフィルしたほうがいいですよ。 Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate matchMedia is recommended.
+たとえば、 [jsdomはまだサポートしていません](https://github.com/jsdom/jsdom/blob/master/test/web-platform-tests/to-upstream/html/browsers/the-window-object/window-properties-dont-upstream.html)。 ポリフィルしたほうがいいですよ。 Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate it is recommended. ポリフィルしたほうがいいですよ。 ポリフィルしたほうがいいですよ。 Using [css-mediaquery](https://github.com/ericf/css-mediaquery) to emulate matchMedia is recommended.
 
 ```js
 import mediaQuery from 'css-mediaquery';
@@ -159,7 +159,7 @@ Make sure you provide the same custom match media implementation to the client-s
 
 ## `withWidth（）`からの移行
 
-`withWidth()`上位コンポーネントは、ページの画面幅を挿入します。 `useWidth` フックで同じ動作を再現できます： `withWidth()`上位コンポーネントは、ページの画面幅を挿入します。 `useWidth` フックで同じ動作を再現できます： `withWidth()`上位コンポーネントは、ページの画面幅を挿入します。 `useWidth` フックで同じ動作を再現できます： `withWidth()`上位コンポーネントは、ページの画面幅を挿入します。 `useWidth` フックで同じ動作を再現できます： `withWidth()`上位コンポーネントは、ページの画面幅を挿入します。 `useWidth` フックで同じ動作を再現できます： You can reproduce the same behavior with a `useWidth` hook:
+`withWidth()`上位コンポーネントは、ページの画面幅を挿入します。 `useWidth` フックで同じ動作を再現できます： `withWidth()`上位コンポーネントは、ページの画面幅を挿入します。 `useWidth` フックで同じ動作を再現できます： `withWidth()`上位コンポーネントは、ページの画面幅を挿入します。 `useWidth` フックで同じ動作を再現できます： `withWidth()`上位コンポーネントは、ページの画面幅を挿入します。 `useWidth` フックで同じ動作を再現できます： `withWidth()`上位コンポーネントは、ページの画面幅を挿入します。 `useWidth` フックで同じ動作を再現できます： You can reproduce the same behavior with a `useWidth` hook: You can reproduce the same behavior with a `useWidth` hook:
 
 {{"demo": "pages/components/use-media-query/UseWidth.js"}}
 
