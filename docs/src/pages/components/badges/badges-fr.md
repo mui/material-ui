@@ -16,6 +16,12 @@ Exemples de badges contenant du texte, utilisant les couleurs primaires et secon
 
 {{"demo": "pages/components/badges/SimpleBadge.js"}}
 
+## Couleur
+
+You can use the `overlap` property to place the badge relative to the corner of the wrapped element.
+
+{{"demo": "pages/components/badges/ColorBadge.js"}}
+
 ## Badges personnalisés
 
 Voici un exemple de personnalisation du composant. Vous pouvez en apprendre plus à ce sujet dans la [page de documentation](/customization/how-to-customize/).
@@ -46,7 +52,7 @@ La propriété `dot` change un badge en petit point. Cela peut être utilisé co
 
 ## Chevauchement des badges
 
-You can use the `overlap` property to place the badge relative to the corner of the wrapped element.
+Vous pouvez utiliser le prop `anchorOrigin` pour déplacer le badge dans n'importe quel coin de l'élément enveloppé.
 
 {{"demo": "pages/components/badges/BadgeOverlap.js"}}
 
@@ -58,7 +64,7 @@ Vous pouvez utiliser le prop `anchorOrigin` pour déplacer le badge dans n'impor
 
 ## Unstyled
 
-The badge also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+Le badge est également livré avec une version non stylée. Idéal pour effectuer de lourdes personnalisations et minimiser la taille des paquets.
 
 ```js
 import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
@@ -68,6 +74,6 @@ import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
 
 ## Accessibilité
 
-You can't rely on the content of the badge to be announced correctly. You should provide a full description, for instance, with `aria-label`:
+Vous ne pouvez pas vous fier au contenu du badge pour être annoncé correctement. Vous devriez fournir une description complète, par exemple, avec `aria-label`:
 
 {{"demo": "pages/components/badges/AccessibleBadges.js"}}
