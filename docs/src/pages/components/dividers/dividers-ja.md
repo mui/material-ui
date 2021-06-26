@@ -21,7 +21,7 @@ Dividerはデフォルトで `<hr>` としてレンダリングされること�
 
 ## HTML5仕様
 
-リストでは、HTML5の仕様に合うように、 `Divider` が `<li>` としてレンダリングされていることを確認すべきです。 次の例は、これを実現する2つの方法を示しています。
+リストでは、HTML5の仕様に合うように、 `Divider` が `<li>` としてレンダリングされていることを確認すべきです。 次の例は、これを実現する2つの方法を示しています。 次の例は、これを実現する2つの方法を示しています。
 
 ## Inset Dividers
 
@@ -47,7 +47,7 @@ Dividerはデフォルトで `<hr>` としてレンダリングされること�
 
 {{"demo": "pages/components/dividers/VerticalDividers.js", "bg": true}}
 
-> flex コンテナに対応するために `flexItem` プロパティを使用することに注意してください。
+> `orientation` プロパティを使用してDividerを垂直に表示することもできます。 flex コンテナに対応するために `flexItem` プロパティを使用することに注意してください。
 
 ### Vertical with variant middle
 
