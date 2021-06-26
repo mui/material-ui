@@ -249,6 +249,7 @@ The styling solution relies on a cache, the *sheets manager*, to only inject the
   // Render the component to a string.
 const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
+  const html = ReactDOMServer.renderToString(
 ```
 
 ### React class name hydration mismatch
@@ -275,6 +276,7 @@ function handleRender(req, res) {
   //…
 
   // Render the component to a string.
+  const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
 ```
 
