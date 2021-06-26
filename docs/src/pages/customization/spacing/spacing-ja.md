@@ -46,7 +46,7 @@ theme.spacing(2); // = 8
 
 ## Multiple arity
 
-`theme.spacing()` ヘルパーは最大4つの引数を受け入れます。 引数を使用すると、ボイラープレートを減らすことができます。
+`theme.spacing()` ヘルパーは最大4つの引数を受け入れます。 引数を使用すると、ボイラープレートを減らすことができます。 引数を使用すると、ボイラープレートを減らすことができます。
 
 ```diff
 -padding: `${theme.spacing(1)}px ${theme.spacing(2)}px`, // '8px 16px'
