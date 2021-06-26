@@ -26,7 +26,7 @@
 
 `className`プロパティでは不十分で、より深い要素にアクセスする必要がある場合は、`classes`オブジェクトプロパティを利用して、特定のコンポーネントに対してMaterial-UIによって注入されるすべてのCSSをカスタマイズできます。
 
-それぞれのクラスのリスト コンポーネントについては、コンポーネントAPIページの**CSS section**および**rule name column**を参照してください。 例えば、[Button CSS API](/api/button/#css)で見ることができます。 文 または、[browser dev tools](#using-the-dev-tools)を使用することもできます。 例えば、[Button CSS API](/api/button/#css)で見ることができます。 文 または、[browser dev tools](#using-the-dev-tools)を使用することもできます。 例えば、[Button CSS API](/api/button/#css)で見ることができます。 または、[ブラウザの開発ツール](#using-the-dev-tools)を使用することもできます。 例えば、[Button CSS API](/api/button/#css)で見ることができます。 または、[ブラウザの開発ツール](#using-the-dev-tools)を使用することもできます。 例えば、[Button CSS API](/api/button/#css)で見ることができます。 または、[ブラウザの開発ツール](#using-the-dev-tools)を使用することもできます。 例えば、[Button CSS API](/api/button/#css)で見ることができます。 または、[ブラウザの開発ツール](#using-the-dev-tools)を使用することもできます。
+それぞれのクラスのリスト コンポーネントについては、コンポーネントAPIページの**CSS section**および**rule name column**を参照してください。 例えば、[Button CSS API](/api/button/#css)で見ることができます。 文 または、[browser dev tools](#using-the-dev-tools)を使用することもできます。 例えば、[Button CSS API](/api/button/#css)で見ることができます。 文 または、[browser dev tools](#using-the-dev-tools)を使用することもできます。 例えば、[Button CSS API](/api/button/#css)で見ることができます。 または、[ブラウザの開発ツール](#using-the-dev-tools)を使用することもできます。 例えば、[Button CSS API](/api/button/#css)で見ることができます。 または、[ブラウザの開発ツール](#using-the-dev-tools)を使用することもできます。 例えば、[Button CSS API](/api/button/#css)で見ることができます。 または、[ブラウザの開発ツール](#using-the-dev-tools)を使用することもできます。 例えば、[Button CSS API](/api/button/#css)で見ることができます。 または、[ブラウザの開発ツール](#using-the-dev-tools)を使用することもできます。 例えば、[Button CSS API](/api/button/#css)で見ることができます。 または、[ブラウザの開発ツール](#using-the-dev-tools)を使用することもできます。
 
 この例では、`withStyles()`</code></code>も使用していますが、ここでは、`ClassesNesting(上記参照) は<code>Button`の`classes propを使用して、
 オーバーライドするクラスの<strong>名</strong>を適用するCSSクラス名(スタイルルール)</strong>にマップするオブジェクトを提供します(values)。
@@ -222,7 +222,7 @@ const styles = {
 
 コンポーネントのバリエーションを作成し、製品ページのカラフルなボタンなど、さまざまなコンテキストで使用する必要があるかもしれませんが、コードは[*DRYにしておいた方がよいでしょう*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)。
 
-[テーマ設定変数を調整できます](/customization/theming/#theme-configuration-variables) 。
+`theme`の`overrides`キーを利用すると、Material-UIによってDOMに注入されるすべてのスタイルを潜在的に変更できます。 詳細については、ドキュメントの[テーマセクションをご覧ください](/customization/globals/#css)。
 
 {{"demo": "pages/customization/components/Component.js", "hideEditButton": true}}
 
