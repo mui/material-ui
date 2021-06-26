@@ -7,7 +7,7 @@ components: Slider
 
 <p class="description">スライダーを使用すると、ユーザーは値の範囲から選択できます。</p>
 
-[Sliders](https://material.io/design/components/sliders.html) は、バーに沿って値の範囲を反映し、ユーザーはそこから単一の値を選択できます。 音量、明るさ、画像フィルタの適用などの設定を調整するのに最適です。
+[Sliders](https://material.io/design/components/sliders.html) は、バーに沿って値の範囲を反映し、ユーザーはそこから単一の値を選択できます。 音量、明るさ、画像フィルタの適用などの設定を調整するのに最適です。 音量、明るさ、画像フィルタの適用などの設定を調整するのに最適です。
 
 - 📦 [22 kB gzipped](/size-snapshot) (but only +8 kB when used together with other Material-UI components).
 
@@ -89,7 +89,7 @@ Trackは、ユーザーが選択可能な範囲を表示します。
 
 ## Non-linear scale
 
-`scale` プロパティを使用して、異なるスケールの `value` を表すことができます。 例えば、次のデモは、値 *x* は *10^x* のべき乗を表します。
+`scale` プロパティを使用して、異なるスケールの `value` を表すことができます。 `scale` プロパティを使用して、異なるスケールの `value` を表すことができます。 例えば、次のデモは、値 *x* は *10^x* のべき乗を表します。
 
 {{"demo": "pages/components/slider/NonLinearSlider.js"}}
 
