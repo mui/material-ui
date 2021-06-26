@@ -264,6 +264,7 @@ function handleRender(req, res) {
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
+  const html = ReactDOMServer.renderToString(
 
   - // Eine Sheet Instanz erstellen.
 ```
@@ -297,6 +298,7 @@ function handleRender(req, res) {
 
     // Rendern des Komponenten als String.
     const html = ReactDOMServer.renderToString(
+  const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
