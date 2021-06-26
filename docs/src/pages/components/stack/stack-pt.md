@@ -16,7 +16,7 @@ githubLabel: 'component: Stack'
 
 {{"demo": "pages/components/stack/BasicStack.js", "bg": true}}
 
-Para controlar o espaço entre os filhos, use a prop ` spacing ` The spacing value can be any number, including decimals and any string. As props são convertidas em css usando o auxiliar  [`theme.spacing()`](/customization/spacing/)
+Para controlar o espaço entre os filhos, use a prop `spacing` O valor do espaçamento pode ser qualquer numero positivo, incluindo decimais e até strings (cadeia de caracteres) As props são convertidas em css usando o auxiliar  [`theme.spacing()`](/customization/spacing/) The spacing value can be any number, including decimals and any string. As props são convertidas em css usando o auxiliar  [`theme.spacing()`](/customization/spacing/)
 
 ## Direção
 
