@@ -16,6 +16,12 @@ Exemplos de emblemas contendo texto, usando cores primárias e secundárias. O e
 
 {{"demo": "pages/components/badges/SimpleBadge.js"}}
 
+## Cor
+
+Você pode usar a propriedade `overlap` para colocar o emblema em relação ao canto do elemento envolvido.
+
+{{"demo": "pages/components/badges/ColorBadge.js"}}
+
 ## Emblemas customizados
 
 Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
@@ -46,7 +52,7 @@ A propriedade `dot` altera um emblema para um pequeno ponto. Isto pode ser usado
 
 ## Alinhamento do emblema
 
-Você pode usar a propriedade `overlap` para colocar o emblema em relação ao canto do elemento envolvido.
+Você pode usar a propriedade `anchorOrigin` para mover o emblema para qualquer canto do elemento envolvido.
 
 {{"demo": "pages/components/badges/BadgeOverlap.js"}}
 
