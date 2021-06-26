@@ -7,10 +7,12 @@ import { makeStyles } from '@material-ui/styles';
 import { alpha, useTheme } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import SearchIcon from '@material-ui/icons/Search';
+import CloseIcon from '@material-ui/icons/Close';
 import { handleEvent } from 'docs/src/modules/components/MarkdownLinks';
 import docsearch from 'docsearch.js';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import { IconButton } from '../../../../packages/material-ui/src';
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -18,7 +20,8 @@ const useStyles = makeStyles(
       '.algolia-autocomplete': {
         '& .ds-dropdown-menu': {
           boxShadow: theme.shadows[1],
-          borderRadius: theme.shape.borderRadius,
+          top: '64px !important',
+          marginTop: '0 !important',
           '&::before': {
             display: 'none',
           },
@@ -27,6 +30,18 @@ const useStyles = makeStyles(
             maxHeight: 'calc(100vh - 100px)',
             borderRadius: theme.shape.borderRadius,
             backgroundColor: theme.palette.background.paper,
+          },
+          [theme.breakpoints.down('sm')]: {
+            top: '56px !important',
+          },
+          [theme.breakpoints.down('md')]: {
+            maxWidth: 'unset',
+            position: 'fixed !important',
+            width: '100%',
+            minWidth: '0 !important',
+            '& [class^=ds-dataset-]': {
+              borderRadius: 0,
+            },
           },
         },
         '& .algolia-docsearch-suggestion--category-header-lvl0': {
@@ -74,37 +89,40 @@ const useStyles = makeStyles(
       },
     },
     root: {
+      display: 'flex',
       fontFamily: theme.typography.fontFamily,
       position: 'relative',
-      marginRight: theme.spacing(2),
       marginLeft: theme.spacing(1),
       borderRadius: theme.shape.borderRadius,
-      backgroundColor: alpha(theme.palette.common.white, 0.15),
-      '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
-      },
       '& $inputInput': {
         transition: theme.transitions.create('width'),
-        width: 140,
-        '&:focus': {
-          width: 170,
+      },
+      '&.Mui-expanded': {
+        backgroundColor: alpha(theme.palette.common.white, 0.15),
+        marginRight: theme.spacing(2),
+        '&:hover': {
+          backgroundColor: alpha(theme.palette.common.white, 0.25),
+        },
+        '& $inputInput': {
+          width: 140,
+          [theme.breakpoints.down('sm')]: {
+            width: 0,
+          },
+          '&:focus': {
+            width: 170,
+          },
         },
       },
     },
     search: {
-      width: theme.spacing(9),
-      height: '100%',
-      position: 'absolute',
-      pointerEvents: 'none',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
+      margin: theme.spacing(-0.5),
+      marginLeft: theme.spacing(0.5),
     },
     inputRoot: {
       color: 'inherit',
     },
     inputInput: {
-      padding: theme.spacing(1, 1, 1, 9),
+      padding: theme.spacing(1, 1, 1, 1),
     },
     shortcut: {
       fontSize: theme.typography.pxToRem(13),
@@ -144,6 +162,7 @@ export default function AppSearch() {
   const theme = useTheme();
   const userLanguage = useUserLanguage();
   const t = useTranslate();
+  const [expanded, setExpanded] = React.useState(false);
 
   useLazyCSS('https://cdn.jsdelivr.net/docsearch.js/2/docsearch.min.css', '#app-search');
 
@@ -179,98 +198,116 @@ export default function AppSearch() {
   const desktop = useMediaQuery(theme.breakpoints.up('sm'));
 
   React.useEffect(() => {
-    if (desktop) {
-      // In non-SSR languages, fall back to English.
-      const facetFilterLanguage =
-        LANGUAGES_SSR.indexOf(userLanguage) !== -1 ? `language:${userLanguage}` : `language:en`;
+    if (desktop) setExpanded(true);
+    else if (!focused) setExpanded(false);
+  }, [focused, desktop]);
 
-      // This assumes that by the time this effect runs the Input component is committed
-      // this holds true as long as the effect and the component are in the same
-      // suspense boundary. If you move effect and component apart be sure to check
-      // that this assumption still holds
-      const search = docsearch({
-        apiKey: '1d8534f83b9b0cfea8f16498d19fbcab',
-        indexName: 'material-ui',
-        inputSelector: '#docsearch-input',
-        algoliaOptions: {
-          facetFilters: ['version:next', facetFilterLanguage],
-        },
-        autocompleteOptions: {
-          openOnFocus: true,
-        },
-        handleSelected: (input, event, suggestion) => {
-          event.button = 0;
-          const parseUrl = url.parse(suggestion.url);
-          handleEvent(event, parseUrl.pathname + parseUrl.hash);
-          input.close();
-        },
-        // debug: true, // Set debug to true if you want to inspect the dropdown.
-      });
+  React.useEffect(() => {
+    // In non-SSR languages, fall back to English.
+    const facetFilterLanguage =
+      LANGUAGES_SSR.indexOf(userLanguage) !== -1 ? `language:${userLanguage}` : `language:en`;
 
-      search.autocomplete.on('autocomplete:cursorchanged', (event) => {
-        const combobox = event.target;
-        const selectedOptionNode = document.getElementById(
-          combobox.getAttribute('aria-activedescendant'),
-        );
-        const listboxNode = document.querySelector('.ds-suggestions').parentElement;
+    // This assumes that by the time this effect runs the Input component is committed
+    // this holds true as long as the effect and the component are in the same
+    // suspense boundary. If you move effect and component apart be sure to check
+    // that this assumption still holds
+    const search = docsearch({
+      apiKey: '1d8534f83b9b0cfea8f16498d19fbcab',
+      indexName: 'material-ui',
+      inputSelector: '#docsearch-input',
+      algoliaOptions: {
+        facetFilters: ['version:next', facetFilterLanguage],
+      },
+      autocompleteOptions: {
+        openOnFocus: true,
+      },
+      handleSelected: (input, event, suggestion) => {
+        event.button = 0;
+        const parseUrl = url.parse(suggestion.url);
+        handleEvent(event, parseUrl.pathname + parseUrl.hash);
+        input.close();
+      },
+      // debug: true, // Set debug to true if you want to inspect the dropdown.
+    });
 
-        if (selectedOptionNode === null || listboxNode === null) {
-          if (process.env.NODE_ENV !== 'production') {
-            console.warn('Cant scroll to selected option.');
-          }
-          return;
+    search.autocomplete.on('autocomplete:cursorchanged', (event) => {
+      const combobox = event.target;
+      const selectedOptionNode = document.getElementById(
+        combobox.getAttribute('aria-activedescendant'),
+      );
+      const listboxNode = document.querySelector('.ds-suggestions').parentElement;
+
+      if (selectedOptionNode === null || listboxNode === null) {
+        if (process.env.NODE_ENV !== 'production') {
+          console.warn('Cant scroll to selected option.');
         }
+        return;
+      }
 
-        // Scroll active descendant into view.
-        // Logic copied from https://www.w3.org/TR/wai-aria-practices/examples/listbox/js/listbox.js
-        //
-        // Consider this API instead once it has a better browser support:
-        // .scrollIntoView({ scrollMode: 'if-needed', block: 'nearest' });
-        if (listboxNode.scrollHeight > listboxNode.clientHeight) {
-          const element = selectedOptionNode;
+      // Scroll active descendant into view.
+      // Logic copied from https://www.w3.org/TR/wai-aria-practices/examples/listbox/js/listbox.js
+      //
+      // Consider this API instead once it has a better browser support:
+      // .scrollIntoView({ scrollMode: 'if-needed', block: 'nearest' });
+      if (listboxNode.scrollHeight > listboxNode.clientHeight) {
+        const element = selectedOptionNode;
 
-          const scrollBottom = listboxNode.clientHeight + listboxNode.scrollTop;
-          const elementBottom = element.offsetTop + element.offsetHeight;
-          if (elementBottom > scrollBottom) {
-            listboxNode.scrollTop = elementBottom - listboxNode.clientHeight;
-          } else if (element.offsetTop < listboxNode.scrollTop) {
-            listboxNode.scrollTop = element.offsetTop;
-          }
+        const scrollBottom = listboxNode.clientHeight + listboxNode.scrollTop;
+        const elementBottom = element.offsetTop + element.offsetHeight;
+        if (elementBottom > scrollBottom) {
+          listboxNode.scrollTop = elementBottom - listboxNode.clientHeight;
+        } else if (element.offsetTop < listboxNode.scrollTop) {
+          listboxNode.scrollTop = element.offsetTop;
         }
-      });
-    }
-  }, [desktop, userLanguage]);
+      }
+    });
+  }, [userLanguage]);
+
+  React.useEffect(() => {
+    if (expanded) inputRef.current.focus();
+  }, [expanded]);
 
   const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
 
+  const onSearchClick = () => {
+    if (desktop) inputRef.current.focus();
+    else setExpanded(!expanded || desktop);
+  };
+
   return (
-    <div className={classes.root} style={{ display: desktop ? 'flex' : 'none' }}>
-      <div className={classes.search}>
-        <SearchIcon />
-      </div>
-      <Input
-        disableUnderline
-        placeholder={`${t('algoliaSearch')}…`}
-        inputProps={{
-          'aria-label': t('algoliaSearch'),
-        }}
-        type="search"
-        id="docsearch-input"
-        inputRef={inputRef}
-        onFocus={() => {
-          setFocused(true);
-        }}
-        onBlur={() => {
-          setFocused(false);
-        }}
-        classes={{
-          root: classes.inputRoot,
-          input: classes.inputInput,
-        }}
-      />
-      <div className={clsx(classes.shortcut, { 'Mui-focused': focused })}>
-        {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-        {macOS ? '⌘' : 'Ctrl+'}K
+    <div className={clsx(classes.root, { 'Mui-expanded': expanded })}>
+      <IconButton className={classes.search} color="inherit" onClick={onSearchClick} size="large">
+        {expanded && !desktop ? <CloseIcon /> : <SearchIcon />}
+      </IconButton>
+      <div style={{ display: expanded ? 'block' : 'none' }}>
+        <Input
+          disableUnderline
+          placeholder={`${t('algoliaSearch')}…`}
+          inputProps={{
+            'aria-label': t('algoliaSearch'),
+          }}
+          type="search"
+          id="docsearch-input"
+          inputRef={inputRef}
+          onFocus={() => {
+            setFocused(true);
+          }}
+          onBlur={() => {
+            setFocused(false);
+          }}
+          classes={{
+            root: classes.inputRoot,
+            input: classes.inputInput,
+          }}
+        />
+        {desktop ? (
+          <div className={clsx(classes.shortcut, { 'Mui-focused': focused })}>
+            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+            {macOS ? '⌘' : 'Ctrl+'}K
+          </div>
+        ) : (
+          <React.Fragment />
+        )}
       </div>
     </div>
   );
