@@ -26,11 +26,23 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 ## 选择菜单
 
-If used for item selection, when opened, simple menus places the initial focus on the selected menu item. 通过 `selected` 属性（在[ListItem](/api/list-item/)中），您能够设置当前被选中的选项。 To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
+In desktop viewport, padding is increased to give more space to the menu.
+
+{{"demo": "pages/components/menus/IconMenu.js", "bg": true}}
+
+## 菜单定位
+
+For the menu that has long list and long text, you can use the `dense` prop to reduce the padding (this property only affects desktop viewport).
+
+{{"demo": "pages/components/menus/DenseMenu.js", "bg": true}}
+
+## MenuList 组合
+
+If used for item selection, when opened, simple menus places the initial focus on the selected menu item. If used for item selection, when opened, simple menus places the initial focus on the selected menu item. 通过 `selected` 属性（在[ListItem](/api/list-item/)中），您能够设置当前被选中的选项。 To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
 
-## 菜单定位
+## 自定义菜单
 
 因为 `Menu` 组件是基于 `Popover` 组件来进行定位的，所以你也可以使用与之相同的 [定位属性](/components/popover/#anchor-playground) 来对它的位置进行改变。 例如，你可以在描点的下方显示菜单：
 
@@ -44,7 +56,13 @@ If used for item selection, when opened, simple menus places the initial focus o
 
 {{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
-## 自定义菜单
+## 设计局限
+
+如果最大高度的菜单仍无法显示所有菜单项，则菜单可以在内部滚动。
+
+{{"demo": "pages/components/menus/AccountMenu.js"}}
+
+## 更改过渡动画
 
 以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
@@ -54,7 +72,7 @@ If used for item selection, when opened, simple menus places the initial focus o
 
 🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/menu)。
 
-## 最大高度的菜单
+## 快捷菜单 Context menu
 
 如果最大高度的菜单仍无法显示所有菜单项，则菜单可以在内部滚动。
 
