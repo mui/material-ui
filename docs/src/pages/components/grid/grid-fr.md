@@ -13,7 +13,7 @@ Le [Grid](https://material.io/design/layout/responsive-layout-grid.html) créé 
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> ⚠️ Le composant `Grille` ne doit pas être confondu avec une grille de données ; il est plus proche d'une grille de mise en page. For a data grid head to [the `DataGrid` component](/components/data-grid/).
+> ⚠️ Le composant `Grid` ne doit pas être confondu avec une grille de données ; il est plus proche d'une grille de mise en page. Pour une grille de données dirigez-vous vers [le composant `DataGrid`](/components/data-grid/).
 
 ## Comment ça marche
 
@@ -77,7 +77,7 @@ Responsive values is supported by:
 >       <Grid container spacing={5}>
 >         //... </Grid>
 >     </div>
->   </body> </Grid>
+>   </body> </Grid> </Grid>
 > ```
 
 ### Marge négative
@@ -143,7 +143,7 @@ La configuration initiale sur les éléments flex est `min-width: auto`. Cela pr
   <Typography noWrap>
 ```
 
-In order for the item to stay within the container you need to set `min-width: 0`. In practice, you can set the `zeroMinWidth` prop:
+Pour que l'élément reste dans le conteneur, vous devez définir `min-width: 0`. In order for the item to stay within the container you need to set `min-width: 0`.
 
 ```jsx
 <Grid item xs zeroMinWidth>
