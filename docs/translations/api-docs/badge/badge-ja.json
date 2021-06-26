@@ -93,6 +93,21 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the badge `span` element",
       "conditions": "<code>color=\"error\"</code>"
+    },
+    "colorInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>color=\"info\"</code>"
+    },
+    "colorSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "colorWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>color=\"warning\"</code>"
     }
   }
 }
