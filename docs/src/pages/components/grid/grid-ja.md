@@ -73,8 +73,8 @@ Responsive values is supported by:
 > 
 > ```jsx
 > <Grid container columns={{ xs: 4, md: 12 }}>
->    <Grid item xs={2} />
-> > </Grid>
+>     <Grid item xs={2} />
+> > > </Grid>
 > ```
 
 ### Row & column spacing
@@ -140,7 +140,7 @@ The spacing between items is implemented with a negative margin. This might lead
   <Typography noWrap>
 ```
 
-アイテムがコンテナ内に収まるようにするには、 `min-width：0`を設定する必要があります。 In practice, you can set the `zeroMinWidth` prop:
+アイテムがコンテナ内に収まるようにするには、 `min-width：0`を設定する必要があります。 アイテムがコンテナ内に収まるようにするには、 `min-width：0`を設定する必要があります。
 
 ```jsx
 <Grid item xs zeroMinWidth>
