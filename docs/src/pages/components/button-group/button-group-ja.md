@@ -36,7 +36,7 @@ The button group can be displayed vertically using the `orientation` prop.
 
 ## Split button
 
-`ButtonGroup` で分割したボタンを作成することも可能です。 この例のようにドロップダウンでボタンの動作を変更することも、関連する動作をすぐに起動するために使用することもできます。 The dropdown can change the button action (as in this example) or be used to immediately trigger a related action.
+`ButtonGroup` で分割したボタンを作成することも可能です。 この例のようにドロップダウンでボタンの動作を変更することも、関連する動作をすぐに起動するために使用することもできます。 この例のようにドロップダウンでボタンの動作を変更することも、関連する動作をすぐに起こさせるために使用することもできます。 The dropdown can change the button action (as in this example) or be used to immediately trigger a related action.
 
 {{"demo": "pages/components/button-group/SplitButton.js"}}
 
