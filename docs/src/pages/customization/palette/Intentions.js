@@ -100,15 +100,15 @@ function IntentionsInner() {
 }
 
 export default function Intentions() {
+  const theme = useTheme();
+
   return (
     <ThemeProvider
-      theme={(outerTheme) =>
-        createTheme({
-          palette: {
-            mode: outerTheme.palette.mode,
-          },
-        })
-      }
+      theme={createTheme({
+        palette: {
+          mode: theme.palette.mode,
+        },
+      })}
     >
       <IntentionsInner />
     </ThemeProvider>
