@@ -20,7 +20,7 @@ components: GlobalStyles
 
 ### 使用 `sx` 属性
 
-The easiest way to add style overrides for a one-off situation is to use the [`sx` prop](/system/basics/#the-sx-prop) available on all Material-UI components. 下面是一个示例：
+The easiest way to add style overrides for a one-off situation is to use the [`sx` prop](/system/basics/#the-sx-prop) available on all Material-UI components. 下面是一个示例： 下面是一个示例：
 
 {{"demo": "pages/customization/how-to-customize/SxProp.js"}}
 
@@ -130,7 +130,7 @@ With it, you have access to all of a component's props to dynamically style the 
 
 ## 3。 动态变体
 
-In the previous section, we learned how to override the style of a Material-UI component. 现在，让我们看看我们如何使动态地应用这个覆盖。 Here are four alternatives; each has its pros and cons.
+In the previous section, we learned how to override the style of a Material-UI component. 现在，让我们看看我们如何使动态地应用这个覆盖。 现在，让我们看看我们如何使动态地应用这个覆盖。 Here are four alternatives; each has its pros and cons.
 
 ### 动态 CSS
 
@@ -185,10 +185,10 @@ Components expose [global class names](/styles/advanced/#with-material-ui-core) 
 
 You can reference the [Styles library interoperability guide](/guides/interoperability/) to find examples of this using different styles libraries or plain CSS.
 
-If you just want to add some global baseline styles for some of the HTML elements, you can use the `GlobalStyles` component. Here is an example of how you can override styles for the `h1` elements.
+If you just want to add some global baseline styles for some of the HTML elements, you can use the `GlobalStyles` component. Here is an example of how you can override styles for the `h1` elements. Here is an example of how you can override styles for the `h1` elements.
 
 {{"demo": "pages/customization/how-to-customize/GlobalCssOverride.js", "iframe": true, "height": 100}}
 
-If you are already using the [CssBaseline](/components/css-baseline/) component for setting baseline styles, you can also add these global styles as overrides for this component. Here is how you can achieve the same by using this approach.
+If you are already using the [CssBaseline](/components/css-baseline/) component for setting baseline styles, you can also add these global styles as overrides for this component. Here is how you can achieve the same by using this approach. Here is how you can achieve the same by using this approach.
 
 {{"demo": "pages/customization/how-to-customize/OverrideCssBaseline.js", "iframe": true, "height": 100}}
