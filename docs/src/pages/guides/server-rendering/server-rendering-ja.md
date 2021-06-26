@@ -52,7 +52,7 @@ export default theme;
 
 ### サーバーサイド
 
-サーバーサイドのコードは概ね次の様になります。 サーバに入ってくるすべてのリクエストを処理するために、[app.use](https://expressjs.com/en/api.html)を使用して[Expressミドルウェア](https://expressjs.com/en/guide/using-middleware.html)をセットアップします。 Express やミドルウェアに慣れていない場合は、サーバーがリクエストを受け取るたびにhandleRender関数が呼ばれることを知っておいてください。
+サーバーサイドのコードは概ね次の様になります。 サーバーサイドのコードは概ね次の様になります。 サーバに入ってくるすべてのリクエストを処理するために、[app.use](https://expressjs.com/en/api.html)を使用して[Expressミドルウェア](https://expressjs.com/en/guide/using-middleware.html)をセットアップします。 Express やミドルウェアに慣れていない場合は、サーバーがリクエストを受け取るたびにhandleRender関数が呼ばれることを知っておいてください。 Express やミドルウェアに慣れていない場合は、サーバーがリクエストを受け取るたびにhandleRender関数が呼ばれることを知っておいてください。
 
 `server.js`
 
