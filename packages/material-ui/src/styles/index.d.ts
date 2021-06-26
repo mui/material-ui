@@ -1,6 +1,6 @@
 export {
   default as createTheme,
-  default as unstable_createMuiStrictModeTheme,
+  unstable_createMuiStrictModeTheme,
   createMuiTheme,
   ThemeOptions,
   Theme,

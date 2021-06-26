@@ -106,7 +106,7 @@ export function createMuiTheme(...args) {
       warnedOnce = true;
       console.error(
         [
-          'Material-UI: the createMuiTheme function was renamed to createTheme.',
+          'Material-UI: The createMuiTheme function was renamed to createTheme.',
           '',
           "You should use `import { createTheme } from '@material-ui/core/styles'`",
         ].join('\n'),

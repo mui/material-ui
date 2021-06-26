@@ -30,10 +30,18 @@ export interface Theme extends SystemTheme {
 }
 
 /**
- * @deprecated
- * Use `import { createTheme } from '@material-ui/core/styles'` instead.
+ * @deprecated The createMuiTheme function was renamed to createTheme.
+ * Use `import { createTheme } from '@material-ui/core/styles'` instead. It's equivalent.
  */
 export function createMuiTheme(options?: ThemeOptions, ...args: object[]): Theme;
+
+/**
+ * @deprecated The createMuiStrictModeTheme function is now replaced with createTheme.
+ * StrictMode is supported by default.
+ * Use `import { createTheme } from '@material-ui/core/styles'` instead. It's equivalent.
+ */
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function unstable_createMuiStrictModeTheme(options?: ThemeOptions, ...args: object[]): Theme;
 
 /**
  * Generate a theme base on the options received.

@@ -1,10 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  ThemeProvider as MuiThemeProvider,
-  createTheme as createLegacyModeTheme,
-  unstable_createMuiStrictModeTheme as createStrictModeTheme,
-} from '@material-ui/core/styles';
+import { ThemeProvider as MuiThemeProvider, createTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@material-ui/core/locale';
 import darkScrollbar from '@material-ui/core/darkScrollbar';
@@ -116,13 +112,6 @@ export const DispatchContext = React.createContext(() => {
 
 if (process.env.NODE_ENV !== 'production') {
   DispatchContext.displayName = 'ThemeDispatchContext';
-}
-
-let createTheme;
-if (process.env.REACT_MODE === 'legacy') {
-  createTheme = createLegacyModeTheme;
-} else {
-  createTheme = createStrictModeTheme;
 }
 
 export function ThemeProvider(props) {
