@@ -28,7 +28,7 @@ Material-UIは[Roboto](https://fonts.google.com/specimen/Roboto)フォントを�
 
 ## フォントアイコン
 
-フォント`アイコン`コンポーネントを使用するには、まず [Material icons](https://material.io/tools/icons/) フォントを追加する必要があります。 こちらは、その[手順](/components/icons/#font-icons)です。 たとえば、Google Web Fontsを用いて、
+フォント`アイコン`コンポーネントを使用するには、まず [Material icons](https://material.io/tools/icons/) フォントを追加する必要があります。 こちらは、その[手順](/components/icons/#font-icons)です。 たとえば、Google Web Fontsを用いて、 こちらは、その[手順](/components/icons/#font-icons)です。 たとえば、Google Web Fontsを用いて、
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -59,7 +59,7 @@ yarn add @material-ui/icons
 
 ⚠️ただし、**本番環境**でこのアプローチを使用することは**推奨しません**。クライアントは、どのコンポーネントが実際に使用されているかにかかわらず、ライブラリ全体をダウンロードする必要があるため、パフォーマンスと帯域幅の使用率に影響を与えます。
 
-⚠️ UMDリンクは、ライブラリの最新バージョンを示すために`latest`タグを使用しています。 このポインターは**不安定です** 、新しいバージョンがリリースされると変わります。 [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js) のような特定のバージョンを指すことを考慮する必要があります。
+⚠️ UMDリンクは、ライブラリの最新バージョンを示すために`latest`タグを使用しています。 このポインターは**不安定です** 、新しいバージョンがリリースされると変わります。 ⚠️ UMDリンクは、ライブラリの最新バージョンを示すために`latest`タグを使用しています。 このポインターは**不安定です** 、新しいバージョンがリリースされると変わります。 [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js) のような特定のバージョンを指すことを考慮する必要があります。
 
 ## Design resources
 
