@@ -10,7 +10,7 @@ materialDesign: https://material.io/components/date-pickers
 
 <p class="description">Date pickers позволяют пользователю выбирать дату.</p>
 
-Date pickers позволяют пользователю выбирать дату. Date pickers отображаются с:
+Date pickers позволяют пользователю выбирать дату. Date pickers позволяют пользователю выбирать дату.
 
 - Dialogs on mobile
 - Text field dropdowns on desktop
@@ -111,3 +111,9 @@ You can customize the rendering of the input with the `renderInput` prop. Убе
 Иногда в календаре может потребоваться отображение дополнительной информации. Вот пример предварительной выборки и отображения серверных данных с помощью свойств `onMonthChange`, `loading`и `renderDay`.
 
 {{"demo": "pages/components/date-picker/ServerRequestDatePicker.js"}}
+
+## Helper text
+
+You can show a helper text with the date format accepted.
+
+{{"demo": "pages/components/date-picker/HelperText.js"}}
