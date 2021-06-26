@@ -265,6 +265,7 @@
     "/system": "システム",
     "/system/basics": "基本",
     "/system/properties": "Properties",
+    "/system/the-sx-prop": "sx プロパティ",
     "/system/borders": "ボーダー",
     "/system/display": "ディスプレイ",
     "/system/flexbox": "Flexbox",
