@@ -203,7 +203,7 @@ Create React Appを使用している場合、`.babelrc`の利用を許容して
 
 #### 2. すべてのインポートを変換する
 
-ついに、既存のコードを [上位層インポート](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports) に変更できます。 以下のような 変更になります。 以下のような 変更になります。 以下のような 変更になります。 以下のような 変更になります。
+ついに、既存のコードを [上位層インポート](https://github.com/mui-org/material-ui/blob/master/packages/material-ui-codemod/README.md#top-level-imports) に変更できます。 以下のような 変更になります。 以下のような 変更になります。 以下のような 変更になります。 以下のような 変更になります。 以下のような 変更になります。
 
 ```diff
 -import Button from '@material-ui/core/Button';
