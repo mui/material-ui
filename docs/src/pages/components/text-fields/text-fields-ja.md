@@ -21,7 +21,7 @@ Standard、Outlined、およびFilledのスタイルをサポートします。
 
 ## Form props
 
-標準的なフォームの属性がサポートされています。(`required`, `disabled`, `type` など) 入力がどのように使用されるかなど、フィールドの入力に関するコンテキストを与えるために使用される `helperText` も同様です。
+標準的なフォームの属性がサポートされています。(`required`, `disabled`, `type` など) 入力がどのように使用されるかなど、フィールドの入力に関するコンテキストを与えるために使用される `helperText` も同様です。 入力がどのように使用されるかなど、フィールドの入力に関するコンテキストを与えるために使用される `helperText` も同様です。
 
 {{"demo": "pages/components/text-fields/FormPropsTextFields.js"}}
 
@@ -63,7 +63,7 @@ There are multiple ways to display an icon with a text field.
 
 ## レイアウト
 
-`margin` プロパティを使用して入力欄の垂直方向の間隔を変更することができます。 `none` (デフォルト) を使用すると、 `FormControl`に余白は適用されません。一方、 `dense` と `normal` では適用されます。 `dense` と `normal` は、仕様を満たすために他のスタイルを変更します。
+`margin` プロパティを使用して入力欄の垂直方向の間隔を変更することができます。 `margin` プロパティを使用して入力欄の垂直方向の間隔を変更することができます。 `none` (デフォルト) を使用すると、 `FormControl`に余白は適用されません。一方、 `dense` と `normal` では適用されます。 `dense` と `normal` は、仕様を満たすために他のスタイルを変更します。 `dense` と `normal` は、仕様を満たすために他のスタイルを変更します。
 
 `fullWidth` を使用すると、入力欄の幅がコンテナ一杯になります。
 
@@ -95,11 +95,11 @@ There are multiple ways to display an icon with a text field.
 
 ## カスタマイズされた入力 (Customized inputs)
 
-コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
-カスタマイズはCSSにとどまりません。コンポジションを使用してカスタムコンポーネントを作成し、アプリに独特の雰囲気を与えることができます。 以下は、Googleマップに触発された [`InputBase`](/api/input-base/) コンポーネントを使用した例です。
+カスタマイズはCSSにとどまりません。コンポジションを使用してカスタムコンポーネントを作成し、アプリに独特の雰囲気を与えることができます。 カスタマイズはCSSにとどまりません。コンポジションを使用してカスタムコンポーネントを作成し、アプリに独特の雰囲気を与えることができます。 以下は、Googleマップに触発された [`InputBase`](/api/input-base/) コンポーネントを使用した例です。
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
 
@@ -109,7 +109,7 @@ There are multiple ways to display an icon with a text field.
 
 ### シュリンク
 
-入力ラベルの「shrink」状態は必ずしも正しくありません。 入力が何かを表示しているとすぐに入力ラベルは縮小するはずです。 状況によっては、「shrink」状態（数値入力、日時入力、ストライプ入力）を判別できません。 重複があるかもしれません。
+入力ラベルの「shrink」状態は必ずしも正しくありません。 入力が何かを表示しているとすぐに入力ラベルは縮小するはずです。 状況によっては、「shrink」状態（数値入力、日時入力、ストライプ入力）を判別できません。 重複があるかもしれません。 入力が何かを表示しているとすぐに入力ラベルは縮小するはずです。 状況によっては、「shrink」状態（数値入力、日時入力、ストライプ入力）を判別できません。 重複があるかもしれません。
 
 ![シュリンク](/static/images/text-fields/shrink.png)
 
@@ -127,17 +127,17 @@ There are multiple ways to display an icon with a text field.
 
 ### フローティングラベル
 
-フローティングラベルは絶対位置に配置され、ページのレイアウトには影響しません。 正しく表示するには、入力がラベルよりも大きいことを確認する必要があります。
+フローティングラベルは絶対位置に配置され、ページのレイアウトには影響しません。 正しく表示するには、入力がラベルよりも大きいことを確認する必要があります。 正しく表示するには、入力がラベルよりも大きいことを確認する必要があります。
 
 ## サードパーティの入力ライブラリとの統合
 
-サードパーティのライブラリを使って入力をフォーマットすることができます。 `inputComponent` プロパティを使用して、 `<input>` 要素のカスタム実装を提供する必要があります。
+サードパーティのライブラリを使って入力をフォーマットすることができます。 `inputComponent` プロパティを使用して、 `<input>` 要素のカスタム実装を提供する必要があります。 `inputComponent` プロパティを使用して、 `<input>` 要素のカスタム実装を提供する必要があります。
 
 次のデモでは、[react-text-mask](https://github.com/text-mask/text-mask) と[react-number-format](https://github.com/s-yadav/react-number-format)ライブラリを使用します。 同じ概念を [（たとえば、react-stripe-element)に適用することもできます](https://github.com/mui-org/material-ui/issues/16037)。
 
 {{"demo": "pages/components/text-fields/FormattedInputs.js"}}
 
-指定された入力コンポーネントは、 `inputRef` プロパティを処理する必要があります。 このプロパティは、次のインターフェイスを実装する値で呼び出す必要があります。
+指定された入力コンポーネントは、 `inputRef` プロパティを処理する必要があります。 このプロパティは、次のインターフェイスを実装する値で呼び出す必要があります。 このプロパティは、次のインターフェイスを実装する値で呼び出す必要があります。
 
 ```ts
 interface InputElement {
