@@ -48,7 +48,7 @@ You can specify how many digits to display either side of current page with the 
 
 ## `usePagination`
 
-For advanced customization use cases, a headless `usePagination()` hook is exposed. It accepts almost the same options as the Pagination component minus all the props related to the rendering of JSX. The Pagination component is built on this hook.
+For advanced customization use cases, a headless `usePagination()` hook is exposed. 高度なカスタマイズのユースケースでは、ヘッドレスな`usePagination()` フックを公開しています。 It accepts almost the same options as the Pagination component minus all the props related to the rendering of JSX. It accepts almost the same options as the Pagination component minus all the props related to the rendering of JSX.
 
 ```jsx
 import { usePagination } from '@material-ui/core/Pagination';
@@ -58,13 +58,13 @@ import { usePagination } from '@material-ui/core/Pagination';
 
 ## Table pagination
 
-`Pagination` コンポーネントは、無限ローディングが使用されない場合に任意のアイテムのリストをページネーションするように設計されています。 It's preferred in contexts where SEO is important, for instance, a blog.
+`Pagination` コンポーネントは、無限ローディングが使用されない場合に任意のアイテムのリストをページネーションするように設計されています。 It's preferred in contexts where SEO is important, for instance, a blog. It's preferred in contexts where SEO is important, for instance, a blog.
 
 For the pagination of a large set of tabular data, you should use the `TablePagination` component.
 
 {{"demo": "pages/components/pagination/TablePagination.js"}}
 
-> 注意　`Pagination`ページプロパティは、URLに値を含むという要件に合わせるため1から始まります。一方、`TablePagination`ページプロパティは、たくさんの表形式データをレンダリングすることからゼロ基点であるJavaScript配列に合わせて0から始まります。
+> 注意　`Pagination`ページプロパティは、URLに値を含むという要件に合わせるため1から始まります。 一方、`TablePagination`ページプロパティは、たくさんの表形式データをレンダリングすることからゼロ基点であるJavaScript配列に合わせて0から始まります。
 
 You can learn more about this use case in the [table section](/components/tables/#custom-pagination-options) of the documentation.
 
