@@ -24,6 +24,18 @@ A basic menu opens over the anchor element by default (this option can be [chang
 
 {{"demo": "pages/components/menus/BasicMenu.js"}}
 
+## Icon menu
+
+In desktop viewport, padding is increased to give more space to the menu.
+
+{{"demo": "pages/components/menus/IconMenu.js", "bg": true}}
+
+## Dense menu
+
+For the menu that has long list and long text, you can use the `dense` prop to reduce the padding (this property only affects desktop viewport).
+
+{{"demo": "pages/components/menus/DenseMenu.js", "bg": true}}
+
 ## Selected menu
 
 If used for item selection, when opened, simple menus places the initial focus on the selected menu item. The currently selected menu item is set using the `selected` property (from [ListItem](/api/list-item/)). To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
@@ -43,6 +55,12 @@ The `Menu` component uses the `Popover` component internally. However, you might
 The primary responsibility of the `MenuList` component is to handle the focus.
 
 {{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
+
+## Ограничения
+
+Если высота меню препятствует отображению всех пунктов меню, меню можно прокручивать внутри.
+
+{{"demo": "pages/components/menus/AccountMenu.js"}}
 
 ## Customized menu
 
