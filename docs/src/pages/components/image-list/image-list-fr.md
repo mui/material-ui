@@ -55,6 +55,6 @@ La barre de titre peut être placée sous l'image.
 
 ## Liste d'images personnalisée
 
-Dans cet exemple, les éléments ont une barre de titre personnalisée, positionnée en haut et avec un dégradé `titleBackground` personnalisé. L'action secondaire `IconButton` est positionnée sur la gauche. La prop `gap` est utilisée pour ajuster l'écart entre les éléments.
+Dans cet exemple, les éléments ont une barre de titre personnalisée, positionnée en haut et avec un dégradé `titleBackground` personnalisé. L'action secondaire `IconButton` est positionnée sur la gauche. L'action secondaire `IconButton` est positionnée sur la gauche.
 
 {{"demo": "pages/components/image-list/CustomImageList.js", "defaultCodeOpen": false}}
