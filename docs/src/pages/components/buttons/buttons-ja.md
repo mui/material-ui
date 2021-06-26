@@ -34,7 +34,7 @@ The `Button` comes with three variants: text (default), contained, and outlined.
 
 ### Contained button
 
-[Contained button](https://material.io/components/buttons#contained-button) は高さと塗りつぶしによって区別される、より強調されたボタンです。 アプリ内で強調すべきアクションを含みます。
+[Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons. アプリ内で強調すべきアクションを含みます。
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
@@ -44,7 +44,7 @@ The `Button` comes with three variants: text (default), contained, and outlined.
 
 ### Outlined button
 
-[Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important but aren't the primary action in an app.
+[Contained button](https://material.io/components/buttons#contained-button) は高さと塗りつぶしによって区別される、より強調されたボタンです。 アプリ内で強調すべきアクションを含みます。
 
 Outlined buttonは、Contained buttonより弱く、 Text buttonよりは強い強調をします。
 
@@ -96,6 +96,12 @@ For larger or smaller buttons, use the `size` prop.
 
 {{"demo": "pages/components/buttons/IconButtonSizes.js"}}
 
+### Colors
+
+Use `color` prop to apply theme color palette to component.
+
+{{"demo": "pages/components/buttons/IconButtonColors.js"}}
+
 ## カスタムButton
 
 コンポーネントのカスタマイズの例を次に示します。 詳細については、 [こちら](/customization/how-to-customize/)を参照してください。
@@ -106,7 +112,7 @@ For larger or smaller buttons, use the `size` prop.
 
 ## ローディングボタン
 
-ローディングボタンは、読み込み中の状態を表示し、操作を無効にすることができます。
+状態間の遷移を確認するにはトグルスイッチを切り替えてください。
 
 {{"demo": "pages/components/buttons/LoadingButtons.js"}}
 
@@ -116,7 +122,7 @@ Toggle the loading switch to see the transition between the different states.
 
 ## 複雑なボタン
 
-テキストボタン、コンテインボタン、フローティングアクションボタン、アイコンボタンは、同じコンポーネント(`ButtonBase`) を元に作成されています。 この低レベルのコンポーネントを利用して独自のインタラクションを構築できます。
+テキストボタン、コンテインボタン、フローティングアクションボタン、アイコンボタンは、同じコンポーネント(`ButtonBase`) を元に作成されています。 この元のコンポーネントを利用して独自のインタラクションを構築できます。 この低レベルのコンポーネントを利用して独自のインタラクションを構築できます。
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 
