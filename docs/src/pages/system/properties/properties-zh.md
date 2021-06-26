@@ -90,7 +90,7 @@ Let's take one row from [the table above](#properties-reference-table), for exam
 
 and detail each column:
 
-- **System keys**. The column lists the key(s) by which you can use this property with the `sx` prop (or as a system function).
+- **System keys**. **System keys**. The column lists the key(s) by which you can use this property with the `sx` prop (or as a system function).
 
   ```jsx
   <Button sx={{ mb: 3 }}>
@@ -100,7 +100,7 @@ and detail each column:
   <Box marginBottom={3}>
   ```
 
-- **CSS properties**. The column describes which CSS property will be generated when this system property is used.
+- **CSS properties**. **CSS properties**. The column describes which CSS property will be generated when this system property is used.
 
   ```css
   .my-class {
@@ -108,9 +108,9 @@ and detail each column:
   }
   ```
 
-- **System style function**. The column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. 函数可以从 `@material-ui/system` 导入。 你可以在 [进阶页面](/system/advanced/#using-standalone-system-utilities) 上看到使用样式函数的例子。 The content links to the documentation page where this properties are described; in this example, the [spacing](/system/spacing/) page.
+- **System style function**. The column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. 函数可以从 `@material-ui/system` 导入。 The column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. 函数可以从 `@material-ui/system` 导入。 你可以在 [进阶页面](/system/advanced/#using-standalone-system-utilities) 上看到使用样式函数的例子。 The content links to the documentation page where this properties are described; in this example, the [spacing](/system/spacing/) page.
 
-- **Theme mapping**. Lastly, the column tells you how this property is wired with the theme – with this example, whatever value you provide will be used as input to the `theme.spacing` helper.
+- **Theme mapping**. **Theme mapping**. Lastly, the column tells you how this property is wired with the theme – with this example, whatever value you provide will be used as input to the `theme.spacing` helper.
 
 让我们看看一个例子：
 
