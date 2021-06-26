@@ -16,6 +16,12 @@ Ejemplos de insignias que contienen texto, utilizando colores primarios y secund
 
 {{"demo": "pages/components/badges/SimpleBadge.js"}}
 
+## Color
+
+Use `color` prop to apply theme palette to component.
+
+{{"demo": "pages/components/badges/ColorBadge.js"}}
+
 ## Placas personalizadas
 
 He aquí un ejemplo de personalización del componente. Puedes aprender más sobre esto en la [sección Personalizando Componentes de la documentación](/customization/how-to-customize/).
@@ -46,7 +52,7 @@ La propiedad `dot` cambia el badge a un pequeño punto. Esto se puede usar como 
 
 ## Superposición del Badge
 
-Usted puede usar la propiedad `anchorOrigin` para mover el Badge a cualquier esquina del elemento envuelto.
+Puede usar la propiedad `overlap` para colocar la insignia relativa a la esquina del elemento envuelto.
 
 {{"demo": "pages/components/badges/BadgeOverlap.js"}}
 
