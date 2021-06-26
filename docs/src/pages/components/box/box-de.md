@@ -29,11 +29,11 @@ Die Box-Komponente umschließt Ihre Komponente. It creates a new DOM element, a 
 
 Dies funktioniert hervorragend, wenn die Änderungen für ein neues DOM-Element isoliert werden können. Zum Beispiel kann der Rand auf diese Weise verändert werden.
 
-Manchmal müssen Sie jedoch das zugrunde liegende DOM-Element als Ziel festlegen. As an example, you may want to change the border of the Button. The Button component defines its own styles. CSS-Vererbung hilft hier nicht. To workaround the problem, you can use the [`sx`](/system/basics/#the-sx-prop) prop directly on the child if it is a Material-UI component.
+Manchmal müssen Sie jedoch das zugrunde liegende DOM-Element als Ziel festlegen. CSS-Vererbung hilft hier nicht. As an example, you may want to change the border of the Button. CSS-Vererbung hilft hier nicht. To workaround the problem, you can use the [`sx`](/system/basics/#the-sx-prop) prop directly on the child if it is a Material-UI component.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
--  <Button>Save</Button>
+- <Button>Save</Button>
 -</Box>
 +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
 ```
@@ -42,7 +42,7 @@ For non-Material-UI components, use the `component` prop.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
--  <button>Save</button>
+- <button>Save</button>
 -</Box>
 +<Box component="button" sx={{ border: '1px dashed grey' }}>Save</Box>
 ```
