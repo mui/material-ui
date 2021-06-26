@@ -93,6 +93,21 @@
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
       "nodeName": "the badge `span` element",
       "conditions": "<code>color=\"error\"</code>"
+    },
+    "colorInfo": {
+      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>color=\"info\"</code>"
+    },
+    "colorSuccess": {
+      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>color=\"success\"</code>"
+    },
+    "colorWarning": {
+      "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
+      "nodeName": "the badge `span` element",
+      "conditions": "<code>color=\"warning\"</code>"
     }
   }
 }
