@@ -67,7 +67,7 @@ Each of the following examples demonstrates one feature of the Autocomplete comp
 コンポーネントは、操作できる二つのステートを持ちます。
 
 1. "value"ステートは `value`/`onChange` を組み合わせて使用します。 ユーザーが<kbd class="key">Enter</kbd>キーを押している場合、この値はEnterになります。
-2. "input value"ステートは`inputValue`/`onInputChange` を組み合わせて使用します。 この値は、テキストボックスに表示される値を示します。 この値は、テキストボックスに表示される値を示します。 この値は、テキストボックスに表示される値を示します。 この値は、テキストボックスに表示される値を示します。
+2. "input value"ステートは`inputValue`/`onInputChange` を組み合わせて使用します。 この値は、テキストボックスに表示される値を示します。 この値は、テキストボックスに表示される値を示します。 この値は、テキストボックスに表示される値を示します。 この値は、テキストボックスに表示される値を示します。 この値は、テキストボックスに表示される値を示します。
 
 > ⚠️ These two states are isolated, they should be controlled independently.
 
@@ -100,7 +100,7 @@ Google searchやreact-autowhateverなどの検索候補が表示されるよう�
 
 ## Grouped
 
-`groupBy` プロパティを使えば、選択肢をグループ化できます。 これを使う場合、グループ化される選択肢は同じ順序でソートされたものにしてください。そうしないと、ヘッダーが重複してしまいます。
+`groupBy` プロパティを使えば、選択肢をグループ化できます。 これを使う場合、グループ化される選択肢は同じ順序でソートされたものにしてください。 そうしないと、ヘッダーが重複してしまいます。
 
 {{"demo": "pages/components/autocomplete/Grouped.js"}}
 
@@ -196,7 +196,7 @@ Google マップの位置の自動保管用のカスタムUI
 
 ### Custom input
 
-`renderInput`でレンダリングされる入力をカスタマイズできます。 このrender propsの一つ目の引数は、継承する必要のあるpropsを含みます。 `ref` と `inputProps` の扱いに特に注意してください。
+`renderInput`でレンダリングされる入力をカスタマイズできます。 このrender propsの一つ目の引数は、継承する必要のあるpropsを含みます。 `ref` と `inputProps` の扱いに特に注意してください。 このrender propsの一つ目の引数は、継承する必要のあるpropsを含みます。 `ref` と `inputProps` の扱いに特に注意してください。
 
 {{"demo": "pages/components/autocomplete/CustomInputAutocomplete.js"}}
 
@@ -216,7 +216,7 @@ GitHubのラベルピッカーを再現したデモです。
 
 ## Custom filter
 
-コンポーネントは `filterOptions` プロパティに提供できるフィルタメソッドを作成するためのファクトリを公開しています。 デフォルトのフィルター挙動を変更するのに使うことができます。
+コンポーネントは `filterOptions` プロパティに提供できるフィルタメソッドを作成するためのファクトリを公開しています。 デフォルトのフィルター挙動を変更するのに使うことができます。 デフォルトのフィルター挙動を変更するのに使うことができます。
 
 ```js
 import { createFilterOptions } from '@material-ui/core/Autocomplete';
@@ -254,7 +254,7 @@ const filterOptions = createFilterOptions({
 
 ### 高度な機能(Advanced)
 
-Fuzzy matchingのような高度なメカニズムについては  [match-sorter](https://github.com/kentcdodds/match-sorter) を見ることをおすすめします。 例えば：
+Fuzzy matchingのような高度なメカニズムについては [match-sorter](https://github.com/kentcdodds/match-sorter) を見ることをおすすめします。 例えば： 例えば：
 
 ```jsx
 import matchSorter from 'match-sorter';
@@ -266,7 +266,7 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 
 ## Virtualization
 
-10,000のランダム生成された選択肢内で検索します。 リストは [react-window](https://github.com/bvaughn/react-window) によって仮想化されています。
+10,000のランダム生成された選択肢内で検索します。 10,000のランダム生成された選択肢内で検索します。 リストは [react-window](https://github.com/bvaughn/react-window) によって仮想化されています。
 
 {{"demo": "pages/components/autocomplete/Virtualize.js"}}
 
@@ -284,6 +284,11 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
     }
   }}
 />
+      event.defaultMuiPrevented = true;
+      // your handler code
+    }
+  }}
+/>
 ```
 
 ## 制限事項
@@ -296,7 +301,7 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 
 入力された過去の値を記憶することに加えて、ブラウザは **autofill** (保存されたログイン、アドレス、または支払いの詳細) をサジェストするかもしれません。 autofillを避けたい場合、以下の方法を取れます。
 
-- ブラウザが判断できない命名を入力欄に使う。 例: `id="country"`の代わりに、`id="field1"`を使う idを空にした場合、コンポーネントはランダムなidを保管します。
+- ブラウザが判断できない命名を入力欄に使う。 ブラウザが判断できない命名を入力欄に使う。 例: `id="country"`の代わりに、`id="field1"`を使う idを空にした場合、コンポーネントはランダムなidを保管します。 idを空にした場合、コンポーネントはランダムなidを保管します。
 - `autoComplete="new-password"` に設定する。 (一部のブラウザはこの属性設定使うと入力用の強力なパスワードを提案します):
 
   ```jsx
@@ -313,14 +318,14 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 
 ### iOS VoiceOver
 
-iOS Safariのボイスオーバーは`aria-owns` を十分にサポートしていません。 `disablePortal`を用いて、この問題を回避できます。 `disablePortal`を用いて、この問題を回避できます。 `disablePortal`を用いて、この問題を回避できます。 `disablePortal`を用いて、この問題を回避できます。
+iOS Safariのボイスオーバーは`aria-owns` を十分にサポートしていません。 `disablePortal`を用いて、この問題を回避できます。 `disablePortal`を用いて、この問題を回避できます。 `disablePortal`を用いて、この問題を回避できます。 `disablePortal`を用いて、この問題を回避できます。 `disablePortal`を用いて、この問題を回避できます。
 
 ### ListBox コンポーネント
 
-`Listbox コンポーネント` のカスタムプロパティを提供する場合、意図するスクロールコンテナの `role` 属性として `listbox` が設定されていることを確認する必要があります。 これにより、例えばキーボードを使用して移動する場合など、スクロールの正しい動作が保証されます。 これにより、例えばキーボードを使用して移動する場合など、スクロールの正しい動作が保証されます。 これにより、例えばキーボードを使用して移動する場合など、スクロールの正しい動作が保証されます。 これにより、例えばキーボードを使用して移動する場合など、スクロールの正しい動作が保証されます。 これにより、例えばキーボードを使用して移動する場合など、スクロールの正しい動作が保証されます。
+`Listbox コンポーネント` のカスタムプロパティを提供する場合、意図するスクロールコンテナの `role` 属性として `listbox` が設定されていることを確認する必要があります。 これにより、例えばキーボードを使用して移動する場合など、スクロールの正しい動作が保証されます。 これにより、例えばキーボードを使用して移動する場合など、スクロールの正しい動作が保証されます。 これにより、例えばキーボードを使用して移動する場合など、スクロールの正しい動作が保証されます。 これにより、例えばキーボードを使用して移動する場合など、スクロールの正しい動作が保証されます。 これにより、例えばキーボードを使用して移動する場合など、スクロールの正しい動作が保証されます。 これにより、例えばキーボードを使用して移動する場合など、スクロールの正しい動作が保証されます。
 
 ## アクセシビリティ
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
 
-テキストボックスに対して、ラベルの使用を奨励しています。 コンポーネントは WAI-ARIA オーサリングを実装しています。
+テキストボックスに対して、ラベルの使用を奨励しています。 コンポーネントは WAI-ARIA オーサリングを実装しています。 コンポーネントは WAI-ARIA オーサリングを実装しています。
