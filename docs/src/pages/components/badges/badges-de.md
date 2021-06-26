@@ -16,6 +16,12 @@ Beispiele für Text Badges in Primär- und Sekundärfarben. The badge is applied
 
 {{"demo": "pages/components/badges/SimpleBadge.js"}}
 
+## Farbe (Color)
+
+Use `color` prop to apply theme palette to component.
+
+{{"demo": "pages/components/badges/ColorBadge.js"}}
+
 ## Benutzerdefinierte Badges
 
 Hier ist ein Beispiel zum Anpassen der Komponente. Weitere Informationen hierzu finden Sie auf der [Dokumentationsseite zu Overrides](/customization/how-to-customize/).
