@@ -136,10 +136,10 @@ const theme = createTheme({
 1. `theme` (_object_): The theme object to enhance.
 2. `options` (_object_ [optional]):
 
-- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. 一个 [breakpoints](/customization/breakpoints/) 的数组（identifiers）。
-- `disableAlign` (_bool_ [optional]): Default to `false`. 字体大小是否略有变化，这样能够保持行高并与 Material Design 的 4px 行高网格相对齐。 这需要主题样式中的无单位行高度。
-- `factor` (_number_ [optional]): Default to `2`. 此值决定了字体大小调整的强度。 值越高的话，在较小的屏幕上字体大小之间的差异就越小。 值越低的话，在较小屏幕上的字体就越大。 该值必须大于1。
-- `variants` (_array\<string\>_ [optional]): Default to all. 需要处理的文字变体。
+- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. 一个 [breakpoints](/customization/breakpoints/) 的数组（identifiers）。 一个 [breakpoints](/customization/breakpoints/) 的数组（identifiers）。
+- `disableAlign` (_bool_ [optional]): Default to `false`. 字体大小是否略有变化，这样能够保持行高并与 Material Design 的 4px 行高网格相对齐。 字体大小是否略有变化，这样能够保持行高并与 Material Design 的 4px 行高网格相对齐。 这需要主题样式中的无单位行高度。
+- `factor` (_number_ [optional]): Default to `2`. 此值决定了字体大小调整的强度。 此值决定了字体大小调整的强度。 值越高的话，在较小的屏幕上字体大小之间的差异就越小。 值越低的话，在较小屏幕上的字体就越大。 该值必须大于1。
+- `variants` (_array\<string\>_ [optional]): Default to all. 需要处理的文字变体。 需要处理的文字变体。
 
 #### 返回结果
 
