@@ -77,17 +77,17 @@ The style library used by default in v5 is [`emotion`](https://github.com/emotio
 
 ```jsx
 import * as React from 'react';
-import { StyledEngineProvider } from '@material-ui/core/styles';
-
-export default function GlobalCssPriority() {
-  return (
-    <StyledEngineProvider injectFirst>
-      {/* Your component tree. import * as React from 'react';
 import { StylesProvider } from '@material-ui/core';
 
 export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
+      {/* Your component tree. import * as React from 'react';
+import { StyledEngineProvider } from '@material-ui/core/styles';
+
+export default function GlobalCssPriority() {
+  return (
+    <StyledEngineProvider injectFirst>
       {/* Your component tree. */}
     </StylesProvider>
   );
@@ -104,11 +104,11 @@ export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
       {/* Your component tree. import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
+import { StyledEngineProvider } from '@material-ui/core/styles';
 
 export default function GlobalCssPriority() {
   return (
-    <StylesProvider injectFirst>
+    <StyledEngineProvider injectFirst>
       {/* Your component tree. */}
     </StylesProvider>
   );
@@ -977,7 +977,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   ```diff
   -<Hidden implementation="js" xlUp><Paper /></Hidden>
   +const hidden = useMediaQuery(theme => theme.breakpoints.up('xl'));
-  +return hidden ? null : <Paper />;
+  +return hidden ? null : <Paper />; null : <Paper />;
   ```
 
 ### Ubicación de Etiqueta
@@ -1065,7 +1065,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Modal
 
-- Remove the `disableBackdropClick` prop because it is redundant. Use `onClose` with `reason === 'backdropClick'` instead.
+- Remove the `disableBackdropClick` prop because it is redundant. Remove the `disableBackdropClick` prop because it is redundant.
 
   ```diff
   <Modal
@@ -1440,8 +1440,8 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   ```diff
   function MySwitch() {
-  - const handleChange = (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => {
-  + const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  - const handleChange = (event: React. ChangeEvent<HTMLInputElement>, checked: boolean) => {
+  + const handleChange = (event: React. ChangeEvent<HTMLInputElement>) => {
   +   const checked = event.target.checked;
     };
 
@@ -1697,7 +1697,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### createGenerateClassName
 
-- The `createGenerateClassName` function is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `createGenerateClassName` function is no longer exported from `@material-ui/core/styles`. If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`.
 
   ```diff
   -import { createGenerateClassName } from '@material-ui/core/styles';
@@ -1706,7 +1706,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### jssPreset
 
-- The `jssPreset` object is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `jssPreset` object is no longer exported from `@material-ui/core/styles`. If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`.
 
   ```diff
   -import { jssPreset } from '@material-ui/core/styles';
@@ -1749,7 +1749,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### ServerStyleSheets
 
-- The `ServerStyleSheets` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- This way, the `theme` provided in the context will be available in both the styling utilities exported from `@material-ui/styles`, like `makeStyles`, `withStyles` etc. and the Material-UI components. If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`.
 
   ```diff
   -import { ServerStyleSheets } from '@material-ui/core/styles';
@@ -1776,7 +1776,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### StylesProvider
 
-- The `StylesProvider` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `StylesProvider` component is no longer exported from `@material-ui/core/styles`. If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`.
 
   ```diff
   -import { StylesProvider } from '@material-ui/core/styles';
@@ -1785,7 +1785,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### useThemeVariants
 
-- The `useThemeVariants` hook is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `useThemeVariants` hook is no longer exported from `@material-ui/core/styles`. If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`.
 
   ```diff
   -import { useThemeVariants } from '@material-ui/core/styles';
@@ -1813,7 +1813,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   }
   ```
 
-- The `withStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, you should use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+- The `withStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available.
 
   ```diff
   -import { withStyles } from '@material-ui/core/styles';
@@ -1882,7 +1882,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### ThemeProvider
 
-If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@material-ui/styles`, like `makeStyles`, `withStyles` etc. and the Material-UI components.
+The `@material-ui/styles` package is no longer part of `@material-ui/core/styles`. If you are using `@material-ui/styles` together with `@material-ui/core` you need to add a module augmentation for the `DefaultTheme`.
 
 ```diff
 -import { ThemeProvider } from '@material-ui/styles';
@@ -1891,7 +1891,7 @@ If you are using the utilities from `@material-ui/styles` together with the `@ma
 
 #### Default theme (TypeScript)
 
-The `@material-ui/styles` package is no longer part of `@material-ui/core/styles`. If you are using `@material-ui/styles` together with `@material-ui/core` you need to add a module augmentation for the `DefaultTheme`.
+The `ServerStyleSheets` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
 
 ```ts
 import { Theme } from '@material-ui/core/styles';
