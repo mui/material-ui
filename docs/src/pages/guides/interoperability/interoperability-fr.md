@@ -59,11 +59,17 @@ export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
       {/* Your component tree. import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
 
-export default function GlobalCssPriority() {
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function CssModulesPriority() {
   return (
-    <StylesProvider injectFirst>
+    <CacheProvider value={cache}>
       {/* Your component tree. */}
     </StylesProvider>
   );
@@ -80,11 +86,17 @@ export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
       {/* Your component tree. import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
 
-export default function GlobalCssPriority() {
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function CssModulesPriority() {
   return (
-    <StylesProvider injectFirst>
+    <CacheProvider value={cache}>
       {/* Your component tree. */}
     </StylesProvider>
   );
@@ -215,11 +227,17 @@ export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
       {/* Your component tree. import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
 
-export default function GlobalCssPriority() {
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function CssModulesPriority() {
   return (
-    <StylesProvider injectFirst>
+    <CacheProvider value={cache}>
       {/* Your component tree. */}
     </StylesProvider>
   );
@@ -242,11 +260,17 @@ export default function GlobalCssPriority() {
   return (
     <CacheProvider value={cache}>
       {/* Your component tree. import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
 
-export default function GlobalCssPriority() {
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function CssModulesPriority() {
   return (
-    <StylesProvider injectFirst>
+    <CacheProvider value={cache}>
       {/* Your component tree. */}
     </StylesProvider>
   );
@@ -471,11 +495,17 @@ export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
       {/* Your component tree. import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
 
-export default function GlobalCssPriority() {
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function CssModulesPriority() {
   return (
-    <StylesProvider injectFirst>
+    <CacheProvider value={cache}>
       {/* Your component tree. */}
     </StylesProvider>
   );
@@ -498,11 +528,17 @@ export default function CssModulesPriority() {
   return (
     <CacheProvider value={cache}>
       {/* Your component tree. import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
 
-export default function GlobalCssPriority() {
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function CssModulesPriority() {
   return (
-    <StylesProvider injectFirst>
+    <CacheProvider value={cache}>
       {/* Your component tree. */}
     </StylesProvider>
   );
