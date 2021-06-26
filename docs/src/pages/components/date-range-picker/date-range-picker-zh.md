@@ -10,7 +10,7 @@ materialDesign: https://material.io/components/date-pickers
 
 <p class="description">日期选择器让用户选择一系列的日期。</p>
 
-> ⚠️ Pro component <br /><br /> The date range picker is intended for Material-UI X Pro, a commercial set of advanced components built on top of the community edition (MIT license). <br /><br /> 该付费扩展将包括更高级的组件（大数据栅格，时间范围选择器，可拖动的树形视图 & 拖放组件等等）。 你现在可以以实惠的价格 [提前使用](https://material-ui.com/store/items/material-ui-pro/)。
+> ⚠️ Pro component <br /><br /> The date range picker is intended for Material-UI X Pro, a commercial set of advanced components built on top of the community edition (MIT license). <br /><br /> 该付费扩展将包括更高级的组件（大数据栅格，时间范围选择器，可拖动的树形视图 & 拖放组件等等）。 <br /><br /> 该付费扩展将包括更高级的组件（大数据栅格，时间范围选择器，可拖动的树形视图 & 拖放组件等等）。 你现在可以以实惠的价格 [提前使用](https://material-ui.com/store/items/material-ui-pro/)。
 
 日期范围选择器让用户选择一个日期范围。
 
@@ -53,7 +53,7 @@ function App() {
 - The `MobileDateRangePicker` component works best for touch devices and small screens.
 - The `DesktopDateRangePicker` component works best for mouse devices and large screens.
 
-By default, the `DateRangePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。
+By default, the `DateRangePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。
 
 {{"demo": "pages/components/date-range-picker/ResponsiveDateRangePicker.js"}}
 
