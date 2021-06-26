@@ -77,17 +77,17 @@ The style library used by default in v5 is [`emotion`](https://github.com/emotio
 
 ```jsx
 import * as React from 'react';
-import { StyledEngineProvider } from '@material-ui/core/styles';
-
-export default function GlobalCssPriority() {
-  return (
-    <StyledEngineProvider injectFirst>
-      {/* Your component tree. import * as React from 'react';
 import { StylesProvider } from '@material-ui/core';
 
 export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
+      {/* Your component tree. import * as React from 'react';
+import { StyledEngineProvider } from '@material-ui/core/styles';
+
+export default function GlobalCssPriority() {
+  return (
+    <StyledEngineProvider injectFirst>
       {/* Your component tree. */}
     </StylesProvider>
   );
@@ -104,11 +104,11 @@ export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
       {/* Your component tree. import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
+import { StyledEngineProvider } from '@material-ui/core/styles';
 
 export default function GlobalCssPriority() {
   return (
-    <StylesProvider injectFirst>
+    <StyledEngineProvider injectFirst>
       {/* Your component tree. */}
     </StylesProvider>
   );
@@ -287,11 +287,11 @@ The following changes are supported by the adapter:
 import { createTheme } from '@material-ui/core/styles';
 
 const theme = createTheme({
--  props: {
--    MuiButton: {
--      disableRipple: true,
--    },
--  },
+- props: {
+- MuiButton: {
+- disableRipple: true,
+- },
+- },
 +  components: {
 +    MuiButton: {
 +      defaultProps: {
@@ -308,11 +308,11 @@ const theme = createTheme({
 import { createTheme } from '@material-ui/core/styles';
 
 const theme = createTheme({
--  overrides: {
--    MuiButton: {
--      root: { padding: 0 },
--    },
--  },
+- overrides: {
+- MuiButton: {
+- root: { padding: 0 },
+- },
+- },
 +  components: {
 +    MuiButton: {
 +      styleOverrides: {
@@ -332,7 +332,7 @@ const theme = createTheme({
   + import { alpha } from '@material-ui/core/styles';
 
   const classes = makeStyles(theme => ({
-  -  backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+  - backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
   +  backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
   }));
   ```
@@ -582,7 +582,7 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
 
   ```diff
   -<Box sx={{ border: '1px dashed grey' }} clone>
-  -  <Button>Save</Button>
+  - <Button>Save</Button>
   -</Box>
   +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
   ```
@@ -591,7 +591,7 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
 
   ```diff
   -<Box sx={{ border: '1px dashed grey' }}>
-  -  {(props) => <Button {...props}>Save</Button>}
+  - {(props) => <Button {...props}>Save</Button>}
   -</Box>
   +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
   ```
@@ -600,7 +600,7 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
 
   ```diff
   -<Box sx={{ border: '1px dashed grey' }}>
-  -  {(props) => <button {...props}>Save</button>}
+  - {(props) => <button {...props}>Save</button>}
   -</Box>
   +<Box component="button" sx={{ border: '1px dashed grey' }}>Save</Box>
   ```
@@ -647,8 +647,8 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
 
   ```diff
   - <span class="MuiIconButton-root MuiButtonBase-root MuiCheckbox-root PrivateSwitchBase-root">
-  -   <span class="MuiIconButton-label">
-  -     <input class="PrivateSwitchBase-input">
+  - <span class="MuiIconButton-label">
+  - <input class="PrivateSwitchBase-input">
   + <span class="MuiButtonBase-root MuiCheckbox-root PrivateSwitchBase-root">
   +   <span class="PrivateSwitchBase-input">
   ```
@@ -692,13 +692,11 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   const theme = createTheme({
     components: {
       MuiCssBaseline: {
-  -      styleOverrides: {
-  -       '@global': {
-  -          html: {
-  -            WebkitFontSmoothing: 'auto',
-  -          },
-  -       },
-  -      },
+  - styleOverrides: {
+  - '@global': {
+  - html: {
+  - WebkitFontSmoothing: 'auto',
+  - },
   +     styleOverrides: `
   +       html {
   +         -webkit-font-smoothing: auto;
@@ -729,12 +727,12 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   ```diff
   <Dialog
-  -  onEnter={onEnter}
-  -  onEntered={onEntered}
-  -  onEntering={onEntering}
-  -  onExit={onExit}
-  -  onExited={onExited}
-  -  onExiting={onExiting}
+  - onEnter={onEnter}
+  - onEntered={onEntered}
+  - onEntering={onEntering}
+  - onExit={onExit}
+  - onExited={onExited}
+  - onExiting={onExiting}
   +  TransitionProps={{
   +    onEnter,
   +    onEntered,
@@ -786,7 +784,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   ```diff
   -<DialogTitle disableTypography>
-  -  <Typography variant="h4" component="h2">
+  - <Typography variant="h4" component="h2">
   +<DialogTitle>
   +  <Typography variant="h4" component="span">
        My header
@@ -903,11 +901,11 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   const theme = createTheme({
     components: {
       MuiGrid: {
-  -     styleOverrides: {
-  -       "align-items-xs-flex-end": {
-  -         marginTop: '20px',
-  -       },
-  -     },
+  - styleOverrides: {
+  - "align-items-xs-flex-end": {
+  - marginTop: '20px',
+  - },
+  - },
   +     variants: {
   +       props: { alignItems: "flex-end" },
   +       style: {
@@ -979,7 +977,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   ```diff
   -<Hidden implementation="js" xlUp><Paper /></Hidden>
   +const hidden = useMediaQuery(theme => theme.breakpoints.up('xl'));
-  +return hidden ? null : <Paper />;
+  +return hidden ? null : <Paper />; null : <Paper />;
   ```
 
 ### Icon
@@ -1016,12 +1014,12 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   ```diff
   <Menu
-  -  onEnter={onEnter}
-  -  onEntered={onEntered}
-  -  onEntering={onEntering}
-  -  onExit={onExit}
-  -  onExited={onExited}
-  -  onExiting={onExiting}
+  - onEnter={onEnter}
+  - onEntered={onEntered}
+  - onEntering={onEntering}
+  - onExit={onExit}
+  - onExited={onExited}
+  - onExiting={onExiting}
   +  TransitionProps={{
   +    onEnter,
   +    onEntered,
@@ -1067,7 +1065,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Modal
 
-- Remove the `disableBackdropClick` prop because it is redundant. Use `onClose` with `reason === 'backdropClick'` instead.
+- Remove the `disableBackdropClick` prop because it is redundant. Remove the `disableBackdropClick` prop because it is redundant.
 
   ```diff
   <Modal
@@ -1158,12 +1156,12 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   ```diff
   <Popover
-  -  onEnter={onEnter}
-  -  onEntered={onEntered}
-  -  onEntering={onEntering}
-  -  onExit={onExit}
-  -  onExited={onExited}
-  -  onExiting={onExiting}
+  - onEnter={onEnter}
+  - onEntered={onEntered}
+  - onEntering={onEntering}
+  - onExit={onExit}
+  - onExited={onExited}
+  - onExiting={onExiting}
   +  TransitionProps={{
   +    onEnter,
   +    onEntered,
@@ -1221,8 +1219,8 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   ```diff
   - <span class="MuiIconButton-root MuiButtonBase-root MuiRadio-root PrivateSwitchBase-root">
-  -   <span class="MuiIconButton-label">
-  -     <input class="PrivateSwitchBase-input">
+  - <span class="MuiIconButton-label">
+  - <input class="PrivateSwitchBase-input">
   + <span class="MuiButtonBase-root MuiRadio-root PrivateSwitchBase-root">
   +   <span class="PrivateSwitchBase-input">
   ```
@@ -1331,8 +1329,8 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   ```diff
   <Slider
-  -  ValueLabelComponent={CustomValueLabel}
-  -  ThumbComponent={CustomThumb}
+  - ValueLabelComponent={CustomValueLabel}
+  - ThumbComponent={CustomThumb}
   +  components={{
   +    ValueLabel: CustomValueLabel,
   +    Thumb: CustomThumb,
@@ -1346,7 +1344,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Snackbar
 
-- The notification now displays at the bottom left on large screens. This better matches the behavior of Gmail, Google Keep, material.io, etc. You can restore the previous behavior with: You can restore the previous behavior with:
+- The notification now displays at the bottom left on large screens. This better matches the behavior of Gmail, Google Keep, material.io, etc. You can restore the previous behavior with: You can restore the previous behavior with: You can restore the previous behavior with:
 
   ```diff
   -<Snackbar />
@@ -1357,12 +1355,12 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   ```diff
   <Snackbar
-  -  onEnter={onEnter}
-  -  onEntered={onEntered}
-  -  onEntering={onEntering}
-  -  onExit={onExit}
-  -  onExited={onExited}
-  -  onExiting={onExiting}
+  - onEnter={onEnter}
+  - onEntered={onEntered}
+  - onEntering={onEntering}
+  - onExit={onExit}
+  - onExited={onExited}
+  - onExiting={onExiting}
   +  TransitionProps={{
   +    onEnter,
   +    onEntered,
@@ -1462,9 +1460,9 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   ```diff
   <span class="MuiSwitch-root">
-  -   <span class="MuiIconButton-root MuiButtonBase-root MuiSwitch-switchBase PrivateSwitchBase-root">
-  -     <span class="MuiIconButton-label">
-  -       <input class="MuiSwitch-input PrivateSwitchBase-input">
+  - <span class="MuiIconButton-root MuiButtonBase-root MuiSwitch-switchBase PrivateSwitchBase-root">
+  - <span class="MuiIconButton-label">
+  - <input class="MuiSwitch-input PrivateSwitchBase-input">
   +   <span class="MuiButtonBase-root MuiSwitch-switchBase PrivateSwitchBase-root">
   +     <span class="MuiSwitch-input PrivateSwitchBase-input">
   ```
@@ -1679,11 +1677,11 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   const theme = createTheme({
     components: {
       MuiTypography: {
-  -     styleOverrides: {
-  -       colorSecondary: {
-  -         marginTop: '20px',
-  -       },
-  -     },
+  - styleOverrides: {
+  - colorSecondary: {
+  - marginTop: '20px',
+  - },
+  - },
   +     variants: {
   +       props: { color: "secondary" },
   +       style: {
@@ -1699,7 +1697,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### createGenerateClassName
 
-- The `createGenerateClassName` function is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `createGenerateClassName` function is no longer exported from `@material-ui/core/styles`. If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`.
 
   ```diff
   -import { createGenerateClassName } from '@material-ui/core/styles';
@@ -1708,7 +1706,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### jssPreset
 
-- The `jssPreset` object is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `jssPreset` object is no longer exported from `@material-ui/core/styles`. If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`.
 
   ```diff
   -import { jssPreset } from '@material-ui/core/styles';
@@ -1735,7 +1733,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
    // In the root of your app
    function App(props) {
-  -  return <Component />;
+  - return <Component />;
   +  return <ThemeProvider theme={theme}><Component {...props} /></ThemeProvider>;
    }
   ```
@@ -1751,7 +1749,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### ServerStyleSheets
 
-- The `ServerStyleSheets` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- This way, the `theme` provided in the context will be available in both the styling utilities exported from `@material-ui/styles`, like `makeStyles`, `withStyles` etc. and the Material-UI components. If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`.
 
   ```diff
   -import { ServerStyleSheets } from '@material-ui/core/styles';
@@ -1771,14 +1769,14 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
    const MyComponent = styled('div')(({ theme }) => ({ background: theme.palette.primary.main }));
 
    function App(props) {
-  -  return <MyComponent />;
+  - return <MyComponent />;
   +  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
    }
   ```
 
 #### StylesProvider
 
-- The `StylesProvider` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `StylesProvider` component is no longer exported from `@material-ui/core/styles`. If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`.
 
   ```diff
   -import { StylesProvider } from '@material-ui/core/styles';
@@ -1787,7 +1785,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### useThemeVariants
 
-- The `useThemeVariants` hook is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `useThemeVariants` hook is no longer exported from `@material-ui/core/styles`. If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`.
 
   ```diff
   -import { useThemeVariants } from '@material-ui/core/styles';
@@ -1815,7 +1813,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   }
   ```
 
-- The `withStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, you should use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+- The `withStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available.
 
   ```diff
   -import { withStyles } from '@material-ui/core/styles';
@@ -1829,7 +1827,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
    })(({ theme }) => ({ root: { background: theme.palette.primary.main }}));
 
    function App() {
-  -  return <MyComponent />;
+  - return <MyComponent />;
   +  return <ThemeProvider theme={defaultTheme}><MyComponent /></ThemeProvider>;
    }
   ```
@@ -1847,7 +1845,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
    const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
 
    function App(props) {
-  -  return <MyComponent />;
+  - return <MyComponent />;
   +  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
    }
   ```
@@ -1884,7 +1882,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### ThemeProvider
 
-If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@material-ui/styles`, like `makeStyles`, `withStyles` etc. and the Material-UI components.
+The `@material-ui/styles` package is no longer part of `@material-ui/core/styles`. If you are using `@material-ui/styles` together with `@material-ui/core` you need to add a module augmentation for the `DefaultTheme`.
 
 ```diff
 -import { ThemeProvider } from '@material-ui/styles';
@@ -1893,7 +1891,7 @@ If you are using the utilities from `@material-ui/styles` together with the `@ma
 
 #### Default theme (TypeScript)
 
-The `@material-ui/styles` package is no longer part of `@material-ui/core/styles`. If you are using `@material-ui/styles` together with `@material-ui/core` you need to add a module augmentation for the `DefaultTheme`.
+The `ServerStyleSheets` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
 
 ```ts
 import { Theme } from '@material-ui/core/styles';
