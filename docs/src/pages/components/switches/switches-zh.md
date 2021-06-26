@@ -41,7 +41,7 @@ You can control the switch with the `checked` and `onChange` props:
 
 ## 带有 FormGroup 的开关
 
-`FormGroup` 会提供相对简单的 API 对选择控件进行分组。 但是，如果需要操作多个相关的控件，我们鼓励您使用 [Checkboxes](/components/checkboxes/) 来代替它。 (参见: [何时使用](#when-to-use))。
+`FormGroup` 会提供相对简单的 API 对选择控件进行分组。 `FormGroup` 会提供相对简单的 API 对选择控件进行分组。 (参见: [何时使用](#when-to-use))。
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 
