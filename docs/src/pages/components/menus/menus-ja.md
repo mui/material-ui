@@ -27,7 +27,7 @@ The `MenuItem` is a wrapper around `ListItem` with some additional styles. You c
 
 ## メニューリストの構成
 
-`Menu` コンポーネントは内部的に `Popover` コンポーネントを使用します。 しかし、別の配置方法を使ったり、スクロールをブロックしないようにしたいかもしれません。 そのようなニーズに応えるために、自身で構成できる `MenuList` コンポーネントを公開しています。次の例では`Popper`を使用しています。
+`Menu` コンポーネントは内部的に `Popover` コンポーネントを使用します。 しかし、別の配置方法を使ったり、スクロールをブロックしないようにしたいかもしれません。 `Menu` コンポーネントは内部的に `Popover` コンポーネントを使用します。 しかし、別の配置方法を使ったり、スクロールをブロックしないようにしたいかもしれません。 そのようなニーズに応えるために、自身で構成できる `MenuList` コンポーネントを公開しています。次の例では`Popper`を使用しています。
 
 `MenuList` コンポーネントの主な役割は、フォーカスを処理することです。
 
@@ -51,7 +51,7 @@ The `MenuItem` is a wrapper around `ListItem` with some additional styles. You c
 
 ## 制限事項
 
-`text-overflow: ellipsis`がflexbox layoutで動作しなくなる[fexboxのバグ](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) があります。 `Typography` コンポーネントの `noWrap` を利用してこの問題を回避できます。
+`text-overflow: ellipsis`がflexbox layoutで動作しなくなる[fexboxのバグ](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) があります。 `Typography` コンポーネントの `noWrap` を利用してこの問題を回避できます。 `Typography` コンポーネントの `noWrap` を利用してこの問題を回避できます。
 
 {{"demo": "pages/components/menus/TypographyMenu.js", "bg": true}}
 
@@ -63,7 +63,7 @@ The `MenuItem` is a wrapper around `ListItem` with some additional styles. You c
 
 ## コンテキストメニュー
 
-コンテキストメニューの例を次に示します。 (右クリックで開きます。)
+コンテキストメニューの例を次に示します。 (右クリックで開きます。) (右クリックで開きます。)
 
 {{"demo": "pages/components/menus/ContextMenu.js"}}
 
