@@ -28,7 +28,7 @@ materialDesign: https://material.io/components/data-tables
 
 `Table` 组件与原生 `<table>` 元素存在密切关联。 这种限制条件导致要构建丰富的数据表格会变得很有挑战性。
 
-The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data. 虽然它的结构相比之下不够灵活，但是有失必有得，牺牲灵活性来换取更强大的功能。
+The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data. 虽然它的结构相比之下不够灵活，但是有失必有得，牺牲灵活性来换取更强大的功能。 虽然它的结构相比之下不够灵活，但是有失必有得，牺牲灵活性来换取更强大的功能。
 
 {{"demo": "pages/components/tables/DataTable.js", "bg": "inline"}}
 
@@ -76,7 +76,7 @@ The [`DataGrid` component](/components/data-grid/) is designed for use-cases tha
 
 ## Sticky header
 
-Here is an example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop. (⚠️ no IE 11 support)
+Here is an example of a table with scrollable rows and fixed column headers. It leverages the `stickyHeader` prop. (⚠️ no IE 11 support) It leverages the `stickyHeader` prop. (⚠️ no IE 11 support)
 
 {{"demo": "pages/components/tables/StickyHeadTable.js", "bg": true}}
 
