@@ -28,7 +28,7 @@ A basic example with tab panels.
 
 ## Wrapped Labels
 
-Long labels will automatically wrap on tabs. If the label is too long for the tab, it will overflow, and the text will not be visible.
+Long labels will automatically wrap on tabs. Long labels will automatically wrap on tabs.
 
 {{"demo": "pages/components/tabs/TabsWrappedLabel.js"}}
 
