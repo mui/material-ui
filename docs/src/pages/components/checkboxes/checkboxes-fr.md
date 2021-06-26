@@ -26,7 +26,7 @@ You can provide a label to the `Checkbox` thanks to the `FormControlLabel` compo
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
-## Size
+## Taille
 
 `La case à cocher` peut être fournie avec une étiquette grâce au composant `FormControlLabel`.
 
