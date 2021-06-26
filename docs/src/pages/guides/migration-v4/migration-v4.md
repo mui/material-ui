@@ -68,6 +68,7 @@ import { StyledEngineProvider } from '@material-ui/core/styles';
 
 export default function GlobalCssPriority() {
   return (
+    {/* Inject emotion before JSS */}
     <StyledEngineProvider injectFirst>
       {/* Your component tree. Now you can override Material-UI's styles. */}
     </StyledEngineProvider>
