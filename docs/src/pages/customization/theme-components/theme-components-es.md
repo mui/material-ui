@@ -53,6 +53,10 @@ const theme = createTheme({
 +     }),
     ]
   }
+      Infinity,
++     }),
+    ]
+  }
 ```
 
 {{"demo": "pages/customization/theme-components/DefaultProps.js"}}
