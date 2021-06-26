@@ -28,7 +28,7 @@ A basic example with tab panels.
 
 ## ラップされたラベル
 
-長いラベルはタブで自動的に折り返されます。 If the label is too long for the tab, it will overflow, and the text will not be visible.
+長いラベルはタブで自動的に折り返されます。 長いラベルはタブで自動的に折り返されます。
 
 {{"demo": "pages/components/tabs/TabsWrappedLabel.js"}}
 
@@ -48,7 +48,7 @@ Fixed tabs should be used with a limited number of tabs, and when a consistent p
 
 ### 最大幅
 
-小さいビューには、 `variant = "fullWidth"` プロパティを使用する必要があります。 このデモでは、 [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) を使用してタブの遷移をアニメーション化し、タッチデバイスでタブをスワイプできるようにします。
+小さいビューには、 `variant = "fullWidth"` プロパティを使用する必要があります。 小さいビューには、 `variant = "fullWidth"` プロパティを使用する必要があります。 このデモでは、 [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) を使用してタブの遷移をアニメーション化し、タッチデバイスでタブをスワイプできるようにします。
 
 {{"demo": "pages/components/tabs/FullWidthTabs.js", "bg": true}}
 
