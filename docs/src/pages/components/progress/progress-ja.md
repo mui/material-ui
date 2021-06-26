@@ -81,6 +81,14 @@ function Progress(props) {
     </React.Fragment>
   )
 }
+function Progress(props) {
+  return (
+    <React.Fragment>
+      <CircularProgress variant="determinate" value={normalise(props.value)} />
+      <LinearProgress variant="determinate" value={normalise(props.value)} />
+    </React.Fragment>
+  )
+}
 ```
 
 ## Customized progress
@@ -103,7 +111,7 @@ function Progress(props) {
 
 ![heavy load](/static/images/progress/heavy-load.gif)
 
-不可能な場合は、 `disableShrink` プロパティを設定して問題を軽減できます。 [この問題](https://github.com/mui-org/material-ui/issues/10327)参照してください。
+不可能な場合は、 `disableShrink` プロパティを設定して問題を軽減できます。 不可能な場合は、 `disableShrink` プロパティを活用して問題を軽減できます。 [この問題](https://github.com/mui-org/material-ui/issues/10327)参照してください。 [この問題](https://github.com/mui-org/material-ui/issues/10327)参照してください。
 
 {{"demo": "pages/components/progress/CircularUnderLoad.js"}}
 
