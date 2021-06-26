@@ -62,15 +62,16 @@ const theme = createTheme(
 | Korean                  | ko-KR               | `koKR`     |
 | Persian                 | fa-IR               | `faIR`     |
 | Polish                  | pl-PL               | `plPL`     |
-| Portuguese (Brazil)     | pt-BR               | `ptBR`     |
 | Portuguese              | pt-PT               | `ptPT`     |
+| Portuguese (Brazil)     | pt-BR               | `ptBR`     |
 | Romanian                | ro-RO               | `roRO`     |
 | Russian                 | ru-RU               | `ruRU`     |
+| Sinhalese               | si-LK               | `siLK`     |
 | Slovak                  | sk-SK               | `skSK`     |
 | Spanish                 | es-ES               | `esES`     |
 | Swedish                 | sv-SE               | `svSE`     |
-| Turkish                 | tr-TR               | `trTR`     |
 | Thai                    | th-TH               | `thTH`     |
+| Turkish                 | tr-TR               | `trTR`     |
 | Ukrainian               | uk-UA               | `ukUA`     |
 | Vietnamese              | vi-VN               | `viVN`     |
 
