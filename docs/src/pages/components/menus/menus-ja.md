@@ -16,21 +16,33 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
 
 ## 基本のメニューコンポーネント
 
-シンプルなメニューはデフォルトでアンカー要素の上に表示されます。 (プロパティによって設定を[変える](#menu-positioning)ことができます。) 画面の端に表示される場合、すべてのメニュー項目が表示されるよう、デフォルトのメニューは垂直方向に表示されます。
+シンプルなメニューはデフォルトでアンカー要素の上に表示されます。 (プロパティによって設定を[変える](#menu-positioning)ことができます。 ) 画面の端に表示される場合、すべてのメニュー項目が表示されるよう、デフォルトのメニューは垂直方向に表示されます。
 
 オプションを選択したら、そのオプションをすぐにコミットしてメニューを閉じるのが理想的です。
 
-**曖昧さ回避**: メニューとは違い、ダイアログでは、リスト項目で使用可能なオプションに関連する追加の詳細を表示したり、主要なタスクに関連するナビゲーションまたは直交アクションを提供することができます。 同じコンテンツを表示することはできますが、シンプルなダイアログよりもシンプルなメニューが好まれます。シンプルなメニューはユーザーの現在のコンテキストにとって破壊的ではないためです。
+**曖昧さ回避**: メニューとは違い、ダイアログでは、リスト項目で使用可能なオプションに関連する追加の詳細を表示したり、主要なタスクに関連するナビゲーションまたは直交アクションを提供することができます。 同じコンテンツを表示することはできますが、シンプルなダイアログよりもシンプルなメニューが好まれます。 シンプルなメニューはユーザーの現在のコンテキストにとって破壊的ではないためです。
 
 {{"demo": "pages/components/menus/BasicMenu.js"}}
 
 ## 選択されているメニュー
 
+In desktop viewport, padding is increased to give more space to the menu.
+
+{{"demo": "pages/components/menus/IconMenu.js", "bg": true}}
+
+## 位置を決めたメニュー
+
+For the menu that has long list and long text, you can use the `dense` prop to reduce the padding (this property only affects desktop viewport).
+
+{{"demo": "pages/components/menus/DenseMenu.js", "bg": true}}
+
+## メニューリストの構成
+
 If used for item selection, when opened, simple menus places the initial focus on the selected menu item. 現在選択されているメニュー項目は、 `selected` プロパティ（[ListItem](/api/list-item/)）を使用して設定されます。 To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
 
-## 位置を決めたメニュー
+## カスタムメニュー
 
 `Menu`コンポーネントは自信を配置するのに`Popover`コンポーネントを使用するため、配置のために同じ[配置プロパティ](/components/popover/#anchor-playground)を使うことができます。 たとえば、アンカーの下にメニューを表示できます。
 
@@ -38,13 +50,19 @@ If used for item selection, when opened, simple menus places the initial focus o
 
 ## メニューリストの構成
 
-`Menu` コンポーネントは内部的に `Popover` コンポーネントを使用します。 しかし、別の配置方法を使ったり、スクロールをブロックしないようにしたいかもしれません。 そのようなニーズに応えるために、自身で構成できる `MenuList` コンポーネントを公開しています。次の例では`Popper`を使用しています。
+`Menu` コンポーネントは内部的に `Popover` コンポーネントを使用します。 しかし、別の配置方法を使ったり、スクロールをブロックしないようにしたいかもしれません。 `Menu` コンポーネントは内部的に `Popover` コンポーネントを使用します。 しかし、別の配置方法を使ったり、スクロールをブロックしないようにしたいかもしれません。 そのようなニーズに応えるために、自身で構成できる `MenuList` コンポーネントを公開しています。次の例では`Popper`を使用しています。
 
 `MenuList` コンポーネントの主な役割は、フォーカスを処理することです。
 
 {{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
-## カスタムメニュー
+## 制限事項
+
+すべてのメニュー項目を表示しないようにメニューの高さを設定すると、メニューは内部でスクロールできるようになります。
+
+{{"demo": "pages/components/menus/AccountMenu.js"}}
+
+## トランジションの変更
 
 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [こちら](/customization/how-to-customize/)を参照してください。
 
@@ -54,7 +72,7 @@ If used for item selection, when opened, simple menus places the initial focus o
 
 🎨 インスピレーションを求めている場合は、 [MUI Treasury's customization examples](https://mui-treasury.com/styles/menu) を確認すると良いでしょう。
 
-## 高さの最大値を決めたメニュー
+## コンテキストメニュー
 
 すべてのメニュー項目を表示しないようにメニューの高さを設定すると、メニューは内部でスクロールできるようになります。
 
@@ -62,7 +80,7 @@ If used for item selection, when opened, simple menus places the initial focus o
 
 ## 制限事項
 
-`text-overflow: ellipsis`がflexbox layoutで動作しなくなる[fexboxのバグ](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) があります。 `Typography` コンポーネントの `noWrap` を利用してこの問題を回避できます。
+`text-overflow: ellipsis`がflexbox layoutで動作しなくなる[fexboxのバグ](https://bugs.chromium.org/p/chromium/issues/detail?id=327437) があります。 `Typography` コンポーネントの `noWrap` を利用してこの問題を回避できます。 `Typography` コンポーネントの `noWrap` を利用してこの問題を回避できます。
 
 {{"demo": "pages/components/menus/TypographyMenu.js", "bg": true}}
 
@@ -74,7 +92,7 @@ If used for item selection, when opened, simple menus places the initial focus o
 
 ## コンテキストメニュー
 
-コンテキストメニューの例を次に示します。 (右クリックで開きます。)
+コンテキストメニューの例を次に示します。 (右クリックで開きます。) (右クリックで開きます。)
 
 {{"demo": "pages/components/menus/ContextMenu.js"}}
 
