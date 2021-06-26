@@ -7,7 +7,7 @@ components: Hidden
 
 <p class="description">hiddenユーティリティを使用して、コンポーネントの可視性値などを迅速に切り替えます。</p>
 
-**明示的に非表示にしない限り**、すべての要素が表示されます。 Material-UIの [responsive breakpoints](/customization/breakpoints/) との統合を容易にするために、このコンポーネントを使用して任意のコンテンツを非表示にできます。 また、[`Grid`](/components/grid/)コンポーネントと組み合わせて使用することもできます。
+**明示的に非表示にしない限り**、すべての要素が表示されます。 **明示的に非表示にしない限り**、すべての要素が表示されます。 Material-UIの [responsive breakpoints](/customization/breakpoints/) との統合を容易にするために、このコンポーネントを使用して任意のコンテンツを非表示にできます。 また、[`Grid`](/components/grid/)コンポーネントと組み合わせて使用することもできます。
 
 ## 仕組み
 
