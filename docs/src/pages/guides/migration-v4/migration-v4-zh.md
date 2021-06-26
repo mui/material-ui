@@ -8,7 +8,7 @@ If you're looking for the v4 docs, you can [find them here](https://material-ui.
 
 ## 简介
 
-当你将站点从 Material-UI 的 v4 版本升级到 v5 版本时，这篇文章会为你提供一些参考。 您可能不会将这里所有涵盖的内容运用到你的站点上。 While there's a lot covered here, you probably won't need to do everything. We'll do our best to keep things easy to follow, and as sequential as possible, so you can quickly get rocking on v5!
+当你将站点从 Material-UI 的 v4 版本升级到 v5 版本时，这篇文章会为你提供一些参考。 您可能不会将这里所有涵盖的内容运用到你的站点上。 您可能不会将这里所有涵盖的内容运用到你的站点上。 While there's a lot covered here, you probably won't need to do everything. We'll do our best to keep things easy to follow, and as sequential as possible, so you can quickly get rocking on v5!
 
 ## 为什么您需要迁移呢
 
@@ -69,11 +69,11 @@ The minimum supported version of React was increased from v16.8.0 to v17.0.0.
 
 ### Supported TypeScript version
 
-The minimum supported version of TypeScript was increased from v3.2 to v3.5. We try to align with types released from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (i.e. packages published on npm under the `@types` namespace). We will not change the minimum supported version in a major version of Material-UI. However, we generally recommend to not use a TypeScript version older than the [lowest supported version of DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped#older-versions-of-typescript-33-and-earlier)
+The minimum supported version of TypeScript was increased from v3.2 to v3.5. The minimum supported version of TypeScript was increased from v3.2 to v3.5. We try to align with types released from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (i.e. packages published on npm under the `@types` namespace). We will not change the minimum supported version in a major version of Material-UI. However, we generally recommend to not use a TypeScript version older than the [lowest supported version of DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped#older-versions-of-typescript-33-and-earlier) We will not change the minimum supported version in a major version of Material-UI. However, we generally recommend to not use a TypeScript version older than the [lowest supported version of DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped#older-versions-of-typescript-33-and-earlier)
 
 ### Style library
 
-The style library used by default in v5 is [`emotion`](https://github.com/emotion-js/emotion). While migrating from JSS to emotion, and if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you will need to take care of the CSS injection order. To do so, you need to have the `StyledEngineProvider` with the `injectFirst` option at the top of your component tree. 下面是一个示例：
+The style library used by default in v5 is [`emotion`](https://github.com/emotion-js/emotion). While migrating from JSS to emotion, and if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you will need to take care of the CSS injection order. To do so, you need to have the `StyledEngineProvider` with the `injectFirst` option at the top of your component tree. 下面是一个示例： While migrating from JSS to emotion, and if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you will need to take care of the CSS injection order. To do so, you need to have the `StyledEngineProvider` with the `injectFirst` option at the top of your component tree. 下面是一个示例：
 
 ```jsx
 import * as React from 'react';
@@ -88,7 +88,7 @@ export default function GlobalCssPriority() {
 }
 ```
 
-> **Note:** If you are using emotion to style your app, and have a custom cache, it will override the one provided by Material-UI. In order for the injection order to still be correct, you need to add the `prepend` option to `createCache`. 下面是一个示例：
+> **Note:** If you are using emotion to style your app, and have a custom cache, it will override the one provided by Material-UI. In order for the injection order to still be correct, you need to add the `prepend` option to `createCache`. 下面是一个示例： In order for the injection order to still be correct, you need to add the `prepend` option to `createCache`. 下面是一个示例：
 
 ```jsx
 import * as React from 'react';
@@ -109,7 +109,7 @@ export default function PlainCssPriority() {
 }
 ```
 
-> **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@material-ui/styled-engine-sc` package.
+> **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package. To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@material-ui/styled-engine-sc` package.
 
 ### 主题
 
@@ -123,8 +123,8 @@ export default function PlainCssPriority() {
   +const theme = createTheme({
   ```
 
-- The default background color is now `#fff` in light mode and `#121212` in dark mode. This matches the Material Design guidelines.
-- Breakpoints are now treated as values instead of [ranges](https://v4.material-ui.com/customization/breakpoints/#default-breakpoints). The behavior of `down(key)` was changed to define a media query below the value defined by the corresponding breakpoint (exclusive), rather than the breakpoint above. `between(start, end)` was also updated to define a media query for the values between the actual values of start (inclusive) and end (exclusive). 当使用 `down()`断点工具集时，你需要向上一步更新断点键。 当使用  `between(start, end)` 时，结束断点也应向上一步更新。
+- 将默认的变量从 `standard` 更改为 `outlined`。 Standard has been removed from the Material Design guidelines.
+- Breakpoints are now treated as values instead of [ranges](https://v4.material-ui.com/customization/breakpoints/#default-breakpoints). The behavior of `down(key)` was changed to define a media query below the value defined by the corresponding breakpoint (exclusive), rather than the breakpoint above. `between(start, end)` was also updated to define a media query for the values between the actual values of start (inclusive) and end (exclusive). 当使用 `down()`断点工具集时，你需要向上一步更新断点键。 The behavior of `down(key)` was changed to define a media query below the value defined by the corresponding breakpoint (exclusive), rather than the breakpoint above. `between(start, end)` was also updated to define a media query for the values between the actual values of start (inclusive) and end (exclusive). 当使用 `down()`断点工具集时，你需要向上一步更新断点键。 当使用  `between(start, end)` 时，结束断点也应向上一步更新。
 
   Here are some examples of the changes required:
 
@@ -152,7 +152,7 @@ export default function PlainCssPriority() {
   +<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
   ```
 
-- The `theme.breakpoints.width` utility was removed because it's redundant. Use `theme.breakpoints.values` to get the same values.
+- The `theme.breakpoints.width` utility was removed because it's redundant. Use `theme.breakpoints.values` to get the same values. Use `theme.breakpoints.values` to get the same values.
 
   ```diff
   -theme.breakpoints.width('md')
@@ -166,7 +166,7 @@ export default function PlainCssPriority() {
   +theme.palette.augmentColor({ color: red, name: 'brand' });
   ```
 
-- The `theme.typography.round` helper was removed because it was no longer used. If you need it, use the function below:
+- The `theme.typography.round` helper was removed because it was no longer used. If you need it, use the function below: If you need it, use the function below:
 
   ```js
   function round(value) {
@@ -174,7 +174,7 @@ export default function PlainCssPriority() {
   }
   ```
 
-- The default breakpoints were changed to better match the common use cases. They also better match the Material Design guidelines. [Read more about the change](https://github.com/mui-org/material-ui/issues/21902)
+- The default breakpoints were changed to better match the common use cases. They also better match the Material Design guidelines. [Read more about the change](https://github.com/mui-org/material-ui/issues/21902) They also better match the Material Design guidelines. [Read more about the change](https://github.com/mui-org/material-ui/issues/21902)
 
   ```diff
   {
@@ -333,7 +333,7 @@ const theme = createTheme({
 
   You can use the [`fade-rename-alpha` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#fade-rename-alpha) for automatic migration.
 
-- The `createStyles` function from `@material-ui/core/styles` was moved to the one exported from `@material-ui/styles`. It is necessary for removing the dependency to `@material-ui/styles` in the core package.
+- The `createStyles` function from `@material-ui/core/styles` was moved to the one exported from `@material-ui/styles`. It is necessary for removing the dependency to `@material-ui/styles` in the core package. It is necessary for removing the dependency to `@material-ui/styles` in the core package.
 
 ```diff
 -import { createStyles } from '@material-ui/core/styles';
@@ -348,7 +348,7 @@ const theme = createTheme({
   1. `gridRowGap` to `rowGap`
   1. `gridColumnGap` to `columnGap`
 
-- Use spacing unit in `gap`, `rowGap`, and `columnGap`. If you were using a number previously, you need to mention the px to bypass the new transformation with `theme.spacing`.
+- Use spacing unit in `gap`, `rowGap`, and `columnGap`. Use spacing unit in `gap`, `rowGap`, and `columnGap`. If you were using a number previously, you need to mention the px to bypass the new transformation with `theme.spacing`.
 
   ```diff
   <Box
@@ -366,9 +366,9 @@ const theme = createTheme({
 
   > Note that the system grid function wasn't documented in v4.
 
-### 1. 1. 核心组件
+### 1. 1. 1. 核心组件
 
-As the core components use emotion as their style engine, the props used by emotion are not intercepted. The prop `as` in the following code snippet will not be propagated to `SomeOtherComponent`.
+As the core components use emotion as their style engine, the props used by emotion are not intercepted. The prop `as` in the following code snippet will not be propagated to `SomeOtherComponent`. The prop `as` in the following code snippet will not be propagated to `SomeOtherComponent`.
 
 ```jsx
 <MuiComponent component={SomeOtherComponent} as="button" />
@@ -376,8 +376,8 @@ As the core components use emotion as their style engine, the props used by emot
 
 ### 一个突出的应用栏。
 
-- Remove z-index when position static and relative. This avoids the creation of a stacking context and rendering issues.
-- The `color` prop has no longer any effect in dark mode. The app bar uses the background color required by the elevation to follow the [Material Design guidelines](https://material.io/design/color/dark-theme.html). Use `enableColorOnDark` to restore the behavior of v4.
+- Remove z-index when position static and relative. This avoids the creation of a stacking context and rendering issues. This avoids the creation of a stacking context and rendering issues.
+- The `color` prop has no longer any effect in dark mode. The `color` prop has no longer any effect in dark mode. The app bar uses the background color required by the elevation to follow the [Material Design guidelines](https://material.io/design/color/dark-theme.html). Use `enableColorOnDark` to restore the behavior of v4. Use `enableColorOnDark` to restore the behavior of v4.
 
   ```jsx
   <AppBar enableColorOnDark />
@@ -446,7 +446,7 @@ As the core components use emotion as their style engine, the props used by emot
   2. `select-option` to `selectOption`
   3. `remove-option` to `removeOption`
 
-- Change the CSS rules that use `[data-focus="true"]` to use `.Mui-focused`. The `data-focus` attribute is not set on the focused option anymore, instead, global class names are used.
+- Change the CSS rules that use `[data-focus="true"]` to use `.Mui-focused`. The `data-focus` attribute is not set on the focused option anymore, instead, global class names are used. The `data-focus` attribute is not set on the focused option anymore, instead, global class names are used.
 
   ```diff
   -'.MuiAutocomplete-option[data-focus="true"]': {
@@ -544,7 +544,7 @@ As the core components use emotion as their style engine, the props used by emot
 
   You can use the [`box-borderradius-values` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#box-borderradius-values) for automatic migration.
 
-- The Box system props have an optional alternative API in v5, using the `sx` prop. You can [read this section](/system/basics/#api-tradeoff) for the "why" behind this new API.
+- The Box system props have an optional alternative API in v5, using the `sx` prop. You can [read this section](/system/basics/#api-tradeoff) for the "why" behind this new API. You can [read this section](/system/basics/#api-tradeoff) for the "why" behind this new API.
 
   ```diff
   -<Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
@@ -612,7 +612,7 @@ As the core components use emotion as their style engine, the props used by emot
 
   You can use the [`button-color-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#button-color-prop) for automatic migration.
 
-- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666). `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
 
   ```diff
   <button class="MuiButton-root">
@@ -649,7 +649,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 ### CircularProgress（进度环）
 
-- The `static` variant has been renamed to `determinate`, and the previous appearance of `determinate` has been replaced by that of `static`. 这属于 Material Design 的例外情况，并且它在规范中已被删除。
+- 将默认的变量从 `standard` 更改为 `outlined`。 Standard has been removed from the Material Design guidelines.
 
   ```diff
   <CircularProgress variant="static" classes={{ static: 'className' }} />
@@ -680,7 +680,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### CssBaseline
 
-- The component was migrated to use the `@material-ui/styled-engine` (`emotion` or `styled-components`) instead of `jss`. You should remove the `@global` key when defining the style overrides for it. You should remove the `@global` key when defining the style overrides for it. You could also start using the CSS template syntax over the JavaScript object syntax.
+- The component was migrated to use the `@material-ui/styled-engine` (`emotion` or `styled-components`) instead of `jss`. You should remove the `@global` key when defining the style overrides for it. You should remove the `@global` key when defining the style overrides for it. You could also start using the CSS template syntax over the JavaScript object syntax. You should remove the `@global` key when defining the style overrides for it. You could also start using the CSS template syntax over the JavaScript object syntax.
 
   ```diff
   const theme = createTheme({
@@ -703,7 +703,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   });
   ```
 
-- The `body` font size has changed from `theme.typography.body2` (`0.875rem`) to `theme.typography.body1` (`1rem`). To return to the previous size, you can override it in the theme: To return to the previous size, you can override it in the theme:
+- The `body` font size has changed from `theme.typography.body2` (`0.875rem`) to `theme.typography.body1` (`1rem`). To return to the previous size, you can override it in the theme: To return to the previous size, you can override it in the theme: To return to the previous size, you can override it in the theme:
 
   ```js
   const theme = createTheme({
@@ -742,7 +742,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
 
-- Remove the `disableBackdropClick` prop because it is redundant. 当 `reason === 'backdropClick'` 时，将会忽略 `onClose` 的关闭事件。
+- Remove the `disableBackdropClick` prop because it is redundant. Use `onClose` with `reason === 'backdropClick'` instead. Remove the `disableBackdropClick` prop because it is redundant. 当 `reason === 'backdropClick'` 时，将会忽略 `onClose` 的关闭事件。
 
   ```diff
   <Dialog
@@ -756,7 +756,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   />
   ```
 
-- Remove the `withMobileDialog` higher-order component. Hook API 提供了一个更简单且灵活的方案：
+- Remove the `withMobileDialog` higher-order component. Hook API 提供了一个更简单且灵活的方案： Hook API 提供了一个更简单且灵活的方案：
 
   ```diff
   -import withMobileDialog from '@material-ui/core/withMobileDialog';
@@ -769,6 +769,9 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
     const [open, setOpen] = React.useState(false);
 
   // ...
+
+  -export default withMobileDialog()(ResponsiveDialog);
+  +export default ResponsiveDialog;
 
   -export default withMobileDialog()(ResponsiveDialog);
   +export default ResponsiveDialog;
@@ -867,7 +870,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### FormControl
 
-- 将默认的变量从 `standard` 更改为 `outlined`。 Standard has been removed from the Material Design guidelines.
+- 将默认的变量从 `standard` 更改为 `outlined`。 Standard has been removed from the Material Design guidelines. If you are composing the Select with a form control component, you only need to update `FormControl`, the select inherits the variant from its context.
 
   ```diff
   -<FormControl value="Standard" />
@@ -889,7 +892,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   You can use the [`component-rename-prop` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#component-rename-prop) for automatic migration.
 
-- The props: `alignItems` `alignContent` and `justifyContent` and their `classes` and style overrides keys were removed: "align-items-xs-center", "align-items-xs-flex-start", "align-items-xs-flex-end", "align-items-xs-baseline", "align-content-xs-center", "align-content-xs-flex-start", "align-content-xs-flex-end", "align-content-xs-space-between", "align-content-xs-space-around", "justify-content-xs-center", "justify-content-xs-flex-end", "justify-content-xs-space-between", "justify-content-xs-space-around" and "justify-content-xs-space-evenly". These props are now considered part of the system, not on the `Grid` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiGrid.variants` options. For example
+- The props: `alignItems` `alignContent` and `justifyContent` and their `classes` and style overrides keys were removed: "align-items-xs-center", "align-items-xs-flex-start", "align-items-xs-flex-end", "align-items-xs-baseline", "align-content-xs-center", "align-content-xs-flex-start", "align-content-xs-flex-end", "align-content-xs-space-between", "align-content-xs-space-around", "justify-content-xs-center", "justify-content-xs-flex-end", "justify-content-xs-space-between", "justify-content-xs-space-around" and "justify-content-xs-space-evenly". These props are now considered part of the system, not on the `Grid` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiGrid.variants` options. For example These props are now considered part of the system, not on the `Grid` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiGrid.variants` options. For example
 
   ```diff
   const theme = createTheme({
@@ -971,12 +974,12 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   ```diff
   -<Hidden implementation="js" xlUp><Paper /></Hidden>
   +const hidden = useMediaQuery(theme => theme.breakpoints.up('xl'));
-  +return hidden ? null : <Paper />;
+  +return hidden ? null : <Paper />; null : <Paper />;
   ```
 
 ### Icon
 
-- The default value of `fontSize` was changed from `default` to `medium` for consistency. In the unlikely event that you were using the value `default`, the prop can be removed:
+- The default value of `fontSize` was changed from `default` to `medium` for consistency. The default value of `fontSize` was changed from `default` to `medium` for consistency. In the unlikely event that you were using the value `default`, the prop can be removed:
 
   ```diff
   -<Icon fontSize="default">icon-name</Icon>
@@ -985,14 +988,14 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### IconButton
 
-- The default size's padding is reduced to `8px` which makes the default IconButton size of `40px`. To get the old default size (`48px`), use `size="large"`. The change was done to better match Google's products when Material Design stopped documenting the icon button pattern.
+- The default size's padding is reduced to `8px` which makes the default IconButton size of `40px`. To get the old default size (`48px`), use `size="large"`. The change was done to better match Google's products when Material Design stopped documenting the icon button pattern. To get the old default size (`48px`), use `size="large"`. The change was done to better match Google's products when Material Design stopped documenting the icon button pattern.
 
   ```diff
   - <IconButton>
   + <IconButton size="large">
   ```
 
-- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666). `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
 
   ```diff
   <button class="MuiIconButton-root">
@@ -1029,7 +1032,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
 
-- Change the default value of `anchorOrigin.vertical` to follow the Material Design guidelines. The menu now displays below the anchor instead of on top of it. 你可以用以下方法恢复到以前的行为：
+- Change the default value of `anchorOrigin.vertical` to follow the Material Design guidelines. The menu now displays below the anchor instead of on top of it. 你可以用以下方法恢复到以前的行为： The menu now displays below the anchor instead of on top of it. 你可以用以下方法恢复到以前的行为：
 
   ```diff
    <Menu
@@ -1041,7 +1044,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### MenuItem
 
-- The `MenuItem` component inherits the `ButtonBase` component instead of `ListItem`. The class names related to "MuiListItem-\*" are removed and theming `ListItem` is no longer affecting `MenuItem`.
+- The `MenuItem` component inherits the `ButtonBase` component instead of `ListItem`. The class names related to "MuiListItem-\*" are removed and theming `ListItem` is no longer affecting `MenuItem`. The class names related to "MuiListItem-\*" are removed and theming `ListItem` is no longer affecting `MenuItem`.
 
   ```diff
   -<li className="MuiButtonBase-root MuiMenuItem-root MuiListItem-root">
@@ -1059,7 +1062,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Modal
 
-- Remove the `disableBackdropClick` prop because it is redundant. Use `onClose` with `reason === 'backdropClick'` instead.
+- Remove the `disableBackdropClick` prop because it is redundant. Use `onClose` with `reason === 'backdropClick'` instead. Use `onClose` with `reason === 'backdropClick'` instead.
 
   ```diff
   <Modal
@@ -1073,7 +1076,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   />
   ```
 
-- Remove the `onEscapeKeyDown` prop because it is redundant. 使用 `onClose` 和 `reason === "escapeKeyDown"` 来代替。
+- Remove the `onEscapeKeyDown` prop because it is redundant. 使用 `onClose` 和 `reason === "escapeKeyDown"` 来代替。 使用 `onClose` 和 `reason === "escapeKeyDown"` 来代替。
 
   ```diff
   <Modal
@@ -1090,7 +1093,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### NativeSelect
 
-- Merge the `selectMenu` slot into `select`. Slot `selectMenu` was redundant. The `root` slot is no longer applied to the select, but to the root.
+- Merge the `selectMenu` slot into `select`. Slot `selectMenu` was redundant. Merge the `selectMenu` slot into `select`. Slot `selectMenu` was redundant. The `root` slot is no longer applied to the select, but to the root.
 
   ```diff
   -<NativeSelect classes={{ root: 'class1', select: 'class2', selectMenu: 'class3' }} />
@@ -1108,7 +1111,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Paper
 
-- Change the background opacity based on the elevation in dark mode. This change was done to follow the Material Design guidelines. You can revert it in the theme:
+- Change the background opacity based on the elevation in dark mode. This change was done to follow the Material Design guidelines. You can revert it in the theme: This change was done to follow the Material Design guidelines. You can revert it in the theme:
 
   ```diff
   const theme = createTheme({
@@ -1173,7 +1176,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Popper
 
-- 我们将 [Popper.js](https://github.com/popperjs/popper-core) 从 v1 升级到 v2。 这个第三方库的升级引入了很多变化。<br /> 你可以阅读 [他们的迁移指南](https://popper.js.org/docs/v2/migration-guide/) 或参考以下摘要：
+- 我们将 [Popper.js](https://github.com/popperjs/popper-core) 从 v1 升级到 v2。 <br /> 你可以阅读 [他们的迁移指南](https://popper.js.org/docs/v2/migration-guide/) 或参考以下摘要：
 
   - CSS 前缀已更改：
     ```diff
@@ -1202,7 +1205,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Radio 单选框组件
 
-- The radio color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the radio closer to the Material Design guidelines.
+- The radio color prop is now "primary" by default. The radio color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the radio closer to the Material Design guidelines. This brings the radio closer to the Material Design guidelines.
 
   ```diff
   -<Radio />
@@ -1263,7 +1266,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Select 选择属性
 
-- 将默认的变量从 `standard` 更改为 `outlined`。 Standard has been removed from the Material Design guidelines. If you are composing the Select with a form control component, you only need to update `FormControl`, the select inherits the variant from its context.
+- 将默认的变量从 `standard` 更改为 `outlined`。 Standard has been removed from the Material Design guidelines. If you are composing the Select with a form control component, you only need to update `FormControl`, the select inherits the variant from its context. If you are composing the Select with a form control component, you only need to update `FormControl`, the select inherits the variant from its context.
 
   ```diff
   -<Select value="Standard" />
@@ -1281,7 +1284,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +<Select variant="outlined" label="Gender" />
   ```
 
-- Merge the `selectMenu` slot into `select`. Slot `selectMenu` was redundant. The `root` slot is no longer applied to the select, but to the root.
+- Merge the `selectMenu` slot into `select`. Slot `selectMenu` was redundant. Merge the `selectMenu` slot into `select`. Slot `selectMenu` was redundant. The `root` slot is no longer applied to the select, but to the root.
 
   ```diff
   -<Select classes={{ root: 'class1', select: 'class2', selectMenu: 'class3' }} />
@@ -1332,7 +1335,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   />
   ```
 
-- Rework the CSS to match the latest [Material Design guidelines](https://material.io/components/sliders) and make custom styles more intuitive. [See documentation](/components/slider/). <a href="/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
+- Rework the CSS to match the latest [Material Design guidelines](https://material.io/components/sliders) and make custom styles more intuitive. [See documentation](/components/slider/). [See documentation](/components/slider/). <a href="/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
 
   You can reduce the density of the slider, closer to v4 with the [`size="small"` prop](/components/slider/#sizes).
 
@@ -1419,7 +1422,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### SvgIcon（Svg 图标）
 
-- The default value of `fontSize` was changed from `default` to `medium` for consistency. In the unlikey event that you were using the value `default`, the prop can be removed:
+- The default value of `fontSize` was changed from `default` to `medium` for consistency. The default value of `fontSize` was changed from `default` to `medium` for consistency. In the unlikey event that you were using the value `default`, the prop can be removed:
 
   ```diff
   -<SvgIcon fontSize="default">
@@ -1430,7 +1433,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Switch 开关
 
-- Remove the second argument from `onChange`. You can pull out the checked state by accessing `event.target.checked`.
+- Remove the second argument from `onChange`. Remove the second argument from `onChange`. You can pull out the checked state by accessing `event.target.checked`.
 
   ```diff
   function MySwitch() {
@@ -1443,7 +1446,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   }
   ```
 
-- The switch color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the switch closer to the Material Design guidelines.
+- The switch color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the switch closer to the Material Design guidelines. The radio color prop is now "primary" by default. To continue using the "secondary" color, you must explicitly indicate `secondary`. This brings the radio closer to the Material Design guidelines. This brings the switch closer to the Material Design guidelines.
 
   ```diff
   -<Switch />
@@ -1482,7 +1485,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   + onPageChange={()=>{}}
   ```
 
-- Separate classes for different table pagination labels. This allows simpler customizations.
+- Separate classes for different table pagination labels. This allows simpler customizations. This allows simpler customizations.
 
   ```diff
   <TablePagination
@@ -1491,7 +1494,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   />
   ```
 
-- Move the custom class on `input` to `select`. The `input` key is being applied on another element.
+- Move the custom class on `input` to `select`. The `input` key is being applied on another element. The `input` key is being applied on another element.
 
   ```diff
   <TablePagination
@@ -1511,7 +1514,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Tabs 选项卡
 
-- Change the default `indicatorColor` and `textColor` prop values to "primary". This is done to match the most common use cases with Material Design.
+- Change the default `indicatorColor` and `textColor` prop values to "primary". This is done to match the most common use cases with Material Design. This is done to match the most common use cases with Material Design.
 
   ```diff
   -<Tabs />
@@ -1544,7 +1547,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### TextField
 
-- 将默认的变量从 `standard` 更改为 `outlined`。 Standard has been removed from the Material Design guidelines.
+- 将默认的变量从 `standard` 更改为 `outlined`。 Standard has been removed from the Material Design guidelines. If you are composing the Select with a form control component, you only need to update `FormControl`, the select inherits the variant from its context.
 
   ```diff
   -<TextField value="Standard" />
@@ -1594,7 +1597,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +<Input size="small" />
   ```
 
-- Set the InputAdornment `position` prop to `start` or `end`. Use `start` if used as the value of the `startAdornment` prop. Use `end` if used as the value of the `endAdornment` prop.
+- Set the InputAdornment `position` prop to `start` or `end`. Use `start` if used as the value of the `startAdornment` prop. Use `end` if used as the value of the `endAdornment` prop. Use `start` if used as the value of the `startAdornment` prop. Use `end` if used as the value of the `endAdornment` prop.
 
   ```diff
   -<TextField startAdornment={<InputAdornment>Kg</InputAdornment>} />
@@ -1656,7 +1659,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### 文字铸排
 
-- Remove the `srOnly` variant. You can use the `visuallyHidden` utility in conjunction with the `sx` prop instead.
+- Remove the `srOnly` variant. Remove the `srOnly` variant. You can use the `visuallyHidden` utility in conjunction with the `sx` prop instead.
 
   ```diff
   +import { visuallyHidden } from '@material-ui/utils';
@@ -1665,7 +1668,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +<span style={visuallyHidden}>Create a user</span>
   ```
 
-- The following `classes` and style overrides keys were removed: "colorInherit", "colorPrimary", "colorSecondary", "colorTextPrimary", "colorTextSecondary", "colorError", "displayInline" and "displayBlock". These props are now considered part of the system, not on the `Typography` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiTypography.variants` options. For example
+- The following `classes` and style overrides keys were removed: "colorInherit", "colorPrimary", "colorSecondary", "colorTextPrimary", "colorTextSecondary", "colorError", "displayInline" and "displayBlock". These props are now considered part of the system, not on the `Typography` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiTypography.variants` options. For example These props are now considered part of the system, not on the `Typography` component itself. If you still wish to add overrides for them, you can use the `theme.components.MuiTypography.variants` options. For example
 
   ```diff
   const theme = createTheme({
@@ -1691,7 +1694,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### createGenerateClassName
 
-- The `createGenerateClassName` function is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `createGenerateClassName` function is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`. You should import it directly from `@material-ui/styles`.
 
   ```diff
   -import { createGenerateClassName } from '@material-ui/core/styles';
@@ -1700,7 +1703,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### jssPreset
 
-- The `jssPreset` object is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `jssPreset` object is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`. You should import it directly from `@material-ui/styles`.
 
   ```diff
   -import { jssPreset } from '@material-ui/core/styles';
@@ -1709,7 +1712,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### makeStyles
 
-- The `makeStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/makeStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+- The `makeStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/makeStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead. You can use `@material-ui/styles/makeStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
 
   ```diff
   -import { makeStyles } from '@material-ui/core/styles';
@@ -1734,7 +1737,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### MuiThemeProvider
 
-- The `MuiThemeProvider` component is no longer exported from `@material-ui/core/styles`. Use `ThemeProvider` instead.
+- The `MuiThemeProvider` component is no longer exported from `@material-ui/core/styles`. Use `ThemeProvider` instead. Use `ThemeProvider` instead.
 
   ```diff
   -import { MuiThemeProvider } from '@material-ui/core/styles';
@@ -1743,7 +1746,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### ServerStyleSheets
 
-- The `ServerStyleSheets` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `ServerStyleSheets` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`. You should import it directly from `@material-ui/styles`.
 
   ```diff
   -import { ServerStyleSheets } from '@material-ui/core/styles';
@@ -1770,7 +1773,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### StylesProvider
 
-- The `StylesProvider` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `StylesProvider` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`. You should import it directly from `@material-ui/styles`.
 
   ```diff
   -import { StylesProvider } from '@material-ui/core/styles';
@@ -1779,7 +1782,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### useThemeVariants
 
-- The `useThemeVariants` hook is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `useThemeVariants` hook is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`. You should import it directly from `@material-ui/styles`.
 
   ```diff
   -import { useThemeVariants } from '@material-ui/core/styles';
@@ -1788,7 +1791,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### withStyles
 
-- Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
+- Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component. Refs are now automatically forwarded to the inner component.
 
   ```diff
   import * as React from 'react';
@@ -1807,7 +1810,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   }
   ```
 
-- The `withStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, you should use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+- The `withStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, you should use the `ThemeProvider` component from `@material-ui/core/styles` instead. You can use `@material-ui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, you should use the `ThemeProvider` component from `@material-ui/core/styles` instead.
 
   ```diff
   -import { withStyles } from '@material-ui/core/styles';
@@ -1828,7 +1831,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### withTheme
 
-- The `withTheme` HOC utility has been removed from the `@material-ui/core/styles` package. You can use `@material-ui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+- The `withTheme` HOC utility has been removed from the `@material-ui/core/styles` package. You can use `@material-ui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead. You can use `@material-ui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
 
   ```diff
   -import { withTheme } from '@material-ui/core/styles';
@@ -1844,7 +1847,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
    }
   ```
 
-- Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
+- Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component. Refs are now automatically forwarded to the inner component.
 
   ```diff
   import * as React from 'react';
@@ -1861,7 +1864,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### withWidth
 
-- This HOC was removed. There's an alternative using the `useMediaQuery` hook on [this page](/components/use-media-query/#migrating-from-withwidth).
+- This HOC was removed. This HOC was removed. There's an alternative using the `useMediaQuery` hook on [this page](/components/use-media-query/#migrating-from-withwidth).
 
 ### `@material-ui/types`
 
@@ -1876,7 +1879,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### ThemeProvider
 
-If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@material-ui/styles`, like `makeStyles`, `withStyles` etc. and the Material-UI components.
+If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@material-ui/styles`, like `makeStyles`, `withStyles` etc. and the Material-UI components. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@material-ui/styles`, like `makeStyles`, `withStyles` etc. and the Material-UI components.
 
 ```diff
 -import { ThemeProvider } from '@material-ui/styles';
@@ -1885,7 +1888,7 @@ If you are using the utilities from `@material-ui/styles` together with the `@ma
 
 #### Default theme (TypeScript)
 
-The `@material-ui/styles` package is no longer part of `@material-ui/core/styles`. If you are using `@material-ui/styles` together with `@material-ui/core` you need to add a module augmentation for the `DefaultTheme`.
+The `@material-ui/styles` package is no longer part of `@material-ui/core/styles`. The `@material-ui/styles` package is no longer part of `@material-ui/core/styles`. If you are using `@material-ui/styles` together with `@material-ui/core` you need to add a module augmentation for the `DefaultTheme`.
 
 ```ts
 import { Theme } from '@material-ui/core/styles';
