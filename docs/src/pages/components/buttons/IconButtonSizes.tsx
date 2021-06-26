@@ -1,11 +1,11 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
+import Stack from '@material-ui/core/Stack';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 export default function IconButtonSizes() {
   return (
-    <Box sx={{ '& button': { m: 1 } }}>
+    <Stack direction="row" alignItems="center" spacing={1}>
       <IconButton aria-label="delete" size="small">
         <DeleteIcon fontSize="inherit" />
       </IconButton>
@@ -18,6 +18,6 @@ export default function IconButtonSizes() {
       <IconButton aria-label="delete" size="large">
         <DeleteIcon fontSize="inherit" />
       </IconButton>
-    </Box>
+    </Stack>
   );
 }
