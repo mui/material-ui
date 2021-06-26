@@ -17,7 +17,7 @@ Material-UI provides icons support in three ways:
 
 ## Material Icons
 
-Google has created over 1,700 official Material icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the @material-ui/icons package. You can [search the full list of these icons](/components/material-icons/).
+For each SVG icon, we export the respective React component from the @material-ui/icons package. Google has created over 1,700 official Material icons, each in five different "themes" (see below). You can [search the full list of these icons](/components/material-icons/).
 
 ### Installation
 
@@ -313,6 +313,9 @@ import Icon from '@material-ui/core/Icon';
 import { visuallyHidden } from '@material-ui/utils';
 
 // ...
+
+<Icon>add_circle</Icon>
+<Box component="span" sx={visuallyHidden}>Create a user</Box>
 
 <Icon>add_circle</Icon>
 <Box component="span" sx={visuallyHidden}>Create a user</Box>
