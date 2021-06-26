@@ -18,7 +18,7 @@ Le Backdrop signale à l'utilisateur d'un changement d'état dans l'application 
 
 ## Unstyled
 
-The backdrop also comes with the unstyled package. It's ideal for doing heavy customizations and minimizing bundle size.
+Le Backdrop est également fourni avec le paquet unstyled. Idéal pour effectuer de lourdes personnalisations et minimiser la taille des paquets.
 
 ```js
 import Backdrop from '@material-ui/unstyled/Backdrop';
