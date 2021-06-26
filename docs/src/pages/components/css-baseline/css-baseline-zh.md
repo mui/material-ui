@@ -63,7 +63,7 @@ export default function MyApp() {
 
 ### 滚动条
 
-The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode).
+The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode). Add this code to your theme (for dark mode).
 
 ```jsx
 import darkScrollbar from '@material-ui/core/darkScrollbar';
@@ -76,10 +76,14 @@ const theme = createTheme({
       },
     },
   },
+}); darkScrollbar() : null,
+      },
+    },
+  },
 });
 ```
 
-This website uses `darkScrollbar` when dark mode is enabled. Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
+This website uses `darkScrollbar` when dark mode is enabled. Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar. Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
 
 ### 文字铸排
 
