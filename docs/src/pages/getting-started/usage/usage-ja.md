@@ -36,7 +36,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ### Responsive meta tag
 
-Material-UIはモバイルファーストで開発されています。最初にモバイル端末用のコードを記述し、次にCSSメディアクエリを使用して必要に応じてコンポーネントを拡張するという方法を用いています。 すべてのデバイスで適切なレンダリングとタッチズームを確実に行うには、responsive viewport meta tagを `<head>` 要素に追加します。
+Material-UIはモバイルファーストで開発されています。最初にモバイル端末用のコードを記述し、次にCSSメディアクエリを使用して必要に応じてコンポーネントを拡張するという方法を用いています。 すべてのデバイスで適切なレンダリングとタッチズームを確実に行うには、responsive viewport meta tagを `<head>` 要素に追加します。 すべてのデバイスで適切なレンダリングとタッチズームを確実に行うには、responsive viewport meta tagを `<head>` 要素に追加します。
 
 ```html
 <meta
