@@ -20,7 +20,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 ## ツールチップの配置
 
-`Tooltip` には、12の**配置**の選択肢があります。 矢印はありません。その代わりに、方向を伝達するために発生元から発生するモーションがあります。
+`Tooltip` には、12の**配置**の選択肢があります。 矢印はありません。 その代わりに、方向を伝達するために発生元から発生するモーションがあります。
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
