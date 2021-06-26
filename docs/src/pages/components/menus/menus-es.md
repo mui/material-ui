@@ -24,6 +24,18 @@ Elegir una opción debiera inmediatamente confirmar la opción y cerrar el menú
 
 {{"demo": "pages/components/menus/BasicMenu.js"}}
 
+## Composición de MenuList
+
+In desktop viewport, padding is increased to give more space to the menu.
+
+{{"demo": "pages/components/menus/IconMenu.js", "bg": true}}
+
+## Dense menu
+
+For the menu that has long list and long text, you can use the `dense` prop to reduce the padding (this property only affects desktop viewport).
+
+{{"demo": "pages/components/menus/DenseMenu.js", "bg": true}}
+
 ## Selected menu
 
 If used for item selection, when opened, simple menus places the initial focus on the selected menu item. El elemento de menú actualmente seleccionado se establece usando la propiedad `selected` (de [ListItem](/api/list-item/)). To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
@@ -43,6 +55,12 @@ El componente `Menu` usa el componente `Popover` internamente. Sin embargo, es p
 La responsabilidad principal del componente `MenuList` es manejar el foco.
 
 {{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
+
+## Limitaciones
+
+Si el alto de un menú previene que todos los elementos sean mostrados, puede hacer desplazamiento internamente.
+
+{{"demo": "pages/components/menus/AccountMenu.js"}}
 
 ## Customized menu
 
