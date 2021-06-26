@@ -52,7 +52,7 @@ You can control the checkbox with the `checked` and `onChange` props:
 
 {{"demo": "pages/components/checkboxes/IndeterminateCheckbox.js"}}
 
-> ⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications.
+> ⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications. It has no accessibility or UX implications.
 
 ## 表单组
 
