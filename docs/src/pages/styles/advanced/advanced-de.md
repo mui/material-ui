@@ -6,7 +6,7 @@
 
 Sie können das äußere Theme erweitern, indem Sie eine Funktion bereitstellen: Das innere Theme ** überschreibt** das äußere Theme.
 
-> In diesem Beispiel wird ein Designobjekt für benutzerdefinierte Komponenten erstellt. If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createTheme()` method. Head to the the [theming section](/customization/theming/) to learn how to build your custom Material-UI theme.
+> In diesem Beispiel wird ein Designobjekt für benutzerdefinierte Komponenten erstellt. If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createTheme()` method. In diesem Beispiel wird ein Designobjekt für benutzerdefinierte Komponenten erstellt.
 
 ```jsx
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -227,8 +227,7 @@ import { StylesProvider } from '@material-ui/styles';
 
 <StylesProvider injectFirst>
   {/* Dein Komponentenbaum.
-      Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben. */}
-</StylesProvider>;
+      Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben. Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben.
 ```
 
 ### `makeStyle` / `withStyles` / `styled`
@@ -268,7 +267,7 @@ Eigenschaft einer Komponente verwenden, um die Styles zu überschreiben.
 
 ### insertionPoint
 
-### insertionPoint ### insertionPoint ### insertionPoint ### insertionPoint JSS \[bietet einen Mechanismus\](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) um diese Situation zu kontrollieren. Durch Hinzufügen der Platzierung des `Einfügepunkts` innerhalb Ihres HTML-Heads können Sie die \[Reihenfolge steuern\](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order), sodass die CSS-Regeln auf Ihre Komponenten angewendet werden.
+insertionPoint ### insertionPoint ### insertionPoint ### insertionPoint JSS \[bietet einen Mechanismus\](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) um diese Situation zu kontrollieren. Durch Hinzufügen der Platzierung des `Einfügepunkts` innerhalb Ihres HTML-Heads können Sie die \[Reihenfolge steuern\](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order), sodass die CSS-Regeln auf Ihre Komponenten angewendet werden.
 
 #### HTML-Kommentar
 
@@ -380,17 +379,17 @@ Es gibt [ein offizielles Gatsby-Plugin](https://github.com/hupe1980/gatsby-plugi
 
 <!-- #default-branch-switch -->
 
-Hier finden Sie [Dieses Beispiel für Gatsby-Projekt](https://github.com/mui-org/material-ui/blob/next/examples/gatsby) ein aktuelles Nutzungsbeispiel.
+Siehe [dieses Beispielprojekt](https://github.com/mui-org/material-ui/blob/next/examples/nextjs) für ein aktuelles Verwendungsbeispiel.
 
 ### Next.js
 
-Siehe [dieses Beispielprojekt](https://github.com/mui-org/material-ui/blob/next/examples/nextjs) für ein aktuelles Verwendungsbeispiel.
+Die Klassennamen werden von dem [Klassennamengenerator](/styles/api/#creategenerateclassname-options-class-name-generator) generiert.
 
 Die Klassennamen werden von dem [Klassennamengenerator](/styles/api/#creategenerateclassname-options-class-name-generator) generiert.
 
 ## Klassennamen
 
-Die Klassennamen werden von dem [Klassennamengenerator](/styles/api/#creategenerateclassname-options-class-name-generator) generiert.
+Dadurch wird ein Klassenname wie `makeStyles-root-123` generiert.
 
 ### Standard
 
@@ -427,12 +426,12 @@ const identifier = 123;
 const className = `${productionPrefix}-${identifier}`;
 ```
 
-### Dies ist eine Vereinfachung des `@material-ui/core/Button` Stylesheet der Komponente.
+### Standard
 
 Die generierten Klassennamen der `@material-ui/core` Komponenten verhalten sich anders. Wenn die folgenden Bedingungen erfüllt sind, sind die Klassennamen **deterministisch**:
 
 - Es wird nur ein Themeanbieter verwendet (**Keine Verschachtelung von Themes**)
-- Das style sheet  hat einen Namen, der mit `Mui`(alle Material-UI Komponenten).
+- Das style sheet hat einen Namen, der mit `Mui`(alle Material-UI Komponenten).
 - Das `disableGlobal`Option des [Klassen Namen Generator ](/styles/api/#creategenerateclassname-options-class-name-generator) ist `false`(Standart).
 
 Diese Bedingungen werden bei den häufigsten Anwendungsfällen von `@material-ui/core` erfüllt. Zum Beispiel dieses Stylesheet:
