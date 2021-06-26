@@ -63,7 +63,7 @@ If you would like to remove some of the Material-UI specific features, you can d
 const StyledComponent = styled('div', {}, {
    name: 'MuiStyled',
    slot: 'Root',
--  overridesResolver: (props, styles) => styles.root, // disables theme.components[name].styleOverrides
+- overridesResolver: (props, styles) => styles.root, // disables theme.components[name].styleOverrides
 +  skipVariantsResolver: true, // disable theme.components[name].variants
 +  skipSx: true, // disable the sx prop
 })
