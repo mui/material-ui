@@ -19,7 +19,7 @@ Material-UI requires a minimum version of TypeScript 3.2.
 }
 ```
 
-Strictモードオプションは、`@types/`名前空間で公開されている全てのtypesパッケージに必要なものと同じです。 あまり厳密でない`tsconfig.json`を使ったり、一部のライブラリを省略した場合、エラーが発生する可能性があります。 typesで最高のタイプエクスペリエンスを得るには、 `"strict": true` を設定することをお勧めします。
+Strictモードオプションは、`@types/`名前空間で公開されている全てのtypesパッケージに必要なものと同じです。 あまり厳密でない`tsconfig.json`を使ったり、一部のライブラリを省略した場合、エラーが発生する可能性があります。 typesで最高のタイプエクスペリエンスを得るには、 `"strict": true` を設定することをお勧めします。 あまり厳密でない`tsconfig.json`を使ったり、一部のライブラリを省略した場合、エラーが発生する可能性があります。 typesで最高のタイプエクスペリエンスを得るには、 `"strict": true` を設定することをお勧めします。
 
 ## `withStyles`の使い方
 
@@ -300,7 +300,7 @@ function ThirdPartyComponent({ prop1 } : { prop1: string }) {
 
 The `prop1` became required for the `GenericCustomComponent` as the `ThirdPartyComponent` has it as a requirement.
 
-すべてのコンポーネントが、あなたが渡すコンポーネント型を完全にサポートしているわけではありません。 TypeScriptで `component`プロパティを拒否するコンポーネントに遭遇した場合は、Issueを開いてください。 componentプロパティを汎用化することで、この問題を解決するための取り組みが続けられています。
+すべてのコンポーネントが、あなたが渡すコンポーネント型を完全にサポートしているわけではありません。 すべてのコンポーネントが、あなたが渡すコンポーネント型を完全にサポートしているわけではありません。 TypeScriptで `component`プロパティを拒否するコンポーネントに遭遇した場合は、Issueを開いてください。 componentプロパティを汎用化することで、この問題を解決するための取り組みが続けられています。 componentプロパティを汎用化することで、この問題を解決するための取り組みが続けられています。
 
 ## `value` およびイベントハンドラの処理
 
