@@ -100,7 +100,7 @@ Vous pouvez également afficher une boîte de dialogue lorsque l'utilisateur sou
 
 ## Groupé
 
-Vous pouvez regrouper les options avec la propriété `groupBy`. Si vous le faites, assurez-vous que les options sont également triées avec la même dimension que celle par laquelle elles sont regroupées. Sinon vous remarquerez des en-têtes en double.
+Vous pouvez regrouper les options avec la propriété `groupBy`. Si vous le faites, assurez-vous que les options sont également triées avec la même dimension que celle par laquelle elles sont regroupées.
 
 {{"demo": "pages/components/autocomplete/Grouped.js"}}
 
@@ -110,7 +110,7 @@ Vous pouvez regrouper les options avec la propriété `groupBy`. Si vous le fait
 
 ## `useAutocomplete`
 
-For advanced customization use cases, we expose a headless `useAutocomplete()` hook. Il accepte presque les mêmes options que le composant de saisie automatique moins tous les props liés au rendu de JSX. Le composant Autocomplete utilise ce hook en interne.
+For advanced customization use cases, we expose a headless `useAutocomplete()` hook. Il accepte presque les mêmes options que le composant de saisie automatique moins tous les props liés au rendu de JSX. Il accepte presque les mêmes options que le composant de saisie automatique moins tous les props liés au rendu de JSX.
 
 ```jsx
 import useAutocomplete from '@material-ui/core/useAutocomplete';
@@ -290,9 +290,9 @@ Si vous souhaitez empêcher le comportement du gestionnaire de clés par défaut
 
 ### autocomplete/autofill
 
-Browsers have heuristics to help the user fill in form inputs. However, this can harm the UX of the component.
+Les navigateurs ont des heuristiques pour aider l'utilisateur à remplir les entrées de formulaire. Cependant, cela peut nuire à l'UX du composant.
 
-By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome ne prend actuellement pas en charge ce paramètre d'attribut ([Problème 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). Une solution possible consiste à supprimer l'`id` pour que le composant génère un code aléatoire.
+Par défaut, le composant désactive la fonctionnalité **auto-complétion** (rappelant ce que l'utilisateur a tapé pour un champ donné dans une session précédente) avec l'attribut `autoComplete="off"`. Google Chrome ne prend actuellement pas en charge ce paramètre d'attribut ([Problème 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)). Une solution possible consiste à supprimer l'`id` pour que le composant génère un code aléatoire.
 
 En plus de se souvenir des valeurs entrées précédemment, le navigateur peut également proposer des suggestions de **saisie automatique** (connexion, adresse ou détails de paiement enregistrés). Dans le cas où vous voulez le remplissage automatique, vous pouvez essayer ce qui suit :
 
