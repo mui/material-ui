@@ -73,8 +73,8 @@ Responsive values is supported by:
 > 
 > ```jsx
 > <Grid container columns={{ xs: 4, md: 12 }}>
->    <Grid item xs={2} />
-> > </Grid>
+>     <Grid item xs={2} />
+> > > </Grid>
 > ```
 
 ### Row & column spacing
@@ -140,7 +140,7 @@ La configuración inicial en los elementos flex es `min-width: auto`. Esto causa
   <Typography noWrap>
 ```
 
-Para que el item permanezca dentro del contenedor necesita establecer `min-width: 0`. In practice, you can set the `zeroMinWidth` prop:
+Para que el item permanezca dentro del contenedor necesita establecer `min-width: 0`. Para que el item permanezca dentro del contenedor necesita establecer `min-width: 0`.
 
 ```jsx
 <Grid item xs zeroMinWidth>
