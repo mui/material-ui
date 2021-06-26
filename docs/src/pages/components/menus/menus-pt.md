@@ -26,11 +26,23 @@ Escolhendo uma opção deve confirmar imediatamente a opção e fechar o menu.
 
 ## Menu selecionado
 
+In desktop viewport, padding is increased to give more space to the menu.
+
+{{"demo": "pages/components/menus/IconMenu.js", "bg": true}}
+
+## Menu posicionado
+
+For the menu that has long list and long text, you can use the `dense` prop to reduce the padding (this property only affects desktop viewport).
+
+{{"demo": "pages/components/menus/DenseMenu.js", "bg": true}}
+
+## Composição de MenuList
+
 If used for item selection, when opened, simple menus places the initial focus on the selected menu item. O item de menu atualmente selecionado é definido usando a propriedade`selected`(de [ListItem](/api/list-item/)). To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
 
-## Menu posicionado
+## Menu customizado
 
 Devido ao componente `Menu` usar o componente `Popover` para se posicionar, você pode usar as mesmas [propriedades de posicionamento](/components/popover/#anchor-playground) para posicioná-lo. Por exemplo, você pode exibir o menu abaixo da âncora:
 
@@ -44,7 +56,13 @@ A principal responsabilidade do componente `MenuList` é manipular o foco.
 
 {{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
-## Menu customizado
+## Limitações
+
+Se a altura de um menu impede que todos os itens de menu sejam exibidos, o menu terá internamente a opção de rolagem.
+
+{{"demo": "pages/components/menus/AccountMenu.js"}}
+
+## Trocar transição
 
 Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
 
@@ -54,7 +72,7 @@ O `MenuItem` é um encapsulador em torno de `ListItem` com alguns estilos adicio
 
 🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/menu).
 
-## Altura máxima dos menu
+## Menu de contexto
 
 Se a altura de um menu impede que todos os itens de menu sejam exibidos, o menu terá internamente a opção de rolagem.
 
