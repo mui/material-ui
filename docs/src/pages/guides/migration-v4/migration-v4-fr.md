@@ -83,11 +83,17 @@ export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
       {/* Your component tree. import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
 
-export default function GlobalCssPriority() {
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function CssModulesPriority() {
   return (
-    <StylesProvider injectFirst>
+    <CacheProvider value={cache}>
       {/* Your component tree. */}
     </StylesProvider>
   );
@@ -104,11 +110,17 @@ export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
       {/* Your component tree. import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
 
-export default function GlobalCssPriority() {
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function CssModulesPriority() {
   return (
-    <StylesProvider injectFirst>
+    <CacheProvider value={cache}>
       {/* Your component tree. */}
     </StylesProvider>
   );
@@ -131,7 +143,7 @@ const classes = makeStyles(theme => ({
 }));
   ```
 
-- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design Guidelines.
+- Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design guidelines.
 - Breakpoints are now treated as values instead of ranges. The behavior of `down(key)` was changed to define media query less than the value defined with the corresponding breakpoint (exclusive). The `between(start, end)` was also updated to define media query for the values between the actual values of start (inclusive) and end (exclusive). When using the `down()` breakpoints utility you need to update the breakpoint key by one step up. When using the `between(start, end)` the end breakpoint should also be updated by one step up.
 
   Here are some examples of the changes required:
@@ -160,7 +172,7 @@ const classes = makeStyles(theme => ({
   +<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
   ```
 
-- Remove the `onEscapeKeyDown` prop because redundant. Use `onClose` with `reason === "escapeKeyDown"` instead.
+- The `MuiThemeProvider` component is no longer exported from `@material-ui/core/styles`. Use `ThemeProvider` instead.
 
   ```diff
   -theme.breakpoints.width('md')
@@ -333,7 +345,7 @@ const theme = createMuiTheme({
 
   You can use our [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
-- The component was migrated to use the `@material-ui/styled-engine` (`emotion` or `styled-components`) instead of `jss`. You should remove the `@global` key when defining the style overrides for it.
+- The `createGenerateClassName` function is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
 
 ```diff
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -388,7 +400,7 @@ As the core components use emotion as a styled engine, the props used by emotion
 
 ### AppBar
 
-- [AppBar] Remove z-index when position static and relative This avoids the creation of a stacking context and rendering issues.
+- [AppBar] Remove z-index when position static and relative This avoids the creation of a stacking context and rendering issues. This avoids the creation of a stacking context and rendering issues.
 - The `color` prop has no longer any effect in dark mode. The app bar uses the background color required by the elevation to follow the [Material Design guidelines](https://material.io/design/color/dark-theme.html). Use `enableColorOnDark` to restore the behavior of v4.
 
   ```jsx
@@ -1059,7 +1071,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Modal
 
-- Remove the `disableBackdropClick` prop because redundant. Remove the `disableBackdropClick` prop because redundant.
+- Remove the `disableBackdropClick` prop because redundant. Remove the `onEscapeKeyDown` prop because redundant.
 
   ```diff
   <Modal
@@ -1691,7 +1703,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### Changes
 
-- The `createGenerateClassName` function is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `StylesProvider` component is no longer exported from `@material-ui/core/styles`. If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`.
 
   ```diff
   -import { createGenerateClassName } from '@material-ui/core/styles';
@@ -1700,7 +1712,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### jssPreset
 
-- The `jssPreset` object is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `jssPreset` object is no longer exported from `@material-ui/core/styles`. If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`.
 
   ```diff
   -import { jssPreset } from '@material-ui/core/styles';
@@ -1734,7 +1746,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### MuiThemeProvider
 
-- The `MuiThemeProvider` component is no longer exported from `@material-ui/core/styles`. Use `ThemeProvider` instead.
+- The `@material-ui/styles` package is no longer part of `@material-ui/core/styles`. If you are using `@material-ui/styles` together with `@material-ui/core` you need to add a module augmentation for the `DefaultTheme`.
 
   ```diff
   -import { MuiThemeProvider } from '@material-ui/core/styles';
@@ -1743,7 +1755,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### ServerStyleSheets
 
-- The `ServerStyleSheets` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- This way, the `theme` provided in the context will be available in both the styling utilities exported from `@material-ui/styles`, like `makeStyles`, `withStyles` etc. and the Material-UI components. If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`.
 
   ```diff
   -import { ServerStyleSheets } from '@material-ui/core/styles';
@@ -1770,7 +1782,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### StylesProvider
 
-- The `StylesProvider` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `ServerStyleSheets` component is no longer exported from `@material-ui/core/styles`. If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`.
 
   ```diff
   -import { StylesProvider } from '@material-ui/core/styles';
@@ -1779,7 +1791,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 #### useThemeVariants
 
-- The `useThemeVariants` hook is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `useThemeVariants` hook is no longer exported from `@material-ui/core/styles`. If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`.
 
   ```diff
   -import { useThemeVariants } from '@material-ui/core/styles';
@@ -1807,7 +1819,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   }
   ```
 
-- The `withStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, you should use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+- The `withStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available.
 
   ```diff
   -import { withStyles } from '@material-ui/core/styles';
@@ -1885,7 +1897,7 @@ If you are using the utilities from `@material-ui/styles` together with the `@ma
 
 #### Default theme (TypeScript)
 
-The `@material-ui/styles` package is no longer part of `@material-ui/core/styles`. If you are using `@material-ui/styles` together with `@material-ui/core` you need to add a module augmentation for the `DefaultTheme`.
+The component was migrated to use the `@material-ui/styled-engine` (`emotion` or `styled-components`) instead of `jss`. You should remove the `@global` key when defining the style overrides for it.
 
 ```ts
 import { Theme } from '@material-ui/core/styles';
