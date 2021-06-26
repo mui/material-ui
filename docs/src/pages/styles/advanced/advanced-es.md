@@ -244,12 +244,18 @@ export default function App() {
   return (
     <StylesProvider jss={jss}>
       ...
-      */}
-</StylesProvider>
-      import { StylesProvider } from '@material-ui/core/styles';
+      import { create } from 'jss';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
+import rtl from 'jss-rtl'
 
-<StylesProvider injectFirst>
-  {/* Your component tree. Styled components can override Material-UI's styles.
+const jss = create({
+  plugins: [...jssPreset().plugins, rtl()],
+});
+
+export default function App() {
+  return (
+    <StylesProvider jss={jss}>
+      ... Styled components can override Material-UI's styles.
 ```
 
 ### `makeStyles` / `withStyles` / `styled`
