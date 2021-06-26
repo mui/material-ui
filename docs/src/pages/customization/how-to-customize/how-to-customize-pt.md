@@ -178,7 +178,7 @@ Please take a look at the theme's [global overrides page](/customization/theme-c
 Components expose [global class names](/styles/advanced/#with-material-ui-core) to enable customization with CSS.
 
 ```css
-.MuiButton-root {
+. MuiButton-root {
   font-size: 1rem;
 }
 ```
