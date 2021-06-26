@@ -40,7 +40,7 @@ The date picker is rendered as a modal dialog on mobile, and a textbox with a po
 
 ## 静态模式
 
-It's possible to render any time picker inline. 这将启用自定义弹出提示/模态框的容器。
+It's possible to render any time picker inline. 这将启用自定义弹出提示/模态框的容器。 这将启用自定义弹出提示/模态框的容器。
 
 {{"demo": "pages/components/time-picker/StaticTimePickerDemo.js", "bg": true}}
 
@@ -51,7 +51,7 @@ It's possible to render any time picker inline. 这将启用自定义弹出提�
 - The `MobileTimePicker` component works best for touch devices and small screens.
 - The `DesktopTimePicker` component works best for mouse devices and large screens.
 
-By default, the `TimePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。
+By default, the `TimePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。 你也可以使用 `desktopModeMediaQuery` 属性来自定义它。
 
 {{"demo": "pages/components/time-picker/ResponsiveTimePickers.js"}}
 
@@ -77,7 +77,7 @@ The time picker component can be disabled or read-only.
 
 ## 子组件
 
-Some lower-level sub-components (`ClockPicker`) are also exported. 这些都是在没有包装器或外部逻辑（屏蔽输入、日期值解析和验证等）的情况下渲染的。
+Some lower-level sub-components (`ClockPicker`) are also exported. 这些都是在没有包装器或外部逻辑（屏蔽输入、日期值解析和验证等）的情况下渲染的。 这些都是在没有包装器或外部逻辑（屏蔽输入、日期值解析和验证等）的情况下渲染的。
 
 {{"demo": "pages/components/time-picker/SubComponentsTimePickers.js"}}
 
