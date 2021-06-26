@@ -12,7 +12,7 @@
 <Box sx={{ typography: 'body2' }}>…
 ```
 
-## Text alignment
+## Alignement du texte
 
 {{"demo": "pages/system/typography/TextAlignment.js", "defaultCodeOpen": false}}
 
@@ -22,7 +22,7 @@
 <Box sx={{ textAlign: 'right' }}>…
 ```
 
-## Font weight
+## Épaisseur de la police
 
 {{"demo": "pages/system/typography/FontWeight.js", "defaultCodeOpen": false}}
 
@@ -34,7 +34,7 @@
 <Box sx={{ fontWeight: 'bold' }}>…
 ```
 
-## Font size
+## Taille de la police
 
 {{"demo": "pages/system/typography/FontSize.js", "defaultCodeOpen": false}}
 
