@@ -96,6 +96,12 @@ Pour ajuster la taille des boutons, utilisez la propriété `size`.
 
 {{"demo": "pages/components/buttons/IconButtonSizes.js"}}
 
+### Curseur non autorisé
+
+Use `color` prop to apply theme color palette to component.
+
+{{"demo": "pages/components/buttons/IconButtonColors.js"}}
+
 ## Boutons personnalisés
 
 Here are some examples of customizing the component. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/how-to-customize/).
@@ -106,7 +112,7 @@ Here are some examples of customizing the component. Vous pouvez en savoir plus 
 
 ## Boutons personnalisés
 
-Les boutons de chargement peuvent afficher l'état de celui-ci et désactiver les interactions.
+Activer/désactiver le commutateur pour voir la transition entre les différents états.
 
 {{"demo": "pages/components/buttons/LoadingButtons.js"}}
 
