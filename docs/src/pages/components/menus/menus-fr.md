@@ -26,11 +26,23 @@ Le choix d'une option doit idéalement être validé immédiatement et fermer le
 
 ## Menu sélectionné
 
+In desktop viewport, padding is increased to give more space to the menu.
+
+{{"demo": "pages/components/menus/IconMenu.js", "bg": true}}
+
+## Menu positionné
+
+For the menu that has long list and long text, you can use the `dense` prop to reduce the padding (this property only affects desktop viewport).
+
+{{"demo": "pages/components/menus/DenseMenu.js", "bg": true}}
+
+## Composition de MenuList
+
 L'élément de menu actuellement sélectionné est défini à l'aide de la propriété `selected` (à partir de [ListItem](/api/list-item/)). S'ils sont utilisés pour la sélection d'élément, lorsqu'ils sont ouverts, les menus simples tentent d'aligner verticalement l'élément de menu actuellement sélectionné avec l'élément d'ancrage, et la mise au point initiale sera placée sur l'élément de menu sélectionné. Pour utiliser un élément de menu sélectionné sans affecter la mise au point initiale ou le positionnement vertical du menu, définissez la propriété `variant` à `menu`.
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
 
-## Menu positionné
+## Menu personnalisé
 
 Parce que le composant `Menu` utilise le composant `Popover` pour se positionner, vous pouvez utiliser les mêmes [props de positionnement](/components/popover/#anchor-playground) pour le positionner. Par exemple, vous pouvez afficher le menu sous l'ancre :
 
@@ -44,7 +56,13 @@ La responsabilité principale du composant `MenuList` est de gérer le focus.
 
 {{"demo": "pages/components/menus/MenuListComposition.js", "bg": true}}
 
-## Menu personnalisé
+## Limites
+
+Si la hauteur d'un menu empêche l'affichage de tous les éléments du menu, le menu peut défiler en interne.
+
+{{"demo": "pages/components/menus/AccountMenu.js"}}
+
+## Changer la transition
 
 Voici un exemple de personnalisation du composant. Vous pouvez en savoir plus dans la [page de documentation des overrides](/customization/how-to-customize/).
 
@@ -54,7 +72,7 @@ Le `MenuItem` est un wrapper autour de `ListItem` avec quelques styles suppléme
 
 🎨 Si vous cherchez de l'inspiration, vous pouvez consulter les [exemples de personnalisation de MUI Treasury](https://mui-treasury.com/styles/menu).
 
-## Hauteur maximale du menu
+## Menu contextuel
 
 Si la hauteur d'un menu empêche l'affichage de tous les éléments du menu, le menu peut défiler en interne.
 
