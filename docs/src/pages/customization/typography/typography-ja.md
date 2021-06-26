@@ -81,9 +81,9 @@ Note that if you want to add additional `@font-face` declarations, you need to u
 
 ## フォントサイズ
 
-Material-UIでは、フォントサイズに`rem`単位を使用します。 ブラウザの`<html>`要素のデフォルトのフォントサイズは`16px`ですが、ブラウザにはこの値を変更するオプションがあります。そのため、`rem`単位を使用すると、ユーザーの設定に対応できるため、アクセシビリティのサポートが向上します。 ユーザーは、視力の低下から最適な設定の選択まで、さまざまな理由でフォントサイズの設定を変更できます。サイズや表示距離が大幅に異なるデバイスにも対応できます。
+Material-UIでは、フォントサイズに`rem`単位を使用します。 Material-UIでは、フォントサイズに`rem`単位を使用します。 ブラウザの`<html>`要素のデフォルトのフォントサイズは`16px`ですが、ブラウザにはこの値を変更するオプションがあります。そのため、`rem`単位を使用すると、ユーザーの設定に対応できるため、アクセシビリティのサポートが向上します。 ユーザーは、視力の低下から最適な設定の選択まで、さまざまな理由でフォントサイズの設定を変更できます。サイズや表示距離が大幅に異なるデバイスにも対応できます。 ユーザーは、視力の低下から最適な設定の選択まで、さまざまな理由でフォントサイズの設定を変更できます。サイズや表示距離が大幅に異なるデバイスにも対応できます。
 
-Material-UIのフォントサイズを変更するには、`fontSize`プロパティを指定します。 デフォルト値は `14px` です。
+Material-UIのフォントサイズを変更するには、`fontSize`プロパティを指定します。 デフォルト値は `14px` です。 デフォルト値は `14px` です。
 
 ```js
 const theme = createTheme({
@@ -142,11 +142,11 @@ theme = responsiveFontSizes(theme);
 
 ### HTMLフォントサイズ
 
-`<html>`要素のデフォルトのフォントサイズを変更することもできます。 たとえば、[ 10pxの単純化を使用する場合](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/) 。
+`<html>`要素のデフォルトのフォントサイズを変更することもできます。 たとえば、[ 10pxの単純化を使用する場合](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/) 。 たとえば、[ 10pxの単純化を使用する場合](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/) 。
 
-> ⚠️ フォントサイズを変えるとアクセシビリティに悪影響を及ぼす可能性があります ♿️ Most browsers agreed on the default size of 16 pixels, but the user can change it. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
+> ⚠️ フォントサイズを変えるとアクセシビリティに悪影響を及ぼす可能性があります ♿️ ほとんどのブラウザはデフォルトの16ピクセルのサイズで一致していますが、ユーザーはそれを変更することができます。 例えば、視力に障害のある人は、ブラウザのデフォルトフォントサイズをもっと大きなサイズに設定しているかもしれません。 ⚠️ フォントサイズを変えるとアクセシビリティに悪影響を及ぼす可能性があります ♿️ Most browsers agreed on the default size of 16 pixels, but the user can change it. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
 
-An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. これは、計算されたフォントサイズが常に仕様と一致するように、`rem`の値を調整するために使用されます。
+An `htmlFontSize` theme property is provided for this use case, which tells Material-UI what the font-size on the `<html>` element is. htmlFontSize: 10, }, });
 
 ```js
 const theme = createTheme({
@@ -227,7 +227,7 @@ const theme = createTheme({
 
 > If you aren't using TypeScript you should skip this step.
 
-You need to make sure that the typings for the theme's `typography` variants and the `Typogrpahy`'s `variant` prop reflects the new set of variants.
+You need to make sure that the typings for the theme's `typography` variants and the `Typography`'s `variant` prop reflects the new set of variants.
 
 <!-- Tested with packages/material-ui/test/typescript/augmentation/typographyVariants.spec.ts -->
 
