@@ -50,7 +50,7 @@ npm install jss-rtl
 npm install stylis-plugin-rtl
 ```
 
-**Note**: Only `emotion` is compatible with version 2 of the plugin. `styled-components` requires version 1. If you are using `styled-components` as styled engine, make sure to install the correct version. `styled-components` requires version 1. If you are using `styled-components` as styled engine, make sure to install the correct version.
+**Note**: Only `emotion` is compatible with version 2 of the plugin. `styled-components` requires version 1. If you are using `styled-components` as styled engine, make sure to install the correct version. `styled-components` requires version 1. If you are using `styled-components` as styled engine, make sure to install the correct version. `styled-components` requires version 1. If you are using `styled-components` as styled engine, make sure to install the correct version.
 
 在你的项目中安装了该插件后，Material-UI 组件仍然需要通过你使用的样式引擎实例来加载它。 下面的指南讲述了如何进行加载。
 
