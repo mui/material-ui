@@ -76,7 +76,7 @@ You can use the `color` prop to define a primary or secondary color.
 
 ## 纸片阵列
 
-An example of rendering multiple chips from an array of values. 删除一个纸片元素，则会将其从纸片组的数组中删除。 Note that since no `onClick` prop is defined, the `Chip` can be focused, but does not gain depth while clicked or touched.
+An example of rendering multiple chips from an array of values. 删除一个纸片元素，则会将其从纸片组的数组中删除。 删除一个纸片元素，则会将其从纸片组的数组中删除。 Note that since no `onClick` prop is defined, the `Chip` can be focused, but does not gain depth while clicked or touched.
 
 {{"demo": "pages/components/chips/ChipsArray.js", "bg": true}}
 
