@@ -47,7 +47,7 @@ You can find a [demo with React Router following this section](/guides/routing/#
 
 ## Listの項目の整列
 
-項目内に3行以上を表示するときは、項目の配置を変更する必要があります。`alignItems` プロパティを "flex-start" に設定してください。
+項目内に3行以上を表示するときは、項目の配置を変更する必要があります。 `alignItems` プロパティを "flex-start" に設定してください。
 
 {{"demo": "pages/components/lists/AlignItemsList.js", "bg": true}}
 
@@ -57,7 +57,7 @@ You can find a [demo with React Router following this section](/guides/routing/#
 
 Checkboxは、主要なアクションまたは補助的なアクションのどちらかになります。
 
-チェックボックスは、リストアイテムのプライマリアクションおよび状態インジケータです。 チェックボックスは、リストアイテムのプライマリアクションおよび状態インジケータです。 The comment button is a secondary action and a separate target.
+チェックボックスは、リストアイテムのプライマリアクションおよび状態インジケータです。 チェックボックスは、リストアイテムのプライマリアクションおよび状態インジケータです。 The comment button is a secondary action and a separate target. チェックボックスは、リストアイテムのプライマリアクションおよび状態インジケータです。 The comment button is a secondary action and a separate target.
 
 {{"demo": "pages/components/lists/CheckboxList.js", "bg": true}}
 
@@ -91,11 +91,11 @@ When rendering a list within a component that defines its own gutters, `ListItem
 
 ## Virtualized List
 
-次の例では、 `リスト` コンポーネントで [react-window](https://github.com/bvaughn/react-window) を使用する方法を示します。 これは200行をレンダリングし、より多くを簡単に処理できます。 仮想化はパフォーマンスの問題に役立ちます。
+次の例では、 `リスト` コンポーネントで [react-window](https://github.com/bvaughn/react-window) を使用する方法を示します。 これは200行をレンダリングし、より多くを簡単に処理できます。 仮想化はパフォーマンスの問題に役立ちます。 これは200行をレンダリングし、より多くを簡単に処理できます。 仮想化はパフォーマンスの問題に役立ちます。
 
 {{"demo": "pages/components/lists/VirtualizedList.js", "bg": true}}
 
-The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged. このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged.
+このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 このライブラリがあなたのユースケースをカバーしていない場合は、 [react-virtualized](https://github.com/bvaughn/react-virtualized)、次に [react-virtuoso](https://github.com/petyosi/react-virtuoso)ような代替を使用することを検討する必要があります。 The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged. The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged.
 
 ## Customized List
 
