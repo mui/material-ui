@@ -96,6 +96,12 @@ For larger or smaller icon buttons, use the `size` prop.
 
 {{"demo": "pages/components/buttons/IconButtonSizes.js"}}
 
+### Cursor nicht erlaubt
+
+Use `color` prop to apply theme color palette to component.
+
+{{"demo": "pages/components/buttons/IconButtonColors.js"}}
+
 ## Benutzerdefinierte Buttons
 
 Hier einige Beispiele zum Anpassen der Komponente. Mehr dazu erfahren Sie auf der [Überschreibungsdokumentationsseite](/customization/how-to-customize/).
