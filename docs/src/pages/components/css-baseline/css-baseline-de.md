@@ -76,6 +76,10 @@ const theme = createTheme({
       },
     },
   },
+}); darkScrollbar() : null,
+      },
+    },
+  },
 });
 ```
 
