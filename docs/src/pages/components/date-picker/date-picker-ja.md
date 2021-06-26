@@ -10,7 +10,7 @@ materialDesign: https://material.io/components/date-pickers
 
 <p class="description">Date pickers を使用すると、ユーザーが日付を選択できるようになります。</p>
 
-Date pickers を使用すると、ユーザーが日付を選択できるようになります。 DatePickerは次のように表示されます:
+Date pickers を使用すると、ユーザーが日付を選択できるようになります。 Date pickers を使用すると、ユーザーが日付を選択できるようになります。
 
 - モバイル端末ではダイアログ
 - デスクトップではテキストフィールドでのドロップダウン
@@ -111,3 +111,9 @@ You can customize the rendering of the input with the `renderInput` prop. カス
 時々カレンダーに追加情報を表示しなければならない場合があります。 `onMonthChange`, `loading`, および `renderDay` プロパティを使用して、サーバー側のデータをプリフェッチして表示する例を示します。
 
 {{"demo": "pages/components/date-picker/ServerRequestDatePicker.js"}}
+
+## ヘルパーテキスト
+
+You can show a helper text with the date format accepted.
+
+{{"demo": "pages/components/date-picker/HelperText.js"}}
