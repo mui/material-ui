@@ -23,7 +23,7 @@ The `TextField` wrapper component is a complete form control including a label, 
 
 ## Form props
 
-標準的なフォームの属性がサポートされています(`required`, `disabled`, `type` など)。入力がどのように使用されるかなど、フィールドの入力に関するコンテキストを与えるために使用される `helperText` も同様です。
+標準的なフォームの属性がサポートされています(`required`, `disabled`, `type` など)。 入力がどのように使用されるかなど、フィールドの入力に関するコンテキストを与えるために使用される `helperText` も同様です。
 
 {{"demo": "pages/components/text-fields/FormPropsTextFields.js"}}
 
@@ -109,7 +109,7 @@ The `margin` prop can be used to alter the vertical spacing of the text field. U
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
-Customization does not stop at CSS. You can use composition to build custom components and give your app a unique feel. 以下は、Googleマップに触発された [`InputBase`](/api/input-base/) コンポーネントを使用した例です。
+Customization does not stop at CSS. You can use composition to build custom components and give your app a unique feel. カスタマイズはCSSにとどまりません。コンポジションを使用してカスタムコンポーネントを作成し、アプリに独特の雰囲気を与えることができます。 以下は、Googleマップに触発された [`InputBase`](/api/input-base/) コンポーネントを使用した例です。
 
 {{"demo": "pages/components/text-fields/CustomizedInputBase.js", "bg": true}}
 
@@ -154,7 +154,7 @@ import { useFormControl } from '@material-ui/core/FormControl';
 
 ### シュリンク
 
-入力ラベルの「shrink」状態は必ずしも正しくありません。 入力が何かを表示しているとすぐに入力ラベルは縮小するはずです。 状況によっては、「shrink」状態（数値入力、日時入力、ストライプ入力）を判別できません。 重複があるかもしれません。
+入力ラベルの「shrink」状態は必ずしも正しくありません。 入力が何かを表示しているとすぐに入力ラベルは縮小するはずです。 状況によっては、「shrink」状態（数値入力、日時入力、ストライプ入力）を判別できません。 重複があるかもしれません。 入力が何かを表示しているとすぐに入力ラベルは縮小するはずです。 状況によっては、「shrink」状態（数値入力、日時入力、ストライプ入力）を判別できません。 重複があるかもしれません。
 
 ![シュリンク](/static/images/text-fields/shrink.png)
 
@@ -183,7 +183,7 @@ type="number" の入力欄には、使いやすさの面で問題がある可能
 
 詳細は、GOV.UK Design System チームのこちらの記事 [](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/) をご覧ください。
 
-数値のバリデーションには、 _pattern_ 属性を持つデフォルトの input typr="text"を使用します。例えば、次のようにします。
+数値のバリデーションには、 _pattern_ 属性を持つデフォルトの input typr="text"を使用します。
 
 ```jsx
 <TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} />
@@ -203,7 +203,7 @@ helper textプロパティはテキストフィールドの高さに影響しま
 
 ## サードパーティの入力ライブラリとの統合
 
-サードパーティのライブラリを使って入力をフォーマットすることができます。 `inputComponent` プロパティを使用して、 `<input>` 要素のカスタム実装を提供する必要があります。
+サードパーティのライブラリを使って入力をフォーマットすることができます。 `inputComponent` プロパティを使用して、 `<input>` 要素のカスタム実装を提供する必要があります。 `inputComponent` プロパティを使用して、 `<input>` 要素のカスタム実装を提供する必要があります。
 
 次のデモでは、[react-text-mask](https://github.com/text-mask/text-mask) と[react-number-format](https://github.com/s-yadav/react-number-format)ライブラリを使用します。 同じ概念を [（たとえば、react-stripe-element)に適用することもできます](https://github.com/mui-org/material-ui/issues/16037)。
 
