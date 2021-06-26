@@ -113,9 +113,7 @@ const styles = {
 function HigherOrderComponent(props) {
   const { classes } = props;
   return <Button className={classes.root}>Higher-order component</Button>;
-}
-
-HigherOrderComponent.propTypes = {
+} HigherOrderComponent.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
