@@ -99,11 +99,17 @@ function IntentionsInner() {
   );
 }
 
-const defaultTheme = createTheme();
-
 export default function Intentions() {
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider
+      theme={(outerTheme) =>
+        createTheme({
+          palette: {
+            mode: outerTheme.palette.mode,
+          },
+        })
+      }
+    >
       <IntentionsInner />
     </ThemeProvider>
   );
