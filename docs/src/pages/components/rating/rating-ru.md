@@ -21,7 +21,7 @@ The rating can display any float number with the `value` prop. Use the `precisio
 
 {{"demo": "pages/components/rating/HalfRating.js"}}
 
-## Hover feedback
+## Обратная связь при событии "hover"
 
 Вы можете показать lable при наведении курсора, чтобы помочь пользователю выбрать правильное значение рейтинга. The demo uses the `onChangeActive` prop.
 
