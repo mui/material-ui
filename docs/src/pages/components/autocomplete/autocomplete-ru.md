@@ -150,7 +150,7 @@ The `renderInput` prop allows you to customize the rendered input. The first arg
 
 {{"demo": "pages/components/autocomplete/GitHubLabel.js"}}
 
-Перейдите в секцию [Кастомизированный хук](#customized-hook) для примера кастомизации хука ` useAutocomplete` вместо компонента
+Перейдите в секцию [Кастомизированный хук](#customized-hook) для примера кастомизации хука `useAutocomplete` вместо компонента
 
 ## Основные моменты
 
@@ -226,6 +226,7 @@ By default, the component disable the **autocomplete** feature (remembering what
 
 - Name the input without leaking any information the browser can use. e.g. `id="field1"` instead of `id="country"`. If you leave the id empty, the component uses a random id.
 - Set `autoComplete="new-password"`: jsx Set `autoComplete="new-password": 
+jsx` Set `autoComplete="new-password": 
 jsx` Set `autoComplete="new-password": 
 jsx` Set `autoComplete="new-password": 
     jsx` Set `autoComplete="new-password": 
