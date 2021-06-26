@@ -29,7 +29,7 @@ Set `variant="outlined"` to render an outlined card.
 
 ## 複雑なインタラクション
 
-デスクトップでは、Cardの内容が展開できる可能性があります。 (レシピを見るには下向きの矢印をクリックしてください。)
+デスクトップでは、Cardの内容が展開できる可能性があります。 (レシピを見るには下向きの矢印をクリックしてください。 )
 
 {{"demo": "pages/components/cards/RecipeReviewCard.js", "bg": true}}
 
