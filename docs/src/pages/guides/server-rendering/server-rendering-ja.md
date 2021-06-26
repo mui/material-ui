@@ -62,12 +62,7 @@ function renderFullPage(html, css) {
 }
 
 function handleRender(req, res) {
-  /* ... */
-}
-
-const app = express();
-
-// Isso é acionado toda vez que o servidor recebe uma solicitação.
+  /* ...
 */
 }
 
