@@ -61,9 +61,9 @@ yarn add @material-ui/core@next
   import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
   ```
 
-バンドルサイズの面で最も安全なのはOption 1ですが、一部の開発者はOption 2を好みます。 2番目の方法を使用する前に [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) に従ってください。
+バンドルサイズの面で最も安全なのはOption 1ですが、一部の開発者はOption 2を好みます。 2番目の方法を使用する前に [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) に従ってください。 The configuration of a Babel plugin is encouraged.
 
-各マテリアルアイコンには「テーマ」があります。Filled(デフォルト)、Outline、Rounded、Two-tone、そしてSharpです。 デフォルト以外のテーマでアイコンコンポーネントをインポートするには、アイコン名にテーマ名を追加します。 例えば `@material-ui/icons/Delete` アイコンには次のものが含まれます:
+各マテリアルアイコンには「テーマ」があります。 Filled(デフォルト)、Outline、Rounded、Two-tone、そしてSharpです。 デフォルト以外のテーマでアイコンコンポーネントをインポートするには、アイコン名にテーマ名を追加します。 例えば `@material-ui/icons/Delete` アイコンには次のものが含まれます:
 
 - `@material-ui/icons/Delete` としてエクスポートされた Filled テーマ(デフォルト)
 - `@material-ui/icons/DeleteOutlined` としてエクスポートされた Outlinedテーマ
@@ -188,7 +188,7 @@ import Icon from '@material-ui/core/Icon';
 <Icon>star</Icon>
 ```
 
-デフォルトでは、アイコンは現在のテキストの色を継承します。 必要に応じて、テーマの色のプロパティのいずれかを使用して、アイコンの色を設定することができます。`primary`, `secondary`, `action`, `error`, `disabled` です。
+デフォルトでは、アイコンは現在のテキストの色を継承します。 デフォルトでは、アイコンは現在のテキストの色を継承します。 必要に応じて、テーマの色のプロパティのいずれかを使用して、アイコンの色を設定することができます。`primary`, `secondary`, `action`, `error`, `disabled` です。
 
 ### Font Material icons
 
