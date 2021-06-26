@@ -29,7 +29,7 @@ export default function MyApp() {
 
 ## 子要素にのみスコープさせる
 
-しかしながら、サイトをMaterial-UIに移行している途中で、グローバルなリセットを使えないかもしれません。 `ScopedCssBaseline` コンポーネントを使用して、子要素にのみベースラインを適用することができます。
+しかしながら、サイトをMaterial-UIに移行している途中で、グローバルなリセットを使えないかもしれません。 `ScopedCssBaseline` コンポーネントを使用して、子要素にのみベースラインを適用することができます。 `ScopedCssBaseline` コンポーネントを使用して、子要素にのみベースラインを適用することができます。
 
 ```jsx
 import * as React from 'react';
@@ -52,10 +52,10 @@ export default function MyApp() {
 
 ### ページ
 
-`<html>` および `<body>` 要素は、ページ全体のデフォルトが改善されるように更新されています。 具体的には: 具体的には: 具体的には: 具体的には: 具体的には: 具体的には:
+`<html>` および `<body>` 要素は、ページ全体のデフォルトが改善されるように更新されています。 具体的には: 具体的には: 具体的には: 具体的には: 具体的には: 具体的には: 具体的には:
 
 - すべてのブラウザの余白が削除されています。
-- デフォルトのマテリアルデザインの背景色が適用されます。 標準のデバイスや、白背景に印刷されたデバイスの為に[`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) が使われています。
+- デフォルトのマテリアルデザインの背景色が適用されます。 デフォルトのマテリアルデザインの背景色が適用されます。 標準のデバイスや、白背景に印刷されたデバイスの為に[`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) が使われています。
 
 ### レイアウト
 
@@ -83,7 +83,7 @@ This website uses `darkScrollbar` when dark mode is enabled. Be aware, however, 
 
 ### タイポグラフィ
 
-- `<html>`には基本フォントサイズは宣言されていませんが、16pxが想定されています（ブラウザのデフォルト）。 デフォルトのフォントサイズの`<html>`を変更した場合の影響については、ここをクリックしてください。[the theme documentation](/customization/typography/#typography-html-font-size)
+- `<html>`には基本フォントサイズは宣言されていませんが、16pxが想定されています（ブラウザのデフォルト）。 `<html>`には基本フォントサイズは宣言されていませんが、16pxが想定されています（ブラウザのデフォルト）。 デフォルトのフォントサイズの`<html>`を変更した場合の影響については、ここをクリックしてください。[the theme documentation](/customization/typography/#typography-html-font-size)
 - `<body>` 要素に `theme.typography.body1` スタイルを設定します。
 - `<b>`、`<strong>`要素のfont-weightに `theme.typography.fontWeightBold` を設定します。
 - Roboto フォントの表示を改善するために、カスタムの font-smoothing が有効になります。
