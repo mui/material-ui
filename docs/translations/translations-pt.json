@@ -265,6 +265,7 @@
     "/system": "Sistema",
     "/system/basics": "Noções Básicas",
     "/system/properties": "Propriedades",
+    "/system/the-sx-prop": "A propriedade sx",
     "/system/borders": "Bordas",
     "/system/display": "Exibição",
     "/system/flexbox": "Flexbox",
