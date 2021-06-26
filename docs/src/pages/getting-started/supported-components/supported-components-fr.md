@@ -11,8 +11,8 @@ If you wish to add support for a component or feature not highlighted here, plea
   - **[Top](https://material.io/design/components/app-bars-top.html) ✓**
   - **[Bottom](https://material.io/design/components/app-bars-bottom.html) ✓**
 - **[Banners](https://material.io/design/components/banners.html)** ([Can be composed](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df))
-- **[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists)********
-- **[Buttons: Floating Action Button](https://material.io/design/components/buttons-floating-action-button.html) ✓**
+- ****[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists)**********
+- ****[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists)************
   - **[Text & contained buttons (formerly flat & raised)](https://material.io/design/components/buttons.html) ✓**
   - **[Toggle buttons](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/components/about-the-lab/))
   - **[Icon toggle buttons](https://material.io/design/components/buttons.html#toggle-button) ✓** (Custom Checkbox)
@@ -44,8 +44,8 @@ If you wish to add support for a component or feature not highlighted here, plea
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
-- **[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists)********
-- ****[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists)**********
+- **[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists)************
+- **[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists)************
   - [Types:](https://material.io/design/components/lists.html#types)
     - **Single line ✓**
     - **Two line ✓**
@@ -78,7 +78,7 @@ If you wish to add support for a component or feature not highlighted here, plea
   - **[Switch](https://material.io/design/components/selection-controls.html#switches) ✓**
 - **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Legacy Material v1*)
 - **[Subheaders](https://material.io/archive/guidelines/components/subheaders.html) ✓** (*Legacy Material v1*)
-  - **[Horizontal](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
+  - ****[Image lists](https://material.io/design/components/image-lists.html) ✓** (AKA Grid Lists)**********
   - **[Vertical](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - [Menu](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders)
 - **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (*Legacy Material v1*)
