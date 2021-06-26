@@ -38,7 +38,7 @@ Notez que vous pouvez désactiver le contour (souvent bleu ou or) avec la propri
 
 - Être un enfant descendant direct du modal.
 
-The modal also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+The modal also comes with an unstyled version. Idéal pour effectuer de lourdes personnalisations et minimiser la taille des paquets.
 
 ```js
 import ModalUnstyled from '@material-ui/unstyled/ModalUnstyled';
