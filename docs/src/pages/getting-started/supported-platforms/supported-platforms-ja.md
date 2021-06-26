@@ -40,7 +40,7 @@ Material-UI supports [Node.js](https://github.com/nodejs/node) starting with ver
 
 ### CSSプレフィックス
 
-一部のCSS機能では、ベンダープレフィックスを追加するための後処理が[必要](https://github.com/cssinjs/jss/issues/279)になることに注意してください。 これらのプレフィックスは [`jss-plugin-vendor-prefixer`](https://www.npmjs.com/package/jss-plugin-vendor-prefixer) のおかげで自動的にクライアントに追加されます。
+一部のCSS機能では、ベンダープレフィックスを追加するための後処理が[必要](https://github.com/cssinjs/jss/issues/279)になることに注意してください。 一部のCSS機能では、ベンダープレフィックスを追加するための後処理が[必要](https://github.com/cssinjs/jss/issues/279)になることに注意してください。 これらのプレフィックスは [`jss-plugin-vendor-prefixer`](https://www.npmjs.com/package/jss-plugin-vendor-prefixer) のおかげで自動的にクライアントに追加されます。
 
 ドキュメントで記述されているCSSは、[`autoprefixer`](https://www.npmjs.com/package/autoprefixer)で処理されます。 インスピレーションとして[ドキュメントの実装](https://github.com/mui-org/material-ui/blob/47aa5aeaec1d4ac2c08fd0e84277d6b91e497557/pages/_document.js#L123)を用いることができます。 ページのパフォーマンスに影響することに注意してください。 これは静的ページには必須ですが、動的ページをレンダリングする時には、何もしない事のバランスを取る必要があります。
 
@@ -48,7 +48,7 @@ Material-UI supports [Node.js](https://github.com/nodejs/node) starting with ver
 
 <!-- #react-peer-version -->
 
-Material-UI supports the most recent versions of React, starting with ^17.0.0 (the one with event delegation at the React root). 下位互換性については、古い [バージョン](https://material-ui.com/versions/) を参照してください。
+Material-UI supports the most recent versions of React, starting with ^17.0.0 (the one with event delegation at the React root). Material-UIは、^16.8. 0(フックのついた方) 以降のReactの最新バージョンをサポートします。 下位互換性については、古い [バージョン](https://material-ui.com/versions/) を参照してください。
 
 ## TypeScript
 
