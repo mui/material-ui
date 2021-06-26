@@ -43,10 +43,10 @@ function createTheme(options = {}, ...args) {
       'completed',
       'disabled',
       'error',
+      'expanded',
       'focused',
       'focusVisible',
       'required',
-      'expanded',
       'selected',
     ];
 
