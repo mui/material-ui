@@ -14,7 +14,7 @@ For crowdsourced technical questions from expert Material-UI devs in our communi
 
 ### GitHub<img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />
 
-バグや機能要求の目的でのみGitHubのIssueを使用しています。 バグや機能要求の目的でのみGitHubのIssueを使用しています。 バグを発見したと思われる場合、または新しく追加して欲しい機能を提案したい場合。 [これまでに同様な点が報告されていないか](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed)修正されていないか確認してください。 既存の課題やプルリクエストを検索して、誰かが自分に似たようなものを報告しているかどうかを確認できます。 既存の課題やプルリクエストを検索して、誰かが自分に似たようなものを報告しているかどうかを確認できます。
+バグや機能要求の目的でのみGitHubのIssueを使用しています。 バグや機能要求の目的でのみGitHubのIssueを使用しています。 バグや機能要求の目的でのみGitHubのIssueを使用しています。 バグを発見したと思われる場合、または新しく追加して欲しい機能を提案したい場合。 [これまでに同様な点が報告されていないか](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed)修正されていないか確認してください。 既存の課題やプルリクエストを検索して、誰かが自分に似たようなものを報告しているかどうかを確認できます。 既存の課題やプルリクエストを検索して、誰かが自分に似たようなものを報告しているかどうかを確認できます。 既存の課題やプルリクエストを検索して、誰かが自分に似たようなものを報告しているかどうかを確認できます。
 
 [Issueを開く](https://github.com/mui-org/material-ui/issues/new/choose)
 
