@@ -57,11 +57,11 @@ const handleAlignment = (event, newAlignment) => {
 
 ## カスタマイズされたトグルボタン
 
-コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/toggle-button/CustomizedDividers.js", "bg": true}}
 
 ## アクセシビリティ
 
-- ToggleButtonGroup には `role="group"` が付与されています。 `aria-label="label"`, `aria-labelledby="id"` または `<label>` でアクセシビリティのためにラベルを指定する必要があります。
-- ToggleButton は、ボタンの状態によって `aria-pressed="<bool>"` を設定します。 各ボタンに `aria-label` を付けてください。
+- ToggleButtonGroup には `role="group"` が付与されています。 `aria-label="label"`, `aria-labelledby="id"` または `<label>` でアクセシビリティのためにラベルを指定する必要があります。 `aria-label="label"`, `aria-labelledby="id"` または `<label>` でアクセシビリティのためにラベルを指定する必要があります。
+- ToggleButton は、ボタンの状態によって `aria-pressed="<bool>"` を設定します。 各ボタンに `aria-label` を付けてください。 各ボタンに `aria-label` を付けてください。
