@@ -53,12 +53,6 @@ export default function PlainCssSlider() {
 
 ```jsx
 import * as React from 'react';
-import { StyledEngineProvider } from '@material-ui/core/styles';
-
-export default function GlobalCssPriority() {
-  return (
-    <StyledEngineProvider injectFirst>
-      {/* Your component tree. import * as React from 'react';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
@@ -70,7 +64,13 @@ const cache = createCache({
 export default function CssModulesPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* Sua árvore de componentes. */}
+      {/* Sua árvore de componentes. Agora você pode sobrescrever os estilos do Material-UI. import * as React from 'react';
+import { StylesProvider } from '@material-ui/core';
+
+export default function GlobalCssPriority() {
+  return (
+    <StylesProvider injectFirst>
+      {/* Your component tree. */}
     </CacheProvider>
   );
 }
@@ -80,6 +80,12 @@ export default function CssModulesPriority() {
 
 ```jsx
 Agora você pode sobrescrever os estilos do Material-UI. import * as React from 'react';
+import { StylesProvider } from '@material-ui/core';
+
+export default function GlobalCssPriority() {
+  return (
+    <StylesProvider injectFirst>
+      {/* Your component tree. Agora você pode sobrescrever os estilos do Material-UI. import * as React from 'react';
 import { StylesProvider } from '@material-ui/core';
 
 export default function GlobalCssPriority() {
@@ -97,10 +103,7 @@ const cache = createCache({
 export default function CssModulesPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* Sua árvore de componentes. */}
-    </StylesProvider>
-  );
-}
+      {/* Sua árvore de componentes.
 ```
 
 **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
@@ -221,11 +224,44 @@ export default function GlobalCssSlider() {
 
 ```jsx
 import * as React from 'react';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function CssModulesPriority() {
+  return (
+    <CacheProvider value={cache}>
+      {/* Sua árvore de componentes. Agora você pode sobrescrever os estilos do Material-UI. import * as React from 'react';
+import { StylesProvider } from '@material-ui/core';
+
+export default function GlobalCssPriority() {
+  return (
+    <StylesProvider injectFirst>
+      {/* Your component tree. */}
+    </CacheProvider>
+  );
+}
+```
+
+**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. Aqui está um exemplo:
+
+```jsx
+import * as React from 'react';
 import { StyledEngineProvider } from '@material-ui/core/styles';
 
 export default function GlobalCssPriority() {
   return (
     <StyledEngineProvider injectFirst>
+      {/* Your component tree. Agora você pode sobrescrever os estilos do Material-UI. import * as React from 'react';
+import { StylesProvider } from '@material-ui/core';
+
+export default function GlobalCssPriority() {
+  return (
+    <StylesProvider injectFirst>
       {/* Your component tree. import * as React from 'react';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
@@ -238,43 +274,7 @@ const cache = createCache({
 export default function CssModulesPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* Sua árvore de componentes. */}
-    </CacheProvider>
-  );
-}
-```
-
-**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. Aqui está um exemplo:
-
-```jsx
-import * as React from 'react';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
-
-const cache = createCache({
-  key: 'css',
-  prepend: true,
-});
-
-export default function GlobalCssPriority() {
-  return (
-    <CacheProvider value={cache}>
-      {/* Sua árvore de componentes. import * as React from 'react';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
-
-const cache = createCache({
-  key: 'css',
-  prepend: true,
-});
-
-export default function CssModulesPriority() {
-  return (
-    <CacheProvider value={cache}>
-      {/* Sua árvore de componentes. */}
-    </StylesProvider>
-  );
-}
+      {/* Sua árvore de componentes.
 ```
 
 **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
@@ -423,7 +423,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 const StyledTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))`
-  & .MuiTooltip-tooltip {
+  & . MuiTooltip-tooltip {
     background: navy;
   }
 `;
@@ -477,11 +477,44 @@ export default function CssModulesSlider() {
 
 ```jsx
 import * as React from 'react';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+
+const cache = createCache({
+  key: 'css',
+  prepend: true,
+});
+
+export default function CssModulesPriority() {
+  return (
+    <CacheProvider value={cache}>
+      {/* Sua árvore de componentes. Agora você pode sobrescrever os estilos do Material-UI. import * as React from 'react';
+import { StylesProvider } from '@material-ui/core';
+
+export default function GlobalCssPriority() {
+  return (
+    <StylesProvider injectFirst>
+      {/* Your component tree. */}
+    </CacheProvider>
+  );
+}
+```
+
+**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. Aqui está um exemplo:
+
+```jsx
+import * as React from 'react';
 import { StyledEngineProvider } from '@material-ui/core/styles';
 
 export default function GlobalCssPriority() {
   return (
     <StyledEngineProvider injectFirst>
+      {/* Your component tree. Agora você pode sobrescrever os estilos do Material-UI. import * as React from 'react';
+import { StylesProvider } from '@material-ui/core';
+
+export default function GlobalCssPriority() {
+  return (
+    <StylesProvider injectFirst>
       {/* Your component tree. import * as React from 'react';
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
@@ -494,43 +527,7 @@ const cache = createCache({
 export default function CssModulesPriority() {
   return (
     <CacheProvider value={cache}>
-      {/* Sua árvore de componentes. */}
-    </CacheProvider>
-  );
-}
-```
-
-**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. Aqui está um exemplo:
-
-```jsx
-import * as React from 'react';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
-
-const cache = createCache({
-  key: 'css',
-  prepend: true,
-});
-
-export default function PlainCssPriority() {
-  return (
-    <CacheProvider value={cache}>
-      {/* Sua árvore de componentes. import * as React from 'react';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
-
-const cache = createCache({
-  key: 'css',
-  prepend: true,
-});
-
-export default function CssModulesPriority() {
-  return (
-    <CacheProvider value={cache}>
-      {/* Sua árvore de componentes. */}
-    </StylesProvider>
-  );
-}
+      {/* Sua árvore de componentes.
 ```
 
 **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
