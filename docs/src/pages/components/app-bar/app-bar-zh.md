@@ -114,7 +114,7 @@ function App() {
 
 1. `options` (_object_ [optional]):
 
-   - `options.disableHysteresis` (_bool_ [optional]): Defaults to `false`. 禁用迟滞的效果。 在决定 `trigger` 的值时会忽略在滚动的方向。
+   - `options.disableHysteresis` (_bool_ [optional]): Defaults to `false`. 禁用迟滞的效果。 禁用迟滞的效果。 在决定 `trigger` 的值时会忽略在滚动的方向。
    - `options.target` (_Node_ [optional])：默认值是 `window`。
    - `options.threshold` (_number_ [optional])：默认值是 `100`。 严格来说，当垂直滚动超过（但不包括）此阈值时，请更改 `trigger` 的值。
 
@@ -139,7 +139,7 @@ function HideOnScroll(props) {
 
 ## Enable Color on Dark
 
-Following the [Material Design guidelines](https://material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the AppBar in dark mode. You can override this behavior by setting the `enableColorOnDark` prop to `true`.
+Following the [Material Design guidelines](https://material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the AppBar in dark mode. You can override this behavior by setting the `enableColorOnDark` prop to `true`. You can override this behavior by setting the `enableColorOnDark` prop to `true`.
 
 ```jsx
 // Specific element via prop
