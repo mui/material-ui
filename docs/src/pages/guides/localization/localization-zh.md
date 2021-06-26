@@ -62,15 +62,16 @@ const theme = createTheme(
 | 韩语/朝鲜语              | ko-KR       | `koKR`      |
 | 波斯语                 | fa-IR       | `faIR`      |
 | 波兰语                 | pl-PL       | `plPL`      |
-| 葡萄牙语（巴西）            | pt-BR       | `ptBR`      |
 | 葡萄牙语                | pt-PT       | `ptPT`      |
+| 葡萄牙语（巴西）            | pt-BR       | `ptBR`      |
 | 罗马尼亚语               | ro-RO       | `roRO`      |
 | 俄罗斯语                | ru-RU       | `ruRU`      |
+| 斯洛伐克语               | si-LK       | `siLK`      |
 | 斯洛伐克语               | sk-SK       | `skSK`      |
 | 西班牙语                | es-ES       | `esES`      |
 | 瑞典语                 | sv-SE       | `svSE`      |
-| 土耳其语                | tr-TR       | `trTR`      |
 | 越南语                 | th-TH       | `thTH`      |
+| 土耳其语                | tr-TR       | `trTR`      |
 | 乌克兰语                | uk-UA       | `ukUA`      |
 | 越南语                 | vi-VN       | `viVN`      |
 
