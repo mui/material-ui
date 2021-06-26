@@ -4,7 +4,7 @@
 
 ## ラッピングコンポーネント
 
-最大限の柔軟性とパフォーマンスを提供するために、 コンポーネントが受け取る子要素の性質を知る方法が必要です。 To solve this problem, we tag some of the components with a `muiName` static property when needed.
+最大限の柔軟性とパフォーマンスを提供するために、 コンポーネントが受け取る子要素の性質を知る方法が必要です。 その方法として、必要に応じて、一部のコンポーネントに`muiName`静的プロパティでタグ付けします。 To solve this problem, we tag some of the components with a `muiName` static property when needed.
 
 ただし、拡張するためにコンポーネントをラップする必要がある場合があり、これは`muiName`ソリューションと競合する可能性があります。 コンポーネントをラップする場合は、そのコンポーネントにこの静的プロパティーが設定されているかどうかを確認します。
 
@@ -31,7 +31,7 @@ Material-UIは、`component`プロパティによって、レンダリングさ�
 return React.createElement(props.component, props)
 ```
 
-例えば、 デフォルトの`List`コンポーネントは、 `<ul>` 要素をレンダリングしますが、 これは[Reactのコンポーネント](https://reactjs.org/docs/components-and-props.html#function-and-class-components)に `component`プロパティを渡すことで変更できます。 次の例は、 `List` コンポーネントのルート要素を`<nav>` 要素としてレンダリングします。
+例えば、 デフォルトの`List`コンポーネントは、 `<ul>` 要素をレンダリングしますが、 例えば、 デフォルトの`List`コンポーネントは、 `<ul>` 要素をレンダリングしますが、 これは[Reactのコンポーネント](https://reactjs.org/docs/components-and-props.html#function-and-class-components)に `component`プロパティを渡すことで変更できます。 次の例は、 `List` コンポーネントのルート要素を`<nav>` 要素としてレンダリングします。 次の例は、 `List` コンポーネントのルート要素を`<nav>` 要素としてレンダリングします。
 
 ```jsx
 <List component="nav">
@@ -44,7 +44,7 @@ return React.createElement(props.component, props)
 </List>
 ```
 
-この手法は非常に強力であり、あなたが使用したいと思っているルーティングやフォームなどの他のライブラリとの相互利用を可能とする優れた柔軟性を持っています。 しかし、 これには、**小さな警告を伴います！**
+この手法は非常に強力であり、あなたが使用したいと思っているルーティングやフォームなどの他のライブラリとの相互利用を可能とする優れた柔軟性を持っています。 しかし、 これには、**小さな警告を伴います！** しかし、 これには、**小さな警告を伴います！ **
 
 ### インラインについての注意
 
@@ -71,7 +71,7 @@ function ListItemLink(props) {
 
 ⚠️ しかし、レンダリングされたコンポーネントを変更するためにインライン関数を使用している事から、React は `ListItemLink` がレンダリングされるたびにリンクのマウントを解除します。 ReactがDOMを不必要に更新するだけでなく、 `ListItem`の変更の波及も正しく動作しません。
 
-解決方法はシンプルです。インライン関数を避け、代わりに、**静的なコンポーネントを`component` プロパティに渡します。** `CustomLink` が常に、同じコンポーネントを参照できるように、`ListItemLink` コンポーネントを変更しましょう。
+解決方法はシンプルです。 インライン関数を避け、代わりに、**静的なコンポーネントを`component` プロパティに渡します。 解決方法はシンプルです。インライン関数を避け、代わりに、**静的なコンポーネントを`component` プロパティに渡します。** `CustomLink` が常に、同じコンポーネントを参照できるように、`ListItemLink` コンポーネントを変更しましょう。</p>
 
 ```tsx
 import { Link, LinkProps } from 'react-router-dom';
