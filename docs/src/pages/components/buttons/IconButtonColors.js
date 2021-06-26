@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
 import Fingerprint from '@material-ui/icons/Fingerprint';
