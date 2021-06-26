@@ -40,7 +40,7 @@ You can control the radio with the `value` and `onChange` props:
 
 {{"demo": "pages/components/radio-buttons/RadioButtons.js"}}
 
-## Size
+## Taille
 
 Use the `size` prop or customize the font size of the svg icons to change the size of the radios.
 
