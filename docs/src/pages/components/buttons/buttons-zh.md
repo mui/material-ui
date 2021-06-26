@@ -28,7 +28,7 @@ The `Button` comes with three variants: text (default), contained, and outlined.
 
 ### 文本按钮
 
-[Text buttons](https://material.io/components/buttons#text-button) are typically used for less-pronounced actions, including those located: in dialogs, in cards. 在卡片中，文本按钮有助于强调卡片的内容。
+[Text buttons](https://material.io/components/buttons#text-button) are typically used for less-pronounced actions, including those located: in dialogs, in cards. 在卡片中，文本按钮有助于强调卡片的内容。 在卡片中，文本按钮有助于强调卡片的内容。
 
 {{"demo": "pages/components/buttons/TextButtons.js"}}
 
@@ -44,7 +44,7 @@ The `Button` comes with three variants: text (default), contained, and outlined.
 
 ### 描边按钮
 
-[Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important but aren't the primary action in an app.
+[Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important but aren't the primary action in an app. They contain actions that are important but aren't the primary action in an app.
 
 你也可以将描边按钮作为比实心按钮次要一点的替代方案，或者用来作为比文本按钮重要一点的展示。
 
@@ -70,7 +70,7 @@ The `Button` comes with three variants: text (default), contained, and outlined.
 
 {{"demo": "pages/components/buttons/ColorButtons.js"}}
 
-In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info.
+In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info.
 
 ## 尺寸
 
@@ -102,6 +102,12 @@ For larger or smaller icon buttons, use the `size` prop.
 
 {{"demo": "pages/components/buttons/IconButtonSizes.js"}}
 
+### Cursor 鼠标悬浮的禁用
+
+Use `color` prop to apply theme color palette to component.
+
+{{"demo": "pages/components/buttons/IconButtonColors.js"}}
+
 ## Customized Buttons（自定义按钮）
 
 你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
@@ -116,7 +122,7 @@ The loading buttons can show loading state and disable interactions.
 
 {{"demo": "pages/components/buttons/LoadingButtons.js"}}
 
-Toggle the loading switch to see the transition between the different states.
+切换此切换按钮，可以查看不同状态之间的转换。
 
 {{"demo": "pages/components/buttons/LoadingButtonsTransition.js"}}
 
@@ -128,7 +134,7 @@ Toggle the loading switch to see the transition between the different states.
 
 ## Third-party routing library（第三方路由库）
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. `ButtonBase` 组件提供了 `component` 属性来处理此用例。 Here is a [more detailed guide](/guides/routing/#button).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `BottomNavigationAction` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing). `ButtonBase` 组件提供了 `component` 属性来处理此用例。 Here is a [more detailed guide](/guides/routing/#button).
 
 ## 设计局限
 
