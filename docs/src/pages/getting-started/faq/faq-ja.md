@@ -108,11 +108,11 @@ Notice that the usage of `CssBaseline` is required for the above approach to wor
 
 いいえ、必須ではありません。 いいえ、必須ではありません。 But this dependency comes built in, so carries no additional bundle size overhead. いいえ、必須ではありません。 But this dependency comes built in, so carries no additional bundle size overhead.
 
-その場合は、[スタイルライブラリの相互運用](/guides/interoperability/)セクションで、Material-UIコンポーネントを別のスタイルのライブラリでスタイル変更することがいかに簡単であるかを示します。 その場合は、[スタイルライブラリの相互運用](/guides/interoperability/)セクションで、Material-UIコンポーネントを別のスタイルのライブラリでスタイル変更することがいかに簡単であるかを示しています。
+その場合は、[スタイルライブラリの相互運用](/guides/interoperability/)セクションで、Material-UIコンポーネントを別のスタイルのライブラリでスタイル変更することがいかに簡単であるかを示します。 その場合は、[スタイルライブラリの相互運用](/guides/interoperability/)セクションで、Material-UIコンポーネントを別のスタイルのライブラリでスタイル変更することがいかに簡単であるかを示します。 その場合は、[スタイルライブラリの相互運用](/guides/interoperability/)セクションで、Material-UIコンポーネントを別のスタイルのライブラリでスタイル変更することがいかに簡単であるかを示しています。
 
 ## インラインスタイルとCSSのどちらを使用すべきか
 
-経験則として、動的styleプロパティにはinline-styleのみを使用してください。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。
+経験則として、動的styleプロパティにはinline-styleのみを使用してください。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。 CSSの代替手段は、次のようなより多くの利点を提供します。
 
 - auto-prefixing
 - デバックのしやすさ
@@ -232,7 +232,7 @@ Lernaルートフォルダー内のpackage.jsonファイルの例
 
 ### CSSは最初のロードでのみ機能し、その後欠落します
 
-CSSは、ページの最初のロード時にのみ生成されます。 この場合、CSSは連続した要求に対してサーバに存在しません。 CSSは、ページの最初のロード時にのみ生成されます。 この場合、CSSは連続した要求に対してサーバに存在しません。 CSSは、ページの最初のロード時にのみ生成されます。 この場合、CSSは連続した要求に対してサーバに存在しません。 CSSは、ページの最初のロード時にのみ生成されます。 この場合、CSSは連続した要求に対してサーバに存在しません。 CSSは、ページの最初のロード時にのみ生成されます。 この場合、CSSは連続した要求に対してサーバに存在しません。 CSSは、ページの最初のロード時にのみ生成されます。 この場合、CSSは連続した要求に対してサーバに存在しません。
+CSSは、ページの最初のロード時にのみ生成されます。 この場合、CSSは連続した要求に対してサーバに存在しません。 CSSは、ページの最初のロード時にのみ生成されます。 この場合、CSSは連続した要求に対してサーバに存在しません。 CSSは、ページの最初のロード時にのみ生成されます。 この場合、CSSは連続した要求に対してサーバに存在しません。 CSSは、ページの最初のロード時にのみ生成されます。 この場合、CSSは連続した要求に対してサーバに存在しません。 CSSは、ページの最初のロード時にのみ生成されます。 この場合、CSSは連続した要求に対してサーバに存在しません。 CSSは、ページの最初のロード時にのみ生成されます。 この場合、CSSは連続した要求に対してサーバに存在しません。 CSSは、ページの最初のロード時にのみ生成されます。 この場合、CSSは連続した要求に対してサーバに存在しません。
 
 #### 実行するアクション
 
@@ -256,6 +256,7 @@ const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
+  const html = ReactDOMServer.renderToString(
   -// Create a sheets instance.
 ```
 
@@ -267,7 +268,7 @@ const html = ReactDOMServer.renderToString(
 
 クラス名の値は、[class name generator](/styles/advanced/#class-names)の概念に基づいています。 ページ全体を**単一のジェネレーターでレンダリングする必要があります** 。 このジェネレーターは、サーバーとクライアントで同じように動作する必要があります。 例えば： ページ全体を**単一のジェネレーターでレンダリングする必要があります** 。 このジェネレーターは、サーバーとクライアントで同じように動作する必要があります。 例えば： ページ全体を**単一のジェネレーターでレンダリングする必要があります** 。 このジェネレーターは、サーバーとクライアントで同じように動作する必要があります。 例えば： ページ全体を**単一のジェネレーターでレンダリングする必要があります** 。 このジェネレーターは、サーバーとクライアントで同じように動作する必要があります。 例えば：
 
-- 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。
+- 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。 要求ごとに新しいクラス名ジェネレータを提供する必要があります。 しかし、異なるリクエスト間で`createGenerateClassName()`を共有すべきではありません。
 
 *修正の例：*
 
@@ -283,6 +284,7 @@ function handleRender(req, res) {
   //…
 
   // Render the component to a string.
+  const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
@@ -331,7 +333,7 @@ function App() {
 }
 ```
 
-ここで、`Portal`は、`container.current`が使用可能の場合にのみ、子をコンテナーにマウントします。 ポータルの単純な実装は次のとおりです。 ポータルの単純な実装は次のとおりです。 ポータルの単純な実装は次のとおりです。 ポータルの単純な実装は次のとおりです。 ポータルの単純な実装は次のとおりです。 ポータルの単純な実装は次のとおりです。
+ここで、`Portal`は、`container.current`が使用可能の場合にのみ、子をコンテナーにマウントします。 ポータルの単純な実装は次のとおりです。 ポータルの単純な実装は次のとおりです。 ポータルの単純な実装は次のとおりです。 ポータルの単純な実装は次のとおりです。 ポータルの単純な実装は次のとおりです。 ポータルの単純な実装は次のとおりです。 ポータルの単純な実装は次のとおりです。
 
 ```jsx
 function Portal({ children, container }) {
