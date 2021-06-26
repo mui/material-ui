@@ -11,8 +11,8 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
   - **[Oben](https://material.io/design/components/app-bars-top.html) ✓**
   - **[Unten](https://material.io/design/components/app-bars-bottom.html) ✓**
 - **[Banner](https://material.io/design/components/banners.html)** ([ Kann zusammengesetzt werden ](https://medium.com/material-ui/introducing-material-ui-design-system-93e921beb8df))
-- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)********
-- ****** [ Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓**(Veraltetes Material v1)**** 
+- ******** [ Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓**(Veraltetes Material v1)******
+- ********** [ Toolbars](https://material.io/archive/guidelines/components/toolbars.html) ✓**(Veraltetes Material v1)******** 
   - **[ Text & enthaltene Schaltflächen (früher flach & angehoben)](https://material.io/design/components/buttons.html) ✓**
   - **[Schalter (Toggle buttons)](https://material.io/design/components/buttons.html#buttons-toggle-buttons) ~** ([Lab](/components/about-the-lab/))
   - **[Icon toggle buttons](https://material.io/design/components/buttons.html#toggle-button) ✓** (Custom Checkbox)
@@ -45,7 +45,7 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
   - **[Inset](https://material.io/design/components/dividers.html#types) ✓**
 - **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)
-- **[Dropdown menu](https://material.io/design/components/menus.html#dropdown-menu) ✓** (Can be composed)
+- **[Listas de Imagem](https://material.io/design/components/image-lists.html) ✓** (também conhecido como Grade Lista)********
 - **<strong x-id="1"><a href="https://material.io/design/components/image-lists.html">Listas de Imagem</a> ✓</strong> (também conhecido como Grade Lista)********** 
   - [Types:](https://material.io/design/components/lists.html#types) 
     - **Single line ✓**
@@ -78,7 +78,7 @@ Wenn Sie Unterstützung für eine Komponente oder ein Feature hinzufügen möcht
   - **[Circular](https://material.io/design/components/progress-indicators.html#circular-progress-indicators) ✓**
   - **[Switch](https://material.io/design/components/selection-controls.html#switches) ✓**
 - **[Snackbars](https://material.io/design/components/snackbars.html) ✓** (*Veraltetes Material v1*)
-- **[Steppers](https://material.io/archive/guidelines/components/steppers.html) ✓** (*Legacy Material v1*) 
+- <strong x-id="1"><a href="https://material.io/design/components/image-lists.html">Listas de Imagem</a> ✓</strong> (também conhecido como Grade Lista)********** 
   - **[Horizontal](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - **[Vertical](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steppers) ✓**
   - [Menu](https://material.io/archive/guidelines/components/subheaders.html#subheaders-list-subheaders)
