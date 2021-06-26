@@ -152,7 +152,7 @@ O componente lida com a maior parte do trabalho necessário para torná-lo acess
 The slider's value label is not centered in IE 11. The alignement is not handled to make customizations easier with the lastest browsers. You can solve the issue with:
 
 ```css
-.MuiSlider-valueLabel {
+. MuiSlider-valueLabel {
   left: calc(-50% - 4px);
 }
 ```
