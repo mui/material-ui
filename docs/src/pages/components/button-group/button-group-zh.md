@@ -12,7 +12,7 @@ githubLabel: '组件：按钮组'
 
 ## Basic button group 基本的按钮组
 
-The buttons can be grouped by wrapping them with the `ButtonGroup` component. They need to be immediate children.
+The buttons can be grouped by wrapping them with the `ButtonGroup` component. They need to be immediate children. They need to be immediate children.
 
 {{"demo": "pages/components/button-group/BasicButtonGroup.js"}}
 
