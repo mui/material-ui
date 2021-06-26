@@ -27,7 +27,7 @@ Multiple selection allows for logically-grouped options, like bold, italic, and 
 
 {{"demo": "pages/components/toggle-button/ToggleButtonsMultiple.js"}}
 
-## Size
+## Taille
 
 Fancy larger or smaller buttons? Use the `size` property.
 
