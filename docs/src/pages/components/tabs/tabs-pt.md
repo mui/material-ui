@@ -28,7 +28,7 @@ O `@material-ui/lab` oferece componentes auxiliares que injetam propriedades par
 
 ## Rótulos com quebras
 
-Os rótulos longos serão quebrados automaticamente nas abas. If the label is too long for the tab, it will overflow, and the text will not be visible.
+Os rótulos longos serão quebrados automaticamente nas abas. Os rótulos longos serão quebrados automaticamente nas abas.
 
 {{"demo": "pages/components/tabs/TabsWrappedLabel.js"}}
 
