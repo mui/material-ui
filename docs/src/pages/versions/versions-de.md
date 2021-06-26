@@ -43,7 +43,7 @@ Im Allgemeinen können Sie den folgenden Release-Zyklus erwarten:
 | Mai 2018          | V1.0.0      | Veröffentlicht |
 | September 2018    | v3.0.0      | Veröffentlicht |
 | Mai 2019          | v4.0.0      | Veröffentlicht |
-| 01. Juli 2021     | v5.0.beta.0 | In Bearbeitung |
+| Juli 2021         | v5.0.beta.0 | In Bearbeitung |
 | 1. September 2021 | v5.0.0      | ⏳              |
 
 
