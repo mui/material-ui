@@ -164,7 +164,7 @@ return (
 
 `sx` 属性作为系统的主要部分，为了解决了这些问题，它提供了一种快速 & 简单的方式，也就是将特定 CSS 属性的正确设计标记直接应用到 React 元素中。 [上面的这个演示](#demo) 展示了如何使用它来创建一次性设计。
 
-This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used. 同时，它允许一个简单的方式来定义响应式的值，来对应于主题中定义的断点。 同时，它允许一个简单的方式来定义响应式的值，来对应于主题中定义的断点。
+This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used. 同时，它允许一个简单的方式来定义响应式的值，来对应于主题中定义的断点。 同时，它允许一个简单的方式来定义响应式的值，来对应于主题中定义的断点。 For more details, visit the [`sx` prop page](/system/the-sx-prop/).
 
 ### 何时使用？
 
@@ -184,12 +184,12 @@ This prop provides a superset of CSS (contains all CSS properties/selectors in a
 
 - 运行时会造成性能影响：
 
-  | 基准测试                    | 代码片段                        | 花费时间  |
-  |:----------------------- |:--------------------------- | ----- |
-  | a. a. 渲染 1,000 个基元      | `<div className="…">` | 100ms |
-  | b. b. b. 渲染 1,000 个组件   | `<Div>`               | 120ms |
-  | c. c. c. 渲染 1,000 个样式组件 | `<StyledDiv>`         | 160ms |
-  | d. 渲染一千个分组（Box）         | `<Box sx={…}>`        | 370ms |
+  | 基准测试                       | 代码片段                        | 花费时间  |
+  |:-------------------------- |:--------------------------- | ----- |
+  | a. a. 渲染 1,000 个基元         | `<div className="…">` | 100ms |
+  | b. b. b. b. 渲染 1,000 个组件   | `<Div>`               | 120ms |
+  | c. c. c. c. 渲染 1,000 个样式组件 | `<StyledDiv>`         | 160ms |
+  | d. 渲染一千个分组（Box）            | `<Box sx={…}>`        | 370ms |
 
   _这里是可复现的 [性能测试文件夹](https://github.com/mui-org/material-ui/tree/next/benchmark/browser)。_
 
@@ -197,9 +197,9 @@ This prop provides a superset of CSS (contains all CSS properties/selectors in a
 
 ### API 权衡
 
-Having the system under one prop (`sx`) helps to differentiate props defined for the sole purpose of CSS utilities, vs. those for component business logic. It's important for the **separation of concerns**. For instance, a `color` prop on a button impacts multiple states (hover, focus, etc.), not to be confused with the color CSS property.
+Having the system under one prop (`sx`) helps to differentiate props defined for the sole purpose of CSS utilities, vs. those for component business logic. It's important for the **separation of concerns**. For instance, a `color` prop on a button impacts multiple states (hover, focus, etc.), not to be confused with the color CSS property. It's important for the **separation of concerns**. For instance, a `color` prop on a button impacts multiple states (hover, focus, etc.), not to be confused with the color CSS property.
 
-Only the `Box`, `Stack`, `Typography`, and `Grid` components accept the system properties as _props_ for the above reason. These components are designed to solve CSS problems, they are CSS component utilities.
+Only the `Box`, `Stack`, `Typography`, and `Grid` components accept the system properties as _props_ for the above reason. These components are designed to solve CSS problems, they are CSS component utilities. These components are designed to solve CSS problems, they are CSS component utilities.
 
 ## 使用
 
@@ -274,9 +274,9 @@ CSS 属性中有大量的速记语法。 这些语法在之后的文档中都有
 
 如果你想要你的 CSS 属性是响应式的，那么可以使用断点速记语法。 确定断点有两种方法：
 
-#### 1. 1. 1. 将断点作为对象
+#### 1. 1. 1. 1. 将断点作为对象
 
-定义断点的第一种选择是将断点定义为一个对象，将断点作为其键。 Note that each breakpoint property matches the breakpoint and every larger breakpoint. For example, `width: { lg: 100 }` is equivalent to `theme.breakpoints.up('lg')`. 这里又是前面的例子，使用的是对象语法。
+定义断点的第一种选择是将断点定义为一个对象，将断点作为其键。 Note that each breakpoint property matches the breakpoint and every larger breakpoint. Note that each breakpoint property matches the breakpoint and every larger breakpoint. For example, `width: { lg: 100 }` is equivalent to `theme.breakpoints.up('lg')`. 这里又是前面的例子，使用的是对象语法。 这里又是前面的例子，使用的是对象语法。
 
 {{"demo": "pages/system/basics/BreakpointsAsObject.js"}}
 
@@ -291,8 +291,7 @@ CSS 属性中有大量的速记语法。 这些语法在之后的文档中都有
 你可以使用 `null` 值来跳过断点：
 
 ```jsx
-<Box sx={{ width: [null, null, 300] }}>该分组的宽度是响应式的。</Box>
-
+<Box sx={{ width: [null, null, 300] }}>该分组的宽度是响应式的。 </Box>
 ```
 
 ### 自定义断点
@@ -360,7 +359,7 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 `sx` 属性可以用于四个不同的位置：
 
-### 1. 1. 1. 核心组件
+### 1. 1. 1. 1. 核心组件
 
 所有的 Material-UI 核心组件都支持 `sx` 属性。
 
@@ -378,6 +377,6 @@ import { styled } from '@material-ui/core/styles';
 const Div = styled('div')``;
 ```
 
-### 4、 4、 4、 使用 babel 插件的任何元素
+### 4、 4、 4、 4、 使用 babel 插件的任何元素
 
 等待开发 [#23220](https://github.com/mui-org/material-ui/issues/23220)。
