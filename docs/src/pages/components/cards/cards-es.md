@@ -11,7 +11,7 @@ materialDesign: https://material.io/components/cards
 
 Las [Tarjetas](https://material.io/design/components/cards.html) son superficies que muestran contenido y acciones sobre un tema particular.
 
-Deberían ser fáciles de visualizar sus acciones e información relevante. Los elementos como textos e imágenes deberían ubicarse de forma que indiquen jerarquía.
+Deberían ser fáciles de visualizar sus acciones e información relevante. Los elementos como textos e imágenes deberían ubicarse de forma que indiquen claramente la jerarquía.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
