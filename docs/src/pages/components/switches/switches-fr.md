@@ -23,7 +23,7 @@ materialDesign: 'https://material.io/components/selection-controls#switches'
 
 {{"demo": "pages/components/switches/SwitchLabels.js"}}
 
-## Size
+## Taille
 
 Fancy smaller switches? Use the `size` prop.
 
@@ -41,7 +41,7 @@ You can control the switch with the `checked` and `onChange` props:
 
 ## Switches with FormGroup
 
-`FormGroup` est un wrapper utile utilisé pour regrouper les composants de contrôles de sélection et qui fournit une API plus simple. Cependant, nous vous encourageons à utiliser des [cases à cocher](/components/checkboxes/) à la place si plusieurs switch sont requis. (See: [When to use](#when-to-use)).
+`FormGroup` est un wrapper utile utilisé pour regrouper les composants de contrôles de sélection et qui fournit une API plus simple. `FormGroup` est un wrapper utile utilisé pour regrouper les composants de contrôles de sélection et qui fournit une API plus simple. (See: [When to use](#when-to-use)).
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 
