@@ -16,6 +16,12 @@ githubLabel: 'component: Badge'
 
 {{"demo": "pages/components/badges/SimpleBadge.js"}}
 
+## Цвет
+
+Вы можете использовать проп `overlap` для размещения значка относительно краев элемента.
+
+{{"demo": "pages/components/badges/ColorBadge.js"}}
+
 ## Настраиваемые значки
 
 Ниже находится пример кастомизации компонента. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
@@ -46,7 +52,7 @@ githubLabel: 'component: Badge'
 
 ## Наложение значка
 
-Вы можете использовать проп `overlap` для размещения значка относительно краев элемента.
+Вы можете использовать проп `anchorOrigin` для перемещения значка в любой угол элемента.
 
 {{"demo": "pages/components/badges/BadgeOverlap.js"}}
 
