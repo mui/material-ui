@@ -109,7 +109,7 @@ Each of the following examples demonstrates one feature of the Autocomplete comp
 
 ## `useAutocomplete`
 
-For advanced customization use cases, a headless `useAutocomplete()` hook is exposed. 它接受几乎与 Autocomplete 组件相同的参数，辅以与 JSX 渲染有关的所有参数。 The Autocomplete component is built on this hook.
+For advanced customization use cases, a headless `useAutocomplete()` hook is exposed. 它接受几乎与 Autocomplete 组件相同的参数，辅以与 JSX 渲染有关的所有参数。 它接受几乎与 Autocomplete 组件相同的参数，辅以与 JSX 渲染有关的所有参数。 The Autocomplete component is built on this hook.
 
 ```jsx
 import useAutocomplete from '@material-ui/core/useAutocomplete';
@@ -223,11 +223,11 @@ import { createFilterOptions } from '@material-ui/core/Autocomplete';
 1. `config` (_object_ [optional]):
 
 - `config.ignoreAccents` (_bool_ [optional]): Defaults to `true`. 移除字母的变音符号。
-- `config.ignoreCase` (_bool_ [optional]): Defaults to `true`. 所有字母都小写。
+- `config.ignoreCase` (_bool_ [optional]): Defaults to `true`. 所有字母都小写。 所有字母都小写。
 - `config.limit` (*number* [optional]): 默认值为 null。 显示限定数量的建议选项。 例如，如果 `config.limit` 是 `100`,，那么只显示前 `100 个` 匹配的选项。 如果存在很多选项匹配，并且虚拟化设置还没建立成时，这样的限制是非常有效的。
 - `config.matchFrom` (_'any' | 'start'_ [optional]): 默认值为 `'any'`。
 - `config.stringify` (*func* [optional]): 控制如何将一个选项转换成一个字符串，这样，选项就能够和输入文本的片段相匹配。
-- `config.trim` (_bool_ [optional]): Defaults to `false`. 删除尾随空格。
+- `config.trim` (_bool_ [optional]): Defaults to `false`. 删除尾随空格。 删除尾随空格。
 
 #### 返回结果
 
@@ -284,9 +284,9 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 
 ### autocomplete/autofill
 
-Browsers have heuristics to help the user fill in form inputs. However, this can harm the UX of the component.
+Browsers have heuristics to help the user fill in form inputs. However, this can harm the UX of the component. However, this can harm the UX of the component.
 
-By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome 浏览器目前不支持此属性设置（[Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)）。 要解决这个问题，可以采用的变通方法是删除 `id`，让组件自行随机生成。
+By default, the component disables the input **autocomplete** feature (remembering what the user has typed for a given field in a previous session) with the `autoComplete="off"` attribute. Google Chrome 浏览器目前不支持此属性设置（[Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)）。 Google Chrome 浏览器目前不支持此属性设置（[Issue 587466](https://bugs.chromium.org/p/chromium/issues/detail?id=587466)）。 要解决这个问题，可以采用的变通方法是删除 `id`，让组件自行随机生成。
 
 除了记住过去输入的值，浏览器还可能发出 **自动填写（autofill）**建议（保存的登录名、地址或支付详情）。 若您不需要自动填充，您可以尝试以下的方式：
 
