@@ -12,21 +12,21 @@ githubLabel: 'component: Stack'
 
 ## 使用
 
-`Stack` is concerned with one-dimensional layouts, while [Grid](/components/grid/) that handles two-dimensional layouts. The default direction is `column` which stacks children vertically.
+`Stack` is concerned with one-dimensional layouts, while [Grid](/components/grid/) that handles two-dimensional layouts. The default direction is `column` which stacks children vertically. The default direction is `column` which stacks children vertically.
 
 {{"demo": "pages/components/stack/BasicStack.js", "bg": true}}
 
-To control space between children, use the `spacing` prop. The spacing value can be any number, including decimals and any string. The prop is converted into a CSS property using the [`theme.spacing()`](/customization/spacing/) helper.
+To control space between children, use the `spacing` prop. The spacing value can be any positive number, including decimals and any string. The prop is converted into a CSS property using the [`theme.spacing()`](/customization/spacing/) helper. The spacing value can be any number, including decimals and any string. The prop is converted into a CSS property using the [`theme.spacing()`](/customization/spacing/) helper.
 
 ## 方向
 
-By default, `Stack` arranges items vertically in a `column`. However, the `direction` prop can be used to position items horizontally in a `row` as well.
+By default, `Stack` arranges items vertically in a `column`. By default, `Stack` arranges items vertically in a `column`. However, the `direction` prop can be used to position items horizontally in a `row` as well.
 
 {{"demo": "pages/components/stack/DirectionStack.js", "bg": true}}
 
 ## Dividers（分隔线）
 
-Use the `divider` prop to insert an element between each child. This works particularly well with the [Divider](/components/divider/) component.
+Use the `divider` prop to insert an element between each child. This works particularly well with the [Divider](/components/divider/) component. This works particularly well with the [Divider](/components/dividers/) component.
 
 {{"demo": "pages/components/stack/DividerStack.js", "bg": true}}
 
@@ -44,7 +44,7 @@ You can switch the `direction` or `spacing` values based on the active breakpoin
 
 ## System props
 
-As a CSS utility component, the `Stack` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component. For instance, a margin-top:
+As a CSS utility component, the `Stack` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component. For instance, a margin-top: You can use them as props directly on the component. For instance, a margin-top:
 
 ```jsx
 <Stack mt={2}>
