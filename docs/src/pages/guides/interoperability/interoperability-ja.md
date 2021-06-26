@@ -53,17 +53,17 @@ export default function PlainCssSlider() {
 
 ```jsx
 import * as React from 'react';
-import { StyledEngineProvider } from '@material-ui/core/styles';
-
-export default function GlobalCssPriority() {
-  return (
-    <StyledEngineProvider injectFirst>
-      {/* Your component tree. import * as React from 'react';
 import { StylesProvider } from '@material-ui/core';
 
 export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
+      {/* Your component tree. import * as React from 'react';
+import { StyledEngineProvider } from '@material-ui/core/styles';
+
+export default function GlobalCssPriority() {
+  return (
+    <StyledEngineProvider injectFirst>
       {/* Your component tree. */}
     </StylesProvider>
   );
@@ -80,11 +80,11 @@ export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
       {/* Your component tree. import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
+import { StyledEngineProvider } from '@material-ui/core/styles';
 
 export default function GlobalCssPriority() {
   return (
-    <StylesProvider injectFirst>
+    <StyledEngineProvider injectFirst>
       {/* Your component tree. */}
     </StylesProvider>
   );
@@ -209,17 +209,17 @@ export default function GlobalCssSlider() {
 
 ```jsx
 import * as React from 'react';
-import { StyledEngineProvider } from '@material-ui/core/styles';
-
-export default function GlobalCssPriority() {
-  return (
-    <StyledEngineProvider injectFirst>
-      {/* Your component tree. import * as React from 'react';
 import { StylesProvider } from '@material-ui/core';
 
 export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
+      {/* Your component tree. import * as React from 'react';
+import { StyledEngineProvider } from '@material-ui/core/styles';
+
+export default function GlobalCssPriority() {
+  return (
+    <StyledEngineProvider injectFirst>
       {/* Your component tree. */}
     </StylesProvider>
   );
@@ -242,11 +242,11 @@ export default function GlobalCssPriority() {
   return (
     <CacheProvider value={cache}>
       {/* Your component tree. import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
+import { StyledEngineProvider } from '@material-ui/core/styles';
 
 export default function GlobalCssPriority() {
   return (
-    <StylesProvider injectFirst>
+    <StyledEngineProvider injectFirst>
       {/* Your component tree. */}
     </StylesProvider>
   );
@@ -453,17 +453,17 @@ export default function CssModulesSlider() {
 
 ```jsx
 import * as React from 'react';
-import { StyledEngineProvider } from '@material-ui/core/styles';
-
-export default function GlobalCssPriority() {
-  return (
-    <StyledEngineProvider injectFirst>
-      {/* Your component tree. import * as React from 'react';
 import { StylesProvider } from '@material-ui/core';
 
 export default function GlobalCssPriority() {
   return (
     <StylesProvider injectFirst>
+      {/* Your component tree. import * as React from 'react';
+import { StyledEngineProvider } from '@material-ui/core/styles';
+
+export default function GlobalCssPriority() {
+  return (
+    <StyledEngineProvider injectFirst>
       {/* Your component tree. */}
     </StylesProvider>
   );
@@ -486,11 +486,11 @@ export default function CssModulesPriority() {
   return (
     <CacheProvider value={cache}>
       {/* Your component tree. import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
+import { StyledEngineProvider } from '@material-ui/core/styles';
 
 export default function GlobalCssPriority() {
   return (
-    <StylesProvider injectFirst>
+    <StyledEngineProvider injectFirst>
       {/* Your component tree. */}
     </StylesProvider>
   );
