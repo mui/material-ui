@@ -45,6 +45,11 @@ const theme = createTheme({
     },
   },
 });
+        disableRipple: true, // No more ripple!
+      },
+    },
+  },
+});
 ```
 
 {{"demo": "pages/customization/theme-components/DefaultProps.js"}}
