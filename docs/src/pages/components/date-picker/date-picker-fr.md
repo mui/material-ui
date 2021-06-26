@@ -111,3 +111,9 @@ Les jours affichés sont personnalisables avec la propriété type fonction `ren
 Parfois, il peut être nécessaire d'afficher des informations supplémentaires directement dans le calendrier. Voici un exemple de pré-affichage des données côté serveur en utilisant les propriétés `onMonthChange`, `loading`, et `renderDay`.
 
 {{"demo": "pages/components/date-picker/ServerRequestDatePicker.js"}}
+
+## Helper text
+
+You can show a helper text with the date format accepted.
+
+{{"demo": "pages/components/date-picker/HelperText.js"}}
