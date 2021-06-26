@@ -119,7 +119,6 @@ const externs = [
  * @property {string} hash
  * @property {number} level
  * @property {string} text
- *
  * @param {object} context
  * @param {Record<string, string>} context.headingHashes - WILL BE MUTATED
  * @param {TableOfContentsEntry[]} context.toc - WILL BE MUTATED

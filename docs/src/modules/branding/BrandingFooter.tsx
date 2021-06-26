@@ -198,7 +198,7 @@ export default function BrandingFooter() {
                 <BrandingNewsletter />
                 <Typography
                   sx={{ mt: 1, mb: 3 }}
-                  color="textSecondary"
+                  color="text.secondary"
                   variant="body3"
                   component="div"
                 >
@@ -235,7 +235,7 @@ export default function BrandingFooter() {
             </Grid>
           </Grid>
         </Grid>
-        <Typography sx={{ mt: { xs: 4, sm: 5, md: 4 } }} color="textSecondary" variant="body3">
+        <Typography sx={{ mt: { xs: 4, sm: 5, md: 4 } }} color="text.secondary" variant="body3">
           <Interpolate
             replacement={{
               versionNumber: (
