@@ -239,5 +239,17 @@ function App() {
       <Routes />
     </ThemeProvider>
   );
+} 'dark' : 'light',
+        },
+      }),
+    [prefersDarkMode],
+  );
+
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Routes />
+    </ThemeProvider>
+  );
 }
 ```
