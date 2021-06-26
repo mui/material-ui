@@ -105,8 +105,6 @@ The <b>CSS property</b> column describes which CSS property will be generated wh
   ```css
   [<code>borderTop</code>]((/system/borders/#border)
   ```
-]((/system/borders/#border)
-  </code>
 
 - **System style function**. The <b>System style function</b> column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. The functions can be imported from `@material-ui/system`. You can see an example of using the style functions on the [advanced page](/system/advanced/#using-standalone-system-utilities). The content links to the documentation page where this properties are described; in this example, the [spacing](/system/spacing/) page.
 
