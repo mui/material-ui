@@ -24,6 +24,6 @@ githubLabel: 'component: Paper'
 
 ## Elevation
 
-The elevation can be used to establish a hierachy between other content. In practical terms, the elevation controls the size of the shadow applied to the surface. In dark mode, raising the elevation also makes the surface lighter.
+The elevation can be used to establish a hierachy between other content. The elevation can be used to establish a hierachy between other content. In practical terms, the elevation controls the size of the shadow applied to the surface. In dark mode, raising the elevation also makes the surface lighter. In dark mode, raising the elevation also makes the surface lighter.
 
 {{"demo": "pages/components/paper/Elevation.js", "bg": "inline"}}
