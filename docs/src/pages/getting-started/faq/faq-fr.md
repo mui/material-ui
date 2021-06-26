@@ -264,6 +264,7 @@ function handleRender(req, res) {
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
+  const html = ReactDOMServer.renderToString(
   -// Create a sheets instance.
 ```
 
@@ -298,6 +299,7 @@ function handleRender(req, res) {
 
   //…
     const html = ReactDOMServer.renderToString(
+  const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
   const html = ReactDOMServer.renderToString(
