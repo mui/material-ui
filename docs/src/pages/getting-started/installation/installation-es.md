@@ -52,6 +52,8 @@ To use the font `Icon` component, you must first add the [Material icons](https:
 
 Para poder utilizar los íconos SVG Material precompilados, como los que se encuentran en los [demos de íconos](/components/icons/), primero debes instalar el paquete [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons):
 
+<!-- #default-branch-switch -->
+
 ```sh
 // usando npm
 npm install @material-ui/icons
