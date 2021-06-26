@@ -50,7 +50,7 @@ You should pass the nonce in the `<style>` tag on the server.
 />
 ```
 
-JSS will then, by convention, look for a `<meta property="csp-nonce"` tag and use the `content` value as the nonce.
+Dann müssen Sie dieses Nonce an JSS übergeben, damit es den nachfolgenden &lt;code&gt;&lt;style&gt;&lt;/code&gt;-Tags hinzugefügt werden kann.
 
 Die Art und Weise, wie Sie dies tun, besteht darin, ein `<meta property="csp-nonce" content={nonce} />`Tag im `<head>`ihren HTML-Codes zu Übergebe. JSS wird dann nach einem `<meta property="csp-nonce"`Tag und Suchen den`inhalt` wert als Nonce Verwenden.
 
