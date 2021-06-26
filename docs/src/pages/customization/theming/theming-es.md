@@ -157,7 +157,7 @@ Otherwise the component will not animate properly and you'll encounter the warni
 
 #### Disable StrictMode compatibility partially
 
-Si todavía ve `Error: Function component cannot be given refs` entonces es probable que usted esté usando componentes de terceros, por lo que las correcciones anteriores pueden no ser aplicables. Puede arreglar esto usando `disablleStrictModeCompat` You'll see deprecation warnings again but these are only warnings while `Function component cannot be given refs` actually breaks the documented behavior of our components.
+Si todavía ve `Error: Function component cannot be given refs` entonces es probable que usted esté usando componentes de terceros, por lo que las correcciones anteriores pueden no ser aplicables. Puede arreglar esto usando `disablleStrictModeCompat` Puede arreglar esto usando `disablleStrictModeCompat` You'll see deprecation warnings again but these are only warnings while `Function component cannot be given refs` actually breaks the documented behavior of our components.
 
 ```diff
 import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
