@@ -8,7 +8,7 @@
 
 对于那些准备放到核心库里的组件，需要考虑以下几点：
 
-- 它需要**被使用过**。 Material-UI 团队在文档中使用谷歌分析（以及其他指标）来评估每个组件的使用情况。 一个使用率低的实验室组件要么意味着它的效果不好，要么意味着对它的需求很低。
+- 它需要**被使用过**。 The Material-UI team uses Google Analytics in the documentation (among other metrics) to evaluate the usage of each component. A lab component with low usage either means that it isn't fully working yet, or that there is low demand for it. 一个使用率低的实验室组件要么意味着它的效果不好，要么意味着对它的需求很低。
 - 它的**代码质量**要和核心组件保持一致。 它不一定要完美到成为核心的一部分，但这个组件应该足够可靠，让开发者可以依赖它。
   - 每个组件需要**类型定义**。 就目前来说，一个实验室组件不需要定义类型，但是当搬到核心代码之后就需要定义好类型了。
   - 需要较高的**测试覆盖率**。 有一些实验室组件目前不带有一些综合的测试。
