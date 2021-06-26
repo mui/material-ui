@@ -27,13 +27,14 @@
   "homepage": "https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod",
   "dependencies": {
     "@babel/core": "^7.4.5",
+    "@babel/runtime": "^7.4.4",
     "@babel/traverse": "^7.6.2",
+    "jscodeshift": "^0.12.0",
     "jscodeshift-add-imports": "^1.0.1",
     "yargs": "^17.0.1"
   },
   "devDependencies": {
-    "@types/jscodeshift": "0.11.0",
-    "jscodeshift": "^0.12.0"
+    "@types/jscodeshift": "0.11.0"
   },
   "sideEffects": false,
   "publishConfig": {
