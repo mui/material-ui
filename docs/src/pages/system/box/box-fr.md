@@ -17,7 +17,7 @@ Le composant Box contiens [toutes les fonctions de style](/system/basics/#all-in
 
 ## The `sx` prop
 
-All system properties are available via the `sx` prop. In addition, this prop allows you to specify any other CSS rules you may need.  Voici un exemple de la façon dont vous pouvez l'utiliser :
+All system properties are available via the `sx` prop. In addition, this prop allows you to specify any other CSS rules you may need. Voici un exemple de la façon dont vous pouvez l'utiliser :
 
 {{"demo": "pages/system/box/BoxSx.js", "defaultCodeOpen": true }}
 
