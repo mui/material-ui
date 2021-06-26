@@ -17,7 +17,7 @@ Material-UI da soporte para iconos de tres maneras:
 
 ## Material Icons
 
-Google has created over 1,700 official Material icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the @material-ui/icons package. Puedes [buscar la lista completa de estos iconos](/components/material-icons/).
+For each SVG icon, we export the respective React component from the @material-ui/icons package. Google has created over 1,700 official Material icons, each in five different "themes" (see below). Puedes [buscar la lista completa de estos iconos](/components/material-icons/).
 
 ### Instalación
 
@@ -62,7 +62,7 @@ Importa iconos usando una de estas dos opciones:
 
 The safest for bundle size is Option 1, but some developers prefer Option 2. Make sure you follow the [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the second approach.
 
-Each Material icon also has a "theme": Filled (default), Outlined, Rounded, Two-tone, and Sharp. To import the icon component with a theme other than the default, append the theme name to the icon name. Por ejemplo el `@material-ui/icons/Delete` icono con:
+Each Material icon also has a "theme": Filled (default), Outlined, Rounded, Two-tone, and Sharp. To import the icon component with a theme other than the default, append the theme name to the icon name. Si desea importar el componente de icono con un tema distinto al predeterminado, añada el nombre del tema al nombre del icono. Por ejemplo el `@material-ui/icons/Delete` icono con: Por ejemplo el `@material-ui/icons/Delete` icono con: Por ejemplo el `@material-ui/icons/Delete` icono con: Por ejemplo el `@material-ui/icons/Delete` icono con: Por ejemplo el `@material-ui/icons/Delete` icono con:
 
 - El tema Filled (por defecto) se exporta como `@material-ui/icons/Delete`,
 - El tema Outlined se exporta como `@material-ui/icons/DeleteOutlined`,
