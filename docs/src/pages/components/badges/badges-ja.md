@@ -16,6 +16,12 @@ githubLabel: 'component: Badge'
 
 {{"demo": "pages/components/badges/SimpleBadge.js"}}
 
+## カラー
+
+Use `color` prop to apply theme palette to component.
+
+{{"demo": "pages/components/badges/ColorBadge.js"}}
+
 ## Customized badges （カスタマイズされたバッジ）
 
 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドについてのドキュメント](/customization/how-to-customize/) を参照してください。
@@ -46,7 +52,7 @@ BadgeContentが0の場合、バッジは自動的に非表示になります。 
 
 ## バッジの重複
 
-`overlap` プロパティを使用して、ラップされた要素の角を基準にしてバッジを配置できます。
+`anchorOrigin` プロパティを使用して、バッジをラップされた要素の隅に移動できます。
 
 {{"demo": "pages/components/badges/BadgeOverlap.js"}}
 
