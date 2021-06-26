@@ -33,7 +33,7 @@ Möglicherweise müssen Sie auf die Themevariablen in Ihren React-Komponenten zu
 
 #### `useTheme` hook
 
-Zur Verwendung in Funktionskomponenten: 
+Zur Verwendung in Funktionskomponenten:
 
 ```jsx
 import { useTheme } from '@material-ui/core/styles';
@@ -48,7 +48,7 @@ function DeepChild() {
 
 #### `withTheme` HOC
 
-Zur Verwendung in Klassen- oder Funktionskomponenten: 
+Zur Verwendung in Klassen- oder Funktionskomponenten:
 
 ```jsx
 import { withTheme } from '@material-ui/core/styles';
@@ -234,6 +234,7 @@ Der `StylesProvider` Komponente hat eine `injectFirst` Eigenschaft, um **zuerst*
 ```jsx
 */}
 </StylesProvider>
+      Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben.
       Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben. Mit Stil versehene Komponenten können die Stile von Material-UI überschreiben.
 ```
 
@@ -274,7 +275,7 @@ Die Hook-Aufrufreihenfolge und die Klassennamensverkettungsreihenfolge **spielen
 
 ### insertionPoint
 
-### insertionPoint ### insertionPoint ### insertionPoint ### insertionPoint JSS \[bietet einen Mechanismus\](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) um diese Situation zu kontrollieren. Durch Hinzufügen der Platzierung des `Einfügepunkts` innerhalb Ihres HTML-Heads können Sie die \[Reihenfolge steuern\](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order), sodass die CSS-Regeln auf Ihre Komponenten angewendet werden.
+insertionPoint ### insertionPoint ### insertionPoint ### insertionPoint JSS \[bietet einen Mechanismus\](https://github.com/cssinjs/jss/blob/master/docs/setup.md#specify-the-dom-insertion-point) um diese Situation zu kontrollieren. Durch Hinzufügen der Platzierung des `Einfügepunkts` innerhalb Ihres HTML-Heads können Sie die \[Reihenfolge steuern\](https://cssinjs.org/jss-api#attach-style-sheets-in-a-specific-order), sodass die CSS-Regeln auf Ihre Komponenten angewendet werden.
 
 #### HTML-Kommentar
 
@@ -286,18 +287,18 @@ Dann müssen Sie dieses Nonce an JSS übergeben, damit es den nachfolgenden <cod
 </code>
 
 ```jsx
-</code>
-
-```jsx
 import { create } from 'jss';
 import { StylesProvider, jssPreset } from '@material-ui/core/styles';
-
-const styleNode = document.createComment('jss-insertion-point');
-document.head.insertBefore(styleNode, document.head.firstChild);
+import rtl from 'jss-rtl'
 
 const jss = create({
-  ...jssPreset(),
-  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  plugins: [...jssPreset().plugins, rtl()],
+});
+
+export default function App() {
+  return (
+    <StylesProvider jss={jss}>
+      ...
   insertionPoint: 'jss-insertion-point',
 });
 
@@ -397,17 +398,17 @@ You can [follow the server side guide](/guides/server-rendering/) for a more det
 
 Es gibt [ein offizielles Gatsby-Plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) das serverseitiges Rendering für `@material-ui/styles` ermöglicht. Anleitungen zur Einrichtung und Verwendung finden Sie auf der Seite des Plugins.
 
-Hier finden Sie [Dieses Beispiel für Gatsby-Projekt](https://github.com/mui-org/material-ui/blob/master/examples/gatsby) ein aktuelles Nutzungsbeispiel.
+Sie müssen über eine benutzerdefiniertes `pages/_document.js` haben und [diese Logik](https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_document.js) kopieren, um die serverseitig gerenderten Stile in das `<head>` Element hinzuzufügen.
 
 ### Next.js
 
 Sie müssen über eine benutzerdefiniertes `pages/_document.js` haben und [diese Logik](https://github.com/mui-org/material-ui/blob/master/examples/nextjs/pages/_document.js) kopieren, um die serverseitig gerenderten Stile in das `<head>` Element hinzuzufügen.
 
-Dadurch wird ein Klassenname wie `makeStyles-root-123` generiert.
+Die Klassennamen werden von dem [Klassennamengenerator](/styles/api/#creategenerateclassname-options-class-name-generator) generiert.
 
 ## Klassennamen
 
-Die Klassennamen werden von dem [Klassennamengenerator](/styles/api/#creategenerateclassname-options-class-name-generator) generiert.
+Dadurch wird ein Klassenname wie `makeStyles-root-123` generiert.
 
 ### Standard
 
@@ -444,12 +445,12 @@ const identifier = 123;
 const className = `${productionPrefix}-${identifier}`;
 ```
 
-### Dies ist eine Vereinfachung des `@material-ui/core/Button` Stylesheet der Komponente.
+### Standard
 
 Die generierten Klassennamen der `@material-ui/core` Komponenten verhalten sich anders. Wenn die folgenden Bedingungen erfüllt sind, sind die Klassennamen **deterministisch**:
 
 - Es wird nur ein Themeanbieter verwendet (**Keine Verschachtelung von Themes**)
-- Das style sheet hat einen Namen, der mit `Mui`(alle Material-UI Komponenten). 
+- Das style sheet hat einen Namen, der mit `Mui`(alle Material-UI Komponenten).
 - Das `disableGlobal`Option des [Klassen Namen Generator ](/styles/api/#creategenerateclassname-options-class-name-generator) ist `false`(Standart).
 
 Diese Bedingungen werden bei den häufigsten Anwendungsfällen von `@material-ui/core` erfüllt. Zum Beispiel dieses Stylesheet:
@@ -562,7 +563,7 @@ header('Content-Security-Policy')
   .set(`default-src 'self'; style-src: 'self' 'nonce-${nonce}';`);
 ```
 
-Wenn Sie Server Side-Rendering (SSR) verwenden, sollten Sie die Nonce im `<style>`-Tag des Servers übergeben.
+JSS will then, by convention, look for a `<meta property="csp-nonce"` tag and use the `content` value as the nonce.
 
 ```jsx
 <style
@@ -572,7 +573,7 @@ Wenn Sie Server Side-Rendering (SSR) verwenden, sollten Sie die Nonce im `<style
 />
 ```
 
-JSS will then, by convention, look for a `<meta property="csp-nonce"` tag and use the `content` value as the nonce.
+Dann müssen Sie dieses Nonce an JSS übergeben, damit es den nachfolgenden &lt;code&gt;&lt;style&gt;&lt;/code&gt;-Tags hinzugefügt werden kann.
 
 Die Art und Weise, wie Sie dies tun, besteht darin, ein `<meta property="csp-nonce" content={nonce} />`Tag im `<head>`ihren HTML-Codes zu Übergebe. JSS wird dann nach einem `<meta property="csp-nonce"`Tag und Suchen den`inhalt` wert als Nonce Verwenden.
 
