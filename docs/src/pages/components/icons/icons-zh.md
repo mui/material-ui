@@ -70,7 +70,7 @@ yarn add @material-ui/core@next
 - 导出为 Twotone 主题：`@material-ui/icons/DeleteTwoTone `，
 - 导出为 Sharp 主题：`@material-ui/icons/DeleteSharp `，
 
-> Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). 并且此命名规则有三个特例：`3d_rotation` 导出为 `ThreeDRotation`，`4k` 导出为 `FourK`，以及 `360` 导出为 `ThreeSixty`。
+> Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). 并且此命名规则有三个特例：`3d_rotation` 导出为 `ThreeDRotation`，`4k` 导出为 `FourK`，以及 `360` 导出为 `ThreeSixty`。 并且此命名规则有三个特例：`3d_rotation` 导出为 `ThreeDRotation`，`4k` 导出为 `FourK`，以及 `360` 导出为 `ThreeSixty`。
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
@@ -230,6 +230,11 @@ const theme = createTheme({
     },
   },
 });
+        baseClassName: 'material-icons-two-tone',
+      },
+    },
+  },
+});
 ```
 
 然后，你就可以直接使用 two-tone 图标了：
@@ -313,6 +318,9 @@ import Icon from '@material-ui/core/Icon';
 import { visuallyHidden } from '@material-ui/utils';
 
 // ...
+
+<Icon>add_circle</Icon>
+<Box component="span" sx={visuallyHidden}>Create a user</Box>
 
 <Icon>add_circle</Icon>
 <Box component="span" sx={visuallyHidden}>Create a user</Box>
