@@ -164,7 +164,7 @@ The system provides direct access to the value in the theme. It makes it easier 
 
 The `sx` prop, as the main part of the system, solves these problems by providing a fast & simple way of applying the correct design tokens for specific CSS properties directly to a React element. The [demo above](#demo) shows how it can be used to create a one-off design.
 
-This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used. Also, it allows a simple way of defining responsive values that correspond to the breakpoints defined in the theme.
+This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used. Also, it allows a simple way of defining responsive values that correspond to the breakpoints defined in the theme. For more details, visit the [`sx` prop page](/system/the-sx-prop/).
 
 ### When to use it?
 
@@ -229,7 +229,7 @@ These shorthands are **optional**, they are great to save time when writing styl
 
 ### Superset of CSS
 
-As part of the prop, you can use any regular CSS too: child or pseudo-selectors, media queries, raw CSS values, etc. Here are a few examples: Here are a few examples: Here are a few examples:
+As part of the prop, you can use any regular CSS too: child or pseudo-selectors, media queries, raw CSS values, etc. Here are a few examples: Here are a few examples: Here are a few examples: Here are a few examples:
 
 - Using pseudo selectors:
 
