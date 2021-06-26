@@ -14,7 +14,7 @@ Boxコンポーネントは、`@material-ui/system`で公開される[すべて�
 
 ## Material-UI componentsのオーバーライド
 
-The Box componentは、コンポーネントをラップします。 新しいDOM要素を作成します。この要素はデフォルトで`<div>`であり、`component` プロパティを使用して変更できます。</code> 代わりに `<span>` を使用すると
+The Box componentは、コンポーネントをラップします。 The Box componentは、コンポーネントをラップします。 新しいDOM要素を作成します。この要素はデフォルトで`<div>`であり、`component` プロパティを使用して変更できます。</code> 代わりに `<span>` を使用すると 代わりに `<span>` を使用すると
 
 ```jsx
 <Box component="span" m={1}>
