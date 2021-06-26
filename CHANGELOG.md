@@ -2338,7 +2338,7 @@ Big thanks to the 23 contributors who made this release possible. Here are some 
 ### Docs
 
 - <!-- 86 --> [examples] Patch preact example not working (#24616)
-- <!-- 78 --> [docs] Add missing newline in component JSDOC (#24610) @eps1lon
+- <!-- 78 --> [docs] Add missing newline in component JSDoc (#24610) @eps1lon
 - <!-- 70 --> [docs] Add API of picker components (#24497) @eps1lon
 - <!-- 63 --> [examples] Add `locale` prop to the Nextjs Link component (#24596) @CyanoFresh
 - <!-- 52 --> [docs] List required props first in /api/* (#24526) @eps1lon
@@ -4791,7 +4791,7 @@ Here are some highlights ✨:
 - [docs] Add 'size' prop to ToggleButton API docs (#22052) @zenje
 - [docs] Add ClassKeys migration description for Renaming API (#22061) @kodai3
 - [docs] Add a label to the TreeView demos (#21900) @joshwooding
-- [docs] Add missing JSDOC for various props (#22005) @eps1lon
+- [docs] Add missing JSDoc for various props (#22005) @eps1lon
 - [docs] Add the services that support MUI in readme (#22137) @naineet
 - [docs] Add trailingSlash: true (#22008) @oliviertassinari
 - [docs] Add visibility to TypeScript examples (#22013) @esemeniuc
@@ -5930,7 +5930,7 @@ Here are some highlights ✨:
 - [Tooltip] Fix TextField integration (#20252) @ShehryarShoukat96
 - [Tooltip] Remove superfluous argument in handleBlur call (#20271) @CptWesley
 - [TypeScript] Enable module augmentation of CommonColors (#20212) @eps1lon
-- [TypeScript] Add JSDOC to ListItem TypeScript props (#20171) @eps1lon
+- [TypeScript] Add JSDoc to ListItem TypeScript props (#20171) @eps1lon
 - [TypeScript] Fix Checkbox and Radio type propType (#20293) @eps1lon
 - [TypeScript] Fix incorrect typings regarding transition components a… (#20306) @eps1lon
 - [TypeScript] Link to demos and API in IntelliSense (#20078) @eps1lon

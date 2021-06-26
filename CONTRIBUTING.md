@@ -194,7 +194,7 @@ on _Details_ to find out more about them.
 
 ### Updating the component API documentation
 
-The component API in the component `propTypes` and under `docs/pages/api-docs` is auto-generated from the [JSDOC](https://jsdoc.app/about-getting-started.html) in the TypeScript declarations.
+The component API in the component `propTypes` and under `docs/pages/api-docs` is auto-generated from the [JSDoc](https://jsdoc.app/about-getting-started.html) in the TypeScript declarations.
 Be sure to update the documentation in the corresponding `.d.ts` files (e.g. `packages/material-ui/src/Button/Button.d.ts` for `<Button>`) and the run:
 
 ```sh
