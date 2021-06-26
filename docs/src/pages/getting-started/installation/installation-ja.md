@@ -52,12 +52,14 @@ To use the font `Icon` component, you must first add the [Material icons](https:
 
 [component demos](/components/icons/)にあるような事前にビルドされたSVG Material iconsを使う為には、[@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons)パッケージをインストールする必要があります。
 
-```sh
-// with npm
-npm install @material-ui/icons
+<!-- #default-branch-switch -->
 
-// with yarn
-yarn add @material-ui/icons
+```sh
+// npmの場合
+npm install @material-ui/icons@next
+
+// yarnの場合
+yarn add @material-ui/icons@next
 ```
 
 ## CDN
@@ -71,9 +73,9 @@ yarn add @material-ui/icons
 
 [CDN example](https://github.com/mui-org/material-ui/tree/master/examples/cdn)に従うことで、すぐに開発を始めることができます。
 
-⚠️ただし、**本番環境**でこのアプローチを使用することは**推奨しません**。クライアントは、実際にどのコンポーネントが使用されているかにかかわらず、ライブラリ全体をダウンロードする必要があるため、パフォーマンスと帯域幅の使用率に影響を与えます。
+⚠️ただし、**本番環境**でこのアプローチを使用することは**推奨しません**。 クライアントは、実際にどのコンポーネントが使用されているかにかかわらず、ライブラリ全体をダウンロードする必要があるため、パフォーマンスと帯域幅の使用率に影響を与えます。
 
-⚠️ UMDリンクは、ライブラリの最新バージョンを示すために`latest`タグを使用しています。 このポインターは**不安定で** 、新しいバージョンがリリースされると変わります。 [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js) のような特定のバージョンを指すことを考慮する必要があります。
+⚠️ UMDリンクは、ライブラリの最新バージョンを示すために`latest`タグを使用しています。 ⚠️ UMDリンクは、ライブラリの最新バージョンを示すために`latest`タグを使用しています。 ⚠️ UMDリンクは、ライブラリの最新バージョンを示すために`latest`タグを使用しています。 このポインターは**不安定です** 、新しいバージョンがリリースされると変わります。 [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js) のような特定のバージョンを指すことを考慮する必要があります。
 
 ## Design resources
 
