@@ -8,7 +8,7 @@ The default style library used for generating CSS styles for Material-UI compone
 
 If you already have [styled-components](https://github.com/styled-components/styled-components) installed, it's possible to use it exclusively. There are currently two packages available to choose from:
 
-- `@material-ui/styled-engine` - a thin wrapper around [emotion's `styled()`](https://emotion.sh/docs/styled) API, with the addition of few other required utilities, such as the `<GlobalStyles />` component, the `css` and `keyframe` helpers, etc. This is the default.
+- `@material-ui/styled-engine` - a thin wrapper around [emotion's `styled()`](https://emotion.sh/docs/styled) API, with the addition of few other required utilities, such as the `<GlobalStyles />` component, the `css` and `keyframe` helpers, etc. This is the default. This is the default.
 - `@material-ui/styled-engine-sc` - a similar wrapper around `styled-components`.
 
 These two packages implement the same interface, which makes it makes possible to replace one with the other. By default, `@material-ui/core` has `@material-ui/styled-engine` as a dependency, but you can configure your bundler to replace it with `@material-ui/styled-engine-sc`. For example, if you are using webpack you can configure this by adding a resolver:
