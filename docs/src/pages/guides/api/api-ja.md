@@ -118,7 +118,7 @@ Going back to the previous button example; since it requires 3 possible values, 
 
 ### Ref
 
-` ref `はルート要素に転送されます。 `ref`はルート要素に転送されます。 This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element which the component renders. If you pass a different component via the `component` prop, the ref will be attached to that component instead.
+` ref `はルート要素に転送されます。 `ref`はルート要素に転送されます。 `ref`はルート要素に転送されます。 This means that, without changing the rendered root element via the `component` prop, it is forwarded to the outermost DOM element which the component renders. If you pass a different component via the `component` prop, the ref will be attached to that component instead.
 
 ## 用語集
 
