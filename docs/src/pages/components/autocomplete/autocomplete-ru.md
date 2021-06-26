@@ -110,7 +110,7 @@ If you intend to use this mode for a [combo box](#combo-box) like experience (an
 
 ## `useAutocomplete`
 
-For advanced customization use cases, a headless `useAutocomplete()` hook is exposed. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component is built on this hook.
+For advanced customization use cases, a headless `useAutocomplete()` hook is exposed. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX.
 
 ```jsx
 import useAutocomplete from '@material-ui/core/useAutocomplete';
@@ -206,7 +206,7 @@ The `renderInput` prop allows you to customize the rendered input. The first arg
 
 {{"demo": "pages/components/autocomplete/GitHubLabel.js"}}
 
-Перейдите в секцию [Кастомизированный хук](#customized-hook) для примера кастомизации хука ` useAutocomplete` вместо компонента
+Перейдите в секцию [Кастомизированный хук](#customized-hook) для примера кастомизации хука `useAutocomplete` вместо компонента
 
 ## Основные моменты
 
