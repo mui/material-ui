@@ -71,7 +71,7 @@ The `grid-auto-flow` property controls how the auto-placement algorithm works, s
 
 ### grid-column
 
-The `grid-column` property is a shorthand for `grid-column-start` + `grid-column-end`. You can see how it's used in the [grid-auto-columns example](/system/grid/#grid-auto-columns). You can see how it's used in the [grid-auto-columns example](/system/grid/#grid-auto-columns). You can see how it's used in the [grid-auto-columns example](/system/grid/#grid-auto-columns).
+The `grid-column` property is a shorthand for `grid-column-start` + `grid-column-end`. You can see how it's used in the [grid-auto-columns example](/system/grid/#grid-auto-columns). You can see how it's used in the [grid-auto-columns example](/system/grid/#grid-auto-columns). You can see how it's used in the [grid-auto-columns example](/system/grid/#grid-auto-columns). You can see how it's used in the [grid-auto-columns example](/system/grid/#grid-auto-columns).
 
 You can either set the start and end line:
 
@@ -103,7 +103,7 @@ Or set the number of columns to span:
 
 ### grid-row
 
-The `grid-row` property is a shorthand for `grid-row-start` + `grid-row-end`. You can see how it's used in the [grid-auto-rows example](/system/grid/#grid-auto-rows). You can see how it's used in the [grid-auto-rows example](/system/grid/#grid-auto-rows). You can see how it's used in the [grid-auto-rows example](/system/grid/#grid-auto-rows).
+The `grid-row` property is a shorthand for `grid-row-start` + `grid-row-end`. You can see how it's used in the [grid-auto-rows example](/system/grid/#grid-auto-rows). You can see how it's used in the [grid-auto-rows example](/system/grid/#grid-auto-rows). You can see how it's used in the [grid-auto-rows example](/system/grid/#grid-auto-rows). You can see how it's used in the [grid-auto-rows example](/system/grid/#grid-auto-rows).
 
 You can either set the start and end line:
 
@@ -135,7 +135,7 @@ Or set the number of rows to span:
 
 ### grid-area
 
-The `grid-area` property allows you to give an item a name so that it can be referenced by a template created with the `grid-template-areas` property. You can see how it's used in the [grid-template-area example](/system/grid/#grid-template-areas). You can see how it's used in the [grid-template-area example](/system/grid/#grid-template-areas). You can see how it's used in the [grid-template-area example](/system/grid/#grid-template-areas).
+The `grid-area` property allows you to give an item a name so that it can be referenced by a template created with the `grid-template-areas` property. You can see how it's used in the [grid-template-area example](/system/grid/#grid-template-areas). You can see how it's used in the [grid-template-area example](/system/grid/#grid-template-areas). You can see how it's used in the [grid-template-area example](/system/grid/#grid-template-areas). You can see how it's used in the [grid-template-area example](/system/grid/#grid-template-areas).
 
 ```jsx
 <Box sx={{ gridArea: 'header' }}>…
