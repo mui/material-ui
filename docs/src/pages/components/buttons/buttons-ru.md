@@ -96,6 +96,12 @@ For larger or smaller icon buttons, use the `size` prop.
 
 {{"demo": "pages/components/buttons/IconButtonSizes.js"}}
 
+### Colors
+
+Use `color` prop to apply theme color palette to component.
+
+{{"demo": "pages/components/buttons/IconButtonColors.js"}}
+
 ## Настраиваемые кнопки
 
 Ниже находятся примеры кастомизации компонента. Вы можете узнать об этом больше [в документации по переопределению свойств](/customization/how-to-customize/).
@@ -132,7 +138,7 @@ One frequent use case is to perform navigation on the client only, without an HT
 
 Есть два способа использовать `not-allowed`
 
-1. **Только CSS** You can remove the pointer-events style on the disabled state of the `<button>` element:
+1. **Только CSS** **Только CSS** You can remove the pointer-events style on the disabled state of the `<button>` element:
 
 ```css
 .MuiButtonBase-root:disabled {
@@ -146,7 +152,7 @@ One frequent use case is to perform navigation on the client only, without an HT
 - Необходимо вернуть `pointer-events: none;` назад, в момент когда вам нужно будет отобразить [подсказку на отключенном элементе](/components/tooltips/#disabled-elements).
 - Курсор не изменится, в случае если вы отрендерите какой-либо другой элемент, например `<a>`.
 
-2. **Изменение DOM** Вы можете обернуть кнопку в дополнительный контейнер:
+2. **Изменение DOM** Вы можете обернуть кнопку в дополнительный контейнер: Вы можете обернуть кнопку в дополнительный контейнер:
 
 ```jsx
 <span style={{ cursor: 'not-allowed' }}>
