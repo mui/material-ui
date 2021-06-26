@@ -45,7 +45,7 @@ Take a look at the [Styled Engine guide](/guides/styled-engine/) for more inform
 
 ## Font Icons 字体图标
 
-To use the font `Icon` component, you must first add the [Material icons](https://fonts.google.com/icons) font. 我们提供了安装字体的[一些说明](/components/icons/#font-icons)。 例如，通过 Google Web Fonts 引入：
+在设计 Material-UI 时我们使用了[Roboto](https://fonts.google.com/specimen/Roboto)字体。 我们提供了安装字体的[一些说明](/components/icons/#font-icons)。 例如，通过 Google Web Fonts 引入：
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -55,12 +55,14 @@ To use the font `Icon` component, you must first add the [Material icons](https:
 
 在 [icons 示例](/components/icons/)中， 您可以发现一些由我们提供的 SVG Material icons。若您想使用这个图标，您必须安装 [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) 这个包：
 
-```sh
-// 通过 npm
-npm install @material-ui/icons
+<!-- #default-branch-switch -->
 
-// 通过 yarn
-yarn add @material-ui/icons
+```sh
+// 使用 npm 安装
+npm install @material-ui/icons@next
+
+// 使用 yarn 安装
+yarn add @material-ui/icons@next
 ```
 
 ## CDN
