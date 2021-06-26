@@ -22,7 +22,7 @@ githubLabel: 'component: Avatar'
 
 {{"demo": "pages/components/avatars/LetterAvatars.js"}}
 
-Вы можете использовать другие фоновые цвета для аватара The following demo generates the color based on the name of the person.
+Вы можете использовать другие фоновые цвета для аватара Вы можете использовать другие фоновые цвета для аватара The following demo generates the color based on the name of the person.
 
 {{"demo": "pages/components/avatars/BackgroundLetterAvatars.js"}}
 
