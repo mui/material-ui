@@ -265,6 +265,7 @@
     "/system": "System 系统",
     "/system/basics": "Basics 基本",
     "/system/properties": "属性",
+    "/system/the-sx-prop": "sx 属性",
     "/system/borders": "Borders 边框",
     "/system/display": "Display 显示",
     "/system/flexbox": "Flexbox",
