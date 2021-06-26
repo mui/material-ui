@@ -207,6 +207,14 @@ ReactDOM.hydrate(<Main />, document.querySelector('#root')); */}
   );
 }
 
+ReactDOM.hydrate(<Main />, document.querySelector('#root')); */}
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+    </CacheProvider>
+  );
+}
+
 ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 ```
 
