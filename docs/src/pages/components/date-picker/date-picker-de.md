@@ -111,3 +111,9 @@ The displayed days are customizable with the `renderDay` function prop. You can 
 Sometimes it may be necessary to display additional info right in the calendar. Here's an example of prefetching and displaying server-side data using the `onMonthChange`, `loading`, and `renderDay` props.
 
 {{"demo": "pages/components/date-picker/ServerRequestDatePicker.js"}}
+
+## Helper text
+
+You can show a helper text with the date format accepted.
+
+{{"demo": "pages/components/date-picker/HelperText.js"}}
