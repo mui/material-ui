@@ -15,7 +15,7 @@ materialDesign: https://material.io/components/text-fields
 
 ## Basic TextField
 
-The `TextField` wrapper component is a complete form control including a label, input, and help text. It comes with three variants: outlined (default), filled, and standard.
+The `TextField` wrapper component is a complete form control including a label, input, and help text. It comes with three variants: outlined (default), filled, and standard. It comes with three variants: outlined (default), filled, and standard.
 
 {{"demo": "pages/components/text-fields/BasicTextFields.js"}}
 
@@ -29,7 +29,7 @@ The `TextField` wrapper component is a complete form control including a label, 
 
 ## 校验
 
-The `error` prop toggles the error state. The `helperText` prop can then be used to provide feedback to the user about the error.
+The `error` prop toggles the error state. The `error` prop toggles the error state. The `helperText` prop can then be used to provide feedback to the user about the error.
 
 {{"demo": "pages/components/text-fields/ValidationTextFields.js"}}
 
@@ -53,7 +53,7 @@ The `error` prop toggles the error state. The `helperText` prop can then be used
 
 ### 修饰输入框
 
-一个主流的方法是使用 `InputAdornment` 组件。 This can be used to add a prefix, a suffix, or an action to an input. 例如，可以用一个图标按钮来隐藏或者显示输入框里的密码。
+一个主流的方法是使用 `InputAdornment` 组件。 This can be used to add a prefix, a suffix, or an action to an input. 例如，可以用一个图标按钮来隐藏或者显示输入框里的密码。 例如，可以用一个图标按钮来隐藏或者显示输入框里的密码。
 
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
 
@@ -69,7 +69,7 @@ The `error` prop toggles the error state. The `helperText` prop can then be used
 
 ## Margin
 
-The `margin` prop can be used to alter the vertical spacing of the text field. Using `none` (default) doesn't apply margins to the `FormControl` whereas `dense` and `normal` do.
+The `margin` prop can be used to alter the vertical spacing of the text field. The `margin` prop can be used to alter the vertical spacing of the text field. Using `none` (default) doesn't apply margins to the `FormControl` whereas `dense` and `normal` do.
 
 {{"demo": "pages/components/text-fields/LayoutTextFields.js"}}
 
@@ -117,7 +117,7 @@ Customization does not stop at CSS. You can use composition to build custom comp
 
 ## `useFormControl`
 
-For advanced customization use cases, a `useFormControl()` hook is exposed. This hook returns the context value of the parent `FormControl` component.
+For advanced customization use cases, a `useFormControl()` hook is exposed. For advanced customization use cases, a `useFormControl()` hook is exposed. This hook returns the context value of the parent `FormControl` component.
 
 **API**
 
@@ -172,7 +172,7 @@ import { useFormControl } from '@material-ui/core/FormControl';
 
 ### 悬浮的标签
 
-The floating label is absolutely positioned. It won't impact the layout of the page. Make sure that the input is larger than the label to display correctly.
+The floating label is absolutely positioned. It won't impact the layout of the page. The floating label is absolutely positioned. It won't impact the layout of the page. Make sure that the input is larger than the label to display correctly.
 
 ### type="number"
 
