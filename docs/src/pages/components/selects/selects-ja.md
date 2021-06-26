@@ -68,9 +68,9 @@ Select コンポーネントは [InputBase](/api/input-base/) のカスタム `<
 
 ## 制御開選択
 
-`Select` コンポーネントは、複数の選択を処理できます。 To properly label your `Select` input you need an extra element with an `id` that contains a label.
+`Select` コンポーネントは、複数の選択を処理できます。 `multiple` プロパティで有効になります。 To properly label your `Select` input you need an extra element with an `id` that contains a label.
 
-単一選択の場合と同様に、 `onChange` コールバックで `event.target.value` にアクセスすることにより、新しい値を引き出すことができます。 常に配列です。 常に配列です。 常に配列です。 常に配列です。 常に配列です。 常に配列です。
+単一選択の場合と同様に、 `onChange` コールバックで `event.target.value` にアクセスすることにより、新しい値を引き出すことができます。 常に配列です。 常に配列です。 常に配列です。 常に配列です。 常に配列です。 常に配列です。 常に配列です。
 
 
 
