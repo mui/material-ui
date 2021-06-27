@@ -74,7 +74,7 @@ export default function UnstyledSwitches() {
         componentsProps={{ input: withDemoLabel, root: { as: 'div' } }}
       />
       <SwitchUnstyled
-        components={{ Root }}
+        component={Root}
         componentsProps={{ input: withDemoLabel }}
         defaultChecked
       />

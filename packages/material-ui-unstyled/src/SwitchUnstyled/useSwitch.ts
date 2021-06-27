@@ -77,13 +77,13 @@ export default function useSwitch(props: UseSwitchProps) {
     checked: checkedProp,
     defaultChecked,
     disabled,
-    readOnly,
-    required,
+    onBlur,
     onChange,
     onFocus,
     onFocusVisible,
-    onBlur,
     onMouseDown,
+    readOnly,
+    required,
   } = props;
 
   const [checked, setCheckedState] = useControlled({

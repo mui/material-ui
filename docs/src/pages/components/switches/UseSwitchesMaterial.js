@@ -399,7 +399,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
-export default function UseSwitchesCustom() {
+export default function UseSwitchesMaterial() {
   return (
     <div>
       <ThemeProvider theme={createTheme()}>

@@ -75,7 +75,6 @@ function BasicSwitch(props: UseSwitchProps) {
     <BasicSwitchRoot className={clsx(stateClasses)}>
       <BasicSwitchThumb className={clsx(stateClasses)} />
       <BasicSwitchInput
-        type="checkbox"
         {...getInputProps()}
         aria-label="Demo switch"
       />
