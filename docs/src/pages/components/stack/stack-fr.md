@@ -16,7 +16,7 @@ githubLabel: 'component: Stack'
 
 {{"demo": "pages/components/stack/BasicStack.js", "bg": true}}
 
-To control space between children, use the `spacing` prop. The spacing value can be any number, including decimals and any string. Cette fonction de transformation de sortie peut être personnalisée [à l'aide du thème](/customization/spacing/).
+Pour contrôler l'espace entre les enfants, utilisez la propriété `spacing`. The spacing value can be any number, including decimals and any string. La propriété est convertie en une propriété CSS en utilisant le helper [`theme.spacing()`](/customization/spacing/).
 
 ## Direction
 
@@ -42,9 +42,9 @@ Vous trouverez ci-dessous une démo interactive vous permettant d'explorer les r
 
 {{"demo": "pages/components/stack/InteractiveStack.js", "hideToolbar": true, "bg": true}}
 
-## System props
+## Propriétés du système
 
-As a CSS utility component, the `Stack` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component. For instance, a margin-top:
+As a CSS utility component, the `Stack` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component. Par exemple, une margin-top :
 
 ```jsx
 <Stack mt={2}>
