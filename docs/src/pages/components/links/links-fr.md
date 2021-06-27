@@ -36,7 +36,7 @@ When you use `target="_blank"` with Links, it is [recommended](https://developer
 
 ## Bibliothèque de routage tierce
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. Le composant `Link` fournit la propriété `component` pour gérer ce cas d'utilisation. Here is a [more detailed guide](/guides/routing/#link).
+Un cas d'utilisation fréquente est d'effectuer une navigation sur le client uniquement, sans un aller-retour HTTP vers le serveur. Le composant `Link` fournit la propriété `component` pour gérer ce cas d'utilisation. Here is a [more detailed guide](/guides/routing/#link).
 
 ## Accessibilité
 
