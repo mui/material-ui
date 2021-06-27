@@ -164,7 +164,7 @@ O sistema oferece acesso direto ao valor no tema. Fica mais fácil de lidar com 
 
 A propriedade `sx`, como a parte principal do sistema, resolve esses problemas, fornecendo uma maneira rápida & simples de aplicar os tokens de design corretos para propriedades CSS específicas diretamente a um elemento React. A [demonstração acima](#demo) mostra como ela pode ser usada para criar um design único.
 
-This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used. Além disso, permite uma maneira simples de definir valores responsivos que correspondem aos pontos de quebra definidos no tema. For more details, visit the [`sx` prop page](/system/the-sx-prop/).
+This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used. Além disso, permite uma maneira simples de definir valores responsivos que correspondem aos pontos de quebra definidos no tema. Para mais detalhes, visite a [página da propriedade `sx`](/system/the-sx-prop/).
 
 ### Quando usar ela?
 
