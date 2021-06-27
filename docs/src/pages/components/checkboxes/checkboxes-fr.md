@@ -20,43 +20,43 @@ Si vous avez plusieurs options dans une liste, vous pouvez conserver de l'espace
 
 {{"demo": "pages/components/checkboxes/Checkboxes.js"}}
 
-## Checkbox avec FormControlLabel
+## Label
 
-You can provide a label to the `Checkbox` thanks to the `FormControlLabel` component.
+Vous pouvez fournir un label à la `Checkbox` grâce au composant `FormControlLabel`.
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
 ## Taille
 
-`La case à cocher` peut être fournie avec une étiquette grâce au composant `FormControlLabel`.
+Utilisez la propriété `size` ou personnalisez la taille de police des icônes svg pour changer la taille des cases à cocher.
 
-{{"demo": "pages/components/checkboxes/CustomizedCheckbox.js", "defaultCodeOpen": false}}
+{{"demo": "pages/components/checkboxes/SizeCheckboxes.js"}}
 
 ## Couleur
 
-`FormGroup` est un wrapper utile utilisé pour regrouper les composants de contrôles de sélection et qui fournit une API plus simple.
+{{"demo": "pages/components/checkboxes/ColorCheckboxes.js"}}
 
-## Emplacement du label
+## Icône
 
 {{"demo": "pages/components/checkboxes/IconCheckboxes.js"}}
 
-## Checkbox personnalisée
+## Checkbox contrôlée
 
-Vous pouvez changer l'emplacement du label:
+Vous pouvez contrôler la case à cocher avec les propriétés `checked` et `onChange`:
 
 {{"demo": "pages/components/checkboxes/ControlledCheckbox.js"}}
 
-## Quand les utiliser
+## Etat indéterminé
 
-Une entrée de case à cocher ne peut avoir que deux états dans un formulaire : coché ou non coché. Soit il soumet sa valeur soit non. Visually, there are actually three states a checkbox can be in: checked, unchecked, or indeterminate.
+Une case à cocher ne peut avoir que deux états dans un formulaire : coché ou non coché. Soit il soumet sa valeur soit non. Visuellement, il y a **trois ** états dans lesquels une case à cocher peut être : cochée, non cochée ou indéterminée.
 
 {{"demo": "pages/components/checkboxes/IndeterminateCheckbox.js"}}
 
-> ⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications.
+> ⚠️ Quand définie comme indéterminée, la valeur de la propriété `checked` n'affecte que les valeurs soumises au formulaire. Elle n'a pas d'implications en matière d'accessibilité ou d'UX.
 
-## Accessibilité
+## FormGroup
 
-🎨 Si vous cherchez de l'inspiration, vous pouvez consulter les [exemples de personnalisation de MUI Treasury](https://mui-treasury.com/styles/checkbox).
+`FormGroup` est un wrapper utile utilisé pour regrouper les composants de contrôle de sélection.
 
 {{"demo": "pages/components/checkboxes/CheckboxesGroup.js"}}
 
