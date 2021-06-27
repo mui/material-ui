@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@types/jscodeshift": "0.11.0",
-    "jscodeshift": "^0.12.0"
+    "jscodeshift": "^0.13.0"
   },
   "sideEffects": false,
   "publishConfig": {
