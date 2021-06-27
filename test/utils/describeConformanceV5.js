@@ -12,6 +12,23 @@ import {
   testRootClass,
 } from './describeConformance';
 
+/**
+ * @typedef {Object} ConformanceOptions
+ * @property {() => void} [after]
+ * @property {object} classes - `classes` of the component provided by `@material-ui/styled-engine`
+ * @property {import('react').ElementType} [inheritComponent] - The element type that receives spread props or `undefined` if props are not spread.
+ * @property {(node: React.ReactNode) => import('enzyme').ReactWrapper} mount - Should be a return value from createMount
+ * @property {string} muiName
+ * @property {(node: React.ReactElement) => import('./createClientRender').MuiRenderResult} [render] - Should be a return value from createClientRender
+ * @property {Array<keyof typeof fullSuite>} [only] - If specified only run the tests listed
+ * @property {any} refInstanceof - `ref` will be an instanceof this constructor.
+ * @property {Array<keyof typeof fullSuite>} [skip] - Skip the specified tests
+ * @property {string} [testComponentsRootPropWith] - The host component that should be rendered instead.
+ * @property {{ slotName: string, slotClassName: string }} [testDeepOverrides]
+ * @property {{ prop?: string, value?: string, styleKey: string }} [testStateOverrides]
+ * @property {object} [testVariantProps]
+ */
+
 function throwMissingPropError(field) {
   throw new Error(`missing "${field}" in options
 
