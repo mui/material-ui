@@ -227,7 +227,7 @@ const theme = createTheme({
 
 > If you aren't using TypeScript you should skip this step.
 
-You need to make sure that the typings for the theme's `typography` variants and the `Typography`'s `variant` prop reflects the new set of variants.
+Você precisa ter certeza de que as tipagens para as variantes da propriedade `typography` e a `variant` `Typography`'s reflete o novo conjunto de variantes.
 
 <!-- Tested with packages/material-ui/test/typescript/augmentation/typographyVariants.spec.ts -->
 
