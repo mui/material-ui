@@ -33,4 +33,4 @@ Cette démo maintient la navigation de bas en bas, peu importe la quantité de c
 
 ## Bibliothèque de routage tierce
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `BottomNavigationAction` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing).
+Un cas d'utilisation fréquente est d'effectuer une navigation sur le client uniquement, sans un aller-retour HTTP vers le serveur. Le composant `BottomNavigationAction` fournit la propriété `component` pour gérer ce cas d'utilisation. Voici un [guide plus détaillé](/guides/routing).
