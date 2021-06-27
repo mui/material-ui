@@ -20,19 +20,19 @@ Les boutons communiquent les actions que les utilisateurs peuvent faire. Ils son
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic Button
+## Bouton de base
 
-The `Button` comes with three variants: text (default), contained, and outlined.
+Le `Button` est livré avec trois variantes : text (par défaut), contained et outlined.
 
 {{"demo": "pages/components/buttons/BasicButtons.js"}}
 
 ### Boutons textuels
 
-[Text buttons](https://material.io/components/buttons#text-button) are typically used for less-pronounced actions, including those located: in dialogs, in cards. Dans les cartes, les boutons de texte aident à maintenir l’accent sur le contenu des cartes.
+Les [boutons textuels](https://material.io/components/buttons#text-button) sont généralement utilisés pour les actions moins prononcées, y compris celles situées: dans des fenêtres de dialogues, dans des cartes. Dans les cartes, les boutons de texte aident à maintenir l’accent sur le contenu des cartes.
 
 {{"demo": "pages/components/buttons/TextButtons.js"}}
 
-### Boutons contenus (appelées "Contained buttons")
+### Boutons contenus (appelés "Contained buttons")
 
 [Les boutons contenus](https://material.io/design/components/buttons.html#contained-button) sont très accentués, ils se distinguent par leur utilisation de l'élévation et du remplissage. Ils contiennent des actions qui sont essentielles à votre application.
 
@@ -44,7 +44,7 @@ Vous pouvez supprimer l'élévation avec la propriété `disableElevation`.
 
 ### Boutons à contours
 
-[boutons en surbrillance](https://material.io/design/components/buttons.html#outlined-button) sont des boutons à accent moyen. They contain actions that are important, but aren't the primary action in an app.
+[boutons en surbrillance](https://material.io/design/components/buttons.html#outlined-button) sont des boutons à accent moyen. Ils contiennent des actions importantes mais qui ne sont pas l'action principale d'une application.
 
 Les boutons surbrillance sont également une alternative moins importante que les boutons contenus, ou une alternative plus importante aux boutons de texte.
 
@@ -64,11 +64,11 @@ Notez que la documentation [évite](/guides/api/#native-properties) de mentionne
 
 {{"demo": "pages/components/buttons/ColorButtons.js"}}
 
-In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info.
+En plus d'utiliser les couleurs par défaut, vous pouvez ajouter des couleurs personnalisées, ou désactiver celles dont vous n'avez pas besoin. Voir l'exemple [Ajouter de nouvelles couleurs](/customization/palette/#adding-new-colors) pour plus d'informations.
 
 ## Tailles
 
-Fancy larger or smaller buttons? Use the `size` property.
+Pour des boutons plus grands ou plus petits, utilisez la propriété `size`.
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
 
@@ -96,9 +96,9 @@ Pour ajuster la taille des boutons, utilisez la propriété `size`.
 
 {{"demo": "pages/components/buttons/IconButtonSizes.js"}}
 
-### Curseur non autorisé
+### Couleurs
 
-Use `color` prop to apply theme color palette to component.
+Utilisez la propriété `color` pour appliquer la palette de couleur du thème au composant.
 
 {{"demo": "pages/components/buttons/IconButtonColors.js"}}
 
@@ -110,13 +110,13 @@ Here are some examples of customizing the component. Vous pouvez en savoir plus 
 
 🎨 Si vous cherchez de l'inspiration, vous pouvez consulter les [exemples de personnalisation de MUI Treasury](https://mui-treasury.com/styles/button).
 
-## Boutons personnalisés
+## Boutons avec chargement
 
-Activer/désactiver le commutateur pour voir la transition entre les différents états.
+Les boutons de chargement peuvent afficher l'état de celui-ci et désactiver les interactions.
 
 {{"demo": "pages/components/buttons/LoadingButtons.js"}}
 
-Toggle the loading switch to see the transition between the different states.
+Activez/désactivez le switch de chargement pour voir la transition entre les différents états.
 
 {{"demo": "pages/components/buttons/LoadingButtonsTransition.js"}}
 
@@ -128,7 +128,7 @@ Les boutons texte, les boutons contained, les bouton d'action flottante et les b
 
 ## Bibliothèque de routage tierce
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. Le composant `ButtonBase` fournit la propriété `composante` pour gérer ce cas d'utilisation. Voici un [guide plus détaillé](/guides/routing/#button).
+Un cas d'utilisation fréquente est d'effectuer une navigation sur le client uniquement, sans un aller-retour HTTP vers le serveur. Le composant `ButtonBase` fournit la propriété `composante` pour gérer ce cas d'utilisation. Voici un [guide plus détaillé](/guides/routing/#button).
 
 ## Limites
 
