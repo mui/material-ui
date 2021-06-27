@@ -1,14 +1,14 @@
 # A propriedade `sx`
 
-<p class="description">The `sx` prop is a shortcut for defining custom style that has access to the theme.</p>
+<p class="description">A propriedade `sx` é um atalho para definir o estilo personalizado com acesso ao tema.</p>
 
-The property is a superset of CSS that packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@material-ui/system`. You can specify any valid CSS using this prop.
+A propriedade é um superconjunto de CSS que junta [todas as funções de estilo](/system/basics/#all-inclusive) que são expostas em `@material-ui/system`. Você pode especificar qualquer CSS válido usando este propriedade.
 
 ## Exemplo
 
 {{"demo": "pages/system/the-sx-prop/Example.js", "bg": true, "defaultCodeOpen": true}}
 
-On the example above, you can notice that some of the values are not valid CSS properties. This is because the `sx` keys are mapped to specific properties of the theme. In the following sections, you will learn how different `sx` properties are mapped to specific parts of the theme.
+No exemplo acima, você pode notar que alguns dos valores não são propriedades válidas do CSS. Isso porque as teclas `sx` são mapeadas para propriedades específicas do tema. Nas seções a seguir, você aprenderá como diferentes propriedades `sx` são mapeadas para partes específicas do tema.
 
 ## Theme aware properties
 
