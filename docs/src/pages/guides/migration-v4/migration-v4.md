@@ -23,7 +23,7 @@ The _why_ is covered in the [release blog post on Medium](https://medium.com/mat
 
 The very first thing you will need to do is to update your dependencies.
 
-### Update React & Typescript version
+### Update React & TypeScript version
 
 Make sure that your application (using material-ui v4) is still running with minimum supported version.
 
@@ -37,6 +37,7 @@ Make sure that your application (using material-ui v4) is still running with min
 ### Update Material-UI version
 
 You need to update your `package.json` to use the latest version of Material-UI and its peer dependencies.
+Either edit your `package.json`:
 
 ```json
 "dependencies": {
@@ -56,7 +57,7 @@ or
 yarn add @material-ui/core@next @emotion/react @emotion/styled
 ```
 
-> After this step, your application is expected to crash because styling-engine has changed in v5.
+> After this step, your application is expected to crash because the style library has changed in v5 from JSS to emotion.
 
 ### Style library
 
@@ -108,7 +109,7 @@ export default function PlainCssPriority() {
   +import { ThemeProvider } from '@material-ui/core/styles';
   ```
 
-- The function `createMuiTheme` was renamed to `createTheme` to make more intuitive to use with `ThemeProvider`.
+- The function `createMuiTheme` was renamed to `createTheme` to make it more intuitive to use with `ThemeProvider`.
 
   ```diff
   -import { createMuiTheme } from '@material-ui/core/styles';
@@ -334,7 +335,7 @@ declare module '@material-ui/styles' {
 
 #### makeStyles
 
-- The `makeStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/makeStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+- The `makeStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/makeStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended that you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
 
   ```diff
   -import { makeStyles } from '@material-ui/core/styles';
@@ -477,9 +478,9 @@ declare module '@material-ui/styles' {
 
 #### withWidth
 
-- This HOC was removed. There's an alternative using the `useMediaQuery` hook on [this page](/components/use-media-query/#migrating-from-withwidth).
+- This HOC was removed. There's an alternative using the [`useMediaQuery` hook](/components/use-media-query/#migrating-from-withwidth).
 
-> At this point, you should see your application running without crash (some UI differences are expected). Next step is to go through component breaking changes below. In case that your application is still crash with unknown error, [open an issue](https://github.com/mui-org/material-ui/issues/new/choose) in material-ui repository.
+> At this point, you should see your application running without crashing. (Some UI differences are expected). The next step is to go through the component breaking changes below. In the event that your application is still crashing with unknown errors, [open an issue](https://github.com/mui-org/material-ui/issues/new/choose) in the Material-UI GitHub repo.
 
 ## Handling breaking changes
 
@@ -505,7 +506,7 @@ If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-b
 ### non-ref-forwarding class components
 
 Support for non-ref-forwarding class components in the `component` prop or as immediate `children` has been dropped. If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React.StrictMode` then you don't need to do anything.
-Otherwise check out the ["Caveat with refs" section in our composition guide](/guides/composition/#caveat-with-refs) to find out how to migrate.
+Otherwise check out the [Caveat with refs](/guides/composition/#caveat-with-refs) section in the composition guide to find out how to migrate.
 This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
 
 ### System
@@ -1964,7 +1965,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ## Migrate JSS to emotion
 
-We recommend to do this step once you go through all of the breaking changes above.
+We recommend to do this after you have completed upgrading for the breaking changes above.
 
 <!-- Add material-ui component migration example -->
 
