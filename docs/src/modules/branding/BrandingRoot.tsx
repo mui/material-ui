@@ -331,11 +331,6 @@ theme = createTheme(theme, {
         },
       },
     },
-    MuiLink: {
-      defaultProps: {
-        underline: 'hover',
-      },
-    },
   },
 });
 
