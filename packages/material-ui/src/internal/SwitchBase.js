@@ -21,7 +21,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getSwitchBaseUtilityClass, classes);
 };
 
-const SwitchBaseRoot = styled(ButtonBase, { skipSx: true })(({ styleProps }) => ({
+const SwitchBaseRoot = styled(ButtonBase, { skipSx: true })(({ styleProps, theme }) => ({
   /* Styles applied to the root element. */
   padding: 9,
   borderRadius: '50%',
@@ -33,6 +33,17 @@ const SwitchBaseRoot = styled(ButtonBase, { skipSx: true })(({ styleProps }) => 
   ...(styleProps.edge === 'end' && {
     marginRight: styleProps.size === 'small' ? -3 : -12,
   }),
+  '&:hover': {
+    '&.Mui-checked': {
+      'span:empty:not([class*=MuiTouchRipple-root])': {
+        backgroundColor: '#106ba3',
+      },
+    },
+    'span:empty:not([class*=MuiTouchRipple-root])': {
+      zIndex: 0,
+      backgroundColor: theme.palette.mode === 'dark' ? '#30404d' : '#ebf1f5',
+    },
+  },
 }));
 
 const SwitchBaseInput = styled('input', { skipSx: true })({
@@ -46,7 +57,6 @@ const SwitchBaseInput = styled('input', { skipSx: true })({
   left: 0,
   margin: 0,
   padding: 0,
-  zIndex: 1,
 });
 
 /**
@@ -154,6 +164,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
       ref={ref}
       {...other}
     >
+      {checked ? checkedIcon : icon}
       <SwitchBaseInput
         autoFocus={autoFocus}
         checked={checkedProp}
@@ -172,7 +183,6 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
         value={value}
         {...inputProps}
       />
-      {checked ? checkedIcon : icon}
     </SwitchBaseRoot>
   );
 });
