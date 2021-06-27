@@ -334,23 +334,6 @@ This codemod is **non-idempotent** (`variant="standard"` would be added on a sub
 npx @material-ui/codemod@next v5.0.0/variant-prop <path>
 ```
 
-#### `theme-breakpoints`
-
-Updates breakpoint values to match new logic.
-
-```diff
--theme.breakpoints.down('sm')
--theme.breakpoints.between('sm', 'md')
-+theme.breakpoints.down('md')
-+theme.breakpoints.between('sm', 'lg')
-```
-
-<!-- #default-branch-switch -->
-
-```sh
-npx @material-ui/codemod@next v5.0.0/theme-breakpoints <path>
-```
-
 #### `use-transitionprops`
 
 Updates Dialog, Menu, Popover, and Snackbar to use the `TransitionProps` prop to replace the `onEnter*` and `onExit*` props.
