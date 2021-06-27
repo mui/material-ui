@@ -97,9 +97,9 @@ const theme = createTheme({
 
 In addition to using the default typography variants, you can add custom ones, or disable any you don't need. See the [Adding & disabling variants](/customization/typography/#adding-amp-disabling-variants) example for more info.
 
-## System props
+## Propriétés du système
 
-As a CSS utility component, the `Typography` supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top:
+As a CSS utility component, the `Typography` supports all [`system`](/system/properties/) properties. Vous pouvez les utiliser comme prop directement sur le composant. Par exemple, une margin-top :
 
 ```jsx
 <Typography mt={2}>
