@@ -40,6 +40,7 @@ module.exports = {
     ignoreDevErrors: true,
     ignoreBuildErrors: true,
   },
+  webpack5: false,
   webpack: (config, options) => {
     const plugins = config.plugins.slice();
 
