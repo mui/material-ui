@@ -30,59 +30,56 @@ Si vous êtes **nouveau ou peu familiers avec FlexBox**, nous vous encourageons 
 
 ## Les grilles fluides
 
-Les grilles fluides utilisent des colonnes qui mettent à l'échelle et redimensionnent le contenu. A fluid grid's layout can use breakpoints to determine if the layout needs to change dramatically.
+Les grilles fluides utilisent des colonnes qui mettent à l'échelle et redimensionnent le contenu. La mise en page d'une grille fluide peut utiliser des breakpoints pour déterminer si la mise en page doit changer radicalement.
 
 ### Grille de base
 
-Column widths are integer values between 1 and 12; they apply at any breakpoint and indicate how many columns are occupied by the component.
+Les largeurs de colonnes sont des valeurs entières entre 1 et 12 ; elles s'appliquent à n'importe quel breakpoint et indiquent combien de colonnes sont occupées par le composant.
 
-A value given to a breakpoint applies to all the other breakpoints wider than it (unless overridden, as you can read later in this page). For example, `xs={12}` sizes a component to occupy the whole viewport width regardless of its size.
+Une valeur donnée à un breakpoint s'applique à tous les autres breakpoints plus larges que lui (sauf si surchargé, comme vous pouvez le lire plus tard dans cette page). Par exemple, `xs={12}` dimensionne un composant pour occuper toute la largeur de la fenêtre d'affichage, quelle que soit sa taille.
 
-{{"demo": "pages/components/grid/CenteredGrid.js", "bg": true}}
+{{"demo": "pages/components/grid/BasicGrid.js", "bg": true}}
 
-### Grid avec des points de rupture
+### Grid avec plusieurs breakpoints
 
-Plusieurs colonnes ont plusieurs largeurs définies, ce qui entraîne une modification de la présentation au point de rupture défini. Width values given to larger breakpoints override those given to smaller breakpoints.
+Plusieurs colonnes ont plusieurs largeurs définies, ce qui entraîne une modification de la présentation au point de rupture défini. Les valeurs de largeur données aux breakpoints plus grands remplacent celles données aux breakpoints plus petits.
 
-For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport width (6 columns) when viewport width is [600 or more pixels](/customization/breakpoints/#default-breakpoints). For smaller viewports, the component fills all 12 available columns.
+Par exemple, `xs={12} sm={6}` dimensionne un composant pour occuper la moitié de la largeur de la fenêtre (6 colonnes) lorsque la largeur de la fenêtre est de [600 pixels ou plus](/customization/breakpoints/#default-breakpoints). Pour les affichages plus petits, le composant remplit les 12 colonnes disponibles.
 
 {{"demo": "pages/components/grid/FullWidthGrid.js", "bg": true}}
 
 ## Ecartement
 
-To control space between children, use the `spacing` prop. The spacing value can be any positive number, including decimals and any string. Cette fonction de transformation de sortie peut être personnalisée [à l'aide du thème](/customization/spacing/).
+Pour contrôler l'espace entre les enfants, utilisez la propriété `spacing`. La valeur d'espacement peut être n'importe quel nombre positif, y compris les décimales et n'importe quelle chaîne. La propriété est convertie en une propriété CSS en utilisant le helper [`theme.spacing()`](/customization/spacing/).
 
 {{"demo": "pages/components/grid/SpacingGrid.js", "bg": true}}
 
 ## Responsive values
 
-You can switch the props' value based on the active breakpoint. For instance, we can implement the ["recommended"](https://material.io/design/layout/responsive-layout-grid.html) responsive layout grid of Material Design.
+Vous pouvez changer la valeur des propriétés en fonction du breakpoint actif. Par exemple, nous pouvons implémenter la grille de mise en page responsive ["recommandée"](https://material.io/design/layout/responsive-layout-grid.html) de Material Design.
 
-Vous trouverez ci-dessous une démo interactive vous permettant d'explorer les résultats visuels des différents paramètres:
+{{"demo": "pages/components/grid/ResponsiveGrid.js", "bg": true}}
 
-Responsive values is supported by:
+Les valeurs responsives sont prises en charge par:
 
 - `columns`
 - `columnSpacing`
 - `direction`
 - `rowSpacing`
 - `spacing`
-- all the [other props](#system-props) of the system
+- toutes les [autres propriétés](#system-props) du système
 
-> ⚠️ When using a responsive `columns` prop, each grid item needs its corresponding breakpoint. For instance, this is not working. The grid item misses the value for `md`:
+> ⚠️ Lors de l'utilisation d'une propriété de `colonnes` responsive, chaque élément de la grille a besoin de son breakpoint correspondant. Par exemple, cela ne fonctionne pas. La valeur `md` manque à l'élément de la grille:
 > 
 > ```jsx
-> <body>
->     <div style={{ padding: 20 }}>
->       <Grid container spacing={5}>
->         //... </Grid>
->     </div>
->   </body> </Grid> </Grid>
+> <Grid container columns={{ xs: 4, md: 12 }}>
+>    <Grid item xs={2} />
+> > </Grid>
 > ```
 
 ### Marge négative
 
-The `rowSpacing` and `columnSpacing` props allow for specifying the row and column gaps independently. It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap).
+Les propriétés `rowSpacing` et `columnSpacing` permettent de spécifier les écarts de lignes et de colonnes de manière indépendante. C'est similaire aux propriétés `row-gap` et `column-gap` de [grille CSS](/system/grid/#row-gap-amp-column-gap).
 
 {{"demo": "pages/components/grid/RowAndColumnSpacing.js", "bg": true}}
 
@@ -164,7 +161,7 @@ The `Grid` component is using CSS flexbox internally. But as seen below, you can
 
 {{"demo": "pages/components/grid/CSSGrid.js", "bg": true}}
 
-## System props
+## Propriétés du système
 
 As a CSS utility component, the `Grid` supports all [`system`](/system/properties/) properties. You can use them as props directly on the component. For instance, a padding:
 
