@@ -60,7 +60,7 @@ Here are a few demos with [react-router](https://github.com/ReactTraining/react-
 
 {{"demo": "pages/guides/routing/ButtonRouter.js"}}
 
-**Note**: The button base component adds the `role="button"` attribute when it identifies the intent to render a button without a native `<button>` element. This can create issues when rendering a link. If you are not using one of the `href`, `to`, or `component="a"` props, you need to override the `role` attribute. The above demo achieves this by setting `role={undefined}` **after** the spread props.
+**Nota**: O componente base do botão adiciona o atributo `role=""button"` quando identifica a intenção de renderizar um botão sem um `<button>` elemento nativo. Isso pode criar problemas ao renderizar um link. Se você não estiver usando um das propriedades `href`, `to`, ou `component="a` você precisa substituir o atributo `role`. A demonstração acima consegue isso definindo `role={undefined}` **after** os "spread" "props".
 
 ```jsx
 const LinkBehavior = React.forwardRef((props, ref) => (
@@ -80,7 +80,7 @@ const LinkBehavior = React.forwardRef((props, ref) => (
 
 ### Next.js
 
-Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link). The [example folder](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs-with-typescript) provides adapters for usage with Material-UI.
+O Next.js tem [um componente Link personalizado](https://nextjs.org/docs/api-reference/next/link). A pasta [example](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs-with-typescript) fornece adaptadores para uso com Material-UI.
 
 - The first version of the adapter is the [`NextLinkComposed`](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs-with-typescript/src/Link.tsx) component. This component is unstyled and only responsible for handling the navigation. The prop `href` was renamed `to` to avoid a naming conflict. This is similar to react-router's Link component.
 
@@ -124,4 +124,4 @@ Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next
 
 ### Gatsby
 
-The [Link](https://www.gatsbyjs.com/docs/linking-between-pages/) component of Gatsby is built on `@reach/router`. You can use the same previous documentation for react-router. Unlike Next.js, it doesn't require you to create an adapter.
+O componente [Link](https://www.gatsbyjs.com/docs/linking-between-pages/) do Gatsby é construído em `@reach/router`. Você pode usar a mesma documentação anterior para react-router. Ao contrário do Next.js, ele não exige que você faça uma "gambiarra".
