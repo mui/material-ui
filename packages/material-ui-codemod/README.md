@@ -30,8 +30,8 @@ Options:
                                                 [boolean] [default: false]
 
 Examples:
-  npx @material-ui/codemod v4.0.0/theme-spacing-api src
-  npx @material-ui/codemod v5.0.0/component-rename-prop src --
+  npx @material-ui/codemod@next v4.0.0/theme-spacing-api src
+  npx @material-ui/codemod@next v5.0.0/component-rename-prop src --
   --component=Grid --from=prop --to=newProp
 ```
 
@@ -50,8 +50,10 @@ A generic codemod to rename any component prop.
 +<Component newProp />
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod v5.0.0/component-rename-prop <path> -- --component=Grid --from=prop --to=newProp
+npx @material-ui/codemod@next v5.0.0/component-rename-prop <path> -- --component=Grid --from=prop --to=newProp
 ```
 
 #### `autocomplete-rename-closeicon`
@@ -63,8 +65,10 @@ Renames `fade` style utility import and calls from `fade` to `alpha`.
 +<Autocomplete clearIcon={defaultClearIcon} />
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod v5.0.0/autocomplete-rename-closeicon  <path>
+npx @material-ui/codemod@next v5.0.0/autocomplete-rename-closeicon  <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#autocomplete).
@@ -80,8 +84,10 @@ Updates the Avatar `variant` value and classes key from 'circle' to 'circular'.
 +<Avatar classes={{ circular: 'className' }} />
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod v5.0.0/avatar-circle-circular <path>
+npx @material-ui/codemod@next v5.0.0/avatar-circle-circular <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#avatar).
@@ -97,8 +103,10 @@ Removes the outdated `color` prop values.
 +<Button>
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod v5.0.0/box-borderradius-values <path>
+npx @material-ui/codemod@next v5.0.0/box-borderradius-values <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#button).
@@ -114,8 +122,10 @@ Updates the Box API from separate system props to `sx`.
 +<Box borderRadius="16px">
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod/v5.0.0/box-sx-prop <path>
+npx @material-ui/codemod@next v5.0.0/box-sx-prop <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#box).
@@ -133,8 +143,10 @@ Renames the Box `grid*Gap` props.
 +<Box rowGap={4}>Item 5</Box>
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod v5.0.0/box-rename-gap <path>
+npx @material-ui/codemod@next v5.0.0/box-rename-gap <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#box).
@@ -166,8 +178,10 @@ Renames the badge's props.
 }}>
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod v5.0.0/box-rename-gap <path>
+npx @material-ui/codemod@next v5.0.0/box-rename-gap <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#badge).
@@ -181,8 +195,10 @@ Removes the Chip `variant` prop if the value is `"default"`.
 +<Chip>
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod v5.0.0/chip-variant-prop <path>
+npx @material-ui/codemod@next v5.0.0/chip-variant-prop <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#chip).
@@ -196,8 +212,10 @@ Rename the CircularPress `static` variant to `determinate`.
 +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod v5.0.0/circularprogress-variant <path>
+npx @material-ui/codemod@next v5.0.0/circularprogress-variant <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#circularprogress).
@@ -213,8 +231,10 @@ Rename the CircularPress `static` variant to `determinate`.
 +<Collapse classes={{ root: 'collapse' }} />
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod v5.0.0/collapse-rename-collapsedheight <path>
+npx @material-ui/codemod@next v5.0.0/collapse-rename-collapsedheight <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#collapse).
@@ -231,8 +251,10 @@ Renames `fade` style utility import and calls frpm `fade` to `alpha`.
 +const foo = alpha('#aaa');
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod v5.0.0/fade-rename-alpha <path>
+npx @material-ui/codemod@next v5.0.0/fade-rename-alpha <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#styles).
@@ -246,8 +268,10 @@ Renames `fade` style utility import and calls frpm `fade` to `alpha`.
 +<Grid item justifyContent="left">Item</Grid>
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod v5.0.0/grid-justify-justifycontent <path>
+npx @material-ui/codemod@next v5.0.0/grid-justify-justifycontent <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#grid).
@@ -268,8 +292,10 @@ or
 +import { SpeedDial } from '@material-ui/core';
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod v5.0.0/moved-lab-modules <path>
+npx @material-ui/codemod@next v5.0.0/moved-lab-modules <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#skeleton).
@@ -302,8 +328,10 @@ The diff should look like this:
 
 This codemod is **non-idempotent** (`variant="standard"` would be added on a subsequent run, where `variant="outlined"` was removed), so it should only be run once against any particular codebase.
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod v5.0.0/variant-prop <path>
+npx @material-ui/codemod@next v5.0.0/variant-prop <path>
 ```
 
 #### `theme-breakpoints`
@@ -317,8 +345,10 @@ Updates breakpoint values to match new logic.
 +theme.breakpoints.between('sm', 'lg')
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod v5.0.0/theme-breakpoints <path>
+npx @material-ui/codemod@next v5.0.0/theme-breakpoints <path>
 ```
 
 #### `use-transitionprops`
@@ -344,8 +374,10 @@ Updates Dialog, Menu, Popover, and Snackbar to use the `TransitionProps` prop to
 />
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod v5.0.0/use-transitionprops <path>
+npx @material-ui/codemod@next v5.0.0/use-transitionprops <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](/guides/migration-v4/#dialog).
@@ -361,8 +393,10 @@ Updates breakpoint values to match new logic.
 +theme.breakpoints.between('sm', 'lg')
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx jscodeshift --extensions js,ts,jsx,tsx --parser tsx -t node_modules/@material-ui/codemod/node/v5.0.0/theme-breakpoints.js <path>
+npx @material-ui/codemod@next v5.0.0/theme-breakpoints.js <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#theme).
@@ -378,8 +412,10 @@ Removes the 'px' suffix from some template strings.
 +`${theme.spacing(2)} ${theme.spacing(4)}`
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod v5.0.0/theme-spacing <path>
+npx @material-ui/codemod@next v5.0.0/theme-spacing <path>
 ```
 
 Note that if there are calculations using `theme.spacing()`, these will need to be resolved manually. Consider using CSS calc:
@@ -403,8 +439,10 @@ The diff should look like this:
 +const spacing = theme.spacing(1);
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod v4.0.0/theme-spacing-api <path>
+npx @material-ui/codemod@next v4.0.0/theme-spacing-api <path>
 ```
 
 This codemod tries to perform a basic expression simplification which can be improved for expressions that use more than one operation.
@@ -428,8 +466,10 @@ Converts all `@material-ui/core` imports more than 1 level deep to the optimal f
 +import { withStyles, createTheme } from '@material-ui/core/styles';
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod v4.0.0/optimal-imports <path>
+npx @material-ui/codemod@next v4.0.0/optimal-imports <path>
 ```
 
 Head to https://material-ui.com/guides/minimizing-bundle-size/ to understand when it's useful.
@@ -444,8 +484,10 @@ Converts all `@material-ui/core` submodule imports to the root module:
 +import { List, withStyles } from '@material-ui/core';
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod v4.0.0/top-level-imports <path>
+npx @material-ui/codemod@next v4.0.0/top-level-imports <path>
 ```
 
 Head to https://material-ui.com/guides/minimizing-bundle-size/ to understand when it's useful.
@@ -463,8 +505,10 @@ The diff should look like this:
 +import MenuItem from '@material-ui/core/MenuItem';
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod v1.0.0/import-path <path>
+npx @material-ui/codemod@next v1.0.0/import-path <path>
 ```
 
 **Notice**: if you are migrating from pre-v1.0, and your imports use `material-ui`, you will need to manually find and replace all references to `material-ui` in your code to `@material-ui/core`. E.g.:
@@ -488,14 +532,18 @@ The diff should look like this:
 +const teal500 = teal['500'];
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod v1.0.0/color-imports <path>
+npx @material-ui/codemod@next v1.0.0/color-imports <path>
 ```
 
 **additional options**
 
+<!-- #default-branch-switch -->
+
 ```
-npx @material-ui/codemod v1.0.0/color-imports <path> -- --importPath='mui/styles/colors' --targetPath='mui/colors'
+npx @material-ui/codemod@next v1.0.0/color-imports <path> -- --importPath='mui/styles/colors' --targetPath='mui/colors'
 ```
 
 #### `svg-icon-imports`
@@ -510,8 +558,10 @@ The diff should look like this:
 +import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod v1.0.0/svg-icon-imports <path>
+npx @material-ui/codemod@next v1.0.0/svg-icon-imports <path>
 ```
 
 ### v0.15.0
@@ -532,6 +582,8 @@ The diff should look like this:
 +import RaisedButton from 'material-ui/RaisedButton';
 ```
 
+<!-- #default-branch-switch -->
+
 ```sh
-npx @material-ui/codemod v0.15.0/import-path <path>
+npx @material-ui/codemod@next v0.15.0/import-path <path>
 ```
