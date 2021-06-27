@@ -12,31 +12,31 @@ githubLabel: 'component: ButtonGroup'
 
 ## Groupe de boutons de base
 
-The buttons can be grouped by wrapping them with the `ButtonGroup` component. They need to be immediate children.
+Les boutons peuvent être regroupés en les entourant avec le composant `ButtonGroup`. Ils doivent être des enfants immédiats.
 
 {{"demo": "pages/components/button-group/BasicButtonGroup.js"}}
 
-## Tailles et couleurs
+## Variantes de boutons
 
-The `size` and `color` props can be used to control the appearance of the ButtonGroup.
+Toutes les variantes de boutons standards sont prises en charge.
 
 {{"demo": "pages/components/button-group/VariantButtonGroup.js"}}
 
 ## Tailles et couleurs
 
-The ButtonGroup can be displayed veritcally using the `orientation` prop.
+Les propriétés `size` et `color` peuvent être utilisées pour contrôler l'apparence du groupe de boutons.
 
 {{"demo": "pages/components/button-group/GroupSizesColors.js"}}
 
 ## Groupe vertical
 
-The button group can be displayed vertically using the `orientation` prop.
+Le groupe de boutons peut être affiché verticalement en utilisant la propriété `orientation`.
 
 {{"demo": "pages/components/button-group/GroupOrientation.js"}}
 
 ## Bouton Split
 
-`ButtonGroup` peut également être utilisé pour créer un bouton de séparation. La liste déroulante peut modifier l'action du bouton (comme dans cet exemple), ou être utilisée pour déclencher immédiatement une action connexe.
+`ButtonGroup` peut également être utilisé pour créer un bouton de séparation. La liste déroulante peut modifier l'action du bouton (comme dans cet exemple), ou être utilisée pour déclencher immédiatement une action liée.
 
 {{"demo": "pages/components/button-group/SplitButton.js"}}
 
