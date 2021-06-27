@@ -64,7 +64,7 @@ Você pode usar a propriedade `anchorOrigin` para mover o emblema para qualquer 
 
 ## Unstyled
 
-The badge also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+O badge também vem com uma versão sem estilo. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
 import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
@@ -74,6 +74,6 @@ import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
 
 ## Acessibilidade
 
-You can't rely on the content of the badge to be announced correctly. You should provide a full description, for instance, with `aria-label`:
+Você não pode confiar que o conteúdo do badge seja anunciado corretamente. Você deve fornecer uma descrição completa, por exemplo, com `aria-label`:
 
 {{"demo": "pages/components/badges/AccessibleBadges.js"}}
