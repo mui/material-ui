@@ -31,6 +31,10 @@ if (staging) {
 }
 
 module.exports = {
+  eslint: {
+    // TODO: https://github.com/mui-org/material-ui/issues/25966
+    ignoreDuringBuilds: true,
+  },
   typescript: {
     // Motivated by https://github.com/zeit/next.js/issues/7687
     ignoreDevErrors: true,
