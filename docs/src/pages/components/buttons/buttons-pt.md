@@ -98,7 +98,7 @@ For larger or smaller icon buttons, use the `size` prop.
 
 ### Propriedade CSS Cursor not-allowed
 
-Use `color` prop to apply theme color palette to component.
+Use a propriedade `color` para aplicar uma paleta de cores ao componente.
 
 {{"demo": "pages/components/buttons/IconButtonColors.js"}}
 
@@ -112,11 +112,11 @@ Aqui estão alguns exemplos de customização do componente. Você pode aprender
 
 ## Botões de progresso
 
-The loading buttons can show loading state and disable interactions.
+Os botões de carregamento podem mostrar estado de carregamento e desativar as interações.
 
 {{"demo": "pages/components/buttons/LoadingButtons.js"}}
 
-Toggle the loading switch to see the transition between the different states.
+Alterne o interruptor de carregamento para ver a transição entre os diferentes estados.
 
 O componente ButtonBase define `pointer-events: none;` ao desabilitar os botões, o que previne que o cursor desabilitado seja exibido.
 
@@ -128,7 +128,7 @@ Os botões de texto, botões contidos, botões de ação flutuante e botões de 
 
 ## Biblioteca de roteamento de terceiros
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. Um caso de uso comum é usar o botão para acionar uma navegação para uma nova página. Here is a [more detailed guide](/guides/routing/#button).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. Um caso de uso comum é usar o botão para acionar uma navegação para uma nova página. Aqui está um [guia mais detalhado](/guides/routing/#button).
 
 ## Limitações
 
