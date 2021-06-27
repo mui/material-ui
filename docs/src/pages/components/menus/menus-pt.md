@@ -26,19 +26,19 @@ Escolhendo uma opção deve confirmar imediatamente a opção e fechar o menu.
 
 ## Menu selecionado
 
-In desktop viewport, padding is increased to give more space to the menu.
+No viewport do desktop, o preenchimento é aumentado para dar mais espaço ao menu.
 
 {{"demo": "pages/components/menus/IconMenu.js", "bg": true}}
 
 ## Menu posicionado
 
-For the menu that has long list and long text, you can use the `dense` prop to reduce the padding (this property only affects desktop viewport).
+Para o menu que tem lista e texto longo, você pode usar a propriedade `dense` para reduzir o preenchimento (esta propriedade afeta apenas o viewport do desktop).
 
 {{"demo": "pages/components/menus/DenseMenu.js", "bg": true}}
 
 ## Composição de MenuList
 
-If used for item selection, when opened, simple menus places the initial focus on the selected menu item. O item de menu atualmente selecionado é definido usando a propriedade`selected`(de [ListItem](/api/list-item/)). To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
+Se usado para seleção de itens, quando abertos, menus simples colocam o foco inicial no item do menu selecionado. O item de menu atualmente selecionado é definido usando a propriedade`selected`(de [ListItem](/api/list-item/)). Para usar um item do menu selecionado sem impactar o foco inicial, defina a propriedade `variante` para "menu".
 
 {{"demo": "pages/components/menus/SimpleListMenu.js"}}
 
