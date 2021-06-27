@@ -25,7 +25,7 @@ import {
  * @property {Array<keyof typeof fullSuite>} [skip] - Skip the specified tests
  * @property {string} [testComponentsRootPropWith] - The host component that should be rendered instead.
  * @property {{ slotName: string, slotClassName: string }} [testDeepOverrides]
- * @property {{ prop?: string, value?: string, styleKey: string }} [testStateOverrides]
+ * @property {{ prop?: string, value?: any, styleKey: string }} [testStateOverrides]
  * @property {object} [testVariantProps]
  */
 
