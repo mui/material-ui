@@ -30,6 +30,11 @@ export interface BaseTimePickerProps<TDate>
    */
   ToolbarComponent?: React.JSXElementConstructor<ToolbarComponentProps>;
   /**
+   * Mobile picker title, displaying in the toolbar.
+   * @default 'Select time'
+   */
+  toolbarTitle?: React.ReactNode;
+  /**
    * Array of views to show.
    */
   views?: readonly TimePickerView[];

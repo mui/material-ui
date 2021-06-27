@@ -37,6 +37,11 @@ export interface ExportedDateRangePickerViewProps<TDate>
    * @default false
    */
   disableAutoMonthSwitching?: boolean;
+  /**
+   * Mobile picker title, displaying in the toolbar.
+   * @default 'Select date range'
+   */
+  toolbarTitle?: React.ReactNode;
 }
 
 interface DateRangePickerViewProps<TDate>

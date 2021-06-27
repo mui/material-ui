@@ -75,8 +75,8 @@
     "showToolbar": { "type": { "name": "bool" } },
     "ToolbarComponent": { "type": { "name": "elementType" }, "default": "DatePickerToolbar" },
     "toolbarFormat": { "type": { "name": "string" } },
-    "toolbarPlaceholder": { "type": { "name": "node" }, "default": "\"–\"" },
-    "toolbarTitle": { "type": { "name": "node" }, "default": "\"SELECT DATE\"" },
+    "toolbarPlaceholder": { "type": { "name": "node" }, "default": "'–'" },
+    "toolbarTitle": { "type": { "name": "node" }, "default": "'Select date'" },
     "TransitionComponent": { "type": { "name": "elementType" } },
     "value": {
       "type": {

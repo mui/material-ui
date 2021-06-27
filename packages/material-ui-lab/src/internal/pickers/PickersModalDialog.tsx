@@ -9,22 +9,22 @@ import { DIALOG_WIDTH } from './constants/dimensions';
 export interface ExportedPickerModalProps {
   /**
    * Ok button text.
-   * @default "OK"
+   * @default 'OK'
    */
   okText?: React.ReactNode;
   /**
    * Cancel text message.
-   * @default "CANCEL"
+   * @default 'Cancel'
    */
   cancelText?: React.ReactNode;
   /**
    * Clear text message.
-   * @default "CLEAR"
+   * @default 'Clear'
    */
   clearText?: React.ReactNode;
   /**
    * Today text message.
-   * @default "TODAY"
+   * @default 'Today'
    */
   todayText?: React.ReactNode;
   /**

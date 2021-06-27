@@ -86,12 +86,11 @@ export interface BasePickerProps<TInputValue, TDateValue> {
   toolbarFormat?: string;
   /**
    * Mobile picker date value placeholder, displaying if `value` === `null`.
-   * @default "–"
+   * @default '–'
    */
   toolbarPlaceholder?: React.ReactNode;
   /**
-   * Mobile picker title, displaying in the toolbar.
-   * @default "SELECT DATE"
+   * Prop forwarded to the ToolbarComponent.
    */
   toolbarTitle?: React.ReactNode;
   /**
