@@ -114,6 +114,6 @@ Os dias exibidos são customizados com uma função na propriedade `renderDay`. 
 
 ## Texto auxiliar
 
-You can show a helper text with the date format accepted.
+Você pode mostrar um texto de ajuda com o formato de data aceito.
 
 {{"demo": "pages/components/date-picker/HelperText.js"}}
