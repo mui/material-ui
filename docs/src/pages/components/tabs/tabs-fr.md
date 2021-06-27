@@ -120,7 +120,7 @@ Tab labels may be either all icons or all text.
 
 ## Bibliothèque de routage tierce
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `Tab` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing/#tabs).
+Un cas d'utilisation fréquente est d'effectuer une navigation sur le client uniquement, sans un aller-retour HTTP vers le serveur. The `Tab` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing/#tabs).
 
 ## Accessibilité
 
