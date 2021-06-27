@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import Step, { stepClasses } from '@material-ui/core/Step';
+import Step, { StepProps, stepClasses } from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import StepConnector, { stepConnectorClasses } from '@material-ui/core/StepConnector';
 import StepContent, { stepContentClasses } from '@material-ui/core/StepContent';
@@ -113,7 +113,7 @@ describe('<Stepper />', () => {
     });
 
     it('passes index down correctly when rendering children containing arrays', () => {
-      const CustomStep = ({ index }) => <div data-index={index} data-testid="step" />;
+      const CustomStep = ({ index }: StepProps) => <div data-index={index} data-testid="step" />;
 
       const { getAllByTestId } = render(
         <Stepper nonLinear>
@@ -234,22 +234,6 @@ describe('<Stepper />', () => {
     const steps = container.querySelectorAll(`.${stepClasses.root}`);
 
     expect(steps).to.have.length(1);
-  });
-
-  it('should be able to force a state', () => {
-    const { container } = render(
-      <Stepper>
-        <Step />
-        <Step active />
-        <Step />
-      </Stepper>,
-    );
-
-    const steps = container.querySelectorAll(`.${stepClasses.root}`);
-
-    expect(steps[0]).not.to.have.class(stepClasses.active);
-    expect(steps[1]).not.to.have.class(stepClasses.active);
-    expect(steps[2]).not.to.have.class(stepClasses.active);
   });
 
   it('should hide the last connector', () => {

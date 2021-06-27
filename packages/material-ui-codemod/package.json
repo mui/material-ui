@@ -29,8 +29,7 @@
     "@babel/core": "^7.4.5",
     "@babel/runtime": "^7.4.4",
     "@babel/traverse": "^7.6.2",
-    "lodash": "^4.17.15",
-    "jscodeshift": "^0.12.0",
+    "jscodeshift": "^0.13.0",
     "jscodeshift-add-imports": "^1.0.1",
     "yargs": "^17.0.1"
   },
