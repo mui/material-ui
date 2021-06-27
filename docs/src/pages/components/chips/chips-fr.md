@@ -15,60 +15,60 @@ Bien qu’il soit inclus ici en tant que composant autonome, l’utilisation la 
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic chip
+## Chip de base
 
-Exemples de Chip , utilisant une image Avatar, icône SVG Avatar, "Lettre" et (chaîne) Avatar.
+Le composant `Chip` prend en charge le style outlined et filled.
 
-{{"demo": "pages/components/chips/Chips.js"}}
+{{"demo": "pages/components/chips/BasicChips.js"}}
 
-## Tableau de Chip
+## Actions
 
-Les Outlined Chips offrent un style alternatif.
+Vous pouvez utiliser les actions suivantes.
 
-- Les puces avec la propriété `onClick` définie changent l’apparence sur le focus, survolent, puis cliquent sur.
-- Les puces avec la propriété `onDelete` définie afficheront une icône de suppression qui change d’apparence en survol.
+- Les puces avec la propriété `onClick` définie changent d’apparence au focus, au survol, et au clic.
+- Les puces avec la propriété `onDelete` définie afficheront une icône de suppression qui change d’apparence au survol.
 
-### Outlined Chips
+### Cliquable
 
-{{"demo": "pages/components/chips/OutlinedChips.js"}}
+{{"demo": "pages/components/chips/ClickeableChips.js"}}
 
-### Variante par défaut
+### Supprimable
 
 {{"demo": "pages/components/chips/DeleteableChips.js"}}
 
-### Variante linéaire
+### Cliquable et supprimable
 
 {{"demo": "pages/components/chips/ClickeableAndDeleteableChips.js"}}
 
-### Clickeable link
+### Lien cliquable
 
-Vous pouvez utiliser la propriété `size` pour définir une petite Chip.
+{{"demo": "pages/components/chips/ClickeableLinkChips.js"}}
 
-### Custom delete icon
+### Icône de suppression personnalisée
 
-{{"demo": "pages/components/chips/SmallChips.js"}}
+{{"demo": "pages/components/chips/CustomDeleteIconChips.js"}}
 
-## Petite Chip
+## Ornements
 
-{{"demo": "pages/components/chips/SmallOutlinedChips.js"}}
+Vous pouvez ajouter des ornements au début du composant.
 
-Use the `avatar` prop to added a avatar or use the `icon` prop to added a icon.
+Utilisez la propriété `avatar` pour ajouter un avatar ou utilisez la propriété `icon` pour ajouter une icône.
 
-### Avatar chip
+### Avatar
 
 {{"demo": "pages/components/chips/AvatarChips.js"}}
 
-### Icon chip
+### Icône
 
 {{"demo": "pages/components/chips/IconChips.js"}}
 
-## Playground Chip
+## Couleur
 
-You can use the `color` prop to define a primary or secondary color.
+Vous pouvez utiliser la propriété `color` pour définir une couleur à partir de la palette du thème.
 
 {{"demo": "pages/components/chips/ColorChips.js"}}
 
-## Accessibilité
+## Taille
 
 Vous pouvez utiliser la propriété `size` pour définir une petite Chip.
 
@@ -76,11 +76,11 @@ Vous pouvez utiliser la propriété `size` pour définir une petite Chip.
 
 ## Tableau de Chip
 
-Un exemple de rendu de plusieurs Chip à partir d'un tableau de valeurs. Supprimer une Chip la supprime du tableau. Notez que puisqu'aucun `onClick` propriété est définie, la puce peut être concentré, mais ne pas profondeur de gain tandis que vous cliquez dessus ou touché.
+Un exemple de rendu de plusieurs puces à partir d'un tableau de valeurs. Supprimer une Chip la supprime du tableau. Notez que puisqu'aucune propriété `onClick` est définie, la `Chip` peut avoir le focus, mais ne reçoit pas de profondeur lorsqu'elle est cliquée ou touchée.
 
 {{"demo": "pages/components/chips/ChipsArray.js", "bg": true}}
 
-## Chip playground
+## Playground
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideToolbar": true}}
 
