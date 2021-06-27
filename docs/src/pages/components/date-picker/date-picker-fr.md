@@ -6,14 +6,14 @@ packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
 
-# Sélecteur de date
+# Sélecteur de date (Date Picker)
 
-<p class="description">Ce composent permettent à l'utilisateur  de sélectionner une date</p>
+<p class="description">Ce composent permettent à l'utilisateur de sélectionner une date</p>
 
-Ce composent permettent à l'utilisateur  de sélectionner une date Date pickers let the user select a date.
+Ce composent permettent à l'utilisateur de sélectionner une date Les sélecteurs de dates sont affichés avec :
 
-- Dialog sur un mobile
-- Liste déroulante des champs de texte  sur un ecran de pc
+- Fenêtre de dialogue sur un mobile
+- Liste déroulante sur un écran de bureau
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -37,7 +37,7 @@ function App() {
 
 ## Utilisation de base
 
-The date picker will be rendered as a modal dialog on mobile, and a textfield with a popover on desktop.
+Le sélecteur de dates est affiché comme une boîte de dialogue modale sur mobile, et une zone de texte avec une fenêtre pop-up sur l'écran de bureau.
 
 {{"demo": "pages/components/date-picker/BasicDatePicker.js"}}
 
@@ -51,10 +51,10 @@ It's possible to render any picker without the modal/popover and text field. Cel
 
 Le composant du sélecteur de dates est conçu et optimisé pour le périphérique sur lequel il s'exécute.
 
-- The "Mobile" version works best for touch devices and small screens.
-- The "Desktop" version works best for mouse devices and large screens.
+- Le composant `MobileDatePicker` fonctionne mieux pour les appareils tactiles et les petits écrans.
+- Le composant `DesktopDatePicker` fonctionne mieux pour les appareils avec souris et les grands écrans.
 
-By default, the `DatePicker` component uses a `@media (pointer: fine)` media query to determine which version to use. Ceci peut être personnalisé avec la propriété `desktopModeMediaQuery`.
+Par défaut, le composant `DatePicker` affiche la version bureau si la média query [`@media (pointeur : fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) correspond. Ceci peut être personnalisé avec la propriété `desktopModeMediaQuery`.
 
 {{"demo": "pages/components/date-picker/ResponsiveDatePickers.js"}}
 
@@ -70,39 +70,39 @@ Utilisez la propriété `LocalizationProvider` pour modifier la locale du moteur
 
 {{"demo": "pages/components/date-picker/LocalizedDatePicker.js"}}
 
-## Jalali calendar system
+## Système de calendrier Jalali
 
-Install `date-fns-jalali` and use `@date-io/date-fns-jalali` adapter to support [Jalali calendar](https://en.wikipedia.org/wiki/Jalali_calendar).
+Installez `date-fns-jalali` et utilisez l'adaptateur `@date-io/date-fns-jalali` pour supporter le [calendrier Jalali](https://en.wikipedia.org/wiki/Jalali_calendar).
 
 {{"demo": "pages/components/date-picker/JalaliDatePicker.js"}}
 
 ## Affichages des Models
 
-Il est possible de combiner les affichages du selecteur de date par `année`, `mois`, et `date`. Les vues apparaîtront dans l'ordre dans lequel elles sont incluses dans le tableau `views`.
+Il est possible de combiner les vues de la sélection `année`, `mois`, et `date`. Les vues apparaîtront dans l'ordre dans lequel elles sont incluses dans le tableau `views`.
 
 {{"demo": "pages/components/date-picker/ViewsDatePicker.js"}}
 
 ## L'orientation d'affichage
 
-For ease of use the date picker will automatically change the layout between portrait and landscape by subscription to the `window.orientation` change. Vous pouvez forcer une mise en page spécifique en utilisant la prop `orientation`.
+Pour faciliter l'utilisation, le sélecteur de dates changera automatiquement la mise en page entre le portrait et le paysage en s'abonnant au changement de `window.orientation`. Vous pouvez forcer une mise en page spécifique en utilisant la propriété `orientation`.
 
 {{"demo": "pages/components/date-picker/StaticDatePickerLandscape.js", "bg": true}}
 
 ## Sous-composants
 
-Some lower level sub-components (`DayPicker`, `MonthPicker` and `YearPicker`) are also exported. Celles-ci sont affichées sans wrapper ou logique externe (l'input masqué et validation des valeurs de date, etc.).
+Certains sous-composants de niveau inférieur (`CalendarPicker`, `MonthPicker`, et `YearPicker`) sont également exportés. Ceux-ci sont affichés sans wrapper ou logique externe (masque, formatage et validation des valeurs de date, etc.).
 
 {{"demo": "pages/components/date-picker/SubComponentsPickers.js"}}
 
 ## Composant d'Input personnalisé
 
-You can customize rendering of the input with the `renderInput` prop. Assurez-vous d'étendre `ref` et `inputProps` correctement au composant d'input personnalisé.
+Vous pouvez personnaliser le rendu de l'input avec la propriété `renderInput`. Assurez-vous d'étendre `ref` et `inputProps` correctement au composant d'input personnalisé.
 
 {{"demo": "pages/components/date-picker/CustomInput.js"}}
 
 ## Affichage du jour personnalisé
 
-Les jours affichés sont personnalisables avec la propriété type fonction `renderDay`. You can take advantage of the internal [PickersDay](/api/pickers-day) component.
+Les jours affichés sont personnalisables avec la propriété type fonction `renderDay`. Vous pouvez profiter du composant [PickersDay](/api/pickers-day/).
 
 {{"demo": "pages/components/date-picker/CustomDay.js"}}
 
@@ -114,6 +114,6 @@ Parfois, il peut être nécessaire d'afficher des informations supplémentaires 
 
 ## Helper text
 
-You can show a helper text with the date format accepted.
+Vous pouvez afficher un texte d'aide avec le format de date accepté.
 
 {{"demo": "pages/components/date-picker/HelperText.js"}}
