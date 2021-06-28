@@ -47,7 +47,7 @@ It's possible to render any picker without the modal/popover and text field. Cel
 
 {{"demo": "pages/components/date-picker/StaticDatePickerDemo.js", "bg": true}}
 
-## LA responsive UI
+## Réactivité
 
 Le composant du sélecteur de dates est conçu et optimisé pour le périphérique sur lequel il s'exécute.
 
