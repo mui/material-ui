@@ -173,6 +173,7 @@
     "/components/grid": "Grid 栅格",
     "/components/stack": "Stack",
     "/components/image-list": "图像列表",
+    "/components/hidden": "Hidden",
     "/components/inputs": "Inputs 输入框",
     "/components/autocomplete": "Autocomplete 自动补全组件",
     "/components/buttons": "Button 按钮",
