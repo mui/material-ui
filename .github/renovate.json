@@ -9,23 +9,24 @@
   "labels": ["dependencies"],
   "packageRules": [
     {
-      "matchPackagePatterns": "@babel/*",
-      "groupName": "babel"
+      "groupName": "babel",
+      "matchPackagePatterns": "@babel/*"
     },
     {
-      "matchPackagePatterns": "@date-io/*",
-      "groupName": "date-io"
+      "groupName": "date-io",
+      "matchPackagePatterns": "@date-io/*"
     },
     {
-      "matchPackagePatterns": "@emotion/*",
-      "groupName": "Emotion"
+      "groupName": "Emotion",
+      "matchPackagePatterns": "@emotion/*"
     },
     {
+      "groupName": "core-js",
       "matchPackageNames": ["core-js"],
-      "allowedVersions": "< 2.0.0",
-      "groupName": "core-js"
+      "allowedVersions": "< 2.0.0"
     },
     {
+      "groupName": "JSS",
       "matchPackageNames": [
         "jss",
         "jss-plugin-camel-case",
@@ -37,26 +38,30 @@
         "jss-plugin-rule-value-function",
         "jss-plugin-vendor-prefixer",
         "react-jss"
-      ],
-      "groupName": "JSS"
+      ]
     },
     {
+      "groupName": "raw-loader",
       "matchPackageNames": ["raw-loader"],
-      "allowedVersions": "< 2.0.0",
-      "groupName": "raw-loader"
+      "allowedVersions": "< 2.0.0"
     },
     {
-      "matchPackageNames": ["react", "react-dom", "react-is", "react-test-renderer"],
-      "groupName": "React"
+      "groupName": "React",
+      "matchPackageNames": ["react", "react-dom", "react-is", "react-test-renderer"]
     },
     {
+      "groupName": "tslint",
       "matchPackageNames": ["tslint"],
-      "allowedVersions": "<= 5.14.0",
-      "groupName": "tslint"
+      "allowedVersions": "<= 5.14.0"
     },
     {
-      "matchPackagePatterns": "@typescript-eslint/*",
-      "groupName": "typescript-eslint"
+      "groupName": "typescript-eslint",
+      "matchPackagePatterns": "@typescript-eslint/*"
+    },
+    {
+      "groupName": "bundling fixtures",
+      "matchPaths": ["test/bundling/fixtures/**/package.json"],
+      "schedule": "every 6 months on the first day of the month"
     }
   ],
   "prConcurrentLimit": 30,
