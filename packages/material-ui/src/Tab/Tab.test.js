@@ -15,7 +15,6 @@ describe('<Tab />', () => {
     render,
     mount,
     muiName: 'MuiTab',
-    testDeepOverrides: { slotName: 'wrapper', slotClassName: classes.wrapper },
     testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLButtonElement,
     skip: ['componentProp', 'componentsProp'],
