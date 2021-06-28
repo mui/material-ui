@@ -55,7 +55,7 @@ class LongMenu extends React.Component {
           anchorEl={anchorEl}
           open={open}
           PaperProps={{
-            style: {
+            sx: {
               maxHeight: ITEM_HEIGHT * 4.5,
               width: 200,
             },

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Visibility from '@material-ui/icons/Visibility';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -6,8 +7,8 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 export default function BaselineAlignTextField() {
   return (
     <div>
-      <div
-        style={{
+      <Box
+        sx={{
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'baseline',
@@ -27,9 +28,9 @@ export default function BaselineAlignTextField() {
           }}
         />
         Base
-      </div>
-      <div
-        style={{
+      </Box>
+      <Box
+        sx={{
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'baseline',
@@ -49,7 +50,7 @@ export default function BaselineAlignTextField() {
           }}
         />
         Base
-      </div>
+      </Box>
     </div>
   );
 }

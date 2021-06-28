@@ -10,7 +10,7 @@ export default function AlertDialog() {
   return (
     <Paper
       elevation={8}
-      style={{
+      sx={{
         width: 300,
       }}
     >

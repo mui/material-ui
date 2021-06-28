@@ -2,6 +2,7 @@ import * as React from 'react';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import Chip from '@material-ui/core/Chip';
+import Box from '@material-ui/core/Box';
 
 const values = ['I', 'Do not', 'Overflow'];
 
@@ -10,18 +11,13 @@ export default function SelectChips() {
     <Select
       multiple
       value={values}
-      style={{ maxWidth: 100 }}
+      sx={{ maxWidth: 100 }}
       renderValue={(selected) => (
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-          }}
-        >
+        <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
           {selected.map((value) => (
-            <Chip key={value} label={value} style={{ margin: 2 }} />
+            <Chip key={value} label={value} sx={{ margin: 2 }} />
           ))}
-        </div>
+        </Box>
       )}
     >
       {values.map((value) => (
