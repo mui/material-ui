@@ -7,9 +7,9 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { styled } from '@material-ui/core/styles';
 
 const MenuItemStyled = styled(MenuItem)(() => ({
-  '& .Mui-focusVisible': { border: '3px dashed black' },
-  '& .Mui-selected': { border: '3px dotted black' },
-  '& .Mui-focusVisible.Mui-selected': { border: '3px solid black' },
+  '&.Mui-focusVisible': { border: '3px dashed black' },
+  '&.Mui-selected': { border: '3px dotted black' },
+  '&.Mui-focusVisible.Mui-selected': { border: '3px solid black' },
 }));
 
 /**
