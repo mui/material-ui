@@ -35,13 +35,13 @@ Cependant, vous pourriez migrer progressivement un site Web vers Material-UI, ut
 ```jsx
 import * as React from 'react';
 import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
-import MyApp from './MyApp';
+import MonApp from './MonApp';
 
-export default function MyApp() {
+export default function MonApp() {
   return (
     <ScopedCssBaseline>
-      {/* The rest of your application */}
-      <MyApp />
+      {/* Le reste de votre application */}
+      <MonApp />
     </ScopedCssBaseline>
   );
 }
@@ -64,7 +64,7 @@ Les éléments `<html>` et `<body>` sont mis à jour pour fournir de meilleurs p
 
 ### Barres de défilement
 
-In dark mode, the colors of the scrollbars are customized to provide a better contrast. Add this code to your theme (for dark mode).
+Les couleurs des barres de défilement peuvent être personnalisées pour améliorer le contraste (surtout sous Windows). Ajouter ce code sur votre thème (pour le mode sombre).
 
 ```jsx
 import darkScrollbar from '@material-ui/core/darkScrollbar';
@@ -80,7 +80,7 @@ const theme = createTheme({
 });
 ```
 
-This website uses `darkScrollbar` when dark mode is enabled. Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
+Ce site Web utilise `darkScrollbar` lorsque le mode sombre est activé. Sachez cependant que l'utilisation de cet utilitaire (et la personnalisation de `-webkit-scrollbar`) oblige MacOS à toujours afficher la barre de défilement.
 
 ### Typographie
 
