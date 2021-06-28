@@ -86,7 +86,7 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
     shouldDisableYear,
   } = props;
 
-  const styleProps = { ...props };
+  const styleProps = props;
   const classes = useUtilityClasses(styleProps);
 
   const now = useNow<TDate>();
