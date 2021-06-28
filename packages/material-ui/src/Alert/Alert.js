@@ -58,7 +58,8 @@ const AlertRoot = styled(Paper, {
         color: getColor(theme.palette[color].light, 0.6),
         backgroundColor: getBackgroundColor(theme.palette[color].light, 0.9),
         [`& .${alertClasses.icon}`]: {
-          color: theme.palette[color].main,
+          color:
+            theme.palette.mode === 'dark' ? theme.palette[color].main : theme.palette[color].light,
         },
       }),
     /* Styles applied to the root element if variant="outlined". */
@@ -67,7 +68,8 @@ const AlertRoot = styled(Paper, {
         color: getColor(theme.palette[color].light, 0.6),
         border: `1px solid ${theme.palette[color].light}`,
         [`& .${alertClasses.icon}`]: {
-          color: theme.palette[color].main,
+          color:
+            theme.palette.mode === 'dark' ? theme.palette[color].main : theme.palette[color].light,
         },
       }),
     /* Styles applied to the root element if variant="filled". */
