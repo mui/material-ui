@@ -51,7 +51,7 @@
     },
     {
       "matchPackageNames": ["tslint"],
-      "allowedVersions": "*",
+      "allowedVersions": "<= 5.14.0",
       "groupName": "tslint"
     },
     {
