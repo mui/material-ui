@@ -11,7 +11,6 @@ export interface SwitchState {
   disabled: Readonly<boolean>;
   readOnly: Readonly<boolean>;
   focusVisible: Readonly<boolean>;
-  pressed: Readonly<boolean>;
 }
 
 export interface UseSwitchResult extends SwitchState {
@@ -81,7 +80,6 @@ export default function useSwitch(props: UseSwitchProps) {
     onChange,
     onFocus,
     onFocusVisible,
-    onMouseDown,
     readOnly,
     required,
   } = props;
@@ -92,8 +90,6 @@ export default function useSwitch(props: UseSwitchProps) {
     name: 'Switch',
     state: 'checked',
   });
-
-  const [pressed, setPressed] = React.useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     // Workaround for https://github.com/facebook/react/issues/9023
@@ -148,14 +144,6 @@ export default function useSwitch(props: UseSwitchProps) {
     onBlur?.(event);
   };
 
-  const handleMouseDown = (event: React.MouseEvent) => {
-    setPressed(true);
-
-    document.addEventListener('mouseup', () => setPressed(false), { once: true });
-
-    onMouseDown?.(event);
-  };
-
   const handleRefChange = useForkRef(focusVisibleRef, inputRef);
 
   return {
@@ -170,13 +158,11 @@ export default function useSwitch(props: UseSwitchProps) {
       onChange: handleInputChange,
       onFocus: handleFocus,
       onBlur: handleBlur,
-      onMouseDown: handleMouseDown,
       ref: handleRefChange,
     }),
     checked,
     disabled: Boolean(disabled),
     readOnly: Boolean(readOnly),
     focusVisible,
-    pressed,
   } as UseSwitchResult;
 }

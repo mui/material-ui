@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import React from 'react';
 import { spy } from 'sinon';
 import { act, createClientRender } from 'test/utils';
-import useSwitch, { UseSwitchProps, UseSwitchResult } from './useSwitch';
+import { useSwitch, UseSwitchProps, UseSwitchResult } from '@material-ui/unstyled/SwitchUnstyled';
 
 const TestComponent = React.forwardRef(
   ({ useSwitchProps }: { useSwitchProps?: UseSwitchProps }, ref) => {

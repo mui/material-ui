@@ -53,32 +53,21 @@ const BasicSwitchThumb = styled('span')(`
     top: 2px;
     background-color: rgba(255,255,255,0.9);
   }
-
-  &.pressed {
-    background-color: rgba(255,255,255,1);
-    transform: scale(0.7);
-  }
 `);
 
 function BasicSwitch(props) {
-  const { getInputProps, checked, disabled, focusVisible, pressed } =
-    useSwitch(props);
+  const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
 
   const stateClasses = {
     checked,
     disabled,
     focusVisible,
-    pressed,
   };
 
   return (
     <BasicSwitchRoot className={clsx(stateClasses)}>
       <BasicSwitchThumb className={clsx(stateClasses)} />
-      <BasicSwitchInput
-        type="checkbox"
-        {...getInputProps()}
-        aria-label="Demo switch"
-      />
+      <BasicSwitchInput {...getInputProps()} aria-label="Demo switch" />
     </BasicSwitchRoot>
   );
 }
@@ -87,6 +76,8 @@ export default function UseSwitchesBasic() {
   return (
     <div>
       <BasicSwitch defaultChecked />
+      <BasicSwitch />
+      <BasicSwitch defaultChecked disabled />
       <BasicSwitch disabled />
     </div>
   );

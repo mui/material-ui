@@ -43,7 +43,7 @@ const Root = styled('span')(`
     background-color: rgba(255,255,255,0.9);
   }
 
-  &.${switchUnstyledClasses.pressed} .${switchUnstyledClasses.thumb} {
+  &:active .${switchUnstyledClasses.thumb} {
     background-color: rgba(255,255,255,1);
     transform: scale(0.7);
   }
@@ -61,28 +61,14 @@ const Root = styled('span')(`
   }`);
 
 export default function UnstyledSwitches() {
-  const [checked, setChecked] = React.useState(false);
-
-  const withDemoLabel = { 'aria-label': 'Demo switch' };
+  const label = { componentsProps: { input: { 'aria-label': 'Demo switch' } } };
 
   return (
     <div>
-      <SwitchUnstyled
-        checked={checked}
-        onChange={() => setChecked((prevChecked) => !prevChecked)}
-        components={{ Root }}
-        componentsProps={{ input: withDemoLabel, root: { as: 'div' } }}
-      />
-      <SwitchUnstyled
-        component={Root}
-        componentsProps={{ input: withDemoLabel }}
-        defaultChecked
-      />
-      <SwitchUnstyled
-        components={{ Root }}
-        componentsProps={{ input: withDemoLabel }}
-        disabled
-      />
+      <SwitchUnstyled component={Root} {...label} defaultChecked />
+      <SwitchUnstyled component={Root} {...label} />
+      <SwitchUnstyled component={Root} {...label} defaultChecked disabled />
+      <SwitchUnstyled component={Root} {...label} disabled />
     </div>
   );
 }
