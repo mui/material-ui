@@ -17,7 +17,7 @@ materialDesign: https://material.io/components/navigation-drawer
 
 ## Tiroir temporaire
 
-Les drawers de navigation temporaire peuvent activer l'ouverture ou la fermeture. Fermés par défaut, le drawer s'ouvre temporairement au dessus de tout autre contenu jusqu'à qu'une section soit sélectionnée.
+Les tiroirs de navigation temporaire peuvent activer l'ouverture ou la fermeture. Fermés par défaut, le tiroir s'ouvre temporairement au dessus de tout autre contenu jusqu'à qu'une section soit sélectionnée.
 
 Le drawer peut être annulé en cliquant ailleurs dans la zone sombre ou en appuyant sur la touche Échap. Il se ferme quand un élément est sélectionné et est géré par le contrôle de la propriété `open`.
 
