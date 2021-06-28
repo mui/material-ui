@@ -173,6 +173,7 @@
     "/components/grid": "Grid",
     "/components/stack": "Stack",
     "/components/image-list": "Image List",
+    "/components/hidden": "Hidden",
     "/components/inputs": "入力",
     "/components/autocomplete": "Autocomplete",
     "/components/buttons": "Button (ボタン)",
