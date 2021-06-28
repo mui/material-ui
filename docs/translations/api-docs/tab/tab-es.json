@@ -55,10 +55,6 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>wrapped={true}</code>"
-    },
-    "wrapper": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the `icon` and `label`'s wrapper element"
     }
   }
 }
