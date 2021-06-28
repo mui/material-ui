@@ -55,10 +55,6 @@
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
       "nodeName": "o elemento raiz",
       "conditions": "<code>wrapped={true}</code>"
-    },
-    "wrapper": {
-      "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the `icon` and `label`'s wrapper element"
     }
   }
 }
