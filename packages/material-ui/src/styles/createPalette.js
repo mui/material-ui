@@ -124,14 +124,14 @@ function getDefaultSecondary(mode = 'light') {
 function getDefaultError(mode = 'light') {
   if (mode === 'dark') {
     return {
-      main: red[500],
+      main: red[400],
       light: red[300],
       dark: red[700],
     };
   }
   return {
     main: red[700],
-    light: red[400],
+    light: red[500],
     dark: red[800],
   };
 }
@@ -146,7 +146,7 @@ function getDefaultInfo(mode = 'light') {
   }
   return {
     main: cyan[800],
-    light: cyan[400],
+    light: cyan[500],
     dark: cyan[900],
   };
 }
@@ -161,7 +161,7 @@ function getDefaultSuccess(mode = 'light') {
   }
   return {
     main: green[800],
-    light: green[400],
+    light: green[500],
     dark: green[900],
   };
 }
@@ -176,7 +176,7 @@ function getDefaultWarning(mode = 'light') {
   }
   return {
     main: '#ED6C02', // closest to orange[800] that pass 3:1
-    light: orange[400],
+    light: orange[500],
     dark: orange[900],
   };
 }
