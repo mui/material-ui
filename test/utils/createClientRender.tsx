@@ -1,11 +1,10 @@
 /* eslint-env mocha */
 import * as React from 'react';
-import * as scheduler from 'scheduler';
+import * as ReactDOMTestUtils from 'react-dom/test-utils';
 import PropTypes from 'prop-types';
 import createEmotionCache from '@emotion/cache';
 import { CacheProvider as EmotionCacheProvider } from '@emotion/react';
 import {
-  act as rtlAct,
   buildQueries,
   cleanup,
   fireEvent as rtlFireEvent,
@@ -346,15 +345,6 @@ export function createClientRender(
         });
       workspaceRoot = filename!.replace('test/utils/createClientRender.tsx', '');
     }
-
-    if (
-      React.version.startsWith('18') &&
-      typeof (scheduler as any).unstable_flushAllWithoutAsserting !== 'function'
-    ) {
-      throw new Error(
-        'You attempted to render with `createRoot` without mocking the scheduler. Be sure to set the environment variable `REACT_DIST_TAG` to `next`.',
-      );
-    }
   });
 
   let emotionCache: import('@emotion/cache').EmotionCache = null!;
@@ -547,8 +537,12 @@ export function fireTouchChangedEvent(
   target.getBoundingClientRect = originalGetBoundingClientRect;
 }
 
+const reactAct = React.version.startsWith('18')
+  ? (React as any).unstable_act
+  : ReactDOMTestUtils.act;
+
 export function act(callback: () => void) {
-  return traceSync('act', () => rtlAct(callback));
+  return traceSync('act', () => reactAct(callback));
 }
 
 export * from '@testing-library/react/pure';

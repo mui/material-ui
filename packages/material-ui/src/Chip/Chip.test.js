@@ -565,7 +565,6 @@ describe('<Chip />', () => {
       }
 
       focusVisible(chip);
-      await null;
 
       expect(chip).to.have.class(classes.focusVisible);
     });
@@ -576,7 +575,6 @@ describe('<Chip />', () => {
 
       simulatePointerDevice();
       focusVisible(chip);
-      await null;
 
       expect(chip).to.have.class(classes.focusVisible);
 

@@ -109,7 +109,6 @@ describe('focus-visible polyfill', () => {
 
       button.blur();
       focusVisible(button);
-      await null;
 
       expect(button.classList.contains('focus-visible')).to.equal(true);
     });

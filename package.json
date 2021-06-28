@@ -199,11 +199,11 @@
     "**/cross-fetch": "^3.0.5",
     "**/dot-prop": "^5.2.0",
     "**/react-is": "^17.0.1",
-    "scheduler": "0.21.0-alpha-568dc3532",
-    "react-is": "18.0.0-alpha-568dc3532",
-    "react-dom": "18.0.0-alpha-568dc3532",
-    "react-test-renderer": "18.0.0-alpha-568dc3532",
-    "react": "18.0.0-alpha-568dc3532"
+    "scheduler": "0.21.0-alpha-73ffce1b6-20210624",
+    "react-is": "18.0.0-alpha-73ffce1b6-20210624",
+    "react-dom": "18.0.0-alpha-73ffce1b6-20210624",
+    "react-test-renderer": "18.0.0-alpha-73ffce1b6-20210624",
+    "react": "18.0.0-alpha-73ffce1b6-20210624"
   },
   "nyc": {
     "include": [

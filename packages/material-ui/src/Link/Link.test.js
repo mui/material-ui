@@ -5,8 +5,8 @@ import { createMount, act, createClientRender, fireEvent, describeConformanceV5 
 import Link, { linkClasses as classes } from '@material-ui/core/Link';
 import Typography, { typographyClasses } from '@material-ui/core/Typography';
 
-async function focusVisible(element) {
-  await act(async () => {
+function focusVisible(element) {
+  act(() => {
     element.blur();
     document.dispatchEvent(new window.Event('keydown'));
     element.focus();
@@ -77,14 +77,12 @@ describe('<Link />', () => {
       expect(anchor).not.to.have.class(classes.focusVisible);
 
       focusVisible(anchor);
-      await null;
 
       expect(anchor).to.have.class(classes.focusVisible);
 
       act(() => {
         anchor.blur();
       });
-      await null;
 
       expect(anchor).not.to.have.class(classes.focusVisible);
     });

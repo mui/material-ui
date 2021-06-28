@@ -34,12 +34,6 @@ const MAX_CIRCLE_CI_CONCURRENCY = 83;
 
 // Karma configuration
 module.exports = function setKarmaConfig(config) {
-  const resolveAlias = {};
-
-  if (process.env.REACT_DIST_TAG === 'next') {
-    resolveAlias.scheduler = 'scheduler/unstable_mock';
-  }
-
   const baseConfig = {
     basePath: '../',
     browsers: ['chromeHeadless'],
@@ -116,7 +110,6 @@ module.exports = function setKarmaConfig(config) {
       },
       resolve: {
         extensions: ['.js', '.ts', '.tsx'],
-        alias: resolveAlias,
       },
     },
     webpackMiddleware: {

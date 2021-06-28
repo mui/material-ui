@@ -499,7 +499,6 @@ describe('<Tooltip />', () => {
       simulatePointerDevice();
 
       focusVisible(getByRole('button'));
-      await null;
       expect(queryByRole('tooltip')).to.equal(null);
 
       act(() => {
@@ -525,7 +524,6 @@ describe('<Tooltip />', () => {
       );
       const children = getByRole('button');
       focusVisible(children);
-      await null;
 
       expect(queryByRole('tooltip')).to.equal(null);
 
@@ -538,7 +536,6 @@ describe('<Tooltip />', () => {
       act(() => {
         document.activeElement.blur();
       });
-      await null;
       act(() => {
         clock.tick(5);
       });
@@ -549,7 +546,7 @@ describe('<Tooltip />', () => {
       expect(queryByRole('tooltip')).to.equal(null);
 
       focusVisible(children);
-      await null;
+
       // Bypass `enterDelay` wait, use `enterNextDelay`.
       expect(queryByRole('tooltip')).to.equal(null);
 
@@ -579,7 +576,6 @@ describe('<Tooltip />', () => {
       simulatePointerDevice();
 
       focusVisible(getByRole('button'));
-      await null;
       act(() => {
         clock.tick(enterDelay);
       });
@@ -589,7 +585,6 @@ describe('<Tooltip />', () => {
       act(() => {
         getByRole('button').blur();
       });
-      await null;
 
       expect(getByRole('tooltip')).toBeVisible();
 
@@ -911,7 +906,6 @@ describe('<Tooltip />', () => {
       expect(queryByRole('tooltip')).to.equal(null);
 
       focusVisible(getByRole('button'));
-      await null;
 
       expect(getByRole('tooltip')).toBeVisible();
       expect(eventLog).to.deep.equal(['focus', 'open']);

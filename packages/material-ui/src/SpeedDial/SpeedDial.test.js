@@ -205,7 +205,6 @@ describe('<SpeedDial />', () => {
       act(() => {
         fab.focus();
       });
-      await null;
       act(() => {
         clock.tick();
       });
@@ -232,7 +231,6 @@ describe('<SpeedDial />', () => {
       act(() => {
         fab.focus();
       });
-      await null;
       act(() => {
         clock.runAll();
       });
@@ -246,7 +244,6 @@ describe('<SpeedDial />', () => {
       expect(queryByRole('tooltip')).not.to.equal(null);
 
       fireDiscreteEvent.keyDown(actions[0], { key: 'Escape' });
-      await null;
       act(() => {
         clock.runAll();
       });
@@ -311,7 +308,6 @@ describe('<SpeedDial />', () => {
       act(() => {
         fabButton.focus();
       });
-      await null;
     };
 
     /**
