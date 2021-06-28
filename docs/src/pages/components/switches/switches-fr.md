@@ -17,7 +17,7 @@ materialDesign: 'https://material.io/components/selection-controls#switches'
 
 {{"demo": "pages/components/switches/Switches.js"}}
 
-## Checkbox avec FormControlLabel
+## Label
 
 `Switch` can be provided with a description thanks to the `FormControlLabel` component.
 
@@ -33,7 +33,7 @@ Fancy smaller switches? Use the `size` prop.
 
 {{"demo": "pages/components/switches/ColorSwitches.js"}}
 
-## Checkbox personnalisée
+## Checkbox contrôlée
 
 You can control the switch with the `checked` and `onChange` props:
 
