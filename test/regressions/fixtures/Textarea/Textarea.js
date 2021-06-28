@@ -19,7 +19,7 @@ function Textarea() {
         onChange={handleChange}
       />
       <Input
-        sx={{ width: 200, fontSize: 13, boxSizing: 'content-box', padding: 10 }}
+        sx={{ width: 200, fontSize: 13, boxSizing: 'content-box', padding: '10px' }}
         multiline
         value={value}
         onChange={handleChange}
