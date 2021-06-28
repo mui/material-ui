@@ -15,7 +15,7 @@ export default function SelectChips() {
       renderValue={(selected) => (
         <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
           {selected.map((value) => (
-            <Chip key={value} label={value} sx={{ margin: 2 }} />
+            <Chip key={value} label={value} sx={{ margin: '2px' }} />
           ))}
         </Box>
       )}
