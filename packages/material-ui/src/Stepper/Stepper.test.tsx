@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformanceV5 } from 'test/utils';
 import Step, { StepProps, stepClasses } from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import StepConnector, { stepConnectorClasses } from '@material-ui/core/StepConnector';
@@ -8,7 +8,6 @@ import StepContent, { stepContentClasses } from '@material-ui/core/StepContent';
 import Stepper, { stepperClasses as classes } from '@material-ui/core/Stepper';
 
 describe('<Stepper />', () => {
-  const mount = createMount();
   const render = createClientRender();
 
   describeConformanceV5(
@@ -19,7 +18,6 @@ describe('<Stepper />', () => {
       classes,
       inheritComponent: 'div',
       render,
-      mount,
       muiName: 'MuiStepper',
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { variant: 'foo' },

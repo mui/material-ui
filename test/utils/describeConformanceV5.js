@@ -11,13 +11,14 @@ import {
   testReactTestRenderer,
   testRootClass,
 } from './describeConformance';
+import createMount from './createMount';
 
 /**
  * @typedef {Object} ConformanceOptions
  * @property {() => void} [after]
  * @property {object} classes - `classes` of the component provided by `@material-ui/styled-engine`
  * @property {import('react').ElementType} [inheritComponent] - The element type that receives spread props or `undefined` if props are not spread.
- * @property {(node: React.ReactNode) => import('enzyme').ReactWrapper} mount - Should be a return value from createMount
+ * @property {(node: React.ReactNode) => import('enzyme').ReactWrapper} [mount] - Should be a return value from createMount
  * @property {string} muiName
  * @property {(node: React.ReactElement) => import('./createClientRender').MuiRenderResult} [render] - Should be a return value from createClientRender
  * @property {Array<keyof typeof fullSuite>} [only] - If specified only run the tests listed
@@ -355,18 +356,30 @@ const fullSuite = {
  * @param {() => ConformanceOptions} getOptions
  */
 export default function describeConformanceV5(minimalElement, getOptions) {
-  const { after: runAfterHook = () => {}, only = Object.keys(fullSuite), skip = [] } = getOptions();
-
-  const filteredTests = Object.keys(fullSuite).filter(
-    (testKey) => only.indexOf(testKey) !== -1 && skip.indexOf(testKey) === -1,
-  );
-
   describe('Material-UI component API', () => {
+    const {
+      after: runAfterHook = () => {},
+      mount = createMount(),
+      only = Object.keys(fullSuite),
+      skip = [],
+    } = getOptions();
+
+    const filteredTests = Object.keys(fullSuite).filter(
+      (testKey) => only.indexOf(testKey) !== -1 && skip.indexOf(testKey) === -1,
+    );
+
     after(runAfterHook);
+
+    function getTestOptions() {
+      return {
+        ...getOptions(),
+        mount,
+      };
+    }
 
     filteredTests.forEach((testKey) => {
       const test = fullSuite[testKey];
-      test(minimalElement, getOptions);
+      test(minimalElement, getTestOptions);
     });
   });
 }

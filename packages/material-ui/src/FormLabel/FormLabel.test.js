@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { createMount, describeConformanceV5, act, createClientRender } from 'test/utils';
+import { describeConformanceV5, act, createClientRender } from 'test/utils';
 import FormLabel, { formLabelClasses as classes } from '@material-ui/core/FormLabel';
 import FormControl, { useFormControl } from '@material-ui/core/FormControl';
 import { hexToRgb } from '@material-ui/core/styles';
@@ -9,13 +9,11 @@ import defaultTheme from '../styles/defaultTheme';
 
 describe('<FormLabel />', () => {
   const render = createClientRender();
-  const mount = createMount();
 
   describeConformanceV5(<FormLabel />, () => ({
     classes,
     inheritComponent: 'label',
     render,
-    mount,
     refInstanceof: window.HTMLLabelElement,
     testComponentPropWith: 'div',
     muiName: 'MuiFormLabel',

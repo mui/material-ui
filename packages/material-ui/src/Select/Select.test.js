@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import {
-  createMount,
   describeConformanceV5,
   ErrorBoundary,
   act,
@@ -30,14 +29,13 @@ describe('<Select />', () => {
   afterEach(() => {
     clock.restore();
   });
-  const mount = createMount();
+
   const render = createClientRender();
 
   describeConformanceV5(<Select value="" />, () => ({
     classes,
     inheritComponent: OutlinedInput,
     render,
-    mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiSelect',
     skip: ['componentProp', 'componentsProp', 'themeVariants', 'themeStyleOverrides'],
