@@ -48,7 +48,23 @@ function sizeSnapshot(options) {
 
       // eslint-disable-next-line no-console -- purpose of this plugin
       console.info(infoString);
-      await fs.writeFile(snapshotPath, JSON.stringify(sizes, null, 2));
+      // TODO: Should lock `snapshotPath` since something else might write to `snapshotPath` between read and write
+      const snapshotContent = await fs
+        .readFile(snapshotPath, { encoding: 'utf-8' })
+        .then((json) => {
+          return JSON.parse(json);
+        });
+      await fs.writeFile(
+        snapshotPath,
+        JSON.stringify(
+          {
+            ...snapshotContent,
+            [chunk.fileName]: sizes,
+          },
+          null,
+          2,
+        ),
+      );
     },
   };
 }
