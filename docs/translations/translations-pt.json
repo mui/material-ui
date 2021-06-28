@@ -173,6 +173,7 @@
     "/components/grid": "Grid",
     "/components/stack": "Stack",
     "/components/image-list": "Lista de imagem",
+    "/components/hidden": "Hidden",
     "/components/inputs": "Campos",
     "/components/autocomplete": "Autocompletar",
     "/components/buttons": "Button",
