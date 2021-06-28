@@ -528,6 +528,21 @@ As the core components use emotion as their style engine, the props used by emot
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
   ```
 
+### BottomNavigationAction
+
+- Remove the `span` element that wraps the children. Remove the `wrapper` classKey too. More details about [this change](https://github.com/mui-org/material-ui/pull/26923).
+
+  ```diff
+  <button class="MuiBottomNavigationAction-root">
+  - <span class="MuiBottomNavigationAction-wrapper">
+      {icon}
+      <span class="MuiBottomNavigationAction-label">
+        {label}
+      </span>
+  - </span>
+  </button>
+  ```
+
 ### Box 分组
 
 - `borderRadius` 系统属性值转换已被更改。 如果它收到一个数字，它就会将这个值与 `theme.shape.borderRadius` 的值相乘。 Use a string to provide an explicit `px` value.
@@ -649,7 +664,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 ### CircularProgress（进度环）
 
-- 将默认的变量从 `standard` 更改为 `outlined`。 Standard has been removed from the Material Design guidelines.
+- 将默认的变量从 `standard` 更改为 `outlined`。 这属于 Material Design 的例外情况，并且它在规范中已被删除。
 
   ```diff
   <CircularProgress variant="static" classes={{ static: 'className' }} />
@@ -680,7 +695,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### CssBaseline
 
-- The component was migrated to use the `@material-ui/styled-engine` (`emotion` or `styled-components`) instead of `jss`. You should remove the `@global` key when defining the style overrides for it. You should remove the `@global` key when defining the style overrides for it. You could also start using the CSS template syntax over the JavaScript object syntax. You should remove the `@global` key when defining the style overrides for it. You could also start using the CSS template syntax over the JavaScript object syntax.
+- The component was migrated to use the `@material-ui/styled-engine` (`emotion` or `styled-components`) instead of `jss`. You should remove the `@global` key when defining the style overrides for it. You should remove the `@global` key when defining the style overrides for it. You could also start using the CSS template syntax over the JavaScript object syntax.
 
   ```diff
   const theme = createTheme({
@@ -703,7 +718,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   });
   ```
 
-- The `body` font size has changed from `theme.typography.body2` (`0.875rem`) to `theme.typography.body1` (`1rem`). To return to the previous size, you can override it in the theme: To return to the previous size, you can override it in the theme: To return to the previous size, you can override it in the theme:
+- The `body` font size has changed from `theme.typography.body2` (`0.875rem`) to `theme.typography.body1` (`1rem`). To return to the previous size, you can override it in the theme: To return to the previous size, you can override it in the theme:
 
   ```js
   const theme = createTheme({
@@ -742,7 +757,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   You can use the [`use-transitionprops` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#use-transitionprops) for automatic migration.
 
-- Remove the `disableBackdropClick` prop because it is redundant. Use `onClose` with `reason === 'backdropClick'` instead. Remove the `disableBackdropClick` prop because it is redundant. 当 `reason === 'backdropClick'` 时，将会忽略 `onClose` 的关闭事件。
+- Remove the `disableBackdropClick` prop because it is redundant. Use `onClose` with `reason === 'backdropClick'` instead. 当 `reason === 'backdropClick'` 时，将会忽略 `onClose` 的关闭事件。
 
   ```diff
   <Dialog
@@ -951,7 +966,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Hidden
 
-- This component was removed because its functionality can be created with the [`sx`](/system/basics/#the-sx-prop) prop or the [`useMediaQuery`](/components/use-media-query) hook.
+- This component is deprecated because its functionality can be created with the [`sx`](/system/basics/#the-sx-prop) prop or the [`useMediaQuery`](/components/use-media-query) hook.
 
   Use the `sx` prop to replace `implementation="css"`:
 
@@ -1176,7 +1191,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Popper
 
-- 我们将 [Popper.js](https://github.com/popperjs/popper-core) 从 v1 升级到 v2。 <br /> 你可以阅读 [他们的迁移指南](https://popper.js.org/docs/v2/migration-guide/) 或参考以下摘要：
+- 我们将 [Popper.js](https://github.com/popperjs/popper-core) 从 v1 升级到 v2。 这个第三方库的升级引入了很多变化。<br /> 你可以阅读 [他们的迁移指南](https://popper.js.org/docs/v2/migration-guide/) 或参考以下摘要：
 
   - CSS 前缀已更改：
     ```diff
@@ -1542,8 +1557,20 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +<Tabs scrollButtons={false} />
   ```
 
+### Tab
+
 - Tab `minWidth` changed from `72px` => `90px` (without media-query) according to [material-design spec](https://material.io/components/tabs#specs)
 - Tab `maxWidth` changed from `264px` => `360px` according to [material-design spec](https://material.io/components/tabs#specs)
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666). `wrapper` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26926).
+
+  ```diff
+  <button class="MuiTab-root">
+  - <span class="MuiTab-wrapper">
+      {icon}
+      {label}
+  - </span>
+  </button>
+  ```
 
 ### TextField
 
