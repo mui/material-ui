@@ -71,8 +71,8 @@ const StyledComponent = styled('div', {}, {
    name: 'MuiStyled',
    slot: 'Root',
 -  overridesResolver: (props, styles) => styles.root, // disables theme.components[name].styleOverrides
-+  skipVariantsResolver: true, // disable theme.components[name].variants
-+  skipSx: true, // disable the sx prop
++  skipVariantsResolver: true, // disables theme.components[name].variants
++  skipSx: true, // disables the sx prop
 })
 ```
 
