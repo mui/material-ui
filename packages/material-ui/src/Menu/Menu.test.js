@@ -1,13 +1,7 @@
 import * as React from 'react';
 import { spy, useFakeTimers } from 'sinon';
 import { expect } from 'chai';
-import {
-  createMount,
-  createClientRender,
-  describeConformanceV5,
-  screen,
-  fireEvent,
-} from 'test/utils';
+import { createClientRender, describeConformanceV5, screen, fireEvent } from 'test/utils';
 import Menu, { menuClasses as classes } from '@material-ui/core/Menu';
 import Popover from '@material-ui/core/Popover';
 
@@ -23,14 +17,12 @@ describe('<Menu />', () => {
     clock.restore();
   });
 
-  const mount = createMount();
   const render = createClientRender();
 
   describeConformanceV5(<Menu anchorEl={() => document.createElement('div')} open />, () => ({
     classes,
     inheritComponent: Popover,
     render,
-    mount,
     muiName: 'MuiMenu',
     refInstanceof: window.HTMLDivElement,
     testDeepOverrides: { slotName: 'list', slotClassName: classes.list },

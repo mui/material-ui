@@ -52,6 +52,7 @@ const pages: readonly MuiPage[] = [
           { pathname: '/components/grid' },
           { pathname: '/components/stack' },
           { pathname: '/components/image-list' },
+          { pathname: '/components/hidden' },
         ],
       },
       {
