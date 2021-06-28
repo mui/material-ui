@@ -334,7 +334,7 @@ const SwitchRoot = React.forwardRef((props, ref) => {
           <TouchRipple ref={rippleRef} center {...TouchRippleProps} />
         )}
       </SwitchBase>
-      <SwitchTrack />
+      <SwitchTrack className={classes.track} />
     </SwitchRootLayout>
   );
 });
