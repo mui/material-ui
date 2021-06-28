@@ -22,7 +22,7 @@ Here are the top priorities:
 - **Better documentation.** 📚 No problem is solved until documented.
 - **Performance.** 🚀 React abstraction has a cost. The more components you render, the slower your page will be. You will notice stark differences when rendering a large table or list.
 - **Bundle size.** 📦 You can follow our progress [with bundlephobia.com report](https://bundlephobia.com/result?p=@material-ui/core). Please pay special attention to the cost of the individual modules under "Exports Analysis".
-- **TypeScript.** 📏 We are continuously improving the definitions. The codebase is mostly written in JavaScript with manually authored `.d.ts` definitions. While we don't plan a migration effort as as standlone effort, new modules are written in TypeScript.
+- **TypeScript.** 📏 We are continuously improving the definitions. The codebase is mostly written in JavaScript with manually authored `.d.ts` definitions. While we don't plan a migration effort as standlone effort, new modules are written in TypeScript.
 - **Accessibility.** ♿️ We have relatively [few accessibility issues](https://darekkay.com/blog/accessible-ui-frameworks/), but we are eager to address them all. We would appreciate the help of accessibility experts.
 
 ## Quarterly roadmap
