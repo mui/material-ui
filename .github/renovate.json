@@ -1,0 +1,66 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "automerge": false,
+  "commitMessageAction": "Bump",
+  "commitMessageExtra": "to {{newValue}}",
+  "commitMessageTopic": "{{depName}}",
+  "dependencyDashboard": true,
+  "ignoreDeps": [],
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "matchPackagePatterns": "@babel/*",
+      "groupName": "babel"
+    },
+    {
+      "matchPackagePatterns": "@date-io/*",
+      "groupName": "date-io"
+    },
+    {
+      "matchPackagePatterns": "@emotion/*",
+      "groupName": "Emotion"
+    },
+    {
+      "matchPackageNames": ["core-js"],
+      "allowedVersions": "< 2.0.0",
+      "groupName": "core-js"
+    },
+    {
+      "matchPackageNames": [
+        "jss",
+        "jss-plugin-camel-case",
+        "jss-plugin-default-unit",
+        "jss-plugin-global",
+        "jss-plugin-nested",
+        "jss-plugin-props-sort",
+        "jss-plugin-props-sort",
+        "jss-plugin-rule-value-function",
+        "jss-plugin-vendor-prefixer",
+        "react-jss"
+      ],
+      "groupName": "JSS"
+    },
+    {
+      "matchPackageNames": ["raw-loader"],
+      "allowedVersions": "< 2.0.0",
+      "groupName": "raw-loader"
+    },
+    {
+      "matchPackageNames": ["react", "react-dom", "react-is", "react-test-renderer"],
+      "groupName": "React"
+    },
+    {
+      "matchPackageNames": ["tslint"],
+      "allowedVersions": "*",
+      "groupName": "tslint"
+    },
+    {
+      "matchPackagePatterns": "@typescript-eslint/*",
+      "groupName": "typescript-eslint"
+    }
+  ],
+  "prConcurrentLimit": 30,
+  "prHourlyLimit": 0,
+  "schedule": "on sunday before 6:00am",
+  "timezone": "UTC"
+}
