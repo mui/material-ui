@@ -7,12 +7,12 @@
     "autoFocus": {
       "type": { "name": "bool" },
       "deprecated": true,
-      "deprecationInfo": "checkout `ListItemButton` instead"
+      "deprecationInfo": "checkout <a href=\"/api/list-item-button/\">ListItemButton</a> instead"
     },
     "button": {
       "type": { "name": "bool" },
       "deprecated": true,
-      "deprecationInfo": "checkout `ListItemButton` instead"
+      "deprecationInfo": "checkout <a href=\"/api/list-item-button/\">ListItemButton</a> instead"
     },
     "children": { "type": { "name": "custom", "description": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -32,7 +32,7 @@
     "disabled": {
       "type": { "name": "bool" },
       "deprecated": true,
-      "deprecationInfo": "checkout `ListItemButton` instead"
+      "deprecationInfo": "checkout <a href=\"/api/list-item-button/\">ListItemButton</a> instead"
     },
     "disableGutters": { "type": { "name": "bool" } },
     "disablePadding": { "type": { "name": "bool" } },
@@ -41,7 +41,7 @@
     "selected": {
       "type": { "name": "bool" },
       "deprecated": true,
-      "deprecationInfo": "checkout `ListItemButton` instead"
+      "deprecationInfo": "checkout <a href=\"/api/list-item-button/\">ListItemButton</a> instead"
     },
     "sx": { "type": { "name": "object" } }
   },
