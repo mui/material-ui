@@ -40,20 +40,20 @@ Permet de choisir la date et l'heure. Il y a 4 étapes disponibles (année, date
 
 {{"demo": "pages/components/date-time-picker/BasicDateTimePicker.js"}}
 
-## LA responsive UI
+## Réactivité
 
 Le composant `DateTimePicker` est conçu et optimisé pour l'appareil sur lequel il tourne.
 
-- The "Mobile" version works best for touch devices and small screens.
-- The "Desktop" version works best for mouse devices and large screens.
+- Le composant `MobileDateTimePicker` fonctionne mieux pour les appareils tactiles et les petits écrans.
+- Le composant `DesktopDateTimePicker` fonctionne mieux pour les périphériques de souris et les grands écrans.
 
-By default, the `DateTimePicker` component renders the desktop version if the media query [`@media (pointer: fine)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) matches. Ceci peut être personnalisé avec la propriété `desktopModeMediaQuery`.
+Par défaut, le composant `DateTimePicker` affiche la version bureau si la requête média (media query) [`@media (pointeur : fin)`](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/pointer) correspondent. Ceci peut être personnalisé avec la propriété `desktopModeMediaQuery`.
 
 {{"demo": "pages/components/date-time-picker/ResponsiveDateTimePickers.js"}}
 
 ## Form props
 
-The date time picker component can be disabled or read-only.
+Le composant du sélecteur de date peut être désactivé ou être en lecture seule.
 
 {{"demo": "pages/components/date-time-picker/FormPropsDateTimePickers.js"}}
 
@@ -68,7 +68,7 @@ Il est possible de restreindre la sélection de la date et de l'heure de deux ma
 
 ## Mode statique
 
-It's possible to render any date & time picker inline. This will enable building custom popover/modal containers.
+Il est possible de rendre n'importe quel sélecteur de date & heure en ligne (inline). This will enable building custom popover/modal containers.
 
 {{"demo": "pages/components/date-time-picker/StaticDateTimePickerDemo.js", "bg": true}}
 
