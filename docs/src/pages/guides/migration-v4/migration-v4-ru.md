@@ -534,6 +534,21 @@ You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/materia
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
   ```
 
+### BottomNavigationAction
+
+- Remove the `span` element that wraps the children. Remove the `wrapper` classKey too. More details about [this change](https://github.com/mui-org/material-ui/pull/26923).
+
+  ```diff
+  <button class="MuiBottomNavigationAction-root">
+  - <span class="MuiBottomNavigationAction-wrapper">
+      {icon}
+      <span class="MuiBottomNavigationAction-label">
+        {label}
+      </span>
+  - </span>
+  </button>
+  ```
+
 ### Box
 
 - The `borderRadius` system prop value transformation has been changed. If it receives a number, it multiplies this value with the `theme.shape.borderRadius` value. Use a string to provide an explicit `px` value.
@@ -954,7 +969,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Hidden
 
-- This component was removed because its functionality can be created with the [`sx`](/system/basics/#the-sx-prop) prop or the [`useMediaQuery`](/components/use-media-query) hook.
+- This component is deprecated because its functionality can be created with the [`sx`](/system/basics/#the-sx-prop) prop or the [`useMediaQuery`](/components/use-media-query) hook.
 
   Use the `sx` prop to replace `implementation="css"`:
 
@@ -1344,7 +1359,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Snackbar
 
-- Уведомление теперь отображается в левом нижнем углу на больших экранах. Это лучше соответствует поведению Gmail, Google Keep, material.io и т.д. Вы можете восстановить прежнее поведение с помощью: Вы можете восстановить прежнее поведение с помощью:
+- Уведомление теперь отображается в левом нижнем углу на больших экранах. Это лучше соответствует поведению Gmail, Google Keep, material.io и т.д. Вы можете восстановить прежнее поведение с помощью:
 
   ```diff
   -<Snackbar />
@@ -1545,8 +1560,20 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +<Tabs scrollButtons={false} />
   ```
 
+### Tab
+
 - Tab `minWidth` changed from `72px` => `90px` (without media-query) according to [material-design spec](https://material.io/components/tabs#specs)
 - Tab `maxWidth` changed from `264px` => `360px` according to [material-design spec](https://material.io/components/tabs#specs)
+- `span` element that wraps children has been removed. `wrapper` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26926).
+
+  ```diff
+  <button class="MuiTab-root">
+  - <span class="MuiTab-wrapper">
+      {icon}
+      {label}
+  - </span>
+  </button>
+  ```
 
 ### TextField
 
