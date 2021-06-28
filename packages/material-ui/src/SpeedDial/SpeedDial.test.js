@@ -26,9 +26,8 @@ describe('<SpeedDial />', () => {
     clock.restore();
   });
 
-  // StrictModeViolation: not using act(), prefer test/utils/createClientRender
-  const mount = createMount({ strict: false });
-  const render = createClientRender({ strict: false });
+  const mount = createMount();
+  const render = createClientRender();
 
   const icon = <Icon>font_icon</Icon>;
   const FakeAction = () => <div />;
@@ -194,7 +193,7 @@ describe('<SpeedDial />', () => {
   });
 
   describe('keyboard', () => {
-    it('should open the speed dial and move to the first action without closing', () => {
+    it('should open the speed dial and move to the first action without closing', async () => {
       const handleOpen = spy();
       const { getByRole, getAllByRole } = render(
         <SpeedDial ariaLabel="mySpeedDial" onOpen={handleOpen}>
@@ -203,10 +202,14 @@ describe('<SpeedDial />', () => {
         </SpeedDial>,
       );
       const fab = getByRole('button');
-      fab.focus();
+      act(() => {
+        fab.focus();
+      });
+      await null;
       act(() => {
         clock.tick();
       });
+
       expect(handleOpen.callCount).to.equal(1);
       const actions = getAllByRole('menuitem');
       expect(actions.length).to.equal(2);
@@ -226,9 +229,10 @@ describe('<SpeedDial />', () => {
       const fab = getByRole('button');
       const actions = getAllByRole('menuitem');
 
-      await act(() => {
+      act(() => {
         fab.focus();
       });
+      await null;
       act(() => {
         clock.runAll();
       });
@@ -274,7 +278,7 @@ describe('<SpeedDial />', () => {
       return children;
     }
 
-    const renderSpeedDial = (direction = 'up', actionCount = 4) => {
+    const renderSpeedDial = async (direction = 'up', actionCount = 4) => {
       actionButtons = [];
       fabButton = undefined;
 
@@ -304,7 +308,10 @@ describe('<SpeedDial />', () => {
           ))}
         </SpeedDial>,
       );
-      fabButton.focus();
+      act(() => {
+        fabButton.focus();
+      });
+      await null;
     };
 
     /**
@@ -326,14 +333,14 @@ describe('<SpeedDial />', () => {
       return expectedFocusedElement === document.activeElement;
     };
 
-    it('displays the actions on focus gain', () => {
-      renderSpeedDial();
+    it('displays the actions on focus gain', async () => {
+      await renderSpeedDial();
       expect(screen.getAllByRole('menuitem')).to.have.lengthOf(4);
       expect(fabButton).to.have.attribute('aria-expanded', 'true');
     });
 
-    it('considers arrow keys with the same initial orientation', () => {
-      renderSpeedDial();
+    it('considers arrow keys with the same initial orientation', async () => {
+      await renderSpeedDial();
       fireEvent.keyDown(fabButton, { key: 'left' });
       expect(isActionFocused(0)).to.equal(true);
       fireEvent.keyDown(getActionButton(0), { key: 'up' });
@@ -349,11 +356,11 @@ describe('<SpeedDial />', () => {
        * tests a combination of arrow keys on a focused SpeedDial
        */
       const itTestCombination = (dialDirection, keys, expected) => {
-        it(`start dir ${dialDirection} with keys ${keys.join(',')}`, () => {
+        it(`start dir ${dialDirection} with keys ${keys.join(',')}`, async () => {
           const [firstKey, ...combination] = keys;
           const [firstFocusedAction, ...foci] = expected;
 
-          renderSpeedDial(dialDirection);
+          await renderSpeedDial(dialDirection);
 
           fireEvent.keyDown(fabButton, { key: firstKey });
           expect(isActionFocused(firstFocusedAction)).to.equal(

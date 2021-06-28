@@ -14,13 +14,13 @@ import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItem
 export const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return {
-    ...styles.root,
-    ...(styleProps.dense && styles.dense),
-    ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
-    ...(styleProps.divider && styles.divider),
-    ...(!styleProps.disableGutters && styles.gutters),
-  };
+  return [
+    styles.root,
+    styleProps.dense && styles.dense,
+    styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart,
+    styleProps.divider && styles.divider,
+    !styleProps.disableGutters && styles.gutters,
+  ];
 };
 
 const useUtilityClasses = (styleProps) => {

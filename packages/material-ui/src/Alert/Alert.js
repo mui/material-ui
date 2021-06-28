@@ -34,11 +34,11 @@ const AlertRoot = styled(Paper, {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...styles[styleProps.variant],
-      ...styles[`${styleProps.variant}${capitalize(styleProps.color || styleProps.severity)}`],
-    };
+    return [
+      styles.root,
+      styles[styleProps.variant],
+      styles[`${styleProps.variant}${capitalize(styleProps.color || styleProps.severity)}`],
+    ];
   },
 })(({ theme, styleProps }) => {
   const getColor = theme.palette.mode === 'light' ? darken : lighten;

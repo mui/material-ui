@@ -4,7 +4,7 @@ import { Theme } from '../styles';
 
 export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    SystemProps & {
+    SystemProps<Theme> & {
       children?: React.ReactNode;
       component?: React.ElementType;
       ref?: React.Ref<unknown>;

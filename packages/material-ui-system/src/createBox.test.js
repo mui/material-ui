@@ -14,14 +14,14 @@ describe('createBox', () => {
   });
 
   it('should use defaultTheme if provided', () => {
-    const Box = createBox({ palette: { primary: { main: 'rgb(255, 0, 0)' } } });
+    const Box = createBox({ defaultTheme: { palette: { primary: { main: 'rgb(255, 0, 0)' } } } });
 
     const { container } = render(<Box color="primary.main">Content</Box>);
     expect(container.firstChild).toHaveComputedStyle({ color: 'rgb(255, 0, 0)' });
   });
 
   it('should use theme from Context if provided', () => {
-    const Box = createBox({ palette: { primary: { main: 'rgb(255, 0, 0)' } } });
+    const Box = createBox({ defaultTheme: { palette: { primary: { main: 'rgb(255, 0, 0)' } } } });
 
     const { container } = render(
       <ThemeProvider theme={{ palette: { primary: { main: 'rgb(0, 255, 0)' } } }}>

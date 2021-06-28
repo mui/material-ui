@@ -18,7 +18,7 @@
     "divider": "If <code>true</code>, a 1px light border is added to the bottom of the list item.",
     "secondaryAction": "The element to display at the end of ListItem.",
     "selected": "Use to apply selected styling.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details."
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details."
   },
   "classDescriptions": {
     "root": {

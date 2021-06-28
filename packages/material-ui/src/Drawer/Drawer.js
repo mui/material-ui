@@ -16,12 +16,11 @@ import { getDrawerUtilityClass } from './drawerClasses';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return {
-    ...styles.root,
-    ...((styleProps.variant === 'permanent' || styleProps.variant === 'persistent') &&
-      styles.docked),
-    ...styles.modal,
-  };
+  return [
+    styles.root,
+    (styleProps.variant === 'permanent' || styleProps.variant === 'persistent') && styles.docked,
+    styles.modal,
+  ];
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -45,7 +44,9 @@ const DrawerRoot = styled(Modal, {
   name: 'MuiDrawer',
   slot: 'Root',
   overridesResolver,
-})({});
+})(({ theme }) => ({
+  zIndex: theme.zIndex.drawer,
+}));
 
 const DrawerDockedRoot = styled('div', {
   shouldForwardProp: rootShouldForwardProp,
@@ -64,12 +65,12 @@ const DrawerPaper = styled(Paper, {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.paper,
-      ...styles[`paperAnchor${capitalize(styleProps.anchor)}`],
-      ...(styleProps.variant !== 'temporary' &&
-        styles[`paperAnchorDocked${capitalize(styleProps.anchor)}`]),
-    };
+    return [
+      styles.paper,
+      styles[`paperAnchor${capitalize(styleProps.anchor)}`],
+      styleProps.variant !== 'temporary' &&
+        styles[`paperAnchorDocked${capitalize(styleProps.anchor)}`],
+    ];
   },
 })(({ theme, styleProps }) => ({
   /* Styles applied to the Paper component. */

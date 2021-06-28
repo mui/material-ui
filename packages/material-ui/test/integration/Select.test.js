@@ -126,8 +126,6 @@ describe('<Select> integration', () => {
             <MenuItem value={10}>Ten</MenuItem>
           </Select>
         </FormControl>,
-        // StrictModeViolation: Requires fake timers + act
-        { strict: false },
       );
 
       act(() => {

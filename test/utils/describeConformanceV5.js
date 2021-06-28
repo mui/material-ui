@@ -12,6 +12,23 @@ import {
   testRootClass,
 } from './describeConformance';
 
+/**
+ * @typedef {Object} ConformanceOptions
+ * @property {() => void} [after]
+ * @property {object} classes - `classes` of the component provided by `@material-ui/styled-engine`
+ * @property {import('react').ElementType} [inheritComponent] - The element type that receives spread props or `undefined` if props are not spread.
+ * @property {(node: React.ReactNode) => import('enzyme').ReactWrapper} mount - Should be a return value from createMount
+ * @property {string} muiName
+ * @property {(node: React.ReactElement) => import('./createClientRender').MuiRenderResult} [render] - Should be a return value from createClientRender
+ * @property {Array<keyof typeof fullSuite>} [only] - If specified only run the tests listed
+ * @property {any} refInstanceof - `ref` will be an instanceof this constructor.
+ * @property {Array<keyof typeof fullSuite>} [skip] - Skip the specified tests
+ * @property {string} [testComponentsRootPropWith] - The host component that should be rendered instead.
+ * @property {{ slotName: string, slotClassName: string }} [testDeepOverrides]
+ * @property {{ prop?: string, value?: any, styleKey: string }} [testStateOverrides]
+ * @property {object} [testVariantProps]
+ */
+
 function throwMissingPropError(field) {
   throw new Error(`missing "${field}" in options
 
@@ -200,6 +217,63 @@ function testThemeStyleOverrides(element, getOptions) {
           document.querySelector(`.${testDeepOverrides.slotClassName}`),
         ).to.toHaveComputedStyle(testStyle);
       }
+    });
+
+    it('overrideStyles does not replace each other in slots', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { muiName, classes, testStateOverrides, render } = getOptions();
+
+      const classKeys = Object.keys(classes);
+
+      // only test the component that has `root` and other classKey
+      if (!testStateOverrides || !classKeys.includes('root') || classKeys.length === 1) {
+        return;
+      }
+
+      // `styleKey` in some tests is `foo` or `bar`, so need to check if it is a valid classKey.
+      const isStyleKeyExists = classKeys.indexOf(testStateOverrides.styleKey) !== -1;
+
+      if (!isStyleKeyExists) {
+        return;
+      }
+
+      const theme = createTheme({
+        components: {
+          [muiName]: {
+            styleOverrides: {
+              root: {
+                [`&.${classes.root}`]: {
+                  filter: 'blur(1px)',
+                  mixBlendMode: 'darken',
+                },
+              },
+              ...(testStateOverrides && {
+                [testStateOverrides.styleKey]: {
+                  [`&.${classes.root}`]: {
+                    mixBlendMode: 'color',
+                  },
+                },
+              }),
+            },
+          },
+        },
+      });
+
+      render(
+        <ThemeProvider theme={theme}>
+          {React.cloneElement(element, {
+            [testStateOverrides.prop]: testStateOverrides.value,
+          })}
+        </ThemeProvider>,
+      );
+
+      expect(document.querySelector(`.${classes.root}`)).toHaveComputedStyle({
+        filter: 'blur(1px)', // still valid in root
+        mixBlendMode: 'color', // overridden by `styleKey`
+      });
     });
   });
 }

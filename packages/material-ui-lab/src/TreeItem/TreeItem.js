@@ -44,15 +44,15 @@ const StyledTreeItemContent = styled(TreeItemContent, {
   name: 'MuiTreeItem',
   slot: 'Content',
   overridesResolver: (props, styles) => {
-    return {
-      ...styles.content,
-      ...(styles.iconContainer && {
+    return [
+      styles.content,
+      styles.iconContainer && {
         [`& .${treeItemClasses.iconContainer}`]: styles.iconContainer,
-      }),
-      ...(styles.label && {
+      },
+      styles.label && {
         [`& .${treeItemClasses.label}`]: styles.label,
-      }),
-    };
+      },
+    ];
   },
 })(({ theme }) => ({
   padding: '0 8px',

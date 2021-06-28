@@ -5,7 +5,8 @@ import styled from '@material-ui/styled-engine';
 import styleFunctionSx, { extendSxProp } from './styleFunctionSx';
 import useTheme from './useTheme';
 
-export default function createBox(defaultTheme) {
+export default function createBox(options = {}) {
+  const { defaultTheme } = options;
   const BoxRoot = styled('div')(styleFunctionSx);
 
   const Box = React.forwardRef(function Box(inProps, ref) {

@@ -67,7 +67,6 @@ export default function createStyled(input = {}) {
     rootShouldForwardProp = shouldForwardProp,
     slotShouldForwardProp = shouldForwardProp,
   } = input;
-
   return (tag, inputOptions = {}) => {
     const {
       name: componentName,

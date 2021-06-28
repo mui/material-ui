@@ -56,11 +56,11 @@ const CircularProgressRoot = styled('span', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...styles[styleProps.variant],
-      ...styles[`color${capitalize(styleProps.color)}`],
-    };
+    return [
+      styles.root,
+      styles[styleProps.variant],
+      styles[`color${capitalize(styleProps.color)}`],
+    ];
   },
 })(
   ({ styleProps, theme }) => ({
@@ -98,11 +98,11 @@ const CircularProgressCircle = styled('circle', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.circle,
-      ...styles[`circle${capitalize(styleProps.variant)}`],
-      ...(styleProps.disableShrink && styles.circleDisableShrink),
-    };
+    return [
+      styles.circle,
+      styles[`circle${capitalize(styleProps.variant)}`],
+      styleProps.disableShrink && styles.circleDisableShrink,
+    ];
   },
 })(
   ({ styleProps, theme }) => ({
@@ -222,7 +222,7 @@ CircularProgress.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['inherit', 'primary', 'secondary']),
+    PropTypes.oneOf(['inherit', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

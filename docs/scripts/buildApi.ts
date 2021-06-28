@@ -27,10 +27,7 @@ import generatePropTypeDescription, {
   isElementAcceptingRefProp,
 } from 'docs/src/modules/utils/generatePropTypeDescription';
 import { findPages, findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
-import {
-  getHeaders,
-  renderInline as renderMarkdownInline,
-} from 'docs/src/modules/utils/parseMarkdown';
+import { getHeaders, renderInline as renderMarkdownInline } from '@material-ui/markdown';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
 import createGenerateClassName from '@material-ui/styles/createGenerateClassName';
 import * as ttp from 'typescript-to-proptypes';
@@ -856,8 +853,7 @@ async function buildDocs(options: {
       if (propName === 'classes') {
         description += ' See <a href="#css">CSS API</a> below for more details.';
       } else if (propName === 'sx') {
-        description +=
-          ' See the <a href="/system/basics/#the-sx-prop">`sx` page</a> for more details.';
+        description += ' See the <a href="/system/the-sx-prop/">`sx` page</a> for more details.';
       }
       componentApi.propDescriptions[propName] = description.replace(/\n@default.*$/, '');
 
