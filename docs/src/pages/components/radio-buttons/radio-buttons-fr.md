@@ -28,7 +28,7 @@ To lay out the buttons horizontally, set the `row` prop: `<RadioGroup row />`.
 
 {{"demo": "pages/components/radio-buttons/RowRadioButtonsGroup.js"}}
 
-### Checkbox personnalisée
+### Checkbox contrôlée
 
 You can control the radio with the `value` and `onChange` props:
 
