@@ -1,8 +1,10 @@
-import marked from 'marked';
-import { LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
-import kebabCase from 'lodash/kebabCase';
-import textToHash from 'docs/src/modules/utils/textToHash';
-import prism from 'docs/src/modules/utils/prism';
+const marked = require('marked');
+const kebabCase = require('lodash/kebabCase');
+const textToHash = require('./textToHash');
+const prism = require('./prism');
+
+// TODO: pass as argument
+const LANGUAGES_IN_PROGRESS = ['en', 'zh', 'ru', 'pt', 'es', 'fr', 'de', 'ja'];
 
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
 const titleRegExp = /# (.*)[\r\n]/;
@@ -25,7 +27,7 @@ const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/;
  * should output:
  * { title: 'Backdrop React Component', components: ['Backdrop'] }
  */
-export function getHeaders(markdown) {
+function getHeaders(markdown) {
   let header = markdown.match(headerRegExp);
 
   if (!header) {
@@ -64,14 +66,14 @@ export function getHeaders(markdown) {
   return headers;
 }
 
-export function getContents(markdown) {
+function getContents(markdown) {
   return markdown
     .replace(headerRegExp, '') // Remove header information
     .split(/^{{("(?:demo|component)":[^}]*)}}$/gm) // Split markdown into an array, separating demos
     .filter((content) => !emptyRegExp.test(content)); // Remove empty lines
 }
 
-export function getTitle(markdown) {
+function getTitle(markdown) {
   const matches = markdown.match(titleRegExp);
 
   if (!matches || !matches[1]) {
@@ -81,16 +83,19 @@ export function getTitle(markdown) {
   return matches[1];
 }
 
-export function getDescription(markdown) {
+function getDescription(markdown) {
   const matches = markdown.match(descriptionRegExp);
+  if (matches === null) {
+    return undefined;
+  }
 
-  return matches?.[1].trim();
+  return matches[1].trim();
 }
 
 /**
  * @param {string} markdown
  */
-export function renderInline(markdown) {
+function renderInline(markdown) {
   return marked.parseInline(markdown);
 }
 
@@ -120,7 +125,7 @@ const externs = [
  * @param {TableOfContentsEntry[]} context.toc - WILL BE MUTATED
  * @param {string} context.userLanguage
  */
-export function createRender(context) {
+function createRender(context) {
   const { headingHashes, toc, userLanguage } = context;
   const headingHashesFallbackTranslated = {};
   let headingIndex = -1;
@@ -236,12 +241,15 @@ export function createRender(context) {
 /**
  * @param {object} config
  * @param {() => string} config.requireRaw - returnvalue of require.context
- * @param {string} config.pageFilename - filename relative to nextjs pages directory
+ * @param {string} config.pageFilename - posix filename relative to nextjs pages directory
  */
-export function prepareMarkdown(config) {
+function prepareMarkdown(config) {
   const { pageFilename, requireRaw } = config;
 
   const demos = {};
+  /**
+   * @type {Record<string, { rendered: Array<string | { component: string } | { demo:string }> }>}
+   */
   const docs = {};
   const headingHashes = {};
 
@@ -336,3 +344,14 @@ ${headers.components
 
   return { demos, docs };
 }
+
+module.exports = {
+  createRender,
+  notEnglishMarkdownRegExp,
+  getContents,
+  getDescription,
+  getHeaders,
+  getTitle,
+  prepareMarkdown,
+  renderInline,
+};

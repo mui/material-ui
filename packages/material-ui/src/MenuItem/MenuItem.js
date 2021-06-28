@@ -17,12 +17,12 @@ import menuItemClasses, { getMenuItemUtilityClass } from './menuItemClasses';
 export const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return {
-    ...styles.root,
-    ...(styleProps.dense && styles.dense),
-    ...(styleProps.divider && styles.divider),
-    ...(!styleProps.disableGutters && styles.gutters),
-  };
+  return [
+    styles.root,
+    styleProps.dense && styles.dense,
+    styleProps.divider && styles.divider,
+    !styleProps.disableGutters && styles.gutters,
+  ];
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -256,7 +256,7 @@ MenuItem.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  role: PropTypes.string,
+  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * @ignore
    */
