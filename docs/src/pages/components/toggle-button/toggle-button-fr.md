@@ -29,7 +29,7 @@ Multiple selection allows for logically-grouped options, like bold, italic, and 
 
 ## Taille
 
-Fancy larger or smaller buttons? Use the `size` property.
+Pour des boutons plus grands ou plus petits, utilisez la propriété `size`.
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}
 
