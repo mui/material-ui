@@ -34,7 +34,7 @@ function App() {
 
 ## Utilisation de base
 
-The date picker will be rendered as a modal dialog on mobile, and a textfield with a popover on desktop.
+Le sélecteur de dates est affiché comme une boîte de dialogue modale sur mobile, et une zone de texte avec une fenêtre pop-up sur l'écran de bureau.
 
 {{"demo": "pages/components/time-picker/BasicTimePicker.js"}}
 
@@ -44,7 +44,7 @@ It's possible to render any picker inline. This will enable building custom popo
 
 {{"demo": "pages/components/time-picker/StaticTimePickerDemo.js", "bg": true}}
 
-## LA responsive UI
+## Réactivité
 
 The time picker component is designed and optimized for the device it runs on.
 
@@ -77,7 +77,7 @@ The time picker will automatically adjust to the locale's time setting, i.e. the
 
 ## Sous-composants
 
-Some lower-level sub-components (`ClockPicker`) are also exported. Celles-ci sont affichées sans wrapper ou logique externe (l'input masqué et validation des valeurs de date, etc.).
+Some lower-level sub-components (`ClockPicker`) are also exported. Ceux-ci sont affichés sans wrapper ou logique externe (masque, formatage et validation des valeurs de date, etc.).
 
 {{"demo": "pages/components/time-picker/SubComponentsTimePickers.js"}}
 
