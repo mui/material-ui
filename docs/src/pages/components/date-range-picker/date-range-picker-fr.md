@@ -46,7 +46,7 @@ It's possible to render any picker inline. This will enable building custom popo
 
 {{"demo": "pages/components/date-range-picker/StaticDateRangePicker.js"}}
 
-## LA responsive UI
+## Réactivité
 
 Le composant sélecteur de plage de dates est conçu pour être optimisé pour l'appareil sur lequel il s'exécute.
 
