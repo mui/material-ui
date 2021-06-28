@@ -23,10 +23,6 @@
       "nodeName": "the root element",
       "conditions": "<code>showLabel={false}</code> and not selected"
     },
-    "wrapper": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the span element that wraps the icon and label"
-    },
     "label": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the label's span element"
