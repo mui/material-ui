@@ -5,15 +5,15 @@ components: Drawer, SwipeableDrawer
 
 # Drawer (Tiroir)
 
-<p class="description">Les tiroirs de navigation permettent d'accéder aux destinations de votre application. Les feuilles latérales sont des surfaces contenant du contenu supplémentaire ancré au bord gauche ou droit de l'écran.</p>
+<p class="description">Les drawers de navigation permettent d'accéder aux destinations de votre application. Les feuilles latérales sont des surfaces contenant du contenu supplémentaire ancré au bord gauche ou droit de l'écran.</p>
 
-[Les tiroirs de navigation](https://material.io/design/components/navigation-drawer.html) (ou "barres latérales") fournissent un accès aux destinations et aux fonctionnalités d'applications, telles que le changement de comptes. Ils peuvent être : soit affichés en permanence à l'écran, soit contrôlés par une une icône de menu de navigation
+[Les drawers de navigation](https://material.io/design/components/navigation-drawer.html) (ou "barres latérales") fournissent un accès aux destinations et aux fonctionnalités d'applications, telles que le changement de comptes. Ils peuvent être : soit affichés en permanence à l'écran, soit contrôlés par une une icône de menu de navigation
 
 [Side sheets](https://material.io/design/components/sheets-side.html) sont des surfaces supplémentaires principalement utilisées pour les tablettes et les ordinateurs.
 
 ## Tiroir temporaire
 
-Les drawers de navigation temporaire peuvent activer l'ouverture ou la fermeture. Fermés par défaut, le drawer s'ouvre temporairement au dessus de tout autre contenu jusqu'à qu'une section soit sélectionnée.
+Les tiroirs de navigation temporaire peuvent activer l'ouverture ou la fermeture. Fermés par défaut, le tiroir s'ouvre temporairement au dessus de tout autre contenu jusqu'à qu'une section soit sélectionnée.
 
 Le drawer peut être annulé en cliquant ailleurs dans la zone sombre ou en appuyant sur la touche Échap. Il se ferme quand un élément est sélectionné et est géré par le contrôle de la propriété `open`.
 
