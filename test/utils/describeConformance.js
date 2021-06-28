@@ -2,6 +2,7 @@
 import { expect } from 'chai';
 import * as React from 'react';
 import ReactTestRenderer from 'react-test-renderer';
+import createMount from './createMount';
 import findOutermostIntrinsic from './findOutermostIntrinsic';
 
 /**
@@ -202,8 +203,8 @@ const fullSuite = {
  * @property {() => void} [after]
  * @property {Record<string, string>} classes - `classes` of the component provided by `@material-ui/styles`
  * @property {import('react').ElementType} [inheritComponent] - The element type that receives spread props or `undefined` if props are not spread.
- * @property {(node: React.ReactNode) => import('enzyme').ReactWrapper} mount - Should be a return value from createMount
- * @property {(element: React.ReactElement<any, string | React.JSXElementConstructor<any>>, options?: RenderOptions) => MuiRenderResult} [render] - Should be a return value from createClientRender
+ * @property {(node: React.ReactNode) => import('enzyme').ReactWrapper} [mount] - By default uses enzyme to mount the component in StrictMode. If you need to wrap the node, pass a custom mount implementation.
+ * @property {(node: React.ReactElement) => import('./createClientRender').MuiRenderResult} [render] - Should be a return value from createClientRender
  * @property {Array<keyof typeof fullSuite>} [only] - If specified only run the tests listed
  * @property {any} refInstanceof - `ref` will be an instanceof this constructor.
  * @property {Array<keyof typeof fullSuite>} [skip] - Skip the specified tests
@@ -217,15 +218,28 @@ const fullSuite = {
  * @param {() => ConformanceOptions} getOptions
  */
 export default function describeConformance(minimalElement, getOptions) {
-  const { after: runAfterHook = () => {}, only = Object.keys(fullSuite), skip = [] } = getOptions();
   describe('Material-UI component API', () => {
+    const {
+      after: runAfterHook = () => {},
+      mount = createMount(),
+      only = Object.keys(fullSuite),
+      skip = [],
+    } = getOptions();
+
     after(runAfterHook);
+
+    function getTestOptions() {
+      return {
+        ...getOptions(),
+        mount,
+      };
+    }
 
     Object.keys(fullSuite)
       .filter((testKey) => only.indexOf(testKey) !== -1 && skip.indexOf(testKey) === -1)
       .forEach((testKey) => {
         const test = fullSuite[testKey];
-        test(minimalElement, getOptions);
+        test(minimalElement, getTestOptions);
       });
   });
 }

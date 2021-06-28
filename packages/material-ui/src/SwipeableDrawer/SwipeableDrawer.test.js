@@ -1,13 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import {
-  createMount,
-  fireEvent,
-  createClientRender,
-  describeConformance,
-  screen,
-} from 'test/utils';
+import { fireEvent, createClientRender, describeConformance, screen } from 'test/utils';
 import PropTypes, { checkPropTypes } from 'prop-types';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Drawer, { drawerClasses } from '@material-ui/core/Drawer';
@@ -75,13 +69,11 @@ describe('<SwipeableDrawer />', () => {
     clock.restore();
   });
 
-  const mount = createMount();
   const render = createClientRender();
 
   describeConformance(<SwipeableDrawer onOpen={() => {}} onClose={() => {}} open />, () => ({
     classes: {},
     inheritComponent: Drawer,
-    mount,
     refInstanceof: window.HTMLDivElement,
     skip: [
       'componentProp',
