@@ -186,17 +186,17 @@ const overridesResolver = (
   styles: Record<PickersDayClassKey, object>,
 ) => {
   const { styleProps } = props;
-  return {
-    ...styles.root,
-    ...(!styleProps.disableMargin && styles.dayWithMargin),
-    ...(!styleProps.disableHighlightToday && styleProps.today && styles.today),
-    ...(!styleProps.outsideCurrentMonth &&
+  return [
+    styles.root,
+    !styleProps.disableMargin && styles.dayWithMargin,
+    !styleProps.disableHighlightToday && styleProps.today && styles.today,
+    !styleProps.outsideCurrentMonth &&
       styleProps.showDaysOutsideCurrentMonth &&
-      styles.dayOutsideMonth),
-    ...(styleProps.outsideCurrentMonth &&
+      styles.dayOutsideMonth,
+    styleProps.outsideCurrentMonth &&
       !styleProps.showDaysOutsideCurrentMonth &&
-      styles.hiddenDaySpacingFiller),
-  };
+      styles.hiddenDaySpacingFiller,
+  ];
 };
 
 const PickersDayRoot = styled(ButtonBase, {

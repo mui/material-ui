@@ -68,8 +68,7 @@ const SnackbarContentAction = styled('div', {
 const SnackbarContent = React.forwardRef(function SnackbarContent(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiSnackbarContent' });
   const { action, className, message, role = 'alert', ...other } = props;
-  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
-  const styleProps = { ...props };
+  const styleProps = props;
   const classes = useUtilityClasses(styleProps);
 
   return (
@@ -119,7 +118,7 @@ SnackbarContent.propTypes /* remove-proptypes */ = {
    * The ARIA role attribute of the element.
    * @default 'alert'
    */
-  role: PropTypes.string,
+  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

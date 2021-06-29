@@ -24,7 +24,7 @@
     "scale": "A transformation function, to change the scale of the slider.",
     "size": "The size of the slider.",
     "step": "The granularity with which the slider can step through values. (A &quot;discrete&quot; slider.) The <code>min</code> prop serves as the origin for the valid values. We recommend (max - min) to be evenly divisible by the step.<br>When step is <code>null</code>, the thumb can only be slid onto marks provided with the <code>marks</code> prop.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
     "tabIndex": "Tab index attribute of the hidden <code>input</code> element.",
     "track": "The track presentation:<br>- <code>normal</code> the track will render a bar representing the slider value. - <code>inverted</code> the track will render a bar representing the remaining slider value. - <code>false</code> the track will render without a bar.",
     "value": "The value of the slider. For ranged sliders, provide an array with two values.",

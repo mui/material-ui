@@ -1,24 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { stub, spy } from 'sinon';
-import {
-  act,
-  createMount,
-  describeConformanceV5,
-  createClientRender,
-  fireEvent,
-  screen,
-} from 'test/utils';
+import { act, describeConformanceV5, createClientRender, fireEvent, screen } from 'test/utils';
 import Rating, { ratingClasses as classes } from '@material-ui/core/Rating';
 
 describe('<Rating />', () => {
-  const mount = createMount();
   const render = createClientRender();
 
   describeConformanceV5(<Rating />, () => ({
     classes,
     inheritComponent: 'span',
-    mount,
     render,
     muiName: 'MuiRating',
     testVariantProps: { variant: 'foo' },

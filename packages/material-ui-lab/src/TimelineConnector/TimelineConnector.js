@@ -36,7 +36,7 @@ const TimelineConnector = React.forwardRef(function TimelineConnector(inProps, r
 
   const { className, ...other } = props;
 
-  const styleProps = { ...props };
+  const styleProps = props;
 
   const classes = useUtilityClasses(styleProps);
 

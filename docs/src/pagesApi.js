@@ -61,6 +61,7 @@ module.exports = [
   { pathname: '/api-docs/global-styles' },
   { pathname: '/api-docs/grid' },
   { pathname: '/api-docs/grow' },
+  { pathname: '/api-docs/hidden' },
   { pathname: '/api-docs/icon' },
   { pathname: '/api-docs/icon-button' },
   { pathname: '/api-docs/image-list' },
