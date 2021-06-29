@@ -44,6 +44,12 @@ const SwitchBaseRoot = styled(ButtonBase, { skipSx: true })(({ styleProps, theme
       backgroundColor: theme.palette.mode === 'dark' ? '#30404d' : '#ebf1f5',
     },
   },
+  '&.Mui-disabled': {
+    'span:empty:not([class*=MuiTouchRipple-root])': {
+      boxShadow: 'none',
+      backgroundColor: theme.palette.mode === 'dark' ? 'rgba(57,75,89,.5)' : 'rgba(206,217,224,.5)',
+    }
+  }
 }));
 
 const SwitchBaseInput = styled('input', { skipSx: true })({

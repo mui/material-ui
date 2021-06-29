@@ -19,11 +19,6 @@ const BpIcon = styled('span')(({ theme }) => ({
     outline: '2px auto rgba(19,124,189,.6)',
     outlineOffset: 2,
   },
-  'input:disabled ~ &': {
-    boxShadow: 'none',
-    background:
-      theme.palette.mode === 'dark' ? 'rgba(57,75,89,.5)' : 'rgba(206,217,224,.5)',
-  },
 }));
 
 const BpCheckedIcon = styled(BpIcon)({

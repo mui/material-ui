@@ -23,14 +23,6 @@ const BpIcon = styled('span')(({ theme }) => ({
     outline: '2px auto rgba(19,124,189,.6)',
     outlineOffset: 2,
   },
-  'input:hover ~ &': {
-    backgroundColor: theme.palette.mode === 'dark' ? '#30404d' : '#ebf1f5',
-  },
-  'input:disabled ~ &': {
-    boxShadow: 'none',
-    background:
-      theme.palette.mode === 'dark' ? 'rgba(57,75,89,.5)' : 'rgba(206,217,224,.5)',
-  },
 }));
 
 const BpCheckedIcon = styled(BpIcon)({
@@ -42,9 +34,6 @@ const BpCheckedIcon = styled(BpIcon)({
     height: 16,
     backgroundImage: 'radial-gradient(#fff,#fff 28%,transparent 32%)',
     content: '""',
-  },
-  'input:hover ~ &': {
-    backgroundColor: '#106ba3',
   },
 });
 
