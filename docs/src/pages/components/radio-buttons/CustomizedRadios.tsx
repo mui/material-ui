@@ -32,7 +32,8 @@ const BpIcon = styled('span')(({ theme }) => ({
   '&.Mui-disabled': {
     'span:empty:not([class*=MuiTouchRipple-root])': {
       boxShadow: 'none',
-      backgroundColor: theme.palette.mode === 'dark' ? 'rgba(57,75,89,.5)' : 'rgba(206,217,224,.5)',
+      backgroundColor:
+        theme.palette.mode === 'dark' ? 'rgba(57,75,89,.5)' : 'rgba(206,217,224,.5)',
     },
   },
 }));
