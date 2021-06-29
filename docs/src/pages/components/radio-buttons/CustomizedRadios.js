@@ -23,6 +23,19 @@ const BpIcon = styled('span')(({ theme }) => ({
     outline: '2px auto rgba(19,124,189,.6)',
     outlineOffset: 2,
   },
+  '&:hover': {
+    'span:empty:not([class*=MuiTouchRipple-root])': {
+      zIndex: 0,
+      backgroundColor: theme.palette.mode === 'dark' ? '#30404d' : '#ebf1f5',
+    },
+  },
+  '&.Mui-disabled': {
+    'span:empty:not([class*=MuiTouchRipple-root])': {
+      boxShadow: 'none',
+      backgroundColor:
+        theme.palette.mode === 'dark' ? 'rgba(57,75,89,.5)' : 'rgba(206,217,224,.5)',
+    },
+  },
 }));
 
 const BpCheckedIcon = styled(BpIcon)({
@@ -34,6 +47,13 @@ const BpCheckedIcon = styled(BpIcon)({
     height: 16,
     backgroundImage: 'radial-gradient(#fff,#fff 28%,transparent 32%)',
     content: '""',
+  },
+  '&:hover': {
+    '&.Mui-checked': {
+      'span:empty:not([class*=MuiTouchRipple-root])': {
+        backgroundColor: '#106ba3',
+      },
+    },
   },
 });
 
