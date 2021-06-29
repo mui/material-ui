@@ -45,7 +45,7 @@ const SwitchBaseRoot = styled(ButtonBase, { skipSx: true })(({ styleProps, theme
     },
   },
   '&.Mui-disabled': {
-    'span:empty:not([class*=MuiTouchRipple-root])': {
+    'span:empty:not([class*=MuiSwitch-thumb])': {
       boxShadow: 'none',
       backgroundColor: theme.palette.mode === 'dark' ? 'rgba(57,75,89,.5)' : 'rgba(206,217,224,.5)',
     },
