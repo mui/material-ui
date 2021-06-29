@@ -380,7 +380,9 @@ describe('<Select />', () => {
           ),
         ).toWarnDev([
           'Material-UI: You have provided an out-of-range value `20` for the select component.',
-          // strict mode renders twice
+          // React 18 Strict Effects run mount effects twice
+          React.version.startsWith('18') &&
+            'Material-UI: You have provided an out-of-range value `20` for the select component.',
           'Material-UI: You have provided an out-of-range value `20` for the select component.',
         ]);
       });
@@ -876,11 +878,9 @@ describe('<Select />', () => {
           );
         }).toErrorDev([
           'Material-UI: The `value` prop must be an array',
-          'The above error occurred in the <ForwardRef(SelectInput)> component',
           // React 18 Strict Effects run mount effects twice
           React.version.startsWith('18') && 'Material-UI: The `value` prop must be an array',
-          React.version.startsWith('18') &&
-            'The above error occurred in the <ForwardRef(SelectInput)> component',
+          'The above error occurred in the <ForwardRef(SelectInput)> component',
         ]);
         const {
           current: { errors },
