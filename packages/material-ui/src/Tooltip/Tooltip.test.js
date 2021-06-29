@@ -456,7 +456,7 @@ describe('<Tooltip />', () => {
       );
     });
 
-    it('should handle autoFocus + onFocus forwarding', async () => {
+    it('should handle autoFocus + onFocus forwarding', () => {
       const handleFocus = spy();
       const AutoFocus = (props) => (
         <div>
@@ -505,7 +505,7 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).toBeVisible();
     });
 
-    it('should use hysteresis with the enterDelay', async () => {
+    it('should use hysteresis with the enterDelay', () => {
       const { queryByRole, getByRole } = render(
         <Tooltip
           title="Hello World"
@@ -543,7 +543,6 @@ describe('<Tooltip />', () => {
       expect(queryByRole('tooltip')).to.equal(null);
 
       focusVisible(children);
-
       // Bypass `enterDelay` wait, use `enterNextDelay`.
       expect(queryByRole('tooltip')).to.equal(null);
 
@@ -554,7 +553,7 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).toBeVisible();
     });
 
-    it('should take the leaveDelay into account', async () => {
+    it('should take the leaveDelay into account', () => {
       const leaveDelay = 111;
       const enterDelay = 0;
       const transitionTimeout = 10;
@@ -891,7 +890,7 @@ describe('<Tooltip />', () => {
       }
     });
 
-    it('opens on focus-visible', async () => {
+    it('opens on focus-visible', () => {
       const eventLog = [];
       const { queryByRole, getByRole } = render(
         <Tooltip enterDelay={0} onOpen={() => eventLog.push('open')} title="Some information">

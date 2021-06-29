@@ -364,7 +364,6 @@ describe('<TreeItem />', () => {
         act(() => {
           getByTestId('two').focus();
         });
-
         expect(getByTestId('two')).toHaveVirtualFocus();
       });
 

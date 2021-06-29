@@ -81,7 +81,7 @@ describe('<InputLabel />', () => {
     });
 
     describe('focused', () => {
-      it('applies a shrink class that can be controlled by props', async () => {
+      it('applies a shrink class that can be controlled by props', () => {
         function Wrapper({ children }) {
           return (
             <FormControl>
@@ -95,7 +95,7 @@ describe('<InputLabel />', () => {
         const { container, getByTestId, setProps } = render(<InputLabel data-testid="root" />, {
           wrapper: Wrapper,
         });
-        await act(() => {
+        act(() => {
           container.querySelector('input').focus();
         });
 

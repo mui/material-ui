@@ -101,14 +101,14 @@ describe('<Rating />', () => {
     expect(checked.value).to.equal('2');
   });
 
-  it('has a customization point for the label of the empty value when it is active', async () => {
+  it('has a customization point for the label of the empty value when it is active', () => {
     const { container } = render(
       <Rating classes={{ labelEmptyValueActive: 'customized' }} name="" value={null} />,
     );
 
     expect(container.querySelector('.customized')).to.equal(null);
 
-    await act(() => {
+    act(() => {
       const noValueRadio = screen.getAllByRole('radio').find((radio) => {
         return radio.checked;
       });

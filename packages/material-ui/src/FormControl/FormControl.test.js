@@ -83,7 +83,7 @@ describe('<FormControl />', () => {
   });
 
   describe('prop: disabled', () => {
-    it('will be unfocused if it gets disabled', async () => {
+    it('will be unfocused if it gets disabled', () => {
       const readContext = spy();
       const { container, setProps } = render(
         <FormControl>
@@ -93,7 +93,7 @@ describe('<FormControl />', () => {
       );
       expect(readContext.args[0][0]).to.have.property('focused', false);
 
-      await act(() => {
+      act(() => {
         container.querySelector('input').focus();
       });
       expect(readContext.lastCall.args[0]).to.have.property('focused', true);

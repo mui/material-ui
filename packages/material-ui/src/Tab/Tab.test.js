@@ -32,16 +32,15 @@ describe('<Tab />', () => {
     expect(container.querySelector('.touch-ripple')).to.equal(null);
   });
 
-  it('should have a focusRipple by default', async () => {
+  it('should have a focusRipple by default', () => {
     const { container, getByRole } = render(
       <Tab TouchRippleProps={{ classes: { ripplePulsate: 'focus-ripple' } }} />,
     );
     // simulate pointer device
     fireEvent.pointerDown(document.body);
 
-    fireEvent.keyDown(document.body, { key: 'Tab' });
-
-    await act(async () => {
+    act(() => {
+      fireEvent.keyDown(document.body, { key: 'Tab' });
       // jsdom doesn't actually support tab focus, we need to do it manually
       getByRole('tab').focus();
     });

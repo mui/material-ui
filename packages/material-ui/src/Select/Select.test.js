@@ -99,7 +99,7 @@ describe('<Select />', () => {
     expect(container.querySelector('input')).to.have.attribute('aria-hidden', 'true');
   });
 
-  it('should ignore onBlur when the menu opens', async () => {
+  it('should ignore onBlur when the menu opens', () => {
     // mousedown calls focus while click opens moving the focus to an item
     // this means the trigger is blurred immediately
     const handleBlur = spy();
@@ -125,10 +125,9 @@ describe('<Select />', () => {
     expect(handleBlur.callCount).to.equal(0);
     expect(getByRole('listbox')).not.to.equal(null);
 
-    const options = getAllByRole('option');
-    fireEvent.mouseDown(options[0]);
-
-    await act(() => {
+    act(() => {
+      const options = getAllByRole('option');
+      fireEvent.mouseDown(options[0]);
       options[0].click();
     });
 
@@ -727,7 +726,9 @@ describe('<Select />', () => {
       fireEvent.mouseDown(getByRole('button'));
       expect(getByRole('listbox')).not.to.equal(null);
 
-      fireEvent.click(getByRole('option'));
+      act(() => {
+        getByRole('option').click();
+      });
       // react-transition-group uses one extra commit for exit to completely remove
       // it from the DOM. but it's at least immediately inaccessible.
       // It's desired that this fails one day. The additional tick required to remove

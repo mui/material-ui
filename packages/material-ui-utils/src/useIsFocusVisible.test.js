@@ -79,7 +79,7 @@ describe('focus-visible polyfill', () => {
       document.body.removeChild(rootElement);
     });
 
-    it('should set focus state for shadowRoot children', async () => {
+    it('should set focus state for shadowRoot children', () => {
       const buttonRef = React.createRef();
       render(
         <SimpleButton id="test-button" ref={buttonRef}>

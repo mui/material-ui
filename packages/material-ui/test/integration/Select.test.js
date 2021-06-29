@@ -51,7 +51,7 @@ describe('<Select> integration', () => {
       clock.restore();
     });
 
-    it('should focus the selected item', async () => {
+    it('should focus the selected item', () => {
       const { getByTestId, getAllByRole, getByRole, queryByRole } = render(<SelectAndDialog />);
 
       const trigger = getByRole('button');
@@ -63,7 +63,9 @@ describe('<Select> integration', () => {
       expect(options[1]).toHaveFocus();
 
       // Now, let's close the select component
-      fireEvent.click(getByTestId('select-backdrop'));
+      act(() => {
+        getByTestId('select-backdrop').click();
+      });
       act(() => {
         clock.tick(0);
       });
@@ -72,7 +74,7 @@ describe('<Select> integration', () => {
       expect(trigger).toHaveFocus();
     });
 
-    it('should be able to change the selected item', async () => {
+    it('should be able to change the selected item', () => {
       const { getAllByRole, getByRole, queryByRole } = render(<SelectAndDialog />);
 
       const trigger = getByRole('button');
@@ -85,7 +87,9 @@ describe('<Select> integration', () => {
       expect(options[1]).toHaveFocus();
 
       // Now, let's close the select component
-      fireEvent.click(options[2]);
+      act(() => {
+        options[2].click();
+      });
       act(() => {
         clock.tick(0);
       });
@@ -137,7 +141,7 @@ describe('<Select> integration', () => {
       expect(getByTestId('label')).to.have.class('focused-label');
     });
 
-    it('does not stays in an active state if an open action did not actually open', async () => {
+    it('does not stays in an active state if an open action did not actually open', () => {
       // test for https://github.com/mui-org/material-ui/issues/17294
       // we used to set a flag to stop blur propagation when we wanted to open the
       // select but never considered what happened if the select never opened
@@ -154,7 +158,7 @@ describe('<Select> integration', () => {
       );
       const trigger = getByRole('button');
 
-      await act(() => {
+      act(() => {
         trigger.focus();
       });
 
@@ -164,7 +168,7 @@ describe('<Select> integration', () => {
 
       expect(container.querySelector('[for="age-simple"]')).to.have.class('focused-label');
 
-      await act(() => {
+      act(() => {
         trigger.blur();
       });
 

@@ -546,7 +546,7 @@ describe('<Chip />', () => {
   });
 
   describe('event: focus', () => {
-    it('has a focus-visible polyfill', async () => {
+    it('has a focus-visible polyfill', () => {
       const { container } = render(<Chip label="Test Chip" onClick={() => {}} />);
       const chip = container.querySelector(`.${classes.root}`);
       simulatePointerDevice();
@@ -566,7 +566,7 @@ describe('<Chip />', () => {
       expect(chip).to.have.class(classes.focusVisible);
     });
 
-    it('should reset the focused state', async () => {
+    it('should reset the focused state', () => {
       const { container, setProps } = render(<Chip label="Test Chip" onClick={() => {}} />);
       const chip = container.querySelector(`.${classes.root}`);
 

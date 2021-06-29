@@ -98,7 +98,7 @@ describe('<Fab />', () => {
     expect(container.querySelector(`.${touchRippleClasses.root}`)).to.equal(null);
   });
 
-  it('should have a focusRipple by default', async () => {
+  it('should have a focusRipple by default', () => {
     const { getByRole } = render(
       <Fab
         TouchRippleProps={{
@@ -110,9 +110,8 @@ describe('<Fab />', () => {
     );
     const button = getByRole('button');
 
-    fireEvent.keyDown(document.body, { key: 'TAB' });
-
-    await act(async () => {
+    act(() => {
+      fireEvent.keyDown(document.body, { key: 'TAB' });
       button.focus();
     });
 
@@ -132,9 +131,8 @@ describe('<Fab />', () => {
     );
     const button = getByRole('button');
 
-    fireEvent.keyDown(document.body, { key: 'TAB' });
-
-    await act(async () => {
+    act(() => {
+      fireEvent.keyDown(document.body, { key: 'TAB' });
       button.focus();
     });
 

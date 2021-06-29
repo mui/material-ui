@@ -313,7 +313,7 @@ describe('<Button />', () => {
     expect(button).to.have.class(classes.disableElevation);
   });
 
-  it('should have a focusRipple by default', async () => {
+  it('should have a focusRipple by default', () => {
     const { getByRole } = render(
       <Button TouchRippleProps={{ classes: { ripplePulsate: 'pulsate-focus-visible' } }}>
         Hello World
@@ -322,7 +322,7 @@ describe('<Button />', () => {
     const button = getByRole('button');
 
     fireEvent.keyDown(document.body, { key: 'TAB' });
-    await act(async () => {
+    act(() => {
       button.focus();
     });
 

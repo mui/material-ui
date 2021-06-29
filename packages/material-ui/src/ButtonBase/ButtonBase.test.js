@@ -253,7 +253,7 @@ describe('<ButtonBase />', () => {
 
   describe('ripple', () => {
     describe('interactions', () => {
-      it('should not have a focus ripple by default', async () => {
+      it('should not have a focus ripple by default', () => {
         const { getByRole } = render(
           <ButtonBase
             TouchRippleProps={{
@@ -574,7 +574,7 @@ describe('<ButtonBase />', () => {
   });
 
   describe('focusRipple', () => {
-    it('should pulsate the ripple when focusVisible', async () => {
+    it('should pulsate the ripple when focusVisible', () => {
       const { getByRole } = render(
         <ButtonBase
           focusRipple
@@ -593,7 +593,7 @@ describe('<ButtonBase />', () => {
       expect(button.querySelectorAll('.ripple-pulsate')).to.have.lengthOf(1);
     });
 
-    it('should not stop the ripple when the mouse leaves', async () => {
+    it('should not stop the ripple when the mouse leaves', () => {
       const { getByRole } = render(
         <ButtonBase
           focusRipple
@@ -613,7 +613,7 @@ describe('<ButtonBase />', () => {
       expect(button.querySelectorAll('.ripple-pulsate')).to.have.lengthOf(1);
     });
 
-    it('should stop pulsate and start a ripple when the space button is pressed', async () => {
+    it('should stop pulsate and start a ripple when the space button is pressed', () => {
       const { getByRole } = render(
         <ButtonBase
           focusRipple
@@ -636,7 +636,7 @@ describe('<ButtonBase />', () => {
       expect(button.querySelectorAll('.ripple-visible')).to.have.lengthOf(0);
     });
 
-    it('should stop and re-pulsate when space bar is released', async () => {
+    it('should stop and re-pulsate when space bar is released', () => {
       const { getByRole } = render(
         <ButtonBase
           focusRipple
@@ -661,7 +661,7 @@ describe('<ButtonBase />', () => {
       expect(button.querySelectorAll('.ripple-visible')).to.have.lengthOf(3);
     });
 
-    it('should stop on blur and set focusVisible to false', async () => {
+    it('should stop on blur and set focusVisible to false', () => {
       const { getByRole } = render(
         <ButtonBase
           focusRipple
@@ -676,8 +676,6 @@ describe('<ButtonBase />', () => {
       const button = getByRole('button');
       simulatePointerDevice();
       focusVisible(button);
-
-      expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(0);
 
       act(() => {
         button.blur();
@@ -702,7 +700,7 @@ describe('<ButtonBase />', () => {
       expect(getByText('Hello')).to.have.property('disabled', true);
     });
 
-    it('should reset the focused state', async () => {
+    it('should reset the focused state', () => {
       const { getByText, setProps } = render(<ButtonBase>Hello</ButtonBase>);
       const button = getByText('Hello');
       simulatePointerDevice();
@@ -770,7 +768,7 @@ describe('<ButtonBase />', () => {
       expect(onFocusSpy.callCount).to.equal(1);
     });
 
-    it('has a focus-visible polyfill', async () => {
+    it('has a focus-visible polyfill', () => {
       const { getByText } = render(<ButtonBase>Hello</ButtonBase>);
       const button = getByText('Hello');
       simulatePointerDevice();
@@ -790,7 +788,7 @@ describe('<ButtonBase />', () => {
       expect(button).to.have.class(classes.focusVisible);
     });
 
-    it('removes foucs-visible if focus is re-targetted', async () => {
+    it('removes foucs-visible if focus is re-targetted', () => {
       /**
        * @type {string[]}
        */
@@ -835,7 +833,7 @@ describe('<ButtonBase />', () => {
       expect(buttonBase).not.to.have.class(classes.focusVisible);
     });
 
-    it('onFocusVisibleHandler() should propagate call to onFocusVisible prop', async () => {
+    it('onFocusVisibleHandler() should propagate call to onFocusVisible prop', () => {
       const onFocusVisibleSpy = spy();
       const { getByRole } = render(
         <ButtonBase component="span" onFocusVisible={onFocusVisibleSpy}>
@@ -1100,7 +1098,7 @@ describe('<ButtonBase />', () => {
   });
 
   describe('prop: action', () => {
-    it('should be able to focus visible the button', async () => {
+    it('should be able to focus visible the button', () => {
       /**
        * @type {React.RefObject<import('./ButtonBase').ButtonBaseActions>}
        */

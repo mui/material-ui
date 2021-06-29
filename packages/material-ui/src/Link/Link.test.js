@@ -68,7 +68,7 @@ describe('<Link />', () => {
   });
 
   describe('keyboard focus', () => {
-    it('should add the focusVisible class when focused', async () => {
+    it('should add the focusVisible class when focused', () => {
       const { container } = render(<Link href="/">Home</Link>);
       const anchor = container.querySelector('a');
 

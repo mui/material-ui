@@ -96,11 +96,11 @@ describe('<Menu /> integration', () => {
     expect(getByRole('menu', { hidden: true })).not.to.contain(document.activeElement);
   });
 
-  it('should focus the first item on open', async () => {
+  it('should focus the first item on open', () => {
     const { getByRole, getAllByRole } = render(<ButtonMenu />);
 
     const button = getByRole('button', { name: 'open menu' });
-    await act(() => {
+    act(() => {
       button.focus();
       button.click();
     });
@@ -108,11 +108,11 @@ describe('<Menu /> integration', () => {
     expect(getAllByRole('menuitem')[0]).toHaveFocus();
   });
 
-  it('changes focus according to keyboard navigation', async () => {
+  it('changes focus according to keyboard navigation', () => {
     const { getAllByRole, getByRole } = render(<ButtonMenu />);
 
     const button = getByRole('button', { name: 'open menu' });
-    await act(() => {
+    act(() => {
       button.focus();
       button.click();
     });
@@ -137,11 +137,11 @@ describe('<Menu /> integration', () => {
     expect(menuitems[2], 'no change on unassociated keys').toHaveFocus();
   });
 
-  it('focuses the selected item when opening', async () => {
+  it('focuses the selected item when opening', () => {
     const { getAllByRole, getByRole } = render(<ButtonMenu selectedIndex={2} />);
 
     const button = getByRole('button', { name: 'open menu' });
-    await act(() => {
+    act(() => {
       button.focus();
       button.click();
     });
@@ -302,12 +302,12 @@ describe('<Menu /> integration', () => {
 
     specify(
       '[variant=selectedMenu] focuses the selected item when opening when it was already mounted',
-      async () => {
+      () => {
         const { getAllByRole, getByRole } = render(
           <ButtonMenu selectedIndex={1} variant="selectedMenu" />,
         );
 
-        await act(() => {
+        act(() => {
           getByRole('button').focus();
           getByRole('button').click();
         });
@@ -321,11 +321,11 @@ describe('<Menu /> integration', () => {
     );
   });
 
-  it('closes the menu when Tabbing while the list is active', async () => {
+  it('closes the menu when Tabbing while the list is active', () => {
     render(<ButtonMenu />);
 
     const trigger = screen.getByRole('button');
-    await act(() => {
+    act(() => {
       trigger.focus();
       trigger.click();
     });
