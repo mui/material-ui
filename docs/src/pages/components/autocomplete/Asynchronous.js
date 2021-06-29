@@ -1,4 +1,4 @@
-// *https://www.registers.service.gov.uk/registers/country/use-the-api*
+// *https://restcountries.eu/*
 import fetch from 'cross-fetch';
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
@@ -24,12 +24,12 @@ export default function Asynchronous() {
     }
 
     (async () => {
-      const response = await fetch('https://country.register.gov.uk/records.json?page-size=5000');
+      const response = await fetch('https://restcountries.eu/rest/v2/all');
       await sleep(1e3); // For demo purposes.
       const countries = await response.json();
 
       if (active) {
-        setOptions(Object.keys(countries).map((key) => countries[key].item[0]));
+        setOptions(countries.map((country) => { return {name: country.name} }));
       }
     })();
 
