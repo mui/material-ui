@@ -1,6 +1,5 @@
 import { promises as fs } from 'fs';
 import path from 'path';
-import bytes from 'bytes';
 import zlib from 'zlib';
 import { promisify } from 'util';
 import nodeResolve from 'rollup-plugin-node-resolve';
@@ -19,8 +18,11 @@ const gzip = promisify(zlib.gzip);
 function sizeSnapshot(options) {
   const snapshotPath = path.resolve(options.snapshotPath);
 
+  /**
+   * @param {number} size
+   */
   function formatSize(size) {
-    return bytes.format(size, { thousandsSeparator: ',', unitSeparator: ' ', unit: 'B' });
+    return size.toLocaleString(undefined, { style: 'unit', unit: 'byte', unitDisplay: 'short' });
   }
   async function computeGzipSize(string) {
     const gzipped = await gzip(string);
