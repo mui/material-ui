@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, describeConformanceV5, createClientRender, screen } from 'test/utils';
+import { describeConformanceV5, createClientRender, screen } from 'test/utils';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import defaultTheme from '@material-ui/core/styles/defaultTheme';
 import Grid, { gridClasses as classes } from '@material-ui/core/Grid';
@@ -8,13 +8,11 @@ import { generateRowGap, generateColumnGap } from './Grid';
 
 describe('<Grid />', () => {
   const render = createClientRender();
-  const mount = createMount();
 
   describeConformanceV5(<Grid />, () => ({
     classes,
     inheritComponent: 'div',
     render,
-    mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiGrid',
     testVariantProps: { container: true, spacing: 5 },

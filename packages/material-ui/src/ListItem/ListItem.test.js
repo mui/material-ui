@@ -1,14 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import {
-  createMount,
-  describeConformanceV5,
-  act,
-  createClientRender,
-  fireEvent,
-  queries,
-} from 'test/utils';
+import { describeConformanceV5, act, createClientRender, fireEvent, queries } from 'test/utils';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
@@ -21,13 +14,11 @@ const NoContent = React.forwardRef(() => {
 
 describe('<ListItem />', () => {
   const render = createClientRender();
-  const mount = createMount();
 
   describeConformanceV5(<ListItem />, () => ({
     classes,
     inheritComponent: 'li',
     render,
-    mount,
     refInstanceof: window.HTMLLIElement,
     muiName: 'MuiListItem',
     testVariantProps: { dense: true },

@@ -34,7 +34,7 @@ const TimelineSeparator = React.forwardRef(function TimelineSeparator(inProps, r
 
   const { className, ...other } = props;
 
-  const styleProps = { ...props };
+  const styleProps = props;
 
   const classes = useUtilityClasses(styleProps);
 
