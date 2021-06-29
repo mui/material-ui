@@ -91,6 +91,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     margin = 'none',
     required = false,
     size = 'medium',
+    startAdornmentWidth,
     variant = 'outlined',
     ...other
   } = props;
@@ -131,8 +132,6 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     }
     return initialAdornedStart;
   });
-
-  const [startAdornmentWidth, setStartAdornmentWidth] = React.useState(0);
 
   const [filled, setFilled] = React.useState(() => {
     // We need to iterate through the children and find the Input in order
@@ -194,7 +193,6 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     adornedStart,
     setAdornedStart,
     startAdornmentWidth,
-    setStartAdornmentWidth,
     color,
     disabled,
     error,
@@ -305,6 +303,11 @@ FormControl.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['medium', 'small']),
     PropTypes.string,
   ]),
+  /**
+   * The width of the start adornment in pixels.
+   * If provided, the label will not be initially shrunk.
+   */
+  startAdornmentWidth: PropTypes.number,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -53,10 +53,6 @@ export interface InputLabelProps extends StandardProps<FormLabelProps> {
    * The variant to use.
    */
   variant?: 'standard' | 'outlined' | 'filled';
-  /**
-   * Force the label to stay at the edge of the text field when using startAdornment and variant="filled".
-   */
-  forceLeft?: boolean;
 }
 
 /**

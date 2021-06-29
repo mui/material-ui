@@ -63,6 +63,8 @@ The main way is with an `InputAdornment`.
 This can be used to add a prefix, a suffix, or an action to an input.
 For instance, you can use an icon button to hide or reveal the password.
 
+When using a start adornment, you can provide `startAdornmentWidth` to the `FormControl`. Otherwise, the label will always be shrunk.
+
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
 
 ## Sizes
@@ -160,6 +162,7 @@ import { useFormControl } from '@material-ui/core/FormControl';
 - `value.hiddenLabel` (_bool_): Indicate whether the label is being hidden, inherited from `FormControl` `hiddenLabel` prop
 - `value.required` (_bool_): Indicate whether the label is indicating that the input is required input, inherited from the `FormControl` `required` prop
 - `value.size` (_string_): The size of the component, inherited from the `FormControl` `size` prop
+- `value.startAdornmentWidth` (_number_): The width of the start adornment, inherited from the `FormControl` `startAdornmentWidth` prop.
 - `value.variant` (_string_): The variant is being used by the `FormControl` component and its children, inherited from `FormControl` `variant` prop
 - `value.onBlur` (_func_): Should be called when the input is blurred
 - `value.onFocus` (_func_): Should be called when the input is focused

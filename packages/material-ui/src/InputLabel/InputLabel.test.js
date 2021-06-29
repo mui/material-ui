@@ -113,9 +113,9 @@ describe('<InputLabel />', () => {
     });
   });
 
-  it('should not have the shrink class when adornedStart is true', () => {
+  it('should not have the shrink class when adornedStart is true and startAdornmentWidth is provided', () => {
     const { getByTestId } = render(
-      <FormControlContext.Provider value={{ adornedStart: true }}>
+      <FormControlContext.Provider value={{ adornedStart: true, startAdornmentWidth: 10 }}>
         <InputLabel data-testid="root" />
       </FormControlContext.Provider>,
     );

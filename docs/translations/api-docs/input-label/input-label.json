@@ -8,7 +8,6 @@
     "disabled": "If <code>true</code>, the component is disabled.",
     "error": "If <code>true</code>, the label is displayed in an error state.",
     "focused": "If <code>true</code>, the <code>input</code> of this label is focused.",
-    "forceLeft": "Force the label to stay at the edge of the text field when using startAdornment and variant=&quot;filled&quot;.",
     "margin": "If <code>dense</code>, will adjust vertical spacing. This is normally obtained via context from FormControl.",
     "required": "if <code>true</code>, the label will indicate that the <code>input</code> is required.",
     "shrink": "If <code>true</code>, the label is shrunk.",

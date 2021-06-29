@@ -7,7 +7,6 @@
     "disabled": { "type": { "name": "bool" } },
     "error": { "type": { "name": "bool" } },
     "focused": { "type": { "name": "bool" } },
-    "forceLeft": { "type": { "name": "bool" } },
     "margin": { "type": { "name": "enum", "description": "'dense'" } },
     "required": { "type": { "name": "bool" } },
     "shrink": { "type": { "name": "bool" } },

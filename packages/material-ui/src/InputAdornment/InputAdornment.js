@@ -7,7 +7,7 @@ import capitalize from '../utils/capitalize';
 import Typography from '../Typography';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
 import styled from '../styles/styled';
-import { getInputAdornmentUtilityClass } from './inputAdornmentClasses';
+import inputAdornmentClasses, { getInputAdornmentUtilityClass } from './inputAdornmentClasses';
 import useThemeProps from '../styles/useThemeProps';
 
 const overridesResolver = (props, styles) => {
@@ -50,6 +50,13 @@ const InputAdornmentRoot = styled('div', {
   alignItems: 'center',
   whiteSpace: 'nowrap',
   color: theme.palette.action.active,
+  ...(styleProps.variant === 'filled' &&
+    !styleProps.startAdornmentWidth && {
+      // Styles applied to the root element if `variant="filled"`.
+      [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]: {
+        marginTop: 16,
+      },
+    }),
   ...(styleProps.position === 'start' && {
     // Styles applied to the root element if `position="start"`.
     marginRight: 8,
@@ -107,6 +114,7 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
     disablePointerEvents,
     position,
     variant,
+    startAdornmentWidth: muiFormControl.startAdornmentWidth,
   };
 
   const classes = useUtilityClasses(styleProps);
