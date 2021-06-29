@@ -8,7 +8,7 @@
     "defaultChecked": "The default checked state. Use when the component is not controlled.",
     "disabled": "如果被设置为 <code>true</code>，那么该组件将会被禁用。",
     "disableRipple": "If <code>true</code>, the ripple effect is disabled.",
-    "edge": "If given, uses a negative margin to counteract the padding on one side (this is often helpful for aligning the left or right side of the icon with content above or below, without ruining the border size and shape).",
+    "edge": "如果传入参数，则使用负边距来抵消一侧的填充（这通常有助于将图标的左侧或右侧与上方或下方的内容对齐，而不会破坏边框的大小和形状）。",
     "icon": "The icon to display when the component is unchecked.",
     "id": "The id of the <code>input</code> element.",
     "inputProps": "<a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Attributes\">Attributes</a> applied to the <code>input</code> element.",
