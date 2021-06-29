@@ -13,9 +13,9 @@ Lists are a continuous group of text or images. They are composed of items conta
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Simple List
+## Basic List
 
-{{"demo": "pages/components/lists/SimpleList.js", "bg": true}}
+{{"demo": "pages/components/lists/BasicList.js", "bg": true}}
 
 The last item of the previous demo shows how you can render a link:
 

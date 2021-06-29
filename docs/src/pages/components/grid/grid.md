@@ -66,9 +66,11 @@ For instance, we can implement the ["recommended"](https://material.io/design/la
 
 Responsive values is supported by:
 
-- `spacing`
-- `direction`
 - `columns`
+- `columnSpacing`
+- `direction`
+- `rowSpacing`
+- `spacing`
 - all the [other props](#system-props) of the system
 
 > ⚠️ When using a responsive `columns` prop, each grid item needs its corresponding breakpoint.
@@ -102,7 +104,7 @@ That also means you can set the width of one _item_ and the others will automati
 
 ## Complex Grid
 
-The following demo doesn't follow the Material Design specification, but illustrates how the grid can be used to build complex layouts.
+The following demo doesn't follow the Material Design guidelines, but illustrates how the grid can be used to build complex layouts.
 
 {{"demo": "pages/components/grid/ComplexGrid.js", "bg": true}}
 

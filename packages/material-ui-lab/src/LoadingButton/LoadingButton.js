@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { chainPropTypes } from '@material-ui/utils';
 import { capitalize } from '@material-ui/core/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { styled, unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
-import Button, { buttonClasses } from '@material-ui/core/Button';
+import { styled, useThemeProps } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import loadingButtonClasses, { getLoadingButtonUtilityClass } from './loadingButtonClasses';
 
@@ -31,26 +31,21 @@ const useUtilityClasses = (styleProps) => {
 
 // TODO use `import { rootShouldForwardProp } from '../styles/styled';` once move to core
 const rootShouldForwardProp = (prop) =>
-  prop !== 'styleProps' &&
-  prop !== 'theme' &&
-  prop !== 'isRtl' &&
-  prop !== 'sx' &&
-  prop !== 'as' &&
-  prop !== 'classes';
+  prop !== 'styleProps' && prop !== 'theme' && prop !== 'sx' && prop !== 'as' && prop !== 'classes';
 const LoadingButtonRoot = styled(Button, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiLoadingButton',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    return {
-      ...styles.root,
-      ...(styles.startIconLoadingStart && {
+    return [
+      styles.root,
+      styles.startIconLoadingStart && {
         [`& .${loadingButtonClasses.startIconLoadingStart}`]: styles.startIconLoadingStart,
-      }),
-      ...(styles.endIconLoadingEnd && {
+      },
+      styles.endIconLoadingEnd && {
         [`& .${loadingButtonClasses.endIconLoadingEnd}`]: styles.endIconLoadingEnd,
-      }),
-    };
+      },
+    ];
   },
 })(({ styleProps, theme }) => ({
   [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
@@ -64,7 +59,7 @@ const LoadingButtonRoot = styled(Button, {
     transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
       duration: theme.transitions.duration.short,
     }),
-    [`&.${buttonClasses.disabled}`]: {
+    [`&.${loadingButtonClasses.loading}`]: {
       color: 'transparent',
     },
   }),
@@ -75,10 +70,10 @@ const LoadingButtonLoadingIndicator = styled('div', {
   slot: 'LoadingIndicator',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
-    return {
-      ...styles.loadingIndicator,
-      ...styles[`loadingIndicator${capitalize(styleProps.loadingPosition)}`],
-    };
+    return [
+      styles.loadingIndicator,
+      styles[`loadingIndicator${capitalize(styleProps.loadingPosition)}`],
+    ];
   },
 })(({ theme, styleProps }) => ({
   position: 'absolute',

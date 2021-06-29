@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import {
-  createMount,
   describeConformanceV5,
   act,
   createClientRender,
@@ -13,13 +12,11 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<Button />', () => {
   const render = createClientRender();
-  const mount = createMount();
 
   describeConformanceV5(<Button startIcon="icon">Conformance?</Button>, () => ({
     classes,
     inheritComponent: ButtonBase,
     render,
-    mount,
     refInstanceof: window.HTMLButtonElement,
     muiName: 'MuiButton',
     testDeepOverrides: { slotName: 'startIcon', slotClassName: classes.startIcon },
@@ -362,8 +359,8 @@ describe('<Button />', () => {
     });
 
     it('should server-side render', () => {
-      const markup = serverRender(<Button>Hello World</Button>);
-      expect(markup.text()).to.equal('Hello World');
+      const container = serverRender(<Button>Hello World</Button>);
+      expect(container.firstChild).to.have.text('Hello World');
     });
   });
 

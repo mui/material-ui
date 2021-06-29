@@ -1,5 +1,6 @@
 import { deepmerge } from '@material-ui/utils';
 import MuiError from '@material-ui/utils/macros/MuiError.macro';
+import { darken, getContrastRatio, lighten } from '@material-ui/system';
 import common from '../colors/common';
 import grey from '../colors/grey';
 import purple from '../colors/purple';
@@ -8,7 +9,6 @@ import red from '../colors/red';
 import orange from '../colors/orange';
 import blue from '../colors/blue';
 import green from '../colors/green';
-import { darken, getContrastRatio, lighten } from './colorManipulator';
 
 export const light = {
   // The colors used to style the text.

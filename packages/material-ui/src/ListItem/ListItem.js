@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses, isHostComponent } from '@material-ui/unstyled';
 import { chainPropTypes, elementTypeAcceptingRef } from '@material-ui/utils';
+import { alpha } from '@material-ui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import isMuiElement from '../utils/isMuiElement';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -18,16 +18,16 @@ import ListItemSecondaryAction from '../ListItemSecondaryAction';
 export const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return {
-    ...styles.root,
-    ...(styleProps.dense && styles.dense),
-    ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
-    ...(styleProps.divider && styles.divider),
-    ...(!styleProps.disableGutters && styles.gutters),
-    ...(!styleProps.disablePadding && styles.padding),
-    ...(styleProps.button && styles.button),
-    ...(styleProps.hasSecondaryAction && styles.secondaryAction),
-  };
+  return [
+    styles.root,
+    styleProps.dense && styles.dense,
+    styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart,
+    styleProps.divider && styles.divider,
+    !styleProps.disableGutters && styles.gutters,
+    !styleProps.disablePadding && styles.padding,
+    styleProps.button && styles.button,
+    styleProps.hasSecondaryAction && styles.secondaryAction,
+  ];
 };
 
 const useUtilityClasses = (styleProps) => {

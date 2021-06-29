@@ -119,10 +119,10 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 let createTheme;
-if (process.env.REACT_MODE === 'legacy') {
-  createTheme = createLegacyModeTheme;
-} else {
+if (process.env.REACT_STRICT_MODE) {
   createTheme = createStrictModeTheme;
+} else {
+  createTheme = createLegacyModeTheme;
 }
 
 export function ThemeProvider(props) {
@@ -223,10 +223,6 @@ export function ThemeProvider(props) {
       },
       languageMap[userLanguage],
     );
-
-    if (paletteMode === 'dark') {
-      nextTheme.palette.background.default = '#222';
-    }
 
     return nextTheme;
   }, [dense, direction, paletteColors, paletteMode, spacing, userLanguage]);

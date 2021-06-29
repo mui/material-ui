@@ -2,9 +2,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { alpha } from '@material-ui/system';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
@@ -61,16 +61,16 @@ const ButtonRoot = styled(ButtonBase, {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...styles[styleProps.variant],
-      ...styles[`${styleProps.variant}${capitalize(styleProps.color)}`],
-      ...styles[`size${capitalize(styleProps.size)}`],
-      ...styles[`${styleProps.variant}Size${capitalize(styleProps.size)}`],
-      ...(styleProps.color === 'inherit' && styles.colorInherit),
-      ...(styleProps.disableElevation && styles.disableElevation),
-      ...(styleProps.fullWidth && styles.fullWidth),
-    };
+    return [
+      styles.root,
+      styles[styleProps.variant],
+      styles[`${styleProps.variant}${capitalize(styleProps.color)}`],
+      styles[`size${capitalize(styleProps.size)}`],
+      styles[`${styleProps.variant}Size${capitalize(styleProps.size)}`],
+      styleProps.color === 'inherit' && styles.colorInherit,
+      styleProps.disableElevation && styles.disableElevation,
+      styleProps.fullWidth && styles.fullWidth,
+    ];
   },
 })(
   ({ theme, styleProps }) => ({
@@ -247,10 +247,7 @@ const ButtonStartIcon = styled('span', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.startIcon,
-      ...styles[`iconSize${capitalize(styleProps.size)}`],
-    };
+    return [styles.startIcon, styles[`iconSize${capitalize(styleProps.size)}`]];
   },
 })(({ styleProps }) => ({
   display: 'inherit',
@@ -268,10 +265,7 @@ const ButtonEndIcon = styled('span', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.endIcon,
-      ...styles[`iconSize${capitalize(styleProps.size)}`],
-    };
+    return [styles.endIcon, styles[`iconSize${capitalize(styleProps.size)}`]];
   },
 })(({ styleProps }) => ({
   display: 'inherit',

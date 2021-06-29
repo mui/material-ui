@@ -184,20 +184,20 @@ const GridRoot = styled('div', {
     const { container, direction, item, lg, md, sm, spacing, wrap, xl, xs, zeroMinWidth } =
       props.styleProps;
 
-    return {
-      ...styles.root,
-      ...(container && styles.container),
-      ...(item && styles.item),
-      ...(zeroMinWidth && styles.zeroMinWidth),
-      ...(container && spacing !== 0 && styles[`spacing-xs-${String(spacing)}`]),
-      ...(direction !== 'row' && styles[`direction-xs-${String(direction)}`]),
-      ...(wrap !== 'wrap' && styles[`wrap-xs-${String(wrap)}`]),
-      ...(xs !== false && styles[`grid-xs-${String(xs)}`]),
-      ...(sm !== false && styles[`grid-sm-${String(sm)}`]),
-      ...(md !== false && styles[`grid-md-${String(md)}`]),
-      ...(lg !== false && styles[`grid-lg-${String(lg)}`]),
-      ...(xl !== false && styles[`grid-xl-${String(xl)}`]),
-    };
+    return [
+      styles.root,
+      container && styles.container,
+      item && styles.item,
+      zeroMinWidth && styles.zeroMinWidth,
+      container && spacing !== 0 && styles[`spacing-xs-${String(spacing)}`],
+      direction !== 'row' && styles[`direction-xs-${String(direction)}`],
+      wrap !== 'wrap' && styles[`wrap-xs-${String(wrap)}`],
+      xs !== false && styles[`grid-xs-${String(xs)}`],
+      sm !== false && styles[`grid-sm-${String(sm)}`],
+      md !== false && styles[`grid-md-${String(md)}`],
+      lg !== false && styles[`grid-lg-${String(lg)}`],
+      xl !== false && styles[`grid-xl-${String(xl)}`],
+    ];
   },
 })(
   ({ styleProps }) => ({

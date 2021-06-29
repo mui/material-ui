@@ -1,5 +1,323 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-alpha.38
+
+<!-- generated comparing v5.0.0-alpha.37..next -->
+
+_Jun 23, 2021_
+
+Big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 We have only 2 left in the [breaking changes](https://github.com/mui-org/material-ui/issues/20012). The plan to release 5.0.0-beta.0 is on July 1st and will start to promote its usage over v4.
+- 🎨 We have updated `Slider` to match current [Material Design guidelines](https://material.io/components/sliders).
+
+  <a href="https://next.material-ui.com/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
+
+- 💡 `IconButton` now supports 3 sizes (`small, medium, large`). [See demo](/components/buttons/#sizes-2).
+- ♿️ We have improved the default style of the `Link` to be more accessible (#26145) @ahmed-28
+
+  <a href="https://next.material-ui.com/components/links/"><img width="543" alt="" src="https://user-images.githubusercontent.com/3165635/123097983-ef1b6200-d430-11eb-97da-b491fba5df49.png"></a>
+
+### `@material-ui/core@5.0.0-alpha.38`
+
+#### Breaking changes
+
+- <!-- 05 --> [Menu] Use ButtonBase in MenuItem (#26591) @siriwatknp
+
+  - Change the default value of `anchorOrigin.vertical` to follow the Material Design guidelines. The menu now displays below the anchor instead of on top of it. You can restore the previous behavior with:
+
+    ```diff
+     <Menu
+    +  anchorOrigin={{
+    +    vertical: 'top',
+    +    horizontal: 'left',
+    +  }}
+    ```
+
+  - The `MenuItem` component inherits the `ButtonBase` component instead of `ListItem`. The class names related to "MuiListItem-\*" are removed and theming `ListItem` is no longer affecting `MenuItem`.
+
+    ```diff
+    -<li className="MuiButtonBase-root MuiMenuItem-root MuiListItem-root">
+    +<li className="MuiButtonBase-root MuiMenuItem-root">
+    ```
+
+  - The prop `listItemClasses` was removed, you can use `classes` instead.
+
+    ```diff
+    -<MenuItem listItemClasses={{...}}>
+    +<MenuItem classes={{...}}>
+    ```
+
+- <!-- 09 --> [theme] Improve default breakpoints (#26746) @siriwatknp
+
+  The default breakpoints were changed to better match the common use cases. They also better match the Material Design guidelines. [Read more about the change](https://github.com/mui-org/material-ui/issues/21902).
+
+  ```diff
+  {
+    xs: 0,
+    sm: 600,
+  - md: 960,
+  + md: 900,
+  - lg: 1280,
+  + lg: 1200,
+  - xl: 1920,
+  + xl: 1536,
+  }
+  ```
+
+  If you prefer the old breakpoint values, use the snippet below.
+
+  ```js
+  import { createTheme } from '@material-ui/core/styles';
+
+  const theme = createTheme({
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 600,
+        md: 960,
+        lg: 1280,
+        xl: 1920,
+      },
+    },
+  });
+  ```
+
+- <!-- 10 --> [IconButton] Add size `large` and update styles (#26748) @siriwatknp
+
+  The default size's padding is reduced to `8px` which makes the default IconButton size of `40px`. To get the old default size (`48px`), use `size="large"`. The change was done to better match Google's products when Material Design stopped documenting the icon button pattern.
+
+  ```diff
+  - <IconButton>
+  + <IconButton size="large">
+  ```
+
+- <!-- 08 --> [Slider] Adjust css to match the specification (#26632) @siriwatknp
+
+  Rework the CSS to match the latest [Material Design guidelines](https://material.io/components/sliders) and make custom styles more intuitive. [See documentation](https://next.material-ui.com/components/slider/).
+
+  <a href="https://next.material-ui.com/components/slider/#continuous-sliders"><img width="247" alt="" src="https://user-images.githubusercontent.com/3165635/121884800-a8808600-cd13-11eb-8cdf-e25de8f1ba73.png" style="margin: auto"></a>
+
+  You can reduce the density of the slider, closer to v4 with the [`size="small"` prop](https://next.material-ui.com/components/slider/#sizes).
+
+  <a href="https://next.material-ui.com/components/slider/#sizes"><img width="330" alt="" src="https://user-images.githubusercontent.com/3165635/123076549-8aa0d880-d419-11eb-8835-06cd2b21b2d3.png" style="margin: auto"></a>
+
+- <!-- 14 --> [IconButton] Remove label span (#26801) @siriwatknp
+
+  `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
+
+  ```diff
+  <button class="MuiIconButton-root">
+  - <span class="MuiIconButton-label">
+      <svg />
+  - </span>
+  </button>
+  ```
+
+- <!-- 19 --> [core] Remove `unstable_` prefix on the `useThemeProps` hook (#26777) @mnajdova
+
+  The following utilities were renamed to not contain the `unstable_` prefix:
+
+  - `@material-ui/sytstem`
+
+  ```diff
+   import {
+  -  unstable_useThemeProps,
+  +  useThemeProps,
+   } from '@material-ui/system';
+  ```
+
+  - `@material-ui/core`
+
+  ```diff
+   import {
+  -  unstable_useThemeProps,
+  +  useThemeProps,
+   } from '@material-ui/core/styles';
+  ```
+
+#### Changes
+
+- <!-- 33 --> [Alert] Add support for custom colors (#26831) @varandasi
+- <!-- 32 --> [Button] Fix loading text invisible when disabled (#26857) @DanielBretzigheimer
+- <!-- 43 --> [ButtonBase] Consider as a link with a custom component and `to` prop (#26576) @shadab14meb346
+- <!-- 17 --> [ButtonBase] Derive state on render instead of in layout effects (#26762) @eps1lon
+- <!-- 37 -->  [Drawer] Fix incorrect z-index (#26791) @michal-perlakowski
+- <!-- 28 --> [Drawer] Remove incorrect transition handler props (#26835) @eps1lon
+- <!-- 01 --> [Link] Improve accessibility support (#26145) @ahmed-28
+- <!-- 41 --> [Modal] Fix calculating scrollbar size when using custom scrollbar (#26816) @michal-perlakowski
+- <!-- 29 --> [Rating] Make input ids less predictable (#26493) @eps1lon
+- <!-- 27 --> [Stepper] Add componentsProps.label to StepLabel (#26807) @michal-perlakowski
+- <!-- 36 --> [Tabs] Show error when Tab has display: none (#26783) @michal-perlakowski
+- <!-- 46 --> [theme] Add base color palette type to components (#26697) @siriwatknp
+
+### `@material-ui/system@5.0.0-alpha.38`
+
+#### Breaking Changes
+
+- <!-- 35 --> [system] Normalize api for `createBox` (#26820) @mnajdova
+
+  ```diff
+   import { createBox } from '@material-ui/system';
+
+  -const styled = createBox(defaultTheme);
+  +const styled = createBox({ defaultTheme });
+  ```
+
+#### Changes
+
+- <!-- 12 --> [system] Add ThemeProvider component (#26787) @mnajdova
+
+### Docs
+
+- <!-- 45 --> [docs] Fix misspelling of the word Typography (#26898) @dmrqx
+- <!-- 42 --> [docs] Instruct users to install @material-ui/icons with the next tag (#26873) @michal-perlakowski
+- <!-- 26 --> [docs] Sync translations (#26828) @l10nbot
+- <!-- 25 --> [docs] Improve grammar of autocomplete/autofill section (#26798) @dijonkitchen
+- <!-- 18 --> [docs] Explain "inherited props" better in the props table (#26778) @eps1lon
+- <!-- 16 --> [docs] Fix documentation for upgrading to v5 (#26812) @tungdt-90
+- <!-- 13 --> [docs] Improve notification color (#26796) @mnajdova
+- <!-- 11 --> [docs] Fix various a11y issues with /customization/color (#26757) @eps1lon
+- <!-- 04 --> [docs] Move custom theme to frame (#26744) @siriwatknp
+- <!-- 02 --> [docs] Fix small PT typo fix: inciar -> iniciar (#26775) @brunocavalcante
+- <!-- 03 --> [I10n] Add Chinese (Hong Kong) (zh-HK) locale (#26637) @kshuiroy
+- <!-- 44 --> [l10n] Add sinhalese (siLK) locale (#26875) @pavinduLakshan
+- <!-- 39 --> [examples] Rename nextjs typescript theme from tsx to ts (#26862) @Izhaki
+
+### Core
+
+- <!-- 38 --> [test] Fix Drawer test API @oliviertassinari
+- <!-- 34 --> [test] Adjust expected useAutocomplete error messages for React 18 (#26858) @eps1lon
+- <!-- 30 --> [test] Convert Drawer tests to testing-library (#26837) @eps1lon
+- <!-- 23 --> [test] Convert remaining enzyme tests to testing-library (#26832) @eps1lon
+- <!-- 22 --> [test] Ignore ReactDOM.hydrate deprecation warnings (#26815) @eps1lon
+- <!-- 06 --> [test] Reduce flakiness (#26761) @eps1lon
+- <!-- 07 --> [useId] Reduce likelyhood of collisions (#26758) @eps1lon
+- <!-- 31 --> yarn deduplicate @oliviertassinari
+- <!-- 21 --> Fix running framer's prettier under pwsh (#26819) @michaldudak
+- <!-- 40 --> [core] Update babel-plugin-optimize-clsx (#26861) @oliviertassinari
+- <!-- 24 --> [core] Assume no document.all at runtime (#26821) @eps1lon
+- <!-- 20 --> [core] Remove dependency on `@material-ui/private-theming` (#26793) @mnajdova
+- <!-- 15 --> [core] Remove dependency on `@material-ui/styled-engine` (#26792) @mnajdova
+
+All contributors of this release in alphabetical order: @ahmed-28, @brunocavalcante, @DanielBretzigheimer, @dijonkitchen, @dmrqx, @eps1lon, @Izhaki, @kshuiroy, @l10nbot, @michal-perlakowski, @michaldudak, @mnajdova, @oliviertassinari, @pavinduLakshan, @shadab14meb346, @siriwatknp, @tungdt-90, @varandasi
+
+## 5.0.0-alpha.37
+
+<!-- generated comparing v5.0.0-alpha.36..next -->
+
+_Jun 15, 2021_
+
+Big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
+
+- 💄 Add support for responsive props on the Grid component (#26590) @likitarai1.
+  This fixes a longstanding issue. You can now specify different values for each breakpoint.
+
+  ```jsx
+  <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 1, sm: 2, md: 3 }}>
+    <Grid item xs={2} sm={4} md={4} />
+    <Grid item xs={2} sm={4} md={4} />
+    <Grid item xs={2} sm={4} md={4} />
+  </Grid>
+  ```
+
+  Head to the [documentation](https://next.material-ui.com/components/grid/#responsive-values) for more details.
+
+- ⚒️ We've introduced a new `useTheme` and `useThemeProps` hooks in the `@material-ui/system` package.
+  We believe that this package can be used as a standalone styling solution for building custom design systems (#26649) @mnajdova.
+- 💥 Made progress with the breaking changes. We have done 105 of the 109 changes [planned](https://github.com/mui-org/material-ui/issues/20012). We are getting closer to our goal of releasing 5.0.0-beta.0 on July 1st and start to promote its usage over v4. You can also follow [our milestone](https://github.com/mui-org/material-ui/milestone/35) for more details.
+- And many more 🐛 bug fixes and 📚 improvements.
+
+### `@material-ui/core@5.0.0-alpha.37`
+
+#### Breaking changes
+
+- <!-- 10 --> [Button] Remove label span (#26666) @siriwatknp
+
+  The `span` element that wraps children has been removed. `label` classKey is also removed. The nested span was required for fixing a flexbox issue with iOS < 11.0.
+
+  ```diff
+  <button class="MuiButton-root">
+  - <span class="MuiButton-label">
+      children
+  - </span>
+  </button>
+  ```
+
+#### Changes
+
+- <!-- 08 --> [Button] Add missing color type (#26593) @sakura90
+- <!-- 07 --> [Grid] Add responsive direction and spacing props (#26590) @likitarai1
+- <!-- 05 --> [List] Add ListItemButton export to index (#26667) @chadmuro
+- <!-- 09 --> [theme] Fix missing exported Breakpoints types (#26684) @robphoenix
+
+### `@material-ui/system@5.0.0-alpha.37`
+
+#### Breaking changes
+
+- <!-- 26 --> [system] Remove `theme` & `isRtl` from `useThemeProps` (#26701) @mnajdova
+
+  The `isRtl` and `theme` props are no longer added by the `useThemeProps` hook. You can use the `useTheme` hook for this.
+
+  ```diff
+  -import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
+  +import { unstable_useThemeProps as useThemeProps, useTheme } from '@material-ui/core/styles';
+
+   const Component = (inProps) => {
+  -  const { isRtl, theme, ...props } = useThemeProps({ props: inProps, name: 'MuiComponent' });
+  +  const props = useThemeProps({ props: inProps, name: 'MuiComponent' });
+
+  +  const theme = useTheme();
+  +  const isRtl = theme.direction === 'rtl';
+     //.. rest of the code
+  }
+  ```
+
+#### Changes
+
+- <!-- 16 --> [system] Add useThemeProps & useTheme hooks (#26649) @mnajdova
+- <!-- 15 --> [system] Add color manipulators (#26668) @mnajdova
+- <!-- 06 --> [system] Fix support of custom shape in createTheme (#26673) @varandasi
+
+### `@material-ui/unstyled@5.0.0-alpha.37`
+
+- <!-- 04 --> [Slider] Improve TS definition (#26642) @mnajdova
+- <!-- 21 --> [TrapFocus] Capture nodeToRestore via relatedTarget (#26696) @eps1lon
+
+### `@material-ui/icons@5.0.0-alpha.37`
+
+- <!-- 03 --> Revert "[icons] Only ship ES modules (#26310)" (#26656) @eps1lon
+
+  The changes that we have tried in #26310 were breaking the integration with Next.js.
+
+### `@material-ui/lab@5.0.0-alpha.37`
+
+- <!-- 29 --> [core] Remove unused useKeyDown (#26765) @eps1lon
+- <!-- 28 --> [DateTimePicker] Fix not visible selected tab icon (#26624) @nikitabobers
+
+### Docs
+
+- <!-- 20 --> [blog] Michał Dudak joins Material-UI (#26700) @oliviertassinari
+- <!-- 27 --> [docs] Migrate onepirate premium template to emotion part2 (#26707) @vicasas
+- <!-- 24 --> [docs] Fix TextField demo layout (#26710) @vicasas
+- <!-- 19 --> [docs] Improve Paperbase demo (#26711) @oliviertassinari
+- <!-- 17 --> [docs] Migrate onepirate premium template to emotion part1 (#26671) @vicasas
+- <!-- 14 --> [docs] Migrate paperbase premium template to emotion (#26658) @vicasas
+- <!-- 25 --> [List] Fix demo to have correct semantic (#26742) @siriwatknp
+
+### Core
+
+- <!-- 23 --> [core] Monitore size of key system modules (#26712) @oliviertassinari
+- <!-- 22 --> [core] Batch small changes (#26738) @oliviertassinari
+- <!-- 18 --> [core] Batch small changes (#26628) @oliviertassinari
+- <!-- 13 --> [test] Ignore ReactDOM.render deprecation warning (#26683) @eps1lon
+- <!-- 12 --> [test] Run e2e test with React 18 on a schedule (#26690) @eps1lon
+- <!-- 11 --> [test] Count profiler renders not passive effects (#26678) @eps1lon
+- <!-- 02 --> [test] Bundling fixtures should not override source build with published build (#26657) @eps1lon
+- <!-- 01 --> [test] Make tests oblivious to StrictMode (#26654) @eps1lon
+
+All contributors of this release in alphabetical order: @chadmuro, @eps1lon, @likitarai1, @mnajdova, @nikitabobers, @oliviertassinari, @robphoenix, @sakura90, @siriwatknp, @varandasi, @vicasas
+
 ## 5.0.0-alpha.36
 
 <!-- generated comparing v5.0.0-alpha.35..next -->
@@ -538,7 +856,7 @@ Big thanks to the 17 contributors who made this release possible. Here are some 
 
 - <!-- 25 --> [Checkbox] Make color="primary" default (#26002) @vicasas
 
-  This better matches the material design guidelines.
+  This better matches the Material Design guidelines.
 
   ```diff
   -<Checkbox />
