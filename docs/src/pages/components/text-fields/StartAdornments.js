@@ -3,7 +3,7 @@ import Box from '@material-ui/core/Box';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
 
-export default function InputAdornments() {
+export default function StartAdornments() {
   const [amount, setAmount] = React.useState('');
   const handleChange = ({ target }) => setAmount(target.value);
 
