@@ -241,7 +241,7 @@ function createRender(context) {
 /**
  * @param {object} config
  * @param {() => string} config.requireRaw - returnvalue of require.context
- * @param {string} config.pageFilename - filename relative to nextjs pages directory
+ * @param {string} config.pageFilename - posix filename relative to nextjs pages directory
  */
 function prepareMarkdown(config) {
   const { pageFilename, requireRaw } = config;

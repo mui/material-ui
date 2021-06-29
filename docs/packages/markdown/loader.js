@@ -10,15 +10,17 @@ function upperCaseFirst(string) {
 }
 
 /**
- * @param {string} key
- * @example keyToJSIdentifier('index.md') === 'IndexMd'
- * @example keyToJSIdentifier('index-ja.md') === 'IndexJaMd'
+ * @param {string} moduleID
+ * @example moduleIDToJSIdentifier('./Box.js') === '$$IndexJs'
+ * @example moduleIDToJSIdentifier('./Box-new.js') === '$$BoxNewJs'
+ * @example moduleIDToJSIdentifier('../Box-new.js') === '$$$BoxNewJs'
  */
-function keyToJSIdentifier(key) {
-  const delimiter = /(\.|-)/;
-  return key
+function moduleIDToJSIdentifier(moduleID) {
+  const delimiter = /(\.|-|\/)/;
+  return moduleID
     .split(delimiter)
     .filter((part) => !delimiter.test(part))
+    .map((part) => (part.length === 0 ? '$' : part))
     .map(upperCaseFirst)
     .join('');
 }
@@ -50,59 +52,63 @@ module.exports = async function demoLoader() {
   const rawKeys = await findTranslatedVersions(this.resourcePath);
 
   // TODO: Remove requireRaw mock (needs work in prepareMarkdown)
-  const requireRaw = (key) => {
-    const filepath = path.join(path.dirname(this.resourcePath), key);
+  const requireRaw = (moduleID) => {
+    const filepath = path.join(path.dirname(this.resourcePath), moduleID.replace(/\//g, path.sep));
     this.addDependency(filepath);
     return readFileSync(filepath, { encoding: 'utf-8' });
   };
   requireRaw.keys = () => rawKeys;
-  const pageFilename = this.context.replace(this.rootContext, '').replace(/^\/src\/pages\//, '');
+  const pageFilename = this.context
+    .replace(this.rootContext, '')
+    // win32 to posix
+    .replace(/\\/g, '/')
+    .replace(/^\/src\/pages\//, '');
   const { docs } = prepareMarkdown({ pageFilename, requireRaw });
 
   const demos = {};
-  const demoKeys = [];
+  const demoModuleIDs = [];
   new Set(
     docs.en.rendered
       .filter((markdownOrComponentConfig) => {
         return typeof markdownOrComponentConfig !== 'string' && markdownOrComponentConfig.demo;
       })
       .map((demoConfig) => {
-        return path.basename(demoConfig.demo);
+        return demoConfig.demo;
       }),
-  ).forEach((filename) => {
-    const demoName = `pages/${pageFilename}/${filename
-      .replace(/\.\//g, '')
-      .replace(/\.tsx/g, '.js')}`;
-
+  ).forEach((demoName) => {
+    // TODO: const moduleID = demoName;
+    // The import paths currently use a completely different format.
+    // They should just use relative imports.
+    const moduleID = `./${demoName.replace(`pages/${pageFilename}/`, '')}`;
     demos[demoName] = {
-      module: filename,
-      raw: requireRaw(filename),
+      module: moduleID,
+      raw: requireRaw(moduleID),
     };
-    demoKeys.push(filename);
+    demoModuleIDs.push(moduleID);
 
     try {
-      const moduleTS = filename.replace(/\.js$/, '.tsx');
+      const moduleTS = moduleID.replace(/\.js$/, '.tsx');
       const rawTS = requireRaw(moduleTS);
 
       demos[demoName].moduleTS = moduleTS;
       demos[demoName].rawTS = rawTS;
-      demoKeys.push(moduleTS);
+      demoModuleIDs.push(moduleTS);
     } catch (error) {
       // TS version of the demo doesn't exist. This is fine.
     }
   });
 
   /**
-   * @param {string} key
+   * @param {string} moduleID
    */
-  function getRequireDemoIdentifier(key) {
-    return keyToJSIdentifier(key);
+  function getRequireDemoIdentifier(moduleID) {
+    return moduleIDToJSIdentifier(moduleID);
   }
 
   const transformed = `
-    ${demoKeys
-      .map((key) => {
-        return `import ${getRequireDemoIdentifier(key)} from './${key}';`;
+    ${demoModuleIDs
+      .map((moduleID) => {
+        return `import ${getRequireDemoIdentifier(moduleID)} from '${moduleID}';`;
       })
       .join('\n')}
 
@@ -110,17 +116,17 @@ module.exports = async function demoLoader() {
     export const demos = ${JSON.stringify(demos, null, 2)};
     export function requireDemo(module) {
       return {
-        ${demoKeys
-          .map((key) => {
+        ${demoModuleIDs
+          .map((moduleID) => {
             // TODO: Remove ES module interop once all demos are loaded via loader
             // i.e. replace `{ default: ... }`  with `...`
-            return `'${key}': { default: ${getRequireDemoIdentifier(key)} }`;
+            return `'${moduleID}': { default: ${getRequireDemoIdentifier(moduleID)} }`;
           })
           .join(',\n')}
       }[module];
     }
     requireDemo.keys = () => {
-      return ${JSON.stringify(demoKeys, null, 2)}
+      return ${JSON.stringify(demoModuleIDs, null, 2)}
     }`;
 
   return transformed;

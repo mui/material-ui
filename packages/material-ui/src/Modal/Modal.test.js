@@ -8,7 +8,6 @@ import {
   createClientRender,
   fireEvent,
   within,
-  createMount,
   describeConformanceV5,
   screen,
 } from 'test/utils';
@@ -18,7 +17,7 @@ import Modal, { modalClasses as classes } from '@material-ui/core/Modal';
 
 describe('<Modal />', () => {
   const render = createClientRender();
-  const mount = createMount();
+
   let savedBodyStyle;
 
   before(() => {
@@ -37,7 +36,6 @@ describe('<Modal />', () => {
       classes,
       inheritComponent: 'div',
       render,
-      mount,
       muiName: 'MuiModal',
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { hideBackdrop: true },

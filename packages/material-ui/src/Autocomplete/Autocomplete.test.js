@@ -1,14 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import {
-  createMount,
-  describeConformanceV5,
-  act,
-  createClientRender,
-  fireEvent,
-  screen,
-} from 'test/utils';
+import { describeConformanceV5, act, createClientRender, fireEvent, screen } from 'test/utils';
 import { spy } from 'sinon';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -36,7 +29,6 @@ function checkHighlightIs(listbox, expected) {
 describe('<Autocomplete />', () => {
   // TODO: React18Compat
   const render = createClientRender({ legacyRoot: true });
-  const mount = createMount();
 
   describeConformanceV5(
     <Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} />,
@@ -44,7 +36,6 @@ describe('<Autocomplete />', () => {
       classes,
       inheritComponent: 'div',
       render,
-      mount,
       muiName: 'MuiAutocomplete',
       testVariantProps: { variant: 'foo' },
       testDeepOverrides: { slotName: 'endAdornment', slotClassName: classes.endAdornment },

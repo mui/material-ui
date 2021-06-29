@@ -3,7 +3,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import {
-  createMount,
   describeConformanceV5,
   act,
   createClientRender,
@@ -19,10 +18,6 @@ import ButtonBase, { buttonBaseClasses as classes } from '@material-ui/core/Butt
 
 describe('<ButtonBase />', () => {
   const render = createClientRender();
-  /**
-   * @type {ReturnType<typeof createMount>}
-   */
-  const mount = createMount();
 
   // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/14156632/
   let canFireDragEvents = true;
@@ -42,7 +37,6 @@ describe('<ButtonBase />', () => {
     classes,
     inheritComponent: 'button',
     render,
-    mount,
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'a',
     muiName: 'MuiButtonBase',

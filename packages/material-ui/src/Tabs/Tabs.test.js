@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import {
-  createMount,
   describeConformanceV5,
   act,
   createClientRender,
@@ -43,7 +42,6 @@ describe('<Tabs />', () => {
   // tests mocking getBoundingClientRect prevent mocha to exit
   const isJSDOM = navigator.userAgent === 'node.js';
 
-  const mount = createMount();
   const render = createClientRender();
 
   before(function beforeHook() {
@@ -61,7 +59,6 @@ describe('<Tabs />', () => {
   describeConformanceV5(<Tabs value={0} />, () => ({
     classes,
     inheritComponent: 'div',
-    mount,
     render,
     muiName: 'MuiTabs',
     refInstanceof: window.HTMLDivElement,
