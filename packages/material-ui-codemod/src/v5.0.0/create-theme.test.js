@@ -25,6 +25,20 @@ describe('@material-ui/codemod', () => {
         const expected = read('./create-theme.test/expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+
+      it('should be idempotent', () => {
+        const actual = transform(
+          {
+            source: read('./create-theme.test/expected.js'),
+            path: require.resolve('./create-theme.test/expected.js'),
+          },
+          { jscodeshift: jscodeshift },
+          {},
+        );
+
+        const expected = read('./create-theme.test/expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
     });
   });
 });

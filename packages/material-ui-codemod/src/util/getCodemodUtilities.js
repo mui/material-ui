@@ -1,3 +1,7 @@
+/**
+ * @param {import('jscodeshift').FileInfo} file
+ * @param {import('jscodeshift').API} api
+ */
 export default function getCodemodUtilities(file, api) {
   const j = api.jscodeshift;
   const root = j(file.source);
@@ -14,6 +18,10 @@ export default function getCodemodUtilities(file, api) {
     });
   }
 
+  function getCallExpression(functionName) {
+    return root.find(j.CallExpression, { callee: { name: functionName } });
+  }
+
   function processImportFrom(importPath, callback) {
     const nodes = getImportDeclaration(importPath);
     callback(nodes);
@@ -22,6 +30,10 @@ export default function getCodemodUtilities(file, api) {
   function processImportSpecifier(value, callback) {
     const nodes = getImportDeclaration(value);
     callback(nodes);
+  }
+
+  function processCallExpression(functionName, callback) {
+    callback(getCallExpression(functionName));
   }
 
   function getExportDefaultDeclaration() {
@@ -50,6 +62,18 @@ export default function getCodemodUtilities(file, api) {
       }
     });
     return previousVarName;
+  }
+
+  function insertImportSpecifier(node, name, options) {
+    const { prepend = false } = options || {};
+    if (!node.specifiers.find((s) => s.local.name === name)) {
+      const specifier = j.importSpecifier(j.identifier(name));
+      if (prepend) {
+        node.specifiers = [specifier, ...node.specifiers];
+      } else {
+        node.specifiers.push(specifier);
+      }
+    }
   }
 
   function renameJSXTag(variableName, newName) {
@@ -87,9 +111,12 @@ export default function getCodemodUtilities(file, api) {
     getImportDeclaration,
     getImportSpecifier,
     getExportDefaultDeclaration,
+    getCallExpression,
+    insertImportSpecifier,
     processImportFrom,
     processImportSpecifier,
     processReturnStatement,
+    processCallExpression,
     renameSpecifier,
     renameJSXTag,
     renameFunctionCall,
