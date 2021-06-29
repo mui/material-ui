@@ -2634,26 +2634,12 @@
     lz-string "^1.4.4"
     pretty-format "^27.0.2"
 
-"@testing-library/dom@^8.0.0-alpha.6":
-  version "8.0.0-alpha.6"
-  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-8.0.0-alpha.6.tgz#197676d31646faa18bf87e7e805440b093e5db25"
-  integrity sha512-j1N6GcTViG1Kezh+/Uu95rKL4swLlufMuv65nqGr7R5SuTwgn0Rz/7zk6lARHz85rLZ7EjLmtmjXhuF3ceGgPw==
-  dependencies:
-    "@babel/code-frame" "^7.10.4"
-    "@babel/runtime" "^7.12.5"
-    "@types/aria-query" "^4.2.0"
-    aria-query "^4.2.2"
-    chalk "^4.1.0"
-    dom-accessibility-api "^0.5.6"
-    lz-string "^1.4.4"
-    pretty-format "^27.0.2"
-
-"@testing-library/react@https://pkg.csb.dev/testing-library/react-testing-library/commit/f5707220/@testing-library/react":
+"@testing-library/react@https://pkg.csb.dev/testing-library/react-testing-library/commit/0e2cf7da/@testing-library/react":
   version "0.0.0-semantically-released"
-  resolved "https://pkg.csb.dev/testing-library/react-testing-library/commit/f5707220/@testing-library/react#0f2316e6f77de5b7b736035ac7e19af06905c20b"
+  resolved "https://pkg.csb.dev/testing-library/react-testing-library/commit/0e2cf7da/@testing-library/react#2718ecc616877594e5f3dab6fa24334b2dfc4493"
   dependencies:
     "@babel/runtime" "^7.12.5"
-    "@testing-library/dom" "^8.0.0-alpha.6"
+    "@testing-library/dom" "^8.0.0"
 
 "@theme-ui/color-modes@0.9.1":
   version "0.9.1"

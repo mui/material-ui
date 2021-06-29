@@ -1,10 +1,10 @@
 /* eslint-env mocha */
 import * as React from 'react';
-import * as ReactDOMTestUtils from 'react-dom/test-utils';
 import PropTypes from 'prop-types';
 import createEmotionCache from '@emotion/cache';
 import { CacheProvider as EmotionCacheProvider } from '@emotion/react';
 import {
+  act as rtlAct,
   buildQueries,
   cleanup,
   fireEvent as rtlFireEvent,
@@ -537,12 +537,8 @@ export function fireTouchChangedEvent(
   target.getBoundingClientRect = originalGetBoundingClientRect;
 }
 
-const reactAct = React.version.startsWith('18')
-  ? (React as any).unstable_act
-  : ReactDOMTestUtils.act;
-
 export function act(callback: () => void) {
-  return traceSync('act', () => reactAct(callback));
+  return traceSync('act', () => rtlAct(callback));
 }
 
 export * from '@testing-library/react/pure';
