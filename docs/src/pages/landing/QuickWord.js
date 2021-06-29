@@ -33,6 +33,11 @@ const backers = [
     alt: 'doit-intl',
     title: 'DoiT - Management Platform for Google Cloud and AWS',
   },
+  {
+    href: 'https://www.movavi.com/',
+    alt: 'movavi',
+    title: 'Movavi: Safe Multimedia Software',
+  },
 ];
 
 const useStyles = makeStyles(
