@@ -16,8 +16,6 @@ export interface SwitchUnstyledClasses {
   focusVisible: string;
   /** Class applied to the root element if the switch is read-only */
   readOnly: string;
-  /** Class applied to the root element if the switch pressed */
-  pressed: string;
 }
 
 export type SwitchUnstyledClassKey = keyof SwitchUnstyledClasses;
@@ -34,7 +32,6 @@ const switchUnstyledClasses: SwitchUnstyledClasses = generateUtilityClasses('Mui
   'disabled',
   'focusVisible',
   'readOnly',
-  'pressed',
 ]);
 
 export default switchUnstyledClasses;
