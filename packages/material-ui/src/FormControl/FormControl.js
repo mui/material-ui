@@ -304,7 +304,7 @@ FormControl.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The width of the start adornment in pixels.
+   * The width of the start adornment in `px`.
    * If provided, the label will not be initially shrunk.
    */
   startAdornmentWidth: PropTypes.number,

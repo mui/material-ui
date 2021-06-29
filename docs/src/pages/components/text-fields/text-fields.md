@@ -63,9 +63,13 @@ The main way is with an `InputAdornment`.
 This can be used to add a prefix, a suffix, or an action to an input.
 For instance, you can use an icon button to hide or reveal the password.
 
-When using a start adornment, you can provide `startAdornmentWidth` to the `FormControl`. Otherwise, the label will always be shrunk.
-
 {{"demo": "pages/components/text-fields/InputAdornments.js"}}
+
+### Start Adornments
+
+When using a start adornment, the label is always shrunk by default. You can prevent this with the `startAdornmentWidth` prop.
+
+{{"demo": "pages/components/text-fields/StartAdornments.js"}}
 
 ## Sizes
 

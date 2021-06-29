@@ -91,7 +91,7 @@ export default function InputAdornments() {
             label="Password"
           />
         </FormControl>
-        <FormControl sx={{ m: 1, width: '30ch' }}>
+        <FormControl fullWidth sx={{ m: 1 }}>
           <InputLabel htmlFor="outlined-adornment-amount">Amount</InputLabel>
           <OutlinedInput
             id="outlined-adornment-amount"
@@ -99,18 +99,6 @@ export default function InputAdornments() {
             onChange={handleChange('amount')}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
             label="Amount"
-          />
-        </FormControl>
-        <FormControl sx={{ m: 1, width: '30ch' }} startAdornmentWidth={9}>
-          <InputLabel htmlFor="outlined-adornment-amount-width">
-            With startAdornmentWidth
-          </InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-amount-width"
-            value={values.amount}
-            onChange={handleChange('amount')}
-            startAdornment={<InputAdornment position="start">$</InputAdornment>}
-            label="With startAdornmentWidth"
           />
         </FormControl>
       </div>
@@ -158,25 +146,10 @@ export default function InputAdornments() {
             }
           />
         </FormControl>
-        <FormControl sx={{ m: 1, width: '30ch' }} variant="filled">
+        <FormControl fullWidth sx={{ m: 1 }} variant="filled">
           <InputLabel htmlFor="filled-adornment-amount">Amount</InputLabel>
           <FilledInput
             id="filled-adornment-amount"
-            value={values.amount}
-            onChange={handleChange('amount')}
-            startAdornment={<InputAdornment position="start">$</InputAdornment>}
-          />
-        </FormControl>
-        <FormControl
-          sx={{ m: 1, width: '30ch' }}
-          variant="filled"
-          startAdornmentWidth={9}
-        >
-          <InputLabel htmlFor="filled-adornment-amount-width">
-            With startAdornmentWidth
-          </InputLabel>
-          <FilledInput
-            id="filled-adornment-amount-width"
             value={values.amount}
             onChange={handleChange('amount')}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
@@ -226,25 +199,10 @@ export default function InputAdornments() {
             }
           />
         </FormControl>
-        <FormControl sx={{ m: 1, width: '30ch' }} variant="standard">
+        <FormControl fullWidth sx={{ m: 1 }} variant="standard">
           <InputLabel htmlFor="standard-adornment-amount">Amount</InputLabel>
           <Input
             id="standard-adornment-amount"
-            value={values.amount}
-            onChange={handleChange('amount')}
-            startAdornment={<InputAdornment position="start">$</InputAdornment>}
-          />
-        </FormControl>
-        <FormControl
-          sx={{ m: 1, width: '30ch' }}
-          variant="standard"
-          startAdornmentWidth={9}
-        >
-          <InputLabel htmlFor="standard-adornment-amount-width">
-            With startAdornmentWidth
-          </InputLabel>
-          <Input
-            id="standard-adornment-amount-width"
             value={values.amount}
             onChange={handleChange('amount')}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
