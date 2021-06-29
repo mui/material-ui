@@ -5,7 +5,8 @@ import TextField from '@material-ui/core/TextField';
 
 export default function InputAdornments() {
   const [amount, setAmount] = React.useState('');
-  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => setAmount(target.value);
+  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
+    setAmount(target.value);
 
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
@@ -17,7 +18,7 @@ export default function InputAdornments() {
           onChange={handleChange}
           label="Amount"
           InputProps={{
-            startAdornment: <InputAdornment position="start">$</InputAdornment>
+            startAdornment: <InputAdornment position="start">$</InputAdornment>,
           }}
         />
         <TextField
@@ -27,7 +28,7 @@ export default function InputAdornments() {
           onChange={handleChange}
           label="With startAdornmentWidth"
           InputProps={{
-            startAdornment: <InputAdornment position="start">$</InputAdornment>
+            startAdornment: <InputAdornment position="start">$</InputAdornment>,
           }}
           startAdornmentWidth={9}
         />
@@ -41,7 +42,7 @@ export default function InputAdornments() {
           onChange={handleChange}
           label="Amount"
           InputProps={{
-            startAdornment: <InputAdornment position="start">$</InputAdornment>
+            startAdornment: <InputAdornment position="start">$</InputAdornment>,
           }}
         />
         <TextField
@@ -52,7 +53,7 @@ export default function InputAdornments() {
           onChange={handleChange}
           label="With startAdornmentWidth"
           InputProps={{
-            startAdornment: <InputAdornment position="start">$</InputAdornment>
+            startAdornment: <InputAdornment position="start">$</InputAdornment>,
           }}
           startAdornmentWidth={9}
         />
@@ -66,7 +67,7 @@ export default function InputAdornments() {
           onChange={handleChange}
           label="Amount"
           InputProps={{
-            startAdornment: <InputAdornment position="start">$</InputAdornment>
+            startAdornment: <InputAdornment position="start">$</InputAdornment>,
           }}
         />
         <TextField
@@ -77,7 +78,7 @@ export default function InputAdornments() {
           onChange={handleChange}
           label="With startAdornmentWidth"
           InputProps={{
-            startAdornment: <InputAdornment position="start">$</InputAdornment>
+            startAdornment: <InputAdornment position="start">$</InputAdornment>,
           }}
           startAdornmentWidth={9}
         />
