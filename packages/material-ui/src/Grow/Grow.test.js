@@ -76,7 +76,10 @@ describe('<Grow />', () => {
       expect(handleEntering.callCount).to.equal(1);
       expect(handleEntering.args[0][0]).to.equal(child);
 
-      clock.tick(1000);
+      act(() => {
+        clock.tick(1000);
+      });
+
       expect(handleEntered.callCount).to.equal(1);
       expect(handleEntered.args[0][0]).to.equal(child);
 
@@ -84,7 +87,6 @@ describe('<Grow />', () => {
 
       expect(handleExit.callCount).to.equal(1);
       expect(handleExit.args[0][0]).to.equal(child);
-
       expect(handleExit.args[0][0].style.opacity).to.equal('0');
       expect(handleExit.args[0][0].style.transform).to.equal(
         'scale(0.75, 0.5625)',
@@ -93,11 +95,13 @@ describe('<Grow />', () => {
 
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExiting.args[0][0]).to.equal(child);
-
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExiting.args[0][0]).to.equal(child);
 
-      clock.tick(1000);
+      act(() => {
+        clock.tick(1000);
+      });
+
       expect(handleExited.callCount).to.equal(1);
       expect(handleExited.args[0][0]).to.equal(child);
     });
@@ -239,14 +243,19 @@ describe('<Grow />', () => {
           </Grow>,
         );
 
-        clock.tick(0);
-
+        act(() => {
+          clock.tick(0);
+        });
         setProps({
           in: false,
         });
 
         expect(handleExited.callCount).to.equal(0);
-        clock.tick(0);
+
+        act(() => {
+          clock.tick(0);
+        });
+
         expect(handleExited.callCount).to.equal(1);
       });
 
@@ -257,15 +266,25 @@ describe('<Grow />', () => {
           <Grow {...defaultProps} timeout={timeout} onExited={handleExited} />,
         );
 
-        clock.tick(timeout);
+        act(() => {
+          clock.tick(timeout);
+        });
         setProps({
           in: false,
         });
 
         expect(handleExited.callCount).to.equal(0);
-        clock.tick(0);
+
+        act(() => {
+          clock.tick(0);
+        });
+
         expect(handleExited.callCount).to.equal(0);
-        clock.tick(timeout);
+
+        act(() => {
+          clock.tick(timeout);
+        });
+
         expect(handleExited.callCount).to.equal(1);
       });
 
