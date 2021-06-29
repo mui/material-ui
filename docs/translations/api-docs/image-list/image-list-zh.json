@@ -1,12 +1,12 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "children": "Items that will be in the image list.",
+    "children": "组件的内容，通常为<code>ImageListItem</code>s.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "cols": "Number of columns.",
+    "cols": "列数",
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
-    "gap": "The gap between items in px.",
-    "rowHeight": "The height of one row in px.",
+    "gap": "间隔以px为单位",
+    "rowHeight": "行高以px为单位",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
     "variant": "The variant to use."
   },
