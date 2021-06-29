@@ -13,13 +13,23 @@ function Textarea() {
   return (
     <div>
       <Input
-        sx={{ width: 200, fontSize: 13, boxSizing: 'border-box', border: '10px solid black' }}
+        sx={{
+          width: 200,
+          '& .MuiInput-input': {
+            fontSize: 13,
+            boxSizing: 'border-box',
+            border: '10px solid black',
+          },
+        }}
         multiline
         value={value}
         onChange={handleChange}
       />
       <Input
-        sx={{ width: 200, fontSize: 13, boxSizing: 'content-box', padding: '10px' }}
+        sx={{
+          width: 200,
+          '& .MuiInput-input': { fontSize: 13, boxSizing: 'content-box', padding: '10px' },
+        }}
         multiline
         value={value}
         onChange={handleChange}
