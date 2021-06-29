@@ -10,11 +10,11 @@ export default function transformer(file, api) {
     nodes.forEach(({ node }) => {
       const previousVarName = utils.renameSpecifier(
         node.specifiers,
-        'MuiThemeProvider',
-        'ThemeProvider',
+        'createMuiTheme',
+        'createTheme',
       );
 
-      utils.renameJSXTag(previousVarName, 'ThemeProvider');
+      utils.renameFunctionCall(previousVarName, 'createTheme');
     });
   });
 

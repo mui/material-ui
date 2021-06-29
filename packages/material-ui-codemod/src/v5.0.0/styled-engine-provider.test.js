@@ -106,7 +106,7 @@ describe('@material-ui/codemod', () => {
     });
 
     describe('[fn declaration] render style-engine-provider as first child', () => {
-      it.only('append StyleEngineProvider to core/styles', () => {
+      it('append StyleEngineProvider to core/styles', () => {
         const actual = transform(
           {
             source: read('./styled-engine-provider.test/fn-first-child-render.actual.js'),

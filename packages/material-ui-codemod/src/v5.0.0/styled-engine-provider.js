@@ -1,48 +1,20 @@
+import getCodemodUtilities from '../util/getCodemodUtilities';
+
 /**
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
  */
 export default function transformer(file, api, options = {}) {
-  const j = api.jscodeshift;
-  const root = j(file.source);
+  const utils = getCodemodUtilities(file, api);
+  const { root, jscodeshift: j } = utils;
   const printOptions = options.printOptions || { quote: 'single' };
 
-  function containImportFrom(value) {
-    return (
-      root
-        .find(j.ImportDeclaration)
-        .filter((path) => {
-          return path.node.source.value === value;
-        })
-        .size() >= 1
-    );
-  }
-
-  function containImportLocal(value) {
-    return (
-      root
-        .find(j.ImportSpecifier)
-        .filter((path) => {
-          return path.node.local.name === value;
-        })
-        .size() >= 1
-    );
-  }
-
-  function getAppName() {
-    let name;
-    root.find(j.ExportDefaultDeclaration).forEach((path) => {
-      if (!name) {
-        name = path.node.declaration.name;
-      }
-    });
-    return name;
-  }
-
+  const stylesImports = utils.getImportDeclaration('@material-ui/core/styles');
+  const styledEngineSpecifiers = utils.getImportSpecifier('StyledEngineProvider');
   /**
    * import StyledEngineProvider
    */
-  if (!containImportFrom('@material-ui/core/styles')) {
+  if (!stylesImports.length) {
     let inserted = false;
     /**
      * Insert below react import
@@ -58,7 +30,7 @@ export default function transformer(file, api, options = {}) {
         inserted = true;
       }
     });
-  } else if (!containImportLocal('StyledEngineProvider')) {
+  } else if (!styledEngineSpecifiers.length) {
     root.find(j.ImportDeclaration).forEach((path) => {
       if (path.node.source.value === '@material-ui/core/styles') {
         path.node.specifiers.push(j.importSpecifier(j.identifier('StyledEngineProvider')));
@@ -66,26 +38,17 @@ export default function transformer(file, api, options = {}) {
     });
   }
 
-  function processReturnStatement(node, callback) {
-    if (node.type === 'VariableDeclarator') {
-      callback(node.init.body.body.find((path) => path.type === 'ReturnStatement'));
-    }
-    if (node.type === 'FunctionDeclaration') {
-      callback(node.body.body.find((path) => path.type === 'ReturnStatement'));
-    }
-  }
-
   /**
    * add <StyledEngineProvider> as first child
    */
-  const appName = getAppName();
+  const appName = utils.getExportDefaultDeclaration();
   let App = root.findVariableDeclarators(appName);
   if (App.length === 0) {
     App = root.find(j.FunctionDeclaration, { id: { name: appName } });
   }
 
   App.forEach((path) => {
-    processReturnStatement(path.node, (node) => {
+    utils.processReturnStatement(path.node, (node) => {
       const shouldWrap =
         node.argument.type === 'JSXFragment' ||
         (node.argument.type === 'JSXElement' &&
