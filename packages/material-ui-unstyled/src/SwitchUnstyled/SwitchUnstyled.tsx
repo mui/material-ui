@@ -12,6 +12,7 @@ export interface SwitchUnstyledProps extends UseSwitchProps {
    * This is equivalent to `components.Root`. If both are provided, the `component` is used.
    */
   component?: React.ElementType;
+
   /**
    * The components used for each slot inside the Switch.
    * Either a string to use a HTML element or a component.
@@ -73,18 +74,18 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
   ref: React.ForwardedRef<any>,
 ) {
   const {
+    checked: checkedProp,
     component,
     components = {},
     componentsProps = {},
-    onChange,
-    onBlur,
-    onFocus,
-    onFocusVisible,
-    checked: checkedProp,
     defaultChecked,
     disabled: disabledProp,
-    required,
+    onBlur,
+    onChange,
+    onFocus,
+    onFocusVisible,
     readOnly: readOnlyProp,
+    required,
     ...otherProps
   } = props;
 
@@ -98,13 +99,13 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
   const inputProps: any = componentsProps.input ?? {};
 
   const useSwitchProps = {
-    onChange,
-    onBlur,
-    onFocus,
-    onFocusVisible,
     checked: checkedProp,
     defaultChecked,
     disabled: disabledProp,
+    onBlur,
+    onChange,
+    onFocus,
+    onFocusVisible,
     readOnly: readOnlyProp,
   };
 

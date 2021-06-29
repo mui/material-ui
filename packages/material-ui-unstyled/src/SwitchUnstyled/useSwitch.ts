@@ -42,14 +42,7 @@ export interface UseSwitchProps {
    * If `true`, the component is disabled.
    */
   disabled?: boolean;
-  /**
-   * If `true`, the component is read only.
-   */
-  readOnly?: boolean;
-  /**
-   * If `true`, the `input` element is required.
-   */
-  required?: boolean;
+  onBlur?: React.FocusEventHandler;
   /**
    * Callback fired when the state is changed.
    *
@@ -60,8 +53,14 @@ export interface UseSwitchProps {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler;
   onFocusVisible?: React.FocusEventHandler;
-  onBlur?: React.FocusEventHandler;
-  onMouseDown?: React.MouseEventHandler;
+  /**
+   * If `true`, the component is read only.
+   */
+  readOnly?: boolean;
+  /**
+   * If `true`, the `input` element is required.
+   */
+  required?: boolean;
 }
 
 /**
@@ -103,8 +102,8 @@ export default function useSwitch(props: UseSwitchProps) {
 
   const {
     isFocusVisibleRef,
-    onFocus: handleFocusVisible,
     onBlur: handleBlurVisible,
+    onFocus: handleFocusVisible,
     ref: focusVisibleRef,
   } = useIsFocusVisible();
 
@@ -146,23 +145,25 @@ export default function useSwitch(props: UseSwitchProps) {
 
   const handleRefChange = useForkRef(focusVisibleRef, inputRef);
 
+  const getInputProps = (otherProps: object = {}) => ({
+    checked: checkedProp,
+    defaultChecked,
+    disabled,
+    readOnly,
+    required,
+    type: 'checkbox',
+    ...otherProps,
+    onChange: handleInputChange,
+    onFocus: handleFocus,
+    onBlur: handleBlur,
+    ref: handleRefChange,
+  })
+
   return {
-    getInputProps: (otherProps: object = {}) => ({
-      checked: checkedProp,
-      defaultChecked,
-      disabled,
-      readOnly,
-      required,
-      type: 'checkbox',
-      ...otherProps,
-      onChange: handleInputChange,
-      onFocus: handleFocus,
-      onBlur: handleBlur,
-      ref: handleRefChange,
-    }),
     checked,
     disabled: Boolean(disabled),
-    readOnly: Boolean(readOnly),
     focusVisible,
+    getInputProps,
+    readOnly: Boolean(readOnly),
   } as UseSwitchResult;
 }
