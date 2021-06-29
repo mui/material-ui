@@ -8,7 +8,6 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import InputBase, { inputBaseClasses as classes } from '@material-ui/core/InputBase';
-import useForkRef from '../utils/useForkRef';
 
 describe('<InputBase />', () => {
   const render = createClientRender();
