@@ -7,16 +7,20 @@ const BasicSwitchRoot = styled('span')(`
   font-size: 0;
   position: relative;
   display: inline-block;
-  width: 30px;
+  width: 32px;
   height: 20px;
-  background: linear-gradient(60deg, rgba(34,193,195,1) 0%, rgba(87,146,227,1) 100%);
+  background: #B3C3D3;
   border-radius: 10px;
   margin: 10px;
   cursor: pointer;
 
   &.disabled {
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: not-allowed;
+  }
+
+  &.checked {
+    background: #007FFF;
   }
 `);
 
@@ -34,12 +38,12 @@ const BasicSwitchInput = styled('input')(`
 
 const BasicSwitchThumb = styled('span')(`
   display: block;
-  width: 16px;
-  height: 16px;
-  top: 2px;
-  left: 2px;
+  width: 14px;
+  height: 14px;
+  top: 3px;
+  left: 3px;
   border-radius: 16px;
-  background-color: rgba(255,255,255,0.7);
+  background-color: #FFF;
   position: relative;
   transition: all 200ms ease;
 
@@ -49,9 +53,9 @@ const BasicSwitchThumb = styled('span')(`
   }
 
   &.checked {
-    left: 12px;
-    top: 2px;
-    background-color: rgba(255,255,255,0.9);
+    left: 14px;
+    top: 3px;
+    background-color: #FFF;
   }
 `);
 

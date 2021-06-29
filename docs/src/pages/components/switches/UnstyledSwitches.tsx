@@ -8,26 +8,30 @@ const Root = styled('span')(`
   font-size: 0;
   position: relative;
   display: inline-block;
-  width: 30px;
+  width: 32px;
   height: 20px;
-  background: linear-gradient(60deg, rgba(34,193,195,1) 0%, rgba(87,146,227,1) 100%);
+  background: #B3C3D3;
   border-radius: 10px;
   margin: 10px;
   cursor: pointer;
 
   &.${switchUnstyledClasses.disabled} {
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: not-allowed;
+  }
+
+  &.${switchUnstyledClasses.checked} {
+    background: #007FFF;
   }
 
   & .${switchUnstyledClasses.thumb} {
     display: block;
-    width: 16px;
-    height: 16px;
-    top: 2px;
-    left: 2px;
+    width: 14px;
+    height: 14px;
+    top: 3px;
+    left: 3px;
     border-radius: 16px;
-    background-color: rgba(255,255,255,0.7);
+    background-color: #FFF;
     position: relative;
     transition: all 200ms ease;
   }
@@ -38,14 +42,9 @@ const Root = styled('span')(`
   }
 
   &.${switchUnstyledClasses.checked} .${switchUnstyledClasses.thumb} {
-    left: 12px;
-    top: 2px;
-    background-color: rgba(255,255,255,0.9);
-  }
-
-  &:active .${switchUnstyledClasses.thumb} {
-    background-color: rgba(255,255,255,1);
-    transform: scale(0.7);
+    left: 14px;
+    top: 3px;
+    background-color: #FFF;
   }
 
   & .${switchUnstyledClasses.input} {
