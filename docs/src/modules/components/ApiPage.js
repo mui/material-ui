@@ -5,7 +5,6 @@ import clsx from 'clsx';
 import { exactProp } from '@material-ui/utils';
 import { styled } from '@material-ui/core/styles';
 import Alert from '@material-ui/core/Alert';
-import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
@@ -36,16 +35,14 @@ function PropsTable(props) {
             propData.description !== '@ignore' && (
               <tr key={propName}>
                 <td align="left">
-                  <Tooltip arrow title={propData.deprecationInfo || ''} placement="bottom-start">
-                    <span className={clsx('prop-name', propData.required ? 'required' : null)}>
-                      {propName}
-                      {propData.required && (
-                        <sup>
-                          <Asterisk title="required">*</Asterisk>
-                        </sup>
-                      )}
-                    </span>
-                  </Tooltip>
+                  <span className={clsx('prop-name', propData.required ? 'required' : null)}>
+                    {propName}
+                    {propData.required && (
+                      <sup>
+                        <Asterisk title="required">*</Asterisk>
+                      </sup>
+                    )}
+                  </span>
                 </td>
                 <td align="left">
                   <span
