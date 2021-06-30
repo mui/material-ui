@@ -7,7 +7,7 @@ import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import { DateRange } from '@material-ui/lab/DateRangePicker';
 import DesktopDateRangePicker from '@material-ui/lab/DesktopDateRangePicker';
 import {
-  createPickerMount,
+  wrapPickerMount,
   createPickerRender,
   FakeTransitionComponent,
   adapterToUse,
@@ -24,7 +24,6 @@ const defaultRangeRenderInput = (startProps: TextFieldProps, endProps: TextField
 
 describe('<DesktopDateRangePicker />', () => {
   const render = createPickerRender({ strict: false });
-  const mount = createPickerMount();
 
   before(function beforeHook() {
     if (!/jsdom/.test(window.navigator.userAgent)) {
@@ -41,7 +40,7 @@ describe('<DesktopDateRangePicker />', () => {
     />,
     () => ({
       classes: {},
-      mount,
+      wrapMount: wrapPickerMount,
       refInstanceof: window.HTMLDivElement,
       skip: ['componentProp', 'mergeClassName', 'propsSpread', 'rootClass', 'reactTestRenderer'],
     }),
