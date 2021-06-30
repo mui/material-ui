@@ -31,6 +31,11 @@ function SimpleDialog(props: SimpleDialogProps) {
     onClose(value);
   };
 
+  // FIXME: remove before merging
+  if (typeof window !== 'undefined') {
+    throw new Error('test');
+  }
+
   return (
     <Dialog onClose={handleClose} open={open}>
       <DialogTitle>Set backup account</DialogTitle>
