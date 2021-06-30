@@ -992,7 +992,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +return hidden ? null : <Paper />; null : <Paper />;
   ```
 
-### Icon
+### 图标
 
 - The default value of `fontSize` was changed from `default` to `medium` for consistency. The default value of `fontSize` was changed from `default` to `medium` for consistency. In the unlikely event that you were using the value `default`, the prop can be removed:
 
