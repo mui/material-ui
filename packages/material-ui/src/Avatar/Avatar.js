@@ -83,7 +83,7 @@ const AvatarFallback = styled(Person, {
   height: '75%',
 });
 
-function useLoaded({ crossOrigin, src, srcSet }) {
+function useLoaded({ crossOrigin, referrerPolicy, src, srcSet }) {
   const [loaded, setLoaded] = React.useState(false);
 
   React.useEffect(() => {
@@ -108,6 +108,7 @@ function useLoaded({ crossOrigin, src, srcSet }) {
       setLoaded('error');
     };
     image.crossOrigin = crossOrigin;
+    image.referrerPolicy = referrerPolicy;
     image.src = src;
     if (srcSet) {
       image.srcset = srcSet;
@@ -116,7 +117,7 @@ function useLoaded({ crossOrigin, src, srcSet }) {
     return () => {
       active = false;
     };
-  }, [crossOrigin, src, srcSet]);
+  }, [crossOrigin, referrerPolicy, src, srcSet]);
 
   return loaded;
 }
