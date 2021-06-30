@@ -76,12 +76,12 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 ### `@material-ui/codemod@5.0.0-beta.0`
 
 - <!-- 37 --> [codemod] Add CLI (#26941) @eps1lon
+- <!-- 09 --> [codemod] Correct codemod path (#26932) @BC-M
 - <!-- 23 --> [codemod] Improve DX when using the package (#26936) @oliviertassinari
 
 ### @material-ui/icons@5.0.0-beta.0
 
 - <!-- 29 --> [icons] Regenerate transpiled files (#26985) @eps1lon
-- <!-- 09 --> [codemod] Correct codemod path (#26932) @BC-M
 
 ### @material-ui/lab@5.0.0-beta.0
 
