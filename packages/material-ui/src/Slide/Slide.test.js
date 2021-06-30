@@ -92,27 +92,28 @@ describe('<Slide />', () => {
 
       expect(handleEntering.callCount).to.equal(1);
       expect(handleEntering.args[0][0]).to.equal(child);
+
       expect(handleEntering.args[0][0].style.transform).to.match(/none/);
+
       expect(handleEntering.callCount).to.equal(1);
       expect(handleEntering.args[0][0]).to.equal(child);
 
       act(() => {
         clock.tick(1000);
       });
-
       expect(handleEntered.callCount).to.equal(1);
 
       setProps({ in: false });
 
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExiting.args[0][0]).to.equal(child);
+
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExiting.args[0][0]).to.equal(child);
 
       act(() => {
         clock.tick(1000);
       });
-
       expect(handleExited.callCount).to.equal(1);
       expect(handleExited.args[0][0]).to.equal(child);
     });

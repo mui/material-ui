@@ -109,7 +109,6 @@ describe('<Collapse />', () => {
       expect(handleEntering.callCount).to.equal(1);
       expect(handleEntering.args[0][0]).to.equal(collapse);
       expect(handleEntering.args[0][1]).to.equal(false);
-
       act(() => {
         clock.tick(300);
       });
@@ -127,13 +126,11 @@ describe('<Collapse />', () => {
       expect(handleExiting.args[0][0].style.height).to.equal('0px');
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExiting.args[0][0]).to.equal(collapse);
-
       act(() => {
         clock.tick(300);
       });
 
       expect(handleExited.args[0][0].style.height).to.equal('0px');
-
       act(() => {
         clock.tick(300);
       });
@@ -180,13 +177,11 @@ describe('<Collapse />', () => {
 
       const autoTransitionDuration = 10;
       expect(next1.callCount).to.equal(0);
-
       act(() => {
         clock.tick(0);
       });
 
       expect(next1.callCount).to.equal(0);
-
       act(() => {
         clock.tick(autoTransitionDuration);
       });
@@ -202,7 +197,6 @@ describe('<Collapse />', () => {
       renderProps2.setProps({ in: true });
 
       expect(next2.callCount).to.equal(0);
-
       act(() => {
         clock.tick(0);
       });
@@ -222,13 +216,11 @@ describe('<Collapse />', () => {
       setProps({ in: true });
 
       expect(next.callCount).to.equal(0);
-
       act(() => {
         clock.tick(0);
       });
 
       expect(next.callCount).to.equal(0);
-
       act(() => {
         clock.tick(timeout);
       });

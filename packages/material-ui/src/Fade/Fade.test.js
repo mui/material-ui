@@ -80,9 +80,11 @@ describe('<Fade />', () => {
 
       expect(handleExit.callCount).to.equal(1);
       expect(handleExit.args[0][0]).to.equal(child);
+
       expect(handleExit.args[0][0].style.transition).to.match(
         /opacity 195ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
       );
+
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExiting.args[0][0]).to.equal(child);
 

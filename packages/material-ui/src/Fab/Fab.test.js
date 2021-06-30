@@ -98,7 +98,7 @@ describe('<Fab />', () => {
     expect(container.querySelector(`.${touchRippleClasses.root}`)).to.equal(null);
   });
 
-  it('should have a focusRipple by default', () => {
+  it('should have a focusRipple by default', async () => {
     const { getByRole } = render(
       <Fab
         TouchRippleProps={{

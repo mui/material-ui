@@ -71,7 +71,6 @@ describe('<Zoom />', () => {
       act(() => {
         clock.tick(1000);
       });
-
       expect(handleEntered.callCount).to.equal(1);
       expect(handleEntered.args[0][0]).to.equal(child);
 
@@ -79,6 +78,7 @@ describe('<Zoom />', () => {
 
       expect(handleExit.callCount).to.equal(1);
       expect(handleExit.args[0][0]).to.equal(child);
+
       expect(handleExit.args[0][0].style.transition).to.match(
         /transform 195ms cubic-bezier\(0.4, 0, 0.2, 1\)( 0ms)?/,
       );
@@ -89,7 +89,6 @@ describe('<Zoom />', () => {
       act(() => {
         clock.tick(1000);
       });
-
       expect(handleExited.callCount).to.equal(1);
       expect(handleExited.args[0][0]).to.equal(child);
     });

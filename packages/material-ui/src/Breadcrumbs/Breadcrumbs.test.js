@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformanceV5, createClientRender, screen } from 'test/utils';
+import { act, describeConformanceV5, createClientRender, screen } from 'test/utils';
 import Breadcrumbs, { breadcrumbsClasses as classes } from '@material-ui/core/Breadcrumbs';
-import { act } from 'react-dom/test-utils';
 
 describe('<Breadcrumbs />', () => {
   const render = createClientRender();
