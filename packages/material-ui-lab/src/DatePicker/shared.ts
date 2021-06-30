@@ -22,7 +22,7 @@ export interface BaseDatePickerProps<TDate>
       ExportedCalendarPickerProps<TDate>,
       'minDate' | 'maxDate'
     >,
-    BasePickerProps<ParseableDate<TDate>, TDate>,
+    BasePickerProps<ParseableDate<TDate>, TDate | null>,
     ValidationProps<DateValidationError, ParseableDate<TDate>>,
     ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
   /**
@@ -44,7 +44,7 @@ export interface BaseDatePickerProps<TDate>
    * Component that will replace default toolbar renderer.
    * @default DatePickerToolbar
    */
-  ToolbarComponent?: React.JSXElementConstructor<ToolbarComponentProps<TDate>>;
+  ToolbarComponent?: React.JSXElementConstructor<ToolbarComponentProps<TDate | null>>;
   /**
    * Array of views to show.
    */

@@ -45,11 +45,11 @@ export interface BasePickerProps<TInputValue, TDateValue> {
   /**
    * Callback fired when date is accepted @DateIOType.
    */
-  onAccept?: (date: TDateValue | null) => void;
+  onAccept?: (date: TDateValue) => void;
   /**
    * Callback fired when the value (the selected date) changes @DateIOType.
    */
-  onChange: (date: TDateValue | null, keyboardInputValue?: string) => void;
+  onChange: (date: TDateValue, keyboardInputValue?: string) => void;
   /**
    * Callback fired when the popup requests to be closed.
    * Use in controlled mode (see open).
