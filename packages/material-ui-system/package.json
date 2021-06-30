@@ -57,7 +57,7 @@
   "dependencies": {
     "@babel/runtime": "^7.4.4",
     "@material-ui/private-theming": "5.0.0-beta.0",
-    "@material-ui/styled-engine": "5.0.0-alpha.34",
+    "@material-ui/styled-engine": "5.0.0-beta.0",
     "@material-ui/types": "6.0.1",
     "@material-ui/utils": "5.0.0-beta.0",
     "clsx": "^1.0.4",
