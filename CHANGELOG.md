@@ -1,5 +1,134 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-beta.1
+<!-- generated comparing v5.0.0-alpha.38..next -->
+_Jul 01, 2021_
+
+Big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+
+- 🎉 This is the first beta release of v5! Huge thanks to everyone who helped to make this happen!
+- 🚀 We have completed all the planned breaking changes.
+- ⚒️ We added the codemod CLI (#26941) to simplify migration to v5.
+- 🐛 The majority of other changes in this release were bug fixes, test utilities and docs.
+
+### `@material-ui/core@5.0.0-beta.1`
+
+#### Breaking changes
+
+- [Tabs] Remove unnecessary wrapper from Tab (#26926) @siriwatknp
+
+  `span` element that wraps children has been removed. `wrapper` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
+
+  ```diff
+  <button class="MuiTab-root">
+  - <span class="MuiTab-wrapper">
+      {icon}
+      {label}
+  - </span>
+  </button>
+  ```
+
+- [BottomNavigation] Remove wrapper from BottomNavigationAction (#26923) @siriwatknp
+
+  `span` element that wraps children has been removed. `wrapper` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
+
+  ```diff
+  <button class="MuiBottomNavigationAction-root">
+  - <span class="MuiBottomNavigationAction-wrapper">
+      {icon}
+      <span class="MuiBottomNavigationAction-label">
+        {label}
+      </span>
+  - </span>
+  </button>
+  ```
+
+- [DatePicker] Remove helper text default value (#26866) @DouglasPds
+
+  Make the default rendered text field closer to the most common use cases (denser).
+
+  ```diff
+  <DatePicker
+    label="Helper text example"
+    value={value}
+    onChange={onChange}
+    renderInput={(params) => (
+  -    <TextField {...params} />
+  +    <TextField {...params} helperText={params?.inputProps?.placeholder} />
+    )}
+  >
+  ```
+
+#### Changes
+
+- <!-- 19 --> [Box] Fix TypeScript error on maxWidth prop (#26859) @ansh-saini
+- <!-- 04 --> [Dialog] Automatically label by its DialogTitle (#26814) @eps1lon
+- <!-- 32 --> [Hidden] Bring back and mark as deprecated (#26908) @siriwatknp
+- <!-- 03 --> [Modal] Type BackdropProps according to styled version (#26836) @eps1lon
+- <!-- 21 --> [Radio] Fix `defaultValue` to match the other value types  (#26945) @oliviertassinari
+- <!-- 48 --> [Stepper] Add completed to global pseudo-classes (#26953) @michal-perlakowski
+- <!-- 25 --> [Stepper] Fix support for no connectors (#26874) @varandasi
+- <!-- 20 --> [TextField] Prevent `hiddenLabel` from spreading to DOM (#26864) @siriwatknp
+- <!-- 18 --> [TextField] Fix label disappearing when focusing a button (#26933) @michal-perlakowski
+
+### `@material-ui/codemod@5.0.0-beta.1`
+
+- <!-- 37 --> [codemod] Add CLI (#26941) @eps1lon
+- <!-- 23 --> [codemod] Improve DX when using the package (#26936) @oliviertassinari
+
+### @material-ui/icons@5.0.0-beta.1
+
+- <!-- 29 --> [icons] Regenerate transpiled files (#26985) @eps1lon
+- <!-- 09 --> [codemod] Correct codemod path (#26932) @BC-M
+
+### @material-ui/lab@5.0.0-beta.1
+
+- <!-- 12 --> [lab] Fix missing dependency on unstyled (#26937) @fishyFrogFace
+
+### `@material-ui/system@5.0.0-beta.1`
+
+- <!-- 14 --> [system] Support array overridesResolver (#26824) @siriwatknp
+
+### Core
+
+- <!-- 46 --> [core] Inline rollup-plugin-size-snapshot (#26986) @eps1lon
+- <!-- 43 --> [core] Remove unused props clone (#26992) @oliviertassinari
+- <!-- 36 --> [core] Fix tests on Windows (#26931) @michaldudak
+- <!-- 31 --> [core] Fix merge conflict between #26954 and #26874 @oliviertassinari
+- <!-- 30 --> [core] Touch dependabot.yml to see if it fixes it @oliviertassinari
+- <!-- 22 --> [core] Upgrade issues-helper to v2 (#26955) @michal-perlakowski
+- <!-- 05 --> [core] Fix merge conflict (#26928) @eps1lon
+- <!-- 45 --> [test] Convert HiddenCSS tests to testing-library (#27019) @eps1lon
+- <!-- 44 --> [test] Convert NativeSelectInput tests to testing-library (#26952) @eps1lon
+- <!-- 39 --> [test] Add a default mount implementation to conformance tests (#26949) @eps1lon
+- <!-- 28 --> [test] Update tests to pass react@next (#26967) @eps1lon
+- <!-- 27 --> [test] Add types to describeConformanceV5 (#26954) @eps1lon
+- <!-- 17 --> [test] Use createPickerMount where appropriate (#26951) @eps1lon
+- <!-- 15 --> [test] Convert SwipeableDrawer tests to testing-library (#26916) @eps1lon
+- <!-- 13 --> [test] Convert Menu tests to testing-library (#26915) @eps1lon
+- <!-- 10 --> [test] Convert Popover tests to testing-library (#26913) @eps1lon
+- <!-- 08 --> [test] Convert Modal tests to testing-library (#26912) @eps1lon
+- <!-- 07 --> [test] Make remaining testing-library tests StrictMode compatible (#26924) @eps1lon
+- <!-- 06 --> [typescript] Disallow spreading TransitionHandlerProps (#26927) @eps1lon
+
+### Docs
+
+- <!-- 49 --> [docs] Add notes to Table demo about stableSort (#27025) @CarlosGomez-dev
+- <!-- 47 --> [docs] Add gold sponsor (#26968) @oliviertassinari
+- <!-- 42 --> [docs] Update unstyled demos to not depend on `@material-ui/core` (#26869) @mnajdova
+- <!-- 41 --> [docs] Fix demo paths in windows (#27004) @eps1lon
+- <!-- 40 --> [docs] Export all locales (#27002) @eps1lon
+- <!-- 38 --> [docs] Misc CONTRIBUTING.md changes (#26925) @eps1lon
+- <!-- 35 --> [docs] Fix /components/hidden merge conflict (#26997) @eps1lon
+- <!-- 26 --> [docs] Fix 404 links (#26963) @oliviertassinari
+- <!-- 24 --> [docs] Remove link that points to v4 blog post (#26960) @steveafrost
+- <!-- 16 --> [docs] Use custom webpack loader for markdown (#26774) @eps1lon
+- <!-- 11 --> [docs] Fix 301 links (#26942) @oliviertassinari
+- <!-- 01 --> [docs] Add page for the `sx` prop (#26769) @mnajdova
+
+All contributors of this release in alphabetical order: @ansh-saini, @BC-M, @CarlosGomez-dev, @DouglasPds, @eps1lon, @fishyFrogFace, @michal-perlakowski,
+@michaldudak, @mnajdova, @oliviertassinari, @siriwatknp, @steveafrost, @varandasi
+
 ## 5.0.0-alpha.38
 
 <!-- generated comparing v5.0.0-alpha.37..next -->
