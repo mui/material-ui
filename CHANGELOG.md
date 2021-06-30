@@ -10,7 +10,7 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 
 - 🎉 This is the first beta release of v5! Huge thanks to everyone who helped to make this happen!
 - 🚀 We have completed all the planned breaking changes.
-- ⚒️ We added the codemod CLI to simplify migration to v5 (#26941) @eps1lon 
+- ⚒️ We added the codemod CLI to simplify migration to v5 (#26941) @eps1lon
 - 🐛 The majority of other changes in this release were bug fixes, test utilities and docs.
 
 ### `@material-ui/core@5.0.0-beta.0`
