@@ -2,7 +2,7 @@
 
 <p class="description">theme.spacing()　ヘルパーを使用して、 UIの要素間の間隔を一定にします。</p>
 
-Material-UI uses [a recommended 8px scaling factor](https://material.io/design/layout/understanding-layout.html) by default.
+Material-UIは、デフォルトで[推奨の8pxスケーリング係数](https://material.io/design/layout/understanding-layout.html) を使用します。
 
 ```js
 const theme = createTheme();
