@@ -107,9 +107,7 @@ function useLoaded({ crossOrigin, src, srcSet }) {
       }
       setLoaded('error');
     };
-    if (crossOrigin != null) {
-      image.crossOrigin = crossOrigin;
-    }
+    image.crossOrigin = crossOrigin;
     image.src = src;
     if (srcSet) {
       image.srcset = srcSet;
