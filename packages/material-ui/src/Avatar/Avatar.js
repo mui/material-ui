@@ -83,7 +83,7 @@ const AvatarFallback = styled(Person, {
   height: '75%',
 });
 
-function useLoaded({ src, srcSet, imgProps }) {
+function useLoaded({ crossOrigin, src, srcSet }) {
   const [loaded, setLoaded] = React.useState(false);
 
   React.useEffect(() => {
@@ -107,8 +107,8 @@ function useLoaded({ src, srcSet, imgProps }) {
       }
       setLoaded('error');
     };
-    if (imgProps && imgProps.crossOrigin) {
-      image.crossOrigin = imgProps.crossOrigin;
+    if (crossOrigin != null) {
+      image.crossOrigin = crossOrigin;
     }
     image.src = src;
     if (srcSet) {
@@ -118,7 +118,7 @@ function useLoaded({ src, srcSet, imgProps }) {
     return () => {
       active = false;
     };
-  }, [src, srcSet]);
+  }, [crossOrigin, src, srcSet]);
 
   return loaded;
 }
@@ -141,7 +141,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   let children = null;
 
   // Use a hook instead of onError on the img element to support server-side rendering.
-  const loaded = useLoaded({ src, srcSet, imgProps });
+  const loaded = useLoaded({ ...imgProps, src, srcSet });
   const hasImg = src || srcSet;
   const hasImgNotFailing = hasImg && loaded !== 'error';
 
