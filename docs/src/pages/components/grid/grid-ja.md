@@ -1,5 +1,5 @@
 ---
-title: React Grid component
+title: React Grid コンポーネント
 components: Grid
 ---
 
