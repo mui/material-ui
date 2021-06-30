@@ -1,37 +1,68 @@
 /**
+ * @typedef {import('jscodeshift').ImportDeclaration} ImportDeclaration
+ * @typedef {import('jscodeshift').ImportSpecifier} ImportSpecifier
+ * @typedef {import('jscodeshift').CallExpression} CallExpression
+ */
+
+/**
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
+ * @returns
  */
 export default function getCodemodUtilities(file, api) {
   const j = api.jscodeshift;
   const root = j(file.source);
 
+  /**
+   * @param {string} importPath
+   * @returns
+   */
   function getImportDeclaration(importPath) {
     return root.find(j.ImportDeclaration).filter((path) => {
       return path.node.source.value === importPath;
     });
   }
 
+  /**
+   * @param {string} value
+   * @returns
+   */
   function getImportSpecifier(value) {
     return root.find(j.ImportSpecifier).filter((path) => {
       return path.node.local.name === value;
     });
   }
 
+  /**
+   * @param {string} functionName
+   * @returns
+   */
   function getCallExpression(functionName) {
     return root.find(j.CallExpression, { callee: { name: functionName } });
   }
 
+  /**
+   * @param {string} importPath
+   * @param {(nodes: import('jscodeshift').Collection<ImportDeclaration>) => void} callback
+   */
   function processImportFrom(importPath, callback) {
     const nodes = getImportDeclaration(importPath);
     callback(nodes);
   }
 
+  /**
+   * @param {string} importPath
+   * @param {(nodes: import('jscodeshift').Collection<ImportSpecifier>) => void} callback
+   */
   function processImportSpecifier(value, callback) {
     const nodes = getImportDeclaration(value);
     callback(nodes);
   }
 
+  /**
+   * @param {string} importPath
+   * @param {(nodes: import('jscodeshift').Collection<CallExpression>) => void} callback
+   */
   function processCallExpression(functionName, callback) {
     callback(getCallExpression(functionName));
   }
@@ -91,11 +122,6 @@ export default function getCodemodUtilities(file, api) {
     });
   }
 
-  /**
-   * works with both arrow function and function declaration
-   * @param {*} node
-   * @param {*} callback
-   */
   function processReturnStatement(node, callback) {
     if (node.type === 'VariableDeclarator') {
       callback(node.init.body.body.find((path) => path.type === 'ReturnStatement'));
@@ -105,9 +131,29 @@ export default function getCodemodUtilities(file, api) {
     }
   }
 
+  /**
+   *
+   * @param {string} variableName
+   * @param {string} path
+   * @returns
+   */
+  function createImportDeclaration(variableName, path) {
+    if (Array.isArray(variableName)) {
+      return j.importDeclaration(
+        variableName.map((name) => j.importSpecifier(j.identifier(name))),
+        j.literal(path),
+      );
+    }
+    return j.importDeclaration(
+      [j.importDefaultSpecifier(j.identifier(variableName))],
+      j.literal(path),
+    );
+  }
+
   return {
     root,
     jscodeshift: j,
+    createImportDeclaration,
     getImportDeclaration,
     getImportSpecifier,
     getExportDefaultDeclaration,

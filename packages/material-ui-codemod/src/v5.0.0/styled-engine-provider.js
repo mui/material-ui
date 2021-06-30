@@ -22,19 +22,16 @@ export default function transformer(file, api, options = {}) {
     root.find(j.ImportDeclaration).forEach((path) => {
       if (path.node.source.value === 'react' && !inserted) {
         path.insertAfter(
-          j.importDeclaration(
-            [j.importSpecifier(j.identifier('StyledEngineProvider'))],
-            j.literal('@material-ui/core/styles'),
-          ),
+          utils.createImportDeclaration(['StyledEngineProvider'], '@material-ui/core/styles'),
         );
         inserted = true;
       }
     });
   } else if (!styledEngineSpecifiers.length) {
-    root.find(j.ImportDeclaration).forEach((path) => {
-      if (path.node.source.value === '@material-ui/core/styles') {
-        path.node.specifiers.push(j.importSpecifier(j.identifier('StyledEngineProvider')));
-      }
+    utils.processImportFrom('@material-ui/core/styles', (paths) => {
+      paths.forEach(({ node }) => {
+        utils.insertImportSpecifier(node, 'StyledEngineProvider');
+      });
     });
   }
 
