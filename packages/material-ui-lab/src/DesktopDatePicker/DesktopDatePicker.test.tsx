@@ -49,8 +49,7 @@ describe('<DesktopDatePicker />', () => {
   afterEach(() => {
     clock.restore();
   });
-  // StrictModeViolation: Uses CalendarPicker
-  const render = createPickerRender({ strict: false });
+  const render = createPickerRender();
 
   it('prop: components.OpenPickerIcon', () => {
     function HomeIcon(props: SvgIconProps) {
