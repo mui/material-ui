@@ -1,7 +1,7 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "acceptRegex": "Regular expression to detect &quot;accepted&quot; symbols.",
+    "acceptRegex": "正则表达式检测并接受” “符号",
     "ampm": "12h/24h view for hour selection clock.",
     "ampmInClock": "Display ampm controls under the clock (instead of in the toolbar).",
     "className": "className applied to the root component.",
@@ -15,7 +15,7 @@
     "getClockLabelText": "Accessible text that helps user to understand which time and view is selected.",
     "getOpenDialogAriaText": "Get aria-label text for control that opens picker dialog. Aria-label text must include selected date. @DateIOType",
     "InputAdornmentProps": "Props to pass to keyboard input adornment.",
-    "inputFormat": "Format string.",
+    "inputFormat": "格式化字符串",
     "inputRef": "Pass a ref to the <code>input</code> element.",
     "mask": "Custom mask. Can be used to override generate from format. (e.g. <code>__/__/____ __:__</code> or <code>__/__/____ __:__ _M</code>).",
     "minutesStep": "Step over minutes.",
@@ -38,7 +38,7 @@
     "toolbarPlaceholder": "Mobile picker date value placeholder, displaying if <code>value</code> === <code>null</code>.",
     "toolbarTitle": "Mobile picker title, displaying in the toolbar.",
     "value": "The value of the picker.",
-    "views": "Array of views to show."
+    "views": "显示视图数组"
   },
   "classDescriptions": {}
 }
