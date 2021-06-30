@@ -39,6 +39,58 @@ Examples:
 
 ### v5.0.0
 
+#### `important-migration`
+
+A combination of all important transformers for migrating v4 to v5.
+
+```sh
+npx @material-ui/codemod@next v5.0.0/important-migration <path|folder>
+```
+
+- [`adapter-v4`](#adapter-v4)
+- [`autocomplete-rename-closeicon`](#autocomplete-rename-closeicon)
+- [`avatar-circle-circular`](#avatar-circle-circular)
+- [`badge-overlap-value`](#badge-overlap-value)
+- [`box-borderradius-values`](#box-borderradius-values)
+- [`box-rename-gap`](#box-rename-gap)
+- [`box-sx-prop`](#box-sx-prop)
+- [`button-color-prop`](#button-color-prop)
+- [`chip-variant-prop`](#chip-variant-prop)
+- [`circularprogress-variant`](#circularprogress-variant)
+- [`collapse-rename-collapsedheight`](#collapse-rename-collapsedheight)
+- [`create-theme`](#create-theme)
+- [`emotion-prepend-cache`](#emotion-prepend-cache)
+- [`fade-rename-alpha`](#fade-rename-alpha)
+- [`grid-justify-justifycontent`](#grid-justify-justifycontent)
+- [`hidden-down-props`](#hidden-down-props)
+- [`material-ui-styles`](#material-ui-styles)
+- [`moved-lab-modules`](#moved-lab-modules)
+- [`textfield-variant-prop`](#textfield-variant-prop)
+- [`theme-breakpoints-width`](#theme-breakpoints-width)
+- [`theme-breakpoints`](#theme-breakpoints)
+- [`theme-palette-mode`](#theme-palette-mode)
+- [`theme-provider`](#theme-provider)
+- [`theme-spacing`](#theme-spacing)
+- [`theme-typography-round`](#theme-typography-round)
+- [`use-transitionprops`](#use-transitionprops)
+- [`variant-prop`](#variant-prop)
+- [`with-width`](#with-width)
+
+#### `adapter-v4`
+
+import and insert `adaptV4Theme` to `createTheme` (or `createMuiTheme`)
+
+```diff
++import { adaptV4Theme } from '@material-ui/core/styles';
+
+-createTheme({ palette: { ... }})
++createTheme(adaptV4Theme({ palette: { ... }}))
+```
+
+```sh
+npx @material-ui/codemod@next v5.0.0/adapter-v4 <path>
+```
+
 #### `component-rename-prop`
 
 A generic codemod to rename any component prop.
@@ -239,6 +291,29 @@ npx @material-ui/codemod@next v5.0.0/collapse-rename-collapsedheight <path>
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#collapse).
 
+#### `create-theme`
+
+Rename the function `createMuiTheme` to `createTheme`
+
+```sh
+npx @material-ui/codemod@next v5.0.0/create-theme <path>
+```
+
+#### `emotion-prepend-cache`
+
+add `prepend: true` to emotion `createCache`
+
+```diff
+const cache = emotionCreateCache({
+  key: 'css',
++ prepend: true, 
+});
+```
+
+```sh
+npx @material-ui/codemod@next v5.0.0/create-theme <path>
+```
+
 #### `fade-rename-alpha`
 
 Renames `fade` style utility import and calls frpm `fade` to `alpha`.
@@ -276,6 +351,41 @@ npx @material-ui/codemod@next v5.0.0/grid-justify-justifycontent <path>
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#grid).
 
+#### `material-ui-styles`
+
+Move JSS imports to `@material-ui/styles`
+```diff
+-import {
+-  createGenerateClassName,
+-  createStyles,
+-  jssPreset,
+-  makeStyles,
+-  ServerStyleSheets,
+-  useThemeVariants,
+-  withStyles,
+-  withTheme,
+-  ThemeProvider,
+-  styled,
+-  getStylesCreator,
+-  mergeClasses,
+-} from '@material-ui/core/styles';
++import { ThemeProvider, styled } from '@material-ui/core/styles';
++import createGenerateClassName from '@material-ui/styles/createGenerateClassName';
++import createStyles from '@material-ui/styles/createStyles';
++import jssPreset from '@material-ui/styles/jssPreset';
++import makeStyles from '@material-ui/styles/makeStyles';
++import ServerStyleSheets from '@material-ui/styles/ServerStyleSheets';
++import useThemeVariants from '@material-ui/styles/useThemeVariants';
++import withStyles from '@material-ui/styles/withStyles';
++import withTheme from '@material-ui/styles/withTheme';
++import getStylesCreator from '@material-ui/styles/getStylesCreator';
+import mergeClasses from '@material-ui/styles/mergeClasses';
+```
+
+```sh
+npx @material-ui/codemod@next v5.0.0/material-ui-styles <path>
+```
+
 #### `moved-lab-modules`
 
 Updates all imports for `@material-ui/lab` components that have moved to `@material-ui/core`.
@@ -299,6 +409,14 @@ npx @material-ui/codemod@next v5.0.0/moved-lab-modules <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#skeleton).
+
+#### `theme-breakpoints-width`
+
+Rename `theme.breakpoints.width('md')` to `theme.breakpoints.values.md`
+
+```sh
+npx @material-ui/codemod@next v5.0.0/theme-breakpoints-width <path>
+```
 
 #### `variant-prop`
 
@@ -379,10 +497,31 @@ Updates breakpoint values to match new logic.
 <!-- #default-branch-switch -->
 
 ```sh
-npx @material-ui/codemod@next v5.0.0/theme-breakpoints.js <path>
+npx @material-ui/codemod@next v5.0.0/theme-breakpoints <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#theme).
+
+#### `theme-palette-mode`
+
+Rename `type` to `mode`
+
+```diff
+-theme.palette.type === 'dark'
++theme.palette.mode === 'dark'
+```
+
+```sh
+npx @material-ui/codemod@next v5.0.0/theme-breakpoints <path>
+```
+
+#### `theme-provider`
+
+Rename `MuiThemeProvider` to `ThemeProvider`
+
+```sh
+npx @material-ui/codemod@next v5.0.0/theme-provider <path>
+```
 
 #### `theme-spacing`
 
@@ -409,6 +548,28 @@ Note that if there are calculations using `theme.spacing()`, these will need to 
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#theme).
+
+#### `theme-typography-round`
+
+Remove `theme.typography.round($number)` to `Math.round($number * 1e5) / 1e5`
+
+```sh
+npx @material-ui/codemod@next v5.0.0/theme-typography-round <path>
+```
+
+#### `with-width`
+
+Remove and insert hardcoded `withWidth` to prevent application crash.
+
+```diff
+- import withWidth from '@material-ui/core/withWidth';
++ // FIXME checkout https://material-ui.com/components/use-media-query/#migrating-from-withwidth
++ const withWidth = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="xs" />;
+```
+
+```sh
+npx @material-ui/codemod@next v5.0.0/with-width <path>
+```
 
 ### v4.0.0
 
