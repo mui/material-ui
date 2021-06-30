@@ -102,11 +102,6 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
       return;
     }
 
-    // FIXME: ignore act warnings
-    if (message.indexOf('act(...)')) {
-      return;
-    }
-
     unexpectedCalls.push([
       // first line includes the (empty) error message
       // i.e. Remove the `Error:` line
