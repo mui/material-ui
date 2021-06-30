@@ -1,6 +1,6 @@
 ### [Versions](https://material-ui.com/versions/)
 
-## 5.0.0-beta.1
+## 5.0.0-beta.0
 <!-- generated comparing v5.0.0-alpha.38..next -->
 _Jul 01, 2021_
 
@@ -11,7 +11,7 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - ⚒️ We added the codemod CLI (#26941) to simplify migration to v5.
 - 🐛 The majority of other changes in this release were bug fixes, test utilities and docs.
 
-### `@material-ui/core@5.0.0-beta.1`
+### `@material-ui/core@5.0.0-beta.0`
 
 #### Breaking changes
 
@@ -71,21 +71,21 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - <!-- 20 --> [TextField] Prevent `hiddenLabel` from spreading to DOM (#26864) @siriwatknp
 - <!-- 18 --> [TextField] Fix label disappearing when focusing a button (#26933) @michal-perlakowski
 
-### `@material-ui/codemod@5.0.0-beta.1`
+### `@material-ui/codemod@5.0.0-beta.0`
 
 - <!-- 37 --> [codemod] Add CLI (#26941) @eps1lon
 - <!-- 23 --> [codemod] Improve DX when using the package (#26936) @oliviertassinari
 
-### @material-ui/icons@5.0.0-beta.1
+### @material-ui/icons@5.0.0-beta.0
 
 - <!-- 29 --> [icons] Regenerate transpiled files (#26985) @eps1lon
 - <!-- 09 --> [codemod] Correct codemod path (#26932) @BC-M
 
-### @material-ui/lab@5.0.0-beta.1
+### @material-ui/lab@5.0.0-beta.0
 
 - <!-- 12 --> [lab] Fix missing dependency on unstyled (#26937) @fishyFrogFace
 
-### `@material-ui/system@5.0.0-beta.1`
+### `@material-ui/system@5.0.0-beta.0`
 
 - <!-- 14 --> [system] Support array overridesResolver (#26824) @siriwatknp
 
