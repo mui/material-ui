@@ -1,7 +1,7 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "acceptRegex": "Regular expression to detect &quot;accepted&quot; symbols.",
+    "acceptRegex": "正则表达式检测并接受” “符号",
     "allowSameDateSelection": "If <code>true</code>, <code>onChange</code> is fired on click even if the same date is selected.",
     "ampm": "12h/24h view for hour selection clock.",
     "ampmInClock": "Display ampm controls under the clock (instead of in the toolbar).",
@@ -22,7 +22,7 @@
     "getViewSwitchingButtonText": "Get aria-label text for switching between views button.",
     "hideTabs": "To show tabs.",
     "InputAdornmentProps": "Props to pass to keyboard input adornment.",
-    "inputFormat": "Format string.",
+    "inputFormat": "格式化字符串",
     "inputRef": "Pass a ref to the <code>input</code> element.",
     "leftArrowButtonText": "Left arrow icon aria-label text.",
     "loading": "If <code>true</code> renders <code>LoadingComponent</code> in calendar instead of calendar view. Can be used to preload information and show it in calendar.",
@@ -60,7 +60,7 @@
     "toolbarPlaceholder": "Mobile picker date value placeholder, displaying if <code>value</code> === <code>null</code>.",
     "toolbarTitle": "Mobile picker title, displaying in the toolbar.",
     "value": "The value of the picker.",
-    "views": "Array of views to show."
+    "views": "显示视图数组"
   },
   "classDescriptions": {}
 }
