@@ -55,7 +55,7 @@ const InferTest = () => {
   <DatePicker<Date>
     value={null}
     onChange={(date) => {
-      expectType<Date, typeof date>(date);
+      expectType<Date | null, typeof date>(date);
     }}
     renderInput={() => <input />}
   />;
