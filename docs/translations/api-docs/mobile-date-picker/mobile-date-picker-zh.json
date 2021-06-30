@@ -1,12 +1,12 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "acceptRegex": "Regular expression to detect &quot;accepted&quot; symbols.",
+    "acceptRegex": "正则表达式检测并接受” “符号",
     "allowSameDateSelection": "If <code>true</code>, <code>onChange</code> is fired on click even if the same date is selected.",
-    "cancelText": "Cancel text message.",
+    "cancelText": "取消信息",
     "className": "className applied to the root component.",
     "clearable": "If <code>true</code>, it shows the clear action in the picker dialog.",
-    "clearText": "Clear text message.",
+    "clearText": "清除文本信息",
     "components": "The components used for each slot. Either a string to use a HTML element or a component.",
     "componentsProps": "The props used for each slot inside.",
     "defaultCalendarMonth": "Default calendar month displayed when <code>value={null}</code>.",
@@ -19,7 +19,7 @@
     "getOpenDialogAriaText": "Get aria-label text for control that opens picker dialog. Aria-label text must include selected date. @DateIOType",
     "getViewSwitchingButtonText": "Get aria-label text for switching between views button.",
     "InputAdornmentProps": "Props to pass to keyboard input adornment.",
-    "inputFormat": "Format string.",
+    "inputFormat": "格式化字符串",
     "inputRef": "Pass a ref to the <code>input</code> element.",
     "leftArrowButtonText": "Left arrow icon aria-label text.",
     "loading": "If <code>true</code> renders <code>LoadingComponent</code> in calendar instead of calendar view. Can be used to preload information and show it in calendar.",
@@ -55,7 +55,7 @@
     "toolbarPlaceholder": "Mobile picker date value placeholder, displaying if <code>value</code> === <code>null</code>.",
     "toolbarTitle": "Mobile picker title, displaying in the toolbar.",
     "value": "The value of the picker.",
-    "views": "Array of views to show."
+    "views": "显示视图数组"
   },
   "classDescriptions": {}
 }
