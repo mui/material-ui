@@ -17,7 +17,7 @@ export type TimePickerView = 'hours' | 'minutes' | 'seconds';
 
 export interface BaseTimePickerProps<TDate>
   extends OverrideParseableDateProps<TDate, ExportedClockPickerProps<TDate>, 'minTime' | 'maxTime'>,
-    BasePickerProps<ParseableDate<TDate>, TDate | null>,
+    BasePickerProps<ParseableDate<TDate>, TDate>,
     ValidationProps<TimeValidationError, ParseableDate<TDate>>,
     ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
   /**
@@ -28,7 +28,7 @@ export interface BaseTimePickerProps<TDate>
    * Component that will replace default toolbar renderer.
    * @default TimePickerToolbar
    */
-  ToolbarComponent?: React.JSXElementConstructor<ToolbarComponentProps>;
+  ToolbarComponent?: React.JSXElementConstructor<ToolbarComponentProps<TDate>>;
   /**
    * Array of views to show.
    */
