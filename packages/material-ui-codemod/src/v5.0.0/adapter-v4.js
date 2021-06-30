@@ -7,14 +7,7 @@ export default function transformer(file, api) {
   const utils = getCodemodUtilities(file, api);
   const { jscodeshift: j } = utils;
 
-  /**
-   * Add `adaptV4Theme` if not existed
-   */
-  utils.processImportFrom('@material-ui/core/styles', (nodes) => {
-    nodes.forEach(({ node }) => {
-      utils.insertImportSpecifier(node, 'adaptV4Theme');
-    });
-  });
+  let adaptV4Called = false;
 
   function isNotadaptV4ThemeArg(node) {
     return (
@@ -32,6 +25,7 @@ export default function transformer(file, api) {
     nodes.forEach(({ node }) => {
       if (isNotadaptV4ThemeArg(node)) {
         node.arguments = [j.callExpression(j.identifier('adaptV4Theme'), node.arguments)];
+        adaptV4Called = true;
       }
     });
   });
@@ -43,9 +37,21 @@ export default function transformer(file, api) {
     nodes.forEach(({ node }) => {
       if (isNotadaptV4ThemeArg(node)) {
         node.arguments = [j.callExpression(j.identifier('adaptV4Theme'), node.arguments)];
+        adaptV4Called = true;
       }
     });
   });
+
+  /**
+   * Add `adaptV4Theme` if called from above and not existed
+   */
+  if (adaptV4Called) {
+    utils.processImportFrom('@material-ui/core/styles', (nodes) => {
+      nodes.forEach(({ node }) => {
+        utils.insertImportSpecifier(node, 'adaptV4Theme');
+      });
+    });
+  }
 
   return utils.root.toSource();
 }

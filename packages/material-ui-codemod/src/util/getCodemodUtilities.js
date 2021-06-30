@@ -108,12 +108,14 @@ export default function getCodemodUtilities(file, api) {
   }
 
   function renameJSXTag(variableName, newName) {
-    root.findJSXElements(variableName).forEach(({ node }) => {
-      node.openingElement.name.name = newName;
-      if (node.closingElement) {
-        node.closingElement.name.name = newName;
-      }
-    });
+    if (variableName) {
+      root.findJSXElements(variableName).forEach(({ node }) => {
+        node.openingElement.name.name = newName;
+        if (node.closingElement) {
+          node.closingElement.name.name = newName;
+        }
+      });
+    }
   }
 
   function renameFunctionCall(variableName, newName) {
