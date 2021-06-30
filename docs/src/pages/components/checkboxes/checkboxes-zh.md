@@ -22,13 +22,13 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 
 ## 标签
 
-You can provide a label to the `Checkbox` thanks to the `FormControlLabel` component.
+使用 `FormControlLabel` 组件，您可以为 `Checkbox`设置一个标签。
 
 {{"demo": "pages/components/checkboxes/CheckboxLabels.js"}}
 
 ## Size 大小
 
-Use the `size` prop or customize the font size of the svg icons to change the size of the checkboxes.
+使用 `size` 属性或调整svg 图标的字体大小以更改复选框的大小。
 
 {{"demo": "pages/components/checkboxes/SizeCheckboxes.js"}}
 
@@ -36,15 +36,15 @@ Use the `size` prop or customize the font size of the svg icons to change the si
 
 {{"demo": "pages/components/checkboxes/ColorCheckboxes.js"}}
 
-## Icon
+## 图标
 
-{{"demo": "pages/components/checkboxes/IconCheckboxes.js"}}
+{{"demo": "pages/components/checkboxes/Iconcheckboxes.js"}}
 
 ## Controlled
 
-You can control the checkbox with the `checked` and `onChange` props:
+您可以使用 `checked` 和 `onChange` 属性控制复选框：
 
-{{"demo": "pages/components/checkboxes/ControlledCheckbox.js"}}
+{{"demo": "pages/components/checkboxes/ControledCheckbox.js"}}
 
 ## 不确定的状态
 
