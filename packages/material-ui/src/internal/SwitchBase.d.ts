@@ -60,8 +60,6 @@ export interface SwitchBaseProps
    * @param {object} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (string).
    * You can pull out the new checked state by accessing `event.target.checked` (boolean).
-   *
-   * @deprecated This signature `(event, checked) => void` will be deprecated in a future release. Use `(event) => { event.target.checked }` instead.
    */
   onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
   readOnly?: boolean;
