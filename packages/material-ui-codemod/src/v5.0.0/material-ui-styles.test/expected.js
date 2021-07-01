@@ -9,3 +9,4 @@ import withStyles from '@material-ui/styles/withStyles';
 import withTheme from '@material-ui/styles/withTheme';
 import getStylesCreator from '@material-ui/styles/getStylesCreator';
 import mergeClasses from '@material-ui/styles/mergeClasses';
+import StylesProvider from '@material-ui/styles/StylesProvider';

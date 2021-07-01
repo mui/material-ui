@@ -18,6 +18,11 @@ export default function TextFieldComponent(props) {
       <FormControl variant="outlined" />
       <FormControl variant="standard" />
       <FormControl variant="filled" />
+      <Autocomplete
+        options={[]}
+        getOptionLabel={(option) => option.title}
+        renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
+      />
     </div>
   );
 }

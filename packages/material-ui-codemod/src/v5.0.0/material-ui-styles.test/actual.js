@@ -11,4 +11,5 @@ import {
   styled,
   getStylesCreator,
   mergeClasses,
+  StylesProvider,
 } from '@material-ui/core/styles';

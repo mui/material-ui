@@ -8,12 +8,6 @@ export default function transformer(file, api) {
       (node) => node.type === 'JSXAttribute' && node.name.name === 'variant',
     );
 
-    if (variant && variant.value.value === 'outlined') {
-      delete attributes[
-        attributes.findIndex((node) => node.type === 'JSXAttribute' && node.name.name === 'variant')
-      ];
-    }
-
     if (!variant) {
       attributes.push(j.jsxAttribute(j.jsxIdentifier('variant'), j.literal('standard')));
     }

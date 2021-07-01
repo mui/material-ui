@@ -18,6 +18,7 @@ export default function transformer(file, api, options) {
     'withTheme',
     'getStylesCreator',
     'mergeClasses',
+    'StylesProvider',
   ];
 
   const stylesPackage = '@material-ui/styles';

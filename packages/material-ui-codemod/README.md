@@ -65,7 +65,6 @@ npx @material-ui/codemod@next v5.0.0/important-migration <path|folder>
 - [`hidden-down-props`](#hidden-down-props)
 - [`material-ui-styles`](#material-ui-styles)
 - [`moved-lab-modules`](#moved-lab-modules)
-- [`textfield-variant-prop`](#textfield-variant-prop)
 - [`theme-breakpoints-width`](#theme-breakpoints-width)
 - [`theme-breakpoints`](#theme-breakpoints)
 - [`theme-palette-mode`](#theme-palette-mode)

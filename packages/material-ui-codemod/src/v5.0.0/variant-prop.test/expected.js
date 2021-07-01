@@ -7,17 +7,22 @@ export default function TextFieldComponent(props) {
   return (
     <div>
       <TextField {...props} variant="standard" />
-      <TextField />
+      <TextField variant="outlined" />
       <TextField variant="standard" />
       <TextField variant="filled" />
       <Select {...props} variant="standard" />
-      <Select />
+      <Select variant="outlined" />
       <Select variant="standard" />
       <Select variant="filled" />
       <FormControl {...props} variant="standard" />
-      <FormControl />
+      <FormControl variant="outlined" />
       <FormControl variant="standard" />
       <FormControl variant="filled" />
+      <Autocomplete
+        options={[]}
+        getOptionLabel={(option) => option.title}
+        renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
+      />
     </div>
   );
 }

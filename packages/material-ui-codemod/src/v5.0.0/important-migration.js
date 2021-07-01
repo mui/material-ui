@@ -17,7 +17,6 @@ import transformHiddenDownProps from './hidden-down-props';
 import transformStyles from './material-ui-styles';
 import transformMovedLabModules from './moved-lab-modules';
 // import transformStyledEngineProvider from './styled-engine-provider';
-import transformTextFieldVariantProp from './textfield-variant-prop';
 import transformThemeBreakpointsWidth from './theme-breakpoints-width';
 import transformThemeBreakpoints from './theme-breakpoints';
 import transformThemePaletteMode from './theme-palette-mode';
@@ -55,7 +54,6 @@ export default function transformer(file, api, options) {
   // need to get App path
   // file.source = transformStyledEngineProvider(file, api, options);
 
-  file.source = transformTextFieldVariantProp(file, api, options);
   file.source = transformThemeBreakpointsWidth(file, api, options);
   file.source = transformThemeBreakpoints(file, api, options);
   file.source = transformThemePaletteMode(file, api, options);
