@@ -284,6 +284,7 @@ function clientRender(
       baseElement,
       container,
       hydrate,
+      // @ts-ignore Available in the `@testing-library/react` fork used when running with React 18
       legacyRoot,
       queries: { ...queries, ...customQueries },
       wrapper: Wrapper,
