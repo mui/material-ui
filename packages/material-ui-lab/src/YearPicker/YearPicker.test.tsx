@@ -3,14 +3,9 @@ import { spy } from 'sinon';
 import { expect } from 'chai';
 import { fireEvent, screen, describeConformanceV5 } from 'test/utils';
 import YearPicker, { yearPickerClasses as classes } from '@material-ui/lab/YearPicker';
-import {
-  adapterToUse,
-  createPickerMount,
-  createPickerRender,
-} from '../internal/pickers/test-utils';
+import { adapterToUse, wrapPickerMount, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<YearPicker />', () => {
-  const mount = createPickerMount();
   const render = createPickerRender();
 
   describeConformanceV5(
@@ -24,7 +19,7 @@ describe('<YearPicker />', () => {
     () => ({
       classes,
       inheritComponent: 'div',
-      mount,
+      wrapMount: wrapPickerMount,
       render,
       muiName: 'MuiYearPicker',
       refInstanceof: window.HTMLDivElement,

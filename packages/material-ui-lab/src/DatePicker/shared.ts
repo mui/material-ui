@@ -44,7 +44,7 @@ export interface BaseDatePickerProps<TDate>
    * Component that will replace default toolbar renderer.
    * @default DatePickerToolbar
    */
-  ToolbarComponent?: React.JSXElementConstructor<ToolbarComponentProps>;
+  ToolbarComponent?: React.JSXElementConstructor<ToolbarComponentProps<TDate | null>>;
   /**
    * Array of views to show.
    */

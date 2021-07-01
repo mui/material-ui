@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { SinonFakeTimers, spy, useFakeTimers } from 'sinon';
 import TextField from '@material-ui/core/TextField';
 import { TransitionProps } from '@material-ui/core/transitions';
 import { act, fireEvent, screen, userEvent } from 'test/utils';
@@ -42,6 +42,14 @@ const UncontrolledOpenDesktopDatePicker = (({
 }) as typeof DesktopDatePicker;
 
 describe('<DesktopDatePicker />', () => {
+  let clock: SinonFakeTimers;
+  beforeEach(() => {
+    clock = useFakeTimers();
+  });
+  afterEach(() => {
+    clock.restore();
+  });
+  // StrictModeViolation: Uses CalendarPicker
   const render = createPickerRender({ strict: false });
 
   it('prop: components.OpenPickerIcon', () => {

@@ -66,7 +66,7 @@ module.exports = async function demoLoader() {
   const { docs } = prepareMarkdown({ pageFilename, requireRaw });
 
   const demos = {};
-  const demoModuleIDs = [];
+  const demoModuleIDs = new Set();
   new Set(
     docs.en.rendered
       .filter((markdownOrComponentConfig) => {
@@ -84,15 +84,17 @@ module.exports = async function demoLoader() {
       module: moduleID,
       raw: requireRaw(moduleID),
     };
-    demoModuleIDs.push(moduleID);
+    demoModuleIDs.add(moduleID);
 
     try {
       const moduleTS = moduleID.replace(/\.js$/, '.tsx');
       const rawTS = requireRaw(moduleTS);
 
-      demos[demoName].moduleTS = moduleTS;
+      // In development devs can choose whether they want to work on the TS or JS version.
+      // But this leads to building both demo version i.e. more build time.
+      demos[demoName].moduleTS = this.mode === 'production' ? moduleID : moduleTS;
       demos[demoName].rawTS = rawTS;
-      demoModuleIDs.push(moduleTS);
+      demoModuleIDs.add(demos[demoName].moduleTS);
     } catch (error) {
       // TS version of the demo doesn't exist. This is fine.
     }
@@ -106,7 +108,7 @@ module.exports = async function demoLoader() {
   }
 
   const transformed = `
-    ${demoModuleIDs
+    ${Array.from(demoModuleIDs)
       .map((moduleID) => {
         return `import ${getRequireDemoIdentifier(moduleID)} from '${moduleID}';`;
       })
@@ -116,7 +118,7 @@ module.exports = async function demoLoader() {
     export const demos = ${JSON.stringify(demos, null, 2)};
     export function requireDemo(module) {
       return {
-        ${demoModuleIDs
+        ${Array.from(demoModuleIDs)
           .map((moduleID) => {
             // TODO: Remove ES module interop once all demos are loaded via loader
             // i.e. replace `{ default: ... }`  with `...`

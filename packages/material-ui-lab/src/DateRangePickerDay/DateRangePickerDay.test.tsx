@@ -3,14 +3,9 @@ import { describeConformanceV5 } from 'test/utils';
 import DateRangePickerDay, {
   dateRangePickerDayClasses as classes,
 } from '@material-ui/lab/DateRangePickerDay';
-import {
-  adapterToUse,
-  createPickerMount,
-  createPickerRender,
-} from '../internal/pickers/test-utils';
+import { adapterToUse, wrapPickerMount, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<DateRangePickerDay />', () => {
-  const mount = createPickerMount();
   const render = createPickerRender();
 
   describeConformanceV5(
@@ -31,7 +26,7 @@ describe('<DateRangePickerDay />', () => {
       inheritComponent: 'button',
       muiName: 'MuiDateRangePickerDay',
       render,
-      mount,
+      wrapMount: wrapPickerMount,
       refInstanceof: window.HTMLButtonElement,
       // cannot test reactTestRenderer because of required context
       skip: [
