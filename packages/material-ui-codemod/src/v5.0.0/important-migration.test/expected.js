@@ -25,11 +25,13 @@ import TextField from '@material-ui/core/TextField';
 // FIXME checkout https://material-ui.com/components/use-media-query/#migrating-from-withwidth
 const withWidth = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="xs" />;
 
+const DarkContext = React.createContext();
+
 const Test = withWidth()((props) => (
   <Box
     sx={{
       p: 2,
-      bgcolor: "grey.300",
+      bgcolor: "divider",
       borderRadius: "16px",
       display: "flex",
       alignItems: "center",
@@ -80,8 +82,9 @@ const top100Films = [
   { title: '12 Angry Men', year: 1957 },
 ];
 
-const Header = ({ dark, setDark }) => {
+const Header = () => {
   const classes = useStyles();
+  const { dark, setDark } = React.useContext(DarkContext);
   return (
     <AppBar color="default" position="sticky">
       <Toolbar>
@@ -117,9 +120,78 @@ const Header = ({ dark, setDark }) => {
   );
 };
 
-export default function App() {
-  const [dark, setDark] = React.useState(false);
+function App() {
   const [open, setOpen] = React.useState(false);
+  const handleClose = () => setOpen(false);
+  const { setDark } = React.useContext(DarkContext);
+  const classes = useStyles();
+  return <>
+    <CssBaseline />
+    <Header />
+    <Container>
+      <Grid container spacing={2} justifyContent="center" alignItems="center">
+        <Grid item xs={6} sm={4} md={3}>
+          <Box
+            sx={{
+              p: 2,
+              display: "flex",
+              alignItems: "center"
+            }}>
+            <Badge
+              color="secondary"
+              badgeContent=" "
+              overlap="circular"
+              classes={{ anchorOriginTopRightCircular: classes.badge }}
+            >
+              <Avatar variant="circular" classes={{ circular: classes.avatar }} />
+            </Badge>
+            <Box
+              sx={{
+                ml: 2
+              }}>
+              <Typography>My name is ...</Typography>
+              <Typography variant="h5">
+                <b>siriwatknp</b>
+              </Typography>
+            </Box>
+          </Box>
+        </Grid>
+        <Grid item xs={6} sm={4} md={3}>
+          <Test />
+        </Grid>
+      </Grid>
+      <Button variant="contained" onClick={() => setOpen(true)}>
+        Open Dialog
+      </Button>
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        TransitionProps={{
+          onEnter: () => setDark(true),
+          onExit: () => setDark(false)
+        }}>
+        <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Let Google help apps determine location. This means sending anonymous location data to
+            Google, even when no apps are running.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>
+            Disagree
+          </Button>
+          <Button onClick={handleClose} autoFocus>
+            Agree
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </Container>
+  </>;
+}
+
+const withThemeProvider = (Component) => (props) => {
+  const [dark, setDark] = React.useState(false);
   const theme = React.useMemo(
     () =>
       createTheme(adaptV4Theme({
@@ -129,73 +201,15 @@ export default function App() {
       })),
     [dark],
   );
-  const handleClose = () => setOpen(false);
-  const classes = useStyles();
   return (
-    <StylesProvider injectFirst>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Header dark={dark} setDark={setDark} />
-        <Container>
-          <Grid container spacing={2} justifyContent="center" alignItems="center">
-            <Grid item xs={6} sm={4} md={3}>
-              <Box
-                sx={{
-                  p: 2,
-                  display: "flex",
-                  alignItems: "center"
-                }}>
-                <Badge
-                  color="secondary"
-                  badgeContent=" "
-                  overlap="circular"
-                  classes={{ anchorOriginTopRightCircular: classes.badge }}
-                >
-                  <Avatar variant="circular" classes={{ circular: classes.avatar }} />
-                </Badge>
-                <Box
-                  sx={{
-                    ml: 2
-                  }}>
-                  <Typography>My name is ...</Typography>
-                  <Typography variant="h5">
-                    <b>siriwatknp</b>
-                  </Typography>
-                </Box>
-              </Box>
-            </Grid>
-            <Grid item xs={6} sm={4} md={3}>
-              <Test />
-            </Grid>
-          </Grid>
-          <Button variant="contained" onClick={() => setOpen(true)}>
-            Open Dialog
-          </Button>
-          <Dialog
-            open={open}
-            onClose={() => setOpen(false)}
-            TransitionProps={{
-              onEnter: () => setDark(true),
-              onExit: () => setDark(false)
-            }}>
-            <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                Let Google help apps determine location. This means sending anonymous location data
-                to Google, even when no apps are running.
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClose}>
-                Disagree
-              </Button>
-              <Button onClick={handleClose} autoFocus>
-                Agree
-              </Button>
-            </DialogActions>
-          </Dialog>
-        </Container>
-      </ThemeProvider>
-    </StylesProvider>
+    <DarkContext.Provider value={{ dark, setDark }}>
+      <StylesProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <Component {...props} />
+        </ThemeProvider>
+      </StylesProvider>
+    </DarkContext.Provider>
   );
-}
+};
+
+export default withThemeProvider(App);

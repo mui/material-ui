@@ -27,10 +27,12 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import withWidth from '@material-ui/core/withWidth';
 
+const DarkContext = React.createContext();
+
 const Test = withWidth()((props) => (
   <Box
     p={2}
-    bgcolor="grey.300"
+    bgcolor="divider"
     borderRadius={16}
     display="flex"
     alignItems="center"
@@ -81,8 +83,9 @@ const top100Films = [
   { title: '12 Angry Men', year: 1957 },
 ];
 
-const Header = ({ dark, setDark }) => {
+const Header = () => {
   const classes = useStyles();
+  const { dark, setDark } = React.useContext(DarkContext);
   return (
     <AppBar color="default" position="sticky">
       <Toolbar>
@@ -111,9 +114,71 @@ const Header = ({ dark, setDark }) => {
   );
 };
 
-export default function App() {
-  const [dark, setDark] = React.useState(false);
+function App() {
   const [open, setOpen] = React.useState(false);
+  const handleClose = () => setOpen(false);
+  const { setDark } = React.useContext(DarkContext);
+  const classes = useStyles();
+  return (
+    <>
+      <CssBaseline />
+      <Header />
+      <Container>
+        <Grid container spacing={2} justify="center" alignItems="center">
+          <Grid item xs={6} sm={4} md={3}>
+            <Box p={2} display="flex" alignItems="center">
+              <Badge
+                color="secondary"
+                badgeContent=" "
+                overlap="circle"
+                classes={{ anchorOriginTopRightCircle: classes.badge }}
+              >
+                <Avatar variant="circle" classes={{ circle: classes.avatar }} />
+              </Badge>
+              <Box ml={2}>
+                <Typography>My name is ...</Typography>
+                <Typography variant="h5">
+                  <b>siriwatknp</b>
+                </Typography>
+              </Box>
+            </Box>
+          </Grid>
+          <Grid item xs={6} sm={4} md={3}>
+            <Test />
+          </Grid>
+        </Grid>
+        <Button variant="contained" color="primary" onClick={() => setOpen(true)}>
+          Open Dialog
+        </Button>
+        <Dialog
+          open={open}
+          onClose={() => setOpen(false)}
+          onEnter={() => setDark(true)}
+          onExit={() => setDark(false)}
+        >
+          <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Let Google help apps determine location. This means sending anonymous location data to
+              Google, even when no apps are running.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Disagree
+            </Button>
+            <Button onClick={handleClose} color="primary" autoFocus>
+              Agree
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </Container>
+    </>
+  );
+}
+
+const withThemeProvider = (Component) => (props) => {
+  const [dark, setDark] = React.useState(false);
   const theme = React.useMemo(
     () =>
       createMuiTheme({
@@ -123,64 +188,15 @@ export default function App() {
       }),
     [dark],
   );
-  const handleClose = () => setOpen(false);
-  const classes = useStyles();
   return (
-    <StylesProvider injectFirst>
-      <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        <Header dark={dark} setDark={setDark} />
-        <Container>
-          <Grid container spacing={2} justify="center" alignItems="center">
-            <Grid item xs={6} sm={4} md={3}>
-              <Box p={2} display="flex" alignItems="center">
-                <Badge
-                  color="secondary"
-                  badgeContent=" "
-                  overlap="circle"
-                  classes={{ anchorOriginTopRightCircle: classes.badge }}
-                >
-                  <Avatar variant="circle" classes={{ circle: classes.avatar }} />
-                </Badge>
-                <Box ml={2}>
-                  <Typography>My name is ...</Typography>
-                  <Typography variant="h5">
-                    <b>siriwatknp</b>
-                  </Typography>
-                </Box>
-              </Box>
-            </Grid>
-            <Grid item xs={6} sm={4} md={3}>
-              <Test />
-            </Grid>
-          </Grid>
-          <Button variant="contained" color="primary" onClick={() => setOpen(true)}>
-            Open Dialog
-          </Button>
-          <Dialog
-            open={open}
-            onClose={() => setOpen(false)}
-            onEnter={() => setDark(true)}
-            onExit={() => setDark(false)}
-          >
-            <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                Let Google help apps determine location. This means sending anonymous location data
-                to Google, even when no apps are running.
-              </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={handleClose} color="primary">
-                Disagree
-              </Button>
-              <Button onClick={handleClose} color="primary" autoFocus>
-                Agree
-              </Button>
-            </DialogActions>
-          </Dialog>
-        </Container>
-      </MuiThemeProvider>
-    </StylesProvider>
+    <DarkContext.Provider value={{ dark, setDark }}>
+      <StylesProvider injectFirst>
+        <MuiThemeProvider theme={theme}>
+          <Component {...props} />
+        </MuiThemeProvider>
+      </StylesProvider>
+    </DarkContext.Provider>
   );
-}
+};
+
+export default withThemeProvider(App);

@@ -47,33 +47,47 @@ A combination of all important transformers for migrating v4 to v5.
 npx @material-ui/codemod@next v5.0.0/important-migration <path|folder>
 ```
 
-- [`adapter-v4`](#adapter-v4)
-- [`autocomplete-rename-closeicon`](#autocomplete-rename-closeicon)
-- [`avatar-circle-circular`](#avatar-circle-circular)
-- [`badge-overlap-value`](#badge-overlap-value)
-- [`box-borderradius-values`](#box-borderradius-values)
-- [`box-rename-gap`](#box-rename-gap)
-- [`box-sx-prop`](#box-sx-prop)
-- [`button-color-prop`](#button-color-prop)
-- [`chip-variant-prop`](#chip-variant-prop)
-- [`circularprogress-variant`](#circularprogress-variant)
-- [`collapse-rename-collapsedheight`](#collapse-rename-collapsedheight)
-- [`create-theme`](#create-theme)
-- [`emotion-prepend-cache`](#emotion-prepend-cache)
-- [`fade-rename-alpha`](#fade-rename-alpha)
-- [`grid-justify-justifycontent`](#grid-justify-justifycontent)
-- [`hidden-down-props`](#hidden-down-props)
-- [`material-ui-styles`](#material-ui-styles)
-- [`moved-lab-modules`](#moved-lab-modules)
-- [`theme-breakpoints-width`](#theme-breakpoints-width)
-- [`theme-breakpoints`](#theme-breakpoints)
-- [`theme-palette-mode`](#theme-palette-mode)
-- [`theme-provider`](#theme-provider)
-- [`theme-spacing`](#theme-spacing)
-- [`theme-typography-round`](#theme-typography-round)
-- [`use-transitionprops`](#use-transitionprops)
-- [`variant-prop`](#variant-prop)
-- [`with-width`](#with-width)
+- [@material-ui/codemod](#material-uicodemod)
+  - [Setup & run](#setup--run)
+  - [Included scripts](#included-scripts)
+    - [v5.0.0](#v500)
+      - [`important-migration`](#important-migration)
+      - [`adapter-v4`](#adapter-v4)
+      - [`component-rename-prop`](#component-rename-prop)
+      - [`autocomplete-rename-closeicon`](#autocomplete-rename-closeicon)
+      - [`avatar-circle-circular`](#avatar-circle-circular)
+      - [`button-color-prop`](#button-color-prop)
+      - [`box-borderradius-values`](#box-borderradius-values)
+      - [`box-rename-gap`](#box-rename-gap)
+      - [`badge-overlap-value`](#badge-overlap-value)
+      - [`chip-variant-prop`](#chip-variant-prop)
+      - [`circularprogress-variant`](#circularprogress-variant)
+      - [`collapse-rename-collapsedheight`](#collapse-rename-collapsedheight)
+      - [`create-theme`](#create-theme)
+      - [`emotion-prepend-cache`](#emotion-prepend-cache)
+      - [`fade-rename-alpha`](#fade-rename-alpha)
+      - [`grid-justify-justifycontent`](#grid-justify-justifycontent)
+      - [`material-ui-styles`](#material-ui-styles)
+      - [`moved-lab-modules`](#moved-lab-modules)
+      - [`theme-breakpoints-width`](#theme-breakpoints-width)
+      - [`variant-prop`](#variant-prop)
+      - [`use-transitionprops`](#use-transitionprops)
+      - [`theme-breakpoints`](#theme-breakpoints)
+      - [`theme-palette-mode`](#theme-palette-mode)
+      - [`theme-provider`](#theme-provider)
+      - [`theme-spacing`](#theme-spacing)
+      - [`theme-typography-round`](#theme-typography-round)
+      - [`with-width`](#with-width)
+    - [v4.0.0](#v400)
+      - [`theme-spacing-api`](#theme-spacing-api)
+      - [`optimal-imports`](#optimal-imports)
+      - [`top-level-imports`](#top-level-imports)
+    - [v1.0.0](#v100)
+      - [`import-path`](#import-path)
+      - [`color-imports`](#color-imports)
+      - [`svg-icon-imports`](#svg-icon-imports)
+    - [v0.15.0](#v0150)
+      - [`import-path`](#import-path-1)
 
 #### `adapter-v4`
 
@@ -424,26 +438,18 @@ The diff should look like this:
 
 ```diff
 -<TextField value="Standard" />
--<TextField value="Outlined" variant="outlined" />
 +<TextField value="Standard" variant="standard" />
-+<TextField value="Outlined" />
 ```
 
 ```diff
 -<Select value="Standard" />
--<Select value="Outlined" variant="outlined" />
 +<Select value="Standard" variant="standard" />
-+<Select value="Outlined" />
 ```
 
 ```diff
 -<FormControl value="Standard" />
--<FormControl value="Outlined" variant="outlined" />
 +<FormControl value="Standard" variant="standard" />
-+<FormControl value="Outlined" />
 ```
-
-This codemod is **non-idempotent** (`variant="standard"` would be added on a subsequent run, where `variant="outlined"` was removed), so it should only be run once against any particular codebase.
 
 <!-- #default-branch-switch -->
 
