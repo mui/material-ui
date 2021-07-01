@@ -4,7 +4,7 @@ import transformAvatarCircular from './avatar-circle-circular';
 import transformBadgeOverlap from './badge-overlap-value';
 import transformBoxBorderRadius from './box-borderradius-values';
 import transformBoxRenameGap from './box-rename-gap';
-import transformBoxSxProp from './box-sx-prop';
+import transformBoxRenameCss from './box-rename-css';
 import transformButtonColorProp from './button-color-prop';
 import transformChipVariantProp from './chip-variant-prop';
 import transformCircularProgressVariant from './circularprogress-variant';
@@ -38,7 +38,7 @@ export default function transformer(file, api, options) {
   file.source = transformBadgeOverlap(file, api, options);
   file.source = transformBoxBorderRadius(file, api, options);
   file.source = transformBoxRenameGap(file, api, options);
-  file.source = transformBoxSxProp(file, api, options);
+  file.source = transformBoxRenameCss(file, api, options);
   file.source = transformButtonColorProp(file, api, options);
   file.source = transformChipVariantProp(file, api, options);
   file.source = transformCircularProgressVariant(file, api, options);

@@ -29,14 +29,13 @@ const DarkContext = React.createContext();
 
 const Test = withWidth()((props) => (
   <Box
-    sx={{
-      p: 2,
-      bgcolor: "divider",
-      borderRadius: "16px",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between"
-    }}>
+    p={2}
+    bgcolor="divider"
+    borderRadius="16px"
+    display="flex"
+    alignItems="center"
+    justifyContent="space-between"
+  >
     {props.width}
     <CircularProgress value={80} variant="determinate" classes={{ determinate: 'className' }} />
   </Box>
@@ -91,21 +90,14 @@ const Header = () => {
         <Typography className={classes.head} variant="h6">
           👋 Hello
         </Typography>
-        <Box
-          sx={{
-            ml: "auto"
-          }} />
+        <Box ml="auto" />
         <Autocomplete
           className={classes.autocomplete}
           options={top100Films}
           getOptionLabel={(option) => option.title}
           renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
           clearIcon={
-            <Box
-              sx={{
-                fontSize: 12,
-                width: 20
-              }}>
+            <Box fontSize={12} width={20}>
               &nbsp;❌
             </Box>
           }
@@ -131,12 +123,7 @@ function App() {
     <Container>
       <Grid container spacing={2} justifyContent="center" alignItems="center">
         <Grid item xs={6} sm={4} md={3}>
-          <Box
-            sx={{
-              p: 2,
-              display: "flex",
-              alignItems: "center"
-            }}>
+          <Box p={2} display="flex" alignItems="center">
             <Badge
               color="secondary"
               badgeContent=" "
@@ -145,10 +132,7 @@ function App() {
             >
               <Avatar variant="circular" classes={{ circular: classes.avatar }} />
             </Badge>
-            <Box
-              sx={{
-                ml: 2
-              }}>
+            <Box ml={2}>
               <Typography>My name is ...</Typography>
               <Typography variant="h5">
                 <b>siriwatknp</b>
