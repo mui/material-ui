@@ -1,5 +1,5 @@
 ---
-title: React Accordion component
+title: React アコーディオン コンポーネント
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 ---
 
@@ -23,7 +23,7 @@ components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 
 ## カスタマイズされた拡張パネル
 
-コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/accordion/CustomizedAccordions.js"}}
 

@@ -29,9 +29,34 @@ grow from it.
 
 We're currently looking for help in the following areas:
 
-### [Senior Software Engineer](/company/software-engineer/)
+### Engineering
 
-We are looking for senior software engineers to help support our open-source components, assist the Material-UI community, and grow our enterprise edition.
+#### [Software Engineer Intern](/company/software-engineer-intern/)
+
+We're looking for software engineering intern to help support our open-source library, assist the Material-UI community, and help us build new components.
+
+## Future roles
+
+In the future, we will need to fill the following positions. If you don't want to wait for the positions to be opened, you can jump ahead and submit an [open application](https://airtable.com/shr9JdBSiE6noobhc).
+
+### Engineering
+
+- No plans yet
+
+### Product
+
+- **Technical Product Manager**. You'll be combining customer feedback with the goals of the business to manage our roadmap and determine the next killer features. You'll work with our design, engineering and marketing teams to see those features through the entire development -> marketing cycle. You'll focus on measuring and driving adoption, and conversion across our funnel.
+- **Developer Advocate**. Educate on the latest Material-UI features, craft high-quality examples and demos, engage with the community. Write documentation, and advocate for creating faster and more appealing UIs.
+- **Product Designer**. Design is critical to the success of our mission. We will be looking for skills that complement our lead designer. It could be a graphic designer or a UX expert for instance, depending on our exact needs.
+
+### Operations
+
+- **Head of talent**. Recruit an exceptional team and lay the foundations for a modern corporation.
+We will be looking for a self-starter who acts as a strategic designer, builder, and champion for our engineering-centric and customer-oriented culture. They will serve as part of the company’s leadership team, collaborating to continuously evolve our high-performance, high-engagement crew.
+
+### Customer Success
+
+- **Support Engineer**. Ensure that our users wildly succeed on their journey with Material-UI. You’ll directly work with users, customers, and potential customers to unblock them from using the products, triage and resolve issues, and use this direct feedback to drive direct improvements in Material-UI.
 
 ## FAQs
 

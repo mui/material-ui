@@ -1,5 +1,5 @@
 ---
-title: React Button component
+title: React Button コンポーネント
 components: Button, IconButton, ButtonBase
 ---
 
@@ -17,7 +17,7 @@ components: Button, IconButton, ButtonBase
 
 ## Contained Buttons
 
-[Contained buttons](https://material.io/design/components/buttons.html#contained-button) are high-emphasis, distinguished by their use of elevation and fill. アプリ内で強調すべきアクションを含みます。
+[Contained buttons](https://material.io/design/components/buttons.html#contained-button) は影と塗りつぶしによって区別される、強調されたボタンです。 アプリ内で強調すべきアクションを含みます。
 
 {{"demo": "pages/components/buttons/ContainedButtons.js"}}
 
@@ -38,7 +38,7 @@ Cardでは、テキストボタンを使用することでCardの内容に重点
 
 ## Outlined Buttons
 
-[Outlined buttons](https://material.io/design/components/buttons.html#outlined-button) は少し強調されたボタンです。 重要ではあるが、一番ではないアクションを含みます。 重要ではあるが、一番ではないアクションを含みます。 重要ではあるが、一番ではないアクションを含みます。
+[Outlined buttons](https://material.io/design/components/buttons.html#outlined-button) は少し強調されたボタンです。 重要ではあるが、一番ではないアクションを含みます。 重要ではあるが、一番ではないアクションを含みます。 重要ではあるが、一番ではないアクションを含みます。 重要ではあるが、一番ではないアクションを含みます。
 
 Outlined buttonは、Contained buttonより弱く、 Text buttonよりは強い強調をします。
 
@@ -49,7 +49,7 @@ Outlined buttonは、Contained buttonより弱く、 Text buttonよりは強い�
 全てのコンポーネントは `onClick`を受け付けます。これはルートのDOM要素に適用されます。
 
 ```jsx
-<Button onClick={() => { alert('clicked') }}>クリックして!</Button>
+<Button onClick={() => { alert('clicked') }}>Click me</Button>
 ```
 
 ドキュメントでは(多すぎるので)ネイティブpropsに関しては [言及していない](/guides/api/#native-properties)ことに注意してください。
@@ -66,7 +66,7 @@ Outlined buttonは、Contained buttonより弱く、 Text buttonよりは強い�
 
 ## Buttons with icons and label
 
-ロゴはプレーンテキストよりも認識しやすいため、ボタンにアイコンを追加してアプリケーションのUXを強化したい場合があります。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。
+ロゴはプレーンテキストよりも認識しやすいため、ボタンにアイコンを追加してアプリケーションのUXを強化したい場合があります。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。 たとえば、削除ボタンにごみ箱アイコンを付けるような場合です。
 
 {{"demo": "pages/components/buttons/IconLabelButtons.js"}}
 
@@ -80,7 +80,7 @@ Outlined buttonは、Contained buttonより弱く、 Text buttonよりは強い�
 
 ## カスタムButton
 
-コンポーネントのカスタマイズの例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズの例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
@@ -88,13 +88,13 @@ Outlined buttonは、Contained buttonより弱く、 Text buttonよりは強い�
 
 ## 複雑なButton
 
-テキストボタン、コンテインボタン、フローティングアクションボタン、アイコンボタンは、同じコンポーネント(`ButtonBase`) を元に作成されています。 この元のコンポーネントを利用して独自のインタラクションを構築できます。 この元のコンポーネントを利用して独自のインタラクションを構築できます。
+テキストボタン、コンテインボタン、フローティングアクションボタン、アイコンボタンは、同じコンポーネント(`ButtonBase`) を元に作成されています。 この元のコンポーネントを利用して独自のインタラクションを構築できます。
 
 {{"demo": "pages/components/buttons/ButtonBase.js"}}
 
 ## サードパーティ製ルーティングライブラリ
 
-一般的な使用例の1つは、ボタンを使用して新しいページへのナビゲーションを発火することです。 `ButtonBase` コンポーネントは、このユースケースを扱うためのプロパティを提供します 。 ただし、特定のフォーカスについては` ButtonBase `には提供されているコンポーネントのDOMノードが必要です。 コンポーネントにrefを添付し、コンポーネントが基のDOMノードにrefを継承することを期待して成り立っています。 多くのインタラクティブなコンポーネントが `ButtonBase` に依存していることから、どこでもこの機能を使うことができるはずです。
+一般的な使用例の1つは、ボタンを使用して新しいページへのナビゲーションを発火することです。 The `ButtonBase` component provides a property to handle this use case: `component`. ただし、特定のフォーカスについては` ButtonBase `には提供されているコンポーネントのDOMノードが必要です。 コンポーネントにrefを添付し、コンポーネントが基のDOMノードにrefを継承することを期待して成り立っています。 多くのインタラクティブなコンポーネントが `ButtonBase` に依存していることから、どこでもこの機能を使うことができるはずです。
 
 こちらは [react-routerとの統合例](/guides/composition/#button).
 

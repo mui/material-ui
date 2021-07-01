@@ -1,5 +1,5 @@
 ---
-title: Date picker, Time picker React components
+title: Datumsauswahl, Zeit Auswahl Reagieren Sie auf React Komponenten
 components: TextField
 ---
 
@@ -12,7 +12,7 @@ components: TextField
 
 ## @material-ui/pickers
 
-![stars](https://img.shields.io/github/stars/mui-org/material-ui-pickers.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/@material-ui/pickers.svg)
+![sterne](https://img.shields.io/github/stars/mui-org/material-ui-pickers.svg?style=social&label=Stars) ![npm downloads](https://img.shields.io/npm/dm/@material-ui/pickers.svg)
 
 [@material-ui/pickers](https://material-ui-pickers.dev/) bietet weitere Datums- und Zeitauswahlmöglichkeiten.
 

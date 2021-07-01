@@ -1,5 +1,5 @@
 ---
-title: React Container component
+title: React Container コンポーネント
 components: Container
 ---
 

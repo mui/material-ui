@@ -1,5 +1,5 @@
 ---
-title: React Chip component
+title: Composant React Chip (puces)
 components: Chip
 ---
 
