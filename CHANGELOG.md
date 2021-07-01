@@ -50,6 +50,7 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - <!-- 19 --> [Box] Fix TypeScript error on maxWidth prop (#26859) @ansh-saini
 - <!-- 04 --> [Dialog] Automatically label by its DialogTitle (#26814) @eps1lon
 - <!-- 32 --> [Hidden] Bring back and mark as deprecated (#26908) @siriwatknp
+- <!-- 53 --> [List] Add button runtime deprecation warning (#26743) @siriwatknp
 - <!-- 03 --> [Modal] Type BackdropProps according to styled version (#26836) @eps1lon
 - <!-- 21 --> [Radio] Fix `defaultValue` to match the other value types  (#26945) @oliviertassinari
 - <!-- 48 --> [Stepper] Add completed to global pseudo-classes (#26953) @michal-perlakowski
@@ -88,6 +89,7 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 #### Changes
 
 - <!-- 12 --> [lab] Fix missing dependency on unstyled (#26937) @fishyFrogFace
+- <!-- 50 --> [pickers] Consider TDate in ToolbarComponent types (#27035) @michal-perlakowski
 
 ### `@material-ui/system@5.0.0-beta.0`
 
@@ -107,6 +109,8 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - <!-- 16 --> [docs] Use custom webpack loader for markdown (#26774) @eps1lon
 - <!-- 11 --> [docs] Fix 301 links (#26942) @oliviertassinari
 - <!-- 01 --> [docs] Add page for the `sx` prop (#26769) @mnajdova
+- <!-- 52 --> [docs] pre-fill issue when a demo crashes (#27034) @eps1lon
+- <!-- 54 --> [docs] Move styled page under system (#26818)
 
 ### Core
 
@@ -127,10 +131,10 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - <!-- 10 --> [test] Convert Popover tests to testing-library (#26913) @eps1lon
 - <!-- 08 --> [test] Convert Modal tests to testing-library (#26912) @eps1lon
 - <!-- 07 --> [test] Make remaining testing-library tests StrictMode compatible (#26924) @eps1lon
+- <!-- 51 --> [test] Only allow wrapping enzyme mount not creating (#27018) @eps1lon
 - <!-- 06 --> [typescript] Disallow spreading TransitionHandlerProps (#26927) @eps1lon
 
-All contributors of this release in alphabetical order: @ansh-saini, @BC-M, @CarlosGomez-dev, @DouglasPds, @eps1lon, @fishyFrogFace, @michal-perlakowski,
-@michaldudak, @mnajdova, @oliviertassinari, @siriwatknp, @steveafrost, @varandasi
+All contributors of this release in alphabetical order: @ansh-saini, @BC-M, @CarlosGomez-dev, @DouglasPds, @eps1lon, @fishyFrogFace, @michal-perlakowski, @michaldudak, @mnajdova, @oliviertassinari, @siriwatknp, @steveafrost, @varandasi
 
 ## 5.0.0-alpha.38
 
