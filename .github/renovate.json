@@ -46,6 +46,11 @@
       "allowedVersions": "< 2.0.0"
     },
     {
+      "groupName": "react-spring",
+      "matchPackageNames": ["react-spring"],
+      "allowedVersions": "< 9.0.0"
+    },
+    {
       "groupName": "React",
       "matchPackageNames": ["react", "react-dom", "react-is", "react-test-renderer"]
     },
