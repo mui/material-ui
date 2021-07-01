@@ -15,5 +15,5 @@ export default function transformer(file, api) {
     root,
     componentName: 'Collapse',
     classes: { container: 'root' },
-  }).toSource();
+  });
 }
