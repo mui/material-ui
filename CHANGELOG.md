@@ -65,7 +65,7 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 
 - <!-- 29 --> [icons] Regenerate transpiled files (#26985) @eps1lon
 
-### @material-ui/lab@5.0.0-beta.0
+### @material-ui/lab@5.0.0-alpha.39
 
 #### Breaking changes
 
