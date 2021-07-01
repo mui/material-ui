@@ -4,7 +4,7 @@ import Select from '@material-ui/core/Select';
 
 export default function SelectOverflow() {
   return (
-    <Select value={10} sx={{ maxWidth: 100 }}>
+    <Select value={10} style={{ maxWidth: 100 }}>
       <MenuItem value="">
         <em>None</em>
       </MenuItem>

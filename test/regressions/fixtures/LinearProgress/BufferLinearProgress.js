@@ -7,7 +7,7 @@ export default function DeterminateLinearProgress() {
       variant="buffer"
       value={60}
       valueBuffer={80}
-      sx={{
+      style={{
         width: 150,
       }}
     />
