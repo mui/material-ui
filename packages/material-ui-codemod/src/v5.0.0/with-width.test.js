@@ -39,6 +39,20 @@ describe('@material-ui/codemod', () => {
         const expected = read('./with-width.test/expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+
+      it('should not remove import from core', () => {
+        const actual = transform(
+          {
+            source: read('./with-width.test/no-withwidth.actual.js'),
+            path: require.resolve('./with-width.test/no-withwidth.actual.js'),
+          },
+          { jscodeshift: jscodeshift },
+          {},
+        );
+
+        const expected = read('./with-width.test/no-withwidth.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
     });
   });
 });

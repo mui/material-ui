@@ -38,9 +38,9 @@ export default function transformer(file, api, options) {
           );
         });
 
-      if (node.specifiers.length > 1) {
-        node.specifiers = node.specifiers.filter((s) => s.imported.name !== 'withWidth');
-      } else {
+      node.specifiers = node.specifiers.filter((s) => s.imported.name !== 'withWidth');
+
+      if (!node.specifiers.length) {
         shouldRemoveImport = true;
       }
     });
