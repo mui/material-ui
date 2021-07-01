@@ -22,6 +22,7 @@ import transformThemePaletteMode from './theme-palette-mode';
 import transformThemeProvider from './theme-provider';
 import transformThemeSpacing from './theme-spacing';
 import transformThemeTypographyRound from './theme-typography-round';
+import transformTypes from './material-ui-types';
 import transformUseTransitionProps from './use-transitionprops';
 import transformVariantProp from './variant-prop';
 import transformWithWidth from './with-width';
@@ -55,6 +56,7 @@ export default function transformer(file, api, options) {
   file.source = transformThemeProvider(file, api, options);
   file.source = transformThemeSpacing(file, api, options);
   file.source = transformThemeTypographyRound(file, api, options);
+  file.source = transformTypes(file, api, options);
   file.source = transformUseTransitionProps(file, api, options);
   file.source = transformVariantProp(file, api, options);
   file.source = transformWithWidth(file, api, options);
