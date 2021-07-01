@@ -5,7 +5,7 @@ components: Pagination, PaginationItem
 
 # Pagination
 
-<p class="description">The Pagination component enables the user to select a specific page from a range of pages.</p>
+<p class="description">Pagination コンポーネントにより、範囲から特定のページを選択できます。</p>
 
 ## Basic pagination
 
@@ -25,11 +25,11 @@ components: Pagination, PaginationItem
 
 ## Button
 
-You can optionally enable first-page and last-page buttons, or disable the previous-page and next-page buttons.
+必要に応じて、最初のページと最後のページへのボタンを有効にしたり、前のページと次のページへのボタンを無効にしたりできます。
 
 {{"demo": "pages/components/pagination/PaginationButtons.js"}}
 
-## Pagination ranges
+## ページネーションの範囲
 
 You can specify how many digits to display either side of current page with the `siblingRange` prop, and adjacent to the start and end page number with the `boundaryRange` prop.
 
@@ -45,7 +45,7 @@ You can specify how many digits to display either side of current page with the 
 
 ## `usePagination`
 
-For advanced customization use cases, we expose a headless `usePagination()` hook. It accepts almost the same options as the Pagination component minus all the props related to the rendering of JSX. The Pagination component uses this hook internally.
+高度なカスタマイズのユースケースでは、ヘッドレスな`usePagination()` フックを公開しています。 It accepts almost the same options as the Pagination component minus all the props related to the rendering of JSX. The Pagination component uses this hook internally.
 
 ```jsx
 import { usePagination } from '@material-ui/lab/Pagination';
@@ -55,7 +55,7 @@ import { usePagination } from '@material-ui/lab/Pagination';
 
 ## Table pagination
 
-The `Pagination` component was designed to paginate a list of arbitrary items when infinite loading isn't used. It's preferred in contexts where SEO is important, for instance, a blog.
+`Pagination` コンポーネントは、無限ローディングが使用されない場合に任意のアイテムのリストをページネーションするように設計されています。 It's preferred in contexts where SEO is important, for instance, a blog.
 
 For the pagination of a large set of tabular data, you should use the `TablePagination` component.
 

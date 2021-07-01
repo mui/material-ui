@@ -56,6 +56,7 @@ O status atual de cada versão do Material-UI é o seguinte:
 - Material-UI v4 (hooks): ✅ Em desenvolvimento ativo.
 - Material-UI v3 (alteração de navegadores suportados): ⚠️ Somente correções de segurança.
 - ~Material-UI v2 (nunca existiu)~.
+- ~Material-UI v2 (nunca existiu)~.
 - Material-UI v1 (reescrita): ❌ Inativa.
 - Material-UI v0.x: ❌ Inativa.
 

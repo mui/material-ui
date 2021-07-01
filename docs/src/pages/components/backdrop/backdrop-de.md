@@ -1,12 +1,12 @@
 ---
-title: Backdrop React Component
+title: Backdrop React Komponente
 components: Backdrop
 ---
 
-# Backdrop
+# Hintergrund
 
-<p class="description">The backdrop component is used to provide emphasis on a particular element or parts of it.</p>
+<p class="description">Die Hintergrundkomponente wird verwendet, um ein bestimmtes Element oder Teile davon hervorzuheben.</p>
 
-The backdrop signals to the user of a state change within the application and can be used for creating loaders, dialogs and more. In its simplest form, the backdrop component will add a dimmed layer over your application.
+Der Hintergrund signalisiert dem Benutzer eine Zustandsänderung innerhalb der Anwendung und kann zum Erstellen von Ladern, Dialogfeldern und mehr verwendet werden. In ihrer einfachsten Form fügt die Hintergrundkomponente eine abgeblendete Ebene über Ihrer Anwendung hinzu.
 
 {{"demo": "pages/components/backdrop/SimpleBackdrop.js"}}

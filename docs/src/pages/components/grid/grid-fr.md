@@ -1,5 +1,5 @@
 ---
-title: React Grid component
+title: React Grid composant
 components: Grid
 ---
 
@@ -9,7 +9,7 @@ components: Grid
 
 [Grid](https://material.io/design/layout/responsive-layout-grid.html) créé une cohérence visuelle entre les agencements tout en permettant une certaine flexibilité à travers une grande variété de modèles. L’UI responsive de Material Design est basée sur une grille de 12 colonnes.
 
-> ⚠️ The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/components/data-grid/).
+> ⚠️ Le composant `Grille` ne doit pas être confondu avec une grille de données ; il est plus proche d'une grille de mise en page. For a data grid head to [the `DataGrid` component](/components/data-grid/).
 
 ## Comment ça marche
 
@@ -33,7 +33,7 @@ Cette fonction de transformation de sortie peut être personnalisée [à l'aide 
 
 ## Les grilles fluides
 
-Fluid grids use columns that scale and resize content. A fluid grid’s layout can use breakpoints to determine if the layout needs to change dramatically.
+Les grilles fluides utilisent des colonnes qui mettent à l'échelle et redimensionnent le contenu. A fluid grid’s layout can use breakpoints to determine if the layout needs to change dramatically.
 
 ### Grille de base
 
@@ -105,7 +105,7 @@ La configuration initiale sur les éléments flex est `min-width: auto`. Cela pr
   <Typography noWrap>
 ```
 
-In order for the item to stay within the container you need to set `min-width: 0`. In practice, you can set the `zeroMinWidth` property:
+In order for the item to stay within the container you need to set `min-width: 0`. En pratique, vous pouvez définir la propriété `zeroMinWidth` :
 
 ```jsx
 <Grid item xs zeroMinWidth>
@@ -118,7 +118,7 @@ In order for the item to stay within the container you need to set `min-width: 0
 
 Bien que le composant `Grid` ait une propriété `direction` qui autorise les valeurs de `rows`, `row-reverse`, `column` et `column-reverse`, certaines fonctionnalités ne sont pas prises en charge dans les containers `rows` et `column-reverse`. Les propriétés qui définissent le nombre de grilles que le composant utilisera pour un point d' arrêt donné (`xs`, `sm`, `md`, `lg`et `xl`) sont centrées sur le contrôle de la largeur et n'ont **pas** d'effets similaires sur la hauteur dans les conteneurs `column` et `column-reverse`. Si elle est utilisée à l'intérieur des containers `column` ou `column-reverse` , ces propriétés peuvent avoir des effets indésirables sur la largeur des éléments `Grid` .
 
-## CSS Grid Layout
+## Disposition de la grille CSS
 
 Material-UI ne fournit aucune fonctionnalité de grille CSS, mais comme illustré ci-dessous, vous pouvez facilement utiliser CSS Grid pour mettre en page vos pages.
 

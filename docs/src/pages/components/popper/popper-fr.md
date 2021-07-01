@@ -1,5 +1,5 @@
 ---
-title: React Popper component
+title: Composant React Popper
 components: Popper
 ---
 
@@ -27,7 +27,7 @@ The open/close state of the popper can be animated with a render prop child and 
 
 - Be a direct child descendent of the popper.
 - Appeler la propriété de callback `onEnter` lorsque la transition d'entrée démarre.
-- Appeler la propriété de callback `onExited` lorsque la transition de sortie est terminée. Call the `onExited` callback prop when the exit transition is completed.
+- Appeler la propriété de callback `onExited` lorsque la transition de sortie est terminée. Appeler la propriété de callback `onExited` lorsque la transition de sortie est terminée.
 
 Popper has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group).
 

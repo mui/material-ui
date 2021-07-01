@@ -9,13 +9,13 @@ components: ToggleButton, ToggleButtonGroup
 
 ToggleButton sets `aria-pressed="<bool>"` according to the button state. ToggleButton sets `aria-pressed="<bool>"` according to the button state.
 
-## Exclusive selection
+## 排他的な選択
 
 Text justification toggle buttons present options for left, right, center, full, and justified text with only one item available for selection at a time. Selecting one option deselects any other.
 
 {{"demo": "pages/components/toggle-button/ToggleButtons.js"}}
 
-## Multiple selection
+## 複数選択
 
 Logically-grouped options, like bold, italic, and underline, allow multiple options to be selected.
 
@@ -27,11 +27,11 @@ Logically-grouped options, like bold, italic, and underline, allow multiple opti
 
 {{"demo": "pages/components/toggle-button/ToggleButtonSizes.js"}}
 
-## Vertical buttons
+## 垂直方向のボタン
 
 {{"demo": "pages/components/toggle-button/VerticalToggleButtons.js"}}
 
-## Enforce value set
+## 値がセットされていることを強制する
 
 If you want to enforce at least one button to be active, you can adapt your handleChange function.
 
@@ -55,13 +55,13 @@ const handleAlignment = (event, newAlignment) => {
 
 {{"demo": "pages/components/toggle-button/StandaloneToggleButton.js"}}
 
-## Customized toggle button
+## カスタマイズされたトグルボタン
 
-コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
+コンポーネントのカスタマイズ例を次に示します。 詳細については、 [オーバーライドのドキュメントページ](/customization/components/)を参照してください。
 
 {{"demo": "pages/components/toggle-button/CustomizedDividers.js", "bg": true}}
 
 ## アクセシビリティ
 
-- ToggleButtonGroup has `role="group"`. You should provide an accessible label with `aria-label="label"`, `aria-labelledby="id"` or `<label>`.
-- ToggleButton sets `aria-pressed="<bool>"` according to the button state. You should label each button with `aria-label`.
+- ToggleButtonGroup には `role="group"` が付与されています。 `aria-label="label"`, `aria-labelledby="id"` または `<label>` でアクセシビリティのためにラベルを指定する必要があります。
+- ToggleButton は、ボタンの状態によって `aria-pressed="<bool>"` を設定します。 各ボタンに `aria-label` を付けてください。

@@ -38,12 +38,13 @@ Material-UI は [Semantic Versioning 2.0.0](https://semver.org/) に従いバー
 
 ## リリーススケジュール
 
-| Date     | Version | Status   |
-|:-------- |:------- |:-------- |
-| 2018年 5月 | v1.0.0  | Released |
-| 2018年 9月 | v3.0.0  | Released |
-| 2019年 5月 | v4.0.0  | Released |
-| Q1 2021  | v5.0.0  | ⏳        |
+| Date      | Version     | Status   |
+|:--------- |:----------- |:-------- |
+| 2018年 5月  | v1.0.0      | Released |
+| 2018年 9月  | v3.0.0      | Released |
+| 2019年 5月  | v4.0.0      | Released |
+| 2021年7月1日 | v5.0.beta.0 | 処理中です    |
+| 2021年9月1日 | v5.0.0      | ⏳        |
 
 
 詳細な概要については [マイルストーン](https://github.com/mui-org/material-ui/milestones) をご覧ください。
