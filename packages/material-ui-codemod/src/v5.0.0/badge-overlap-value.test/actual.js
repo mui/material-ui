@@ -25,4 +25,12 @@
       '& .MuiBadge-anchorOriginBottomLeftCircle': {},
     }}
   />
+  <Badge
+    classes={{
+      ...badgeClasses,
+      badge: badgeClasses.badge,
+    }}
+  >
+    {icon}
+  </Badge>
 </div>;
