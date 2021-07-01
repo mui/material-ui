@@ -45,6 +45,30 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
   </button>
   ```
 
+#### Changes
+
+- <!-- 19 --> [Box] Fix TypeScript error on maxWidth prop (#26859) @ansh-saini
+- <!-- 04 --> [Dialog] Automatically label by its DialogTitle (#26814) @eps1lon
+- <!-- 32 --> [Hidden] Bring back and mark as deprecated (#26908) @siriwatknp
+- <!-- 03 --> [Modal] Type BackdropProps according to styled version (#26836) @eps1lon
+- <!-- 21 --> [Radio] Fix `defaultValue` to match the other value types  (#26945) @oliviertassinari
+- <!-- 48 --> [Stepper] Add completed to global pseudo-classes (#26953) @michal-perlakowski
+- <!-- 25 --> [Stepper] Fix support for no connectors (#26874) @varandasi
+- <!-- 20 --> [TextField] Prevent `hiddenLabel` from spreading to DOM (#26864) @siriwatknp
+- <!-- 18 --> [TextField] Fix label disappearing when focusing a button (#26933) @michal-perlakowski
+
+### `@material-ui/codemod@5.0.0-beta.0`
+
+- <!-- 37 --> [codemod] Add CLI (#26941) @eps1lon
+
+### @material-ui/icons@5.0.0-beta.0
+
+- <!-- 29 --> [icons] Regenerate transpiled files (#26985) @eps1lon
+
+### @material-ui/lab@5.0.0-beta.0
+
+#### Breaking changes
+
 - [DatePicker] Remove helper text default value (#26866) @DouglasPds
 
   Make the default rendered text field closer to the most common use cases (denser).
@@ -63,33 +87,26 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 
 #### Changes
 
-- <!-- 19 --> [Box] Fix TypeScript error on maxWidth prop (#26859) @ansh-saini
-- <!-- 04 --> [Dialog] Automatically label by its DialogTitle (#26814) @eps1lon
-- <!-- 32 --> [Hidden] Bring back and mark as deprecated (#26908) @siriwatknp
-- <!-- 03 --> [Modal] Type BackdropProps according to styled version (#26836) @eps1lon
-- <!-- 21 --> [Radio] Fix `defaultValue` to match the other value types  (#26945) @oliviertassinari
-- <!-- 48 --> [Stepper] Add completed to global pseudo-classes (#26953) @michal-perlakowski
-- <!-- 25 --> [Stepper] Fix support for no connectors (#26874) @varandasi
-- <!-- 20 --> [TextField] Prevent `hiddenLabel` from spreading to DOM (#26864) @siriwatknp
-- <!-- 18 --> [TextField] Fix label disappearing when focusing a button (#26933) @michal-perlakowski
-
-### `@material-ui/codemod@5.0.0-beta.0`
-
-- <!-- 37 --> [codemod] Add CLI (#26941) @eps1lon
-- <!-- 09 --> [codemod] Correct codemod path (#26932) @BC-M
-- <!-- 23 --> [codemod] Improve DX when using the package (#26936) @oliviertassinari
-
-### @material-ui/icons@5.0.0-beta.0
-
-- <!-- 29 --> [icons] Regenerate transpiled files (#26985) @eps1lon
-
-### @material-ui/lab@5.0.0-beta.0
-
 - <!-- 12 --> [lab] Fix missing dependency on unstyled (#26937) @fishyFrogFace
 
 ### `@material-ui/system@5.0.0-beta.0`
 
 - <!-- 14 --> [system] Support array overridesResolver (#26824) @siriwatknp
+
+### Docs
+
+- <!-- 49 --> [docs] Add notes to Table demo about stableSort (#27025) @CarlosGomez-dev
+- <!-- 47 --> [docs] Add gold sponsor (#26968) @oliviertassinari
+- <!-- 42 --> [docs] Update unstyled demos to not depend on `@material-ui/core` (#26869) @mnajdova
+- <!-- 41 --> [docs] Fix demo paths in windows (#27004) @eps1lon
+- <!-- 40 --> [docs] Export all locales (#27002) @eps1lon
+- <!-- 38 --> [docs] Misc CONTRIBUTING.md changes (#26925) @eps1lon
+- <!-- 35 --> [docs] Fix /components/hidden merge conflict (#26997) @eps1lon
+- <!-- 26 --> [docs] Fix 404 links (#26963) @oliviertassinari
+- <!-- 24 --> [docs] Remove link that points to v4 blog post (#26960) @steveafrost
+- <!-- 16 --> [docs] Use custom webpack loader for markdown (#26774) @eps1lon
+- <!-- 11 --> [docs] Fix 301 links (#26942) @oliviertassinari
+- <!-- 01 --> [docs] Add page for the `sx` prop (#26769) @mnajdova
 
 ### Core
 
@@ -111,21 +128,6 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - <!-- 08 --> [test] Convert Modal tests to testing-library (#26912) @eps1lon
 - <!-- 07 --> [test] Make remaining testing-library tests StrictMode compatible (#26924) @eps1lon
 - <!-- 06 --> [typescript] Disallow spreading TransitionHandlerProps (#26927) @eps1lon
-
-### Docs
-
-- <!-- 49 --> [docs] Add notes to Table demo about stableSort (#27025) @CarlosGomez-dev
-- <!-- 47 --> [docs] Add gold sponsor (#26968) @oliviertassinari
-- <!-- 42 --> [docs] Update unstyled demos to not depend on `@material-ui/core` (#26869) @mnajdova
-- <!-- 41 --> [docs] Fix demo paths in windows (#27004) @eps1lon
-- <!-- 40 --> [docs] Export all locales (#27002) @eps1lon
-- <!-- 38 --> [docs] Misc CONTRIBUTING.md changes (#26925) @eps1lon
-- <!-- 35 --> [docs] Fix /components/hidden merge conflict (#26997) @eps1lon
-- <!-- 26 --> [docs] Fix 404 links (#26963) @oliviertassinari
-- <!-- 24 --> [docs] Remove link that points to v4 blog post (#26960) @steveafrost
-- <!-- 16 --> [docs] Use custom webpack loader for markdown (#26774) @eps1lon
-- <!-- 11 --> [docs] Fix 301 links (#26942) @oliviertassinari
-- <!-- 01 --> [docs] Add page for the `sx` prop (#26769) @mnajdova
 
 All contributors of this release in alphabetical order: @ansh-saini, @BC-M, @CarlosGomez-dev, @DouglasPds, @eps1lon, @fishyFrogFace, @michal-perlakowski,
 @michaldudak, @mnajdova, @oliviertassinari, @siriwatknp, @steveafrost, @varandasi

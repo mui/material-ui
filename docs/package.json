@@ -34,7 +34,7 @@
     "@material-ui/data-grid": "^4.0.0-alpha.29",
     "@material-ui/docs": "5.0.0-beta.0",
     "@material-ui/icons": "5.0.0-beta.0",
-    "@material-ui/lab": "5.0.0-beta.0",
+    "@material-ui/lab": "5.0.0-alpha.39",
     "@material-ui/styled-engine": "5.0.0-beta.0",
     "@material-ui/styled-engine-sc": "5.0.0-beta.0",
     "@material-ui/styles": "5.0.0-beta.0",
