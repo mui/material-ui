@@ -52,7 +52,6 @@ describe('<Popover />', () => {
     classes,
     inheritComponent: Modal,
     render,
-    mount,
     muiName: 'MuiPopover',
     refInstanceof: window.HTMLDivElement,
     testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },

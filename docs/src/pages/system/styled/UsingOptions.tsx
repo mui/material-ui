@@ -1,42 +1,9 @@
 import * as React from 'react';
-import {
-  styled,
-  createTheme,
-  ThemeProvider,
-  ComponentsVariants,
-  ComponentsOverrides,
-} from '@material-ui/core/styles';
+import { styled, createTheme, ThemeProvider } from '@material-ui/system';
 
 interface MyThemeComponentProps {
   color?: 'primary' | 'secondary';
   variant?: 'normal' | 'dashed';
-}
-
-interface CustomComponentNameToClassKey {
-  MyThemeComponent: 'root' | 'primary' | 'secondary';
-}
-
-interface CustomComponentsPropsList {
-  MyThemeComponent?: MyThemeComponentProps;
-}
-
-interface CustomComponents {
-  MyThemeComponent?: {
-    styleOverrides?: ComponentsOverrides['MyThemeComponent'];
-    variants?: ComponentsVariants['MyThemeComponent'];
-  };
-}
-
-declare module '@material-ui/core/styles/overrides' {
-  interface ComponentNameToClassKey extends CustomComponentNameToClassKey {}
-}
-
-declare module '@material-ui/core/styles/props' {
-  interface ComponentsPropsList extends CustomComponentsPropsList {}
-}
-
-declare module '@material-ui/core/styles/components' {
-  interface Components extends CustomComponents {}
 }
 
 const customTheme = createTheme({
