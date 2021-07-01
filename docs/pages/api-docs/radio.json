@@ -17,7 +17,11 @@
     "inputProps": { "type": { "name": "object" } },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },
     "name": { "type": { "name": "string" } },
-    "onChange": { "type": { "name": "func" } },
+    "onChange": {
+      "type": { "name": "func" },
+      "deprecated": true,
+      "deprecationInfo": "This signature <code>(event, checked) =&gt; void</code> is deprecated in a future release. Use <code>(event) =&gt; { event.target.checked }</code> instead."
+    },
     "required": { "type": { "name": "bool" } },
     "size": {
       "type": {
