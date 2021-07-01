@@ -262,7 +262,9 @@ describe('<Modal />', () => {
           <div data-testid="modal" tabIndex={-1} />
         </Modal>,
       );
-      getByTestId('modal').focus();
+      act(() => {
+        getByTestId('modal').focus();
+      });
 
       fireEvent.keyDown(getByTestId('modal'), {
         key: 'j', // Not escape
@@ -281,7 +283,9 @@ describe('<Modal />', () => {
           </Modal>
         </div>,
       );
-      getByTestId('modal').focus();
+      act(() => {
+        getByTestId('modal').focus();
+      });
 
       fireEvent.keyDown(getByTestId('modal'), {
         key: 'Escape',
@@ -301,7 +305,9 @@ describe('<Modal />', () => {
           </Modal>
         </div>,
       );
-      getByTestId('modal').focus();
+      act(() => {
+        getByTestId('modal').focus();
+      });
 
       fireEvent.keyDown(getByTestId('modal'), {
         key: 'Escape',
@@ -402,7 +408,9 @@ describe('<Modal />', () => {
       initialFocus = document.createElement('button');
       initialFocus.tabIndex = 0;
       document.body.appendChild(initialFocus);
-      initialFocus.focus();
+      act(() => {
+        initialFocus.focus();
+      });
     });
 
     afterEach(() => {
@@ -532,6 +540,8 @@ describe('<Modal />', () => {
 
         act(() => {
           getByTestId('foreign-input').focus();
+        });
+        act(() => {
           // wait for the `contain` interval check to kick in.
           clock.tick(500);
         });

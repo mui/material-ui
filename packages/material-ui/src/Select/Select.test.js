@@ -461,7 +461,9 @@ describe('<Select />', () => {
     specify('the listbox is focusable', () => {
       const { getByRole } = render(<Select open value="" />);
 
-      getByRole('listbox').focus();
+      act(() => {
+        getByRole('listbox').focus();
+      });
 
       expect(getByRole('listbox')).toHaveFocus();
     });
@@ -696,7 +698,9 @@ describe('<Select />', () => {
       }
       const { container, getByRole } = render(<ControlledWrapper />);
       const openSelect = container.querySelector('#open-select');
-      openSelect.focus();
+      act(() => {
+        openSelect.focus();
+      });
       fireEvent.click(openSelect);
 
       const option = getByRole('option');

@@ -15,7 +15,9 @@ describe('<TrapFocus />', () => {
     initialFocus = document.createElement('button');
     initialFocus.tabIndex = 0;
     document.body.appendChild(initialFocus);
-    initialFocus.focus();
+    act(() => {
+      initialFocus.focus();
+    });
   });
 
   afterEach(() => {
@@ -35,7 +37,9 @@ describe('<TrapFocus />', () => {
 
     expect(getByTestId('auto-focus')).toHaveFocus();
 
-    initialFocus.focus();
+    act(() => {
+      initialFocus.focus();
+    });
     expect(getByTestId('root')).toHaveFocus();
   });
 
@@ -52,7 +56,9 @@ describe('<TrapFocus />', () => {
 
     expect(getByTestId('auto-focus')).toHaveFocus();
 
-    initialFocus.focus();
+    act(() => {
+      initialFocus.focus();
+    });
 
     expect(initialFocus).toHaveFocus();
   });
@@ -116,7 +122,9 @@ describe('<TrapFocus />', () => {
     }
     const { setProps } = render(<Test />);
     const portaledTextbox = screen.getByTestId('portal-input');
-    portaledTextbox.focus();
+    act(() => {
+      portaledTextbox.focus();
+    });
 
     // sanity check
     expect(portaledTextbox).toHaveFocus();
@@ -209,12 +217,16 @@ describe('<TrapFocus />', () => {
     const { setProps, getByRole } = render(<Test />);
     expect(screen.getByTestId('root')).toHaveFocus();
 
-    getByRole('textbox').focus();
+    act(() => {
+      getByRole('textbox').focus();
+    });
     expect(getByRole('textbox')).not.toHaveFocus();
 
     setProps({ isEnabled: () => false });
 
-    getByRole('textbox').focus();
+    act(() => {
+      getByRole('textbox').focus();
+    });
     expect(getByRole('textbox')).toHaveFocus();
   });
 
@@ -301,7 +313,9 @@ describe('<TrapFocus />', () => {
       const { setProps } = render(<WithRemovableElement />);
 
       expect(screen.getByTestId('root')).toHaveFocus();
-      screen.getByTestId('hide-button').focus();
+      act(() => {
+        screen.getByTestId('hide-button').focus();
+      });
       expect(screen.getByTestId('hide-button')).toHaveFocus();
 
       setProps({ hideButton: true });
@@ -321,10 +335,14 @@ describe('<TrapFocus />', () => {
           </div>,
         );
 
-        clock.tick(500); // trigger an interval call
+        act(() => {
+          clock.tick(500); // trigger an interval call
+        });
         expect(initialFocus).toHaveFocus();
 
-        getByRole('textbox').focus(); // trigger a focus event
+        act(() => {
+          getByRole('textbox').focus();
+        });
         expect(getByRole('textbox')).toHaveFocus();
       });
 
@@ -342,15 +360,21 @@ describe('<TrapFocus />', () => {
 
         expect(initialFocus).toHaveFocus();
 
-        screen.getByTestId('outside-input').focus();
+        act(() => {
+          screen.getByTestId('outside-input').focus();
+        });
         expect(screen.getByTestId('outside-input')).toHaveFocus();
 
         // the trap activates
-        screen.getByTestId('focus-input').focus();
+        act(() => {
+          screen.getByTestId('focus-input').focus();
+        });
         expect(screen.getByTestId('focus-input')).toHaveFocus();
 
         // the trap prevent to escape
-        screen.getByTestId('outside-input').focus();
+        act(() => {
+          screen.getByTestId('outside-input').focus();
+        });
         expect(screen.getByTestId('root')).toHaveFocus();
       });
 
@@ -369,11 +393,15 @@ describe('<TrapFocus />', () => {
         const { setProps } = render(<Test />);
 
         // set the expected focus restore location
-        screen.getByTestId('outside-input').focus();
+        act(() => {
+          screen.getByTestId('outside-input').focus();
+        });
         expect(screen.getByTestId('outside-input')).toHaveFocus();
 
         // the trap activates
-        screen.getByTestId('root').focus();
+        act(() => {
+          screen.getByTestId('root').focus();
+        });
         expect(screen.getByTestId('root')).toHaveFocus();
 
         // restore the focus to the first element before triggering the trap
