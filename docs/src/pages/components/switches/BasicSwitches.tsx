@@ -8,6 +8,7 @@ export default function BasicSwitches() {
     <div>
       <Switch {...label} defaultChecked />
       <Switch {...label} />
+      <Switch {...label} disabled defaultChecked />
       <Switch {...label} disabled />
     </div>
   );
