@@ -23,6 +23,10 @@ export default function TextFieldComponent(props) {
         getOptionLabel={(option) => option.title}
         renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
       />
+      <CustomSelect />
+      <SelectedRoute />
+      <FromToSelect />
+      <FromToSelectDrawer />
     </div>
   );
 }
