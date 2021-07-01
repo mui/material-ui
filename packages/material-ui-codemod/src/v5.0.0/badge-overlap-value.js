@@ -5,7 +5,7 @@
 export default function transformer(file, api) {
   const j = api.jscodeshift;
 
-  return j(file.source)
+  let source = j(file.source)
     .findJSXElements('Badge')
 
     .forEach((path) => {
@@ -31,4 +31,8 @@ export default function transformer(file, api) {
       });
     })
     .toSource();
+
+  return source
+    .replace(/(\.MuiBadge-.*)ircle/gm, '$1ircular')
+    .replace(/(\.MuiBadge-.*)ectangle/gm, '$1ectangular');
 }

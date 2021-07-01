@@ -68,7 +68,7 @@ const useStyles = makeStyles(({ palette, breakpoints, spacing, typography }) => 
   badge: {
     width: 10,
     height: 10,
-    '&.MuiBadge-anchorOriginTopRightCircle': {
+    '&.MuiBadge-anchorOriginTopRightCircular': {
       backgroundColor: palette.success.main,
     },
   },

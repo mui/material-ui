@@ -12,4 +12,17 @@
       anchorOriginTopLeftCircle: 'className',
     }}
   />
-</div>
+  <Box
+    sx={{
+      '& .MuiBadge-circle, & .MuiBadge-rectangle': {},
+      '& .MuiBadge-anchorOriginTopRightRectangle': {},
+      '& .MuiBadge-anchorOriginBottomRightRectangle': {},
+      '& .MuiBadge-anchorOriginTopLeftRectangle': {},
+      '& .MuiBadge-anchorOriginBottomLeftRectangle': {},
+      '& .MuiBadge-anchorOriginTopRightCircle': {},
+      '& .MuiBadge-anchorOriginBottomRightCircle': {},
+      '& .MuiBadge-anchorOriginTopLeftCircle': {},
+      '& .MuiBadge-anchorOriginBottomLeftCircle': {},
+    }}
+  />
+</div>;
