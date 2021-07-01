@@ -6,7 +6,7 @@ import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import StaticDateRangePicker from '@material-ui/lab/StaticDateRangePicker';
 import { describeConformance } from 'test/utils';
 import {
-  createPickerMount,
+  wrapPickerMount,
   createPickerRender,
   adapterToUse,
   getAllByMuiTest,
@@ -28,7 +28,6 @@ describe('<StaticDateRangePicker />', () => {
     clock.restore();
   });
 
-  const mount = createPickerMount();
   const render = createPickerRender();
 
   describeConformance(
@@ -39,7 +38,7 @@ describe('<StaticDateRangePicker />', () => {
     />,
     () => ({
       classes: {},
-      mount,
+      wrapMount: wrapPickerMount,
       refInstanceof: undefined,
       skip: [
         'componentProp',

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, createClientRender } from 'test/utils';
+import { createClientRender } from 'test/utils';
 import HiddenCss from './HiddenCss';
 import { createTheme, ThemeProvider } from '../styles';
 import classes from './hiddenCssClasses';
@@ -8,10 +8,6 @@ import classes from './hiddenCssClasses';
 const TestChild = () => <div data-testid="test-child">bar</div>;
 
 describe('<HiddenCss />', () => {
-  /**
-   * @type {ReturnType<typeof createMount>}
-   */
-  const mount = createMount();
   const render = createClientRender();
 
   describe('the generated class names', () => {
@@ -140,7 +136,7 @@ describe('<HiddenCss />', () => {
 
   it('warns about excess props (potentially undeclared breakpoints)', () => {
     expect(() => {
-      mount(
+      render(
         <HiddenCss xxlUp>
           <div />
         </HiddenCss>,

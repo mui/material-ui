@@ -4,13 +4,12 @@ import { fireEvent, screen, describeConformanceV5 } from 'test/utils';
 import CalendarPicker, { calendarPickerClasses as classes } from '@material-ui/lab/CalendarPicker';
 import {
   adapterToUse,
-  createPickerMount,
+  wrapPickerMount,
   createPickerRender,
   getAllByMuiTest,
 } from '../internal/pickers/test-utils';
 
 describe('<CalendarPicker />', () => {
-  const mount = createPickerMount();
   const render = createPickerRender({ strict: false });
 
   describeConformanceV5(<CalendarPicker date={adapterToUse.date()} onChange={() => {}} />, () => ({
@@ -18,7 +17,7 @@ describe('<CalendarPicker />', () => {
     inheritComponent: 'div',
     render,
     muiName: 'MuiCalendarPicker',
-    mount,
+    wrapMount: wrapPickerMount,
     refInstanceof: window.HTMLDivElement,
     // cannot test reactTestRenderer because of required context
     skip: [

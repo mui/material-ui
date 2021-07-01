@@ -68,7 +68,7 @@ const SpeedDialIcon = React.forwardRef(function SpeedDialIcon(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiSpeedDialIcon' });
   const { className, icon: iconProp, open, openIcon: openIconProp, ...other } = props;
 
-  const styleProps = { ...props };
+  const styleProps = props;
   const classes = useUtilityClasses(styleProps);
 
   function formatIcon(icon, newClassName) {
