@@ -23,14 +23,14 @@ export default function transformer(file, api, options) {
 
   const stylesPackage = '@material-ui/styles';
 
-  utils.processImportFrom('@material-ui/core/styles', (nodes) => {
+  utils.processImportFrom(/^@material-ui\/core(\/styles)?$/, (nodes) => {
     nodes.forEach((path) => {
       const importList = [];
       const removedList = [];
-      path.node.specifiers.forEach(({ imported }, index) => {
+      path.node.specifiers.forEach(({ imported, local }, index) => {
         if (list.includes(imported.name)) {
           importList.push(
-            utils.createImportDeclaration(imported.name, `${stylesPackage}/${imported.name}`),
+            utils.createImportDeclaration(local.name, `${stylesPackage}/${imported.name}`),
           );
           removedList.push(index);
         }
