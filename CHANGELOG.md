@@ -8,9 +8,9 @@ _Jul 01, 2021_
 
 Big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
 
-- 🎉 This is the first beta release of v5! Huge thanks to everyone who helped to make this happen!
+- 🎉 This is the first beta release of v5! A huge thanks to everyone who helped to make this happen! We're targeting the 1st of September for a stable release, and will use the next two months to polish v5, and ease the migration from v4. You can follow [the v5 stable milestone](https://github.com/mui-org/material-ui/milestone/44) for more details. We now encourage any new projects to start on v5.
 - 🚀 We have completed all the planned breaking changes.
-- ⚒️ We added the codemod CLI to simplify migration to v5 (#26941) @eps1lon
+- ⚒️ We added the codemod CLI to simplify migration to v5 (#26941) @eps1lon. You can find it at [`@material-ui/codemod`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod).
 - 🐛 The majority of other changes in this release were bug fixes, test utilities and docs.
 
 ### `@material-ui/core@5.0.0-beta.0`
@@ -97,7 +97,6 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - <!-- 43 --> [core] Remove unused props clone (#26992) @oliviertassinari
 - <!-- 36 --> [core] Fix tests on Windows (#26931) @michaldudak
 - <!-- 31 --> [core] Fix merge conflict between #26954 and #26874 @oliviertassinari
-- <!-- 30 --> [core] Touch dependabot.yml to see if it fixes it @oliviertassinari
 - <!-- 22 --> [core] Upgrade issues-helper to v2 (#26955) @michal-perlakowski
 - <!-- 05 --> [core] Fix merge conflict (#26928) @eps1lon
 - <!-- 45 --> [test] Convert HiddenCSS tests to testing-library (#27019) @eps1lon
