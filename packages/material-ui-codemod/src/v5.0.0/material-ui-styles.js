@@ -40,6 +40,8 @@ export default function transformer(file, api, options) {
       );
       path.insertAfter(...importList);
     });
+
+    nodes.filter((path) => !path.node.specifiers.length).remove();
   });
 
   return utils.root.toSource(printOptions);
