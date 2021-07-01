@@ -29,12 +29,12 @@
     "build:es": "node ../../scripts/build es",
     "build:copy-files": "node ../../scripts/copy-files.js",
     "prebuild": "rimraf build",
-    "release": "yarn build && npm publish build --tag deprecations",
+    "release": "yarn build && npm publish build --tag latest",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-lab/**/*.test.js' --exclude '**/node_modules/**'",
     "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
   },
   "peerDependencies": {
-    "@material-ui/core": "^4.11.3-deprecations.1",
+    "@material-ui/core": "^4.11.4",
     "@types/react": "^16.8.6 || ^17.0.0",
     "react": "^16.8.0 || ^17.0.0",
     "react-dom": "^16.8.0 || ^17.0.0"
