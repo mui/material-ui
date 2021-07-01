@@ -4,10 +4,15 @@
 
 ## Introduction
 
-All the Material-UI components are styled with the `styled()` utility from `@material-ui/core/styles`.
+All the Material-UI components are styled with this `styled()` utility.
 This utility is built on top of the `styled()` module of [`@material-ui/styled-engine`](/guides/styled-engine/) and provides additional features.
 
-## What problems does it solve?
+### Import path
+
+You can use the utility coming from the `@material-ui/system` package, or if you are using `@material-ui/core`, you can import it from `@material-ui/core/styles`.
+The difference is in the default `theme` that is used (if no theme is available in the React context).
+
+### What problems does it solve?
 
 The utility can be used as a replacement for emotion's or styled-components' styled() utility.
 It aims to solve the same problem, but also provides the following benefits:
@@ -41,21 +46,21 @@ It aims to solve the same problem, but also provides the following benefits:
 
 ## Basic usage
 
-{{"demo": "pages/customization/styled/BasicUsage.js", "defaultCodeOpen": true}}
+{{"demo": "pages/system/styled/BasicUsage.js", "defaultCodeOpen": true}}
 
 ## Using the theme
 
-{{"demo": "pages/customization/styled/ThemeUsage.js", "defaultCodeOpen": true}}
+{{"demo": "pages/system/styled/ThemeUsage.js", "defaultCodeOpen": true}}
 
 ## Custom components
 
 This example demonstrates how you can use the `styled` API to create custom components, with the same capabilities as the core components:
 
-{{"demo": "pages/customization/styled/UsingOptions.js", "defaultCodeOpen": true }}
+{{"demo": "pages/system/styled/UsingOptions.js", "defaultCodeOpen": true }}
 
 If you inspect this element with the browser DevTools, you will notice that the class of the component now ends with the `MyTestComponent-root`, which comes from the `name` and `slot` options that were provided. In addition to this, the `color` and `variant` props are not propagated to the generated `div` element.
 
-<img src="/static/images/customization/styled-options.png" alt="Developer tools showing the rendered component" width="312" />
+<img src="/static/images/system/styled-options.png" alt="Developer tools showing the rendered component" width="312" />
 
 ## Removing features
 
@@ -66,7 +71,23 @@ const StyledComponent = styled('div', {}, {
    name: 'MuiStyled',
    slot: 'Root',
 -  overridesResolver: (props, styles) => styles.root, // disables theme.components[name].styleOverrides
-+  skipVariantsResolver: true, // disable theme.components[name].variants
-+  skipSx: true, // disable the sx prop
++  skipVariantsResolver: true, // disables theme.components[name].variants
++  skipSx: true, // disables the sx prop
 })
+```
+
+## Create custom `styled()` utility
+
+If you want to have a different default theme for the `styled()` utility, you can create your own version of it, using the `createStyled()` utility.
+
+```js
+import { createStyled, createTheme } from '@material-ui/system';
+
+const defaultTheme = createTheme({
+  // your custom theme values
+});
+
+const styled = createStyled({ defaultTheme });
+
+export default styled;
 ```
