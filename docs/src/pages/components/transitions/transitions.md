@@ -48,6 +48,12 @@ Similarly, the `unmountOnExit` prop removes the component from the DOM after it 
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 
+### Slide from target DOM node
+
+The Slide component also receives `targetRef` prop, which is a reference to a DOM node. So the slide component would slide from the edge of the target DOM node.
+
+{{"demo": "pages/components/transitions/SimpleSlideFromTargetRef.js", "bg": true}}
+
 ## Zoom
 
 Expand outwards from the center of the child element.
