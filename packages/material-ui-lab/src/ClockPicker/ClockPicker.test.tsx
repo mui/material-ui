@@ -356,7 +356,9 @@ describe('<ClockPicker />', () => {
 
       fireEvent.keyDown(listbox, { key: 'ArrowUp' });
 
+      expect(handleChange.callCount).to.equal(1);
       const [newDate] = handleChange.firstCall.args;
+      expect(adapterToUse.getHours(newDate)).to.equal(5);
       expect(adapterToUse.getMinutes(newDate)).to.equal(19);
       expect(adapterToUse.getSeconds(newDate)).to.equal(47);
     });
@@ -368,7 +370,9 @@ describe('<ClockPicker />', () => {
 
       fireEvent.keyDown(listbox, { key: 'ArrowUp' });
 
+      expect(handleChange.callCount).to.equal(1);
       const [newDate] = handleChange.firstCall.args;
+      expect(adapterToUse.getHours(newDate)).to.equal(1);
       expect(adapterToUse.getMinutes(newDate)).to.equal(0);
       expect(adapterToUse.getSeconds(newDate)).to.equal(0);
     });
