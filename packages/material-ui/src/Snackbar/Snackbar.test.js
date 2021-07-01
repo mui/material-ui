@@ -30,9 +30,7 @@ describe('<Snackbar />', () => {
    */
   function render(...args) {
     const result = clientRender(...args);
-    act(() => {
-      clock.tick(0);
-    });
+    clock.next();
     return result;
   }
 
