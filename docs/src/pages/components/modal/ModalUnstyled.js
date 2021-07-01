@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
+import { styled, Box } from '@material-ui/system';
 import ModalUnstyled from '@material-ui/unstyled/ModalUnstyled';
 
 const StyledModal = styled(ModalUnstyled)`
@@ -54,9 +53,7 @@ export default function ModalUnstyledDemo() {
       >
         <Box sx={style}>
           <h2 id="unstyled-modal-title">Text in a modal</h2>
-          <p id="unstyled-modal-description">
-            Aliquid amet deserunt earum eos nihil officia porro, quasi quibusdam!
-          </p>
+          <p id="unstyled-modal-description">Aliquid amet deserunt earum!</p>
         </Box>
       </StyledModal>
     </div>

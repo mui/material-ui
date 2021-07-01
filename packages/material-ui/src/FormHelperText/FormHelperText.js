@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import capitalize from '../utils/capitalize';
 import formHelperTextClasses, { getFormHelperTextUtilityClasses } from './formHelperTextClasses';
 import useThemeProps from '../styles/useThemeProps';
@@ -27,18 +27,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getFormHelperTextUtilityClasses, classes);
 };
 
-const FormHelperTextRoot = experimentalStyled('p', {
+const FormHelperTextRoot = styled('p', {
   name: 'MuiFormHelperText',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...(styleProps.size && styles[`size${capitalize(styleProps.size)}`]),
-      ...(styleProps.contained && styles.contained),
-      ...(styleProps.filled && styles.filled),
-    };
+    return [
+      styles.root,
+      styleProps.size && styles[`size${capitalize(styleProps.size)}`],
+      styleProps.contained && styles.contained,
+      styleProps.filled && styles.filled,
+    ];
   },
 })(({ theme, styleProps }) => ({
   color: theme.palette.text.secondary,

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import { ClockView, CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from './shared';
 
 export interface ClockPointerProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -9,36 +9,36 @@ export interface ClockPointerProps extends React.HTMLAttributes<HTMLDivElement> 
   value: number;
 }
 
-const ClockPointerRoot = experimentalStyled('div', { skipSx: true })(
-  ({ theme, styleProps = {} }) => ({
-    width: 2,
-    backgroundColor: theme.palette.primary.main,
-    position: 'absolute',
-    left: 'calc(50% - 1px)',
-    bottom: '50%',
-    transformOrigin: 'center bottom 0px',
-    ...(!!styleProps.toAnimateTransform && {
-      transition: theme.transitions.create(['transform', 'height']),
-    }),
+const ClockPointerRoot = styled('div', { skipSx: true })<{
+  styleProps: ClockPointerProps & ClockPointer['state'];
+}>(({ theme, styleProps }) => ({
+  width: 2,
+  backgroundColor: theme.palette.primary.main,
+  position: 'absolute',
+  left: 'calc(50% - 1px)',
+  bottom: '50%',
+  transformOrigin: 'center bottom 0px',
+  ...(styleProps.toAnimateTransform && {
+    transition: theme.transitions.create(['transform', 'height']),
   }),
-);
+}));
 
-const ClockPointerThumb = experimentalStyled('div', { skipSx: true })(
-  ({ theme, styleProps = {} }) => ({
-    width: 4,
-    height: 4,
-    backgroundColor: theme.palette.primary.contrastText,
-    borderRadius: '50%',
-    position: 'absolute',
-    top: -21,
-    left: `calc(50% - ${CLOCK_HOUR_WIDTH / 2}px)`,
-    border: `${(CLOCK_HOUR_WIDTH - 4) / 2}px solid ${theme.palette.primary.main}`,
-    boxSizing: 'content-box',
-    ...(!!styleProps.hasSelected && {
-      backgroundColor: theme.palette.primary.main,
-    }),
+const ClockPointerThumb = styled('div', { skipSx: true })<{
+  styleProps: ClockPointerProps & ClockPointer['state'];
+}>(({ theme, styleProps }) => ({
+  width: 4,
+  height: 4,
+  backgroundColor: theme.palette.primary.contrastText,
+  borderRadius: '50%',
+  position: 'absolute',
+  top: -21,
+  left: `calc(50% - ${CLOCK_HOUR_WIDTH / 2}px)`,
+  border: `${(CLOCK_HOUR_WIDTH - 4) / 2}px solid ${theme.palette.primary.main}`,
+  boxSizing: 'content-box',
+  ...(styleProps.hasSelected && {
+    backgroundColor: theme.palette.primary.main,
   }),
-);
+}));
 
 /**
  * @ignore - internal component.

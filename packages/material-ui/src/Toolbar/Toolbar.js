@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import { getToolbarUtilityClass } from './toolbarClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -16,17 +16,13 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getToolbarUtilityClass, classes);
 };
 
-const ToolbarRoot = experimentalStyled('div', {
+const ToolbarRoot = styled('div', {
   name: 'MuiToolbar',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...(!styleProps.disableGutters && styles.gutters),
-      ...styles[styleProps.variant],
-    };
+    return [styles.root, !styleProps.disableGutters && styles.gutters, styles[styleProps.variant]];
   },
 })(
   ({ theme, styleProps }) => ({

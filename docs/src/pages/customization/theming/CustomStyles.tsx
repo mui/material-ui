@@ -1,10 +1,6 @@
 import * as React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
-import {
-  createTheme,
-  ThemeProvider,
-  experimentalStyled as styled,
-} from '@material-ui/core/styles';
+import { createTheme, ThemeProvider, styled } from '@material-ui/core/styles';
 import { orange } from '@material-ui/core/colors';
 
 declare module '@material-ui/core/styles' {

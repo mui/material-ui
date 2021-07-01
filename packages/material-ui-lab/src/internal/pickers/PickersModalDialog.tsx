@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import Dialog, { DialogProps as MuiDialogProps, dialogClasses } from '@material-ui/core/Dialog';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import { DIALOG_WIDTH } from './constants/dimensions';
 
 export interface ExportedPickerModalProps {
@@ -67,18 +67,18 @@ const PickersModalDialogContent = styled(DialogContent, { skipSx: true })({
   },
 });
 
-const PickersModalDialogActions = styled(DialogActions, { skipSx: true })(
-  ({ styleProps = {} }) => ({
-    ...((!!styleProps.clearable || !!styleProps.showTodayButton) && {
-      // set justifyContent to default value to fix IE11 layout bug
-      // see https://github.com/mui-org/material-ui-pickers/pull/267
-      justifyContent: 'flex-start',
-      '& > *:first-of-type': {
-        marginRight: 'auto',
-      },
-    }),
+const PickersModalDialogActions = styled(DialogActions, { skipSx: true })<{
+  styleProps: PickersModalDialogProps;
+}>(({ styleProps }) => ({
+  ...((styleProps.clearable || styleProps.showTodayButton) && {
+    // set justifyContent to default value to fix IE11 layout bug
+    // see https://github.com/mui-org/material-ui-pickers/pull/267
+    justifyContent: 'flex-start',
+    '& > *:first-of-type': {
+      marginRight: 'auto',
+    },
   }),
-);
+}));
 
 const PickersModalDialog = (props: React.PropsWithChildren<PickersModalDialogProps>) => {
   const {
@@ -97,8 +97,7 @@ const PickersModalDialog = (props: React.PropsWithChildren<PickersModalDialogPro
     todayText = 'Today',
   } = props;
 
-  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
-  const styleProps = { ...props };
+  const styleProps = props;
 
   return (
     <PickersModalDialogRoot open={open} onClose={onDismiss} {...DialogProps}>

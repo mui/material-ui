@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import ButtonBase from '../ButtonBase';
 import AccordionContext from '../Accordion/AccordionContext';
@@ -23,7 +23,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAccordionSummaryUtilityClass, classes);
 };
 
-const AccordionSummaryRoot = experimentalStyled(ButtonBase, {
+const AccordionSummaryRoot = styled(ButtonBase, {
   name: 'MuiAccordionSummary',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -58,7 +58,7 @@ const AccordionSummaryRoot = experimentalStyled(ButtonBase, {
   };
 });
 
-const AccordionSummaryContent = experimentalStyled('div', {
+const AccordionSummaryContent = styled('div', {
   name: 'MuiAccordionSummary',
   slot: 'Content',
   overridesResolver: (props, styles) => styles.content,
@@ -78,7 +78,7 @@ const AccordionSummaryContent = experimentalStyled('div', {
   }),
 }));
 
-const AccordionSummaryExpandIconWrapper = experimentalStyled('div', {
+const AccordionSummaryExpandIconWrapper = styled('div', {
   name: 'MuiAccordionSummary',
   slot: 'ExpandIconWrapper',
   overridesResolver: (props, styles) => styles.expandIconWrapper,

@@ -59,7 +59,7 @@ const StaticDatePicker = React.forwardRef(function StaticDatePicker<TDate>(
     displayStaticWrapperAs = 'mobile',
     ...other
   } = props;
-  const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
+  const DateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
     <StaticWrapper displayStaticWrapperAs={displayStaticWrapperAs}>
@@ -67,7 +67,7 @@ const StaticDatePicker = React.forwardRef(function StaticDatePicker<TDate>(
         {...pickerProps}
         toolbarTitle={props.label || props.toolbarTitle}
         ToolbarComponent={ToolbarComponent}
-        DateInputProps={AllDateInputProps}
+        DateInputProps={DateInputProps}
         {...other}
       />
     </StaticWrapper>
@@ -85,15 +85,14 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
    */
   acceptRegex: PropTypes.instanceOf(RegExp),
   /**
-   * Enables keyboard listener for moving between days in calendar.
-   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
-   */
-  allowKeyboardControl: PropTypes.bool,
-  /**
    * If `true`, `onChange` is fired on click even if the same date is selected.
    * @default false
    */
   allowSameDateSelection: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  autoFocus: PropTypes.bool,
   /**
    * className applied to the root component.
    */
@@ -106,6 +105,7 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
   components: PropTypes.shape({
     LeftArrowButton: PropTypes.elementType,
     LeftArrowIcon: PropTypes.elementType,
+    OpenPickerIcon: PropTypes.elementType,
     RightArrowButton: PropTypes.elementType,
     RightArrowIcon: PropTypes.elementType,
     SwitchViewButton: PropTypes.elementType,
@@ -278,10 +278,6 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
    * Props to pass to keyboard adornment button.
    */
   OpenPickerButtonProps: PropTypes.object,
-  /**
-   * Icon displaying for open picker button.
-   */
-  openPickerIcon: PropTypes.node,
   /**
    * First view to show.
    */

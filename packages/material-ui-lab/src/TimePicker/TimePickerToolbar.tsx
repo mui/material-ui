@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { useTheme, experimentalStyled as styled, Theme } from '@material-ui/core/styles';
+import { useTheme, styled, Theme } from '@material-ui/core/styles';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
@@ -67,7 +67,9 @@ const useUtilityClasses = (styleProps: TimePickerToolbarProps & { theme: Theme }
   return composeClasses(slots, getTimePickerToolbarUtilityClass, classes);
 };
 
-const TimePickerToolbarRoot = styled(PickersToolbar, { skipSx: true })({
+const TimePickerToolbarRoot = styled(PickersToolbar, { skipSx: true })<{
+  styleProps: TimePickerToolbarProps;
+}>({
   [`& .${timePickerToolbarClasses.penIconLandscape}`]: {
     marginTop: 'auto',
   },
@@ -79,26 +81,28 @@ const TimePickerToolbarSeparator = styled(PickersToolbarText, { skipSx: true })(
   cursor: 'default',
 });
 
-const TimePickerToolbarHourMinuteLabel = styled('div', { skipSx: true })(
-  ({ theme, styleProps = {} }) => ({
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-    ...(!!styleProps.isLandscape && {
-      marginTop: 'auto',
-    }),
-    ...(theme.direction === 'rtl' && {
-      flexDirection: 'row-reverse',
-    }),
+const TimePickerToolbarHourMinuteLabel = styled('div', { skipSx: true })<{
+  styleProps: TimePickerToolbarProps;
+}>(({ theme, styleProps }) => ({
+  display: 'flex',
+  justifyContent: 'flex-end',
+  alignItems: 'flex-end',
+  ...(styleProps.isLandscape && {
+    marginTop: 'auto',
   }),
-);
+  ...(theme.direction === 'rtl' && {
+    flexDirection: 'row-reverse',
+  }),
+}));
 
-const TimePickerToolbarAmPmSelection = styled('div', { skipSx: true })(({ styleProps = {} }) => ({
+const TimePickerToolbarAmPmSelection = styled('div', { skipSx: true })<{
+  styleProps: TimePickerToolbarProps;
+}>(({ styleProps }) => ({
   display: 'flex',
   flexDirection: 'column',
   marginRight: 'auto',
   marginLeft: 12,
-  ...(!!styleProps.isLandscape && {
+  ...(styleProps.isLandscape && {
     margin: '4px 0 auto',
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -135,7 +139,7 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps> = (props) => {
   const formatHours = (time: unknown) =>
     ampm ? utils.format(time, 'hours12h') : utils.format(time, 'hours24h');
 
-  const styleProps = { ...props };
+  const styleProps = props;
   const classes = useUtilityClasses({ ...styleProps, theme });
 
   const separator = (

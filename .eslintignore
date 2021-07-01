@@ -2,7 +2,6 @@
 /.yarn
 /benchmark/**/dist
 /coverage
-/docs/.next
 /docs/export
 /examples/create-react-app*/src/serviceWorker.js
 /examples/gatsby/public/
@@ -22,6 +21,12 @@
 /packages/material-ui-utils/macros/__fixtures__/
 # Ignore fixtures
 /packages/typescript-to-proptypes/test/*/*
+/test/bundling/fixtures/**/*.fixture.js
+# just an import that reports eslint errors depending on whether the fixture (which is not checked in) exists
+/test/bundling/fixtures/create-react-app/src/index.js
+/test/bundling/fixtures/gatsby/.cache
+/test/bundling/fixtures/gatsby/public
 /tmp
+.next
 build
 node_modules

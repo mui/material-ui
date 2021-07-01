@@ -14,7 +14,6 @@ describe('breakpoints', () => {
     expect(palette.filterProps.length).to.equal(6);
     expect(
       palette({
-        theme: {},
         color: 'red',
         sm: {
           color: 'blue',

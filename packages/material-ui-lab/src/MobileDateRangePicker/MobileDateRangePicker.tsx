@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
+import { useThemeProps } from '@material-ui/core/styles';
 import MobileWrapper, { MobileWrapperProps } from '../internal/pickers/wrappers/MobileWrapper';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { useParsedDate } from '../internal/pickers/hooks/date-helpers-hooks';
@@ -26,6 +26,13 @@ interface BaseDateRangePickerProps<TDate>
   extends ExportedDateRangePickerViewProps<TDate>,
     ValidationProps<DateRangeValidationError, RangeInput<TDate>>,
     ExportedDateRangePickerInputProps {
+  /**
+   * The components used for each slot.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components?: ExportedDateRangePickerViewProps<TDate>['components'] &
+    ExportedDateRangePickerInputProps['components'];
   /**
    * Text for end input label and toolbar placeholder.
    * @default 'End'
@@ -109,8 +116,9 @@ const MobileDateRangePicker = React.forwardRef(function MobileDateRangePicker<TD
   const utils = useUtils();
   const minDate = useParsedDate(minDateProp);
   const maxDate = useParsedDate(maxDateProp);
-  const [currentlySelectingRangeEnd, setCurrentlySelectingRangeEnd] =
-    React.useState<'start' | 'end'>('start');
+  const [currentlySelectingRangeEnd, setCurrentlySelectingRangeEnd] = React.useState<
+    'start' | 'end'
+  >('start');
 
   const pickerStateProps = {
     ...other,
@@ -177,15 +185,14 @@ MobileDateRangePicker.propTypes /* remove-proptypes */ = {
    */
   acceptRegex: PropTypes.instanceOf(RegExp),
   /**
-   * Enables keyboard listener for moving between days in calendar.
-   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
-   */
-  allowKeyboardControl: PropTypes.bool,
-  /**
    * If `true`, `onChange` is fired on click even if the same date is selected.
    * @default false
    */
   allowSameDateSelection: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  autoFocus: PropTypes.bool,
   /**
    * The number of calendars that render on **desktop**.
    * @default 2
@@ -222,6 +229,7 @@ MobileDateRangePicker.propTypes /* remove-proptypes */ = {
   components: PropTypes.shape({
     LeftArrowButton: PropTypes.elementType,
     LeftArrowIcon: PropTypes.elementType,
+    OpenPickerIcon: PropTypes.elementType,
     RightArrowButton: PropTypes.elementType,
     RightArrowIcon: PropTypes.elementType,
     SwitchViewButton: PropTypes.elementType,
@@ -397,10 +405,6 @@ MobileDateRangePicker.propTypes /* remove-proptypes */ = {
    * Props to pass to keyboard adornment button.
    */
   OpenPickerButtonProps: PropTypes.object,
-  /**
-   * Icon displaying for open picker button.
-   */
-  openPickerIcon: PropTypes.node,
   /**
    * Force rendering in particular orientation.
    */

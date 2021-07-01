@@ -1,60 +1,52 @@
 import { deepmerge } from '@material-ui/utils';
 import { generateUtilityClass } from '@material-ui/unstyled';
-import createBreakpoints from './createBreakpoints';
+import { createTheme as systemCreateTheme } from '@material-ui/system';
 import createMixins from './createMixins';
 import createPalette from './createPalette';
 import createTypography from './createTypography';
 import shadows from './shadows';
-import shape from './shape';
-import createSpacing from './createSpacing';
 import createTransitions from './createTransitions';
 import zIndex from './zIndex';
 
 function createTheme(options = {}, ...args) {
   const {
-    breakpoints: breakpointsInput = {},
+    breakpoints: breakpointsInput,
     mixins: mixinsInput = {},
-    palette: paletteInput = {},
     spacing: spacingInput,
+    palette: paletteInput = {},
     transitions: transitionsInput = {},
     typography: typographyInput = {},
+    shape: shapeInput,
     ...other
   } = options;
 
   const palette = createPalette(paletteInput);
-  const breakpoints = createBreakpoints(breakpointsInput);
-  const spacing = createSpacing(spacingInput);
+  const systemTheme = systemCreateTheme(options);
 
-  let muiTheme = deepmerge(
-    {
-      breakpoints,
-      direction: 'ltr',
-      mixins: createMixins(breakpoints, spacing, mixinsInput),
-      components: {}, // Inject component definitions
-      palette,
-      // Don't use [...shadows] until you've verified its transpiled code is not invoking the iterator protocol.
-      shadows: shadows.slice(),
-      typography: createTypography(palette, typographyInput),
-      spacing,
-      shape: { ...shape },
-      transitions: createTransitions(transitionsInput),
-      zIndex: { ...zIndex },
-    },
-    other,
-  );
+  let muiTheme = deepmerge(systemTheme, {
+    mixins: createMixins(systemTheme.breakpoints, systemTheme.spacing, mixinsInput),
+    palette,
+    // Don't use [...shadows] until you've verified its transpiled code is not invoking the iterator protocol.
+    shadows: shadows.slice(),
+    typography: createTypography(palette, typographyInput),
+    transitions: createTransitions(transitionsInput),
+    zIndex: { ...zIndex },
+  });
 
+  muiTheme = deepmerge(muiTheme, other);
   muiTheme = args.reduce((acc, argument) => deepmerge(acc, argument), muiTheme);
 
   if (process.env.NODE_ENV !== 'production') {
     const pseudoClasses = [
       'active',
       'checked',
+      'completed',
       'disabled',
       'error',
+      'expanded',
       'focused',
       'focusVisible',
       'required',
-      'expanded',
       'selected',
     ];
 

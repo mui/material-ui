@@ -2,9 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import Typography from '../Typography';
 import StepIcon from '../StepIcon';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
@@ -36,16 +35,13 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getStepLabelUtilityClass, classes);
 };
 
-const StepLabelRoot = experimentalStyled('span', {
+const StepLabelRoot = styled('span', {
   name: 'MuiStepLabel',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...styles[styleProps.orientation],
-    };
+    return [styles.root, styles[styleProps.orientation]];
   },
 })(({ styleProps }) => ({
   /* Styles applied to the root element. */
@@ -64,11 +60,13 @@ const StepLabelRoot = experimentalStyled('span', {
   }),
 }));
 
-const StepLabelLabel = experimentalStyled(Typography, {
+const StepLabelLabel = styled('span', {
   name: 'MuiStepLabel',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
 })(({ theme }) => ({
+  ...theme.typography.body2,
+  display: 'block',
   /* Styles applied to the Typography component that wraps `children`. */
   transition: theme.transitions.create('color', {
     duration: theme.transitions.duration.shortest,
@@ -90,7 +88,7 @@ const StepLabelLabel = experimentalStyled(Typography, {
   },
 }));
 
-const StepLabelIconContainer = experimentalStyled('span', {
+const StepLabelIconContainer = styled('span', {
   name: 'MuiStepLabel',
   slot: 'IconContainer',
   overridesResolver: (props, styles) => styles.iconContainer,
@@ -104,7 +102,7 @@ const StepLabelIconContainer = experimentalStyled('span', {
   },
 }));
 
-const StepLabelLabelContainer = experimentalStyled('span', {
+const StepLabelLabelContainer = styled('span', {
   name: 'MuiStepLabel',
   slot: 'LabelContainer',
   overridesResolver: (props, styles) => styles.labelContainer,
@@ -124,6 +122,7 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
     optional,
     StepIconComponent: StepIconComponentProp,
     StepIconProps,
+    componentsProps = {},
     ...other
   } = props;
 
@@ -170,11 +169,9 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
       <StepLabelLabelContainer className={classes.labelContainer} styleProps={styleProps}>
         {children ? (
           <StepLabelLabel
-            variant="body2"
-            component="span"
-            display="block"
             className={classes.label}
             styleProps={styleProps}
+            {...componentsProps.label}
           >
             {children}
           </StepLabelLabel>
@@ -202,6 +199,11 @@ StepLabel.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
   /**
    * If `true`, the step is marked as failed.
    * @default false

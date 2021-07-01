@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import { html, body } from '../CssBaseline/CssBaseline';
 import { getScopedCssBaselineUtilityClass } from './scopedCssBaselineClasses';
 
@@ -17,7 +17,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getScopedCssBaselineUtilityClass, classes);
 };
 
-const ScopedCssBaselineRoot = experimentalStyled('div', {
+const ScopedCssBaselineRoot = styled('div', {
   name: 'MuiScopedCssBaseline',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,

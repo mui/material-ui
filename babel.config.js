@@ -64,6 +64,7 @@ module.exports = function getBabelConfig(api) {
     // With our usage the transpiled loose mode is equivalent to spec mode.
     ['@babel/plugin-proposal-class-properties', { loose: true }],
     ['@babel/plugin-proposal-private-methods', { loose: true }],
+    ['@babel/plugin-proposal-private-property-in-object', { loose: true }],
     ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
     [
       '@babel/plugin-transform-runtime',
@@ -73,7 +74,6 @@ module.exports = function getBabelConfig(api) {
         version: '^7.4.4',
       },
     ],
-    '@babel/plugin-transform-react-constant-elements',
     [
       'babel-plugin-transform-react-remove-prop-types',
       {
@@ -96,9 +96,18 @@ module.exports = function getBabelConfig(api) {
   }
 
   return {
+    assumptions: {
+      noDocumentAll: true,
+    },
     presets,
     plugins,
     ignore: [/@babel[\\|/]runtime/], // Fix a Windows issue.
+    overrides: [
+      {
+        exclude: /\.test\.(js|ts|tsx)$/,
+        plugins: ['@babel/plugin-transform-react-constant-elements'],
+      },
+    ],
     env: {
       coverage: {
         plugins: [

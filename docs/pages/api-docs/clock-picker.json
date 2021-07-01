@@ -5,6 +5,7 @@
     "ampm": { "type": { "name": "bool" } },
     "ampmInClock": { "type": { "name": "bool" } },
     "autoFocus": { "type": { "name": "bool" } },
+    "classes": { "type": { "name": "object" } },
     "components": {
       "type": {
         "name": "shape",
@@ -43,6 +44,6 @@
   "filename": "/packages/material-ui-lab/src/ClockPicker/ClockPicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/time-picker/\">Time Picker</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

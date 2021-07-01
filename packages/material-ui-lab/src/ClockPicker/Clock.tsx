@@ -1,7 +1,7 @@
 import * as React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
 import ClockPointer from './ClockPointer';
 import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
@@ -24,6 +24,11 @@ export interface ClockProps<TDate> extends ReturnType<typeof useMeridiemMode> {
   isTimeDisabled: (timeValue: number, type: ClockView) => boolean;
   minutesStep?: number;
   onChange: (value: number, isFinish?: PickerSelectionState) => void;
+  /**
+   * DOM id that the selected option should have
+   * Should only be `undefined` on the server
+   */
+  selectedId: string | undefined;
   type: ClockView;
   value: number;
 }
@@ -74,33 +79,37 @@ const ClockPin = styled('div', { skipSx: true })(({ theme }) => ({
   transform: 'translate(-50%, -50%)',
 }));
 
-const ClockAmButton = styled(IconButton, { skipSx: true })(({ theme, styleProps = {} }) => ({
-  zIndex: 1,
-  position: 'absolute',
-  bottom: 8,
-  left: 8,
-  ...(styleProps.meridiemMode === 'am' && {
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.primary.contrastText,
-    '&:hover': {
-      backgroundColor: theme.palette.primary.light,
-    },
+const ClockAmButton = styled(IconButton, { skipSx: true })<{ styleProps: ClockProps<any> }>(
+  ({ theme, styleProps }) => ({
+    zIndex: 1,
+    position: 'absolute',
+    bottom: 8,
+    left: 8,
+    ...(styleProps.meridiemMode === 'am' && {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.primary.contrastText,
+      '&:hover': {
+        backgroundColor: theme.palette.primary.light,
+      },
+    }),
   }),
-}));
+);
 
-const ClockPmButton = styled(IconButton, { skipSx: true })(({ theme, styleProps = {} }) => ({
-  zIndex: 1,
-  position: 'absolute',
-  bottom: 8,
-  right: 8,
-  ...(styleProps.meridiemMode === 'pm' && {
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.primary.contrastText,
-    '&:hover': {
-      backgroundColor: theme.palette.primary.light,
-    },
+const ClockPmButton = styled(IconButton, { skipSx: true })<{ styleProps: ClockProps<any> }>(
+  ({ theme, styleProps }) => ({
+    zIndex: 1,
+    position: 'absolute',
+    bottom: 8,
+    right: 8,
+    ...(styleProps.meridiemMode === 'pm' && {
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.primary.contrastText,
+      '&:hover': {
+        backgroundColor: theme.palette.primary.light,
+      },
+    }),
   }),
-}));
+);
 
 /**
  * @ignore - internal component.
@@ -118,12 +127,12 @@ function Clock<TDate>(props: ClockProps<TDate>) {
     meridiemMode,
     minutesStep = 1,
     onChange,
+    selectedId,
     type,
     value,
   } = props;
 
-  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
-  const styleProps = { ...props };
+  const styleProps = props;
 
   const utils = useUtils<TDate>();
   const wrapperVariant = React.useContext(WrapperVariantContext);
@@ -258,6 +267,7 @@ function Clock<TDate>(props: ClockProps<TDate>) {
           </React.Fragment>
         )}
         <div
+          aria-activedescendant={selectedId}
           aria-label={getClockLabelText(type, date, utils)}
           ref={listboxRef}
           role="listbox"

@@ -2,11 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Skeleton from '@material-ui/core/Skeleton';
-import {
-  experimentalStyled as styled,
-  unstable_useThemeProps as useThemeProps,
-  Theme,
-} from '@material-ui/core/styles';
+import { styled, useThemeProps, Theme } from '@material-ui/core/styles';
 import { SxProps } from '@material-ui/system';
 import {
   unstable_composeClasses as composeClasses,
@@ -81,7 +77,7 @@ const CalendarPickerSkeletonDay = styled(Skeleton, {
   name: 'MuiCalendarPickerSkeleton',
   slot: 'Day',
   overridesResolver: (props, styles) => styles.daySkeleton,
-})(({ styleProps = {} }) => ({
+})<{ styleProps: { day: number } }>(({ styleProps }) => ({
   margin: `0 ${DAY_MARGIN}px`,
   ...(styleProps.day === 0 && {
     visibility: 'hidden',

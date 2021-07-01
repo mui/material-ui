@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, integerPropType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses, isHostComponent } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import InputBase from '../InputBase';
 import MenuItem from '../MenuItem';
@@ -14,7 +14,7 @@ import TablePaginationActions from './TablePaginationActions';
 import useId from '../utils/useId';
 import tablePaginationClasses, { getTablePaginationUtilityClass } from './tablePaginationClasses';
 
-const TablePaginationRoot = experimentalStyled(TableCell, {
+const TablePaginationRoot = styled(TableCell, {
   name: 'MuiTablePagination',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -28,7 +28,7 @@ const TablePaginationRoot = experimentalStyled(TableCell, {
   },
 }));
 
-const TablePaginationToolbar = experimentalStyled(Toolbar, {
+const TablePaginationToolbar = styled(Toolbar, {
   name: 'MuiTablePagination',
   slot: 'Toolbar',
   overridesResolver: (props, styles) => ({
@@ -51,7 +51,7 @@ const TablePaginationToolbar = experimentalStyled(Toolbar, {
   },
 }));
 
-const TablePaginationSpacer = experimentalStyled('div', {
+const TablePaginationSpacer = styled('div', {
   name: 'MuiTablePagination',
   slot: 'Spacer',
   overridesResolver: (props, styles) => styles.spacer,
@@ -59,7 +59,7 @@ const TablePaginationSpacer = experimentalStyled('div', {
   flex: '1 1 100%',
 });
 
-const TablePaginationSelectLabel = experimentalStyled('p', {
+const TablePaginationSelectLabel = styled('p', {
   name: 'MuiTablePagination',
   slot: 'SelectLabel',
   overridesResolver: (props, styles) => styles.selectLabel,
@@ -68,7 +68,7 @@ const TablePaginationSelectLabel = experimentalStyled('p', {
   flexShrink: 0,
 }));
 
-const TablePaginationSelect = experimentalStyled(Select, {
+const TablePaginationSelect = styled(Select, {
   name: 'MuiTablePagination',
   slot: 'Select',
   overridesResolver: (props, styles) => ({
@@ -91,13 +91,13 @@ const TablePaginationSelect = experimentalStyled(Select, {
   },
 });
 
-const TablePaginationMenuItem = experimentalStyled(MenuItem, {
+const TablePaginationMenuItem = styled(MenuItem, {
   name: 'MuiTablePagination',
   slot: 'MenuItem',
   overridesResolver: (props, styles) => styles.menuItem,
 })({});
 
-const TablePaginationDisplayedRows = experimentalStyled('p', {
+const TablePaginationDisplayedRows = styled('p', {
   name: 'MuiTablePagination',
   slot: 'DisplayedRows',
   overridesResolver: (props, styles) => styles.displayedRows,
@@ -159,9 +159,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     ...other
   } = props;
 
-  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
-  const styleProps = { ...props };
-
+  const styleProps = props;
   const classes = useUtilityClasses(styleProps);
 
   const MenuItemComponent = SelectProps.native ? 'option' : TablePaginationMenuItem;

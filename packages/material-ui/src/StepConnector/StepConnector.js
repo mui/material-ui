@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
@@ -27,18 +27,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getStepConnectorUtilityClass, classes);
 };
 
-const StepConnectorRoot = experimentalStyled('div', {
+const StepConnectorRoot = styled('div', {
   name: 'MuiStepConnector',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...styles[styleProps.orientation],
-      ...(styleProps.alternativeLabel && styles.alternativeLabel),
-      ...(styleProps.completed && styles.completed),
-    };
+    return [
+      styles.root,
+      styles[styleProps.orientation],
+      styleProps.alternativeLabel && styles.alternativeLabel,
+      styleProps.completed && styles.completed,
+    ];
   },
 })(({ styleProps }) => ({
   /* Styles applied to the root element. */
@@ -56,16 +56,13 @@ const StepConnectorRoot = experimentalStyled('div', {
   }),
 }));
 
-const StepConnectorLine = experimentalStyled('span', {
+const StepConnectorLine = styled('span', {
   name: 'MuiStepConnector',
   slot: 'Line',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.line,
-      ...styles[`line${capitalize(styleProps.orientation)}`],
-    };
+    return [styles.line, styles[`line${capitalize(styleProps.orientation)}`]];
   },
 })(({ styleProps, theme }) => ({
   /* Styles applied to the line element. */

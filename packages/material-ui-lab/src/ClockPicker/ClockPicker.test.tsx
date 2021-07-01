@@ -1,27 +1,46 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, fireEvent, fireTouchChangedEvent, screen } from 'test/utils';
-import ClockPicker from '@material-ui/lab/ClockPicker';
+import {
+  describeConformanceV5,
+  fireEvent,
+  fireTouchChangedEvent,
+  screen,
+  within,
+} from 'test/utils';
+import ClockPicker, { clockPickerClasses as classes } from '@material-ui/lab/ClockPicker';
 import {
   adapterToUse,
-  createPickerMount,
+  wrapPickerMount,
   createPickerRender,
   getByMuiTest,
 } from '../internal/pickers/test-utils';
 
 describe('<ClockPicker />', () => {
-  const mount = createPickerMount();
   const render = createPickerRender();
 
-  describeConformance(<ClockPicker date={adapterToUse.date()} onChange={() => {}} />, () => ({
-    classes: {},
-    inheritComponent: 'div',
-    mount,
-    refInstanceof: window.HTMLDivElement,
-    // cannot test reactTestRenderer because of required context
-    skip: ['componentProp', 'propsSpread', 'reactTestRenderer'],
-  }));
+  describeConformanceV5(
+    <ClockPicker date={adapterToUse.date()} showViewSwitcher onChange={() => {}} />,
+    () => ({
+      classes,
+      inheritComponent: 'div',
+      wrapMount: wrapPickerMount,
+      render,
+      refInstanceof: window.HTMLDivElement,
+      muiName: 'MuiClockPicker',
+      skip: [
+        'componentProp',
+        'componentsProp',
+        'propsSpread',
+        'reactTestRenderer',
+        // TODO: fix ClockPicker to spread props to root
+        'themeDefaultProps',
+        // TODO: fix ClockPicker not having root element
+        'themeStyleOverrides',
+        'themeVariants',
+      ],
+    }),
+  );
 
   it('renders a listbox with a name', () => {
     render(<ClockPicker date={null} onChange={() => {}} />);
@@ -35,6 +54,15 @@ describe('<ClockPicker />', () => {
 
     const listbox = screen.getByRole('listbox');
     expect(listbox).toHaveAccessibleName('Select hours. Selected time is 4:20 AM');
+  });
+
+  it('renders the current value as an accessible option', () => {
+    render(<ClockPicker date={adapterToUse.date('2019-01-01T04:20:00.000')} onChange={() => {}} />);
+
+    const listbox = screen.getByRole('listbox');
+    const selectedOption = within(listbox).getByRole('option', { selected: true });
+    expect(selectedOption).toHaveAccessibleName('4 hours');
+    expect(listbox).to.have.attribute('aria-activedescendant', selectedOption.id);
   });
 
   it('can be autofocused on mount', () => {

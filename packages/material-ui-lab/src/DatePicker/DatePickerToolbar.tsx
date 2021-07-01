@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import { generateUtilityClasses } from '@material-ui/unstyled';
 import PickersToolbar from '../internal/pickers/PickersToolbar';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
@@ -10,18 +10,20 @@ import { CalendarPickerView } from '../CalendarPicker';
 
 const classes = generateUtilityClasses('PrivateDatePickerToolbar', ['penIcon']);
 
-const DatePickerToolbarRoot = styled(PickersToolbar, { skipSx: true })({
+const DatePickerToolbarRoot = styled(PickersToolbar, { skipSx: true })<{ styleProps: any }>({
   [`& .${classes.penIcon}`]: {
     position: 'relative',
     top: 4,
   },
 });
 
-const DatePickerToolbarTitle = styled(Typography, { skipSx: true })(({ styleProps = {} }) => ({
-  ...(!!styleProps.isLandscape && {
-    margin: 'auto 16px auto auto',
+const DatePickerToolbarTitle = styled(Typography, { skipSx: true })<{ styleProps: any }>(
+  ({ styleProps }) => ({
+    ...(styleProps.isLandscape && {
+      margin: 'auto 16px auto auto',
+    }),
   }),
-}));
+);
 
 /**
  * @ignore - internal component.
@@ -67,7 +69,7 @@ const DatePickerToolbar = React.forwardRef<HTMLDivElement, ToolbarComponentProps
         : utils.format(date, 'normalDate');
     }, [date, toolbarFormat, toolbarPlaceholder, utils, views]);
 
-    const styleProps = { ...props };
+    const styleProps = props;
 
     return (
       <DatePickerToolbarRoot

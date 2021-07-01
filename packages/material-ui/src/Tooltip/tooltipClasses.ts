@@ -7,6 +7,8 @@ export interface TooltipClasses {
   popperInteractive: string;
   /** Styles applied to the Popper component if `arrow={true}`. */
   popperArrow: string;
+  /** Styles applied to the Popper component unless the tooltip is open. */
+  popperClose: string;
   /** Styles applied to the tooltip (label wrapper) element. */
   tooltip: string;
   /** Styles applied to the tooltip (label wrapper) element if `arrow={true}`. */
@@ -35,6 +37,7 @@ const tooltipClasses: TooltipClasses = generateUtilityClasses('MuiTooltip', [
   'popper',
   'popperInteractive',
   'popperArrow',
+  'popperClose',
   'tooltip',
   'tooltipArrow',
   'touch',

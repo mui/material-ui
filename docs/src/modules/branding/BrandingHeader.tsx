@@ -8,7 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import CloseIcon from '@material-ui/icons/Close';
 import Link from 'docs/src/modules/components/Link';
-import { experimentalStyled as styled, alpha, darken } from '@material-ui/core/styles';
+import { styled, alpha, darken } from '@material-ui/core/styles';
 import BrandingLogo from 'docs/src/modules/branding/BrandingLogo';
 import t1 from 'docs/src/modules/branding/t1';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';

@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { elementAcceptingRef } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { alpha } from '../styles/colorManipulator';
-import experimentalStyled from '../styles/experimentalStyled';
+import { alpha } from '@material-ui/system';
+import styled from '../styles/styled';
+import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
@@ -37,25 +38,29 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTooltipUtilityClass, classes);
 };
 
-const TooltipPopper = experimentalStyled(Popper, {
+const TooltipPopper = styled(Popper, {
   name: 'MuiTooltip',
   slot: 'Popper',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.popper,
-      ...(!styleProps.disableInteractive && styles.popperInteractive),
-      ...(styleProps.arrow && styles.popperArrow),
-    };
+    return [
+      styles.popper,
+      !styleProps.disableInteractive && styles.popperInteractive,
+      styleProps.arrow && styles.popperArrow,
+      !styleProps.open && styles.popperClose,
+    ];
   },
-})(({ theme, styleProps }) => ({
+})(({ theme, styleProps, open }) => ({
   /* Styles applied to the Popper element. */
   zIndex: theme.zIndex.tooltip,
   pointerEvents: 'none', // disable jss-rtl plugin
   /* Styles applied to the Popper component unless `disableInteractive={true}`. */
   ...(!styleProps.disableInteractive && {
     pointerEvents: 'auto',
+  }),
+  ...(!open && {
+    pointerEvents: 'none',
   }),
   /* Styles applied to the Popper element if `arrow={true}`. */
   ...(styleProps.arrow && {
@@ -96,18 +101,18 @@ const TooltipPopper = experimentalStyled(Popper, {
   }),
 }));
 
-const TooltipTooltip = experimentalStyled('div', {
+const TooltipTooltip = styled('div', {
   name: 'MuiTooltip',
   slot: 'Tooltip',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.tooltip,
-      ...(styleProps.touch && styles.touch),
-      ...(styleProps.arrow && styles.tooltipArrow),
-      ...styles[`tooltipPlacement${capitalize(styleProps.placement.split('-')[0])}`],
-    };
+    return [
+      styles.tooltip,
+      styleProps.touch && styles.touch,
+      styleProps.arrow && styles.tooltipArrow,
+      styles[`tooltipPlacement${capitalize(styleProps.placement.split('-')[0])}`],
+    ];
   },
 })(({ theme, styleProps }) => ({
   /* Styles applied to the tooltip (label wrapper) element. */
@@ -167,7 +172,7 @@ const TooltipTooltip = experimentalStyled('div', {
   },
 }));
 
-const TooltipArrow = experimentalStyled('span', {
+const TooltipArrow = styled('span', {
   name: 'MuiTooltip',
   slot: 'Arrow',
   overridesResolver: (props, styles) => styles.arrow,
@@ -208,7 +213,7 @@ function composeEventHandler(handler, eventHandler) {
 }
 
 const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
-  const { theme, isRtl, ...props } = useThemeProps({ props: inProps, name: 'MuiTooltip' });
+  const props = useThemeProps({ props: inProps, name: 'MuiTooltip' });
   const {
     arrow = false,
     children,
@@ -236,6 +241,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     TransitionProps,
     ...other
   } = props;
+
+  const theme = useTheme();
 
   const [childNode, setChildNode] = React.useState();
   const [arrowRef, setArrowRef] = React.useState(null);
@@ -666,6 +673,10 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * Set to `true` if the `title` acts as an accessible description.
    * By default the `title` acts as an accessible label for the child.

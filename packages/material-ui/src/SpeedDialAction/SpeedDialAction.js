@@ -4,9 +4,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import { emphasize } from '@material-ui/system';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { emphasize } from '../styles/colorManipulator';
 import Fab from '../Fab';
 import Tooltip from '../Tooltip';
 import capitalize from '../utils/capitalize';
@@ -28,17 +28,14 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getSpeedDialActionUtilityClass, classes);
 };
 
-const SpeedDialActionFab = experimentalStyled(Fab, {
+const SpeedDialActionFab = styled(Fab, {
   name: 'MuiSpeedDialAction',
   slot: 'Fab',
   skipVariantsResolver: false,
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.fab,
-      ...(!styleProps.open && styles.fabClosed),
-    };
+    return [styles.fab, !styleProps.open && styles.fabClosed];
   },
 })(({ theme, styleProps }) => ({
   margin: 8,
@@ -57,17 +54,17 @@ const SpeedDialActionFab = experimentalStyled(Fab, {
   }),
 }));
 
-const SpeedDialActionStaticTooltip = experimentalStyled('span', {
+const SpeedDialActionStaticTooltip = styled('span', {
   name: 'MuiSpeedDialAction',
   slot: 'StaticTooltip',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.staticTooltip,
-      ...(!styleProps.open && styles.staticTooltipClosed),
-      ...styles[`tooltipPlacement${capitalize(styleProps.tooltipPlacement)}`],
-    };
+    return [
+      styles.staticTooltip,
+      !styleProps.open && styles.staticTooltipClosed,
+      styles[`tooltipPlacement${capitalize(styleProps.tooltipPlacement)}`],
+    ];
   },
 })(({ theme, styleProps }) => ({
   position: 'relative',
@@ -95,7 +92,7 @@ const SpeedDialActionStaticTooltip = experimentalStyled('span', {
   },
 }));
 
-const SpeedDialActionStaticTooltipLabel = experimentalStyled('span', {
+const SpeedDialActionStaticTooltipLabel = styled('span', {
   name: 'MuiSpeedDialAction',
   slot: 'StaticTooltipLabel',
   overridesResolver: (props, styles) => styles.staticTooltipLabel,

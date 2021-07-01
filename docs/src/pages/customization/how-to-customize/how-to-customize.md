@@ -108,12 +108,13 @@ You can rely on the following [global class names](/styles/advanced/#with-materi
 | :------------ | :------------------ |
 | active        | `.Mui-active`       |
 | checked       | `.Mui-checked`      |
+| completed     | `.Mui-completed`    |
 | disabled      | `.Mui-disabled`     |
 | error         | `.Mui-error`        |
-| focused       | `.Mui-focused`      |
-| focus visible | `.Mui-focusVisible` |
-| required      | `.Mui-required`     |
 | expanded      | `.Mui-expanded`     |
+| focus visible | `.Mui-focusVisible` |
+| focused       | `.Mui-focused`      |
+| required      | `.Mui-required`     |
 | selected      | `.Mui-selected`     |
 
 > ⚠️ Never style these pseudo-class class names directly:
@@ -132,7 +133,7 @@ You can rely on the following [global class names](/styles/advanced/#with-materi
 
 ## 2. Reusable style overrides
 
-If you find that you need the same overrides in multiple places across your application, you can use the `experimentalStyled()` utility for creating a reusable component:
+If you find that you need the same overrides in multiple places across your application, you can use the [`styled()`](/customization/styled/) utility to create a reusable component:
 
 {{"demo": "pages/customization/how-to-customize/StyledCustomization.js", "defaultCodeOpen": true}}
 
@@ -154,7 +155,7 @@ Using the `styled()` utility offers a simple way for adding dynamic styles based
 
 ```tsx
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Slider, { SliderProps } from '@material-ui/core/Slider';
 
 interface StyledSliderProps extends SliderProps {

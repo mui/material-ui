@@ -3,7 +3,7 @@ import { integerPropType } from '@material-ui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getImageListUtilityClass } from './imageListClasses';
 import ImageListContext from './ImageListContext';
@@ -18,16 +18,13 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getImageListUtilityClass, classes);
 };
 
-const ImageListRoot = experimentalStyled('ul', {
+const ImageListRoot = styled('ul', {
   name: 'MuiImageList',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...styles[styleProps.variant],
-    };
+    return [styles.root, styles[styleProps.variant]];
   },
 })(({ styleProps }) => {
   /* Styles applied to the root element. */
@@ -36,7 +33,8 @@ const ImageListRoot = experimentalStyled('ul', {
     overflowY: 'auto',
     listStyle: 'none',
     padding: 0,
-    WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+    // Add iOS momentum scrolling for iOS < 13.0
+    WebkitOverflowScrolling: 'touch',
     /* Styles applied to the root element if `variant="masonry"`. */
     ...(styleProps.variant === 'masonry' && {
       display: 'block',

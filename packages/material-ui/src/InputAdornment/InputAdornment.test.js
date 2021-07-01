@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformanceV5 } from 'test/utils';
 import { typographyClasses } from '@material-ui/core/Typography';
 import InputAdornment, { inputAdornmentClasses as classes } from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
@@ -8,13 +8,11 @@ import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 
 describe('<InputAdornment />', () => {
-  const mount = createMount();
   const render = createClientRender();
 
   describeConformanceV5(<InputAdornment position="start">foo</InputAdornment>, () => ({
     classes,
     inheritComponent: 'div',
-    mount,
     render,
     muiName: 'MuiInputAdornment',
     testVariantProps: { color: 'primary' },
@@ -192,7 +190,7 @@ describe('<InputAdornment />', () => {
   it('applies a size small class inside <FormControl size="small" />', () => {
     const { getByTestId } = render(
       <FormControl size="small">
-        <InputAdornment placement="start" data-testid="root">
+        <InputAdornment position="start" data-testid="root">
           $
         </InputAdornment>
       </FormControl>,
@@ -204,7 +202,7 @@ describe('<InputAdornment />', () => {
   it('applies a hiddenLabel class inside <FormControl hiddenLabel />', () => {
     const { getByTestId } = render(
       <FormControl hiddenLabel>
-        <InputAdornment placement="start" data-testid="root">
+        <InputAdornment position="start" data-testid="root">
           $
         </InputAdornment>
       </FormControl>,

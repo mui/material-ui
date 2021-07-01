@@ -19,7 +19,6 @@ export default function ToggleButtons() {
       exclusive
       onChange={handleAlignment}
       aria-label="text alignment"
-      fullWidth
     >
       <ToggleButton value="left" aria-label="left aligned">
         <FormatAlignLeftIcon />

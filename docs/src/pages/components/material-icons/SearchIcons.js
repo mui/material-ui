@@ -17,7 +17,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
-import FlexSearch from 'flexsearch';
+import { Index as FlexSearchIndex } from 'flexsearch';
 import SearchIcon from '@material-ui/icons/Search';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -30,7 +30,7 @@ import synonyms from './synonyms';
 if (process.env.NODE_ENV !== 'production') {
   Object.keys(synonyms).forEach((icon) => {
     if (!mui[icon]) {
-      throw new Error(`The icon ${icon} no longer exists.`);
+      console.warn(`The icon ${icon} no longer exists. Remove it from \`synonyms\``);
     }
   });
 }
@@ -96,7 +96,7 @@ function selectNode(node) {
   selection.addRange(range);
 }
 
-let Icons = (props) => {
+const Icons = React.memo(function Icons(props) {
   const { icons, classes, handleOpenClick } = props;
 
   const handleIconClick = (icon) => () => {
@@ -144,14 +144,13 @@ let Icons = (props) => {
       })}
     </div>
   );
-};
+});
 
 Icons.propTypes = {
   classes: PropTypes.object.isRequired,
   handleOpenClick: PropTypes.func.isRequired,
   icons: PropTypes.array.isRequired,
 };
-Icons = React.memo(Icons);
 
 const useDialogStyles = makeStyles(
   (theme) => ({
@@ -230,68 +229,48 @@ const useDialogStyles = makeStyles(
   { defaultTheme },
 );
 
-let DialogDetails = (props) => {
+const DialogDetails = React.memo(function DialogDetails(props) {
   const classes = useDialogStyles();
   const { open, selectedIcon, handleClose } = props;
 
   const t = useTranslate();
   const [copied1, setCopied1] = React.useState(false);
-  const timeout1 = React.useRef();
   const [copied2, setCopied2] = React.useState(false);
-  const timeout2 = React.useRef();
 
   const handleClick = (tooltip) => async (event) => {
-    try {
-      await copy(event.currentTarget.textContent);
-      const setOpen = tooltip === 1 ? setCopied1 : setCopied2;
-      const timeout = tooltip === 1 ? timeout1 : timeout2;
+    await copy(event.currentTarget.textContent);
+    const setCopied = tooltip === 1 ? setCopied1 : setCopied2;
 
-      setOpen(true);
-      clearTimeout(timeout.current);
-      timeout.current = setTimeout(() => {
-        setOpen(false);
-      }, 2000);
-    } finally {
-      // Ok
-    }
+    setCopied(true);
   };
 
-  React.useEffect(() => {
-    return () => {
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      clearTimeout(timeout1.current);
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      clearTimeout(timeout2.current);
-    };
-  }, []);
-
   return (
-    <Dialog
-      fullWidth
-      maxWidth="sm"
-      open={open}
-      onClose={handleClose}
-      aria-labelledby="icon-dialog-title"
-    >
+    <Dialog fullWidth maxWidth="sm" open={open} onClose={handleClose}>
       {selectedIcon ? (
         <React.Fragment>
           <DialogTitle disableTypography>
             <Tooltip
               placement="right"
               title={copied1 ? t('copied') : t('clickToCopy')}
+              TransitionProps={{
+                onExited: () => setCopied1(false),
+              }}
             >
               <Typography
                 component="h2"
                 variant="h6"
                 className={classes.title}
-                id="icon-dialog-title"
                 onClick={handleClick(1)}
               >
                 {selectedIcon.importName}
               </Typography>
             </Tooltip>
           </DialogTitle>
-          <Tooltip placement="top" title={copied2 ? t('copied') : t('clickToCopy')}>
+          <Tooltip
+            placement="top"
+            title={copied2 ? t('copied') : t('clickToCopy')}
+            TransitionProps={{ onExited: () => setCopied2(false) }}
+          >
             <HighlightedCode
               className={classes.markdown}
               onClick={handleClick(2)}
@@ -380,14 +359,13 @@ let DialogDetails = (props) => {
       )}
     </Dialog>
   );
-};
+});
 
 DialogDetails.propTypes = {
   handleClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
   selectedIcon: PropTypes.object,
 };
-DialogDetails = React.memo(DialogDetails);
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -452,8 +430,7 @@ const useStyles = makeStyles(
   { defaultTheme },
 );
 
-const searchIndex = FlexSearch.create({
-  async: true,
+const searchIndex = new FlexSearchIndex({
   tokenize: 'full',
 });
 
@@ -479,7 +456,7 @@ const allIcons = Object.keys(mui)
     if (synonyms[searchable]) {
       searchable += ` ${synonyms[searchable]}`;
     }
-    searchIndex.add(importName, searchable);
+    searchIndex.addAsync(importName, searchable);
 
     const icon = {
       importName,
@@ -507,25 +484,13 @@ export default function SearchIcons() {
     setOpen(false);
   }, []);
 
-  const isMounted = React.useRef(false);
-  React.useEffect(() => {
-    isMounted.current = true;
-    return () => {
-      isMounted.current = false;
-    };
-  }, []);
-
   const handleChange = React.useMemo(
     () =>
       debounce((value) => {
-        if (!isMounted.current) {
-          return;
-        }
-
         if (value === '') {
           setKeys(null);
         } else {
-          searchIndex.search(value).then((results) => {
+          searchIndex.searchAsync(value).then((results) => {
             setKeys(results);
 
             // Keep track of the no results so we can add synonyms in the future.
@@ -542,6 +507,12 @@ export default function SearchIcons() {
       }, 220),
     [],
   );
+
+  React.useEffect(() => {
+    return () => {
+      handleChange.cancel();
+    };
+  }, [handleChange]);
 
   const icons = React.useMemo(
     () =>

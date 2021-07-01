@@ -13,23 +13,21 @@ import {
   nativeSelectIconStyles,
 } from '../NativeSelect/NativeSelectInput';
 import { isFilled } from '../InputBase/utils';
-import experimentalStyled, { slotShouldForwardProp } from '../styles/experimentalStyled';
+import styled, { slotShouldForwardProp } from '../styles/styled';
 import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import selectClasses, { getSelectUtilityClasses } from './selectClasses';
 
-const SelectSelect = experimentalStyled('div', {
+const SelectSelect = styled('div', {
   name: 'MuiSelect',
   slot: 'Select',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
-    return {
+    return [
       // Win specificity over the input base
-      [`&.${selectClasses.select}`]: {
-        ...styles.select,
-        ...styles[styleProps.variant],
-      },
-    };
+      { [`&.${selectClasses.select}`]: styles.select },
+      { [`&.${selectClasses.select}`]: styles[styleProps.variant] },
+    ];
   },
 })(nativeSelectSelectStyles, {
   // Win specificity over the input base
@@ -42,20 +40,20 @@ const SelectSelect = experimentalStyled('div', {
   },
 });
 
-const SelectIcon = experimentalStyled('svg', {
+const SelectIcon = styled('svg', {
   name: 'MuiSelect',
   slot: 'Icon',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
-    return {
-      ...styles.icon,
-      ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
-      ...(styleProps.open && styles.iconOpen),
-    };
+    return [
+      styles.icon,
+      styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`],
+      styleProps.open && styles.iconOpen,
+    ];
   },
 })(nativeSelectIconStyles);
 
-const SelectNativeInput = experimentalStyled('input', {
+const SelectNativeInput = styled('input', {
   shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'classes',
   name: 'MuiSelect',
   slot: 'NativeInput',
@@ -495,6 +493,14 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         anchorEl={displayNode}
         open={open}
         onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
         {...MenuProps}
         MenuListProps={{
           'aria-labelledby': labelId,

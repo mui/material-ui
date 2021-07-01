@@ -1,32 +1,44 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, fireEvent, screen, describeConformance } from 'test/utils';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import CalendarPicker from '@material-ui/lab/CalendarPicker';
-import { adapterToUse, createPickerRender, getAllByMuiTest } from '../internal/pickers/test-utils';
+import { SinonFakeTimers, useFakeTimers } from 'sinon';
+import { fireEvent, screen, describeConformanceV5 } from 'test/utils';
+import CalendarPicker, { calendarPickerClasses as classes } from '@material-ui/lab/CalendarPicker';
+import {
+  adapterToUse,
+  wrapPickerMount,
+  createPickerRender,
+  getAllByMuiTest,
+} from '../internal/pickers/test-utils';
 
 describe('<CalendarPicker />', () => {
-  const mount = createMount();
-  const render = createPickerRender({ strict: false });
-  let classes: Record<string, string>;
-
-  const localizedMount = (node: React.ReactNode) => {
-    return mount(<LocalizationProvider dateAdapter={AdapterDateFns}>{node}</LocalizationProvider>);
-  };
-
-  before(() => {
-    classes = getClasses(<CalendarPicker date={adapterToUse.date()} onChange={() => {}} />);
+  let clock: SinonFakeTimers;
+  beforeEach(() => {
+    clock = useFakeTimers();
+  });
+  afterEach(() => {
+    clock.restore();
   });
 
-  describeConformance(<CalendarPicker date={adapterToUse.date()} onChange={() => {}} />, () => ({
+  // StrictModeViolation: Uses StrictMode incompatible API of `react-transition-group`
+  const render = createPickerRender({ strict: false });
+
+  describeConformanceV5(<CalendarPicker date={adapterToUse.date()} onChange={() => {}} />, () => ({
     classes,
     inheritComponent: 'div',
     render,
-    mount: localizedMount,
+    muiName: 'MuiCalendarPicker',
+    wrapMount: wrapPickerMount,
     refInstanceof: window.HTMLDivElement,
     // cannot test reactTestRenderer because of required context
-    skip: ['componentProp', 'propsSpread', 'reactTestRenderer'],
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'propsSpread',
+      'reactTestRenderer',
+      // TODO: Fix CalendarPicker is not spreading props on root
+      'themeDefaultProps',
+      'themeVariants',
+    ],
   }));
 
   it('renders calendar standalone', () => {

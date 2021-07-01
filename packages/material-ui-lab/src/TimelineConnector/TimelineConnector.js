@@ -2,10 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import {
-  experimentalStyled,
-  unstable_useThemeProps as useThemeProps,
-} from '@material-ui/core/styles';
+import { styled, useThemeProps } from '@material-ui/core/styles';
 import { getTimelineConnectorUtilityClass } from './timelineConnectorClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -18,7 +15,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTimelineConnectorUtilityClass, classes);
 };
 
-const TimelineConnectorRoot = experimentalStyled('span', {
+const TimelineConnectorRoot = styled('span', {
   name: 'MuiTimelineConnector',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -39,7 +36,7 @@ const TimelineConnector = React.forwardRef(function TimelineConnector(inProps, r
 
   const { className, ...other } = props;
 
-  const styleProps = { ...props };
+  const styleProps = props;
 
   const classes = useUtilityClasses(styleProps);
 

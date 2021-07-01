@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import { getListSubheaderUtilityClass } from './listSubheaderClasses';
@@ -23,19 +23,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getListSubheaderUtilityClass, classes);
 };
 
-const ListSubheaderRoot = experimentalStyled('li', {
+const ListSubheaderRoot = styled('li', {
   name: 'MuiListSubheader',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-      ...(!styleProps.disableGutters && styles.gutters),
-      ...(styleProps.inset && styles.inset),
-      ...(!styleProps.disableSticky && styles.sticky),
-    };
+    return [
+      styles.root,
+      styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`],
+      !styleProps.disableGutters && styles.gutters,
+      styleProps.inset && styles.inset,
+      !styleProps.disableSticky && styles.sticky,
+    ];
   },
 })(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */

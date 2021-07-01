@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { isHostComponent } from '@material-ui/unstyled';
 import { elementAcceptingRef, HTMLElementType } from '@material-ui/utils';
 import ModalUnstyled, { modalUnstyledClasses } from '@material-ui/unstyled/ModalUnstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Backdrop from '../Backdrop';
 
@@ -13,16 +13,13 @@ const extendUtilityClasses = (styleProps) => {
   return styleProps.classes;
 };
 
-const ModalRoot = experimentalStyled('div', {
+const ModalRoot = styled('div', {
   name: 'MuiModal',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...(!styleProps.open && styleProps.exited && styles.hidden),
-    };
+    return [styles.root, !styleProps.open && styleProps.exited && styles.hidden];
   },
 })(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
@@ -38,6 +35,16 @@ const ModalRoot = experimentalStyled('div', {
       visibility: 'hidden',
     }),
 }));
+
+const ModalBackdrop = styled(Backdrop, {
+  name: 'MuiModal',
+  slot: 'Backdrop',
+  overridesResolver: (props, styles) => {
+    return styles.backdrop;
+  },
+})({
+  zIndex: -1,
+});
 
 /**
  * Modal is a lower-level construct that is leveraged by the following components:
@@ -55,7 +62,7 @@ const ModalRoot = experimentalStyled('div', {
 const Modal = React.forwardRef(function Modal(inProps, ref) {
   const props = useThemeProps({ name: 'MuiModal', props: inProps });
   const {
-    BackdropComponent = Backdrop,
+    BackdropComponent = ModalBackdrop,
     closeAfterTransition = false,
     children,
     components = {},
@@ -127,7 +134,15 @@ Modal.propTypes /* remove-proptypes */ = {
   // ----------------------------------------------------------------------
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
-   * @default Backdrop
+   * @default styled(Backdrop, {
+   *   name: 'MuiModal',
+   *   slot: 'Backdrop',
+   *   overridesResolver: (props, styles) => {
+   *     return styles.backdrop;
+   *   },
+   * })({
+   *   zIndex: -1,
+   * })
    */
   BackdropComponent: PropTypes.elementType,
   /**

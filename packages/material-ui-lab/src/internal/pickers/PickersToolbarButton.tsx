@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button, { ButtonProps } from '@material-ui/core/Button';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import { TypographyProps } from '@material-ui/core/Typography';
 import PickersToolbarText from './PickersToolbarText';
 import { ExtendMui } from './typings/helpers';

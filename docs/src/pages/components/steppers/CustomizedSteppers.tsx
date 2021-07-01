@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Stack from '@material-ui/core/Stack';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -36,26 +36,28 @@ const QontoConnector = styled(StepConnector)(({ theme }) => ({
   },
 }));
 
-const QontoStepIconRoot = styled('div')(({ theme, styleProps = {} }) => ({
-  color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#eaeaf0',
-  display: 'flex',
-  height: 22,
-  alignItems: 'center',
-  ...(!!styleProps.active && {
-    color: '#784af4',
+const QontoStepIconRoot = styled('div')<{ styleProps: { active?: boolean } }>(
+  ({ theme, styleProps }) => ({
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#eaeaf0',
+    display: 'flex',
+    height: 22,
+    alignItems: 'center',
+    ...(styleProps.active && {
+      color: '#784af4',
+    }),
+    '& .QontoStepIcon-completedIcon': {
+      color: '#784af4',
+      zIndex: 1,
+      fontSize: 18,
+    },
+    '& .QontoStepIcon-circle': {
+      width: 8,
+      height: 8,
+      borderRadius: '50%',
+      backgroundColor: 'currentColor',
+    },
   }),
-  '& .QontoStepIcon-completedIcon': {
-    color: '#784af4',
-    zIndex: 1,
-    fontSize: 18,
-  },
-  '& .QontoStepIcon-circle': {
-    width: 8,
-    height: 8,
-    borderRadius: '50%',
-    backgroundColor: 'currentColor',
-  },
-}));
+);
 
 function QontoStepIcon(props: StepIconProps) {
   const { active, completed, className } = props;
@@ -96,7 +98,9 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
   },
 }));
 
-const ColorlibStepIconRoot = styled('div')(({ theme, styleProps = {} }) => ({
+const ColorlibStepIconRoot = styled('div')<{
+  styleProps: { completed?: boolean; active?: boolean };
+}>(({ theme, styleProps }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#ccc',
   zIndex: 1,
   color: '#fff',
@@ -106,12 +110,12 @@ const ColorlibStepIconRoot = styled('div')(({ theme, styleProps = {} }) => ({
   borderRadius: '50%',
   justifyContent: 'center',
   alignItems: 'center',
-  ...(!!styleProps.active && {
+  ...(styleProps.active && {
     backgroundImage:
       'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
     boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
   }),
-  ...(!!styleProps.completed && {
+  ...(styleProps.completed && {
     backgroundImage:
       'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
   }),

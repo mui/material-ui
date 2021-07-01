@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -12,8 +12,9 @@ const Input = styled(MuiInput)`
 `;
 
 export default function InputSlider() {
-  const [value, setValue] =
-    React.useState<number | string | Array<number | string>>(30);
+  const [value, setValue] = React.useState<number | string | Array<number | string>>(
+    30,
+  );
 
   const handleSliderChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue);

@@ -9,13 +9,7 @@ import {
   generateUtilityClass,
   generateUtilityClasses,
 } from '@material-ui/unstyled';
-import {
-  useTheme,
-  alpha,
-  experimentalStyled,
-  unstable_useThemeProps as useThemeProps,
-  Theme,
-} from '@material-ui/core/styles';
+import { useTheme, alpha, styled, useThemeProps, Theme } from '@material-ui/core/styles';
 import { useForkRef } from '@material-ui/core/utils';
 import { ExtendMui } from '../internal/pickers/typings/helpers';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
@@ -23,10 +17,6 @@ import { DAY_SIZE, DAY_MARGIN } from '../internal/pickers/constants/dimensions';
 import { PickerSelectionState } from '../internal/pickers/hooks/usePickerState';
 
 export interface PickersDayProps<TDate> extends ExtendMui<ButtonBaseProps> {
-  /**
-   * If `true`, keyboard control and focus management is enabled.
-   */
-  allowKeyboardControl?: boolean;
   /**
    * If `true`, `onChange` is fired on click even if the same date is selected.
    * @default false
@@ -142,7 +132,7 @@ const useUtilityClasses = (styleProps: PickersDayProps<any>) => {
   return composeClasses(slots, getPickersDayUtilityClass, classes);
 };
 
-const styleArg = ({ theme, styleProps = {} }: { theme: Theme; styleProps?: StyleProps }) => ({
+const styleArg = ({ theme, styleProps }: { theme: Theme; styleProps: StyleProps }) => ({
   ...theme.typography.caption,
   width: DAY_SIZE,
   height: DAY_SIZE,
@@ -196,30 +186,30 @@ const overridesResolver = (
   styles: Record<PickersDayClassKey, object>,
 ) => {
   const { styleProps } = props;
-  return {
-    ...styles.root,
-    ...(!styleProps.disableMargin && styles.dayWithMargin),
-    ...(!styleProps.disableHighlightToday && styleProps.today && styles.today),
-    ...(!styleProps.outsideCurrentMonth &&
+  return [
+    styles.root,
+    !styleProps.disableMargin && styles.dayWithMargin,
+    !styleProps.disableHighlightToday && styleProps.today && styles.today,
+    !styleProps.outsideCurrentMonth &&
       styleProps.showDaysOutsideCurrentMonth &&
-      styles.dayOutsideMonth),
-    ...(styleProps.outsideCurrentMonth &&
+      styles.dayOutsideMonth,
+    styleProps.outsideCurrentMonth &&
       !styleProps.showDaysOutsideCurrentMonth &&
-      styles.hiddenDaySpacingFiller),
-  };
+      styles.hiddenDaySpacingFiller,
+  ];
 };
 
-const PickersDayRoot = experimentalStyled(ButtonBase, {
+const PickersDayRoot = styled(ButtonBase, {
   name: 'MuiPickersDay',
   slot: 'Root',
   overridesResolver,
-})(styleArg);
+})<{ styleProps: StyleProps }>(styleArg);
 
-const PickersDayFiller = experimentalStyled('div', {
+const PickersDayFiller = styled('div', {
   name: 'MuiPickersDay',
   slot: 'Root',
   overridesResolver,
-})(({ theme, styleProps }) => ({
+})<{ styleProps: StyleProps }>(({ theme, styleProps }) => ({
   ...styleArg({ theme, styleProps }),
   visibility: 'hidden',
 }));
@@ -236,7 +226,6 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
   });
 
   const {
-    allowKeyboardControl,
     allowSameDateSelection = false,
     autoFocus = false,
     className,
@@ -311,10 +300,6 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
   function handleKeyDown(event: React.KeyboardEvent<HTMLButtonElement>) {
     if (onKeyDown !== undefined) {
       onKeyDown(event);
-    }
-
-    if (!allowKeyboardControl) {
-      return;
     }
 
     switch (event.key) {
@@ -394,7 +379,6 @@ export const areDayPropsEqual = (
     prevProps.today === nextProps.today &&
     prevProps.disabled === nextProps.disabled &&
     prevProps.selected === nextProps.selected &&
-    prevProps.allowKeyboardControl === nextProps.allowKeyboardControl &&
     prevProps.disableMargin === nextProps.disableMargin &&
     prevProps.showDaysOutsideCurrentMonth === nextProps.showDaysOutsideCurrentMonth &&
     prevProps.disableHighlightToday === nextProps.disableHighlightToday &&
@@ -410,10 +394,6 @@ PickersDay.propTypes /* remove-proptypes */ = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
-  /**
-   * If `true`, keyboard control and focus management is enabled.
-   */
-  allowKeyboardControl: PropTypes.bool,
   /**
    * If `true`, `onChange` is fired on click even if the same date is selected.
    * @default false

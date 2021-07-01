@@ -1,12 +1,16 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import { generateUtilityClasses } from '@material-ui/unstyled';
 import { CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from './shared';
 
 export interface ClockNumberProps extends React.HTMLAttributes<HTMLSpanElement> {
   'aria-label': string;
   disabled: boolean;
+  /**
+   * Make sure callers pass an id which. It should be defined if selected.
+   */
+  id: string | undefined;
   index: number;
   inner: boolean;
   label: string;
@@ -15,39 +19,40 @@ export interface ClockNumberProps extends React.HTMLAttributes<HTMLSpanElement> 
 
 export const classes = generateUtilityClasses('PrivateClockNumber', ['selected', 'disabled']);
 
-const ClockNumberRoot = styled('span', { skipSx: true })(({ theme, styleProps = {} }) => ({
-  height: CLOCK_HOUR_WIDTH,
-  width: CLOCK_HOUR_WIDTH,
-  position: 'absolute',
-  left: `calc((100% - ${CLOCK_HOUR_WIDTH}px) / 2)`,
-  display: 'inline-flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  borderRadius: '50%',
-  color: theme.palette.text.primary,
-  '&:focused': {
-    backgroundColor: theme.palette.background.paper,
-  },
-  [`&.${classes.selected}`]: {
-    color: theme.palette.primary.contrastText,
-  },
-  [`&.${classes.disabled}`]: {
-    pointerEvents: 'none',
-    color: theme.palette.text.disabled,
-  },
-  ...(!!styleProps.inner && {
-    ...theme.typography.body2,
-    color: theme.palette.text.secondary,
+const ClockNumberRoot = styled('span', { skipSx: true })<{ styleProps: ClockNumberProps }>(
+  ({ theme, styleProps }) => ({
+    height: CLOCK_HOUR_WIDTH,
+    width: CLOCK_HOUR_WIDTH,
+    position: 'absolute',
+    left: `calc((100% - ${CLOCK_HOUR_WIDTH}px) / 2)`,
+    display: 'inline-flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: '50%',
+    color: theme.palette.text.primary,
+    '&:focused': {
+      backgroundColor: theme.palette.background.paper,
+    },
+    [`&.${classes.selected}`]: {
+      color: theme.palette.primary.contrastText,
+    },
+    [`&.${classes.disabled}`]: {
+      pointerEvents: 'none',
+      color: theme.palette.text.disabled,
+    },
+    ...(styleProps.inner && {
+      ...theme.typography.body2,
+      color: theme.palette.text.secondary,
+    }),
   }),
-}));
+);
 
 /**
  * @ignore - internal component.
  */
 function ClockNumber(props: ClockNumberProps) {
   const { className, disabled, index, inner, label, selected, ...other } = props;
-  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
-  const styleProps = { ...props };
+  const styleProps = props;
 
   const angle = ((index % 12) / 12) * Math.PI * 2 - Math.PI / 2;
   const length = ((CLOCK_WIDTH - CLOCK_HOUR_WIDTH - 2) / 2) * (inner ? 0.65 : 1);

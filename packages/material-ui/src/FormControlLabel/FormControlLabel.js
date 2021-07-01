@@ -6,7 +6,7 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import { useFormControl } from '../FormControl';
 import Typography from '../Typography';
 import capitalize from '../utils/capitalize';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import formControlLabelClasses, {
   getFormControlLabelUtilityClasses,
@@ -22,17 +22,17 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getFormControlLabelUtilityClasses, classes);
 };
 
-export const FormControlLabelRoot = experimentalStyled('label', {
+export const FormControlLabelRoot = styled('label', {
   name: 'MuiFormControlLabel',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      [`& .${formControlLabelClasses.label}`]: styles.label,
-      ...styles.root,
-      ...styles[`labelPlacement${capitalize(styleProps.labelPlacement)}`],
-    };
+    return [
+      { [`& .${formControlLabelClasses.label}`]: styles.label },
+      styles.root,
+      styles[`labelPlacement${capitalize(styleProps.labelPlacement)}`],
+    ];
   },
 })(({ theme, styleProps }) => ({
   display: 'inline-flex',

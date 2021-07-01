@@ -6,7 +6,7 @@ import TrapFocus, {
   TrapFocusProps as MuiTrapFocusProps,
 } from '@material-ui/core/Unstable_TrapFocus';
 import { useForkRef, useEventCallback, ownerDocument } from '@material-ui/core/utils';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import { TransitionProps as MuiTransitionProps } from '@material-ui/core/transitions';
 
 export interface ExportedPickerPopperProps {
@@ -29,12 +29,14 @@ export interface PickerPopperProps extends ExportedPickerPopperProps, MuiPaperPr
   onClose: () => void;
 }
 
-const PickersPopperRoot = styled(Popper, { skipSx: true })(({ theme }) => ({
-  zIndex: theme.zIndex.modal,
-}));
+const PickersPopperRoot = styled(Popper, { skipSx: true })<{ styleProps: PickerPopperProps }>(
+  ({ theme }) => ({
+    zIndex: theme.zIndex.modal,
+  }),
+);
 
 const PickersPopperPaper = styled(Paper, { skipSx: true })<{
-  styleProps: Pick<MuiPopperProps, 'placement'>;
+  styleProps: PickerPopperProps & Pick<MuiPopperProps, 'placement'>;
 }>(({ styleProps }) => ({
   transformOrigin: 'top center',
   outline: 0,
@@ -233,8 +235,7 @@ const PickersPopper = (props: PickerPopperProps) => {
   const handleRef = useForkRef(paperRef, containerRef);
   const handlePaperRef = useForkRef(handleRef, clickAwayRef as React.Ref<HTMLDivElement>);
 
-  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
-  const styleProps = { ...props };
+  const styleProps = props;
 
   return (
     <PickersPopperRoot
@@ -251,7 +252,6 @@ const PickersPopper = (props: PickerPopperProps) => {
           disableAutoFocus
           disableEnforceFocus={role === 'tooltip'}
           isEnabled={() => true}
-          getDoc={() => paperRef.current?.ownerDocument ?? document}
           {...TrapFocusProps}
         >
           <TransitionComponent {...TransitionProps}>

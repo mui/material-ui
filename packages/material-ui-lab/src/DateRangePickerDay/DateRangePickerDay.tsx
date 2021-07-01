@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { SxProps } from '@material-ui/system';
-import { alpha, experimentalStyled as styled, Theme } from '@material-ui/core/styles';
+import { alpha, styled, Theme } from '@material-ui/core/styles';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
@@ -280,7 +280,6 @@ const DateRangePickerDay = React.forwardRef(function DateRangePickerDay<TDate>(
           ref={ref}
           disableMargin
           allowSameDateSelection
-          allowKeyboardControl={false}
           day={day}
           selected={selected}
           outsideCurrentMonth={outsideCurrentMonth}

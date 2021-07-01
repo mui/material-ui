@@ -15,13 +15,27 @@ _(Resize the window to see the responsive breakpoints)_
 
 ## Installation
 
+<!-- #default-branch-switch -->
+
 ```jsx
 // with npm
-npm install @material-ui/system
+npm install @material-ui/system@next @emotion/react @emotion/styled
 
 // with yarn
-yarn add @material-ui/system
+yarn add @material-ui/system@next @emotion/react @emotion/styled
 ```
+
+Or if you want to use `styled-components` as a styling engine:
+
+```sh
+// with npm
+npm install @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
+
+// with yarn
+yarn add @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
+```
+
+Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
 
 ## Why use the system?
 
@@ -153,7 +167,9 @@ The system provides direct access to the value in the theme. It makes it easier 
 
 The `sx` prop, as the main part of the system, solves these problems by providing a fast & simple way of applying the correct design tokens for specific CSS properties directly to a React element. The [demo above](#demo) shows how it can be used to create a one-off design.
 
-This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used. Also, it allows a simple way of defining responsive values that correspond to the breakpoints defined in the theme.
+This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used.
+Also, it allows a simple way of defining responsive values that correspond to the breakpoints defined in the theme.
+For more details, visit the [`sx` prop page](/system/the-sx-prop/).
 
 ### When to use it?
 
@@ -371,10 +387,10 @@ It renders a `<div>` element by default.
 
 ### 3. Custom components
 
-In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `experimentalStyled` utility from `@material-ui/core/styles`.
+In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@material-ui/core/styles`.
 
 ```jsx
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 
 const Div = styled('div')``;
 ```

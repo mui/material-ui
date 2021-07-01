@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 
-const NotchedOutlineRoot = experimentalStyled('fieldset')({
+const NotchedOutlineRoot = styled('fieldset')({
   textAlign: 'left',
   position: 'absolute',
   bottom: 0,
@@ -19,44 +19,42 @@ const NotchedOutlineRoot = experimentalStyled('fieldset')({
   minWidth: '0%',
 });
 
-const NotchedOutlineLegend = experimentalStyled('legend', { skipSx: true })(
-  ({ styleProps, theme }) => ({
-    ...(styleProps.label === undefined && {
-      padding: 0,
-      lineHeight: '11px', // sync with `height` in `legend` styles
-      transition: theme.transitions.create('width', {
-        duration: 150,
-        easing: theme.transitions.easing.easeOut,
-      }),
+const NotchedOutlineLegend = styled('legend', { skipSx: true })(({ styleProps, theme }) => ({
+  ...(styleProps.label === undefined && {
+    padding: 0,
+    lineHeight: '11px', // sync with `height` in `legend` styles
+    transition: theme.transitions.create('width', {
+      duration: 150,
+      easing: theme.transitions.easing.easeOut,
     }),
-    ...(styleProps.label !== undefined && {
-      display: 'block',
-      width: 'auto',
-      padding: 0,
-      height: 11, // sync with `lineHeight` in `legend` styles
-      fontSize: '0.75em',
-      visibility: 'hidden',
-      maxWidth: 0.01,
+  }),
+  ...(styleProps.label !== undefined && {
+    display: 'block',
+    width: 'auto',
+    padding: 0,
+    height: 11, // sync with `lineHeight` in `legend` styles
+    fontSize: '0.75em',
+    visibility: 'hidden',
+    maxWidth: 0.01,
+    transition: theme.transitions.create('max-width', {
+      duration: 50,
+      easing: theme.transitions.easing.easeOut,
+    }),
+    '& > span': {
+      paddingLeft: 5,
+      paddingRight: 5,
+      display: 'inline-block',
+    },
+    ...(styleProps.notched && {
+      maxWidth: '100%',
       transition: theme.transitions.create('max-width', {
-        duration: 50,
+        duration: 100,
         easing: theme.transitions.easing.easeOut,
-      }),
-      '& > span': {
-        paddingLeft: 5,
-        paddingRight: 5,
-        display: 'inline-block',
-      },
-      ...(styleProps.notched && {
-        maxWidth: '100%',
-        transition: theme.transitions.create('max-width', {
-          duration: 100,
-          easing: theme.transitions.easing.easeOut,
-          delay: 50,
-        }),
+        delay: 50,
       }),
     }),
   }),
-);
+}));
 
 /**
  * @ignore - internal component.

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
+import { styled } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -9,14 +10,21 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuDialogContent-root': {
+    padding: theme.spacing(2),
+  },
+  '& .MuDialogActions-root': {
+    padding: theme.spacing(1),
+  },
+}));
+
 const BootstrapDialogTitle = (props) => {
   const { children, onClose, ...other } = props;
 
   return (
-    <DialogTitle disableTypography sx={{ m: 0, p: 2 }} {...other}>
-      <Typography variant="h6" component="div">
-        {children}
-      </Typography>
+    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+      {children}
       {onClose ? (
         <IconButton
           aria-label="close"
@@ -55,7 +63,7 @@ export default function CustomizedDialogs() {
       <Button variant="outlined" onClick={handleClickOpen}>
         Open dialog
       </Button>
-      <Dialog
+      <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
@@ -63,7 +71,7 @@ export default function CustomizedDialogs() {
         <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
           Modal title
         </BootstrapDialogTitle>
-        <DialogContent dividers sx={{ p: 2 }}>
+        <DialogContent dividers>
           <Typography gutterBottom>
             Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
             dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
@@ -79,12 +87,12 @@ export default function CustomizedDialogs() {
             ullamcorper nulla non metus auctor fringilla.
           </Typography>
         </DialogContent>
-        <DialogActions sx={{ m: 0, p: 1 }}>
+        <DialogActions>
           <Button autoFocus onClick={handleClose}>
             Save changes
           </Button>
         </DialogActions>
-      </Dialog>
+      </BootstrapDialog>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
 import fabClasses, { getFabUtilityClass } from './fabClasses';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 
 const useUtilityClasses = (styleProps) => {
   const { color, variant, classes, size } = styleProps;
@@ -26,20 +26,20 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getFabUtilityClass, classes);
 };
 
-const FabRoot = experimentalStyled(ButtonBase, {
+const FabRoot = styled(ButtonBase, {
   name: 'MuiFab',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...styles[styleProps.variant],
-      ...styles[`size${capitalize(styleProps.size)}`],
-      ...(styleProps.color === 'inherit' && styles.colorInherit),
-      ...(styleProps.color === 'primary' && styles.primary),
-      ...(styleProps.color === 'secondary' && styles.secondary),
-    };
+    return [
+      styles.root,
+      styles[styleProps.variant],
+      styles[`size${capitalize(styleProps.size)}`],
+      styleProps.color === 'inherit' && styles.colorInherit,
+      styleProps.color === 'primary' && styles.primary,
+      styleProps.color === 'secondary' && styles.secondary,
+    ];
   },
 })(
   ({ theme, styleProps }) => ({
@@ -144,7 +144,7 @@ const FabRoot = experimentalStyled(ButtonBase, {
   }),
 );
 
-const FabLabel = experimentalStyled('span', {
+const FabLabel = styled('span', {
   name: 'MuiFab',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,

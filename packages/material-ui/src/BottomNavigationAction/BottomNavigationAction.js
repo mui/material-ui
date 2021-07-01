@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import ButtonBase from '../ButtonBase';
 import unsupportedProp from '../utils/unsupportedProp';
@@ -15,23 +15,19 @@ const useUtilityClasses = (styleProps) => {
 
   const slots = {
     root: ['root', !showLabel && !selected && 'iconOnly', selected && 'selected'],
-    wrapper: ['wrapper'],
     label: ['label', !showLabel && !selected && 'iconOnly', selected && 'selected'],
   };
 
   return composeClasses(slots, getBottomNavigationActionUtilityClass, classes);
 };
 
-const BottomNavigationActionRoot = experimentalStyled(ButtonBase, {
+const BottomNavigationActionRoot = styled(ButtonBase, {
   name: 'MuiBottomNavigationAction',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...(!styleProps.showLabel && !styleProps.selected && styles.iconOnly),
-    };
+    return [styles.root, !styleProps.showLabel && !styleProps.selected && styles.iconOnly];
   },
 })(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
@@ -42,6 +38,7 @@ const BottomNavigationActionRoot = experimentalStyled(ButtonBase, {
   minWidth: 80,
   maxWidth: 168,
   color: theme.palette.text.secondary,
+  flexDirection: 'column',
   flex: '1',
   ...(!styleProps.showLabel &&
     !styleProps.selected && {
@@ -53,20 +50,7 @@ const BottomNavigationActionRoot = experimentalStyled(ButtonBase, {
   },
 }));
 
-const BottomNavigationActionWrapper = experimentalStyled('span', {
-  name: 'MuiBottomNavigationAction',
-  slot: 'Wrapper',
-  overridesResolver: (props, styles) => styles.wrapper,
-})({
-  /* Styles applied to the span element that wraps the icon and label. */
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: '100%',
-  flexDirection: 'column',
-});
-
-const BottomNavigationActionLabel = experimentalStyled('span', {
+const BottomNavigationActionLabel = styled('span', {
   name: 'MuiBottomNavigationAction',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
@@ -104,9 +88,7 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
     ...other
   } = props;
 
-  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
-  const styleProps = { ...props };
-
+  const styleProps = props;
   const classes = useUtilityClasses(styleProps);
 
   const touchStartPos = React.useRef();
@@ -175,12 +157,10 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
       styleProps={styleProps}
       {...other}
     >
-      <BottomNavigationActionWrapper className={classes.wrapper} styleProps={styleProps}>
-        {icon}
-        <BottomNavigationActionLabel className={classes.label} styleProps={styleProps}>
-          {label}
-        </BottomNavigationActionLabel>
-      </BottomNavigationActionWrapper>
+      {icon}
+      <BottomNavigationActionLabel className={classes.label} styleProps={styleProps}>
+        {label}
+      </BottomNavigationActionLabel>
     </BottomNavigationActionRoot>
   );
 });

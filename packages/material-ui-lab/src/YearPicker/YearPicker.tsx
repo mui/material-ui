@@ -1,10 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  useTheme,
-  experimentalStyled,
-  unstable_useThemeProps as useThemProps,
-} from '@material-ui/core/styles';
+import { useTheme, styled, useThemeProps as useThemProps } from '@material-ui/core/styles';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import clsx from 'clsx';
 import PickersYear from './PickersYear';
@@ -37,11 +33,11 @@ const useUtilityClasses = (styleProps: any) => {
   return composeClasses(slots, getYearPickerUtilityClass, classes);
 };
 
-const YearPickerRoot = experimentalStyled('div', {
+const YearPickerRoot = styled('div', {
   name: 'MuiYearPicker',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})({
+})<{ styleProps: YearPickerProps<any> }>({
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
@@ -53,7 +49,7 @@ const YearPickerRoot = experimentalStyled('div', {
 export type YearPickerClassKey = keyof NonNullable<YearPickerProps<any>['classes']>;
 
 export interface YearPickerProps<TDate> extends ExportedYearPickerProps<TDate> {
-  allowKeyboardControl?: boolean;
+  autoFocus?: boolean;
   className?: string;
   classes?: {
     /** Styles applied to the root element. */
@@ -76,7 +72,7 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
 ) {
   const props = useThemProps({ props: inProps, name: 'MuiYearPicker' });
   const {
-    allowKeyboardControl,
+    autoFocus,
     className,
     date,
     disableFuture,
@@ -90,7 +86,7 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
     shouldDisableYear,
   } = props;
 
-  const styleProps = { ...props };
+  const styleProps = props;
   const classes = useUtilityClasses(styleProps);
 
   const now = useNow<TDate>();
@@ -150,9 +146,6 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
   const yearsInRow = wrapperVariant === 'desktop' ? 4 : 3;
 
   const handleKeyDown = (event: React.KeyboardEvent, year: number) => {
-    if (!allowKeyboardControl) {
-      return;
-    }
     switch (event.key) {
       case 'ArrowUp':
         focusYear(year - yearsInRow);
@@ -188,7 +181,7 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
             value={yearNumber}
             onClick={handleYearSelection}
             onKeyDown={handleKeyDown}
-            autoFocus={allowKeyboardControl && yearNumber === focusedYear}
+            autoFocus={autoFocus && yearNumber === focusedYear}
             ref={selected ? selectedYearRef : undefined}
             disabled={
               (disablePast && utils.isBeforeYear(year, now)) ||
@@ -212,7 +205,7 @@ YearPicker.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  allowKeyboardControl: PropTypes.bool,
+  autoFocus: PropTypes.bool,
   /**
    * @ignore
    */

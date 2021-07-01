@@ -1,5 +1,6 @@
 import { CalendarPickerClassKey } from '../CalendarPicker';
 import { CalendarPickerSkeletonClassKey } from '../CalendarPickerSkeleton';
+import { ClockPickerClassKey } from '../ClockPicker/ClockPicker';
 import { DateRangePickerDayClassKey } from '../DateRangePickerDay/DateRangePickerDay';
 import { LoadingButtonClassKey } from '../LoadingButton';
 import { MonthPickerClassKey } from '../MonthPicker';

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
@@ -18,17 +18,17 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAppBarUtilityClass, classes);
 };
 
-const AppBarRoot = experimentalStyled(Paper, {
+const AppBarRoot = styled(Paper, {
   name: 'MuiAppBar',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...styles[`position${capitalize(styleProps.position)}`],
-      ...styles[`color${capitalize(styleProps.color)}`],
-    };
+    return [
+      styles.root,
+      styles[`position${capitalize(styleProps.position)}`],
+      styles[`color${capitalize(styleProps.color)}`],
+    ];
   },
 })(({ theme, styleProps }) => {
   const backgroundColorDefault =
@@ -100,17 +100,29 @@ const AppBarRoot = experimentalStyled(Paper, {
       backgroundColor: 'transparent',
       color: 'inherit',
     }),
+    ...(theme.palette.mode === 'dark' &&
+      !styleProps.enableColorOnDark && {
+        backgroundColor: null,
+        color: null,
+      }),
   };
 });
 
 const AppBar = React.forwardRef(function AppBar(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiAppBar' });
-  const { className, color = 'primary', position = 'fixed', ...other } = props;
+  const {
+    className,
+    color = 'primary',
+    enableColorOnDark = false,
+    position = 'fixed',
+    ...other
+  } = props;
 
   const styleProps = {
     ...props,
     color,
     position,
+    enableColorOnDark,
   };
 
   const classes = useUtilityClasses(styleProps);
@@ -159,6 +171,11 @@ AppBar.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['default', 'inherit', 'primary', 'secondary', 'transparent']),
     PropTypes.string,
   ]),
+  /**
+   * If true, the `color` prop is applied in dark mode.
+   * @default false
+   */
+  enableColorOnDark: PropTypes.bool,
   /**
    * The positioning type. The behavior of the different options is described
    * [in the MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).

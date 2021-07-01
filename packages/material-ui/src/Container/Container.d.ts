@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { SxProps } from '@material-ui/system';
+import { SxProps, Breakpoint } from '@material-ui/system';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
-import { Breakpoint } from '../styles/createBreakpoints';
 import { ContainerClasses } from './containerClasses';
 
 export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {

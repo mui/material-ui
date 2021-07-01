@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import PickersDay, { PickersDayProps } from '../PickersDay/PickersDay';
 import { useUtils, useNow } from '../internal/pickers/hooks/useUtils';
 import { PickerOnChangeFn } from '../internal/pickers/hooks/useViews';
@@ -13,11 +13,7 @@ export interface ExportedCalendarProps<TDate>
     PickersDayProps<TDate>,
     'disableHighlightToday' | 'showDaysOutsideCurrentMonth' | 'allowSameDateSelection'
   > {
-  /**
-   * Enables keyboard listener for moving between days in calendar.
-   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
-   */
-  allowKeyboardControl?: boolean;
+  autoFocus?: boolean;
   /**
    * If `true` renders `LoadingComponent` in calendar instead of calendar view.
    * Can be used to preload information and show it in calendar.
@@ -44,6 +40,7 @@ export interface ExportedCalendarProps<TDate>
 }
 
 export interface PickersCalendarProps<TDate> extends ExportedCalendarProps<TDate> {
+  autoFocus?: boolean;
   className?: string;
   currentMonth: TDate;
   date: TDate | [TDate | null, TDate | null] | null;
@@ -100,8 +97,8 @@ const PickersCalendarWeek = styled('div', { skipSx: true })({
  */
 function PickersCalendar<TDate>(props: PickersCalendarProps<TDate>) {
   const {
-    allowKeyboardControl,
     allowSameDateSelection,
+    autoFocus,
     onFocusedDayChange: changeFocusedDay,
     className,
     currentMonth,
@@ -168,12 +165,8 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate>) {
                     day,
                     isAnimating: isMonthSwitchingAnimating,
                     disabled: isDateDisabled(day),
-                    allowKeyboardControl,
                     allowSameDateSelection,
-                    autoFocus:
-                      allowKeyboardControl &&
-                      focusedDay !== null &&
-                      utils.isSameDay(day, focusedDay),
+                    autoFocus: autoFocus && focusedDay !== null && utils.isSameDay(day, focusedDay),
                     today: utils.isSameDay(day, now),
                     outsideCurrentMonth: utils.getMonth(day) !== currentMonthNumber,
                     selected: selectedDates.some(

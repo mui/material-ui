@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Stack from '@material-ui/core/Stack';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -36,12 +36,12 @@ const QontoConnector = styled(StepConnector)(({ theme }) => ({
   },
 }));
 
-const QontoStepIconRoot = styled('div')(({ theme, styleProps = {} }) => ({
+const QontoStepIconRoot = styled('div')(({ theme, styleProps }) => ({
   color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#eaeaf0',
   display: 'flex',
   height: 22,
   alignItems: 'center',
-  ...(!!styleProps.active && {
+  ...(styleProps.active && {
     color: '#784af4',
   }),
   '& .QontoStepIcon-completedIcon': {
@@ -110,7 +110,7 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
   },
 }));
 
-const ColorlibStepIconRoot = styled('div')(({ theme, styleProps = {} }) => ({
+const ColorlibStepIconRoot = styled('div')(({ theme, styleProps }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#ccc',
   zIndex: 1,
   color: '#fff',
@@ -120,12 +120,12 @@ const ColorlibStepIconRoot = styled('div')(({ theme, styleProps = {} }) => ({
   borderRadius: '50%',
   justifyContent: 'center',
   alignItems: 'center',
-  ...(!!styleProps.active && {
+  ...(styleProps.active && {
     backgroundImage:
       'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
     boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
   }),
-  ...(!!styleProps.completed && {
+  ...(styleProps.completed && {
     backgroundImage:
       'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
   }),

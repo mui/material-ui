@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import { getSvgIconUtilityClass } from './svgIconClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -21,17 +21,17 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getSvgIconUtilityClass, classes);
 };
 
-const SvgIconRoot = experimentalStyled('svg', {
+const SvgIconRoot = styled('svg', {
   name: 'MuiSvgIcon',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...(styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`]),
-      ...styles[`fontSize${capitalize(styleProps.fontSize)}`],
-    };
+    return [
+      styles.root,
+      styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`],
+      styles[`fontSize${capitalize(styleProps.fontSize)}`],
+    ];
   },
 })(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
@@ -54,6 +54,9 @@ const SvgIconRoot = experimentalStyled('svg', {
   color: {
     primary: theme.palette.primary.main,
     secondary: theme.palette.secondary.main,
+    info: theme.palette.info.main,
+    success: theme.palette.success.main,
+    warning: theme.palette.warning.main,
     action: theme.palette.action.active,
     error: theme.palette.error.main,
     disabled: theme.palette.action.disabled,
@@ -127,7 +130,17 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * @default 'inherit'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['action', 'disabled', 'error', 'inherit', 'primary', 'secondary']),
+    PropTypes.oneOf([
+      'inherit',
+      'action',
+      'disabled',
+      'primary',
+      'secondary',
+      'error',
+      'info',
+      'success',
+      'warning',
+    ]),
     PropTypes.string,
   ]),
   /**

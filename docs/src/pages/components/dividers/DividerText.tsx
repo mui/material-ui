@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import Chip from '@material-ui/core/Chip';
 

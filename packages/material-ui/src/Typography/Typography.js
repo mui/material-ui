@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_extendSxProp as extendSxProp } from '@material-ui/system';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import { getTypographyUtilityClass } from './typographyClasses';
@@ -25,20 +25,20 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTypographyUtilityClass, classes);
 };
 
-export const TypographyRoot = experimentalStyled('span', {
+export const TypographyRoot = styled('span', {
   name: 'MuiTypography',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...(styleProps.variant && styles[styleProps.variant]),
-      ...(styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`]),
-      ...(styleProps.noWrap && styles.noWrap),
-      ...(styleProps.gutterBottom && styles.gutterBottom),
-      ...(styleProps.paragraph && styles.paragraph),
-    };
+    return [
+      styles.root,
+      styleProps.variant && styles[styleProps.variant],
+      styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`],
+      styleProps.noWrap && styles.noWrap,
+      styleProps.gutterBottom && styles.gutterBottom,
+      styleProps.paragraph && styles.paragraph,
+    ];
   },
 })(({ theme, styleProps }) => ({
   margin: 0,
@@ -88,8 +88,8 @@ const transformDeprecatedColors = (color) => {
 
 const Typography = React.forwardRef(function Typography(inProps, ref) {
   const themeProps = useThemeProps({ props: inProps, name: 'MuiTypography' });
-  themeProps.color = transformDeprecatedColors(themeProps.color);
-  const props = extendSxProp(themeProps);
+  const color = transformDeprecatedColors(themeProps.color);
+  const props = extendSxProp({ ...themeProps, color });
 
   const {
     align = 'inherit',
@@ -106,6 +106,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
   const styleProps = {
     ...props,
     align,
+    color,
     className,
     component,
     gutterBottom,

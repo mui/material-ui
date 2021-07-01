@@ -50,7 +50,12 @@ export default function transformer(fileInfo, api, options) {
           break;
         }
         case 'ImportSpecifier':
-          if (whitelist[specifier.imported.name] == null) return;
+          if (
+            whitelist[specifier.imported.name] == null &&
+            specifier.imported.name !== 'withStyles'
+          ) {
+            return;
+          }
           resultSpecifiers.push(specifier);
           path.get('specifiers', index).prune();
           break;

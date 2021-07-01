@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
-import { useTheme, experimentalStyled as styled } from '@material-ui/core/styles';
+import { useTheme, styled } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowLeftIcon from '../svg-icons/ArrowLeft';
 import ArrowRightIcon from '../svg-icons/ArrowRight';
@@ -45,16 +45,22 @@ interface ArrowSwitcherProps extends ExportedArrowSwitcherProps, React.HTMLProps
   onRightClick: () => void;
 }
 
-const PickersArrowSwitcherRoot = styled('div', { skipSx: true })({
+const PickersArrowSwitcherRoot = styled('div', { skipSx: true })<{
+  styleProps: ArrowSwitcherProps;
+}>({
   display: 'flex',
 });
 
-const PickersArrowSwitcherSpacer = styled('div', { skipSx: true })(({ theme }) => ({
+const PickersArrowSwitcherSpacer = styled('div', { skipSx: true })<{
+  styleProps: ArrowSwitcherProps;
+}>(({ theme }) => ({
   width: theme.spacing(3),
 }));
 
-const PickersArrowSwitcherButton = styled(IconButton, { skipSx: true })(({ styleProps = {} }) => ({
-  ...(!!styleProps.hidden && {
+const PickersArrowSwitcherButton = styled(IconButton, { skipSx: true })<{
+  styleProps: ArrowSwitcherProps & { hidden: boolean };
+}>(({ styleProps }) => ({
+  ...(styleProps.hidden && {
     visibility: 'hidden',
   }),
 }));
@@ -87,8 +93,7 @@ const PickersArrowSwitcher = React.forwardRef(function PickersArrowSwitcher(
   const rightArrowButtonProps = componentsProps.rightArrowButton || {};
   const RightArrowIcon = components.RightArrowIcon || ArrowRightIcon;
 
-  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
-  const styleProps = { ...props };
+  const styleProps = props;
 
   return (
     <PickersArrowSwitcherRoot ref={ref} className={className} styleProps={styleProps} {...other}>

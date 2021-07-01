@@ -227,6 +227,7 @@ export interface Components {
   MuiInputBase?: {
     defaultProps?: ComponentsProps['MuiInputBase'];
     styleOverrides?: ComponentsOverrides['MuiInputBase'];
+    variants?: ComponentsVariants['MuiInputBase'];
   };
   MuiInputLabel?: {
     defaultProps?: ComponentsProps['MuiInputLabel'];
@@ -248,6 +249,10 @@ export interface Components {
   MuiListItem?: {
     defaultProps?: ComponentsProps['MuiListItem'];
     styleOverrides?: ComponentsOverrides['MuiListItem'];
+  };
+  MuiListItemButton?: {
+    defaultProps?: ComponentsProps['MuiListItemButton'];
+    styleOverrides?: ComponentsOverrides['MuiListItemButton'];
   };
   MuiListItemAvatar?: {
     defaultProps?: ComponentsProps['MuiListItemAvatar'];

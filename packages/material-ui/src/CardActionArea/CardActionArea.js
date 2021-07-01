@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import cardActionAreaClasses, { getCardActionAreaUtilityClass } from './cardActionAreaClasses';
 import ButtonBase from '../ButtonBase';
 
@@ -18,7 +18,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getCardActionAreaUtilityClass, classes);
 };
 
-const CardActionAreaRoot = experimentalStyled(ButtonBase, {
+const CardActionAreaRoot = styled(ButtonBase, {
   name: 'MuiCardActionArea',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -38,7 +38,7 @@ const CardActionAreaRoot = experimentalStyled(ButtonBase, {
   },
 }));
 
-const CardActionAreaFocusHighlight = experimentalStyled('span', {
+const CardActionAreaFocusHighlight = styled('span', {
   name: 'MuiCardActionArea',
   slot: 'FocusHighlight',
   overridesResolver: (props, styles) => styles.focusHighlight,
@@ -63,9 +63,7 @@ const CardActionArea = React.forwardRef(function CardActionArea(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiCardActionArea' });
   const { children, className, focusVisibleClassName, ...other } = props;
 
-  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
-  const styleProps = { ...props };
-
+  const styleProps = props;
   const classes = useUtilityClasses(styleProps);
 
   return (

@@ -12,8 +12,6 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#slider
 
 Sliders reflect a range of values along a bar, from which users may select a single value. They are ideal for adjusting settings such as volume, brightness, or applying image filters.
 
-- 📦 [22 kB gzipped](/size-snapshot) (but only +8 kB when used together with other Material-UI components).
-
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Continuous sliders
@@ -21,6 +19,12 @@ Sliders reflect a range of values along a bar, from which users may select a sin
 Continuous sliders allow users to select a value along a subjective range.
 
 {{"demo": "pages/components/slider/ContinuousSlider.js"}}
+
+## Sizes
+
+For smaller slider, use the prop `size="small"`.
+
+{{"demo": "pages/components/slider/SliderSizes.js"}}
 
 ## Discrete sliders
 
@@ -83,6 +87,10 @@ Here are some examples of customizing the component. You can learn more about th
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
 
+### Music player
+
+{{"demo": "pages/components/slider/MusicPlayerSlider.js"}}
+
 ## Vertical sliders
 
 {{"demo": "pages/components/slider/VerticalSlider.js"}}
@@ -123,6 +131,10 @@ Increasing _x_ by one increases the represented value by factor _2_.
 {{"demo": "pages/components/slider/NonLinearSlider.js"}}
 
 ## Unstyled
+
+<!-- #default-branch-switch -->
+
+- 📦 [5.6 kB gzipped](https://bundlephobia.com/result?p=@material-ui/unstyled@next)
 
 The slider also comes with an unstyled version.
 It's ideal for doing heavy customizations and minimizing bundle size.

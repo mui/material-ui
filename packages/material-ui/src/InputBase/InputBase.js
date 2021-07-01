@@ -6,8 +6,9 @@ import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import { unstable_composeClasses as composeClasses, isHostComponent } from '@material-ui/unstyled';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import useTheme from '../styles/useTheme';
 import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -19,32 +20,32 @@ import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
 export const rootOverridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return {
-    ...styles.root,
-    ...(styleProps.formControl && styles.formControl),
-    ...(styleProps.startAdornment && styles.adornedStart),
-    ...(styleProps.endAdornment && styles.adornedEnd),
-    ...(styleProps.error && styles.error),
-    ...(styleProps.size === 'small' && styles.sizeSmall),
-    ...(styleProps.multiline && styles.multiline),
-    ...(styleProps.color && styles[`color${capitalize(styleProps.color)}`]),
-    ...(styleProps.fullWidth && styles.fullWidth),
-    ...(styleProps.hiddenLabel && styles.hiddenLabel),
-  };
+  return [
+    styles.root,
+    styleProps.formControl && styles.formControl,
+    styleProps.startAdornment && styles.adornedStart,
+    styleProps.endAdornment && styles.adornedEnd,
+    styleProps.error && styles.error,
+    styleProps.size === 'small' && styles.sizeSmall,
+    styleProps.multiline && styles.multiline,
+    styleProps.color && styles[`color${capitalize(styleProps.color)}`],
+    styleProps.fullWidth && styles.fullWidth,
+    styleProps.hiddenLabel && styles.hiddenLabel,
+  ];
 };
 
 export const inputOverridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return {
-    ...styles.input,
-    ...(styleProps.size === 'small' && styles.inputSizeSmall),
-    ...(styleProps.multiline && styles.inputMultiline),
-    ...(styleProps.type === 'search' && styles.inputTypeSearch),
-    ...(styleProps.startAdornment && styles.inputAdornedStart),
-    ...(styleProps.endAdornment && styles.inputAdornedEnd),
-    ...(styleProps.hiddenLabel && styles.inputHiddenLabel),
-  };
+  return [
+    styles.input,
+    styleProps.size === 'small' && styles.inputSizeSmall,
+    styleProps.multiline && styles.inputMultiline,
+    styleProps.type === 'search' && styles.inputTypeSearch,
+    styleProps.startAdornment && styles.inputAdornedStart,
+    styleProps.endAdornment && styles.inputAdornedEnd,
+    styleProps.hiddenLabel && styles.inputHiddenLabel,
+  ];
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -93,7 +94,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getInputBaseUtilityClass, classes);
 };
 
-export const InputBaseRoot = experimentalStyled('div', {
+export const InputBaseRoot = styled('div', {
   name: 'MuiInputBase',
   slot: 'Root',
   overridesResolver: rootOverridesResolver,
@@ -121,7 +122,7 @@ export const InputBaseRoot = experimentalStyled('div', {
   }),
 }));
 
-export const InputBaseComponent = experimentalStyled('input', {
+export const InputBaseComponent = styled('input', {
   name: 'MuiInputBase',
   slot: 'Input',
   overridesResolver: inputOverridesResolver,
@@ -255,12 +256,10 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     startAdornment,
     type = 'text',
     value: valueProp,
-    /* eslint-disable-next-line react/prop-types */
-    isRtl,
-    /* eslint-disable-next-line react/prop-types */
-    theme,
     ...other
   } = props;
+
+  const theme = useTheme();
 
   const value = inputPropsProp.value != null ? inputPropsProp.value : valueProp;
   const { current: isControlled } = React.useRef(value != null);
@@ -580,7 +579,7 @@ InputBase.propTypes /* remove-proptypes */ = {
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['primary', 'secondary']),
+    PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -716,7 +715,10 @@ InputBase.propTypes /* remove-proptypes */ = {
   /**
    * The size of the component.
    */
-  size: PropTypes.oneOf(['medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * Start `InputAdornment` for this component.
    */

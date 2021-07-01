@@ -5,7 +5,7 @@ import MuiButton from '@material-ui/core/Button';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import BrandingBulletItem from 'docs/src/modules/branding/BrandingBulletItem';
 import Link from 'docs/src/modules/components/Link';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import WatchIcon from 'docs/src/modules/branding/icons/Watch';
 
 // PriorityButton start

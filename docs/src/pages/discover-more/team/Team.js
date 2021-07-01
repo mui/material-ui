@@ -66,6 +66,20 @@ const activeCore = [
     flag: 'Advanced components team',
     location: 'Esteio, Brazil',
   },
+  {
+    name: 'Michał Dudak',
+    github: 'michaldudak',
+    twitter: 'michaldudak',
+    flag: 'Core components team',
+    location: 'Silesia, Poland',
+  },
+  {
+    name: 'Siriwat Kunaporn',
+    github: 'siriwatknp',
+    twitter: 'siriwatknp',
+    flag: 'Core components team',
+    location: 'Bangkok, Thailand',
+  },
 ];
 
 const community = [
@@ -211,6 +225,8 @@ function Group(props) {
                           aria-label="github"
                           component="a"
                           href={`https://github.com/${member.github}`}
+                          target="_blank"
+                          rel="noopener"
                           className={classes.icon}
                         >
                           <GitHubIcon fontSize="inherit" />
@@ -221,6 +237,8 @@ function Group(props) {
                           aria-label="twitter"
                           component="a"
                           href={`https://twitter.com/${member.twitter}`}
+                          target="_blank"
+                          rel="noopener"
                           className={classes.icon}
                         >
                           <TwitterIcon fontSize="inherit" />

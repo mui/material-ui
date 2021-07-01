@@ -10,18 +10,17 @@ import capitalize from '../utils/capitalize';
 import { duration } from '../styles/createTransitions';
 import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import { getDrawerUtilityClass } from './drawerClasses';
 
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return {
-    ...styles.root,
-    ...((styleProps.variant === 'permanent' || styleProps.variant === 'persistent') &&
-      styles.docked),
-    ...styles.modal,
-  };
+  return [
+    styles.root,
+    (styleProps.variant === 'permanent' || styleProps.variant === 'persistent') && styles.docked,
+    styles.modal,
+  ];
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -41,13 +40,15 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getDrawerUtilityClass, classes);
 };
 
-const DrawerRoot = experimentalStyled(Modal, {
+const DrawerRoot = styled(Modal, {
   name: 'MuiDrawer',
   slot: 'Root',
   overridesResolver,
-})({});
+})(({ theme }) => ({
+  zIndex: theme.zIndex.drawer,
+}));
 
-const DrawerDockedRoot = experimentalStyled('div', {
+const DrawerDockedRoot = styled('div', {
   shouldForwardProp: rootShouldForwardProp,
   name: 'MuiDrawer',
   slot: 'Docked',
@@ -58,18 +59,18 @@ const DrawerDockedRoot = experimentalStyled('div', {
   flex: '0 0 auto',
 });
 
-const DrawerPaper = experimentalStyled(Paper, {
+const DrawerPaper = styled(Paper, {
   name: 'MuiDrawer',
   slot: 'Paper',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.paper,
-      ...styles[`paperAnchor${capitalize(styleProps.anchor)}`],
-      ...(styleProps.variant !== 'temporary' &&
-        styles[`paperAnchorDocked${capitalize(styleProps.anchor)}`]),
-    };
+    return [
+      styles.paper,
+      styles[`paperAnchor${capitalize(styleProps.anchor)}`],
+      styleProps.variant !== 'temporary' &&
+        styles[`paperAnchorDocked${capitalize(styleProps.anchor)}`],
+    ];
   },
 })(({ theme, styleProps }) => ({
   /* Styles applied to the Paper component. */
@@ -79,7 +80,8 @@ const DrawerPaper = experimentalStyled(Paper, {
   height: '100%',
   flex: '1 0 auto',
   zIndex: theme.zIndex.drawer,
-  WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+  // Add iOS momentum scrolling for iOS < 13.0
+  WebkitOverflowScrolling: 'touch',
   // temporary style
   position: 'fixed',
   top: 0,

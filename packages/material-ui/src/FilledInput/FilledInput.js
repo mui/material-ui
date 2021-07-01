@@ -3,7 +3,7 @@ import { refType } from '@material-ui/utils';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import InputBase from '../InputBase';
-import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
 import {
@@ -29,16 +29,16 @@ const useUtilityClasses = (styleProps) => {
   };
 };
 
-const FilledInputRoot = experimentalStyled(InputBaseRoot, {
+const FilledInputRoot = styled(InputBaseRoot, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiFilledInput',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
-    return {
+    return [
       ...inputBaseRootOverridesResolver(props, styles),
-      ...(!styleProps.disableUnderline && styles.underline),
-    };
+      !styleProps.disableUnderline && styles.underline,
+    ];
   },
 })(({ theme, styleProps }) => {
   const light = theme.palette.mode === 'light';
@@ -130,7 +130,7 @@ const FilledInputRoot = experimentalStyled(InputBaseRoot, {
   };
 });
 
-const FilledInputInput = experimentalStyled(InputBaseInput, {
+const FilledInputInput = styled(InputBaseInput, {
   name: 'MuiFilledInput',
   slot: 'Input',
   overridesResolver: inputBaseInputOverridesResolver,
@@ -185,6 +185,7 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
     inputComponent = 'input',
     multiline = false,
     type = 'text',
+    hiddenLabel, // declare here to prevent spreading to DOM
     ...other
   } = props;
 

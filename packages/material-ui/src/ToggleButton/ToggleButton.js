@@ -7,7 +7,7 @@ import { alpha } from '../styles';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import toggleButtonClasses, { getToggleButtonUtilityClass } from './toggleButtonClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -28,16 +28,13 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getToggleButtonUtilityClass, classes);
 };
 
-const ToggleButtonRoot = experimentalStyled(ButtonBase, {
+const ToggleButtonRoot = styled(ButtonBase, {
   name: 'MuiToggleButton',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...styles[`size${capitalize(styleProps.size)}`],
-    };
+    return [styles.root, styles[`size${capitalize(styleProps.size)}`]];
   },
 })(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
@@ -114,7 +111,7 @@ const ToggleButtonRoot = experimentalStyled(ButtonBase, {
   }),
 }));
 
-const ToggleButtonLabel = experimentalStyled('span', {
+const ToggleButtonLabel = styled('span', {
   name: 'MuiToggleButton',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,

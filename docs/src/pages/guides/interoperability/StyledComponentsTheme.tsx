@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   createTheme,
-  experimentalStyled as styled,
+  styled,
   ThemeProvider,
   darken,
 } from '@material-ui/core/styles';

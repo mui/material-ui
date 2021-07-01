@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import TableContext from './TableContext';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import { getTableUtilityClass } from './tableClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -17,16 +17,13 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTableUtilityClass, classes);
 };
 
-const TableRoot = experimentalStyled('table', {
+const TableRoot = styled('table', {
   name: 'MuiTable',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...(styleProps.stickyHeader && styles.stickyHeader),
-    };
+    return [styles.root, styleProps.stickyHeader && styles.stickyHeader];
   },
 })(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */

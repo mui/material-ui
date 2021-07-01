@@ -1,14 +1,12 @@
 import * as React from 'react';
-import { SxProps } from '@material-ui/system';
+import { SxProps, Breakpoint } from '@material-ui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
-import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
+import { TransitionProps } from '../transitions/transition';
 import { DialogClasses } from './dialogClasses';
-import { Breakpoint } from '../styles/createBreakpoints';
 
-export interface DialogProps
-  extends StandardProps<ModalProps & Partial<TransitionHandlerProps>, 'children'> {
+export interface DialogProps extends StandardProps<ModalProps, 'children'> {
   /**
    * The id(s) of the element(s) that describe the dialog.
    */

@@ -6,8 +6,9 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import ButtonBase from '../ButtonBase';
+import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import tabScrollButtonClasses, { getTabScrollButtonUtilityClass } from './tabScrollButtonClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -20,16 +21,13 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTabScrollButtonUtilityClass, classes);
 };
 
-const TabScrollButtonRoot = experimentalStyled(ButtonBase, {
+const TabScrollButtonRoot = styled(ButtonBase, {
   name: 'MuiTabScrollButton',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...(styleProps.orientation && styles[styleProps.orientation]),
-    };
+    return [styles.root, styleProps.orientation && styles[styleProps.orientation]];
   },
 })(({ styleProps }) => ({
   /* Styles applied to the root element. */
@@ -44,7 +42,7 @@ const TabScrollButtonRoot = experimentalStyled(ButtonBase, {
     width: '100%',
     height: 40,
     '& svg': {
-      transform: 'rotate(90deg)',
+      transform: `rotate(${styleProps.isRtl ? -90 : 90}deg)`,
     },
   }),
 }));
@@ -53,8 +51,10 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) 
   const props = useThemeProps({ props: inProps, name: 'MuiTabScrollButton' });
   const { className, direction, orientation, disabled, ...other } = props;
 
-  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
-  const styleProps = { ...props };
+  const theme = useTheme();
+  const isRtl = theme.direction === 'rtl';
+
+  const styleProps = { isRtl, ...props };
 
   const classes = useUtilityClasses(styleProps);
 

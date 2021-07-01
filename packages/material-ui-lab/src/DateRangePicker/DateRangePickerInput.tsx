@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { RangeInput, DateRange, CurrentlySelectingRangeEndProps } from './RangeTypes';
 import { useMaskedInput } from '../internal/pickers/hooks/useMaskedInput';

@@ -67,7 +67,7 @@ const inHouseAds = [
     link: 'https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-templates',
     img: '/static/ads-in-house/themes-2.jpg',
     description:
-      '<b>Premium Templates</b>. Start your project with the best templates for admins, dashboards and more.',
+      '<b>Premium Templates</b>. Start your project with the best templates for admins, dashboards, and more.',
   },
   {
     name: 'themes',
@@ -96,13 +96,6 @@ const inHouseAds = [
     img: '/static/ads-in-house/figma.png',
     description:
       '<b>For Figma</b>. A large UI kit with over 600 handcrafted Material-UI components 🎨.',
-  },
-  {
-    name: 'divjoy',
-    link: 'https://divjoy.com?via=material-ui',
-    img: '/static/ads-in-house/divjoy.png',
-    description:
-      '<b>Divjoy</b>. Create your Material-UI app in minutes. You’ll get a nice template, authentication, database integration, subscription payments, and more.',
   },
 ];
 

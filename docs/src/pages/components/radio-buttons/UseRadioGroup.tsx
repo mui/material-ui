@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import RadioGroup, { useRadioGroup } from '@material-ui/core/RadioGroup';
 import FormControlLabel, {
   FormControlLabelProps,

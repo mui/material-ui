@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { elementTypeAcceptingRef, refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
@@ -27,7 +27,7 @@ const useUtilityClasses = (styleProps) => {
   return composedClasses;
 };
 
-export const ButtonBaseRoot = experimentalStyled('button', {
+export const ButtonBaseRoot = styled('button', {
   name: 'MuiButtonBase',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -283,7 +283,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 
   let ComponentProp = component;
 
-  if (ComponentProp === 'button' && other.href) {
+  if (ComponentProp === 'button' && (other.href || other.to)) {
     ComponentProp = LinkComponent;
   }
 
@@ -292,7 +292,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     buttonProps.type = type === undefined ? 'button' : type;
     buttonProps.disabled = disabled;
   } else {
-    if (!other.href) {
+    if (!other.href && !other.to) {
       buttonProps.role = 'button';
     }
     if (disabled) {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Fade from '@material-ui/core/Fade';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import { SlideDirection } from './PickersSlideTransition';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
@@ -57,7 +57,9 @@ export interface PickersCalendarHeaderProps<TDate>
   onViewChange?: (view: CalendarPickerView) => void;
 }
 
-const PickersCalendarHeaderRoot = styled('div', { skipSx: true })({
+const PickersCalendarHeaderRoot = styled('div', { skipSx: true })<{
+  styleProps: PickersCalendarHeaderProps<any>;
+}>({
   display: 'flex',
   alignItems: 'center',
   marginTop: 16,
@@ -69,7 +71,9 @@ const PickersCalendarHeaderRoot = styled('div', { skipSx: true })({
   minHeight: 30,
 });
 
-const PickersCalendarHeaderLabel = styled('div', { skipSx: true })(({ theme }) => ({
+const PickersCalendarHeaderLabel = styled('div', { skipSx: true })<{
+  styleProps: PickersCalendarHeaderProps<any>;
+}>(({ theme }) => ({
   display: 'flex',
   maxHeight: 30,
   overflow: 'hidden',
@@ -80,7 +84,9 @@ const PickersCalendarHeaderLabel = styled('div', { skipSx: true })(({ theme }) =
   fontWeight: theme.typography.fontWeightMedium,
 }));
 
-const PickersCalendarHeaderLabelItem = styled('div', { skipSx: true })({
+const PickersCalendarHeaderLabelItem = styled('div', { skipSx: true })<{
+  styleProps: PickersCalendarHeaderProps<any>;
+}>({
   marginRight: 6,
 });
 
@@ -88,16 +94,16 @@ const PickersCalendarHeaderSwitchViewButton = styled(IconButton, { skipSx: true 
   marginRight: 'auto',
 });
 
-const PickersCalendarHeaderSwitchView = styled(ArrowDropDownIcon, { skipSx: true })(
-  ({ theme, styleProps = {} }) => ({
-    willChange: 'transform',
-    transition: theme.transitions.create('transform'),
-    transform: 'rotate(0deg)',
-    ...(styleProps.openView === 'year' && {
-      transform: 'rotate(180deg)',
-    }),
+const PickersCalendarHeaderSwitchView = styled(ArrowDropDownIcon, { skipSx: true })<{
+  styleProps: PickersCalendarHeaderProps<any>;
+}>(({ theme, styleProps }) => ({
+  willChange: 'transform',
+  transition: theme.transitions.create('transform'),
+  transform: 'rotate(0deg)',
+  ...(styleProps.openView === 'year' && {
+    transform: 'rotate(180deg)',
   }),
-);
+}));
 
 function getSwitchingViewAriaText(view: CalendarPickerView) {
   return view === 'year'
@@ -156,8 +162,7 @@ function PickersCalendarHeader<TDate>(props: PickersCalendarHeaderProps<TDate>) 
     return null;
   }
 
-  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
-  const styleProps = { ...props };
+  const styleProps = props;
 
   return (
     <PickersCalendarHeaderRoot styleProps={styleProps}>

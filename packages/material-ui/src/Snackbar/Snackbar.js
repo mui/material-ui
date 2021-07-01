@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { duration } from '../styles/createTransitions';
 import ClickAwayListener from '../ClickAwayListener';
@@ -25,20 +25,20 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getSnackbarUtilityClass, classes);
 };
 
-const SnackbarRoot = experimentalStyled('div', {
+const SnackbarRoot = styled('div', {
   name: 'MuiSnackbar',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...styles[
+    return [
+      styles.root,
+      styles[
         `anchorOrigin${capitalize(styleProps.anchorOrigin.vertical)}${capitalize(
           styleProps.anchorOrigin.horizontal,
         )}`
       ],
-    };
+    ];
   },
 })(({ theme, styleProps }) => {
   const center = {

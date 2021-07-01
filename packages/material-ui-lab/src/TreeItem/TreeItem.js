@@ -3,11 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { elementTypeAcceptingRef } from '@material-ui/utils';
 import Collapse from '@material-ui/core/Collapse';
-import {
-  alpha,
-  experimentalStyled,
-  unstable_useThemeProps as useThemeProps,
-} from '@material-ui/core/styles';
+import { alpha, styled, useThemeProps } from '@material-ui/core/styles';
 import { ownerDocument, useForkRef, unsupportedProp } from '@material-ui/core/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import TreeViewContext from '../TreeView/TreeViewContext';
@@ -33,7 +29,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTreeItemUtilityClass, classes);
 };
 
-const TreeItemRoot = experimentalStyled('li', {
+const TreeItemRoot = styled('li', {
   name: 'MuiTreeItem',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -44,19 +40,19 @@ const TreeItemRoot = experimentalStyled('li', {
   outline: 0,
 });
 
-const StyledTreeItemContent = experimentalStyled(TreeItemContent, {
+const StyledTreeItemContent = styled(TreeItemContent, {
   name: 'MuiTreeItem',
   slot: 'Content',
   overridesResolver: (props, styles) => {
-    return {
-      ...styles.content,
-      ...(styles.iconContainer && {
+    return [
+      styles.content,
+      styles.iconContainer && {
         [`& .${treeItemClasses.iconContainer}`]: styles.iconContainer,
-      }),
-      ...(styles.label && {
+      },
+      styles.label && {
         [`& .${treeItemClasses.label}`]: styles.label,
-      }),
-    };
+      },
+    ];
   },
 })(({ theme }) => ({
   padding: '0 8px',
@@ -116,7 +112,7 @@ const StyledTreeItemContent = experimentalStyled(TreeItemContent, {
   },
 }));
 
-const TreeItemGroup = experimentalStyled(Collapse, {
+const TreeItemGroup = styled(Collapse, {
   name: 'MuiTreeItem',
   slot: 'Group',
   overridesResolver: (props, styles) => styles.group,

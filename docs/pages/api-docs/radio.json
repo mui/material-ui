@@ -6,7 +6,7 @@
     "color": {
       "type": {
         "name": "union",
-        "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+        "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
       "default": "'primary'"
     },
@@ -38,7 +38,7 @@
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/material-ui/src/Radio/Radio.js",
-  "inheritance": { "component": "IconButton", "pathname": "/api/icon-button/" },
+  "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/radio-buttons/\">Radio Buttons</a></li></ul>",
   "styledComponent": true,
   "cssComponent": false

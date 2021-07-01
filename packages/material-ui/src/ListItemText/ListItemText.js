@@ -5,7 +5,7 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import Typography from '../Typography';
 import ListContext from '../List/ListContext';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import listItemTextClasses, { getListItemTextUtilityClass } from './listItemTextClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -20,20 +20,20 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getListItemTextUtilityClass, classes);
 };
 
-const ListItemTextRoot = experimentalStyled('div', {
+const ListItemTextRoot = styled('div', {
   name: 'MuiListItemText',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      [`& .${listItemTextClasses.primary}`]: styles.primary,
-      [`& .${listItemTextClasses.secondary}`]: styles.secondary,
-      ...styles.root,
-      ...(styleProps.inset && styles.inset),
-      ...(styleProps.primary && styleProps.secondary && styles.multiline),
-      ...(styleProps.dense && styles.dense),
-    };
+    return [
+      { [`& .${listItemTextClasses.primary}`]: styles.primary },
+      { [`& .${listItemTextClasses.secondary}`]: styles.secondary },
+      styles.root,
+      styleProps.inset && styles.inset,
+      styleProps.primary && styleProps.secondary && styles.multiline,
+      styleProps.dense && styles.dense,
+    ];
   },
 })(({ styleProps }) => ({
   /* Styles applied to the root element. */

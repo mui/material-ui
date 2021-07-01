@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import AddIcon from '../internal/svg-icons/Add';
 import speedDialIconClasses, { getSpeedDialIconUtilityClass } from './speedDialIconClasses';
@@ -19,24 +19,23 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getSpeedDialIconUtilityClass, classes);
 };
 
-const SpeedDialIconRoot = experimentalStyled('span', {
+const SpeedDialIconRoot = styled('span', {
   name: 'MuiSpeedDialIcon',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      [`& .${speedDialIconClasses.icon}`]: {
-        ...styles.icon,
-        ...(styleProps.open && styles.iconOpen),
-        ...(styleProps.open && styleProps.openIcon && styles.iconWithOpenIconOpen),
+    return [
+      { [`& .${speedDialIconClasses.icon}`]: styles.icon },
+      { [`& .${speedDialIconClasses.icon}`]: styleProps.open && styles.iconOpen },
+      {
+        [`& .${speedDialIconClasses.icon}`]:
+          styleProps.open && styleProps.openIcon && styles.iconWithOpenIconOpen,
       },
-      [`& .${speedDialIconClasses.openIcon}`]: {
-        ...styles.openIcon,
-        ...(styleProps.open && styles.openIconOpen),
-      },
-      ...styles.root,
-    };
+      { [`& .${speedDialIconClasses.openIcon}`]: styles.openIcon },
+      { [`& .${speedDialIconClasses.openIcon}`]: styleProps.open && styles.openIconOpen },
+      styles.root,
+    ];
   },
 })(({ theme, styleProps }) => ({
   height: 24,
@@ -69,7 +68,7 @@ const SpeedDialIcon = React.forwardRef(function SpeedDialIcon(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiSpeedDialIcon' });
   const { className, icon: iconProp, open, openIcon: openIconProp, ...other } = props;
 
-  const styleProps = { ...props };
+  const styleProps = props;
   const classes = useUtilityClasses(styleProps);
 
   function formatIcon(icon, newClassName) {

@@ -6,7 +6,6 @@ describe('system spacing', () => {
     describe('themeTransformer', () => {
       it('should have a default unit value', () => {
         const output = spacing({
-          theme: {},
           p: 1,
         });
         expect(output).to.deep.equal({ padding: 8 });
@@ -101,7 +100,6 @@ describe('system spacing', () => {
 
     it('should support negative values', () => {
       const output = spacing({
-        theme: {},
         p: -1,
       });
       expect(output).to.deep.equal({ padding: -8 });
@@ -109,7 +107,6 @@ describe('system spacing', () => {
 
     it('should support composes values', () => {
       const output = spacing({
-        theme: {},
         px: 1,
       });
       expect(output).to.deep.equal({
@@ -130,7 +127,6 @@ describe('system spacing', () => {
 
     it('should support breakpoints', () => {
       const output1 = spacing({
-        theme: {},
         p: [1, 2],
       });
       expect(output1).to.deep.equal({
@@ -143,7 +139,6 @@ describe('system spacing', () => {
       });
 
       const output2 = spacing({
-        theme: {},
         p: {
           xs: 1,
           sm: 2,
@@ -161,14 +156,12 @@ describe('system spacing', () => {
 
     it('should support full version', () => {
       const output1 = spacing({
-        theme: {},
         paddingTop: 1,
       });
       expect(output1).to.deep.equal({
         paddingTop: 8,
       });
       const output2 = spacing({
-        theme: {},
         paddingY: 1,
       });
       expect(output2).to.deep.equal({
@@ -179,7 +172,6 @@ describe('system spacing', () => {
 
     it('should support string values', () => {
       const output = spacing({
-        theme: {},
         pt: '10px',
       });
       expect(output).to.deep.equal({
@@ -192,7 +184,6 @@ describe('system spacing', () => {
     describe('themeTransformer', () => {
       it('should have a default unit value', () => {
         const output = margin({
-          theme: {},
           m: 1,
         });
         expect(output).to.deep.equal({ margin: 8 });
@@ -287,7 +278,6 @@ describe('system spacing', () => {
 
     it('should support negative values', () => {
       const output = margin({
-        theme: {},
         m: -1,
       });
       expect(output).to.deep.equal({ margin: -8 });
@@ -295,7 +285,6 @@ describe('system spacing', () => {
 
     it('should support composes values', () => {
       const output = margin({
-        theme: {},
         mx: 1,
       });
       expect(output).to.deep.equal({
@@ -316,7 +305,6 @@ describe('system spacing', () => {
 
     it('should support breakpoints', () => {
       const output1 = margin({
-        theme: {},
         m: [1, 2],
       });
       expect(output1).to.deep.equal({
@@ -329,7 +317,6 @@ describe('system spacing', () => {
       });
 
       const output2 = margin({
-        theme: {},
         m: {
           xs: 1,
           sm: 2,
@@ -347,14 +334,12 @@ describe('system spacing', () => {
 
     it('should support full version', () => {
       const output1 = margin({
-        theme: {},
         marginTop: 1,
       });
       expect(output1).to.deep.equal({
         marginTop: 8,
       });
       const output2 = margin({
-        theme: {},
         marginY: 1,
       });
       expect(output2).to.deep.equal({
@@ -365,7 +350,6 @@ describe('system spacing', () => {
 
     it('should support string values', () => {
       const output = margin({
-        theme: {},
         mt: '10px',
       });
       expect(output).to.deep.equal({
@@ -378,7 +362,6 @@ describe('system spacing', () => {
     describe('themeTransformer', () => {
       it('should have a default unit value', () => {
         const output = padding({
-          theme: {},
           p: 1,
         });
         expect(output).to.deep.equal({ padding: 8 });
@@ -473,7 +456,6 @@ describe('system spacing', () => {
 
     it('should support negative values', () => {
       const output = padding({
-        theme: {},
         p: -1,
       });
       expect(output).to.deep.equal({ padding: -8 });
@@ -481,7 +463,6 @@ describe('system spacing', () => {
 
     it('should support composes values', () => {
       const output = padding({
-        theme: {},
         px: 1,
       });
       expect(output).to.deep.equal({
@@ -502,7 +483,6 @@ describe('system spacing', () => {
 
     it('should support breakpoints', () => {
       const output1 = padding({
-        theme: {},
         p: [1, 2],
       });
       expect(output1).to.deep.equal({
@@ -515,7 +495,6 @@ describe('system spacing', () => {
       });
 
       const output2 = padding({
-        theme: {},
         p: {
           xs: 1,
           sm: 2,
@@ -533,14 +512,12 @@ describe('system spacing', () => {
 
     it('should support full version', () => {
       const output1 = padding({
-        theme: {},
         paddingTop: 1,
       });
       expect(output1).to.deep.equal({
         paddingTop: 8,
       });
       const output2 = padding({
-        theme: {},
         paddingY: 1,
       });
       expect(output2).to.deep.equal({
@@ -551,7 +528,6 @@ describe('system spacing', () => {
 
     it('should support string values', () => {
       const output = padding({
-        theme: {},
         pt: '10px',
       });
       expect(output).to.deep.equal({
@@ -563,7 +539,6 @@ describe('system spacing', () => {
   it('should allow to conditionally set a value', () => {
     const foo = true;
     const output = spacing({
-      theme: {},
       pt: foo ? undefined : 2,
     });
     expect(output).to.deep.equal({
