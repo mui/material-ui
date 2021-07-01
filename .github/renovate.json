@@ -62,6 +62,16 @@
       "groupName": "bundling fixtures",
       "matchPaths": ["test/bundling/fixtures/**/package.json"],
       "schedule": "every 6 months on the first day of the month"
+    },
+    {
+      "groupName": "examples",
+      "matchPaths": ["examples/**/package.json"],
+      "minor": {
+        "enabled": false
+      },
+      "patch": {
+        "enabled": false
+      }
     }
   ],
   "prConcurrentLimit": 30,
