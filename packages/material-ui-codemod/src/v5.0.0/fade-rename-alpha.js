@@ -9,10 +9,10 @@ export default function transformer(file, api) {
   let importFound = false;
 
   root.find(j.ImportDeclaration).forEach((path) => {
-    if (path.node.source.value === '@material-ui/core/styles') {
+    if (path.node.source.value.match(/^@material-ui\/core\/?(styles)?$/)) {
       path.node.specifiers.forEach((specifier) => {
         if (specifier.type === 'ImportSpecifier' && specifier.imported.name === 'fade') {
-          specifier.imported.name = 'alpha';
+          specifier.imported = j.identifier('alpha');
           importFound = true;
         }
       });
