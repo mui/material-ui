@@ -1,0 +1,14 @@
+name: Emoji Helper
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  emoji:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions-cool/emoji-helper@v1.0.0
+        with:
+          type: 'release'
+          emoji: '+1, laugh, heart, hooray, rocket, eyes'
