@@ -1,5 +1,5 @@
 import * as React from 'react';
-import MaskedInput from 'react-text-mask';
+import { IMaskInput } from 'react-imask';
 import NumberFormat from 'react-number-format';
 import Box from '@material-ui/core/Box';
 import Input from '@material-ui/core/Input';
@@ -7,55 +7,30 @@ import InputLabel from '@material-ui/core/InputLabel';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 
-const TextMaskCustom = React.forwardRef<HTMLElement>(function TextMaskCustom(
-  props,
-  ref,
-) {
-  const setRef = React.useCallback(
-    (maskedInputRef: { inputElement: HTMLElement } | null) => {
-      const value = maskedInputRef ? maskedInputRef.inputElement : null;
-
-      if (typeof ref === 'function') {
-        ref(value);
-      } else if (ref) {
-        ref.current = value;
-      }
-    },
-    [ref],
-  );
-
-  return (
-    <MaskedInput
-      {...props}
-      ref={setRef}
-      mask={[
-        '(',
-        /[1-9]/,
-        /\d/,
-        /\d/,
-        ')',
-        ' ',
-        /\d/,
-        /\d/,
-        /\d/,
-        '-',
-        /\d/,
-        /\d/,
-        /\d/,
-        /\d/,
-      ]}
-      placeholderChar={'\u2000'}
-      showMask
-    />
-  );
-});
-
-interface NumberFormatCustomProps {
+interface CustomProps {
   onChange: (event: { target: { name: string; value: string } }) => void;
   name: string;
 }
 
-const NumberFormatCustom = React.forwardRef<NumberFormat, NumberFormatCustomProps>(
+const TextMaskCustom = React.forwardRef<HTMLElement, CustomProps>(
+  function TextMaskCustom(props, ref) {
+    const { onChange, ...other } = props;
+    return (
+      <IMaskInput
+        {...other}
+        mask="(#00) 000-0000"
+        definitions={{
+          '#': /[1-9]/,
+        }}
+        inputRef={ref}
+        onAccept={(value: any) => onChange({ target: { name: props.name, value } })}
+        overwrite
+      />
+    );
+  },
+);
+
+const NumberFormatCustom = React.forwardRef<NumberFormat, CustomProps>(
   function NumberFormatCustom(props, ref) {
     const { onChange, ...other } = props;
 
@@ -86,7 +61,7 @@ interface State {
 
 export default function FormattedInputs() {
   const [values, setValues] = React.useState<State>({
-    textmask: '(1  )    -    ',
+    textmask: '(100) 000-0000',
     numberformat: '1320',
   });
 
@@ -106,7 +81,7 @@ export default function FormattedInputs() {
       }}
     >
       <FormControl variant="standard">
-        <InputLabel htmlFor="formatted-text-mask-input">react-text-mask</InputLabel>
+        <InputLabel htmlFor="formatted-text-mask-input">react-imask</InputLabel>
         <Input
           value={values.textmask}
           onChange={handleChange}
