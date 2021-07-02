@@ -14,12 +14,12 @@ const BasicSwitchRoot = styled('span')(`
   margin: 10px;
   cursor: pointer;
 
-  &.disabled {
+  &.Switch-disabled {
     opacity: 0.4;
     cursor: not-allowed;
   }
 
-  &.checked {
+  &.Switch-checked {
     background: #007FFF;
   }
 `);
@@ -47,12 +47,12 @@ const BasicSwitchThumb = styled('span')(`
   position: relative;
   transition: all 200ms ease;
 
-  &.focusVisible {
+  &.Switch-focusVisible {
     background-color: rgba(255,255,255,1);
     box-shadow: 0 0 1px 8px rgba(0,0,0,0.25);
   }
 
-  &.checked {
+  &.Switch-checked {
     left: 14px;
     top: 3px;
     background-color: #FFF;
@@ -63,9 +63,9 @@ function BasicSwitch(props: UseSwitchProps) {
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
 
   const stateClasses = {
-    checked,
-    disabled,
-    focusVisible,
+    'Switch-checked': checked,
+    'Switch-disabled': disabled,
+    'Switch-focusVisible': focusVisible,
   };
 
   return (
