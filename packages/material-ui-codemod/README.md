@@ -319,7 +319,7 @@ add `prepend: true` to emotion `createCache`
 ```diff
 const cache = emotionCreateCache({
   key: 'css',
-+ prepend: true, 
++ prepend: true,
 });
 ```
 
@@ -367,6 +367,7 @@ You can find more details about this breaking change in [the migration guide](ht
 #### `material-ui-styles`
 
 Move JSS imports to `@material-ui/styles`
+
 ```diff
 -import {
 -  createGenerateClassName,
