@@ -5,13 +5,15 @@ import Page from './pages';
 
 const App = () => {
   return (
-    (<Providers><StyledEngineProvider injectFirst>
+    <Providers>
+      <StyledEngineProvider injectFirst>
         <MuiThemeProvider theme={createMuiTheme()}>
           <OtherProvider>
             <Page />
           </OtherProvider>
         </MuiThemeProvider>
-      </StyledEngineProvider></Providers>)
+      </StyledEngineProvider>
+    </Providers>
   );
 };
 

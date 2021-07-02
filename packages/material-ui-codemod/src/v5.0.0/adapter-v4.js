@@ -61,7 +61,7 @@ export default function transformer(file, api) {
    */
   if (adaptV4Called) {
     utils.processImportFrom(/^@material-ui\/core\/?(styles)?$/, (nodes) => {
-      nodes.forEach(({ node }) => {
+      nodes.at(0).forEach(({ node }) => {
         if (!node.specifiers.find(({ imported }) => imported.name === 'adaptV4Theme')) {
           utils.insertImportSpecifier(node, 'adaptV4Theme');
         }

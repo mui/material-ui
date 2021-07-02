@@ -187,11 +187,13 @@ const withThemeProvider = (Component) => (props) => {
   );
   return (
     <DarkContext.Provider value={{ dark, setDark }}>
-      <StylesProvider injectFirst><StyledEngineProvider injectFirst>
+      <StylesProvider injectFirst>
+        <StyledEngineProvider injectFirst>
           <ThemeProvider theme={theme}>
             <Component {...props} />
           </ThemeProvider>
-        </StyledEngineProvider></StylesProvider>
+        </StyledEngineProvider>
+      </StylesProvider>
     </DarkContext.Provider>
   );
 };

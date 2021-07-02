@@ -39,29 +39,22 @@ export default function transformer(file, api, options = {}) {
   function wrapJSX(name) {
     root.findJSXElements(name).forEach((element) => {
       const identifier = j.jsxIdentifier('StyledEngineProvider');
-      const parent = element.parent;
-      hasWrapped = true;
 
-      if (parent.node.type === 'ReturnStatement') {
-        const jsx = parent.node.argument;
-        parent.node.argument = j.jsxElement(
-          j.jsxOpeningElement(identifier, [j.jsxAttribute(j.jsxIdentifier('injectFirst'))]),
-          j.jsxClosingElement(identifier),
-          [j.jsxText('\n'), jsx, j.jsxText('\n')],
-        );
-      }
+      const parent = element.parent;
 
       if (
-        parent.node.type === 'JSXElement' &&
-        parent.node.openingElement.name.name !== 'StyledEngineProvider'
+        parent.node.type !== 'JSXElement' ||
+        (parent.node.type === 'JSXElement' &&
+          parent.node.openingElement.name.name !== 'StyledEngineProvider')
       ) {
-        parent.node.children = [
+        hasWrapped = true;
+        element.replace(
           j.jsxElement(
             j.jsxOpeningElement(identifier, [j.jsxAttribute(j.jsxIdentifier('injectFirst'))]),
             j.jsxClosingElement(identifier),
-            parent.node.children,
+            [j.jsxText('\n'), element.node, j.jsxText('\n')],
           ),
-        ];
+        );
       }
     });
   }
