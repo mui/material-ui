@@ -16,6 +16,7 @@ import transformGridJustify from './grid-justify-justifycontent';
 import transformHiddenDownProps from './hidden-down-props';
 import transformStyles from './material-ui-styles';
 import transformMovedLabModules from './moved-lab-modules';
+import transformRootRef from './root-ref';
 import transformStyledEngineProvider from './styled-engine-provider';
 import transformThemeBreakpointsWidth from './theme-breakpoints-width';
 import transformThemeBreakpoints from './theme-breakpoints';
@@ -53,6 +54,7 @@ export default function transformer(file, api, options) {
   file.source = transformHiddenDownProps(file, api, options);
   file.source = transformStyles(file, api, options);
   file.source = transformMovedLabModules(file, api, options);
+  file.source = transformRootRef(file, api, options);
   file.source = transformStyledEngineProvider(file, api, options);
   file.source = transformThemeBreakpointsWidth(file, api, options);
   file.source = transformThemeBreakpoints(file, api, options);
