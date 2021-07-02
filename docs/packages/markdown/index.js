@@ -1,3 +1,3 @@
-const { getHeaders, renderInline } = require('./parseMarkdown');
+const { createRender, getHeaders, renderInline } = require('./parseMarkdown');
 
-module.exports = { getHeaders, renderInline };
+module.exports = { createRender, getHeaders, renderInline };
