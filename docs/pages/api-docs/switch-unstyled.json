@@ -1,6 +1,7 @@
 {
   "props": {
     "checked": { "type": { "name": "bool" } },
+    "className": { "type": { "name": "string" } },
     "component": { "type": { "name": "elementType" } },
     "components": {
       "type": {

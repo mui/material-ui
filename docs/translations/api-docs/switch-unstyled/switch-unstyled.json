@@ -2,6 +2,7 @@
   "componentDescription": "The foundation for building custom-styled switches.",
   "propDescriptions": {
     "checked": "If <code>true</code>, the component is checked.",
+    "className": "Class name applied to the root element.",
     "component": "The component used for the Root slot. Either a string to use a HTML element or a component. This is equivalent to <code>components.Root</code>. If both are provided, the <code>component</code> is used.",
     "components": "The components used for each slot inside the Switch. Either a string to use a HTML element or a component.",
     "componentsProps": "The props used for each slot inside the Switch.",
