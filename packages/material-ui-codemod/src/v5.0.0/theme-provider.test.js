@@ -12,7 +12,7 @@ function read(fileName) {
 describe('@material-ui/codemod', () => {
   describe('v5.0.0', () => {
     describe('theme-provider', () => {
-      it('transforms props as needed', () => {
+      it('transforms MuiThemeProvider as needed', () => {
         const actual = transform(
           {
             source: read('./theme-provider.test/actual.js'),
@@ -37,6 +37,20 @@ describe('@material-ui/codemod', () => {
         );
 
         const expected = read('./theme-provider.test/expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('transforms MuiThemeProvider in core import', () => {
+        const actual = transform(
+          {
+            source: read('./theme-provider.test/core-import.actual.js'),
+            path: require.resolve('./theme-provider.test/core-import.actual.js'),
+          },
+          { jscodeshift: jscodeshift },
+          {},
+        );
+
+        const expected = read('./theme-provider.test/core-import.expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
