@@ -35,11 +35,7 @@ const useUtilityClasses = (styleProps) => {
     track: ['track'],
   };
 
-  const composedClasses = composeClasses(slots, getSwitchUtilityClass, classes);
-
-  return {
-    ...composedClasses,
-  };
+  return composeClasses(slots, getSwitchUtilityClass, classes);
 };
 
 const SwitchTrack = styled('span', {
@@ -416,6 +412,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
       ...inputProps,
     },
     thumb: {
+      styleProps,
       icon,
       checkedIcon,
       defaultThumbClassName: switchClasses.thumb,
