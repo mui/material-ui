@@ -12,7 +12,7 @@ function read(fileName) {
 describe('@material-ui/codemod', () => {
   describe('v5.0.0', () => {
     describe('adapter-v4', () => {
-      it('transforms props as needed', () => {
+      it('add adaptV4Theme as needed', () => {
         const actual = transform(
           {
             source: read('./adapter-v4.test/actual.js'),
@@ -37,6 +37,20 @@ describe('@material-ui/codemod', () => {
         );
 
         const expected = read('./adapter-v4.test/expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('works with core import', () => {
+        const actual = transform(
+          {
+            source: read('./adapter-v4.test/core-import.actual.js'),
+            path: require.resolve('./adapter-v4.test/core-import.actual.js'),
+          },
+          { jscodeshift: jscodeshift },
+          {},
+        );
+
+        const expected = read('./adapter-v4.test/core-import.expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
