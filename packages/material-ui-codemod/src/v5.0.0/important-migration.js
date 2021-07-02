@@ -18,6 +18,7 @@ import transformStyles from './material-ui-styles';
 import transformMovedLabModules from './moved-lab-modules';
 import transformRootRef from './root-ref';
 import transformStyledEngineProvider from './styled-engine-provider';
+import transformThemeAugment from './theme-augment';
 import transformThemeBreakpointsWidth from './theme-breakpoints-width';
 import transformThemeBreakpoints from './theme-breakpoints';
 import transformThemeOptions from './theme-options';
@@ -56,6 +57,7 @@ export default function transformer(file, api, options) {
   file.source = transformMovedLabModules(file, api, options);
   file.source = transformRootRef(file, api, options);
   file.source = transformStyledEngineProvider(file, api, options);
+  file.source = transformThemeAugment(file, api, options);
   file.source = transformThemeBreakpointsWidth(file, api, options);
   file.source = transformThemeBreakpoints(file, api, options);
   file.source = transformThemeOptions(file, api, options);
