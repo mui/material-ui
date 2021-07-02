@@ -1488,7 +1488,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 ### Switch
 
-- Remove the second argument from `onChange`. You can pull out the checked state by accessing `event.target.checked`.
+- Deprecate the second argument from `onChange`. You can pull out the checked state by accessing `event.target.checked`.
 
   ```diff
   function MySwitch() {
