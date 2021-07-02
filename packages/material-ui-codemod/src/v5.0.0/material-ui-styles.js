@@ -1,12 +1,11 @@
-import getCodemodUtilities from '../util/getCodemodUtilities';
 /**
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
  */
 export default function transformer(file, api, options) {
   const printOptions = options.printOptions || { quote: 'single' };
-  const utils = getCodemodUtilities(file, api);
-  const { root, jscodeshift: j } = utils;
+  const j = api.jscodeshift;
+  const root = j(file.source);
 
   const list = [
     'createGenerateClassName',
@@ -43,8 +42,10 @@ export default function transformer(file, api, options) {
 
   const stylesPackage = '@material-ui/styles';
 
-  utils.processImportFrom(/^@material-ui\/core\/?(styles)?$/, (nodes) => {
-    nodes.forEach((path) => {
+  root
+    .find(j.ImportDeclaration)
+    .filter(({ node }) => node.source.value.match(/^@material-ui\/core\/?(styles)?$/))
+    .forEach((path) => {
       const importList = [];
       const typeList = [];
       const removedList = [];
@@ -57,7 +58,10 @@ export default function transformer(file, api, options) {
         }
         if (list.includes(imported.name)) {
           importList.push(
-            utils.createImportDeclaration(local.name, `${stylesPackage}/${imported.name}`),
+            j.importDeclaration(
+              [j.importDefaultSpecifier(j.identifier(local.name))],
+              j.literal(`${stylesPackage}/${imported.name}`),
+            ),
           );
           removedList.push(index);
         }
@@ -87,10 +91,9 @@ export default function transformer(file, api, options) {
           path.insertAfter(j.importDeclaration(appendedSpecifiers, j.literal(stylesPackage)));
         }
       }
-    });
+    })
+    .filter((path) => !path.node.specifiers.length)
+    .remove();
 
-    nodes.filter((path) => !path.node.specifiers.length).remove();
-  });
-
-  return utils.root.toSource(printOptions);
+  return root.toSource(printOptions);
 }
