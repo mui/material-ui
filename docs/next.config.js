@@ -90,10 +90,18 @@ module.exports = {
       module: {
         ...config.module,
         rules: config.module.rules.concat([
-          // used in some /getting-started/templates
           {
             test: /\.md$/,
-            type: 'asset/source',
+            oneOf: [
+              {
+                resourceQuery: /@material-ui\/markdown/,
+                use: require.resolve('@material-ui/markdown/loader'),
+              },
+              {
+                // used in some /getting-started/templates
+                type: 'asset/source',
+              },
+            ],
           },
           // transpile 3rd party packages with dependencies in this repository
           {
