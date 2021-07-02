@@ -14,9 +14,15 @@ export interface SwitchState {
 }
 
 export interface UseSwitchResult extends SwitchState {
-  getInputProps: (otherProps?: object) => SwitchInputProps;
+  /**
+   * Returns props for an HTML `input` element that is a part of a Switch.
+   */
+  getInputProps: (otherProps?: React.HTMLAttributes<HTMLInputElement>) => SwitchInputProps;
 }
 
+/**
+ * Props used by an HTML `input` element that is a part of a Switch.
+ */
 export interface SwitchInputProps {
   checked?: boolean;
   defaultChecked?: boolean;
