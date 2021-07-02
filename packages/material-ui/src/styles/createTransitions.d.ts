@@ -49,3 +49,8 @@ export interface Transitions {
   create: typeof create;
   getAutoHeightDuration: typeof getAutoHeightDuration;
 }
+
+export default function createTransitions(inputTransitions?: {
+  easing?: Partial<Easing>;
+  duration?: Partial<Duration>;
+}): Transitions;

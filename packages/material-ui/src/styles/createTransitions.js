@@ -43,7 +43,7 @@ function getAutoHeightDuration(height) {
   return Math.round((4 + 15 * constant ** 0.25 + constant / 5) * 10);
 }
 
-export default function createTransitions(inputTransitions) {
+export default function createTransitions(inputTransitions = {}) {
   const mergedEasing = {
     ...easing,
     ...inputTransitions.easing,
