@@ -3,7 +3,7 @@ import createTransitions, {
   Duration as TransitionDuration,
 } from '@material-ui/core/styles/createTransitions';
 
-const transitions = createTransitions();
+const transitions = createTransitions({});
 
 // type A = TransitionDuration | Easing
 

@@ -28,7 +28,7 @@ export default function transformer(file, api, options) {
     root
       .find(j.ImportDeclaration)
       .at(-1)
-      .insertAfter(`const ${variableName} = createTransitions();`);
+      .insertAfter(`const ${variableName} = createTransitions({});`);
   }
 
   return root.toSource(printOptions);
