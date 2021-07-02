@@ -289,7 +289,7 @@ function Unstable_TrapFocus(props) {
     // The whatwg spec defines how the browser should behave but does not explicitly mention any events:
     // https://html.spec.whatwg.org/multipage/interaction.html#focus-fixup-rule.
     const interval = setInterval(() => {
-      if (!doc.activeElement || doc.activeElement.tagName === 'BODY') {
+      if (doc.activeElement === null || doc.activeElement.tagName === 'BODY') {
         contain();
       }
     }, 50);
