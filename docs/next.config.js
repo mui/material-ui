@@ -32,7 +32,7 @@ module.exports = {
     ignoreDevErrors: true,
     ignoreBuildErrors: true,
   },
-  webpack5: false,
+  webpack5: true,
   webpack: (config, options) => {
     const plugins = config.plugins.slice();
 
