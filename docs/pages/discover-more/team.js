@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   requireDemo,
-} from '!@material-ui/markdown/loader!docs/src/pages/discover-more/team/team.md';
+} from 'docs/src/pages/discover-more/team/team.md?@material-ui/markdown';
 
 export default function Page() {
   return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
