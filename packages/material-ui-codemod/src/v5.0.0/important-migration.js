@@ -17,6 +17,7 @@ import transformHiddenDownProps from './hidden-down-props';
 import transformStyles from './material-ui-styles';
 import transformMovedLabModules from './moved-lab-modules';
 import transformRootRef from './root-ref';
+import transformSkeletonVariant from './skeleton-variant';
 import transformStyledEngineProvider from './styled-engine-provider';
 import transformThemeAugment from './theme-augment';
 import transformThemeBreakpointsWidth from './theme-breakpoints-width';
@@ -56,6 +57,7 @@ export default function transformer(file, api, options) {
   file.source = transformStyles(file, api, options);
   file.source = transformMovedLabModules(file, api, options);
   file.source = transformRootRef(file, api, options);
+  file.source = transformSkeletonVariant(file, api, options);
   file.source = transformStyledEngineProvider(file, api, options);
   file.source = transformThemeAugment(file, api, options);
   file.source = transformThemeBreakpointsWidth(file, api, options);
