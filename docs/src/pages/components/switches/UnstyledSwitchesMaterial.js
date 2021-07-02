@@ -166,7 +166,7 @@ const SwitchBase = styled('span', {
   }),
 );
 
-const SwitchRootLayout = styled('span', {
+const SwitchRoot = styled('span', {
   name: 'MuiSwitch',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -259,9 +259,8 @@ const SwitchThumb = ({ isChecked, icon, checkedIcon, className }) => {
   return <DefaultSwitchThumb className={className} />;
 };
 
-const SwitchRoot = React.forwardRef((props, ref) => {
+const SwitchLayout = React.forwardRef((props, ref) => {
   const {
-    componentState,
     className,
     disableRipple,
     disableTouchRipple,
@@ -274,14 +273,14 @@ const SwitchRoot = React.forwardRef((props, ref) => {
     ...other
   } = props;
 
-  const { checked, disabled, focusVisible } = componentState;
+  const { checked, disabled, focusVisible } = styleProps;
 
   const rippleRef = React.useRef(null);
 
   const { enableTouchRipple, getRippleHandlers } = useTouchRipple({
     rippleRef,
     focusVisible,
-    disabled: componentState.disabled,
+    disabled,
     disableRipple,
     disableTouchRipple,
     disableFocusRipple,
@@ -291,20 +290,6 @@ const SwitchRoot = React.forwardRef((props, ref) => {
     onBlur,
   });
 
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (enableTouchRipple && !rippleRef.current) {
-        console.error(
-          [
-            'Material-UI: The `component` prop provided to ButtonBase is invalid.',
-            'Please make sure the children prop is rendered in this custom component.',
-          ].join('\n'),
-        );
-      }
-    }, [enableTouchRipple]);
-  }
-
   const classes = useUtilityClasses({
     ...styleProps,
     checked,
@@ -313,7 +298,7 @@ const SwitchRoot = React.forwardRef((props, ref) => {
   });
 
   return (
-    <SwitchRootLayout
+    <SwitchRoot
       {...other}
       className={clsx(className, classes.root)}
       ref={ref}
@@ -331,7 +316,7 @@ const SwitchRoot = React.forwardRef((props, ref) => {
         )}
       </SwitchBase>
       <SwitchTrack className={classes.track} />
-    </SwitchRootLayout>
+    </SwitchRoot>
   );
 });
 
@@ -388,10 +373,13 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     color,
     edge,
     size,
+    disableFocusRipple,
+    disableRipple,
+    disableTouchRipple,
   };
 
   const components = {
-    Root: SwitchRoot,
+    Root: SwitchLayout,
     Input: SwitchInput,
     Thumb: SwitchThumb,
   };

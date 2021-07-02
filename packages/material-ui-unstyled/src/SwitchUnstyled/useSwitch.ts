@@ -90,15 +90,18 @@ export default function useSwitch(props: UseSwitchProps) {
     state: 'checked',
   });
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // Workaround for https://github.com/facebook/react/issues/9023
-    if (event.nativeEvent.defaultPrevented) {
-      return;
-    }
+  const handleInputChange = useEventCallback(
+    (event: React.ChangeEvent<HTMLInputElement>, otherHandler?: React.FormEventHandler) => {
+      // Workaround for https://github.com/facebook/react/issues/9023
+      if (event.nativeEvent.defaultPrevented) {
+        return;
+      }
 
-    setCheckedState(event.target.checked);
-    onChange?.(event);
-  };
+      setCheckedState(event.target.checked);
+      onChange?.(event);
+      otherHandler?.(event);
+    },
+  );
 
   const {
     isFocusVisibleRef,
@@ -118,34 +121,40 @@ export default function useSwitch(props: UseSwitchProps) {
 
   const inputRef = React.useRef<any>(null);
 
-  const handleFocus = useEventCallback((event: React.FocusEvent<HTMLInputElement>) => {
-    // Fix for https://github.com/facebook/react/issues/7769
-    if (!inputRef.current) {
-      inputRef.current = event.currentTarget;
-    }
+  const handleFocus = useEventCallback(
+    (event: React.FocusEvent, otherHandler?: React.FocusEventHandler) => {
+      // Fix for https://github.com/facebook/react/issues/7769
+      if (!inputRef.current) {
+        inputRef.current = event.currentTarget;
+      }
 
-    handleFocusVisible(event);
-    if (isFocusVisibleRef.current === true) {
-      setFocusVisible(true);
-      onFocusVisible?.(event);
-    }
+      handleFocusVisible(event);
+      if (isFocusVisibleRef.current === true) {
+        setFocusVisible(true);
+        onFocusVisible?.(event);
+      }
 
-    onFocus?.(event);
-  });
+      onFocus?.(event);
+      otherHandler?.(event);
+    },
+  );
 
-  const handleBlur = (event: React.FocusEvent) => {
-    handleBlurVisible(event);
+  const handleBlur = useEventCallback(
+    (event: React.FocusEvent, otherHandler?: React.FocusEventHandler) => {
+      handleBlurVisible(event);
 
-    if (isFocusVisibleRef.current === false) {
-      setFocusVisible(false);
-    }
+      if (isFocusVisibleRef.current === false) {
+        setFocusVisible(false);
+      }
 
-    onBlur?.(event);
-  };
+      onBlur?.(event);
+      otherHandler?.(event);
+    },
+  );
 
   const handleRefChange = useForkRef(focusVisibleRef, inputRef);
 
-  const getInputProps = (otherProps: object = {}) => ({
+  const getInputProps = (otherProps: React.HTMLAttributes<HTMLInputElement> = {}) => ({
     checked: checkedProp,
     defaultChecked,
     disabled,
@@ -153,11 +162,12 @@ export default function useSwitch(props: UseSwitchProps) {
     required,
     type: 'checkbox',
     ...otherProps,
-    onChange: handleInputChange,
-    onFocus: handleFocus,
-    onBlur: handleBlur,
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) =>
+      handleInputChange(event, otherProps.onChange),
+    onFocus: (event: React.FocusEvent) => handleFocus(event, otherProps.onFocus),
+    onBlur: (event: React.FocusEvent) => handleBlur(event, otherProps.onBlur),
     ref: handleRefChange,
-  })
+  });
 
   return {
     checked,

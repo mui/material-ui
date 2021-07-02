@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import isPropValid from '@emotion/is-prop-valid';
 import useSwitch, { SwitchState, UseSwitchProps } from './useSwitch';
 import classes from './switchUnstyledClasses';
+import { getForwardableProps, isHostComponent } from '../utils';
 
 export interface SwitchUnstyledProps extends UseSwitchProps {
   /**
@@ -35,27 +35,14 @@ export interface SwitchUnstyledProps extends UseSwitchProps {
   };
 }
 
-const appendComponentState = (
+const appendStyleProps = (
   component: React.ElementType,
   componentsProps: Record<string, any>,
   state: SwitchState,
 ) => {
-  if (typeof component !== 'string') {
-    componentsProps.componentState = state;
+  if (!isHostComponent(component)) {
+    componentsProps.styleProps = { ...componentsProps.styleProps, ...state };
   }
-};
-
-const getForwardableProps = (targetElement: React.ElementType, props: object) => {
-  if (typeof targetElement !== 'string') {
-    return props;
-  }
-
-  return Object.keys(props)
-    .filter(isPropValid)
-    .reduce((acc, current) => {
-      acc[current] = (props as Record<string, string>)[current];
-      return acc;
-    }, {} as Record<string, any>);
 };
 
 /**
@@ -111,14 +98,17 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
 
   const { getInputProps, checked, disabled, focusVisible, readOnly } = useSwitch(useSwitchProps);
 
-  const componentState: SwitchState = React.useMemo(
-    () => ({ checked, disabled, focusVisible, readOnly }),
-    [checked, disabled, focusVisible, readOnly],
-  );
+  const styleProps: SwitchState = {
+    ...props,
+    checked,
+    disabled,
+    focusVisible,
+    readOnly,
+  };
 
-  appendComponentState(Root, rootProps, componentState);
-  appendComponentState(Input, inputProps, componentState);
-  appendComponentState(Thumb, thumbProps, componentState);
+  appendStyleProps(Root, rootProps, styleProps);
+  appendStyleProps(Input, inputProps, styleProps);
+  appendStyleProps(Thumb, thumbProps, styleProps);
 
   const stateClasses = {
     [classes.checked]: checked,

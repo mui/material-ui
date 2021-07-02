@@ -42,6 +42,11 @@ interface WithCustomProp {
   fooBar: string;
 }
 
+interface WithStyleProps {
+  styleProps: Record<string, any>;
+  expectedStyleProps: Record<string, any>;
+}
+
 function forEachSlot(
   slots: Record<string, SlotTestingOptions>,
   callback: (slotName: string, options: SlotTestingOptions) => void,
@@ -224,14 +229,55 @@ function testComponentsPropsProp(
   });
 }
 
+function testStylePropsPropagation(
+  element: React.ReactElement,
+  getOptions: () => UnstyledConformanceOptions,
+) {
+  const { render, slots } = getOptions();
+
+  if (!render) {
+    throwMissingPropError('render');
+  }
+
+  if (!slots) {
+    throwMissingPropError('slots');
+  }
+
+  forEachSlot(slots, (slotName) => {
+    it(`sets the styleProps prop on ${capitalize(slotName)} slot's component`, () => {
+      const TestComponent = React.forwardRef(
+        ({ styleProps, expectedStyleProps }: WithStyleProps, ref: React.Ref<any>) => {
+          expect(styleProps).to.deep.include(expectedStyleProps);
+          return <div ref={ref} />;
+        },
+      );
+
+      const components = {
+        [capitalize(slotName)]: TestComponent,
+      };
+
+      const componentsProps = {
+        [slotName]: {
+          expectedStyleProps: {
+            customProp: 'foo',
+          },
+        },
+      };
+
+      render(React.cloneElement(element, { components, componentsProps, customProp: 'foo' }));
+    });
+  });
+}
+
 const fullSuite = {
   componentProp: testComponentProp,
   componentsProp: testComponentsProp,
   componentsPropsProp: testComponentsPropsProp,
   mergeClassName: testClassName,
   propsSpread: testPropForwarding,
-  refForwarding: describeRef,
   reactTestRenderer: testReactTestRenderer,
+  refForwarding: describeRef,
+  stylePropsPropagation: testStylePropsPropagation,
 };
 
 export default function describeConformanceUnstyled(

@@ -354,20 +354,6 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     onBlur: handleBlur,
   });
 
-  if (process.env.NODE_ENV !== 'production') {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
-      if (enableTouchRipple && !rippleRef.current) {
-        console.error(
-          [
-            'Material-UI: The `component` prop provided to ButtonBase is invalid.',
-            'Please make sure the children prop is rendered in this custom component.',
-          ].join('\n'),
-        );
-      }
-    }, [enableTouchRipple]);
-  }
-
   const classes = useUtilityClasses(styleProps);
 
   return (

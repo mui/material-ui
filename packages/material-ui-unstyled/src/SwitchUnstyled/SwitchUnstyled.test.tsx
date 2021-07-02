@@ -32,21 +32,21 @@ describe('<SwitchUnstyled />', () => {
   }));
 
   describe('componentState', () => {
-    it('passes the componentState prop to all the slots', () => {
+    it('passes the styleProps prop to all the slots', () => {
       interface CustomSlotProps {
-        componentState: SwitchState;
+        styleProps: SwitchState;
         children?: React.ReactNode;
       }
 
       const CustomSlot = React.forwardRef(
-        ({ componentState: cs, children }: CustomSlotProps, ref: React.Ref<any>) => {
+        ({ styleProps: sp, children }: CustomSlotProps, ref: React.Ref<any>) => {
           return (
             <div
               ref={ref}
-              data-checked={cs.checked}
-              data-disabled={cs.disabled}
-              data-readonly={cs.readOnly}
-              data-focusvisible={cs.focusVisible}
+              data-checked={sp.checked}
+              data-disabled={sp.disabled}
+              data-readonly={sp.readOnly}
+              data-focusvisible={sp.focusVisible}
               data-testid="custom"
             >
               {children}
