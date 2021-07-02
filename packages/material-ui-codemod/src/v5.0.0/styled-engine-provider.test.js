@@ -12,127 +12,45 @@ function read(fileName) {
 describe('@material-ui/codemod', () => {
   describe('v5.0.0', () => {
     describe('new style-engine-provider import', () => {
-      it('import StyleEngineProvider', () => {
+      it('import StyleEngineProvider after MuiThemeProvider', () => {
         const actual = transform(
           {
-            source: read('./styled-engine-provider.test/unexists-import.actual.js'),
-            path: require.resolve('./styled-engine-provider.test/unexists-import.actual.js'),
+            source: read('./styled-engine-provider.test/mui-theme-provider.actual.js'),
+            path: require.resolve('./styled-engine-provider.test/mui-theme-provider.actual.js'),
           },
           { jscodeshift: jscodeshift },
           {},
         );
 
-        const expected = read('./styled-engine-provider.test/unexists-import.expected.js');
+        const expected = read('./styled-engine-provider.test/mui-theme-provider.expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
 
       it('should be idempotent', () => {
         const actual = transform(
           {
-            source: read('./styled-engine-provider.test/unexists-import.expected.js'),
-            path: require.resolve('./styled-engine-provider.test/unexists-import.expected.js'),
+            source: read('./styled-engine-provider.test/mui-theme-provider.expected.js'),
+            path: require.resolve('./styled-engine-provider.test/mui-theme-provider.expected.js'),
           },
           { jscodeshift: jscodeshift },
           {},
         );
 
-        const expected = read('./styled-engine-provider.test/unexists-import.expected.js');
-        expect(actual).to.equal(expected, 'The transformed version should be correct');
-      });
-    });
-
-    describe('append style-engine-provider import', () => {
-      it('append StyleEngineProvider to core/styles', () => {
-        const actual = transform(
-          {
-            source: read('./styled-engine-provider.test/exists-import.actual.js'),
-            path: require.resolve('./styled-engine-provider.test/exists-import.actual.js'),
-          },
-          { jscodeshift: jscodeshift },
-          {},
-        );
-
-        const expected = read('./styled-engine-provider.test/exists-import.expected.js');
+        const expected = read('./styled-engine-provider.test/mui-theme-provider.expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
 
-      it('should be idempotent', () => {
+      it('import StyleEngineProvider after ThemeProvider', () => {
         const actual = transform(
           {
-            source: read('./styled-engine-provider.test/exists-import.expected.js'),
-            path: require.resolve('./styled-engine-provider.test/exists-import.expected.js'),
+            source: read('./styled-engine-provider.test/theme-provider.actual.js'),
+            path: require.resolve('./styled-engine-provider.test/theme-provider.actual.js'),
           },
           { jscodeshift: jscodeshift },
           {},
         );
 
-        const expected = read('./styled-engine-provider.test/exists-import.expected.js');
-        expect(actual).to.equal(expected, 'The transformed version should be correct');
-      });
-    });
-
-    describe('[const declaration] render style-engine-provider as first child', () => {
-      it('append StyleEngineProvider to core/styles', () => {
-        const actual = transform(
-          {
-            source: read('./styled-engine-provider.test/const-first-child-render.actual.js'),
-            path: require.resolve(
-              './styled-engine-provider.test/const-first-child-render.actual.js',
-            ),
-          },
-          { jscodeshift: jscodeshift },
-          {},
-        );
-
-        const expected = read('./styled-engine-provider.test/const-first-child-render.expected.js');
-        expect(actual).to.equal(expected, 'The transformed version should be correct');
-      });
-
-      it('should be idempotent', () => {
-        const actual = transform(
-          {
-            source: read('./styled-engine-provider.test/const-first-child-render.expected.js'),
-            path: require.resolve(
-              './styled-engine-provider.test/const-first-child-render.expected.js',
-            ),
-          },
-          { jscodeshift: jscodeshift },
-          {},
-        );
-
-        const expected = read('./styled-engine-provider.test/const-first-child-render.expected.js');
-        expect(actual).to.equal(expected, 'The transformed version should be correct');
-      });
-    });
-
-    describe('[fn declaration] render style-engine-provider as first child', () => {
-      it('append StyleEngineProvider to core/styles', () => {
-        const actual = transform(
-          {
-            source: read('./styled-engine-provider.test/fn-first-child-render.actual.js'),
-            path: require.resolve('./styled-engine-provider.test/fn-first-child-render.actual.js'),
-          },
-          { jscodeshift: jscodeshift },
-          {},
-        );
-
-        const expected = read('./styled-engine-provider.test/fn-first-child-render.expected.js');
-        expect(actual).to.equal(expected, 'The transformed version should be correct');
-      });
-
-      it('should be idempotent', () => {
-        const actual = transform(
-          {
-            source: read('./styled-engine-provider.test/fn-first-child-render.expected.js'),
-            path: require.resolve(
-              './styled-engine-provider.test/fn-first-child-render.expected.js',
-            ),
-          },
-          { jscodeshift: jscodeshift },
-          {},
-        );
-
-        const expected = read('./styled-engine-provider.test/fn-first-child-render.expected.js');
+        const expected = read('./styled-engine-provider.test/theme-provider.expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });

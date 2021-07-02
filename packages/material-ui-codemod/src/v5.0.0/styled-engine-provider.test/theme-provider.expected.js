@@ -1,12 +1,12 @@
 import React from 'react';
-import { ThemeProvider, createMuiTheme, StyledEngineProvider } from '@material-ui/core/styles';
+import { ThemeProvider, StyledEngineProvider, createTheme } from '@material-ui/core/styles';
 import { OtherProvider } from './contexts';
 import Page from './pages';
 
 const App = () => {
   return (
     <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={createMuiTheme()}>
+      <ThemeProvider theme={createTheme()}>
         <OtherProvider>
           <Page />
         </OtherProvider>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider, createTheme, alpha, adaptV4Theme } from '@material-ui/core/styles';
+import { ThemeProvider, StyledEngineProvider, createTheme, alpha, adaptV4Theme } from '@material-ui/core/styles';
 import makeStyles from '@material-ui/styles/makeStyles';
 import StylesProvider from '@material-ui/styles/StylesProvider';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -187,11 +187,11 @@ const withThemeProvider = (Component) => (props) => {
   );
   return (
     <DarkContext.Provider value={{ dark, setDark }}>
-      <StylesProvider injectFirst>
-        <ThemeProvider theme={theme}>
-          <Component {...props} />
-        </ThemeProvider>
-      </StylesProvider>
+      <StylesProvider injectFirst><StyledEngineProvider injectFirst>
+          <ThemeProvider theme={theme}>
+            <Component {...props} />
+          </ThemeProvider>
+        </StyledEngineProvider></StylesProvider>
     </DarkContext.Provider>
   );
 };

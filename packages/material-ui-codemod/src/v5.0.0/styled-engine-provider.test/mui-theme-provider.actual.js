@@ -1,18 +1,18 @@
 import React from 'react';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { OtherProvider } from './contexts';
 import Page from './pages';
 
-function App() {
+const App = () => {
   return (
-    <>
-      <ThemeProvider theme={createMuiTheme()}>
+    <Providers>
+      <MuiThemeProvider theme={createMuiTheme()}>
         <OtherProvider>
           <Page />
         </OtherProvider>
-      </ThemeProvider>
-    </>
+      </MuiThemeProvider>
+    </Providers>
   );
-}
+};
 
 export default App;

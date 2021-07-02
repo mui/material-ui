@@ -9,58 +9,68 @@ export default function transformer(file, api, options = {}) {
   const { root, jscodeshift: j } = utils;
   const printOptions = options.printOptions || { quote: 'single' };
 
-  const stylesImports = utils.getImportDeclaration('@material-ui/core/styles');
-  const styledEngineSpecifiers = utils.getImportSpecifier('StyledEngineProvider');
+  let isImported = false;
   /**
-   * import StyledEngineProvider
+   * try to import `StyledEngineProvider`
    */
-  if (!stylesImports.length) {
-    let inserted = false;
-    /**
-     * Insert below react import
-     */
-    root.find(j.ImportDeclaration).forEach((path) => {
-      if (path.node.source.value === 'react' && !inserted) {
-        path.insertAfter(
-          utils.createImportDeclaration(['StyledEngineProvider'], '@material-ui/core/styles'),
-        );
-        inserted = true;
+  root
+    .find(j.ImportSpecifier)
+    .forEach(({ node }) => {
+      if (node.imported.name === 'StyledEngineProvider') {
+        isImported = true;
+      }
+    })
+    .filter(
+      ({ node }) =>
+        node.imported.name === 'MuiThemeProvider' || node.imported.name === 'ThemeProvider',
+    )
+    .at(0)
+    .forEach((path) => {
+      if (!isImported) {
+        path.insertAfter(j.importSpecifier(j.identifier('StyledEngineProvider')));
       }
     });
-  } else if (!styledEngineSpecifiers.length) {
-    utils.processImportFrom('@material-ui/core/styles', (paths) => {
-      paths.forEach(({ node }) => {
-        utils.insertImportSpecifier(node, 'StyledEngineProvider');
-      });
-    });
-  }
 
   /**
-   * add <StyledEngineProvider> as first child
+   * wrapped with <StyledEngineProvider>
    */
-  const appName = utils.getExportDefaultDeclaration();
-  let App = root.findVariableDeclarators(appName);
-  if (App.length === 0) {
-    App = root.find(j.FunctionDeclaration, { id: { name: appName } });
-  }
+  let hasWrapped = false;
 
-  App.forEach((path) => {
-    utils.processReturnStatement(path.node, (node) => {
-      const shouldWrap =
-        node.argument.type === 'JSXFragment' ||
-        (node.argument.type === 'JSXElement' &&
-          node.argument.openingElement.name.name !== 'StyledEngineProvider');
-      if (shouldWrap) {
-        const jsx = node.argument;
-        const identifier = j.jsxIdentifier('StyledEngineProvider');
-        node.argument = j.jsxElement(
+  function wrapJSX(name) {
+    root.findJSXElements(name).forEach((element) => {
+      const identifier = j.jsxIdentifier('StyledEngineProvider');
+      const parent = element.parent;
+      hasWrapped = true;
+
+      if (parent.node.type === 'ReturnStatement') {
+        const jsx = parent.node.argument;
+        parent.node.argument = j.jsxElement(
           j.jsxOpeningElement(identifier, [j.jsxAttribute(j.jsxIdentifier('injectFirst'))]),
           j.jsxClosingElement(identifier),
           [j.jsxText('\n'), jsx, j.jsxText('\n')],
         );
       }
+
+      if (
+        parent.node.type === 'JSXElement' &&
+        parent.node.openingElement.name.name !== 'StyledEngineProvider'
+      ) {
+        parent.node.children = [
+          j.jsxElement(
+            j.jsxOpeningElement(identifier, [j.jsxAttribute(j.jsxIdentifier('injectFirst'))]),
+            j.jsxClosingElement(identifier),
+            parent.node.children,
+          ),
+        ];
+      }
     });
-  });
+  }
+
+  wrapJSX('MuiThemeProvider');
+
+  if (!hasWrapped) {
+    wrapJSX('ThemeProvider');
+  }
 
   return root.toSource(printOptions);
 }
