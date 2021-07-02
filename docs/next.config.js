@@ -86,9 +86,6 @@ module.exports = {
           ...config.resolve.extensions.filter((extension) => extension !== '.tsx'),
         ],
       },
-      node: {
-        fs: 'empty',
-      },
       module: {
         ...config.module,
         rules: config.module.rules.concat([
