@@ -18,11 +18,22 @@ export default function transformer(file, api) {
     );
   }
 
+  function hasAdaptV4(node) {
+    return (
+      node.arguments.length &&
+      node.arguments[0].type === 'CallExpression' &&
+      node.arguments[0].callee.name === 'adaptV4Theme'
+    );
+  }
+
   /**
    * add adapterV4 inside createMuiTheme
    */
   utils.processCallExpression('createMuiTheme', (nodes) => {
     nodes.forEach(({ node }) => {
+      if (hasAdaptV4(node)) {
+        adaptV4Called = true;
+      }
       if (isNotadaptV4ThemeArg(node)) {
         node.arguments = [j.callExpression(j.identifier('adaptV4Theme'), node.arguments)];
         adaptV4Called = true;
@@ -35,6 +46,9 @@ export default function transformer(file, api) {
    */
   utils.processCallExpression('createTheme', (nodes) => {
     nodes.forEach(({ node }) => {
+      if (hasAdaptV4(node)) {
+        adaptV4Called = true;
+      }
       if (isNotadaptV4ThemeArg(node)) {
         node.arguments = [j.callExpression(j.identifier('adaptV4Theme'), node.arguments)];
         adaptV4Called = true;
@@ -48,7 +62,9 @@ export default function transformer(file, api) {
   if (adaptV4Called) {
     utils.processImportFrom(/^@material-ui\/core\/?(styles)?$/, (nodes) => {
       nodes.forEach(({ node }) => {
-        utils.insertImportSpecifier(node, 'adaptV4Theme');
+        if (!node.specifiers.find(({ imported }) => imported.name === 'adaptV4Theme')) {
+          utils.insertImportSpecifier(node, 'adaptV4Theme');
+        }
       });
     });
   }
