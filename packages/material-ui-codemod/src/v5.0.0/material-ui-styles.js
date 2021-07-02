@@ -6,6 +6,7 @@ import getCodemodUtilities from '../util/getCodemodUtilities';
 export default function transformer(file, api, options) {
   const printOptions = options.printOptions || { quote: 'single' };
   const utils = getCodemodUtilities(file, api);
+  const { root, jscodeshift: j } = utils;
 
   const list = [
     'createGenerateClassName',
@@ -20,14 +21,40 @@ export default function transformer(file, api, options) {
     'mergeClasses',
     'StylesProvider',
   ];
+  const types = [
+    'GenerateClassNameOptions',
+    'StyleRules',
+    'StyleRulesCallback',
+    'Styles',
+    'ClassNameMap',
+    'WithStylesOptions',
+    'WithStyles',
+    'StyledComponentProps',
+    'WithThemeCreatorOption',
+    'WithTheme',
+    'ThemedComponentProps',
+    'StylesCreator',
+    'Classes',
+    'MergeClassesOption',
+    'StylesOptions',
+    'StylesProviderProps',
+    'StylesContext',
+  ];
 
   const stylesPackage = '@material-ui/styles';
 
-  utils.processImportFrom(/^@material-ui\/core(\/styles)?$/, (nodes) => {
+  utils.processImportFrom(/^@material-ui\/core\/?(styles)?$/, (nodes) => {
     nodes.forEach((path) => {
       const importList = [];
+      const typeList = [];
       const removedList = [];
-      path.node.specifiers.forEach(({ imported, local }, index) => {
+      const specifiers = path.node.specifiers;
+
+      specifiers.forEach(({ imported, local }, index) => {
+        if (types.includes(imported.name)) {
+          typeList.push({ imported, local });
+          removedList.push(index);
+        }
         if (list.includes(imported.name)) {
           importList.push(
             utils.createImportDeclaration(local.name, `${stylesPackage}/${imported.name}`),
@@ -35,10 +62,31 @@ export default function transformer(file, api, options) {
           removedList.push(index);
         }
       });
+
+      /**
+       * delete path.node.specifiers[index] cause empty item in array
+       * use this approach until we find a better way
+       */
       path.node.specifiers = path.node.specifiers.filter(
         (_, index) => !removedList.includes(index),
       );
+
       path.insertAfter(...importList);
+      if (typeList.length) {
+        const appendedSpecifiers = typeList.map(({ imported, local }) =>
+          j.importSpecifier(imported, local),
+        );
+        const muiStyles = root
+          .find(j.ImportDeclaration)
+          .filter(({ node }) => node.source.value.match(/^@material-ui\/styles\/?$/));
+        if (muiStyles.size()) {
+          muiStyles.forEach(({ node }) => {
+            node.specifiers = [...node.specifiers, ...appendedSpecifiers];
+          });
+        } else {
+          path.insertAfter(j.importDeclaration(appendedSpecifiers, j.literal(stylesPackage)));
+        }
+      }
     });
 
     nodes.filter((path) => !path.node.specifiers.length).remove();

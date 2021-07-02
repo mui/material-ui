@@ -2,7 +2,6 @@ import {
   createGenerateClassName,
   createStyles,
   jssPreset,
-  makeStyles,
   ServerStyleSheets,
   useThemeVariants,
   withStyles as withMuiStyles,
@@ -13,3 +12,4 @@ import {
   mergeClasses,
   StylesProvider,
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/';

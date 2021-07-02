@@ -67,6 +67,20 @@ describe('@material-ui/codemod', () => {
         const expected = read('./material-ui-styles.test/core-import.expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+
+      it('transform types import', () => {
+        const actual = transform(
+          {
+            source: read('./material-ui-styles.test/types-import.actual.js'),
+            path: require.resolve('./material-ui-styles.test/types-import.actual.js'),
+          },
+          { jscodeshift: jscodeshift },
+          {},
+        );
+
+        const expected = read('./material-ui-styles.test/types-import.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
     });
   });
 });

@@ -148,7 +148,13 @@ export default function getCodemodUtilities(file, api) {
   function createImportDeclaration(variableName, path) {
     if (Array.isArray(variableName)) {
       return j.importDeclaration(
-        variableName.map((name) => j.importSpecifier(j.identifier(name))),
+        variableName.map((name) => {
+          if (typeof name === 'object') {
+            if (name.default) return j.importDefaultSpecifier(j.identifier(name.name));
+            return j.importSpecifier(j.identifier(name.name));
+          }
+          return j.importSpecifier(j.identifier(name));
+        }),
         j.literal(path),
       );
     }
