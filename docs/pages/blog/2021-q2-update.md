@@ -143,7 +143,7 @@ This quarter, we took on a new initiative to help us solve three problems:
 - improve how we measure success
 - create space to take on large initiatives, away from the day-to-day PRs and issues management
 
-After considering [different alternatives](https://coda.io/@shishir/rituals-for-hypergrowth-an-inside-look-at-how-youtube-scaled), we are going with the [OKRs methodology](https://www.whatmatters.com/resources/google-okr-playbook/).
+After considering [different](https://basecamp.com/shapeup) [alternatives](https://coda.io/@shishir/rituals-for-hypergrowth-an-inside-look-at-how-youtube-scaled), we are going with the [OKRs methodology](https://www.whatmatters.com/resources/google-okr-playbook/).
 
 ### Growth between Q1 2021 and Q2 2021
 
