@@ -31,8 +31,10 @@ Here are the most significant improvements since March 2021.
   - 398 new contributors
   - The equivalence of, on average, four full-time developers working on it (core team + community).
 
-- 👩‍🎤 We have rolled out the new **styling engine** to all the components.
-  The community has provided invaluable assistance. In v5, we have standardized on the `styled()` API as the styling foundation we build on top of, e.g. [the `sx` prop](https://next.material-ui.com/system/the-sx-prop/). This API is loved by the community and implemented by a number of styling libraries: styled-components, emotion, stitches, goober, etc. It allows us to support them all, with [adapters](https://next.material-ui.com/guides/styled-engine/#how-to-switch-to-styled-components).
+- 👩‍🎤 We have rolled out the new **style engine** to all the components.
+  The community has provided invaluable assistance.
+  In v5, we have standardized on the `styled()` API as the styling foundation we build on top of, e.g. [the `sx` prop](https://next.material-ui.com/system/the-sx-prop/).
+  This API is loved by the community and implemented by a number of styling libraries: styled-components, emotion, stitches, goober, etc. It allows us to support them all, with [adapters](https://next.material-ui.com/guides/styled-engine/#how-to-switch-to-styled-components).
 
 - ⚒️ We added a [codemod CLI](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod) and 17 transformations to automatically migrate codebases from v4 to v5.
   If you are not familiar with what a codemod is, you can follow [this presentation](https://www.youtube.com/watch?v=H9qtLutnT_g).
@@ -61,7 +63,7 @@ Here are the most significant improvements since March 2021.
   <Grid container columns={16}>
   ```
 
-  We have an alternative implementaton that uses [CSS grid](https://next.material-ui.com/components/grid/#css-grid-layout):
+  We have added an alternative implementaton that uses [CSS grid](https://next.material-ui.com/components/grid/#css-grid-layout):
 
   ```jsx
   <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
@@ -80,6 +82,14 @@ Here are the most significant improvements since March 2021.
   </Box>
   ```
 
+- 💄 We have improved the accessibility of the Link component:
+
+  <a href="https://next.material-ui.com/components/links/">
+    <img loading="lazy" src="/static/blog/2021-q2-update/link.png" alt="" style="width: 129px; margin-bottom: 16px;" />
+  </a>
+
+  <p class="blog-description">The underline allows to differentiate links in sentences.</p>
+
 ### Advanced components
 
 We have primarily focused on the data grid components, fixing a lot of bugs.
@@ -93,12 +103,14 @@ The date picker is at the border between the advanced components and the design 
 
 #### Data Grid
 
-- 🚨 We have continued to work on breaking changes to reach a stable version. We think that the component is good enough for usage in production, but we want to get the public API right before committing to a stable release.
+- 🚨 We have continued to work on breaking changes to reach a stable version.
+  We think that the component is good enough for usage in production, but we want to get the public API right before committing to a stable release.
 - ✍️ We have added support for the [cell edit mode](https://material-ui.com/components/data-grid/editing/).
 
   <img loading="lazy" src="/static/blog/2021-q2-update/cell-edit.gif" alt="" style="width: 842px; margin-bottom: 16px;" />
 
-- 🐛 We have focused on fixing bugs and regressions to ensure early users have a great experience with the component. This was done instead of taking on new ambitious features.
+- 🐛 We have focused on fixing bugs and regressions to ensure early users have a great experience with the component.
+  This was done instead of taking on new ambitious features.
   We want our users to be able to adopt new features as fast as we build them.
 - 🔘 We have added support for a built-in [single select](/components/data-grid/columns/#column-types) column type:
 
@@ -108,7 +120,11 @@ The date picker is at the border between the advanced components and the design 
 
   and the **boolean** column type.
 
-- 🚀 We have improved the performance. For instance, client-side sorting and filtering are x2-3 faster on large data sets. We have improved the UX when scrolling. We have added a memo logic on the render cell's parent and work on its effectiveness to reduce the rendering of custom cells. We have identified more opportunities to improve the performance, but we won't prioritize them just yet.
+- 🚀 We have improved the performance.
+  Client-side sorting and filtering are x2-3 faster on large data sets.
+  We have improved the UX when scrolling.
+  We have added a memo logic on the render cell's parent and work on its effectiveness to reduce the rendering of custom cells.
+  We have identified more opportunities to improve the performance, but we won't prioritize them just yet.
 - 📚 We have worked on providing more reference documentation. We are semi-automatically generating it from the TypeScript source definitions, with the descriptions.
   For instance, you can now find all the [properties available](/api/data-grid/grid-col-def/) of the `GridColDef`.
 - ⚡️ We have fixed support for components that use portals, like Select and Autocomplete in the cell editing mode.
@@ -176,12 +192,15 @@ We'll do our best, no guarantee!
 We have the following objectives:
 
 - Continue to refine our processes to make sure we function well with over ten people in the company.
-- Ship a rebranding. We have started this effort one year ago but failed to execute it. We were missing an owner with enough bandwidth to make it happen. With Danilo and Jun in the team to own the effort, we can finally make it happen.
+- Ship a rebranding. We have started this effort one year ago but failed to execute it.
+  We were missing an owner with enough bandwidth to make it happen.
+  With Danilo and Jun in the team to own the effort, we can finally make it happen.
 - Open 4 roles: to strengthen the X team (advanced components) and to start the development of a bold new product vertical.
 
 ### Core components
 
-- 🚀 Get v5 stable out! At this point, v5-alpha has about [1%](https://npm-stat.com/charts.html?package=%40material-ui%2Fstyled-engine&package=%40material-ui%2Fcore&from=2020-06-22&to=2021-06-22) of the downloads of v4. It's a lot of value accumulated and not delivered. We aim to migrate 25% of the community by the end of the quarter.
+- 🚀 Get v5 stable out! At this point, v5-alpha has about [1%](https://npm-stat.com/charts.html?package=%40material-ui%2Fstyled-engine&package=%40material-ui%2Fcore&from=2020-06-22&to=2021-06-22) of the downloads of v4.
+  It's a lot of value accumulated and not delivered. We aim to migrate 25% of the community by the end of the quarter.
 - ⚛️ Support React 18
 - ♨️ Fix the frictions the community has during the upgrade.
 - 🦴 Migrate more components to `@material-ui/unstyled`.
