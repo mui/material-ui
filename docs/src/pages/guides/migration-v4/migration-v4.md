@@ -1713,7 +1713,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
 
-- `span` element that wraps children has been removed. `wrapper` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/27111).
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/27111).
 
   ```diff
   <button class="MuiToggleButton-root">
