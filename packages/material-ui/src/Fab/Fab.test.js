@@ -20,7 +20,6 @@ describe('<Fab />', () => {
     render,
     muiName: 'MuiFab',
     testVariantProps: { variant: 'extended' },
-    testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
     testStateOverrides: { prop: 'size', value: 'small', styleKey: 'sizeSmall' },
     refInstanceof: window.HTMLButtonElement,
     skip: ['componentsProp'],

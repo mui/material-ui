@@ -34,7 +34,6 @@
   "styles": {
     "classes": [
       "root",
-      "label",
       "primary",
       "secondary",
       "extended",
