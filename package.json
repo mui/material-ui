@@ -196,7 +196,6 @@
     "**/@types/react": "^17.0.0",
     "**/@types/react-dom": "^17.0.0",
     "**/cross-fetch": "^3.0.5",
-    "**/dot-prop": "^5.2.0",
     "**/react-is": "^17.0.1"
   },
   "nyc": {
