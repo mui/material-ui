@@ -28,7 +28,7 @@ Here are the most significant improvements since March 2021.
   - [12 months](/blog/2020-q2-update/#product) of dedicated focus. Early on, we have stopped efforts on v4.
   - 3,475 pull requests
   - 5,092 commits (the extra commits came from the merge with [material-ui-pickers](https://github.com/mui-org/material-ui-pickers))
-  - 398 contributors
+  - 398 new contributors
   - The equivalence of, on average, four full-time developers working on it (core team + community).
 
 - 👩‍🎤 We have rolled out the new **styling engine** to all the components.
