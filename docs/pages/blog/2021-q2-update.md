@@ -182,6 +182,7 @@ We have the following objectives:
 ### Core components
 
 - 🚀 Get v5 stable out! At this point, v5-alpha has about [1%](https://npm-stat.com/charts.html?package=%40material-ui%2Fstyled-engine&package=%40material-ui%2Fcore&from=2020-06-22&to=2021-06-22) of the downloads of v4. It's a lot of value accumulated and not delivered. We aim to migrate 25% of the community by the end of the quarter.
+- ⚛️ Support React 18
 - ♨️ Fix the frictions the community has during the upgrade.
 - 🦴 Migrate more components to `@material-ui/unstyled`.
 - 🌈 Do a POC on a second theme.
