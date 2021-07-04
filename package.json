@@ -137,7 +137,7 @@
     "html-webpack-plugin": "^4.5.0",
     "jsdom": "^16.0.0",
     "karma": "^5.0.1",
-    "karma-browserstack-launcher": "~1.4.0",
+    "karma-browserstack-launcher": "~1.6.0",
     "karma-chrome-launcher": "^3.0.0",
     "karma-mocha": "^2.0.0",
     "karma-sourcemap-loader": "^0.3.7",
