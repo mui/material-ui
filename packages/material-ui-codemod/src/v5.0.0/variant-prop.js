@@ -1,10 +1,8 @@
-import getCodemodUtilities from '../util/getCodemodUtilities';
-
 const TargetMuiComponents = ['TextField', 'Select', 'FormControl'];
 
 export default function transformer(file, api) {
-  const utils = getCodemodUtilities(file, api);
-  const { jscodeshift: j } = utils;
+  const j = api.jscodeshift;
+  const root = j(file.source);
 
   function addExplicitStandardProp(path) {
     const attributes = path.node.openingElement.attributes;
@@ -19,18 +17,18 @@ export default function transformer(file, api) {
 
   const AffectedComponents = [];
 
-  utils.processImportFrom(
-    /^@material-ui\/core(\/TextField|\/Select|\/FormControl)?$/,
-    (collection) => {
-      collection.forEach(({ node }) => {
-        node.specifiers.forEach(({ local, imported }) => {
-          if (!imported || (imported && TargetMuiComponents.includes(imported.name))) {
-            AffectedComponents.push(local.name);
-          }
-        });
+  root
+    .find(j.ImportDeclaration)
+    .filter(({ node }) =>
+      node.source.value.match(/^@material-ui\/core(\/TextField|\/Select|\/FormControl)?$/),
+    )
+    .forEach(({ node }) => {
+      node.specifiers.forEach(({ local, imported }) => {
+        if (!imported || (imported && TargetMuiComponents.includes(imported.name))) {
+          AffectedComponents.push(local.name);
+        }
       });
-    },
-  );
+    });
 
   return j(file.source)
     .find(j.JSXElement)

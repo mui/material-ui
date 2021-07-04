@@ -1,12 +1,10 @@
-import getCodemodUtilities from '../util/getCodemodUtilities';
-
 /**
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
  */
 export default function transformer(file, api, options = {}) {
-  const utils = getCodemodUtilities(file, api);
-  const { root, jscodeshift: j } = utils;
+  const j = api.jscodeshift;
+  const root = j(file.source);
   const printOptions = options.printOptions || { quote: 'single' };
 
   let isImported = false;

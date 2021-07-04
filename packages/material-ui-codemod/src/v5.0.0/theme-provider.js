@@ -1,22 +1,39 @@
-import getCodemodUtilities from '../util/getCodemodUtilities';
 /**
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
  */
 export default function transformer(file, api) {
-  const utils = getCodemodUtilities(file, api);
+  const j = api.jscodeshift;
+  const root = j(file.source);
 
-  utils.processImportFrom(/^@material-ui\/core\/?(styles)?$/, (nodes) => {
-    nodes.forEach(({ node }) => {
-      const previousVarName = utils.renameSpecifier(
-        node.specifiers,
-        'MuiThemeProvider',
-        'ThemeProvider',
-      );
+  root
+    .find(j.ImportDeclaration)
+    .filter(({ node }) => node.source.value.match(/^@material-ui\/core\/?(styles)?$/))
+    .forEach((path) => {
+      let previousVarName;
+      path.node.specifiers.forEach((node) => {
+        if (!node.imported && node.local.name === 'MuiThemeProvider') {
+          // default specifier
+          previousVarName = node.local.name;
+          node.local.name = 'ThemeProvider';
+        }
 
-      utils.renameJSXTag(previousVarName, 'ThemeProvider');
+        if (node.imported && node.imported.name === 'MuiThemeProvider') {
+          previousVarName = node.local.name;
+          node.local = null;
+          node.imported.name = 'ThemeProvider';
+        }
+      });
+
+      if (previousVarName) {
+        root.findJSXElements(previousVarName).forEach(({ node }) => {
+          node.openingElement.name.name = 'ThemeProvider';
+          if (node.closingElement) {
+            node.closingElement.name.name = 'ThemeProvider';
+          }
+        });
+      }
     });
-  });
 
-  return utils.root.toSource();
+  return root.toSource();
 }

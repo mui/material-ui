@@ -1,24 +1,38 @@
-import getCodemodUtilities from '../util/getCodemodUtilities';
 /**
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
  */
 export default function transformer(file, api) {
-  const utils = getCodemodUtilities(file, api);
+  const j = api.jscodeshift;
+  const root = j(file.source);
 
   let importName = '';
 
-  utils.processImportFrom('@material-ui/types', (nodes) => {
-    nodes.forEach(({ node }) => {
-      const previousVarName = utils.renameSpecifier(node.specifiers, 'Omit', 'DistributiveOmit');
+  root
+    .find(j.ImportDeclaration)
+    .filter(({ node }) => node.source.value.match(/^@material-ui\/types\/?$/))
+    .forEach((path) => {
+      let previousVarName;
+      path.node.specifiers.forEach((node) => {
+        if (!node.imported && node.local.name === 'Omit') {
+          // default specifier
+          previousVarName = node.local.name;
+          node.local.name = 'DistributiveOmit';
+        }
+
+        if (node.imported && node.imported.name === 'Omit') {
+          previousVarName = node.local.name;
+          node.local = null;
+          node.imported.name = 'DistributiveOmit';
+        }
+      });
 
       if (previousVarName) {
         importName = previousVarName;
       }
     });
-  });
 
-  const source = utils.root.toSource();
+  const source = root.toSource();
   if (importName) {
     return source.replace(/([^a-zA-Z])Omit</gm, '$1DistributiveOmit<');
   }
