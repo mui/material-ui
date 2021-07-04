@@ -21,7 +21,13 @@
     "shapeRendering": { "type": { "name": "string" } },
     "sx": { "type": { "name": "object" } },
     "titleAccess": { "type": { "name": "string" } },
-    "viewBox": { "type": { "name": "string" }, "default": "'0 0 24 24'" }
+    "viewBox": {
+      "type": {
+        "name": "string",
+        "description": "'inherit'<br>&#124;&nbsp;string"
+      },
+      "default": "'0 0 24 24'"
+    }
   },
   "name": "SvgIcon",
   "styles": {

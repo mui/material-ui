@@ -86,6 +86,12 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     viewBox,
   };
 
+  const more = {};
+
+  if (viewBox !== 'inherit') {
+    more.viewBox = viewBox;
+  }
+
   const classes = useUtilityClasses(styleProps);
 
   return (
@@ -94,11 +100,11 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
       className={clsx(classes.root, className)}
       styleProps={styleProps}
       focusable="false"
-      viewBox={viewBox}
       color={htmlColor}
       aria-hidden={titleAccess ? undefined : true}
       role={titleAccess ? 'img' : undefined}
       ref={ref}
+      {...more}
       {...other}
     >
       {children}
@@ -183,7 +189,7 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    * to bottom right (50,20) and each unit will be worth 10px.
    * @default '0 0 24 24'
    */
-  viewBox: PropTypes.string,
+  viewBox: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType(['inherit', PropTypes.string]),
 };
 
 SvgIcon.muiName = 'SvgIcon';

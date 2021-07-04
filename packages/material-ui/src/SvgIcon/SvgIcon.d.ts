@@ -9,6 +9,8 @@ export interface SvgIconPropsSizeOverrides {}
 
 export interface SvgIconPropsColorOverrides {}
 
+export interface SvgIconPropsViewBoxOverrides {}
+
 export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
   props: P & {
     /**
@@ -71,7 +73,7 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
      * to bottom right (50,20) and each unit will be worth 10px.
      * @default '0 0 24 24'
      */
-    viewBox?: string;
+    viewBox?: OverridableStringUnion<'inherit' | string, SvgIconPropsViewBoxOverrides>;
   };
   defaultComponent: D;
 }
