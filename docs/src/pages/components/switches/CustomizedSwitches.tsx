@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch, { SwitchProps } from '@material-ui/core/Switch';

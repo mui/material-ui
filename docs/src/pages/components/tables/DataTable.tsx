@@ -18,7 +18,9 @@ const columns: GridColDef[] = [
     sortable: false,
     width: 160,
     valueGetter: (params: GridValueGetterParams) =>
-      `${params.getValue('firstName') || ''} ${params.getValue('lastName') || ''}`,
+      `${params.getValue(params.id, 'firstName') || ''} ${
+        params.getValue(params.id, 'lastName') || ''
+      }`,
   },
 ];
 

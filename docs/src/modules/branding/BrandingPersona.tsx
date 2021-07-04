@@ -6,18 +6,17 @@ import Stack from '@material-ui/core/Stack';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import IconButton from '@material-ui/core/IconButton';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import t1 from 'docs/src/modules/branding/t1';
 
 interface PersonaRootProps {
   styleProps: { size: 'large' | 'small' };
 }
 
-const PersonaRoot: OverridableComponent<BoxTypeMap<PersonaRootProps>> = styled(
-  Box,
-  {},
-  { name: 'Persona', slot: 'Root' },
-)<PersonaRootProps>(({ styleProps, theme }) => ({
+const PersonaRoot: OverridableComponent<BoxTypeMap<PersonaRootProps>> = styled(Box, {
+  name: 'Persona',
+  slot: 'Root',
+})<PersonaRootProps>(({ styleProps, theme }) => ({
   display: 'flex',
   marginTop: theme.spacing(1),
   marginBottom: theme.spacing(1),
@@ -84,12 +83,20 @@ export default function BrandingPersona(props: BrandingPersonaProps) {
           <IconButton
             component="a"
             href={`https://twitter.com/${twitter}`}
+            target="_blank"
+            rel="noopener"
             aria-label={t1('twitter')}
           >
             <TwitterIcon />
           </IconButton>
         )}
-        <IconButton component="a" href={`https://github.com/${github}`} aria-label={t1('github')}>
+        <IconButton
+          component="a"
+          href={`https://github.com/${github}`}
+          target="_blank"
+          rel="noopener"
+          aria-label={t1('github')}
+        >
           <GitHubIcon />
         </IconButton>
       </Stack>

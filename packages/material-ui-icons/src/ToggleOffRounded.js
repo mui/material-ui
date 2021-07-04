@@ -1,6 +1,0 @@
-import * as React from 'react';
-import createSvgIcon from './utils/createSvgIcon';
-
-export default createSvgIcon(
-  <path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6zM7 15c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z" />
-, 'ToggleOffRounded');

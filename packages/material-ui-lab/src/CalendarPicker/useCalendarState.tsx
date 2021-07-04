@@ -17,55 +17,61 @@ interface ChangeMonthPayload<TDate> {
   newMonth: TDate;
 }
 
-export const createCalendarStateReducer = <TDate extends unknown>(
-  reduceAnimations: boolean,
-  disableSwitchToMonthOnDayFocus: boolean,
-  utils: MuiPickersAdapter<TDate>,
-) => (
-  state: CalendarState<TDate>,
-  action:
-    | ReducerAction<'finishMonthSwitchingAnimation'>
-    | ReducerAction<'changeMonth', ChangeMonthPayload<TDate>>
-    | ReducerAction<'changeFocusedDay', { focusedDay: TDate }>,
-): CalendarState<TDate> => {
-  switch (action.type) {
-    case 'changeMonth':
-      return {
-        ...state,
-        slideDirection: action.direction,
-        currentMonth: action.newMonth,
-        isMonthSwitchingAnimating: !reduceAnimations,
-      };
+export const createCalendarStateReducer =
+  <TDate extends unknown>(
+    reduceAnimations: boolean,
+    disableSwitchToMonthOnDayFocus: boolean,
+    utils: MuiPickersAdapter<TDate>,
+  ) =>
+  (
+    state: CalendarState<TDate>,
+    action:
+      | ReducerAction<'finishMonthSwitchingAnimation'>
+      | ReducerAction<'changeMonth', ChangeMonthPayload<TDate>>
+      | ReducerAction<'changeFocusedDay', { focusedDay: TDate }>,
+  ): CalendarState<TDate> => {
+    switch (action.type) {
+      case 'changeMonth':
+        return {
+          ...state,
+          slideDirection: action.direction,
+          currentMonth: action.newMonth,
+          isMonthSwitchingAnimating: !reduceAnimations,
+        };
 
-    case 'finishMonthSwitchingAnimation':
-      return {
-        ...state,
-        isMonthSwitchingAnimating: false,
-      };
+      case 'finishMonthSwitchingAnimation':
+        return {
+          ...state,
+          isMonthSwitchingAnimating: false,
+        };
 
-    case 'changeFocusedDay': {
-      if (state.focusedDay !== null && utils.isSameDay(action.focusedDay, state.focusedDay)) {
-        return state;
+      case 'changeFocusedDay': {
+        if (state.focusedDay !== null && utils.isSameDay(action.focusedDay, state.focusedDay)) {
+          return state;
+        }
+
+        const needMonthSwitch =
+          Boolean(action.focusedDay) &&
+          !disableSwitchToMonthOnDayFocus &&
+          !utils.isSameMonth(state.currentMonth, action.focusedDay);
+
+        return {
+          ...state,
+          focusedDay: action.focusedDay,
+          isMonthSwitchingAnimating: needMonthSwitch && !reduceAnimations,
+          currentMonth: needMonthSwitch
+            ? utils.startOfMonth(action.focusedDay)
+            : state.currentMonth,
+          slideDirection: utils.isAfterDay(action.focusedDay, state.currentMonth)
+            ? 'left'
+            : 'right',
+        };
       }
 
-      const needMonthSwitch =
-        Boolean(action.focusedDay) &&
-        !disableSwitchToMonthOnDayFocus &&
-        !utils.isSameMonth(state.currentMonth, action.focusedDay);
-
-      return {
-        ...state,
-        focusedDay: action.focusedDay,
-        isMonthSwitchingAnimating: needMonthSwitch && !reduceAnimations,
-        currentMonth: needMonthSwitch ? utils.startOfMonth(action.focusedDay) : state.currentMonth,
-        slideDirection: utils.isAfterDay(action.focusedDay, state.currentMonth) ? 'left' : 'right',
-      };
+      default:
+        throw new Error('missing support');
     }
-
-    default:
-      throw new Error('missing support');
-  }
-};
+  };
 
 type CalendarStateInput<TDate> = Pick<
   import('./CalendarPicker').CalendarPickerProps<TDate>,

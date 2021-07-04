@@ -1,7 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Router, { useRouter } from 'next/router';
-import { withStyles } from '@material-ui/core/styles';
+import { useRouter } from 'next/router';
+import { createTheme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 import NProgress from 'nprogress';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MuiLink from '@material-ui/core/Link';
@@ -52,18 +53,6 @@ function NextNProgressBar() {
   return <NProgressBar />;
 }
 
-Router.events.onRouteChangeStart = () => {
-  NProgress.start();
-};
-
-Router.events.onRouteChangeComplete = () => {
-  NProgress.done();
-};
-
-Router.events.onRouteChangeError = () => {
-  NProgress.done();
-};
-
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
 function DeferredAppSearch() {
   const [mounted, setMounted] = React.useState(false);
@@ -96,7 +85,9 @@ const styles = (theme) => ({
   },
   root: {
     display: 'flex',
-    backgroundColor: theme.palette.background.level1,
+    ...(theme.palette.mode === 'dark' && {
+      backgroundColor: theme.palette.grey[900],
+    }),
   },
   grow: {
     flex: '1 1 auto',
@@ -124,8 +115,6 @@ const styles = (theme) => ({
     },
   },
   appBar: {
-    color: theme.palette.mode === 'light' ? null : '#fff',
-    backgroundColor: theme.palette.mode === 'light' ? null : theme.palette.background.level2,
     transition: theme.transitions.create('width'),
   },
   language: {
@@ -217,6 +206,7 @@ function AppFrame(props) {
       <AppBar className={appBarClassName}>
         <Toolbar>
           <IconButton
+            size="large"
             edge="start"
             color="inherit"
             aria-label={t('appFrame.openDrawer')}
@@ -287,7 +277,7 @@ function AppFrame(props) {
             </Menu>
           </NoSsr>
           <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-            <IconButton color="inherit" onClick={handleSettingsDrawerOpen}>
+            <IconButton color="inherit" size="large" onClick={handleSettingsDrawerOpen}>
               <SettingsIcon />
             </IconButton>
           </Tooltip>
@@ -299,6 +289,7 @@ function AppFrame(props) {
               href={process.env.SOURCE_CODE_REPO}
               data-ga-event-category="header"
               data-ga-event-action="github"
+              size="large"
             >
               <GitHubIcon />
             </IconButton>
@@ -324,4 +315,5 @@ AppFrame.propTypes = {
   disableDrawer: PropTypes.bool,
 };
 
-export default withStyles(styles)(AppFrame);
+const defaultTheme = createTheme();
+export default withStyles(styles, { defaultTheme })(AppFrame);

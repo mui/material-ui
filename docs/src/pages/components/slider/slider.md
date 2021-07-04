@@ -12,8 +12,6 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#slider
 
 Sliders reflect a range of values along a bar, from which users may select a single value. They are ideal for adjusting settings such as volume, brightness, or applying image filters.
 
-- 📦 [22 kB gzipped](/size-snapshot) (but only +8 kB when used together with other Material-UI components).
-
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Continuous sliders
@@ -22,11 +20,15 @@ Continuous sliders allow users to select a value along a subjective range.
 
 {{"demo": "pages/components/slider/ContinuousSlider.js"}}
 
+## Sizes
+
+For smaller slider, use the prop `size="small"`.
+
+{{"demo": "pages/components/slider/SliderSizes.js"}}
+
 ## Discrete sliders
 
 Discrete sliders can be adjusted to a specific value by referencing its value indicator.
-By order of demos:
-
 You can generate a mark for each step with `marks={true}`.
 
 {{"demo": "pages/components/slider/DiscreteSlider.js"}}
@@ -75,11 +77,19 @@ In this example, an input allows a discrete value to be set.
 
 {{"demo": "pages/components/slider/InputSlider.js"}}
 
+## Color
+
+{{"demo": "pages/components/slider/ColorSlider.js"}}
+
 ## Customized sliders
 
 Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/slider/CustomizedSlider.js"}}
+
+### Music player
+
+{{"demo": "pages/components/slider/MusicPlayerSlider.js"}}
 
 ## Vertical sliders
 
@@ -122,6 +132,10 @@ Increasing _x_ by one increases the represented value by factor _2_.
 
 ## Unstyled
 
+<!-- #default-branch-switch -->
+
+- 📦 [5.6 kB gzipped](https://bundlephobia.com/result?p=@material-ui/unstyled@next)
+
 The slider also comes with an unstyled version.
 It's ideal for doing heavy customizations and minimizing bundle size.
 
@@ -142,3 +156,17 @@ However, you need to make sure that:
 - Each thumb has a user-friendly text for its current value.
   This is not required if the value matches the semantics of the label.
   You can change the name with the `getAriaValueText` or `aria-valuetext` prop.
+
+## Limitations
+
+### IE 11
+
+The slider's value label is not centered in IE 11.
+The alignement is not handled to make customizations easier with the lastest browsers.
+You can solve the issue with:
+
+```css
+.MuiSlider-valueLabel {
+  left: calc(-50% - 4px);
+}
+```

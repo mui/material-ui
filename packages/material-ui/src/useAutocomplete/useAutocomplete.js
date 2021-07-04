@@ -80,7 +80,7 @@ export default function useAutocomplete(props) {
     freeSolo = false,
     getOptionDisabled,
     getOptionLabel: getOptionLabelProp = (option) => option.label ?? option,
-    getOptionSelected = (option, value) => option === value,
+    isOptionEqualToValue = (option, value) => option === value,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
     id: idProp,
@@ -190,7 +190,7 @@ export default function useAutocomplete(props) {
           if (
             filterSelectedOptions &&
             (multiple ? value : [value]).some(
-              (value2) => value2 !== null && getOptionSelected(option, value2),
+              (value2) => value2 !== null && isOptionEqualToValue(option, value2),
             )
           ) {
             return false;
@@ -211,7 +211,7 @@ export default function useAutocomplete(props) {
   if (process.env.NODE_ENV !== 'production') {
     if (value !== null && !freeSolo && options.length > 0) {
       const missingValue = (multiple ? value : [value]).filter(
-        (value2) => !options.some((option) => getOptionSelected(option, value2)),
+        (value2) => !options.some((option) => isOptionEqualToValue(option, value2)),
       );
 
       if (missingValue.length > 0) {
@@ -223,7 +223,7 @@ export default function useAutocomplete(props) {
                 ? JSON.stringify(missingValue)
                 : JSON.stringify(missingValue[0])
             }\`.`,
-            'You can use the `getOptionSelected` prop to customize the equality test.',
+            'You can use the `isOptionEqualToValue` prop to customize the equality test.',
           ].join('\n'),
         );
       }
@@ -296,9 +296,9 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    const prev = listboxRef.current.querySelector('[data-focus]');
+    const prev = listboxRef.current.querySelector('[role="option"].Mui-focused');
     if (prev) {
-      prev.removeAttribute('data-focus');
+      prev.classList.remove('Mui-focused');
       prev.classList.remove('Mui-focusVisible');
     }
 
@@ -320,7 +320,7 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    option.setAttribute('data-focus', 'true');
+    option.classList.add('Mui-focused');
     if (reason === 'keyboard') {
       option.classList.add('Mui-focusVisible');
     }
@@ -443,13 +443,13 @@ export default function useAutocomplete(props) {
       if (
         multiple &&
         currentOption &&
-        findIndex(value, (val) => getOptionSelected(currentOption, val)) !== -1
+        findIndex(value, (val) => isOptionEqualToValue(currentOption, val)) !== -1
       ) {
         return;
       }
 
       const itemIndex = findIndex(filteredOptions, (optionItem) =>
-        getOptionSelected(optionItem, valueItem),
+        isOptionEqualToValue(optionItem, valueItem),
       );
       if (itemIndex === -1) {
         changeHighlightedIndex({ diff: 'reset' });
@@ -467,7 +467,7 @@ export default function useAutocomplete(props) {
 
     // Restore the focus to the previous index.
     setHighlightedIndex({ index: highlightedIndexRef.current });
-    // Ignore filteredOptions (and options, getOptionSelected, getOptionLabel) not to break the scroll position
+    // Ignore filteredOptions (and options, isOptionEqualToValue, getOptionLabel) not to break the scroll position
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     // Only sync the highlighted index when the option switch between empty and not
@@ -562,19 +562,19 @@ export default function useAutocomplete(props) {
       newValue = Array.isArray(value) ? value.slice() : [];
 
       if (process.env.NODE_ENV !== 'production') {
-        const matches = newValue.filter((val) => getOptionSelected(option, val));
+        const matches = newValue.filter((val) => isOptionEqualToValue(option, val));
 
         if (matches.length > 1) {
           console.error(
             [
-              `Material-UI: The \`getOptionSelected\` method of ${componentName} do not handle the arguments correctly.`,
+              `Material-UI: The \`isOptionEqualToValue\` method of ${componentName} do not handle the arguments correctly.`,
               `The component expects a single value to match a given option but found ${matches.length} matches.`,
             ].join('\n'),
           );
         }
       }
 
-      const itemIndex = findIndex(newValue, (valueItem) => getOptionSelected(option, valueItem));
+      const itemIndex = findIndex(newValue, (valueItem) => isOptionEqualToValue(option, valueItem));
 
       if (itemIndex === -1) {
         newValue.push(option);
@@ -1018,7 +1018,7 @@ export default function useAutocomplete(props) {
     }),
     getOptionProps: ({ index, option }) => {
       const selected = (multiple ? value : [value]).some(
-        (value2) => value2 != null && getOptionSelected(option, value2),
+        (value2) => value2 != null && isOptionEqualToValue(option, value2),
       );
       const disabled = getOptionDisabled ? getOptionDisabled(option) : false;
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getListItemIconUtilityClass } from './listItemIconClasses';
 import ListContext from '../List/ListContext';
@@ -17,22 +17,15 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getListItemIconUtilityClass, classes);
 };
 
-const ListItemIconRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiListItemIcon',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const ListItemIconRoot = styled('div', {
+  name: 'MuiListItemIcon',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
-      };
-    },
+    return [styles.root, styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart];
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   minWidth: 56,
   color: theme.palette.action.active,

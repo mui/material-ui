@@ -1,42 +1,28 @@
-import { Breakpoints, BreakpointsOptions } from './createBreakpoints';
+import { ThemeOptions as SystemThemeOptions, Theme as SystemTheme } from '@material-ui/system';
 import { Mixins, MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
 import { Typography, TypographyOptions } from './createTypography';
 import { Shadows } from './shadows';
-import { Shape, ShapeOptions } from './shape';
-import { Spacing, SpacingOptions } from './createSpacing';
 import { Transitions, TransitionsOptions } from './createTransitions';
 import { ZIndex, ZIndexOptions } from './zIndex';
 import { Components } from './components';
 
-export { Breakpoint, BreakpointOverrides } from './createBreakpoints';
-
-export type Direction = 'ltr' | 'rtl';
-
-export interface ThemeOptions {
-  shape?: ShapeOptions;
-  breakpoints?: BreakpointsOptions;
-  direction?: Direction;
+export interface ThemeOptions extends SystemThemeOptions {
   mixins?: MixinsOptions;
   components?: Components;
   palette?: PaletteOptions;
   shadows?: Shadows;
-  spacing?: SpacingOptions;
   transitions?: TransitionsOptions;
   typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
   zIndex?: ZIndexOptions;
   unstable_strictMode?: boolean;
 }
 
-export interface Theme {
-  shape: Shape;
-  breakpoints: Breakpoints;
-  direction: Direction;
+export interface Theme extends SystemTheme {
   mixins: Mixins;
   components?: Components;
   palette: Palette;
   shadows: Shadows;
-  spacing: Spacing;
   transitions: Transitions;
   typography: Typography;
   zIndex: ZIndex;

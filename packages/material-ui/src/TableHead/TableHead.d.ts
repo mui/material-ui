@@ -2,6 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { TableHeadClasses } from './tableHeadClasses';
 
 export interface TableHeadTypeMap<P = {}, D extends React.ElementType = 'thead'> {
   props: P & {
@@ -12,10 +13,7 @@ export interface TableHeadTypeMap<P = {}, D extends React.ElementType = 'thead'>
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-    };
+    classes?: Partial<TableHeadClasses>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
@@ -35,11 +33,9 @@ export interface TableHeadTypeMap<P = {}, D extends React.ElementType = 'thead'>
  */
 declare const TableHead: OverridableComponent<TableHeadTypeMap>;
 
-export type TableHeadClassKey = keyof NonNullable<TableHeadTypeMap['props']['classes']>;
-
 export type TableHeadProps<
   D extends React.ElementType = TableHeadTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<TableHeadTypeMap<P, D>, D>;
 
 export default TableHead;

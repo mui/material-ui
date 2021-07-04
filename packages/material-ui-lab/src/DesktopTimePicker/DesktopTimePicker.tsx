@@ -55,21 +55,23 @@ const DesktopTimePicker = React.forwardRef(function DesktopTimePicker<TDate>(
     value,
     ...other
   } = props;
-  const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
+  const DateInputProps = { ...inputProps, ...other, ref, validationError };
 
   return (
     <DesktopWrapper
       {...wrapperProps}
-      DateInputProps={AllDateInputProps}
+      DateInputProps={DateInputProps}
       KeyboardDateInputComponent={KeyboardDateInput}
       PopperProps={PopperProps}
       TransitionComponent={TransitionComponent}
     >
+      {/* @ts-ignore time picker has no component slot for the calendar header */}
       <Picker
         {...pickerProps}
+        autoFocus
         toolbarTitle={props.label || props.toolbarTitle}
         ToolbarComponent={ToolbarComponent}
-        DateInputProps={AllDateInputProps}
+        DateInputProps={DateInputProps}
         {...other}
       />
     </DesktopWrapper>
@@ -86,11 +88,6 @@ DesktopTimePicker.propTypes /* remove-proptypes */ = {
    * @default /\dap/gi
    */
   acceptRegex: PropTypes.instanceOf(RegExp),
-  /**
-   * Enables keyboard listener for moving between days in calendar.
-   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
-   */
-  allowKeyboardControl: PropTypes.bool,
   /**
    * 12h/24h view for hour selection clock.
    * @default false
@@ -109,6 +106,13 @@ DesktopTimePicker.propTypes /* remove-proptypes */ = {
    * className applied to the root component.
    */
   className: PropTypes.string,
+  /**
+   * The components used for each slot.
+   * Either a string to use a HTML element or a component.
+   */
+  components: PropTypes.shape({
+    OpenPickerIcon: PropTypes.elementType,
+  }),
   /**
    * If `true` the popup or dialog will immediately close after submitting full date.
    * @default `true` for Desktop, `false` for Mobile (based on the chosen wrapper and `desktopModeMediaQuery` prop).
@@ -137,9 +141,12 @@ DesktopTimePicker.propTypes /* remove-proptypes */ = {
    * Accessible text that helps user to understand which time and view is selected.
    * @default <TDate extends any>(
    *   view: ClockView,
-   *   time: TDate,
+   *   time: TDate | null,
    *   adapter: MuiPickersAdapter<TDate>,
-   * ) => `Select ${view}. Selected time is ${adapter.format(time, 'fullTime')}`
+   * ) =>
+   *   `Select ${view}. ${
+   *     time === null ? 'No time selected' : `Selected time is ${adapter.format(time, 'fullTime')}`
+   *   }`
    */
   getClockLabelText: PropTypes.func,
   /**
@@ -242,10 +249,6 @@ DesktopTimePicker.propTypes /* remove-proptypes */ = {
    * Props to pass to keyboard adornment button.
    */
   OpenPickerButtonProps: PropTypes.object,
-  /**
-   * Icon displaying for open picker button.
-   */
-  openPickerIcon: PropTypes.node,
   /**
    * First view to show.
    */

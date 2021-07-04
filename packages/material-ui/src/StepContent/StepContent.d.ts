@@ -3,6 +3,7 @@ import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps } from '..';
 import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
+import { StepContentClasses } from './stepContentClasses';
 
 export interface StepContentProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -12,14 +13,7 @@ export interface StepContentProps extends StandardProps<React.HTMLAttributes<HTM
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if `last={true}` (controlled by `Step`). */
-    last?: string;
-    /** Styles applied to the Transition component. */
-    transition?: string;
-  };
+  classes?: Partial<StepContentClasses>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

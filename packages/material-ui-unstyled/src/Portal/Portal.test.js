@@ -5,7 +5,7 @@ import { createServerRender, createClientRender } from 'test/utils';
 import Portal from './Portal';
 
 describe('<Portal />', () => {
-  const serverRender = createServerRender();
+  const serverRender = createServerRender({ expectUseLayoutEffectWarning: true });
   const render = createClientRender();
 
   describe('server-side', () => {
@@ -17,25 +17,12 @@ describe('<Portal />', () => {
     });
 
     it('render nothing on the server', () => {
-      const markup1 = serverRender(<div>Bar</div>);
-      expect(markup1.text()).to.equal('Bar');
-
-      let markup2;
-      expect(() => {
-        markup2 = serverRender(
-          <Portal>
-            <div>Bar</div>
-          </Portal>,
-        );
-      }).toErrorDev(
-        // Known issue due to using SSR APIs in a browser environment.
-        // We use 2x useLayoutEffect in the component.
-        [
-          'Warning: useLayoutEffect does nothing on the server',
-          'Warning: useLayoutEffect does nothing on the server',
-        ],
+      const container = serverRender(
+        <Portal>
+          <div>Bar</div>
+        </Portal>,
       );
-      expect(markup2.text()).to.equal('');
+      expect(container.firstChild).to.equal(null);
     });
   });
 
@@ -146,9 +133,10 @@ describe('<Portal />', () => {
     function ContainerTest(props) {
       const { containerElement = false, disablePortal = true } = props;
       const containerRef = React.useRef();
-      const container = React.useCallback(() => (containerElement ? containerRef.current : null), [
-        containerElement,
-      ]);
+      const container = React.useCallback(
+        () => (containerElement ? containerRef.current : null),
+        [containerElement],
+      );
 
       return (
         <span>

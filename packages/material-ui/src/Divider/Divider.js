@@ -2,22 +2,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import { alpha } from '@material-ui/system';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { alpha } from '../styles/colorManipulator';
 import { getDividerUtilityClass } from './dividerClasses';
 
 const useUtilityClasses = (styleProps) => {
-  const {
-    absolute,
-    children,
-    classes,
-    flexItem,
-    light,
-    orientation,
-    textAlign,
-    variant,
-  } = styleProps;
+  const { absolute, children, classes, flexItem, light, orientation, textAlign, variant } =
+    styleProps;
 
   const slots = {
     root: [
@@ -38,36 +30,30 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getDividerUtilityClass, classes);
 };
 
-const DividerRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiDivider',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const DividerRoot = styled('div', {
+  name: 'MuiDivider',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.absolute && styles.absolute),
-        ...styles[styleProps.variant],
-        ...(styleProps.light && styles.light),
-        ...(styleProps.orientation === 'vertical' && styles.vertical),
-        ...(styleProps.flexItem && styles.flexItem),
-        ...(styleProps.children && styles.withChildren),
-        ...(styleProps.children &&
-          styleProps.orientation === 'vertical' &&
-          styles.withChildrenVertical),
-        ...(styleProps.textAlign === 'right' &&
-          styleProps.orientation !== 'vertical' &&
-          styles.textAlignRight),
-        ...(styleProps.textAlign === 'left' &&
-          styleProps.orientation !== 'vertical' &&
-          styles.textAlignLeft),
-      };
-    },
+    return [
+      styles.root,
+      styleProps.absolute && styles.absolute,
+      styles[styleProps.variant],
+      styleProps.light && styles.light,
+      styleProps.orientation === 'vertical' && styles.vertical,
+      styleProps.flexItem && styles.flexItem,
+      styleProps.children && styles.withChildren,
+      styleProps.children && styleProps.orientation === 'vertical' && styles.withChildrenVertical,
+      styleProps.textAlign === 'right' &&
+        styleProps.orientation !== 'vertical' &&
+        styles.textAlignRight,
+      styleProps.textAlign === 'left' &&
+        styleProps.orientation !== 'vertical' &&
+        styles.textAlignLeft,
+    ];
   },
-)(
+})(
   ({ theme, styleProps }) => ({
     /* Styles applied to the root element. */
     margin: 0, // Reset browser default style.
@@ -171,22 +157,15 @@ const DividerRoot = experimentalStyled(
   }),
 );
 
-const DividerWrapper = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiDivider',
-    slot: 'Wrapper',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const DividerWrapper = styled('span', {
+  name: 'MuiDivider',
+  slot: 'Wrapper',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.wrapper,
-        ...(styleProps.orientation === 'vertical' && styles.wrapperVertical),
-      };
-    },
+    return [styles.wrapper, styleProps.orientation === 'vertical' && styles.wrapperVertical];
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   display: 'inline-block',
   paddingLeft: theme.spacing(1.2),
   paddingRight: theme.spacing(1.2),
@@ -290,7 +269,7 @@ Divider.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  role: PropTypes.string,
+  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

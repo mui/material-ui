@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '..';
-import { IconButtonProps } from '../IconButton';
+import { ButtonBaseProps } from '../ButtonBase';
+import { SwitchBaseClasses } from './switchBaseClasses';
 
 export interface SwitchBaseProps
-  extends StandardProps<IconButtonProps, 'children' | 'onChange' | 'type' | 'value'> {
+  extends StandardProps<ButtonBaseProps, 'children' | 'onChange' | 'type' | 'value'> {
   autoFocus?: boolean;
   /**
    * If `true`, the component is checked.
@@ -13,12 +14,7 @@ export interface SwitchBaseProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    root?: string;
-    checked?: string;
-    disabled?: string;
-    input?: string;
-  };
+  classes?: Partial<SwitchBaseClasses>;
   /**
    * The default checked state. Use when the component is not controlled.
    */
@@ -28,6 +24,19 @@ export interface SwitchBaseProps
    * If `true`, the ripple effect is disabled.
    */
   disableRipple?: boolean;
+  /**
+   * If `true`, the  keyboard focus ripple is disabled.
+   * @default false
+   */
+  disableFocusRipple?: boolean;
+  /**
+   * If given, uses a negative margin to counteract the padding on one
+   * side (this is often helpful for aligning the left or right
+   * side of the icon with content above or below, without ruining the border
+   * size and shape).
+   * @default false
+   */
+  edge?: 'start' | 'end' | false;
   icon: React.ReactNode;
   /**
    * The id of the `input` element.
@@ -52,7 +61,7 @@ export interface SwitchBaseProps
    * You can pull out the new value by accessing `event.target.value` (string).
    * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>, checked: boolean) => void;
   readOnly?: boolean;
   /**
    * If `true`, the `input` element is required.
@@ -65,8 +74,6 @@ export interface SwitchBaseProps
    */
   value?: unknown;
 }
-
-export type SwitchBaseClassKey = keyof NonNullable<SwitchBaseProps['classes']>;
 
 declare const SwitchBase: React.JSXElementConstructor<SwitchBaseProps>;
 

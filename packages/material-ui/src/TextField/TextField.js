@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { refType } from '@material-ui/utils';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Input from '../Input';
 import FilledInput from '../FilledInput';
@@ -30,15 +30,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTextFieldUtilityClass, classes);
 };
 
-const TextFieldRoot = experimentalStyled(
-  FormControl,
-  {},
-  {
-    name: 'MuiTextField',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({});
+const TextFieldRoot = styled(FormControl, {
+  name: 'MuiTextField',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({});
 
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).
@@ -262,7 +258,7 @@ TextField.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['primary', 'secondary']),
+    PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

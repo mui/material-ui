@@ -7,8 +7,7 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const backers = [
   {
-    href:
-      'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
+    href: 'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage',
     alt: 'tidelift',
     title: 'Tidelift — Enterprise-ready open source software',
   },
@@ -31,6 +30,11 @@ const backers = [
     href: 'https://www.doit-intl.com/?utm_source=materialui&utm_medium=referral',
     alt: 'doit-intl',
     title: 'DoiT - Management Platform for Google Cloud and AWS',
+  },
+  {
+    href: 'https://www.movavi.com/',
+    alt: 'movavi',
+    title: 'Movavi: Safe Multimedia Software',
   },
 ];
 

@@ -1,4 +1,4 @@
-import createBreakpoints from './createBreakpoints';
+import { createBreakpoints } from '@material-ui/system';
 import createV4Spacing from './createV4Spacing';
 
 export default function adaptV4Theme(inputTheme) {

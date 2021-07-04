@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
+import { ImageListItemBarClasses } from './imageListItemBarClasses';
 
 export interface ImageListItemBarProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'title'> {
@@ -17,32 +18,7 @@ export interface ImageListItemBarProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if `position="bottom"`. */
-    positionBottom?: string;
-    /** Styles applied to the root element if `position="top"`. */
-    positionTop?: string;
-    /** Styles applied to the root element if `position="below"`. */
-    positionBelow?: string;
-    /** Styles applied to the title and subtitle container element. */
-    titleWrap?: string;
-    /** Styles applied to the title and subtitle container element if `position="below"`. */
-    titleWrapBelow?: string;
-    /** Styles applied to the container element if `actionPosition="left"`. */
-    titleWrapActionPosLeft?: string;
-    /** Styles applied to the container element if `actionPosition="right"`. */
-    titleWrapActionPosRight?: string;
-    /** Styles applied to the title container element. */
-    title?: string;
-    /** Styles applied to the subtitle container element. */
-    subtitle?: string;
-    /** Styles applied to the actionIcon if supplied. */
-    actionIcon?: string;
-    /** Styles applied to the actionIcon if `actionPosition="left"`. */
-    actionIconActionPosLeft?: string;
-  };
+  classes?: Partial<ImageListItemBarClasses>;
   /**
    * Position of the title bar.
    * @default 'bottom'
@@ -61,8 +37,6 @@ export interface ImageListItemBarProps
    */
   title?: React.ReactNode;
 }
-
-export type ImageListItemBarClassKey = keyof NonNullable<ImageListItemBarProps['classes']>;
 
 /**
  *

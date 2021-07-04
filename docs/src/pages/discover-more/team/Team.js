@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 import CardMedia from '@material-ui/core/CardMedia';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -64,6 +65,20 @@ const activeCore = [
     github: 'm4theushw',
     flag: 'Advanced components team',
     location: 'Esteio, Brazil',
+  },
+  {
+    name: 'Michał Dudak',
+    github: 'michaldudak',
+    twitter: 'michaldudak',
+    flag: 'Core components team',
+    location: 'Silesia, Poland',
+  },
+  {
+    name: 'Siriwat Kunaporn',
+    github: 'siriwatknp',
+    twitter: 'siriwatknp',
+    flag: 'Core components team',
+    location: 'Bangkok, Thailand',
   },
 ];
 
@@ -210,6 +225,8 @@ function Group(props) {
                           aria-label="github"
                           component="a"
                           href={`https://github.com/${member.github}`}
+                          target="_blank"
+                          rel="noopener"
                           className={classes.icon}
                         >
                           <GitHubIcon fontSize="inherit" />
@@ -220,6 +237,8 @@ function Group(props) {
                           aria-label="twitter"
                           component="a"
                           href={`https://twitter.com/${member.twitter}`}
+                          target="_blank"
+                          rel="noopener"
                           className={classes.icon}
                         >
                           <TwitterIcon fontSize="inherit" />
@@ -274,4 +293,5 @@ They advise us from time-to-time.`}
   );
 }
 
-export default withStyles(styles)(Team);
+const defaultTheme = createTheme();
+export default withStyles(styles, { defaultTheme })(Team);

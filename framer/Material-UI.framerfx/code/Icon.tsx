@@ -14,9 +14,7 @@ interface Props extends SvgIconProps {
 
 export function Icon(props: Props): JSX.Element | null {
   const { height, icon: iconProp, theme, width, ...other } = props;
-  const iconName = `${iconProp && pascalCase(iconProp)}${
-    theme === 'Filled' ? '' : theme
-  }` as keyof typeof Icons;
+  const iconName = `${iconProp && pascalCase(iconProp)}${theme === 'Filled' ? '' : theme}`;
   const MuiIcon = Object.keys(Icons).indexOf(iconName) !== -1 ? Icons[iconName] : undefined;
 
   return MuiIcon ? <MuiIcon style={{ width, height }} {...other} /> : null;

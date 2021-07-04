@@ -1,12 +1,13 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
-import Paper from '@material-ui/core/Paper';
-import { MuiStyles, WithStyles, withStyles, useTheme, StyleRules } from '@material-ui/core/styles';
+import Tabs, { tabsClasses } from '@material-ui/core/Tabs';
+import { styled } from '@material-ui/core/styles';
 import TimeIcon from '../internal/svg-icons/Time';
 import DateRangeIcon from '../internal/svg-icons/DateRange';
-import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
+import {
+  WrapperVariantContext,
+  WrapperVariant,
+} from '../internal/pickers/wrappers/WrapperVariantContext';
 import { DateTimePickerView } from './shared';
 
 type TabValue = 'date' | 'time';
@@ -35,70 +36,50 @@ export interface DateTimePickerTabsProps {
   view: DateTimePickerView;
 }
 
-export type DateTimePickerTabsClassKey = 'root' | 'modeDesktop' | 'tabs';
+type StyleProps = DateTimePickerTabsProps & { wrapperVariant: WrapperVariant };
 
-export const styles: MuiStyles<DateTimePickerTabsClassKey> = (
-  theme,
-): StyleRules<DateTimePickerTabsClassKey> => {
-  const tabsBackground =
-    theme.palette.mode === 'light' ? theme.palette.primary.main : theme.palette.background.default;
-
-  return {
-    root: {},
-    modeDesktop: {
+const DateTimePickerTabsRoot = styled(Tabs, { skipSx: true })<{ styleProps: StyleProps }>(
+  ({ styleProps, theme }) => ({
+    boxShadow: `0 -1px 0 0 inset ${theme.palette.divider}`,
+    ...(styleProps.wrapperVariant === 'desktop' && {
       order: 1,
-    },
-    tabs: {
-      color: theme.palette.getContrastText(tabsBackground),
-      backgroundColor: tabsBackground,
-    },
-  };
-};
+      boxShadow: `0 1px 0 0 inset ${theme.palette.divider}`,
+      [`& .${tabsClasses.indicator}`]: {
+        bottom: 'auto',
+        top: 0,
+      },
+    }),
+  }),
+);
 
 /**
  * @ignore - internal component.
  */
-const DateTimePickerTabs: React.FC<DateTimePickerTabsProps & WithStyles<typeof styles>> = (
-  props,
-) => {
-  const {
-    classes,
-    dateRangeIcon = <DateRangeIcon />,
-    onChange,
-    timeIcon = <TimeIcon />,
-    view,
-  } = props;
+const DateTimePickerTabs = (props: DateTimePickerTabsProps) => {
+  const { dateRangeIcon = <DateRangeIcon />, onChange, timeIcon = <TimeIcon />, view } = props;
 
-  const theme = useTheme();
   const wrapperVariant = React.useContext(WrapperVariantContext);
-  const indicatorColor = theme.palette.mode === 'light' ? 'secondary' : 'primary';
+  const styleProps = { ...props, wrapperVariant };
 
   const handleChange = (event: React.SyntheticEvent, value: TabValue) => {
     onChange(tabToView(value));
   };
 
   return (
-    <Paper className={clsx(classes.root, { [classes.modeDesktop]: wrapperVariant === 'desktop' })}>
-      <Tabs
-        variant="fullWidth"
-        value={viewToTab(view)}
-        onChange={handleChange}
-        className={classes.tabs}
-        indicatorColor={indicatorColor}
-      >
-        <Tab
-          value="date"
-          aria-label="pick date"
-          icon={<React.Fragment>{dateRangeIcon}</React.Fragment>}
-        />
-        <Tab
-          value="time"
-          aria-label="pick time"
-          icon={<React.Fragment>{timeIcon}</React.Fragment>}
-        />
-      </Tabs>
-    </Paper>
+    <DateTimePickerTabsRoot
+      styleProps={styleProps}
+      variant="fullWidth"
+      value={viewToTab(view)}
+      onChange={handleChange}
+    >
+      <Tab
+        value="date"
+        aria-label="pick date"
+        icon={<React.Fragment>{dateRangeIcon}</React.Fragment>}
+      />
+      <Tab value="time" aria-label="pick time" icon={<React.Fragment>{timeIcon}</React.Fragment>} />
+    </DateTimePickerTabsRoot>
   );
 };
 
-export default withStyles(styles, { name: 'MuiInternalDateTimePickerTabs' })(DateTimePickerTabs);
+export default DateTimePickerTabs;

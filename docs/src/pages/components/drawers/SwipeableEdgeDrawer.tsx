@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Global } from '@emotion/react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { grey } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';

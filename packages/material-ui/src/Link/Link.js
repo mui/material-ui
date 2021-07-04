@@ -3,13 +3,26 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { elementTypeAcceptingRef } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { alpha, getPath } from '@material-ui/system';
 import capitalize from '../utils/capitalize';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useForkRef from '../utils/useForkRef';
 import Typography from '../Typography';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
+
+const colorTransformations = {
+  primary: 'primary.main',
+  textPrimary: 'text.primary',
+  secondary: 'secondary.main',
+  textSecondary: 'text.secondary',
+  error: 'error.main',
+};
+
+const transformDeprecatedColors = (color) => {
+  return colorTransformations[color] || color;
+};
 
 const useUtilityClasses = (styleProps) => {
   const { classes, component, focusVisible, underline } = styleProps;
@@ -26,23 +39,21 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getLinkUtilityClass, classes);
 };
 
-const LinkRoot = experimentalStyled(
-  Typography,
-  {},
-  {
-    name: 'MuiLink',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const LinkRoot = styled(Typography, {
+  name: 'MuiLink',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[`underline${capitalize(styleProps.underline)}`],
-        ...(styleProps.component === 'button' && styles.button),
-      };
-    },
+    return [
+      styles.root,
+      styles[`underline${capitalize(styleProps.underline)}`],
+      styleProps.component === 'button' && styles.button,
+    ];
   },
-)(({ styleProps }) => {
+})(({ theme, styleProps }) => {
+  const color =
+    getPath(theme, `palette.${transformDeprecatedColors(styleProps.color)}`) || styleProps.color;
   return {
     /* Styles applied to the root element if `underline="none"`. */
     ...(styleProps.underline === 'none' && {
@@ -58,6 +69,10 @@ const LinkRoot = experimentalStyled(
     /* Styles applied to the root element if `underline="always"`. */
     ...(styleProps.underline === 'always' && {
       textDecoration: 'underline',
+      textDecorationColor: color !== 'inherit' ? alpha(color, 0.4) : undefined,
+      '&:hover': {
+        textDecorationColor: 'inherit',
+      },
     }),
     // Same reset as ButtonBase.root
     /* Styles applied to the root element if `component="button"`. */
@@ -99,7 +114,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     onBlur,
     onFocus,
     TypographyClasses,
-    underline = 'hover',
+    underline = 'always',
     variant = 'inherit',
     ...other
   } = props;
@@ -203,7 +218,7 @@ Link.propTypes /* remove-proptypes */ = {
   TypographyClasses: PropTypes.object,
   /**
    * Controls when the link should have an underline.
-   * @default 'hover'
+   * @default 'always'
    */
   underline: PropTypes.oneOf(['always', 'hover', 'none']),
   /**

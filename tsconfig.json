@@ -16,9 +16,9 @@
     "paths": {
       "@material-ui/core": ["./packages/material-ui/src"],
       "@material-ui/core/*": ["./packages/material-ui/src/*"],
-      "@material-ui/icons": ["./packages/material-ui-icons/src"],
       "@material-ui/lab": ["./packages/material-ui-lab/src"],
       "@material-ui/lab/*": ["./packages/material-ui-lab/src/*"],
+      "@material-ui/markdown": ["./docs/packages/markdown"],
       "@material-ui/styled-engine": ["./packages/material-ui-styled-engine/src"],
       "@material-ui/styled-engine/*": ["./packages/material-ui-styled-engine/src/*"],
       "@material-ui/styled-engine-sc": ["./packages/material-ui-styled-engine-sc/src"],

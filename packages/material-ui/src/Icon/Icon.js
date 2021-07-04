@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import { getIconUtilityClass } from './iconClasses';
@@ -21,23 +21,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getIconUtilityClass, classes);
 };
 
-const IconRoot = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiIcon',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const IconRoot = styled('span', {
+  name: 'MuiIcon',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`]),
-        ...styles[`fontSize${capitalize(styleProps.fontSize)}`],
-      };
-    },
+    return [
+      styles.root,
+      styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`],
+      styles[`fontSize${capitalize(styleProps.fontSize)}`],
+    ];
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   userSelect: 'none',
   width: '1em',
@@ -58,6 +54,9 @@ const IconRoot = experimentalStyled(
   color: {
     primary: theme.palette.primary.main,
     secondary: theme.palette.secondary.main,
+    info: theme.palette.info.main,
+    success: theme.palette.success.main,
+    warning: theme.palette.warning.main,
     action: theme.palette.action.active,
     error: theme.palette.error.main,
     disabled: theme.palette.action.disabled,
@@ -133,7 +132,17 @@ Icon.propTypes /* remove-proptypes */ = {
    * @default 'inherit'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['action', 'disabled', 'error', 'inherit', 'primary', 'secondary']),
+    PropTypes.oneOf([
+      'inherit',
+      'action',
+      'disabled',
+      'primary',
+      'secondary',
+      'error',
+      'info',
+      'success',
+      'warning',
+    ]),
     PropTypes.string,
   ]),
   /**

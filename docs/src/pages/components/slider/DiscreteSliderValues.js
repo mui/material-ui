@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 
 const marks = [
@@ -30,17 +29,14 @@ function valueLabelFormat(value) {
   return marks.findIndex((mark) => mark.value === value) + 1;
 }
 
-export default function DiscreteSlider() {
+export default function DiscreteSliderValues() {
   return (
     <Box sx={{ width: 300 }}>
-      <Typography id="discrete-slider-restrict" gutterBottom>
-        Restricted values
-      </Typography>
       <Slider
+        aria-label="Restricted values"
         defaultValue={20}
         valueLabelFormat={valueLabelFormat}
         getAriaValueText={valuetext}
-        aria-labelledby="discrete-slider-restrict"
         step={null}
         valueLabelDisplay="auto"
         marks={marks}

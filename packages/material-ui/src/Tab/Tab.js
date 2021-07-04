@@ -5,7 +5,7 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import unsupportedProp from '../utils/unsupportedProp';
 import tabClasses, { getTabUtilityClass } from './tabClasses';
 
@@ -22,51 +22,46 @@ const useUtilityClasses = (styleProps) => {
       selected && 'selected',
       disabled && 'disabled',
     ],
-    wrapper: ['wrapper'],
   };
 
   return composeClasses(slots, getTabUtilityClass, classes);
 };
 
-const TabRoot = experimentalStyled(
-  ButtonBase,
-  {},
-  {
-    name: 'MuiTab',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const TabRoot = styled(ButtonBase, {
+  name: 'MuiTab',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.label && styleProps.icon && styles.labelIcon),
-        ...styles[`textColor${capitalize(styleProps.textColor)}`],
-        ...(styleProps.fullWidth && styles.fullWidth),
-        ...(styleProps.wrapped && styles.wrapped),
-      };
-    },
+    return [
+      styles.root,
+      styleProps.label && styleProps.icon && styles.labelIcon,
+      styles[`textColor${capitalize(styleProps.textColor)}`],
+      styleProps.fullWidth && styles.fullWidth,
+      styleProps.wrapped && styles.wrapped,
+    ];
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   ...theme.typography.button,
-  maxWidth: 264,
-  minWidth: 72,
+  maxWidth: 360,
+  minWidth: 90,
   position: 'relative',
   minHeight: 48,
   flexShrink: 0,
-  padding: '6px 12px',
+  padding: '12px 16px',
   overflow: 'hidden',
   whiteSpace: 'normal',
   textAlign: 'center',
-  [theme.breakpoints.up('sm')]: {
-    minWidth: 160,
-  },
+  flexDirection: 'column',
+  lineHeight: 1.25,
   /* Styles applied to the root element if both `icon` and `label` are provided. */
   ...(styleProps.icon &&
     styleProps.label && {
       minHeight: 72,
       paddingTop: 9,
-      [`& .${tabClasses.wrapper} > *:first-child`]: {
+      paddingBottom: 9,
+      [`& > *:first-child`]: {
         marginBottom: 6,
       },
     }),
@@ -111,26 +106,8 @@ const TabRoot = experimentalStyled(
   /* Styles applied to the root element if `wrapped={true}`. */
   ...(styleProps.wrapped && {
     fontSize: theme.typography.pxToRem(12),
-    lineHeight: 1.5,
   }),
 }));
-
-const TabWrapper = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiTab',
-    slot: 'Wrapper',
-    overridesResolver: (props, styles) => styles.wrapper,
-  },
-)({
-  /* Styles applied to the `icon` and `label`'s wrapper element. */
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: '100%',
-  flexDirection: 'column',
-});
 
 const Tab = React.forwardRef(function Tab(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTab' });
@@ -206,10 +183,8 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
       tabIndex={selected ? 0 : -1}
       {...other}
     >
-      <TabWrapper className={classes.wrapper} styleProps={styleProps}>
-        {icon}
-        {label}
-      </TabWrapper>
+      {icon}
+      {label}
       {indicator}
     </TabRoot>
   );

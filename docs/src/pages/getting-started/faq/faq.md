@@ -395,9 +395,10 @@ when the `Portal` should re-render:
 ```jsx
 function App() {
   const [container, setContainer] = React.useState(null);
-  const handleRef = React.useCallback((instance) => setContainer(instance), [
-    setContainer,
-  ]);
+  const handleRef = React.useCallback(
+    (instance) => setContainer(instance),
+    [setContainer],
+  );
 
   return (
     <div className="App">

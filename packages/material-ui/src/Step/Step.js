@@ -6,7 +6,7 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from './StepContext';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import { getStepUtilityClass } from './stepClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -19,24 +19,20 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getStepUtilityClass, classes);
 };
 
-const StepRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiStep',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const StepRoot = styled('div', {
+  name: 'MuiStep',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[styleProps.orientation],
-        ...(styleProps.alternativeLabel && styles.alternativeLabel),
-        ...(styleProps.completed && styles.completed),
-      };
-    },
+    return [
+      styles.root,
+      styles[styleProps.orientation],
+      styleProps.alternativeLabel && styles.alternativeLabel,
+      styleProps.completed && styles.completed,
+    ];
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element if `orientation="horizontal"`. */
   ...(styleProps.orientation === 'horizontal' && {
     paddingLeft: 8,
@@ -63,9 +59,8 @@ const Step = React.forwardRef(function Step(inProps, ref) {
     ...other
   } = props;
 
-  const { activeStep, connector, alternativeLabel, orientation, nonLinear } = React.useContext(
-    StepperContext,
-  );
+  const { activeStep, connector, alternativeLabel, orientation, nonLinear } =
+    React.useContext(StepperContext);
 
   let [active = false, completed = false, disabled = false] = [
     activeProp,

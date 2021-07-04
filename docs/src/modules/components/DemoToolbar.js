@@ -56,6 +56,7 @@ const useDemoToolbarStyles = makeStyles(
           height: theme.spacing(6),
         },
         justifyContent: 'space-between',
+        alignItems: 'center',
       },
       toggleButtonGroup: {
         margin: '8px 0',
@@ -361,9 +362,10 @@ export default function DemoToolbar(props) {
     React.useRef(null),
   ];
   // if the code is not open we hide the first two language controls
-  const isFocusableControl = React.useCallback((index) => (codeOpen ? true : index >= 2), [
-    codeOpen,
-  ]);
+  const isFocusableControl = React.useCallback(
+    (index) => (codeOpen ? true : index >= 2),
+    [codeOpen],
+  );
   const { getControlProps, toolbarProps } = useToolbar(controlRefs, {
     defaultActiveIndex: 2,
     isFocusableControl,
@@ -479,6 +481,7 @@ export default function DemoToolbar(props) {
             placement="bottom"
           >
             <IconButton
+              size="large"
               aria-controls={openDemoSource ? demoSourceId : null}
               data-ga-event-category="demo"
               data-ga-event-label={demoOptions.demo}
@@ -497,6 +500,7 @@ export default function DemoToolbar(props) {
               placement="bottom"
             >
               <IconButton
+                size="large"
                 data-ga-event-category="demo"
                 data-ga-event-label={demoOptions.demo}
                 data-ga-event-action="codesandbox"
@@ -509,6 +513,7 @@ export default function DemoToolbar(props) {
           )}
           <Tooltip classes={{ popper: classes.tooltip }} title={t('copySource')} placement="bottom">
             <IconButton
+              size="large"
               data-ga-event-category="demo"
               data-ga-event-label={demoOptions.demo}
               data-ga-event-action="copy"
@@ -520,6 +525,7 @@ export default function DemoToolbar(props) {
           </Tooltip>
           <Tooltip classes={{ popper: classes.tooltip }} title={t('resetFocus')} placement="bottom">
             <IconButton
+              size="large"
               data-ga-event-category="demo"
               data-ga-event-label={demoOptions.demo}
               data-ga-event-action="reset-focus"
@@ -531,6 +537,7 @@ export default function DemoToolbar(props) {
           </Tooltip>
           <Tooltip classes={{ popper: classes.tooltip }} title={t('resetDemo')} placement="bottom">
             <IconButton
+              size="large"
               aria-controls={demoId}
               data-ga-event-category="demo"
               data-ga-event-label={demoOptions.demo}
@@ -542,6 +549,7 @@ export default function DemoToolbar(props) {
             </IconButton>
           </Tooltip>
           <IconButton
+            size="large"
             onClick={handleMoreClick}
             aria-label={t('seeMore')}
             aria-owns={anchorEl ? 'demo-menu-more' : undefined}

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
+import { FormHelperTextClasses } from './formHelperTextClasses';
 
 export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'> {
   props: P & {
@@ -14,24 +15,7 @@ export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Pseudo-class applied to the root element if `error={true}`. */
-      error?: string;
-      /** Pseudo-class applied to the root element if `disabled={true}`. */
-      disabled?: string;
-      /** Styles applied to the root element if `size="small"`. */
-      sizeSmall?: string;
-      /** Styles applied to the root element if `variant="filled"` or `variant="outlined"`. */
-      contained?: string;
-      /** Pseudo-class applied to the root element if `focused={true}`. */
-      focused?: string;
-      /** Pseudo-class applied to the root element if `filled={true}`. */
-      filled?: string;
-      /** Pseudo-class applied to the root element if `required={true}`. */
-      required?: string;
-    };
+    classes?: Partial<FormHelperTextClasses>;
     /**
      * If `true`, the helper text should be displayed in a disabled state.
      */
@@ -80,11 +64,9 @@ export interface FormHelperTextTypeMap<P = {}, D extends React.ElementType = 'p'
  */
 declare const FormHelperText: OverridableComponent<FormHelperTextTypeMap>;
 
-export type FormHelperTextClassKey = keyof NonNullable<FormHelperTextTypeMap['props']['classes']>;
-
 export type FormHelperTextProps<
   D extends React.ElementType = FormHelperTextTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<FormHelperTextTypeMap<P, D>, D>;
 
 export default FormHelperText;

@@ -2,8 +2,7 @@ import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import { Theme } from '@material-ui/core/styles';
 import { SxProps } from '@material-ui/system';
-
-export type TabPanelClassKey = keyof NonNullable<TabPanelProps['classes']>;
+import { TabPanelClasses } from './tabPanelClasses';
 
 export interface TabPanelProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -13,10 +12,7 @@ export interface TabPanelProps extends StandardProps<React.HTMLAttributes<HTMLDi
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-  };
+  classes?: Partial<TabPanelClasses>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

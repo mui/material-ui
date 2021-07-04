@@ -2,6 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { TableFooterClasses } from './tableFooterClasses';
 
 export interface TableFooterTypeMap<P = {}, D extends React.ElementType = 'tfoot'> {
   props: P & {
@@ -12,10 +13,7 @@ export interface TableFooterTypeMap<P = {}, D extends React.ElementType = 'tfoot
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-    };
+    classes?: Partial<TableFooterClasses>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
@@ -35,11 +33,9 @@ export interface TableFooterTypeMap<P = {}, D extends React.ElementType = 'tfoot
  */
 declare const TableFooter: OverridableComponent<TableFooterTypeMap>;
 
-export type TableFooterClassKey = keyof NonNullable<TableFooterTypeMap['props']['classes']>;
-
 export type TableFooterProps<
   D extends React.ElementType = TableFooterTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<TableFooterTypeMap<P, D>, D>;
 
 export default TableFooter;

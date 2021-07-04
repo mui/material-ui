@@ -6,7 +6,7 @@ import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import formLabelClasses, { getFormLabelUtilityClasses } from './formLabelClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -27,25 +27,22 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getFormLabelUtilityClasses, classes);
 };
 
-export const FormLabelRoot = experimentalStyled(
-  'label',
-  {},
-  {
-    name: 'MuiFormLabel',
-    slot: 'Root',
-    overridesResolver: ({ styleProps }, styles) => {
-      return {
-        ...styles.root,
-        ...(styleProps.color === 'secondary' && styles.colorSecondary),
-        ...(styleProps.filled && styles.filled),
-      };
-    },
+export const FormLabelRoot = styled('label', {
+  name: 'MuiFormLabel',
+  slot: 'Root',
+  overridesResolver: ({ styleProps }, styles) => {
+    return {
+      ...styles.root,
+      ...(styleProps.color === 'secondary' && styles.colorSecondary),
+      ...(styleProps.filled && styles.filled),
+    };
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   color: theme.palette.text.secondary,
   ...theme.typography.body1,
   lineHeight: '1.4375em',
   padding: 0,
+  position: 'relative',
   [`&.${formLabelClasses.focused}`]: {
     color: theme.palette[styleProps.color].main,
   },
@@ -57,11 +54,11 @@ export const FormLabelRoot = experimentalStyled(
   },
 }));
 
-const AsteriskComponent = experimentalStyled(
-  'span',
-  {},
-  { name: 'MuiFormLabel', slot: 'Asterisk', overridesResolver: (props, styles) => styles.asterisk },
-)(({ theme }) => ({
+const AsteriskComponent = styled('span', {
+  name: 'MuiFormLabel',
+  slot: 'Asterisk',
+  overridesResolver: (props, styles) => styles.asterisk,
+})(({ theme }) => ({
   [`&.${formLabelClasses.error}`]: {
     color: theme.palette.error.main,
   },
@@ -140,7 +137,7 @@ FormLabel.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'success', 'warning']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

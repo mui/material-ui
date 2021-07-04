@@ -10,14 +10,20 @@
 /benchmark/**/dist
 /coverage
 /docs/.env.local
-/docs/.next
 /docs/export
 /examples/**/.cache
 /packages/material-ui-codemod/lib
 /packages/material-ui-envinfo/*.tgz
-/packages/material-ui-icons/material-icons/*
+/packages/material-ui-icons/src/*.js
+/test/bundling/fixtures/*/yarn.lock
+# created by test/bundling/scripts/createFixture
+/test/bundling/fixtures/**/*.fixture.js
+# created by test/bundling/fixtures/gatsby gatsby build
+/test/bundling/fixtures/gatsby/.cache
+/test/bundling/fixtures/gatsby/public
 /test/regressions/screenshots
 /tmp
+.next
 build
 node_modules
 package-lock.json

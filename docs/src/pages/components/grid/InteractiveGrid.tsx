@@ -25,9 +25,8 @@ type GridJustification =
 
 export default function InteractiveGrid() {
   const [direction, setDirection] = React.useState<GridDirection>('row');
-  const [justifyContent, setJustifyContent] = React.useState<GridJustification>(
-    'center',
-  );
+  const [justifyContent, setJustifyContent] =
+    React.useState<GridJustification>('center');
   const [alignItems, setAlignItems] = React.useState<GridItemsAlignment>('center');
 
   const jsx = `

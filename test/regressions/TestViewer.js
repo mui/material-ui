@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useFakeTimers } from 'sinon';
-import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
+import { createTheme, StyledEngineProvider } from '@material-ui/core/styles';
 
 const styles = (theme) => ({
   '@global': {
@@ -86,4 +86,5 @@ TestViewer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TestViewer);
+const defaultTheme = createTheme();
+export default withStyles(styles, { defaultTheme })(TestViewer);

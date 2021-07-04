@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled as styled, alpha } from '@material-ui/core/styles';
+import { styled, alpha } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Box from '@material-ui/core/Box';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -57,6 +57,7 @@ export default function SearchAppBar() {
       <AppBar position="static">
         <Toolbar>
           <IconButton
+            size="large"
             edge="start"
             color="inherit"
             aria-label="open drawer"

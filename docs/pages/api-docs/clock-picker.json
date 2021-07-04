@@ -2,9 +2,10 @@
   "props": {
     "date": { "type": { "name": "any" }, "required": true },
     "onChange": { "type": { "name": "func" }, "required": true },
-    "allowKeyboardControl": { "type": { "name": "bool" } },
     "ampm": { "type": { "name": "bool" } },
     "ampmInClock": { "type": { "name": "bool" } },
+    "autoFocus": { "type": { "name": "bool" } },
+    "classes": { "type": { "name": "object" } },
     "components": {
       "type": {
         "name": "shape",
@@ -15,7 +16,7 @@
     "disableIgnoringDatePartForTimeValidation": { "type": { "name": "bool" } },
     "getClockLabelText": {
       "type": { "name": "func" },
-      "default": "<TDate extends any>(\n  view: ClockView,\n  time: TDate,\n  adapter: MuiPickersAdapter<TDate>,\n) => `Select ${view}. Selected time is ${adapter.format(time, 'fullTime')}`"
+      "default": "<TDate extends any>(\n  view: ClockView,\n  time: TDate | null,\n  adapter: MuiPickersAdapter<TDate>,\n) =>\n  `Select ${view}. ${\n    time === null ? 'No time selected' : `Selected time is ${adapter.format(time, 'fullTime')}`\n  }`"
     },
     "getHoursClockNumberText": {
       "type": { "name": "func" },
@@ -43,6 +44,6 @@
   "filename": "/packages/material-ui-lab/src/ClockPicker/ClockPicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/time-picker/\">Time Picker</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

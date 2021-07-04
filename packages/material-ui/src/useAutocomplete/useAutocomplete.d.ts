@@ -37,7 +37,7 @@ export interface UseAutocompleteProps<
   T,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
-  FreeSolo extends boolean | undefined
+  FreeSolo extends boolean | undefined,
 > {
   /**
    * If `true`, the portion of the selected suggestion that has not been typed by the user,
@@ -140,7 +140,7 @@ export interface UseAutocompleteProps<
    */
   getOptionLabel?: (option: T) => string;
   /**
-   * Used to determine if an option is selected, considering the current value(s).
+   * Used to determine if the option represents the given value.
    * Uses strict equality by default.
    * ⚠️ Both arguments need to be handled, an option can only match with one value.
    *
@@ -148,7 +148,7 @@ export interface UseAutocompleteProps<
    * @param {T} value The value to test against.
    * @returns {boolean}
    */
-  getOptionSelected?: (option: T, value: T) => boolean;
+  isOptionEqualToValue?: (option: T, value: T) => boolean;
   /**
    * If provided, the options will be grouped under the returned string.
    * The groupBy value is also used as the text for group headings when `renderGroup` is not provided.
@@ -244,7 +244,7 @@ export interface UseAutocompleteProps<
    * The value of the autocomplete.
    *
    * The value must have reference equality with the option in order to be selected.
-   * You can customize the equality behavior with the `getOptionSelected` prop.
+   * You can customize the equality behavior with the `isOptionEqualToValue` prop.
    */
   value?: Value<T, Multiple, DisableClearable, FreeSolo>;
   /**
@@ -288,11 +288,7 @@ export type AutocompleteCloseReason =
   | 'blur';
 export type AutocompleteInputChangeReason = 'input' | 'reset' | 'clear';
 
-export type AutocompleteGetTagProps = ({
-  index,
-}: {
-  index: number;
-}) => {
+export type AutocompleteGetTagProps = ({ index }: { index: number }) => {
   key: number;
   'data-tag-index': number;
   tabIndex: -1;
@@ -303,7 +299,7 @@ export default function useAutocomplete<
   T,
   Multiple extends boolean | undefined = undefined,
   DisableClearable extends boolean | undefined = undefined,
-  FreeSolo extends boolean | undefined = undefined
+  FreeSolo extends boolean | undefined = undefined,
 >(
   props: UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
 ): {

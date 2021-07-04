@@ -3,7 +3,7 @@ import { refType } from '@material-ui/utils';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import InputBase from '../InputBase';
-import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import filledInputClasses, { getFilledInputUtilityClass } from './filledInputClasses';
 import {
@@ -21,24 +21,26 @@ const useUtilityClasses = (styleProps) => {
     input: ['input'],
   };
 
-  return composeClasses(slots, getFilledInputUtilityClass, classes);
+  const composedClasses = composeClasses(slots, getFilledInputUtilityClass, classes);
+
+  return {
+    ...classes, // forward classes to the InputBase
+    ...composedClasses,
+  };
 };
 
-const FilledInputRoot = experimentalStyled(
-  InputBaseRoot,
-  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
-  {
-    name: 'MuiFilledInput',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
-      return {
-        ...inputBaseRootOverridesResolver(props, styles),
-        ...(!styleProps.disableUnderline && styles.underline),
-      };
-    },
+const FilledInputRoot = styled(InputBaseRoot, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiFilledInput',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    return [
+      ...inputBaseRootOverridesResolver(props, styles),
+      !styleProps.disableUnderline && styles.underline,
+    ];
   },
-)(({ theme, styleProps }) => {
+})(({ theme, styleProps }) => {
   const light = theme.palette.mode === 'light';
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
   const backgroundColor = light ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.09)';
@@ -128,11 +130,11 @@ const FilledInputRoot = experimentalStyled(
   };
 });
 
-const FilledInputInput = experimentalStyled(
-  InputBaseInput,
-  {},
-  { name: 'MuiFilledInput', slot: 'Input', overridesResolver: inputBaseInputOverridesResolver },
-)(({ theme, styleProps }) => ({
+const FilledInputInput = styled(InputBaseInput, {
+  name: 'MuiFilledInput',
+  slot: 'Input',
+  overridesResolver: inputBaseInputOverridesResolver,
+})(({ theme, styleProps }) => ({
   paddingTop: 25,
   paddingRight: 12,
   paddingBottom: 8,
@@ -183,6 +185,7 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
     inputComponent = 'input',
     multiline = false,
     type = 'text',
+    hiddenLabel, // declare here to prevent spreading to DOM
     ...other
   } = props;
 
@@ -265,6 +268,13 @@ FilledInput.propTypes /* remove-proptypes */ = {
    * @default false
    */
   fullWidth: PropTypes.bool,
+  /**
+   * If `true`, the label is hidden.
+   * This is used to increase density for a `FilledInput`.
+   * Be sure to add `aria-label` to the `input` element.
+   * @default false
+   */
+  hiddenLabel: PropTypes.bool,
   /**
    * The id of the `input` element.
    */

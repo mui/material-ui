@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getDialogActionsUtilityClass } from './dialogActionsClasses';
 
@@ -16,22 +16,15 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getDialogActionsUtilityClass, classes);
 };
 
-const DialogActionsRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiDialogActions',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const DialogActionsRoot = styled('div', {
+  name: 'MuiDialogActions',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(!styleProps.disableSpacing && styles.spacing),
-      };
-    },
+    return [styles.root, !styleProps.disableSpacing && styles.spacing];
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
   display: 'flex',
   alignItems: 'center',

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import ListContext from '../List/ListContext';
 import { getListItemSecondaryActionClassesUtilityClass } from './listItemSecondaryActionClasses';
@@ -17,22 +17,15 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getListItemSecondaryActionClassesUtilityClass, classes);
 };
 
-const ListItemSecondaryActionRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiListItemSecondaryAction',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const ListItemSecondaryActionRoot = styled('div', {
+  name: 'MuiListItemSecondaryAction',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.disableGutters && styles.disableGutters),
-      };
-    },
+    return [styles.root, styleProps.disableGutters && styles.disableGutters];
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   position: 'absolute',
   right: 16,
   top: '50%',

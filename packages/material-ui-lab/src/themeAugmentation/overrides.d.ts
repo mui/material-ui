@@ -1,5 +1,6 @@
 import { CalendarPickerClassKey } from '../CalendarPicker';
 import { CalendarPickerSkeletonClassKey } from '../CalendarPickerSkeleton';
+import { ClockPickerClassKey } from '../ClockPicker/ClockPicker';
 import { DateRangePickerDayClassKey } from '../DateRangePickerDay/DateRangePickerDay';
 import { LoadingButtonClassKey } from '../LoadingButton';
 import { MonthPickerClassKey } from '../MonthPicker';
@@ -13,7 +14,6 @@ import { TimelineDotClassKey } from '../TimelineDot';
 import { TimelineItemClassKey } from '../TimelineItem';
 import { TimelineOppositeContentClassKey } from '../TimelineOppositeContent';
 import { TimelineSeparatorClassKey } from '../TimelineSeparator';
-import { TimePickerToolbarClassKey } from '../TimePicker/TimePickerToolbar';
 import { TreeItemClassKey } from '../TreeItem';
 import { TreeViewClassKey } from '../TreeView';
 import { YearPickerClassKey } from '../YearPicker';
@@ -36,7 +36,6 @@ export interface LabComponentNameToClassKey {
   MuiTimelineItem: TimelineItemClassKey;
   MuiTimelineOppositeContent: TimelineOppositeContentClassKey;
   MuiTimelineSeparator: TimelineSeparatorClassKey;
-  MuiTimePickerToolbar: TimePickerToolbarClassKey;
   MuiTreeItem: TreeItemClassKey;
   MuiTreeView: TreeViewClassKey;
   MuiYearPicker: YearPickerClassKey;

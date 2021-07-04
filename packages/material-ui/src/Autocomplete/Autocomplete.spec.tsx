@@ -9,7 +9,7 @@ interface MyAutocompleteProps<
   T,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
-  FreeSolo extends boolean | undefined
+  FreeSolo extends boolean | undefined,
 > extends AutocompleteProps<T, Multiple, DisableClearable, FreeSolo> {
   myProp?: string;
 }
@@ -18,7 +18,7 @@ function MyAutocomplete<
   T,
   Multiple extends boolean | undefined = undefined,
   DisableClearable extends boolean | undefined = undefined,
-  FreeSolo extends boolean | undefined = undefined
+  FreeSolo extends boolean | undefined = undefined,
 >(props: MyAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>) {
   return <Autocomplete {...props} />;
 }

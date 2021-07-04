@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { keyframes, css } from '@material-ui/styled-engine';
+import { keyframes, css } from '@material-ui/system';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
 
 const SIZE = 44;
@@ -50,23 +50,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getCircularProgressUtilityClass, classes);
 };
 
-const CircularProgressRoot = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiCircularProgress',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const CircularProgressRoot = styled('span', {
+  name: 'MuiCircularProgress',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[styleProps.variant],
-        ...styles[`color${capitalize(styleProps.color)}`],
-      };
-    },
+    return [
+      styles.root,
+      styles[styleProps.variant],
+      styles[`color${capitalize(styleProps.color)}`],
+    ];
   },
-)(
+})(
   ({ styleProps, theme }) => ({
     /* Styles applied to the root element. */
     display: 'inline-block',
@@ -87,36 +83,28 @@ const CircularProgressRoot = experimentalStyled(
     `,
 );
 
-const CircularProgressSVG = experimentalStyled(
-  'svg',
-  {},
-  {
-    name: 'MuiCircularProgress',
-    slot: 'Svg',
-    overridesResolver: (props, styles) => styles.svg,
-  },
-)({
+const CircularProgressSVG = styled('svg', {
+  name: 'MuiCircularProgress',
+  slot: 'Svg',
+  overridesResolver: (props, styles) => styles.svg,
+})({
   /* Styles applied to the svg element. */
   display: 'block', // Keeps the progress centered
 });
 
-const CircularProgressCircle = experimentalStyled(
-  'circle',
-  {},
-  {
-    name: 'MuiCircularProgress',
-    slot: 'Circle',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const CircularProgressCircle = styled('circle', {
+  name: 'MuiCircularProgress',
+  slot: 'Circle',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.circle,
-        ...styles[`circle${capitalize(styleProps.variant)}`],
-        ...(styleProps.disableShrink && styles.circleDisableShrink),
-      };
-    },
+    return [
+      styles.circle,
+      styles[`circle${capitalize(styleProps.variant)}`],
+      styleProps.disableShrink && styles.circleDisableShrink,
+    ];
   },
-)(
+})(
   ({ styleProps, theme }) => ({
     /* Styles applied to the `circle` svg path. */
     stroke: 'currentColor',
@@ -234,7 +222,7 @@ CircularProgress.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['inherit', 'primary', 'secondary']),
+    PropTypes.oneOf(['inherit', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

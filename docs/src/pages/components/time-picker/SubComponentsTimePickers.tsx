@@ -8,11 +8,7 @@ export default function SubComponentsTimePickers() {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <ClockPicker
-        allowKeyboardControl={false}
-        date={date}
-        onChange={(newDate) => setDate(newDate)}
-      />
+      <ClockPicker date={date} onChange={(newDate) => setDate(newDate)} />
     </LocalizationProvider>
   );
 }

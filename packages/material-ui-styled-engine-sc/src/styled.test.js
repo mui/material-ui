@@ -1,7 +1,11 @@
+import * as React from 'react';
 import { expect } from 'chai';
-import styled from './index';
+import { createClientRender } from 'test/utils';
+import styled from '@material-ui/styled-engine-sc';
 
 describe('styled', () => {
+  const render = createClientRender();
+
   it('should help debug wrong args', () => {
     expect(() => {
       expect(() => {
@@ -22,5 +26,16 @@ describe('styled', () => {
     }).toErrorDev(
       'Material-UI: the styled("span")(...args) API requires all its args to be defined',
     );
+  });
+
+  it('should respect the options', () => {
+    const StyledComponent = styled('div', {
+      shouldForwardProp: (prop) => prop !== 'color',
+      label: 'TestComponent',
+    })({ color: 'red' });
+
+    const { container } = render(<StyledComponent color="blue" />);
+    expect(container.firstChild).not.to.have.attribute('color');
+    expect(container.querySelector('[class^=TestComponent]')).not.to.equal(null);
   });
 });

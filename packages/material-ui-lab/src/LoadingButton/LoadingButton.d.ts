@@ -1,15 +1,17 @@
-import { ExtendButton, ExtendButtonTypeMap } from '@material-ui/core/Button';
+import { ExtendButton, ExtendButtonTypeMap, ButtonClasses } from '@material-ui/core/Button';
 import { OverrideProps } from '@material-ui/core/OverridableComponent';
+import { Theme } from '@material-ui/core/styles';
+import { SxProps } from '@material-ui/system';
 
 export type LoadingButtonTypeMap<
   P = {},
-  D extends React.ElementType = 'button'
+  D extends React.ElementType = 'button',
 > = ExtendButtonTypeMap<{
   props: P & {
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
+    classes?: Partial<ButtonClasses> & {
       /** Styles applied to the root element. */
       root?: string;
       /** Styles applied to the root element if `loading={true}`. */
@@ -26,8 +28,6 @@ export type LoadingButtonTypeMap<
       endIconLoadingEnd?: string;
       /** Styles applied to the startIcon element if `loading={true}` and `loadingPosition="start"`. */
       startIconLoadingStart?: string;
-      /** Styles applied to the label element if `loading={true}` and `loadingPosition="center"`. */
-      labelLoadingCenter?: string;
     };
     /**
      * If `true`, the loading indicator is shown.
@@ -44,6 +44,10 @@ export type LoadingButtonTypeMap<
      * @default 'center'
      */
     loadingPosition?: 'start' | 'end' | 'center';
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }>;
@@ -63,9 +67,7 @@ declare const LoadingButton: ExtendButton<LoadingButtonTypeMap>;
 
 export type LoadingButtonProps<
   D extends React.ElementType = LoadingButtonTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<LoadingButtonTypeMap<P, D>, D>;
-
-export type LoadingButtonClassKey = keyof NonNullable<LoadingButtonTypeMap['props']['classes']>;
 
 export default LoadingButton;

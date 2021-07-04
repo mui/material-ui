@@ -2,43 +2,38 @@ import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import {
-  makeStyles,
+  styled,
   ThemeProvider,
   useTheme,
   createTheme,
 } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.default,
-    color: theme.palette.text.primary,
-    padding: theme.spacing(2),
-    [theme.breakpoints.up('md')]: {
-      padding: theme.spacing(3),
-    },
+const Root = styled('div')(({ theme }) => ({
+  backgroundColor: theme.palette.background.default,
+  color: theme.palette.text.primary,
+  padding: theme.spacing(2),
+  [theme.breakpoints.up('md')]: {
+    padding: theme.spacing(3),
   },
-  group: {
-    marginTop: theme.spacing(3),
-  },
-  color: {
-    display: 'flex',
-    alignItems: 'center',
-    '& div:first-of-type': {
-      width: theme.spacing(6),
-      height: theme.spacing(6),
-      flexShrink: 0,
-      marginRight: theme.spacing(1),
-      borderRadius: theme.shape.borderRadius,
-    },
+}));
+
+const Color = styled(Grid)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  '& div:first-of-type': {
+    width: theme.spacing(6),
+    height: theme.spacing(6),
+    flexShrink: 0,
+    marginRight: theme.spacing(1),
+    borderRadius: theme.shape.borderRadius,
   },
 }));
 
 function Demo() {
-  const classes = useStyles();
   const theme = useTheme();
 
   const item = (color, name, expanded = false, border = false) => (
-    <Grid item xs={12} sm={6} md={expanded ? 8 : 4} className={classes.color}>
+    <Color item xs={12} sm={6} md={expanded ? 8 : 4}>
       <div
         style={{
           backgroundColor: color,
@@ -51,18 +46,18 @@ function Demo() {
           {color}
         </Typography>
       </div>
-    </Grid>
+    </Color>
   );
 
   return (
-    <div className={classes.root}>
+    <Root>
       <Typography gutterBottom>Typography</Typography>
       <Grid container spacing={1}>
         {item(theme.palette.text.primary, 'palette.text.primary')}
         {item(theme.palette.text.secondary, 'palette.text.secondary')}
         {item(theme.palette.text.disabled, 'palette.text.disabled')}
       </Grid>
-      <Typography gutterBottom className={classes.group}>
+      <Typography gutterBottom sx={{ mt: 3 }}>
         Buttons
       </Typography>
       <Grid container spacing={1}>
@@ -76,7 +71,7 @@ function Demo() {
           true,
         )}
       </Grid>
-      <Typography gutterBottom className={classes.group}>
+      <Typography gutterBottom sx={{ mt: 3 }}>
         Background
       </Typography>
       <Grid container spacing={1}>
@@ -88,13 +83,13 @@ function Demo() {
         )}
         {item(theme.palette.background.paper, 'palette.background.paper')}
       </Grid>
-      <Typography gutterBottom className={classes.group}>
+      <Typography gutterBottom sx={{ mt: 3 }}>
         Divider
       </Typography>
       <Grid container spacing={1}>
         {item(theme.palette.divider, 'palette.divider')}
       </Grid>
-    </div>
+    </Root>
   );
 }
 

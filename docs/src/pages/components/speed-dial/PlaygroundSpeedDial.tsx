@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -35,9 +35,8 @@ const actions = [
 ];
 
 export default function PlaygroundSpeedDial() {
-  const [direction, setDirection] = React.useState<SpeedDialProps['direction']>(
-    'up',
-  );
+  const [direction, setDirection] =
+    React.useState<SpeedDialProps['direction']>('up');
   const [hidden, setHidden] = React.useState(false);
 
   const handleDirectionChange = (event: React.ChangeEvent<HTMLInputElement>) => {

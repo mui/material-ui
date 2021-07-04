@@ -1,10 +1,10 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { keyframes, css } from '@material-ui/styled-engine';
+import { keyframes, css } from '@material-ui/system';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { alpha, unstable_getUnit as getUnit, unstable_toUnitless as toUnitless } from '../styles';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getSkeletonUtilityClass } from './skeletonClasses';
 
@@ -54,26 +54,22 @@ const waveKeyframe = keyframes`
   }
 `;
 
-const SkeletonRoot = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiSkeleton',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const SkeletonRoot = styled('span', {
+  name: 'MuiSkeleton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[styleProps.variant],
-        ...(styleProps.animation !== false && styles[styleProps.animation]),
-        ...(styleProps.hasChildren && styles.withChildren),
-        ...(styleProps.hasChildren && !styleProps.width && styles.fitContent),
-        ...(styleProps.hasChildren && !styleProps.height && styles.heightAuto),
-      };
-    },
+    return [
+      styles.root,
+      styles[styleProps.variant],
+      styleProps.animation !== false && styles[styleProps.animation],
+      styleProps.hasChildren && styles.withChildren,
+      styleProps.hasChildren && !styleProps.width && styles.fitContent,
+      styleProps.hasChildren && !styleProps.height && styles.heightAuto,
+    ];
   },
-)(
+})(
   ({ theme, styleProps }) => {
     const radiusUnit = getUnit(theme.shape.borderRadius) || 'px';
     const radiusValue = toUnitless(theme.shape.borderRadius);

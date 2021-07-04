@@ -20,7 +20,7 @@ export function withThemeCreator<Theme = DefaultTheme>(
 
 export default function withTheme<
   Theme,
-  C extends React.JSXElementConstructor<ConsistentWith<React.ComponentProps<C>, WithTheme<Theme>>>
+  C extends React.JSXElementConstructor<ConsistentWith<React.ComponentProps<C>, WithTheme<Theme>>>,
 >(
   component: C,
 ): React.JSXElementConstructor<

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getAccordionActionsUtilityClass } from './accordionActionsClasses';
 
@@ -16,22 +16,15 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAccordionActionsUtilityClass, classes);
 };
 
-const AccordionActionsRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAccordionActions',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const AccordionActionsRoot = styled('div', {
+  name: 'MuiAccordionActions',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(!styleProps.disableSpacing && styles.spacing),
-      };
-    },
+    return [styles.root, !styleProps.disableSpacing && styles.spacing];
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
   display: 'flex',
   alignItems: 'center',

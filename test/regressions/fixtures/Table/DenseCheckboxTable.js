@@ -1,6 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Checkbox from '@material-ui/core/Checkbox';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -8,21 +7,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
-const styles = (theme) => ({
-  root: {
-    width: '100%',
-  },
-  paper: {
-    marginTop: theme.spacing(3),
-    width: '100%',
-    overflowX: 'auto',
-    marginBottom: theme.spacing(2),
-  },
-  table: {
-    minWidth: 650,
-  },
-});
 
 let id = 0;
 function createData(name, calories, fat, carbs, protein) {
@@ -38,13 +22,11 @@ const rows = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-function DenseCheckboxTable(props) {
-  const { classes } = props;
-
+function DenseCheckboxTable() {
   return (
-    <div className={classes.root}>
-      <Paper className={classes.paper}>
-        <Table className={classes.table} size="small">
+    <Box sx={{ width: '100%' }}>
+      <Paper sx={{ mt: 3, width: '100%', overflowX: 'auto', mb: 2 }}>
+        <Table sx={{ minWidth: 650 }} size="small">
           <TableHead>
             <TableRow>
               <TableCell padding="checkbox">
@@ -75,12 +57,8 @@ function DenseCheckboxTable(props) {
           </TableBody>
         </Table>
       </Paper>
-    </div>
+    </Box>
   );
 }
 
-DenseCheckboxTable.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(DenseCheckboxTable);
+export default DenseCheckboxTable;

@@ -319,7 +319,7 @@ Some implementation details that might be interesting to being aware of:
 
 ```jsx
 import * as React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 
 const styles = {
   root: {
@@ -338,7 +338,7 @@ Also, you can use as [decorators](https://babeljs.io/docs/en/babel-plugin-propos
 
 ```jsx
 import * as React from 'react';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 
 const styles = {
   root: {

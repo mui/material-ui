@@ -7,7 +7,7 @@ import {
   unstable_extendSxProp as extendSxProp,
 } from '@material-ui/system';
 import { deepmerge } from '@material-ui/utils';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 
 /**
@@ -31,6 +31,7 @@ function joinChildren(children, separator) {
   }, []);
 }
 
+// Duplicated with Grid.js
 function resolveBreakpointValues({ values, base }) {
   const keys = Object.keys(base);
 
@@ -97,7 +98,7 @@ export const style = ({ styleProps, theme }) => {
   return styles;
 };
 
-const StackRoot = experimentalStyled('div', {}, { name: 'Stack' })(style);
+const StackRoot = styled('div', { name: 'Stack' })(style);
 
 const Stack = React.forwardRef(function Stack(inProps, ref) {
   const themeProps = useThemeProps({ props: inProps, name: 'MuiStack' });

@@ -2,6 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { FormLabelClasses } from './formLabelClasses';
 
 export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'> {
   props: P &
@@ -13,28 +14,11 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
       /**
        * Override or extend the styles applied to the component.
        */
-      classes?: {
-        /** Styles applied to the root element. */
-        root?: string;
-        /** Styles applied to the root element if the color is secondary. */
-        colorSecondary?: string;
-        /** Pseudo-class applied to the root element if `focused={true}`. */
-        focused?: string;
-        /** Pseudo-class applied to the root element if `disabled={true}`. */
-        disabled?: string;
-        /** Pseudo-class applied to the root element if `error={true}`. */
-        error?: string;
-        /** Pseudo-class applied to the root element if `filled={true}`. */
-        filled?: string;
-        /** Pseudo-class applied to the root element if `required={true}`. */
-        required?: string;
-        /** Styles applied to the asterisk element. */
-        asterisk?: string;
-      };
+      classes?: Partial<FormLabelClasses>;
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
        */
-      color?: 'primary' | 'secondary';
+      color?: 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
       /**
        * If `true`, the label should be displayed in a disabled state.
        */
@@ -77,13 +61,11 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
  */
 declare const FormLabel: OverridableComponent<FormLabelTypeMap>;
 
-export type FormLabelClassKey = keyof NonNullable<FormLabelTypeMap['props']['classes']>;
-
 export type FormLabelBaseProps = React.LabelHTMLAttributes<HTMLLabelElement>;
 
 export type FormLabelProps<
   D extends React.ElementType = FormLabelTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<FormLabelTypeMap<P, D>, D>;
 
 export default FormLabel;

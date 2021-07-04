@@ -1,14 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import {
-  createMount,
-  describeConformanceV5,
-  act,
-  createClientRender,
-  fireEvent,
-  screen,
-} from 'test/utils';
+import { describeConformanceV5, act, createClientRender, fireEvent, screen } from 'test/utils';
 import { spy } from 'sinon';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -19,7 +12,7 @@ import Autocomplete, {
 } from '@material-ui/core/Autocomplete';
 
 function checkHighlightIs(listbox, expected) {
-  const focused = listbox.querySelector('[role="option"][data-focus]');
+  const focused = listbox.querySelector(`.${classes.focused}`);
 
   if (expected) {
     if (focused) {
@@ -35,7 +28,6 @@ function checkHighlightIs(listbox, expected) {
 
 describe('<Autocomplete />', () => {
   const render = createClientRender();
-  const mount = createMount();
 
   describeConformanceV5(
     <Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} />,
@@ -43,7 +35,6 @@ describe('<Autocomplete />', () => {
       classes,
       inheritComponent: 'div',
       render,
-      mount,
       muiName: 'MuiAutocomplete',
       testVariantProps: { variant: 'foo' },
       testDeepOverrides: { slotName: 'endAdornment', slotClassName: classes.endAdornment },
@@ -1237,7 +1228,7 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[0][1]).to.equal('a');
     });
 
-    it('warn if getOptionSelected match multiple values for a given option', () => {
+    it('warn if isOptionEqualToValue match multiple values for a given option', () => {
       const value = [
         { id: '10', text: 'One' },
         { id: '20', text: 'Two' },
@@ -1254,7 +1245,7 @@ describe('<Autocomplete />', () => {
           options={options}
           value={value}
           getOptionLabel={(option) => option.text}
-          getOptionSelected={(option) => value.find((v) => v.id === option.id)}
+          isOptionEqualToValue={(option) => value.find((v) => v.id === option.id)}
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );

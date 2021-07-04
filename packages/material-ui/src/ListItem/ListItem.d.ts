@@ -3,6 +3,7 @@ import { SxProps } from '@material-ui/system';
 import { Theme } from '@material-ui/core/styles';
 import { ExtendButtonBase } from '../ButtonBase';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { ListItemClasses } from './listItemClasses';
 
 interface ListItemBaseProps {
   /**
@@ -14,6 +15,7 @@ interface ListItemBaseProps {
    * If `true`, the list item is focused during the first mount.
    * Focus will also be triggered if the value changes from false to true.
    * @default false
+   * @deprecated checkout [ListItemButton](/api/list-item-button/) instead
    */
   autoFocus?: boolean;
   /**
@@ -24,38 +26,17 @@ interface ListItemBaseProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */
-    root?: string;
-    /** Styles applied to the container element if `children` includes `ListItemSecondaryAction`. */
-    container?: string;
-    /** Pseudo-class applied to the `component`'s `focusVisibleClassName` prop if `button={true}`. */
-    focusVisible?: string;
-    /** Styles applied to the component element if dense. */
-    dense?: string;
-    /** Styles applied to the component element if `alignItems="flex-start"`. */
-    alignItemsFlexStart?: string;
-    /** Pseudo-class applied to the inner `component` element if `disabled={true}`. */
-    disabled?: string;
-    /** Styles applied to the inner `component` element if `divider={true}`. */
-    divider?: string;
-    /** Styles applied to the inner `component` element unless `disableGutters={true}`. */
-    gutters?: string;
-    /** Styles applied to the inner `component` element if `button={true}`. */
-    button?: string;
-    /** Styles applied to the component element if `children` includes `ListItemSecondaryAction`. */
-    secondaryAction?: string;
-    /** Pseudo-class applied to the root element if `selected={true}`. */
-    selected?: string;
-  };
+  classes?: Partial<ListItemClasses>;
   /**
    * The container component used when a `ListItemSecondaryAction` is the last child.
    * @default 'li'
+   * @deprecated
    */
   ContainerComponent?: React.ElementType<React.HTMLAttributes<HTMLDivElement>>;
   /**
    * Props applied to the container component if used.
    * @default {}
+   * @deprecated
    */
   ContainerProps?: React.HTMLAttributes<HTMLDivElement>;
   /**
@@ -67,6 +48,7 @@ interface ListItemBaseProps {
   /**
    * If `true`, the component is disabled.
    * @default false
+   * @deprecated checkout [ListItemButton](/api/list-item-button/) instead
    */
   disabled?: boolean;
   /**
@@ -75,13 +57,23 @@ interface ListItemBaseProps {
    */
   disableGutters?: boolean;
   /**
+   * If `true`, all padding is removed.
+   * @default false
+   */
+  disablePadding?: boolean;
+  /**
    * If `true`, a 1px light border is added to the bottom of the list item.
    * @default false
    */
   divider?: boolean;
   /**
+   * The element to display at the end of ListItem.
+   */
+  secondaryAction?: React.ReactNode;
+  /**
    * Use to apply selected styling.
    * @default false
+   * @deprecated checkout [ListItemButton](/api/list-item-button/) instead
    */
   selected?: boolean;
   /**
@@ -129,34 +121,35 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
  *
  * - [ListItem API](https://material-ui.com/api/list-item/)
  */
-declare const ListItem: OverridableComponent<
+declare const ListItem: ExtendButtonBase<
   ListItemTypeMap<
     {
       /**
        * If `true`, the list item is a button (using `ButtonBase`). Props intended
        * for `ButtonBase` can then be applied to `ListItem`.
        * @default false
+       * @deprecated checkout [ListItemButton](/api/list-item-button/) instead
+       *
        */
-      button?: false;
+      button: true;
     },
-    'li'
+    'div'
   >
 > &
-  ExtendButtonBase<
+  OverridableComponent<
     ListItemTypeMap<
       {
         /**
          * If `true`, the list item is a button (using `ButtonBase`). Props intended
          * for `ButtonBase` can then be applied to `ListItem`.
          * @default false
+         * @deprecated checkout [ListItemButton](/api/list-item-button/) instead
          */
-        button: true;
+        button?: false;
       },
-      'div'
+      'li'
     >
   >;
-
-export type ListItemClassKey = keyof NonNullable<ListItemProps['classes']>;
 
 export type ListItemProps<D extends React.ElementType = 'li', P = {}> = OverrideProps<
   ListItemTypeMap<P, D>,

@@ -6,21 +6,11 @@ const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
 
 const workspaceRoot = path.join(__dirname, '../');
 
-/**
- * https://github.com/zeit/next.js/blob/287961ed9142a53f8e9a23bafb2f31257339ea98/packages/next/next-server/server/config.ts#L10
- * @typedef {'legacy' | 'blocking' | 'concurrent'} ReactRenderMode
- *
- * Values explained:
- * - legacy - `ReactDOM.render(<App />)`
- * - legacy-strict - `ReactDOM.render(<React.StrictMode><App /></React.StrictMode>, Element)`
- * - blocking - `ReactDOM.createSyncRoot(Element).render(<App />)`
- * - concurrent - `ReactDOM.createRoot(Element).render(<App />)`
- *
- * @type {ReactRenderMode | 'legacy-strict'}
- */
-const reactMode = 'legacy';
-// eslint-disable-next-line no-console
-console.log(`Using React '${reactMode}' mode.`);
+const reactStrictMode = false;
+if (reactStrictMode) {
+  // eslint-disable-next-line no-console
+  console.log(`Using React.StrictMode.`);
+}
 const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD) && process.env.NETLIFY === 'true';
 const vercelDeploy = Boolean(process.env.VERCEL);
 
@@ -33,11 +23,16 @@ if (staging) {
 }
 
 module.exports = {
+  eslint: {
+    // TODO: https://github.com/mui-org/material-ui/issues/25966
+    ignoreDuringBuilds: true,
+  },
   typescript: {
     // Motivated by https://github.com/zeit/next.js/issues/7687
     ignoreDevErrors: true,
     ignoreBuildErrors: true,
   },
+  webpack5: false,
   webpack: (config, options) => {
     const plugins = config.plugins.slice();
 
@@ -91,9 +86,6 @@ module.exports = {
           ...config.resolve.extensions.filter((extension) => extension !== '.tsx'),
         ],
       },
-      node: {
-        fs: 'empty',
-      },
       module: {
         ...config.module,
         rules: config.module.rules.concat([
@@ -120,7 +112,7 @@ module.exports = {
                         // all packages in this monorepo
                         '@material-ui/core': '../packages/material-ui/src',
                         '@material-ui/docs': '../packages/material-ui-docs/src',
-                        '@material-ui/icons': '../packages/material-ui-icons/src',
+                        '@material-ui/icons': '../packages/material-ui-icons/lib',
                         '@material-ui/lab': '../packages/material-ui-lab/src',
                         '@material-ui/styled-engine': '../packages/material-ui-styled-engine/src',
                         '@material-ui/styled-engine-sc':
@@ -143,7 +135,7 @@ module.exports = {
           {
             test: /\.(js|mjs|tsx|ts)$/,
             include: [workspaceRoot],
-            exclude: /node_modules/,
+            exclude: /(node_modules|material-ui-icons)/,
             use: options.defaultLoaders.babel,
           },
         ]),
@@ -160,7 +152,7 @@ module.exports = {
     NETLIFY_DEPLOY_URL: process.env.DEPLOY_URL || 'http://localhost:3000',
     NETLIFY_SITE_NAME: process.env.SITE_NAME || 'material-ui',
     PULL_REQUEST: process.env.PULL_REQUEST === 'true',
-    REACT_MODE: reactMode,
+    REACT_STRICT_MODE: reactStrictMode,
     FEEDBACK_URL: process.env.FEEDBACK_URL,
     // #default-branch-switch
     SOURCE_CODE_ROOT_URL: 'https://github.com/mui-org/material-ui/blob/next',
@@ -207,10 +199,7 @@ module.exports = {
 
     return map;
   },
-  experimental: {
-    reactMode: reactMode.startsWith('legacy') ? 'legacy' : reactMode,
-  },
-  reactStrictMode: reactMode === 'legacy-strict',
+  reactStrictMode,
   async rewrites() {
     return [{ source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' }];
   },

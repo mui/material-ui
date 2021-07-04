@@ -2,11 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { SxProps } from '@material-ui/system';
-import {
-  experimentalStyled,
-  unstable_useThemeProps as useThemeProps,
-  Theme,
-} from '@material-ui/core/styles';
+import { styled, useThemeProps, Theme } from '@material-ui/core/styles';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
@@ -68,15 +64,11 @@ const useUtilityClasses = (styleProps: MonthPickerProps<any>) => {
   return composeClasses(slots, getMonthPickerUtilityClass, classes);
 };
 
-const MonthPickerRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiMonthPicker',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({
+const MonthPickerRoot = styled('div', {
+  name: 'MuiMonthPicker',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})<{ styleProps: MonthPickerProps<any> }>({
   width: 310,
   display: 'flex',
   flexWrap: 'wrap',
@@ -103,8 +95,7 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
     onMonthChange,
     ...other
   } = props;
-  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
-  const styleProps = { ...props };
+  const styleProps = props;
   const classes = useUtilityClasses(styleProps);
 
   const utils = useUtils<TDate>();

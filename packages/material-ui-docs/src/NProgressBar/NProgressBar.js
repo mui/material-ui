@@ -1,7 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import NProgress from 'nprogress';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
+import { createTheme } from '@material-ui/core/styles';
 import NoSsr from '@material-ui/core/NoSsr';
 import { exactProp } from '@material-ui/utils';
 
@@ -79,7 +80,10 @@ const styles = (theme) => {
   };
 };
 
-const GlobalStyles = withStyles(styles, { flip: false, name: 'MuiNProgressBar' })(() => null);
+const defaultTheme = createTheme();
+const GlobalStyles = withStyles(styles, { defaultTheme, flip: false, name: 'MuiNProgressBar' })(
+  () => null,
+);
 
 /**
  * Elegant and ready to use wrapper on top of https://github.com/rstacruz/nprogress/.

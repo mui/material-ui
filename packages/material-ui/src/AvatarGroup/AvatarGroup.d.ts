@@ -2,6 +2,7 @@ import * as React from 'react';
 import { InternalStandardProps as StandardProps, Theme } from '@material-ui/core';
 import { OverridableStringUnion } from '@material-ui/types';
 import { SxProps } from '@material-ui/system';
+import { AvatarGroupClasses } from './avatarGroupClasses';
 
 export interface AvatarGroupPropsVariantOverrides {}
 
@@ -13,12 +14,7 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the avatar elements. */
-    avatar?: string;
-  };
+  classes?: Partial<AvatarGroupClasses>;
   /**
    * Max avatars to show before +x.
    * @default 5
@@ -42,8 +38,6 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
     AvatarGroupPropsVariantOverrides
   >;
 }
-
-export type AvatarGroupClassKey = keyof NonNullable<AvatarGroupProps['classes']>;
 
 /**
  *

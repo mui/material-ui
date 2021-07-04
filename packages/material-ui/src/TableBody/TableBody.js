@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import { getTableBodyUtilityClass } from './tableBodyClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -17,15 +17,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTableBodyUtilityClass, classes);
 };
 
-const TableBodyRoot = experimentalStyled(
-  'tbody',
-  {},
-  {
-    name: 'MuiTableBody',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({
+const TableBodyRoot = styled('tbody', {
+  name: 'MuiTableBody',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
   /* Styles applied to the root element. */
   display: 'table-row-group',
 });

@@ -3,6 +3,7 @@ import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps } from '..';
 import { StepIconProps } from '../StepIcon';
 import { Theme } from '../styles';
+import { StepLabelClasses } from './stepLabelClasses';
 
 export interface StepLabelProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
@@ -12,29 +13,17 @@ export interface StepLabelProps extends StandardProps<React.HTMLAttributes<HTMLD
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if `orientation="horizontal"`. */
-    horizontal?: string;
-    /** Styles applied to the root element if `orientation="vertical"`. */
-    vertical?: string;
-    /** Styles applied to the Typography component that wraps `children`. */
-    label?: string;
-    /** Pseudo-class applied to the `Typography` component if `active={true}`. */
-    active?: string;
-    /** Pseudo-class applied to the `Typography` component if `completed={true}`. */
-    completed?: string;
-    /** Pseudo-class applied to the root element and `Typography` component if `error={true}`. */
-    error?: string;
-    /** Pseudo-class applied to the root element and `Typography` component if `disabled={true}`. */
-    disabled?: string;
-    /** Styles applied to the `icon` container element. */
-    iconContainer?: string;
-    /** Pseudo-class applied to the root and icon container and `Typography` if `alternativeLabel={true}`. */
-    alternativeLabel?: string;
-    /** Styles applied to the container element which wraps `Typography` and `optional`. */
-    labelContainer?: string;
+  classes?: Partial<StepLabelClasses>;
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps?: {
+    /**
+     * Props applied to the label element.
+     * @default {}
+     */
+    label?: React.HTMLProps<HTMLSpanElement>;
   };
   /**
    * If `true`, the step is marked as failed.

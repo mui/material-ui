@@ -1,8 +1,6 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import Fade from '@material-ui/core/Fade';
-import { WithStyles, withStyles, StyleRules, MuiStyles } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import { SlideDirection } from './PickersSlideTransition';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
@@ -59,53 +57,53 @@ export interface PickersCalendarHeaderProps<TDate>
   onViewChange?: (view: CalendarPickerView) => void;
 }
 
-export type PickersCalendarHeaderClassKey =
-  | 'root'
-  | 'yearSelectionSwitcher'
-  | 'switchView'
-  | 'switchViewActive'
-  | 'label'
-  | 'labelItem';
-
-export const styles: MuiStyles<PickersCalendarHeaderClassKey> = (
-  theme,
-): StyleRules<PickersCalendarHeaderClassKey> => ({
-  root: {
-    display: 'flex',
-    alignItems: 'center',
-    marginTop: 16,
-    marginBottom: 8,
-    paddingLeft: 24,
-    paddingRight: 12,
-    // prevent jumping in safari
-    maxHeight: 30,
-    minHeight: 30,
-  },
-  yearSelectionSwitcher: {
-    marginRight: 'auto',
-  },
-  switchView: {
-    willChange: 'transform',
-    transition: theme.transitions.create('transform'),
-    transform: 'rotate(0deg)',
-  },
-  switchViewActive: {
-    transform: 'rotate(180deg)',
-  },
-  label: {
-    display: 'flex',
-    maxHeight: 30,
-    overflow: 'hidden',
-    alignItems: 'center',
-    cursor: 'pointer',
-    marginRight: 'auto',
-    ...theme.typography.body1,
-    fontWeight: theme.typography.fontWeightMedium,
-  },
-  labelItem: {
-    marginRight: 6,
-  },
+const PickersCalendarHeaderRoot = styled('div', { skipSx: true })<{
+  styleProps: PickersCalendarHeaderProps<any>;
+}>({
+  display: 'flex',
+  alignItems: 'center',
+  marginTop: 16,
+  marginBottom: 8,
+  paddingLeft: 24,
+  paddingRight: 12,
+  // prevent jumping in safari
+  maxHeight: 30,
+  minHeight: 30,
 });
+
+const PickersCalendarHeaderLabel = styled('div', { skipSx: true })<{
+  styleProps: PickersCalendarHeaderProps<any>;
+}>(({ theme }) => ({
+  display: 'flex',
+  maxHeight: 30,
+  overflow: 'hidden',
+  alignItems: 'center',
+  cursor: 'pointer',
+  marginRight: 'auto',
+  ...theme.typography.body1,
+  fontWeight: theme.typography.fontWeightMedium,
+}));
+
+const PickersCalendarHeaderLabelItem = styled('div', { skipSx: true })<{
+  styleProps: PickersCalendarHeaderProps<any>;
+}>({
+  marginRight: 6,
+});
+
+const PickersCalendarHeaderSwitchViewButton = styled(IconButton, { skipSx: true })({
+  marginRight: 'auto',
+});
+
+const PickersCalendarHeaderSwitchView = styled(ArrowDropDownIcon, { skipSx: true })<{
+  styleProps: PickersCalendarHeaderProps<any>;
+}>(({ theme, styleProps }) => ({
+  willChange: 'transform',
+  transition: theme.transitions.create('transform'),
+  transform: 'rotate(0deg)',
+  ...(styleProps.openView === 'year' && {
+    transform: 'rotate(180deg)',
+  }),
+}));
 
 function getSwitchingViewAriaText(view: CalendarPickerView) {
   return view === 'year'
@@ -116,11 +114,8 @@ function getSwitchingViewAriaText(view: CalendarPickerView) {
 /**
  * @ignore - do not document.
  */
-function PickersCalendarHeader<TDate>(
-  props: PickersCalendarHeaderProps<TDate> & WithStyles<typeof styles>,
-) {
+function PickersCalendarHeader<TDate>(props: PickersCalendarHeaderProps<TDate>) {
   const {
-    classes,
     components = {},
     componentsProps = {},
     currentMonth: month,
@@ -140,9 +135,7 @@ function PickersCalendarHeader<TDate>(
 
   const utils = useUtils<TDate>();
 
-  const SwitchViewButton = components.SwitchViewButton || IconButton;
   const switchViewButtonProps = componentsProps.switchViewButton || {};
-  const SwitchViewIcon = components.SwitchViewIcon || ArrowDropDownIcon;
 
   const selectNextMonth = () => onMonthChange(utils.getNextMonth(month), 'left');
   const selectPreviousMonth = () => onMonthChange(utils.getPreviousMonth(month), 'right');
@@ -169,40 +162,54 @@ function PickersCalendarHeader<TDate>(
     return null;
   }
 
+  const styleProps = props;
+
   return (
-    <div className={classes.root}>
-      <div role="presentation" className={classes.label} onClick={handleToggleView}>
+    <PickersCalendarHeaderRoot styleProps={styleProps}>
+      <PickersCalendarHeaderLabel
+        role="presentation"
+        onClick={handleToggleView}
+        styleProps={styleProps}
+      >
         <FadeTransitionGroup
           reduceAnimations={reduceAnimations}
           transKey={utils.format(month, 'month')}
         >
-          <div aria-live="polite" data-mui-test="calendar-month-text" className={classes.labelItem}>
+          <PickersCalendarHeaderLabelItem
+            aria-live="polite"
+            data-mui-test="calendar-month-text"
+            styleProps={styleProps}
+          >
             {utils.format(month, 'month')}
-          </div>
+          </PickersCalendarHeaderLabelItem>
         </FadeTransitionGroup>
         <FadeTransitionGroup
           reduceAnimations={reduceAnimations}
           transKey={utils.format(month, 'year')}
         >
-          <div aria-live="polite" data-mui-test="calendar-year-text" className={classes.labelItem}>
+          <PickersCalendarHeaderLabelItem
+            aria-live="polite"
+            data-mui-test="calendar-year-text"
+            styleProps={styleProps}
+          >
             {utils.format(month, 'year')}
-          </div>
+          </PickersCalendarHeaderLabelItem>
         </FadeTransitionGroup>
         {views.length > 1 && (
-          <SwitchViewButton
+          <PickersCalendarHeaderSwitchViewButton
             size="small"
-            className={classes.yearSelectionSwitcher}
+            as={components.SwitchViewButton}
             aria-label={getViewSwitchingButtonText(currentView)}
             {...switchViewButtonProps}
+            styleProps={{ ...styleProps, ...switchViewButtonProps }}
           >
-            <SwitchViewIcon
-              className={clsx(classes.switchView, {
-                [classes.switchViewActive]: currentView === 'year',
-              })}
+            <PickersCalendarHeaderSwitchView
+              as={components.SwitchViewIcon}
+              styleProps={styleProps}
             />
-          </SwitchViewButton>
+          </PickersCalendarHeaderSwitchViewButton>
         )}
-      </div>
+      </PickersCalendarHeaderLabel>
       <Fade in={currentView === 'day'}>
         <PickersArrowSwitcher
           leftArrowButtonText={leftArrowButtonText}
@@ -215,15 +222,8 @@ function PickersCalendarHeader<TDate>(
           isRightDisabled={isNextMonthDisabled}
         />
       </Fade>
-    </div>
+    </PickersCalendarHeaderRoot>
   );
 }
 
-PickersCalendarHeader.propTypes = {
-  leftArrowButtonText: PropTypes.string,
-  rightArrowButtonText: PropTypes.string,
-};
-
-export default withStyles(styles, { name: 'PrivatePickersCalendarHeader' })(
-  PickersCalendarHeader,
-) as <TDate>(props: PickersCalendarHeaderProps<TDate>) => JSX.Element;
+export default PickersCalendarHeader;

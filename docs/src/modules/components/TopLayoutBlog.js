@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppContainer from 'docs/src/modules/components/AppContainer';
@@ -149,4 +150,5 @@ if (process.env.NODE_ENV !== 'production') {
   TopLayoutBlog.propTypes = exactProp(TopLayoutBlog.propTypes);
 }
 
-export default withStyles(styles)(TopLayoutBlog);
+const defaultTheme = createTheme();
+export default withStyles(styles, { defaultTheme })(TopLayoutBlog);

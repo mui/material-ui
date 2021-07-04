@@ -3,6 +3,7 @@ import { SxProps } from '@material-ui/system';
 import { OverridableStringUnion } from '@material-ui/types';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { SwitchBaseProps } from '../internal/SwitchBase';
+import { SwitchClasses } from './switchClasses';
 
 export interface SwitchPropsSizeOverrides {}
 
@@ -17,39 +18,15 @@ export interface SwitchProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if `edge="start"`. */
-    edgeStart?: string;
-    /** Styles applied to the root element if `edge="end"`. */
-    edgeEnd?: string;
-    /** Styles applied to the internal `SwitchBase` component's `root` class. */
-    switchBase?: string;
-    /** Styles applied to the internal SwitchBase component's root element if `color="primary"`. */
-    colorPrimary?: string;
-    /** Styles applied to the internal SwitchBase component's root element if `color="secondary"`. */
-    colorSecondary?: string;
-    /** Styles applied to the root element if `size="small"`. */
-    sizeSmall?: string;
-    /** Styles applied to the root element if `size="medium"`. */
-    sizeMedium?: string;
-    /** Pseudo-class applied to the internal `SwitchBase` component's `checked` class. */
-    checked?: string;
-    /** Pseudo-class applied to the internal SwitchBase component's disabled class. */
-    disabled?: string;
-    /** Styles applied to the internal SwitchBase component's input element. */
-    input?: string;
-    /** Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop. */
-    thumb?: string;
-    /** Styles applied to the track element. */
-    track?: string;
-  };
+  classes?: Partial<SwitchClasses>;
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color?: OverridableStringUnion<'primary' | 'secondary' | 'default', SwitchPropsColorOverrides>;
+  color?: OverridableStringUnion<
+    'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' | 'default',
+    SwitchPropsColorOverrides
+  >;
   /**
    * If `true`, the component is disabled.
    */
@@ -74,8 +51,6 @@ export interface SwitchProps
    */
   value?: unknown;
 }
-
-export type SwitchClassKey = keyof NonNullable<SwitchProps['classes']>;
 
 /**
  *

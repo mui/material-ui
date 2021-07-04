@@ -1,6 +1,11 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { MuiStyles, useTheme, WithStyles, withStyles } from '@material-ui/core/styles';
+import { useTheme, styled, Theme } from '@material-ui/core/styles';
+import {
+  unstable_composeClasses as composeClasses,
+  generateUtilityClass,
+  generateUtilityClasses,
+} from '@material-ui/unstyled';
 import PickersToolbarText from '../internal/pickers/PickersToolbarText';
 import PickersToolbarButton from '../internal/pickers/PickersToolbarButton';
 import PickersToolbar from '../internal/pickers/PickersToolbar';
@@ -9,61 +14,112 @@ import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { useMeridiemMode } from '../internal/pickers/hooks/date-helpers-hooks';
 import { ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
 
-export type TimePickerToolbarClassKey =
-  | 'separator'
-  | 'hourMinuteLabel'
-  | 'hourMinuteLabelLandscape'
-  | 'hourMinuteLabelReverse'
-  | 'ampmSelection'
-  | 'ampmLandscape'
-  | 'ampmLabel'
-  | 'penIconLandscape';
+export interface TimePickerToolbarClasses {
+  separator: string;
+  hourMinuteLabel: string;
+  hourMinuteLabelLandscape: string;
+  hourMinuteLabelReverse: string;
+  ampmSelection: string;
+  ampmLandscape: string;
+  ampmLabel: string;
+  penIconLandscape: string;
+}
 
-export const styles: MuiStyles<TimePickerToolbarClassKey> = {
-  separator: {
-    outline: 0,
-    margin: '0 4px 0 2px',
-    cursor: 'default',
-  },
-  hourMinuteLabel: {
-    display: 'flex',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-end',
-  },
-  hourMinuteLabelLandscape: {
+export interface TimePickerToolbarProps extends ToolbarComponentProps {
+  classes?: Partial<TimePickerToolbarClasses>;
+}
+
+export type TimePickerToolbarClassKey = keyof TimePickerToolbarClasses;
+
+export function getTimePickerToolbarUtilityClass(slot: string) {
+  return generateUtilityClass('PrivateTimePickerToolbar', slot);
+}
+
+export const timePickerToolbarClasses: TimePickerToolbarClasses = generateUtilityClasses(
+  'PrivateTimePickerToolbar',
+  [
+    'separator',
+    'hourMinuteLabel',
+    'hourMinuteLabelLandscape',
+    'hourMinuteLabelReverse',
+    'ampmSelection',
+    'ampmLandscape',
+    'ampmLabel',
+    'penIconLandscape',
+  ],
+);
+
+const useUtilityClasses = (styleProps: TimePickerToolbarProps & { theme: Theme }) => {
+  const { theme, isLandscape, classes } = styleProps;
+
+  const slots = {
+    penIconLandscape: ['penIconLandscape'],
+    separator: ['separator'],
+    hourMinuteLabel: [
+      'hourMinuteLabel',
+      isLandscape && 'hourMinuteLabelLandscape',
+      theme.direction === 'rtl' && 'hourMinuteLabelReverse',
+    ],
+    ampmSelection: ['ampmSelection', isLandscape && 'ampmLandscape'],
+    ampmLabel: ['ampmLabel'],
+  };
+
+  return composeClasses(slots, getTimePickerToolbarUtilityClass, classes);
+};
+
+const TimePickerToolbarRoot = styled(PickersToolbar, { skipSx: true })<{
+  styleProps: TimePickerToolbarProps;
+}>({
+  [`& .${timePickerToolbarClasses.penIconLandscape}`]: {
     marginTop: 'auto',
   },
-  hourMinuteLabelReverse: {
+});
+
+const TimePickerToolbarSeparator = styled(PickersToolbarText, { skipSx: true })({
+  outline: 0,
+  margin: '0 4px 0 2px',
+  cursor: 'default',
+});
+
+const TimePickerToolbarHourMinuteLabel = styled('div', { skipSx: true })<{
+  styleProps: TimePickerToolbarProps;
+}>(({ theme, styleProps }) => ({
+  display: 'flex',
+  justifyContent: 'flex-end',
+  alignItems: 'flex-end',
+  ...(styleProps.isLandscape && {
+    marginTop: 'auto',
+  }),
+  ...(theme.direction === 'rtl' && {
     flexDirection: 'row-reverse',
-  },
-  ampmSelection: {
-    display: 'flex',
-    flexDirection: 'column',
-    marginRight: 'auto',
-    marginLeft: 12,
-  },
-  ampmLandscape: {
+  }),
+}));
+
+const TimePickerToolbarAmPmSelection = styled('div', { skipSx: true })<{
+  styleProps: TimePickerToolbarProps;
+}>(({ styleProps }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  marginRight: 'auto',
+  marginLeft: 12,
+  ...(styleProps.isLandscape && {
     margin: '4px 0 auto',
     flexDirection: 'row',
     justifyContent: 'space-around',
     flexBasis: '100%',
-  },
-  ampmLabel: {
+  }),
+  [`& .${timePickerToolbarClasses.ampmLabel}`]: {
     fontSize: 17,
   },
-  penIconLandscape: {
-    marginTop: 'auto',
-  },
-};
+}));
 
 /**
  * @ignore - internal component.
  */
-const TimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styles>> = (props) => {
+const TimePickerToolbar: React.FC<ToolbarComponentProps> = (props) => {
   const {
     ampm,
     ampmInClock,
-    classes,
     date,
     isLandscape,
     isMobileKeyboardViewOpen,
@@ -83,8 +139,11 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
   const formatHours = (time: unknown) =>
     ampm ? utils.format(time, 'hours12h') : utils.format(time, 'hours24h');
 
+  const styleProps = props;
+  const classes = useUtilityClasses({ ...styleProps, theme });
+
   const separator = (
-    <PickersToolbarText
+    <TimePickerToolbarSeparator
       tabIndex={-1}
       value=":"
       variant="h3"
@@ -94,22 +153,18 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
   );
 
   return (
-    <PickersToolbar
+    <TimePickerToolbarRoot
       viewType="clock"
       landscapeDirection="row"
       toolbarTitle={toolbarTitle}
       isLandscape={isLandscape}
       isMobileKeyboardViewOpen={isMobileKeyboardViewOpen}
       toggleMobileKeyboardView={toggleMobileKeyboardView}
+      styleProps={styleProps}
       penIconClassName={clsx({ [classes.penIconLandscape]: isLandscape })}
       {...other}
     >
-      <div
-        className={clsx(classes.hourMinuteLabel, {
-          [classes.hourMinuteLabelLandscape]: isLandscape,
-          [classes.hourMinuteLabelReverse]: theme.direction === 'rtl',
-        })}
-      >
+      <TimePickerToolbarHourMinuteLabel className={classes.hourMinuteLabel} styleProps={styleProps}>
         {arrayIncludes(views, 'hours') && (
           <PickersToolbarButton
             data-mui-test="hours"
@@ -141,13 +196,9 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
             value={date ? utils.format(date, 'seconds') : '--'}
           />
         )}
-      </div>
+      </TimePickerToolbarHourMinuteLabel>
       {showAmPmControl && (
-        <div
-          className={clsx(classes.ampmSelection, {
-            [classes.ampmLandscape]: isLandscape,
-          })}
-        >
+        <TimePickerToolbarAmPmSelection className={classes.ampmSelection} styleProps={styleProps}>
           <PickersToolbarButton
             disableRipple
             variant="subtitle2"
@@ -166,10 +217,10 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps & WithStyles<typeof styl
             value={utils.getMeridiemText('pm')}
             onClick={() => handleMeridiemChange('pm')}
           />
-        </div>
+        </TimePickerToolbarAmPmSelection>
       )}
-    </PickersToolbar>
+    </TimePickerToolbarRoot>
   );
 };
 
-export default withStyles(styles, { name: 'MuiTimePickerToolbar' })(TimePickerToolbar);
+export default TimePickerToolbar;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
+import { useThemeProps } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import PropTypes from 'prop-types';
 import DesktopTimePicker, { DesktopTimePickerProps } from '../DesktopTimePicker';
@@ -84,11 +84,6 @@ TimePicker.propTypes /* remove-proptypes */ = {
    */
   acceptRegex: PropTypes.instanceOf(RegExp),
   /**
-   * Enables keyboard listener for moving between days in calendar.
-   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
-   */
-  allowKeyboardControl: PropTypes.bool,
-  /**
    * 12h/24h view for hour selection clock.
    * @default false
    */
@@ -121,6 +116,13 @@ TimePicker.propTypes /* remove-proptypes */ = {
    * @default "CLEAR"
    */
   clearText: PropTypes.node,
+  /**
+   * The components used for each slot.
+   * Either a string to use a HTML element or a component.
+   */
+  components: PropTypes.shape({
+    OpenPickerIcon: PropTypes.elementType,
+  }),
   /**
    * CSS media query when `Mobile` mode will be changed to `Desktop`.
    * @default '@media (pointer: fine)'
@@ -159,9 +161,12 @@ TimePicker.propTypes /* remove-proptypes */ = {
    * Accessible text that helps user to understand which time and view is selected.
    * @default <TDate extends any>(
    *   view: ClockView,
-   *   time: TDate,
+   *   time: TDate | null,
    *   adapter: MuiPickersAdapter<TDate>,
-   * ) => `Select ${view}. Selected time is ${adapter.format(time, 'fullTime')}`
+   * ) =>
+   *   `Select ${view}. ${
+   *     time === null ? 'No time selected' : `Selected time is ${adapter.format(time, 'fullTime')}`
+   *   }`
    */
   getClockLabelText: PropTypes.func,
   /**
@@ -269,10 +274,6 @@ TimePicker.propTypes /* remove-proptypes */ = {
    * Props to pass to keyboard adornment button.
    */
   OpenPickerButtonProps: PropTypes.object,
-  /**
-   * Icon displaying for open picker button.
-   */
-  openPickerIcon: PropTypes.node,
   /**
    * First view to show.
    */

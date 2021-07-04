@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
+import { TableCellClasses } from './tableCellClasses';
 
 /**
  * `<TableCell>` will be rendered as an `<th>`or `<td>` depending
@@ -26,34 +27,7 @@ export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if `variant="head"` or `context.table.head`. */
-    head?: string;
-    /** Styles applied to the root element if `variant="body"` or `context.table.body`. */
-    body?: string;
-    /** Styles applied to the root element if `variant="footer"` or `context.table.footer`. */
-    footer?: string;
-    /** Styles applied to the root element if `size="small"`. */
-    sizeSmall?: string;
-    /** Styles applied to the root element if `size="medium"`. */
-    sizeMedium?: string;
-    /** Styles applied to the root element if `padding="checkbox"`. */
-    paddingCheckbox?: string;
-    /** Styles applied to the root element if `padding="none"`. */
-    paddingNone?: string;
-    /** Styles applied to the root element if `align="left"`. */
-    alignLeft?: string;
-    /** Styles applied to the root element if `align="center"`. */
-    alignCenter?: string;
-    /** Styles applied to the root element if `align="right"`. */
-    alignRight?: string;
-    /** Styles applied to the root element if `align="justify"`. */
-    alignJustify?: string;
-    /** Styles applied to the root element if `context.table.stickyHeader={true}`. */
-    stickyHeader?: string;
-  };
+  classes?: Partial<TableCellClasses>;
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -92,8 +66,6 @@ export type TableCellBaseProps = React.ThHTMLAttributes<HTMLTableHeaderCellEleme
   React.TdHTMLAttributes<HTMLTableDataCellElement>;
 
 export type SortDirection = 'asc' | 'desc' | false;
-
-export type TableCellClassKey = keyof NonNullable<TableCellProps['classes']>;
 
 /**
  * The component renders a `<th>` element when the parent context is a header

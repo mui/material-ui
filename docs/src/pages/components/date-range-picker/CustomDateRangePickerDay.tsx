@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core';
+import { createTheme, Theme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
@@ -11,24 +12,29 @@ import DateRangePickerDay, {
 } from '@material-ui/lab/DateRangePickerDay';
 import clsx from 'clsx';
 
-const useStyles = makeStyles((theme) => ({
-  highlight: {
-    borderRadius: 0,
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.common.white,
-    '&:hover, &:focus': {
-      backgroundColor: theme.palette.primary.dark,
+const defaultTheme = createTheme();
+
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    highlight: {
+      borderRadius: 0,
+      backgroundColor: theme.palette.primary.main,
+      color: theme.palette.common.white,
+      '&:hover, &:focus': {
+        backgroundColor: theme.palette.primary.dark,
+      },
     },
-  },
-  firstHighlight: {
-    borderTopLeftRadius: '50%',
-    borderBottomLeftRadius: '50%',
-  },
-  endHighlight: {
-    borderTopRightRadius: '50%',
-    borderBottomRightRadius: '50%',
-  },
-}));
+    firstHighlight: {
+      borderTopLeftRadius: '50%',
+      borderBottomLeftRadius: '50%',
+    },
+    endHighlight: {
+      borderTopRightRadius: '50%',
+      borderBottomRightRadius: '50%',
+    },
+  }),
+  { defaultTheme },
+);
 
 export default function CustomDateRangePickerDay() {
   const classes = useStyles();

@@ -1,9 +1,8 @@
 import { AllAvailableViews } from './Views';
 
-export type CalendarAndClockProps<
-  TDate
-> = import('@material-ui/lab/CalendarPicker/CalendarPicker').ExportedCalendarPickerProps<TDate> &
-  import('@material-ui/lab/ClockPicker/ClockPicker').ExportedClockPickerProps<TDate>;
+export type CalendarAndClockProps<TDate> =
+  import('@material-ui/lab/CalendarPicker/CalendarPicker').ExportedCalendarPickerProps<TDate> &
+    import('@material-ui/lab/ClockPicker/ClockPicker').ExportedClockPickerProps<TDate>;
 
 // TODO: TDate should be required
 export type ToolbarComponentProps<TDate = unknown> = CalendarAndClockProps<TDate> & {
@@ -80,7 +79,7 @@ export interface BasePickerProps<TInputValue, TDateValue> {
   /**
    * Component that will replace default toolbar renderer.
    */
-  ToolbarComponent?: React.JSXElementConstructor<ToolbarComponentProps>;
+  ToolbarComponent?: React.JSXElementConstructor<ToolbarComponentProps<TDateValue>>;
   /**
    * Date format, that is displaying in toolbar.
    */

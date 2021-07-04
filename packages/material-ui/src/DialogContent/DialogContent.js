@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getDialogContentUtilityClass } from './dialogContentClasses';
 
@@ -16,37 +16,31 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getDialogContentUtilityClass, classes);
 };
 
-const DialogContentRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiDialogContent',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const DialogContentRoot = styled('div', {
+  name: 'MuiDialogContent',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.dividers && styles.dividers),
-      };
-    },
+    return [styles.root, styleProps.dividers && styles.dividers];
   },
-)(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
+})(({ theme, styleProps }) => ({
   flex: '1 1 auto',
-  WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
+  // Add iOS momentum scrolling for iOS < 13.0
+  WebkitOverflowScrolling: 'touch',
   overflowY: 'auto',
-  padding: '8px 24px',
-  '&:first-of-type': {
-    // dialog without title
-    paddingTop: 20,
-  },
-  /* Styles applied to the root element if `dividers={true}`. */
-  ...(styleProps.dividers && {
-    padding: '16px 24px',
-    borderTop: `1px solid ${theme.palette.divider}`,
-    borderBottom: `1px solid ${theme.palette.divider}`,
-  }),
+  padding: '20px 24px',
+  ...(styleProps.dividers
+    ? {
+        padding: '16px 24px',
+        borderTop: `1px solid ${theme.palette.divider}`,
+        borderBottom: `1px solid ${theme.palette.divider}`,
+      }
+    : {
+        '.MuiDialogTitle-root + &': {
+          paddingTop: 0,
+        },
+      }),
 }));
 
 const DialogContent = React.forwardRef(function DialogContent(inProps, ref) {

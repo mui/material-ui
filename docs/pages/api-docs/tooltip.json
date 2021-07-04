@@ -38,6 +38,7 @@
       "popper",
       "popperInteractive",
       "popperArrow",
+      "popperClose",
       "tooltip",
       "tooltipArrow",
       "arrow",

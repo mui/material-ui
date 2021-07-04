@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import Box from '@material-ui/core/Box';
 

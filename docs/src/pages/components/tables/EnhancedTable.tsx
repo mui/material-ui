@@ -85,6 +85,8 @@ function getComparator<Key extends keyof any>(
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
+// This method is created for cross-browser compatibility, if you don't
+// need to support IE11, you can use Array.prototype.sort() directly
 function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) {
   const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
   stabilizedThis.sort((a, b) => {
@@ -145,19 +147,12 @@ interface EnhancedTableProps {
 }
 
 function EnhancedTableHead(props: EnhancedTableProps) {
-  const {
-    onSelectAllClick,
-    order,
-    orderBy,
-    numSelected,
-    rowCount,
-    onRequestSort,
-  } = props;
-  const createSortHandler = (property: keyof Data) => (
-    event: React.MouseEvent<unknown>,
-  ) => {
-    onRequestSort(event, property);
-  };
+  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
+    props;
+  const createSortHandler =
+    (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
+      onRequestSort(event, property);
+    };
 
   return (
     <TableHead>
@@ -337,6 +332,8 @@ export default function EnhancedTable() {
               rowCount={rows.length}
             />
             <TableBody>
+              {/* if you don't need to support IE11, you can replace the `stableSort` call with:
+              rows.slice().sort(getComparator(order, orderBy)) */}
               {stableSort(rows, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {

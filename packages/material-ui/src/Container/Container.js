@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import { getContainerUtilityClass } from './containerClasses';
 import capitalize from '../utils/capitalize';
 
@@ -22,24 +22,20 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getContainerUtilityClass, classes);
 };
 
-const ContainerRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiContainer',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const ContainerRoot = styled('div', {
+  name: 'MuiContainer',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[`maxWidth${capitalize(String(styleProps.maxWidth))}`],
-        ...(styleProps.fixed && styles.fixed),
-        ...(styleProps.disableGutters && styles.disableGutters),
-      };
-    },
+    return [
+      styles.root,
+      styles[`maxWidth${capitalize(String(styleProps.maxWidth))}`],
+      styleProps.fixed && styles.fixed,
+      styleProps.disableGutters && styles.disableGutters,
+    ];
   },
-)(
+})(
   ({ theme, styleProps }) => ({
     width: '100%',
     marginLeft: 'auto',
@@ -155,7 +151,10 @@ Container.propTypes /* remove-proptypes */ = {
    * Set to `false` to disable `maxWidth`.
    * @default 'lg'
    */
-  maxWidth: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs', false]),
+  maxWidth: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false]),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

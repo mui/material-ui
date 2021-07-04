@@ -1,46 +1,54 @@
 import * as React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { lighten, darken, createTheme, alpha, ThemeProvider } from '@material-ui/core/styles';
+import { darken, createTheme, alpha, ThemeProvider } from '@material-ui/core/styles';
 import NProgressBar from '@material-ui/docs/NProgressBar';
 import BrandingFooter from 'docs/src/modules/branding/BrandingFooter';
 
-interface CustomPalette {
-  vividBlue: string;
-  emerald: string;
-  sizzlingRed: string;
-  sunglow: string;
-  grey5A: string;
-  grey87: string;
-  greyAA: string;
-  greyD7: string;
-  greyE5: string;
-  greyEA: string;
-  greyF3: string;
-}
-
-interface CustomPaletteOptions {
-  vividBlue?: string;
-  emerald?: string;
-  sizzlingRed?: string;
-  sunglow?: string;
-  grey5A?: string;
-  grey87?: string;
-  greyAA?: string;
-  greyD7?: string;
-  greyE5?: string;
-  greyEA?: string;
-  greyF3?: string;
-}
-
 declare module '@material-ui/core/styles' {
-  interface Palette extends CustomPalette {}
-  interface PaletteOptions extends CustomPaletteOptions {}
+  interface Palette {
+    ternary: Palette['primary'];
+    neutral: Palette['primary'];
+    vividBlue: string;
+    emerald: string;
+    sizzlingRed: string;
+    sunglow: string;
+    grey5A: string;
+    grey87: string;
+    greyAA: string;
+    greyD7: string;
+    greyE5: string;
+    greyEA: string;
+    greyF3: string;
+  }
+
+  interface PaletteOptions {
+    ternary?: PaletteOptions['primary'];
+    neutral?: PaletteOptions['primary'];
+    vividBlue?: string;
+    emerald?: string;
+    sizzlingRed?: string;
+    sunglow?: string;
+    grey5A?: string;
+    grey87?: string;
+    greyAA?: string;
+    greyD7?: string;
+    greyE5?: string;
+    greyEA?: string;
+    greyF3?: string;
+  }
 }
 
 // Update the Typography's variant prop options
 declare module '@material-ui/core/Typography' {
   interface TypographyPropsVariantOverrides {
     body3: true;
+  }
+}
+
+declare module '@material-ui/core/Button' {
+  interface ButtonPropsColorOverrides {
+    neutral: true;
+    ternary: true;
   }
 }
 
@@ -93,19 +101,37 @@ let theme = createTheme({
       '"Segoe UI Symbol"',
     ].join(','),
   },
-  breakpoints: {
-    values: {
-      xs: 0, // phones
-      sm: 600, // tablets
-      md: 900, // small laptops
-      lg: 1200, // desktops
-      xl: 1500, // large screens
-    },
-  },
 });
+
+function getButtonColor(color: string) {
+  return {
+    '&.Mui-focusVisible': {
+      boxShadow: `0 0 0 0.25rem ${alpha(color, 0.5)}`,
+    },
+    '&:hover': {
+      backgroundColor: darken(color, 0.12),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: color,
+      },
+    },
+    '&:active': {
+      boxShadow: `0 0 0 0.15rem ${alpha(color, 0.5)}`,
+      backgroundColor: darken(color, 0.25),
+    },
+  };
+}
 
 theme = createTheme(theme, {
   palette: {
+    ternary: {
+      main: theme.palette.vividBlue,
+      contrastText: '#fff',
+    },
+    neutral: {
+      main: theme.palette.grey87,
+      contrastText: '#fff',
+    },
     action: {
       active: theme.palette.grey87,
     },
@@ -187,6 +213,9 @@ theme = createTheme(theme, {
       fontSize: theme.typography.pxToRem(14),
     },
   },
+});
+
+theme = createTheme(theme, {
   components: {
     MuiInputBase: {
       styleOverrides: {
@@ -229,46 +258,24 @@ theme = createTheme(theme, {
       variants: [
         {
           props: { variant: 'contained', color: 'primary' },
-          style: {
-            '&.Mui-focusVisible': {
-              boxShadow: `0 0 0 0.25rem ${alpha(theme.palette.primary.main, 0.5)}`,
-            },
-            '&:hover': {
-              backgroundColor: darken(theme.palette.primary.main, 0.12),
-              // Reset on touch devices, it doesn't add specificity
-              '@media (hover: none)': {
-                backgroundColor: theme.palette.primary.main,
-              },
-            },
-            '&:active': {
-              boxShadow: `0 0 0 0.15rem ${alpha(theme.palette.primary.main, 0.5)}`,
-              backgroundColor: darken(theme.palette.primary.main, 0.25),
-            },
-          },
+          style: getButtonColor(theme.palette.primary.main),
         },
         {
           props: { variant: 'contained', color: 'secondary' },
-          style: {
-            '&.Mui-focusVisible': {
-              boxShadow: `0 0 0 0.25rem ${alpha(theme.palette.secondary.main, 0.5)}`,
-            },
-            '&:hover': {
-              backgroundColor: lighten(theme.palette.secondary.main, 0.09),
-              // Reset on touch devices, it doesn't add specificity
-              '@media (hover: none)': {
-                backgroundColor: theme.palette.secondary.main,
-              },
-            },
-            '&:active': {
-              boxShadow: `0 0 0 0.15rem ${alpha(theme.palette.secondary.main, 0.5)}`,
-              backgroundColor: lighten(theme.palette.secondary.main, 0.12),
-            },
-          },
+          style: getButtonColor(theme.palette.secondary.main),
+        },
+        {
+          props: { variant: 'contained', color: 'ternary' },
+          style: getButtonColor(theme.palette.ternary.main),
+        },
+        {
+          props: { variant: 'contained', color: 'neutral' },
+          style: getButtonColor(theme.palette.neutral.main),
         },
         {
           props: { size: 'small' },
           style: {
-            padding: '8px 16px',
+            padding: '7px 16px',
             fontSize: theme.typography.pxToRem(14),
             fontWeight: 700,
           },

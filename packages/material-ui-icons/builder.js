@@ -36,6 +36,15 @@ const blacklistedIcons = [
 }, []);
 
 /**
+ * Converts directory separators to slashes, so the path can be used in fast-glob.
+ * @param {string} pathToNormalize
+ * @returns
+ */
+function normalizePath(pathToNormalize) {
+  return pathToNormalize.replace(/\\/g, '/');
+}
+
+/**
  * Return Pascal-Cased component name.
  * @param {string} destPath
  * @returns {string} class name
@@ -52,7 +61,7 @@ export function getComponentName(destPath) {
 }
 
 async function generateIndex(options) {
-  const files = await globAsync(path.join(options.outputDir, '*.js'));
+  const files = await globAsync(normalizePath(path.join(options.outputDir, '*.js')));
   const index = files
     .map((file) => {
       const typename = path.basename(file).replace('.js', '');
@@ -145,11 +154,48 @@ export function cleanPaths({ svgPath, data }) {
     ],
   });
 
+  // True if the svg has multiple children
+  let childrenAsArray = false;
+  const jsxResult = svgo.optimize(result.data, {
+    plugins: [
+      {
+        name: 'svgAsReactFragment',
+        type: 'visitor',
+        fn: () => {
+          return {
+            root: {
+              enter(root) {
+                const [svg, ...rootChildren] = root.children;
+                if (rootChildren.length > 0) {
+                  throw new Error('Expected a single child of the root');
+                }
+                if (svg.type !== 'element' || svg.name !== 'svg') {
+                  throw new Error('Expected an svg element as the root child');
+                }
+
+                if (svg.children.length > 1) {
+                  childrenAsArray = true;
+                  svg.children.forEach((svgChild, index) => {
+                    svgChild.addAttr({ name: 'key', value: index });
+                    // Original name will be restored later
+                    // We just need a mechanism to convert the resulting
+                    // svg string into an array of JSX elements
+                    svgChild.renameElem(`SVGChild:${svgChild.name}`);
+                  });
+                }
+                root.spliceContent(0, svg.children.length, svg.children);
+              },
+            },
+          };
+        },
+      },
+    ],
+  });
+
   // Extract the paths from the svg string
   // Clean xml paths
-  let paths = result.data
-    .replace(/<svg[^>]*>/g, '')
-    .replace(/<\/svg>/g, '')
+  // TODO: Implement as svgo plugins instead
+  let paths = jsxResult.data
     .replace(/"\/>/g, '" />')
     .replace(/fill-opacity=/g, 'fillOpacity=')
     .replace(/xlink:href=/g, 'xlinkHref=')
@@ -169,10 +215,15 @@ export function cleanPaths({ svgPath, data }) {
 
   paths = removeNoise(paths);
 
-  // Add a fragment when necessary.
-  if ((paths.match(/\/>/g) || []).length > 1) {
-    paths = `<React.Fragment>${paths}</React.Fragment>`;
+  if (childrenAsArray) {
+    const pathsCommaSeparated = paths
+      // handle self-closing tags
+      .replace(/key="\d+" \/>/g, '$&,')
+      // handle the rest
+      .replace(/<\/SVGChild:(\w+)>/g, '</$1>,');
+    paths = `[${pathsCommaSeparated}]`;
   }
+  paths = paths.replace(/SVGChild:/g, '');
 
   return paths;
 }
@@ -225,7 +276,7 @@ export async function handler(options) {
   await fse.ensureDir(options.outputDir);
 
   const [svgPaths, template] = await Promise.all([
-    globAsync(path.join(options.svgDir, options.glob)),
+    globAsync(normalizePath(path.join(options.svgDir, options.glob))),
     fse.readFile(path.join(__dirname, 'templateSvgIcon.js'), {
       encoding: 'utf8',
     }),
@@ -246,9 +297,9 @@ export async function handler(options) {
   queue.push(svgPaths);
   await queue.wait({ empty: true });
 
-  let legacyFiles = await globAsync(path.join(__dirname, '/legacy', '*.js'));
+  let legacyFiles = await globAsync(normalizePath(path.join(__dirname, '/legacy', '*.js')));
   legacyFiles = legacyFiles.map((file) => path.basename(file));
-  let generatedFiles = await globAsync(path.join(options.outputDir, '*.js'));
+  let generatedFiles = await globAsync(normalizePath(path.join(options.outputDir, '*.js')));
   generatedFiles = generatedFiles.map((file) => path.basename(file));
 
   const duplicatedIconsLegacy = intersection(legacyFiles, generatedFiles);

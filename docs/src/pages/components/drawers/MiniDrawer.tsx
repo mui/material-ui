@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  experimentalStyled as styled,
-  useTheme,
-  Theme,
-  CSSObject,
-} from '@material-ui/core/styles';
+import { styled, useTheme, Theme, CSSObject } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import MuiDrawer from '@material-ui/core/Drawer';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@material-ui/core/AppBar';

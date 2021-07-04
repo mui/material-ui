@@ -6,11 +6,7 @@ import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
 import { capitalize } from '@material-ui/core/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import {
-  experimentalStyled,
-  unstable_useThemeProps as useThemeProps,
-  Theme,
-} from '@material-ui/core/styles';
+import { styled, useThemeProps, Theme } from '@material-ui/core/styles';
 import TimelineContext from './TimelineContext';
 import { getTimelineUtilityClass } from './timelineClasses';
 
@@ -62,22 +58,18 @@ const useUtilityClasses = (styleProps: StyleProps) => {
   return composeClasses(slots, getTimelineUtilityClass, classes);
 };
 
-const TimelineRoot = experimentalStyled(
-  'ul' as const,
-  {},
-  {
-    name: 'MuiTimeline' as const,
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
-      return {
-        ...styles.root,
-        ...(styleProps.position &&
-          styles[`position${capitalize(styleProps.position)}` as TimelineClassKey]),
-      };
-    },
+const TimelineRoot = styled('ul' as const, {
+  name: 'MuiTimeline' as const,
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    return [
+      styles.root,
+      styleProps.position &&
+        styles[`position${capitalize(styleProps.position)}` as TimelineClassKey],
+    ];
   },
-)({
+})<{ styleProps: StyleProps }>({
   display: 'flex',
   flexDirection: 'column',
   padding: '6px 16px',

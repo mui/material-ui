@@ -3,6 +3,7 @@ import { SxProps } from '@material-ui/system';
 import { OverridableStringUnion } from '@material-ui/types';
 import { Theme } from '../styles';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
+import { PaperClasses } from './paperClasses';
 
 export interface PaperPropsVariantOverrides {}
 
@@ -15,41 +16,7 @@ export interface PaperTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Styles applied to the root element unless `square={true}`. */
-      rounded?: string;
-      /** Styles applied to the root element if `variant="outlined"`. */
-      outlined?: string;
-      /** Styles applied to the root element if `variant="elevation"`. */
-      elevation?: string;
-      elevation0?: string;
-      elevation1?: string;
-      elevation2?: string;
-      elevation3?: string;
-      elevation4?: string;
-      elevation5?: string;
-      elevation6?: string;
-      elevation7?: string;
-      elevation8?: string;
-      elevation9?: string;
-      elevation10?: string;
-      elevation11?: string;
-      elevation12?: string;
-      elevation13?: string;
-      elevation14?: string;
-      elevation15?: string;
-      elevation16?: string;
-      elevation17?: string;
-      elevation18?: string;
-      elevation19?: string;
-      elevation20?: string;
-      elevation21?: string;
-      elevation22?: string;
-      elevation23?: string;
-      elevation24?: string;
-    };
+    classes?: Partial<PaperClasses>;
     /**
      * Shadow depth, corresponds to `dp` in the spec.
      * It accepts values between 0 and 24 inclusive.
@@ -89,9 +56,7 @@ declare const Paper: OverridableComponent<PaperTypeMap>;
 
 export type PaperProps<
   D extends React.ElementType = PaperTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<PaperTypeMap<P, D>, D>;
-
-export type PaperClassKey = keyof NonNullable<PaperProps['classes']>;
 
 export default Paper;

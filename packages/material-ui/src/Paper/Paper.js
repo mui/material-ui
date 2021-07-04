@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, integerPropType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import { alpha } from '@material-ui/system';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { alpha } from '../styles/colorManipulator';
 import useTheme from '../styles/useTheme';
 import { getPaperUtilityClass } from './paperClasses';
 
@@ -35,24 +35,20 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getPaperUtilityClass, classes);
 };
 
-const PaperRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiPaper',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const PaperRoot = styled('div', {
+  name: 'MuiPaper',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[styleProps.variant],
-        ...(!styleProps.square && styles.rounded),
-        ...(styleProps.variant === 'elevation' && styles[`elevation${styleProps.elevation}`]),
-      };
-    },
+    return [
+      styles.root,
+      styles[styleProps.variant],
+      !styleProps.square && styles.rounded,
+      styleProps.variant === 'elevation' && styles[`elevation${styleProps.elevation}`],
+    ];
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   backgroundColor: theme.palette.background.paper,
   color: theme.palette.text.primary,

@@ -2,7 +2,6 @@
   "componentDescription": "",
   "propDescriptions": {
     "acceptRegex": "Regular expression to detect &quot;accepted&quot; symbols.",
-    "allowKeyboardControl": "Enables keyboard listener for moving between days in calendar. Defaults to <code>true</code> unless the <code>ClockPicker</code> is used inside a <code>Static*</code> picker component.",
     "allowSameDateSelection": "If <code>true</code>, <code>onChange</code> is fired on click even if the same date is selected.",
     "ampm": "12h/24h view for hour selection clock.",
     "ampmInClock": "Display ampm controls under the clock (instead of in the toolbar).",
@@ -40,7 +39,6 @@
     "onYearChange": "Callback firing on year change @DateIOType.",
     "open": "Control the popup or dialog open state.",
     "OpenPickerButtonProps": "Props to pass to keyboard adornment button.",
-    "openPickerIcon": "Icon displaying for open picker button.",
     "openTo": "First view to show.",
     "orientation": "Force rendering in particular orientation.",
     "PopperProps": "Popper props passed down to <a href=\"https://material-ui.com/api/popper/\">Popper</a> component.",

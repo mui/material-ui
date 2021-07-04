@@ -2,9 +2,9 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import { darken, lighten } from '@material-ui/system';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { darken, lighten } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
 import alertClasses, { getAlertUtilityClass } from './alertClasses';
@@ -28,23 +28,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAlertUtilityClass, classes);
 };
 
-const AlertRoot = experimentalStyled(
-  Paper,
-  {},
-  {
-    name: 'MuiAlert',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const AlertRoot = styled(Paper, {
+  name: 'MuiAlert',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles[styleProps.variant],
-        ...styles[`${styleProps.variant}${capitalize(styleProps.color || styleProps.severity)}`],
-      };
-    },
+    return [
+      styles.root,
+      styles[styleProps.variant],
+      styles[`${styleProps.variant}${capitalize(styleProps.color || styleProps.severity)}`],
+    ];
   },
-)(({ theme, styleProps }) => {
+})(({ theme, styleProps }) => {
   const getColor = theme.palette.mode === 'light' ? darken : lighten;
   const getBackgroundColor = theme.palette.mode === 'light' ? lighten : darken;
   const color = styleProps.color || styleProps.severity;
@@ -85,15 +81,11 @@ const AlertRoot = experimentalStyled(
 });
 
 /* Styles applied to the icon wrapper element. */
-const AlertIcon = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAlert',
-    slot: 'Icon',
-    overridesResolver: (props, styles) => styles.icon,
-  },
-)({
+const AlertIcon = styled('div', {
+  name: 'MuiAlert',
+  slot: 'Icon',
+  overridesResolver: (props, styles) => styles.icon,
+})({
   marginRight: 12,
   padding: '7px 0',
   display: 'flex',
@@ -102,28 +94,20 @@ const AlertIcon = experimentalStyled(
 });
 
 /* Styles applied to the message wrapper element. */
-const AlertMessage = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAlert',
-    slot: 'Message',
-    overridesResolver: (props, styles) => styles.message,
-  },
-)({
+const AlertMessage = styled('div', {
+  name: 'MuiAlert',
+  slot: 'Message',
+  overridesResolver: (props, styles) => styles.message,
+})({
   padding: '8px 0',
 });
 
 /* Styles applied to the action wrapper element if `action` is provided. */
-const AlertAction = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAlert',
-    slot: 'Action',
-    overridesResolver: (props, styles) => styles.action,
-  },
-)({
+const AlertAction = styled('div', {
+  name: 'MuiAlert',
+  slot: 'Action',
+  overridesResolver: (props, styles) => styles.action,
+})({
   display: 'flex',
   alignItems: 'flex-start',
   padding: '4px 0 0 16px',
@@ -157,9 +141,9 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
 
   const styleProps = {
     ...props,
-    variant,
     color,
     severity,
+    variant,
   };
 
   const classes = useUtilityClasses(styleProps);
@@ -231,7 +215,10 @@ Alert.propTypes /* remove-proptypes */ = {
   /**
    * The main color for the alert. Unless provided, the value is taken from the `severity` prop.
    */
-  color: PropTypes.oneOf(['error', 'info', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['error', 'info', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * Override the icon displayed before the children.
    * Unless provided, the icon is mapped to the value of the `severity` prop.
@@ -252,7 +239,6 @@ Alert.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the component requests to be closed.
    * When provided and no `action` prop is set, a close icon button is displayed that triggers the callback when clicked.
-   *
    * @param {object} event The event source of the callback.
    */
   onClose: PropTypes.func,

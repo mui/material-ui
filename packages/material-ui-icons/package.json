@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/icons",
-  "version": "5.0.0-alpha.29",
+  "version": "5.0.0-beta.0",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material Design icons distributed as SVG React components.",
@@ -23,23 +23,25 @@
   },
   "homepage": "https://material-ui.com/components/icons",
   "scripts": {
-    "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:typings && yarn build:copy-files",
+    "build": "cp -r lib/ build/ && yarn build:typings && yarn build:copy-files",
+    "build:lib": "yarn build:node && yarn build:stable",
+    "build:lib:clean": "rimraf lib/ && yarn build:lib",
     "build:legacy": "echo 'Skip legacy build'",
     "build:modern": "echo 'Skip modern build'",
-    "build:node": "node ../../scripts/build node --largeFiles",
-    "build:stable": "node ../../scripts/build stable --largeFiles",
+    "build:node": "node ../../scripts/build node --largeFiles --outDir lib",
+    "build:stable": "node ../../scripts/build stable --largeFiles --outDir lib",
     "build:copy-files": "node ../../scripts/copy-files.js",
     "build:typings": "babel-node --config-file ../../babel.config.js ./scripts/create-typings.js",
-    "prebuild": "rimraf material-design-icons && rimraf build",
+    "prebuild": "rimraf build",
     "release": "yarn build && npm publish build --tag next",
     "src:download": "cd ../../ && babel-node --config-file ./babel.config.js packages/material-ui-icons/scripts/download.js",
-    "src:icons": "cd ../../ && UV_THREADPOOL_SIZE=64 babel-node --config-file ./babel.config.js packages/material-ui-icons/builder.js --output-dir packages/material-ui-icons/src --svg-dir packages/material-ui-icons/material-icons --renameFilter ./renameFilters/material-design-icons.js",
+    "src:icons": "cd ../../ && UV_THREADPOOL_SIZE=64 babel-node --config-file ./babel.config.js packages/material-ui-icons/builder.js --output-dir packages/material-ui-icons/src --svg-dir packages/material-ui-icons/material-icons --renameFilter ./renameFilters/material-design-icons.js && cd packages/material-ui-icons && yarn build:lib:clean",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-icons/**/*.test.{js,ts,tsx}'",
     "test:built-typings": "tslint -p test/generated-types/tsconfig.json \"test/generated-types/*.{ts,tsx}\"",
     "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
   },
   "peerDependencies": {
-    "@material-ui/core": "^5.0.0-alpha.15",
+    "@material-ui/core": "^5.0.0-alpha.36",
     "@types/react": "^16.8.6 || ^17.0.0",
     "react": "^17.0.0"
   },
@@ -52,9 +54,9 @@
     "@babel/runtime": "^7.4.4"
   },
   "devDependencies": {
-    "fs-extra": "^9.0.0",
+    "fs-extra": "^10.0.0",
     "mustache": "^4.0.0",
-    "svgo": "^2.1.0",
+    "svgo": "^2.3.0",
     "yargs": "^17.0.1"
   },
   "sideEffects": false,

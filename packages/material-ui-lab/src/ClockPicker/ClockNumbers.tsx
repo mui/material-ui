@@ -9,6 +9,11 @@ interface GetHourNumbersOptions {
   getClockNumberText: (hour: string) => string;
   isDisabled: (value: number) => boolean;
   onChange: (value: number, isFinish?: PickerSelectionState) => void;
+  /**
+   * DOM id that the selected option should have
+   * Should only be `undefined` on the server
+   */
+  selectedId: string | undefined;
   utils: MuiPickersAdapter;
 }
 
@@ -20,6 +25,7 @@ export const getHourNumbers = ({
   date,
   getClockNumberText,
   isDisabled,
+  selectedId,
   utils,
 }: GetHourNumbersOptions) => {
   const currentHours = date ? utils.getHours(date) : null;
@@ -54,12 +60,15 @@ export const getHourNumbers = ({
     const inner = !ampm && (hour === 0 || hour > 12);
     label = utils.formatNumber(label);
 
+    const selected = isSelected(hour);
+
     hourNumbers.push(
       <ClockNumber
         key={hour}
+        id={selected ? selectedId : undefined}
         index={hour}
         inner={inner}
-        selected={isSelected(hour)}
+        selected={selected}
         disabled={isDisabled(hour)}
         label={label}
         aria-label={getClockNumberText(label)}
@@ -75,31 +84,38 @@ export const getMinutesNumbers = ({
   value,
   isDisabled,
   getClockNumberText,
+  selectedId,
 }: Omit<GetHourNumbersOptions, 'ampm' | 'date'> & { value: number }) => {
   const f = utils.formatNumber;
 
-  return ([
-    [5, f('05')],
-    [10, f('10')],
-    [15, f('15')],
-    [20, f('20')],
-    [25, f('25')],
-    [30, f('30')],
-    [35, f('35')],
-    [40, f('40')],
-    [45, f('45')],
-    [50, f('50')],
-    [55, f('55')],
-    [0, f('00')],
-  ] as const).map(([numberValue, label], index) => (
-    <ClockNumber
-      key={numberValue}
-      label={label}
-      index={index + 1}
-      inner={false}
-      disabled={isDisabled(numberValue)}
-      selected={numberValue === value}
-      aria-label={getClockNumberText(label)}
-    />
-  ));
+  return (
+    [
+      [5, f('05')],
+      [10, f('10')],
+      [15, f('15')],
+      [20, f('20')],
+      [25, f('25')],
+      [30, f('30')],
+      [35, f('35')],
+      [40, f('40')],
+      [45, f('45')],
+      [50, f('50')],
+      [55, f('55')],
+      [0, f('00')],
+    ] as const
+  ).map(([numberValue, label], index) => {
+    const selected = numberValue === value;
+    return (
+      <ClockNumber
+        key={numberValue}
+        label={label}
+        id={selected ? selectedId : undefined}
+        index={index + 1}
+        inner={false}
+        disabled={isDisabled(numberValue)}
+        selected={selected}
+        aria-label={getClockNumberText(label)}
+      />
+    );
+  });
 };

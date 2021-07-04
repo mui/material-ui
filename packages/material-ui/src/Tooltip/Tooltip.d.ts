@@ -3,6 +3,7 @@ import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TransitionProps } from '../transitions/transition';
 import { PopperProps } from '../Popper/Popper';
+import { TooltipClasses } from './tooltipClasses';
 
 export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   /**
@@ -17,30 +18,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the Popper component. */
-    popper?: string;
-    /** Styles applied to the Popper component unless `disableInteractive={true}`. */
-    popperInteractive?: string;
-    /** Styles applied to the Popper component if `arrow={true}`. */
-    popperArrow?: string;
-    /** Styles applied to the tooltip (label wrapper) element. */
-    tooltip?: string;
-    /** Styles applied to the tooltip (label wrapper) element if `arrow={true}`. */
-    tooltipArrow?: string;
-    /** Styles applied to the arrow element. */
-    arrow?: string;
-    /** Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch. */
-    touch?: string;
-    /** Styles applied to the tooltip (label wrapper) element if `placement` contains "left". */
-    tooltipPlacementLeft?: string;
-    /** Styles applied to the tooltip (label wrapper) element if `placement` contains "right". */
-    tooltipPlacementRight?: string;
-    /** Styles applied to the tooltip (label wrapper) element if `placement` contains "top". */
-    tooltipPlacementTop?: string;
-    /** Styles applied to the tooltip (label wrapper) element if `placement` contains "bottom". */
-    tooltipPlacementBottom?: string;
-  };
+  classes?: Partial<TooltipClasses>;
   /**
    * Set to `true` if the `title` acts as an accessible description.
    * By default the `title` acts as an accessible label for the child.
@@ -170,8 +148,6 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    */
   TransitionProps?: TransitionProps;
 }
-
-export type TooltipClassKey = keyof NonNullable<TooltipProps['classes']>;
 
 /**
  *

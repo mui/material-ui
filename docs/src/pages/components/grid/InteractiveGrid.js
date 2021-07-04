@@ -11,7 +11,6 @@ import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 export default function InteractiveGrid() {
   const [direction, setDirection] = React.useState('row');
   const [justifyContent, setJustifyContent] = React.useState('center');
-
   const [alignItems, setAlignItems] = React.useState('center');
 
   const jsx = `

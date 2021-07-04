@@ -8,21 +8,18 @@ import {
   fireEvent,
   screen,
   describeConformanceV5,
-  createMount,
 } from 'test/utils';
 import Portal from '@material-ui/core/Portal';
 import TreeView, { treeViewClasses as classes } from '@material-ui/lab/TreeView';
 import TreeItem from '@material-ui/lab/TreeItem';
 
 describe('<TreeView />', () => {
-  const mount = createMount();
   const render = createClientRender();
 
   describeConformanceV5(<TreeView />, () => ({
     classes,
     inheritComponent: 'ul',
     render,
-    mount,
     refInstanceof: window.HTMLUListElement,
     muiName: 'MuiTreeView',
     skip: ['componentProp', 'componentsProp', 'themeVariants'],
@@ -66,6 +63,24 @@ describe('<TreeView />', () => {
       );
 
       fireEvent.click(screen.getByText('one'), { shiftKey: true });
+    });
+
+    it('should not crash when selecting multiple items in a deeply nested tree', () => {
+      render(
+        <TreeView multiSelect defaultExpanded={['1', '1.1', '2']}>
+          <TreeItem nodeId="1" label="Item 1">
+            <TreeItem nodeId="1.1" label="Item 1.1">
+              <TreeItem nodeId="1.1.1" data-testid="item-1.1.1" label="Item 1.1.1" />
+            </TreeItem>
+          </TreeItem>
+          <TreeItem nodeId="2" data-testid="item-2" label="Item 2" />
+        </TreeView>,
+      );
+      fireEvent.click(screen.getByText('Item 1.1.1'));
+      fireEvent.click(screen.getByText('Item 2'), { shiftKey: true });
+
+      expect(screen.getByTestId('item-1.1.1')).to.have.attribute('aria-selected', 'true');
+      expect(screen.getByTestId('item-2')).to.have.attribute('aria-selected', 'true');
     });
 
     it('should not crash on keydown on an empty tree', () => {

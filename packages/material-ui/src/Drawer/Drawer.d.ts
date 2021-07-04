@@ -4,10 +4,10 @@ import { InternalStandardProps as StandardProps, Theme } from '..';
 import { ModalProps } from '../Modal';
 import { SlideProps } from '../Slide';
 import { PaperProps } from '../Paper';
-import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
+import { TransitionProps } from '../transitions/transition';
+import { DrawerClasses } from './drawerClasses';
 
-export interface DrawerProps
-  extends StandardProps<ModalProps & Partial<TransitionHandlerProps>, 'open' | 'children'> {
+export interface DrawerProps extends StandardProps<ModalProps, 'open' | 'children'> {
   /**
    * Side from which the drawer will appear.
    * @default 'left'
@@ -20,32 +20,7 @@ export interface DrawerProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if `variant="permanent or persistent"`. */
-    docked?: string;
-    /** Styles applied to the Paper component. */
-    paper?: string;
-    /** Styles applied to the Paper component if `anchor="left"`. */
-    paperAnchorLeft?: string;
-    /** Styles applied to the Paper component if `anchor="right"`. */
-    paperAnchorRight?: string;
-    /** Styles applied to the Paper component if `anchor="top"`. */
-    paperAnchorTop?: string;
-    /** Styles applied to the Paper component if `anchor="bottom"`. */
-    paperAnchorBottom?: string;
-    /** Styles applied to the Paper component if `anchor="left"` and `variant` is not "temporary". */
-    paperAnchorDockedLeft?: string;
-    /** Styles applied to the Paper component if `anchor="top"` and `variant` is not "temporary". */
-    paperAnchorDockedTop?: string;
-    /** Styles applied to the Paper component if `anchor="right"` and `variant` is not "temporary". */
-    paperAnchorDockedRight?: string;
-    /** Styles applied to the Paper component if `anchor="bottom"` and `variant` is not "temporary". */
-    paperAnchorDockedBottom?: string;
-    /** Styles applied to the Modal component. */
-    modal?: string;
-  };
+  classes?: Partial<DrawerClasses>;
   /**
    * The elevation of the drawer.
    * @default 16
@@ -92,8 +67,6 @@ export interface DrawerProps
    */
   variant?: 'permanent' | 'persistent' | 'temporary';
 }
-
-export type DrawerClassKey = keyof NonNullable<DrawerProps['classes']>;
 
 /**
  * The props of the [Modal](https://material-ui.com/api/modal/) component are available

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { MuiStyles, StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import { DateRange } from './RangeTypes';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { calculateRangePreview } from './date-range-manager';
@@ -45,34 +45,27 @@ interface DesktopDateRangeCalendarProps<TDate>
   currentlySelectingRangeEnd: 'start' | 'end';
 }
 
-type DateRangePickerViewDesktopClassKey =
-  | 'root'
-  | 'rangeCalendarContainer'
-  | 'calendar'
-  | 'arrowSwitcher';
+const DateRangePickerViewDesktopRoot = styled('div', { skipSx: true })({
+  display: 'flex',
+  flexDirection: 'row',
+});
 
-export const styles: MuiStyles<DateRangePickerViewDesktopClassKey> = (
-  theme,
-): StyleRules<DateRangePickerViewDesktopClassKey> => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'row',
+const DateRangePickerViewDesktopContainer = styled('div', { skipSx: true })(({ theme }) => ({
+  '&:not(:last-of-type)': {
+    borderRight: `2px solid ${theme.palette.divider}`,
   },
-  rangeCalendarContainer: {
-    '&:not(:last-child)': {
-      borderRight: `2px solid ${theme.palette.divider}`,
-    },
-  },
-  calendar: {
-    minWidth: 312,
-    minHeight: 288,
-  },
-  arrowSwitcher: {
-    padding: '16px 16px 8px 16px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
+}));
+
+const DateRangePickerViewDesktopCalendar = styled(PickersCalendar, { skipSx: true })({
+  minWidth: 312,
+  minHeight: 288,
+}) as typeof PickersCalendar;
+
+const DateRangePickerViewDesktopArrowSwitcher = styled(PickersArrowSwitcher, { skipSx: true })({
+  padding: '16px 16px 8px 16px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
 });
 
 function getCalendarsArray(calendars: ExportedDesktopDateRangeCalendarProps<unknown>['calendars']) {
@@ -92,13 +85,10 @@ function getCalendarsArray(calendars: ExportedDesktopDateRangeCalendarProps<unkn
 /**
  * @ignore - internal component.
  */
-function DateRangePickerViewDesktop<TDate>(
-  props: DesktopDateRangeCalendarProps<TDate> & WithStyles<typeof styles>,
-) {
+function DateRangePickerViewDesktop<TDate>(props: DesktopDateRangeCalendarProps<TDate>) {
   const {
     calendars,
     changeMonth,
-    classes,
     components,
     componentsProps,
     currentlySelectingRangeEnd,
@@ -163,14 +153,13 @@ function DateRangePickerViewDesktop<TDate>(
   }, [changeMonth, currentMonth, utils]);
 
   return (
-    <div className={classes.root}>
+    <DateRangePickerViewDesktopRoot>
       {getCalendarsArray(calendars).map((_, index) => {
         const monthOnIteration = utils.setMonth(currentMonth, utils.getMonth(currentMonth) + index);
 
         return (
-          <div key={index} className={classes.rangeCalendarContainer}>
-            <PickersArrowSwitcher
-              className={classes.arrowSwitcher}
+          <DateRangePickerViewDesktopContainer key={index}>
+            <DateRangePickerViewDesktopArrowSwitcher
               onLeftClick={selectPreviousMonth}
               onRightClick={selectNextMonth}
               isLeftHidden={index !== 0}
@@ -183,13 +172,12 @@ function DateRangePickerViewDesktop<TDate>(
               rightArrowButtonText={rightArrowButtonText}
             >
               {utils.format(monthOnIteration, 'monthAndYear')}
-            </PickersArrowSwitcher>
-            <PickersCalendar<TDate>
+            </DateRangePickerViewDesktopArrowSwitcher>
+            <DateRangePickerViewDesktopCalendar<TDate>
               {...other}
               key={index}
               date={date}
               onFocusedDayChange={doNothing}
-              className={classes.calendar}
               onChange={handleDayChange}
               currentMonth={monthOnIteration}
               TransitionProps={CalendarTransitionProps}
@@ -206,13 +194,11 @@ function DateRangePickerViewDesktop<TDate>(
                 })
               }
             />
-          </div>
+          </DateRangePickerViewDesktopContainer>
         );
       })}
-    </div>
+    </DateRangePickerViewDesktopRoot>
   );
 }
 
-export default withStyles(styles, { name: 'MuiDateRangePickerViewDesktop' })(
-  DateRangePickerViewDesktop,
-) as <TDate>(props: DesktopDateRangeCalendarProps<TDate>) => JSX.Element;
+export default DateRangePickerViewDesktop;

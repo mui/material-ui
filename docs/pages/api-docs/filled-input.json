@@ -15,6 +15,7 @@
     "endAdornment": { "type": { "name": "node" } },
     "error": { "type": { "name": "bool" } },
     "fullWidth": { "type": { "name": "bool" } },
+    "hiddenLabel": { "type": { "name": "bool" } },
     "id": { "type": { "name": "string" } },
     "inputComponent": { "type": { "name": "elementType" }, "default": "'input'" },
     "inputProps": { "type": { "name": "object" }, "default": "{}" },

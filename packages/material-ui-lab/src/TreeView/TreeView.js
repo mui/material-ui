@@ -1,11 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import {
-  experimentalStyled,
-  useTheme,
-  unstable_useThemeProps as useThemeProps,
-} from '@material-ui/core/styles';
+import { styled, useTheme, useThemeProps } from '@material-ui/core/styles';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import {
   useControlled,
@@ -27,15 +23,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTreeViewUtilityClass, classes);
 };
 
-const TreeViewRoot = experimentalStyled(
-  'ul',
-  {},
-  {
-    name: 'MuiTreeView',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({
+const TreeViewRoot = styled('ul', {
+  name: 'MuiTreeView',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
   padding: 0,
   margin: 0,
   listStyle: 'none',
@@ -87,7 +79,7 @@ const TreeView = React.forwardRef(function TreeView(inProps, ref) {
     selected: selectedProp,
     ...other
   } = props;
-  // use the `isRtl` from the props after the buildAPI script support it
+
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
 
@@ -202,22 +194,20 @@ const TreeView = React.forwardRef(function TreeView(inProps, ref) {
       return getNavigableChildrenIds(id)[0];
     }
 
-    // Try to get next sibling
-    const node = nodeMap.current[id];
-    const siblings = getNavigableChildrenIds(node.parentId);
+    let node = nodeMap.current[id];
+    while (node != null) {
+      // Try to get next sibling
+      const siblings = getNavigableChildrenIds(node.parentId);
+      const nextSibling = siblings[siblings.indexOf(node.id) + 1];
 
-    const nextSibling = siblings[siblings.indexOf(id) + 1];
+      if (nextSibling) {
+        return nextSibling;
+      }
 
-    if (nextSibling) {
-      return nextSibling;
+      // If the sibling does not exist, go up a level to the parent and try again.
+      node = nodeMap.current[node.parentId];
     }
 
-    // try to get parent's next sibling
-    const parent = nodeMap.current[node.parentId];
-    if (parent) {
-      const parentSiblings = getNavigableChildrenIds(parent.parentId);
-      return parentSiblings[parentSiblings.indexOf(parent.id) + 1];
-    }
     return null;
   };
 

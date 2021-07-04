@@ -3,7 +3,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import {
-  createMount,
   describeConformanceV5,
   act,
   createClientRender,
@@ -19,10 +18,6 @@ import ButtonBase, { buttonBaseClasses as classes } from '@material-ui/core/Butt
 
 describe('<ButtonBase />', () => {
   const render = createClientRender();
-  /**
-   * @type {ReturnType<typeof createMount>}
-   */
-  const mount = createMount();
 
   // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/14156632/
   let canFireDragEvents = true;
@@ -42,7 +37,6 @@ describe('<ButtonBase />', () => {
     classes,
     inheritComponent: 'button',
     render,
-    mount,
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'a',
     muiName: 'MuiButtonBase',
@@ -133,16 +127,47 @@ describe('<ButtonBase />', () => {
       expect(button).not.to.have.attribute('type');
     });
 
-    it('should not use an anchor element if explicit component and href is passed', () => {
-      const { getByRole } = render(
-        // @ts-ignore
-        <ButtonBase component="span" href="https://google.com">
+    it('should not add role="button" if custom component and href are used', () => {
+      const CustomLink = React.forwardRef((props, ref) => {
+        return (
+          <a data-testid="customLink" ref={ref} {...props}>
+            {props.children}
+          </a>
+        );
+      });
+
+      const { container } = render(
+        // @ts-expect-error missing types in CustomLink
+        <ButtonBase component={CustomLink} href="https://google.com">
           Hello
         </ButtonBase>,
       );
-      const button = getByRole('button');
-      expect(button).to.have.property('nodeName', 'SPAN');
+      const button = container.firstChild;
+      expect(button).to.have.property('nodeName', 'A');
+      expect(button).to.have.attribute('data-testid', 'customLink');
       expect(button).to.have.attribute('href', 'https://google.com');
+      expect(button).not.to.have.attribute('role', 'button');
+    });
+
+    it('should not add role="button" if custom component and to are used', () => {
+      const CustomLink = React.forwardRef((props, ref) => {
+        // @ts-expect-error missing types in CustomLink
+        const { to, ...other } = props;
+        return (
+          <a data-testid="customLink" ref={ref} {...other} href={to}>
+            {props.children}
+          </a>
+        );
+      });
+
+      const { container } = render(
+        // @ts-expect-error missing types in CustomLink
+        <ButtonBase component={CustomLink} to="https://google.com">
+          Hello
+        </ButtonBase>,
+      );
+      const button = container.firstChild;
+      expect(button).not.to.have.attribute('role', 'button');
     });
   });
 

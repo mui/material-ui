@@ -3,6 +3,7 @@ import { SxProps } from '@material-ui/system';
 import { OverridableStringUnion } from '@material-ui/types';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
+import { InputBaseClasses } from './inputBaseClasses';
 
 export interface InputBasePropsSizeOverrides {}
 
@@ -32,51 +33,15 @@ export interface InputBaseProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if the component is a descendant of `FormControl`. */
-    formControl?: string;
-    /** Styles applied to the root element if the component is focused. */
-    focused?: string;
-    /** Styles applied to the root element if `disabled={true}`. */
-    disabled?: string;
-    /** Styles applied to the root element if `startAdornment` is provided. */
-    adornedStart?: string;
-    /** Styles applied to the root element if `endAdornment` is provided. */
-    adornedEnd?: string;
-    /** Pseudo-class applied to the root element if `error={true}`. */
-    error?: string;
-    /** Styles applied to the input element if `size="small"`. */
-    sizeSmall?: string;
-    /** Styles applied to the root element if `multiline={true}`. */
-    multiline?: string;
-    /** Styles applied to the root element if the color is secondary. */
-    colorSecondary?: string;
-    /** Styles applied to the root element if `fullWidth={true}`. */
-    fullWidth?: string;
-    /** Styles applied to the root element if `hiddenLabel={true}`. */
-    hiddenLabel?: string;
-    /** Styles applied to the input element. */
-    input?: string;
-    /** Styles applied to the input element if `size="small"`. */
-    inputSizeSmall?: string;
-    /** Styles applied to the input element if `multiline={true}`. */
-    inputMultiline?: string;
-    /** Styles applied to the input element if `type="search"`. */
-    inputTypeSearch?: string;
-    /** Styles applied to the input element if `startAdornment` is provided. */
-    inputAdornedStart?: string;
-    /** Styles applied to the input element if `endAdornment` is provided. */
-    inputAdornedEnd?: string;
-    /** Styles applied to the input element if `hiddenLabel={true}`. */
-    inputHiddenLabel?: string;
-  };
+  classes?: Partial<InputBaseClasses>;
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
-  color?: OverridableStringUnion<'primary' | 'secondary', InputBasePropsColorOverrides>;
+  color?: OverridableStringUnion<
+    'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+    InputBasePropsColorOverrides
+  >;
   /**
    * The components used for each slot inside the InputBase.
    * Either a string to use a HTML element or a component.
@@ -243,8 +208,6 @@ export interface InputBaseComponentProps
   // Accommodate arbitrary additional props coming from the `inputProps` prop
   [arbitrary: string]: any;
 }
-
-export type InputBaseClassKey = keyof NonNullable<InputBaseProps['classes']>;
 
 /**
  * `InputBase` contains as few styles as possible.

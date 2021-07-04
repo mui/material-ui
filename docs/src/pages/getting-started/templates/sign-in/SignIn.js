@@ -26,6 +26,16 @@ function Copyright(props) {
 }
 
 export default function SignIn() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    // eslint-disable-next-line no-console
+    console.log({
+      email: data.get('email'),
+      password: data.get('password'),
+    });
+  };
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -43,14 +53,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <Box
-          component="form"
-          noValidate
-          sx={{
-            width: '100%', // Fix IE11 issue.
-            mt: 1,
-          }}
-        >
+        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
             required

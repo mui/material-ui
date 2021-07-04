@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getAccordionDetailsUtilityClass } from './accordionDetailsClasses';
 
@@ -16,15 +16,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAccordionDetailsUtilityClass, classes);
 };
 
-const AccordionDetailsRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAccordionDetails',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)(({ theme }) => ({
+const AccordionDetailsRoot = styled('div', {
+  name: 'MuiAccordionDetails',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(({ theme }) => ({
   /* Styles applied to the root element. */
   padding: theme.spacing(1, 2, 2),
 }));
@@ -32,9 +28,7 @@ const AccordionDetailsRoot = experimentalStyled(
 const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiAccordionDetails' });
   const { className, ...other } = props;
-  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
-  const styleProps = { ...props };
-
+  const styleProps = props;
   const classes = useUtilityClasses(styleProps);
 
   return (

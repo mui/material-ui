@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled, { rootShouldForwardProp } from '../styles/experimentalStyled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Typography from '../Typography';
 import { getDialogContentTextUtilityClass } from './dialogContentTextClasses';
@@ -21,15 +21,12 @@ const useUtilityClasses = (styleProps) => {
   };
 };
 
-const DialogContentTextRoot = experimentalStyled(
-  Typography,
-  { shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes' },
-  {
-    name: 'MuiDialogContentText',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({ marginBottom: 12 });
+const DialogContentTextRoot = styled(Typography, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiDialogContentText',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({});
 
 const DialogContentText = React.forwardRef(function DialogContentText(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiDialogContentText' });

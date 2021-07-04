@@ -1,6 +1,7 @@
 import * as React from 'react';
 import ReactMarkdown from 'markdown-to-jsx';
-import { Theme, withStyles, WithStyles } from '@material-ui/core/styles';
+import { Theme } from '@material-ui/core/styles';
+import { withStyles, WithStyles } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 

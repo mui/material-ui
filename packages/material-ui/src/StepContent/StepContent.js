@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Collapse from '../Collapse';
 import StepperContext from '../Stepper/StepperContext';
@@ -17,22 +17,15 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getStepContentUtilityClass, classes);
 };
 
-const StepContentRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiStepContent',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const StepContentRoot = styled('div', {
+  name: 'MuiStepContent',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.last && styles.last),
-      };
-    },
+    return [styles.root, styleProps.last && styles.last];
   },
-)(({ styleProps, theme }) => ({
+})(({ styleProps, theme }) => ({
   /* Styles applied to the root element. */
   marginLeft: 12, // half icon
   paddingLeft: 8 + 12, // margin + half icon
@@ -47,15 +40,11 @@ const StepContentRoot = experimentalStyled(
 }));
 
 /* Styles applied to the Transition component. */
-const StepContentTransition = experimentalStyled(
-  Collapse,
-  {},
-  {
-    name: 'MuiStepContent',
-    slot: 'Transition',
-    overridesResolver: (props, styles) => styles.transition,
-  },
-)({});
+const StepContentTransition = styled(Collapse, {
+  name: 'MuiStepContent',
+  slot: 'Transition',
+  overridesResolver: (props, styles) => styles.transition,
+})({});
 
 const StepContent = React.forwardRef(function StepContent(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiStepContent' });

@@ -79,10 +79,10 @@ function getItemsClient(headings) {
 const noop = () => {};
 
 function useThrottledOnScroll(callback, delay) {
-  const throttledCallback = React.useMemo(() => (callback ? throttle(callback, delay) : noop), [
-    callback,
-    delay,
-  ]);
+  const throttledCallback = React.useMemo(
+    () => (callback ? throttle(callback, delay) : noop),
+    [callback, delay],
+  );
 
   React.useEffect(() => {
     if (throttledCallback === noop) {

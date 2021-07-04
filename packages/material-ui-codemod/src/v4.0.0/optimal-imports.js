@@ -58,7 +58,9 @@ export default function transformer(fileInfo, api, options) {
           return;
         case 'ImportDefaultSpecifier': {
           const moduleName = match[2];
-          if (!whitelist.has(moduleName)) return;
+          if (!whitelist.has(moduleName) && moduleName !== 'withStyles') {
+            return;
+          }
           addSpecifier(
             targetImportPath,
             j.importSpecifier(j.identifier(moduleName), j.identifier(localName)),

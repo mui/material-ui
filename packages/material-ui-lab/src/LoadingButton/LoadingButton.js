@@ -1,57 +1,103 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import { capitalize } from '@material-ui/core/utils';
-import { withStyles } from '@material-ui/core/styles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { styled, useThemeProps } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import loadingButtonClasses, { getLoadingButtonUtilityClass } from './loadingButtonClasses';
 
-export const styles = () => ({
-  /* Styles applied to the root element. */
-  root: {},
-  /* Styles applied to the root element if `loading={true}`. */
-  loading: {},
-  /* Styles applied to the loadingIndicator element. */
-  loadingIndicator: {
-    position: 'absolute',
-    visibility: 'visible',
-    display: 'flex',
+const useUtilityClasses = (styleProps) => {
+  const { loading, loadingPosition, classes } = styleProps;
+
+  const slots = {
+    root: ['root', loading && 'loading'],
+    startIcon: [loading && `startIconLoading${capitalize(loadingPosition)}`],
+    endIcon: [loading && `endIconLoading${capitalize(loadingPosition)}`],
+    loadingIndicator: [
+      'loadingIndicator',
+      loading && `loadingIndicator${capitalize(loadingPosition)}`,
+    ],
+  };
+
+  const composedClasses = composeClasses(slots, getLoadingButtonUtilityClass, classes);
+
+  return {
+    ...classes, // forward the outlined, color, etc. classes to Button
+    ...composedClasses,
+  };
+};
+
+// TODO use `import { rootShouldForwardProp } from '../styles/styled';` once move to core
+const rootShouldForwardProp = (prop) =>
+  prop !== 'styleProps' && prop !== 'theme' && prop !== 'sx' && prop !== 'as' && prop !== 'classes';
+const LoadingButtonRoot = styled(Button, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiLoadingButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    return [
+      styles.root,
+      styles.startIconLoadingStart && {
+        [`& .${loadingButtonClasses.startIconLoadingStart}`]: styles.startIconLoadingStart,
+      },
+      styles.endIconLoadingEnd && {
+        [`& .${loadingButtonClasses.endIconLoadingEnd}`]: styles.endIconLoadingEnd,
+      },
+    ];
   },
-  /* Styles applied to the loadingIndicator element if `loadingPosition="center"`. */
-  loadingIndicatorCenter: {
+})(({ styleProps, theme }) => ({
+  [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
+    {
+      transition: theme.transitions.create(['opacity'], {
+        duration: theme.transitions.duration.short,
+      }),
+      opacity: 0,
+    },
+  ...(styleProps.loadingPosition === 'center' && {
+    transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
+      duration: theme.transitions.duration.short,
+    }),
+    [`&.${loadingButtonClasses.loading}`]: {
+      color: 'transparent',
+    },
+  }),
+}));
+
+const LoadingButtonLoadingIndicator = styled('div', {
+  name: 'MuiLoadingButton',
+  slot: 'LoadingIndicator',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    return [
+      styles.loadingIndicator,
+      styles[`loadingIndicator${capitalize(styleProps.loadingPosition)}`],
+    ];
+  },
+})(({ theme, styleProps }) => ({
+  position: 'absolute',
+  visibility: 'visible',
+  display: 'flex',
+  ...(styleProps.loadingPosition === 'start' && {
+    left: 14,
+  }),
+  ...(styleProps.loadingPosition === 'center' && {
     left: '50%',
     transform: 'translate(-50%)',
-  },
-  /* Styles applied to the loadingIndicator element if `loadingPosition="start"`. */
-  loadingIndicatorStart: {
-    left: 14,
-  },
-  /* Styles applied to the loadingIndicator element if `loadingPosition="end"`. */
-  loadingIndicatorEnd: {
+    color: theme.palette.action.disabled,
+  }),
+  ...(styleProps.loadingPosition === 'end' && {
     right: 14,
-  },
-  /* Styles applied to the endIcon element if `loading={true}` and `loadingPosition="end"`. */
-  endIconLoadingEnd: {
-    visibility: 'hidden',
-  },
-  /* Styles applied to the startIcon element if `loading={true}` and `loadingPosition="start"`. */
-  startIconLoadingStart: {
-    visibility: 'hidden',
-  },
-  /* Styles applied to the label element if `loading={true}` and `loadingPosition="center"`. */
-  labelLoadingCenter: {
-    visibility: 'hidden',
-  },
-});
+  }),
+}));
 
 const LoadingIndicator = <CircularProgress color="inherit" size={16} />;
 
-const LoadingButton = React.forwardRef(function LoadingButton(props, ref) {
+const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiLoadingButton' });
   const {
     children,
-    classes,
-    className,
     disabled = false,
     loading = false,
     loadingIndicator = LoadingIndicator,
@@ -59,37 +105,32 @@ const LoadingButton = React.forwardRef(function LoadingButton(props, ref) {
     ...other
   } = props;
 
+  const styleProps = {
+    ...props,
+    disabled,
+    loading,
+    loadingIndicator,
+    loadingPosition,
+  };
+
+  const classes = useUtilityClasses(styleProps);
+
   return (
-    <Button
-      className={clsx(
-        classes.root,
-        {
-          [classes.loading]: loading,
-        },
-        className,
-      )}
+    <LoadingButtonRoot
       disabled={disabled || loading}
       ref={ref}
-      classes={{
-        startIcon: classes[`startIcon${loading ? 'Loading' : ''}${capitalize(loadingPosition)}`],
-        endIcon: classes[`endIcon${loading ? 'Loading' : ''}${capitalize(loadingPosition)}`],
-        label: classes[`label${loading ? 'Loading' : ''}${capitalize(loadingPosition)}`],
-      }}
       {...other}
+      classes={classes}
+      styleProps={styleProps}
     >
       {loading && (
-        <div
-          className={clsx(
-            classes.loadingIndicator,
-            classes[`loadingIndicator${capitalize(loadingPosition)}`],
-          )}
-        >
+        <LoadingButtonLoadingIndicator className={classes.loadingIndicator} styleProps={styleProps}>
           {loadingIndicator}
-        </div>
+        </LoadingButtonLoadingIndicator>
       )}
 
       {children}
-    </Button>
+    </LoadingButtonRoot>
   );
 });
 
@@ -106,10 +147,6 @@ LoadingButton.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -142,6 +179,10 @@ LoadingButton.propTypes /* remove-proptypes */ = {
     }
     return null;
   }),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiLoadingButton' })(LoadingButton);
+export default LoadingButton;

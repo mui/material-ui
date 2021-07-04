@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { alpha, darken, lighten } from '../styles/colorManipulator';
+import { alpha, darken, lighten } from '@material-ui/system';
 import capitalize from '../utils/capitalize';
 import SwitchBase from '../internal/SwitchBase';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -35,23 +35,19 @@ const useUtilityClasses = (styleProps) => {
   };
 };
 
-const SwitchRoot = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiSwitch',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const SwitchRoot = styled('span', {
+  name: 'MuiSwitch',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
-        ...styles[`size${capitalize(styleProps.size)}`],
-      };
-    },
+    return [
+      styles.root,
+      styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`],
+      styles[`size${capitalize(styleProps.size)}`],
+    ];
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
   display: 'inline-flex',
   width: 34 + 12 * 2,
@@ -91,23 +87,19 @@ const SwitchRoot = experimentalStyled(
   }),
 }));
 
-const SwitchSwitchBase = experimentalStyled(
-  SwitchBase,
-  {},
-  {
-    name: 'MuiSwitch',
-    slot: 'SwitchBase',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const SwitchSwitchBase = styled(SwitchBase, {
+  name: 'MuiSwitch',
+  slot: 'SwitchBase',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.switchBase,
-        ...styles.input,
-        ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-      };
-    },
+    return [
+      styles.switchBase,
+      styles.input,
+      styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`],
+    ];
   },
-)(
+})(
   ({ theme }) => ({
     /* Styles applied to the internal `SwitchBase` component's `root` class. */
     position: 'absolute',
@@ -137,6 +129,13 @@ const SwitchSwitchBase = experimentalStyled(
     },
   }),
   ({ theme, styleProps }) => ({
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+    },
     /* Styles applied to the internal SwitchBase component element unless `color="default"`. */
     ...(styleProps.color !== 'default' && {
       [`&.${switchClasses.checked}`]: {
@@ -164,15 +163,11 @@ const SwitchSwitchBase = experimentalStyled(
   }),
 );
 
-const SwitchTrack = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiSwitch',
-    slot: 'Track',
-    overridesResolver: (props, styles) => styles.track,
-  },
-)(({ theme }) => ({
+const SwitchTrack = styled('span', {
+  name: 'MuiSwitch',
+  slot: 'Track',
+  overridesResolver: (props, styles) => styles.track,
+})(({ theme }) => ({
   /* Styles applied to the track element. */
   height: '100%',
   width: '100%',
@@ -186,15 +181,11 @@ const SwitchTrack = experimentalStyled(
   opacity: theme.palette.mode === 'light' ? 0.38 : 0.3,
 }));
 
-const SwitchThumb = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiSwitch',
-    slot: 'Thumb',
-    overridesResolver: (props, styles) => styles.thumb,
-  },
-)(({ theme }) => ({
+const SwitchThumb = styled('span', {
+  name: 'MuiSwitch',
+  slot: 'Thumb',
+  overridesResolver: (props, styles) => styles.thumb,
+})(({ theme }) => ({
   /* Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop. */
   boxShadow: theme.shadows[1],
   backgroundColor: 'currentColor',
@@ -262,7 +253,7 @@ Switch.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['default', 'primary', 'secondary']),
+    PropTypes.oneOf(['default', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

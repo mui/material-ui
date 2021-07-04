@@ -1,25 +1,23 @@
 import * as React from 'react';
-import { createMount, describeConformanceV5, createClientRender } from 'test/utils';
+import { describeConformanceV5, createClientRender } from 'test/utils';
 import DialogTitle, { dialogTitleClasses as classes } from '@material-ui/core/DialogTitle';
 
 describe('<DialogTitle />', () => {
   const render = createClientRender();
-  const mount = createMount();
 
   describeConformanceV5(<DialogTitle>foo</DialogTitle>, () => ({
     classes,
-    inheritComponent: 'div',
+    inheritComponent: 'h2',
     render,
-    mount,
     muiName: 'MuiDialogTitle',
-    refInstanceof: window.HTMLDivElement,
-    testVariantProps: { disableTypography: true },
+    refInstanceof: window.HTMLHeadingElement,
+    testVariantProps: { 'data-color': 'red' },
     skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render JSX children', () => {
     const children = <span data-testid="test-children" />;
-    const { getByTestId } = render(<DialogTitle disableTypography>{children}</DialogTitle>);
+    const { getByTestId } = render(<DialogTitle>{children}</DialogTitle>);
 
     getByTestId('test-children');
   });

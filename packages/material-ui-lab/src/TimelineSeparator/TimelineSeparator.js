@@ -2,10 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import {
-  experimentalStyled,
-  unstable_useThemeProps as useThemeProps,
-} from '@material-ui/core/styles';
+import { styled, useThemeProps } from '@material-ui/core/styles';
 import { getTimelineSeparatorUtilityClass } from './timelineSeparatorClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -18,15 +15,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTimelineSeparatorUtilityClass, classes);
 };
 
-const TimelineSeparatorRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiTimelineSeparator',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({
+const TimelineSeparatorRoot = styled('div', {
+  name: 'MuiTimelineSeparator',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
   display: 'flex',
   flexDirection: 'column',
   flex: 0,
@@ -41,7 +34,7 @@ const TimelineSeparator = React.forwardRef(function TimelineSeparator(inProps, r
 
   const { className, ...other } = props;
 
-  const styleProps = { ...props };
+  const styleProps = props;
 
   const classes = useUtilityClasses(styleProps);
 

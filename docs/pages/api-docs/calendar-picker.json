@@ -1,7 +1,6 @@
 {
   "props": {
     "onChange": { "type": { "name": "func" }, "required": true },
-    "allowKeyboardControl": { "type": { "name": "bool" } },
     "defaultCalendarMonth": { "type": { "name": "any" } },
     "loading": { "type": { "name": "bool" } },
     "maxDate": { "type": { "name": "any" } },
@@ -41,7 +40,7 @@
   },
   "name": "CalendarPicker",
   "styles": {
-    "classes": ["root", "viewTransitionContainer", "fullHeightContainer"],
+    "classes": ["root", "viewTransitionContainer"],
     "globalClasses": {},
     "name": "MuiCalendarPicker"
   },
@@ -50,6 +49,6 @@
   "filename": "/packages/material-ui-lab/src/CalendarPicker/CalendarPicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/date-picker/\">Date Picker</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

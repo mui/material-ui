@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { experimentalStyled as styled, alpha } from '@material-ui/core/styles';
+import { styled, alpha, Box } from '@material-ui/system';
 import SliderUnstyled from '@material-ui/unstyled/SliderUnstyled';
-import Box from '@material-ui/core/Box';
 
-const StyledSlider = styled(SliderUnstyled)`
-  color: black;
-  height: 2px;
+const StyledSlider = styled(SliderUnstyled)(
+  ({ theme }) => `
+  color: ${theme.palette.mode === 'light' ? '#1976d2' : '#90caf9'};
+  height: 4px;
   width: 100%;
   padding: 13px 0;
   display: inline-block;
@@ -13,13 +13,17 @@ const StyledSlider = styled(SliderUnstyled)`
   cursor: pointer;
   touch-action: none;
   -webkit-tap-highlight-color: transparent;
+  opacity: 0.75;
+  &:hover {
+    opacity: 1;
+  }
 
   & .MuiSlider-rail {
     display: block;
     position: absolute;
     width: 100%;
-    height: 2px;
-    border-radius: 1px;
+    height: 4px;
+    border-radius: 2px;
     background-color: currentColor;
     opacity: 0.38;
   }
@@ -27,46 +31,40 @@ const StyledSlider = styled(SliderUnstyled)`
   & .MuiSlider-track {
     display: block;
     position: absolute;
-    height: 2px;
-    border-radius: 1px;
+    height: 4px;
+    border-radius: 2px;
     background-color: currentColor;
   }
 
   & .MuiSlider-thumb {
     position: absolute;
-    width: 12px;
-    height: 12px;
+    width: 14px;
+    height: 14px;
     margin-left: -6px;
     margin-top: -5px;
     box-sizing: border-box;
     border-radius: 50%;
     outline: 0;
-    background-color: currentColor;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-
-    &::after {
-      position: absolute;
-      content: '';
-      border-radius: 50%;
-      left: -15px;
-      top: -15px;
-      right: -15px;
-      bottom: -15px;
-    }
+    border: 2px solid currentColor;
+    background-color: #fff;
 
     :hover,
     &.Mui-focusVisible {
-      box-shadow: 0 0 0 8px ${alpha('#000', 0.16)};
+      box-shadow: 0 0 0 0.25rem ${alpha(
+        theme.palette.mode === 'light' ? '#1976d2' : '#90caf9',
+        0.15,
+      )};
     }
 
     &.Mui-active {
-      box-shadow: 0 0 0 14px ${alpha('#000', 0.16)};
+      box-shadow: 0 0 0 0.25rem ${alpha(
+        theme.palette.mode === 'light' ? '#1976d2' : '#90caf9',
+        0.3,
+      )};
     }
   }
-`;
+`,
+);
 
 export default function UnstyledSlider() {
   return (

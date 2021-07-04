@@ -4,7 +4,6 @@ import grid from './grid';
 describe('grid', () => {
   it('should use the spacing unit', () => {
     const output = grid({
-      theme: {},
       gap: 1,
     });
     expect(output).to.deep.equal({
@@ -14,7 +13,6 @@ describe('grid', () => {
 
   it('should support breakpoints', () => {
     const output = grid({
-      theme: {},
       gap: [1, 2],
     });
     expect(output).to.deep.equal({

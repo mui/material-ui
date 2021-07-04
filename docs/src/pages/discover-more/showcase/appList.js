@@ -560,8 +560,7 @@ const appList = [
       'An open source Chrome extension allowing you to import and execute JavaScript code ' +
       'snippets from GitHub.',
     image: 'snippets.jpg',
-    link:
-      'https://chrome.google.com/webstore/detail/snippets/dcibnkkafifbanoclgjbkmkbogijndin',
+    link: 'https://chrome.google.com/webstore/detail/snippets/dcibnkkafifbanoclgjbkmkbogijndin',
     source: 'https://github.com/richardscarrott/snippets',
     stars: 42,
     dateAdded: '2018-01-19',

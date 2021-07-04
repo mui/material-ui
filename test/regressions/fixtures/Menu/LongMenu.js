@@ -1,18 +1,9 @@
 import * as React from 'react';
 import IconButton from '@material-ui/core/IconButton';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-
-const styles = {
-  root: {
-    margin: '200px 0 200px',
-    background: 'papayawhip',
-    padding: '0 100px',
-  },
-};
 
 const options = [
   'None',
@@ -45,12 +36,11 @@ class LongMenu extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
     return (
-      <div className={classes.root}>
+      <Box sx={{ m: '200px 0 200px', background: 'papayawhip', p: '0 100px' }}>
         <IconButton
           ref={this.buttonRef}
           aria-label="more"
@@ -77,13 +67,9 @@ class LongMenu extends React.Component {
             </MenuItem>
           ))}
         </Menu>
-      </div>
+      </Box>
     );
   }
 }
 
-LongMenu.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(LongMenu);
+export default LongMenu;

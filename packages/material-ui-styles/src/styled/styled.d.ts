@@ -15,7 +15,7 @@ export type StyledComponent<P extends {}> = (props: P) => React.ReactElement<P, 
  */
 export type ComponentCreator<Component extends React.ElementType> = <
   Theme = DefaultTheme,
-  Props extends {} = React.ComponentPropsWithoutRef<Component>
+  Props extends {} = React.ComponentPropsWithoutRef<Component>,
 >(
   styles:
     | CreateCSSProperties<Props>

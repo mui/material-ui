@@ -2,25 +2,23 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { unstable_useId as useId } from '@material-ui/utils';
 import capitalize from '../utils/capitalize';
 import Modal from '../Modal';
 import Fade from '../Fade';
 import { duration } from '../styles/createTransitions';
 import Paper from '../Paper';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import dialogClasses, { getDialogUtilityClass } from './dialogClasses';
+import DialogContext from './DialogContext';
 import Backdrop from '../Backdrop';
 
-const DialogBackdrop = experimentalStyled(
-  Backdrop,
-  {},
-  {
-    name: 'MuiDialog',
-    slot: 'Backdrop',
-    overrides: (props, styles) => styles.backdrop,
-  },
-)({
+const DialogBackdrop = styled(Backdrop, {
+  name: 'MuiDialog',
+  slot: 'Backdrop',
+  overrides: (props, styles) => styles.backdrop,
+})({
   // Improve scrollable dialog support.
   zIndex: -1,
 });
@@ -43,15 +41,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getDialogUtilityClass, classes);
 };
 
-const DialogRoot = experimentalStyled(
-  Modal,
-  {},
-  {
-    name: 'MuiDialog',
-    slot: 'Root',
-    overridesResolver: (props, styles) => styles.root,
-  },
-)({
+const DialogRoot = styled(Modal, {
+  name: 'MuiDialog',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
   /* Styles applied to the root element. */
   '@media print': {
     // Use !important to override the Modal inline-style.
@@ -59,22 +53,15 @@ const DialogRoot = experimentalStyled(
   },
 });
 
-const DialogContainer = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiDialog',
-    slot: 'Container',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const DialogContainer = styled('div', {
+  name: 'MuiDialog',
+  slot: 'Container',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.container,
-        ...styles[`scroll${capitalize(styleProps.scroll)}`],
-      };
-    },
+    return [styles.container, styles[`scroll${capitalize(styleProps.scroll)}`]];
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the container element. */
   height: '100%',
   '@media print': {
@@ -103,25 +90,21 @@ const DialogContainer = experimentalStyled(
   }),
 }));
 
-const DialogPaper = experimentalStyled(
-  Paper,
-  {},
-  {
-    name: 'MuiDialog',
-    slot: 'Paper',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const DialogPaper = styled(Paper, {
+  name: 'MuiDialog',
+  slot: 'Paper',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.paper,
-        ...styles[`scrollPaper${capitalize(styleProps.scroll)}`],
-        ...styles[`paperWidth${capitalize(String(styleProps.maxWidth))})`],
-        ...(styleProps.fullWidth && styles.paperFullWidth),
-        ...(styleProps.fullScreen && styles.paperFullScreen),
-      };
-    },
+    return [
+      styles.paper,
+      styles[`scrollPaper${capitalize(styleProps.scroll)}`],
+      styles[`paperWidth${capitalize(String(styleProps.maxWidth))})`],
+      styleProps.fullWidth && styles.paperFullWidth,
+      styleProps.fullScreen && styles.paperFullScreen,
+    ];
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, styleProps }) => ({
   margin: 32,
   position: 'relative',
   overflowY: 'auto', // Fix IE11 issue, to remove at some point.
@@ -186,7 +169,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiDialog' });
   const {
     'aria-describedby': ariaDescribedby,
-    'aria-labelledby': ariaLabelledby,
+    'aria-labelledby': ariaLabelledbyProp,
     BackdropComponent,
     BackdropProps,
     children,
@@ -241,6 +224,11 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
     }
   };
 
+  const ariaLabelledby = useId(ariaLabelledbyProp);
+  const dialogContextValue = React.useMemo(() => {
+    return { titleId: ariaLabelledby };
+  }, [ariaLabelledby]);
+
   return (
     <DialogRoot
       className={clsx(classes.root, className)}
@@ -283,7 +271,7 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
             className={clsx(classes.paper, PaperProps.className)}
             styleProps={styleProps}
           >
-            {children}
+            <DialogContext.Provider value={dialogContextValue}>{children}</DialogContext.Provider>
           </DialogPaper>
         </DialogContainer>
       </TransitionComponent>
@@ -306,6 +294,15 @@ Dialog.propTypes /* remove-proptypes */ = {
   'aria-labelledby': PropTypes.string,
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
+   * @default styled(Backdrop, {
+   *   name: 'MuiModal',
+   *   slot: 'Backdrop',
+   *   overridesResolver: (props, styles) => {
+   *     return styles.backdrop;
+   *   },
+   * })({
+   *   zIndex: -1,
+   * })
    */
   BackdropComponent: PropTypes.elementType,
   /**
@@ -347,7 +344,10 @@ Dialog.propTypes /* remove-proptypes */ = {
    * Set to `false` to disable `maxWidth`.
    * @default 'sm'
    */
-  maxWidth: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs', false]),
+  maxWidth: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false]),
+    PropTypes.string,
+  ]),
   /**
    * Callback fired when the backdrop is clicked.
    */

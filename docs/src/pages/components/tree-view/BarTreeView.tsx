@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { experimentalStyled as styled, alpha } from '@material-ui/core/styles';
+import { styled, alpha } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -13,9 +13,10 @@ import Typography from '@material-ui/core/Typography';
 
 const CustomContentRoot = styled('div')(({ theme }) => ({
   WebkitTapHighlightColor: 'transparent',
-  '&:hover, &.Mui-disabled, &.Mui-focused, &.Mui-selected, &.Mui-selected.Mui-focused, &.Mui-selected:hover': {
-    backgroundColor: 'transparent',
-  },
+  '&:hover, &.Mui-disabled, &.Mui-focused, &.Mui-selected, &.Mui-selected.Mui-focused, &.Mui-selected:hover':
+    {
+      backgroundColor: 'transparent',
+    },
   [`& .MuiTreeItem-contentBar`]: {
     position: 'absolute',
     width: '100%',

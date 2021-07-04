@@ -6,6 +6,7 @@ import { TablePaginationActionsProps } from './TablePaginationActions';
 import { TableCellProps } from '../TableCell';
 import { IconButtonProps } from '../IconButton';
 import { SelectProps } from '../Select';
+import { TablePaginationClasses } from './tablePaginationClasses';
 
 export interface LabelDisplayedRowsArgs {
   from: number;
@@ -30,30 +31,7 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
       /**
        * Override or extend the styles applied to the component.
        */
-      classes?: {
-        /** Styles applied to the root element. */
-        root?: string;
-        /** Styles applied to the Toolbar component. */
-        toolbar?: string;
-        /** Styles applied to the spacer element. */
-        spacer?: string;
-        /** Styles applied to the select label Typography element. */
-        selectLabel?: string;
-        /** Styles applied to the Select component `root` element. */
-        selectRoot?: string;
-        /** Styles applied to the Select component `select` class. */
-        select?: string;
-        /** Styles applied to the Select component `icon` class. */
-        selectIcon?: string;
-        /** Styles applied to the Select component `root` element. */
-        input?: string;
-        /** Styles applied to the MenuItem component. */
-        menuItem?: string;
-        /** Styles applied to the displayed rows Typography element. */
-        displayedRows?: string;
-        /** Styles applied to the internal `TablePaginationActions` component. */
-        actions?: string;
-      };
+      classes?: Partial<TablePaginationClasses>;
       /**
        * The total number of rows.
        *
@@ -162,13 +140,11 @@ declare const TablePagination: OverridableComponent<
   TablePaginationTypeMap<{}, React.JSXElementConstructor<TablePaginationBaseProps>>
 >;
 
-export type TablePaginationClassKey = keyof NonNullable<TablePaginationProps['classes']>;
-
 export type TablePaginationBaseProps = Omit<TableCellProps, 'classes' | 'component' | 'children'>;
 
 export type TablePaginationProps<
   D extends React.ElementType = React.JSXElementConstructor<TablePaginationBaseProps>,
-  P = {}
+  P = {},
 > = OverrideProps<TablePaginationTypeMap<P, D>, D>;
 
 export default TablePagination;

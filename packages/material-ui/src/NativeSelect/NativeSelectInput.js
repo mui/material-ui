@@ -5,20 +5,20 @@ import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
 import nativeSelectClasses, { getNativeSelectUtilityClasses } from './nativeSelectClasses';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 
 const useUtilityClasses = (styleProps) => {
   const { classes, variant, disabled, open } = styleProps;
 
   const slots = {
-    root: ['root', 'select', variant, disabled && 'disabled'],
+    select: ['select', variant, disabled && 'disabled'],
     icon: ['icon', `icon${capitalize(variant)}`, open && 'iconOpen', disabled && 'disabled'],
   };
 
   return composeClasses(slots, getNativeSelectUtilityClasses, classes);
 };
 
-export const nativeSelectRootStyles = ({ styleProps, theme }) => ({
+export const nativeSelectSelectStyles = ({ styleProps, theme }) => ({
   MozAppearance: 'none', // Reset
   WebkitAppearance: 'none', // Reset
   // When interacting quickly, the text can end up selected.
@@ -66,30 +66,22 @@ export const nativeSelectRootStyles = ({ styleProps, theme }) => ({
   }),
 });
 
-const NativeSelectRoot = experimentalStyled(
-  'select',
-  {},
-  {
-    name: 'MuiNativeSelect',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const NativeSelectSelect = styled('select', {
+  name: 'MuiNativeSelect',
+  slot: 'Select',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...styles.select,
-        ...styles[styleProps.variant],
-      };
-    },
+    return [styles.select, styles[styleProps.variant]];
   },
-)(nativeSelectRootStyles);
+})(nativeSelectSelectStyles);
 
 export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
   // We use a position absolute over a flexbox in order to forward the pointer events
   // to the input and to support wrapping tags..
   position: 'absolute',
   right: 0,
-  top: 'calc(50% - 12px)', // Center vertically
+  top: 'calc(50% - .5em)', // Center vertically, height is 1em
   pointerEvents: 'none', // Don't block pointer events on the select under the icon.
   color: theme.palette.action.active,
   [`&.${nativeSelectClasses.disabled}`]: {
@@ -106,22 +98,18 @@ export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
   }),
 });
 
-const NativeSelectIcon = experimentalStyled(
-  'svg',
-  {},
-  {
-    name: 'MuiNativeSelect',
-    slot: 'Icon',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
-      return {
-        ...styles.icon,
-        ...(styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`]),
-        ...(styleProps.open && styles.iconOpen),
-      };
-    },
+const NativeSelectIcon = styled('svg', {
+  name: 'MuiNativeSelect',
+  slot: 'Icon',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    return [
+      styles.icon,
+      styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`],
+      styleProps.open && styles.iconOpen,
+    ];
   },
-)(nativeSelectIconStyles);
+})(nativeSelectIconStyles);
 
 /**
  * @ignore - internal component.
@@ -138,9 +126,9 @@ const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref
   const classes = useUtilityClasses(styleProps);
   return (
     <React.Fragment>
-      <NativeSelectRoot
+      <NativeSelectSelect
         styleProps={styleProps}
-        className={clsx(classes.root, className)}
+        className={clsx(classes.select, className)}
         disabled={disabled}
         ref={inputRef || ref}
         {...other}

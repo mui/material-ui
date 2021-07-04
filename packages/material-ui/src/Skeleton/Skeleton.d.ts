@@ -3,6 +3,7 @@ import { SxProps } from '@material-ui/system';
 import { OverridableStringUnion } from '@material-ui/types';
 import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { SkeletonClasses } from './skeletonClasses';
 
 export interface SkeletonPropsVariantOverrides {}
 
@@ -21,26 +22,7 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Styles applied to the root element if `variant="text"`. */
-      text?: string;
-      /** Styles applied to the root element if `variant="rectangular"`. */
-      rectangular?: string;
-      /** Styles applied to the root element if `variant="circular"`. */
-      circular?: string;
-      /** Styles applied to the root element if `animation="pulse"`. */
-      pulse?: string;
-      /** Styles applied to the root element if `animation="wave"`. */
-      wave?: string;
-      /** Styles applied when the component is passed children. */
-      withChildren?: string;
-      /** Styles applied when the component is passed children and no width. */
-      fitContent?: string;
-      /** Styles applied when the component is passed children and no height. */
-      heightAuto?: string;
-    };
+    classes?: Partial<SkeletonClasses>;
     /**
      * Height of the skeleton.
      * Useful when you don't want to adapt the skeleton to a text element but for instance a card.
@@ -79,11 +61,9 @@ export interface SkeletonTypeMap<P = {}, D extends React.ElementType = 'span'> {
  */
 declare const Skeleton: OverridableComponent<SkeletonTypeMap>;
 
-export type SkeletonClassKey = keyof NonNullable<SkeletonTypeMap['props']['classes']>;
-
 export type SkeletonProps<
   D extends React.ElementType = SkeletonTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<SkeletonTypeMap<P, D>, D>;
 
 export default Skeleton;

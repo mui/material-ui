@@ -1,5 +1,5 @@
 import * as React from 'react';
-import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
+import { StyledEngineProvider } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -13,7 +13,7 @@ export default function App() {
       <Container maxWidth="sm">
         <Box sx={{ my: 4 }}>
           <Typography variant="h4" component="h1" gutterBottom>
-            Preact v5-alpha example
+            Preact v5-beta example
           </Typography>
           <ProTip />
           <Copyright />

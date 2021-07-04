@@ -40,11 +40,11 @@ export default function MultipleSelectCheckmarks() {
 
   return (
     <div>
-      <FormControl sx={{ m: 1, minWidth: 120, maxWidth: 300 }}>
-        <InputLabel id="demo-mutiple-checkbox-label">Tag</InputLabel>
+      <FormControl sx={{ m: 1, width: 300 }}>
+        <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
         <Select
-          labelId="demo-mutiple-checkbox-label"
-          id="demo-mutiple-checkbox"
+          labelId="demo-multiple-checkbox-label"
+          id="demo-multiple-checkbox"
           multiple
           value={personName}
           onChange={handleChange}

@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
+import { createTheme, Theme } from '@material-ui/core/styles';
 
 declare module '@material-ui/core/styles' {
   // Augment the BaseCSSProperties so that we can control jss-rtl
@@ -11,20 +12,25 @@ declare module '@material-ui/core/styles' {
   }
 }
 
-const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    width: '100%',
-    marginTop: theme.spacing(4),
-    marginRight: theme.spacing(2),
-  },
-  affected: {
-    textAlign: 'right',
-  },
-  unaffected: {
-    flip: false,
-    textAlign: 'right',
-  },
-}));
+const defaultTheme = createTheme();
+
+const useStyles = makeStyles(
+  (theme: Theme) => ({
+    root: {
+      width: '100%',
+      marginTop: theme.spacing(4),
+      marginRight: theme.spacing(2),
+    },
+    affected: {
+      textAlign: 'right',
+    },
+    unaffected: {
+      flip: false,
+      textAlign: 'right',
+    },
+  }),
+  { defaultTheme },
+);
 
 export default function RtlOptOut() {
   const classes = useStyles();

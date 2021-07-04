@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { unstable_useThemeProps as useThemeProps } from '@material-ui/core/styles';
+import { useThemeProps } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import PropTypes from 'prop-types';
 import DesktopDateTimePicker, { DesktopDateTimePickerProps } from '../DesktopDateTimePicker';
@@ -84,11 +84,6 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
    */
   acceptRegex: PropTypes.instanceOf(RegExp),
   /**
-   * Enables keyboard listener for moving between days in calendar.
-   * Defaults to `true` unless the `ClockPicker` is used inside a `Static*` picker component.
-   */
-  allowKeyboardControl: PropTypes.bool,
-  /**
    * If `true`, `onChange` is fired on click even if the same date is selected.
    * @default false
    */
@@ -103,6 +98,10 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
    * @default false
    */
   ampmInClock: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  autoFocus: PropTypes.bool,
   /**
    * Cancel text message.
    * @default "CANCEL"
@@ -134,6 +133,7 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
   components: PropTypes.shape({
     LeftArrowButton: PropTypes.elementType,
     LeftArrowIcon: PropTypes.elementType,
+    OpenPickerIcon: PropTypes.elementType,
     RightArrowButton: PropTypes.elementType,
     RightArrowIcon: PropTypes.elementType,
     SwitchViewButton: PropTypes.elementType,
@@ -203,9 +203,12 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
    * Accessible text that helps user to understand which time and view is selected.
    * @default <TDate extends any>(
    *   view: ClockView,
-   *   time: TDate,
+   *   time: TDate | null,
    *   adapter: MuiPickersAdapter<TDate>,
-   * ) => `Select ${view}. Selected time is ${adapter.format(time, 'fullTime')}`
+   * ) =>
+   *   `Select ${view}. ${
+   *     time === null ? 'No time selected' : `Selected time is ${adapter.format(time, 'fullTime')}`
+   *   }`
    */
   getClockLabelText: PropTypes.func,
   /**
@@ -379,10 +382,6 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
    * Props to pass to keyboard adornment button.
    */
   OpenPickerButtonProps: PropTypes.object,
-  /**
-   * Icon displaying for open picker button.
-   */
-  openPickerIcon: PropTypes.node,
   /**
    * First view to show.
    */

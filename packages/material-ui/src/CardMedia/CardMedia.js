@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import { getCardMediaUtilityClass } from './cardMediaClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -17,24 +17,16 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getCardMediaUtilityClass, classes);
 };
 
-const CardMediaRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiCardMedia',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
-      const { isMediaComponent, isImageComponent } = styleProps;
+const CardMediaRoot = styled('div', {
+  name: 'MuiCardMedia',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
+    const { isMediaComponent, isImageComponent } = styleProps;
 
-      return {
-        ...styles.root,
-        ...(isMediaComponent && styles.media),
-        ...(isImageComponent && styles.img),
-      };
-    },
+    return [styles.root, isMediaComponent && styles.media, isImageComponent && styles.img];
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
   display: 'block',
   backgroundSize: 'cover',

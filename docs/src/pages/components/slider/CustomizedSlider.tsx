@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Slider, { SliderThumb } from '@material-ui/core/Slider';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import Box from '@material-ui/core/Box';
@@ -47,8 +47,6 @@ const IOSSlider = styled(Slider)(({ theme }) => ({
     width: 28,
     backgroundColor: '#fff',
     boxShadow: iOSBoxShadow,
-    marginTop: -14,
-    marginLeft: -14,
     '&:focus, &:hover, &.Mui-active': {
       boxShadow:
         '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
@@ -59,18 +57,23 @@ const IOSSlider = styled(Slider)(({ theme }) => ({
     },
   },
   '& .MuiSlider-valueLabel': {
-    left: 'calc(-50% + 12px)',
-    top: -22,
+    fontSize: 12,
+    fontWeight: 'normal',
+    top: -6,
+    backgroundColor: 'unset',
+    color: theme.palette.text.primary,
+    '&:before': {
+      display: 'none',
+    },
     '& *': {
       background: 'transparent',
       color: theme.palette.mode === 'dark' ? '#fff' : '#000',
     },
   },
   '& .MuiSlider-track': {
-    height: 2,
+    border: 'none',
   },
   '& .MuiSlider-rail': {
-    height: 2,
     opacity: 0.5,
     backgroundColor: '#bfbfbf',
   },
@@ -78,7 +81,6 @@ const IOSSlider = styled(Slider)(({ theme }) => ({
     backgroundColor: '#bfbfbf',
     height: 8,
     width: 1,
-    marginTop: -3,
     '&.MuiSlider-markActive': {
       opacity: 1,
       backgroundColor: 'currentColor',
@@ -89,27 +91,39 @@ const IOSSlider = styled(Slider)(({ theme }) => ({
 const PrettoSlider = styled(Slider)({
   color: '#52af77',
   height: 8,
+  '& .MuiSlider-track': {
+    border: 'none',
+  },
   '& .MuiSlider-thumb': {
     height: 24,
     width: 24,
     backgroundColor: '#fff',
     border: '2px solid currentColor',
-    marginTop: -8,
-    marginLeft: -12,
-    '&:focus, &:hover, &.Mui-active': {
+    '&:focus, &:hover, &.Mui-active, &.Mui-focusVisible': {
       boxShadow: 'inherit',
+    },
+    '&:before': {
+      display: 'none',
     },
   },
   '& .MuiSlider-valueLabel': {
-    left: 'calc(-50% + 4px)',
-  },
-  '& .MuiSlider-track': {
-    height: 8,
-    borderRadius: 4,
-  },
-  '& .MuiSlider-rail': {
-    height: 8,
-    borderRadius: 4,
+    lineHeight: 1.2,
+    fontSize: 12,
+    background: 'unset',
+    padding: 0,
+    width: 32,
+    height: 32,
+    borderRadius: '50% 50% 50% 0',
+    backgroundColor: '#52af77',
+    transformOrigin: 'bottom left',
+    transform: 'translate(50%, -100%) rotate(-45deg) scale(0)',
+    '&:before': { display: 'none' },
+    '&.MuiSlider-valueLabelOpen': {
+      transform: 'translate(50%, -100%) rotate(-45deg) scale(1)',
+    },
+    '& > *': {
+      transform: 'rotate(45deg)',
+    },
   },
 });
 
@@ -122,8 +136,9 @@ const AirbnbSlider = styled(Slider)(({ theme }) => ({
     width: 27,
     backgroundColor: '#fff',
     border: '1px solid currentColor',
-    marginTop: -12,
-    marginLeft: -13,
+    '&:hover': {
+      boxShadow: '0 0 0 8px rgba(58, 133, 137, 0.16)',
+    },
     '& .airbnb-bar': {
       height: 9,
       width: 1,

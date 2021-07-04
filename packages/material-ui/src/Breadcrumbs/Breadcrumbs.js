@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { integerPropType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Typography from '../Typography';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
@@ -23,30 +23,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getBreadcrumbsUtilityClass, classes);
 };
 
-const BreadcrumbsRoot = experimentalStyled(
-  Typography,
-  {},
-  {
-    name: 'MuiBreadcrumbs',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      return {
-        [`& .${breadcrumbsClasses.li}`]: styles.li,
-        ...styles.root,
-      };
-    },
+const BreadcrumbsRoot = styled(Typography, {
+  name: 'MuiBreadcrumbs',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    return [{ [`& .${breadcrumbsClasses.li}`]: styles.li }, styles.root];
   },
-)({});
+})({});
 
-const BreadcrumbsOl = experimentalStyled(
-  'ol',
-  {},
-  {
-    name: 'MuiBreadcrumbs',
-    slot: 'Ol',
-    overridesResolver: (props, styles) => styles.ol,
-  },
-)({
+const BreadcrumbsOl = styled('ol', {
+  name: 'MuiBreadcrumbs',
+  slot: 'Ol',
+  overridesResolver: (props, styles) => styles.ol,
+})({
   display: 'flex',
   flexWrap: 'wrap',
   alignItems: 'center',
@@ -55,15 +44,11 @@ const BreadcrumbsOl = experimentalStyled(
   listStyle: 'none',
 });
 
-const BreadcrumbsSeparator = experimentalStyled(
-  'li',
-  {},
-  {
-    name: 'MuiBreadcrumbs',
-    slot: 'Separator',
-    overridesResolver: (props, styles) => styles.separator,
-  },
-)({
+const BreadcrumbsSeparator = styled('li', {
+  name: 'MuiBreadcrumbs',
+  slot: 'Separator',
+  overridesResolver: (props, styles) => styles.separator,
+})({
   display: 'flex',
   userSelect: 'none',
   marginLeft: 8,

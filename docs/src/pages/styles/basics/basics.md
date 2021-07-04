@@ -100,7 +100,7 @@ export default function StyledComponents() {
 ```jsx
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 
 const styles = {
@@ -212,7 +212,7 @@ const useStyles = makeStyles((theme) => ({
 
 ## Using the theme context
 
-Starting from v5, Material-UI is no longer using JSS as its default styling solution. If you still want to use the utilities exported by `@material-ui/styles`, you will need to provide the `theme` as part of the context. For this, you may use the `ThemeProvider` component available in `@material-ui/styles`, or if you are already using `@material-ui/core`, you can use the one exported in `@material-ui/core/styles`.
+Starting from v5, Material-UI no longer uses JSS as its default styling solution. If you still want to use the utilities exported by `@material-ui/styles`, you will need to provide the `theme` as part of the context. For this, you can use the `ThemeProvider` component available in `@material-ui/styles`, or, if you are already using `@material-ui/core`, you should use the one exported from `@material-ui/core/styles` so that the same `theme` is available for components from '@material-ui/core'.
 
 ```jsx
 import { makeStyles } from '@material-ui/styles';

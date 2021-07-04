@@ -4,7 +4,7 @@ import { isFragment } from 'react-is';
 import clsx from 'clsx';
 import { chainPropTypes } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Avatar from '../Avatar';
 import avatarGroupClasses, { getAvatarGroupUtilityClass } from './avatarGroupClasses';
@@ -25,18 +25,14 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAvatarGroupUtilityClass, classes);
 };
 
-const AvatarGroupRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAvatarGroup',
-    slot: 'Root',
-    overridesResolver: (props, styles) => ({
-      [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
-      ...styles.root,
-    }),
-  },
-)(({ theme }) => ({
+const AvatarGroupRoot = styled('div', {
+  name: 'MuiAvatarGroup',
+  slot: 'Root',
+  overridesResolver: (props, styles) => ({
+    [`& .${avatarGroupClasses.avatar}`]: styles.avatar,
+    ...styles.root,
+  }),
+})(({ theme }) => ({
   [`& .MuiAvatar-root`]: {
     border: `2px solid ${theme.palette.background.default}`,
     boxSizing: 'content-box',
@@ -50,15 +46,11 @@ const AvatarGroupRoot = experimentalStyled(
   flexDirection: 'row-reverse',
 }));
 
-const AvatarGroupAvatar = experimentalStyled(
-  Avatar,
-  {},
-  {
-    name: 'MuiAvatarGroup',
-    slot: 'Avatar',
-    overridesResolver: (props, styles) => styles.avatar,
-  },
-)(({ theme }) => ({
+const AvatarGroupAvatar = styled(Avatar, {
+  name: 'MuiAvatarGroup',
+  slot: 'Avatar',
+  overridesResolver: (props, styles) => styles.avatar,
+})(({ theme }) => ({
   border: `2px solid ${theme.palette.background.default}`,
   boxSizing: 'content-box',
   marginLeft: -8,

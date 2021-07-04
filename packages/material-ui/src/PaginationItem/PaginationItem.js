@@ -2,34 +2,33 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { alpha } from '@material-ui/system';
 import useThemeProps from '../styles/useThemeProps';
 import paginationItemClasses, { getPaginationItemUtilityClass } from './paginationItemClasses';
 import { useTheme } from '../styles';
-import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import FirstPageIcon from '../internal/svg-icons/FirstPage';
 import LastPageIcon from '../internal/svg-icons/LastPage';
 import NavigateBeforeIcon from '../internal/svg-icons/NavigateBefore';
 import NavigateNextIcon from '../internal/svg-icons/NavigateNext';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 
-const rootOverridesResolver = (props, styles) => {
+const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return {
-    ...styles.root,
-    ...styles[styleProps.variant],
-    ...styles[`size${capitalize(styleProps.size)}`],
-    ...(styleProps.variant === 'text' && styles[`text${capitalize(styleProps.color)}`]),
-    ...(styleProps.variant === 'outlined' && styles[`outlined${capitalize(styleProps.color)}`]),
-    ...(styleProps.shape === 'rounded' && styles.rounded),
-    ...(styleProps.type === 'page' && styles.page),
-    ...((styleProps.type === 'start-ellipsis' || styleProps.type === 'end-ellipsis') &&
-      styles.ellipsis),
-    ...((styleProps.type === 'previous' || styleProps.type === 'next') && styles.previousNext),
-    ...((styleProps.type === 'first' || styleProps.type === 'last') && styles.firstLast),
-  };
+  return [
+    styles.root,
+    styles[styleProps.variant],
+    styles[`size${capitalize(styleProps.size)}`],
+    styleProps.variant === 'text' && styles[`text${capitalize(styleProps.color)}`],
+    styleProps.variant === 'outlined' && styles[`outlined${capitalize(styleProps.color)}`],
+    styleProps.shape === 'rounded' && styles.rounded,
+    styleProps.type === 'page' && styles.page,
+    (styleProps.type === 'start-ellipsis' || styleProps.type === 'end-ellipsis') && styles.ellipsis,
+    (styleProps.type === 'previous' || styleProps.type === 'next') && styles.previousNext,
+    (styleProps.type === 'first' || styleProps.type === 'last') && styles.firstLast,
+  ];
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -60,15 +59,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getPaginationItemUtilityClass, classes);
 };
 
-const PaginationItemEllipsis = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiPaginationItem',
-    slot: 'Root',
-    overridesResolver: rootOverridesResolver,
-  },
-)(({ theme, styleProps }) => ({
+const PaginationItemEllipsis = styled('div', {
+  name: 'MuiPaginationItem',
+  slot: 'Root',
+  overridesResolver,
+})(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
   ...theme.typography.body2,
   borderRadius: 32 / 2,
@@ -99,15 +94,11 @@ const PaginationItemEllipsis = experimentalStyled(
   }),
 }));
 
-const PaginationItemPage = experimentalStyled(
-  ButtonBase,
-  {},
-  {
-    name: 'MuiPaginationItem',
-    slot: 'Root',
-    overridesResolver: rootOverridesResolver,
-  },
-)(
+const PaginationItemPage = styled(ButtonBase, {
+  name: 'MuiPaginationItem',
+  slot: 'Root',
+  overridesResolver,
+})(
   ({ theme, styleProps }) => ({
     /* Styles applied to the root element. */
     ...theme.typography.body2,
@@ -246,15 +237,11 @@ const PaginationItemPage = experimentalStyled(
   }),
 );
 
-const PaginationItemPageIcon = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiPaginationItem',
-    slot: 'Icon',
-    overridesResolver: (props, styles) => styles.icon,
-  },
-)(({ theme, styleProps }) => ({
+const PaginationItemPageIcon = styled('div', {
+  name: 'MuiPaginationItem',
+  slot: 'Icon',
+  overridesResolver: (props, styles) => styles.icon,
+})(({ theme, styleProps }) => ({
   fontSize: theme.typography.pxToRem(20),
   margin: '0 -8px',
   ...(styleProps.size === 'small' && {

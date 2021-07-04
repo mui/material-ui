@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import ListContext from '../List/ListContext';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getListItemAvatarUtilityClass } from './listItemAvatarClasses';
 
@@ -17,22 +17,15 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getListItemAvatarUtilityClass, classes);
 };
 
-const ListItemAvatarRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiListItemAvatar',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const ListItemAvatarRoot = styled('div', {
+  name: 'MuiListItemAvatar',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
-      };
-    },
+    return [styles.root, styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart];
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
   minWidth: 56,
   flexShrink: 0,

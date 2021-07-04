@@ -1,22 +1,18 @@
 import * as React from 'react';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import CalendarPickerSkeleton from '@material-ui/lab/CalendarPickerSkeleton';
+import { createClientRender, describeConformanceV5 } from 'test/utils';
+import CalendarPickerSkeleton, {
+  calendarPickerSkeletonClasses as classes,
+} from '@material-ui/lab/CalendarPickerSkeleton';
 
 describe('<CalendarPickerSkeleton />', () => {
-  let classes: Record<string, string>;
   const render = createClientRender();
-  const mount = createMount();
 
-  before(() => {
-    classes = getClasses(<CalendarPickerSkeleton />);
-  });
-
-  describeConformance(<CalendarPickerSkeleton />, () => ({
+  describeConformanceV5(<CalendarPickerSkeleton />, () => ({
     classes,
     inheritComponent: 'div',
     render,
-    mount,
+    muiName: 'MuiCalendarPickerSkeleton',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp', 'refForwarding'],
+    skip: ['componentProp', 'refForwarding', 'componentsProp', 'themeVariants'],
   }));
 });

@@ -57,7 +57,7 @@ export default function Asynchronous() {
       onClose={() => {
         setOpen(false);
       }}
-      getOptionSelected={(option, value) => option.title === value.title}
+      isOptionEqualToValue={(option, value) => option.title === value.title}
       getOptionLabel={(option) => option.title}
       options={options}
       loading={loading}

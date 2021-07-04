@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 
 const useMenuStyles = makeStyles({
   anchorEl: {
@@ -46,13 +46,13 @@ function SimpleMenu({ selectedItem, ...props }) {
       </Button>
       <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} transitionDuration={0} {...props}>
         {null}
-        <MenuItem ListItemClasses={listItemClasses} selected={selectedItem === 1}>
+        <MenuItem classes={listItemClasses} selected={selectedItem === 1}>
           Item 1
         </MenuItem>
-        <MenuItem ListItemClasses={listItemClasses} selected={selectedItem === 2}>
+        <MenuItem classes={listItemClasses} selected={selectedItem === 2}>
           Item 2
         </MenuItem>
-        <MenuItem ListItemClasses={listItemClasses}>Item 3</MenuItem>
+        <MenuItem classes={listItemClasses}>Item 3</MenuItem>
       </Menu>
     </Grid>
   );

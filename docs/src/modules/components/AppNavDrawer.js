@@ -1,7 +1,8 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
 import List from '@material-ui/core/List';
 import Drawer from '@material-ui/core/Drawer';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -55,7 +56,7 @@ PersistScroll.propTypes = {
 const styles = (theme) => ({
   paper: {
     width: 240,
-    backgroundColor: theme.palette.background.level1,
+    boxShadow: 'none',
   },
   title: {
     color: theme.palette.text.secondary,
@@ -211,6 +212,9 @@ function AppNavDrawer(props) {
             paper: classes.paper,
           }}
           variant="permanent"
+          PaperProps={{
+            elevation: 2,
+          }}
           sx={{ display: { xs: 'none', lg: 'block' } }}
           open
         >
@@ -232,4 +236,5 @@ AppNavDrawer.propTypes = {
   onOpen: PropTypes.func.isRequired,
 };
 
-export default withStyles(styles)(AppNavDrawer);
+const defaultTheme = createTheme();
+export default withStyles(styles, { defaultTheme })(AppNavDrawer);

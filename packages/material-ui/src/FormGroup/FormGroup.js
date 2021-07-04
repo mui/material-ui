@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getFormGroupUtilityClass } from './formGroupClasses';
 
@@ -16,22 +16,15 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getFormGroupUtilityClass, classes);
 };
 
-const FormGroupRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiFormGroup',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const FormGroupRoot = styled('div', {
+  name: 'MuiFormGroup',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.row && styles.row),
-      };
-    },
+    return [styles.root, styleProps.row && styles.row];
   },
-)(({ styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
   display: 'flex',
   flexDirection: 'column',

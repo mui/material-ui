@@ -2,10 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { alpha } from '@material-ui/system';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import { alpha } from '../styles/colorManipulator';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import tableRowClasses, { getTableRowUtilityClass } from './tableRowClasses';
 
 const useUtilityClasses = (styleProps) => {
@@ -18,23 +18,15 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTableRowUtilityClass, classes);
 };
 
-const TableRowRoot = experimentalStyled(
-  'tr',
-  {},
-  {
-    name: 'MuiTableRow',
-    slot: 'Root',
-    overridesResolver: (props, styles) => {
-      const { styleProps } = props;
+const TableRowRoot = styled('tr', {
+  name: 'MuiTableRow',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { styleProps } = props;
 
-      return {
-        ...styles.root,
-        ...(styleProps.head && styles.head),
-        ...(styleProps.footer && styles.footer),
-      };
-    },
+    return [styles.root, styleProps.head && styles.head, styleProps.footer && styles.footer];
   },
-)(({ theme }) => ({
+})(({ theme }) => ({
   /* Styles applied to the root element. */
   color: 'inherit',
   display: 'table-row',
