@@ -141,7 +141,7 @@
     "karma-chrome-launcher": "^3.0.0",
     "karma-mocha": "^2.0.0",
     "karma-sourcemap-loader": "^0.3.7",
-    "karma-webpack": "^4.0.2",
+    "karma-webpack": "^5.0.0",
     "lerna": "^4.0.0",
     "lodash": "^4.17.15",
     "mocha": "^9.0.0",
