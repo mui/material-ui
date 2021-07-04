@@ -25,4 +25,25 @@ describe('css', () => {
       color: 'red',
     });
   });
+
+  it('should work well with theme variables', () => {
+    const palette = css(textColor);
+
+    expect(
+      palette({
+        theme: {
+          palette: {
+            primary: 'blue'
+          }
+        },
+        css: {
+          color: 'primary',
+          padding: 10,
+        },
+      }),
+    ).to.deep.equal({
+      padding: 10,
+      color: 'blue',
+    });
+  });
 });

@@ -15,12 +15,11 @@ function omit(input, fields) {
 
 function css(styleFunction) {
   const newStyleFunction = (props) => {
-    const output = styleFunction(props);
-
+    const output = styleFunction(props) || {};
     if (props.css) {
       return {
         ...merge(output, styleFunction({ theme: props.theme, ...props.css })),
-        ...omit(props.css, [styleFunction.filterProps]),
+        ...omit(props.css, styleFunction.filterProps),
       };
     }
 
