@@ -14,7 +14,6 @@ describe('<ToggleButton />', () => {
     render,
     muiName: 'MuiToggleButton',
     testVariantProps: { variant: 'foo' },
-    testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
     testStateOverrides: { prop: 'size', value: 'large', styleKey: 'sizeLarge' },
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'div',
