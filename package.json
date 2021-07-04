@@ -134,7 +134,7 @@
     "format-util": "^1.0.5",
     "fs-extra": "^10.0.0",
     "globby": "^11.0.1",
-    "html-webpack-plugin": "^4.5.0",
+    "html-webpack-plugin": "^5.0.0",
     "jsdom": "^16.0.0",
     "karma": "^5.0.1",
     "karma-browserstack-launcher": "~1.4.0",
