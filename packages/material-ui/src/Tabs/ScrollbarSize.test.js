@@ -22,7 +22,7 @@ describe('<ScrollbarSize />', () => {
       const onChange = spy();
       render(<ScrollbarSize onChange={onChange} />);
 
-      expect(onChange.callCount).to.equal(1);
+      expect(onChange.called).to.equal(true);
     });
   });
 
@@ -33,11 +33,12 @@ describe('<ScrollbarSize />', () => {
       stub(container.firstChild, 'offsetHeight').get(() => 20);
       stub(container.firstChild, 'clientHeight').get(() => 0);
 
-      expect(onChange.callCount).to.equal(1);
+      onChange.resetHistory();
+
       window.dispatchEvent(new window.Event('resize', {}));
       clock.tick(166);
-      expect(onChange.callCount).to.equal(2);
-      expect(onChange.args[1][0]).to.equal(20);
+      expect(onChange.callCount).to.equal(1);
+      expect(onChange.args[0][0]).to.equal(20);
     });
 
     it('should not call if height has not changed from previous resize', () => {
@@ -46,13 +47,14 @@ describe('<ScrollbarSize />', () => {
       stub(container.firstChild, 'offsetHeight').get(() => 20);
       stub(container.firstChild, 'clientHeight').get(() => 0);
 
+      onChange.resetHistory();
+
+      window.dispatchEvent(new window.Event('resize', {}));
+      clock.tick(166);
+      window.dispatchEvent(new window.Event('resize', {}));
+      clock.tick(166);
       expect(onChange.callCount).to.equal(1);
-      window.dispatchEvent(new window.Event('resize', {}));
-      clock.tick(166);
-      window.dispatchEvent(new window.Event('resize', {}));
-      clock.tick(166);
-      expect(onChange.callCount).to.equal(2);
-      expect(onChange.args[1][0]).to.equal(20);
+      expect(onChange.args[0][0]).to.equal(20);
     });
   });
 });

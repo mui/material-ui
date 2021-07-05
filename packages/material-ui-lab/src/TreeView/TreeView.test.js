@@ -172,6 +172,8 @@ describe('<TreeView />', () => {
 
     act(() => {
       getByRole('tree').focus();
+    });
+    act(() => {
       getByRole('tree').blur();
     });
 

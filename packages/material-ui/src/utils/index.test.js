@@ -67,13 +67,11 @@ describe('utils/index.js', () => {
     it('returns a single ref-setter function that forks the ref to its inputs', () => {
       function Component(props) {
         const { innerRef } = props;
-        const ownRef = React.useRef(null);
-        const [, forceUpdate] = React.useState(0);
-        React.useEffect(() => forceUpdate((n) => !n), []);
+        const [ownRefCurrent, ownRef] = React.useState(null);
 
         const handleRef = useForkRef(innerRef, ownRef);
 
-        return <div ref={handleRef}>{ownRef.current ? 'has a ref' : 'has no ref'}</div>;
+        return <div ref={handleRef}>{ownRefCurrent ? 'has a ref' : 'has no ref'}</div>;
       }
 
       const outerRef = React.createRef();

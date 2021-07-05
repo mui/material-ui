@@ -53,7 +53,10 @@ describe('<Menu />', () => {
           />,
         );
 
-        expect(handleEnter.callCount).to.equal(1);
+        expect(handleEnter.callCount).to.equal(
+          // onEnter is called on mount which is run twice with Strict Effects
+          React.version.startsWith('18') ? 2 : 1,
+        );
         expect(handleEnter.args[0].length).to.equal(2);
         expect(handleEntering.callCount).to.equal(1);
         expect(handleEntering.args[0].length).to.equal(2);

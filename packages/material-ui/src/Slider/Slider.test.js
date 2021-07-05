@@ -67,7 +67,9 @@ describe('<Slider />', () => {
     expect(handleChangeCommitted.callCount).to.equal(1);
     expect(handleChangeCommitted.args[0][1]).to.equal(10);
 
-    slider.focus();
+    act(() => {
+      slider.focus();
+    });
     fireEvent.change(slider, { target: { value: 23 } });
     expect(handleChange.callCount).to.equal(2);
     expect(handleChangeCommitted.callCount).to.equal(2);
@@ -172,8 +174,8 @@ describe('<Slider />', () => {
 
       act(() => {
         slider1.focus();
-        fireEvent.change(slider1, { target: { value: '21' } });
       });
+      fireEvent.change(slider1, { target: { value: '21' } });
 
       expect(slider1.getAttribute('aria-valuenow')).to.equal('21');
       expect(slider2.getAttribute('aria-valuenow')).to.equal('30');
@@ -188,8 +190,8 @@ describe('<Slider />', () => {
 
       act(() => {
         slider1.focus();
-        fireEvent.change(slider1, { target: { value: '31' } });
       });
+      fireEvent.change(slider1, { target: { value: '31' } });
 
       expect(slider1.getAttribute('aria-valuenow')).to.equal('31');
       expect(slider2.getAttribute('aria-valuenow')).to.equal('31');
@@ -197,8 +199,8 @@ describe('<Slider />', () => {
 
       act(() => {
         slider1.focus();
-        fireEvent.change(slider1, { target: { value: '32' } });
       });
+      fireEvent.change(slider1, { target: { value: '32' } });
 
       expect(slider1.getAttribute('aria-valuenow')).to.equal('31');
       expect(slider2.getAttribute('aria-valuenow')).to.equal('32');
@@ -959,11 +961,11 @@ describe('<Slider />', () => {
 
     act(() => {
       slider.focus();
-      fireEvent.change(slider, {
-        target: {
-          value: 4,
-        },
-      });
+    });
+    fireEvent.change(slider, {
+      target: {
+        value: 4,
+      },
     });
 
     expect(handleChange.callCount).to.equal(1);
@@ -1129,8 +1131,8 @@ describe('<Slider />', () => {
 
       act(() => {
         slider1.focus();
-        fireEvent.change(slider2, { target: { value: '19' } });
       });
+      fireEvent.change(slider2, { target: { value: '19' } });
       expect(handleChange.args[0][1]).to.deep.equal([20, 20]);
       expect(document.activeElement).to.have.attribute('data-index', '1');
     });

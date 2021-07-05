@@ -86,6 +86,8 @@ describe('<DesktopDatePicker />', () => {
         TransitionComponent={FakeTransitionComponent}
         renderInput={(params) => <TextField {...params} />}
       />,
+      // TODO: React18Compat
+      { legacyRoot: true },
     );
 
     act(() => {
