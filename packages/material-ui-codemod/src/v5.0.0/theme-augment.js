@@ -5,6 +5,7 @@
 
 const template = `
 declare module '@material-ui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   interface DefaultTheme extends Theme {}
 }
 `;
@@ -38,7 +39,7 @@ export default function transformer(file, api) {
         });
     }
 
-    if (!file.source.match(/declare module '@material-ui\/styles'/gm)) {
+    if (!file.source.match(/declare module ['"]@material-ui\/styles\/defaultTheme['"]/gm)) {
       root
         .find(j.ImportDeclaration)
         .at(-1)

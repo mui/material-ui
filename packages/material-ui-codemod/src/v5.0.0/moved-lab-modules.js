@@ -11,7 +11,6 @@ const movedLabModules = [
   'SpeedDialIcon',
   'ToggleButton',
   'ToggleButtonGroup',
-  'useAutocomplete',
 ];
 
 /**

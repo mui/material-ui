@@ -21,7 +21,6 @@ import transformSkeletonVariant from './skeleton-variant';
 import transformStyledEngineProvider from './styled-engine-provider';
 import transformThemeAugment from './theme-augment';
 import transformThemeBreakpointsWidth from './theme-breakpoints-width';
-import transformThemeBreakpoints from './theme-breakpoints';
 import transformThemeOptions from './theme-options';
 import transformThemePaletteMode from './theme-palette-mode';
 import transformThemeProvider from './theme-provider';
@@ -32,6 +31,7 @@ import transformTypes from './material-ui-types';
 import transformUseTransitionProps from './use-transitionprops';
 import transformVariantProp from './variant-prop';
 import transformWithWidth from './with-width';
+import transformUseAutocomplete from './use-autocomplete';
 
 /**
  * @param {import('jscodeshift').FileInfo} file
@@ -61,7 +61,6 @@ export default function transformer(file, api, options) {
   file.source = transformStyledEngineProvider(file, api, options);
   file.source = transformThemeAugment(file, api, options);
   file.source = transformThemeBreakpointsWidth(file, api, options);
-  file.source = transformThemeBreakpoints(file, api, options);
   file.source = transformThemeOptions(file, api, options);
   file.source = transformThemePaletteMode(file, api, options);
   file.source = transformThemeProvider(file, api, options);
@@ -72,6 +71,7 @@ export default function transformer(file, api, options) {
   file.source = transformUseTransitionProps(file, api, options);
   file.source = transformVariantProp(file, api, options);
   file.source = transformWithWidth(file, api, options);
+  file.source = transformUseAutocomplete(file, api, options);
 
   return file.source;
 }
