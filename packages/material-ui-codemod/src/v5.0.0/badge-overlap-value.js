@@ -18,7 +18,11 @@ export default function transformer(file, api) {
           }
         }
 
-        if (node.type === 'JSXAttribute' && node.name.name === 'classes') {
+        if (
+          node.type === 'JSXAttribute' &&
+          node.name.name === 'classes' &&
+          Array.isArray(node.value.expression.properties)
+        ) {
           node.value.expression.properties.forEach((subNode) => {
             if (subNode.key) {
               if (subNode.key.name.endsWith('Circle')) {

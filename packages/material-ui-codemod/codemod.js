@@ -41,6 +41,8 @@ async function runTransform(transform, files, flags, codemodFlags) {
     'js,ts,jsx,tsx',
     '--parser',
     'tsx',
+    '--ignore-pattern',
+    '**/node_modules/**',
   ];
   if (flags.dry) {
     args.push('--dry');

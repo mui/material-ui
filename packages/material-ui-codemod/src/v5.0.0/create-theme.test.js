@@ -53,6 +53,20 @@ describe('@material-ui/codemod', () => {
         const expected = read('./create-theme.test/core-import.expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+
+      it('existing custom createTheme', () => {
+        const actual = transform(
+          {
+            source: read('./create-theme.test/custom-fn.actual.js'),
+            path: require.resolve('./create-theme.test/custom-fn.actual.js'),
+          },
+          { jscodeshift: jscodeshift },
+          {},
+        );
+
+        const expected = read('./create-theme.test/custom-fn.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
     });
   });
 });
