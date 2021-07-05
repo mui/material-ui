@@ -3,7 +3,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 import theme from '../src/theme';
 
-// https://material-ui.com/styles/advanced/#next-js
+// https://next.material-ui.com/styles/advanced/#next-js
 export default class MyDocument extends Document {
   render() {
     return (
@@ -27,13 +27,13 @@ export default class MyDocument extends Document {
 
 // https://github.com/vercel/next.js/blob/master/examples/with-styled-components/pages/_document.js
 MyDocument.getInitialProps = async (ctx) => {
-  const scSheet = new ServerStyleSheet();
+  const sheet = new ServerStyleSheet();
   const originalRenderPage = ctx.renderPage;
 
   try {
     ctx.renderPage = () =>
       originalRenderPage({
-        enhanceApp: (App) => (props) => scSheet.collectStyles(<App {...props} />),
+        enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
       });
 
     const initialProps = await Document.getInitialProps(ctx);
@@ -42,11 +42,11 @@ MyDocument.getInitialProps = async (ctx) => {
       styles: (
         <React.Fragment>
           {initialProps.styles}
-          {scSheet.getStyleElement()}
+          {sheet.getStyleElement()}
         </React.Fragment>
       ),
     };
   } finally {
-    scSheet.seal();
+    sheet.seal();
   }
 };
