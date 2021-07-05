@@ -23,8 +23,7 @@ describe('<MobileDatePicker />', () => {
   afterEach(() => {
     clock.restore();
   });
-  // StrictModeViolation: Uses CalendarPicker
-  const render = createPickerRender({ strict: false });
+  const render = createPickerRender();
 
   it('Accepts date on `OK` button click', () => {
     const onChangeMock = spy();
