@@ -22,7 +22,7 @@ or:
 
 ## The idea behind the example
 
-The project uses [Next.js](https://github.com/zeit/next.js), which is a framework for server-rendered React apps. It includes `@material-ui/core` and its peer dependencies, including `emotion`, the default style engine in Material-UI v5. If you prefer, you can [use styled-components instead](https://next.material-ui.com/guides/interoperability/#styled-components).
+The project uses [Next.js](https://github.com/zeit/next.js), which is a framework for server-rendered React apps. It includes `@material-ui/core` and its peer dependencies, including `styled-components`, which is used instead of the default style engine in Material-UI v5.
 
 ## The link component
 

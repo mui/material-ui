@@ -1,6 +1,7 @@
 import React from 'react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import { ServerStyleSheets } from '@material-ui/styles';
 import theme from '../src/theme';
 
 // https://material-ui.com/styles/advanced/#next-js
@@ -27,26 +28,28 @@ export default class MyDocument extends Document {
 
 // https://github.com/vercel/next.js/blob/master/examples/with-styled-components/pages/_document.js
 MyDocument.getInitialProps = async (ctx) => {
-  const sheet = new ServerStyleSheet();
+  const scSheet = new ServerStyleSheet();
+  const muiSheet = new ServerStyleSheets();
   const originalRenderPage = ctx.renderPage;
 
   try {
     ctx.renderPage = () =>
       originalRenderPage({
-        enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
+        enhanceApp: (App) => (props) => scSheet.collectStyles(muiSheet.collect(<App {...props} />)),
       });
 
     const initialProps = await Document.getInitialProps(ctx);
     return {
       ...initialProps,
       styles: (
-        <>
+        <React.Fragment>
           {initialProps.styles}
-          {sheet.getStyleElement()}
-        </>
+          {muiSheet.getStyleElement()}
+          {scSheet.getStyleElement()}
+        </React.Fragment>
       ),
     };
   } finally {
-    sheet.seal();
+    scSheet.seal();
   }
 };
