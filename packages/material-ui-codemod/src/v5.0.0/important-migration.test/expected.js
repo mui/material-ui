@@ -180,7 +180,7 @@ const withThemeProvider = (Component) => (props) => {
     () =>
       createTheme(adaptV4Theme({
         palette: {
-          type: dark ? 'dark' : 'light',
+          mode: dark ? 'dark' : 'light',
         },
       })),
     [dark],

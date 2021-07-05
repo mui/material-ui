@@ -6,3 +6,11 @@ theme.palette.type = isDark ? 'dark' : 'light';
   }),
   boxShadow: `0 0 0 0.2rem ${Color(normalColor).fade(palette.type === 'dark' ? 0.48 : 0.75)}`,
 });
+{
+  palette: {
+    type: 'light';
+  }
+}
+{
+  palette: { type: 'light' }
+}
