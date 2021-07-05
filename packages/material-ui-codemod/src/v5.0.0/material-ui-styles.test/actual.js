@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020 ...
+ */
 import {
   createGenerateClassName,
   createStyles,

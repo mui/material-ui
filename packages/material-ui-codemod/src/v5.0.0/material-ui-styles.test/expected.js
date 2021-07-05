@@ -1,3 +1,6 @@
+/*
+ * Copyright 2020 ...
+ */
 import { ThemeProvider, styled } from '@material-ui/core/styles';
 import createGenerateClassName from '@material-ui/styles/createGenerateClassName';
 import createStyles from '@material-ui/styles/createStyles';
