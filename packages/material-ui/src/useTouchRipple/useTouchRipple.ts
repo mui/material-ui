@@ -3,36 +3,36 @@ import { TouchRippleActions } from '../ButtonBase/TouchRipple';
 import { useEventCallback } from '../utils';
 
 interface UseTouchRippleProps {
-  rippleRef: React.RefObject<TouchRippleActions>;
-  focusVisible: boolean;
   disabled: boolean;
+  disableFocusRipple?: boolean;
   disableRipple?: boolean;
   disableTouchRipple?: boolean;
-  disableFocusRipple?: boolean;
+  focusVisible: boolean;
+  rippleRef: React.RefObject<TouchRippleActions>;
 }
 
 interface RippleEventHandlers {
   onBlur: React.FocusEventHandler;
+  onContextMenu: React.MouseEventHandler;
+  onDragLeave: React.DragEventHandler;
   onKeyDown: React.KeyboardEventHandler;
   onKeyUp: React.KeyboardEventHandler;
   onMouseDown: React.MouseEventHandler;
-  onMouseUp: React.MouseEventHandler;
   onMouseLeave: React.MouseEventHandler;
-  onContextMenu: React.MouseEventHandler;
-  onDragLeave: React.DragEventHandler;
-  onTouchStart: React.TouchEventHandler;
+  onMouseUp: React.MouseEventHandler;
   onTouchEnd: React.TouchEventHandler;
   onTouchMove: React.TouchEventHandler;
+  onTouchStart: React.TouchEventHandler;
 }
 
 const useTouchRipple = (props: UseTouchRippleProps) => {
   const {
-    rippleRef,
-    focusVisible,
     disabled,
-    disableRipple,
     disableFocusRipple,
+    disableRipple,
     disableTouchRipple,
+    focusVisible,
+    rippleRef,
   } = props;
 
   React.useEffect(() => {

@@ -27,12 +27,12 @@ export interface SwitchInputProps {
   checked?: boolean;
   defaultChecked?: boolean;
   disabled?: boolean;
-  readOnly?: boolean;
-  required?: boolean;
+  onBlur: React.FocusEventHandler;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   onFocus: React.FocusEventHandler;
-  onBlur: React.FocusEventHandler;
+  readOnly?: boolean;
   ref: React.Ref<any>;
+  required?: boolean;
 }
 
 export interface UseSwitchProps {
