@@ -7,9 +7,7 @@ import Container from '@material-ui/core/Container';
 import Steps from 'docs/src/pages/landing/Steps';
 import Themes from 'docs/src/pages/landing/Themes';
 import QuickWord from 'docs/src/pages/landing/QuickWord';
-import Sponsors, {
-  getInitialProps as getInitialSponsorsProps,
-} from 'docs/src/pages/landing/Sponsors';
+import Sponsors from 'docs/src/pages/landing/Sponsors';
 import Users from 'docs/src/pages/landing/Users';
 import Quotes from 'docs/src/pages/landing/Quotes';
 import Pro from 'docs/src/pages/landing/Pro';
@@ -86,15 +84,7 @@ const Social = styled('div')(({ theme }) => ({
   },
 }));
 
-interface LandingPageProps {
-  sponsorsProps: {
-    docs: object;
-  };
-}
-
-export default function LandingPage(props: LandingPageProps) {
-  const { sponsorsProps } = props;
-
+export default function LandingPage() {
   React.useEffect(() => {
     loadDependencies();
   }, []);
@@ -160,7 +150,7 @@ export default function LandingPage(props: LandingPageProps) {
           <QuickWord />
           <Steps />
           <Themes />
-          <Sponsors {...sponsorsProps} />
+          <Sponsors />
           <Quotes />
           <Users />
         </main>
@@ -189,9 +179,3 @@ export default function LandingPage(props: LandingPageProps) {
     </AppFrame>
   );
 }
-
-LandingPage.getInitialProps = async () => {
-  return {
-    sponsorsProps: await getInitialSponsorsProps(),
-  };
-};
