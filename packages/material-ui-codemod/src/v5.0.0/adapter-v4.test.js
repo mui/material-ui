@@ -53,6 +53,20 @@ describe('@material-ui/codemod', () => {
         const expected = read('./adapter-v4.test/core-import.expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+
+      it('works with other path import', () => {
+        const actual = transform(
+          {
+            source: read('./adapter-v4.test/no-styles-import.actual.js'),
+            path: require.resolve('./adapter-v4.test/no-styles-import.actual.js'),
+          },
+          { jscodeshift: jscodeshift },
+          {},
+        );
+
+        const expected = read('./adapter-v4.test/no-styles-import.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
     });
   });
 });

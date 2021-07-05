@@ -55,7 +55,7 @@ export default function transformer(file, api) {
    * Add `adaptV4Theme` if called from above and not existed
    */
   if (adaptV4Called) {
-    root
+    const size = root
       .find(j.ImportDeclaration)
       .filter(({ node }) => node.source.value.match(/^@material-ui\/core\/?(styles)?$/))
       .at(0)
@@ -63,8 +63,23 @@ export default function transformer(file, api) {
         if (!node.specifiers.find(({ imported }) => imported.name === 'adaptV4Theme')) {
           node.specifiers = [...node.specifiers, j.importSpecifier(j.identifier('adaptV4Theme'))];
         }
-      });
+      })
+      .size();
+    if (!size) {
+      // create import
+      root
+        .find(j.ImportDeclaration)
+        .at(0)
+        .forEach((path) => {
+          path.insertAfter(
+            j.importDeclaration(
+              [j.importSpecifier(j.identifier('adaptV4Theme'))],
+              j.literal('@material-ui/core/styles'),
+            ),
+          );
+        });
+    }
   }
 
-  return root.toSource();
+  return root.toSource({ quote: 'single' });
 }
