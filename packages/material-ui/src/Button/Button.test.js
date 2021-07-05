@@ -321,8 +321,8 @@ describe('<Button />', () => {
     );
     const button = getByRole('button');
 
+    fireEvent.keyDown(document.body, { key: 'TAB' });
     act(() => {
-      fireEvent.keyDown(document.body, { key: 'TAB' });
       button.focus();
     });
 

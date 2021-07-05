@@ -201,8 +201,11 @@ describe('<SpeedDial />', () => {
       const fab = getByRole('button');
       act(() => {
         fab.focus();
+      });
+      act(() => {
         clock.tick();
       });
+
       expect(handleOpen.callCount).to.equal(1);
       const actions = getAllByRole('menuitem');
       expect(actions.length).to.equal(2);
@@ -224,6 +227,8 @@ describe('<SpeedDial />', () => {
 
       act(() => {
         fab.focus();
+      });
+      act(() => {
         clock.runAll();
       });
 

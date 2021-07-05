@@ -132,11 +132,11 @@ describe('<Select> integration', () => {
         </FormControl>,
       );
 
+      const trigger = getByRole('button');
       act(() => {
-        const trigger = getByRole('button');
         trigger.focus();
-        fireEvent.keyDown(trigger, { key: 'Enter' });
       });
+      fireEvent.keyDown(trigger, { key: 'Enter' });
 
       expect(getByTestId('label')).to.have.class('focused-label');
     });

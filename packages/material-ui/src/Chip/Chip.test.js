@@ -404,7 +404,10 @@ describe('<Chip />', () => {
         const handleKeyDown = spy();
         const { container } = render(<Chip label={<input />} onKeyDown={handleKeyDown} />);
         const input = container.querySelector('input');
-        input.focus();
+
+        act(() => {
+          input.focus();
+        });
         fireEvent.keyDown(input, { key: 'Backspace' });
 
         expect(handleKeyDown.callCount).to.equal(1);
@@ -553,7 +556,9 @@ describe('<Chip />', () => {
 
       expect(chip).not.to.have.class(classes.focusVisible);
 
-      chip.focus();
+      act(() => {
+        chip.focus();
+      });
 
       if (programmaticFocusTriggersFocusVisible()) {
         expect(chip).to.have.class(classes.focusVisible);

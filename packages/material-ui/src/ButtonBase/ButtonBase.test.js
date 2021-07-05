@@ -234,7 +234,9 @@ describe('<ButtonBase />', () => {
       fireEvent.click(button);
       expect(onClick.callCount).to.equal(1);
 
-      button.focus();
+      act(() => {
+        button.focus();
+      });
       expect(onFocus.callCount).to.equal(1);
 
       fireEvent.keyDown(button);
@@ -243,7 +245,9 @@ describe('<ButtonBase />', () => {
       fireEvent.keyUp(button);
       expect(onKeyUp.callCount).to.equal(1);
 
-      button.blur();
+      act(() => {
+        button.blur();
+      });
       expect(onBlur.callCount).to.equal(1);
 
       fireEvent.mouseLeave(button);
@@ -775,7 +779,9 @@ describe('<ButtonBase />', () => {
 
       expect(button).not.to.have.class(classes.focusVisible);
 
-      button.focus();
+      act(() => {
+        button.focus();
+      });
 
       if (programmaticFocusTriggersFocusVisible()) {
         expect(button).to.have.class(classes.focusVisible);
