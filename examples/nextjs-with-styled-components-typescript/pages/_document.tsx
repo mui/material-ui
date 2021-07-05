@@ -29,13 +29,14 @@ export default class MyDocument extends Document {
 // https://github.com/vercel/next.js/blob/master/examples/with-styled-components/pages/_document.js
 MyDocument.getInitialProps = async (ctx) => {
   const scSheet = new ServerStyleSheet();
-  const muiSheet = new ServerStyleSheets();
+  const muiSheets = new ServerStyleSheets();
   const originalRenderPage = ctx.renderPage;
 
   try {
     ctx.renderPage = () =>
       originalRenderPage({
-        enhanceApp: (App) => (props) => scSheet.collectStyles(muiSheet.collect(<App {...props} />)),
+        enhanceApp: (App) => (props) =>
+          scSheet.collectStyles(muiSheets.collect(<App {...props} />)),
       });
 
     const initialProps = await Document.getInitialProps(ctx);
@@ -44,7 +45,7 @@ MyDocument.getInitialProps = async (ctx) => {
       styles: (
         <React.Fragment>
           {initialProps.styles}
-          {muiSheet.getStyleElement()}
+          {muiSheets.getStyleElement()}
           {scSheet.getStyleElement()}
         </React.Fragment>
       ),
