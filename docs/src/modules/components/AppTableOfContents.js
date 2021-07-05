@@ -11,9 +11,9 @@ import PageContext from 'docs/src/modules/components/PageContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    top: 70,
+    top: 100,
     // Fix IE 11 position sticky issue.
-    marginTop: 70,
+    marginTop: 100,
     width: 175,
     flexShrink: 0,
     position: 'sticky',

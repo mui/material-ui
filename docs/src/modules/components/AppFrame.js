@@ -144,9 +144,10 @@ const styles = (theme) => ({
   },
   banner: {
     display: 'block',
-    padding: 4,
+    padding: 8,
     textAlign: 'center',
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor:
+      theme.palette.type === 'dark' ? theme.palette.background.paper : theme.palette.primary.dark,
     color: 'white',
   },
   bannerLink: {
@@ -216,7 +217,7 @@ function AppFrame(props) {
       </MuiLink>
       <MarkdownLinks />
       <AppBar className={appBarClassName}>
-        <Typography className={classes.banner} noWrap>
+        <Typography variant="body2" className={classes.banner} noWrap>
           {t('v5IsOut')}{' '}
           <Link color="inherit" className={classes.bannerLink} href="http://next.material-ui.com">
             {t('v5docsLink')}
