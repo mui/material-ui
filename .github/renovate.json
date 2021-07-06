@@ -79,11 +79,7 @@
       }
     }
   ],
-  "postUpgradeTasks": {
-    "commands": ["deduplicate"],
-    "fileFilters": ["yarn.lock"],
-    "executionMode": "branch"
-  },
+  "postUpdateOptions": ["yarnDedupeHighest"],
   "prConcurrentLimit": 30,
   "prHourlyLimit": 0,
   "schedule": "on sunday before 6:00am",
