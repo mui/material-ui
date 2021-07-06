@@ -4,7 +4,7 @@
 
 _July 6, 2021_
 
-Big thanks to the 10 contributors who made this release possible. It includes deprecations that should help developers to have an easier adoption of v5.
+Big thanks to the 12 contributors who made this release possible. It includes deprecations that should help developers to have an easier adoption of v5.
 
 ### @material-ui/core@4.12.0
 
@@ -40,6 +40,18 @@ Big thanks to the 10 contributors who made this release possible. It includes de
 ### @material-ui/system@4.12.0
 
 - [Box] Deprecate css prop in favor of sx (#23480) @mnajdova
+
+### Docs
+
+- [blog] Michał Dudak joins Material-UI (#26700)
+- [blog] Siriwat Kunaporn joins Material-UI (#26329) @oliviertassinari
+- [docs] Add gold sponsor (#26968)
+- [docs] Add v5 banner (#27070)
+- [docs] Fix 404 link (Evergreen Box) (#26430) @k-utsumi
+- [docs] Prepare for data grid auto-generated docs (#26477) @m4theushw
+- [docs] Update typography.md to non-deprecated fontsource (#26082) @kiwimahk
+- [website] Add careers page for intern (#26280) @mnajdova
+- [website] Add open application section (#26501) @oliviertassinari
 
 ### Core
 
