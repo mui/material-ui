@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/benchmark",
-  "version": "4.1.0",
+  "version": "4.0.0",
   "private": true,
   "description": "Material-UI Benchmark.",
   "repository": {
