@@ -18,7 +18,7 @@
     "size": {
       "type": {
         "name": "union",
-        "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+        "description": "'standard'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
       "default": "'medium'"
     },
