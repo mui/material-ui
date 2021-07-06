@@ -9,6 +9,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import MuiLink from '@material-ui/core/Link';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -141,6 +142,17 @@ const styles = (theme) => ({
       display: 'none',
     },
   },
+  banner: {
+    display: 'block',
+    padding: 8,
+    textAlign: 'center',
+    backgroundColor:
+      theme.palette.type === 'dark' ? theme.palette.background.paper : theme.palette.primary.dark,
+    color: 'white',
+  },
+  bannerLink: {
+    textDecoration: 'underline',
+  },
 });
 
 function AppFrame(props) {
@@ -205,6 +217,13 @@ function AppFrame(props) {
       </MuiLink>
       <MarkdownLinks />
       <AppBar className={appBarClassName}>
+        <Typography variant="body2" className={classes.banner} noWrap>
+          {t('v5IsOut')}{' '}
+          <Link color="inherit" className={classes.bannerLink} href="http://next.material-ui.com">
+            {t('v5docsLink')}
+          </Link>{' '}
+          {t('v5startAdoption')}
+        </Typography>
         <Toolbar>
           <IconButton
             edge="start"
