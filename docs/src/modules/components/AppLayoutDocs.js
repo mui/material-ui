@@ -16,6 +16,7 @@ import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    display: 'flex',
     width: '100%',
   },
   container: {
@@ -37,12 +38,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   toc: {
-    [theme.breakpoints.up('sm')]: {
-      width: 'calc(100% - 175px)',
-    },
-    [theme.breakpoints.up('lg')]: {
-      width: 'calc(100% - 175px - 240px)',
-    },
+    width: 'calc(100% - 175px)',
   },
   disableToc: {
     [theme.breakpoints.up('lg')]: {
@@ -76,24 +72,26 @@ function AppLayoutDocs(props) {
             <Ad placement="body" />
           </AdGuest>
         )}
-        <div
-          className={clsx(classes.root, {
-            [classes.ad]: !disableAd,
-            [classes.toc]: !disableToc,
-            [classes.disableToc]: disableToc,
-          })}
-        >
-          <AppContainer className={classes.container}>
-            <div className={classes.actions}>
-              {location && <EditPage markdownLocation={location} />}
-            </div>
-            {children}
-            <NoSsr>
-              <AppLayoutDocsFooter />
-            </NoSsr>
-          </AppContainer>
-        </div>
-        {disableToc ? null : <AppTableOfContents items={toc} />}
+        <main className={classes.root}>
+          <div
+            className={clsx({
+              [classes.ad]: !disableAd,
+              [classes.toc]: !disableToc,
+              [classes.disableToc]: disableToc,
+            })}
+          >
+            <AppContainer className={classes.container}>
+              <div className={classes.actions}>
+                {location && <EditPage markdownLocation={location} />}
+              </div>
+              {children}
+              <NoSsr>
+                <AppLayoutDocsFooter />
+              </NoSsr>
+            </AppContainer>
+          </div>
+          {disableToc ? null : <AppTableOfContents items={toc} />}
+        </main>
       </AdManager>
     </AppFrame>
   );
