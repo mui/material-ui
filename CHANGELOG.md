@@ -1,5 +1,62 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.12.0
+
+_July 6, 2021_
+
+Big thanks to the 12 contributors who made this release possible. It includes deprecations that should help developers to have an easier adoption of v5.
+
+### @material-ui/core@4.12.0
+
+- [Accordion] Deprecate classes.focused (#24083) @oliviertassinari
+- [Avatar] Change default variant and adjust deprecation message (#25549) @michal-perlakowski
+- [Badge] Add overlap circular and rectangular (#22076) @eps1lon
+- [ButtonBase] Add warning for buttonRef removal (#25897) @m4theushw
+- [Collapse] Deprecate classes.container (#24084) @oliviertassinari
+- [Collapse] Deprecate collapsedHeight (#24079) @oliviertassinari
+- [Dialog] Add deprecation warning for withMobileDialog (#23570) @RDIL
+- [Dialog] Deprecate the transition onX props (#22114) @mbrookes
+- [Fab] Deprecate variant="round" (#24080) @oliviertassinari
+- [Grid] Add deprecation for justify prop rename (#24078) @oliviertassinari
+- [Grid] Fix justifyContent="flex-start" prop types (#24788) @DukeManh
+- [GridList] Rename to ImageList & add deprecation warnings (#22363) @mbrookes
+- [Icons] Deprecate fontSize value of default, add medium (#23971) @mbrookes
+- [Menu] Deprecate transition onX props (#22213) @mbrookes
+- [Modal][Dialog] Deprecate duplicate props with onChange (#24081) @oliviertassinari
+- [Modal][Portal] Deprecate onRendered (#24082) @oliviertassinari
+- [Popover] Deprecate transition onX props (#22202) @mbrookes
+- [RootRef] Deprecate component (#24075) @oliviertassinari
+- [Snackbar] Deprecate transition onX props (#22206) @mbrookes
+- [Table] Add deprecation for renamed TablePagination props (#23789) @mnajdova
+- [Table] Deprecate padding="default" (#25990) @m4theushw
+- [TextareaAutosize] Deprecate rowsMax->maxRows & rowsMin->minRows (#23530) @mhayk
+- [TextField] Add isRequired to position prop in InputAdornment (#25912) @m4theushw
+- [theme] Deprecate theme.mixins.gutters (#22245) @joshwooding
+- [theme] Deprecate fade color utility in favor of alpha (#22837) @mnajdova
+- [theme] Deprecate createMuiTheme (#26004) @m4theushw
+- [theme] Add warning for theme.typography.round deprecation (#25916) @m4theushw
+- [theme] Add warning for theme.breakpoints.width deprecation (#25993) @m4theushw
+
+### @material-ui/system@4.12.0
+
+- [Box] Deprecate css prop in favor of sx (#23480) @mnajdova
+
+### Docs
+
+- [blog] Michał Dudak joins Material-UI (#26700)
+- [blog] Siriwat Kunaporn joins Material-UI (#26329) @oliviertassinari
+- [docs] Add gold sponsor (#26968)
+- [docs] Add v5 banner (#27070)
+- [docs] Fix 404 link (Evergreen Box) (#26430) @k-utsumi
+- [docs] Prepare for data grid auto-generated docs (#26477) @m4theushw
+- [docs] Update typography.md to non-deprecated fontsource (#26082) @kiwimahk
+- [website] Add careers page for intern (#26280) @mnajdova
+- [website] Add open application section (#26501) @oliviertassinari
+
+### Core
+
+- [test] Deprecate test-utils (#24099) @eps1lon
+
 ## 4.11.4
 
 <!-- generated comparing v4.11.3..master -->
