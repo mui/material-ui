@@ -262,7 +262,7 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['inherit', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
+    PropTypes.oneOf(['inherit', 'primary', 'secondary']),
     PropTypes.string,
   ]),
   /**

@@ -251,7 +251,7 @@ ToggleButton.propTypes /* remove-proptypes */ = {
    * @default 'medium'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['large', 'medium', 'small']),
+    PropTypes.oneOf(['standard', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
