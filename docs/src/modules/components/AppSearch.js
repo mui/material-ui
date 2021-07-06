@@ -1,10 +1,8 @@
 import * as React from 'react';
 import url from 'url';
-import clsx from 'clsx';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { makeStyles } from '@material-ui/styles';
-import { alpha, useTheme } from '@material-ui/core/styles';
+import { alpha, styled, useTheme } from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
 import SearchIcon from '@material-ui/icons/Search';
 import { handleEvent } from 'docs/src/modules/components/MarkdownLinks';
@@ -12,8 +10,12 @@ import docsearch from 'docsearch.js';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
-const useStyles = makeStyles(
-  (theme) => ({
+const StyledInput = styled(Input)({
+  color: 'inherit',
+});
+
+const RootDiv = styled('div')(({ theme }) => {
+  return {
     '@global': {
       '.algolia-autocomplete': {
         '& .ds-dropdown-menu': {
@@ -73,64 +75,58 @@ const useStyles = makeStyles(
         },
       },
     },
-    root: {
-      fontFamily: theme.typography.fontFamily,
-      position: 'relative',
-      marginRight: theme.spacing(2),
-      marginLeft: theme.spacing(1),
-      borderRadius: theme.shape.borderRadius,
-      backgroundColor: alpha(theme.palette.common.white, 0.15),
-      '&:hover': {
-        backgroundColor: alpha(theme.palette.common.white, 0.25),
-      },
-      '& $inputInput': {
-        transition: theme.transitions.create('width'),
-        width: 140,
-        '&:focus': {
-          width: 170,
-        },
-      },
-    },
-    search: {
-      width: theme.spacing(9),
-      height: '100%',
-      position: 'absolute',
-      pointerEvents: 'none',
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
       display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
     },
-    inputRoot: {
-      color: 'inherit',
+    fontFamily: theme.typography.fontFamily,
+    position: 'relative',
+    marginRight: theme.spacing(2),
+    marginLeft: theme.spacing(1),
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
-    inputInput: {
-      padding: theme.spacing(1, 1, 1, 9),
+  };
+});
+
+const SearchDiv = styled('div')(({ theme }) => {
+  return {
+    width: theme.spacing(9),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  };
+});
+
+const Shortcut = styled('div')(({ theme }) => {
+  return {
+    fontSize: theme.typography.pxToRem(13),
+    lineHeight: '21px',
+    color: alpha(theme.palette.common.white, 0.8),
+    border: `1px solid ${alpha(theme.palette.common.white, 0.4)}`,
+    backgroundColor: alpha(theme.palette.common.white, 0.1),
+    padding: theme.spacing(0, 0.5),
+    position: 'absolute',
+    right: theme.spacing(1),
+    height: 23,
+    top: 'calc(50% - 11px)',
+    borderRadius: theme.shape.borderRadius,
+    transition: theme.transitions.create('opacity', {
+      duration: theme.transitions.duration.shortest,
+    }),
+    // So that clicks target the input.
+    // Makes the text non selectable but neither is the placeholder or adornment.
+    pointerEvents: 'none',
+    '&.Mui-focused': {
+      opacity: 0,
     },
-    shortcut: {
-      fontSize: theme.typography.pxToRem(13),
-      lineHeight: '21px',
-      color: alpha(theme.palette.common.white, 0.8),
-      border: `1px solid ${alpha(theme.palette.common.white, 0.4)}`,
-      backgroundColor: alpha(theme.palette.common.white, 0.1),
-      padding: theme.spacing(0, 0.5),
-      position: 'absolute',
-      right: theme.spacing(1),
-      height: 23,
-      top: 'calc(50% - 11px)',
-      borderRadius: theme.shape.borderRadius,
-      transition: theme.transitions.create('opacity', {
-        duration: theme.transitions.duration.shortest,
-      }),
-      // So that clicks target the input.
-      // Makes the text non selectable but neither is the placeholder or adornment.
-      pointerEvents: 'none',
-      '&.Mui-focused': {
-        opacity: 0,
-      },
-    },
-  }),
-  { name: 'AppSearch' },
-);
+  };
+});
 
 /**
  * When using this component it is recommend to include a preload link
@@ -138,7 +134,6 @@ const useStyles = makeStyles(
  * to potentially reduce load times
  */
 export default function AppSearch() {
-  const classes = useStyles();
   const inputRef = React.useRef(null);
   const [focused, setFocused] = React.useState(false);
   const theme = useTheme();
@@ -244,11 +239,11 @@ export default function AppSearch() {
   const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
 
   return (
-    <div className={classes.root} style={{ display: desktop ? 'flex' : 'none' }}>
-      <div className={classes.search}>
+    <RootDiv>
+      <SearchDiv>
         <SearchIcon />
-      </div>
-      <Input
+      </SearchDiv>
+      <StyledInput
         disableUnderline
         placeholder={`${t('algoliaSearch')}…`}
         inputProps={{
@@ -263,15 +258,24 @@ export default function AppSearch() {
         onBlur={() => {
           setFocused(false);
         }}
-        classes={{
-          root: classes.inputRoot,
-          input: classes.inputInput,
+        componentsProps={{
+          input: {
+            sx: {
+              padding: 1,
+              paddingLeft: 9,
+              transition: theme.transitions.create('width'),
+              width: 140,
+              '&:focus': {
+                width: 170,
+              },
+            },
+          },
         }}
       />
-      <div className={clsx(classes.shortcut, { 'Mui-focused': focused })}>
+      <Shortcut className={focused && 'Mui-focused'}>
         {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
         {macOS ? '⌘' : 'Ctrl+'}K
-      </div>
-    </div>
+      </Shortcut>
+    </RootDiv>
   );
 }

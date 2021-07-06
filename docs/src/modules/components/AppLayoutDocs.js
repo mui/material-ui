@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/styles';
+import { styled } from '@material-ui/core/styles';
 import { exactProp } from '@material-ui/utils';
 import NoSsr from '@material-ui/core/NoSsr';
 import Head from 'docs/src/modules/components/Head';
@@ -14,42 +13,47 @@ import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
+const RootDiv = styled('div', {
+  shouldForwardProp: (prop) => prop !== 'disableAd' && prop !== 'disableToc',
+})(({ disableAd, disableToc, theme }) => {
+  return {
     width: '100%',
-  },
-  container: {
-    position: 'relative',
-  },
-  actions: {
-    position: 'absolute',
-    right: 16,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-end',
-  },
-  ad: {
-    '& .description': {
-      marginBottom: 198,
-    },
-    '& .description.ad': {
-      marginBottom: 40,
-    },
-  },
-  toc: {
-    [theme.breakpoints.up('sm')]: {
-      width: 'calc(100% - 175px)',
-    },
-    [theme.breakpoints.up('lg')]: {
-      width: 'calc(100% - 175px - 240px)',
-    },
-  },
-  disableToc: {
-    [theme.breakpoints.up('lg')]: {
-      marginRight: '5%',
-    },
-  },
-}));
+    ...(!disableAd && {
+      '& .description': {
+        marginBottom: 198,
+      },
+      '& .description.ad': {
+        marginBottom: 40,
+      },
+    }),
+    ...(disableToc
+      ? {
+          [theme.breakpoints.up('lg')]: {
+            marginRight: '5%',
+          },
+        }
+      : {
+          [theme.breakpoints.up('sm')]: {
+            width: 'calc(100% - 175px)',
+          },
+          [theme.breakpoints.up('lg')]: {
+            width: 'calc(100% - 175px - 240px)',
+          },
+        }),
+  };
+});
+
+const StyledAppContainer = styled(AppContainer)({
+  position: 'relative',
+});
+
+const ActionsDiv = styled('div')({
+  position: 'absolute',
+  right: 16,
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-end',
+});
 
 function AppLayoutDocs(props) {
   const {
@@ -61,7 +65,6 @@ function AppLayoutDocs(props) {
     title,
     toc,
   } = props;
-  const classes = useStyles();
 
   if (description === undefined) {
     throw new Error('Missing description in the page');
@@ -76,23 +79,15 @@ function AppLayoutDocs(props) {
             <Ad placement="body" />
           </AdGuest>
         )}
-        <div
-          className={clsx(classes.root, {
-            [classes.ad]: !disableAd,
-            [classes.toc]: !disableToc,
-            [classes.disableToc]: disableToc,
-          })}
-        >
-          <AppContainer className={classes.container}>
-            <div className={classes.actions}>
-              {location && <EditPage markdownLocation={location} />}
-            </div>
+        <RootDiv>
+          <StyledAppContainer>
+            <ActionsDiv>{location && <EditPage markdownLocation={location} />}</ActionsDiv>
             {children}
             <NoSsr>
               <AppLayoutDocsFooter />
             </NoSsr>
-          </AppContainer>
-        </div>
+          </StyledAppContainer>
+        </RootDiv>
         {disableToc ? null : <AppTableOfContents items={toc} />}
       </AdManager>
     </AppFrame>
