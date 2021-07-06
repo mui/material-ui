@@ -50,7 +50,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/styles": "^4.12.0",
+    "@material-ui/styles": "^4.11.4",
     "@material-ui/system": "^4.12.0",
     "@material-ui/types": "5.1.0",
     "@material-ui/utils": "^4.11.2",
