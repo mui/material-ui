@@ -24,7 +24,7 @@ export type ToggleButtonTypeMap<
      * The color of the button when it is in an active state.
      * @default 'standard'
      */
-    color?: 'standard' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
+    color?: 'standard' | 'primary' | 'secondary';
     /**
      * If `true`, the component is disabled.
      * @default false
