@@ -8,7 +8,7 @@ Big thanks to the 10 contributors who made this release possible. This will be t
 
 ### @material-ui/core@4.12.0
 
-[Accordion] Deprecate classes.focused (#24083) @oliviertassinari
+- [Accordion] Deprecate classes.focused (#24083) @oliviertassinari
 [Avatar] Change default variant and adjust deprecation message (#25549) @michal-perlakowski
 [Badge] Add overlap circular and rectangular (#22076) @eps1lon
 [ButtonBase] Add warning for buttonRef removal (#25897) @m4theushw
