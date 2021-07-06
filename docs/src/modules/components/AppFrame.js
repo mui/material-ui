@@ -295,7 +295,7 @@ function AppFrame(props) {
         onOpen={handleNavDrawerOpen}
         mobileOpen={mobileOpen}
       />
-      {children}
+      <React.Suspense fallback={null}>{children}</React.Suspense>
       <AppSettingsDrawer onClose={handleSettingsDrawerClose} open={settingsOpen} />
     </div>
   );
