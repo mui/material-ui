@@ -9,7 +9,7 @@ const styles = (theme) => ({
     color: theme.palette.text.primary,
     wordBreak: 'break-word',
     '& .anchor-link': {
-      marginTop: -96, // Offset for the anchor.
+      marginTop: -(96 + 36), // Offset for the anchor.
       position: 'absolute',
     },
     '& pre': {

@@ -48,7 +48,7 @@ function findIndex(array, comp) {
 const styles = (theme) => ({
   root: {
     width: '100%',
-    paddingTop: 30,
+    paddingTop: 36,
   },
   container: {
     position: 'relative',

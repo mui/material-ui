@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 const useStyles = makeStyles(
   (theme) => ({
     root: {
-      marginTop: 30,
+      marginTop: 36,
       padding: theme.spacing(1, 2, 1, 2),
       right: 0,
       left: 0,

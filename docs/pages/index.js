@@ -39,7 +39,7 @@ const useStyles = makeStyles(
       flex: '1 0 100%',
     },
     hero: {
-      paddingTop: theme.spacing(8) + 30,
+      paddingTop: theme.spacing(8) + 36,
       color: theme.palette.primary.main,
     },
     content: {
