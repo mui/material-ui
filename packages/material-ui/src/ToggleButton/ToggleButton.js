@@ -22,7 +22,6 @@ const useUtilityClasses = (styleProps) => {
       `size${capitalize(size)}`,
       color,
     ],
-    label: ['label'],
   };
 
   return composeClasses(slots, getToggleButtonUtilityClass, classes);
@@ -36,91 +35,58 @@ const ToggleButtonRoot = styled(ButtonBase, {
 
     return [styles.root, styles[`size${capitalize(styleProps.size)}`]];
   },
-})(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
-  ...theme.typography.button,
-  borderRadius: theme.shape.borderRadius,
-  padding: 11,
-  border: `1px solid ${theme.palette.divider}`,
-  color: theme.palette.action.active,
-  /* Styles applied to the root element if `fullWidth={true}`. */
-  ...(styleProps.fullWidth && {
-    width: '100%',
-  }),
-  [`&.${toggleButtonClasses.disabled}`]: {
-    color: theme.palette.action.disabled,
-    border: `1px solid ${theme.palette.action.disabledBackground}`,
-  },
-  '&:hover': {
-    textDecoration: 'none',
-    // Reset on mouse devices
-    backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
-    '@media (hover: none)': {
-      backgroundColor: 'transparent',
+})(({ theme, styleProps }) => {
+  const selectedColor =
+    styleProps.color === 'standard'
+      ? theme.palette.text.primary
+      : theme.palette[styleProps.color].main;
+  return {
+    ...theme.typography.button,
+    borderRadius: theme.shape.borderRadius,
+    padding: 11,
+    border: `1px solid ${theme.palette.divider}`,
+    color: theme.palette.action.active,
+    /* Styles applied to the root element if `fullWidth={true}`. */
+    ...(styleProps.fullWidth && {
+      width: '100%',
+    }),
+    [`&.${toggleButtonClasses.disabled}`]: {
+      color: theme.palette.action.disabled,
+      border: `1px solid ${theme.palette.action.disabledBackground}`,
     },
-  },
-  /* Styles applied to the root element if `color="standard"`. */
-  ...(styleProps.color === 'standard' && {
+    '&:hover': {
+      textDecoration: 'none',
+      // Reset on mouse devices
+      backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+    },
     [`&.${toggleButtonClasses.selected}`]: {
-      color: theme.palette.text.primary,
-      backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.selectedOpacity),
+      color: selectedColor,
+      backgroundColor: alpha(selectedColor, theme.palette.action.selectedOpacity),
       '&:hover': {
         backgroundColor: alpha(
-          theme.palette.text.primary,
+          selectedColor,
           theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
         ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.selectedOpacity),
+          backgroundColor: alpha(selectedColor, theme.palette.action.selectedOpacity),
         },
       },
     },
-  }),
-  /* Styles applied to the root element if `color!="standard"`. */
-  ...(styleProps.color !== 'standard' && {
-    [`&.${toggleButtonClasses.selected}`]: {
-      color: theme.palette[styleProps.color].main,
-      backgroundColor: alpha(
-        theme.palette[styleProps.color].main,
-        theme.palette.action.selectedOpacity,
-      ),
-      '&:hover': {
-        backgroundColor: alpha(
-          theme.palette[styleProps.color].main,
-          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-        ),
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: alpha(
-            theme.palette[styleProps.color].main,
-            theme.palette.action.selectedOpacity,
-          ),
-        },
-      },
-    },
-  }),
-  /* Styles applied to the root element if `size="small"`. */
-  ...(styleProps.size === 'small' && {
-    padding: 7,
-    fontSize: theme.typography.pxToRem(13),
-  }),
-  /* Styles applied to the root element if `size="large"`. */
-  ...(styleProps.size === 'large' && {
-    padding: 15,
-    fontSize: theme.typography.pxToRem(15),
-  }),
-}));
-
-const ToggleButtonLabel = styled('span', {
-  name: 'MuiToggleButton',
-  slot: 'Label',
-  overridesResolver: (props, styles) => styles.label,
-})({
-  /* Styles applied to the label wrapper element. */
-  width: '100%', // Ensure the correct width for iOS Safari
-  display: 'inherit',
-  alignItems: 'inherit',
-  justifyContent: 'inherit',
+    /* Styles applied to the root element if `size="small"`. */
+    ...(styleProps.size === 'small' && {
+      padding: 7,
+      fontSize: theme.typography.pxToRem(13),
+    }),
+    /* Styles applied to the root element if `size="large"`. */
+    ...(styleProps.size === 'large' && {
+      padding: 15,
+      fontSize: theme.typography.pxToRem(15),
+    }),
+  };
 });
 
 const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
@@ -178,9 +144,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
       aria-pressed={selected}
       {...other}
     >
-      <ToggleButtonLabel className={classes.label} styleProps={styleProps}>
-        {children}
-      </ToggleButtonLabel>
+      {children}
     </ToggleButtonRoot>
   );
 });
