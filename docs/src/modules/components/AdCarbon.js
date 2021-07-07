@@ -24,23 +24,27 @@ function AdCarbonImage() {
     };
   }, []);
 
-  return <React.Fragment>      
-    <GlobalStyles styles={(theme) => {
-    const styles = adStylesObject['body-image'](theme);
-    
-    return {
-      '#carbonads': {
-        ...styles.root,
-        '& .carbon-img': styles.imgWrapper,
-        '& img': styles.img,
-        '& a, & a:hover': styles.a,
-        '& .carbon-text': styles.description,
-        '& .carbon-poweredby': styles.poweredby,
-      },
-    };
-  }} />
-  <span ref={ref} />
-  </React.Fragment>;
+  return (
+    <React.Fragment>
+      <GlobalStyles
+        styles={(theme) => {
+          const styles = adStylesObject['body-image'](theme);
+
+          return {
+            '#carbonads': {
+              ...styles.root,
+              '& .carbon-img': styles.imgWrapper,
+              '& img': styles.img,
+              '& a, & a:hover': styles.a,
+              '& .carbon-text': styles.description,
+              '& .carbon-poweredby': styles.poweredby,
+            },
+          };
+        }}
+      />
+      <span ref={ref} />
+    </React.Fragment>
+  );
 }
 
 export function AdCarbonInline(props) {
