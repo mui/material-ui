@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import useSwitch, { SwitchState, UseSwitchProps } from './useSwitch';
 import classes from './switchUnstyledClasses';
-import { getForwardableProps, isHostComponent } from '../utils';
+import { isHostComponent } from '../utils';
 
 export interface SwitchUnstyledProps extends UseSwitchProps {
   /**
@@ -81,7 +81,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
   } = props;
 
   const Root: React.ElementType = component ?? components.Root ?? 'span';
-  const rootProps: any = { ...getForwardableProps(Root, otherProps), ...componentsProps.root };
+  const rootProps: any = { ...otherProps, ...componentsProps.root };
 
   const Thumb: React.ElementType = components.Thumb ?? 'span';
   const thumbProps: any = componentsProps.thumb ?? {};

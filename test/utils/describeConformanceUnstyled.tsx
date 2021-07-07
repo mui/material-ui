@@ -40,6 +40,8 @@ interface WithClassName {
 
 interface WithCustomProp {
   fooBar: string;
+  'aria-label': string;
+  tabIndex: number;
 }
 
 interface WithStyleProps {
@@ -71,11 +73,13 @@ function testPropForwarding(
   }
 
   it('forwards custom props to the root element if a component is provided', () => {
-    const CustomRoot = ({ fooBar }: WithCustomProp) => {
-      return <div data-foobar={fooBar} />;
+    const CustomRoot = ({ fooBar, tabIndex, 'aria-label': ariaLabel }: WithCustomProp) => {
+      return <div data-foobar={fooBar} tabIndex={tabIndex} aria-label={ariaLabel} />;
     };
 
     const otherProps = {
+      tabIndex: '0',
+      'aria-label': randomStringValue(),
       fooBar: randomStringValue(),
     };
 
@@ -83,23 +87,14 @@ function testPropForwarding(
       React.cloneElement(element, { components: { Root: CustomRoot }, ...otherProps }),
     );
 
+    expect(container.firstChild).to.have.attribute('tabindex', otherProps.tabIndex.toString());
+    expect(container.firstChild).to.have.attribute('aria-label', otherProps['aria-label']);
     expect(container.firstChild).to.have.attribute('data-foobar', otherProps.fooBar);
   });
 
-  it('does not forward custom props to the root element if an intrinsic element is provided', () => {
+  it('does forward standard props to the root element if an intrinsic element is provided', () => {
     const otherProps = {
-      fooBar: randomStringValue(),
-    };
-
-    const { container } = render(
-      React.cloneElement(element, { components: { Root: 'div' }, ...otherProps }),
-    );
-    expect(container.firstChild).not.to.have.attribute('fooBar');
-  });
-
-  it('forwards standard props to the root element if an intrinsic element is provided', () => {
-    const otherProps = {
-      tabIndex: 0,
+      tabIndex: '0',
       'aria-label': randomStringValue(),
     };
 
@@ -107,7 +102,7 @@ function testPropForwarding(
       React.cloneElement(element, { components: { Root: 'div' }, ...otherProps }),
     );
 
-    expect(container.firstChild).to.have.attribute('tabindex', '0');
+    expect(container.firstChild).to.have.attribute('tabindex', otherProps.tabIndex);
     expect(container.firstChild).to.have.attribute('aria-label', otherProps['aria-label']);
   });
 }
@@ -259,12 +254,12 @@ function testStylePropsPropagation(
       const componentsProps = {
         [slotName]: {
           expectedStyleProps: {
-            customProp: 'foo',
+            id: 'foo',
           },
         },
       };
 
-      render(React.cloneElement(element, { components, componentsProps, customProp: 'foo' }));
+      render(React.cloneElement(element, { components, componentsProps, id: 'foo' }));
     });
   });
 }
