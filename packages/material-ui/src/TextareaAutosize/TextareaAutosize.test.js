@@ -94,7 +94,9 @@ describe('<TextareaAutosize />', () => {
         scrollHeight: 30,
         lineHeight: 15,
       });
-      input.focus();
+      act(() => {
+        input.focus();
+      });
       fireEvent.change(document.activeElement, { target: { value: 'a' } });
       expect(input.style).to.have.property('height', '30px');
       expect(input.style).to.have.property('overflow', 'hidden');

@@ -320,6 +320,10 @@ export interface Components {
     defaultProps?: ComponentsProps['MuiRadio'];
     styleOverrides?: ComponentsOverrides['MuiRadio'];
   };
+  MuiRating?: {
+    defaultProps?: ComponentsProps['MuiRating'];
+    styleOverrides?: ComponentsOverrides['MuiRating'];
+  };
   MuiScopedCssBaseline?: {
     defaultProps?: ComponentsProps['MuiScopedCssBaseline'];
     styleOverrides?: ComponentsOverrides['MuiScopedCssBaseline'];

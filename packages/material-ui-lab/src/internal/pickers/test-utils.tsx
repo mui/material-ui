@@ -57,7 +57,10 @@ export function createPickerRender({
     );
   }
 
-  return (node: React.ReactElement) => clientRender(node, { wrapper: Wrapper });
+  return (
+    node: React.ReactElement,
+    options?: Omit<import('test/utils').RenderOptions, 'wrapper'>,
+  ) => clientRender(node, { ...options, wrapper: Wrapper });
 }
 
 export const queryByMuiTest = queryHelpers.queryByAttribute.bind(null, 'data-mui-test');

@@ -3,9 +3,9 @@ name: CI
 on:
   push:
     branches-ignore:
-      # Dependabot branches are always Pull Requests.
+      # Renovate branches are always Pull Requests.
       # We don't need to run CI twice (push+pull_request)
-      - 'dependabot/**'
+      - 'renovate/**'
   pull_request:
 
 jobs:
@@ -24,7 +24,7 @@ jobs:
           # fetch all tags which are required for `yarn release:changelog`
           fetch-depth: 0
       - name: Use Node.js 14.x
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: 14
       - run: yarn install

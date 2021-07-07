@@ -27,7 +27,8 @@ function checkHighlightIs(listbox, expected) {
 }
 
 describe('<Autocomplete />', () => {
-  const render = createClientRender();
+  // TODO: React18Compat
+  const render = createClientRender({ legacyRoot: true });
 
   describeConformanceV5(
     <Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} />,

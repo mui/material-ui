@@ -15,10 +15,6 @@
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
-    "label": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the span element that wraps the children"
-    },
     "primary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

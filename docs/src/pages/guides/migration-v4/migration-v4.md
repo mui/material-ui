@@ -905,6 +905,16 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   +<Fab variant="circular">
   ```
 
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/27112).
+
+  ```diff
+  <button class="MuiFab-root">
+  - <span class="MuiFab-label">
+      {children}
+  - </span>
+  </button>
+  ```
+
 ### FormControl
 
 - Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design guidelines.
@@ -1712,6 +1722,16 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   ```
 
   You can use the [`moved-lab-modules` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) for automatic migration.
+
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/27111).
+
+  ```diff
+  <button class="MuiToggleButton-root">
+  - <span class="MuiToggleButton-label">
+      {children}
+  - </span>
+  </button>
+  ```
 
 ### Tooltip
 
