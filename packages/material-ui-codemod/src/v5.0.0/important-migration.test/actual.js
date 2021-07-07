@@ -60,7 +60,7 @@ const useStyles = makeStyles(({ palette, breakpoints, spacing, typography }) => 
   head: {
     color: palette.type === 'dark' ? fade('#ff5252', 0.9) : palette.text.primary,
     fontSize: typography.round(breakpoints.width('sm') / 20),
-    width: `calc(100% - ${spacing(10)}px)`,
+    width: `calc(100% - ${spacing(10)})`,
   },
   avatar: {
     width: 64,

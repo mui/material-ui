@@ -26,7 +26,8 @@ import transformThemeBreakpointsWidth from './theme-breakpoints-width';
 import transformThemeOptions from './theme-options';
 import transformThemePaletteMode from './theme-palette-mode';
 import transformThemeProvider from './theme-provider';
-import transformThemeSpacing from './theme-spacing';
+// enable this if https://github.com/mui-org/material-ui/pull/27072 is merged
+// import transformThemeSpacing from './theme-spacing';
 import transformThemeTypographyRound from './theme-typography-round';
 import transformTransitions from './transitions';
 import transformTypes from './material-ui-types';
@@ -68,7 +69,7 @@ export default function transformer(file, api, options) {
   file.source = transformThemeOptions(file, api, options);
   file.source = transformThemePaletteMode(file, api, options);
   file.source = transformThemeProvider(file, api, options);
-  file.source = transformThemeSpacing(file, api, options);
+  // file.source = transformThemeSpacing(file, api, options);
   file.source = transformThemeTypographyRound(file, api, options);
   file.source = transformTransitions(file, api, options);
   file.source = transformTypes(file, api, options);
