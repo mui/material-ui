@@ -11,10 +11,13 @@ export default function transformer(file, api) {
     .forEach((path) => {
       path.node.openingElement.attributes.forEach((node) => {
         if (node.type === 'JSXAttribute' && node.name.name === 'overlap') {
-          if (node.value.value === 'circle') {
-            node.value.value = 'circular';
-          } else if (node.value.value === 'rectangle') {
-            node.value.value = 'rectangular';
+          if (node.value.value === 'circle' || node.value.expression?.value === 'circle') {
+            node.value = j.literal('circular');
+          } else if (
+            node.value.value === 'rectangle' ||
+            node.value.expression?.value === 'rectangle'
+          ) {
+            node.value = j.literal('rectangular');
           }
         }
 

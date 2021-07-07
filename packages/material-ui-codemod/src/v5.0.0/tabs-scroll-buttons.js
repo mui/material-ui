@@ -11,12 +11,12 @@ export default function transformer(file, api) {
     node.openingElement.attributes.forEach((attr) => {
       if (attr.name && attr.name.name === 'scrollButtons') {
         if (attr.value) {
-          prevScrollButtonValue = attr.value.value;
-          if (attr.value.value === 'on') {
+          prevScrollButtonValue = attr.value.value || attr.value.expression?.value;
+          if (attr.value.value === 'on' || attr.value.expression?.value === 'on') {
             delete attr.value;
-          } else if (attr.value.value === 'desktop') {
+          } else if (attr.value.value === 'desktop' || attr.value.expression?.value === 'desktop') {
             delete attr.value;
-          } else if (attr.value.value === 'off') {
+          } else if (attr.value.value === 'off' || attr.value.expression?.value === 'off') {
             attr.value = j.jsxExpressionContainer(j.literal(false));
           }
         }

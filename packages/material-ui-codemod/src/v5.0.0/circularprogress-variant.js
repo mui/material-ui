@@ -12,9 +12,9 @@ export default function transformer(file, api) {
         if (
           node.type === 'JSXAttribute' &&
           node.name.name === 'variant' &&
-          node.value.value === 'static'
+          (node.value.value === 'static' || node.value.expression?.value === 'static')
         ) {
-          node.value.value = 'determinate';
+          node.value = j.literal('determinate');
         }
 
         if (node.type === 'JSXAttribute' && node.name.name === 'classes') {

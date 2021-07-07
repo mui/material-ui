@@ -12,9 +12,9 @@ export default function transformer(file, api) {
         if (
           node.type === 'JSXAttribute' &&
           node.name.name === 'variant' &&
-          node.value.value === 'circle'
+          (node.value.value === 'circle' || node.value.expression?.value === 'circle')
         ) {
-          node.value.value = 'circular';
+          node.value = j.literal('circular');
         }
 
         if (node.type === 'JSXAttribute' && node.name.name === 'classes') {

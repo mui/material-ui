@@ -10,8 +10,8 @@ export default function transformer(file, api) {
     .forEach((path) => {
       path.node.openingElement.attributes.forEach((node) => {
         if (node.type === 'JSXAttribute' && node.name.name === 'variant') {
-          if (node.value.value === 'round') {
-            node.value.value = 'circular';
+          if (node.value.value === 'round' || node.value.expression?.value === 'round') {
+            node.value = j.literal('circular');
           }
         }
 

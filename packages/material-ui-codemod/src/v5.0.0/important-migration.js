@@ -25,6 +25,7 @@ import transformIconButtonSize from './icon-button-size';
 import transformMuiStyles from './material-ui-styles';
 import transformModalProps from './modal-props';
 import transformMovedLabModules from './moved-lab-modules';
+import transformPaginationRoundCircular from './pagination-round-circular';
 import transformRootRef from './root-ref';
 import transformSkeletonVariant from './skeleton-variant';
 import transformStyledEngineProvider from './styled-engine-provider';
@@ -77,6 +78,7 @@ export default function transformer(file, api, options) {
   file.source = transformMuiStyles(file, api, options);
   file.source = transformModalProps(file, api, options);
   file.source = transformMovedLabModules(file, api, options);
+  file.source = transformPaginationRoundCircular(file, api, options);
   file.source = transformRootRef(file, api, options);
   file.source = transformSkeletonVariant(file, api, options);
   file.source = transformStyledEngineProvider(file, api, options);
