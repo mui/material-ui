@@ -15,6 +15,8 @@ import transformCreateTheme from './create-theme';
 import transformDialogProps from './dialog-props';
 import transformDialogTitleProps from './dialog-title-props';
 import transformEmotionPrependCache from './emotion-prepend-cache';
+import transformExpansionPanelComponent from './expansion-panel-component';
+import transformFabVariant from './fab-variant';
 import transformFade from './fade-rename-alpha';
 import transformGridJustify from './grid-justify-justifycontent';
 import transformGridListComponent from './grid-list-component';
@@ -63,6 +65,8 @@ export default function transformer(file, api, options) {
   file.source = transformDialogProps(file, api, options);
   file.source = transformDialogTitleProps(file, api, options);
   file.source = transformEmotionPrependCache(file, api, options);
+  file.source = transformExpansionPanelComponent(file, api, options);
+  file.source = transformFabVariant(file, api, options);
   file.source = transformFade(file, api, options);
   file.source = transformGridJustify(file, api, options);
   file.source = transformGridListComponent(file, api, options);
