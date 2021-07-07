@@ -12,6 +12,7 @@ import transformCircularProgressVariant from './circularprogress-variant';
 import transformCollapsedHeight from './collapse-rename-collapsedheight';
 import transformCoreStylesImport from './core-styles-import';
 import transformCreateTheme from './create-theme';
+import transformDialogProps from './dialog-props';
 import transformEmotionPrependCache from './emotion-prepend-cache';
 import transformFade from './fade-rename-alpha';
 import transformGridJustify from './grid-justify-justifycontent';
@@ -57,6 +58,7 @@ export default function transformer(file, api, options) {
   file.source = transformCollapsedHeight(file, api, options);
   file.source = transformCoreStylesImport(file, api, options);
   file.source = transformCreateTheme(file, api, options);
+  file.source = transformDialogProps(file, api, options);
   file.source = transformEmotionPrependCache(file, api, options);
   file.source = transformFade(file, api, options);
   file.source = transformGridJustify(file, api, options);
