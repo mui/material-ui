@@ -8,7 +8,7 @@ export default function SkeletonChildren() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <div style={{ alignItems: 'center', display: 'flex', width: 200 }}>
+      <div style={{ alignItems: 'center', display: 'flex', width: '200px' }}>
         <div style={{ margin: '8px' }}>
           <Skeleton variant="circular">
             <Avatar />
