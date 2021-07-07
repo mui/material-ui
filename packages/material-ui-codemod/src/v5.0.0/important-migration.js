@@ -21,6 +21,7 @@ import transformFade from './fade-rename-alpha';
 import transformGridJustify from './grid-justify-justifycontent';
 import transformGridListComponent from './grid-list-component';
 import transformHiddenDownProps from './hidden-down-props';
+import transformIconButtonSize from './icon-button-size';
 import transformStyles from './material-ui-styles';
 import transformMovedLabModules from './moved-lab-modules';
 import transformRootRef from './root-ref';
@@ -71,6 +72,7 @@ export default function transformer(file, api, options) {
   file.source = transformGridJustify(file, api, options);
   file.source = transformGridListComponent(file, api, options);
   file.source = transformHiddenDownProps(file, api, options);
+  file.source = transformIconButtonSize(file, api, options);
   file.source = transformStyles(file, api, options);
   file.source = transformMovedLabModules(file, api, options);
   file.source = transformRootRef(file, api, options);
