@@ -1,5 +1,15 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.12.1
+
+_July 7, 2021_
+
+This release is released to fix the package.json generation in the previous release.
+
+### Core
+
+- [core] Fix generation of package.json file on Windows (#27160) @mnajdova
+
 ## 4.12.0
 
 _July 6, 2021_
