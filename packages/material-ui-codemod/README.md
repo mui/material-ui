@@ -39,7 +39,7 @@ Examples:
 
 ### v5.0.0
 
-#### `important-migration`
+#### 🚀 `important-migration`
 
 A combination of all important transformers for migrating v4 to v5.
 
@@ -47,47 +47,58 @@ A combination of all important transformers for migrating v4 to v5.
 npx @material-ui/codemod@next v5.0.0/important-migration <path|folder>
 ```
 
-- [@material-ui/codemod](#material-uicodemod)
-  - [Setup & run](#setup--run)
-  - [Included scripts](#included-scripts)
-    - [v5.0.0](#v500)
-      - [`important-migration`](#important-migration)
-      - [`adapter-v4`](#adapter-v4)
-      - [`component-rename-prop`](#component-rename-prop)
-      - [`autocomplete-rename-closeicon`](#autocomplete-rename-closeicon)
-      - [`avatar-circle-circular`](#avatar-circle-circular)
-      - [`button-color-prop`](#button-color-prop)
-      - [`box-borderradius-values`](#box-borderradius-values)
-      - [`box-rename-gap`](#box-rename-gap)
-      - [`badge-overlap-value`](#badge-overlap-value)
-      - [`chip-variant-prop`](#chip-variant-prop)
-      - [`circularprogress-variant`](#circularprogress-variant)
-      - [`collapse-rename-collapsedheight`](#collapse-rename-collapsedheight)
-      - [`create-theme`](#create-theme)
-      - [`emotion-prepend-cache`](#emotion-prepend-cache)
-      - [`fade-rename-alpha`](#fade-rename-alpha)
-      - [`grid-justify-justifycontent`](#grid-justify-justifycontent)
-      - [`material-ui-styles`](#material-ui-styles)
-      - [`moved-lab-modules`](#moved-lab-modules)
-      - [`theme-breakpoints-width`](#theme-breakpoints-width)
-      - [`variant-prop`](#variant-prop)
-      - [`use-transitionprops`](#use-transitionprops)
-      - [`theme-breakpoints`](#theme-breakpoints)
-      - [`theme-palette-mode`](#theme-palette-mode)
-      - [`theme-provider`](#theme-provider)
-      - [`theme-spacing`](#theme-spacing)
-      - [`theme-typography-round`](#theme-typography-round)
-      - [`with-width`](#with-width)
-    - [v4.0.0](#v400)
-      - [`theme-spacing-api`](#theme-spacing-api)
-      - [`optimal-imports`](#optimal-imports)
-      - [`top-level-imports`](#top-level-imports)
-    - [v1.0.0](#v100)
-      - [`import-path`](#import-path)
-      - [`color-imports`](#color-imports)
-      - [`svg-icon-imports`](#svg-icon-imports)
-    - [v0.15.0](#v0150)
-      - [`import-path`](#import-path-1)
+The list includes
+
+- [`adapter-v4`](#adapter-v4)
+- [`autocomplete-rename-closeicon`](#autocomplete-rename-closeicon)
+- [`autocomplete-rename-option`](#autocomplete-rename-option)
+- [`avatar-circle-circular`](#avatar-circle-circular)
+- [`box-borderradius-values`](#box-borderradius-values)
+- [`badge-overlap-value`](#badge-overlap-value)
+- [`box-rename-css`](#box-rename-css)
+- [`box-rename-gap`](#box-rename-gap)
+- [`button-color-prop`](#button-color-prop)
+- [`chip-variant-prop`](#chip-variant-prop)
+- [`circularprogress-variant`](#circularprogress-variant)
+- [`collapse-rename-collapsedheight`](#collapse-rename-collapsedheight)
+- [`core-styles-import`](#core-styles-import)
+- [`create-theme`](#create-theme)
+- [`dialog-props`](#dialog-props)
+- [`dialog-title-props`](#dialog-title-props)
+- [`emotion-prepend-cache`](#emotion-prepend-cache)
+- [`expansion-panel-component`](#expansion-panel-component)
+- [`fab-variant`](#fab-variant)
+- [`fade-rename-alpha`](#fade-rename-alpha)
+- [`grid-justify-justifycontent`](#grid-justify-justifycontent)
+- [`grid-list-component`](#grid-list-component)
+- [`icon-button-size`](#icon-button-size)
+- [`material-ui-styles`](#material-ui-styles)
+- [`material-ui-types`](#material-ui-types)
+- [`modal-props`](#modal-props)
+- [`moved-lab-modules`](#moved-lab-modules)
+- [`pagination-round-circular`](#pagination-round-circular)
+- [`root-ref`](#root-ref)
+- [`skeleton-variant`](#skeleton-variant)
+- [`styled-engine-provider`](#styled-engine-provider)
+- [`table-props`](#table-props)
+- [`tabs-scroll-buttons`](#tabs-scroll-buttons)
+- [`textarea-minmax-rows`](#textarea-minmax-rows)
+- [`theme-augment`](#theme-augment)
+- [`theme-breakpoints-width`](#theme-breakpoints-width)
+- [`theme-breakpoints`](#theme-breakpoints)
+- [`theme-options`](#theme-options)
+- [`theme-palette-mode`](#theme-palette-mode)
+- [`theme-provider`](#theme-provider)
+- [`theme-spacing`](#theme-spacing)
+- [`theme-typography-round`](#theme-typography-round)
+- [`transitions`](#transitions)
+- [`use-autocomplete`](#use-autocomplete)
+- [`use-transitionprops`](#use-transitionprops)
+- [`variant-prop`](#variant-prop)
+- [`with-mobile-dialog`](#with-mobile-dialog)
+- [`with-width`](#with-width)
+
+
 
 #### `adapter-v4`
 
@@ -102,23 +113,6 @@ import and insert `adaptV4Theme` to `createTheme` (or `createMuiTheme`)
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/adapter-v4 <path>
-```
-
-#### `component-rename-prop`
-
-A generic codemod to rename any component prop.
-
-```diff
--<Component prop="value" />
--<Component prop />
-+<Component newProp="value" />
-+<Component newProp />
-```
-
-<!-- #default-branch-switch -->
-
-```sh
-npx @material-ui/codemod@next v5.0.0/component-rename-prop <path> -- --component=Grid --from=prop --to=newProp
 ```
 
 #### `autocomplete-rename-closeicon`
@@ -157,64 +151,6 @@ npx @material-ui/codemod@next v5.0.0/avatar-circle-circular <path>
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#avatar).
 
-#### `button-color-prop`
-
-Removes the outdated `color` prop values.
-
-```diff
--<Button color="primary">
--<Button color="default">
-+<Button>
-+<Button>
-```
-
-<!-- #default-branch-switch -->
-
-```sh
-npx @material-ui/codemod@next v5.0.0/box-borderradius-values <path>
-```
-
-You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#button).
-
-#### `box-borderradius-values`
-
-Updates the Box API from separate system props to `sx`.
-
-```diff
--<Box borderRadius="borderRadius">
--<Box borderRadius={16}>
-+<Box borderRadius={1}>
-+<Box borderRadius="16px">
-```
-
-<!-- #default-branch-switch -->
-
-```sh
-npx @material-ui/codemod@next v5.0.0/box-sx-prop <path>
-```
-
-You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#box).
-
-#### `box-rename-gap`
-
-Renames the Box `grid*Gap` props.
-
-```diff
--<Box gridGap={2}>Item 3</Box>
--<Box gridColumnGap={3}>Item 4</Box>
--<Box gridRowGap={4}>Item 5</Box>
-+<Box gap={2}>Item 3</Box>
-+<Box columnGap={3}>Item 4</Box>
-+<Box rowGap={4}>Item 5</Box>
-```
-
-<!-- #default-branch-switch -->
-
-```sh
-npx @material-ui/codemod@next v5.0.0/box-rename-gap <path>
-```
-
-You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#box).
 
 #### `badge-overlap-value`
 
@@ -246,10 +182,84 @@ Renames the badge's props.
 <!-- #default-branch-switch -->
 
 ```sh
-npx @material-ui/codemod@next v5.0.0/box-rename-gap <path>
+npx @material-ui/codemod@next v5.0.0/badge-overlap-value <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#badge).
+
+#### `box-borderradius-values`
+
+Updates the Box API from separate system props to `sx`.
+
+```diff
+-<Box borderRadius="borderRadius">
+-<Box borderRadius={16}>
++<Box borderRadius={1}>
++<Box borderRadius="16px">
+```
+
+<!-- #default-branch-switch -->
+
+```sh
+npx @material-ui/codemod@next v5.0.0/box-borderradius-values <path>
+```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#box).
+
+
+#### `box-rename-css`
+
+Renames the Box `css` prop to `sx`
+
+```diff
+-<Box css={{ m: 2 }}>
++<Box sx={{ m: 2 }}>
+```
+
+```sh
+npx @material-ui/codemod@next v5.0.0/box-rename-css <path>
+```
+
+#### `box-rename-gap`
+
+Renames the Box `grid*Gap` props.
+
+```diff
+-<Box gridGap={2}>Item 3</Box>
+-<Box gridColumnGap={3}>Item 4</Box>
+-<Box gridRowGap={4}>Item 5</Box>
++<Box gap={2}>Item 3</Box>
++<Box columnGap={3}>Item 4</Box>
++<Box rowGap={4}>Item 5</Box>
+```
+
+<!-- #default-branch-switch -->
+
+```sh
+npx @material-ui/codemod@next v5.0.0/box-rename-gap <path>
+```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#box).
+
+
+#### `button-color-prop`
+
+Removes the outdated `color` prop values.
+
+```diff
+-<Button color="default">
++<Button>
+```
+
+<!-- #default-branch-switch -->
+
+```sh
+npx @material-ui/codemod@next v5.0.0/button-color-prop <path>
+```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#button).
+
+
 
 #### `chip-variant-prop`
 
@@ -304,6 +314,36 @@ npx @material-ui/codemod@next v5.0.0/collapse-rename-collapsedheight <path>
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#collapse).
 
+#### `component-rename-prop`
+
+A generic codemod to rename any component prop.
+
+```diff
+-<Component prop="value" />
+-<Component prop />
++<Component newProp="value" />
++<Component newProp />
+```
+
+<!-- #default-branch-switch -->
+
+```sh
+npx @material-ui/codemod@next v5.0.0/component-rename-prop <path> -- --component=Grid --from=prop --to=newProp
+```
+
+#### `core-styles-import`
+
+Rename private from from `core/styles/*` to `core/styles`
+
+```diff
+-import { darken, lighten } from '@material-ui/core/styles/colorManipulator';
++import { darken, lighten } from '@material-ui/core/styles';
+```
+
+```sh
+npx @material-ui/codemod@next v5.0.0/core-styles-import <path>
+```
+
 #### `create-theme`
 
 Rename the function `createMuiTheme` to `createTheme`
@@ -311,6 +351,23 @@ Rename the function `createMuiTheme` to `createTheme`
 ```sh
 npx @material-ui/codemod@next v5.0.0/create-theme <path>
 ```
+
+#### `dialog-props`
+
+Remove `disableBackdropClick` prop from `<Dialog>`
+
+```sh
+npx @material-ui/codemod@next v5.0.0/dialog-props <path>
+```
+
+#### `dialog-title-props`
+
+Remove `disableTypography` prop from `<DialogTitle>`
+
+```sh
+npx @material-ui/codemod@next v5.0.0/dialog-title-props <path>
+```
+
 
 #### `emotion-prepend-cache`
 
@@ -325,6 +382,25 @@ const cache = emotionCreateCache({
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/create-theme <path>
+```
+
+#### `expansion-panel-component`
+
+Rename `ExpansionPanel*` to `Accordion*`
+
+```sh
+npx @material-ui/codemod@next v5.0.0/expansion-panel-component <path>
+```
+
+#### `fab-variant`
+
+```diff
+-<Fab variant="round" />
++<Fab variant="circular" />
+```
+
+```sh
+npx @material-ui/codemod@next v5.0.0/fab-variant <path>
 ```
 
 #### `fade-rename-alpha`
@@ -364,6 +440,29 @@ npx @material-ui/codemod@next v5.0.0/grid-justify-justifycontent <path>
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#grid).
 
+#### `grid-list-component`
+
+Rename `GridList*` to `ImageList*`
+
+```sh
+npx @material-ui/codemod@next v5.0.0/grid-list-component <path>
+```
+
+#### `icon-button-size`
+
+Add `size="large"` if `size` is empty to get the same UI as v4
+
+```diff
+-<IconButton size="medium" />
+-<IconButton />
++<IconButton size="medium" />
++<IconButton size="large" />
+```
+
+```sh
+npx @material-ui/codemod@next v5.0.0/icon-button-size <path>
+```
+
 #### `material-ui-styles`
 
 Move JSS imports to `@material-ui/styles`
@@ -400,6 +499,22 @@ import mergeClasses from '@material-ui/styles/mergeClasses';
 npx @material-ui/codemod@next v5.0.0/material-ui-styles <path>
 ```
 
+#### `material-ui-types`
+
+Renames `Omit` import from `@material-ui/types` to `DistributiveOmit`
+
+```sh
+npx @material-ui/codemod@next v5.0.0/material-ui-types <path>
+```
+
+#### `modal-props`
+
+Removes `disableBackdropClick` from `<Modal>`
+
+```sh
+npx @material-ui/codemod@next v5.0.0/modal-props <path>
+```
+
 #### `moved-lab-modules`
 
 Updates all imports for `@material-ui/lab` components that have moved to `@material-ui/core`.
@@ -424,6 +539,122 @@ npx @material-ui/codemod@next v5.0.0/moved-lab-modules <path>
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#skeleton).
 
+#### `pagination-round-circular`
+
+```diff
+-<Pagination shape="round" />
+-<PaginationItem shape="round" />
++<Pagination shape="circular" />
++<PaginationItem shape="circular" />
+```
+
+```sh
+npx @material-ui/codemod@next v5.0.0/pagination-round-circular <path>
+```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#pagination).
+
+#### `root-ref`
+
+Removes `RootRef` from the codebase
+
+```sh
+npx @material-ui/codemod@next v5.0.0/root-ref <path>
+```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#rootref).
+
+#### `skeleton-variant`
+
+```diff
+-<Skeleton vairiant="circle" />
+-<Skeleton vairiant="rect" />
++<Skeleton vairiant="circular" />
++<Skeleton vairiant="rectangular" />
+```
+
+```sh
+npx @material-ui/codemod@next v5.0.0/skeleton-variant <path>
+```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#skeleton).
+
+#### `styled-engine-provider`
+
+Applies `StyledEngineProvider` to the files that contains `ThemeProvider`
+
+```sh
+npx @material-ui/codemod@next v5.0.0/styled-engine-provider <path>
+```
+
+#### `table-props`
+
+Renames props in `Table*` components
+
+```diff
+-<>
+-  <TablePagination onChangeRowsPerPage={() => {}} onChangePage={() => {}} />
+-  <TablePagination classes={{ input: 'foo' }} />
+-  <Table padding="default" />
+-  <TableCell padding="default" />
+-</>
++<>
++  <TablePagination onRowsPerPageChange={() => {}} onPageChange={() => {}} />
++  <TablePagination classes={{ select: 'foo' }} />
++  <Table padding="normal" />
++  <TableCell padding="normal" />
++</>
+
+```
+
+```sh
+npx @material-ui/codemod@next v5.0.0/table-props <path>
+```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#table).
+
+#### `tabs-scroll-buttons`
+
+```diff
+-<Tabs scrollButtons="on" />
+-<Tabs scrollButtons="desktop" />
+-<Tabs scrollButtons="off" />
++<Tabs scrollButtons allowScrollButtonsMobile />
++<Tabs scrollButtons />
++<Tabs scrollButtons={false} />
+```
+
+```sh
+npx @material-ui/codemod@next v5.0.0/tabs-scroll-buttons <path>
+```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#tabs).
+
+#### `textarea-minmax-rows`
+
+```diff
+-<TextField rowsMin={3} rowsMax={6} />
+-<TextareaAutosize rows={2} />
+-<TextareaAutosize rowsMin={3} rowsMax={6} />
++<TextField minRows={3} maxRows={6} />
++<TextareaAutosize minRows={2} />
++<TextareaAutosize minRows={3} maxRows={6} />
+```
+
+```sh
+npx @material-ui/codemod@next v5.0.0/textarea-minmax-rows <path>
+```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#textareaautoresize).
+
+#### `theme-augment`
+
+Add `DefaultTheme` module augment for typescript project
+
+```sh
+npx @material-ui/codemod@next v5.0.0/theme-augment <path>
+```
+
 #### `theme-breakpoints-width`
 
 Rename `theme.breakpoints.width('md')` to `theme.breakpoints.values.md`
@@ -432,66 +663,9 @@ Rename `theme.breakpoints.width('md')` to `theme.breakpoints.values.md`
 npx @material-ui/codemod@next v5.0.0/theme-breakpoints-width <path>
 ```
 
-#### `variant-prop`
-
-Add the TextField, Select, and FormControl `variant="standard"` prop when `variant` is undefined.
-The diff should look like this:
-
-```diff
--<TextField value="Standard" />
-+<TextField value="Standard" variant="standard" />
-```
-
-```diff
--<Select value="Standard" />
-+<Select value="Standard" variant="standard" />
-```
-
-```diff
--<FormControl value="Standard" />
-+<FormControl value="Standard" variant="standard" />
-```
-
-<!-- #default-branch-switch -->
-
-```sh
-npx @material-ui/codemod@next v5.0.0/variant-prop <path>
-```
-
-#### `use-transitionprops`
-
-Updates Dialog, Menu, Popover, and Snackbar to use the `TransitionProps` prop to replace the `onEnter*` and `onExit*` props.
-
-```diff
-<Dialog
--  onEnter={onEnter}
--  onEntered={onEntered}
--  onEntering={onEntering}
--  onExit={onExit}
--  onExited={onExited}
--  onExiting={onExiting}
-+  TransitionProps={{
-+    onEnter,
-+    onEntered,
-+    onEntering,
-+    onExit,
-+    onExited,
-+    onExiting,
-+  }}
-/>
-```
-
-<!-- #default-branch-switch -->
-
-```sh
-npx @material-ui/codemod@next v5.0.0/use-transitionprops <path>
-```
-
-You can find more details about this breaking change in [the migration guide](/guides/migration-v4/#dialog).
-
 #### `theme-breakpoints`
 
-Updates breakpoint values to match new logic.
+Updates breakpoint values to match new logic. ⚠️ should run only one time.
 
 ```diff
 -theme.breakpoints.down('sm')
@@ -508,6 +682,17 @@ npx @material-ui/codemod@next v5.0.0/theme-breakpoints <path>
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#theme).
 
+#### `theme-options`
+
+```diff
+-import { ThemeOptions } from '@material-ui/core';
++import { DeprecatedThemeOptions } from '@material-ui/core';
+```
+
+```sh
+npx @material-ui/codemod@next v5.0.0/theme-options <path>
+```
+
 #### `theme-palette-mode`
 
 Rename `type` to `mode`
@@ -518,7 +703,7 @@ Rename `type` to `mode`
 ```
 
 ```sh
-npx @material-ui/codemod@next v5.0.0/theme-breakpoints <path>
+npx @material-ui/codemod@next v5.0.0/theme-palette-mode <path>
 ```
 
 #### `theme-provider`
@@ -561,6 +746,93 @@ Remove `theme.typography.round($number)` to `Math.round($number * 1e5) / 1e5`
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/theme-typography-round <path>
+```
+
+#### `transitions`
+
+Renames import `transitions` to `createTransitions`
+
+```sh
+npx @material-ui/codemod@next v5.0.0/transitions <path>
+```
+
+#### `use-autocomplete`
+
+Renames `useAutocomplete` related import from lab to core
+
+```sh
+npx @material-ui/codemod@next v5.0.0/use-autocomplete <path>
+```
+
+#### `use-transitionprops`
+
+Updates Dialog, Menu, Popover, and Snackbar to use the `TransitionProps` prop to replace the `onEnter*` and `onExit*` props.
+
+```diff
+<Dialog
+-  onEnter={onEnter}
+-  onEntered={onEntered}
+-  onEntering={onEntering}
+-  onExit={onExit}
+-  onExited={onExited}
+-  onExiting={onExiting}
++  TransitionProps={{
++    onEnter,
++    onEntered,
++    onEntering,
++    onExit,
++    onExited,
++    onExiting,
++  }}
+/>
+```
+
+<!-- #default-branch-switch -->
+
+```sh
+npx @material-ui/codemod@next v5.0.0/use-transitionprops <path>
+```
+
+You can find more details about this breaking change in [the migration guide](/guides/migration-v4/#dialog).
+
+#### `variant-prop`
+
+Add the TextField, Select, and FormControl `variant="standard"` prop when `variant` is undefined.
+The diff should look like this:
+
+```diff
+-<TextField value="Standard" />
++<TextField value="Standard" variant="standard" />
+```
+
+```diff
+-<Select value="Standard" />
++<Select value="Standard" variant="standard" />
+```
+
+```diff
+-<FormControl value="Standard" />
++<FormControl value="Standard" variant="standard" />
+```
+
+<!-- #default-branch-switch -->
+
+```sh
+npx @material-ui/codemod@next v5.0.0/variant-prop <path>
+```
+
+#### `with-mobile-dialog`
+
+Remove and insert hardcoded `withMobileDialog` to prevent application crash.
+
+```diff
+- import withMobileDialog from '@material-ui/core/withMobileDialog';
++ // FIXME checkout https://material-ui.com/components/use-media-query/#using-material-uis-breakpoint-helpers
++ const withMobileDialog = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="lg" fullScreen={false} />;
+```
+
+```sh
+npx @material-ui/codemod@next v5.0.0/with-mobile-dialog <path>
 ```
 
 #### `with-width`
