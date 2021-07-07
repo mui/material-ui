@@ -162,10 +162,10 @@ function App() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>
+          <Button onClick={handleClose} color="primary">
             Disagree
           </Button>
-          <Button onClick={handleClose} autoFocus>
+          <Button onClick={handleClose} color="primary" autoFocus>
             Agree
           </Button>
         </DialogActions>

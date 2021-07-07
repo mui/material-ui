@@ -14,7 +14,7 @@ export default function transformer(file, api) {
         if (
           node.type === 'JSXAttribute' &&
           node.name.name === 'color' &&
-          (node.value.value === 'primary' || node.value.value === 'default')
+          node.value.value === 'default'
         ) {
           delete attributes[index];
         }

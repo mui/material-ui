@@ -147,7 +147,7 @@ function App() {
             <Test />
           </Grid>
         </Grid>
-        <Button variant="contained" color="primary" onClick={() => setOpen(true)}>
+        <Button variant="contained" color="default" onClick={() => setOpen(true)}>
           Open Dialog
         </Button>
         <Dialog
