@@ -7,3 +7,5 @@ theme.spacing(gap) + 'px'
 spacing(gap) + 'px'
 `calc(100% - ${spacing(itemHorzPadding * 2)}px)`
 `calc(100% - ${theme.spacing(itemHorzPadding * 2)}px)`
+padding: `${theme.spacing(2) - 1}px 0`
+`calc(100% - ${theme.spacing(itemHorzPadding) * 0.3}px)`
