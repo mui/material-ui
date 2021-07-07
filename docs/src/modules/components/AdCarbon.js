@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { GlobalStyles } from '@material-ui/core/GlobalStyles';
+import GlobalStyles from '@material-ui/core/GlobalStyles';
 import loadScript from 'docs/src/modules/utils/loadScript';
 import AdDisplay from 'docs/src/modules/components/AdDisplay';
 import { adStylesObject } from 'docs/src/modules/components/ad.styles';
