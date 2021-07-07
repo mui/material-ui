@@ -1,5 +1,6 @@
 import transformAdapterV4 from './adapter-v4';
 import transformAutocompleteRenaming from './autocomplete-rename-closeicon';
+import transformAutocompleteOption from './autocomplete-rename-option';
 import transformAvatarCircular from './avatar-circle-circular';
 import transformBadgeOverlap from './badge-overlap-value';
 import transformBoxBorderRadius from './box-borderradius-values';
@@ -44,6 +45,7 @@ import transformUseAutocomplete from './use-autocomplete';
 export default function transformer(file, api, options) {
   file.source = transformAdapterV4(file, api, options);
   file.source = transformAutocompleteRenaming(file, api, options);
+  file.source = transformAutocompleteOption(file, api, options);
   file.source = transformAvatarCircular(file, api, options);
   file.source = transformBadgeOverlap(file, api, options);
   file.source = transformBoxBorderRadius(file, api, options);
