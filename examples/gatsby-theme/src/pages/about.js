@@ -9,17 +9,15 @@ import Copyright from '../components/Copyright';
 
 export default function About() {
   return (
-    <StyledEngineProvider injectFirst>
-      <Container maxWidth="sm">
-        <Box sx={{ my: 4 }}>
-          <Typography variant="h4" component="h1" gutterBottom>
-            Gatsby v5-beta example
-          </Typography>
-          <Link to="/">Go to the main page</Link>
-          <ProTip />
-          <Copyright />
-        </Box>
-      </Container>
-    </StyledEngineProvider>
+    <Container maxWidth="sm">
+      <Box sx={{ my: 4 }}>
+        <Typography variant="h4" component="h1" gutterBottom>
+          Gatsby v5-beta example
+        </Typography>
+        <Link to="/">Go to the main page</Link>
+        <ProTip />
+        <Copyright />
+      </Box>
+    </Container>
   );
 }
