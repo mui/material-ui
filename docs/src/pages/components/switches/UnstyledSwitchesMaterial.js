@@ -218,18 +218,6 @@ const SwitchRoot = styled('span', {
   }),
 }));
 
-const DefaultSwitchThumb = styled('span', {
-  name: 'MuiSwitch',
-  slot: 'Thumb',
-  overridesResolver: (props, styles) => styles.thumb,
-})(({ theme }) => ({
-  boxShadow: theme.shadows[1],
-  backgroundColor: 'currentColor',
-  width: 20,
-  height: 20,
-  borderRadius: '50%',
-}));
-
 const SwitchInput = styled('input', {
   name: 'MuiSwitch',
   slot: 'Input',
@@ -247,17 +235,30 @@ const SwitchInput = styled('input', {
   zIndex: 1,
 });
 
-const SwitchThumb = ({ isChecked, icon, checkedIcon, className }) => {
-  if (!isChecked && icon) {
-    return icon;
-  }
+const SwitchThumb = styled(
+  ({ isChecked, icon, checkedIcon, className }) => {
+    if (!isChecked && icon) {
+      return icon;
+    }
 
-  if (isChecked && checkedIcon) {
-    return checkedIcon;
-  }
+    if (isChecked && checkedIcon) {
+      return checkedIcon;
+    }
 
-  return <DefaultSwitchThumb className={className} />;
-};
+    return <span className={className} />;
+  },
+  {
+    name: 'MuiSwitch',
+    slot: 'Thumb',
+    overridesResolver: (props, styles) => styles.thumb,
+  },
+)(({ theme }) => ({
+  boxShadow: theme.shadows[1],
+  backgroundColor: 'currentColor',
+  width: 20,
+  height: 20,
+  borderRadius: '50%',
+}));
 
 const SwitchLayout = React.forwardRef((props, ref) => {
   const {
