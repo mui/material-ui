@@ -98,8 +98,6 @@ The list includes
 - [`with-mobile-dialog`](#with-mobile-dialog)
 - [`with-width`](#with-width)
 
-
-
 #### `adapter-v4`
 
 import and insert `adaptV4Theme` to `createTheme` (or `createMuiTheme`)
@@ -150,7 +148,6 @@ npx @material-ui/codemod@next v5.0.0/avatar-circle-circular <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#avatar).
-
 
 #### `badge-overlap-value`
 
@@ -206,7 +203,6 @@ npx @material-ui/codemod@next v5.0.0/box-borderradius-values <path>
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#box).
 
-
 #### `box-rename-css`
 
 Renames the Box `css` prop to `sx`
@@ -241,7 +237,6 @@ npx @material-ui/codemod@next v5.0.0/box-rename-gap <path>
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#box).
 
-
 #### `button-color-prop`
 
 Removes the outdated `color` prop values.
@@ -258,8 +253,6 @@ npx @material-ui/codemod@next v5.0.0/button-color-prop <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#button).
-
-
 
 #### `chip-variant-prop`
 
@@ -367,7 +360,6 @@ Remove `disableTypography` prop from `<DialogTitle>`
 ```sh
 npx @material-ui/codemod@next v5.0.0/dialog-title-props <path>
 ```
-
 
 #### `emotion-prepend-cache`
 
