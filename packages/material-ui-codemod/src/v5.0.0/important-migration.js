@@ -36,6 +36,7 @@ import transformTransitions from './transitions';
 import transformTypes from './material-ui-types';
 import transformUseTransitionProps from './use-transitionprops';
 import transformVariantProp from './variant-prop';
+import transformWithMobileDialog from './with-mobile-dialog';
 import transformWithWidth from './with-width';
 import transformUseAutocomplete from './use-autocomplete';
 
@@ -81,6 +82,7 @@ export default function transformer(file, api, options) {
   file.source = transformTypes(file, api, options);
   file.source = transformUseTransitionProps(file, api, options);
   file.source = transformVariantProp(file, api, options);
+  file.source = transformWithMobileDialog(file, api, options);
   file.source = transformWithWidth(file, api, options);
   file.source = transformUseAutocomplete(file, api, options);
 
