@@ -1,0 +1,1 @@
+<Modal onClose={handleClose} />;
