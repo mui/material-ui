@@ -29,6 +29,7 @@ import transformPaginationRoundCircular from './pagination-round-circular';
 import transformRootRef from './root-ref';
 import transformSkeletonVariant from './skeleton-variant';
 import transformStyledEngineProvider from './styled-engine-provider';
+import transformTableProps from './table-props';
 import transformTabsScrollButtons from './tabs-scroll-buttons';
 import transformThemeAugment from './theme-augment';
 import transformThemeBreakpointsWidth from './theme-breakpoints-width';
@@ -82,6 +83,7 @@ export default function transformer(file, api, options) {
   file.source = transformRootRef(file, api, options);
   file.source = transformSkeletonVariant(file, api, options);
   file.source = transformStyledEngineProvider(file, api, options);
+  file.source = transformTableProps(file, api, options);
   file.source = transformTabsScrollButtons(file, api, options);
   file.source = transformThemeAugment(file, api, options);
   file.source = transformThemeBreakpointsWidth(file, api, options);

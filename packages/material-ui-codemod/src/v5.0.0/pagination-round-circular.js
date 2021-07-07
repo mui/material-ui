@@ -7,7 +7,7 @@ export default function transformer(file, api) {
 
   const source = j(file.source)
     .find(j.JSXElement)
-    .filter(({ node }) => node.openingElement.name.name?.match(/(Pagination|PaginationItem)/))
+    .filter(({ node }) => node.openingElement.name.name?.match(/^(Pagination|PaginationItem)$/))
     .forEach((path) => {
       path.node.openingElement.attributes.forEach((node) => {
         if (
