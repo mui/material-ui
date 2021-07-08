@@ -46,6 +46,11 @@ export interface BaseDatePickerProps<TDate>
    */
   ToolbarComponent?: React.JSXElementConstructor<ToolbarComponentProps<TDate | null>>;
   /**
+   * Mobile picker title, displaying in the toolbar.
+   * @default 'Select date'
+   */
+  toolbarTitle?: React.ReactNode;
+  /**
    * Array of views to show.
    */
   views?: readonly DatePickerView[];

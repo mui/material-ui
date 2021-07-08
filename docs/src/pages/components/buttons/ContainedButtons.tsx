@@ -4,7 +4,7 @@ import Stack from '@material-ui/core/Stack';
 
 export default function ContainedButtons() {
   return (
-    <Stack direction="row" spacing={1}>
+    <Stack direction="row" spacing={2}>
       <Button variant="contained">Contained</Button>
       <Button variant="contained" disabled>
         Disabled
