@@ -24,28 +24,28 @@ Here are the most significant improvements since March 2021.
 
 ### Core components
 
-- 🔥 We have made enough progress to ship [v5.0.0-beta.0](https://github.com/mui-org/material-ui/releases/tag/v5.0.0-beta.0). A few statistics to give an idea of the effort that went into it:
+- 🔥 We've made enough progress to ship [v5.0.0-beta.0](https://github.com/mui-org/material-ui/releases/tag/v5.0.0-beta.0). Here are a few statistics to give an idea of the effort that went into it:
 
   - [12 months](/blog/2020-q2-update/#product) of dedicated focus. Early on, we stopped work on v4 to fully dedicate to this effort.
-  - 3,475 pull requests
+  - 3,475 pull requests.
   - 5,092 commits (the extra commits came from the merge of [material-ui-pickers](https://github.com/mui-org/material-ui-pickers))
-  - 398 new contributors
-  - The equivalent of, on average, four full-time developers working on it (core team + community).
+  - 398 new contributors.
+  - The equivalent of four full-time developers working on it on average (core team + community).
   - 38 alpha releases, we release once a week.
 
 - 👩‍🎤 We have rolled out the new **style engine** to all the components.
   The community provided invaluable assistance in completing this effort.
   In v5, we have standardized on the `styled()` API as the styling foundation we build on top of, and introduced the [the `sx` prop](https://next.material-ui.com/system/the-sx-prop/) for one-off customizations.
-  This API is loved by the community and implemented by a number of styling libraries: styled-components, emotion, stitches, goober, etc. It allows us to support them all, with [adapters](https://next.material-ui.com/guides/styled-engine/#how-to-switch-to-styled-components).
+  The `styled()` API is loved by the community, and implemented by a number of styling libraries: styled-components, emotion, stitches, goober, etc. It allows us to support them all with [adapters](https://next.material-ui.com/guides/styled-engine/#how-to-switch-to-styled-components).
 
-- ⚒️ We added a [codemod CLI](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod) and 17 transformations to automatically migrate codebases from v4 to v5.
-  If you're not familiar with what a codemod is, you can follow [this presentation](https://www.youtube.com/watch?v=H9qtLutnT_g).
+- ⚒️ We added a [codemod CLI](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod) and 17 transformations (so far) to automatically migrate codebases from v4 to v5.
+  If you're not familiar with what a codemod is, check out [this presentation](https://www.youtube.com/watch?v=H9qtLutnT_g).
 
 - 💄 We have [updated](https://next.material-ui.com/components/slider/#sizes) the style of the Slider to better match the Material Design guidelines, and kept a similar style as before under `size="small"`:
 
   <a href="https://next.material-ui.com/components/slider/#sizes"><img loading="lazy" src="/static/blog/2021-q2-update/slider.png" alt="" style="width: 838px; margin-bottom: 16px;" /></a>
 
-- ✨ The new style engine has unlocked problems on the Grid component that we couldn't solve before with JSS.
+- ✨ The new style engine has unlocked problems on the Grid component that we couldn't solve before with JSS:
 
   We have added support for [row & column](https://next.material-ui.com/components/grid/#row-amp-column-spacing) spacing:
 
@@ -90,7 +90,7 @@ Here are the most significant improvements since March 2021.
     <img loading="lazy" src="/static/blog/2021-q2-update/link.png" alt="" style="width: 129px; margin-bottom: 16px;" />
   </a>
 
-  <p class="blog-description">The underline allows to differentiate links in sentences.</p>
+  <p class="blog-description">The underline helps to differentiate links in sentences.</p>
 
 ### Advanced components
 
@@ -98,10 +98,10 @@ We have primarily focused on the data grid components, fixing a lot of bugs.
 
 #### Date Picker
 
-The date picker is at the border between the advanced components and the design system realms.
+The date picker is at the border between the core component and advanced components realms.
 
 - 🐛 We have fixed a couple of straightforward problems: visual bugs, use of the `components` prop for customizability, etc.
-- ⚙️ We have continued to focus on addressing the technical debt present in the picker components.
+- ⚙️ We have continued to focus on addressing technical debt present in the picker components.
 
 #### Data Grid
 
@@ -112,7 +112,7 @@ The date picker is at the border between the advanced components and the design 
   <img loading="lazy" src="/static/blog/2021-q2-update/cell-edit.gif" alt="" style="width: 842px; margin-bottom: 16px;" />
 
 - 🐛 We have focused on fixing bugs and regressions to ensure early users have a great experience with the component.
-  This was done instead of taking on new ambitious features.
+  This was done instead of taking on ambitious new features.
   We want our users to be able to adopt new features as fast as we build them.
 - 🔘 We have added support for a built-in [single select](/components/data-grid/columns/#column-types) column type:
 
@@ -125,7 +125,7 @@ The date picker is at the border between the advanced components and the design 
 - 🚀 We have improved the performance.
   Client-side sorting and filtering are 2-3x faster on large data sets.
   We have improved the UX when scrolling.
-  We have added a memo logic on the render cell's parent, and worked on its effectiveness to reduce the re-rendering of custom cells.
+  We have added memo logic on the render cell's parent, and worked on its effectiveness to reduce the re-rendering of custom cells.
   We have identified more opportunities to improve the performance, but we won't prioritize them just yet.
 - 📚 We have worked on providing more reference documentation. We are semi-automatically generating it from the TypeScript source definitions, with the descriptions.
   For instance, you can now find all the [properties available](/api/data-grid/grid-col-def/) of the `GridColDef`.
@@ -138,7 +138,7 @@ The date picker is at the border between the advanced components and the design 
 
 Designers have a great sense of detail.
 We have polished the kit, using all the feedback that we could get.
-We have also introduced support of a [dark mode](https://www.figma.com/file/7M8OmZIv6WigOjbSV7Xxlg/2021-q2-update?node-id=4230%3A724)! We have worked on making the design kit close to the React components.
+We have also introduced support for a [dark mode](https://www.figma.com/file/7M8OmZIv6WigOjbSV7Xxlg/2021-q2-update?node-id=4230%3A724)! We have worked on making the design kit close to the React components.
 This reduces miscommunications between designers and developers.
 
 #### Adobe XD
@@ -151,7 +151,7 @@ We have added support of a dark mode and polished the kit.
 
 ## Company
 
-In the first quarter, we focused on introducing a [handbook](https://material-ui.com/blog/2021-q1-update/#handbook) to share our culture and to solve the N(N-1)/2 communication channels problem that comes with a larger team.
+In the first quarter, we focused on introducing a [handbook](https://material-ui.com/blog/2021-q1-update/#handbook) to share our culture and to help solve the N(N-1)/2 communication channels problem that comes with a larger team.
 
 ### OKRs
 
@@ -166,7 +166,7 @@ After considering [different](https://basecamp.com/shapeup) [alternatives](https
 ### Growth between Q1 2021 and Q2 2021
 
 - 📦 From 8.6M to 9.1M downloads per month on npm.
-- ⭐️ From 67.2k to 69.1k stars. Leave us yours [🌟](https://github.com/mui-org/material-ui)!
+- ⭐️ From 67.2k to 69.1k stars. [Leave us yours 🌟](https://github.com/mui-org/material-ui)!
 - 👨‍👩‍👧‍👦 From 2,141 to 2,223 contributors on GitHub. We add on average one new contributor every day.
 
 ### New members
@@ -205,7 +205,7 @@ We have the following objectives:
 ### Core components
 
 - 🚀 Get v5 stable out! At this point, v5-alpha has about [1%](https://npm-stat.com/charts.html?package=%40material-ui%2Fstyled-engine&package=%40material-ui%2Fcore&from=2020-06-22&to=2021-06-22) of the downloads of v4.
-  It has a lot of accumulated value not being realized. We aim to for 25% of the community to have migrated by the end of the quarter.
+  It has a lot of accumulated value not being realized. We're aiming for 25% of the community to have migrated by the end of the quarter.
 - ♨️ Fix the friction the community has during the upgrade to v5.
   We want to make the upgrade feel painless.
 - ⚛️ Support [React 18](https://reactjs.org/blog/2021/06/08/the-plan-for-react-18.html). [Sebastian](https://github.com/eps1lon) is part of the React [Working Group](https://github.com/reactwg/react-18/discussions), focusing on making us ready ahead of time.
