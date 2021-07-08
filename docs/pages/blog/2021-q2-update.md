@@ -25,25 +25,25 @@ Here are the most significant improvements since March 2021.
 
 - 🔥 We have made enough progress to ship [v5.0.0-beta.0](https://github.com/mui-org/material-ui/releases/tag/v5.0.0-beta.0). A few statistics to give an idea of the effort that went into it:
 
-  - [12 months](/blog/2020-q2-update/#product) of dedicated focus. Early on, we have stopped efforts on v4.
+  - [12 months](/blog/2020-q2-update/#product) of dedicated focus. Early on, we stopped work on v4.
   - 3,475 pull requests
-  - 5,092 commits (the extra commits came from the merge with [material-ui-pickers](https://github.com/mui-org/material-ui-pickers))
+  - 5,092 commits (the extra commits came from the merge of [material-ui-pickers](https://github.com/mui-org/material-ui-pickers))
   - 398 new contributors
-  - The equivalence of, on average, four full-time developers working on it (core team + community).
+  - The equivalent of, on average, four full-time developers working on it (core team + community).
 
 - 👩‍🎤 We have rolled out the new **style engine** to all the components.
-  The community has provided invaluable assistance.
-  In v5, we have standardized on the `styled()` API as the styling foundation we build on top of, e.g. [the `sx` prop](https://next.material-ui.com/system/the-sx-prop/).
+  The community provided invaluable assistance in completing this effort.
+  In v5, we have standardized on the `styled()` API as the styling foundation we build on top of, and introduced the [the `sx` prop](https://next.material-ui.com/system/the-sx-prop/) for one-off customizations.
   This API is loved by the community and implemented by a number of styling libraries: styled-components, emotion, stitches, goober, etc. It allows us to support them all, with [adapters](https://next.material-ui.com/guides/styled-engine/#how-to-switch-to-styled-components).
 
 - ⚒️ We added a [codemod CLI](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod) and 17 transformations to automatically migrate codebases from v4 to v5.
-  If you are not familiar with what a codemod is, you can follow [this presentation](https://www.youtube.com/watch?v=H9qtLutnT_g).
+  If you're not familiar with what a codemod is, you can follow [this presentation](https://www.youtube.com/watch?v=H9qtLutnT_g).
 
 - 💄 We have [updated](https://next.material-ui.com/components/slider/#sizes) the style of the Slider to better match the Material Design guidelines, and kept a similar style as before under `size="small"`:
 
   <img loading="lazy" src="/static/blog/2021-q2-update/slider.png" alt="" style="width: 838px; margin-bottom: 16px;" />
 
-- ✨ The new style engine has unlocked problems we couldn't solve before on the Grid component with JSS.
+- ✨ The new style engine has unlocked problems on the Grid component that we couldn't solve before with JSS.
 
   We have added support for [row & column](https://next.material-ui.com/components/grid/#row-amp-column-spacing) spacing:
 
@@ -98,13 +98,13 @@ We have primarily focused on the data grid components, fixing a lot of bugs.
 
 The date picker is at the border between the advanced components and the design system realms.
 
-- 🐛 We have fixed a couple of straightforward problems: visual bugs, usage of the `components` prop for customizability, etc.
+- 🐛 We have fixed a couple of straightforward problems: visual bugs, use of the `components` prop for customizability, etc.
 - ⚙️ We have continued to focus on addressing the technical debt present in the picker components.
 
 #### Data Grid
 
 - 🚨 We have continued to work on breaking changes to reach a stable version.
-  We think that the component is good enough for usage in production, but we want to get the public API right before committing to a stable release.
+  We think that the component is good enough for use in production (and may developers are), but we want to get the public API right before committing to a stable release.
 - ✍️ We have added support for the [cell edit mode](https://material-ui.com/components/data-grid/editing/).
 
   <img loading="lazy" src="/static/blog/2021-q2-update/cell-edit.gif" alt="" style="width: 842px; margin-bottom: 16px;" />
@@ -121,13 +121,13 @@ The date picker is at the border between the advanced components and the design 
   and the **boolean** column type.
 
 - 🚀 We have improved the performance.
-  Client-side sorting and filtering are x2-3 faster on large data sets.
+  Client-side sorting and filtering are 2-3x faster on large data sets.
   We have improved the UX when scrolling.
-  We have added a memo logic on the render cell's parent and work on its effectiveness to reduce the rendering of custom cells.
+  We have added a memo logic on the render cell's parent, and worked on its effectiveness to reduce the re-rendering of custom cells.
   We have identified more opportunities to improve the performance, but we won't prioritize them just yet.
 - 📚 We have worked on providing more reference documentation. We are semi-automatically generating it from the TypeScript source definitions, with the descriptions.
   For instance, you can now find all the [properties available](/api/data-grid/grid-col-def/) of the `GridColDef`.
-- ⚡️ We have fixed support for components that use portals, like Select and Autocomplete in the cell editing mode.
+- ⚡️ We have fixed support for components that use portals, like Select and Autocomplete, in the cell editing mode.
 - 🌏 We have accepted many new built-in locales (+15) from the community, after the introduction of [the feature](/components/data-grid/localization/#supported-locales) in Q1.
 
 ### Design kits
@@ -149,7 +149,7 @@ We have added support of a dark mode and polished the kit.
 
 ## Company
 
-In the first quarter, we have focused on introducing a [handbook](https://material-ui.com/blog/2021-q1-update/#handbook) to share our culture and to solve the N(N-1)/2 communication channels problem that comes with a larger team.
+In the first quarter, we focused on introducing a [handbook](https://material-ui.com/blog/2021-q1-update/#handbook) to share our culture and to solve the N(N-1)/2 communication channels problem that comes with a larger team.
 
 ### OKRs
 
@@ -157,31 +157,31 @@ This quarter, we took on a new initiative to help us solve three problems:
 
 - create alignment on the goals
 - improve how we measure success
-- create space to take on large initiatives, away from the day-to-day PRs and issues management
+- create space to take on larger initiatives, away from the day-to-day PR and issue management
 
-After considering [different](https://basecamp.com/shapeup) [alternatives](https://coda.io/@shishir/rituals-for-hypergrowth-an-inside-look-at-how-youtube-scaled), we are going with the [OKRs methodology](https://www.whatmatters.com/resources/google-okr-playbook/).
+After considering [different](https://basecamp.com/shapeup) [alternatives](https://coda.io/@shishir/rituals-for-hypergrowth-an-inside-look-at-how-youtube-scaled), we are going with the [OKR methodology](https://www.whatmatters.com/resources/google-okr-playbook/).
 
 ### Growth between Q1 2021 and Q2 2021
 
 - 📦 From 8.6M to 9.1M downloads per month on npm.
-- ⭐️ From 67.2k to 69.1k stars, leave us yours [🌟](https://github.com/mui-org/material-ui).
+- ⭐️ From 67.2k to 69.1k stars. Leave us yours [🌟](https://github.com/mui-org/material-ui)!
 - 👨‍👩‍👧‍👦 From 2,141 to 2,223 contributors on GitHub. We add on average one new contributor every day.
 
 ### New members
 
 We have welcomed three new members to the company 🏢:
 
-- [Michal](/blog/michal-dudak-joining/), he leads the initiative around the [unstyled version](https://github.com/mui-org/material-ui/issues/6218) of Material-UI (hooks).
+- [Michal](/blog/michal-dudak-joining/) leads the initiative around the [unstyled version](https://github.com/mui-org/material-ui/issues/6218) of Material-UI.
 
   <img loading="lazy" src="/static/blog/2021-q2-update/michal.jpeg" alt="michal" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
-- [Danilo](https://daniloleal.co/), a Lead designer to raise our design game.
+- [Danilo](https://daniloleal.co/), a lead designer to raise our design game.
 
   <img loading="lazy" src="/static/blog/2021-q2-update/danilo.jpeg" alt="danilo" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
 - [Flavien](https://github.com/flaviendelangle), an engineer with previous experience building [design systems](https://habx.github.io/ui-core/) and a complex 2D JavaScript rendering engine. He will help us take on bolder problems on the advanced components (X team).
 
-Also, we are **hiring** for various roles! If you're interested in joining us, check out our [jobs page](/company/careers/#open-roles).
+We are also **hiring** for various roles! If you're interested in joining us, check out our [jobs page](/company/careers/#open-roles).
 
 ## Our roadmap intent for Q3 2021
 
@@ -192,17 +192,16 @@ We'll do our best, no guarantee!
 We have the following objectives:
 
 - Continue to refine our processes to make sure we function well with over ten people in the company.
-- Ship a rebranding. We have started this effort one year ago but failed to execute it.
-  We were missing an owner with enough bandwidth to make it happen.
+- Rebrand. We started this effort one year ago but, failed to execute on it.
   With Danilo and Jun in the team to own the effort, we can finally make it happen.
 - Open 4 roles: to strengthen the X team (advanced components) and to start the development of a bold new product vertical.
 
 ### Core components
 
 - 🚀 Get v5 stable out! At this point, v5-alpha has about [1%](https://npm-stat.com/charts.html?package=%40material-ui%2Fstyled-engine&package=%40material-ui%2Fcore&from=2020-06-22&to=2021-06-22) of the downloads of v4.
-  It's a lot of value accumulated and not delivered. We aim to migrate 25% of the community by the end of the quarter.
+  It has a lot of accumulated value not being realized. We aim to for 25% of the community to have migrated by the end of the quarter.
 - ⚛️ Support React 18
-- ♨️ Fix the frictions the community has during the upgrade.
+- ♨️ Fix the friction the community has during upgrade.
 - 🦴 Migrate more components to `@material-ui/unstyled`.
 - 🌈 Do a POC on a second theme.
 - 🗓 Execute on all the items of the [public roadmap](https://github.com/mui-org/material-ui/projects/25).
@@ -210,12 +209,12 @@ We have the following objectives:
 
 ### Advanced components
 
-- 🚀 Make the first stable release of the Data Grid, with the core on v5.
+- 🚀 Make the first stable release of the Data Grid, with the core on v5. (We will continue to support its use with v4.)
 - ✨ Resume work on the [key features](https://github.com/mui-org/material-ui-x/issues?q=is%3Aopen+label%3A%22linked+in+docs%22+sort%3Areactions-%2B1-desc), after a quarter focused on stability.
 - 🗓 Execute on all the items in the [public roadmap](https://github.com/mui-org/material-ui-x/projects/1).
 - ❓ Please upvote [GitHub issues](https://github.com/mui-org/material-ui-x/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
 ### Design kits
 
-- Handle designers' pain and bug reports to polish the product.
+- Handle designers' pain and bug reports to polish the products.
 - Run a survey on thousands of customers to identify important improvement opportunities. Should we build plugins to more easily switch the token variables between design and code? Should we add more in context examples? Should we focus on inconsistencies? etc.
