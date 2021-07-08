@@ -26,7 +26,8 @@ Here are the most significant improvements since March 2021.
 
 - 🔥 We've made enough progress to ship [v5.0.0-beta.0](https://github.com/mui-org/material-ui/releases/tag/v5.0.0-beta.0). Here are a few statistics to give an idea of the effort that went into it:
 
-  - [12 months](/blog/2020-q2-update/#product) of dedicated focus. Early on, we stopped work on v4 to fully dedicate to this effort.
+  - [12 months](/blog/2020-q2-update/#product) of dedicated focus.
+    We stopped work on v4 early on to fully dedicate to v5.
   - 3,475 pull requests.
   - 5,092 commits (the extra commits came from the merge of [material-ui-pickers](https://github.com/mui-org/material-ui-pickers))
   - 398 new contributors.
