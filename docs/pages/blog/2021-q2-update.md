@@ -2,7 +2,7 @@
 title: Q2 2021 Update
 description: An update on our mission for Q2 2021.
 date: 2021-07-12T00:00:00.000Z
-authors: ['oliviertassinari']
+authors: ['oliviertassinari', 'mbrookes']
 card: true
 ---
 
