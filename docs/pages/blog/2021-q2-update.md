@@ -152,9 +152,9 @@ We have added support of a dark mode and polished the kit.
 
 ## Company
 
-In the first quarter, we focused on introducing a [handbook](https://material-ui.com/blog/2021-q1-update/#handbook) to share our culture and to help solve the N(N-1)/2 communication channels problem that comes with a larger team.
-
 ### OKRs
+
+In the first quarter, we focused on introducing a [handbook](https://material-ui.com/blog/2021-q1-update/#handbook) to share our culture and to help solve the N(N-1)/2 communication channels problem that comes with a larger team.
 
 This quarter, we took on a new initiative to help us solve three problems:
 
