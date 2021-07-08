@@ -344,6 +344,11 @@ npx @material-ui/codemod@next v5.0.0/core-styles-import <path>
 
 Rename the function `createMuiTheme` to `createTheme`
 
+```diff
+-import { createMuiTheme } from '@material-ui/core/styles';
++import { createTheme } from '@material-ui/core/styles';
+```
+
 ```sh
 npx @material-ui/codemod@next v5.0.0/create-theme <path>
 ```
