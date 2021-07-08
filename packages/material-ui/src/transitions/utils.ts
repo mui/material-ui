@@ -4,7 +4,7 @@ export const reflow = (node: Element) => node.scrollTop;
 
 interface ComponentProps {
   easing: string | { enter?: string; exit?: string };
-  style: React.CSSProperties;
+  style: React.CSSProperties | undefined;
   timeout: number | { enter?: number; exit?: number };
 }
 
