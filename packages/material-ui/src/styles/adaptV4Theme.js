@@ -1,5 +1,6 @@
 import { createBreakpoints } from '@material-ui/system';
 import createV4Spacing from './createV4Spacing';
+import { orange, cyan, green } from '../colors';
 
 export default function adaptV4Theme(inputTheme) {
   if (process.env.NODE_ENV !== 'production') {
@@ -85,6 +86,21 @@ export default function adaptV4Theme(inputTheme) {
     },
     mode: finalMode,
     type: finalMode,
+    warning: {
+      light: orange[300],
+      main: orange[500],
+      dark: orange[700],
+    },
+    info: {
+      light: cyan[300],
+      main: cyan[500],
+      dark: cyan[700],
+    },
+    success: {
+      light: green[300],
+      main: green[500],
+      dark: green[700],
+    },
     ...paletteRest,
   };
 
