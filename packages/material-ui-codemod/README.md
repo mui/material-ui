@@ -39,6 +39,7 @@ Examples:
 #### jscodeshift options
 
 To pass more options directly to jscodeshift, use `--jscodeshift="..."`. For example:
+
 ```sh
 npx @material-ui/codemod@next --jscodeshift="--run-in-band --verbose=2"
 ```
