@@ -117,12 +117,12 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
   const {
     children,
     className,
+    componentsProps = {},
     error = false,
     icon: iconProp,
     optional,
     StepIconComponent: StepIconComponentProp,
     StepIconProps,
-    componentsProps = {},
     ...other
   } = props;
 

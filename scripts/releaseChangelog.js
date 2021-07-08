@@ -28,7 +28,6 @@ function parseTags(commitMessage) {
 }
 
 /**
- *
  * @param {Octokit.ReposCompareCommitsResponseCommitsItem} commitsItem
  */
 function filterCommit(commitsItem) {
