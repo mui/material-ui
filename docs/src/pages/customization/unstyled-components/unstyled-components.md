@@ -44,7 +44,7 @@ With components, you will usually be able write less code, but with hooks you ha
 
 While each component has its own API, there are a few props common to all of them:
 
-- `components` - an object that allows you to override subcomponents used by the unstyled (host) component. Each host component will at least have the `Root` slot. Many complex components have more slots. You can either provide a custom component or an HTML tag there.
+- `components` - an object that allows you to override subcomponents (slots) used by the unstyled (host) component. Each host component will at least have the `Root` slot. Many complex components have more slots. You can either provide a custom component or an HTML tag there.
 
   ```jsx
   <BadgeUnstyled components={{ Root: 'div', Badge: MyCustomBadge }} />
