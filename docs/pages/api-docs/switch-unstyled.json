@@ -1,0 +1,29 @@
+{
+  "props": {
+    "checked": { "type": { "name": "bool" } },
+    "className": { "type": { "name": "string" } },
+    "component": { "type": { "name": "elementType" } },
+    "components": {
+      "type": {
+        "name": "shape",
+        "description": "{ Input?: elementType, Root?: elementType, Thumb?: elementType }"
+      },
+      "default": "{}"
+    },
+    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "defaultChecked": { "type": { "name": "bool" } },
+    "disabled": { "type": { "name": "bool" } },
+    "onChange": { "type": { "name": "func" } },
+    "readOnly": { "type": { "name": "bool" } },
+    "required": { "type": { "name": "bool" } }
+  },
+  "name": "SwitchUnstyled",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "forwardsRefTo": "HTMLSpanElement",
+  "filename": "/packages/material-ui-unstyled/src/SwitchUnstyled/SwitchUnstyled.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/switches/\">Switches</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

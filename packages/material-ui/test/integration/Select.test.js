@@ -130,15 +130,13 @@ describe('<Select> integration', () => {
             <MenuItem value={10}>Ten</MenuItem>
           </Select>
         </FormControl>,
-        // StrictModeViolation: Requires fake timers + act
-        { strict: false },
       );
 
+      const trigger = getByRole('button');
       act(() => {
-        const trigger = getByRole('button');
         trigger.focus();
-        fireEvent.keyDown(trigger, { key: 'Enter' });
       });
+      fireEvent.keyDown(trigger, { key: 'Enter' });
 
       expect(getByTestId('label')).to.have.class('focused-label');
     });

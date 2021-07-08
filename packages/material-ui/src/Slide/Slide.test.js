@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { createClientRender, createMount, describeConformance } from 'test/utils';
+import { act, createClientRender, describeConformance } from 'test/utils';
 import { createTheme } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
 import Slide from '@material-ui/core/Slide';
@@ -10,7 +10,7 @@ import { useForkRef } from '../utils';
 
 describe('<Slide />', () => {
   const render = createClientRender();
-  const mount = createMount();
+
   const defaultProps = {
     in: true,
     children: <div id="testChild" />,
@@ -24,7 +24,6 @@ describe('<Slide />', () => {
     () => ({
       classes: {},
       inheritComponent: Transition,
-      mount,
       refInstanceof: window.HTMLDivElement,
       skip: [
         'componentProp',
@@ -99,7 +98,9 @@ describe('<Slide />', () => {
       expect(handleEntering.callCount).to.equal(1);
       expect(handleEntering.args[0][0]).to.equal(child);
 
-      clock.tick(1000);
+      act(() => {
+        clock.tick(1000);
+      });
       expect(handleEntered.callCount).to.equal(1);
 
       setProps({ in: false });
@@ -110,7 +111,9 @@ describe('<Slide />', () => {
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExiting.args[0][0]).to.equal(child);
 
-      clock.tick(1000);
+      act(() => {
+        clock.tick(1000);
+      });
       expect(handleExited.callCount).to.equal(1);
       expect(handleExited.args[0][0]).to.equal(child);
     });
@@ -491,10 +494,12 @@ describe('<Slide />', () => {
         </Slide>,
       );
 
-      window.dispatchEvent(new window.Event('resize', {}));
-      clock.tick(166);
-      const child = container.querySelector('#testChild');
+      act(() => {
+        window.dispatchEvent(new window.Event('resize', {}));
+        clock.tick(166);
+      });
 
+      const child = container.querySelector('#testChild');
       expect(child.style.transform).not.to.equal(undefined);
     });
 
@@ -519,8 +524,10 @@ describe('<Slide />', () => {
 
     it('should do nothing when visible', () => {
       render(<Slide {...defaultProps} />);
-      window.dispatchEvent(new window.Event('resize', {}));
-      clock.tick(166);
+      act(() => {
+        window.dispatchEvent(new window.Event('resize', {}));
+        clock.tick(166);
+      });
     });
   });
 

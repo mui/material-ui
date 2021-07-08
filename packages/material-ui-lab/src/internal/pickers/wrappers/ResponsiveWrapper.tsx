@@ -8,8 +8,8 @@ import { DateInputPropsLike, PrivateWrapperProps } from './WrapperProps';
 export interface ResponsiveWrapperProps extends MobileWrapperProps, DesktopWrapperProps {
   /**
    * CSS media query when `Mobile` mode will be changed to `Desktop`.
-   * @default "@media (pointer: fine)"
-   * @example "@media (min-width: 720px)" or theme.breakpoints.up("sm")
+   * @default '@media (pointer: fine)'
+   * @example '@media (min-width: 720px)' or theme.breakpoints.up('sm')
    */
   desktopModeMediaQuery?: string;
 }

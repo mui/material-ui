@@ -44,12 +44,12 @@ const TooltipPopper = styled(Popper, {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.popper,
-      ...(!styleProps.disableInteractive && styles.popperInteractive),
-      ...(styleProps.arrow && styles.popperArrow),
-      ...(!styleProps.open && styles.popperClose),
-    };
+    return [
+      styles.popper,
+      !styleProps.disableInteractive && styles.popperInteractive,
+      styleProps.arrow && styles.popperArrow,
+      !styleProps.open && styles.popperClose,
+    ];
   },
 })(({ theme, styleProps, open }) => ({
   /* Styles applied to the Popper element. */
@@ -107,12 +107,12 @@ const TooltipTooltip = styled('div', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.tooltip,
-      ...(styleProps.touch && styles.touch),
-      ...(styleProps.arrow && styles.tooltipArrow),
-      ...styles[`tooltipPlacement${capitalize(styleProps.placement.split('-')[0])}`],
-    };
+    return [
+      styles.tooltip,
+      styleProps.touch && styles.touch,
+      styleProps.arrow && styles.tooltipArrow,
+      styles[`tooltipPlacement${capitalize(styleProps.placement.split('-')[0])}`],
+    ];
   },
 })(({ theme, styleProps }) => ({
   /* Styles applied to the tooltip (label wrapper) element. */

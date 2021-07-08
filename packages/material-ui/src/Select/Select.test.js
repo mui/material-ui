@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import {
-  createMount,
   describeConformanceV5,
   ErrorBoundary,
   act,
@@ -20,15 +19,23 @@ import Divider from '@material-ui/core/Divider';
 import classes from './selectClasses';
 
 describe('<Select />', () => {
-  const mount = createMount();
-  // StrictModeViolation: triggers "not wrapped in act()" warnings from timers.
-  const render = createClientRender({ strict: false });
+  /**
+   * @type {ReturnType<typeof useFakeTimers>}
+   */
+  let clock;
+  beforeEach(() => {
+    clock = useFakeTimers();
+  });
+  afterEach(() => {
+    clock.restore();
+  });
+
+  const render = createClientRender();
 
   describeConformanceV5(<Select value="" />, () => ({
     classes,
     inheritComponent: OutlinedInput,
     render,
-    mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiSelect',
     skip: ['componentProp', 'componentsProp', 'themeVariants', 'themeStyleOverrides'],
@@ -150,7 +157,9 @@ describe('<Select />', () => {
         </Select>,
       );
       const trigger = screen.getByRole('button');
-      trigger.focus();
+      act(() => {
+        trigger.focus();
+      });
 
       fireEvent.keyDown(trigger, { key });
       expect(screen.getByRole('listbox', { hidden: false })).not.to.equal(null);
@@ -168,9 +177,13 @@ describe('<Select />', () => {
       </Select>,
     );
     const button = getByRole('button');
-    button.focus();
+    act(() => {
+      button.focus();
+    });
 
-    button.blur();
+    act(() => {
+      button.blur();
+    });
 
     expect(handleBlur.callCount).to.equal(1);
     expect(handleBlur.firstCall.returnValue).to.equal('blur-testing');
@@ -245,7 +258,9 @@ describe('<Select />', () => {
         </Select>,
       );
       fireEvent.mouseDown(getByRole('button'));
-      getAllByRole('option')[1].click();
+      act(() => {
+        getAllByRole('option')[1].click();
+      });
 
       expect(onChangeHandler.calledOnce).to.equal(true);
       const selected = onChangeHandler.args[0][1];
@@ -264,7 +279,9 @@ describe('<Select />', () => {
       );
 
       fireEvent.mouseDown(getByRole('button'));
-      getAllByRole('option')[1].click();
+      act(() => {
+        getAllByRole('option')[1].click();
+      });
 
       expect(eventLog).to.deep.equal(['CHANGE_EVENT', 'CLOSE_EVENT']);
     });
@@ -279,7 +296,9 @@ describe('<Select />', () => {
         </Select>,
       );
       fireEvent.mouseDown(getByRole('button'));
-      getAllByRole('option')[1].click();
+      act(() => {
+        getAllByRole('option')[1].click();
+      });
 
       expect(onChangeHandler.callCount).to.equal(0);
     });
@@ -361,7 +380,9 @@ describe('<Select />', () => {
           ),
         ).toWarnDev([
           'Material-UI: You have provided an out-of-range value `20` for the select component.',
-          // strict mode renders twice
+          // React 18 Strict Effects run mount effects twice
+          React.version.startsWith('18') &&
+            'Material-UI: You have provided an out-of-range value `20` for the select component.',
           'Material-UI: You have provided an out-of-range value `20` for the select component.',
         ]);
       });
@@ -440,7 +461,9 @@ describe('<Select />', () => {
     specify('the listbox is focusable', () => {
       const { getByRole } = render(<Select open value="" />);
 
-      getByRole('listbox').focus();
+      act(() => {
+        getByRole('listbox').focus();
+      });
 
       expect(getByRole('listbox')).toHaveFocus();
     });
@@ -562,7 +585,9 @@ describe('<Select />', () => {
         { baseElement: document.body },
       );
       const trigger = screen.getByRole('button');
-      trigger.focus();
+      act(() => {
+        trigger.focus();
+      });
 
       fireEvent.keyDown(trigger, { key: 'ArrowDown' });
       expect(screen.queryByRole('listbox')).to.equal(null);
@@ -573,16 +598,6 @@ describe('<Select />', () => {
   });
 
   describe('prop: MenuProps', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
     it('should apply additional props to the Menu component', () => {
       const onEntered = spy();
       const { getByRole } = render(
@@ -661,16 +676,6 @@ describe('<Select />', () => {
   });
 
   describe('prop: open (controlled)', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
     it('should not focus on close controlled select', () => {
       function ControlledWrapper() {
         const [open, setOpen] = React.useState(false);
@@ -693,7 +698,9 @@ describe('<Select />', () => {
       }
       const { container, getByRole } = render(<ControlledWrapper />);
       const openSelect = container.querySelector('#open-select');
-      openSelect.focus();
+      act(() => {
+        openSelect.focus();
+      });
       fireEvent.click(openSelect);
 
       const option = getByRole('option');
@@ -855,6 +862,10 @@ describe('<Select />', () => {
 
     describe('errors', () => {
       it('should throw if non array', function test() {
+        // FIXME: leaks into subsequent tests due to https://github.com/facebook/react/issues/21765
+        if (React.version.startsWith('18')) {
+          this.skip();
+        }
         // TODO is this fixed?
         if (!/jsdom/.test(window.navigator.userAgent)) {
           // can't catch render errors in the browser for unknown reason
@@ -875,6 +886,8 @@ describe('<Select />', () => {
           );
         }).toErrorDev([
           'Material-UI: The `value` prop must be an array',
+          // React 18 Strict Effects run mount effects twice
+          React.version.startsWith('18') && 'Material-UI: The `value` prop must be an array',
           'The above error occurred in the <ForwardRef(SelectInput)> component',
         ]);
         const {

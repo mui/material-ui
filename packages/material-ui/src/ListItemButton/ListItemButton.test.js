@@ -1,19 +1,17 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
+import { describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
 import ListItemButton, { listItemButtonClasses as classes } from '@material-ui/core/ListItemButton';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import ListContext from '../List/ListContext';
 
 describe('<ListItemButton />', () => {
   const render = createClientRender();
-  const mount = createMount();
 
   describeConformanceV5(<ListItemButton />, () => ({
     classes,
     inheritComponent: ButtonBase,
     render,
-    mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'a',
     muiName: 'MuiListItemButton',

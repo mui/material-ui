@@ -24,11 +24,7 @@ const TableRowRoot = styled('tr', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...(styleProps.head && styles.head),
-      ...(styleProps.footer && styles.footer),
-    };
+    return [styles.root, styleProps.head && styles.head, styleProps.footer && styles.footer];
   },
 })(({ theme }) => ({
   /* Styles applied to the root element. */

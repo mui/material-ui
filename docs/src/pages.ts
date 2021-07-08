@@ -52,6 +52,7 @@ const pages: readonly MuiPage[] = [
           { pathname: '/components/grid' },
           { pathname: '/components/stack' },
           { pathname: '/components/image-list' },
+          { pathname: '/components/hidden' },
         ],
       },
       {
@@ -224,6 +225,7 @@ const pages: readonly MuiPage[] = [
     children: [
       { pathname: '/system/basics' },
       { pathname: '/system/properties' },
+      { pathname: '/system/the-sx-prop', title: 'The sx prop' },
       { pathname: '/system/borders' },
       { pathname: '/system/display' },
       { pathname: '/system/flexbox' },
@@ -237,6 +239,7 @@ const pages: readonly MuiPage[] = [
       { pathname: '/system/typography' },
       { pathname: '/system/advanced' },
       { pathname: '/system/box' },
+      { pathname: '/system/styled', title: 'styled' },
     ],
   },
   {
@@ -268,7 +271,6 @@ const pages: readonly MuiPage[] = [
       },
       { pathname: '/customization/how-to-customize' },
       { pathname: '/customization/color' },
-      { pathname: '/customization/styled', title: 'styled' },
     ],
   },
   {

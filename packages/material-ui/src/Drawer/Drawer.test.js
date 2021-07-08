@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { useFakeTimers, spy } from 'sinon';
-import { act, createMount, createClientRender, describeConformanceV5, screen } from 'test/utils';
+import { act, createClientRender, describeConformanceV5, screen } from 'test/utils';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import Drawer, { drawerClasses as classes } from '@material-ui/core/Drawer';
 import { getAnchor, isHorizontal } from './Drawer';
@@ -19,7 +19,6 @@ describe('<Drawer />', () => {
   });
 
   const render = createClientRender();
-  const mount = createMount();
 
   describeConformanceV5(
     <Drawer open disablePortal>
@@ -29,7 +28,6 @@ describe('<Drawer />', () => {
       classes,
       inheritComponent: 'div',
       render,
-      mount,
       muiName: 'MuiDrawer',
       testVariantProps: { variant: 'persistent' },
       testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },

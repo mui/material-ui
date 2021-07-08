@@ -14,7 +14,7 @@ export type GridSize = 'auto' | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12
 
 export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    SystemProps & {
+    SystemProps<Theme> & {
       /**
        * The content of the component.
        */

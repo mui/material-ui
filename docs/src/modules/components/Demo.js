@@ -134,17 +134,16 @@ const useStyles = makeStyles(
       },
     },
     code: {
-      display: 'none',
       padding: 0,
       marginBottom: theme.spacing(1),
-      marginRight: 0,
+      marginTop: theme.spacing(2),
       [theme.breakpoints.up('sm')]: {
-        display: 'block',
+        marginTop: theme.spacing(0),
       },
       '& pre': {
         overflow: 'auto',
         lineHeight: 1.5,
-        margin: '0 !important',
+        margin: '0 auto',
         maxHeight: 'min(68vh, 1000px)',
       },
     },

@@ -1,16 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import sinon, { spy, stub, useFakeTimers } from 'sinon';
-import { createMount, describeConformance, act, createClientRender, fireEvent } from 'test/utils';
+import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 describe('<TextareaAutosize />', () => {
-  const mount = createMount();
   const render = createClientRender();
 
   describeConformance(<TextareaAutosize />, () => ({
     inheritComponent: 'textarea',
-    mount,
     refInstanceof: window.HTMLTextAreaElement,
     skip: ['rootClass', 'componentProp'],
   }));
@@ -96,7 +94,9 @@ describe('<TextareaAutosize />', () => {
         scrollHeight: 30,
         lineHeight: 15,
       });
-      input.focus();
+      act(() => {
+        input.focus();
+      });
       fireEvent.change(document.activeElement, { target: { value: 'a' } });
       expect(input.style).to.have.property('height', '30px');
       expect(input.style).to.have.property('overflow', 'hidden');

@@ -27,11 +27,11 @@ const SvgIconRoot = styled('svg', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...(styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`]),
-      ...styles[`fontSize${capitalize(styleProps.fontSize)}`],
-    };
+    return [
+      styles.root,
+      styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`],
+      styles[`fontSize${capitalize(styleProps.fontSize)}`],
+    ];
   },
 })(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */

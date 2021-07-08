@@ -1,26 +1,18 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  createMount,
-  describeConformanceV5,
-  createClientRender,
-  fireEvent,
-  screen,
-} from 'test/utils';
+import { act, describeConformanceV5, createClientRender, fireEvent, screen } from 'test/utils';
 import MenuItem, { menuItemClasses as classes } from '@material-ui/core/MenuItem';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import ListContext from '../List/ListContext';
 
 describe('<MenuItem />', () => {
   const render = createClientRender();
-  const mount = createMount();
 
   describeConformanceV5(<MenuItem />, () => ({
     classes,
     inheritComponent: ButtonBase,
     render,
-    mount,
     refInstanceof: window.HTMLLIElement,
     testComponentPropWith: 'a',
     muiName: 'MuiMenuItem',
@@ -92,7 +84,9 @@ describe('<MenuItem />', () => {
       );
       const menuitem = screen.getByRole('menuitem');
 
-      menuitem.focus();
+      act(() => {
+        menuitem.focus();
+      });
 
       expect(handleFocus.callCount).to.equal(1);
 

@@ -36,24 +36,22 @@ const DividerRoot = styled('div', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...(styleProps.absolute && styles.absolute),
-      ...styles[styleProps.variant],
-      ...(styleProps.light && styles.light),
-      ...(styleProps.orientation === 'vertical' && styles.vertical),
-      ...(styleProps.flexItem && styles.flexItem),
-      ...(styleProps.children && styles.withChildren),
-      ...(styleProps.children &&
-        styleProps.orientation === 'vertical' &&
-        styles.withChildrenVertical),
-      ...(styleProps.textAlign === 'right' &&
+    return [
+      styles.root,
+      styleProps.absolute && styles.absolute,
+      styles[styleProps.variant],
+      styleProps.light && styles.light,
+      styleProps.orientation === 'vertical' && styles.vertical,
+      styleProps.flexItem && styles.flexItem,
+      styleProps.children && styles.withChildren,
+      styleProps.children && styleProps.orientation === 'vertical' && styles.withChildrenVertical,
+      styleProps.textAlign === 'right' &&
         styleProps.orientation !== 'vertical' &&
-        styles.textAlignRight),
-      ...(styleProps.textAlign === 'left' &&
+        styles.textAlignRight,
+      styleProps.textAlign === 'left' &&
         styleProps.orientation !== 'vertical' &&
-        styles.textAlignLeft),
-    };
+        styles.textAlignLeft,
+    ];
   },
 })(
   ({ theme, styleProps }) => ({
@@ -165,10 +163,7 @@ const DividerWrapper = styled('span', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.wrapper,
-      ...(styleProps.orientation === 'vertical' && styles.wrapperVertical),
-    };
+    return [styles.wrapper, styleProps.orientation === 'vertical' && styles.wrapperVertical];
   },
 })(({ theme, styleProps }) => ({
   display: 'inline-block',

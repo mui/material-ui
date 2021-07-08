@@ -28,15 +28,12 @@ function parseTags(commitMessage) {
 }
 
 /**
- *
  * @param {Octokit.ReposCompareCommitsResponseCommitsItem} commitsItem
  */
 function filterCommit(commitsItem) {
-  // exclude dependabot commits (sometimes they're merged manually so filtering by author is insufficient)
-  return (
-    commitsItem.author.login !== 'dependabot-preview[bot]' &&
-    !commitsItem.commit.message.startsWith('Bump')
-  );
+  // TODO: Use labels
+  // Filter dependency updates
+  return !commitsItem.commit.message.startsWith('Bump');
 }
 
 async function findLatestTaggedVersion() {

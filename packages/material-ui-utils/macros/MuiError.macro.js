@@ -15,7 +15,6 @@ function invertObject(object) {
  * Supported imports:
  * 1. bare specifier e.g. `'@material-ui/utils/macros/MuiError.macro'`
  * 2. relative import from `packages/material-ui-utils/src` e.g. `'../macros/MuiError.macro'`
- *
  * @param {import('babel-plugin-macros').MacroParams} param0
  */
 function muiError({ references, babel, config, source }) {
@@ -141,9 +140,9 @@ function muiError({ references, babel, config, source }) {
           '@material-ui/utils',
         );
       } else {
-        const normalizedRelativeImport = path.normalize(
-          source.replace('../macros/MuiError.macro', './formatMuiErrorMessage'),
-        );
+        const normalizedRelativeImport = path
+          .normalize(source.replace('../macros/MuiError.macro', './formatMuiErrorMessage'))
+          .replace(/\\/g, '/');
         // 'formatMuiErrorMessage' implies './formatMuiErrorMessage' for fs paths but not for import specifiers.
         const formatMuiErrorMessageImportSource = normalizedRelativeImport.startsWith('.')
           ? normalizedRelativeImport

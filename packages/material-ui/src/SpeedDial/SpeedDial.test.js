@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import {
-  createMount,
   createClientRender,
   act,
   fireEvent,
@@ -26,9 +25,7 @@ describe('<SpeedDial />', () => {
     clock.restore();
   });
 
-  // StrictModeViolation: not using act(), prefer test/utils/createClientRender
-  const mount = createMount({ strict: false });
-  const render = createClientRender({ strict: false });
+  const render = createClientRender();
 
   const icon = <Icon>font_icon</Icon>;
   const FakeAction = () => <div />;
@@ -41,7 +38,6 @@ describe('<SpeedDial />', () => {
   describeConformanceV5(<SpeedDial {...defaultProps} />, () => ({
     classes,
     inheritComponent: 'div',
-    mount,
     render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiSpeedDial',
@@ -203,10 +199,13 @@ describe('<SpeedDial />', () => {
         </SpeedDial>,
       );
       const fab = getByRole('button');
-      fab.focus();
+      act(() => {
+        fab.focus();
+      });
       act(() => {
         clock.tick();
       });
+
       expect(handleOpen.callCount).to.equal(1);
       const actions = getAllByRole('menuitem');
       expect(actions.length).to.equal(2);
@@ -226,7 +225,9 @@ describe('<SpeedDial />', () => {
       const fab = getByRole('button');
       const actions = getAllByRole('menuitem');
 
-      fab.focus();
+      act(() => {
+        fab.focus();
+      });
       act(() => {
         clock.runAll();
       });
@@ -301,7 +302,9 @@ describe('<SpeedDial />', () => {
           ))}
         </SpeedDial>,
       );
-      fabButton.focus();
+      act(() => {
+        fabButton.focus();
+      });
     };
 
     /**

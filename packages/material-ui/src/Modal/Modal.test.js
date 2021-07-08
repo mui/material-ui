@@ -8,17 +8,16 @@ import {
   createClientRender,
   fireEvent,
   within,
-  createMount,
   describeConformanceV5,
+  screen,
 } from 'test/utils';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import Fade from '@material-ui/core/Fade';
-import Backdrop from '@material-ui/core/Backdrop';
 import Modal, { modalClasses as classes } from '@material-ui/core/Modal';
 
 describe('<Modal />', () => {
   const render = createClientRender();
-  const mount = createMount();
+
   let savedBodyStyle;
 
   before(() => {
@@ -37,7 +36,6 @@ describe('<Modal />', () => {
       classes,
       inheritComponent: 'div',
       render,
-      mount,
       muiName: 'MuiModal',
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { hideBackdrop: true },
@@ -111,18 +109,23 @@ describe('<Modal />', () => {
   });
 
   describe('backdrop', () => {
-    it('should render a backdrop with a fade transition', () => {
-      const wrapper = mount(
-        <Modal open BackdropComponent={Backdrop}>
+    it('can render a custom backdrop component', () => {
+      function TestBackdrop(props) {
+        const { open } = props;
+        if (!open) {
+          return null;
+        }
+
+        return <div data-testid="backdrop" />;
+      }
+
+      render(
+        <Modal open BackdropComponent={TestBackdrop}>
           <div />
         </Modal>,
       );
 
-      const backdrop = wrapper.find(Backdrop);
-      expect(backdrop.exists()).to.equal(true);
-
-      const transition = backdrop.find(Fade);
-      expect(transition.props()).to.have.property('in', true);
+      expect(screen.getByTestId('backdrop')).not.to.equal(null);
     });
 
     it('should render a backdrop component into the portal before the modal content', () => {
@@ -141,14 +144,21 @@ describe('<Modal />', () => {
     });
 
     it('should pass prop to the transition component', () => {
-      const wrapper = mount(
-        <Modal open BackdropComponent={Backdrop} BackdropProps={{ transitionDuration: 200 }}>
+      function TestBackdrop(props) {
+        const { open, transitionDuration } = props;
+        if (!open) {
+          return null;
+        }
+
+        return <div data-testid="backdrop" data-timeout={transitionDuration} />;
+      }
+      render(
+        <Modal open BackdropComponent={TestBackdrop} BackdropProps={{ transitionDuration: 200 }}>
           <div />
         </Modal>,
       );
 
-      const transition = wrapper.find(Fade);
-      expect(transition.props()).to.have.property('timeout', 200);
+      expect(screen.getByTestId('backdrop')).to.have.attribute('data-timeout', '200');
     });
 
     it('should attach a handler to the backdrop that fires onClose', () => {
@@ -227,27 +237,6 @@ describe('<Modal />', () => {
 
       expect(onBackdropClick).to.have.property('callCount', 0);
     });
-
-    // Test case for https://github.com/mui-org/material-ui/issues/12831
-    it('should unmount the children when starting open and closing immediately', () => {
-      function TestCase() {
-        const [open, setOpen] = React.useState(true);
-
-        React.useEffect(() => {
-          setOpen(false);
-        }, []);
-
-        return (
-          <Modal open={open}>
-            <Fade in={open}>
-              <div id="modal-body">hello</div>
-            </Fade>
-          </Modal>
-        );
-      }
-      render(<TestCase />);
-      expect(document.querySelector('#modal-body')).to.equal(null);
-    });
   });
 
   describe('hide backdrop', () => {
@@ -273,7 +262,9 @@ describe('<Modal />', () => {
           <div data-testid="modal" tabIndex={-1} />
         </Modal>,
       );
-      getByTestId('modal').focus();
+      act(() => {
+        getByTestId('modal').focus();
+      });
 
       fireEvent.keyDown(getByTestId('modal'), {
         key: 'j', // Not escape
@@ -292,7 +283,9 @@ describe('<Modal />', () => {
           </Modal>
         </div>,
       );
-      getByTestId('modal').focus();
+      act(() => {
+        getByTestId('modal').focus();
+      });
 
       fireEvent.keyDown(getByTestId('modal'), {
         key: 'Escape',
@@ -312,7 +305,9 @@ describe('<Modal />', () => {
           </Modal>
         </div>,
       );
-      getByTestId('modal').focus();
+      act(() => {
+        getByTestId('modal').focus();
+      });
 
       fireEvent.keyDown(getByTestId('modal'), {
         key: 'Escape',
@@ -413,7 +408,9 @@ describe('<Modal />', () => {
       initialFocus = document.createElement('button');
       initialFocus.tabIndex = 0;
       document.body.appendChild(initialFocus);
-      initialFocus.focus();
+      act(() => {
+        initialFocus.focus();
+      });
     });
 
     afterEach(() => {
@@ -441,6 +438,8 @@ describe('<Modal />', () => {
             <input data-testid="auto-focus" type="text" autoFocus />
           </div>
         </Modal>,
+        // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
+        { strictEffects: false },
       );
 
       expect(getByTestId('auto-focus')).toHaveFocus();
@@ -541,11 +540,39 @@ describe('<Modal />', () => {
 
         act(() => {
           getByTestId('foreign-input').focus();
+        });
+        act(() => {
           // wait for the `contain` interval check to kick in.
           clock.tick(500);
         });
 
         expect(getByTestId('foreign-input')).toHaveFocus();
+      });
+
+      // Test case for https://github.com/mui-org/material-ui/issues/12831
+      it('should unmount the children when starting open and closing immediately', () => {
+        const timeout = 50;
+        function TestCase() {
+          const [open, setOpen] = React.useState(true);
+
+          React.useEffect(() => {
+            setOpen(false);
+          }, []);
+
+          return (
+            <Modal open={open}>
+              <Fade in={open} timeout={timeout}>
+                <div id="modal-body">hello</div>
+              </Fade>
+            </Modal>
+          );
+        }
+        render(<TestCase />);
+        // exit transition started
+        act(() => {
+          clock.tick(timeout);
+        });
+        expect(document.querySelector('#modal-body')).to.equal(null);
       });
     });
   });

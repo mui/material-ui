@@ -6,13 +6,13 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import Link from 'docs/src/modules/components/Link';
-import PageContext from 'docs/src/modules/components/PageContext';
+import VersionsContext from './VersionsContext';
 
 const GITHUB_RELEASE_BASE_URL =
   'https://github.com/mui-org/material-ui/releases/tag/';
 
 function ReleasedVersions() {
-  const { versions } = React.useContext(PageContext);
+  const versions = React.useContext(VersionsContext);
 
   return (
     <Box sx={{ minHeight: 33 * 11, overflow: 'auto', width: '100%' }}>

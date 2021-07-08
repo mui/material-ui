@@ -41,7 +41,7 @@ export default function Header(props: HeaderProps) {
             <Grid item xs />
             <Grid item>
               <Link
-                href="#"
+                href="https://docs.paperbase.app/"
                 variant="body2"
                 sx={{
                   textDecoration: 'none',
@@ -50,6 +50,8 @@ export default function Header(props: HeaderProps) {
                     color: 'common.white',
                   },
                 }}
+                rel="noopener noreferrer"
+                target="_blank"
               >
                 Go to docs
               </Link>

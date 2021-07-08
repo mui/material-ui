@@ -104,6 +104,8 @@ module.exports = {
     'import/named': 'off',
     // Missing yarn workspace support
     'import/no-extraneous-dependencies': 'off',
+    // The code is already coupled to webpack. Prefer explicit coupling.
+    'import/no-webpack-loader-syntax': 'off',
 
     // doesn't work?
     'jsx-a11y/label-has-associated-control': [

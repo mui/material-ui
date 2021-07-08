@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { SinonFakeTimers, spy, useFakeTimers } from 'sinon';
 import TextField from '@material-ui/core/TextField';
 import { TransitionProps } from '@material-ui/core/transitions';
 import { act, fireEvent, screen, userEvent } from 'test/utils';
@@ -42,7 +42,14 @@ const UncontrolledOpenDesktopDatePicker = (({
 }) as typeof DesktopDatePicker;
 
 describe('<DesktopDatePicker />', () => {
-  const render = createPickerRender({ strict: false });
+  let clock: SinonFakeTimers;
+  beforeEach(() => {
+    clock = useFakeTimers();
+  });
+  afterEach(() => {
+    clock.restore();
+  });
+  const render = createPickerRender();
 
   it('prop: components.OpenPickerIcon', () => {
     function HomeIcon(props: SvgIconProps) {
@@ -78,6 +85,8 @@ describe('<DesktopDatePicker />', () => {
         TransitionComponent={FakeTransitionComponent}
         renderInput={(params) => <TextField {...params} />}
       />,
+      // TODO: React18Compat
+      { legacyRoot: true },
     );
 
     act(() => {

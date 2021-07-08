@@ -79,19 +79,18 @@ export interface BasePickerProps<TInputValue, TDateValue> {
   /**
    * Component that will replace default toolbar renderer.
    */
-  ToolbarComponent?: React.JSXElementConstructor<ToolbarComponentProps>;
+  ToolbarComponent?: React.JSXElementConstructor<ToolbarComponentProps<TDateValue>>;
   /**
    * Date format, that is displaying in toolbar.
    */
   toolbarFormat?: string;
   /**
    * Mobile picker date value placeholder, displaying if `value` === `null`.
-   * @default "–"
+   * @default '–'
    */
   toolbarPlaceholder?: React.ReactNode;
   /**
-   * Mobile picker title, displaying in the toolbar.
-   * @default "SELECT DATE"
+   * Prop forwarded to the ToolbarComponent.
    */
   toolbarTitle?: React.ReactNode;
   /**

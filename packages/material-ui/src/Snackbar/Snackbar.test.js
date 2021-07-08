@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
+import { describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
 import Snackbar, { snackbarClasses as classes } from '@material-ui/core/Snackbar';
 
 describe('<Snackbar />', () => {
@@ -16,8 +16,6 @@ describe('<Snackbar />', () => {
   afterEach(() => {
     clock.restore();
   });
-
-  const mount = createMount();
 
   const clientRender = createClientRender();
   /**
@@ -40,7 +38,6 @@ describe('<Snackbar />', () => {
     classes,
     inheritComponent: 'div',
     render,
-    mount,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiSnackbar',
     skip: [
@@ -68,62 +65,82 @@ describe('<Snackbar />', () => {
   describe('Consecutive messages', () => {
     it('should support synchronous onExited callback', () => {
       const messageCount = 2;
-      let view;
-      const handleCloseSpy = spy();
-      const handleClose = () => {
-        view.setProps({ open: false });
-        handleCloseSpy();
-      };
-      const handleExitedSpy = spy();
-      const handleExited = () => {
-        handleExitedSpy();
-        if (handleExitedSpy.callCount < messageCount) {
-          view.setProps({ open: true });
-        }
-      };
+
+      const onClose = spy();
+      const onExited = spy();
       const duration = 250;
-      view = render(
-        <Snackbar
-          open={false}
-          onClose={handleClose}
-          TransitionProps={{ onExited: handleExited }}
+
+      let setSnackbarOpen;
+      function Test() {
+        const [open, setOpen] = React.useState(false);
+        setSnackbarOpen = setOpen;
+
+        function handleClose() {
+          setOpen(false);
+          onClose();
+        }
+
+        function handleExited() {
+          onExited();
+          if (onExited.callCount < messageCount) {
+            setOpen(true);
+          }
+        }
+
+        return (
+          <Snackbar
+            open={open}
+            onClose={handleClose}
+            TransitionProps={{ onExited: handleExited }}
+            message="message"
+            autoHideDuration={duration}
+            transitionDuration={duration / 2}
+          />
+        );
+      }
+      render(
+        <Test
+          onClose={onClose}
+          onExited={onExited}
           message="message"
           autoHideDuration={duration}
           transitionDuration={duration / 2}
         />,
       );
 
-      expect(handleCloseSpy.callCount).to.equal(0);
-      expect(handleExitedSpy.callCount).to.equal(0);
+      expect(onClose.callCount).to.equal(0);
+      expect(onExited.callCount).to.equal(0);
 
-      view.setProps({ open: true });
+      act(() => {
+        setSnackbarOpen(true);
+      });
       act(() => {
         clock.tick(duration);
       });
 
-      expect(handleCloseSpy.callCount).to.equal(1);
-      expect(handleExitedSpy.callCount).to.equal(0);
+      expect(onClose.callCount).to.equal(1);
+      expect(onExited.callCount).to.equal(0);
 
       act(() => {
         clock.tick(duration / 2);
       });
 
-      expect(handleCloseSpy.callCount).to.equal(1);
-      expect(handleExitedSpy.callCount).to.equal(1);
+      expect(onClose.callCount).to.equal(1);
+      expect(onExited.callCount).to.equal(1);
 
       act(() => {
         clock.tick(duration);
       });
 
-      expect(handleCloseSpy.callCount).to.equal(messageCount);
-      expect(handleExitedSpy.callCount).to.equal(1);
+      expect(onClose.callCount).to.equal(messageCount);
+      expect(onExited.callCount).to.equal(1);
 
       act(() => {
         clock.tick(duration / 2);
       });
 
-      expect(handleCloseSpy.callCount).to.equal(messageCount);
-      expect(handleExitedSpy.callCount).to.equal(messageCount);
+      expect(onClose.callCount).to.equal(messageCount);
+      expect(onExited.callCount).to.equal(messageCount);
     });
   });
 

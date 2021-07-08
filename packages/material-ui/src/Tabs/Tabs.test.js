@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import {
-  createMount,
   describeConformanceV5,
   act,
   createClientRender,
@@ -43,7 +42,6 @@ describe('<Tabs />', () => {
   // tests mocking getBoundingClientRect prevent mocha to exit
   const isJSDOM = navigator.userAgent === 'node.js';
 
-  const mount = createMount();
   const render = createClientRender();
 
   before(function beforeHook() {
@@ -61,7 +59,6 @@ describe('<Tabs />', () => {
   describeConformanceV5(<Tabs value={0} />, () => ({
     classes,
     inheritComponent: 'div',
-    mount,
     render,
     muiName: 'MuiTabs',
     refInstanceof: window.HTMLDivElement,
@@ -322,8 +319,11 @@ describe('<Tabs />', () => {
           );
         }).toErrorDev([
           'You can provide one of the following values: 1, 3',
-          // StrictMode renders twice
+          // React 18 Strict Effects run mount effects twice
+          React.version.startsWith('18') && 'You can provide one of the following values: 1, 3',
           'You can provide one of the following values: 1, 3',
+          // React 18 Strict Effects run mount effects twice
+          React.version.startsWith('18') && 'You can provide one of the following values: 1, 3',
           'You can provide one of the following values: 1, 3',
           'You can provide one of the following values: 1, 3',
         ]);
@@ -472,12 +472,16 @@ describe('<Tabs />', () => {
         }),
       });
       forceUpdate();
-      clock.tick(1000);
+      act(() => {
+        clock.tick(1000);
+      });
       expect(hasLeftScrollButton(container)).to.equal(true);
       expect(hasRightScrollButton(container)).to.equal(true);
       tablistContainer.scrollLeft = 0;
       fireEvent.scroll(container.querySelector(`.${classes.scroller}.${classes.scrollableX}`));
-      clock.tick(166);
+      act(() => {
+        clock.tick(166);
+      });
 
       expect(hasLeftScrollButton(container)).to.equal(false);
       expect(hasRightScrollButton(container)).to.equal(true);
@@ -587,13 +591,17 @@ describe('<Tabs />', () => {
         }),
       });
       forceUpdate();
-      clock.tick(1000);
+      act(() => {
+        clock.tick(1000);
+      });
       expect(hasLeftScrollButton(container)).to.equal(true);
       expect(hasRightScrollButton(container)).to.equal(true);
       tablistContainer.scrollLeft = 0;
 
-      window.dispatchEvent(new window.Event('resize', {}));
-      clock.tick(166);
+      act(() => {
+        window.dispatchEvent(new window.Event('resize', {}));
+        clock.tick(166);
+      });
 
       expect(hasLeftScrollButton(container)).to.equal(false);
       expect(hasRightScrollButton(container)).to.equal(true);
@@ -703,17 +711,23 @@ describe('<Tabs />', () => {
       Object.defineProperty(tablistContainer, 'scrollWidth', { value: 100 + 50 + 100 });
       tablistContainer.scrollLeft = 20;
       forceUpdate();
-      clock.tick(1000);
+      act(() => {
+        clock.tick(1000);
+      });
       expect(hasLeftScrollButton(container)).to.equal(true);
       expect(hasRightScrollButton(container)).to.equal(true);
 
       fireEvent.click(findScrollButton(container, 'left'));
-      clock.tick(1000);
+      act(() => {
+        clock.tick(1000);
+      });
       expect(tablistContainer.scrollLeft).not.to.be.above(0);
 
       tablistContainer.scrollLeft = 0;
       fireEvent.click(findScrollButton(container, 'right'));
-      clock.tick(1000);
+      act(() => {
+        clock.tick(1000);
+      });
       expect(tablistContainer.scrollLeft).equal(100);
     });
   });
@@ -758,7 +772,9 @@ describe('<Tabs />', () => {
         right: 30,
       });
       forceUpdate();
-      clock.tick(1000);
+      act(() => {
+        clock.tick(1000);
+      });
       expect(tablistContainer.scrollLeft).to.equal(0);
     });
   });

@@ -55,7 +55,6 @@ function clickedRootScrollbar(event: MouseEvent, doc: Document) {
 /**
  * Based on @material-ui/core/ClickAwayListener without the customization.
  * We can probably strip away even more since children won't be portaled.
- *
  * @param onClickAway
  * @param onClick
  * @param onTouchStart
@@ -235,8 +234,7 @@ const PickersPopper = (props: PickerPopperProps) => {
   const handleRef = useForkRef(paperRef, containerRef);
   const handlePaperRef = useForkRef(handleRef, clickAwayRef as React.Ref<HTMLDivElement>);
 
-  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
-  const styleProps = { ...props };
+  const styleProps = props;
 
   return (
     <PickersPopperRoot

@@ -5,7 +5,7 @@ import { Theme } from '../styles/createTheme';
 
 export interface StackTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    SystemProps & {
+    SystemProps<Theme> & {
       ref?: React.Ref<unknown>;
       /**
        * The content of the component.

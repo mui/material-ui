@@ -27,6 +27,8 @@ describe('<DesktopDateTimePicker />', () => {
         onChange={() => {}}
         renderInput={(params) => <TextField autoFocus {...params} />}
       />,
+      // TODO: React18Compat
+      { legacyRoot: true },
     );
 
     userEvent.mousePress(screen.getByLabelText(/choose date/i));

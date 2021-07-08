@@ -37,15 +37,15 @@ const LoadingButtonRoot = styled(Button, {
   name: 'MuiLoadingButton',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    return {
-      ...styles.root,
-      ...(styles.startIconLoadingStart && {
+    return [
+      styles.root,
+      styles.startIconLoadingStart && {
         [`& .${loadingButtonClasses.startIconLoadingStart}`]: styles.startIconLoadingStart,
-      }),
-      ...(styles.endIconLoadingEnd && {
+      },
+      styles.endIconLoadingEnd && {
         [`& .${loadingButtonClasses.endIconLoadingEnd}`]: styles.endIconLoadingEnd,
-      }),
-    };
+      },
+    ];
   },
 })(({ styleProps, theme }) => ({
   [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
@@ -70,10 +70,10 @@ const LoadingButtonLoadingIndicator = styled('div', {
   slot: 'LoadingIndicator',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
-    return {
-      ...styles.loadingIndicator,
-      ...styles[`loadingIndicator${capitalize(styleProps.loadingPosition)}`],
-    };
+    return [
+      styles.loadingIndicator,
+      styles[`loadingIndicator${capitalize(styleProps.loadingPosition)}`],
+    ];
   },
 })(({ theme, styleProps }) => ({
   position: 'absolute',
