@@ -554,7 +554,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                     {...getClearProps()}
                     aria-label={clearText}
                     title={clearText}
-                    className={classes.clearIndicator}
+                    className={clsx(classes.clearIndicator, componentsProps.clearIndicator?.className)}
                     styleProps={styleProps}
                     {...componentsProps.clearIndicator}
                   >
