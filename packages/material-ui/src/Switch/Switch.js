@@ -1,4 +1,3 @@
-// @inheritedComponent IconButton
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -337,9 +336,12 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     disableTouchRipple = false,
     edge = false,
     icon,
+    id,
     inputProps,
+    name,
     onBlur,
     onFocus,
+    required = false,
     size = 'medium',
     TouchRippleProps,
     ...other
@@ -374,11 +376,12 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   const styleProps = {
     ...props,
     color,
-    edge,
-    size,
     disableFocusRipple,
     disableRipple,
     disableTouchRipple,
+    edge,
+    required,
+    size,
   };
 
   const components = {
@@ -400,6 +403,9 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     },
     input: {
       className: classes?.input,
+      name,
+      id,
+      required,
       styleProps,
       ...inputProps,
     },
@@ -440,7 +446,7 @@ Switch.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
+   * Class name applied to the root element.
    */
   className: PropTypes.string,
   /**
@@ -466,6 +472,7 @@ Switch.propTypes /* remove-proptypes */ = {
   disableFocusRipple: PropTypes.bool,
   /**
    * If `true`, the ripple effect is disabled.
+   * @default false
    */
   disableRipple: PropTypes.bool,
   /**
@@ -494,9 +501,13 @@ Switch.propTypes /* remove-proptypes */ = {
    */
   inputProps: PropTypes.object,
   /**
-   * Pass a ref to the `input` element.
+   * Ref associated with the `input` element.
    */
   inputRef: refType,
+  /**
+   * Name attribute of the `input` element.
+   */
+  name: PropTypes.string,
   /**
    * @ignore
    */
@@ -515,6 +526,7 @@ Switch.propTypes /* remove-proptypes */ = {
   onFocus: PropTypes.func,
   /**
    * If `true`, the `input` element is required.
+   * @default false
    */
   required: PropTypes.bool,
   /**
