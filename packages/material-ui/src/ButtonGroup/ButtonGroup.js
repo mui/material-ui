@@ -51,7 +51,7 @@ const useUtilityClasses = (styleProps) => {
       `grouped${capitalize(orientation)}`,
       `grouped${capitalize(variant)}`,
       `grouped${capitalize(variant)}${capitalize(orientation)}`,
-      color !== 'default' && `grouped${capitalize(variant)}${capitalize(color)}`,
+      `grouped${capitalize(variant)}${capitalize(color)}`,
       disabled && 'disabled',
     ],
   };

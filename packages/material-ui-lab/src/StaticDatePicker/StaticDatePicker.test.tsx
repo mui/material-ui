@@ -19,8 +19,7 @@ describe('<StaticDatePicker />', () => {
   afterEach(() => {
     clock.restore();
   });
-  // StrictModeViolation: Uses CalendarPicker
-  const render = createPickerRender({ strict: false });
+  const render = createPickerRender();
 
   it('render proper month', () => {
     render(

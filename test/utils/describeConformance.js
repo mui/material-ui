@@ -51,7 +51,7 @@ export function findRootComponent(wrapper, { component }) {
   });
 }
 
-function randomStringValue() {
+export function randomStringValue() {
   return `s${Math.random().toString(36).slice(2)}`;
 }
 
@@ -92,7 +92,6 @@ export function testComponentProp(element, getOptions) {
 
 /**
  * Material-UI components can spread additional props to a documented component.
- *
  * @param {React.ReactElement} element
  * @param {() => ConformanceOptions} getOptions
  */
@@ -208,6 +207,7 @@ const fullSuite = {
  * @property {Array<keyof typeof fullSuite>} [skip] - Skip the specified tests
  * @property {string} [testComponentPropWith] - The host component that should be rendered instead.
  * @property {(mount: (node: React.ReactNode) => import('enzyme').ReactWrapper) => (node: React.ReactNode) => import('enzyme').ReactWrapper} [wrapMount] - You can use this option to mount the component with enzyme in a WrapperComponent. Make sure the returned node corresponds to the input node and not the wrapper component.
+ * @property {(node: React.ReactElement) => import('./createClientRender').MuiRenderResult} [render] - Should be a return value from createClientRender
  */
 
 /**

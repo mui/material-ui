@@ -60,7 +60,7 @@ function BrandingHero() {
   return (
     <Container>
       <Typography variant="h1" align="center" sx={{ mt: 9, mx: 'auto' }}>
-        {"We're are making building "}
+        {"We're making building "}
         <Box component="span" sx={{ display: { xs: 'none', md: 'block' } }} />
         UIs more <UnderlinedText>accessible</UnderlinedText>
       </Typography>

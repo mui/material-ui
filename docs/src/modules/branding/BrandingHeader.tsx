@@ -26,7 +26,7 @@ const links = (
         color="inherit"
         underline="none"
         activeClassName="Mui-active"
-        href="/branding/mui-x"
+        href="/branding/mui-x/"
       >
         {t1('Material-UI X')}
       </Link>
@@ -37,7 +37,7 @@ const links = (
         color="inherit"
         underline="none"
         activeClassName="Mui-active"
-        href="/branding/pricing"
+        href="/branding/pricing/"
       >
         {t1('Pricing')}
       </Link>
@@ -48,7 +48,7 @@ const links = (
         color="inherit"
         underline="none"
         activeClassName="Mui-active"
-        href="/getting-started/templates"
+        href="/getting-started/templates/"
       >
         {t1('Templates')}
       </Link>
@@ -59,7 +59,7 @@ const links = (
         color="inherit"
         underline="none"
         activeClassName="Mui-active"
-        href="/branding/about"
+        href="/branding/about/"
       >
         {t1('About Us')}
       </Link>

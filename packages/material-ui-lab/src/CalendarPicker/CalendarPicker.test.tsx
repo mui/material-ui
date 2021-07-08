@@ -19,8 +19,7 @@ describe('<CalendarPicker />', () => {
     clock.restore();
   });
 
-  // StrictModeViolation: Uses StrictMode incompatible API of `react-transition-group`
-  const render = createPickerRender({ strict: false });
+  const render = createPickerRender();
 
   describeConformanceV5(<CalendarPicker date={adapterToUse.date()} onChange={() => {}} />, () => ({
     classes,

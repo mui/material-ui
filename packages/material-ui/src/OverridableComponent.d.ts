@@ -51,7 +51,7 @@ export type BaseProps<M extends OverridableTypeMap> =
 /**
  * Props that are valid for material-ui components.
  */
-// each component declares it's classes in a separate interface for proper JSDOC.
+// each component declares it's classes in a separate interface for proper JSDoc.
 export interface CommonProps extends StyledComponentProps<never> {
   className?: string;
   style?: React.CSSProperties;
