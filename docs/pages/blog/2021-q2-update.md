@@ -50,40 +50,40 @@ Here are the most significant improvements since March 2021.
 
   We have added support for [row & column](https://next.material-ui.com/components/grid/#row-amp-column-spacing) spacing:
 
-  ```jsx
-  <Grid container rowSpacing={1} columnSpacing={2} />
-  ```
+```jsx
+<Grid container rowSpacing={1} columnSpacing={2} />
+```
 
-  We have added support for [responsive values](https://next.material-ui.com/components/grid/#responsive-values) on all the props:
+We have added support for [responsive values](https://next.material-ui.com/components/grid/#responsive-values) on all the props:
 
-  ```jsx
-  <Grid container spacing={{ xs: 2, md: 3 }} />
-  ```
+```jsx
+<Grid container spacing={{ xs: 2, md: 3 }} />
+```
 
-  We have added support for a different [number of columns](https://next.material-ui.com/components/grid/#columns) than 12:
+We have added support for a different [number of columns](https://next.material-ui.com/components/grid/#columns) than 12:
 
-  ```jsx
-  <Grid container columns={16}>
-  ```
+```jsx
+<Grid container columns={16}>
+```
 
-  We have added an alternative implementaton that uses [CSS grid](https://next.material-ui.com/components/grid/#css-grid-layout):
+We have added an alternative implementaton that uses [CSS grid](https://next.material-ui.com/components/grid/#css-grid-layout):
 
-  ```jsx
-  <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
-    <Box gridColumn="span 8">
-      <Item>xs=8</Item>
-    </Box>
-    <Box gridColumn="span 4">
-      <Item>xs=4</Item>
-    </Box>
-    <Box gridColumn="span 4">
-      <Item>xs=4</Item>
-    </Box>
-    <Box gridColumn="span 8">
-      <Item>xs=8</Item>
-    </Box>
+```jsx
+<Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
+  <Box gridColumn="span 8">
+    <Item>xs=8</Item>
   </Box>
-  ```
+  <Box gridColumn="span 4">
+    <Item>xs=4</Item>
+  </Box>
+  <Box gridColumn="span 4">
+    <Item>xs=4</Item>
+  </Box>
+  <Box gridColumn="span 8">
+    <Item>xs=8</Item>
+  </Box>
+</Box>
+```
 
 - 💄 We have improved the accessibility of the Link component:
 
@@ -176,15 +176,15 @@ We have welcomed three new members to the company 🏢:
 
 - [Michal](/blog/michal-dudak-joining/) leads the initiative around the [unstyled version](https://github.com/mui-org/material-ui/issues/6218).
 
-  <img loading="lazy" src="/static/blog/2021-q2-update/michal.jpg" alt="michal" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
+  <img loading="lazy" src="/static/blog/2021-q2-update/michal.jpg" alt="michal" style="width: 160px; height: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
 - [Danilo](https://daniloleal.co/), a lead designer to raise our design game.
 
-  <img loading="lazy" src="/static/blog/2021-q2-update/danilo.jpg" alt="danilo" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
+  <img loading="lazy" src="/static/blog/2021-q2-update/danilo.jpg" alt="danilo" style="width: 160px; height: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
 - [Flavien](https://github.com/flaviendelangle), an engineer with previous experience building [design systems](https://habx.github.io/ui-core/) and a complex 2D JavaScript rendering engine. He will help us take on bolder problems on the advanced components (X team).
 
-  <img loading="lazy" src="/static/blog/2021-q2-update/flavien.jpg" alt="flavien" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
+  <img loading="lazy" src="/static/blog/2021-q2-update/flavien.jpg" alt="flavien" style="width: 160px; height: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
 We are also **hiring** for various roles! If you're interested in joining us, check out our [jobs page](/company/careers/#open-roles).
 
