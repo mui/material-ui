@@ -2,8 +2,10 @@
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
  */
-export default function transformer(file, api) {
+export default function transformer(file, api, options) {
   const j = api.jscodeshift;
+
+  const printOptions = options.printOptions;
 
   const source = j(file.source)
     .find(j.JSXElement)
@@ -27,6 +29,6 @@ export default function transformer(file, api) {
         }
       });
     })
-    .toSource();
+    .toSource(printOptions);
   return source.replace(/\.(MuiPagination|MuiPaginationItem)-round/gm, '.$1-circular');
 }

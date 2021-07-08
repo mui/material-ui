@@ -9,9 +9,13 @@ declare module '@material-ui/styles/defaultTheme' {
   interface DefaultTheme extends Theme {}
 }
 `;
-export default function transformer(file, api) {
+export default function transformer(file, api, options) {
   const j = api.jscodeshift;
   const root = j(file.source);
+
+  const printOptions = options.printOptions || {
+    quote: 'single',
+  };
 
   if (file.path.endsWith('.tsx')) {
     let hasTheme = false;
@@ -50,7 +54,7 @@ export default function transformer(file, api) {
         });
     }
 
-    return root.toSource({ quote: 'single' });
+    return root.toSource(printOptions);
   }
   return file.source;
 }

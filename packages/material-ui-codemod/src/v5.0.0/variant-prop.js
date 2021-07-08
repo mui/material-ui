@@ -1,8 +1,10 @@
 const TargetMuiComponents = ['TextField', 'Select', 'FormControl'];
 
-export default function transformer(file, api) {
+export default function transformer(file, api, options) {
   const j = api.jscodeshift;
   const root = j(file.source);
+
+  const printOptions = options.printOptions;
 
   function addExplicitStandardProp(path) {
     const attributes = path.node.openingElement.attributes;
@@ -37,5 +39,5 @@ export default function transformer(file, api) {
       return AffectedComponents.includes(elementName);
     })
     .forEach(addExplicitStandardProp)
-    .toSource();
+    .toSource(printOptions);
 }

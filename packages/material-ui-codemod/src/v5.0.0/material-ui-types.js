@@ -2,9 +2,13 @@
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
  */
-export default function transformer(file, api) {
+export default function transformer(file, api, options) {
   const j = api.jscodeshift;
   const root = j(file.source);
+
+  const printOptions = options.printOptions || {
+    quote: 'single',
+  };
 
   let importName = '';
 
@@ -32,7 +36,7 @@ export default function transformer(file, api) {
       }
     });
 
-  const source = root.toSource();
+  const source = root.toSource(printOptions);
   if (importName) {
     return source.replace(/([^a-zA-Z])Omit</gm, '$1DistributiveOmit<');
   }

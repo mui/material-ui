@@ -2,9 +2,11 @@
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
  */
-export default function transformer(file, api) {
+export default function transformer(file, api, options) {
   const j = api.jscodeshift;
   const root = j(file.source);
+
+  const printOptions = options.printOptions;
 
   root
     .find(j.JSXElement)
@@ -39,5 +41,7 @@ export default function transformer(file, api) {
     });
   });
 
-  return root.toSource().replace(/\.MuiTablePagination-input/gm, '.MuiTablePagination-select');
+  return root
+    .toSource(printOptions)
+    .replace(/\.MuiTablePagination-input/gm, '.MuiTablePagination-select');
 }

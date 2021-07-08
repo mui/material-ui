@@ -2,9 +2,13 @@
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
  */
-export default function transformer(file, api) {
+export default function transformer(file, api, options) {
   const j = api.jscodeshift;
   const root = j(file.source);
+
+  const printOptions = options.printOptions || {
+    quote: 'single',
+  };
 
   let importFound = false;
 
@@ -25,7 +29,7 @@ export default function transformer(file, api) {
       .forEach((path) => {
         path.node.callee.name = 'alpha';
       })
-      .toSource();
+      .toSource(printOptions);
   }
   return file.source;
 }

@@ -1,4 +1,4 @@
-export default function renameClassKey({ root, componentName, classes }) {
+export default function renameClassKey({ root, componentName, classes, printOptions }) {
   const source = root
     .findJSXElements(componentName)
     .forEach((path) => {
@@ -12,7 +12,7 @@ export default function renameClassKey({ root, componentName, classes }) {
         }
       });
     })
-    .toSource();
+    .toSource(printOptions);
   return Object.entries(classes).reduce((result, [currentKey, newKey]) => {
     const regex = new RegExp(`.Mui${componentName}-${currentKey}`, 'gm');
     return result.replace(regex, `.Mui${componentName}-${newKey}`);
