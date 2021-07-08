@@ -34,6 +34,7 @@ import transformTableProps from './table-props';
 import transformTabsScrollButtons from './tabs-scroll-buttons';
 import transformTextareaMinMaxRows from './textarea-minmax-rows';
 import transformThemeAugment from './theme-augment';
+import transformThemeBreakpoints from './theme-breakpoints';
 import transformThemeBreakpointsWidth from './theme-breakpoints-width';
 import transformThemeOptions from './theme-options';
 import transformThemePaletteMode from './theme-palette-mode';
@@ -88,6 +89,7 @@ export default function transformer(file, api, options) {
   file.source = transformTabsScrollButtons(file, api, options);
   file.source = transformTextareaMinMaxRows(file, api, options);
   file.source = transformThemeAugment(file, api, options);
+  file.source = transformThemeBreakpoints(file, api, options);
   file.source = transformThemeBreakpointsWidth(file, api, options);
   file.source = transformThemeOptions(file, api, options);
   file.source = transformThemePaletteMode(file, api, options);
