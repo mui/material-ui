@@ -98,6 +98,41 @@ const inHouseAds = [
   },
 ];
 
+class AdErrorBoundary extends React.Component {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    eventLabel: PropTypes.string,
+  };
+
+  state = { didError: false };
+
+  static getDerivedStateFromError() {
+    return { didError: true };
+  }
+
+  componentDidCatch() {
+    // send explicit `'null'`
+    const eventLabel = String(this.props.eventLabel);
+    // TODO: Use proper error monitoring service (e.g. Sentry) instead
+    window.ga('send', {
+      hitType: 'event',
+      eventCategory: 'ad',
+      eventAction: 'crash',
+      eventLabel,
+    });
+  }
+
+  render() {
+    const { didError } = this.state;
+    const { children } = this.props;
+
+    if (didError) {
+      return null;
+    }
+    return children;
+  }
+}
+
 function Ad(props) {
   const { classes } = props;
 
@@ -209,7 +244,7 @@ function Ad(props) {
       data-ga-event-action="click"
       data-ga-event-label={eventLabel}
     >
-      {children}
+      <AdErrorBoundary eventLabel={eventLabel}>{children}</AdErrorBoundary>
     </Box>
   );
 }
