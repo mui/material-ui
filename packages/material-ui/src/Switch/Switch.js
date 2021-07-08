@@ -3,11 +3,13 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { SwitchUnstyled, unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { alpha, darken, lighten, useThemeProps, styled } from '@material-ui/system';
-import { capitalize } from '@material-ui/core/utils';
-import useFormControl from '../FormControl/useFormControl';
+import { alpha, darken, lighten } from '@material-ui/system';
+import capitalize from '../utils/capitalize';
+import styled from '../styles/styled';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 import TouchRipple from '../ButtonBase/TouchRipple';
+import useFormControl from '../FormControl/useFormControl';
+import useThemeProps from '../styles/useThemeProps';
 import useTouchRipple from '../useTouchRipple';
 
 const useUtilityClasses = (styleProps) => {
@@ -29,11 +31,7 @@ const useUtilityClasses = (styleProps) => {
     track: ['track'],
   };
 
-  const composedClasses = composeClasses(slots, getSwitchUtilityClass, classes);
-
-  return {
-    ...composedClasses,
-  };
+  return composeClasses(slots, getSwitchUtilityClass, classes);
 };
 
 const SwitchTrack = styled('span', {
@@ -203,18 +201,6 @@ const SwitchRoot = styled('span', {
   }),
 }));
 
-const DefaultSwitchThumb = styled('span', {
-  name: 'MuiSwitch',
-  slot: 'Thumb',
-  overridesResolver: (props, styles) => styles.thumb,
-})(({ theme }) => ({
-  boxShadow: theme.shadows[1],
-  backgroundColor: 'currentColor',
-  width: 20,
-  height: 20,
-  borderRadius: '50%',
-}));
-
 const SwitchInput = styled('input', {
   name: 'MuiSwitch',
   slot: 'Input',
@@ -234,17 +220,31 @@ const SwitchInput = styled('input', {
 
 /* eslint-disable react/prop-types */
 
-const SwitchThumb = ({ isChecked, icon, checkedIcon, className }) => {
-  if (!isChecked && icon) {
-    return icon;
-  }
+const SwitchThumb = styled(
+  ({ styleProps: { checked }, icon, checkedIcon, className }) => {
+    if (!checked && icon) {
+      return icon;
+    }
 
-  if (isChecked && checkedIcon) {
-    return checkedIcon;
-  }
+    if (checked && checkedIcon) {
+      return checkedIcon;
+    }
 
-  return <DefaultSwitchThumb className={className} />;
-};
+    return <span className={className} />;
+  },
+  {
+    name: 'MuiSwitch',
+    slot: 'Thumb',
+    overridesResolver: (props, styles) => styles.thumb,
+    shouldForwardProp: () => true,
+  },
+)(({ theme }) => ({
+  boxShadow: theme.shadows[1],
+  backgroundColor: 'currentColor',
+  width: 20,
+  height: 20,
+  borderRadius: '50%',
+}));
 
 const SwitchLayout = React.forwardRef((props, ref) => {
   const {
@@ -327,6 +327,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   const {
     checked: checkedProp,
     checkedIcon,
+    classes,
     className,
     color = 'primary',
     disabled: disabledProp,
@@ -387,7 +388,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
 
   const componentsProps = {
     root: {
-      className,
+      className: clsx(className, classes?.root),
       styleProps,
       disableFocusRipple,
       disableRipple,
@@ -397,13 +398,15 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
       TouchRippleProps,
     },
     input: {
+      className: classes?.input,
       styleProps,
       ...inputProps,
     },
     thumb: {
+      className: classes?.thumb,
+      styleProps,
       icon,
       checkedIcon,
-      defaultThumbClassName: switchClasses.thumb,
     },
   };
 
