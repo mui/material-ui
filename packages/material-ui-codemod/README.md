@@ -28,11 +28,30 @@ Options:
                                                 [boolean] [default: false]
   --print    print transformed files to stdout, useful for development
                                                 [boolean] [default: false]
+  --jscodeshift                                  [string] [default: false]
 
 Examples:
   npx @material-ui/codemod@next v4.0.0/theme-spacing-api src
   npx @material-ui/codemod@next v5.0.0/component-rename-prop src --
   --component=Grid --from=prop --to=newProp
+```
+
+#### jscodeshift options
+
+To pass more options directly to jscodeshift, use `--jscodeshift="..."`. For example:
+```sh
+npx @material-ui/codemod@next --jscodeshift="--run-in-band --verbose=2"
+```
+
+See all available options [here](https://github.com/facebook/jscodeshift#usage-cli).
+
+#### Recast Options
+
+Options to [recast](https://github.com/benjamn/recast)'s printer can be provided
+through jscodeshift's `printOptions` command line argument
+
+```sh
+npx @material-ui/codemod@next <transform> <path> --jscodeshift="--printOptions='{\"quote\":\"double\"}'"
 ```
 
 ## Included scripts
