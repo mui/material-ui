@@ -29,11 +29,14 @@ export interface SwitchProps extends StandardProps<SwitchUnstyledProps> {
   >;
   /**
    * If `true`, the ripple effect is disabled.
+   *
+   * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
+   * to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
    * @default false
    */
   disableRipple?: boolean;
   /**
-   * If `true`, the  keyboard focus ripple is disabled.
+   * If `true`, the keyboard focus ripple is disabled.
    * @default false
    */
   disableFocusRipple?: boolean;
@@ -50,6 +53,15 @@ export interface SwitchProps extends StandardProps<SwitchUnstyledProps> {
    * @default false
    */
   edge?: 'start' | 'end' | false;
+  /**
+   * This prop can help identify which element has keyboard focus.
+   * The class name will be applied when the element gains the focus through keyboard interaction.
+   * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
+   * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
+   * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
+   * if needed.
+   */
+  focusVisibleClassName?: string;
   /**
    * The icon to display when the component is unchecked.
    */

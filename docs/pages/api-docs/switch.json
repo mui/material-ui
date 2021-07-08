@@ -23,6 +23,7 @@
       },
       "default": "false"
     },
+    "focusVisibleClassName": { "type": { "name": "string" } },
     "icon": { "type": { "name": "node" } },
     "id": { "type": { "name": "string" } },
     "inputProps": { "type": { "name": "object" } },

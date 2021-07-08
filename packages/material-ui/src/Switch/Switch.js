@@ -248,15 +248,16 @@ const SwitchThumb = styled(
 
 const SwitchLayout = React.forwardRef((props, ref) => {
   const {
+    children,
     className,
+    disableFocusRipple,
     disableRipple,
     disableTouchRipple,
-    disableFocusRipple,
+    focusVisibleClassName,
+    onBlur,
+    onFocus,
     styleProps,
     TouchRippleProps,
-    children,
-    onFocus,
-    onBlur,
     ...other
   } = props;
 
@@ -306,7 +307,7 @@ const SwitchLayout = React.forwardRef((props, ref) => {
       styleProps={styleProps}
     >
       <SwitchBase
-        className={classes.switchBase}
+        className={clsx(classes.switchBase, focusVisible && focusVisibleClassName)}
         styleProps={styleProps}
         {...rippleHandlers}
         onFocus={onFocus}
@@ -335,6 +336,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     disableRipple = false,
     disableTouchRipple = false,
     edge = false,
+    focusVisibleClassName,
     icon,
     id,
     inputProps,
@@ -397,6 +399,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
       disableFocusRipple,
       disableRipple,
       disableTouchRipple,
+      focusVisibleClassName,
       onBlur: handleBlur,
       onFocus: handleFocus,
       TouchRippleProps,
@@ -466,12 +469,15 @@ Switch.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
-   * If `true`, the  keyboard focus ripple is disabled.
+   * If `true`, the keyboard focus ripple is disabled.
    * @default false
    */
   disableFocusRipple: PropTypes.bool,
   /**
    * If `true`, the ripple effect is disabled.
+   *
+   * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
+   * to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
    * @default false
    */
   disableRipple: PropTypes.bool,
@@ -488,6 +494,15 @@ Switch.propTypes /* remove-proptypes */ = {
    * @default false
    */
   edge: PropTypes.oneOf(['end', 'start', false]),
+  /**
+   * This prop can help identify which element has keyboard focus.
+   * The class name will be applied when the element gains the focus through keyboard interaction.
+   * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
+   * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
+   * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
+   * if needed.
+   */
+  focusVisibleClassName: PropTypes.string,
   /**
    * The icon to display when the component is unchecked.
    */
