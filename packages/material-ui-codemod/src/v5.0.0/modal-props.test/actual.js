@@ -1,1 +1,1 @@
-<Modal disableBackdropClick onClose={handleClose} />;
+<Modal disableBackdropClick onEscapeKeyDown={handleEscapeKeyDown} onClose={handleClose} />;

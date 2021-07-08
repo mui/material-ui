@@ -41,7 +41,7 @@ Examples:
 
 #### 🚀 `important-migration`
 
-A combination of all important transformers for migrating v4 to v5.
+A combination of all important transformers for migrating v4 to v5. ⚠️ This mod is not idempotent (`theme-breakpoints`) and should be run only once.
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/important-migration <path|folder>
@@ -84,8 +84,8 @@ The list includes
 - [`tabs-scroll-buttons`](#tabs-scroll-buttons)
 - [`textarea-minmax-rows`](#textarea-minmax-rows)
 - [`theme-augment`](#theme-augment)
-- [`theme-breakpoints-width`](#theme-breakpoints-width)
 - [`theme-breakpoints`](#theme-breakpoints)
+- [`theme-breakpoints-width`](#theme-breakpoints-width)
 - [`theme-options`](#theme-options)
 - [`theme-palette-mode`](#theme-palette-mode)
 - [`theme-provider`](#theme-provider)
@@ -94,7 +94,6 @@ The list includes
 - [`transitions`](#transitions)
 - [`use-autocomplete`](#use-autocomplete)
 - [`use-transitionprops`](#use-transitionprops)
-- [`variant-prop`](#variant-prop)
 - [`with-mobile-dialog`](#with-mobile-dialog)
 - [`with-width`](#with-width)
 
@@ -112,6 +111,8 @@ import and insert `adaptV4Theme` to `createTheme` (or `createMuiTheme`)
 ```sh
 npx @material-ui/codemod@next v5.0.0/adapter-v4 <path>
 ```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#theme).
 
 #### `autocomplete-rename-closeicon`
 
@@ -215,6 +216,8 @@ Renames the Box `css` prop to `sx`
 ```sh
 npx @material-ui/codemod@next v5.0.0/box-rename-css <path>
 ```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#box).
 
 #### `box-rename-gap`
 
@@ -326,7 +329,7 @@ npx @material-ui/codemod@next v5.0.0/component-rename-prop <path> -- --component
 
 #### `core-styles-import`
 
-Rename private from from `core/styles/*` to `core/styles`
+Rename private import from `core/styles/*` to `core/styles`
 
 ```diff
 -import { darken, lighten } from '@material-ui/core/styles/colorManipulator';
@@ -349,17 +352,31 @@ npx @material-ui/codemod@next v5.0.0/create-theme <path>
 
 Remove `disableBackdropClick` prop from `<Dialog>`
 
+```diff
+-<Dialog disableBackdropClick />
++<Dialog />
+```
+
 ```sh
 npx @material-ui/codemod@next v5.0.0/dialog-props <path>
 ```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#dialog).
 
 #### `dialog-title-props`
 
 Remove `disableTypography` prop from `<DialogTitle>`
 
+```diff
+-<DialogTitle disableTypography />
++<DialogTitle />
+```
+
 ```sh
 npx @material-ui/codemod@next v5.0.0/dialog-title-props <path>
 ```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#dialog).
 
 #### `emotion-prepend-cache`
 
@@ -384,6 +401,8 @@ Rename `ExpansionPanel*` to `Accordion*`
 npx @material-ui/codemod@next v5.0.0/expansion-panel-component <path>
 ```
 
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#expansionpanel).
+
 #### `fab-variant`
 
 ```diff
@@ -394,6 +413,8 @@ npx @material-ui/codemod@next v5.0.0/expansion-panel-component <path>
 ```sh
 npx @material-ui/codemod@next v5.0.0/fab-variant <path>
 ```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#fab).
 
 #### `fade-rename-alpha`
 
@@ -440,6 +461,8 @@ Rename `GridList*` to `ImageList*`
 npx @material-ui/codemod@next v5.0.0/grid-list-component <path>
 ```
 
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#gridlist).
+
 #### `icon-button-size`
 
 Add `size="large"` if `size` is empty to get the same UI as v4
@@ -454,6 +477,8 @@ Add `size="large"` if `size` is empty to get the same UI as v4
 ```sh
 npx @material-ui/codemod@next v5.0.0/icon-button-size <path>
 ```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#iconbutton).
 
 #### `material-ui-styles`
 
@@ -495,17 +520,33 @@ npx @material-ui/codemod@next v5.0.0/material-ui-styles <path>
 
 Renames `Omit` import from `@material-ui/types` to `DistributiveOmit`
 
+```diff
+-import { Omit } from '@material-ui/types';
++import { DistributiveOmit } from '@material-ui/types';
+```
+
 ```sh
 npx @material-ui/codemod@next v5.0.0/material-ui-types <path>
 ```
 
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#material-ui-types).
+
 #### `modal-props`
 
-Removes `disableBackdropClick` from `<Modal>`
+Removes `disableBackdropClick` and `onEscapeKeyDown` from `<Modal>`
+
+```diff
+<Modal
+- disableBackdropClick
+- onEscapeKeyDown={handleEscapeKeyDown}
+/>
+```
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/modal-props <path>
 ```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#modal).
 
 #### `moved-lab-modules`
 
@@ -529,7 +570,15 @@ or
 npx @material-ui/codemod@next v5.0.0/moved-lab-modules <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#skeleton).
+You can find more details about this breaking change in the migration guide.
+
+- [Alert](https://next.material-ui.com/guides/migration-v4/#alert)
+- [Autocomplete](https://next.material-ui.com/guides/migration-v4/#autocomplete)
+- [AvatarGroup](https://next.material-ui.com/guides/migration-v4/#avatar)
+- [Pagination](https://next.material-ui.com/guides/migration-v4/#pagination)
+- [Skeleton](https://next.material-ui.com/guides/migration-v4/#skeleton)
+- [SpeedDial](https://next.material-ui.com/guides/migration-v4/#speeddial)
+- [ToggleButton](https://next.material-ui.com/guides/migration-v4/#togglebutton)
 
 #### `pagination-round-circular`
 
@@ -578,6 +627,8 @@ Applies `StyledEngineProvider` to the files that contains `ThemeProvider`
 ```sh
 npx @material-ui/codemod@next v5.0.0/styled-engine-provider <path>
 ```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#style-library).
 
 #### `table-props`
 
@@ -637,7 +688,10 @@ You can find more details about this breaking change in [the migration guide](ht
 npx @material-ui/codemod@next v5.0.0/textarea-minmax-rows <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#textareaautoresize).
+You can find more details about this breaking change in the migration guide.
+
+- [TextareaAutosize](https://next.material-ui.com/guides/migration-v4/#textareaautoresize)
+- [TextField](https://next.material-ui.com/guides/migration-v4/#textfield)
 
 #### `theme-augment`
 
@@ -647,17 +701,11 @@ Add `DefaultTheme` module augment for typescript project
 npx @material-ui/codemod@next v5.0.0/theme-augment <path>
 ```
 
-#### `theme-breakpoints-width`
-
-Rename `theme.breakpoints.width('md')` to `theme.breakpoints.values.md`
-
-```sh
-npx @material-ui/codemod@next v5.0.0/theme-breakpoints-width <path>
-```
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#material-ui-styles).
 
 #### `theme-breakpoints`
 
-Updates breakpoint values to match new logic. ⚠️ should run only one time.
+Updates breakpoint values to match new logic. ⚠️ This mod is not idempotent, it should be run only once.
 
 ```diff
 -theme.breakpoints.down('sm')
@@ -670,6 +718,16 @@ Updates breakpoint values to match new logic. ⚠️ should run only one time.
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/theme-breakpoints <path>
+```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#theme).
+
+#### `theme-breakpoints-width`
+
+Rename `theme.breakpoints.width('md')` to `theme.breakpoints.values.md`
+
+```sh
+npx @material-ui/codemod@next v5.0.0/theme-breakpoints-width <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#theme).
@@ -690,6 +748,8 @@ npx @material-ui/codemod@next v5.0.0/theme-options <path>
 Rename `type` to `mode`
 
 ```diff
+- { palette: { type: 'dark' } }
++ { palette: { mode: 'dark' } }
 -theme.palette.type === 'dark'
 +theme.palette.mode === 'dark'
 ```
@@ -698,6 +758,8 @@ Rename `type` to `mode`
 npx @material-ui/codemod@next v5.0.0/theme-palette-mode <path>
 ```
 
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#theme).
+
 #### `theme-provider`
 
 Rename `MuiThemeProvider` to `ThemeProvider`
@@ -705,6 +767,8 @@ Rename `MuiThemeProvider` to `ThemeProvider`
 ```sh
 npx @material-ui/codemod@next v5.0.0/theme-provider <path>
 ```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#material-ui-core-styles).
 
 #### `theme-spacing`
 
@@ -723,22 +787,22 @@ Removes the 'px' suffix from some template strings.
 npx @material-ui/codemod@next v5.0.0/theme-spacing <path>
 ```
 
-Note that if there are calculations using `theme.spacing()`, these will need to be resolved manually. Consider using CSS calc:
-
-```diff
--width: `${theme.spacing(2) - 1}px`,
-+widith: `calc(${theme.spacing(2)} - 1px)`,
-```
-
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#theme).
 
 #### `theme-typography-round`
 
 Remove `theme.typography.round($number)` to `Math.round($number * 1e5) / 1e5`
 
+```diff
+-`${theme.typography.round($number)}`
++`${Math.round($number * 1e5) / 1e5}`
+```
+
 ```sh
 npx @material-ui/codemod@next v5.0.0/theme-typography-round <path>
 ```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#theme).
 
 #### `transitions`
 
@@ -751,6 +815,11 @@ npx @material-ui/codemod@next v5.0.0/transitions <path>
 #### `use-autocomplete`
 
 Renames `useAutocomplete` related import from lab to core
+
+```diff
+-import useAutocomplete from '@material-ui/lab/useAutocomplete';
++import useAutocomplete from '@material-ui/core/useAutocomplete';
+```
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/use-autocomplete <path>
@@ -788,6 +857,8 @@ npx @material-ui/codemod@next v5.0.0/use-transitionprops <path>
 You can find more details about this breaking change in [the migration guide](/guides/migration-v4/#dialog).
 
 #### `variant-prop`
+
+> Don't run this codemod if you already set `variant` to `outlined` or `filled` in theme default props.
 
 Add the TextField, Select, and FormControl `variant="standard"` prop when `variant` is undefined.
 The diff should look like this:
@@ -827,6 +898,8 @@ Remove and insert hardcoded `withMobileDialog` to prevent application crash.
 npx @material-ui/codemod@next v5.0.0/with-mobile-dialog <path>
 ```
 
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#dialog).
+
 #### `with-width`
 
 Remove and insert hardcoded `withWidth` to prevent application crash.
@@ -840,6 +913,8 @@ Remove and insert hardcoded `withWidth` to prevent application crash.
 ```sh
 npx @material-ui/codemod@next v5.0.0/with-width <path>
 ```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#material-ui-core-styles).
 
 ### v4.0.0
 
