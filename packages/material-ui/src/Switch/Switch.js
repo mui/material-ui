@@ -326,11 +326,12 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiSwitch' });
 
   const {
-    checked: checkedProp,
+    checked,
     checkedIcon,
     classes,
     className,
     color = 'primary',
+    defaultChecked,
     disabled: disabledProp,
     disableFocusRipple = false,
     disableRipple = false,
@@ -342,6 +343,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     inputProps,
     name,
     onBlur,
+    onChange,
     onFocus,
     required = false,
     size = 'medium',
@@ -422,10 +424,13 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
 
   return (
     <SwitchUnstyled
-      ref={ref}
+      checked={checked}
       components={components}
       componentsProps={componentsProps}
+      defaultChecked={defaultChecked}
       disabled={disabled}
+      onChange={onChange}
+      ref={ref}
       {...other}
     />
   );
