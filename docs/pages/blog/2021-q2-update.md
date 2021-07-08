@@ -166,7 +166,7 @@ After considering [different](https://basecamp.com/shapeup) [alternatives](https
 
 ### Growth between Q1 2021 and Q2 2021
 
-- 📦 From 8.6M to 9.1M downloads per month on npm.
+- 📦 From 8.6M to 9.1M downloads per month on npm. We have 21.03% of market share inside the React ecosystem, up from 6.68%, 5 years ago.
 - ⭐️ From 67.2k to 69.1k stars. [Leave us yours 🌟](https://github.com/mui-org/material-ui)!
 - 👨‍👩‍👧‍👦 From 2,141 to 2,223 contributors on GitHub. We add on average one new contributor every day.
 
