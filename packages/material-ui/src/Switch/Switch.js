@@ -3,6 +3,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { SwitchUnstyled, unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { refType } from '@material-ui/utils';
 import { alpha, darken, lighten } from '@material-ui/system';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
@@ -446,14 +447,9 @@ Switch.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes.oneOf([
-    'default',
-    'error',
-    'info',
-    'primary',
-    'secondary',
-    'success',
-    'warning',
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['default', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
+    PropTypes.string,
   ]),
   /**
    * The default checked state. Use when the component is not controlled.
@@ -500,12 +496,7 @@ Switch.propTypes /* remove-proptypes */ = {
   /**
    * Pass a ref to the `input` element.
    */
-  inputRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.any.isRequired,
-    }),
-  ]),
+  inputRef: refType,
   /**
    * @ignore
    */
@@ -531,7 +522,10 @@ Switch.propTypes /* remove-proptypes */ = {
    * `small` is equivalent to the dense switch styling.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
