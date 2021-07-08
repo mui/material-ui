@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
 
 const theme = createTheme();
 
-export default function MyComponent {
+export default function MyComponent() {
   const classes = useStyles();
   return <ThemeProvider theme={theme}><div className={classes.root} /></ThemeProvider>;
 }
