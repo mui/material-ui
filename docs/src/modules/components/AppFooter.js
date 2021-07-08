@@ -204,8 +204,7 @@ function AppFooter(props) {
               replacement={{
                 versionNumber: (
                   <Link
-                    color="text.primary"
-                    underline="hover"
+                    color="inherit"
                     href={`https://material-ui.com${languagePrefix}/versions/`}
                     aria-label={`v${process.env.LIB_VERSION}. View versions page.`}
                   >
@@ -214,8 +213,7 @@ function AppFooter(props) {
                 ),
                 license: (
                   <Link
-                    color="text.primary"
-                    underline="hover"
+                    color="inherit"
                     href={`https://github.com/mui-org/material-ui/blob/v${process.env.LIB_VERSION}/LICENSE`}
                   >
                     {t('license')}
