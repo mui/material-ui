@@ -101,7 +101,7 @@ const inHouseAds = [
 class AdErrorBoundary extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    eventLabel: PropTypes.string.isRequired,
+    eventLabel: PropTypes.string,
   };
 
   state = { didError: false };
@@ -111,7 +111,8 @@ class AdErrorBoundary extends React.Component {
   }
 
   componentDidCatch() {
-    const { eventLabel } = this.props;
+    // send explicit `'null'`
+    const eventLabel = String(this.props.eventLabel);
     // TODO: Use proper error monitoring service (e.g. Sentry) instead
     window.ga('send', {
       hitType: 'event',
