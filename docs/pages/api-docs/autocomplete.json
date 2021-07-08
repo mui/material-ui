@@ -19,6 +19,7 @@
     "clearOnEscape": { "type": { "name": "bool" } },
     "clearText": { "type": { "name": "string" }, "default": "'Clear'" },
     "closeText": { "type": { "name": "string" }, "default": "'Close'" },
+    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
     "defaultValue": { "type": { "name": "any" }, "default": "props.multiple ? [] : null" },
     "disableClearable": { "type": { "name": "bool" } },
     "disableCloseOnSelect": { "type": { "name": "bool" } },

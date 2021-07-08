@@ -376,6 +376,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     clearOnEscape = false,
     clearText = 'Clear',
     closeText = 'Close',
+    componentsProps = {},
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
@@ -555,6 +556,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                     title={clearText}
                     className={classes.clearIndicator}
                     styleProps={styleProps}
+                    {...componentsProps.clearIndicator}
                   >
                     {clearIcon}
                   </AutocompleteClearIndicator>
@@ -721,6 +723,11 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @default 'Close'
    */
   closeText: PropTypes.string,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
   /**
    * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null
