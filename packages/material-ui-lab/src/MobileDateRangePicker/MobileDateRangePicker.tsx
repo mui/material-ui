@@ -200,7 +200,7 @@ MobileDateRangePicker.propTypes /* remove-proptypes */ = {
   calendars: PropTypes.oneOf([1, 2, 3]),
   /**
    * Cancel text message.
-   * @default "CANCEL"
+   * @default 'Cancel'
    */
   cancelText: PropTypes.node,
   /**
@@ -218,7 +218,7 @@ MobileDateRangePicker.propTypes /* remove-proptypes */ = {
   clearable: PropTypes.bool,
   /**
    * Clear text message.
-   * @default "CLEAR"
+   * @default 'Clear'
    */
   clearText: PropTypes.node,
   /**
@@ -359,7 +359,7 @@ MobileDateRangePicker.propTypes /* remove-proptypes */ = {
   minDate: PropTypes.any,
   /**
    * Ok button text.
-   * @default "OK"
+   * @default 'OK'
    */
   okText: PropTypes.node,
   /**
@@ -485,7 +485,7 @@ MobileDateRangePicker.propTypes /* remove-proptypes */ = {
   startText: PropTypes.node,
   /**
    * Today text message.
-   * @default "TODAY"
+   * @default 'Today'
    */
   todayText: PropTypes.node,
   /**
@@ -498,12 +498,12 @@ MobileDateRangePicker.propTypes /* remove-proptypes */ = {
   toolbarFormat: PropTypes.string,
   /**
    * Mobile picker date value placeholder, displaying if `value` === `null`.
-   * @default "–"
+   * @default '–'
    */
   toolbarPlaceholder: PropTypes.node,
   /**
    * Mobile picker title, displaying in the toolbar.
-   * @default "SELECT DATE"
+   * @default 'Select date range'
    */
   toolbarTitle: PropTypes.node,
   /**

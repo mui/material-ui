@@ -18,10 +18,10 @@
       "type": { "name": "enum", "description": "1<br>&#124;&nbsp;2<br>&#124;&nbsp;3" },
       "default": "2"
     },
-    "cancelText": { "type": { "name": "node" }, "default": "\"CANCEL\"" },
+    "cancelText": { "type": { "name": "node" }, "default": "'Cancel'" },
     "className": { "type": { "name": "string" } },
     "clearable": { "type": { "name": "bool" } },
-    "clearText": { "type": { "name": "node" }, "default": "\"CLEAR\"" },
+    "clearText": { "type": { "name": "node" }, "default": "'Clear'" },
     "components": {
       "type": {
         "name": "shape",
@@ -57,7 +57,7 @@
     "mask": { "type": { "name": "string" }, "default": "'__/__/____'" },
     "maxDate": { "type": { "name": "any" }, "default": "defaultMaxDate" },
     "minDate": { "type": { "name": "any" }, "default": "defaultMinDate" },
-    "okText": { "type": { "name": "node" }, "default": "\"OK\"" },
+    "okText": { "type": { "name": "node" }, "default": "'OK'" },
     "onAccept": { "type": { "name": "func" } },
     "onClose": { "type": { "name": "func" } },
     "onError": { "type": { "name": "func" } },
@@ -87,11 +87,11 @@
     "showTodayButton": { "type": { "name": "bool" } },
     "showToolbar": { "type": { "name": "bool" } },
     "startText": { "type": { "name": "node" }, "default": "'Start'" },
-    "todayText": { "type": { "name": "node" }, "default": "\"TODAY\"" },
+    "todayText": { "type": { "name": "node" }, "default": "'Today'" },
     "ToolbarComponent": { "type": { "name": "elementType" } },
     "toolbarFormat": { "type": { "name": "string" } },
-    "toolbarPlaceholder": { "type": { "name": "node" }, "default": "\"–\"" },
-    "toolbarTitle": { "type": { "name": "node" }, "default": "\"SELECT DATE\"" }
+    "toolbarPlaceholder": { "type": { "name": "node" }, "default": "'–'" },
+    "toolbarTitle": { "type": { "name": "node" }, "default": "'Select date range'" }
   },
   "name": "MobileDateRangePicker",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
