@@ -218,7 +218,7 @@ Starting from v5, Material-UI no longer uses JSS as its default styling solution
 import { makeStyles } from '@material-ui/styles';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
-const theme = createMuiTheme();
+const theme = createTheme();
 
 const useStyles = makeStyles((theme) => ({
   root: {
