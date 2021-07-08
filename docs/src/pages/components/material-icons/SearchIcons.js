@@ -226,7 +226,7 @@ const CanvasComponent = styled(Box)(({ theme }) => ({
       : 'linear-gradient(45deg, #595959 25%, transparent 25%), linear-gradient(-45deg, #595959 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #595959 75%), linear-gradient(-45deg, transparent 75%, #595959 75%)',
 }));
 
-const FontSizeComponent = styled(Box)(({ theme }) => ({
+const FontSizeComponent = styled('span')(({ theme }) => ({
   margin: theme.spacing(2),
 }));
 
@@ -321,20 +321,20 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                   <Grid item>
                     <Tooltip title="fontSize small">
                       <FontSizeComponent
-                        component={selectedIcon.Component}
+                        as={selectedIcon.Component}
                         fontSize="small"
                       />
                     </Tooltip>
                   </Grid>
                   <Grid item>
                     <Tooltip title="fontSize medium">
-                      <FontSizeComponent component={selectedIcon.Component} />
+                      <FontSizeComponent as={selectedIcon.Component} />
                     </Tooltip>
                   </Grid>
                   <Grid item>
                     <Tooltip title="fontSize large">
                       <FontSizeComponent
-                        component={selectedIcon.Component}
+                        as={selectedIcon.Component}
                         fontSize="large"
                       />
                     </Tooltip>
