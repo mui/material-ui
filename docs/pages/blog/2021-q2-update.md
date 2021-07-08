@@ -6,7 +6,8 @@ authors: ['oliviertassinari']
 card: true
 ---
 
-This update covers our progress over the last three months and what we aim to achieve in the months ahead.
+This update covers our progress over the last three months.
+It also covers what we aim to achieve in the months ahead.
 
 ## Overview
 
@@ -25,11 +26,12 @@ Here are the most significant improvements since March 2021.
 
 - 🔥 We have made enough progress to ship [v5.0.0-beta.0](https://github.com/mui-org/material-ui/releases/tag/v5.0.0-beta.0). A few statistics to give an idea of the effort that went into it:
 
-  - [12 months](/blog/2020-q2-update/#product) of dedicated focus. Early on, we stopped work on v4.
+  - [12 months](/blog/2020-q2-update/#product) of dedicated focus. Early on, we stopped work on v4 to fully dedicate to this effort.
   - 3,475 pull requests
   - 5,092 commits (the extra commits came from the merge of [material-ui-pickers](https://github.com/mui-org/material-ui-pickers))
   - 398 new contributors
   - The equivalent of, on average, four full-time developers working on it (core team + community).
+  - 38 alpha releases, we release once a week.
 
 - 👩‍🎤 We have rolled out the new **style engine** to all the components.
   The community provided invaluable assistance in completing this effort.
@@ -41,7 +43,7 @@ Here are the most significant improvements since March 2021.
 
 - 💄 We have [updated](https://next.material-ui.com/components/slider/#sizes) the style of the Slider to better match the Material Design guidelines, and kept a similar style as before under `size="small"`:
 
-  <img loading="lazy" src="/static/blog/2021-q2-update/slider.png" alt="" style="width: 838px; margin-bottom: 16px;" />
+  <a href="https://next.material-ui.com/components/slider/#sizes"><img loading="lazy" src="/static/blog/2021-q2-update/slider.png" alt="" style="width: 838px; margin-bottom: 16px;" /></a>
 
 - ✨ The new style engine has unlocked problems on the Grid component that we couldn't solve before with JSS.
 
@@ -104,7 +106,7 @@ The date picker is at the border between the advanced components and the design 
 #### Data Grid
 
 - 🚨 We have continued to work on breaking changes to reach a stable version.
-  We think that the component is good enough for use in production (and may developers are), but we want to get the public API right before committing to a stable release.
+  We think that the component is good enough for use in production (and many developers are), but we want to get the public API right before committing to a stable release.
 - ✍️ We have added support for the [cell edit mode](https://material-ui.com/components/data-grid/editing/).
 
   <img loading="lazy" src="/static/blog/2021-q2-update/cell-edit.gif" alt="" style="width: 842px; margin-bottom: 16px;" />
@@ -171,15 +173,17 @@ After considering [different](https://basecamp.com/shapeup) [alternatives](https
 
 We have welcomed three new members to the company 🏢:
 
-- [Michal](/blog/michal-dudak-joining/) leads the initiative around the [unstyled version](https://github.com/mui-org/material-ui/issues/6218) of Material-UI.
+- [Michal](/blog/michal-dudak-joining/) leads the initiative around the [unstyled version](https://github.com/mui-org/material-ui/issues/6218).
 
-  <img loading="lazy" src="/static/blog/2021-q2-update/michal.jpeg" alt="michal" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
+  <img loading="lazy" src="/static/blog/2021-q2-update/michal.jpg" alt="michal" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
 - [Danilo](https://daniloleal.co/), a lead designer to raise our design game.
 
-  <img loading="lazy" src="/static/blog/2021-q2-update/danilo.jpeg" alt="danilo" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
+  <img loading="lazy" src="/static/blog/2021-q2-update/danilo.jpg" alt="danilo" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
 - [Flavien](https://github.com/flaviendelangle), an engineer with previous experience building [design systems](https://habx.github.io/ui-core/) and a complex 2D JavaScript rendering engine. He will help us take on bolder problems on the advanced components (X team).
+
+  <img loading="lazy" src="/static/blog/2021-q2-update/flavien.jpg" alt="flavien" style="max-width: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
 We are also **hiring** for various roles! If you're interested in joining us, check out our [jobs page](/company/careers/#open-roles).
 
@@ -191,26 +195,34 @@ We'll do our best, no guarantee!
 
 We have the following objectives:
 
-- Continue to refine our processes to make sure we function well with over ten people in the company.
+- Continue to refine our processes and responsibilities to make sure we function well with over ten people in the company.
 - Rebrand. We started this effort one year ago but, failed to execute on it.
-  With Danilo and Jun in the team to own the effort, we can finally make it happen.
-- Open 4 roles: to strengthen the X team (advanced components) and to start the development of a bold new product vertical.
+  With [Danilo](https://github.com/danilo-leal) (design) and [Jun](https://github.com/siriwatknp) (code) in the team to own the effort, we can finally make it happen.
+  We will make a step to distinguish ourselves from a strong association with Material Design.
+- Open and fill [4 roles](/company/careers/#open-roles). We need to strengthen the X team (advanced components)
+  We also want to initiate the development of a bold new product vertical.
 
 ### Core components
 
 - 🚀 Get v5 stable out! At this point, v5-alpha has about [1%](https://npm-stat.com/charts.html?package=%40material-ui%2Fstyled-engine&package=%40material-ui%2Fcore&from=2020-06-22&to=2021-06-22) of the downloads of v4.
   It has a lot of accumulated value not being realized. We aim to for 25% of the community to have migrated by the end of the quarter.
-- ⚛️ Support React 18
-- ♨️ Fix the friction the community has during upgrade.
-- 🦴 Migrate more components to `@material-ui/unstyled`.
-- 🌈 Do a POC on a second theme.
+- ♨️ Fix the friction the community has during the upgrade to v5.
+  We want to make the upgrade feel painless.
+- ⚛️ Support [React 18](https://reactjs.org/blog/2021/06/08/the-plan-for-react-18.html). [Sebastian](https://github.com/eps1lon) is part of the React [Working Group](https://github.com/reactwg/react-18/discussions), focusing on making us ready ahead of time.
+  We want our most exigent users to feel empowered by Material-UI, not slow down by a third-party.
+- 🦴 Migrate more components to `@material-ui/unstyled`. [Michal](https://github.com/michaldudak) has added support for the [Switch last week](https://next.material-ui.com/components/switches/#unstyled-switches).
+  You can follow our progress on the [umbrella issue](https://github.com/mui-org/material-ui/issues/27170).
+- 🌈 Do a proof of concept on supporting a second design system.
+  Part of our users dislike Material Design, we will try to make them love the design of our second design system.
 - 🗓 Execute on all the items of the [public roadmap](https://github.com/mui-org/material-ui/projects/25).
 - ❓ Please upvote [GitHub issues](https://github.com/mui-org/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
 ### Advanced components
 
-- 🚀 Make the first stable release of the Data Grid, with the core on v5. (We will continue to support its use with v4.)
+- 🚀 Make the first stable release of the Data Grid.
 - ✨ Resume work on the [key features](https://github.com/mui-org/material-ui-x/issues?q=is%3Aopen+label%3A%22linked+in+docs%22+sort%3Areactions-%2B1-desc), after a quarter focused on stability.
+  It seems that the audience is adopting the data grid as fast as we can build it.
+  For instance, we have one issue with over [1,000 upvotes](https://github.com/mui-org/material-ui-x/issues/204) 👍.
 - 🗓 Execute on all the items in the [public roadmap](https://github.com/mui-org/material-ui-x/projects/1).
 - ❓ Please upvote [GitHub issues](https://github.com/mui-org/material-ui-x/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
