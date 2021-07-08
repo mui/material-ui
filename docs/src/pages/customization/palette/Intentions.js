@@ -43,37 +43,37 @@ function IntentionsInner() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Group>Primary</Group>
+      <Group gutterBottom>Primary</Group>
       <Grid container spacing={2}>
         {item(theme.palette.primary.light, 'palette.primary.light')}
         {item(theme.palette.primary.main, 'palette.primary.main')}
         {item(theme.palette.primary.dark, 'palette.primary.dark')}
       </Grid>
-      <Group>Secondary</Group>
+      <Group gutterBottom>Secondary</Group>
       <Grid container spacing={2}>
         {item(theme.palette.secondary.light, 'palette.secondary.light')}
         {item(theme.palette.secondary.main, 'palette.secondary.main')}
         {item(theme.palette.secondary.dark, 'palette.secondary.dark')}
       </Grid>
-      <Group>Error</Group>
+      <Group gutterBottom>Error</Group>
       <Grid container spacing={2}>
         {item(theme.palette.error.light, 'palette.error.light')}
         {item(theme.palette.error.main, 'palette.error.main')}
         {item(theme.palette.error.dark, 'palette.error.dark')}
       </Grid>
-      <Group>Warning</Group>
+      <Group gutterBottom>Warning</Group>
       <Grid container spacing={2}>
         {item(theme.palette.warning.light, 'palette.warning.light')}
         {item(theme.palette.warning.main, 'palette.warning.main')}
         {item(theme.palette.warning.dark, 'palette.warning.dark')}
       </Grid>
-      <Group>Info</Group>
+      <Group gutterBottom>Info</Group>
       <Grid container spacing={2}>
         {item(theme.palette.info.light, 'palette.info.light')}
         {item(theme.palette.info.main, 'palette.info.main')}
         {item(theme.palette.info.dark, 'palette.info.dark')}
       </Grid>
-      <Group>Success</Group>
+      <Group gutterBottom>Success</Group>
       <Grid container spacing={2}>
         {item(theme.palette.success.light, 'palette.success.light')}
         {item(theme.palette.success.main, 'palette.success.main')}
