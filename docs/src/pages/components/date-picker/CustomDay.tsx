@@ -1,43 +1,44 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/styles';
-import { Theme, createTheme } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import StaticDatePicker from '@material-ui/lab/StaticDatePicker';
 import PickersDay, { PickersDayProps } from '@material-ui/lab/PickersDay';
-import clsx from 'clsx';
 import endOfWeek from 'date-fns/endOfWeek';
 import isSameDay from 'date-fns/isSameDay';
 import isWithinInterval from 'date-fns/isWithinInterval';
 import startOfWeek from 'date-fns/startOfWeek';
 
-const defaultTheme = createTheme();
-
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    highlight: {
-      borderRadius: 0,
-      backgroundColor: theme.palette.primary.main,
-      color: theme.palette.common.white,
-      '&:hover, &:focus': {
-        backgroundColor: theme.palette.primary.dark,
-      },
-    },
-    firstHighlight: {
-      borderTopLeftRadius: '50%',
-      borderBottomLeftRadius: '50%',
-    },
-    endHighlight: {
-      borderTopRightRadius: '50%',
-      borderBottomRightRadius: '50%',
+const CustomPickersDay = styled(PickersDay, {
+  shouldForwardProp: (prop) =>
+    prop !== 'dayIsBetween' && prop !== 'isFirstDay' && prop !== 'isLastDay',
+})<
+  PickersDayProps<Date> & {
+    dayIsBetween: boolean;
+    isFirstDay: boolean;
+    isLastDay: boolean;
+  }
+>(({ theme, dayIsBetween, isFirstDay, isLastDay }) => ({
+  ...(dayIsBetween && {
+    borderRadius: 0,
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white,
+    '&:hover, &:focus': {
+      backgroundColor: theme.palette.primary.dark,
     },
   }),
-  { defaultTheme },
-);
+  ...(isFirstDay && {
+    borderTopLeftRadius: '50%',
+    borderBottomLeftRadius: '50%',
+  }),
+  ...(isLastDay && {
+    borderTopRightRadius: '50%',
+    borderBottomRightRadius: '50%',
+  }),
+}));
 
 export default function CustomDay() {
-  const classes = useStyles();
   const [value, setValue] = React.useState<Date | null>(new Date());
 
   const renderWeekPickerDay = (
@@ -57,15 +58,16 @@ export default function CustomDay() {
     const isLastDay = isSameDay(date, end);
 
     return (
-      <PickersDay
-        {...pickersDayProps}
-        disableMargin
-        className={clsx({
-          [classes.highlight]: dayIsBetween,
-          [classes.firstHighlight]: isFirstDay,
-          [classes.endHighlight]: isLastDay,
-        })}
-      />
+      <React.Fragment>
+        {/* @ts-ignore TODO: fix type issue with generics */}
+        <CustomPickersDay
+          {...pickersDayProps}
+          disableMargin
+          dayIsBetween={dayIsBetween}
+          isFirstDay={isFirstDay}
+          isLastDay={isLastDay}
+        />
+      </React.Fragment>
     );
   };
 

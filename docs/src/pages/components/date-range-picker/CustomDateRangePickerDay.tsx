@@ -1,43 +1,37 @@
 import * as React from 'react';
-import { createTheme, Theme } from '@material-ui/core/styles';
-import { makeStyles } from '@material-ui/styles';
+import { styled } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import { DateRange } from '@material-ui/lab/DateRangePicker';
 import StaticDateRangePicker from '@material-ui/lab/StaticDateRangePicker';
-import DateRangePickerDay, {
+import MuiDateRangePickerDay, {
   DateRangePickerDayProps,
 } from '@material-ui/lab/DateRangePickerDay';
-import clsx from 'clsx';
 
-const defaultTheme = createTheme();
-
-const useStyles = makeStyles(
-  (theme: Theme) => ({
-    highlight: {
+const DateRangePickerDay = styled(MuiDateRangePickerDay)(
+  ({ theme, isHighlighting, isStartOfHighlighting, isEndOfHighlighting }) => ({
+    ...(isHighlighting && {
       borderRadius: 0,
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.common.white,
       '&:hover, &:focus': {
         backgroundColor: theme.palette.primary.dark,
       },
-    },
-    firstHighlight: {
+    }),
+    ...(isStartOfHighlighting && {
       borderTopLeftRadius: '50%',
       borderBottomLeftRadius: '50%',
-    },
-    endHighlight: {
+    }),
+    ...(isEndOfHighlighting && {
       borderTopRightRadius: '50%',
       borderBottomRightRadius: '50%',
-    },
+    }),
   }),
-  { defaultTheme },
 );
 
 export default function CustomDateRangePickerDay() {
-  const classes = useStyles();
   const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
 
   const renderWeekPickerDay = (
@@ -45,14 +39,10 @@ export default function CustomDateRangePickerDay() {
     dateRangePickerDayProps: DateRangePickerDayProps<Date>,
   ) => {
     return (
-      <DateRangePickerDay
-        {...dateRangePickerDayProps}
-        className={clsx(dateRangePickerDayProps.className, {
-          [classes.firstHighlight]: dateRangePickerDayProps.isStartOfHighlighting,
-          [classes.endHighlight]: dateRangePickerDayProps.isEndOfHighlighting,
-          [classes.highlight]: dateRangePickerDayProps.isHighlighting,
-        })}
-      />
+      <React.Fragment>
+        {/* @ts-ignore TODO: fix type issue with generics */}
+        <DateRangePickerDay {...dateRangePickerDayProps} />
+      </React.Fragment>
     );
   };
 
