@@ -964,7 +964,7 @@ Big thanks to the 17 contributors who made this release possible. Here are some 
   +import { createGenerateClassName } from '@material-ui/styles';
   ```
 
-  - The `jssPreset` objeect is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+  - The `jssPreset` object is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
 
   ```diff
   -import { jssPreset } from '@material-ui/core/styles';
@@ -991,6 +991,8 @@ Big thanks to the 17 contributors who made this release possible. Here are some 
   -import { useThemeVariants } from '@material-ui/core/styles';
   +import { useThemeVariants } from '@material-ui/styles';
   ```
+
+- [FormControlLabel] The `label` prop is now required.
 
 #### Changes
 
