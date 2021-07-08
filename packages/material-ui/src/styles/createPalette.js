@@ -4,10 +4,10 @@ import { darken, getContrastRatio, lighten } from '@material-ui/system';
 import common from '../colors/common';
 import grey from '../colors/grey';
 import purple from '../colors/purple';
-import cyan from '../colors/cyan';
 import red from '../colors/red';
 import orange from '../colors/orange';
 import blue from '../colors/blue';
+import lightBlue from '../colors/lightBlue';
 import green from '../colors/green';
 
 export const light = {
@@ -139,15 +139,15 @@ function getDefaultError(mode = 'light') {
 function getDefaultInfo(mode = 'light') {
   if (mode === 'dark') {
     return {
-      main: cyan[400],
-      light: cyan[300],
-      dark: cyan[700],
+      main: lightBlue[400],
+      light: lightBlue[300],
+      dark: lightBlue[700],
     };
   }
   return {
-    main: cyan[800],
-    light: cyan[500],
-    dark: cyan[900],
+    main: lightBlue[700],
+    light: lightBlue[500],
+    dark: lightBlue[900],
   };
 }
 
