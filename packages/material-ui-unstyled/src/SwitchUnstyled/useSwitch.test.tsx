@@ -1,7 +1,14 @@
 import { expect } from 'chai';
 import React from 'react';
 import { spy } from 'sinon';
-import { act, createClientRender, focusVisible, screen, simulatePointerDevice } from 'test/utils';
+import {
+  act,
+  createClientRender,
+  focusVisible,
+  programmaticFocusTriggersFocusVisible,
+  screen,
+  simulatePointerDevice,
+} from 'test/utils';
 import { useSwitch, UseSwitchProps, UseSwitchResult } from '@material-ui/unstyled/SwitchUnstyled';
 
 describe('useSwitch', () => {
@@ -87,7 +94,9 @@ describe('useSwitch', () => {
 
       expect(handleBlur.callCount).to.equal(0);
       expect(handleFocus.callCount).to.equal(1);
-      expect(handleFocusVisible.callCount).to.equal(0);
+      expect(handleFocusVisible.callCount).to.equal(
+        programmaticFocusTriggersFocusVisible() ? 1 : 0,
+      );
 
       act(() => {
         checkbox.blur();
@@ -95,13 +104,17 @@ describe('useSwitch', () => {
 
       expect(handleBlur.callCount).to.equal(1);
       expect(handleFocus.callCount).to.equal(1);
-      expect(handleFocusVisible.callCount).to.equal(0);
+      expect(handleFocusVisible.callCount).to.equal(
+        programmaticFocusTriggersFocusVisible() ? 1 : 0,
+      );
 
       focusVisible(checkbox);
 
       expect(handleBlur.callCount).to.equal(1);
       expect(handleFocus.callCount).to.equal(2);
-      expect(handleFocusVisible.callCount).to.equal(1);
+      expect(handleFocusVisible.callCount).to.equal(
+        programmaticFocusTriggersFocusVisible() ? 2 : 1,
+      );
     });
   });
 });
