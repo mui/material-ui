@@ -71,8 +71,8 @@ The list includes
 
 - [@material-ui/codemod](#material-uicodemod)
   - [Setup & run](#setup--run)
-      - [jscodeshift options](#jscodeshift-options)
-      - [Recast Options](#recast-options)
+    - [jscodeshift options](#jscodeshift-options)
+    - [Recast Options](#recast-options)
   - [Included scripts](#included-scripts)
     - [v5.0.0](#v500)
       - [🚀 `preset-safe`](#-preset-safe)
