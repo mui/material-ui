@@ -62,13 +62,23 @@ const lowercaseFirstLetter = (string) => {
   return string.charAt(0).toLowerCase() + string.slice(1);
 };
 
+// component styled
+// - Name, Slot
+// - overridesResolver
+// - variantsResolver
+// - sx
+
+// primitive styled
+// - sx
+// - extendSx, shouldForwardProps
+
 export default function createStyled(input = {}) {
   const {
     defaultTheme = systemDefaultTheme,
     rootShouldForwardProp = shouldForwardProp,
     slotShouldForwardProp = shouldForwardProp,
   } = input;
-  return (tag, inputOptions = {}) => {
+  function styled(tag, inputOptions = {}) {
     const {
       name: componentName,
       slot: componentSlot,
@@ -171,5 +181,9 @@ export default function createStyled(input = {}) {
       return Component;
     };
     return muiStyledResolver;
-  };
+  }
+
+  styled.div = styled('div')();
+
+  return styled;
 }
