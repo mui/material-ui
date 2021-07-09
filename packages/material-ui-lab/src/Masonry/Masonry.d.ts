@@ -1,4 +1,4 @@
-import { SxProps } from '@material-ui/system';
+import { ResponsiveStyleValue, SxProps } from '@material-ui/system';
 import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
 import { Theme } from '@material-ui/core/styles';
 import { MasonryClasses } from './masonryClasses';
@@ -19,12 +19,12 @@ export interface MasonryTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     cols?: number;
     /**
-     * The gap between items in px.
-     * @default 10
+     * Defines the space between children.
+     * @default 1
      */
-    gap?: number;
+    spacing?: ResponsiveStyleValue<number | string>;
     /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
+     * The system prop, which allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps<Theme>;
   };

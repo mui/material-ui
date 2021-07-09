@@ -14,7 +14,7 @@ export interface MasonryItemTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     classes?: Partial<MasonryItemClasses>;
     /**
-     * The system prop that allows defining system overrides as well as additional CSS styles.
+     * The system prop, which allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps<Theme>;
   };

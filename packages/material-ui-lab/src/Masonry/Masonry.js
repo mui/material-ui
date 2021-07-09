@@ -1,16 +1,8 @@
 // A masonry component using the following libs as inspiration.
-//
-// For the implementation:
 // - https://github.com/STRML/react-grid-layout
-// - https://material.angularjs.org/latest/demo/gridList
 // - https://next.material-ui.com/components/image-list/#masonry-image-list
 // - https://github.com/desandro/masonry
-// - https://mdbootstrap.com/docs/react/layout/masonry/
-// - https://muuri.dev/
-// - https://github.com/bigbite/macy.js
-// - https://github.com/paulcollett/react-masonry-css
-// - https://bvaughn.github.io/react-virtualized/#/components/Masonry
-// - https://github.com/jaredLunde/masonic
+// - https://w3bits.com/css-grid-masonry
 
 import * as React from 'react';
 import PropTypes from 'prop-types';
@@ -18,6 +10,7 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { styled, useThemeProps } from '@material-ui/core/styles';
 import { getMasonryUtilityClass } from './masonryClasses';
+import MasonryContext from './MasonryContext';
 
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
@@ -35,64 +28,39 @@ const MasonryRoot = styled('div', {
   overridesResolver: (props, styles) => {
     return [styles.root];
   },
-})(() => {
+})(({ styleProps, theme }) => {
   /* Styles applied to the root element. */
   return {
     display: 'grid',
     gridAutoRows: 0,
     padding: 0,
     width: '100%',
+    gap: theme.spacing(styleProps.spacing),
+    gridTemplateColumns: `repeat(${styleProps.cols}, 1fr)`,
   };
 });
 
-const Masonry = React.forwardRef(function Masonry(inProps, ref) {
+const Masonry = React.forwardRef(function Masonry(inProps) {
+  const masonryRef = React.useRef(null);
   const props = useThemeProps({
     props: inProps,
     name: 'MuiMasonry',
   });
 
-  const {
-    children,
-    className,
-    cols = 4,
-    component = 'div',
-    gap = 10,
-    style: styleProp,
-    ...other
-  } = props;
-  const [masonryItems, setMasonryItems] = React.useState(children);
-  const style = { gridTemplateColumns: `repeat(${cols}, 1fr)`, gap, ...styleProp };
-  const styleProps = { ...props, component, gap };
+  const { children, className, component = 'div', cols = 4, spacing = 1, style, ...other } = props;
+  const styleProps = { ...props, spacing, cols };
   const classes = useUtilityClasses(styleProps);
-  const resizeItems = () => {
-    const resizedChildren = React.Children.map(children, (child) => {
-      return React.cloneElement(child, {
-        ref: (elem) => {
-          if (!elem || (!elem.querySelector('img') && !elem.querySelector('div'))) return;
-          const totalHeight = elem.querySelector('img')
-            ? elem.querySelector('img').getBoundingClientRect().height + gap
-            : elem.querySelector('div').getBoundingClientRect().height + gap;
-          const rowSpan = Math.ceil(totalHeight / gap);
-          elem.style.gridRowEnd = `span ${rowSpan}`;
-        },
-      });
-    });
-    setMasonryItems(resizedChildren);
-  };
-  React.useEffect(() => {
-    resizeItems();
-  }, []); // eslint-disable-line
 
   return (
     <MasonryRoot
       as={component}
       className={clsx(classes.root, className)}
-      ref={ref}
-      style={style}
+      ref={masonryRef}
+      style={props.style}
       styleProps={styleProps}
       {...other}
     >
-      {masonryItems}
+      <MasonryContext.Provider value={{ spacing }}>{children}</MasonryContext.Provider>
     </MasonryRoot>
   );
 });
@@ -125,16 +93,21 @@ Masonry.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The gap between items in px.
-   * @default 10
+   * Defines the space between children.
+   * @default 1
    */
-  gap: PropTypes.number,
+  spacing: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+    PropTypes.number,
+    PropTypes.object,
+    PropTypes.string,
+  ]),
   /**
    * @ignore
    */
   style: PropTypes.object,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
+   * The system prop, which allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.object,
 };
