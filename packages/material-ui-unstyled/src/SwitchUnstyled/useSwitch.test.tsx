@@ -85,41 +85,23 @@ describe('useSwitch', () => {
         checkbox.focus();
       });
 
-      expect({
-        onBlur: handleBlur.callCount,
-        onFocus: handleFocus.callCount,
-        onFocusVisible: handleFocusVisible.callCount,
-      }).to.deep.equal({
-        onBlur: 0,
-        onFocus: 1,
-        onFocusVisible: 0,
-      });
+      expect(handleBlur.callCount).to.equal(0);
+      expect(handleFocus.callCount).to.equal(1);
+      expect(handleFocusVisible.callCount).to.equal(0);
 
       act(() => {
         checkbox.blur();
       });
 
-      expect({
-        onBlur: handleBlur.callCount,
-        onFocus: handleFocus.callCount,
-        onFocusVisible: handleFocusVisible.callCount,
-      }).to.deep.equal({
-        onBlur: 1,
-        onFocus: 1,
-        onFocusVisible: 0,
-      });
+      expect(handleBlur.callCount).to.equal(1);
+      expect(handleFocus.callCount).to.equal(1);
+      expect(handleFocusVisible.callCount).to.equal(0);
 
       focusVisible(checkbox);
 
-      expect({
-        onBlur: handleBlur.callCount,
-        onFocus: handleFocus.callCount,
-        onFocusVisible: handleFocusVisible.callCount,
-      }).to.deep.equal({
-        onBlur: 1,
-        onFocus: 2,
-        onFocusVisible: 1,
-      });
+      expect(handleBlur.callCount).to.equal(1);
+      expect(handleFocus.callCount).to.equal(2);
+      expect(handleFocusVisible.callCount).to.equal(1);
     });
   });
 });
