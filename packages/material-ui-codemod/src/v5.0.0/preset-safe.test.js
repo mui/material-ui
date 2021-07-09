@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
-import transform from './preset-migration';
+import transform from './preset-safe';
 import readFile from '../util/readFile';
 
 function read(fileName) {
@@ -11,32 +11,32 @@ function read(fileName) {
 
 describe('@material-ui/codemod', () => {
   describe('v5.0.0', () => {
-    describe('preset-migration', () => {
+    describe('preset-safe', () => {
       it('transforms props as needed', () => {
         const actual = transform(
           {
-            source: read('./preset-migration.test/actual.js'),
-            path: require.resolve('./preset-migration.test/actual.js'),
+            source: read('./preset-safe.test/actual.js'),
+            path: require.resolve('./preset-safe.test/actual.js'),
           },
           { jscodeshift: jscodeshift },
           {},
         );
 
-        const expected = read('./preset-migration.test/expected.js');
+        const expected = read('./preset-safe.test/expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
 
       it('should be idempotent', () => {
         const actual = transform(
           {
-            source: read('./preset-migration.test/expected.js'),
-            path: require.resolve('./preset-migration.test/expected.js'),
+            source: read('./preset-safe.test/expected.js'),
+            path: require.resolve('./preset-safe.test/expected.js'),
           },
           { jscodeshift: jscodeshift },
           {},
         );
 
-        const expected = read('./preset-migration.test/expected.js');
+        const expected = read('./preset-safe.test/expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
