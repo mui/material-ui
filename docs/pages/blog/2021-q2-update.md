@@ -40,13 +40,13 @@ Here are the most significant improvements since March 2021.
   The `styled()` API is loved by the community, and implemented by a number of styling libraries: styled-components, emotion, stitches, goober, etc. It allows us to support them all with [adapters](https://next.material-ui.com/guides/styled-engine/#how-to-switch-to-styled-components).
 
 - ⚒️ We added a [codemod CLI](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod) and 17 transformations (so far) to automatically migrate codebases from v4 to v5.
-  If you're not familiar with what a codemod is, check out [this presentation](https://www.youtube.com/watch?v=H9qtLutnT_g).
+  If you're not familiar with what a codemod is, check out [Effective Refactoring with Codemods by Edd Yerburgh](https://www.youtube.com/watch?v=H9qtLutnT_g).
 
-- 💄 We have [updated](https://next.material-ui.com/components/slider/#sizes) the style of the Slider to better match the Material Design guidelines, and kept a similar style as before under `size="small"`:
+- 💄 We have [updated the style of the Slider](https://next.material-ui.com/components/slider/#sizes) to better match the Material Design guidelines, and kept a similar style as before under `size="small"`:
 
   <a href="https://next.material-ui.com/components/slider/#sizes"><img loading="lazy" src="/static/blog/2021-q2-update/slider.png" alt="" style="width: 838px; margin-bottom: 16px;" /></a>
 
-- ✨ The new style engine has unlocked problems on the Grid component that we couldn't solve before with JSS:
+- ✨ The new style engine has unlocked problems on the `Grid` component that we couldn't solve before with JSS:
 
   We have added support for [row & column](https://next.material-ui.com/components/grid/#row-amp-column-spacing) spacing:
 
