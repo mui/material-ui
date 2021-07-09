@@ -53,17 +53,23 @@ style rules to `makeStyles`/`withStyles` which are a function of the `Theme`.
 import { createStyles, makeStyles } from '@material-ui/styles';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  root: {
-    backgroundColor: theme.palette.red,
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      backgroundColor: theme.palette.red,
+    },
+  }),
+);
 
 const theme = createTheme();
 
-export default function MyComponent {
+export default function MyComponent() {
   const classes = useStyles();
-  return <ThemeProvider theme={theme}><div className={classes.root} /></ThemeProvider>;
+  return (
+    <ThemeProvider theme={theme}>
+      <div className={classes.root} />
+    </ThemeProvider>
+  );
 }
 ```
 
