@@ -19,3 +19,5 @@ declare module 'docs/src/modules/components/HighlightedCode' {
 }
 
 declare module '@trendmicro/react-interpolate';
+
+declare module 'react-imask';
