@@ -107,7 +107,7 @@ The date picker is at the border between the core component and advanced compone
 #### Data Grid
 
 - 🚨 We have continued to work on breaking changes to reach a stable version.
-  We think that the component is good enough for use in production (and many developers already are), but we want to get the public API right before committing to a stable release.
+  We think that the component is good enough for use in production (and many developers already are using it), but we want to get the public API right before committing to a stable release.
 - ✍️ We have added support for the [cell edit mode](https://material-ui.com/components/data-grid/editing/).
 
   <img loading="lazy" src="/static/blog/2021-q2-update/cell-edit.gif" alt="" style="width: 842px; margin-bottom: 16px;" />
@@ -174,7 +174,7 @@ After considering [different](https://basecamp.com/shapeup) [alternatives](https
 
 We have welcomed three new members to the company 🏢:
 
-- [Michal](/blog/michal-dudak-joining/) leads the initiative around the [unstyled version](https://github.com/mui-org/material-ui/issues/6218).
+- [Michał](/blog/michal-dudak-joining/) leads the initiative around the [unstyled version](https://github.com/mui-org/material-ui/issues/6218).
 
   <img loading="lazy" src="/static/blog/2021-q2-update/michal.jpg" alt="michal" style="width: 160px; height: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
@@ -211,7 +211,7 @@ We have the following objectives:
   We want to make the upgrade feel painless.
 - ⚛️ Support [React 18](https://reactjs.org/blog/2021/06/08/the-plan-for-react-18.html). [Sebastian](https://github.com/eps1lon) is part of the React [Working Group](https://github.com/reactwg/react-18/discussions), focusing on making us ready ahead of time.
   We want our most exigent users to feel empowered by Material-UI, not slow down by a third-party.
-- 🦴 Migrate more components to `@material-ui/unstyled`. [Michal](https://github.com/michaldudak) has added support for the [Switch last week](https://next.material-ui.com/components/switches/#unstyled-switches).
+- 🦴 Migrate more components to `@material-ui/unstyled`. [Michał](https://github.com/michaldudak) has added support for the [Switch last week](https://next.material-ui.com/components/switches/#unstyled-switches).
   You can follow our progress on the [umbrella issue](https://github.com/mui-org/material-ui/issues/27170).
 - 🌈 Do a proof of concept on supporting a second design system.
   Part of our users dislike Material Design, we will try to make them love the design of our second design system.
