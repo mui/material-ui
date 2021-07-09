@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import useSwitch, { SwitchState, UseSwitchProps } from './useSwitch';
 import classes from './switchUnstyledClasses';
-import { isHostComponent } from '../utils';
+import appendStyleProps from '../utils/appendStyleProps';
 
 export interface SwitchUnstyledProps extends UseSwitchProps {
   /**
@@ -37,16 +37,6 @@ export interface SwitchUnstyledProps extends UseSwitchProps {
     input?: {};
   };
 }
-
-const appendStyleProps = (
-  component: React.ElementType,
-  componentsProps: Record<string, any>,
-  state: SwitchState,
-) => {
-  if (!isHostComponent(component)) {
-    componentsProps.styleProps = { ...componentsProps.styleProps, ...state };
-  }
-};
 
 /**
  * The foundation for building custom-styled switches.
