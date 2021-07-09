@@ -49,7 +49,6 @@ export default function CustomDay() {
 
     return (
       <React.Fragment>
-        {/* @ts-ignore TODO: fix type issue with generics */}
         <CustomPickersDay
           {...pickersDayProps}
           disableMargin

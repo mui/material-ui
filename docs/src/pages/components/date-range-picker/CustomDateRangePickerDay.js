@@ -35,7 +35,6 @@ export default function CustomDateRangePickerDay() {
   const renderWeekPickerDay = (date, dateRangePickerDayProps) => {
     return (
       <React.Fragment>
-        {/* @ts-ignore TODO: fix type issue with generics */}
         <DateRangePickerDay {...dateRangePickerDayProps} />
       </React.Fragment>
     );
