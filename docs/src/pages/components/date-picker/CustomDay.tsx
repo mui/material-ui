@@ -58,15 +58,13 @@ export default function CustomDay() {
     const isLastDay = isSameDay(date, end);
 
     return (
-      <React.Fragment>
-        <CustomPickersDay
-          {...pickersDayProps}
-          disableMargin
-          dayIsBetween={dayIsBetween}
-          isFirstDay={isFirstDay}
-          isLastDay={isLastDay}
-        />
-      </React.Fragment>
+      <CustomPickersDay
+        {...pickersDayProps}
+        disableMargin
+        dayIsBetween={dayIsBetween}
+        isFirstDay={isFirstDay}
+        isLastDay={isLastDay}
+      />
     );
   };
 

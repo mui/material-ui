@@ -38,11 +38,7 @@ export default function CustomDateRangePickerDay() {
     date: Date,
     dateRangePickerDayProps: DateRangePickerDayProps<Date>,
   ) => {
-    return (
-      <React.Fragment>
-        <DateRangePickerDay {...dateRangePickerDayProps} />
-      </React.Fragment>
-    );
+    return <DateRangePickerDay {...dateRangePickerDayProps} />;
   };
 
   return (

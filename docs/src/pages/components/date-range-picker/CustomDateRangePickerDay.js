@@ -33,11 +33,7 @@ export default function CustomDateRangePickerDay() {
   const [value, setValue] = React.useState([null, null]);
 
   const renderWeekPickerDay = (date, dateRangePickerDayProps) => {
-    return (
-      <React.Fragment>
-        <DateRangePickerDay {...dateRangePickerDayProps} />
-      </React.Fragment>
-    );
+    return <DateRangePickerDay {...dateRangePickerDayProps} />;
   };
 
   return (
