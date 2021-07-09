@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import defaultTheme from '@material-ui/core/styles/defaultTheme';
-import { orange, green, cyan } from '@material-ui/core/colors';
 import adaptV4Theme from './adaptV4Theme';
 
 describe('adaptV4Theme', () => {
@@ -315,60 +314,6 @@ describe('adaptV4Theme', () => {
       }).toWarnDev(['adaptV4Theme() is deprecated']);
 
       expect(transformedTheme.palette.mode).to.equal('dark');
-    });
-  });
-
-  describe('theme.palette.info, succes, warning', () => {
-    it('use v4 color palette if no custom colors provided', () => {
-      const theme = { palette: { type: 'dark' } };
-
-      let transformedTheme;
-
-      expect(() => {
-        transformedTheme = adaptV4Theme(theme);
-      }).toWarnDev(['adaptV4Theme() is deprecated']);
-
-      expect(transformedTheme.palette.success).to.deep.equal({
-        light: green[300],
-        main: green[500],
-        dark: green[700],
-      });
-      expect(transformedTheme.palette.warning).to.deep.equal({
-        light: orange[300],
-        main: orange[500],
-        dark: orange[700],
-      });
-      expect(transformedTheme.palette.info).to.deep.equal({
-        light: cyan[300],
-        main: cyan[500],
-        dark: cyan[700],
-      });
-    });
-
-    it('respects custom colors', () => {
-      const theme = { palette: { success: '#000000', warning: '#000000', info: '#000000' } };
-
-      let transformedTheme;
-
-      expect(() => {
-        transformedTheme = adaptV4Theme(theme);
-      }).toWarnDev(['adaptV4Theme() is deprecated']);
-
-      expect(transformedTheme.palette.success).not.to.deep.equal({
-        light: green[300],
-        main: green[500],
-        dark: green[700],
-      });
-      expect(transformedTheme.palette.warning).not.to.deep.equal({
-        light: orange[300],
-        main: orange[500],
-        dark: orange[700],
-      });
-      expect(transformedTheme.palette.info).not.to.deep.equal({
-        light: cyan[300],
-        main: cyan[500],
-        dark: cyan[700],
-      });
     });
   });
 
