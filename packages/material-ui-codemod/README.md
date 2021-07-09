@@ -59,12 +59,12 @@ npx @material-ui/codemod@next <transform> <path> --jscodeshift="--printOptions='
 
 ### v5.0.0
 
-#### 🚀 `important-migration`
+#### 🚀 `preset-migration`
 
 A combination of all important transformers for migrating v4 to v5. ⚠️ This mod is not idempotent (`theme-breakpoints`) and should be run only once.
 
 ```sh
-npx @material-ui/codemod@next v5.0.0/important-migration <path|folder>
+npx @material-ui/codemod@next v5.0.0/preset-migration <path|folder>
 ```
 
 The list includes
