@@ -38,7 +38,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   toc: {
-    width: 'calc(100% - 175px)',
+    [theme.breakpoints.up('sm')]: {
+      width: 'calc(100% - 175px)',
+    },
   },
   disableToc: {
     [theme.breakpoints.up('lg')]: {
@@ -72,12 +74,15 @@ function AppLayoutDocs(props) {
             <Ad placement="body" />
           </AdGuest>
         )}
-        <main className={classes.root}>
+        <main
+          className={clsx(classes.root, {
+            [classes.toc]: !disableToc,
+            [classes.disableToc]: disableToc,
+          })}
+        >
           <div
             className={clsx({
               [classes.ad]: !disableAd,
-              [classes.toc]: !disableToc,
-              [classes.disableToc]: disableToc,
             })}
           >
             <AppContainer className={classes.container}>
