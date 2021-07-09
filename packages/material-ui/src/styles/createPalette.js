@@ -124,14 +124,14 @@ function getDefaultSecondary(mode = 'light') {
 function getDefaultError(mode = 'light') {
   if (mode === 'dark') {
     return {
-      main: red[400],
+      main: red[500],
       light: red[300],
       dark: red[700],
     };
   }
   return {
     main: red[700],
-    light: red[500],
+    light: red[400],
     dark: red[800],
   };
 }

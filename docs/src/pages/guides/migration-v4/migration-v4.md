@@ -281,7 +281,7 @@ The following changes are supported by the adapter:
 - The default `theme.palette.info` colors was changed to pass AA standard contrast ratio in both light & dark mode.
 
   ```diff
-  success = {
+  info = {
   - main: cyan[500],
   + main: lightBlue[700], // lightBlue[400] in "dark" mode
 
@@ -311,7 +311,7 @@ The following changes are supported by the adapter:
 - The default `theme.palette.warning` colors was changed to pass AA standard contrast ratio in both light & dark mode.
 
   ```diff
-  success = {
+  warning = {
   - main: orange[500],
   + main: "#ED6C02", // orange[400] in "dark" mode
 
