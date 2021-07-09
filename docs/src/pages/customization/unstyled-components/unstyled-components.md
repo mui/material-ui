@@ -2,10 +2,10 @@
 
 <p class="description">Implementing a custom design system using Material-UI</p>
 
-Material-UI provides a set of components without any styles. They can be used to implement a custom design system that is not based on Material Design.
+Material-UI unstyled provides a set of components without any styles. These can be used to implement a custom design system that is not based on Material Design.
 
-The effort to create the unstyled components have started recently, and just a few components have been created yet.
-We intend to focus on the unstyled package extensively in the upcoming months.
+So far just a few components have been created,
+but we intend to focus on the unstyled package extensively in the upcoming months.
 
 ## Use cases
 
@@ -13,19 +13,19 @@ Is the unstyled package good for you?
 
 If you:
 
-- need to implement a design system that significantly differs from Material Design
-- need precise control over the rendered HTML of the components
-- need to implement custom components but don't want to deal with accessibility features on your own
+- need to implement a design system that significantly differs from Material Design,
+- need precise control over the rendered HTML of the components,
+- or need to implement custom components but don't want to deal with accessibility features on your own,
 
-Then yes, you will find `material-ui/unstyled` useful.
+then you will find `material-ui/unstyled` useful.
 
 If, however, you:
 
-- need components that look well out of the box
-- need to customize Material Design with your brand colors
-- need to implement a design system based on Material Design
+- need components that look good out of the box,
+- need to customize Material Design with your brand colors,
+- or need to implement a design system based on Material Design,
 
-Then you may be better off using the `@material-ui/core` package and customize it [as described in the docs](../how-to-customize).
+then you may be better off using the `@material-ui/core` package and [customizing it] (/how-to-customize).
 
 ## Components vs hooks
 
@@ -45,7 +45,7 @@ However, in order to make the resulting component accessible, you need to create
 
 While each component has its own API, there are a few props common to all of them:
 
-- `components` - an object that allows you to override subcomponents (slots) used by the unstyled (host) component. Each host component will at least have the `Root` slot. Many complex components have more slots. You can either provide a custom component or an HTML tag there.
+- `components` - an object that allows you to override subcomponents (slots) used by the unstyled "host" component. Each host component will at least have the `Root` slot. Many complex components have more slots. You can either provide a custom component or an HTML tag there.
 
   ```jsx
   <BadgeUnstyled components={{ Root: 'div', Badge: MyCustomBadge }} />
@@ -117,9 +117,9 @@ You can use this object to style your component.
 
 ### Creating custom components using hooks
 
-If you need to create your own structure of components and don't want to rely on Material-UI's solution, you can use hooks. They encapsulate the logic of the components while not enforcing structure.
+If you need to create your own component structure, you can use the provided hooks. They encapsulate the logic of the components while not enforcing structure.
 
-Hooks return the current state of the component (`checked`, `disabled`, `open`, etc., depending on the component) and provide functions that return props you can apply on your components.
+Hooks return the current state of the component (`checked`, `disabled`, `open`, etc., depending on the component) and provide functions that return props you can apply to your components.
 
 Again, let's take a Switch as an example. The corresponding hook is called `useSwitch`. It returns the following object:
 
