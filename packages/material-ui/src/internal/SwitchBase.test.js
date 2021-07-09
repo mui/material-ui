@@ -239,9 +239,7 @@ describe('<SwitchBase />', () => {
       expect(container.firstChild).to.have.class(classes.checked);
       expect(checkbox).to.have.property('checked', true);
 
-      act(() => {
-        checkbox.click();
-      });
+      checkbox.click();
 
       expect(handleChange.callCount).to.equal(0);
       expect(container.firstChild).to.have.class(classes.checked);
