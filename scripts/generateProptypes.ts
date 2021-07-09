@@ -144,6 +144,12 @@ function sortBreakpointsLiteralByViewportAscending(a: ttp.LiteralType, b: ttp.Li
 
   return breakpointOrder.indexOf(a.value) - breakpointOrder.indexOf(b.value);
 }
+
+function sortSizeByScaleAscending(a: ttp.LiteralType, b: ttp.LiteralType) {
+  const sizeOrder: readonly unknown[] = ['"small"', '"medium"', '"large"'];
+  return sizeOrder.indexOf(a.value) - sizeOrder.indexOf(b.value);
+}
+
 // Custom order of literal unions by component
 const getSortLiteralUnions: ttp.InjectOptions['getSortLiteralUnions'] = (component, propType) => {
   if (
@@ -151,6 +157,10 @@ const getSortLiteralUnions: ttp.InjectOptions['getSortLiteralUnions'] = (compone
     (propType.name === 'initialWidth' || propType.name === 'only')
   ) {
     return sortBreakpointsLiteralByViewportAscending;
+  }
+
+  if (propType.name === 'size') {
+    return sortSizeByScaleAscending;
   }
 
   return undefined;

@@ -22,7 +22,7 @@
     "size": {
       "type": {
         "name": "enum",
-        "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
+        "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'"
       },
       "default": "'medium'"
     },

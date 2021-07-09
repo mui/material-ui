@@ -33,6 +33,7 @@ export * from './createStyled';
 export { default as styled } from './styled';
 export { default as createTheme } from './createTheme';
 export { default as createBreakpoints } from './createTheme/createBreakpoints';
+export { default as createSpacing } from './createTheme/createSpacing';
 export { default as shape } from './createTheme/shape';
 export { default as useThemeProps, getThemeProps } from './useThemeProps';
 export { default as useTheme } from './useTheme';

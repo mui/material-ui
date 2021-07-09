@@ -305,7 +305,7 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
    * `small` is equivalent to the dense button styling.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['large', 'medium', 'small']),
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
