@@ -210,21 +210,21 @@ We have the following objectives:
 - ♨️ Fix the friction the community has during the upgrade to v5.
   We want to make the upgrade feel painless.
 - ⚛️ Support [React 18](https://reactjs.org/blog/2021/06/08/the-plan-for-react-18.html). [Sebastian](https://github.com/eps1lon) is part of the React [Working Group](https://github.com/reactwg/react-18/discussions), focusing on making us ready ahead of time.
-  We want our most exigent users to feel empowered by Material-UI, not slow down by a third-party.
-- 🦴 Migrate more components to `@material-ui/unstyled`. [Michał](https://github.com/michaldudak) has added support for the [Switch last week](https://next.material-ui.com/components/switches/#unstyled-switches).
-  You can follow our progress on the [umbrella issue](https://github.com/mui-org/material-ui/issues/27170).
+  We want our most demanding users to feel empowered by Material-UI, not slowed down by a third-party.
+- 🦴 Migrate more components to `@material-ui/unstyled`. [Michał](https://github.com/michaldudak) has recently added support for the [Switch](https://next.material-ui.com/components/switches/#unstyled-switches).
+  You can follow our progress in the [umbrella issue](https://github.com/mui-org/material-ui/issues/27170).
 - 🌈 Do a proof of concept on supporting a second design system.
-  Part of our users dislike Material Design, we will try to make them love the design of our second design system.
-- 🗓 Execute on all the items of the [public roadmap](https://github.com/mui-org/material-ui/projects/25).
+  Some of our users (and potential users) dislike Material Design. We will try to make the second design system one that they love!
+- 🗓 Execute on all of the items in the [public roadmap](https://github.com/mui-org/material-ui/projects/25).
 - ❓ Please upvote [GitHub issues](https://github.com/mui-org/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
 ### Advanced components
 
-- 🚀 Make the first stable release of the Data Grid.
+- 🚀 Release the first stable version of the Data Grid.
 - ✨ Resume work on the [key features](https://github.com/mui-org/material-ui-x/issues?q=is%3Aopen+label%3A%22linked+in+docs%22+sort%3Areactions-%2B1-desc), after a quarter focused on stability.
   It seems that the audience is adopting the data grid as fast as we can build it.
   For instance, we have one issue with over [1,000 upvotes](https://github.com/mui-org/material-ui-x/issues/204) 👍.
-- 🗓 Execute on all the items in the [public roadmap](https://github.com/mui-org/material-ui-x/projects/1).
+- 🗓 Execute on all of the items in the [public roadmap](https://github.com/mui-org/material-ui-x/projects/1).
 - ❓ Please upvote [GitHub issues](https://github.com/mui-org/material-ui-x/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
 ### Design kits
