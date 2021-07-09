@@ -10,16 +10,16 @@ import isSameDay from 'date-fns/isSameDay';
 import isWithinInterval from 'date-fns/isWithinInterval';
 import startOfWeek from 'date-fns/startOfWeek';
 
+type CustomPickerDayProps = PickersDayProps<Date> & {
+  dayIsBetween: boolean;
+  isFirstDay: boolean;
+  isLastDay: boolean;
+};
+
 const CustomPickersDay = styled(PickersDay, {
   shouldForwardProp: (prop) =>
     prop !== 'dayIsBetween' && prop !== 'isFirstDay' && prop !== 'isLastDay',
-})<
-  PickersDayProps<Date> & {
-    dayIsBetween: boolean;
-    isFirstDay: boolean;
-    isLastDay: boolean;
-  }
->(({ theme, dayIsBetween, isFirstDay, isLastDay }) => ({
+})<CustomPickerDayProps>(({ theme, dayIsBetween, isFirstDay, isLastDay }) => ({
   ...(dayIsBetween && {
     borderRadius: 0,
     backgroundColor: theme.palette.primary.main,
@@ -36,7 +36,7 @@ const CustomPickersDay = styled(PickersDay, {
     borderTopRightRadius: '50%',
     borderBottomRightRadius: '50%',
   }),
-}));
+})) as React.ComponentType<CustomPickerDayProps>;
 
 export default function CustomDay() {
   const [value, setValue] = React.useState<Date | null>(new Date());

@@ -29,7 +29,7 @@ const DateRangePickerDay = styled(MuiDateRangePickerDay)(
       borderBottomRightRadius: '50%',
     }),
   }),
-);
+) as React.ComponentType<DateRangePickerDayProps<Date>>;
 
 export default function CustomDateRangePickerDay() {
   const [value, setValue] = React.useState<DateRange<Date>>([null, null]);
