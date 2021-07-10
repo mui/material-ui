@@ -21,7 +21,7 @@ export interface ToggleButtonGroupProps
    * The color of a button when it is selected.
    * @default 'standard'
    */
-  color?: 'standard' | 'primary' | 'secondary';
+  color?: 'standard' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
   /**
    * If `true`, only allow one of the child ToggleButton values to be selected.
    * @default false
