@@ -163,7 +163,7 @@ are evaluated in another step.
 
 ##### ci/circleci: test_types
 
-Type checks the repository. The log of the failed build should list all issues.
+Typechecks the repository. The log of the failed build should list all issues.
 
 ##### argos
 
