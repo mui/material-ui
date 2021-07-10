@@ -127,7 +127,7 @@ The date picker is at the border between the core component and advanced compone
   Client-side sorting and filtering are 2-3x faster on large data sets.
   We have improved the UX when scrolling.
   We have added memo logic on the render cell's parent, and worked on its effectiveness to reduce the re-rendering of custom cells.
-  We have identified more opportunities to improve the performance, but we won't prioritize them just yet.
+  We have identified more opportunities to improve the performance that we will prioritize later.
 - 📚 We have worked on providing more reference documentation. We are semi-automatically generating it from the TypeScript source definitions, with the descriptions.
   For instance, you can now find all the [properties available](/api/data-grid/grid-col-def/) of the `GridColDef`.
 - ⚡️ We have fixed support for components that use portals, like Select and Autocomplete, in the cell editing mode.
