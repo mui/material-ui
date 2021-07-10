@@ -20,8 +20,8 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 
 ⚠️ The GridList component was renamed to ImageList to align with the current Material Design naming.
 
-You should use `import { ImageListItem } from '@material-ui/core'`
-or `import ImageListItem from '@material-ui/core/ImageListItem'`.
+You should use `import { ImageListTile } from '@material-ui/core'`
+or `import ImageListTile from '@material-ui/core/ImageListTile'`.
 
 ## Component name
 

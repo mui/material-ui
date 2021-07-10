@@ -18,10 +18,10 @@ import { GridListTileBar } from '@material-ui/core';
 
 You can learn more about the difference by [reading this guide](/guides/minimizing-bundle-size/).
 
-⚠️ The GridListTileBar component was renamed to ImageListItemBar to align with the current Material Design naming.
+⚠️ The GridListTileBar component was renamed to ImageListTileBar to align with the current Material Design naming.
 
-You should use `import { ImageListItemBar } from '@material-ui/core'`
-or `import ImageListItemBar from '@material-ui/core/ImageListItemBar'`.
+You should use `import { ImageListTileBar } from '@material-ui/core'`
+or `import ImageListTileBar from '@material-ui/core/ImageListTileBar'`.
 
 ## Component name
 
