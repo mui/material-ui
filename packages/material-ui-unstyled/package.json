@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "https://material-ui.com",
+  "homepage": "https://next.material-ui.com/customization/unstyled-components",
   "scripts": {
     "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:types && yarn build:copy-files",
     "build:legacy": "node ../../scripts/build legacy",
