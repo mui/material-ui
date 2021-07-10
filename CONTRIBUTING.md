@@ -23,7 +23,7 @@ If you didn't find a suitable issue you can also follow [@MuiContrib](https://tw
 We also have a list of [good to take issues](https://github.com/mui-org/material-ui/issues?q=is:open+is:issue+label:"good+to+take"). This label is set when there has been already some discussion about the solution and it is clear in which direction to go. These issues are good for developers that want to reduce the chance of going down a rabbit hole.
 
 You can also work on any other issue you choose to.
-The "good first" and "good to take" issues are just issues where we have a clear picture of scope and timeline.
+The "good first" and "good to take" issues are just issues where we have a clear picture about scope and timeline.
 Pull requests working on other issues or completely new problems may take a bit longer to review when they don't fit into our current development cycle.
 
 If you decide to fix an issue, please be sure to check the comment thread in case somebody is already working on a fix. If nobody is working on it at the moment, please leave a comment stating that you have started to work on it so other people don't accidentally duplicate your effort.
