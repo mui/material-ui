@@ -206,7 +206,7 @@ $ yarn docs:api
 
 Please follow the coding style of the project. Material-UI uses prettier and eslint, so if possible, enable linting in your editor to get real-time feedback.
 
-- `yarn prettier` reformat the code.
+- `yarn prettier` reformats the code.
 - `yarn lint` runs manually the linting rules.
 
 Finally, when you submit a Pull Request, they are run again by our continuous integration tools, but hopefully, your code is already clean!
