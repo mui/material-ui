@@ -17,7 +17,7 @@ Working on your first Pull Request? You can learn how from this free video serie
 
 [How to Contribute to an Open Source Project on GitHub](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
 
-To help you get your feet wet and get you familiar with our contribution process, we have a list of [good first issues](https://github.com/mui-org/material-ui/issues?q=is:open+is:issue+label: "good+first+issue") that contain changes that have a relatively limited scope. This label means that there is already a working solution to the issue in the discussion section. Therefore, it is a great place to get started.
+To help you get your feet wet and get you familiar with our contribution process, we have a list of [good first issues](https://github.com/mui-org/material-ui/issues?q=is:open+is:issue+label:"good+first+issue") that contain changes that have a relatively limited scope. This label means that there is already a working solution to the issue in the discussion section. Therefore, it is a great place to get started.
 If you didn't find a suitable issue you can also follow [@MuiContrib](https://twitter.com/MuiContrib) which automatically tweets new good first issues.
 
 We also have a list of [good to take issues](https://github.com/mui-org/material-ui/issues?q=is:open+is:issue+label:"good+to+take"). This label is set when there has been already some discussion about the solution and it is clear in which direction to go. These issues are good for developers that want to reduce the chance of going down a rabbit hole.
@@ -111,9 +111,9 @@ Make sure the following is true:
 Because we will only merge a Pull Request for which all tests pass. The following items need to be true:
 
 - The code is formatted. If the code was changed, run `yarn prettier`.
-- The code is listed. If the code was changed, run `yarn lint`.
+- The code is linted. If the code was changed, run `yarn lint`.
 - The code is type-safe. If TypeScript sources/declarations were changed, `yarn typescript` passed.
-- The API docs are up-to-date. If API was changed, run `yarn prototypes && yarn docs:api`.
+- The API docs are up-to-date. If API was changed, run `yarn proptypes && yarn docs:api`.
 - The demos are up-to-date. If demos were changed, make sure `yarn docs:typescript:formatted` does not introduce changes. See [about writing demos](#3-write-the-content-of-the-demo).
 - The Pull Request title follows the pattern `[Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/) for a great explanation).
 
@@ -139,7 +139,7 @@ and `yarn deduplicate` should fix most of the issues.
 
 ##### ci/circleci: test_static
 
-Checks code format, and list in the repository. The log of the failed build should explain
+Checks code format, and lints the repository. The log of the failed build should explain
 how to fix the issues.
 
 ##### ci/circleci: test_unit-1
@@ -231,7 +231,7 @@ and give it a name: `SuperButtons.js`.
 The Markdown file is the source for the website documentation. So, whatever you wrote there will be reflected on the website.
 In this case, the file you need to edit is `docs/src/pages/components/buttons/buttons.md`.
 
-Changes should be applied to the English version e.g. only `app-bar.md` and
+Changes should only be applied to the English version e.g. only `app-bar.md` and
 not `app-bar-de.md`. For contributions concerning translations please read the [section
 about translations](#translations).
 
