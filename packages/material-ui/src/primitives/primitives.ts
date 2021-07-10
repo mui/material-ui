@@ -1,13 +1,12 @@
 import { createPrimitiveStyled, StyledPrimitive } from '@material-ui/system';
-import { Theme } from '../styles/createTheme';
-import defaultTheme from '../styles/defaultTheme';
+import createTheme, { Theme } from '../styles/createTheme';
 
 type Mui = {
   [Key in keyof JSX.IntrinsicElements]: StyledPrimitive<Key, Theme>;
 };
 
 const generatePrimitives = () => {
-  const styled = createPrimitiveStyled(defaultTheme);
+  const styled = createPrimitiveStyled(createTheme());
   const mui = {};
 
   styled.htmlTags.forEach((tag) => {
