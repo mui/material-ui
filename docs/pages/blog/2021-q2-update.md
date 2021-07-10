@@ -66,7 +66,7 @@ We have added support for a different [number of columns](https://next.material-
 <Grid container columns={16}>
 ```
 
-We have added an alternative implementaton that uses [CSS grid](https://next.material-ui.com/components/grid/#css-grid-layout):
+We have added an alternative implementation that uses [CSS grid](https://next.material-ui.com/components/grid/#css-grid-layout):
 
 ```jsx
 <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
