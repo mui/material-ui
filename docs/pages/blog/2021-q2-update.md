@@ -172,9 +172,13 @@ After considering [different](https://basecamp.com/shapeup) [alternatives](https
 
 ### New members
 
-We have welcomed three new members to the company 🏢:
+We have welcomed four new members to the company 🏢:
 
-- [Michał](/blog/michal-dudak-joining/) leads the initiative around the [unstyled version](https://github.com/mui-org/material-ui/issues/6218).
+- [Jun](/blog/siriwat-kunaporn-joining/), leads the implementation of a [second design system](https://github.com/mui-org/material-ui/issues/22485).
+
+  <img loading="lazy" src="/static/blog/2021-q2-update/jun.jpg" alt="jun" style="width: 160px; height: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
+
+- [Michał](/blog/michal-dudak-joining/) leads the initiative around the [unstyled components](https://github.com/mui-org/material-ui/issues/6218).
 
   <img loading="lazy" src="/static/blog/2021-q2-update/michal.jpg" alt="michal" style="width: 160px; height: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
