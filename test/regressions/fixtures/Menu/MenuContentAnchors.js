@@ -21,7 +21,7 @@ function SimpleMenu({ selectedItem, ...props }) {
   return (
     <Grid item>
       <Button
-        sx={{
+        style={{
           // give the anchor enough space so that the menu can align the selected item
           margin: '80px 0',
         }}

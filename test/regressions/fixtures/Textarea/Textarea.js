@@ -34,10 +34,14 @@ function Textarea() {
         value={value}
         onChange={handleChange}
       />
-      <Input sx={{ width: 200 }} multiline placeholder="rows" rows={3} />
-      <Input sx={{ width: 200 }} multiline value={value} onChange={handleChange} maxRows={4} />
-      <Input sx={{ width: 200 }} multiline placeholder="long placeholder long placeholder" />
-      <Input sx={{ width: 200 }} multiline defaultValue="long default value long default value" />
+      <Input style={{ width: 200 }} multiline placeholder="rows" rows={3} />
+      <Input style={{ width: 200 }} multiline value={value} onChange={handleChange} maxRows={4} />
+      <Input style={{ width: 200 }} multiline placeholder="long placeholder long placeholder" />
+      <Input
+        style={{ width: 200 }}
+        multiline
+        defaultValue="long default value long default value"
+      />
     </div>
   );
 }
