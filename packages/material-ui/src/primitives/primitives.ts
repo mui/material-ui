@@ -1,7 +1,7 @@
 import { createPrimitiveStyled, StyledPrimitive } from '@material-ui/system';
 import createTheme, { Theme } from '../styles/createTheme';
 
-type Mui = {
+export type Mui = {
   [Key in keyof JSX.IntrinsicElements]: StyledPrimitive<Key, Theme>;
 };
 
