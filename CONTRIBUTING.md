@@ -17,13 +17,13 @@ Working on your first Pull Request? You can learn how from this free video serie
 
 [How to Contribute to an Open Source Project on GitHub](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
 
-To help you get your feet wet and get you familiar with our contribution process, we have a list of [good first issues](https://github.com/mui-org/material-ui/issues?q=is:open+is:issue+label:"good+first+issue") that contain changes that have a relatively limited scope. This label means that there is already a working solution to the issue in the discussion section. Therefore, it is a great place to get started.
+To help you get your feet wet and get you familiar with our contribution process, we have a list of [good first issues](https://github.com/mui-org/material-ui/issues?q=is:open+is:issue+label: "good+first+issue") that contain changes that have a relatively limited scope. This label means that there is already a working solution to the issue in the discussion section. Therefore, it is a great place to get started.
 If you didn't find a suitable issue you can also follow [@MuiContrib](https://twitter.com/MuiContrib) which automatically tweets new good first issues.
 
 We also have a list of [good to take issues](https://github.com/mui-org/material-ui/issues?q=is:open+is:issue+label:"good+to+take"). This label is set when there has been already some discussion about the solution and it is clear in which direction to go. These issues are good for developers that want to reduce the chance of going down a rabbit hole.
 
 You can also work on any other issue you choose to.
-The "good first" and "good to take" issues are just issues where we have a clear picture about scope and timeline.
+The "good first" and "good to take" issues are just issues where we have a clear picture of scope and timeline.
 Pull requests working on other issues or completely new problems may take a bit longer to review when they don't fit into our current development cycle.
 
 If you decide to fix an issue, please be sure to check the comment thread in case somebody is already working on a fix. If nobody is working on it at the moment, please leave a comment stating that you have started to work on it so other people don't accidentally duplicate your effort.
@@ -103,7 +103,7 @@ Make sure the following is true:
 - If a feature is being added:
   - If the result was already achievable with the core library, explain why this feature needs to be added to the core.
   - If this is a common use case, consider adding an example to the documentation.
-- When adding new features or modifying existing, please include tests to confirm the new behavior. You can read more about our test setup in our test [README](https://github.com/mui-org/material-ui/blob/HEAD/test/README.md).
+- When adding new features or modifying existing ones, please include tests to confirm the new behavior. You can read more about our test setup in our test [README](https://github.com/mui-org/material-ui/blob/HEAD/test/README.md).
 - If props were added or prop types were changed, the TypeScript declarations were updated.
 - When submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-lab).
 - The branch is not [behind its target branch](https://github.community/t/branch-10-commits-behind/2403).
@@ -111,9 +111,9 @@ Make sure the following is true:
 Because we will only merge a Pull Request for which all tests pass. The following items need to be true:
 
 - The code is formatted. If the code was changed, run `yarn prettier`.
-- The code is linted. If the code was changed, run `yarn lint`.
+- The code is listed. If the code was changed, run `yarn lint`.
 - The code is type-safe. If TypeScript sources/declarations were changed, `yarn typescript` passed.
-- The API docs are up-to-date. If API was changed, run `yarn proptypes && yarn docs:api`.
+- The API docs are up-to-date. If API was changed, run `yarn prototypes && yarn docs:api`.
 - The demos are up-to-date. If demos were changed, make sure `yarn docs:typescript:formatted` does not introduce changes. See [about writing demos](#3-write-the-content-of-the-demo).
 - The Pull Request title follows the pattern `[Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/) for a great explanation).
 
@@ -123,7 +123,7 @@ If you have missed a step, don't worry, the Continuous Integration will run a th
 
 If any of the checks fails click on the _Details_
 link and review the logs of the build to find out why it failed.
-For CircleCI you need to login first.
+For CircleCI you need to log in first.
 No further permissions are required to view the build logs.
 The following section gives an overview of what each check is responsible for.
 
@@ -139,7 +139,7 @@ and `yarn deduplicate` should fix most of the issues.
 
 ##### ci/circleci: test_static
 
-Checks code format, and lints the repository. The log of the failed build should explain
+Checks code format, and list in the repository. The log of the failed build should explain
 how to fix the issues.
 
 ##### ci/circleci: test_unit-1
@@ -163,7 +163,7 @@ are evaluated in another step.
 
 ##### ci/circleci: test_types
 
-Typechecks the repository. The log of the failed build should list all issues.
+Type checks the repository. The log of the failed build should list all issues.
 
 ##### argos
 
@@ -195,7 +195,7 @@ on _Details_ to find out more about them.
 ### Updating the component API documentation
 
 The component API in the component `propTypes` and under `docs/pages/api-docs` is auto-generated from the [JSDoc](https://jsdoc.app/about-getting-started.html) in the TypeScript declarations.
-Be sure to update the documentation in the corresponding `.d.ts` files (e.g. `packages/material-ui/src/Button/Button.d.ts` for `<Button>`) and the run:
+Be sure to update the documentation in the corresponding `.d.ts` files (e.g. `packages/material-ui/src/Button/Button.d.ts` for `<Button>`) and then run:
 
 ```sh
 $ yarn proptypes
@@ -206,7 +206,7 @@ $ yarn docs:api
 
 Please follow the coding style of the project. Material-UI uses prettier and eslint, so if possible, enable linting in your editor to get real-time feedback.
 
-- `yarn prettier` reformats the code.
+- `yarn prettier` reformat the code.
 - `yarn lint` runs manually the linting rules.
 
 Finally, when you submit a Pull Request, they are run again by our continuous integration tools, but hopefully, your code is already clean!
@@ -214,7 +214,7 @@ Finally, when you submit a Pull Request, they are run again by our continuous in
 ## How to add a new demo in the documentation?
 
 You need to **create** a new file and **modify** two files.
-For example, let say you want to add new demos for buttons component, then you have to go through the following steps:
+For example, let say you want to add new demos for the buttons component, then you have to go through the following steps:
 
 #### 1. Add a new React component file under the related directory.
 
@@ -231,7 +231,7 @@ and give it a name: `SuperButtons.js`.
 The Markdown file is the source for the website documentation. So, whatever you wrote there will be reflected on the website.
 In this case, the file you need to edit is `docs/src/pages/components/buttons/buttons.md`.
 
-Changes should only be applied to the English version e.g. only `app-bar.md` and
+Changes should be applied to the English version e.g. only `app-bar.md` and
 not `app-bar-de.md`. For contributions concerning translations please read the [section
 about translations](#translations).
 
