@@ -66,7 +66,7 @@ We have added support for a different [number of columns](https://next.material-
 <Grid container columns={16}>
 ```
 
-We have added an alternative implementaton that uses [CSS grid](https://next.material-ui.com/components/grid/#css-grid-layout):
+We have added an alternative implementation that uses [CSS grid](https://next.material-ui.com/components/grid/#css-grid-layout):
 
 ```jsx
 <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
@@ -182,7 +182,7 @@ We have welcomed three new members to the company 🏢:
 
   <img loading="lazy" src="/static/blog/2021-q2-update/danilo.jpg" alt="danilo" style="width: 160px; height: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
-- [Flavien](https://github.com/flaviendelangle), an engineer with previous experience building [design systems](https://habx.github.io/ui-core/) and a complex 2D JavaScript rendering engine. He will help us take on bolder problems on the advanced components (X team).
+- [Flavien](https://github.com/flaviendelangle), an engineer with previous experience building [design systems](https://habx.github.io/ui-core/) and a complex 2D JavaScript rendering engine. He's helping us take on bolder problems on the advanced components (X team), starting with the data grid.
 
   <img loading="lazy" src="/static/blog/2021-q2-update/flavien.jpg" alt="flavien" style="width: 160px; height: 160px; margin: unset; margin-bottom: 24px; border-radius: 2px;" />
 
@@ -199,7 +199,7 @@ We have the following objectives:
 - Continue to refine our processes and responsibilities to make sure we function well with over ten people in the company.
 - Rebrand. We started this effort one year ago but, failed to execute on it.
   With [Danilo](https://github.com/danilo-leal) (design) and [Jun](https://github.com/siriwatknp) (code) in the team to own the effort, we can finally make it happen.
-  We will make a step to distinguish ourselves from a strong association with Material Design.
+  We will take a step to distinguish ourselves from a strong association with Material Design.
 - Open and fill [4 roles](/company/careers/#open-roles). We need to strengthen the X team (advanced components)
   We also want to initiate the development of a bold new product vertical.
 
