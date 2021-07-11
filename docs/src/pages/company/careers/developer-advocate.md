@@ -19,7 +19,7 @@ See the [careers](/company/careers/) and [about us](https://next.material-ui.com
 Both our open-source community and our premium products are growing fast (x2-3 YoY).
 We need talented people to keep that going!
 
-In our [last developers' survey](/blog/2020-developer-survey-results/#5-how-can-we-improve-material-ui-for-you), we have learned that we can go a long way into allowing developers to be successful with our technology.
+In our [last developer survey](/blog/2020-developer-survey-results/#5-how-can-we-improve-material-ui-for-you), we learned that have a long way to go in helping developers to be successful with our technology.
 
 ### Why this is interesting
 
@@ -32,10 +32,10 @@ We are looking for a dedicated educator and experienced developer to join us as 
 ### What you'll do on a day-to-day basis
 
 - You will compose blog posts. You will be writing tutorials and other technical blog posts.
-- You will participate and Speak at events and online live streams. You will speak about Material-UI related topics on live streams and in-person events.
-- You will create technical videos. You will create video tutorials, demos, and additional videos for the Material-UI YouTube channel.
+- You will participate in and speak at events, and online live-streams.
+- You will create technical videos, video tutorials, demos, and additional videos for the Material-UI YouTube channel.
 - You will build apps, examples, and improve the documentation where needed.
-- You will give feedback to product management, to influence the roadmap of the products based on developers' needs.
+- You will give feedback to product management, to influence the product roadmaps based on developers' needs.
 
 ## About you
 
@@ -53,7 +53,7 @@ We are looking for a dedicated educator and experienced developer to join us as 
 
 ## Compensation
 
-A competitive compensation of up to \$140,000 USD/year, depending on the profile. It could go higher for a person that can significantly push the mission forward. You can find the other perks & benefits in the [careers](/company/careers/#perks-amp-benefits) page.
+Competitive compensation of up to \$140,000 USD/year, depending on the profile. It could go higher for a person that can significantly push the mission forward. You can find the other perks & benefits in the [careers](/company/careers/#perks-amp-benefits) page.
 
 ## Apply
 

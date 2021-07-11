@@ -38,16 +38,16 @@ You will be joining the advanced components team.
 - You will drive the revenue and community growth by owning KPIs.
 - You will grow and cultivate a deep understanding of the problems that developers have when they deal with enterprise applications. This means that you will observe and reach out to the community, run research interviews and share your insights with the team.
 - You will keep a close eye on feature requests, issues, and general improvements (mostly through GitHub issues and emails), to curate opportunities based on our strategy.
-- You will build a strategy for your product area and contributing to the overall product strategy, e.g establishing a go-to-market strategy.
+- You will build a strategy for your product area and contribute to the overall product strategy, e.g establishing a go-to-market strategy.
 - You will assess the impact of initiatives through telemetry data and qualitative feedback to help us develop our understanding further, and decide on the next steps.
 
 ## About you
 
 ### Skills you should have
 
-- +3 years prior experience working as a Front-end engineer with React.
+- +3 years prior experience working with React as a Front-end engineer.
 - +1 years experience as Product Manager or closely related roles such as Product Owner, Program Manager, or Solutions Architect.
-- Able to switch between the big picture and details view multiple times a day.
+- Able to switch between the big picture and detailed view multiple times a day.
 
 ### What would be nice if you had, but isn't required
 
@@ -56,7 +56,7 @@ You will be joining the advanced components team.
 
 ## Compensation
 
-A competitive compensation of up to \$140,000 USD/year, depending on the profile. It could go higher for a person that can significantly push the mission forward. You can find the other perks & benefits in the [careers](/company/careers/#perks-amp-benefits) page.
+Competitive compensation of up to \$140,000 USD/year, depending on the profile. It could go higher for a person that can significantly push the mission forward. You can find the other perks & benefits in the [careers](/company/careers/#perks-amp-benefits) page.
 
 ## Apply
 

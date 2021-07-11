@@ -24,7 +24,7 @@ We have started with the [data grid](/components/data-grid/#commercial-version).
 We need to build new features and extend to more components.
 The enterprise version is built on the open-source version of the components.
 
-We also need help to continue to improve the health of the open-source: make the advanced components easier to use, make it support more use cases, improve performance, make it more accessible, keeping up with the community, guiding developers to answers, and just generally being a positive presence in the open-source community.
+We also need help to continue to improve the health of the open-source product: make the advanced components easier to use, make it support more use cases, improve performance, make it more accessible, keeping up with the community, guiding developers to answers, and just generally being a positive presence in the open-source community.
 
 ### Why this is interesting
 
