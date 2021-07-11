@@ -6,7 +6,7 @@ The open-source project started back in 2014 to unify React and Material Design.
 
 The company is bootstrapped (so far).
 It was incorporated in mid-2019 and yet growing fast (x2-3 YoY).
-We doubled the team in 2020 We doubled the team in 2020 and are on track to do the same in 2021.
+We doubled the team in 2020 and are on track to do the same in 2021.
 
 ## Our values
 
@@ -45,7 +45,7 @@ You will support the advanced components team, build new ambitious enterprise fe
 #### [Technical Product Manager](/company/product-manager/)
 
 You will define and maintain the product roadmap for the advanced components, identify opportunities, define specs, and work with engineers to execute on the features.
-Experience as an engineer is essential for this role.
+Experience as an engineer is essential for this role. You might need to work part-time developing too in the beginning.
 
 #### [Developer Advocate](/company/developer-advocate/)
 

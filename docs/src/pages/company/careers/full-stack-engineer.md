@@ -1,6 +1,6 @@
 # Full-stack Engineer
 
-<p class="description">We are looking for a full-stack engineer to pioneer the development of a new product.</p>
+<p class="description">We are looking for a full-stack engineer to pioneer the development of a new product vertical.</p>
 
 ## Details of the Role
 
@@ -30,7 +30,8 @@ Our solution empowers React developers to build awesome applications – hundred
 
 But providing React components isn't enough.
 In our [last developer survey](/blog/2020-developer-survey-results/), we learned that the majority of our audience are full-stack developers.
-They are looking for ways to move faster, working on a couple of new projects every year, and where the integration with data is key.
+They are looking for ways to move faster.
+They are working on a couple of new projects every year, and where the integration between the UI and the data is key.
 
 ## About the role
 
@@ -58,7 +59,8 @@ You are curious, you enjoy taking risks, and learning.
 
 ### What would be nice if you had, but isn't required
 
-- You've maintained an active repository before. Maybe you've helped maintain a popular open-source repo, or perhaps you've worked on internal repos that saw contributions from multiple teams.
+- **You've maintained an active repository before.**
+  Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams.
 
 ## Compensation
 

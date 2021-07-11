@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   requireDemo,
-} from '!@material-ui/markdown/loader!docs/src/pages/company/careers/full-stack-engineer.md';
+} from 'docs/src/pages/company/careers/full-stack-engineer.md?@material-ui/markdown';
 
 export default function Page() {
   return <TopLayoutCompany demos={demos} docs={docs} requireDemo={requireDemo} />;
