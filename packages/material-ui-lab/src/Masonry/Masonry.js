@@ -40,7 +40,7 @@ const MasonryRoot = styled('div', {
   };
 });
 
-const Masonry = React.forwardRef(function Masonry(inProps) {
+const Masonry = React.forwardRef(function Masonry(inProps, ref) { // eslint-disable-line
   const masonryRef = React.useRef(null);
   const props = useThemeProps({
     props: inProps,

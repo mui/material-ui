@@ -43,7 +43,8 @@ const MasonryItemRoot = styled('div', {
   };
 });
 
-const MasonryItem = React.forwardRef(function MasonryItem(inProps) {
+const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) { // eslint-disable-line
+  // eslint-disable-line
   const props = useThemeProps({
     props: inProps,
     name: 'MuiMasonryItem',
@@ -58,19 +59,22 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps) {
   });
 
   const classes = useUtilityClasses(styleProps);
-  const computeHeights = () => {
-    if (masonryItemRef && masonryItemRef.current) {
-      const elem = masonryItemRef.current;
-      const contentHeight = elem.querySelector('img')
-        ? elem.querySelector('img').getBoundingClientRect().height
-        : elem.querySelector('div').getBoundingClientRect().height;
-      setStyleProps({ ...styleProps, contentHeight });
+  const computeHeight = () => {
+    if (document.readyState === 'complete') {
+      const child =
+        masonryItemRef.current.querySelector('img') || masonryItemRef.current.querySelector('div');
+      setStyleProps({
+        ...styleProps,
+        contentHeight: child?.getBoundingClientRect().height,
+      });
     }
   };
+
   React.useEffect(() => {
-    const timer = setTimeout(computeHeights, 500);
-    return () => clearTimeout(timer);
-  }, []); // eslint-disable-line
+    document.addEventListener('readystatechange', computeHeight);
+    return () => document.removeEventListener('readystatechange', computeHeight);
+  });
+
   return (
     <MasonryItemRoot
       as={component}
