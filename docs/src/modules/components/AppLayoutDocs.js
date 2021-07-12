@@ -80,21 +80,19 @@ function AppLayoutDocs(props) {
             [classes.disableToc]: disableToc,
           })}
         >
-          <div
-            className={clsx({
+          <AppContainer
+            className={clsx(classes.container, {
               [classes.ad]: !disableAd,
             })}
           >
-            <AppContainer className={classes.container}>
-              <div className={classes.actions}>
-                {location && <EditPage markdownLocation={location} />}
-              </div>
-              {children}
-              <NoSsr>
-                <AppLayoutDocsFooter />
-              </NoSsr>
-            </AppContainer>
-          </div>
+            <div className={classes.actions}>
+              {location && <EditPage markdownLocation={location} />}
+            </div>
+            {children}
+            <NoSsr>
+              <AppLayoutDocsFooter />
+            </NoSsr>
+          </AppContainer>
           {disableToc ? null : <AppTableOfContents items={toc} />}
         </main>
       </AdManager>
