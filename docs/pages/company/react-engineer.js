@@ -2,20 +2,15 @@ import React from 'react';
 import TopLayoutCompany from 'docs/src/modules/components/TopLayoutCompany';
 import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 
-const pageFilename = 'company/software-engineer';
-const requireDemo = require.context(
-  'docs/src/pages/company/software-engineer',
-  false,
-  /\.(js|tsx)$/,
-);
+const pageFilename = 'company/react-engineer';
 const requireRaw = require.context(
-  '!raw-loader!../../src/pages/company/software-engineer',
+  '!raw-loader!../../src/pages/company/careers',
   false,
-  /\.(js|md|tsx)$/,
+  /react-engineer\.md$/,
 );
 
 export default function Page({ demos, docs }) {
-  return <TopLayoutCompany demos={demos} docs={docs} requireDemo={requireDemo} />;
+  return <TopLayoutCompany demos={demos} docs={docs} />;
 }
 
 Page.getInitialProps = () => {
