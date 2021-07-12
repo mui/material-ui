@@ -1,9 +1,11 @@
 import renameProps from '../util/renameProps';
 import renameClassKey from '../util/renameClassKey';
 
-export default function transformer(file, api) {
+export default function transformer(file, api, options) {
   const j = api.jscodeshift;
   const root = j(file.source);
+
+  const printOptions = options.printOptions;
 
   renameProps({
     root,
@@ -15,5 +17,6 @@ export default function transformer(file, api) {
     root,
     componentName: 'Collapse',
     classes: { container: 'root' },
-  }).toSource();
+    printOptions,
+  });
 }

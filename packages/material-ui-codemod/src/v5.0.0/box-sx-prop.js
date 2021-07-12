@@ -81,9 +81,15 @@ const props = [
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
  */
-export default function transformer(file, api) {
+export default function transformer(file, api, options) {
   const j = api.jscodeshift;
   const root = j(file.source);
 
-  return propsToObject({ j, root, componentName: 'Box', propName: 'sx', props }).toSource();
+  const printOptions = options.printOptions || {
+    quote: 'single',
+  };
+
+  return propsToObject({ j, root, componentName: 'Box', propName: 'sx', props }).toSource(
+    printOptions,
+  );
 }

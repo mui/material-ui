@@ -19,7 +19,5 @@ const StyledContainer = styled(Container)(({ theme }) => {
 });
 
 export default function AppContainer(props) {
-  return (
-    <StyledContainer component="main" id="main-content" maxWidth={false} tabIndex={-1} {...props} />
-  );
+  return <StyledContainer id="main-content" maxWidth={false} tabIndex={-1} {...props} />;
 }

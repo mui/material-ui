@@ -13,19 +13,12 @@ import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 
-const RootDiv = styled('div', {
-  shouldForwardProp: (prop) => prop !== 'disableAd' && prop !== 'disableToc',
-})(({ disableAd, disableToc, theme }) => {
+const Main = styled('main', {
+  shouldForwardProp: (prop) => prop !== 'disableToc',
+})(({ disableToc, theme }) => {
   return {
+    display: 'flex',
     width: '100%',
-    ...(!disableAd && {
-      '& .description': {
-        marginBottom: 198,
-      },
-      '& .description.ad': {
-        marginBottom: 40,
-      },
-    }),
     ...(disableToc
       ? {
           [theme.breakpoints.up('lg')]: {
@@ -36,15 +29,24 @@ const RootDiv = styled('div', {
           [theme.breakpoints.up('sm')]: {
             width: 'calc(100% - 175px)',
           },
-          [theme.breakpoints.up('lg')]: {
-            width: 'calc(100% - 175px - 240px)',
-          },
         }),
   };
 });
 
-const StyledAppContainer = styled(AppContainer)({
-  position: 'relative',
+const StyledAppContainer = styled(AppContainer, {
+  shouldForwardProp: (prop) => prop !== 'disableAd',
+})(({ disableAd }) => {
+  return {
+    position: 'relative',
+    ...(!disableAd && {
+      '& .description': {
+        marginBottom: 198,
+      },
+      '& .description.ad': {
+        marginBottom: 40,
+      },
+    }),
+  };
 });
 
 const ActionsDiv = styled('div')({
@@ -79,7 +81,7 @@ function AppLayoutDocs(props) {
             <Ad placement="body" />
           </AdGuest>
         )}
-        <RootDiv>
+        <Main>
           <StyledAppContainer>
             <ActionsDiv>{location && <EditPage markdownLocation={location} />}</ActionsDiv>
             {children}
@@ -87,8 +89,8 @@ function AppLayoutDocs(props) {
               <AppLayoutDocsFooter />
             </NoSsr>
           </StyledAppContainer>
-        </RootDiv>
-        {disableToc ? null : <AppTableOfContents items={toc} />}
+          {disableToc ? null : <AppTableOfContents items={toc} />}
+        </Main>
       </AdManager>
     </AppFrame>
   );
