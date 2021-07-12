@@ -55,12 +55,12 @@ const useUtilityClasses = (styleProps: FormControlUnstyledProps) => {
  * consistent across the children of the `FormControl`.
  * This context is used by the following components:
  *
- *  - FormLabel
- *  - FormHelperText
- *  - Input
- *  - InputLabel
+ * *   FormLabel
+ * *   FormHelperText
+ * *   Input
+ * *   InputLabel
  *
- * You can find one composition example below and more going to [the demos](/components/text-fields/#components).
+ * You can find one composition example below and more going to [the demos](https://material-ui.com/components/text-fields/#components).
  *
  * ```jsx
  * <FormControl>
@@ -72,6 +72,14 @@ const useUtilityClasses = (styleProps: FormControlUnstyledProps) => {
  *
  * ⚠️ Only one `InputBase` can be used within a FormControl because it create visual inconsistencies.
  * For instance, only one input can be focused at the same time, the state shouldn't be shared.
+ *
+ * Demos:
+ *
+ * - [Text Fields](https://material-ui.com/components/text-fields/)
+ *
+ * API:
+ *
+ * - [FormControlUnstyled API](https://material-ui.com/api/form-control-unstyled/)
  */
 const FormControl = React.forwardRef(function FormControl(
   props: FormControlUnstyledProps,
@@ -208,9 +216,9 @@ const FormControl = React.forwardRef(function FormControl(
   return (
     <FormControlContext.Provider value={childContext}>
       <Root
-        className={clsx(classes.root, className, rootProps?.className)}
         ref={ref}
         {...rootProps}
+        className={clsx(classes.root, className, rootProps?.className)}
       >
         {children}
       </Root>
@@ -244,7 +252,7 @@ FormControl.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  componentsProps: PropTypes.object.isRequired,
+  componentsProps: PropTypes.object,
   /**
    * If `true`, the label, input and helper text should be displayed in a disabled state.
    * @default false
@@ -256,7 +264,13 @@ FormControl.propTypes /* remove-proptypes */ = {
    */
   error: PropTypes.bool,
   /**
+   * Extra properties to be placed on the FormControlContext.
+   * @default {}
+   */
+  extraContextProperties: PropTypes.object,
+  /**
    * If `true`, the component is displayed in focused state.
+   * @default false
    */
   focused: PropTypes.bool,
   /**

@@ -13,7 +13,7 @@ import { getFormControlUtilityClasses } from './formControlClasses';
 const useUtilityClasses = (styleProps) => {
   const { classes, margin, fullWidth } = styleProps;
   const slots = {
-    root: ['root', margin !== 'none' && `margin${capitalize(margin)}`, fullWidth && 'fullWidth'],
+    root: [margin !== 'none' && `margin${capitalize(margin)}`, fullWidth && 'fullWidth'],
   };
 
   return composeClasses(slots, getFormControlUtilityClasses, classes);

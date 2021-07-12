@@ -1,0 +1,20 @@
+{
+  "props": {
+    "children": { "type": { "name": "node" } },
+    "disabled": { "type": { "name": "bool" } },
+    "error": { "type": { "name": "bool" } },
+    "extraContextProperties": { "type": { "name": "object" }, "default": "{}" },
+    "focused": { "type": { "name": "bool" } },
+    "hiddenLabel": { "type": { "name": "bool" } },
+    "required": { "type": { "name": "bool" } }
+  },
+  "name": "FormControlUnstyled",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui-unstyled/src/FormControlUnstyled/FormControlUnstyled.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}
