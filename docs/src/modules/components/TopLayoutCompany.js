@@ -10,6 +10,7 @@ import MarkdownElement from './MarkdownElement';
 const styles = (theme) => ({
   root: {
     flex: '1 0 100%',
+    marginTop: 30,
   },
   container: {
     marginBottom: theme.spacing(20),

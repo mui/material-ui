@@ -296,7 +296,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     position: 'sticky',
-    top: 80,
+    top: 110,
     padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',
