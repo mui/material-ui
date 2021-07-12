@@ -6,7 +6,11 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import Link from 'docs/src/modules/components/Link';
 
-const Item = styled('div')(({ theme }) => {
+const Item = styled('div', {
+  shouldForwardProp:
+    // disable `as` prop
+    () => true,
+})(({ theme }) => {
   return {
     ...theme.typography.body2,
     display: 'flex',
