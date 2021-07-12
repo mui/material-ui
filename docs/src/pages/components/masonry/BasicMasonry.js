@@ -6,7 +6,7 @@ import Box from '@material-ui/core/Box';
 
 export default function BasicMasonry() {
   return (
-    <Masonry>
+    <Masonry cols={4} spacing={1}>
       {heights.map((height, idx) => (
         <MasonryItem key={idx}>
           <Box sx={{textAlign:"center", height, border: 1, bgcolor: 'background.paper'}}>

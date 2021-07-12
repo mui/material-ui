@@ -3,9 +3,9 @@ import * as React from 'react';
 import Masonry from '@material-ui/lab/Masonry';
 import MasonryItem from '@material-ui/lab/MasonryItem';
 
-export default function BasicMasonry(): JSX.Element {
+export default function ImageMasonry(): JSX.Element {
   return (
-    <Masonry cols={5} gap={8}>
+    <Masonry cols={5} spacing={1}>
       {imgData.map((item, idx) => (
         <MasonryItem key={idx}>
           <img alt={item.title} src={item.img} />

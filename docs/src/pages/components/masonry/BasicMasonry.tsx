@@ -6,19 +6,10 @@ import Box from '@material-ui/core/Box';
 
 export default function BasicMasonry(): JSX.Element {
   return (
-    <Masonry cols={4} gap={10}>
+    <Masonry cols={4} spacing={1}>
       {heights.map((height, idx) => (
         <MasonryItem key={idx}>
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              height,
-              border: 1,
-              bgcolor: 'background.paper',
-            }}
-          >
+          <Box sx={{textAlign:"center", height, border: 1, bgcolor: 'background.paper'}}>
             {idx + 1}
           </Box>
         </MasonryItem>

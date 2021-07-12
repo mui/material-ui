@@ -44,7 +44,6 @@ const MasonryItemRoot = styled('div', {
 });
 
 const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) { // eslint-disable-line
-  // eslint-disable-line
   const props = useThemeProps({
     props: inProps,
     name: 'MuiMasonryItem',
