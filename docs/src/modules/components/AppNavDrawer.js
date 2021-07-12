@@ -156,7 +156,7 @@ function reduceChildRoutes(context) {
 const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
 
 function AppNavDrawer(props) {
-  const { className, disablePermanent, mobileOpen, onClose, onOpen } = props;
+  const { disablePermanent, mobileOpen, onClose, onOpen } = props;
   const { activePage, pages } = React.useContext(PageContext);
   const userLanguage = useUserLanguage();
   const languagePrefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
@@ -197,7 +197,7 @@ function AppNavDrawer(props) {
   }, [activePage, pages, onClose, t, languagePrefix]);
 
   return (
-    <nav className={className} aria-label={t('mainNavigation')}>
+    <nav aria-label={t('mainNavigation')}>
       {disablePermanent || mobile ? (
         <SwipeableDrawer
           disableBackdropTransition={!iOS}
@@ -237,7 +237,6 @@ function AppNavDrawer(props) {
 }
 
 AppNavDrawer.propTypes = {
-  className: PropTypes.string,
   disablePermanent: PropTypes.bool.isRequired,
   mobileOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
