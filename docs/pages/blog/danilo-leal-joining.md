@@ -10,9 +10,9 @@ We are excited to share that [Danilo Leal](https://daniloleal.co/) has joined Ma
 He started a couple of days ago as a lead designer.
 
 Before joining Material-UI, he worked as a designer at Loggi, a Brazilian logistics unicorn.
-He has spent the last three years diving into product design, product strategy, and design systems.
-Danilo strongly believes that designers should learn how to code, get their hands dirty.
-For instance, he drove deep into the codebase of Material-UI to fulfill the customization needs of Loggi.
+He has spent the last five years diving into product design, product strategy, and design systems.
+Danilo strongly believes that code is a fundamental piece of a designer's work. It is, after all, the real medium through where users experience the product.
+For instance, one of his continuous contributions to Loggi was deep-diving into Material-UI's codebase to fulfill Loggi's customization needs.
 
 His aspirations are well aligned with where we want to push the company in the long term.
 He wants to challenge the status quo.
