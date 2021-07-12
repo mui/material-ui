@@ -78,9 +78,11 @@ const TitleLink = styled(Link)(({ theme }) => {
 
 const StyledDrawer = styled(Drawer)(({ theme }) => {
   return {
-    display: {
-      [theme.breakpoints.up('xs')]: 'none',
-      [theme.breakpoints.up('lg')]: 'block',
+    [theme.breakpoints.up('xs')]: {
+      display: 'none',
+    },
+    [theme.breakpoints.up('lg')]: {
+      display: 'block',
     },
   };
 });
