@@ -16,6 +16,7 @@ import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    display: 'flex',
     width: '100%',
   },
   container: {
@@ -39,9 +40,6 @@ const useStyles = makeStyles((theme) => ({
   toc: {
     [theme.breakpoints.up('sm')]: {
       width: 'calc(100% - 175px)',
-    },
-    [theme.breakpoints.up('lg')]: {
-      width: 'calc(100% - 175px - 240px)',
     },
   },
   disableToc: {
@@ -76,14 +74,17 @@ function AppLayoutDocs(props) {
             <Ad placement="body" />
           </AdGuest>
         )}
-        <div
+        <main
           className={clsx(classes.root, {
-            [classes.ad]: !disableAd,
             [classes.toc]: !disableToc,
             [classes.disableToc]: disableToc,
           })}
         >
-          <AppContainer className={classes.container}>
+          <AppContainer
+            className={clsx(classes.container, {
+              [classes.ad]: !disableAd,
+            })}
+          >
             <div className={classes.actions}>
               {location && <EditPage markdownLocation={location} />}
             </div>
@@ -92,8 +93,8 @@ function AppLayoutDocs(props) {
               <AppLayoutDocsFooter />
             </NoSsr>
           </AppContainer>
-        </div>
-        {disableToc ? null : <AppTableOfContents items={toc} />}
+          {disableToc ? null : <AppTableOfContents items={toc} />}
+        </main>
       </AdManager>
     </AppFrame>
   );
