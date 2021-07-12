@@ -5,7 +5,7 @@
     "color": {
       "type": {
         "name": "enum",
-        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'standard'"
+        "description": "'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
       },
       "default": "'standard'"
     },
