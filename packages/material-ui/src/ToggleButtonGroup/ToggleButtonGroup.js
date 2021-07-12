@@ -198,11 +198,11 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
    * @default 'standard'
    */
   color: PropTypes.oneOf([
-    'error',
-    'info',
+    'standard',
     'primary',
     'secondary',
-    'standard',
+    'error',
+    'info',
     'success',
     'warning',
   ]),
