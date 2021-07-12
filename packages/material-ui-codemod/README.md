@@ -67,73 +67,55 @@ A combination of all important transformers for migrating v4 to v5. ⚠️ This 
 npx @material-ui/codemod@next v5.0.0/preset-safe <path|folder>
 ```
 
-The list includes
+The list includes these transformers
 
-- [@material-ui/codemod](#material-uicodemod)
-  - [Setup & run](#setup--run)
-    - [jscodeshift options](#jscodeshift-options)
-    - [Recast Options](#recast-options)
-  - [Included scripts](#included-scripts)
-    - [v5.0.0](#v500)
-      - [🚀 `preset-safe`](#-preset-safe)
-      - [`adapter-v4`](#adapter-v4)
-      - [`autocomplete-rename-closeicon`](#autocomplete-rename-closeicon)
-      - [`avatar-circle-circular`](#avatar-circle-circular)
-      - [`badge-overlap-value`](#badge-overlap-value)
-      - [`box-borderradius-values`](#box-borderradius-values)
-      - [`box-rename-css`](#box-rename-css)
-      - [`box-rename-gap`](#box-rename-gap)
-      - [`button-color-prop`](#button-color-prop)
-      - [`chip-variant-prop`](#chip-variant-prop)
-      - [`circularprogress-variant`](#circularprogress-variant)
-      - [`collapse-rename-collapsedheight`](#collapse-rename-collapsedheight)
-      - [`component-rename-prop`](#component-rename-prop)
-      - [`core-styles-import`](#core-styles-import)
-      - [`create-theme`](#create-theme)
-      - [`dialog-props`](#dialog-props)
-      - [`dialog-title-props`](#dialog-title-props)
-      - [`emotion-prepend-cache`](#emotion-prepend-cache)
-      - [`expansion-panel-component`](#expansion-panel-component)
-      - [`fab-variant`](#fab-variant)
-      - [`fade-rename-alpha`](#fade-rename-alpha)
-      - [`grid-justify-justifycontent`](#grid-justify-justifycontent)
-      - [`grid-list-component`](#grid-list-component)
-      - [`icon-button-size`](#icon-button-size)
-      - [`material-ui-styles`](#material-ui-styles)
-      - [`material-ui-types`](#material-ui-types)
-      - [`modal-props`](#modal-props)
-      - [`moved-lab-modules`](#moved-lab-modules)
-      - [`pagination-round-circular`](#pagination-round-circular)
-      - [`root-ref`](#root-ref)
-      - [`skeleton-variant`](#skeleton-variant)
-      - [`styled-engine-provider`](#styled-engine-provider)
-      - [`table-props`](#table-props)
-      - [`tabs-scroll-buttons`](#tabs-scroll-buttons)
-      - [`textarea-minmax-rows`](#textarea-minmax-rows)
-      - [`theme-augment`](#theme-augment)
-      - [`theme-breakpoints`](#theme-breakpoints)
-      - [`theme-breakpoints-width`](#theme-breakpoints-width)
-      - [`theme-options`](#theme-options)
-      - [`theme-palette-mode`](#theme-palette-mode)
-      - [`theme-provider`](#theme-provider)
-      - [`theme-spacing`](#theme-spacing)
-      - [`theme-typography-round`](#theme-typography-round)
-      - [`transitions`](#transitions)
-      - [`use-autocomplete`](#use-autocomplete)
-      - [`use-transitionprops`](#use-transitionprops)
-      - [`variant-prop`](#variant-prop)
-      - [`with-mobile-dialog`](#with-mobile-dialog)
-      - [`with-width`](#with-width)
-    - [v4.0.0](#v400)
-      - [`theme-spacing-api`](#theme-spacing-api)
-      - [`optimal-imports`](#optimal-imports)
-      - [`top-level-imports`](#top-level-imports)
-    - [v1.0.0](#v100)
-      - [`import-path`](#import-path)
-      - [`color-imports`](#color-imports)
-      - [`svg-icon-imports`](#svg-icon-imports)
-    - [v0.15.0](#v0150)
-      - [`import-path`](#import-path-1)
+- [`adapter-v4`](#adapter-v4)
+- [`autocomplete-rename-closeicon`](#autocomplete-rename-closeicon)
+- [`autocomplete-rename-option`](#autocomplete-rename-option)
+- [`avatar-circle-circular`](#avatar-circle-circular)
+- [`badge-overlap-value`](#badge-overlap-value)
+- [`box-borderradius-values`](#box-borderradius-values)
+- [`box-rename-css`](#box-rename-css)
+- [`box-rename-gap`](#box-rename-gap)
+- [`button-color-prop`](#button-color-prop)
+- [`chip-variant-prop`](#chip-variant-prop)
+- [`circularprogress-variant`](#circularprogress-variant)
+- [`collapse-rename-collapsedheight`](#collapse-rename-collapsedheight)
+- [`core-styles-import`](#core-styles-import)
+- [`create-theme`](#create-theme)
+- [`dialog-props`](#dialog-props)
+- [`dialog-title-props`](#dialog-title-props)
+- [`emotion-prepend-cache`](#emotion-prepend-cache)
+- [`expansion-panel-component`](#expansion-panel-component)
+- [`fab-variant`](#fab-variant)
+- [`fade-rename-alpha`](#fade-rename-alpha)
+- [`grid-justify-justifycontent`](#grid-justify-justifycontent)
+- [`grid-list-component`](#grid-list-component)
+- [`icon-button-size`](#icon-button-size)
+- [`material-ui-styles`](#material-ui-styles)
+- [`material-ui-types`](#material-ui-types)
+- [`modal-props`](#modal-props)
+- [`moved-lab-modules`](#moved-lab-modules)
+- [`pagination-round-circular`](#pagination-round-circular)
+- [`root-ref`](#root-ref)
+- [`skeleton-variant`](#skeleton-variant)
+- [`styled-engine-provider`](#styled-engine-provider)
+- [`table-props`](#table-props)
+- [`tabs-scroll-buttons`](#tabs-scroll-buttons)
+- [`textarea-minmax-rows`](#textarea-minmax-rows)
+- [`theme-augment`](#theme-augment)
+- [`theme-breakpoints`](#theme-breakpoints)
+- [`theme-breakpoints-width`](#theme-breakpoints-width)
+- [`theme-options`](#theme-options)
+- [`theme-palette-mode`](#theme-palette-mode)
+- [`theme-provider`](#theme-provider)
+- [`theme-spacing`](#theme-spacing)
+- [`theme-typography-round`](#theme-typography-round)
+- [`transitions`](#transitions)
+- [`use-autocomplete`](#use-autocomplete)
+- [`use-transitionprops`](#use-transitionprops)
+- [`with-mobile-dialog`](#with-mobile-dialog)
+- [`with-width`](#with-width)
 
 #### `adapter-v4`
 
@@ -165,6 +147,25 @@ Renames `fade` style utility import and calls from `fade` to `alpha`.
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/autocomplete-rename-closeicon  <path>
+```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#autocomplete).
+
+#### `autocomplete-rename-option`
+
+Renames `getOptionSelected` to `isOptionEqualToValue`.
+
+```diff
+<Autocomplete
+- getOptionSelected={(option, value) => option.title === value.title}
++ isOptionEqualToValue={(option, value) => option.title === value.title}
+/>
+```
+
+<!-- #default-branch-switch -->
+
+```sh
+npx @material-ui/codemod@next v5.0.0/autocomplete-rename-option  <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#autocomplete).
@@ -522,6 +523,21 @@ npx @material-ui/codemod@next v5.0.0/icon-button-size <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#iconbutton).
+
+#### `link-underline-hover`
+
+Apply `underline="hover"` to `<Link />` that does not define `underline` prop (to get the same behavior as in v4).
+
+```diff
+-<Link />
++<Link underline="hover" />
+```
+
+```sh
+npx @material-ui/codemod@next v5.0.0/icon-button-size <path>
+```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#link).
 
 #### `material-ui-styles`
 
