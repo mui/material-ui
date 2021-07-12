@@ -8,12 +8,16 @@ const props = ['onEnter', 'onEntered', 'onEntering', 'onExit', 'onExited', 'onEx
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
  */
-export default function transformer(file, api) {
+export default function transformer(file, api, options) {
   const j = api.jscodeshift;
   const root = j(file.source);
+
+  const printOptions = options.printOptions || {
+    quote: 'single',
+  };
 
   components.forEach((component) => {
     propsToObject({ j, root, componentName: component, propName: 'TransitionProps', props });
   });
-  return root.toSource();
+  return root.toSource(printOptions);
 }

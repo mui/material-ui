@@ -25,6 +25,20 @@ describe('@material-ui/codemod', () => {
         const expected = read('./variant-prop.test/expected.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+
+      it('should be idempotent', () => {
+        const actual = transform(
+          {
+            source: read('./variant-prop.test/expected.js'),
+            path: require.resolve('./variant-prop.test/expected.js'),
+          },
+          { jscodeshift: jscodeshift },
+          {},
+        );
+
+        const expected = read('./variant-prop.test/expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
     });
   });
 });
