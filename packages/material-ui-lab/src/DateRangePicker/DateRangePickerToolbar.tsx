@@ -46,7 +46,7 @@ const DateRangePickerToolbar = ({
   startText,
   toggleMobileKeyboardView,
   toolbarFormat,
-  toolbarTitle = 'SELECT DATE RANGE',
+  toolbarTitle = 'Select date range',
 }: DateRangePickerToolbarProps) => {
   const utils = useUtils();
 

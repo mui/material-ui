@@ -57,6 +57,13 @@ The prop is converted into a CSS property using the [`theme.spacing()`](/customi
 
 {{"demo": "pages/components/grid/SpacingGrid.js", "bg": true}}
 
+### Row & column spacing
+
+The `rowSpacing` and `columnSpacing` props allow for specifying the row and column gaps independently.
+It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap).
+
+{{"demo": "pages/components/grid/RowAndColumnSpacing.js", "bg": true}}
+
 ## Responsive values
 
 You can switch the props' value based on the active breakpoint.
@@ -81,13 +88,6 @@ Responsive values is supported by:
 >   <Grid item xs={2} />
 > </Grid>
 > ```
-
-### Row & column spacing
-
-The `rowSpacing` and `columnSpacing` props allow for specifying the row and column gaps independently.
-It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap).
-
-{{"demo": "pages/components/grid/RowAndColumnSpacing.js", "bg": true}}
 
 ## Interactive
 

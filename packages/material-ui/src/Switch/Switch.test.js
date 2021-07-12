@@ -63,6 +63,20 @@ describe('<Switch />', () => {
     expect(getByRole('checkbox')).to.have.property('readOnly', true);
   });
 
+  specify('renders a custom icon when provided', () => {
+    const { getByTestId } = render(<Switch icon={<span data-testid="icon" />} />);
+
+    expect(getByTestId('icon')).toBeVisible();
+  });
+
+  specify('renders a custom checked icon when provided', () => {
+    const { getByTestId } = render(
+      <Switch defaultChecked checkedIcon={<span data-testid="icon" />} />,
+    );
+
+    expect(getByTestId('icon')).toBeVisible();
+  });
+
   specify('the Checked state changes after change events', () => {
     const { getByRole } = render(<Switch defaultChecked />);
 

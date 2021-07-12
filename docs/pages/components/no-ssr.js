@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   requireDemo,
-} from '!@material-ui/markdown/loader!docs/src/pages/components/no-ssr/no-ssr.md';
+} from 'docs/src/pages/components/no-ssr/no-ssr.md?@material-ui/markdown';
 
 export default function Page() {
   return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;

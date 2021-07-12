@@ -7,8 +7,8 @@ import rtlPluginSc from 'stylis-plugin-rtl-sc';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { StyleSheetManager } from 'styled-components';
-import { jssPreset, StylesProvider, makeStyles } from '@material-ui/styles';
-import { useTheme } from '@material-ui/core/styles';
+import { jssPreset, StylesProvider } from '@material-ui/styles';
+import { useTheme, styled } from '@material-ui/core/styles';
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
@@ -64,23 +64,17 @@ FramedDemo.propTypes = {
   document: PropTypes.object.isRequired,
 };
 
-const useStyles = makeStyles(
-  (theme) => ({
-    frame: {
-      backgroundColor: theme.palette.background.default,
-      flexGrow: 1,
-      height: 400,
-      border: 0,
-      boxShadow: theme.shadows[1],
-    },
-  }),
-  { name: 'DemoFrame' },
-);
+const Frame = styled('iframe')(({ theme }) => ({
+  backgroundColor: theme.palette.background.default,
+  flexGrow: 1,
+  height: 400,
+  border: 0,
+  boxShadow: theme.shadows[1],
+}));
 
 function DemoFrame(props) {
   const { children, name, ...other } = props;
   const title = `${name} demo`;
-  const classes = useStyles();
   /**
    * @type {import('react').Ref<HTMLIFrameElement>}
    */
@@ -107,7 +101,7 @@ function DemoFrame(props) {
   const document = frameRef.current?.contentDocument;
   return (
     <React.Fragment>
-      <iframe className={classes.frame} onLoad={onLoad} ref={frameRef} title={title} {...other} />
+      <Frame onLoad={onLoad} ref={frameRef} title={title} {...other} />
       {iframeLoaded !== false
         ? ReactDOM.createPortal(
             <FramedDemo document={document}>{children}</FramedDemo>,

@@ -8,7 +8,7 @@ type KeysEquivalent<T, U> = keyof T extends keyof U
 
 function colorTypeMatches(variants: keyof Color) {
   // Checking that each color has the exact shape as Color
-  // we don't use the Color type for these to provide JSDOC for each color
+  // we don't use the Color type for these to provide JSDoc for each color
   // in which we preview the color
   const amber: KeysEquivalent<Color, typeof colors.amber> = true;
   const blue: KeysEquivalent<Color, typeof colors.blue> = true;

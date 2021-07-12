@@ -6,7 +6,7 @@ import Stack from '@material-ui/core/Stack';
 
 export default function IconLabelButtons() {
   return (
-    <Stack direction="row" spacing={1}>
+    <Stack direction="row" spacing={2}>
       <Button variant="outlined" startIcon={<DeleteIcon />}>
         Delete
       </Button>

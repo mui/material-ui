@@ -230,7 +230,7 @@ TableCell.propTypes /* remove-proptypes */ = {
    * Specify the size of the cell.
    * The prop defaults to the value (`'medium'`) inherited from the parent Table component.
    */
-  size: PropTypes.oneOf(['medium', 'small']),
+  size: PropTypes.oneOf(['small', 'medium']),
   /**
    * Set aria-sort direction.
    */
