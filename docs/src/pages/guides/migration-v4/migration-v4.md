@@ -1180,6 +1180,24 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   </button>
   ```
 
+### Link
+
+- The default `underline` prop is changed from `"hover"` to `"always"`. To get the same behavior as in v4, apply `defaultProps` in theme
+
+  ```js
+  createTheme({
+    components: {
+      MuiLink: {
+        defaultProps: {
+          underline: 'hover',
+        },
+      },
+    },
+  });
+  ```
+
+  You can use the [`link-underline-hover` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#link-underline-hover) for automatic migration.
+
 ### Menu
 
 - The onE\* transition props were removed. Use TransitionProps instead.
