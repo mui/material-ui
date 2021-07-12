@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { createMount, createClientRender, describeConformanceUnstyled } from 'test/utils';
-import FormControlUnstyled, { formControlUnstyledClasses } from '@material-ui/unstyled/FormControlUnstyled';
+import FormControlUnstyled, {
+  formControlUnstyledClasses,
+} from '@material-ui/unstyled/FormControlUnstyled';
 
 describe('<FormControlUnstyled />', () => {
   const mount = createMount();
