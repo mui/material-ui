@@ -39,7 +39,8 @@ const MasonryItemRoot = styled('div', {
       objectFit: 'cover',
       width: '100%',
     },
-    gridRowEnd: `span ${rowSpan}`,
+    gridRowEnd: `span ${styleProps.contentHeight ? rowSpan : 0}`,
+    visibility: styleProps.contentHeight ? 'visible' : 'hidden',
   };
 });
 
