@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
 import Typography from '../Typography';
-import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
+import { FormControlContext, useFormControl } from '../FormControl';
 import styled from '../styles/styled';
 import inputAdornmentClasses, { getInputAdornmentUtilityClass } from './inputAdornmentClasses';
 import useThemeProps from '../styles/useThemeProps';
