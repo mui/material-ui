@@ -119,8 +119,6 @@ const StyledAppBar = styled(AppBar, {
     transition: theme.transitions.create('width'),
     ...(!disablePermanent && {
       boxShadow: 'none',
-    }),
-    ...(!disablePermanent && {
       [theme.breakpoints.up('lg')]: {
         width: 'calc(100% - 240px)',
       },
