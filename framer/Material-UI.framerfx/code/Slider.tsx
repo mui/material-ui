@@ -8,7 +8,7 @@ interface Props {
   max?: number;
   min?: number;
   orientation?: 'horizontal' | 'vertical';
-  size: 'medium' | 'small';
+  size: 'small' | 'medium';
   step?: number;
   tabIndex?: number;
   track?: 'inverted' | 'normal' | false;
@@ -53,7 +53,7 @@ addPropertyControls(Slider, {
   size: {
     type: ControlType.Enum,
     title: 'Size',
-    options: ['medium', 'small'],
+    options: ['small', 'medium'],
   },
   step: {
     type: ControlType.Number,

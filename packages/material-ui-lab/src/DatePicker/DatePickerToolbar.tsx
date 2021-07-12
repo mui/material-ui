@@ -38,7 +38,7 @@ const DatePickerToolbar = React.forwardRef<HTMLDivElement, ToolbarComponentProps
       toggleMobileKeyboardView,
       toolbarFormat,
       toolbarPlaceholder = '––',
-      toolbarTitle = 'SELECT DATE',
+      toolbarTitle = 'Select date',
       views,
       ...other
     } = props;

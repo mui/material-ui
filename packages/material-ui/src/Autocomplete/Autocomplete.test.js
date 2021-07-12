@@ -27,8 +27,7 @@ function checkHighlightIs(listbox, expected) {
 }
 
 describe('<Autocomplete />', () => {
-  // TODO: React18Compat
-  const render = createClientRender({ legacyRoot: true });
+  const render = createClientRender();
 
   describeConformanceV5(
     <Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} />,
@@ -1279,6 +1278,8 @@ describe('<Autocomplete />', () => {
         'None of the options match with `"not a good value"`',
         // strict mode renders twice
         React.version.startsWith('16') && 'None of the options match with `"not a good value"`',
+        // React 18 Strict Effects run mount effects twice which lead to a cascading update
+        React.version.startsWith('18') && 'None of the options match with `"not a good value"`',
       ]);
     });
 
@@ -1306,6 +1307,8 @@ describe('<Autocomplete />', () => {
         'returns duplicated headers',
         // strict mode renders twice
         React.version.startsWith('16') && 'returns duplicated headers',
+        // React 18 Strict Effects run mount effects twice which lead to a cascading update
+        React.version.startsWith('18') && 'returns duplicated headers',
       ]);
       const options = screen.getAllByRole('option').map((el) => el.textContent);
       expect(options).to.have.length(7);
@@ -2045,6 +2048,13 @@ describe('<Autocomplete />', () => {
           open
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
+
+        {
+          // TODO: React18 compat
+          // on*Change should only be called if the highlighted option changes.
+          // Investigate why this is called in the first place considering this looks like derived state.
+          legacyRoot: true,
+        },
       );
       expect(handleHighlightChange.callCount).to.equal(1);
       expect(handleHighlightChange.args[0][0]).to.equal(undefined);
@@ -2062,6 +2072,12 @@ describe('<Autocomplete />', () => {
           open
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
+        {
+          // TODO: React18 compat
+          // on*Change should only be called if the highlighted option changes.
+          // Investigate why this is called in the first place considering this looks like derived state.
+          legacyRoot: true,
+        },
       );
       const textbox = screen.getByRole('textbox');
 
@@ -2088,6 +2104,12 @@ describe('<Autocomplete />', () => {
           open
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
+        {
+          // TODO: React18 compat
+          // on*Change should only be called if the highlighted option changes.
+          // Investigate why this is called in the first place considering this looks like derived state.
+          legacyRoot: true,
+        },
       );
       const firstOption = getAllByRole('option')[0];
       fireEvent.mouseOver(firstOption);

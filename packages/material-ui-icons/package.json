@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "https://material-ui.com/components/icons",
+  "homepage": "https://next.material-ui.com/components/material-icons/",
   "scripts": {
     "build": "cp -r lib/ build/ && yarn build:typings && yarn build:copy-files",
     "build:lib": "yarn build:node && yarn build:stable",

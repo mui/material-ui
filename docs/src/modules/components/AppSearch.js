@@ -1,5 +1,4 @@
 import * as React from 'react';
-import url from 'url';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { alpha, styled, useTheme } from '@material-ui/core/styles';
@@ -195,7 +194,8 @@ export default function AppSearch() {
         },
         handleSelected: (input, event, suggestion) => {
           event.button = 0;
-          const parseUrl = url.parse(suggestion.url);
+          const parseUrl = document.createElement('a');
+          parseUrl.href = suggestion.url;
           handleEvent(event, parseUrl.pathname + parseUrl.hash);
           input.close();
         },

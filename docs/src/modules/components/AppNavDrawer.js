@@ -170,12 +170,13 @@ function AppNavDrawer(props) {
       <React.Fragment>
         <ToolbarIE11>
           <ToolbarDiv>
-            <TitleLink href="/" onClick={onClose} variant="h6" color="inherit">
+            <TitleLink href="/" underline="hover" onClick={onClose} variant="h6" color="inherit">
               Material-UI
             </TitleLink>
             {process.env.LIB_VERSION ? (
               <Link
                 color="text.secondary"
+                underline="hover"
                 variant="caption"
                 href={`https://material-ui.com${languagePrefix}/versions/`}
                 onClick={onClose}

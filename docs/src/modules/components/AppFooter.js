@@ -94,7 +94,7 @@ export default function AppFooter() {
             <Grid item xs={12} sm={3}>
               <Logo>
                 <img src="/static/logo_raw.svg" alt="" />
-                <Link variant="body1" color="inherit" href="/">
+                <Link underline="hover" variant="body1" color="inherit" href="/">
                   Material-UI
                 </Link>
               </Logo>
@@ -108,13 +108,19 @@ export default function AppFooter() {
                   <Link
                     color="inherit"
                     variant="body2"
+                    underline="hover"
                     href="https://github.com/mui-org/material-ui"
                   >
                     GitHub
                   </Link>
                 </li>
                 <li>
-                  <Link color="inherit" variant="body2" href="https://twitter.com/MaterialUI">
+                  <Link
+                    underline="hover"
+                    color="inherit"
+                    variant="body2"
+                    href="https://twitter.com/MaterialUI"
+                  >
                     Twitter
                   </Link>
                 </li>
@@ -122,13 +128,19 @@ export default function AppFooter() {
                   <Link
                     color="inherit"
                     variant="body2"
+                    underline="hover"
                     href="https://stackoverflow.com/questions/tagged/material-ui"
                   >
                     StackOverflow
                   </Link>
                 </li>
                 <li>
-                  <Link color="inherit" variant="body2" href="/discover-more/team/">
+                  <Link
+                    underline="hover"
+                    color="inherit"
+                    variant="body2"
+                    href="/discover-more/team/"
+                  >
                     {t('pages./discover-more/team')}
                   </Link>
                 </li>
@@ -140,17 +152,32 @@ export default function AppFooter() {
               </Typography>
               <ul>
                 <li>
-                  <Link color="inherit" variant="body2" href="/getting-started/support/">
+                  <Link
+                    underline="hover"
+                    color="inherit"
+                    variant="body2"
+                    href="/getting-started/support/"
+                  >
                     {t('pages./getting-started/support')}
                   </Link>
                 </li>
                 <li>
-                  <Link color="inherit" variant="body2" href="https://medium.com/material-ui/">
+                  <Link
+                    underline="hover"
+                    color="inherit"
+                    variant="body2"
+                    href="https://medium.com/material-ui/"
+                  >
                     {t('blogTitle')}
                   </Link>
                 </li>
                 <li>
-                  <Link color="inherit" variant="body2" href="/components/material-icons/">
+                  <Link
+                    underline="hover"
+                    color="inherit"
+                    variant="body2"
+                    href="/components/material-icons/"
+                  >
                     {t('pages./components/material-icons')}
                   </Link>
                 </li>
@@ -162,20 +189,20 @@ export default function AppFooter() {
               </Typography>
               <ul>
                 <li>
-                  <Link color="inherit" variant="body2" href="/company/about/">
+                  <Link underline="hover" color="inherit" variant="body2" href="/company/about/">
                     About
                   </Link>
                 </li>
                 <li>
-                  <Link color="inherit" variant="body2" href="/company/contact/">
+                  <Link underline="hover" color="inherit" variant="body2" href="/company/contact/">
                     Contact Us
                   </Link>
                 </li>
                 <CareersLi>
-                  <Link color="inherit" variant="body2" href="/company/careers/">
+                  <Link underline="hover" color="inherit" variant="body2" href="/company/careers/">
                     Careers
                   </Link>
-                  <Link color="inherit" variant="body2" href="/company/careers/">
+                  <Link underline="hover" color="inherit" variant="body2" href="/company/careers/">
                     <Badge>hiring</Badge>
                   </Link>
                 </CareersLi>
