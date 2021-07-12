@@ -25,6 +25,7 @@ const authors = {
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
+    // Adding top buffer because of the v5 banner
     marginTop: 30,
   },
   back: {
