@@ -481,12 +481,12 @@ const theme = createTheme({
 
 - The `createStyles` function from `@material-ui/core/styles` was moved to the one exported from `@material-ui/styles`. It is necessary for removing the dependency to `@material-ui/styles` in the core package.
 
-> ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
+  > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
-```diff
--import { createStyles } from '@material-ui/core/styles';
-+import { createStyles } from '@material-ui/styles';
-```
+  ```diff
+  -import { createStyles } from '@material-ui/core/styles';
+  +import { createStyles } from '@material-ui/styles';
+  ```
 
 ### `@material-ui/styles`
 
