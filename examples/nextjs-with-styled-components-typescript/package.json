@@ -15,6 +15,7 @@
     "next-transpile-modules": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-is": "latest",
     "styled-components": "latest"
   },
   "devDependencies": {
