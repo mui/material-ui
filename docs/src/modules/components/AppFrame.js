@@ -219,7 +219,7 @@ function AppFrame(props) {
       <AppBar className={appBarClassName}>
         <Typography variant="body2" className={classes.banner} noWrap>
           {t('v5IsOut')}{' '}
-          <Link color="inherit" className={classes.bannerLink} href="http://next.material-ui.com">
+          <Link color="inherit" className={classes.bannerLink} href="https://next.material-ui.com">
             {t('v5docsLink')}
           </Link>{' '}
           {t('v5startAdoption')}
