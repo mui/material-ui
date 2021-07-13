@@ -1000,11 +1000,11 @@ As the core components use emotion as their style engine, the props used by emot
 - `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
 
   ```diff
-  <button class="MuiButton-root">
-  - <span class="MuiButton-label">
-      children
-  - </span>
-  </button>
+   <button class="MuiButton-root">
+  -  <span class="MuiButton-label">
+       children
+  -  </span>
+   </button>
   ```
 
 ### Chip
@@ -1269,11 +1269,11 @@ As the core components use emotion as their style engine, the props used by emot
 - `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/27112).
 
   ```diff
-  <button class="MuiFab-root">
-  - <span class="MuiFab-label">
-      {children}
-  - </span>
-  </button>
+   <button class="MuiFab-root">
+  -  <span class="MuiFab-label">
+       {children}
+  -  </span>
+   </button>
   ```
 
 ### FormControl
@@ -1424,11 +1424,11 @@ As the core components use emotion as their style engine, the props used by emot
 - `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26666).
 
   ```diff
-  <button class="MuiIconButton-root">
-  - <span class="MuiIconButton-label">
-      <svg />
-  - </span>
-  </button>
+   <button class="MuiIconButton-root">
+  -  <span class="MuiIconButton-label">
+       <svg />
+  -  </span>
+   </button>
   ```
 
 ### Link
@@ -2024,12 +2024,12 @@ As the core components use emotion as their style engine, the props used by emot
 - `span` element that wraps children has been removed. `wrapper` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26926).
 
   ```diff
-  <button class="MuiTab-root">
-  - <span class="MuiTab-wrapper">
-      {icon}
-      {label}
-  - </span>
-  </button>
+   <button class="MuiTab-root">
+  -  <span class="MuiTab-wrapper">
+       {icon}
+       {label}
+  -  </span>
+   </button>
   ```
 
 ### TextField
@@ -2145,11 +2145,11 @@ As the core components use emotion as their style engine, the props used by emot
 - `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/27111).
 
   ```diff
-  <button class="MuiToggleButton-root">
-  - <span class="MuiToggleButton-label">
-      {children}
-  - </span>
-  </button>
+   <button class="MuiToggleButton-root">
+  -  <span class="MuiToggleButton-label">
+       {children}
+  -  </span>
+   </button>
   ```
 
 ### Tooltip
