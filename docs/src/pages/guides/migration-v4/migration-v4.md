@@ -313,7 +313,7 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
 
 -const theme = createMuiTheme({
 +const theme = createTheme(adaptV4Theme({
-  // v4 theme
+   // v4 theme
 -});
 +}));
 ```
@@ -356,7 +356,7 @@ The following changes are supported by the adapter:
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  import { createTheme } from '@material-ui/core/styles';
+   import { createTheme } from '@material-ui/core/styles';
   -const theme = createTheme({palette: { type: 'dark' }}),
   +const theme = createTheme({palette: { mode: 'dark' }}),
   ```
@@ -364,53 +364,53 @@ The following changes are supported by the adapter:
 - The default `theme.palette.info` colors was changed to pass AA standard contrast ratio in both light & dark mode.
 
   ```diff
-  info = {
-  - main: cyan[500],
-  + main: lightBlue[700], // lightBlue[400] in "dark" mode
+   info = {
+  -  main: cyan[500],
+  +  main: lightBlue[700], // lightBlue[400] in "dark" mode
 
-  - light: cyan[300],
-  + light: lightBlue[500], // lightBlue[300] in "dark" mode
+  -  light: cyan[300],
+  +  light: lightBlue[500], // lightBlue[300] in "dark" mode
 
-  - dark: cyan[700],
-  + dark: lightBlue[900], // lightBlue[700] in "dark" mode
-  }
+  -  dark: cyan[700],
+  +  dark: lightBlue[900], // lightBlue[700] in "dark" mode
+   }
   ```
 
 - The default `theme.palette.success` colors was changed to pass AA standard contrast ratio in both light & dark mode.
 
   ```diff
-  success = {
-  - main: green[500],
-  + main: green[800], // green[400] in "dark" mode
+   success = {
+  -  main: green[500],
+  +  main: green[800], // green[400] in "dark" mode
 
-  - light: green[300],
-  + light: green[500], // green[300] in "dark" mode
+  -  light: green[300],
+  +  light: green[500], // green[300] in "dark" mode
 
-  - dark: green[700],
-  + dark: green[900], // green[700] in "dark" mode
-  }
+  -  dark: green[700],
+  +  dark: green[900], // green[700] in "dark" mode
+   }
   ```
 
 - The default `theme.palette.warning` colors was changed to pass AA standard contrast ratio in both light & dark mode.
 
   ```diff
-  warning = {
-  - main: orange[500],
-  + main: "#ED6C02", // orange[400] in "dark" mode
+   warning = {
+  -  main: orange[500],
+  +  main: "#ED6C02", // orange[400] in "dark" mode
 
-  - light: orange[300],
-  + light: orange[500], // orange[300] in "dark" mode
+  -  light: orange[300],
+  +  light: orange[500], // orange[300] in "dark" mode
 
-  - dark: orange[700],
-  + dark: orange[900], // orange[700] in "dark" mode
-  }
+  -  dark: orange[700],
+  +  dark: orange[900], // orange[700] in "dark" mode
+   }
   ```
 
 - The `theme.palette.text.hint` key was unused in Material-UI components, and has been removed.
   If you depend on it, you can add it back:
 
   ```diff
-  import { createTheme } from '@material-ui/core/styles';
+   import { createTheme } from '@material-ui/core/styles';
 
   -const theme = createTheme(),
   +const theme = createTheme({
