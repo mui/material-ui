@@ -1289,6 +1289,15 @@ As the core components use emotion as their style engine, the props used by emot
   +<FormControl value="Outlined" />
   ```
 
+### FormControlLabel
+
+- The `label` prop is now required. If you were using a `FormControlLabel` without a `label`, you can replace it with just the value of the `control` prop.
+
+```diff
+-<FormControlLabel control={<Checkbox />} />
++<Checkbox />
+```
+
 ### Grid
 
 - Rename `justify` prop to `justifyContent` to align with the CSS property name.
