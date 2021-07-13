@@ -110,34 +110,38 @@ const Slide = React.forwardRef(function Slide(props, ref) {
   };
 
   const handleEnter = normalizedTransitionCallback((node, isAppearing) => {
-    setTranslateValue(direction, node);
-    reflow(node);
+    if (node) {
+      setTranslateValue(direction, node);
+      reflow(node);
 
-    if (onEnter) {
-      onEnter(node, isAppearing);
+      if (onEnter) {
+        onEnter(node, isAppearing);
+      }
     }
   });
 
   const handleEntering = normalizedTransitionCallback((node, isAppearing) => {
-    const transitionProps = getTransitionProps(
-      { timeout, style, easing: easingProp },
-      {
-        mode: 'enter',
-      },
-    );
+    if (node) {
+      const transitionProps = getTransitionProps(
+        { timeout, style, easing: easingProp },
+        {
+          mode: 'enter',
+        },
+      );
 
-    node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
-      ...transitionProps,
-    });
+      node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
+        ...transitionProps,
+      });
 
-    node.style.transition = theme.transitions.create('transform', {
-      ...transitionProps,
-    });
+      node.style.transition = theme.transitions.create('transform', {
+        ...transitionProps,
+      });
 
-    node.style.webkitTransform = 'none';
-    node.style.transform = 'none';
-    if (onEntering) {
-      onEntering(node, isAppearing);
+      node.style.webkitTransform = 'none';
+      node.style.transform = 'none';
+      if (onEntering) {
+        onEntering(node, isAppearing);
+      }
     }
   });
 
@@ -145,35 +149,39 @@ const Slide = React.forwardRef(function Slide(props, ref) {
   const handleExiting = normalizedTransitionCallback(onExiting);
 
   const handleExit = normalizedTransitionCallback((node) => {
-    const transitionProps = getTransitionProps(
-      { timeout, style, easing: easingProp },
-      {
-        mode: 'exit',
-      },
-    );
+    if (node) {
+      const transitionProps = getTransitionProps(
+        { timeout, style, easing: easingProp },
+        {
+          mode: 'exit',
+        },
+      );
 
-    node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
-      ...transitionProps,
-    });
+      node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
+        ...transitionProps,
+      });
 
-    node.style.transition = theme.transitions.create('transform', {
-      ...transitionProps,
-    });
+      node.style.transition = theme.transitions.create('transform', {
+        ...transitionProps,
+      });
 
-    setTranslateValue(direction, node);
+      setTranslateValue(direction, node);
 
-    if (onExit) {
-      onExit(node);
+      if (onExit) {
+        onExit(node);
+      }
     }
   });
 
   const handleExited = normalizedTransitionCallback((node) => {
-    // No need for transitions when the component is hidden
-    node.style.webkitTransition = '';
-    node.style.transition = '';
+    if (node) {
+      // No need for transitions when the component is hidden
+      node.style.webkitTransition = '';
+      node.style.transition = '';
 
-    if (onExited) {
-      onExited(node);
+      if (onExited) {
+        onExited(node);
+      }
     }
   });
 

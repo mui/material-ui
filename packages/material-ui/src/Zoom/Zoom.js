@@ -67,20 +67,22 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
   const handleEntering = normalizedTransitionCallback(onEntering);
 
   const handleEnter = normalizedTransitionCallback((node, isAppearing) => {
-    reflow(node); // So the animation always start from the start.
+    if (node) {
+      reflow(node); // So the animation always start from the start.
 
-    const transitionProps = getTransitionProps(
-      { style, timeout, easing },
-      {
-        mode: 'enter',
-      },
-    );
+      const transitionProps = getTransitionProps(
+        { style, timeout, easing },
+        {
+          mode: 'enter',
+        },
+      );
 
-    node.style.webkitTransition = theme.transitions.create('transform', transitionProps);
-    node.style.transition = theme.transitions.create('transform', transitionProps);
+      node.style.webkitTransition = theme.transitions.create('transform', transitionProps);
+      node.style.transition = theme.transitions.create('transform', transitionProps);
 
-    if (onEnter) {
-      onEnter(node, isAppearing);
+      if (onEnter) {
+        onEnter(node, isAppearing);
+      }
     }
   });
 
@@ -89,18 +91,20 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
   const handleExiting = normalizedTransitionCallback(onExiting);
 
   const handleExit = normalizedTransitionCallback((node) => {
-    const transitionProps = getTransitionProps(
-      { style, timeout, easing },
-      {
-        mode: 'exit',
-      },
-    );
+    if (node) {
+      const transitionProps = getTransitionProps(
+        { style, timeout, easing },
+        {
+          mode: 'exit',
+        },
+      );
 
-    node.style.webkitTransition = theme.transitions.create('transform', transitionProps);
-    node.style.transition = theme.transitions.create('transform', transitionProps);
+      node.style.webkitTransition = theme.transitions.create('transform', transitionProps);
+      node.style.transition = theme.transitions.create('transform', transitionProps);
 
-    if (onExit) {
-      onExit(node);
+      if (onExit) {
+        onExit(node);
+      }
     }
   });
 

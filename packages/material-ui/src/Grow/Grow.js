@@ -68,41 +68,43 @@ const Grow = React.forwardRef(function Grow(props, ref) {
   const handleEntering = normalizedTransitionCallback(onEntering);
 
   const handleEnter = normalizedTransitionCallback((node, isAppearing) => {
-    reflow(node); // So the animation always start from the start.
+    if (node) {
+      reflow(node); // So the animation always start from the start.
 
-    const {
-      duration: transitionDuration,
-      delay,
-      easing: transitionTimingFunction,
-    } = getTransitionProps(
-      { style, timeout, easing },
-      {
-        mode: 'enter',
-      },
-    );
-
-    let duration;
-    if (timeout === 'auto') {
-      duration = theme.transitions.getAutoHeightDuration(node.clientHeight);
-      autoTimeout.current = duration;
-    } else {
-      duration = transitionDuration;
-    }
-
-    node.style.transition = [
-      theme.transitions.create('opacity', {
-        duration,
-        delay,
-      }),
-      theme.transitions.create('transform', {
-        duration: duration * 0.666,
+      const {
+        duration: transitionDuration,
         delay,
         easing: transitionTimingFunction,
-      }),
-    ].join(',');
+      } = getTransitionProps(
+        { style, timeout, easing },
+        {
+          mode: 'enter',
+        },
+      );
 
-    if (onEnter) {
-      onEnter(node, isAppearing);
+      let duration;
+      if (timeout === 'auto') {
+        duration = theme.transitions.getAutoHeightDuration(node.clientHeight);
+        autoTimeout.current = duration;
+      } else {
+        duration = transitionDuration;
+      }
+
+      node.style.transition = [
+        theme.transitions.create('opacity', {
+          duration,
+          delay,
+        }),
+        theme.transitions.create('transform', {
+          duration: duration * 0.666,
+          delay,
+          easing: transitionTimingFunction,
+        }),
+      ].join(',');
+
+      if (onEnter) {
+        onEnter(node, isAppearing);
+      }
     }
   });
 
@@ -111,42 +113,44 @@ const Grow = React.forwardRef(function Grow(props, ref) {
   const handleExiting = normalizedTransitionCallback(onExiting);
 
   const handleExit = normalizedTransitionCallback((node) => {
-    const {
-      duration: transitionDuration,
-      delay,
-      easing: transitionTimingFunction,
-    } = getTransitionProps(
-      { style, timeout, easing },
-      {
-        mode: 'exit',
-      },
-    );
-
-    let duration;
-    if (timeout === 'auto') {
-      duration = theme.transitions.getAutoHeightDuration(node.clientHeight);
-      autoTimeout.current = duration;
-    } else {
-      duration = transitionDuration;
-    }
-
-    node.style.transition = [
-      theme.transitions.create('opacity', {
-        duration,
+    if (node) {
+      const {
+        duration: transitionDuration,
         delay,
-      }),
-      theme.transitions.create('transform', {
-        duration: duration * 0.666,
-        delay: delay || duration * 0.333,
         easing: transitionTimingFunction,
-      }),
-    ].join(',');
+      } = getTransitionProps(
+        { style, timeout, easing },
+        {
+          mode: 'exit',
+        },
+      );
 
-    node.style.opacity = '0';
-    node.style.transform = getScale(0.75);
+      let duration;
+      if (timeout === 'auto') {
+        duration = theme.transitions.getAutoHeightDuration(node.clientHeight);
+        autoTimeout.current = duration;
+      } else {
+        duration = transitionDuration;
+      }
 
-    if (onExit) {
-      onExit(node);
+      node.style.transition = [
+        theme.transitions.create('opacity', {
+          duration,
+          delay,
+        }),
+        theme.transitions.create('transform', {
+          duration: duration * 0.666,
+          delay: delay || duration * 0.333,
+          easing: transitionTimingFunction,
+        }),
+      ].join(',');
+
+      node.style.opacity = '0';
+      node.style.transform = getScale(0.75);
+
+      if (onExit) {
+        onExit(node);
+      }
     }
   });
 
