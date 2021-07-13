@@ -1110,7 +1110,7 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  <Dialog
+   <Dialog
   -  onEnter={onEnter}
   -  onEntered={onEntered}
   -  onEntering={onEntering}
@@ -1125,7 +1125,7 @@ As the core components use emotion as their style engine, the props used by emot
   +    onExited,
   +    onExiting,
   +  }}
-  />
+   >
   ```
 
 - Remove the `disableBackdropClick` prop because it is redundant.
@@ -1456,7 +1456,7 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  <Menu
+   <Menu
   -  onEnter={onEnter}
   -  onEntered={onEntered}
   -  onEntering={onEntering}
@@ -1471,7 +1471,7 @@ As the core components use emotion as their style engine, the props used by emot
   +    onExited,
   +    onExiting,
   +  }}
-  >
+   >
   ```
 
   > Note: The `selectedMenu` variant will no longer vertically align the selected item with the anchor.
@@ -1514,15 +1514,15 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  <Modal
-  - disableBackdropClick
-  - onClose={handleClose}
-  + onClose={(event, reason) => {
-  +   if (reason !== 'backdropClick') {
-  +     onClose(event, reason);
-  +   }
-  + }}
-  />
+   <Modal
+  -  disableBackdropClick
+  -  onClose={handleClose}
+  +  onClose={(event, reason) => {
+  +    if (reason !== 'backdropClick') {
+  +      onClose(event, reason);
+  +    }
+  +  }}
+   />
   ```
 
 - Remove the `onEscapeKeyDown` prop because it is redundant.
@@ -1531,14 +1531,14 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  <Modal
-  - onEscapeKeyDown={handleEscapeKeyDown}
-  + onClose={(event, reason) => {
-  +   if (reason === 'escapeKeyDown') {
-  +     handleEscapeKeyDown(event);
-  +   }
-  + }}
-  />
+   <Modal
+  -  onEscapeKeyDown={handleEscapeKeyDown}
+  +  onClose={(event, reason) => {
+  +    if (reason === 'escapeKeyDown') {
+  +      handleEscapeKeyDown(event);
+  +    }
+  +  }}
+   />
   ```
 
 - Remove `onRendered` prop.
@@ -1609,7 +1609,7 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  <Popover
+   <Popover
   -  onEnter={onEnter}
   -  onEntered={onEntered}
   -  onEntering={onEntering}
@@ -1624,7 +1624,7 @@ As the core components use emotion as their style engine, the props used by emot
   +    onExited,
   +    onExiting,
   +  }}
-  />
+   >
   ```
 
 - The `getContentAnchorEl` prop was removed to simplify the positioning logic.
@@ -1695,21 +1695,21 @@ As the core components use emotion as their style engine, the props used by emot
   If you have a custom `icon` prop but no `emptyIcon` prop, you can restore the previous behavior with:
 
   ```diff
-  <Rating
-    icon={customIcon}
-  + emptyIcon={null}
-  />
+   <Rating
+     icon={customIcon}
+  +  emptyIcon={null}
+   />
   ```
 
 - Rename `visuallyhidden` to `visuallyHidden` for consistency:
 
   ```diff
-  <Rating
-    classes={{
+   <Rating
+     classes={{
   -    visuallyhidden: 'custom-visually-hidden-classname',
   +    visuallyHidden: 'custom-visually-hidden-classname',
-    }}
-  />
+     }}
+   />
   ```
 
 ### RootRef
@@ -1790,14 +1790,14 @@ As the core components use emotion as their style engine, the props used by emot
 - The `ValueLabelComponent` and `ThumbComponent` prop is now part of the `components` prop.
 
   ```diff
-  <Slider
+   <Slider
   -  ValueLabelComponent={CustomValueLabel}
   -  ThumbComponent={CustomThumb}
   +  components={{
   +    ValueLabel: CustomValueLabel,
   +    Thumb: CustomThumb,
   +  }}
-  />
+   />
   ```
 
 - Rework the CSS to match the latest [Material Design guidelines](https://material.io/components/sliders) and make custom styles more intuitive. [See documentation](/components/slider/).
@@ -1822,7 +1822,7 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  <Snackbar
+   <Snackbar
   -  onEnter={onEnter}
   -  onEntered={onEntered}
   -  onEntering={onEntering}
@@ -1837,7 +1837,7 @@ As the core components use emotion as their style engine, the props used by emot
   +    onExited,
   +    onExiting,
   +  }}
-  />
+   >
   ```
 
 ### SpeedDial
