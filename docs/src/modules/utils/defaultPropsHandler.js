@@ -69,7 +69,6 @@ function getDefaultValue(propertyPath, importer) {
 }
 
 /**
- *
  * @param {import('doctrine').Annotation} jsdoc
  * @return {{ value: string } | undefined}
  */

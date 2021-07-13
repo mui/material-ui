@@ -28,15 +28,16 @@ const ToggleButtonGroupRoot = styled('div', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      [`& .${toggleButtonGroupClasses.grouped}`]: {
-        ...styles.grouped,
-        ...styles[`grouped${capitalize(styleProps.orientation)}`],
+    return [
+      { [`& .${toggleButtonGroupClasses.grouped}`]: styles.grouped },
+      {
+        [`& .${toggleButtonGroupClasses.grouped}`]:
+          styles[`grouped${capitalize(styleProps.orientation)}`],
       },
-      ...styles.root,
-      ...(styleProps.orientation === 'vertical' && styles.vertical),
-      ...(styleProps.fullWidth && styles.fullWidth),
-    };
+      styles.root,
+      styleProps.orientation === 'vertical' && styles.vertical,
+      styleProps.fullWidth && styles.fullWidth,
+    ];
   },
 })(({ styleProps, theme }) => ({
   /* Styles applied to the root element. */
@@ -196,7 +197,15 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
    * The color of a button when it is selected.
    * @default 'standard'
    */
-  color: PropTypes.oneOf(['primary', 'secondary', 'standard']),
+  color: PropTypes.oneOf([
+    'error',
+    'info',
+    'primary',
+    'secondary',
+    'standard',
+    'success',
+    'warning',
+  ]),
   /**
    * If `true`, only allow one of the child ToggleButton values to be selected.
    * @default false
@@ -226,7 +235,7 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
    * @default 'medium'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['large', 'medium', 'small']),
+    PropTypes.oneOf(['small', 'medium', 'large']),
     PropTypes.string,
   ]),
   /**

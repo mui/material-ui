@@ -2,22 +2,17 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
-import {
-  createMount,
-  describeConformance,
-  act,
-  createClientRender,
-  fireEvent,
-  screen,
-} from 'test/utils';
+import { describeConformance, act, createClientRender, fireEvent, screen } from 'test/utils';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import Grow from '@material-ui/core/Grow';
 import Popper from '@material-ui/core/Popper';
 
 describe('<Popper />', () => {
-  const mount = createMount();
   let rtlTheme;
-  const render = createClientRender();
+  const render = createClientRender({
+    // StrictEffectsViolation: need to call `handleOpen` in mount effects
+    strictEffects: false,
+  });
   const defaultProps = {
     anchorEl: () => document.createElement('svg'),
     children: <span>Hello World</span>,
@@ -33,7 +28,6 @@ describe('<Popper />', () => {
   describeConformance(<Popper {...defaultProps} />, () => ({
     classes: {},
     inheritComponent: 'div',
-    mount,
     refInstanceof: window.HTMLDivElement,
     skip: [
       'componentProp',

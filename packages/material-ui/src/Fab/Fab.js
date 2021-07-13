@@ -20,7 +20,6 @@ const useUtilityClasses = (styleProps) => {
       color === 'primary' && 'primary',
       color === 'secondary' && 'secondary',
     ],
-    label: ['label'],
   };
 
   return composeClasses(slots, getFabUtilityClass, classes);
@@ -32,14 +31,14 @@ const FabRoot = styled(ButtonBase, {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...styles[styleProps.variant],
-      ...styles[`size${capitalize(styleProps.size)}`],
-      ...(styleProps.color === 'inherit' && styles.colorInherit),
-      ...(styleProps.color === 'primary' && styles.primary),
-      ...(styleProps.color === 'secondary' && styles.secondary),
-    };
+    return [
+      styles.root,
+      styles[styleProps.variant],
+      styles[`size${capitalize(styleProps.size)}`],
+      styleProps.color === 'inherit' && styles.colorInherit,
+      styleProps.color === 'primary' && styles.primary,
+      styleProps.color === 'secondary' && styles.secondary,
+    ];
   },
 })(
   ({ theme, styleProps }) => ({
@@ -144,18 +143,6 @@ const FabRoot = styled(ButtonBase, {
   }),
 );
 
-const FabLabel = styled('span', {
-  name: 'MuiFab',
-  slot: 'Label',
-  overridesResolver: (props, styles) => styles.label,
-})({
-  /* Styles applied to the span element that wraps the children. */
-  width: '100%', // assure the correct width for iOS Safari
-  display: 'inherit',
-  alignItems: 'inherit',
-  justifyContent: 'inherit',
-});
-
 const Fab = React.forwardRef(function Fab(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiFab' });
   const {
@@ -194,9 +181,7 @@ const Fab = React.forwardRef(function Fab(inProps, ref) {
       ref={ref}
       {...other}
     >
-      <FabLabel className={classes.label} styleProps={styleProps}>
-        {children}
-      </FabLabel>
+      {children}
     </FabRoot>
   );
 });
@@ -260,7 +245,7 @@ Fab.propTypes /* remove-proptypes */ = {
    * @default 'large'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['large', 'medium', 'small']),
+    PropTypes.oneOf(['small', 'medium', 'large']),
     PropTypes.string,
   ]),
   /**

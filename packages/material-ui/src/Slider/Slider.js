@@ -43,15 +43,15 @@ export const SliderRoot = styled('span', {
 
     const marked = marks.length > 0 && marks.some((mark) => mark.label);
 
-    return {
-      ...styles.root,
-      ...styles[`color${capitalize(styleProps.color)}`],
-      ...(styleProps.size !== 'medium' && styles[`size${capitalize(styleProps.size)}`]),
-      ...(marked && styles.marked),
-      ...(styleProps.orientation === 'vertical' && styles.vertical),
-      ...(styleProps.track === 'inverted' && styles.trackInverted),
-      ...(styleProps.track === false && styles.trackFalse),
-    };
+    return [
+      styles.root,
+      styles[`color${capitalize(styleProps.color)}`],
+      styleProps.size !== 'medium' && styles[`size${capitalize(styleProps.size)}`],
+      marked && styles.marked,
+      styleProps.orientation === 'vertical' && styles.vertical,
+      styleProps.track === 'inverted' && styles.trackInverted,
+      styleProps.track === false && styles.trackFalse,
+    ];
   },
 })(({ theme, styleProps }) => ({
   borderRadius: 12,
@@ -182,11 +182,11 @@ export const SliderThumb = styled('span', {
   slot: 'Thumb',
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
-    return {
-      ...styles.thumb,
-      ...styles[`thumbColor${capitalize(styleProps.color)}`],
-      ...(styleProps.size !== 'medium' && styles[`thumbSize${capitalize(styleProps.size)}`]),
-    };
+    return [
+      styles.thumb,
+      styles[`thumbColor${capitalize(styleProps.color)}`],
+      styleProps.size !== 'medium' && styles[`thumbSize${capitalize(styleProps.size)}`],
+    ];
   },
 })(({ theme, styleProps }) => ({
   position: 'absolute',
@@ -652,7 +652,7 @@ Slider.propTypes /* remove-proptypes */ = {
    * The size of the slider.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['medium', 'small']),
+  size: PropTypes.oneOf(['small', 'medium']),
   /**
    * The granularity with which the slider can step through values. (A "discrete" slider.)
    * The `min` prop serves as the origin for the valid values.

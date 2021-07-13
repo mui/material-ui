@@ -1,14 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import {
-  createMount,
-  describeConformanceV5,
-  act,
-  createClientRender,
-  fireEvent,
-  queries,
-} from 'test/utils';
+import { describeConformanceV5, act, createClientRender, fireEvent, queries } from 'test/utils';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
@@ -21,13 +14,11 @@ const NoContent = React.forwardRef(() => {
 
 describe('<ListItem />', () => {
   const render = createClientRender();
-  const mount = createMount();
 
   describeConformanceV5(<ListItem />, () => ({
     classes,
     inheritComponent: 'li',
     render,
-    mount,
     refInstanceof: window.HTMLLIElement,
     muiName: 'MuiListItem',
     testVariantProps: { dense: true },
@@ -189,9 +180,12 @@ describe('<ListItem />', () => {
       it('should warn (but not error) with autoFocus with a function component with no content', () => {
         expect(() => {
           render(<ListItem component={NoContent} autoFocus />);
-        }).toErrorDev(
+        }).toErrorDev([
           'Material-UI: Unable to set focus to a ListItem whose component has not been rendered.',
-        );
+          // React 18 Strict Effects run mount effects twice
+          React.version.startsWith('18') &&
+            'Material-UI: Unable to set focus to a ListItem whose component has not been rendered.',
+        ]);
       });
     });
   });

@@ -32,12 +32,12 @@ const IconButtonRoot = styled(ButtonBase, {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-      ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
-      ...styles[`size${capitalize(styleProps.size)}`],
-    };
+    return [
+      styles.root,
+      styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`],
+      styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`],
+      styles[`size${capitalize(styleProps.size)}`],
+    ];
   },
 })(
   ({ theme, styleProps }) => ({
@@ -211,7 +211,7 @@ IconButton.propTypes /* remove-proptypes */ = {
    * If `true`, the ripple effect is disabled.
    *
    * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
-   * to highlight the element by applying separate styles with the `.Mui-focusedVisible` class.
+   * to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
    * @default false
    */
   disableRipple: PropTypes.bool,

@@ -1,4 +1,4 @@
 <div>
-  <Button />
+  <Button color="primary" />
   <Button />
 </div>

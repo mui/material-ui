@@ -67,7 +67,12 @@ export interface BaseDateTimePickerProps<TDate>
    * Component that will replace default toolbar renderer.
    * @default DateTimePickerToolbar
    */
-  ToolbarComponent?: React.JSXElementConstructor<ToolbarComponentProps>;
+  ToolbarComponent?: React.JSXElementConstructor<ToolbarComponentProps<TDate | null>>;
+  /**
+   * Mobile picker title, displaying in the toolbar.
+   * @default 'Select date & time'
+   */
+  toolbarTitle?: React.ReactNode;
   /**
    * Date format, that is displaying in toolbar.
    */

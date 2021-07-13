@@ -11,7 +11,7 @@ declare module 'docs/src/modules/components/HighlightedCode' {
     code: string;
     /**
      * short identifier of the code language
-     * see utils/prism.js for possible languages
+     * see @material-ui/markdown/prism for possible languages
      */
     language: string;
   }
@@ -19,3 +19,5 @@ declare module 'docs/src/modules/components/HighlightedCode' {
 }
 
 declare module '@trendmicro/react-interpolate';
+
+declare module 'react-imask';

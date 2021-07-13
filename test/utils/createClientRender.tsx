@@ -222,17 +222,25 @@ interface RenderConfiguration {
    * https://testing-library.com/docs/react-testing-library/api#hydrate
    */
   hydrate?: boolean;
+  /**
+   * Set to true if the test fails in React 18.
+   */
+  legacyRoot?: boolean;
   profiler: Profiler;
   /**
    * wrap in React.StrictMode?
    */
   strict?: boolean;
+  /**
+   * Set to `true` if the test fails due to [Strict Effects](https://github.com/reactwg/react-18/discussions/19).
+   */
+  strictEffects?: boolean;
   wrapper?: React.JSXElementConstructor<{}>;
 }
 
 export type RenderOptions = Omit<RenderConfiguration, 'emotionCache' | 'profiler'>;
 
-interface MuiRenderResult extends RenderResult<typeof queries & typeof customQueries> {
+export interface MuiRenderResult extends RenderResult<typeof queries & typeof customQueries> {
   forceUpdate(): void;
   /**
    * convenience helper. Better than repeating all props.
@@ -249,12 +257,15 @@ function clientRender(
     container,
     emotionCache,
     hydrate,
+    legacyRoot,
     strict = true,
+    strictEffects = strict,
     profiler,
     wrapper: InnerWrapper = React.Fragment,
   } = configuration;
 
-  const Mode = strict ? React.StrictMode : React.Fragment;
+  const usesLegacyRoot = !React.version.startsWith('18');
+  const Mode = strict && (strictEffects || usesLegacyRoot) ? React.StrictMode : React.Fragment;
   function Wrapper({ children }: { children?: React.ReactNode }) {
     return (
       <Mode>
@@ -273,6 +284,8 @@ function clientRender(
       baseElement,
       container,
       hydrate,
+      // @ts-ignore Available in the `@testing-library/react` fork used when running with React 18
+      legacyRoot,
       queries: { ...queries, ...customQueries },
       wrapper: Wrapper,
     }),
@@ -301,7 +314,11 @@ function clientRender(
 export function createClientRender(
   globalOptions: RenderOptions = {},
 ): (element: React.ReactElement, options?: RenderOptions) => MuiRenderResult {
-  const { strict: globalStrict } = globalOptions;
+  const {
+    legacyRoot: globalLegacyRoot,
+    strict: globalStrict,
+    strictEffects: globalStrictEffects,
+  } = globalOptions;
   // save stack to re-use in test-hooks
   const { stack: createClientRenderStack } = new Error();
 
@@ -392,9 +409,20 @@ export function createClientRender(
       );
     }
 
-    const { strict = globalStrict, ...localOptions } = options;
-
-    return clientRender(element, { ...localOptions, strict, profiler, emotionCache });
+    const {
+      legacyRoot = globalLegacyRoot,
+      strict = globalStrict,
+      strictEffects = globalStrictEffects,
+      ...localOptions
+    } = options;
+    return clientRender(element, {
+      ...localOptions,
+      legacyRoot,
+      strict,
+      strictEffects,
+      profiler,
+      emotionCache,
+    });
   };
 }
 

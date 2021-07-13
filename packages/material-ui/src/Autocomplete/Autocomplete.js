@@ -64,21 +64,17 @@ const AutocompleteRoot = styled('div', {
     const { styleProps } = props;
     const { fullWidth, hasClearIcon, hasPopupIcon, inputFocused, size } = styleProps;
 
-    return {
-      [`& .${autocompleteClasses.tag}`]: {
-        ...styles.tag,
-        ...styles[`tagSize${capitalize(size)}`],
-      },
-      [`& .${autocompleteClasses.inputRoot}`]: styles.inputRoot,
-      [`& .${autocompleteClasses.input}`]: {
-        ...styles.input,
-        ...(inputFocused && styles.inputFocused),
-      },
-      ...styles.root,
-      ...(fullWidth && styles.fullWidth),
-      ...(hasPopupIcon && styles.hasPopupIcon),
-      ...(hasClearIcon && styles.hasClearIcon),
-    };
+    return [
+      { [`& .${autocompleteClasses.tag}`]: styles.tag },
+      { [`& .${autocompleteClasses.tag}`]: styles[`tagSize${capitalize(size)}`] },
+      { [`& .${autocompleteClasses.inputRoot}`]: styles.inputRoot },
+      { [`& .${autocompleteClasses.input}`]: styles.input },
+      { [`& .${autocompleteClasses.input}`]: inputFocused && styles.inputFocused },
+      styles.root,
+      fullWidth && styles.fullWidth,
+      hasPopupIcon && styles.hasPopupIcon,
+      hasClearIcon && styles.hasClearIcon,
+    ];
   },
 })(({ styleProps }) => ({
   /* Styles applied to the root element. */
@@ -231,11 +227,11 @@ const AutocompletePopper = styled(Popper, {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      [`& .${autocompleteClasses.option}`]: styles.option,
-      ...styles.popper,
-      ...(styleProps.disablePortal && styles.popperDisablePortal),
-    };
+    return [
+      { [`& .${autocompleteClasses.option}`]: styles.option },
+      styles.popper,
+      styleProps.disablePortal && styles.popperDisablePortal,
+    ];
   },
 })(({ theme, styleProps }) => ({
   /* Styles applied to the popper element. */
@@ -380,6 +376,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     clearOnEscape = false,
     clearText = 'Clear',
     closeText = 'Close',
+    componentsProps = {},
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
@@ -557,8 +554,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                     {...getClearProps()}
                     aria-label={clearText}
                     title={clearText}
-                    className={classes.clearIndicator}
                     styleProps={styleProps}
+                    {...componentsProps.clearIndicator}
+                    className={clsx(
+                      classes.clearIndicator,
+                      componentsProps.clearIndicator?.className,
+                    )}
                   >
                     {clearIcon}
                   </AutocompleteClearIndicator>
@@ -725,6 +726,11 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @default 'Close'
    */
   closeText: PropTypes.string,
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
   /**
    * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null
@@ -1006,7 +1012,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @default 'medium'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.oneOf(['small', 'medium']),
     PropTypes.string,
   ]),
   /**

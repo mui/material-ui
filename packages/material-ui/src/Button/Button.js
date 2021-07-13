@@ -61,16 +61,16 @@ const ButtonRoot = styled(ButtonBase, {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.root,
-      ...styles[styleProps.variant],
-      ...styles[`${styleProps.variant}${capitalize(styleProps.color)}`],
-      ...styles[`size${capitalize(styleProps.size)}`],
-      ...styles[`${styleProps.variant}Size${capitalize(styleProps.size)}`],
-      ...(styleProps.color === 'inherit' && styles.colorInherit),
-      ...(styleProps.disableElevation && styles.disableElevation),
-      ...(styleProps.fullWidth && styles.fullWidth),
-    };
+    return [
+      styles.root,
+      styles[styleProps.variant],
+      styles[`${styleProps.variant}${capitalize(styleProps.color)}`],
+      styles[`size${capitalize(styleProps.size)}`],
+      styles[`${styleProps.variant}Size${capitalize(styleProps.size)}`],
+      styleProps.color === 'inherit' && styles.colorInherit,
+      styleProps.disableElevation && styles.disableElevation,
+      styleProps.fullWidth && styles.fullWidth,
+    ];
   },
 })(
   ({ theme, styleProps }) => ({
@@ -247,10 +247,7 @@ const ButtonStartIcon = styled('span', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.startIcon,
-      ...styles[`iconSize${capitalize(styleProps.size)}`],
-    };
+    return [styles.startIcon, styles[`iconSize${capitalize(styleProps.size)}`]];
   },
 })(({ styleProps }) => ({
   display: 'inherit',
@@ -268,10 +265,7 @@ const ButtonEndIcon = styled('span', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.endIcon,
-      ...styles[`iconSize${capitalize(styleProps.size)}`],
-    };
+    return [styles.endIcon, styles[`iconSize${capitalize(styleProps.size)}`]];
   },
 })(({ styleProps }) => ({
   display: 'inherit',
@@ -393,7 +387,7 @@ Button.propTypes /* remove-proptypes */ = {
    * If `true`, the ripple effect is disabled.
    *
    * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
-   * to highlight the element by applying separate styles with the `.Mui-focusedVisible` class.
+   * to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
    * @default false
    */
   disableRipple: PropTypes.bool,

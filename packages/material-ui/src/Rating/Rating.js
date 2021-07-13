@@ -73,12 +73,12 @@ const RatingRoot = styled('span', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      [`& .${ratingClasses.visuallyHidden}`]: styles.visuallyHidden,
-      ...styles.root,
-      ...styles[`size${capitalize(styleProps.size)}`],
-      ...(styleProps.readOnly && styles.readOnly),
-    };
+    return [
+      { [`& .${ratingClasses.visuallyHidden}`]: styles.visuallyHidden },
+      styles.root,
+      styles[`size${capitalize(styleProps.size)}`],
+      styleProps.readOnly && styles.readOnly,
+    ];
   },
 })(({ theme, styleProps }) => ({
   /* Styles applied to the root element. */
@@ -135,14 +135,14 @@ const RatingIcon = styled('span', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.icon,
-      ...(styleProps.iconEmpty && styles.iconEmpty),
-      ...(styleProps.iconFilled && styles.iconFilled),
-      ...(styleProps.iconHover && styles.iconHover),
-      ...(styleProps.iconFocus && styles.iconFocus),
-      ...(styleProps.iconActive && styles.iconActive),
-    };
+    return [
+      styles.icon,
+      styleProps.iconEmpty && styles.iconEmpty,
+      styleProps.iconFilled && styles.iconFilled,
+      styleProps.iconHover && styles.iconHover,
+      styleProps.iconFocus && styles.iconFocus,
+      styleProps.iconActive && styles.iconActive,
+    ];
   },
 })(({ theme, styleProps }) => ({
   /* Styles applied to the icon wrapping elements. */
@@ -170,10 +170,7 @@ const RatingDecimal = styled('span', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.decimal,
-      ...(styleProps.iconActive && styles.iconActive),
-    };
+    return [styles.decimal, styleProps.iconActive && styles.iconActive];
   },
 })(({ styleProps }) => ({
   /* Styles applied to the icon wrapping elements when decimals are necessary. */
@@ -739,7 +736,7 @@ Rating.propTypes /* remove-proptypes */ = {
    * @default 'medium'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['large', 'medium', 'small']),
+    PropTypes.oneOf(['small', 'medium', 'large']),
     PropTypes.string,
   ]),
   /**

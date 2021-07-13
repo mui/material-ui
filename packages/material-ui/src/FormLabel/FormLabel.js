@@ -42,6 +42,7 @@ export const FormLabelRoot = styled('label', {
   ...theme.typography.body1,
   lineHeight: '1.4375em',
   padding: 0,
+  position: 'relative',
   [`&.${formLabelClasses.focused}`]: {
     color: theme.palette[styleProps.color].main,
   },

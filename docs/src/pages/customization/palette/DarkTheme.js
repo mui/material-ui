@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import {
   styled,
   ThemeProvider,
@@ -105,13 +106,13 @@ export default function DarkTheme() {
   // Note that if you intend to use two or more themes at the same time on your site,
   // you need to wrap them with a single ThemeProvider at the root (not like in this example).
   return (
-    <div style={{ width: '100%' }}>
+    <Box sx={{ width: '100%' }}>
       <ThemeProvider theme={darkTheme}>
         <Demo />
       </ThemeProvider>
       <ThemeProvider theme={lightTheme}>
         <Demo />
       </ThemeProvider>
-    </div>
+    </Box>
   );
 }

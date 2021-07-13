@@ -59,10 +59,7 @@ const DialogContainer = styled('div', {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.container,
-      ...styles[`scroll${capitalize(styleProps.scroll)}`],
-    };
+    return [styles.container, styles[`scroll${capitalize(styleProps.scroll)}`]];
   },
 })(({ styleProps }) => ({
   /* Styles applied to the container element. */
@@ -99,13 +96,13 @@ const DialogPaper = styled(Paper, {
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 
-    return {
-      ...styles.paper,
-      ...styles[`scrollPaper${capitalize(styleProps.scroll)}`],
-      ...styles[`paperWidth${capitalize(String(styleProps.maxWidth))})`],
-      ...(styleProps.fullWidth && styles.paperFullWidth),
-      ...(styleProps.fullScreen && styles.paperFullScreen),
-    };
+    return [
+      styles.paper,
+      styles[`scrollPaper${capitalize(styleProps.scroll)}`],
+      styles[`paperWidth${capitalize(String(styleProps.maxWidth))})`],
+      styleProps.fullWidth && styles.paperFullWidth,
+      styleProps.fullScreen && styles.paperFullScreen,
+    ];
   },
 })(({ theme, styleProps }) => ({
   margin: 32,

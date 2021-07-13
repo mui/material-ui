@@ -1,11 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
 import Typography from '../Typography';
-import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
+import FormControlContext from '../FormControl/FormControlContext';
+import useFormControl from '../FormControl/useFormControl';
 import styled from '../styles/styled';
 import inputAdornmentClasses, { getInputAdornmentUtilityClass } from './inputAdornmentClasses';
 import useThemeProps from '../styles/useThemeProps';
@@ -13,14 +13,12 @@ import useThemeProps from '../styles/useThemeProps';
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return deepmerge(
-    {
-      ...styles[`position${capitalize(styleProps.position)}`],
-      ...(styleProps.disablePointerEvents === true && styles.disablePointerEvents),
-      ...styles[styleProps.variant],
-    },
-    styles.root || {},
-  );
+  return [
+    styles.root,
+    styles[`position${capitalize(styleProps.position)}`],
+    styleProps.disablePointerEvents === true && styles.disablePointerEvents,
+    styles[styleProps.variant],
+  ];
 };
 
 const useUtilityClasses = (styleProps) => {

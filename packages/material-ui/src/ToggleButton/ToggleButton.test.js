@@ -1,27 +1,19 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  createClientRender,
-  createMount,
-  describeConformanceV5,
-  createServerRender,
-} from 'test/utils';
+import { createClientRender, describeConformanceV5, createServerRender } from 'test/utils';
 import ToggleButton, { toggleButtonClasses as classes } from '@material-ui/core/ToggleButton';
 import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<ToggleButton />', () => {
   const render = createClientRender();
-  const mount = createMount();
 
   describeConformanceV5(<ToggleButton value="X">Hello, World!</ToggleButton>, () => ({
     classes,
     inheritComponent: ButtonBase,
     render,
-    mount,
     muiName: 'MuiToggleButton',
     testVariantProps: { variant: 'foo' },
-    testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
     testStateOverrides: { prop: 'size', value: 'large', styleKey: 'sizeLarge' },
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'div',

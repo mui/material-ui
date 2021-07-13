@@ -1,9 +1,9 @@
 import * as React from 'react';
 import clsx from 'clsx';
+import Fade from '@material-ui/core/Fade';
 import { styled } from '@material-ui/core/styles';
 import { generateUtilityClasses } from '@material-ui/unstyled';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { TransitionGroupProps } from 'react-transition-group/TransitionGroup';
+import { TransitionGroup } from 'react-transition-group';
 
 interface FadeTransitionProps {
   children: React.ReactElement;
@@ -12,40 +12,15 @@ interface FadeTransitionProps {
   transKey: React.Key;
 }
 
-const classes = generateUtilityClasses('PrivatePickersFadeTransitionGroup', [
-  'root',
-  'fadeEnter',
-  'fadeEnterActive',
-  'fadeExit',
-  'fadeExitActive',
-]);
+const classes = generateUtilityClasses('PrivatePickersFadeTransitionGroup', ['root']);
 
 const animationDuration = 500;
 
 const PickersFadeTransitionGroupRoot = styled(TransitionGroup, {
   skipSx: true,
-})<TransitionGroupProps>(({ theme }) => ({
+})(() => ({
   display: 'block',
   position: 'relative',
-  [`& .${classes.fadeEnter}`]: {
-    willChange: 'transform',
-    opacity: 0,
-  },
-  [`& .${classes.fadeEnterActive}`]: {
-    opacity: 1,
-    transition: theme.transitions.create('opacity', {
-      duration: animationDuration,
-    }),
-  },
-  [`& .${classes.fadeExit}`]: {
-    opacity: 1,
-  },
-  [`& .${classes.fadeExitActive}`]: {
-    opacity: 0,
-    transition: theme.transitions.create('opacity', {
-      duration: animationDuration / 2,
-    }),
-  },
 }));
 
 /**
@@ -61,31 +36,16 @@ const PickersFadeTransitionGroup = ({
     return children;
   }
 
-  const transitionClasses = {
-    exit: classes.fadeExit,
-    enterActive: classes.fadeEnterActive,
-    enter: classes.fadeEnter,
-    exitActive: classes.fadeExitActive,
-  };
-
   return (
-    <PickersFadeTransitionGroupRoot
-      className={clsx(classes.root, className)}
-      childFactory={(element) =>
-        React.cloneElement(element, {
-          classNames: transitionClasses,
-        })
-      }
-    >
-      <CSSTransition
+    <PickersFadeTransitionGroupRoot className={clsx(classes.root, className)}>
+      <Fade
         mountOnEnter
         unmountOnExit
         key={transKey}
         timeout={{ appear: animationDuration, enter: animationDuration / 2, exit: 0 }}
-        classNames={transitionClasses}
       >
         {children}
-      </CSSTransition>
+      </Fade>
     </PickersFadeTransitionGroupRoot>
   );
 };

@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/icons",
-  "version": "5.0.0-alpha.37",
+  "version": "5.0.0-beta.0",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material Design icons distributed as SVG React components.",
@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "https://material-ui.com/components/icons",
+  "homepage": "https://next.material-ui.com/components/material-icons/",
   "scripts": {
     "build": "cp -r lib/ build/ && yarn build:typings && yarn build:copy-files",
     "build:lib": "yarn build:node && yarn build:stable",

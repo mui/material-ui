@@ -3,7 +3,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import {
-  createMount,
   describeConformanceV5,
   act,
   createClientRender,
@@ -19,10 +18,6 @@ import ButtonBase, { buttonBaseClasses as classes } from '@material-ui/core/Butt
 
 describe('<ButtonBase />', () => {
   const render = createClientRender();
-  /**
-   * @type {ReturnType<typeof createMount>}
-   */
-  const mount = createMount();
 
   // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/14156632/
   let canFireDragEvents = true;
@@ -42,7 +37,6 @@ describe('<ButtonBase />', () => {
     classes,
     inheritComponent: 'button',
     render,
-    mount,
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'a',
     muiName: 'MuiButtonBase',
@@ -240,7 +234,9 @@ describe('<ButtonBase />', () => {
       fireEvent.click(button);
       expect(onClick.callCount).to.equal(1);
 
-      button.focus();
+      act(() => {
+        button.focus();
+      });
       expect(onFocus.callCount).to.equal(1);
 
       fireEvent.keyDown(button);
@@ -249,7 +245,9 @@ describe('<ButtonBase />', () => {
       fireEvent.keyUp(button);
       expect(onKeyUp.callCount).to.equal(1);
 
-      button.blur();
+      act(() => {
+        button.blur();
+      });
       expect(onBlur.callCount).to.equal(1);
 
       fireEvent.mouseLeave(button);
@@ -781,7 +779,9 @@ describe('<ButtonBase />', () => {
 
       expect(button).not.to.have.class(classes.focusVisible);
 
-      button.focus();
+      act(() => {
+        button.focus();
+      });
 
       if (programmaticFocusTriggersFocusVisible()) {
         expect(button).to.have.class(classes.focusVisible);

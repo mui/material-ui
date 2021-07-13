@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createClientRender, createMount, describeConformance } from 'test/utils';
+import { act, createClientRender, describeConformance } from 'test/utils';
 import { Transition } from 'react-transition-group';
 import Fade from '@material-ui/core/Fade';
 
 describe('<Fade />', () => {
   const render = createClientRender();
-  const mount = createMount();
 
   const defaultProps = {
     in: true,
@@ -17,7 +16,6 @@ describe('<Fade />', () => {
   describeConformance(<Fade {...defaultProps} />, () => ({
     classes: {},
     inheritComponent: Transition,
-    mount,
     refInstanceof: window.HTMLDivElement,
     skip: [
       'componentProp',
@@ -71,7 +69,10 @@ describe('<Fade />', () => {
       expect(handleEntering.callCount).to.equal(1);
       expect(handleEntering.args[0][0]).to.equal(child);
 
-      clock.tick(1000);
+      act(() => {
+        clock.tick(1000);
+      });
+
       expect(handleEntered.callCount).to.equal(1);
       expect(handleEntered.args[0][0]).to.equal(child);
 
@@ -87,7 +88,10 @@ describe('<Fade />', () => {
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExiting.args[0][0]).to.equal(child);
 
-      clock.tick(1000);
+      act(() => {
+        clock.tick(1000);
+      });
+
       expect(handleExited.callCount).to.equal(1);
       expect(handleExited.args[0][0]).to.equal(child);
     });

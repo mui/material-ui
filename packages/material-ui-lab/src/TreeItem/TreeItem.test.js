@@ -3,7 +3,6 @@ import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import { spy } from 'sinon';
 import {
-  createMount,
   describeConformanceV5,
   act,
   createEvent,
@@ -15,13 +14,11 @@ import TreeView from '@material-ui/lab/TreeView';
 import TreeItem, { treeItemClasses as classes } from '@material-ui/lab/TreeItem';
 
 describe('<TreeItem />', () => {
-  const mount = createMount();
   const render = createClientRender();
 
   describeConformanceV5(<TreeItem nodeId="one" label="one" />, () => ({
     classes,
     inheritComponent: 'li',
-    mount,
     render,
     muiName: 'MuiTreeItem',
     refInstanceof: window.HTMLLIElement,
@@ -509,8 +506,8 @@ describe('<TreeItem />', () => {
 
           act(() => {
             screen.getByRole('tree').focus();
-            fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowLeft' });
           });
+          fireEvent.keyDown(screen.getByRole('tree'), { key: 'ArrowLeft' });
 
           expect(firstItem).to.have.attribute('aria-expanded', 'false');
           expect(screen.getByTestId('one')).toHaveVirtualFocus();
@@ -1102,8 +1099,8 @@ describe('<TreeItem />', () => {
 
           act(() => {
             getByRole('tree').focus();
-            fireEvent.keyDown(getByRole('tree'), { key: ' ' });
           });
+          fireEvent.keyDown(getByRole('tree'), { key: ' ' });
 
           expect(getByTestId('one')).not.to.have.attribute('aria-selected');
         });
@@ -1443,16 +1440,16 @@ describe('<TreeItem />', () => {
             </TreeView>,
           );
 
+          fireEvent.click(getByText('five'));
+          fireEvent.click(getByText('five'));
           // Focus node five
           act(() => {
-            fireEvent.click(getByText('five'));
-            fireEvent.click(getByText('five'));
             getByRole('tree').focus();
-            fireEvent.keyDown(getByRole('tree'), {
-              key: 'End',
-              shiftKey: true,
-              ctrlKey: true,
-            });
+          });
+          fireEvent.keyDown(getByRole('tree'), {
+            key: 'End',
+            shiftKey: true,
+            ctrlKey: true,
           });
 
           expect(queryAllByRole('treeitem', { selected: true })).to.have.length(0);

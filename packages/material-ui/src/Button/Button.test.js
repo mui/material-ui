@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import {
-  createMount,
   describeConformanceV5,
   act,
   createClientRender,
@@ -13,13 +12,11 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<Button />', () => {
   const render = createClientRender();
-  const mount = createMount();
 
   describeConformanceV5(<Button startIcon="icon">Conformance?</Button>, () => ({
     classes,
     inheritComponent: ButtonBase,
     render,
-    mount,
     refInstanceof: window.HTMLButtonElement,
     muiName: 'MuiButton',
     testDeepOverrides: { slotName: 'startIcon', slotClassName: classes.startIcon },
@@ -324,8 +321,8 @@ describe('<Button />', () => {
     );
     const button = getByRole('button');
 
+    fireEvent.keyDown(document.body, { key: 'TAB' });
     act(() => {
-      fireEvent.keyDown(document.body, { key: 'TAB' });
       button.focus();
     });
 

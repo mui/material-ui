@@ -135,6 +135,8 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate>) {
     .filter(Boolean)
     .map((selectedDateItem) => selectedDateItem && utils.startOfDay(selectedDateItem));
 
+  const slideNodeRef = React.useRef(null);
+
   return (
     <React.Fragment>
       <PickersCalendarDayHeader>
@@ -155,8 +157,13 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate>) {
           slideDirection={slideDirection}
           className={className}
           {...TransitionProps}
+          nodeRef={slideNodeRef}
         >
-          <PickersCalendarWeekContainer data-mui-test="pickers-calendar" role="grid">
+          <PickersCalendarWeekContainer
+            data-mui-test="pickers-calendar"
+            ref={slideNodeRef}
+            role="grid"
+          >
             {utils.getWeekArray(currentMonth).map((week) => (
               <PickersCalendarWeek role="row" key={`week-${week[0]}`}>
                 {week.map((day) => {

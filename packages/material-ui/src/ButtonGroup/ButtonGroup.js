@@ -12,20 +12,26 @@ import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupCla
 const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return {
-    [`& .${buttonGroupClasses.grouped}`]: {
-      ...styles.grouped,
-      ...styles[`grouped${capitalize(styleProps.orientation)}`],
-      ...styles[`grouped${capitalize(styleProps.variant)}`],
-      ...styles[`grouped${capitalize(styleProps.variant)}${capitalize(styleProps.orientation)}`],
-      ...styles[`grouped${capitalize(styleProps.variant)}${capitalize(styleProps.color)}`],
+  return [
+    { [`& .${buttonGroupClasses.grouped}`]: styles.grouped },
+    {
+      [`& .${buttonGroupClasses.grouped}`]: styles[`grouped${capitalize(styleProps.orientation)}`],
     },
-    ...styles.root,
-    ...styles[styleProps.variant],
-    ...(styleProps.disableElevation === true && styles.disableElevation),
-    ...(styleProps.fullWidth && styles.fullWidth),
-    ...(styleProps.orientation === 'vertical' && styles.vertical),
-  };
+    { [`& .${buttonGroupClasses.grouped}`]: styles[`grouped${capitalize(styleProps.variant)}`] },
+    {
+      [`& .${buttonGroupClasses.grouped}`]:
+        styles[`grouped${capitalize(styleProps.variant)}${capitalize(styleProps.orientation)}`],
+    },
+    {
+      [`& .${buttonGroupClasses.grouped}`]:
+        styles[`grouped${capitalize(styleProps.variant)}${capitalize(styleProps.color)}`],
+    },
+    styles.root,
+    styles[styleProps.variant],
+    styleProps.disableElevation === true && styles.disableElevation,
+    styleProps.fullWidth && styles.fullWidth,
+    styleProps.orientation === 'vertical' && styles.vertical,
+  ];
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -45,7 +51,7 @@ const useUtilityClasses = (styleProps) => {
       `grouped${capitalize(orientation)}`,
       `grouped${capitalize(variant)}`,
       `grouped${capitalize(variant)}${capitalize(orientation)}`,
-      color !== 'default' && `grouped${capitalize(variant)}${capitalize(color)}`,
+      `grouped${capitalize(variant)}${capitalize(color)}`,
       disabled && 'disabled',
     ],
   };
@@ -256,7 +262,7 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['inherit', 'primary', 'secondary']),
+    PropTypes.oneOf(['inherit', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -299,7 +305,7 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
    * `small` is equivalent to the dense button styling.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['large', 'medium', 'small']),
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import {
-  createMount,
   describeConformanceV5,
   act,
   createClientRender,
@@ -17,13 +16,11 @@ import CheckBox from '../internal/svg-icons/CheckBox';
 
 describe('<Chip />', () => {
   const render = createClientRender();
-  const mount = createMount();
 
   describeConformanceV5(<Chip />, () => ({
     classes,
     inheritComponent: 'div',
     render,
-    mount,
     muiName: 'MuiChip',
     testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
     testVariantProps: { variant: 'outlined' },
@@ -407,7 +404,10 @@ describe('<Chip />', () => {
         const handleKeyDown = spy();
         const { container } = render(<Chip label={<input />} onKeyDown={handleKeyDown} />);
         const input = container.querySelector('input');
-        input.focus();
+
+        act(() => {
+          input.focus();
+        });
         fireEvent.keyDown(input, { key: 'Backspace' });
 
         expect(handleKeyDown.callCount).to.equal(1);
@@ -556,7 +556,9 @@ describe('<Chip />', () => {
 
       expect(chip).not.to.have.class(classes.focusVisible);
 
-      chip.focus();
+      act(() => {
+        chip.focus();
+      });
 
       if (programmaticFocusTriggersFocusVisible()) {
         expect(chip).to.have.class(classes.focusVisible);

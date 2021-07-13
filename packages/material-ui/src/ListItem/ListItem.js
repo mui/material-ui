@@ -18,16 +18,16 @@ import ListItemSecondaryAction from '../ListItemSecondaryAction';
 export const overridesResolver = (props, styles) => {
   const { styleProps } = props;
 
-  return {
-    ...styles.root,
-    ...(styleProps.dense && styles.dense),
-    ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
-    ...(styleProps.divider && styles.divider),
-    ...(!styleProps.disableGutters && styles.gutters),
-    ...(!styleProps.disablePadding && styles.padding),
-    ...(styleProps.button && styles.button),
-    ...(styleProps.hasSecondaryAction && styles.secondaryAction),
-  };
+  return [
+    styles.root,
+    styleProps.dense && styles.dense,
+    styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart,
+    styleProps.divider && styles.divider,
+    !styleProps.disableGutters && styles.gutters,
+    !styleProps.disablePadding && styles.padding,
+    styleProps.button && styles.button,
+    styleProps.hasSecondaryAction && styles.secondaryAction,
+  ];
 };
 
 const useUtilityClasses = (styleProps) => {
@@ -329,14 +329,14 @@ ListItem.propTypes /* remove-proptypes */ = {
    * If `true`, the list item is focused during the first mount.
    * Focus will also be triggered if the value changes from false to true.
    * @default false
-   * @deprecated checkout `ListItemButton` instead
+   * @deprecated checkout [ListItemButton](/api/list-item-button/) instead
    */
   autoFocus: PropTypes.bool,
   /**
    * If `true`, the list item is a button (using `ButtonBase`). Props intended
    * for `ButtonBase` can then be applied to `ListItem`.
    * @default false
-   * @deprecated checkout `ListItemButton` instead
+   * @deprecated checkout [ListItemButton](/api/list-item-button/) instead
    */
   button: PropTypes.bool,
   /**
@@ -414,7 +414,7 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the component is disabled.
    * @default false
-   * @deprecated checkout `ListItemButton` instead
+   * @deprecated checkout [ListItemButton](/api/list-item-button/) instead
    */
   disabled: PropTypes.bool,
   /**
@@ -443,7 +443,7 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * Use to apply selected styling.
    * @default false
-   * @deprecated checkout `ListItemButton` instead
+   * @deprecated checkout [ListItemButton](/api/list-item-button/) instead
    */
   selected: PropTypes.bool,
   /**

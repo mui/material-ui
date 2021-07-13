@@ -11,13 +11,12 @@ import {
 import ClockPicker, { clockPickerClasses as classes } from '@material-ui/lab/ClockPicker';
 import {
   adapterToUse,
-  createPickerMount,
+  wrapPickerMount,
   createPickerRender,
   getByMuiTest,
 } from '../internal/pickers/test-utils';
 
 describe('<ClockPicker />', () => {
-  const mount = createPickerMount();
   const render = createPickerRender();
 
   describeConformanceV5(
@@ -25,7 +24,7 @@ describe('<ClockPicker />', () => {
     () => ({
       classes,
       inheritComponent: 'div',
-      mount,
+      wrapMount: wrapPickerMount,
       render,
       refInstanceof: window.HTMLDivElement,
       muiName: 'MuiClockPicker',
@@ -339,6 +338,42 @@ describe('<ClockPicker />', () => {
       fireTouchChangedEvent(getByMuiTest('clock'), 'touchmove', clockTouchEvent['--:20']);
 
       expect(handleChange.callCount).to.equal(0);
+    });
+  });
+
+  describe('default value', () => {
+    it('if value is provided, keeps minutes and seconds when changing hour', () => {
+      const handleChange = spy();
+      render(
+        <ClockPicker
+          autoFocus
+          date={adapterToUse.date('2019-01-01T04:19:47.000')}
+          onChange={handleChange}
+        />,
+      );
+      const listbox = screen.getByRole('listbox');
+
+      fireEvent.keyDown(listbox, { key: 'ArrowUp' });
+
+      expect(handleChange.callCount).to.equal(1);
+      const [newDate] = handleChange.firstCall.args;
+      expect(adapterToUse.getHours(newDate)).to.equal(5);
+      expect(adapterToUse.getMinutes(newDate)).to.equal(19);
+      expect(adapterToUse.getSeconds(newDate)).to.equal(47);
+    });
+
+    it('if value is not provided, uses zero as default for minutes and seconds when selecting hour', () => {
+      const handleChange = spy();
+      render(<ClockPicker autoFocus date={null} onChange={handleChange} />);
+      const listbox = screen.getByRole('listbox');
+
+      fireEvent.keyDown(listbox, { key: 'ArrowUp' });
+
+      expect(handleChange.callCount).to.equal(1);
+      const [newDate] = handleChange.firstCall.args;
+      expect(adapterToUse.getHours(newDate)).to.equal(1);
+      expect(adapterToUse.getMinutes(newDate)).to.equal(0);
+      expect(adapterToUse.getSeconds(newDate)).to.equal(0);
     });
   });
 });

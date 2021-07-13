@@ -1,14 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import {
-  createMount,
-  describeConformanceV5,
-  act,
-  createClientRender,
-  fireEvent,
-  screen,
-} from 'test/utils';
+import { describeConformanceV5, act, createClientRender, fireEvent, screen } from 'test/utils';
 import { spy } from 'sinon';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -35,7 +28,6 @@ function checkHighlightIs(listbox, expected) {
 
 describe('<Autocomplete />', () => {
   const render = createClientRender();
-  const mount = createMount();
 
   describeConformanceV5(
     <Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} />,
@@ -43,7 +35,6 @@ describe('<Autocomplete />', () => {
       classes,
       inheritComponent: 'div',
       render,
-      mount,
       muiName: 'MuiAutocomplete',
       testVariantProps: { variant: 'foo' },
       testDeepOverrides: { slotName: 'endAdornment', slotClassName: classes.endAdornment },
@@ -1287,6 +1278,8 @@ describe('<Autocomplete />', () => {
         'None of the options match with `"not a good value"`',
         // strict mode renders twice
         React.version.startsWith('16') && 'None of the options match with `"not a good value"`',
+        // React 18 Strict Effects run mount effects twice which lead to a cascading update
+        React.version.startsWith('18') && 'None of the options match with `"not a good value"`',
       ]);
     });
 
@@ -1314,6 +1307,8 @@ describe('<Autocomplete />', () => {
         'returns duplicated headers',
         // strict mode renders twice
         React.version.startsWith('16') && 'returns duplicated headers',
+        // React 18 Strict Effects run mount effects twice which lead to a cascading update
+        React.version.startsWith('18') && 'returns duplicated headers',
       ]);
       const options = screen.getAllByRole('option').map((el) => el.textContent);
       expect(options).to.have.length(7);
@@ -2053,6 +2048,13 @@ describe('<Autocomplete />', () => {
           open
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
+
+        {
+          // TODO: React18 compat
+          // on*Change should only be called if the highlighted option changes.
+          // Investigate why this is called in the first place considering this looks like derived state.
+          legacyRoot: true,
+        },
       );
       expect(handleHighlightChange.callCount).to.equal(1);
       expect(handleHighlightChange.args[0][0]).to.equal(undefined);
@@ -2070,6 +2072,12 @@ describe('<Autocomplete />', () => {
           open
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
+        {
+          // TODO: React18 compat
+          // on*Change should only be called if the highlighted option changes.
+          // Investigate why this is called in the first place considering this looks like derived state.
+          legacyRoot: true,
+        },
       );
       const textbox = screen.getByRole('textbox');
 
@@ -2096,6 +2104,12 @@ describe('<Autocomplete />', () => {
           open
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
+        {
+          // TODO: React18 compat
+          // on*Change should only be called if the highlighted option changes.
+          // Investigate why this is called in the first place considering this looks like derived state.
+          legacyRoot: true,
+        },
       );
       const firstOption = getAllByRole('option')[0];
       fireEvent.mouseOver(firstOption);

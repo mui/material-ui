@@ -5,7 +5,7 @@
 ## Navigation components
 
 There are two main components available to perform navigations.
-The most common one is the [`Link`](/components/link/) as its name might suggest.
+The most common one is the [`Link`](/components/links/) as its name might suggest.
 It renders a native `<a>` element and applies the `href` as an attribute.
 
 {{"demo": "pages/guides/routing/LinkDemo.js"}}

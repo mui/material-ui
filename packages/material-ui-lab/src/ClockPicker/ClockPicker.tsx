@@ -215,9 +215,14 @@ function ClockPicker<TDate>(inProps: ClockPickerProps<TDate>) {
 
   const now = useNow<TDate>();
   const utils = useUtils<TDate>();
-  const dateOrNow = date || now;
+  const midnight = utils.setSeconds(utils.setMinutes(utils.setHours(now, 0), 0), 0);
+  const dateOrMidnight = date || midnight;
 
-  const { meridiemMode, handleMeridiemChange } = useMeridiemMode<TDate>(dateOrNow, ampm, onChange);
+  const { meridiemMode, handleMeridiemChange } = useMeridiemMode<TDate>(
+    dateOrMidnight,
+    ampm,
+    onChange,
+  );
 
   const isTimeDisabled = React.useCallback(
     (rawValue: number, viewType: ClockView) => {
@@ -284,12 +289,12 @@ function ClockPicker<TDate>(inProps: ClockPickerProps<TDate>) {
       case 'hours': {
         const handleHoursChange = (value: number, isFinish?: PickerSelectionState) => {
           const valueWithMeridiem = convertValueToMeridiem(value, meridiemMode, ampm);
-          onChange(utils.setHours(dateOrNow, valueWithMeridiem), isFinish);
+          onChange(utils.setHours(dateOrMidnight, valueWithMeridiem), isFinish);
         };
 
         return {
           onChange: handleHoursChange,
-          value: utils.getHours(dateOrNow),
+          value: utils.getHours(dateOrMidnight),
           children: getHourNumbers({
             date,
             utils,
@@ -303,9 +308,9 @@ function ClockPicker<TDate>(inProps: ClockPickerProps<TDate>) {
       }
 
       case 'minutes': {
-        const minutesValue = utils.getMinutes(dateOrNow);
+        const minutesValue = utils.getMinutes(dateOrMidnight);
         const handleMinutesChange = (value: number, isFinish?: PickerSelectionState) => {
-          onChange(utils.setMinutes(dateOrNow, value), isFinish);
+          onChange(utils.setMinutes(dateOrMidnight, value), isFinish);
         };
 
         return {
@@ -323,9 +328,9 @@ function ClockPicker<TDate>(inProps: ClockPickerProps<TDate>) {
       }
 
       case 'seconds': {
-        const secondsValue = utils.getSeconds(dateOrNow);
+        const secondsValue = utils.getSeconds(dateOrMidnight);
         const handleSecondsChange = (value: number, isFinish?: PickerSelectionState) => {
-          onChange(utils.setSeconds(dateOrNow, value), isFinish);
+          onChange(utils.setSeconds(dateOrMidnight, value), isFinish);
         };
 
         return {
@@ -355,13 +360,12 @@ function ClockPicker<TDate>(inProps: ClockPickerProps<TDate>) {
     getSecondsClockNumberText,
     meridiemMode,
     onChange,
-    dateOrNow,
+    dateOrMidnight,
     isTimeDisabled,
     selectedId,
   ]);
 
-  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
-  const styleProps = { ...props };
+  const styleProps = props;
   const classes = useUtilityClasses(styleProps);
 
   return (

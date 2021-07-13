@@ -13,7 +13,7 @@ We'll do our best to keep things easy to follow, and as sequential as possible, 
 ## Why you should migrate
 
 This documentation page covers the _how_ of migrating from v4 to v5.
-The _why_ is covered in the [release blog post on Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
+The _why_ will be covered in an upcoming blog post on Medium.
 
 ## Migration Steps
 - [Update React & TypeScript](#update-react-&-typescript-version)
@@ -357,6 +357,51 @@ The following changes are supported by the adapter:
   import { createTheme } from '@material-ui/core/styles';
   -const theme = createTheme({palette: { type: 'dark' }}),
   +const theme = createTheme({palette: { mode: 'dark' }}),
+  ```
+
+- The default `theme.palette.info` colors was changed to pass AA standard contrast ratio in both light & dark mode.
+
+  ```diff
+  info = {
+  - main: cyan[500],
+  + main: lightBlue[700], // lightBlue[400] in "dark" mode
+
+  - light: cyan[300],
+  + light: lightBlue[500], // lightBlue[300] in "dark" mode
+
+  - dark: cyan[700],
+  + dark: lightBlue[900], // lightBlue[700] in "dark" mode
+  }
+  ```
+
+- The default `theme.palette.success` colors was changed to pass AA standard contrast ratio in both light & dark mode.
+
+  ```diff
+  success = {
+  - main: green[500],
+  + main: green[800], // green[400] in "dark" mode
+
+  - light: green[300],
+  + light: green[500], // green[300] in "dark" mode
+
+  - dark: green[700],
+  + dark: green[900], // green[700] in "dark" mode
+  }
+  ```
+
+- The default `theme.palette.warning` colors was changed to pass AA standard contrast ratio in both light & dark mode.
+
+  ```diff
+  warning = {
+  - main: orange[500],
+  + main: "#ED6C02", // orange[400] in "dark" mode
+
+  - light: orange[300],
+  + light: orange[500], // orange[300] in "dark" mode
+
+  - dark: orange[700],
+  + dark: orange[900], // orange[700] in "dark" mode
+  }
   ```
 
 - The `theme.palette.text.hint` key was unused in Material-UI components, and has been removed.
@@ -854,6 +899,21 @@ As the core components use emotion as their style engine, the props used by emot
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
   ```
 
+### BottomNavigationAction
+
+- Remove the `span` element that wraps the children. Remove the `wrapper` classKey too. More details about [this change](https://github.com/mui-org/material-ui/pull/26923).
+
+  ```diff
+  <button class="MuiBottomNavigationAction-root">
+  - <span class="MuiBottomNavigationAction-wrapper">
+      {icon}
+      <span class="MuiBottomNavigationAction-label">
+        {label}
+      </span>
+  - </span>
+  </button>
+  ```
+
 ### Box
 
 - The `borderRadius` system prop value transformation has been changed. If it receives a number, it multiplies this value with the `theme.shape.borderRadius` value. Use a string to provide an explicit `px` value.
@@ -1205,6 +1265,16 @@ As the core components use emotion as their style engine, the props used by emot
   +<Fab variant="circular">
   ```
 
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/27112).
+
+  ```diff
+  <button class="MuiFab-root">
+  - <span class="MuiFab-label">
+      {children}
+  - </span>
+  </button>
+  ```
+
 ### FormControl
 
 - Change the default variant from `standard` to `outlined`. Standard has been removed from the Material Design guidelines.
@@ -1292,7 +1362,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 ### Hidden
 
-- This component was removed because its functionality can be created with the [`sx`](/system/basics/#the-sx-prop) prop or the [`useMediaQuery`](/components/use-media-query) hook.
+- This component is deprecated because its functionality can be created with the [`sx`](/system/basics/#the-sx-prop) prop or the [`useMediaQuery`](/components/use-media-query) hook.
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe) by applying fake `Hidden` component to prevent application crash, further fixes are required.
 
@@ -1823,7 +1893,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 ### Switch
 
-- Remove the second argument from `onChange`. You can pull out the checked state by accessing `event.target.checked`.
+- Deprecate the second argument from `onChange`. You can pull out the checked state by accessing `event.target.checked`.
 
   ```diff
   function MySwitch() {
@@ -1937,8 +2007,20 @@ As the core components use emotion as their style engine, the props used by emot
   +<Tabs scrollButtons={false} />
   ```
 
+### Tab
+
 - Tab `minWidth` changed from `72px` => `90px` (without media-query) according to [material-design spec](https://material.io/components/tabs#specs)
 - Tab `maxWidth` changed from `264px` => `360px` according to [material-design spec](https://material.io/components/tabs#specs)
+- `span` element that wraps children has been removed. `wrapper` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/26926).
+
+  ```diff
+  <button class="MuiTab-root">
+  - <span class="MuiTab-wrapper">
+      {icon}
+      {label}
+  - </span>
+  </button>
+  ```
 
 ### TextField
 
@@ -2048,6 +2130,16 @@ As the core components use emotion as their style engine, the props used by emot
   -import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
   +import ToggleButton from '@material-ui/core/ToggleButton';
   +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
+  ```
+
+- `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/27111).
+
+  ```diff
+  <button class="MuiToggleButton-root">
+  - <span class="MuiToggleButton-label">
+      {children}
+  - </span>
+  </button>
   ```
 
 ### Tooltip
