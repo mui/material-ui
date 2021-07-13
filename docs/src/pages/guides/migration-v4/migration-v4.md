@@ -16,6 +16,7 @@ This documentation page covers the _how_ of migrating from v4 to v5.
 The _why_ will be covered in an upcoming blog post on Medium.
 
 ## Migration Steps
+
 - [Update React & TypeScript](#update-react-&-typescript-version)
 - [ThemeProvider Setup](#themeprovider-setup)
 - [Update Material-UI](#update-material-ui-version)
@@ -45,14 +46,18 @@ The _why_ will be covered in an upcoming blog post on Medium.
 - `@types/react`
 - `@types/react-dom`
 
->✅ Please make sure that your application is still **running** without error and **commit** the change before continuing the next step.
+> ✅ Please make sure that your application is still **running** without error and **commit** the change before continuing the next step.
 
 ### **`ThemeProvider` Setup**
 
 Make sure that `MuiThemeProvider` is defined at the root of your application (even if you are using the **default theme**) and **NO** `useStyles` is called before `<MuiThemeProvider>`.
 
 ```js
-import { MuiThemeProvider, createMuiTheme, makeStyles } from '@material-ui/core/styles';
+import {
+  MuiThemeProvider,
+  createMuiTheme,
+  makeStyles,
+} from '@material-ui/core/styles';
 
 const theme = createMuiTheme();
 
@@ -60,19 +65,15 @@ const useStyles = makeStyles((theme) => {
   root: {
     // some css that access to theme
   }
-})
+});
 
 function App() {
   const classes = useStyles(); // ❌ If you have this, consider moving <ThemeProvider> to HOC and wrap the App
-  return (
-    <MuiThemeProvider theme={theme}>
-      {children}
-    </MuiThemeProvider>
-  )
+  return <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>;
 }
 ```
 
->✅ Please make sure that your application is still **running** without error and **commit** the change before continuing the next step.
+> ✅ Please make sure that your application is still **running** without error and **commit** the change before continuing the next step.
 
 ### **Update Material-UI version**
 
@@ -134,9 +135,9 @@ createMuiTheme({
   props: {
     MuiTextField: {
       variant: 'outlined',
-    }
-  }
-})
+    },
+  },
+});
 ```
 
 However, if you want to keep `variant="standard"` to you components, run this codemod or configure theme default props.
@@ -160,9 +161,9 @@ createMuiTheme({
   props: {
     MuiLink: {
       underline: 'always',
-    }
-  }
-})
+    },
+  },
+});
 ```
 
 However, if you want to keep `variant="hover"` to you components, run this codemod or configure theme default props.
@@ -224,8 +225,8 @@ export default function GlobalCssPriority() {
 }
 ```
 
-> **Note:** If you are using emotion to style your app, and have a custom cache, it will override the one provided by Material-UI. In order for the injection order to still be correct, you need to add the `prepend` option to `createCache`. 
-> 
+> **Note:** If you are using emotion to style your app, and have a custom cache, it will override the one provided by Material-UI. In order for the injection order to still be correct, you need to add the `prepend` option to `createCache`.
+>
 > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
 Here is an example:
@@ -701,7 +702,6 @@ declare module '@material-ui/styles' {
 - This HOC was removed. There's an alternative using the [`useMediaQuery` hook](/components/use-media-query/#migrating-from-withwidth).
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe) by applying hard-coded function to prevent the application from crashing.
-
 
 ### System
 
@@ -1404,7 +1404,7 @@ As the core components use emotion as their style engine, the props used by emot
 ### IconButton
 
 - The default size's padding is reduced to `8px` which makes the default IconButton size of `40px`. To get the old default size (`48px`), use `size="large"`. The change was done to better match Google's products when Material Design stopped documenting the icon button pattern.
-  
+
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
@@ -1757,7 +1757,7 @@ As the core components use emotion as their style engine, the props used by emot
   ```
 
 - Rename `circle` to `circular` and `rect` to `rectangular` for consistency:
-  
+
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
@@ -2277,100 +2277,99 @@ We recommend 2 options.
 
 1. Use built-in API from material-ui
 
-  **Customize Material-UI Component**
+   **Customize Material-UI Component**
 
   <!-- Add custom makeStyles migration example -->
 
-  ```diff
-  import Chip from '@material-ui/core/Chip';
-  -import makeStyles from '@material-ui/styles/makeStyles';
-  +import { styled } from '@material-ui/core/styles';
+```diff
+import Chip from '@material-ui/core/Chip';
+-import makeStyles from '@material-ui/styles/makeStyles';
++import { styled } from '@material-ui/core/styles';
 
-  -const useStyles = makeStyles((theme) => ({
-  -  chip: {
-  -    padding: theme.spacing(1, 1.5),
-  -    boxShadow: theme.shadows[1],
-  -  }
-  -}))
-  +const StyledChip = styled(Chip)((theme) => ({
-  +  padding: theme.spacing(1, 1.5),
-  +  boxShadow: theme.shadows[1],
-  +}))
+-const useStyles = makeStyles((theme) => ({
+-  chip: {
+-    padding: theme.spacing(1, 1.5),
+-    boxShadow: theme.shadows[1],
+-  }
+-}))
++const StyledChip = styled(Chip)((theme) => ({
++  padding: theme.spacing(1, 1.5),
++  boxShadow: theme.shadows[1],
++}))
 
-  function App() {
-  - const classes = useStyles();
-    return (
+function App() {
+- const classes = useStyles();
+  return (
+    <div>
+-     <Chip className={classes.chip} label="Chip" />
++     <StyledChip label="Chip" />
+    </div>
+  )
+}
+```
+
+**Apply styles in a page**
+
+```diff
+import Button, { buttonClasses } from '@material-ui/core/Button';
+-import makeStyles from '@material-ui/styles/makeStyles';
++import { styled } from '@material-ui/core/styles';
+
+-const useStyles = makeStyles((theme) => ({
+-  root: {
+-    // root css
+-  },
+-  cta: {
+-    // cta css
+-  },
+-  footer: {
+-    // footer css
+-  },
+-}))
+
+const classes = {
+  root: 'Marketing-root',
+  cta: buttonClasses.root, // buttonClasses is typed safe
+  footer: 'Marketing-footer',
+}
+
+const Root = styled('div')((theme) => ({
+  // root css,
+  [`& .${classes.cta}`]: {
+    // cta css
+  },
+  [`& .${classes.footer}]: {
+    // cta footer
+  }
+}))
+
+function App() {
+- const classes = useStyles();
+  return (
+-   <div>
++   <Root>
       <div>
-  -     <Chip className={classes.chip} label="Chip" />
-  +     <StyledChip label="Chip" />
-      </div>
-    )
-  }
-  ```
-
-  **Apply styles in a page**
-
-  ```diff
-  import Button, { buttonClasses } from '@material-ui/core/Button';
-  -import makeStyles from '@material-ui/styles/makeStyles';
-  +import { styled } from '@material-ui/core/styles';
-
-  -const useStyles = makeStyles((theme) => ({
-  -  root: {
-  -    // root css
-  -  },
-  -  cta: {
-  -    // cta css
-  -  },
-  -  footer: {
-  -    // footer css
-  -  },
-  -}))
-
-  const classes = {
-    root: 'Marketing-root',
-    cta: buttonClasses.root, // buttonClasses is typed safe
-    footer: 'Marketing-footer',
-  }
-
-  const Root = styled('div')((theme) => ({
-    // root css,
-    [`& .${classes.cta}`]: {
-      // cta css
-    },
-    [`& .${classes.footer}]: {
-      // cta footer
-    }
-  }))
-
-  function App() {
-  - const classes = useStyles();
-    return (
-  -   <div>
-  +   <Root>
+        <img />
         <div>
-          <img />
-          <div>
-            <Button className={classes.cta}>Get started</Button>
-          </div>
+          <Button className={classes.cta}>Get started</Button>
         </div>
-        <footer className={classes.footer}>
-          ...
-        </footer>
-  +   </Root>
-  -   </div>
-    )
-  }
-  ```
+      </div>
+      <footer className={classes.footer}>
+        ...
+      </footer>
++   </Root>
+-   </div>
+  )
+}
+```
 
-  > This approach touch only the styling part but increase CSS specificity. 
+> This approach touch only the styling part but increase CSS specificity.
 
 2. Use `makeStyles` api from [tss-react](https://github.com/garronej/tss-react).
 
   <!-- Add material-ui component migration example -->
 
-  > **Note:** this library is not maintained by Material-UI. If you have any issue regarding to it, please open an issue in [tss-react repo](https://github.com/garronej/tss-react/issues/new)
-
+> **Note:** this library is not maintained by Material-UI. If you have any issue regarding to it, please open an issue in [tss-react repo](https://github.com/garronej/tss-react/issues/new)
 
 ## **Troubleshooting**
 
@@ -2378,28 +2377,28 @@ We recommend 2 options.
 
 If your project use Storybook v6.x, you will need to update `.storybook/main.js` webpack config to use the most recent version of emotion.
 
-  ```js
-  // .storybook/main.js
+```js
+// .storybook/main.js
 
-  const path = require("path")
-  const toPath = (filePath) => path.join(process.cwd(), filePath)
+const path = require('path');
+const toPath = (filePath) => path.join(process.cwd(), filePath);
 
-  module.exports = {
-    webpackFinal: async (config) => {
-      return {
-        ...config,
-        resolve: {
-          ...config.resolve,
-          alias: {
-            ...config.resolve.alias,
-            "@emotion/core": toPath("node_modules/@emotion/react"),
-            "emotion-theming": toPath("node_modules/@emotion/react"),
-          },
+module.exports = {
+  webpackFinal: async (config) => {
+    return {
+      ...config,
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...config.resolve.alias,
+          '@emotion/core': toPath('node_modules/@emotion/react'),
+          'emotion-theming': toPath('node_modules/@emotion/react'),
         },
-      }
-    },
-  }
-  ```
+      },
+    };
+  },
+};
+```
 
 For more details, checkout [this issue](https://github.com/mui-org/material-ui/issues/24282#issuecomment-796755133) on github.
 
@@ -2410,29 +2409,25 @@ This error comes from `Fade`, `Grow`, `Slide`, `Zoom` components due to missing 
 You need to make sure that the children forward ref to DOM.
 
 ```js
-❌ This will cause error. don't use Fragment as a child
+// ❌ This will cause error. don't use Fragment as a child
 <Fade in>
   <>
     <CustomComponent />
   </>
-</Fade>
+</Fade>;
 
-❌ This will cause error because `CustomComponent` does not forward ref to DOM
+// ❌ This will cause error because `CustomComponent` does not forward ref to DOM
 function CustomComponent() {
-  return (
-    <div>
-      ...
-    </div>
-  )
+  return <div>...</div>;
 }
 
 <Fade in>
   <CustomComponent />
-</Fade>
+</Fade>;
 ```
 
 ```js
-✅ Fixed by using `React.forwardRef` and pass to DOM.
+// ✅ Fixed by using `React.forwardRef` and pass to DOM.
 const CustomComponent = React.forwardRef(function CustomComponent(props, ref) {
   return (
     <div ref={ref}>
