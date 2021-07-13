@@ -29,7 +29,7 @@ The _why_ will be covered in an upcoming blog post on Medium.
 - [Troubleshooting](#troubleshooting)
 
 > 💡 Prefer to create small commits on any changes to help the migration goes smoother.
-> Please check [Troubleshooting](#troubleshooting) section, if you encounter any issue or [create an issue](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.md) with this title format `[Migration] Summary of your issue`.
+> If you encounter any issue, check [Troubleshooting](#troubleshooting) section. For other unknown error, [create an issue](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.md) with this title format `[Migration] Summary of your issue`.
 
 ### Update React & TypeScript version
 
@@ -46,9 +46,9 @@ The _why_ will be covered in an upcoming blog post on Medium.
 - `@types/react`
 - `@types/react-dom`
 
-> ✅ Please make sure that your application is still **running** without error and **commit** the change before continuing the next step.
+> 📝 Please make sure that your application is still **running** without error and **commit** the change before continuing the next step.
 
-## **`ThemeProvider` Setup**
+## `ThemeProvider` Setup
 
 Make sure that `MuiThemeProvider` is defined at the root of your application (even if you are using the **default theme**) and **NO** `useStyles` is called before `<MuiThemeProvider>`.
 
@@ -73,9 +73,9 @@ function App() {
 }
 ```
 
-> ✅ Please make sure that your application is still **running** without error and **commit** the change before continuing the next step.
+> 📝 Please make sure that your application is still **running** without error and **commit** the change before continuing the next step.
 
-## **Update Material-UI version**
+## Update Material-UI version
 
 To use the latest version of Material-UI.
 
@@ -95,7 +95,7 @@ npm install @material-ui/icons@next @material-ui/lab@next
 yarn add @material-ui/icons@next @material-ui/lab@next
 ```
 
-> **Note:** if you are using `@material-ui/pickers`, it has moved to `@material-ui/lab`.
+> **Note:** if you are using `@material-ui/pickers`, it has moved to `@material-ui/lab`. The details is in "Handling breaking changes" section.
 
 In this migration process, you will need to install/update `@material-ui/styles` (JSS) for temporary transition to v5.
 
@@ -108,11 +108,11 @@ yarn add @material-ui/styles@next
 
 > ⚠️ After this step, your application is expected to crash because the style library has changed from **JSS (v4)** to **emotion (v5)**.
 
-## **Run Codemod**
+## Run Codemod
 
 We have prepared these codemods to ease your migration experience.
 
-### 🪄preset-safe
+### preset-safe
 
 This codemod contains most of the transformers that are useful for migration. (This codemod is not idempotent, it should be applied only once per folder)
 
@@ -120,7 +120,7 @@ This codemod contains most of the transformers that are useful for migration. (T
 npx @material-ui/codemod@next v5.0.0/preset-safe <folder>
 ```
 
-> If you want to run the transformer one by one, checkout [preset-safe codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#-preset-safe) for more details.
+> If you want to run the transformers one by one, checkout [preset-safe codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#-preset-safe) for more details.
 
 ### variant-prop
 
@@ -337,6 +337,8 @@ The following changes are supported by the adapter:
 - `theme.spacing` now returns single values with px units by default.
   This change improves the integration with styled-components & emotion.
 
+  > ✅ This is handled in [🪄preset-safe codemod](#preset-safe) by removing any 'px' suffix from `theme.spacing` calls in a template string.
+
   Before:
 
   ```js
@@ -348,8 +350,6 @@ The following changes are supported by the adapter:
   ```js
   theme.spacing(2) => '16px'
   ```
-
-  > ✅ This is handled in [🪄preset-safe codemod](#preset-safe) by removing any 'px' suffix from `theme.spacing` calls in a template string.
 
 - The `theme.palette.type` key was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
 
@@ -488,7 +488,7 @@ const theme = createTheme({
   +import { createStyles } from '@material-ui/styles';
   ```
 
-### `@material-ui/styles`
+### @material-ui/styles
 
 #### ThemeProvider
 
@@ -516,7 +516,7 @@ declare module '@material-ui/styles' {
 }
 ```
 
-### `@material-ui/core/styles`
+### @material-ui/core/styles
 
 #### createGenerateClassName
 
@@ -702,6 +702,10 @@ declare module '@material-ui/styles' {
 - This HOC was removed. There's an alternative using the [`useMediaQuery` hook](/components/use-media-query/#migrating-from-withwidth).
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe) by applying hard-coded function to prevent the application from crashing.
+
+### @material-ui/pickers
+
+We have a [dedicated page](/guides/pickers-migration/) for migrating `@material-ui/pickers` to v5
 
 ### System
 
@@ -2275,7 +2279,7 @@ As the core components use emotion as their style engine, the props used by emot
   +import { DistributiveOmit } from '@material-ui/types';
   ```
 
-## **Migrate `makeStyles` to emotion**
+## Migrate `makeStyles` to emotion
 
 This is the last step in the migration process to remove `@material-ui/styles` package from your codebase.
 
@@ -2390,7 +2394,7 @@ npm uninstall @material-ui/styles
 yarn remove @material-ui/styles
 ```
 
-## **Troubleshooting**
+## Troubleshooting
 
 ### Storybook emotion with v5
 
