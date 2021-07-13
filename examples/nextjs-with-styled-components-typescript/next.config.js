@@ -2,7 +2,7 @@ const withTM = require('next-transpile-modules')(['@material-ui/core', '@materia
 
 module.exports = withTM({
   reactStrictMode: true,
-  webpack: (config, options) => {
+  webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
       '@material-ui/styled-engine': "@material-ui/styled-engine-sc",

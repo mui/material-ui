@@ -11,8 +11,6 @@
   "dependencies": {
     "@material-ui/core": "next",
     "@material-ui/styled-engine-sc": "next",
-    "@types/styled-components": "latest",
-    "babel-plugin-module-resolver": "latest",
     "next": "latest",
     "next-transpile-modules": "latest",
     "react": "latest",
@@ -21,6 +19,8 @@
   },
   "devDependencies": {
     "@types/react": "latest",
+    "@types/styled-components": "latest",
+    "babel-plugin-styled-components": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",
     "typescript": "latest"
