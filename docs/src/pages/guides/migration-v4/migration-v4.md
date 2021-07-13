@@ -873,22 +873,25 @@ As the core components use emotion as their style engine, the props used by emot
   -<Badge overlap="rectangle">
   +<Badge overlap="circular">
   +<Badge overlap="rectangular">
-  <Badge classes={{
-  - anchorOriginTopRightRectangle: 'className',
-  - anchorOriginBottomRightRectangle: 'className',
-  - anchorOriginTopLeftRectangle: 'className',
-  - anchorOriginBottomLeftRectangle: 'className',
-  - anchorOriginTopRightCircle: 'className',
-  - anchorOriginBottomRightCircle: 'className',
-  - anchorOriginTopLeftCircle: 'className',
-  + anchorOriginTopRightRectangular: 'className',
-  + anchorOriginBottomRightRectangular: 'className',
-  + anchorOriginTopLeftRectangular: 'className',
-  + anchorOriginBottomLeftRectangular: 'className',
-  + anchorOriginTopRightCircular: 'className',
-  + anchorOriginBottomRightCircular: 'className',
-  + anchorOriginTopLeftCircular: 'className',
-  }}>
+  ```
+
+  ```diff
+   <Badge classes={{
+  -  anchorOriginTopRightRectangle: 'className',
+  -  anchorOriginBottomRightRectangle: 'className',
+  -  anchorOriginTopLeftRectangle: 'className',
+  -  anchorOriginBottomLeftRectangle: 'className',
+  -  anchorOriginTopRightCircle: 'className',
+  -  anchorOriginBottomRightCircle: 'className',
+  -  anchorOriginTopLeftCircle: 'className',
+  +  anchorOriginTopRightRectangular: 'className',
+  +  anchorOriginBottomRightRectangular: 'className',
+  +  anchorOriginTopLeftRectangular: 'className',
+  +  anchorOriginBottomLeftRectangular: 'className',
+  +  anchorOriginTopRightCircular: 'className',
+  +  anchorOriginBottomRightCircular: 'className',
+  +  anchorOriginTopLeftCircular: 'className',
+   }}>
   ```
 
 ### BottomNavigation
@@ -905,14 +908,14 @@ As the core components use emotion as their style engine, the props used by emot
 - Remove the `span` element that wraps the children. Remove the `wrapper` classKey too. More details about [this change](https://github.com/mui-org/material-ui/pull/26923).
 
   ```diff
-  <button class="MuiBottomNavigationAction-root">
-  - <span class="MuiBottomNavigationAction-wrapper">
-      {icon}
-      <span class="MuiBottomNavigationAction-label">
-        {label}
-      </span>
-  - </span>
-  </button>
+   <button class="MuiBottomNavigationAction-root">
+  -  <span class="MuiBottomNavigationAction-wrapper">
+       {icon}
+       <span class="MuiBottomNavigationAction-label">
+         {label}
+       </span>
+  -  </span>
+   </button>
   ```
 
 ### Box
