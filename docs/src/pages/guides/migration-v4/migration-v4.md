@@ -1039,7 +1039,7 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  <CircularProgress variant="static" classes={{ static: 'className' }} />
+  -<CircularProgress variant="static" classes={{ static: 'className' }} />
   +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
   ```
 
@@ -1071,13 +1071,13 @@ As the core components use emotion as their style engine, the props used by emot
   const theme = createTheme({
     components: {
       MuiCssBaseline: {
-  -      styleOverrides: {
+  -     styleOverrides: {
   -       '@global': {
-  -          html: {
-  -            WebkitFontSmoothing: 'auto',
-  -          },
+  -         html: {
+  -           WebkitFontSmoothing: 'auto',
+  -         },
   -       },
-  -      },
+  -     },
   +     styleOverrides: `
   +       html {
   +         -webkit-font-smoothing: auto;
