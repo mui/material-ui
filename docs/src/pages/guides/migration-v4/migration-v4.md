@@ -1939,10 +1939,10 @@ As the core components use emotion as their style engine, the props used by emot
 - The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
 
   ```diff
-  <TablePagination
-  - backIconButtonText="Avant"
-  - nextIconButtonText="Après"
-  + getItemAriaLabel={…}
+   <TablePagination
+  -  backIconButtonText="Avant"
+  -  nextIconButtonText="Après"
+  +  getItemAriaLabel={…}
   ```
 
 - Rename `onChangeRowsPerPage` to `onRowsPerPageChange` and `onChangePage` to `onPageChange` due to API consistency.
@@ -1950,29 +1950,29 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  <TablePagination
-  - onChangeRowsPerPage={()=>{}}
-  - onChangePage={()=>{}}
-  + onRowsPerPageChange={()=>{}}
-  + onPageChange={()=>{}}
+   <TablePagination
+  -  onChangeRowsPerPage={()=>{}}
+  -  onChangePage={()=>{}}
+  +  onRowsPerPageChange={()=>{}}
+  +  onPageChange={()=>{}}
   ```
 
 - Separate classes for different table pagination labels. This allows simpler customizations.
 
   ```diff
-  <TablePagination
-  - classes={{ caption: 'foo' }}
-  + classes={{ selectLabel: 'foo', displayedRows: 'foo' }}
-  />
+   <TablePagination
+  -  classes={{ caption: 'foo' }}
+  +  classes={{ selectLabel: 'foo', displayedRows: 'foo' }}
+   />
   ```
 
 - Move the custom class on `input` to `select`. The `input` key is being applied on another element.
 
   ```diff
-  <TablePagination
-  - classes={{ input: 'foo' }}
-  + classes={{ select: 'foo' }}
-  />
+   <TablePagination
+  -  classes={{ input: 'foo' }}
+  +  classes={{ select: 'foo' }}
+   />
   ```
 
 - Rename the `default` value of the `padding` prop to `normal`.
