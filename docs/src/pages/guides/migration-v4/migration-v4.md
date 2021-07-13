@@ -1936,6 +1936,17 @@ As the core components use emotion as their style engine, the props used by emot
 
 ### Table
 
+- Rename the `default` value of the `padding` prop to `normal`.
+
+  ```diff
+  -<Table padding="default" />
+  -<TableCell padding="default" />
+  +<Table padding="normal" />
+  +<TableCell padding="normal" />
+  ```
+
+### TablePagination
+
 - The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop. This increases consistency with the `Pagination` component.
 
   ```diff
@@ -1973,15 +1984,6 @@ As the core components use emotion as their style engine, the props used by emot
   -  classes={{ input: 'foo' }}
   +  classes={{ select: 'foo' }}
    />
-  ```
-
-- Rename the `default` value of the `padding` prop to `normal`.
-
-  ```diff
-  -<Table padding="default" />
-  -<TableCell padding="default" />
-  +<Table padding="normal" />
-  +<TableCell padding="normal" />
   ```
 
 ### Tabs
