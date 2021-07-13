@@ -625,20 +625,20 @@ declare module '@material-ui/styles' {
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  import * as React from 'react';
-  import { withStyles } from '@material-ui/styles';
+   import * as React from 'react';
+   import { withStyles } from '@material-ui/styles';
 
-  const MyComponent = withStyles({
-    root: {
-      backgroundColor: 'red',
-    },
-  })(({ classes }) => <div className={classes.root} />);
+   const MyComponent = withStyles({
+     root: {
+       backgroundColor: 'red',
+     },
+   })(({ classes }) => <div className={classes.root} />);
 
-  function MyOtherComponent(props) {
-    const ref = React.useRef();
-  - return <MyComponent innerRef={ref} />;
-  + return <MyComponent ref={ref} />;
-  }
+   function MyOtherComponent(props) {
+     const ref = React.useRef();
+  -  return <MyComponent innerRef={ref} />;
+  +  return <MyComponent ref={ref} />;
+   }
   ```
 
 - The `withStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, you should use the `ThemeProvider` component from `@material-ui/core/styles` instead.
@@ -718,10 +718,10 @@ declare module '@material-ui/styles' {
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  <Box
-  - gap={2}
-  + gap="2px"
-  >
+   <Box
+  -  gap={2}
+  +  gap="2px"
+   >
   ```
 
 - Replace `css` prop with `sx` to avoid collision with styled-components & emotion `css` prop.
@@ -783,22 +783,22 @@ As the core components use emotion as their style engine, the props used by emot
   It makes customizations easier. You can recover from the change with:
 
   ```diff
-  <Autocomplete
-  - renderOption={(option, { selected }) => (
-  -   <React.Fragment>
-  + renderOption={(props, option, { selected }) => (
-  +   <li {...props}>
-        <Checkbox
-          icon={icon}
-          checkedIcon={checkedIcon}
-          style={{ marginRight: 8 }}
-          checked={selected}
-        />
-        {option.title}
-  -   </React.Fragment>
-  +   </li>
-    )}
-  />
+   <Autocomplete
+  -  renderOption={(option, { selected }) => (
+  -    <React.Fragment>
+  +  renderOption={(props, option, { selected }) => (
+  +    <li {...props}>
+         <Checkbox
+           icon={icon}
+           checkedIcon={checkedIcon}
+           style={{ marginRight: 8 }}
+           checked={selected}
+         />
+         {option.title}
+  -    </React.Fragment>
+  +    </li>
+     )}
+   />
   ```
 
 - Rename `closeIcon` prop to `clearIcon` to avoid confusion.
@@ -828,9 +828,9 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  <Autocomplete
-  - getOptionSelected={(option, value) => option.title === value.title}
-  + isOptionEqualToValue={(option, value) => option.title === value.title}
+   <Autocomplete
+  -  getOptionSelected={(option, value) => option.title === value.title}
+  +  isOptionEqualToValue={(option, value) => option.title === value.title}
   ```
 
 ### Avatar
