@@ -973,6 +973,15 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 [This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
 
+### FormControlLabel
+
+- The `label` prop is now required. If you were using a `FormControlLabel` without a `label`, you can replace it with just the value of the `control` prop.
+
+```diff
+-<FormControlLabel control={<Checkbox />} />
++<Checkbox />
+```
+
 ### Grid
 
 - Rename `justify` prop to `justifyContent` to align with the CSS property name.
