@@ -2269,7 +2269,7 @@ As the core components use emotion as their style engine, the props used by emot
   +import { DistributiveOmit } from '@material-ui/types';
   ```
 
-## **Migrate `makeStyles` to emotion**
+### **Migrate `makeStyles` to emotion**
 
 This is the last step in the migration process to remove `@material-ui/styles` package from your codebase.
 
@@ -2371,9 +2371,9 @@ function App() {
 
 > **Note:** this library is not maintained by Material-UI. If you have any issue regarding to it, please open an issue in [tss-react repo](https://github.com/garronej/tss-react/issues/new)
 
-## **Troubleshooting**
+### **Troubleshooting**
 
-### Storybook emotion with MUI v5
+#### Storybook emotion with MUI v5
 
 If your project use Storybook v6.x, you will need to update `.storybook/main.js` webpack config to use the most recent version of emotion.
 
@@ -2402,7 +2402,7 @@ module.exports = {
 
 For more details, checkout [this issue](https://github.com/mui-org/material-ui/issues/24282#issuecomment-796755133) on github.
 
-### Cannot read property `scrollTop` of null
+#### Cannot read property `scrollTop` of null
 
 This error comes from `Fade`, `Grow`, `Slide`, `Zoom` components due to missing DOM Node.
 
