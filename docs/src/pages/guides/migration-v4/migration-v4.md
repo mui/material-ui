@@ -75,7 +75,7 @@ function App() {
 
 To use the `next` version of Material-UI.
 
-> 💡 If you want to use Material-UI v5 with **styled-components** instead of emotion, checkout [installation guide](/getting-started/installation/#npm)
+> 💡 If you want to use Material-UI v5 with **styled-components** instead of emotion, check out [the installation guide](/getting-started/installation/#npm)
 
 ```sh
 npm install @material-ui/core@next @emotion/react @emotion/styled
@@ -112,23 +112,23 @@ We have prepared these codemods to ease your migration experience.
 
 ### preset-safe
 
-This codemod contains most of the transformers that are useful for migration. (This codemod is not idempotent, it should be applied only once per folder)
+This codemod contains most of the transformers that are useful for migration. (**This codemod is not idempotent, it should be applied only once per folder**)
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/preset-safe <folder>
 ```
 
-> If you want to run the transformers one by one, checkout [preset-safe codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#-preset-safe) for more details.
+> If you want to run the transformers one by one, check out [preset-safe codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#-preset-safe) for more details.
 
 ### variant-prop
 
-Transform `<TextField/>, <FormControl/>, <Select/>` component by apply `variant="standard"` if no variant defined (because default variant has changed from `standard` in **v4** to `outlined` in **v5**).
+Transform `<TextField/>, <FormControl/>, <Select/>` component by applying `variant="standard"` if no variant is defined (because default variant has changed from `standard` in **v4** to `outlined` in **v5**).
 
-> ❗️ You should **NOT** use this codemod if you already define default `variant: "outlined"` in the theme.
+> ❗️ You should **NOT** use this codemod if you have already defined default `variant: "outlined"` in the theme.
 
 ```js
 // if you have theme setup like this, ❌ don't run this codemod.
-// this default props can be removed later because `outlined` is the default value in v5
+// these default props can be removed later because `outlined` is the default value in v5
 createMuiTheme({
   props: {
     MuiTextField: {
@@ -172,7 +172,7 @@ npx @material-ui/codemod@next v5.0.0/link-underline-hover <folder>
 
 > For more details, checkout [link-underline-hover codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#link-underline-hover)
 
-Once you have completed the codemod step, try running your application again. At this point, it should be running without error otherwise checkout [Troubleshooting](#troubleshooting) section. Next step, handling breaking changes in each component.
+Once you have completed the codemod step, try running your application again. At this point, it should be running without error. Otherwise check out the [Troubleshooting](#troubleshooting) section. Next step, handling breaking changes in each component.
 
 ## Handling breaking changes
 
