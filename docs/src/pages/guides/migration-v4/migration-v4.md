@@ -17,8 +17,8 @@ The _why_ will be covered in an upcoming blog post on Medium.
 
 ## Migration Steps
 
-- [Update React & TypeScript](#update-react-&-typescript-version)
-- [ThemeProvider Setup](#themeprovider-setup)
+- [Update React & TypeScript](#update-react-amp-typescript-version)
+- [ThemeProvider setup](#themeprovider-setup)
 - [Update Material-UI](#update-material-ui-version)
 - [Run Codemod](#run-codemod)
   - [🪄 preset-safe](#preset-safe)
@@ -28,10 +28,10 @@ The _why_ will be covered in an upcoming blog post on Medium.
 - [Migrate `makeStyles` to emotion](#migrate-makestyles-to-emotion)
 - [Troubleshooting](#troubleshooting)
 
-> 🛎 always create small commit on any changes to help the migration goes smoother.
+> 💡 Prefer to create small commits on any changes to help the migration goes smoother.
 > Please check [Troubleshooting](#troubleshooting) section, if you encounter any issue or [create an issue](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.md) with this title format `[Migration] Summary of your issue`.
 
-## **Update React & TypeScript version**
+### Update React & TypeScript version
 
 - The minimum supported version of **React** was increased from v16.8.0 to v17.0.0.
 - The minimum supported version of **TypeScript** was increased from v3.2 to v3.5.
@@ -114,7 +114,7 @@ We have prepared these codemods to ease your migration experience.
 
 ### 🪄preset-safe
 
-This codemod contains most of the transformers that are useful for migration. (This codemod is not idempotent, it should be apply only once per folder)
+This codemod contains most of the transformers that are useful for migration. (This codemod is not idempotent, it should be applied only once per folder)
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/preset-safe <folder>
@@ -2379,9 +2379,9 @@ The API is similar to JSS `makeStyles` but work with emotion.
 
   <!-- Add material-ui component migration example -->
 
-> **Note:** this library is not maintained by Material-UI. If you have any issue regarding to it, please open an issue in [tss-react repo](https://github.com/garronej/tss-react/issues/new)
+> **Note:** this library is not maintained by Material-UI. If you have any issue regarding to it, please open an issue in [tss-react repository](https://github.com/garronej/tss-react/issues/new).
 
-> 💡 Once you migrate all of the styling, remove unneccesary `@material-ui/styles` by
+💡 Once you migrate all of the styling, remove unnecessary `@material-ui/styles` by
 
 ```sh
 npm uninstall @material-ui/styles
@@ -2392,7 +2392,7 @@ yarn remove @material-ui/styles
 
 ## **Troubleshooting**
 
-### Storybook emotion with MUI v5
+### Storybook emotion with v5
 
 If your project use Storybook v6.x, you will need to update `.storybook/main.js` webpack config to use the most recent version of emotion.
 
@@ -2419,7 +2419,7 @@ module.exports = {
 };
 ```
 
-For more details, checkout [this issue](https://github.com/mui-org/material-ui/issues/24282#issuecomment-796755133) on github.
+For more details, checkout [this issue](https://github.com/mui-org/material-ui/issues/24282#issuecomment-796755133) on GitHub.
 
 ### Cannot read property `scrollTop` of null
 
@@ -2427,12 +2427,12 @@ This error comes from `Fade`, `Grow`, `Slide`, `Zoom` components due to missing 
 
 You need to make sure that the children forward ref to DOM.
 
-```js
+```jsx
 // ❌ This will cause error. don't use Fragment as a child
 <Fade in>
-  <>
+  <React.Fragment>
     <CustomComponent />
-  </>
+  </React.Fragment>
 </Fade>;
 
 // ❌ This will cause error because `CustomComponent` does not forward ref to DOM
@@ -2460,4 +2460,4 @@ const CustomComponent = React.forwardRef(function CustomComponent(props, ref) {
 </Fade>
 ```
 
-For more details, checkout [this issue](https://github.com/mui-org/material-ui/issues/27154)
+For more details, checkout [this issue](https://github.com/mui-org/material-ui/issues/27154) on GitHub.
