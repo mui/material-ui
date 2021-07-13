@@ -1926,12 +1926,12 @@ As the core components use emotion as their style engine, the props used by emot
 - The component doesn't have `.MuiIconButton-root` and `.MuiIconButton-label` class names anymore, target `.MuiButtonBase-root` instead.
 
   ```diff
-  <span class="MuiSwitch-root">
-  -   <span class="MuiIconButton-root MuiButtonBase-root MuiSwitch-switchBase PrivateSwitchBase-root">
-  -     <span class="MuiIconButton-label">
-  -       <input class="MuiSwitch-input PrivateSwitchBase-input">
-  +   <span class="MuiButtonBase-root MuiSwitch-switchBase PrivateSwitchBase-root">
-  +     <span class="MuiSwitch-input PrivateSwitchBase-input">
+   <span class="MuiSwitch-root">
+  -  <span class="MuiIconButton-root MuiButtonBase-root MuiSwitch-switchBase PrivateSwitchBase-root">
+  -    <span class="MuiIconButton-label">
+  -      <input class="MuiSwitch-input PrivateSwitchBase-input">
+  +  <span class="MuiButtonBase-root MuiSwitch-switchBase PrivateSwitchBase-root">
+  +    <span class="MuiSwitch-input PrivateSwitchBase-input">
   ```
 
 ### Table
