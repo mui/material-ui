@@ -1,10 +1,6 @@
 {
   "presets": ["next/babel"],
   "plugins": [
-    ["styled-components", { "ssr": true }],
-    [
-      "module-resolver",
-      { "alias": { "@material-ui/styled-engine": "@material-ui/styled-engine-sc" } }
-    ]
+    ["styled-components", { "ssr": true }]
   ]
 }
