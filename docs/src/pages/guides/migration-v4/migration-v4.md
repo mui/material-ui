@@ -31,7 +31,7 @@ The _why_ will be covered in an upcoming blog post on Medium.
 > 🛎 always create small commit on any changes to help the migration goes smoother.
 > Please check [Troubleshooting](#troubleshooting) section, if you encounter any issue or [create an issue](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.md) with this title format `[Migration] Summary of your issue`.
 
-### **Update React & TypeScript version**
+## **Update React & TypeScript version**
 
 - The minimum supported version of **React** was increased from v16.8.0 to v17.0.0.
 - The minimum supported version of **TypeScript** was increased from v3.2 to v3.5.
@@ -48,7 +48,7 @@ The _why_ will be covered in an upcoming blog post on Medium.
 
 > ✅ Please make sure that your application is still **running** without error and **commit** the change before continuing the next step.
 
-### **`ThemeProvider` Setup**
+## **`ThemeProvider` Setup**
 
 Make sure that `MuiThemeProvider` is defined at the root of your application (even if you are using the **default theme**) and **NO** `useStyles` is called before `<MuiThemeProvider>`.
 
@@ -75,7 +75,7 @@ function App() {
 
 > ✅ Please make sure that your application is still **running** without error and **commit** the change before continuing the next step.
 
-### **Update Material-UI version**
+## **Update Material-UI version**
 
 To use the latest version of Material-UI.
 
@@ -108,11 +108,11 @@ yarn add @material-ui/styles@next
 
 > ⚠️ After this step, your application is expected to crash because the style library has changed from **JSS (v4)** to **emotion (v5)**.
 
-### **Run Codemod**
+## **Run Codemod**
 
 We have prepared these codemods to ease your migration experience.
 
-#### 🪄preset-safe
+### 🪄preset-safe
 
 This codemod contains most of the transformers that are useful for migration. (This codemod is not idempotent, it should be apply only once per folder)
 
@@ -122,7 +122,7 @@ npx @material-ui/codemod@next v5.0.0/preset-safe <folder>
 
 > If you want to run the transformer one by one, checkout [preset-safe codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#-preset-safe) for more details.
 
-#### variant-prop
+### variant-prop
 
 Transform `<TextField/>, <FormControl/>, <Select/>` component by apply `variant="standard"` if no variant defined (because default variant has changed from `standard` in **v4** to `outlined` in **v5**).
 
@@ -148,7 +148,7 @@ npx @material-ui/codemod@next v5.0.0/variant-prop <folder>
 
 > For more details, checkout [variant-prop codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#variant-prop)
 
-#### link-underline-hover
+### link-underline-hover
 
 Transform `<Link/>` component by apply `underline="hover"` if no `underline` prop defined (because default `underline` has changed from `"hover"` in **v4** to `"always"` in **v5**).
 
@@ -2269,7 +2269,7 @@ As the core components use emotion as their style engine, the props used by emot
   +import { DistributiveOmit } from '@material-ui/types';
   ```
 
-### **Migrate `makeStyles` to emotion**
+## **Migrate `makeStyles` to emotion**
 
 This is the last step in the migration process to remove `@material-ui/styles` package from your codebase.
 
@@ -2277,91 +2277,89 @@ We recommend 2 options.
 
 1. Use built-in API from material-ui
 
-   **Customize Material-UI Component**
+- **Customize Material-UI Component**
 
-  <!-- Add custom makeStyles migration example -->
+  ```diff
+  import Chip from '@material-ui/core/Chip';
+  -import makeStyles from '@material-ui/styles/makeStyles';
+  +import { styled } from '@material-ui/core/styles';
 
-```diff
-import Chip from '@material-ui/core/Chip';
--import makeStyles from '@material-ui/styles/makeStyles';
-+import { styled } from '@material-ui/core/styles';
+  -const useStyles = makeStyles((theme) => ({
+  -  chip: {
+  -    padding: theme.spacing(1, 1.5),
+  -    boxShadow: theme.shadows[1],
+  -  }
+  -}))
+  +const StyledChip = styled(Chip)((theme) => ({
+  +  padding: theme.spacing(1, 1.5),
+  +  boxShadow: theme.shadows[1],
+  +}))
 
--const useStyles = makeStyles((theme) => ({
--  chip: {
--    padding: theme.spacing(1, 1.5),
--    boxShadow: theme.shadows[1],
--  }
--}))
-+const StyledChip = styled(Chip)((theme) => ({
-+  padding: theme.spacing(1, 1.5),
-+  boxShadow: theme.shadows[1],
-+}))
-
-function App() {
-- const classes = useStyles();
-  return (
-    <div>
--     <Chip className={classes.chip} label="Chip" />
-+     <StyledChip label="Chip" />
-    </div>
-  )
-}
-```
-
-**Apply styles in a page**
-
-```diff
-import Button, { buttonClasses } from '@material-ui/core/Button';
--import makeStyles from '@material-ui/styles/makeStyles';
-+import { styled } from '@material-ui/core/styles';
-
--const useStyles = makeStyles((theme) => ({
--  root: {
--    // root css
--  },
--  cta: {
--    // cta css
--  },
--  footer: {
--    // footer css
--  },
--}))
-
-const classes = {
-  root: 'Marketing-root',
-  cta: buttonClasses.root, // buttonClasses is typed safe
-  footer: 'Marketing-footer',
-}
-
-const Root = styled('div')((theme) => ({
-  // root css,
-  [`& .${classes.cta}`]: {
-    // cta css
-  },
-  [`& .${classes.footer}]: {
-    // cta footer
-  }
-}))
-
-function App() {
-- const classes = useStyles();
-  return (
--   <div>
-+   <Root>
+  function App() {
+  - const classes = useStyles();
+    return (
       <div>
-        <img />
-        <div>
-          <Button className={classes.cta}>Get started</Button>
-        </div>
+  -     <Chip className={classes.chip} label="Chip" />
+  +     <StyledChip label="Chip" />
       </div>
-      <footer className={classes.footer}>
-        ...
-      </footer>
-+   </Root>
--   </div>
-  )
-}
-```
+    )
+  }
+  ```
+
+- **Apply styles in a page**
+
+  ```diff
+  import Button, { buttonClasses } from '@material-ui/core/Button';
+  -import makeStyles from '@material-ui/styles/makeStyles';
+  +import { styled } from '@material-ui/core/styles';
+
+  -const useStyles = makeStyles((theme) => ({
+  -  root: {
+  -    // root css
+  -  },
+  -  cta: {
+  -    // cta css
+  -  },
+  -  footer: {
+  -    // footer css
+  -  },
+  -}))
+
+  const classes = {
+    root: 'Marketing-root',
+    cta: buttonClasses.root, // buttonClasses is typed safe
+    footer: 'Marketing-footer',
+  }
+
+  const Root = styled('div')((theme) => ({
+    // root css,
+    [`& .${classes.cta}`]: {
+      // cta css
+    },
+    [`& .${classes.footer}]: {
+      // cta footer
+    }
+  }))
+
+  function App() {
+  - const classes = useStyles();
+    return (
+  -   <div>
+  +   <Root>
+        <div>
+          <img />
+          <div>
+            <Button className={classes.cta}>Get started</Button>
+          </div>
+        </div>
+        <footer className={classes.footer}>
+          ...
+        </footer>
+  +   </Root>
+  -   </div>
+    )
+  }
+  ```
 
 > This approach touch only the styling part but increase CSS specificity.
 
@@ -2371,9 +2369,9 @@ function App() {
 
 > **Note:** this library is not maintained by Material-UI. If you have any issue regarding to it, please open an issue in [tss-react repo](https://github.com/garronej/tss-react/issues/new)
 
-### **Troubleshooting**
+## **Troubleshooting**
 
-#### Storybook emotion with MUI v5
+### Storybook emotion with MUI v5
 
 If your project use Storybook v6.x, you will need to update `.storybook/main.js` webpack config to use the most recent version of emotion.
 
@@ -2402,7 +2400,7 @@ module.exports = {
 
 For more details, checkout [this issue](https://github.com/mui-org/material-ui/issues/24282#issuecomment-796755133) on github.
 
-#### Cannot read property `scrollTop` of null
+### Cannot read property `scrollTop` of null
 
 This error comes from `Fade`, `Grow`, `Slide`, `Zoom` components due to missing DOM Node.
 
