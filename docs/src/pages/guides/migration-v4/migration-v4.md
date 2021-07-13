@@ -50,11 +50,11 @@ The _why_ will be covered in an upcoming blog post on Medium.
 
 ## `ThemeProvider` Setup
 
-Make sure that `MuiThemeProvider` is defined at the root of your application (even if you are using the **default theme**) and **NO** `useStyles` is called before `<MuiThemeProvider>`.
+Make sure that `ThemeProvider` is defined at the root of your application (even if you are using the **default theme**) and **NO** `useStyles` is called before `<ThemeProvider>`.
 
 ```js
 import {
-  MuiThemeProvider,
+  ThemeProvider,
   createMuiTheme,
   makeStyles,
 } from '@material-ui/core/styles';
@@ -69,7 +69,7 @@ const useStyles = makeStyles((theme) => {
 
 function App() {
   const classes = useStyles(); // ❌ If you have this, consider moving <ThemeProvider> to HOC and wrap the App
-  return <MuiThemeProvider theme={theme}>{children}</MuiThemeProvider>;
+  return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 }
 ```
 
