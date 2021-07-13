@@ -31,7 +31,7 @@ The _why_ will be covered in an upcoming blog post on Medium.
 > 💡 Prefer to create small commits on any changes to help the migration goes smoother.
 > If you encounter any issue, check [Troubleshooting](#troubleshooting) section. For other unknown error, [create an issue](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.md) with this title format `[Migration] Summary of your issue`.
 
-### Update React & TypeScript version
+## Update React & TypeScript version
 
 - The minimum supported version of **React** was increased from v16.8.0 to v17.0.0.
 - The minimum supported version of **TypeScript** was increased from v3.2 to v3.5.
