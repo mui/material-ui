@@ -246,7 +246,7 @@ const SwitchThumb = styled(
   borderRadius: '50%',
 }));
 
-const SwitchLayout = React.forwardRef((props, ref) => {
+const SwitchLayout = React.forwardRef(function SwitchLayout(props, ref) {
   const {
     children,
     className,
