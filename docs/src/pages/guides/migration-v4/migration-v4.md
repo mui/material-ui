@@ -973,6 +973,15 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 [This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
 
+### FormControlLabel
+
+- The `label` prop is now required. If you were using a `FormControlLabel` without a `label`, you can replace it with just the value of the `control` prop.
+
+```diff
+-<FormControlLabel control={<Checkbox />} />
++<Checkbox />
+```
+
 ### Grid
 
 - Rename `justify` prop to `justifyContent` to align with the CSS property name.
@@ -1098,6 +1107,24 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   - </span>
   </button>
   ```
+
+### Link
+
+- The default `underline` prop is changed from `"hover"` to `"always"`. To get the same behavior as in v4, apply `defaultProps` in theme
+
+  ```js
+  createTheme({
+    components: {
+      MuiLink: {
+        defaultProps: {
+          underline: 'hover',
+        },
+      },
+    },
+  });
+  ```
+
+  You can use the [`link-underline-hover` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#link-underline-hover) for automatic migration.
 
 ### Menu
 

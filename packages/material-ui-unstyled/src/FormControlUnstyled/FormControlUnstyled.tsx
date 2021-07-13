@@ -86,14 +86,16 @@ const FormControl = React.forwardRef(function FormControl(
     let initialAdornedStart = false;
 
     if (children) {
-      React.Children.forEach(children, child => {
+      React.Children.forEach(children, (child) => {
         if (!isMuiElement(child, ['Input', 'Select'])) {
           return;
         }
 
-        const input = isMuiElement(child, ['Select']) ? (child as React.ReactElement).props.input : child;
+        const input = isMuiElement(child, ['Select'])
+          ? (child as React.ReactElement).props.input
+          : child;
 
-        if ((input?.props?.startAdornment)) {
+        if (input?.props?.startAdornment) {
           initialAdornedStart = true;
         }
       });
@@ -107,7 +109,7 @@ const FormControl = React.forwardRef(function FormControl(
     let initialFilled = false;
 
     if (children) {
-      React.Children.forEach(children, child => {
+      React.Children.forEach(children, (child) => {
         if (!isMuiElement(child, ['Input', 'Select'])) {
           return;
         }

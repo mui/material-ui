@@ -6,6 +6,7 @@ export default function BoxComponent(props) {
   return (
     <Box
       sx={{
+        m: 2,
         border: "1px dashed grey",
         p: [2, 3, 4]
       }}>

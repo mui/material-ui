@@ -4,9 +4,13 @@ const map = { xs: 'sm', sm: 'md', md: 'lg', lg: 'xl', xl: 'xl' };
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
  */
-export default function transformer(file, api) {
+export default function transformer(file, api, options) {
   const j = api.jscodeshift;
   const root = j(file.source);
+
+  const printOptions = options.printOptions || {
+    quote: 'single',
+  };
 
   root
     .find(j.CallExpression, {
@@ -35,5 +39,5 @@ export default function transformer(file, api) {
       node.value = map[node.value];
     });
 
-  return root.toSource({ quote: 'single' });
+  return root.toSource(printOptions);
 }
