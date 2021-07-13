@@ -2275,7 +2275,7 @@ This is the last step in the migration process to remove `@material-ui/styles` p
 
 We recommend 2 options.
 
-1. Use built-in API from material-ui
+### 1. Use `styled` or `sx` API
 
 - **Customize Material-UI Component**
 
@@ -2285,23 +2285,27 @@ We recommend 2 options.
   + import { styled } from '@material-ui/core/styles';
 
   - const useStyles = makeStyles((theme) => ({
+  -   wrapper: {
+  -     display: 'flex',
+  -   },
   -   chip: {
   -     padding: theme.spacing(1, 1.5),
   -     boxShadow: theme.shadows[1],
   -   }
   - }))
-  + const StyledChip = styled(Chip)((theme) => ({
-  +   padding: theme.spacing(1, 1.5),
-  +   boxShadow: theme.shadows[1],
-  + }))
+  + const Root = styled('div')({
+  +   display: 'flex',
+  + })
 
   function App() {
   - const classes = useStyles();
     return (
-      <div>
+  -   <div>
   -     <Chip className={classes.chip} label="Chip" />
-  +     <StyledChip label="Chip" />
-      </div>
+  -   </div>
+  +   <Root>
+  +     <Chip label="Chip" sx={{ py: 1, px: 1.5, boxShadow: 1 }} />
+  +   </Root>
     )
   }
   ```
@@ -2363,11 +2367,22 @@ We recommend 2 options.
 
 > This approach touch only the styling part but increase CSS specificity.
 
-2. Use `makeStyles` api from [tss-react](https://github.com/garronej/tss-react).
+### 2. Use [tss-react](https://github.com/garronej/tss-react)
+
+The API is similar to JSS `makeStyles` but work with emotion.
 
   <!-- Add material-ui component migration example -->
 
 > **Note:** this library is not maintained by Material-UI. If you have any issue regarding to it, please open an issue in [tss-react repo](https://github.com/garronej/tss-react/issues/new)
+
+> 💡 Once you migrate all of the styling, remove unneccesary `@material-ui/styles` by
+
+```sh
+npm uninstall @material-ui/styles
+
+// or with `yarn`
+yarn remove @material-ui/styles
+```
 
 ## **Troubleshooting**
 
