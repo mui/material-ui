@@ -24,6 +24,7 @@ The _why_ will be covered in an upcoming blog post on Medium.
   - [variant-prop (optional)](#variant-prop)
   - [link-underline-hover (optional)](#link-underline-hover)
 - [Handling Breaking Changes](#handling-breaking-changes)
+- [Migrate `makeStyles` to emotion](#migrate-makestyles-to-emotion)
 - [Troubleshooting](#troubleshooting)
 
 > 🛎 always create small commit on any changes to help the migration goes smoother.
@@ -2268,10 +2269,181 @@ As the core components use emotion as their style engine, the props used by emot
   +import { DistributiveOmit } from '@material-ui/types';
   ```
 
-## Migrate JSS to emotion
+## **Migrate `makeStyles` to emotion**
 
-We recommend to do this after you have completed upgrading for the breaking changes above.
+This is the last step in the migration process to remove `@material-ui/styles` package from your codebase.
 
-<!-- Add material-ui component migration example -->
+We recommend 2 options.
 
-<!-- Add custom makeStyles migration example -->
+1. Use built-in API from material-ui
+
+  **Customize Material-UI Component**
+
+  <!-- Add custom makeStyles migration example -->
+
+  ```diff
+  import Chip from '@material-ui/core/Chip';
+  -import makeStyles from '@material-ui/styles/makeStyles';
+  +import { styled } from '@material-ui/core/styles';
+
+  -const useStyles = makeStyles((theme) => ({
+  -  chip: {
+  -    padding: theme.spacing(1, 1.5),
+  -    boxShadow: theme.shadows[1],
+  -  }
+  -}))
+  +const StyledChip = styled(Chip)((theme) => ({
+  +  padding: theme.spacing(1, 1.5),
+  +  boxShadow: theme.shadows[1],
+  +}))
+
+  function App() {
+  - const classes = useStyles();
+    return (
+      <div>
+  -     <Chip className={classes.chip} label="Chip" />
+  +     <StyledChip label="Chip" />
+      </div>
+    )
+  }
+  ```
+
+  **Apply styles in a page**
+
+  ```diff
+  import Button, { buttonClasses } from '@material-ui/core/Button';
+  -import makeStyles from '@material-ui/styles/makeStyles';
+  +import { styled } from '@material-ui/core/styles';
+
+  -const useStyles = makeStyles((theme) => ({
+  -  root: {
+  -    // root css
+  -  },
+  -  cta: {
+  -    // cta css
+  -  },
+  -  footer: {
+  -    // footer css
+  -  },
+  -}))
+
+  const classes = {
+    root: 'Marketing-root',
+    cta: buttonClasses.root, // buttonClasses is typed safe
+    footer: 'Marketing-footer',
+  }
+
+  const Root = styled('div')((theme) => ({
+    // root css,
+    [`& .${classes.cta}`]: {
+      // cta css
+    },
+    [`& .${classes.footer}]: {
+      // cta footer
+    }
+  }))
+
+  function App() {
+  - const classes = useStyles();
+    return (
+  -   <div>
+  +   <Root>
+        <div>
+          <img />
+          <div>
+            <Button className={classes.cta}>Get started</Button>
+          </div>
+        </div>
+        <footer className={classes.footer}>
+          ...
+        </footer>
+  +   </Root>
+  -   </div>
+    )
+  }
+  ```
+
+  > This approach touch only the styling part but increase CSS specificity. 
+
+2. Use `makeStyles` api from [tss-react](https://github.com/garronej/tss-react).
+
+  <!-- Add material-ui component migration example -->
+
+  > **Note:** this library is not maintained by Material-UI. If you have any issue regarding to it, please open an issue in [tss-react repo](https://github.com/garronej/tss-react/issues/new)
+
+
+## **Troubleshooting**
+
+### Storybook emotion with MUI v5
+
+If your project use Storybook v6.x, you will need to update `.storybook/main.js` webpack config to use the most recent version of emotion.
+
+  ```js
+  // .storybook/main.js
+
+  const path = require("path")
+  const toPath = (filePath) => path.join(process.cwd(), filePath)
+
+  module.exports = {
+    webpackFinal: async (config) => {
+      return {
+        ...config,
+        resolve: {
+          ...config.resolve,
+          alias: {
+            ...config.resolve.alias,
+            "@emotion/core": toPath("node_modules/@emotion/react"),
+            "emotion-theming": toPath("node_modules/@emotion/react"),
+          },
+        },
+      }
+    },
+  }
+  ```
+
+For more details, checkout [this issue](https://github.com/mui-org/material-ui/issues/24282#issuecomment-796755133) on github.
+
+### Cannot read property `scrollTop` of null
+
+This error comes from `Fade`, `Grow`, `Slide`, `Zoom` components due to missing DOM Node.
+
+You need to make sure that the children forward ref to DOM.
+
+```js
+❌ This will cause error. don't use Fragment as a child
+<Fade in>
+  <>
+    <CustomComponent />
+  </>
+</Fade>
+
+❌ This will cause error because `CustomComponent` does not forward ref to DOM
+function CustomComponent() {
+  return (
+    <div>
+      ...
+    </div>
+  )
+}
+
+<Fade in>
+  <CustomComponent />
+</Fade>
+```
+
+```js
+✅ Fixed by using `React.forwardRef` and pass to DOM.
+const CustomComponent = React.forwardRef(function CustomComponent(props, ref) {
+  return (
+    <div ref={ref}>
+      ...
+    </div>
+  )
+})
+
+<Fade in>
+  <CustomComponent />
+</Fade>
+```
+
+For more details, checkout [this issue](https://github.com/mui-org/material-ui/issues/27154)
