@@ -133,7 +133,7 @@ You can rely on the following [global class names](/styles/advanced/#with-materi
 
 ## 2. Reusable style overrides
 
-If you find that you need the same overrides in multiple places across your application, you can use the [`styled()`](/customization/styled/) utility to create a reusable component:
+If you find that you need the same overrides in multiple places across your application, you can use the [`styled()`](/system/styled/) utility to create a reusable component:
 
 {{"demo": "pages/customization/how-to-customize/StyledCustomization.js", "defaultCodeOpen": true}}
 

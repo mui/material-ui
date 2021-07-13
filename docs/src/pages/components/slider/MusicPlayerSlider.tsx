@@ -101,7 +101,7 @@ export default function MusicPlayerSlider() {
             />
           </CoverImage>
           <Box sx={{ ml: 1.5, minWidth: 0 }}>
-            <Typography variant="caption" color="textSecondary" fontWeight={500}>
+            <Typography variant="caption" color="text.secondary" fontWeight={500}>
               Jun Pulse
             </Typography>
             <Typography noWrap>

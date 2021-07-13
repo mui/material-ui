@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { styled, alpha, useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Table from '@material-ui/core/Table';

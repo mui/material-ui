@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps, Theme } from '@material-ui/core';
+import { IconButtonProps, InternalStandardProps as StandardProps, Theme } from '@material-ui/core';
 import { ChipProps, ChipTypeMap } from '@material-ui/core/Chip';
 import { PopperProps } from '@material-ui/core/Popper';
 import { SxProps } from '@material-ui/system';
@@ -94,6 +94,13 @@ export interface AutocompleteProps<
    * @default 'Close'
    */
   closeText?: string;
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps?: {
+    clearIndicator?: Partial<IconButtonProps>;
+  };
   /**
    * If `true`, the component is disabled.
    * @default false

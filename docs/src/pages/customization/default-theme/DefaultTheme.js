@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import url from 'url';
 import Box from '@material-ui/core/Box';
 import ExpandIcon from '@material-ui/icons/ExpandMore';
 import CollapseIcon from '@material-ui/icons/ChevronRight';
@@ -238,9 +237,18 @@ function DefaultTheme() {
   const [darkTheme, setDarkTheme] = React.useState(false);
 
   React.useEffect(() => {
-    const URL = url.parse(document.location.href, true);
-    // 'expend-path' is for backwards compatibility of any external links with a prior typo.
-    const expandPath = URL.query['expand-path'] || URL.query['expend-path'];
+    let expandPath;
+    decodeURI(document.location.search.slice(1))
+      .split('&')
+      .forEach((param) => {
+        const [name, value] = param.split('=');
+        if (name === 'expand-path') {
+          expandPath = value;
+        } else if (name === 'expend-path' && !expandPath) {
+          // 'expend-path' is for backwards compatibility of any external links with a prior typo.
+          expandPath = value;
+        }
+      });
 
     if (!expandPath) {
       return;

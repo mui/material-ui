@@ -26,7 +26,6 @@ function fixLineEndings(source, target) {
 
 /**
  * Converts styled or regular component d.ts file to unstyled d.ts
- *
  * @param {string} filename - the file of the styled or regular mui component
  */
 function getUnstyledFilename(filename, definitionFile = false) {

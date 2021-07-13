@@ -175,11 +175,7 @@ describe('createPalette()', () => {
         ({ getContrastText } = createPalette({
           contrastThreshold: 0,
         }));
-      }).toErrorDev([
-        'falls below the WCAG recommended absolute minimum contrast ratio of 3:1', // warning palette
-        'falls below the WCAG recommended absolute minimum contrast ratio of 3:1', // info palette
-        'falls below the WCAG recommended absolute minimum contrast ratio of 3:1', // success palette
-      ]);
+      }).not.toErrorDev();
 
       expect(() => {
         getContrastText('#fefefe');

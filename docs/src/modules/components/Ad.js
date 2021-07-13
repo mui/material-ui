@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import AdCarbon from 'docs/src/modules/components/AdCarbon';
-import AdReadthedocs from 'docs/src/modules/components/AdReadthedocs';
 import AdInHouse from 'docs/src/modules/components/AdInHouse';
 import { AdContext, adShape } from 'docs/src/modules/components/AdManager';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
@@ -99,13 +98,47 @@ const inHouseAds = [
   },
 ];
 
+class AdErrorBoundary extends React.Component {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    eventLabel: PropTypes.string,
+  };
+
+  state = { didError: false };
+
+  static getDerivedStateFromError() {
+    return { didError: true };
+  }
+
+  componentDidCatch() {
+    // send explicit `'null'`
+    const eventLabel = String(this.props.eventLabel);
+    // TODO: Use proper error monitoring service (e.g. Sentry) instead
+    window.ga('send', {
+      hitType: 'event',
+      eventCategory: 'ad',
+      eventAction: 'crash',
+      eventLabel,
+    });
+  }
+
+  render() {
+    const { didError } = this.state;
+    const { children } = this.props;
+
+    if (didError) {
+      return null;
+    }
+    return children;
+  }
+}
+
 function Ad(props) {
   const { classes } = props;
 
   const [adblock, setAdblock] = React.useState(null);
   const [carbonOut, setCarbonOut] = React.useState(null);
 
-  const { current: randomSplit } = React.useRef(Math.random());
   const { current: randomAdblock } = React.useRef(Math.random());
   const { current: randomInHouse } = React.useRef(Math.random());
 
@@ -125,12 +158,9 @@ function Ad(props) {
   } else if (carbonOut) {
     children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
     label = 'in-house-carbon';
-  } else if (randomSplit < 0.9) {
+  } else {
     children = <AdCarbon />;
     label = 'carbon';
-  } else {
-    children = <AdReadthedocs />;
-    label = 'readthedocs';
   }
 
   const ad = React.useContext(AdContext);
@@ -214,7 +244,7 @@ function Ad(props) {
       data-ga-event-action="click"
       data-ga-event-label={eventLabel}
     >
-      {children}
+      <AdErrorBoundary eventLabel={eventLabel}>{children}</AdErrorBoundary>
     </Box>
   );
 }

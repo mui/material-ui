@@ -6,7 +6,7 @@ import {
   demos,
   docs,
   requireDemo,
-} from '!@material-ui/markdown/loader!docs/src/pages/versions/versions.md';
+} from 'docs/src/pages/versions/versions.md?@material-ui/markdown';
 
 export default function Page(props) {
   const { versions } = props;

@@ -2,8 +2,10 @@
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
  */
-export default function transformer(file, api) {
+export default function transformer(file, api, options) {
   const j = api.jscodeshift;
+
+  const printOptions = options.printOptions;
 
   return j(file.source)
     .findJSXElements('CircularProgress')
@@ -12,9 +14,9 @@ export default function transformer(file, api) {
         if (
           node.type === 'JSXAttribute' &&
           node.name.name === 'variant' &&
-          node.value.value === 'static'
+          (node.value.value === 'static' || node.value.expression?.value === 'static')
         ) {
-          node.value.value = 'determinate';
+          node.value = j.literal('determinate');
         }
 
         if (node.type === 'JSXAttribute' && node.name.name === 'classes') {
@@ -26,5 +28,5 @@ export default function transformer(file, api) {
         }
       });
     })
-    .toSource();
+    .toSource(printOptions);
 }

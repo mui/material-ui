@@ -4,7 +4,7 @@ import Stack from '@material-ui/core/Stack';
 
 export default function TextButtons() {
   return (
-    <Stack direction="row" spacing={1}>
+    <Stack direction="row" spacing={2}>
       <Button>Primary</Button>
       <Button disabled>Disabled</Button>
       <Button href="#text-buttons">Link</Button>
