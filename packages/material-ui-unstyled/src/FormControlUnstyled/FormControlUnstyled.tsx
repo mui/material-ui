@@ -8,37 +8,7 @@ import { getFormControlUnstyledUtilityClasses } from './formControlUnstyledClass
 import { FormControlUnstyledProps } from './FormControlUnstyledProps';
 import appendStyleProps from '../utils/appendStyleProps';
 import { FormControlState } from './FormControlState';
-
-// TODO: Move the next 3 functions to a separate module
-
-function hasValue(value: any) {
-  return value != null && !(Array.isArray(value) && value.length === 0);
-}
-
-// Determine if field is empty or filled.
-// Response determines if label is presented above field or as placeholder.
-//
-// @param obj
-// @param SSR
-// @returns {boolean} False when not present or empty string.
-//                    True when any number or string with length.
-function isFilled(obj: any, SSR = false) {
-  return (
-    obj &&
-    ((hasValue(obj.value) && obj.value !== '') ||
-      (SSR && hasValue(obj.defaultValue) && obj.defaultValue !== ''))
-  );
-}
-
-// Determine if an Input is adorned on start.
-// It's corresponding to the left with LTR.
-//
-// @param obj
-// @returns {boolean} False when no adornments.
-//                    True when adorned at the start.
-function isAdornedStart(obj: any) {
-  return obj.startAdornment;
-}
+import isFieldFilled from '../utils/isFieldFilled';
 
 const useUtilityClasses = (styleProps: FormControlUnstyledProps) => {
   const { classes, disabled } = styleProps;
@@ -116,14 +86,14 @@ const FormControl = React.forwardRef(function FormControl(
     let initialAdornedStart = false;
 
     if (children) {
-      React.Children.forEach(children, (child: any) => {
+      React.Children.forEach(children, child => {
         if (!isMuiElement(child, ['Input', 'Select'])) {
           return;
         }
 
-        const input = isMuiElement(child, ['Select']) ? child.props.input : child;
+        const input = isMuiElement(child, ['Select']) ? (child as React.ReactElement).props.input : child;
 
-        if (input && isAdornedStart(input.props)) {
+        if ((input?.props?.startAdornment)) {
           initialAdornedStart = true;
         }
       });
@@ -137,12 +107,12 @@ const FormControl = React.forwardRef(function FormControl(
     let initialFilled = false;
 
     if (children) {
-      React.Children.forEach(children, (child: any) => {
+      React.Children.forEach(children, child => {
         if (!isMuiElement(child, ['Input', 'Select'])) {
           return;
         }
 
-        if (isFilled(child.props, true)) {
+        if (isFieldFilled((child as React.ReactElement).props, true)) {
           initialFilled = true;
         }
       });

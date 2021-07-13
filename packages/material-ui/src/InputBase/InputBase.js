@@ -8,6 +8,7 @@ import {
   isHostComponent,
   FormControlContext,
   useFormControl,
+  isFieldFilled,
 } from '@material-ui/unstyled';
 import formControlState from '../FormControl/formControlState';
 import styled from '../styles/styled';
@@ -18,7 +19,6 @@ import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import TextareaAutosize from '../TextareaAutosize';
 import GlobalStyles from '../GlobalStyles';
-import { isFilled } from './utils';
 import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
 
 export const rootOverridesResolver = (props, styles) => {
@@ -324,7 +324,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   const checkDirty = React.useCallback(
     (obj) => {
-      if (isFilled(obj)) {
+      if (isFieldFilled(obj)) {
         if (onFilled) {
           onFilled();
         }
