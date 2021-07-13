@@ -2281,19 +2281,19 @@ We recommend 2 options.
 
   ```diff
   import Chip from '@material-ui/core/Chip';
-  -import makeStyles from '@material-ui/styles/makeStyles';
-  +import { styled } from '@material-ui/core/styles';
+  - import makeStyles from '@material-ui/styles/makeStyles';
+  + import { styled } from '@material-ui/core/styles';
 
-  -const useStyles = makeStyles((theme) => ({
-  -  chip: {
-  -    padding: theme.spacing(1, 1.5),
-  -    boxShadow: theme.shadows[1],
-  -  }
-  -}))
-  +const StyledChip = styled(Chip)((theme) => ({
-  +  padding: theme.spacing(1, 1.5),
-  +  boxShadow: theme.shadows[1],
-  +}))
+  - const useStyles = makeStyles((theme) => ({
+  -   chip: {
+  -     padding: theme.spacing(1, 1.5),
+  -     boxShadow: theme.shadows[1],
+  -   }
+  - }))
+  + const StyledChip = styled(Chip)((theme) => ({
+  +   padding: theme.spacing(1, 1.5),
+  +   boxShadow: theme.shadows[1],
+  + }))
 
   function App() {
   - const classes = useStyles();
@@ -2310,36 +2310,36 @@ We recommend 2 options.
 
   ```diff
   import Button, { buttonClasses } from '@material-ui/core/Button';
-  -import makeStyles from '@material-ui/styles/makeStyles';
-  +import { styled } from '@material-ui/core/styles';
+  - import makeStyles from '@material-ui/styles/makeStyles';
+  + import { styled } from '@material-ui/core/styles';
 
-  -const useStyles = makeStyles((theme) => ({
-  -  root: {
-  -    // root css
-  -  },
-  -  cta: {
-  -    // cta css
-  -  },
-  -  footer: {
-  -    // footer css
-  -  },
-  -}))
+  - const useStyles = makeStyles((theme) => ({
+  -   root: {
+  -     // root css
+  -   },
+  -   cta: {
+  -     // cta css
+  -   },
+  -   footer: {
+  -     // footer css
+  -   },
+  - }))
 
-  const classes = {
-    root: 'Marketing-root',
-    cta: buttonClasses.root, // buttonClasses is typed safe
-    footer: 'Marketing-footer',
-  }
+  + const classes = {
+  +   root: 'Marketing-root',
+  +   cta: buttonClasses.root, // buttonClasses is typed safe
+  +   footer: 'Marketing-footer',
+  + }
 
-  const Root = styled('div')((theme) => ({
-    // root css,
-    [`& .${classes.cta}`]: {
-      // cta css
-    },
-    [`& .${classes.footer}]: {
-      // cta footer
-    }
-  }))
+  + const Root = styled('div')((theme) => ({
+  +   // root css,
+  +   [`& .${classes.cta}`]: {
+  +     // cta css
+  +   },
+  +   [`& .${classes.footer}]: {
+  +     // cta footer
+  +   }
+  + }))
 
   function App() {
   - const classes = useStyles();
