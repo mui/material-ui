@@ -935,9 +935,9 @@ As the core components use emotion as their style engine, the props used by emot
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
-  ```diff
-  -<Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
-  +<Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
+  ```jsx
+  <Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
+  <Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
   ```
 
 - The following properties have been renamed because they are considered deprecated CSS properties by the CSS specification:
