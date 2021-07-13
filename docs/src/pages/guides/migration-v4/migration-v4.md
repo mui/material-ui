@@ -1860,17 +1860,13 @@ As the core components use emotion as their style engine, the props used by emot
 - The root component (Paper) was replaced with a div. Stepper no longer has elevation, nor inherits Paper's props. This change is meant to encourage composition.
 
   ```diff
-  -<Stepper elevation={2}>
-  -  <Step>
-  -    <StepLabel>Hello world</StepLabel>
-  -  </Step>
-  -</Stepper>
   +<Paper square elevation={2}>
+  -  <Stepper elevation={2}>
   +  <Stepper>
-  +    <Step>
-  +      <StepLabel>Hello world</StepLabel>
-  +    </Step>
-  +  </Stepper>
+       <Step>
+         <StepLabel>Hello world</StepLabel>
+       </Step>
+     </Stepper>
   +<Paper>
   ```
 
@@ -1878,15 +1874,11 @@ As the core components use emotion as their style engine, the props used by emot
 
   ```diff
   -<Stepper>
-  -  <Step>
-  -    <StepLabel>Hello world</StepLabel>
-  -  </Step>
-  -</Stepper>
   +<Stepper style={{ padding: 24 }}>
-  +  <Step>
-  +    <StepLabel>Hello world</StepLabel>
-  +  </Step>
-  +</Stepper>
+     <Step>
+       <StepLabel>Hello world</StepLabel>
+     </Step>
+   </Stepper>
   ```
 
 ### SvgIcon
