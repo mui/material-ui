@@ -53,11 +53,7 @@ The _why_ will be covered in an upcoming blog post on Medium.
 Make sure that `ThemeProvider` is defined at the root of your application (even if you are using the **default theme**) and **NO** `useStyles` is called before `<ThemeProvider>`.
 
 ```js
-import {
-  ThemeProvider,
-  createMuiTheme,
-  makeStyles,
-} from '@material-ui/core/styles';
+import { ThemeProvider, createMuiTheme, makeStyles } from '@material-ui/core/styles';
 
 const theme = createMuiTheme();
 
@@ -77,7 +73,9 @@ function App() {
 
 ## Update Material-UI version
 
-To use the latest version of Material-UI.
+To use the `next` version of Material-UI.
+
+> 💡 If you want to use Material-UI v5 with **styled-components** instead of emotion, checkout [installation guide](/getting-started/installation/#npm)
 
 ```sh
 npm install @material-ui/core@next @emotion/react @emotion/styled
@@ -86,7 +84,7 @@ npm install @material-ui/core@next @emotion/react @emotion/styled
 yarn add @material-ui/core@next @emotion/react @emotion/styled
 ```
 
-**Optional** if your project includes `@material-ui/icons` and/or `@material-ui/lab`, use the latest version of them.
+**Optional** if your project includes `@material-ui/icons` and/or `@material-ui/lab`, use the `next` version of them.
 
 ```sh
 npm install @material-ui/icons@next @material-ui/lab@next
