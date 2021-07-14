@@ -61,7 +61,7 @@ npx @material-ui/codemod@next <transform> <path> --jscodeshift="--printOptions='
 
 #### 🚀 `preset-safe`
 
-A combination of all important transformers for migrating v4 to v5. ⚠️ This codemod is not idempotent (`theme-breakpoints`) and should be run only once.
+A combination of all important transformers for migrating v4 to v5. ⚠️ This codemod should be run only once.
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/preset-safe <path|folder>
