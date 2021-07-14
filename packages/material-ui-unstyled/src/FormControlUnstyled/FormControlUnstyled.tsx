@@ -2,22 +2,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_isMuiElement as isMuiElement } from '@material-ui/utils';
-import composeClasses from '../composeClasses';
 import FormControlContext from './FormControlContext';
-import { getFormControlUnstyledUtilityClasses } from './formControlUnstyledClasses';
 import { FormControlUnstyledProps } from './FormControlUnstyledProps';
 import appendStyleProps from '../utils/appendStyleProps';
 import { FormControlState } from './FormControlState';
 import isFieldFilled from '../utils/isFieldFilled';
-
-const useUtilityClasses = (styleProps: FormControlUnstyledProps) => {
-  const { classes, disabled } = styleProps;
-  const slots = {
-    root: ['root', disabled && 'disabled'],
-  };
-
-  return composeClasses(slots, getFormControlUnstyledUtilityClasses, classes);
-};
+import classes from './formControlUnstyledClasses';
 
 /**
  * Provides context such as filled/focused/error/required for form inputs.
@@ -77,8 +67,6 @@ const FormControl = React.forwardRef(function FormControl(
     hiddenLabel,
     required,
   };
-
-  const classes = useUtilityClasses(styleProps);
 
   const [adornedStart, setAdornedStart] = React.useState(() => {
     // We need to iterate through the children and find the Input in order
@@ -190,7 +178,12 @@ const FormControl = React.forwardRef(function FormControl(
       <Root
         ref={ref}
         {...rootProps}
-        className={clsx(classes.root, className, rootProps?.className)}
+        className={clsx(
+          classes.root,
+          className,
+          rootProps?.className,
+          disabled && classes.disabled,
+        )}
       >
         {children}
       </Root>
@@ -208,15 +201,19 @@ FormControl.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
+   * Class name applied to the root element.
    */
   className: PropTypes.string,
   /**
-   * @ignore
+   * The component used for the Root slot.
+   * Either a string to use a HTML element or a component.
+   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
    */
   component: PropTypes.elementType,
   /**
-   * @ignore
+   * The components used for each slot inside the FormControl.
+   * Either a string to use a HTML element or a component.
+   * @default {}
    */
   components: PropTypes.shape({
     Root: PropTypes.elementType,

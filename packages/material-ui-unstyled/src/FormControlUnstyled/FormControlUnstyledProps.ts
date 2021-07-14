@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { FormControlUnstyledClasses } from './formControlUnstyledClasses';
 
 export interface FormControlUnstyledProps {
   /**
@@ -7,11 +6,20 @@ export interface FormControlUnstyledProps {
    */
   children?: React.ReactNode;
   /**
-   * Override or extend the styles applied to the component.
+   * Class name applied to the root element.
    */
-  classes?: Partial<FormControlUnstyledClasses>;
   className?: string;
+  /**
+   * The component used for the Root slot.
+   * Either a string to use a HTML element or a component.
+   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
+   */
   component?: React.ElementType;
+  /**
+   * The components used for each slot inside the FormControl.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
   components?: {
     Root?: React.ElementType;
   };

@@ -15,7 +15,7 @@ export interface FormControlState extends Pick<FormControlUnstyledProps, Context
 }
 
 interface FormControlStateParams<T extends FormControlState> {
-  props: any;
+  props: Partial<T>;
   states: (keyof T)[];
   muiFormControl: T;
 }
