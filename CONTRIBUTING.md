@@ -211,10 +211,9 @@ Please follow the coding style of the project. Material-UI uses prettier and esl
 
 Finally, when you submit a Pull Request, they are run again by our continuous integration tools, but hopefully, your code is already clean!
 
-## How to add a new demo in the documentation?
+## How to add a new demo in the documentation
 
-You need to **create** a new file and **modify** two files.
-For example, let say you want to add new demos for the buttons component, then you have to go through the following steps:
+If, for example, you want to add new demos for the button component, you have to take the following steps:
 
 #### 1. Add a new React component file under the related directory.
 
