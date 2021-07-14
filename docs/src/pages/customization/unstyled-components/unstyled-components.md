@@ -25,9 +25,9 @@ If, however, you:
 - need to customize Material Design with your brand colors,
 - or need to implement a design system based on Material Design,
 
-then you may be better off using the `@material-ui/core` package and [customizing it] (/how-to-customize).
+then you may be better off using the `@material-ui/core` package and [customizing it](/customization/how-to-customize/).
 
-## Components vs hooks
+## Components vs. hooks
 
 The unstyled package has two kinds of building blocks:
 
@@ -93,12 +93,13 @@ Let's take a [SwitchUnstyled](../api/switchUnstyled) as an example. It has three
 
 {{"demo": "pages/customization/unstyled-components/styling-slots.js"}}
 
-The components you pass in the `components` prop receive the `styleProps` prop from the top-level (host) component. By convention it contains all props passed in to the host component, merged with its internal state.
+The components you pass in the `components` prop receive the `styleProps` prop from the top-level component (host).
+By convention, it contains all props passed to the host, merged with its rendering "state".
 
 For example:
 
 ```jsx
-SwitchUnstyled components={{ Thumb: MyCustomThumb }} data-foo="42" />
+<SwitchUnstyled components={{ Thumb: MyCustomThumb }} data-foo="42" />
 ```
 
 In this case, `MyCustomThumb` component will receive the `styleProps` object with the following data:
