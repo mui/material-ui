@@ -172,7 +172,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `avatar-circle-circular`
 
-Updates the `Avatar`'s `variant` value and classes key from 'circle' to 'circular'.
+Updates the `Avatar`'s `variant` value and `classes` key from 'circle' to 'circular'.
 
 ```diff
 -<Avatar variant="circle" />
