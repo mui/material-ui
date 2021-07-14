@@ -26,7 +26,7 @@ const styles = (theme) => ({
   root: {
     flexGrow: 1,
     // Adding top buffer because of the v5 banner
-    marginTop: 30,
+    marginTop: 36,
   },
   back: {
     display: 'block',
