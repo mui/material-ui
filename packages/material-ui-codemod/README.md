@@ -119,7 +119,7 @@ The list includes these transformers
 
 #### `adapter-v4`
 
-Imports and inserts `adaptV4Theme` to `createTheme` (or `createMuiTheme`)
+Imports and inserts `adaptV4Theme` into `createTheme` (or `createMuiTheme`)
 
 ```diff
 +import { adaptV4Theme } from '@material-ui/core/styles';
