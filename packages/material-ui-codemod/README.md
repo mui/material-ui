@@ -827,7 +827,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `theme-provider`
 
-Renames `MuiThemeProvider` to `ThemeProvider`
+Renames `MuiThemeProvider` to `ThemeProvider`.
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/theme-provider <path>
