@@ -41,12 +41,17 @@ async function runTransform(transform, files, flags, codemodFlags) {
     'js,ts,jsx,tsx',
     '--parser',
     'tsx',
+    '--ignore-pattern',
+    '**/node_modules/**',
   ];
   if (flags.dry) {
     args.push('--dry');
   }
   if (flags.print) {
     args.push('--print');
+  }
+  if (flags.jscodeshift) {
+    args.push(flags.jscodeshift);
   }
 
   args.push(...files);
@@ -95,6 +100,11 @@ yargs
           description: 'print transformed files to stdout, useful for development',
           default: false,
           type: 'boolean',
+        })
+        .option('jscodeshift', {
+          description: '(Advanced) Pass options directly to jscodeshift',
+          default: false,
+          type: 'string',
         });
     },
     handler: run,

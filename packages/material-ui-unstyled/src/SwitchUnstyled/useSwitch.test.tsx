@@ -1,23 +1,29 @@
 import { expect } from 'chai';
 import React from 'react';
 import { spy } from 'sinon';
-import { act, createClientRender } from 'test/utils';
+import {
+  act,
+  createClientRender,
+  focusVisible,
+  programmaticFocusTriggersFocusVisible,
+  screen,
+  simulatePointerDevice,
+} from 'test/utils';
 import { useSwitch, UseSwitchProps, UseSwitchResult } from '@material-ui/unstyled/SwitchUnstyled';
-
-const TestComponent = React.forwardRef(
-  ({ useSwitchProps }: { useSwitchProps?: UseSwitchProps }, ref) => {
-    const switchDefinition = useSwitch(useSwitchProps ?? {});
-    React.useImperativeHandle(ref, () => switchDefinition, [switchDefinition]);
-    return null;
-  },
-);
 
 describe('useSwitch', () => {
   const render = createClientRender();
-  const invokeUseSwitch = (props: UseSwitchProps) => {
-    const ref = React.createRef();
-    render(<TestComponent useSwitchProps={props} ref={ref} />);
-    return ref.current as UseSwitchResult;
+  const invokeUseSwitch = (props: UseSwitchProps): UseSwitchResult => {
+    const ref = React.createRef<UseSwitchResult>();
+    function TestComponent() {
+      const switchDefinition = useSwitch(props);
+      React.useImperativeHandle(ref, () => switchDefinition, [switchDefinition]);
+      return null;
+    }
+
+    render(<TestComponent />);
+
+    return ref.current!;
   };
 
   describe('getInputProps', () => {
@@ -49,38 +55,66 @@ describe('useSwitch', () => {
       expect(inputProps!.checked).to.equal(true);
     });
 
-    it('should call the provided event handlers when respective events are fired', () => {
-      const props = {
-        onChange: spy(),
-        onFocus: spy(),
-        onFocusVisible: spy(),
-        onBlur: spy(),
-      };
+    it('should call onChange if a change event is fired', () => {
+      const handleChange = spy();
+      function Switch() {
+        const { getInputProps } = useSwitch({ onChange: handleChange });
 
-      const dummyChangeEvent = {
-        nativeEvent: {
-          defaultPrevented: false,
-        },
-        target: {
-          checked: true,
-        },
-      } as React.ChangeEvent<HTMLInputElement>;
-
-      const dummyFocusEvent = {} as React.FocusEvent;
-      const dummyBlurEvent = {} as React.FocusEvent;
+        return <input {...getInputProps()} />;
+      }
+      render(<Switch />);
 
       act(() => {
-        const { getInputProps } = invokeUseSwitch(props);
-        const inputProps = getInputProps();
-        inputProps.onChange(dummyChangeEvent);
-        inputProps.onFocus(dummyFocusEvent);
-        inputProps.onBlur(dummyBlurEvent);
+        screen.getByRole('checkbox').click();
       });
 
-      expect(props.onChange.calledWith(dummyChangeEvent)).to.equal(true);
-      expect(props.onFocus.calledWith(dummyFocusEvent)).to.equal(true);
-      expect(props.onFocusVisible.calledWith(dummyFocusEvent)).to.equal(true);
-      expect(props.onBlur.calledWith(dummyBlurEvent)).to.equal(true);
+      expect(handleChange.callCount).to.equal(1);
+    });
+
+    it('should call focus event handlers if focus events are fired', () => {
+      const handleBlur = spy();
+      const handleFocus = spy();
+      const handleFocusVisible = spy();
+      function Switch() {
+        const { getInputProps } = useSwitch({
+          onBlur: handleBlur,
+          onFocus: handleFocus,
+          onFocusVisible: handleFocusVisible,
+        });
+
+        return <input {...getInputProps()} />;
+      }
+      render(<Switch />);
+      const checkbox = screen.getByRole('checkbox');
+
+      simulatePointerDevice();
+      act(() => {
+        checkbox.focus();
+      });
+
+      expect(handleBlur.callCount).to.equal(0);
+      expect(handleFocus.callCount).to.equal(1);
+      expect(handleFocusVisible.callCount).to.equal(
+        programmaticFocusTriggersFocusVisible() ? 1 : 0,
+      );
+
+      act(() => {
+        checkbox.blur();
+      });
+
+      expect(handleBlur.callCount).to.equal(1);
+      expect(handleFocus.callCount).to.equal(1);
+      expect(handleFocusVisible.callCount).to.equal(
+        programmaticFocusTriggersFocusVisible() ? 1 : 0,
+      );
+
+      focusVisible(checkbox);
+
+      expect(handleBlur.callCount).to.equal(1);
+      expect(handleFocus.callCount).to.equal(2);
+      expect(handleFocusVisible.callCount).to.equal(
+        programmaticFocusTriggersFocusVisible() ? 2 : 1,
+      );
     });
   });
 });

@@ -4,7 +4,9 @@
 
 The open-source project started back in 2014 to unify React and Material Design. Today, Material-UI has grown to become one of the world's most popular React UI libraries, backed by a vibrant community of more than 2M developers in over 180 countries.
 
-The company is bootstrapped (so far). It was incorporated in mid-2019 and yet growing fast (x2-3 YoY). We doubled the team in 2020 and are on track to do the same in 2021.
+The company is bootstrapped (so far).
+It was incorporated in mid-2019 and yet growing fast (x2-3 YoY).
+We doubled the team in 2020 and are on track to do the same in 2021.
 
 ## Our values
 
@@ -28,13 +30,31 @@ We're currently looking for help in the following areas:
 
 ### Engineering
 
-#### [Software Engineer Intern](/company/software-engineer-intern/)
+#### [Full-stack Engineer](/company/full-stack-engineer/)
 
-We are looking for senior software engineers to help support our open-source components, assist the Material-UI community, and grow our enterprise edition.
+You will initiate the development of a bold new product vertical.
+We are looking for an experienced and ambitious full-stack engineer that is ready to work in an entrepreneurial environment.
+You are a [manager of one](https://signalvnoise.com/posts/1430-hire-managers-of-one), you are curious, enjoy taking risks, and learning.
+
+#### [React Engineer](/company/react-engineer/)
+
+You will support the advanced components team, build new ambitious enterprise features, work on strategic problems, and help grow the adoption of the free open-source tier (freemium/open-core business model).
+
+### Product
+
+#### [Technical Product Manager](/company/product-manager/)
+
+You will define and maintain the product roadmap for the advanced components, identify opportunities, define specs, and work with engineers to execute on the features.
+Experience as an engineer is essential for this role. You might need to work part-time developing too in the beginning.
+
+#### [Developer Advocate](/company/developer-advocate/)
+
+You will educate users on the latest features, craft high-quality examples and demos, engage with the community, write documentation, advocate for creating faster and more appealing UIs, and help to promote/market the advanced components.
 
 ## Future roles
 
-In the future, we will need to fill the following positions. If you don't want to wait for the positions to be opened, you can jump ahead and submit an [open application](https://airtable.com/shr9JdBSiE6noobhc).
+In the future, we will need to fill the following positions.
+If you don't want to wait for the positions to be opened, you can jump ahead and submit an [open application](https://airtable.com/shr9JdBSiE6noobhc).
 
 ### Engineering
 
@@ -42,8 +62,6 @@ In the future, we will need to fill the following positions. If you don't want t
 
 ### Product
 
-- **Technical Product Manager**. You'll be combining customer feedback with the goals of the business to manage our roadmap and determine the next killer features. You'll work with our design, engineering, and marketing teams to see those features through the entire development -> marketing cycle. You'll focus on measuring and driving adoption and conversion across our funnel.
-- **Developer Advocate**. Educate on the latest Material-UI features, craft high-quality examples and demos, engage with the community. Write documentation, and advocate for creating faster and more appealing UIs.
 - **Product Designer**. Design is critical to the success of our mission. We will be looking for skills that complement our lead designer. It could be a graphic designer or a UX expert for instance, depending on our exact needs.
 
 ### Operations

@@ -92,7 +92,6 @@ export function testComponentProp(element, getOptions) {
 
 /**
  * Material-UI components can spread additional props to a documented component.
- *
  * @param {React.ReactElement} element
  * @param {() => ConformanceOptions} getOptions
  */

@@ -4,10 +4,10 @@ import { darken, getContrastRatio, lighten } from '@material-ui/system';
 import common from '../colors/common';
 import grey from '../colors/grey';
 import purple from '../colors/purple';
-import cyan from '../colors/cyan';
 import red from '../colors/red';
 import orange from '../colors/orange';
 import blue from '../colors/blue';
+import lightBlue from '../colors/lightBlue';
 import green from '../colors/green';
 
 export const light = {
@@ -136,32 +136,60 @@ function getDefaultError(mode = 'light') {
   };
 }
 
-export default function createPalette(palette) {
-  const {
-    warning = {
-      light: orange[300],
-      main: orange[500],
-      dark: orange[700],
-    },
-    info = {
-      light: cyan[300],
-      main: cyan[500],
-      dark: cyan[700],
-    },
-    success = {
+function getDefaultInfo(mode = 'light') {
+  if (mode === 'dark') {
+    return {
+      main: lightBlue[400],
+      light: lightBlue[300],
+      dark: lightBlue[700],
+    };
+  }
+  return {
+    main: lightBlue[700],
+    light: lightBlue[500],
+    dark: lightBlue[900],
+  };
+}
+
+function getDefaultSuccess(mode = 'light') {
+  if (mode === 'dark') {
+    return {
+      main: green[400],
       light: green[300],
-      main: green[500],
       dark: green[700],
-    },
-    mode = 'light',
-    contrastThreshold = 3,
-    tonalOffset = 0.2,
-    ...other
-  } = palette;
+    };
+  }
+  return {
+    main: green[800],
+    light: green[500],
+    dark: green[900],
+  };
+}
+
+function getDefaultWarning(mode = 'light') {
+  if (mode === 'dark') {
+    return {
+      main: orange[400],
+      light: orange[300],
+      dark: orange[700],
+    };
+  }
+  return {
+    main: '#ED6C02', // closest to orange[800] that pass 3:1.
+    light: orange[500],
+    dark: orange[900],
+  };
+}
+
+export default function createPalette(palette) {
+  const { mode = 'light', contrastThreshold = 3, tonalOffset = 0.2, ...other } = palette;
 
   const primary = palette.primary || getDefaultPrimary(mode);
   const secondary = palette.secondary || getDefaultSecondary(mode);
   const error = palette.error || getDefaultError(mode);
+  const info = palette.info || getDefaultInfo(mode);
+  const success = palette.success || getDefaultSuccess(mode);
+  const warning = palette.warning || getDefaultWarning(mode);
 
   // Use the same logic as
   // Bootstrap: https://github.com/twbs/bootstrap/blob/1d6e3710dd447de1a200f29e8fa521f8a0908f70/scss/_functions.scss#L59

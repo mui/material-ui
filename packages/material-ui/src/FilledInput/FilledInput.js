@@ -182,10 +182,10 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
   const {
     disableUnderline,
     fullWidth = false,
+    hiddenLabel, // declare here to prevent spreading to DOM
     inputComponent = 'input',
     multiline = false,
     type = 'text',
-    hiddenLabel, // declare here to prevent spreading to DOM
     ...other
   } = props;
 

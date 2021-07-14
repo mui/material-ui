@@ -84,8 +84,8 @@
     "startText": { "type": { "name": "node" }, "default": "'Start'" },
     "ToolbarComponent": { "type": { "name": "elementType" } },
     "toolbarFormat": { "type": { "name": "string" } },
-    "toolbarPlaceholder": { "type": { "name": "node" }, "default": "\"–\"" },
-    "toolbarTitle": { "type": { "name": "node" }, "default": "\"SELECT DATE\"" },
+    "toolbarPlaceholder": { "type": { "name": "node" }, "default": "'–'" },
+    "toolbarTitle": { "type": { "name": "node" }, "default": "'Select date range'" },
     "TransitionComponent": { "type": { "name": "elementType" } }
   },
   "name": "DesktopDateRangePicker",

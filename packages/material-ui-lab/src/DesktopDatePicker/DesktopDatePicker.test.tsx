@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { SinonFakeTimers, spy, useFakeTimers } from 'sinon';
 import TextField from '@material-ui/core/TextField';
 import { TransitionProps } from '@material-ui/core/transitions';
-import { act, fireEvent, screen, userEvent } from 'test/utils';
+import { fireEvent, screen, userEvent } from 'test/utils';
 import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
 import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
 import {
@@ -85,13 +85,9 @@ describe('<DesktopDatePicker />', () => {
         TransitionComponent={FakeTransitionComponent}
         renderInput={(params) => <TextField {...params} />}
       />,
-      // TODO: React18Compat
-      { legacyRoot: true },
     );
 
-    act(() => {
-      userEvent.mousePress(screen.getByLabelText(/Choose date/));
-    });
+    userEvent.mousePress(screen.getByLabelText(/Choose date/));
 
     expect(handleOpen.callCount).to.equal(1);
     expect(screen.queryByRole('dialog')).not.to.equal(null);
@@ -111,9 +107,7 @@ describe('<DesktopDatePicker />', () => {
         />,
       );
 
-      act(() => {
-        userEvent.mousePress(screen.getByLabelText(/Choose date/));
-      });
+      userEvent.mousePress(screen.getByLabelText(/Choose date/));
 
       expect(handleOpen.callCount).to.equal(0);
     });

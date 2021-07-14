@@ -278,6 +278,51 @@ The following changes are supported by the adapter:
   +const theme = createTheme({palette: { mode: 'dark' }}),
   ```
 
+- The default `theme.palette.info` colors was changed to pass AA standard contrast ratio in both light & dark mode.
+
+  ```diff
+  info = {
+  - main: cyan[500],
+  + main: lightBlue[700], // lightBlue[400] in "dark" mode
+
+  - light: cyan[300],
+  + light: lightBlue[500], // lightBlue[300] in "dark" mode
+
+  - dark: cyan[700],
+  + dark: lightBlue[900], // lightBlue[700] in "dark" mode
+  }
+  ```
+
+- The default `theme.palette.success` colors was changed to pass AA standard contrast ratio in both light & dark mode.
+
+  ```diff
+  success = {
+  - main: green[500],
+  + main: green[800], // green[400] in "dark" mode
+
+  - light: green[300],
+  + light: green[500], // green[300] in "dark" mode
+
+  - dark: green[700],
+  + dark: green[900], // green[700] in "dark" mode
+  }
+  ```
+
+- The default `theme.palette.warning` colors was changed to pass AA standard contrast ratio in both light & dark mode.
+
+  ```diff
+  warning = {
+  - main: orange[500],
+  + main: "#ED6C02", // orange[400] in "dark" mode
+
+  - light: orange[300],
+  + light: orange[500], // orange[300] in "dark" mode
+
+  - dark: orange[700],
+  + dark: orange[900], // orange[700] in "dark" mode
+  }
+  ```
+
 - The `theme.palette.text.hint` key was unused in Material-UI components, and has been removed.
   If you depend on it, you can add it back:
 
@@ -928,6 +973,15 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
 [This codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#variant-prop) will automatically update your code.
 
+### FormControlLabel
+
+- The `label` prop is now required. If you were using a `FormControlLabel` without a `label`, you can replace it with just the value of the `control` prop.
+
+```diff
+-<FormControlLabel control={<Checkbox />} />
++<Checkbox />
+```
+
 ### Grid
 
 - Rename `justify` prop to `justifyContent` to align with the CSS property name.
@@ -1053,6 +1107,24 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   - </span>
   </button>
   ```
+
+### Link
+
+- The default `underline` prop is changed from `"hover"` to `"always"`. To get the same behavior as in v4, apply `defaultProps` in theme
+
+  ```js
+  createTheme({
+    components: {
+      MuiLink: {
+        defaultProps: {
+          underline: 'hover',
+        },
+      },
+    },
+  });
+  ```
+
+  You can use the [`link-underline-hover` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#link-underline-hover) for automatic migration.
 
 ### Menu
 

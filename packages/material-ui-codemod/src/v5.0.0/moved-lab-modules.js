@@ -11,15 +11,15 @@ const movedLabModules = [
   'SpeedDialIcon',
   'ToggleButton',
   'ToggleButtonGroup',
-  'useAutocomplete',
 ];
 
 /**
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
  */
-export default function transformer(file, api) {
+export default function transformer(file, api, options) {
   const j = api.jscodeshift;
+  const printOptions = options.printOptions || { quote: 'single' };
 
   return j(file.source)
     .find(j.ImportDeclaration)
@@ -63,5 +63,5 @@ export default function transformer(file, api) {
         }
       }
     })
-    .toSource();
+    .toSource(printOptions);
 }
