@@ -955,7 +955,7 @@ Removes imported `withMobileDialog`, and inserts hardcoded version to prevent ap
 
 ```diff
 - import withMobileDialog from '@material-ui/core/withMobileDialog';
-+ // FIXME checkout https://material-ui.com/components/use-media-query/#using-material-uis-breakpoint-helpers
++ // FIXME checkout https://next.material-ui.com/guides/migration-v4/#dialog
 + const withMobileDialog = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="lg" fullScreen={false} />;
 ```
 
