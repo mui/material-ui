@@ -967,7 +967,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `with-width`
 
-Removes and inserts hardcoded `withWidth` to prevent application crash.
+Removes `withWidth` import, and inserts hardcoded version to prevent application crash.
 
 ```diff
 - import withWidth from '@material-ui/core/withWidth';
