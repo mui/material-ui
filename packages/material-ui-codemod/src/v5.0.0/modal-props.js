@@ -1,3 +1,5 @@
+import { EOL } from 'os';
+
 /**
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
@@ -33,21 +35,21 @@ export default function transformer(file, api, options) {
   if (hasDisableBackdropClick || hasDisableBackdropClick) {
     source = source.replace(
       /(<Modal)([\s\S]*>)/gm,
-      '$1// You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#modal)\n$2',
+      `$1// You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#modal)${EOL}$2`,
     );
   }
 
   if (hasDisableBackdropClick) {
     source = source.replace(
       /(<Modal)([\s\S]*>)/gm,
-      '$1// `disableBackdropClick` is removed by codemod.\n$2',
+      `$1// \`disableBackdropClick\` is removed by codemod.${EOL}$2`,
     );
   }
 
   if (handleOnEscapeKeyDown) {
     source = source.replace(
       /(<Modal)([\s\S]*>)/gm,
-      '$1\n// `handleOnEscapeKeyDown` is removed by codemod.\n$2',
+      `$1${EOL}// \`handleOnEscapeKeyDown\` is removed by codemod.${EOL}$2`,
     );
   }
 
