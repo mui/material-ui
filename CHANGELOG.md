@@ -4,9 +4,9 @@
 
 <!-- generated comparing v5.0.0-beta.0..next -->
 
-_Jul 12, 2021_
+_Jul 14, 2021_
 
-Big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+Big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
 
 - ✨ We have introduced a new unstyled component: the Switch (#26688) @michaldudak
   You can find two new versions of the Switch. A component without any styles: [`SwitchUnstyled`](https://next.material-ui.com/components/switches/#unstyled-switches), and a hook: [`useSwitch`](https://next.material-ui.com/components/switches/#useswitch-hook).
@@ -25,14 +25,16 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 #### Breaking changes
 
 - [Fab] Remove no longer necessary span wrapper (#27112) @siriwatknp
-- [ToggleButton] Remove unnecessary span (#27111) @siriwatknp
+- [ToggleButton] Remove no longer necessary span wrapper (#27111) @siriwatknp
 
 #### Changes
 
 - [Autocomplete] Add componentsProps (#27183) @michal-perlakowski
 - [Avatar] Fix support for crossOrigin (#27013) @ShirasawaSama
 - [ButtonBase] Correct `disableRipple` API description (#27187) @michaldudak
+- [ButtonGroup] Add color palette types (#27215) @ShirasawaSama
 - [SwitchBase] Bring back `checked` and mark as deprecated (#27047) @siriwatknp
+- [TextField] Remove redundant useFormControl implementation (#27197) @michaldudak
 - [theme] Add missing MuiRating types to components.d.ts (#27086) @rajzik
 - [theme] Remove `createV4Spacing` from `adaptV4Theme` (#27072) @siriwatknp
 - [theme] Update default `info` `success` `warning` color (#26817) @siriwatknp
@@ -43,8 +45,18 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 
 - [Switch] Create SwitchUnstyled and useSwitch (#26688) @michaldudak
 
+### `@material-ui/codemod@5.0.0-beta.1`
+
+- [codemod] Add v5 important migration (#27032) @siriwatknp
+- [codemod] Fix v5 codemods on Windows (#27254) @michaldudak
+
+### `@material-ui/system@5.0.0-beta.1`
+
+- [Box] Add breakpoint value support to maxWidth prop (#26984) @ansh-saini
+
 ### `@material-ui/lab@5.0.0-alpha.40`
 
+- [CalendarPicker] Fix slide transition regression (#27273) @eps1lon
 - [CalendarPicker] Use transition components from core instead of a custom implementation (#27043) @eps1lon
 - [pickers] Fix default value of text keys (#26990) @oliviertassinari
 - [TimePicker] Change default minutes and seconds to zero (#27037) @michal-perlakowski
@@ -52,17 +64,22 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 ### Docs
 
 - [blog] Q2 2021 Update (#27089) @oliviertassinari
+- [docs] Add information that the label prop in FormControlLabel is now @michal-perlakowski
 - [docs] Don't crash page if an Ad crashes (#27178) @eps1lon
 - [docs] Fix alt description of movavi backer @oliviertassinari
 - [docs] Fix import source of hidden component (#27116) @vimutti77
+- [docs] Fix layout regression (#27272) @oliviertassinari
 - [docs] Fix syntax error in /styles/api markdown (#27176) @sahil-blulabs
 - [docs] Fix the link for the sx props page (#27202) @mnajdova
 - [docs] Fix theme context example code (#27053) @moshfeu
+- [docs] Fix typo in CONTRIBUTING.md (#27218) Ayush Dubey
 - [docs] Fix typos (#27074) @michaldudak
+- [docs] Improve nav semantics (#27138) @eps1lon
 - [docs] Migrate Ad\* components to emotion (#27159) @mnajdova
 - [docs] Migrate rest of the docs to emotion (#27184) @mnajdova
 - [docs] Move versions from \_app PageContext to page-specific context (#27078) @eps1lon
 - [docs] Only bundle one version of the demos in production (#27020) @eps1lon
+- [docs] Reduce layout shift on landing page (#27251) @eps1lon
 - [docs] Remove Ethical Ads (#27173) @mbrookes
 - [docs] Remove unused fs polyfill (#27069) @eps1lon
 - [docs] Remove usage of `url` package (#27151) @eps1lon
@@ -71,6 +88,7 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - [docs] Use actual link to paperbase (#27063) @eps1lon
 - [docs] Use custom markdown loader for landing page (#27065) @eps1lon
 - [docs] Use webpack 5 (#27077) @eps1lon
+- [examples] Fix CDN warning (#27229) @oliviertassinari
 - [examples] Remove `StyledEngineProvider` as JSS is not used (#27133) @mnajdova
 - [examples] Remove forgotten StyledEngineProvider (#27163) @oliviertassinari
 
@@ -80,11 +98,16 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - [core] Configure Renovate (#27003) @renovate[bot]
 - [core] Migrate remaining mentions of Dependabot to Renovate (#27118) @eps1lon
 - [core] Run yarn deduplicate on Renovate updates (#27115) @eps1lon
+- [test] Document broken React 18 behavior of Autocomplete (#27242) @eps1lon
 - [test] Increase BS timeout to 6min (#27179) @oliviertassinari
+- [test] Migrate regressions to emotion (#27010) @vicasas
 - [test] Narrow down React 18 compat issues (#27134) @eps1lon
+- [test] Remove StyledEngineProvider usage from regressions and e2e test @mnajdova
 - [test] Run React 18 integration tests with new createRoot API (#26672) @eps1lon
 - [test] Update tests with latest state of StrictMode compatibility (#27042) @eps1lon
 - [test] Use DOM events instead of mocked, partial events (#27198) @eps1lon
+- [website] Open 4 new roles (#27123) @oliviertassinari
+- [blog] Danilo Leal joins Material-UI (#27231) @oliviertassinari
 
 All contributors of this release in alphabetical order: @eps1lon, @mbrookes, @michal-perlakowski, @michaldudak, @mnajdova, @moshfeu, @oliviertassinari, @rajzik, @renovate[bot], @sahil-blulabs, @ShirasawaSama, @siriwatknp, @vimutti77
 
