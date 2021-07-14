@@ -296,7 +296,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     position: 'sticky',
-    top: 110,
+    top: 80 + 36, // offset for the banner
     padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',
