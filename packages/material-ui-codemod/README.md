@@ -810,7 +810,7 @@ npx @material-ui/codemod@next v5.0.0/theme-options <path>
 
 #### `theme-palette-mode`
 
-Renames `type` to `mode`
+Renames `type` to `mode`.
 
 ```diff
 - { palette: { type: 'dark' } }
