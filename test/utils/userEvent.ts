@@ -8,12 +8,10 @@ export function touch(target: Element): void {
 }
 
 export function mousePress(target: Element): void {
-  if (typeof (React as any).unstable_act === 'function') {
-    (React as any).unstable_act(() => {
-      mouseDown(target);
-      mouseUp(target);
-      click(target);
-    });
+  if (React.version.startsWith('18')) {
+    fireEvent.mouseDown(target);
+    fireEvent.mouseUp(target);
+    fireEvent.click(target);
   } else {
     mouseDown(target);
     mouseUp(target);

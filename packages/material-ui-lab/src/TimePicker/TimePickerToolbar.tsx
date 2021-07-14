@@ -127,7 +127,7 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps> = (props) => {
     openView,
     setOpenView,
     toggleMobileKeyboardView,
-    toolbarTitle = 'SELECT TIME',
+    toolbarTitle = 'Select time',
     views,
     ...other
   } = props;

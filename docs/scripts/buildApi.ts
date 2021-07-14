@@ -175,14 +175,14 @@ function createDescribeableProp(
 
     if (shouldHaveDefaultAnnotation) {
       throw new Error(
-        `JSDOC @default annotation not found. Add \`@default ${defaultValue.value}\` to the JSDOC of this prop.`,
+        `JSDoc @default annotation not found. Add \`@default ${defaultValue.value}\` to the JSDoc of this prop.`,
       );
     }
   } else if (jsdocDefaultValue !== undefined) {
     // `defaultValue` can't be undefined or we would've thrown earlier.
     if (jsdocDefaultValue.value !== defaultValue!.value) {
       throw new Error(
-        `Expected JSDOC @default annotation for prop '${propName}' of "${jsdocDefaultValue.value}" to equal runtime default value of "${defaultValue?.value}"`,
+        `Expected JSDoc @default annotation for prop '${propName}' of "${jsdocDefaultValue.value}" to equal runtime default value of "${defaultValue?.value}"`,
       );
     }
   }
@@ -437,7 +437,7 @@ async function annotateComponentDefinition(context: {
           const bindingId = babelPath.node.declaration.name;
           const binding = babelPath.scope.bindings[bindingId];
 
-          // The JSDOC MUST be located at the declaration
+          // The JSDoc MUST be located at the declaration
           if (babel.types.isFunctionDeclaration(binding.path.node)) {
             // For function declarations the binding is equal to the declaration
             // /**
@@ -833,6 +833,8 @@ async function buildDocs(options: {
     default: string | undefined;
     required: boolean | undefined;
     type: { name: string | undefined; description: string | undefined };
+    deprecated: true | undefined;
+    deprecationInfo: string | undefined;
   }>(
     Object.entries(reactApi.props).map(([propName, propDescriptor]) => {
       let prop: DescribeablePropDescriptor | null;
@@ -874,6 +876,8 @@ async function buildDocs(options: {
         /\.isRequired/.test(prop.type.raw) ||
         (chainedPropType !== false && chainedPropType.required);
 
+      const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
+
       return [
         propName,
         {
@@ -885,6 +889,9 @@ async function buildDocs(options: {
           default: defaultValue,
           // undefined values are not serialized => saving some bytes
           required: requiredProp || undefined,
+          deprecated: !!deprecation || undefined,
+          deprecationInfo:
+            renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined,
         },
       ];
     }),

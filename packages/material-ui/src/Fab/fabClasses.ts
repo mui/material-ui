@@ -3,8 +3,6 @@ import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unsty
 export interface FabClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Styles applied to the span element that wraps the children. */
-  label: string;
   /** Styles applied to the root element if `color="primary"`. */
   primary: string;
   /** Styles applied to the root element if `color="secondary"`. */
@@ -33,7 +31,6 @@ export function getFabUtilityClass(slot: string): string {
 
 const fabClasses: FabClasses = generateUtilityClasses('MuiFab', [
   'root',
-  'label',
   'primary',
   'secondary',
   'extended',

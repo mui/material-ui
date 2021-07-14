@@ -1,10 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import copy from 'clipboard-copy';
 import LZString from 'lz-string';
 import { useDispatch } from 'react-redux';
-import { makeStyles } from '@material-ui/styles';
-import { useTheme } from '@material-ui/core/styles';
+import { useTheme, styled } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Fade from '@material-ui/core/Fade';
@@ -42,43 +42,31 @@ function addHiddenInput(form, name, value) {
   form.appendChild(input);
 }
 
-const useDemoToolbarStyles = makeStyles(
-  (theme) => {
-    return {
-      // Sync with styles form DemoToolbarFallback.
-      root: {
-        display: 'none',
-        [theme.breakpoints.up('sm')]: {
-          display: 'flex',
-          flip: false,
-          top: 0,
-          right: theme.spacing(1),
-          height: theme.spacing(6),
-        },
-        justifyContent: 'space-between',
-        alignItems: 'center',
-      },
-      toggleButtonGroup: {
-        margin: '8px 0',
-      },
-      toggleButton: {
-        padding: '4px 9px',
-      },
-      tooltip: {
-        zIndex: theme.zIndex.appBar - 1,
-      },
-    };
+const Root = styled('div')(({ theme }) => ({
+  display: 'none',
+  [theme.breakpoints.up('sm')]: {
+    display: 'flex',
+    flip: false,
+    top: 0,
+    right: theme.spacing(1),
+    height: theme.spacing(6),
   },
-  { name: 'DemoToolbar' },
-);
+  justifyContent: 'space-between',
+  alignItems: 'center',
+}));
+
+const DemoTooltip = styled((props) => {
+  const { className, classes = {}, ...other } = props;
+
+  return <Tooltip {...other} classes={{ ...classes, popper: clsx(className, classes.popper) }} />;
+})(({ theme }) => ({
+  zIndex: theme.zIndex.appBar - 1,
+}));
 
 export function DemoToolbarFallback() {
-  const classes = useDemoToolbarStyles();
   const t = useTranslate();
 
-  return (
-    <div aria-busy aria-label={t('demoToolbarLabel')} className={classes.root} role="toolbar" />
-  );
+  return <Root aria-busy aria-label={t('demoToolbarLabel')} role="toolbar" />;
 }
 
 const alwaysTrue = () => true;
@@ -225,8 +213,6 @@ export default function DemoToolbar(props) {
     openDemoSource,
     showPreview,
   } = props;
-
-  const classes = useDemoToolbarStyles();
 
   const dispatch = useDispatch();
   const t = useTranslate();
@@ -438,16 +424,16 @@ export default function DemoToolbar(props) {
 
   return (
     <React.Fragment>
-      <div aria-label={t('demoToolbarLabel')} className={classes.root} {...toolbarProps}>
+      <Root aria-label={t('demoToolbarLabel')} {...toolbarProps}>
         <Fade in={codeOpen}>
           <ToggleButtonGroup
-            className={classes.toggleButtonGroup}
+            sx={{ margin: '8px 0' }}
             exclusive
             value={renderedCodeVariant()}
             onChange={handleCodeLanguageClick}
           >
             <ToggleButton
-              className={classes.toggleButton}
+              sx={{ padding: '4px 9px' }}
               value={CODE_VARIANTS.JS}
               aria-label={t('showJSSource')}
               data-ga-event-category="demo"
@@ -458,7 +444,7 @@ export default function DemoToolbar(props) {
               <JavaScriptIcon />
             </ToggleButton>
             <ToggleButton
-              className={classes.toggleButton}
+              sx={{ padding: '4px 9px' }}
               value={CODE_VARIANTS.TS}
               disabled={!hasTSVariant}
               aria-label={t('showTSSource')}
@@ -472,8 +458,7 @@ export default function DemoToolbar(props) {
           </ToggleButtonGroup>
         </Fade>
         <div>
-          <Tooltip
-            classes={{ popper: classes.tooltip }}
+          <DemoTooltip
             key={showSourceHint}
             open={showSourceHint && atLeastSmallViewport ? true : undefined}
             PopperProps={{ disablePortal: true }}
@@ -492,13 +477,9 @@ export default function DemoToolbar(props) {
             >
               <CodeIcon fontSize="small" />
             </IconButton>
-          </Tooltip>
+          </DemoTooltip>
           {demoOptions.hideEditButton ? null : (
-            <Tooltip
-              classes={{ popper: classes.tooltip }}
-              title={t('codesandbox')}
-              placement="bottom"
-            >
+            <DemoTooltip title={t('codesandbox')} placement="bottom">
               <IconButton
                 size="large"
                 data-ga-event-category="demo"
@@ -509,9 +490,9 @@ export default function DemoToolbar(props) {
               >
                 <EditIcon fontSize="small" />
               </IconButton>
-            </Tooltip>
+            </DemoTooltip>
           )}
-          <Tooltip classes={{ popper: classes.tooltip }} title={t('copySource')} placement="bottom">
+          <DemoTooltip title={t('copySource')} placement="bottom">
             <IconButton
               size="large"
               data-ga-event-category="demo"
@@ -522,8 +503,8 @@ export default function DemoToolbar(props) {
             >
               <FileCopyIcon fontSize="small" />
             </IconButton>
-          </Tooltip>
-          <Tooltip classes={{ popper: classes.tooltip }} title={t('resetFocus')} placement="bottom">
+          </DemoTooltip>
+          <DemoTooltip title={t('resetFocus')} placement="bottom">
             <IconButton
               size="large"
               data-ga-event-category="demo"
@@ -534,8 +515,8 @@ export default function DemoToolbar(props) {
             >
               <ResetFocusIcon fontSize="small" />
             </IconButton>
-          </Tooltip>
-          <Tooltip classes={{ popper: classes.tooltip }} title={t('resetDemo')} placement="bottom">
+          </DemoTooltip>
+          <DemoTooltip title={t('resetDemo')} placement="bottom">
             <IconButton
               size="large"
               aria-controls={demoId}
@@ -547,7 +528,7 @@ export default function DemoToolbar(props) {
             >
               <RefreshIcon fontSize="small" />
             </IconButton>
-          </Tooltip>
+          </DemoTooltip>
           <IconButton
             size="large"
             onClick={handleMoreClick}
@@ -603,7 +584,7 @@ export default function DemoToolbar(props) {
             {devMenuItems}
           </Menu>
         </div>
-      </div>
+      </Root>
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={3000}

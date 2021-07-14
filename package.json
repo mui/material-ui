@@ -1,5 +1,5 @@
 {
-  "version": "5.0.0-alpha.38",
+  "version": "5.0.0-beta.1",
   "private": true,
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
@@ -196,7 +196,6 @@
     "**/@types/react": "^17.0.0",
     "**/@types/react-dom": "^17.0.0",
     "**/cross-fetch": "^3.0.5",
-    "**/dot-prop": "^5.2.0",
     "**/react-is": "^17.0.1"
   },
   "nyc": {

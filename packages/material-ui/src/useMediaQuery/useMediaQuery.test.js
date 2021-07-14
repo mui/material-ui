@@ -33,17 +33,18 @@ function createMatchMedia(width, ref) {
 }
 
 describe('useMediaQuery', () => {
-  before(function beforeHook() {
-    // Only run the test on node.
-    // Waiting for https://github.com/facebook/react/issues/14050
-    if (!/jsdom/.test(window.navigator.userAgent)) {
-      this.skip();
-    }
-  });
-
   const render = createClientRender();
 
-  describe('without feature', () => {
+  describe('without window.matchMedia', () => {
+    let originalMatchmedia;
+    beforeEach(() => {
+      originalMatchmedia = window.matchMedia;
+      delete window.matchMedia;
+    });
+    afterEach(() => {
+      window.matchMedia = originalMatchmedia;
+    });
+
     it('should work without window.matchMedia available', () => {
       expect(typeof window.matchMedia).to.equal('undefined');
       const Test = () => {
@@ -56,7 +57,7 @@ describe('useMediaQuery', () => {
     });
   });
 
-  describe('with feature', () => {
+  describe('with window.matchMedia', () => {
     let matchMediaInstances;
 
     beforeEach(() => {
@@ -244,8 +245,8 @@ describe('useMediaQuery', () => {
       expect(screen.getByTestId('matches').textContent).to.equal('false');
 
       act(() => {
-        matchMediaInstances[0].instance.matches = true;
-        matchMediaInstances[0].listeners[0]();
+        matchMediaInstances[matchMediaInstances.length - 1].instance.matches = true;
+        matchMediaInstances[matchMediaInstances.length - 1].listeners[0]();
       });
       expect(screen.getByTestId('matches').textContent).to.equal('true');
       expect(getRenderCountRef.current()).to.equal(2);

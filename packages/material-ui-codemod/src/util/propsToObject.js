@@ -22,12 +22,19 @@ export default function propsToObject({ j, root, componentName, propName, props 
       }
     });
     if (propValue.length > 0) {
-      attributes.push(
-        j.jsxAttribute(
-          j.jsxIdentifier(propName),
-          j.jsxExpressionContainer(j.objectExpression(propValue)),
-        ),
-      );
+      const propNameAttr = attributes.find((attr) => attr?.name?.name === propName);
+      if (propNameAttr) {
+        (propNameAttr.value.expression?.properties || []).push(
+          ...j.objectExpression(propValue).properties,
+        );
+      } else {
+        attributes.push(
+          j.jsxAttribute(
+            j.jsxIdentifier(propName),
+            j.jsxExpressionContainer(j.objectExpression(propValue)),
+          ),
+        );
+      }
     }
   });
 }

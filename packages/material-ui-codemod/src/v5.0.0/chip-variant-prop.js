@@ -2,8 +2,10 @@
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
  */
-export default function transformer(file, api) {
+export default function transformer(file, api, options) {
   const j = api.jscodeshift;
+
+  const printOptions = options.printOptions;
 
   return j(file.source)
     .findJSXElements('Chip')
@@ -14,11 +16,11 @@ export default function transformer(file, api) {
         if (
           node.type === 'JSXAttribute' &&
           node.name.name === 'variant' &&
-          node.value.value === 'default'
+          (node.value.value === 'default' || node.value.expression?.value === 'default')
         ) {
           delete attributes[index];
         }
       });
     })
-    .toSource();
+    .toSource(printOptions);
 }

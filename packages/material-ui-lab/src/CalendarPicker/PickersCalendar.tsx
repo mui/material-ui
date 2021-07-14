@@ -135,6 +135,11 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate>) {
     .filter(Boolean)
     .map((selectedDateItem) => selectedDateItem && utils.startOfDay(selectedDateItem));
 
+  // need a new ref whenever the `key` of the transition changes: https://reactcommunity.org/react-transition-group/transition#Transition-prop-nodeRef.
+  const transitionKey = currentMonthNumber;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const slideNodeRef = React.useMemo(() => React.createRef<HTMLDivElement>(), [transitionKey]);
+
   return (
     <React.Fragment>
       <PickersCalendarDayHeader>
@@ -149,14 +154,19 @@ function PickersCalendar<TDate>(props: PickersCalendarProps<TDate>) {
         <PickersCalendarLoadingContainer>{renderLoading()}</PickersCalendarLoadingContainer>
       ) : (
         <PickersCalendarSlideTransition
-          transKey={currentMonthNumber}
+          transKey={transitionKey}
           onExited={onMonthSwitchingAnimationEnd}
           reduceAnimations={reduceAnimations}
           slideDirection={slideDirection}
           className={className}
           {...TransitionProps}
+          nodeRef={slideNodeRef}
         >
-          <PickersCalendarWeekContainer data-mui-test="pickers-calendar" role="grid">
+          <PickersCalendarWeekContainer
+            data-mui-test="pickers-calendar"
+            ref={slideNodeRef}
+            role="grid"
+          >
             {utils.getWeekArray(currentMonth).map((week) => (
               <PickersCalendarWeek role="row" key={`week-${week[0]}`}>
                 {week.map((day) => {

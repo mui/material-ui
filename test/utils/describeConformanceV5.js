@@ -18,7 +18,6 @@ import createMount from './createMount';
  * @property {() => void} [after]
  * @property {object} classes - `classes` of the component provided by `@material-ui/styled-engine`
  * @property {import('react').ElementType} [inheritComponent] - The element type that receives spread props or `undefined` if props are not spread.
- * @property {(node: React.ReactNode) => import('enzyme').ReactWrapper} [mount] - Should be a return value from createMount
  * @property {string} muiName
  * @property {(node: React.ReactElement) => import('./createClientRender').MuiRenderResult} [render] - Should be a return value from createClientRender
  * @property {Array<keyof typeof fullSuite>} [only] - If specified only run the tests listed
@@ -28,6 +27,7 @@ import createMount from './createMount';
  * @property {{ slotName: string, slotClassName: string }} [testDeepOverrides]
  * @property {{ prop?: string, value?: any, styleKey: string }} [testStateOverrides]
  * @property {object} [testVariantProps]
+ * @property {(mount: (node: React.ReactNode) => import('enzyme').ReactWrapper) => (node: React.ReactNode) => import('enzyme').ReactWrapper} [wrapMount] - You can use this option to mount the component with enzyme in a WrapperComponent. Make sure the returned node corresponds to the input node and not the wrapper component.
  */
 
 function throwMissingPropError(field) {
@@ -359,14 +359,17 @@ export default function describeConformanceV5(minimalElement, getOptions) {
   describe('Material-UI component API', () => {
     const {
       after: runAfterHook = () => {},
-      mount = createMount(),
       only = Object.keys(fullSuite),
       skip = [],
+      wrapMount,
     } = getOptions();
 
     const filteredTests = Object.keys(fullSuite).filter(
       (testKey) => only.indexOf(testKey) !== -1 && skip.indexOf(testKey) === -1,
     );
+
+    const baseMount = createMount();
+    const mount = wrapMount !== undefined ? wrapMount(baseMount) : baseMount;
 
     after(runAfterHook);
 

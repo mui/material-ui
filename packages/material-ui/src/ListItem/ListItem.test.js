@@ -180,9 +180,12 @@ describe('<ListItem />', () => {
       it('should warn (but not error) with autoFocus with a function component with no content', () => {
         expect(() => {
           render(<ListItem component={NoContent} autoFocus />);
-        }).toErrorDev(
+        }).toErrorDev([
           'Material-UI: Unable to set focus to a ListItem whose component has not been rendered.',
-        );
+          // React 18 Strict Effects run mount effects twice
+          React.version.startsWith('18') &&
+            'Material-UI: Unable to set focus to a ListItem whose component has not been rendered.',
+        ]);
       });
     });
   });

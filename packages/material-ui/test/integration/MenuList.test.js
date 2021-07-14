@@ -146,7 +146,9 @@ describe('<MenuList> integration', () => {
       );
       const menuitems = getAllByRole('menuitem');
 
-      menuitems[0].focus();
+      act(() => {
+        menuitems[0].focus();
+      });
 
       expect(menuitems[0]).toHaveFocus();
       expect(menuitems[0]).to.have.property('tabIndex', 0);
@@ -434,7 +436,9 @@ describe('<MenuList> integration', () => {
         </MenuList>,
       );
       const menu = getByRole('menu');
-      menu.focus();
+      act(() => {
+        menu.focus();
+      });
 
       fireEvent.keyDown(menu, { key: 'a' });
 
@@ -466,8 +470,10 @@ describe('<MenuList> integration', () => {
 
       const menuitem = getByText('Arizona');
       // user click
-      fireEvent.mouseDown(menuitem);
-      menuitem.focus();
+      act(() => {
+        fireEvent.mouseDown(menuitem);
+        menuitem.focus();
+      });
       fireEvent.click(menuitem);
 
       expect(menuitem).toHaveFocus();

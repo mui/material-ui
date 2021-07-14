@@ -4,6 +4,21 @@ import { TouchRippleClasses, TouchRippleClassKey } from './touchRippleClasses';
 
 export { TouchRippleClassKey };
 
+export interface StartActionOptions {
+  pulsate?: boolean;
+  center?: boolean;
+}
+
+export interface TouchRippleActions {
+  start: (
+    event?: React.SyntheticEvent,
+    options?: StartActionOptions,
+    callback?: () => void,
+  ) => void;
+  pulsate: (event?: React.SyntheticEvent) => void;
+  stop: (event?: React.SyntheticEvent, callback?: () => void) => void;
+}
+
 export type TouchRippleProps = StandardProps<React.HTMLAttributes<HTMLElement>> & {
   center?: boolean;
   /**
@@ -12,6 +27,6 @@ export type TouchRippleProps = StandardProps<React.HTMLAttributes<HTMLElement>> 
   classes?: Partial<TouchRippleClasses>;
 };
 
-declare const TouchRipple: React.JSXElementConstructor<TouchRippleProps>;
+declare const TouchRipple: React.ForwardRefRenderFunction<TouchRippleActions, TouchRippleProps>;
 
 export default TouchRipple;

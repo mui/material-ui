@@ -38,7 +38,7 @@ function Header(props) {
             <Grid item xs />
             <Grid item>
               <Link
-                href="#"
+                href="https://docs.paperbase.app/"
                 variant="body2"
                 sx={{
                   textDecoration: 'none',
@@ -47,6 +47,8 @@ function Header(props) {
                     color: 'common.white',
                   },
                 }}
+                rel="noopener noreferrer"
+                target="_blank"
               >
                 Go to docs
               </Link>

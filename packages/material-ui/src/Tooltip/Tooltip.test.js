@@ -468,7 +468,11 @@ describe('<Tooltip />', () => {
         </div>
       );
 
-      const { setProps, getByRole } = render(<AutoFocus />);
+      const { setProps, getByRole } = render(
+        <AutoFocus />,
+        // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
+        { strictEffects: false },
+      );
 
       setProps({ open: true });
       act(() => {
@@ -756,7 +760,9 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).toBeVisible();
 
       fireEvent.mouseOver(getByRole('tooltip'));
-      clock.tick(111 + 10);
+      act(() => {
+        clock.tick(111 + 10);
+      });
 
       expect(getByRole('tooltip')).not.toBeVisible();
     });
@@ -877,7 +883,9 @@ describe('<Tooltip />', () => {
 
       expect(queryByRole('tooltip')).to.equal(null);
 
-      getByRole('button').focus();
+      act(() => {
+        getByRole('button').focus();
+      });
 
       if (programmaticFocusTriggersFocusVisible()) {
         expect(queryByRole('tooltip')).not.to.equal(null);
@@ -922,7 +930,11 @@ describe('<Tooltip />', () => {
 
       act(() => {
         button.focus();
+      });
+      act(() => {
         button.blur();
+      });
+      act(() => {
         clock.tick(transitionTimeout);
       });
 

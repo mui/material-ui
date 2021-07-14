@@ -237,27 +237,6 @@ describe('<Modal />', () => {
 
       expect(onBackdropClick).to.have.property('callCount', 0);
     });
-
-    // Test case for https://github.com/mui-org/material-ui/issues/12831
-    it('should unmount the children when starting open and closing immediately', () => {
-      function TestCase() {
-        const [open, setOpen] = React.useState(true);
-
-        React.useEffect(() => {
-          setOpen(false);
-        }, []);
-
-        return (
-          <Modal open={open}>
-            <Fade in={open}>
-              <div id="modal-body">hello</div>
-            </Fade>
-          </Modal>
-        );
-      }
-      render(<TestCase />);
-      expect(document.querySelector('#modal-body')).to.equal(null);
-    });
   });
 
   describe('hide backdrop', () => {
@@ -283,7 +262,9 @@ describe('<Modal />', () => {
           <div data-testid="modal" tabIndex={-1} />
         </Modal>,
       );
-      getByTestId('modal').focus();
+      act(() => {
+        getByTestId('modal').focus();
+      });
 
       fireEvent.keyDown(getByTestId('modal'), {
         key: 'j', // Not escape
@@ -302,7 +283,9 @@ describe('<Modal />', () => {
           </Modal>
         </div>,
       );
-      getByTestId('modal').focus();
+      act(() => {
+        getByTestId('modal').focus();
+      });
 
       fireEvent.keyDown(getByTestId('modal'), {
         key: 'Escape',
@@ -322,7 +305,9 @@ describe('<Modal />', () => {
           </Modal>
         </div>,
       );
-      getByTestId('modal').focus();
+      act(() => {
+        getByTestId('modal').focus();
+      });
 
       fireEvent.keyDown(getByTestId('modal'), {
         key: 'Escape',
@@ -423,7 +408,9 @@ describe('<Modal />', () => {
       initialFocus = document.createElement('button');
       initialFocus.tabIndex = 0;
       document.body.appendChild(initialFocus);
-      initialFocus.focus();
+      act(() => {
+        initialFocus.focus();
+      });
     });
 
     afterEach(() => {
@@ -451,6 +438,8 @@ describe('<Modal />', () => {
             <input data-testid="auto-focus" type="text" autoFocus />
           </div>
         </Modal>,
+        // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
+        { strictEffects: false },
       );
 
       expect(getByTestId('auto-focus')).toHaveFocus();
@@ -551,11 +540,39 @@ describe('<Modal />', () => {
 
         act(() => {
           getByTestId('foreign-input').focus();
+        });
+        act(() => {
           // wait for the `contain` interval check to kick in.
           clock.tick(500);
         });
 
         expect(getByTestId('foreign-input')).toHaveFocus();
+      });
+
+      // Test case for https://github.com/mui-org/material-ui/issues/12831
+      it('should unmount the children when starting open and closing immediately', () => {
+        const timeout = 50;
+        function TestCase() {
+          const [open, setOpen] = React.useState(true);
+
+          React.useEffect(() => {
+            setOpen(false);
+          }, []);
+
+          return (
+            <Modal open={open}>
+              <Fade in={open} timeout={timeout}>
+                <div id="modal-body">hello</div>
+              </Fade>
+            </Modal>
+          );
+        }
+        render(<TestCase />);
+        // exit transition started
+        act(() => {
+          clock.tick(timeout);
+        });
+        expect(document.querySelector('#modal-body')).to.equal(null);
       });
     });
   });

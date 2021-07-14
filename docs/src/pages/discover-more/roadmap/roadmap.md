@@ -6,7 +6,7 @@
 
 Material-UI is community driven – issues that resonate most with the community get the most attention.
 Please **upvote** (👍) on GitHub the issues you are most interested in.
-Thank you for participating [in the developer survey](https://material-ui.com/blog/2020-developer-survey-results/).
+Thank you for participating [in the developer survey](/blog/2020-developer-survey-results/).
 
 ## Priorities
 

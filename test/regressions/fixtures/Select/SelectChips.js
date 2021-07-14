@@ -12,12 +12,7 @@ export default function SelectChips() {
       value={values}
       style={{ maxWidth: 100 }}
       renderValue={(selected) => (
-        <div
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-          }}
-        >
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
           {selected.map((value) => (
             <Chip key={value} label={value} style={{ margin: 2 }} />
           ))}

@@ -32,7 +32,7 @@ module.exports = {
     ignoreDevErrors: true,
     ignoreBuildErrors: true,
   },
-  webpack5: false,
+  webpack5: true,
   webpack: (config, options) => {
     const plugins = config.plugins.slice();
 
@@ -62,7 +62,8 @@ module.exports = {
       }
 
       config.externals = [
-        (context, request, callback) => {
+        (ctx, callback) => {
+          const { request } = ctx;
           const hasDependencyOnRepoPackages = ['notistack', '@material-ui/data-grid'].includes(
             request,
           );
@@ -70,7 +71,7 @@ module.exports = {
           if (hasDependencyOnRepoPackages) {
             return callback(null);
           }
-          return nextExternals(context, request, callback);
+          return nextExternals(ctx, callback);
         },
       ];
     }
@@ -86,16 +87,21 @@ module.exports = {
           ...config.resolve.extensions.filter((extension) => extension !== '.tsx'),
         ],
       },
-      node: {
-        fs: 'empty',
-      },
       module: {
         ...config.module,
         rules: config.module.rules.concat([
-          // used in some /getting-started/templates
           {
             test: /\.md$/,
-            loader: 'raw-loader',
+            oneOf: [
+              {
+                resourceQuery: /@material-ui\/markdown/,
+                use: require.resolve('@material-ui/markdown/loader'),
+              },
+              {
+                // used in some /getting-started/templates
+                type: 'asset/source',
+              },
+            ],
           },
           // transpile 3rd party packages with dependencies in this repository
           {

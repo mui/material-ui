@@ -258,10 +258,16 @@ describe('useAutocomplete', () => {
       "Error: Uncaught [TypeError: Cannot read property 'removeAttribute' of null]",
       'Material-UI: Unable to find the input element.',
       "Error: Uncaught [TypeError: Cannot read property 'removeAttribute' of null]",
+      // strict effects runs effects twice
+      React.version.startsWith('18') && 'Material-UI: Unable to find the input element.',
+      React.version.startsWith('18') &&
+        "Error: Uncaught [TypeError: Cannot read property 'removeAttribute' of null]",
       'The above error occurred in the <ul> component',
       // strict mode renders twice
       React.version.startsWith('16') && 'The above error occurred in the <ul> component',
       'The above error occurred in the <Test> component',
+      // strict effects runs effects twice
+      React.version.startsWith('18') && 'The above error occurred in the <Test> component',
       // strict mode renders twice
       React.version.startsWith('16') && 'The above error occurred in the <Test> component',
     ];

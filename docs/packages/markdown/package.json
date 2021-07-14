@@ -1,11 +1,11 @@
 {
   "name": "@material-ui/markdown",
-  "version": "0.1.0",
+  "version": "5.0.0",
   "private": true,
   "type": "commonjs",
-  "main": "./parseMarkdown.js",
+  "main": "./index.js",
   "exports": {
-    ".": "./parseMarkdown.js",
+    ".": "./index.js",
     "./loader": "./loader.js",
     "./prism": "./prism.js"
   },
