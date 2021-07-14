@@ -191,6 +191,7 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends an
     onYearChange,
     renderDay,
     showDaysOutsideCurrentMonth,
+    disableHighlightToday,
     ...other
   } = props;
 
@@ -322,6 +323,7 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends an
               allowSameDateSelection={allowSameDateSelection}
               renderDay={renderDay}
               showDaysOutsideCurrentMonth={showDaysOutsideCurrentMonth}
+              disableHighlightToday={disableHighlightToday}
             />
           )}
         </div>
@@ -369,6 +371,11 @@ CalendarPicker.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disableFuture: PropTypes.bool,
+  /**
+   * If `true`, todays date is rendering without highlighting with circle.
+   * @default false
+   */
+  disableHighlightToday: PropTypes.bool,
   /**
    * @default false
    */

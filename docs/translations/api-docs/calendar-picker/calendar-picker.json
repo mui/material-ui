@@ -4,6 +4,7 @@
     "allowSameDateSelection": "If <code>true</code>, <code>onChange</code> is fired on click even if the same date is selected.",
     "componentsProps": "The props used for each slot inside.",
     "defaultCalendarMonth": "Default calendar month displayed when <code>value={null}</code>.",
+    "disableHighlightToday": "If <code>true</code>, todays date is rendering without highlighting with circle.",
     "leftArrowButtonText": "Left arrow icon aria-label text.",
     "loading": "If <code>true</code> renders <code>LoadingComponent</code> in calendar instead of calendar view. Can be used to preload information and show it in calendar.",
     "maxDate": "Max selectable date. @DateIOType",
