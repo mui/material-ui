@@ -509,7 +509,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `icon-button-size`
 
-Adds `size="large"` if `size` is empty to get the same UI as v4
+Adds `size="large"` if `size` is not defined to get the same appearance as v4.
 
 ```diff
 -<IconButton size="medium" />
