@@ -2,6 +2,7 @@ import * as React from 'react';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { alpha, styled, useTheme } from '@material-ui/core/styles';
+import GlobalStyles from '@material-ui/core/GlobalStyles';
 import Input from '@material-ui/core/Input';
 import SearchIcon from '@material-ui/icons/Search';
 import { handleEvent } from 'docs/src/modules/components/MarkdownLinks';
@@ -13,67 +14,76 @@ const StyledInput = styled(Input)({
   color: 'inherit',
 });
 
+function AlgoliaStyles() {
+  return (
+    <GlobalStyles
+      styles={(theme) => {
+        return {
+          '.algolia-autocomplete': {
+            '& .ds-dropdown-menu': {
+              boxShadow: theme.shadows[1],
+              borderRadius: theme.shape.borderRadius,
+              '&::before': {
+                display: 'none',
+              },
+              '& [class^=ds-dataset-]': {
+                border: 0,
+                maxHeight: 'calc(100vh - 100px)',
+                borderRadius: theme.shape.borderRadius,
+                backgroundColor: theme.palette.background.paper,
+              },
+            },
+            '& .algolia-docsearch-suggestion--category-header-lvl0': {
+              color: theme.palette.text.primary,
+            },
+            '& .algolia-docsearch-suggestion .algolia-docsearch-suggestion--subcategory-column': {
+              opacity: 1,
+              padding: '5.33px 10.66px',
+              textAlign: 'right',
+              width: '25%',
+            },
+            '& .algolia-docsearch-suggestion .algolia-docsearch-suggestion--content': {
+              float: 'right',
+              padding: '5.33px 0 5.33px 10.66px',
+              width: '75%',
+            },
+            '& .algolia-docsearch-suggestion--subcategory-column-text': {
+              color: theme.palette.text.secondary,
+              fontWeight: theme.typography.fontWeightRegular,
+            },
+            '& .algolia-docsearch-suggestion--highlight': {
+              color: theme.palette.mode === 'light' ? '#174d8c' : '#acccf1',
+            },
+            '& .algolia-docsearch-suggestion': {
+              textDecoration: 'none',
+              backgroundColor: theme.palette.background.paper,
+            },
+            '& .algolia-docsearch-suggestion--title': {
+              ...theme.typography.h6,
+              color: theme.palette.text.primary,
+            },
+            '& .algolia-docsearch-suggestion--text': {
+              ...theme.typography.body2,
+              color: theme.palette.text.secondary,
+            },
+            '&& .algolia-docsearch-suggestion--no-results': {
+              width: '100%',
+              '&::before': {
+                display: 'none',
+              },
+            },
+            '& .ds-dropdown-menu .ds-suggestion.ds-cursor .algolia-docsearch-suggestion--content': {
+              backgroundColor: `${theme.palette.action.selected} !important`,
+            },
+          },
+        };
+      }}
+    />
+  );
+}
+
 const RootDiv = styled('div')(({ theme }) => {
   return {
-    '@global': {
-      '.algolia-autocomplete': {
-        '& .ds-dropdown-menu': {
-          boxShadow: theme.shadows[1],
-          borderRadius: theme.shape.borderRadius,
-          '&::before': {
-            display: 'none',
-          },
-          '& [class^=ds-dataset-]': {
-            border: 0,
-            maxHeight: 'calc(100vh - 100px)',
-            borderRadius: theme.shape.borderRadius,
-            backgroundColor: theme.palette.background.paper,
-          },
-        },
-        '& .algolia-docsearch-suggestion--category-header-lvl0': {
-          color: theme.palette.text.primary,
-        },
-        '& .algolia-docsearch-suggestion .algolia-docsearch-suggestion--subcategory-column': {
-          opacity: 1,
-          padding: '5.33px 10.66px',
-          textAlign: 'right',
-          width: '25%',
-        },
-        '& .algolia-docsearch-suggestion .algolia-docsearch-suggestion--content': {
-          float: 'right',
-          padding: '5.33px 0 5.33px 10.66px',
-          width: '75%',
-        },
-        '& .algolia-docsearch-suggestion--subcategory-column-text': {
-          color: theme.palette.text.secondary,
-          fontWeight: theme.typography.fontWeightRegular,
-        },
-        '& .algolia-docsearch-suggestion--highlight': {
-          color: theme.palette.mode === 'light' ? '#174d8c' : '#acccf1',
-        },
-        '& .algolia-docsearch-suggestion': {
-          textDecoration: 'none',
-          backgroundColor: theme.palette.background.paper,
-        },
-        '& .algolia-docsearch-suggestion--title': {
-          ...theme.typography.h6,
-          color: theme.palette.text.primary,
-        },
-        '& .algolia-docsearch-suggestion--text': {
-          ...theme.typography.body2,
-          color: theme.palette.text.secondary,
-        },
-        '&& .algolia-docsearch-suggestion--no-results': {
-          width: '100%',
-          '&::before': {
-            display: 'none',
-          },
-        },
-        '& .ds-dropdown-menu .ds-suggestion.ds-cursor .algolia-docsearch-suggestion--content': {
-          backgroundColor: `${theme.palette.action.selected} !important`,
-        },
-      },
-    },
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'flex',
@@ -243,6 +253,7 @@ export default function AppSearch() {
       <SearchDiv>
         <SearchIcon />
       </SearchDiv>
+      <AlgoliaStyles />
       <StyledInput
         disableUnderline
         placeholder={`${t('algoliaSearch')}…`}
