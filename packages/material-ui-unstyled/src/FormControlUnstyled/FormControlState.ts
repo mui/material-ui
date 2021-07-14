@@ -14,26 +14,24 @@ export interface FormControlState extends Pick<FormControlUnstyledProps, Context
   setAdornedStart: (adornedStart: React.SetStateAction<boolean>) => void;
 }
 
-interface FormControlStateParams {
+interface FormControlStateParams<T extends FormControlState> {
   props: any;
-  states: (keyof FormControlState)[];
-  muiFormControl: FormControlState;
+  states: (keyof T)[];
+  muiFormControl: T;
 }
 
-export default function formControlState({
+export default function formControlState<T extends FormControlState>({
   props,
   states,
   muiFormControl,
-}: FormControlStateParams) {
+}: FormControlStateParams<T>): Partial<T> {
   return states.reduce((acc, state) => {
-    acc[state] = props[state];
-
-    if (muiFormControl) {
-      if (typeof props[state] === 'undefined') {
-        acc[state] = muiFormControl[state];
-      }
+    if (muiFormControl && typeof props[state] === 'undefined') {
+      acc[state] = muiFormControl[state];
+    } else {
+      acc[state] = props[state];
     }
 
     return acc;
-  }, {} as any);
+  }, {} as Partial<T>);
 }
