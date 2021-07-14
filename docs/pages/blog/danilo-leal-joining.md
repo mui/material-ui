@@ -1,7 +1,7 @@
 ---
 title: Danilo Leal joins Material-UI
 description: We are excited to share that Danilo Leal has joined Material-UI.
-date: 2021-07-14T00:00:00.000Z
+date: 2021-07-15T00:00:00.000Z
 authors: ['oliviertassinari']
 card: true
 ---
