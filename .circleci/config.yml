@@ -175,20 +175,6 @@ jobs:
       - run:
           name: Coverage
           command: bash <(curl -s https://codecov.io/bash) -Z -F $REACT_DIST_TAG
-  test_lint:
-    <<: *defaults
-    steps:
-      - checkout
-      - install_js
-      - run:
-          name: Eslint
-          command: yarn lint:ci
-      - run:
-          name: Stylelint
-          command: yarn stylelint
-      - run:
-          name: Lint JSON
-          command: yarn jsonlint
   test_static:
     <<: *defaults
     steps:
@@ -616,9 +602,6 @@ workflows:
     jobs:
       - checkout
       - test_unit:
-          requires:
-            - checkout
-      - test_lint:
           requires:
             - checkout
       - test_static:

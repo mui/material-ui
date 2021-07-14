@@ -39,3 +39,24 @@ jobs:
         run: |
           git remote -v
           yarn release:tag --dryRun
+  test_lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          # fetch all tags which are required for `yarn release:changelog`
+          fetch-depth: 0
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+      - run: yarn install
+        env:
+          # Don't need playwright in this job
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+      - name: Eslint
+        run: yarn lint:ci
+      - name: Stylelint
+        run: yarn stylelint
+      - name: Lint JSON
+        run: yarn jsonlint
