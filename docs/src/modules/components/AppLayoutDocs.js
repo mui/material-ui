@@ -14,9 +14,6 @@ import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 
-const TOC_WIDTH = 175;
-const NAV_WIDTH = 240;
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -42,10 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toc: {
     [theme.breakpoints.up('sm')]: {
-      width: `calc(100% - ${TOC_WIDTH}px)`,
-    },
-    [theme.breakpoints.up('lg')]: {
-      width: `calc(100% - ${TOC_WIDTH}px - ${NAV_WIDTH}px)`,
+      width: 'calc(100% - 175px)',
     },
   },
   disableToc: {
