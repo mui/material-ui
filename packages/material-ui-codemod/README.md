@@ -332,7 +332,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `collapse-rename-collapsedheight`
 
-Renames the `Collapse`'s `collapsedHeight` prop to `collapsedSize`.
+Renames `Collapse`'s `collapsedHeight` prop to `collapsedSize`.
 
 ```diff
 -<Collapse collapsedHeight={40} />
