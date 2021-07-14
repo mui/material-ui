@@ -856,7 +856,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `theme-typography-round`
 
-Removes `theme.typography.round($number)` to `Math.round($number * 1e5) / 1e5`
+Renames `theme.typography.round($number)` to `Math.round($number * 1e5) / 1e5`.
 
 ```diff
 -`${theme.typography.round($number)}`
