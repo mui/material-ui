@@ -83,7 +83,7 @@ If you're happy with the structure of the HTML rendered by the unstyled componen
 
 Each component's API documentation lists all classes that the component uses. Additionally, you can import a `[componentName]Classes` object that describes all the classes a given component uses (see the demo below for an example).
 
-{{"demo": "pages/customization/unstyled-components/styling-customCss.js"}}
+{{"demo": "pages/customization/unstyled-components/stylingCustomCss.js"}}
 
 ### Overriding the unstyled components' slots
 
@@ -91,7 +91,7 @@ If you don't want to rely on default components, you can override them with your
 
 Let's take a [SwitchUnstyled](../api/switchUnstyled) as an example. It has three slots: `Root`, `Thumb` and `Input`. The demo below shows how to create a styled component (using [System](system/styled/) in this case, but it could well be any other solution)
 
-{{"demo": "pages/customization/unstyled-components/styling-slots.js"}}
+{{"demo": "pages/customization/unstyled-components/stylingSlots.js"}}
 
 The components you pass in the `components` prop receive the `styleProps` prop from the top-level component (host).
 By convention, it contains all props passed to the host, merged with its rendering "state".
@@ -137,4 +137,4 @@ Again, let's take a Switch as an example. The corresponding hook is called `useS
 
 The `checked`, `disabled`, `readOnly` and `focusVisible` fields represent the state of the switch. Use them to apply styling to your HTML elements. The `getInputProps` function can be used to get the props to place on an HTML `input` to make the switch accessible.
 
-{{"demo": "pages/customization/unstyled-components/styling-hooks.js"}}
+{{"demo": "pages/customization/unstyled-components/stylingHooks.js"}}
