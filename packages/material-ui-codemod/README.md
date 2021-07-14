@@ -789,7 +789,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `theme-breakpoints-width`
 
-Renames `theme.breakpoints.width('md')` to `theme.breakpoints.values.md`
+Renames `theme.breakpoints.width('md')` to `theme.breakpoints.values.md`.
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/theme-breakpoints-width <path>
