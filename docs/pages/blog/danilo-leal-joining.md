@@ -18,7 +18,7 @@ His aspirations are well aligned with where we want to push the company in the l
 He wants to challenge the status quo.
 He wants to push the envelope around how products are built.
 We believe there are two high potential opportunities to explore: 1. how designers and developers collaborate, 2. how accessible is creating custom UIs.
-His design [challenge assignment](https://www.figma.com/file/UPgXH2mdWqV8QzAuN5VM37/Danilo-assignment) (done under a few hours) gave up confidence that Danilo is exactly who the role needs.
+His design [challenge assignment](https://www.figma.com/file/UPgXH2mdWqV8QzAuN5VM37/Danilo-assignment) (done under a few hours) gave us confidence that Danilo is exactly who the role needs.
 
 While we can't predict the future, he's initially leading the design rebranding effort.
 Then, he will likely focus on a [second design system](https://github.com/mui-org/material-ui/issues/22485).
