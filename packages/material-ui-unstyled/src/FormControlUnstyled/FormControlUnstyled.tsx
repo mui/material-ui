@@ -169,9 +169,7 @@ const FormControl = React.forwardRef(function FormControl(
   };
 
   const Root = component ?? components.Root ?? 'div';
-  const rootProps: any = { ...other, ...componentsProps.root };
-
-  appendStyleProps(Root, rootProps, styleProps);
+  const rootProps = appendStyleProps(Root, { ...other, ...componentsProps.root }, styleProps);
 
   return (
     <FormControlContext.Provider value={childContext}>

@@ -70,15 +70,6 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
     ...otherProps
   } = props;
 
-  const Root: React.ElementType = component ?? components.Root ?? 'span';
-  const rootProps: any = { ...otherProps, ...componentsProps.root };
-
-  const Thumb: React.ElementType = components.Thumb ?? 'span';
-  const thumbProps: any = componentsProps.thumb ?? {};
-
-  const Input: React.ElementType = components.Input ?? 'input';
-  const inputProps: any = componentsProps.input ?? {};
-
   const useSwitchProps = {
     checked: checkedProp,
     defaultChecked,
@@ -100,9 +91,14 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
     readOnly,
   };
 
-  appendStyleProps(Root, rootProps, styleProps);
-  appendStyleProps(Input, inputProps, styleProps);
-  appendStyleProps(Thumb, thumbProps, styleProps);
+  const Root: React.ElementType = component ?? components.Root ?? 'span';
+  const rootProps = appendStyleProps(Root, { ...otherProps, ...componentsProps.root }, styleProps);
+
+  const Thumb: React.ElementType = components.Thumb ?? 'span';
+  const thumbProps = appendStyleProps(Thumb, componentsProps.thumb ?? {}, styleProps);
+
+  const Input: React.ElementType = components.Input ?? 'input';
+  const inputProps = appendStyleProps(Input, componentsProps.input ?? {}, styleProps);
 
   const stateClasses = {
     [classes.checked]: checked,
