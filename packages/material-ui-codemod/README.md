@@ -315,7 +315,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `circularprogress-variant`
 
-Renames the CircularPress `static` variant to `determinate`.
+Renames the CircularProgress `static` variant to `determinate`.
 
 ```diff
 -<CircularProgress variant="static" classes={{ static: 'className' }} />
