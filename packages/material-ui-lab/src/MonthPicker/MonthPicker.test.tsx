@@ -3,14 +3,9 @@ import { spy } from 'sinon';
 import { expect } from 'chai';
 import { fireEvent, screen, describeConformanceV5 } from 'test/utils';
 import MonthPicker, { monthPickerClasses as classes } from '@material-ui/lab/MonthPicker';
-import {
-  adapterToUse,
-  createPickerMount,
-  createPickerRender,
-} from '../internal/pickers/test-utils';
+import { adapterToUse, wrapPickerMount, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<MonthPicker />', () => {
-  const mount = createPickerMount();
   const render = createPickerRender();
 
   describeConformanceV5(
@@ -24,7 +19,7 @@ describe('<MonthPicker />', () => {
       classes,
       inheritComponent: 'div',
       render,
-      mount,
+      wrapMount: wrapPickerMount,
       muiName: 'MuiMonthPicker',
       refInstanceof: window.HTMLDivElement,
       // cannot test reactTestRenderer because of required context

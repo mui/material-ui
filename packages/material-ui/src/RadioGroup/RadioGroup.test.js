@@ -184,7 +184,9 @@ describe('<RadioGroup />', () => {
       const actionsRef = React.createRef();
       render(<RadioGroup actions={actionsRef} value="" />);
 
-      actionsRef.current.focus();
+      act(() => {
+        actionsRef.current.focus();
+      });
     });
   });
 

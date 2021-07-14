@@ -9,7 +9,10 @@ import Popper from '@material-ui/core/Popper';
 
 describe('<Popper />', () => {
   let rtlTheme;
-  const render = createClientRender();
+  const render = createClientRender({
+    // StrictEffectsViolation: need to call `handleOpen` in mount effects
+    strictEffects: false,
+  });
   const defaultProps = {
     anchorEl: () => document.createElement('svg'),
     children: <span>Hello World</span>,

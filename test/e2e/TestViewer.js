@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { StyledEngineProvider } from '@material-ui/core/styles';
 
 function TestViewer(props) {
   const { children } = props;
@@ -14,12 +13,9 @@ function TestViewer(props) {
   }, []);
 
   return (
-    // TODO v5: remove once migration to emotion is completed
-    <StyledEngineProvider injectFirst>
-      <div aria-busy={!ready} data-testid="testcase">
-        {children}
-      </div>
-    </StyledEngineProvider>
+    <div aria-busy={!ready} data-testid="testcase">
+      {children}
+    </div>
   );
 }
 

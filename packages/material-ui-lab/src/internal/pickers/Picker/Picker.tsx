@@ -66,30 +66,31 @@ const isDatePickerView = (view: AllAvailableViews): view is CalendarPickerView =
 const isTimePickerView = (view: AllAvailableViews): view is ClockPickerView =>
   view === 'hours' || view === 'minutes' || view === 'seconds';
 
-function Picker({
-  autoFocus,
-  className,
-  date,
-  DateInputProps,
-  isMobileKeyboardViewOpen,
-  onDateChange,
-  openTo = 'day',
-  orientation,
-  showToolbar,
-  toggleMobileKeyboardView,
-  ToolbarComponent = () => null,
-  toolbarFormat,
-  toolbarPlaceholder,
-  toolbarTitle,
-  views = ['year', 'month', 'day', 'hours', 'minutes', 'seconds'],
-  getViewSwitchingButtonText,
+function Picker(props: PickerProps) {
+  const {
+    autoFocus,
+    className,
+    date,
+    DateInputProps,
+    isMobileKeyboardViewOpen,
+    onDateChange,
+    openTo = 'day',
+    orientation,
+    showToolbar,
+    toggleMobileKeyboardView,
+    ToolbarComponent = () => null,
+    toolbarFormat,
+    toolbarPlaceholder,
+    toolbarTitle,
+    views = ['year', 'month', 'day', 'hours', 'minutes', 'seconds'],
+    getViewSwitchingButtonText,
   ampm,
   ampmInClock,
   minTime,
   maxTime,
   disableIgnoringDatePartForTimeValidation,
   ...other
-}: PickerProps) {
+} = props;
   const isLandscape = useIsLandscape(views, orientation);
   const wrapperVariant = React.useContext(WrapperVariantContext);
 

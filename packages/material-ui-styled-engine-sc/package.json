@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/styled-engine-sc",
-  "version": "5.0.0-alpha.35",
+  "version": "5.0.0-beta.1",
   "private": false,
   "author": "Material-UI Team",
   "description": "styled() API wrapper package for styled-components.",
@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "https://material-ui.com/styled/basics/",
+  "homepage": "https://next.material-ui.com/guides/styled-engine/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/material-ui"

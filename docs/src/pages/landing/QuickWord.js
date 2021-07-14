@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import Typography from '@material-ui/core/Typography';
-import NoSsr from '@material-ui/core/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
@@ -31,6 +30,11 @@ const backers = [
     alt: 'doit-intl',
     title: 'DoiT - Management Platform for Google Cloud and AWS',
   },
+  {
+    href: 'https://www.movavi.com/',
+    alt: 'movavi',
+    title: 'Movavi: Safe Multimedia Software',
+  },
 ];
 
 const useStyles = makeStyles(
@@ -47,12 +51,18 @@ const useStyles = makeStyles(
 export default function QuickWord() {
   const classes = useStyles();
   const t = useTranslate();
-  const backer = backers[Math.floor(backers.length * Math.random())];
+
+  const [backer, setBacker] = React.useState(null);
+  React.useEffect(() => {
+    setBacker(backers[Math.floor(backers.length * Math.random())]);
+  }, []);
 
   return (
     <div className={classes.root}>
       <Typography variant="caption">{t('homeQuickWord')}</Typography>
-      <NoSsr defer>
+      {backer === null ? (
+        <Typography variant="body2">&nbsp;</Typography>
+      ) : (
         <Link
           variant="body2"
           display="block"
@@ -65,7 +75,7 @@ export default function QuickWord() {
         >
           {backer.title}
         </Link>
-      </NoSsr>
+      )}
     </div>
   );
 }

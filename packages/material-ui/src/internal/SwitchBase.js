@@ -112,10 +112,13 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
       return;
     }
 
-    setCheckedState(event.target.checked);
+    const newChecked = event.target.checked;
+
+    setCheckedState(newChecked);
 
     if (onChange) {
-      onChange(event);
+      // TODO v6: remove the second argument.
+      onChange(event, newChecked);
     }
   };
 

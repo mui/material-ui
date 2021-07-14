@@ -34,10 +34,7 @@ function findConformanceDescriptor(file: babel.ParseResult): babel.types.ObjectE
     CallExpression(babelPath) {
       const { node: callExpression } = babelPath;
       const { callee } = callExpression;
-      if (
-        t.isIdentifier(callee) &&
-        (callee.name === 'describeConformance' || callee.name === 'describeConformanceV5')
-      ) {
+      if (t.isIdentifier(callee) && callee.name.startsWith('describeConformance')) {
         const [, optionsFactory] = callExpression.arguments;
         if (
           t.isArrowFunctionExpression(optionsFactory) &&

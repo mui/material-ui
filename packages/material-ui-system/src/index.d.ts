@@ -136,6 +136,7 @@ export * from './createTheme';
 export { default as createBreakpoints } from './createTheme/createBreakpoints';
 export * from './createTheme/createBreakpoints';
 
+export { default as createSpacing } from './createTheme/createSpacing';
 export { SpacingOptions, Spacing } from './createTheme/createSpacing';
 
 export { default as shape } from './createTheme/shape';

@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {
+  act,
   createClientRender,
   focusVisible,
   simulatePointerDevice,
@@ -48,7 +49,7 @@ const SimpleButton = React.forwardRef(function SimpleButton(props, ref) {
   );
 });
 
-describe('focus-visible polyfill', () => {
+describe('useIsFocusVisible', () => {
   const render = createClientRender();
 
   before(() => {
@@ -99,7 +100,9 @@ describe('focus-visible polyfill', () => {
 
       expect(button.classList.contains('focus-visible')).to.equal(false);
 
-      button.focus();
+      act(() => {
+        button.focus();
+      });
 
       if (programmaticFocusTriggersFocusVisible()) {
         expect(button).to.have.class('focus-visible');
@@ -107,7 +110,9 @@ describe('focus-visible polyfill', () => {
         expect(button).not.to.have.class('focus-visible');
       }
 
-      button.blur();
+      act(() => {
+        button.blur();
+      });
       focusVisible(button);
 
       expect(button.classList.contains('focus-visible')).to.equal(true);

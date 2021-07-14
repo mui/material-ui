@@ -52,7 +52,6 @@ describe('<Popover />', () => {
     classes,
     inheritComponent: Modal,
     render,
-    mount,
     muiName: 'MuiPopover',
     refInstanceof: window.HTMLDivElement,
     testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
@@ -189,7 +188,10 @@ describe('<Popover />', () => {
         </Popover>,
       );
 
-      expect(handleEnter.callCount).to.equal(1);
+      expect(handleEnter.callCount).to.equal(
+        // onEnter is called on mount which is run twice with Strict Effects
+        React.version.startsWith('18') ? 2 : 1,
+      );
     });
 
     it('should fire Popover transition event callbacks', () => {
@@ -226,7 +228,8 @@ describe('<Popover />', () => {
         onExited: handleExited.callCount,
         onExiting: handleExiting.callCount,
       }).to.deep.equal({
-        onEnter: 1,
+        // onEnter is called on mount which is run twice with Strict Effects
+        onEnter: React.version.startsWith('18') ? 2 : 1,
         onEntering: 1,
         onEntered: 0,
         onExit: 0,
@@ -246,7 +249,8 @@ describe('<Popover />', () => {
         onExited: handleExited.callCount,
         onExiting: handleExiting.callCount,
       }).to.deep.equal({
-        onEnter: 1,
+        // onEnter is called on mount which is run twice with Strict Effects
+        onEnter: React.version.startsWith('18') ? 2 : 1,
         onEntering: 1,
         onEntered: 1,
         onExit: 0,
@@ -264,7 +268,8 @@ describe('<Popover />', () => {
         onExited: handleExited.callCount,
         onExiting: handleExiting.callCount,
       }).to.deep.equal({
-        onEnter: 1,
+        // onEnter is called on mount which is run twice with Strict Effects
+        onEnter: React.version.startsWith('18') ? 2 : 1,
         onEntering: 1,
         onEntered: 1,
         onExit: 1,
@@ -284,7 +289,8 @@ describe('<Popover />', () => {
         onExited: handleExited.callCount,
         onExiting: handleExiting.callCount,
       }).to.deep.equal({
-        onEnter: 1,
+        // onEnter is called on mount which is run twice with Strict Effects
+        onEnter: React.version.startsWith('18') ? 2 : 1,
         onEntering: 1,
         onEntered: 1,
         onExit: 1,
