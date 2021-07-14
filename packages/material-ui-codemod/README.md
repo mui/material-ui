@@ -951,7 +951,7 @@ npx @material-ui/codemod@next v5.0.0/variant-prop <path>
 
 #### `with-mobile-dialog`
 
-Removes and inserts hardcoded `withMobileDialog` to prevent application crash.
+Removes imported `withMobileDialog`, and inserts hardcoded version to prevent application crash.
 
 ```diff
 - import withMobileDialog from '@material-ui/core/withMobileDialog';
