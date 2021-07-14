@@ -93,6 +93,7 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
     minDate,
     onChange,
     onMonthChange,
+    ...other
   } = props;
   const styleProps = props;
   const classes = useUtilityClasses(styleProps);
@@ -130,6 +131,7 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
       ref={ref}
       className={clsx(classes.root, className)}
       styleProps={styleProps}
+      {...other}
     >
       {utils.getMonthArray(date || now).map((month) => {
         const monthNumber = utils.getMonth(month);

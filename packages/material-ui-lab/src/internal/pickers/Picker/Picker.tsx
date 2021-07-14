@@ -14,7 +14,10 @@ import { AllAvailableViews } from '../typings/Views';
 import PickerView from './PickerView';
 
 export interface ExportedPickerProps
-  extends Omit<BasePickerProps<unknown, unknown>, 'value' | 'onChange'>,
+  extends Omit<
+      BasePickerProps<unknown, unknown>,
+      'value' | 'onChange' | 'inputProps' | 'disableCloseOnSelect' | 'onAccept' | 'onOpen'
+    >,
     CalendarAndClockProps<unknown> {
   dateRangeIcon?: React.ReactNode;
   /**
@@ -79,6 +82,12 @@ function Picker({
   toolbarPlaceholder,
   toolbarTitle,
   views = ['year', 'month', 'day', 'hours', 'minutes', 'seconds'],
+  getViewSwitchingButtonText,
+  ampm,
+  ampmInClock,
+  minTime,
+  maxTime,
+  disableIgnoringDatePartForTimeValidation,
   ...other
 }: PickerProps) {
   const isLandscape = useIsLandscape(views, orientation);
@@ -124,6 +133,8 @@ function Picker({
           toolbarPlaceholder={toolbarPlaceholder}
           isMobileKeyboardViewOpen={isMobileKeyboardViewOpen}
           toggleMobileKeyboardView={toggleMobileKeyboardView}
+          getViewSwitchingButtonText={getViewSwitchingButtonText}
+          ampm={ampm}
         />
       )}
 
@@ -163,6 +174,11 @@ function Picker({
                 nextViewAvailable={!nextView}
                 previousViewAvailable={!previousView || isDatePickerView(previousView)}
                 showViewSwitcher={wrapperVariant === 'desktop'}
+                ampm={ampm}
+                ampmInClock={ampmInClock}
+                minTime={minTime}
+                maxTime={maxTime}
+                disableIgnoringDatePartForTimeValidation={disableIgnoringDatePartForTimeValidation}
               />
             )}
           </React.Fragment>
