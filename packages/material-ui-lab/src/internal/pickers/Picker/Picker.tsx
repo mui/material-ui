@@ -84,13 +84,13 @@ function Picker(props: PickerProps) {
     toolbarTitle,
     views = ['year', 'month', 'day', 'hours', 'minutes', 'seconds'],
     getViewSwitchingButtonText,
-  ampm,
-  ampmInClock,
-  minTime,
-  maxTime,
-  disableIgnoringDatePartForTimeValidation,
-  ...other
-} = props;
+    ampm,
+    ampmInClock,
+    minTime,
+    maxTime,
+    disableIgnoringDatePartForTimeValidation,
+    ...other
+  } = props;
   const isLandscape = useIsLandscape(views, orientation);
   const wrapperVariant = React.useContext(WrapperVariantContext);
 
