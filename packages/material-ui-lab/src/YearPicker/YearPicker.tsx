@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import { useTheme, styled, useThemeProps as useThemProps } from '@material-ui/core/styles';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import clsx from 'clsx';
+import startOfYear from 'date-fns/startOfYear';
+import endOfYear from 'date-fns/endOfYear';
+import addYears from 'date-fns/addYears';
+import isBefore from 'date-fns/isBefore';
 import PickersYear from './PickersYear';
 import { useUtils, useNow } from '../internal/pickers/hooks/useUtils';
 import { PickerOnChangeFn } from '../internal/pickers/hooks/useViews';
@@ -168,11 +172,24 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
     }
   };
 
-  console.log(
-    utils.toJsDate(minDate).toISOString(),
-    utils.toJsDate(maxDate).toISOString(),
-    utils.getYearRange(minDate, maxDate).length,
-  );
+  function getYearRange(start: Date, end: Date) {
+    const startDate = startOfYear(start);
+    const endDate = endOfYear(end);
+    const years: Date[] = [];
+    console.log(start, startDate.toISOString());
+    console.log(end, endDate.toISOString());
+
+    let current = startDate;
+    while (isBefore(current, endDate)) {
+      years.push(current);
+      current = addYears(current, 1);
+      console.log(current.toISOString());
+    }
+
+    return years;
+  }
+
+  console.log(getYearRange(utils.toJsDate(utils.date('1900-01-01T00:00:00')!), utils.toJsDate(maxDate)).length);
 
   return (
     <YearPickerRoot ref={ref} className={clsx(classes.root, className)} styleProps={styleProps}>
