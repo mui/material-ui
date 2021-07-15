@@ -133,7 +133,6 @@ export default function transformer(file, api, options) {
     const classes = j.objectExpression([]);
     objExpression.properties.forEach((prop) => {
       classes.properties.push(
-        // eslint-disable-next-line
         j.objectProperty(
           prop.key,
           j.templateLiteral(
@@ -211,7 +210,6 @@ export default function transformer(file, api, options) {
         prop.key = j.templateLiteral(
           [
             j.templateElement({ raw: selector, cooked: selector }, false),
-            // eslint-disable-next-line prefer-template
             j.templateElement({ raw: '', cooked: '' }, true),
           ],
           [j.identifier(`classes.${prop.key.name}`)],
