@@ -2477,7 +2477,7 @@ Since `makeStyles` is now exported from `@material-ui/styles` package which does
 
 **Typescript Project**
 
-Put this snippet to your theme file,
+Put this snippet to your theme file:
 
 ```ts
 // it could be your App.tsx file or theme file that is included in your tsconfig.json
@@ -2491,7 +2491,7 @@ declare module '@material-ui/styles/defaultTheme' {
 
 **Javascript Project**
 
-If your IDE (ex. VSCode) is able to infer types from `d.ts` file, create `index.d.ts` in your `src` folder with this snippet.
+If your IDE (ex. VSCode) is able to infer types from `d.ts` file, create `index.d.ts` in your `src` folder with this snippet:
 
 ```js
 // index.d.ts
