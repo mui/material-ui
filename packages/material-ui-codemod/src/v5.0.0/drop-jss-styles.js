@@ -1,0 +1,354 @@
+function makeid(length) {
+  let result = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const charactersLength = characters.length;
+  // eslint-disable-next-line no-plusplus
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+
+/**
+ * @param {import('jscodeshift').FileInfo} file
+ * @param {import('jscodeshift').API} api
+ */
+export default function transformer(file, api, options) {
+  const j = api.jscodeshift;
+  const root = j(file.source);
+
+  /**
+   *
+   * @param {import('jscodeshift').CallExpression} withStylesCall
+   */
+  function getPrefix(withStylesCall) {
+    let prefix;
+    // 1. check from withStylesFn
+    if (withStylesCall && withStylesCall.arguments[1] && withStylesCall.arguments[1].properties) {
+      const name = withStylesCall.arguments[1].properties.find((prop) => prop.key.name === 'name');
+      prefix = name.value.value;
+    }
+
+    if (!prefix) {
+      // 2. check name from export default
+      root.find(j.ExportDefaultDeclaration).forEach((path) => {
+        prefix = path.node.declaration.name;
+      });
+    }
+
+    if (!prefix) {
+      // 3. generate random fixed prefix
+      prefix = makeid(3);
+    }
+
+    return prefix;
+  }
+
+  function getFirstJsxName() {
+    const matches = file.source.match(/<(\w*).*?\/?>/gm);
+    if (matches) {
+      return matches[0].match(/<(\w*)(\s|\/|>)/)[1];
+    }
+    return null;
+  }
+
+  function getRootClassKeys() {
+    const name = getFirstJsxName();
+    if (name) {
+      const rootClassKeys = [];
+      root
+        .findJSXElements(name)
+        .at(0)
+        .forEach((path) => {
+          const existingClassName = path.node.openingElement.attributes.find(
+            (attr) => attr.name.name === 'className',
+          );
+          if (existingClassName) {
+            if (existingClassName.value.type === 'StringLiteral') {
+              // className="string"
+            }
+
+            if (existingClassName.value.type === 'JSXExpressionContainer') {
+              if (existingClassName.value.expression.type === 'StringLiteral') {
+                // className={'string'}
+              }
+
+              if (existingClassName.value.expression.type === 'MemberExpression') {
+                // className={classes.root}
+                if (existingClassName.value.expression.object.name === 'classes') {
+                  rootClassKeys.push(existingClassName.value.expression.property.name);
+                }
+              }
+
+              if (existingClassName.value.expression.type === 'CallExpression') {
+                // className={clsx(classes.root)}
+                existingClassName.value.expression.arguments.forEach((arg) => {
+                  if (arg.type === 'MemberExpression') {
+                    if (arg.object.name === 'classes') {
+                      rootClassKeys.push(arg.property.name);
+                    }
+                  }
+
+                  if (arg.type === 'ObjectExpression') {
+                    arg.properties.forEach((prop) => {
+                      if (prop.key.object && prop.key.object.name === 'classes') {
+                        rootClassKeys.push(prop.key.property.name);
+                      }
+                    });
+                  }
+                });
+              }
+            }
+          }
+        });
+      return rootClassKeys;
+    }
+    return [];
+  }
+
+  function createStyledComponent(componentName, styledComponentName, stylesFn) {
+    return j.variableDeclaration('const', [
+      j.variableDeclarator(
+        j.identifier(styledComponentName),
+        j.callExpression(
+          j.callExpression(j.identifier('styled'), [
+            componentName.match(/^[A-Z]/)
+              ? j.identifier(componentName)
+              : j.stringLiteral(componentName),
+          ]),
+          [stylesFn],
+        ),
+      ),
+    ]);
+  }
+
+  /**
+   *
+   * @param {import('jscodeshift').ObjectExpression} objExpression
+   */
+  function createClasses(objExpression) {
+    const classes = j.objectExpression([]);
+    objExpression.properties.forEach((prop) => {
+      classes.properties.push(
+        // eslint-disable-next-line
+        j.objectProperty(
+          prop.key,
+          j.templateLiteral(
+            [
+              j.templateElement({ raw: '', cooked: '' }, false),
+              j.templateElement({ raw: `-${prop.key.name}`, cooked: `-${prop.key.name}` }, true),
+            ],
+            [j.identifier('PREFIX')],
+          ),
+        ),
+      );
+    });
+    return classes;
+  }
+
+  /**
+   *
+   * @param {import('jscodeshift').ArrowFunctionExpression} functionExpression
+   */
+  function convertToStyledArg(functionExpression, rootKeys = []) {
+    functionExpression.body.properties.forEach((prop) => {
+      const selector = rootKeys.includes(prop.key.name) ? '&.' : '& .';
+      prop.key = j.templateLiteral(
+        [
+          j.templateElement({ raw: selector, cooked: selector }, false),
+          // eslint-disable-next-line prefer-template
+          j.templateElement({ raw: '', cooked: '' }, true),
+        ],
+        [j.identifier(`classes.${prop.key.name}`)],
+      );
+      prop.computed = true;
+      return prop;
+    });
+    functionExpression.body.extra.parenthesized = false;
+
+    functionExpression.params = functionExpression.params.map((param) => {
+      if (param.type === 'ObjectPattern') {
+        return j.objectPattern([j.objectProperty(j.identifier('theme'), param)]);
+      }
+      const prop = j.objectProperty(param, param);
+      prop.shorthand = true;
+      return j.objectPattern([prop]);
+    });
+
+    return functionExpression;
+  }
+
+  const printOptions = options.printOptions || {
+    quote: 'single',
+  };
+
+  /**
+   * find withStyles, makeStyles arg variable
+   * ex. withStyles(styles, options)
+   * - styles: can be variable or () => { ... }
+   * - options: { name }
+   */
+
+  /**
+   * get the styles ASP
+   * - ArrowFunctionExpression
+   * - FunctionDeclaration
+   */
+
+  const withStylesCall = root.find(j.CallExpression, { callee: { name: 'withStyles' } }).nodes()[0];
+  const makeStylesCall = root.find(j.CallExpression, { callee: { name: 'makeStyles' } }).nodes()[0];
+
+  if (!withStylesCall && !makeStylesCall) {
+    return file.source;
+  }
+
+  const rootJsxName = getFirstJsxName();
+  const styledComponentName = rootJsxName.match(/^[A-Z]/) ? `Styled${rootJsxName}` : 'Root';
+
+  const prefix = getPrefix(withStylesCall || makeStylesCall);
+  const rootClassKeys = getRootClassKeys();
+  const result = {};
+  if (withStylesCall) {
+    let stylesFnName;
+    root
+      .find(j.CallExpression, { callee: { name: 'withStyles' } })
+      .at(0)
+      .forEach((path) => {
+        const arg = path.node.arguments[0];
+        if (arg.type === 'Identifier') {
+          stylesFnName = arg.name;
+        }
+        if (arg.type === 'ArrowFunctionExpression') {
+          result.classes = createClasses(arg.body, prefix);
+          result.styledArg = convertToStyledArg(arg, rootClassKeys);
+        }
+      });
+
+    root.find(j.CallExpression, { callee: { name: 'withStyles' } }).forEach((path) => {
+      if (path.parent.node.type === 'CallExpression') {
+        path.parent.node.arguments = path.parent.node.arguments.filter((arg) => {
+          return arg.callee.name !== 'withStyles';
+        });
+      }
+    });
+
+    root
+      .find(j.VariableDeclarator, { id: { name: stylesFnName } })
+      .at(0)
+      .forEach((path) => {
+        result.classes = createClasses(path.node.init.body, prefix);
+        result.styledArg = convertToStyledArg(path.node.init, rootClassKeys);
+      })
+      .remove();
+  }
+
+  if (makeStylesCall) {
+    let stylesFnName;
+    root
+      .find(j.CallExpression, { callee: { name: 'makeStyles' } })
+      .at(0)
+      .forEach((path) => {
+        const arg = path.node.arguments[0];
+        if (arg.type === 'Identifier') {
+          stylesFnName = arg.name;
+        }
+        if (arg.type === 'ArrowFunctionExpression') {
+          result.classes = createClasses(arg.body, prefix);
+          result.styledArg = convertToStyledArg(arg, rootClassKeys);
+        }
+      });
+
+    root
+      .find(j.VariableDeclaration)
+      .filter((path) => path.node.declarations.some((d) => d.id.name === 'useStyles'))
+      .remove();
+
+    root
+      .find(j.VariableDeclarator, { id: { name: stylesFnName } })
+      .at(0)
+      .forEach((path) => {
+        result.classes = createClasses(path.node.init.body, prefix);
+        result.styledArg = convertToStyledArg(path.node.init, rootClassKeys);
+      })
+      .remove();
+  }
+
+  /**
+   * create `classes`
+   * create styled `Root`
+   */
+  root
+    .find(j.ImportDeclaration)
+    .at(-1)
+    .forEach((path) => {
+      path.insertAfter(
+        j.variableDeclaration('const', [
+          j.variableDeclarator(j.identifier('PREFIX'), j.stringLiteral(prefix)),
+        ]),
+        j.variableDeclaration('const', [
+          j.variableDeclarator(j.identifier('classes'), result.classes),
+        ]),
+        createStyledComponent(rootJsxName, styledComponentName, result.styledArg),
+      );
+    });
+
+  /**
+   * apply <StyledComponent />
+   */
+  root
+    .findJSXElements(rootJsxName)
+    .at(0)
+    .forEach((path) => {
+      path.node.openingElement.name.name = styledComponentName;
+      if (path.node.closingElement) {
+        path.node.closingElement.name.name = styledComponentName;
+      }
+    });
+
+  /**
+   * import styled if not exist
+   */
+  const imports = root
+    .find(j.ImportDeclaration)
+    .filter(({ node }) => node.source.value.match(/^@material-ui\/core\/styles$/))
+    .forEach(({ node }) => {
+      const existed = node.specifiers.find((s) => s.imported.name === 'styled');
+      if (!existed) {
+        node.specifiers.push(j.importSpecifier(j.identifier('styled')));
+      }
+    });
+  if (!imports.size()) {
+    root
+      .find(j.ImportDeclaration)
+      .at(0)
+      .forEach((path) =>
+        path.insertAfter(
+          j.importDeclaration(
+            [j.importSpecifier(j.identifier('styled'))],
+            j.literal('@material-ui/core/styles'),
+          ),
+        ),
+      );
+  }
+
+  /**
+   * remove import
+   */
+  root
+    .find(j.ImportDeclaration)
+    .filter((path) =>
+      path.node.source.value.match(/^@material-ui\/styles\/?(withStyles|makeStyles)?$/),
+    )
+    .forEach((path) => {
+      path.node.specifiers = path.node.specifiers.filter(
+        (s) => s.local.name !== 'withStyles' && s.local.name !== 'makeStyles',
+      );
+    })
+    .filter((path) => !path.node.specifiers.length)
+    .remove();
+
+  return root
+    .toSource(printOptions)
+    .replace(/({.*)classes[^.],?(.*})/gm, '$1$2')
+    .replace(/^.*useStyles(.*);?/gm, '');
+}
