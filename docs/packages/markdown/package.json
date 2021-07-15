@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/markdown",
-  "version": "0.1.1",
+  "version": "5.0.0",
   "private": true,
   "type": "commonjs",
   "main": "./index.js",

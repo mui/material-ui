@@ -14,10 +14,16 @@ import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 
+const TOC_WIDTH = 175;
+const NAV_WIDTH = 240;
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     width: '100%',
+    [theme.breakpoints.up('lg')]: {
+      width: `calc(100% - ${NAV_WIDTH}px)`,
+    },
   },
   container: {
     position: 'relative',
@@ -39,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toc: {
     [theme.breakpoints.up('sm')]: {
-      width: 'calc(100% - 175px)',
+      width: `calc(100% - ${TOC_WIDTH}px)`,
     },
   },
   disableToc: {
@@ -76,12 +82,12 @@ function AppLayoutDocs(props) {
         )}
         <main
           className={clsx(classes.root, {
-            [classes.toc]: !disableToc,
             [classes.disableToc]: disableToc,
           })}
         >
           <AppContainer
             className={clsx(classes.container, {
+              [classes.toc]: !disableToc,
               [classes.ad]: !disableAd,
             })}
           >

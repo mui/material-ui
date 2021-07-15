@@ -63,6 +63,7 @@ describe('styleFunctionSx', () => {
           fontFamily: 'default',
           fontWeight: 'light',
           fontSize: 'fontSize',
+          maxWidth: 'sm',
           displayPrint: 'block',
           border: [1, 2, 3, 4, 5],
         },
@@ -76,6 +77,7 @@ describe('styleFunctionSx', () => {
         fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
         fontWeight: 300,
         fontSize: 14,
+        maxWidth: 600,
         '@media print': {
           display: 'block',
         },
