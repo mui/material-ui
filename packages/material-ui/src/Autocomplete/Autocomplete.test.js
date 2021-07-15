@@ -1220,7 +1220,6 @@ describe('<Autocomplete />', () => {
           'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
-        // 'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
       ]);
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal('a');
