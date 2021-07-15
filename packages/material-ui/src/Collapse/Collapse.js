@@ -240,11 +240,13 @@ Collapse.propTypes = {
    */
   classes: chainPropTypes(PropTypes.object, (props) => {
     if (props.classes && props.classes.container) {
-      throw new Error([
-        'Material-UI: the classes.container key is deprecated.',
-        'Use `classes.root` instead',
-        'The name of the pseudo-class was changed for consistency.',
-      ].join('\n'));
+      throw new Error(
+        [
+          'Material-UI: the classes.container key is deprecated.',
+          'Use `classes.root` instead',
+          'The name of the pseudo-class was changed for consistency.',
+        ].join('\n'),
+      );
     }
 
     return null;
