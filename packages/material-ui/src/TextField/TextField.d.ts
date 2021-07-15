@@ -96,8 +96,13 @@ export interface BaseTextFieldProps
   required?: boolean;
   /**
    * Number of rows to display when multiline option is set to true.
+   * @deprecated Use `minRows` instead.
    */
   rows?: string | number;
+  /**
+   * Minimum number of rows to display.
+   */
+  minRows?: string | number;
   /**
    * Maximum number of rows to display.
    * @deprecated Use `maxRows` instead.

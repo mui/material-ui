@@ -75,6 +75,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     InputProps,
     inputRef,
     label,
+    minRows,
     multiline = false,
     name,
     onBlur,
@@ -138,6 +139,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
       multiline={multiline}
       name={name}
       rows={rows}
+      minRows={minRows}
       rowsMax={rowsMax}
       maxRows={maxRows}
       type={type}
@@ -294,6 +296,10 @@ TextField.propTypes = {
    */
   maxRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
+   * Minimum number of rows to display.
+   */
+  minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  /**
    * If `true`, a textarea element will be rendered instead of an input.
    */
   multiline: PropTypes.bool,
@@ -326,6 +332,7 @@ TextField.propTypes = {
   required: PropTypes.bool,
   /**
    * Number of rows to display when multiline option is set to true.
+   * @deprecated Use `minRows` instead.
    */
   rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
