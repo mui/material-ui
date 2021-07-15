@@ -25,10 +25,11 @@ const ListItemIconRoot = styled('div', {
 
     return [styles.root, styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart];
   },
-})(({ theme, styleProps }) => ({
+})(({ styleProps }) => ({
   /* Styles applied to the root element. */
   minWidth: 56,
-  color: theme.palette.action.active,
+  opacity: 0.65,
+  color: 'inherit',
   flexShrink: 0,
   display: 'inline-flex',
   /* Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`. */
