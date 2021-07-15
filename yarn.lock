@@ -2843,10 +2843,10 @@
   resolved "https://registry.yarnpkg.com/@types/d3-time/-/d3-time-2.0.0.tgz#831dd093db91f16b83ba980e194bb8e4bcef44d6"
   integrity sha512-Abz8bTzy8UWDeYs9pCa3D37i29EWDjNTjemdk0ei1ApYVNqulYlGUKip/jLOpogkPSsPz/GvZCYiC7MFlEk0iQ==
 
-"@types/doctrine@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@types/doctrine/-/doctrine-0.0.3.tgz#e892d293c92c9c1d3f9af72c15a554fbc7e0895a"
-  integrity sha1-6JLSk8ksnB0/mvcsFaVU+8fgiVo=
+"@types/doctrine@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@types/doctrine/-/doctrine-0.0.4.tgz#2d9ac2699f809dffe8f33ec28aa7de7f6d651214"
+  integrity sha512-5IEvUPe/pxCTCknr9XYydfaZBP7urNMcJZhclQrPWB3ExnktEWBchzIrG3BazegvW6bwOZSFSLlGuW+9MsSMkQ==
 
 "@types/draft-js@^0.11.1":
   version "0.11.3"
