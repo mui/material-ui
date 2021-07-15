@@ -48,17 +48,17 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
   };
 
   return (
-    <div onMouseEnter={handleMouseOverCode} onMouseLeave={handleMouseOutCode}>
+    <div style={{position:"relative"}} onMouseEnter={handleMouseOverCode} onMouseLeave={handleMouseOutCode}>
+      {isHoveringCode && isCopyButtonEnabled && <IconButton
+        size="large"
+        style={{position: 'absolute', right: '1em', color: 'white'}}
+        data-ga-event-category="demo"
+        data-ga-event-action="copy"
+        onClick={handleCopyClick}
+      >
+        <FileCopyIcon fontSize="small"/>
+      </IconButton> }
       <MarkdownElement ref={ref} {...other}>
-        {isHoveringCode && isCopyButtonEnabled && <IconButton
-          size="large"
-          style={{position: 'absolute', right: '2em', color: 'white'}}
-          data-ga-event-category="demo"
-          data-ga-event-action="copy"
-          onClick={handleCopyClick}
-        >
-          <FileCopyIcon fontSize="small"/>
-        </IconButton>}
         <pre>
         <code
           className={`language-${language}`}

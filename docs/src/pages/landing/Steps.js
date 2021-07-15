@@ -87,7 +87,6 @@ function HomeSteps() {
                 {t('installDescr')}
               </Typography>
               <HighlightedCode
-                isCopyButtonEnabled={true}
                 code="$ npm install @material-ui/core@next @emotion/react @emotion/styled"
                 language="sh"
               />
@@ -103,7 +102,6 @@ function HomeSteps() {
                 {t('loadFont')}
               </Typography>
               <HighlightedCode
-                isCopyButtonEnabled={true}
                 code={`<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />`}
                 language="html"
               />

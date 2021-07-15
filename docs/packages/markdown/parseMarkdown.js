@@ -316,7 +316,7 @@ ${headers.components
 
         let afterRenderContents = getContents(render(content)); // seperate components for markdown elements
         afterRenderContents.forEach(afterRenderContent => {
-          if (/"^(?:demo|component)": "(.*)"/.test(afterRenderContent)) {
+          if (/"(?:demo|component)": "(.*)"/.test(afterRenderContent)) {
             try {
               rendered.push(JSON.parse(`{${afterRenderContent}}`));
               return;
