@@ -174,7 +174,7 @@ describe('<Autocomplete />', () => {
     });
 
     it('should set the highlight on selected item when dropdown is expanded', () => {
-      const { getByRole } = render(
+      const { getByRole, setProps } = render(
         <Autocomplete
           value="one"
           open
@@ -184,6 +184,8 @@ describe('<Autocomplete />', () => {
       );
 
       checkHighlightIs(getByRole('listbox'), 'one');
+      setProps({ value: 'two' });
+      checkHighlightIs(getByRole('listbox'), 'two');
     });
 
     it('should keep the current highlight if possible', () => {
@@ -1220,6 +1222,7 @@ describe('<Autocomplete />', () => {
           'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+        'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
       ]);
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal('a');
@@ -2015,6 +2018,43 @@ describe('<Autocomplete />', () => {
 
       const options = getAllByRole('option');
       expect(options).to.have.length(3);
+    });
+
+    it('should update the input value when getOptionLabel changes', () => {
+      const { setProps } = render(
+        <Autocomplete
+          value="one"
+          open
+          options={['one', 'two', 'three']}
+          getOptionLabel={(option) => option}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      const textbox = screen.getByRole('textbox');
+      expect(textbox).to.have.property('value', 'one');
+      setProps({
+        getOptionLabel: (option) => option.toUpperCase(),
+      });
+      expect(textbox).to.have.property('value', 'ONE');
+    });
+
+    it('should not update the input value when users is focusing', () => {
+      const { setProps } = render(
+        <Autocomplete
+          value="one"
+          open
+          options={['one', 'two', 'three']}
+          getOptionLabel={(option) => option}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+      const textbox = screen.getByRole('textbox');
+      expect(textbox).to.have.property('value', 'one');
+      fireEvent.change(textbox, { target: { value: 'a' } });
+      setProps({
+        getOptionLabel: (option) => option.toUpperCase(),
+      });
+      expect(textbox).to.have.property('value', 'a');
     });
   });
 
