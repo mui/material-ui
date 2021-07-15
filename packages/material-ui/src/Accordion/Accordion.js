@@ -174,11 +174,13 @@ Accordion.propTypes = {
    */
   classes: chainPropTypes(PropTypes.object, (props) => {
     if (props.classes && props.classes.focused) {
-      throw new Error([
-        'Material-UI: the classes.focused key is deprecated.',
-        'Use `classes.focusedVisible` instead',
-        'The name of the pseudo-class was changed for consistency.',
-      ]).join('\n');
+      throw new Error(
+        [
+          'Material-UI: the classes.focused key is deprecated.',
+          'Use `classes.focusedVisible` instead',
+          'The name of the pseudo-class was changed for consistency.',
+        ].join('\n'),
+      );
     }
 
     return null;
