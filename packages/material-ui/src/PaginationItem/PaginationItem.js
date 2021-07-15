@@ -117,43 +117,41 @@ const PaginationItemPage = styled(ButtonBase, {
     [`&.${paginationItemClasses.disabled}`]: {
       opacity: theme.palette.action.disabledOpacity,
     },
-    /* Styles applied to the root element if `type="page"`. */
-    ...(styleProps.type === 'page' && {
-      transition: theme.transitions.create(['color', 'background-color'], {
-        duration: theme.transitions.duration.short,
-      }),
+    /* Styles applied to the root element for page and prev/next buttons. */
+    transition: theme.transitions.create(['color', 'background-color'], {
+      duration: theme.transitions.duration.short,
+    }),
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover,
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+    },
+    [`&.${paginationItemClasses.selected}`]: {
+      backgroundColor: theme.palette.action.selected,
       '&:hover': {
-        backgroundColor: theme.palette.action.hover,
+        backgroundColor: alpha(
+          theme.palette.action.selected,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+        ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          backgroundColor: 'transparent',
-        },
-      },
-      [`&.${paginationItemClasses.selected}`]: {
-        backgroundColor: theme.palette.action.selected,
-        '&:hover': {
-          backgroundColor: alpha(
-            theme.palette.action.selected,
-            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-          ),
-          // Reset on touch devices, it doesn't add specificity
-          '@media (hover: none)': {
-            backgroundColor: theme.palette.action.selected,
-          },
-        },
-        [`&.${paginationItemClasses.focusVisible}`]: {
-          backgroundColor: alpha(
-            theme.palette.action.selected,
-            theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-          ),
-        },
-        [`&.${paginationItemClasses.disabled}`]: {
-          opacity: 1,
-          color: theme.palette.action.disabled,
           backgroundColor: theme.palette.action.selected,
         },
       },
-    }),
+      [`&.${paginationItemClasses.focusVisible}`]: {
+        backgroundColor: alpha(
+          theme.palette.action.selected,
+          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+        ),
+      },
+      [`&.${paginationItemClasses.disabled}`]: {
+        opacity: 1,
+        color: theme.palette.action.disabled,
+        backgroundColor: theme.palette.action.selected,
+      },
+    },
     /* Styles applied to the root element if `size="small"`. */
     ...(styleProps.size === 'small' && {
       minWidth: 26,
@@ -200,9 +198,8 @@ const PaginationItemPage = styled(ButtonBase, {
     }),
     /* Styles applied to the root element if `variant="outlined"`. */
     ...(styleProps.variant === 'outlined' && {
-      border: `1px solid ${
-        theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-      }`,
+      border: `1px solid ${theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+        }`,
       [`&.${paginationItemClasses.selected}`]: {
         ...(styleProps.color !== 'standard' && {
           color: theme.palette[styleProps.color].main,
@@ -285,17 +282,17 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
   const normalizedIcons =
     theme.direction === 'rtl'
       ? {
-          previous: NavigateNextIcon,
-          next: NavigateBeforeIcon,
-          last: FirstPageIcon,
-          first: LastPageIcon,
-        }
+        previous: NavigateNextIcon,
+        next: NavigateBeforeIcon,
+        last: FirstPageIcon,
+        first: LastPageIcon,
+      }
       : {
-          previous: NavigateBeforeIcon,
-          next: NavigateNextIcon,
-          first: FirstPageIcon,
-          last: LastPageIcon,
-        };
+        previous: NavigateBeforeIcon,
+        next: NavigateNextIcon,
+        first: FirstPageIcon,
+        last: LastPageIcon,
+      };
 
   const Icon = normalizedIcons[type];
 
