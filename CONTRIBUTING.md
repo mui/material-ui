@@ -103,7 +103,7 @@ Make sure the following is true:
 - If a feature is being added:
   - If the result was already achievable with the core library, explain why this feature needs to be added to the core.
   - If this is a common use case, consider adding an example to the documentation.
-- When adding new features or modifying existing, please include tests to confirm the new behavior. You can read more about our test setup in our test [README](https://github.com/mui-org/material-ui/blob/HEAD/test/README.md).
+- When adding new features or modifying existing ones, please include tests to confirm the new behavior. You can read more about our test setup in our test [README](https://github.com/mui-org/material-ui/blob/HEAD/test/README.md).
 - If props were added or prop types were changed, the TypeScript declarations were updated.
 - When submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-lab).
 - The branch is not [behind its target branch](https://github.community/t/branch-10-commits-behind/2403).
@@ -123,7 +123,7 @@ If you have missed a step, don't worry, the Continuous Integration will run a th
 
 If any of the checks fails click on the _Details_
 link and review the logs of the build to find out why it failed.
-For CircleCI you need to login first.
+For CircleCI you need to log in first.
 No further permissions are required to view the build logs.
 The following section gives an overview of what each check is responsible for.
 
@@ -195,7 +195,7 @@ on _Details_ to find out more about them.
 ### Updating the component API documentation
 
 The component API in the component `propTypes` and under `docs/pages/api-docs` is auto-generated from the [JSDoc](https://jsdoc.app/about-getting-started.html) in the TypeScript declarations.
-Be sure to update the documentation in the corresponding `.d.ts` files (e.g. `packages/material-ui/src/Button/Button.d.ts` for `<Button>`) and the run:
+Be sure to update the documentation in the corresponding `.d.ts` files (e.g. `packages/material-ui/src/Button/Button.d.ts` for `<Button>`) and then run:
 
 ```sh
 $ yarn proptypes
@@ -211,10 +211,9 @@ Please follow the coding style of the project. Material-UI uses prettier and esl
 
 Finally, when you submit a Pull Request, they are run again by our continuous integration tools, but hopefully, your code is already clean!
 
-## How to add a new demo in the documentation?
+## How to add a new demo in the documentation
 
-You need to **create** a new file and **modify** two files.
-For example, let say you want to add new demos for buttons component, then you have to go through the following steps:
+If, for example, you want to add new demos for the button component, you have to take the following steps:
 
 #### 1. Add a new React component file under the related directory.
 
