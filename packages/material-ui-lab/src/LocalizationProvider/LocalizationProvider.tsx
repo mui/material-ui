@@ -5,6 +5,9 @@ import { DateIOFormats, IUtils } from '@date-io/core/IUtils';
 export type MuiPickersAdapter<TDate = unknown> = IUtils<TDate>;
 
 export const MuiPickersAdapterContext = React.createContext<MuiPickersAdapter | null>(null);
+if (process.env.NODE_ENV !== 'production') {
+  MuiPickersAdapterContext.displayName = 'MuiPickersAdapterContext';
+}
 
 export interface LocalizationProviderProps {
   children?: React.ReactNode;
