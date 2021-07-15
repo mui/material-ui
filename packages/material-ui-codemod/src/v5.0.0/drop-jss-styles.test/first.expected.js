@@ -250,4 +250,7 @@ AppAppBar.propTypes = {
   user: PropTypes.object,
 };
 
-export default compose(connect((state) => ({ user: state.data.user })))(AppAppBar);
+export default compose(
+  
+  connect((state) => ({ user: state.data.user })),
+)(AppAppBar);

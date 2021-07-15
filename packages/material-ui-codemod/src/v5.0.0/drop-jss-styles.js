@@ -1,14 +1,3 @@
-function makeid(length) {
-  let result = '';
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  const charactersLength = characters.length;
-  // eslint-disable-next-line no-plusplus
-  for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-}
-
 /**
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
@@ -16,6 +5,10 @@ function makeid(length) {
 export default function transformer(file, api, options) {
   const j = api.jscodeshift;
   const root = j(file.source);
+
+  function getFileNameWithoutExt() {
+    return (file.path.split('/').slice(-1)[0] || '').replace(/^([^.]*)\.(.*)/, '$1');
+  }
 
   /**
    *
@@ -37,8 +30,18 @@ export default function transformer(file, api, options) {
     }
 
     if (!prefix) {
-      // 3. generate random fixed prefix
-      prefix = makeid(3);
+      // 3. use name export that is Capitalize
+      root.find(j.ExportNamedDeclaration).forEach((path) => {
+        const name = path.node.declaration.declarations[0].id.name;
+        if (!prefix && name.match(/^[A-Z]/)) {
+          prefix = name;
+        }
+      });
+    }
+
+    if (!prefix) {
+      // 4. use file name
+      prefix = getFileNameWithoutExt();
     }
 
     return prefix;
@@ -148,23 +151,56 @@ export default function transformer(file, api, options) {
 
   /**
    *
-   * @param {import('jscodeshift').ArrowFunctionExpression} functionExpression
+   * @param {import('jscodeshift').ArrowFunctionExpression | import('jscodeshift').FunctionDeclaration} functionExpression
+   */
+  function getReturnStatement(functionExpression) {
+    if (functionExpression.type === 'ArrowFunctionExpression') {
+      if (functionExpression.body.type === 'BlockStatement') {
+        return functionExpression.body.body[0].argument;
+      }
+      if (functionExpression.body.type === 'ObjectExpression') {
+        return functionExpression.body;
+      }
+    }
+    if (functionExpression.type === 'FunctionDeclaration') {
+      return functionExpression.body.body[0].argument;
+    }
+    return null;
+  }
+
+  /**
+   *
+   * @param {import('jscodeshift').ArrowFunctionExpression | import('jscodeshift').FunctionDeclaration} functionExpression
    */
   function convertToStyledArg(functionExpression, rootKeys = []) {
-    functionExpression.body.properties.forEach((prop) => {
-      const selector = rootKeys.includes(prop.key.name) ? '&.' : '& .';
-      prop.key = j.templateLiteral(
-        [
-          j.templateElement({ raw: selector, cooked: selector }, false),
-          // eslint-disable-next-line prefer-template
-          j.templateElement({ raw: '', cooked: '' }, true),
-        ],
-        [j.identifier(`classes.${prop.key.name}`)],
-      );
-      prop.computed = true;
-      return prop;
-    });
-    functionExpression.body.extra.parenthesized = false;
+    let objectExpression;
+    if (functionExpression.type === 'ArrowFunctionExpression') {
+      if (functionExpression.body.type === 'BlockStatement') {
+        objectExpression = functionExpression.body.body[0].argument;
+      }
+      if (functionExpression.body.type === 'ObjectExpression') {
+        functionExpression.body.extra.parenthesized = false;
+        objectExpression = functionExpression.body;
+      }
+    }
+    if (functionExpression.type === 'FunctionDeclaration') {
+      objectExpression = functionExpression.body.body[0].argument;
+    }
+    if (objectExpression) {
+      objectExpression.properties.forEach((prop) => {
+        const selector = rootKeys.includes(prop.key.name) ? '&.' : '& .';
+        prop.key = j.templateLiteral(
+          [
+            j.templateElement({ raw: selector, cooked: selector }, false),
+            // eslint-disable-next-line prefer-template
+            j.templateElement({ raw: '', cooked: '' }, true),
+          ],
+          [j.identifier(`classes.${prop.key.name}`)],
+        );
+        prop.computed = true;
+        return prop;
+      });
+    }
 
     functionExpression.params = functionExpression.params.map((param) => {
       if (param.type === 'ObjectPattern') {
@@ -218,26 +254,31 @@ export default function transformer(file, api, options) {
         if (arg.type === 'Identifier') {
           stylesFnName = arg.name;
         }
-        if (arg.type === 'ArrowFunctionExpression') {
-          result.classes = createClasses(arg.body, prefix);
+        const objectExpression = getReturnStatement(arg);
+        if (objectExpression) {
+          result.classes = createClasses(objectExpression, prefix);
           result.styledArg = convertToStyledArg(arg, rootClassKeys);
         }
       });
-
-    root.find(j.CallExpression, { callee: { name: 'withStyles' } }).forEach((path) => {
-      if (path.parent.node.type === 'CallExpression') {
-        path.parent.node.arguments = path.parent.node.arguments.filter((arg) => {
-          return arg.callee.name !== 'withStyles';
-        });
-      }
-    });
 
     root
       .find(j.VariableDeclarator, { id: { name: stylesFnName } })
       .at(0)
       .forEach((path) => {
-        result.classes = createClasses(path.node.init.body, prefix);
-        result.styledArg = convertToStyledArg(path.node.init, rootClassKeys);
+        const objectExpression = getReturnStatement(path.node.init);
+        if (objectExpression) {
+          result.classes = createClasses(objectExpression, prefix);
+          result.styledArg = convertToStyledArg(path.node.init, rootClassKeys);
+        }
+      })
+      .remove();
+
+    root
+      .find(j.FunctionDeclaration, { id: { name: stylesFnName } })
+      .at(0)
+      .forEach((path) => {
+        result.classes = createClasses(path.node.body.body[0].argument, prefix);
+        result.styledArg = convertToStyledArg(path.node, rootClassKeys);
       })
       .remove();
   }
@@ -256,6 +297,10 @@ export default function transformer(file, api, options) {
           result.classes = createClasses(arg.body, prefix);
           result.styledArg = convertToStyledArg(arg, rootClassKeys);
         }
+        // if (arg.type === 'FunctionDeclaration') {
+        //   result.classes = createClasses(arg.body, prefix);
+        //   result.styledArg = convertToStyledArg(arg, rootClassKeys);
+        // }
       });
 
     root
@@ -349,6 +394,7 @@ export default function transformer(file, api, options) {
 
   return root
     .toSource(printOptions)
+    .replace(/withStyles\([^)]*\),?/gm, '')
     .replace(/({.*)classes[^.],?(.*})/gm, '$1$2')
     .replace(/^.*useStyles(.*);?/gm, '');
 }
