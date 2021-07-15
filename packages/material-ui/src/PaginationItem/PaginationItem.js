@@ -117,7 +117,6 @@ const PaginationItemPage = styled(ButtonBase, {
     [`&.${paginationItemClasses.disabled}`]: {
       opacity: theme.palette.action.disabledOpacity,
     },
-    /* Styles applied to the root element. */
     transition: theme.transitions.create(['color', 'background-color'], {
       duration: theme.transitions.duration.short,
     }),
@@ -198,8 +197,9 @@ const PaginationItemPage = styled(ButtonBase, {
     }),
     /* Styles applied to the root element if `variant="outlined"`. */
     ...(styleProps.variant === 'outlined' && {
-      border: `1px solid ${theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-        }`,
+      border: `1px solid ${
+        theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+      }`,
       [`&.${paginationItemClasses.selected}`]: {
         ...(styleProps.color !== 'standard' && {
           color: theme.palette[styleProps.color].main,
@@ -282,17 +282,17 @@ const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
   const normalizedIcons =
     theme.direction === 'rtl'
       ? {
-        previous: NavigateNextIcon,
-        next: NavigateBeforeIcon,
-        last: FirstPageIcon,
-        first: LastPageIcon,
-      }
+          previous: NavigateNextIcon,
+          next: NavigateBeforeIcon,
+          last: FirstPageIcon,
+          first: LastPageIcon,
+        }
       : {
-        previous: NavigateBeforeIcon,
-        next: NavigateNextIcon,
-        first: FirstPageIcon,
-        last: LastPageIcon,
-      };
+          previous: NavigateBeforeIcon,
+          next: NavigateNextIcon,
+          first: FirstPageIcon,
+          last: LastPageIcon,
+        };
 
   const Icon = normalizedIcons[type];
 
