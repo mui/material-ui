@@ -48,7 +48,7 @@ export default function transformer(file, api, options) {
   }
 
   function getFirstJsxName() {
-    const matches = file.source.match(/<(\w*)[\s\S]*?[^/]>/gm);
+    const matches = file.source.match(/<\/?(\w*)[\s\S]*?>/gm);
     if (matches) {
       return matches.slice(-1)[0].match(/<\/?(\w*)(\s|\/|>)/)[1];
     }
@@ -154,6 +154,9 @@ export default function transformer(file, api, options) {
    * @param {import('jscodeshift').ArrowFunctionExpression | import('jscodeshift').FunctionDeclaration} functionExpression
    */
   function getReturnStatement(functionExpression) {
+    if (functionExpression.type === 'ObjectExpression') {
+      return functionExpression;
+    }
     if (functionExpression.type === 'ArrowFunctionExpression') {
       if (functionExpression.body.type === 'BlockStatement') {
         const returnStatement = functionExpression.body.body.find(
@@ -180,6 +183,9 @@ export default function transformer(file, api, options) {
    */
   function convertToStyledArg(functionExpression, rootKeys = []) {
     let objectExpression;
+    if (functionExpression.type === 'ObjectExpression') {
+      objectExpression = functionExpression;
+    }
     if (functionExpression.type === 'ArrowFunctionExpression') {
       if (functionExpression.body.type === 'BlockStatement') {
         const returnStatement = functionExpression.body.body.find(
@@ -215,14 +221,16 @@ export default function transformer(file, api, options) {
       });
     }
 
-    functionExpression.params = functionExpression.params.map((param) => {
-      if (param.type === 'ObjectPattern') {
-        return j.objectPattern([j.objectProperty(j.identifier('theme'), param)]);
-      }
-      const prop = j.objectProperty(param, param);
-      prop.shorthand = true;
-      return j.objectPattern([prop]);
-    });
+    if (functionExpression.params) {
+      functionExpression.params = functionExpression.params.map((param) => {
+        if (param.type === 'ObjectPattern') {
+          return j.objectPattern([j.objectProperty(j.identifier('theme'), param)]);
+        }
+        const prop = j.objectProperty(param, param);
+        prop.shorthand = true;
+        return j.objectPattern([prop]);
+      });
+    }
 
     return functionExpression;
   }
