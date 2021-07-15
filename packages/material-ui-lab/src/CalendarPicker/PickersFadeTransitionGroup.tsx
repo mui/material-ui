@@ -39,6 +39,7 @@ const PickersFadeTransitionGroup = ({
   return (
     <PickersFadeTransitionGroupRoot className={clsx(classes.root, className)}>
       <Fade
+        appear={false}
         mountOnEnter
         unmountOnExit
         key={transKey}
