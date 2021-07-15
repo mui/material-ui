@@ -24,7 +24,7 @@ import { createTheme, styled } from '@material-ui/core/styles';
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'flex-end',
-      padding: '0 8px',
+      padding: '0px',
       ...theme.mixins.toolbar,
     },
   }));
