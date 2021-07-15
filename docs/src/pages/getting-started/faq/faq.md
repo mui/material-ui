@@ -66,6 +66,7 @@ const theme = createTheme({
   },
 });
 ```
+disableRipple is also available for it to change the styling, similar to disabled. 
 
 ## How can I disable transitions globally?
 
