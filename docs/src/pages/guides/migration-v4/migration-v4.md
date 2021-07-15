@@ -2463,3 +2463,34 @@ const CustomComponent = React.forwardRef(function CustomComponent(props, ref) {
 ```
 
 For more details, checkout [this issue](https://github.com/mui-org/material-ui/issues/27154) on GitHub.
+
+### [Types] Property "palette", "spacing" does not exist on type 'DefaultTheme'
+
+Since `makeStyles` is now exported from `@material-ui/styles` package which does not know about `Theme` in the core package. To fix this, you need to augment the `DefaultTheme` (empty object) in `@material-ui/styles` with `Theme` from the core. [Read more about module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)
+
+**Typescript Project**
+
+Put this snippet to your theme file,
+
+```ts
+// it could be your App.tsx file or theme file that is included in your tsconfig.json
+import { Theme } from '@material-ui/core/styles';
+
+declare module '@material-ui/styles/defaultTheme' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface (remove this line if you don't have the rule enabled)
+  interface DefaultTheme extends Theme {}
+}
+```
+
+**Javascript Project**
+
+If your IDE (ex. VSCode) is able to infer types from `d.ts` file, create `index.d.ts` in your `src` folder with this snippet.
+
+```js
+// index.d.ts
+declare module "@material-ui/private-theming" {
+  import type { Theme } from "@material-ui/core/styles";
+
+  interface DefaultTheme extends Theme {}
+}
+```
