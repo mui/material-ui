@@ -117,7 +117,7 @@ const PaginationItemPage = styled(ButtonBase, {
     [`&.${paginationItemClasses.disabled}`]: {
       opacity: theme.palette.action.disabledOpacity,
     },
-    /* Styles applied to the root element for page and prev/next buttons. */
+    /* Styles applied to the root element. */
     transition: theme.transitions.create(['color', 'background-color'], {
       duration: theme.transitions.duration.short,
     }),
