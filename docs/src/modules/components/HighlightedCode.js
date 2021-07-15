@@ -1,15 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import prism from '@material-ui/markdown/prism';
-import MarkdownElement from './MarkdownElement';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import IconButton from '@material-ui/core/IconButton';
 import copy from 'clipboard-copy';
 import Snackbar from '@material-ui/core/Snackbar';
-import {useTranslate} from "../utils/i18n";
+import MarkdownElement from './MarkdownElement';
+import { useTranslate } from '../utils/i18n';
 
 const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
-  const {code, language, encodedCode, isCopyButtonEnabled, ...other} = props;
+  const { code, language, encodedCode, isCopyButtonEnabled, ...other } = props;
   const renderedCode = React.useMemo(() => {
     if (encodedCode) {
       return prism(decodeURI(encodedCode).trim(), language);
@@ -35,7 +35,7 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
       setSnackbarMessage(t('copiedSource'));
       setSnackbarOpen(true);
     } finally {
-
+      setSnackbarOpen(false);
     }
   };
 
@@ -48,25 +48,30 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
   };
 
   return (
-    <div style={{position:"relative"}} onMouseEnter={handleMouseOverCode} onMouseLeave={handleMouseOutCode}>
-      {isHoveringCode && isCopyButtonEnabled && <IconButton
-        size="large"
-        style={{position: 'absolute', right: '1em', color: 'white'}}
-        data-ga-event-category="demo"
-        data-ga-event-action="copy"
-        onClick={handleCopyClick}
-      >
-        <FileCopyIcon fontSize="small"/>
-      </IconButton> }
+    <div
+      style={{ position: 'relative' }}
+      onMouseEnter={handleMouseOverCode}
+      onMouseLeave={handleMouseOutCode}
+    >
+      {isHoveringCode && isCopyButtonEnabled && (
+        <IconButton
+          size="large"
+          style={{ position: 'absolute', right: '1em', color: 'white' }}
+          data-ga-event-category="demo"
+          data-ga-event-action="copy"
+          onClick={handleCopyClick}
+        >
+          <FileCopyIcon fontSize="small" />
+        </IconButton>
+      )}
       <MarkdownElement ref={ref} {...other}>
         <pre>
-        <code
-          className={`language-${language}`}
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{__html: renderedCode}}
-        />
-
-      </pre>
+          <code
+            className={`language-${language}`}
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{ __html: renderedCode }}
+          />
+        </pre>
         <Snackbar
           open={snackbarOpen}
           autoHideDuration={3000}
@@ -80,10 +85,9 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
 
 HighlightedCode.propTypes = {
   code: PropTypes.string.isRequired,
-  language: PropTypes.string.isRequired,
+  encodedCode: PropTypes.string,
   isCopyButtonEnabled: PropTypes.bool,
-  encodedCode: PropTypes.string
+  language: PropTypes.string.isRequired,
 };
 
 export default HighlightedCode;
-

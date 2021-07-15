@@ -125,7 +125,7 @@ const externs = [
  * @param {string} context.userLanguage
  */
 function createRender(context) {
-  const {headingHashes, toc, userLanguage} = context;
+  const { headingHashes, toc, userLanguage } = context;
   const headingHashesFallbackTranslated = {};
   let headingIndex = -1;
 
@@ -133,15 +133,16 @@ function createRender(context) {
    * @param {string} markdown
    */
   function render(markdown) {
-
     const renderer = new marked.Renderer();
-    renderer.code = function (code, infostring, escaped) {
+    renderer.code = (code, infostring) => {
       const lang = (infostring || '').match(/\S*/)[0];
 
       return `
-      {{"component": "modules/components/HighlightedCode.js","encodedCode" : "${encodeURI(code)}","language" : "${lang}","isCopyButtonEnabled" : true }}
-      `
-    }
+      {{"component": "modules/components/HighlightedCode.js","encodedCode" : "${encodeURI(
+        code,
+      )}","language" : "${lang}","isCopyButtonEnabled" : true }}
+      `;
+    };
 
     renderer.heading = (headingHtml, level) => {
       // Main title, no need for an anchor.
@@ -252,7 +253,7 @@ function createRender(context) {
  * @param {string} config.pageFilename - posix filename relative to nextjs pages directory
  */
 function prepareMarkdown(config) {
-  const {pageFilename, requireRaw} = config;
+  const { pageFilename, requireRaw } = config;
 
   const demos = {};
   /**
@@ -292,15 +293,15 @@ function prepareMarkdown(config) {
 ## API
 
 ${headers.components
-          .map((component) => `- [\`<${component} />\`](/api/${kebabCase(component)}/)`)
-          .join('\n')}
+  .map((component) => `- [\`<${component} />\`](/api/${kebabCase(component)}/)`)
+  .join('\n')}
   `);
       }
 
       const toc = [];
-      const render = createRender({headingHashes, toc, userLanguage});
+      const render = createRender({ headingHashes, toc, userLanguage });
 
-      let rendered = [];
+      const rendered = [];
       contents.forEach((content) => {
         if (/^"(demo|component)": "(.*)"/.test(content)) {
           try {
@@ -314,8 +315,8 @@ ${headers.components
           }
         }
 
-        let afterRenderContents = getContents(render(content)); // seperate components for markdown elements
-        afterRenderContents.forEach(afterRenderContent => {
+        const afterRenderContents = getContents(render(content)); // seperate components for markdown elements
+        afterRenderContents.forEach((afterRenderContent) => {
           if (/"(?:demo|component)": "(.*)"/.test(afterRenderContent)) {
             try {
               rendered.push(JSON.parse(`{${afterRenderContent}}`));
@@ -327,8 +328,8 @@ ${headers.components
               return;
             }
           }
-          rendered.push(afterRenderContent)
-        })
+          rendered.push(afterRenderContent);
+        });
       });
 
       // fragment link symbol
@@ -367,7 +368,7 @@ ${headers.components
     }
   });
 
-  return {demos, docs};
+  return { demos, docs };
 }
 
 module.exports = {

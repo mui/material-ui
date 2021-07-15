@@ -129,7 +129,7 @@ function HomeSteps() {
                 {t('usageDescr')}
               </Typography>
               <HighlightedCode
-                isCopyButtonEnabled={true}
+                isCopyButtonEnabled
                 code={`
 import * as React from 'react';
 import { Button } from '@material-ui/core';

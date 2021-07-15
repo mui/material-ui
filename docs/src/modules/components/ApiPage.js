@@ -274,12 +274,12 @@ function ApiDocs(props) {
         </Typography>
         <Heading hash="import" />
         <HighlightedCode
-          isCopyButtonEnabled={true}
+          isCopyButtonEnabled
           code={`import ${componentName} from '${source}/${componentName}';`}
           language="jsx"
         />
         <HighlightedCode
-          isCopyButtonEnabled={true}
+          isCopyButtonEnabled
           code={`import { ${componentName} } from '${source}';`}
           language="jsx"
         />
