@@ -112,7 +112,7 @@ We have prepared these codemods to ease your migration experience.
 
 ### preset-safe
 
-This codemod contains most of the transformers that are useful for migration. (**This codemod is not idempotent, it should be applied only once per folder**)
+This codemod contains most of the transformers that are useful for migration. (**This codemod  should be applied only once per folder**)
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/preset-safe <folder>
