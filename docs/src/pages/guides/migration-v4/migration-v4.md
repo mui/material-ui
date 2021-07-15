@@ -2427,17 +2427,24 @@ For more details, checkout [this issue](https://github.com/mui-org/material-ui/i
 
 This error comes from `Fade`, `Grow`, `Slide`, `Zoom` components due to missing DOM Node.
 
-You need to make sure that the children forward ref to DOM.
+You need to make sure that the children forward ref to DOM for custom component.
 
 ```jsx
-// ❌ This will cause error. don't use Fragment as a child
+// Ex. 1 ✅ html tag works since it is a DOM
+<Fade in>
+  <div>
+    <CustomComponent />
+  </div>
+</Fade>
+
+// Ex. 2 ❌ This will cause error. don't use Fragment as a child
 <Fade in>
   <React.Fragment>
     <CustomComponent />
   </React.Fragment>
 </Fade>;
 
-// ❌ This will cause error because `CustomComponent` does not forward ref to DOM
+// Ex. 3 ❌ This will cause error because `CustomComponent` does not forward ref to DOM
 function CustomComponent() {
   return <div>...</div>;
 }
