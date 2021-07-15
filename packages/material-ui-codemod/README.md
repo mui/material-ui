@@ -760,7 +760,7 @@ You can find more details about this breaking change in the migration guide.
 
 #### `theme-augment`
 
-Adds `DefaultTheme` module augment to typescript projects.
+Adds `DefaultTheme` module augmentation to typescript projects.
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/theme-augment <path>
