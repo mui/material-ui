@@ -66,10 +66,6 @@ const CheckboxRoot = styled(SwitchBase, {
     [`&.${checkboxClasses.disabled}`]: {
       color: theme.palette.action.disabled,
     },
-
-    [`&.${checkboxClasses.disableRipple}`]: {
-        color: theme.palette.action.disableRipple,
-    },
   }),
 }));
 
