@@ -48,7 +48,7 @@ The _why_ will be covered in an upcoming blog post on Medium.
 
 > 📝 Please make sure that your application is still **running** without error and **commit** the change before continuing the next step.
 
-## `ThemeProvider` Setup
+## `ThemeProvider` setup
 
 Make sure that `ThemeProvider` is defined at the root of your application (even if you are using the **default theme**) and **NO** `useStyles` is called before `<ThemeProvider>`.
 
@@ -106,7 +106,7 @@ yarn add @material-ui/styles@next
 
 > ⚠️ After this step, your application is expected to crash because the style library has changed from **JSS (v4)** to **emotion (v5)**.
 
-## Run Codemod
+## Run codemods
 
 We have prepared these codemods to ease your migration experience.
 
