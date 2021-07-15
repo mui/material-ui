@@ -54,7 +54,7 @@ const variantsResolver = (props, styles, theme, name) => {
 
 export function shouldForwardProp(prop) {
   return prop !== 'styleProps' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
-};
+}
 
 export const systemDefaultTheme = createTheme();
 
