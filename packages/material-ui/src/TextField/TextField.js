@@ -75,7 +75,6 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     InputProps,
     inputRef,
     label,
-    minRows,
     multiline = false,
     name,
     onBlur,
@@ -86,6 +85,7 @@ const TextField = React.forwardRef(function TextField(props, ref) {
     rows,
     rowsMax,
     maxRows,
+    minRows,
     select = false,
     SelectProps,
     type,
@@ -139,9 +139,9 @@ const TextField = React.forwardRef(function TextField(props, ref) {
       multiline={multiline}
       name={name}
       rows={rows}
-      minRows={minRows}
       rowsMax={rowsMax}
       maxRows={maxRows}
+      minRows={minRows}
       type={type}
       value={value}
       id={id}
