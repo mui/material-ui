@@ -38,7 +38,7 @@ The `borderRadius` properties multiples the value it receives by the `theme.shap
 // equivalent to borderRadius: theme => 2 * theme.shape.borderRadius
 ```
 
-_Head to the [borders page](/system/borders/) for more examples._
+_Head to the [borders page](/system/borders/) for more details._
 
 ### Display
 
@@ -48,7 +48,7 @@ The `displayPrint` property allows you to specify CSS `display` value, that will
 <Box sx={{ displayPrint: 'none' }} /> // equivalent to '@media print': { display: 'none' }
 ```
 
-_Head to the [display page](/system/display/) for more examples._
+_Head to the [display page](/system/display/) for more details._
 
 ### Grid
 
@@ -59,7 +59,7 @@ The grid CSS properties `gap`, `rowGap` and `columnGap` multiply the values they
 // equivalent to gap: theme => theme.spacing(2)
 ```
 
-_Head to the [grid page](/system/grid/) for more examples._
+_Head to the [grid page](/system/grid/) for more details._
 
 ### Palette
 
@@ -77,7 +77,7 @@ The `backgroundColor` property is also available trough its alias `bgcolor`.
 // equivalent to backgroundColor: theme => theme.palette.primary.main
 ```
 
-_Head to the [palette page](/system/palette/) for more examples._
+_Head to the [palette page](/system/palette/) for more details._
 
 ### Positions
 
@@ -88,7 +88,7 @@ The `zIndex` property maps its value to the `theme.zIndex` value.
 // equivalent to backgroundColor: theme => theme.zIndex.tooltip
 ```
 
-_Head to the [positions page](/system/positions/) for more examples._
+_Head to the [positions page](/system/positions/) for more details._
 
 ### Shadows
 
@@ -99,7 +99,7 @@ The `boxShadow` property maps its value to the `theme.shadows` value.
 // equivalent to boxShadow: theme => theme.shadows[1]
 ```
 
-_Head to the [shadows page](/system/shadows/) for more examples._
+_Head to the [shadows page](/system/shadows/) for more details._
 
 ### Sizing
 
@@ -111,14 +111,15 @@ function transform(value) {
 }
 ```
 
-Basically, if the value is between [0, 1] it is converted to percent, otherwise it is directly set on the CSS property.
+If the value is between [0, 1], it's converted to percent.
+Otherwise, it is directly set on the CSS property.
 
 ```jsx
-<Box sx={{ width: 0.5 }} /> // equivalent to width: '50%'
+<Box sx={{ width: 1/2 }} /> // equivalent to width: '50%'
 <Box sx={{ width: 20 }} /> // equivalent to width: '20px'
 ```
 
-_Head to the [sizing page](/system/sizing/) for more examples._
+_Head to the [sizing page](/system/sizing/) for more details._
 
 ### Spacing
 
@@ -148,7 +149,7 @@ The following aliases are availabel for the spacing properties:
 | `px` | `padding-left`, `padding-right` |
 | `py` | `padding-top`, `padding-bottom` |
 
-_Head to the [spacing page](/system/spacing/) for more examples._
+_Head to the [spacing page](/system/spacing/) for more details._
 
 ### Typography
 
@@ -173,7 +174,7 @@ There is additional `typography` prop available, which sets all values defined i
 // equivalent to { ...theme.typography.body1 }
 ```
 
-_Head to the [typography page](/system/typography/) for more examples._
+_Head to the [typography page](/system/typography/) for more details._
 
 ## Responsive values
 

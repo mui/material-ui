@@ -78,16 +78,4 @@ describe('<CalendarPicker />', () => {
     expect(screen.queryByLabelText(/switch to year view/i)).to.equal(null);
     expect(screen.getByLabelText('year view is open, switch to calendar view')).toBeVisible();
   });
-
-  // eslint-disable-next-line mocha/no-skipped-tests -- TODO: test without implementation details
-  it.skip('should skip the header', () => {
-    render(
-      <CalendarPicker
-        views={['year']}
-        date={adapterToUse.date('2019-01-01T00:00:00.000')}
-        onChange={() => {}}
-      />,
-    );
-    expect(document.querySelector('.MuiPickersCalendarHeader-root')).to.equal(null);
-  });
 });

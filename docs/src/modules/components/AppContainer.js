@@ -26,7 +26,6 @@ export default function AppContainer(props) {
 
   return (
     <Container
-      component="main"
       id="main-content"
       maxWidth={false}
       tabIndex={-1}

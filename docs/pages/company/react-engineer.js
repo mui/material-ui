@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   requireDemo,
-} from 'docs/src/pages/company/software-engineer/software-engineer.md?@material-ui/markdown';
+} from 'docs/src/pages/company/careers/react-engineer.md?@material-ui/markdown';
 
 export default function Page() {
   return <TopLayoutCompany demos={demos} docs={docs} requireDemo={requireDemo} />;

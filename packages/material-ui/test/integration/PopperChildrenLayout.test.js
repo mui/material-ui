@@ -221,12 +221,7 @@ describe('<Popper />', () => {
           setProps({ open: true });
 
           expect(handleFocus.callCount).to.equal(1);
-          if (isSafari) {
-            expect(window.scrollY, 'focus caused scroll').to.equal(scrollYBeforeOpen);
-          } else {
-            // FIXME: should equal
-            expect(window.scrollY, 'focus caused scroll').not.to.equal(scrollYBeforeOpen);
-          }
+          expect(window.scrollY, 'focus caused scroll').to.equal(scrollYBeforeOpen);
         });
       });
     });

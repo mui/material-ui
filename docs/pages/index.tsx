@@ -77,7 +77,7 @@ const Social = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  minHeight: 21,
+  height: 20,
   boxSizing: 'content-box',
   '& a': {
     color: theme.palette.background.paper,
