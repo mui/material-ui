@@ -67,7 +67,6 @@ export default function useAutocomplete(props) {
     autoHighlight = false,
     autoSelect = false,
     blurOnSelect = false,
-    disabled,
     clearOnBlur = !props.freeSolo,
     clearOnEscape = false,
     componentName = 'useAutocomplete',
