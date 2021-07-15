@@ -2,9 +2,18 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { DateIOFormats, IUtils } from '@date-io/core/IUtils';
 
-export type MuiPickersAdapter<TDate = unknown> = IUtils<TDate>;
+export type MuiPickersAdapter<TDate> = IUtils<TDate>;
 
-export const MuiPickersAdapterContext = React.createContext<MuiPickersAdapter | null>(null);
+export interface MuiPickersAdapterContextValue<TDate> {
+  defaultDates: {
+    minDate: TDate;
+    maxDate: TDate;
+  };
+  utils: MuiPickersAdapter<TDate>;
+}
+
+export const MuiPickersAdapterContext =
+  React.createContext<MuiPickersAdapterContextValue<unknown> | null>(null);
 if (process.env.NODE_ENV !== 'production') {
   MuiPickersAdapterContext.displayName = 'MuiPickersAdapterContext';
 }
@@ -12,7 +21,7 @@ if (process.env.NODE_ENV !== 'production') {
 export interface LocalizationProviderProps {
   children?: React.ReactNode;
   /** DateIO adapter class function */
-  dateAdapter: new (...args: any) => MuiPickersAdapter;
+  dateAdapter: new (...args: any) => MuiPickersAdapter<unknown>;
   /** Formats that are used for any child pickers */
   dateFormats?: Partial<DateIOFormats>;
   /**
@@ -36,8 +45,21 @@ function LocalizationProvider(props: LocalizationProviderProps) {
     [Utils, locale, dateFormats, dateLibInstance],
   );
 
+  const defaultDates: MuiPickersAdapterContextValue<unknown>['defaultDates'] = React.useMemo(() => {
+    return {
+      minDate: utils.date('1900-01-01T00:00:00.000'),
+      maxDate: utils.date('2099-12-31T00:00:00.000'),
+    };
+  }, [utils]);
+
+  const contextValue: MuiPickersAdapterContextValue<unknown> = React.useMemo(() => {
+    return { utils, defaultDates };
+  }, [defaultDates, utils]);
+
   return (
-    <MuiPickersAdapterContext.Provider value={utils}>{children}</MuiPickersAdapterContext.Provider>
+    <MuiPickersAdapterContext.Provider value={contextValue}>
+      {children}
+    </MuiPickersAdapterContext.Provider>
   );
 }
 
