@@ -191,7 +191,7 @@ export default function InteractiveStack() {
           </Grid>
         </Grid>
       </Paper>
-      <HighlightedCode code={jsx} language="jsx" />
+      <HighlightedCode isCopyButtonEnabled={true} code={jsx} language="jsx" />
     </Stack>
   );
 }

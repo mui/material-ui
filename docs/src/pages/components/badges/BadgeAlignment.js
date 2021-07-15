@@ -127,7 +127,7 @@ export default function BadgeAlignment() {
           <MailIcon />
         </Badge>
       </Box>
-      <HighlightedCode code={jsx} language="jsx" />
+      <HighlightedCode isCopyButtonEnabled={true} code={jsx} language="jsx" />
     </Box>
   );
 }

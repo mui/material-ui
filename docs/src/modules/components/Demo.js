@@ -258,6 +258,7 @@ export default function Demo(props) {
       <Collapse in={openDemoSource} unmountOnExit>
         <div>
           <Code
+            isCopyButtonEnabled={true}
             id={demoSourceId}
             code={showPreview && !codeOpen ? jsx : demoData.raw}
             language={demoData.sourceLanguage}

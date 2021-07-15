@@ -195,7 +195,7 @@ export default function InteractiveGrid() {
         </Paper>
       </Grid>
       <Grid item xs={12}>
-        <HighlightedCode code={jsx} language="jsx" />
+        <HighlightedCode isCopyButtonEnabled={true} code={jsx} language="jsx" />
       </Grid>
     </Grid>
   );
