@@ -48,7 +48,7 @@ export default function transformer(file, api, options) {
   }
 
   function getFirstJsxName() {
-    const matches = file.source.match(/<(\w*).*?\/?>/gm);
+    const matches = file.source.match(/<(\w*)[\s\S]*?\/?>/gm);
     if (matches) {
       return matches[0].match(/<(\w*)(\s|\/|>)/)[1];
     }
@@ -419,6 +419,6 @@ export default function transformer(file, api, options) {
   return root
     .toSource(printOptions)
     .replace(/withStyles\([^)]*\),?/gm, '')
-    .replace(/({.*)classes[^.],?(.*})/gm, '$1$2')
+    .replace(/([^=]{.*)classes[^.],?(.*})/gm, '$1$2')
     .replace(/^.*useStyles(.*);?/gm, '');
 }
