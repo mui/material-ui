@@ -29,7 +29,7 @@ export interface LocalizationProviderProps {
 /**
  * @ignore - do not document.
  */
-const LocalizationProvider: React.FC<LocalizationProviderProps> = (props) => {
+function LocalizationProvider(props: LocalizationProviderProps) {
   const { children, dateAdapter: Utils, dateFormats, dateLibInstance, locale } = props;
   const utils = React.useMemo(
     () => new Utils({ locale, formats: dateFormats, instance: dateLibInstance }),
@@ -39,7 +39,7 @@ const LocalizationProvider: React.FC<LocalizationProviderProps> = (props) => {
   return (
     <MuiPickersAdapterContext.Provider value={utils}>{children}</MuiPickersAdapterContext.Provider>
   );
-};
+}
 
 LocalizationProvider.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
