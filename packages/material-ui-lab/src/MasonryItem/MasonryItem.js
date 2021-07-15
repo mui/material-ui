@@ -39,47 +39,30 @@ const MasonryItemRoot = styled('div', {
       objectFit: 'cover',
       width: '100%',
     },
-    gridRowEnd: `span ${styleProps.contentHeight ? rowSpan : 0}`,
-    visibility: styleProps.contentHeight ? 'visible' : 'hidden',
+    gridRowEnd: `span ${styleProps.contentHeight !== undefined ? rowSpan : 0}`,
   };
 });
 
-const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) { // eslint-disable-line
+const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
     name: 'MuiMasonryItem',
   });
 
-  const masonryItemRef = React.useRef(null);
   const { spacing } = React.useContext(MasonryContext);
   const { children, className, component = 'div', style, ...other } = props;
-  const [styleProps, setStyleProps] = React.useState({
+  const styleProps = {
     ...props,
     spacing,
-  });
-
-  const classes = useUtilityClasses(styleProps);
-  const computeHeight = () => {
-    if (document.readyState === 'complete') {
-      const child =
-        masonryItemRef.current.querySelector('img') || masonryItemRef.current.querySelector('div');
-      setStyleProps({
-        ...styleProps,
-        contentHeight: child?.getBoundingClientRect().height,
-      });
-    }
   };
 
-  React.useEffect(() => {
-    document.addEventListener('readystatechange', computeHeight);
-    return () => document.removeEventListener('readystatechange', computeHeight);
-  });
+  const classes = useUtilityClasses(styleProps);
 
   return (
     <MasonryItemRoot
       as={component}
       className={clsx(classes.root, className)}
-      ref={masonryItemRef}
+      ref={ref}
       style={style}
       styleProps={styleProps}
       {...other}
@@ -112,11 +95,15 @@ MasonryItem.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * The height of the content of the component in px.
+   */
+  contentHeight: PropTypes.number.isRequired,
+  /**
    * @ignore
    */
   style: PropTypes.object,
   /**
-   * The system prop, which allows defining system overrides as well as additional CSS styles.
+   * Allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.object,
 };

@@ -8,7 +8,7 @@ export default function BasicMasonry() {
   return (
     <Masonry cols={4} spacing={1}>
       {heights.map((height, idx) => (
-        <MasonryItem key={idx}>
+        <MasonryItem key={idx} contentHeight={height}>
           <Box sx={{textAlign:"center", height, border: 1, bgcolor: 'background.paper'}}>
             {idx + 1}
           </Box>
@@ -18,20 +18,4 @@ export default function BasicMasonry() {
   );
 }
 
-const heights = [
-  '150px',
-  '30px',
-  '90px',
-  '70px',
-  '110px',
-  '150px',
-  '130px',
-  '80px',
-  '50px',
-  '90px',
-  '100px',
-  '150px',
-  '30px',
-  '50px',
-  '80px',
-];
+const heights = [150, 30, 90, 70, 110, 150, 130, 80, 50, 90, 100, 150, 30, 50, 80];

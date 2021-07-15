@@ -40,8 +40,7 @@ const MasonryRoot = styled('div', {
   };
 });
 
-const Masonry = React.forwardRef(function Masonry(inProps, ref) { // eslint-disable-line
-  const masonryRef = React.useRef(null);
+const Masonry = React.forwardRef(function Masonry(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
     name: 'MuiMasonry',
@@ -55,7 +54,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) { // eslint-disa
     <MasonryRoot
       as={component}
       className={clsx(classes.root, className)}
-      ref={masonryRef}
+      ref={ref}
       style={props.style}
       styleProps={styleProps}
       {...other}
@@ -107,7 +106,7 @@ Masonry.propTypes /* remove-proptypes */ = {
    */
   style: PropTypes.object,
   /**
-   * The system prop, which allows defining system overrides as well as additional CSS styles.
+   * Allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.object,
 };

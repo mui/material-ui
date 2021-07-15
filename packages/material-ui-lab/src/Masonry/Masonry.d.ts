@@ -24,7 +24,7 @@ export interface MasonryTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     spacing?: ResponsiveStyleValue<number | string>;
     /**
-     * The system prop, which allows defining system overrides as well as additional CSS styles.
+     * Allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps<Theme>;
   };
