@@ -9,16 +9,16 @@ If you still can't find what you're looking for, you can refer to our [support p
 There are many ways to support Material-UI:
 
 - **Spread the word**. Evangelize Material-UI by [linking to material-ui.com](https://material-ui.com/) on your website, every backlink matters.
-Follow us on [Twitter](https://twitter.com/MaterialUI), like and retweet the important news. Or just talk about us with your friends.
+  Follow us on [Twitter](https://twitter.com/MaterialUI), like and retweet the important news. Or just talk about us with your friends.
 - **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
 - **Help new users**. You can answer questions on
-[StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
+  [StackOverflow](https://stackoverflow.com/questions/tagged/material-ui).
 - **Make changes happen**.
   - Edit the documentation. Every page has an "EDIT THIS PAGE" link in the top right.
   - Report bugs or missing features by [creating an issue](https://github.com/mui-org/material-ui/issues/new).
   - Review and comment on existing [pull requests](https://github.com/mui-org/material-ui/pulls) and [issues](https://github.com/mui-org/material-ui/issues).
   - Help [translate](https://translate.material-ui.com) the documentation.
-  - [Improve our documentation](https://github.com/mui-org/material-ui/tree/master/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
+  - [Improve our documentation](https://github.com/mui-org/material-ui/tree/next/docs), fix bugs, or add features by [submitting a pull request](https://github.com/mui-org/material-ui/pulls).
 - **Support us financially on [OpenCollective](https://opencollective.com/material-ui)**.
   If you use Material-UI in a commercial project and would like to support its continued development by becoming a Sponsor, or in a side or hobby project and would like to become a Backer, you can do so through OpenCollective.
   All funds donated are managed transparently, and Sponsors receive recognition in the README and on the Material-UI home page.
@@ -55,11 +55,13 @@ You can disable the ripple effect globally by providing the following in your th
 import { createTheme } from '@material-ui/core';
 
 const theme = createTheme({
-  props: {
+  components: {
     // Name of the component ⚛️
     MuiButtonBase: {
-      // The properties to apply
-      disableRipple: true, // No more ripple, on the whole application 💣!
+      defaultProps: {
+        // The props to apply
+        disableRipple: true, // No more ripple, on the whole application 💣!
+      },
     },
   },
 });
@@ -89,11 +91,10 @@ You can go one step further by disabling all transitions and animations effects:
 import { createTheme } from '@material-ui/core';
 
 const theme = createTheme({
-  overrides: {
+  components: {
     // Name of the component ⚛️
     MuiCssBaseline: {
-      // Name of the rule
-      '@global': {
+      styleOverrides: {
         '*, *::before, *::after': {
           transition: 'none !important',
           animation: 'none !important',
@@ -108,7 +109,9 @@ Notice that the usage of `CssBaseline` is required for the above approach to wor
 If you choose not to use it, you can still disable transitions and animations by including these CSS rules:
 
 ```css
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   transition: 'none !important';
   animation: 'none !important';
 }
@@ -124,9 +127,9 @@ or are already familiar with a different API, and don't want to learn a new one?
 [Style Library Interoperability](/guides/interoperability/) section,
 where we show how simple it is to restyle Material-UI components with alternative style libraries.
 
-## When should I use inline-style vs CSS?
+## When should I use inline-style vs. CSS?
 
-As a rule of thumb, only use inline-style for dynamic style properties.
+As a rule of thumb, only use inline-styles for dynamic style properties.
 The CSS alternative provides more advantages, such as:
 
 - auto-prefixing
@@ -136,7 +139,7 @@ The CSS alternative provides more advantages, such as:
 
 ## How do I use react-router?
 
-We detail the [integration with third-party routing libraries](/guides/composition/#routing-libraries) like react-router, Gatsby or Next.js in our guide.
+We detail the [integration with third-party routing libraries](/guides/routing/) like react-router, Gatsby or Next.js in our guide.
 
 ## How can I access the DOM element?
 
@@ -156,6 +159,7 @@ const element = ref.current;
 If you're not sure if the Material-UI component in question forwards its ref you
 can check the API documentation under "Props" e.g. the [Button API](/api/button/#props)
 includes
+
 > The ref is forwarded to the root element.
 
 indicating that you can access the DOM element with a ref.
@@ -250,7 +254,9 @@ If you have several applications running on one page, consider using one @materi
 ## My App doesn't render correctly on the server
 
 If it doesn't work, in 99% of cases it's a configuration issue.
-A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration, and the best way to find out what's wrong is to compare your project to an already working setup.
+A missing property, a wrong call order, or a missing component – server-side rendering is strict about configuration.
+
+The best way to find out what's wrong is to compare your project to an **already working setup**.
 Check out the [reference implementations](/guides/server-rendering/#reference-implementations), bit by bit.
 
 ### CSS works only on first load then is missing
@@ -264,7 +270,8 @@ The styling solution relies on a cache, the _sheets manager_, to only inject the
 (if you use two buttons, you only need the CSS of the button one time).
 You need to create **a new `sheets` instance for each request**.
 
-*example of fix:*
+Example of fix:
+
 ```diff
 -// Create a sheets instance.
 -const sheets = new ServerStyleSheets();
@@ -281,6 +288,8 @@ function handleRender(req, res) {
 
 ### React class name hydration mismatch
 
+> Warning: Prop className did not match.
+
 There is a class name mismatch between the client and the server. It might work for the first request.
 Another symptom is that the styling changes between initial page load and the downloading of the client scripts.
 
@@ -291,38 +300,40 @@ The whole page needs to be rendered with **a single generator**.
 This generator needs to behave identically on the server and on the client. For instance:
 
 - You need to provide a new class name generator for each request.
-But you shouldn't share a `createGenerateClassName()` between different requests:
+  But you shouldn't share a `createGenerateClassName()` between different requests:
 
-*example of fix:*
-```diff
--// Create a new class name generator.
--const generateClassName = createGenerateClassName();
+  Example of fix:
 
-function handleRender(req, res) {
-+ // Create a new class name generator.
-+ const generateClassName = createGenerateClassName();
+  ```diff
+  -// Create a new class name generator.
+  -const generateClassName = createGenerateClassName();
 
-  //…
+  function handleRender(req, res) {
+  + // Create a new class name generator.
+  + const generateClassName = createGenerateClassName();
 
-  // Render the component to a string.
-  const html = ReactDOMServer.renderToString(
-```
+    //…
+
+    // Render the component to a string.
+    const html = ReactDOMServer.renderToString(
+  ```
 
 - You need to verify that your client and server are running the **exactly the same version** of Material-UI.
-It is possible that a mismatch of even minor versions can cause styling problems.
-To check version numbers, run `npm list @material-ui/core` in the environment where you build your application and also in your deployment environment.
+  It is possible that a mismatch of even minor versions can cause styling problems.
+  To check version numbers, run `npm list @material-ui/core` in the environment where you build your application and also in your deployment environment.
 
   You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
 
-*example of fix (package.json):*
-```diff
-  "dependencies": {
-    ...
--   "@material-ui/core": "^4.0.0",
-+   "@material-ui/core": "4.0.0",
-    ...
-  },
-```
+  _example of fix (package.json):_
+
+  ```diff
+    "dependencies": {
+      ...
+  -   "@material-ui/core": "^4.0.0",
+  +   "@material-ui/core": "4.0.0",
+      ...
+    },
+  ```
 
 - You need to make sure that the server and the client share the same `process.env.NODE_ENV` value.
 
@@ -384,7 +395,10 @@ when the `Portal` should re-render:
 ```jsx
 function App() {
   const [container, setContainer] = React.useState(null);
-  const handleRef = React.useCallback(instance => setContainer(instance), [setContainer])
+  const handleRef = React.useCallback(
+    (instance) => setContainer(instance),
+    [setContainer],
+  );
 
   return (
     <div className="App">
@@ -408,7 +422,9 @@ Instead of writing:
 
 return (
   <div
-    className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${selected ? 'Mui-selected' : ''}`}
+    className={`MuiButton-root ${disabled ? 'Mui-disabled' : ''} ${
+      selected ? 'Mui-selected' : ''
+    }`}
   />
 );
 ```
@@ -427,3 +443,4 @@ return (
   />
 );
 ```
+{"mode":"full","isActive":false}
