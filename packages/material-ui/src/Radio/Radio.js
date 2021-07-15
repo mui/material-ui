@@ -58,6 +58,9 @@ const RadioRoot = styled(SwitchBase, {
   [`&.${radioClasses.disabled}`]: {
     color: theme.palette.action.disabled,
   },
+  [`&.${radioClasses.disableRipple}`]: {
+    color: theme.palette.action.disableRipple,
+  },
 }));
 
 const defaultCheckedIcon = <RadioButtonIcon checked />;
