@@ -244,7 +244,7 @@ Collapse.propTypes = {
         'Material-UI: the classes.container key is deprecated.',
         'Use `classes.root` instead',
         'The name of the pseudo-class was changed for consistency.',
-      ]).join('\n');
+      ].join('\n'));
     }
 
     return null;
