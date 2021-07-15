@@ -4,7 +4,9 @@ import clsx from 'clsx';
 import {
   unstable_composeClasses as composeClasses,
   FormControlUnstyled,
+  FormControlContext,
 } from '@material-ui/unstyled';
+import { unstable_isMuiElement as isMuiElement } from '@material-ui/utils';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import capitalize from '../utils/capitalize';
@@ -95,8 +97,32 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     ...other
   } = props;
 
+  const [adornedStart, setAdornedStart] = React.useState(() => {
+    // We need to iterate through the children and find the Input in order
+    // to fully support server-side rendering.
+    let initialAdornedStart = false;
+
+    if (children) {
+      React.Children.forEach(children, (child) => {
+        if (!isMuiElement(child, ['Input', 'Select'])) {
+          return;
+        }
+
+        const input = isMuiElement(child, ['Select'])
+          ? child.props.input
+          : child;
+
+        if (input?.props?.startAdornment) {
+          initialAdornedStart = true;
+        }
+      });
+    }
+    return initialAdornedStart;
+  });
+
   const styleProps = {
     ...props,
+    adornedStart,
     color,
     component,
     disabled,
@@ -112,8 +138,11 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
   const classes = useUtilityClasses(styleProps);
 
   const childContext = {
+    adornedStart,
     color,
     fullWidth,
+    hiddenLabel,
+    setAdornedStart,
     size,
     variant,
   };
@@ -123,22 +152,22 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
   };
 
   return (
-    <FormControlUnstyled
-      className={clsx(classes.root, className)}
-      component={FormControlRoot}
-      componentsProps={componentsProps}
-      disabled={disabled}
-      error={error}
-      extraContextProperties={childContext}
-      focused={focused}
-      hiddenLabel={hiddenLabel}
-      ref={ref}
-      required={required}
-      styleProps={styleProps}
-      {...other}
-    >
-      {children}
-    </FormControlUnstyled>
+    <FormControlContext.Provider value={childContext}>
+      <FormControlUnstyled
+        className={clsx(classes.root, className)}
+        component={FormControlRoot}
+        componentsProps={componentsProps}
+        disabled={disabled}
+        error={error}
+        focused={focused}
+        ref={ref}
+        required={required}
+        styleProps={styleProps}
+        {...other}
+      >
+        {children}
+      </FormControlUnstyled>
+    </FormControlContext.Provider>
   );
 });
 

@@ -53,9 +53,7 @@ const FormControl = React.forwardRef(function FormControl(
     componentsProps = {},
     disabled = false,
     error = false,
-    extraContextProperties = {},
     focused: visuallyFocused,
-    hiddenLabel = false,
     required = false,
     ...other
   } = props;
@@ -64,32 +62,8 @@ const FormControl = React.forwardRef(function FormControl(
     ...props,
     disabled,
     error,
-    hiddenLabel,
     required,
   };
-
-  const [adornedStart, setAdornedStart] = React.useState(() => {
-    // We need to iterate through the children and find the Input in order
-    // to fully support server-side rendering.
-    let initialAdornedStart = false;
-
-    if (children) {
-      React.Children.forEach(children, (child) => {
-        if (!isMuiElement(child, ['Input', 'Select'])) {
-          return;
-        }
-
-        const input = isMuiElement(child, ['Select'])
-          ? (child as React.ReactElement).props.input
-          : child;
-
-        if (input?.props?.startAdornment) {
-          initialAdornedStart = true;
-        }
-      });
-    }
-    return initialAdornedStart;
-  });
 
   const [filled, setFilled] = React.useState(() => {
     // We need to iterate through the children and find the Input in order
@@ -147,14 +121,11 @@ const FormControl = React.forwardRef(function FormControl(
     setFilled(false);
   }, []);
 
-  const childContext: FormControlState = {
-    adornedStart,
-    setAdornedStart,
+  const childContext: FormControlState = {   
     disabled,
     error,
     filled,
     focused,
-    hiddenLabel,
     onBlur: () => {
       setFocused(false);
     },
@@ -165,7 +136,6 @@ const FormControl = React.forwardRef(function FormControl(
     },
     registerEffect,
     required,
-    ...extraContextProperties,
   };
 
   const Root = component ?? components.Root ?? 'div';

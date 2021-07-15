@@ -1,9 +1,8 @@
 import { FormControlUnstyledProps } from './FormControlUnstyledProps';
 
-type ContextFromPropsKey = 'disabled' | 'error' | 'hiddenLabel' | 'required';
+type ContextFromPropsKey = 'disabled' | 'error' | 'required';
 
 export interface FormControlState extends Pick<FormControlUnstyledProps, ContextFromPropsKey> {
-  adornedStart: boolean;
   filled: boolean;
   focused: boolean;
   onBlur: () => void;
@@ -11,7 +10,6 @@ export interface FormControlState extends Pick<FormControlUnstyledProps, Context
   onFilled: () => void;
   onFocus: () => void;
   registerEffect: () => void;
-  setAdornedStart: (adornedStart: React.SetStateAction<boolean>) => void;
 }
 
 interface FormControlStateParams<T extends FormControlState> {
