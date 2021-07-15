@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppContainer from 'docs/src/modules/components/AppContainer';
+import { BANNER_HEIGHT } from 'docs/src/modules/constants';
 import { useRouter } from 'next/router';
 import Link from '@material-ui/core/Link';
 import Avatar from '@material-ui/core/Avatar';
@@ -26,7 +27,7 @@ const styles = (theme) => ({
   root: {
     flexGrow: 1,
     // Adding top buffer because of the v5 banner
-    marginTop: 36,
+    marginTop: BANNER_HEIGHT,
   },
   back: {
     display: 'block',

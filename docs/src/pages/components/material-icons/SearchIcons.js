@@ -9,6 +9,7 @@ import debounce from 'lodash/debounce';
 import Grid from '@material-ui/core/Grid';
 import Dialog from '@material-ui/core/Dialog';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import { BANNER_HEIGHT } from 'docs/src/modules/constants';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -296,7 +297,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     position: 'sticky',
-    top: 80 + 36, // offset for the banner
+    top: 80 + BANNER_HEIGHT, // offset for the banner
     padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',

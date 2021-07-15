@@ -1,13 +1,14 @@
 import React from 'react';
 import classNames from 'classnames';
 import { makeStyles } from '@material-ui/core/styles';
+import { BANNER_HEIGHT } from 'docs/src/modules/constants';
 import Link from 'docs/src/modules/components/Link';
 import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles(
   (theme) => ({
     root: {
-      marginTop: 36,
+      marginTop: BANNER_HEIGHT,
       padding: theme.spacing(1, 2, 1, 2),
       right: 0,
       left: 0,
