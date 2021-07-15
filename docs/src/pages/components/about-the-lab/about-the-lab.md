@@ -22,6 +22,7 @@ Install the package in your project directory with:
 ```sh
 npm install @material-ui/lab@next
 ```
+
 ```sh
 yarn add @material-ui/lab@next
 ```
@@ -32,6 +33,7 @@ If you are not already using Material-UI in your project, you can install it wit
 ```sh
 npm install @material-ui/core@next
 ```
+
 ```sh
 yarn add @material-ui/core@next
 ```

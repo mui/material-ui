@@ -8,10 +8,10 @@ import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 
-// TODO: Only import on demand via @material-ui/markdown/loader
+// TODO: Only import on demand via @material-ui/markdown/loader //
 const markdownComponents = {
   'modules/components/ComponentLinkHeader.js': ComponentLinkHeader,
-  'modules/components/HighlightedCode.js' : HighlightedCode
+  'modules/components/HighlightedCode.js': HighlightedCode,
 };
 function MarkdownDocs(props) {
   const { disableAd = false, disableToc = false, demos = {}, docs, requireDemo } = props;
@@ -37,7 +37,14 @@ function MarkdownDocs(props) {
 
         if (renderedMarkdownOrDemo.component) {
           const Component = markdownComponents[renderedMarkdownOrDemo.component];
-          return <Component key={index} headers={headers} {...renderedMarkdownOrDemo} options={renderedMarkdownOrDemo} />;
+          return (
+            <Component
+              key={index}
+              headers={headers}
+              {...renderedMarkdownOrDemo}
+              options={renderedMarkdownOrDemo}
+            />
+          );
         }
 
         const name = renderedMarkdownOrDemo.demo;

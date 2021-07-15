@@ -32,6 +32,7 @@ To install and save in your `package.json` dependencies, run:
 ```sh
 npm install @material-ui/styles
 ```
+
 ```sh
 yarn add @material-ui/styles
 ```

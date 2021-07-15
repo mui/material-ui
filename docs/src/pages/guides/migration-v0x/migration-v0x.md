@@ -33,6 +33,7 @@ With yarn:
 ```sh
 yarn add material-ui
 ```
+
 ```sh
 yarn add @material-ui/core
 ```
@@ -42,6 +43,7 @@ Or with npm:
 ```sh
 npm install material-ui
 ```
+
 ```sh
 npm install @material-ui/core
 ```
