@@ -958,6 +958,7 @@ export default function useAutocomplete(props) {
       return acc;
     }, []);
   }
+
   return {
     getRootProps: (other = {}) => ({
       'aria-owns': listboxAvailable ? `${id}-listbox` : null,
