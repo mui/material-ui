@@ -156,14 +156,20 @@ export default function transformer(file, api, options) {
   function getReturnStatement(functionExpression) {
     if (functionExpression.type === 'ArrowFunctionExpression') {
       if (functionExpression.body.type === 'BlockStatement') {
-        return functionExpression.body.body[0].argument;
+        const returnStatement = functionExpression.body.body.find(
+          (b) => b.type === 'ReturnStatement',
+        );
+        return returnStatement.argument;
       }
       if (functionExpression.body.type === 'ObjectExpression') {
         return functionExpression.body;
       }
     }
     if (functionExpression.type === 'FunctionDeclaration') {
-      return functionExpression.body.body[0].argument;
+      const returnStatement = functionExpression.body.body.find(
+        (b) => b.type === 'ReturnStatement',
+      );
+      return returnStatement.argument;
     }
     return null;
   }
@@ -176,7 +182,10 @@ export default function transformer(file, api, options) {
     let objectExpression;
     if (functionExpression.type === 'ArrowFunctionExpression') {
       if (functionExpression.body.type === 'BlockStatement') {
-        objectExpression = functionExpression.body.body[0].argument;
+        const returnStatement = functionExpression.body.body.find(
+          (b) => b.type === 'ReturnStatement',
+        );
+        objectExpression = returnStatement.argument;
       }
       if (functionExpression.body.type === 'ObjectExpression') {
         functionExpression.body.extra.parenthesized = false;
@@ -185,7 +194,10 @@ export default function transformer(file, api, options) {
     }
     if (functionExpression.type === 'FunctionDeclaration') {
       functionExpression.type = 'FunctionExpression';
-      objectExpression = functionExpression.body.body[0].argument;
+      const returnStatement = functionExpression.body.body.find(
+        (b) => b.type === 'ReturnStatement',
+      );
+      objectExpression = returnStatement.argument;
     }
     if (objectExpression) {
       objectExpression.properties.forEach((prop) => {
@@ -278,7 +290,8 @@ export default function transformer(file, api, options) {
       .find(j.FunctionDeclaration, { id: { name: stylesFnName } })
       .at(0)
       .forEach((path) => {
-        result.classes = createClasses(path.node.body.body[0].argument, prefix);
+        const returnStatement = path.node.body.body.find((b) => b.type === 'ReturnStatement');
+        result.classes = createClasses(returnStatement.argument, prefix);
         result.styledArg = convertToStyledArg(path.node, rootClassKeys);
       })
       .remove();
@@ -294,28 +307,38 @@ export default function transformer(file, api, options) {
         if (arg.type === 'Identifier') {
           stylesFnName = arg.name;
         }
-        if (arg.type === 'ArrowFunctionExpression') {
-          result.classes = createClasses(arg.body, prefix);
+        const objectExpression = getReturnStatement(arg);
+        if (objectExpression) {
+          result.classes = createClasses(objectExpression, prefix);
           result.styledArg = convertToStyledArg(arg, rootClassKeys);
         }
-        // if (arg.type === 'FunctionDeclaration') {
-        //   result.classes = createClasses(arg.body, prefix);
-        //   result.styledArg = convertToStyledArg(arg, rootClassKeys);
-        // }
       });
-
-    root
-      .find(j.VariableDeclaration)
-      .filter((path) => path.node.declarations.some((d) => d.id.name === 'useStyles'))
-      .remove();
 
     root
       .find(j.VariableDeclarator, { id: { name: stylesFnName } })
       .at(0)
       .forEach((path) => {
-        result.classes = createClasses(path.node.init.body, prefix);
-        result.styledArg = convertToStyledArg(path.node.init, rootClassKeys);
+        const objectExpression = getReturnStatement(path.node.init);
+        if (objectExpression) {
+          result.classes = createClasses(objectExpression, prefix);
+          result.styledArg = convertToStyledArg(path.node.init, rootClassKeys);
+        }
       })
+      .remove();
+
+    root
+      .find(j.FunctionDeclaration, { id: { name: stylesFnName } })
+      .at(0)
+      .forEach((path) => {
+        const returnStatement = path.node.body.body.find((b) => b.type === 'ReturnStatement');
+        result.classes = createClasses(returnStatement.argument, prefix);
+        result.styledArg = convertToStyledArg(path.node, rootClassKeys);
+      })
+      .remove();
+
+    root
+      .find(j.VariableDeclaration)
+      .filter((path) => path.node.declarations.some((d) => d.id.name === 'useStyles'))
       .remove();
   }
 
