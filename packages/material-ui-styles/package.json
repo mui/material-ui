@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/styles",
-  "version": "5.0.0-beta.0",
+  "version": "5.0.0-beta.1",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Styles - The styling solution of Material-UI.",
@@ -49,7 +49,7 @@
   "dependencies": {
     "@babel/runtime": "^7.4.4",
     "@emotion/hash": "^0.8.0",
-    "@material-ui/private-theming": "5.0.0-beta.0",
+    "@material-ui/private-theming": "5.0.0-beta.1",
     "@material-ui/types": "6.0.1",
     "@material-ui/utils": "5.0.0-beta.0",
     "clsx": "^1.0.4",

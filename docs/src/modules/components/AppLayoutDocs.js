@@ -13,29 +13,29 @@ import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 
+const TOC_WIDTH = 175;
+const NAV_WIDTH = 240;
+
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc',
 })(({ disableToc, theme }) => {
   return {
     display: 'flex',
     width: '100%',
-    ...(disableToc
-      ? {
-          [theme.breakpoints.up('lg')]: {
-            marginRight: '5%',
-          },
-        }
-      : {
-          [theme.breakpoints.up('sm')]: {
-            width: 'calc(100% - 175px)',
-          },
-        }),
+    ...(disableToc && {
+      [theme.breakpoints.up('lg')]: {
+        marginRight: '5%',
+      },
+    }),
+    [theme.breakpoints.up('lg')]: {
+      width: `calc(100% - ${NAV_WIDTH}px)`,
+    },
   };
 });
 
 const StyledAppContainer = styled(AppContainer, {
-  shouldForwardProp: (prop) => prop !== 'disableAd',
-})(({ disableAd }) => {
+  shouldForwardProp: (prop) => prop !== 'disableAd' && prop !== 'disableToc',
+})(({ disableAd, disableToc, theme }) => {
   return {
     position: 'relative',
     ...(!disableAd && {
@@ -45,6 +45,11 @@ const StyledAppContainer = styled(AppContainer, {
       '& .description.ad': {
         marginBottom: 40,
       },
+      ...(!disableToc && {
+        [theme.breakpoints.up('sm')]: {
+          width: `calc(100% - ${TOC_WIDTH}px)`,
+        },
+      }),
     }),
   };
 });
@@ -81,8 +86,8 @@ function AppLayoutDocs(props) {
             <Ad placement="body" />
           </AdGuest>
         )}
-        <Main>
-          <StyledAppContainer>
+        <Main disableToc={disableToc}>
+          <StyledAppContainer disableAd={disableAd} disableToc={disableToc}>
             <ActionsDiv>{location && <EditPage markdownLocation={location} />}</ActionsDiv>
             {children}
             <NoSsr>
