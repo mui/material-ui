@@ -958,11 +958,6 @@ export default function useAutocomplete(props) {
       return acc;
     }, []);
   }
-  
-  if (disabled && focused) {
-    handleBlur();
-  }
-  
   return {
     getRootProps: (other = {}) => ({
       'aria-owns': listboxAvailable ? `${id}-listbox` : null,
