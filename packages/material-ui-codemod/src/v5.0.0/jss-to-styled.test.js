@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
-import transform from './drop-jss-styles';
+import transform from './jss-to-styled';
 import readFile from '../util/readFile';
 
 function read(fileName) {
@@ -11,33 +11,33 @@ function read(fileName) {
 
 describe('@material-ui/codemod', () => {
   describe('v5.0.0', () => {
-    describe('drop-jss-styles', () => {
+    describe('jss-to-styled', () => {
       describe('first', () => {
         it('transforms as needed', () => {
           const actual = transform(
             {
-              source: read('./drop-jss-styles.test/first.actual.js'),
-              path: require.resolve('./drop-jss-styles.test/first.actual.js'),
+              source: read('./jss-to-styled.test/first.actual.js'),
+              path: require.resolve('./jss-to-styled.test/first.actual.js'),
             },
             { jscodeshift: jscodeshift },
             {},
           );
 
-          const expected = read('./drop-jss-styles.test/first.expected.js');
+          const expected = read('./jss-to-styled.test/first.expected.js');
           expect(actual).to.equal(expected, 'The transformed version should be correct');
         });
 
         it('should be idempotent', () => {
           const actual = transform(
             {
-              source: read('./drop-jss-styles.test/first.expected.js'),
-              path: require.resolve('./drop-jss-styles.test/first.expected.js'),
+              source: read('./jss-to-styled.test/first.expected.js'),
+              path: require.resolve('./jss-to-styled.test/first.expected.js'),
             },
             { jscodeshift: jscodeshift },
             {},
           );
 
-          const expected = read('./drop-jss-styles.test/first.expected.js');
+          const expected = read('./jss-to-styled.test/first.expected.js');
           expect(actual).to.equal(expected, 'The transformed version should be correct');
         });
       });
@@ -46,28 +46,28 @@ describe('@material-ui/codemod', () => {
         it('transforms as needed', () => {
           const actual = transform(
             {
-              source: read('./drop-jss-styles.test/second.actual.js'),
-              path: require.resolve('./drop-jss-styles.test/second.actual.js'),
+              source: read('./jss-to-styled.test/second.actual.js'),
+              path: require.resolve('./jss-to-styled.test/second.actual.js'),
             },
             { jscodeshift: jscodeshift },
             {},
           );
 
-          const expected = read('./drop-jss-styles.test/second.expected.js');
+          const expected = read('./jss-to-styled.test/second.expected.js');
           expect(actual).to.equal(expected, 'The transformed version should be correct');
         });
 
         it('should be idempotent', () => {
           const actual = transform(
             {
-              source: read('./drop-jss-styles.test/second.expected.js'),
-              path: require.resolve('./drop-jss-styles.test/second.expected.js'),
+              source: read('./jss-to-styled.test/second.expected.js'),
+              path: require.resolve('./jss-to-styled.test/second.expected.js'),
             },
             { jscodeshift: jscodeshift },
             {},
           );
 
-          const expected = read('./drop-jss-styles.test/second.expected.js');
+          const expected = read('./jss-to-styled.test/second.expected.js');
           expect(actual).to.equal(expected, 'The transformed version should be correct');
         });
       });
@@ -76,28 +76,28 @@ describe('@material-ui/codemod', () => {
         it('transforms as needed', () => {
           const actual = transform(
             {
-              source: read('./drop-jss-styles.test/third.actual.js'),
-              path: require.resolve('./drop-jss-styles.test/third.actual.js'),
+              source: read('./jss-to-styled.test/third.actual.js'),
+              path: require.resolve('./jss-to-styled.test/third.actual.js'),
             },
             { jscodeshift: jscodeshift },
             {},
           );
 
-          const expected = read('./drop-jss-styles.test/third.expected.js');
+          const expected = read('./jss-to-styled.test/third.expected.js');
           expect(actual).to.equal(expected, 'The transformed version should be correct');
         });
 
         it('should be idempotent', () => {
           const actual = transform(
             {
-              source: read('./drop-jss-styles.test/third.expected.js'),
-              path: require.resolve('./drop-jss-styles.test/third.expected.js'),
+              source: read('./jss-to-styled.test/third.expected.js'),
+              path: require.resolve('./jss-to-styled.test/third.expected.js'),
             },
             { jscodeshift: jscodeshift },
             {},
           );
 
-          const expected = read('./drop-jss-styles.test/third.expected.js');
+          const expected = read('./jss-to-styled.test/third.expected.js');
           expect(actual).to.equal(expected, 'The transformed version should be correct');
         });
       });
@@ -106,28 +106,28 @@ describe('@material-ui/codemod', () => {
         it('transforms as needed', () => {
           const actual = transform(
             {
-              source: read('./drop-jss-styles.test/fourth.actual.js'),
-              path: require.resolve('./drop-jss-styles.test/fourth.actual.js'),
+              source: read('./jss-to-styled.test/fourth.actual.js'),
+              path: require.resolve('./jss-to-styled.test/fourth.actual.js'),
             },
             { jscodeshift: jscodeshift },
             {},
           );
 
-          const expected = read('./drop-jss-styles.test/fourth.expected.js');
+          const expected = read('./jss-to-styled.test/fourth.expected.js');
           expect(actual).to.equal(expected, 'The transformed version should be correct');
         });
 
         it('should be idempotent', () => {
           const actual = transform(
             {
-              source: read('./drop-jss-styles.test/fourth.expected.js'),
-              path: require.resolve('./drop-jss-styles.test/fourth.expected.js'),
+              source: read('./jss-to-styled.test/fourth.expected.js'),
+              path: require.resolve('./jss-to-styled.test/fourth.expected.js'),
             },
             { jscodeshift: jscodeshift },
             {},
           );
 
-          const expected = read('./drop-jss-styles.test/fourth.expected.js');
+          const expected = read('./jss-to-styled.test/fourth.expected.js');
           expect(actual).to.equal(expected, 'The transformed version should be correct');
         });
       });
@@ -136,28 +136,28 @@ describe('@material-ui/codemod', () => {
         it('transforms as needed', () => {
           const actual = transform(
             {
-              source: read('./drop-jss-styles.test/fifth.actual.js'),
-              path: require.resolve('./drop-jss-styles.test/fifth.actual.js'),
+              source: read('./jss-to-styled.test/fifth.actual.js'),
+              path: require.resolve('./jss-to-styled.test/fifth.actual.js'),
             },
             { jscodeshift: jscodeshift },
             {},
           );
 
-          const expected = read('./drop-jss-styles.test/fifth.expected.js');
+          const expected = read('./jss-to-styled.test/fifth.expected.js');
           expect(actual).to.equal(expected, 'The transformed version should be correct');
         });
 
         it('should be idempotent', () => {
           const actual = transform(
             {
-              source: read('./drop-jss-styles.test/fifth.expected.js'),
-              path: require.resolve('./drop-jss-styles.test/fifth.expected.js'),
+              source: read('./jss-to-styled.test/fifth.expected.js'),
+              path: require.resolve('./jss-to-styled.test/fifth.expected.js'),
             },
             { jscodeshift: jscodeshift },
             {},
           );
 
-          const expected = read('./drop-jss-styles.test/fifth.expected.js');
+          const expected = read('./jss-to-styled.test/fifth.expected.js');
           expect(actual).to.equal(expected, 'The transformed version should be correct');
         });
       });
@@ -166,28 +166,28 @@ describe('@material-ui/codemod', () => {
         it('transforms as needed', () => {
           const actual = transform(
             {
-              source: read('./drop-jss-styles.test/sixth.actual.js'),
-              path: require.resolve('./drop-jss-styles.test/sixth.actual.js'),
+              source: read('./jss-to-styled.test/sixth.actual.js'),
+              path: require.resolve('./jss-to-styled.test/sixth.actual.js'),
             },
             { jscodeshift: jscodeshift },
             {},
           );
 
-          const expected = read('./drop-jss-styles.test/sixth.expected.js');
+          const expected = read('./jss-to-styled.test/sixth.expected.js');
           expect(actual).to.equal(expected, 'The transformed version should be correct');
         });
 
         it('should be idempotent', () => {
           const actual = transform(
             {
-              source: read('./drop-jss-styles.test/sixth.expected.js'),
-              path: require.resolve('./drop-jss-styles.test/sixth.expected.js'),
+              source: read('./jss-to-styled.test/sixth.expected.js'),
+              path: require.resolve('./jss-to-styled.test/sixth.expected.js'),
             },
             { jscodeshift: jscodeshift },
             {},
           );
 
-          const expected = read('./drop-jss-styles.test/sixth.expected.js');
+          const expected = read('./jss-to-styled.test/sixth.expected.js');
           expect(actual).to.equal(expected, 'The transformed version should be correct');
         });
       });
@@ -196,28 +196,28 @@ describe('@material-ui/codemod', () => {
         it('transforms as needed', () => {
           const actual = transform(
             {
-              source: read('./drop-jss-styles.test/seventh.actual.js'),
-              path: require.resolve('./drop-jss-styles.test/seventh.actual.js'),
+              source: read('./jss-to-styled.test/seventh.actual.js'),
+              path: require.resolve('./jss-to-styled.test/seventh.actual.js'),
             },
             { jscodeshift: jscodeshift },
             {},
           );
 
-          const expected = read('./drop-jss-styles.test/seventh.expected.js');
+          const expected = read('./jss-to-styled.test/seventh.expected.js');
           expect(actual).to.equal(expected, 'The transformed version should be correct');
         });
 
         it('should be idempotent', () => {
           const actual = transform(
             {
-              source: read('./drop-jss-styles.test/seventh.expected.js'),
-              path: require.resolve('./drop-jss-styles.test/seventh.expected.js'),
+              source: read('./jss-to-styled.test/seventh.expected.js'),
+              path: require.resolve('./jss-to-styled.test/seventh.expected.js'),
             },
             { jscodeshift: jscodeshift },
             {},
           );
 
-          const expected = read('./drop-jss-styles.test/seventh.expected.js');
+          const expected = read('./jss-to-styled.test/seventh.expected.js');
           expect(actual).to.equal(expected, 'The transformed version should be correct');
         });
       });
