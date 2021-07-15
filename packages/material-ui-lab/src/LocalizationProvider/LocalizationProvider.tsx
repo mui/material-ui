@@ -9,6 +9,7 @@ export interface MuiPickersAdapterContextValue<TDate> {
     minDate: TDate;
     maxDate: TDate;
   };
+
   utils: MuiPickersAdapter<TDate>;
 }
 
