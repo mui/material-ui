@@ -10,6 +10,8 @@ import MarkdownElement from './MarkdownElement';
 const styles = (theme) => ({
   root: {
     flex: '1 0 100%',
+    // Adding top buffer because of the v5 banner
+    marginTop: 36,
   },
   container: {
     marginBottom: theme.spacing(20),
