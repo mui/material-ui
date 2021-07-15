@@ -101,6 +101,36 @@ describe('@material-ui/codemod', () => {
           expect(actual).to.equal(expected, 'The transformed version should be correct');
         });
       });
+
+      describe('fourth', () => {
+        it('transforms as needed', () => {
+          const actual = transform(
+            {
+              source: read('./drop-jss-styles.test/fourth.actual.js'),
+              path: require.resolve('./drop-jss-styles.test/fourth.actual.js'),
+            },
+            { jscodeshift: jscodeshift },
+            {},
+          );
+
+          const expected = read('./drop-jss-styles.test/fourth.expected.js');
+          expect(actual).to.equal(expected, 'The transformed version should be correct');
+        });
+
+        it('should be idempotent', () => {
+          const actual = transform(
+            {
+              source: read('./drop-jss-styles.test/fourth.expected.js'),
+              path: require.resolve('./drop-jss-styles.test/fourth.expected.js'),
+            },
+            { jscodeshift: jscodeshift },
+            {},
+          );
+
+          const expected = read('./drop-jss-styles.test/fourth.expected.js');
+          expect(actual).to.equal(expected, 'The transformed version should be correct');
+        });
+      });
     });
   });
 });

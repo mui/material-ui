@@ -184,6 +184,7 @@ export default function transformer(file, api, options) {
       }
     }
     if (functionExpression.type === 'FunctionDeclaration') {
+      functionExpression.type = 'FunctionExpression';
       objectExpression = functionExpression.body.body[0].argument;
     }
     if (objectExpression) {
