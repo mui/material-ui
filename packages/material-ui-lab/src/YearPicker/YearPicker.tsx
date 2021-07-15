@@ -168,6 +168,12 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
     }
   };
 
+  console.log(
+    utils.toJsDate(minDate).toISOString(),
+    utils.toJsDate(maxDate).toISOString(),
+    utils.getYearRange(minDate, maxDate).length,
+  );
+
   return (
     <YearPickerRoot ref={ref} className={clsx(classes.root, className)} styleProps={styleProps}>
       {utils.getYearRange(minDate, maxDate).map((year) => {

@@ -54,7 +54,7 @@ describe('<CalendarPicker />', () => {
     ).to.have.text('1');
   });
 
-  it('renders year selection standalone', () => {
+  it.only('renders year selection standalone', () => {
     render(
       <CalendarPicker
         date={adapterToUse.date('2019-01-01T00:00:00.000')}
