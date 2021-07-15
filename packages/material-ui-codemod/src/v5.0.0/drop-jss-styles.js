@@ -48,9 +48,9 @@ export default function transformer(file, api, options) {
   }
 
   function getFirstJsxName() {
-    const matches = file.source.match(/<(\w*)[\s\S]*?\/?>/gm);
+    const matches = file.source.match(/<(\w*)[\s\S]*?[^/]>/gm);
     if (matches) {
-      return matches[0].match(/<(\w*)(\s|\/|>)/)[1];
+      return matches.slice(-1)[0].match(/<\/?(\w*)(\s|\/|>)/)[1];
     }
     return null;
   }
@@ -64,7 +64,7 @@ export default function transformer(file, api, options) {
         .at(0)
         .forEach((path) => {
           const existingClassName = path.node.openingElement.attributes.find(
-            (attr) => attr.name.name === 'className',
+            (attr) => attr.name && attr.name.name === 'className',
           );
           if (existingClassName) {
             if (existingClassName.value.type === 'StringLiteral') {
