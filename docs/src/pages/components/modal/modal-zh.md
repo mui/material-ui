@@ -28,7 +28,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
 - [Menu](/components/menus/)
 - [Popover](/components/popover/)
 
-## Basic modal
+## 基本的模态框组件
 
 {{"demo": "pages/components/modal/BasicModal.js"}}
 
