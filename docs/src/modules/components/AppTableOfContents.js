@@ -6,18 +6,19 @@ import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import { BANNER_HEIGHT } from 'docs/src/modules/constants';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    top: 70 + 36,
+    top: 70 + BANNER_HEIGHT,
     // Fix IE 11 position sticky issue.
-    marginTop: 70 + 36,
+    marginTop: 70 + BANNER_HEIGHT,
     width: 175,
     flexShrink: 0,
     position: 'sticky',
-    height: 'calc(100vh - 70px - 36px)',
+    height: `calc(100vh - 70px - ${BANNER_HEIGHT}px)`,
     overflowY: 'auto',
     padding: theme.spacing(2, 2, 2, 0),
     display: 'none',

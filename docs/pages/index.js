@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
+import { BANNER_HEIGHT } from 'docs/src/modules/constants';
 import Steps from 'docs/src/pages/landing/Steps';
 import Themes from 'docs/src/pages/landing/Themes';
 import QuickWord from 'docs/src/pages/landing/QuickWord';
@@ -39,7 +40,7 @@ const useStyles = makeStyles(
       flex: '1 0 100%',
     },
     hero: {
-      paddingTop: theme.spacing(8) + 36,
+      paddingTop: theme.spacing(8) + BANNER_HEIGHT,
       color: theme.palette.primary.main,
     },
     content: {

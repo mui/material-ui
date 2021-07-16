@@ -15,7 +15,7 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import Link from 'docs/src/modules/components/Link';
 import { exactProp } from '@material-ui/utils';
-import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
+import { SOURCE_CODE_ROOT_URL, BANNER_HEIGHT } from 'docs/src/modules/constants';
 import Demo from 'docs/src/modules/components/Demo';
 import AppTableOfContents from 'docs/src/modules/components/AppTableOfContents';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
@@ -48,7 +48,7 @@ function findIndex(array, comp) {
 const styles = (theme) => ({
   root: {
     width: '100%',
-    paddingTop: 36,
+    paddingTop: BANNER_HEIGHT,
   },
   container: {
     position: 'relative',

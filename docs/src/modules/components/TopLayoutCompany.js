@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
+import { BANNER_HEIGHT } from 'docs/src/modules/constants';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import AppFooter from 'docs/src/modules/components/AppFooter';
 import MarkdownElement from './MarkdownElement';
@@ -11,7 +12,7 @@ const styles = (theme) => ({
   root: {
     flex: '1 0 100%',
     // Adding top buffer because of the v5 banner
-    marginTop: 36,
+    marginTop: BANNER_HEIGHT,
   },
   container: {
     marginBottom: theme.spacing(20),
