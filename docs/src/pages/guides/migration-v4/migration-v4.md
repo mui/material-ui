@@ -2504,7 +2504,7 @@ declare module "@material-ui/private-theming" {
 
 ### makeStyles - TypeError: Cannot read property 'drawer' of undefined
 
-This error occur when calling `useStyles` (result of `makeStyles`) or `withStyles` outside of `<ThemeProvider>` scope like this:
+This error occurs when calling `useStyles` (result of `makeStyles`) or `withStyles` outside of `<ThemeProvider>` scope like this:
 
 ```js
 import * as React from 'react';
