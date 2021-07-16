@@ -516,7 +516,7 @@ declare module '@material-ui/styles' {
 
 ### @material-ui/core/colors
 
-- The private color import is no longer export as common-js. You should import color from `@material-ui/core/colors`
+- The private color path is no longer export as common-js. You should import color from `@material-ui/core/colors`
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
