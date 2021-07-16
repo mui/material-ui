@@ -7,9 +7,7 @@
     "components": "The components used for each slot inside the FormControl. Either a string to use a HTML element or a component.",
     "disabled": "If <code>true</code>, the label, input and helper text should be displayed in a disabled state.",
     "error": "If <code>true</code>, the label is displayed in an error state.",
-    "extraContextProperties": "Extra properties to be placed on the FormControlContext.",
     "focused": "If <code>true</code>, the component is displayed in focused state.",
-    "hiddenLabel": "If <code>true</code>, the label is hidden. This is used to increase density for a <code>FilledInput</code>. Be sure to add <code>aria-label</code> to the <code>input</code> element.",
     "required": "If <code>true</code>, the label will indicate that the <code>input</code> is required."
   },
   "classDescriptions": {}

@@ -9,9 +9,7 @@
     },
     "disabled": { "type": { "name": "bool" } },
     "error": { "type": { "name": "bool" } },
-    "extraContextProperties": { "type": { "name": "object" }, "default": "{}" },
     "focused": { "type": { "name": "bool" } },
-    "hiddenLabel": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } }
   },
   "name": "FormControlUnstyled",
