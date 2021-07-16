@@ -94,7 +94,7 @@ Given a _HUE_ (red, pink, etc.) and a _SHADE_ (500, 600, etc.) you can import th
 ```jsx
 import { red } from '@material-ui/core/colors';
 
-const color = ref[500];
+const color = red[500];
 ```
 
 {{"demo": "pages/customization/color/Color.js", "hideToolbar": true, "bg": "inline"}}
