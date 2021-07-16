@@ -2513,26 +2513,24 @@ import makeStyles from '@material-ui/styles/makeStyles';
 import Card from '@material-ui/core/Card';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.common.white,
-  }
-}))
+  },
+}));
 
-const theme = createTheme()
+const theme = createTheme();
 
 function App() {
   const classes = useStyles(); // ❌ called outside of ThemeProvider
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Card className={classes.root}>
-        ...
-      </Card>
+      <Card className={classes.root}>...</Card>
     </ThemeProvider>
-  )
+  );
 }
 
 export default App;
@@ -2547,35 +2545,32 @@ import makeStyles from '@material-ui/styles/makeStyles';
 import Card from '@material-ui/core/Card';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.common.white,
-  }
-}))
+  },
+}));
+
+const theme = createTheme();
 
 function App() {
   const classes = useStyles(); // ✅ This is safe because App is now rendered under <ThemeProvider>
-  return (
-    <Card className={classes.root}>
-      ...
-    </Card>
-  )
+  return <Card className={classes.root}>...</Card>;
 }
 
 const withThemeProvider = (Component) => {
   const WithThemeProvider = (props) => {
     return (
-      <ThemeProvider>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
         <Component {...props} />
       </ThemeProvider>
-    )
-  }
-  return WithThemeProvider
-}
+    );
+  };
+  return WithThemeProvider;
+};
 
 export default withThemeProvider(App);
-
 ```
