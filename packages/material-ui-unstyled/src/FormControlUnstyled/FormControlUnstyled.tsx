@@ -1,10 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import FormControlContext, { FormControlState } from './FormControlContext';
+import FormControlUnstyledContext, { FormControlUnstyledState } from './FormControlContext';
 import appendStyleProps from '../utils/appendStyleProps';
 import classes from './formControlUnstyledClasses';
-import { FormControlUnstyledProps } from './FormControlUnstyledProps';
+import FormControlUnstyledProps, { NativeFormControlElement } from './FormControlUnstyledProps';
 
 function hasValue(value: unknown) {
   return value != null && !(Array.isArray(value) && value.length === 0) && value !== '';
@@ -118,7 +118,7 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled(
     onChange?.(event);
   }
 
-  const childContext: FormControlState = {
+  const childContext: FormControlUnstyledState = {
     defaultValue,
     disabled,
     error,
@@ -140,7 +140,7 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled(
   const rootProps = appendStyleProps(Root, { ...other, ...componentsProps.root }, styleProps);
 
   return (
-    <FormControlContext.Provider value={childContext}>
+    <FormControlUnstyledContext.Provider value={childContext}>
       <Root
         ref={ref}
         {...rootProps}
@@ -153,7 +153,7 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled(
       >
         {children}
       </Root>
-    </FormControlContext.Provider>
+    </FormControlUnstyledContext.Provider>
   );
 });
 

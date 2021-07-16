@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export type NativeFormControlElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
-export interface FormControlUnstyledProps {
+export default interface FormControlUnstyledProps {
   /**
    * The content of the component.
    */

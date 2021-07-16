@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormControlUnstyledProps } from './FormControlUnstyledProps';
+import FormControlUnstyledProps from './FormControlUnstyledProps';
 
 type ContextFromPropsKey =
   | 'defaultValue'
@@ -9,7 +9,7 @@ type ContextFromPropsKey =
   | 'required'
   | 'value';
 
-export interface FormControlState extends Pick<FormControlUnstyledProps, ContextFromPropsKey> {
+export interface FormControlUnstyledState extends Pick<FormControlUnstyledProps, ContextFromPropsKey> {
   filled: boolean;
   focused: boolean;
   onBlur: () => void;
@@ -20,10 +20,10 @@ export interface FormControlState extends Pick<FormControlUnstyledProps, Context
 /**
  * @ignore - internal component.
  */
-const FormControlContext = React.createContext<FormControlState | undefined>(undefined);
+const FormControlUnstyledContext = React.createContext<FormControlUnstyledState | undefined>(undefined);
 
 if (process.env.NODE_ENV !== 'production') {
-  FormControlContext.displayName = 'FormControlContext';
+  FormControlUnstyledContext.displayName = 'FormControlUnstyledContext';
 }
 
-export default FormControlContext;
+export default FormControlUnstyledContext;

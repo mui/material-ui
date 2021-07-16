@@ -1,6 +1,6 @@
 import * as React from 'react';
-import FormControlContext from './FormControlContext';
+import FormControlUnstyledContext from './FormControlContext';
 
-export default function useFormControl() {
-  return React.useContext(FormControlContext);
+export default function useFormControlUnstyled() {
+  return React.useContext(FormControlUnstyledContext);
 }

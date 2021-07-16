@@ -1,12 +1,12 @@
-import { FormControlState } from "./FormControlContext";
+import { FormControlUnstyledState } from "./FormControlContext";
 
-interface GetFormControlStateParams<T extends FormControlState> {
+export interface GetFormControlStateParams<T extends FormControlUnstyledState> {
   props: Partial<T>;
   states: (keyof T)[];
   muiFormControl: T;
 }
 
-export default function getFormControlState<T extends FormControlState>({
+export default function getFormControlState<T extends FormControlUnstyledState>({
   props,
   states,
   muiFormControl: formContext,
