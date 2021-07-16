@@ -2,8 +2,8 @@ export { default } from './FormControlUnstyled';
 
 export { default as FormControlContext } from './FormControlContext';
 
-export { default as formControlState } from './FormControlState';
-export * from './FormControlState';
+export { default as getFormControlState } from './getFormControlState';
+export * from './getFormControlState';
 
 export * from './FormControlUnstyledProps';
 

@@ -1,5 +1,7 @@
 import * as React from 'react';
 
+export type NativeFormControlElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
+
 export interface FormControlUnstyledProps {
   /**
    * The content of the component.
@@ -26,6 +28,7 @@ export interface FormControlUnstyledProps {
   componentsProps?: {
     root?: object;
   };
+  defaultValue?: unknown;
   /**
    * If `true`, the label, input and helper text should be displayed in a disabled state.
    * @default false
@@ -46,9 +49,11 @@ export interface FormControlUnstyledProps {
    * @default false
    */
   focused?: boolean;
+  onChange?: React.ChangeEventHandler<NativeFormControlElement>;
   /**
    * If `true`, the label will indicate that the `input` is required.
    * @default false
    */
   required?: boolean;
+  value?: unknown;
 }

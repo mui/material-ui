@@ -1,13 +1,18 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_isMuiElement as isMuiElement } from '@material-ui/utils';
-import FormControlContext from './FormControlContext';
-import { FormControlUnstyledProps } from './FormControlUnstyledProps';
+import FormControlContext, { FormControlState } from './FormControlContext';
 import appendStyleProps from '../utils/appendStyleProps';
-import { FormControlState } from './FormControlState';
-import isFieldFilled from '../utils/isFieldFilled';
 import classes from './formControlUnstyledClasses';
+import { FormControlUnstyledProps } from './FormControlUnstyledProps';
+
+function hasValue(value: unknown) {
+  return value != null && !(Array.isArray(value) && value.length === 0) && value !== '';
+}
+
+function isFilled(value: unknown, defaultValue?: unknown) {
+  return hasValue(value) || hasValue(defaultValue);
+}
 
 /**
  * Provides context such as filled/focused/error/required for form inputs.
@@ -41,11 +46,12 @@ import classes from './formControlUnstyledClasses';
  *
  * - [FormControlUnstyled API](https://material-ui.com/api/form-control-unstyled/)
  */
-const FormControl = React.forwardRef(function FormControl(
+const FormControlUnstyled = React.forwardRef(function FormControlUnstyled(
   props: FormControlUnstyledProps,
   ref: React.ForwardedRef<any>,
 ) {
   const {
+    defaultValue,
     children,
     className,
     component,
@@ -54,7 +60,9 @@ const FormControl = React.forwardRef(function FormControl(
     disabled = false,
     error = false,
     focused: visuallyFocused,
+    onChange,
     required = false,
+    value,
     ...other
   } = props;
 
@@ -65,25 +73,8 @@ const FormControl = React.forwardRef(function FormControl(
     required,
   };
 
-  const [filled, setFilled] = React.useState(() => {
-    // We need to iterate through the children and find the Input in order
-    // to fully support server-side rendering.
-    let initialFilled = false;
-
-    if (children) {
-      React.Children.forEach(children, (child) => {
-        if (!isMuiElement(child, ['Input', 'Select'])) {
-          return;
-        }
-
-        if (isFieldFilled((child as React.ReactElement).props, true)) {
-          initialFilled = true;
-        }
-      });
-    }
-
-    return initialFilled;
-  });
+  const isControlled = value !== undefined;
+  const [filled, setFilled] = React.useState(() => isFilled(value, defaultValue));
 
   const [focusedState, setFocused] = React.useState(false);
   if (disabled && focusedState) {
@@ -100,8 +91,8 @@ const FormControl = React.forwardRef(function FormControl(
       if (registeredInput.current) {
         console.error(
           [
-            'Material-UI: There are multiple `InputBase` components inside a FormControl.',
-            'This creates visual inconsistencies, only use one `InputBase`.',
+            'Material-UI: There are multiple `Input` components inside a FormControl.',
+            'This creates visual inconsistencies, only use one `Input`.',
           ].join('\n'),
         );
       }
@@ -113,15 +104,22 @@ const FormControl = React.forwardRef(function FormControl(
     };
   }
 
-  const onFilled = React.useCallback(() => {
-    setFilled(true);
-  }, []);
+  React.useEffect(() => {
+    if (isControlled) {
+      setFilled(isFilled(value))
+    }
+  }, [value, isControlled]);
 
-  const onEmpty = React.useCallback(() => {
-    setFilled(false);
-  }, []);
+  const handleChange = (event: React.ChangeEvent<NativeFormControlElement>) => {
+    if (!isControlled) {
+      setFilled(isFilled(event.currentTarget.value))
+    }
 
-  const childContext: FormControlState = {   
+    onChange?.(event);
+  }
+
+  const childContext: FormControlState = {
+    defaultValue,
     disabled,
     error,
     filled,
@@ -129,13 +127,13 @@ const FormControl = React.forwardRef(function FormControl(
     onBlur: () => {
       setFocused(false);
     },
-    onEmpty,
-    onFilled,
+    onChange: handleChange,
     onFocus: () => {
       setFocused(true);
     },
     registerEffect,
     required,
+    value,
   };
 
   const Root = component ?? components.Root ?? 'div';
@@ -159,7 +157,7 @@ const FormControl = React.forwardRef(function FormControl(
   );
 });
 
-FormControl.propTypes /* remove-proptypes */ = {
+FormControlUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -224,4 +222,4 @@ FormControl.propTypes /* remove-proptypes */ = {
   required: PropTypes.bool,
 } as any;
 
-export default FormControl;
+export default FormControlUnstyled;

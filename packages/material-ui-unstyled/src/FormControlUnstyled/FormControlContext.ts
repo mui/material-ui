@@ -1,5 +1,21 @@
 import * as React from 'react';
-import { FormControlState } from './FormControlState';
+import { FormControlUnstyledProps } from './FormControlUnstyledProps';
+
+type ContextFromPropsKey =
+  | 'defaultValue'
+  | 'disabled'
+  | 'error'
+  | 'onChange'
+  | 'required'
+  | 'value';
+
+export interface FormControlState extends Pick<FormControlUnstyledProps, ContextFromPropsKey> {
+  filled: boolean;
+  focused: boolean;
+  onBlur: () => void;
+  onFocus: () => void;
+  registerEffect: () => void;
+}
 
 /**
  * @ignore - internal component.
