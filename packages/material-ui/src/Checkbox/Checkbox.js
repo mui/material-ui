@@ -52,7 +52,6 @@ const CheckboxRoot = styled(SwitchBase, {
         theme.palette.action.hoverOpacity,
       ),
     }),
-
     // Reset on touch devices, it doesn't add specificity
     '@media (hover: none)': {
       backgroundColor: 'transparent',
