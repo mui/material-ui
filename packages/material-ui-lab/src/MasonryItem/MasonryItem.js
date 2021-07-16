@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { styled, useThemeProps } from '@material-ui/core/styles';
-import masonryItemClasses, { getMasonryItemUtilityClass } from './masonryItemClasses';
+import { getMasonryItemUtilityClass } from './masonryItemClasses';
 import MasonryContext from '../Masonry/MasonryContext';
 
 const useUtilityClasses = (styleProps) => {
@@ -11,8 +11,6 @@ const useUtilityClasses = (styleProps) => {
 
   const slots = {
     root: ['root'],
-    img: ['img'],
-    div: ['div'],
   };
 
   return composeClasses(slots, getMasonryItemUtilityClass, classes);
@@ -22,11 +20,7 @@ const MasonryItemRoot = styled('div', {
   name: 'MuiMasonryItem',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    return [
-      { [`& .${masonryItemClasses.img}`]: styles.img },
-      { [`& .${masonryItemClasses.div}`]: styles.div },
-      styles.root,
-    ];
+    return [styles.root];
   },
 })(({ styleProps, theme }) => {
   const gap = Number(theme.spacing(styleProps.spacing).replace('px', ''));

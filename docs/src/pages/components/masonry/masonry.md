@@ -1,6 +1,6 @@
 ---
 title: React Masonry component
-components: Masonry
+components: Masonry, MasonryItem
 githubLabel: 'component: Masonry'
 ---
 

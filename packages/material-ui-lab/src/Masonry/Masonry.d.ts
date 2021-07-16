@@ -30,7 +30,16 @@ export interface MasonryTypeMap<P = {}, D extends React.ElementType = 'div'> {
   };
   defaultComponent: D;
 }
-
+/**
+ *
+ * Demos:
+ *
+ * - [Masonry](https://material-ui.com/components/masonry/)
+ *
+ * API:
+ *
+ * - [Masonry API](https://material-ui.com/api/masonry/)
+ */
 declare const Masonry: OverridableComponent<MasonryTypeMap>;
 
 export type MasonryProps<
