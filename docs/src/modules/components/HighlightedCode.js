@@ -34,8 +34,9 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
       await copy(targetCode);
       setSnackbarMessage(t('copiedSource'));
       setSnackbarOpen(true);
-    } finally {
-      setSnackbarOpen(false);
+    } catch (e) {
+      setSnackbarMessage("")
+      setSnackbarOpen(false)
     }
   };
 
