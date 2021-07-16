@@ -153,7 +153,7 @@ _Head to the [spacing page](/system/spacing/) for more details._
 
 ### Typography
 
-The `fontFamily`, `fontSize`, `fontStyle`, `fontWeight` properties map their value to the `theme.typgraphy` value.
+The `fontFamily`, `fontSize`, `fontStyle`, `fontWeight` properties map their value to the `theme.typography` value.
 
 ```jsx
 <Box sx={{ fontWeight: 'fontWeightLight' }} />
