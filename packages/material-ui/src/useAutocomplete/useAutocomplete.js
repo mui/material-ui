@@ -169,13 +169,18 @@ export default function useAutocomplete(props) {
     [getOptionLabel, inputValue, multiple, onInputChange, setInputValueState],
   );
 
+  const prevValue = React.useRef();
+
   React.useEffect(() => {
-    if (focused) {
+    const valueChange = value !== prevValue.current;
+    prevValue.current = value;
+
+    if (focused && !valueChange) {
       return;
     }
 
     resetInputValue(null, value);
-  }, [value, resetInputValue, focused]);
+  }, [value, resetInputValue, focused, prevValue]);
 
   const [open, setOpenState] = useControlled({
     controlled: openProp,
