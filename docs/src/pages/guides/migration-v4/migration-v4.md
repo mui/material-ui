@@ -2092,10 +2092,10 @@ As the core components use emotion as their style engine, the props used by emot
 - Set the InputAdornment `position` prop to `start` or `end`. Use `start` if used as the value of the `startAdornment` prop. Use `end` if used as the value of the `endAdornment` prop.
 
   ```diff
-  -<TextField startAdornment={<InputAdornment>Kg</InputAdornment>} />
-  -<TextField endAdornment={<InputAdornment>Kg</InputAdornment>} />
-  +<TextField startAdornment={<InputAdornment position="start">Kg</InputAdornment>} />
-  +<TextField endAdornment={<InputAdornment position="end">Kg</InputAdornment>} />
+  -<TextField startAdornment={<InputAdornment>kg</InputAdornment>} />
+  -<TextField endAdornment={<InputAdornment>kg</InputAdornment>} />
+  +<TextField startAdornment={<InputAdornment position="start">kg</InputAdornment>} />
+  +<TextField endAdornment={<InputAdornment position="end">kg</InputAdornment>} />
   ```
 
 ### TextareaAutosize
