@@ -1,8 +1,6 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
-import Autocomplete, {
-  autocompleteClasses,
-} from '@material-ui/core/Autocomplete';
+import Autocomplete, { autocompleteClasses } from '@material-ui/core/Autocomplete';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import Popper from '@material-ui/core/Popper';
