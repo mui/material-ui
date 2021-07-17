@@ -8,3 +8,5 @@ packages/**/*.d.ts -linguist-vendored
 packages/material-ui-icons/lib/** linguist-generated
 packages/material-ui-icons/material-icons/** linguist-generated
 packages/material-ui-icons/legacy/** linguist-vendored
+# bundling fixtures
+test/bundling/scripts/packages.js linguist-generated
