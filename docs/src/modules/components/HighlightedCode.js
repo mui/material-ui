@@ -9,29 +9,21 @@ import MarkdownElement from './MarkdownElement';
 import { useTranslate } from '../utils/i18n';
 
 const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
-  const { code, language, encodedCode, isCopyButtonEnabled, ...other } = props;
+  const { code, language, isCopyButtonEnabled, ...other } = props;
   const renderedCode = React.useMemo(() => {
-    if (encodedCode) {
-      return prism(decodeURI(encodedCode).trim(), language);
-    }
     return prism(code.trim(), language);
-  }, [code, language, encodedCode]);
+  }, [code, language]);
 
   const t = useTranslate();
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
   const [snackbarMessage, setSnackbarMessage] = React.useState(undefined);
-  const [isHoveringCode, setIsHoveringCode] = React.useState(false);
 
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
   };
   const handleCopyClick = async () => {
     try {
-      let targetCode = code;
-      if (encodedCode) {
-        targetCode = decodeURI(encodedCode);
-      }
-      await copy(targetCode);
+      await copy(code);
       setSnackbarMessage(t('copiedSource'));
       setSnackbarOpen(true);
     } catch (e) {
@@ -40,21 +32,9 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
     }
   };
 
-  const handleMouseOverCode = () => {
-    setIsHoveringCode(true);
-  };
-
-  const handleMouseOutCode = () => {
-    setIsHoveringCode(false);
-  };
-
   return (
-    <div
-      style={{ position: 'relative' }}
-      onMouseEnter={handleMouseOverCode}
-      onMouseLeave={handleMouseOutCode}
-    >
-      {isHoveringCode && isCopyButtonEnabled && (
+    <div style={{ position: 'relative' }}>
+      {isCopyButtonEnabled && (
         <IconButton
           size="large"
           style={{ position: 'absolute', right: '1em', color: 'white' }}
@@ -86,7 +66,6 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
 
 HighlightedCode.propTypes = {
   code: PropTypes.string.isRequired,
-  encodedCode: PropTypes.string,
   isCopyButtonEnabled: PropTypes.bool,
   language: PropTypes.string.isRequired,
 };
