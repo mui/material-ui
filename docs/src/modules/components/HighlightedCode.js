@@ -34,18 +34,18 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
 
   return (
     <div style={{ position: 'relative' }}>
-      {isCopyButtonEnabled && (
-        <IconButton
-          size="large"
-          style={{ position: 'absolute', right: '1em', color: 'white' }}
-          data-ga-event-category="demo"
-          data-ga-event-action="copy"
-          onClick={handleCopyClick}
-        >
-          <FileCopyIcon fontSize="small" />
-        </IconButton>
-      )}
       <MarkdownElement ref={ref} {...other}>
+        {isCopyButtonEnabled && (
+          <IconButton
+            size="large"
+            style={{ position: 'absolute', right: '1em', color: 'white' }}
+            data-ga-event-category="demo"
+            data-ga-event-action="copy"
+            onClick={handleCopyClick}
+          >
+            <FileCopyIcon fontSize="small" />
+          </IconButton>
+        )}
         <pre>
           <code
             className={`language-${language}`}

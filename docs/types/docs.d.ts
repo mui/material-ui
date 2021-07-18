@@ -17,7 +17,7 @@ declare module 'docs/src/modules/components/HighlightedCode' {
     /**
      * copy button visible state
      */
-    isCopyButtonEnabled: boolean;
+    isCopyButtonEnabled?: boolean;
   }
   export default function HighlightedCode(props: Props): React.ReactElement;
 }
