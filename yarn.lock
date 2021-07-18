@@ -2445,10 +2445,10 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.8.3.tgz#8b4eae3d9dd470c022cb9238128db8b1906e7fca"
   integrity sha512-olsVs3lo8qKycPoWAUv4bMyoTGVXsEpLR9XxGk3LJR5Qa92a1Eg/Fj1ATdhwtC/6VMaKtsz1nSAeheD2B2Ru9A==
 
-"@rollup/plugin-replace@^2.3.1":
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-replace/-/plugin-replace-2.4.2.tgz#a2d539314fbc77c244858faa523012825068510a"
-  integrity sha512-IGcu+cydlUMZ5En85jxHH4qj2hta/11BHq95iHEyb2sbgiN0eCdzvUcHw5gt9pBL5lTi4JDYJ1acCoMGpTvEZg==
+"@rollup/plugin-replace@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-replace/-/plugin-replace-3.0.0.tgz#3a4c9665d4e7a4ce2c360cf021232784892f3fac"
+  integrity sha512-3c7JCbMuYXM4PbPWT4+m/4Y6U60SgsnDT/cCyAyUKwFHg7pTSfsSQzIpETha3a3ig6OdOKzZz87D9ZXIK3qsDg==
   dependencies:
     "@rollup/pluginutils" "^3.1.0"
     magic-string "^0.25.7"
