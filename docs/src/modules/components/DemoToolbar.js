@@ -13,7 +13,6 @@ import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
 import { JavaScript as JavaScriptIcon, TypeScript as TypeScriptIcon } from '@material-ui/docs';
 import EditIcon from '@material-ui/icons/Edit';
 import CodeIcon from '@material-ui/icons/Code';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
 import Snackbar from '@material-ui/core/Snackbar';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -292,7 +291,6 @@ export default function DemoToolbar(props) {
   const handleSnackbarClose = () => {
     setSnackbarOpen(false);
   };
-  ref;
   const createHandleCodeSourceLink = (anchor) => async () => {
     try {
       await copy(`${window.location.href.split('#')[0]}#${anchor}`);
