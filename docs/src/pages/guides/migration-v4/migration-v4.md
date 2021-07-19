@@ -25,6 +25,7 @@ The _why_ will be covered in an upcoming blog post on Medium.
   - [variant-prop (optional)](#variant-prop)
   - [link-underline-hover (optional)](#link-underline-hover)
 - [Handling Breaking Changes](#handling-breaking-changes)
+- [Migrate theme's `styleOverrides` to emotion](#migrate-themes-styleoverrides-to-emotion)
 - [Migrate `makeStyles` to emotion](#migrate-makestyles-to-emotion)
 - [Troubleshooting](#troubleshooting)
 
@@ -2289,8 +2290,8 @@ const theme = createTheme({
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
--          '&$focused': {
-+          '&.Mui-focused': {
+-         '&$focused': {
++         '&.Mui-focused': {
             borderWidth: 1,
           }
         }
@@ -2308,8 +2309,8 @@ const theme = createTheme({
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
--          '& $notchedOutline': {
-+          '& .MuiOutlinedInput-notchedOutline': {
+-         '& $notchedOutline': {
++         '& .MuiOutlinedInput-notchedOutline': {
             borderWidth: 1,
           }
         }
@@ -2329,8 +2330,8 @@ const theme = createTheme({
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
--          '& $notchedOutline': {
-+          [`& .${outlinedInputClasses['notchedOutline']}`]: {
+-         '& $notchedOutline': {
++         [`& .${outlinedInputClasses['notchedOutline']}`]: {
             borderWidth: 1,
           }
         }
