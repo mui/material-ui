@@ -13,6 +13,7 @@ const cache = createEmotionCache();
 export default function MyApp(props) {
   const { Component, disableEmotionCache = false, pageProps } = props;
   const Wrapper = disableEmotionCache ? React.Fragment : CacheProvider;
+  const wrapperProps = disableEmotionCache ? {} : { value: cache };
   return (
     <Wrapper {...(disableEmotionCache ? {} : { value: cache })}>
       <Head>
