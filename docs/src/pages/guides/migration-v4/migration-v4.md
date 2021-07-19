@@ -2283,62 +2283,62 @@ Although your style overrides defined in the theme may partially work, there is 
 
 ### Replace pseudo state class names
 
-  ```diff
-  const theme = createTheme({
-    components: {
-      MuiOutlinedInput: {
-        styleOverrides: {
-          root: {
-  -          '&$focused': {
-  +          '&.Mui-focused': {  
-              borderWidth: 1,
-            }
+```diff
+const theme = createTheme({
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+-          '&$focused': {
++          '&.Mui-focused': {
+            borderWidth: 1,
           }
         }
       }
     }
-  });
-  ```
+  }
+});
+```
 
 ### Replace nested classes selectors with global class names
 
-  ```diff
-  const theme = createTheme({
-    components: {
-      MuiOutlinedInput: {
-        styleOverrides: {
-          root: {
-  -          '& $notchedOutline': {
-  +          '& .MuiOutlinedInput-notchedOutline': {
-              borderWidth: 1,
-            }
+```diff
+const theme = createTheme({
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+-          '& $notchedOutline': {
++          '& .MuiOutlinedInput-notchedOutline': {
+            borderWidth: 1,
           }
         }
       }
     }
-  });
-  ```
+  }
+});
+```
 
 > Note: For each component we export `[component]Classes` constant that contains all nested classes for that component. You can rely on this instead of hardcoding the classes.
 
-  ```diff
-  +import outlinedInputClasses from '@material-ui/core/OutlinedInput';
+```diff
++import outlinedInputClasses from '@material-ui/core/OutlinedInput';
 
-  const theme = createTheme({
-    components: {
-      MuiOutlinedInput: {
-        styleOverrides: {
-          root: {
-  -          '& $notchedOutline': {
-  +          [`& .${outlinedInputClasses['notchedOutline']}`]: {
-              borderWidth: 1,
-            }
+const theme = createTheme({
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+-          '& $notchedOutline': {
++          [`& .${outlinedInputClasses['notchedOutline']}`]: {
+            borderWidth: 1,
           }
         }
       }
     }
-  });
-  ```
+  }
+});
+```
 
 Take a look on the whole [list of the pseudo-state global classname](/customization/how-to-customize/#pseudo-classes) available.
 
