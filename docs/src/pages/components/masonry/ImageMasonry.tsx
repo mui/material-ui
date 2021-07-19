@@ -8,7 +8,7 @@ export default function ImageMasonry(): JSX.Element {
     <Masonry cols={5} spacing={1}>
       {imgData.map((item, idx) => (
         <MasonryItem key={idx} contentHeight={item.height}>
-          <img alt={item.title} src={item.img} style={{ height: item.height }} />
+          <img alt={item.title} src={item.img} />
         </MasonryItem>
       ))}
     </Masonry>

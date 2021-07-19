@@ -24,16 +24,17 @@ const MasonryItemRoot = styled('div', {
   },
 })(({ styleProps, theme }) => {
   const gap = Number(theme.spacing(styleProps.spacing).replace('px', ''));
-  const totalHeight = styleProps.contentHeight + gap;
-  const rowSpan = Math.ceil(totalHeight / gap);
+  const rowSpan = Math.ceil(styleProps.contentHeight + gap );
   return {
     width: '100%',
     [`& *`]: {
       // all contents should have a width of 100%
       objectFit: 'cover',
       width: '100%',
+      height: "100%",
     },
     gridRowEnd: `span ${styleProps.contentHeight !== undefined ? rowSpan : 0}`,
+    paddingBottom: gap - 1
   };
 });
 
