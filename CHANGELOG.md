@@ -1,5 +1,33 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 4.12.2
+
+<!-- generated comparing v4.12.1..master -->
+
+_Jul 19, 2021_
+
+Big thanks to the 6 contributors who made this release possible. Here are some highlights ✨:
+
+### `@material-ui/core`
+
+- <!-- 09 --> [Accordion, Collapse] Fix failed proptype error (#27307) @serenalin121
+- <!-- 12 --> [AccordionSummary] Ensure backwards compatible deprecation of classes.focused (#27351) @eps1lon
+- <!-- 11 --> [TextField] Add support for `minRows` (#27293) @eps1lon
+
+### Docs
+
+- <!-- 07 --> [blog] Danilo Leal joins Material-UI (#27231) @oliviertassinari
+- <!-- 04 --> [blog] Jun did join in Q1 @oliviertassinari
+- <!-- 03 --> [blog] Fix typo @oliviertassinari
+- <!-- 02 --> [blog] Q2 2021 Update (#27089) @oliviertassinari
+- <!-- 10 --> [docs] Add constant for the banner height (#27309) @mnajdova
+- <!-- 08 --> [docs] Fix various layout issues with the v5 banner (#27237) @mnajdova
+- <!-- 06 --> [docs] Fix https protocol (#27262) @m4theushw
+- <!-- 01 --> [docs] Remove Ethical Ads (#27173) @mbrookes
+- <!-- 05 --> [website] Open 4 new roles (#27123) @oliviertassinari
+
+All contributors of this release in alphabetical order: @eps1lon, @m4theushw, @mbrookes, @mnajdova, @oliviertassinari, @serenalin121
+
 ## 4.12.1
 
 _July 7, 2021_
