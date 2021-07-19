@@ -1,4 +1,4 @@
-import { FormControlUnstyledState } from "./FormControlContext";
+import { FormControlUnstyledState } from './FormControlContext';
 
 export interface GetFormControlStateParams<T extends FormControlUnstyledState> {
   props: Partial<T>;

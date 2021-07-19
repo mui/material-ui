@@ -106,17 +106,17 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled(
 
   React.useEffect(() => {
     if (isControlled) {
-      setFilled(isFilled(value))
+      setFilled(isFilled(value));
     }
   }, [value, isControlled]);
 
   const handleChange = (event: React.ChangeEvent<NativeFormControlElement>) => {
     if (!isControlled) {
-      setFilled(isFilled(event.currentTarget.value))
+      setFilled(isFilled(event.currentTarget.value));
     }
 
     onChange?.(event);
-  }
+  };
 
   const childContext: FormControlUnstyledState = {
     defaultValue,
@@ -189,6 +189,10 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
    */
   componentsProps: PropTypes.object,
   /**
+   * @ignore
+   */
+  defaultValue: PropTypes.any,
+  /**
    * If `true`, the label, input and helper text should be displayed in a disabled state.
    * @default false
    */
@@ -199,27 +203,23 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
    */
   error: PropTypes.bool,
   /**
-   * Extra properties to be placed on the FormControlContext.
-   * @default {}
-   */
-  extraContextProperties: PropTypes.object,
-  /**
    * If `true`, the component is displayed in focused state.
    * @default false
    */
   focused: PropTypes.bool,
   /**
-   * If `true`, the label is hidden.
-   * This is used to increase density for a `FilledInput`.
-   * Be sure to add `aria-label` to the `input` element.
-   * @default false
+   * @ignore
    */
-  hiddenLabel: PropTypes.bool,
+  onChange: PropTypes.func,
   /**
    * If `true`, the label will indicate that the `input` is required.
    * @default false
    */
   required: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  value: PropTypes.any,
 } as any;
 
 export default FormControlUnstyled;
