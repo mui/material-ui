@@ -2553,7 +2553,7 @@ function App(props) {
       <AppContent {...props} />
     </ThemeProvider>
   );
-};
+}
 
 export default App;
 ```
