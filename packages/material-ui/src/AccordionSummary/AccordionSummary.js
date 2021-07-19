@@ -2,6 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { chainPropTypes } from '@material-ui/utils';
 import ButtonBase from '../ButtonBase';
 import IconButton from '../IconButton';
 import withStyles from '../styles/withStyles';
@@ -25,7 +26,7 @@ export const styles = (theme) => {
       '&$expanded': {
         minHeight: 64,
       },
-      '&$focusVisible': {
+      '&$focused, &$focusVisible': {
         backgroundColor: theme.palette.action.focus,
       },
       '&$disabled': {
@@ -34,6 +35,8 @@ export const styles = (theme) => {
     },
     /* Pseudo-class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`. */
     expanded: {},
+    /* Pseudo-class applied to the ButtonBase root element if the button is keyboard focused. */
+    focused: {},
     /* Pseudo-class applied to the ButtonBase root element if the button is keyboard focused. */
     focusVisible: {},
     /* Pseudo-class applied to the root element if `disabled={true}`. */
@@ -140,7 +143,19 @@ AccordionSummary.propTypes = {
    * Override or extend the styles applied to the component.
    * See [CSS API](#css) below for more details.
    */
-  classes: PropTypes.object,
+  classes: chainPropTypes(PropTypes.object.isRequired, (props) => {
+    if (props.classes.focused.indexOf(' ') !== -1) {
+      return new Error(
+        [
+          'Material-UI: The `classes.focused` key is deprecated.',
+          'Use `classes.focusVisible` instead.',
+          'The name of the pseudo-class was changed for consistency.',
+        ].join('\n'),
+      );
+    }
+
+    return null;
+  }),
   /**
    * @ignore
    */

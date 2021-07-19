@@ -41,6 +41,8 @@ declare const AccordionSummary: ExtendButtonBase<AccordionSummaryTypeMap>;
 export type AccordionSummaryClassKey =
   | 'root'
   | 'expanded'
+  // deprecated
+  | 'focused'
   | 'focusVisible'
   | 'disabled'
   | 'content'
