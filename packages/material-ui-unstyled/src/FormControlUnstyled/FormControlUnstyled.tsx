@@ -35,7 +35,7 @@ function isFilled(value: unknown, defaultValue?: unknown) {
  * </FormControl>
  * ```
  *
- * ⚠️ Only one `InputBase` can be used within a FormControl because it create visual inconsistencies.
+ * ⚠️ Only one `Input` can be used within a FormControl because it create visual inconsistencies.
  * For instance, only one input can be focused at the same time, the state shouldn't be shared.
  *
  * Demos:
