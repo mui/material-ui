@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/core",
-  "version": "4.12.1",
+  "version": "4.12.2",
   "private": false,
   "author": "Material-UI Team",
   "description": "React components that implement Google's Material Design.",
@@ -62,7 +62,6 @@
     "react-is": "^16.8.0 || ^17.0.0",
     "react-transition-group": "^4.4.0"
   },
-  "devDependencies": {},
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
