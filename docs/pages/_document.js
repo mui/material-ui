@@ -136,9 +136,13 @@ MyDocument.getInitialProps = async (ctx) => {
     ctx.renderPage = () =>
       originalRenderPage({
         enhanceApp: (App) => (props) =>
-          styledComponentsSheet.collectStyles(materialSheets.collect(
-            <CacheProvider value={cache}><App {...props} /></CacheProvider>
-            )),
+          styledComponentsSheet.collectStyles(
+            materialSheets.collect(
+              <CacheProvider value={cache}>
+                <App {...props} />
+              </CacheProvider>,
+            ),
+          ),
       });
 
     const initialProps = await Document.getInitialProps(ctx);

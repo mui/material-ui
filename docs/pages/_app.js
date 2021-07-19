@@ -330,11 +330,11 @@ function AppWrapper(props) {
       </NextHead>
       <ReduxProvider store={redux}>
         <PageContext.Provider value={{ activePage, pages }}>
-            <StylesProvider jss={jss}>
-              <ThemeProvider>
-                <DocsStyledEngineProvider>{children}</DocsStyledEngineProvider>
-              </ThemeProvider>
-            </StylesProvider>
+          <StylesProvider jss={jss}>
+            <ThemeProvider>
+              <DocsStyledEngineProvider>{children}</DocsStyledEngineProvider>
+            </ThemeProvider>
+          </StylesProvider>
         </PageContext.Provider>
         <LanguageNegotiation />
         <Analytics />
