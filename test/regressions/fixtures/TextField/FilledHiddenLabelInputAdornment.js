@@ -10,7 +10,7 @@ export default function FilledHiddenLabelInputAdornment() {
       defaultValue="Value"
       variant="filled"
       InputProps={{
-        startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
+        startAdornment: <InputAdornment position="start">kg</InputAdornment>,
       }}
     />
   );
