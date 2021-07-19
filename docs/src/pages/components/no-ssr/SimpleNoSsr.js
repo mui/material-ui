@@ -1,5 +1,5 @@
 import * as React from 'react';
-import NoSsr from '@material-ui/core/NoSsr';
+import NoSsr from '@material-ui/unstyled/NoSsr';
 import Box from '@material-ui/core/Box';
 
 export default function SimpleNoSsr() {

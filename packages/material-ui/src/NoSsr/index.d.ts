@@ -1,2 +1,1 @@
-export { default } from './NoSsr';
-export * from './NoSsr';
+export { default } from '@material-ui/unstyled/NoSsr';
