@@ -6,8 +6,6 @@
 
 _Jul 19, 2021_
 
-Big thanks to the 6 contributors who made this release possible. Here are some highlights ✨:
-
 ### `@material-ui/core`
 
 - <!-- 09 --> [Accordion, Collapse] Fix failed proptype error (#27307) @serenalin121
