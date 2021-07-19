@@ -17,7 +17,7 @@ const links = (
   <ul className="BrandingHeader-linksWrapper">
     <li>
       <Link variant="body2" color="inherit" underline="none" activeClassName="Mui-active" href="/">
-        {t1('Products')}
+        {t1('Docs')}
       </Link>
     </li>
     <li>
@@ -28,7 +28,7 @@ const links = (
         activeClassName="Mui-active"
         href="/branding/mui-x/"
       >
-        {t1('Docs')}
+        {t1('Material-UI X')}
       </Link>
     </li>
     <li>
@@ -40,6 +40,17 @@ const links = (
         href="/branding/pricing/"
       >
         {t1('Pricing')}
+      </Link>
+    </li>
+    <li>
+      <Link
+        variant="body2"
+        color="inherit"
+        underline="none"
+        activeClassName="Mui-active"
+        href="/getting-started/templates/"
+      >
+        {t1('Templates')}
       </Link>
     </li>
     <li>
@@ -246,7 +257,11 @@ export default function BrandingHeader(props: BrandingHeaderProps) {
     <React.Fragment>
       <StyledAppBar mode={mode} trigger={trigger} position="sticky" color="inherit" elevation={0}>
         <Toolbar>
-          <BrandingLogo variant="icon" />
+          <BrandingLogo
+            variant={mode === 'light' ? 'lockup' : 'lockup-inverted'}
+            sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
+          />
+          <BrandingLogo variant="icon" sx={{ display: { xs: 'inline-flex', sm: 'none' } }} />
           {links}
           <Box sx={{ flex: 1 }} />
           <DeferredBrandingSearch />

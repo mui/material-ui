@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
-import BrandingHeader from 'docs/src/modules/branding/BrandingHeader';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import AppHeader from 'docs/src/components/AppHeader';
 
 const theme = createTheme({
   palette: {
@@ -9,14 +10,22 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: "'PlusJarkatasans', sans-serif",
+    fontFamily: "'PlusJakartaSans', sans-serif",
+  },
+  components: {
+    MuiTypography: {
+      defaultProps: {
+        variant: 'body2',
+      },
+    },
   },
 });
 
 const Home = () => {
   return (
     <ThemeProvider theme={theme}>
-      <BrandingHeader />
+      <CssBaseline />
+      <AppHeader />
     </ThemeProvider>
   );
 };
