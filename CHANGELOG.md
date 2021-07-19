@@ -6,7 +6,7 @@
 
 _Jul 19, 2021_
 
-### `@material-ui/core`
+### `@material-ui/core@4.12.2`
 
 - <!-- 09 --> [Accordion, Collapse] Fix failed proptype error (#27307) @serenalin121
 - <!-- 12 --> [AccordionSummary] Ensure backwards compatible deprecation of classes.focused (#27351) @eps1lon
