@@ -14,67 +14,6 @@ to your applications components.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-To better support server rendering, Material-UI provides a `style` prop to the children of some transition components, (Fade, Grow, Zoom, Slide).
-The `style` prop must be applied to the DOM for the animation to work as expected.
-
-```jsx
-// The `props` object contains a `style` prop.
-// You need to provide it to the `div` element as shown here.
-const MyComponent = React.forwardRef((props, ref) {
-  return (
-    <div ref={ref} {...props}>
-      Fade
-    </div>
-  );
-})
-
-export default Main() {
-  return (
-    <Fade>
-      <MyComponent />
-    </Fade>
-  );
-}
-```
-
-> 💡 Transition components require first child component to forward ref to DOM node. If it cannot find DOM node, it throws error.
-
-```js
-// ❌ Ex.1: Custom component does not forward ref to DOM
-function CustomComponent(props) {
-  return (
-    <div {...props}>...</div>
-  )
-}
-<Fade in>
-  <CustomComponent />
-</Fade>
-
-// ❌ Ex.2: React.Fragment does not work
-<Fade in>
-  <React.Fragment>
-    <div>...</div>
-  </React.Fragment>
-</Fade>
-
-// ✅ Ex.3: Any html tag as first child works even though custom component does not forward ref.
-<Fade in>
-  <div>
-    <CustomComponent />
-  </div>
-</Fade>
-
-// ✅ Ex.4: Custom component forward ref to DOM (good practice)
-const CustomComponent = React.forwardRef((props, ref) {
-  return (
-    <div ref={ref} {...props}>...</div>
-  )
-})
-<Fade in>
-  <CustomComponent />
-</Fade>
-```
-
 ## Collapse
 
 Expand from the start edge of the child element.
@@ -118,6 +57,33 @@ Expand outwards from the center of the child element.
 This example also demonstrates how to delay the enter transition.
 
 {{"demo": "pages/components/transitions/SimpleZoom.js", "bg": true}}
+
+## Child requirement
+
+- **Forward the style** : To better support server rendering, Material-UI provides a `style` prop to the children of some transition components, (Fade, Grow, Zoom, Slide). The `style` prop must be applied to the DOM for the animation to work as expected.
+- **Forward the ref** : The transition components require the first child element to forward its ref to the DOM node.
+- **Single element** : The transition components require only 1 child element (`React.Fragment` is not allowed).
+
+```jsx
+// The `props` object contains a `style` prop.
+// You need to provide it to the `div` element as shown here.
+const MyComponent = React.forwardRef(({ style, ...props }, ref) {
+  return (
+    <div ref={ref} {...props} style={style}>
+      Fade
+    </div>
+  );
+})
+
+export default Main() {
+  return (
+    <Fade>
+      {/* MyComponent is the only child */}
+      <MyComponent /> 
+    </Fade>
+  );
+}
+```
 
 ## TransitionGroup
 
