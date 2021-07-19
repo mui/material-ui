@@ -330,14 +330,11 @@ function AppWrapper(props) {
       </NextHead>
       <ReduxProvider store={redux}>
         <PageContext.Provider value={{ activePage, pages }}>
-          {/* TODO v5: remove once migration to emotion is completed */}
-          <StyledEngineProvider injectFirst>
             <StylesProvider jss={jss}>
               <ThemeProvider>
                 <DocsStyledEngineProvider>{children}</DocsStyledEngineProvider>
               </ThemeProvider>
             </StylesProvider>
-          </StyledEngineProvider>
         </PageContext.Provider>
         <LanguageNegotiation />
         <Analytics />
