@@ -2535,9 +2535,8 @@ function App() {
 
 export default App;
 ```
-You can fix by creating **AppContent** component or **withThemeProvider** HOC (higher order component)
 
-**Option 1 : `AppContent`**
+You can fix by creating **AppContent** component and move `useStyles` inside so that it is called under `<ThemeProvider>`.
 
 ```js
 // ...imports
@@ -2557,29 +2556,4 @@ const App = (props) => {
 };
 
 export default App;
-```
-
-**Option 2 : `withThemeProvider`**
-
-```js
-// ...imports
-
-function App() {
-  const classes = useStyles(); // ✅ This is safe because App is now rendered inside <ThemeProvider>
-  return <Card className={classes.root}>...</Card>;
-}
-
-const withThemeProvider = (Component) => {
-  const WithThemeProvider = (props) => {
-    return (
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Component {...props} />
-      </ThemeProvider>
-    );
-  };
-  return WithThemeProvider;
-};
-
-export default withThemeProvider(App);
 ```
