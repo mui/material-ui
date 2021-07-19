@@ -79,7 +79,7 @@ export default Main() {
   return (
     <Fade>
       {/* MyComponent is the only child */}
-      <MyComponent /> 
+      <MyComponent />
     </Fade>
   );
 }
