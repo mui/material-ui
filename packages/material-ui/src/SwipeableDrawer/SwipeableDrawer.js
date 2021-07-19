@@ -197,6 +197,8 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
           'all',
           getTransitionProps(
             {
+              easing: undefined,
+              style: undefined,
               timeout: transitionDuration,
             },
             {

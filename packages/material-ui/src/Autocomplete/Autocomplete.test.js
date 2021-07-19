@@ -1174,6 +1174,23 @@ describe('<Autocomplete />', () => {
       expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.hasClearIcon);
       expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
     });
+
+    it('should close the popup when disabled is true', () => {
+      const { setProps } = render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      const textbox = screen.getByRole('textbox');
+      act(() => {
+        textbox.focus();
+      });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      expect(screen.queryByRole('listbox')).not.to.equal(null);
+      setProps({ disabled: true });
+      expect(screen.queryByRole('listbox')).to.equal(null);
+    });
   });
 
   describe('prop: disableClearable', () => {
@@ -2048,18 +2065,15 @@ describe('<Autocomplete />', () => {
           open
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
-
-        {
-          // TODO: React18 compat
-          // on*Change should only be called if the highlighted option changes.
-          // Investigate why this is called in the first place considering this looks like derived state.
-          legacyRoot: true,
-        },
       );
-      expect(handleHighlightChange.callCount).to.equal(1);
-      expect(handleHighlightChange.args[0][0]).to.equal(undefined);
-      expect(handleHighlightChange.args[0][1]).to.equal(options[0]);
-      expect(handleHighlightChange.args[0][2]).to.equal('auto');
+      expect(handleHighlightChange.callCount).to.equal(
+        // FIXME: highlighted index implementation should be implemented using React not the DOM.
+        React.version.startsWith('18') ? 2 : 1,
+      );
+      expect(handleHighlightChange.args[0]).to.deep.equal([undefined, options[0], 'auto']);
+      if (React.version.startsWith('18')) {
+        expect(handleHighlightChange.args[1]).to.deep.equal([undefined, options[0], 'auto']);
+      }
     });
 
     it('should support keyboard event', () => {
@@ -2072,26 +2086,32 @@ describe('<Autocomplete />', () => {
           open
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
-        {
-          // TODO: React18 compat
-          // on*Change should only be called if the highlighted option changes.
-          // Investigate why this is called in the first place considering this looks like derived state.
-          legacyRoot: true,
-        },
       );
       const textbox = screen.getByRole('textbox');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      expect(handleHighlightChange.callCount).to.equal(3);
-      expect(handleHighlightChange.args[2][0]).not.to.equal(undefined);
-      expect(handleHighlightChange.args[2][1]).to.equal(options[0]);
-      expect(handleHighlightChange.args[2][2]).to.equal('keyboard');
+
+      expect(handleHighlightChange.callCount).to.equal(
+        // FIXME: highlighted index implementation should be implemented using React not the DOM.
+        React.version.startsWith('18') ? 4 : 3,
+      );
+      if (React.version.startsWith('18')) {
+        expect(handleHighlightChange.args[2][0]).to.equal(undefined);
+        expect(handleHighlightChange.args[2][1]).to.equal(null);
+        expect(handleHighlightChange.args[2][2]).to.equal('auto');
+      }
+      expect(handleHighlightChange.lastCall.args[0]).not.to.equal(undefined);
+      expect(handleHighlightChange.lastCall.args[1]).to.equal(options[0]);
+      expect(handleHighlightChange.lastCall.args[2]).to.equal('keyboard');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
-      expect(handleHighlightChange.callCount).to.equal(4);
-      expect(handleHighlightChange.args[3][0]).not.to.equal(undefined);
-      expect(handleHighlightChange.args[3][1]).to.equal(options[1]);
-      expect(handleHighlightChange.args[3][2]).to.equal('keyboard');
+      expect(handleHighlightChange.callCount).to.equal(
+        // FIXME: highlighted index implementation should be implemented using React not the DOM.
+        React.version.startsWith('18') ? 5 : 4,
+      );
+      expect(handleHighlightChange.lastCall.args[0]).not.to.equal(undefined);
+      expect(handleHighlightChange.lastCall.args[1]).to.equal(options[1]);
+      expect(handleHighlightChange.lastCall.args[2]).to.equal('keyboard');
     });
 
     it('should support mouse event', () => {
@@ -2104,19 +2124,21 @@ describe('<Autocomplete />', () => {
           open
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
-        {
-          // TODO: React18 compat
-          // on*Change should only be called if the highlighted option changes.
-          // Investigate why this is called in the first place considering this looks like derived state.
-          legacyRoot: true,
-        },
       );
       const firstOption = getAllByRole('option')[0];
       fireEvent.mouseOver(firstOption);
-      expect(handleHighlightChange.callCount).to.equal(3);
-      expect(handleHighlightChange.args[2][0]).not.to.equal(undefined);
-      expect(handleHighlightChange.args[2][1]).to.equal(options[0]);
-      expect(handleHighlightChange.args[2][2]).to.equal('mouse');
+      expect(handleHighlightChange.callCount).to.equal(
+        // FIXME: highlighted index implementation should be implemented using React not the DOM.
+        React.version.startsWith('18') ? 4 : 3,
+      );
+      if (React.version.startsWith('18')) {
+        expect(handleHighlightChange.args[2][0]).to.equal(undefined);
+        expect(handleHighlightChange.args[2][1]).to.equal(null);
+        expect(handleHighlightChange.args[2][2]).to.equal('auto');
+      }
+      expect(handleHighlightChange.lastCall.args[0]).not.to.equal(undefined);
+      expect(handleHighlightChange.lastCall.args[1]).to.equal(options[0]);
+      expect(handleHighlightChange.lastCall.args[2]).to.equal('mouse');
     });
 
     it('should pass to onHighlightChange the correct value after filtering', () => {

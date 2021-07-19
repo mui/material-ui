@@ -117,43 +117,40 @@ const PaginationItemPage = styled(ButtonBase, {
     [`&.${paginationItemClasses.disabled}`]: {
       opacity: theme.palette.action.disabledOpacity,
     },
-    /* Styles applied to the root element if `type="page"`. */
-    ...(styleProps.type === 'page' && {
-      transition: theme.transitions.create(['color', 'background-color'], {
-        duration: theme.transitions.duration.short,
-      }),
+    transition: theme.transitions.create(['color', 'background-color'], {
+      duration: theme.transitions.duration.short,
+    }),
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover,
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
+    },
+    [`&.${paginationItemClasses.selected}`]: {
+      backgroundColor: theme.palette.action.selected,
       '&:hover': {
-        backgroundColor: theme.palette.action.hover,
+        backgroundColor: alpha(
+          theme.palette.action.selected,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+        ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          backgroundColor: 'transparent',
-        },
-      },
-      [`&.${paginationItemClasses.selected}`]: {
-        backgroundColor: theme.palette.action.selected,
-        '&:hover': {
-          backgroundColor: alpha(
-            theme.palette.action.selected,
-            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-          ),
-          // Reset on touch devices, it doesn't add specificity
-          '@media (hover: none)': {
-            backgroundColor: theme.palette.action.selected,
-          },
-        },
-        [`&.${paginationItemClasses.focusVisible}`]: {
-          backgroundColor: alpha(
-            theme.palette.action.selected,
-            theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-          ),
-        },
-        [`&.${paginationItemClasses.disabled}`]: {
-          opacity: 1,
-          color: theme.palette.action.disabled,
           backgroundColor: theme.palette.action.selected,
         },
       },
-    }),
+      [`&.${paginationItemClasses.focusVisible}`]: {
+        backgroundColor: alpha(
+          theme.palette.action.selected,
+          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+        ),
+      },
+      [`&.${paginationItemClasses.disabled}`]: {
+        opacity: 1,
+        color: theme.palette.action.disabled,
+        backgroundColor: theme.palette.action.selected,
+      },
+    },
     /* Styles applied to the root element if `size="small"`. */
     ...(styleProps.size === 'small' && {
       minWidth: 26,

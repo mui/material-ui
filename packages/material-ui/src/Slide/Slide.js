@@ -152,13 +152,8 @@ const Slide = React.forwardRef(function Slide(props, ref) {
       },
     );
 
-    node.style.webkitTransition = theme.transitions.create('-webkit-transform', {
-      ...transitionProps,
-    });
-
-    node.style.transition = theme.transitions.create('transform', {
-      ...transitionProps,
-    });
+    node.style.webkitTransition = theme.transitions.create('-webkit-transform', transitionProps);
+    node.style.transition = theme.transitions.create('transform', transitionProps);
 
     setTranslateValue(direction, node);
 
