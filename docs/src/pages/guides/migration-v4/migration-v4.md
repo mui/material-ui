@@ -2535,28 +2535,37 @@ function App() {
 
 export default App;
 ```
+You can fix by creating **AppContent** component or **withThemeProvider** HOC (higher order component)
 
-One way to fix this is to create `withThemeProvider` HOC (higher order component):
+**Option 1 : `AppContent`**
 
 ```js
-import * as React from 'react';
-import { ThemeProvider } from '@material-ui/core/styles';
-import makeStyles from '@material-ui/styles/makeStyles';
-import Card from '@material-ui/core/Card';
-import CssBaseline from '@material-ui/core/CssBaseline';
+// ...imports
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.common.white,
-  },
-}));
+function AppContent(props) {
+  const classes = useStyles(); // ✅ This is safe because AppContent is rendered inside <ThemeProvider>
+  return <Card className={classes.root}>...</Card>;
+}
 
-const theme = createTheme();
+const App = (props) => {
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AppContent {...props} />
+    </ThemeProvider>
+  );
+};
+
+export default App;
+```
+
+**Option 2 : `withThemeProvider`**
+
+```js
+// ...imports
 
 function App() {
-  const classes = useStyles(); // ✅ This is safe because App is now rendered under <ThemeProvider>
+  const classes = useStyles(); // ✅ This is safe because App is now rendered inside <ThemeProvider>
   return <Card className={classes.root}>...</Card>;
 }
 
