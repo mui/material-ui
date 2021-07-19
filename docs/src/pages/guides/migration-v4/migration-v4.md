@@ -2536,7 +2536,7 @@ function App() {
 export default App;
 ```
 
-You can fix by creating **AppContent** component and move `useStyles` inside so that it is called under `<ThemeProvider>`.
+You can fix by moving `useStyles` inside another component so that it is called under `<ThemeProvider>`.
 
 ```js
 // ...imports
