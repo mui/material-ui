@@ -1243,21 +1243,26 @@ As the core components use emotion as their style engine, the props used by emot
   +<Accordion onChange={(event: React.SyntheticEvent, expanded: boolean) => {}} />
   ```
 
+### ExpansionPanelDetails
+
+- Remove `display: flex` from `AccordionDetails` (formerly `ExpansionPanelDetails`) as its too opinionated.
+  Most developers expect a display block.
+
+### ExpansionPanelSummary
+
 - Rename `focused` to `focusVisible` for consistency:
 
   ```diff
-  <Accordion
-    classes={{
+   <AccordionSummary
+     classes={{
   -    focused: 'custom-focus-visible-classname',
   +    focusVisible: 'custom-focus-visible-classname',
-    }}
-  />
+     }}
+    />
   ```
 
-- Remove `display: flex` from AccordionDetails as its too opinionated.
-  Most developers expect a display block.
-- Remove `IconButtonProps` prop from AccordionSummary.
-  The component renders a `<div>` element instead of an IconButton.
+- Remove `IconButtonProps` prop from `AccordionSummary` (formerly `ExpansionPanelSummary`).
+  The component renders a `<div>` element instead of an `IconButton`.
   The prop is no longer necessary.
 
 ### Fab
