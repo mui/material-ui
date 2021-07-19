@@ -2542,7 +2542,7 @@ You can fix by moving `useStyles` inside another component so that it is called 
 // ...imports
 
 function AppContent(props) {
-  const classes = useStyles(); // ✅ This is safe because AppContent is rendered inside <ThemeProvider>
+  const classes = useStyles(); // ✅ This is safe because it is called inside ThemeProvider
   return <Card className={classes.root}>...</Card>;
 }
 
