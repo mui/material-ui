@@ -2546,7 +2546,7 @@ function AppContent(props) {
   return <Card className={classes.root}>...</Card>;
 }
 
-const App = (props) => {
+function App(props) {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
