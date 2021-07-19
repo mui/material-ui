@@ -29,7 +29,7 @@ The `MuiAccordionSummary` name can be used for providing [default props](/custom
 | Name | Type | Default | Description |
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content of the accordion summary. |
-| <span class="prop-name required">classes<abbr title="required">*</abbr></span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
+| <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
 | <span class="prop-name">expandIcon</span> | <span class="prop-type">node</span> |  | The icon to display as the expand indicator. |
 | <span class="prop-name">focusVisibleClassName</span> | <span class="prop-type">string</span> |  | This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo). The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md). A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components if needed. |
 | <span class="prop-name">IconButtonProps</span> | <span class="prop-type">object</span> | <span class="prop-default">{}</span> | Props applied to the `IconButton` element wrapping the expand icon. |
