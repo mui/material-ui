@@ -54,4 +54,4 @@ const imageListItemBarClasses: ImageListItemBarClasses = generateUtilityClasses(
   ],
 );
 
-export default imageListItemBarClasses; /* Styles applied to the root element. */
+export default imageListItemBarClasses;

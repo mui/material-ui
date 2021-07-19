@@ -22,7 +22,6 @@ const BottomNavigationRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })(({ theme }) => ({
-  /* Styles applied to the root element. */
   display: 'flex',
   justifyContent: 'center',
   height: 56,

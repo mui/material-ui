@@ -75,7 +75,6 @@ const SkeletonRoot = styled('span', {
     const radiusValue = toUnitless(theme.shape.borderRadius);
 
     return {
-      /* Styles applied to the root element. */
       display: 'block',
       // Create a "on paper" color with sufficient contrast retaining the color
       backgroundColor: alpha(
@@ -83,7 +82,6 @@ const SkeletonRoot = styled('span', {
         theme.palette.mode === 'light' ? 0.11 : 0.13,
       ),
       height: '1.2em',
-      /* Styles applied to the root element if `variant="text"`. */
       ...(styleProps.variant === 'text' && {
         marginTop: 0,
         marginBottom: 0,
@@ -97,35 +95,29 @@ const SkeletonRoot = styled('span', {
           content: '"\\00a0"',
         },
       }),
-      /* Styles applied to the root element if `variant="circular"`. */
       ...(styleProps.variant === 'circular' && {
         borderRadius: '50%',
       }),
-      /* Styles applied when the component is passed children. */
       ...(styleProps.hasChildren && {
         '& > *': {
           visibility: 'hidden',
         },
       }),
-      /* Styles applied when the component is passed children and no width. */
       ...(styleProps.hasChildren &&
         !styleProps.width && {
           maxWidth: 'fit-content',
         }),
-      /* Styles applied when the component is passed children and no height. */
       ...(styleProps.hasChildren &&
         !styleProps.height && {
           height: 'auto',
         }),
     };
   },
-  /* Styles applied to the root element if `animation="pulse"`. */
   ({ styleProps }) =>
     styleProps.animation === 'pulse' &&
     css`
       animation: ${pulseKeyframe} 1.5s ease-in-out 0.5s infinite;
     `,
-  /* Styles applied to the root element if `animation="wave"`. */
   ({ styleProps, theme }) =>
     styleProps.animation === 'wave' &&
     css`

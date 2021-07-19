@@ -52,17 +52,14 @@ const TooltipPopper = styled(Popper, {
     ];
   },
 })(({ theme, styleProps, open }) => ({
-  /* Styles applied to the Popper element. */
   zIndex: theme.zIndex.tooltip,
   pointerEvents: 'none', // disable jss-rtl plugin
-  /* Styles applied to the Popper component unless `disableInteractive={true}`. */
   ...(!styleProps.disableInteractive && {
     pointerEvents: 'auto',
   }),
   ...(!open && {
     pointerEvents: 'none',
   }),
-  /* Styles applied to the Popper element if `arrow={true}`. */
   ...(styleProps.arrow && {
     [`&[data-popper-placement*="bottom"] .${tooltipClasses.arrow}`]: {
       top: 0,
@@ -115,7 +112,6 @@ const TooltipTooltip = styled('div', {
     ];
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the tooltip (label wrapper) element. */
   backgroundColor: alpha(theme.palette.grey[700], 0.92),
   borderRadius: theme.shape.borderRadius,
   color: theme.palette.common.white,
@@ -126,19 +122,16 @@ const TooltipTooltip = styled('div', {
   margin: 2,
   wordWrap: 'break-word',
   fontWeight: theme.typography.fontWeightMedium,
-  /* Styles applied to the tooltip (label wrapper) element if `arrow={true}`. */
   ...(styleProps.arrow && {
     position: 'relative',
     margin: 0,
   }),
-  /* Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch. */
   ...(styleProps.touch && {
     padding: '8px 16px',
     fontSize: theme.typography.pxToRem(14),
     lineHeight: `${round(16 / 14)}em`,
     fontWeight: theme.typography.fontWeightRegular,
   }),
-  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "left". */
   [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
     transformOrigin: 'right center',
     marginRight: '14px',
@@ -146,7 +139,6 @@ const TooltipTooltip = styled('div', {
       marginRight: '24px',
     }),
   },
-  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "right". */
   [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
     transformOrigin: 'left center',
     marginLeft: '14px',
@@ -154,7 +146,6 @@ const TooltipTooltip = styled('div', {
       marginLeft: '24px',
     }),
   },
-  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "top". */
   [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
     transformOrigin: 'center bottom',
     marginBottom: '14px',
@@ -162,7 +153,6 @@ const TooltipTooltip = styled('div', {
       marginBottom: '24px',
     }),
   },
-  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "bottom". */
   [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
     transformOrigin: 'center top',
     marginTop: '14px',
@@ -177,7 +167,6 @@ const TooltipArrow = styled('span', {
   slot: 'Arrow',
   overridesResolver: (props, styles) => styles.arrow,
 })(({ theme }) => ({
-  /* Styles applied to the arrow element. */
   overflow: 'hidden',
   position: 'absolute',
   width: '1em',

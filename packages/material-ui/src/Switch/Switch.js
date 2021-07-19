@@ -48,7 +48,6 @@ const SwitchRoot = styled('span', {
     ];
   },
 })(({ styleProps }) => ({
-  /* Styles applied to the root element. */
   display: 'inline-flex',
   width: 34 + 12 * 2,
   height: 14 + 12 * 2,
@@ -62,11 +61,9 @@ const SwitchRoot = styled('span', {
   '@media print': {
     colorAdjust: 'exact',
   },
-  /* Styles applied to the root element if `edge="start"`. */
   ...(styleProps.edge === 'start' && {
     marginLeft: -8,
   }),
-  /* Styles applied to the root element if `edge="end"`. */
   ...(styleProps.edge === 'end' && {
     marginRight: -8,
   }),
@@ -101,7 +98,6 @@ const SwitchSwitchBase = styled(SwitchBase, {
   },
 })(
   ({ theme }) => ({
-    /* Styles applied to the internal `SwitchBase` component's `root` class. */
     position: 'absolute',
     top: 0,
     left: 0,
@@ -123,7 +119,6 @@ const SwitchSwitchBase = styled(SwitchBase, {
       opacity: theme.palette.mode === 'light' ? 0.12 : 0.2,
     },
     [`& .${switchClasses.input}`]: {
-      /* Styles applied to the internal SwitchBase component's input element. */
       left: '-100%',
       width: '300%',
     },
@@ -136,7 +131,6 @@ const SwitchSwitchBase = styled(SwitchBase, {
         backgroundColor: 'transparent',
       },
     },
-    /* Styles applied to the internal SwitchBase component element unless `color="default"`. */
     ...(styleProps.color !== 'default' && {
       [`&.${switchClasses.checked}`]: {
         color: theme.palette[styleProps.color].main,
@@ -168,7 +162,6 @@ const SwitchTrack = styled('span', {
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
 })(({ theme }) => ({
-  /* Styles applied to the track element. */
   height: '100%',
   width: '100%',
   borderRadius: 14 / 2,
@@ -186,7 +179,6 @@ const SwitchThumb = styled('span', {
   slot: 'Thumb',
   overridesResolver: (props, styles) => styles.thumb,
 })(({ theme }) => ({
-  /* Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop. */
   boxShadow: theme.shadows[1],
   backgroundColor: 'currentColor',
   width: 20,

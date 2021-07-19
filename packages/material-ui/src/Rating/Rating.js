@@ -81,7 +81,6 @@ const RatingRoot = styled('span', {
     ];
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
   display: 'inline-flex',
   // Required to position the pristine input absolutely
   position: 'relative',
@@ -98,15 +97,12 @@ const RatingRoot = styled('span', {
     outline: '1px solid #999',
   },
   [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
-  /* Styles applied to the root element if `size="small"`. */
   ...(styleProps.size === 'small' && {
     fontSize: theme.typography.pxToRem(18),
   }),
-  /* Styles applied to the root element if `size="large"`. */
   ...(styleProps.size === 'large' && {
     fontSize: theme.typography.pxToRem(30),
   }),
-  /* Styles applied to the root element if `readOnly={true}`. */
   ...(styleProps.readOnly && {
     pointerEvents: 'none',
   }),
@@ -117,9 +113,7 @@ const RatingLabel = styled('label', {
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
 })(({ styleProps }) => ({
-  /* Styles applied to the label elements. */
   cursor: 'inherit',
-  /* Styles applied to the label of the "no value" input when it is active. */
   ...(styleProps.emptyValueFocused && {
     top: 0,
     bottom: 0,
@@ -145,7 +139,6 @@ const RatingIcon = styled('span', {
     ];
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the icon wrapping elements. */
   // Fit wrapper to actual icon size.
   display: 'flex',
   transition: theme.transitions.create('transform', {
@@ -154,11 +147,9 @@ const RatingIcon = styled('span', {
   // Fix mouseLeave issue.
   // https://github.com/facebook/react/issues/4492
   pointerEvents: 'none',
-  /* Styles applied to the icon wrapping elements when active. */
   ...(styleProps.iconActive && {
     transform: 'scale(1.2)',
   }),
-  /* Styles applied to the icon wrapping elements when empty. */
   ...(styleProps.iconEmpty && {
     color: theme.palette.action.disabled,
   }),
@@ -173,9 +164,7 @@ const RatingDecimal = styled('span', {
     return [styles.decimal, styleProps.iconActive && styles.iconActive];
   },
 })(({ styleProps }) => ({
-  /* Styles applied to the icon wrapping elements when decimals are necessary. */
   position: 'relative',
-  /* Styles applied to the icon wrapping elements when active. */
   ...(styleProps.iconActive && {
     transform: 'scale(1.2)',
   }),

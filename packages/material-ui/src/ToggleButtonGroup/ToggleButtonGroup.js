@@ -40,20 +40,15 @@ const ToggleButtonGroupRoot = styled('div', {
     ];
   },
 })(({ styleProps, theme }) => ({
-  /* Styles applied to the root element. */
   display: 'inline-flex',
   borderRadius: theme.shape.borderRadius,
-  /* Styles applied to the root element if `orientation="vertical"`. */
   ...(styleProps.orientation === 'vertical' && {
     flexDirection: 'column',
   }),
-  /* Styles applied to the root element if `fullWidth={true}`. */
   ...(styleProps.fullWidth && {
     width: '100%',
   }),
-  /* Styles applied to the children. */
   [`& .${toggleButtonGroupClasses.grouped}`]: {
-    /* Styles applied to the children if `orientation="horizontal"`. */
     ...(styleProps.orientation === 'horizontal'
       ? {
           '&:not(:first-of-type)': {
@@ -73,7 +68,6 @@ const ToggleButtonGroupRoot = styled('div', {
             },
         }
       : {
-          /* Styles applied to the children if `orientation="vertical"`. */
           '&:not(:first-of-type)': {
             marginTop: -1,
             borderTop: '1px solid transparent',
