@@ -3,10 +3,14 @@ import NextLink from 'next/link';
 import { styled } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
-import HeaderNav from './HeaderNav';
+import HeaderNav from 'docs/src/components/HeaderNav';
 
 const Header = styled('div')({
+  position: 'sticky',
+  top: 0,
+  backdropFilter: 'blur(20px)',
   boxShadow: 'inset 0px -1px 1px #EAEEF3',
+  backgroundColor: 'rgba(255,255,255,0.72)',
   display: 'flex',
   alignItems: 'center',
   minHeight: 64, // TODO: handle responsive
