@@ -14,6 +14,13 @@ function isFilled(value: unknown, defaultValue?: unknown) {
   return hasValue(value) || hasValue(defaultValue);
 }
 
+type NonOptionalStyleProps = 'disabled' | 'error' | 'focused' | 'required';
+
+export type FormControlUnstyledStyleProps = Omit<FormControlUnstyledProps, NonOptionalStyleProps> &
+  Required<Pick<FormControlUnstyledProps, NonOptionalStyleProps>> & {
+    filled: boolean;
+  };
+
 /**
  * Provides context such as filled/focused/error/required for form inputs.
  * Relying on the context provides high flexibility and ensures that the state always stays
@@ -59,19 +66,12 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled(
     componentsProps = {},
     disabled = false,
     error = false,
-    focused: visuallyFocused,
+    focused: visuallyFocused = false,
     onChange,
     required = false,
     value,
     ...other
   } = props;
-
-  const styleProps: FormControlUnstyledProps = {
-    ...props,
-    disabled,
-    error,
-    required,
-  };
 
   const isControlled = value !== undefined;
   const [filled, setFilled] = React.useState(() => isFilled(value, defaultValue));
@@ -82,6 +82,15 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled(
   }
 
   const focused = visuallyFocused !== undefined && !disabled ? visuallyFocused : focusedState;
+
+  const styleProps: FormControlUnstyledStyleProps = {
+    ...props,
+    disabled,
+    error,
+    filled,
+    focused,
+    required,
+  };
 
   let registerEffect = () => {};
   if (process.env.NODE_ENV !== 'production') {
