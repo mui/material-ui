@@ -215,7 +215,9 @@ export default function ScrollPlayground() {
                 },
               ]}
             >
-              {arrow ? <Arrow ref={setArrowRef} className="MuiPopper-arrow" /> : null}
+              {arrow ? (
+                <Arrow ref={setArrowRef} className="MuiPopper-arrow" />
+              ) : null}
               <Paper sx={{ maxWidth: 400, overflow: 'auto' }}>
                 <DialogTitle>{"Use Google's location service?"}</DialogTitle>
                 <DialogContent>
