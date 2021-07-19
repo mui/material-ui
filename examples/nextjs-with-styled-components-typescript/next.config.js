@@ -5,8 +5,8 @@ module.exports = withTM({
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@material-ui/styled-engine': "@material-ui/styled-engine-sc",
+      '@material-ui/styled-engine': '@material-ui/styled-engine-sc',
     };
-    return config
+    return config;
   },
-})
+});
