@@ -60,7 +60,7 @@ function buildColorPreviews(name, variants) {
 /**
  * The goal is to have a preview of the actual color and the color string in IntelliSense
  * We create for each color an svg that is filled with that color and reference
- * that svg in the corresponding JSDOC.
+ * that svg in the corresponding JSDoc.
  * Since we use https://material-ui.com as a reference changes are only visible
  * after release
  */

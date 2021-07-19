@@ -13,8 +13,6 @@ export interface ToggleButtonClasses {
   primary: string;
   /** Pseudo-class applied to the root element if `color="secondary"`. */
   secondary: string;
-  /** Styles applied to the `label` wrapper element. */
-  label: string;
   /** Styles applied to the root element if `size="small"`. */
   sizeSmall: string;
   /** Styles applied to the root element if `size="medium"`. */
@@ -36,7 +34,6 @@ const toggleButtonClasses: ToggleButtonClasses = generateUtilityClasses('MuiTogg
   'standard',
   'primary',
   'secondary',
-  'label',
   'sizeSmall',
   'sizeMedium',
   'sizeLarge',

@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/private-theming",
-  "version": "5.0.0-beta.0",
+  "version": "5.0.0-beta.1",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Theming - The React theme context to be shared between `@material-ui/styles` and `@material-ui/core`.",
@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "https://material-ui.com/",
+  "homepage": "https://next.material-ui.com/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/material-ui"

@@ -23,8 +23,7 @@ describe('<MobileDatePicker />', () => {
   afterEach(() => {
     clock.restore();
   });
-  // StrictModeViolation: Uses CalendarPicker
-  const render = createPickerRender({ strict: false });
+  const render = createPickerRender();
 
   it('Accepts date on `OK` button click', () => {
     const onChangeMock = spy();
@@ -66,7 +65,10 @@ describe('<MobileDatePicker />', () => {
     expect(getByMuiTest('calendar-month-text')).to.have.text('January');
 
     // onChange must be dispatched with newly selected date
-    expect(onChangeMock.callCount).to.equal(1);
+    expect(onChangeMock.callCount).to.equal(
+      // Strict Effects run mount effects twice
+      React.version.startsWith('18') ? 2 : 1,
+    );
     expect(onChangeMock.args[0][0]).toEqualDateTime(adapterToUse.date('2018-01-01T00:00:00.000'));
   });
 

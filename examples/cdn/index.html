@@ -22,15 +22,14 @@ const {
   ThemeProvider,
   Typography,
   Container,
-  createMuiTheme,
+  createTheme,
   Box,
   SvgIcon,
   Link,
-  StyledEngineProvider,
 } = MaterialUI;
 
 // Create a theme instance.
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: '#556cd6',
@@ -93,14 +92,11 @@ function App() {
 }
 
 ReactDOM.render(
-  // TODO v5: remove once migration to emotion is completed
-  <StyledEngineProvider injectFirst>
     <ThemeProvider theme={theme}>
       {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
       <CssBaseline />
       <App />
-    </ThemeProvider>
-  </StyledEngineProvider>,
+    </ThemeProvider>,
   document.querySelector('#root'),
 );
     </script>

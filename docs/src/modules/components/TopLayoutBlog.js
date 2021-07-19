@@ -97,7 +97,7 @@ function TopLayoutBlog(props) {
         }
       />
       <div className={classes.root}>
-        <AppContainer className={classes.container}>
+        <AppContainer component="main" className={classes.container}>
           <Link
             href="https://medium.com/material-ui"
             rel="nofollow"

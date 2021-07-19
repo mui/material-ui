@@ -132,6 +132,7 @@ module.exports = [
   { pathname: '/api-docs/svg-icon' },
   { pathname: '/api-docs/swipeable-drawer' },
   { pathname: '/api-docs/switch' },
+  { pathname: '/api-docs/switch-unstyled' },
   { pathname: '/api-docs/tab' },
   { pathname: '/api-docs/tab-context' },
   { pathname: '/api-docs/table' },

@@ -68,19 +68,25 @@ describe('<Popper />', () => {
         out: 'top',
       },
     ].forEach((test) => {
-      it(`should ${test.in === test.out ? 'not' : ''}flip ${
+      it(`should ${test.in === test.out ? 'not' : ''} flip ${
         test.in
       } when direction=rtl is used`, () => {
-        render(
-          <ThemeProvider theme={rtlTheme}>
-            <Popper {...defaultProps} placement={test.in}>
-              {({ placement }) => {
-                return <div data-testid="placement">{placement}</div>;
-              }}
-            </Popper>
-            ,
-          </ThemeProvider>,
-        );
+        function Test() {
+          const [anchorEl, setAnchorEl] = React.useState(null);
+
+          return (
+            <ThemeProvider theme={rtlTheme}>
+              <div style={{ margin: '5em' }} ref={setAnchorEl} />
+              <Popper anchorEl={anchorEl} open={Boolean(anchorEl)} placement={test.in}>
+                {({ placement }) => {
+                  return <div data-testid="placement">{placement}</div>;
+                }}
+              </Popper>
+            </ThemeProvider>
+          );
+        }
+        render(<Test />);
+
         expect(screen.getByTestId('placement')).to.have.text(test.out);
       });
     });

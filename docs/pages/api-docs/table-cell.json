@@ -17,7 +17,7 @@
       }
     },
     "scope": { "type": { "name": "string" } },
-    "size": { "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" } },
+    "size": { "type": { "name": "enum", "description": "'small'<br>&#124;&nbsp;'medium'" } },
     "sortDirection": {
       "type": { "name": "enum", "description": "'asc'<br>&#124;&nbsp;'desc'<br>&#124;&nbsp;false" }
     },

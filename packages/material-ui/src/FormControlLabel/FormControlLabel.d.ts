@@ -18,7 +18,7 @@ export interface FormControlLabelProps
    * The props used for each slot inside.
    * @default {}
    */
-  componentProps?: {
+  componentsProps?: {
     /**
      * Props applied to the Typography wrapper of the passed label.
      * This is unused if disableTpography is true.

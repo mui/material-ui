@@ -9,7 +9,6 @@ import { URL } from 'url';
  */
 
 /**
- *
  * @param {URL} destinationUrl
  * @param {string} templateSource
  * @param {Record<string, string>} templateValues

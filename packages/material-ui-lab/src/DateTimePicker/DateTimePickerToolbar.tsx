@@ -55,7 +55,7 @@ const DateTimePickerToolbar = (props: ToolbarComponentProps) => {
     toggleMobileKeyboardView,
     toolbarFormat,
     toolbarPlaceholder = '––',
-    toolbarTitle = 'SELECT DATE & TIME',
+    toolbarTitle = 'Select date & time',
     ...other
   } = props;
   const utils = useUtils();

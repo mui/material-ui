@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   requireDemo,
-} from '!@material-ui/markdown/loader!docs/src/pages/getting-started/templates/templates.md';
+} from 'docs/src/pages/getting-started/templates/templates.md?@material-ui/markdown';
 
 export default function Page() {
   return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} disableToc />;

@@ -96,10 +96,10 @@ describe('<FormControl />', () => {
       act(() => {
         container.querySelector('input').focus();
       });
-      expect(readContext.args[1][0]).to.have.property('focused', true);
+      expect(readContext.lastCall.args[0]).to.have.property('focused', true);
 
       setProps({ disabled: true });
-      expect(readContext.args[2][0]).to.have.property('focused', false);
+      expect(readContext.lastCall.args[0]).to.have.property('focused', false);
     });
   });
 

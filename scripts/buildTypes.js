@@ -10,9 +10,7 @@ const exec = promisify(childProcess.exec);
 
 /**
  * Fixes a wrong import path caused by https://github.com/microsoft/TypeScript/issues/39117
- *
  * @remarks Paths are hardcoded since it is unclear if all these broken import paths target "public paths".
- *
  * @param {string} importPath - POSIX path
  */
 function rewriteImportPath(importPath) {

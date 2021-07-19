@@ -1,4 +1,11 @@
 <div>
   <Avatar variant="circle" />
   <Avatar classes={{ circle: 'className' }} />
-</div>
+  <Box
+    sx={{
+      '& .MuiAvatar-circle': {
+        background: 'red',
+      },
+    }}
+  />
+</div>;

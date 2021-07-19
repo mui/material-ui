@@ -17,8 +17,7 @@ describe('<MobileDateTimePicker />', () => {
     clock.restore();
   });
 
-  // StrictModeViolation: Uses CalendarPicker
-  const render = createPickerRender({ strict: false });
+  const render = createPickerRender();
 
   it('opens dialog on textField click for Mobile mode', () => {
     render(

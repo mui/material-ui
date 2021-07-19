@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/system",
-  "version": "5.0.0-beta.0",
+  "version": "5.0.0-beta.1",
   "private": false,
   "author": "Material-UI Team",
   "description": "CSS utilities for rapidly laying out custom designs.",
@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "https://material-ui.com/system/basics/",
+  "homepage": "https://next.material-ui.com/system/basics/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/material-ui"
@@ -56,8 +56,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@material-ui/private-theming": "5.0.0-beta.0",
-    "@material-ui/styled-engine": "5.0.0-beta.0",
+    "@material-ui/private-theming": "5.0.0-beta.1",
+    "@material-ui/styled-engine": "5.0.0-beta.1",
     "@material-ui/types": "6.0.1",
     "@material-ui/utils": "5.0.0-beta.0",
     "clsx": "^1.0.4",

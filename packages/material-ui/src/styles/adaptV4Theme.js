@@ -1,5 +1,4 @@
-import { createBreakpoints } from '@material-ui/system';
-import createV4Spacing from './createV4Spacing';
+import { createBreakpoints, createSpacing } from '@material-ui/system';
 
 export default function adaptV4Theme(inputTheme) {
   if (process.env.NODE_ENV !== 'production') {
@@ -52,7 +51,7 @@ export default function adaptV4Theme(inputTheme) {
   });
 
   // theme.spacing
-  theme.spacing = createV4Spacing(inputTheme.spacing);
+  theme.spacing = createSpacing(inputTheme.spacing);
 
   // theme.mixins.gutters
   const breakpoints = createBreakpoints(inputTheme.breakpoints || {});

@@ -12,6 +12,7 @@
     "clearOnEscape": "If <code>true</code>, clear all values when the user presses escape and the popup is closed.",
     "clearText": "Override the default text for the <em>clear</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/guides/localization/\">translations</a>.",
     "closeText": "Override the default text for the <em>close popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/guides/localization/\">translations</a>.",
+    "componentsProps": "The props used for each slot inside.",
     "defaultValue": "The default value. Use when the component is not controlled.",
     "disableClearable": "If <code>true</code>, the input can&#39;t be cleared.",
     "disableCloseOnSelect": "If <code>true</code>, the popup won&#39;t close when a value is selected.",
