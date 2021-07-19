@@ -61,7 +61,7 @@ This example also demonstrates how to delay the enter transition.
 ## Child requirement
 
 - **Forward the style** : To better support server rendering, Material-UI provides a `style` prop to the children of some transition components, (Fade, Grow, Zoom, Slide). The `style` prop must be applied to the DOM for the animation to work as expected.
-- **Forward the ref** : The transition components require the first child element to forward its ref to the DOM node.
+- **Forward the ref** : The transition components require the first child element to forward its ref to the DOM node. For more details about ref, check out [Caveat with refs](/guides/composition/#caveat-with-refs)
 - **Single element** : The transition components require only 1 child element (`React.Fragment` is not allowed).
 
 ```jsx
@@ -78,7 +78,7 @@ const MyComponent = React.forwardRef(({ style, ...props }, ref) {
 export default Main() {
   return (
     <Fade>
-      {/* MyComponent is the only child */}
+      {/* MyComponent must the only child */}
       <MyComponent />
     </Fade>
   );
