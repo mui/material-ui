@@ -15,7 +15,7 @@ export default function MyApp(props) {
   const Wrapper = disableEmotionCache ? React.Fragment : CacheProvider;
   const wrapperProps = disableEmotionCache ? {} : { value: cache };
   return (
-    <Wrapper {...(disableEmotionCache ? {} : { value: cache })}>
+    <Wrapper {...wrapperProps}>
       <Head>
         <title>My page</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
