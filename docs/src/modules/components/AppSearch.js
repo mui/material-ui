@@ -10,7 +10,7 @@ import docsearch from 'docsearch.js';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
-const StyledInput = styled(Input)(() => ({
+const StyledInput = styled(Input)(({ theme }) => ({
   color: 'inherit',
   '& input': {
     padding: theme.spacing(1),
