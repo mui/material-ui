@@ -112,7 +112,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   const {
     disableUnderline,
     components = {},
-    componentsProps: componentsPropsInput,
+    componentsProps: componentsPropsProp,
     fullWidth = false,
     inputComponent = 'input',
     multiline = false,
