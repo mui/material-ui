@@ -6,7 +6,7 @@ import { MasonryClasses } from './masonryClasses';
 export interface MasonryTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
-     * The content of the component, normally `MasonryItem`s.
+     * The content of the component, normally `<MasonryItem />`s.
      */
     children: NonNullable<React.ReactNode>;
     /**

@@ -28,7 +28,6 @@ const MasonryItemRoot = styled('div', {
   return {
     width: '100%',
     [`& *`]: {
-      // all contents should have a width of 100%
       objectFit: 'cover',
       width: '100%',
       height: '100%',
@@ -45,7 +44,7 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
   });
 
   const { spacing = 1 } = React.useContext(MasonryContext);
-  const { children, className, component = 'div', style, ...other } = props;
+  const { children, className, component = 'div', ...other } = props;
   const styleProps = {
     ...props,
     spacing,
@@ -58,11 +57,10 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
       as={component}
       className={clsx(classes.root, className)}
       ref={ref}
-      style={style}
       styleProps={styleProps}
       {...other}
     >
-      {children}
+      {React.Children.only(children)}
     </MasonryItemRoot>
   );
 });
@@ -73,9 +71,9 @@ MasonryItem.propTypes /* remove-proptypes */ = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The content of the component, normally an `<img>` or a `<div>`.
+   * The content of the component, normally an `<img />` or a `<div />`.
    */
-  children: PropTypes.node,
+  children: PropTypes.element.isRequired,
   /**
    * Override or extend the styles applied to the component.
    */
@@ -93,10 +91,6 @@ MasonryItem.propTypes /* remove-proptypes */ = {
    * The height of the component in px.
    */
   height: PropTypes.number.isRequired,
-  /**
-   * @ignore
-   */
-  style: PropTypes.object,
   /**
    * Allows defining system overrides as well as additional CSS styles.
    */

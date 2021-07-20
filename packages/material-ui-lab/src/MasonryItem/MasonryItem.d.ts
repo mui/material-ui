@@ -6,9 +6,9 @@ import { MasonryItemClasses } from './masonryItemClasses';
 export interface MasonryItemTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
-     * The content of the component, normally an `<img>` or a `<div>`.
+     * The content of the component, normally an `<img />` or a `<div />`.
      */
-    children?: React.ReactNode;
+    children: NonNullable<React.ReactElement>;
     /**
      * Override or extend the styles applied to the component.
      */

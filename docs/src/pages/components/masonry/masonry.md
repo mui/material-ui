@@ -12,10 +12,10 @@ Masonry maintains a list of content blocks with a consistent width but variable 
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic Masonry
-
-{{"demo": "pages/components/masonry/BasicMasonry.js", "bg": true}}
-
-## Image Masonry
+## Masonry
 
 {{"demo": "pages/components/masonry/ImageMasonry.js", "bg": true}}
+
+> `<MasonryItem />` can receive not only `<img />` elements but also `<div />` elements as shown in the following demo:
+
+{{"demo": "pages/components/masonry/BasicMasonry.js", "bg": true}}

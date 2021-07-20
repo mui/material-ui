@@ -262,6 +262,7 @@
     "/components/timeline": "Timeline",
     "/components/trap-focus": "Trap Focus",
     "/components/tree-view": "Tree View",
+    "/components/masonry": "Masonry",
     "/api-docs": "Component API",
     "/system": "System",
     "/system/basics": "Basics",

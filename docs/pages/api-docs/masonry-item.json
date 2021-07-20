@@ -1,7 +1,7 @@
 {
   "props": {
+    "children": { "type": { "name": "element" }, "required": true },
     "height": { "type": { "name": "number" }, "required": true },
-    "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
     "sx": { "type": { "name": "object" } }

@@ -22,25 +22,26 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getMasonryUtilityClass, classes);
 };
 
-const MasonryRoot = styled('div', {
-  name: 'MuiMasonry',
-  slot: 'Root',
-  overridesResolver: (props, styles) => {
-    return [styles.root];
-  },
-})(({ styleProps, theme }) => {
-  /* Styles applied to the root element. */
+export const style = ({ styleProps, theme }) => {
   return {
     display: 'grid',
     gridAutoRows: 0,
     padding: 0,
     overflow: 'auto',
     width: '100%',
-    columnGap: theme.spacing(styleProps.spacing),
     rowGap: 1,
+    columnGap: theme.spacing(styleProps.spacing),
     gridTemplateColumns: `repeat(${styleProps.cols}, 1fr)`,
   };
-});
+};
+
+const MasonryRoot = styled('div', {
+  name: 'MuiMasonry',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    return [styles.root];
+  },
+})(style);
 
 const Masonry = React.forwardRef(function Masonry(inProps, ref) {
   const props = useThemeProps({
@@ -71,7 +72,7 @@ Masonry.propTypes /* remove-proptypes */ = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The content of the component, normally `MasonryItem`s.
+   * The content of the component, normally `<MasonryItem />`s.
    */
   children: PropTypes /* @typescript-to-proptypes-ignore */.node.isRequired,
   /**

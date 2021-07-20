@@ -2,17 +2,8 @@ import { expect } from 'chai';
 import * as React from 'react';
 import { createClientRender, describeConformanceV5 } from 'test/utils';
 import Masonry, { masonryClasses as classes } from '@material-ui/lab/Masonry';
-
-const itemsData = [
-  {
-    img: '/fake1.png',
-    title: 'fake1',
-  },
-  {
-    img: '/fake2.png',
-    title: 'fake2',
-  },
-];
+import { createTheme } from '@material-ui/core/styles';
+import { style } from './Masonry';
 
 describe('<Masonry />', () => {
   const render = createClientRender();
@@ -27,43 +18,49 @@ describe('<Masonry />', () => {
       render,
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'div',
+      testVariantProps: { variant: 'foo' },
       muiName: 'MuiMasonry',
       skip: ['componentsProp'],
     }),
   );
 
+  const itemsData = [
+    {
+      img: '/fake1.png',
+      title: 'fake1',
+    },
+    {
+      img: '/fake2.png',
+      title: 'fake2',
+    },
+  ];
+  const theme = createTheme({ spacing: 8 });
   const children = itemsData.map((item, idx) => (
     <div key={idx} data-testid="test-children">
       <img src={item.img} alt={item.title} />
     </div>
   ));
 
-  it('should render with the root class by default', () => {
-    const { getByTestId } = render(<Masonry data-testid="test-root">{children}</Masonry>);
-    expect(getByTestId('test-root')).to.have.class(classes.root);
-  });
-
-  it('should render children by default', () => {
-    const { getAllByTestId } = render(<Masonry>{children}</Masonry>);
-    expect(getAllByTestId('test-children').length).to.equal(2);
-  });
-
   describe('style attribute:', () => {
-    it('should overwrite style', () => {
-      const style = { backgroundColor: 'black' };
-      const { getByTestId } = render(
-        <Masonry style={style} data-testid="test-root">
-          {children}
-        </Masonry>,
-      );
-
-      expect(getByTestId('test-root')).toHaveInlineStyle({ backgroundColor: 'black' });
-    });
-
-    it('should render with a grid-auto-rows of 0 by default', () => {
-      const { getByTestId } = render(<Masonry data-testid="test-root">{children}</Masonry>);
-      const style = getComputedStyle(getByTestId('test-root'));
-      expect(style['grid-auto-rows']).to.equal('0');
+    it('should render with correct default styles', () => {
+      expect(
+        style({
+          styleProps: {
+            cols: 4,
+            spacing: 1,
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        display: 'grid',
+        gridAutoRows: 0,
+        padding: 0,
+        overflow: 'auto',
+        width: '100%',
+        rowGap: 1,
+        columnGap: theme.spacing(1),
+        gridTemplateColumns: 'repeat(4, 1fr)',
+      });
     });
   });
 
@@ -90,35 +87,47 @@ describe('<Masonry />', () => {
 
     describe('prop: cols', () => {
       it('should render with modified grid-template-columns style', () => {
-        const { getByTestId } = render(
-          <Masonry cols={10} data-testid="test-root">
-            {children}
-          </Masonry>,
-        );
-        const style = getComputedStyle(getByTestId('test-root'));
-        expect(style['grid-template-columns']).to.equal('repeat(10, 1fr)');
+        expect(
+          style({
+            styleProps: {
+              cols: 8,
+              spacing: 1,
+            },
+            theme,
+          }),
+        ).to.deep.equal({
+          display: 'grid',
+          gridAutoRows: 0,
+          padding: 0,
+          overflow: 'auto',
+          width: '100%',
+          rowGap: 1,
+          columnGap: theme.spacing(1),
+          gridTemplateColumns: 'repeat(8, 1fr)',
+        });
       });
     });
 
     describe('prop: spacing', () => {
       it('should render with modified column-gap style', () => {
-        const { getByTestId } = render(
-          <Masonry spacing={2} data-testid="test-root">
-            {children}
-          </Masonry>,
-        );
-        const style = getComputedStyle(getByTestId('test-root'));
-        expect(style['column-gap']).to.equal('16px');
-      });
-
-      it('should always render with a row-gap of 1', () => {
-        const { getByTestId } = render(
-          <Masonry spacing={2} data-testid="test-root">
-            {children}
-          </Masonry>,
-        );
-        const style = getComputedStyle(getByTestId('test-root'));
-        expect(style['row-gap']).to.equal('1px');
+        expect(
+          style({
+            styleProps: {
+              cols: 4,
+              spacing: 5,
+            },
+            theme,
+          }),
+        ).to.deep.equal({
+          display: 'grid',
+          gridAutoRows: 0,
+          padding: 0,
+          overflow: 'auto',
+          width: '100%',
+          rowGap: 1,
+          columnGap: theme.spacing(5),
+          gridTemplateColumns: 'repeat(4, 1fr)',
+        });
       });
     });
   });
