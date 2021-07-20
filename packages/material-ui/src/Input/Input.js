@@ -174,6 +174,20 @@ Input.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The components used for each slot inside the InputBase.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Input: PropTypes.elementType,
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
+  /**
    * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
