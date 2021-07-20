@@ -58,8 +58,8 @@ const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxCompon
   ref,
 ) {
   const { children, ...other } = props;
-  const itemData = [];
-  (children as React.ReactChild[]).forEach((item: React.ReactChild) => {
+  const itemData: React.ReactChild[] = [];
+  (children as React.ReactChild[]).forEach((item: React.ReactChild & { children?: React.ReactChild[] }) => {
     itemData.push(item);
     itemData.push(...(item.children || []));
   });
