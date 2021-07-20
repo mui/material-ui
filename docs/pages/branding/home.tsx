@@ -7,11 +7,9 @@ import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Stack from '@material-ui/core/Stack';
 
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 import ContentCopyRounded from '@material-ui/icons/ContentCopyRounded';
-import BoxComponent from 'docs/src/pages/components/box/BoxComponent';
 
 const brandingTheme = createTheme({
   palette: {
