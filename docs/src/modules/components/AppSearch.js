@@ -28,7 +28,7 @@ function AlgoliaStyles() {
     <GlobalStyles
       styles={(theme) => {
         return {
-          '.algolia-autocomplete': {
+          '.algolia-autocomplete.algolia-autocomplete': {
             '& .ds-dropdown-menu': {
               boxShadow: theme.shadows[1],
               borderRadius: theme.shape.borderRadius,
