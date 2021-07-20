@@ -56,10 +56,12 @@ function useResetCache(data) {
 // Adapter for react-window
 const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) {
   const { children, ...other } = props;
-  const itemData = children.reduce((acc, item) => {
-    acc.push(item);
-    return acc.concat(item.children);
-  }, []);
+  const itemData = [];
+  children.forEach((item) => {
+    itemData.push(item);
+    itemData.push(...(item.children || []));
+  });
+
   const theme = useTheme();
   const smUp = useMediaQuery(theme.breakpoints.up('sm'), {
     noSsr: true,

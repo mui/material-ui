@@ -58,10 +58,12 @@ const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxCompon
   ref,
 ) {
   const { children, ...other } = props;
-  const itemData = (children as React.ReactChild[]).reduce((acc: any, item: any) => {
-    acc.push(item);
-    return acc.concat(item.children);
-  }, []);
+  const itemData = [];
+  (children as React.ReactChild[]).forEach((item: React.ReactChild) => {
+    itemData.push(item);
+    itemData.push(...(item.children || []));
+  });
+
   const theme = useTheme();
   const smUp = useMediaQuery(theme.breakpoints.up('sm'), {
     noSsr: true,
