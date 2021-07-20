@@ -13,7 +13,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
-import NoSsr from '@material-ui/unstyled/NoSsr';
+import NoSsr from '@material-ui/core/NoSsr';
 import LanguageIcon from '@material-ui/icons/Translate';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Menu from '@material-ui/core/Menu';

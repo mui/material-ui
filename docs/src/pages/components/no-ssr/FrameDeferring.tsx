@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
-import NoSsr from '@material-ui/unstyled/NoSsr';
+import NoSsr from '@material-ui/core/NoSsr';
 
 function LargeTree(): any {
   return Array.from(new Array(5000)).map((_, index) => <span key={index}>.</span>);

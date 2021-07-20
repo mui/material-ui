@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { alpha, styled } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
-import NoSsr from '@material-ui/unstyled/NoSsr';
+import NoSsr from '@material-ui/core/NoSsr';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
