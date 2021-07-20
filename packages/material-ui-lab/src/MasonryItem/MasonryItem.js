@@ -44,7 +44,7 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
     name: 'MuiMasonryItem',
   });
 
-  const { spacing } = React.useContext(MasonryContext);
+  const { spacing = 1 } = React.useContext(MasonryContext);
   const { children, className, component = 'div', style, ...other } = props;
   const styleProps = {
     ...props,

@@ -48,7 +48,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     name: 'MuiMasonry',
   });
 
-  const { children, className, component = 'div', cols = 4, spacing = 1, style, ...other } = props;
+  const { children, className, component = 'div', cols = 4, spacing = 1, ...other } = props;
   const styleProps = { ...props, spacing, cols };
   const classes = useUtilityClasses(styleProps);
 
@@ -57,7 +57,6 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       as={component}
       className={clsx(classes.root, className)}
       ref={ref}
-      style={props.style}
       styleProps={styleProps}
       {...other}
     >
@@ -103,10 +102,6 @@ Masonry.propTypes /* remove-proptypes */ = {
     PropTypes.object,
     PropTypes.string,
   ]),
-  /**
-   * @ignore
-   */
-  style: PropTypes.object,
   /**
    * Allows defining system overrides as well as additional CSS styles.
    */
