@@ -2506,3 +2506,59 @@ declare module "@material-ui/private-theming" {
   interface DefaultTheme extends Theme {}
 }
 ```
+
+### makeStyles - TypeError: Cannot read property 'drawer' of undefined
+
+This error occurs when calling `useStyles` (result of `makeStyles`) or `withStyles` outside of `<ThemeProvider>` scope like this:
+
+```js
+import * as React from 'react';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import makeStyles from '@material-ui/styles/makeStyles';
+import Card from '@material-ui/core/Card';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white,
+  },
+}));
+
+const theme = createTheme();
+
+function App() {
+  const classes = useStyles(); // ❌ called outside of ThemeProvider
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Card className={classes.root}>...</Card>
+    </ThemeProvider>
+  );
+}
+
+export default App;
+```
+
+You can fix by moving `useStyles` inside another component so that it is called under `<ThemeProvider>`.
+
+```js
+// ...imports
+
+function AppContent(props) {
+  const classes = useStyles(); // ✅ This is safe because it is called inside ThemeProvider
+  return <Card className={classes.root}>...</Card>;
+}
+
+function App(props) {
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AppContent {...props} />
+    </ThemeProvider>
+  );
+}
+
+export default App;
+```
