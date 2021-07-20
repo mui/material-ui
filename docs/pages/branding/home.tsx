@@ -8,6 +8,7 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Hero from 'docs/src/components/home/Hero';
 import References from 'docs/src/components/home/References';
+
 import brandingTheme from 'docs/src/modules/brandingTheme';
 
 export default function Home() {
