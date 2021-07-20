@@ -478,7 +478,7 @@ declare module '@material-ui/styles' {
   +import { createGenerateClassName } from '@material-ui/styles';
   ```
 
-### createMuiTheme
+#### createMuiTheme
 
 - The function `createMuiTheme` was renamed to `createTheme` to make it more intuitive to use with `ThemeProvider`.
 
