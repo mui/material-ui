@@ -17,7 +17,7 @@ export interface SelectInputProps<T = unknown> {
   native: boolean;
   onBlur?: React.FocusEventHandler<any>;
   onChange?: (
-    event: React.ChangeEvent<{ name?: string; value: T; event: Event | React.SyntheticEvent }>,
+    event: (Event & { target: { value: T; name: string } }) | React.ChangeEvent<HTMLInputElement>,
     child: React.ReactNode,
   ) => void;
   onClose?: (event: React.SyntheticEvent) => void;
