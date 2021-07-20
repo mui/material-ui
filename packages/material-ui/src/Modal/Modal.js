@@ -22,14 +22,12 @@ const ModalRoot = styled('div', {
     return [styles.root, !styleProps.open && styleProps.exited && styles.hidden];
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
   position: 'fixed',
   zIndex: theme.zIndex.modal,
   right: 0,
   bottom: 0,
   top: 0,
   left: 0,
-  /* Styles applied to the root element if the `Modal` has exited. */
   ...(!styleProps.open &&
     styleProps.exited && {
       visibility: 'hidden',

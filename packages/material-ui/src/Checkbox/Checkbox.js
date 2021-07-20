@@ -41,7 +41,6 @@ const CheckboxRoot = styled(SwitchBase, {
     ];
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
   color: theme.palette.text.secondary,
   '&:hover': {
     backgroundColor: alpha(
@@ -55,7 +54,6 @@ const CheckboxRoot = styled(SwitchBase, {
       backgroundColor: 'transparent',
     },
   },
-  /* Styles applied to the root element unless `color="default"`. */
   ...(styleProps.color !== 'default' && {
     [`&.${checkboxClasses.checked}, &.${checkboxClasses.indeterminate}`]: {
       color: theme.palette[styleProps.color].main,

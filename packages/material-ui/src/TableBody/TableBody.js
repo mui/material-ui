@@ -22,7 +22,6 @@ const TableBodyRoot = styled('tbody', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({
-  /* Styles applied to the root element. */
   display: 'table-row-group',
 });
 

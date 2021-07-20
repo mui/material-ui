@@ -21,7 +21,6 @@ const CardContentRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })(() => {
-  /* Styles applied to the root element. */
   return {
     padding: 16,
     '&:last-child': {

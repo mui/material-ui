@@ -64,7 +64,6 @@ const PaginationItemEllipsis = styled('div', {
   slot: 'Root',
   overridesResolver,
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
   ...theme.typography.body2,
   borderRadius: 32 / 2,
   textAlign: 'center',
@@ -74,18 +73,15 @@ const PaginationItemEllipsis = styled('div', {
   margin: '0 3px',
   color: theme.palette.text.primary,
   height: 'auto',
-  /* Styles applied to the root element if `disabled="true"`. */
   [`&.${paginationItemClasses.disabled}`]: {
     opacity: theme.palette.action.disabledOpacity,
   },
-  /* Styles applied to the root element if `size="small"`. */
   ...(styleProps.size === 'small' && {
     minWidth: 26,
     borderRadius: 26 / 2,
     margin: '0 1px',
     padding: '0 4px',
   }),
-  /* Styles applied to the root element if `size="large"`. */
   ...(styleProps.size === 'large' && {
     minWidth: 40,
     borderRadius: 40 / 2,
@@ -100,7 +96,6 @@ const PaginationItemPage = styled(ButtonBase, {
   overridesResolver,
 })(
   ({ theme, styleProps }) => ({
-    /* Styles applied to the root element. */
     ...theme.typography.body2,
     borderRadius: 32 / 2,
     textAlign: 'center',
@@ -113,7 +108,6 @@ const PaginationItemPage = styled(ButtonBase, {
     [`&.${paginationItemClasses.focusVisible}`]: {
       backgroundColor: theme.palette.action.focus,
     },
-    /* Styles applied to the root element if `disabled="true"`. */
     [`&.${paginationItemClasses.disabled}`]: {
       opacity: theme.palette.action.disabledOpacity,
     },
@@ -151,7 +145,6 @@ const PaginationItemPage = styled(ButtonBase, {
         backgroundColor: theme.palette.action.selected,
       },
     },
-    /* Styles applied to the root element if `size="small"`. */
     ...(styleProps.size === 'small' && {
       minWidth: 26,
       height: 26,
@@ -159,7 +152,6 @@ const PaginationItemPage = styled(ButtonBase, {
       margin: '0 1px',
       padding: '0 4px',
     }),
-    /* Styles applied to the root element if `size="large"`. */
     ...(styleProps.size === 'large' && {
       minWidth: 40,
       height: 40,
@@ -167,13 +159,11 @@ const PaginationItemPage = styled(ButtonBase, {
       padding: '0 10px',
       fontSize: theme.typography.pxToRem(15),
     }),
-    /* Styles applied to the root element if `shape="rounded"`. */
     ...(styleProps.shape === 'rounded' && {
       borderRadius: theme.shape.borderRadius,
     }),
   }),
   ({ theme, styleProps }) => ({
-    /* Styles applied to the root element if `variant="text"`. */
     ...(styleProps.variant === 'text' && {
       [`&.${paginationItemClasses.selected}`]: {
         ...(styleProps.color !== 'standard' && {
@@ -195,7 +185,6 @@ const PaginationItemPage = styled(ButtonBase, {
         },
       },
     }),
-    /* Styles applied to the root element if `variant="outlined"`. */
     ...(styleProps.variant === 'outlined' && {
       border: `1px solid ${
         theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
