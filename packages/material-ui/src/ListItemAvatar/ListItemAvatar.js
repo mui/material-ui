@@ -26,10 +26,8 @@ const ListItemAvatarRoot = styled('div', {
     return [styles.root, styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart];
   },
 })(({ styleProps }) => ({
-  /* Styles applied to the root element. */
   minWidth: 56,
   flexShrink: 0,
-  /* Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`. */
   ...(styleProps.alignItems === 'flex-start' && {
     marginTop: 8,
   }),

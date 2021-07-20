@@ -35,19 +35,16 @@ const StepButtonRoot = styled(ButtonBase, {
     ];
   },
 })(({ styleProps }) => ({
-  /* Styles applied to the root element. */
   width: '100%',
   padding: '24px 16px',
   margin: '-24px -16px',
   boxSizing: 'content-box',
-  /* Styles applied to the root element if `orientation="vertical"`. */
   ...(styleProps.orientation === 'vertical' && {
     justifyContent: 'flex-start',
     padding: '8px',
     margin: '-8px',
   }),
   [`& .${stepButtonClasses.touchRipple}`]: {
-    /* Styles applied to the `ButtonBase` touch-ripple. */
     color: 'rgba(0, 0, 0, 0.3)',
   },
 }));

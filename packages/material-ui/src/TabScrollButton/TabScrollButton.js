@@ -30,14 +30,12 @@ const TabScrollButtonRoot = styled(ButtonBase, {
     return [styles.root, styleProps.orientation && styles[styleProps.orientation]];
   },
 })(({ styleProps }) => ({
-  /* Styles applied to the root element. */
   width: 40,
   flexShrink: 0,
   opacity: 0.8,
   [`&.${tabScrollButtonClasses.disabled}`]: {
     opacity: 0,
   },
-  /* Styles applied to the root element if `orientation="vertical"`. */
   ...(styleProps.orientation === 'vertical' && {
     width: '100%',
     height: 40,

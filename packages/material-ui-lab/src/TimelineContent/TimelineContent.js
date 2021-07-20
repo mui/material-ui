@@ -26,11 +26,9 @@ const TimelineContentRoot = styled(Typography, {
     return [styles.root, styles[`position${capitalize(styleProps.position)}`]];
   },
 })(({ styleProps }) => ({
-  /* Styles applied to the root element. */
   flex: 1,
   padding: '6px 16px',
   textAlign: 'left',
-  /* Styles applied to the root element if `position="left"`. */
   ...(styleProps.position === 'left' && {
     textAlign: 'right',
   }),

@@ -25,6 +25,7 @@ The _why_ will be covered in an upcoming blog post on Medium.
   - [variant-prop (optional)](#variant-prop)
   - [link-underline-hover (optional)](#link-underline-hover)
 - [Handling Breaking Changes](#handling-breaking-changes)
+- [Migrate theme's `styleOverrides` to emotion](#migrate-themes-styleoverrides-to-emotion)
 - [Migrate `makeStyles` to emotion](#migrate-makestyles-to-emotion)
 - [Troubleshooting](#troubleshooting)
 
@@ -249,55 +250,6 @@ export default function PlainCssPriority() {
 ```
 
 > **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@material-ui/styled-engine-sc` package.
-
-### Theme
-
-- The `MuiThemeProvider` component is no longer exported from `@material-ui/core/styles`. Use `ThemeProvider` instead.
-
-  > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
-
-  ```diff
-  -import { MuiThemeProvider } from '@material-ui/core/styles';
-  +import { ThemeProvider } from '@material-ui/core/styles';
-  ```
-
-- The function `createMuiTheme` was renamed to `createTheme` to make it more intuitive to use with `ThemeProvider`.
-
-  > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
-
-  ```diff
-  -import { createMuiTheme } from '@material-ui/core/styles';
-  +import { createTheme } from '@material-ui/core/styles';
-
-  -const theme = createMuiTheme({
-  +const theme = createTheme({
-  ```
-
-- The `theme.breakpoints.width` utility was removed because it's redundant. Use `theme.breakpoints.values` to get the same values.
-
-  > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
-
-  ```diff
-  -theme.breakpoints.width('md')
-  +theme.breakpoints.values.md
-  ```
-
-- The signature of `theme.palette.augmentColor` helper has changed:
-
-  ```diff
-  -theme.palette.augmentColor(red);
-  +theme.palette.augmentColor({ color: red, name: 'brand' });
-  ```
-
-- The `theme.typography.round` helper was removed because it was no longer used. If you need it, use the function below:
-
-  > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
-
-  ```js
-  function round(value) {
-    return Math.round(value * 1e5) / 1e5;
-  }
-  ```
 
 #### Upgrade helper
 
@@ -527,6 +479,20 @@ declare module '@material-ui/styles' {
   +import { createGenerateClassName } from '@material-ui/styles';
   ```
 
+#### createMuiTheme
+
+- The function `createMuiTheme` was renamed to `createTheme` to make it more intuitive to use with `ThemeProvider`.
+
+  > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
+
+  ```diff
+  -import { createMuiTheme } from '@material-ui/core/styles';
+  +import { createTheme } from '@material-ui/core/styles';
+
+  -const theme = createMuiTheme({
+  +const theme = createTheme({
+  ```
+
 #### jssPreset
 
 - The `jssPreset` object is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
@@ -563,6 +529,17 @@ declare module '@material-ui/styles' {
   -  return <Component />;
   +  return <ThemeProvider theme={theme}><Component {...props} /></ThemeProvider>;
    }
+  ```
+
+#### MuiThemeProvider
+
+- The `MuiThemeProvider` component is no longer exported from `@material-ui/core/styles`. Use `ThemeProvider` instead.
+
+  > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
+
+  ```diff
+  -import { MuiThemeProvider } from '@material-ui/core/styles';
+  +import { ThemeProvider } from '@material-ui/core/styles';
   ```
 
 #### ServerStyleSheets
@@ -1243,21 +1220,26 @@ As the core components use emotion as their style engine, the props used by emot
   +<Accordion onChange={(event: React.SyntheticEvent, expanded: boolean) => {}} />
   ```
 
+### ExpansionPanelDetails
+
+- Remove `display: flex` from `AccordionDetails` (formerly `ExpansionPanelDetails`) as its too opinionated.
+  Most developers expect a display block.
+
+### ExpansionPanelSummary
+
 - Rename `focused` to `focusVisible` for consistency:
 
   ```diff
-  <Accordion
-    classes={{
+   <AccordionSummary
+     classes={{
   -    focused: 'custom-focus-visible-classname',
   +    focusVisible: 'custom-focus-visible-classname',
-    }}
-  />
+     }}
+    />
   ```
 
-- Remove `display: flex` from AccordionDetails as its too opinionated.
-  Most developers expect a display block.
-- Remove `IconButtonProps` prop from AccordionSummary.
-  The component renders a `<div>` element instead of an IconButton.
+- Remove `IconButtonProps` prop from `AccordionSummary` (formerly `ExpansionPanelSummary`).
+  The component renders a `<div>` element instead of an `IconButton`.
   The prop is no longer necessary.
 
 ### Fab
@@ -1644,8 +1626,8 @@ As the core components use emotion as their style engine, the props used by emot
     ```diff
     popper: {
       zIndex: 1,
-    - '&[x-placement*="bottom"] $arrow': {
-    + '&[data-popper-placement*="bottom"] $arrow': {
+    - '&[x-placement*="bottom"] .arrow': {
+    + '&[data-popper-placement*="bottom"] .arrow': {
     ```
   - Method names have changed:
 
@@ -1985,7 +1967,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 ### Tabs
 
-- Change the default `indicatorColor` and `textColor ` prop values to "primary".
+- Change the default `indicatorColor` and `textColor` prop values to "primary".
   This is done to match the most common use cases with Material Design.
 
   ```diff
@@ -2268,6 +2250,32 @@ As the core components use emotion as their style engine, the props used by emot
   });
   ```
 
+* The `theme.breakpoints.width` utility was removed because it's redundant. Use `theme.breakpoints.values` to get the same values.
+
+  > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
+
+  ```diff
+  -theme.breakpoints.width('md')
+  +theme.breakpoints.values.md
+  ```
+
+* The signature of `theme.palette.augmentColor` helper has changed:
+
+  ```diff
+  -theme.palette.augmentColor(red);
+  +theme.palette.augmentColor({ color: red, name: 'brand' });
+  ```
+
+* The `theme.typography.round` helper was removed because it was no longer used. If you need it, use the function below:
+
+  > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
+
+  ```js
+  function round(value) {
+    return Math.round(value * 1e5) / 1e5;
+  }
+  ```
+
 ### `@material-ui/types`
 
 - Rename the exported `Omit` type in `@material-ui/types`. The module is now called `DistributiveOmit`. The change removes the confusion with the built-in `Omit` helper introduced in TypeScript v3.5. The built-in `Omit`, while similar, is non-distributive. This leads to differences when applied to union types. [See this StackOverflow answer for further details](https://stackoverflow.com/a/57103940/1009797).
@@ -2276,6 +2284,71 @@ As the core components use emotion as their style engine, the props used by emot
   -import { Omit } from '@material-ui/types';
   +import { DistributiveOmit } from '@material-ui/types';
   ```
+
+## Migrate theme's `styleOverrides` to emotion
+
+Although your style overrides defined in the theme may partially work, there is an important difference on how the nested elements are styled. The `$` syntax used with JSS will not work with Emotion. You need to replace those selectors with a valid class selector.
+
+### Replace pseudo state class names
+
+```diff
+const theme = createTheme({
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+-         '&$focused': {
++         '&.Mui-focused': {
+            borderWidth: 1,
+          }
+        }
+      }
+    }
+  }
+});
+```
+
+### Replace nested classes selectors with global class names
+
+```diff
+const theme = createTheme({
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+-         '& $notchedOutline': {
++         '& .MuiOutlinedInput-notchedOutline': {
+            borderWidth: 1,
+          }
+        }
+      }
+    }
+  }
+});
+```
+
+> Note: For each component we export a `[component]Classes` constant that contains all nested classes for that component. You can rely on this instead of hardcoding the classes.
+
+```diff
++import { outlinedInputClasses } from '@material-ui/core/OutlinedInput';
+
+const theme = createTheme({
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+-         '& $notchedOutline': {
++         [`& .${outlinedInputClasses['notchedOutline']}`]: {
+            borderWidth: 1,
+          }
+        }
+      }
+    }
+  }
+});
+```
+
+Take a look at the whole [list of pseudo-state global classnames](/customization/how-to-customize/#pseudo-classes) available.
 
 ## Migrate `makeStyles` to emotion
 
@@ -2500,4 +2573,60 @@ declare module "@material-ui/private-theming" {
 
   interface DefaultTheme extends Theme {}
 }
+```
+
+### makeStyles - TypeError: Cannot read property 'drawer' of undefined
+
+This error occurs when calling `useStyles` (result of `makeStyles`) or `withStyles` outside of `<ThemeProvider>` scope like this:
+
+```js
+import * as React from 'react';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import makeStyles from '@material-ui/styles/makeStyles';
+import Card from '@material-ui/core/Card';
+import CssBaseline from '@material-ui/core/CssBaseline';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.common.white,
+  },
+}));
+
+const theme = createTheme();
+
+function App() {
+  const classes = useStyles(); // ❌ called outside of ThemeProvider
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Card className={classes.root}>...</Card>
+    </ThemeProvider>
+  );
+}
+
+export default App;
+```
+
+You can fix by moving `useStyles` inside another component so that it is called under `<ThemeProvider>`.
+
+```js
+// ...imports
+
+function AppContent(props) {
+  const classes = useStyles(); // ✅ This is safe because it is called inside ThemeProvider
+  return <Card className={classes.root}>...</Card>;
+}
+
+function App(props) {
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <AppContent {...props} />
+    </ThemeProvider>
+  );
+}
+
+export default App;
 ```

@@ -22,7 +22,6 @@ const TableFooterRoot = styled('tfoot', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({
-  /* Styles applied to the root element. */
   display: 'table-footer-group',
 });
 

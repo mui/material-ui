@@ -77,7 +77,6 @@ const AutocompleteRoot = styled('div', {
     ];
   },
 })(({ styleProps }) => ({
-  /* Styles applied to the root element. */
   [`&.${autocompleteClasses.focused} .${autocompleteClasses.clearIndicator}`]: {
     visibility: 'visible',
   },
@@ -87,21 +86,17 @@ const AutocompleteRoot = styled('div', {
       visibility: 'visible',
     },
   },
-  /* Styles applied to the root element if `fullWidth={true}`. */
   ...(styleProps.fullWidth && {
     width: '100%',
   }),
-  /* Styles applied to the tag elements, e.g. the chips. */
   [`& .${autocompleteClasses.tag}`]: {
     margin: 3,
     maxWidth: 'calc(100% - 6px)',
-    /* Styles applied to the tag elements, e.g. the chips if `size="small"`. */
     ...(styleProps.size === 'small' && {
       margin: 2,
       maxWidth: 'calc(100% - 4px)',
     }),
   },
-  /* Styles applied to the Input element. */
   [`& .${autocompleteClasses.inputRoot}`]: {
     flexWrap: 'wrap',
     [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
@@ -169,12 +164,10 @@ const AutocompleteRoot = styled('div', {
       padding: '2.5px 4px',
     },
   },
-  /* Styles applied to the input element. */
   [`& .${autocompleteClasses.input}`]: {
     flexGrow: 1,
     textOverflow: 'ellipsis',
     opacity: 0,
-    /* Styles applied to the input element if tag focused. */
     ...(styleProps.inputFocused && {
       opacity: 1,
     }),
@@ -186,7 +179,6 @@ const AutocompleteEndAdornment = styled('div', {
   slot: 'EndAdornment',
   overridesResolver: (props, styles) => styles.endAdornment,
 })({
-  /* Styles applied to the endAdornment element. */
   // We use a position absolute to support wrapping tags.
   position: 'absolute',
   right: 0,
@@ -198,7 +190,6 @@ const AutocompleteClearIndicator = styled(IconButton, {
   slot: 'ClearIndicator',
   overridesResolver: (props, styles) => styles.clearIndicator,
 })({
-  /* Styles applied to the clear indicator. */
   marginRight: -2,
   padding: 4,
   visibility: 'hidden',
@@ -212,10 +203,8 @@ const AutocompletePopupIndicator = styled(IconButton, {
     ...(styleProps.popupOpen && styles.popupIndicatorOpen),
   }),
 })(({ styleProps }) => ({
-  /* Styles applied to the popup indicator. */
   padding: 2,
   marginRight: -2,
-  /* Styles applied to the popup indicator if the popup is open. */
   ...(styleProps.popupOpen && {
     transform: 'rotate(180deg)',
   }),
@@ -234,9 +223,7 @@ const AutocompletePopper = styled(Popper, {
     ];
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the popper element. */
   zIndex: theme.zIndex.modal,
-  /* Styles applied to the popper element if `disablePortal={true}`. */
   ...(styleProps.disablePortal && {
     position: 'absolute',
   }),
@@ -247,7 +234,6 @@ const AutocompletePaper = styled(Paper, {
   slot: 'Paper',
   overridesResolver: (props, styles) => styles.paper,
 })(({ theme }) => ({
-  /* Styles applied to the Paper component. */
   ...theme.typography.body1,
   overflow: 'auto',
 }));
@@ -257,7 +243,6 @@ const AutocompleteLoading = styled('div', {
   slot: 'Loading',
   overridesResolver: (props, styles) => styles.loading,
 })(({ theme }) => ({
-  /* Styles applied to the loading wrapper. */
   color: theme.palette.text.secondary,
   padding: '14px 16px',
 }));
@@ -267,7 +252,6 @@ const AutocompleteNoOptions = styled('div', {
   slot: 'NoOptions',
   overridesResolver: (props, styles) => styles.noOptions,
 })(({ theme }) => ({
-  /* Styles applied to the no option wrapper. */
   color: theme.palette.text.secondary,
   padding: '14px 16px',
 }));
@@ -277,13 +261,11 @@ const AutocompleteListbox = styled('div', {
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
 })(({ theme }) => ({
-  /* Styles applied to the listbox component. */
   listStyle: 'none',
   margin: 0,
   padding: '8px 0',
   maxHeight: '40vh',
   overflow: 'auto',
-  /* Styles applied to the option elements. */
   [`& .${autocompleteClasses.option}`]: {
     minHeight: 48,
     display: 'flex',
@@ -342,7 +324,6 @@ const AutocompleteGroupLabel = styled(ListSubheader, {
   slot: 'GroupLabel',
   overridesResolver: (props, styles) => styles.groupLabel,
 })(({ theme }) => ({
-  /* Styles applied to the group's label elements. */
   backgroundColor: theme.palette.background.paper,
   top: -8,
 }));
@@ -352,7 +333,6 @@ const AutocompleteGroupUl = styled('ul', {
   slot: 'GroupUl',
   overridesResolver: (props, styles) => styles.groupUl,
 })({
-  /* Styles applied to the group's ul elements. */
   padding: 0,
   [`& .${autocompleteClasses.option}`]: {
     paddingLeft: 24,

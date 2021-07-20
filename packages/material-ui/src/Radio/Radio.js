@@ -35,7 +35,6 @@ const RadioRoot = styled(SwitchBase, {
     return [styles.root, styles[`color${capitalize(styleProps.color)}`]];
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
   color: theme.palette.text.secondary,
   '&:hover': {
     backgroundColor: alpha(
@@ -49,7 +48,6 @@ const RadioRoot = styled(SwitchBase, {
       backgroundColor: 'transparent',
     },
   },
-  /* Styles applied to the root element unless `color="default"`. */
   ...(styleProps.color !== 'default' && {
     [`&.${radioClasses.checked}`]: {
       color: theme.palette[styleProps.color].main,
