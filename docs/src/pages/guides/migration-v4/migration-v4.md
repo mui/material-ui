@@ -25,6 +25,7 @@ The _why_ will be covered in an upcoming blog post on Medium.
   - [variant-prop (optional)](#variant-prop)
   - [link-underline-hover (optional)](#link-underline-hover)
 - [Handling Breaking Changes](#handling-breaking-changes)
+- [Migrate theme's `styleOverrides` to emotion](#migrate-themes-styleoverrides-to-emotion)
 - [Migrate `makeStyles` to emotion](#migrate-makestyles-to-emotion)
 - [Troubleshooting](#troubleshooting)
 
@@ -1625,8 +1626,8 @@ As the core components use emotion as their style engine, the props used by emot
     ```diff
     popper: {
       zIndex: 1,
-    - '&[x-placement*="bottom"] $arrow': {
-    + '&[data-popper-placement*="bottom"] $arrow': {
+    - '&[x-placement*="bottom"] .arrow': {
+    + '&[data-popper-placement*="bottom"] .arrow': {
     ```
   - Method names have changed:
 
@@ -2283,6 +2284,71 @@ As the core components use emotion as their style engine, the props used by emot
   -import { Omit } from '@material-ui/types';
   +import { DistributiveOmit } from '@material-ui/types';
   ```
+
+## Migrate theme's `styleOverrides` to emotion
+
+Although your style overrides defined in the theme may partially work, there is an important difference on how the nested elements are styled. The `$` syntax used with JSS will not work with Emotion. You need to replace those selectors with a valid class selector.
+
+### Replace pseudo state class names
+
+```diff
+const theme = createTheme({
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+-         '&$focused': {
++         '&.Mui-focused': {
+            borderWidth: 1,
+          }
+        }
+      }
+    }
+  }
+});
+```
+
+### Replace nested classes selectors with global class names
+
+```diff
+const theme = createTheme({
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+-         '& $notchedOutline': {
++         '& .MuiOutlinedInput-notchedOutline': {
+            borderWidth: 1,
+          }
+        }
+      }
+    }
+  }
+});
+```
+
+> Note: For each component we export a `[component]Classes` constant that contains all nested classes for that component. You can rely on this instead of hardcoding the classes.
+
+```diff
++import { outlinedInputClasses } from '@material-ui/core/OutlinedInput';
+
+const theme = createTheme({
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+-         '& $notchedOutline': {
++         [`& .${outlinedInputClasses['notchedOutline']}`]: {
+            borderWidth: 1,
+          }
+        }
+      }
+    }
+  }
+});
+```
+
+Take a look at the whole [list of pseudo-state global classnames](/customization/how-to-customize/#pseudo-classes) available.
 
 ## Migrate `makeStyles` to emotion
 
