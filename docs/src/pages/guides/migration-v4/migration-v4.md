@@ -2280,7 +2280,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 ## Migrate theme's `styleOverrides` to emotion
 
-Although your style overrides defined in the theme may partially work, there is an important difference on how the nested elements are styled. The `$` syntax used with JSS will not work with emotion. You need to replace those selectors with a valid class selectors.
+Although your style overrides defined in the theme may partially work, there is an important difference on how the nested elements are styled. The `$` syntax used with JSS will not work with Emotion. You need to replace those selectors with a valid class selector.
 
 ### Replace pseudo state class names
 
