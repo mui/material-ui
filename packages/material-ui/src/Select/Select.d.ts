@@ -3,8 +3,10 @@ import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { InputProps } from '../Input';
 import { MenuProps } from '../Menu';
-import { SelectInputProps } from './SelectInput';
+import { SelectChangeEvent, SelectInputProps } from './SelectInput';
 import { SelectClasses } from './selectClasses';
+
+export { SelectChangeEvent };
 
 export interface SelectProps<T = unknown>
   extends StandardProps<InputProps, 'value' | 'onChange'>,
