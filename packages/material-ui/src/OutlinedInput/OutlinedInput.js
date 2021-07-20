@@ -112,6 +112,7 @@ const OutlinedInputInput = styled(InputBaseInput, {
 const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiOutlinedInput' });
   const {
+    components = {},
     fullWidth = false,
     inputComponent = 'input',
     label,
@@ -125,7 +126,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
 
   return (
     <InputBase
-      components={{ Root: OutlinedInputRoot, Input: OutlinedInputInput }}
+      components={{ Root: OutlinedInputRoot, Input: OutlinedInputInput, ...components }}
       renderSuffix={(state) => (
         <NotchedOutlineRoot
           className={classes.notchedOutline}

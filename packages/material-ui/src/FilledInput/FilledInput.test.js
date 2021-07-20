@@ -35,4 +35,9 @@ describe('<FilledInput />', () => {
     render(<FilledInput error classes={{ error: 'error' }} />);
     expect(document.querySelector('.error')).not.to.equal(null);
   });
+
+  it('should respects the componentsProps if passed', () => {
+    render(<FilledInput componentsProps={{ root: { 'data-test': 'test' } }} />);
+    expect(document.querySelector('[data-test=test]')).not.to.equal(null);
+  });
 });

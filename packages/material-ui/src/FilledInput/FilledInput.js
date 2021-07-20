@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { refType } from '@material-ui/utils';
+import { refType, deepmerge } from '@material-ui/utils';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import InputBase from '../InputBase';
@@ -177,6 +177,8 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
 
   const {
     disableUnderline,
+    components = {},
+    componentsProps: componentsPropsProp,
     fullWidth = false,
     hiddenLabel, // declare here to prevent spreading to DOM
     inputComponent = 'input',
@@ -194,11 +196,16 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
   };
 
   const classes = useUtilityClasses(props);
+  const filledInputComponentsProps = { root: { styleProps }, input: { styleProps } };
+
+  const componentsProps = componentsPropsProp
+    ? deepmerge(componentsPropsProp, filledInputComponentsProps)
+    : filledInputComponentsProps;
 
   return (
     <InputBase
-      components={{ Root: FilledInputRoot, Input: FilledInputInput }}
-      componentsProps={{ root: { styleProps }, input: { styleProps } }}
+      components={{ Root: FilledInputRoot, Input: FilledInputInput, ...components }}
+      componentsProps={componentsProps}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
       multiline={multiline}

@@ -123,12 +123,10 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   const classes = useUtilityClasses(props);
 
   const styleProps = { disableUnderline };
-  const inputComponentsProps = {
-    root: { styleProps },
-  };
+  const inputComponentsProps = { root: { styleProps } };
 
-  const componentsProps = componentsPropsInput
-    ? deepmerge(componentsPropsInput, inputComponentsProps)
+  const componentsProps = componentsPropsProp
+    ? deepmerge(componentsPropsProp, inputComponentsProps)
     : inputComponentsProps;
 
   return (
