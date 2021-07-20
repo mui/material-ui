@@ -6,7 +6,7 @@ import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 import HeaderNavBar from 'docs/src/components/HeaderNavBar';
 import HeaderNavDropdown from 'docs/src/components/HeaderNavDropdown';
 
-const Header = styled('div')({
+const Header = styled('div')(({ theme }) => ({
   position: 'sticky',
   top: 0,
   backdropFilter: 'blur(20px)',
@@ -15,14 +15,14 @@ const Header = styled('div')({
   display: 'flex',
   alignItems: 'center',
   minHeight: 64,
-  padding: '0 1.5rem',
-});
+  padding: theme.spacing(0, 2),
+}));
 
 const AppHeader = () => {
   return (
     <Header>
       <NextLink href="/branding/home" passHref>
-        <Box component="a" lineHeight={0} mr={2.5}>
+        <Box component="a" lineHeight={0} mr={2}>
           <SvgMuiLogo />
         </Box>
       </NextLink>

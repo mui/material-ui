@@ -30,7 +30,7 @@ const Navigation = styled('nav')(({ theme }) => ({
       display: 'inline-block',
       color: 'inherit',
       textDecoration: 'none',
-      padding: 10,
+      padding: theme.spacing(1),
       borderRadius: theme.shape.borderRadius,
       '&:hover, &:focus': {
         backgroundColor: '#f3f6f9',
@@ -162,7 +162,6 @@ const HeaderNavBar = () => {
                   variant="outlined"
                   sx={{
                     minWidth: 498,
-                    borderRadius: '10px',
                     overflow: 'hidden',
                     boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
                     '& ul': {
