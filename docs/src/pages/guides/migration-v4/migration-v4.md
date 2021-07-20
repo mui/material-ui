@@ -250,55 +250,6 @@ export default function PlainCssPriority() {
 
 > **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@material-ui/styled-engine-sc` package.
 
-### Theme
-
-- The `MuiThemeProvider` component is no longer exported from `@material-ui/core/styles`. Use `ThemeProvider` instead.
-
-  > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
-
-  ```diff
-  -import { MuiThemeProvider } from '@material-ui/core/styles';
-  +import { ThemeProvider } from '@material-ui/core/styles';
-  ```
-
-- The function `createMuiTheme` was renamed to `createTheme` to make it more intuitive to use with `ThemeProvider`.
-
-  > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
-
-  ```diff
-  -import { createMuiTheme } from '@material-ui/core/styles';
-  +import { createTheme } from '@material-ui/core/styles';
-
-  -const theme = createMuiTheme({
-  +const theme = createTheme({
-  ```
-
-- The `theme.breakpoints.width` utility was removed because it's redundant. Use `theme.breakpoints.values` to get the same values.
-
-  > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
-
-  ```diff
-  -theme.breakpoints.width('md')
-  +theme.breakpoints.values.md
-  ```
-
-- The signature of `theme.palette.augmentColor` helper has changed:
-
-  ```diff
-  -theme.palette.augmentColor(red);
-  +theme.palette.augmentColor({ color: red, name: 'brand' });
-  ```
-
-- The `theme.typography.round` helper was removed because it was no longer used. If you need it, use the function below:
-
-  > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
-
-  ```js
-  function round(value) {
-    return Math.round(value * 1e5) / 1e5;
-  }
-  ```
-
 #### Upgrade helper
 
 For a smoother transition, the `adaptV4Theme` helper allows you to iteratively upgrade some of the theme changes to the new theme structure.
@@ -527,6 +478,20 @@ declare module '@material-ui/styles' {
   +import { createGenerateClassName } from '@material-ui/styles';
   ```
 
+#### createMuiTheme
+
+- The function `createMuiTheme` was renamed to `createTheme` to make it more intuitive to use with `ThemeProvider`.
+
+  > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
+
+  ```diff
+  -import { createMuiTheme } from '@material-ui/core/styles';
+  +import { createTheme } from '@material-ui/core/styles';
+
+  -const theme = createMuiTheme({
+  +const theme = createTheme({
+  ```
+
 #### jssPreset
 
 - The `jssPreset` object is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
@@ -563,6 +528,17 @@ declare module '@material-ui/styles' {
   -  return <Component />;
   +  return <ThemeProvider theme={theme}><Component {...props} /></ThemeProvider>;
    }
+  ```
+
+#### MuiThemeProvider
+
+- The `MuiThemeProvider` component is no longer exported from `@material-ui/core/styles`. Use `ThemeProvider` instead.
+
+  > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
+
+  ```diff
+  -import { MuiThemeProvider } from '@material-ui/core/styles';
+  +import { ThemeProvider } from '@material-ui/core/styles';
   ```
 
 #### ServerStyleSheets
@@ -1990,7 +1966,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 ### Tabs
 
-- Change the default `indicatorColor` and `textColor ` prop values to "primary".
+- Change the default `indicatorColor` and `textColor` prop values to "primary".
   This is done to match the most common use cases with Material Design.
 
   ```diff
@@ -2271,6 +2247,32 @@ As the core components use emotion as their style engine, the props used by emot
       },
     },
   });
+  ```
+
+* The `theme.breakpoints.width` utility was removed because it's redundant. Use `theme.breakpoints.values` to get the same values.
+
+  > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
+
+  ```diff
+  -theme.breakpoints.width('md')
+  +theme.breakpoints.values.md
+  ```
+
+* The signature of `theme.palette.augmentColor` helper has changed:
+
+  ```diff
+  -theme.palette.augmentColor(red);
+  +theme.palette.augmentColor({ color: red, name: 'brand' });
+  ```
+
+* The `theme.typography.round` helper was removed because it was no longer used. If you need it, use the function below:
+
+  > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
+
+  ```js
+  function round(value) {
+    return Math.round(value * 1e5) / 1e5;
+  }
   ```
 
 ### `@material-ui/types`
