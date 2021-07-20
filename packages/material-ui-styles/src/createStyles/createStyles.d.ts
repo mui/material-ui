@@ -1,4 +1,4 @@
-import { StyleRules } from '@material-ui/styles/withStyles';
+import { StaticStyleRules, StyleRules } from '@material-ui/styles/withStyles';
 
 /**
  * This function doesn't really "do anything" at runtime, it's just the identity
@@ -10,6 +10,9 @@ import { StyleRules } from '@material-ui/styles/withStyles';
 // For TypeScript v3.5 Props has to extend {} instead of object
 // See https://github.com/mui-org/material-ui/issues/15942
 // and https://github.com/microsoft/TypeScript/issues/31735
+export default function createStyles<ClassKey extends string>(
+  styles: StaticStyleRules<ClassKey>,
+): StaticStyleRules<ClassKey>;
 export default function createStyles<ClassKey extends string, Props extends {}>(
   styles: StyleRules<Props, ClassKey>,
 ): StyleRules<Props, ClassKey>;

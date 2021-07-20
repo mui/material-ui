@@ -62,15 +62,31 @@ export type StyleRules<Props extends object = {}, ClassKey extends string = stri
 >;
 
 /**
+ * By removing parameterized type references, this type brings better type check performance.
+ */
+export type StaticStyleRules<ClassKey extends string = string> = Record<ClassKey, CSSProperties>;
+
+/**
  * @internal
  */
 export type StyleRulesCallback<Theme, Props extends object, ClassKey extends string = string> = (
   theme: Theme,
 ) => StyleRules<Props, ClassKey>;
 
+/**
+ * @internal
+ */
+export type StaticStyleRulesCallback<Theme, ClassKey extends string = string> = (
+  theme: Theme,
+) => StaticStyleRules<ClassKey>;
+
 export type Styles<Theme, Props extends object, ClassKey extends string = string> =
   | StyleRules<Props, ClassKey>
   | StyleRulesCallback<Theme, Props, ClassKey>;
+
+export type StaticStyles<Theme, ClassKey extends string = string> =
+  | StaticStyleRules<ClassKey>
+  | StaticStyleRulesCallback<Theme, ClassKey>;
 
 export interface WithStylesOptions<Theme = DefaultTheme> extends JSS.StyleSheetFactoryOptions {
   defaultTheme?: Theme;
