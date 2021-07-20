@@ -10,7 +10,6 @@ function SvgComponent(props: React.SVGProps<SVGSVGElement>) {
       fill="none"
       {...props}
     >
-      <rect width={36} height={36} rx={8} fill="#fff" />
       <circle cx={18} cy={18} r={16} fill="#EAEEF3" />
       <path
         d="M15.25 25.497a2.5 2.5 0 002.499-2.5v-2.499h-2.5a2.5 2.5 0 000 4.999z"
