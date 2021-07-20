@@ -2320,7 +2320,7 @@ const theme = createTheme({
 });
 ```
 
-> Note: For each component we export `[component]Classes` constant that contains all nested classes for that component. You can rely on this instead of hardcoding the classes.
+> Note: For each component we export a `[component]Classes` constant that contains all nested classes for that component. You can rely on this instead of hardcoding the classes.
 
 ```diff
 +import { outlinedInputClasses } from '@material-ui/core/OutlinedInput';
