@@ -1740,6 +1740,15 @@ As the core components use emotion as their style engine, the props used by emot
   +<Select classes={{ select: 'class1 class2 class3' }} />
   ```
 
+- The `event` in `onChange` is now a synthetic, native `Event` not a React event.
+
+  ```diff
+  -<Select onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
+  +<Select onChange={(event: Event, value: unknown) => {}} />
+  ```
+
+  This was necessary to prevent overriding of `event.target` of the events that caused the change.
+
 ### Skeleton
 
 - Move the component from the lab to the core. The component is now stable.
@@ -1766,12 +1775,14 @@ As the core components use emotion as their style engine, the props used by emot
 
 ### Slider
 
-- TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
+- The `event` in `onChange` is now a synthetic, native `Event` not a React event.
 
   ```diff
-  -<Slider onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
-  +<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
+  -<Slider onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
+  +<Slider onChange={(event: Event, value: unknown) => {}} />
   ```
+
+  This was necessary to prevent overriding of `event.target` of the events that caused the change.
 
 - The `ValueLabelComponent` and `ThumbComponent` prop is now part of the `components` prop.
 
