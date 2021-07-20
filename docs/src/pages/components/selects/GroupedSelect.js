@@ -36,6 +36,17 @@ export default function GroupedSelect() {
           <MenuItem value={4}>Option 4</MenuItem>
         </Select>
       </FormControl>
+      <FormControl sx={{ m: 1, minWidth: 120 }}>
+        <InputLabel htmlFor="grouped-select">Grouping</InputLabel>
+        <Select defaultValue="" id="grouped-select" label="Grouping">
+          <ListSubheader>Category 1</ListSubheader>
+          <MenuItem value={1}>Option 1</MenuItem>
+          <MenuItem value={2}>Option 2</MenuItem>
+          <ListSubheader>Category 2</ListSubheader>
+          <MenuItem value={3}>Option 3</MenuItem>
+          <MenuItem value={4}>Option 4</MenuItem>
+        </Select>
+      </FormControl>
     </div>
   );
 }
