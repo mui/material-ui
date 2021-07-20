@@ -2341,7 +2341,7 @@ const theme = createTheme({
 });
 ```
 
-Take a look on the whole [list of the pseudo-state global classname](/customization/how-to-customize/#pseudo-classes) available.
+Take a look at the whole [list of pseudo-state global classnames](/customization/how-to-customize/#pseudo-classes) available.
 
 ## Migrate `makeStyles` to emotion
 
