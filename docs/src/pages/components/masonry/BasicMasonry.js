@@ -9,7 +9,7 @@ export default function BasicMasonry() {
     <Masonry cols={4} spacing={1}>
       {heights.map((height, idx) => (
         <MasonryItem key={idx} contentHeight={height}>
-          <Box sx={{textAlign:"center", height, border: 1, bgcolor: 'background.paper'}}>
+          <Box sx={{ textAlign: "center", height, border: 1, bgcolor: 'background.paper' }}>
             {idx + 1}
           </Box>
         </MasonryItem>

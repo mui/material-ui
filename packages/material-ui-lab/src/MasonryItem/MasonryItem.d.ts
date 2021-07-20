@@ -8,7 +8,7 @@ export interface MasonryItemTypeMap<P = {}, D extends React.ElementType = 'div'>
     /**
      * The content of the component, normally an `<img>` or a `<div>`.
      */
-    children: NonNullable<React.ReactNode>;
+    children?: React.ReactNode;
     /**
      * The height of the content of the component in px.
      */

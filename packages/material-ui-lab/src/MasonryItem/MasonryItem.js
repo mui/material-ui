@@ -24,17 +24,17 @@ const MasonryItemRoot = styled('div', {
   },
 })(({ styleProps, theme }) => {
   const gap = Number(theme.spacing(styleProps.spacing).replace('px', ''));
-  const rowSpan = Math.ceil(styleProps.contentHeight + gap );
+  const rowSpan = Math.ceil(styleProps.contentHeight + gap);
   return {
     width: '100%',
     [`& *`]: {
       // all contents should have a width of 100%
       objectFit: 'cover',
       width: '100%',
-      height: "100%",
+      height: '100%',
     },
     gridRowEnd: `span ${styleProps.contentHeight !== undefined ? rowSpan : 0}`,
-    paddingBottom: gap - 1
+    paddingBottom: gap - 1,
   };
 });
 
@@ -75,7 +75,7 @@ MasonryItem.propTypes /* remove-proptypes */ = {
   /**
    * The content of the component, normally an `<img>` or a `<div>`.
    */
-  children: PropTypes /* @typescript-to-proptypes-ignore */.node.isRequired,
+  children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
    */
