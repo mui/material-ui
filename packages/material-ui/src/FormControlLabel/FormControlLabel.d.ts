@@ -55,7 +55,7 @@ export interface FormControlLabelProps
   /**
    * Callback fired when the state is changed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent} event The event source of the callback.
    * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
   onChange?: (event: React.SyntheticEvent, checked: boolean) => void;

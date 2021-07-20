@@ -36,13 +36,13 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
   /**
    * Callback fired when the component requests to be closed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent<{}>} event The event source of the callback.
    */
   onClose: React.ReactEventHandler<{}>;
   /**
    * Callback fired when the component requests to be opened.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent<{}>} event The event source of the callback.
    */
   onOpen: React.ReactEventHandler<{}>;
   /**

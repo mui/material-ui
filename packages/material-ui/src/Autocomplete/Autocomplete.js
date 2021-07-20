@@ -878,7 +878,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the value changes.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {T|T[]} value The new value of the component.
    * @param {string} reason One of "createOption", "selectOption", "removeOption", "blur" or "clear".
    * @param {string} [details]
@@ -888,14 +888,14 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Callback fired when the popup requests to be closed.
    * Use in controlled mode (see open).
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {string} reason Can be: `"toggleInput"`, `"escape"`, `"selectOption"`, `"removeOption"`, `"blur"`.
    */
   onClose: PropTypes.func,
   /**
    * Callback fired when the highlight option changes.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {T} option The highlighted option.
    * @param {string} reason Can be: `"keyboard"`, `"auto"`, `"mouse"`.
    */
@@ -903,7 +903,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the input value changes.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {string} value The new value of the text input.
    * @param {string} reason Can be: `"input"` (user input), `"reset"` (programmatic change), `"clear"`.
    */
@@ -912,7 +912,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Callback fired when the popup requests to be opened.
    * Use in controlled mode (see open).
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent} event The event source of the callback.
    */
   onOpen: PropTypes.func,
   /**
