@@ -10,13 +10,13 @@ export interface MasonryItemTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     children?: React.ReactNode;
     /**
-     * The height of the content of the component in px.
-     */
-    contentHeight: number;
-    /**
      * Override or extend the styles applied to the component.
      */
     classes?: Partial<MasonryItemClasses>;
+    /**
+     * The height of the component in px.
+     */
+    height: number;
     /**
      * Allows defining system overrides as well as additional CSS styles.
      */

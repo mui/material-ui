@@ -24,7 +24,7 @@ const MasonryItemRoot = styled('div', {
   },
 })(({ styleProps, theme }) => {
   const gap = Number(theme.spacing(styleProps.spacing).replace('px', ''));
-  const rowSpan = Math.ceil(styleProps.contentHeight + gap);
+  const rowSpan = styleProps.height ? Math.ceil(styleProps.height + gap) : 0;
   return {
     width: '100%',
     [`& *`]: {
@@ -33,7 +33,7 @@ const MasonryItemRoot = styled('div', {
       width: '100%',
       height: '100%',
     },
-    gridRowEnd: `span ${styleProps.contentHeight !== undefined ? rowSpan : 0}`,
+    gridRowEnd: `span ${rowSpan}`,
     paddingBottom: gap - 1,
   };
 });
@@ -90,9 +90,9 @@ MasonryItem.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The height of the content of the component in px.
+   * The height of the component in px.
    */
-  contentHeight: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
   /**
    * @ignore
    */

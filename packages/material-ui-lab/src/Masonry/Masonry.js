@@ -35,7 +35,7 @@ const MasonryRoot = styled('div', {
     gridAutoRows: 0,
     padding: 0,
     overflow: 'auto',
-    width: '100% !important',
+    width: '100%',
     columnGap: theme.spacing(styleProps.spacing),
     rowGap: 1,
     gridTemplateColumns: `repeat(${styleProps.cols}, 1fr)`,
