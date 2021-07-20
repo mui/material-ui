@@ -25,11 +25,9 @@ const FormGroupRoot = styled('div', {
     return [styles.root, styleProps.row && styles.row];
   },
 })(({ styleProps }) => ({
-  /* Styles applied to the root element. */
   display: 'flex',
   flexDirection: 'column',
   flexWrap: 'wrap',
-  /* Styles applied to the root element if `row={true}`. */
   ...(styleProps.row && {
     flexDirection: 'row',
   }),

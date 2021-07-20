@@ -55,7 +55,6 @@ const DrawerDockedRoot = styled('div', {
   skipVariantsResolver: false,
   overridesResolver,
 })({
-  /* Styles applied to the root element if `variant="permanent or persistent"`. */
   flex: '0 0 auto',
 });
 
@@ -73,7 +72,6 @@ const DrawerPaper = styled(Paper, {
     ];
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the Paper component. */
   overflowY: 'auto',
   display: 'flex',
   flexDirection: 'column',
@@ -90,11 +88,9 @@ const DrawerPaper = styled(Paper, {
   // :focus-ring CSS pseudo-class will help.
   outline: 0,
   ...(styleProps.anchor === 'left' && {
-    /* Styles applied to the Paper component if `anchor="left"`. */
     left: 0,
   }),
   ...(styleProps.anchor === 'top' && {
-    /* Styles applied to the Paper component if `anchor="top"`. */
     top: 0,
     left: 0,
     right: 0,
@@ -102,11 +98,9 @@ const DrawerPaper = styled(Paper, {
     maxHeight: '100%',
   }),
   ...(styleProps.anchor === 'right' && {
-    /* Styles applied to the Paper component if `anchor="right"`. */
     right: 0,
   }),
   ...(styleProps.anchor === 'bottom' && {
-    /* Styles applied to the Paper component if `anchor="bottom"`. */
     top: 'auto',
     left: 0,
     bottom: 0,
@@ -116,22 +110,18 @@ const DrawerPaper = styled(Paper, {
   }),
   ...(styleProps.anchor === 'left' &&
     styleProps.variant !== 'temporary' && {
-      /* Styles applied to the Paper component if `anchor="left"` and `variant` is not "temporary". */
       borderRight: `1px solid ${theme.palette.divider}`,
     }),
   ...(styleProps.anchor === 'top' &&
     styleProps.variant !== 'temporary' && {
-      /* Styles applied to the Paper component if `anchor="top"` and `variant` is not "temporary". */
       borderBottom: `1px solid ${theme.palette.divider}`,
     }),
   ...(styleProps.anchor === 'right' &&
     styleProps.variant !== 'temporary' && {
-      /* Styles applied to the Paper component if `anchor="right"` and `variant` is not "temporary". */
       borderLeft: `1px solid ${theme.palette.divider}`,
     }),
   ...(styleProps.anchor === 'bottom' &&
     styleProps.variant !== 'temporary' && {
-      /* Styles applied to the Paper component if `anchor="bottom"` and `variant` is not "temporary". */
       borderTop: `1px solid ${theme.palette.divider}`,
     }),
 }));

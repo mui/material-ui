@@ -20,7 +20,6 @@ const TimelineConnectorRoot = styled('span', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })(({ theme }) => {
-  /* Styles applied to the root element. */
   return {
     width: 2,
     backgroundColor: theme.palette.grey[400],

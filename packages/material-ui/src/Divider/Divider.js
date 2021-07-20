@@ -55,54 +55,45 @@ const DividerRoot = styled('div', {
   },
 })(
   ({ theme, styleProps }) => ({
-    /* Styles applied to the root element. */
     margin: 0, // Reset browser default style.
     flexShrink: 0,
     borderWidth: 0,
     borderStyle: 'solid',
     borderColor: theme.palette.divider,
     borderBottomWidth: 'thin',
-    /* Styles applied to the root element if `absolute={true}`. */
     ...(styleProps.absolute && {
       position: 'absolute',
       bottom: 0,
       left: 0,
       width: '100%',
     }),
-    /* Styles applied to the root element if `light={true}`. */
     ...(styleProps.light && {
       borderColor: alpha(theme.palette.divider, 0.08),
     }),
-    /* Styles applied to the root element if `variant="inset"`. */
     ...(styleProps.variant === 'inset' && {
       marginLeft: 72,
     }),
-    /* Styles applied to the root element if `variant="middle"` and `orientation="horizontal"`. */
     ...(styleProps.variant === 'middle' &&
       styleProps.orientation === 'horizontal' && {
         marginLeft: theme.spacing(2),
         marginRight: theme.spacing(2),
       }),
-    /* Styles applied to the root element if `variant="middle"` and `orientation="vertical"`. */
     ...(styleProps.variant === 'middle' &&
       styleProps.orientation === 'vertical' && {
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1),
       }),
-    /* Styles applied to the root element if `orientation="vertical"`. */
     ...(styleProps.orientation === 'vertical' && {
       height: '100%',
       borderBottomWidth: 0,
       borderRightWidth: 'thin',
     }),
-    /* Styles applied to the root element if `flexItem={true}`. */
     ...(styleProps.flexItem && {
       alignSelf: 'stretch',
       height: 'auto',
     }),
   }),
   ({ theme, styleProps }) => ({
-    /* Styles applied to the root element if divider have text. */
     ...(styleProps.children && {
       display: 'flex',
       whiteSpace: 'nowrap',
@@ -119,7 +110,6 @@ const DividerRoot = styled('div', {
     }),
   }),
   ({ theme, styleProps }) => ({
-    /* Styles applied to the root element if divider have text and `orientation="vertical"`. */
     ...(styleProps.children &&
       styleProps.orientation === 'vertical' && {
         flexDirection: 'column',
@@ -134,7 +124,6 @@ const DividerRoot = styled('div', {
       }),
   }),
   ({ styleProps }) => ({
-    /* Styles applied to the root element if `textAlign="right" orientation="horizontal"`. */
     ...(styleProps.textAlign === 'right' &&
       styleProps.orientation !== 'vertical' && {
         '&::before': {
@@ -144,7 +133,6 @@ const DividerRoot = styled('div', {
           width: '10%',
         },
       }),
-    /* Styles applied to the root element if `textAlign="left" orientation="horizontal"`. */
     ...(styleProps.textAlign === 'left' &&
       styleProps.orientation !== 'vertical' && {
         '&::before': {

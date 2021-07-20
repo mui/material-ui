@@ -199,14 +199,12 @@ export const InputBaseComponent = styled('input', {
     ...(styleProps.size === 'small' && {
       paddingTop: 1,
     }),
-    /* Styles applied to the input element if `multiline={true}`. */
     ...(styleProps.multiline && {
       height: 'auto',
       resize: 'none',
       padding: 0,
       paddingTop: 0,
     }),
-    /* Styles applied to the input element if `type="search"`. */
     ...(styleProps.type === 'search' && {
       // Improve type search style.
       MozAppearance: 'textfield',

@@ -45,7 +45,6 @@ const FilledInputRoot = styled(InputBaseRoot, {
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
   const backgroundColor = light ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.09)';
   return {
-    /* Styles applied to the root element. */
     position: 'relative',
     backgroundColor,
     borderTopLeftRadius: theme.shape.borderRadius,
@@ -154,18 +153,15 @@ const FilledInputInput = styled(InputBaseInput, {
     paddingTop: 16,
     paddingBottom: 17,
   }),
-  /* Styles applied to the input element if `multiline={true}`. */
   ...(styleProps.multiline && {
     paddingTop: 0,
     paddingBottom: 0,
     paddingLeft: 0,
     paddingRight: 0,
   }),
-  /* Styles applied to the input element if `startAdornment` is provided. */
   ...(styleProps.startAdornment && {
     paddingLeft: 0,
   }),
-  /* Styles applied to the input element if `endAdornment` is provided. */
   ...(styleProps.endAdornment && {
     paddingRight: 0,
   }),

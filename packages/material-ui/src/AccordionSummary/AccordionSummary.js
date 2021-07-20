@@ -33,23 +33,19 @@ const AccordionSummaryRoot = styled(ButtonBase, {
   };
 
   return {
-    /* Styles applied to the root element. */
     display: 'flex',
     minHeight: 48,
     padding: theme.spacing(0, 2),
     transition: theme.transitions.create(['min-height', 'background-color'], transition),
-    /* Styles applied to the ButtonBase root element if the button is keyboard focused. */
     [`&.${accordionSummaryClasses.focusVisible}`]: {
       backgroundColor: theme.palette.action.focus,
     },
-    /* Styles applied to the root element if `disabled={true}`. */
     [`&.${accordionSummaryClasses.disabled}`]: {
       opacity: theme.palette.action.disabledOpacity,
     },
     [`&:hover:not(.${accordionSummaryClasses.disabled})`]: {
       cursor: 'pointer',
     },
-    /* Styles applied to the root element unless `disableGutters={true}`. */
     ...(!styleProps.disableGutters && {
       [`&.${accordionSummaryClasses.expanded}`]: {
         minHeight: 64,
@@ -63,11 +59,9 @@ const AccordionSummaryContent = styled('div', {
   slot: 'Content',
   overridesResolver: (props, styles) => styles.content,
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the children wrapper element. */
   display: 'flex',
   flexGrow: 1,
   margin: '12px 0',
-  /* Styles applied to the children wrapper element unless `disableGutters={true}`. */
   ...(!styleProps.disableGutters && {
     transition: theme.transitions.create(['margin'], {
       duration: theme.transitions.duration.shortest,
@@ -83,14 +77,12 @@ const AccordionSummaryExpandIconWrapper = styled('div', {
   slot: 'ExpandIconWrapper',
   overridesResolver: (props, styles) => styles.expandIconWrapper,
 })(({ theme }) => ({
-  /* Styles applied to the `expandIcon`'s wrapper element. */
   display: 'flex',
   color: theme.palette.action.active,
   transform: 'rotate(0deg)',
   transition: theme.transitions.create('transform', {
     duration: theme.transitions.duration.shortest,
   }),
-  /* Styles applied to the `expandIcon`'s wrapper element if `expanded={true}`. */
   [`&.${accordionSummaryClasses.expanded}`]: {
     transform: 'rotate(180deg)',
   },

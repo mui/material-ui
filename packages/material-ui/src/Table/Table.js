@@ -26,7 +26,6 @@ const TableRoot = styled('table', {
     return [styles.root, styleProps.stickyHeader && styles.stickyHeader];
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
   display: 'table',
   width: '100%',
   borderCollapse: 'collapse',
@@ -38,7 +37,6 @@ const TableRoot = styled('table', {
     textAlign: 'left',
     captionSide: 'bottom',
   },
-  /* Styles applied to the root element if `stickyHeader={true}`. */
   ...(styleProps.stickyHeader && {
     borderCollapse: 'separate',
   }),
