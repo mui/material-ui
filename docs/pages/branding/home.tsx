@@ -83,7 +83,7 @@ const Home = () => {
                 >
                   The <GradientText>ultimate</GradientText> solution for your UI.
                 </Typography>
-                <Typography variant="body1" color="text.secondary" mb={2}>
+                <Typography variant="body1" color="text.secondary" mb={3}>
                   MUI provides robust, customizable, and accessible components, enabling you to
                   build React applications faster. With a trusted open-source community and
                   beautiful designs, developing UIs have never been easier.

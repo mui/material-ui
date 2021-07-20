@@ -89,7 +89,7 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
   },
 );
 
-const HeaderNav = () => {
+const HeaderNavBar = () => {
   const [subMenuOpen, setSubMenuOpen] = React.useState(false);
   const [subMenuIndex, setSubMenuIndex] = React.useState<number | null>(null);
   const productsMenuRef = React.useRef<HTMLDivElement | null>(null);
@@ -252,4 +252,4 @@ const HeaderNav = () => {
   );
 };
 
-export default HeaderNav;
+export default HeaderNavBar;
