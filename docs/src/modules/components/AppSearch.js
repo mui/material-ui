@@ -10,9 +10,18 @@ import docsearch from 'docsearch.js';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
-const StyledInput = styled(Input)({
+const StyledInput = styled(Input)(() => ({
   color: 'inherit',
-});
+  '& input': {
+    padding: theme.spacing(1),
+    paddingLeft: theme.spacing(9),
+    transition: theme.transitions.create('width'),
+    width: 140,
+    '&:focus': {
+      width: 170,
+    },
+  },
+}));
 
 function AlgoliaStyles() {
   return (
@@ -268,19 +277,6 @@ export default function AppSearch() {
         }}
         onBlur={() => {
           setFocused(false);
-        }}
-        componentsProps={{
-          input: {
-            sx: {
-              padding: 1,
-              paddingLeft: 9,
-              transition: theme.transitions.create('width'),
-              width: 140,
-              '&:focus': {
-                width: 170,
-              },
-            },
-          },
         }}
       />
       <Shortcut className={focused && 'Mui-focused'}>
