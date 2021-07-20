@@ -43,4 +43,6 @@ const theme = createTheme({
 </Button>;
 
 // @ts-expect-error The contained variant was disabled
-<Button variant="contained" color="primary">Invalid</Button>
+<Button variant="contained" color="primary">
+  Invalid
+</Button>;
