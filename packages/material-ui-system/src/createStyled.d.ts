@@ -59,6 +59,13 @@ export interface FunctionInterpolation<Props> {
   (props: Props): Interpolation<Props>;
 }
 
+/**
+ * By removing parameterized type references, this type brings better type check performance.
+ */
+interface StaticFunctionInterpolation {
+  (props: { theme: DefaultTheme }): CSSInterpolation;
+}
+
 export interface ArrayInterpolation<Props> extends Array<Interpolation<Props>> {}
 
 export type Interpolation<Props> =
@@ -119,6 +126,12 @@ export interface CreateStyledComponent<
   SpecificComponentProps extends {} = {},
   JSXProps extends {} = {},
 > {
+  (...styles: Array<InterpolationPrimitive | StaticFunctionInterpolation>): StyledComponent<
+    ComponentProps,
+    SpecificComponentProps,
+    JSXProps
+  >;
+
   /**
    * @typeparam AdditionalProps  Additional props to add to your styled component
    */
