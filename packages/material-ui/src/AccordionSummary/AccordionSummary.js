@@ -145,7 +145,7 @@ AccordionSummary.propTypes = {
    */
   classes: chainPropTypes(PropTypes.object, (props) => {
     // Guard against when generation of classes is disabled in the stylesheets (`disableGeneration`).
-    // For `disableGeneration` we don't have an accurate but `disableGeneration` is an advanced use case.
+    // For `disableGeneration` we don't have an accurate warning but `disableGeneration` is an advanced use case anyway.
     if (props.classes.focused !== undefined && props.classes.focused.indexOf(' ') !== -1) {
       return new Error(
         [
