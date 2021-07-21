@@ -8,6 +8,7 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Hero from 'docs/src/components/home/Hero';
 import References from 'docs/src/components/home/References';
+import DesignSystems from 'docs/src/components/home/DesignSystems';
 
 import brandingTheme from 'docs/src/modules/brandingTheme';
 
@@ -27,6 +28,7 @@ export default function Home() {
           to build their UIs.
         </Typography>
       </Container>
+      <DesignSystems />
     </ThemeProvider>
   );
 }
