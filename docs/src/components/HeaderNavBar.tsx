@@ -32,6 +32,10 @@ const Navigation = styled('nav')(({ theme }) => ({
       borderRadius: theme.shape.borderRadius,
       '&:hover, &:focus': {
         backgroundColor: theme.palette.grey[50],
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'initial',
+        },
       },
     },
     '& > div': {
@@ -59,7 +63,16 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
           display="flex"
           alignItems="center"
           py={2}
-          sx={{ '&:hover, &:focus': { backgroundColor: '#f3f6f9', outline: 'none' } }}
+          sx={{
+            '&:hover, &:focus': {
+              backgroundColor: 'grey.50',
+              outline: 'none',
+              '@media (hover: none)': {
+                backgroundColor: 'initial',
+                outline: 'initial',
+              },
+            },
+          }}
           {...props}
         >
           <Box px={2}>{icon}</Box>
