@@ -2,8 +2,9 @@ import * as React from 'react';
 import { createClientRender, describeConformanceV5 } from 'test/utils';
 import MasonryItem, { masonryItemClasses as classes } from '@material-ui/lab/MasonryItem';
 import { expect } from 'chai';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import Masonry from '../Masonry/Masonry';
+import { createTheme } from '@material-ui/core/styles';
+import defaultTheme from '@material-ui/core/styles/defaultTheme';
+import { style } from './MasonryItem';
 
 describe('<MasonryItem />', () => {
   const render = createClientRender();
@@ -26,7 +27,6 @@ describe('<MasonryItem />', () => {
 
   const children = <div data-testid="test-children" />;
   const testHeight = 100;
-  const testSpacing = 1;
   const theme = createTheme({
     spacing: 8,
   });
@@ -37,34 +37,35 @@ describe('<MasonryItem />', () => {
   });
 
   describe('style attribute:', () => {
-    it('should render with a padding bottom of passed gap - 1px', () => {
-      const { getByTestId } = render(
-        <ThemeProvider theme={theme}>
-          <Masonry spacing={testSpacing} data-testid="test-root">
-            <MasonryItem height={testHeight} data-testid="test-child">
-              {children}
-            </MasonryItem>
-          </Masonry>
-        </ThemeProvider>,
-      );
-      const childStyle = getComputedStyle(getByTestId('test-child'));
-      const gap = Number(theme.spacing(testSpacing).replace('px', '')) - 1;
-      expect(childStyle['padding-bottom']).to.equal(`${gap}px`);
-    });
-
-    it('should render with a correct value of grid-row-end', () => {
-      const { getByTestId } = render(
-        <ThemeProvider theme={theme}>
-          <Masonry spacing={testSpacing} data-testid="test-root">
-            <MasonryItem height={testHeight} data-testid="test-child">
-              {children}
-            </MasonryItem>
-          </Masonry>
-        </ThemeProvider>,
-      );
-      const childStyle = getComputedStyle(getByTestId('test-child'));
-      const rowSpan = testHeight + Number(theme.spacing(testSpacing).replace('px', ''));
-      expect(childStyle['grid-row-end']).to.equal(`span ${rowSpan}`);
+    it('should render with padding bottom and grid-row-end responsive to breakpoints', () => {
+      expect(
+        style({
+          styleProps: {
+            height: testHeight,
+            spacing: { xs: 1, sm: 2, md: 3 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          gridRowEnd: `span ${Math.ceil(testHeight + Number(theme.spacing(1).replace('px', '')))}`,
+          paddingBottom: Number(theme.spacing(1).replace('px', '')) - 1,
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          gridRowEnd: `span ${Math.ceil(testHeight + Number(theme.spacing(2).replace('px', '')))}`,
+          paddingBottom: Number(theme.spacing(2).replace('px', '')) - 1,
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: {
+          gridRowEnd: `span ${Math.ceil(testHeight + Number(theme.spacing(3).replace('px', '')))}`,
+          paddingBottom: Number(theme.spacing(3).replace('px', '')) - 1,
+        },
+        width: '100%',
+        [`& *`]: {
+          objectFit: 'cover',
+          width: '100%',
+          height: '100%',
+        },
+      });
     });
   });
 

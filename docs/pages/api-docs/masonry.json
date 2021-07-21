@@ -2,7 +2,13 @@
   "props": {
     "children": { "type": { "name": "node" }, "required": true },
     "classes": { "type": { "name": "object" } },
-    "cols": { "type": { "name": "number" }, "default": "4" },
+    "cols": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
+      },
+      "default": "4"
+    },
     "component": { "type": { "name": "elementType" } },
     "spacing": {
       "type": {

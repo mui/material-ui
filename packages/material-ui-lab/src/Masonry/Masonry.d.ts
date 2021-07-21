@@ -17,7 +17,7 @@ export interface MasonryTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * Number of columns.
      * @default 4
      */
-    cols?: number;
+    cols?: ResponsiveStyleValue<number | string>;
     /**
      * Defines the space between children.
      * @default 1

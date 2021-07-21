@@ -7,8 +7,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { createUnarySpacing, getValue, handleBreakpoints } from '@material-ui/system';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { styled, useThemeProps } from '@material-ui/core/styles';
+import { deepmerge } from '@material-ui/utils';
 import { getMasonryUtilityClass } from './masonryClasses';
 import MasonryContext from './MasonryContext';
 
@@ -22,17 +24,80 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getMasonryUtilityClass, classes);
 };
 
+// Duplicated with Stack.js
+function resolveBreakpointValues({ values, base }) {
+  const keys = Object.keys(base);
+
+  if (keys.length === 0) {
+    return values;
+  }
+
+  let previous;
+
+  return keys.reduce((acc, breakpoint) => {
+    if (typeof values === 'object') {
+      acc[breakpoint] = values[breakpoint] != null ? values[breakpoint] : values[previous];
+    } else {
+      acc[breakpoint] = values;
+    }
+    previous = breakpoint;
+    return acc;
+  }, {});
+}
+
 export const style = ({ styleProps, theme }) => {
-  return {
+  let styles = {
     display: 'grid',
     gridAutoRows: 0,
     padding: 0,
     overflow: 'auto',
     width: '100%',
     rowGap: 1,
-    columnGap: theme.spacing(styleProps.spacing),
-    gridTemplateColumns: `repeat(${styleProps.cols}, 1fr)`,
+    ...((typeof styleProps.spacing === 'string' || typeof styleProps.spacing === 'number') && {
+      columnGap: theme.spacing(styleProps.spacing),
+    }),
+    ...((typeof styleProps.cols === 'string' || typeof styleProps.cols === 'number') && {
+      gridTemplateColumns: `repeat(${styleProps.cols}, 1fr)`,
+    }),
   };
+
+  const base = Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
+    if (styleProps.spacing[breakpoint] != null) {
+      acc[breakpoint] = true;
+    }
+    return acc;
+  }, {});
+
+  if (typeof styleProps.spacing !== 'string' && typeof styleProps.spacing !== 'number') {
+    const spacingValues = resolveBreakpointValues({ values: styleProps.spacing, base });
+    const transformer = createUnarySpacing(theme);
+    const spacingStyleFromPropValue = (propValue) => {
+      return {
+        columnGap: getValue(transformer, propValue),
+      };
+    };
+
+    styles = deepmerge(
+      styles,
+      handleBreakpoints({ theme }, spacingValues, spacingStyleFromPropValue),
+    );
+  }
+
+  if (typeof styleProps.cols !== 'string' && typeof styleProps.cols !== 'number') {
+    const columnValues = resolveBreakpointValues({ values: styleProps.cols, base });
+    const columnStyleFromPropValue = (propValue) => {
+      return {
+        gridTemplateColumns: `repeat(${propValue}, 1fr)`,
+      };
+    };
+
+    styles = deepmerge(
+      styles,
+      handleBreakpoints({ theme }, columnValues, columnStyleFromPropValue),
+    );
+  }
+
+  return styles;
 };
 
 const MasonryRoot = styled('div', {
@@ -87,7 +152,12 @@ Masonry.propTypes /* remove-proptypes */ = {
    * Number of columns.
    * @default 4
    */
-  cols: PropTypes.number,
+  cols: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+    PropTypes.number,
+    PropTypes.object,
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
