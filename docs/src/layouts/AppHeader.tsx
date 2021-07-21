@@ -10,6 +10,7 @@ import HeaderNavDropdown from 'docs/src/components/HeaderNavDropdown';
 const Header = styled('div')(({ theme }) => ({
   position: 'sticky',
   top: 0,
+  zIndex: theme.zIndex.appBar,
   backdropFilter: 'blur(20px)',
   boxShadow: 'inset 0px -1px 1px #EAEEF3',
   backgroundColor: theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.72)' : 'rgba(255,255,255,0.72)',
