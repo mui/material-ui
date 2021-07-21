@@ -29,7 +29,6 @@ const TableSortLabelRoot = styled(ButtonBase, {
     return [styles.root, styleProps.active && styles.active];
   },
 })(({ theme }) => ({
-  /* Styles applied to the root element. */
   cursor: 'pointer',
   display: 'inline-flex',
   justifyContent: 'flex-start',
@@ -62,7 +61,6 @@ const TableSortLabelIcon = styled('span', {
     return [styles.icon, styles[`iconDirection${capitalize(styleProps.direction)}`]];
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the icon component. */
   fontSize: 18,
   marginRight: 4,
   marginLeft: 4,
@@ -71,11 +69,9 @@ const TableSortLabelIcon = styled('span', {
     duration: theme.transitions.duration.shorter,
   }),
   userSelect: 'none',
-  /* Styles applied to the icon component if `direction="desc"`. */
   ...(styleProps.direction === 'desc' && {
     transform: 'rotate(0deg)',
   }),
-  /* Styles applied to the icon component if `direction="asc"`. */
   ...(styleProps.direction === 'asc' && {
     transform: 'rotate(180deg)',
   }),

@@ -14,29 +14,6 @@ to your applications components.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-To better support server rendering, Material-UI provides a `style` prop to the children of some transition components, (Fade, Grow, Zoom, Slide).
-The `style` prop must be applied to the DOM for the animation to work as expected.
-
-```jsx
-// The `props` object contains a `style` prop.
-// You need to provide it to the `div` element as shown here.
-function MyComponent(props) {
-  return (
-    <div {...props}>
-      Fade
-    </div>
-  );
-}
-
-export default Main() {
-  return (
-    <Fade>
-      <MyComponent />
-    </Fade>
-  );
-}
-```
-
 ## Collapse
 
 Expand from the start edge of the child element.
@@ -80,6 +57,33 @@ Expand outwards from the center of the child element.
 This example also demonstrates how to delay the enter transition.
 
 {{"demo": "pages/components/transitions/SimpleZoom.js", "bg": true}}
+
+## Child requirement
+
+- **Forward the style** : To better support server rendering, Material-UI provides a `style` prop to the children of some transition components, (Fade, Grow, Zoom, Slide). The `style` prop must be applied to the DOM for the animation to work as expected.
+- **Forward the ref** : The transition components require the first child element to forward its ref to the DOM node. For more details about ref, check out [Caveat with refs](/guides/composition/#caveat-with-refs)
+- **Single element** : The transition components require only 1 child element (`React.Fragment` is not allowed).
+
+```jsx
+// The `props` object contains a `style` prop.
+// You need to provide it to the `div` element as shown here.
+const MyComponent = React.forwardRef((props, ref) {
+  return (
+    <div ref={ref} {...props}>
+      Fade
+    </div>
+  );
+})
+
+export default Main() {
+  return (
+    <Fade>
+      {/* MyComponent must the only child */}
+      <MyComponent />
+    </Fade>
+  );
+}
+```
 
 ## TransitionGroup
 

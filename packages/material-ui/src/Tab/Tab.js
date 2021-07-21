@@ -42,7 +42,6 @@ const TabRoot = styled(ButtonBase, {
     ];
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
   ...theme.typography.button,
   maxWidth: 360,
   minWidth: 90,
@@ -55,7 +54,6 @@ const TabRoot = styled(ButtonBase, {
   textAlign: 'center',
   flexDirection: 'column',
   lineHeight: 1.25,
-  /* Styles applied to the root element if both `icon` and `label` are provided. */
   ...(styleProps.icon &&
     styleProps.label && {
       minHeight: 72,
@@ -65,7 +63,6 @@ const TabRoot = styled(ButtonBase, {
         marginBottom: 6,
       },
     }),
-  /* Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="inherit"`. */
   ...(styleProps.textColor === 'inherit' && {
     color: 'inherit',
     opacity: 0.6, // same opacity as theme.palette.text.secondary
@@ -76,7 +73,6 @@ const TabRoot = styled(ButtonBase, {
       opacity: theme.palette.action.disabledOpacity,
     },
   }),
-  /* Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="primary"`. */
   ...(styleProps.textColor === 'primary' && {
     color: theme.palette.text.secondary,
     [`&.${tabClasses.selected}`]: {
@@ -86,7 +82,6 @@ const TabRoot = styled(ButtonBase, {
       color: theme.palette.text.disabled,
     },
   }),
-  /* Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="secondary"`. */
   ...(styleProps.textColor === 'secondary' && {
     color: theme.palette.text.secondary,
     [`&.${tabClasses.selected}`]: {
@@ -96,14 +91,12 @@ const TabRoot = styled(ButtonBase, {
       color: theme.palette.text.disabled,
     },
   }),
-  /* Styles applied to the root element if `fullWidth={true}` */
   ...(styleProps.fullWidth && {
     flexShrink: 1,
     flexGrow: 1,
     flexBasis: 0,
     maxWidth: 'none',
   }),
-  /* Styles applied to the root element if `wrapped={true}`. */
   ...(styleProps.wrapped && {
     fontSize: theme.typography.pxToRem(12),
   }),

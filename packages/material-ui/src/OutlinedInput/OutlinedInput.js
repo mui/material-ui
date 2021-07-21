@@ -112,6 +112,7 @@ const OutlinedInputInput = styled(InputBaseInput, {
 const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiOutlinedInput' });
   const {
+    components = {},
     fullWidth = false,
     inputComponent = 'input',
     label,
@@ -125,7 +126,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
 
   return (
     <InputBase
-      components={{ Root: OutlinedInputRoot, Input: OutlinedInputInput }}
+      components={{ Root: OutlinedInputRoot, Input: OutlinedInputInput, ...components }}
       renderSuffix={(state) => (
         <NotchedOutlineRoot
           className={classes.notchedOutline}
@@ -178,6 +179,15 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['primary', 'secondary']),
     PropTypes.string,
   ]),
+  /**
+   * The components used for each slot inside the InputBase.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Input: PropTypes.elementType,
+    Root: PropTypes.elementType,
+  }),
   /**
    * The default value. Use when the component is not controlled.
    */

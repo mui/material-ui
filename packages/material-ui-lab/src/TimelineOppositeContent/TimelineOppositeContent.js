@@ -26,12 +26,10 @@ const TimelineOppositeContentRoot = styled(Typography, {
     return [styles.root, styles[`position${capitalize(styleProps.position)}`]];
   },
 })(({ styleProps }) => ({
-  /* Styles applied to the root element. */
   padding: '6px 16px',
   marginRight: 'auto',
   textAlign: 'right',
   flex: 1,
-  /* Styles applied to the root element if `position="left"`. */
   ...(styleProps.position === 'left' && {
     textAlign: 'left',
   }),

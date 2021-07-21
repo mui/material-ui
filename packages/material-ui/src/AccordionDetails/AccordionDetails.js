@@ -21,7 +21,6 @@ const AccordionDetailsRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })(({ theme }) => ({
-  /* Styles applied to the root element. */
   padding: theme.spacing(1, 2, 2),
 }));
 

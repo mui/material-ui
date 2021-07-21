@@ -33,14 +33,12 @@ const MobileStepperRoot = styled(Paper, {
     return [styles.root, styles[`position${capitalize(styleProps.position)}`]];
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'space-between',
   alignItems: 'center',
   background: theme.palette.background.default,
   padding: 8,
-  /* Styles applied to the root element if `position="bottom"`. */
   ...(styleProps.position === 'bottom' && {
     position: 'fixed',
     bottom: 0,
@@ -48,7 +46,6 @@ const MobileStepperRoot = styled(Paper, {
     right: 0,
     zIndex: theme.zIndex.mobileStepper,
   }),
-  /* Styles applied to the root element if `position="top"`. */
   ...(styleProps.position === 'top' && {
     position: 'fixed',
     top: 0,
@@ -63,7 +60,6 @@ const MobileStepperDots = styled('div', {
   slot: 'Dots',
   overridesResolver: (props, styles) => styles.dots,
 })(({ styleProps }) => ({
-  /* Styles applied to the dots container if `variant="dots"`. */
   ...(styleProps.variant === 'dots' && {
     display: 'flex',
     flexDirection: 'row',
@@ -79,7 +75,6 @@ const MobileStepperDot = styled('div', {
     return [styles.dot, styleProps.dotActive && styles.dotActive];
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to each dot if `variant="dots"`. */
   ...(styleProps.variant === 'dots' && {
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
@@ -89,7 +84,6 @@ const MobileStepperDot = styled('div', {
     width: 8,
     height: 8,
     margin: '0 2px',
-    /* Styles applied to a dot if `variant="dots"` and this is the active step. */
     ...(styleProps.dotActive && {
       backgroundColor: theme.palette.primary.main,
     }),
@@ -101,7 +95,6 @@ const MobileStepperProgress = styled(LinearProgress, {
   slot: 'Progress',
   overridesResolver: (props, styles) => styles.progress,
 })(({ styleProps }) => ({
-  /* Styles applied to the Linear Progress component if `variant="progress"`. */
   ...(styleProps.variant === 'progress' && {
     width: '50%',
   }),

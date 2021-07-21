@@ -21,7 +21,6 @@ const TableContainerRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({
-  /* Styles applied to the root element. */
   width: '100%',
   overflowX: 'auto',
 });
