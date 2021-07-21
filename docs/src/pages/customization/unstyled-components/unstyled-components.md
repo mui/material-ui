@@ -39,7 +39,7 @@ Most of the unstyled components are implemented with the help of a hook (where i
 
 When creating custom components based on the unstyled ones, you can use either unstyled components or hooks.
 
-With components, you will usually be able write less code, but with hooks you have the ultimate control over the structure of the rendered HTML.
+With components, you will usually be able to write less code, but with hooks you have the ultimate control over the structure of the rendered HTML.
 However, to make the resulting component accessible, you need to create the components the hook expects and apply props returned by the hook.
 Concrete examples are provided in each hook's documentation.
 
@@ -98,7 +98,7 @@ This makes it possible to provide a styled component.
 Each unstyled component has a specific set of "slots" - that is subcomponents that you can override.
 
 Let's take a [SwitchUnstyled](../api/switchUnstyled) as an example.
-It has three slots: `Root`, `Thumb` and `Input`.
+It has three slots: `Root`, `Thumb`, and `Input`.
 The demo below shows how to create a styled component (using [System](system/styled/) in this case, but it could well be any other solution)
 
 {{"demo": "pages/customization/unstyled-components/StylingSlots.js"}}
