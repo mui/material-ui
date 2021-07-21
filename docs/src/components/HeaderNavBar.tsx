@@ -22,10 +22,9 @@ const Navigation = styled('nav')(({ theme }) => ({
     display: 'flex',
   },
   '& li': {
-    color: '#5a6978',
-    fontFamily: theme.typography.fontFamily,
-    fontSize: '0.875rem',
-    fontWeight: 'bold',
+    color: theme.palette.text.secondary,
+    ...theme.typography.body3,
+    fontWeight: 700,
     '& > a, & > div': {
       display: 'inline-block',
       color: 'inherit',
@@ -33,7 +32,7 @@ const Navigation = styled('nav')(({ theme }) => ({
       padding: theme.spacing(1),
       borderRadius: theme.shape.borderRadius,
       '&:hover, &:focus': {
-        backgroundColor: '#f3f6f9',
+        backgroundColor: theme.palette.grey[50],
       },
     },
     '& > div': {
@@ -66,21 +65,23 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
         >
           <Box px={2}>{icon}</Box>
           <Box>
-            <Typography color="#3D4752" fontWeight="bold">
+            <Typography color="grey.900" variant="body3" fontWeight={700}>
               {name}
             </Typography>
-            <Typography color="#5A6978">{description}</Typography>
+            <Typography color="text.secondary" variant="body3">
+              {description}
+            </Typography>
             <Box
               sx={{
                 display: 'inline-flex',
                 alignItems: 'center',
                 color: 'primary.main',
-                typography: 'body2',
+                typography: 'body3',
                 '&:hover': { color: 'primary.dark' },
               }}
             >
               <b>Learn more</b>
-              <KeyboardArrowRightRounded fontSize="small" sx={{ mb: -0.5 }} />
+              <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '3px' }} />
             </Box>
           </Box>
         </Box>
@@ -171,7 +172,7 @@ const HeaderNavBar = () => {
                     },
                     '& li:not(:last-of-type)': {
                       borderBottom: '1px solid',
-                      borderColor: '#EAEEF3',
+                      borderColor: 'grey.100',
                     },
                     '& a': { textDecoration: 'none' },
                   }}

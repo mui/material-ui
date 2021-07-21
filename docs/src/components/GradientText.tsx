@@ -1,9 +1,9 @@
 import { styled } from '@material-ui/core/styles';
 
 const GradientText = styled('span')<{
-  color?: 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
+  color?: 'primary' | 'error' | 'success' | 'warning';
 }>(({ theme, color = 'primary' }) => ({
-  background: `linear-gradient(to right, ${theme.palette[color].main}, ${theme.palette[color].dark})`,
+  background: `linear-gradient(to right, ${theme.palette[color].main}, ${theme.palette[color][700]})`,
   backgroundClip: 'text',
   '-webkit-text-fill-color': 'transparent',
 }));

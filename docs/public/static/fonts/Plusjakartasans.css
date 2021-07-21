@@ -3,7 +3,17 @@
   src: url('PlusJakartaSans-Regular.woff2') format('woff2'),
     url('PlusJakartaSans-Regular.woff') format('woff'),
     url('PlusJakartaSans-Regular.ttf') format('truetype');
-  font-weight: normal;
+  font-weight: 400;
+  font-style: normal;
+  font-display: fallback;
+}
+
+@font-face {
+  font-family: 'PlusJakartaSans';
+  src: url('PlusJakartaSans-Medium.woff2') format('woff2'),
+    url('PlusJakartaSans-Medium.woff') format('woff'),
+    url('PlusJakartaSans-Medium.ttf') format('truetype');
+  font-weight: 500;
   font-style: normal;
   font-display: fallback;
 }
@@ -13,7 +23,7 @@
   src: url('PlusJakartaSans-Bold.woff2') format('woff2'),
     url('PlusJakartaSans-Bold.woff') format('woff'),
     url('PlusJakartaSans-Bold.ttf') format('truetype');
-  font-weight: bold;
+  font-weight: 700;
   font-style: normal;
   font-display: fallback;
 }

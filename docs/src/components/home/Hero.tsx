@@ -29,7 +29,7 @@ const Hero = () => {
               >
                 The <GradientText>ultimate</GradientText> solution for your UI.
               </Typography>
-              <Typography variant="body1" color="text.secondary" mb={3}>
+              <Typography color="text.secondary" mb={3}>
                 MUI provides robust, customizable, and accessible components, enabling you to build
                 React applications faster. With a trusted open-source community and beautiful
                 designs, developing UIs have never been easier.
@@ -47,11 +47,12 @@ const Hero = () => {
                 <Button
                   size="large"
                   variant="outlined"
-                  endIcon={<ContentCopyRounded sx={{ color: 'grey.500' }} />}
+                  endIcon={<ContentCopyRounded sx={{ color: 'grey.700' }} />}
                   sx={{
-                    color: 'grey.600',
-                    border: '1px solid #e5e8ec',
-                    bgcolor: '#f3f6f9',
+                    color: 'grey.800',
+                    border: '1px solid',
+                    borderColor: 'grey.200',
+                    bgcolor: 'grey.50',
                   }}
                 >
                   <Box component="span" sx={{ mr: 1, color: 'grey.400' }}>

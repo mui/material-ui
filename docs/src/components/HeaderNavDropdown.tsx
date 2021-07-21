@@ -9,7 +9,7 @@ import SvgHambugerMenu from 'docs/src/icons/SvgHamburgerMenu';
 
 const Anchor = styled('a')(({ theme }) => ({
   ...theme.typography.body2,
-  fontWeight: 'bold',
+  fontWeight: 700,
   textDecoration: 'none',
   color: theme.palette.text.secondary,
   display: 'block',
@@ -32,7 +32,7 @@ const HeaderNavDropdown = () => {
         sx={{
           position: 'relative',
           borderRadius: 1,
-          '&:focus': { boxShadow: '0 0 0 1px #e5e8ec' },
+          '&:focus': { boxShadow: `0 0 0 1px #e5e8ec` },
         }}
       >
         <SvgHambugerMenu />
