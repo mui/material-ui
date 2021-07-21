@@ -245,7 +245,6 @@ const DesignSystems = () => {
                       description="Ready to use, forever free, out-of-the-box, components."
                     />
                   }
-                  disableRipple
                 />
                 <Tab
                   label={
@@ -259,7 +258,6 @@ const DesignSystems = () => {
                       description="Powerful components for your complex apps."
                     />
                   }
-                  disableRipple
                 />
                 <Tab
                   label={
@@ -269,7 +267,6 @@ const DesignSystems = () => {
                       description="Get a fully built template for you application."
                     />
                   }
-                  disableRipple
                 />
                 <Tab
                   label={
@@ -279,7 +276,6 @@ const DesignSystems = () => {
                       description="Pick your favorite design tool to enjoy."
                     />
                   }
-                  disableRipple
                 />
               </Tabs>
             </Box>

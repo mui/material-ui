@@ -203,6 +203,11 @@ const brandingTheme = createTheme(theme, {
         },
       },
     },
+    MuiTab: {
+      defaultProps: {
+        disableTouchRipple: true,
+      },
+    },
   },
 });
 
