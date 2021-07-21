@@ -38,10 +38,10 @@
   "peerDependencies": {
     "@material-ui/core": "^5.0.0-alpha.36",
     "@types/react": "^16.8.6 || ^17.0.0",
-    "date-fns": "^2.0.0",
-    "dayjs": "^1.8.17",
-    "luxon": "^1.21.3",
-    "moment": "^2.24.0",
+    "@date-io/date-fns": "^2.10.6",
+    "@date-io/dayjs": "^2.10.6",
+    "@date-io/luxon": "^2.10.6",
+    "@date-io/moment": "^2.10.6",
     "react": "^17.0.0",
     "react-dom": "^17.0.0"
   },
@@ -49,25 +49,21 @@
     "@types/react": {
       "optional": true
     },
-    "date-fns": {
+    "@date-io/date-fns": {
       "optional": true
     },
-    "dayjs": {
+    "@date-io/dayjs": {
       "optional": true
     },
-    "luxon": {
+    "@date-io/luxon": {
       "optional": true
     },
-    "moment": {
+    "@date-io/moment": {
       "optional": true
     }
   },
   "dependencies": {
     "@babel/runtime": "^7.4.4",
-    "@date-io/date-fns": "^2.10.6",
-    "@date-io/dayjs": "^2.10.6",
-    "@date-io/luxon": "^2.10.6",
-    "@date-io/moment": "^2.10.6",
     "@material-ui/system": "5.0.0-beta.1",
     "@material-ui/unstyled": "5.0.0-alpha.40",
     "@material-ui/utils": "5.0.0-beta.0",
@@ -78,6 +74,10 @@
     "rifm": "^0.12.0"
   },
   "devDependencies": {
+    "@date-io/date-fns": "^2.10.6",
+    "@date-io/dayjs": "^2.10.6",
+    "@date-io/luxon": "^2.10.6",
+    "@date-io/moment": "^2.10.6",
     "@material-ui/types": "6.0.1",
     "@types/luxon": "^1.25.0",
     "date-fns": "^2.0.0",
