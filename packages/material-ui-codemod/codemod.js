@@ -4,9 +4,10 @@ const childProcess = require('child_process');
 const { promises: fs } = require('fs');
 const path = require('path');
 const yargs = require('yargs');
+const jscodeshiftPackage = require('jscodeshift/package.json');
 
 const jscodeshiftDirectory = path.dirname(require.resolve('jscodeshift'));
-const jscodeshiftExecutable = path.join(jscodeshiftDirectory, 'bin/jscodeshift.js');
+const jscodeshiftExecutable = path.join(jscodeshiftDirectory, jscodeshiftPackage.bin.jscodeshift);
 
 async function runTransform(transform, files, flags, codemodFlags) {
   const transformerSrcPath = path.resolve(__dirname, './src', `${transform}.js`);
