@@ -67,9 +67,9 @@ This example also demonstrates how to delay the enter transition.
 ```jsx
 // The `props` object contains a `style` prop.
 // You need to provide it to the `div` element as shown here.
-const MyComponent = React.forwardRef(({ style, ...props }, ref) {
+const MyComponent = React.forwardRef((props, ref) {
   return (
-    <div ref={ref} {...props} style={style}>
+    <div ref={ref} {...props}>
       Fade
     </div>
   );
