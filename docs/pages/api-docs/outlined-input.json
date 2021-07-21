@@ -9,6 +9,10 @@
         "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
       }
     },
+    "components": {
+      "type": { "name": "shape", "description": "{ Input?: elementType, Root?: elementType }" },
+      "default": "{}"
+    },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
     "endAdornment": { "type": { "name": "node" } },
