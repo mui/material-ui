@@ -7,7 +7,6 @@ import Popper from '@material-ui/core/Popper';
 import Paper from '@material-ui/core/Paper';
 import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
-import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 import SvgProductCore from 'docs/src/icons/SvgProductCore';
 import SvgProductAdvanced from 'docs/src/icons/SvgProductAdvanced';
 import SvgProductTemplates from 'docs/src/icons/SvgProductTemplates';
@@ -71,18 +70,6 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
             <Typography color="text.secondary" variant="body3">
               {description}
             </Typography>
-            <Box
-              sx={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                color: 'primary.main',
-                typography: 'body3',
-                '&:hover': { color: 'primary.dark' },
-              }}
-            >
-              <b>Learn more</b>
-              <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '3px' }} />
-            </Box>
           </Box>
         </Box>
       </NextLink>

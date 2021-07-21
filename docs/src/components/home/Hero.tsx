@@ -22,7 +22,7 @@ export default function Hero() {
             <Box textAlign={{ xs: 'center', md: 'left' }} maxWidth={500}>
               <Typography
                 variant="h1"
-                fontWeight={800}
+                fontWeight="extraBold"
                 fontSize="clamp(2.625rem, 1.2857rem + 3.5714vw, 4.5rem)"
                 lineHeight={1.11}
                 mb={2}
@@ -51,8 +51,16 @@ export default function Hero() {
                   sx={{
                     color: 'grey.800',
                     border: '1px solid',
-                    borderColor: 'grey.200',
                     bgcolor: 'grey.50',
+                    fontFamily: 'codeFontFamily',
+                    '&:not(:hover, .Mui-focusVisible)': {
+                      borderColor: 'grey.200',
+                    },
+                    '&:hover, &.Mui-focusVisible': {
+                      '& .MuiButton-endIcon > svg': {
+                        color: 'primary.main',
+                      },
+                    },
                   }}
                 >
                   <Box component="span" sx={{ mr: 1, color: 'grey.400' }}>

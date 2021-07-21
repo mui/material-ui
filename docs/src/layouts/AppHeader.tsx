@@ -2,6 +2,7 @@ import * as React from 'react';
 import NextLink from 'next/link';
 import { styled } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 import HeaderNavBar from 'docs/src/components/HeaderNavBar';
 import HeaderNavDropdown from 'docs/src/components/HeaderNavDropdown';
@@ -11,28 +12,26 @@ const Header = styled('div')(({ theme }) => ({
   top: 0,
   backdropFilter: 'blur(20px)',
   boxShadow: 'inset 0px -1px 1px #EAEEF3',
-  backgroundColor: 'rgba(255,255,255,0.72)',
-  display: 'flex',
-  alignItems: 'center',
-  minHeight: 64,
-  padding: theme.spacing(0, 2),
+  backgroundColor: theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.72)' : 'rgba(255,255,255,0.72)',
 }));
 
 export default function AppHeader() {
   return (
     <Header>
-      <NextLink href="/branding/home" passHref>
-        <Box component="a" lineHeight={0} mr={2}>
-          <SvgMuiLogo />
+      <Container sx={{ display: 'flex', alignItems: 'center', minHeight: 64 }}>
+        <NextLink href="/branding/home" passHref>
+          <Box component="a" lineHeight={0} mr={2}>
+            <SvgMuiLogo width={32} />
+          </Box>
+        </NextLink>
+        <Box display={{ xs: 'none', md: 'initial' }}>
+          <HeaderNavBar />
         </Box>
-      </NextLink>
-      <Box display={{ xs: 'none', md: 'initial' }}>
-        <HeaderNavBar />
-      </Box>
-      <Box ml="auto" />
-      <Box display={{ md: 'none' }}>
-        <HeaderNavDropdown />
-      </Box>
+        <Box ml="auto" />
+        <Box display={{ md: 'none' }}>
+          <HeaderNavDropdown />
+        </Box>
+      </Container>
     </Header>
   );
 }

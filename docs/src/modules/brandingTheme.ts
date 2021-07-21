@@ -19,10 +19,14 @@ declare module '@material-ui/core/styles/createPalette' {
 
 declare module '@material-ui/core/styles/createTypography' {
   interface TypographyOptions {
+    fontWeightExtraBold?: number;
+    codeFontFamily?: string;
     body3?: TypographyStyleOptions;
   }
 
   interface Typography {
+    fontWeightExtraBold: number;
+    codeFontFamily: string;
     body3: TypographyStyleOptions;
   }
 }
@@ -52,7 +56,20 @@ const grey = {
   900: '#3D4752',
 };
 
-const brandingTheme = createTheme({
+const systemFont = [
+  '-apple-system',
+  'BlinkMacSystemFont',
+  '"Segoe UI"',
+  'Roboto',
+  '"Helvetica Neue"',
+  'Arial',
+  'sans-serif',
+  '"Apple Color Emoji"',
+  '"Segoe UI Emoji"',
+  '"Segoe UI Symbol"',
+];
+
+const theme = createTheme({
   palette: {
     primary: {
       50: '#F0F7FF',
@@ -120,20 +137,9 @@ const brandingTheme = createTheme({
   },
   spacing: 10,
   typography: {
-    fontFamily: [
-      '"PlusJakartaSans"',
-      // system-font
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
+    fontFamily: ['"PlusJakartaSans"', ...systemFont].join(','),
+    codeFontFamily: ['"IBM Plex Mono"', ...systemFont].join(','),
+    fontWeightExtraBold: 800,
     button: {
       textTransform: 'initial',
       fontWeight: 700,
@@ -152,6 +158,9 @@ const brandingTheme = createTheme({
       lineHeight: '20px',
     },
   },
+});
+
+const brandingTheme = createTheme(theme, {
   components: {
     MuiTypography: {
       defaultProps: {
@@ -180,6 +189,16 @@ const brandingTheme = createTheme({
       styleOverrides: {
         sizeLarge: {
           padding: '13px 20px',
+        },
+      },
+    },
+    MuiContainer: {
+      styleOverrides: {
+        root: {
+          [theme.breakpoints.up('md')]: {
+            paddingLeft: theme.spacing(2),
+            paddingRight: theme.spacing(2),
+          },
         },
       },
     },
