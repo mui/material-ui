@@ -1,9 +1,10 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
+import Stack from '@material-ui/core/Stack';
 
 export default function NativePickers() {
   return (
-    <form noValidate>
+    <Stack component="form" noValidate spacing={3}>
       <TextField
         id="date"
         label="Birthday"
@@ -37,6 +38,6 @@ export default function NativePickers() {
           shrink: true,
         }}
       />
-    </form>
+    </Stack>
   );
 }
