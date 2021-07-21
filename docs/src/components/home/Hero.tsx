@@ -8,7 +8,7 @@ import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRoun
 import ContentCopyRounded from '@material-ui/icons/ContentCopyRounded';
 import GradientText from 'docs/src/components/GradientText';
 
-const Hero = () => {
+export default function Hero() {
   return (
     <Box sx={{ overflow: 'hidden' }}>
       <Container sx={{ minHeight: 500, height: 'calc(100vh - 120px)', maxHeight: 700 }}>
@@ -75,6 +75,4 @@ const Hero = () => {
       </Container>
     </Box>
   );
-};
-
-export default Hero;
+}

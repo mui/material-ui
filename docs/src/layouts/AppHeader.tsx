@@ -18,7 +18,7 @@ const Header = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
 }));
 
-const AppHeader = () => {
+export default function AppHeader() {
   return (
     <Header>
       <NextLink href="/branding/home" passHref>
@@ -35,6 +35,4 @@ const AppHeader = () => {
       </Box>
     </Header>
   );
-};
-
-export default AppHeader;
+}

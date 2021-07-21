@@ -20,7 +20,7 @@ const Anchor = styled('a')(({ theme }) => ({
   },
 }));
 
-const HeaderNavDropdown = () => {
+export default function HeaderNavDropdown() {
   const [open, setOpen] = React.useState(false);
   const hambugerRef = React.useRef<HTMLButtonElement | null>(null);
   return (
@@ -73,6 +73,4 @@ const HeaderNavDropdown = () => {
       </ClickAwayListener>
     </React.Fragment>
   );
-};
-
-export default HeaderNavDropdown;
+}
