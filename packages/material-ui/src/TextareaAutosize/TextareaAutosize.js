@@ -213,11 +213,11 @@ TextareaAutosize.propTypes = {
   placeholder: PropTypes.string,
   /**
    * Minimum number of rows to display.
-   * @deprecated Use `rowsMin` instead.
+   * @deprecated Use `minRows` instead.
    */
   rows: deprecatedPropType(
     PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-    'Use `rowsMin` instead.',
+    'Use `minRows` instead.',
   ),
   /**
    * Maximum number of rows to display.
