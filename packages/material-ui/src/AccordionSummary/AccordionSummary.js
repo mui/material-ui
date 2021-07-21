@@ -144,7 +144,9 @@ AccordionSummary.propTypes = {
    * See [CSS API](#css) below for more details.
    */
   classes: chainPropTypes(PropTypes.object, (props) => {
-    if (props.classes.focused.indexOf(' ') !== -1) {
+    // Guard against when generation of classes is disabled in the stylesheets (`disableGeneration`).
+    // For `disableGeneration` we don't have an accurate but `disableGeneration` is an advanced use case.
+    if (props.classes.focused !== undefined && props.classes.focused.indexOf(' ') !== -1) {
       return new Error(
         [
           'Material-UI: The `classes.focused` key is deprecated.',
