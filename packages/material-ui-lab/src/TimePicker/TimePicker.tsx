@@ -24,6 +24,7 @@ type TimePickerComponent = (<TDate>(
  *
  * Demos:
  *
+ * - [Pickers](https://material-ui.com/components/pickers/)
  * - [Time Picker](https://material-ui.com/components/time-picker/)
  *
  * API:
