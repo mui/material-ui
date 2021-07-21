@@ -8,14 +8,13 @@ import theme from '../src/theme';
 import createEmotionCache from '../src/createEmotionCache';
 
 // Client-side cache, shared for the whole session of the user in the browser.
-const cache = createEmotionCache();
+const clientSideEmotionCache = createEmotionCache();
 
 export default function MyApp(props) {
-  const { Component, disableEmotionCache = false, pageProps } = props;
-  const Wrapper = disableEmotionCache ? React.Fragment : CacheProvider;
-  const wrapperProps = disableEmotionCache ? {} : { value: cache };
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+
   return (
-    <Wrapper {...wrapperProps}>
+    <CacheProvider value={emotionCache}>
       <Head>
         <title>My page</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
@@ -25,12 +24,12 @@ export default function MyApp(props) {
         <CssBaseline />
         <Component {...pageProps} />
       </ThemeProvider>
-    </Wrapper>
+    </CacheProvider>
   );
 }
 
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
-  disableEmotionCache: PropTypes.bool,
+  emotionCache: PropTypes.object.isRequired,
   pageProps: PropTypes.object.isRequired,
 };

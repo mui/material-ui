@@ -64,7 +64,7 @@ MyDocument.getInitialProps = async (ctx) => {
       enhanceApp: (App) => (props) =>
         (
           <CacheProvider value={cache}>
-            <App disableEmotionCache {...props} />
+            <App emotionCache={cache} {...props} />
           </CacheProvider>
         ),
     });
