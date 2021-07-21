@@ -1,7 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { createUnarySpacing, getValue, handleBreakpoints } from '@material-ui/system';
+import {
+  createUnarySpacing,
+  getValue,
+  handleBreakpoints,
+  resolveBreakpointValues,
+} from '@material-ui/system';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { styled, useThemeProps } from '@material-ui/core/styles';
 import { deepmerge } from '@material-ui/utils';
@@ -18,31 +23,10 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getMasonryItemUtilityClass, classes);
 };
 
-// Duplicated with Stack.js
-function resolveBreakpointValues({ values, base }) {
-  const keys = Object.keys(base);
-
-  if (keys.length === 0) {
-    return values;
-  }
-
-  let previous;
-
-  return keys.reduce((acc, breakpoint) => {
-    if (typeof values === 'object') {
-      acc[breakpoint] = values[breakpoint] != null ? values[breakpoint] : values[previous];
-    } else {
-      acc[breakpoint] = values;
-    }
-    previous = breakpoint;
-    return acc;
-  }, {});
-}
-
 export const style = ({ styleProps, theme }) => {
   let styles = {
     width: '100%',
-    [`& *`]: {
+    [`& > *`]: {
       objectFit: 'cover',
       width: '100%',
       height: '100%',
@@ -55,7 +39,7 @@ export const style = ({ styleProps, theme }) => {
     }),
   };
 
-  if (typeof styleProps.spacing !== 'string' && typeof styleProps.spacing !== 'number') {
+  if (typeof styleProps.spacing === 'object' || Array.isArray(styleProps.spacing)) {
     const base = Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
       if (styleProps.spacing[breakpoint] != null) {
         acc[breakpoint] = true;

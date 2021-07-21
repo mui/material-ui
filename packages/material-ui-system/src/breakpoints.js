@@ -50,6 +50,29 @@ export function handleBreakpoints(props, propValue, styleFromPropValue) {
   return output;
 }
 
+export function resolveBreakpointValues({ values: breakpointValues, base }) {
+  const keys = Object.keys(base);
+
+  if (keys.length === 0) {
+    return breakpointValues;
+  }
+
+  let previous;
+
+  return keys.reduce((acc, breakpoint) => {
+    if (typeof breakpointValues === 'object') {
+      acc[breakpoint] =
+        breakpointValues[breakpoint] != null
+          ? breakpointValues[breakpoint]
+          : breakpointValues[previous];
+    } else {
+      acc[breakpoint] = breakpointValues;
+    }
+    previous = breakpoint;
+    return acc;
+  }, {});
+}
+
 function breakpoints(styleFunction) {
   const newStyleFunction = (props) => {
     const theme = props.theme || {};

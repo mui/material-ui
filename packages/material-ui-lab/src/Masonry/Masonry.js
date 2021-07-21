@@ -7,7 +7,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { createUnarySpacing, getValue, handleBreakpoints } from '@material-ui/system';
+import {
+  createUnarySpacing,
+  getValue,
+  handleBreakpoints,
+  resolveBreakpointValues,
+} from '@material-ui/system';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { styled, useThemeProps } from '@material-ui/core/styles';
 import { deepmerge } from '@material-ui/utils';
@@ -23,27 +28,6 @@ const useUtilityClasses = (styleProps) => {
 
   return composeClasses(slots, getMasonryUtilityClass, classes);
 };
-
-// Duplicated with Stack.js
-function resolveBreakpointValues({ values, base }) {
-  const keys = Object.keys(base);
-
-  if (keys.length === 0) {
-    return values;
-  }
-
-  let previous;
-
-  return keys.reduce((acc, breakpoint) => {
-    if (typeof values === 'object') {
-      acc[breakpoint] = values[breakpoint] != null ? values[breakpoint] : values[previous];
-    } else {
-      acc[breakpoint] = values;
-    }
-    previous = breakpoint;
-    return acc;
-  }, {});
-}
 
 export const style = ({ styleProps, theme }) => {
   let styles = {
@@ -68,7 +52,7 @@ export const style = ({ styleProps, theme }) => {
     return acc;
   }, {});
 
-  if (typeof styleProps.spacing !== 'string' && typeof styleProps.spacing !== 'number') {
+  if (typeof styleProps.spacing === 'object' || Array.isArray(styleProps.spacing)) {
     const spacingValues = resolveBreakpointValues({ values: styleProps.spacing, base });
     const transformer = createUnarySpacing(theme);
     const spacingStyleFromPropValue = (propValue) => {
@@ -83,7 +67,7 @@ export const style = ({ styleProps, theme }) => {
     );
   }
 
-  if (typeof styleProps.cols !== 'string' && typeof styleProps.cols !== 'number') {
+  if (typeof styleProps.cols === 'object' || Array.isArray(styleProps.cols)) {
     const columnValues = resolveBreakpointValues({ values: styleProps.cols, base });
     const columnStyleFromPropValue = (propValue) => {
       return {
