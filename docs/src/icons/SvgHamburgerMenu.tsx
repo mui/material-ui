@@ -10,8 +10,8 @@ function SvgComponent(props: React.SVGProps<SVGSVGElement>) {
       fill="none"
       {...props}
     >
-      <rect x={2} y={5} width={12} height={2} rx={1} fill="#007FFF" />
-      <rect x={2} y={9} width={12} height={2} rx={1} fill="#007FFF" />
+      <rect x={1} y={5} width={14} height={2} rx={1} fill="#007FFF" />
+      <rect x={1} y={9} width={14} height={2} rx={1} fill="#007FFF" />
     </svg>
   );
 }
