@@ -53,7 +53,7 @@ describe('<FormControlUnstyled />', () => {
           <TestComponent />
         </FormControlUnstyled>,
       );
-      
+
       expect(getByRole('textbox')).to.have.property('value', '');
     });
 
@@ -104,7 +104,7 @@ describe('<FormControlUnstyled />', () => {
     it('propagates the value via the context', () => {
       const { getByRole } = render(
         <FormControlUnstyled defaultValue="foo">
-          <TestComponent  />
+          <TestComponent />
         </FormControlUnstyled>,
       );
 
@@ -150,7 +150,7 @@ describe('<FormControlUnstyled />', () => {
     it('should be set if value is provided', () => {
       const { getByRole } = render(
         <FormControlUnstyled value="foo">
-          <TestComponent/>
+          <TestComponent />
         </FormControlUnstyled>,
       );
 
