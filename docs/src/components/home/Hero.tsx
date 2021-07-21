@@ -11,7 +11,13 @@ import GradientText from 'docs/src/components/GradientText';
 export default function Hero() {
   return (
     <Box sx={{ overflow: 'hidden' }}>
-      <Container sx={{ minHeight: 500, height: 'calc(100vh - 120px)', maxHeight: 700 }}>
+      <Container
+        sx={{
+          minHeight: 500,
+          height: 'calc(100vh - 120px)',
+          maxHeight: { xs: 500, sm: 700, xl: 1000 },
+        }}
+      >
         <Grid
           container
           alignItems="center"
@@ -77,7 +83,16 @@ export default function Hero() {
             lg={6}
             sx={{ maxHeight: '100%', display: { xs: 'none', md: 'initial' } }}
           >
-            <Box height={1000} width={1000} bgcolor="grey.50" />
+            <Box
+              minWidth={2000}
+              bgcolor="grey.50"
+              sx={{
+                minHeight: 500,
+                height: 'calc(100vh - 120px)',
+                maxHeight: { lg: 700, xl: 1000 },
+                borderBottomLeftRadius: 10,
+              }}
+            />
           </Grid>
         </Grid>
       </Container>
