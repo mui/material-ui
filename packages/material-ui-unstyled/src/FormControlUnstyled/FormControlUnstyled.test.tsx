@@ -11,18 +11,18 @@ import FormControlUnstyled, {
   formControlUnstyledClasses,
   useFormControlUnstyled,
 } from '@material-ui/unstyled/FormControlUnstyled';
-import { FormControlUnstyledState } from './FormControlContext';
 
-function TestComponent(props: { contextCallback?: (context: FormControlUnstyledState) => void }) {
+function TestComponent() {
   const context = useFormControlUnstyled();
-  React.useEffect(() => {
-    props.contextCallback?.(context!);
-  });
 
   const inputProps = {
-    value: context?.value as any,
+    'data-filled': context?.filled,
+    'data-focused': context?.focused,
     defaultValue: context?.defaultValue as any,
+    disabled: context?.disabled,
     onChange: context?.onChange,
+    required: context?.required,
+    value: context?.value as any,
   };
 
   return <input {...inputProps} />;
@@ -48,144 +48,136 @@ describe('<FormControlUnstyled />', () => {
 
   describe('initial state', () => {
     it('has undefined value', () => {
-      const readContext = spy();
-      render(
+      const { getByRole } = render(
         <FormControlUnstyled>
-          <TestComponent contextCallback={readContext} />
+          <TestComponent />
         </FormControlUnstyled>,
       );
-
-      expect(readContext.args[0][0]).to.have.property('value', undefined);
-      expect(readContext.args[0][0]).to.have.property('defaultValue', undefined);
+      
+      expect(getByRole('textbox')).to.have.property('value', '');
     });
 
     it('has disabled, filled, focused, and required set to false', () => {
-      const readContext = spy();
-      render(
+      const { getByRole } = render(
         <FormControlUnstyled>
-          <TestComponent contextCallback={readContext} />
+          <TestComponent />
         </FormControlUnstyled>,
       );
 
-      expect(readContext.args[0][0]).to.include({
+      expect(getByRole('textbox')).to.include({
         disabled: false,
-        filled: false,
-        focused: false,
         required: false,
+      });
+
+      expect(getByRole('textbox').dataset).to.include({
+        filled: 'false',
+        focused: 'false',
       });
     });
   });
 
   describe('prop: value', () => {
     it('propagates the value via the context', () => {
-      const readContext = spy();
-      render(
+      const { getByRole } = render(
         <FormControlUnstyled value="42">
-          <TestComponent contextCallback={readContext} />
+          <TestComponent />
         </FormControlUnstyled>,
       );
 
-      expect(readContext.args[0][0]).to.have.property('value', '42');
+      expect(getByRole('textbox')).to.have.property('value', '42');
     });
   });
 
   describe('prop: disabled', () => {
     it('propagates the value via the context', () => {
-      const readContext = spy();
-      render(
+      const { getByRole } = render(
         <FormControlUnstyled disabled>
-          <TestComponent contextCallback={readContext} />
+          <TestComponent />
         </FormControlUnstyled>,
       );
 
-      expect(readContext.args[0][0]).to.have.property('disabled', true);
+      expect(getByRole('textbox')).to.have.property('disabled', true);
     });
   });
 
   describe('prop: defaultValue', () => {
     it('propagates the value via the context', () => {
-      const readContext = spy();
-      render(
+      const { getByRole } = render(
         <FormControlUnstyled defaultValue="foo">
-          <TestComponent contextCallback={readContext} />
+          <TestComponent  />
         </FormControlUnstyled>,
       );
 
-      expect(readContext.args[0][0]).to.have.property('defaultValue', 'foo');
+      expect(getByRole('textbox')).to.have.property('defaultValue', 'foo');
     });
   });
 
   describe('prop: focused', () => {
     it('propagates the value via the context', () => {
-      const readContext = spy();
-      render(
+      const { getByRole } = render(
         <FormControlUnstyled focused>
-          <TestComponent contextCallback={readContext} />
+          <TestComponent />
         </FormControlUnstyled>,
       );
 
-      expect(readContext.args[0][0]).to.have.property('focused', true);
+      expect(getByRole('textbox').dataset).to.have.property('focused', 'true');
     });
 
     it('ignores focused when disabled', () => {
-      const readContext = spy();
-      render(
+      const { getByRole } = render(
         <FormControlUnstyled focused disabled>
-          <TestComponent contextCallback={readContext} />
+          <TestComponent />
         </FormControlUnstyled>,
       );
-      expect(readContext.args[0][0]).to.include({ disabled: true, focused: false });
+      expect(getByRole('textbox')).to.have.property('disabled', true);
+      expect(getByRole('textbox').dataset).to.have.property('focused', 'false');
     });
   });
 
   describe('prop: required', () => {
     it('propagates the value via the context', () => {
-      const readContext = spy();
-      render(
+      const { getByRole } = render(
         <FormControlUnstyled required>
-          <TestComponent contextCallback={readContext} />
+          <TestComponent />
         </FormControlUnstyled>,
       );
 
-      expect(readContext.args[0][0]).to.have.property('required', true);
+      expect(getByRole('textbox')).to.have.property('required', true);
     });
   });
 
   describe('prop: filled', () => {
     it('should be set if value is provided', () => {
-      const readContext = spy();
-      render(
+      const { getByRole } = render(
         <FormControlUnstyled value="foo">
-          <TestComponent contextCallback={readContext} />
+          <TestComponent/>
         </FormControlUnstyled>,
       );
 
-      expect(readContext.args[0][0]).to.have.property('filled', true);
+      expect(getByRole('textbox').dataset).to.have.property('filled', 'true');
     });
 
     it('should be set if defaultValue is provided', () => {
-      const readContext = spy();
-      render(
+      const { getByRole } = render(
         <FormControlUnstyled defaultValue="foo">
-          <TestComponent contextCallback={readContext} />
+          <TestComponent />
         </FormControlUnstyled>,
       );
 
-      expect(readContext.args[0][0]).to.have.property('filled', true);
+      expect(getByRole('textbox').dataset).to.have.property('filled', 'true');
     });
 
     it('should be set if a controlled inner input sets its value', () => {
-      const readContext = spy();
       const { getByRole } = render(
         <FormControlUnstyled>
-          <TestComponent contextCallback={readContext} />
+          <TestComponent />
         </FormControlUnstyled>,
       );
 
       const input = getByRole('textbox');
       fireEvent.change(input, { target: { value: 'a' } });
 
-      expect(readContext.lastCall.args[0]).to.have.property('filled', true);
+      expect(input.dataset).to.have.property('filled', 'true');
     });
   });
 
