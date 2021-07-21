@@ -11,8 +11,8 @@ import Fade from '@material-ui/core/Fade';
 import ToggleButton from '@material-ui/core/ToggleButton';
 import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
 import { JavaScript as JavaScriptIcon, TypeScript as TypeScriptIcon } from '@material-ui/docs';
-import EditIcon from '@material-ui/icons/Edit';
 import CodeIcon from '@material-ui/icons/Code';
+import SvgIcon from '@material-ui/core/SvgIcon';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import Snackbar from '@material-ui/core/Snackbar';
 import Menu from '@material-ui/core/Menu';
@@ -278,6 +278,30 @@ export default function DemoToolbar(props) {
     document.body.removeChild(form);
   };
 
+  const handleStackBlitzClick = () => {
+    const demoConfig = getDemoConfig(demoData, 'index.html');
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.target = '_blank';
+    form.action = 'https://stackblitz.com/run';
+    addHiddenInput(form, 'project[template]', 'create-react-app');
+    addHiddenInput(form, 'project[title]', demoConfig.title);
+    addHiddenInput(
+      form,
+      'project[description]',
+      `# ${demoConfig.title}\n${demoConfig.description}`,
+    );
+    addHiddenInput(form, 'project[dependencies]', JSON.stringify(demoConfig.dependencies));
+    addHiddenInput(form, 'project[devDependencies]', JSON.stringify(demoConfig.devDependencies));
+    Object.keys(demoConfig.files).forEach((key) => {
+      const value = demoConfig.files[key];
+      addHiddenInput(form, `project[files][${key}]`, value);
+    });
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
+  };
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const handleMoreClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -479,18 +503,36 @@ export default function DemoToolbar(props) {
             </IconButton>
           </DemoTooltip>
           {demoOptions.hideEditButton ? null : (
-            <DemoTooltip title={t('codesandbox')} placement="bottom">
-              <IconButton
-                size="large"
-                data-ga-event-category="demo"
-                data-ga-event-label={demoOptions.demo}
-                data-ga-event-action="codesandbox"
-                onClick={handleCodeSandboxClick}
-                {...getControlProps(3)}
-              >
-                <EditIcon fontSize="small" />
-              </IconButton>
-            </DemoTooltip>
+            <React.Fragment>
+              <DemoTooltip title={t('codesandbox')} placement="bottom">
+                <IconButton
+                  size="large"
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demoOptions.demo}
+                  data-ga-event-action="codesandbox"
+                  onClick={handleCodeSandboxClick}
+                  {...getControlProps(3)}
+                >
+                  <SvgIcon fontSize="small" viewBox="0 0 1024 1024">
+                    <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
+                  </SvgIcon>
+                </IconButton>
+              </DemoTooltip>
+              <DemoTooltip title={t('stackblitz')} placement="bottom">
+                <IconButton
+                  size="large"
+                  data-ga-event-category="demo"
+                  data-ga-event-label={demoOptions.demo}
+                  data-ga-event-action="stackblitz"
+                  onClick={handleStackBlitzClick}
+                  {...getControlProps(3)}
+                >
+                  <SvgIcon fontSize="small" viewBox="0 0 19 28">
+                    <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
+                  </SvgIcon>
+                </IconButton>
+              </DemoTooltip>
+            </React.Fragment>
           )}
           <DemoTooltip title={t('copySource')} placement="bottom">
             <IconButton

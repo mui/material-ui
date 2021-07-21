@@ -65,7 +65,7 @@ ReactDOM.render(
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "preserve"
+    "jsx": "react"
   },
   "include": [
     "src"
@@ -91,12 +91,12 @@ function getLanguageConfig(demoData) {
   }
 }
 
-export default function getDemoConfig(demoData) {
+export default function getDemoConfig(demoData, indexPath = 'public/index.html') {
   const baseConfig = {
     title: demoData.title,
     description: demoData.githubLocation,
     files: {
-      'public/index.html': `
+      [indexPath]: `
 <!DOCTYPE html>
 <html lang="${demoData.language}">
   <head>
