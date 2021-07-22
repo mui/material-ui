@@ -150,16 +150,16 @@ const theme = createTheme({
     },
     subtitle1: {
       fontSize: 18,
-      lineHeight: '22px',
+      lineHeight: 22 / 18,
     },
     body1: {
       fontSize: 16,
-      lineHeight: '24px',
+      lineHeight: 24 / 16,
       fontWeight: 500,
     },
     body2: {
       fontSize: 14,
-      lineHeight: '20px',
+      lineHeight: 20 / 14,
     },
   },
 });
@@ -200,6 +200,14 @@ const brandingTheme = createTheme(theme, {
             '& .MuiButton-endIcon': {
               color: theme.palette.grey[700],
             },
+          },
+        },
+        {
+          props: { variant: 'code', size: 'large' },
+          style: {
+            ...theme.typography.body2,
+            fontFamily: theme.typography.fontFamilyCode,
+            fontWeight: theme.typography.fontWeightBold,
           },
         },
       ],
