@@ -55,7 +55,7 @@ async function main(argv) {
   const message = `Version ${rootWorkspaceManifest.version}`;
 
   await exec(['git', 'tag', '-a', tag, '-m', `"${message}"`].join(' '));
-  // eslint-disable-next-line no-console -- verbose logging
+  // eslint-disable-next-line no-console
   console.log(`Created tag '${tag}'. To remove enter 'git tag -d ${tag}'`);
 
   const muiOrgRemote = await findMuiOrgRemote();
@@ -69,7 +69,7 @@ async function main(argv) {
 
   await exec(['git', 'push', muiOrgRemote.name, tag].join(' '));
 
-  // eslint-disable-next-line no-console -- verbose logging
+  // eslint-disable-next-line no-console
   console.log(
     `Pushed tag '${tag}' to . This should not be reversed. In case of emergency enter 'git push --delete ${muiOrgRemote.name} ${tag}' to remove.`,
   );

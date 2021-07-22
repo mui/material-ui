@@ -153,7 +153,7 @@ ${changes.join('\n')}
 All contributors of this release in alphabetical order: ${contributorHandles}
 `;
 
-  // eslint-disable-next-line no-console -- output of this script
+  // eslint-disable-next-line no-console
   console.log(changelog);
 }
 
