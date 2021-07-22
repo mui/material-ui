@@ -29,11 +29,12 @@ declare module '@material-ui/core/styles/createTypography' {
   }
 }
 
-declare module '@material-ui/core/Button' {
-  interface ButtonPropsVariantOverrides {
-    code: true;
-  }
-}
+// TODO: enable this once types conflict is fixed
+// declare module '@material-ui/core/Button' {
+//   interface ButtonPropsVariantOverrides {
+//     code: true;
+//   }
+// }
 
 const blueDark = {
   50: '#E2EDF8',
