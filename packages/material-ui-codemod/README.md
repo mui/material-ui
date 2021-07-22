@@ -349,21 +349,6 @@ npx @material-ui/codemod@next v5.0.0/collapse-rename-collapsedheight <path>
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#collapse).
 
-#### `color-imports`
-
-Fix color private import path.
-
-```diff
--import red from '@material-ui/core/colors/red';
-+import { red } from '@material-ui/core/colors';
-```
-
-<!-- #default-branch-switch -->
-
-```sh
-npx @material-ui/codemod@next v5.0.0/color-imports <path>
-```
-
 #### `component-rename-prop`
 
 A generic codemod to rename any component prop.
@@ -1089,6 +1074,32 @@ npx @material-ui/codemod@next v1.0.0/import-path <path>
 
 Subsequently, you can run the above `find ...` command to flatten your imports.
 
+#### `color-imports`
+
+Updates the `color-imports` for the new location of Material-UI color palettes.
+The diff should look like this:
+
+```diff
+-import { blue, teal500 } from 'material-ui/styles/colors';
++import blue from '@material-ui/core/colors/blue';
++import teal from '@material-ui/core/colors/teal';
++const teal500 = teal['500'];
+```
+
+<!-- #default-branch-switch -->
+
+```sh
+npx @material-ui/codemod@next v1.0.0/color-imports <path>
+```
+
+**additional options**
+
+<!-- #default-branch-switch -->
+
+```
+npx @material-ui/codemod@next v1.0.0/color-imports <path> -- --importPath='mui/styles/colors' --targetPath='mui/colors'
+```
+
 #### `svg-icon-imports`
 
 Updates the `svg-icons` import paths from `material-ui/svg-icons/<category>/<icon-name>` to `@material-ui/icons/<IconName>`, to use the new [`@material-ui/icons`](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-icons) package.
@@ -1130,3 +1141,4 @@ The diff should look like this:
 ```sh
 npx @material-ui/codemod@next v0.15.0/import-path <path>
 ```
+{"mode":"full","isActive":false}
