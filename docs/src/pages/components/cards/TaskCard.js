@@ -1,0 +1,102 @@
+import * as React from 'react';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import Avatar from '@material-ui/core/Avatar';
+import Box from '@material-ui/core/Box';
+import Card from '@material-ui/core/Card';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import Typography from '@material-ui/core/Typography';
+
+import CodeRounded from '@material-ui/icons/CodeRounded';
+import ScheduleRounded from '@material-ui/icons/ScheduleRounded';
+
+const theme = createTheme({
+  palette: { mode: 'dark', primary: { main: '#007FFF' } },
+  shape: {
+    borderRadius: 10,
+  },
+  spacing: 10,
+  typography: {
+    fontFamily: ['"PlusJakartaSans"', 'sans-serif'].join(','),
+    h6: {
+      lineHeight: 1.2,
+      fontWeight: 700,
+    },
+  },
+  components: {
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          background: 'linear-gradient(to right bottom, #007FFF, #0059B3 120%)',
+          boxShadow:
+            '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
+        },
+      },
+    },
+    MuiAvatar: {
+      styleOverrides: {
+        root: {
+          border: '1px solid #fff',
+        },
+      },
+    },
+    MuiLinearProgress: {
+      styleOverrides: {
+        root: {
+          borderRadius: 10,
+          backgroundColor: 'rgba(255,255,255,0.12)',
+        },
+        bar: {
+          borderRadius: 10,
+          backgroundColor: '#fff',
+        },
+      },
+    },
+  },
+});
+
+export default function TaskCard() {
+  return (
+    <ThemeProvider theme={theme}>
+      <Card
+        sx={{
+          minWidth: 280,
+          maxWidth: 360,
+          minHeight: 280,
+          display: 'flex',
+          flexDirection: 'column',
+          p: 2.5,
+        }}
+      >
+        <Box display="flex" alignItems="center">
+          <ScheduleRounded fontSize="inherit" />
+          <Typography color="text.secondary" variant="caption" ml={0.5} mt={0.25}>
+            March 25th
+          </Typography>
+        </Box>
+        <Box my="auto">
+          <Box width={28} height={28} bgcolor="#fff" borderRadius={0.75} p="2px">
+            <CodeRounded color="primary" />
+          </Box>
+          <Typography variant="h6" component="div" mt={1.5}>
+            Check for the API response and return the proper method
+          </Typography>
+        </Box>
+        <Box display="flex">
+          <Avatar src="/static/images/avatar/1.jpg" variant="rounded" />
+          <Box ml={1}>
+            <Typography variant="body2" color="text.secondary">
+              Assigned to
+            </Typography>
+            <Typography>Michael Scott</Typography>
+          </Box>
+        </Box>
+        <Box display="flex" alignItems="center" mb={-0.5}>
+          <LinearProgress variant="determinate" value={60} sx={{ flexGrow: 1 }} />
+          <Typography ml={2} color="#00daff">
+            <b>60%</b>
+          </Typography>
+        </Box>
+      </Card>
+    </ThemeProvider>
+  );
+}
