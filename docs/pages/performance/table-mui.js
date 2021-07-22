@@ -1,5 +1,5 @@
 import * as React from 'react';
-import NoSsr from '@material-ui/core/NoSsr';
+import NoSsr from '@material-ui/unstyled/NoSsr';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';

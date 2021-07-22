@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { elementTypeAcceptingRef } from '@material-ui/utils';
 import { useThemeProps } from '@material-ui/system';
+import { NoSsr } from '@material-ui/unstyled';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
@@ -10,7 +11,6 @@ import useEnhancedEffect from '../utils/useEnhancedEffect';
 import { duration } from '../styles/createTransitions';
 import useTheme from '../styles/useTheme';
 import { getTransitionProps } from '../transitions/utils';
-import NoSsr from '../NoSsr';
 import SwipeArea from './SwipeArea';
 
 // This value is closed to what browsers are using internally to

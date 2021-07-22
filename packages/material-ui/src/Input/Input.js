@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { refType } from '@material-ui/utils';
+import { refType, deepmerge } from '@material-ui/utils';
 import InputBase from '../InputBase';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -111,6 +111,8 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiInput' });
   const {
     disableUnderline,
+    components = {},
+    componentsProps: componentsPropsProp,
     fullWidth = false,
     inputComponent = 'input',
     multiline = false,
@@ -121,11 +123,16 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   const classes = useUtilityClasses(props);
 
   const styleProps = { disableUnderline };
+  const inputComponentsProps = { root: { styleProps } };
+
+  const componentsProps = componentsPropsProp
+    ? deepmerge(componentsPropsProp, inputComponentsProps)
+    : inputComponentsProps;
 
   return (
     <InputBase
-      components={{ Root: InputRoot, Input: InputInput }}
-      componentsProps={{ root: { styleProps } }}
+      components={{ Root: InputRoot, Input: InputInput, ...components }}
+      componentsProps={componentsProps}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
       multiline={multiline}
@@ -164,6 +171,20 @@ Input.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['primary', 'secondary']),
     PropTypes.string,
   ]),
+  /**
+   * The components used for each slot inside the InputBase.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Input: PropTypes.elementType,
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
   /**
    * The default value. Use when the component is not controlled.
    */
