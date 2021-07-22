@@ -2586,23 +2586,6 @@ declare module "@material-ui/private-theming" {
 }
 ```
 
-### [Jest] SyntaxError: Unexpected token 'export'
-
-In v5, `@material-ui/core/colors/red` is considered private and should not be used in your project. [More details about this error](https://github.com/mui-org/material-ui/issues/27296).
-
-You can use this codemod (**recommended**) to fix all the import in your project:
-
-```sh
-npx @material-ui/codemod v5.0.0/private-imports <folder>
-```
-
-or fix it manually like this:
-
-```diff
--import red from '@material-ui/core/colors/red';
-+import { red } from '@material-ui/core/colors';
-```
-
 ### makeStyles - TypeError: Cannot read property 'drawer' of undefined
 
 This error occurs when calling `useStyles` (result of `makeStyles`) or `withStyles` outside of `<ThemeProvider>` scope like this:
