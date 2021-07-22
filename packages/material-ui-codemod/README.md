@@ -97,6 +97,7 @@ The list includes these transformers
 - [`modal-props`](#modal-props)
 - [`moved-lab-modules`](#moved-lab-modules)
 - [`pagination-round-circular`](#pagination-round-circular)
+- [`private-imports`](#private-imports)
 - [`root-ref`](#root-ref)
 - [`skeleton-variant`](#skeleton-variant)
 - [`styled-engine-provider`](#styled-engine-provider)
@@ -655,6 +656,23 @@ npx @material-ui/codemod@next v5.0.0/pagination-round-circular <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#pagination).
+
+#### `private-imports`
+
+Fix private import paths.
+
+```diff
+-import red from '@material-ui/core/colors/red';
+-import createTheme from '@material-ui/core/styles/createTheme';
++import { red } from '@material-ui/core/colors';
++import { createTheme } from '@material-ui/core/styles';
+```
+
+<!-- #default-branch-switch -->
+
+```sh
+npx @material-ui/codemod@next v5.0.0/private-imports <path>
+```
 
 #### `root-ref`
 
