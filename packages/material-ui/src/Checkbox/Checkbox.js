@@ -189,7 +189,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the state is changed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.ChangeEvent<HTMLInputElement>} event The event source of the callback.
    * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
   onChange: PropTypes.func,

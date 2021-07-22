@@ -733,13 +733,13 @@ Tooltip.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the component requests to be closed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent} event The event source of the callback.
    */
   onClose: PropTypes.func,
   /**
    * Callback fired when the component requests to be open.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent} event The event source of the callback.
    */
   onOpen: PropTypes.func,
   /**

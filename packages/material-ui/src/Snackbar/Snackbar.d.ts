@@ -73,7 +73,7 @@ export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDi
    * The `reason` parameter can optionally be used to control the response to `onClose`,
    * for example ignoring `clickaway`.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent<any>} event The event source of the callback.
    * @param {string} reason Can be: `"timeout"` (`autoHideDuration` expired), `"clickaway"`.
    */
   onClose?: (event: React.SyntheticEvent<any>, reason: SnackbarCloseReason) => void;
