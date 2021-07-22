@@ -1141,4 +1141,3 @@ The diff should look like this:
 ```sh
 npx @material-ui/codemod@next v0.15.0/import-path <path>
 ```
-{"mode":"full","isActive":false}
