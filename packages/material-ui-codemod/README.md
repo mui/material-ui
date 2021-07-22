@@ -81,7 +81,6 @@ The list includes these transformers
 - [`chip-variant-prop`](#chip-variant-prop)
 - [`circularprogress-variant`](#circularprogress-variant)
 - [`collapse-rename-collapsedheight`](#collapse-rename-collapsedheight)
-- [`color-imports`](#color-imports)
 - [`core-styles-import`](#core-styles-import)
 - [`create-theme`](#create-theme)
 - [`dialog-props`](#dialog-props)
@@ -1083,32 +1082,6 @@ npx @material-ui/codemod@next v1.0.0/import-path <path>
 ```
 
 Subsequently, you can run the above `find ...` command to flatten your imports.
-
-#### `color-imports`
-
-Updates the `color-imports` for the new location of Material-UI color palettes.
-The diff should look like this:
-
-```diff
--import { blue, teal500 } from 'material-ui/styles/colors';
-+import blue from '@material-ui/core/colors/blue';
-+import teal from '@material-ui/core/colors/teal';
-+const teal500 = teal['500'];
-```
-
-<!-- #default-branch-switch -->
-
-```sh
-npx @material-ui/codemod@next v1.0.0/color-imports <path>
-```
-
-**additional options**
-
-<!-- #default-branch-switch -->
-
-```
-npx @material-ui/codemod@next v1.0.0/color-imports <path> -- --importPath='mui/styles/colors' --targetPath='mui/colors'
-```
 
 #### `svg-icon-imports`
 
