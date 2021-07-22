@@ -128,33 +128,26 @@ module.exports = async function demoLoader() {
   /**
    * @param {string} moduleID
    */
-  function getRequireDemoIdentifier(moduleID) {
+  function getDemoIdentifier(moduleID) {
     return moduleIDToJSIdentifier(moduleID);
   }
 
   const transformed = `
     ${Array.from(demoModuleIDs)
       .map((moduleID) => {
-        return `import ${getRequireDemoIdentifier(moduleID)} from '${moduleID}';`;
+        return `import ${getDemoIdentifier(moduleID)} from '${moduleID}';`;
       })
       .join('\n')}
 
     export const docs = ${JSON.stringify(docs, null, 2)};
     export const demos = ${JSON.stringify(demos, null, 2)};
-    export function requireDemo(module) {
-      return {
-        ${Array.from(demoModuleIDs)
-          .map((moduleID) => {
-            // TODO: Remove ES module interop once all demos are loaded via loader
-            // i.e. replace `{ default: ... }`  with `...`
-            return `'${moduleID}': { default: ${getRequireDemoIdentifier(moduleID)} }`;
-          })
-          .join(',\n')}
-      }[module];
-    }
-    requireDemo.keys = () => {
-      return ${JSON.stringify(demoModuleIDs, null, 2)}
-    }`;
+    export const demoComponents = {${Array.from(demoModuleIDs)
+      .map((moduleID) => {
+        return `${JSON.stringify(moduleID)}: ${getDemoIdentifier(moduleID)},`;
+      })
+      .join('\n')}};
+  `;
 
+  // WARNING: Make sure the returned code is compatible with our .browserslistrc.
   return transformed;
 };
