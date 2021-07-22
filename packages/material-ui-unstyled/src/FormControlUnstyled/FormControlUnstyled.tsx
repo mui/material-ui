@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { unstable_useControlled as useControlled } from '@material-ui/utils';
 import FormControlUnstyledContext, { FormControlUnstyledState } from './FormControlContext';
 import appendStyleProps from '../utils/appendStyleProps';
 import classes from './formControlUnstyledClasses';
@@ -8,10 +9,6 @@ import FormControlUnstyledProps, { NativeFormControlElement } from './FormContro
 
 function hasValue(value: unknown) {
   return value != null && !(Array.isArray(value) && value.length === 0) && value !== '';
-}
-
-function isFilled(value: unknown, defaultValue?: unknown) {
-  return hasValue(value) || hasValue(defaultValue);
 }
 
 type NonOptionalStyleProps = 'disabled' | 'error' | 'focused' | 'required';
@@ -69,12 +66,18 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled(
     focused: visuallyFocused = false,
     onChange,
     required = false,
-    value,
+    value: incomingValue,
     ...other
   } = props;
 
-  const isControlled = value !== undefined;
-  const [filled, setFilled] = React.useState(() => isFilled(value, defaultValue));
+  const [value, setValue] = useControlled({
+    controlled: incomingValue,
+    default: defaultValue,
+    name: 'FormControl',
+    state: 'value'
+  });
+
+  const filled = hasValue(value);
 
   const [focusedState, setFocused] = React.useState(false);
   if (disabled && focusedState) {
@@ -113,22 +116,12 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled(
     };
   }
 
-  React.useEffect(() => {
-    if (isControlled) {
-      setFilled(isFilled(value));
-    }
-  }, [value, isControlled]);
-
   const handleChange = (event: React.ChangeEvent<NativeFormControlElement>) => {
-    if (!isControlled) {
-      setFilled(isFilled(event.currentTarget.value));
-    }
-
+    setValue(event.target.value);
     onChange?.(event);
   };
 
   const childContext: FormControlUnstyledState = {
-    defaultValue,
     disabled,
     error,
     filled,
@@ -142,7 +135,7 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled(
     },
     registerEffect,
     required,
-    value,
+    value: value ?? '',
   };
 
   const Root = component ?? components.Root ?? 'div';

@@ -18,7 +18,6 @@ function TestComponent() {
   const inputProps = {
     'data-filled': context?.filled,
     'data-focused': context?.focused,
-    defaultValue: context?.defaultValue as any,
     disabled: context?.disabled,
     onChange: context?.onChange,
     required: context?.required,
@@ -108,7 +107,7 @@ describe('<FormControlUnstyled />', () => {
         </FormControlUnstyled>,
       );
 
-      expect(getByRole('textbox')).to.have.property('defaultValue', 'foo');
+      expect(getByRole('textbox')).to.have.property('value', 'foo');
     });
   });
 
