@@ -20,14 +20,18 @@ declare module '@material-ui/core/styles/createPalette' {
 declare module '@material-ui/core/styles/createTypography' {
   interface TypographyOptions {
     fontWeightExtraBold?: number;
-    codeFontFamily?: string;
-    body3?: TypographyStyleOptions;
+    fontFamilyCode?: string;
   }
 
   interface Typography {
     fontWeightExtraBold: number;
-    codeFontFamily: string;
-    body3: TypographyStyleOptions;
+    fontFamilyCode: string;
+  }
+}
+
+declare module '@material-ui/core/Button' {
+  interface ButtonPropsVariantOverrides {
+    code: true;
   }
 }
 
@@ -138,22 +142,22 @@ const theme = createTheme({
   spacing: 10,
   typography: {
     fontFamily: ['"PlusJakartaSans"', ...systemFont].join(','),
-    codeFontFamily: ['"IBM Plex Mono"', ...systemFont].join(','),
+    fontFamilyCode: ['"IBM Plex Mono"', ...systemFont].join(','),
     fontWeightExtraBold: 800,
     button: {
       textTransform: 'initial',
       fontWeight: 700,
     },
-    body1: {
+    subtitle1: {
       fontSize: 18,
       lineHeight: '22px',
     },
-    body2: {
+    body1: {
       fontSize: 16,
       lineHeight: '24px',
       fontWeight: 500,
     },
-    body3: {
+    body2: {
       fontSize: 14,
       lineHeight: '20px',
     },
@@ -162,25 +166,6 @@ const theme = createTheme({
 
 const brandingTheme = createTheme(theme, {
   components: {
-    MuiTypography: {
-      defaultProps: {
-        variant: 'body2',
-        variantMapping: {
-          h1: 'h1',
-          h2: 'h2',
-          h3: 'h3',
-          h4: 'h4',
-          h5: 'h5',
-          h6: 'h6',
-          subtitle1: 'h6',
-          subtitle2: 'h6',
-          body1: 'p',
-          body2: 'p',
-          body3: 'p',
-          inherit: 'p',
-        },
-      },
-    },
     MuiButton: {
       defaultProps: {
         disableElevation: true,
@@ -188,9 +173,36 @@ const brandingTheme = createTheme(theme, {
       },
       styleOverrides: {
         sizeLarge: {
-          padding: '13px 20px',
+          padding: '1rem 1.25rem',
+          ...theme.typography.body1,
+          fontWeight: 700,
         },
       },
+      variants: [
+        {
+          props: { variant: 'code' },
+          style: {
+            color: grey[800],
+            border: '1px solid',
+            borderColor: grey[200],
+            backgroundColor: grey[50],
+            fontFamily: theme.typography.fontFamilyCode,
+            '&:hover, &.Mui-focusVisible': {
+              borderColor: theme.palette.primary.main,
+              backgroundColor: theme.palette.primary[50],
+              '& .MuiButton-endIcon': {
+                color: theme.palette.primary.main,
+              },
+            },
+            '& .MuiButton-startIcon': {
+              color: theme.palette.grey[400],
+            },
+            '& .MuiButton-endIcon': {
+              color: theme.palette.grey[700],
+            },
+          },
+        },
+      ],
     },
     MuiContainer: {
       styleOverrides: {

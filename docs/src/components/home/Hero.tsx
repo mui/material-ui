@@ -52,26 +52,11 @@ export default function Hero() {
                 <Box width={16} height={16} />
                 <Button
                   size="large"
-                  variant="outlined"
-                  endIcon={<ContentCopyRounded sx={{ color: 'grey.700' }} />}
-                  sx={{
-                    color: 'grey.800',
-                    border: '1px solid',
-                    bgcolor: 'grey.50',
-                    fontFamily: 'codeFontFamily',
-                    '&:not(:hover, .Mui-focusVisible)': {
-                      borderColor: 'grey.200',
-                    },
-                    '&:hover, &.Mui-focusVisible': {
-                      '& .MuiButton-endIcon > svg': {
-                        color: 'primary.main',
-                      },
-                    },
-                  }}
+                  // @ts-expect-error TODO: fix this by exporting Overrides types from Button
+                  variant="code"
+                  startIcon="$"
+                  endIcon={<ContentCopyRounded />}
                 >
-                  <Box component="span" sx={{ mr: 1, color: 'grey.400' }}>
-                    $
-                  </Box>{' '}
                   npm install @mui/core
                 </Button>
               </Box>
