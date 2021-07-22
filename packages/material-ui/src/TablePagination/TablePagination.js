@@ -89,8 +89,8 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
     labelRowsPerPage = 'Rows per page:',
     nextIconButtonProps,
     nextIconButtonText = 'Next page',
-    onChangePage: onChangePageProp,
-    onPageChange: onPageChangeProp,
+    onChangePage,
+    onPageChange,
     onChangeRowsPerPage: onChangeRowsPerPageProp,
     onRowsPerPageChange: onRowsPerPageChangeProp,
     page,
@@ -100,7 +100,6 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
     ...other
   } = props;
 
-  const onChangePage = onChangePageProp || onPageChangeProp;
   const onChangeRowsPerPage = onChangeRowsPerPageProp || onRowsPerPageChangeProp;
 
   let colSpan;
@@ -167,7 +166,8 @@ const TablePagination = React.forwardRef(function TablePagination(props, ref) {
             'aria-label': nextIconButtonText,
             ...nextIconButtonProps,
           }}
-          onPageChange={onChangePage}
+          onChangePage={onChangePage}
+          onPageChange={onPageChange}
           page={page}
           rowsPerPage={rowsPerPage}
         />
