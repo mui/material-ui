@@ -65,6 +65,12 @@ Here's an example of a media control card.
 
 ## Customization
 
+### Task Card
+
 {{"demo": "pages/components/cards/TaskCard.js", "bg": true}}
+
+### Player Card
+
+{{"demo": "pages/components/cards/PlayerCard.js", "bg": true}}
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card).
