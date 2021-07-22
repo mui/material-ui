@@ -1,4 +1,5 @@
 import addImports from 'jscodeshift-add-imports';
+import allowedPrivateImportsList from '../util/allowedPrivateImportsList';
 
 // istanbul ignore next
 if (process.env.NODE_ENV === 'test') {
@@ -34,6 +35,10 @@ export default function transformer(fileInfo, api, options) {
     const match = importPath.match(importRegExp);
     if (!match) return;
 
+    if (allowedPrivateImportsList.indexOf(importPath) > -1) {
+      return;
+    }
+
     const subpath = match[1].replace(/\/$/, '');
     if (/^(internal)/.test(subpath)) return;
     const targetImportPath = `${targetModule}/${subpath}`;
@@ -49,6 +54,8 @@ export default function transformer(fileInfo, api, options) {
           return;
         case 'ImportDefaultSpecifier': {
           const moduleName = match[2];
+
+          allowedPrivateImportsList;
 
           addSpecifier(
             targetImportPath,
