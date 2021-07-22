@@ -6,7 +6,7 @@ export interface TextareaAutosizeProps
   ref?: React.Ref<HTMLTextAreaElement>;
   /**
    * Minimum number of rows to display.
-   * @deprecated Use `rowsMin` instead.
+   * @deprecated Use `minRows` instead.
    */
   rows?: string | number;
   /**
