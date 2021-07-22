@@ -22,21 +22,17 @@ const useUtilityClasses = (styleProps) => {
 };
 
 const SwitchBaseRoot = styled(ButtonBase, { skipSx: true })(({ styleProps }) => ({
-  /* Styles applied to the root element. */
   padding: 9,
   borderRadius: '50%',
-  /* Styles applied to the root element if `edge="start"`. */
   ...(styleProps.edge === 'start' && {
     marginLeft: styleProps.size === 'small' ? -3 : -12,
   }),
-  /* Styles applied to the root element if `edge="end"`. */
   ...(styleProps.edge === 'end' && {
     marginRight: styleProps.size === 'small' ? -3 : -12,
   }),
 }));
 
 const SwitchBaseInput = styled('input', { skipSx: true })({
-  /* Styles applied to the internal input element. */
   cursor: 'inherit',
   position: 'absolute',
   opacity: 0,

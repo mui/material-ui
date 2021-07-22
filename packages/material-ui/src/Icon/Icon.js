@@ -34,7 +34,6 @@ const IconRoot = styled('span', {
     ];
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
   userSelect: 'none',
   width: '1em',
   height: '1em',

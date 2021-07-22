@@ -209,8 +209,11 @@ function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
   }
 
   if (type.type === 'TypeApplication') {
-    const arrayTypeName = resolveType(type.applications[0]);
-    return `${arrayTypeName}[]`;
+    return `${resolveType(type.expression)}<${type.applications
+      .map((typeApplication) => {
+        return resolveType(typeApplication);
+      })
+      .join(', ')}>`;
   }
 
   if (type.type === 'UnionType') {

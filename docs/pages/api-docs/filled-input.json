@@ -9,6 +9,11 @@
         "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
       }
     },
+    "components": {
+      "type": { "name": "shape", "description": "{ Input?: elementType, Root?: elementType }" },
+      "default": "{}"
+    },
+    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
     "disableUnderline": { "type": { "name": "bool" } },

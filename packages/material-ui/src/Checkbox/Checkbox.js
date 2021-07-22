@@ -41,7 +41,6 @@ const CheckboxRoot = styled(SwitchBase, {
     ];
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
   color: theme.palette.text.secondary,
   '&:hover': {
     backgroundColor: alpha(
@@ -55,7 +54,6 @@ const CheckboxRoot = styled(SwitchBase, {
       backgroundColor: 'transparent',
     },
   },
-  /* Styles applied to the root element unless `color="default"`. */
   ...(styleProps.color !== 'default' && {
     [`&.${checkboxClasses.checked}, &.${checkboxClasses.indeterminate}`]: {
       color: theme.palette[styleProps.color].main,
@@ -191,7 +189,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the state is changed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.ChangeEvent<HTMLInputElement>} event The event source of the callback.
    * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
   onChange: PropTypes.func,
