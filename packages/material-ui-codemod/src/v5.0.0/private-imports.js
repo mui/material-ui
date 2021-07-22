@@ -55,8 +55,6 @@ export default function transformer(fileInfo, api, options) {
         case 'ImportDefaultSpecifier': {
           const moduleName = match[2];
 
-          allowedPrivateImportsList;
-
           addSpecifier(
             targetImportPath,
             j.importSpecifier(j.identifier(moduleName), j.identifier(localName)),
