@@ -73,4 +73,8 @@ Here's an example of a media control card.
 
 {{"demo": "pages/components/cards/PlayerCard.js", "bg": true}}
 
+### Notification Card
+
+{{"demo": "pages/components/cards/NotificationCard.js", "bg": true}}
+
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card).
