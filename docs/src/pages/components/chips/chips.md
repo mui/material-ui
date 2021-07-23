@@ -89,7 +89,9 @@ gain depth while clicked or touched.
 
 {{"demo": "pages/components/chips/ChipsPlayground.js", "hideToolbar": true}}
 
-## Customized Chip
+## Theming
+
+Here is an example of theming the component. You can learn more about this in the [theming page](/customization/theming) and [theme components page](/customization/theme-components)
 
 {{"demo": "pages/components/chips/CustomizedChip.js", "hideToolbar": true}}
 
