@@ -9,6 +9,12 @@ import Typography from '@material-ui/core/Typography';
 import CodeRounded from '@material-ui/icons/CodeRounded';
 import ScheduleRounded from '@material-ui/icons/ScheduleRounded';
 
+declare module '@material-ui/core/Paper' {
+  interface PaperPropsVariantOverrides {
+    gradient: true;
+  }
+}
+
 const theme = createTheme({
   palette: { mode: 'dark', primary: { main: '#007FFF' } },
   shape: {
@@ -23,14 +29,17 @@ const theme = createTheme({
     },
   },
   components: {
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          background: 'linear-gradient(to right bottom, #007FFF, #0059B3 120%)',
-          boxShadow:
-            '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
+    MuiPaper: {
+      variants: [
+        {
+          props: { variant: 'gradient' },
+          style: {
+            background: 'linear-gradient(to right bottom, #007FFF, #0059B3 120%)',
+            boxShadow:
+              '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
+          },
         },
-      },
+      ],
     },
     MuiAvatar: {
       styleOverrides: {
@@ -58,6 +67,7 @@ export default function TaskCard() {
   return (
     <ThemeProvider theme={theme}>
       <Card
+        variant="gradient"
         sx={{
           minWidth: 280,
           maxWidth: 360,
