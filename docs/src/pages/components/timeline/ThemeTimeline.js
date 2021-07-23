@@ -102,6 +102,7 @@ export default function BasicTimeline() {
       }),
     [mode],
   );
+
   return (
     <ThemeProvider theme={theme}>
       <Card variant="outlined" sx={{ p: 2, maxWidth: 270 }}>
