@@ -23,14 +23,17 @@ const theme = createTheme({
     },
   },
   components: {
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          background: 'linear-gradient(to right bottom, #007FFF, #0059B3 120%)',
-          boxShadow:
-            '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
+    MuiPaper: {
+      variants: [
+        {
+          props: { variant: 'gradient' },
+          style: {
+            background: 'linear-gradient(to right bottom, #007FFF, #0059B3 120%)',
+            boxShadow:
+              '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
+          },
         },
-      },
+      ],
     },
     MuiAvatar: {
       styleOverrides: {
@@ -58,6 +61,7 @@ export default function TaskCard() {
   return (
     <ThemeProvider theme={theme}>
       <Card
+        variant="gradient"
         sx={{
           minWidth: 280,
           maxWidth: 360,
@@ -90,9 +94,9 @@ export default function TaskCard() {
             <Typography>Michael Scott</Typography>
           </Box>
         </Box>
-        <Box display="flex" alignItems="center" mb={-0.5}>
+        <Box display="flex" alignItems="center" mb={-0.5} mt={0.5}>
           <LinearProgress variant="determinate" value={60} sx={{ flexGrow: 1 }} />
-          <Typography ml={2} color="#00daff">
+          <Typography ml={2} color="#00C8FF" variant="body2">
             <b>60%</b>
           </Typography>
         </Box>
