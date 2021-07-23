@@ -55,7 +55,7 @@ Here is an example of customizing the component. You can learn more about this i
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
-### Folder Table 
+### Folder Table
 
 {{"demo": "pages/components/tables/FolderTable.js", "bg": true}}
 
