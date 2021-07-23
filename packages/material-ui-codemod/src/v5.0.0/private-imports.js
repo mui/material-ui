@@ -6,7 +6,7 @@ import getJSExports from '../util/getJSExports';
 if (process.env.NODE_ENV === 'test') {
   const resolve = require.resolve;
   require.resolve = (source) =>
-    resolve(source.replace(/^@material-ui\/core/, '../../../material-ui/src'));
+    resolve(source.replace(/^@material-ui\/core\/modern/, '../../../material-ui/src'));
 }
 
 export default function transformer(fileInfo, api, options) {
@@ -42,7 +42,7 @@ export default function transformer(fileInfo, api, options) {
     const targetImportPath = `${targetModule}/${subpath}`;
 
     const whitelist = getJSExports(
-      require.resolve(`${importModule}/${subpath}`, {
+      require.resolve(`${importModule}/modern/${subpath}`, {
         paths: [dirname(fileInfo.path)],
       }),
     );
