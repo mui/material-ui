@@ -20,15 +20,7 @@ packageName: '@material-ui/lab'
 
 {{"demo": "pages/components/pickers/MaterialUIPickers.js"}}
 
-## Native pickers
-
-⚠️ Native input controls support by browsers [isn't perfect](https://caniuse.com/#feat=input-datetime).
-
-Native date (`type="date"`), time (`type="time"`) and date&time (`type="datetime-local"`) pickers.
-
-{{"demo": "pages/components/pickers/NativePickers.js"}}
-
-## Setup
+### Setup
 
 You need to provide a date-library that is used by the pickers by setting the `dateAdapter` to an adapter of your choosing.
 
@@ -70,3 +62,11 @@ function App({ children }) {
   );
 }
 ```
+
+## Native pickers
+
+⚠️ Native input controls support by browsers [isn't perfect](https://caniuse.com/#feat=input-datetime).
+
+Native date (`type="date"`), time (`type="time"`) and date&time (`type="datetime-local"`) pickers.
+
+{{"demo": "pages/components/pickers/NativePickers.js"}}
