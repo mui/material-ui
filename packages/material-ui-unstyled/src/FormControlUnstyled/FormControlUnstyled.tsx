@@ -1,11 +1,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { OverridableComponent } from '@material-ui/types';
 import { unstable_useControlled as useControlled } from '@material-ui/utils';
 import FormControlUnstyledContext, { FormControlUnstyledState } from './FormControlContext';
 import appendStyleProps from '../utils/appendStyleProps';
 import classes from './formControlUnstyledClasses';
-import FormControlUnstyledProps, { NativeFormControlElement } from './FormControlUnstyledProps';
+import FormControlUnstyledProps, {
+  NativeFormControlElement,
+  FormControlUnstyledOwnProps,
+  FormControlUnstyledTypeMap,
+} from './FormControlUnstyledProps';
 
 function hasValue(value: unknown) {
   return value != null && !(Array.isArray(value) && value.length === 0) && value !== '';
@@ -13,7 +18,10 @@ function hasValue(value: unknown) {
 
 type NonOptionalStyleProps = 'disabled' | 'error' | 'focused' | 'required';
 
-export type FormControlUnstyledStyleProps = Omit<FormControlUnstyledProps, NonOptionalStyleProps> &
+export type FormControlUnstyledStyleProps = Omit<
+  FormControlUnstyledOwnProps,
+  NonOptionalStyleProps
+> &
   Required<Pick<FormControlUnstyledProps, NonOptionalStyleProps>> & {
     filled: boolean;
   };
@@ -50,10 +58,9 @@ export type FormControlUnstyledStyleProps = Omit<FormControlUnstyledProps, NonOp
  *
  * - [FormControlUnstyled API](https://material-ui.com/api/form-control-unstyled/)
  */
-const FormControlUnstyled = React.forwardRef(function FormControlUnstyled(
-  props: FormControlUnstyledProps,
-  ref: React.ForwardedRef<any>,
-) {
+const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
+  D extends React.ElementType = FormControlUnstyledTypeMap['defaultComponent'],
+>(props: FormControlUnstyledProps<D>, ref: React.ForwardedRef<any>) {
   const {
     defaultValue,
     children,
@@ -74,7 +81,7 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled(
     controlled: incomingValue,
     default: defaultValue,
     name: 'FormControl',
-    state: 'value'
+    state: 'value',
   });
 
   const filled = hasValue(value);
@@ -173,11 +180,9 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
+   * @ignore
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * The components used for each slot inside the FormControl.
    * Either a string to use a HTML element or a component.
@@ -224,4 +229,4 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 } as any;
 
-export default FormControlUnstyled;
+export default FormControlUnstyled as OverridableComponent<FormControlUnstyledTypeMap>;
