@@ -1,5 +1,6 @@
+import { dirname } from 'path';
 import addImports from 'jscodeshift-add-imports';
-import allowedPrivateImportsList from '../util/allowedPrivateImportsList';
+import getJSExports from '../util/getJSExports';
 
 // istanbul ignore next
 if (process.env.NODE_ENV === 'test') {
@@ -35,13 +36,16 @@ export default function transformer(fileInfo, api, options) {
     const match = importPath.match(importRegExp);
     if (!match) return;
 
-    if (allowedPrivateImportsList.indexOf(importPath) > -1) {
-      return;
-    }
-
     const subpath = match[1].replace(/\/$/, '');
+
     if (/^(internal)/.test(subpath)) return;
     const targetImportPath = `${targetModule}/${subpath}`;
+
+    const whitelist = getJSExports(
+      require.resolve(`${importModule}/${subpath}`, {
+        paths: [dirname(fileInfo.path)],
+      }),
+    );
 
     path.node.specifiers.forEach((specifier, index) => {
       if (!path.node.specifiers.length) return;
@@ -54,7 +58,9 @@ export default function transformer(fileInfo, api, options) {
           return;
         case 'ImportDefaultSpecifier': {
           const moduleName = match[2];
-
+          if (!whitelist.has(moduleName) && moduleName !== 'withStyles') {
+            return;
+          }
           addSpecifier(
             targetImportPath,
             j.importSpecifier(j.identifier(moduleName), j.identifier(localName)),
@@ -63,6 +69,7 @@ export default function transformer(fileInfo, api, options) {
           break;
         }
         case 'ImportSpecifier':
+          if (!whitelist.has(specifier.imported.name)) return;
           addSpecifier(targetImportPath, specifier);
           path.get('specifiers', index).prune();
           break;
@@ -76,9 +83,10 @@ export default function transformer(fileInfo, api, options) {
 
   addImports(
     root,
-    [...resultSpecifiers.keys()].map((source) =>
-      j.importDeclaration(resultSpecifiers.get(source), j.stringLiteral(source)),
-    ),
+    [...resultSpecifiers.keys()]
+      .map((source) =>
+        j.importDeclaration(resultSpecifiers.get(source), j.stringLiteral(source)),
+      ),
   );
 
   return root.toSource(printOptions);
