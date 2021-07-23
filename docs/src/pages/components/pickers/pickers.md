@@ -9,9 +9,9 @@ packageName: '@material-ui/lab'
 
 # Date / Time pickers
 
-<p class="description">Date pickers and Time pickers provide allow selecting a single value from a pre-determined set.</p>
+<p class="description">Date pickers and Time pickers allow selecting a single value from a pre-determined set.</p>
 
-- On mobile, pickers are best suited for display in confirmation dialog.
+- On mobile, pickers are best suited for display in a confirmation dialog.
 - For inline display, such as on a form, consider using compact controls such as segmented dropdown buttons.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
