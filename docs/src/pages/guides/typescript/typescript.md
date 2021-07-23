@@ -228,6 +228,44 @@ const DecoratedClass = withStyles(styles)(
 
 Unfortunately due to a [current limitation of TypeScript decorators](https://github.com/Microsoft/TypeScript/issues/4881), `withStyles(styles)` can't be used as a decorator in TypeScript.
 
+## Usage of the `sx` prop
+
+Similar to the `withStyles`, the `sx` prop has a frequent source of confusion is TypeScript's [type widening](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
+
+```ts
+const styles = {
+  flexDirection: 'column',
+};
+
+export default function App() {
+  return <Button sx={sx}>Example</Button>;
+}
+//    Type '{ flexDirection: string; }' is not assignable to type 'SxProps<Theme> | undefined'.
+//    Type '{ flexDirection: string; }' is not assignable to type 'CSSSelectorObject<Theme>'.
+//      Property 'flexDirection' is incompatible with index signature.
+//        Type 'string' is not assignable to type 'SystemStyleObject<Theme>'.
+```
+
+The problem is that the type of the `flexDirection` prop is inferred as `string`, which is too arbitrary. To fix this, you can pass the styles object directly to the `sx` prop:
+
+```ts
+export default function App() {
+  return <Button sx={{ flexDirection: 'column' }}>Example</Button>;
+}
+```
+
+Alternatively, you can cast the object/function passed to the `sx` prop to const:
+
+```ts
+const style = {
+  flexDirection: 'column',
+} as const;
+
+export default function App() {
+  return <Button sx={style}>Example</Button>;
+}
+```
+
 ## Customization of `Theme`
 
 When adding custom properties to the `Theme`, you may continue to use it in a strongly typed way by exploiting
