@@ -13,7 +13,7 @@ import { ownerWindow } from '../utils';
 // Later, we're going to translate the node back to its original location with `none`.
 function getTranslateValue(direction, node, targetRef) {
   const rect = node.getBoundingClientRect();
-  const targetNode = targetNode?.current;
+  const targetNode = targetRef?.current;
   const targetNodeRect = targetNode && targetNode.getBoundingClientRect();
   const containerWindow = ownerWindow(node);
   let transform;
