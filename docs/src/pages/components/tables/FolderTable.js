@@ -60,6 +60,7 @@ const theme = createTheme({
       primary: '#5A6978',
       secondary: '#96A3B0',
     },
+    divider: '#E5E8EC',
   },
   typography: {
     fontFamily: [
@@ -71,6 +72,18 @@ const theme = createTheme({
   },
   shape: {
     borderRadius: 10,
+  },
+  components: {
+    MuiTableCell: {
+      styleOverrides: {
+        root: {
+          borderColor: '#E5E8EC',
+        },
+        sizeSmall: {
+          padding: '10px 16px',
+        },
+      },
+    },
   },
 });
 
