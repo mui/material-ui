@@ -83,10 +83,9 @@ export default function transformer(fileInfo, api, options) {
 
   addImports(
     root,
-    [...resultSpecifiers.keys()]
-      .map((source) =>
-        j.importDeclaration(resultSpecifiers.get(source), j.stringLiteral(source)),
-      ),
+    [...resultSpecifiers.keys()].map((source) =>
+      j.importDeclaration(resultSpecifiers.get(source), j.stringLiteral(source)),
+    ),
   );
 
   return root.toSource(printOptions);
