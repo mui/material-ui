@@ -62,14 +62,6 @@ The Transition component's `mountOnEnter` property prevents the child component 
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 
-
-### Slide from target DOM node
-
-The Slide component also accepts `targetRef` prop, which is a reference to a DOM node. If this property is set, the slide component will slide from the edge of that DOM node.
-
-{{"demo": "pages/components/transitions/SimpleSlideFromTargetRef.js", "bg": true}}
-
-
 ## Zoom
 
 Expand outwards from the center of the child element.
