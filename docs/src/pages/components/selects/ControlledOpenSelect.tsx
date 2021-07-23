@@ -2,15 +2,15 @@ import * as React from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import Select, { SelectChangeEvent } from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 
 export default function ControlledOpenSelect() {
   const [age, setAge] = React.useState<string | number>('');
   const [open, setOpen] = React.useState(false);
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setAge(event.target.value as number);
+  const handleChange = (event: SelectChangeEvent<typeof age>) => {
+    setAge(event.target.value);
   };
 
   const handleClose = () => {

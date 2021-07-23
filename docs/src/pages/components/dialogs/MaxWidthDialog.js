@@ -27,7 +27,10 @@ export default function MaxWidthDialog() {
   };
 
   const handleMaxWidthChange = (event) => {
-    setMaxWidth(event.target.value);
+    setMaxWidth(
+      // @ts-expect-error autofill of arbitrary value is not handled.
+      event.target.value,
+    );
   };
 
   const handleFullWidthChange = (event) => {
