@@ -55,10 +55,6 @@ Here is an example of customizing the component. You can learn more about this i
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
-### Folder Table
-
-{{"demo": "pages/components/tables/FolderTable.js", "bg": true}}
-
 ### Custom pagination options
 
 It's possible to customize the options shown in the "Rows per page" select using the `rowsPerPageOptions` prop.
@@ -81,6 +77,12 @@ You should either provide an array of:
 The `ActionsComponent` prop of the `TablePagination` component allows the implementation of custom actions.
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
+
+## Theming
+
+Here is an example of theming the component. You can learn more about this in the [theming page](/customization/theming) and [theme components page](/customization/theme-components)
+
+{{"demo": "pages/components/tables/FolderTable.js", "bg": true}}
 
 ## Sticky header
 
