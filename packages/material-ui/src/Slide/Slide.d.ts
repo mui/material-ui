@@ -33,11 +33,8 @@ export interface SlideProps extends TransitionProps {
   ref?: React.Ref<unknown>;
   /**
    * If set to a DOM node, the animated element slides in from the edge of the specified node.
-   * @default {
-   *   current: undefined,
-   * }
    */
-  targetRef?: React.Ref<unknown>;
+  targetRef?: React.Ref<any>;
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.

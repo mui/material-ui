@@ -11,8 +11,9 @@ import { ownerWindow } from '../utils';
 
 // Translate the node so it can't be seen on the screen.
 // Later, we're going to translate the node back to its original location with `none`.
-function getTranslateValue(direction, node, targetNode) {
+function getTranslateValue(direction, node, targetRef) {
   const rect = node.getBoundingClientRect();
+  const targetNode = targetNode?.current;
   const targetNodeRect = targetNode && targetNode.getBoundingClientRect();
   const containerWindow = ownerWindow(node);
   let transform;
@@ -65,8 +66,8 @@ function getTranslateValue(direction, node, targetNode) {
   return `translateY(-${rect.top + rect.height - offsetY}px)`;
 }
 
-export function setTranslateValue(direction, node, targetNode) {
-  const transform = getTranslateValue(direction, node, targetNode);
+export function setTranslateValue(direction, node, targetRef) {
+  const transform = getTranslateValue(direction, node, targetRef);
 
   if (transform) {
     node.style.webkitTransform = transform;
@@ -84,10 +85,6 @@ const defaultTimeout = {
   exit: duration.leavingScreen,
 };
 
-const defaultTargetRef = {
-  current: undefined,
-};
-
 /**
  * The Slide transition is used by the [Drawer](/components/drawers/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
@@ -96,7 +93,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
   const {
     appear = true,
     children,
-    targetRef = defaultTargetRef,
+    targetRef,
     direction = 'down',
     easing: easingProp = defaultEasing,
     in: inProp,
@@ -130,7 +127,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
   };
 
   const handleEnter = normalizedTransitionCallback((node, isAppearing) => {
-    setTranslateValue(direction, node, targetRef.current);
+    setTranslateValue(direction, node, targetRef);
     reflow(node);
 
     if (onEnter) {
@@ -175,7 +172,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     node.style.webkitTransition = theme.transitions.create('-webkit-transform', transitionProps);
     node.style.transition = theme.transitions.create('transform', transitionProps);
 
-    setTranslateValue(direction, node, targetRef.current);
+    setTranslateValue(direction, node, targetRef);
 
     if (onExit) {
       onExit(node);
@@ -194,7 +191,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
   const updatePosition = React.useCallback(() => {
     if (childrenRef.current) {
-      setTranslateValue(direction, childrenRef.current, targetRef.current);
+      setTranslateValue(direction, childrenRef.current, targetRef);
     }
   }, [direction, targetRef]);
 
@@ -206,7 +203,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
     const handleResize = debounce(() => {
       if (childrenRef.current) {
-        setTranslateValue(direction, childrenRef.current, targetRef.current);
+        setTranslateValue(direction, childrenRef.current, targetRef);
       }
     });
 
@@ -323,15 +320,12 @@ Slide.propTypes /* remove-proptypes */ = {
    */
   style: PropTypes.object,
   /**
-   * If defined, then element slides in from the edge of the specified element.
-   * @default {
-   *   current: undefined,
-   * }
+   * If set to a DOM node, the animated element slides in from the edge of the specified node.
    */
   targetRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({
-      current: PropTypes.object,
+      current: PropTypes.any.isRequired,
     }),
   ]),
   /**
