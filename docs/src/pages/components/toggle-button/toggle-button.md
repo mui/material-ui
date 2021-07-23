@@ -76,6 +76,8 @@ Here is an example of customizing the component. You can learn more about this i
 
 {{"demo": "pages/components/toggle-button/CustomizedDividers.js", "bg": true}}
 
+{{"demo": "pages/components/toggle-button/ViewToggleButton.js", "bg": true}}
+
 ## Accessibility
 
 ### ARIA
