@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -64,40 +64,54 @@ function formatSize(size: number) {
   return `${(kb / 1000).toFixed(0)} MB`;
 }
 
-const theme = createTheme({
-  palette: {
-    text: {
-      primary: '#5A6978',
-      secondary: '#96A3B0',
-    },
-    divider: '#E5E8EC',
-  },
-  typography: {
-    fontFamily: [
-      '"PlusJakartaSans"',
-      '-apple-system',
-      'BlinkMacSystemFont',
-      'sans-serif',
-    ].join(','),
-  },
-  shape: {
-    borderRadius: 10,
-  },
-  components: {
-    MuiTableCell: {
-      styleOverrides: {
-        root: {
-          borderColor: '#E5E8EC',
-        },
-        sizeSmall: {
-          padding: '10px 16px',
-        },
-      },
-    },
-  },
-});
-
 export default function BasicTable() {
+  const globalTheme = useTheme();
+  const mode = globalTheme.palette.mode;
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode,
+          ...(mode === 'light' && {
+            text: {
+              primary: '#5A6978',
+              secondary: '#96A3B0',
+            },
+          }),
+          divider: mode === 'dark' ? '#132F4C' : '#E5E8EC',
+          success: {
+            main: mode === 'dark' ? '#21CC66' : '#1AA251',
+          },
+          background: {
+            paper: mode === 'dark' ? '#003A75' : '#fff',
+          },
+        },
+        typography: {
+          fontFamily: [
+            '"PlusJakartaSans"',
+            '-apple-system',
+            'BlinkMacSystemFont',
+            'sans-serif',
+          ].join(','),
+        },
+        shape: {
+          borderRadius: 10,
+        },
+        components: {
+          MuiTableCell: {
+            styleOverrides: {
+              root: {
+                borderColor: mode === 'dark' ? '#132F4C' : '#E5E8EC',
+              },
+              sizeSmall: {
+                padding: '10px 16px',
+              },
+            },
+          },
+        },
+      }),
+    [mode],
+  );
   const [order, setOrder] = React.useState<Order>('asc');
   const [orderBy, setOrderBy] = React.useState<keyof Data>('name');
   const handleRequestSort = (
@@ -132,6 +146,7 @@ export default function BasicTable() {
                     active={orderBy === headCell.id}
                     direction={orderBy === headCell.id ? order : 'asc'}
                     onClick={createSortHandler(headCell.id)}
+                    sx={{ fontSize: '0.75rem' }}
                   >
                     {headCell.label}
                     {orderBy === headCell.id ? (
@@ -152,11 +167,17 @@ export default function BasicTable() {
               >
                 <TableCell component="th" scope="row">
                   <Box display="flex" alignItems="center">
-                    <Folder sx={{ mr: 1 }} fontSize="small" htmlColor="#D7DCE1" />{' '}
+                    <Folder
+                      sx={{ mr: 1 }}
+                      fontSize="small"
+                      htmlColor={mode === 'dark' ? '#265D97' : '#D7DCE1'}
+                    />{' '}
                     {row.name}
                   </Box>
                 </TableCell>
-                <TableCell align="right">{formatSize(row.size)}</TableCell>
+                <TableCell align="right" sx={{ color: 'success.main' }}>
+                  {formatSize(row.size)}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

@@ -78,7 +78,7 @@ export default function TaskCard() {
       >
         <Box display="flex" alignItems="center">
           <ScheduleRounded fontSize="inherit" />
-          <Typography color="text.secondary" variant="caption" ml={0.5} mt={0.25}>
+          <Typography color="text.secondary" variant="caption" ml={0.5} mt="1px">
             March 25th
           </Typography>
         </Box>

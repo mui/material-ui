@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
@@ -11,64 +11,73 @@ import FastRewindRounded from '@material-ui/icons/FastRewindRounded';
 import PlayArrowRounded from '@material-ui/icons/PlayArrowRounded';
 import PauseRounded from '@material-ui/icons/PauseRounded';
 
-const theme = createTheme({
-  shape: {
-    borderRadius: 8,
-  },
-  spacing: 10,
-  typography: {
-    fontFamily: [
-      '"PlusJakartaSans"',
-      '-apple-system',
-      'BlinkMacSystemFont',
-      'sans-serif',
-    ].join(','),
-  },
-  components: {
-    MuiButtonBase: {
-      defaultProps: {
-        disableTouchRipple: true,
-      },
-    },
-    MuiAvatar: {
-      styleOverrides: {
-        root: {
-          border: '1px solid #fff',
-        },
-      },
-    },
-    MuiLinearProgress: {
-      styleOverrides: {
-        root: {
-          borderRadius: 10,
-          backgroundColor: 'rgba(255,255,255,0.12)',
-        },
-        bar: {
-          borderRadius: 10,
-          backgroundColor: '#fff',
-        },
-      },
-    },
-    MuiIconButton: {
-      defaultProps: {
-        size: 'small',
-      },
-      styleOverrides: {
-        root: {
-          border: '1px solid #E5E8EC',
-        },
-      },
-    },
-    MuiSvgIcon: {
-      defaultProps: {
-        fontSize: 'small',
-      },
-    },
-  },
-});
-
 export default function PlayerCard() {
   const [paused, setPaused] = React.useState(false);
+  const globalTheme = useTheme();
+  const mode = globalTheme.palette.mode;
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode,
+          background: {
+            paper: mode === 'dark' ? '#003A75' : '#fff',
+          },
+          divider: mode === 'dark' ? '#132F4C' : '#E5E8EC',
+          ...(mode === 'light' && {
+            text: {
+              primary: '#3D4752',
+              secondary: '#5A6978',
+            },
+          }),
+        },
+        shape: {
+          borderRadius: 8,
+        },
+        spacing: 10,
+        typography: {
+          fontFamily: [
+            '"PlusJakartaSans"',
+            '-apple-system',
+            'BlinkMacSystemFont',
+            'sans-serif',
+          ].join(','),
+        },
+        components: {
+          MuiButtonBase: {
+            defaultProps: {
+              disableTouchRipple: true,
+            },
+          },
+          MuiAvatar: {
+            styleOverrides: {
+              root: {
+                border: '1px solid',
+                borderColor: mode === 'dark' ? '#132F4C' : '#fff',
+              },
+            },
+          },
+          MuiIconButton: {
+            defaultProps: {
+              size: 'small',
+            },
+            styleOverrides: {
+              root: {
+                border: '1px solid',
+                borderColor: mode === 'dark' ? '#132F4C' : '#E5E8EC',
+              },
+            },
+          },
+          MuiSvgIcon: {
+            defaultProps: {
+              fontSize: 'small',
+            },
+          },
+        },
+      }),
+    [mode],
+  );
+
   return (
     <ThemeProvider theme={theme}>
       <Card variant="outlined" sx={{ display: 'flex', p: 1 }}>
@@ -78,7 +87,7 @@ export default function PlayerCard() {
           variant="rounded"
         />
         <Box alignSelf="center" mx={2}>
-          <Typography color="grey.800" variant="body2" fontWeight={500}>
+          <Typography variant="body2" fontWeight={500}>
             Ultraviolet
           </Typography>
           <Typography component="div" variant="caption" color="text.secondary">
