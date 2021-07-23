@@ -90,8 +90,8 @@ export default function BasicChips() {
   return (
     <ThemeProvider theme={theme}>
       <Stack direction="row" spacing={2}>
-        <Chip label="Chip Filled" color="primary" onDelete={handleDelete} />
-        <Chip label="Chip Outlined" onDelete={handleDelete} />
+        <Chip label="React" color="primary" onDelete={handleDelete} />
+        <Chip label="Javascript" onDelete={handleDelete} />
       </Stack>
     </ThemeProvider>
   );
