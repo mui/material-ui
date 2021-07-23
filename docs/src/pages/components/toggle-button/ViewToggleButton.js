@@ -9,6 +9,19 @@ import ViewAgendaRounded from '@material-ui/icons/ViewAgendaRounded';
 import ViewWeekRounded from '@material-ui/icons/ViewWeekRounded';
 import ViewSidebarRounded from '@material-ui/icons/ViewSidebarRounded';
 
+const primary = {
+  50: '#F0F7FF',
+  100: '#C2E0FF',
+  200: '#80BFFF',
+  300: '#66B2FF',
+  400: '#3399FF',
+  500: '#007FFF',
+  600: '#0072E5',
+  700: '#0059B2',
+  800: '#004C99',
+  900: '#003A75',
+};
+
 const views = ['quilt', 'module', 'agenda', 'week', 'sidebar'];
 
 const viewIcons = {
@@ -29,10 +42,8 @@ export default function ToggleButtons() {
       createTheme({
         palette: {
           mode,
-          primary: {
-            main: '#007FFF',
-          },
-          divider: mode === 'dark' ? '#132F4C' : '#E5E8EC',
+          primary,
+          divider: mode === 'dark' ? primary[900] : '#E5E8EC',
         },
         typography: {
           fontFamily: [
@@ -54,7 +65,7 @@ export default function ToggleButtons() {
           MuiToggleButtonGroup: {
             styleOverrides: {
               root: {
-                backgroundColor: mode === 'dark' ? '#004C99' : '#fff',
+                backgroundColor: mode === 'dark' ? primary[800] : '#fff',
               },
             },
           },
@@ -62,6 +73,9 @@ export default function ToggleButtons() {
             styleOverrides: {
               root: {
                 color: mode === 'dark' ? '#fff' : '#BFC7CF',
+                '&.Mui-selected': {
+                  color: mode === 'dark' ? primary[300] : primary[500],
+                },
               },
             },
           },
