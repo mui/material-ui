@@ -32,7 +32,7 @@ export interface SlideProps extends TransitionProps {
   in?: TransitionProps['in'];
   ref?: React.Ref<unknown>;
   /**
-   * If defined, then element slides in from the edge of the specified element.
+   * If set to a DOM node, the animated element slides in from the edge of the specified node.
    * @default {
    *   current: undefined,
    * }
