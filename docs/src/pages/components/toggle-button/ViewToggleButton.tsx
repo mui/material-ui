@@ -34,7 +34,7 @@ const viewIcons: Record<View, React.ReactElement> = {
   sidebar: <ViewSidebarRounded />,
 };
 
-export default function ToggleButtons() {
+export default function ViewToggleButton() {
   const [view, setView] = React.useState<View>('quilt');
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;

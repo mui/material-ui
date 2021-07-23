@@ -28,7 +28,7 @@ const grey = {
   900: '#3D4752',
 };
 
-export default function BasicChips() {
+export default function CustomizedChip() {
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
   const theme = React.useMemo(

@@ -109,7 +109,7 @@ This might be less confusing to users compared to a change in direction.
 
 Here is an example of theming the component. You can learn more about this in the [theming page](/customization/theming) and [theme components page](/customization/theme-components)
 
-{{"demo": "pages/components/slider/ThemeSlider.js", "hideToolbar": true}}
+{{"demo": "pages/components/slider/ThemeSlider.js"}}
 
 ## Track
 

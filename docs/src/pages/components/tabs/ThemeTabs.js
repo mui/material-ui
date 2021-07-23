@@ -16,7 +16,7 @@ const primary = {
   900: '#003A75',
 };
 
-export default function BasicTabs() {
+export default function ThemeTabs() {
   const [value, setValue] = React.useState(0);
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;

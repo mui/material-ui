@@ -12,7 +12,7 @@ declare module '@material-ui/core/Chip' {
   }
 }
 
-export default function PlayerCard() {
+export default function NotificationCard() {
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
   const theme = React.useMemo(
