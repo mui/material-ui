@@ -15,6 +15,7 @@ const primary = {
   800: '#004C99',
   900: '#003A75',
 };
+
 const grey = {
   50: '#F3F6F9',
   100: '#EAEEF3',
@@ -117,6 +118,7 @@ export default function ThemeSlider() {
       }),
     [mode],
   );
+
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ height: 160 }}>

@@ -48,6 +48,7 @@ export default function ThemeDatePicker() {
         },
       },
     });
+
     return createTheme(baseTheme, {
       components: {
         MuiButtonBase: {

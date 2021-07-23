@@ -15,6 +15,7 @@ const primary = {
   800: '#004C99',
   900: '#003A75',
 };
+
 const grey = {
   50: '#F3F6F9',
   100: '#EAEEF3',
@@ -84,14 +85,15 @@ export default function BasicChips() {
       }),
     [mode],
   );
+
   const handleDelete = () => {
     console.info('You clicked the delete icon.');
   };
   return (
     <ThemeProvider theme={theme}>
       <Stack direction="row" spacing={2}>
-        <Chip label="Chip Filled" color="primary" onDelete={handleDelete} />
-        <Chip label="Chip Outlined" onDelete={handleDelete} />
+        <Chip label="React" color="primary" onDelete={handleDelete} />
+        <Chip label="Javascript" onDelete={handleDelete} />
       </Stack>
     </ThemeProvider>
   );
