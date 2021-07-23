@@ -102,6 +102,7 @@ export interface OverridableComponent<M extends OverridableTypeMap> {
     } & OverrideProps<M, C>,
   ): JSX.Element;
   (props: DefaultComponentProps<M>): JSX.Element;
+  propTypes?: any;
 }
 
 /**

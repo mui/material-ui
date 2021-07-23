@@ -164,7 +164,7 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
       </Root>
     </FormControlUnstyledContext.Provider>
   );
-});
+}) as OverridableComponent<FormControlUnstyledTypeMap>;
 
 FormControlUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -180,9 +180,10 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * @ignore
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
-  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
+  component: PropTypes.elementType,
   /**
    * The components used for each slot inside the FormControl.
    * Either a string to use a HTML element or a component.
@@ -229,4 +230,4 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
   value: PropTypes.any,
 } as any;
 
-export default FormControlUnstyled as OverridableComponent<FormControlUnstyledTypeMap>;
+export default FormControlUnstyled;
