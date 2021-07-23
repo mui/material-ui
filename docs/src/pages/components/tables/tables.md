@@ -55,6 +55,10 @@ Here is an example of customizing the component. You can learn more about this i
 
 {{"demo": "pages/components/tables/CustomizedTables.js", "bg": true}}
 
+### Folder Table 
+
+{{"demo": "pages/components/tables/FolderTable.js", "bg": true}}
+
 ### Custom pagination options
 
 It's possible to customize the options shown in the "Rows per page" select using the `rowsPerPageOptions` prop.

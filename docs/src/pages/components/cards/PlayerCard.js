@@ -17,7 +17,12 @@ const theme = createTheme({
   },
   spacing: 10,
   typography: {
-    fontFamily: ['"PlusJakartaSans"', 'sans-serif'].join(','),
+    fontFamily: [
+      '"PlusJakartaSans"',
+      '-apple-system',
+      'BlinkMacSystemFont',
+      'sans-serif',
+    ].join(','),
   },
   components: {
     MuiButtonBase: {

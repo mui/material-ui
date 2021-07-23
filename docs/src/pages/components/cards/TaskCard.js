@@ -16,7 +16,12 @@ const theme = createTheme({
   },
   spacing: 10,
   typography: {
-    fontFamily: ['"PlusJakartaSans"', 'sans-serif'].join(','),
+    fontFamily: [
+      '"PlusJakartaSans"',
+      '-apple-system',
+      'BlinkMacSystemFont',
+      'sans-serif',
+    ].join(','),
     h6: {
       lineHeight: 1.2,
       fontWeight: 700,

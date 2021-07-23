@@ -27,7 +27,12 @@ const theme = createTheme({
   },
   spacing: 10,
   typography: {
-    fontFamily: ['"PlusJakartaSans"', 'sans-serif'].join(','),
+    fontFamily: [
+      '"PlusJakartaSans"',
+      '-apple-system',
+      'BlinkMacSystemFont',
+      'sans-serif',
+    ].join(','),
     fontWeightRegular: 500,
   },
   components: {
