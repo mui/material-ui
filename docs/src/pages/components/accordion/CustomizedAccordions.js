@@ -5,7 +5,7 @@ import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
-import './style.css';
+import styles from './style.module.css';
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -53,7 +53,7 @@ export default function CustomizedAccordions() {
   return (
     <div>
       <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-        <AccordionSummary style={{backgroundColor:'blue'}} aria-controls="panel1d-content " id="panel1d-header first">
+        <AccordionSummary style={{backgroundColor:'blue'}} aria-controls="panel1d-content " id="panel1d-header" className={styles.first}>
           <Typography>Collapsible Group Item #1</Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -79,7 +79,7 @@ export default function CustomizedAccordions() {
         </AccordionDetails>
       </Accordion>
       <Accordion expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
-        <AccordionSummary style={{backgroundColor:'blue'}} aria-controls="panel3d-content" id="panel3d-header last">
+        <AccordionSummary style={{backgroundColor:'blue'}} aria-controls="panel3d-content" id="panel3d-header" className={styles.last}>
           <Typography>Collapsible Group Item #3</Typography>
         </AccordionSummary>
         <AccordionDetails>
