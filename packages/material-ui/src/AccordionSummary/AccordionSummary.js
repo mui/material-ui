@@ -48,7 +48,7 @@ const AccordionSummaryRoot = styled(ButtonBase, {
     },
     ...(!styleProps.disableGutters && {
       [`&.${accordionSummaryClasses.expanded}`]: {
-        minHeight: 64,
+        minHeight: 64
       },
     }),
   };
