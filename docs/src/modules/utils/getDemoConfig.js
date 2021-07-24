@@ -93,7 +93,7 @@ function getLanguageConfig(demoData, options) {
   }
 }
 
-export default function getDemoConfig(demoData, options) {
+export default function getDemoConfig(demoData, options = {}) {
   const { indexPath = 'public/index.html', previewPackage = true } = options;
   const baseConfig = {
     title: demoData.title,
