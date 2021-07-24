@@ -46,7 +46,6 @@ const ToggleButtonRoot = styled(ButtonBase, {
     padding: 11,
     border: `1px solid ${theme.palette.divider}`,
     color: theme.palette.action.active,
-    /* Styles applied to the root element if `fullWidth={true}`. */
     ...(styleProps.fullWidth && {
       width: '100%',
     }),
@@ -76,12 +75,10 @@ const ToggleButtonRoot = styled(ButtonBase, {
         },
       },
     },
-    /* Styles applied to the root element if `size="small"`. */
     ...(styleProps.size === 'small' && {
       padding: 7,
       fontSize: theme.typography.pxToRem(13),
     }),
-    /* Styles applied to the root element if `size="large"`. */
     ...(styleProps.size === 'large' && {
       padding: 15,
       fontSize: theme.typography.pxToRem(15),

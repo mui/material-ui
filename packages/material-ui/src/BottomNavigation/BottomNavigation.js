@@ -22,7 +22,6 @@ const BottomNavigationRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })(({ theme }) => ({
-  /* Styles applied to the root element. */
   display: 'flex',
   justifyContent: 'center',
   height: 56,
@@ -111,7 +110,7 @@ BottomNavigation.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the value changes.
    *
-   * @param {object} event The event source of the callback. **Warning**: This is a generic event not a change event.
+   * @param {React.SyntheticEvent} event The event source of the callback. **Warning**: This is a generic event not a change event.
    * @param {any} value We default to the index of the child.
    */
   onChange: PropTypes.func,

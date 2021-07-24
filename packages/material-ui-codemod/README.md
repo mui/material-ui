@@ -61,7 +61,7 @@ npx @material-ui/codemod@next <transform> <path> --jscodeshift="--printOptions='
 
 #### 🚀 `preset-safe`
 
-A combination of all important transformers for migrating v4 to v5. ⚠️ This mod is not idempotent (`theme-breakpoints`) and should be run only once.
+A combination of all important transformers for migrating v4 to v5. ⚠️ This codemod should be run only once.
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/preset-safe <path|folder>
@@ -140,7 +140,7 @@ The list includes these transformers
 
 #### `adapter-v4`
 
-import and insert `adaptV4Theme` to `createTheme` (or `createMuiTheme`)
+Imports and inserts `adaptV4Theme` into `createTheme` (or `createMuiTheme`)
 
 ```diff
 +import { adaptV4Theme } from '@material-ui/core/styles';
@@ -157,7 +157,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `autocomplete-rename-closeicon`
 
-Renames `fade` style utility import and calls from `fade` to `alpha`.
+Renames `Autocomplete`'s `closeIcon` prop to `clearIcon`.
 
 ```diff
 -<Autocomplete closeIcon={defaultClearIcon} />
@@ -174,7 +174,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `autocomplete-rename-option`
 
-Renames `getOptionSelected` to `isOptionEqualToValue`.
+Renames `Autocomplete`'s `getOptionSelected` to `isOptionEqualToValue`.
 
 ```diff
 <Autocomplete
@@ -193,7 +193,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `avatar-circle-circular`
 
-Updates the Avatar `variant` value and classes key from 'circle' to 'circular'.
+Updates the `Avatar`'s `variant` value and `classes` key from 'circle' to 'circular'.
 
 ```diff
 -<Avatar variant="circle" />
@@ -336,7 +336,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `circularprogress-variant`
 
-Rename the CircularPress `static` variant to `determinate`.
+Renames the CircularProgress `static` variant to `determinate`.
 
 ```diff
 -<CircularProgress variant="static" classes={{ static: 'className' }} />
@@ -353,7 +353,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `collapse-rename-collapsedheight`
 
-Rename the CircularPress `static` variant to `determinate`.
+Renames `Collapse`'s `collapsedHeight` prop to `collapsedSize`.
 
 ```diff
 -<Collapse collapsedHeight={40} />
@@ -389,7 +389,7 @@ npx @material-ui/codemod@next v5.0.0/component-rename-prop <path> -- --component
 
 #### `core-styles-import`
 
-Rename private import from `core/styles/*` to `core/styles`
+Renames private import from `core/styles/*` to `core/styles`
 
 ```diff
 -import { darken, lighten } from '@material-ui/core/styles/colorManipulator';
@@ -402,7 +402,7 @@ npx @material-ui/codemod@next v5.0.0/core-styles-import <path>
 
 #### `create-theme`
 
-Rename the function `createMuiTheme` to `createTheme`
+Renames the function `createMuiTheme` to `createTheme`
 
 ```diff
 -import { createMuiTheme } from '@material-ui/core/styles';
@@ -445,7 +445,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `emotion-prepend-cache`
 
-add `prepend: true` to emotion `createCache`
+Adds `prepend: true` to emotion `createCache`
 
 ```diff
 const cache = emotionCreateCache({
@@ -460,7 +460,7 @@ npx @material-ui/codemod@next v5.0.0/create-theme <path>
 
 #### `expansion-panel-component`
 
-Rename `ExpansionPanel*` to `Accordion*`
+Renames `ExpansionPanel*` to `Accordion*`
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/expansion-panel-component <path>
@@ -483,7 +483,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `fade-rename-alpha`
 
-Renames `fade` style utility import and calls frpm `fade` to `alpha`.
+Renames the `fade` style utility import and calls to `alpha`.
 
 ```diff
 -import { fade, lighten } from '@material-ui/core/styles';
@@ -503,7 +503,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `grid-justify-justifycontent`
 
-Renames `fade` style utility import and calls frpm `fade` to `alpha`.
+Renames `Grid`'s `justify` prop to `justifyContent`.
 
 ```diff
 -<Grid justify="left">Item</Grid>
@@ -520,7 +520,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `grid-list-component`
 
-Rename `GridList*` to `ImageList*`
+Renames `GridList*` to `ImageList*`
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/grid-list-component <path>
@@ -530,7 +530,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `icon-button-size`
 
-Add `size="large"` if `size` is empty to get the same UI as v4
+Adds `size="large"` if `size` is not defined to get the same appearance as v4.
 
 ```diff
 -<IconButton size="medium" />
@@ -624,7 +624,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `material-ui-styles`
 
-Move JSS imports to `@material-ui/styles`
+Moves JSS imports to `@material-ui/styles`
 
 ```diff
 -import {
@@ -724,6 +724,8 @@ You can find more details about this breaking change in the migration guide.
 
 #### `pagination-round-circular`
 
+Renames `Pagination*`'s `shape` values from 'round' to 'circular'.
+
 ```diff
 -<Pagination shape="round" />
 -<PaginationItem shape="round" />
@@ -739,7 +741,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `root-ref`
 
-Removes `RootRef` from the codebase
+Removes `RootRef` from the codebase.
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/root-ref <path>
@@ -764,7 +766,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `styled-engine-provider`
 
-Applies `StyledEngineProvider` to the files that contains `ThemeProvider`
+Applies `StyledEngineProvider` to the files that contains `ThemeProvider`.
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/styled-engine-provider <path>
@@ -774,7 +776,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `table-props`
 
-Renames props in `Table*` components
+Renames props in `Table*` components.
 
 ```diff
 -<>
@@ -800,6 +802,8 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `tabs-scroll-buttons`
 
+Renames the `Tabs`'s `scrollButtons` prop values.
+
 ```diff
 -<Tabs scrollButtons="on" />
 -<Tabs scrollButtons="desktop" />
@@ -816,6 +820,8 @@ npx @material-ui/codemod@next v5.0.0/tabs-scroll-buttons <path>
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#tabs).
 
 #### `textarea-minmax-rows`
+
+Renames `TextField`'s rows props.
 
 ```diff
 -<TextField rowsMin={3} rowsMax={6} />
@@ -837,7 +843,7 @@ You can find more details about this breaking change in the migration guide.
 
 #### `theme-augment`
 
-Add `DefaultTheme` module augment for typescript project
+Adds `DefaultTheme` module augmentation to typescript projects.
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/theme-augment <path>
@@ -866,7 +872,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `theme-breakpoints-width`
 
-Rename `theme.breakpoints.width('md')` to `theme.breakpoints.values.md`
+Renames `theme.breakpoints.width('md')` to `theme.breakpoints.values.md`.
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/theme-breakpoints-width <path>
@@ -887,7 +893,7 @@ npx @material-ui/codemod@next v5.0.0/theme-options <path>
 
 #### `theme-palette-mode`
 
-Rename `type` to `mode`
+Renames `type` to `mode`.
 
 ```diff
 - { palette: { type: 'dark' } }
@@ -904,7 +910,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `theme-provider`
 
-Rename `MuiThemeProvider` to `ThemeProvider`
+Renames `MuiThemeProvider` to `ThemeProvider`.
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/theme-provider <path>
@@ -933,7 +939,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `theme-typography-round`
 
-Remove `theme.typography.round($number)` to `Math.round($number * 1e5) / 1e5`
+Renames `theme.typography.round($number)` to `Math.round($number * 1e5) / 1e5`.
 
 ```diff
 -`${theme.typography.round($number)}`
@@ -1002,7 +1008,7 @@ You can find more details about this breaking change in [the migration guide](/g
 
 > Don't run this codemod if you already set `variant` to `outlined` or `filled` in theme default props.
 
-Add the TextField, Select, and FormControl `variant="standard"` prop when `variant` is undefined.
+Adds the TextField, Select, and FormControl's `variant="standard"` prop when `variant` is undefined.
 The diff should look like this:
 
 ```diff
@@ -1028,11 +1034,11 @@ npx @material-ui/codemod@next v5.0.0/variant-prop <path>
 
 #### `with-mobile-dialog`
 
-Remove and insert hardcoded `withMobileDialog` to prevent application crash.
+Removes imported `withMobileDialog`, and inserts hardcoded version to prevent application crash.
 
 ```diff
 - import withMobileDialog from '@material-ui/core/withMobileDialog';
-+ // FIXME checkout https://material-ui.com/components/use-media-query/#using-material-uis-breakpoint-helpers
++ // FIXME checkout https://next.material-ui.com/guides/migration-v4/#dialog
 + const withMobileDialog = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="lg" fullScreen={false} />;
 ```
 
@@ -1044,7 +1050,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `with-width`
 
-Remove and insert hardcoded `withWidth` to prevent application crash.
+Removes `withWidth` import, and inserts hardcoded version to prevent application crash.
 
 ```diff
 - import withWidth from '@material-ui/core/withWidth';

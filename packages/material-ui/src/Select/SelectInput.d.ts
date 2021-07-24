@@ -3,6 +3,15 @@ import { SxProps } from '@material-ui/system';
 import { Theme } from '..';
 import { MenuProps } from '../Menu';
 
+/**
+ * The change can be caused by different kind of events.
+ * The type of event depends on what caused the change.
+ * For example, when the browser auto-fills the `Select` you'll receive a `React.ChangeEvent`.
+ */
+export type SelectChangeEvent<T = string> =
+  | (Event & { target: { value: T; name: string } })
+  | React.ChangeEvent<HTMLInputElement>;
+
 export interface SelectInputProps<T = unknown> {
   autoFocus?: boolean;
   autoWidth: boolean;
@@ -16,10 +25,7 @@ export interface SelectInputProps<T = unknown> {
   name?: string;
   native: boolean;
   onBlur?: React.FocusEventHandler<any>;
-  onChange?: (
-    event: React.ChangeEvent<{ name?: string; value: T; event: Event | React.SyntheticEvent }>,
-    child: React.ReactNode,
-  ) => void;
+  onChange?: (event: SelectChangeEvent<T>, child: React.ReactNode) => void;
   onClose?: (event: React.SyntheticEvent) => void;
   onFocus?: React.FocusEventHandler<any>;
   onOpen?: (event: React.SyntheticEvent) => void;

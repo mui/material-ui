@@ -30,7 +30,6 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
     return [styles.root, !styleProps.showLabel && !styleProps.selected && styles.iconOnly];
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
   transition: theme.transitions.create(['color', 'padding-top'], {
     duration: theme.transitions.duration.short,
   }),
@@ -55,7 +54,6 @@ const BottomNavigationActionLabel = styled('span', {
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the label's span element. */
   fontFamily: theme.typography.fontFamily,
   fontSize: theme.typography.pxToRem(12),
   opacity: 1,

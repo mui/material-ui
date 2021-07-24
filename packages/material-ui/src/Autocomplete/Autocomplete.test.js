@@ -1174,6 +1174,23 @@ describe('<Autocomplete />', () => {
       expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.hasClearIcon);
       expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
     });
+
+    it('should close the popup when disabled is true', () => {
+      const { setProps } = render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      const textbox = screen.getByRole('textbox');
+      act(() => {
+        textbox.focus();
+      });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      expect(screen.queryByRole('listbox')).not.to.equal(null);
+      setProps({ disabled: true });
+      expect(screen.queryByRole('listbox')).to.equal(null);
+    });
   });
 
   describe('prop: disableClearable', () => {

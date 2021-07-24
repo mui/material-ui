@@ -174,7 +174,7 @@ jobs:
             fi
       - run:
           name: Coverage
-          command: bash <(curl -s https://codecov.io/bash) -Z -F $REACT_DIST_TAG
+          command: bash <(curl -s https://codecov.io/bash) -Z -F "$REACT_DIST_TAG-jsdom"
   test_lint:
     <<: *defaults
     steps:
@@ -334,6 +334,16 @@ jobs:
       - run:
           name: Tests real browsers
           command: yarn test:karma
+      - run:
+          name: Check coverage generated
+          command: |
+            if ! [[ -s coverage/lcov.info ]]
+            then
+              exit 1
+            fi
+      - run:
+          name: Coverage
+          command: bash <(curl -s https://codecov.io/bash) -Z -F "$REACT_DIST_TAG-browser"
       - store_artifacts:
           # hardcoded in karma-webpack
           path: /tmp/_karma_webpack_
