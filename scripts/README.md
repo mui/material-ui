@@ -29,7 +29,7 @@ The following steps must be proposed as a pull request.
 
 ### Documentation
 
-Push the next branch on the release branch to deploy the documentation with the latest changes. It lives at https://material-ui.netlify.app/. Force push if necessary.
+Push the master branch on the release branch to deploy the documentation with the latest changes. It lives at https://material-ui.netlify.app/. Force push if necessary.
 
 Note: if you don't have the `material-ui-docs` remote already, you should add it with
 
