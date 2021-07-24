@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import acceptLanguage from 'accept-language';
 import { create } from 'jss';
 import jssRtl from 'jss-rtl';
+import { CacheProvider } from '@emotion/react';
 import { useRouter } from 'next/router';
 import { StylesProvider, jssPreset } from '@material-ui/styles';
 import { StyledEngineProvider } from '@material-ui/core/styles';
@@ -22,6 +23,10 @@ import { pathnameToLanguage, getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES, CODE_VARIANTS, LANGUAGES } from 'docs/src/modules/constants';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
+import createEmotionCache from 'docs/src/createEmotionCache';
+
+// Client-side cache, shared for the whole session of the user in the browser.
+const clientSideEmotionCache = createEmotionCache();
 
 // Configure JSS
 const jss = create({
@@ -353,17 +358,20 @@ AppWrapper.propTypes = {
 };
 
 export default function MyApp(props) {
-  const { Component, pageProps } = props;
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   return (
-    <AppWrapper pageProps={pageProps}>
-      <Component {...pageProps} />
-    </AppWrapper>
+    <CacheProvider value={emotionCache}>
+      <AppWrapper pageProps={pageProps}>
+        <Component {...pageProps} />
+      </AppWrapper>
+    </CacheProvider>
   );
 }
 
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
+  emotionCache: PropTypes.object,
   pageProps: PropTypes.object.isRequired,
 };
 
