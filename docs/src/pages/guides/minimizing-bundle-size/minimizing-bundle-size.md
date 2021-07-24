@@ -1,4 +1,4 @@
-# Minimizing Bundle Size
+# Minimizing bundle size
 
 <p class="description">Learn more about the tools you can leverage to reduce the bundle size.</p>
 
@@ -24,8 +24,9 @@ that doesn't support tree-shaking.
 
 ## Development environment
 
-Development bundles can contain the full library which can lead to **slower startup times**. This is especially noticeable if you
-import from `@material-ui/icons`. Startup times can be approximately 6x slower than without named imports from the top-level API.
+Development bundles can contain the full library which can lead to **slower startup times**.
+This is especially noticeable if you import from `@material-ui/icons`.
+Startup times can be approximately 6x slower than without named imports from the top-level API.
 
 If this is an issue for you, you have various options:
 
@@ -40,19 +41,19 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 ```
 
-instead of top level imports (without a Babel plugin):
+instead of top-level imports (without a Babel plugin):
 
 ```js
 import { Button, TextField } from '@material-ui/core';
 ```
 
-This is the option we document in all the demos, since it requires no configuration.
-It is encouraged for library authors extending the components.
+This is the option we document in all the demos since it requires no configuration.
+It is encouraged for library authors that are extending the components.
 Head to [Option 2](#option-2) for the approach that yields the best DX and UX.
 
 While importing directly in this manner doesn't use the exports in [the main file of `@material-ui/core`](https://unpkg.com/@material-ui/core), this file can serve as a handy reference as to which modules are public.
 
-Be aware that we only support first and second level imports.
+Be aware that we only support first and second-level imports.
 Anything deeper is considered private and can cause issues, such as module duplication in your bundle.
 
 ```js
@@ -90,7 +91,7 @@ If you're using `eslint` you can catch problematic imports with the [`no-restric
 
 This option provides the best User Experience and Developer Experience:
 
-- UX: The Babel plugin enables top level tree-shaking even if your bundler doesn't support it.
+- UX: The Babel plugin enables top-level tree-shaking even if your bundler doesn't support it.
 - DX: The Babel plugin makes startup time in dev mode as fast as Option 1.
 - DX: This syntax reduces the duplication of code, requiring only a single import for multiple modules.
   Overall, the code is easier to read, and you are less likely to make a mistake when importing a new module.
