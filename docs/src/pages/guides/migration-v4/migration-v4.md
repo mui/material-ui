@@ -2369,7 +2369,9 @@ We recommend 2 options.
 
 ### 1. Use `styled` or `sx` API
 
-We provide a codemod to help migrate JSS styles to `styled` API, but this approach will increase the CSS specificity.
+#### Codemod
+
+We provide a codemod to help migrate JSS styles to `styled` API, but this approach **increases the CSS specificity**.
 
 ```sh
 npx @material-ui/codemod v5.0.0/jss-to-styled <folder|file>
@@ -2468,13 +2470,60 @@ function App() {
 }
 ```
 
+#### Manual
+
+In some cases, you might want to create multiple styled components in a file instead of increasing CSS specificity. for example:
+
+```diff
+- import makeStyles from '@material-ui/styles/makeStyles';
++ import { styled } from '@material-ui/core/styles';
+
+- const useStyles = makeStyles((theme) => ({
+-  root: {
+-    display: 'flex',
+-    alignItems: 'center',
+-    borderRadius: 20,
+-    background: theme.palette.grey[50],
+-  },
+-  label: {
+-    color: theme.palette.primary.main,
+-  }
+- }))
++ const Root = style('div')(({ theme }) => ({
++   display: 'flex',
++   alignItems: 'center',
++   borderRadius: 20,
++   background: theme.palette.grey[50],
++ }))
+
++ const Label = style('span')(({ theme }) => ({
++   color: theme.palette.primary.main,
++ }))
+
+function Status({ label }) {
+  const classes = useStyles();
+  return (
+-    <div className={classe.root}>
+-      {icon}
+-      <span className={classes.label}>{label}</span>
+-    </div>
++    <Root className={classe.root}>
++      {icon}
++      <Label className={classes.label}>{label}</Label>
++    </Root>
+  )
+}
+```
+
+> **Note:** [https://siriwatk.dev/tool/jss-to-styled](https://siriwatk.dev/tool/jss-to-styled) is a tool that helps converting JSS to multiple styled components without increasing CSS specificity. (This tool is **not maintained** by Material-UI)
+
 ### 2. Use [tss-react](https://github.com/garronej/tss-react)
 
 The API is similar to JSS `makeStyles` but work with emotion.
 
   <!-- Add material-ui component migration example -->
 
-> **Note:** this library is not maintained by Material-UI. If you have any issue regarding to it, please open an issue in [tss-react repository](https://github.com/garronej/tss-react/issues/new).
+> **Note:** this library is **not maintained** by Material-UI. If you have any issue regarding to it, please open an issue in [tss-react repository](https://github.com/garronej/tss-react/issues/new).
 
 💡 Once you migrate all of the styling, remove unnecessary `@material-ui/styles` by
 
