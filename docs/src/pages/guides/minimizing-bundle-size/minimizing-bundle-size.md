@@ -137,32 +137,6 @@ Pick one of the following plugins:
   module.exports = { plugins };
   ```
 
-- [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) with the following configuration:
-
-  `yarn add -D babel-plugin-transform-imports`
-
-  Create a `.babelrc.js` file in the root directory of your project:
-
-  ```js
-  const plugins = [
-    [
-      'babel-plugin-transform-imports',
-      {
-        '@material-ui/core': {
-          transform: '@material-ui/core/${member}',
-          preventFullImport: true,
-        },
-        '@material-ui/icons': {
-          transform: '@material-ui/icons/${member}',
-          preventFullImport: true,
-        },
-      },
-    ],
-  ];
-
-  module.exports = { plugins };
-  ```
-
 - [babel-plugin-direct-import](https://github.com/umidbekk/babel-plugin-direct-import) with the following configuration:
 
   `yarn add -D babel-plugin-direct-import`
