@@ -8,8 +8,8 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
   /**
    * @deprecated Use onPageChange instead.
    */
-  onChangePage?: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
-  onPageChange?: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
+  onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
+  onPageChange: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
   page: number;
   rowsPerPage: number;
 }
