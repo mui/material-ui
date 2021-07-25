@@ -98,7 +98,7 @@ The name of a boolean prop should be chosen based on the **default value**. This
   <Input disabled /> ✅
   ```
 
-- developers knowing what's the default value only reading the name of the boolean prop. It's always `false`.
+- developers to know what the default value is from the name of the boolean prop. It's always the opposite.
 
 ### Controlled components
 

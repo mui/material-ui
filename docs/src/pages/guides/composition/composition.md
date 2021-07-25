@@ -172,7 +172,7 @@ Only the two most common use cases are covered. For more information see [this s
 +const SomeContent = React.forwardRef((props, ref) =>
 +  <div {...props} ref={ref}>Hello, World!</div>);
 
- <Tooltip title="Hello, again."><SomeContent /></Tooltip>;
+ <Tooltip title="Hello again."><SomeContent /></Tooltip>;
 ```
 
 To find out if the Material-UI component you're using has this requirement, check
