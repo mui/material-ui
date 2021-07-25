@@ -661,7 +661,7 @@ declare module '@material-ui/styles' {
 
   ```diff
   import * as React from 'react';
-  import { withTheme } from '@material-ui/core/styles';
+  import { withTheme } from '@material-ui/styles';
 
   const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
 
