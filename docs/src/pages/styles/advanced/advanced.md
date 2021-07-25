@@ -398,7 +398,7 @@ Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/bl
 
 ### Next.js
 
-You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) to inject the server-side rendered styles into the `<head>` element.
+You need to have a custom `pages/_document.js`, then copy [this logic](https://github.com/mui-org/material-ui/blob/cfb3be1cea5abeb10b572b3a7edce9444dcceb96/examples/nextjs/pages/_document.js#L60-L85) to inject the server-side rendered styles into the `<head>` element.
 
 Refer to [this example project](https://github.com/mui-org/material-ui/blob/next/examples/nextjs) for an up-to-date usage example.
 
