@@ -83,6 +83,10 @@ This is a collection of third-party projects that extend Material-UI.
 
 - [material-ui-color](https://github.com/mikbry/material-ui-color): Collections of color components for material-ui. No dependencies, small, highly customizable and theming support!
 
+### Sparkline
+
+- [mui-plus](https://mui-plus.vercel.app/components/Sparkline): A sparkline is a tiny chart that can be used to indicate a certain trend of a value.
+
 ## Blocks
 
 - [components-extra](https://github.com/alexandre-lelain/components-extra): Provides a set of "molecule" components built on top of Material-UI like a Footer, a CookiesBanner, a BackToTop button and other complex elements highly customizable to help devs build the macro parts of their UI very quickly. Those components are often duplicated across sites - this library solves this exact problem.
