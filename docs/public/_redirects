@@ -134,6 +134,7 @@ https://material-ui.dev/* https://material-ui.com/:splat 301!
 https://v1-5-0.material-ui.com/* https://v1.material-ui.com/:splat 301!
 https://v3-9-0.material-ui.com/* https://v3.material-ui.com/:splat 301!
 /company/jobs/ /company/careers/ 301
+/components/grid-list/ /components/image-list/ 301
 
 # Proxies
 
