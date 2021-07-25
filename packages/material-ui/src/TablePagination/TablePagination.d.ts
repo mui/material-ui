@@ -83,7 +83,7 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
        *
        * @param {React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>} event The event source of the callback.
        */
-      onRowsPerPageChange?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;
+      onRowsPerPageChange?: (event: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement> | null) => void;
       /**
        * The zero-based index of the current page.
        */
