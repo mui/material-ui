@@ -31,12 +31,15 @@ export default function SlideFromTargetRef() {
 
   return (
     <Box
-      display="flex"
-      padding={1.5}
-      sx={{ height: 180, width: 240 }}
+      sx={{
+        height: 180,
+        width: 240,
+        display: 'flex',
+        padding: 1.5,
+        bgcolor: 'gainsboro',
+        overflow: 'hidden',
+      }}
       ref={targetRef}
-      bgcolor="gainsboro"
-      overflow="hidden"
     >
       <Box sx={{ width: 200 }}>
         <FormControlLabel
