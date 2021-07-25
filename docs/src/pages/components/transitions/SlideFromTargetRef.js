@@ -21,7 +21,7 @@ const icon = (
   </Paper>
 );
 
-export default function SimpleSlideFromTargetRef() {
+export default function SlideFromTargetRef() {
   const [checked, setChecked] = React.useState(false);
   const targetRef = React.useRef(null);
 
