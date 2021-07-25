@@ -5,6 +5,7 @@ import {
   getValue,
   handleBreakpoints,
   unstable_extendSxProp as extendSxProp,
+  resolveBreakpointValues,
 } from '@material-ui/system';
 import { deepmerge } from '@material-ui/utils';
 import styled from '../styles/styled';
@@ -29,27 +30,6 @@ function joinChildren(children, separator) {
 
     return output;
   }, []);
-}
-
-// Duplicated with Grid.js
-function resolveBreakpointValues({ values, base }) {
-  const keys = Object.keys(base);
-
-  if (keys.length === 0) {
-    return values;
-  }
-
-  let previous;
-
-  return keys.reduce((acc, breakpoint) => {
-    if (typeof values === 'object') {
-      acc[breakpoint] = values[breakpoint] != null ? values[breakpoint] : values[previous];
-    } else {
-      acc[breakpoint] = values;
-    }
-    previous = breakpoint;
-    return acc;
-  }, {});
 }
 
 const getSideFromDirection = (direction) => {
