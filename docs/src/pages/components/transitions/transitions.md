@@ -8,9 +8,7 @@ githubLabel: 'component: Transition'
 
 <p class="description">Transitions help to make a UI expressive and easy to use.</p>
 
-Material-UI provides a number of transitions that can be used to introduce some basic
-[motion](https://material.io/design/motion/)
-to your applications components.
+Material-UI provides transitions that can be used to introduce some basic [motion](https://material.io/design/motion/) to your applications.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -30,8 +28,7 @@ Fade in from transparent to opaque.
 
 ## Grow
 
-Expand outwards from the center of the child element, while also fading in
-from transparent to opaque.
+Expand outwards from the center of the child element while also fading in from transparent to opaque.
 
 The second example demonstrates how to change the `transform-origin`, and conditionally applies
 the `timeout` prop to change the entry speed.
@@ -44,9 +41,10 @@ Slide in from the edge of the screen.
 The `direction` prop controls which edge of the screen the transition starts from.
 
 The Transition component's `mountOnEnter` prop prevents the child component from being mounted
-until `in` is `true`. This prevents the relatively positioned component from scrolling into view
-from its off-screen position. Similarly the `unmountOnExit` prop removes the component
-from the DOM after it has been transition off screen.
+until `in` is `true`.
+This prevents the relatively positioned component from scrolling into view
+from its off-screen position.
+Similarly, the `unmountOnExit` prop removes the component from the DOM after it has been transition off-screen.
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 
@@ -60,9 +58,10 @@ This example also demonstrates how to delay the enter transition.
 
 ## Child requirement
 
-- **Forward the style** : To better support server rendering, Material-UI provides a `style` prop to the children of some transition components, (Fade, Grow, Zoom, Slide). The `style` prop must be applied to the DOM for the animation to work as expected.
-- **Forward the ref** : The transition components require the first child element to forward its ref to the DOM node. For more details about ref, check out [Caveat with refs](/guides/composition/#caveat-with-refs)
-- **Single element** : The transition components require only 1 child element (`React.Fragment` is not allowed).
+- **Forward the style**: To better support server rendering, Material-UI provides a `style` prop to the children of some transition components (Fade, Grow, Zoom, Slide).
+The `style` prop must be applied to the DOM for the animation to work as expected.
+- **Forward the ref**: The transition components require the first child element to forward its ref to the DOM node. For more details about ref, check out [Caveat with refs](/guides/composition/#caveat-with-refs)
+- **Single element**: The transition components require only one child element (`React.Fragment` is not allowed).
 
 ```jsx
 // The `props` object contains a `style` prop.
