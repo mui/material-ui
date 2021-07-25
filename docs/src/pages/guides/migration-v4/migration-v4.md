@@ -15,7 +15,7 @@ We'll do our best to keep things easy to follow, and as sequential as possible, 
 This documentation page covers the _how_ of migrating from v4 to v5.
 The _why_ will be covered in an upcoming blog post on Medium.
 
-## Migration Steps
+## Migration steps
 
 - [Update React & TypeScript](#update-react-amp-typescript-version)
 - [ThemeProvider setup](#themeprovider-setup)
