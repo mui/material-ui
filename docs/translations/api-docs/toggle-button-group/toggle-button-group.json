@@ -6,7 +6,7 @@
     "color": "The color of a button when it is selected.",
     "exclusive": "If <code>true</code>, only allow one of the child ToggleButton values to be selected.",
     "fullWidth": "If <code>true</code>, the button group will take up the full width of its container.",
-    "onChange": "Callback fired when the value changes.<br><br><strong>Signature:</strong><br><code>function(event: object, value: any) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>value:</em> of the selected buttons. When <code>exclusive</code> is true this is a single value; when false an array of selected values. If no value is selected and <code>exclusive</code> is true the value is null; when false an empty array.",
+    "onChange": "Callback fired when the value changes.<br><br><strong>Signature:</strong><br><code>function(event: React.MouseEvent&lt;HTMLElement&gt;, value: any) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>value:</em> of the selected buttons. When <code>exclusive</code> is true this is a single value; when false an array of selected values. If no value is selected and <code>exclusive</code> is true the value is null; when false an empty array.",
     "orientation": "The component orientation (layout flow direction).",
     "size": "The size of the component.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",

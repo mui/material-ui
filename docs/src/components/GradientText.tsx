@@ -5,7 +5,7 @@ const GradientText = styled('span')<{
 }>(({ theme, color = 'primary' }) => ({
   background: `linear-gradient(to right, ${theme.palette[color].main}, ${theme.palette[color][700]})`,
   backgroundClip: 'text',
-  '-webkit-text-fill-color': 'transparent',
+  WebkitTextFillColor: 'transparent',
 }));
 
 export default GradientText;

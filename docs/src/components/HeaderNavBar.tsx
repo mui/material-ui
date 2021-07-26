@@ -22,7 +22,7 @@ const Navigation = styled('nav')(({ theme }) => ({
   },
   '& li': {
     color: theme.palette.text.secondary,
-    ...theme.typography.body3,
+    ...theme.typography.body2,
     fontWeight: 700,
     '& > a, & > div': {
       display: 'inline-block',
@@ -60,10 +60,10 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
         <Box
           component="a"
           ref={ref}
-          display="flex"
-          alignItems="center"
-          py={2}
           sx={{
+            display: 'flex',
+            alignItems: 'center',
+            py: 2,
             '&:hover, &:focus': {
               backgroundColor: 'grey.50',
               outline: 'none',
@@ -75,12 +75,12 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
           }}
           {...props}
         >
-          <Box px={2}>{icon}</Box>
+          <Box sx={{ px: 2 }}>{icon}</Box>
           <Box>
-            <Typography color="grey.900" variant="body3" fontWeight={700}>
+            <Typography color="grey.900" variant="body2" fontWeight={700}>
               {name}
             </Typography>
-            <Typography color="text.secondary" variant="body3">
+            <Typography color="text.secondary" variant="body2">
               {description}
             </Typography>
           </Box>

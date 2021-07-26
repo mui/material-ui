@@ -1,6 +1,6 @@
 ---
 title: Date picker, Time picker React components
-components: TextField
+components: DatePicker,DateTimePicker,TimePicker,TextField
 githubLabel: 'component: DatePicker'
 materialDesign: https://material.io/components/date-pickers
 waiAria: https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/datepicker-dialog.html
@@ -9,9 +9,9 @@ packageName: '@material-ui/lab'
 
 # Date / Time pickers
 
-<p class="description">Date pickers and Time pickers provide a simple way to select a single value from a pre-determined set.</p>
+<p class="description">Date pickers and Time pickers allow selecting a single value from a pre-determined set.</p>
 
-- On mobile, pickers are best suited for display in confirmation dialog.
+- On mobile, pickers are best suited for display in a confirmation dialog.
 - For inline display, such as on a form, consider using compact controls such as segmented dropdown buttons.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
@@ -20,24 +20,53 @@ packageName: '@material-ui/lab'
 
 {{"demo": "pages/components/pickers/MaterialUIPickers.js"}}
 
+### Setup
+
+You need to provide a date-library that is used by the pickers by setting the `dateAdapter` to an adapter of your choosing.
+
+We currently support 4 different date-libraries:
+
+- [date-fns](https://date-fns.org/)
+- [Day.js](https://day.js.org/)
+- [Luxon](https://moment.github.io/luxon/#/)
+- [Moment.js](https://momentjs.com/)
+
+First you have to install the adapter package for the date-library you want to use:
+
+```sh
+// date-fns
+npm install @date-io/date-fns
+// or for Day.js
+npm install -s @date-io/dayjs
+// or for Luxon
+npm install -s @date-io/luxon
+// or for Moment.js
+npm install @date-io/moment
+```
+
+Then you have to set the `dateAdapter` prop of the `LocalizationProvider` accordingly:
+
+```js
+// date-fns
+import DateAdapter from '@material-ui/lab/AdapterDateFns';
+// or for Day.js
+import DateAdapter from '@material-ui/lab/AdapterDayjs';
+// or for Luxon
+import DateAdapter from '@material-ui/lab/AdapterLuxon';
+// or for Moment.js
+import DateAdapter from '@material-ui/lab/AdapterMoment';
+
+function App({ children }) {
+  return (
+    <LocalizationProvider dateAdapter={DateAdapter}>{children}</LocalizationProvider>
+  );
+}
+```
+
 ## Native pickers
 
 ⚠️ Native input controls support by browsers [isn't perfect](https://caniuse.com/#feat=input-datetime).
 
-### Date picker
+Native date (`type="date"`), time (`type="time"`) and date&time (`type="datetime-local"`) pickers.
 
-A native datepicker example with `type="date"`.
-
-{{"demo": "pages/components/pickers/DatePickers.js"}}
-
-### Date & Time picker
-
-A native date & time picker example with `type="datetime-local"`.
-
-{{"demo": "pages/components/pickers/DateAndTimePickers.js"}}
-
-### Time picker
-
-A native time picker example with `type="time"`.
-
-{{"demo": "pages/components/pickers/TimePickers.js"}}
+{{"demo": "pages/components/pickers/NativePickers.js"}}

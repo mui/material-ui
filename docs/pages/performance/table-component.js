@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import NoSsr from '@material-ui/core/NoSsr';
+import NoSsr from '@material-ui/unstyled/NoSsr';
 
 const createComponent = (defaultComponent) => {
   const MyComponent = React.forwardRef(function MyComponent(props, ref) {

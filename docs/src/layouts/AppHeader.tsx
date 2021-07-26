@@ -10,6 +10,7 @@ import HeaderNavDropdown from 'docs/src/components/HeaderNavDropdown';
 const Header = styled('div')(({ theme }) => ({
   position: 'sticky',
   top: 0,
+  zIndex: theme.zIndex.appBar,
   backdropFilter: 'blur(20px)',
   boxShadow: 'inset 0px -1px 1px #EAEEF3',
   backgroundColor: theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.72)' : 'rgba(255,255,255,0.72)',
@@ -20,15 +21,15 @@ export default function AppHeader() {
     <Header>
       <Container sx={{ display: 'flex', alignItems: 'center', minHeight: 64 }}>
         <NextLink href="/branding/home" passHref>
-          <Box component="a" lineHeight={0} mr={2}>
+          <Box component="a" sx={{ lineHeight: 0, mr: 2 }}>
             <SvgMuiLogo width={32} />
           </Box>
         </NextLink>
-        <Box display={{ xs: 'none', md: 'initial' }}>
+        <Box sx={{ display: { xs: 'none', md: 'initial' } }}>
           <HeaderNavBar />
         </Box>
-        <Box ml="auto" />
-        <Box display={{ md: 'none' }}>
+        <Box sx={{ ml: 'auto' }} />
+        <Box sx={{ display: { md: 'none' } }}>
           <HeaderNavDropdown />
         </Box>
       </Container>

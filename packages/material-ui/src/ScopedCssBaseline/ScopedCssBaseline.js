@@ -22,7 +22,6 @@ const ScopedCssBaselineRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })(({ theme }) => ({
-  /* Styles applied to the root element. */
   ...html,
   ...body(theme),
   '& *, & *::before, & *::after': {

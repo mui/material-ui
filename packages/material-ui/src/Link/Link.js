@@ -55,18 +55,15 @@ const LinkRoot = styled(Typography, {
   const color =
     getPath(theme, `palette.${transformDeprecatedColors(styleProps.color)}`) || styleProps.color;
   return {
-    /* Styles applied to the root element if `underline="none"`. */
     ...(styleProps.underline === 'none' && {
       textDecoration: 'none',
     }),
-    /* Styles applied to the root element if `underline="hover"`. */
     ...(styleProps.underline === 'hover' && {
       textDecoration: 'none',
       '&:hover': {
         textDecoration: 'underline',
       },
     }),
-    /* Styles applied to the root element if `underline="always"`. */
     ...(styleProps.underline === 'always' && {
       textDecoration: 'underline',
       textDecorationColor: color !== 'inherit' ? alpha(color, 0.4) : undefined,
@@ -75,7 +72,6 @@ const LinkRoot = styled(Typography, {
       },
     }),
     // Same reset as ButtonBase.root
-    /* Styles applied to the root element if `component="button"`. */
     ...(styleProps.component === 'button' && {
       position: 'relative',
       WebkitTapHighlightColor: 'transparent',

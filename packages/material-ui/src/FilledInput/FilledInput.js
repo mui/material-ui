@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { refType } from '@material-ui/utils';
+import { refType, deepmerge } from '@material-ui/utils';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import InputBase from '../InputBase';
@@ -45,7 +45,6 @@ const FilledInputRoot = styled(InputBaseRoot, {
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
   const backgroundColor = light ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.09)';
   return {
-    /* Styles applied to the root element. */
     position: 'relative',
     backgroundColor,
     borderTopLeftRadius: theme.shape.borderRadius,
@@ -154,18 +153,15 @@ const FilledInputInput = styled(InputBaseInput, {
     paddingTop: 16,
     paddingBottom: 17,
   }),
-  /* Styles applied to the input element if `multiline={true}`. */
   ...(styleProps.multiline && {
     paddingTop: 0,
     paddingBottom: 0,
     paddingLeft: 0,
     paddingRight: 0,
   }),
-  /* Styles applied to the input element if `startAdornment` is provided. */
   ...(styleProps.startAdornment && {
     paddingLeft: 0,
   }),
-  /* Styles applied to the input element if `endAdornment` is provided. */
   ...(styleProps.endAdornment && {
     paddingRight: 0,
   }),
@@ -181,6 +177,8 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
 
   const {
     disableUnderline,
+    components = {},
+    componentsProps: componentsPropsProp,
     fullWidth = false,
     hiddenLabel, // declare here to prevent spreading to DOM
     inputComponent = 'input',
@@ -198,11 +196,16 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
   };
 
   const classes = useUtilityClasses(props);
+  const filledInputComponentsProps = { root: { styleProps }, input: { styleProps } };
+
+  const componentsProps = componentsPropsProp
+    ? deepmerge(componentsPropsProp, filledInputComponentsProps)
+    : filledInputComponentsProps;
 
   return (
     <InputBase
-      components={{ Root: FilledInputRoot, Input: FilledInputInput }}
-      componentsProps={{ root: { styleProps }, input: { styleProps } }}
+      components={{ Root: FilledInputRoot, Input: FilledInputInput, ...components }}
+      componentsProps={componentsProps}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
       multiline={multiline}
@@ -241,6 +244,20 @@ FilledInput.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['primary', 'secondary']),
     PropTypes.string,
   ]),
+  /**
+   * The components used for each slot inside the InputBase.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Input: PropTypes.elementType,
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -320,7 +337,7 @@ FilledInput.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the value is changed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,
