@@ -584,8 +584,14 @@ export const MyCard = () => {
 }
 ```
 
-> **Note:** This approach convert the first element in the return statement into styled component but also increase CSS Specificity to override nested children. It is recommended to use this codemod in a big component that is intend to style nested components.
-> This codemod should be adopt after handling all breaking changes, [check out the migration documentation](https://next.material-ui.com/guides/migration-v4)
+```sh
+npx @material-ui/codemod@next v5.0.0/jss-to-styled <path>
+```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#1-use-styled-or-sx-api).
+
+> **Note:** This approach converts the first element in the return statement into styled component but also increases CSS specificity to override nested children.
+> This codemod should be adopted after handling all breaking changes, [check out the migration documentation](https://next.material-ui.com/guides/migration-v4/)
 
 #### `link-underline-hover`
 
