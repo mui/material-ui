@@ -60,10 +60,10 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
         <Box
           component="a"
           ref={ref}
-          display="flex"
-          alignItems="center"
-          py={2}
           sx={{
+            display: 'flex',
+            alignItems: 'center',
+            py: 2,
             '&:hover, &:focus': {
               backgroundColor: 'grey.50',
               outline: 'none',
@@ -75,7 +75,7 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
           }}
           {...props}
         >
-          <Box px={2}>{icon}</Box>
+          <Box sx={{ px: 2 }}>{icon}</Box>
           <Box>
             <Typography color="grey.900" variant="body2" fontWeight={700}>
               {name}

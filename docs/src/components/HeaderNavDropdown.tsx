@@ -93,7 +93,7 @@ export default function HeaderNavDropdown() {
             bgcolor: 'background.paper',
           }}
         >
-          <Box p={2.5} bgcolor="background.paper">
+          <Box sx={{ p: 2.5, bgcolor: 'background.paper' }}>
             <UList>
               <li>
                 <Anchor

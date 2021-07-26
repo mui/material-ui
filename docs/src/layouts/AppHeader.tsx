@@ -21,15 +21,15 @@ export default function AppHeader() {
     <Header>
       <Container sx={{ display: 'flex', alignItems: 'center', minHeight: 64 }}>
         <NextLink href="/branding/home" passHref>
-          <Box component="a" lineHeight={0} mr={2}>
+          <Box component="a" sx={{ lineHeight: 0, mr: 2 }}>
             <SvgMuiLogo width={32} />
           </Box>
         </NextLink>
-        <Box display={{ xs: 'none', md: 'initial' }}>
+        <Box sx={{ display: { xs: 'none', md: 'initial' } }}>
           <HeaderNavBar />
         </Box>
-        <Box ml="auto" />
-        <Box display={{ md: 'none' }}>
+        <Box sx={{ ml: 'auto' }} />
+        <Box sx={{ display: { md: 'none' } }}>
           <HeaderNavDropdown />
         </Box>
       </Container>
