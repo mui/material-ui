@@ -46,7 +46,6 @@ const DialogRoot = styled(Modal, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })({
-  /* Styles applied to the root element. */
   '@media print': {
     // Use !important to override the Modal inline-style.
     position: 'absolute !important',
@@ -62,20 +61,17 @@ const DialogContainer = styled('div', {
     return [styles.container, styles[`scroll${capitalize(styleProps.scroll)}`]];
   },
 })(({ styleProps }) => ({
-  /* Styles applied to the container element. */
   height: '100%',
   '@media print': {
     height: 'auto',
   },
   // We disable the focus ring for mouse, touch and keyboard users.
   outline: 0,
-  /* Styles applied to the container element if `scroll="paper"`. */
   ...(styleProps.scroll === 'paper' && {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   }),
-  /* Styles applied to the container element if `scroll="body"`. */
   ...(styleProps.scroll === 'body' && {
     overflowY: 'auto',
     overflowX: 'hidden',
@@ -99,7 +95,7 @@ const DialogPaper = styled(Paper, {
     return [
       styles.paper,
       styles[`scrollPaper${capitalize(styleProps.scroll)}`],
-      styles[`paperWidth${capitalize(String(styleProps.maxWidth))})`],
+      styles[`paperWidth${capitalize(String(styleProps.maxWidth))}`],
       styleProps.fullWidth && styles.paperFullWidth,
       styleProps.fullScreen && styles.paperFullScreen,
     ];

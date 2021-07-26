@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import NoSsr from '@material-ui/core/NoSsr';
+import NoSsr from '@material-ui/unstyled/NoSsr';
 import Box from '@material-ui/core/Box';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';

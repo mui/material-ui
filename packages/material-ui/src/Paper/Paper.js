@@ -49,19 +49,15 @@ const PaperRoot = styled('div', {
     ];
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
   backgroundColor: theme.palette.background.paper,
   color: theme.palette.text.primary,
   transition: theme.transitions.create('box-shadow'),
-  /* Styles applied to the root element unless `square={true}`. */
   ...(!styleProps.square && {
     borderRadius: theme.shape.borderRadius,
   }),
-  /* Styles applied to the root element if `variant="outlined"`. */
   ...(styleProps.variant === 'outlined' && {
     border: `1px solid ${theme.palette.divider}`,
   }),
-  /* Styles applied to the root element if `variant="elevation"`. */
   ...(styleProps.variant === 'elevation' && {
     boxShadow: theme.shadows[styleProps.elevation],
     ...(theme.palette.mode === 'dark' && {

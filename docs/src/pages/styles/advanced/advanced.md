@@ -51,7 +51,7 @@ function DeepChild() {
 For use in class or function components:
 
 ```jsx
-import { withTheme } from '@material-ui/core/styles';
+import { withTheme } from '@material-ui/styles';
 
 function DeepChildRaw(props) {
   return <span>{`spacing ${props.theme.spacing}`}</span>;

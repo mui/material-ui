@@ -915,22 +915,22 @@ TreeView.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when tree items are focused.
    *
-   * @param {object} event The event source of the callback **Warning**: This is a generic event not a focus event.
+   * @param {React.SyntheticEvent} event The event source of the callback **Warning**: This is a generic event not a focus event.
    * @param {string} value of the focused node.
    */
   onNodeFocus: PropTypes.func,
   /**
    * Callback fired when tree items are selected/unselected.
    *
-   * @param {object} event The event source of the callback
-   * @param {(array|string)} value of the selected nodes. When `multiSelect` is true
+   * @param {React.SyntheticEvent} event The event source of the callback
+   * @param {string[] | string} nodeIds Ids of the selected nodes. When `multiSelect` is true
    * this is an array of strings; when false (default) a string.
    */
   onNodeSelect: PropTypes.func,
   /**
    * Callback fired when tree items are expanded/collapsed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {array} nodeIds The ids of the expanded nodes.
    */
   onNodeToggle: PropTypes.func,

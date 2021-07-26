@@ -86,7 +86,8 @@ RadioGroup.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when a radio button is selected.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.ChangeEvent<HTMLInputElement>} event The event source of the callback.
+   * @param {string} value The value of the selected radio button.
    * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,

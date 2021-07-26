@@ -108,7 +108,6 @@ const LinearProgressRoot = styled('span', {
     ];
   },
 })(({ styleProps, theme }) => ({
-  /* Styles applied to the root element. */
   position: 'relative',
   overflow: 'hidden',
   display: 'block',
@@ -132,9 +131,7 @@ const LinearProgressRoot = styled('span', {
         opacity: 0.3,
       },
     }),
-  /* Styles applied to the root element if `variant="buffer"`. */
   ...(styleProps.variant === 'buffer' && { backgroundColor: 'transparent' }),
-  /* Styles applied to the root element if `variant="query"`. */
   ...(styleProps.variant === 'query' && { transform: 'rotate(180deg)' }),
 }));
 
@@ -151,7 +148,6 @@ const LinearProgressDashed = styled('span', {
     const backgroundColor = getColorShade(theme, styleProps.color);
 
     return {
-      /* Styles applied to the additional bar element if `variant="buffer"`. */
       position: 'absolute',
       marginTop: 0,
       height: '100%',
@@ -186,7 +182,6 @@ const LinearProgressBar1 = styled('span', {
   },
 })(
   ({ styleProps, theme }) => ({
-    /* Styles applied to the additional bar element if `variant="buffer"`. */
     width: '100%',
     position: 'absolute',
     left: 0,
@@ -196,17 +191,14 @@ const LinearProgressBar1 = styled('span', {
     transformOrigin: 'left',
     backgroundColor:
       styleProps.color === 'inherit' ? 'currentColor' : theme.palette[styleProps.color].main,
-    /* Styles applied to the bar1 element if `variant="determinate"`. */
     ...(styleProps.variant === 'determinate' && {
       transition: `transform .${TRANSITION_DURATION}s linear`,
     }),
-    /* Styles applied to the bar1 element if `variant="buffer"`. */
     ...(styleProps.variant === 'buffer' && {
       zIndex: 1,
       transition: `transform .${TRANSITION_DURATION}s linear`,
     }),
   }),
-  /* Styles applied to the bar1 element if `variant="indeterminate or query"`. */
   ({ styleProps }) =>
     (styleProps.variant === 'indeterminate' || styleProps.variant === 'query') &&
     css`
@@ -231,7 +223,6 @@ const LinearProgressBar2 = styled('span', {
   },
 })(
   ({ styleProps, theme }) => ({
-    /* Styles applied to the additional bar element if `variant="buffer"`. */
     width: '100%',
     position: 'absolute',
     left: 0,
@@ -246,13 +237,11 @@ const LinearProgressBar2 = styled('span', {
     ...(styleProps.color === 'inherit' && {
       opacity: 0.3,
     }),
-    /* Styles applied to the bar2 element if `variant="buffer"`. */
     ...(styleProps.variant === 'buffer' && {
       backgroundColor: getColorShade(theme, styleProps.color),
       transition: `transform .${TRANSITION_DURATION}s linear`,
     }),
   }),
-  /* Styles applied to the bar1 element if `variant="indeterminate or query"`. */
   ({ styleProps }) =>
     (styleProps.variant === 'indeterminate' || styleProps.variant === 'query') &&
     css`

@@ -38,7 +38,7 @@ export interface UsePaginationProps {
   /**
    * Callback fired when the page is changed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.ChangeEvent<unknown>} event The event source of the callback.
    * @param {number} page The page selected.
    */
   onChange?: (event: React.ChangeEvent<unknown>, page: number) => void;

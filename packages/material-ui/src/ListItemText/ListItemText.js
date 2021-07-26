@@ -36,18 +36,15 @@ const ListItemTextRoot = styled('div', {
     ];
   },
 })(({ styleProps }) => ({
-  /* Styles applied to the root element. */
   flex: '1 1 auto',
   minWidth: 0,
   marginTop: 4,
   marginBottom: 4,
-  /* Styles applied to the root if primary and secondary are set. */
   ...(styleProps.primary &&
     styleProps.secondary && {
       marginTop: 6,
       marginBottom: 6,
     }),
-  /* Styles applied to the root element if `inset={true}`. */
   ...(styleProps.inset && {
     paddingLeft: 56,
   }),

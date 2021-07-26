@@ -35,7 +35,6 @@ const RadioRoot = styled(SwitchBase, {
     return [styles.root, styles[`color${capitalize(styleProps.color)}`]];
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
   color: theme.palette.text.secondary,
   '&:hover': {
     backgroundColor: alpha(
@@ -49,7 +48,6 @@ const RadioRoot = styled(SwitchBase, {
       backgroundColor: 'transparent',
     },
   },
-  /* Styles applied to the root element unless `color="default"`. */
   ...(styleProps.color !== 'default' && {
     [`&.${radioClasses.checked}`]: {
       color: theme.palette[styleProps.color].main,
@@ -169,7 +167,7 @@ Radio.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the state is changed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.ChangeEvent<HTMLInputElement>} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (string).
    * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */

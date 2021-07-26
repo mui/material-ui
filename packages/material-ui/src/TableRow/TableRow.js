@@ -27,7 +27,6 @@ const TableRowRoot = styled('tr', {
     return [styles.root, styleProps.head && styles.head, styleProps.footer && styles.footer];
   },
 })(({ theme }) => ({
-  /* Styles applied to the root element. */
   color: 'inherit',
   display: 'table-row',
   verticalAlign: 'middle',

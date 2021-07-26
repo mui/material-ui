@@ -49,7 +49,6 @@ const AccordionRoot = styled(Paper, {
     };
 
     return {
-      /* Styles applied to the root element. */
       position: 'relative',
       transition: theme.transitions.create(['margin'], transition),
       overflowAnchor: 'none', // Keep the same scrolling position
@@ -69,7 +68,6 @@ const AccordionRoot = styled(Paper, {
           display: 'none',
         },
       },
-      /* Styles applied to the root element if `expanded={true}`. */
       [`&.${accordionClasses.expanded}`]: {
         '&:before': {
           opacity: 0,
@@ -86,14 +84,12 @@ const AccordionRoot = styled(Paper, {
           },
         },
       },
-      /* Styles applied to the root element if `disabled={true}`. */
       [`&.${accordionClasses.disabled}`]: {
         backgroundColor: theme.palette.action.disabledBackground,
       },
     };
   },
   ({ theme, styleProps }) => ({
-    /* Styles applied to the root element unless `square={true}`. */
     ...(!styleProps.square && {
       borderRadius: 0,
       '&:first-of-type': {
@@ -110,7 +106,6 @@ const AccordionRoot = styled(Paper, {
         },
       },
     }),
-    /* Styles applied to the root element unless `disableGutters={true}`. */
     ...(!styleProps.disableGutters && {
       [`&.${accordionClasses.expanded}`]: {
         margin: '16px 0',
@@ -246,7 +241,7 @@ Accordion.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the expand/collapse state is changed.
    *
-   * @param {object} event The event source of the callback. **Warning**: This is a generic event not a change event.
+   * @param {React.SyntheticEvent} event The event source of the callback. **Warning**: This is a generic event not a change event.
    * @param {boolean} expanded The `expanded` state of the accordion.
    */
   onChange: PropTypes.func,

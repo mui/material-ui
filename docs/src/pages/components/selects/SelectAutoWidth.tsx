@@ -2,13 +2,13 @@ import * as React from 'react';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import Select, { SelectChangeEvent } from '@material-ui/core/Select';
 
 export default function SelectAutoWidth() {
   const [age, setAge] = React.useState('');
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setAge(event.target.value as string);
+  const handleChange = (event: SelectChangeEvent) => {
+    setAge(event.target.value);
   };
 
   return (

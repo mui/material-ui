@@ -31,17 +31,14 @@ const ListRoot = styled('ul', {
     ];
   },
 })(({ styleProps }) => ({
-  /* Styles applied to the root element. */
   listStyle: 'none',
   margin: 0,
   padding: 0,
   position: 'relative',
-  /* Styles applied to the root element unless `disablePadding={true}`. */
   ...(!styleProps.disablePadding && {
     paddingTop: 8,
     paddingBottom: 8,
   }),
-  /* Styles applied to the root element if a `subheader` is provided. */
   ...(styleProps.subheader && {
     paddingTop: 0,
   }),
