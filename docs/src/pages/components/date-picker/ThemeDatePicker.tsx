@@ -80,7 +80,12 @@ export default function ThemeDatePicker() {
           styleOverrides: {
             root: {
               '& .MuiTypography-caption': {
-                color: mode === 'dark' ? grey[600] : grey[500],
+                color: mode === 'dark' ? grey[600] : grey[700],
+              },
+              '[role="presentation"]': {
+                '& .MuiIconButton-root': {
+                  padding: 0,
+                },
               },
             },
           },
