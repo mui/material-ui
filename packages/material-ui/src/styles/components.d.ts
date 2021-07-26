@@ -443,6 +443,7 @@ export interface Components {
   MuiTextField?: {
     defaultProps?: ComponentsProps['MuiTextField'];
     styleOverrides?: ComponentsOverrides['MuiTextField'];
+    variants?: ComponentsVariants['MuiTextField'];
   };
   MuiToggleButton?: {
     defaultProps?: ComponentsProps['MuiToggleButton'];
