@@ -62,7 +62,7 @@ export default function ThemeSlider() {
                 color: mode === 'dark' ? primary[300] : primary[500],
               },
               rail: {
-                backgroundColor: grey[200],
+                backgroundColor: grey[300],
               },
               track: {
                 border: 'none',
