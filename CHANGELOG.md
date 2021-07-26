@@ -1,7 +1,9 @@
 ### [Versions](https://material-ui.com/versions/)
 
 ## 5.0.0-beta.2
+
 <!-- generated comparing v5.0.0-beta.1..next -->
+
 _Jul 26, 2021_
 
 Big thanks to the 20 contributors who made this release possible. Here are some highlights ✨:
