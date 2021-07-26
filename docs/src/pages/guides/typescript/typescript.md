@@ -230,7 +230,7 @@ Unfortunately due to a [current limitation of TypeScript decorators](https://git
 
 ## Usage of the `sx` prop
 
-Similar to the `withStyles`, the `sx` prop has a frequent source of confusion is TypeScript's [type widening](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
+Similar to `withStyles`, a frequent source of confusion with the `sx` prop is TypeScript's [type widening](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
 
 ```ts
 const styles = {
