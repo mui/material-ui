@@ -54,13 +54,7 @@ export default function Hero() {
                   Get Started
                 </Button>
                 <Box sx={{ width: 16, height: 16 }} />
-                <Button
-                  size="large"
-                  // @ts-expect-error TODO: fix this by exporting Overrides types from Button
-                  variant="code"
-                  startIcon="$"
-                  endIcon={<ContentCopyRounded />}
-                >
+                <Button size="large" variant="code" startIcon="$" endIcon={<ContentCopyRounded />}>
                   npm install @mui/core
                 </Button>
               </Box>
