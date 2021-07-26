@@ -8,7 +8,7 @@ const References = () => {
       spacing={2}
       alignItems="center"
       justifyContent="center"
-      sx={{ textAlign: 'center', '& img': { maxWidth: '100%' } }}
+      sx={{ textAlign: 'center', '& img': { maxWidth: '100%', px: 1 } }}
     >
       <Grid item xs={4} md={2}>
         <img src="/static/icons/coursera.svg" alt="Coursera logo" />
