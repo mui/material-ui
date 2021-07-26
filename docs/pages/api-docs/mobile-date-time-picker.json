@@ -51,18 +51,12 @@
     "leftArrowButtonText": { "type": { "name": "string" } },
     "loading": { "type": { "name": "bool" } },
     "mask": { "type": { "name": "string" } },
-    "maxDateTime": {
-      "type": {
-        "name": "union",
-        "description": "any<br>&#124;&nbsp;Date<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
-      }
-    },
-    "minDateTime": {
-      "type": {
-        "name": "union",
-        "description": "any<br>&#124;&nbsp;Date<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
-      }
-    },
+    "maxDate": { "type": { "name": "any" } },
+    "maxDateTime": { "type": { "name": "any" } },
+    "maxTime": { "type": { "name": "any" } },
+    "minDate": { "type": { "name": "any" } },
+    "minDateTime": { "type": { "name": "any" } },
+    "minTime": { "type": { "name": "any" } },
     "minutesStep": { "type": { "name": "number" }, "default": "1" },
     "okText": { "type": { "name": "node" }, "default": "'OK'" },
     "onAccept": { "type": { "name": "func" } },

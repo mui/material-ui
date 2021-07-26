@@ -3,10 +3,6 @@ import { useThemeProps } from '@material-ui/core/styles';
 import { useDefaultDates, useUtils } from '../internal/pickers/hooks/useUtils';
 import { ExportedClockPickerProps } from '../ClockPicker/ClockPicker';
 import { pick12hOr24hFormat } from '../internal/pickers/text-field-helper';
-import {
-  useParsedDate,
-  OverrideParseableDateProps,
-} from '../internal/pickers/hooks/date-helpers-hooks';
 import { ExportedCalendarPickerProps } from '../CalendarPicker/CalendarPicker';
 import { DateTimeValidationError, ValidationProps } from '../internal/pickers/hooks/useValidation';
 import { ParseableDate } from '../internal/pickers/constants/prop-types';
@@ -16,11 +12,8 @@ import { ExportedDateInputProps } from '../internal/pickers/PureDateInput';
 export type DateTimePickerView = 'year' | 'day' | 'month' | 'hours' | 'minutes';
 
 export interface BaseDateTimePickerProps<TDate>
-  extends OverrideParseableDateProps<
-      TDate,
-      ExportedClockPickerProps<TDate> & ExportedCalendarPickerProps<TDate>,
-      'minDate' | 'maxDate' | 'minTime' | 'maxTime'
-    >,
+  extends ExportedClockPickerProps<TDate>,
+    ExportedCalendarPickerProps<TDate>,
     BasePickerProps<ParseableDate<TDate>, TDate | null>,
     ValidationProps<DateTimeValidationError, ParseableDate<TDate>>,
     ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
@@ -29,11 +22,7 @@ export interface BaseDateTimePickerProps<TDate>
    * Either a string to use a HTML element or a component.
    * @default {}
    */
-  components?: OverrideParseableDateProps<
-    TDate,
-    ExportedClockPickerProps<TDate> & ExportedCalendarPickerProps<TDate>,
-    'minDate' | 'maxDate' | 'minTime' | 'maxTime'
-  >['components'] &
+  components?: ExportedCalendarPickerProps<TDate>['components'] &
     ExportedDateInputProps<ParseableDate<TDate>, TDate | null>['components'];
   /**
    * To show tabs.
@@ -50,11 +39,11 @@ export interface BaseDateTimePickerProps<TDate>
   /**
    * Minimal selectable moment of time with binding to date, to set min time in each day use `minTime`.
    */
-  minDateTime?: ParseableDate<TDate>;
+  minDateTime?: TDate;
   /**
    * Minimal selectable moment of time with binding to date, to set max time in each day use `maxTime`.
    */
-  maxDateTime?: ParseableDate<TDate>;
+  maxDateTime?: TDate;
   /**
    * First view to show.
    */
@@ -85,12 +74,12 @@ export function useDateTimePickerDefaultizedProps<Props extends BaseDateTimePick
   {
     ampm,
     inputFormat,
-    maxDate: __maxDate,
-    maxDateTime: __maxDateTime,
-    maxTime: __maxTime,
-    minDate: __minDate,
-    minDateTime: __minDateTime,
-    minTime: __minTime,
+    maxDate: maxDateProp,
+    maxDateTime,
+    maxTime,
+    minDate: minDateProp,
+    minDateTime,
+    minTime,
     openTo = 'day',
     orientation = 'portrait',
     views = ['year', 'day', 'hours', 'minutes'],
@@ -99,13 +88,9 @@ export function useDateTimePickerDefaultizedProps<Props extends BaseDateTimePick
   name: string,
 ): DefaultizedProps<Props> {
   const utils = useUtils();
-  const minTime = useParsedDate(__minTime);
-  const maxTime = useParsedDate(__maxTime);
   const defaultDates = useDefaultDates<unknown>();
-  const minDate = __minDate ?? defaultDates.minDate;
-  const maxDate = __maxDate ?? defaultDates.maxDate;
-  const minDateTime = useParsedDate(__minDateTime);
-  const maxDateTime = useParsedDate(__maxDateTime);
+  const minDate = minDateProp ?? defaultDates.minDate;
+  const maxDate = maxDateProp ?? defaultDates.maxDate;
   const willUseAmPm = ampm ?? utils.is12HourCycleInCurrentLocale();
 
   if (orientation !== 'portrait') {
@@ -121,10 +106,10 @@ export function useDateTimePickerDefaultizedProps<Props extends BaseDateTimePick
       orientation,
       showToolbar: true,
       allowSameDateSelection: true,
-      minDate: minDateTime || minDate,
-      minTime: minDateTime || minTime,
-      maxDate: maxDateTime || maxDate,
-      maxTime: maxDateTime || maxTime,
+      minDate: minDateTime ?? minDate,
+      minTime: minDateTime ?? minTime,
+      maxDate: maxDateTime ?? maxDate,
+      maxTime: maxDateTime ?? maxTime,
       disableIgnoringDatePartForTimeValidation: Boolean(minDateTime || maxDateTime),
       acceptRegex: willUseAmPm ? /[\dap]/gi : /\d/gi,
       mask: '__/__/____ __:__',
