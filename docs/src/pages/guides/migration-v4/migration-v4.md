@@ -661,7 +661,7 @@ declare module '@material-ui/styles' {
 
   ```diff
   import * as React from 'react';
-  import { withTheme } from '@material-ui/core/styles';
+  import { withTheme } from '@material-ui/styles';
 
   const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
 
@@ -2369,95 +2369,153 @@ We recommend 2 options.
 
 ### 1. Use `styled` or `sx` API
 
-- **Customize Material-UI Component**
+#### Codemod
 
-  ```diff
-  import Chip from '@material-ui/core/Chip';
-  - import makeStyles from '@material-ui/styles/makeStyles';
-  + import { styled } from '@material-ui/core/styles';
+We provide a codemod to help migrate JSS styles to `styled` API, but this approach **increases the CSS specificity**.
 
-  - const useStyles = makeStyles((theme) => ({
-  -   wrapper: {
-  -     display: 'flex',
-  -   },
-  -   chip: {
-  -     padding: theme.spacing(1, 1.5),
-  -     boxShadow: theme.shadows[1],
-  -   }
-  - }))
-  + const Root = styled('div')({
-  +   display: 'flex',
-  + })
+```sh
+npx @material-ui/codemod v5.0.0/jss-to-styled <folder|file>
+```
 
-  function App() {
-  - const classes = useStyles();
-    return (
-  -   <div>
-  -     <Chip className={classes.chip} label="Chip" />
-  -   </div>
-  +   <Root>
-  +     <Chip label="Chip" sx={{ py: 1, px: 1.5, boxShadow: 1 }} />
-  +   </Root>
-    )
-  }
-  ```
+**Example transformation**:
 
-- **Apply styles in a page**
+```diff
+import Typography from '@material-ui/core/Typography';
+-import makeStyles from '@material-ui/styles/makeStyles';
++import { styled } from '@material-ui/core/styles';
 
-  ```diff
-  import Button, { buttonClasses } from '@material-ui/core/Button';
-  - import makeStyles from '@material-ui/styles/makeStyles';
-  + import { styled } from '@material-ui/core/styles';
+-const useStyles = makeStyles((theme) => ({
+-  root: {
+-    display: 'flex',
+-    alignItems: 'center',
+-    backgroundColor: theme.palette.primary.main
+-  },
+-  cta: {
+-    borderRadius: theme.shape.radius.
+-  },
+-  content: {
+-    color: theme.palette.common.white,
+-    fontSize: 16,
+-    lineHeight: 1.7
+-  },
+-}))
++const PREFIX = 'MyCard';
++const classes = {
++  root: `${PREFIX}-root`,
++  cta: `${PREFIX}-cta`,
++  content: `${PREFIX}-content`,
++}
++const Root = styled('div')((theme) => ({
++  [`&.${classes.root}`]: {
++    display: 'flex',
++    alignItems: 'center',
++    backgroundColor: theme.palette.primary.main
++  },
++  [`& .${classes.cta}`]: {
++    borderRadius: theme.shape.radius.
++  },
++  [`& .${classes.content}`]: {
++    color: theme.palette.common.white,
++    fontSize: 16,
++    lineHeight: 1.7
++  },
++}))
 
-  - const useStyles = makeStyles((theme) => ({
-  -   root: {
-  -     // root css
-  -   },
-  -   cta: {
-  -     // cta css
-  -   },
-  -   footer: {
-  -     // footer css
-  -   },
-  - }))
+export const MyCard = () => {
+- const classes = useStyles();
+  return (
+-   <div className={classes.root}>
++   <Root className={classes.root}>
+      {/* The benefit of this approach is that the code inside Root stays the same. */}
+      <Typography className={classes.content}>...</Typography>
+      <Button className={classes.cta}>Go</Button>
++   </Root>
+-   </div>
+  )
+}
+```
 
-  + const classes = {
-  +   root: 'Marketing-root',
-  +   cta: buttonClasses.root, // buttonClasses is typed safe
-  +   footer: 'Marketing-footer',
-  + }
+> 💡 You should run this codemod per small chunk of files and then check the changes because in some cases you might need to adjust the code after the transformation (this codemod won't cover all of the cases).
 
-  + const Root = styled('div')((theme) => ({
-  +   // root css,
-  +   [`& .${classes.cta}`]: {
-  +     // cta css
-  +   },
-  +   [`& .${classes.footer}]: {
-  +     // cta footer
-  +   }
-  + }))
+We recommend `sx` API over `styled` when you have to create responsive styles or needs minor CSS overrides. [Read more about `sx`](/system/the-sx-prop/#main-content)
 
-  function App() {
-  - const classes = useStyles();
-    return (
-  -   <div>
-  +   <Root>
-        <div>
-          <img />
-          <div>
-            <Button className={classes.cta}>Get started</Button>
-          </div>
-        </div>
-        <footer className={classes.footer}>
-          ...
-        </footer>
-  +   </Root>
-  -   </div>
-    )
-  }
-  ```
+```diff
+import Chip from '@material-ui/core/Chip';
+- import makeStyles from '@material-ui/styles/makeStyles';
++ import { styled } from '@material-ui/core/styles';
 
-> This approach touch only the styling part but increase CSS specificity.
+- const useStyles = makeStyles((theme) => ({
+-   wrapper: {
+-     display: 'flex',
+-   },
+-   chip: {
+-     padding: theme.spacing(1, 1.5),
+-     boxShadow: theme.shadows[1],
+-   }
+- }))
++ const Root = styled('div')({
++   display: 'flex',
++ })
+
+function App() {
+- const classes = useStyles();
+  return (
+-   <div>
+-     <Chip className={classes.chip} label="Chip" />
+-   </div>
++   <Root>
++     <Chip label="Chip" sx={{ py: 1, px: 1.5, boxShadow: 1 }} />
++   </Root>
+  )
+}
+```
+
+#### Manual
+
+In some cases, you might want to create multiple styled components in a file instead of increasing CSS specificity. for example:
+
+```diff
+- import makeStyles from '@material-ui/styles/makeStyles';
++ import { styled } from '@material-ui/core/styles';
+
+- const useStyles = makeStyles((theme) => ({
+-  root: {
+-    display: 'flex',
+-    alignItems: 'center',
+-    borderRadius: 20,
+-    background: theme.palette.grey[50],
+-  },
+-  label: {
+-    color: theme.palette.primary.main,
+-  }
+- }))
++ const Root = style('div')(({ theme }) => ({
++   display: 'flex',
++   alignItems: 'center',
++   borderRadius: 20,
++   background: theme.palette.grey[50],
++ }))
+
++ const Label = style('span')(({ theme }) => ({
++   color: theme.palette.primary.main,
++ }))
+
+function Status({ label }) {
+  const classes = useStyles();
+  return (
+-    <div className={classe.root}>
+-      {icon}
+-      <span className={classes.label}>{label}</span>
+-    </div>
++    <Root className={classe.root}>
++      {icon}
++      <Label className={classes.label}>{label}</Label>
++    </Root>
+  )
+}
+```
+
+> **Note:** [https://siriwatk.dev/tool/jss-to-styled](https://siriwatk.dev/tool/jss-to-styled) is a tool that helps converting JSS to multiple styled components without increasing CSS specificity. (This tool is **not maintained** by Material-UI)
 
 ### 2. Use [tss-react](https://github.com/garronej/tss-react)
 
@@ -2465,7 +2523,7 @@ The API is similar to JSS `makeStyles` but work with emotion.
 
   <!-- Add material-ui component migration example -->
 
-> **Note:** this library is not maintained by Material-UI. If you have any issue regarding to it, please open an issue in [tss-react repository](https://github.com/garronej/tss-react/issues/new).
+> **Note:** this library is **not maintained** by Material-UI. If you have any issue regarding to it, please open an issue in [tss-react repository](https://github.com/garronej/tss-react/issues/new).
 
 💡 Once you migrate all of the styling, remove unnecessary `@material-ui/styles` by
 

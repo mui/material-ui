@@ -193,9 +193,9 @@ Select.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when a menu item is selected.
    *
-   * @param {object} event The event source of the callback.
+   * @param {(Event & { target: { value: T; name: string } }) | React.ChangeEvent<HTMLInputElement>} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (any).
-   * **Warning**: This is a generic event not a change event.
+   * **Warning**: This is a generic event not a change event unless the change event is caused by browser autofill.
    * @param {object} [child] The react element that was selected when `native` is `false` (default).
    */
   onChange: PropTypes.func,
