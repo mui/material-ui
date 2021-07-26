@@ -10,7 +10,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { visuallyHidden } from '@material-ui/utils';
-
 import Folder from '@material-ui/icons/Folder';
 
 const data = [

@@ -122,6 +122,6 @@ You can show a helper text with the date format accepted.
 
 ## Theming
 
-Here is an example of theming the component. You can learn more about this in the [theming page](/customization/theming) and [theme components page](/customization/theme-components)
+Here is an example of theming the component. You can learn more about this in the [theming page](/customization/theming/) and [theme components page](/customization/theme-components/)
 
 {{"demo": "pages/components/date-picker/ThemeDatePicker.js", "bg": true}}

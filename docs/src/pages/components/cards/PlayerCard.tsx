@@ -5,7 +5,6 @@ import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-
 import FastForwardRounded from '@material-ui/icons/FastForwardRounded';
 import FastRewindRounded from '@material-ui/icons/FastRewindRounded';
 import PlayArrowRounded from '@material-ui/icons/PlayArrowRounded';
