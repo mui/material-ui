@@ -2662,7 +2662,7 @@ In v5, `@material-ui/core/colors/red` is considered private and should not be us
 You can use this codemod (**recommended**) to fix all the import in your project:
 
 ```sh
-npx @material-ui/codemod v5.0.0/private-imports <folder>
+npx @material-ui/codemod v5.0.0/optimal-imports <folder>
 ```
 
 or fix it manually like this:

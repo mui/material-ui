@@ -27,7 +27,7 @@ import transformTypes from './material-ui-types';
 import transformModalProps from './modal-props';
 import transformMovedLabModules from './moved-lab-modules';
 import transformPaginationRoundCircular from './pagination-round-circular';
-import transformPrivateImports from './private-imports';
+import transformPrivateImports from './optimal-imports';
 import transformRootRef from './root-ref';
 import transformSkeletonVariant from './skeleton-variant';
 import transformStyledEngineProvider from './styled-engine-provider';
