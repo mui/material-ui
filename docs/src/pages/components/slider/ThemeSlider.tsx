@@ -51,6 +51,12 @@ const marks = [
 ];
 
 export default function ThemeSlider() {
+  /*
+   * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
+   *
+   * Normally, you would implement dark mode via internal state and/or system preference at the root of the application.
+   * For more detail about toggling dark mode: https://next.material-ui.com/customization/palette/#toggling-color-mode
+   */
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
   const theme = React.useMemo(

@@ -64,6 +64,12 @@ function formatSize(size: number) {
 }
 
 export default function BasicTable() {
+  /*
+   * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
+   *
+   * Normally, you would implement dark mode via internal state and/or system preference at the root of the application.
+   * For more detail about toggling dark mode: https://next.material-ui.com/customization/palette/#toggling-color-mode
+   */
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
   const theme = React.useMemo(
@@ -165,7 +171,7 @@ export default function BasicTable() {
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  <Box display="flex" alignItems="center">
+                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
                     <Folder
                       sx={{ mr: 1 }}
                       fontSize="small"

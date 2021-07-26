@@ -13,6 +13,12 @@ declare module '@material-ui/core/Chip' {
 }
 
 export default function NotificationCard() {
+  /*
+   * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
+   *
+   * Normally, you would implement dark mode via internal state and/or system preference at the root of the application.
+   * For more detail about toggling dark mode: https://next.material-ui.com/customization/palette/#toggling-color-mode
+   */
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
   const theme = React.useMemo(
@@ -104,8 +110,8 @@ export default function NotificationCard() {
     <ThemeProvider theme={theme}>
       <Card variant="outlined" sx={{ display: 'flex', p: 1.5, maxWidth: 283 }}>
         <Avatar src="/static/images/avatar/3.jpg" variant="rounded" />
-        <Box ml={1} flexBasis={180} flexGrow={1} minWidth="0px">
-          <Box display="flex" justifyContent="space-between">
+        <Box sx={{ ml: 1, flexBasis: 180, flexGrow: 1, minWidth: '0px' }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Typography color="text.secondary" variant="caption">
               Angela Erickson
             </Typography>
@@ -113,8 +119,8 @@ export default function NotificationCard() {
               12:50
             </Typography>
           </Box>
-          <Box display="flex" mt={0.5}>
-            <Box flexGrow={1} minWidth="0px">
+          <Box sx={{ display: 'flex', mt: 0.5 }}>
+            <Box sx={{ flexGrow: 1, minWidth: '0px' }}>
               <Typography component="div">Great news</Typography>
               <Typography variant="body2" color="text.secondary" noWrap>
                 Hey! Check this out, just a few minutes.

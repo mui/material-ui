@@ -24,6 +24,12 @@ const primary = {
 };
 
 export default function BasicTimeline() {
+  /*
+   * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
+   *
+   * Normally, you would implement dark mode via internal state and/or system preference at the root of the application.
+   * For more detail about toggling dark mode: https://next.material-ui.com/customization/palette/#toggling-color-mode
+   */
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
   const theme = React.useMemo(
@@ -106,24 +112,26 @@ export default function BasicTimeline() {
   return (
     <ThemeProvider theme={theme}>
       <Card variant="outlined" sx={{ p: 2, maxWidth: 270 }}>
-        <Box display="flex" alignItems="flex-start">
+        <Box sx={{ display: 'flex', alignItems: 'flex-start' }}>
           <Box
-            p={0.5}
-            mt={0.75}
-            borderRadius={1}
-            minWidth={28}
-            textAlign="center"
-            bgcolor={mode === 'dark' ? 'primary.700' : 'primary.50'}
-            color={mode === 'dark' ? '#fff' : 'primary.main'}
-            typography="body2"
+            sx={{
+              p: 0.5,
+              mt: 0.75,
+              borderRadius: 1,
+              minWidth: 28,
+              textAlign: 'center',
+              bgcolor: mode === 'dark' ? 'primary.700' : 'primary.50',
+              color: mode === 'dark' ? '#fff' : 'primary.main',
+              typography: 'body2',
+            }}
           >
             1
           </Box>
-          <Box ml={2}>
+          <Box sx={{ ml: 2 }}>
             <Typography
               color={mode === 'dark' ? 'grey.400' : 'text.secondary'}
               variant="body2"
-              my={1}
+              sx={{ my: 1 }}
             >
               Add space and style to the account
             </Typography>

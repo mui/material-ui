@@ -5,7 +5,6 @@ import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Typography from '@material-ui/core/Typography';
-
 import CodeRounded from '@material-ui/icons/CodeRounded';
 import ScheduleRounded from '@material-ui/icons/ScheduleRounded';
 
@@ -76,32 +75,44 @@ export default function TaskCard() {
           p: 2.5,
         }}
       >
-        <Box display="flex" alignItems="center">
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <ScheduleRounded fontSize="inherit" />
-          <Typography color="text.secondary" variant="caption" ml={0.5} mt="1px">
+          <Typography
+            color="text.secondary"
+            variant="caption"
+            sx={{ ml: 0.5, mt: '1px' }}
+          >
             March 25th
           </Typography>
         </Box>
-        <Box my="auto">
-          <Box width={28} height={28} bgcolor="#fff" borderRadius={0.75} p="2px">
+        <Box sx={{ my: 'auto' }}>
+          <Box
+            sx={{
+              width: 28,
+              height: 28,
+              bgcolor: '#fff',
+              borderRadius: 0.75,
+              p: '2px',
+            }}
+          >
             <CodeRounded color="primary" />
           </Box>
-          <Typography variant="h6" component="div" mt={1.5}>
+          <Typography variant="h6" component="div" sx={{ mt: 1.5 }}>
             Check for the API response and return the proper method
           </Typography>
         </Box>
-        <Box display="flex">
+        <Box sx={{ display: 'flex' }}>
           <Avatar src="/static/images/avatar/1.jpg" variant="rounded" />
-          <Box ml={1}>
+          <Box sx={{ ml: 1 }}>
             <Typography variant="body2" color="text.secondary">
               Assigned to
             </Typography>
             <Typography>Michael Scott</Typography>
           </Box>
         </Box>
-        <Box display="flex" alignItems="center" mb={-0.5} mt={0.5}>
+        <Box sx={{ display: 'flex', alignItems: 'center', mb: -0.5, mt: 0.5 }}>
           <LinearProgress variant="determinate" value={60} sx={{ flexGrow: 1 }} />
-          <Typography ml={2} color="#00C8FF" variant="body2">
+          <Typography color="#00C8FF" variant="body2" sx={{ ml: 2 }}>
             <b>60%</b>
           </Typography>
         </Box>
