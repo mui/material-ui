@@ -54,7 +54,7 @@ Big thanks to the 20 contributors who made this release possible. Here are some 
 
 ### `@material-ui/lab@5.0.0-alpha.41`
 
-- <!-- 16 --> [pickers] Use utils for default min and max dates (#27297) @eps1lon
+- <!-- 58 --> [pickers] Only accept dates from adapters in min/max props (#27392) @eps1lon
 - <!-- 15 --> [pickers] Fallback to today if all possible dates are disabled (#27294) @eps1lon
 - <!-- 06 --> [pickers] Minify error when LocalizationProvider is missing (#27295) @eps1lon
 - <!-- 01 --> [pickers] Fix Fade animation behavior change (#27283) @oliviertassinari
