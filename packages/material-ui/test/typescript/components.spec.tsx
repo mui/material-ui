@@ -872,7 +872,7 @@ const TextFieldTest = () => (
 );
 
 const SelectTest = () => (
-  <Select input={<Input />} value={10} onChange={(e) => log(e.currentTarget.value)}>
+  <Select input={<Input />} value={10} onChange={(e) => log(e.target.value)}>
     <MenuItem value="">
       <em>None</em>
     </MenuItem>

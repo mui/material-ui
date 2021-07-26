@@ -1,4 +1,5 @@
 import styledEngineStyled from '@material-ui/styled-engine';
+import { getDisplayName } from '@material-ui/utils';
 import createTheme from './createTheme';
 import styleFunctionSx from './styleFunctionSx';
 import propsToClassKey from './propsToClassKey';
@@ -164,7 +165,10 @@ export default function createStyled(input = {}) {
 
       const Component = defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
 
-      if (displayName) {
+      if (process.env.NODE_ENV !== 'production') {
+        if (displayName === undefined) {
+          displayName = `Styled(${getDisplayName(tag)})`;
+        }
         Component.displayName = displayName;
       }
 
