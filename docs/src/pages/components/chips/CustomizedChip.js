@@ -48,12 +48,9 @@ export default function CustomizedChip() {
           },
         },
         typography: {
-          fontFamily: [
-            '"PlusJakartaSans"',
-            '-apple-system',
-            'BlinkMacSystemFont',
-            'sans-serif',
-          ].join(','),
+          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(
+            ',',
+          ),
           fontWeightRegular: 500,
         },
         components: {

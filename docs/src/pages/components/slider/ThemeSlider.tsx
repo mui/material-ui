@@ -69,12 +69,9 @@ export default function ThemeSlider() {
           },
         },
         typography: {
-          fontFamily: [
-            '"PlusJakartaSans"',
-            '-apple-system',
-            'BlinkMacSystemFont',
-            'sans-serif',
-          ].join(','),
+          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(
+            ',',
+          ),
         },
         components: {
           MuiSlider: {

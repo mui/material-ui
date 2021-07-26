@@ -41,12 +41,9 @@ export default function PlayerCard() {
         },
         spacing: 10,
         typography: {
-          fontFamily: [
-            '"PlusJakartaSans"',
-            '-apple-system',
-            'BlinkMacSystemFont',
-            'sans-serif',
-          ].join(','),
+          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(
+            ',',
+          ),
         },
         components: {
           MuiButtonBase: {

@@ -54,12 +54,9 @@ export default function ViewToggleButton() {
           divider: mode === 'dark' ? primary[900] : '#E5E8EC',
         },
         typography: {
-          fontFamily: [
-            '"PlusJakartaSans"',
-            '-apple-system',
-            'BlinkMacSystemFont',
-            'sans-serif',
-          ].join(','),
+          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(
+            ',',
+          ),
         },
         shape: {
           borderRadius: 10,

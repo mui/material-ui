@@ -43,12 +43,7 @@ export default function ThemeDatePicker() {
       },
       spacing: 10,
       typography: {
-        fontFamily: [
-          '"PlusJakartaSans"',
-          '-apple-system',
-          'BlinkMacSystemFont',
-          'sans-serif',
-        ].join(','),
+        fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(','),
         button: {
           textTransform: 'initial',
         },

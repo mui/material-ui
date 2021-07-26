@@ -82,12 +82,9 @@ export default function BasicTable() {
           },
         },
         typography: {
-          fontFamily: [
-            '"PlusJakartaSans"',
-            '-apple-system',
-            'BlinkMacSystemFont',
-            'sans-serif',
-          ].join(','),
+          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(
+            ',',
+          ),
         },
         shape: {
           borderRadius: 10,

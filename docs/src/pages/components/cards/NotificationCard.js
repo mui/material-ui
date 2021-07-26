@@ -39,12 +39,9 @@ export default function NotificationCard() {
         },
         spacing: 10,
         typography: {
-          fontFamily: [
-            '"PlusJakartaSans"',
-            '-apple-system',
-            'BlinkMacSystemFont',
-            'sans-serif',
-          ].join(','),
+          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(
+            ',',
+          ),
           fontWeightRegular: 500,
         },
         components: {
