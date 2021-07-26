@@ -243,6 +243,7 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
     outsideCurrentMonth,
     selected = false,
     showDaysOutsideCurrentMonth = false,
+    children,
     today: isToday = false,
     ...other
   } = props;
@@ -364,7 +365,7 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
       onClick={handleClick}
       {...other}
     >
-      {utils.format(day, 'dayOfMonth')}
+      {!children ? utils.format(day, 'dayOfMonth') : children}
     </PickersDayRoot>
   );
 });
