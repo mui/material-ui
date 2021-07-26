@@ -149,23 +149,25 @@ const theme = createTheme({
       textTransform: 'initial',
       fontWeight: 700,
     },
-    subtitle1: {
-      fontSize: 18,
-      lineHeight: 22 / 18,
-    },
-    body1: {
-      fontSize: 16,
-      lineHeight: 24 / 16,
-      fontWeight: 500,
-    },
-    body2: {
-      fontSize: 14,
-      lineHeight: 20 / 14,
-    },
   },
 });
 
 const brandingTheme = createTheme(theme, {
+  typography: {
+    subtitle1: {
+      fontSize: theme.typography.pxToRem(18), // 18px
+      lineHeight: 22 / 18,
+    },
+    body1: {
+      fontSize: theme.typography.pxToRem(16), // 16px
+      lineHeight: 24 / 16,
+      fontWeight: 500,
+    },
+    body2: {
+      fontSize: theme.typography.pxToRem(14), // 14px
+      lineHeight: 20 / 14,
+    },
+  },
   components: {
     MuiButton: {
       defaultProps: {
