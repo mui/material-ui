@@ -246,7 +246,8 @@ export default function App() {
 //        Type 'string' is not assignable to type 'SystemStyleObject<Theme>'.
 ```
 
-The problem is that the type of the `flexDirection` prop is inferred as `string`, which is too arbitrary. To fix this, you can pass the styles object directly to the `sx` prop:
+The problem is that the type of the `flexDirection` prop is inferred as `string`, which is too wide.
+To fix this, you can pass the styles object directly to the `sx` prop:
 
 ```ts
 export default function App() {
