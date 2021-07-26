@@ -5,7 +5,6 @@ import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Typography from '@material-ui/core/Typography';
-
 import CodeRounded from '@material-ui/icons/CodeRounded';
 import ScheduleRounded from '@material-ui/icons/ScheduleRounded';
 
