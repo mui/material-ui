@@ -213,7 +213,7 @@ describe('<DesktopTimePicker />', () => {
 
         // we are running validation on value change
         function TimePickerInput() {
-          const [time, setTime] = React.useState(null);
+          const [time, setTime] = React.useState<Date | null>(null);
 
           return (
             <DesktopTimePicker
