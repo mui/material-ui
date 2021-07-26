@@ -17,6 +17,19 @@ const primary = {
   700: '#0059B2',
   800: '#004C99',
   900: '#003A75',
+  1000: '#132F4C',
+};
+const grey = {
+  50: '#F3F6F9',
+  100: '#EAEEF3',
+  200: '#E5E8EC',
+  300: '#D7DCE1',
+  400: '#BFC7CF',
+  500: '#AAB4BE',
+  600: '#96A3B0',
+  700: '#8796A5',
+  800: '#5A6978',
+  900: '#3D4752',
 };
 
 export default function ThemeDatePicker() {
@@ -67,7 +80,7 @@ export default function ThemeDatePicker() {
           styleOverrides: {
             root: {
               '& .MuiTypography-caption': {
-                color: mode === 'dark' ? '#96A3B0' : '#AAB4BE',
+                color: mode === 'dark' ? grey[600] : grey[500],
               },
             },
           },
@@ -75,7 +88,7 @@ export default function ThemeDatePicker() {
         MuiPickersDay: {
           styleOverrides: {
             root: {
-              color: mode === 'dark' ? primary[200] : '#5A6978',
+              color: mode === 'dark' ? primary[200] : grey[800],
               fontWeight: 500,
             },
             today: {
@@ -96,7 +109,7 @@ export default function ThemeDatePicker() {
           sx={{
             '& > div': {
               border: '1px solid',
-              borderColor: mode === 'dark' ? '#132F4C' : '#E5E8EC',
+              borderColor: mode === 'dark' ? primary[1000] : grey[200],
               borderRadius: 1,
             },
           }}

@@ -14,8 +14,22 @@ declare module '@material-ui/core/Paper' {
   }
 }
 
+const primary = {
+  50: '#F0F7FF',
+  100: '#C2E0FF',
+  200: '#80BFFF',
+  300: '#66B2FF',
+  400: '#3399FF',
+  main: '#007FFF', // contrast 3.83:1
+  500: '#007FFF',
+  600: '#0072E5',
+  700: '#0059B2',
+  800: '#004C99',
+  900: '#003A75',
+};
+
 const theme = createTheme({
-  palette: { mode: 'dark', primary: { main: '#007FFF' } },
+  palette: { mode: 'dark', primary },
   shape: {
     borderRadius: 10,
   },
@@ -33,7 +47,7 @@ const theme = createTheme({
         {
           props: { variant: 'gradient' },
           style: {
-            background: 'linear-gradient(to right bottom, #007FFF, #0059B3 120%)',
+            background: `linear-gradient(to right bottom, ${primary.main}, ${primary[700]} 120%)`,
             boxShadow:
               '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
           },

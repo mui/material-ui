@@ -21,6 +21,19 @@ const primary = {
   700: '#0059B2',
   800: '#004C99',
   900: '#003A75',
+  1000: '#132F4C',
+};
+const grey = {
+  50: '#F3F6F9',
+  100: '#EAEEF3',
+  200: '#E5E8EC',
+  300: '#D7DCE1',
+  400: '#BFC7CF',
+  500: '#AAB4BE',
+  600: '#96A3B0',
+  700: '#8796A5',
+  800: '#5A6978',
+  900: '#3D4752',
 };
 
 export default function BasicTimeline() {
@@ -39,8 +52,8 @@ export default function BasicTimeline() {
           mode,
           primary,
           text: {
-            primary: '#3D4752',
-            secondary: '#5A6978',
+            primary: grey[900],
+            secondary: grey[800],
           },
           background: {
             paper: mode === 'dark' ? primary[800] : '#fff',
@@ -61,7 +74,7 @@ export default function BasicTimeline() {
             styleOverrides: {
               outlined: {
                 boxShadow: '0px 20px 25px rgba(0, 0, 0, 0.1)',
-                borderColor: mode === 'dark' ? '#132F4C' : '#E5E8EC',
+                borderColor: mode === 'dark' ? primary[1000] : grey[200],
               },
             },
           },
@@ -97,7 +110,7 @@ export default function BasicTimeline() {
             styleOverrides: {
               root: {
                 fontSize: '0.875rem',
-                color: mode === 'dark' ? '#EAEEF3' : '#5A6978',
+                color: mode === 'dark' ? grey[100] : grey[800],
               },
             },
           },

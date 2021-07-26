@@ -22,6 +22,19 @@ const primary = {
   900: '#003A75',
 };
 
+const grey = {
+  50: '#F3F6F9',
+  100: '#EAEEF3',
+  200: '#E5E8EC',
+  300: '#D7DCE1',
+  400: '#BFC7CF',
+  500: '#AAB4BE',
+  600: '#96A3B0',
+  700: '#8796A5',
+  800: '#5A6978',
+  900: '#3D4752',
+};
+
 const views = ['quilt', 'module', 'agenda', 'week', 'sidebar'];
 
 const viewIcons = {
@@ -49,7 +62,8 @@ export default function ViewToggleButton() {
         palette: {
           mode,
           primary,
-          divider: mode === 'dark' ? primary[900] : '#E5E8EC',
+          divider: mode === 'dark' ? primary[900] : grey[200],
+          grey,
         },
         typography: {
           fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(
@@ -75,7 +89,7 @@ export default function ViewToggleButton() {
           MuiToggleButton: {
             styleOverrides: {
               root: {
-                color: mode === 'dark' ? '#fff' : '#BFC7CF',
+                color: mode === 'dark' ? '#fff' : grey[400],
                 '&.Mui-selected': {
                   color: mode === 'dark' ? primary[300] : primary[500],
                 },

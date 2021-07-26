@@ -33,24 +33,6 @@ function valuetext(value) {
   return `${value}°C`;
 }
 
-const marks = [
-  {
-    value: 0,
-  },
-  {
-    value: 25,
-  },
-  {
-    value: 50,
-  },
-  {
-    value: 75,
-  },
-  {
-    value: 100,
-  },
-];
-
 export default function ThemeSlider() {
   /*
    * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
@@ -130,7 +112,13 @@ export default function ThemeSlider() {
           orientation="vertical"
           getAriaValueText={valuetext}
           defaultValue={[25, 50]}
-          marks={marks}
+          marks={[
+            { value: 0 },
+            { value: 25 },
+            { value: 50 },
+            { value: 75 },
+            { value: 100 },
+          ]}
           valueLabelFormat={valuetext}
           valueLabelDisplay="on"
         />
