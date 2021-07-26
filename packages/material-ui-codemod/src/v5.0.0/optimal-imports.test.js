@@ -34,7 +34,7 @@ describe('@material-ui/codemod', () => {
           {},
         );
 
-        const expected = read('./private-imports.test/expected.js');
+        const expected = read('./optimal-imports.test/expected.js');
         expect(trim(actual)).to.equal(trim(expected), 'The transformed version should be correct');
       });
     });
