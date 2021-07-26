@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme, ThemeOptions } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
@@ -8,23 +8,28 @@ import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import Chip from '@material-ui/core/Chip';
 import Typography from '@material-ui/core/Typography';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import IconButton from '@material-ui/core/IconButton';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import ToggleButton from '@material-ui/core/ToggleButton';
 import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
-
-import SvgProductCore from 'docs/src/icons/SvgProductCore';
-import SvgProductAdvanced from 'docs/src/icons/SvgProductAdvanced';
-import SvgProductTemplates from 'docs/src/icons/SvgProductTemplates';
-import SvgProductDesign from 'docs/src/icons/SvgProductDesign';
-import SvgMuiX from 'docs/src/icons/SvgMuiX';
-
 import ContentCopyRounded from '@material-ui/icons/ContentCopyRounded';
 import CodeRounded from '@material-ui/icons/CodeRounded';
 import GradientText from 'docs/src/components/GradientText';
+import ProductsSwitcher from 'docs/src/components/home/ProductsSwitcher';
+
+import { brandingDesignTokens } from 'docs/src/modules/brandingTheme';
+
+const darkBrandingTheme = createTheme({
+  ...brandingDesignTokens,
+  palette: {
+    ...brandingDesignTokens.palette,
+    background: {
+      paper: brandingDesignTokens.palette.primary[900],
+    },
+    mode: 'dark',
+  },
+} as ThemeOptions);
 
 const MaterialDesignDemo = () => {
   return (
@@ -85,7 +90,12 @@ const customTheme = createTheme({
   },
   spacing: 10,
   // @ts-ignore
-  shadows: ['none', '', '', '0px 4px 20px rgba(170, 180, 190, 0.1)'],
+  shadows: [
+    'none',
+    '0px 2px 8px rgba(170, 180, 190, 0.1)',
+    '0px 3px 14px rgba(170, 180, 190, 0.1)',
+    '0px 4px 20px rgba(170, 180, 190, 0.1)',
+  ],
   typography: {
     fontFamily: '"PlusJakartaSans", sans-serif',
     fontWeightBold: 500,
@@ -161,33 +171,8 @@ const customTheme = createTheme({
   },
 });
 
-function ProductItem({
-  icon,
-  name,
-  description,
-}: {
-  icon: React.ReactNode;
-  name: React.ReactNode;
-  description: React.ReactNode;
-}) {
-  return (
-    <Box display="flex" alignItems="center" py={2}>
-      <Box px={2}>{icon}</Box>
-      <Box>
-        <Typography color="grey.900" variant="body3" fontWeight="bold">
-          {name}
-        </Typography>
-        <Typography color="text.secondary" variant="body3" fontWeight="regular">
-          {description}
-        </Typography>
-      </Box>
-    </Box>
-  );
-}
-
 const DesignSystems = () => {
   const [themeType, setThemeType] = React.useState('default');
-  const [productIndex, setProductIndex] = React.useState(0);
   return (
     <Box bgcolor="grey.50" py={8}>
       <Container>
@@ -212,73 +197,8 @@ const DesignSystems = () => {
                 We bring together a suite of products integrated to make your life easier and
                 happier when it comes to developing React applications.
               </Typography>
-              <Tabs
-                orientation="vertical"
-                value={productIndex}
-                onChange={(event, value) => setProductIndex(value)}
-                sx={{
-                  mt: 4,
-                  overflow: 'initial',
-                  '& .MuiTabs-scroller': { overflow: 'initial !important' },
-                  '& .MuiTabs-flexContainer': { position: 'relative', zIndex: 1 },
-                  '& .MuiTab-root': {
-                    maxWidth: 'initial',
-                    textAlign: 'left',
-                    padding: 0,
-                    alignItems: 'flex-start',
-                  },
-                  '& .MuiTabs-indicator': {
-                    boxShadow: 'rgb(170 180 190 / 10%) 0px 4px 20px',
-                    width: '100%',
-                    bgcolor: 'background.paper',
-                    borderRadius: 1,
-                    border: '1px solid',
-                    borderColor: 'grey.200',
-                  },
-                }}
-              >
-                <Tab
-                  label={
-                    <ProductItem
-                      icon={<SvgProductCore />}
-                      name="Core"
-                      description="Ready to use, forever free, out-of-the-box, components."
-                    />
-                  }
-                />
-                <Tab
-                  label={
-                    <ProductItem
-                      icon={<SvgProductAdvanced />}
-                      name={
-                        <Box component="span" display="inline-flex" alignItems="center">
-                          Advanced&nbsp; <SvgMuiX />
-                        </Box>
-                      }
-                      description="Powerful components for your complex apps."
-                    />
-                  }
-                />
-                <Tab
-                  label={
-                    <ProductItem
-                      icon={<SvgProductTemplates />}
-                      name="Templates"
-                      description="Get a fully built template for you application."
-                    />
-                  }
-                />
-                <Tab
-                  label={
-                    <ProductItem
-                      icon={<SvgProductDesign />}
-                      name="Design Kits"
-                      description="Pick your favorite design tool to enjoy."
-                    />
-                  }
-                />
-              </Tabs>
             </Box>
+            <ProductsSwitcher />
           </Grid>
           <Grid item xs={12} md={6}>
             <Paper
@@ -300,26 +220,28 @@ const DesignSystems = () => {
                   <MaterialDesignDemo />
                 </ThemeProvider>
               </Box>
-              <Box
-                borderRadius={'0 0 10px 10px'}
-                p={2}
-                m={'-1px'}
-                bgcolor="background.paper"
-                display="flex"
-                flexGrow={1}
-              >
-                <Box>
-                  <ToggleButtonGroup
-                    color="primary"
-                    exclusive
-                    value={themeType}
-                    onChange={(event, value) => setThemeType(value)}
-                  >
-                    <ToggleButton value="default">Default</ToggleButton>
-                    <ToggleButton value="custom">Custom</ToggleButton>
-                  </ToggleButtonGroup>
+              <ThemeProvider theme={darkBrandingTheme}>
+                <Box
+                  borderRadius={'0 0 10px 10px'}
+                  p={2}
+                  m={'-1px'}
+                  bgcolor="background.paper"
+                  display="flex"
+                  flexGrow={1}
+                >
+                  <Box>
+                    <ToggleButtonGroup
+                      color="primary"
+                      exclusive
+                      value={themeType}
+                      onChange={(event, value) => setThemeType(value)}
+                    >
+                      <ToggleButton value="default">Default</ToggleButton>
+                      <ToggleButton value="custom">Custom</ToggleButton>
+                    </ToggleButtonGroup>
+                  </Box>
                 </Box>
-              </Box>
+              </ThemeProvider>
             </Paper>
           </Grid>
         </Grid>

@@ -1,4 +1,4 @@
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme, ThemeOptions } from '@material-ui/core/styles';
 
 declare module '@material-ui/core/styles/createPalette' {
   interface ColorRange {
@@ -74,7 +74,7 @@ const systemFont = [
   '"Segoe UI Symbol"',
 ];
 
-const theme = createTheme({
+export const brandingDesignTokens = {
   palette: {
     primary: {
       50: '#F0F7FF',
@@ -150,7 +150,9 @@ const theme = createTheme({
       fontWeight: 700,
     },
   },
-});
+};
+
+const theme = createTheme(brandingDesignTokens as ThemeOptions);
 
 const brandingTheme = createTheme(theme, {
   typography: {
