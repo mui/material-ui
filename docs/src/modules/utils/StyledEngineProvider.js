@@ -21,7 +21,7 @@ export default function StyledEngineProvider(props) {
   let Wrapper = React.Fragment;
   let wraperProps = {};
 
-  // Only happens client-side
+  // Only happens client-side after the hydration
   if (rtl) {
     Wrapper = CacheProvider;
     wraperProps = {
@@ -37,6 +37,5 @@ export default function StyledEngineProvider(props) {
 }
 
 StyledEngineProvider.propTypes = {
-  cache: PropTypes.any,
   children: PropTypes.node,
 };
