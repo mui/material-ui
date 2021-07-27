@@ -2,7 +2,7 @@
 
 <p class="description">You can use Material-UI's styling solution in your app, whether or not you are using Material-UI components.</p>
 
-> **Note**: `@material-ui/styles` is the _**legacy**_ styling solution for Material-UI. It will be deprecated in v5. It depends on JSS as a styling solution, which is not used in the `@material-ui/core` anymore. If you would not like to have both emotion & JSS in your bundle, please reffer to the [`@material-ui/system`](/system/basics/) documentation which is the recommended alternative.
+> **Note**: `@material-ui/styles` is the _**legacy**_ styling solution for Material-UI. It will be deprecated in v5. It depends on JSS as a styling solution, which is not used in the `@material-ui/core` anymore. If you would not like to have both emotion & JSS in your bundle, please refer to the [`@material-ui/system`](/system/basics/) documentation which is the recommended alternative.
 
 Material-UI aims to provide a strong foundation for building dynamic UIs.
 For the sake of simplicity, **we expose the styling solution used in Material-UI components** as the `@material-ui/styles` package.
