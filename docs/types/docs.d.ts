@@ -14,6 +14,7 @@ declare module 'docs/src/modules/components/HighlightedCode' {
      * see @material-ui/markdown/prism for possible languages
      */
     language: string;
+    component: React.ElementType;
   }
   export default function HighlightedCode(props: Props): React.ReactElement;
 }

@@ -1,20 +1,22 @@
 import * as React from 'react';
 import { ThemeProvider, createTheme, ThemeOptions } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
+import IconButton, { IconButtonProps } from '@material-ui/core/IconButton';
 import Box from '@material-ui/core/Box';
-import Card from '@material-ui/core/Card';
-import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import Link from '@material-ui/core/Link';
-import ContentCopyRounded from '@material-ui/icons/ContentCopyRounded';
-import CodeRounded from '@material-ui/icons/CodeRounded';
-// import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import brandingTheme, { brandingDesignTokens } from 'docs/src/modules/brandingTheme';
 import ReplayRounded from '@material-ui/icons/ReplayRounded';
-import { useTimeframes, getMaterialThemeFrames, produceThemeOptions } from './showcase';
+import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
+import MarkdownElement from '../markdown/MarkdownElement';
+import {
+  useTimeframes,
+  getMaterialThemeFrames,
+  produceThemeOptions,
+  productCode,
+} from './showcase';
+import MaterialDesignDemo, { demoCode as materialDemoCode } from './MaterialDesignDemo';
+import FlashCode from './FlashCode';
 
 const darkBrandingTheme = createTheme({
   ...brandingDesignTokens,
@@ -26,9 +28,13 @@ const darkBrandingTheme = createTheme({
     mode: 'dark',
   },
   components: {
-    MuiButton: {
+    MuiButtonBase: {
       defaultProps: {
         disableTouchRipple: true,
+      },
+    },
+    MuiButton: {
+      defaultProps: {
         disableElevation: true,
       },
       styleOverrides: {
@@ -56,60 +62,59 @@ const darkBrandingTheme = createTheme({
   },
 } as ThemeOptions);
 
-const MaterialDesignDemo = () => {
-  return (
-    <Card elevation={4} sx={{ display: 'flex', p: 2 }}>
-      <Avatar src="/static/images/avatar/1.jpg" variant="rounded" sx={{ mr: 2 }} />
-      <div>
-        <Typography component="div" variant="caption" color="text.secondary">
-          Today at 09:40 AM
-        </Typography>
-        <Box sx={{ display: 'flex', alignItems: 'baseline', flexWrap: 'wrap' }}>
-          <Typography component="div" mr={0.5} mb={0.5} fontWeight="bold">
-            Merge pull request{' '}
-            <Link href="/" underline="none">
-              #2021
-            </Link>{' '}
-            from{' '}
-          </Typography>
-          <Chip
-            size="small"
-            label="mui-org/master"
-            color="success"
-            onClick={() => {}}
-            sx={{ mb: 0.5 }}
-          />
-        </Box>
-        <Typography component="div" variant="caption" mb={1.5} color="grey.800">
-          Committed by{' '}
-          <Link href="/" underline="none" fontWeight="bold">
-            Olivier Tassinari
-          </Link>
-        </Typography>
+const defaultTheme = createTheme();
 
-        <Button variant="outlined" size="small" startIcon={<ContentCopyRounded />} sx={{ mr: 1 }}>
-          i88jjd43
-        </Button>
-        <IconButton size="small">
-          <CodeRounded fontSize="small" />
-        </IconButton>
-      </div>
-    </Card>
+const CodeToggle = ({ sx, ...props }: IconButtonProps) => {
+  return (
+    <IconButton size="small" {...props} sx={{ p: 0, ...sx }}>
+      <KeyboardArrowDownRounded fontSize="small" />
+    </IconButton>
   );
 };
-
-const defaultTheme = createTheme();
 
 const ComponentShowcase = () => {
   const [customized, setCustomized] = React.useState(false);
   const [customTheme, setCustomTheme] = React.useState(createTheme());
+  const [importsOpen, setImportsOpen] = React.useState(false);
+  const [themeCode, setThemeCode] = React.useState('');
+  const [flashCodes, setFlashCodes] = React.useState<Array<{ startLine: number; endLine: number }>>(
+    [],
+  );
+  const prevThemeCode = React.useRef('');
+  const codeContainer = React.useRef<HTMLDivElement | null>(null);
   const themeFrames = React.useMemo(() => getMaterialThemeFrames(brandingTheme), []);
   const { frame, done, rerun } = useTimeframes({ run: customized, maxFrame: themeFrames.length });
 
   React.useEffect(() => {
     const themeOptions = produceThemeOptions(themeFrames, frame);
     setCustomTheme(createTheme(themeOptions));
+    setThemeCode(productCode(themeFrames, frame));
   }, [frame, themeFrames]);
+
+  React.useEffect(() => {
+    const prevCodeLength = prevThemeCode.current.split('\n').length;
+    const newCodeLength = themeCode.split('\n').length;
+    const offset = importsOpen ? materialDemoCode.imports.split('\n').length : 1;
+    const startLine = prevCodeLength + offset - 1;
+    const endLine = newCodeLength + offset - 1;
+    if (codeContainer.current && themeCode) {
+      codeContainer.current.scrollTop = (startLine + offset - 3) * 20 || 0;
+    }
+    setFlashCodes((current) => [...current, { startLine, endLine }]);
+    prevThemeCode.current = themeCode;
+  }, [themeCode, importsOpen]);
+
+  const handleCustomTheme = () => {
+    setFlashCodes([]);
+    setThemeCode('');
+    prevThemeCode.current = '';
+    if (done) {
+      rerun();
+    } else {
+      setCustomized(true);
+    }
+  };
+
   return (
     <Paper
       variant="outlined"
@@ -123,7 +128,7 @@ const ComponentShowcase = () => {
       <Box
         sx={{
           display: 'flex',
-          minHeight: 300,
+          minHeight: 200,
           justifyContent: 'center',
           alignItems: 'center',
           px: 2,
@@ -155,7 +160,7 @@ const ComponentShowcase = () => {
             <Button
               size="small"
               variant={customized ? 'outlined' : 'text'}
-              onClick={() => (done ? rerun() : setCustomized(true))}
+              onClick={handleCustomTheme}
               startIcon={done ? <ReplayRounded /> : null}
               sx={{ ml: 1 }}
             >
@@ -165,6 +170,56 @@ const ComponentShowcase = () => {
                 return 'Custom Theme';
               })()}
             </Button>
+          </Box>
+          <Box
+            ref={codeContainer}
+            sx={{
+              display: 'flex',
+              maxWidth: '100%',
+              my: 2,
+              position: 'relative',
+              overflow: 'auto',
+              maxHeight: 500,
+            }}
+          >
+            <CodeToggle
+              sx={{
+                position: 'absolute',
+                transform: `rotate(${importsOpen ? '0deg' : '-90deg'})`,
+                zIndex: 1,
+              }}
+              onClick={() => setImportsOpen((bool) => !bool)}
+            />
+            <Box sx={{ position: 'relative', flexGrow: 1, pl: 2 }}>
+              {flashCodes.map((item, index) => (
+                <FlashCode
+                  key={index}
+                  sx={{ left: 20, ...(index !== frame && { height: '0px' }) }}
+                  {...item}
+                />
+              ))}
+              {importsOpen ? (
+                <HighlightedCode
+                  component={MarkdownElement}
+                  code={materialDemoCode.imports}
+                  language="jsx"
+                />
+              ) : (
+                <HighlightedCode component={MarkdownElement} code="import {...}" language="jsx" />
+              )}
+              {themeCode && (
+                <React.Fragment>
+                  <Box height={20} />
+                  <HighlightedCode component={MarkdownElement} code={themeCode} language="jsx" />
+                </React.Fragment>
+              )}
+              <Box height={20} />
+              <HighlightedCode
+                component={MarkdownElement}
+                code={materialDemoCode.component}
+                language="jsx"
+              />
+            </Box>
           </Box>
           {/* <Box position="relative">
 

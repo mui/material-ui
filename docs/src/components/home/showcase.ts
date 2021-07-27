@@ -142,6 +142,59 @@ export const produceThemeOptions = (themeFrames: Array<ThemeOptions>, frame: num
   return themeFrames.slice(0, frame).reduce((result, current) => deepmerge(result, current), {});
 };
 
+const objectToCode = (obj: object | undefined) =>
+  JSON.stringify(obj || {}, null, 2)
+    .replace(/"(\w*)"/gm, '$1')
+    .split('\n')
+    .filter((line, i, array) => i !== 0 && i !== array.length - 1)
+    .join('\n');
+
+const prependSpace = (code: string, space: number = 0) =>
+  code
+    .split('\n')
+    .map((line) => line.padStart(line.length + space, ' '))
+    .join('\n');
+
+export const productCode = (themeFrames: Array<ThemeOptions>, frame: number) => {
+  // components should come later in themeFrames
+  let themeRoot: Array<ThemeOptions> = [];
+  let themeComponents: Array<ThemeOptions['components']> = [];
+  themeFrames.forEach((themeOption) => {
+    if (themeOption.components) {
+      themeComponents.push(themeOption.components);
+    } else {
+      themeRoot.push(themeOption);
+    }
+  });
+  themeRoot = themeRoot.slice(0, frame);
+  themeComponents = themeComponents.slice(0, frame - themeRoot.length);
+  const done = themeRoot.length + themeComponents.length === themeFrames.length;
+  const themeRootCode = themeRoot.map(objectToCode).join(',\n');
+  const themeComponentsCode = themeComponents.length
+    ? `{
+    components: {
+${themeComponents
+  .map(objectToCode)
+  .map((code) => prependSpace(code, 4))
+  .join(',\n')}
+    ${
+      done
+        ? `}
+  }`
+        : ''
+    }`
+    : '';
+
+  return themeRoot.length
+    ? `import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+
+const theme = createTheme({
+${themeRootCode}${themeComponentsCode.length ? ',' : ''}
+  ${themeComponentsCode}
+${done ? '})\n' : ''}`
+    : '';
+};
+
 interface TimeframeOptions {
   run: boolean;
   maxFrame: number;
