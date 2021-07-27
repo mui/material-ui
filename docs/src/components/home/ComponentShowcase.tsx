@@ -101,7 +101,7 @@ const ComponentShowcase = () => {
     const offset = importsOpen ? materialDemoCode.imports.split('\n').length : 1;
     const startLine = prevCodeLength + offset - 1;
     const endLine = newCodeLength + offset - 1;
-    if (codeContainer.current && themeCode) {
+    if (codeContainer.current && themeCode && startLine !== endLine) {
       codeContainer.current.scrollTop = (startLine - 3) * 20 || 0;
     }
     setFlashCodes((current) => [...current, { startLine, endLine }]);
