@@ -266,7 +266,7 @@ export default function DemoToolbar(props) {
     const form = document.createElement('form');
     form.method = 'POST';
     form.target = '_blank';
-    form.action = 'https://codeSandbox.io/api/v1/sandboxes/define';
+    form.action = 'https://codesandbox.io/api/v1/sandboxes/define';
     addHiddenInput(form, 'parameters', parameters);
     addHiddenInput(
       form,

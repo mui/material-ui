@@ -89,14 +89,16 @@ Nested components inside a component have:
 
 ### Property naming
 
-The name of a boolean prop should be chosen based on the **default value**.
-For example, the `disabled` attribute on an input element, if supplied, defaults to `true`.
-This choice allows the shorthand notation:
+The name of a boolean prop should be chosen based on the **default value**. This choice allows:
 
-```diff
--<Input enabled={false} />
-+<Input disabled />
-```
+- the shorthand notation. For example, the `disabled` attribute on an input element, if supplied, defaults to `true`:
+
+  ```jsx
+  <Input enabled={false} /> ❌
+  <Input disabled /> ✅
+  ```
+
+- developers to know what the default value is from the name of the boolean prop. It's always the opposite.
 
 ### Controlled components
 
