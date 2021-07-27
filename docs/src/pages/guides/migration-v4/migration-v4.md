@@ -2381,7 +2381,7 @@ We recommend two options.
 
 #### Codemod
 
-We provide [a codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#-preset-safe) to help migrate JSS styles to `styled` API, but this approach **increases the CSS specificity**.
+We provide [a codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#jss-to-styled) to help migrate JSS styles to `styled` API, but this approach **increases the CSS specificity**.
 
 ```sh
 npx @material-ui/codemod@next v5.0.0/jss-to-styled <path>
