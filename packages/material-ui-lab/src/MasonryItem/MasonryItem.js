@@ -31,7 +31,7 @@ export const style = ({ styleProps, theme }) => {
       // all contents should have a width of 100%
       width: '100%',
     },
-    visibility: styleProps.contentHeight ? 'visible' : 'hidden',
+    visibility: styleProps.height ? 'visible' : 'hidden',
     gridColumnEnd: `span ${styleProps.columnSpan}`,
   };
 
@@ -45,7 +45,7 @@ export const style = ({ styleProps, theme }) => {
   const transformer = createUnarySpacing(theme);
   const styleFromPropValue = (propValue) => {
     const gap = Number(getValue(transformer, propValue).replace('px', ''));
-    const rowSpan = styleProps.contentHeight ? Math.ceil(styleProps.contentHeight + gap) : 0;
+    const rowSpan = styleProps.height ? Math.ceil(styleProps.height + gap) : 0;
     return {
       gridRowEnd: `span ${rowSpan}`,
       paddingBottom: gap - 1,
@@ -86,29 +86,31 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
     const child = masonryItemRef.current.firstChild;
     setStyleProps({
       ...styleProps,
-      contentHeight: child?.getBoundingClientRect().height,
+      height: child?.getBoundingClientRect().height,
     });
   };
   const resizeObserver = React.useRef(new ResizeObserver(computeHeight));
-  const resizedItemRef = React.useCallback(
-    (item) => {
-      if (item !== null) {
-        resizeObserver.current.observe(item);
-      } else if (resizeObserver.current) {
-        resizeObserver.current.disconnect();
-      }
-    },
-    [resizeObserver],
-  );
 
   React.useEffect(() => {
     if (documentReady) {
       computeHeight();
-      resizeObserver.current.observe(masonryItemRef.current);
     }
   }, [documentReady]); // eslint-disable-line
-  const handleOwnRef = useForkRef(masonryItemRef, resizedItemRef);
-  const handleRef = useForkRef(ref, handleOwnRef);
+
+  // eslint-disable-next-line
+  React.useEffect(() => {
+    if (resizeObserver?.current && masonryItemRef?.current) {
+      const observer = resizeObserver.current;
+      const item = masonryItemRef.current;
+      observer.observe(item);
+      return () => {
+        observer.unobserve(item);
+      };
+    }
+  }, [masonryItemRef]);
+
+  const handleRef = useForkRef(ref, masonryItemRef);
+
   return (
     <MasonryItemRoot
       as={component}
@@ -149,6 +151,10 @@ MasonryItem.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The height of the component in px.
+   */
+  height: PropTypes.number,
   /**
    * Allows defining system overrides as well as additional CSS styles.
    */

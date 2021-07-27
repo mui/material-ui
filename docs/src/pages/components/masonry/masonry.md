@@ -23,3 +23,7 @@ Masonry maintains a list of content blocks with a consistent width but variable 
 > You can configure the number of columns taken up by each `<MasonryItem />` as shown in the following demo:
 
 {{"demo": "pages/components/masonry/DiffColSizeMasonry.js", "bg": true}}
+
+> In order to use server-side rendering, you can pass the height of the content of `<MasonryItem />` as shown in the following demo:
+
+{{"demo": "pages/components/masonry/SSRMasonry.js", "bg": true}}
