@@ -466,6 +466,17 @@ declare module '@material-ui/styles' {
 }
 ```
 
+### @material-ui/core/colors
+
+- Nested imports of more than 1 level are private. You can't import color from `@material-ui/core/colors/red`.
+
+  > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
+
+  ```diff
+  -import red from '@material-ui/core/colors/red';
+  +import { red } from '@material-ui/core/colors';
+  ```
+
 ### @material-ui/core/styles
 
 #### createGenerateClassName
@@ -2642,6 +2653,23 @@ declare module "@material-ui/private-theming" {
 
   interface DefaultTheme extends Theme {}
 }
+```
+
+### [Jest] SyntaxError: Unexpected token 'export'
+
+In v5, `@material-ui/core/colors/red` is considered private and should not be used in your project. [More details about this error](https://github.com/mui-org/material-ui/issues/27296).
+
+You can use this codemod (**recommended**) to fix all the import in your project:
+
+```sh
+npx @material-ui/codemod v5.0.0/optimal-imports <folder>
+```
+
+or fix it manually like this:
+
+```diff
+-import red from '@material-ui/core/colors/red';
++import { red } from '@material-ui/core/colors';
 ```
 
 ### makeStyles - TypeError: Cannot read property 'drawer' of undefined

@@ -1,4 +1,4 @@
-import { useControlled } from '../utils';
+import { unstable_useControlled as useControlled } from '@material-ui/utils';
 
 export default function usePagination(props = {}) {
   // keep default values in sync with @default tags in Pagination.propTypes
