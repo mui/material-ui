@@ -2,6 +2,8 @@
 
 <p class="description">This section covers more advanced usage of @material-ui/core/styles.</p>
 
+> **Note**: `@material-ui/styles` is the _**legacy**_ styling solution for Material-UI. It will be deprecated in v5. It depends on JSS as a styling solution, which is not used in the `@material-ui/core` anymore. If you would not like to have both emotion & JSS in your bundle, please reffer to the [`@material-ui/system`](/system/basics/) documentation which is the recommended alternative.
+
 ## Theming
 
 Add a `ThemeProvider` to the top level of your app to pass a theme down the React component tree. Then, you can access the theme object in style functions.
