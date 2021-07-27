@@ -115,7 +115,7 @@ export default function HeaderNavDropdown() {
                     sx={{ borderLeft: '1px solid', borderColor: 'grey.100', pl: 1, pb: 1, ml: 1 }}
                   >
                     {PRODUCTS.map((item) => (
-                      <NextLink href="/branding/home" passHref>
+                      <NextLink key={item.name} href="/branding/home" passHref>
                         <Anchor sx={{ flexDirection: 'column', alignItems: 'initial' }}>
                           <div>{item.name}</div>
                           <Typography variant="body2">{item.description}</Typography>

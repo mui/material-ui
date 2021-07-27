@@ -36,6 +36,8 @@ declare module '@material-ui/core/styles/createTypography' {
 //   }
 // }
 
+const defaultTheme = createTheme();
+
 const blueDark = {
   50: '#E2EDF8',
   100: '#CEE0F3',
@@ -149,27 +151,25 @@ export const brandingDesignTokens = {
       textTransform: 'initial',
       fontWeight: 700,
     },
+    subtitle1: {
+      fontSize: defaultTheme.typography.pxToRem(18), // 18px
+      lineHeight: 22 / 18,
+    },
+    body1: {
+      fontSize: defaultTheme.typography.pxToRem(16), // 16px
+      lineHeight: 24 / 16,
+      fontWeight: 500,
+    },
+    body2: {
+      fontSize: defaultTheme.typography.pxToRem(14), // 14px
+      lineHeight: 20 / 14,
+    },
   },
 };
 
 const theme = createTheme(brandingDesignTokens as ThemeOptions);
 
 const brandingTheme = createTheme(theme, {
-  typography: {
-    subtitle1: {
-      fontSize: theme.typography.pxToRem(18), // 18px
-      lineHeight: 22 / 18,
-    },
-    body1: {
-      fontSize: theme.typography.pxToRem(16), // 16px
-      lineHeight: 24 / 16,
-      fontWeight: 500,
-    },
-    body2: {
-      fontSize: theme.typography.pxToRem(14), // 14px
-      lineHeight: 20 / 14,
-    },
-  },
   components: {
     MuiButton: {
       defaultProps: {
