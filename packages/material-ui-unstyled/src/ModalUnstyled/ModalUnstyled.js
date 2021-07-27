@@ -233,7 +233,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
 
   const childProps = {};
   if (children.props.tabIndex === undefined) {
-    childProps.tabIndex = children.props.tabIndex || '-1';
+    childProps.tabIndex = '-1';
   }
 
   // It's a Transition like component
