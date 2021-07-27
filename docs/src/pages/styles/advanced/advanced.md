@@ -2,7 +2,7 @@
 
 <p class="description">This section covers more advanced usage of @material-ui/core/styles.</p>
 
-> **Note**: `@material-ui/styles` is the _**legacy**_ styling solution for Material-UI. It will be deprecated in v5. It depends on JSS as a styling solution, which is not used in the `@material-ui/core` anymore. If you would not like to have both emotion & JSS in your bundle, please reffer to the [`@material-ui/system`](/system/basics/) documentation which is the recommended alternative.
+> **Note**: `@material-ui/styles` is the _**legacy**_ styling solution for Material-UI. It will be deprecated in v5. It depends on JSS as a styling solution, which is not used in the `@material-ui/core` anymore. If you would not like to have both emotion & JSS in your bundle, please refer to the [`@material-ui/system`](/system/basics/) documentation which is the recommended alternative.
 
 ## Theming
 
