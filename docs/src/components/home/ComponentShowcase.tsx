@@ -217,7 +217,7 @@ const ComponentShowcase = () => {
               <Box height={20} />
               <HighlightedCode
                 component={MarkdownElement}
-                code={materialDemoCode.component}
+                code={materialDemoCode.component(customized)}
                 language="jsx"
               />
             </Box>

@@ -22,9 +22,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Link from '@material-ui/core/Link';
 import ContentCopyRounded from '@material-ui/icons/ContentCopyRounded';
 import CodeRounded from '@material-ui/icons/CodeRounded';`,
-  component: `export default function MaterialDesignDemo() {
-  return (
-    <Card elevation={4} sx={{ display: 'flex', p: 2 }}>
+  component: (themed = false) => {
+    const jsx = `<Card elevation={4} sx={{ display: 'flex', p: 2 }}>
       <Avatar src="/static/images/avatar/1.jpg" variant="rounded" sx={{ mr: 2 }} />
       <div>
         <Typography component="div" variant="caption" color="text.secondary">
@@ -59,9 +58,22 @@ import CodeRounded from '@material-ui/icons/CodeRounded';`,
           <CodeRounded fontSize="small" />
         </IconButton>
       </div>
-    </Card>
+    </Card>`;
+    return `export default function MaterialDesignDemo() {
+  return (
+    ${
+      themed
+        ? `<ThemeProvider theme={theme}>
+    ${jsx
+      .split('\n')
+      .map((line) => line.padStart(line.length + 2, ' '))
+      .join('\n')}
+    </ThemeProvider>`
+        : jsx
+    }
   );
-}`,
+}`;
+  },
 };
 
 export default function MaterialDesignDemo() {
