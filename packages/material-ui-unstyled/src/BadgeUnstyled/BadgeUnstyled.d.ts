@@ -31,14 +31,8 @@ export interface BadgeUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
      * @default {}
      */
     componentsProps?: {
-      root?: {
-        as: React.ElementType;
-        styleProps?: Omit<BadgeUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
-      };
-      badge?: {
-        as?: React.ElementType;
-        styleProps?: Omit<BadgeUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
-      };
+      root?: Record<string, any>;
+      badge?: Record<string, any>;
     };
     /**
      * Wrapped shape the badge should overlap.

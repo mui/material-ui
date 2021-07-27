@@ -32,9 +32,9 @@ export interface SwitchUnstyledProps extends UseSwitchProps {
    * @default {}
    */
   componentsProps?: {
-    root?: {};
-    thumb?: {};
-    input?: {};
+    root?: Record<string, any>;
+    thumb?: Record<string, any>;
+    input?: Record<string, any>;
   };
 }
 

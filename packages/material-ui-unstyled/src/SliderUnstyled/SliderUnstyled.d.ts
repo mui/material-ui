@@ -52,45 +52,13 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
      * @default {}
      */
     componentsProps?: {
-      root?: {
-        as?: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
-          SliderStylePropsOverrides;
-      };
-      track?: {
-        as?: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
-          SliderStylePropsOverrides;
-      };
-      rail?: {
-        as?: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
-          SliderStylePropsOverrides;
-      };
-      thumb?: {
-        as?: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
-          SliderStylePropsOverrides;
-      };
-      mark?: {
-        as?: React.ElementType;
-        styleProps?: Omit<
-          SliderUnstyledTypeMap<P, D>['props'],
-          'components' | 'componentsProps'
-        > & { markActive?: boolean } & SliderStylePropsOverrides;
-      };
-      markLabel?: {
-        as?: React.ElementType;
-        styleProps?: Omit<
-          SliderUnstyledTypeMap<P, D>['props'],
-          'components' | 'componentsProps'
-        > & { markLabelActive?: boolean } & SliderStylePropsOverrides;
-      };
-      valueLabel?: {
-        as?: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
-          SliderStylePropsOverrides;
-      };
+      root?: Record<string, any>;
+      track?: Record<string, any>;
+      rail?: Record<string, any>;
+      thumb?: Record<string, any>;
+      mark?: Record<string, any>;
+      markLabel?: Record<string, any>;
+      valueLabel?: Record<string, any>;
     };
     /**
      * The default value. Use when the component is not controlled.
