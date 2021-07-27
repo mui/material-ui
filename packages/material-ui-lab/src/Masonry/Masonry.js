@@ -5,7 +5,7 @@ import {
   createUnarySpacing,
   getValue,
   handleBreakpoints,
-  resolveBreakpointValues,
+  unstable_resolveBreakpointValues as resolveBreakpointValues,
 } from '@material-ui/system';
 import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
@@ -29,14 +29,8 @@ export const style = ({ styleProps, theme }) => {
     gridAutoRows: 0,
     padding: 0,
     overflow: 'auto',
-    width: '100% !important',
+    width: '100%',
     rowGap: 1,
-    ...((typeof styleProps.spacing === 'string' || typeof styleProps.spacing === 'number') && {
-      columnGap: theme.spacing(styleProps.spacing),
-    }),
-    ...((typeof styleProps.cols === 'string' || typeof styleProps.cols === 'number') && {
-      gridTemplateColumns: `repeat(${styleProps.cols}, 1fr)`,
-    }),
   };
 
   const base = Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
@@ -46,34 +40,27 @@ export const style = ({ styleProps, theme }) => {
     return acc;
   }, {});
 
-  if (typeof styleProps.spacing === 'object' || Array.isArray(styleProps.spacing)) {
-    const spacingValues = resolveBreakpointValues({ values: styleProps.spacing, base });
-    const transformer = createUnarySpacing(theme);
-    const spacingStyleFromPropValue = (propValue) => {
-      return {
-        columnGap: getValue(transformer, propValue),
-      };
+  const spacingValues = resolveBreakpointValues({ values: styleProps.spacing, base });
+  const transformer = createUnarySpacing(theme);
+  const spacingStyleFromPropValue = (propValue) => {
+    return {
+      columnGap: getValue(transformer, propValue),
     };
+  };
 
-    styles = deepmerge(
-      styles,
-      handleBreakpoints({ theme }, spacingValues, spacingStyleFromPropValue),
-    );
-  }
+  styles = deepmerge(
+    styles,
+    handleBreakpoints({ theme }, spacingValues, spacingStyleFromPropValue),
+  );
 
-  if (typeof styleProps.cols === 'object' || Array.isArray(styleProps.cols)) {
-    const columnValues = resolveBreakpointValues({ values: styleProps.cols, base });
-    const columnStyleFromPropValue = (propValue) => {
-      return {
-        gridTemplateColumns: `repeat(${propValue}, 1fr)`,
-      };
+  const columnValues = resolveBreakpointValues({ values: styleProps.columns, base });
+  const columnStyleFromPropValue = (propValue) => {
+    return {
+      gridTemplateColumns: `repeat(${propValue}, 1fr)`,
     };
+  };
 
-    styles = deepmerge(
-      styles,
-      handleBreakpoints({ theme }, columnValues, columnStyleFromPropValue),
-    );
-  }
+  styles = deepmerge(styles, handleBreakpoints({ theme }, columnValues, columnStyleFromPropValue));
 
   return styles;
 };
@@ -92,8 +79,8 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     name: 'MuiMasonry',
   });
 
-  const { children, className, component = 'div', cols = 4, spacing = 1, ...other } = props;
-  const styleProps = { ...props, spacing, cols };
+  const { children, className, component = 'div', columns = 4, spacing = 1, ...other } = props;
+  const styleProps = { ...props, spacing, columns };
   const classes = useUtilityClasses(styleProps);
   const [documentReady, setDocumentReady] = React.useState(false);
   const handleStateChange = () => {
@@ -102,23 +89,25 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     }
   };
   React.useEffect(() => {
-    document.addEventListener('readystatechange', handleStateChange);;
+    document.addEventListener('readystatechange', handleStateChange);
     return () => {
       document.removeEventListener('readystatechange', handleStateChange);
     };
   });
+  const masonry = React.useMemo(() => ({ spacing, documentReady }), [spacing, documentReady]);
+
   return (
-    <MasonryRoot
-      as={component}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      styleProps={styleProps}
-      {...other}
-    >
-      <MasonryContext.Provider value={{ spacing, documentReady }}>
+    <MasonryContext.Provider value={masonry}>
+      <MasonryRoot
+        as={component}
+        className={clsx(classes.root, className)}
+        ref={ref}
+        styleProps={styleProps}
+        {...other}
+      >
         {children}
-      </MasonryContext.Provider>
-    </MasonryRoot>
+      </MasonryRoot>
+    </MasonryContext.Provider>
   );
 });
 
@@ -143,7 +132,7 @@ Masonry.propTypes /* remove-proptypes */ = {
    * Number of columns.
    * @default 4
    */
-  cols: PropTypes.oneOfType([
+  columns: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
     PropTypes.number,
     PropTypes.object,

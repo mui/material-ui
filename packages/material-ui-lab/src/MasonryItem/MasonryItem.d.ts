@@ -14,6 +14,11 @@ export interface MasonryItemTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     classes?: Partial<MasonryItemClasses>;
     /**
+     * The number of columns taken up by the component
+     * @default 1
+     */
+    columnSpan?: number;
+    /**
      * Allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps<Theme>;

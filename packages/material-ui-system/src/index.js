@@ -2,7 +2,11 @@ export { css, keyframes, GlobalStyles, StyledEngineProvider } from '@material-ui
 export { default as borders } from './borders';
 export * from './borders';
 export { default as breakpoints } from './breakpoints';
-export { handleBreakpoints, mergeBreakpointsInOrder, resolveBreakpointValues } from './breakpoints';
+export {
+  handleBreakpoints,
+  mergeBreakpointsInOrder,
+  resolveBreakpointValues as unstable_resolveBreakpointValues,
+} from './breakpoints';
 export { default as compose } from './compose';
 export { default as display } from './display';
 export { default as flexbox } from './flexbox';

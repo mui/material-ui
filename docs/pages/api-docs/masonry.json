@@ -2,7 +2,7 @@
   "props": {
     "children": { "type": { "name": "node" }, "required": true },
     "classes": { "type": { "name": "object" } },
-    "cols": {
+    "columns": {
       "type": {
         "name": "union",
         "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"

@@ -15,7 +15,7 @@ import clsx from 'clsx';
 import {
   unstable_extendSxProp as extendSxProp,
   handleBreakpoints,
-  resolveBreakpointValues,
+  unstable_resolveBreakpointValues as resolveBreakpointValues,
 } from '@material-ui/system';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import requirePropFactory from '../utils/requirePropFactory';

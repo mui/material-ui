@@ -4,11 +4,11 @@ import Box from '@material-ui/core/Box';
 import Masonry from '@material-ui/lab/Masonry';
 import MasonryItem from '@material-ui/lab/MasonryItem';
 
-export default function BasicMasonry(): JSX.Element {
+export default function BasicMasonry() {
   return (
-    <Masonry cols={4} spacing={1}>
-      {heights.map((height, idx) => (
-        <MasonryItem key={idx}>
+    <Masonry columns={4} spacing={1}>
+      {heights.map((height, index) => (
+        <MasonryItem key={index}>
           <Box
             sx={{
               textAlign: 'center',
@@ -17,7 +17,7 @@ export default function BasicMasonry(): JSX.Element {
               bgcolor: 'background.paper',
             }}
           >
-            {idx + 1}
+            {index + 1}
           </Box>
         </MasonryItem>
       ))}

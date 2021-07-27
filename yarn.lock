@@ -14261,6 +14261,11 @@ resize-observer-polyfill@^1.5.1:
   resolved "https://registry.yarnpkg.com/resize-observer-polyfill/-/resize-observer-polyfill-1.5.1.tgz#0e9020dd3d21024458d4ebd27e23e40269810464"
   integrity sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==
 
+resize-observer@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/resize-observer/-/resize-observer-1.0.2.tgz#9a87697b275343d12d8b371940e02e9a93e1f452"
+  integrity sha512-X0lHFNsxItpBRIRsdwOTkl/VguTaLGx7Gz9xoTGix9ObBN3jRYq9J/rSIuYDrey8AdU3IkfgIMpCeVSEW1QS0Q==
+
 resolve-cwd@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/resolve-cwd/-/resolve-cwd-3.0.0.tgz#0f0075f1bb2544766cf73ba6a6e2adfebcb13f2d"

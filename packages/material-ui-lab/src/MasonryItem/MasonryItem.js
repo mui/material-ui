@@ -5,11 +5,12 @@ import {
   createUnarySpacing,
   getValue,
   handleBreakpoints,
-  resolveBreakpointValues,
+  unstable_resolveBreakpointValues as resolveBreakpointValues,
 } from '@material-ui/system';
 import { deepmerge, unstable_useForkRef as useForkRef } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { styled, useThemeProps } from '@material-ui/core/styles';
+import { ResizeObserver } from 'resize-observer';
 import { getMasonryItemUtilityClass } from './masonryItemClasses';
 import MasonryContext from '../Masonry/MasonryContext';
 
@@ -28,37 +29,30 @@ export const style = ({ styleProps, theme }) => {
     width: '100%',
     [`& > *`]: {
       // all contents should have a width of 100%
-      objectFit: 'cover',
       width: '100%',
     },
     visibility: styleProps.contentHeight ? 'visible' : 'hidden',
-    ...((typeof styleProps.spacing === 'string' || typeof styleProps.spacing === 'number') && {
-      gridRowEnd: `span ${
-        styleProps.contentHeight + Number(theme.spacing(styleProps.spacing).replace('px', ''))
-      }`,
-      paddingBottom: Number(theme.spacing(styleProps.spacing).replace('px', '')) - 1,
-    }),
+    gridColumnEnd: `span ${styleProps.columnSpan}`,
   };
 
-  if (typeof styleProps.spacing === 'object' || Array.isArray(styleProps.spacing)) {
-    const base = Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
-      if (styleProps.spacing[breakpoint] != null) {
-        acc[breakpoint] = true;
-      }
-      return acc;
-    }, {});
-    const spacingValues = resolveBreakpointValues({ values: styleProps.spacing, base });
-    const transformer = createUnarySpacing(theme);
-    const styleFromPropValue = (propValue) => {
-      const gap = Number(getValue(transformer, propValue).replace('px', ''));
-      const rowSpan = styleProps.contentHeight ? Math.ceil(styleProps.contentHeight + gap) : 0;
-      return {
-        gridRowEnd: `span ${rowSpan}`,
-        paddingBottom: gap - 1,
-      };
+  const base = Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
+    if (styleProps.spacing[breakpoint] != null) {
+      acc[breakpoint] = true;
+    }
+    return acc;
+  }, {});
+  const spacingValues = resolveBreakpointValues({ values: styleProps.spacing, base });
+  const transformer = createUnarySpacing(theme);
+  const styleFromPropValue = (propValue) => {
+    const gap = Number(getValue(transformer, propValue).replace('px', ''));
+    const rowSpan = styleProps.contentHeight ? Math.ceil(styleProps.contentHeight + gap) : 0;
+    return {
+      gridRowEnd: `span ${rowSpan}`,
+      paddingBottom: gap - 1,
     };
-    styles = deepmerge(styles, handleBreakpoints({ theme }, spacingValues, styleFromPropValue));
-  }
+  };
+  styles = deepmerge(styles, handleBreakpoints({ theme }, spacingValues, styleFromPropValue));
+
   return styles;
 };
 
@@ -77,15 +71,13 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
   });
 
   const masonryItemRef = React.useRef(null);
-  const handleRef = useForkRef(ref, masonryItemRef);
-  const {
-    spacing = 1,
-    documentReady = false,
-  } = React.useContext(MasonryContext);
-  const { children, className, component = 'div', ...other } = props;
+
+  const { spacing = 1, documentReady = false } = React.useContext(MasonryContext);
+  const { children, className, component = 'div', columnSpan = 1, ...other } = props;
   const [styleProps, setStyleProps] = React.useState({
     ...props,
     spacing,
+    columnSpan,
   });
 
   const classes = useUtilityClasses(styleProps);
@@ -97,19 +89,26 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
       contentHeight: child?.getBoundingClientRect().height,
     });
   };
+  const resizeObserver = React.useRef(new ResizeObserver(computeHeight));
+  const resizedItemRef = React.useCallback(
+    (item) => {
+      if (item !== null) {
+        resizeObserver.current.observe(item);
+      } else if (resizeObserver.current) {
+        resizeObserver.current.disconnect();
+      }
+    },
+    [resizeObserver],
+  );
 
   React.useEffect(() => {
     if (documentReady) {
       computeHeight();
+      resizeObserver.current.observe(masonryItemRef.current);
     }
   }, [documentReady]); // eslint-disable-line
-
-  React.useEffect(() => {
-    window.addEventListener('resize', computeHeight);;
-    return () => {
-      window.removeEventListener('resize', computeHeight);
-    };
-  });
+  const handleOwnRef = useForkRef(masonryItemRef, resizedItemRef);
+  const handleRef = useForkRef(ref, handleOwnRef);
   return (
     <MasonryItemRoot
       as={component}
@@ -140,6 +139,11 @@ MasonryItem.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The number of columns taken up by the component
+   * @default 1
+   */
+  columnSpan: PropTypes.number,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
