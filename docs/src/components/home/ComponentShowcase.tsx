@@ -86,6 +86,10 @@ const ComponentShowcase = () => {
   const { frame, done, rerun } = useTimeframes({ run: customized, maxFrame: themeFrames.length });
 
   React.useEffect(() => {
+    if (frame === 1) {
+      setFlashCodes([]);
+      prevThemeCode.current = '';
+    }
     const themeOptions = produceThemeOptions(themeFrames, frame);
     setCustomTheme(createTheme(themeOptions));
     setThemeCode(productCode(themeFrames, frame));
@@ -98,16 +102,13 @@ const ComponentShowcase = () => {
     const startLine = prevCodeLength + offset - 1;
     const endLine = newCodeLength + offset - 1;
     if (codeContainer.current && themeCode) {
-      codeContainer.current.scrollTop = (startLine + offset - 3) * 20 || 0;
+      codeContainer.current.scrollTop = (startLine - 3) * 20 || 0;
     }
     setFlashCodes((current) => [...current, { startLine, endLine }]);
     prevThemeCode.current = themeCode;
   }, [themeCode, importsOpen]);
 
   const handleCustomTheme = () => {
-    setFlashCodes([]);
-    setThemeCode('');
-    prevThemeCode.current = '';
     if (done) {
       rerun();
     } else {
@@ -194,7 +195,7 @@ const ComponentShowcase = () => {
               {flashCodes.map((item, index) => (
                 <FlashCode
                   key={index}
-                  sx={{ left: 20, ...(index !== frame && { height: '0px' }) }}
+                  sx={{ left: 20, ...(index !== frame - 1 && { height: '0px' }) }}
                   {...item}
                 />
               ))}
@@ -221,18 +222,6 @@ const ComponentShowcase = () => {
               />
             </Box>
           </Box>
-          {/* <Box position="relative">
-
-            <Box
-              height={21 * 5}
-              width="100%"
-              bgcolor="primary.200"
-              position="absolute"
-              left={0}
-              top={20 + 21 * 6}
-              sx={{ opacity: 0.3, pointerEvents: 'none' }}
-            />
-          </Box> */}
         </Box>
       </ThemeProvider>
     </Paper>
