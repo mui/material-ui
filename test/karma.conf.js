@@ -53,7 +53,7 @@ module.exports = function setKarmaConfig(config) {
     client: {
       mocha: {
         // Some BrowserStack browsers can be slow.
-        timeout: (process.env.CIRCLECI === 'true' ? 5 : 2) * 1000,
+        timeout: (process.env.CIRCLECI === 'true' ? 6 : 2) * 1000,
       },
     },
     frameworks: ['mocha'],
