@@ -12,8 +12,6 @@ _Jul 27, 2021_
 - <!-- 6 --> [TablePagination] Re-introduce deprecated `onChangePage` to `ActionsComponent` (#27407) @eps1lon
 - <!-- 1 --> [TextareaAutosize] Updated deprecation warning to suggest minRows instead of rowsMin (#27398) @HumbertoL
 
-All contributors of this release in alphabetical order: @eps1lon, @HumbertoL, @oliviertassinari, @Siv-tspab
-
 ### Docs
 
 - <!-- 4 --> [docs] Fix 404 link to ImageList @oliviertassinari
@@ -23,6 +21,7 @@ All contributors of this release in alphabetical order: @eps1lon, @HumbertoL, @o
 
 - <!-- 5 --> [core] Add release scripts (#27399) @eps1lon
 
+All contributors of this release in alphabetical order: @eps1lon, @HumbertoL, @oliviertassinari, @Siv-tspab
 ## 4.12.2
 
 <!-- generated comparing v4.12.1..master -->
