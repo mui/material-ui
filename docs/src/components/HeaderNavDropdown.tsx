@@ -46,7 +46,7 @@ const PRODUCTS = [
 ];
 
 export default function HeaderNavDropdown() {
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const [productsOpen, setProductsOpen] = React.useState(true);
   const hambugerRef = React.useRef<HTMLButtonElement | null>(null);
   return (
