@@ -54,7 +54,13 @@ export default function Hero() {
                   Get Started
                 </Button>
                 <Box sx={{ width: 16, height: 16 }} />
-                <Button size="large" variant="code" startIcon="$" endIcon={<ContentCopyRounded />}>
+                <Button
+                  size="large"
+                  // @ts-expect-error
+                  variant="code"
+                  startIcon="$"
+                  endIcon={<ContentCopyRounded />}
+                >
                   npm install @mui/core
                 </Button>
               </Box>
