@@ -10,7 +10,7 @@ import {
 import { deepmerge, unstable_useForkRef as useForkRef } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { styled, useThemeProps } from '@material-ui/core/styles';
-import { ResizeObserver } from 'resize-observer';
+import ResizeObserver from 'resize-observer-polyfill';
 import { getMasonryItemUtilityClass } from './masonryItemClasses';
 import MasonryContext from '../Masonry/MasonryContext';
 
@@ -45,7 +45,7 @@ export const style = ({ styleProps, theme }) => {
   const transformer = createUnarySpacing(theme);
   const styleFromPropValue = (propValue) => {
     const gap = Number(getValue(transformer, propValue).replace('px', ''));
-    const rowSpan = styleProps.height ? Math.ceil(styleProps.height + gap) : 0;
+    const rowSpan = Math.ceil(styleProps.height + gap);
     return {
       gridRowEnd: `span ${rowSpan}`,
       paddingBottom: gap - 1,
@@ -73,11 +73,12 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
   const masonryItemRef = React.useRef(null);
 
   const { spacing = 1, documentReady = false } = React.useContext(MasonryContext);
-  const { children, className, component = 'div', columnSpan = 1, ...other } = props;
+  const { children, className, component = 'div', columnSpan = 1, height = 0, ...other } = props;
   const [styleProps, setStyleProps] = React.useState({
     ...props,
     spacing,
     columnSpan,
+    height,
   });
 
   const classes = useUtilityClasses(styleProps);

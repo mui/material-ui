@@ -157,7 +157,7 @@
     "react-router-dom": "^5.2.0",
     "react-test-renderer": "^17.0.2",
     "remark": "^13.0.0",
-    "resize-observer": "^1.0.2",
+    "resize-observer-polyfill": "^1.5.1",
     "rimraf": "^3.0.0",
     "rollup": "^2.56.2",
     "rollup-plugin-babel": "^4.3.3",

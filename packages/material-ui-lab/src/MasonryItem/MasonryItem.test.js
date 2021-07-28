@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createClientRender, describeConformanceV5, act } from 'test/utils';
+import { createClientRender, describeConformanceV5 } from 'test/utils';
 import MasonryItem, { masonryItemClasses as classes } from '@material-ui/lab/MasonryItem';
 import { expect } from 'chai';
 import { createTheme } from '@material-ui/core/styles';
@@ -21,7 +21,13 @@ describe('<MasonryItem />', () => {
       testComponentPropWith: 'div',
       testVariantProps: { variant: 'foo' },
       muiName: 'MuiMasonryItem',
-      skip: ['componentsProp'],
+      skip: [
+        'componentsProp',
+        // reactTestRenderer fails because React state updates should be wrapped into act(...)
+        // I followed the guideline here: https://reactjs.org/link/wrap-tests-with-act
+        // but tests still couldn't pass
+        'reactTestRenderer',
+      ],
     }),
   );
 
@@ -31,12 +37,8 @@ describe('<MasonryItem />', () => {
   });
 
   it('should render children by default', () => {
-    let item = null;
-    act(() => {
-      const { getByTestId } = render(<MasonryItem data-testid="test-root">{children}</MasonryItem>);
-      item = getByTestId('test-children');
-    });
-    expect(item).not.to.equal(null);
+    const { getByTestId } = render(<MasonryItem data-testid="test-root">{children}</MasonryItem>);
+    expect(getByTestId('test-children')).not.to.equal(null);
   });
 
   describe('style attribute:', () => {
@@ -44,7 +46,7 @@ describe('<MasonryItem />', () => {
       expect(
         style({
           styleProps: {
-            contentHeight: 100,
+            height: 100,
             columnSpan: 1,
             spacing: { xs: 1, sm: 2, md: 3 },
           },
@@ -76,7 +78,7 @@ describe('<MasonryItem />', () => {
       expect(
         style({
           styleProps: {
-            contentHeight: 100,
+            height: 100,
             columnSpan: 2,
             spacing: 1,
           },
@@ -93,38 +95,38 @@ describe('<MasonryItem />', () => {
         gridColumnEnd: 'span 2',
       });
     });
+
+    it('should compute grid-row-end based on given height', () => {
+      const { getByTestId } = render(
+        <MasonryItem height={150} data-testid="test-root">
+          {children}
+        </MasonryItem>,
+      );
+      const computedStyle = getComputedStyle(getByTestId('test-root'));
+      expect(computedStyle['grid-row-end']).to.equal(
+        `span ${Math.ceil(150 + Number(theme.spacing(1).replace('px', '')))}`,
+      );
+    });
   });
 
   describe('props:', () => {
     describe('prop: component', () => {
       it('should render a div by default', () => {
-        let item = null;
-        act(() => {
-          const { container } = render(<MasonryItem>{children}</MasonryItem>);
-          item = container;
-        });
-        expect(item.firstChild).to.have.property('nodeName', 'DIV');
+        const { container } = render(<MasonryItem>{children}</MasonryItem>);
+        expect(container.firstChild).to.have.property('nodeName', 'DIV');
       });
 
       it('should render a different component', () => {
-        let item = null;
-        act(() => {
-          const { container } = render(<MasonryItem component="span">{children}</MasonryItem>);
-          item = container;
-        });
-        expect(item.firstChild).to.have.property('nodeName', 'SPAN');
+        const { container } = render(<MasonryItem component="span">{children}</MasonryItem>);
+        expect(container.firstChild).to.have.property('nodeName', 'SPAN');
       });
     });
 
     describe('prop: className', () => {
       it('should append the className to the root element', () => {
-        let item = null;
-        act(() => {
-          const { container } = render(<MasonryItem className="foo">{children}</MasonryItem>);
-          item = container;
-        });
-        expect(item.firstChild).to.have.class(classes.root);
-        expect(item.firstChild).to.have.class('foo');
+        const { container } = render(<MasonryItem className="foo">{children}</MasonryItem>);
+        expect(container.firstChild).to.have.class(classes.root);
+        expect(container.firstChild).to.have.class('foo');
       });
     });
   });
