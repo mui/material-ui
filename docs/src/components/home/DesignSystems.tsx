@@ -9,7 +9,12 @@ import ComponentShowcase from './ComponentShowcase';
 
 const DesignSystems = () => {
   return (
-    <Box bgcolor="grey.50" py={8}>
+    <Box
+      sx={{
+        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
+        py: 8,
+      }}
+    >
       <Container>
         <Grid container spacing={2}>
           <Grid item md={6}>
@@ -17,7 +22,7 @@ const DesignSystems = () => {
               <Typography variant="body2" color="primary" fontWeight="bold" mb={1}>
                 Products
               </Typography>
-              <Typography variant="h2" color="primary.900" mb={1}>
+              <Typography variant="h2" mb={1}>
                 Extensive library of components, ready for <GradientText>production</GradientText>.
               </Typography>
               <Typography color="text.secondary">

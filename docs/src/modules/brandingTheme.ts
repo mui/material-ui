@@ -174,12 +174,16 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         fontSize: 'clamp(2.625rem, 1.2857rem + 3.5714vw, 4.5rem)',
         fontWeight: 800,
         lineHeight: 80 / 72,
+        ...(mode === 'light' && {
+          color: blueDark[900],
+        }),
       },
       h2: {
         fontFamily: ['"PlusJakartaSans"', ...systemFont].join(','),
         fontSize: 'clamp(1.5rem, 0.9643rem + 1.4286vw, 2.25rem)',
         fontWeight: 800,
         lineHeight: 44 / 36,
+        color: mode === 'dark' ? grey[500] : '#003A75',
       },
       h3: {
         fontSize: defaultTheme.typography.pxToRem(28), // 18px
