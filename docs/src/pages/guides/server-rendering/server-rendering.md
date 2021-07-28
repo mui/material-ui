@@ -197,7 +197,7 @@ import getCache from './getCache';
 
 function Main() {
   return (
-    <CacheProvider value={getCache}>
+    <CacheProvider value={getCache()}>
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
