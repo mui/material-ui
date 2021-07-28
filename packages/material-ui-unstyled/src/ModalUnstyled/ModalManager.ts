@@ -122,6 +122,9 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
       property: 'overflow-y',
       el: scrollContainer,
     });
+    
+    scrollContainer.style.overflow = 'hidden';
+  }
 
   const restore = () => {
     restoreStyle.forEach(({ value, el, property }) => {
