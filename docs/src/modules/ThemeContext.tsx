@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ThemeProvider as MuiThemeProvider, createTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-import { brandingDesignTokens, getThemedComponents } from './brandingTheme';
+import { getDesignTokens, getThemedComponents } from './brandingTheme';
 
 const themeInitialOptions = {
   paletteMode: 'light',
@@ -47,6 +47,7 @@ const ThemeProvider = ({ children }: React.PropsWithChildren<{}>) => {
     }
   }, [preferredMode]);
   const theme = React.useMemo(() => {
+    const brandingDesignTokens = getDesignTokens(paletteMode);
     let nextTheme = createTheme({
       ...brandingDesignTokens,
       palette: {

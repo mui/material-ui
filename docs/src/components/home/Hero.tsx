@@ -159,13 +159,13 @@ export default function Hero() {
               aria-hidden="true"
               sx={{
                 p: 3,
-                bgcolor: 'grey.50',
+                bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
                 minWidth: 2000,
                 minHeight: 500,
                 height: 'calc(100vh - 120px)',
                 maxHeight: { lg: 700, xl: 1000 },
                 borderBottomLeftRadius: 10,
-                transition: '0.3s',
+                transition: 'max-height 0.3s',
               }}
             >
               <Box

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import NextLink from 'next/link';
-import { styled } from '@material-ui/core/styles';
+import { styled, alpha } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
@@ -16,8 +16,13 @@ const Header = styled('div')(({ theme }) => ({
   top: 0,
   zIndex: theme.zIndex.appBar,
   backdropFilter: 'blur(20px)',
-  boxShadow: 'inset 0px -1px 1px #EAEEF3',
-  backgroundColor: theme.palette.mode === 'dark' ? 'rgba(0,0,0,0.72)' : 'rgba(255,255,255,0.72)',
+  boxShadow: `inset 0px -1px 1px ${
+    theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100]
+  }`,
+  backgroundColor:
+    theme.palette.mode === 'dark'
+      ? alpha(theme.palette.primaryDark[900], 0.72)
+      : 'rgba(255,255,255,0.72)',
 }));
 
 export default function AppHeader() {

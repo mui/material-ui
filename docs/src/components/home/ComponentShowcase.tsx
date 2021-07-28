@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, ThemeOptions } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import IconButton, { IconButtonProps } from '@material-ui/core/IconButton';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import brandingTheme, { brandingDesignTokens } from 'docs/src/modules/brandingTheme';
+import { getDesignTokens } from 'docs/src/modules/brandingTheme';
 import ReplayRounded from '@material-ui/icons/ReplayRounded';
 import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
 import MarkdownElement from '../markdown/MarkdownElement';
@@ -18,15 +18,17 @@ import {
 import MaterialDesignDemo, { demoCode as materialDemoCode } from './MaterialDesignDemo';
 import FlashCode from './FlashCode';
 
-const darkBrandingTheme = createTheme({
-  ...brandingDesignTokens,
+const darkDesignTokens = getDesignTokens('dark');
+
+let darkBrandingTheme = createTheme({
+  ...darkDesignTokens,
   palette: {
-    ...brandingDesignTokens.palette,
-    background: {
-      paper: brandingDesignTokens.palette.primary[900],
-    },
+    ...darkDesignTokens.palette,
     mode: 'dark',
   },
+});
+
+darkBrandingTheme = createTheme(darkBrandingTheme, {
   components: {
     MuiButtonBase: {
       defaultProps: {
@@ -40,27 +42,27 @@ const darkBrandingTheme = createTheme({
       styleOverrides: {
         root: {
           borderRadius: 40,
-          padding: brandingTheme.spacing(0.5, 1),
+          padding: darkBrandingTheme.spacing(0.5, 1),
         },
         sizeSmall: {
-          fontSize: brandingTheme.typography.pxToRem(14),
+          fontSize: darkBrandingTheme.typography.pxToRem(14),
           lineHeight: 21 / 14,
         },
         text: {
-          color: brandingTheme.palette.grey[400],
+          color: darkBrandingTheme.palette.grey[400],
         },
         outlined: {
           color: '#fff',
-          backgroundColor: brandingTheme.palette.primary[700],
-          borderColor: brandingTheme.palette.primary[500],
+          backgroundColor: darkBrandingTheme.palette.primary[700],
+          borderColor: darkBrandingTheme.palette.primary[500],
           '&:hover': {
-            backgroundColor: brandingTheme.palette.primary[700],
+            backgroundColor: darkBrandingTheme.palette.primary[700],
           },
         },
       },
     },
   },
-} as ThemeOptions);
+});
 
 const defaultTheme = createTheme();
 
@@ -73,6 +75,7 @@ const CodeToggle = ({ sx, ...props }: IconButtonProps) => {
 };
 
 const ComponentShowcase = () => {
+  const theme = useTheme();
   const [customized, setCustomized] = React.useState(false);
   const [customTheme, setCustomTheme] = React.useState(createTheme());
   const [importsOpen, setImportsOpen] = React.useState(false);
@@ -82,7 +85,7 @@ const ComponentShowcase = () => {
   );
   const prevThemeCode = React.useRef('');
   const codeContainer = React.useRef<HTMLDivElement | null>(null);
-  const themeFrames = React.useMemo(() => getMaterialThemeFrames(brandingTheme), []);
+  const themeFrames = React.useMemo(() => getMaterialThemeFrames(theme), []);
   const { frame, done, rerun } = useTimeframes({ run: customized, maxFrame: themeFrames.length });
 
   React.useEffect(() => {
