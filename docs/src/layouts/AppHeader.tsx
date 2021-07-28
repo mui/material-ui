@@ -4,8 +4,9 @@ import { styled } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
-import HeaderNavBar from 'docs/src/components/HeaderNavBar';
-import HeaderNavDropdown from 'docs/src/components/HeaderNavDropdown';
+import HeaderNavBar from 'docs/src/components/header/HeaderNavBar';
+import HeaderNavDropdown from 'docs/src/components/header/HeaderNavDropdown';
+import ThemeModeToggle from 'docs/src/components/header/ThemeModeToggle';
 
 const Header = styled('div')(({ theme }) => ({
   position: 'sticky',
@@ -17,6 +18,7 @@ const Header = styled('div')(({ theme }) => ({
 }));
 
 export default function AppHeader() {
+  const [dark, setDark] = React.useState(false);
   return (
     <Header>
       <Container sx={{ display: 'flex', alignItems: 'center', minHeight: 64 }}>
@@ -32,6 +34,7 @@ export default function AppHeader() {
         <Box sx={{ display: { md: 'none' } }}>
           <HeaderNavDropdown />
         </Box>
+        <ThemeModeToggle checked={dark} onChange={(event) => setDark(event.target.checked)} />
       </Container>
     </Header>
   );

@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 import ContentCopyRounded from '@material-ui/icons/ContentCopyRounded';
-import GradientText from 'docs/src/components/GradientText';
+import GradientText from 'docs/src/components/typography/GradientText';
 import PlayerCard from 'docs/src/pages/components/cards/PlayerCard';
 import TaskCard from 'docs/src/pages/components/cards/TaskCard';
 import NotificationCard from 'docs/src/pages/components/cards/NotificationCard';

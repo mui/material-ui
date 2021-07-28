@@ -113,7 +113,7 @@ export default function ViewToggleButton() {
         aria-label="view"
       >
         {views.map((item) => (
-          <ToggleButton value={item} aria-label={item}>
+          <ToggleButton key={item} value={item} aria-label={item}>
             {viewIcons[item]}
           </ToggleButton>
         ))}
