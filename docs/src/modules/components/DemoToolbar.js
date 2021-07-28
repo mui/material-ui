@@ -373,6 +373,7 @@ export default function DemoToolbar(props) {
     React.useRef(null),
     React.useRef(null),
     React.useRef(null),
+    React.useRef(null),
   ];
   // if the code is not open we hide the first two language controls
   const isFocusableControl = React.useCallback(
@@ -528,7 +529,7 @@ export default function DemoToolbar(props) {
                   data-ga-event-label={demoOptions.demo}
                   data-ga-event-action="stackblitz"
                   onClick={handleStackBlitzClick}
-                  {...getControlProps(3)}
+                  {...getControlProps(4)}
                 >
                   <SvgIcon fontSize="small" viewBox="0 0 19 28">
                     <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
@@ -544,7 +545,7 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demoOptions.demo}
               data-ga-event-action="copy"
               onClick={handleCopyClick}
-              {...getControlProps(4)}
+              {...getControlProps(5)}
             >
               <FileCopyIcon fontSize="small" />
             </IconButton>
@@ -556,7 +557,7 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demoOptions.demo}
               data-ga-event-action="reset-focus"
               onClick={handleResetFocusClick}
-              {...getControlProps(5)}
+              {...getControlProps(6)}
             >
               <ResetFocusIcon fontSize="small" />
             </IconButton>
@@ -569,7 +570,7 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demoOptions.demo}
               data-ga-event-action="reset"
               onClick={onResetDemoClick}
-              {...getControlProps(6)}
+              {...getControlProps(7)}
             >
               <RefreshIcon fontSize="small" />
             </IconButton>
@@ -580,7 +581,7 @@ export default function DemoToolbar(props) {
             aria-label={t('seeMore')}
             aria-owns={anchorEl ? 'demo-menu-more' : undefined}
             aria-haspopup="true"
-            {...getControlProps(7)}
+            {...getControlProps(8)}
           >
             <MoreVertIcon fontSize="small" />
           </IconButton>
