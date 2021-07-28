@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import NextLink, { LinkProps } from 'next/link';
-import { styled } from '@material-ui/core/styles';
+import { styled, alpha } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Popper from '@material-ui/core/Popper';
 import Paper from '@material-ui/core/Paper';
@@ -31,7 +31,8 @@ const Navigation = styled('nav')(({ theme }) => ({
       padding: theme.spacing(1),
       borderRadius: theme.shape.borderRadius,
       '&:hover, &:focus': {
-        backgroundColor: theme.palette.grey[50],
+        backgroundColor:
+          theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[50],
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: 'initial',
@@ -65,7 +66,8 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
             alignItems: 'center',
             py: 2,
             '&:hover, &:focus': {
-              backgroundColor: 'grey.50',
+              backgroundColor: (theme) =>
+                theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.50',
               outline: 'none',
               '@media (hover: none)': {
                 backgroundColor: 'initial',
@@ -77,7 +79,7 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
         >
           <Box sx={{ px: 2 }}>{icon}</Box>
           <Box>
-            <Typography color="grey.900" variant="body2" fontWeight={700}>
+            <Typography color="text.primary" variant="body2" fontWeight={700}>
               {name}
             </Typography>
             <Typography color="text.secondary" variant="body2">
@@ -105,6 +107,7 @@ export default function HeaderNavBar() {
       return;
     }
     if (event.key === 'ArrowDown') {
+      event.preventDefault();
       if (event.target === productsMenuRef.current) {
         setSubMenuOpen(true);
       }
@@ -117,6 +120,7 @@ export default function HeaderNavBar() {
       });
     }
     if (event.key === 'ArrowUp') {
+      event.preventDefault();
       setSubMenuIndex((prevValue) => {
         if (prevValue === null) return 0;
         if (prevValue === 0) {
@@ -165,7 +169,12 @@ export default function HeaderNavBar() {
                   sx={{
                     minWidth: 498,
                     overflow: 'hidden',
-                    boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
+                    boxShadow: (theme) =>
+                      `0px 4px 20px ${
+                        theme.palette.mode === 'dark'
+                          ? alpha(theme.palette.background.paper, 0.72)
+                          : 'rgba(170, 180, 190, 0.3)'
+                      }`,
                     '& ul': {
                       margin: 0,
                       padding: 0,
@@ -173,7 +182,8 @@ export default function HeaderNavBar() {
                     },
                     '& li:not(:last-of-type)': {
                       borderBottom: '1px solid',
-                      borderColor: 'grey.100',
+                      borderColor: (theme) =>
+                        theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
                     },
                     '& a': { textDecoration: 'none' },
                   }}

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
+import { styled, alpha } from '@material-ui/core/styles';
 import SwitchUnstyled, {
   switchUnstyledClasses,
   SwitchUnstyledProps,
@@ -31,10 +31,29 @@ const Root = styled('span')(({ theme }) => ({
     backgroundColor: theme.palette.primary.main,
     transform: 'rotate(-90deg)',
     transition: theme.transitions.create(['transform', 'left']),
+    '&:before': {
+      content: '""',
+      display: 'block',
+      position: 'absolute',
+      borderRadius: '50%',
+      zIndex: -1,
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      transform: 'scale(0)',
+      transition: theme.transitions.create('transform'),
+      backgroundColor: alpha(theme.palette.primary.main, 0.4),
+    },
   },
   [`&.${switchUnstyledClasses.checked} .${switchUnstyledClasses.thumb}`]: {
     left: 18,
     transform: 'rotate(0deg)',
+  },
+  [`&.${switchUnstyledClasses.focusVisible} .${switchUnstyledClasses.thumb}`]: {
+    '&:before': {
+      transform: 'scale(1.3)',
+    },
   },
   [`& .${switchUnstyledClasses.input}`]: {
     cursor: 'inherit',

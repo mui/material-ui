@@ -101,6 +101,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       ...(mode === 'dark' && {
         background: {
           default: blueDark[800],
+          paper: blueDark[900],
         },
       }),
       common: {
@@ -108,7 +109,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       },
       ...(mode === 'light' && {
         text: {
-          primary: blueDark[900],
+          primary: grey[900],
           secondary: grey[800],
         },
       }),
@@ -302,6 +303,16 @@ export function getThemedComponents(theme: Theme) {
       MuiTab: {
         defaultProps: {
           disableTouchRipple: true,
+        },
+      },
+      MuiPaper: {
+        styleOverrides: {
+          outlined: {
+            borderColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[700]
+                : theme.palette.grey[100],
+          },
         },
       },
     },

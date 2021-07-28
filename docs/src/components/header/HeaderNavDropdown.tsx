@@ -13,7 +13,7 @@ const Anchor = styled('a')<{ component?: React.ElementType }>(({ theme }) => ({
   ...theme.typography.body2,
   fontWeight: 700,
   textDecoration: 'none',
-  color: theme.palette.text.secondary,
+  color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.text.secondary,
   cursor: 'pointer',
   display: 'flex',
   alignItems: 'center',
@@ -21,7 +21,8 @@ const Anchor = styled('a')<{ component?: React.ElementType }>(({ theme }) => ({
   borderRadius: theme.spacing(1),
   transition: theme.transitions.create('background'),
   '&:hover, &:focus': {
-    backgroundColor: theme.palette.grey[100],
+    backgroundColor:
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100],
     // Reset on touch devices, it doesn't add specificity
     '@media (hover: none)': {
       backgroundColor: 'transparent',
@@ -58,7 +59,14 @@ export default function HeaderNavDropdown() {
         sx={{
           position: 'relative',
           borderRadius: 1,
-          '&:focus': { boxShadow: `0 0 0 1px #e5e8ec` },
+          '&:focus': {
+            boxShadow: (theme) =>
+              `0 0 0 1px ${
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[600]
+                  : theme.palette.grey[200]
+              }`,
+          },
           '& rect': {
             transformOrigin: 'center',
             transition: '0.2s',
@@ -118,7 +126,9 @@ export default function HeaderNavDropdown() {
                       <NextLink key={item.name} href="/branding/home" passHref>
                         <Anchor sx={{ flexDirection: 'column', alignItems: 'initial' }}>
                           <div>{item.name}</div>
-                          <Typography variant="body2">{item.description}</Typography>
+                          <Typography variant="body2" color="text.secondary">
+                            {item.description}
+                          </Typography>
                         </Anchor>
                       </NextLink>
                     ))}
