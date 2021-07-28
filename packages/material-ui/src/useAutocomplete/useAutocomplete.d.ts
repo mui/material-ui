@@ -8,9 +8,9 @@ export {
   AutocompleteGroupedOption,
   AutocompleteHighlightChangeReason,
   AutocompleteInputChangeReason,
+  AutocompleteValue as Value,
   createFilterOptions,
   CreateFilterOptionsConfig,
   FilterOptionsState,
   UseAutocompleteProps,
-  Value,
 } from '@material-ui/unstyled';
