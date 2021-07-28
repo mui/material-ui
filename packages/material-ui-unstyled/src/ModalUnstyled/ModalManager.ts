@@ -107,22 +107,24 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
 
     // Block the scroll even if no scrollbar is visible to account for mobile keyboard
     // screensize shrink.
-    restoreStyle.push({
-      value: scrollContainer.style.overflow,
-      property: 'overflow',
-      el: scrollContainer,
-    },
-    {
-      value: scrollContainer.style.overflowX,
-      property: 'overflow-x',
-      el: scrollContainer,
-    },
-    {
-      value: scrollContainer.style.overflowY,
-      property: 'overflow-y',
-      el: scrollContainer,
-    });
-    
+    restoreStyle.push(
+      {
+        value: scrollContainer.style.overflow,
+        property: 'overflow',
+        el: scrollContainer,
+      },
+      {
+        value: scrollContainer.style.overflowX,
+        property: 'overflow-x',
+        el: scrollContainer,
+      },
+      {
+        value: scrollContainer.style.overflowY,
+        property: 'overflow-y',
+        el: scrollContainer,
+      },
+    );
+
     scrollContainer.style.overflow = 'hidden';
   }
 
