@@ -166,6 +166,66 @@ describe('ModalManager', () => {
       expect(container1.style.paddingRight).to.equal('20px');
       expect(fixedNode.style.paddingRight).to.equal('');
     });
+
+    it('should restore styles correctly if overflow and padding existed before', () => {
+      const modal = {};
+      const container2 = document.createElement('div');
+      container2.style.paddingRight = '20px';
+      container2.style.overflow = 'overlay';
+
+      Object.defineProperty(container2, 'scrollHeight', {
+        value: 100,
+        writable: false,
+      });
+      Object.defineProperty(container2, 'clientHeight', {
+        value: 100,
+        writable: false,
+      });
+
+      modalManager.add(modal, container2);
+      modalManager.mount(modal, {});
+
+      expect(container1.style.overflow).to.equal('hidden');
+      expect(container1.style.paddingRight).to.equal(`${20 + getScrollbarSize(document)}px`);
+      expect(fixedNode.style.paddingRight).to.equal(`${0 + getScrollbarSize(document)}px`);
+
+      modalManager.remove(modal);
+
+      expect(container1.style.overflow).to.equal('overlay');
+      expect(container1.style.paddingRight).to.equal('20px');
+      expect(fixedNode.style.paddingRight).to.equal('');
+    });
+
+    it('should restore styles correctly if overflow-x existed before', () => {
+      const modal = {};
+      const container2 = document.createElement('div');
+      container2.style.paddingRight = '20px';
+      container2.style.overflowX = 'hidden';
+
+      Object.defineProperty(container2, 'scrollHeight', {
+        value: 100,
+        writable: false,
+      });
+      Object.defineProperty(container2, 'clientHeight', {
+        value: 100,
+        writable: false,
+      });
+
+      modalManager.add(modal, container2);
+      modalManager.mount(modal, {});
+
+      expect(container1.style.overflow).to.equal('hidden');
+      expect(container1.style.overflowX).to.equal('');
+      expect(container1.style.paddingRight).to.equal(`${20 + getScrollbarSize(document)}px`);
+      expect(fixedNode.style.paddingRight).to.equal(`${0 + getScrollbarSize(document)}px`);
+
+      modalManager.remove(modal);
+
+      expect(container1.style.overflow).to.equal('');
+      expect(container1.style.overflowX).to.equal('hidden');
+      expect(container1.style.paddingRight).to.equal('20px');
+      expect(fixedNode.style.paddingRight).to.equal('');
+    });
   });
 
   describe('multi container', () => {
