@@ -63,20 +63,6 @@ Here's an example of a media control card.
 
 {{"demo": "pages/components/cards/MediaControlCard.js", "bg": true}}
 
-## Theming
-
-Here is an example of theming the component. You can learn more about this in the [theming page](/customization/theming) and [theme components page](/customization/theme-components)
-
-### Task Card
-
-{{"demo": "pages/components/cards/TaskCard.js", "bg": true}}
-
-### Player Card
-
-{{"demo": "pages/components/cards/PlayerCard.js", "bg": true}}
-
-### Notification Card
-
-{{"demo": "pages/components/cards/NotificationCard.js", "bg": true}}
+## Customization
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/components/card).

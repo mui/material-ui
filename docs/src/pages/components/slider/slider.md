@@ -81,6 +81,16 @@ In this example, an input allows a discrete value to be set.
 
 {{"demo": "pages/components/slider/ColorSlider.js"}}
 
+## Customized sliders
+
+Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+
+{{"demo": "pages/components/slider/CustomizedSlider.js"}}
+
+### Music player
+
+{{"demo": "pages/components/slider/MusicPlayerSlider.js"}}
+
 ## Vertical sliders
 
 {{"demo": "pages/components/slider/VerticalSlider.js"}}
@@ -119,22 +129,6 @@ In the following demo, the value _x_ represents the value _2^x_.
 Increasing _x_ by one increases the represented value by factor _2_.
 
 {{"demo": "pages/components/slider/NonLinearSlider.js"}}
-
-## Customization
-
-Here are some examples of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
-
-{{"demo": "pages/components/slider/CustomizedSlider.js"}}
-
-### Music player
-
-{{"demo": "pages/components/slider/MusicPlayerSlider.js"}}
-
-## Theming
-
-Here is an example of theming the component. You can learn more about this in the [theming page](/customization/theming) and [theme components page](/customization/theme-components)
-
-{{"demo": "pages/components/slider/ThemeSlider.js"}}
 
 ## Unstyled
 
