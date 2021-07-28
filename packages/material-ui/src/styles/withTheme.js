@@ -1,6 +1,6 @@
 import MuiError from '@material-ui/utils/macros/MuiError.macro';
 
-export default function withTheme(Component) {
+export default function withTheme() {
   throw new MuiError(
     'Material-UI: withTheme is not longer exported from @material-ui/core/styles.\n' +
       'You have to import it from @material-ui/styles.\n' +
