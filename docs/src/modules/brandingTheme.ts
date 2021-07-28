@@ -1,4 +1,4 @@
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme, ThemeOptions } from '@material-ui/core/styles';
 
 declare module '@material-ui/core/styles/createPalette' {
   interface ColorRange {
@@ -35,6 +35,8 @@ declare module '@material-ui/core/styles/createTypography' {
 //     code: true;
 //   }
 // }
+
+const defaultTheme = createTheme();
 
 const blueDark = {
   50: '#E2EDF8',
@@ -74,7 +76,7 @@ const systemFont = [
   '"Segoe UI Symbol"',
 ];
 
-const theme = createTheme({
+export const brandingDesignTokens = {
   palette: {
     primary: {
       50: '#F0F7FF',
@@ -149,25 +151,25 @@ const theme = createTheme({
       textTransform: 'initial',
       fontWeight: 700,
     },
-  },
-});
-
-const brandingTheme = createTheme(theme, {
-  typography: {
     subtitle1: {
-      fontSize: theme.typography.pxToRem(18), // 18px
+      fontSize: defaultTheme.typography.pxToRem(18), // 18px
       lineHeight: 22 / 18,
     },
     body1: {
-      fontSize: theme.typography.pxToRem(16), // 16px
+      fontSize: defaultTheme.typography.pxToRem(16), // 16px
       lineHeight: 24 / 16,
       fontWeight: 500,
     },
     body2: {
-      fontSize: theme.typography.pxToRem(14), // 14px
+      fontSize: defaultTheme.typography.pxToRem(14), // 14px
       lineHeight: 20 / 14,
     },
   },
+};
+
+const theme = createTheme(brandingDesignTokens as ThemeOptions);
+
+const brandingTheme = createTheme(theme, {
   components: {
     MuiButton: {
       defaultProps: {
@@ -223,6 +225,11 @@ const brandingTheme = createTheme(theme, {
             paddingRight: theme.spacing(2),
           },
         },
+      },
+    },
+    MuiTab: {
+      defaultProps: {
+        disableTouchRipple: true,
       },
     },
   },

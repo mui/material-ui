@@ -56,7 +56,7 @@ export default function Hero() {
                 <Box sx={{ width: 16, height: 16 }} />
                 <Button
                   size="large"
-                  // @ts-expect-error TODO: fix this by exporting Overrides types from Button
+                  // @ts-expect-error
                   variant="code"
                   startIcon="$"
                   endIcon={<ContentCopyRounded />}
