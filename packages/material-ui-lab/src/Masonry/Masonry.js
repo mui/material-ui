@@ -82,19 +82,8 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
   const { children, className, component = 'div', columns = 4, spacing = 1, ...other } = props;
   const styleProps = { ...props, spacing, columns };
   const classes = useUtilityClasses(styleProps);
-  const [documentReady, setDocumentReady] = React.useState(false);
-  const handleStateChange = () => {
-    if (document.readyState === 'complete') {
-      setDocumentReady(true);
-    }
-  };
-  React.useEffect(() => {
-    document.addEventListener('readystatechange', handleStateChange);
-    return () => {
-      document.removeEventListener('readystatechange', handleStateChange);
-    };
-  });
-  const masonry = React.useMemo(() => ({ spacing, documentReady }), [spacing, documentReady]);
+
+  const masonry = React.useMemo(() => ({ spacing }), [spacing]);
 
   return (
     <MasonryContext.Provider value={masonry}>

@@ -27,7 +27,7 @@ const useUtilityClasses = (styleProps) => {
 export const style = ({ styleProps, theme }) => {
   let styles = {
     width: '100%',
-    [`& > *`]: {
+    '& > *': {
       // all contents should have a width of 100%
       width: '100%',
     },
@@ -72,7 +72,7 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
 
   const masonryItemRef = React.useRef(null);
 
-  const { spacing = 1, documentReady = false } = React.useContext(MasonryContext);
+  const { spacing = 1 } = React.useContext(MasonryContext);
   const {
     children,
     className,
@@ -90,41 +90,29 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
 
   const classes = useUtilityClasses(styleProps);
 
-  const computeHeight = () => {
-    if (masonryItemRef?.current) {
-      const child = masonryItemRef.current.firstChild;
-      setStyleProps({
-        ...styleProps,
-        height:
-          styleProps.height === undefined
-            ? child?.getBoundingClientRect().height
-            : styleProps.height,
-      });
-    }
-  };
-
   // If height is passed by user, ResizeObserver is not used.
   const resizeObserver = React.useRef(
-    height === undefined ? new ResizeObserver(computeHeight) : null,
+    height === undefined
+      ? new ResizeObserver(([item]) => {
+          setStyleProps({
+            ...styleProps,
+            height: item.contentRect.height,
+          });
+        })
+      : null,
   );
-
-  React.useEffect(() => {
-    if (documentReady) {
-      computeHeight();
-    }
-  }, [documentReady]); // eslint-disable-line
 
   React.useEffect(() => {
     if (resizeObserver?.current && masonryItemRef?.current) {
       const observer = resizeObserver.current;
-      const item = masonryItemRef.current;
+      const item = masonryItemRef.current.firstChild;
       observer.observe(item);
       return () => {
         observer.unobserve(item);
       };
     }
     return true;
-  }, [masonryItemRef]);
+  }, []);
 
   const handleRef = useForkRef(ref, masonryItemRef);
 
