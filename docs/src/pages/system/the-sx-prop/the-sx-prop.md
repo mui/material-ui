@@ -188,6 +188,45 @@ Each property in the `sx` prop can receive a function callback as a value. This 
 <Box sx={{ height: (theme) => theme.spacing(10) }} />
 ```
 
+## TypeScript usage
+
+A frequent source of confusion with the `sx` prop is TypeScript's [type widening](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
+
+```ts
+const styles = {
+  flexDirection: 'column',
+};
+
+export default function App() {
+  return <Button sx={sx}>Example</Button>;
+}
+//    Type '{ flexDirection: string; }' is not assignable to type 'SxProps<Theme> | undefined'.
+//    Type '{ flexDirection: string; }' is not assignable to type 'CSSSelectorObject<Theme>'.
+//      Property 'flexDirection' is incompatible with index signature.
+//        Type 'string' is not assignable to type 'SystemStyleObject<Theme>'.
+```
+
+The problem is that the type of the `flexDirection` prop is inferred as `string`, which is too wide.
+To fix this, you can pass the styles object directly to the `sx` prop:
+
+```ts
+export default function App() {
+  return <Button sx={{ flexDirection: 'column' }}>Example</Button>;
+}
+```
+
+Alternatively, you can cast the object/function passed to the `sx` prop to const:
+
+```ts
+const style = {
+  flexDirection: 'column',
+} as const;
+
+export default function App() {
+  return <Button sx={style}>Example</Button>;
+}
+```
+
 ## Performance
 
 If you are interested in the performance tradeoff, you can find more details [here](/system/basics/#performance-tradeoff).
