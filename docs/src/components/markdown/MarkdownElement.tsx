@@ -19,6 +19,7 @@ const Root = styled('div')(({ theme }) => ({
     direction: 'ltr',
     overflow: 'auto',
     margin: 0,
+    lineHeight: '20px',
     WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
     maxWidth: 'calc(100vw - 32px)',
     [theme.breakpoints.up('md')]: {
@@ -44,6 +45,7 @@ const Root = styled('div')(({ theme }) => ({
   '& code[class*="language-"]': {
     // Avoid layout jump after hydration (style injected by prism)
     ...theme.typography.body2,
+    lineHeight: '20px',
     fontFamily: theme.typography.fontFamilyCode,
   },
   // // code blocks

@@ -3,7 +3,6 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import brandingTheme from 'docs/src/modules/brandingTheme';
-import Box from '@material-ui/core/Box';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import Container from '@material-ui/core/Container';
 import Hero from 'docs/src/components/home/Hero';
@@ -18,12 +17,16 @@ export default function Home() {
       <Hero />
       <Container sx={{ py: 8 }}>
         <References />
-        <Typography color="grey.600" maxWidth={360} textAlign="center" mx="auto" mt={4}>
-          {"From startups to Fortune 500s, the world's best product teams leverage "}
-          <Box component="span" sx={{ color: 'primary.main', fontWeight: 700 }}>
-            MUI
-          </Box>{' '}
-          to build their UIs.
+        <Typography
+          color="grey.800"
+          maxWidth={450}
+          textAlign="center"
+          mx="auto"
+          mt={4}
+          variant="body2"
+        >
+          From startups to Fortune 500s, the world&apos;s best product teams leverage MUI to build
+          their UIs.
         </Typography>
       </Container>
       <DesignSystems />

@@ -36,15 +36,7 @@ export default function Hero() {
         >
           <Grid item md={7} lg={6}>
             <Box sx={{ textAlign: { xs: 'center', md: 'left' }, maxWidth: 500 }}>
-              <Typography
-                variant="h1"
-                sx={{
-                  fontWeight: 'extraBold',
-                  fontSize: 'clamp(2.625rem, 1.2857rem + 3.5714vw, 4.5rem)',
-                  lineHeight: 1.11,
-                  mb: 2,
-                }}
-              >
+              <Typography variant="h1" sx={{ mb: 2 }}>
                 The <GradientText>ultimate</GradientText> solution for your UI.
               </Typography>
               <Typography color="text.secondary" sx={{ mb: 3 }}>

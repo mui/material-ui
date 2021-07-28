@@ -14,17 +14,10 @@ const DesignSystems = () => {
         <Grid container spacing={2}>
           <Grid item md={6}>
             <Box maxWidth={500}>
-              <Typography variant="body1" color="primary" fontWeight="extraBold" mb={1}>
+              <Typography variant="body2" color="primary" fontWeight="bold" mb={1}>
                 Products
               </Typography>
-              <Typography
-                component="h2"
-                color="primary.900"
-                fontWeight="extraBold"
-                fontSize="clamp(1.5rem, 0.9643rem + 1.4286vw, 2.25rem)"
-                lineHeight="max(32px, 1.22222em)"
-                mb={1}
-              >
+              <Typography variant="h2" color="primary.900" mb={1}>
                 Robust components with careful and customizable designs, ready for{' '}
                 <GradientText>production</GradientText>.
               </Typography>
