@@ -110,21 +110,22 @@ export default function transformer(file, api, options) {
   }
 
   function createStyledComponent(componentName, styledComponentName, stylesFn) {
-    const rootAsFragment = componentName === '';
+    let styledArg = null;
+
+    if (componentName.match(/^[A-Z]/)) {
+      // The root is a component
+      styledArg = j.identifier(componentName);
+    } else if (componentName === '') {
+      // The root is React.Fragment
+      styleArg = j.stringLiteral('div');
+    } else {
+      styleArg = j.stringLiteral(componentName);
+    }
 
     const declaration = j.variableDeclaration('const', [
       j.variableDeclarator(
         j.identifier(styledComponentName),
-        j.callExpression(
-          j.callExpression(j.identifier('styled'), [
-            componentName.match(/^[A-Z]/)
-              ? j.identifier(componentName)
-              : rootAsFragment
-              ? j.stringLiteral('div')
-              : j.stringLiteral(componentName),
-          ]),
-          [stylesFn],
-        ),
+        j.callExpression(j.callExpression(j.identifier('styled'), [styleArg]), [stylesFn]),
       ),
     ]);
 
