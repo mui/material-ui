@@ -44,8 +44,8 @@ export const style = ({ styleProps, theme }) => {
   const spacingValues = resolveBreakpointValues({ values: styleProps.spacing, base });
   const transformer = createUnarySpacing(theme);
   const styleFromPropValue = (propValue) => {
-    const gap = Number(getValue(transformer, propValue).replace('px', ''));
-    const rowSpan = Math.ceil(styleProps.height + gap);
+    const gap = styleProps.height ? Number(getValue(transformer, propValue).replace('px', '')) : 0;
+    const rowSpan = styleProps.height ? Math.ceil(styleProps.height + gap) : 0;
     return {
       gridRowEnd: `span ${rowSpan}`,
       paddingBottom: gap - 1,
@@ -73,24 +73,40 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
   const masonryItemRef = React.useRef(null);
 
   const { spacing = 1, documentReady = false } = React.useContext(MasonryContext);
-  const { children, className, component = 'div', columnSpan = 1, height = 0, ...other } = props;
+  const {
+    children,
+    className,
+    component = 'div',
+    columnSpan = 1,
+    height = undefined,
+    ...other
+  } = props;
   const [styleProps, setStyleProps] = React.useState({
     ...props,
     spacing,
     columnSpan,
-    height,
+    height: height < 0 ? 0 : height, // MasonryItems to which negative or zero height is passed will be hidden
   });
 
   const classes = useUtilityClasses(styleProps);
 
   const computeHeight = () => {
-    const child = masonryItemRef.current.firstChild;
-    setStyleProps({
-      ...styleProps,
-      height: child?.getBoundingClientRect().height,
-    });
+    if (masonryItemRef?.current) {
+      const child = masonryItemRef.current.firstChild;
+      setStyleProps({
+        ...styleProps,
+        height:
+          styleProps.height === undefined
+            ? child?.getBoundingClientRect().height
+            : styleProps.height,
+      });
+    }
   };
-  const resizeObserver = React.useRef(new ResizeObserver(computeHeight));
+
+  // If height is passed by user, ResizeObserver is not used.
+  const resizeObserver = React.useRef(
+    height === undefined ? new ResizeObserver(computeHeight) : null,
+  );
 
   React.useEffect(() => {
     if (documentReady) {
@@ -98,7 +114,6 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
     }
   }, [documentReady]); // eslint-disable-line
 
-  // eslint-disable-next-line
   React.useEffect(() => {
     if (resizeObserver?.current && masonryItemRef?.current) {
       const observer = resizeObserver.current;
@@ -108,6 +123,7 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
         observer.unobserve(item);
       };
     }
+    return true;
   }, [masonryItemRef]);
 
   const handleRef = useForkRef(ref, masonryItemRef);
@@ -154,6 +170,7 @@ MasonryItem.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * The height of the component in px.
+   * @default undefined
    */
   height: PropTypes.number,
   /**

@@ -4,7 +4,7 @@
     "classes": { "type": { "name": "object" } },
     "columnSpan": { "type": { "name": "number" }, "default": "1" },
     "component": { "type": { "name": "elementType" } },
-    "height": { "type": { "name": "number" } },
+    "height": { "type": { "name": "number" }, "default": "undefined" },
     "sx": { "type": { "name": "object" } }
   },
   "name": "MasonryItem",
