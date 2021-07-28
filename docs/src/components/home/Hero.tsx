@@ -18,6 +18,86 @@ import ThemeTabs from 'docs/src/pages/components/tabs/ThemeTabs';
 import ThemeTimeline from 'docs/src/pages/components/timeline/ThemeTimeline';
 import ViewToggleButton from 'docs/src/pages/components/toggle-button/ViewToggleButton';
 
+const MAX_WIDTH = 1000;
+const SPAN_SIZE = 10;
+const GAP = 0;
+const GUTTER = 30;
+const grid = [
+  {
+    ui: <TaskCard />,
+    width: 330,
+    height: 280,
+    sx: {
+      '& > .MuiCard-root': {
+        height: '100%',
+        width: '100%',
+        maxWidth: '100%',
+      },
+    },
+  },
+  {
+    ui: <ThemeDatePicker />,
+    width: 320,
+    height: 380,
+  },
+  {
+    width: MAX_WIDTH - (320 + GUTTER) - (320 + GUTTER),
+    height: 388,
+  },
+  {
+    ui: <ThemeSlider />,
+    width: 70,
+    height: 160,
+  },
+  {
+    ui: <ViewToggleButton />,
+    width: 180,
+    height: 70,
+    sx: { alignSelf: 'flex-end' },
+  },
+  {
+    width: MAX_WIDTH - (320 + GUTTER) - (320 + GUTTER),
+    height: 135,
+  },
+  {
+    ui: <CustomizedChip />,
+    width: 220,
+    height: 32,
+    sx: { alignSelf: 'center' },
+  },
+  {
+    ui: <PlayerCard />,
+    width: 313,
+    height: 119,
+  },
+  {
+    ui: <ThemeTabs />,
+    width: 310,
+    height: 50,
+  },
+  {
+    ui: <NotificationCard />,
+    width: 379,
+    height: 100,
+  },
+  {
+    ui: <FolderTable />,
+    width: 260,
+    height: 188,
+  },
+  {
+    ui: <ThemeTimeline />,
+    width: 270,
+    height: 160,
+  },
+];
+
+function getSpan(value: number) {
+  // x * SPAN_SIZE + (x - 1) * GAP = width
+  // x * (SPAN_SIZE + GAP) = width + GAP
+  return Math.ceil((value + GAP) / (SPAN_SIZE + GAP));
+}
+
 export default function Hero() {
   return (
     <Box sx={{ overflow: 'hidden' }}>
@@ -26,6 +106,7 @@ export default function Hero() {
           minHeight: 500,
           height: 'calc(100vh - 120px)',
           maxHeight: { xs: 500, sm: 700, xl: 1000 },
+          transition: '0.3s',
         }}
       >
         <Grid
@@ -77,28 +158,25 @@ export default function Hero() {
             <Box
               aria-hidden="true"
               sx={{
+                p: 3,
                 bgcolor: 'grey.50',
                 minWidth: 2000,
                 minHeight: 500,
                 height: 'calc(100vh - 120px)',
                 maxHeight: { lg: 700, xl: 1000 },
                 borderBottomLeftRadius: 10,
+                transition: '0.3s',
               }}
             >
               <Box
                 sx={{
-                  maxWidth: 1000,
-                  py: 3,
-                  px: 5,
+                  maxWidth: MAX_WIDTH,
                   display: 'grid',
-                  gap: 3,
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(60px, 1fr))',
-                  gridAutoRows: '60px',
+                  gridTemplateColumns: `repeat(auto-fit, minmax(${SPAN_SIZE}px, 1fr))`,
+                  gridAutoRows: SPAN_SIZE,
                   gridAutoFlow: 'dense',
                   alignTracks: 'center',
                   '& > *': {
-                    justifySelf: 'center',
-                    alignSelf: 'center',
                     opacity: 0.6,
                     transition: '0.4s',
                     '&:hover': {
@@ -113,9 +191,25 @@ export default function Hero() {
                       'sans-serif',
                     ].join(','),
                   },
+                  transform: { xs: 'scale(0.9)', xl: 'scale(1)' },
+                  transformOrigin: 'top left',
+                  transition: 'transform 0.3s',
                 }}
               >
-                <Box sx={{ gridRow: 'span 4', gridColumn: 'span 4' }}>
+                {grid.map((config, index) => (
+                  <Box
+                    key={index}
+                    sx={{
+                      gridRow: `span ${getSpan(config.height + (config.ui ? GUTTER : -GUTTER))}`,
+                      gridColumn: `span ${getSpan(config.width + (config.ui ? GUTTER : -GUTTER))}`,
+                      p: 1.5,
+                      ...config.sx,
+                    }}
+                  >
+                    {config.ui || null}
+                  </Box>
+                ))}
+                {/* <Box sx={{ gridRow: 'span 4', gridColumn: 'span 4' }}>
                   <TaskCard />
                 </Box>
                 <Box
@@ -154,7 +248,8 @@ export default function Hero() {
                   sx={{
                     gridRow: 'span 5',
                     gridColumn: 'span 4',
-                    '&&': { justifySelf: 'flex-start', alignSelf: 'flex-start' },
+                    justifySelf: 'flex-start',
+                    alignSelf: 'flex-start',
                   }}
                 >
                   <ThemeDatePicker />
@@ -167,7 +262,7 @@ export default function Hero() {
                   }}
                 >
                   <NotificationCard />
-                </Box>
+                </Box> */}
               </Box>
             </Box>
           </Grid>
