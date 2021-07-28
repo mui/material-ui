@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import { useAutocomplete } from '@material-ui/unstyled/AutocompleteUnstyled';
+import useAutocomplete from '@material-ui/core/useAutocomplete';
 import { styled } from '@material-ui/core/styles';
 
 const Label = styled('label')({
