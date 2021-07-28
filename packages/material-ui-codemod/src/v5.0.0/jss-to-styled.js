@@ -110,19 +110,33 @@ export default function transformer(file, api, options) {
   }
 
   function createStyledComponent(componentName, styledComponentName, stylesFn) {
-    return j.variableDeclaration('const', [
+    const rootAsFragment = componentName === '';
+
+    const declaration = j.variableDeclaration('const', [
       j.variableDeclarator(
         j.identifier(styledComponentName),
         j.callExpression(
           j.callExpression(j.identifier('styled'), [
             componentName.match(/^[A-Z]/)
               ? j.identifier(componentName)
+              : rootAsFragment
+              ? j.stringLiteral('div')
               : j.stringLiteral(componentName),
           ]),
           [stylesFn],
         ),
       ),
     ]);
+
+    if (rootAsFragment) {
+      declaration.comments = [
+        j.commentLine(
+          ' TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.',
+        ),
+      ];
+    }
+
+    return declaration;
   }
 
   /**
@@ -374,9 +388,17 @@ export default function transformer(file, api, options) {
     .findJSXElements(rootJsxName)
     .at(0)
     .forEach((path) => {
-      path.node.openingElement.name.name = styledComponentName;
-      if (path.node.closingElement) {
-        path.node.closingElement.name.name = styledComponentName;
+      // React.Fragment
+      if (path.node.openingElement.name.name === undefined) {
+        path.node.openingElement.name = styledComponentName;
+        if (path.node.closingElement) {
+          path.node.closingElement.name = styledComponentName;
+        }
+      } else {
+        path.node.openingElement.name.name = styledComponentName;
+        if (path.node.closingElement) {
+          path.node.closingElement.name.name = styledComponentName;
+        }
       }
     });
 
