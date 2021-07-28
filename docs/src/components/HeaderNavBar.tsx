@@ -23,7 +23,7 @@ const Navigation = styled('nav')(({ theme }) => ({
   '& li': {
     color: theme.palette.text.secondary,
     ...theme.typography.body2,
-    fontWeight: 700,
+    fontWeight: 600,
     '& > a, & > div': {
       display: 'inline-block',
       color: 'inherit',

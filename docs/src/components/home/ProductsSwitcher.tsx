@@ -52,6 +52,7 @@ const ProductsSwitcher = () => {
       onChange={(event, value) => setProductIndex(value)}
       sx={{
         mt: 4,
+        maxWidth: 470,
         overflow: 'initial',
         '& .MuiTabs-scroller': { overflow: 'initial !important' },
         '& .MuiTabs-flexContainer': { position: 'relative', zIndex: 1 },
@@ -60,9 +61,19 @@ const ProductsSwitcher = () => {
           textAlign: 'left',
           padding: 0,
           alignItems: 'flex-start',
+          borderRadius: 1,
+          transition: '0.3s',
+          '&:hover:not(.Mui-selected)': {
+            bgcolor: 'grey.100',
+            '@media (hover: none)': {
+              bgcolor: 'transparent',
+            },
+          },
+          '&:not(:first-of-type)': {
+            mt: 1,
+          },
         },
         '& .MuiTabs-indicator': {
-          boxShadow: 'rgb(170 180 190 / 10%) 0px 4px 20px',
           width: '100%',
           bgcolor: 'background.paper',
           borderRadius: 1,
@@ -76,7 +87,7 @@ const ProductsSwitcher = () => {
           <ProductItem
             icon={<SvgProductCore />}
             name="Core"
-            description="Ready to use, forever free, out-of-the-box, components."
+            description="Ready to use, forever free, foundational components."
           />
         }
       />
@@ -89,7 +100,7 @@ const ProductsSwitcher = () => {
                 Advanced&nbsp; <SvgMuiX />
               </Box>
             }
-            description="Powerful components for your complex apps."
+            description="Powerful and robust components for your complex apps."
           />
         }
       />
@@ -98,7 +109,7 @@ const ProductsSwitcher = () => {
           <ProductItem
             icon={<SvgProductTemplates />}
             name="Templates"
-            description="Get a fully built template for you application."
+            description="Fully built, out-of-the-box, templates for your application."
           />
         }
       />
@@ -107,7 +118,7 @@ const ProductsSwitcher = () => {
           <ProductItem
             icon={<SvgProductDesign />}
             name="Design Kits"
-            description="Pick your favorite design tool to enjoy."
+            description="Our components available in your favorite design tool."
           />
         }
       />

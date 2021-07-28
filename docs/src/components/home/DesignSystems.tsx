@@ -18,12 +18,11 @@ const DesignSystems = () => {
                 Products
               </Typography>
               <Typography variant="h2" color="primary.900" mb={1}>
-                Robust components with careful and customizable designs, ready for{' '}
-                <GradientText>production</GradientText>.
+                Extensive library of components, ready for <GradientText>production</GradientText>.
               </Typography>
               <Typography color="text.secondary">
-                We bring together a suite of products integrated to make your life easier and
-                happier when it comes to developing React applications.
+                We bring together a suite of products integrated to make your life easier when it
+                comes to setting up design systems.
               </Typography>
             </Box>
             <ProductsSwitcher />
