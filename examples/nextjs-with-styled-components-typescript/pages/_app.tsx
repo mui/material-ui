@@ -5,7 +5,8 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import theme from '../src/theme';
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+export default function MyApp(props: AppProps) {
+  const { Component, pageProps } = props;
   return (
     <React.Fragment>
       <Head>
