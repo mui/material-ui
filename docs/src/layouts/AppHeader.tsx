@@ -1,12 +1,15 @@
 import * as React from 'react';
 import NextLink from 'next/link';
 import { styled } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 import HeaderNavBar from 'docs/src/components/header/HeaderNavBar';
 import HeaderNavDropdown from 'docs/src/components/header/HeaderNavDropdown';
 import ThemeModeToggle from 'docs/src/components/header/ThemeModeToggle';
+import { getCookie } from 'docs/src/modules/utils/helpers';
+import { useChangeTheme } from '../modules/ThemeContext';
 
 const Header = styled('div')(({ theme }) => ({
   position: 'sticky',
@@ -18,7 +21,28 @@ const Header = styled('div')(({ theme }) => ({
 }));
 
 export default function AppHeader() {
-  const [dark, setDark] = React.useState(false);
+  const changeTheme = useChangeTheme();
+  const [mode, setMode] = React.useState(getCookie('paletteMode') || 'system');
+  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const preferredMode = prefersDarkMode ? 'dark' : 'light';
+
+  const handleChangeThemeMode = (event: React.ChangeEvent<HTMLInputElement>) => {
+    let paletteMode = 'system';
+    paletteMode = event.target.checked ? 'dark' : 'light';
+    if (paletteMode === null) {
+      return;
+    }
+
+    setMode(paletteMode);
+
+    if (paletteMode === 'system') {
+      document.cookie = `paletteMode=;path=/;max-age=31536000`;
+      changeTheme({ paletteMode: preferredMode });
+    } else {
+      document.cookie = `paletteMode=${paletteMode};path=/;max-age=31536000`;
+      changeTheme({ paletteMode });
+    }
+  };
   return (
     <Header>
       <Container sx={{ display: 'flex', alignItems: 'center', minHeight: 64 }}>
@@ -34,7 +58,7 @@ export default function AppHeader() {
         <Box sx={{ display: { md: 'none' } }}>
           <HeaderNavDropdown />
         </Box>
-        <ThemeModeToggle checked={dark} onChange={(event) => setDark(event.target.checked)} />
+        <ThemeModeToggle checked={mode === 'dark'} onChange={handleChangeThemeMode} />
       </Container>
     </Header>
   );

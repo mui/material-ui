@@ -1,4 +1,4 @@
-import { createTheme, ThemeOptions } from '@material-ui/core/styles';
+import { createTheme, ThemeOptions, Theme } from '@material-ui/core/styles';
 
 declare module '@material-ui/core/styles/createPalette' {
   interface ColorRange {
@@ -203,75 +203,79 @@ export const brandingDesignTokens = {
       fontWeight: 600,
     },
   },
-};
+} as ThemeOptions;
 
-const theme = createTheme(brandingDesignTokens as ThemeOptions);
-
-const brandingTheme = createTheme(theme, {
-  components: {
-    MuiButton: {
-      defaultProps: {
-        disableElevation: true,
-        disableTouchRipple: true,
-      },
-      styleOverrides: {
-        sizeLarge: {
-          padding: '1rem 1.25rem',
-          ...theme.typography.body1,
-          lineHeight: 21 / 16,
-          fontWeight: 700,
+export function getThemedComponents(theme: Theme) {
+  return {
+    components: {
+      MuiButton: {
+        defaultProps: {
+          disableElevation: true,
+          disableTouchRipple: true,
         },
-      },
-      variants: [
-        {
-          props: { variant: 'code' },
-          style: {
-            color: grey[800],
-            border: '1px solid',
-            borderColor: grey[200],
-            backgroundColor: grey[50],
-            fontFamily: theme.typography.fontFamilyCode,
-            '&:hover, &.Mui-focusVisible': {
-              borderColor: theme.palette.primary.main,
-              backgroundColor: theme.palette.primary[50],
+        styleOverrides: {
+          sizeLarge: {
+            padding: '1rem 1.25rem',
+            ...theme.typography.body1,
+            lineHeight: 21 / 16,
+            fontWeight: 700,
+          },
+        },
+        variants: [
+          {
+            props: { variant: 'code' },
+            style: {
+              color: theme.palette.grey[800],
+              border: '1px solid',
+              borderColor: theme.palette.grey[200],
+              backgroundColor: theme.palette.grey[50],
+              fontFamily: theme.typography.fontFamilyCode,
+              '&:hover, &.Mui-focusVisible': {
+                borderColor: theme.palette.primary.main,
+                backgroundColor: theme.palette.primary[50],
+                '& .MuiButton-endIcon': {
+                  color: theme.palette.primary.main,
+                },
+              },
+              '& .MuiButton-startIcon': {
+                color: theme.palette.grey[400],
+              },
               '& .MuiButton-endIcon': {
-                color: theme.palette.primary.main,
+                color: theme.palette.grey[700],
               },
             },
-            '& .MuiButton-startIcon': {
-              color: theme.palette.grey[400],
-            },
-            '& .MuiButton-endIcon': {
-              color: theme.palette.grey[700],
+          },
+          {
+            props: { variant: 'code', size: 'large' },
+            style: {
+              ...theme.typography.body2,
+              fontFamily: theme.typography.fontFamilyCode,
+              fontWeight: theme.typography.fontWeightBold,
             },
           },
-        },
-        {
-          props: { variant: 'code', size: 'large' },
-          style: {
-            ...theme.typography.body2,
-            fontFamily: theme.typography.fontFamilyCode,
-            fontWeight: theme.typography.fontWeightBold,
-          },
-        },
-      ],
-    },
-    MuiContainer: {
-      styleOverrides: {
-        root: {
-          [theme.breakpoints.up('md')]: {
-            paddingLeft: theme.spacing(2),
-            paddingRight: theme.spacing(2),
+        ],
+      },
+      MuiContainer: {
+        styleOverrides: {
+          root: {
+            [theme.breakpoints.up('md')]: {
+              paddingLeft: theme.spacing(2),
+              paddingRight: theme.spacing(2),
+            },
           },
         },
       },
-    },
-    MuiTab: {
-      defaultProps: {
-        disableTouchRipple: true,
+      MuiTab: {
+        defaultProps: {
+          disableTouchRipple: true,
+        },
       },
     },
-  },
-});
+  };
+}
 
-export default brandingTheme;
+const brandingTheme = createTheme(brandingDesignTokens);
+
+export default createTheme(brandingTheme, {
+  ...getThemedComponents(brandingTheme),
+});

@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { ThemeProvider } from '@material-ui/core/styles';
+import ThemeProvider from 'docs/src/modules/ThemeContext';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
-import brandingTheme from 'docs/src/modules/brandingTheme';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import Container from '@material-ui/core/Container';
 import Hero from 'docs/src/components/home/Hero';
@@ -11,7 +10,7 @@ import DesignSystems from 'docs/src/components/home/DesignSystems';
 
 export default function Home() {
   return (
-    <ThemeProvider theme={brandingTheme}>
+    <ThemeProvider>
       <CssBaseline />
       <AppHeader />
       <Hero />
