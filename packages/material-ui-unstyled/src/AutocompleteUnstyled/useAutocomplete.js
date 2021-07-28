@@ -1,6 +1,11 @@
 /* eslint-disable no-constant-condition */
 import * as React from 'react';
-import { setRef, useEventCallback, useControlled, unstable_useId as useId } from '../utils';
+import {
+  unstable_setRef as setRef,
+  unstable_useEventCallback as useEventCallback,
+  unstable_useControlled as useControlled,
+  unstable_useId as useId,
+} from '@material-ui/utils';
 
 // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
 // Give up on IE11 support for this feature

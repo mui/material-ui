@@ -1,3 +1,5 @@
+export * from './AutocompleteUnstyled';
+
 export { default as BackdropUnstyled } from './BackdropUnstyled';
 export * from './BackdropUnstyled';
 
