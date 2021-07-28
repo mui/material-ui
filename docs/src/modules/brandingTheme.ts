@@ -144,25 +144,63 @@ export const brandingDesignTokens = {
   },
   spacing: 10,
   typography: {
-    fontFamily: ['"PlusJakartaSans"', ...systemFont].join(','),
+    fontFamily: ['"IBM Plex Sans"', ...systemFont].join(','),
     fontFamilyCode: ['"IBM Plex Mono"', ...systemFont].join(','),
+    fontFamilyTagline: ['"PlusJakartaSans"', ...systemFont].join(','),
     fontWeightExtraBold: 800,
+    h1: {
+      fontFamily: ['"PlusJakartaSans"', ...systemFont].join(','),
+      fontSize: 'clamp(2.625rem, 1.2857rem + 3.5714vw, 4.5rem)',
+      fontWeight: 800,
+      lineHeight: 80 / 72,
+    },
+    h2: {
+      fontFamily: ['"PlusJakartaSans"', ...systemFont].join(','),
+      fontSize: 'clamp(1.5rem, 0.9643rem + 1.4286vw, 2.25rem)',
+      fontWeight: 800,
+      lineHeight: 44 / 36,
+    },
+    h3: {
+      fontSize: defaultTheme.typography.pxToRem(28), // 18px
+      lineHeight: 42 / 28,
+      letterSpacing: 0,
+    },
+    h4: {
+      fontSize: defaultTheme.typography.pxToRem(28), // 18px
+      lineHeight: 36 / 24,
+      letterSpacing: 0,
+    },
+    h5: {
+      fontSize: defaultTheme.typography.pxToRem(20), // 18px
+      lineHeight: 30 / 20,
+      letterSpacing: 0,
+    },
     button: {
       textTransform: 'initial',
       fontWeight: 700,
+      letterSpacing: 0,
     },
     subtitle1: {
       fontSize: defaultTheme.typography.pxToRem(18), // 18px
-      lineHeight: 22 / 18,
+      lineHeight: 24 / 18,
+      letterSpacing: 0,
+      fontWeight: 500,
     },
     body1: {
       fontSize: defaultTheme.typography.pxToRem(16), // 16px
       lineHeight: 24 / 16,
-      fontWeight: 500,
+      letterSpacing: 0,
     },
     body2: {
       fontSize: defaultTheme.typography.pxToRem(14), // 14px
-      lineHeight: 20 / 14,
+      lineHeight: 21 / 14,
+      letterSpacing: 0,
+    },
+    caption: {
+      fontSize: defaultTheme.typography.pxToRem(12), // 12px
+      lineHeight: 18 / 12,
+      letterSpacing: 0,
+      fontWeight: 600,
     },
   },
 };
