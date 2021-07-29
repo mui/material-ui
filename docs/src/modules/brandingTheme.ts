@@ -239,6 +239,21 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
 export function getThemedComponents(theme: Theme) {
   return {
     components: {
+      MuiLink: {
+        defaultProps: {
+          underline: 'none',
+        },
+        styleOverrides: {
+          root: {
+            fontWeight: 'bold',
+            display: 'inline-flex',
+            alignItems: 'center',
+            '& > svg': {
+              marginTop: 2,
+            },
+          },
+        },
+      },
       MuiButton: {
         defaultProps: {
           disableElevation: true,

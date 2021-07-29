@@ -11,6 +11,7 @@ import ValueProposition from 'docs/src/components/home/ValueProposition';
 import DesignSystemComponents from 'docs/src/components/home/DesignSystemComponents';
 import Testimonials from 'docs/src/components/home/Testimonials';
 import Sponsors from 'docs/src/components/home/Sponsors';
+import HeroEnd from 'docs/src/components/home/HeroEnd';
 
 export default function Home() {
   return (
@@ -37,6 +38,7 @@ export default function Home() {
       <DesignSystemComponents />
       <Testimonials />
       <Sponsors />
+      <HeroEnd />
     </ThemeProvider>
   );
 }
