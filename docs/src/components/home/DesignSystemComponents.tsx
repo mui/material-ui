@@ -141,7 +141,7 @@ function Demo({
             }}
           >
             {control.values.map((value) => (
-              <Tab value={value} label={value} />
+              <Tab key={value} value={value} label={value} />
             ))}
           </Tabs>
         </Box>

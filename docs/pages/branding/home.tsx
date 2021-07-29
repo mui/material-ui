@@ -10,6 +10,7 @@ import ProductSuite from 'docs/src/components/home/ProductSuite';
 import ValueProposition from 'docs/src/components/home/ValueProposition';
 import DesignSystemComponents from 'docs/src/components/home/DesignSystemComponents';
 import Testimonials from 'docs/src/components/home/Testimonials';
+import Sponsors from 'docs/src/components/home/Sponsors';
 
 export default function Home() {
   return (
@@ -35,6 +36,7 @@ export default function Home() {
       <ValueProposition />
       <DesignSystemComponents />
       <Testimonials />
+      <Sponsors />
     </ThemeProvider>
   );
 }
