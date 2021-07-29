@@ -169,6 +169,8 @@ export default function HeaderNavBar() {
                   sx={{
                     minWidth: 498,
                     overflow: 'hidden',
+                    bgcolor: (theme) =>
+                      theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
                     boxShadow: (theme) =>
                       `0px 4px 20px ${
                         theme.palette.mode === 'dark'
@@ -183,7 +185,7 @@ export default function HeaderNavBar() {
                     '& li:not(:last-of-type)': {
                       borderBottom: '1px solid',
                       borderColor: (theme) =>
-                        theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
+                        theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.100',
                     },
                     '& a': { textDecoration: 'none' },
                   }}

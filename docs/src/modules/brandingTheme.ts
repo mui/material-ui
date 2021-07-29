@@ -97,6 +97,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         800: '#004C99',
         900: '#003A75',
       },
+      divider: mode === 'dark' ? blueDark[400] : grey[100],
       primaryDark: blueDark,
       ...(mode === 'dark' && {
         background: {
@@ -319,6 +320,14 @@ export function getThemedComponents(theme: Theme) {
             ...(theme.palette.mode === 'dark' && {
               backgroundColor: theme.palette.primaryDark[700],
             }),
+          },
+        },
+      },
+      MuiTableCell: {
+        styleOverrides: {
+          root: {
+            padding: theme.spacing(1, 2),
+            borderColor: theme.palette.divider,
           },
         },
       },
