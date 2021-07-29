@@ -2,6 +2,7 @@ import * as React from 'react';
 import NextLink from 'next/link';
 import { styled, alpha } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import NoSsr from '@material-ui/core/NoSsr';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
@@ -63,7 +64,9 @@ export default function AppHeader() {
         <Box sx={{ display: { md: 'none' } }}>
           <HeaderNavDropdown />
         </Box>
-        <ThemeModeToggle checked={mode === 'dark'} onChange={handleChangeThemeMode} />
+        <NoSsr>
+          <ThemeModeToggle checked={mode === 'dark'} onChange={handleChangeThemeMode} />
+        </NoSsr>
       </Container>
     </Header>
   );

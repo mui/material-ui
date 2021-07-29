@@ -10,26 +10,26 @@ const References = () => {
       justifyContent="center"
       sx={{
         textAlign: 'center',
-        '& img': { maxWidth: '100%', px: 1, filter: 'opacity(0.475)' },
+        '& img': { maxWidth: '100%', px: 1 },
       }}
     >
       <Grid item xs={4} md={2}>
-        <img src="/static/branding/pricing/coursera.svg" alt="Coursera logo" />
+        <img src="/static/branding/companies/coursera.svg" alt="Coursera logo" />
       </Grid>
       <Grid item xs={4} md={2}>
-        <img src="/static/branding/pricing/amazon.svg" alt="Amazon logo" />
+        <img src="/static/branding/companies/amazon.svg" alt="Amazon logo" />
       </Grid>
       <Grid item xs={4} md={2}>
-        <img src="/static/branding/pricing/nasa.svg" alt="Nasa logo" />
+        <img src="/static/branding/companies/nasa.svg" alt="Nasa logo" />
       </Grid>
       <Grid item xs={4} md={2}>
-        <img src="/static/branding/pricing/netflix.svg" alt="Netflix logo" />
+        <img src="/static/branding/companies/netflix.svg" alt="Netflix logo" />
       </Grid>
       <Grid item xs={4} md={2}>
-        <img src="/static/branding/pricing/unity.svg" alt="Unity logo" />
+        <img src="/static/branding/companies/unity.svg" alt="Unity logo" />
       </Grid>
       <Grid item xs={4} md={2}>
-        <img src="/static/branding/pricing/shutterstock.svg" alt="Shutterstock logo" />
+        <img src="/static/branding/companies/shutterstock.svg" alt="Shutterstock logo" />
       </Grid>
     </Grid>
   );
