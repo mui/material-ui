@@ -70,10 +70,10 @@ export const styles = (theme) => ({
 let warnedOnce = false;
 
 /**
- * ⚠️ The GridListTileBar component was renamed to ImageListTileBar to align with the current Material Design naming.
+ * ⚠️ The GridListTileBar component was renamed to ImageListItemBar to align with the current Material Design naming.
  *
- * You should use `import { ImageListTileBar } from '@material-ui/core'`
- * or `import ImageListTileBar from '@material-ui/core/ImageListTileBar'`.
+ * You should use `import { ImageListItemBar } from '@material-ui/core'`
+ * or `import ImageListItemBar from '@material-ui/core/ImageListItemBar'`.
  */
 const GridListTileBar = React.forwardRef(function GridListTileBar(props, ref) {
   if (process.env.NODE_ENV !== 'production') {
@@ -81,10 +81,10 @@ const GridListTileBar = React.forwardRef(function GridListTileBar(props, ref) {
       warnedOnce = true;
       console.error(
         [
-          'Material-UI: The GridListTileBar component was renamed to ImageListTileBar to align with the current Material Design naming.',
+          'Material-UI: The GridListTileBar component was renamed to ImageListItemBar to align with the current Material Design naming.',
           '',
-          "You should use `import { ImageListTileBar } from '@material-ui/core'`",
-          "or `import ImageListTileBar from '@material-ui/core/ImageListTileBar'`.",
+          "You should use `import { ImageListItemBar } from '@material-ui/core'`",
+          "or `import ImageListItemBar from '@material-ui/core/ImageListItemBar'`.",
         ].join('\n'),
       );
     }
