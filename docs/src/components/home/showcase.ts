@@ -205,7 +205,7 @@ interface TimeframeOptions {
 function noop() {}
 
 export const useTimeframes = (options: TimeframeOptions) => {
-  const { run, speed = 1000, maxFrame, onDone = noop } = options;
+  const { run, speed = 2400, maxFrame, onDone = noop } = options;
   const [frame, setFrame] = React.useState(0);
 
   React.useEffect(() => {

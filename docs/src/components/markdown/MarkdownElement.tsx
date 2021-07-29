@@ -15,7 +15,7 @@ const Root = styled('div')(({ theme }) => ({
   //   position: 'absolute',
   // },
   '& pre': {
-    backgroundColor: theme.palette.primary[900],
+    backgroundColor: theme.palette.primaryDark[800],
     direction: 'ltr',
     overflow: 'auto',
     margin: 0,

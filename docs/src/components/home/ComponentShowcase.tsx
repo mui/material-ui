@@ -64,8 +64,6 @@ darkBrandingTheme = createTheme(darkBrandingTheme, {
   },
 });
 
-const defaultTheme = createTheme();
-
 const CodeToggle = ({ sx, ...props }: IconButtonProps) => {
   return (
     <IconButton size="small" {...props} sx={{ p: 0, ...sx }}>
@@ -73,6 +71,8 @@ const CodeToggle = ({ sx, ...props }: IconButtonProps) => {
     </IconButton>
   );
 };
+
+const defaultTheme = createTheme();
 
 const ComponentShowcase = () => {
   const theme = useTheme();
@@ -85,7 +85,7 @@ const ComponentShowcase = () => {
   );
   const prevThemeCode = React.useRef('');
   const codeContainer = React.useRef<HTMLDivElement | null>(null);
-  const themeFrames = React.useMemo(() => getMaterialThemeFrames(theme), []);
+  const themeFrames = React.useMemo(() => getMaterialThemeFrames(theme), [theme]);
   const { frame, done, rerun } = useTimeframes({ run: customized, maxFrame: themeFrames.length });
 
   React.useEffect(() => {
@@ -120,22 +120,25 @@ const ComponentShowcase = () => {
   };
 
   return (
-    <Paper
-      variant="outlined"
+    <Box
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        bgcolor: 'grey.100',
         height: '100%',
       }}
     >
-      <Box
+      <Paper
+        variant="outlined"
         sx={{
           display: 'flex',
           minHeight: 200,
           justifyContent: 'center',
           alignItems: 'center',
           px: 2,
+          bgcolor: theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
+          borderColor: theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
+          borderBottomLeftRadius: 0,
+          borderBottomRightRadius: 0,
           '& *': {
             transition: '0.4s',
           },
@@ -144,14 +147,15 @@ const ComponentShowcase = () => {
         <ThemeProvider theme={customized ? customTheme : defaultTheme}>
           <MaterialDesignDemo />
         </ThemeProvider>
-      </Box>
+      </Paper>
       <ThemeProvider theme={darkBrandingTheme}>
         <Box
-          borderRadius={'0 0 10px 10px'}
-          p={2}
-          m={'-1px'}
-          bgcolor="background.paper"
-          flexGrow={1}
+          sx={{
+            borderRadius: '0 0 10px 10px',
+            p: 2,
+            bgcolor: 'background.default',
+            flexGrow: 1,
+          }}
         >
           <Box>
             <Button
@@ -227,7 +231,7 @@ const ComponentShowcase = () => {
           </Box>
         </Box>
       </ThemeProvider>
-    </Paper>
+    </Box>
   );
 };
 

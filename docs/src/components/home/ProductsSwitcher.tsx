@@ -24,7 +24,7 @@ function ProductItem({
     <Box display="flex" alignItems="center" py={2}>
       <Box px={2}>{icon}</Box>
       <Box>
-        <Typography color="grey.900" variant="body2" fontWeight="bold">
+        <Typography color="text.primary" variant="body2" fontWeight="bold">
           {name}
         </Typography>
         <Typography color="text.secondary" variant="body2" fontWeight="regular">
@@ -64,7 +64,7 @@ const ProductsSwitcher = () => {
           borderRadius: 1,
           transition: '0.3s',
           '&:hover:not(.Mui-selected)': {
-            bgcolor: 'grey.100',
+            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100'),
             '@media (hover: none)': {
               bgcolor: 'transparent',
             },
@@ -75,10 +75,17 @@ const ProductsSwitcher = () => {
         },
         '& .MuiTabs-indicator': {
           width: '100%',
-          bgcolor: 'background.paper',
+          bgcolor: (theme) =>
+            theme.palette.mode === 'dark' ? 'primaryDark.700' : 'background.paper',
           borderRadius: 1,
           border: '1px solid',
-          borderColor: 'grey.200',
+          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.200'),
+        },
+        '& svg > circle': {
+          fill: (theme) =>
+            theme.palette.mode === 'dark'
+              ? theme.palette.primaryDark[700]
+              : theme.palette.grey[100],
         },
       }}
     >
