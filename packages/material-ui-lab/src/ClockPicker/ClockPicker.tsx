@@ -104,8 +104,8 @@ export interface ClockPickerProps<TDate> extends ExportedClockPickerProps<TDate>
    * The props used for each slot inside.
    */
   componentsProps?: {
-    leftArrowButton?: any;
-    rightArrowButton?: any;
+    leftArrowButton?: Record<string, any>;
+    rightArrowButton?: Record<string, any>;
   };
 
   /**

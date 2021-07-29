@@ -43,7 +43,7 @@ export interface PickersCalendarHeaderProps<TDate>
    * @default {}
    */
   componentsProps?: ExportedArrowSwitcherProps['componentsProps'] & {
-    switchViewButton?: any;
+    switchViewButton?: Record<string, any>;
   };
   currentMonth: TDate;
   views: readonly CalendarPickerView[];
@@ -201,7 +201,6 @@ function PickersCalendarHeader<TDate>(props: PickersCalendarHeaderProps<TDate>) 
             as={components.SwitchViewButton}
             aria-label={getViewSwitchingButtonText(currentView)}
             {...switchViewButtonProps}
-            styleProps={{ ...styleProps, ...switchViewButtonProps }}
           >
             <PickersCalendarHeaderSwitchView
               as={components.SwitchViewIcon}

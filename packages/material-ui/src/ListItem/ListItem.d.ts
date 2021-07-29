@@ -98,12 +98,7 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
        * @default {}
        */
       componentsProps?: {
-        root?: {
-          as: React.ElementType;
-          styleProps?: Omit<ListItemBaseProps, 'components' | 'componentsProps'> & {
-            dense?: boolean;
-          };
-        };
+        root?: Record<string, any>;
       };
     };
   defaultComponent: D;

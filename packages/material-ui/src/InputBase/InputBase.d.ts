@@ -51,26 +51,13 @@ export interface InputBaseProps
     Root?: React.ElementType;
     Input?: React.ElementType;
   };
-
   /**
    * The props used for each slot inside the Input.
    * @default {}
    */
   componentsProps?: {
-    root?: {
-      as: React.ElementType;
-      styleProps?: Omit<InputBaseProps, 'components' | 'componentsProps'> & {
-        hiddenLabel?: boolean;
-        focused?: boolean;
-      };
-    };
-    input?: {
-      as?: React.ElementType;
-      styleProps?: Omit<InputBaseProps, 'components' | 'componentsProps'> & {
-        hiddenLabel?: boolean;
-        focused?: boolean;
-      };
-    };
+    root?: Record<string, any>;
+    input?: Record<string, any>;
   };
   /**
    * The default value. Use when the component is not controlled.
