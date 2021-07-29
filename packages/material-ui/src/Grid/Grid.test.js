@@ -49,6 +49,17 @@ describe('<Grid />', () => {
       const { container } = render(<Grid item xs="auto" />);
       expect(container.firstChild).to.have.class(classes['grid-xs-auto']);
     });
+
+    it('should apply the styles necessary for variable width nested item when set to auto', () => {
+      const { container } = render(<Grid container item xs="auto" />);
+      expect(container.firstChild).toHaveComputedStyle({
+        flexBasis: 'auto',
+        flexGrow: '0',
+        flexShrink: '0',
+        maxWidth: 'none',
+        width: 'auto',
+      });
+    });
   });
 
   describe('prop: spacing', () => {
