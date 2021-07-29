@@ -7,7 +7,7 @@ export default function transformer(file, api, options) {
   const root = j(file.source);
 
   function getFileNameWithoutExt() {
-    return (file.path.split(/(\\|\/)/g).slice(-1)[0] || '').replace(/^([^.]*)\.(.*)/, '$1');
+    return path.basename(file.path).replace(/^([^.]*)\.(.*)/, '$1');
   }
 
   /**
