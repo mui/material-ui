@@ -10,7 +10,7 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import PlayerCard from 'docs/src/pages/components/cards/PlayerCard';
 import TaskCard from 'docs/src/pages/components/cards/TaskCard';
 import NotificationCard from 'docs/src/pages/components/cards/NotificationCard';
-import CustomizedChip from 'docs/src/pages/components/chips/CustomizedChip';
+import ThemeChip from 'docs/src/pages/components/chips/ThemeChip';
 import ThemeDatePicker from 'docs/src/pages/components/date-picker/ThemeDatePicker';
 import ThemeSlider from 'docs/src/pages/components/slider/ThemeSlider';
 import FolderTable from 'docs/src/pages/components/tables/FolderTable';
@@ -47,7 +47,7 @@ const grid = [
   {
     ui: <ThemeSlider />,
     width: 70,
-    height: 160,
+    height: 180,
   },
   {
     ui: <ViewToggleButton />,
@@ -60,7 +60,7 @@ const grid = [
     height: 135,
   },
   {
-    ui: <CustomizedChip />,
+    ui: <ThemeChip />,
     width: 220,
     height: 32,
     sx: { alignSelf: 'center' },
@@ -209,60 +209,6 @@ export default function Hero() {
                     {config.ui || null}
                   </Box>
                 ))}
-                {/* <Box sx={{ gridRow: 'span 4', gridColumn: 'span 4' }}>
-                  <TaskCard />
-                </Box>
-                <Box
-                  sx={{
-                    gridRow: 'span 3',
-                    gridColumn: 'span 1',
-                    ml: -2,
-                    py: 2,
-                    bgcolor: 'background.paper',
-                    borderRadius: 5,
-                  }}
-                >
-                  <ThemeSlider />
-                </Box>
-                <Box sx={{ gridRow: 'span 3', gridColumn: 'span 3' }}>
-                  <FolderTable />
-                </Box>
-                <Box sx={{ gridRow: 'span 4', gridColumn: 'span 1' }} />
-                <Box sx={{ gridColumn: 'span 3' }}>
-                  <ViewToggleButton />
-                </Box>
-                <Box sx={{ gridRow: 'span 1', gridColumn: 'span 4' }}>
-                  <ThemeTabs />
-                </Box>
-                <Box sx={{ gridRow: 'span 3', gridColumn: 'span 3' }}>
-                  <ThemeTimeline />
-                </Box>
-                <Box sx={{ gridRow: 'span 3', gridColumn: 'span 3' }} />
-                <Box sx={{ gridRow: 'span 2', gridColumn: 'span 4' }}>
-                  <PlayerCard />
-                </Box>
-                <Box sx={{ gridRow: 'span 1', gridColumn: 'span 4' }}>
-                  <CustomizedChip />
-                </Box>
-                <Box
-                  sx={{
-                    gridRow: 'span 5',
-                    gridColumn: 'span 4',
-                    justifySelf: 'flex-start',
-                    alignSelf: 'flex-start',
-                  }}
-                >
-                  <ThemeDatePicker />
-                </Box>
-                <Box
-                  sx={{
-                    gridRow: 'span 2',
-                    gridColumn: 'span 4',
-                    '&&': { alignSelf: 'flex-start' },
-                  }}
-                >
-                  <NotificationCard />
-                </Box> */}
               </Box>
             </Box>
           </Grid>
