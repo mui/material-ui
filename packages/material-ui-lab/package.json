@@ -75,6 +75,7 @@
     "prop-types": "^15.7.2",
     "react-is": "^17.0.2",
     "react-transition-group": "^4.4.1",
+    "resize-observer-polyfill": "^1.5.1",
     "rifm": "^0.12.0"
   },
   "devDependencies": {

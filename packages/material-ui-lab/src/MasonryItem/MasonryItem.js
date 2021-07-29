@@ -7,7 +7,7 @@ import {
   handleBreakpoints,
   unstable_resolveBreakpointValues as resolveBreakpointValues,
 } from '@material-ui/system';
-import { deepmerge, unstable_useForkRef as useForkRef } from '@material-ui/utils';
+import { unstable_useForkRef as useForkRef } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { styled, useThemeProps } from '@material-ui/core/styles';
 import ResizeObserver from 'resize-observer-polyfill';
@@ -51,7 +51,7 @@ export const style = ({ styleProps, theme }) => {
       paddingBottom: gap - 1,
     };
   };
-  styles = deepmerge(styles, handleBreakpoints({ theme }, spacingValues, styleFromPropValue));
+  styles = { ...styles, ...handleBreakpoints({ theme }, spacingValues, styleFromPropValue) };
 
   return styles;
 };
@@ -73,14 +73,7 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
   const masonryItemRef = React.useRef(null);
 
   const { spacing = 1 } = React.useContext(MasonryContext);
-  const {
-    children,
-    className,
-    component = 'div',
-    columnSpan = 1,
-    height = undefined,
-    ...other
-  } = props;
+  const { children, className, component = 'div', columnSpan = 1, height, ...other } = props;
   const [styleProps, setStyleProps] = React.useState({
     ...props,
     spacing,
@@ -135,7 +128,7 @@ MasonryItem.propTypes /* remove-proptypes */ = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The content of the component, normally an `<img />` or a `<div />`.
+   * The content of the component, normally an `<img />` or a `<div />`. It should be only one element.
    */
   children: PropTypes.element.isRequired,
   /**

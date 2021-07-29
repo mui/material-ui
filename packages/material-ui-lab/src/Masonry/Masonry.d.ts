@@ -6,7 +6,7 @@ import { MasonryClasses } from './masonryClasses';
 export interface MasonryTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
-     * The content of the component, normally `<MasonryItem />`s.
+     * The content of the component. It's recommended to be `<MasonryItem />`s.
      */
     children: NonNullable<React.ReactNode>;
     /**
@@ -19,7 +19,7 @@ export interface MasonryTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     columns?: ResponsiveStyleValue<number | string>;
     /**
-     * Defines the space between children.
+     * Defines the space between children. It is a factor of the theme's spacing.
      * @default 1
      */
     spacing?: ResponsiveStyleValue<number | string>;

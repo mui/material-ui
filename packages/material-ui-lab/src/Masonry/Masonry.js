@@ -48,10 +48,10 @@ export const style = ({ styleProps, theme }) => {
     };
   };
 
-  styles = deepmerge(
-    styles,
-    handleBreakpoints({ theme }, spacingValues, spacingStyleFromPropValue),
-  );
+  styles = {
+    ...styles,
+    ...handleBreakpoints({ theme }, spacingValues, spacingStyleFromPropValue),
+  };
 
   const columnValues = resolveBreakpointValues({ values: styleProps.columns, base });
   const columnStyleFromPropValue = (propValue) => {
@@ -83,10 +83,8 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
   const styleProps = { ...props, spacing, columns };
   const classes = useUtilityClasses(styleProps);
 
-  const masonry = React.useMemo(() => ({ spacing }), [spacing]);
-
   return (
-    <MasonryContext.Provider value={masonry}>
+    <MasonryContext.Provider value={{ spacing }}>
       <MasonryRoot
         as={component}
         className={clsx(classes.root, className)}
@@ -106,7 +104,7 @@ Masonry.propTypes /* remove-proptypes */ = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The content of the component, normally `<MasonryItem />`s.
+   * The content of the component. It's recommended to be `<MasonryItem />`s.
    */
   children: PropTypes /* @typescript-to-proptypes-ignore */.node.isRequired,
   /**
@@ -133,7 +131,7 @@ Masonry.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * Defines the space between children.
+   * Defines the space between children. It is a factor of the theme's spacing.
    * @default 1
    */
   spacing: PropTypes.oneOfType([

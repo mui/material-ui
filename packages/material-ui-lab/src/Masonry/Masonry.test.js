@@ -18,29 +18,14 @@ describe('<Masonry />', () => {
       inheritComponent: 'div',
       render,
       refInstanceof: window.HTMLDivElement,
-      testComponentPropWith: 'div',
+      testComponentPropWith: 'span',
       testVariantProps: { variant: 'foo' },
       muiName: 'MuiMasonry',
       skip: ['componentsProp'],
     }),
   );
 
-  const itemsData = [
-    {
-      img: '/fake1.png',
-      title: 'fake1',
-    },
-    {
-      img: '/fake2.png',
-      title: 'fake2',
-    },
-  ];
   const theme = createTheme({ spacing: 8 });
-  const children = itemsData.map((item, idx) => (
-    <div key={idx} data-testid="test-children">
-      <img src={item.img} alt={item.title} />
-    </div>
-  ));
 
   describe('style attribute:', () => {
     it('should render with correct default styles', () => {
@@ -121,28 +106,6 @@ describe('<Masonry />', () => {
         width: '100%',
         columnGap: theme.spacing(1),
         rowGap: 1,
-      });
-    });
-  });
-
-  describe('props:', () => {
-    describe('prop: component', () => {
-      it('should render a div by default', () => {
-        const { container } = render(<Masonry>{children}</Masonry>);
-        expect(container.firstChild).to.have.property('nodeName', 'DIV');
-      });
-
-      it('should render a different component', () => {
-        const { container } = render(<Masonry component="span">{children}</Masonry>);
-        expect(container.firstChild).to.have.property('nodeName', 'SPAN');
-      });
-    });
-
-    describe('prop: className', () => {
-      it('should append the className to the root element', () => {
-        const { container } = render(<Masonry className="foo">{children}</Masonry>);
-        expect(container.firstChild).to.have.class(classes.root);
-        expect(container.firstChild).to.have.class('foo');
       });
     });
   });

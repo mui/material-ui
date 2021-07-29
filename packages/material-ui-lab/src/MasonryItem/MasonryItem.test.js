@@ -18,7 +18,7 @@ describe('<MasonryItem />', () => {
       inheritComponent: 'div',
       render,
       refInstanceof: window.HTMLDivElement,
-      testComponentPropWith: 'div',
+      testComponentPropWith: 'span',
       testVariantProps: { variant: 'foo' },
       muiName: 'MuiMasonryItem',
       skip: [
@@ -106,28 +106,6 @@ describe('<MasonryItem />', () => {
       expect(computedStyle['grid-row-end']).to.equal(
         `span ${Math.ceil(150 + Number(theme.spacing(1).replace('px', '')))}`,
       );
-    });
-  });
-
-  describe('props:', () => {
-    describe('prop: component', () => {
-      it('should render a div by default', () => {
-        const { container } = render(<MasonryItem>{children}</MasonryItem>);
-        expect(container.firstChild).to.have.property('nodeName', 'DIV');
-      });
-
-      it('should render a different component', () => {
-        const { container } = render(<MasonryItem component="span">{children}</MasonryItem>);
-        expect(container.firstChild).to.have.property('nodeName', 'SPAN');
-      });
-    });
-
-    describe('prop: className', () => {
-      it('should append the className to the root element', () => {
-        const { container } = render(<MasonryItem className="foo">{children}</MasonryItem>);
-        expect(container.firstChild).to.have.class(classes.root);
-        expect(container.firstChild).to.have.class('foo');
-      });
     });
   });
 });

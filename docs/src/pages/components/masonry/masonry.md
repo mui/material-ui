@@ -24,6 +24,6 @@ Masonry maintains a list of content blocks with a consistent width but variable 
 
 {{"demo": "pages/components/masonry/DiffColSizeMasonry.js", "bg": true}}
 
-> In order to use server-side rendering, you can pass the height of the content of `<MasonryItem />` as shown in the following demo:
+> In order to use server-side rendering, you should pass the height of the content of `<MasonryItem />` as shown in the following demo:
 
 {{"demo": "pages/components/masonry/SSRMasonry.js", "bg": true}}

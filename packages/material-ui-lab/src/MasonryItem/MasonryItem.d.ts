@@ -6,7 +6,7 @@ import { MasonryItemClasses } from './masonryItemClasses';
 export interface MasonryItemTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
-     * The content of the component, normally an `<img />` or a `<div />`.
+     * The content of the component, normally an `<img />` or a `<div />`. It should be only one element.
      */
     children: NonNullable<React.ReactElement>;
     /**
