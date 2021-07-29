@@ -6,7 +6,7 @@ import AppHeader from 'docs/src/layouts/AppHeader';
 import Container from '@material-ui/core/Container';
 import Hero from 'docs/src/components/home/Hero';
 import References from 'docs/src/components/home/References';
-import DesignSystems from 'docs/src/components/home/DesignSystems';
+import ProductSuite from 'docs/src/components/home/ProductSuite';
 import ValueProposition from 'docs/src/components/home/ValueProposition';
 
 export default function Home() {
@@ -29,7 +29,7 @@ export default function Home() {
           their UIs.
         </Typography>
       </Container>
-      <DesignSystems />
+      <ProductSuite />
       <ValueProposition />
     </ThemeProvider>
   );

@@ -7,7 +7,7 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import ProductsSwitcher from 'docs/src/components/home/ProductsSwitcher';
 import ComponentShowcase from './ComponentShowcase';
 
-const DesignSystems = () => {
+const ProductSuite = () => {
   return (
     <Box
       sx={{
@@ -41,4 +41,4 @@ const DesignSystems = () => {
   );
 };
 
-export default DesignSystems;
+export default ProductSuite;
