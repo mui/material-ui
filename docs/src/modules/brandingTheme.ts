@@ -187,17 +187,22 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         color: mode === 'dark' ? grey[500] : '#003A75',
       },
       h3: {
-        fontSize: defaultTheme.typography.pxToRem(28), // 18px
-        lineHeight: 42 / 28,
+        fontSize: defaultTheme.typography.pxToRem(36),
+        lineHeight: 44 / 36,
         letterSpacing: 0,
       },
       h4: {
-        fontSize: defaultTheme.typography.pxToRem(28), // 18px
-        lineHeight: 36 / 24,
+        fontSize: defaultTheme.typography.pxToRem(28),
+        lineHeight: 42 / 28,
         letterSpacing: 0,
       },
       h5: {
-        fontSize: defaultTheme.typography.pxToRem(20), // 18px
+        fontSize: defaultTheme.typography.pxToRem(24),
+        lineHeight: 36 / 24,
+        letterSpacing: 0,
+      },
+      h6: {
+        fontSize: defaultTheme.typography.pxToRem(20),
         lineHeight: 30 / 20,
         letterSpacing: 0,
       },
@@ -207,7 +212,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         letterSpacing: 0,
       },
       subtitle1: {
-        fontSize: defaultTheme.typography.pxToRem(18), // 18px
+        fontSize: defaultTheme.typography.pxToRem(18),
         lineHeight: 24 / 18,
         letterSpacing: 0,
         fontWeight: 500,

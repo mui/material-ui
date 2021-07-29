@@ -9,6 +9,7 @@ import References from 'docs/src/components/home/References';
 import ProductSuite from 'docs/src/components/home/ProductSuite';
 import ValueProposition from 'docs/src/components/home/ValueProposition';
 import DesignSystemComponents from 'docs/src/components/home/DesignSystemComponents';
+import Testimonials from 'docs/src/components/home/Testimonials';
 
 export default function Home() {
   return (
@@ -33,6 +34,7 @@ export default function Home() {
       <ProductSuite />
       <ValueProposition />
       <DesignSystemComponents />
+      <Testimonials />
     </ThemeProvider>
   );
 }
