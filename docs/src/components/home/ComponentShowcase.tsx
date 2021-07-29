@@ -148,15 +148,15 @@ const ComponentShowcase = () => {
           <MaterialDesignDemo />
         </ThemeProvider>
       </Paper>
-      <ThemeProvider theme={darkBrandingTheme}>
-        <Box
-          sx={{
-            borderRadius: '0 0 10px 10px',
-            p: 2,
-            bgcolor: 'background.default',
-            flexGrow: 1,
-          }}
-        >
+      <Box
+        sx={{
+          borderRadius: '0 0 10px 10px',
+          p: 2,
+          bgcolor: theme.palette.mode === 'dark' ? 'background.default' : 'primaryDark.700',
+          flexGrow: 1,
+        }}
+      >
+        <ThemeProvider theme={darkBrandingTheme}>
           <Box>
             <Button
               size="small"
@@ -179,58 +179,58 @@ const ComponentShowcase = () => {
               })()}
             </Button>
           </Box>
-          <Box
-            ref={codeContainer}
+        </ThemeProvider>
+        <Box
+          ref={codeContainer}
+          sx={{
+            display: 'flex',
+            maxWidth: '100%',
+            my: 2,
+            position: 'relative',
+            overflow: 'auto',
+            maxHeight: 500,
+          }}
+        >
+          <CodeToggle
             sx={{
-              display: 'flex',
-              maxWidth: '100%',
-              my: 2,
-              position: 'relative',
-              overflow: 'auto',
-              maxHeight: 500,
+              position: 'absolute',
+              transform: `rotate(${importsOpen ? '0deg' : '-90deg'})`,
+              zIndex: 1,
             }}
-          >
-            <CodeToggle
-              sx={{
-                position: 'absolute',
-                transform: `rotate(${importsOpen ? '0deg' : '-90deg'})`,
-                zIndex: 1,
-              }}
-              onClick={() => setImportsOpen((bool) => !bool)}
-            />
-            <Box sx={{ position: 'relative', flexGrow: 1, pl: 2 }}>
-              {flashCodes.map((item, index) => (
-                <FlashCode
-                  key={index}
-                  sx={{ left: 20, ...(index !== frame - 1 && { height: '0px' }) }}
-                  {...item}
-                />
-              ))}
-              {importsOpen ? (
-                <HighlightedCode
-                  component={MarkdownElement}
-                  code={materialDemoCode.imports}
-                  language="jsx"
-                />
-              ) : (
-                <HighlightedCode component={MarkdownElement} code="import {...}" language="jsx" />
-              )}
-              {themeCode && (
-                <React.Fragment>
-                  <Box height={20} />
-                  <HighlightedCode component={MarkdownElement} code={themeCode} language="jsx" />
-                </React.Fragment>
-              )}
-              <Box height={20} />
+            onClick={() => setImportsOpen((bool) => !bool)}
+          />
+          <Box sx={{ position: 'relative', flexGrow: 1, pl: 2 }}>
+            {flashCodes.map((item, index) => (
+              <FlashCode
+                key={index}
+                sx={{ left: 20, ...(index !== frame - 1 && { height: '0px' }) }}
+                {...item}
+              />
+            ))}
+            {importsOpen ? (
               <HighlightedCode
                 component={MarkdownElement}
-                code={materialDemoCode.component(customized)}
+                code={materialDemoCode.imports}
                 language="jsx"
               />
-            </Box>
+            ) : (
+              <HighlightedCode component={MarkdownElement} code="import {...}" language="jsx" />
+            )}
+            {themeCode && (
+              <React.Fragment>
+                <Box height={20} />
+                <HighlightedCode component={MarkdownElement} code={themeCode} language="jsx" />
+              </React.Fragment>
+            )}
+            <Box height={20} />
+            <HighlightedCode
+              component={MarkdownElement}
+              code={materialDemoCode.component(customized)}
+              language="jsx"
+            />
           </Box>
         </Box>
-      </ThemeProvider>
+      </Box>
     </Box>
   );
 };

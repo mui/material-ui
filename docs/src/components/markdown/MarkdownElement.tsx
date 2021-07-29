@@ -15,7 +15,10 @@ const Root = styled('div')(({ theme }) => ({
   //   position: 'absolute',
   // },
   '& pre': {
-    backgroundColor: theme.palette.primaryDark[800],
+    backgroundColor:
+      theme.palette.mode === 'dark'
+        ? theme.palette.primaryDark[800]
+        : theme.palette.primaryDark[700],
     direction: 'ltr',
     overflow: 'auto',
     margin: 0,
