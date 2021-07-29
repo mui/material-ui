@@ -28,7 +28,7 @@ const grey = {
   900: '#3D4752',
 };
 
-export default function CustomizedChip() {
+export default function ThemeChip() {
   /*
    * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
    *
