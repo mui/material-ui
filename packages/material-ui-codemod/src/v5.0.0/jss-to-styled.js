@@ -1,3 +1,5 @@
+const nodePath = require('path');
+
 /**
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
@@ -7,7 +9,7 @@ export default function transformer(file, api, options) {
   const root = j(file.source);
 
   function getFileNameWithoutExt() {
-    return path.basename(file.path).replace(/^([^.]*)\.(.*)/, '$1');
+    return nodePath.basename(file.path).replace(/^([^.]*)\.(.*)/, '$1');
   }
 
   /**
