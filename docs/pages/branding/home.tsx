@@ -7,6 +7,7 @@ import Container from '@material-ui/core/Container';
 import Hero from 'docs/src/components/home/Hero';
 import References from 'docs/src/components/home/References';
 import DesignSystems from 'docs/src/components/home/DesignSystems';
+import ValueProposition from 'docs/src/components/home/ValueProposition';
 
 export default function Home() {
   return (
@@ -29,6 +30,7 @@ export default function Home() {
         </Typography>
       </Container>
       <DesignSystems />
+      <ValueProposition />
     </ThemeProvider>
   );
 }
