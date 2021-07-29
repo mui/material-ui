@@ -12,7 +12,7 @@ import FormControlUnstyled, {
   useFormControlUnstyled,
 } from '@material-ui/unstyled/FormControlUnstyled';
 
-function TestComponent() {
+/* function TestComponent() {
   const context = useFormControlUnstyled();
 
   const inputProps = {
@@ -25,7 +25,7 @@ function TestComponent() {
   };
 
   return <input {...inputProps} />;
-}
+} */
 
 describe('<FormControlUnstyled />', () => {
   const mount = createMount();
@@ -47,6 +47,11 @@ describe('<FormControlUnstyled />', () => {
 
   describe('initial state', () => {
     it('has undefined value', () => {
+      function TestComponent() {
+        const context = useFormControlUnstyled();
+        return <input value={context?.value as string} onChange={context?.onChange} />;
+      }
+
       const { getByRole } = render(
         <FormControlUnstyled>
           <TestComponent />
@@ -57,6 +62,19 @@ describe('<FormControlUnstyled />', () => {
     });
 
     it('has disabled, filled, focused, and required set to false', () => {
+      function TestComponent() {
+        const context = useFormControlUnstyled();
+
+        const inputProps = {
+          'data-filled': context?.filled,
+          'data-focused': context?.focused,
+          disabled: context?.disabled,
+          required: context?.required,
+        };
+
+        return <input {...inputProps} />;
+      }
+
       const { getByRole } = render(
         <FormControlUnstyled>
           <TestComponent />
@@ -77,6 +95,11 @@ describe('<FormControlUnstyled />', () => {
 
   describe('prop: value', () => {
     it('propagates the value via the context', () => {
+      function TestComponent() {
+        const context = useFormControlUnstyled();
+        return <input value={context?.value as string} onChange={context?.onChange} />;
+      }
+
       const { getByRole } = render(
         <FormControlUnstyled value="42">
           <TestComponent />
@@ -89,6 +112,11 @@ describe('<FormControlUnstyled />', () => {
 
   describe('prop: disabled', () => {
     it('propagates the value via the context', () => {
+      function TestComponent() {
+        const context = useFormControlUnstyled();
+        return <input disabled={context?.disabled} />;
+      }
+
       const { getByRole } = render(
         <FormControlUnstyled disabled>
           <TestComponent />
@@ -101,6 +129,11 @@ describe('<FormControlUnstyled />', () => {
 
   describe('prop: defaultValue', () => {
     it('propagates the value via the context', () => {
+      function TestComponent() {
+        const context = useFormControlUnstyled();
+        return <input value={context?.value as string} onChange={context?.onChange} />;
+      }
+
       const { getByRole } = render(
         <FormControlUnstyled defaultValue="foo">
           <TestComponent />
@@ -113,6 +146,11 @@ describe('<FormControlUnstyled />', () => {
 
   describe('prop: focused', () => {
     it('propagates the value via the context', () => {
+      function TestComponent() {
+        const context = useFormControlUnstyled();
+        return <input data-focused={context?.focused} />;
+      }
+
       const { getByRole } = render(
         <FormControlUnstyled focused>
           <TestComponent />
@@ -123,6 +161,11 @@ describe('<FormControlUnstyled />', () => {
     });
 
     it('ignores focused when disabled', () => {
+      function TestComponent() {
+        const context = useFormControlUnstyled();
+        return <input data-focused={context?.focused} disabled={context?.disabled} />;
+      }
+
       const { getByRole } = render(
         <FormControlUnstyled focused disabled>
           <TestComponent />
@@ -135,6 +178,11 @@ describe('<FormControlUnstyled />', () => {
 
   describe('prop: required', () => {
     it('propagates the value via the context', () => {
+      function TestComponent() {
+        const context = useFormControlUnstyled();
+        return <input required={context?.required} />;
+      }
+
       const { getByRole } = render(
         <FormControlUnstyled required>
           <TestComponent />
@@ -147,6 +195,11 @@ describe('<FormControlUnstyled />', () => {
 
   describe('prop: filled', () => {
     it('should be set if value is provided', () => {
+      function TestComponent() {
+        const context = useFormControlUnstyled();
+        return <input data-filled={context?.filled} />;
+      }
+
       const { getByRole } = render(
         <FormControlUnstyled value="foo">
           <TestComponent />
@@ -157,6 +210,11 @@ describe('<FormControlUnstyled />', () => {
     });
 
     it('should be set if defaultValue is provided', () => {
+      function TestComponent() {
+        const context = useFormControlUnstyled();
+        return <input data-filled={context?.filled} />;
+      }
+
       const { getByRole } = render(
         <FormControlUnstyled defaultValue="foo">
           <TestComponent />
@@ -167,6 +225,17 @@ describe('<FormControlUnstyled />', () => {
     });
 
     it('should be set if a controlled inner input sets its value', () => {
+      function TestComponent() {
+        const context = useFormControlUnstyled();
+        return (
+          <input
+            data-filled={context?.filled}
+            value={context?.value as string}
+            onChange={context?.onChange}
+          />
+        );
+      }
+
       const { getByRole } = render(
         <FormControlUnstyled>
           <TestComponent />
@@ -182,6 +251,11 @@ describe('<FormControlUnstyled />', () => {
 
   describe('prop: onChange', () => {
     it("propagates the inner input's onChange to FormControlUnstyled's onChange", () => {
+      function TestComponent() {
+        const context = useFormControlUnstyled();
+        return <input value={context?.value as string} onChange={context?.onChange} />;
+      }
+
       const handleChange = spy();
       const { getByRole } = render(
         <FormControlUnstyled onChange={handleChange}>

@@ -1,13 +1,7 @@
 import * as React from 'react';
 import FormControlUnstyledProps from './FormControlUnstyledProps';
 
-type ContextFromPropsKey =
-  | 'defaultValue'
-  | 'disabled'
-  | 'error'
-  | 'onChange'
-  | 'required'
-  | 'value';
+type ContextFromPropsKey = 'disabled' | 'error' | 'onChange' | 'required' | 'value';
 
 export interface FormControlUnstyledState
   extends Pick<FormControlUnstyledProps, ContextFromPropsKey> {
