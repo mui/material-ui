@@ -19,9 +19,8 @@ describe('<Masonry />', () => {
       render,
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'span',
-      testVariantProps: { variant: 'foo' },
       muiName: 'MuiMasonry',
-      skip: ['componentsProp'],
+      skip: ['componentsProp', 'themeVariants'],
     }),
   );
 

@@ -4,7 +4,11 @@ import MasonryItem, { masonryItemClasses as classes } from '@material-ui/lab/Mas
 import { expect } from 'chai';
 import { createTheme } from '@material-ui/core/styles';
 import defaultTheme from '@material-ui/core/styles/defaultTheme';
+import ResizeObserver from 'resize-observer-polyfill';
 import { style } from './MasonryItem';
+
+// Mount ResizeObserver; otherwise, this error comes up: `[ReferenceError: ResizeObserver is not defined]`
+global.ResizeObserver = ResizeObserver;
 
 describe('<MasonryItem />', () => {
   const render = createClientRender();
@@ -19,13 +23,11 @@ describe('<MasonryItem />', () => {
       render,
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'span',
-      testVariantProps: { variant: 'foo' },
       muiName: 'MuiMasonryItem',
       skip: [
         'componentsProp',
-        // reactTestRenderer fails because React state updates should be wrapped into act(...)
-        // I followed the guideline here: https://reactjs.org/link/wrap-tests-with-act
-        // but tests still couldn't pass
+        'themeVariants',
+        // reactTestRenderer fails due to this error: `TypeError: parameter 1 is not of type "Element"`
         'reactTestRenderer',
       ],
     }),

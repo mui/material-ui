@@ -10,7 +10,6 @@ import {
 import { unstable_useForkRef as useForkRef } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { styled, useThemeProps } from '@material-ui/core/styles';
-import ResizeObserver from 'resize-observer-polyfill';
 import { getMasonryItemUtilityClass } from './masonryItemClasses';
 import MasonryContext from '../Masonry/MasonryContext';
 
@@ -83,29 +82,25 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
 
   const classes = useUtilityClasses(styleProps);
 
-  // If height is passed by user, ResizeObserver is not used.
-  const resizeObserver = React.useRef(
-    height === undefined
-      ? new ResizeObserver(([item]) => {
-          setStyleProps({
-            ...styleProps,
-            height: item.contentRect.height,
-          });
-        })
-      : null,
-  );
-
   React.useEffect(() => {
-    if (resizeObserver?.current && masonryItemRef?.current) {
-      const observer = resizeObserver.current;
+    const resizeObserver =
+      height === undefined
+        ? new ResizeObserver(([item]) => {
+            setStyleProps({
+              ...styleProps,
+              height: item.contentRect.height,
+            });
+          })
+        : null; // If height is passed by user, ResizeObserver is not used.
+    if (resizeObserver && masonryItemRef?.current) {
       const item = masonryItemRef.current.firstChild;
-      observer.observe(item);
+      resizeObserver.observe(item);
       return () => {
-        observer.unobserve(item);
+        resizeObserver.unobserve(item);
       };
     }
     return true;
-  }, []);
+  }, []); // eslint-disable-line
 
   const handleRef = useForkRef(ref, masonryItemRef);
 
