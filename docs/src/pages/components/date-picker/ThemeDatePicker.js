@@ -17,7 +17,19 @@ const primary = {
   700: '#0059B2',
   800: '#004C99',
   900: '#003A75',
-  1000: '#132F4C',
+};
+
+const primaryDark = {
+  50: '#E2EDF8',
+  100: '#CEE0F3',
+  200: '#91B9E3',
+  300: '#5090D3',
+  400: '#265D97',
+  500: '#1E4976',
+  600: '#173A5E',
+  700: '#132F4C',
+  800: '#001E3C',
+  900: '#0A1929',
 };
 
 const grey = {
@@ -49,7 +61,7 @@ export default function ThemeDatePicker() {
         mode,
         primary,
         background: {
-          paper: mode === 'dark' ? primary[800] : '#fff',
+          paper: mode === 'dark' ? primaryDark[700] : '#fff',
         },
       },
       shape: {
@@ -116,7 +128,7 @@ export default function ThemeDatePicker() {
           sx={{
             '& > div': {
               border: '1px solid',
-              borderColor: mode === 'dark' ? primary[1000] : grey[200],
+              borderColor: mode === 'dark' ? primaryDark[400] : grey[200],
               borderRadius: 1,
             },
           }}

@@ -10,6 +10,19 @@ import FastRewindRounded from '@material-ui/icons/FastRewindRounded';
 import PlayArrowRounded from '@material-ui/icons/PlayArrowRounded';
 import PauseRounded from '@material-ui/icons/PauseRounded';
 
+const primaryDark = {
+  50: '#E2EDF8',
+  100: '#CEE0F3',
+  200: '#91B9E3',
+  300: '#5090D3',
+  400: '#265D97',
+  500: '#1E4976',
+  600: '#173A5E',
+  700: '#132F4C',
+  800: '#001E3C',
+  900: '#0A1929',
+};
+
 const grey = {
   50: '#F3F6F9',
   100: '#EAEEF3',
@@ -39,9 +52,9 @@ export default function PlayerCard() {
         palette: {
           mode,
           background: {
-            paper: mode === 'dark' ? '#003A75' : '#fff',
+            paper: mode === 'dark' ? primaryDark[700] : '#fff',
           },
-          divider: mode === 'dark' ? '#132F4C' : grey[200],
+          divider: mode === 'dark' ? primaryDark[400] : grey[200],
           ...(mode === 'light' && {
             text: {
               primary: grey[900],
@@ -69,7 +82,7 @@ export default function PlayerCard() {
             styleOverrides: {
               root: {
                 border: '1px solid',
-                borderColor: mode === 'dark' ? '#132F4C' : '#fff',
+                borderColor: mode === 'dark' ? primaryDark[400] : '#fff',
               },
             },
           },
@@ -80,7 +93,7 @@ export default function PlayerCard() {
             styleOverrides: {
               root: {
                 border: '1px solid',
-                borderColor: mode === 'dark' ? '#132F4C' : grey[200],
+                borderColor: mode === 'dark' ? primaryDark[400] : grey[200],
               },
             },
           },
