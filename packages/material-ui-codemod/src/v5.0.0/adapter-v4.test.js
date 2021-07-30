@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
@@ -18,7 +17,7 @@ describe('@material-ui/codemod', () => {
             source: read('./adapter-v4.test/actual.js'),
             path: require.resolve('./adapter-v4.test/actual.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
@@ -32,7 +31,7 @@ describe('@material-ui/codemod', () => {
             source: read('./adapter-v4.test/expected.js'),
             path: require.resolve('./adapter-v4.test/expected.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
@@ -46,7 +45,7 @@ describe('@material-ui/codemod', () => {
             source: read('./adapter-v4.test/core-import.actual.js'),
             path: require.resolve('./adapter-v4.test/core-import.actual.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
@@ -60,7 +59,7 @@ describe('@material-ui/codemod', () => {
             source: read('./adapter-v4.test/no-styles-import.actual.js'),
             path: require.resolve('./adapter-v4.test/no-styles-import.actual.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
