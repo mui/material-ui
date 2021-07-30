@@ -173,7 +173,9 @@ const DesignSystemComponents = () => {
       <Grid>
         <div>
           <Demo name="Button" control={{ prop: 'size', values: ['small', 'medium', 'large'] }}>
-            <Button startIcon={<ShoppingCartRounded />}>Add to Cart</Button>
+            <Button variant="contained" startIcon={<ShoppingCartRounded />}>
+              Add to Cart
+            </Button>
           </Demo>
         </div>
         <div>
@@ -181,7 +183,7 @@ const DesignSystemComponents = () => {
             name="Alert"
             control={{ prop: 'variant', values: ['standard', 'filled', 'outlined'] }}
           >
-            <Alert>Check out this alert!</Alert>
+            <Alert color="info">Check out this alert!</Alert>
           </Demo>
         </div>
         <div>
