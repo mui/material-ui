@@ -44,7 +44,8 @@ function ProductItem({
           fontWeight="bold"
           sx={{ display: 'flex', alignItems: 'center', minHeight: 24 }}
         >
-          <span>Learn more</span> <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '2px' }} />
+          <span>Learn more</span>{' '}
+          <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '2px', ml: '2px' }} />
         </Typography>
       </Box>
     </Box>

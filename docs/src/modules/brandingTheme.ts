@@ -329,8 +329,11 @@ export function getThemedComponents(theme: Theme) {
             fontWeight: 'bold',
             display: 'inline-flex',
             alignItems: 'center',
-            '& > svg': {
+            '&.MuiTypography-body1 > svg': {
               marginTop: 2,
+            },
+            '& svg:last-child': {
+              marginLeft: 2,
             },
           },
         },
