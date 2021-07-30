@@ -287,10 +287,14 @@ function buildTheme(theme: Theme): ThemeOptions {
         styleOverrides: {
           root: {
             '& .MuiInputLabel-outlined.Mui-focused': {
-              color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primaryDark[800],
+              color:
+                theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
             },
             '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-              borderColor: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primaryDark[800],
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary[500]
+                  : theme.palette.primaryDark[800],
             },
             '& .MuiOutlinedInput-input': {
               backgroundColor:
@@ -303,6 +307,36 @@ function buildTheme(theme: Theme): ThemeOptions {
             },
             '& .MuiInputBase-input': {
               fontWeight: 600,
+            },
+            '& .MuiFilledInput-root': {
+              backgroundColor:
+                theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#fff',
+              '&:after': {
+                borderColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primary[500]
+                    : theme.palette.primaryDark[800],
+              },
+              '&:hover': {
+                backgroundColor:
+                  theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#fff',
+              },
+            },
+            '& .MuiInputLabel-filled.Mui-focused': {
+              color:
+                theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
+            },
+            '& .MuiInput-root.Mui-focused': {
+              '&:after': {
+                borderColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primary[500]
+                    : theme.palette.primaryDark[800],
+              },
+            },
+            '& .MuiInputLabel-root.Mui-focused': {
+              color:
+                theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
             },
           },
         },
