@@ -2415,7 +2415,7 @@ npx @material-ui/codemod@next v5.0.0/jss-to-styled <path>
 +  cta: `${PREFIX}-cta`,
 +  content: `${PREFIX}-content`,
 +}
-+const Root = styled('div')(({ theme }) => ({
++const Root = styled('div')(({theme}) => ({
 +  [`&.${classes.root}`]: {
 +    display: 'flex',
 +    alignItems: 'center',
