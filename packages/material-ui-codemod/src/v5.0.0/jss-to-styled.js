@@ -50,7 +50,8 @@ export default function transformer(file, api, options) {
   function getFirstJsxName() {
     const matches = file.source.match(/<\/?(\w*)[\s\S]*?>/gm);
     if (matches) {
-      return matches.slice(-1)[0].match(/<\/?(\w*)(\s|\/|>)/)[1];
+      const closingTag = matches.slice(-1)[0];
+      return closingTag.substring(2, closingTag.length - 1);
     }
     return null;
   }
@@ -109,15 +110,24 @@ export default function transformer(file, api, options) {
     return [];
   }
 
-  function createStyledComponent(componentName, styledComponentName, stylesFn) {
-    let styledArg = null;
+  function isTagNameFragment(tagName) {
+    return tagName === 'React.Fragment' || tagName === 'Fragment' || tagName === '';
+  }
 
-    if (componentName.match(/^[A-Z]/)) {
-      // The root is a component
-      styledArg = j.identifier(componentName);
-    } else if (componentName === '') {
+  function isTagNameSuspense(tagName) {
+    return tagName === 'React.Suspense' || tagName === 'Suspense';
+  }
+
+  function createStyledComponent(componentName, styledComponentName, stylesFn) {
+    let styleArg = null;
+    const rootIsFragment = isTagNameFragment(componentName);
+
+    if (rootIsFragment) {
       // The root is React.Fragment
       styleArg = j.stringLiteral('div');
+    } else if (componentName.match(/^[A-Z]/)) {
+      // The root is a component
+      styleArg = j.identifier(componentName);
     } else {
       styleArg = j.stringLiteral(componentName);
     }
@@ -129,7 +139,7 @@ export default function transformer(file, api, options) {
       ),
     ]);
 
-    if (rootAsFragment) {
+    if (rootIsFragment) {
       declaration.comments = [
         j.commentLine(
           ' TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.',
@@ -273,7 +283,13 @@ export default function transformer(file, api, options) {
   }
 
   const rootJsxName = getFirstJsxName();
-  const styledComponentName = rootJsxName.match(/^[A-Z]/) ? `Styled${rootJsxName}` : 'Root';
+  if (isTagNameSuspense(rootJsxName)) {
+    return file.source;
+  }
+  const styledComponentName =
+    rootJsxName.match(/^[A-Z]/) && !isTagNameFragment(rootJsxName)
+      ? `Styled${rootJsxName}`.replace('.', '')
+      : 'Root';
 
   const prefix = getPrefix(withStylesCall || makeStylesCall);
   const rootClassKeys = getRootClassKeys();
@@ -382,6 +398,8 @@ export default function transformer(file, api, options) {
       );
     });
 
+  let foundRootElement = false;
+
   /**
    * apply <StyledComponent />
    */
@@ -389,7 +407,8 @@ export default function transformer(file, api, options) {
     .findJSXElements(rootJsxName)
     .at(0)
     .forEach((path) => {
-      // React.Fragment
+      foundRootElement = true;
+      // Component containing namespace
       if (path.node.openingElement.name.name === undefined) {
         path.node.openingElement.name = styledComponentName;
         if (path.node.closingElement) {
@@ -402,6 +421,26 @@ export default function transformer(file, api, options) {
         }
       }
     });
+
+  if (!foundRootElement) {
+    root
+      .findJSXElements()
+      .at(0)
+      .forEach((path) => {
+        // Component containing namespace
+        if (path.node.openingElement.name.name === undefined) {
+          path.node.openingElement.name = styledComponentName;
+          if (path.node.closingElement) {
+            path.node.closingElement.name = styledComponentName;
+          }
+        } else {
+          path.node.openingElement.name.name = styledComponentName;
+          if (path.node.closingElement) {
+            path.node.closingElement.name.name = styledComponentName;
+          }
+        }
+      });
+  }
 
   /**
    * import styled if not exist
