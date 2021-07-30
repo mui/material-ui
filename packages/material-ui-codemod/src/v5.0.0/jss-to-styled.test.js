@@ -12,6 +12,19 @@ function read(fileName) {
 describe('@material-ui/codemod', () => {
   describe('v5.0.0', () => {
     describe('jss-to-styled', () => {
+      it('falls back to the filename for naming', () => {
+        const actual = transform(
+          {
+            source: read('./jss-to-styled.test/Anonymous.actual.js'),
+            path: require.resolve('./jss-to-styled.test/Anonymous.actual.js'),
+          },
+          { jscodeshift: jscodeshift },
+          {},
+        );
+
+        const expected = read('./jss-to-styled.test/Anonymous.expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
       describe('first', () => {
         it('transforms as needed', () => {
           const actual = transform(

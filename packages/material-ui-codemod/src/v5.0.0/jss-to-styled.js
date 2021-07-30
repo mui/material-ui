@@ -8,8 +8,13 @@ export default function transformer(file, api, options) {
   const j = api.jscodeshift;
   const root = j(file.source);
 
-  function getFileNameWithoutExt() {
-    return nodePath.basename(file.path).replace(/^([^.]*)\.(.*)/, '$1');
+  /**
+   * @param {string} filePath
+   * @example computePrefixFromPath('/a/b/c/Anonymous.tsx') === 'Anonymous'
+   * @example computePrefixFromPath('/a/b/c/Anonymous.server.tsx') === 'Anonymous'
+   */
+  function computePrefixFromPath(filePath) {
+    return nodePath.basename(filePath, nodePath.extname(filePath)).split('.')[0];
   }
 
   /**
@@ -43,8 +48,7 @@ export default function transformer(file, api, options) {
     }
 
     if (!prefix) {
-      // 4. use file name
-      prefix = getFileNameWithoutExt();
+      prefix = computePrefixFromPath(file.path);
     }
 
     return prefix;
