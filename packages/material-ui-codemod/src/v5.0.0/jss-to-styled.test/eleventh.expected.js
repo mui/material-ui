@@ -27,6 +27,7 @@ const StyledSomeNamespaceSomeComponent = styled(SomeNamespace.SomeComponent)((
 
 export default function Page() {
 
+
   return (
     <StyledSomeNamespaceSomeComponent>
       <h1 className={classes.header}></h1>

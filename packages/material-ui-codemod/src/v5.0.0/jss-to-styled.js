@@ -401,33 +401,56 @@ export default function transformer(file, api, options) {
       );
     });
 
+  function transformJsxRootToStyledComponent(path) {
+    if (path.node.openingFragment) {
+      path.node.type = 'JSXElement';
+      path.node.openingElement = { type: 'JSXOpeningElement', name: styledComponentName };
+      path.node.closingElement = { type: 'JSXClosingElement', name: styledComponentName };
+    } else if (
+      path.node.openingElement &&
+      path.node.openingElement.name &&
+      path.node.openingElement.name.name === undefined
+    ) {
+      console.log("Here");
+      path.node.openingElement.name = styledComponentName;
+      if (path.node.closingElement) {
+        path.node.closingElement.name = styledComponentName;
+      }
+    } else {
+      path.node.openingElement.name.name = styledComponentName;
+      if (path.node.closingElement) {
+        path.node.closingElement.name.name = styledComponentName;
+      }
+    }
+  }
+
   /**
    * apply <StyledComponent />
    */
-  root
-    .find(rootJsxName === '' ? j.JSXFragment : j.JSXElement)
-    .at(0)
-    .forEach((path) => {
-      if (path.node.openingFragment) {
-        path.node.type = 'JSXElement';
-        path.node.openingElement = { type: 'JSXOpeningElement', name: styledComponentName };
-        path.node.closingElement = { type: 'JSXClosingElement', name: styledComponentName };
-      } else if (
-        path.node.openingElement &&
-        path.node.openingElement.name &&
-        path.node.openingElement.name.name === undefined
-      ) {
-        path.node.openingElement.name = styledComponentName;
-        if (path.node.closingElement) {
-          path.node.closingElement.name = styledComponentName;
+  if(rootJsxName === '') {
+    root
+      .find(j.JSXFragment)
+      .at(0)
+      .forEach(transformJsxRootToStyledComponent);
+  } else if (rootJsxName.indexOf('.') > 0) {
+    root
+      .find(j.JSXElement)
+      .forEach(path => {
+        if(path.node.openingElement.name.type === 'JSXMemberExpression') {
+          const tagName = path.node.openingElement.name.object.name + "." + path.node.openingElement.name.property.name;
+          console.log(tagName);
+          console.log(rootJsxName);
+          if(tagName === rootJsxName) {
+            transformJsxRootToStyledComponent(path);
+          }
         }
-      } else {
-        path.node.openingElement.name.name = styledComponentName;
-        if (path.node.closingElement) {
-          path.node.closingElement.name.name = styledComponentName;
-        }
-      }
-    });
+      });
+  } else {
+    root
+      .findJSXElements(rootJsxName)
+      .at(0)
+      .forEach(transformJsxRootToStyledComponent);
+  }
 
   /**
    * import styled if not exist
