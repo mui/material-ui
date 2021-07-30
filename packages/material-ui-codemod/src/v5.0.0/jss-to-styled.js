@@ -411,7 +411,6 @@ export default function transformer(file, api, options) {
       path.node.openingElement.name &&
       path.node.openingElement.name.name === undefined
     ) {
-      console.log("Here");
       path.node.openingElement.name = styledComponentName;
       if (path.node.closingElement) {
         path.node.closingElement.name = styledComponentName;
@@ -427,29 +426,21 @@ export default function transformer(file, api, options) {
   /**
    * apply <StyledComponent />
    */
-  if(rootJsxName === '') {
-    root
-      .find(j.JSXFragment)
-      .at(0)
-      .forEach(transformJsxRootToStyledComponent);
+  if (rootJsxName === '') {
+    root.find(j.JSXFragment).at(0).forEach(transformJsxRootToStyledComponent);
   } else if (rootJsxName.indexOf('.') > 0) {
-    root
-      .find(j.JSXElement)
-      .forEach(path => {
-        if(path.node.openingElement.name.type === 'JSXMemberExpression') {
-          const tagName = path.node.openingElement.name.object.name + "." + path.node.openingElement.name.property.name;
-          console.log(tagName);
-          console.log(rootJsxName);
-          if(tagName === rootJsxName) {
-            transformJsxRootToStyledComponent(path);
-          }
+    let converted = false;
+    root.find(j.JSXElement).forEach((path) => {
+      if (!converted && path.node.openingElement.name.type === 'JSXMemberExpression') {
+        const tagName = `${path.node.openingElement.name.object.name}.${path.node.openingElement.name.property.name}`;
+        if (tagName === rootJsxName) {
+          converted = true;
+          transformJsxRootToStyledComponent(path);
         }
-      });
+      }
+    });
   } else {
-    root
-      .findJSXElements(rootJsxName)
-      .at(0)
-      .forEach(transformJsxRootToStyledComponent);
+    root.findJSXElements(rootJsxName).at(0).forEach(transformJsxRootToStyledComponent);
   }
 
   /**
