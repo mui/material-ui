@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
@@ -19,7 +18,7 @@ describe('@material-ui/codemod', () => {
       it('update color module imports', () => {
         const actual = transform(
           { source: read('./color-imports.test/actual.js') },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
         );
 
         const expected = read('./color-imports.test/expected.js');

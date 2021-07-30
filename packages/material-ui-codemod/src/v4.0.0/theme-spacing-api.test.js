@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import { EOL } from 'os';
 import { expect } from 'chai';
