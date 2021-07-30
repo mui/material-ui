@@ -157,6 +157,9 @@ const ProductsSwitcher = () => {
             alignItems: 'flex-start',
             borderRadius: 1,
             transition: '0.3s',
+            '&.Mui-selected:hover': {
+              boxShadow: 'inset 0 0 0 1px, 1px 1px 20px 0 rgb(90 105 120 / 20%)',
+            },
             '&:hover:not(.Mui-selected)': {
               bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100'),
               '@media (hover: none)': {
