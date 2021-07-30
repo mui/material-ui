@@ -156,7 +156,7 @@ const Testimonials = () => {
           </Grid>
           <Grid item xs={12} md={6} container spacing={2}>
             {data.map((item) => (
-              <Grid item xs={6}>
+              <Grid key={item.title} item xs={6}>
                 <Box
                   sx={{
                     height: '100%',

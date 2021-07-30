@@ -55,22 +55,26 @@ function ProductItem({
 function Highlight({
   children,
   selected = false,
+  onClick,
   sx,
 }: {
   children: React.ReactNode;
   selected?: boolean;
+  onClick?: BoxProps['onClick'];
   sx?: BoxProps['sx'];
 }) {
   return (
     <Box
+      role="button"
+      onClick={onClick}
       sx={{
         borderRadius: 1,
         transition: '0.3s',
         height: '100%',
+        border: '1px solid',
         ...(selected && {
           bgcolor: (theme) =>
             theme.palette.mode === 'dark' ? 'primaryDark.700' : 'background.paper',
-          border: '1px solid',
           borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.200'),
         }),
         ...(!selected && {
@@ -129,9 +133,15 @@ const ProductsSwitcher = () => {
           '& > div': { pr: '32%' },
         }}
       >
-        <SwipeableViews onChangeIndex={(index) => setProductIndex(index)}>
+        <SwipeableViews
+          index={productIndex}
+          resistance
+          onChangeIndex={(index) => setProductIndex(index)}
+        >
           {productElements.map((elm, index) => (
             <Highlight
+              key={index}
+              onClick={() => setProductIndex(index)}
               selected={productIndex === index}
               sx={{ transform: productIndex !== index ? 'scale(0.9)' : 'scale(1)' }}
             >
