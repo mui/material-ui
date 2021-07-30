@@ -1,3 +1,5 @@
+const nodePath = require('path');
+
 /**
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
@@ -7,7 +9,7 @@ export default function transformer(file, api, options) {
   const root = j(file.source);
 
   function getFileNameWithoutExt() {
-    return (file.path.split('/').slice(-1)[0] || '').replace(/^([^.]*)\.(.*)/, '$1');
+    return nodePath.basename(file.path).replace(/^([^.]*)\.(.*)/, '$1');
   }
 
   /**
@@ -16,6 +18,7 @@ export default function transformer(file, api, options) {
    */
   function getPrefix(withStylesCall) {
     let prefix;
+
     // 1. check from withStylesFn
     if (withStylesCall && withStylesCall.arguments[1] && withStylesCall.arguments[1].properties) {
       const name = withStylesCall.arguments[1].properties.find((prop) => prop.key.name === 'name');

@@ -24,3 +24,8 @@ export { default as styled } from './styled';
 export { default as experimentalStyled } from './styled';
 export { default as ThemeProvider } from './ThemeProvider';
 export { StyledEngineProvider } from '@material-ui/system';
+// The legacy utilities from @material-ui/styles
+// These are just empty functions that throws when invoked
+export { default as makeStyles } from './makeStyles';
+export { default as withStyles } from './withStyles';
+export { default as withTheme } from './withTheme';
