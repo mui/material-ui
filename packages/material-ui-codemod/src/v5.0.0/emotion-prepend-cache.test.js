@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
@@ -18,7 +17,7 @@ describe('@material-ui/codemod', () => {
             source: read('./emotion-prepend-cache.test/default-naming.actual.js'),
             path: require.resolve('./emotion-prepend-cache.test/default-naming.actual.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
@@ -32,7 +31,7 @@ describe('@material-ui/codemod', () => {
             source: read('./emotion-prepend-cache.test/default-naming.expected.js'),
             path: require.resolve('./emotion-prepend-cache.test/default-naming.expected.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
@@ -46,7 +45,7 @@ describe('@material-ui/codemod', () => {
             source: read('./emotion-prepend-cache.test/custom-naming.actual.js'),
             path: require.resolve('./emotion-prepend-cache.test/custom-naming.actual.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
@@ -62,7 +61,7 @@ describe('@material-ui/codemod', () => {
               './emotion-prepend-cache.test/replace-existing-prepend.actual.js',
             ),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 

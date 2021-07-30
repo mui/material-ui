@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
@@ -19,7 +18,7 @@ describe('@material-ui/codemod', () => {
       it('update svg-icon imports', () => {
         const actual = transform(
           { source: read('./svg-icon-imports.test/actual.js') },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
         );
 
         const expected = read('./svg-icon-imports.test/expected.js');

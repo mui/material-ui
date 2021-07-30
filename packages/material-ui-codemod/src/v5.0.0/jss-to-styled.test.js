@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
@@ -18,7 +17,7 @@ describe('@material-ui/codemod', () => {
             source: read('./jss-to-styled.test/Anonymous.actual.js'),
             path: require.resolve('./jss-to-styled.test/Anonymous.actual.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
@@ -32,7 +31,7 @@ describe('@material-ui/codemod', () => {
               source: read('./jss-to-styled.test/first.actual.js'),
               path: require.resolve('./jss-to-styled.test/first.actual.js'),
             },
-            { jscodeshift: jscodeshift },
+            { jscodeshift },
             {},
           );
 
@@ -46,7 +45,7 @@ describe('@material-ui/codemod', () => {
               source: read('./jss-to-styled.test/first.expected.js'),
               path: require.resolve('./jss-to-styled.test/first.expected.js'),
             },
-            { jscodeshift: jscodeshift },
+            { jscodeshift },
             {},
           );
 
@@ -62,7 +61,7 @@ describe('@material-ui/codemod', () => {
               source: read('./jss-to-styled.test/second.actual.js'),
               path: require.resolve('./jss-to-styled.test/second.actual.js'),
             },
-            { jscodeshift: jscodeshift },
+            { jscodeshift },
             {},
           );
 
@@ -76,7 +75,7 @@ describe('@material-ui/codemod', () => {
               source: read('./jss-to-styled.test/second.expected.js'),
               path: require.resolve('./jss-to-styled.test/second.expected.js'),
             },
-            { jscodeshift: jscodeshift },
+            { jscodeshift },
             {},
           );
 
@@ -92,7 +91,7 @@ describe('@material-ui/codemod', () => {
               source: read('./jss-to-styled.test/third.actual.js'),
               path: require.resolve('./jss-to-styled.test/third.actual.js'),
             },
-            { jscodeshift: jscodeshift },
+            { jscodeshift },
             {},
           );
 
@@ -106,7 +105,7 @@ describe('@material-ui/codemod', () => {
               source: read('./jss-to-styled.test/third.expected.js'),
               path: require.resolve('./jss-to-styled.test/third.expected.js'),
             },
-            { jscodeshift: jscodeshift },
+            { jscodeshift },
             {},
           );
 
@@ -122,7 +121,7 @@ describe('@material-ui/codemod', () => {
               source: read('./jss-to-styled.test/fourth.actual.js'),
               path: require.resolve('./jss-to-styled.test/fourth.actual.js'),
             },
-            { jscodeshift: jscodeshift },
+            { jscodeshift },
             {},
           );
 
@@ -136,7 +135,7 @@ describe('@material-ui/codemod', () => {
               source: read('./jss-to-styled.test/fourth.expected.js'),
               path: require.resolve('./jss-to-styled.test/fourth.expected.js'),
             },
-            { jscodeshift: jscodeshift },
+            { jscodeshift },
             {},
           );
 
@@ -152,7 +151,7 @@ describe('@material-ui/codemod', () => {
               source: read('./jss-to-styled.test/fifth.actual.js'),
               path: require.resolve('./jss-to-styled.test/fifth.actual.js'),
             },
-            { jscodeshift: jscodeshift },
+            { jscodeshift },
             {},
           );
 
@@ -166,7 +165,7 @@ describe('@material-ui/codemod', () => {
               source: read('./jss-to-styled.test/fifth.expected.js'),
               path: require.resolve('./jss-to-styled.test/fifth.expected.js'),
             },
-            { jscodeshift: jscodeshift },
+            { jscodeshift },
             {},
           );
 
@@ -182,7 +181,7 @@ describe('@material-ui/codemod', () => {
               source: read('./jss-to-styled.test/sixth.actual.js'),
               path: require.resolve('./jss-to-styled.test/sixth.actual.js'),
             },
-            { jscodeshift: jscodeshift },
+            { jscodeshift },
             {},
           );
 
@@ -196,7 +195,7 @@ describe('@material-ui/codemod', () => {
               source: read('./jss-to-styled.test/sixth.expected.js'),
               path: require.resolve('./jss-to-styled.test/sixth.expected.js'),
             },
-            { jscodeshift: jscodeshift },
+            { jscodeshift },
             {},
           );
 
@@ -212,7 +211,7 @@ describe('@material-ui/codemod', () => {
               source: read('./jss-to-styled.test/seventh.actual.js'),
               path: require.resolve('./jss-to-styled.test/seventh.actual.js'),
             },
-            { jscodeshift: jscodeshift },
+            { jscodeshift },
             {},
           );
 
@@ -226,7 +225,7 @@ describe('@material-ui/codemod', () => {
               source: read('./jss-to-styled.test/seventh.expected.js'),
               path: require.resolve('./jss-to-styled.test/seventh.expected.js'),
             },
-            { jscodeshift: jscodeshift },
+            { jscodeshift },
             {},
           );
 

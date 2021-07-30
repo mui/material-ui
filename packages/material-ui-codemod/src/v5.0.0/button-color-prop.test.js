@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
@@ -18,7 +17,7 @@ describe('@material-ui/codemod', () => {
             source: read('./button-color-prop.test/actual.js'),
             path: require.resolve('./button-color-prop.test/actual.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
@@ -32,7 +31,7 @@ describe('@material-ui/codemod', () => {
             source: read('./button-color-prop.test/expected.js'),
             path: require.resolve('./button-color-prop.test/expected.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
