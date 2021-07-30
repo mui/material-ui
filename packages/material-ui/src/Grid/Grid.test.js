@@ -51,13 +51,20 @@ describe('<Grid />', () => {
     });
 
     it('should apply the styles necessary for variable width nested item when set to auto', () => {
-      const { container } = render(<Grid container item xs="auto" />);
-      expect(container.firstChild).toHaveComputedStyle({
+      render(
+        <Grid container>
+          <Grid container item xs="auto" data-testid="auto">
+            <div style={{ width: '300px' }} />
+          </Grid>
+          <Grid item xs={11} />
+        </Grid>,
+      );
+      expect(screen.getByTestId('auto')).toHaveComputedStyle({
         flexBasis: 'auto',
         flexGrow: '0',
         flexShrink: '0',
         maxWidth: 'none',
-        width: 'auto',
+        width: Boolean(process.env.KARMA) ? '300px' : 'auto',
       });
     });
   });
