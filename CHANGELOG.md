@@ -22,7 +22,7 @@ _Jul 27, 2021_
 
 - <!-- 5 --> [core] Add release scripts (#27399) @eps1lon
 
-All contributors of this release in alphabetical order: @eps1lon, @HumbertoL, @oliviertassinari, @Siv-tspab
+All contributors of this release in alphabetical order: @eps1lon, @mnajdova, @HumbertoL, @oliviertassinari, @Siv-tspab
 
 ## 4.12.2
 
