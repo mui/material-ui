@@ -19,6 +19,7 @@ const Root = styled('div')((
     marginRight: 'auto',
     minWidth: 400,
   },
+
   [`& .${classes.img}`]: {
     marginTop: theme.spacing(4),
   }

@@ -1,6 +1,6 @@
-import React, { Fragment } from 'react';
-import SomeNamespace from 'SomeNamespace';
+import React from 'react';
 import { styled } from '@material-ui/core/styles';
+import SomeNamespace from 'SomeNamespace';
 const PREFIX = 'eleventh';
 
 const classes = {
@@ -8,7 +8,6 @@ const classes = {
   img: `${PREFIX}-img`
 };
 
-// Expected!!!
 const StyledSomeNamespaceSomeComponent = styled(SomeNamespace.SomeComponent)((
   {
     theme
@@ -20,6 +19,7 @@ const StyledSomeNamespaceSomeComponent = styled(SomeNamespace.SomeComponent)((
     marginRight: 'auto',
     minWidth: 400,
   },
+
   [`& .${classes.img}`]: {
     marginTop: theme.spacing(4),
   }

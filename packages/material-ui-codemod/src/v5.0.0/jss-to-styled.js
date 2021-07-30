@@ -401,18 +401,22 @@ export default function transformer(file, api, options) {
       );
     });
 
-  let foundRootElement = false;
-
   /**
    * apply <StyledComponent />
    */
   root
-    .findJSXElements(rootJsxName)
+    .find(rootJsxName === '' ? j.JSXFragment : j.JSXElement)
     .at(0)
     .forEach((path) => {
-      foundRootElement = true;
-      // Component containing namespace
-      if (path.node.openingElement.name.name === undefined) {
+      if (path.node.openingFragment) {
+        path.node.type = 'JSXElement';
+        path.node.openingElement = { type: 'JSXOpeningElement', name: styledComponentName };
+        path.node.closingElement = { type: 'JSXClosingElement', name: styledComponentName };
+      } else if (
+        path.node.openingElement &&
+        path.node.openingElement.name &&
+        path.node.openingElement.name.name === undefined
+      ) {
         path.node.openingElement.name = styledComponentName;
         if (path.node.closingElement) {
           path.node.closingElement.name = styledComponentName;
@@ -424,26 +428,6 @@ export default function transformer(file, api, options) {
         }
       }
     });
-
-  if (!foundRootElement) {
-    root
-      .findJSXElements()
-      .at(0)
-      .forEach((path) => {
-        // Component containing namespace
-        if (path.node.openingElement.name.name === undefined) {
-          path.node.openingElement.name = styledComponentName;
-          if (path.node.closingElement) {
-            path.node.closingElement.name = styledComponentName;
-          }
-        } else {
-          path.node.openingElement.name.name = styledComponentName;
-          if (path.node.closingElement) {
-            path.node.closingElement.name.name = styledComponentName;
-          }
-        }
-      });
-  }
 
   /**
    * import styled if not exist
