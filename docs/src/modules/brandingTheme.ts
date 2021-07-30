@@ -97,7 +97,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         800: '#004C99',
         900: '#003A75',
       },
-      divider: mode === 'dark' ? blueDark[400] : grey[100],
+      divider: mode === 'dark' ? blueDark[400] : grey[200],
       primaryDark: blueDark,
       ...(mode === 'dark' && {
         background: {
@@ -361,6 +361,13 @@ export function getThemedComponents(theme: Theme) {
           root: {
             padding: theme.spacing(1, 2),
             borderColor: theme.palette.divider,
+          },
+          head: {
+            color: theme.palette.text.primary,
+            fontWeight: 600,
+          },
+          body: {
+            color: theme.palette.text.secondary,
           },
         },
       },
