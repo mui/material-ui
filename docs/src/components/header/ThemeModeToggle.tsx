@@ -79,9 +79,9 @@ const ThemeModeToggle = (props: SwitchUnstyledProps) => {
       componentsProps={{
         thumb: {
           children: props.checked ? (
-            <DarkModeOutlined fontSize="small" />
-          ) : (
             <LightModeOutlined fontSize="small" />
+          ) : (
+            <DarkModeOutlined fontSize="small" />
           ),
         },
         input: { 'aria-label': 'Theme mode toggle' },
