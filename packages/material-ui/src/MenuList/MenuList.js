@@ -61,7 +61,7 @@ function moveFocus(
     // Prevent infinite loop.
     if (nextFocus === list.firstChild) {
       if (wrappedOnce) {
-        return;
+        return false;
       }
       wrappedOnce = true;
     }
@@ -80,9 +80,10 @@ function moveFocus(
       nextFocus = traversalFunction(list, nextFocus, disableListWrap);
     } else {
       nextFocus.focus();
-      return;
+      return true;
     }
   }
+  return false;
 }
 
 const useEnhancedEffect = typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;

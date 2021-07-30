@@ -519,13 +519,14 @@ describe('<MenuList> integration', () => {
     it('matches rapidly typed text', () => {
       render(
         <MenuList autoFocus>
+          <MenuItem>War</MenuItem>
           <MenuItem>Worm</MenuItem>
           <MenuItem>Ordinary</MenuItem>
         </MenuList>,
       );
 
       fireEvent.keyDown(screen.getByRole('menu'), { key: 'W' });
-      fireEvent.keyDown(screen.getByText('Worm'), { key: 'o' });
+      fireEvent.keyDown(screen.getByText('War'), { key: 'o' });
 
       expect(screen.getByText('Worm')).toHaveFocus();
     });
