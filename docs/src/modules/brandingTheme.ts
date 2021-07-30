@@ -239,21 +239,6 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
 export function getThemedComponents(theme: Theme) {
   return {
     components: {
-      MuiLink: {
-        defaultProps: {
-          underline: 'none',
-        },
-        styleOverrides: {
-          root: {
-            fontWeight: 'bold',
-            display: 'inline-flex',
-            alignItems: 'center',
-            '& > svg': {
-              marginTop: 2,
-            },
-          },
-        },
-      },
       MuiButton: {
         defaultProps: {
           disableElevation: true,
@@ -321,6 +306,31 @@ export function getThemedComponents(theme: Theme) {
             [theme.breakpoints.up('md')]: {
               paddingLeft: theme.spacing(2),
               paddingRight: theme.spacing(2),
+            },
+          },
+        },
+      },
+      MuiDivider: {
+        styleOverrides: {
+          root: {
+            borderColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[700]
+                : theme.palette.grey[100],
+          },
+        },
+      },
+      MuiLink: {
+        defaultProps: {
+          underline: 'none',
+        },
+        styleOverrides: {
+          root: {
+            fontWeight: 'bold',
+            display: 'inline-flex',
+            alignItems: 'center',
+            '& > svg': {
+              marginTop: 2,
             },
           },
         },

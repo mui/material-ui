@@ -153,7 +153,9 @@ function Demo({
           }),
         })}
       </Box>
-      <Typography fontWeight="bold">{name}</Typography>
+      <Typography fontWeight="bold" variant="body2">
+        {name}
+      </Typography>
     </Box>
   );
 }
@@ -161,11 +163,11 @@ function Demo({
 const DesignSystemComponents = () => {
   const [anchor, setAnchor] = React.useState<HTMLElement | null>(null);
   return (
-    <Container sx={{ py: 8 }}>
-      <Typography variant="body2" color="primary" fontWeight="bold" sx={{ mb: 1 }}>
+    <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
+      <Typography variant="body2" color="primary" fontWeight="bold">
         What do you get?
       </Typography>
-      <Typography variant="h2" sx={{ mb: 4, maxWidth: 500 }}>
+      <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
         Simple, accessible, declaritive <GradientText>components</GradientText>.
       </Typography>
       <Grid>

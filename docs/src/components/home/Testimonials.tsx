@@ -64,7 +64,7 @@ const TESTIMONIALS = [
     quote:
       "“Material UI looks great and lets us deliver fast, thanks to their solid API design and documentation - it's refreshing to use a component library where you get everything you need from their site rather than Stack Overflow. We think the upcoming version, with extra themes and customizability, will make Material UI even more of a game changer. We're extremely grateful to the team for the time and effort spent maintaining the project.”",
     profile: {
-      avatar: '',
+      avatar: 'https://avatars.githubusercontent.com/u/197016?v=4',
       name: 'Jean-Laurent de Morlhon',
       role: 'VP of Engineering',
       company: undefined,
@@ -74,7 +74,7 @@ const TESTIMONIALS = [
     quote:
       '“After much research on React component libraries, we decided to ditch our in-house library for Material UI, using its powerful customization system to implement our Design System. This simple move did a rare thing in engineering: it lowered our maintenance costs while enhancing both developer and customer experience. All of this was done without sacrificing the organization’s branding and visual identity.”',
     profile: {
-      avatar: '',
+      avatar: 'https://avatars.githubusercontent.com/u/732422?v=4',
       name: 'Gustavo de Paula',
       role: 'Specialist Engineer',
       company: undefined,
@@ -87,7 +87,7 @@ const Testimonials = () => {
 
   return (
     <Box sx={{ bgcolor: 'primaryDark.700' }}>
-      <Container sx={{ py: 8 }}>
+      <Container sx={{ py: { xs: 4, md: 8 } }}>
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={12} md={6} sx={{ zIndex: 1 }}>
             <Box sx={{ maxWidth: 500 }}>

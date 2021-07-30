@@ -21,7 +21,7 @@ export default function Home() {
       <CssBaseline />
       <AppHeader />
       <Hero />
-      <Container sx={{ py: 8 }}>
+      <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
         <References />
         <Typography
           color="grey.800"

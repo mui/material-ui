@@ -66,7 +66,7 @@ function Label({
           theme.palette.mode === 'dark' ? `${color}.100` : `${color}.${darker ? '800' : '500'}`,
         display: 'flex',
         alignItems: 'center',
-        typography: 'caption',
+        typography: 'body2',
         fontWeight: 600,
         p: 1,
         ...sx,
@@ -77,13 +77,13 @@ function Label({
           display: 'inline-block',
           mr: 1,
           borderRadius: 1,
-          width: 8,
-          height: 8,
+          width: 12,
+          height: 12,
           bgcolor: (theme) =>
             theme.palette.mode === 'dark'
               ? `${color}.${darker ? '800' : '300'}`
               : `${color}.${darker ? '800' : '500'}`,
-          border: '2px solid',
+          border: '3px solid',
           borderColor: (theme) =>
             theme.palette.mode === 'dark'
               ? `${color}.${darker ? '300' : '500'}`
@@ -97,11 +97,11 @@ function Label({
 
 const Sponsors = () => {
   return (
-    <Container sx={{ py: 8 }}>
-      <Typography variant="h2" sx={{ mb: 1 }}>
+    <Container sx={{ py: { xs: 4, md: 8 } }}>
+      <Typography variant="h2" sx={{ my: 1 }}>
         Our sponsors
       </Typography>
-      <Typography color="text.secondary" sx={{ mb: 4, maxWidth: 450 }}>
+      <Typography color="text.secondary" sx={{ mb: { xs: 2, md: 4 }, maxWidth: 450 }}>
         The continued development and maintenance of Material-UI is greatly helped by our generous
         sponsors.
       </Typography>
@@ -115,8 +115,12 @@ const Sponsors = () => {
               <Box sx={{ p: 2, display: 'flex', mb: 'auto' }}>
                 <Avatar src={item.logo} alt={`${item.name} logo`} sx={{ borderRadius: '4px' }} />
                 <Box sx={{ ml: 2 }}>
-                  <Typography fontWeight="bold">{item.name}</Typography>
-                  <Typography color="text.secondary">{item.description}</Typography>
+                  <Typography variant="body2" fontWeight="bold">
+                    {item.name}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {item.description}
+                  </Typography>
                 </Box>
               </Box>
               <Label color="primary">Diamond sponsor</Label>
@@ -162,8 +166,12 @@ const Sponsors = () => {
               <Box sx={{ p: 2, display: 'flex', mb: 'auto' }}>
                 <Avatar src={item.logo} alt={`${item.name} logo`} sx={{ borderRadius: '4px' }} />
                 <Box sx={{ ml: 2 }}>
-                  <Typography fontWeight="bold">{item.name}</Typography>
-                  <Typography color="text.secondary">{item.description}</Typography>
+                  <Typography variant="body2" fontWeight="bold">
+                    {item.name}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {item.description}
+                  </Typography>
                 </Box>
               </Box>
               <Label color="warning" darker>

@@ -12,17 +12,17 @@ const ProductSuite = () => {
     <Box
       sx={{
         bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
-        py: 8,
+        py: { xs: 4, sm: 6, md: 8 },
       }}
     >
       <Container>
         <Grid container spacing={2}>
           <Grid item md={6}>
             <Box maxWidth={500}>
-              <Typography variant="body2" color="primary" fontWeight="bold" mb={1}>
+              <Typography variant="body2" color="primary" fontWeight="bold">
                 Products
               </Typography>
-              <Typography variant="h2" mb={1}>
+              <Typography variant="h2" sx={{ my: 1 }}>
                 Extensive library of components, ready for <GradientText>production</GradientText>.
               </Typography>
               <Typography color="text.secondary">

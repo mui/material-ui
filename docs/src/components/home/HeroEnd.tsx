@@ -20,16 +20,16 @@ const HeroEnd = () => {
             : `linear-gradient(180deg, ${theme.palette.grey[50]} 0%, #FFFFFF 100%)`,
       }}
     >
-      <Container sx={{ pt: 8, pb: 14 }}>
+      <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
         <Grid container spacing={{ xs: 2, md: 4 }} alignItems="center">
-          <Grid item xs={12} sm={6} md={6}>
+          <Grid item xs={12} sm={6} md={6} sx={{ mb: { md: 4 } }}>
             <Typography color="primary" fontWeight="bold" variant="body2" sx={{ mb: 1 }}>
               Go live!
             </Typography>
             <Typography variant="h2" sx={{ maxWidth: 500, mb: 1 }}>
               Start building with <GradientText>MUI</GradientText> today!
             </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
+            <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
               Check it for yourself, give it a try and share with us what you&apos;ve built!
             </Typography>
             <Box
@@ -57,26 +57,26 @@ const HeroEnd = () => {
           <Grid item xs={12} sm={6} md={6} container spacing={2}>
             <Grid item xs={12} md={6}>
               <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-                <Typography fontWeight="bold" sx={{ mb: 0.5 }}>
+                <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
                   Showcases
                 </Typography>
                 <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                   See more projects and companies out there relying on MUI.
                 </Typography>
-                <Link href="/">
+                <Link href="/" variant="body2">
                   Learn more <KeyboardArrowRightRounded fontSize="small" />
                 </Link>
               </Paper>
             </Grid>
             <Grid item xs={12} md={6}>
               <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-                <Typography fontWeight="bold" sx={{ mb: 0.5 }}>
+                <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
                   Blog
                 </Typography>
                 <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                   Check behind the scenes and news from the company.
                 </Typography>
-                <Link href="/">
+                <Link href="/" variant="body2">
                   Learn more <KeyboardArrowRightRounded fontSize="small" />
                 </Link>
               </Paper>

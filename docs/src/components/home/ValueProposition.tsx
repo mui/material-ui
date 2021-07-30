@@ -35,11 +35,11 @@ const content = [
 
 const ValueProposition = () => {
   return (
-    <Container sx={{ py: 8 }}>
-      <Typography variant="body2" color="primary" fontWeight="bold" sx={{ mb: 1 }}>
+    <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
+      <Typography variant="body2" color="primary" fontWeight="bold">
         Why go with us?
       </Typography>
-      <Typography variant="h2" sx={{ mb: 4, maxWidth: 500 }}>
+      <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
         Used by the world&apos;s best teams, supporting design systems of{' '}
         <GradientText>all types</GradientText>.
       </Typography>
