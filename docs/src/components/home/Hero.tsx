@@ -185,7 +185,7 @@ export default function Hero() {
                   },
                   '& *': {
                     fontFamily: [
-                      '"PlusJakartaSans"',
+                      '"IBM Plex Sans"',
                       '-apple-system',
                       'BlinkMacSystemFont',
                       'sans-serif',

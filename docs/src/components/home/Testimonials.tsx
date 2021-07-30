@@ -124,6 +124,7 @@ const Testimonials = () => {
                 <Box alignSelf="center">
                   {TESTIMONIALS.map((item, index) => (
                     <Box
+                      key={index}
                       role="button"
                       onClick={() => setSlideIndex(index)}
                       sx={{
