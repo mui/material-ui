@@ -95,7 +95,7 @@ const DialogPaper = styled(Paper, {
     return [
       styles.paper,
       styles[`scrollPaper${capitalize(styleProps.scroll)}`],
-      styles[`paperWidth${capitalize(String(styleProps.maxWidth))})`],
+      styles[`paperWidth${capitalize(String(styleProps.maxWidth))}`],
       styleProps.fullWidth && styles.paperFullWidth,
       styleProps.fullScreen && styles.paperFullScreen,
     ];

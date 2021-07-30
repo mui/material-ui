@@ -10,7 +10,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
+import Select, { SelectChangeEvent } from '@material-ui/core/Select';
 import Switch from '@material-ui/core/Switch';
 
 export default function MaxWidthDialog() {
@@ -26,8 +26,11 @@ export default function MaxWidthDialog() {
     setOpen(false);
   };
 
-  const handleMaxWidthChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setMaxWidth(event.target.value as DialogProps['maxWidth']);
+  const handleMaxWidthChange = (event: SelectChangeEvent<typeof maxWidth>) => {
+    setMaxWidth(
+      // @ts-expect-error autofill of arbitrary value is not handled.
+      event.target.value,
+    );
   };
 
   const handleFullWidthChange = (event: React.ChangeEvent<HTMLInputElement>) => {

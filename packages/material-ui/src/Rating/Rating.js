@@ -682,13 +682,13 @@ Rating.propTypes /* remove-proptypes */ = {
   name: PropTypes.string,
   /**
    * Callback fired when the value changes.
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {number|null} value The new value.
    */
   onChange: PropTypes.func,
   /**
    * Callback function that is fired when the hover state changes.
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {number} value The new value.
    */
   onChangeActive: PropTypes.func,

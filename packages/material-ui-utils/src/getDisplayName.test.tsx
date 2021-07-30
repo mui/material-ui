@@ -48,6 +48,9 @@ describe('utils/getDisplayName.js', () => {
       const NamedMemoComponent = React.memo((props, ref) => <div {...props} ref={ref} />);
       NamedMemoComponent.displayName = 'Div';
 
+      const NamedContext = React.createContext(null);
+      NamedContext.displayName = 'SomeContext';
+
       expect(getDisplayName(SomeComponent)).to.equal('SomeComponent');
       expect(getDisplayName(SomeOtherComponent)).to.equal('CustomDisplayName');
       expect(getDisplayName(YetAnotherComponent)).to.equal('YetAnotherComponent');
@@ -60,6 +63,8 @@ describe('utils/getDisplayName.js', () => {
       expect(getDisplayName(AnonymousMemoComponent)).to.equal('memo');
       expect(getDisplayName(MemoComponent)).to.equal('memo(Div)');
       expect(getDisplayName(NamedMemoComponent)).to.equal('Div');
+      expect(getDisplayName(NamedContext.Provider)).to.equal(undefined);
+      expect(getDisplayName(NamedContext.Consumer)).to.equal(undefined);
       // @ts-expect-error
       expect(getDisplayName()).to.equal(undefined);
       // @ts-expect-error

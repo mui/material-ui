@@ -43,12 +43,14 @@ const CheckboxRoot = styled(SwitchBase, {
 })(({ theme, styleProps }) => ({
   color: theme.palette.text.secondary,
   '&:hover': {
-    backgroundColor: alpha(
-      styleProps.color === 'default'
-        ? theme.palette.action.active
-        : theme.palette[styleProps.color].main,
-      theme.palette.action.hoverOpacity,
-    ),
+    ...(!styleProps.disableRipple && {
+      backgroundColor: alpha(
+        styleProps.color === 'default'
+          ? theme.palette.action.active
+          : theme.palette[styleProps.color].main,
+        theme.palette.action.hoverOpacity,
+      ),
+    }),
     // Reset on touch devices, it doesn't add specificity
     '@media (hover: none)': {
       backgroundColor: 'transparent',
@@ -189,7 +191,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the state is changed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.ChangeEvent<HTMLInputElement>} event The event source of the callback.
    * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
   onChange: PropTypes.func,

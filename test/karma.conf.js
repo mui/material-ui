@@ -1,4 +1,5 @@
 const playwright = require('playwright');
+const path = require('path');
 const webpack = require('webpack');
 
 const CI = Boolean(process.env.CI);
@@ -41,10 +42,18 @@ module.exports = function setKarmaConfig(config) {
     browserDisconnectTolerance: 1, // default 0
     browserNoActivityTimeout: 3 * 60 * 1000, // default 30000
     colors: true,
+    coverageIstanbulReporter: {
+      combineBrowserReports: true,
+      dir: path.resolve(__dirname, '../coverage'),
+      fixWebpackSourcePaths: true,
+      reports: CI ? ['lcov'] : [],
+      skipFilesWithNoCoverage: true,
+      verbose: false,
+    },
     client: {
       mocha: {
         // Some BrowserStack browsers can be slow.
-        timeout: (process.env.CIRCLECI === 'true' ? 5 : 2) * 1000,
+        timeout: (process.env.CIRCLECI === 'true' ? 6 : 2) * 1000,
       },
     },
     frameworks: ['mocha'],
@@ -62,7 +71,13 @@ module.exports = function setKarmaConfig(config) {
         served: true,
       },
     ],
-    plugins: ['karma-mocha', 'karma-chrome-launcher', 'karma-sourcemap-loader', 'karma-webpack'],
+    plugins: [
+      'karma-mocha',
+      'karma-chrome-launcher',
+      'karma-coverage-istanbul-reporter',
+      'karma-sourcemap-loader',
+      'karma-webpack',
+    ],
     /**
      * possible values:
      * - config.LOG_DISABLE
@@ -80,7 +95,7 @@ module.exports = function setKarmaConfig(config) {
       '/fake.png': '/base/test/assets/fake.png',
       '/fake2.png': '/base/test/assets/fake2.png',
     },
-    reporters: ['dots'],
+    reporters: ['dots', 'coverage-istanbul'],
     webpack: {
       mode: 'development',
       devtool: CI ? 'inline-source-map' : 'eval-source-map',
@@ -101,6 +116,15 @@ module.exports = function setKarmaConfig(config) {
             options: {
               envName: 'stable',
             },
+          },
+          {
+            test: /\.(js|ts|tsx)$/,
+            use: {
+              loader: 'istanbul-instrumenter-loader',
+              options: { esModules: true },
+            },
+            enforce: 'post',
+            exclude: /node_modules/,
           },
         ],
       },
