@@ -9,6 +9,7 @@ _Jul 27, 2021_
 ### `@material-ui/core@4.12.3`
 
 - <!-- 2 --> [AccordionSummary] Fix false-positive propType warning with `disableGeneration` (#27385) @eps1lon
+- <!-- 7 --> [ImageList] Fix deprecation warnings (#27502) @mnajdova
 - <!-- 6 --> [TablePagination] Re-introduce deprecated `onChangePage` to `ActionsComponent` (#27407) @eps1lon
 - <!-- 1 --> [TextareaAutosize] Updated deprecation warning to suggest minRows instead of rowsMin (#27398) @HumbertoL
 
