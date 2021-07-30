@@ -12,7 +12,7 @@ const Root = styled('span')(({ theme }) => ({
   color: '#fff',
   position: 'relative',
   display: 'inline-block',
-  width: 46,
+  width: 40,
   height: 17,
   backgroundColor: theme.palette.grey[100],
   borderRadius: 10,
@@ -22,10 +22,10 @@ const Root = styled('span')(({ theme }) => ({
   [`& .${switchUnstyledClasses.thumb}`]: {
     display: 'block',
     position: 'absolute',
-    padding: 4,
-    width: 28,
-    height: 28,
-    top: -6,
+    padding: 2,
+    width: 24,
+    height: 24,
+    top: -3,
     left: 0,
     borderRadius: 24,
     backgroundColor: theme.palette.primary.main,
@@ -47,7 +47,7 @@ const Root = styled('span')(({ theme }) => ({
     },
   },
   [`&.${switchUnstyledClasses.checked} .${switchUnstyledClasses.thumb}`]: {
-    left: 18,
+    left: 16,
     transform: 'rotate(0deg)',
   },
   [`&.${switchUnstyledClasses.focusVisible} .${switchUnstyledClasses.thumb}`]: {
