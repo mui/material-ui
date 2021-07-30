@@ -64,7 +64,7 @@ describe('<Grid />', () => {
         flexGrow: '0',
         flexShrink: '0',
         maxWidth: 'none',
-        width: Boolean(process.env.KARMA) ? '300px' : 'auto',
+        width: process.env.KARMA ? '300px' : 'auto',
       });
     });
   });
