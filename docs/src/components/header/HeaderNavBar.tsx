@@ -79,7 +79,7 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
         >
           <Box sx={{ px: 2 }}>{icon}</Box>
           <Box>
-            <Typography color="text.primary" variant="body2" fontWeight={700}>
+            <Typography color="text.primary" variant="body2" fontWeight={600}>
               {name}
             </Typography>
             <Typography color="text.secondary" variant="body2">
