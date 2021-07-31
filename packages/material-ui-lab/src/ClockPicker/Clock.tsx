@@ -83,7 +83,7 @@ const ClockAmButton = styled(IconButton, { skipSx: true })<{ styleProps: ClockPr
   ({ theme, styleProps }) => ({
     zIndex: 1,
     position: 'absolute',
-    bottom: 8,
+    bottom: 64,
     left: 8,
     ...(styleProps.meridiemMode === 'am' && {
       backgroundColor: theme.palette.primary.main,
@@ -99,7 +99,7 @@ const ClockPmButton = styled(IconButton, { skipSx: true })<{ styleProps: ClockPr
   ({ theme, styleProps }) => ({
     zIndex: 1,
     position: 'absolute',
-    bottom: 8,
+    bottom: 64,
     right: 8,
     ...(styleProps.meridiemMode === 'pm' && {
       backgroundColor: theme.palette.primary.main,
