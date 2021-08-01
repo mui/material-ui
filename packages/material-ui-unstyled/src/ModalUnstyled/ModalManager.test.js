@@ -167,60 +167,68 @@ describe('ModalManager', () => {
       expect(fixedNode.style.paddingRight).to.equal('');
     });
 
-    it('should restore styles correctly if overflow existed before', () => {
-      const modal = {};
-      const container2 = document.createElement('div');
-      container2.style.overflow = 'overlay';
+    describe('restore styles', () => {
+      let container2;
 
-      Object.defineProperty(container2, 'scrollHeight', {
-        value: 100,
-        writable: false,
-      });
-      Object.defineProperty(container2, 'clientHeight', {
-        value: 100,
-        writable: false,
+      beforeEach(() => {
+        container2 = document.createElement('div');
       });
 
-      document.body.appendChild(container2);
-      modalManager.add(modal, container2);
-      modalManager.mount(modal, {});
-
-      expect(container2.style.overflow).to.equal('hidden');
-      modalManager.remove(modal);
-
-      expect(container2.style.overflow).to.equal('overlay');
-      expect(fixedNode.style.paddingRight).to.equal('');
-
-      document.body.removeChild(container2);
-    });
-
-    it('should restore styles correctly if overflow-x existed before', () => {
-      const modal = {};
-      const container2 = document.createElement('div');
-      container2.style.overflowX = 'hidden';
-
-      Object.defineProperty(container2, 'scrollHeight', {
-        value: 100,
-        writable: false,
-      });
-      Object.defineProperty(container2, 'clientHeight', {
-        value: 100,
-        writable: false,
+      afterEach(() => {
+        document.body.removeChild(container2);
       });
 
-      document.body.appendChild(container2);
+      it('should restore styles correctly if overflow existed before', () => {
+        const modal = {};
 
-      modalManager.add(modal, container2);
-      modalManager.mount(modal, {});
+        container2.style.overflow = 'scroll';
 
-      expect(container2.style.overflow).to.equal('hidden');
+        Object.defineProperty(container2, 'scrollHeight', {
+          value: 100,
+          writable: false,
+        });
+        Object.defineProperty(container2, 'clientHeight', {
+          value: 90,
+          writable: false,
+        });
 
-      modalManager.remove(modal);
+        document.body.appendChild(container2);
+        modalManager.add(modal, container2);
+        modalManager.mount(modal, {});
 
-      expect(container2.style.overflow).to.equal('');
-      expect(container2.style.overflowX).to.equal('hidden');
+        expect(container2.style.overflow).to.equal('hidden');
+        modalManager.remove(modal);
 
-      document.body.removeChild(container2);
+        expect(container2.style.overflow).to.equal('scroll');
+        expect(fixedNode.style.paddingRight).to.equal('');
+      });
+
+      it('should restore styles correctly if overflow-x existed before', () => {
+        const modal = {};
+
+        container2.style.overflowX = 'hidden';
+
+        Object.defineProperty(container2, 'scrollHeight', {
+          value: 100,
+          writable: false,
+        });
+        Object.defineProperty(container2, 'clientHeight', {
+          value: 90,
+          writable: false,
+        });
+
+        document.body.appendChild(container2);
+
+        modalManager.add(modal, container2);
+        modalManager.mount(modal, {});
+
+        expect(container2.style.overflow).to.equal('hidden');
+
+        modalManager.remove(modal);
+
+        expect(container2.style.overflow).to.equal('');
+        expect(container2.style.overflowX).to.equal('hidden');
+      });
     });
   });
 
