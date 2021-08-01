@@ -2727,11 +2727,6 @@
   resolved "https://registry.yarnpkg.com/@trysound/sax/-/sax-0.1.1.tgz#3348564048e7a2d7398c935d466c0414ebb6a669"
   integrity sha512-Z6DoceYb/1xSg5+e+ZlPZ9v0N16ZvZ+wYMraFue4HYrE4ttONKtsvruIRf6t9TBR0YvSOfi1hUU0fJfBLCDYow==
 
-"@types/anymatch@*":
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/@types/anymatch/-/anymatch-1.3.1.tgz#336badc1beecb9dacc38bea2cf32adf627a8421a"
-  integrity sha512-/+CRPXpBDpo2RK9C68N3b2cOvO0Cf5B9aPijHsoDQTHivnGSObdOF2BRQOYjojWTDy6nQvMjmqRXIxH55VjxxA==
-
 "@types/aria-query@^4.2.0":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@types/aria-query/-/aria-query-4.2.0.tgz#14264692a9d6e2fa4db3df5e56e94b5e25647ac0"
@@ -3197,10 +3192,10 @@
   dependencies:
     csstype "^3.0.2"
 
-"@types/tapable@*", "@types/tapable@^1.0.5":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@types/tapable/-/tapable-1.0.6.tgz#a9ca4b70a18b270ccb2bc0aaafefd1d486b7ea74"
-  integrity sha512-W+bw9ds02rAQaMvaLYxAbJ6cvguW/iJXNT6lTssS1ps6QdrMKttqEAMEG/b5CR8TZl3/L7/lH0ZV5nNR1LXikA==
+"@types/tapable@^1", "@types/tapable@^1.0.5":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@types/tapable/-/tapable-1.0.8.tgz#b94a4391c85666c7b73299fd3ad79d4faa435310"
+  integrity sha512-ipixuVrh2OdNmauvtT51o3d8z12p6LtFW9in7U79der/kwejjdNchQC5UMn5u/KxNoM7VHHOs/l8KS8uHxhODQ==
 
 "@types/tough-cookie@*":
   version "4.0.1"
@@ -3208,9 +3203,9 @@
   integrity sha512-Y0K95ThC3esLEYD6ZuqNek29lNX2EM1qxV8y2FTLUB0ff5wWrk7az+mLrnNFUnaXcgKye22+sFBRXOgpPILZNg==
 
 "@types/uglify-js@*":
-  version "3.9.3"
-  resolved "https://registry.yarnpkg.com/@types/uglify-js/-/uglify-js-3.9.3.tgz#d94ed608e295bc5424c9600e6b8565407b6b4b6b"
-  integrity sha512-KswB5C7Kwduwjj04Ykz+AjvPcfgv/37Za24O2EDzYNbwyzOo8+ydtvzUfZ5UMguiVu29Gx44l1A6VsPPcmYu9w==
+  version "3.13.1"
+  resolved "https://registry.yarnpkg.com/@types/uglify-js/-/uglify-js-3.13.1.tgz#5e889e9e81e94245c75b6450600e1c5ea2878aea"
+  integrity sha512-O3MmRAk6ZuAKa9CHgg0Pr0+lUOqoMLpc9AS4R8ano2auvsg7IE8syF3Xh/NPr26TWklxYcqoEEFdzLLs1fV9PQ==
   dependencies:
     source-map "^0.6.1"
 
@@ -3225,24 +3220,24 @@
   integrity sha512-eQ9qFW/fhfGJF8WKHGEHZEyVWfZxrT+6CLIJGBcZPfxUh/+BnEj+UCGYMlr9qZuX/2AltsvwrGqp0LhEW8D0zQ==
 
 "@types/webpack-sources@*":
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/@types/webpack-sources/-/webpack-sources-1.4.2.tgz#5d3d4dea04008a779a90135ff96fb5c0c9e6292c"
-  integrity sha512-77T++JyKow4BQB/m9O96n9d/UUHWLQHlcqXb9Vsf4F1+wKNrrlWNFPDLKNT92RJnCSL6CieTc+NDXtCVZswdTw==
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@types/webpack-sources/-/webpack-sources-2.1.1.tgz#6af17e3a3ded71eec2b98008d7c12f498a0a4506"
+  integrity sha512-MjM1R6iuw8XaVbtkCBz0N349cyqBjJHCbQiOeppe3VBeFvxqs74RKHAVt9LkxTnUWc7YLZOEsUfPUnmK6SBPKQ==
   dependencies:
     "@types/node" "*"
     "@types/source-list-map" "*"
     source-map "^0.7.3"
 
 "@types/webpack@^4.41.22", "@types/webpack@^4.41.8":
-  version "4.41.26"
-  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.41.26.tgz#27a30d7d531e16489f9c7607c747be6bc1a459ef"
-  integrity sha512-7ZyTfxjCRwexh+EJFwRUM+CDB2XvgHl4vfuqf1ZKrgGvcS5BrNvPQqJh3tsZ0P6h6Aa1qClVHaJZszLPzpqHeA==
+  version "4.41.30"
+  resolved "https://registry.yarnpkg.com/@types/webpack/-/webpack-4.41.30.tgz#fd3db6d0d41e145a8eeeafcd3c4a7ccde9068ddc"
+  integrity sha512-GUHyY+pfuQ6haAfzu4S14F+R5iGRwN6b2FRNJY7U0NilmFAqbsOfK6j1HwuLBAqwRIT+pVdNDJGJ6e8rpp0KHA==
   dependencies:
-    "@types/anymatch" "*"
     "@types/node" "*"
-    "@types/tapable" "*"
+    "@types/tapable" "^1"
     "@types/uglify-js" "*"
     "@types/webpack-sources" "*"
+    anymatch "^3.0.0"
     source-map "^0.6.0"
 
 "@types/yargs-parser@*":
@@ -3833,10 +3828,10 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
-anymatch@~3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/anymatch/-/anymatch-3.1.1.tgz#c55ecf02185e2469259399310c173ce31233b142"
-  integrity sha512-mM8522psRCqzV+6LhomX5wgp25YVibjh8Wj23I5RPkPppSVSjyKD2A2mBJmWGa+KN7f2D6LNh9jkBCeyLktzjg==
+anymatch@^3.0.0, anymatch@~3.1.1:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/anymatch/-/anymatch-3.1.2.tgz#c0557c096af32f106198f4f4e2a383537e378716"
+  integrity sha512-P43ePfOAIupkguHUycrc4qJ9kz8ZiuOUijaETwX7THt0Y/GNK7v0aa8rY816xWjZ7rJdA5XdMcpVFTKMq+RvWg==
   dependencies:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
