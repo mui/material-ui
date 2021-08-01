@@ -42,20 +42,20 @@ const CheckboxRoot = styled(SwitchBase, {
   },
 })(({ theme, styleProps }) => ({
   color: theme.palette.text.secondary,
-  '&:hover': {
-    ...(!styleProps.disableRipple && {
+  ...(!styleProps.disableRipple && {
+    '&:hover': {
       backgroundColor: alpha(
         styleProps.color === 'default'
           ? theme.palette.action.active
           : theme.palette[styleProps.color].main,
         theme.palette.action.hoverOpacity,
       ),
-    }),
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
-      backgroundColor: 'transparent',
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
-  },
+  }),
   ...(styleProps.color !== 'default' && {
     [`&.${checkboxClasses.checked}, &.${checkboxClasses.indeterminate}`]: {
       color: theme.palette[styleProps.color].main,
