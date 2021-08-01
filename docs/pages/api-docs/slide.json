@@ -17,9 +17,7 @@
       "default": "{\n  enter: easing.easeOut,\n  exit: easing.sharp,\n}"
     },
     "in": { "type": { "name": "bool" } },
-    "targetRef": {
-      "type": { "name": "union", "description": "func<br>&#124;&nbsp;{ current: any }" }
-    },
+    "anchorEl": { "type": { "name": "custom", "description": "HTML element<br>&#124;&nbsp;func" } },
     "timeout": {
       "type": {
         "name": "union",

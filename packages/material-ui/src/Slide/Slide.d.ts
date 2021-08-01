@@ -32,9 +32,10 @@ export interface SlideProps extends TransitionProps {
   in?: TransitionProps['in'];
   ref?: React.Ref<unknown>;
   /**
-   * If set to a DOM node, the animated element slides in from the edge of the specified node.
+   * An HTML element, or a function that returns one.
+   * It's used to set the position of the Slide.
    */
-  targetRef?: React.Ref<any>;
+   anchorEl?: null | Element | ((element: Element) => Element);
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.

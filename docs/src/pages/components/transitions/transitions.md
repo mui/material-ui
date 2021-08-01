@@ -50,9 +50,9 @@ Similarly, the `unmountOnExit` prop removes the component from the DOM after it 
 
 ### Slide from target DOM node
 
-The Slide component also accepts `targetRef` prop, which is a reference to a DOM node. If this property is set, the Slide component will slide from the edge of that DOM node.
+The Slide component also accepts `anchorEl` prop, which is a reference to a DOM node. If this property is set, the Slide component will slide from the edge of that DOM node.
 
-{{"demo": "pages/components/transitions/SlideFromTargetRef.js"}}
+{{"demo": "pages/components/transitions/SlideFromAnchorEl.js"}}
 
 ## Zoom
 
