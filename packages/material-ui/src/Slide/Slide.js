@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
-import { elementAcceptingRef } from '@material-ui/utils';
+import { elementAcceptingRef, chainPropTypes, HTMLElementType } from '@material-ui/utils';
 import debounce from '../utils/debounce';
 import useForkRef from '../utils/useForkRef';
 import useTheme from '../styles/useTheme';
@@ -11,10 +11,9 @@ import { ownerWindow } from '../utils';
 
 // Translate the node so it can't be seen on the screen.
 // Later, we're going to translate the node back to its original location with `none`.
-function getTranslateValue(direction, node, targetRef) {
+function getTranslateValue(direction, node, anchorEl) {
   const rect = node.getBoundingClientRect();
-  const targetNode = targetRef?.current;
-  const targetNodeRect = targetNode && targetNode.getBoundingClientRect();
+  const anchorElRect = anchorEl && anchorEl.getBoundingClientRect();
   const containerWindow = ownerWindow(node);
   let transform;
 
@@ -37,43 +36,51 @@ function getTranslateValue(direction, node, targetRef) {
   }
 
   if (direction === 'left') {
-    if (targetNode) {
-      return `translateX(${targetNodeRect.right}px) translateX(${offsetX - rect.left}px)`;
+    if (anchorEl) {
+      return `translateX(${anchorElRect.right + offsetX - rect.left}px)`;
     }
 
-    return `translateX(${containerWindow.innerWidth}px) translateX(${offsetX - rect.left}px)`;
+    return `translateX(${containerWindow.innerWidth + offsetX - rect.left}px)`;
   }
 
   if (direction === 'right') {
-    if (targetNode) {
-      return `translateX(-${rect.right - targetNodeRect.left - offsetX}px)`;
+    if (anchorEl) {
+      return `translateX(-${rect.right - anchorElRect.left - offsetX}px)`;
     }
 
     return `translateX(-${rect.left + rect.width - offsetX}px)`;
   }
 
   if (direction === 'up') {
-    if (targetNode) {
-      return `translateY(${targetNodeRect.bottom}px) translateY(${offsetY - rect.top}px)`;
+    if (anchorEl) {
+      return `translateY(${anchorElRect.bottom + offsetY - rect.top}px)`;
     }
-    return `translateY(${containerWindow.innerHeight}px) translateY(${offsetY - rect.top}px)`;
+    return `translateY(${containerWindow.innerHeight + offsetY - rect.top}px)`;
   }
 
   // direction === 'down'
-  if (targetNode) {
-    return `translateY(-${rect.top - targetNodeRect.top + rect.height - offsetY}px)`;
+  if (anchorEl) {
+    return `translateY(-${rect.top - anchorElRect.top + rect.height - offsetY}px)`;
   }
   return `translateY(-${rect.top + rect.height - offsetY}px)`;
 }
 
-export function setTranslateValue(direction, node, targetRef) {
-  const transform = getTranslateValue(direction, node, targetRef);
+function getAnchorEl(anchorEl) {
+  return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
+}
+
+export function setTranslateValue(direction, node, anchorEl) {
+  const resolvedAnchorEl = getAnchorEl(anchorEl);
+  const anchorElement = resolvedAnchorEl && resolvedAnchorEl.nodeType === 1 && resolvedAnchorEl
+  const transform = getTranslateValue(direction, node, anchorElement);
 
   if (transform) {
     node.style.webkitTransform = transform;
     node.style.transform = transform;
   }
 }
+
+
 
 const defaultEasing = {
   enter: easing.easeOut,
@@ -93,7 +100,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
   const {
     appear = true,
     children,
-    targetRef,
+    anchorEl,
     direction = 'down',
     easing: easingProp = defaultEasing,
     in: inProp,
@@ -127,7 +134,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
   };
 
   const handleEnter = normalizedTransitionCallback((node, isAppearing) => {
-    setTranslateValue(direction, node, targetRef);
+    setTranslateValue(direction, node, anchorEl);
     reflow(node);
 
     if (onEnter) {
@@ -172,7 +179,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
     node.style.webkitTransition = theme.transitions.create('-webkit-transform', transitionProps);
     node.style.transition = theme.transitions.create('transform', transitionProps);
 
-    setTranslateValue(direction, node, targetRef);
+    setTranslateValue(direction, node, anchorEl);
 
     if (onExit) {
       onExit(node);
@@ -191,9 +198,9 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
   const updatePosition = React.useCallback(() => {
     if (childrenRef.current) {
-      setTranslateValue(direction, childrenRef.current, targetRef);
+      setTranslateValue(direction, childrenRef.current, anchorEl);
     }
-  }, [direction, targetRef]);
+  }, [direction, anchorEl]);
 
   React.useEffect(() => {
     // Skip configuration where the position is screen size invariant.
@@ -203,7 +210,8 @@ const Slide = React.forwardRef(function Slide(props, ref) {
 
     const handleResize = debounce(() => {
       if (childrenRef.current) {
-        setTranslateValue(direction, childrenRef.current, targetRef);
+        setTranslateValue(direction, childrenRef.current, anchorEl);
+        
       }
     });
 
@@ -213,7 +221,7 @@ const Slide = React.forwardRef(function Slide(props, ref) {
       handleResize.clear();
       containerWindow.removeEventListener('resize', handleResize);
     };
-  }, [direction, inProp, targetRef]);
+  }, [direction, inProp, anchorEl]);
 
   React.useEffect(() => {
     if (!inProp) {
@@ -319,15 +327,47 @@ Slide.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   style: PropTypes.object,
-  /**
-   * If set to a DOM node, the animated element slides in from the edge of the specified node.
+   /**
+   * An HTML element, or a function that returns one.
+   * It's used to set the position of the Slide.
    */
-  targetRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.any.isRequired,
-    }),
-  ]),
+  anchorEl: chainPropTypes(
+    PropTypes.oneOfType([HTMLElementType, PropTypes.func]),
+    (props) => {
+      if (props.appear) {
+        const resolvedAnchorEl = getAnchorEl(props.anchorEl);
+
+        if (resolvedAnchorEl && resolvedAnchorEl.nodeType === 1) {
+          const box = resolvedAnchorEl.getBoundingClientRect();
+
+          if (
+            process.env.NODE_ENV !== 'test' &&
+            box.top === 0 &&
+            box.left === 0 &&
+            box.right === 0 &&
+            box.bottom === 0
+          ) {
+            return new Error(
+              [
+                'Material-UI: The `anchorEl` prop provided to the component is invalid.',
+                'The anchor element should be part of the document layout.',
+                "Make sure the element is present in the document or that it's not display none.",
+              ].join('\n'),
+            );
+          }
+        }  else {
+          return new Error(
+            [
+              'Material-UI: The `anchorEl` prop provided to the component is invalid.',
+              `It should be an Element instance but it's \`${resolvedAnchorEl}\` instead.`,
+            ].join('\n'),
+          );
+        }
+      }
+
+      return null;
+    },
+  ),
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
