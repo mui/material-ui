@@ -3,11 +3,11 @@
 
 
 "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.2", "@babel/runtime@^7.6.3":
-  version "7.7.2"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.7.2.tgz#111a78002a5c25fc8e3361bedc9529c696b85a6a"
-  integrity sha512-JONRbXbTXc9WQE2mAZd1p0Z3DZ/6vaQIkgYMSTP3KjRCyd7rCZCcfhCyX+YjwcKxcZ82UrxbRD358bpExNgrjw==
+  version "7.14.8"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.14.8.tgz#7119a56f421018852694290b9f9148097391b446"
+  integrity sha512-twj3L8Og5SaCRCErB4x4ajbvBIVV77CGeFglHpeg5WC5FF8TZzBWXtTJ4MqaD9QszLYTtr+IsaAL2rEUevb+eg==
   dependencies:
-    regenerator-runtime "^0.13.2"
+    regenerator-runtime "^0.13.4"
 
 "@emotion/hash@^0.8.0":
   version "0.8.0"
@@ -33,9 +33,9 @@
     react-transition-group "^4.4.0"
 
 "@material-ui/icons@^5.0.0-alpha.4":
-  version "5.0.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@material-ui/icons/-/icons-5.0.0-alpha.4.tgz#edaa333b9612f5a02669fcec6b4af1ab91c31402"
-  integrity sha512-AE1nn/cYBNZ9FSihUMLb2c39HwdUpGXF3S1v7no68NtwOLjUorWshJJ/0i//cLgwvVEieRKI2XJpZjg6Ze/xNA==
+  version "5.0.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@material-ui/icons/-/icons-5.0.0-beta.1.tgz#9ba10a6a4481bf20d36fdb7600eb89ce774cf9a3"
+  integrity sha512-HMxEXok46a5xAr+26LpJUX+bX7WfaPi5Yi3Bbh1Agskw0nD5SHUbZizNxxuB8QbHhRNOZF9y9viEDNbSf+r+yg==
   dependencies:
     "@babel/runtime" "^7.4.4"
 
@@ -264,10 +264,10 @@ react-transition-group@^4.4.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-regenerator-runtime@^0.13.2:
-  version "0.13.3"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.3.tgz#7cf6a77d8f5c6f60eb73c5fc1955b2ceb01e6bf5"
-  integrity sha512-naKIZz2GQ8JWh///G7L3X6LaQUAMp2lvb1rvwwsURe/VXwD6VMfr+/1NuNw3ag8v2kY1aQ/go5SNn79O9JU7yw==
+regenerator-runtime@^0.13.4:
+  version "0.13.9"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.9.tgz#8925742a98ffd90814988d7566ad30ca3b263b52"
+  integrity sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==
 
 tiny-warning@^1.0.2:
   version "1.0.3"
