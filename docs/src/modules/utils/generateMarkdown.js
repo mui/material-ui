@@ -19,7 +19,23 @@ function generateHeader(reactAPI) {
 
 function getPropTypeString(str) {
   if (str.indexOf('oneOfType') >= 0 || str.indexOf('oneOf') >= 0) {
-    return `PropTypes.${str.substring(0, str.indexOf(')') + 1)}`;
+    let propTypes = str.substring(0, str.indexOf(')') + 1);
+
+    if (propTypes.indexOf('oneOfType') === 0) {
+      propTypes = propTypes.substring(11, propTypes.length - 2);
+    } else {
+      propTypes = propTypes.substring(7, propTypes.length - 2);
+    }
+
+    // Remove commas, 'PropTypes.' prefix, and replace invalid spacings
+    propTypes = propTypes
+      .replace(/,/g, '<br>&#124;&nbsp;')
+      .replace(/PropTypes\./g, '')
+      .replace(/\r?\n/g, '')
+      .replace(/ +/g, '');
+    propTypes = propTypes.trim();
+
+    return propTypes;
   }
   return str.substring(0, str.indexOf(','));
 }

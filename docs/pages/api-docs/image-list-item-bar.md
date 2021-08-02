@@ -34,7 +34,7 @@ The `MuiImageListItemBar` name can be used for providing [default props](/custom
 | <span class="prop-name">position</span> | <span class="prop-type">'bottom'<br>&#124;&nbsp;'top'</span> | <span class="prop-default">'bottom'</span> | Position of the title bar. |
 | <span class="prop-name">subtitle</span> | <span class="prop-type">node</span> |  | String or element serving as subtitle (support text). |
 | <span class="prop-name">title</span> | <span class="prop-type">node</span> |  | Title to be displayed on item. |
-| ~~<span class="prop-name">titlePosition</span>~~ | <span class="prop-type">PropTypes.oneOf(['bottom', 'top'])</span> |  | *Deprecated*. Use the `position` prop instead.<br><br>Position of the title bar. |
+| ~~<span class="prop-name">titlePosition</span>~~ | <span class="prop-type">'bottom'<br>&#124;&nbsp;'top'</span> |  | *Deprecated*. Use the `position` prop instead.<br><br>Position of the title bar. |
 
 The `ref` is forwarded to the root element.
 

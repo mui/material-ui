@@ -28,9 +28,9 @@ You can learn more about the difference by [reading this guide](/guides/minimizi
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">maxRows</span> | <span class="prop-type">number<br>&#124;&nbsp;string</span> |  | Maximum number of rows to display. |
 | <span class="prop-name">minRows</span> | <span class="prop-type">number<br>&#124;&nbsp;string</span> | <span class="prop-default">1</span> | Minimum number of rows to display. |
-| ~~<span class="prop-name">rows</span>~~ | <span class="prop-type">PropTypes.oneOfType([PropTypes.number, PropTypes.string])</span> |  | *Deprecated*. Use `minRows` instead.<br><br>Minimum number of rows to display. |
-| ~~<span class="prop-name">rowsMax</span>~~ | <span class="prop-type">PropTypes.oneOfType([PropTypes.number, PropTypes.string])</span> |  | *Deprecated*. Use `maxRows` instead.<br><br>Maximum number of rows to display. |
-| ~~<span class="prop-name">rowsMin</span>~~ | <span class="prop-type">PropTypes.oneOfType([PropTypes.number, PropTypes.string])</span> |  | *Deprecated*. Use `minRows` instead.<br><br>Minimum number of rows to display. |
+| ~~<span class="prop-name">rows</span>~~ | <span class="prop-type">number<br>&#124;&nbsp;string</span> |  | *Deprecated*. Use `minRows` instead.<br><br>Minimum number of rows to display. |
+| ~~<span class="prop-name">rowsMax</span>~~ | <span class="prop-type">number<br>&#124;&nbsp;string</span> |  | *Deprecated*. Use `maxRows` instead.<br><br>Maximum number of rows to display. |
+| ~~<span class="prop-name">rowsMin</span>~~ | <span class="prop-type">number<br>&#124;&nbsp;string</span> |  | *Deprecated*. Use `minRows` instead.<br><br>Minimum number of rows to display. |
 
 The `ref` is forwarded to the root element.
 
