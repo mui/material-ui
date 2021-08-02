@@ -6,13 +6,16 @@ import Typography from '@material-ui/core/Typography';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ProductsSwitcher from 'docs/src/components/home/ProductsSwitcher';
 import ComponentShowcase from './ComponentShowcase';
+import StoreTemplatesBanner from './StoreTemplatesBanner';
 
 const ProductSuite = () => {
+  const [productIndex, setProductIndex] = React.useState(0);
   return (
     <Box
       sx={{
         bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
         py: { xs: 4, sm: 6, md: 8 },
+        overflow: 'hidden',
       }}
     >
       <Container>
@@ -30,10 +33,11 @@ const ProductSuite = () => {
                 comes to setting up design systems.
               </Typography>
             </Box>
-            <ProductsSwitcher />
+            <ProductsSwitcher productIndex={productIndex} setProductIndex={setProductIndex} />
           </Grid>
           <Grid item xs={12} md={6}>
-            <ComponentShowcase />
+            {productIndex === 0 && <ComponentShowcase />}
+            {productIndex === 2 && <StoreTemplatesBanner />}
           </Grid>
         </Grid>
       </Container>

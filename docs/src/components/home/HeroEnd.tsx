@@ -4,13 +4,12 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Link from '@material-ui/core/Link';
 import GradientText from 'docs/src/components/typography/GradientText';
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
-import ContentCopyRounded from '@material-ui/icons/ContentCopyRounded';
 import ROUTES from 'docs/src/route';
+import GetStartedButtons from './GetStartedButtons';
 
 const HeroEnd = () => {
   return (
@@ -34,34 +33,9 @@ const HeroEnd = () => {
             <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
               Check it for yourself, give it a try and share with us what you&apos;ve built!
             </Typography>
-            <Box
-              sx={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                '&& > *': { minWidth: 'clamp(0px, (426px - 100%) * 999 ,100%)' },
-              }}
-            >
-              <NextLink href={ROUTES.documentation} passHref>
-                <Button
-                  component="a"
-                  size="large"
-                  variant="contained"
-                  endIcon={<KeyboardArrowRightRounded />}
-                >
-                  Get Started
-                </Button>
-              </NextLink>
-              <Box sx={{ width: 16, height: 16 }} />
-              <Button
-                size="large"
-                // @ts-expect-error
-                variant="code"
-                startIcon="$"
-                endIcon={<ContentCopyRounded />}
-              >
-                npm install @mui/core
-              </Button>
-            </Box>
+            <GetStartedButtons
+              sx={{ '&& > *': { minWidth: 'clamp(0px, (426px - 100%) * 999 ,100%)' } }}
+            />
           </Grid>
           <Grid item xs={12} sm={6} md={6} container spacing={2}>
             <Grid item xs={12} md={6}>

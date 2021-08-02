@@ -111,8 +111,13 @@ function Highlight({
   );
 }
 
-const ProductsSwitcher = () => {
-  const [productIndex, setProductIndex] = React.useState(0);
+const ProductsSwitcher = ({
+  productIndex,
+  setProductIndex,
+}: {
+  productIndex: number;
+  setProductIndex: React.Dispatch<React.SetStateAction<number>>;
+}) => {
   const productElements = [
     <ProductItem
       icon={<SvgProductCore />}

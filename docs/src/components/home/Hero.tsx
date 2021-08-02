@@ -1,12 +1,8 @@
 import * as React from 'react';
-import NextLink from 'next/link';
 import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
-import ContentCopyRounded from '@material-ui/icons/ContentCopyRounded';
 import GradientText from 'docs/src/components/typography/GradientText';
 import PlayerCard from 'docs/src/pages/components/cards/PlayerCard';
 import TaskCard from 'docs/src/pages/components/cards/TaskCard';
@@ -18,7 +14,7 @@ import FolderTable from 'docs/src/pages/components/tables/FolderTable';
 import ThemeTabs from 'docs/src/pages/components/tabs/ThemeTabs';
 import ThemeTimeline from 'docs/src/pages/components/timeline/ThemeTimeline';
 import ViewToggleButton from 'docs/src/pages/components/toggle-button/ViewToggleButton';
-import ROUTES from 'docs/src/route';
+import GetStartedButtons from './GetStartedButtons';
 
 const MAX_WIDTH = 1000;
 const SPAN_SIZE = 10;
@@ -127,35 +123,7 @@ export default function Hero() {
                 advanced components, enabling you to build your own design system and develop React
                 applications faster.
               </Typography>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexWrap: 'wrap',
-                  justifyContent: { xs: 'center', md: 'flex-start' },
-                  '&& > *': { minWidth: 'clamp(0px, (449px - 100%) * 999 ,100%)' },
-                }}
-              >
-                <NextLink href={ROUTES.documentation} passHref>
-                  <Button
-                    component="a"
-                    size="large"
-                    variant="contained"
-                    endIcon={<KeyboardArrowRightRounded />}
-                  >
-                    Get Started
-                  </Button>
-                </NextLink>
-                <Box sx={{ width: 16, height: 16 }} />
-                <Button
-                  size="large"
-                  // @ts-expect-error
-                  variant="code"
-                  startIcon="$"
-                  endIcon={<ContentCopyRounded />}
-                >
-                  npm install @mui/core
-                </Button>
-              </Box>
+              <GetStartedButtons sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }} />
             </Box>
           </Grid>
           <Grid
