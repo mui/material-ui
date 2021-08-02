@@ -447,6 +447,13 @@ const company = [
     twitter: 'siriwatknp',
     github: 'siriwatknp',
   },
+  {
+    name: 'Flavien Delangle',
+    src: '/static/branding/about/flavien.jpg',
+    title: 'Advanced components team',
+    location: 'Lille, France',
+    github: 'flaviendelangle',
+  },
 ];
 
 function BrandingCompany() {
