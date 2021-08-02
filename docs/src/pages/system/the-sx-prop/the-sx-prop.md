@@ -207,15 +207,7 @@ export default function App() {
 ```
 
 The problem is that the type of the `flexDirection` prop is inferred as `string`, which is too wide.
-To fix this, you can pass the styles object directly to the `sx` prop:
-
-```ts
-export default function App() {
-  return <Button sx={{ flexDirection: 'column' }}>Example</Button>;
-}
-```
-
-Alternatively, you can cast the object/function passed to the `sx` prop to const:
+To fix this, you can cast the object/function passed to the `sx` prop to const:
 
 ```ts
 const style = {
@@ -224,6 +216,14 @@ const style = {
 
 export default function App() {
   return <Button sx={style}>Example</Button>;
+}
+```
+
+Alternatively, you can pass the styles object directly to the `sx` prop:
+
+```ts
+export default function App() {
+  return <Button sx={{ flexDirection: 'column' }}>Example</Button>;
 }
 ```
 
