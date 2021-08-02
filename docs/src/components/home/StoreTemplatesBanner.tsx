@@ -39,7 +39,7 @@ export default function StoreTemplatesBanner() {
       if (appearIndexes.length < 5) {
         setAppearIndexes((current) => [...current, current.length]);
       }
-    }, 50);
+    }, 200);
     return () => {
       clearTimeout(time);
     };
@@ -61,7 +61,7 @@ export default function StoreTemplatesBanner() {
         sx={{ height: '100%' }}
       >
         <Grid item xs={12} sm={6} md={6}>
-          <Fade in={appearIndexes.includes(0)}>
+          <Fade in={appearIndexes.includes(0)} timeout={1000}>
             <Banner
               src="/static/branding/store-templates/store-template1.png"
               alt="Store template 1"
@@ -69,7 +69,7 @@ export default function StoreTemplatesBanner() {
           </Fade>
         </Grid>
         <Grid item xs={12} sm={6} md={6}>
-          <Fade in={appearIndexes.includes(3)}>
+          <Fade in={appearIndexes.includes(3)} timeout={1000}>
             <Banner
               src="/static/branding/store-templates/store-template2.png"
               alt="Store template 2"
@@ -78,7 +78,7 @@ export default function StoreTemplatesBanner() {
         </Grid>
         <Grid item xs={12} sm={6} md={12}>
           <Box sx={{ width: { xs: '100%', md: '50%' }, mx: 'auto' }}>
-            <Fade in={appearIndexes.includes(2)}>
+            <Fade in={appearIndexes.includes(2)} timeout={1000}>
               <Banner
                 src="/static/branding/store-templates/store-template3.png"
                 alt="Store template 3"
@@ -87,7 +87,7 @@ export default function StoreTemplatesBanner() {
           </Box>
         </Grid>
         <Grid item xs={12} sm={6} md={6}>
-          <Fade in={appearIndexes.includes(1)}>
+          <Fade in={appearIndexes.includes(1)} timeout={1000}>
             <Banner
               src="/static/branding/store-templates/store-template4.png"
               alt="Store template 4"
@@ -95,7 +95,7 @@ export default function StoreTemplatesBanner() {
           </Fade>
         </Grid>
         <Grid item xs={12} sm={6} md={6}>
-          <Fade in={appearIndexes.includes(4)}>
+          <Fade in={appearIndexes.includes(4)} timeout={700}>
             <Banner
               src="/static/branding/store-templates/store-template5.png"
               alt="Store template 5"

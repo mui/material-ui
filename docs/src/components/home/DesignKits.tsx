@@ -13,10 +13,20 @@ const Image = styled('img')({
   height: '100%',
   objectFit: 'cover',
   objectPosition: 'top left',
-  opacity: 0.32,
 });
 
 export default function DesignKits() {
+  const [appearIndexes, setAppearIndexes] = React.useState<Array<number>>([0]);
+  React.useEffect(() => {
+    const time = setTimeout(() => {
+      if (appearIndexes.length < 3) {
+        setAppearIndexes((current) => [...current, current.length]);
+      }
+    }, 200);
+    return () => {
+      clearTimeout(time);
+    };
+  }, [appearIndexes]);
   return (
     <Box
       sx={{
@@ -26,9 +36,10 @@ export default function DesignKits() {
         justifyContent: 'center',
         alignItems: 'center',
         height: '100%',
+        minHeight: 300,
       }}
     >
-      <Fade in>
+      <Fade in timeout={500}>
         <Box
           sx={{
             top: 0,
@@ -41,6 +52,17 @@ export default function DesignKits() {
           }}
         >
           <Image src="/static/branding/design-kits/designkits-bg.png" />
+          <Box
+            sx={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              bottom: 0,
+              right: 0,
+              opacity: 0.72,
+              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
+            }}
+          />
         </Box>
       </Fade>
       <Box
@@ -56,13 +78,13 @@ export default function DesignKits() {
           },
         }}
       >
-        <Fade in>
+        <Fade in={appearIndexes.includes(0)} timeout={1000}>
           <Avatar src="/static/branding/design-kits/designkits-figma.png" />
         </Fade>
-        <Fade in>
+        <Fade in={appearIndexes.includes(1)} timeout={1000}>
           <Avatar src="/static/branding/design-kits/designkits-sketch.png" />
         </Fade>
-        <Fade in>
+        <Fade in={appearIndexes.includes(2)} timeout={1000}>
           <Avatar src="/static/branding/design-kits/designkits-xd.png" />
         </Fade>
       </Box>
