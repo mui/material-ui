@@ -575,7 +575,7 @@ withStyles(styles);
 //           Type 'string' is not assignable to type '"-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "column" | "column-reverse" | "row"...'.
 ```
 
-The problem is that the type of the `flexDirection` prop is inferred as `string`, which is too arbitrary. To fix this, you can pass the styles object directly to `withStyles`:
+The problem is that the type of the `flexDirection` prop is inferred as `string`, which is too wide. To fix this, you can pass the styles object directly to `withStyles`:
 
 ```ts
 withStyles({
