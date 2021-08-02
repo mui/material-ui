@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
 import SvgHambugerMenu from 'docs/src/icons/SvgHamburgerMenu';
+import ROUTES from 'docs/src/route';
 
 const Anchor = styled('a')<{ component?: React.ElementType }>(({ theme }) => ({
   ...theme.typography.body2,
@@ -123,7 +124,7 @@ export default function HeaderNavDropdown() {
                     sx={{ borderLeft: '1px solid', borderColor: 'grey.100', pl: 1, pb: 1, ml: 1 }}
                   >
                     {PRODUCTS.map((item) => (
-                      <NextLink key={item.name} href="/branding/home" passHref>
+                      <NextLink key={item.name} href={ROUTES.home} passHref>
                         <Anchor sx={{ flexDirection: 'column', alignItems: 'initial' }}>
                           <div>{item.name}</div>
                           <Typography variant="body2" color="text.secondary">
@@ -136,17 +137,17 @@ export default function HeaderNavDropdown() {
                 </Collapse>
               </li>
               <li>
-                <NextLink href="/branding/home" passHref>
+                <NextLink href={ROUTES.documentation} passHref>
                   <Anchor>Docs</Anchor>
                 </NextLink>
               </li>
               <li>
-                <NextLink href="/branding/home" passHref>
+                <NextLink href={ROUTES.pricing} passHref>
                   <Anchor>Pricing</Anchor>
                 </NextLink>
               </li>
               <li>
-                <NextLink href="/branding/home" passHref>
+                <NextLink href={ROUTES.about} passHref>
                   <Anchor>About us</Anchor>
                 </NextLink>
               </li>

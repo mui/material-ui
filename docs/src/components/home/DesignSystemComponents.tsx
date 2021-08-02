@@ -1,4 +1,5 @@
 import * as React from 'react';
+import NextLink from 'next/link';
 import {
   styled,
   createTheme,
@@ -34,6 +35,7 @@ import CheckCircleRounded from '@material-ui/icons/CheckCircleRounded';
 import MailRounded from '@material-ui/icons/MailRounded';
 import VerifiedUserRounded from '@material-ui/icons/VerifiedUserRounded';
 import HelpCenterRounded from '@material-ui/icons/HelpCenterRounded';
+import ROUTES from 'docs/src/route';
 
 const Grid = styled('div')(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
@@ -522,7 +524,11 @@ const DesignSystemComponents = () => {
           >
             Check the documentation to see the detais of every component!
           </Typography>
-          <Button endIcon={<KeyboardArrowRightRounded />}>Get Started</Button>
+          <NextLink href={ROUTES.documentation} passHref>
+            <Button component="a" endIcon={<KeyboardArrowRightRounded />}>
+              Get Started
+            </Button>
+          </NextLink>
         </Box>
       </Grid>
     </Container>

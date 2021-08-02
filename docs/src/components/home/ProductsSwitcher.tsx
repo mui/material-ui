@@ -1,6 +1,8 @@
 import * as React from 'react';
+import NextLink from 'next/link';
 import SwipeableViews from 'react-swipeable-views';
 import Box, { BoxProps } from '@material-ui/core/Box';
+import Link from '@material-ui/core/Link';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
@@ -11,15 +13,18 @@ import SvgProductDesign from 'docs/src/icons/SvgProductDesign';
 import SvgMuiX from 'docs/src/icons/SvgMuiX';
 
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
+import ROUTES from 'docs/src/route';
 
 function ProductItem({
   icon,
   name,
   description,
+  href,
 }: {
   icon: React.ReactNode;
   name: React.ReactNode;
   description: React.ReactNode;
+  href: string;
 }) {
   return (
     <Box
@@ -38,15 +43,27 @@ function ProductItem({
         <Typography color="text.secondary" variant="body2" fontWeight="regular">
           {description}
         </Typography>
-        <Typography
-          color="primary"
-          variant="body2"
-          fontWeight="bold"
-          sx={{ display: 'flex', alignItems: 'center', minHeight: 24 }}
-        >
-          <span>Learn more</span>{' '}
-          <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '2px', ml: '2px' }} />
-        </Typography>
+        <NextLink href={href} passHref>
+          <Link
+            href={href}
+            color="primary"
+            variant="body2"
+            fontWeight="bold"
+            sx={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              minHeight: 24,
+              '& > svg': { transition: '0.2s' },
+              '&:hover > svg': { transform: 'translateX(4px)' },
+            }}
+            onClick={(event) => {
+              event.stopPropagation();
+            }}
+          >
+            <span>Learn more</span>{' '}
+            <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px', ml: '2px' }} />
+          </Link>
+        </NextLink>
       </Box>
     </Box>
   );
@@ -101,6 +118,7 @@ const ProductsSwitcher = () => {
       icon={<SvgProductCore />}
       name="Core"
       description="Ready to use, forever free, foundational components."
+      href={ROUTES.productCore}
     />,
     <ProductItem
       icon={<SvgProductAdvanced />}
@@ -110,16 +128,19 @@ const ProductsSwitcher = () => {
         </Box>
       }
       description="Powerful and robust components for your complex apps."
+      href={ROUTES.productAdvanced}
     />,
     <ProductItem
       icon={<SvgProductTemplates />}
       name="Templates"
       description="Fully built, out-of-the-box, templates for your application."
+      href={ROUTES.productTemplates}
     />,
     <ProductItem
       icon={<SvgProductDesign />}
       name="Design Kits"
       description="Our components available in your favorite design tool."
+      href={ROUTES.productDesignKits}
     />,
   ];
   return (

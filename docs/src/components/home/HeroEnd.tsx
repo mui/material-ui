@@ -1,4 +1,5 @@
 import * as React from 'react';
+import NextLink from 'next/link';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
@@ -9,6 +10,7 @@ import Link from '@material-ui/core/Link';
 import GradientText from 'docs/src/components/typography/GradientText';
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 import ContentCopyRounded from '@material-ui/icons/ContentCopyRounded';
+import ROUTES from 'docs/src/route';
 
 const HeroEnd = () => {
   return (
@@ -39,9 +41,16 @@ const HeroEnd = () => {
                 '&& > *': { minWidth: 'clamp(0px, (426px - 100%) * 999 ,100%)' },
               }}
             >
-              <Button size="large" variant="contained" endIcon={<KeyboardArrowRightRounded />}>
-                Get Started
-              </Button>
+              <NextLink href={ROUTES.documentation} passHref>
+                <Button
+                  component="a"
+                  size="large"
+                  variant="contained"
+                  endIcon={<KeyboardArrowRightRounded />}
+                >
+                  Get Started
+                </Button>
+              </NextLink>
               <Box sx={{ width: 16, height: 16 }} />
               <Button
                 size="large"
@@ -63,9 +72,11 @@ const HeroEnd = () => {
                 <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                   See more projects and companies out there relying on MUI.
                 </Typography>
-                <Link href="/" variant="body2">
-                  Learn more <KeyboardArrowRightRounded fontSize="small" />
-                </Link>
+                <NextLink href={ROUTES.showcase} passHref>
+                  <Link href={ROUTES.showcase} variant="body2">
+                    Learn more <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px ' }} />
+                  </Link>
+                </NextLink>
               </Paper>
             </Grid>
             <Grid item xs={12} md={6}>
@@ -76,9 +87,11 @@ const HeroEnd = () => {
                 <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                   Check behind the scenes and news from the company.
                 </Typography>
-                <Link href="/" variant="body2">
-                  Learn more <KeyboardArrowRightRounded fontSize="small" />
-                </Link>
+                <NextLink href={ROUTES.blog} passHref>
+                  <Link href={ROUTES.blog} variant="body2">
+                    Learn more <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
+                  </Link>
+                </NextLink>
               </Paper>
             </Grid>
           </Grid>

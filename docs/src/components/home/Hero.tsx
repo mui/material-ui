@@ -1,4 +1,5 @@
 import * as React from 'react';
+import NextLink from 'next/link';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
@@ -17,6 +18,7 @@ import FolderTable from 'docs/src/pages/components/tables/FolderTable';
 import ThemeTabs from 'docs/src/pages/components/tabs/ThemeTabs';
 import ThemeTimeline from 'docs/src/pages/components/timeline/ThemeTimeline';
 import ViewToggleButton from 'docs/src/pages/components/toggle-button/ViewToggleButton';
+import ROUTES from 'docs/src/route';
 
 const MAX_WIDTH = 1000;
 const SPAN_SIZE = 10;
@@ -133,9 +135,16 @@ export default function Hero() {
                   '&& > *': { minWidth: 'clamp(0px, (449px - 100%) * 999 ,100%)' },
                 }}
               >
-                <Button size="large" variant="contained" endIcon={<KeyboardArrowRightRounded />}>
-                  Get Started
-                </Button>
+                <NextLink href={ROUTES.documentation} passHref>
+                  <Button
+                    component="a"
+                    size="large"
+                    variant="contained"
+                    endIcon={<KeyboardArrowRightRounded />}
+                  >
+                    Get Started
+                  </Button>
+                </NextLink>
                 <Box sx={{ width: 16, height: 16 }} />
                 <Button
                   size="large"

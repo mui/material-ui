@@ -145,7 +145,13 @@ const Sponsors = () => {
                 theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
             }}
           >
-            <IconButton sx={{ mr: 2, border: '1px solid', borderColor: 'divider' }}>
+            <IconButton
+              component="a"
+              href="mailto:diamond@material-ui.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{ mr: 2, border: '1px solid', borderColor: 'divider' }}
+            >
               <AddRounded />
             </IconButton>
             <Box>
@@ -154,8 +160,14 @@ const Sponsors = () => {
               </Typography>
               <Typography variant="body2" color="text.primary">
                 To join us, contact us at{' '}
-                <Link href="mailto:diamond@material-ui.com">diamond@material-ui.com</Link> for
-                pre-approval.
+                <Link
+                  href="mailto:diamond@material-ui.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  diamond@material-ui.com
+                </Link>{' '}
+                for pre-approval.
               </Typography>
             </Box>
           </Paper>

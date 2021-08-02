@@ -1,4 +1,6 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
+import NextLink from 'next/link';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
@@ -7,6 +9,7 @@ import InputBase from '@material-ui/core/InputBase';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
+import ROUTES from '../route';
 
 export default function AppFooter() {
   return (
@@ -96,78 +99,78 @@ export default function AppFooter() {
             <Typography fontWeight="bold" variant="body2">
               Products
             </Typography>
-            <Link href="/" className="text-sm footer-link">
-              Core
-            </Link>
-            <Link href="/" className="text-sm footer-link">
-              Advanced X
-            </Link>
-            <Link href="/" className="text-sm footer-link">
-              Templates
-            </Link>
-            <Link href="/" className="text-sm footer-link">
-              Design Kits
-            </Link>
+            <NextLink href={ROUTES.productCore} passHref>
+              <Link>Core</Link>
+            </NextLink>
+            <NextLink href={ROUTES.productAdvanced} passHref>
+              <Link>Advanced X</Link>
+            </NextLink>
+            <NextLink href={ROUTES.productTemplates} passHref>
+              <Link>Templates</Link>
+            </NextLink>
+            <NextLink href={ROUTES.productDesignKits} passHref>
+              <Link>Design Kits</Link>
+            </NextLink>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="bold" variant="body2">
               Resources
             </Typography>
-            <Link href="/" className="text-sm footer-link">
-              Material Icons
-            </Link>
-            <Link href="/" className="text-sm footer-link">
-              Free templates
-            </Link>
-            <Link href="/" className="text-sm footer-link">
-              Components
-            </Link>
-            <Link href="/" className="text-sm footer-link">
-              Customization
-            </Link>
-            <Link href="/" className="text-sm footer-link">
-              Styling
-            </Link>
+            <NextLink href={ROUTES.materialIcons} passHref>
+              <Link>Material Icons</Link>
+            </NextLink>
+            <NextLink href={ROUTES.freeTemplates} passHref>
+              <Link>Free templates</Link>
+            </NextLink>
+            <NextLink href={ROUTES.components} passHref>
+              <Link>Components</Link>
+            </NextLink>
+            <NextLink href={ROUTES.customization} passHref>
+              <Link>Customization</Link>
+            </NextLink>
+            <NextLink href={ROUTES.styling} passHref>
+              <Link>Styling</Link>
+            </NextLink>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="bold" variant="body2">
               Explore
             </Typography>
-            <Link href="/" className="text-sm footer-link">
-              Documentation
-            </Link>
-            <Link href="/" className="text-sm footer-link">
-              Blog
-            </Link>
-            <Link href="/" className="text-sm footer-link">
-              Showcase
-            </Link>
-            <Link href="/" className="text-sm footer-link">
-              Roadmap
-            </Link>
-            <Link href="/" className="text-sm footer-link">
-              Languages
-            </Link>
+            <NextLink href={ROUTES.documentation} passHref>
+              <Link>Documentation</Link>
+            </NextLink>
+            <NextLink href={ROUTES.blog} passHref>
+              <Link>Blog</Link>
+            </NextLink>
+            <NextLink href={ROUTES.showcase} passHref>
+              <Link>Showcase</Link>
+            </NextLink>
+            <NextLink href={ROUTES.roadmap}>
+              <Link>Roadmap</Link>
+            </NextLink>
+            <NextLink href={ROUTES.languages}>
+              <Link>Languages</Link>
+            </NextLink>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="bold" variant="body2">
               Company
             </Typography>
-            <Link href="/" className="text-sm footer-link">
-              About
-            </Link>
-            <Link href="/" className="text-sm footer-link">
-              Vision
-            </Link>
-            <Link href="/" className="text-sm footer-link">
-              Careers
-            </Link>
-            <Link href="/" className="text-sm footer-link">
-              Support
-            </Link>
-            <Link href="/" className="text-sm footer-link">
-              Contact us
-            </Link>
+            <NextLink href={ROUTES.about}>
+              <Link>About</Link>
+            </NextLink>
+            <NextLink href={ROUTES.vision}>
+              <Link>Vision</Link>
+            </NextLink>
+            <NextLink href={ROUTES.careers}>
+              <Link>Careers</Link>
+            </NextLink>
+            <NextLink href={ROUTES.support}>
+              <Link>Support</Link>
+            </NextLink>
+            <NextLink href={ROUTES.contactUs}>
+              <Link>Contact us</Link>
+            </NextLink>
           </Box>
         </Box>
       </Box>

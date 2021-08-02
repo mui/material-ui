@@ -12,6 +12,7 @@ import SvgProductAdvanced from 'docs/src/icons/SvgProductAdvanced';
 import SvgProductTemplates from 'docs/src/icons/SvgProductTemplates';
 import SvgProductDesign from 'docs/src/icons/SvgProductDesign';
 import SvgMuiX from 'docs/src/icons/SvgMuiX';
+import ROUTES from 'docs/src/route';
 
 const Navigation = styled('nav')(({ theme }) => ({
   '& ul': {
@@ -195,7 +196,7 @@ export default function HeaderNavBar() {
                       <ProductSubMenu
                         id={PRODUCT_IDS[0]}
                         role="menuitem"
-                        href="/products/core"
+                        href={ROUTES.productCore}
                         icon={<SvgProductCore />}
                         name="Core"
                         description="Ready to use, forever free, out-of-the-box, components."
@@ -206,7 +207,7 @@ export default function HeaderNavBar() {
                       <ProductSubMenu
                         id={PRODUCT_IDS[1]}
                         role="menuitem"
-                        href="/products/advanced"
+                        href={ROUTES.productAdvanced}
                         icon={<SvgProductAdvanced />}
                         name={
                           <Box component="span" display="inline-flex" alignItems="center">
@@ -221,7 +222,7 @@ export default function HeaderNavBar() {
                       <ProductSubMenu
                         id={PRODUCT_IDS[2]}
                         role="menuitem"
-                        href="/products/templates"
+                        href={ROUTES.productTemplates}
                         icon={<SvgProductTemplates />}
                         name="Templates"
                         description="Get a fully built template for you application."
@@ -232,7 +233,7 @@ export default function HeaderNavBar() {
                       <ProductSubMenu
                         id={PRODUCT_IDS[3]}
                         role="menuitem"
-                        href="/products/design-kits"
+                        href={ROUTES.productDesignKits}
                         icon={<SvgProductDesign />}
                         name="Design Kits"
                         description="Pick your favorite design tool to enjoy."
@@ -246,17 +247,17 @@ export default function HeaderNavBar() {
           </Popper>
         </li>
         <li role="none">
-          <NextLink href="/">
+          <NextLink href={ROUTES.documentation}>
             <a role="menuitem">Docs</a>
           </NextLink>
         </li>
         <li role="none">
-          <NextLink href="/branding/pricing">
+          <NextLink href={ROUTES.pricing}>
             <a role="menuitem">Pricing</a>
           </NextLink>
         </li>
         <li role="none">
-          <NextLink href="/branding/about">
+          <NextLink href={ROUTES.about}>
             <a role="menuitem">About us</a>
           </NextLink>
         </li>
