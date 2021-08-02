@@ -3,19 +3,19 @@ import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unsty
 export interface ListItemButtonClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Pseudo-class applied to the `component`'s `focusVisibleClassName` prop. */
+  /** State class applied to the `component`'s `focusVisibleClassName` prop. */
   focusVisible: string;
   /** Styles applied to the component element if dense. */
   dense: string;
   /** Styles applied to the component element if `alignItems="flex-start"`. */
   alignItemsFlexStart: string;
-  /** Pseudo-class applied to the inner `component` element if `disabled={true}`. */
+  /** State class applied to the inner `component` element if `disabled={true}`. */
   disabled: string;
   /** Styles applied to the inner `component` element if `divider={true}`. */
   divider: string;
   /** Styles applied to the inner `component` element unless `disableGutters={true}`. */
   gutters: string;
-  /** Pseudo-class applied to the root element if `selected={true}`. */
+  /** State class applied to the root element if `selected={true}`. */
   selected: string;
 }
 

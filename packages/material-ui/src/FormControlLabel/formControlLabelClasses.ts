@@ -9,7 +9,7 @@ export interface FormControlLabelClasses {
   labelPlacementTop: string;
   /** Styles applied to the root element if `labelPlacement="bottom"`. */
   labelPlacementBottom: string;
-  /** Pseudo-class applied to the root element if `disabled={true}`. */
+  /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
   /** Styles applied to the label's Typography component. */
   label: string;

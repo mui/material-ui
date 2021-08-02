@@ -11,9 +11,9 @@ export interface TabClasses {
   textColorPrimary: string;
   /** Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="secondary"`. */
   textColorSecondary: string;
-  /** Pseudo-class applied to the root element if `selected={true}` (controlled by the Tabs component). */
+  /** State class applied to the root element if `selected={true}` (controlled by the Tabs component). */
   selected: string;
-  /** Pseudo-class applied to the root element if `disabled={true}` (controlled by the Tabs component). */
+  /** State class applied to the root element if `disabled={true}` (controlled by the Tabs component). */
   disabled: string;
   /** Styles applied to the root element if `fullWidth={true}` (controlled by the Tabs component). */
   fullWidth: string;

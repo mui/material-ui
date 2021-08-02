@@ -8,9 +8,9 @@ export interface SliderUnstyledClasses {
   marked: string;
   /** Class name applied to the root element if `orientation="vertical"`. */
   vertical: string;
-  /** Pseudo-class applied to the root and thumb element if `disabled={true}`. */
+  /** State class applied to the root and thumb element if `disabled={true}`. */
   disabled: string;
-  /** Pseudo-class applied to the root if a thumb is being dragged. */
+  /** State class applied to the root if a thumb is being dragged. */
   dragging: string;
   /** Class name applied to the rail element. */
   rail: string;
@@ -22,9 +22,9 @@ export interface SliderUnstyledClasses {
   trackInverted: string;
   /** Class name applied to the thumb element. */
   thumb: string;
-  /** Pseudo-class applied to the thumb element if it's active. */
+  /** State class applied to the thumb element if it's active. */
   active: string;
-  /** Pseudo-class applied to the thumb element if keyboard focused. */
+  /** State class applied to the thumb element if keyboard focused. */
   focusVisible: string;
   /** Class name applied to the thumb label element. */
   valueLabel: string;

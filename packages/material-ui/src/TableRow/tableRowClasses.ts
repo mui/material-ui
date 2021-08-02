@@ -3,9 +3,9 @@ import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unsty
 export interface TableRowClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Pseudo-class applied to the root element if `selected={true}`. */
+  /** State class applied to the root element if `selected={true}`. */
   selected: string;
-  /** Pseudo-class applied to the root element if `hover={true}`. */
+  /** State class applied to the root element if `hover={true}`. */
   hover: string;
   /** Styles applied to the root element if table variant="head". */
   head: string;
