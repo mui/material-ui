@@ -58,12 +58,16 @@ Use border utilities to add or remove an element's borders. Wählen Sie aus einz
 import { borders } from '@material-ui/system';
 ```
 
-| Inportname     | Eigenschaften  | CSS-Eigenschaft | Theme-Schlüssel                                                  |
-|:-------------- |:-------------- |:--------------- |:---------------------------------------------------------------- |
-| `border`       | `border`       | `border`        | `borders`                                                        |
-| `borderTop`    | `borderTop`    | `border-top`    | `borders`                                                        |
-| `borderLeft`   | `borderLeft`   | `border-left`   | `borders`                                                        |
-| `borderRight`  | `borderRight`  | `border-right`  | `borders`                                                        |
-| `borderBottom` | `borderBottom` | `border-bottom` | `borders`                                                        |
-| `borderColor`  | `borderColor`  | `border-color`  | [`palette`](/customization/default-theme/?expand-path=$.palette) |
-| `borderRadius` | `borderRadius` | `border-radius` | [`shape`](/customization/default-theme/?expand-path=$.shape)     |
+| Inportname          | Eigenschaften       | CSS-Eigenschaft       | Theme-Schlüssel                                                  |
+| :------------------ | :------------------ | :-------------------- | :--------------------------------------------------------------- |
+| `border`            | `border`            | `border`              | `borders`                                                        |
+| `borderTop`         | `borderTop`         | `border-top`          | `borders`                                                        |
+| `borderLeft`        | `borderLeft`        | `border-left`         | `borders`                                                        |
+| `borderRight`       | `borderRight`       | `border-right`        | `borders`                                                        |
+| `borderBottom`      | `borderBottom`      | `border-bottom`       | `borders`                                                        |
+| `borderColor`       | `borderColor`       | `border-color`        | [`palette`](/customization/default-theme/?expand-path=$.palette) |
+| `borderTopColor`    | `borderTopColor`    | `border-top-color`    | [`palette`](/customization/default-theme/?expand-path=$.palette) |
+| `borderRightColor`  | `borderRightColor`  | `border-right-color`  | [`palette`](/customization/default-theme/?expand-path=$.palette) |
+| `borderBottomColor` | `borderBottomColor` | `border-bottom-color` | [`palette`](/customization/default-theme/?expand-path=$.palette) |
+| `borderLeftColor`   | `borderLeftColor`   | `border-left-color`   | [`palette`](/customization/default-theme/?expand-path=$.palette) |
+| `borderRadius`      | `borderRadius`      | `border-radius`       | [`shape`](/customization/default-theme/?expand-path=$.shape)     |
