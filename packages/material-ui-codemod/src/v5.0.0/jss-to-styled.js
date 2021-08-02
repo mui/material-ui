@@ -282,7 +282,7 @@ export default function transformer(file, api, options) {
       .find(j.CallExpression, { callee: { name: 'withStyles' } })
       .at(0)
       .forEach((path) => {
-        let arg = path.node.arguments[0];
+        const arg = path.node.arguments[0];
         if (arg.type === 'Identifier') {
           stylesFnName = arg.name;
         }
@@ -346,6 +346,11 @@ export default function transformer(file, api, options) {
             if (arg.body.callee.name === 'createStyles') {
               arg.body = arg.body.arguments[0];
             }
+          }
+        }
+        if (arg.type === 'CallExpression') {
+          if (arg.callee.name === 'createStyles') {
+            arg = arg.arguments[0];
           }
         }
         if (objectExpression) {

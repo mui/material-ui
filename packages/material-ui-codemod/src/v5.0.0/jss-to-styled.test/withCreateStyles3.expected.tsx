@@ -6,15 +6,11 @@ const classes = {
   root: `${PREFIX}-root`
 };
 
-const Root = styled('div')((
-  {
-    theme
-  }
-) => ({
-  [`&.${classes.root}`]: {
-    background: theme.background,
-  }
-}));
+const Root = styled('div')({
+    [`&.${classes.root}`]: {
+      background: 'red',
+    },
+  });
 
 const MyComponent = (props) => {
 

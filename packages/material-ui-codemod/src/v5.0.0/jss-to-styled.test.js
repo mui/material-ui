@@ -311,5 +311,35 @@ describe('@material-ui/codemod', () => {
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
     });
+
+    describe('with createStyles directly', () => {
+      it.only('transforms as needed', () => {
+        const actual = transform(
+          {
+            source: read('./jss-to-styled.test/withCreateStyles3.actual.tsx'),
+            path: require.resolve('./jss-to-styled.test/withCreateStyles3.actual.tsx'),
+          },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./jss-to-styled.test/withCreateStyles3.expected.tsx');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('should be idempotent', () => {
+        const actual = transform(
+          {
+            source: read('./jss-to-styled.test/withCreateStyles3.expected.tsx'),
+            path: require.resolve('./jss-to-styled.test/withCreateStyles3.expected.tsx'),
+          },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./jss-to-styled.test/withCreateStyles3.expected.tsx');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+    });
   });
 });
