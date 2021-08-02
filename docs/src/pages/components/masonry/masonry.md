@@ -20,6 +20,8 @@ Masonry maintains a list of content blocks with a consistent width but variable 
 
 ## Image Masonry
 
+`<Masonry />` orders its children by row. If you would like to order images by column, you can use `<ImageList variant="masonry" />`, whose more details can be found in [Masonry Image List](https://next.material-ui.com/components/image-list/#masonry-image-list).
+
 {{"demo": "pages/components/masonry/ImageMasonry.js", "bg": true}}
 
 ## Columns
