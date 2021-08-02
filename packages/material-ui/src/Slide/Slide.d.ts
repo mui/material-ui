@@ -35,7 +35,7 @@ export interface SlideProps extends TransitionProps {
    * An HTML element, or a function that returns one.
    * It's used to set the position of the Slide.
    */
-   anchorEl?: null | Element | ((element: Element) => Element);
+  anchorEl?: null | Element | ((element: Element) => Element);
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
