@@ -36,8 +36,14 @@ The `MuiGrid` name can be used for providing [default props](/customization/glob
 | <span class="prop-name">container</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the component will have the flex *container* behavior. You should be wrapping *items* with a *container*. |
 | <span class="prop-name">direction</span> | <span class="prop-type">'row'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'column-reverse'</span> | <span class="prop-default">'row'</span> | Defines the `flex-direction` style property. It is applied for all screen sizes. |
 | <span class="prop-name">item</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | If `true`, the component will have the flex *item* behavior. You should be wrapping *items* with a *container*. |
-| ~~<span class="prop-name">justify</span>~~ | <span class="prop-type">oneOf([
-    'flex-start'</span> |  | *Deprecated*. Use `justifyContent` instead, the prop was renamed.<br><br>Defines the `justify-content` style property. It is applied for all screen sizes. |
+| ~~<span class="prop-name">justify</span>~~ | <span class="prop-type">PropTypes.oneOf([
+    'flex-start',
+    'center',
+    'flex-end',
+    'space-between',
+    'space-around',
+    'space-evenly',
+  ])</span> |  | *Deprecated*. Use `justifyContent` instead, the prop was renamed.<br><br>Defines the `justify-content` style property. It is applied for all screen sizes. |
 | <span class="prop-name">justifyContent</span> | <span class="prop-type">'flex-start'<br>&#124;&nbsp;'center'<br>&#124;&nbsp;'flex-end'<br>&#124;&nbsp;'space-between'<br>&#124;&nbsp;'space-around'<br>&#124;&nbsp;'space-evenly'</span> | <span class="prop-default">'flex-start'</span> | Defines the `justify-content` style property. It is applied for all screen sizes. |
 | <span class="prop-name">lg</span> | <span class="prop-type">false<br>&#124;&nbsp;'auto'<br>&#124;&nbsp;true<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12</span> | <span class="prop-default">false</span> | Defines the number of grids the component is going to use. It's applied for the `lg` breakpoint and wider screens if not overridden. |
 | <span class="prop-name">md</span> | <span class="prop-type">false<br>&#124;&nbsp;'auto'<br>&#124;&nbsp;true<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10<br>&#124;&nbsp;11<br>&#124;&nbsp;12</span> | <span class="prop-default">false</span> | Defines the number of grids the component is going to use. It's applied for the `md` breakpoint and wider screens if not overridden. |

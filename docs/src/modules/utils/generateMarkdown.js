@@ -17,6 +17,13 @@ function generateHeader(reactAPI) {
   return ['---', `filename: ${normalizePath(reactAPI.filename)}`, '---'].join('\n');
 }
 
+function getPropTypeString(str) {
+  if (str.indexOf('oneOfType') >= 0 || str.indexOf('oneOf') >= 0) {
+    return 'PropTypes.' + str.substring(0, str.indexOf(')') + 1);
+  }
+  return str.substring(0, str.indexOf(','));
+}
+
 function getDeprecatedInfo(type) {
   const marker = /deprecatedPropType\((\r*\n)*\s*PropTypes\./g;
   const match = type.raw.match(marker);
@@ -25,7 +32,7 @@ function getDeprecatedInfo(type) {
     const offset = match[0].length;
 
     return {
-      propTypes: type.raw.substring(startIndex + offset, type.raw.indexOf(',')),
+      propTypes: getPropTypeString(type.raw.substring(startIndex + offset, type.raw.length)),
       explanation: recast.parse(type.raw).program.body[0].expression.arguments[1].value,
     };
   }
