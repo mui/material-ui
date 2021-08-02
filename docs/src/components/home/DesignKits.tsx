@@ -74,7 +74,12 @@ export default function DesignKits() {
           '& .MuiAvatar-root': {
             width: { xs: 80, sm: 100 },
             height: { xs: 80, sm: 100 },
-            filter: 'drop-shadow(0px 3.57436px 44.6795px rgba(90, 105, 120, 0.25))',
+            filter: (theme) =>
+              `drop-shadow(0px 3.57436px 44.6795px ${
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[900]
+                  : 'rgba(90, 105, 120, 0.25)'
+              })`,
           },
         }}
       >

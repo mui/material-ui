@@ -23,7 +23,12 @@ const Banner = React.forwardRef(
         height: '0px',
         pb: '57.8%',
         position: 'relative',
-        filter: 'drop-shadow(0px 3.57436px 44.6795px rgba(90, 105, 120, 0.25))',
+        filter: (theme) =>
+          `drop-shadow(0px 3.57436px 44.6795px ${
+            theme.palette.mode === 'dark'
+              ? theme.palette.primaryDark[500]
+              : 'rgba(90, 105, 120, 0.25)'
+          })`,
         ...props.sx,
       }}
     >
