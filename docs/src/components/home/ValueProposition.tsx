@@ -11,7 +11,7 @@ const content = [
     icon: 'mui-palette',
     title: 'Beautifully designed',
     description:
-      "You can start your projects with Google's Material Design or leverate our carefully design theming capabilities.",
+      "You can start your projects with Google's Material Design or leverage our carefully designed theming capabilities.",
   },
   {
     icon: 'mui-pencil',
@@ -59,7 +59,9 @@ const ValueProposition = () => {
                   {title}
                 </Typography>
               </Box>
-              <Typography variant="body2">{description}</Typography>
+              <Typography variant="body2" color="text.secondary">
+                {description}
+              </Typography>
             </Paper>
           </Grid>
         ))}

@@ -122,8 +122,8 @@ export default function Hero() {
               </Typography>
               <Typography color="text.secondary" sx={{ mb: 3 }}>
                 MUI provides a robust, customizible and accessible library of foundational and
-                advanced components, enabling you to build your own design system and develop faster
-                React applications.
+                advanced components, enabling you to build your own design system and develop React
+                applications faster.
               </Typography>
               <Box
                 sx={{

@@ -386,7 +386,7 @@ const DesignSystemComponents = () => {
         What do you get?
       </Typography>
       <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
-        Simple, accessible, declaritive <GradientText>components</GradientText>.
+        Simple, accessible, declarative <GradientText>components</GradientText>.
       </Typography>
       <Box sx={{ mt: { xs: 2, md: 4 }, mb: 2, display: 'flex', justifyContent: 'flex-end' }}>
         <StyledChip

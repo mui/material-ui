@@ -91,7 +91,7 @@ const TESTIMONIALS = [
     profile: {
       avatar: 'https://avatars.githubusercontent.com/u/732422?v=4',
       name: 'Gustavo de Paula',
-      role: 'Specialist Engineer',
+      role: 'Specialist Software Engineer',
       company: (
         <img
           src="/static/branding/companies/loggi-blue.svg"
