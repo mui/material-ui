@@ -34,12 +34,12 @@ export const style = ({ styleProps, theme }) => {
     gridColumnEnd: `span ${styleProps.columnSpan}`,
   };
 
-  const base = Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
+  const base = {};
+  Object.keys(theme.breakpoints.values).forEach((breakpoint) => {
     if (styleProps.spacing[breakpoint] != null) {
-      acc[breakpoint] = true;
+      base[breakpoint] = true;
     }
-    return acc;
-  }, {});
+  });
   const spacingValues = resolveBreakpointValues({ values: styleProps.spacing, base });
   const transformer = createUnarySpacing(theme);
   const styleFromPropValue = (propValue) => {
@@ -83,24 +83,23 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
   const classes = useUtilityClasses(styleProps);
 
   React.useEffect(() => {
-    const resizeObserver =
-      height === undefined
-        ? new ResizeObserver(([item]) => {
-            setStyleProps({
-              ...styleProps,
-              height: item.contentRect.height,
-            });
-          })
-        : null; // If height is passed by user, ResizeObserver is not used.
-    if (resizeObserver && masonryItemRef?.current) {
-      const item = masonryItemRef.current.firstChild;
-      resizeObserver.observe(item);
-      return () => {
-        resizeObserver.unobserve(item);
-      };
+    // If height is passed by user, ResizeObserver is not used.
+    if (height !== undefined) {
+      return true;
     }
-    return true;
-  }, []); // eslint-disable-line
+    const resizeObserver = new ResizeObserver(([item]) => {
+      setStyleProps({
+        ...styleProps,
+        height: item.contentRect.height,
+      });
+    });
+
+    const item = masonryItemRef.current?.firstChild;
+    resizeObserver.observe(item);
+    return () => {
+      resizeObserver.unobserve(item);
+    };
+  }, [height]); // eslint-disable-line
 
   const handleRef = useForkRef(ref, masonryItemRef);
 
@@ -146,7 +145,6 @@ MasonryItem.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * The height of the component in px.
-   * @default undefined
    */
   height: PropTypes.number,
   /**

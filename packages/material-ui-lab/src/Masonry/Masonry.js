@@ -33,12 +33,12 @@ export const style = ({ styleProps, theme }) => {
     rowGap: 1,
   };
 
-  const base = Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
+  const base = {};
+  Object.keys(theme.breakpoints.values).forEach((breakpoint) => {
     if (styleProps.spacing[breakpoint] != null) {
-      acc[breakpoint] = true;
+      base[breakpoint] = true;
     }
-    return acc;
-  }, {});
+  });
 
   const spacingValues = resolveBreakpointValues({ values: styleProps.spacing, base });
   const transformer = createUnarySpacing(theme);

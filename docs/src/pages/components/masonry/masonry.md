@@ -16,14 +16,14 @@ Masonry maintains a list of content blocks with a consistent width but variable 
 
 {{"demo": "pages/components/masonry/ImageMasonry.js", "bg": true}}
 
-> `<MasonryItem />` can receive not only `<img />` elements but also `<div />` elements as shown in the following demo:
+`<MasonryItem />` can receive not only `<img />` elements but any element, such as `<div />`:
 
 {{"demo": "pages/components/masonry/BasicMasonry.js", "bg": true}}
 
-> You can configure the number of columns taken up by each `<MasonryItem />` as shown in the following demo:
+You can configure the number of columns taken up by each `<MasonryItem />`:
 
 {{"demo": "pages/components/masonry/DiffColSizeMasonry.js", "bg": true}}
 
-> In order to use server-side rendering, you should pass the height of the content of `<MasonryItem />` as shown in the following demo:
+In order to use server-side rendering, you should pass the height of the content of `<MasonryItem />`:
 
 {{"demo": "pages/components/masonry/SSRMasonry.js", "bg": true}}
