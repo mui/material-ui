@@ -19,7 +19,7 @@ function generateHeader(reactAPI) {
 
 function getPropTypeString(str) {
   if (str.indexOf('oneOfType') >= 0 || str.indexOf('oneOf') >= 0) {
-    return 'PropTypes.' + str.substring(0, str.indexOf(')') + 1);
+    return `PropTypes.${str.substring(0, str.indexOf(')') + 1)}`;
   }
   return str.substring(0, str.indexOf(','));
 }
