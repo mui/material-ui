@@ -1,11 +1,4 @@
-import React, {
-  ButtonHTMLAttributes,
-  ComponentPropsWithRef,
-  ElementType,
-  forwardRef,
-  ReactNode,
-  Ref,
-} from 'react';
+import * as React from 'react';
 import clsx from 'clsx';
 import {
   unstable_useEventCallback as useEventCallback,
@@ -14,35 +7,12 @@ import {
 } from '@material-ui/utils';
 import composeClasses from '../composeClasses';
 import { getButtonUnstyledUtilityClass } from './buttonUnstyledClasses';
+import ButtonUnstyledProps, {
+  ButtonUnstyledOwnProps,
+  ButtonUnstyledTypeMap,
+} from './ButtonUnstyledProps';
 
-export interface ButtonBaseActions {
-  focusVisible(): void;
-}
-
-export interface ButtonUnstyledProps<TRoot extends ElementType> {
-  className?: string;
-  components?: {
-    Root?: TRoot;
-  };
-  componentsProps?: {
-    root?: ComponentPropsWithRef<TRoot>;
-  };
-  children?: ReactNode;
-  disabled?: boolean;
-  action?: React.Ref<ButtonBaseActions>;
-  onMouseLeave?: React.MouseEventHandler;
-  onFocus?: React.FocusEventHandler;
-  onFocusVisible?: React.FocusEventHandler;
-  onBlur?: React.FocusEventHandler;
-  onClick?: React.MouseEventHandler;
-  onKeyDown?: React.KeyboardEventHandler;
-  onKeyUp?: React.KeyboardEventHandler;
-  type?: ButtonHTMLAttributes<HTMLButtonElement>['type'];
-  href?: string;
-  tabIndex?: number | string;
-}
-
-const useUtilityClasses = (styleProps: ButtonUnstyledProps<any> & { focusVisible: boolean }) => {
+const useUtilityClasses = (styleProps: ButtonUnstyledOwnProps & { focusVisible: boolean }) => {
   const { disabled, focusVisible } = styleProps;
 
   const slots = {
@@ -56,10 +26,9 @@ function isAnchor(el: HTMLElement | undefined): el is HTMLAnchorElement {
   return el?.tagName === 'A';
 }
 
-function ButtonUnstyled<TRoot extends ElementType = 'button'>(
-  props: ButtonUnstyledProps<TRoot>,
-  ref: Ref<any>,
-) {
+const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
+  D extends React.ElementType = ButtonUnstyledTypeMap['defaultComponent'],
+>(props: ButtonUnstyledProps<D>, ref: React.ForwardedRef<any>) {
   const {
     className,
     components = {},
@@ -82,7 +51,7 @@ function ButtonUnstyled<TRoot extends ElementType = 'button'>(
 
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
 
-  const ButtonRoot: ElementType = components.Root ?? 'button';
+  const ButtonRoot: React.ElementType = components.Root ?? 'button';
   const buttonRootProps = componentsProps?.root ?? {};
 
   const {
@@ -207,7 +176,7 @@ function ButtonUnstyled<TRoot extends ElementType = 'button'>(
   });
 
   if (ButtonRoot === 'button') {
-    const trueButtonProps = buttonRootProps as ComponentPropsWithRef<'button'>;
+    const trueButtonProps = buttonRootProps as React.ComponentPropsWithRef<'button'>;
     trueButtonProps.type = type === undefined ? 'button' : type;
     trueButtonProps.disabled = disabled;
   } else {
@@ -247,6 +216,6 @@ function ButtonUnstyled<TRoot extends ElementType = 'button'>(
       {children}
     </ButtonRoot>
   );
-}
+});
 
-export default forwardRef(ButtonUnstyled);
+export default ButtonUnstyled;
