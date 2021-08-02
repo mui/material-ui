@@ -20,7 +20,9 @@ const Root = styled('span')(({ theme }) => ({
   cursor: 'pointer',
   transition: theme.transitions.create('background-color'),
   [`& .${switchUnstyledClasses.thumb}`]: {
-    display: 'block',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     position: 'absolute',
     padding: 2,
     width: 24,
@@ -31,6 +33,10 @@ const Root = styled('span')(({ theme }) => ({
     backgroundColor: theme.palette.primary.main,
     transform: 'rotate(-90deg)',
     transition: theme.transitions.create(['transform', 'left']),
+    '& > svg': {
+      width: 18,
+      height: 18,
+    },
     '&:before': {
       content: '""',
       display: 'block',
@@ -78,11 +84,7 @@ const ThemeModeToggle = (props: SwitchUnstyledProps) => {
       components={{ Root }}
       componentsProps={{
         thumb: {
-          children: props.checked ? (
-            <LightModeOutlined fontSize="small" />
-          ) : (
-            <DarkModeOutlined fontSize="small" />
-          ),
+          children: props.checked ? <LightModeOutlined /> : <DarkModeOutlined />,
         },
         input: { 'aria-label': 'Theme mode toggle' },
       }}

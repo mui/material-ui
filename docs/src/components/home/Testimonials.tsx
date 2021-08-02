@@ -8,11 +8,10 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import KeyboardArrowLeftRounded from '@material-ui/icons/KeyboardArrowLeftRounded';
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
-import SvgUnity from '../../icons/SvgUnity';
 
 const data = [
   { title: '2M', metadata: 'Weekly downloads on npm' },
-  { title: '69k', metadata: 'Stars on GitHub' },
+  { title: '70k', metadata: 'Stars on GitHub' },
   { title: '2k', metadata: 'Open-source contributors' },
   { title: '13k', metadata: 'Followers on Twitter' },
 ];
@@ -57,7 +56,15 @@ const TESTIMONIALS = [
       avatar: 'https://avatars.githubusercontent.com/u/28296253?v=4',
       name: 'Joona Rahko',
       role: 'Staff Software Engineer',
-      company: <SvgUnity color="#007FFF" height={21} width={58} />,
+      company: (
+        <img
+          src="/static/branding/companies/unity-blue.svg"
+          width="56"
+          height="21"
+          alt="Unity logo"
+          loading="lazy"
+        />
+      ),
     },
   },
   {
@@ -67,7 +74,15 @@ const TESTIMONIALS = [
       avatar: 'https://avatars.githubusercontent.com/u/197016?v=4',
       name: 'Jean-Laurent de Morlhon',
       role: 'VP of Engineering',
-      company: undefined,
+      company: (
+        <img
+          src="/static/branding/companies/docker-blue.svg"
+          width="81"
+          height="21"
+          alt="Docker logo"
+          loading="lazy"
+        />
+      ),
     },
   },
   {
@@ -77,7 +92,15 @@ const TESTIMONIALS = [
       avatar: 'https://avatars.githubusercontent.com/u/732422?v=4',
       name: 'Gustavo de Paula',
       role: 'Specialist Engineer',
-      company: undefined,
+      company: (
+        <img
+          src="/static/branding/companies/loggi-blue.svg"
+          width="61"
+          height="20"
+          alt="Loggi logo"
+          loading="lazy"
+        />
+      ),
     },
   },
 ];

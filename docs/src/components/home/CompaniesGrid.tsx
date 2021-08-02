@@ -56,9 +56,9 @@ const CompaniesGrid = ({ data }: { data: Array<JSX.IntrinsicElements['img']> }) 
       }}
     >
       {data.map((imgProps) => (
-        <Grid item xs={4} md={2}>
+        <Grid key={imgProps.src} item xs={4} md={2}>
           <div>
-            <img alt={imgProps.alt} {...imgProps} />
+            <img alt={imgProps.alt} loading="lazy" {...imgProps} />
           </div>
         </Grid>
       ))}

@@ -113,7 +113,12 @@ const Sponsors = () => {
               sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
             >
               <Box sx={{ p: 2, display: 'flex', mb: 'auto' }}>
-                <Avatar src={item.logo} alt={`${item.name} logo`} sx={{ borderRadius: '4px' }} />
+                <Avatar
+                  src={item.logo}
+                  alt={`${item.name} logo`}
+                  imgProps={{ loading: 'lazy' }}
+                  sx={{ borderRadius: '4px' }}
+                />
                 <Box sx={{ ml: 2 }}>
                   <Typography variant="body2" fontWeight="bold">
                     {item.name}
@@ -164,7 +169,12 @@ const Sponsors = () => {
               sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
             >
               <Box sx={{ p: 2, display: 'flex', mb: 'auto' }}>
-                <Avatar src={item.logo} alt={`${item.name} logo`} sx={{ borderRadius: '4px' }} />
+                <Avatar
+                  src={item.logo}
+                  alt={`${item.name} logo`}
+                  imgProps={{ loading: 'lazy' }}
+                  sx={{ borderRadius: '4px' }}
+                />
                 <Box sx={{ ml: 2 }}>
                   <Typography variant="body2" fontWeight="bold">
                     {item.name}
