@@ -6,7 +6,7 @@ import MasonryItem from '@material-ui/lab/MasonryItem';
 
 export default function FixedColumns() {
   return (
-    <Masonry columns={4} spacing={1} sx={{ height: 300 }}>
+    <Masonry columns={4} spacing={1} sx={{ width: 500, height: 300 }}>
       {heights.map((height, index) => (
         <MasonryItem key={index}>
           <Box

@@ -5,7 +5,7 @@ import MasonryItem from '@material-ui/lab/MasonryItem';
 
 export default function ImageMasonry() {
   return (
-    <Masonry columns={3} spacing={1} sx={{ height: 300 }}>
+    <Masonry columns={3} spacing={1} sx={{ width: 500, height: 300 }}>
       {itemData.map((item) => (
         <MasonryItem key={item.img}>
           <img

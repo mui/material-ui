@@ -6,7 +6,7 @@ import MasonryItem from '@material-ui/lab/MasonryItem';
 
 export default function SSRMasonry() {
   return (
-    <Masonry columns={4} spacing={1}>
+    <Masonry columns={4} spacing={1} sx={{ width: 500 }}>
       {heights.map((height, index) => (
         <MasonryItem key={index} height={height}>
           <Box

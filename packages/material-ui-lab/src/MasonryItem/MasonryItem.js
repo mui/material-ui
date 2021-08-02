@@ -99,7 +99,7 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
     return () => {
       resizeObserver.unobserve(item);
     };
-  }, [height]); // eslint-disable-line
+  }, []); // eslint-disable-line
 
   const handleRef = useForkRef(ref, masonryItemRef);
 

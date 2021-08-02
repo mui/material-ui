@@ -6,7 +6,7 @@ import MasonryItem from '@material-ui/lab/MasonryItem';
 
 export default function DiffColSizeMasonry() {
   return (
-    <Masonry columns={4} spacing={1}>
+    <Masonry columns={4} spacing={1} sx={{ width: 500 }}>
       {itemData.map((item, index) => (
         <MasonryItem key={index} columnSpan={item.span}>
           <Box
