@@ -14,7 +14,7 @@
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
     "focusVisible": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "keyboard focused"
     },
@@ -24,7 +24,7 @@
       "conditions": "dense"
     },
     "disabled": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
@@ -39,7 +39,7 @@
       "conditions": "<code>disableGutters={true}</code>"
     },
     "selected": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>selected={true}</code>"
     }
