@@ -12,18 +12,44 @@ Masonry maintains a list of content blocks with a consistent width but variable 
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": true}}
 
-## Masonry
+## Basic Masonry
 
-{{"demo": "pages/components/masonry/ImageMasonry.js", "bg": true}}
-
-`<MasonryItem />` can receive not only `<img />` elements but any element, such as `<div />`:
+`<Masonry />` is a container for one or more `<MasonryItem />`s. `<MasonryItem />` can receive any element including `<div />` and `<img />`. Also, it is important to note that each `<MasonryItem />` accepts only one element.
 
 {{"demo": "pages/components/masonry/BasicMasonry.js", "bg": true}}
 
-You can configure the number of columns taken up by each `<MasonryItem />`:
+## Image Masonry
+
+{{"demo": "pages/components/masonry/ImageMasonry.js", "bg": true}}
+
+## Columns
+
+By passing `columns` to `<Masonry />`, you can configure the number of columns of your masonry.
+
+{{"demo": "pages/components/masonry/FixedColumns.js", "bg": true}}
+
+`columns` accepts responsive values:
+
+{{"demo": "pages/components/masonry/ResponsiveColumns.js", "bg": true}}
+
+## Spacing
+
+By passing `spacing` to `<Masonry />`, you can configure the spacing between `<MasonryItem />`s. It is important to note that `spacing` is a factor of the theme's spacing.
+
+{{"demo": "pages/components/masonry/FixedSpacing.js", "bg": true}}
+
+`spacing` accepts responsive values:
+
+{{"demo": "pages/components/masonry/ResponsiveSpacing.js", "bg": true}}
+
+## Column spanning
+
+By passing `columnSpan` to `<MasonryItem />`, you can configure the number of columns taken up by each `<MasonryItem />`.
 
 {{"demo": "pages/components/masonry/DiffColSizeMasonry.js", "bg": true}}
 
-In order to use server-side rendering, you should pass the height of the content of `<MasonryItem />`:
+## Server-side rendering
+
+By passing `height` to `<MasonryItem />`. you can use server-side rendering. You should either set `height: 100%` or a fixed height equivalent to `height` to the content of `<MasonryItem />`. Otherwise, there will be unwanted gap between `<MasonryItem />` and the content that you pass to it.
 
 {{"demo": "pages/components/masonry/SSRMasonry.js", "bg": true}}
