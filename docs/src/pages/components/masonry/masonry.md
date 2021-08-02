@@ -46,7 +46,7 @@ By passing `spacing` to `<Masonry />`, you can configure the spacing between `<M
 
 ## Column spanning
 
-By passing `columnSpan` to `<MasonryItem />`, you can configure the number of columns taken up by each `<MasonryItem />`.
+By passing `columnSpan` to `<MasonryItem />`, you can configure the number of columns taken up by each `<MasonryItem />`. However, you have to choose the value of `columnSpan` for each item carefully so that your masonry does not break.
 
 {{"demo": "pages/components/masonry/DiffColSizeMasonry.js", "bg": true}}
 

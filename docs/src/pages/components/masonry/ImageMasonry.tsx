@@ -5,12 +5,12 @@ import MasonryItem from '@material-ui/lab/MasonryItem';
 
 export default function ImageMasonry() {
   return (
-    <Masonry columns={3} spacing={1} sx={{ width: 500, height: 300 }}>
+    <Masonry columns={3} spacing={1} sx={{ width: 500, height: 400 }}>
       {itemData.map((item) => (
         <MasonryItem key={item.img}>
           <img
-            srcSet={`${item.img}?w=220&auto=format 1x,
-            ${item.img}?w=220&auto=format&dpr=2 2x`}
+            srcSet={`${item.img}?w=301&auto=format 1x,
+            ${item.img}?w=301&auto=format&dpr=2 2x`}
             alt={item.title}
             loading="lazy"
           />
