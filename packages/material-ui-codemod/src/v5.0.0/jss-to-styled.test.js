@@ -220,6 +220,96 @@ describe('@material-ui/codemod', () => {
           expect(actual).to.equal(expected, 'The transformed version should be correct');
         });
       });
+
+      describe('with createStyles', () => {
+        it('transforms as needed', () => {
+          const actual = transform(
+            {
+              source: read('./jss-to-styled.test/withCreateStyles.actual.tsx'),
+              path: require.resolve('./jss-to-styled.test/withCreateStyles.actual.tsx'),
+            },
+            { jscodeshift },
+            {},
+          );
+
+          const expected = read('./jss-to-styled.test/withCreateStyles.expected.tsx');
+          expect(actual).to.equal(expected, 'The transformed version should be correct');
+        });
+
+        it('should be idempotent', () => {
+          const actual = transform(
+            {
+              source: read('./jss-to-styled.test/withCreateStyles.expected.tsx'),
+              path: require.resolve('./jss-to-styled.test/withCreateStyles.expected.tsx'),
+            },
+            { jscodeshift },
+            {},
+          );
+
+          const expected = read('./jss-to-styled.test/withCreateStyles.expected.tsx');
+          expect(actual).to.equal(expected, 'The transformed version should be correct');
+        });
+      });
+    });
+
+    describe('with createStyles on withStyles', () => {
+      it('transforms as needed', () => {
+        const actual = transform(
+          {
+            source: read('./jss-to-styled.test/withCreateStyles1.actual.tsx'),
+            path: require.resolve('./jss-to-styled.test/withCreateStyles1.actual.tsx'),
+          },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./jss-to-styled.test/withCreateStyles1.expected.tsx');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('should be idempotent', () => {
+        const actual = transform(
+          {
+            source: read('./jss-to-styled.test/withCreateStyles1.expected.tsx'),
+            path: require.resolve('./jss-to-styled.test/withCreateStyles1.expected.tsx'),
+          },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./jss-to-styled.test/withCreateStyles1.expected.tsx');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+    });
+
+    describe('with createStyles on withStyles directly', () => {
+      it('transforms as needed', () => {
+        const actual = transform(
+          {
+            source: read('./jss-to-styled.test/withCreateStyles2.actual.tsx'),
+            path: require.resolve('./jss-to-styled.test/withCreateStyles2.actual.tsx'),
+          },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./jss-to-styled.test/withCreateStyles2.expected.tsx');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('should be idempotent', () => {
+        const actual = transform(
+          {
+            source: read('./jss-to-styled.test/withCreateStyles2.expected.tsx'),
+            path: require.resolve('./jss-to-styled.test/withCreateStyles2.expected.tsx'),
+          },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./jss-to-styled.test/withCreateStyles2.expected.tsx');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
     });
   });
 });
