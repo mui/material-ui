@@ -313,7 +313,7 @@ describe('@material-ui/codemod', () => {
     });
 
     describe('with createStyles directly', () => {
-      it.only('transforms as needed', () => {
+      it('transforms as needed', () => {
         const actual = transform(
           {
             source: read('./jss-to-styled.test/withCreateStyles3.actual.tsx'),
