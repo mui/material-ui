@@ -23,6 +23,7 @@ describe('<Badge />', () => {
       </div>
     ),
     badgeContent: 10,
+    overlap: 'rectangular',
   };
 
   before(() => {
@@ -30,7 +31,7 @@ describe('<Badge />', () => {
   });
 
   describeConformance(
-    <Badge>
+    <Badge overlap="rectangular">
       <div />
     </Badge>,
     () => ({
@@ -45,7 +46,11 @@ describe('<Badge />', () => {
   it('renders children and badgeContent', () => {
     const children = <div id="child" data-testid="child" />;
     const badge = <div id="badge" data-testid="badge" />;
-    const { container, getByTestId } = render(<Badge badgeContent={badge}>{children}</Badge>);
+    const { container, getByTestId } = render(
+      <Badge badgeContent={badge} overlap="rectangular">
+        {children}
+      </Badge>,
+    );
     expect(container.firstChild).to.contain(getByTestId('child'));
     expect(container.firstChild).to.contain(getByTestId('badge'));
   });
@@ -102,8 +107,9 @@ describe('<Badge />', () => {
       expect(findBadge(container)).to.have.class(classes.invisible);
       container = render(<Badge {...defaultProps} badgeContent={undefined} />).container;
       expect(findBadge(container)).to.have.class(classes.invisible);
-      container = render(<Badge {...defaultProps} badgeContent={undefined} variant="dot" />)
-        .container;
+      container = render(
+        <Badge {...defaultProps} badgeContent={undefined} variant="dot" />,
+      ).container;
       expect(findBadge(container)).to.not.have.class(classes.invisible);
     });
   });
@@ -220,6 +226,7 @@ describe('<Badge />', () => {
         Badge.Naked.propTypes,
         {
           classes: { anchorOriginTopRightRectangle: 'mui-class my-class' },
+          overlap: 'rectangular',
         },
         'props',
         'Badge',
@@ -236,6 +243,7 @@ describe('<Badge />', () => {
         Badge.Naked.propTypes,
         {
           classes: { anchorOriginBottomRightRectangle: 'mui-class my-class' },
+          overlap: 'rectangular',
         },
         'props',
         'Badge',
@@ -252,6 +260,7 @@ describe('<Badge />', () => {
         Badge.Naked.propTypes,
         {
           classes: { anchorOriginTopLeftRectangle: 'mui-class my-class' },
+          overlap: 'rectangular',
         },
         'props',
         'Badge',
@@ -268,6 +277,7 @@ describe('<Badge />', () => {
         Badge.Naked.propTypes,
         {
           classes: { anchorOriginBottomLeftRectangle: 'mui-class my-class' },
+          overlap: 'rectangular',
         },
         'props',
         'Badge',
@@ -284,6 +294,7 @@ describe('<Badge />', () => {
         Badge.Naked.propTypes,
         {
           classes: { anchorOriginTopRightCircle: 'mui-class my-class' },
+          overlap: 'circular',
         },
         'props',
         'Badge',
@@ -300,6 +311,7 @@ describe('<Badge />', () => {
         Badge.Naked.propTypes,
         {
           classes: { anchorOriginBottomRightCircle: 'mui-class my-class' },
+          overlap: 'circular',
         },
         'props',
         'Badge',
@@ -316,6 +328,7 @@ describe('<Badge />', () => {
         Badge.Naked.propTypes,
         {
           classes: { anchorOriginTopLeftCircle: 'mui-class my-class' },
+          overlap: 'circular',
         },
         'props',
         'Badge',
