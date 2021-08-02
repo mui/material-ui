@@ -133,7 +133,7 @@
     "fast-glob": "^3.2.4",
     "format-util": "^1.0.5",
     "fs-extra": "^10.0.0",
-    "globby": "^11.0.1",
+    "globby": "^12.0.0",
     "html-webpack-plugin": "^4.5.0",
     "istanbul-instrumenter-loader": "^3.0.1",
     "jsdom": "^16.0.0",
