@@ -7,6 +7,7 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import ProductsSwitcher from 'docs/src/components/home/ProductsSwitcher';
 import ComponentShowcase from './ComponentShowcase';
 import StoreTemplatesBanner from './StoreTemplatesBanner';
+import DesignKits from './DesignKits';
 
 const ProductSuite = () => {
   const [productIndex, setProductIndex] = React.useState(0);
@@ -38,6 +39,7 @@ const ProductSuite = () => {
           <Grid item xs={12} md={6}>
             {productIndex === 0 && <ComponentShowcase />}
             {productIndex === 2 && <StoreTemplatesBanner />}
+            {productIndex === 3 && <DesignKits />}
           </Grid>
         </Grid>
       </Container>

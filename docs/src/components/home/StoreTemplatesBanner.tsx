@@ -48,9 +48,9 @@ export default function StoreTemplatesBanner() {
     <Box
       sx={{
         ml: { md: 4, lg: 0 },
-        width: { md: '72vw', lg: '64vw' },
+        width: { md: '72vw' },
         height: '100%',
-        maxWidth: 800,
+        maxWidth: 780,
       }}
     >
       <Grid
