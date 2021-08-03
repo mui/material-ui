@@ -5,6 +5,7 @@
   "commitMessageExtra": "to {{newValue}}",
   "commitMessageTopic": "{{depName}}",
   "dependencyDashboard": true,
+  "rebaseWhen": "conflicted",
   "ignoreDeps": [],
   "labels": ["dependencies"],
   "packageRules": [
