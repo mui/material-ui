@@ -190,7 +190,7 @@ Pagination.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the page is changed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.ChangeEvent<unknown>} event The event source of the callback.
    * @param {number} page The page selected.
    */
   onChange: PropTypes.func,

@@ -44,7 +44,7 @@ export default function InputAdornments() {
           id="outlined-start-adornment"
           sx={{ m: 1, width: '25ch' }}
           InputProps={{
-            startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
+            startAdornment: <InputAdornment position="start">kg</InputAdornment>,
           }}
         />
         <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
@@ -52,7 +52,7 @@ export default function InputAdornments() {
             id="outlined-adornment-weight"
             value={values.weight}
             onChange={handleChange('weight')}
-            endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
+            endAdornment={<InputAdornment position="end">kg</InputAdornment>}
             aria-describedby="outlined-weight-helper-text"
             inputProps={{
               'aria-label': 'weight',
@@ -99,7 +99,7 @@ export default function InputAdornments() {
           id="filled-start-adornment"
           sx={{ m: 1, width: '25ch' }}
           InputProps={{
-            startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
+            startAdornment: <InputAdornment position="start">kg</InputAdornment>,
           }}
           variant="filled"
         />
@@ -108,7 +108,7 @@ export default function InputAdornments() {
             id="filled-adornment-weight"
             value={values.weight}
             onChange={handleChange('weight')}
-            endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
+            endAdornment={<InputAdornment position="end">kg</InputAdornment>}
             aria-describedby="filled-weight-helper-text"
             inputProps={{
               'aria-label': 'weight',
@@ -153,7 +153,7 @@ export default function InputAdornments() {
           id="standard-start-adornment"
           sx={{ m: 1, width: '25ch' }}
           InputProps={{
-            startAdornment: <InputAdornment position="start">Kg</InputAdornment>,
+            startAdornment: <InputAdornment position="start">kg</InputAdornment>,
           }}
           variant="standard"
         />
@@ -162,7 +162,7 @@ export default function InputAdornments() {
             id="standard-adornment-weight"
             value={values.weight}
             onChange={handleChange('weight')}
-            endAdornment={<InputAdornment position="end">Kg</InputAdornment>}
+            endAdornment={<InputAdornment position="end">kg</InputAdornment>}
             aria-describedby="standard-weight-helper-text"
             inputProps={{
               'aria-label': 'weight',

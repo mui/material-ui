@@ -64,18 +64,14 @@ const CircularProgressRoot = styled('span', {
   },
 })(
   ({ styleProps, theme }) => ({
-    /* Styles applied to the root element. */
     display: 'inline-block',
-    /* Styles applied to the root element if `variant="determinate"`. */
     ...(styleProps.variant === 'determinate' && {
       transition: theme.transitions.create('transform'),
     }),
-    /* Styles applied to the root element unless `color="inherit"`. */
     ...(styleProps.color !== 'inherit' && {
       color: theme.palette[styleProps.color].main,
     }),
   }),
-  /* Styles applied to the root element if `variant="indeterminate"`. */
   ({ styleProps }) =>
     styleProps.variant === 'indeterminate' &&
     css`
@@ -88,7 +84,6 @@ const CircularProgressSVG = styled('svg', {
   slot: 'Svg',
   overridesResolver: (props, styles) => styles.svg,
 })({
-  /* Styles applied to the svg element. */
   display: 'block', // Keeps the progress centered
 });
 
@@ -106,15 +101,12 @@ const CircularProgressCircle = styled('circle', {
   },
 })(
   ({ styleProps, theme }) => ({
-    /* Styles applied to the `circle` svg path. */
     stroke: 'currentColor',
     // Use butt to follow the specification, by chance, it's already the default CSS value.
     // strokeLinecap: 'butt',
-    /* Styles applied to the `circle` svg path if `variant="determinate"`. */
     ...(styleProps.variant === 'determinate' && {
       transition: theme.transitions.create('stroke-dashoffset'),
     }),
-    /* Styles applied to the `circle` svg path if `variant="indeterminate"`. */
     ...(styleProps.variant === 'indeterminate' && {
       // Some default value that looks fine waiting for the animation to kicks in.
       strokeDasharray: '80px, 200px',

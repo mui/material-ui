@@ -21,6 +21,8 @@
     "leftArrowButtonText": "Left arrow icon aria-label text.",
     "loading": "If <code>true</code> renders <code>LoadingComponent</code> in calendar instead of calendar view. Can be used to preload information and show it in calendar.",
     "mask": "Custom mask. Can be used to override generate from format. (e.g. <code>__/__/____ __:__</code> or <code>__/__/____ __:__ _M</code>).",
+    "maxDate": "Max selectable date. @DateIOType",
+    "minDate": "Min selectable date. @DateIOType",
     "onAccept": "Callback fired when date is accepted @DateIOType.",
     "onChange": "Callback fired when the value (the selected date) changes @DateIOType.",
     "onClose": "Callback fired when the popup requests to be closed. Use in controlled mode (see open).",

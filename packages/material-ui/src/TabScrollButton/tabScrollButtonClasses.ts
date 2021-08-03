@@ -5,7 +5,7 @@ export interface TabScrollButtonClasses {
   root: string;
   /** Styles applied to the root element if `orientation="vertical"`. */
   vertical: string;
-  /** Pseudo-class applied to the root element if `disabled={true}`. */
+  /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
 }
 

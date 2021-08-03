@@ -3,11 +3,11 @@ import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unsty
 export interface CheckboxClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Pseudo-class applied to the root element if `checked={true}`. */
+  /** State class applied to the root element if `checked={true}`. */
   checked: string;
-  /** Pseudo-class applied to the root element if `disabled={true}`. */
+  /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
-  /** Pseudo-class applied to the root element if `indeterminate={true}`. */
+  /** State class applied to the root element if `indeterminate={true}`. */
   indeterminate: string;
   /** Styles applied to the root element if `color="primary"`. */
   colorPrimary: string;

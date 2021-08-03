@@ -12,6 +12,18 @@ describe('parseMarkdown', () => {
       `),
       ).to.equal('Some description');
     });
+
+    it('should not be greedy', () => {
+      expect(
+        getDescription(`
+        <p class="description">
+          Some description
+        </p>
+        ## Foo
+        <p>bar</p>
+      `),
+      ).to.equal('Some description');
+    });
   });
 
   describe('getHeaders', () => {

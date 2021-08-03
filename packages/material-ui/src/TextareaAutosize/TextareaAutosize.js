@@ -10,7 +10,6 @@ function getStyleValue(computedStyle, property) {
 }
 
 const styles = {
-  /* Styles applied to the shadow textarea element. */
   shadow: {
     // Visibility needed to hide the extra text area on iPads
     visibility: 'hidden',

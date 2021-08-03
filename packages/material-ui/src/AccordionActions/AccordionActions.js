@@ -25,12 +25,10 @@ const AccordionActionsRoot = styled('div', {
     return [styles.root, !styleProps.disableSpacing && styles.spacing];
   },
 })(({ styleProps }) => ({
-  /* Styles applied to the root element. */
   display: 'flex',
   alignItems: 'center',
   padding: 8,
   justifyContent: 'flex-end',
-  /* Styles applied to the root element unless `disableSpacing={true}`. */
   ...(!styleProps.disableSpacing && {
     '& > :not(:first-of-type)': {
       marginLeft: 8,

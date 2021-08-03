@@ -243,14 +243,6 @@ const pages: readonly MuiPage[] = [
     ],
   },
   {
-    pathname: '/styles',
-    children: [
-      { pathname: '/styles/basics' },
-      { pathname: '/styles/advanced' },
-      { pathname: '/styles/api', title: 'API' },
-    ],
-  },
-  {
     pathname: '/customization',
     children: [
       {
@@ -271,6 +263,7 @@ const pages: readonly MuiPage[] = [
       },
       { pathname: '/customization/how-to-customize' },
       { pathname: '/customization/color' },
+      { pathname: '/customization/unstyled-components' },
     ],
   },
   {
@@ -295,6 +288,14 @@ const pages: readonly MuiPage[] = [
       { pathname: '/guides/content-security-policy', title: 'Content Security Policy' },
       { pathname: '/guides/right-to-left', title: 'Right-to-left' },
       { pathname: '/guides/flow' },
+    ],
+  },
+  {
+    pathname: '/styles',
+    children: [
+      { pathname: '/styles/basics' },
+      { pathname: '/styles/advanced' },
+      { pathname: '/styles/api', title: 'API' },
     ],
   },
   {

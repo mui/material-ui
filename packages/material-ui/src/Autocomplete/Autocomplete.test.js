@@ -1174,6 +1174,23 @@ describe('<Autocomplete />', () => {
       expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.hasClearIcon);
       expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
     });
+
+    it('should close the popup when disabled is true', () => {
+      const { setProps } = render(
+        <Autocomplete
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      const textbox = screen.getByRole('textbox');
+      act(() => {
+        textbox.focus();
+      });
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+      expect(screen.queryByRole('listbox')).not.to.equal(null);
+      setProps({ disabled: true });
+      expect(screen.queryByRole('listbox')).to.equal(null);
+    });
   });
 
   describe('prop: disableClearable', () => {
@@ -2018,6 +2035,43 @@ describe('<Autocomplete />', () => {
 
       const options = getAllByRole('option');
       expect(options).to.have.length(3);
+    });
+
+    it('should update the input value when getOptionLabel changes', () => {
+      const { setProps } = render(
+        <Autocomplete
+          value="one"
+          open
+          options={['one', 'two', 'three']}
+          getOptionLabel={(option) => option}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      const textbox = screen.getByRole('textbox');
+      expect(textbox).to.have.property('value', 'one');
+      setProps({
+        getOptionLabel: (option) => option.toUpperCase(),
+      });
+      expect(textbox).to.have.property('value', 'ONE');
+    });
+
+    it('should not update the input value when users is focusing', () => {
+      const { setProps } = render(
+        <Autocomplete
+          value="one"
+          open
+          options={['one', 'two', 'three']}
+          getOptionLabel={(option) => option}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+        />,
+      );
+      const textbox = screen.getByRole('textbox');
+      expect(textbox).to.have.property('value', 'one');
+      fireEvent.change(textbox, { target: { value: 'a' } });
+      setProps({
+        getOptionLabel: (option) => option.toUpperCase(),
+      });
+      expect(textbox).to.have.property('value', 'a');
     });
   });
 

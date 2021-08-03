@@ -11,7 +11,6 @@
 /framer/Material-UI.framerfx/design/document.json
 /packages/material-ui-codemod/lib
 /packages/material-ui-codemod/src/*/*.test/*
-/packages/material-ui-codemod/src/*/*.test.js
 /packages/material-ui-icons/fixtures
 /packages/material-ui-icons/legacy
 /packages/material-ui-icons/lib

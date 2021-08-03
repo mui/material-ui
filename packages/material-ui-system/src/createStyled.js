@@ -1,4 +1,5 @@
 import styledEngineStyled from '@material-ui/styled-engine';
+import { getDisplayName } from '@material-ui/utils';
 import createTheme from './createTheme';
 import styleFunctionSx from './styleFunctionSx';
 import propsToClassKey from './propsToClassKey';
@@ -52,9 +53,9 @@ const variantsResolver = (props, styles, theme, name) => {
   return variantsStyles;
 };
 
-export const shouldForwardProp = (prop) => {
+export function shouldForwardProp(prop) {
   return prop !== 'styleProps' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
-};
+}
 
 export const systemDefaultTheme = createTheme();
 
@@ -86,11 +87,9 @@ export default function createStyled(input = {}) {
 
     const skipSx = inputSkipSx || false;
 
-    let displayName;
     let className;
 
     if (componentName) {
-      displayName = `${componentName}${componentSlot || ''}`;
       className = `${componentName}-${lowercaseFirstLetter(componentSlot || 'Root')}`;
     }
 
@@ -164,7 +163,14 @@ export default function createStyled(input = {}) {
 
       const Component = defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
 
-      if (displayName) {
+      if (process.env.NODE_ENV !== 'production') {
+        let displayName;
+        if (componentName) {
+          displayName = `${componentName}${componentSlot || ''}`;
+        }
+        if (displayName === undefined) {
+          displayName = `Styled(${getDisplayName(tag)})`;
+        }
         Component.displayName = displayName;
       }
 

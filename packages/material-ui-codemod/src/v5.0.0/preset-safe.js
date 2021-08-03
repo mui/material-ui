@@ -27,6 +27,7 @@ import transformTypes from './material-ui-types';
 import transformModalProps from './modal-props';
 import transformMovedLabModules from './moved-lab-modules';
 import transformPaginationRoundCircular from './pagination-round-circular';
+import transformPrivateImports from './optimal-imports';
 import transformRootRef from './root-ref';
 import transformSkeletonVariant from './skeleton-variant';
 import transformStyledEngineProvider from './styled-engine-provider';
@@ -80,6 +81,7 @@ export default function transformer(file, api, options) {
   file.source = transformModalProps(file, api, options);
   file.source = transformMovedLabModules(file, api, options);
   file.source = transformPaginationRoundCircular(file, api, options);
+  file.source = transformPrivateImports(file, api, options);
   file.source = transformRootRef(file, api, options);
   file.source = transformSkeletonVariant(file, api, options);
   file.source = transformStyledEngineProvider(file, api, options);

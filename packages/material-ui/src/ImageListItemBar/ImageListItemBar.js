@@ -35,7 +35,6 @@ const ImageListItemBarRoot = styled('div', {
   },
 })(({ theme, styleProps }) => {
   return {
-    /* Styles applied to the root element. */
     position: 'absolute',
     left: 0,
     right: 0,
@@ -43,15 +42,12 @@ const ImageListItemBarRoot = styled('div', {
     display: 'flex',
     alignItems: 'center',
     fontFamily: theme.typography.fontFamily,
-    /* Styles applied to the root element if `position="bottom"`. */
     ...(styleProps.position === 'bottom' && {
       bottom: 0,
     }),
-    /* Styles applied to the root element if `position="top"`. */
     ...(styleProps.position === 'top' && {
       top: 0,
     }),
-    /* Styles applied to the root element if `position="below"`. */
     ...(styleProps.position === 'below' && {
       position: 'relative',
       background: 'transparent',
@@ -74,22 +70,18 @@ const ImageListItemBarTitleWrap = styled('div', {
   },
 })(({ theme, styleProps }) => {
   return {
-    /* Styles applied to the title and subtitle container element. */
     flexGrow: 1,
     padding: '12px 16px',
     color: theme.palette.common.white,
     overflow: 'hidden',
-    /* Styles applied to the title and subtitle container element if `position="below"`. */
     ...(styleProps.position === 'below' && {
       padding: '6px 0 12px',
       color: 'inherit',
     }),
-    /* Styles applied to the container element if `actionPosition="left"`. */
     ...(styleProps.actionIcon &&
       styleProps.actionPosition === 'left' && {
         paddingLeft: 0,
       }),
-    /* Styles applied to the container element if `actionPosition="right"`. */
     ...(styleProps.actionIcon &&
       styleProps.actionPosition === 'right' && {
         paddingRight: 0,
@@ -103,7 +95,6 @@ const ImageListItemBarTitle = styled('div', {
   overridesResolver: (props, styles) => styles.title,
 })(({ theme }) => {
   return {
-    /* Styles applied to the title container element. */
     fontSize: theme.typography.pxToRem(16),
     lineHeight: '24px',
     textOverflow: 'ellipsis',
@@ -118,7 +109,6 @@ const ImageListItemBarSubtitle = styled('div', {
   overridesResolver: (props, styles) => styles.subtitle,
 })(({ theme }) => {
   return {
-    /* Styles applied to the subtitle container element. */
     fontSize: theme.typography.pxToRem(12),
     lineHeight: 1,
     textOverflow: 'ellipsis',
@@ -140,7 +130,6 @@ const ImageListItemBarActionIcon = styled('div', {
   },
 })(({ styleProps }) => {
   return {
-    /* Styles applied to the actionIcon if `actionPosition="left"`. */
     ...(styleProps.actionPosition === 'left' && {
       order: -1,
     }),

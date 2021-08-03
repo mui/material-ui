@@ -28,22 +28,22 @@
       "nodeName": "the content element"
     },
     "expanded": {
-      "description": "Pseudo-class applied to {{nodeName}} when {{conditions}}.",
+      "description": "State class applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the content element",
       "conditions": "expanded"
     },
     "selected": {
-      "description": "Pseudo-class applied to {{nodeName}} when {{conditions}}.",
+      "description": "State class applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the content element",
       "conditions": "selected"
     },
     "focused": {
-      "description": "Pseudo-class applied to {{nodeName}} when {{conditions}}.",
+      "description": "State class applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the content element",
       "conditions": "focused"
     },
     "disabled": {
-      "description": "Pseudo-class applied to {{nodeName}} when {{conditions}}.",
+      "description": "State class applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the element",
       "conditions": "disabled"
     },
