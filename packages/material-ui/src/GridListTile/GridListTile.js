@@ -70,8 +70,8 @@ let warnedOnce = false;
 /**
  * ⚠️ The GridList component was renamed to ImageList to align with the current Material Design naming.
  *
- * You should use `import { ImageListTile } from '@material-ui/core'`
- * or `import ImageListTile from '@material-ui/core/ImageListTile'`.
+ * You should use `import { ImageListItem } from '@material-ui/core'`
+ * or `import ImageListItem from '@material-ui/core/ImageListItem'`.
  */
 const GridListTile = React.forwardRef(function GridListTile(props, ref) {
   if (process.env.NODE_ENV !== 'production') {
@@ -79,10 +79,10 @@ const GridListTile = React.forwardRef(function GridListTile(props, ref) {
       warnedOnce = true;
       console.error(
         [
-          'Material-UI: The GridListTile component was renamed to ImageListTile to align with the current Material Design naming.',
+          'Material-UI: The GridListTile component was renamed to ImageListItem to align with the current Material Design naming.',
           '',
-          "You should use `import { ImageListTile } from '@material-ui/core'`",
-          "or `import ImageListTile from '@material-ui/core/ImageListTile'`.",
+          "You should use `import { ImageListItem } from '@material-ui/core'`",
+          "or `import ImageListItem from '@material-ui/core/ImageListItem'`.",
         ].join('\n'),
       );
     }
