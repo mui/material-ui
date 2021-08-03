@@ -32,7 +32,7 @@ The `MuiCollapse` name can be used for providing [default props](/customization/
 |:-----|:-----|:--------|:------------|
 | <span class="prop-name">children</span> | <span class="prop-type">node</span> |  | The content node to be collapsed. |
 | <span class="prop-name">classes</span> | <span class="prop-type">object</span> |  | Override or extend the styles applied to the component. See [CSS API](#css) below for more details. |
-| ~~<span class="prop-name">collapsedHeight</span>~~ | <span class="prop-type">oneOfType([PropTypes.number</span> |  | *Deprecated*. The prop was renamed to support the vertical orientation, use `collapsedSize` instead<br><br>The height of the container when collapsed. |
+| ~~<span class="prop-name">collapsedHeight</span>~~ | <span class="prop-type">number<br>&#124;&nbsp;string</span> |  | *Deprecated*. The prop was renamed to support the vertical orientation, use `collapsedSize` instead<br><br>The height of the container when collapsed. |
 | <span class="prop-name">collapsedSize</span> | <span class="prop-type">number<br>&#124;&nbsp;string</span> | <span class="prop-default">'0px'</span> | The height of the container when collapsed. |
 | <span class="prop-name">component</span> | <span class="prop-type">elementType</span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a HTML element or a component. |
 | <span class="prop-name">disableStrictModeCompat</span> | <span class="prop-type">bool</span> | <span class="prop-default">false</span> | Enable this prop if you encounter 'Function components cannot be given refs', use `unstable_createStrictModeTheme`, and can't forward the ref in the passed `Component`. |
