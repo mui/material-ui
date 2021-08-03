@@ -6,7 +6,7 @@ import MasonryItem from '@material-ui/lab/MasonryItem';
 
 export default function ResponsiveColumns() {
   return (
-    <Masonry columns={{ xs: 3, sm: 4 }} spacing={1} sx={{ width: 500, height: 300 }}>
+    <Masonry columns={{ xs: 3, sm: 4 }} spacing={1} sx={{ width: 500 }}>
       {heights.map((height, index) => (
         <MasonryItem key={index}>
           <Box
