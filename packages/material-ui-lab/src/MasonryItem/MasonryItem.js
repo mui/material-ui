@@ -29,9 +29,11 @@ export const style = ({ styleProps, theme }) => {
     '& > *': {
       // all contents should have a width of 100%
       width: '100%',
+      boxSizing: 'inherit',
     },
     visibility: styleProps.height ? 'visible' : 'hidden',
     gridColumnEnd: `span ${styleProps.columnSpan}`,
+    boxSizing: 'inherit',
   };
 
   const base = {};

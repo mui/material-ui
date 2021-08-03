@@ -76,9 +76,11 @@ describe('<MasonryItem />', () => {
         width: '100%',
         [`& > *`]: {
           width: '100%',
+          boxSizing: 'inherit',
         },
         visibility: 'visible',
         gridColumnEnd: 'span 1',
+        boxSizing: 'inherit',
       });
     });
 
@@ -98,9 +100,11 @@ describe('<MasonryItem />', () => {
         width: '100%',
         [`& > *`]: {
           width: '100%',
+          boxSizing: 'inherit',
         },
         visibility: 'visible',
         gridColumnEnd: 'span 2',
+        boxSizing: 'inherit',
       });
     });
 

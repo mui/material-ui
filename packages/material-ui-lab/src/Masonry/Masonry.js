@@ -31,6 +31,7 @@ export const style = ({ styleProps, theme }) => {
     overflow: 'auto',
     width: '100%',
     rowGap: 1,
+    boxSizing: 'border-box',
   };
 
   const base = {};

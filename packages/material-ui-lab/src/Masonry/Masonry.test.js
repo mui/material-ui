@@ -45,6 +45,7 @@ describe('<Masonry />', () => {
         rowGap: 1,
         columnGap: theme.spacing(1),
         gridTemplateColumns: 'repeat(4, 1fr)',
+        boxSizing: 'border-box',
       });
     });
 
@@ -76,6 +77,7 @@ describe('<Masonry />', () => {
         overflow: 'auto',
         width: '100%',
         rowGap: 1,
+        boxSizing: 'border-box',
       });
     });
 
@@ -105,6 +107,7 @@ describe('<Masonry />', () => {
         width: '100%',
         columnGap: theme.spacing(1),
         rowGap: 1,
+        boxSizing: 'border-box',
       });
     });
   });
