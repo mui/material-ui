@@ -3,7 +3,7 @@ import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unsty
 export interface CollapseClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Pseudo-class applied to the root element if `orientation="horizontal"`. */
+  /** State class applied to the root element if `orientation="horizontal"`. */
   horizontal: string;
   /** Styles applied to the root element when the transition has entered. */
   entered: string;

@@ -37,7 +37,7 @@ function createTheme(options = {}, ...args) {
   muiTheme = args.reduce((acc, argument) => deepmerge(acc, argument), muiTheme);
 
   if (process.env.NODE_ENV !== 'production') {
-    const pseudoClasses = [
+    const stateClasses = [
       'active',
       'checked',
       'completed',
@@ -56,9 +56,9 @@ function createTheme(options = {}, ...args) {
       // eslint-disable-next-line guard-for-in, no-restricted-syntax
       for (key in node) {
         const child = node[key];
-        if (pseudoClasses.indexOf(key) !== -1 && Object.keys(child).length > 0) {
+        if (stateClasses.indexOf(key) !== -1 && Object.keys(child).length > 0) {
           if (process.env.NODE_ENV !== 'production') {
-            const pseudoClass = generateUtilityClass('', key);
+            const stateClass = generateUtilityClass('', key);
             console.error(
               [
                 `Material-UI: The \`${component}\` component increases ` +
@@ -66,18 +66,18 @@ function createTheme(options = {}, ...args) {
                 'You can not override it like this: ',
                 JSON.stringify(node, null, 2),
                 '',
-                `Instead, you need to use the '&.${pseudoClass}' syntax:`,
+                `Instead, you need to use the '&.${stateClass}' syntax:`,
                 JSON.stringify(
                   {
                     root: {
-                      [`&.${pseudoClass}`]: child,
+                      [`&.${stateClass}`]: child,
                     },
                   },
                   null,
                   2,
                 ),
                 '',
-                'https://material-ui.com/r/pseudo-classes-guide',
+                'https://material-ui.com/r/state-classes-guide',
               ].join('\n'),
             );
           }
