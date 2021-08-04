@@ -42,7 +42,7 @@ export default function StoreTemplatesBanner() {
         mx: { xs: -2, sm: -3, md: 0 },
         my: { md: -8 },
         perspective: '1000px',
-        height: { xs: 300, sm: 320, md: 'calc(100% + 160px)' },
+        height: { xs: 300, sm: 360, md: 'calc(100% + 160px)' },
         overflow: 'hidden',
         position: 'relative',
         width: { xs: '100vw', md: '50vw' },

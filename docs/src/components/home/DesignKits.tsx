@@ -36,7 +36,7 @@ export default function DesignKits() {
         justifyContent: 'center',
         alignItems: 'center',
         height: '100%',
-        minHeight: 300,
+        minHeight: { xs: 300, sm: 360 },
       }}
     >
       <Fade in timeout={500}>
