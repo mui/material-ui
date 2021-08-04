@@ -100,6 +100,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       primary: blue,
       divider: mode === 'dark' ? blueDark[400] : grey[200],
       primaryDark: blueDark,
+      mode,
       ...(mode === 'dark' && {
         background: {
           default: blueDark[800],

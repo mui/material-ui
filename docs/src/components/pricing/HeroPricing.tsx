@@ -3,7 +3,7 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
-import GradientText from '../typography/GradientText';
+import GradientText from 'docs/src/components/typography/GradientText';
 
 export default function HeroPricing() {
   return (

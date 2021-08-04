@@ -1,394 +1,151 @@
 import * as React from 'react';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Link from 'docs/src/modules/components/Link';
+import { useTheme, ThemeProvider as MuiThemeProvider, createTheme } from '@material-ui/core/styles';
+import ThemeProvider from 'docs/src/modules/ThemeContext';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Avatar from '@material-ui/core/Avatar';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
-import Head from 'docs/src/modules/components/Head';
-import Box, { BoxProps } from '@material-ui/core/Box';
-import QuestionAnswerIcon from '@material-ui/icons/QuestionAnswer';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import BrandingCard from 'docs/src/modules/branding/BrandingCard';
-import UnderlinedText from 'docs/src/modules/branding/UnderlinedText';
-import FeedbackIcon from 'docs/src/modules/branding/icons/Feedback';
-import ChangesIcon from 'docs/src/modules/branding/icons/Changes';
-import FinanceIcon from 'docs/src/modules/branding/icons/Finance';
-import HelpIcon from 'docs/src/modules/branding/icons/Help';
-import OpenCollectiveIcon from 'docs/src/modules/branding/icons/OpenCollective';
-import BrandingRoot from 'docs/src/modules/branding/BrandingRoot';
-import BrandingHeader from 'docs/src/modules/branding/BrandingHeader';
-import BrandingBeginToday from 'docs/src/modules/branding/BrandingBeginToday';
-import BrandingDiscoverMore from 'docs/src/modules/branding/BrandingDiscoverMore';
-import BrandingPersona from 'docs/src/modules/branding/BrandingPersona';
-import BrandingQuote from 'docs/src/modules/branding/BrandingQuote';
-import BrandingBulletItem from 'docs/src/modules/branding/BrandingBulletItem';
+import Container from '@material-ui/core/Container';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Paper, { PaperProps } from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import AppHeader from 'docs/src/layouts/AppHeader';
+import ReferencesCore from 'docs/src/components/home/ReferencesCore';
+import HeroEnd from 'docs/src/components/home/HeroEnd';
+import AppFooter from 'docs/src/layouts/AppFooter';
+import { MuiStats } from 'docs/src/components/home/Testimonials';
+import GradientText from 'docs/src/components/typography/GradientText';
+import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
+import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
 
-interface ImageProps {
+let darkTheme = createTheme(getDesignTokens('dark'));
+
+darkTheme = createTheme(darkTheme, getThemedComponents(darkTheme));
+
+interface Profile {
   src: string;
-  ratio: number;
-  sx?: BoxProps['sx'];
+  name: string;
+  title: string;
+  location: string; // https://www.locationflags.io/
+  about?: string;
+  github?: string;
+  twitter?: string;
 }
 
-function Image(props: ImageProps) {
-  const { src, ratio, ...other } = props;
-  return (
-    <Box
-      {...other}
-      sx={{
-        position: 'relative',
-        '& div': {
-          paddingTop: `${Math.round(ratio * 100)}%`,
-        },
-        '& img': {
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-        },
-        ...other.sx,
-      }}
-    >
-      <div />
-      <img alt="" src={src} loading="lazy" />
-    </Box>
-  );
-}
+const Icon = ({ name }: { name: string }) => (
+  <Box sx={{ display: 'inline-block', verticalAlign: 'bottom', mr: 1, lineHeight: 0 }}>
+    <img width="28" height="28" loading="lazy" src={`/static/branding/about/${name}.svg`} alt="" />
+  </Box>
+);
 
-function BrandingHero() {
+const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
   return (
-    <Container>
-      <Typography variant="h1" align="center" sx={{ mt: 9, mx: 'auto' }}>
-        {"We're making building "}
-        <Box component="span" sx={{ display: { xs: 'none', md: 'block' } }} />
-        UIs more <UnderlinedText>accessible</UnderlinedText>
-      </Typography>
-      <Typography sx={{ mt: 4, maxWidth: '60ch', mx: 'auto', textAlign: 'center', mb: 15 }}>
-        Material-UI started back in 2014 to unify <Link href="https://reactjs.org/">React</Link> and{' '}
-        <Link href="https://material.io/design">Material Design</Link>.
-        <br />
-        <br />
-        Today, Material-UI has grown to become one of the world&apos;s most popular React libraries
-        – used by a vibrant community of more than <b>2M developers</b> in over <b>180 countries</b>
-        .
-      </Typography>
-    </Container>
-  );
-}
-
-function BrandingKPI() {
-  return (
-    <Grid container spacing={1} sx={{ mb: { md: 15 } }}>
-      <Grid item xs={12} md={6} sx={{ position: 'relative' }}>
-        <Image
-          src="/static/branding/about/top-left.jpg"
-          ratio={1500 / 1500}
-          sx={{ maxHeight: 750 }}
-        />
-        <Box
-          component="img"
-          src="/static/branding/block3.svg"
-          loading="lazy"
-          alt=""
-          sx={{
-            width: 120,
-            height: 120,
-            position: 'absolute',
-            right: { xs: 30, md: -75 },
-            bottom: -43,
-          }}
-        />
-      </Grid>
-      <Grid item xs={12} md={6} sx={{ display: 'flex', flexDirection: 'column' }}>
-        <Image
-          src="/static/branding/about/top-right.png"
-          ratio={680 / 1430}
-          sx={{ maxHeight: 340, order: { xs: 2, md: 1 } }}
-        />
-        <Box
-          sx={{
-            maxWidth: 470,
-            my: 8,
-            mx: { xs: 2, sm: 'auto', md: 7, lg: 10 },
-            order: { xs: 1, md: 2 },
-          }}
-        >
-          <Grid container>
-            <Grid item xs={6} sx={{ mb: 4 }}>
-              <Typography variant="h2" component="span">
-                2019
-              </Typography>
-              <Typography>company founded</Typography>
-            </Grid>
-            <Grid item xs={6} sx={{ mb: 4 }}>
-              <Typography variant="h2" component="span">
-                2K
-              </Typography>
-              <Typography>contributors</Typography>
-            </Grid>
-            <Grid item xs={6}>
-              <Typography variant="h2" component="span">
-                2m
-              </Typography>
-              <Typography>users</Typography>
-            </Grid>
-            <Grid item xs={6}>
-              <Typography variant="h2" component="span">
-                60k+
-              </Typography>
-              <Typography>github stars</Typography>
-            </Grid>
-          </Grid>
-        </Box>
-      </Grid>
-    </Grid>
-  );
-}
-
-function BrandingMission() {
-  return (
-    <Box sx={{ position: 'relative' }}>
-      <Container>
-        <Grid container>
-          <Grid item xs={12} md={6} sx={{ py: 10, px: 3 }}>
-            <Box sx={{ maxWidth: 470, mx: 'auto' }}>
-              <Typography variant="h2" sx={{ mb: 3 }}>
-                Our mission
-              </Typography>
-              <Typography sx={{ mb: 2 }}>
-                Our company is focused on making React UI development faster, simpler, and
-                accessible to more people. We build open source and commercial tools used by over
-                two millions developers in production.
-              </Typography>
-              <Typography>
-                We&apos;re proud not only of the products we make, but also the community and
-                partnerships we&apos;ve cultivated with other developers and companies.
-              </Typography>
-              <Button
-                href="/company/jobs/"
-                component={Link}
-                noLinkStyle
-                color="secondary"
-                sx={{ mt: 7 }}
-                variant="contained"
-                endIcon={<NavigateNextIcon />}
-              >
-                Join us
-              </Button>
-            </Box>
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            md={6}
-            sx={{ py: 10, px: 3, position: { xs: 'relative', md: 'static' } }}
-          >
-            <Box
-              sx={{
-                bgcolor: 'secondary.main',
-                position: 'absolute',
-                top: 0,
-                left: { xs: -2 * 8, sm: -3 * 8, md: '50%' },
-                right: { xs: -2 * 8, sm: -3 * 8, md: 0 },
-                bottom: 0,
-              }}
+    <Paper variant="outlined" sx={{ p: 2, ...props.sx }}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'flex-start',
+          flexWrap: 'wrap',
+          '& > div': { minWidth: 'clamp(0px, (150px - 100%) * 999 ,100%)' },
+        }}
+      >
+        <Box sx={{ lineHeight: 0 }}>
+          <Box sx={{ position: 'relative', display: 'inline-block' }}>
+            <Avatar
+              variant="rounded"
+              src={props.src}
+              sx={{ width: 70, height: 70, bgcolor: 'primaryDark.800' }}
             />
             <Box
               sx={{
-                maxWidth: 420,
-                mx: 'auto',
-                position: 'relative',
-                mb: 10,
-                color: 'secondary.contrastText',
+                position: 'absolute',
+                bottom: 0,
+                right: 0,
+                transform: 'translateX(50%)',
+                boxShadow: '0px 4px 20px rgba(61, 71, 82, 0.25)',
+                width: 24,
+                height: 24,
+                border: '2px solid #fff',
+                borderRadius: 40,
+                overflow: 'hidden',
+                '& > img': {
+                  width: 28,
+                  height: 32,
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  transform: 'translate(-4px, -6px)',
+                },
               }}
             >
-              <Box
-                component="img"
-                src="/static/branding/block1-blue.svg"
+              <img
                 loading="lazy"
+                src={`https://www.countryflags.io/${props.location}/flat/64.png`}
                 alt=""
-                sx={{
-                  width: 293,
-                  height: 120,
-                  position: 'absolute',
-                  right: -30,
-                  bottom: -200,
-                }}
               />
-              <Typography variant="h2" sx={{ mb: 3 }}>
-                Our values
-              </Typography>
-              <Box component="ul" sx={{ margin: 0, padding: 0 }}>
-                <BrandingBulletItem variant="dark">
-                  Customer obsessed. We put our customers front & center.
-                </BrandingBulletItem>
-                <BrandingBulletItem variant="dark">
-                  Transparency. Most of our work is public.
-                </BrandingBulletItem>
-                <BrandingBulletItem variant="dark">
-                  Freedom. We work from anywhere in the world.
-                </BrandingBulletItem>
-                <BrandingBulletItem variant="dark">
-                  Autonomy. We want to create a safe, high-trust team.
-                </BrandingBulletItem>
-                <BrandingBulletItem variant="dark">
-                  {"Excellence. We're aiming high, and we know it."}
-                </BrandingBulletItem>
-              </Box>
             </Box>
-          </Grid>
-        </Grid>
-      </Container>
-    </Box>
-  );
-}
-
-function BrandingVision() {
-  return (
-    <Container sx={{ my: 15 }}>
-      <Typography
-        variant="h3"
-        component="p"
-        sx={{ textAlign: 'center', maxWidth: 770, mx: 'auto', mb: 11 }}
-      >
-        <UnderlinedText>Our vision is</UnderlinedText> to provide material to build rich user
-        interfaces. Material-UI is an elegant React implementation of the Material Design guidelines
-        that can be customized to fully match your brand.
-      </Typography>
-      <Grid container alignItems="center" spacing={4}>
-        <Grid item xs={12} sm={6}>
-          <Image
-            src="/static/branding/about/vision.png"
-            ratio={1140 / 940}
-            sx={{ maxWidth: 470 }}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Typography>
-            {
-              "The Material Design guidelines are an incredible starting point, but they don't provide guidance on all aspects or needs of an application."
-            }
-            In addition to the guideline-specific implementation,{' '}
-            <b>we want Material-UI to be more generally useful for application development.</b>
-          </Typography>
-          <br />
-          <Typography>
-            Material-UI implements not only the Material Design guidelines, but is also a general
-            use UI library of components, offering components that are simply not addressed in the
-            design guidelines.
-          </Typography>
-        </Grid>
-      </Grid>
-      <Box sx={{ my: 15 }}>
-        <Grid container alignItems="center" spacing={4}>
-          <Grid item xs={12} sm={6} sx={{ order: [2, 1] }}>
-            <Typography>
-              <b>
-                We focus on providing all the low-level tools needed to build a rich user-interface
-                with React.
-              </b>{' '}
-              We implement the Material Design guidelines, which is a bar set quite high. You are
-              able to take advantage of it for your own business with any style customization
-              needed.
-            </Typography>
-            <br />
-            <Typography>
-              We want to see companies succeed using Material-UI in a way that matches their brand,
-              close to the Material Design philosophy or not. We don&apos;t want them to feel that
-              their UI simply looks like another Google product.
-            </Typography>
-          </Grid>
-          <Grid item xs={12} sm={6} sx={{ order: [1, 2] }}>
-            <Image
-              src="/static/branding/about/focus.jpg"
-              ratio={1140 / 940}
-              sx={{ maxWidth: 470 }}
-            />
-          </Grid>
-        </Grid>
-      </Box>
-      <Grid container alignItems="center" spacing={4}>
-        <Grid item xs={12} md={6}>
-          <BrandingQuote
-            author={{
-              avatar: '/static/branding/about/olivier.jpg',
-              name: 'Olivier Tassinari',
-              title: 'Co-founder',
-            }}
-            sx={{ width: '100%', maxWidth: { md: 470 } }}
-          >
-            React is set on a course to further dominate the way UIs are built on the web for a long
-            time.
-            <br />
-            The next major iteration to improve the DX will be a paradigm shift.
-            {" It's not coming with a new library but low-code."}
-          </BrandingQuote>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Typography variant="h4" component="p">
-            From a developer&apos;s point of view, we want Material-UI to:
-          </Typography>
-          <Box component="ul" sx={{ m: 0, p: 0, mt: 3 }}>
-            <BrandingBulletItem>
-              Deliver on fully encapsulated/composable React components,
-            </BrandingBulletItem>
-            <BrandingBulletItem>Be themeable/customizable,</BrandingBulletItem>
-            <BrandingBulletItem>
-              Be cross browser compatible and assistive technology accessible,
-            </BrandingBulletItem>
-            <BrandingBulletItem>
-              Promote developer joy, a sense of community, and an environment where new and
-              experienced developers can learn from each other.
-            </BrandingBulletItem>
           </Box>
-        </Grid>
-      </Grid>
-    </Container>
-  );
-}
-
-function BrandingTeam() {
-  return (
-    <Box sx={{ bgcolor: 'greyF3', pt: 15, pb: 10 }}>
-      <Container sx={{ position: 'relative' }}>
-        <Box
-          component="img"
-          src="/static/branding/block4.svg"
-          alt=""
-          loading="lazy"
-          sx={{
-            width: 207,
-            height: 171,
-            position: 'absolute',
-            right: { xs: 10, md: 0 },
-            bottom: -176,
-          }}
-        />
-        <Typography variant="h2">Team</Typography>
-        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: '60ch' }}>
-          Material-UI is maintained by a group of invaluable core contributors, with the massive
-          support and involvement of the community.
+        </Box>
+        <Box mx="auto" height={15} />
+        <Box sx={{ mt: -0.5, mr: -0.5 }}>
+          {props.github && (
+            <IconButton
+              aria-label={`${props.name} github`}
+              component="a"
+              href={props.github}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <img width="20" height="20" src={`/static/images/logos/github-light.svg`} alt="" />
+            </IconButton>
+          )}
+          {props.twitter && (
+            <IconButton
+              aria-label={`${props.name} twitter`}
+              component="a"
+              href={props.twitter}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <img width="20" height="20" src={`/static/images/logos/twitter-light.svg`} alt="" />
+            </IconButton>
+          )}
+        </Box>
+      </Box>
+      <Typography variant="body2" fontWeight="bold" sx={{ mt: 2, mb: 0.5 }}>
+        {props.name}
+      </Typography>
+      <Typography variant="body2" color="text.secondary">
+        {props.title}
+      </Typography>
+      {props.about && <Divider sx={{ my: 1 }} />}
+      {props.about && (
+        <Typography variant="body2" color="text.secondary">
+          {props.about}
         </Typography>
-      </Container>
-    </Box>
+      )}
+    </Paper>
   );
-}
+};
 
-const company = [
+const teamMembers: Array<Profile> = [
   {
-    name: 'Olivier Tassinari',
     src: '/static/branding/about/olivier.jpg',
+    name: 'Olivier Tassinari',
     title: 'Co-founder',
-    location: 'Paris, France',
-    twitter: 'olivtassinari',
-    github: 'oliviertassinari',
+    about: 'Something quick about you here!',
+    location: 'fr',
+    twitter: 'https://twitter.com/olivtassinari',
+    github: 'https://github.com/oliviertassinari',
   },
   {
     name: 'Matt Brookes',
     src: '/static/branding/about/matt.jpg',
     title: 'Co-founder',
-    location: 'London, UK',
+    location: 'gb',
     twitter: 'randomtechdude',
     github: 'mbrookes',
   },
@@ -396,7 +153,7 @@ const company = [
     name: 'Sebastian Silbermann',
     src: '/static/branding/about/sebastian.jpg',
     title: 'Core components team',
-    location: 'Dresden, Germany',
+    location: 'de',
     twitter: 'sebsilbermann',
     github: 'eps1lon',
   },
@@ -404,7 +161,7 @@ const company = [
     name: 'Damien Tassone',
     src: '/static/branding/about/damien.jpg',
     title: 'Advanced components team',
-    location: 'Barcelona, Spain',
+    location: 'es',
     twitter: 'madKakoO',
     github: 'dtassone',
   },
@@ -412,7 +169,7 @@ const company = [
     name: 'Marija Najdova',
     src: '/static/branding/about/marija.jpg',
     title: 'Core components team',
-    location: 'Skopje, North Macedonia',
+    location: 'mk',
     twitter: 'marijanajdova',
     github: 'mnajdova',
   },
@@ -420,7 +177,7 @@ const company = [
     name: 'Danail Hadjiatanasov',
     src: '/static/branding/about/danail.jpg',
     title: 'Advanced components team',
-    location: 'Amsterdam, Netherlands',
+    location: 'nl',
     twitter: 'danail_h',
     github: 'DanailH',
   },
@@ -428,14 +185,14 @@ const company = [
     name: 'Matheus Wichman',
     src: '/static/branding/about/matheus.jpg',
     title: 'Advanced components team',
-    location: 'Esteio, Brazil',
+    location: 'br',
     github: 'm4theushw',
   },
   {
     name: 'Michał Dudak',
     src: '/static/branding/about/michal.jpg',
     title: 'Core components team',
-    location: 'Silesia, Poland',
+    location: 'pl',
     twitter: 'michaldudak',
     github: 'michaldudak',
   },
@@ -443,110 +200,35 @@ const company = [
     name: 'Siriwat Kunaporn',
     src: '/static/branding/about/siriwat.jpg',
     title: 'Core components team',
-    location: 'Bangkok, Thailand',
+    location: 'th',
     twitter: 'siriwatknp',
     github: 'siriwatknp',
   },
 ];
 
-function BrandingCompany() {
-  return (
-    <Box sx={{ bgcolor: 'greyEA', pt: 12, pb: 11 }}>
-      <Container sx={{ position: 'relative' }}>
-        <Box
-          component="img"
-          src="/static/branding/block1-white.svg"
-          loading="lazy"
-          alt=""
-          sx={{
-            width: 293,
-            height: 120,
-            position: 'absolute',
-            right: { xs: 20, md: 0 },
-            bottom: -129,
-          }}
-        />
-        <Typography variant="h3">
-          <UnderlinedText>Company</UnderlinedText>
-        </Typography>
-        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: '60ch' }}>
-          The development of the project and its ecosystem is guided by an international team.
-        </Typography>
-        <Grid container spacing={4}>
-          {company.map((member) => (
-            <Grid item xs={12} md={6} lg={4} key={member.name}>
-              <BrandingPersona {...member} />
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-    </Box>
-  );
-}
-
-const community = [
+const contributors = [
   {
     name: 'Danica Shen',
     github: 'DDDDDanica',
     title: '🇨🇳 Chinese docs',
-    location: 'Ireland',
+    location: 'cn',
     src: 'https://avatars.githubusercontent.com/u/12678455',
   },
   {
     name: 'Yan Lee',
     github: 'AGDholo',
     title: '🇨🇳 Chinese docs',
-    location: 'China',
+    location: 'cn',
     src: 'https://avatars.githubusercontent.com/u/13300332',
   },
   {
     name: 'Jairon Alves Lima',
     github: 'jaironalves',
     title: '🇧🇷 Brazilian docs',
-    location: 'São Paulo, Brazil',
+    location: 'br',
     src: 'https://avatars.githubusercontent.com/u/29267813',
   },
-] as typeof emeriti;
-
-function BrandingContributors() {
-  return (
-    <Box sx={{ bgcolor: 'greyF3', pt: 10, pb: 9 }}>
-      <Container sx={{ position: 'relative' }}>
-        <Box
-          component="img"
-          src="/static/branding/block2.svg"
-          loading="lazy"
-          alt=""
-          sx={{
-            width: 196,
-            height: 139,
-            position: 'absolute',
-            right: { xs: 30, md: 0 },
-            bottom: -131,
-          }}
-        />
-        <Typography variant="h3">
-          Community <UnderlinedText>Contributors</UnderlinedText>
-        </Typography>
-        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: '60ch' }}>
-          Some members of the community have so enriched it, that they deserve special mention.
-        </Typography>
-        <Grid container spacing={4}>
-          {community.map((member) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={member.name}>
-              <BrandingPersona
-                {...member}
-                src={`${member.src}?s=120`}
-                srcSet={`${member.src}?s=240 2x`}
-                size="small"
-              />
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-    </Box>
-  );
-}
+];
 
 const emeriti = [
   {
@@ -554,14 +236,14 @@ const emeriti = [
     github: 'hai-cea',
     twitter: 'haicea',
     title: 'v0.x creator',
-    location: 'Dallas, Texas, US',
+    location: 'us',
     src: 'https://avatars.githubusercontent.com/u/2007468',
   },
   {
     name: 'Nathan Marks',
     github: 'nathanmarks',
     title: 'v1.x co-creator',
-    location: 'Toronto, ON',
+    location: 'us',
     src: 'https://avatars.githubusercontent.com/u/4420103',
   },
   {
@@ -569,7 +251,7 @@ const emeriti = [
     github: 'rosskevin',
     twitter: 'rosskevin',
     title: 'Core focus, flow',
-    location: 'Franklin, Tennessee, US',
+    location: 'us',
     src: 'https://avatars.githubusercontent.com/u/136564',
   },
   {
@@ -577,14 +259,14 @@ const emeriti = [
     github: 'sebald',
     twitter: 'sebastiansebald',
     title: 'Core focus',
-    location: 'Freiburg, Germany',
+    location: 'de',
     src: 'https://avatars.githubusercontent.com/u/985701',
   },
   {
     name: 'Ken Gregory',
     github: 'kgregory',
     title: 'Core focus',
-    location: 'New Jersey, US',
+    location: 'us',
     src: 'https://avatars.githubusercontent.com/u/3155127',
   },
   {
@@ -592,7 +274,7 @@ const emeriti = [
     github: 'pelotom',
     twitter: 'pelotom',
     title: 'Core focus',
-    location: 'Los Angeles, California, US',
+    location: 'us',
     src: 'https://avatars.githubusercontent.com/u/128019',
   },
   {
@@ -600,7 +282,7 @@ const emeriti = [
     github: 'leMaik',
     twitter: 'leMaikOfficial',
     title: 'Core focus',
-    location: 'Hannover, Germany',
+    location: 'de',
     src: 'https://avatars.githubusercontent.com/u/5544859',
   },
   {
@@ -608,7 +290,7 @@ const emeriti = [
     github: 'kof',
     twitter: 'oleg008',
     title: 'JSS',
-    location: 'Berlin, Germany',
+    location: 'de',
     src: 'https://avatars.githubusercontent.com/u/52824',
   },
   {
@@ -616,7 +298,7 @@ const emeriti = [
     github: 'dmtrKovalenko',
     twitter: 'dmtrKovalenko',
     title: 'Date pickers',
-    location: 'Kharkiv, Ukraine',
+    location: 'ua',
     src: 'https://avatars.githubusercontent.com/u/16926049',
   },
   {
@@ -624,240 +306,245 @@ const emeriti = [
     github: 'joshwooding',
     twitter: 'JoshWooding_',
     title: 'Core focus, J.P. Morgan',
-    location: 'London, UK',
+    location: 'gb',
     src: 'https://avatars.githubusercontent.com/u/12938082',
   },
 ];
 
-function BrandingEmeriti() {
+export default function About() {
+  const globalTheme = useTheme();
+  const mode = globalTheme.palette.mode;
   return (
-    <Box sx={{ bgcolor: 'greyEA', pt: 10, pb: 9 }}>
+    <ThemeProvider>
+      <CssBaseline />
+      <AppHeader />
       <Container>
-        <Typography variant="h3">
-          Community <UnderlinedText>Emeriti</UnderlinedText>
-        </Typography>
-        <Typography sx={{ mt: 1.5, mb: 7, maxWidth: '60ch' }}>
-          We honor some no-longer-active core team members who have made valuable contributons in
-          the past. They advise us from time-to-time.
-        </Typography>
-        <Grid container spacing={4}>
-          {emeriti.map((member) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={member.name}>
-              <BrandingPersona
-                {...member}
-                src={`${member.src}?s=120`}
-                srcSet={`${member.src}?s=240 2x`}
-                size="small"
-              />
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-    </Box>
-  );
-}
-
-function BrandingJoinUs() {
-  return (
-    <Box
-      sx={{
-        bgcolor: 'secondary.main',
-        color: 'secondary.contrastText',
-        overflow: 'hidden',
-      }}
-    >
-      <Container
-        maxWidth="md"
-        sx={{
-          py: { xs: 17, sm: 19, md: 20 },
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          position: 'relative',
-        }}
-      >
         <Box
-          component="img"
-          src="/static/branding/block6.svg"
-          loading="lazy"
-          alt=""
           sx={{
-            width: 570,
-            height: 526,
-            position: 'absolute',
-            display: 'block',
-            right: { xs: -360, sm: -350, lg: -570 },
-            bottom: { xs: -300, sm: -200, lg: -80 },
+            height: '40vh',
+            minHeight: 300,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            maxWidth: 600,
+            mx: 'auto',
+            textAlign: 'center',
           }}
-        />
-        <Typography variant="h2" align="center">
-          Join our team of creators &amp; innovators
-        </Typography>
-        <Typography align="center" sx={{ mt: 3, mb: 5 }}>
-          If you love the challenge of doing things differently, empowering creativity, and making
-          real connections along the way–then this may be the place for you.
-        </Typography>
-        <Button
-          href="/company/jobs/"
-          component={Link}
-          noLinkStyle
-          size="large"
-          variant="contained"
-          endIcon={<NavigateNextIcon />}
         >
-          See Open Positions
-        </Button>
+          <Typography variant="body2" color="primary" fontWeight="bold">
+            About us
+          </Typography>
+          <Typography variant="h2" sx={{ my: 1 }}>
+            We&apos;re on a mission to make building UIs more{' '}
+            <GradientText>accessible</GradientText>.
+          </Typography>
+          <Typography color="text.secondary" textAlign="center" sx={{ maxWidth: { md: 500 } }}>
+            Our mission is to empower anyone to build UIs, faster. We&apos;re reducing the entry
+            barrier, making design skills accessible.
+          </Typography>
+        </Box>
+        <ReferencesCore />
       </Container>
-    </Box>
-  );
-}
-
-function BrandingSupportUs() {
-  return (
-    <Container sx={{ mt: [10, 18], mb: [12, 20] }}>
-      <Typography variant="h2">
-        Material-UI is awesome.
-        <br />
-        How can <UnderlinedText>I support the project?</UnderlinedText>
-      </Typography>
-      <Typography sx={{ mt: 2, mb: 9 }}>There are many ways to support Material-UI:</Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={6}>
-          <BrandingCard icon={<QuestionAnswerIcon fontSize="large" />} title="Spread the word">
-            <Typography sx={{ mt: 2 }}>
-              Evangelize Material-UI by linking to{' '}
-              <Link href="https://material-ui.com">material-ui.com</Link> on your website, every
-              backlink matters! Follow us on{' '}
-              <Link href="https://twitter.com/MaterialUI">Twitter</Link>, retweet the important
-              news. <Link href="https://github.com/mui-org/material-ui">Star us</Link> on GitHub
-              ⭐️.{" Or share what you've built with Material-UI."}
+      <Box
+        sx={{ bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50') }}
+      >
+        <Container sx={{ py: { xs: 4, md: 8 } }}>
+          <Grid container alignItems="center" spacing={4}>
+            <Grid item xs={12} md={6}>
+              <Typography variant="h2" sx={{ my: 1 }}>
+                Our ultimate goal
+              </Typography>
+              <Typography color="text.secondary" sx={{ mb: 1, maxWidth: 450 }}>
+                We aim high trying to design the most effective and efficient tool for building UIs,
+                for developers and designers. MUI started back in 2014, to unify React and Material
+                Design. Since then, we&apos;ve become a community of over 2M developers from every
+                corner of the world.
+              </Typography>
+              <Typography color="text.secondary" sx={{ mb: 2 }}>
+                We plan on doing all that cultivating our values:
+              </Typography>
+              {[
+                'Customer obsessession. We put our customers front & center.',
+                'Transparency. Most of our work is public.',
+                'Freedom. We work from anywhere in the world.',
+                'Autonomy. We want to create a safe, high-trust team.',
+                "Excellence. We're aiming high, and we know it.",
+              ].map((text) => (
+                <Box key={text} sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
+                  <img src={`/static/branding/pricing/yes-${mode}.svg`} alt="" />
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    fontWeight="extraBold"
+                    sx={{ ml: 1 }}
+                  >
+                    {text}
+                  </Typography>
+                </Box>
+              ))}
+            </Grid>
+            <MuiStats mode={mode} />
+          </Grid>
+        </Container>
+      </Box>
+      <Container sx={{ py: { xs: 4, md: 8 } }}>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <Typography variant="h2" sx={{ my: 1 }}>
+              Team
             </Typography>
-          </BrandingCard>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <BrandingCard
-            color="vividBlue"
-            icon={<FeedbackIcon fontSize="large" />}
-            title="Give us feedback"
-          >
-            <Typography sx={{ mt: 2 }}>
-              Tell us what we&apos;re doing well or where we can improve. Please upvote (
-              <span role="img" aria-label="Thumbs up emoji">
-                👍
-              </span>
-              ) the issues that you are the most interested in seeing solved.{' '}
-              <Link href="https://github.com/mui-org/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc">
-                Give us feedback
-              </Link>
-            </Typography>
-          </BrandingCard>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <BrandingCard
-            color="vividBlue"
-            icon={<ChangesIcon fontSize="large" />}
-            title="Make changes happen"
-            sx={{
-              ul: {
-                position: 'relative',
-                ml: 0,
-                pl: '1.3em',
-              },
-              'ul li:before': {
-                content: '"-"',
-                position: 'absolute',
-                left: 0,
-              },
-            }}
-          >
-            <ul>
-              <li>
-                Edit the documentation. Every page has an &quot;EDIT THIS PAGE&quot; link in the top
-                right.
-              </li>
-              <li>
-                Report bugs or missing features by{' '}
-                <Link href="https://github.com/mui-org/material-ui/issues">creating an issue</Link>.
-              </li>
-              <li>
-                Review and comment on existing{' '}
-                <Link href="https://github.com/mui-org/material-ui/pulls">pull requests</Link> and{' '}
-                <Link href="https://github.com/mui-org/material-ui/issues">issues</Link>.
-              </li>
-              <li>
-                Help <Link href="https://translate.material-ui.com/">translate</Link> the
-                documentation.
-              </li>
-              <li>
-                <Link href="https://github.com/mui-org/material-ui/tree/HEAD/docs">
-                  Improve our documentation
-                </Link>
-                , fix bugs, or add features by{' '}
-                <Link href="https://github.com/mui-org/material-ui/blob/HEAD/CONTRIBUTING.md#your-first-pull-request">
-                  submitting a pull request
-                </Link>
-                .
-              </li>
-            </ul>
-          </BrandingCard>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <BrandingCard icon={<FinanceIcon fontSize="large" />} title="Support us financially">
-            <Typography sx={{ mt: 2 }}>
-              If you use Material-UI in a commercial project and would like to support its continued
-              development by becoming a Sponsor, or in a side or hobby project and would like to
-              become a Backer, you can do so through OpenCollective.
-            </Typography>
-            <Typography sx={{ mt: 2, mb: 2 }}>
-              All funds donated are managed transparently, and Sponsors receive recognition in the
-              README and on the Material-UI home page.
+            <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
+              MUI is maintained by a group of invaluable core contributors, with the massive support
+              and involvement of the community.
             </Typography>
             <Button
-              color="inherit"
-              href="https://opencollective.com/material-ui"
-              endIcon={<OpenCollectiveIcon />}
+              endIcon={<KeyboardArrowRightRounded fontSize="small" />}
               variant="contained"
+              size="large"
             >
-              Open Collective
+              Join the team
             </Button>
-          </BrandingCard>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <BrandingCard icon={<HelpIcon fontSize="large" />} title="Help new users">
-            <Typography sx={{ mt: 2 }}>
-              You can answer questions on{' '}
-              <Link href="https://stackoverflow.com/questions/tagged/material-ui">
-                StackOverflow
-              </Link>
-              .
+          </div>
+          <img
+            width="130"
+            height="124"
+            loading="lazy"
+            src="/static/branding/pricing/early-bird.svg"
+            alt=""
+          />
+        </Box>
+        <Divider sx={{ my: { xs: 2, sm: 4 } }} />
+        <Typography variant="h5" color="primary" fontWeight="extraBold" sx={{ mb: 1 }}>
+          Company
+        </Typography>
+        <Typography color="text.secondary">
+          The development of the project and its ecosystem is guided by an international team.
+        </Typography>
+        <Box sx={{ pt: 2 }}>
+          <Grid container spacing={2}>
+            {teamMembers.map((profile) => (
+              <Grid key={profile.name} item xs={6} sm={4} md={3}>
+                <Person sx={{ height: '100%' }} {...profile} />
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+      </Container>
+      <MuiThemeProvider theme={darkTheme}>
+        <Box sx={{ bgcolor: 'primaryDark.700' }}>
+          <Container sx={{ py: { xs: 4, sm: 8 } }}>
+            <Typography variant="h5" color="primary" fontWeight="extraBold" sx={{ mb: 1 }}>
+              Community contributors
             </Typography>
-          </BrandingCard>
+            <Typography color="text.secondary" sx={{ maxWidth: { md: 400 } }}>
+              Some members of the community have so enriched it, that they deserve special mention.
+            </Typography>
+            <Box sx={{ pt: 2, pb: { xs: 4, sm: 8 } }}>
+              <Grid container spacing={2}>
+                {contributors.map((profile) => (
+                  <Grid key={profile.name} item xs={6} sm={4} md={3}>
+                    <Person sx={{ height: '100%' }} {...profile} />
+                  </Grid>
+                ))}
+              </Grid>
+            </Box>
+            <Typography variant="h5" color="warning.main" fontWeight="extraBold" sx={{ mb: 1 }}>
+              Community emeriti
+            </Typography>
+            <Typography color="text.secondary" sx={{ maxWidth: { md: 400 } }}>
+              We honor some no-longer-active core team members who have made valuable contributions
+              in the past. They advise us from time-to-time.
+            </Typography>
+            <Box sx={{ pt: 4, pb: { xs: 4, md: 8 } }}>
+              <Grid container spacing={2}>
+                {emeriti.map((profile) => (
+                  <Grid key={profile.name} item xs={6} sm={4} md={3}>
+                    <Person sx={{ height: '100%' }} {...profile} />
+                  </Grid>
+                ))}
+              </Grid>
+            </Box>
+          </Container>
+        </Box>
+      </MuiThemeProvider>
+      <Container sx={{ py: { xs: 4, md: 8 } }}>
+        <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 } }}>
+          Our ultimate goal
+        </Typography>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6} md={4}>
+            <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
+              <Typography variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
+                <Icon name="give-feedback" />
+                Give feedback
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                Tell us what and where we can improve or share your happy moments with us! You can
+                also up or downvote any page on our documentation. <br />
+                <br /> And lastly, from time to time, we send our community a survey for a more
+                structured feedback, you&apos;re always invinted to participate to share you
+                thoughts.
+              </Typography>
+              <Link href="/" variant="body2">
+                Leave your feedback{' '}
+                <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
+              </Link>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+            <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
+              <Typography variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
+                <Icon name="join-community" />
+                Join the community
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                Become a member of a huge community of developers supporting MUI. You can:
+              </Typography>
+              <Box
+                component="ul"
+                sx={{
+                  typography: 'body2',
+                  color: 'text.secondary',
+                  pl: 2,
+                }}
+              >
+                <li>Add new features by submitting a pull request.</li>
+                <li>Fix bugs or improve our documentation.</li>
+                <li>Help others bu reviewing and commenting on existing PRs and issues.</li>
+                <li>Help translate the documentation.</li>
+              </Box>
+              <Link href="/" variant="body2">
+                See the repository <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
+              </Link>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+            <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
+              <Typography variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
+                <Icon name="support-us" />
+                Suport us financially
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                If you use Material-UI in a commercial project and would like to support its
+                continued development by becoming a Sponsor, or in a side or hobby project and would
+                like to become a Backer, you can do so through OpenCollective.
+                <br />
+                <br />
+                All funds donated are managed transparently, and Sponsors receive recognition in the
+                README and on the Material-UI home page.
+              </Typography>
+              <Link href="/" variant="body2">
+                See Open Collective{' '}
+                <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
+              </Link>
+            </Paper>
+          </Grid>
         </Grid>
-      </Grid>
-    </Container>
-  );
-}
-
-export default function Page() {
-  return (
-    <BrandingRoot>
-      <Head
-        title="About Us - Material-UI"
-        description="Material-UI started back in 2014 to unify React and Material Design. Today, Material-UI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
-      />
-      <BrandingHeader />
-      <BrandingHero />
-      <BrandingKPI />
-      <BrandingMission />
-      <BrandingVision />
-      <BrandingTeam />
-      <BrandingCompany />
-      <BrandingContributors />
-      <BrandingEmeriti />
-      <BrandingJoinUs />
-      <BrandingSupportUs />
-      <BrandingDiscoverMore />
-      <BrandingBeginToday />
-    </BrandingRoot>
+      </Container>
+      <HeroEnd />
+      <Divider />
+      <AppFooter />
+    </ThemeProvider>
   );
 }
