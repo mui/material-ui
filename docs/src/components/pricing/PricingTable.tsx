@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useTheme } from '@material-ui/core/styles';
+import { useTheme, alpha } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Button, { ButtonProps } from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
@@ -38,7 +38,7 @@ const Info = ({ value, metadata }: { value: React.ReactNode; metadata?: string }
           variant="caption"
           color="grey.700"
           fontWeight="normal"
-          sx={{ display: 'block' }}
+          sx={{ display: 'block', mt: 0.5 }}
         >
           {metadata}
         </Typography>
@@ -68,9 +68,9 @@ const ColumnHead = ({
     </Typography>
   );
   return (
-    <Box sx={{ pl: 2, alignSelf: 'center' }}>
+    <Box sx={{ pl: 2, alignSelf: 'center', justifySelf: 'flex-start' }}>
       {tooltip ? (
-        <Tooltip title={tooltip} placement="top">
+        <Tooltip title={tooltip} placement="right">
           {text}
         </Tooltip>
       ) : (
@@ -232,12 +232,30 @@ export default function PricingTable() {
   function renderData(array: Array<Array<React.ReactNode>>) {
     return array.map((row, rowIndex) => (
       <React.Fragment key={rowIndex}>
-        {row.map((item, itemIndex) => {
-          if (itemIndex === 0) {
-            return <React.Fragment key={itemIndex}>{item}</React.Fragment>;
+        {row.map((item, colIndex) => {
+          if (colIndex === 0) {
+            return <React.Fragment key={colIndex}>{item}</React.Fragment>;
           }
           return (
-            <Box key={itemIndex} sx={{ justifySelf: 'center', textAlign: 'center' }}>
+            <Box
+              key={colIndex}
+              sx={{
+                py: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                ...(colIndex % 2 === 0 && {
+                  borderWidth: '0 1px 0 1px',
+                  borderStyle: 'solid',
+                  borderColor: (theme) =>
+                    theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
+                  bgcolor: (theme) =>
+                    theme.palette.mode === 'dark'
+                      ? alpha(theme.palette.primaryDark[900], 0.7)
+                      : alpha(theme.palette.grey[50], 0.7),
+                }),
+              }}
+            >
               {item}
             </Box>
           );
@@ -273,16 +291,14 @@ export default function PricingTable() {
     <Container
       sx={{
         py: 4,
-        display: 'grid',
+        display: { xs: 'none', md: 'grid' },
         gridTemplateColumns: '1fr repeat(3, minmax(220px, 1fr))',
-        rowGap: 2,
-        columnGap: 4,
       }}
     >
       <Typography variant="body2" fontWeight="bold">
         Plans
       </Typography>
-      <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', p: 2 }}>
         <div>
           <Typography
             variant="body2"
@@ -309,7 +325,38 @@ export default function PricingTable() {
           Get Started
         </Button>
       </Box>
-      <Box>
+      <Box
+        sx={{
+          p: 2,
+          position: 'relative',
+          borderRadius: '10px 10px 0 0',
+          borderWidth: '1px 1px 0 1px',
+          borderStyle: 'solid',
+          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200'),
+          bgcolor: (theme) =>
+            theme.palette.mode === 'dark'
+              ? alpha(theme.palette.primaryDark[900], 0.7)
+              : alpha(theme.palette.grey[50], 0.7),
+        }}
+      >
+        <Box
+          sx={{
+            typography: 'caption',
+            color: 'primary.500',
+            p: '2px 8px',
+            border: '1px solid',
+            borderRadius: 2,
+            borderColor: (theme) =>
+              theme.palette.mode === 'dark' ? 'primaryDark.900' : 'primary.200',
+            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.50'),
+            position: 'absolute',
+            top: 0,
+            left: 20,
+            transform: 'translateY(-50%)',
+          }}
+        >
+          Recommended
+        </Box>
         <div>
           <Typography
             variant="body2"
@@ -352,7 +399,7 @@ export default function PricingTable() {
           Get Started
         </Button>
       </Box>
-      <Box>
+      <Box sx={{ p: 2 }}>
         <Box sx={{ opacity: 0.5 }}>
           <Typography variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
             Premium
@@ -397,6 +444,7 @@ export default function PricingTable() {
         children: 'Advanced',
       })}
       {renderData(supportData)}
+      <Divider sx={{ gridColumn: 'span 4' }} />
     </Container>
   );
 }
