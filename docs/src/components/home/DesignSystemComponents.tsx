@@ -30,7 +30,6 @@ import Typography from '@material-ui/core/Typography';
 import ShoppingCartRounded from '@material-ui/icons/ShoppingCartRounded';
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 import GradientText from 'docs/src/components/typography/GradientText';
-
 import CheckCircleRounded from '@material-ui/icons/CheckCircleRounded';
 import MailRounded from '@material-ui/icons/MailRounded';
 import VerifiedUserRounded from '@material-ui/icons/VerifiedUserRounded';

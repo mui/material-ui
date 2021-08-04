@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import CompaniesGrid, { CORE_COMPANIES } from './CompaniesGrid';
+import CompaniesGrid, { CORE_COMPANIES } from 'docs/src/components/home/CompaniesGrid';
 
 const ReferencesCore = () => {
   return (
