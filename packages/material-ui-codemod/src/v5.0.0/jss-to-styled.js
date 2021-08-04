@@ -55,7 +55,8 @@ export default function transformer(file, api, options) {
     if (matches) {
       const closingTag = matches.slice(-1)[0];
 
-      if(closingTag.endsWith('/>') && closingTag !== '</>') { // Self closing tag
+      // Self closing tag
+      if (closingTag.endsWith('/>') && closingTag !== '</>') {
         const end = closingTag.indexOf(' ') > 0 ? closingTag.indexOf(' ') : closingTag.length - 1;
         return closingTag.substring(1, end);
       }
