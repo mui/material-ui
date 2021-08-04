@@ -1,4 +1,2 @@
-export {
-  useAutocomplete as default,
-  createFilterOptions,
-} from '@material-ui/unstyled/AutocompleteUnstyled';
+export { useAutocomplete as default } from '@material-ui/unstyled/AutocompleteUnstyled';
+export * from '@material-ui/unstyled/AutocompleteUnstyled';
