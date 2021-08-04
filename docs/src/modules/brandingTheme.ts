@@ -372,6 +372,25 @@ export function getThemedComponents(theme: Theme) {
           },
         },
       },
+      MuiTooltip: {
+        styleOverrides: {
+          tooltip: {
+            padding: theme.spacing(1, 2),
+            backgroundColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[700]
+                : theme.palette.background.paper,
+            color: theme.palette.text.primary,
+            border: '1px solid',
+            borderColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[400]
+                : theme.palette.primary.main,
+            ...theme.typography.caption,
+            fontWeight: 'regular',
+          },
+        },
+      },
     },
   };
 }
