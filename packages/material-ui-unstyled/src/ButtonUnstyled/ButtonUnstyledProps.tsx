@@ -1,30 +1,17 @@
 import { OverrideProps } from '@material-ui/types';
+import { UseButtonProps } from './useButton';
 
 export interface ButtonBaseActions {
   focusVisible(): void;
 }
 
-export interface ButtonUnstyledOwnProps {
+export interface ButtonUnstyledOwnProps extends Omit<UseButtonProps, 'component' | 'ref'> {
   action?: React.Ref<ButtonBaseActions>;
   children?: React.ReactNode;
   className?: string;
-  components?: {
-    Root?: React.ElementType;
-  };
   componentsProps?: {
     root?: Record<string, any>;
   };
-  disabled?: boolean;
-  href?: string;
-  onBlur?: React.FocusEventHandler;
-  onClick?: React.MouseEventHandler;
-  onFocus?: React.FocusEventHandler;
-  onFocusVisible?: React.FocusEventHandler;
-  onKeyDown?: React.KeyboardEventHandler;
-  onKeyUp?: React.KeyboardEventHandler;
-  onMouseLeave?: React.MouseEventHandler;
-  tabIndex?: number | string;
-  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
 }
 
 type ButtonUnstyledProps<

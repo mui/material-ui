@@ -5,37 +5,45 @@ import {
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@material-ui/utils';
 
-interface Props {
+export interface UseButtonProps {
+  component?: React.ElementType;
+  components?: {
+    Root?: React.ElementType;
+  };
   disabled?: boolean;
-  elementType: React.ElementType;
+  href?: string;
   onBlur?: React.FocusEventHandler;
-  onClick?: React.EventHandler<any>;
+  onClick?: React.MouseEventHandler;
   onFocus?: React.FocusEventHandler;
   onFocusVisible?: React.FocusEventHandler;
   onKeyDown?: React.KeyboardEventHandler;
   onKeyUp?: React.KeyboardEventHandler;
   onMouseLeave?: React.MouseEventHandler;
   ref: React.Ref<any>;
-  tabIndex: string | number;
+  tabIndex?: string | number;
+  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
 }
 
 function isAnchor(el: HTMLElement | undefined): el is HTMLAnchorElement {
   return el?.tagName === 'A';
 }
 
-export default function useButton(props: Props) {
+export default function useButton(props: UseButtonProps) {
   const {
+    component,
+    components = {},
     disabled = false,
+    href,
     onClick,
     onBlur,
     onFocus,
     onMouseLeave,
     onFocusVisible,
-    elementType = 'button',
     onKeyDown,
     onKeyUp,
     ref,
     tabIndex = 0,
+    type,
   } = props;
 
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
@@ -91,7 +99,9 @@ export default function useButton(props: Props) {
     }
   });
 
-  const isNonNativeButton = () => {
+  const elementType = component ?? components.Root ?? 'button';
+
+  const isNotNativeButtonOrLink = () => {
     const button = buttonRef.current;
     return elementType !== 'button' && !(isAnchor(button) && button?.href);
   };
@@ -106,7 +116,7 @@ export default function useButton(props: Props) {
       keydownRef.current = true;
     }
 
-    if (event.target === event.currentTarget && isNonNativeButton() && event.key === ' ') {
+    if (event.target === event.currentTarget && isNotNativeButtonOrLink() && event.key === ' ') {
       event.preventDefault();
     }
 
@@ -115,14 +125,12 @@ export default function useButton(props: Props) {
     // Keyboard accessibility for non interactive elements
     if (
       event.target === event.currentTarget &&
-      isNonNativeButton() &&
+      isNotNativeButtonOrLink() &&
       event.key === 'Enter' &&
       !disabled
     ) {
       event.preventDefault();
-      if (onClick) {
-        onClick(event as unknown as React.MouseEvent); // TODO: convert between event types properly
-      }
+      onClick?.(event as unknown as React.MouseEvent); // TODO: convert between event types properly
     }
   });
 
@@ -139,7 +147,7 @@ export default function useButton(props: Props) {
     if (
       onClick &&
       event.target === event.currentTarget &&
-      isNonNativeButton() &&
+      isNotNativeButtonOrLink() &&
       event.key === ' ' &&
       !event.defaultPrevented
     ) {
@@ -147,20 +155,34 @@ export default function useButton(props: Props) {
     }
   });
 
+  const additionalProps: Record<string, unknown> = {};
+
+  if (elementType === 'button') {
+    additionalProps.type = type ?? 'button';
+    additionalProps.disabled = disabled;
+  } else {
+    if (!href) {
+      additionalProps.role = 'button';
+      additionalProps.tabIndex = disabled ? -1 : tabIndex;
+    }
+    if (disabled) {
+      additionalProps['aria-disabled'] = disabled;
+    }
+  }
+
   const handleOwnRef = useForkRef(focusVisibleRef, buttonRef);
   const handleRef = useForkRef(ref, handleOwnRef);
 
   return {
     getRootProps: () => ({
+      ...additionalProps,
       onBlur: handleBlur,
       onClick,
       onFocus: handleFocus,
       onKeyDown: handleKeyDown,
       onKeyUp: handleKeyUp,
       onMouseLeave: handleMouseLeave,
-      ref: handleRef,
-      role: 'button',
-      tabIndex: disabled ? -1 : tabIndex,
+      ref: handleRef as React.Ref<any>,
     }),
     focusVisible,
     setFocusVisible,
