@@ -1,47 +1,34 @@
 import * as React from 'react';
 import { styled } from '@material-ui/core/styles';
-import Box, { BoxProps } from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import Fade from '@material-ui/core/Fade';
 
-const Image = styled('img')({
-  display: 'block',
-  position: 'absolute',
-  top: 0,
-  right: 0,
-  width: '100%',
-  height: '100%',
-  objectFit: 'cover',
-});
+const ratio = 1367 / 939;
 
-const Banner = React.forwardRef(
-  ({ src, alt, ...props }: { src: string; alt: string } & BoxProps, ref) => (
-    <Box
-      ref={ref}
-      {...props}
-      sx={{
-        height: '0px',
-        pb: '57.8%',
-        position: 'relative',
-        filter: (theme) =>
-          `drop-shadow(0px 3.57436px 44.6795px ${
-            theme.palette.mode === 'dark'
-              ? theme.palette.primaryDark[500]
-              : 'rgba(90, 105, 120, 0.25)'
-          })`,
-        ...props.sx,
-      }}
-    >
-      <Image src={src} alt={alt} loading="lazy" />
-    </Box>
-  ),
-);
+const Image = styled('img')(({ theme }) => ({
+  display: 'block',
+  width: 200,
+  height: 200 / ratio,
+  [theme.breakpoints.up('sm')]: {
+    width: 300,
+    height: 300 / ratio,
+  },
+  [theme.breakpoints.up('md')]: {
+    width: 450,
+    height: 450 / ratio,
+  },
+  border: '6px solid',
+  borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[500],
+  borderRadius: theme.shape.borderRadius,
+  objectFit: 'cover',
+  filter: 'drop-shadow(0px 4px 20px rgba(61, 71, 82, 0.25))',
+}));
 
 export default function StoreTemplatesBanner() {
   const [appearIndexes, setAppearIndexes] = React.useState<Array<number>>([0]);
   React.useEffect(() => {
     const time = setTimeout(() => {
-      if (appearIndexes.length < 5) {
+      if (appearIndexes.length < 6) {
         setAppearIndexes((current) => [...current, current.length]);
       }
     }, 200);
@@ -52,62 +39,146 @@ export default function StoreTemplatesBanner() {
   return (
     <Box
       sx={{
-        ml: { md: 4, lg: 0 },
-        width: { md: '72vw' },
-        height: '100%',
-        maxWidth: 780,
+        mx: { xs: -2, sm: -3, md: 0 },
+        my: { md: -8 },
+        perspective: '1000px',
+        height: { xs: 300, sm: 320, md: 'calc(100% + 160px)' },
+        overflow: 'hidden',
+        position: 'relative',
+        width: { xs: '100vw', md: '50vw' },
       }}
     >
-      <Grid
-        container
-        columnSpacing={{ sm: 4, md: 8 }}
-        rowSpacing={4}
-        alignItems="center"
-        sx={{ height: '100%' }}
+      <Box
+        sx={{
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
+          opacity: (theme) => (theme.palette.mode === 'dark' ? 0.6 : 0),
+          zIndex: 1,
+        }}
+      />
+      <Box
+        sx={{
+          display: { xs: 'block', md: 'none' },
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          background: (theme) =>
+            `linear-gradient(to bottom, ${
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[900]
+                : theme.palette.grey[50]
+            } 0%, transparent 30%, transparent 70%, ${
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[900]
+                : theme.palette.grey[50]
+            } 100%)`,
+          zIndex: 2,
+        }}
+      />
+      <Box
+        sx={{
+          display: { xs: 'none', md: 'block' },
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: 400,
+          height: '100%',
+          background: (theme) =>
+            `linear-gradient(to right, ${
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[900]
+                : theme.palette.grey[50]
+            }, transparent)`,
+          zIndex: 2,
+        }}
+      />
+      <Box
+        sx={{
+          left: '50%',
+          position: 'absolute',
+          display: 'flex',
+          transform: 'translateX(-40%) rotateZ(-30deg) rotateX(8deg) rotateY(8deg)',
+          transformOrigin: 'center center',
+        }}
       >
-        <Grid item xs={12} sm={6} md={6}>
-          <Fade in={appearIndexes.includes(0)} timeout={1000}>
-            <Banner
-              src="/static/branding/store-templates/store-template1.png"
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateRows: 'min-content',
+            gap: { xs: 2, sm: 4, md: 8 },
+            width: 'min-content',
+            animation: 'slideup 30s ease-out forwards',
+            '@keyframes slideup': {
+              '0%': {
+                transform: 'translateY(-450px)',
+              },
+              '100%': {
+                transform: 'translateY(-60px)',
+              },
+            },
+          }}
+        >
+          <Fade in={appearIndexes.includes(4)} timeout={1000}>
+            <Image
+              src="/static/branding/store-templates/store-template1.jpeg"
               alt="Store template 1"
             />
           </Fade>
-        </Grid>
-        <Grid item xs={12} sm={6} md={6}>
-          <Fade in={appearIndexes.includes(3)} timeout={1000}>
-            <Banner
-              src="/static/branding/store-templates/store-template2.png"
-              alt="Store template 2"
+          <Fade in={appearIndexes.includes(2)} timeout={1000}>
+            <Image
+              src="/static/branding/store-templates/store-template3.jpeg"
+              alt="Store template 1"
             />
           </Fade>
-        </Grid>
-        <Grid item xs={12} sm={6} md={12}>
-          <Box sx={{ width: { xs: '100%', md: '50%' }, mx: 'auto' }}>
-            <Fade in={appearIndexes.includes(2)} timeout={1000}>
-              <Banner
-                src="/static/branding/store-templates/store-template3.png"
-                alt="Store template 3"
-              />
-            </Fade>
-          </Box>
-        </Grid>
-        <Grid item xs={12} sm={6} md={6}>
+          <Fade in={appearIndexes.includes(0)} timeout={1000}>
+            <Image
+              src="/static/branding/store-templates/store-template5.jpeg"
+              alt="Store template 1"
+            />
+          </Fade>
+        </Box>
+        <Box
+          sx={{
+            ml: { xs: 2, sm: 4, md: 8 },
+            display: 'grid',
+            gridTemplateRows: 'min-content',
+            gap: { xs: 2, sm: 4, md: 8 },
+            width: 'min-content',
+            animation: 'slidedown 30s ease-out forwards',
+            '@keyframes slidedown': {
+              '0%': {
+                transform: 'translateY(225px)',
+              },
+              '100%': {
+                transform: 'translateY(-120px)',
+              },
+            },
+          }}
+        >
           <Fade in={appearIndexes.includes(1)} timeout={1000}>
-            <Banner
-              src="/static/branding/store-templates/store-template4.png"
-              alt="Store template 4"
+            <Image
+              src="/static/branding/store-templates/store-template2.jpeg"
+              alt="Store template 1"
             />
           </Fade>
-        </Grid>
-        <Grid item xs={12} sm={6} md={6}>
-          <Fade in={appearIndexes.includes(4)} timeout={700}>
-            <Banner
-              src="/static/branding/store-templates/store-template5.png"
-              alt="Store template 5"
+          <Fade in={appearIndexes.includes(3)} timeout={1000}>
+            <Image
+              src="/static/branding/store-templates/store-template4.jpeg"
+              alt="Store template 1"
             />
           </Fade>
-        </Grid>
-      </Grid>
+          <Fade in={appearIndexes.includes(5)} timeout={1000}>
+            <Image
+              src="/static/branding/store-templates/store-template6.jpeg"
+              alt="Store template 1"
+            />
+          </Fade>
+        </Box>
+      </Box>
     </Box>
   );
 }
