@@ -45,7 +45,7 @@ function Plan({
       )}
       {benefits &&
         benefits.map((text) => (
-          <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
+          <Box key={text} sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
             <img src={`/static/branding/pricing/yes-${mode}.svg`} alt="" />
             <Typography
               variant="body2"

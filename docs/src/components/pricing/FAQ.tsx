@@ -186,7 +186,12 @@ export default function FAQ() {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            component="div"
+            variant="body2"
+            color="text.secondary"
+            sx={{ '& ul': { pl: 2 } }}
+          >
             {faq.detail}
           </Typography>
         </AccordionDetails>

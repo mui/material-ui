@@ -29,7 +29,7 @@ export default function WhatToExpect() {
       <Grid container spacing={{ xs: 2, sm: 4 }}>
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-            <Typography variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
+            <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
               <Icon name="volume-discount" />
               Volumn discount
             </Typography>
@@ -46,7 +46,7 @@ export default function WhatToExpect() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-            <Typography variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
+            <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
               <Icon name="perpetual" />
               Perpetual license
             </Typography>
@@ -62,7 +62,7 @@ export default function WhatToExpect() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-            <Typography variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
+            <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
               <Icon name="renewal" />
               Renewal
             </Typography>
@@ -75,7 +75,7 @@ export default function WhatToExpect() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-            <Typography variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
+            <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
               <Icon name="support-maintenance" />
               Support and maintenance
             </Typography>
