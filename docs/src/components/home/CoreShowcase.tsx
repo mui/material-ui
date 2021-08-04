@@ -262,6 +262,7 @@ export default function CoreShowcase() {
         clearTimeout(time);
       };
     }
+    setCustomTheme(createTheme());
     return () => {};
   }, [customized]);
   return (
@@ -327,7 +328,7 @@ export default function CoreShowcase() {
           <Box ref={codeContainer} sx={{ px: 2, overflow: 'auto', flexGrow: 1 }}>
             <HighlightedCode component={MarkdownElement} code={codeImports} language="jsx" />
             {customized && <Box height={20} />}
-            <TypeWriter step={step} codes={CODES} onStepComplete={updateTheme} />
+            {customized && <TypeWriter step={step} codes={CODES} onStepComplete={updateTheme} />}
             <Box height={20} />
             <HighlightedCode
               component={MarkdownElement}
