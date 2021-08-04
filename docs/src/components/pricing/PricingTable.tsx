@@ -11,6 +11,96 @@ import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRoun
 import SvgProductCore from 'docs/src/icons/SvgProductCore';
 import SvgProductAdvanced from 'docs/src/icons/SvgProductAdvanced';
 
+const plans = {
+  community: {
+    color: 'green',
+    title: 'Community',
+    description:
+      'Get started with the most popular and industry-standard UI library to build interfaces with React.',
+  },
+  pro: {
+    color: 'blue',
+    title: 'Pro',
+    description: 'Best for professional developers building enterprise or data-rich applications.',
+  },
+  premium: {
+    color: 'gold',
+    title: 'Premium',
+    description: 'Unlock all the most advances features including premium support.',
+  },
+} as const;
+
+export function PlanName({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
+  const { title, color, description } = plans[plan];
+  return (
+    <React.Fragment>
+      <Typography
+        variant="body2"
+        fontWeight="bold"
+        sx={{ mb: 0.5, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+      >
+        {title} <img src={`/static/branding/pricing/block-${color}.svg`} alt="" />
+      </Typography>
+      <Typography variant="body2" color="text.secondary">
+        {description}
+      </Typography>
+    </React.Fragment>
+  );
+}
+export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
+  if (plan === 'community') {
+    return (
+      <Box sx={{ display: 'flex', alignItems: 'center', my: 'auto' }}>
+        <Typography variant="h4" fontWeight="bold" color="grey.600">
+          $0
+        </Typography>
+        <Box sx={{ width: 5 }} />
+        <Typography variant="body2" color="text.secondary">
+          / free forever!
+        </Typography>
+      </Box>
+    );
+  }
+  if (plan === 'pro') {
+    return (
+      <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
+        <Typography
+          variant="caption"
+          fontWeight="bold"
+          color="error.main"
+          sx={{
+            borderRadius: 0.5,
+            bgcolor: 'error.200',
+            textDecoration: 'line-through',
+            p: '4px',
+          }}
+        >
+          $249
+        </Typography>
+        <Box sx={{ width: 10 }} />
+        <Typography variant="h4" fontWeight="bold" color="primary.main">
+          $186
+        </Typography>
+        <Box sx={{ width: 5 }} />
+        <Typography variant="body2" color="text.secondary">
+          / per developer.
+        </Typography>
+      </Box>
+    );
+  }
+  return (
+    <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
+      <Typography variant="h4" fontWeight="bold" color="grey.600">
+        $599
+      </Typography>
+      <Box sx={{ width: 5 }} />
+      <Typography variant="body2" color="text.secondary">
+        / per developer
+      </Typography>
+    </Box>
+  );
+}
+
 const Status = ({ value }: { value: 'yes' | 'no' | 'wip' }) => {
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
@@ -300,27 +390,9 @@ export default function PricingTable() {
       </Typography>
       <Box sx={{ display: 'flex', flexDirection: 'column', p: 2 }}>
         <div>
-          <Typography
-            variant="body2"
-            fontWeight="bold"
-            sx={{ mb: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-          >
-            Community <img src="/static/branding/pricing/block-green.svg" alt="" />
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Get started with the most popular and industry-standard UI library to build interfaces
-            with React.
-          </Typography>
+          <PlanName plan="community" />
         </div>
-        <Box sx={{ display: 'flex', alignItems: 'center', my: 'auto' }}>
-          <Typography variant="h4" fontWeight="bold" color="grey.600">
-            $0
-          </Typography>
-          <Box sx={{ width: 5 }} />
-          <Typography variant="body2" color="text.secondary">
-            / free forever!
-          </Typography>
-        </Box>
+        <PlanPrice plan="community" />
         <Button variant="outlined" fullWidth endIcon={<KeyboardArrowRightRounded />} sx={{ py: 1 }}>
           Get Started
         </Button>
@@ -358,40 +430,9 @@ export default function PricingTable() {
           Recommended
         </Box>
         <div>
-          <Typography
-            variant="body2"
-            fontWeight="bold"
-            sx={{ mb: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-          >
-            Pro <img src="/static/branding/pricing/block-blue.svg" alt="" />
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Best for professional developers building enterprise or data-rich applications.
-          </Typography>
+          <PlanName plan="pro" />
         </div>
-        <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
-          <Typography
-            variant="caption"
-            fontWeight="bold"
-            color="error.main"
-            sx={{
-              borderRadius: 0.5,
-              bgcolor: 'error.200',
-              textDecoration: 'line-through',
-              p: '4px',
-            }}
-          >
-            $249
-          </Typography>
-          <Box sx={{ width: 10 }} />
-          <Typography variant="h4" fontWeight="bold" color="primary.main">
-            $186
-          </Typography>
-          <Box sx={{ width: 5 }} />
-          <Typography variant="body2" color="text.secondary">
-            / per developer.
-          </Typography>
-        </Box>
+        <PlanPrice plan="pro" />
         <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
           <i>Price capped at 10 developers.</i>
         </Typography>
@@ -399,30 +440,17 @@ export default function PricingTable() {
           Get Started
         </Button>
       </Box>
-      <Box sx={{ p: 2 }}>
+      <Box sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
         <Box sx={{ opacity: 0.5 }}>
-          <Typography variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
-            Premium
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Best for professional developers building enterprise or data-rich applications.
-          </Typography>
-          <Box sx={{ display: 'flex', alignItems: 'center', mt: 2, mb: 5 }}>
-            <Typography variant="h4" fontWeight="bold" color="grey.600">
-              $599
-            </Typography>
-            <Box sx={{ width: 5 }} />
-            <Typography variant="body2" color="text.secondary">
-              / per developer
-            </Typography>
-          </Box>
+          <PlanName plan="premium" />
+          <PlanPrice plan="premium" />
         </Box>
         <Button
           variant="outlined"
           disabled
           fullWidth
           endIcon={<KeyboardArrowRightRounded />}
-          sx={{ py: 1, '&.Mui-disabled': { color: 'text.secondary' } }}
+          sx={{ mt: 'auto', py: 1, '&.Mui-disabled': { color: 'text.secondary' } }}
         >
           Available later this year!
         </Button>

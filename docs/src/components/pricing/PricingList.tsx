@@ -6,19 +6,14 @@ import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
+import { PlanName, PlanPrice } from './PricingTable';
 
 function Plan({
-  icon,
-  title,
-  description,
-  price,
+  plan,
   benefits,
   unavailable,
 }: {
-  icon: string;
-  title: string;
-  description: string;
-  price: React.ReactElement;
+  plan: 'community' | 'pro' | 'premium';
   benefits?: Array<string>;
   unavailable?: boolean;
 }) {
@@ -29,17 +24,10 @@ function Plan({
       variant="outlined"
       sx={{ p: 2, ...(unavailable && { '& .MuiTypography-root': { opacity: 0.2 } }) }}
     >
-      <Typography
-        variant="body2"
-        fontWeight="bold"
-        sx={{ mb: 0.5, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-      >
-        {title} <img src={`/static/branding/pricing/block-${icon}.svg`} alt="" />
-      </Typography>
-      <Typography variant="body2" color="text.secondary">
-        {description}
-      </Typography>
-      {price}
+      <PlanName plan={plan} />
+      <Box {...(plan === 'community' && { my: 2 })} {...(plan === 'premium' && { mb: 2 })}>
+        <PlanPrice plan={plan} />
+      </Box>
       {unavailable ? (
         <Button
           variant="outlined"
@@ -77,20 +65,7 @@ export default function PricingList() {
   return (
     <Container sx={{ py: 2, display: { xs: 'block', md: 'none' } }}>
       <Plan
-        icon="green"
-        title="Community"
-        description="Get started with the most popular and industry-standard UI library to build interfaces with React."
-        price={
-          <Box sx={{ display: 'flex', alignItems: 'center', my: 2 }}>
-            <Typography variant="h4" fontWeight="bold" color="grey.600">
-              $0
-            </Typography>
-            <Box sx={{ width: 5 }} />
-            <Typography variant="body2" color="text.secondary">
-              / free forever!
-            </Typography>
-          </Box>
-        }
+        plan="community"
         benefits={[
           'Lifetime access to @mui/core, @mui/system and @mui/unstyled',
           'Lifetime access to @mui/data-grid',
@@ -100,39 +75,7 @@ export default function PricingList() {
       />
       <Box height={20} />
       <Plan
-        icon="blue"
-        title="Pro"
-        description="Best for professional developers building enterprise or data-rich applications."
-        price={
-          <React.Fragment>
-            <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
-              <Typography
-                variant="caption"
-                fontWeight="bold"
-                color="error.main"
-                sx={{
-                  borderRadius: 0.5,
-                  bgcolor: 'error.200',
-                  textDecoration: 'line-through',
-                  p: '4px',
-                }}
-              >
-                $249
-              </Typography>
-              <Box sx={{ width: 10 }} />
-              <Typography variant="h4" fontWeight="bold" color="primary.main">
-                $186
-              </Typography>
-              <Box sx={{ width: 5 }} />
-              <Typography variant="body2" color="text.secondary">
-                / per developer.
-              </Typography>
-            </Box>
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-              <i>Price capped at 10 developers.</i>
-            </Typography>
-          </React.Fragment>
-        }
+        plan="pro"
         benefits={[
           'Everything included in the Community plan',
           'Access to @mui/x-data-grid',
@@ -141,23 +84,7 @@ export default function PricingList() {
         ]}
       />
       <Box height={20} />
-      <Plan
-        unavailable
-        icon="gold"
-        title="Premium"
-        description="Unlock all the most advances features including premium support."
-        price={
-          <Box sx={{ display: 'flex', alignItems: 'center', my: 2 }}>
-            <Typography variant="h4" fontWeight="bold" color="grey.600">
-              $599
-            </Typography>
-            <Box sx={{ width: 5 }} />
-            <Typography variant="body2" color="text.secondary">
-              / per developer
-            </Typography>
-          </Box>
-        }
-      />
+      <Plan unavailable plan="premium" />
     </Container>
   );
 }

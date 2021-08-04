@@ -23,7 +23,7 @@ export default function Home() {
       <ProductSuite />
       <ValueProposition />
       <DesignSystemComponents />
-      <Testimonials />
+      <Testimonials mode="dark" />
       <Sponsors />
       <HeroEnd />
       <Divider />
