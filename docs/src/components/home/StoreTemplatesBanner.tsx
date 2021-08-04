@@ -18,7 +18,7 @@ const Image = styled('img')(({ theme }) => ({
     height: 450 / ratio,
   },
   border: '6px solid',
-  borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[500],
+  borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[400],
   borderRadius: theme.shape.borderRadius,
   objectFit: 'cover',
   filter: 'drop-shadow(0px 4px 20px rgba(61, 71, 82, 0.25))',
