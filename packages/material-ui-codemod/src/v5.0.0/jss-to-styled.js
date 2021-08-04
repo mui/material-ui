@@ -54,6 +54,12 @@ export default function transformer(file, api, options) {
     const matches = file.source.match(/<\/?(\w*)[\s\S]*?>/gm);
     if (matches) {
       const closingTag = matches.slice(-1)[0];
+
+      if(closingTag.endsWith('/>') && closingTag !== '</>') { // Self closing tag
+        const end = closingTag.indexOf(' ') > 0 ? closingTag.indexOf(' ') : closingTag.length - 1;
+        return closingTag.substring(1, end);
+      }
+
       return closingTag.substring(2, closingTag.length - 1);
     }
     return null;
