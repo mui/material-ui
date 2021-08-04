@@ -393,7 +393,7 @@ export default function PricingTable() {
           </Typography>
         </Box>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-          Price capped at 10 developers.
+          <i>Price capped at 10 developers.</i>
         </Typography>
         <Button variant="outlined" fullWidth endIcon={<KeyboardArrowRightRounded />} sx={{ py: 1 }}>
           Get Started
