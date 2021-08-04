@@ -115,6 +115,13 @@ const community = [
     flag: 'JSS',
     location: 'Berlin, Germany',
   },
+  {
+    name: 'Ryan Cogswell',
+    github: 'ryancogswell',
+    twitter: 'ryanecogswell',
+    flag: 'Stack Overflow',
+    location: 'Minnesota, United States',
+  },
 ];
 
 const emeriti = [

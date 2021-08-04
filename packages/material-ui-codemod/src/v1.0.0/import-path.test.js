@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
@@ -19,7 +18,7 @@ describe('@material-ui/codemod', () => {
       it('convert path as needed', () => {
         const actual = transform(
           { source: read('./import-path.test/actual.js') },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
@@ -30,7 +29,7 @@ describe('@material-ui/codemod', () => {
       it('should be idempotent', () => {
         const actual = transform(
           { source: read('./import-path.test/expected.js') },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 

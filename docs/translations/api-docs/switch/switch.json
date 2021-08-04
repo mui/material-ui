@@ -56,11 +56,11 @@
       "conditions": "<code>size=\"medium\"</code>"
     },
     "checked": {
-      "description": "Pseudo-class applied to {{nodeName}}.",
+      "description": "State class applied to {{nodeName}}.",
       "nodeName": "the internal `SwitchBase` component's `checked` class"
     },
     "disabled": {
-      "description": "Pseudo-class applied to {{nodeName}}.",
+      "description": "State class applied to {{nodeName}}.",
       "nodeName": "the internal SwitchBase component's disabled class"
     },
     "input": {

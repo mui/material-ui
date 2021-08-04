@@ -250,6 +250,14 @@ const contributors = [
     country: 'br',
     src: 'https://avatars.githubusercontent.com/u/29267813',
   },
+  {
+    name: 'Ryan Cogswell',
+    github: 'ryancogswell',
+    title: 'Stack Overflow',
+    location: 'Minnesota, United States',
+    country: 'us',
+    src: 'https://avatars.githubusercontent.com/u/287804',
+  }
 ];
 
 const emeriti = [

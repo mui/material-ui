@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
@@ -18,8 +17,11 @@ describe('@material-ui/codemod', () => {
     describe('optimal-imports', () => {
       it('convert path as needed', () => {
         const actual = transform(
-          { source: read('./optimal-imports.test/actual.js'), path: require.resolve('./optimal-imports.test/actual.js') },
-          { jscodeshift: jscodeshift },
+          {
+            source: read('./optimal-imports.test/actual.js'),
+            path: require.resolve('./optimal-imports.test/actual.js'),
+          },
+          { jscodeshift },
           {},
         );
 
@@ -29,8 +31,11 @@ describe('@material-ui/codemod', () => {
 
       it('should be idempotent', () => {
         const actual = transform(
-          { source: read('./optimal-imports.test/expected.js'), path: require.resolve('./optimal-imports.test/expected.js') },
-          { jscodeshift: jscodeshift },
+          {
+            source: read('./optimal-imports.test/expected.js'),
+            path: require.resolve('./optimal-imports.test/expected.js'),
+          },
+          { jscodeshift },
           {},
         );
 

@@ -3,17 +3,10 @@ import { ServerStyleSheets } from '@material-ui/styles';
 import { createTheme } from '@material-ui/core/styles';
 import { ServerStyleSheet } from 'styled-components';
 import createEmotionServer from '@emotion/server/create-instance';
-import { CacheProvider } from '@emotion/react';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import createCache from '@emotion/cache';
-
-function getCache() {
-  const cache = createCache({ key: 'css', prepend: true });
-  cache.compat = true;
-  return cache;
-}
+import createEmotionCache from 'docs/src/createEmotionCache';
 
 const defaultTheme = createTheme();
 
@@ -135,20 +128,15 @@ MyDocument.getInitialProps = async (ctx) => {
   const styledComponentsSheet = new ServerStyleSheet();
   const originalRenderPage = ctx.renderPage;
 
-  const cache = getCache();
+  const cache = createEmotionCache();
   const { extractCriticalToChunks } = createEmotionServer(cache);
 
   try {
     ctx.renderPage = () =>
       originalRenderPage({
         enhanceApp: (App) => (props) =>
-          styledComponentsSheet.collectStyles(materialSheets.collect(<App {...props} />)),
-        // Take precedence over the CacheProvider in our custom _app.js
-        enhanceComponent: (Component) => (props) =>
-          (
-            <CacheProvider value={cache}>
-              <Component {...props} />
-            </CacheProvider>
+          styledComponentsSheet.collectStyles(
+            materialSheets.collect(<App emotionCache={cache} {...props} />),
           ),
       });
 

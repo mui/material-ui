@@ -2,7 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, integerPropType } from '@material-ui/utils';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import {
+  unstable_composeClasses as composeClasses,
+  useAutocomplete,
+  createFilterOptions,
+} from '@material-ui/unstyled';
 import { alpha } from '@material-ui/system';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
@@ -11,7 +15,6 @@ import IconButton from '../IconButton';
 import Chip from '../Chip';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
-import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';

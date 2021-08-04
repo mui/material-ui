@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
@@ -18,7 +17,7 @@ describe('@material-ui/codemod', () => {
             source: read('./use-autocomplete.test/actual.js'),
             path: require.resolve('./use-autocomplete.test/actual.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
@@ -32,7 +31,7 @@ describe('@material-ui/codemod', () => {
             source: read('./use-autocomplete.test/expected.js'),
             path: require.resolve('./use-autocomplete.test/expected.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
