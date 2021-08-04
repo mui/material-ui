@@ -32,7 +32,8 @@ const UserFeedback = ({
         <Avatar
           src={profile.avatar}
           alt={`Picture of ${profile.name}`}
-          sx={{ width: 60, height: 60, border: '1px solid', borderColor: '#fff' }}
+          imgProps={{ loading: "lazy" }}
+          sx={{ width: 60, height: 60, border: '1px solid', borderColor: '#fff', bgcolor: 'grey.800' }}
         />
         <Box sx={{ ml: 2 }}>
           <Typography color="#fff" fontWeight="bold" sx={{ mb: 1 }}>
