@@ -29,7 +29,9 @@ interface Profile {
   src: string;
   name: string;
   title: string;
-  location: string; // https://www.locationflags.io/
+  country: string; // https://www.countryflags.io/
+  // eslint-disable-next-line react/no-unused-prop-types
+  location?: string;
   about?: string;
   github?: string;
   twitter?: string;
@@ -83,7 +85,7 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
             >
               <img
                 loading="lazy"
-                src={`https://www.countryflags.io/${props.location}/flat/64.png`}
+                src={`https://www.countryflags.io/${props.country}/flat/64.png`}
                 alt=""
               />
             </Box>
@@ -144,8 +146,9 @@ const teamMembers: Array<Profile> = [
     src: '/static/branding/about/olivier.jpg',
     name: 'Olivier Tassinari',
     title: 'Co-founder',
+    location: 'Paris, France',
     about: 'Something quick about you here!',
-    location: 'fr',
+    country: 'fr',
     twitter: 'https://twitter.com/olivtassinari',
     github: 'https://github.com/oliviertassinari',
   },
@@ -153,7 +156,8 @@ const teamMembers: Array<Profile> = [
     name: 'Matt Brookes',
     src: '/static/branding/about/matt.jpg',
     title: 'Co-founder',
-    location: 'gb',
+    location: 'London, UK',
+    country: 'gb',
     twitter: 'randomtechdude',
     github: 'mbrookes',
   },
@@ -161,7 +165,8 @@ const teamMembers: Array<Profile> = [
     name: 'Sebastian Silbermann',
     src: '/static/branding/about/sebastian.jpg',
     title: 'Core components team',
-    location: 'de',
+    location: 'Dresden, Germany',
+    country: 'de',
     twitter: 'sebsilbermann',
     github: 'eps1lon',
   },
@@ -169,7 +174,8 @@ const teamMembers: Array<Profile> = [
     name: 'Damien Tassone',
     src: '/static/branding/about/damien.jpg',
     title: 'Advanced components team',
-    location: 'es',
+    location: 'Barcelona, Spain',
+    country: 'es',
     twitter: 'madKakoO',
     github: 'dtassone',
   },
@@ -177,7 +183,8 @@ const teamMembers: Array<Profile> = [
     name: 'Marija Najdova',
     src: '/static/branding/about/marija.jpg',
     title: 'Core components team',
-    location: 'mk',
+    location: 'Skopje, North Macedonia',
+    country: 'mk',
     twitter: 'marijanajdova',
     github: 'mnajdova',
   },
@@ -185,7 +192,8 @@ const teamMembers: Array<Profile> = [
     name: 'Danail Hadjiatanasov',
     src: '/static/branding/about/danail.jpg',
     title: 'Advanced components team',
-    location: 'nl',
+    location: 'Amsterdam, Netherlands',
+    country: 'nl',
     twitter: 'danail_h',
     github: 'DanailH',
   },
@@ -193,14 +201,16 @@ const teamMembers: Array<Profile> = [
     name: 'Matheus Wichman',
     src: '/static/branding/about/matheus.jpg',
     title: 'Advanced components team',
-    location: 'br',
+    location: 'Esteio, Brazil',
+    country: 'br',
     github: 'm4theushw',
   },
   {
     name: 'Michał Dudak',
     src: '/static/branding/about/michal.jpg',
     title: 'Core components team',
-    location: 'pl',
+    location: 'Silesia, Poland',
+    country: 'pl',
     twitter: 'michaldudak',
     github: 'michaldudak',
   },
@@ -208,7 +218,8 @@ const teamMembers: Array<Profile> = [
     name: 'Siriwat Kunaporn',
     src: '/static/branding/about/siriwat.jpg',
     title: 'Core components team',
-    location: 'th',
+    location: 'Bangkok, Thailand',
+    country: 'th',
     twitter: 'siriwatknp',
     github: 'siriwatknp',
   },
@@ -219,21 +230,24 @@ const contributors = [
     name: 'Danica Shen',
     github: 'DDDDDanica',
     title: '🇨🇳 Chinese docs',
-    location: 'cn',
+    location: 'Ireland',
+    country: 'ie',
     src: 'https://avatars.githubusercontent.com/u/12678455',
   },
   {
     name: 'Yan Lee',
     github: 'AGDholo',
     title: '🇨🇳 Chinese docs',
-    location: 'cn',
+    location: 'China',
+    country: 'cn',
     src: 'https://avatars.githubusercontent.com/u/13300332',
   },
   {
     name: 'Jairon Alves Lima',
     github: 'jaironalves',
     title: '🇧🇷 Brazilian docs',
-    location: 'br',
+    location: 'São Paulo, Brazil',
+    country: 'br',
     src: 'https://avatars.githubusercontent.com/u/29267813',
   },
 ];
@@ -244,14 +258,16 @@ const emeriti = [
     github: 'hai-cea',
     twitter: 'haicea',
     title: 'v0.x creator',
-    location: 'us',
+    location: 'Dallas, Texas, US',
+    country: 'us',
     src: 'https://avatars.githubusercontent.com/u/2007468',
   },
   {
     name: 'Nathan Marks',
     github: 'nathanmarks',
     title: 'v1.x co-creator',
-    location: 'us',
+    location: 'Toronto, ON',
+    country: 'us',
     src: 'https://avatars.githubusercontent.com/u/4420103',
   },
   {
@@ -259,7 +275,8 @@ const emeriti = [
     github: 'rosskevin',
     twitter: 'rosskevin',
     title: 'Core focus, flow',
-    location: 'us',
+    location: 'Franklin, Tennessee, US',
+    country: 'us',
     src: 'https://avatars.githubusercontent.com/u/136564',
   },
   {
@@ -267,14 +284,16 @@ const emeriti = [
     github: 'sebald',
     twitter: 'sebastiansebald',
     title: 'Core focus',
-    location: 'de',
+    location: 'Freiburg, Germany',
+    country: 'de',
     src: 'https://avatars.githubusercontent.com/u/985701',
   },
   {
     name: 'Ken Gregory',
     github: 'kgregory',
     title: 'Core focus',
-    location: 'us',
+    location: 'New Jersey, US',
+    country: 'us',
     src: 'https://avatars.githubusercontent.com/u/3155127',
   },
   {
@@ -282,7 +301,8 @@ const emeriti = [
     github: 'pelotom',
     twitter: 'pelotom',
     title: 'Core focus',
-    location: 'us',
+    location: 'Los Angeles, California, US',
+    country: 'us',
     src: 'https://avatars.githubusercontent.com/u/128019',
   },
   {
@@ -290,7 +310,8 @@ const emeriti = [
     github: 'leMaik',
     twitter: 'leMaikOfficial',
     title: 'Core focus',
-    location: 'de',
+    location: 'Hannover, Germany',
+    country: 'de',
     src: 'https://avatars.githubusercontent.com/u/5544859',
   },
   {
@@ -298,7 +319,8 @@ const emeriti = [
     github: 'kof',
     twitter: 'oleg008',
     title: 'JSS',
-    location: 'de',
+    location: 'Berlin, Germany',
+    country: 'de',
     src: 'https://avatars.githubusercontent.com/u/52824',
   },
   {
@@ -306,7 +328,8 @@ const emeriti = [
     github: 'dmtrKovalenko',
     twitter: 'dmtrKovalenko',
     title: 'Date pickers',
-    location: 'ua',
+    location: 'Kharkiv, Ukraine',
+    country: 'ua',
     src: 'https://avatars.githubusercontent.com/u/16926049',
   },
   {
@@ -314,7 +337,8 @@ const emeriti = [
     github: 'joshwooding',
     twitter: 'JoshWooding_',
     title: 'Core focus, J.P. Morgan',
-    location: 'gb',
+    location: 'London, UK',
+    country: 'gb',
     src: 'https://avatars.githubusercontent.com/u/12938082',
   },
 ];
