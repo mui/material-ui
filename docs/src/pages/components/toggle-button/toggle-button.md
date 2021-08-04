@@ -69,7 +69,7 @@ const handleAlignment = (event, newAlignment) => {
 
 {{"demo": "pages/components/toggle-button/StandaloneToggleButton.js"}}
 
-## Customized toggle button
+## Customization
 
 Here is an example of customizing the component. You can learn more about this in the
 [overrides documentation page](/customization/how-to-customize/).
