@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-function SvgComponent(props: React.SVGProps<SVGSVGElement>) {
+export default function SvgProductTemplates(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -13,7 +13,6 @@ function SvgComponent(props: React.SVGProps<SVGSVGElement>) {
       <circle cx={18} cy={18} r={16} fill="#EAEEF3" />
       <mask
         id="product-templates-mask1"
-        mask-type="alpha"
         maskUnits="userSpaceOnUse"
         x={12}
         y={5}
@@ -32,7 +31,6 @@ function SvgComponent(props: React.SVGProps<SVGSVGElement>) {
       </g>
       <mask
         id="product-templates-mask2"
-        mask-type="alpha"
         maskUnits="userSpaceOnUse"
         x={4}
         y={10}
@@ -51,7 +49,6 @@ function SvgComponent(props: React.SVGProps<SVGSVGElement>) {
       </g>
       <mask
         id="product-templates-mask3"
-        mask-type="alpha"
         maskUnits="userSpaceOnUse"
         x={16}
         y={13}
@@ -71,5 +68,3 @@ function SvgComponent(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-
-export default SvgComponent;
