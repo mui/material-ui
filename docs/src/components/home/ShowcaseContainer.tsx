@@ -21,7 +21,8 @@ export default function ShowcaseContainer({
         variant="outlined"
         sx={{
           display: 'flex',
-          minHeight: 200,
+          position: 'relative',
+          minHeight: 220,
           justifyContent: 'center',
           alignItems: 'center',
           px: 2,
@@ -29,8 +30,11 @@ export default function ShowcaseContainer({
           borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300'),
           borderBottomLeftRadius: 0,
           borderBottomRightRadius: 0,
-          '& *': {
-            transition: '0.4s',
+          '&& *:not([class*="MuiSwitch"])': {
+            transition: '0.7s',
+          },
+          '&& [class*="MuiSwitch"]': {
+            transition: '0.3s',
           },
         }}
       >
@@ -40,9 +44,9 @@ export default function ShowcaseContainer({
         sx={{
           flexGrow: 1,
           display: 'flex',
+          flexDirection: 'column',
           maxWidth: '100%',
           position: 'relative',
-          overflow: 'auto',
           minHeight: 200,
           maxHeight: 500,
           borderWidth: '0 1px 1px 1px',
