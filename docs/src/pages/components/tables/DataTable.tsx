@@ -1,5 +1,13 @@
 import * as React from 'react';
+import { makeStyles } from '@material-ui/styles';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@material-ui/data-grid';
+
+const useStyles = makeStyles({
+  root: {
+    width: '100%',
+    height: 400,
+  },
+});
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 70 },
@@ -37,8 +45,10 @@ const rows = [
 ];
 
 export default function DataTable() {
+  const classes = useStyles();
+
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <div className={classes.root}>
       <DataGrid rows={rows} columns={columns} pageSize={5} checkboxSelection />
     </div>
   );
