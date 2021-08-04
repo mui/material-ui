@@ -69,7 +69,11 @@ const grid = [
     height: 119,
   },
   {
-    ui: <ThemeTabs />,
+    ui: (
+      <Box sx={{ transform: { xs: 'scale(1.11)', lg: 'scale(1)' } }}>
+        <ThemeTabs />
+      </Box>
+    ),
     width: 310,
     height: 50,
   },
