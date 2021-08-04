@@ -30,6 +30,7 @@ export default function EarlyBird() {
             time, so don&apos;t miss this opportunity!
           </Typography>
         </Box>
+        <img width="130" height="124" src="/static/branding/pricing/early-bird.svg" alt="" />
       </Box>
     </Container>
   );
