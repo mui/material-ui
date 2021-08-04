@@ -19,6 +19,7 @@ module.exports = [
   { pathname: '/api-docs/button' },
   { pathname: '/api-docs/button-base' },
   { pathname: '/api-docs/button-group' },
+  { pathname: '/api-docs/button-unstyled' },
   { pathname: '/api-docs/calendar-picker' },
   { pathname: '/api-docs/calendar-picker-skeleton' },
   { pathname: '/api-docs/card' },

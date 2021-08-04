@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_useForkRef as useForkRef } from '@material-ui/utils';
 import composeClasses from '../composeClasses';
@@ -18,7 +19,16 @@ const useUtilityClasses = (styleProps: ButtonUnstyledOwnProps & { focusVisible: 
 
   return composeClasses(slots, getButtonUnstyledUtilityClass, {});
 };
-
+/**
+ *
+ * Demos:
+ *
+ * - [Buttons](https://material-ui.com/components/buttons/)
+ *
+ * API:
+ *
+ * - [ButtonUnstyled API](https://material-ui.com/api/button-unstyled/)
+ */
 const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   D extends React.ElementType = ButtonUnstyledTypeMap['defaultComponent'],
 >(props: ButtonUnstyledProps<D>, ref: React.ForwardedRef<any>) {
@@ -79,5 +89,79 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
     </ButtonRoot>
   );
 });
+
+ButtonUnstyled.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  action: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.shape({
+        focusVisible: PropTypes.func.isRequired,
+      }),
+    }),
+  ]),
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The component used for the Root slot.
+   * Either a string to use a HTML element or a component.
+   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
+   */
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
+  /**
+   * @ignore
+   */
+  components: PropTypes.shape({
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * @ignore
+   */
+  componentsProps: PropTypes.object,
+  /**
+   * @ignore
+   */
+  disabled: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocusVisible: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyUp: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onMouseLeave: PropTypes.func,
+} as any;
 
 export default ButtonUnstyled;

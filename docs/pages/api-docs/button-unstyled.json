@@ -1,0 +1,12 @@
+{
+  "props": { "component": { "type": { "name": "elementType" } } },
+  "name": "ButtonUnstyled",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "forwardsRefTo": "HTMLButtonElement",
+  "filename": "/packages/material-ui-unstyled/src/ButtonUnstyled/ButtonUnstyled.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/buttons/\">Buttons</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}
