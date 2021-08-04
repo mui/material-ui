@@ -3,6 +3,6 @@ export {
   default as buttonUnstyledClasses,
   getButtonUnstyledUtilityClass,
 } from './buttonUnstyledClasses';
-export { default as ButtonUnstyledProps } from './ButtonUnstyledProps';
+export type { default as ButtonUnstyledProps } from './ButtonUnstyledProps';
 export * from './ButtonUnstyledProps';
 export { default as useButton } from './useButton';

@@ -1,12 +1,12 @@
 import { OverrideProps } from '@material-ui/types';
 import { UseButtonProps } from './useButton';
 
-export interface ButtonBaseActions {
+export interface ButtonUnstyledActions {
   focusVisible(): void;
 }
 
 export interface ButtonUnstyledOwnProps extends Omit<UseButtonProps, 'component' | 'ref'> {
-  action?: React.Ref<ButtonBaseActions>;
+  action?: React.Ref<ButtonUnstyledActions>;
   children?: React.ReactNode;
   className?: string;
   componentsProps?: {

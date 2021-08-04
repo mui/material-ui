@@ -9,6 +9,7 @@ import ButtonUnstyledProps, {
   ButtonUnstyledTypeMap,
 } from './ButtonUnstyledProps';
 import useButton from './useButton';
+import appendStyleProps from '../utils/appendStyleProps';
 
 const useUtilityClasses = (styleProps: ButtonUnstyledOwnProps & { focusVisible: boolean }) => {
   const { disabled, focusVisible } = styleProps;
@@ -53,9 +54,6 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
   const handleRef = useForkRef(buttonRef, ref);
 
-  const ButtonRoot: React.ElementType = component ?? components.Root ?? 'button';
-  const buttonRootProps = { ...other, ...componentsProps.root };
-
   const button = useButton({
     ...props,
     ref: handleRef,
@@ -77,13 +75,20 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
     focusVisible: button.focusVisible,
   };
 
+  const ButtonRoot: React.ElementType = component ?? components.Root ?? 'button';
+  const buttonRootProps = appendStyleProps(
+    ButtonRoot,
+    { ...other, ...componentsProps.root },
+    styleProps,
+  );
+
   const classes = useUtilityClasses(styleProps);
 
   return (
     <ButtonRoot
-      className={clsx(classes.root, className)}
       {...button.getRootProps()}
       {...buttonRootProps}
+      className={clsx(classes.root, className, buttonRootProps.className)}
     >
       {children}
     </ButtonRoot>

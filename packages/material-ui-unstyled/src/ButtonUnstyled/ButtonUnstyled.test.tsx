@@ -12,7 +12,7 @@ describe('<ButtonUnstyled />', () => {
     mount,
     refInstanceof: window.HTMLButtonElement,
     testComponentPropWith: 'span',
-    muiName: 'MuiFormControl',
+    muiName: 'MuiButton',
     slots: {
       root: {
         expectedClassName: buttonUnstyledClasses.root,
