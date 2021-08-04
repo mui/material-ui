@@ -59,7 +59,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
 declare const Link: OverridableComponent<LinkTypeMap>;
 
 export type LinkBaseProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'color'> &
-  DistributiveOmit<TypographyProps, 'children' | 'component' | 'color' | 'variant'>;
+  DistributiveOmit<TypographyProps<'a'>, 'children' | 'component' | 'color' | 'variant'>;
 
 export type LinkProps<
   D extends React.ElementType = LinkTypeMap['defaultComponent'],
