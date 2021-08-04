@@ -13,4 +13,4 @@ export {
   CreateFilterOptionsConfig,
   FilterOptionsState,
   UseAutocompleteProps,
-} from '@material-ui/unstyled';
+} from '@material-ui/unstyled/AutocompleteUnstyled';
