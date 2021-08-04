@@ -26,7 +26,7 @@ export const getMaterialThemeFrames = (theme: Theme) => {
     {
       palette: {
         background: {
-          default: theme.palette.mode === 'dark' ? '#0A1929' : '#F3F6F9',
+          default: theme.palette.grey[50],
         },
       },
     },
