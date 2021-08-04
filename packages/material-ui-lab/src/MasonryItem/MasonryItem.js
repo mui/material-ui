@@ -89,21 +89,35 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
   React.useEffect(() => {
     // If height is passed by user, ResizeObserver is not used.
     if (height !== undefined) {
+      setStyleProps({
+        ...styleProps,
+        spacing,
+        columnSpan,
+        height: height < 0 ? 0 : height,
+      });
+
       return true;
     }
     const resizeObserver = new ResizeObserver(([item]) => {
       setStyleProps({
         ...styleProps,
+        spacing,
+        columnSpan,
         height: item.contentRect.height,
       });
     });
-
+    const handleError = () => {
+      const src = masonryItemRef.current.firstChild.src;
+      masonryItemRef.current.firstChild.src = src;
+    };
     const item = masonryItemRef.current?.firstChild;
+    item.addEventListener('error', handleError);
     resizeObserver.observe(item);
     return () => {
       resizeObserver.unobserve(item);
+      item.removeEventListener('error', handleError);
     };
-  }, []); // eslint-disable-line
+  }, [height, spacing, columnSpan]); // eslint-disable-line
 
   const handleRef = useForkRef(ref, masonryItemRef);
 
