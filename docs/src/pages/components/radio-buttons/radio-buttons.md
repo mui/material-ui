@@ -63,7 +63,7 @@ In general, radio buttons should have a value selected by default. If this is no
 
 {{"demo": "pages/components/radio-buttons/ErrorRadios.js"}}
 
-## Customized radios
+## Customization
 
 Here is an example of customizing the component. You can learn more about this in the
 [overrides documentation page](/customization/how-to-customize/).

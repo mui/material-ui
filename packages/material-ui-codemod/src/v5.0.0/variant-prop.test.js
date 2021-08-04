@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
@@ -32,7 +31,7 @@ describe('@material-ui/codemod', () => {
             source: read('./variant-prop.test/expected.js'),
             path: require.resolve('./variant-prop.test/expected.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 

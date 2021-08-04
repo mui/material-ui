@@ -80,6 +80,12 @@ const activeCore = [
     flag: 'Core components team',
     location: 'Bangkok, Thailand',
   },
+  {
+    name: 'Flavien Delangle',
+    github: 'flaviendelangle',
+    flag: 'Advanced components team',
+    location: 'Lille, France',
+  },
 ];
 
 const community = [
@@ -114,6 +120,13 @@ const community = [
     twitter: 'oleg008',
     flag: 'JSS',
     location: 'Berlin, Germany',
+  },
+  {
+    name: 'Ryan Cogswell',
+    github: 'ryancogswell',
+    twitter: 'ryanecogswell',
+    flag: 'Stack Overflow',
+    location: 'Minnesota, United States',
   },
 ];
 
