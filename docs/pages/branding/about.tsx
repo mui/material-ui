@@ -121,7 +121,15 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
       <Typography variant="body2" color="text.secondary">
         {props.title}
       </Typography>
-      {props.about && <Divider sx={{ my: 1 }} />}
+      {props.about && (
+        <Divider
+          sx={{
+            my: 1,
+            borderColor: (theme) =>
+              theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.100',
+          }}
+        />
+      )}
       {props.about && (
         <Typography variant="body2" color="text.secondary">
           {props.about}
@@ -475,7 +483,7 @@ export default function About() {
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={4}>
             <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-              <Typography variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
+              <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
                 <Icon name="give-feedback" />
                 Give feedback
               </Typography>
@@ -494,7 +502,7 @@ export default function About() {
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-              <Typography variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
+              <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
                 <Icon name="join-community" />
                 Join the community
               </Typography>
@@ -521,7 +529,7 @@ export default function About() {
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-              <Typography variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
+              <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
                 <Icon name="support-us" />
                 Suport us financially
               </Typography>
