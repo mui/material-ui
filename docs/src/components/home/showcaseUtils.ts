@@ -32,6 +32,11 @@ export const getMaterialThemeFrames = (theme: Theme) => {
     },
     {
       palette: {
+        divider: theme.palette.divider,
+      },
+    },
+    {
+      palette: {
         primary: {
           main: theme.palette.primary.main,
         },

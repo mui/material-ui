@@ -77,13 +77,15 @@ const CODES = [
       default: theme.palette.mode === 'dark' ? '#0A1929' : '#F3F6F9',
     },`,
   `
+    divider: '#E5E8EC',`,
+  `
     primary: {
-      main: theme.palette.primary.main,
+      main: '#007FFF',
     },`,
   `
     text: {
-      primary: theme.palette.grey[900],
-      secondary: theme.palette.grey[700],
+      primary: '#3D4752',
+      secondary: '#5A6978',
     },`,
   `
     success: {
@@ -106,7 +108,7 @@ const CODES = [
       styleOverrides: {
         root: {
           border: '1px solid',
-          borderColor: theme.palette.grey[300],
+          borderColor: '#D7DCE1',
         },
       },
     },`,
@@ -115,11 +117,11 @@ const CODES = [
       styleOverrides: {
         root: {
           border: '1px solid',
-          borderColor: theme.palette.grey[200],
-          color: theme.palette.grey[800],
+          borderColor: '#E5E8EC',
+          color: '#5A6978',
           '&:hover, &.Mui-focusVisible': {
-            borderColor: theme.palette.primary.main,
-            color: theme.palette.primary.main,
+            borderColor: '#007FFF',
+            color: '#007FFF',
           },
         },
       },
@@ -127,11 +129,7 @@ const CODES = [
   `
     MuiSwitch: {
       styleOverrides: {
-        root: {
-          width: 32,
-          height: 20,
-          padding: 0,
-        },
+        root: { width: 32, height: 20, padding: 0 },
         switchBase: {
           height: 20,
           width: 20,
@@ -144,15 +142,8 @@ const CODES = [
             color: '#fff',
           },
         },
-        track: {
-          opacity: 1,
-          borderRadius: 32,
-          backgroundColor: 'rgb(179, 195, 211)',
-        },
-        thumb: {
-          width: 14,
-          height: 14,
-        },
+        track: { opacity: 1, borderRadius: 32, backgroundColor: '#BFC7CF' },
+        thumb: { width: 14, height: 14 },
       },
     },
   },
@@ -215,7 +206,7 @@ function TypeWriter({
 }
 
 export default function CoreShowcase() {
-  const totalStep = 12;
+  const totalStep = CODES.length;
   const theme = useTheme();
   const codeContainer = React.useRef<HTMLDivElement | null>(null);
   const [step, setStep] = React.useState(0);
@@ -223,11 +214,15 @@ export default function CoreShowcase() {
   const [customized, setCustomized] = React.useState(false);
   const codeImports = materialDemoCode.imports(customized);
   const cursor = React.useRef(0);
-  const themeFrames = React.useMemo(() => getMaterialThemeFrames(theme), [theme]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const themeFrames = React.useMemo(() => getMaterialThemeFrames(theme), []);
   const [customTheme, setCustomTheme] = React.useState(defaultTheme);
   const updateTheme = React.useMemo(
     () =>
       function handleUpdateTheme(latestStep: number) {
+        if (latestStep === totalStep) {
+          setRunning(false);
+        }
         cursor.current += CODES[latestStep - 1].split('\n').length - 1;
         const themeOptions = produceThemeOptions(themeFrames, latestStep);
         setCustomTheme(createTheme(themeOptions));
@@ -235,16 +230,11 @@ export default function CoreShowcase() {
           setStep((current) => (current < totalStep ? current + 1 : current));
         }, 1500);
       },
-    [themeFrames],
+    [themeFrames, totalStep],
   );
   React.useEffect(() => {
-    if (step === totalStep && customized) {
-      const timeout = setTimeout(() => {
-        setRunning(false);
-      }, 500);
-      return () => {
-        clearTimeout(timeout);
-      };
+    if (customized && codeContainer.current) {
+      codeContainer.current.scrollTop = (cursor.current + codeImports.split('\n').length - 1) * 20;
     }
     if (step === 0 && customized) {
       cursor.current = 0;
@@ -255,9 +245,6 @@ export default function CoreShowcase() {
       return () => {
         clearTimeout(time);
       };
-    }
-    if (codeContainer.current) {
-      codeContainer.current.scrollTop = (cursor.current + codeImports.split('\n').length - 1) * 20;
     }
     return () => {};
   }, [step, customized, codeImports]);
