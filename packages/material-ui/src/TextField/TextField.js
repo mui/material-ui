@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
+import deprecatedPropType from '../utils/deprecatedPropType';
 import Input from '../Input';
 import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
@@ -334,12 +335,18 @@ TextField.propTypes = {
    * Number of rows to display when multiline option is set to true.
    * @deprecated Use `minRows` instead.
    */
-  rows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  rows: deprecatedPropType(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    'Use `minRows` instead',
+  ),
   /**
    * Maximum number of rows to display.
    * @deprecated Use `maxRows` instead.
    */
-  rowsMax: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  rowsMax: deprecatedPropType(
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    'Use `maxRows` instead',
+  ),
   /**
    * Render a [`Select`](/api/select/) element while passing the Input element to `Select` as `input` parameter.
    * If this option is set you must pass the options of the select as children.
