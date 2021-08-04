@@ -30,7 +30,7 @@ const UserFeedback = ({
   };
 }) => {
   return (
-    <Box>
+    <div>
       <Typography variant="subtitle1" color="#fff" sx={{ mb: 2 }}>
         {quote}
       </Typography>
@@ -58,7 +58,7 @@ const UserFeedback = ({
           {profile.company}
         </Box>
       </Box>
-    </Box>
+    </div>
   );
 };
 
