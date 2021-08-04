@@ -46,7 +46,9 @@ export const style = ({ styleProps, theme }) => {
   const transformer = createUnarySpacing(theme);
   const styleFromPropValue = (propValue) => {
     const gap = styleProps.height ? Number(getValue(transformer, propValue).replace('px', '')) : 0;
-    const rowSpan = styleProps.height ? Math.ceil(styleProps.height + gap) : 0;
+    // for lazy-loaded images to load properly, they should take up space greater than 1px
+    // taking into account a row gap of 1px, rowSpan should at least be 3
+    const rowSpan = styleProps.height ? Math.ceil(styleProps.height + gap) : 3;
     return {
       gridRowEnd: `span ${rowSpan}`,
       paddingBottom: gap - 1,
