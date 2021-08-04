@@ -5,10 +5,10 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ProductsSwitcher from 'docs/src/components/home/ProductsSwitcher';
-import ShowcaseContainer from './ShowcaseContainer';
-import CoreShowcase from './CoreShowcase';
-import StoreTemplatesBanner from './StoreTemplatesBanner';
-import DesignKits from './DesignKits';
+import CoreShowcase from 'docs/src/components/home/CoreShowcase';
+import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
+import StoreTemplatesBanner from 'docs/src/components/home/StoreTemplatesBanner';
+import DesignKits from 'docs/src/components/home/DesignKits';
 
 const ProductSuite = () => {
   const [productIndex, setProductIndex] = React.useState(0);

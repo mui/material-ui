@@ -9,7 +9,7 @@ import Link from '@material-ui/core/Link';
 import GradientText from 'docs/src/components/typography/GradientText';
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 import ROUTES from 'docs/src/route';
-import GetStartedButtons from './GetStartedButtons';
+import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 
 const HeroEnd = () => {
   return (
