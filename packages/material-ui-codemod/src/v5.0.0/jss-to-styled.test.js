@@ -342,7 +342,6 @@ describe('@material-ui/codemod', () => {
       });
     });
 
-
     describe('transforms React.Fragment', () => {
       it('transforms as needed', () => {
         const actual = transform(
