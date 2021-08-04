@@ -152,7 +152,6 @@ export default function Hero() {
                   gridTemplateColumns: `repeat(auto-fit, minmax(${SPAN_SIZE}px, 1fr))`,
                   gridAutoRows: SPAN_SIZE,
                   gridAutoFlow: 'dense',
-                  alignTracks: 'center',
                   '& > *': {
                     opacity: 0.6,
                     transition: '0.4s',
