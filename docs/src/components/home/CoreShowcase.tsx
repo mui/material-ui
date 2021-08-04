@@ -130,10 +130,7 @@ const CODES = [
     MuiSwitch: {
       styleOverrides: {
         root: { width: 32, height: 20, padding: 0 },
-        switchBase: {
-          height: 20,
-          width: 20,
-          padding: 0,
+        switchBase: { height: 20, width: 20, padding: 0,
           '&.Mui-checked + .MuiSwitch-track': {
             opacity: 1,
           },
@@ -142,7 +139,11 @@ const CODES = [
             color: '#fff',
           },
         },
-        track: { opacity: 1, borderRadius: 32, backgroundColor: '#BFC7CF' },
+        track: {
+          opacity: 1,
+          borderRadius: 32,
+          backgroundColor: '#BFC7CF'
+        },
         thumb: { width: 14, height: 14 },
       },
     },
@@ -239,6 +240,7 @@ export default function CoreShowcase() {
     if (step === 0 && customized) {
       cursor.current = 0;
       setRunning(true);
+      setCustomTheme(createTheme());
       const time = setTimeout(() => {
         setStep(1);
       }, 200);
