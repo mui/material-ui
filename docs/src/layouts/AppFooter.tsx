@@ -145,10 +145,10 @@ export default function AppFooter() {
             <NextLink href={ROUTES.showcase} passHref>
               <Link>Showcase</Link>
             </NextLink>
-            <NextLink href={ROUTES.roadmap}>
+            <NextLink href={ROUTES.roadmap} passHref>
               <Link>Roadmap</Link>
             </NextLink>
-            <NextLink href={ROUTES.languages}>
+            <NextLink href={ROUTES.languages} passHref>
               <Link>Languages</Link>
             </NextLink>
           </Box>
