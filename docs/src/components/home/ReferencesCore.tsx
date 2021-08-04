@@ -8,7 +8,7 @@ const ReferencesCore = () => {
     <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
       <CompaniesGrid data={CORE_COMPANIES} />
       <Typography
-        color="grey.800"
+        color={(theme) => (theme.palette.mode === 'dark' ? 'grey.500' : 'grey.800')}
         maxWidth={450}
         textAlign="center"
         mx="auto"

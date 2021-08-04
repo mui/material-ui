@@ -155,7 +155,7 @@ const Sponsors = () => {
               <AddRounded />
             </IconButton>
             <Box>
-              <Typography variant="body2" color="text.primary">
+              <Typography variant="body2" color="text.primary" fontWeight="bold">
                 Become our sponsor!
               </Typography>
               <Typography variant="body2" color="text.primary">

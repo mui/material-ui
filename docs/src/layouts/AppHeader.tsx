@@ -2,6 +2,7 @@ import * as React from 'react';
 import NextLink from 'next/link';
 import { styled, alpha } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import NoSsr from '@material-ui/core/NoSsr';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
@@ -12,9 +13,12 @@ import ThemeModeToggle from 'docs/src/components/header/ThemeModeToggle';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { useChangeTheme } from '../modules/ThemeContext';
 
-const Header = styled('div')(({ theme }) => ({
+const Header = styled('div', {
+  shouldForwardProp: (prop) => prop !== 'trigger',
+})<{ trigger: boolean }>(({ theme, trigger }) => ({
   position: 'sticky',
-  top: 0,
+  top: trigger ? -80 : 0,
+  transition: theme.transitions.create('top'),
   zIndex: theme.zIndex.appBar,
   backdropFilter: 'blur(20px)',
   boxShadow: `inset 0px -1px 1px ${
@@ -27,6 +31,7 @@ const Header = styled('div')(({ theme }) => ({
 }));
 
 export default function AppHeader() {
+  const trigger = useScrollTrigger();
   const changeTheme = useChangeTheme();
   const [mode, setMode] = React.useState(getCookie('paletteMode') || 'system');
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -50,7 +55,7 @@ export default function AppHeader() {
     }
   };
   return (
-    <Header>
+    <Header trigger={trigger}>
       <Container sx={{ display: 'flex', alignItems: 'center', minHeight: 64 }}>
         <NextLink href="/branding/home" passHref>
           <Box component="a" sx={{ lineHeight: 0, mr: 2 }}>
