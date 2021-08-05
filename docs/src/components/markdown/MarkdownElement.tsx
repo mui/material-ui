@@ -47,6 +47,7 @@ const Root = styled('div')(({ theme }) => ({
     ...theme.typography.body2,
     lineHeight: '20px',
     fontFamily: theme.typography.fontFamilyCode,
+    WebkitFontSmoothing: 'subpixel-antialiased',
   },
   // // code blocks
   // '& pre code': {
