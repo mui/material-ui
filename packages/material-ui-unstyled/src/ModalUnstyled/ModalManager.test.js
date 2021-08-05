@@ -139,7 +139,7 @@ describe('ModalManager', () => {
         writable: false,
       });
       Object.defineProperty(container2, 'clientHeight', {
-        value: 90,
+        value: 100,
         writable: false,
       });
       document.body.appendChild(container2);
