@@ -457,7 +457,7 @@ export default function PricingTable() {
       {renderData(advancedData)}
       {renderRowHead({
         sx: { color: 'text.primary' },
-        children: 'Advanced',
+        children: 'Support',
       })}
       {renderData(supportData)}
       <Divider sx={{ gridColumn: 'span 4' }} />
