@@ -4,7 +4,7 @@ import Box from '@material-ui/core/Box';
 import Masonry from '@material-ui/lab/Masonry';
 import MasonryItem from '@material-ui/lab/MasonryItem';
 
-export default function DiffColSizeMasonry() {
+export default function DiffColSizeMasonryBroken() {
   return (
     <Box sx={{ width: 500, minHeight: 503 }}>
       <Masonry columns={4} spacing={1}>
