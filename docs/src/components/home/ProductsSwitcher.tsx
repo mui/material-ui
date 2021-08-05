@@ -56,7 +56,7 @@ function ProductItem({
               '& > svg': { transition: '0.2s' },
               '&:hover > svg': { transform: 'translateX(4px)' },
             }}
-            onClick={(event) => {
+            onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
               event.stopPropagation();
             }}
           >
