@@ -158,7 +158,8 @@ const Accordion = styled(MuiAccordion)(({ theme }) => ({
 }));
 
 const AccordionSummary = styled(MuiAccordionSummary)(({ theme }) => ({
-  padding: 0,
+  padding: theme.spacing(2),
+  margin: theme.spacing(-2),
   minHeight: 'auto',
   '&.Mui-expanded': {
     minHeight: 'auto',
