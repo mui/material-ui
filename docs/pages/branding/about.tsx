@@ -29,12 +29,26 @@ let darkTheme = createTheme(getDesignTokens('dark'));
 darkTheme = createTheme(darkTheme, getThemedComponents(darkTheme));
 
 interface Profile {
+  /**
+   * image url
+   */
   src: string;
   name: string;
+  /**
+   * Role, what are you workin on?
+   */
   title: string;
+  /**
+   * Where are you from?
+   */
   country: string; // https://www.countryflags.io/
-  // eslint-disable-next-line react/no-unused-prop-types
+  /**
+   * Lives in
+   */
   location?: string;
+  /**
+   * Short summary about you
+   */
   about?: string;
   github?: string;
   twitter?: string;
