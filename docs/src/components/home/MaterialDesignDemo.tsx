@@ -94,7 +94,7 @@ export default function MaterialDesignDemo() {
   return (
     <Card sx={{ overflow: 'hidden' }}>
       <Box sx={{ p: 2, display: 'flex' }}>
-        <Avatar variant="rounded" src="/static/images/avatar/1.jpg" />
+        <Avatar variant="rounded" src="/static/images/avatar/1.jpg" alt="" />
         <Box
           sx={{
             mx: 2,

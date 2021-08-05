@@ -225,7 +225,7 @@ const ProductsSwitcher = ({
         }}
       >
         {productElements.map((elm, index) => (
-          <Tab key={index} label={elm} />
+          <Tab key={index} component="div" label={elm} />
         ))}
       </Tabs>
     </React.Fragment>

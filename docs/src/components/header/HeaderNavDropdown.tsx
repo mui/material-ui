@@ -38,13 +38,26 @@ const UList = styled('ul')({
 });
 
 const PRODUCTS = [
-  { name: 'Core', description: 'Ready to use, forever free, foundational components.' },
-  { name: 'Advanced', description: 'Powerful and robust components for your complex apps.' },
+  {
+    name: 'Core',
+    description: 'Ready to use, forever free, foundational components.',
+    href: ROUTES.productCore,
+  },
+  {
+    name: 'Advanced',
+    description: 'Powerful and robust components for your complex apps.',
+    href: ROUTES.productAdvanced,
+  },
   {
     name: 'Templates',
     description: 'Fully built, out-of-the-box, templates for your application.',
+    href: ROUTES.productTemplates,
   },
-  { name: 'Design Kits', description: 'Our components available in your favorite design tool.' },
+  {
+    name: 'Design Kits',
+    description: 'Our components available in your favorite design tool.',
+    href: ROUTES.productDesignKits,
+  },
 ];
 
 export default function HeaderNavDropdown() {
@@ -124,14 +137,16 @@ export default function HeaderNavDropdown() {
                     sx={{ borderLeft: '1px solid', borderColor: 'grey.100', pl: 1, pb: 1, ml: 1 }}
                   >
                     {PRODUCTS.map((item) => (
-                      <NextLink key={item.name} href={ROUTES.home} passHref>
-                        <Anchor sx={{ flexDirection: 'column', alignItems: 'initial' }}>
-                          <div>{item.name}</div>
-                          <Typography variant="body2" color="text.secondary">
-                            {item.description}
-                          </Typography>
-                        </Anchor>
-                      </NextLink>
+                      <li key={item.name}>
+                        <NextLink href={item.href} passHref>
+                          <Anchor sx={{ flexDirection: 'column', alignItems: 'initial' }}>
+                            <div>{item.name}</div>
+                            <Typography variant="body2" color="text.secondary">
+                              {item.description}
+                            </Typography>
+                          </Anchor>
+                        </NextLink>
+                      </li>
                     ))}
                   </UList>
                 </Collapse>
