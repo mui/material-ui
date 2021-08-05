@@ -12,13 +12,13 @@ Masonry maintains a list of content blocks with a consistent width but variable 
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": true}}
 
-## Basic Masonry
+## Basic masonry
 
 `<Masonry />` is a container for one or more `<MasonryItem />`s. `<MasonryItem />` can receive any element including `<div />` and `<img />`. Also, it is important to note that each `<MasonryItem />` accepts only one element.
 
 {{"demo": "pages/components/masonry/BasicMasonry.js", "bg": true}}
 
-## Image Masonry
+## Image masonry
 
 `<Masonry />` orders its children by row. If you would like to order images by column, you can use `<ImageList variant="masonry" />`, whose more details can be found in [Masonry Image List](https://next.material-ui.com/components/image-list/#masonry-image-list).
 
