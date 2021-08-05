@@ -2,7 +2,6 @@ import * as React from 'react';
 import NextLink from 'next/link';
 import { styled, alpha } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 import NoSsr from '@material-ui/core/NoSsr';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
@@ -31,7 +30,6 @@ const Header = styled('div', {
 }));
 
 export default function AppHeader() {
-  const trigger = useScrollTrigger();
   const changeTheme = useChangeTheme();
   const [mode, setMode] = React.useState(getCookie('paletteMode') || 'system');
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -55,7 +53,7 @@ export default function AppHeader() {
     }
   };
   return (
-    <Header trigger={trigger}>
+    <Header trigger={false}>
       <Container sx={{ display: 'flex', alignItems: 'center', minHeight: 64 }}>
         <NextLink href="/branding/home" passHref>
           <Box component="a" sx={{ lineHeight: 0, mr: 2 }}>
@@ -70,7 +68,10 @@ export default function AppHeader() {
           <HeaderNavDropdown />
         </Box>
         <NoSsr>
-          <ThemeModeToggle checked={mode === 'dark'} onChange={handleChangeThemeMode} />
+          <ThemeModeToggle
+            checked={mode === 'system' ? prefersDarkMode : mode === 'dark'}
+            onChange={handleChangeThemeMode}
+          />
         </NoSsr>
       </Container>
     </Header>

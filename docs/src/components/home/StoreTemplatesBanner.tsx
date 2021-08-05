@@ -18,7 +18,7 @@ const Image = styled('img')(({ theme }) => ({
     height: 450 / ratio,
   },
   border: '6px solid',
-  borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[500],
+  borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[400],
   borderRadius: theme.shape.borderRadius,
   objectFit: 'cover',
   filter: 'drop-shadow(0px 4px 20px rgba(61, 71, 82, 0.25))',
@@ -123,22 +123,13 @@ export default function StoreTemplatesBanner() {
           }}
         >
           <Fade in={appearIndexes.includes(4)} timeout={1000}>
-            <Image
-              src="/static/branding/store-templates/store-template1.jpeg"
-              alt="Store template 1"
-            />
+            <Image src="/static/branding/store-templates/store-template1.jpeg" alt="" />
           </Fade>
           <Fade in={appearIndexes.includes(2)} timeout={1000}>
-            <Image
-              src="/static/branding/store-templates/store-template3.jpeg"
-              alt="Store template 1"
-            />
+            <Image src="/static/branding/store-templates/store-template3.jpeg" alt="" />
           </Fade>
           <Fade in={appearIndexes.includes(0)} timeout={1000}>
-            <Image
-              src="/static/branding/store-templates/store-template5.jpeg"
-              alt="Store template 1"
-            />
+            <Image src="/static/branding/store-templates/store-template5.jpeg" alt="" />
           </Fade>
         </Box>
         <Box
@@ -160,22 +151,13 @@ export default function StoreTemplatesBanner() {
           }}
         >
           <Fade in={appearIndexes.includes(1)} timeout={1000}>
-            <Image
-              src="/static/branding/store-templates/store-template2.jpeg"
-              alt="Store template 1"
-            />
+            <Image src="/static/branding/store-templates/store-template2.jpeg" alt="" />
           </Fade>
           <Fade in={appearIndexes.includes(3)} timeout={1000}>
-            <Image
-              src="/static/branding/store-templates/store-template4.jpeg"
-              alt="Store template 1"
-            />
+            <Image src="/static/branding/store-templates/store-template4.jpeg" alt="" />
           </Fade>
           <Fade in={appearIndexes.includes(5)} timeout={1000}>
-            <Image
-              src="/static/branding/store-templates/store-template6.jpeg"
-              alt="Store template 1"
-            />
+            <Image src="/static/branding/store-templates/store-template6.jpeg" alt="" />
           </Fade>
         </Box>
       </Box>

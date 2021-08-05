@@ -5,7 +5,7 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
+import Link from 'docs/src/modules/components/Link';
 import IconButton from '@material-ui/core/IconButton';
 import AddRounded from '@material-ui/icons/AddRounded';
 
@@ -14,11 +14,13 @@ const DIAMONDs = [
     logo: 'https://avatars3.githubusercontent.com/u/1287123?s=256',
     name: 'Octopus Deploy',
     description: 'Repetable relayable deployments.',
+    href: 'https://octopus.com/',
   },
   {
     logo: 'https://avatars3.githubusercontent.com/u/8424863?s=256',
     name: 'Doit International',
     description: 'Management platform for Google Clound and AWS.',
+    href: 'https://www.doit-intl.com/',
   },
 ];
 const GOLDs = [
@@ -26,21 +28,25 @@ const GOLDs = [
     logo: 'https://github.com/tidelift.png?size=96',
     name: 'Tidelift',
     description: 'Enterprise-ready open source software.',
+    href: 'https://tidelift.com/',
   },
   {
     logo: 'https://github.com/teambit.png?size=96',
     name: 'Bit',
     description: 'The fastest way to share code.',
+    href: 'https://bit.dev/',
   },
   {
     logo: 'https://images.opencollective.com/callemall/a6946da/logo/96.png',
     name: 'Text-em-all',
     description: 'The easy way to message your group.',
+    href: 'https://www.text-em-all.com/',
   },
   {
     logo: 'https://images.opencollective.com/canadacasino/5b19004/logo/96.png',
     name: 'Canada Casino',
     description: 'Safe and rewarding online casino experience',
+    href: 'https://casinocanada.com/',
   },
 ];
 
@@ -109,6 +115,11 @@ const Sponsors = () => {
         {DIAMONDs.map((item) => (
           <Grid item key={item.name} xs={12} sm={6} md={4}>
             <Paper
+              component={Link}
+              noLinkStyle
+              href={item.href}
+              target="_blank"
+              rel="sponsored"
               variant="outlined"
               sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
             >
@@ -177,6 +188,11 @@ const Sponsors = () => {
         {GOLDs.map((item) => (
           <Grid item key={item.name} xs={12} sm={6} md={4} lg={3}>
             <Paper
+              component={Link}
+              noLinkStyle
+              href={item.href}
+              target="_blank"
+              rel="sponsored"
               variant="outlined"
               sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
             >

@@ -40,7 +40,7 @@ function ProductItem({
         <Typography color="text.primary" variant="body2" fontWeight="bold">
           {name}
         </Typography>
-        <Typography color="text.secondary" variant="body2" fontWeight="regular">
+        <Typography color="text.secondary" variant="body2" fontWeight="regular" sx={{ my: 0.5 }}>
           {description}
         </Typography>
         <NextLink href={href} passHref>
@@ -56,7 +56,7 @@ function ProductItem({
               '& > svg': { transition: '0.2s' },
               '&:hover > svg': { transform: 'translateX(4px)' },
             }}
-            onClick={(event) => {
+            onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
               event.stopPropagation();
             }}
           >
@@ -225,7 +225,7 @@ const ProductsSwitcher = ({
         }}
       >
         {productElements.map((elm, index) => (
-          <Tab key={index} label={elm} />
+          <Tab key={index} component="div" label={elm} />
         ))}
       </Tabs>
     </React.Fragment>

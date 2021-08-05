@@ -14,7 +14,7 @@ import FolderTable from 'docs/src/pages/components/tables/FolderTable';
 import ThemeTabs from 'docs/src/pages/components/tabs/ThemeTabs';
 import ThemeTimeline from 'docs/src/pages/components/timeline/ThemeTimeline';
 import ViewToggleButton from 'docs/src/pages/components/toggle-button/ViewToggleButton';
-import GetStartedButtons from './GetStartedButtons';
+import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 
 const MAX_WIDTH = 1000;
 const SPAN_SIZE = 10;
@@ -69,7 +69,11 @@ const grid = [
     height: 119,
   },
   {
-    ui: <ThemeTabs />,
+    ui: (
+      <Box sx={{ transform: { xs: 'scale(1.11)', lg: 'scale(1)' } }}>
+        <ThemeTabs />
+      </Box>
+    ),
     width: 310,
     height: 50,
   },
@@ -152,7 +156,6 @@ export default function Hero() {
                   gridTemplateColumns: `repeat(auto-fit, minmax(${SPAN_SIZE}px, 1fr))`,
                   gridAutoRows: SPAN_SIZE,
                   gridAutoFlow: 'dense',
-                  alignTracks: 'center',
                   '& > *': {
                     opacity: 0.6,
                     transition: '0.4s',
