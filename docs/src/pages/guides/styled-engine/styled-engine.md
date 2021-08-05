@@ -15,7 +15,7 @@ There are currently two packages available to choose from:
 - `@material-ui/styled-engine-sc` - a similar wrapper around `styled-components`.
 
 These two packages implement the same interface, which makes it makes possible to replace one with the other.
-By default, `@material-ui/core` has `@material-ui/styled-engine` as a dependency, but you can configure your bundler to replace it with `@material-ui/styled-engine-sc` using package alias:
+By default, `@material-ui/core` has `@material-ui/styled-engine` as a dependency, but you can configure your bundler to replace it with `@material-ui/styled-engine-sc` using a package alias:
 
 **package.json**
 
