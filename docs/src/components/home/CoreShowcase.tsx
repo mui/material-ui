@@ -331,12 +331,10 @@ export default function CoreShowcase() {
               px: 2,
               overflow: 'auto',
               flexGrow: 1,
-              scrollbarWidth: 'none' /* Firefox */,
               '&::-webkit-scrollbar': {
                 display: 'none',
               },
               '& pre': {
-                scrollbarWidth: 'none' /* Firefox */,
                 '&::-webkit-scrollbar': {
                   display: 'none',
                 },
