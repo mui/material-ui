@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import InfoRounded from '@material-ui/icons/InfoRounded';
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
+import Link from 'docs/src/modules/components/Link';
 import IconImage, { IconImageProps } from 'docs/src/components/icon/IconImage';
 
 const plans = {
@@ -381,7 +382,15 @@ export default function PricingTable() {
           <PlanName plan="community" />
         </div>
         <PlanPrice plan="community" />
-        <Button variant="outlined" fullWidth endIcon={<KeyboardArrowRightRounded />} sx={{ py: 1 }}>
+        <Button
+          component={Link}
+          noLinkStyle
+          href="/getting-started/usage/"
+          variant="outlined"
+          fullWidth
+          endIcon={<KeyboardArrowRightRounded />}
+          sx={{ py: 1 }}
+        >
           Get Started
         </Button>
       </Box>
@@ -424,7 +433,15 @@ export default function PricingTable() {
         <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
           <i>Price capped at 10 developers.</i>
         </Typography>
-        <Button variant="outlined" fullWidth endIcon={<KeyboardArrowRightRounded />} sx={{ py: 1 }}>
+        <Button
+          component={Link}
+          noLinkStyle
+          href="/components/data-grid/"
+          variant="outlined"
+          fullWidth
+          endIcon={<KeyboardArrowRightRounded />}
+          sx={{ py: 1 }}
+        >
           Get Started
         </Button>
       </Box>
@@ -434,6 +451,9 @@ export default function PricingTable() {
           <PlanPrice plan="premium" />
         </Box>
         <Button
+          component={Link}
+          noLinkStyle
+          href="/components/data-grid/"
           variant="outlined"
           disabled
           fullWidth

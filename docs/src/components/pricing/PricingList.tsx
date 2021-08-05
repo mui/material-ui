@@ -6,7 +6,8 @@ import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
-import { PlanName, PlanPrice } from './PricingTable';
+import Link from 'docs/src/modules/components/Link';
+import { PlanName, PlanPrice } from 'docs/src/components/pricing/PricingTable';
 
 function Plan({
   plan,
@@ -30,6 +31,9 @@ function Plan({
       </Box>
       {unavailable ? (
         <Button
+          component={Link}
+          noLinkStyle
+          href={plan === 'community' ? '/getting-started/usage/' : '/components/data-grid/'}
           variant="outlined"
           disabled
           fullWidth
