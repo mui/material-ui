@@ -4,16 +4,17 @@ import Head from 'next/head';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
 import theme from '../src/theme';
+import createEmotionCache from '../src/createEmotionCache';
 
-const cache = createCache({ key: 'css' });
-cache.compat = true;
+// Client-side cache, shared for the whole session of the user in the browser.
+const clientSideEmotionCache = createEmotionCache();
 
 export default function MyApp(props) {
-  const { Component, pageProps } = props;
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
+
   return (
-    <CacheProvider value={cache}>
+    <CacheProvider value={emotionCache}>
       <Head>
         <title>My page</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
@@ -29,5 +30,6 @@ export default function MyApp(props) {
 
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
+  emotionCache: PropTypes.object,
   pageProps: PropTypes.object.isRequired,
 };

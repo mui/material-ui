@@ -12,13 +12,13 @@ export interface TreeItemContentProps extends StandardProps<React.HTMLAttributes
   classes: {
     /** Styles applied to the root element. */
     root: string;
-    /** Pseudo-class applied to the content element when expanded. */
+    /** State class applied to the content element when expanded. */
     expanded: string;
-    /** Pseudo-class applied to the content element when selected. */
+    /** State class applied to the content element when selected. */
     selected: string;
-    /** Pseudo-class applied to the content element when focused. */
+    /** State class applied to the content element when focused. */
     focused: string;
-    /** Pseudo-class applied to the element when disabled. */
+    /** State class applied to the element when disabled. */
     disabled: string;
     /** Styles applied to the tree node icon and collapse/expand icon. */
     iconContainer: string;

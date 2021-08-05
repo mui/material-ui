@@ -5,15 +5,15 @@ export interface FormLabelClasses {
   root: string;
   /** Styles applied to the root element if the color is secondary. */
   colorSecondary: string;
-  /** Pseudo-class applied to the root element if `focused={true}`. */
+  /** State class applied to the root element if `focused={true}`. */
   focused: string;
-  /** Pseudo-class applied to the root element if `disabled={true}`. */
+  /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
-  /** Pseudo-class applied to the root element if `error={true}`. */
+  /** State class applied to the root element if `error={true}`. */
   error: string;
-  /** Pseudo-class applied to the root element if `filled={true}`. */
+  /** State class applied to the root element if `filled={true}`. */
   filled: string;
-  /** Pseudo-class applied to the root element if `required={true}`. */
+  /** State class applied to the root element if `required={true}`. */
   required: string;
   /** Styles applied to the asterisk element. */
   asterisk: string;

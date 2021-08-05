@@ -9,7 +9,7 @@ describe('generateUtilityClasses', () => {
     });
   });
 
-  it('should consider if slot should generate pseudo class', () => {
+  it('should consider if slot should generate state class', () => {
     expect(
       generateUtilityClasses('MuiTest', [
         'slot',

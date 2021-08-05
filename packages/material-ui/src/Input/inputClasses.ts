@@ -13,7 +13,7 @@ export interface InputClasses {
   colorSecondary: string;
   /** Styles applied to the root element unless `disableUnderline={true}`. */
   underline: string;
-  /** Pseudo-class applied to the root element if `error={true}`. */
+  /** State class applied to the root element if `error={true}`. */
   error: string;
   /** Styles applied to the input element if `size="small"`. */
   sizeSmall: string;

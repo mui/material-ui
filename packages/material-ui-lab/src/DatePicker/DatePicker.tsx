@@ -25,6 +25,7 @@ type DatePickerComponent = (<TDate>(
  * Demos:
  *
  * - [Date Picker](https://material-ui.com/components/date-picker/)
+ * - [Pickers](https://material-ui.com/components/pickers/)
  *
  * API:
  *
@@ -237,23 +238,13 @@ DatePicker.propTypes /* remove-proptypes */ = {
    */
   mask: PropTypes.string,
   /**
-   * @ignore
+   * Max selectable date. @DateIOType
    */
-  maxDate: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  maxDate: PropTypes.any,
   /**
-   * @ignore
+   * Min selectable date. @DateIOType
    */
-  minDate: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  minDate: PropTypes.any,
   /**
    * Ok button text.
    * @default 'OK'

@@ -10,11 +10,7 @@ import { BasePickerProps, ToolbarComponentProps } from '../internal/pickers/typi
 
 export type DatePickerView = 'year' | 'day' | 'month';
 export interface BaseDatePickerProps<TDate>
-  extends OverrideParseableDateProps<
-      TDate,
-      ExportedCalendarPickerProps<TDate>,
-      'minDate' | 'maxDate'
-    >,
+  extends ExportedCalendarPickerProps<TDate>,
     BasePickerProps<ParseableDate<TDate>, TDate | null>,
     ValidationProps<DateValidationError, ParseableDate<TDate>>,
     ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {

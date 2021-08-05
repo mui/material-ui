@@ -379,7 +379,7 @@ in the render method.
 
 ```jsx
 import * as React from 'react';
-import { withTheme } from '@material-ui/core/styles';
+import { withTheme } from '@material-ui/styles';
 
 function MyComponent(props) {
   return <div>{props.theme.direction}</div>;

@@ -11,7 +11,7 @@ export interface LinkClasses {
   underlineAlways: string;
   /** Styles applied to the root element if `component="button"`. */
   button: string;
-  /** Pseudo-class applied to the root element if the link is keyboard focused. */
+  /** State class applied to the root element if the link is keyboard focused. */
   focusVisible: string;
 }
 

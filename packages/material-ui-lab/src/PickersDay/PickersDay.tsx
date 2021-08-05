@@ -36,9 +36,9 @@ export interface PickersDayProps<TDate> extends ExtendMui<ButtonBaseProps> {
     hiddenDaySpacingFiller?: string;
     /** Styles applied to the root element if `disableHighlightToday=false` and `today=true`. */
     today?: string;
-    /** Pseudo-class applied to the root element if `selected=true`. */
+    /** State class applied to the root element if `selected=true`. */
     selected?: string;
-    /** Pseudo-class applied to the root element if `disabled=true`. */
+    /** State class applied to the root element if `disabled=true`. */
     disabled?: string;
   };
 

@@ -5,7 +5,7 @@ const prism = require('./prism');
 
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
 const titleRegExp = /# (.*)[\r\n]/;
-const descriptionRegExp = /<p class="description">(.*)<\/p>/s;
+const descriptionRegExp = /<p class="description">(.*?)<\/p>/s;
 const headerKeyValueRegExp = /(.*?): (.*)/g;
 const emptyRegExp = /^\s*$/;
 
@@ -76,7 +76,7 @@ function getTitle(markdown) {
     throw new Error('Missing title in the page');
   }
 
-  return matches[1];
+  return matches[1].replace(/`/g, '');
 }
 
 function getDescription(markdown) {

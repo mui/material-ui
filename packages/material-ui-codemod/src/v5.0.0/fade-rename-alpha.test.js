@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
@@ -18,7 +17,7 @@ describe('@material-ui/codemod', () => {
             source: read('./fade-rename-alpha.test/actual.js'),
             path: require.resolve('./fade-rename-alpha.test/actual.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
@@ -32,7 +31,7 @@ describe('@material-ui/codemod', () => {
             source: read('./fade-rename-alpha.test/expected.js'),
             path: require.resolve('./fade-rename-alpha.test/expected.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
@@ -46,7 +45,7 @@ describe('@material-ui/codemod', () => {
             source: read('./fade-rename-alpha.test/unmodified.js'),
             path: require.resolve('./fade-rename-alpha.test/unmodified.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 

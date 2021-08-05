@@ -16,48 +16,73 @@ import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
 import FormGroup from '@material-ui/core/FormGroup';
 
-const Popper = styled(MuiPopper)(({ theme }) => ({
+const Popper = styled(MuiPopper, {
+  shouldForwardProp: (prop) => prop !== 'arrow',
+})(({ theme, arrow }) => ({
   zIndex: 1,
-  '&[data-popper-placement*="bottom"] $arrow': {
-    top: 0,
-    left: 0,
-    marginTop: '-0.9em',
-    width: '3em',
-    height: '1em',
-    '&::before': {
-      borderWidth: '0 1em 1em 1em',
-      borderColor: `transparent transparent ${theme.palette.background.paper} transparent`,
+  '& > div': {
+    position: 'relative',
+  },
+  '&[data-popper-placement*="bottom"]': {
+    '& > div': {
+      marginTop: arrow ? 2 : 0,
+    },
+    '& .MuiPopper-arrow': {
+      top: 0,
+      left: 0,
+      marginTop: '-0.9em',
+      width: '3em',
+      height: '1em',
+      '&::before': {
+        borderWidth: '0 1em 1em 1em',
+        borderColor: `transparent transparent ${theme.palette.background.paper} transparent`,
+      },
     },
   },
-  '&[data-popper-placement*="top"] $arrow': {
-    bottom: 0,
-    left: 0,
-    marginBottom: '-0.9em',
-    width: '3em',
-    height: '1em',
-    '&::before': {
-      borderWidth: '1em 1em 0 1em',
-      borderColor: `${theme.palette.background.paper} transparent transparent transparent`,
+  '&[data-popper-placement*="top"]': {
+    '& > div': {
+      marginBottom: arrow ? 2 : 0,
+    },
+    '& .MuiPopper-arrow': {
+      bottom: 0,
+      left: 0,
+      marginBottom: '-0.9em',
+      width: '3em',
+      height: '1em',
+      '&::before': {
+        borderWidth: '1em 1em 0 1em',
+        borderColor: `${theme.palette.background.paper} transparent transparent transparent`,
+      },
     },
   },
-  '&[data-popper-placement*="right"] $arrow': {
-    left: 0,
-    marginLeft: '-0.9em',
-    height: '3em',
-    width: '1em',
-    '&::before': {
-      borderWidth: '1em 1em 1em 0',
-      borderColor: `transparent ${theme.palette.background.paper} transparent transparent`,
+  '&[data-popper-placement*="right"]': {
+    '& > div': {
+      marginLeft: arrow ? 2 : 0,
+    },
+    '& .MuiPopper-arrow': {
+      left: 0,
+      marginLeft: '-0.9em',
+      height: '3em',
+      width: '1em',
+      '&::before': {
+        borderWidth: '1em 1em 1em 0',
+        borderColor: `transparent ${theme.palette.background.paper} transparent transparent`,
+      },
     },
   },
-  '&[data-popper-placement*="left"] $arrow': {
-    right: 0,
-    marginRight: '-0.9em',
-    height: '3em',
-    width: '1em',
-    '&::before': {
-      borderWidth: '1em 0 1em 1em',
-      borderColor: `transparent transparent transparent ${theme.palette.background.paper}`,
+  '&[data-popper-placement*="left"]': {
+    '& > div': {
+      marginRight: arrow ? 2 : 0,
+    },
+    '& .MuiPopper-arrow': {
+      right: 0,
+      marginRight: '-0.9em',
+      height: '3em',
+      width: '1em',
+      '&::before': {
+        borderWidth: '1em 0 1em 1em',
+        borderColor: `transparent transparent transparent ${theme.palette.background.paper}`,
+      },
     },
   },
 }));
@@ -182,6 +207,7 @@ export default function ScrollPlayground() {
             <Popper
               id={id}
               open={open}
+              arrow={arrow}
               anchorEl={anchorRef.current}
               placement={placement}
               disablePortal={disablePortal}
@@ -215,19 +241,23 @@ export default function ScrollPlayground() {
                 },
               ]}
             >
-              {arrow ? <Arrow ref={setArrowRef} /> : null}
-              <Paper sx={{ maxWidth: 400, overflow: 'auto' }}>
-                <DialogTitle>{"Use Google's location service?"}</DialogTitle>
-                <DialogContent>
-                  <DialogContentText>
-                    Let Google help apps determine location.
-                  </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={handleClickButton}>Disagree</Button>
-                  <Button onClick={handleClickButton}>Agree</Button>
-                </DialogActions>
-              </Paper>
+              <div>
+                {arrow ? (
+                  <Arrow ref={setArrowRef} className="MuiPopper-arrow" />
+                ) : null}
+                <Paper sx={{ maxWidth: 400, overflow: 'auto' }}>
+                  <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+                  <DialogContent>
+                    <DialogContentText>
+                      Let Google help apps determine location.
+                    </DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={handleClickButton}>Disagree</Button>
+                    <Button onClick={handleClickButton}>Agree</Button>
+                  </DialogActions>
+                </Paper>
+              </div>
             </Popper>
           </div>
         </Grid>

@@ -37,7 +37,7 @@
     "limitTags": "The maximum number of tags that will be visible when not focused. Set <code>-1</code> to disable the limit.",
     "ListboxComponent": "The component used to render the listbox.",
     "ListboxProps": "Props applied to the Listbox element.",
-    "loading": "If <code>true</code>, the component is in a loading state.",
+    "loading": "If <code>true</code>, the component is in a loading state. This shows the <code>loadingText</code> in place of suggestions (only if there are no suggestions to show, e.g. <code>options</code> are empty).",
     "loadingText": "Text to display when in a loading state.<br>For localization purposes, you can use the provided <a href=\"/guides/localization/\">translations</a>.",
     "multiple": "If <code>true</code>, <code>value</code> must be an array and the menu will support multiple selections.",
     "noOptionsText": "Text to display when there are no options.<br>For localization purposes, you can use the provided <a href=\"/guides/localization/\">translations</a>.",
@@ -70,7 +70,7 @@
       "conditions": "<code>fullWidth={true}</code>"
     },
     "focused": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "focused"
     },

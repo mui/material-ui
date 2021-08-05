@@ -26,7 +26,7 @@ export interface BadgeUnstyledClasses {
   anchorOriginTopLeftCircular: string;
   /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circular"`. */
   anchorOriginBottomLeftCircular: string;
-  /** Pseudo-class applied to the badge `span` element if `invisible={true}`. */
+  /** State class applied to the badge `span` element if `invisible={true}`. */
   invisible: string;
 }
 

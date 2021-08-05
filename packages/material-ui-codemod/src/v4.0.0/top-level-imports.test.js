@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
@@ -22,7 +21,7 @@ describe('@material-ui/codemod', () => {
             source: read('./top-level-imports.test/actual.js'),
             path: require.resolve('./top-level-imports.test/actual.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
@@ -36,7 +35,7 @@ describe('@material-ui/codemod', () => {
             source: read('./top-level-imports.test/expected.js'),
             path: require.resolve('./top-level-imports.test/expected.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 

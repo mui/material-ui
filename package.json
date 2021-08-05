@@ -1,5 +1,5 @@
 {
-  "version": "5.0.0-beta.1",
+  "version": "5.0.0-beta.2",
   "private": true,
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
@@ -90,7 +90,7 @@
     "@types/fs-extra": "^9.0.0",
     "@types/jsdom": "^16.1.0",
     "@types/lodash": "^4.14.138",
-    "@types/mocha": "^8.0.0",
+    "@types/mocha": "^9.0.0",
     "@types/prettier": "^2.0.0",
     "@types/react": "^17.0.3",
     "@types/sinon": "^10.0.0",
@@ -135,10 +135,12 @@
     "fs-extra": "^10.0.0",
     "globby": "^11.0.1",
     "html-webpack-plugin": "^4.5.0",
+    "istanbul-instrumenter-loader": "^3.0.1",
     "jsdom": "^16.0.0",
     "karma": "^5.0.1",
     "karma-browserstack-launcher": "~1.4.0",
     "karma-chrome-launcher": "^3.0.0",
+    "karma-coverage-istanbul-reporter": "^3.0.3",
     "karma-mocha": "^2.0.0",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^4.0.2",
@@ -200,13 +202,11 @@
   },
   "nyc": {
     "include": [
-      "packages/material-ui/src/**/*.js",
-      "packages/material-ui/lab/**/*.{ts,tsx}",
-      "packages/material-ui-utils/src/**/*.js",
-      "packages/material-ui-styles/src/**/*.js"
+      "packages/material-ui*/src/**/*.{js,ts,tsx}"
     ],
     "exclude": [
-      "**/*.test.{js,ts,tsx}"
+      "**/*.test.{js,ts,tsx}",
+      "**/*.test/*"
     ],
     "sourceMap": false,
     "instrument": false
