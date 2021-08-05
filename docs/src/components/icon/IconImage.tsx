@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useTheme } from '@material-ui/core/styles';
 
-type IconImageProps = {
+export type IconImageProps = {
   name:
     | 'product-core'
     | 'product-advanced'
