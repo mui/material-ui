@@ -1,6 +1,5 @@
-/* eslint-disable react/prop-types */
-
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Stack from '@material-ui/core/Stack';
 import { useButton } from '@material-ui/unstyled/ButtonUnstyled';
@@ -57,6 +56,10 @@ function CustomButton(props) {
     </StyledButtonRoot>
   );
 }
+
+CustomButton.propTypes = {
+  children: PropTypes.node,
+};
 
 export default function UseButton() {
   return (
