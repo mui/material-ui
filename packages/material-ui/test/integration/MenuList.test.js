@@ -445,7 +445,7 @@ describe('<MenuList> integration', () => {
       expect(getByText('Arizona')).toHaveFocus();
     });
 
-    it('should support repeating initial character', () => {
+    it('should cycle through items when repeating initial character', () => {
       const { getAllByRole, getByText } = render(
         <MenuList>
           <MenuItem>Arizona</MenuItem>
