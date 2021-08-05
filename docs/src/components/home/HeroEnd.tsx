@@ -1,15 +1,14 @@
 import * as React from 'react';
-import NextLink from 'next/link';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
+import Link from 'docs/src/modules/components/Link';
 import GradientText from 'docs/src/components/typography/GradientText';
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 import ROUTES from 'docs/src/route';
-import GetStartedButtons from './GetStartedButtons';
+import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 
 const HeroEnd = () => {
   return (
@@ -39,33 +38,43 @@ const HeroEnd = () => {
           </Grid>
           <Grid item xs={12} sm={6} md={6} container spacing={2}>
             <Grid item xs={12} md={6}>
-              <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
+              <Paper
+                component={Link}
+                href={ROUTES.showcase}
+                noLinkStyle
+                variant="outlined"
+                sx={{ p: 2, height: '100%' }}
+              >
                 <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
                   Showcases
                 </Typography>
                 <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                   See more projects and companies out there relying on MUI.
                 </Typography>
-                <NextLink href={ROUTES.showcase} passHref>
-                  <Link href={ROUTES.showcase} variant="body2">
-                    Learn more <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px ' }} />
-                  </Link>
-                </NextLink>
+                <Typography color="primary.main" variant="body2" fontWeight="bold">
+                  Learn more{' '}
+                  <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
+                </Typography>
               </Paper>
             </Grid>
             <Grid item xs={12} md={6}>
-              <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
+              <Paper
+                component={Link}
+                href={ROUTES.blog}
+                noLinkStyle
+                variant="outlined"
+                sx={{ p: 2, height: '100%' }}
+              >
                 <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
                   Blog
                 </Typography>
                 <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                   Check behind the scenes and news from the company.
                 </Typography>
-                <NextLink href={ROUTES.blog} passHref>
-                  <Link href={ROUTES.blog} variant="body2">
-                    Learn more <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
-                  </Link>
-                </NextLink>
+                <Typography color="primary.main" variant="body2" fontWeight="bold">
+                  Learn more{' '}
+                  <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
+                </Typography>
               </Paper>
             </Grid>
           </Grid>

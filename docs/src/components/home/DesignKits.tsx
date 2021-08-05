@@ -51,7 +51,7 @@ export default function DesignKits() {
             maxWidth: 780,
           }}
         >
-          <Image src="/static/branding/design-kits/designkits-bg.png" />
+          <Image src="/static/branding/design-kits/designkits-bg.png" alt="" />
           <Box
             sx={{
               position: 'absolute',
@@ -84,13 +84,13 @@ export default function DesignKits() {
         }}
       >
         <Fade in={appearIndexes.includes(0)} timeout={1000}>
-          <Avatar src="/static/branding/design-kits/designkits-figma.png" />
+          <Avatar src="/static/branding/design-kits/designkits-figma.png" alt="" />
         </Fade>
         <Fade in={appearIndexes.includes(1)} timeout={1000}>
-          <Avatar src="/static/branding/design-kits/designkits-sketch.png" />
+          <Avatar src="/static/branding/design-kits/designkits-sketch.png" alt="" />
         </Fade>
         <Fade in={appearIndexes.includes(2)} timeout={1000}>
-          <Avatar src="/static/branding/design-kits/designkits-xd.png" />
+          <Avatar src="/static/branding/design-kits/designkits-xd.png" alt="" />
         </Fade>
       </Box>
     </Box>

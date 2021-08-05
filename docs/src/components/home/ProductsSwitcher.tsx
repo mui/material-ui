@@ -6,10 +6,7 @@ import Link from '@material-ui/core/Link';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-import SvgProductCore from 'docs/src/icons/SvgProductCore';
-import SvgProductAdvanced from 'docs/src/icons/SvgProductAdvanced';
-import SvgProductTemplates from 'docs/src/icons/SvgProductTemplates';
-import SvgProductDesign from 'docs/src/icons/SvgProductDesign';
+import IconImage from 'docs/src/components/icon/IconImage';
 import SvgMuiX from 'docs/src/icons/SvgMuiX';
 
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
@@ -40,7 +37,7 @@ function ProductItem({
         <Typography color="text.primary" variant="body2" fontWeight="bold">
           {name}
         </Typography>
-        <Typography color="text.secondary" variant="body2" fontWeight="regular">
+        <Typography color="text.secondary" variant="body2" fontWeight="regular" sx={{ my: 0.5 }}>
           {description}
         </Typography>
         <NextLink href={href} passHref>
@@ -56,7 +53,7 @@ function ProductItem({
               '& > svg': { transition: '0.2s' },
               '&:hover > svg': { transform: 'translateX(4px)' },
             }}
-            onClick={(event) => {
+            onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
               event.stopPropagation();
             }}
           >
@@ -120,13 +117,13 @@ const ProductsSwitcher = ({
 }) => {
   const productElements = [
     <ProductItem
-      icon={<SvgProductCore />}
+      icon={<IconImage name="product-core" />}
       name="Core"
       description="Ready to use, forever free, foundational components."
       href={ROUTES.productCore}
     />,
     <ProductItem
-      icon={<SvgProductAdvanced />}
+      icon={<IconImage name="product-advanced" />}
       name={
         <Box component="span" display="inline-flex" alignItems="center">
           Advanced&nbsp; <SvgMuiX />
@@ -136,13 +133,13 @@ const ProductsSwitcher = ({
       href={ROUTES.productAdvanced}
     />,
     <ProductItem
-      icon={<SvgProductTemplates />}
+      icon={<IconImage name="product-templates" />}
       name="Templates"
       description="Fully built, out-of-the-box, templates for your application."
       href={ROUTES.productTemplates}
     />,
     <ProductItem
-      icon={<SvgProductDesign />}
+      icon={<IconImage name="product-designkits" />}
       name="Design Kits"
       description="Our components available in your favorite design tool."
       href={ROUTES.productDesignKits}
@@ -216,16 +213,10 @@ const ProductsSwitcher = ({
             borderColor: (theme) =>
               theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.200',
           },
-          '& svg > circle': {
-            fill: (theme) =>
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[700]
-                : theme.palette.grey[100],
-          },
         }}
       >
         {productElements.map((elm, index) => (
-          <Tab key={index} label={elm} />
+          <Tab key={index} component="div" label={elm} />
         ))}
       </Tabs>
     </React.Fragment>

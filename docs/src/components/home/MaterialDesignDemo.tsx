@@ -1,65 +1,78 @@
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
-import Card from '@material-ui/core/Card';
-import Chip from '@material-ui/core/Chip';
-import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Link from '@material-ui/core/Link';
-import ContentCopyRounded from '@material-ui/icons/ContentCopyRounded';
-import CodeRounded from '@material-ui/icons/CodeRounded';
+import Card from '@material-ui/core/Card';
+import Switch from '@material-ui/core/Switch';
+import Typography from '@material-ui/core/Typography';
+import Edit from '@material-ui/icons/Edit';
+import LocationOn from '@material-ui/icons/LocationOn';
+import BusinessRounded from '@material-ui/icons/BusinessRounded';
 
 export const demoCode = {
-  imports: `import * as React from 'react';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
+  imports: (themed = false) => `import * as React from 'react';
 import Avatar from '@material-ui/core/Avatar';
-import Card from '@material-ui/core/Card';
-import Chip from '@material-ui/core/Chip';
-import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Link from '@material-ui/core/Link';
-import ContentCopyRounded from '@material-ui/icons/ContentCopyRounded';
-import CodeRounded from '@material-ui/icons/CodeRounded';`,
+import Card from '@material-ui/core/Card';
+import Switch from '@material-ui/core/Switch';
+import Typography from '@material-ui/core/Typography';
+import Edit from '@material-ui/icons/Edit';
+import LocationOn from '@material-ui/icons/LocationOn';
+import BusinessRounded from '@material-ui/icons/BusinessRounded';
+${themed ? `import { ThemeProvider, createTheme } from '@material-ui/core/styles';\n` : ``}`,
   component: (themed = false) => {
-    const jsx = `<Card elevation={4} sx={{ display: 'flex', p: 2 }}>
-      <Avatar src="/static/images/avatar/1.jpg" variant="rounded" sx={{ mr: 2 }} />
-      <div>
-        <Typography component="div" variant="caption" color="text.secondary">
-          Today at 09:40 AM
-        </Typography>
-        <Box sx={{ display: 'flex', alignItems: 'baseline', flexWrap: 'wrap' }}>
-          <Typography component="div" mr={0.5} mb={0.5} fontWeight="bold">
-            Merge pull request{' '}
-            <Link href="/" underline="none">
-              #2021
-            </Link>{' '}
-            from{' '}
+    const jsx = `<Card sx={{ overflow: 'hidden' }}>
+      <Box sx={{ p: 2, display: 'flex' }}>
+        <Avatar variant="rounded" src="/static/images/avatar/1.jpg" />
+        <Box
+          sx={{
+            mx: 2,
+            flexGrow: 1,
+            '& svg': { fontSize: 20, verticalAlign: 'bottom', mr: 1 },
+          }}
+        >
+          <Typography fontWeight="bold">Michael Scott</Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+            <LocationOn />
+            Scranton, PA
           </Typography>
-          <Chip
-            size="small"
-            label="mui-org/master"
-            color="success"
-            onClick={() => {}}
-            sx={{ mb: 0.5 }}
-          />
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+            <BusinessRounded />
+            Michael Scott
+          </Typography>
         </Box>
-        <Typography component="div" variant="caption" mb={1.5} color="grey.800">
-          Committed by{' '}
-          <Link href="/" underline="none" fontWeight="bold">
-            Olivier Tassinari
-          </Link>
-        </Typography>
-        <Button variant="outlined" size="small" startIcon={<ContentCopyRounded />} sx={{ mr: 1 }}>
-          i88jjd43
-        </Button>
-        <IconButton size="small">
-          <CodeRounded fontSize="small" />
+        <IconButton size="small" sx={{ alignSelf: 'flex-start' }}>
+          <Edit fontSize="small" />
         </IconButton>
-      </div>
+      </Box>
+      <Divider />
+      <Box sx={{ px: 2, py: 1, display: 'flex', alignItems: 'center' }}>
+        <Box
+          sx={{
+            width: 10,
+            height: 10,
+            borderRadius: 10,
+            bgcolor: active ? 'success.main' : 'grey.500',
+            border: '2px solid',
+            borderColor: active ? 'success.light' : 'grey.300',
+            mr: 1.5,
+          }}
+        />
+        <Typography color={active ? 'success.main' : 'grey.700'}>
+          {active ? 'Active' : 'Inactive'} account
+        </Typography>
+        <Switch
+          checked={active}
+          onChange={(event) => setActive(event.target.checked)}
+          sx={{ ml: 'auto' }}
+        />
+      </Box>
     </Card>`;
     return `export default function MaterialDesignDemo() {
+  const [active, setActive] = React.useState(true);
   return (
     ${
       themed
@@ -77,42 +90,56 @@ import CodeRounded from '@material-ui/icons/CodeRounded';`,
 };
 
 export default function MaterialDesignDemo() {
+  const [active, setActive] = React.useState(true);
   return (
-    <Card elevation={4} sx={{ display: 'flex', p: 2 }}>
-      <Avatar src="/static/images/avatar/1.jpg" variant="rounded" sx={{ mr: 2 }} />
-      <div>
-        <Typography component="div" variant="caption" color="text.secondary">
-          Today at 09:40 AM
-        </Typography>
-        <Box sx={{ display: 'flex', alignItems: 'baseline', flexWrap: 'wrap' }}>
-          <Typography component="div" mr={0.5} mb={0.5} fontWeight="bold">
-            Merge pull request{' '}
-            <Link href="/" underline="none">
-              #2021
-            </Link>{' '}
-            from{' '}
+    <Card sx={{ overflow: 'hidden' }}>
+      <Box sx={{ p: 2, display: 'flex' }}>
+        <Avatar variant="rounded" src="/static/images/avatar/1.jpg" alt="" />
+        <Box
+          sx={{
+            mx: 2,
+            flexGrow: 1,
+            '& svg': { fontSize: 20, verticalAlign: 'bottom', mr: 1 },
+          }}
+        >
+          <Typography fontWeight={600}>Michael Scott</Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+            <LocationOn />
+            Scranton, PA
           </Typography>
-          <Chip
-            size="small"
-            label="mui-org/master"
-            color="success"
-            onClick={() => {}}
-            sx={{ mb: 0.5 }}
-          />
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+            <BusinessRounded />
+            Michael Scott
+          </Typography>
         </Box>
-        <Typography component="div" variant="caption" mb={1.5} color="grey.800">
-          Committed by{' '}
-          <Link href="/" underline="none" fontWeight="bold">
-            Olivier Tassinari
-          </Link>
-        </Typography>
-        <Button variant="outlined" size="small" startIcon={<ContentCopyRounded />} sx={{ mr: 1 }}>
-          i88jjd43
-        </Button>
-        <IconButton size="small">
-          <CodeRounded fontSize="small" />
+        <IconButton size="small" sx={{ alignSelf: 'flex-start' }}>
+          <Edit fontSize="small" />
         </IconButton>
-      </div>
+      </Box>
+      <Divider />
+      <Box
+        sx={{ px: 2, py: 1, display: 'flex', alignItems: 'center', bgcolor: 'background.default' }}
+      >
+        <Box
+          sx={{
+            width: 10,
+            height: 10,
+            borderRadius: 10,
+            bgcolor: active ? 'success.main' : 'grey.500',
+            border: '2px solid',
+            borderColor: active ? 'success.light' : 'grey.300',
+            mr: 1.5,
+          }}
+        />
+        <Typography variant="body2" fontWeight={500} color={active ? 'success.main' : 'grey.700'}>
+          {active ? 'Active' : 'Inactive'} account
+        </Typography>
+        <Switch
+          checked={active}
+          onChange={(event) => setActive(event.target.checked)}
+          sx={{ ml: 'auto' }}
+        />
+      </Box>
     </Card>
   );
 }

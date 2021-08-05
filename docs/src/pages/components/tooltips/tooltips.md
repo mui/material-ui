@@ -25,7 +25,7 @@ They don't have directional arrows; instead, they rely on motion emanating from 
 
 {{"demo": "pages/components/tooltips/PositionedTooltips.js"}}
 
-## Customized tooltips
+## Customization
 
 Here are some examples of customizing the component. You can learn more about this in the
 [overrides documentation page](/customization/how-to-customize/).

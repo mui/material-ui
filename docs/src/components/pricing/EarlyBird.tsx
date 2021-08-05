@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 
 export default function EarlyBird() {
   return (
-    <Container sx={{ py: 4 }}>
+    <Container sx={{ py: 4, pt: 0 }}>
       <Box
         sx={{
           borderRadius: 1,

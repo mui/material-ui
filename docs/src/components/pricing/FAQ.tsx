@@ -139,8 +139,12 @@ const faqData = [
 
 const Accordion = styled(MuiAccordion)(({ theme }) => ({
   padding: theme.spacing(2),
+  transition: theme.transitions.create('box-shadow'),
   '&&': {
     borderRadius: theme.shape.borderRadius,
+  },
+  '&:hover': {
+    boxShadow: '1px 1px 20px 0 rgb(90 105 120 / 20%)',
   },
   '&:not(:last-of-type)': {
     marginBottom: theme.spacing(2),
@@ -154,7 +158,8 @@ const Accordion = styled(MuiAccordion)(({ theme }) => ({
 }));
 
 const AccordionSummary = styled(MuiAccordionSummary)(({ theme }) => ({
-  padding: 0,
+  padding: theme.spacing(2),
+  margin: theme.spacing(-2),
   minHeight: 'auto',
   '&.Mui-expanded': {
     minHeight: 'auto',
