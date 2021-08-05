@@ -29,7 +29,7 @@ const grey = {
   900: '#3D4752',
 };
 
-export default function CustomizedChip() {
+export default function ThemeChip() {
   /*
    * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
    *
@@ -60,14 +60,14 @@ export default function CustomizedChip() {
                 marginBottom: '1px',
                 fontSize: 14,
                 lineHeight: 1.5,
-                fontWeight: 500,
+                fontWeight: 600,
               },
               filled: {
                 color: mode === 'dark' ? '#fff' : grey[800],
                 backgroundColor: mode === 'dark' ? grey[900] : grey[200],
                 '&.MuiChip-colorPrimary': {
-                  backgroundColor: mode === 'dark' ? primary[900] : primary[100],
-                  color: mode === 'dark' ? primary[200] : primary[500],
+                  backgroundColor: primary[100],
+                  color: primary[500],
                 },
               },
               deleteIcon: {
@@ -77,9 +77,9 @@ export default function CustomizedChip() {
                 },
               },
               deleteIconColorPrimary: {
-                color: mode === 'dark' ? primary[300] : primary[500],
+                color: primary[500],
                 '&:hover': {
-                  color: mode === 'dark' ? primary[100] : primary[700],
+                  color: primary[700],
                 },
               },
             },

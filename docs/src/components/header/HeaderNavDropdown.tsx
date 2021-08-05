@@ -8,12 +8,13 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
 import SvgHambugerMenu from 'docs/src/icons/SvgHamburgerMenu';
+import ROUTES from 'docs/src/route';
 
 const Anchor = styled('a')<{ component?: React.ElementType }>(({ theme }) => ({
   ...theme.typography.body2,
   fontWeight: 700,
   textDecoration: 'none',
-  color: theme.palette.text.secondary,
+  color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.text.secondary,
   cursor: 'pointer',
   display: 'flex',
   alignItems: 'center',
@@ -21,7 +22,8 @@ const Anchor = styled('a')<{ component?: React.ElementType }>(({ theme }) => ({
   borderRadius: theme.spacing(1),
   transition: theme.transitions.create('background'),
   '&:hover, &:focus': {
-    backgroundColor: theme.palette.grey[100],
+    backgroundColor:
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100],
     // Reset on touch devices, it doesn't add specificity
     '@media (hover: none)': {
       backgroundColor: 'transparent',
@@ -36,13 +38,26 @@ const UList = styled('ul')({
 });
 
 const PRODUCTS = [
-  { name: 'Core', description: 'Ready to use, forever free, foundational components.' },
-  { name: 'Advanced', description: 'Powerful and robust components for your complex apps.' },
+  {
+    name: 'Core',
+    description: 'Ready to use, forever free, foundational components.',
+    href: ROUTES.productCore,
+  },
+  {
+    name: 'Advanced',
+    description: 'Powerful and robust components for your complex apps.',
+    href: ROUTES.productAdvanced,
+  },
   {
     name: 'Templates',
     description: 'Fully built, out-of-the-box, templates for your application.',
+    href: ROUTES.productTemplates,
   },
-  { name: 'Design Kits', description: 'Our components available in your favorite design tool.' },
+  {
+    name: 'Design Kits',
+    description: 'Our components available in your favorite design tool.',
+    href: ROUTES.productDesignKits,
+  },
 ];
 
 export default function HeaderNavDropdown() {
@@ -58,7 +73,14 @@ export default function HeaderNavDropdown() {
         sx={{
           position: 'relative',
           borderRadius: 1,
-          '&:focus': { boxShadow: `0 0 0 1px #e5e8ec` },
+          '&:focus': {
+            boxShadow: (theme) =>
+              `0 0 0 1px ${
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[600]
+                  : theme.palette.grey[200]
+              }`,
+          },
           '& rect': {
             transformOrigin: 'center',
             transition: '0.2s',
@@ -115,28 +137,32 @@ export default function HeaderNavDropdown() {
                     sx={{ borderLeft: '1px solid', borderColor: 'grey.100', pl: 1, pb: 1, ml: 1 }}
                   >
                     {PRODUCTS.map((item) => (
-                      <NextLink href="/branding/home" passHref>
-                        <Anchor sx={{ flexDirection: 'column', alignItems: 'initial' }}>
-                          <div>{item.name}</div>
-                          <Typography variant="body2">{item.description}</Typography>
-                        </Anchor>
-                      </NextLink>
+                      <li key={item.name}>
+                        <NextLink href={item.href} passHref>
+                          <Anchor sx={{ flexDirection: 'column', alignItems: 'initial' }}>
+                            <div>{item.name}</div>
+                            <Typography variant="body2" color="text.secondary">
+                              {item.description}
+                            </Typography>
+                          </Anchor>
+                        </NextLink>
+                      </li>
                     ))}
                   </UList>
                 </Collapse>
               </li>
               <li>
-                <NextLink href="/branding/home" passHref>
+                <NextLink href={ROUTES.documentation} passHref>
                   <Anchor>Docs</Anchor>
                 </NextLink>
               </li>
               <li>
-                <NextLink href="/branding/home" passHref>
+                <NextLink href={ROUTES.pricing} passHref>
                   <Anchor>Pricing</Anchor>
                 </NextLink>
               </li>
               <li>
-                <NextLink href="/branding/home" passHref>
+                <NextLink href={ROUTES.about} passHref>
                   <Anchor>About us</Anchor>
                 </NextLink>
               </li>

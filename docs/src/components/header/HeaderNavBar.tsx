@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import NextLink, { LinkProps } from 'next/link';
-import { styled } from '@material-ui/core/styles';
+import { styled, alpha } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Popper from '@material-ui/core/Popper';
 import Paper from '@material-ui/core/Paper';
@@ -12,6 +12,7 @@ import SvgProductAdvanced from 'docs/src/icons/SvgProductAdvanced';
 import SvgProductTemplates from 'docs/src/icons/SvgProductTemplates';
 import SvgProductDesign from 'docs/src/icons/SvgProductDesign';
 import SvgMuiX from 'docs/src/icons/SvgMuiX';
+import ROUTES from 'docs/src/route';
 
 const Navigation = styled('nav')(({ theme }) => ({
   '& ul': {
@@ -23,7 +24,7 @@ const Navigation = styled('nav')(({ theme }) => ({
   '& li': {
     color: theme.palette.text.secondary,
     ...theme.typography.body2,
-    fontWeight: 700,
+    fontWeight: 600,
     '& > a, & > div': {
       display: 'inline-block',
       color: 'inherit',
@@ -31,7 +32,8 @@ const Navigation = styled('nav')(({ theme }) => ({
       padding: theme.spacing(1),
       borderRadius: theme.shape.borderRadius,
       '&:hover, &:focus': {
-        backgroundColor: theme.palette.grey[50],
+        backgroundColor:
+          theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[50],
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: 'initial',
@@ -65,7 +67,8 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
             alignItems: 'center',
             py: 2,
             '&:hover, &:focus': {
-              backgroundColor: 'grey.50',
+              backgroundColor: (theme) =>
+                theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.50',
               outline: 'none',
               '@media (hover: none)': {
                 backgroundColor: 'initial',
@@ -77,7 +80,7 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
         >
           <Box sx={{ px: 2 }}>{icon}</Box>
           <Box>
-            <Typography color="grey.900" variant="body2" fontWeight={700}>
+            <Typography color="text.primary" variant="body2" fontWeight={600}>
               {name}
             </Typography>
             <Typography color="text.secondary" variant="body2">
@@ -105,6 +108,7 @@ export default function HeaderNavBar() {
       return;
     }
     if (event.key === 'ArrowDown') {
+      event.preventDefault();
       if (event.target === productsMenuRef.current) {
         setSubMenuOpen(true);
       }
@@ -117,6 +121,7 @@ export default function HeaderNavBar() {
       });
     }
     if (event.key === 'ArrowUp') {
+      event.preventDefault();
       setSubMenuIndex((prevValue) => {
         if (prevValue === null) return 0;
         if (prevValue === 0) {
@@ -165,7 +170,14 @@ export default function HeaderNavBar() {
                   sx={{
                     minWidth: 498,
                     overflow: 'hidden',
-                    boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
+                    bgcolor: (theme) =>
+                      theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
+                    boxShadow: (theme) =>
+                      `0px 4px 20px ${
+                        theme.palette.mode === 'dark'
+                          ? alpha(theme.palette.background.paper, 0.72)
+                          : 'rgba(170, 180, 190, 0.3)'
+                      }`,
                     '& ul': {
                       margin: 0,
                       padding: 0,
@@ -173,7 +185,8 @@ export default function HeaderNavBar() {
                     },
                     '& li:not(:last-of-type)': {
                       borderBottom: '1px solid',
-                      borderColor: 'grey.100',
+                      borderColor: (theme) =>
+                        theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.100',
                     },
                     '& a': { textDecoration: 'none' },
                   }}
@@ -183,7 +196,7 @@ export default function HeaderNavBar() {
                       <ProductSubMenu
                         id={PRODUCT_IDS[0]}
                         role="menuitem"
-                        href="/products/core"
+                        href={ROUTES.productCore}
                         icon={<SvgProductCore />}
                         name="Core"
                         description="Ready to use, forever free, out-of-the-box, components."
@@ -194,7 +207,7 @@ export default function HeaderNavBar() {
                       <ProductSubMenu
                         id={PRODUCT_IDS[1]}
                         role="menuitem"
-                        href="/products/advanced"
+                        href={ROUTES.productAdvanced}
                         icon={<SvgProductAdvanced />}
                         name={
                           <Box component="span" display="inline-flex" alignItems="center">
@@ -209,7 +222,7 @@ export default function HeaderNavBar() {
                       <ProductSubMenu
                         id={PRODUCT_IDS[2]}
                         role="menuitem"
-                        href="/products/templates"
+                        href={ROUTES.productTemplates}
                         icon={<SvgProductTemplates />}
                         name="Templates"
                         description="Get a fully built template for you application."
@@ -220,7 +233,7 @@ export default function HeaderNavBar() {
                       <ProductSubMenu
                         id={PRODUCT_IDS[3]}
                         role="menuitem"
-                        href="/products/design-kits"
+                        href={ROUTES.productDesignKits}
                         icon={<SvgProductDesign />}
                         name="Design Kits"
                         description="Pick your favorite design tool to enjoy."
@@ -234,17 +247,17 @@ export default function HeaderNavBar() {
           </Popper>
         </li>
         <li role="none">
-          <NextLink href="/">
+          <NextLink href={ROUTES.documentation}>
             <a role="menuitem">Docs</a>
           </NextLink>
         </li>
         <li role="none">
-          <NextLink href="/branding/pricing">
+          <NextLink href={ROUTES.pricing}>
             <a role="menuitem">Pricing</a>
           </NextLink>
         </li>
         <li role="none">
-          <NextLink href="/branding/about">
+          <NextLink href={ROUTES.about}>
             <a role="menuitem">About us</a>
           </NextLink>
         </li>

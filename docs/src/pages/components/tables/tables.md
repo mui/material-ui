@@ -78,6 +78,12 @@ The `ActionsComponent` prop of the `TablePagination` component allows the implem
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
 
+## Theming
+
+Here is an example of theming the component. You can learn more about this in the [theming page](/customization/theming) and [theme components page](/customization/theme-components)
+
+{{"demo": "pages/components/tables/FolderTable.js", "bg": true}}
+
 ## Sticky header
 
 Here is an example of a table with scrollable rows and fixed column headers.
