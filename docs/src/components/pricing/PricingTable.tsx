@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import InfoRounded from '@material-ui/icons/InfoRounded';
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
-import IconImage from 'docs/src/components/icon/IconImage';
+import IconImage, { IconImageProps } from 'docs/src/components/icon/IconImage';
 
 const plans = {
   community: {
@@ -38,7 +38,7 @@ export function PlanName({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
         fontWeight="bold"
         sx={{ mb: 0.5, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
       >
-        {title} <IconImage name={`block-${color}`} />
+        {title} <IconImage name={`block-${color}` as IconImageProps['name']} />
       </Typography>
       <Typography variant="body2" color="text.secondary">
         {description}
