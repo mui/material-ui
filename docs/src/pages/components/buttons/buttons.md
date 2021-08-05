@@ -181,12 +181,29 @@ However:
 
 This has the advantage of supporting any element, for instance, a link `<a>` element.
 
-## Unstyled
+## Unstyled button
+
+The button also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ### Unstyled component
+
+```jsx
+import ButtonUnstyled from '@material-ui/unstyled/ButtonUnstyled';
+```
+
+By default, the `ButtonUnstyled` renders a native `button` element.
+You are free to override this by setting the `component` or `components.Root` prop.
+If a non-interactive element (such as a span) is provided this way, the `ButtonUnstyled` will take care of adding accessibility attributes.
 
 {{"demo": "pages/components/buttons/UnstyledButtons.js"}}
 
 ### useButton hook
+
+```jsx
+import { useButton } from '@material-ui/unstyled/ButtonUnstyled';
+```
+
+If you need to use Button's functionality in another component, you can use the `useButton` hook.
+It returns props to be placed on a custom button element and fields representing the internal state of the button.
 
 {{"demo": "pages/components/buttons/UseButton.js"}}

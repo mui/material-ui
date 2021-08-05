@@ -11,11 +11,16 @@ import ButtonUnstyledProps, {
 import useButton from './useButton';
 import appendStyleProps from '../utils/appendStyleProps';
 
-const useUtilityClasses = (styleProps: ButtonUnstyledOwnProps & { focusVisible: boolean }) => {
-  const { disabled, focusVisible } = styleProps;
+export interface ButtonUnstyledStyleProps extends ButtonUnstyledOwnProps {
+  focusVisible: boolean;
+  active: boolean;
+}
+
+const useUtilityClasses = (styleProps: ButtonUnstyledStyleProps) => {
+  const { active, disabled, focusVisible } = styleProps;
 
   const slots = {
-    root: ['root', disabled && 'disabled', focusVisible && 'focusVisible'],
+    root: ['root', disabled && 'disabled', focusVisible && 'focusVisible', active && 'active'],
   };
 
   return composeClasses(slots, getButtonUnstyledUtilityClass, {});
@@ -72,6 +77,7 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
 
   const styleProps = {
     ...props,
+    active: button.active,
     focusVisible: button.focusVisible,
   };
 

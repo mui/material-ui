@@ -22,7 +22,7 @@ const StyledButtonRoot = styled('span')(`
     background-color: #0059b2;
   }
 
-  &:active {
+  &.${buttonUnstyledClasses.active} {
     background-color: #004386;
   }
 

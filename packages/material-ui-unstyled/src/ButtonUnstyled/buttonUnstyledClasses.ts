@@ -3,8 +3,9 @@ import generateUtilityClasses from '../generateUtilityClasses';
 
 export interface ButtonUnstyledClasses {
   root: string;
-  focusVisible: string;
+  active: string;
   disabled: string;
+  focusVisible: string;
 }
 
 export type ButtonUnstyledClassKey = keyof ButtonUnstyledClasses;
@@ -15,8 +16,9 @@ export function getButtonUnstyledUtilityClass(slot: string): string {
 
 const buttonUnstyledClasses: ButtonUnstyledClasses = generateUtilityClasses('ButtonUnstyled', [
   'root',
-  'focusVisible',
+  'active',
   'disabled',
+  'focusVisible',
 ]);
 
 export default buttonUnstyledClasses;

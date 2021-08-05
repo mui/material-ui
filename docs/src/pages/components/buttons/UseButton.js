@@ -21,7 +21,7 @@ const StyledButtonRoot = styled('span')(`
     background-color: #0059b2;
   }
 
-  &:active {
+  &.active {
     background-color: #004386;
   }
 
@@ -46,8 +46,9 @@ function CustomButton(props) {
   });
 
   const classes = {
-    focusVisible: button.focusVisible,
+    active: button.active,
     disabled: button.disabled,
+    focusVisible: button.focusVisible,
   };
 
   return (
@@ -64,7 +65,7 @@ CustomButton.propTypes = {
 export default function UseButton() {
   return (
     <Stack spacing={2} direction="row">
-      <CustomButton>Button</CustomButton>
+      <CustomButton onClick={() => console.log('click!')}>Button</CustomButton>
       <CustomButton disabled>Disabled</CustomButton>
     </Stack>
   );

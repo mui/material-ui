@@ -18,7 +18,9 @@ export interface UseButtonProps {
   onFocusVisible?: React.FocusEventHandler;
   onKeyDown?: React.KeyboardEventHandler;
   onKeyUp?: React.KeyboardEventHandler;
+  onMouseDown?: React.MouseEventHandler;
   onMouseLeave?: React.MouseEventHandler;
+  onMouseUp?: React.MouseEventHandler;
   ref: React.Ref<any>;
   tabIndex?: string | number;
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
@@ -28,25 +30,40 @@ function isAnchor(el: HTMLElement | undefined): el is HTMLAnchorElement {
   return el?.tagName === 'A';
 }
 
+function isNativeButton(el: HTMLElement | undefined): el is HTMLButtonElement {
+  return (
+    el?.tagName === 'BUTTON' ||
+    (el?.tagName === 'INPUT' &&
+      ['button', 'reset', 'submit'].includes((el as HTMLInputElement).type))
+  );
+}
+
 export default function useButton(props: UseButtonProps) {
   const {
     component,
     components = {},
     disabled = false,
     href,
-    onClick,
     onBlur,
+    onClick,
     onFocus,
-    onMouseLeave,
     onFocusVisible,
     onKeyDown,
     onKeyUp,
+    onMouseDown,
+    onMouseLeave,
+    onMouseUp,
     ref,
     tabIndex = 0,
     type,
   } = props;
 
-  const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
+  const buttonRef = React.useRef<
+    HTMLButtonElement | HTMLAnchorElement | HTMLInputElement | HTMLElement
+  >();
+
+  //
+  const [isActive, setActive] = React.useState<boolean>(false);
 
   const {
     isFocusVisibleRef,
@@ -82,6 +99,16 @@ export default function useButton(props: UseButtonProps) {
     onBlur?.(event);
   };
 
+  const dispatchClickEvent = () => {
+    const clickEvent = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      view: window,
+    });
+
+    buttonRef.current?.dispatchEvent(clickEvent);
+  };
+
   const handleFocus = useEventCallback((event: React.FocusEvent<HTMLButtonElement>) => {
     // Fix for https://github.com/facebook/react/issues/7769
     if (!buttonRef.current) {
@@ -103,24 +130,35 @@ export default function useButton(props: UseButtonProps) {
 
   const isNotNativeButtonOrLink = () => {
     const button = buttonRef.current;
-    return elementType !== 'button' && !(isAnchor(button) && button?.href);
+    return !isNativeButton(button) && !(isAnchor(button) && button?.href);
   };
 
-  /**
-   * IE11 shim for https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/repeat
-   */
-  const keydownRef = React.useRef(false);
-  const handleKeyDown = useEventCallback((event: React.KeyboardEvent) => {
-    // Check if key is already down to avoid repeats being counted as multiple activations
-    if (!keydownRef.current && focusVisible && event.key === ' ') {
-      keydownRef.current = true;
+  const handleMouseDown = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (event.target === event.currentTarget) {
+      setActive(true);
     }
 
+    onMouseDown?.(event);
+  };
+
+  const handleMouseUp = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (event.target === event.currentTarget) {
+      setActive(false);
+    }
+
+    onMouseUp?.(event);
+  };
+
+  const handleKeyDown = useEventCallback((event: React.KeyboardEvent) => {
     if (event.target === event.currentTarget && isNotNativeButtonOrLink() && event.key === ' ') {
       event.preventDefault();
     }
 
     onKeyDown?.(event);
+
+    if (event.target === event.currentTarget && event.key === ' ' && !disabled) {
+      setActive(true);
+    }
 
     // Keyboard accessibility for non interactive elements
     if (
@@ -130,43 +168,42 @@ export default function useButton(props: UseButtonProps) {
       !disabled
     ) {
       event.preventDefault();
-      onClick?.(event as unknown as React.MouseEvent); // TODO: convert between event types properly
+      dispatchClickEvent();
     }
   });
 
   const handleKeyUp = useEventCallback((event: React.KeyboardEvent) => {
     // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
     // https://codesandbox.io/s/button-keyup-preventdefault-dn7f0
-    if (event.key === ' ' && focusVisible && !event.defaultPrevented) {
-      keydownRef.current = false;
-    }
 
     onKeyUp?.(event);
 
+    if (event.target === event.currentTarget) {
+      setActive(false);
+    }
+
     // Keyboard accessibility for non interactive elements
     if (
-      onClick &&
       event.target === event.currentTarget &&
       isNotNativeButtonOrLink() &&
       event.key === ' ' &&
       !event.defaultPrevented
     ) {
-      onClick(event as unknown as React.MouseEvent); // TODO: convert between event types properly
+      dispatchClickEvent();
     }
   });
 
-  const additionalProps: Record<string, unknown> = {};
-
+  const buttonProps: Record<string, unknown> = {};
   if (elementType === 'button') {
-    additionalProps.type = type ?? 'button';
-    additionalProps.disabled = disabled;
+    buttonProps.type = type ?? 'button';
+    buttonProps.disabled = disabled;
   } else {
     if (!href) {
-      additionalProps.role = 'button';
-      additionalProps.tabIndex = disabled ? -1 : tabIndex;
+      buttonProps.role = 'button';
+      buttonProps.tabIndex = disabled ? -1 : tabIndex;
     }
     if (disabled) {
-      additionalProps['aria-disabled'] = disabled;
+      buttonProps['aria-disabled'] = disabled;
     }
   }
 
@@ -175,17 +212,20 @@ export default function useButton(props: UseButtonProps) {
 
   return {
     getRootProps: () => ({
-      ...additionalProps,
+      ...buttonProps,
       onBlur: handleBlur,
       onClick,
       onFocus: handleFocus,
       onKeyDown: handleKeyDown,
       onKeyUp: handleKeyUp,
+      onMouseDown: handleMouseDown,
       onMouseLeave: handleMouseLeave,
+      onMouseUp: handleMouseUp,
       ref: handleRef as React.Ref<any>,
     }),
     focusVisible,
     setFocusVisible,
     disabled,
+    active: isActive,
   };
 }
