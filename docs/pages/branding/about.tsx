@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Head from 'docs/src/modules/components/Head';
 import { useTheme, ThemeProvider as MuiThemeProvider, createTheme } from '@material-ui/core/styles';
 import ThemeProvider from 'docs/src/modules/ThemeContext';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -8,10 +9,11 @@ import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Link from '@material-ui/core/Link';
+import Link from 'docs/src/modules/components/Link';
 import Grid from '@material-ui/core/Grid';
 import Paper, { PaperProps } from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+import Tooltip from '@material-ui/core/Tooltip';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import ReferencesCore from 'docs/src/components/home/ReferencesCore';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
@@ -20,6 +22,7 @@ import { MuiStats } from 'docs/src/components/home/Testimonials';
 import GradientText from 'docs/src/components/typography/GradientText';
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
+import ROUTES from 'docs/src/route';
 
 let darkTheme = createTheme(getDesignTokens('dark'));
 
@@ -54,7 +57,12 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
           '& > div': { minWidth: 'clamp(0px, (150px - 100%) * 999 ,100%)' },
         }}
       >
-        <Box sx={{ lineHeight: 0 }}>
+        <Tooltip
+          title={props.location || false}
+          placement="right-end"
+          // @ts-expect-error
+          PopperProps={{ sx: { '& .MuiTooltip-tooltip': { p: 0.5 } } }}
+        >
           <Box sx={{ position: 'relative', display: 'inline-block' }}>
             <Avatar
               variant="rounded"
@@ -90,7 +98,7 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
               />
             </Box>
           </Box>
-        </Box>
+        </Tooltip>
         <Box mx="auto" height={15} />
         <Box sx={{ mt: -0.5, mr: -0.5 }}>
           {props.github && (
@@ -147,8 +155,8 @@ const teamMembers: Array<Profile> = [
     name: 'Olivier Tassinari',
     title: 'Co-founder',
     location: 'Paris, France',
-    about: 'Something quick about you here!',
     country: 'fr',
+    about: 'Exercise addict and lifelong learner',
     twitter: 'https://twitter.com/olivtassinari',
     github: 'https://github.com/oliviertassinari',
   },
@@ -158,6 +166,7 @@ const teamMembers: Array<Profile> = [
     title: 'Co-founder',
     location: 'London, UK',
     country: 'gb',
+    about: "When I'm not 👨🏻‍💻, I'm 🧗🏼‍♂️",
     twitter: 'randomtechdude',
     github: 'mbrookes',
   },
@@ -167,6 +176,7 @@ const teamMembers: Array<Profile> = [
     title: 'Core components team',
     location: 'Dresden, Germany',
     country: 'de',
+    about: 'Everything Open Source',
     twitter: 'sebsilbermann',
     github: 'eps1lon',
   },
@@ -185,6 +195,7 @@ const teamMembers: Array<Profile> = [
     title: 'Core components team',
     location: 'Skopje, North Macedonia',
     country: 'mk',
+    about: 'I do karate 🥋 and read 📚. A lot!',
     twitter: 'marijanajdova',
     github: 'mnajdova',
   },
@@ -194,6 +205,7 @@ const teamMembers: Array<Profile> = [
     title: 'Advanced components team',
     location: 'Amsterdam, Netherlands',
     country: 'nl',
+    about: 'Boringly normal, geek deep down. I like 🚗  and 🏂',
     twitter: 'danail_h',
     github: 'DanailH',
   },
@@ -220,6 +232,7 @@ const teamMembers: Array<Profile> = [
     title: 'Core components team',
     location: 'Bangkok, Thailand',
     country: 'th',
+    about: 'UI Lover and ⛷ newbie.',
     twitter: 'siriwatknp',
     github: 'siriwatknp',
   },
@@ -228,7 +241,17 @@ const teamMembers: Array<Profile> = [
     src: '/static/branding/about/flavien.jpg',
     title: 'Advanced components team',
     location: 'Lille, France',
+    country: 'fr',
     github: 'flaviendelangle',
+  },
+  {
+    name: 'Benny Joo',
+    src: 'https://avatars.githubusercontent.com/u/32841130?v=4',
+    title: 'Intern',
+    location: 'London, UK',
+    country: 'kr',
+    about: 'I do keto diet and love reading 📚',
+    github: 'hbjORbj',
   },
 ];
 
@@ -264,7 +287,7 @@ const contributors = [
     location: 'Minnesota, United States',
     country: 'us',
     src: 'https://avatars.githubusercontent.com/u/287804',
-  }
+  },
 ];
 
 const emeriti = [
@@ -363,6 +386,10 @@ export default function About() {
   const mode = globalTheme.palette.mode;
   return (
     <ThemeProvider>
+      <Head
+        title="About Us - Material-UI"
+        description="Material-UI started back in 2014 to unify React and Material Design. Today, Material-UI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
+      />
       <CssBaseline />
       <AppHeader />
       <Container>
@@ -446,6 +473,9 @@ export default function About() {
               and involvement of the community.
             </Typography>
             <Button
+              component={Link}
+              noLinkStyle
+              href={ROUTES.careers}
               endIcon={<KeyboardArrowRightRounded fontSize="small" />}
               variant="contained"
               size="large"
@@ -517,7 +547,7 @@ export default function About() {
       </MuiThemeProvider>
       <Container sx={{ py: { xs: 4, md: 8 } }}>
         <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 } }}>
-          Our ultimate goal
+          How can you support us?
         </Typography>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={4}>
@@ -533,7 +563,10 @@ export default function About() {
                 structured feedback, you&apos;re always invinted to participate to share you
                 thoughts.
               </Typography>
-              <Link href="/" variant="body2">
+              <Link
+                href="https://github.com/mui-org/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc"
+                variant="body2"
+              >
                 Leave your feedback{' '}
                 <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
               </Link>
@@ -556,12 +589,38 @@ export default function About() {
                   pl: 2,
                 }}
               >
-                <li>Add new features by submitting a pull request.</li>
-                <li>Fix bugs or improve our documentation.</li>
-                <li>Help others bu reviewing and commenting on existing PRs and issues.</li>
-                <li>Help translate the documentation.</li>
+                <li>
+                  Add new features by{' '}
+                  <Link href="https://github.com/mui-org/material-ui/blob/HEAD/CONTRIBUTING.md#your-first-pull-request">
+                    submitting a pull request
+                  </Link>
+                  .
+                </li>
+                <li>
+                  Fix bugs or{' '}
+                  <Link href="https://github.com/mui-org/material-ui/tree/HEAD/docs">
+                    improve our documentation
+                  </Link>
+                  .
+                </li>
+                <li>
+                  Help others by reviewing and commenting on existing{' '}
+                  <Link href="https://github.com/mui-org/material-ui/pulls">PRs</Link> and{' '}
+                  <Link href="https://github.com/mui-org/material-ui/issues">issues</Link>.
+                </li>
+                <li>
+                  Help <Link href="https://translate.material-ui.com/">translate</Link> the
+                  documentation.
+                </li>
+                <li>
+                  Answer questions on{' '}
+                  <Link href="https://stackoverflow.com/questions/tagged/material-ui">
+                    StackOverflow
+                  </Link>
+                  .
+                </li>
               </Box>
-              <Link href="/" variant="body2">
+              <Link href="https://github.com/mui-org/material-ui" variant="body2">
                 See the repository <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
               </Link>
             </Paper>
@@ -581,7 +640,7 @@ export default function About() {
                 All funds donated are managed transparently, and Sponsors receive recognition in the
                 README and on the Material-UI home page.
               </Typography>
-              <Link href="/" variant="body2">
+              <Link href="https://opencollective.com/material-ui" variant="body2">
                 See Open Collective{' '}
                 <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
               </Link>
