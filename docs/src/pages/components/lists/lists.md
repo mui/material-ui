@@ -102,7 +102,7 @@ Virtualization helps with performance issues.
 The use of [react-window](https://github.com/bvaughn/react-window) when possible is encouraged.
 If this library doesn't cover your use case, you should consider using [react-virtualized](https://github.com/bvaughn/react-virtualized), then alternatives like [react-virtuoso](https://github.com/petyosi/react-virtuoso).
 
-## Customized List
+## Customization
 
 Here are some examples of customizing the component. You can learn more about this in the
 [overrides documentation page](/customization/how-to-customize/).

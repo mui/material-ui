@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
@@ -32,7 +31,7 @@ describe('@material-ui/codemod', () => {
             source: read('./link-underline-hover.test/expected.js'),
             path: require.resolve('./link-underline-hover.test/expected.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 

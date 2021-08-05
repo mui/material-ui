@@ -33,7 +33,7 @@
       "conditions": "<code>component=\"button\"</code>"
     },
     "focusVisible": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "the link is keyboard focused"
     }

@@ -47,7 +47,7 @@
       "conditions": "<code>variant=\"standard\"</code>"
     },
     "disabled": {
-      "description": "Pseudo-class applied to {{nodeName}}.",
+      "description": "State class applied to {{nodeName}}.",
       "nodeName": "the select component `disabled` class"
     },
     "icon": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the icon component" },

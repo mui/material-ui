@@ -115,7 +115,7 @@ Use `color` prop to apply theme color palette to component.
 
 {{"demo": "pages/components/buttons/IconButtonColors.js"}}
 
-## Customized buttons
+## Customization
 
 Here are some examples of customizing the component. You can learn more about this in the
 [overrides documentation page](/customization/how-to-customize/).

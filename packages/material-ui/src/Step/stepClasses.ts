@@ -9,7 +9,7 @@ export interface StepClasses {
   vertical: string;
   /** Styles applied to the root element if `alternativeLabel={true}`. */
   alternativeLabel: string;
-  /** Pseudo-class applied to the root element if `completed={true}`. */
+  /** State class applied to the root element if `completed={true}`. */
   completed: string;
 }
 
