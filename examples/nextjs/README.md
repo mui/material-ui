@@ -18,6 +18,7 @@ npm install
 npm run dev
 ```
 
+You can see a live version of this example project [here](https://material-ui.com/getting-started/templates/dashboard/).
 or:
 
 <!-- #default-branch-switch -->
