@@ -57,7 +57,7 @@ darkBrandingTheme = createTheme(darkBrandingTheme, {
 const CODES = [
   `const theme = createTheme({
   shape: {
-    borderRadius: 10,
+    borderRadius: 12,
   },`,
   `
   spacing: 10,`,
@@ -68,13 +68,13 @@ const CODES = [
   ],`,
   `
   typography: {
-    fontFamily: '"PlusJakartaSans", sans-serif',
+    fontFamily: '"IBM Plex Sans", sans-serif',
     fontWeightBold: 500,
   },`,
   `
   palette: {
     background: {
-      default: theme.palette.mode === 'dark' ? '#0A1929' : '#F3F6F9',
+      default: '#F3F6F9',
     },`,
   `
     divider: '#E5E8EC',`,
@@ -195,7 +195,7 @@ function TypeWriter({
           onStepComplete(step);
           clearInterval(time);
         }
-      }, 50);
+      }, 32);
       return () => {
         clearInterval(time);
       };
@@ -269,7 +269,7 @@ export default function CoreShowcase() {
     <ShowcaseContainer
       preview={
         <ThemeProvider theme={customTheme}>
-          <Box sx={{ minWidth: 300, width: '50%', maxWidth: '100%' }}>
+          <Box sx={{ minWidth: 300, width: '80%', maxWidth: '100%' }}>
             <MaterialDesignDemo />
           </Box>
         </ThemeProvider>
@@ -309,7 +309,7 @@ export default function CoreShowcase() {
                   <Button
                     size="small"
                     startIcon={<ReplayRounded fontSize="small" />}
-                    sx={{ ml: 'auto' }}
+                    sx={{ ml: 'auto', color: 'primary.400' }}
                     onClick={() => {
                       setStep(0);
                     }}
@@ -325,7 +325,24 @@ export default function CoreShowcase() {
               </Typography>
             )}
           </Box>
-          <Box ref={codeContainer} sx={{ px: 2, overflow: 'auto', flexGrow: 1 }}>
+          <Box
+            ref={codeContainer}
+            sx={{
+              px: 2,
+              overflow: 'auto',
+              flexGrow: 1,
+              scrollbarWidth: 'none' /* Firefox */,
+              '&::-webkit-scrollbar': {
+                display: 'none',
+              },
+              '& pre': {
+                scrollbarWidth: 'none' /* Firefox */,
+                '&::-webkit-scrollbar': {
+                  display: 'none',
+                },
+              },
+            }}
+          >
             <HighlightedCode component={MarkdownElement} code={codeImports} language="jsx" />
             {customized && <Box height={20} />}
             {customized && <TypeWriter step={step} codes={CODES} onStepComplete={updateTheme} />}

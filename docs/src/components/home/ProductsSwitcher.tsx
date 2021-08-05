@@ -40,7 +40,7 @@ function ProductItem({
         <Typography color="text.primary" variant="body2" fontWeight="bold">
           {name}
         </Typography>
-        <Typography color="text.secondary" variant="body2" fontWeight="regular">
+        <Typography color="text.secondary" variant="body2" fontWeight="regular" sx={{ my: 0.5 }}>
           {description}
         </Typography>
         <NextLink href={href} passHref>

@@ -35,11 +35,11 @@ ${themed ? `import { ThemeProvider, createTheme } from '@material-ui/core/styles
           }}
         >
           <Typography fontWeight="bold">Michael Scott</Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
             <LocationOn />
             Scranton, PA
           </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
             <BusinessRounded />
             Michael Scott
           </Typography>
@@ -103,11 +103,11 @@ export default function MaterialDesignDemo() {
           }}
         >
           <Typography fontWeight={600}>Michael Scott</Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
             <LocationOn />
             Scranton, PA
           </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
             <BusinessRounded />
             Michael Scott
           </Typography>

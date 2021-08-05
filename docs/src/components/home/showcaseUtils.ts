@@ -5,7 +5,7 @@ export const getMaterialThemeFrames = (theme: Theme) => {
   const frames: Array<ThemeOptions> = [
     {
       shape: {
-        borderRadius: 10,
+        borderRadius: 12,
       },
     },
     {
@@ -19,7 +19,7 @@ export const getMaterialThemeFrames = (theme: Theme) => {
     },
     {
       typography: {
-        fontFamily: '"PlusJakartaSans", sans-serif',
+        fontFamily: '"IBM Plex Sans", sans-serif',
         fontWeightBold: 500,
       },
     },
