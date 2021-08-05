@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useTheme, alpha } from '@material-ui/core/styles';
+import { alpha } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Button, { ButtonProps } from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
@@ -8,8 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import InfoRounded from '@material-ui/icons/InfoRounded';
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
-import SvgProductCore from 'docs/src/icons/SvgProductCore';
-import SvgProductAdvanced from 'docs/src/icons/SvgProductAdvanced';
+import IconImage from 'docs/src/components/icon/IconImage';
 
 const plans = {
   community: {
@@ -39,7 +38,7 @@ export function PlanName({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
         fontWeight="bold"
         sx={{ mb: 0.5, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
       >
-        {title} <img src={`/static/branding/pricing/block-${color}.svg`} alt="" />
+        {title} <IconImage name={`block-${color}`} />
       </Typography>
       <Typography variant="body2" color="text.secondary">
         {description}
@@ -101,18 +100,6 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
   );
 }
 
-const Status = ({ value }: { value: 'yes' | 'no' | 'wip' }) => {
-  const globalTheme = useTheme();
-  const mode = globalTheme.palette.mode;
-  let element = <img src={`/static/branding/pricing/yes-${mode}.svg`} alt="" />;
-  if (value === 'no') {
-    element = <img src={`/static/branding/pricing/no-${mode}.svg`} alt="" />;
-  }
-  if (value === 'wip') {
-    element = <img src={`/static/branding/pricing/time-${mode}.svg`} alt="" />;
-  }
-  return element;
-};
 const Info = ({ value, metadata }: { value: React.ReactNode; metadata?: string }) => {
   return (
     <React.Fragment>
@@ -184,17 +171,17 @@ const coreData = [
     <ColumnHead
       {...{ label: '@mui/unstyled', tooltip: 'Core components following Material Design.' }}
     />,
-    <Status value="yes" />,
-    <Status value="yes" />,
-    <Status value="yes" />,
+    <IconImage name="yes" />,
+    <IconImage name="yes" />,
+    <IconImage name="yes" />,
   ],
   [
     <ColumnHead
       {...{ label: '@mui/core', tooltip: 'CSS utilities for rapidly laying out custom designs.' }}
     />,
-    <Status value="yes" />,
-    <Status value="yes" />,
-    <Status value="yes" />,
+    <IconImage name="yes" />,
+    <IconImage name="yes" />,
+    <IconImage name="yes" />,
   ],
   [
     <ColumnHead
@@ -203,9 +190,9 @@ const coreData = [
         tooltip: 'The unstyled and headless (hooks) components version of @material-ui/core.',
       }}
     />,
-    <Status value="yes" />,
-    <Status value="yes" />,
-    <Status value="yes" />,
+    <IconImage name="yes" />,
+    <IconImage name="yes" />,
+    <IconImage name="yes" />,
   ],
 ];
 const advancedData = [
@@ -217,9 +204,9 @@ const advancedData = [
           'An improved version of the Table component. Available in the @material-ui/data-grid package.',
       }}
     />,
-    <Status value="yes" />,
-    <Status value="yes" />,
-    <Status value="yes" />,
+    <IconImage name="yes" />,
+    <IconImage name="yes" />,
+    <IconImage name="yes" />,
   ],
   [
     <ColumnHead
@@ -228,30 +215,30 @@ const advancedData = [
         tooltip: 'A powerful data table. Available in the @material-ui/x-grid package.',
       }}
     />,
-    <Status value="no" />,
-    <Status value="yes" />,
-    <Status value="yes" />,
+    <IconImage name="no" />,
+    <IconImage name="yes" />,
+    <IconImage name="yes" />,
   ],
-  [<ColumnHead {...{ label: 'Data Grid Updates' }} />, <Status value="no" />, '1 year', '1 year'],
+  [<ColumnHead {...{ label: 'Data Grid Updates' }} />, <IconImage name="no" />, '1 year', '1 year'],
   [
     <ColumnHead {...{ label: 'XGrid Advanced features' }} />,
-    <Status value="no" />,
-    <Status value="wip" />,
-    <Status value="wip" />,
+    <IconImage name="no" />,
+    <IconImage name="time" />,
+    <IconImage name="time" />,
   ],
   [
     <ColumnHead {...{ label: 'Date Range Picker' }} />,
-    <Status value="no" />,
-    <Status value="no" />,
-    <Status value="wip" />,
+    <IconImage name="no" />,
+    <IconImage name="no" />,
+    <IconImage name="time" />,
   ],
 ];
 const supportData = [
   [
     <ColumnHead {...{ label: 'Community' }} />,
-    <Status value="yes" />,
-    <Status value="yes" />,
-    <Status value="yes" />,
+    <IconImage name="yes" />,
+    <IconImage name="yes" />,
+    <IconImage name="yes" />,
   ],
   [
     <ColumnHead
@@ -261,9 +248,9 @@ const supportData = [
           'You can report an unlimited number of bugs and submit unlimited feature requests.',
       }}
     />,
-    <Status value="yes" />,
-    <Info value={<Status value="yes" />} metadata="Priority over Community" />,
-    <Info value={<Status value="yes" />} metadata="Priority over Pro" />,
+    <IconImage name="yes" />,
+    <Info value={<IconImage name="yes" />} metadata="Priority over Community" />,
+    <Info value={<IconImage name="yes" />} metadata="Priority over Pro" />,
   ],
   [
     <ColumnHead
@@ -273,15 +260,15 @@ const supportData = [
         tooltip: 'Get the advice you need, from the people who build the product.',
       }}
     />,
-    <Status value="no" />,
-    <Status value="no" />,
-    <Status value="wip" />,
+    <IconImage name="no" />,
+    <IconImage name="no" />,
+    <IconImage name="time" />,
   ],
   [
     <ColumnHead
       {...{ label: 'Support duration', tooltip: 'Included with initial license purchase.' }}
     />,
-    <Status value="no" />,
+    <IconImage name="no" />,
     <Info value="1 year" />,
     <Info value="1 year" />,
   ],
@@ -289,8 +276,8 @@ const supportData = [
     <ColumnHead
       {...{ label: 'Guaranteed response time', tooltip: 'Maximum lead time for each response.' }}
     />,
-    <Status value="no" />,
-    <Status value="no" />,
+    <IconImage name="no" />,
+    <IconImage name="no" />,
     <Info value="2 business days" metadata="1 business day (priority only)" />,
   ],
   [
@@ -301,8 +288,8 @@ const supportData = [
           'Ensure we have enough details in the ticket you submitted so our support team can work on it.',
       }}
     />,
-    <Status value="no" />,
-    <Status value="no" />,
+    <IconImage name="no" />,
+    <IconImage name="no" />,
     <Info value="4 hours" metadata="priority only" />,
   ],
   [
@@ -312,9 +299,9 @@ const supportData = [
         tooltip: 'Escalate your tickets to highest priority in our support queue.',
       }}
     />,
-    <Status value="no" />,
-    <Status value="no" />,
-    <Info value={<Status value="wip" />} metadata="priority only" />,
+    <IconImage name="no" />,
+    <IconImage name="no" />,
+    <Info value={<IconImage name="time" />} metadata="priority only" />,
   ],
 ];
 
@@ -334,6 +321,7 @@ export default function PricingTable() {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
+                justifyContent: 'center',
                 ...(colIndex % 2 === 0 && {
                   borderWidth: '0 1px 0 1px',
                   borderStyle: 'solid',
@@ -456,13 +444,13 @@ export default function PricingTable() {
         </Button>
       </Box>
       {renderRowHead({
-        startIcon: <SvgProductCore />,
+        startIcon: <IconImage name="product-core" />,
         endIcon: <KeyboardArrowRightRounded />,
         children: 'Core',
       })}
       {renderData(coreData)}
       {renderRowHead({
-        startIcon: <SvgProductAdvanced />,
+        startIcon: <IconImage name="product-advanced" />,
         endIcon: <KeyboardArrowRightRounded />,
         children: 'Advanced',
       })}
