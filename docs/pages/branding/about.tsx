@@ -447,6 +447,13 @@ const company = [
     twitter: 'siriwatknp',
     github: 'siriwatknp',
   },
+  {
+    name: 'Flavien Delangle',
+    src: '/static/branding/about/flavien.jpg',
+    title: 'Advanced components team',
+    location: 'Lille, France',
+    github: 'flaviendelangle',
+  },
 ];
 
 function BrandingCompany() {
@@ -505,6 +512,13 @@ const community = [
     title: '🇧🇷 Brazilian docs',
     location: 'São Paulo, Brazil',
     src: 'https://avatars.githubusercontent.com/u/29267813',
+  },
+  {
+    name: 'Ryan Cogswell',
+    github: 'ryancogswell',
+    title: 'Stack Overflow',
+    location: 'Minnesota, United States',
+    src: 'https://avatars.githubusercontent.com/u/287804',
   },
 ] as typeof emeriti;
 

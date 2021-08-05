@@ -29,11 +29,11 @@ export interface PaginationItemClasses {
   firstLast: string;
   /** Styles applyed to the root element if `type="previous"` or type="next". */
   previousNext: string;
-  /** Pseudo-class applied to the root element if keyboard focused. */
+  /** State class applied to the root element if keyboard focused. */
   focusVisible: string;
-  /** Pseudo-class applied to the root element if `disabled={true}`. */
+  /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
-  /** Pseudo-class applied to the root element if `selected={true}`. */
+  /** State class applied to the root element if `selected={true}`. */
   selected: string;
   /** Styles applied to the icon to display. */
   icon: string;

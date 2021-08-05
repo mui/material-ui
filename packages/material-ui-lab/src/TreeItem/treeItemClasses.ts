@@ -7,13 +7,13 @@ export interface TreeItemClasses {
   group: string;
   /** Styles applied to the content element. */
   content: string;
-  /** Pseudo-class applied to the content element when expanded. */
+  /** State class applied to the content element when expanded. */
   expanded: string;
-  /** Pseudo-class applied to the content element when selected. */
+  /** State class applied to the content element when selected. */
   selected: string;
-  /** Pseudo-class applied to the content element when focused. */
+  /** State class applied to the content element when focused. */
   focused: string;
-  /** Pseudo-class applied to the element when disabled. */
+  /** State class applied to the element when disabled. */
   disabled: string;
   /** Styles applied to the tree node icon. */
   iconContainer: string;

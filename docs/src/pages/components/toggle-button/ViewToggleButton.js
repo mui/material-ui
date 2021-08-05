@@ -22,6 +22,19 @@ const primary = {
   900: '#003A75',
 };
 
+const primaryDark = {
+  50: '#E2EDF8',
+  100: '#CEE0F3',
+  200: '#91B9E3',
+  300: '#5090D3',
+  400: '#265D97',
+  500: '#1E4976',
+  600: '#173A5E',
+  700: '#132F4C',
+  800: '#001E3C',
+  900: '#0A1929',
+};
+
 const grey = {
   50: '#F3F6F9',
   100: '#EAEEF3',
@@ -62,7 +75,7 @@ export default function ViewToggleButton() {
         palette: {
           mode,
           primary,
-          divider: mode === 'dark' ? primary[900] : grey[200],
+          divider: mode === 'dark' ? primaryDark[400] : grey[200],
           grey,
         },
         typography: {
@@ -82,7 +95,7 @@ export default function ViewToggleButton() {
           MuiToggleButtonGroup: {
             styleOverrides: {
               root: {
-                backgroundColor: mode === 'dark' ? primary[800] : '#fff',
+                backgroundColor: mode === 'dark' ? primaryDark[700] : '#fff',
               },
             },
           },
@@ -112,7 +125,7 @@ export default function ViewToggleButton() {
         aria-label="view"
       >
         {views.map((item) => (
-          <ToggleButton value={item} aria-label={item}>
+          <ToggleButton key={item} value={item} aria-label={item}>
             {viewIcons[item]}
           </ToggleButton>
         ))}

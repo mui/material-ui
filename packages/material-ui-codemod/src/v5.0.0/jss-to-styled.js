@@ -169,12 +169,22 @@ export default function transformer(file, api, options) {
       if (functionExpression.body.type === 'ObjectExpression') {
         return functionExpression.body;
       }
+      if (functionExpression.body.type === 'CallExpression') {
+        if (functionExpression.body.callee.name === 'createStyles') {
+          return functionExpression.body.arguments[0];
+        }
+      }
     }
     if (functionExpression.type === 'FunctionDeclaration') {
       const returnStatement = functionExpression.body.body.find(
         (b) => b.type === 'ReturnStatement',
       );
       return returnStatement.argument;
+    }
+    if (functionExpression.type === 'CallExpression') {
+      if (functionExpression.callee.name === 'createStyles') {
+        return functionExpression.arguments[0];
+      }
     }
     return null;
   }
@@ -287,10 +297,24 @@ export default function transformer(file, api, options) {
       .find(j.VariableDeclarator, { id: { name: stylesFnName } })
       .at(0)
       .forEach((path) => {
-        const objectExpression = getReturnStatement(path.node.init);
+        let fnArg = path.node.init;
+
+        const objectExpression = getReturnStatement(fnArg);
+        if (fnArg.type === 'ArrowFunctionExpression') {
+          if (fnArg.body.type === 'CallExpression') {
+            if (fnArg.body.callee.name === 'createStyles') {
+              fnArg.body = fnArg.body.arguments[0];
+            }
+          }
+        }
+        if (fnArg.type === 'CallExpression') {
+          if (fnArg.callee.name === 'createStyles') {
+            fnArg = fnArg.arguments[0];
+          }
+        }
         if (objectExpression) {
           result.classes = createClasses(objectExpression, prefix);
-          result.styledArg = convertToStyledArg(path.node.init, rootClassKeys);
+          result.styledArg = convertToStyledArg(fnArg, rootClassKeys);
         }
       })
       .remove();
@@ -312,11 +336,23 @@ export default function transformer(file, api, options) {
       .find(j.CallExpression, { callee: { name: 'makeStyles' } })
       .at(0)
       .forEach((path) => {
-        const arg = path.node.arguments[0];
+        let arg = path.node.arguments[0];
         if (arg.type === 'Identifier') {
           stylesFnName = arg.name;
         }
         const objectExpression = getReturnStatement(arg);
+        if (arg.type === 'ArrowFunctionExpression') {
+          if (arg.body.type === 'CallExpression') {
+            if (arg.body.callee.name === 'createStyles') {
+              arg.body = arg.body.arguments[0];
+            }
+          }
+        }
+        if (arg.type === 'CallExpression') {
+          if (arg.callee.name === 'createStyles') {
+            arg = arg.arguments[0];
+          }
+        }
         if (objectExpression) {
           result.classes = createClasses(objectExpression, prefix);
           result.styledArg = convertToStyledArg(arg, rootClassKeys);
@@ -415,11 +451,16 @@ export default function transformer(file, api, options) {
   root
     .find(j.ImportDeclaration)
     .filter((path) =>
-      path.node.source.value.match(/^@material-ui\/styles\/?(withStyles|makeStyles)?$/),
+      path.node.source.value.match(
+        /^@material-ui\/styles\/?(withStyles|makeStyles|createStyles)?$/,
+      ),
     )
     .forEach((path) => {
       path.node.specifiers = path.node.specifiers.filter(
-        (s) => s.local.name !== 'withStyles' && s.local.name !== 'makeStyles',
+        (s) =>
+          s.local.name !== 'withStyles' &&
+          s.local.name !== 'makeStyles' &&
+          s.local.name !== 'createStyles',
       );
     })
     .filter((path) => !path.node.specifiers.length)

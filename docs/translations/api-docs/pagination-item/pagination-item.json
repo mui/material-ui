@@ -77,17 +77,17 @@
       "description": "Styles applyed to the root element if `type=\"previous\"` or type=\"next\"."
     },
     "focusVisible": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "keyboard focused"
     },
     "disabled": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
     "selected": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>selected={true}</code>"
     },

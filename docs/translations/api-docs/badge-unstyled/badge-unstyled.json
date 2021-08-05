@@ -71,7 +71,7 @@
       "conditions": "<code>anchorOrigin={{ 'bottom', 'left' }} overlap=\"circular\"</code>"
     },
     "invisible": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the badge `span` element",
       "conditions": "<code>invisible={true}</code>"
     }

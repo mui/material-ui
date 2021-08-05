@@ -57,7 +57,7 @@ we allow such pattern.
 The `TextField` wrapper component is a complete form control including a label, input and help text.
 You can find an example with the select mode [in this section](/components/text-fields/#select).
 
-## Customized selects
+## Customization
 
 Here are some examples of customizing the component. You can learn more about this in the
 [overrides documentation page](/customization/how-to-customize/).
