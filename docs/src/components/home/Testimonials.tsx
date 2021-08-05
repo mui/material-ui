@@ -34,7 +34,7 @@ const UserFeedback = ({
 }) => {
   return (
     <div>
-      <Typography variant="subtitle1" color="#fff" sx={{ mb: 2 }}>
+      <Typography variant="subtitle1" color={mode === 'dark' ? '#fff' : 'grey.900'} sx={{ mb: 2 }}>
         {quote}
       </Typography>
       <Box sx={{ display: 'flex' }}>

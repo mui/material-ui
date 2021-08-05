@@ -385,7 +385,7 @@ export default function PricingTable() {
         gridTemplateColumns: '1fr repeat(3, minmax(220px, 1fr))',
       }}
     >
-      <Typography variant="body2" fontWeight="bold">
+      <Typography variant="body2" fontWeight="bold" sx={{ p: 2 }}>
         Plans
       </Typography>
       <Box sx={{ display: 'flex', flexDirection: 'column', p: 2 }}>
