@@ -163,7 +163,7 @@ export default function Hero() {
                       opacity: 1,
                     },
                   },
-                  '& *': {
+                  '&& *': {
                     fontFamily: [
                       '"IBM Plex Sans"',
                       '-apple-system',
