@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ThemeProvider as MuiThemeProvider, createTheme } from '@material-ui/core/styles';
+import GlobalStyles from '@material-ui/core/GlobalStyles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { getDesignTokens, getThemedComponents } from './brandingTheme';
@@ -64,6 +65,15 @@ const ThemeProvider = ({ children }: React.PropsWithChildren<{}>) => {
   }, [paletteMode]);
   return (
     <MuiThemeProvider theme={theme}>
+      <GlobalStyles
+        styles={{
+          html: {
+            a: {
+              textDecoration: 'unset',
+            },
+          },
+        }}
+      />
       <DispatchContext.Provider value={dispatch}>{children}</DispatchContext.Provider>
     </MuiThemeProvider>
   );
