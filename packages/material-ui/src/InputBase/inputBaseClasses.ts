@@ -13,7 +13,7 @@ export interface InputBaseClasses {
   adornedStart: string;
   /** Styles applied to the root element if `endAdornment` is provided. */
   adornedEnd: string;
-  /** Pseudo-class applied to the root element if `error={true}`. */
+  /** State class applied to the root element if `error={true}`. */
   error: string;
   /** Styles applied to the input element if `size="small"`. */
   sizeSmall: string;
