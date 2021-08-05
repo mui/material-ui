@@ -6,22 +6,24 @@ import MasonryItem from '@material-ui/lab/MasonryItem';
 
 export default function DiffColSizeMasonry() {
   return (
-    <Masonry columns={4} spacing={1} sx={{ width: 500 }}>
-      {itemData.map((item, index) => (
-        <MasonryItem key={index} columnSpan={item.span}>
-          <Box
-            sx={{
-              textAlign: 'center',
-              height: item.height,
-              border: 1,
-              bgcolor: 'background.paper',
-            }}
-          >
-            {index + 1}
-          </Box>
-        </MasonryItem>
-      ))}
-    </Masonry>
+    <Box sx={{ width: 500 }}>
+      <Masonry columns={4} spacing={1}>
+        {itemData.map((item, index) => (
+          <MasonryItem key={index} columnSpan={item.span}>
+            <Box
+              sx={{
+                textAlign: 'center',
+                height: item.height,
+                border: 1,
+                bgcolor: 'background.paper',
+              }}
+            >
+              {index + 1}
+            </Box>
+          </MasonryItem>
+        ))}
+      </Masonry>
+    </Box>
   );
 }
 

@@ -6,22 +6,24 @@ import MasonryItem from '@material-ui/lab/MasonryItem';
 
 export default function FixedSpacing() {
   return (
-    <Masonry columns={3} spacing={3} sx={{ width: 500, height: 300 }}>
-      {heights.map((height, index) => (
-        <MasonryItem key={index}>
-          <Box
-            sx={{
-              textAlign: 'center',
-              height,
-              border: 1,
-              bgcolor: 'background.paper',
-            }}
-          >
-            {index + 1}
-          </Box>
-        </MasonryItem>
-      ))}
-    </Masonry>
+    <Box sx={{ width: 500 }}>
+      <Masonry columns={3} spacing={3}>
+        {heights.map((height, index) => (
+          <MasonryItem key={index}>
+            <Box
+              sx={{
+                textAlign: 'center',
+                height,
+                border: 1,
+                bgcolor: 'background.paper',
+              }}
+            >
+              {index + 1}
+            </Box>
+          </MasonryItem>
+        ))}
+      </Masonry>
+    </Box>
   );
 }
 

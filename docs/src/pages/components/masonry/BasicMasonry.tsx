@@ -6,22 +6,24 @@ import MasonryItem from '@material-ui/lab/MasonryItem';
 
 export default function BasicMasonry() {
   return (
-    <Masonry columns={4} spacing={1} sx={{ width: 500 }}>
-      {heights.map((height, index) => (
-        <MasonryItem key={index}>
-          <Box
-            sx={{
-              textAlign: 'center',
-              height,
-              border: 1,
-              bgcolor: 'background.paper',
-            }}
-          >
-            {index + 1}
-          </Box>
-        </MasonryItem>
-      ))}
-    </Masonry>
+    <Box sx={{ width: 500 }}>
+      <Masonry columns={4} spacing={1}>
+        {heights.map((height, index) => (
+          <MasonryItem key={index}>
+            <Box
+              sx={{
+                textAlign: 'center',
+                height,
+                border: 1,
+                bgcolor: 'background.paper',
+              }}
+            >
+              {index + 1}
+            </Box>
+          </MasonryItem>
+        ))}
+      </Masonry>
+    </Box>
   );
 }
 
