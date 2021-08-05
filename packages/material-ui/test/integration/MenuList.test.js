@@ -445,6 +445,30 @@ describe('<MenuList> integration', () => {
       expect(getByText('Arizona')).toHaveFocus();
     });
 
+    it('should support repeating initial character', () => {
+      const { getAllByRole, getByText } = render(
+        <MenuList>
+          <MenuItem>Arizona</MenuItem>
+          <MenuItem>aardvark</MenuItem>
+          <MenuItem>Colorado</MenuItem>
+          <MenuItem>Argentina</MenuItem>
+        </MenuList>,
+      );
+      const menuitems = getAllByRole('menuitem');
+      act(() => {
+        menuitems[0].focus();
+      });
+
+      fireEvent.keyDown(getByText('Arizona'), { key: 'a' });
+      expect(getByText('aardvark')).toHaveFocus();
+
+      fireEvent.keyDown(getByText('aardvark'), { key: 'a' });
+      expect(getByText('Argentina')).toHaveFocus();
+
+      fireEvent.keyDown(getByText('Argentina'), { key: 'r' });
+      expect(getByText('aardvark')).toHaveFocus();
+    });
+
     it('selects the next item starting with the typed character', () => {
       const { getByText } = render(
         <MenuList>
