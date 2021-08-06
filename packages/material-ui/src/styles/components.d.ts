@@ -568,6 +568,5 @@ export interface Components {
   };
   MuiUseMediaQuery?: {
     defaultProps?: ComponentsProps['MuiUseMediaQuery'];
-    variants?: ComponentsVariants['MuiUseMediaQuery'];
   };
 }
