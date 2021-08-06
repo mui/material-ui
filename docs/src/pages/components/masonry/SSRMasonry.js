@@ -13,7 +13,6 @@ export default function SSRMasonry() {
             <Box
               sx={{
                 textAlign: 'center',
-                height: '100%',
                 border: 1,
                 bgcolor: 'background.paper',
               }}

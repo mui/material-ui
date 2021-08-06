@@ -60,8 +60,6 @@ However, you have to choose the value of `columnSpan` for each item carefully or
 
 ## Server-side rendering
 
-By passing `height` to `<MasonryItem />`, you can use server-side rendering.
-You should either set `height: 100%` or a fixed height equivalent to `height` to the content of `<MasonryItem />`.
-Otherwise, there will be unwanted gap between `<MasonryItem />` and the content that you pass to it.
+By passing `height` to `<MasonryItem />`, you can use server-side rendering. By default, `height: 100%` will be set to the content of `<MasonryItem />`. If you change this, there can be unwanted gap between `<MasonryItem />` and the content that you pass to it.
 
 {{"demo": "pages/components/masonry/SSRMasonry.js", "bg": true}}

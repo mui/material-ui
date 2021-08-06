@@ -30,6 +30,7 @@ export const style = ({ styleProps, theme }) => {
       // all contents should have a width of 100%
       width: '100%',
       boxSizing: 'inherit',
+      ...(styleProps.isSSR && { height: '100%' }),
     },
     visibility: styleProps.height ? 'visible' : 'hidden',
     gridColumnEnd: `span ${styleProps.columnSpan}`,
@@ -46,8 +47,8 @@ export const style = ({ styleProps, theme }) => {
   const transformer = createUnarySpacing(theme);
   const styleFromPropValue = (propValue) => {
     const gap = styleProps.height ? Number(getValue(transformer, propValue).replace('px', '')) : 0;
-    // for lazy-loaded images to load properly, they should take up space greater than 1px
-    // taking into account a row gap of 1px, rowSpan should at least be 3
+    // For lazy-loaded images to load properly, masonry item should take up space greater than 1px.
+    // Taking into account a row gap of 1px, rowSpan should at least be 3.
     const rowSpan = styleProps.height ? Math.ceil(styleProps.height + gap) : 3;
     return {
       gridRowEnd: `span ${rowSpan}`,
@@ -77,8 +78,10 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
 
   const { spacing = 1 } = React.useContext(MasonryContext);
   const { children, className, component = 'div', columnSpan = 1, height, ...other } = props;
+  const isSSR = height !== undefined;
   const [styleProps, setStyleProps] = React.useState({
     ...props,
+    isSSR,
     spacing,
     columnSpan,
     height: height < 0 ? 0 : height, // MasonryItems to which negative or zero height is passed will be hidden
@@ -88,7 +91,7 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
   const resizeObserver = React.useRef(null);
   React.useEffect(() => {
     // do not create a resize observer in case of SSR masonry
-    if (height !== undefined) {
+    if (isSSR) {
       return true;
     }
     const handleError = () => {
@@ -111,11 +114,11 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
       observer.unobserve(item);
       item.removeEventListener('error', handleError);
     };
-  }, [height, styleProps]);
+  }, [isSSR, styleProps]);
 
   React.useEffect(() => {
     // handle responsiveness to `height` prop in case of SSR masonry
-    if (height !== undefined && height !== styleProps.height) {
+    if (isSSR && height !== styleProps.height) {
       setStyleProps({
         ...styleProps,
         height: height < 0 ? 0 : height,
@@ -129,7 +132,7 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
     if (columnSpan !== styleProps.columnSpan) {
       setStyleProps({ ...styleProps, columnSpan });
     }
-  }, [height, spacing, columnSpan, styleProps]);
+  }, [isSSR, height, spacing, columnSpan, styleProps]);
 
   const handleRef = useForkRef(ref, masonryItemRef);
   return (
