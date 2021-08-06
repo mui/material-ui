@@ -20,18 +20,20 @@ Pour qu'un composant soit prêt à être déplacer dans le noyau, les critères 
 Installez le package dans votre répertoire de projet avec:
 
 ```sh
+// Avec npm
 npm install @material-ui/lab@next
-```
-```sh
+
+// Avec yarn
 yarn add @material-ui/lab@next
 ```
 
 Le laboratoire dépend des composants du package principal. Si vous n'utilisez pas encore Material-UI dans votre projet, vous pouvez l'installer avec:
 
 ```sh
+// Avec npm
 npm install @material-ui/core@next
-```
-```sh
+
+// Avec yarn
 yarn add @material-ui/core@next
 ```
 

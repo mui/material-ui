@@ -26,9 +26,10 @@ A solução de estilo do Material-UI é inspirada em muitas outras bibliotecas d
 Para instalar e salvar em suas dependências do `package.json`, execute:
 
 ```sh
+// utilizando o npm
 npm install @material-ui/styles
-```
-```sh
+
+// utilizando o yarn
 yarn add @material-ui/styles
 ```
 

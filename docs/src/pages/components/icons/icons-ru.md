@@ -24,9 +24,10 @@ Google has created over 1,700 official Material icons, each in five different "t
 Установите пакет в каталог проекта командой:
 
 ```sh
+// через npm
 npm install @material-ui/icons
-```
-```sh
+
+// через yarn
 yarn add @material-ui/icons
 ```
 
@@ -35,9 +36,10 @@ These components use the Material-UI `SvgIcon` component to render the SVG path 
 If you aren't already using Material-UI in your project, you can add it with:
 
 ```sh
+// для npm
 npm install @material-ui/core
-```
-```sh
+
+// для yarn
 yarn add @material-ui/core
 ```
 

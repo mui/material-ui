@@ -26,9 +26,10 @@ Material-UI's styling solution is inspired by many other styling libraries such 
 Para instalarlo y guardarlo en las dependencias de tu ` package.json `, ejecuta:
 
 ```sh
+// with npm
 npm install @material-ui/styles
-```
-```sh
+
+// with yarn
 yarn add @material-ui/styles
 ```
 

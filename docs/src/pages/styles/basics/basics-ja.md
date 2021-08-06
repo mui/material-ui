@@ -26,9 +26,10 @@ Material-UI's styling solution is inspired by many other styling libraries such 
 次のコマンドを実行してください。これで、あなたの`package.json` に保存できます。
 
 ```sh
+// with npm
 npm install @material-ui/styles
-```
-```sh
+
+// with yarn
 yarn add @material-ui/styles
 ```
 

@@ -20,18 +20,20 @@ Para que um componente esteja pronto para ir para o core, são considerados os s
 Instale o pacote no diretório do seu projeto com:
 
 ```sh
+// usando npm
 npm install @material-ui/lab
-```
-```sh
+
+// usando yarn
 yarn add @material-ui/lab
 ```
 
 O lab tem dependências com os componentes do core. Se você ainda não está utilizando o Material-UI em seu projeto, poderá instalá-lo com:
 
 ```sh
+// usando npm
 npm install @material-ui/core
-```
-```sh
+
+// usando yarn
 yarn add @material-ui/core
 ```
 

@@ -27,18 +27,14 @@ Material-UI 这个项目是从[4年前](https://github.com/mui-org/material-ui/c
 
 ```sh
 yarn add material-ui
-```
-```sh
-yarn add @material-ui/core
+  yarn add @material-ui/core
 ```
 
 或者用 npm：
 
 ```sh
 npm install material-ui
-```
-```sh
-npm install @material-ui/core
+  npm install @material-ui/core
 ```
 
 然后

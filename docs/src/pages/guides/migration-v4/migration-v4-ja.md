@@ -34,8 +34,9 @@ Or run
 
 ```sh
 npm install @material-ui/core@next @emotion/react @emotion/styled
-```
-```sh
+
+or
+
 yarn add @material-ui/core@next @emotion/react @emotion/styled
 ```
 

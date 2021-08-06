@@ -20,18 +20,20 @@ Damit eine Komponente zum Kern (Core) übergehen kann, werden folgende Kriterien
 Installieren Sie das Paket innerhalb des Projektordners mit:
 
 ```sh
+// mit npm
 npm install @material-ui/lab
-```
-```sh
+
+// mit yarn
 yarn add @material-ui/lab
 ```
 
 Das Labor hat eine Peer-Abhängigkeit von den Kernkomponenten. Wenn Sie in Ihrem Projekt noch keine Material-UI verwenden, können Sie es mit folgendem installieren:
 
 ```sh
+// mit npm
 npm install @material-ui/core
-```
-```sh 
+
+// mit yarn
 yarn add @material-ui/core
 ```
 

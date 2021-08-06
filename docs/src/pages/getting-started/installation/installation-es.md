@@ -9,9 +9,10 @@ Material-UI está disponible como un [ paquete npm ](https://www.npmjs.com/packa
 Para instalarlo y guardarlo en las dependencias de tu ` package.json `, ejecuta:
 
 ```sh
+// with npm
 npm install @material-ui/core@next @emotion/react @emotion/styled
-```
-```sh
+
+// with yarn
 yarn add @material-ui/core@next @emotion/react @emotion/styled
 ```
 
@@ -22,9 +23,10 @@ Ten en cuenta que [ react ](https://www.npmjs.com/package/react) > = 17.0.0 y [ 
 Or if you want to use `styled-components` as a styling engine:
 
 ```sh
+// with npm
 npm install @material-ui/core@next @material-ui/styled-engine-sc@next styled-components
-```
-```sh
+
+// with yarn
 yarn add @material-ui/core@next @material-ui/styled-engine-sc@next styled-components
 ```
 
@@ -51,9 +53,10 @@ To use the font `Icon` component, you must first add the [Material icons](https:
 Para poder utilizar los íconos SVG Material precompilados, como los que se encuentran en los [demos de íconos](/components/icons/), primero debes instalar el paquete [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons):
 
 ```sh
+// usando npm
 npm install @material-ui/icons
-```
-```sh
+
+// usando yarn
 yarn add @material-ui/icons
 ```
 
