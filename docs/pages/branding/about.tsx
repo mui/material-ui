@@ -220,6 +220,7 @@ const teamMembers: Array<Profile> = [
     title: 'Advanced components team',
     location: 'Esteio, Brazil',
     country: 'br',
+    about: 'I like road cycling 🚲, DIY 🛠 and aviation ✈!',
     github: 'm4theushw',
   },
   {
