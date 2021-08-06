@@ -96,7 +96,7 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
     }
     const handleError = () => {
       const src = masonryItemRef.current.firstChild.src;
-      masonryItemRef.current.firstChild.src = src;
+      masonryItemRef.current.firstChild.src = `${src}?${new Date().getTime()}`;
     };
     resizeObserver.current = new ResizeObserver(([item]) => {
       if (styleProps.height !== item.contentRect.height) {
