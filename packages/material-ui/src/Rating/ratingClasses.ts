@@ -11,9 +11,9 @@ export interface RatingClasses {
   sizeLarge: string;
   /** Styles applied to the root element if `readOnly={true}`. */
   readOnly: string;
-  /** Pseudo-class applied to the root element if `disabled={true}`. */
+  /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
-  /** Pseudo-class applied to the root element if keyboard focused. */
+  /** State class applied to the root element if keyboard focused. */
   focusVisible: string;
   /** Visually hide an element. */
   visuallyHidden: string;

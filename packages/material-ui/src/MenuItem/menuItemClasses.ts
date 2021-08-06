@@ -3,17 +3,17 @@ import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unsty
 export interface MenuItemClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Pseudo-class applied to the root element if keyboard focused. */
+  /** State class applied to the root element if keyboard focused. */
   focusVisible: string;
   /** Styles applied to the root element if dense. */
   dense: string;
-  /** Pseudo-class applied to the root element if `disabled={true}`. */
+  /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
   /** Styles applied to the root element if `divider={true}`. */
   divider: string;
   /** Styles applied to the inner `component` element unless `disableGutters={true}`. */
   gutters: string;
-  /** Pseudo-class applied to the root element if `selected={true}`. */
+  /** State class applied to the root element if `selected={true}`. */
   selected: string;
 }
 

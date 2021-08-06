@@ -1,14 +1,32 @@
 import { expect } from 'chai';
-import { getContents, getDescription, getHeaders, prepareMarkdown } from './parseMarkdown';
+import {
+  getContents,
+  getDescription,
+  getTitle,
+  getHeaders,
+  prepareMarkdown,
+} from './parseMarkdown';
 
 describe('parseMarkdown', () => {
+  describe('getTitle', () => {
+    it('remove backticks', () => {
+      expect(
+        getTitle(`
+# \`@material-ui/styled-engine\`
+
+<p class="description">Configuring your preferred styling library.</p>
+      `),
+      ).to.equal('@material-ui/styled-engine');
+    });
+  });
+
   describe('getDescription', () => {
     it('trims the description', () => {
       expect(
         getDescription(`
-        <p class="description">
-          Some description
-        </p>
+<p class="description">
+  Some description
+</p>
       `),
       ).to.equal('Some description');
     });
@@ -16,11 +34,11 @@ describe('parseMarkdown', () => {
     it('should not be greedy', () => {
       expect(
         getDescription(`
-        <p class="description">
-          Some description
-        </p>
-        ## Foo
-        <p>bar</p>
+<p class="description">
+  Some description
+</p>
+## Foo
+<p>bar</p>
       `),
       ).to.equal('Some description');
     });

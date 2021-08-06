@@ -202,13 +202,11 @@
   },
   "nyc": {
     "include": [
-      "packages/material-ui/src/**/*.js",
-      "packages/material-ui/lab/**/*.{ts,tsx}",
-      "packages/material-ui-utils/src/**/*.js",
-      "packages/material-ui-styles/src/**/*.js"
+      "packages/material-ui*/src/**/*.{js,ts,tsx}"
     ],
     "exclude": [
-      "**/*.test.{js,ts,tsx}"
+      "**/*.test.{js,ts,tsx}",
+      "**/*.test/*"
     ],
     "sourceMap": false,
     "instrument": false

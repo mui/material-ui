@@ -53,19 +53,6 @@ function formatSize(size) {
   return `${(kb / 1000).toFixed(0)} MB`;
 }
 
-const grey = {
-  50: '#F3F6F9',
-  100: '#EAEEF3',
-  200: '#E5E8EC',
-  300: '#D7DCE1',
-  400: '#BFC7CF',
-  500: '#AAB4BE',
-  600: '#96A3B0',
-  700: '#8796A5',
-  800: '#5A6978',
-  900: '#3D4752',
-};
-
 const primary = {
   50: '#F0F7FF',
   100: '#C2E0FF',
@@ -78,7 +65,32 @@ const primary = {
   700: '#0059B2',
   800: '#004C99',
   900: '#003A75',
-  1000: '#132F4C',
+};
+
+const primaryDark = {
+  50: '#E2EDF8',
+  100: '#CEE0F3',
+  200: '#91B9E3',
+  300: '#5090D3',
+  400: '#265D97',
+  500: '#1E4976',
+  600: '#173A5E',
+  700: '#132F4C',
+  800: '#001E3C',
+  900: '#0A1929',
+};
+
+const grey = {
+  50: '#F3F6F9',
+  100: '#EAEEF3',
+  200: '#E5E8EC',
+  300: '#D7DCE1',
+  400: '#BFC7CF',
+  500: '#AAB4BE',
+  600: '#96A3B0',
+  700: '#8796A5',
+  800: '#5A6978',
+  900: '#3D4752',
 };
 
 export default function BasicTable() {
@@ -103,12 +115,12 @@ export default function BasicTable() {
               secondary: grey[600],
             },
           }),
-          divider: mode === 'dark' ? primary[1000] : grey[200],
+          divider: mode === 'dark' ? primaryDark[400] : grey[200],
           success: {
             main: mode === 'dark' ? '#21CC66' : '#1AA251',
           },
           background: {
-            paper: mode === 'dark' ? primary[900] : '#fff',
+            paper: mode === 'dark' ? primaryDark[700] : '#fff',
           },
         },
         typography: {
@@ -123,7 +135,7 @@ export default function BasicTable() {
           MuiTableCell: {
             styleOverrides: {
               root: {
-                borderColor: mode === 'dark' ? primary[1000] : grey[200],
+                borderColor: mode === 'dark' ? primaryDark[400] : grey[200],
               },
               sizeSmall: {
                 padding: '0.625rem 1rem',
