@@ -100,7 +100,6 @@ const AppBarRoot = styled(Paper, {
         backgroundColor: null,
         color: null,
       }),
-    /* Styles applied to the root element if `color="transparent"`. */
     ...(styleProps.color === 'transparent' && {
       backgroundColor: 'transparent',
       color: 'inherit',
