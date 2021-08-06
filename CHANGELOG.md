@@ -8,8 +8,7 @@ _Aug 6, 2021_
 
 Big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
-- <!-- 28 --> ✨ Improve `jss-to-styled` codemod to support `createStyles` usage (#27578) @mnajdova
-- <!-- 23 --> 📦 We make a good progress on the Unstyled package with `FormControl` and `useAutocomplete` (#27485) @michaldudak
+- <!-- 28 --> ✨ `jss-to-styled` codemod has been improved to support `createStyles` and `<React.Fragment>` usage (#27578) @mnajdova
 
 ### `@material-ui/core@5.0.0-beta.3`
 
@@ -25,7 +24,6 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 ### `@material-ui/unstyled@5.0.0-alpha.42`
 
 - <!-- 13 --> [FormControl] Create FormControlUnstyled (#27240) @michaldudak
-- <!-- 36 --> [Autocomplete] Move useAutocomplete to the Unstyled package - part 2 (#27524) @michaldudak
 - <!-- 23 --> [Autocomplete] Move useAutocomplete to the Unstyled package (#27485) @michaldudak
 
 ### Docs
@@ -48,7 +46,7 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 - <!-- 29 --> [examples] Update create-react-app examples with styled-components to use package aliases (#27591) @mnajdova
 - <!-- 09 --> [examples] Improve integration examples with Next.js (#27331) @Harshita-Kanal
 - <!-- 37 --> [website] Add spicefactory as gold sponsor @oliviertassinari
-- <!-- 30 --> [website] homepage rebranding (#27488) @siriwatknp
+- <!-- 30 --> [website] Homepage rebranding (#27488) @siriwatknp
 - <!-- 24 --> [website] Add Flavien to team and about pages (#27575) @flaviendelangle
 - <!-- 17 --> [website] Add Ryan to Community contributors for Stack Overflow contributions (#27529) @ryancogswell
 - <!-- 02 --> [website] Add references section to home (#27444) @siriwatknp
