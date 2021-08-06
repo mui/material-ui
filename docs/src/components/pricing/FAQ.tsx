@@ -184,7 +184,7 @@ export default function FAQ() {
     return (
       <Accordion variant="outlined">
         <AccordionSummary
-          expandIcon={<KeyboardArrowDownRounded sx={{ fontSize: 16, color: 'primary.main' }} />}
+          expandIcon={<KeyboardArrowDownRounded sx={{ fontSize: 20, color: 'primary.main' }} />}
         >
           <Typography variant="body2" fontWeight="bold">
             {faq.summary}
@@ -204,7 +204,7 @@ export default function FAQ() {
     );
   }
   return (
-    <Container sx={{ py: 4 }}>
+    <Container sx={{ py: 8 }}>
       <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>
         Frequently asked questions
       </Typography>
@@ -229,9 +229,11 @@ export default function FAQ() {
               borderStyle: 'dashed',
               borderColor: (theme) =>
                 theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
+              bgcolor: (theme) =>
+                theme.palette.mode === 'dark' ? 'primaryDark.800' : 'white',
             }}
           >
-            <Box sx={{ maxWidth: 250, mx: 'auto' }}>
+            <Box sx={{ maxWidth: 250, mx: 'auto', }}>
               <Typography variant="body2" color="text.primary" fontWeight="bold">
                 Got any questions unanswered or need more help?
               </Typography>
@@ -244,7 +246,7 @@ export default function FAQ() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Contact sales <KeyboardArrowRightRounded />
+                Contact sales <KeyboardArrowRightRounded fontSize="small" />
               </Link>
             </Box>
           </Paper>

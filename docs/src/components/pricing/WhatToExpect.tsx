@@ -19,7 +19,7 @@ const Icon = ({ name }: { name: string }) => (
 
 export default function WhatToExpect() {
   return (
-    <Container sx={{ py: 4 }}>
+    <Container sx={{ py: 8 }}>
       <Typography
         variant="h2"
         sx={{ maxWidth: { xs: 280, sm: 320, md: 400 }, mb: { xs: 2, sm: 4 } }}

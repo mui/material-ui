@@ -37,7 +37,7 @@ export function PlanName({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
       <Typography
         variant="body2"
         fontWeight="bold"
-        sx={{ mb: 0.5, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+        sx={{ mb: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
       >
         {title} <IconImage name={`block-${color}` as IconImageProps['name']} />
       </Typography>
@@ -70,7 +70,9 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
           color="error.main"
           sx={{
             borderRadius: 0.5,
-            bgcolor: 'error.200',
+            bgcolor: (theme) =>
+                theme.palette.mode === 'dark' ? 'error.900' : 'error.300',
+            // bgcolor: 'error.200',
             textDecoration: 'line-through',
             p: '4px',
           }}
@@ -108,7 +110,7 @@ const Info = ({ value, metadata }: { value: React.ReactNode; metadata?: string }
       {metadata && (
         <Typography
           variant="caption"
-          color="text.secondary"
+          color="text.gray800"
           fontWeight="normal"
           sx={{ display: 'block', mt: 0.5 }}
         >
@@ -186,8 +188,8 @@ const Recommended = (props: BoxProps) => (
       p: '2px 8px',
       border: '1px solid',
       borderRadius: 2,
-      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'primary.200'),
-      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.50'),
+      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primary.700' : 'primary.200'),
+      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.50'),
       position: 'absolute',
       top: 0,
       left: 20,
@@ -204,9 +206,13 @@ const Cell = ({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
     {...props}
     sx={{
       py: 2,
+      pl: 2,
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center',
+      alignItems: {
+        xs: 'center',
+        md: 'flex-start',
+      },
       justifyContent: 'center',
       ...(highlighted && {
         borderWidth: '0 1px 0 1px',

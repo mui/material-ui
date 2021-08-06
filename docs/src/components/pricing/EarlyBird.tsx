@@ -2,11 +2,10 @@ import * as React from 'react';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import { width } from '@material-ui/system';
 
 export default function EarlyBird() {
   return (
-    <Container sx={{ py: 4, pt: 0 }}>
+    <Container sx={{ py: 8, pt: 2 }}>
       <Box
         sx={{
           borderRadius: 1,

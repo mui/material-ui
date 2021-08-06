@@ -58,7 +58,7 @@ const UserFeedback = ({
             sx={{ mb: 1 }}
           >
             {profile.name},{' '}
-            <Box component="span" sx={{ color: 'grey.500', fontWeight: 'regular' }}>
+            <Box component="span" sx={{ color: 'grey.700', fontWeight: 'regular' }}>
               {profile.role}
             </Box>
           </Typography>

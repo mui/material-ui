@@ -22,7 +22,7 @@ export default function Pricing() {
       <HeroPricing />
       <PricingList /> {/* Mobile, Tablet */}
       <Container sx={{ display: { xs: 'none', md: 'block' } }}>
-        <PricingTable /> {/* Laptop */}
+        <PricingTable /> {/* Desktop */}
       </Container>
       <EarlyBird />
       <Testimonials />
