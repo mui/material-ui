@@ -242,7 +242,7 @@ const teamMembers: Array<Profile> = [
     github: 'siriwatknp',
   },
   {
-    name: 'Danilo Leal',
+    name: 'Danilo B',
     src: '/static/branding/about/danilo.jpg',
     title: 'Design Lead',
     location: 'São Paulo, Brazil',
