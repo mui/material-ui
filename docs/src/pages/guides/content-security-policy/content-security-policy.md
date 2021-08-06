@@ -20,7 +20,8 @@ You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/
 
 ### Server-Side Rendering (SSR)
 
-To use CSP with Material-UI (and emotion), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request.
+To use CSP with Material-UI (and emotion), you need to use a nonce.
+A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request.
 
 A CSP nonce is a Base 64 encoded string. You can generate one like this:
 
@@ -71,6 +72,12 @@ function App(props) {
 
 ### Create React App (CRA)
 
-According to the [Create React App Docs](https://create-react-app.dev/docs/advanced-configuration/), a Create React App will dynamically embed the runtime script into index.html during the production build by default. This will require a new hash to be set in your CSP during each deployment.
+According to the [Create React App Docs](https://create-react-app.dev/docs/advanced-configuration/), a Create React App will dynamically embed the runtime script into index.html during the production build by default.
+This will require a new hash to be set in your CSP during each deployment.
 
-To use a CSP with a project initialized as a Create React App, you will need to set the `INLINE_RUNTIME_CHUNK=false` variable in the `.env` file used for your production build. This will import the runtime script as usual instead of embedding it, avoiding the need to set a new hash during each deployment.
+To use a CSP with a project initialized as a Create React App, you will need to set the `INLINE_RUNTIME_CHUNK=false` variable in the `.env` file used for your production build.
+This will import the runtime script as usual instead of embedding it, avoiding the need to set a new hash during each deployment.
+
+### styled-components
+
+The configuration of the nonce is not straightforward, but you can follow [this issue](https://github.com/styled-components/styled-components/issues/2363) for more insights.
