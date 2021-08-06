@@ -84,8 +84,10 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
   const styleProps = { ...props, spacing, columns };
   const classes = useUtilityClasses(styleProps);
 
+  const contextValue = React.useMemo(() => ({ spacing }), [spacing]);
+
   return (
-    <MasonryContext.Provider value={{ spacing }}>
+    <MasonryContext.Provider value={contextValue}>
       <MasonryRoot
         as={component}
         className={clsx(classes.root, className)}

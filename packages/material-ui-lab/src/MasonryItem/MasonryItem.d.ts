@@ -14,7 +14,7 @@ export interface MasonryItemTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     classes?: Partial<MasonryItemClasses>;
     /**
-     * The height of the component in px.
+     * The height of the component in px. This is provided for server-side rendering.
      */
     height?: number;
     /**

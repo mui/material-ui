@@ -23,7 +23,7 @@ If a row is already filled with the specified number of columns, the next item s
 ## Image masonry
 
 `<Masonry />` orders its children by row.
-If you would like to order images by column, you can use `<ImageList variant="masonry" />`, whose more details can be found in [Masonry Image List](/components/image-list/#masonry-image-list).
+If you would like to order images by column, you can use `<ImageList variant="masonry" />`. More details on this component can be found in [Masonry Image List](/components/image-list/#masonry-image-list).
 
 {{"demo": "pages/components/masonry/ImageMasonry.js", "bg": true}}
 
