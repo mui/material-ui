@@ -173,8 +173,8 @@ const ColumnHeadHighlight = (props: BoxProps) => (
       borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200'),
       bgcolor: (theme) =>
         theme.palette.mode === 'dark'
-          ? alpha(theme.palette.primaryDark[900], 0.7)
-          : alpha(theme.palette.grey[50], 0.7),
+          ? alpha(theme.palette.primaryDark[900], 0.5)
+          : alpha(theme.palette.grey[50], 0.5),
       ...props.sx,
     }}
   />
@@ -220,8 +220,8 @@ const Cell = ({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
         borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200'),
         bgcolor: (theme) =>
           theme.palette.mode === 'dark'
-            ? alpha(theme.palette.primaryDark[900], 0.7)
-            : alpha(theme.palette.grey[50], 0.7),
+            ? alpha(theme.palette.primaryDark[900], 0.5)
+            : alpha(theme.palette.grey[50], 0.5),
       }),
     }}
   />
@@ -530,7 +530,7 @@ export default function PricingTable({
             columnHeaderHidden ? '0px' : '260px'
           }, 1fr))`,
           '&:hover': {
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.50'),
+            bgcolor: (theme) => (theme.palette.mode === 'dark' ? alpha(theme.palette.primaryDark[900], 0.3) : alpha(theme.palette.grey[50], 0.4)),
           },
         }}
       >
