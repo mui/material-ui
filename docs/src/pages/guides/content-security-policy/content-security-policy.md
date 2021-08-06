@@ -20,7 +20,7 @@ You can read more about CSP on the [MDN Web Docs](https://developer.mozilla.org/
 
 ### Server-Side Rendering (SSR)
 
-To use CSP with Material-UI (and JSS), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request. JSS has a [great tutorial](https://github.com/cssinjs/jss/blob/master/docs/csp.md) on how to achieve this with Express and React Helmet. For a basic rundown, continue reading.
+To use CSP with Material-UI (and emotion), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request.
 
 A CSP nonce is a Base 64 encoded string. You can generate one like this:
 
@@ -39,28 +39,34 @@ header('Content-Security-Policy').set(
 );
 ```
 
-You should pass the nonce in the `<style>` tag on the server.
+You should pass the nonce in the `<style>` tags on the server.
 
 ```jsx
 <style
-  id="jss-server-side"
+  data-emotion={`${style.key} ${style.ids.join(' ')}`}
   nonce={nonce}
-  dangerouslySetInnerHTML={{
-    __html: sheets.toString(),
-  }}
+  dangerouslySetInnerHTML={{ __html: style.css }}
 />
 ```
 
-Then, you must pass this nonce to JSS so it can add it to subsequent `<style>` tags.
+Then, you must pass this nonce to the emotion cache so it can add it to subsequent `<style>`.
 
-The way that you do this is by passing a `<meta property="csp-nonce" content={nonce} />` tag in the `<head>` of your HTML. JSS will then, by convention, look for a `<meta property="csp-nonce"` tag and use the `content` value as the nonce.
+> Note, if you were using `StyledEngineProvider` with `injectFirst`, you will need to replace it with `CacheProvider` from emotion and add the `prepend: true` option.
 
-Here is an example of what a fictional header could look like:
+```js
+const cache = createCache({
+  key: 'my-prefix-key',
+  nonce: nonce,
+  prepend: true,
+});
 
-```html
-<head>
-  <meta property="csp-nonce" content="this-is-a-nonce-123" />
-</head>
+function App(props) {
+  return (
+    <CacheProvider value={cache}>
+      <Home />
+    </CacheProvider>
+  );
+}
 ```
 
 ### Create React App (CRA)
