@@ -228,6 +228,7 @@ const teamMembers: Array<Profile> = [
     title: 'Core components team',
     location: 'Silesia, Poland',
     country: 'pl',
+    about: 'Motorcyclist, gamer and coder (UI and more!)',
     twitter: 'michaldudak',
     github: 'michaldudak',
   },
@@ -242,7 +243,7 @@ const teamMembers: Array<Profile> = [
     github: 'siriwatknp',
   },
   {
-    name: 'Danilo B',
+    name: 'Danilo Leal',
     src: '/static/branding/about/danilo.jpg',
     title: 'Design Lead',
     location: 'São Paulo, Brazil',
