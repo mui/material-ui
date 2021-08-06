@@ -6,7 +6,7 @@
 
 _Aug 6, 2021_
 
-Big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+Big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
 - <!-- 28 --> ✨ `jss-to-styled` codemod has been improved to support `createStyles` and `<React.Fragment>` usage (#27578) @mnajdova
 
@@ -16,10 +16,15 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 - <!-- 07 --> [Modal] Remove unnecessary check for children.props.tabIndex (#27374) @noviicee
 - <!-- 14 --> [Select] Fix regression for icon not rotating (#27511) @mnajdova
 
+### `@material-ui/system@5.0.0-beta.3`
+
+- <!-- 38 --> [system] Added top, left, right and bottom border color CSS properties to system (#27580) @R-Bower
+
 ### `@material-ui/codemod@5.0.0-beta.3`
 
 - <!-- 28 --> [codemod] Add support for `createStyles` usage in `jss-to-styled` (#27578) @mnajdova
 - <!-- 11 --> [codemod] Fix `jss-to-styled` PREFIX generation on Windows (#27491) @mnajdova
+- <!-- 39 --> [codemod] Fix `jss-to-styled` codemod to handle React.Fragment as root (#27495) @mnajdova
 
 ### `@material-ui/unstyled@5.0.0-alpha.42`
 
@@ -28,6 +33,7 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 
 ### Docs
 
+- <!-- 40 --> [docs] Fix layout shift when opening hash anchor (#27619) @oliviertassinari
 - <!-- 35 --> [docs] Add TypeScript guide for the `sx` prop (#27417) @mnajdova
 - <!-- 32 --> [docs] Hardcode listed colors in /customization/color/#playground (#27446) @eps1lon
 - <!-- 31 --> [docs] Bring back Select#onChange signature API (#27443) @eps1lon
@@ -61,7 +67,7 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 - <!-- 15 --> [test] Lint codemod tests (#27519) @eps1lon
 - <!-- 05 --> [test] Allow tests to run for 6s before timeout (#27456) @oliviertassinari
 
-All contributors of this release in alphabetical order: @bezpalko, @eps1lon, @flaviendelangle, @frandiox, @Harshita-Kanal, @kimbaudi, @michaldudak, @mnajdova, @noviicee, @oliviertassinari, @PCOffline, @ryancogswell, @siriwatknp, @sulco
+All contributors of this release in alphabetical order: @bezpalko, @eps1lon, @flaviendelangle, @frandiox, @Harshita-Kanal, @kimbaudi, @michaldudak, @mnajdova, @noviicee, @oliviertassinari, @PCOffline, @R-Bower, @ryancogswell, @siriwatknp, @sulco
 
 ## 5.0.0-beta.2
 
