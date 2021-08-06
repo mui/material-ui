@@ -100,7 +100,7 @@ export default function useButton(props: UseButtonProps) {
   };
 
   const dispatchClickEvent = () => {
-    const clickEvent = new MouseEvent('click', {
+    const clickEvent = new window.MouseEvent('click', {
       bubbles: true,
       cancelable: true,
       view: window,
