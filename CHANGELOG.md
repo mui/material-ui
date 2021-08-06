@@ -1,7 +1,9 @@
 ### [Versions](https://material-ui.com/versions/)
 
 ## 5.0.0-beta.3
+
 <!-- generated comparing v5.0.0-beta.2..next -->
+
 _Aug 6, 2021_
 
 Big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
@@ -50,8 +52,9 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 - <!-- 24 --> [website] Add Flavien to team and about pages (#27575) @flaviendelangle
 - <!-- 17 --> [website] Add Ryan to Community contributors for Stack Overflow contributions (#27529) @ryancogswell
 - <!-- 02 --> [website] Add references section to home (#27444) @siriwatknp
-  
+
 ### Core
+
 - <!-- 20 --> [core] rebaseWhen=auto does not seem to work (#27565) @oliviertassinari
 - <!-- 10 --> [core] Improve instructions for the @material-ui/styles migration (#27466) @mnajdova
 - <!-- 06 --> [core] Batch small changes (#27435) @oliviertassinari
@@ -59,7 +62,6 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 - <!-- 16 --> [test] Update coverage to include all @material-ui packages (#27521) @eps1lon
 - <!-- 15 --> [test] Lint codemod tests (#27519) @eps1lon
 - <!-- 05 --> [test] Allow tests to run for 6s before timeout (#27456) @oliviertassinari
-
 
 All contributors of this release in alphabetical order: @bezpalko, @eps1lon, @flaviendelangle, @frandiox, @Harshita-Kanal, @kimbaudi, @michaldudak, @mnajdova, @noviicee, @oliviertassinari, @PCOffline, @ryancogswell, @siriwatknp, @sulco
 
