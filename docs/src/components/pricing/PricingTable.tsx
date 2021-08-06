@@ -6,7 +6,7 @@ import Collapse from '@material-ui/core/Collapse';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
-import InfoRounded from '@material-ui/icons/InfoRounded';
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 import Link from 'docs/src/modules/components/Link';
 import IconImage, { IconImageProps } from 'docs/src/components/icon/IconImage';
@@ -133,7 +133,7 @@ const ColumnHead = ({
     <Typography variant="body2" sx={{ '&:hover > svg': { color: 'primary.main' } }}>
       {label}{' '}
       {tooltip && (
-        <InfoRounded sx={{ fontSize: 16, verticalAlign: 'middle', ml: 0.5, color: 'grey.400' }} />
+        <InfoOutlinedIcon sx={{ fontSize: 16, verticalAlign: 'middle', ml: 0.5, color: 'grey.800' }} />
       )}
     </Typography>
   );
@@ -589,7 +589,7 @@ export default function PricingTable({
             </div>
             <PlanPrice plan="pro" />
             <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-              <i>Price capped at 10 developers.</i>
+              Price capped at 10 developers.
             </Typography>
             <Button
               component={Link}
@@ -615,7 +615,6 @@ export default function PricingTable({
               variant="outlined"
               disabled
               fullWidth
-              endIcon={<KeyboardArrowRightRounded />}
               sx={{ mt: 'auto', py: 1, '&.Mui-disabled': { color: 'text.secondary' } }}
             >
               Available later this year!

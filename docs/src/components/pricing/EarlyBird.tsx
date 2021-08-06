@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
+import { width } from '@material-ui/system';
 
 export default function EarlyBird() {
   return (
@@ -15,8 +16,15 @@ export default function EarlyBird() {
           borderColor: (theme) =>
             theme.palette.mode === 'dark' ? 'primaryDark.900' : 'primary.400',
           display: 'flex',
+          flexDirection: {
+            xs: 'column-reverse',
+            sm: 'row',
+          },
           justifyContent: 'space-between',
-          alignItems: 'center',
+          alignItems: {
+            xs: 'flex-start',
+            sm: 'center',
+          },
         }}
       >
         <Box>
@@ -30,7 +38,14 @@ export default function EarlyBird() {
             time, so don&apos;t miss this opportunity!
           </Typography>
         </Box>
-        <img width="130" height="124" src="/static/branding/pricing/early-bird.svg" alt="" />
+        <Box sx={{
+          mb: {
+            xs: 2,
+            sm: 0,
+          },
+        }}>
+          <img width="110" height="104" src="/static/branding/pricing/early-bird.svg" alt="" />
+        </Box>
       </Box>
     </Container>
   );
