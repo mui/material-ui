@@ -15,6 +15,18 @@ const primary = {
   800: '#004C99',
   900: '#003A75',
 };
+const primaryDark = {
+  50: '#E2EDF8',
+  100: '#CEE0F3',
+  200: '#91B9E3',
+  300: '#5090D3',
+  400: '#265D97',
+  500: '#1E4976',
+  600: '#173A5E',
+  700: '#132F4C',
+  800: '#001E3C',
+  900: '#0A1929',
+};
 const grey = {
   50: '#F3F6F9',
   100: '#EAEEF3',
@@ -59,10 +71,11 @@ export default function ThemeSlider() {
           MuiSlider: {
             styleOverrides: {
               root: {
-                color: mode === 'dark' ? primary[300] : primary[500],
+                color: primary[500],
               },
               rail: {
-                backgroundColor: grey[300],
+                opacity: 1,
+                backgroundColor: mode === 'dark' ? primaryDark[900] : grey[200],
               },
               track: {
                 border: 'none',
@@ -83,7 +96,7 @@ export default function ThemeSlider() {
                 },
                 '& .MuiSlider-valueLabel': {
                   backgroundColor: 'transparent',
-                  color: mode === 'dark' ? grey[50] : grey[800],
+                  color: mode === 'dark' ? grey[50] : grey[500],
                   fontWeight: 700,
                   padding: 0,
                   left: '1rem',
@@ -104,7 +117,15 @@ export default function ThemeSlider() {
   );
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ height: 160 }}>
+      <Box
+        sx={{
+          display: 'inline-block',
+          height: 180,
+          padding: '0.75rem 0',
+          borderRadius: 4,
+          bgcolor: mode === 'dark' ? primaryDark[700] : '#fff',
+        }}
+      >
         <Slider
           getAriaLabel={() => 'Temperature'}
           orientation="vertical"

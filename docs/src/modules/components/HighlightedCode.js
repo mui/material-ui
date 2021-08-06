@@ -9,7 +9,7 @@ import MarkdownElement from './MarkdownElement';
 import { useTranslate } from '../utils/i18n';
 
 const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
-  const { code, language, isCopyButtonEnabled, ...other } = props;
+  const { code, language, component: Component = MarkdownElement,  isCopyButtonEnabled, ...other } = props;
   const renderedCode = React.useMemo(() => {
     return prism(code.trim(), language);
   }, [code, language]);
@@ -34,7 +34,7 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
 
   return (
     <div style={{ position: 'relative' }}>
-      <MarkdownElement ref={ref} {...other}>
+      <Component ref={ref} {...other}>
         {isCopyButtonEnabled && (
           <IconButton
             size="large"
@@ -59,13 +59,14 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
           onClose={handleSnackbarClose}
           message={snackbarMessage}
         />
-      </MarkdownElement>
+      </Component>
     </div>
   );
 });
 
 HighlightedCode.propTypes = {
   code: PropTypes.string.isRequired,
+  component: PropTypes.elementType,
   isCopyButtonEnabled: PropTypes.bool,
   language: PropTypes.string.isRequired,
 };

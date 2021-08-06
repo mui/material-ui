@@ -18,6 +18,11 @@ declare module 'docs/src/modules/components/HighlightedCode' {
      * copy button visible state
      */
     isCopyButtonEnabled?: boolean;
+    /**
+     * The component used for the root node.
+     * @default MarkdownElement
+     */
+    component?: React.ElementType;
   }
   export default function HighlightedCode(props: Props): React.ReactElement;
 }

@@ -80,7 +80,7 @@ function getTitle(markdown) {
     throw new Error('Missing title in the page');
   }
 
-  return matches[1];
+  return matches[1].replace(/`/g, '');
 }
 
 function getDescription(markdown) {

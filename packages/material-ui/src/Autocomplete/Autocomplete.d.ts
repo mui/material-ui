@@ -4,15 +4,16 @@ import { ChipProps, ChipTypeMap } from '@material-ui/core/Chip';
 import { PopperProps } from '@material-ui/core/Popper';
 import { SxProps } from '@material-ui/system';
 import { OverridableStringUnion } from '@material-ui/types';
-import { AutocompleteClasses } from './autocompleteClasses';
-import useAutocomplete, {
+import {
+  useAutocomplete,
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
   createFilterOptions,
   UseAutocompleteProps,
-} from '../useAutocomplete';
+} from '@material-ui/unstyled';
+import { AutocompleteClasses } from './autocompleteClasses';
 
 export {
   AutocompleteChangeDetails,

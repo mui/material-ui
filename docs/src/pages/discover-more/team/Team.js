@@ -80,6 +80,12 @@ const activeCore = [
     flag: 'Core components team',
     location: 'Bangkok, Thailand',
   },
+  {
+    name: 'Flavien Delangle',
+    github: 'flaviendelangle',
+    flag: 'Advanced components team',
+    location: 'Lille, France',
+  },
 ];
 
 const community = [
