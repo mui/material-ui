@@ -18,7 +18,7 @@ export default function HeroPricing() {
         }}
       >
         <Typography variant="body2" color="primary" fontWeight="bold">
-          Pricing Hey! Danilo
+          Pricing
         </Typography>
         <Typography variant="h2" sx={{ my: 1 }}>
           Start using <GradientText>MUI</GradientText> for free!
