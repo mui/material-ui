@@ -6,10 +6,25 @@ import {
 } from '@material-ui/utils';
 
 export interface UseButtonProps {
+  /**
+   * The component used for the Root slot.
+   * Either a string to use a HTML element or a component.
+   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
+   * @default 'button'
+   */
   component?: React.ElementType;
+  /**
+   * The components used for each slot inside the Button.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
   components?: {
     Root?: React.ElementType;
   };
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
   disabled?: boolean;
   href?: string;
   onBlur?: React.FocusEventHandler;
@@ -23,6 +38,10 @@ export interface UseButtonProps {
   onMouseUp?: React.MouseEventHandler;
   ref: React.Ref<any>;
   tabIndex?: string | number;
+  /**
+   * Type attribute applied when the `component` is `button`.
+   * @default 'button'
+   */
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
 }
 
@@ -31,11 +50,7 @@ function isAnchor(el: HTMLElement | undefined): el is HTMLAnchorElement {
 }
 
 function isNativeButton(el: HTMLElement | undefined): el is HTMLButtonElement {
-  return (
-    el?.tagName === 'BUTTON' ||
-    (el?.tagName === 'INPUT' &&
-      ['button', 'reset', 'submit'].includes((el as HTMLInputElement).type))
-  );
+  return el?.tagName === 'BUTTON';
 }
 
 export default function useButton(props: UseButtonProps) {
@@ -58,11 +73,8 @@ export default function useButton(props: UseButtonProps) {
     type,
   } = props;
 
-  const buttonRef = React.useRef<
-    HTMLButtonElement | HTMLAnchorElement | HTMLInputElement | HTMLElement
-  >();
+  const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
 
-  //
   const [isActive, setActive] = React.useState<boolean>(false);
 
   const {

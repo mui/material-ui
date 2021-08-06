@@ -26,6 +26,7 @@ const useUtilityClasses = (styleProps: ButtonUnstyledStyleProps) => {
   return composeClasses(slots, getButtonUnstyledUtilityClass, {});
 };
 /**
+ * The foundation for building custom-styled buttons.
  *
  * Demos:
  *
@@ -107,7 +108,7 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * @ignore
+   * A ref for imperative actions. It currently only supports `focusVisible()` action.
    */
   action: PropTypes.oneOfType([
     PropTypes.func,
@@ -129,10 +130,13 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
    * The component used for the Root slot.
    * Either a string to use a HTML element or a component.
    * This is equivalent to `components.Root`. If both are provided, the `component` is used.
+   * @default 'button'
    */
-  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
+  component: PropTypes.elementType,
   /**
-   * @ignore
+   * The components used for each slot inside the Button.
+   * Either a string to use a HTML element or a component.
+   * @default {}
    */
   components: PropTypes.shape({
     Root: PropTypes.elementType,
@@ -142,7 +146,8 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
    */
   componentsProps: PropTypes.object,
   /**
-   * @ignore
+   * If `true`, the component is disabled.
+   * @default false
    */
   disabled: PropTypes.bool,
   /**

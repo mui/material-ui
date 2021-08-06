@@ -5,7 +5,10 @@ export interface ButtonUnstyledActions {
   focusVisible(): void;
 }
 
-export interface ButtonUnstyledOwnProps extends Omit<UseButtonProps, 'component' | 'ref'> {
+export interface ButtonUnstyledOwnProps extends Omit<UseButtonProps, 'ref'> {
+  /**
+   * A ref for imperative actions. It currently only supports `focusVisible()` action.
+   */
   action?: React.Ref<ButtonUnstyledActions>;
   children?: React.ReactNode;
   className?: string;
