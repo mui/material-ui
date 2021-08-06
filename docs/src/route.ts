@@ -16,9 +16,9 @@ const ROUTES = {
   roadmap: '/discover-more/roadmap',
   languages: '/discover-more/languages',
   about: '/branding/about/',
-  vision: '/branding/vision/',
-  careers: '/branding/careers/',
-  support: '/branding/support/',
+  vision: '/discover-more/vision/',
+  careers: '/company/careers/',
+  support: '/getting-started/support/#professional-support-premium',
   contactUs: '/branding/contact-us/',
 };
 

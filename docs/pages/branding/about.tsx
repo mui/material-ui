@@ -119,7 +119,7 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
             <IconButton
               aria-label={`${props.name} github`}
               component="a"
-              href={props.github}
+              href={`https://github.com/${props.github}`}
               target="_blank"
               rel="noreferrer noopener"
             >
@@ -130,7 +130,7 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
             <IconButton
               aria-label={`${props.name} twitter`}
               component="a"
-              href={props.twitter}
+              href={`https://twitter.com/${props.twitter}`}
               target="_blank"
               rel="noreferrer noopener"
             >
@@ -195,15 +195,6 @@ const teamMembers: Array<Profile> = [
     github: 'eps1lon',
   },
   {
-    name: 'Damien Tassone',
-    src: '/static/branding/about/damien.jpg',
-    title: 'Advanced components team',
-    location: 'Barcelona, Spain',
-    country: 'es',
-    twitter: 'madKakoO',
-    github: 'dtassone',
-  },
-  {
     name: 'Marija Najdova',
     src: '/static/branding/about/marija.jpg',
     title: 'Core components team',
@@ -246,15 +237,26 @@ const teamMembers: Array<Profile> = [
     title: 'Core components team',
     location: 'Bangkok, Thailand',
     country: 'th',
-    about: 'UI Lover and ⛷ newbie.',
+    about: 'UI Lover and ⛷ skiing newbie.',
     twitter: 'siriwatknp',
     github: 'siriwatknp',
+  },
+  {
+    name: 'Danilo Leal',
+    src: '/static/branding/about/danilo.jpg',
+    title: 'Design Lead',
+    location: 'São Paulo, Brazil',
+    country: 'br',
+    about: 'Music production and hiking!',
+    github: 'danilo-leal',
+    twitter: 'danilobleal',
   },
   {
     name: 'Flavien Delangle',
     src: '/static/branding/about/flavien.jpg',
     title: 'Advanced components team',
     location: 'Lille, France',
+    about: 'Love cycling 🚴‍♂️ and reading 📚',
     country: 'fr',
     github: 'flaviendelangle',
   },
@@ -395,16 +397,11 @@ const emeriti = [
   },
 ];
 
-export default function About() {
+function AboutContent() {
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
   return (
-    <ThemeProvider>
-      <Head
-        title="About Us - Material-UI"
-        description="Material-UI started back in 2014 to unify React and Material Design. Today, Material-UI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
-      />
-      <CssBaseline />
+    <React.Fragment>
       <AppHeader />
       <Container>
         <Box
@@ -665,6 +662,19 @@ export default function About() {
       <HeroEnd />
       <Divider />
       <AppFooter />
+    </React.Fragment>
+  );
+}
+
+export default function About() {
+  return (
+    <ThemeProvider>
+      <Head
+        title="About Us - Material-UI"
+        description="Material-UI started back in 2014 to unify React and Material Design. Today, Material-UI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
+      />
+      <CssBaseline />
+      <AboutContent />
     </ThemeProvider>
   );
 }
