@@ -9,7 +9,13 @@ import MarkdownElement from './MarkdownElement';
 import { useTranslate } from '../utils/i18n';
 
 const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
-  const { code, language, component: Component = MarkdownElement,  isCopyButtonEnabled, ...other } = props;
+  const {
+    code,
+    language,
+    component: Component = MarkdownElement,
+    isCopyButtonEnabled,
+    ...other
+  } = props;
   const renderedCode = React.useMemo(() => {
     return prism(code.trim(), language);
   }, [code, language]);
