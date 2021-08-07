@@ -4,8 +4,12 @@ import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 
 function srcset(image: string, size: number, rows = 1, cols = 1) {
-  return `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format 1x,
-  ${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format&dpr=2 2x`;
+  return {
+    src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
+    srcSet: `${image}?w=${size * cols}&h=${
+      size * rows
+    }&fit=crop&auto=format&dpr=2 2x`,
+  };
 }
 
 export default function QuiltedImageList() {
@@ -19,7 +23,7 @@ export default function QuiltedImageList() {
       {itemData.map((item) => (
         <ImageListItem key={item.img} cols={item.cols || 1} rows={item.rows || 1}>
           <img
-            srcSet={srcset(item.img, 121, item.rows, item.cols)}
+            {...srcset(item.img, 121, item.rows, item.cols)}
             alt={item.title}
             loading="lazy"
           />
