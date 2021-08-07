@@ -15,6 +15,6 @@ jobs:
           labels: 'status: incomplete'
           inactive-day: 7
           body: |
-            The issue misses key information to move its resolution forward.
-            Because the issue has been inactive for 7 days, we are automatically closing it.
-            If you wish to see the issue reopen, please provide more information.
+            Since the issue is missing key information,
+            and has been inactive for seven days, it has been automatically closed.
+            If you wish to see the issue reopened, please provide more information.
