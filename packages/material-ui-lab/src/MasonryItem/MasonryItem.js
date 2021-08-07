@@ -31,7 +31,6 @@ export const style = ({ styleProps, theme }) => {
       width: '100%',
       boxSizing: 'inherit',
       ...(styleProps.isSSR && { height: '100%' }),
-      ...(styleProps.isImage && !styleProps.isSSR && { height: styleProps.height }),
     },
     visibility: styleProps.height ? 'visible' : 'hidden',
     gridColumnEnd: `span ${styleProps.columnSpan}`,
@@ -48,7 +47,9 @@ export const style = ({ styleProps, theme }) => {
   const transformer = createUnarySpacing(theme);
   const styleFromPropValue = (propValue) => {
     const gap = styleProps.height ? Number(getValue(transformer, propValue).replace('px', '')) : 0;
-    const rowSpan = styleProps.height ? Math.ceil(styleProps.height + gap) : 0;
+    // For lazy-loaded images to load properly, masonry item should take up space greater than 1px.
+    // Taking into account a row gap of 1px, rowSpan should at least be 3.
+    const rowSpan = styleProps.height ? Math.ceil(styleProps.height + gap) : 3;
     return {
       gridRowEnd: `span ${rowSpan}`,
       paddingBottom: gap - 1,
@@ -76,24 +77,12 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
   const masonryItemRef = React.useRef(null);
 
   const { spacing = 1 } = React.useContext(MasonryContext);
-  const isImage = (element) => {
-    return element.type === 'img';
-  };
-  const {
-    children,
-    className,
-    component = 'div',
-    columnSpan = 1,
-    height = isImage(children) ? 1 : undefined,
-    // images should have defined dimensions for browser to correctly lay out and paint.
-    // browser can't handle a large number of images without pre-defined dimensions
-    ...other
-  } = props;
-  const isSSR = !((isImage(children) && height === 1) || height === undefined);
+  const { children, className, component = 'div', columnSpan = 1, height, ...other } = props;
+  const isSSR = height !== undefined;
+
   const [styleProps, setStyleProps] = React.useState({
     ...props,
     isSSR,
-    isImage: isImage(children),
     spacing,
     columnSpan,
     height: height < 0 ? 0 : height, // MasonryItems to which negative or zero height is passed will be hidden
@@ -103,29 +92,8 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
   const resizeObserver = React.useRef(null);
 
   React.useEffect(() => {
-    if (isImage(children) && styleProps.height === 1) {
-      const img = new Image();
-      img.src =
-        children.props.srcSet ||
-        children.props.src ||
-        children.props['data-src'] ||
-        children.props['data-srcSet'];
-      img.onload = () => {
-        setStyleProps({
-          ...styleProps,
-          height: img.height,
-        });
-      };
-    }
-  }, [children, styleProps]);
-
-  React.useEffect(() => {
     // do not create a resize observer in case of SSR masonry
     if (isSSR) {
-      return true;
-    }
-    // do not create a resize observer until height is set by onload() callback above
-    if (isImage(children) && styleProps.height === 1) {
       return true;
     }
     const handleImageLoadError = () => {
@@ -148,7 +116,7 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
       observer.unobserve(item);
       item.removeEventListener('error', handleImageLoadError);
     };
-  }, [children, isSSR, styleProps]);
+  }, [isSSR, styleProps]);
 
   React.useEffect(() => {
     // handle responsiveness to `height` prop in case of SSR masonry
