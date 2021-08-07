@@ -1,4 +1,4 @@
-name: Issue Mark Duplicate
+name: Issue mark duplicate
 
 on:
   issue_comment:

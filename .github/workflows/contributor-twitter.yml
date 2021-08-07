@@ -1,7 +1,9 @@
-name: contributor-twitter
+name: Contributor twitter
+
 on:
   issues:
     types: [labeled]
+
 jobs:
   tweet:
     runs-on: ubuntu-latest

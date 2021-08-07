@@ -1,0 +1,20 @@
+name: Close incomplete inactive
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  close-issues:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Need more information
+        uses: actions-cool/issues-helper@v2
+        with:
+          actions: 'close-issues'
+          labels: 'status: incomplete'
+          inactive-day: 7
+          body: |
+            The issue misses key information to move its resolution forward.
+            Because the issue has been inactive for 7 days, we are automatically closing it.
+            If you wish to see the issue reopen, please provide more information.
