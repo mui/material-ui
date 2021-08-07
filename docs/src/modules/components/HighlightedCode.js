@@ -3,10 +3,23 @@ import PropTypes from 'prop-types';
 import prism from '@material-ui/markdown/prism';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
 import IconButton from '@material-ui/core/IconButton';
+import { makeStyles } from '@material-ui/styles';
 import copy from 'clipboard-copy';
 import Snackbar from '@material-ui/core/Snackbar';
 import MarkdownElement from './MarkdownElement';
 import { useTranslate } from '../utils/i18n';
+
+const useStyles = makeStyles((theme) => ({
+  copyButton: {
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'inline-flex',
+    },
+    position: 'absolute',
+    right: '1em',
+    color: 'white',
+  },
+}));
 
 const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
   const {
@@ -20,6 +33,7 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
     return prism(code.trim(), language);
   }, [code, language]);
 
+  const classes = useStyles();
   const t = useTranslate();
   const [snackbarOpen, setSnackbarOpen] = React.useState(false);
   const [snackbarMessage, setSnackbarMessage] = React.useState(undefined);
@@ -44,7 +58,7 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
         {isCopyButtonEnabled && (
           <IconButton
             size="large"
-            style={{ position: 'absolute', right: '1em', color: 'white' }}
+            className={classes.copyButton}
             data-ga-event-category="demo"
             data-ga-event-action="copy"
             onClick={handleCopyClick}
