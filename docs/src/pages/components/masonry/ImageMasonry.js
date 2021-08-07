@@ -11,8 +11,8 @@ export default function ImageMasonry() {
         {itemData.map((item) => (
           <MasonryItem key={item.img}>
             <img
-              srcSet={`${item.img}?w=162&auto=format 1x,
-            ${item.img}?w=162&auto=format&dpr=2 2x`}
+              src={`${item.img}?w=162&auto=format`}
+              srcSet={`${item.img}?w=162&auto=format&dpr=2 2x`}
               alt={item.title}
               loading="lazy"
             />
