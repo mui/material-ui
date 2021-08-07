@@ -33,13 +33,6 @@ const activeCore = [
     location: 'Dresden, Germany',
   },
   {
-    name: 'Damien Tassone',
-    github: 'dtassone',
-    twitter: 'madKakoO',
-    flag: 'Advanced components team',
-    location: 'Barcelona, Spain',
-  },
-  {
     name: 'Marija Najdova',
     github: 'mnajdova',
     twitter: 'marijanajdova',
