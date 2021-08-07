@@ -99,6 +99,7 @@ export const arEG: Localization = {
     },
   },
 };
+
 export const arSD: Localization = {
   components: {
     MuiBreadcrumbs: {
