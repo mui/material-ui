@@ -223,17 +223,17 @@ export default function FAQ() {
         Frequently asked questions
       </Typography>
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} md={4}>
           {renderItem(0)}
           {renderItem(1)}
           {renderItem(2)}
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} md={4}>
           {renderItem(3)}
           {renderItem(4)}
           {renderItem(5)}
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} md={4}>
           {renderItem(6)}
           <Paper
             variant="outlined"
