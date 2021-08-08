@@ -1,6 +1,6 @@
 {
   "props": {
-    "anchorEl": { "type": { "name": "custom", "description": "HTML element<br>&#124;&nbsp;func" } },
+    "anchorEl": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "appear": { "type": { "name": "bool" }, "default": "true" },
     "children": { "type": { "name": "custom", "description": "element" } },
     "direction": {

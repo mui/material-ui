@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
-import { elementAcceptingRef, chainPropTypes, HTMLElementType } from '@material-ui/utils';
+import { elementAcceptingRef, HTMLElementType } from '@material-ui/utils';
 import debounce from '../utils/debounce';
 import useForkRef from '../utils/useForkRef';
 import useTheme from '../styles/useTheme';
@@ -266,40 +266,10 @@ Slide.propTypes /* remove-proptypes */ = {
    * An HTML element, or a function that returns one.
    * It's used to set the position of the Slide.
    */
-  anchorEl: chainPropTypes(PropTypes.oneOfType([HTMLElementType, PropTypes.func]), (props) => {
-    if (props.appear) {
-      const resolvedAnchorEl = getAnchorEl(props.anchorEl);
-
-      if (resolvedAnchorEl && resolvedAnchorEl.nodeType === 1) {
-        const box = resolvedAnchorEl.getBoundingClientRect();
-
-        if (
-          process.env.NODE_ENV !== 'test' &&
-          box.top === 0 &&
-          box.left === 0 &&
-          box.right === 0 &&
-          box.bottom === 0
-        ) {
-          return new Error(
-            [
-              'Material-UI: The `anchorEl` prop provided to the component is invalid.',
-              'The anchor element should be part of the document layout.',
-              "Make sure the element is present in the document or that it's not display none.",
-            ].join('\n'),
-          );
-        }
-      } else {
-        return new Error(
-          [
-            'Material-UI: The `anchorEl` prop provided to the component is invalid.',
-            `It should be an Element instance but it's \`${resolvedAnchorEl}\` instead.`,
-          ].join('\n'),
-        );
-      }
-    }
-
-    return null;
-  }),
+  anchorEl: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    HTMLElementType,
+    PropTypes.func,
+  ]),
   /**
    * Perform the enter transition when it first mounts if `in` is also `true`.
    * Set this to `false` to disable this behavior.
