@@ -37,12 +37,7 @@ export default function EarlyBird() {
             time, so don&apos;t miss this opportunity!
           </Typography>
         </div>
-        <Box sx={{
-          mb: {
-            xs: 2,
-            sm: 0,
-          },
-        }}>
+        <Box sx={{ mb: { xs: 2, sm: 0 } }}>
           <img width="110" height="104" src="/static/branding/pricing/early-bird.svg" alt="" />
         </Box>
       </Box>

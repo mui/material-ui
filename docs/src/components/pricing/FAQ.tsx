@@ -229,11 +229,10 @@ export default function FAQ() {
               borderStyle: 'dashed',
               borderColor: (theme) =>
                 theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
-              bgcolor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.800' : 'white',
+              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'white'),
             }}
           >
-            <Box sx={{ maxWidth: 250, mx: 'auto', }}>
+            <Box sx={{ maxWidth: 250, mx: 'auto' }}>
               <Typography variant="body2" color="text.primary" fontWeight="bold">
                 Got any questions unanswered or need more help?
               </Typography>

@@ -70,8 +70,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
           color="error.main"
           sx={{
             borderRadius: 0.5,
-            bgcolor: (theme) =>
-                theme.palette.mode === 'dark' ? 'error.900' : 'error.300',
+            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'error.900' : 'error.300'),
             // bgcolor: 'error.200',
             textDecoration: 'line-through',
             p: '4px',
@@ -135,7 +134,9 @@ const ColumnHead = ({
     <Typography variant="body2" sx={{ '&:hover > svg': { color: 'primary.main' } }}>
       {label}{' '}
       {tooltip && (
-        <InfoOutlinedIcon sx={{ fontSize: 16, verticalAlign: 'middle', ml: 0.5, color: 'grey.800' }} />
+        <InfoOutlinedIcon
+          sx={{ fontSize: 16, verticalAlign: 'middle', ml: 0.5, color: 'grey.800' }}
+        />
       )}
     </Typography>
   );
@@ -530,7 +531,10 @@ export default function PricingTable({
             columnHeaderHidden ? '0px' : '260px'
           }, 1fr))`,
           '&:hover': {
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? alpha(theme.palette.primaryDark[900], 0.3) : alpha(theme.palette.grey[50], 0.4)),
+            bgcolor: (theme) =>
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primaryDark[900], 0.3)
+                : alpha(theme.palette.grey[50], 0.4),
           },
         }}
       >
