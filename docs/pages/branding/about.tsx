@@ -179,8 +179,8 @@ const teamMembers: Array<Profile> = [
     location: 'Paris, France',
     country: 'fr',
     about: 'Exercise addict and lifelong learner',
-    twitter: 'https://twitter.com/olivtassinari',
-    github: 'https://github.com/oliviertassinari',
+    twitter: 'olivtassinari',
+    github: 'oliviertassinari',
   },
   {
     name: 'Matt Brookes',
@@ -309,7 +309,7 @@ const contributors = [
   {
     name: 'Ryan Cogswell',
     github: 'ryancogswell',
-    title: 'Stack Overflow',
+    title: 'Stack Overflow top contributor',
     location: 'Minnesota, United States',
     country: 'us',
     src: 'https://avatars.githubusercontent.com/u/287804',
