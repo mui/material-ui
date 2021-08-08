@@ -257,19 +257,22 @@ const rowHeaders: Record<string, React.ReactNode> = {
   // Core
   '@mui/core': (
     <ColumnHead
-      {...{ label: '@mui/unstyled', tooltip: 'Core components following Material Design.' }}
+      {...{
+        label: '@mui/core-base',
+        tooltip: 'The unstyled and headless (hooks) components version of @material-ui/core.',
+      }}
     />
   ),
   '@mui/unstyled': (
     <ColumnHead
-      {...{ label: '@mui/core', tooltip: 'CSS utilities for rapidly laying out custom designs.' }}
+      {...{ label: '@mui/core-material', tooltip: 'Core components following Material Design.' }}
     />
   ),
   '@mui/system': (
     <ColumnHead
       {...{
         label: '@mui/system',
-        tooltip: 'The unstyled and headless (hooks) components version of @material-ui/core.',
+        tooltip: 'CSS utilities for rapidly laying out custom designs.',
       }}
     />
   ),
