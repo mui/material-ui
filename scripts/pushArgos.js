@@ -40,7 +40,8 @@ async function run() {
     const argosResults = await execFile('argos', [
       'upload',
       `${screenshotsTmp}/${i}`,
-      '--token <52d04e98e306c2e365beaddd543888c73a9f7866>',
+      '--token',
+      process.env.ARGOS_TOKEN,
       '--batchCount',
       chunks.length,
       '--external-build-id',
