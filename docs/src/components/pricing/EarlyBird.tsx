@@ -26,7 +26,7 @@ export default function EarlyBird() {
           },
         }}
       >
-        <Box>
+        <div>
           <Typography fontWeight="bold" sx={{ mb: 0.5 }}>
             Early bird special! 🐦
           </Typography>
@@ -36,7 +36,7 @@ export default function EarlyBird() {
             support and updates for one year. The early bird special is available for a limited
             time, so don&apos;t miss this opportunity!
           </Typography>
-        </Box>
+        </div>
         <Box sx={{
           mb: {
             xs: 2,
