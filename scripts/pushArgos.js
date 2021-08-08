@@ -41,7 +41,7 @@ async function run() {
       'upload',
       `${screenshotsTmp}/${i}`,
       '--token',
-      process.env.ARGOS_TOKEN,
+      52d04e98e306c2e365beaddd543888c73a9f7866,
       '--batchCount',
       chunks.length,
       '--external-build-id',
