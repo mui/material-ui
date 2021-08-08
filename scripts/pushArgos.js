@@ -45,7 +45,7 @@ async function run() {
       '--batchCount',
       chunks.length,
       '--external-build-id',
-       52d04e98e306c2e365beaddd543888c73a9f7866,
+       process.env.CIRCLE_SHA1,
     ]);
     // eslint-disable-next-line no-console -- pipe stdout
     console.log(argosResults.stdout);
