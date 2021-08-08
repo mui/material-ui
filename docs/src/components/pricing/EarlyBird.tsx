@@ -38,7 +38,13 @@ export default function EarlyBird() {
           </Typography>
         </div>
         <Box sx={{ mb: { xs: 2, sm: 0 } }}>
-          <img width="110" height="104" src="/static/branding/pricing/early-bird.svg" alt="" />
+          <img
+            width="110"
+            height="104"
+            src="/static/branding/pricing/early-bird.svg"
+            alt=""
+            loading="lazy"
+          />
         </Box>
       </Box>
     </Container>
