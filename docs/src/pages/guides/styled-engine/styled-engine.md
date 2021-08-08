@@ -24,7 +24,7 @@ By default, `@material-ui/core` has `@material-ui/styled-engine` as a dependency
 ```diff
  {
    "dependencies": {
--    "@material-ui/styled-engine": "next",
+-    "@material-ui/styled-engine": "next"
 +    "@material-ui/styled-engine": "npm:@material-ui/styled-engine-sc@next"
    },
 +  "resolutions": {
