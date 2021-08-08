@@ -553,19 +553,19 @@ describe('<Slide />', () => {
         });
       });
     });
+  });
 
-    describe('server-side', () => {
-      it('should be initially hidden', () => {
-        const { container } = render(
-          <Slide {...defaultProps} in={false}>
-            <div id="with-slide" />
-          </Slide>,
-        );
+  describe('server-side', () => {
+    it('should be initially hidden', () => {
+      const { container } = render(
+        <Slide {...defaultProps} in={false}>
+          <div id="with-slide" />
+        </Slide>,
+      );
 
-        const slide = container.querySelector('#with-slide');
+      const slide = container.querySelector('#with-slide');
 
-        expect(slide.style).to.have.property('visibility', 'hidden');
-      });
+      expect(slide.style).to.have.property('visibility', 'hidden');
     });
   });
 });
