@@ -21,9 +21,9 @@ const icon = (
   </Paper>
 );
 
-export default function SlideFromAnchorEl() {
+export default function SlideFromContainer() {
   const [checked, setChecked] = React.useState(false);
-  const anchorRef = React.useRef(null);
+  const containerRef = React.useRef(null);
 
   const handleChange = () => {
     setChecked((prev) => !prev);
@@ -41,20 +41,14 @@ export default function SlideFromAnchorEl() {
           theme.palette.mode === 'light' ? 'grey.100' : 'grey.900',
         overflow: 'hidden',
       }}
-      ref={anchorRef}
+      ref={containerRef}
     >
       <Box sx={{ width: 200 }}>
         <FormControlLabel
           control={<Switch checked={checked} onChange={handleChange} />}
           label="Show from target"
         />
-        <Slide
-          direction="up"
-          in={checked}
-          anchorEl={anchorRef.current}
-          mountOnEnter
-          unmountOnExit
-        >
+        <Slide direction="up" in={checked} container={containerRef.current}>
           {icon}
         </Slide>
       </Box>

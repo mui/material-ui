@@ -235,7 +235,7 @@ describe('<Slide />', () => {
         }
       };
       const handleRef = useForkRef(ref, stubBoundingClientRect);
-      return <div {...props} ref={handleRef} />;
+      return <div {...props} style={{ height: 300, width: 500 }} ref={handleRef} />;
     });
 
     describe('handleEnter()', () => {
@@ -447,87 +447,125 @@ describe('<Slide />', () => {
         expect(nodeExitingTransformStyle).to.equal('translateY(-500px)');
       });
     });
-  });
 
-  describe('mount', () => {
-    it('should work when initially hidden', () => {
-      const childRef = React.createRef();
-      render(
-        <Slide in={false}>
-          <div ref={childRef}>Foo</div>
-        </Slide>,
-      );
-      const transition = childRef.current;
+    describe('prop: container', () => {
+      it('should set element transform and transition in the `up` direction', function test() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          // Need layout
+          this.skip();
+        }
 
-      expect(transition.style.visibility).to.equal('hidden');
-      expect(transition.style.transform).not.to.equal(undefined);
-    });
-  });
-
-  describe('resize', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
-    it('should recompute the correct position', () => {
-      const { container } = render(
-        <Slide direction="up" in={false}>
-          <div id="testChild">Foo</div>
-        </Slide>,
-      );
-
-      act(() => {
-        window.dispatchEvent(new window.Event('resize', {}));
-        clock.tick(166);
-      });
-
-      const child = container.querySelector('#testChild');
-      expect(child.style.transform).not.to.equal(undefined);
-    });
-
-    it('should take existing transform into account', () => {
-      const element = {
-        fakeTransform: 'transform matrix(1, 0, 0, 1, 0, 420)',
-        getBoundingClientRect: () => ({
-          width: 500,
-          height: 300,
-          left: 300,
-          right: 800,
-          top: 1200,
-          bottom: 1500,
-        }),
-        style: {},
-      };
-      setTranslateValue('up', element);
-      expect(element.style.transform).to.equal(`translateY(${global.innerHeight - 780}px)`);
-    });
-
-    it('should do nothing when visible', () => {
-      render(<Slide {...defaultProps} />);
-      act(() => {
-        window.dispatchEvent(new window.Event('resize', {}));
-        clock.tick(166);
+        let nodeExitingTransformStyle;
+        const height = 200;
+        function Test(props) {
+          const [container, setContainer] = React.useState(null);
+          return (
+            <div
+              ref={(node) => {
+                setContainer(node);
+              }}
+              style={{ height, width: 200 }}
+            >
+              <Slide
+                direction="up"
+                in
+                {...props}
+                container={container}
+                onExit={(node) => {
+                  nodeExitingTransformStyle = node.style.transform;
+                }}
+              >
+                <FakeDiv rect={{ top: 8 }} />
+              </Slide>
+            </div>
+          );
+        }
+        const { setProps } = render(<Test />);
+        setProps({ in: false });
+        expect(nodeExitingTransformStyle).to.equal(`translateY(${height}px)`);
       });
     });
-  });
 
-  describe('server-side', () => {
-    it('should be initially hidden', () => {
-      const { container } = render(
-        <Slide {...defaultProps} in={false}>
-          <div id="with-slide" />
-        </Slide>,
-      );
+    describe('mount', () => {
+      it('should work when initially hidden', () => {
+        const childRef = React.createRef();
+        render(
+          <Slide in={false}>
+            <div ref={childRef}>Foo</div>
+          </Slide>,
+        );
+        const transition = childRef.current;
 
-      const slide = container.querySelector('#with-slide');
+        expect(transition.style.visibility).to.equal('hidden');
+        expect(transition.style.transform).not.to.equal(undefined);
+      });
+    });
 
-      expect(slide.style).to.have.property('visibility', 'hidden');
+    describe('resize', () => {
+      let clock;
+
+      beforeEach(() => {
+        clock = useFakeTimers();
+      });
+
+      afterEach(() => {
+        clock.restore();
+      });
+
+      it('should recompute the correct position', () => {
+        const { container } = render(
+          <Slide direction="up" in={false}>
+            <div id="testChild">Foo</div>
+          </Slide>,
+        );
+
+        act(() => {
+          window.dispatchEvent(new window.Event('resize', {}));
+          clock.tick(166);
+        });
+
+        const child = container.querySelector('#testChild');
+        expect(child.style.transform).not.to.equal(undefined);
+      });
+
+      it('should take existing transform into account', () => {
+        const element = {
+          fakeTransform: 'transform matrix(1, 0, 0, 1, 0, 420)',
+          getBoundingClientRect: () => ({
+            width: 500,
+            height: 300,
+            left: 300,
+            right: 800,
+            top: 1200,
+            bottom: 1500,
+          }),
+          style: {},
+        };
+        setTranslateValue('up', element);
+        expect(element.style.transform).to.equal(`translateY(${global.innerHeight - 780}px)`);
+      });
+
+      it('should do nothing when visible', () => {
+        render(<Slide {...defaultProps} />);
+        act(() => {
+          window.dispatchEvent(new window.Event('resize', {}));
+          clock.tick(166);
+        });
+      });
+    });
+
+    describe('server-side', () => {
+      it('should be initially hidden', () => {
+        const { container } = render(
+          <Slide {...defaultProps} in={false}>
+            <div id="with-slide" />
+          </Slide>,
+        );
+
+        const slide = container.querySelector('#with-slide');
+
+        expect(slide.style).to.have.property('visibility', 'hidden');
+      });
     });
   });
 });
