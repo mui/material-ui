@@ -393,7 +393,7 @@ export function getThemedComponents(theme: Theme) {
                 ? theme.palette.primaryDark[400]
                 : theme.palette.primary.main,
             ...theme.typography.caption,
-            fontWeight: 'regular',
+            fontWeight: 400,
           },
         },
       },
