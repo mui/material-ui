@@ -55,7 +55,7 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.4.4",
+    "@babel/runtime": "^7.14.8",
     "@material-ui/private-theming": "5.0.0-beta.2",
     "@material-ui/styled-engine": "5.0.0-beta.1",
     "@material-ui/types": "6.0.2",
