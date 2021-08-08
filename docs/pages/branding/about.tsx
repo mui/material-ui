@@ -1,9 +1,9 @@
 import * as React from 'react';
+import Image from 'next/image';
 import Head from 'docs/src/modules/components/Head';
 import { useTheme, ThemeProvider as MuiThemeProvider, createTheme } from '@material-ui/core/styles';
 import ThemeProvider from 'docs/src/modules/ThemeContext';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
@@ -23,6 +23,7 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
 import ROUTES from 'docs/src/route';
+import IconImage from 'docs/src/components/icon/IconImage';
 
 let darkTheme = createTheme(getDesignTokens('dark'));
 
@@ -54,12 +55,6 @@ interface Profile {
   twitter?: string;
 }
 
-const Icon = ({ name }: { name: string }) => (
-  <Box sx={{ display: 'inline-block', verticalAlign: 'bottom', mr: 1, lineHeight: 0 }}>
-    <img width="28" height="28" loading="lazy" src={`/static/branding/about/${name}.svg`} alt="" />
-  </Box>
-);
-
 const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
   return (
     <Paper variant="outlined" sx={{ p: 2, ...props.sx }}>
@@ -77,12 +72,24 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
           // @ts-expect-error
           PopperProps={{ sx: { '& .MuiTooltip-tooltip': { p: 0.5 } } }}
         >
-          <Box sx={{ position: 'relative', display: 'inline-block' }}>
-            <Avatar
-              variant="rounded"
-              src={props.src}
-              sx={{ width: 70, height: 70, bgcolor: 'primaryDark.800' }}
-            />
+          <Box
+            sx={{
+              position: 'relative',
+              display: 'inline-block',
+              '& > *:first-of-type': { bgcolor: 'primaryDark.800', borderRadius: 1 },
+            }}
+          >
+            {props.src.startsWith('https://avatars.githubusercontent.com') ? (
+              <img
+                src={`${props.src}?s=70`}
+                srcSet={`${props.src}?s=140 2x`}
+                width="70"
+                height="70"
+                alt={props.name}
+              />
+            ) : (
+              <Image src={props.src} alt={props.name} width="70" height="70" />
+            )}
             <Box
               sx={{
                 position: 'absolute',
@@ -96,12 +103,12 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
                 borderRadius: 40,
                 overflow: 'hidden',
                 '& > img': {
-                  width: 28,
+                  width: 32,
                   height: 32,
                   position: 'absolute',
                   top: 0,
                   left: 0,
-                  transform: 'translate(-4px, -6px)',
+                  transform: 'translate(-6px, -6px)',
                 },
               }}
             >
@@ -264,7 +271,7 @@ const teamMembers: Array<Profile> = [
   },
   {
     name: 'Benny Joo',
-    src: 'https://avatars.githubusercontent.com/u/32841130?v=4',
+    src: 'https://avatars.githubusercontent.com/u/32841130',
     title: 'Intern',
     location: 'London, UK',
     country: 'kr',
@@ -459,7 +466,7 @@ function AboutContent() {
                 "Excellence. We're aiming high, and we know it.",
               ].map((text) => (
                 <Box key={text} sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
-                  <img src={`/static/branding/pricing/yes-${mode}.svg`} alt="" />
+                  <IconImage name="yes" />
                   <Typography
                     variant="body2"
                     color="text.secondary"
@@ -496,13 +503,7 @@ function AboutContent() {
               Join the team
             </Button>
           </div>
-          <img
-            width="130"
-            height="124"
-            loading="lazy"
-            src="/static/branding/pricing/early-bird.svg"
-            alt=""
-          />
+          <Image width="130" height="124" src="/static/branding/pricing/early-bird.svg" alt="" />
         </Box>
         <Divider sx={{ my: { xs: 2, sm: 4 } }} />
         <Typography variant="h5" color="primary" fontWeight="extraBold" sx={{ mb: 1 }}>
@@ -566,7 +567,7 @@ function AboutContent() {
           <Grid item xs={12} sm={6} md={4}>
             <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
               <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
-                <Icon name="give-feedback" />
+                <IconImage name="give-feedback" sx={{ mr: 1 }} />
                 Give feedback
               </Typography>
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
@@ -588,7 +589,7 @@ function AboutContent() {
           <Grid item xs={12} sm={6} md={4}>
             <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
               <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
-                <Icon name="join-community" />
+                <IconImage name="join-community" sx={{ mr: 1 }} />
                 Join the community
               </Typography>
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
@@ -641,7 +642,7 @@ function AboutContent() {
           <Grid item xs={12} sm={6} md={4}>
             <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
               <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
-                <Icon name="support-us" />
+                <IconImage name="support-us" sx={{ mr: 1 }} />
                 Suport us financially
               </Typography>
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>

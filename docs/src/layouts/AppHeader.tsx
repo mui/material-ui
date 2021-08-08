@@ -56,7 +56,7 @@ export default function AppHeader() {
     <Header trigger={false}>
       <Container sx={{ display: 'flex', alignItems: 'center', minHeight: 64 }}>
         <NextLink href="/branding/home" passHref>
-          <Box component="a" sx={{ lineHeight: 0, mr: 2 }}>
+          <Box component="a" aria-label="Home" sx={{ lineHeight: 0, mr: 2 }}>
             <SvgMuiLogo width={32} />
           </Box>
         </NextLink>
