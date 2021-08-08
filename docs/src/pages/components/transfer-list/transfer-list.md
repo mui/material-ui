@@ -1,11 +1,14 @@
 ---
 title: Transfer List React component
 components: List, ListItem, Checkbox, Switch
+githubLabel: 'component: TransferList'
 ---
 
 # Transfer List
 
 <p class="description">A transfer list (or "shuttle") enables the user to move one or more list items between lists.</p>
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Basic transfer list
 
