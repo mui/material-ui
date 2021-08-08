@@ -48,7 +48,7 @@ Similarly, the `unmountOnExit` prop removes the component from the DOM after it 
 
 {{"demo": "pages/components/transitions/SimpleSlide.js", "bg": true}}
 
-### Slide from target DOM node
+### Slide from anchor DOM node
 
 The Slide component also accepts `anchorEl` prop, which is a reference to a DOM node. If this property is set, the Slide component will slide from the edge of that DOM node.
 
