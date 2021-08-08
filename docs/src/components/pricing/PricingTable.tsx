@@ -51,7 +51,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
   if (plan === 'community') {
     return (
       <Box sx={{ display: 'flex', alignItems: 'center', my: 'auto' }}>
-        <Typography variant="h4" fontWeight="bold" color="grey.600">
+        <Typography variant="h4" fontWeight="bold" color="success.600">
           $0
         </Typography>
         <Box sx={{ width: 5 }} />
@@ -67,10 +67,10 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
         <Typography
           variant="caption"
           fontWeight="bold"
-          color="error.main"
+          color="error.500"
           sx={{
             borderRadius: 0.5,
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'error.900' : 'error.300'),
+            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'error.900' : 'error.100'),
             // bgcolor: 'error.200',
             textDecoration: 'line-through',
             p: '4px',
