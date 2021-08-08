@@ -51,7 +51,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
   if (plan === 'community') {
     return (
       <Box sx={{ display: 'flex', alignItems: 'center', my: 'auto' }}>
-        <Typography variant="h4" fontWeight="bold" color="success.600">
+        <Typography variant="h4" component="div" fontWeight="bold" color="success.600">
           $0
         </Typography>
         <Box sx={{ width: 5 }} />
@@ -79,7 +79,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
           $249
         </Typography>
         <Box sx={{ width: 10 }} />
-        <Typography variant="h4" fontWeight="bold" color="primary.main">
+        <Typography variant="h4" component="div" fontWeight="bold" color="primary.main">
           $186
         </Typography>
         <Box sx={{ width: 5 }} />
@@ -91,7 +91,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
   }
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
-      <Typography variant="h4" fontWeight="bold" color="grey.600">
+      <Typography variant="h4" component="div" fontWeight="bold" color="grey.600">
         $599
       </Typography>
       <Box sx={{ width: 5 }} />
