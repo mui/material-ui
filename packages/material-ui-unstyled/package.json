@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/unstyled",
-  "version": "5.0.0-alpha.41",
+  "version": "5.0.0-alpha.42",
   "private": false,
   "author": "Material-UI Team",
   "description": "Unstyled React components with which to implement custom design systems.",
@@ -55,7 +55,7 @@
     "react-is": "^17.0.0"
   },
   "devDependencies": {
-    "@material-ui/types": "6.0.1"
+    "@material-ui/types": "6.0.2"
   },
   "sideEffects": false,
   "publishConfig": {

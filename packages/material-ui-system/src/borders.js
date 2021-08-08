@@ -47,6 +47,26 @@ export const borderColor = style({
   themeKey: 'palette',
 });
 
+export const borderTopColor = style({
+  prop: 'borderTopColor',
+  themeKey: 'palette',
+});
+
+export const borderRightColor = style({
+  prop: 'borderRightColor',
+  themeKey: 'palette',
+});
+
+export const borderBottomColor = style({
+  prop: 'borderBottomColor',
+  themeKey: 'palette',
+});
+
+export const borderLeftColor = style({
+  prop: 'borderLeftColor',
+  themeKey: 'palette',
+});
+
 export const borderRadius = (props) => {
   if (props.borderRadius) {
     const transformer = createUnaryUnit(props.theme, 'shape.borderRadius', 4, 'borderRadius');
@@ -71,6 +91,10 @@ const borders = compose(
   borderBottom,
   borderLeft,
   borderColor,
+  borderTopColor,
+  borderRightColor,
+  borderBottomColor,
+  borderLeftColor,
   borderRadius,
 );
 
