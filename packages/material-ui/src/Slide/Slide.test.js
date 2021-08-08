@@ -254,7 +254,7 @@ describe('<Slide />', () => {
 
         setProps({ in: true });
 
-        expect(nodeEnterTransformStyle).to.equal('translateX(724px)');
+        expect(nodeEnterTransformStyle).to.equal(`translateX(${global.innerWidth - 300}px)`);
       });
 
       it('should set element transform and transition in the `right` direction', () => {
@@ -272,7 +272,7 @@ describe('<Slide />', () => {
 
         setProps({ in: true });
 
-        expect(nodeEnterTransformStyle).to.equal('translateX(-800px)');
+        expect(nodeEnterTransformStyle).to.equal(`translateX(-${300 + 500}px)`);
       });
 
       it('should set element transform and transition in the `up` direction', () => {
@@ -290,7 +290,7 @@ describe('<Slide />', () => {
 
         setProps({ in: true });
 
-        expect(nodeEnterTransformStyle).to.equal('translateY(568px)');
+        expect(nodeEnterTransformStyle).to.equal(`translateY(${global.innerHeight - 200}px)`);
       });
 
       it('should set element transform and transition in the `down` direction', () => {
@@ -347,7 +347,7 @@ describe('<Slide />', () => {
 
         setProps({ in: true });
 
-        expect(nodeEnterTransformStyle).to.equal('translateY(868px)');
+        expect(nodeEnterTransformStyle).to.equal(`translateY(${global.innerHeight + 100}px)`);
       });
 
       it('should set element transform in the `left` direction when element is offscreen', () => {
@@ -366,7 +366,7 @@ describe('<Slide />', () => {
 
         setProps({ in: true });
 
-        expect(nodeEnterTransformStyle).to.equal('translateX(1124px)');
+        expect(nodeEnterTransformStyle).to.equal(`translateX(${global.innerWidth + 100}px)`);
       });
     });
 
@@ -387,7 +387,7 @@ describe('<Slide />', () => {
 
         setProps({ in: false });
 
-        expect(nodeExitingTransformStyle).to.equal('translateX(724px)');
+        expect(nodeExitingTransformStyle).to.equal(`translateX(${global.innerWidth - 300}px)`);
       });
 
       it('should set element transform and transition in the `right` direction', () => {
@@ -425,7 +425,7 @@ describe('<Slide />', () => {
 
         setProps({ in: false });
 
-        expect(nodeExitingTransformStyle).to.equal('translateY(568px)');
+        expect(nodeExitingTransformStyle).to.equal(`translateY(${global.innerHeight - 200}px)`);
       });
 
       it('should set element transform and transition in the `down` direction', () => {
@@ -505,7 +505,7 @@ describe('<Slide />', () => {
         style: {},
       };
       setTranslateValue('up', element);
-      expect(element.style.transform).to.equal('translateY(-12px)');
+      expect(element.style.transform).to.equal(`translateY(${global.innerHeight - 780}px)`);
     });
 
     it('should do nothing when visible', () => {
