@@ -529,7 +529,7 @@ function AboutContent() {
           <Grid container spacing={2}>
             {teamMembers.map((profile) => (
               <Grid key={profile.name} item xs={6} sm={4} md={3}>
-                <Person sx={{ height: '100%' }} {...profile} />
+                <Person {...profile} />
               </Grid>
             ))}
           </Grid>
@@ -541,7 +541,7 @@ function AboutContent() {
             <Typography
               component="h3"
               variant="h5"
-              color="primary"
+              color="primary.400"
               fontWeight="extraBold"
               sx={{ mb: 1 }}
             >
@@ -554,7 +554,7 @@ function AboutContent() {
               <Grid container spacing={2}>
                 {contributors.map((profile) => (
                   <Grid key={profile.name} item xs={6} sm={4} md={3}>
-                    <Person sx={{ height: '100%' }} {...profile} />
+                    <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
                   </Grid>
                 ))}
               </Grid>
@@ -562,7 +562,7 @@ function AboutContent() {
             <Typography
               component="h3"
               variant="h5"
-              color="warning.main"
+              color="warning.400"
               fontWeight="extraBold"
               sx={{ mb: 1 }}
             >
@@ -576,7 +576,7 @@ function AboutContent() {
               <Grid container spacing={2}>
                 {emeriti.map((profile) => (
                   <Grid key={profile.name} item xs={6} sm={4} md={3}>
-                    <Person sx={{ height: '100%' }} {...profile} />
+                    <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
                   </Grid>
                 ))}
               </Grid>
