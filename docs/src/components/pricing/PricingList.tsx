@@ -118,7 +118,6 @@ export default function PricingList() {
           </div>
         </Fade>
       )}
-
       {planIndex === 2 && (
         <Fade in>
           <div>

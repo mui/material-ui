@@ -47,6 +47,7 @@ export function PlanName({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
     </React.Fragment>
   );
 }
+
 export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
   if (plan === 'community') {
     return (
@@ -119,6 +120,7 @@ const Info = ({ value, metadata }: { value: React.ReactNode; metadata?: string }
     </React.Fragment>
   );
 };
+
 const ColumnHead = ({
   label,
   metadata,
@@ -162,6 +164,7 @@ const ColumnHead = ({
     </Box>
   );
 };
+
 const ColumnHeadHighlight = (props: BoxProps) => (
   <Box
     {...props}
@@ -180,6 +183,7 @@ const ColumnHeadHighlight = (props: BoxProps) => (
     }}
   />
 );
+
 const Recommended = (props: BoxProps) => (
   <Box
     {...props}
@@ -413,6 +417,7 @@ const communityData: Record<string, React.ReactNode> = {
   'pre-screening': <IconImage name="no" />,
   'issue-escalation': <IconImage name="no" />,
 };
+
 const proData: Record<string, React.ReactNode> = {
   // Core
   '@mui/core': <IconImage name="yes" />,
@@ -464,6 +469,7 @@ const proData: Record<string, React.ReactNode> = {
   'pre-screening': <IconImage name="no" />,
   'issue-escalation': <IconImage name="no" />,
 };
+
 const premiumData: Record<string, React.ReactNode> = {
   // Core
   '@mui/core': <IconImage name="yes" />,
