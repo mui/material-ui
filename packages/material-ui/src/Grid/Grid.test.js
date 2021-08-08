@@ -50,7 +50,12 @@ describe('<Grid />', () => {
       expect(container.firstChild).to.have.class(classes['grid-xs-auto']);
     });
 
-    it('should apply the styles necessary for variable width nested item when set to auto', () => {
+    it('should apply the styles necessary for variable width nested item when set to auto', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // Need full CSS resolution
+        this.skip();
+      }
+
       render(
         <Grid container>
           <Grid container item xs="auto" data-testid="auto">
@@ -64,7 +69,7 @@ describe('<Grid />', () => {
         flexGrow: '0',
         flexShrink: '0',
         maxWidth: 'none',
-        width: process.env.KARMA ? '300px' : 'auto',
+        width: '300px',
       });
     });
   });
