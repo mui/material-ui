@@ -85,7 +85,7 @@ const faqData = [
         <br />
         If you wish to preserve your access to product updates (new features and fixes) and
         dedicated support, you need to renew your license, please{' '}
-        <Link href="mailto:sales@material-ui.com">contact sales</Link>.
+        <Link href="mailto:sales@mui.com">contact sales</Link>.
       </React.Fragment>
     ),
   },
@@ -127,7 +127,7 @@ const faqData = [
           </li>
         </ul>
         If your desired use falls under any of the three categories listed above, please{' '}
-        <Link href="mailto:sales@material-ui.com">contact sales</Link>. We will be happy to discuss
+        <Link href="mailto:sales@mui.com">contact sales</Link>. We will be happy to discuss
         your needs and see what we can do to accommodate your case.
       </React.Fragment>
     ),
@@ -252,14 +252,14 @@ export default function FAQ() {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.primary" sx={{ my: 1, textAlign: 'left' }}>
-              Email us at <Link href="mailto:sales@material-ui.com">sales@material-ui.com</Link> for
+              Email us at <Link href="mailto:sales@mui.com">sales@mui.com</Link> for
               sales-related questions.
             </Typography>
             <Typography variant="body2" color="text.primary" sx={{ my: 1, textAlign: 'left' }}>
               For product-related questions, you can open new issues on{' '}
               <Link href="https://github.com/mui-org/material-ui-x">GitHub</Link> (bugs and feature
               requests) or email us at{' '}
-              <Link href="mailto:x@material-ui.com">x@material-ui.com</Link>.
+              <Link href="mailto:x@mui.com">x@mui.com</Link>.
             </Typography>
           </Paper>
         </Grid>
