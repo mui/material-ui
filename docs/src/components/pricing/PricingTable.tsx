@@ -96,7 +96,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
       </Typography>
       <Box sx={{ width: 5 }} />
       <Typography variant="body2" color="text.secondary">
-        / per developer
+        / per developer.
       </Typography>
     </Box>
   );

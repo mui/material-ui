@@ -177,7 +177,7 @@ export default function AppFooter() {
       <Divider />
       <Box sx={{ py: 4 }}>
         <Typography color="text.secondary" variant="body2">
-          Currently v4.11.0. Released under the MIT License. Copyright © 2020 Material-UI.
+          Currently v4.11.0. Released under the MIT License. Copyright © 2020 Material-UI SAS.
         </Typography>
       </Box>
     </Container>

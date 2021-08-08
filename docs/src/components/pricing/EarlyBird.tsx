@@ -31,10 +31,10 @@ export default function EarlyBird() {
             Early bird special! 🐦
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 600 }}>
-            Buy now at a reduced price (~25% off), and get early access to Material-UI X, with the
-            added opportunity to influence its development. This perpetual license gives access to
-            support and updates for one year. The early bird special is available for a limited
-            time, so don&apos;t miss this opportunity!
+            Buy now at a reduced price (~25% off), and get early access to MUI X, with the added
+            opportunity to influence its development. This perpetual license gives access to support
+            and updates for one year. The early bird special is available for a limited time, so
+            don&apos;t miss this opportunity!
           </Typography>
         </div>
         <Box sx={{ mb: { xs: 2, sm: 0 } }}>

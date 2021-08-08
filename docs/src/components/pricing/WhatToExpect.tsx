@@ -34,13 +34,13 @@ export default function WhatToExpect() {
               Volumn discount
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              The licenses are on a per-developer basis. For online purchases we offer the following
-              tiered discounts from list prices when purchasing more than one license for your
-              development team:
-              <br />
-              <br />- 2-5 Licenses: 10% discount
-              <br />- 6-10 Licenses: 15% discount
-              <br />- 11+: License capped, extra developers do not need to be licensed.
+              The licenses are on a per-developer basis. We offer the following tiered discounts
+              from list prices when purchasing more than one license for your development team:
+              <Box component="ul" sx={{ px: 2.5 }}>
+                <li>2-5 Licenses: 10% discount</li>
+                <li>6-10 Licenses: 15% discount</li>
+                <li>11+: License capped, extra developers do not need to be licensed.</li>
+              </Box>
             </Typography>
           </Paper>
         </Grid>
