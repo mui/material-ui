@@ -659,7 +659,7 @@ function AboutContent() {
             </Paper>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
+            <Paper variant="outlined" sx={{ height: '100%', p: 2 }}>
               <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
                 <IconImage name="support-us" sx={{ mr: 1 }} />
                 Suport us financially
