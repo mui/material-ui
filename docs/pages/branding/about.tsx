@@ -89,7 +89,7 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
                 alt={props.name}
               />
             ) : (
-              <Image src={props.src} alt={props.name} width="70" height="70" />
+              <Image src={props.src} alt={props.name} width="70" height="70" unoptimized />
             )}
             <Box
               sx={{
@@ -504,7 +504,13 @@ function AboutContent() {
               Join the team
             </Button>
           </div>
-          <Image width="130" height="124" src="/static/branding/pricing/early-bird.svg" alt="" />
+          <Image
+            width="130"
+            height="124"
+            src="/static/branding/pricing/early-bird.svg"
+            alt=""
+            unoptimized
+          />
         </Box>
         <Divider sx={{ my: { xs: 2, sm: 4 } }} />
         <Typography
