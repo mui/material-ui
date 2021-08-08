@@ -2,8 +2,8 @@
 
 ## Usage
 
-Simply copy the files into your project, or one of the [example applications](https://github.com/mui-org/material-ui/tree/next/examples), and import and use the `Pricing` component.
+Copy the files into your project, or one of the [example projects](https://github.com/mui-org/material-ui/tree/next/examples), and import and use the `Pricing` component.
 
 ## Demo
 
-View the demo at https://material-ui.com/getting-started/templates/pricing/.
+View the demo at https://next.material-ui.com/getting-started/templates/pricing/.

@@ -34,3 +34,10 @@ It includes `@material-ui/core` and its peer dependencies, including `emotion`, 
 Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link).
 The example folder provides adapters for usage with Material-UI.
 More information [in the documentation](https://next.material-ui.com/guides/routing/#next-js).
+
+## What's next?
+
+You now have a working example project.
+You can head back to the documentation, continuing browsing it from the [templates](https://next.material-ui.com/getting-started/templates/) section.
+
+<!-- #default-branch-switch -->

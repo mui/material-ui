@@ -32,3 +32,10 @@ This example uses CRA with `react-app-rewired` for adding webpack aliases for pr
 
 It includes `@material-ui/core` and its peer dependencies, including `emotion`, the default style engine in Material-UI v5.
 If you prefer, you can [use styled-components instead](https://next.material-ui.com/guides/interoperability/#styled-components).
+
+## What's next?
+
+You now have a working example project.
+You can head back to the documentation, continuing browsing it from the [templates](https://next.material-ui.com/getting-started/templates/) section.
+
+<!-- #default-branch-switch -->
