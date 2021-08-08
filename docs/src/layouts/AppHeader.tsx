@@ -10,7 +10,7 @@ import HeaderNavBar from 'docs/src/components/header/HeaderNavBar';
 import HeaderNavDropdown from 'docs/src/components/header/HeaderNavDropdown';
 import ThemeModeToggle from 'docs/src/components/header/ThemeModeToggle';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-import { useChangeTheme } from '../modules/ThemeContext';
+import { useChangeTheme } from 'docs/src/modules/ThemeContext';
 
 const Header = styled('div', {
   shouldForwardProp: (prop) => prop !== 'trigger',

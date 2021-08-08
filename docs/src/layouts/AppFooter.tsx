@@ -9,7 +9,7 @@ import InputBase from '@material-ui/core/InputBase';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
-import ROUTES from '../route';
+import ROUTES from 'docs/src/route';
 
 export default function AppFooter() {
   return (
