@@ -427,7 +427,7 @@ function AboutContent() {
             textAlign: 'center',
           }}
         >
-          <Typography variant="body2" color="primary" fontWeight="bold">
+          <Typography variant="body2" color="primary.600" fontWeight="bold">
             About us
           </Typography>
           <Typography variant="h2" sx={{ my: 1 }}>
@@ -507,7 +507,13 @@ function AboutContent() {
           <Image width="130" height="124" src="/static/branding/pricing/early-bird.svg" alt="" />
         </Box>
         <Divider sx={{ my: { xs: 2, sm: 4 } }} />
-        <Typography variant="h5" color="primary" fontWeight="extraBold" sx={{ mb: 1 }}>
+        <Typography
+          component="h3"
+          variant="h5"
+          color="primary"
+          fontWeight="extraBold"
+          sx={{ mb: 1 }}
+        >
           Company
         </Typography>
         <Typography color="text.secondary">
@@ -526,7 +532,13 @@ function AboutContent() {
       <MuiThemeProvider theme={darkTheme}>
         <Box sx={{ bgcolor: 'primaryDark.700' }}>
           <Container sx={{ py: { xs: 4, sm: 8 } }}>
-            <Typography variant="h5" color="primary" fontWeight="extraBold" sx={{ mb: 1 }}>
+            <Typography
+              component="h3"
+              variant="h5"
+              color="primary"
+              fontWeight="extraBold"
+              sx={{ mb: 1 }}
+            >
               Community contributors
             </Typography>
             <Typography color="text.secondary" sx={{ maxWidth: { md: 400 } }}>
@@ -541,7 +553,13 @@ function AboutContent() {
                 ))}
               </Grid>
             </Box>
-            <Typography variant="h5" color="warning.main" fontWeight="extraBold" sx={{ mb: 1 }}>
+            <Typography
+              component="h3"
+              variant="h5"
+              color="warning.main"
+              fontWeight="extraBold"
+              sx={{ mb: 1 }}
+            >
               Community emeriti
             </Typography>
             <Typography color="text.secondary" sx={{ maxWidth: { md: 400 } }}>

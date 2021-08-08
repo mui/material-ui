@@ -23,7 +23,7 @@ const HeroEnd = () => {
       <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
         <Grid container spacing={{ xs: 2, md: 4 }} alignItems="center">
           <Grid item xs={12} sm={6} md={6} sx={{ mb: { md: 4 } }}>
-            <Typography color="primary" fontWeight="bold" variant="body2" sx={{ mb: 1 }}>
+            <Typography color="primary.600" fontWeight="bold" variant="body2" sx={{ mb: 1 }}>
               Go live!
             </Typography>
             <Typography variant="h2" sx={{ maxWidth: 500, mb: 1 }}>
