@@ -109,7 +109,7 @@ const Info = ({ value, metadata }: { value: React.ReactNode; metadata?: string }
       {metadata && (
         <Typography
           variant="caption"
-          color="text.gray800"
+          color="grey.800"
           fontWeight="normal"
           sx={{ display: 'block', mt: 0.5 }}
         >
