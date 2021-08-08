@@ -85,6 +85,7 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
                 srcSet={`${props.src}?s=140 2x`}
                 width="70"
                 height="70"
+                loading="lazy"
                 alt={props.name}
               />
             ) : (
