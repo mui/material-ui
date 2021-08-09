@@ -522,6 +522,23 @@ const premiumData: Record<string, React.ReactNode> = {
   'issue-escalation': <Info value={<IconImage name="time" />} metadata="priority only" />,
 };
 
+const RowCategory = (props: BoxProps) => (
+  <Box
+    {...props}
+    sx={{
+      typography: 'caption',
+      fontWeight: 500,
+      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.50'),
+      py: 1,
+      ml: 1,
+      pl: 1.5,
+      borderBottom: '1px solid',
+      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.200'),
+      ...props.sx,
+    }}
+  />
+);
+
 export default function PricingTable({
   columnHeaderHidden,
   plans = ['community', 'pro', 'premium'],
@@ -559,6 +576,7 @@ export default function PricingTable({
     );
   }
   const divider = <Divider />;
+  const nestedDivider = <Divider sx={{ ml: 1 }} />;
   return (
     <Box
       {...props}
@@ -665,14 +683,15 @@ export default function PricingTable({
         }
         sx={{
           p: 1,
+          py: 1.5,
           justifyContent: 'flex-start',
           fontWeight: 400,
+          borderRadius: '0px',
           color: 'text.primary',
         }}
       >
         Data Grid
       </Button>
-      {divider}
       <Collapse in={dataGridCollapsed} timeout={700} sx={{ position: 'relative' }}>
         <Box
           sx={{
@@ -684,75 +703,85 @@ export default function PricingTable({
             bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
           }}
         />
+        <RowCategory>Column features</RowCategory>
         {renderRow('data-grid/column-resizing')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/column-groups')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/column-reorder')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/column-pinning')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/column-spanning')}
-        {divider}
+        {nestedDivider}
+        <RowCategory>Row features</RowCategory>
         {renderRow('data-grid/row-sorting')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/row-height')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/row-spanning')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/row-reordering')}
-        {divider}
+        {nestedDivider}
+        <RowCategory>Selection features</RowCategory>
         {renderRow('data-grid/row-selection')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/row-multiselection')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/row-rangeselection')}
-        {divider}
+        {nestedDivider}
+        <RowCategory>Filtering features</RowCategory>
         {renderRow('data-grid/filter-column')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/filter-multicolumn')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/filter-quick')}
-        {divider}
+        {nestedDivider}
+        <RowCategory>Pagination features</RowCategory>
         {renderRow('data-grid/pagination')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/pagination-large')}
-        {divider}
+        {nestedDivider}
+        <RowCategory>Editing features</RowCategory>
         {renderRow('data-grid/edit-row')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/edit-cell')}
-        {divider}
+        {nestedDivider}
+        <RowCategory>Import & export</RowCategory>
         {renderRow('data-grid/file-csv')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/file-print')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/file-excel')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/file-clipboard')}
-        {divider}
+        {nestedDivider}
+        <RowCategory>Rendering features</RowCategory>
         {renderRow('data-grid/virtualize-column')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/virtualize-row')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/customizable-components')}
-        {divider}
+        {nestedDivider}
+        <RowCategory>Group & pivot</RowCategory>
         {renderRow('data-grid/tree-data')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/master-detail')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/grouping')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/aggregation')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/pivoting')}
-        {divider}
+        {nestedDivider}
+        <RowCategory>Miscellaneous</RowCategory>
         {renderRow('data-grid/accessibility')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/keyboard-nav')}
-        {divider}
+        {nestedDivider}
         {renderRow('data-grid/localization')}
       </Collapse>
-      {dataGridCollapsed && divider}
+      {divider}
       {renderRow('data-grid-pro')}
       {divider}
       {renderRow('date-range-picker')}
