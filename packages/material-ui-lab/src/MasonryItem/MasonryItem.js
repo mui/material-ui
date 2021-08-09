@@ -89,18 +89,17 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
   });
 
   const classes = useUtilityClasses(styleProps);
-  const resizeObserver = React.useRef(null);
 
   React.useEffect(() => {
     // do not create a resize observer in case of SSR masonry
     if (isSSR) {
-      return true;
+      return () => {};
     }
     const handleImageLoadError = () => {
       const src = masonryItemRef.current.firstChild.src;
       masonryItemRef.current.firstChild.src = `${src}?${new Date().getTime()}`;
     };
-    resizeObserver.current = new ResizeObserver(([item]) => {
+    const resizeObserver = new ResizeObserver(([item]) => {
       if (styleProps.height !== item.contentRect.height) {
         setStyleProps({
           ...styleProps,
@@ -109,11 +108,10 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
       }
     });
     const item = masonryItemRef.current.firstChild;
-    const observer = resizeObserver.current;
     item.addEventListener('error', handleImageLoadError);
-    observer.observe(item);
+    resizeObserver.observe(item);
     return () => {
-      observer.unobserve(item);
+      resizeObserver.unobserve(item);
       item.removeEventListener('error', handleImageLoadError);
     };
   }, [isSSR, styleProps]);
