@@ -69,11 +69,7 @@ const grid = [
     height: 119,
   },
   {
-    ui: (
-      <Box sx={{ transform: { xs: 'scale(1.11)', lg: 'scale(1)' } }}>
-        <ThemeTabs />
-      </Box>
-    ),
+    ui: <ThemeTabs />,
     width: 310,
     height: 50,
   },
@@ -171,9 +167,6 @@ export default function Hero() {
                       'sans-serif',
                     ].join(','),
                   },
-                  transform: { xs: 'scale(0.9)', xl: 'scale(1)' },
-                  transformOrigin: 'top left',
-                  transition: 'transform 0.3s',
                 }}
               >
                 {grid.map((config, index) => (
