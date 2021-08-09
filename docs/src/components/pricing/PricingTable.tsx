@@ -735,9 +735,6 @@ export default function PricingTable({
               <PlanPrice plan="premium" />
             </Box>
             <Button
-              component={Link}
-              noLinkStyle
-              href="/components/data-grid/"
               variant="outlined"
               disabled
               fullWidth
