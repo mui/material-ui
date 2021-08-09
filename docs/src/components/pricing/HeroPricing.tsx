@@ -17,7 +17,7 @@ export default function HeroPricing() {
           alignItems: 'center',
         }}
       >
-        <Typography variant="body2" color="primary" fontWeight="bold">
+        <Typography variant="body2" color="primary.600" fontWeight="bold">
           Pricing
         </Typography>
         <Typography variant="h2" sx={{ my: 1 }}>

@@ -171,6 +171,7 @@ const Testimonials = ({ mode: modeProp }: { mode?: 'light' | 'dark' }) => {
                 >
                   <IconButton
                     size="small"
+                    aria-label="Previous testimonial"
                     disabled={slideIndex === 0}
                     onClick={() => setSlideIndex((i) => i - 1)}
                   >
@@ -178,6 +179,7 @@ const Testimonials = ({ mode: modeProp }: { mode?: 'light' | 'dark' }) => {
                   </IconButton>
                   <IconButton
                     size="small"
+                    aria-label="Next testimonial"
                     disabled={slideIndex === TESTIMONIALS.length - 1}
                     sx={{ ml: 2 }}
                     onClick={() => setSlideIndex((i) => i + 1)}
@@ -190,6 +192,7 @@ const Testimonials = ({ mode: modeProp }: { mode?: 'light' | 'dark' }) => {
                     <Box
                       key={index}
                       role="button"
+                      aria-label={`Testimonial from ${item.profile.name}`}
                       onClick={() => setSlideIndex(index)}
                       sx={{
                         cursor: 'pointer',

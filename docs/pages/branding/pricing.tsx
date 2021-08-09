@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Head from 'docs/src/modules/components/Head';
 import ThemeProvider from 'docs/src/modules/ThemeContext';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
@@ -17,6 +18,10 @@ import AppFooter from 'docs/src/layouts/AppFooter';
 export default function Pricing() {
   return (
     <ThemeProvider>
+      <Head
+        title="Pricing - Material-UI"
+        description="The community edition lets you get going right away. Switch to a commercial plan for more components & premium support."
+      />
       <CssBaseline />
       <AppHeader />
       <HeroPricing />

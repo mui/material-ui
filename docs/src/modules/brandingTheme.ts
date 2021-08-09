@@ -327,6 +327,10 @@ export function getThemedComponents(theme: Theme) {
         },
         styleOverrides: {
           root: {
+            color:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primary[400]
+                : theme.palette.primary[600],
             fontWeight: 'bold',
             display: 'inline-flex',
             alignItems: 'center',
