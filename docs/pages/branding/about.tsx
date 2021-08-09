@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Image from 'next/image';
 import Head from 'docs/src/modules/components/Head';
 import { useTheme, ThemeProvider as MuiThemeProvider, createTheme } from '@material-ui/core/styles';
 import ThemeProvider from 'docs/src/modules/ThemeContext';
@@ -89,7 +88,7 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
                 alt={props.name}
               />
             ) : (
-              <Image src={props.src} alt={props.name} width="70" height="70" unoptimized />
+              <img src={props.src} alt={props.name} width="70" height="70" loading="lazy" />
             )}
             <Box
               sx={{
@@ -504,12 +503,12 @@ function AboutContent() {
               Join the team
             </Button>
           </div>
-          <Image
+          <img
             width="130"
             height="124"
             src="/static/branding/pricing/early-bird.svg"
+            loading="lazy"
             alt=""
-            unoptimized
           />
         </Box>
         <Divider sx={{ my: { xs: 2, sm: 4 } }} />
