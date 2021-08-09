@@ -1,5 +1,11 @@
 import * as React from 'react';
+import { styled } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+
+const Img = styled('img')({
+  maxWidth: '100%',
+  height: 'auto',
+});
 
 export const CORE_COMPANIES = [
   {
@@ -47,7 +53,8 @@ export default function CompaniesGrid({ data }: { data: Array<JSX.IntrinsicEleme
         <Grid
           key={imgProps.src}
           item
-          xs={4}
+          xs={6}
+          sm={4}
           md={2}
           sx={{
             display: 'flex',
@@ -55,7 +62,7 @@ export default function CompaniesGrid({ data }: { data: Array<JSX.IntrinsicEleme
             alignItems: 'center',
           }}
         >
-          <img alt={imgProps.alt} loading="lazy" {...imgProps} />
+          <Img alt={imgProps.alt} loading="lazy" {...imgProps} />
         </Grid>
       ))}
     </Grid>
