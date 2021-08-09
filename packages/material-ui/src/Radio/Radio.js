@@ -124,6 +124,7 @@ Radio.propTypes /* remove-proptypes */ = {
   checked: PropTypes.bool,
   /**
    * The icon to display when the component is checked.
+   * @default <RadioButtonIcon checked />
    */
   checkedIcon: PropTypes.node,
   /**
@@ -148,6 +149,7 @@ Radio.propTypes /* remove-proptypes */ = {
   disableRipple: PropTypes.bool,
   /**
    * The icon to display when the component is unchecked.
+   * @default <RadioButtonIcon />
    */
   icon: PropTypes.node,
   /**
