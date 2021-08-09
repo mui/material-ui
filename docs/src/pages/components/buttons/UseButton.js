@@ -5,17 +5,18 @@ import Stack from '@material-ui/core/Stack';
 import { useButton } from '@material-ui/unstyled/ButtonUnstyled';
 import { styled } from '@material-ui/system';
 
-const StyledButtonRoot = styled('span')(`
+const StyledButtonRoot = styled('button')(`
   background-color: #007fff;
   padding: 16px 20px;
   border-radius: 10px;
-  display: inline-flex;
-  align-items: center;
   color: #fff;
   font-weight: bold;
+  font-family: inherit;
+  font-size: 16px;
   transition: all 200ms ease;
   cursor: pointer;
   box-shadow: 0 0 0 0 rgba(0, 127, 255, 0);
+  border: none;
 
   &:hover {
     background-color: #0059b2;
@@ -36,12 +37,11 @@ const StyledButtonRoot = styled('span')(`
   }
 `);
 
-function CustomButton(props) {
+const CustomButton = React.forwardRef(function CustomButton(props, ref) {
   const { children } = props;
-  const buttonRef = React.useRef(null);
   const button = useButton({
     ...props,
-    ref: buttonRef,
+    ref,
     component: StyledButtonRoot,
   });
 
@@ -56,7 +56,7 @@ function CustomButton(props) {
       {children}
     </StyledButtonRoot>
   );
-}
+});
 
 CustomButton.propTypes = {
   children: PropTypes.node,

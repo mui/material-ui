@@ -187,23 +187,38 @@ The button also comes with an unstyled version. It's ideal for doing heavy custo
 
 ### Unstyled component
 
-```jsx
+```js
 import ButtonUnstyled from '@material-ui/unstyled/ButtonUnstyled';
 ```
+
+{{"demo": "pages/components/buttons/UnstyledButtonsSimple.js"}}
+
+#### Customizing the root element
 
 By default, the `ButtonUnstyled` renders a native `button` element.
 You are free to override this by setting the `component` or `components.Root` prop.
 If a non-interactive element (such as a span) is provided this way, the `ButtonUnstyled` will take care of adding accessibility attributes.
 
-{{"demo": "pages/components/buttons/UnstyledButtons.js"}}
+{{"demo": "pages/components/buttons/UnstyledButtonsSpan.js"}}
+
+Compare the attributes on the span with the button from the previous demo
+
+#### Complex customization
+
+You may even use SVG elements to render the button.
+
+{{"demo": "pages/components/buttons/UnstyledButtonCustom.js"}}
 
 ### useButton hook
 
-```jsx
+```js
 import { useButton } from '@material-ui/unstyled/ButtonUnstyled';
 ```
 
 If you need to use Button's functionality in another component, you can use the `useButton` hook.
 It returns props to be placed on a custom button element and fields representing the internal state of the button.
+
+The `useButton` hook requires the ref of the element it'll be used on.
+Additionally, you need to provide the `component` prop (unless you intend to use the plain `button`).
 
 {{"demo": "pages/components/buttons/UseButton.js"}}

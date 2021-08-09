@@ -180,9 +180,8 @@ function testComponentsProp(
       }),
     );
 
-    /* eslint-disable @typescript-eslint/no-unused-expressions */
-    expect(queryByTestId('a')).to.exist;
-    expect(queryByTestId('b')).not.to.exist;
+    expect(queryByTestId('a')).not.to.equal(null);
+    expect(queryByTestId('b')).to.equal(null);
   });
 }
 
@@ -247,7 +246,7 @@ function testStylePropsPropagation(
     it(`sets the styleProps prop on ${capitalize(slotName)} slot's component`, () => {
       const TestComponent = React.forwardRef(
         ({ styleProps, expectedStyleProps }: WithStyleProps, ref: React.Ref<any>) => {
-          expect(styleProps).not.to.be.undefined;
+          expect(styleProps).not.to.equal(undefined);
           expect(styleProps).to.deep.include(expectedStyleProps);
           return <div ref={ref} />;
         },
