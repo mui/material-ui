@@ -58,6 +58,14 @@ const RadioRoot = styled(SwitchBase, {
   },
 }));
 
+function areEqualValues(a, b) {
+  if (typeof b === 'object' && b !== null) {
+    return a === b;
+  }
+
+  return String(a) === String(b);
+}
+
 const defaultCheckedIcon = <RadioButtonIcon checked />;
 const defaultIcon = <RadioButtonIcon />;
 
@@ -86,12 +94,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
 
   if (radioGroup) {
     if (typeof checked === 'undefined') {
-      if (typeof radioGroup.value === 'object' && typeof props.value === 'object') {
-        checked = radioGroup.value === props.value;
-      } else {
-        // always compare as string because value could also be number
-        checked = String(radioGroup.value) === String(props.value);
-      }
+      checked = areEqualValues(radioGroup.value, props.value);
     }
     if (typeof name === 'undefined') {
       name = radioGroup.name;
