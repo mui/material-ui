@@ -2,9 +2,9 @@
 
 <p class="description">The legacy styling solution of Material-UI.</p>
 
-> ⚠️ `@material-ui/styles` is the legacy styling solution for Material-UI.
-> It's **deprecated** in v5, which is not used by the other packages anymore.
-> It depends on [JSS](https://cssinjs.org/).
+> ⚠️ `@material-ui/styles` is the _**legacy**_ styling solution for Material-UI.
+> It is deprecated in v5.
+> It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@material-ui/core` anymore.
 > If you don't want to have both emotion & JSS in your bundle, please refer to the [`@material-ui/system`](/system/basics/) documentation which is the recommended alternative.
 
 > ⚠️ `@material-ui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
