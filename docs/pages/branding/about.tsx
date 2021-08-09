@@ -57,7 +57,7 @@ interface Profile {
 
 const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
   return (
-    <Paper variant="outlined" sx={{ p: 2, ...props.sx }}>
+    <Paper variant="outlined" sx={{ p: 2, height: '100%', ...props.sx }}>
       <Box
         sx={{
           display: 'flex',
