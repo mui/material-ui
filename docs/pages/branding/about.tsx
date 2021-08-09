@@ -431,7 +431,14 @@ function AboutContent() {
             We&apos;re on a mission to make building UIs more{' '}
             <GradientText>accessible</GradientText>.
           </Typography>
-          <Typography color="text.secondary" textAlign="center" sx={{ maxWidth: { md: 500 } }}>
+          <Typography
+            color="text.secondary"
+            textAlign="center"
+            sx={{
+              maxWidth: { md: 500 },
+              minHeight: 48, // a hack to reduce CLS (layout shift)
+            }}
+          >
             Our mission is to empower anyone to build UIs, faster. We&apos;re reducing the entry
             barrier, making design skills accessible.
           </Typography>
