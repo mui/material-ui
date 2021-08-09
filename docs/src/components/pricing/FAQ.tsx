@@ -127,8 +127,8 @@ const faqData = [
           </li>
         </ul>
         If your desired use falls under any of the three categories listed above, please{' '}
-        <Link href="mailto:sales@mui.com">contact sales</Link>. We will be happy to discuss
-        your needs and see what we can do to accommodate your case.
+        <Link href="mailto:sales@mui.com">contact sales</Link>. We will be happy to discuss your
+        needs and see what we can do to accommodate your case.
       </React.Fragment>
     ),
   },
@@ -218,7 +218,7 @@ export default function FAQ() {
     );
   }
   return (
-    <Container sx={{ py: 8 }}>
+    <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
       <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>
         Frequently asked questions
       </Typography>
@@ -252,14 +252,13 @@ export default function FAQ() {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.primary" sx={{ my: 1, textAlign: 'left' }}>
-              Email us at <Link href="mailto:sales@mui.com">sales@mui.com</Link> for
-              sales-related questions.
+              Email us at <Link href="mailto:sales@mui.com">sales@mui.com</Link> for sales-related
+              questions.
             </Typography>
             <Typography variant="body2" color="text.primary" sx={{ my: 1, textAlign: 'left' }}>
               For product-related questions, you can open new issues on{' '}
               <Link href="https://github.com/mui-org/material-ui-x">GitHub</Link> (bugs and feature
-              requests) or email us at{' '}
-              <Link href="mailto:x@mui.com">x@mui.com</Link>.
+              requests) or email us at <Link href="mailto:x@mui.com">x@mui.com</Link>.
             </Typography>
           </Paper>
         </Grid>

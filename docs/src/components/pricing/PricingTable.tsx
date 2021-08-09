@@ -2,6 +2,7 @@ import * as React from 'react';
 import { alpha } from '@material-ui/core/styles';
 import Box, { BoxProps } from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
 import Collapse from '@material-ui/core/Collapse';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
@@ -30,7 +31,13 @@ const planInfo = {
   },
 } as const;
 
-export function PlanName({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
+export function PlanName({
+  plan,
+  disableDescription = false,
+}: {
+  plan: 'community' | 'pro' | 'premium';
+  disableDescription?: boolean;
+}) {
   const { title, color, description } = planInfo[plan];
   return (
     <React.Fragment>
@@ -41,9 +48,11 @@ export function PlanName({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
       >
         {title} <IconImage name={`block-${color}` as IconImageProps['name']} />
       </Typography>
-      <Typography variant="body2" color="text.secondary">
-        {description}
-      </Typography>
+      {!disableDescription && (
+        <Typography variant="body2" color="text.secondary">
+          {description}
+        </Typography>
+      )}
     </React.Fragment>
   );
 }
@@ -590,6 +599,27 @@ export default function PricingTable({
         ...props.sx,
       }}
     >
+      {/* <Box sx={{ position: 'fixed', top: 64 }}>
+        <Container
+          disableGutters
+          sx={{
+            p: '0px !important',
+            display: 'grid',
+            gridTemplateColumns: `minmax(200px, 1fr) repeat(${plans.length}, minmax(${
+              columnHeaderHidden ? '0px' : '260px'
+            }, 1fr))`,
+          }}
+        >
+          <Typography variant="body2" fontWeight="bold" sx={{ p: 2 }}>
+            Plans
+          </Typography>
+          {(['community', 'pro', 'premium'] as const).map((plan) => (
+            <Box key={plan} sx={{ p: 2 }}>
+              <PlanName plan={plan} disableDescription />
+            </Box>
+          ))}
+        </Container>
+      </Box> */}
       {!columnHeaderHidden && (
         <Box
           sx={{
