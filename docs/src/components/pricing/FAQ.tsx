@@ -100,17 +100,18 @@ const faqData = [
           <li>Hosted applications</li>
           <li>Commercial solutions deployed for end-users</li>
         </ul>
-        Based on the "Deployment" section of the EULA, you can sublicense the software if it's made
-        part of a larger work. The new licenses must be in writing and substantially the same as
-        these EULA.
+        Based on the &quot;Deployment&quot; section of the EULA, you can sublicense the software if
+        it&apos;s made part of a larger work. The new licenses must be in writing and substantially
+        the same as these EULA.
         <br />
         <br />
-        <b>Example 1.</b> Agency 'A' is building two applications for companies 'B' and 'C'. Agency
-        'A' purchases four licenses for four developers. They build the applications and sublicense
-        the software to companies 'B' and 'C' without any extra fee. Company 'B' can deploy the
-        application built by the agency without modifying the sources. Company 'C' decides to
-        continue working on the application. They purchase one license per developer working on the
-        front end of the application.
+        <b>Example 1.</b> Agency &apos;A&apos; is building two applications for companies
+        &apos;B&apos; and &apos;C&apos;. Agency &apos;A&apos; purchases four licenses for four
+        developers. They build the applications and sublicense the software to companies
+        &apos;B&apos; and &apos;C&apos; without any extra fee. Company &apos;B&apos; can deploy the
+        application built by the agency without modifying the sources. Company &apos;C&apos; decides
+        to continue working on the application. They purchase one license per developer working on
+        the front end of the application.
         <br />
         <br />
         There are only two limitations that require additional discussion with our sales team:

@@ -171,11 +171,7 @@ const Sponsors = () => {
               </Typography>
               <Typography variant="body2" color="text.primary">
                 To join us, contact us at{' '}
-                <Link
-                  href="mailto:diamond@mui.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
+                <Link href="mailto:diamond@mui.com" target="_blank" rel="noopener noreferrer">
                   diamond@mui.com
                 </Link>{' '}
                 for pre-approval.
