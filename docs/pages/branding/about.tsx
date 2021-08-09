@@ -178,8 +178,8 @@ const teamMembers: Array<Profile> = [
     location: 'Paris, France',
     country: 'fr',
     about: 'Exercise addict and lifelong learner',
-    twitter: 'https://twitter.com/olivtassinari',
-    github: 'https://github.com/oliviertassinari',
+    twitter: 'olivtassinari',
+    github: 'oliviertassinari',
   },
   {
     name: 'Matt Brookes',
@@ -308,7 +308,7 @@ const contributors = [
   {
     name: 'Ryan Cogswell',
     github: 'ryancogswell',
-    title: 'Stack Overflow',
+    title: 'Stack Overflow top contributor',
     location: 'Minnesota, United States',
     country: 'us',
     src: 'https://avatars.githubusercontent.com/u/287804',
@@ -528,7 +528,7 @@ function AboutContent() {
           <Grid container spacing={2}>
             {teamMembers.map((profile) => (
               <Grid key={profile.name} item xs={6} sm={4} md={3}>
-                <Person sx={{ height: '100%' }} {...profile} />
+                <Person {...profile} />
               </Grid>
             ))}
           </Grid>
@@ -540,7 +540,7 @@ function AboutContent() {
             <Typography
               component="h3"
               variant="h5"
-              color="primary"
+              color="primary.400"
               fontWeight="extraBold"
               sx={{ mb: 1 }}
             >
@@ -553,7 +553,7 @@ function AboutContent() {
               <Grid container spacing={2}>
                 {contributors.map((profile) => (
                   <Grid key={profile.name} item xs={6} sm={4} md={3}>
-                    <Person sx={{ height: '100%' }} {...profile} />
+                    <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
                   </Grid>
                 ))}
               </Grid>
@@ -561,7 +561,7 @@ function AboutContent() {
             <Typography
               component="h3"
               variant="h5"
-              color="warning.main"
+              color="warning.400"
               fontWeight="extraBold"
               sx={{ mb: 1 }}
             >
@@ -575,7 +575,7 @@ function AboutContent() {
               <Grid container spacing={2}>
                 {emeriti.map((profile) => (
                   <Grid key={profile.name} item xs={6} sm={4} md={3}>
-                    <Person sx={{ height: '100%' }} {...profile} />
+                    <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
                   </Grid>
                 ))}
               </Grid>
