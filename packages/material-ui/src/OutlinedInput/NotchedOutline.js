@@ -165,4 +165,4 @@ NotchedOutline.propTypes = {
   style: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'PrivateNotchedOutline' })(NotchedOutline);
+export default withStyles(styles, { name: 'MuiPrivateNotchedOutline' })(NotchedOutline);
