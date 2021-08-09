@@ -44,12 +44,12 @@ export function PlanName({
       <Typography
         variant="body2"
         fontWeight="bold"
-        sx={{ mb: 1, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+        sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
       >
         {title} <IconImage name={`block-${color}` as IconImageProps['name']} />
       </Typography>
       {!disableDescription && (
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
           {description}
         </Typography>
       )}
@@ -548,6 +548,83 @@ const RowCategory = (props: BoxProps) => (
   />
 );
 
+const StickyHead = ({
+  container,
+  disableCalculation = false,
+}: {
+  container: React.MutableRefObject<HTMLElement | null>;
+  disableCalculation?: boolean;
+}) => {
+  const [hidden, setHidden] = React.useState(true);
+  React.useEffect(() => {
+    function handleScroll() {
+      if (container.current) {
+        const rect = container.current.getBoundingClientRect();
+        const appHeaderHeight = 64;
+        const headHeight = 41;
+        const tablePaddingTop = 40;
+        if (
+          rect.top + appHeaderHeight < 0 &&
+          rect.height + rect.top - appHeaderHeight - headHeight - tablePaddingTop > 0
+        ) {
+          setHidden(false);
+        } else {
+          setHidden(true);
+        }
+      }
+    }
+    if (!disableCalculation) {
+      document.addEventListener('scroll', handleScroll);
+      return () => {
+        document.removeEventListener('scroll', handleScroll);
+      };
+    }
+    return () => {};
+  }, [container, disableCalculation]);
+  return (
+    <Box
+      sx={{
+        position: 'fixed',
+        zIndex: 1,
+        top: 64,
+        left: 0,
+        right: 0,
+        transition: '0.3s',
+        ...(hidden && {
+          opacity: 0,
+          top: 0,
+        }),
+        display: { xs: 'none', md: 'block' },
+        backdropFilter: 'blur(20px)',
+        boxShadow: (theme) =>
+          `inset 0px -1px 1px ${
+            theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100]
+          }`,
+        backgroundColor: (theme) =>
+          theme.palette.mode === 'dark'
+            ? alpha(theme.palette.primaryDark[900], 0.72)
+            : 'rgba(255,255,255,0.72)',
+      }}
+    >
+      <Container
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: `minmax(200px, 1fr) repeat(3, minmax(260px, 1fr))`,
+        }}
+      >
+        <Typography variant="body2" fontWeight="bold" sx={{ px: 2, py: 1 }}>
+          Plans
+        </Typography>
+        {(['community', 'pro', 'premium'] as const).map((plan) => (
+          <Box key={plan} sx={{ px: 2, py: 1 }}>
+            <PlanName plan={plan} disableDescription />
+          </Box>
+        ))}
+      </Container>
+    </Box>
+  );
+};
+
 export default function PricingTable({
   columnHeaderHidden,
   plans = ['community', 'pro', 'premium'],
@@ -557,6 +634,7 @@ export default function PricingTable({
   plans?: Array<'community' | 'pro' | 'premium'>;
 }) {
   const [dataGridCollapsed, setDataGridCollapsed] = React.useState(false);
+  const tableRef = React.useRef<HTMLDivElement | null>(null);
   function renderRow(key: string) {
     return (
       <Box
@@ -588,6 +666,7 @@ export default function PricingTable({
   const nestedDivider = <Divider sx={{ ml: 1 }} />;
   return (
     <Box
+      ref={tableRef}
       {...props}
       sx={{
         width: '100%',
@@ -599,27 +678,7 @@ export default function PricingTable({
         ...props.sx,
       }}
     >
-      {/* <Box sx={{ position: 'fixed', top: 64 }}>
-        <Container
-          disableGutters
-          sx={{
-            p: '0px !important',
-            display: 'grid',
-            gridTemplateColumns: `minmax(200px, 1fr) repeat(${plans.length}, minmax(${
-              columnHeaderHidden ? '0px' : '260px'
-            }, 1fr))`,
-          }}
-        >
-          <Typography variant="body2" fontWeight="bold" sx={{ p: 2 }}>
-            Plans
-          </Typography>
-          {(['community', 'pro', 'premium'] as const).map((plan) => (
-            <Box key={plan} sx={{ p: 2 }}>
-              <PlanName plan={plan} disableDescription />
-            </Box>
-          ))}
-        </Container>
-      </Box> */}
+      <StickyHead container={tableRef} disableCalculation={columnHeaderHidden} />
       {!columnHeaderHidden && (
         <Box
           sx={{
