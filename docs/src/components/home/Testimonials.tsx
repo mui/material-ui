@@ -31,7 +31,7 @@ const UserFeedback = ({
 }) => {
   return (
     <div>
-      <Typography variant="subtitle1" color="#fff" sx={{ mb: 2 }}>
+      <Typography component="p" variant="subtitle1" color="#fff" sx={{ mb: 2 }}>
         {quote}
       </Typography>
       <Box sx={{ display: 'flex' }}>
