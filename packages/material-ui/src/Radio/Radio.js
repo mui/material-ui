@@ -63,6 +63,7 @@ function areEqualValues(a, b) {
     return a === b;
   }
 
+  // The value could be a number, the DOM serialize it
   return String(a) === String(b);
 }
 
