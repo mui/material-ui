@@ -3,6 +3,7 @@ import Head from 'docs/src/modules/components/Head';
 import { useTheme, ThemeProvider as MuiThemeProvider, createTheme } from '@material-ui/core/styles';
 import ThemeProvider from 'docs/src/modules/ThemeContext';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
@@ -71,25 +72,22 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
           // @ts-expect-error
           PopperProps={{ sx: { '& .MuiTooltip-tooltip': { p: 0.5 } } }}
         >
-          <Box
-            sx={{
-              position: 'relative',
-              display: 'inline-block',
-              '& > *:first-of-type': { bgcolor: 'primaryDark.800', borderRadius: 1 },
-            }}
-          >
-            {props.src.startsWith('https://avatars.githubusercontent.com') ? (
-              <img
-                src={`${props.src}?s=70`}
-                srcSet={`${props.src}?s=140 2x`}
-                width="70"
-                height="70"
-                loading="lazy"
-                alt={props.name}
-              />
-            ) : (
-              <img src={props.src} alt={props.name} width="70" height="70" loading="lazy" />
-            )}
+          <Box sx={{ position: 'relative', display: 'inline-block' }}>
+            <Avatar
+              variant="rounded"
+              imgProps={{
+                width: '70',
+                height: '70',
+                loading: 'lazy',
+              }}
+              src={props.src}
+              alt={props.name}
+              {...(props.src.startsWith('https://avatars.githubusercontent.com') && {
+                src: `${props.src}?s=70`,
+                srcSet: `${props.src}?s=140 2x`,
+              })}
+              sx={{ width: 70, height: 70, bgcolor: 'primaryDark.800', borderRadius: 1 }}
+            />
             <Box
               sx={{
                 position: 'absolute',
