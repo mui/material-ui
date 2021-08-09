@@ -112,7 +112,7 @@ export default function MaterialDesignDemo() {
             Michael Scott
           </Typography>
         </Box>
-        <IconButton size="small" sx={{ alignSelf: 'flex-start' }}>
+        <IconButton aria-label="Edit" size="small" sx={{ alignSelf: 'flex-start' }}>
           <Edit fontSize="small" />
         </IconButton>
       </Box>
@@ -135,6 +135,7 @@ export default function MaterialDesignDemo() {
           {active ? 'Active' : 'Inactive'} account
         </Typography>
         <Switch
+          aria-label={active ? 'disable account' : 'activate account'}
           checked={active}
           onChange={(event) => setActive(event.target.checked)}
           sx={{ ml: 'auto' }}

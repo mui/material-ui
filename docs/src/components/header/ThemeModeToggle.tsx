@@ -7,6 +7,7 @@ const ThemeModeToggle = (props: { checked: boolean; onChange: (checked: boolean)
   return (
     <IconButton
       disableTouchRipple
+      aria-label={`Switch to ${props.checked ? 'light' : 'dark'} mode`}
       onClick={() => props.onChange(!props.checked)}
       sx={{
         color: (theme) => (theme.palette.mode === 'dark' ? '#fff' : 'primary.main'),

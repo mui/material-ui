@@ -119,7 +119,7 @@ const Sponsors = () => {
               noLinkStyle
               href={item.href}
               target="_blank"
-              rel="sponsored"
+              rel="sponsored noopener"
               variant="outlined"
               sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
             >
@@ -157,6 +157,7 @@ const Sponsors = () => {
             }}
           >
             <IconButton
+              aria-label="Become MUI sponsor"
               component="a"
               href="mailto:diamond@material-ui.com"
               target="_blank"
@@ -192,7 +193,7 @@ const Sponsors = () => {
               noLinkStyle
               href={item.href}
               target="_blank"
-              rel="sponsored"
+              rel="sponsored noopener"
               variant="outlined"
               sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
             >
