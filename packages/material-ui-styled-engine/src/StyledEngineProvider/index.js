@@ -1,1 +1,1 @@
-export { default } from './StyledEngineProvider';
+export { default, cache } from './StyledEngineProvider';
