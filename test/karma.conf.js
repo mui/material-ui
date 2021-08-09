@@ -95,7 +95,9 @@ module.exports = function setKarmaConfig(config) {
       '/fake.png': '/base/test/assets/fake.png',
       '/fake2.png': '/base/test/assets/fake2.png',
     },
-    reporters: ['dots', 'coverage-istanbul'],
+    // The CI branch fixes double log issue
+    // https://github.com/karma-runner/karma/issues/2342
+    reporters: ['dots', ...(CI ? ['coverage-istanbul'] : [])],
     webpack: {
       mode: 'development',
       devtool: CI ? 'inline-source-map' : 'eval-source-map',
