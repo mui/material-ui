@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
+import NoSsr from '@material-ui/core/NoSsr';
 import Paper from '@material-ui/core/Paper';
 
 export default function ShowcaseContainer({
@@ -58,7 +59,7 @@ export default function ShowcaseContainer({
           borderBottomRightRadius: 10,
         }}
       >
-        {code}
+        <NoSsr>{code}</NoSsr>
       </Box>
     </Box>
   );
