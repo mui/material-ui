@@ -7,7 +7,7 @@
 > It depends on [JSS](https://cssinjs.org/).
 > If you don't want to have both emotion & JSS in your bundle, please refer to the [`@material-ui/system`](/system/basics/) documentation which is the recommended alternative.
 
-> ⚠️ `@material-ui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html).
+> ⚠️ `@material-ui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
 
 Material-UI aims to provide a strong foundation for building dynamic UIs.
 For the sake of simplicity, **we expose the styling solution used in Material-UI components** as the `@material-ui/styles` package.
