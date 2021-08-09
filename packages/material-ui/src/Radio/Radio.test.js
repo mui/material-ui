@@ -4,7 +4,7 @@ import { describeConformanceV5, createClientRender } from 'test/utils';
 import Radio, { radioClasses as classes } from '@material-ui/core/Radio';
 import FormControl from '@material-ui/core/FormControl';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import RadioButtonUncheckedIcon from "@material-ui/icons/RadioButtonUnchecked";
+import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 
 describe('<Radio />', () => {
   const render = createClientRender();
@@ -44,10 +44,12 @@ describe('<Radio />', () => {
   describe('with icon', () => {
     describe('with size small', () => {
       it('should have the same fontSize with and without icon', () => {
-        const { getAllByTestId } = render(<React.Fragment>
-          <Radio size="small" /> 
-          <Radio size="small" icon={<RadioButtonUncheckedIcon />} />
-        </React.Fragment>);
+        const { getAllByTestId } = render(
+          <React.Fragment>
+            <Radio size="small" />
+            <Radio size="small" icon={<RadioButtonUncheckedIcon />} />
+          </React.Fragment>,
+        );
         expect(getAllByTestId('RadioButtonUncheckedIcon')[0]).to.have.style('fontSize', '1.25rem');
         expect(getAllByTestId('RadioButtonUncheckedIcon')[1]).to.have.style('fontSize', '1.25rem');
       });
