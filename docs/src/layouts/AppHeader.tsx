@@ -35,9 +35,9 @@ export default function AppHeader() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const preferredMode = prefersDarkMode ? 'dark' : 'light';
 
-  const handleChangeThemeMode = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeThemeMode = (checked: boolean) => {
     let paletteMode = 'system';
-    paletteMode = event.target.checked ? 'dark' : 'light';
+    paletteMode = checked ? 'dark' : 'light';
     if (paletteMode === null) {
       return;
     }
