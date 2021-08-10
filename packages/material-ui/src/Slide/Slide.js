@@ -273,7 +273,7 @@ Slide.propTypes /* remove-proptypes */ = {
   children: elementAcceptingRef,
   /**
    * An HTML element, or a function that returns one.
-   * It's used to set the position of the Slide.
+   * It's used to set the container the Slide is transitioning from.
    */
   container: chainPropTypes(PropTypes.oneOfType([HTMLElementType, PropTypes.func]), (props) => {
     if (props.open) {

@@ -14,7 +14,7 @@ export interface SlideProps extends TransitionProps {
   children?: React.ReactElement<any, any>;
   /**
    * An HTML element, or a function that returns one.
-   * It's used to set the position of the Slide.
+   * It's used to set the container the Slide is transitioning from.
    */
   container?: null | Element | ((element: Element) => Element);
   /**
