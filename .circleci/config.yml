@@ -116,11 +116,6 @@ commands:
   scanner:
     steps: 
     - run:
-        name: Setup environment
-        command: |
-          apk update
-          apk add --no-cache zip openjdk11-jre-headless
-    - run:
         name: Install Sonarqube scanner
         command: |
           wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.2.0.1227-linux.zip
@@ -161,7 +156,6 @@ jobs:
     steps:
       - checkout
       - install_js
-      - scanner
       - run:
           name: Tests fake browser
           command: yarn test:coverage:ci
