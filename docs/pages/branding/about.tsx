@@ -401,14 +401,6 @@ const company = [
     github: 'eps1lon',
   },
   {
-    name: 'Damien Tassone',
-    src: '/static/branding/about/damien.jpg',
-    title: 'Advanced components team',
-    location: 'Barcelona, Spain',
-    twitter: 'madKakoO',
-    github: 'dtassone',
-  },
-  {
     name: 'Marija Najdova',
     src: '/static/branding/about/marija.jpg',
     title: 'Core components team',

@@ -398,6 +398,9 @@ export * from './useScrollTrigger';
 export { default as Zoom } from './Zoom';
 export * from './Zoom';
 
+// createFilterOptions is exported from Autocomplete
+export { default as useAutocomplete } from './useAutocomplete';
+
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 

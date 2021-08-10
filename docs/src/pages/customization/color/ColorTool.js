@@ -19,7 +19,25 @@ const defaults = {
   primary: '#2196f3',
   secondary: '#f50057',
 };
-const hues = Object.keys(colors).slice(1, 17);
+const hues = [
+  'red',
+  'pink',
+  'purple',
+  'deepPurple',
+  'indigo',
+  'blue',
+  'lightBlue',
+  'cyan',
+  'teal',
+  'green',
+  'lightGreen',
+  'lime',
+  'yellow',
+  'amber',
+  'orange',
+  'deepOrange',
+];
+
 const shades = [
   900,
   800,

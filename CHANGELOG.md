@@ -1,5 +1,74 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-beta.3
+
+<!-- generated comparing v5.0.0-beta.2..next -->
+
+_Aug 6, 2021_
+
+Big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- <!-- 28 --> ✨ `jss-to-styled` codemod has been improved to support `createStyles` and `<React.Fragment>` usage (#27578) @mnajdova
+
+### `@material-ui/core@5.0.0-beta.3`
+
+- <!-- 33 --> [Modal] Restore `overflowX` and `overflowY` styles (#27487) @PCOffline
+- <!-- 07 --> [Modal] Remove unnecessary check for children.props.tabIndex (#27374) @noviicee
+- <!-- 14 --> [Select] Fix regression for icon not rotating (#27511) @mnajdova
+
+### `@material-ui/system@5.0.0-beta.3`
+
+- <!-- 38 --> [system] Added top, left, right and bottom border color CSS properties to system (#27580) @R-Bower
+
+### `@material-ui/codemod@5.0.0-beta.3`
+
+- <!-- 28 --> [codemod] Add support for `createStyles` usage in `jss-to-styled` (#27578) @mnajdova
+- <!-- 11 --> [codemod] Fix `jss-to-styled` PREFIX generation on Windows (#27491) @mnajdova
+- <!-- 39 --> [codemod] Fix `jss-to-styled` codemod to handle React.Fragment as root (#27495) @mnajdova
+
+### `@material-ui/unstyled@5.0.0-alpha.42`
+
+- <!-- 13 --> [FormControl] Create FormControlUnstyled (#27240) @michaldudak
+- <!-- 23 --> [Autocomplete] Move useAutocomplete to the Unstyled package (#27485) @michaldudak
+
+### Docs
+
+- <!-- 40 --> [docs] Fix layout shift when opening hash anchor (#27619) @oliviertassinari
+- <!-- 35 --> [docs] Add TypeScript guide for the `sx` prop (#27417) @mnajdova
+- <!-- 32 --> [docs] Hardcode listed colors in /customization/color/#playground (#27446) @eps1lon
+- <!-- 31 --> [docs] Bring back Select#onChange signature API (#27443) @eps1lon
+- <!-- 27 --> [docs] Remove backticks in the title (#27567) @oliviertassinari
+- <!-- 26 --> [docs] Fix 404 links (#27566) @oliviertassinari
+- <!-- 25 --> [docs] Use the same h2 for the customization demos (#27569) @oliviertassinari
+- <!-- 22 --> [docs] Fix syntax error in v5 migration `styled` api example (#27518) @kimbaudi
+- <!-- 21 --> [docs] Improve SSR configuration with emotion (#27496) @frandiox
+- <!-- 19 --> [docs] Change "pseudo-classes" to "state classes" (#27570) @michaldudak
+- <!-- 18 --> [docs] Add StackBlitz edit demo integration (#27391) @sulco
+- <!-- 12 --> [docs] Remove unnecessary generic argument (#27516) @bezpalko
+- <!-- 08 --> [docs] Add customization demos (#27411) @siriwatknp
+- <!-- 04 --> [docs] Restore initial descriptionRegExp logic (#27436) @oliviertassinari
+- <!-- 03 --> [docs] Polish jss-to-styled docs (#27457) @oliviertassinari
+- <!-- 34 --> [examples] Fix nextjs with styled-components example (#27583) @mnajdova
+- <!-- 29 --> [examples] Update create-react-app examples with styled-components to use package aliases (#27591) @mnajdova
+- <!-- 09 --> [examples] Improve integration examples with Next.js (#27331) @Harshita-Kanal
+- <!-- 37 --> [website] Add spicefactory as gold sponsor @oliviertassinari
+- <!-- 30 --> [website] Homepage rebranding (#27488) @siriwatknp
+- <!-- 24 --> [website] Add Flavien to team and about pages (#27575) @flaviendelangle
+- <!-- 17 --> [website] Add Ryan to Community contributors for Stack Overflow contributions (#27529) @ryancogswell
+- <!-- 02 --> [website] Add references section to home (#27444) @siriwatknp
+
+### Core
+
+- <!-- 20 --> [core] rebaseWhen=auto does not seem to work (#27565) @oliviertassinari
+- <!-- 10 --> [core] Improve instructions for the @material-ui/styles migration (#27466) @mnajdova
+- <!-- 06 --> [core] Batch small changes (#27435) @oliviertassinari
+- <!-- 01 --> [core] Receive patch and minor dependency updates (#27455) @eps1lon
+- <!-- 16 --> [test] Update coverage to include all @material-ui packages (#27521) @eps1lon
+- <!-- 15 --> [test] Lint codemod tests (#27519) @eps1lon
+- <!-- 05 --> [test] Allow tests to run for 6s before timeout (#27456) @oliviertassinari
+
+All contributors of this release in alphabetical order: @bezpalko, @eps1lon, @flaviendelangle, @frandiox, @Harshita-Kanal, @kimbaudi, @michaldudak, @mnajdova, @noviicee, @oliviertassinari, @PCOffline, @R-Bower, @ryancogswell, @siriwatknp, @sulco
+
 ## 5.0.0-beta.2
 
 <!-- generated comparing v5.0.0-beta.1..next -->

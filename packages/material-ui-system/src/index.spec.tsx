@@ -17,6 +17,9 @@ function composeTest() {
   // @ts-expect-error missing `color`
   styler({ spacing: 1 });
   styler({ color: 'test', spacing: 1 });
+
+  // filterProps should exist
+  styler.filterProps;
 }
 
 /**

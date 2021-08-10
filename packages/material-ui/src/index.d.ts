@@ -22,7 +22,8 @@ export type StandardProps<
   };
 
 /**
- * @private ONLY USE FROM WITHIN mui-org/material-ui
+ * @internal
+ * ONLY USE FROM WITHIN mui-org/material-ui
  *
  * Internal helper type for conform (describeConformance) components
  * However, we don't declare classes on this type.
@@ -98,6 +99,7 @@ export * from './AppBar';
 
 export { default as Autocomplete } from './Autocomplete';
 export * from './Autocomplete';
+
 export { default as Avatar } from './Avatar';
 export * from './Avatar';
 
@@ -460,6 +462,9 @@ export * from './useScrollTrigger';
 
 export { default as Zoom } from './Zoom';
 export * from './Zoom';
+
+export { default as useAutocomplete } from './useAutocomplete';
+export * from './useAutocomplete';
 
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';

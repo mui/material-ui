@@ -39,10 +39,10 @@ const StyledAppContainer = styled(AppContainer, {
   return {
     position: 'relative',
     ...(!disableAd && {
-      '& .description': {
+      '&& .description': {
         marginBottom: 198,
       },
-      '& .description.ad': {
+      '&& .description.ad': {
         marginBottom: 40,
       },
       ...(!disableToc && {

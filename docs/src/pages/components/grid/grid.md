@@ -102,6 +102,13 @@ That also means you can set the width of one _item_ and the others will automati
 
 {{"demo": "pages/components/grid/AutoGrid.js", "bg": true}}
 
+### Variable width content
+
+Set one of the size breakpoint props to `"auto"` instead of `true` / a `number` to size
+a column based on the natural width of its content.
+
+{{"demo": "pages/components/grid/VariableWidthGrid.js", "bg": true}}
+
 ## Complex Grid
 
 The following demo doesn't follow the Material Design guidelines, but illustrates how the grid can be used to build complex layouts.

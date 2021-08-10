@@ -64,7 +64,9 @@ function generateGrid(globalStyles, theme, breakpoint, styleProps) {
     styles = {
       flexBasis: 'auto',
       flexGrow: 0,
+      flexShrink: 0,
       maxWidth: 'none',
+      width: 'auto',
     };
   } else {
     const columnsBreakpointValues = resolveBreakpointValues({
