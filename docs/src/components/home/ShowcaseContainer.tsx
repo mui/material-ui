@@ -49,7 +49,7 @@ export default function ShowcaseContainer({
           maxWidth: '100%',
           position: 'relative',
           minHeight: 200,
-          maxHeight: 540,
+          maxHeight: 516,
           borderWidth: '0 1px 1px 1px',
           borderStyle: 'solid',
           borderColor: (theme) =>
