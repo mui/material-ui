@@ -18,6 +18,7 @@ export default function HeroPricing() {
         }}
       >
         <Typography
+          component="h1"
           variant="body2"
           color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
           fontWeight="bold"
@@ -28,8 +29,8 @@ export default function HeroPricing() {
           Start using <GradientText>MUI</GradientText> for free!
         </Typography>
         <Typography color="text.secondary" textAlign="center" sx={{ maxWidth: 500 }}>
-          The community edition let&apos;s you get going right away. Switch to MUI Advanced X to get
-          more components & premium support.
+          The community edition lets you get going right away. Switch to MUI X to get more
+          components & premium support.
         </Typography>
       </Box>
       <Divider />

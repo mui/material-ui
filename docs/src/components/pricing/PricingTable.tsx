@@ -49,7 +49,7 @@ export function PlanName({
         {title} <IconImage name={`block-${color}` as IconImageProps['name']} />
       </Typography>
       {!disableDescription && (
-        <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 1, minHeight: { md: 63 } }}>
           {description}
         </Typography>
       )}
@@ -60,7 +60,7 @@ export function PlanName({
 export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
   if (plan === 'community') {
     return (
-      <Box sx={{ display: 'flex', alignItems: 'center', my: 'auto' }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
         <Typography variant="h4" component="div" fontWeight="bold" color="success.600">
           $0
         </Typography>
@@ -100,7 +100,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
     );
   }
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center', mt: 2 }}>
+    <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
       <Typography variant="h4" component="div" fontWeight="bold" color="grey.600">
         $599
       </Typography>
@@ -119,7 +119,7 @@ const Info = ({ value, metadata }: { value: React.ReactNode; metadata?: string }
       {metadata && (
         <Typography
           variant="caption"
-          color="grey.800"
+          color="text.secondary"
           fontWeight="normal"
           sx={{ display: 'block', mt: 0.5 }}
         >
@@ -272,7 +272,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
     <ColumnHead
       {...{
         label: '@mui/core-base',
-        tooltip: 'The unstyled and headless (hooks) components version of @material-ui/core.',
+        tooltip: 'The unstyled components and react hooks.',
       }}
     />
   ),
@@ -537,12 +537,12 @@ const RowCategory = (props: BoxProps) => (
     sx={{
       typography: 'caption',
       fontWeight: 500,
-      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.50'),
+      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
       py: 1,
       ml: 1,
       pl: 1.5,
       borderBottom: '1px solid',
-      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.200'),
+      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200'),
       ...props.sx,
     }}
   />
@@ -703,7 +703,7 @@ export default function PricingTable({
               variant="outlined"
               fullWidth
               endIcon={<KeyboardArrowRightRounded />}
-              sx={{ py: 1 }}
+              sx={{ py: 1, mt: 'auto' }}
             >
               Get Started
             </Button>
@@ -724,7 +724,7 @@ export default function PricingTable({
               variant="outlined"
               fullWidth
               endIcon={<KeyboardArrowRightRounded />}
-              sx={{ py: 1 }}
+              sx={{ py: 1, mt: 'auto' }}
             >
               Get Started
             </Button>
@@ -738,7 +738,7 @@ export default function PricingTable({
               variant="outlined"
               disabled
               fullWidth
-              sx={{ mt: 'auto', py: 1, '&.Mui-disabled': { color: 'text.secondary' } }}
+              sx={{ py: 1, mt: 'auto', '&.Mui-disabled': { color: 'text.secondary' } }}
             >
               Available later this year!
             </Button>

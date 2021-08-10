@@ -398,6 +398,7 @@ export function getThemedComponents(theme: Theme) {
                 : theme.palette.primary.main,
             ...theme.typography.caption,
             fontWeight: 400,
+            boxShadow: '1px 1px 20px 0 rgb(90 105 120 / 20%)',
           },
         },
       },

@@ -26,7 +26,7 @@ const Plan = React.forwardRef<
     <Paper
       ref={ref}
       variant="outlined"
-      sx={{ p: 2, ...(unavailable && { '& .MuiTypography-root': { opacity: 0.2 } }), ...sx }}
+      sx={{ p: 2, ...(unavailable && { '& .MuiTypography-root': { opacity: 0.5 } }), ...sx }}
       {...props}
     >
       <PlanName plan={plan} />
@@ -35,19 +35,23 @@ const Plan = React.forwardRef<
       </Box>
       {unavailable ? (
         <Button
-          component={Link}
-          noLinkStyle
-          href={plan === 'community' ? '/getting-started/usage/' : '/components/data-grid/'}
           variant="outlined"
           disabled
           fullWidth
-          endIcon={<KeyboardArrowRightRounded />}
           sx={{ py: 1, '&.Mui-disabled': { color: 'text.secondary' } }}
         >
           Available later this year!
         </Button>
       ) : (
-        <Button variant="outlined" fullWidth endIcon={<KeyboardArrowRightRounded />} sx={{ py: 1 }}>
+        <Button
+          variant="outlined"
+          fullWidth
+          component={Link}
+          noLinkStyle
+          href={plan === 'community' ? '/getting-started/usage/' : '/components/data-grid/'}
+          endIcon={<KeyboardArrowRightRounded />}
+          sx={{ py: 1 }}
+        >
           Get Started
         </Button>
       )}
@@ -121,7 +125,7 @@ export default function PricingList() {
       {planIndex === 2 && (
         <Fade in>
           <div>
-            <Plan plan="premium" />
+            <Plan plan="premium" unavailable />
             <PricingTable columnHeaderHidden plans={['premium']} />
           </div>
         </Fade>

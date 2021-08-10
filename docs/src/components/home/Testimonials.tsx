@@ -237,6 +237,7 @@ const Testimonials = ({ mode: modeProp }: { mode?: 'light' | 'dark' }) => {
                   }}
                 >
                   <Typography
+                    component="div"
                     variant="h3"
                     color={mode === 'dark' ? 'primary.200' : 'primary.main'}
                     fontWeight="bold"
