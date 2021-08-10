@@ -8,16 +8,19 @@ import Paper from '@material-ui/core/Paper';
 import Link from 'docs/src/modules/components/Link';
 import IconButton from '@material-ui/core/IconButton';
 import AddRounded from '@material-ui/icons/AddRounded';
+import LaunchRounded from '@material-ui/icons/LaunchRounded';
 
 const DIAMONDs = [
   {
-    logo: 'https://avatars3.githubusercontent.com/u/1287123?s=256',
+    src: 'https://avatars3.githubusercontent.com/u/1287123?s=40',
+    srcSet: 'https://avatars3.githubusercontent.com/u/1287123?s=80 2x',
     name: 'Octopus Deploy',
     description: 'Repetable relayable deployments.',
     href: 'https://octopus.com/',
   },
   {
-    logo: 'https://avatars3.githubusercontent.com/u/8424863?s=256',
+    src: 'https://avatars3.githubusercontent.com/u/8424863?s=40',
+    srcSet: 'https://avatars3.githubusercontent.com/u/8424863?s=80 2x',
     name: 'Doit International',
     description: 'Management platform for Google Clound and AWS.',
     href: 'https://www.doit-intl.com/',
@@ -25,28 +28,60 @@ const DIAMONDs = [
 ];
 const GOLDs = [
   {
-    logo: 'https://github.com/tidelift.png?size=96',
+    src: 'https://avatars.githubusercontent.com/u/30204434?s=40',
+    srcSet: 'https://avatars.githubusercontent.com/u/30204434?s=80 2x',
     name: 'Tidelift',
     description: 'Enterprise-ready open source software.',
     href: 'https://tidelift.com/',
   },
   {
-    logo: 'https://github.com/teambit.png?size=96',
+    src: 'https://avatars.githubusercontent.com/u/24789812?size=40',
+    srcSet: 'https://avatars.githubusercontent.com/u/24789812?size=80 2x',
     name: 'Bit',
     description: 'The fastest way to share code.',
     href: 'https://bit.dev/',
   },
   {
-    logo: 'https://images.opencollective.com/callemall/a6946da/logo/96.png',
+    src: 'https://images.opencollective.com/callemall/a6946da/logo/40.png',
+    srcSet: 'https://images.opencollective.com/callemall/a6946da/logo/80.png 2x',
     name: 'Text-em-all',
     description: 'The easy way to message your group.',
     href: 'https://www.text-em-all.com/',
   },
   {
-    logo: 'https://images.opencollective.com/canadacasino/5b19004/logo/96.png',
+    src: 'https://images.opencollective.com/canadacasino/5b19004/logo/40.png',
+    srcSet: 'https://images.opencollective.com/canadacasino/5b19004/logo/80.png 2x',
     name: 'Canada Casino',
     description: 'Safe and rewarding online casino experience',
     href: 'https://casinocanada.com/',
+  },
+  {
+    src: '/static/sponsors/spice-factory.png',
+    srcSet: '/static/sponsors/spice-factory-2x.png',
+    name: 'Spice Factory',
+    description: 'Next gen digital product studio.',
+    href: 'https://spicefactory.co/',
+  },
+  {
+    src: '/static/sponsors/elevator-logo.png',
+    srcSet: '/static/sponsors/elevator-logo-2x.png',
+    name: 'Elevator',
+    description: 'The dopest new hip hop, upcoming artsits, music.',
+    href: 'https://www.elevatormag.com/',
+  },
+  {
+    src: '/static/sponsors/movavi.png',
+    srcSet: '/static/sponsors/movavi-2x.png',
+    name: 'Movavi',
+    description: 'Screen recorder for Mac.',
+    href: 'https://www.movavi.com/',
+  },
+  {
+    src: '/static/sponsors/hoodie-bees.png',
+    srcSet: '/static/sponsors/hoodie-bees-2x.png',
+    name: 'Hoodie Bees',
+    description: 'Horse community.',
+    href: 'https://www.hoodiebees.com/',
   },
 ];
 
@@ -101,6 +136,58 @@ function Label({
   );
 }
 
+const SponsorCard = ({
+  item,
+  bottom,
+}: {
+  item: typeof DIAMONDs[number];
+  bottom: React.ReactElement;
+}) => {
+  return (
+    <Paper
+      component={Link}
+      noLinkStyle
+      href={item.href}
+      target="_blank"
+      rel="sponsored noopener"
+      variant="outlined"
+      sx={{
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        '& svg': {
+          transition: '0.2s',
+        },
+        '&:hover': {
+          '& svg': {
+            transform: 'translateY(-3px)',
+          },
+        },
+      }}
+    >
+      <Box sx={{ p: 2, display: 'flex', mb: 'auto' }}>
+        <Avatar
+          src={item.src}
+          srcSet={item.srcSet}
+          alt={`${item.name} logo`}
+          imgProps={{ loading: 'lazy' }}
+          sx={{ borderRadius: '4px' }}
+        />
+        <Box sx={{ ml: 2 }}>
+          <Typography variant="body2" fontWeight="bold">
+            {item.name}{' '}
+            <LaunchRounded color="primary" sx={{ fontSize: 16, verticalAlign: 'sub' }} />
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {item.description}
+          </Typography>
+        </Box>
+      </Box>
+      {bottom}
+    </Paper>
+  );
+};
+
 const Sponsors = () => {
   return (
     <Container sx={{ py: { xs: 4, md: 8 } }}>
@@ -114,33 +201,7 @@ const Sponsors = () => {
       <Grid container spacing={{ xs: 2, md: 4 }} sx={{ mb: 5 }}>
         {DIAMONDs.map((item) => (
           <Grid item key={item.name} xs={12} sm={6} md={4}>
-            <Paper
-              component={Link}
-              noLinkStyle
-              href={item.href}
-              target="_blank"
-              rel="sponsored noopener"
-              variant="outlined"
-              sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-            >
-              <Box sx={{ p: 2, display: 'flex', mb: 'auto' }}>
-                <Avatar
-                  src={item.logo}
-                  alt={`${item.name} logo`}
-                  imgProps={{ loading: 'lazy' }}
-                  sx={{ borderRadius: '4px' }}
-                />
-                <Box sx={{ ml: 2 }}>
-                  <Typography variant="body2" fontWeight="bold">
-                    {item.name}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {item.description}
-                  </Typography>
-                </Box>
-              </Box>
-              <Label color="primary">Diamond sponsor</Label>
-            </Paper>
+            <SponsorCard item={item} bottom={<Label color="primary">Diamond sponsor</Label>} />
           </Grid>
         ))}
         <Grid item xs={12} sm={6} md={4}>
@@ -188,35 +249,14 @@ const Sponsors = () => {
       <Grid container columnSpacing={{ xs: 2, md: 4 }} rowSpacing={2}>
         {GOLDs.map((item) => (
           <Grid item key={item.name} xs={12} sm={6} md={4} lg={3}>
-            <Paper
-              component={Link}
-              noLinkStyle
-              href={item.href}
-              target="_blank"
-              rel="sponsored noopener"
-              variant="outlined"
-              sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-            >
-              <Box sx={{ p: 2, display: 'flex', mb: 'auto' }}>
-                <Avatar
-                  src={item.logo}
-                  alt={`${item.name} logo`}
-                  imgProps={{ loading: 'lazy' }}
-                  sx={{ borderRadius: '4px' }}
-                />
-                <Box sx={{ ml: 2 }}>
-                  <Typography variant="body2" fontWeight="bold">
-                    {item.name}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {item.description}
-                  </Typography>
-                </Box>
-              </Box>
-              <Label color="warning" darker>
-                Gold sponsor
-              </Label>
-            </Paper>
+            <SponsorCard
+              item={item}
+              bottom={
+                <Label color="warning" darker>
+                  Gold sponsor
+                </Label>
+              }
+            />
           </Grid>
         ))}
       </Grid>
