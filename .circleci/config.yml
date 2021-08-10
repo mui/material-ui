@@ -113,6 +113,27 @@ commands:
                   # Can't use environment variables for `save_cache` paths (tested in https://app.circleci.com/pipelines/github/mui-org/material-ui/37813/workflows/5b1e207f-ac8b-44e7-9ba4-d0f9a01f5c55/jobs/223370)
                   - /tmp/pw-browsers
 
+  scanner:
+    steps:
+    - run:
+        name: Install Sonarqube scanner
+        command: |
+          wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.2.0.1227-linux.zip
+          unzip sonar-scanner-cli-3.2.0.1227-linux.zip
+    - run:
+        name: Run Sonarqube scanner
+        command: |
+          echo "enter scanner"
+          export SONAR_SCANNER_OPTS="-Xmx2048m"
+          eval ./sonar-scanner-3.2.0.1227-linux/bin/sonar-scanner -Dsonar.projectKey=material-ui \
+          -Dsonar.sources=packages \
+          -Dsonar.organization=vicrace-cjl \
+          -Dsonar.sourceEncoding=US-ASCII \
+          -Dsonar.exclusions=**/test/*,**/*,spec.tsx,**/*spec.ts,**/*.d.ts \
+          -Dsonar.host.url=https://sonarqube.onehq.com \
+          -Dsonar.projectVersion=${CIRCLE_BRANCH} \
+          -Dsonar.login=8f520b66eda3a4019698c7db1b3758f025b314c4
+
 jobs:
   checkout:
     <<: *defaults
@@ -415,27 +436,6 @@ jobs:
           name: Upload screenshots to Argos CI
           command: yarn test:argos
           
-  sonarcloud:
-    steps:
-    - run:
-        name: Install Sonarqube scanner
-        command: |
-          wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.2.0.1227-linux.zip
-          unzip sonar-scanner-cli-3.2.0.1227-linux.zip
-    - run:
-        name: Run Sonarqube scanner
-        command: |
-          echo "enter scanner"
-          export SONAR_SCANNER_OPTS="-Xmx2048m"
-          eval ./sonar-scanner-3.2.0.1227-linux/bin/sonar-scanner -Dsonar.projectKey=material-ui \
-          -Dsonar.sources=packages \
-          -Dsonar.organization=vicrace-cjl \
-          -Dsonar.sourceEncoding=US-ASCII \
-          -Dsonar.exclusions=**/test/*,**/*,spec.tsx,**/*spec.ts,**/*.d.ts \
-          -Dsonar.host.url=https://sonarqube.onehq.com \
-          -Dsonar.projectVersion=${CIRCLE_BRANCH} \
-          -Dsonar.login=8f520b66eda3a4019698c7db1b3758f025b314c4
-          
   test_bundling_prepare:
     <<: *defaults
     steps:
@@ -672,7 +672,6 @@ workflows:
       - test_e2e:
           requires:
             - checkout
-      - sonarcloud/run
       
   bundling:
     when:
