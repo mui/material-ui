@@ -11,6 +11,7 @@ import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 import Link from 'docs/src/modules/components/Link';
 import IconImage, { IconImageProps } from 'docs/src/components/icon/IconImage';
+import LaunchRounded from '@material-ui/icons/LaunchRounded';
 
 const planInfo = {
   community: {
@@ -135,15 +136,36 @@ const ColumnHead = ({
   metadata,
   tooltip,
   nested = false,
+  href,
 }: {
   label: string;
   metadata?: string;
   tooltip?: string;
   nested?: boolean;
+  href?: string;
 }) => {
   const text = (
-    <Typography variant="body2" sx={{ '&:hover > svg': { color: 'primary.main' } }}>
+    <Typography
+      {...(href && {
+        component: Link,
+        href,
+        target: '_blank',
+      })}
+      variant="body2"
+      sx={{
+        '&:hover > svg': { color: 'primary.main' },
+        ...(href && {
+          '&:hover > svg': {
+            opacity: 1,
+            ml: 0.5,
+          },
+        }),
+      }}
+    >
       {label}{' '}
+      {href && (
+        <LaunchRounded color="primary" sx={{ fontSize: 14, opacity: 0, transition: '0.3s' }} />
+      )}
       {tooltip && (
         <InfoOutlinedIcon
           sx={{ fontSize: 16, verticalAlign: 'middle', ml: 0.5, color: 'grey.800' }}
@@ -266,6 +288,10 @@ const RowHead = ({
   </Box>
 );
 
+function getUrl(hash: string) {
+  return `https://material-ui.com/components/data-grid${hash}`;
+}
+
 const rowHeaders: Record<string, React.ReactNode> = {
   // Core
   '@mui/core': (
@@ -290,40 +316,128 @@ const rowHeaders: Record<string, React.ReactNode> = {
     />
   ),
   // Advanced
-  'data-grid/column-resizing': <ColumnHead label="Column resizing" nested />,
-  'data-grid/column-groups': <ColumnHead label="Column groups" nested />,
-  'data-grid/column-reorder': <ColumnHead label="Column reorder" nested />,
-  'data-grid/column-pinning': <ColumnHead label="Column pinning" nested />,
-  'data-grid/column-spanning': <ColumnHead label="Column spanning" nested />,
-  'data-grid/row-sorting': <ColumnHead label="Row sorting" nested />,
-  'data-grid/row-height': <ColumnHead label="Row height" nested />,
-  'data-grid/row-spanning': <ColumnHead label="Row spanning" nested />,
-  'data-grid/row-reordering': <ColumnHead label="Row reordering" nested />,
-  'data-grid/row-selection': <ColumnHead label="Row selection" nested />,
-  'data-grid/row-multiselection': <ColumnHead label="Multi-row selection" nested />,
-  'data-grid/row-rangeselection': <ColumnHead label="Range selection" nested />,
-  'data-grid/filter-column': <ColumnHead label="Column filters" nested />,
-  'data-grid/filter-multicolumn': <ColumnHead label="Multi-column filtering" nested />,
-  'data-grid/filter-quick': <ColumnHead label="Quick filter" nested />,
-  'data-grid/pagination': <ColumnHead label="Pagination" nested />,
-  'data-grid/pagination-large': <ColumnHead label="Pagination > 100 rows per page" nested />,
-  'data-grid/edit-row': <ColumnHead label="Row editing" nested />,
-  'data-grid/edit-cell': <ColumnHead label="Cell editing" nested />,
-  'data-grid/file-csv': <ColumnHead label="CSV export" nested />,
-  'data-grid/file-print': <ColumnHead label="Print" nested />,
-  'data-grid/file-excel': <ColumnHead label="Excel export" nested />,
-  'data-grid/file-clipboard': <ColumnHead label="Clipboard" nested />,
-  'data-grid/virtualize-column': <ColumnHead label="Column virtualization" nested />,
-  'data-grid/virtualize-row': <ColumnHead label="Row virtualization > 100 rows" nested />,
-  'data-grid/customizable-components': <ColumnHead label="Customizable components" nested />,
-  'data-grid/tree-data': <ColumnHead label="Tree data" nested />,
-  'data-grid/master-detail': <ColumnHead label="Master detail" nested />,
-  'data-grid/grouping': <ColumnHead label="Grouping" nested />,
-  'data-grid/aggregation': <ColumnHead label="Aggregation" nested />,
-  'data-grid/pivoting': <ColumnHead label="Pivoting" nested />,
-  'data-grid/accessibility': <ColumnHead label="Accessibility" nested />,
-  'data-grid/keyboard-nav': <ColumnHead label="Keyboard navigation" nested />,
-  'data-grid/localization': <ColumnHead label="Localization" nested />,
+  'data-grid/column-resizing': (
+    <ColumnHead label="Column resizing" nested href={getUrl('/columns/#resizing')} />
+  ),
+  'data-grid/column-groups': (
+    <ColumnHead label="Column groups" nested href={getUrl('/columns/#column-groups')} />
+  ),
+  'data-grid/column-reorder': (
+    <ColumnHead label="Column reorder" nested href={getUrl('/columns/#column-reorder')} />
+  ),
+  'data-grid/column-pinning': (
+    <ColumnHead label="Column pinning" nested href={getUrl('/columns/#column-pinning')} />
+  ),
+  'data-grid/column-spanning': (
+    <ColumnHead label="Column spanning" nested href={getUrl('/columns/#column-spanning')} />
+  ),
+  'data-grid/row-sorting': (
+    <ColumnHead label="Row sorting" nested href={getUrl('/rows/#row-sorting')} />
+  ),
+  'data-grid/row-height': (
+    <ColumnHead label="Row height" nested href={getUrl('/rows/#row-height')} />
+  ),
+  'data-grid/row-spanning': (
+    <ColumnHead label="Row spanning" nested href={getUrl('/rows/#row-spanning')} />
+  ),
+  'data-grid/row-reordering': (
+    <ColumnHead label="Row reordering" nested href={getUrl('/rows/#row-reorder')} />
+  ),
+  'data-grid/row-selection': (
+    <ColumnHead label="Row selection" nested href={getUrl('/selection/#row-selection')} />
+  ),
+  'data-grid/row-multiselection': (
+    <ColumnHead
+      label="Multi-row selection"
+      nested
+      href={getUrl('/selection/#multiple-row-selection')}
+    />
+  ),
+  'data-grid/row-rangeselection': (
+    <ColumnHead label="Range selection" nested href={getUrl('/selection/#range-selection')} />
+  ),
+  'data-grid/filter-column': (
+    <ColumnHead label="Column filters" nested href={getUrl('/filtering/#column-filters')} />
+  ),
+  'data-grid/filter-multicolumn': (
+    <ColumnHead
+      label="Multi-column filtering"
+      nested
+      href={getUrl('/filtering/#multi-column-filtering')}
+    />
+  ),
+  'data-grid/filter-quick': (
+    <ColumnHead label="Quick filter" nested href={getUrl('/filtering/#quick-filter')} />
+  ),
+  'data-grid/pagination': <ColumnHead label="Pagination" nested href={getUrl('/pagination/')} />,
+  'data-grid/pagination-large': (
+    <ColumnHead
+      label="Pagination > 100 rows per page"
+      nested
+      href={getUrl('/pagination/#paginate-gt-100-rows')}
+    />
+  ),
+  'data-grid/edit-row': (
+    <ColumnHead label="Row editing" nested href={getUrl('/editing/#row-editing')} />
+  ),
+  'data-grid/edit-cell': (
+    <ColumnHead label="Cell editing" nested href={getUrl('/editing/#cell-editing')} />
+  ),
+  'data-grid/file-csv': (
+    <ColumnHead label="CSV export" nested href={getUrl('/export/#csv-export')} />
+  ),
+  'data-grid/file-print': <ColumnHead label="Print" nested href={getUrl('/export/#print')} />,
+  'data-grid/file-excel': (
+    <ColumnHead label="Excel export" nested href={getUrl('/export/#excel-export')} />
+  ),
+  'data-grid/file-clipboard': (
+    <ColumnHead label="Clipboard" nested href={getUrl('/export/#clipboard')} />
+  ),
+  'data-grid/virtualize-column': (
+    <ColumnHead
+      label="Column virtualization"
+      nested
+      href={getUrl('/virtualization/#column-virtualization')}
+    />
+  ),
+  'data-grid/virtualize-row': (
+    <ColumnHead
+      label="Row virtualization > 100 rows"
+      nested
+      href={getUrl('/virtualization/#row-virtualization')}
+    />
+  ),
+  'data-grid/customizable-components': (
+    <ColumnHead label="Customizable components" nested href={getUrl('/components/')} />
+  ),
+  'data-grid/tree-data': (
+    <ColumnHead label="Tree data" nested href={getUrl('/group-pivot/#tree-data')} />
+  ),
+  'data-grid/master-detail': (
+    <ColumnHead label="Master detail" nested href={getUrl('/group-pivot/#master-detail')} />
+  ),
+  'data-grid/grouping': (
+    <ColumnHead label="Grouping" nested href={getUrl('/group-pivot/#grouping')} />
+  ),
+  'data-grid/aggregation': (
+    <ColumnHead label="Aggregation" nested href={getUrl('/group-pivot/#aggregation')} />
+  ),
+  'data-grid/pivoting': (
+    <ColumnHead label="Pivoting" nested href={getUrl('/group-pivot/#pivoting')} />
+  ),
+  'data-grid/accessibility': (
+    <ColumnHead label="Accessibility" nested href={getUrl('/accessibility/')} />
+  ),
+  'data-grid/keyboard-nav': (
+    <ColumnHead
+      label="Keyboard navigation"
+      nested
+      href={getUrl('/accessibility/#keyboard-navigation')}
+    />
+  ),
+  'data-grid/localization': (
+    <ColumnHead label="Localization" nested href={getUrl('/localization/')} />
+  ),
   'data-grid-pro': <ColumnHead label="Data Grid Pro Updates" />,
   'date-range-picker': <ColumnHead label="Date Range Picker" />,
   // Support
