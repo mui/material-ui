@@ -64,6 +64,7 @@ const CardMedia = React.forwardRef(function CardMedia(inProps, ref) {
     <CardMediaRoot
       className={clsx(classes.root, className)}
       as={component}
+      role={!isMediaComponent && image ? 'image' : undefined}
       ref={ref}
       style={composedStyle}
       styleProps={styleProps}
