@@ -445,6 +445,30 @@ describe('<MenuList> integration', () => {
       expect(getByText('Arizona')).toHaveFocus();
     });
 
+    it('should cycle through items when repeating initial character', () => {
+      const { getAllByRole, getByText } = render(
+        <MenuList>
+          <MenuItem>Arizona</MenuItem>
+          <MenuItem>aardvark</MenuItem>
+          <MenuItem>Colorado</MenuItem>
+          <MenuItem>Argentina</MenuItem>
+        </MenuList>,
+      );
+      const menuitems = getAllByRole('menuitem');
+      act(() => {
+        menuitems[0].focus();
+      });
+
+      fireEvent.keyDown(getByText('Arizona'), { key: 'a' });
+      expect(getByText('aardvark')).toHaveFocus();
+
+      fireEvent.keyDown(getByText('aardvark'), { key: 'a' });
+      expect(getByText('Argentina')).toHaveFocus();
+
+      fireEvent.keyDown(getByText('Argentina'), { key: 'r' });
+      expect(getByText('aardvark')).toHaveFocus();
+    });
+
     it('selects the next item starting with the typed character', () => {
       const { getByText } = render(
         <MenuList>
@@ -536,13 +560,14 @@ describe('<MenuList> integration', () => {
     it('matches rapidly typed text', () => {
       render(
         <MenuList autoFocus>
+          <MenuItem>War</MenuItem>
           <MenuItem>Worm</MenuItem>
           <MenuItem>Ordinary</MenuItem>
         </MenuList>,
       );
 
       fireEvent.keyDown(screen.getByRole('menu'), { key: 'W' });
-      fireEvent.keyDown(screen.getByText('Worm'), { key: 'o' });
+      fireEvent.keyDown(screen.getByText('War'), { key: 'o' });
 
       expect(screen.getByText('Worm')).toHaveFocus();
     });

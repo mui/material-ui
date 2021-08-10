@@ -48,4 +48,20 @@ describe('<PickersDay />', () => {
     expect(handleDaySelect.callCount).to.equal(1);
     expect(handleDaySelect.args[0][0]).toEqualDateTime(day);
   });
+
+  it('renders the day of the month by default', () => {
+    render(
+      <PickersDay
+        day={adapterToUse.date('2020-02-02T02:02:02.000')}
+        onDaySelect={() => {}}
+        outsideCurrentMonth={false}
+      />,
+    );
+
+    const day = screen.getByRole('button');
+    // TODO: This can be disorienting if the accessible name is not the same as the visible label
+    // Investigate if we can drop `aria-label` and let screenreaders announce the full date in a calendar picker.
+    expect(day).to.have.text('2');
+    expect(day).toHaveAccessibleName('Feb 2, 2020');
+  });
 });

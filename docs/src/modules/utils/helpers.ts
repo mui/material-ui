@@ -110,6 +110,7 @@ function includePeerDependencies(
 
   if (newDeps['@material-ui/data-grid']) {
     newDeps['@material-ui/core'] = versions['@material-ui/core'];
+    newDeps['@material-ui/styles'] = versions['@material-ui/styles'];
   }
 
   // TODO: Where is this coming from and why does it need to be injected this way.
