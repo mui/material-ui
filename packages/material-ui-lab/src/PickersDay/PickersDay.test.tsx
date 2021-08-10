@@ -48,4 +48,30 @@ describe('<PickersDay />', () => {
     expect(handleDaySelect.callCount).to.equal(1);
     expect(handleDaySelect.args[0][0]).toEqualDateTime(day);
   });
+
+  it('should render children instead of default date when children prop is present', () => {
+    const handleDaySelect = spy();
+    const day = adapterToUse.date();
+    render(
+      <PickersDay day={day} outsideCurrentMonth={false} onDaySelect={handleDaySelect}>
+        <div data-testid="custom-children">{adapterToUse.format(day, 'dayOfMonth')}</div>
+      </PickersDay>
+    );
+
+    expect(screen.getByTestId('custom-children')).to.not.equal(undefined);
+  });
+
+  it('should not display aria-label on button when children prop is not undefined', () => {
+    const handleDaySelect = spy();
+    const day = adapterToUse.date();
+    render(
+      <PickersDay day={day} outsideCurrentMonth={false} onDaySelect={handleDaySelect} data-testid="button-without-aria-label">
+        <div>{adapterToUse.format(day, 'dayOfMonth')}</div>
+      </PickersDay>
+    );
+
+    const targetDay = screen.getByTestId('button-without-aria-label');
+
+    expect(targetDay).to.not.have.attribute('aria-label');
+  });
 });

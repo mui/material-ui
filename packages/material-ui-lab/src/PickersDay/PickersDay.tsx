@@ -350,15 +350,17 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
     );
   }
 
+  const ariaLabelProp = !props.children ? { 'aria-label': utils.format(day, 'fullDate') } : {};
+
   return (
     <PickersDayRoot
+      {...ariaLabelProp}
       className={clsx(classes.root, className)}
       styleProps={styleProps}
       ref={handleRef}
       centerRipple
       data-mui-test="day"
       disabled={disabled}
-      aria-label={utils.format(day, 'fullDate')}
       tabIndex={selected ? 0 : -1}
       onFocus={handleFocus}
       onKeyDown={handleKeyDown}
