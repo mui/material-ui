@@ -103,14 +103,10 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
         ...inputProps,
       }}
       icon={React.cloneElement(icon, {
-        fontSize:
-          icon.props.fontSize === undefined && size !== 'medium' ? size : icon.props.fontSize,
+        fontSize: icon.props.fontSize ?? size,
       })}
       checkedIcon={React.cloneElement(indeterminateIcon, {
-        fontSize:
-          indeterminateIcon.props.fontSize === undefined && size !== 'medium'
-            ? size
-            : indeterminateIcon.props.fontSize,
+        fontSize: indeterminateIcon.props.fontSize ?? size,
       })}
       styleProps={styleProps}
       ref={ref}
