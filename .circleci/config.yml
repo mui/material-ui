@@ -114,7 +114,12 @@ commands:
                   - /tmp/pw-browsers
 
   scanner:
-    steps:
+    steps: 
+    - run:
+        name: Setup environment
+        command: |
+          apk update
+          apk add --no-cache zip openjdk11-jre-headless
     - run:
         name: Install Sonarqube scanner
         command: |
