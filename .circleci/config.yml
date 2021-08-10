@@ -569,6 +569,7 @@ jobs:
       - run:
           name: Test fixture
           command: yarn start
+          
   test_bundling_vite:
     <<: *defaults
     working_directory: /tmp/material-ui/test/bundling/fixtures/vite/
