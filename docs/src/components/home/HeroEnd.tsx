@@ -26,7 +26,7 @@ const HeroEnd = () => {
             <Typography color="primary" fontWeight="bold" variant="body2" sx={{ mb: 1 }}>
               Go live!
             </Typography>
-            <Typography variant="h2" sx={{ maxWidth: 500, mb: 1 }}>
+            <Typography variant="h2" sx={{ maxWidth: 460, mb: 1 }}>
               Start building with <GradientText>MUI</GradientText> today!
             </Typography>
             <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>

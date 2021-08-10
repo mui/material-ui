@@ -8,6 +8,7 @@ import {
   Theme,
   ThemeOptions,
 } from '@material-ui/core/styles';
+import { capitalize } from '@material-ui/core/utils';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/core/Alert';
@@ -160,7 +161,7 @@ function Demo({
             }}
           >
             {control.values.map((value) => (
-              <Tab key={value} value={value} label={value} />
+              <Tab key={value} value={value} label={capitalize(value)} />
             ))}
           </Tabs>
         </Box>
@@ -249,7 +250,7 @@ function buildTheme(theme: Theme): ThemeOptions {
           },
           iconSizeSmall: {
             '& > *:nth-of-type(1)': {
-              fontSize: 16,
+              fontSize: 14,
             },
           },
           iconSizeMedium: {
