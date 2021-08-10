@@ -430,10 +430,10 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
       }
       inputProps = {
         type: undefined,
+        minRows: rows,
+        maxRows: rows,
         ...inputProps,
       };
-
-      InputComponent = 'textarea';
     } else {
       inputProps = {
         type: undefined,
@@ -441,9 +441,9 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
         minRows,
         ...inputProps,
       };
-
-      InputComponent = TextareaAutosize;
     }
+
+    InputComponent = TextareaAutosize;
   }
 
   const handleAutoFill = (event) => {
