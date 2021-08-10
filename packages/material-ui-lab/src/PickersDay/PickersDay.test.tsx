@@ -55,7 +55,7 @@ describe('<PickersDay />', () => {
     render(
       <PickersDay day={day} outsideCurrentMonth={false} onDaySelect={handleDaySelect}>
         <div data-testid="custom-children">{adapterToUse.format(day, 'dayOfMonth')}</div>
-      </PickersDay>
+      </PickersDay>,
     );
 
     expect(screen.getByTestId('custom-children')).to.not.equal(undefined);
@@ -65,16 +65,21 @@ describe('<PickersDay />', () => {
     const handleDaySelect = spy();
     const day = adapterToUse.date();
     render(
-      <PickersDay day={day} outsideCurrentMonth={false} onDaySelect={handleDaySelect} data-testid="button-without-aria-label">
+      <PickersDay
+        day={day}
+        outsideCurrentMonth={false}
+        onDaySelect={handleDaySelect}
+        data-testid="button-without-aria-label"
+      >
         <div>{adapterToUse.format(day, 'dayOfMonth')}</div>
-      </PickersDay>
+      </PickersDay>,
     );
 
     const targetDay = screen.getByTestId('button-without-aria-label');
 
     expect(targetDay).to.not.have.attribute('aria-label');
   });
-  
+
   it('renders the day of the month by default', () => {
     render(
       <PickersDay
