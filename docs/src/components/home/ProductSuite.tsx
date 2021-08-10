@@ -7,7 +7,9 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import ProductsSwitcher from 'docs/src/components/home/ProductsSwitcher';
 import CoreShowcase from 'docs/src/components/home/CoreShowcase';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
-import StoreTemplatesBanner from 'docs/src/components/home/StoreTemplatesBanner';
+import StoreTemplatesBanner, {
+  LazyStoreTemplateImages,
+} from 'docs/src/components/home/StoreTemplatesBanner';
 import DesignKits from 'docs/src/components/home/DesignKits';
 
 const ProductSuite = () => {
@@ -38,6 +40,7 @@ const ProductSuite = () => {
             <ProductsSwitcher productIndex={productIndex} setProductIndex={setProductIndex} />
           </Grid>
           <Grid item xs={12} md={6}>
+            <LazyStoreTemplateImages />
             {productIndex === 0 && <CoreShowcase />}
             {productIndex === 1 && <ShowcaseContainer />}
             {productIndex === 2 && <StoreTemplatesBanner />}

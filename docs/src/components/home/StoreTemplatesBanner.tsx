@@ -24,6 +24,17 @@ const Image = styled('img')(({ theme }) => ({
   filter: 'drop-shadow(0px 4px 20px rgba(61, 71, 82, 0.25))',
 }));
 
+export const LazyStoreTemplateImages = () => (
+  <Box sx={{ width: 0, height: 0, display: 'none', overflow: 'hidden' }}>
+    <img src="/static/branding/store-templates/store-template1.jpeg" alt="" loading="lazy" />
+    <img src="/static/branding/store-templates/store-template2.jpeg" alt="" loading="lazy" />
+    <img src="/static/branding/store-templates/store-template3.jpeg" alt="" loading="lazy" />
+    <img src="/static/branding/store-templates/store-template4.jpeg" alt="" loading="lazy" />
+    <img src="/static/branding/store-templates/store-template5.jpeg" alt="" loading="lazy" />
+    <img src="/static/branding/store-templates/store-template6.jpeg" alt="" loading="lazy" />
+  </Box>
+);
+
 export default function StoreTemplatesBanner() {
   const [appearIndexes, setAppearIndexes] = React.useState<Array<number>>([0]);
   React.useEffect(() => {
