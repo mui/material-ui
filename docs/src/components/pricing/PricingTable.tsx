@@ -168,7 +168,7 @@ const ColumnHead = ({
       )}
       {tooltip && (
         <InfoOutlinedIcon
-          sx={{ fontSize: 16, verticalAlign: 'middle', ml: 0.5, color: 'grey.800' }}
+          sx={{ fontSize: 16, verticalAlign: 'middle', ml: 0.5, color: 'grey.800',  }}
         />
       )}
     </Typography>
@@ -185,7 +185,7 @@ const ColumnHead = ({
       {metadata && (
         <Typography
           variant="caption"
-          color="grey.700"
+          color="grey.800"
           fontWeight="normal"
           sx={{ display: 'block' }}
         >
@@ -708,6 +708,7 @@ const StickyHead = ({
           opacity: 0,
           top: 0,
         }),
+        py: 1,
         display: { xs: 'none', md: 'block' },
         backdropFilter: 'blur(20px)',
         boxShadow: (theme) =>
