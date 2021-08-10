@@ -476,7 +476,7 @@ function AboutContent() {
                   <IconImage name="yes" />
                   <Typography
                     variant="body2"
-                    color="text.secondary"
+                    color="text.primary"
                     fontWeight={600}
                     sx={{ ml: 1 }}
                   >
@@ -510,6 +510,7 @@ function AboutContent() {
               Join the team
             </Button>
           </div>
+          <Box display={{ xs: 'none', sm: 'block' }}>
           <img
             width="130"
             height="124"
@@ -517,6 +518,8 @@ function AboutContent() {
             loading="lazy"
             alt=""
           />
+          </Box>
+          
         </Box>
         <Divider sx={{ my: { xs: 2, sm: 4 } }} />
         <Typography
@@ -534,7 +537,7 @@ function AboutContent() {
         <Box sx={{ pt: 2 }}>
           <Grid container spacing={2}>
             {teamMembers.map((profile) => (
-              <Grid key={profile.name} item xs={6} sm={4} md={3}>
+              <Grid key={profile.name} item xs={12} sm={6} md={3}>
                 <Person {...profile} />
               </Grid>
             ))}
@@ -559,7 +562,7 @@ function AboutContent() {
             <Box sx={{ pt: 2, pb: { xs: 4, sm: 8 } }}>
               <Grid container spacing={2}>
                 {contributors.map((profile) => (
-                  <Grid key={profile.name} item xs={6} sm={4} md={3}>
+                  <Grid key={profile.name} item xs={12} sm={6} md={3}>
                     <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
                   </Grid>
                 ))}
@@ -568,7 +571,7 @@ function AboutContent() {
             <Typography
               component="h3"
               variant="h5"
-              color="warning.400"
+              color="warning.500"
               fontWeight="extraBold"
               sx={{ mb: 1 }}
             >
@@ -581,7 +584,7 @@ function AboutContent() {
             <Box sx={{ pt: 4, pb: { xs: 4, md: 8 } }}>
               <Grid container spacing={2}>
                 {emeriti.map((profile) => (
-                  <Grid key={profile.name} item xs={6} sm={4} md={3}>
+                  <Grid key={profile.name} item xs={12} sm={6} md={3}>
                     <Person {...profile} sx={{ bgcolor: 'primaryDark.600' }} />
                   </Grid>
                 ))}
