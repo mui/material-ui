@@ -427,7 +427,7 @@ function AboutContent() {
           <Typography variant="body2" color="primary.600" fontWeight="bold">
             About us
           </Typography>
-          <Typography variant="h2" sx={{ my: 1 }}>
+          <Typography component="h1" variant="h2" sx={{ my: 1 }}>
             We&apos;re on a mission to make building UIs more{' '}
             <GradientText>accessible</GradientText>.
           </Typography>
