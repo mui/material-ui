@@ -6,8 +6,13 @@ import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
+import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
+import Stack from '@material-ui/core/Stack';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 import ROUTES from 'docs/src/route';
 
@@ -23,7 +28,7 @@ export default function AppFooter() {
           gap: (theme) => theme.spacing(4, 2),
           gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1fr 1.75fr', lg: '1fr 1fr' },
           gridTemplateRows: 'auto',
-          '& a': {
+          '& a:not(.MuiIconButton-root)': {
             mt: 1,
             color: 'text.secondary',
             typography: 'body2',
@@ -49,6 +54,7 @@ export default function AppFooter() {
               display: 'inline-flex',
               borderRadius: 1,
               overflow: 'hidden',
+              mb: 1,
             }}
           >
             <InputBase
@@ -86,6 +92,35 @@ export default function AppFooter() {
               Subscribe
             </Button>
           </Box>
+          <Stack spacing={1} direction="row">
+            <IconButton
+              target="_blank"
+              rel="noopener"
+              href="https://github.com/mui-org/material-ui"
+              aria-label="github"
+              title="GitHub"
+            >
+              <GitHubIcon />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener"
+              href="https://twitter.com/MaterialUI"
+              aria-label="twitter"
+              title="Twitter"
+            >
+              <TwitterIcon />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener"
+              href="https://www.linkedin.com/company/material-ui/"
+              aria-label="linkedin"
+              title="LinkedIn"
+            >
+              <LinkedInIcon />
+            </IconButton>
+          </Stack>
         </div>
         <Box
           sx={{
