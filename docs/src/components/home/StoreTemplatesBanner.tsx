@@ -25,7 +25,16 @@ const Image = styled('img')(({ theme }) => ({
 }));
 
 export const LazyStoreTemplateImages = () => (
-  <Box sx={{ width: 0, height: 0, display: 'none', overflow: 'hidden' }}>
+  <Box
+    sx={{
+      width: 0,
+      height: 0,
+      display: 'none',
+      overflow: 'hidden',
+      position: 'absolute',
+      zIndex: -1,
+    }}
+  >
     <img src="/static/branding/store-templates/store-template1.jpeg" alt="" loading="lazy" />
     <img src="/static/branding/store-templates/store-template2.jpeg" alt="" loading="lazy" />
     <img src="/static/branding/store-templates/store-template3.jpeg" alt="" loading="lazy" />

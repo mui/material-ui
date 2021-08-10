@@ -10,7 +10,7 @@ import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import StoreTemplatesBanner, {
   LazyStoreTemplateImages,
 } from 'docs/src/components/home/StoreTemplatesBanner';
-import DesignKits from 'docs/src/components/home/DesignKits';
+import DesignKits, { LazyDesignKitsBg } from 'docs/src/components/home/DesignKits';
 
 const ProductSuite = () => {
   const [productIndex, setProductIndex] = React.useState(0);
@@ -41,6 +41,7 @@ const ProductSuite = () => {
           </Grid>
           <Grid item xs={12} md={6}>
             <LazyStoreTemplateImages />
+            <LazyDesignKitsBg />
             {productIndex === 0 && <CoreShowcase />}
             {productIndex === 1 && <ShowcaseContainer />}
             {productIndex === 2 && <StoreTemplatesBanner />}

@@ -15,6 +15,21 @@ const Image = styled('img')({
   objectPosition: 'top left',
 });
 
+export const LazyDesignKitsBg = () => (
+  <Box
+    sx={{
+      display: 'none',
+      overflow: 'hidden',
+      width: '0px',
+      height: '0px',
+      position: 'absolute',
+      zIndex: -1,
+    }}
+  >
+    <img src="/static/branding/design-kits/designkits-bg.png" alt="" loading="lazy" />
+  </Box>
+);
+
 export default function DesignKits() {
   const [appearIndexes, setAppearIndexes] = React.useState<Array<number>>([0]);
   React.useEffect(() => {
