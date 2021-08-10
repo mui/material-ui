@@ -5,15 +5,14 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
 import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import Stack from '@material-ui/core/Stack';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
+import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import ROUTES from 'docs/src/route';
 
 export default function AppFooter() {
@@ -47,51 +46,7 @@ export default function AppFooter() {
           <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
             No spam, guaranteed.
           </Typography>
-          <Box
-            sx={{
-              width: { xs: '100%', sm: 'auto' },
-              maxWidth: 360,
-              display: 'inline-flex',
-              borderRadius: 1,
-              overflow: 'hidden',
-              mb: 1,
-            }}
-          >
-            <InputBase
-              placeholder="Enter your email"
-              sx={{
-                bgcolor: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[900]
-                    : theme.palette.grey[100],
-                px: 1,
-                py: 0.5,
-                typography: 'body2',
-                flexGrow: 1,
-                minWidth: 200,
-              }}
-            />
-            <Button
-              sx={{
-                bgcolor: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[600]
-                    : theme.palette.grey[300],
-                py: 1,
-                px: 2,
-                color: 'text.primary',
-                borderRadius: '0px',
-                '&:hover': {
-                  bgcolor: (theme) =>
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[700]
-                      : theme.palette.grey[400],
-                },
-              }}
-            >
-              Subscribe
-            </Button>
-          </Box>
+          <EmailSubscribe sx={{ mb: 1 }} />
           <Stack spacing={1} direction="row">
             <IconButton
               target="_blank"
