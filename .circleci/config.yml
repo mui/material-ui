@@ -130,8 +130,8 @@ commands:
           -Dsonar.organization=vicrace-cjl \
           -Dsonar.sourceEncoding=US-ASCII \
           -Dsonar.exclusions=**/test/*,**/*,spec.tsx,**/*spec.ts,**/*.d.ts \
-          -Dsonar.host.url=https://sonarqube.onehq.com \
-          -Dsonar.projectVersion=${CIRCLE_BRANCH} \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.projectVersion=1.0.0 \
           -Dsonar.login=8f520b66eda3a4019698c7db1b3758f025b314c4
 
 jobs:
