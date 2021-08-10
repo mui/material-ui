@@ -417,8 +417,6 @@ jobs:
           
   sonarcloud:
     steps:
-    - checkout
-    - install_js
     - run:
         name: Install Sonarqube scanner
         command: |
@@ -674,9 +672,8 @@ workflows:
       - test_e2e:
           requires:
             - checkout
-      - sonarcloud:
-          requires:
-            - checkout
+      - sonarcloud
+      
   bundling:
     when:
       equal: [bundling, << pipeline.parameters.workflow >>]
