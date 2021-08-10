@@ -36,7 +36,7 @@ const grey = {
 };
 
 export default function PlayerCard() {
-  const [paused, setPaused] = React.useState(false);
+  const [paused, setPaused] = React.useState(true);
   /*
    * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
    *
@@ -109,6 +109,7 @@ export default function PlayerCard() {
     <ThemeProvider theme={theme}>
       <Card variant="outlined" sx={{ display: 'flex', p: 1 }}>
         <Avatar
+          alt="Beside Myself album cover"
           sx={{ width: 100, height: 100 }}
           src="/static/images/cards/basement-beside-myself.jpg"
           variant="rounded"
@@ -121,13 +122,17 @@ export default function PlayerCard() {
             Basement • Beside Myself
           </Typography>
           <Box sx={{ mt: 2 }}>
-            <IconButton disabled>
+            <IconButton aria-label="fast rewind" disabled>
               <FastRewindRounded />
             </IconButton>
-            <IconButton sx={{ mx: 2 }} onClick={() => setPaused((val) => !val)}>
-              {paused ? <PauseRounded /> : <PlayArrowRounded />}
+            <IconButton
+              aria-label={paused ? 'play' : 'pause'}
+              sx={{ mx: 2 }}
+              onClick={() => setPaused((val) => !val)}
+            >
+              {paused ? <PlayArrowRounded /> : <PauseRounded />}
             </IconButton>
-            <IconButton disabled>
+            <IconButton aria-label="fast forward" disabled>
               <FastForwardRounded />
             </IconButton>
           </Box>
