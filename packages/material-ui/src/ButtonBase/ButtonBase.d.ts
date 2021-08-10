@@ -75,7 +75,7 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
     /**
      * @default 0
      */
-    tabIndex?: number;
+    tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
     /**
      * Props applied to the `TouchRipple` element.
      */
