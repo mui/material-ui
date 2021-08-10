@@ -172,7 +172,10 @@ const pages = [
           { pathname: '/api-docs/data-grid/grid-col-def', title: 'GridColDef' },
           { pathname: '/api-docs/data-grid/grid-cell-params', title: 'GridCellParams' },
           { pathname: '/api-docs/data-grid/grid-row-params', title: 'GridRowParams' },
-          { pathname: '/api-docs/data-grid/grid-export-csv-options', title: 'GridExportCSVOptions' },
+          {
+            pathname: '/api-docs/data-grid/grid-export-csv-options',
+            title: 'GridExportCSVOptions',
+          },
         ],
       },
     ].sort((a, b) =>
