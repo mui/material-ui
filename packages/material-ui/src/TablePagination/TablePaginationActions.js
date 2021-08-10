@@ -13,7 +13,8 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
     backIconButtonProps,
     count,
     nextIconButtonProps,
-    onPageChange,
+    onChangePage = () => {},
+    onPageChange = () => {},
     page,
     rowsPerPage,
     ...other
@@ -22,10 +23,12 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
   const theme = useTheme();
 
   const handleBackButtonClick = (event) => {
+    onChangePage(event, page - 1);
     onPageChange(event, page - 1);
   };
 
   const handleNextButtonClick = (event) => {
+    onChangePage(event, page + 1);
     onPageChange(event, page + 1);
   };
 
@@ -70,7 +73,14 @@ TablePaginationActions.propTypes = {
    * @param {object} event The event source of the callback.
    * @param {number} page The page selected.
    */
-  onPageChange: PropTypes.func.isRequired,
+  onChangePage: PropTypes.func,
+  /**
+   * Callback fired when the page is changed.
+   *
+   * @param {object} event The event source of the callback.
+   * @param {number} page The page selected.
+   */
+  onPageChange: PropTypes.func,
   /**
    * The zero-based index of the current page.
    */
