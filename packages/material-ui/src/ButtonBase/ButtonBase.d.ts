@@ -72,11 +72,10 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps<Theme>;
-    // @types/react is stricter
     /**
      * @default 0
      */
-    tabIndex?: string | number;
+    tabIndex?: number;
     /**
      * Props applied to the `TouchRipple` element.
      */
