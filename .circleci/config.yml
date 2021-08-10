@@ -156,6 +156,7 @@ jobs:
     steps:
       - checkout
       - install_js
+      - scanner
       - run:
           name: Tests fake browser
           command: yarn test:coverage:ci
