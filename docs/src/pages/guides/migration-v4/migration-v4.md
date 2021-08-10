@@ -15,7 +15,7 @@ We'll do our best to keep things easy to follow, and as sequential as possible, 
 This documentation page covers the _how_ of migrating from v4 to v5.
 The _why_ will be covered in an upcoming blog post on Medium.
 
-## Migration Steps
+## Migration steps
 
 - [Update React & TypeScript](#update-react-amp-typescript-version)
 - [ThemeProvider setup](#themeprovider-setup)
@@ -116,7 +116,7 @@ We have prepared these codemods to ease your migration experience.
 This codemod contains most of the transformers that are useful for migration. (**This codemod should be applied only once per folder**)
 
 ```sh
-npx @material-ui/codemod@next v5.0.0/preset-safe <folder>
+npx @material-ui/codemod@next v5.0.0/preset-safe <path>
 ```
 
 > If you want to run the transformers one by one, check out [preset-safe codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#-preset-safe) for more details.
@@ -142,10 +142,10 @@ createMuiTheme({
 However, if you want to keep `variant="standard"` to you components, run this codemod or configure theme default props.
 
 ```sh
-npx @material-ui/codemod@next v5.0.0/variant-prop <folder>
+npx @material-ui/codemod@next v5.0.0/variant-prop <path>
 ```
 
-> For more details, checkout [variant-prop codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#variant-prop)
+For more details, checkout [variant-prop codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#variant-prop).
 
 ### link-underline-hover
 
@@ -168,10 +168,10 @@ createMuiTheme({
 However, if you want to keep `variant="hover"` to you components, run this codemod or configure theme default props.
 
 ```sh
-npx @material-ui/codemod@next v5.0.0/link-underline-hover <folder>
+npx @material-ui/codemod@next v5.0.0/link-underline-hover <path>
 ```
 
-> For more details, checkout [link-underline-hover codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#link-underline-hover)
+For more details, checkout [link-underline-hover codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#link-underline-hover).
 
 Once you have completed the codemod step, try running your application again. At this point, it should be running without error. Otherwise check out the [Troubleshooting](#troubleshooting) section. Next step, handling breaking changes in each component.
 
@@ -2311,7 +2311,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 Although your style overrides defined in the theme may partially work, there is an important difference on how the nested elements are styled. The `$` syntax used with JSS will not work with Emotion. You need to replace those selectors with a valid class selector.
 
-### Replace pseudo state class names
+### Replace state class names
 
 ```diff
 const theme = createTheme({
@@ -2370,28 +2370,27 @@ const theme = createTheme({
 });
 ```
 
-Take a look at the whole [list of pseudo-state global classnames](/customization/how-to-customize/#pseudo-classes) available.
+Take a look at the whole [list of global state classnames](/customization/how-to-customize/#state-classes) available.
 
 ## Migrate `makeStyles` to emotion
 
 This is the last step in the migration process to remove `@material-ui/styles` package from your codebase.
-
-We recommend 2 options.
+We recommend two options.
 
 ### 1. Use `styled` or `sx` API
 
 #### Codemod
 
-We provide a codemod to help migrate JSS styles to `styled` API, but this approach **increases the CSS specificity**.
+We provide [a codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#jss-to-styled) to help migrate JSS styles to `styled` API, but this approach **increases the CSS specificity**.
 
 ```sh
-npx @material-ui/codemod v5.0.0/jss-to-styled <folder|file>
+npx @material-ui/codemod@next v5.0.0/jss-to-styled <path>
 ```
 
 **Example transformation**:
 
 ```diff
-import Typography from '@material-ui/core/Typography';
+ import Typography from '@material-ui/core/Typography';
 -import makeStyles from '@material-ui/styles/makeStyles';
 +import { styled } from '@material-ui/core/styles';
 
@@ -2416,7 +2415,7 @@ import Typography from '@material-ui/core/Typography';
 +  cta: `${PREFIX}-cta`,
 +  content: `${PREFIX}-content`,
 +}
-+const Root = styled('div')((theme) => ({
++const Root = styled('div')(({ theme }) => ({
 +  [`&.${classes.root}`]: {
 +    display: 'flex',
 +    alignItems: 'center',
@@ -2432,53 +2431,53 @@ import Typography from '@material-ui/core/Typography';
 +  },
 +}))
 
-export const MyCard = () => {
-- const classes = useStyles();
-  return (
--   <div className={classes.root}>
-+   <Root className={classes.root}>
-      {/* The benefit of this approach is that the code inside Root stays the same. */}
-      <Typography className={classes.content}>...</Typography>
-      <Button className={classes.cta}>Go</Button>
-+   </Root>
--   </div>
-  )
-}
+ export const MyCard = () => {
+-  const classes = useStyles();
+   return (
+-    <div className={classes.root}>
++    <Root className={classes.root}>
+       {/* The benefit of this approach is that the code inside Root stays the same. */}
+       <Typography className={classes.content}>...</Typography>
+       <Button className={classes.cta}>Go</Button>
+-    </div>
++    </Root>
+   )
+ }
 ```
 
 > 💡 You should run this codemod per small chunk of files and then check the changes because in some cases you might need to adjust the code after the transformation (this codemod won't cover all of the cases).
 
-We recommend `sx` API over `styled` when you have to create responsive styles or needs minor CSS overrides. [Read more about `sx`](/system/the-sx-prop/#main-content)
+We recommend `sx` API over `styled` when you have to create responsive styles or needs minor CSS overrides. [Read more about `sx`](/system/the-sx-prop/#main-content).
 
 ```diff
-import Chip from '@material-ui/core/Chip';
-- import makeStyles from '@material-ui/styles/makeStyles';
-+ import { styled } from '@material-ui/core/styles';
+ import Chip from '@material-ui/core/Chip';
+-import makeStyles from '@material-ui/styles/makeStyles';
++import { styled } from '@material-ui/core/styles';
 
-- const useStyles = makeStyles((theme) => ({
--   wrapper: {
--     display: 'flex',
--   },
--   chip: {
--     padding: theme.spacing(1, 1.5),
--     boxShadow: theme.shadows[1],
--   }
-- }))
-+ const Root = styled('div')({
-+   display: 'flex',
-+ })
+-const useStyles = makeStyles((theme) => ({
+-  wrapper: {
+-    display: 'flex',
+-  },
+-  chip: {
+-    padding: theme.spacing(1, 1.5),
+-    boxShadow: theme.shadows[1],
+-  }
+-}))
++const Root = styled('div')({
++  display: 'flex',
++})
 
-function App() {
-- const classes = useStyles();
-  return (
--   <div>
--     <Chip className={classes.chip} label="Chip" />
--   </div>
-+   <Root>
-+     <Chip label="Chip" sx={{ py: 1, px: 1.5, boxShadow: 1 }} />
-+   </Root>
-  )
-}
+ function App() {
+-  const classes = useStyles();
+   return (
+-    <div>
+-      <Chip className={classes.chip} label="Chip" />
+-    </div>
++    <Root>
++      <Chip label="Chip" sx={{ py: 1, px: 1.5, boxShadow: 1 }} />
++    </Root>
+   )
+ }
 ```
 
 #### Manual
@@ -2486,10 +2485,10 @@ function App() {
 In some cases, you might want to create multiple styled components in a file instead of increasing CSS specificity. for example:
 
 ```diff
-- import makeStyles from '@material-ui/styles/makeStyles';
-+ import { styled } from '@material-ui/core/styles';
+-import makeStyles from '@material-ui/styles/makeStyles';
++import { styled } from '@material-ui/core/styles';
 
-- const useStyles = makeStyles((theme) => ({
+-const useStyles = makeStyles((theme) => ({
 -  root: {
 -    display: 'flex',
 -    alignItems: 'center',
@@ -2499,21 +2498,21 @@ In some cases, you might want to create multiple styled components in a file ins
 -  label: {
 -    color: theme.palette.primary.main,
 -  }
-- }))
-+ const Root = style('div')(({ theme }) => ({
-+   display: 'flex',
-+   alignItems: 'center',
-+   borderRadius: 20,
-+   background: theme.palette.grey[50],
-+ }))
+-}))
++const Root = style('div')(({ theme }) => ({
++  display: 'flex',
++  alignItems: 'center',
++  borderRadius: 20,
++  background: theme.palette.grey[50],
++}))
 
-+ const Label = style('span')(({ theme }) => ({
-+   color: theme.palette.primary.main,
-+ }))
++const Label = style('span')(({ theme }) => ({
++  color: theme.palette.primary.main,
++}))
 
-function Status({ label }) {
-  const classes = useStyles();
-  return (
+ function Status({ label }) {
+   const classes = useStyles();
+   return (
 -    <div className={classe.root}>
 -      {icon}
 -      <span className={classes.label}>{label}</span>
@@ -2522,8 +2521,8 @@ function Status({ label }) {
 +      {icon}
 +      <Label className={classes.label}>{label}</Label>
 +    </Root>
-  )
-}
+   )
+ }
 ```
 
 > **Note:** [https://siriwatk.dev/tool/jss-to-styled](https://siriwatk.dev/tool/jss-to-styled) is a tool that helps converting JSS to multiple styled components without increasing CSS specificity. (This tool is **not maintained** by Material-UI)
@@ -2657,12 +2656,13 @@ declare module "@material-ui/private-theming" {
 
 ### [Jest] SyntaxError: Unexpected token 'export'
 
-In v5, `@material-ui/core/colors/red` is considered private and should not be used in your project. [More details about this error](https://github.com/mui-org/material-ui/issues/27296).
+`@material-ui/core/colors/red` is considered private since v1.0.0.
+You should replace the import, [more details about this error](https://github.com/mui-org/material-ui/issues/27296).
 
 You can use this codemod (**recommended**) to fix all the import in your project:
 
 ```sh
-npx @material-ui/codemod v5.0.0/optimal-imports <folder>
+npx @material-ui/codemod@next v5.0.0/optimal-imports <path>
 ```
 
 or fix it manually like this:

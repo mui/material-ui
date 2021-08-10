@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
@@ -17,7 +16,7 @@ describe('@material-ui/codemod', () => {
           {
             source: read('./component-rename-prop.test/actual.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           { component: 'Component', from: 'prop', to: 'newProp' },
         );
 
@@ -30,7 +29,7 @@ describe('@material-ui/codemod', () => {
           {
             source: read('./component-rename-prop.test/expected.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           { component: 'Component', from: 'prop', to: 'newProp' },
         );
 

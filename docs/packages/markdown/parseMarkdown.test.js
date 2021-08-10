@@ -1,14 +1,44 @@
 import { expect } from 'chai';
-import { getContents, getDescription, getHeaders, prepareMarkdown } from './parseMarkdown';
+import {
+  getContents,
+  getDescription,
+  getTitle,
+  getHeaders,
+  prepareMarkdown,
+} from './parseMarkdown';
 
 describe('parseMarkdown', () => {
+  describe('getTitle', () => {
+    it('remove backticks', () => {
+      expect(
+        getTitle(`
+# \`@material-ui/styled-engine\`
+
+<p class="description">Configuring your preferred styling library.</p>
+      `),
+      ).to.equal('@material-ui/styled-engine');
+    });
+  });
+
   describe('getDescription', () => {
     it('trims the description', () => {
       expect(
         getDescription(`
-        <p class="description">
-          Some description
-        </p>
+<p class="description">
+  Some description
+</p>
+      `),
+      ).to.equal('Some description');
+    });
+
+    it('should not be greedy', () => {
+      expect(
+        getDescription(`
+<p class="description">
+  Some description
+</p>
+## Foo
+<p>bar</p>
       `),
       ).to.equal('Some description');
     });
@@ -69,11 +99,6 @@ authors: ['foo', 'bar']
 ### Unofficial 👍
 ### Warning ⚠️
 `;
-      // mock require.context
-      function requireRaw() {
-        return markdown;
-      }
-      requireRaw.keys = () => ['index.md'];
 
       const {
         docs: {
@@ -81,7 +106,7 @@ authors: ['foo', 'bar']
         },
       } = prepareMarkdown({
         pageFilename: 'test',
-        requireRaw,
+        translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
       });
 
       expect(toc).to.have.deep.ordered.members([
@@ -105,11 +130,6 @@ authors: ['foo', 'bar']
 ### responsiveFontSizes(theme, options) => theme
 ### createTheme(options, ...args) => theme
 `;
-      // mock require.context
-      function requireRaw() {
-        return markdown;
-      }
-      requireRaw.keys = () => ['index.md'];
 
       const {
         docs: {
@@ -117,7 +137,7 @@ authors: ['foo', 'bar']
         },
       } = prepareMarkdown({
         pageFilename: 'test',
-        requireRaw,
+        translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
       });
 
       expect(toc).to.have.deep.ordered.members([
@@ -162,19 +182,6 @@ authors: ['foo', 'bar']
 ### 例
 ### 使用相同的哈希
 `;
-      // mock require.context
-      function requireRaw(filename) {
-        switch (filename) {
-          case 'localization-pt.md':
-            return markdownPt;
-          case 'localization-zh.md':
-            return markdownZh;
-          default:
-            return markdownEn;
-        }
-      }
-      requireRaw.keys = () => ['localization-pt.md', 'localization.md', 'localization-zh.md'];
-
       const {
         docs: {
           en: { toc: tocEn },
@@ -183,7 +190,11 @@ authors: ['foo', 'bar']
         },
       } = prepareMarkdown({
         pageFilename: 'same-hash-test',
-        requireRaw,
+        translations: [
+          { filename: 'localization.md', markdown: markdownEn, userLanguage: 'en' },
+          { filename: 'localization-pt.md', markdown: markdownPt, userLanguage: 'pt' },
+          { filename: 'localization-zh.md', markdown: markdownZh, userLanguage: 'zh' },
+        ],
       });
 
       expect(tocZh).to.have.deep.ordered.members([
@@ -263,12 +274,6 @@ authors: ['foo', 'bar']
 ### Usar traduzido
 `;
 
-      // mock require.context
-      function requireRaw(filename) {
-        return filename === 'localization-pt.md' ? markdownPt : markdownEn;
-      }
-      requireRaw.keys = () => ['localization-pt.md', 'localization.md'];
-
       const {
         docs: {
           en: { toc: tocEn },
@@ -276,7 +281,10 @@ authors: ['foo', 'bar']
         },
       } = prepareMarkdown({
         pageFilename: 'same-hash-test',
-        requireRaw,
+        translations: [
+          { filename: 'localization.md', markdown: markdownEn, userLanguage: 'en' },
+          { filename: 'localization-pt.md', markdown: markdownPt, userLanguage: 'pt' },
+        ],
       });
 
       expect(tocPt).to.have.deep.ordered.members([

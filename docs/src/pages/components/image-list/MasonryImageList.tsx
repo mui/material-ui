@@ -11,8 +11,8 @@ export default function MasonryImageList() {
         {itemData.map((item) => (
           <ImageListItem key={item.img}>
             <img
-              srcSet={`${item.img}?w=161&fit=crop&auto=format 1x,
-                ${item.img}?w=161&fit=crop&auto=format&dpr=2 2x`}
+              src={`${item.img}?w=248&fit=crop&auto=format`}
+              srcSet={`${item.img}?w=248&fit=crop&auto=format&dpr=2 2x`}
               alt={item.title}
               loading="lazy"
             />

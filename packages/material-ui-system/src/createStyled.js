@@ -87,11 +87,9 @@ export default function createStyled(input = {}) {
 
     const skipSx = inputSkipSx || false;
 
-    let displayName;
     let className;
 
     if (componentName) {
-      displayName = `${componentName}${componentSlot || ''}`;
       className = `${componentName}-${lowercaseFirstLetter(componentSlot || 'Root')}`;
     }
 
@@ -166,6 +164,10 @@ export default function createStyled(input = {}) {
       const Component = defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
 
       if (process.env.NODE_ENV !== 'production') {
+        let displayName;
+        if (componentName) {
+          displayName = `${componentName}${componentSlot || ''}`;
+        }
         if (displayName === undefined) {
           displayName = `Styled(${getDisplayName(tag)})`;
         }

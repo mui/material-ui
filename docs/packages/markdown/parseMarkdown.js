@@ -3,15 +3,11 @@ const kebabCase = require('lodash/kebabCase');
 const textToHash = require('./textToHash');
 const prism = require('./prism');
 
-// TODO: pass as argument
-const LANGUAGES_IN_PROGRESS = ['en', 'zh', 'ru', 'pt', 'es', 'fr', 'de', 'ja'];
-
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
 const titleRegExp = /# (.*)[\r\n]/;
-const descriptionRegExp = /<p class="description">(.*)<\/p>/s;
+const descriptionRegExp = /<p class="description">(.*?)<\/p>/s;
 const headerKeyValueRegExp = /(.*?): (.*)/g;
 const emptyRegExp = /^\s*$/;
-const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/;
 
 /**
  * Extract information from the top of the markdown.
@@ -80,7 +76,7 @@ function getTitle(markdown) {
     throw new Error('Missing title in the page');
   }
 
-  return matches[1];
+  return matches[1].replace(/`/g, '');
 }
 
 function getDescription(markdown) {
@@ -239,11 +235,11 @@ function createRender(context) {
 
 /**
  * @param {object} config
- * @param {() => string} config.requireRaw - returnvalue of require.context
+ * @param {Array<{ markdown: string, filename: string, userLanguage: string }>} config.translations - Mapping of locale to its markdown
  * @param {string} config.pageFilename - posix filename relative to nextjs pages directory
  */
 function prepareMarkdown(config) {
-  const { pageFilename, requireRaw } = config;
+  const { pageFilename, translations } = config;
 
   const demos = {};
   /**
@@ -252,27 +248,12 @@ function prepareMarkdown(config) {
   const docs = {};
   const headingHashes = {};
 
-  // Process the English markdown before the other locales.
-  // English ToC anchor links are used in all languages
-  let filenames = [];
-  requireRaw.keys().forEach((filename) => {
-    if (filename.match(notEnglishMarkdownRegExp)) {
-      filenames.push(filename);
-    } else {
-      filenames = [filename].concat(filenames);
-    }
-  });
-
-  filenames.forEach((filename) => {
-    if (filename.indexOf('.md') !== -1) {
-      const matchNotEnglishMarkdown = filename.match(notEnglishMarkdownRegExp);
-
-      const userLanguage =
-        matchNotEnglishMarkdown && LANGUAGES_IN_PROGRESS.indexOf(matchNotEnglishMarkdown[1]) !== -1
-          ? matchNotEnglishMarkdown[1]
-          : 'en';
-
-      const markdown = requireRaw(filename);
+  translations
+    // Process the English markdown before the other locales.
+    // English ToC anchor links are used in all languages
+    .sort((a) => (a.userLanguage === 'en' ? -1 : 1))
+    .forEach((translation) => {
+      const { filename, markdown, userLanguage } = translation;
       const headers = getHeaders(markdown);
       const title = headers.title || getTitle(markdown);
       const description = headers.description || getDescription(markdown);
@@ -320,33 +301,13 @@ ${headers.components
         title,
         headers,
       };
-    } else if (filename.indexOf('.tsx') !== -1) {
-      const demoName = `pages/${pageFilename}/${filename
-        .replace(/\.\//g, '')
-        .replace(/\.tsx/g, '.js')}`;
-
-      demos[demoName] = {
-        ...demos[demoName],
-        moduleTS: filename,
-        rawTS: requireRaw(filename),
-      };
-    } else {
-      const demoName = `pages/${pageFilename}/${filename.replace(/\.\//g, '')}`;
-
-      demos[demoName] = {
-        ...demos[demoName],
-        module: filename,
-        raw: requireRaw(filename),
-      };
-    }
-  });
+    });
 
   return { demos, docs };
 }
 
 module.exports = {
   createRender,
-  notEnglishMarkdownRegExp,
   getContents,
   getDescription,
   getHeaders,

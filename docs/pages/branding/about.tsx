@@ -401,14 +401,6 @@ const company = [
     github: 'eps1lon',
   },
   {
-    name: 'Damien Tassone',
-    src: '/static/branding/about/damien.jpg',
-    title: 'Advanced components team',
-    location: 'Barcelona, Spain',
-    twitter: 'madKakoO',
-    github: 'dtassone',
-  },
-  {
     name: 'Marija Najdova',
     src: '/static/branding/about/marija.jpg',
     title: 'Core components team',
@@ -446,6 +438,13 @@ const company = [
     location: 'Bangkok, Thailand',
     twitter: 'siriwatknp',
     github: 'siriwatknp',
+  },
+  {
+    name: 'Flavien Delangle',
+    src: '/static/branding/about/flavien.jpg',
+    title: 'Advanced components team',
+    location: 'Lille, France',
+    github: 'flaviendelangle',
   },
 ];
 
@@ -505,6 +504,13 @@ const community = [
     title: '🇧🇷 Brazilian docs',
     location: 'São Paulo, Brazil',
     src: 'https://avatars.githubusercontent.com/u/29267813',
+  },
+  {
+    name: 'Ryan Cogswell',
+    github: 'ryancogswell',
+    title: 'Stack Overflow',
+    location: 'Minnesota, United States',
+    src: 'https://avatars.githubusercontent.com/u/287804',
   },
 ] as typeof emeriti;
 

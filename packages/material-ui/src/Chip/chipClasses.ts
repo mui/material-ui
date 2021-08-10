@@ -11,7 +11,7 @@ export interface ChipClasses {
   colorPrimary: string;
   /** Styles applied to the root element if `color="secondary"`. */
   colorSecondary: string;
-  /** Pseudo-class applied to the root element if `disabled={true}`. */
+  /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
   /** Styles applied to the root element if `onClick` is defined or `clickable={true}`. */
   clickable: string;
@@ -73,7 +73,7 @@ export interface ChipClasses {
   deleteIconOutlinedColorPrimary: string;
   /** Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`. */
   deleteIconOutlinedColorSecondary: string;
-  /** Pseudo-class applied to the root element if keyboard focused. */
+  /** State class applied to the root element if keyboard focused. */
   focusVisible: string;
 }
 

@@ -1,7 +1,7 @@
 {
   "props": {
     "checked": { "type": { "name": "bool" } },
-    "checkedIcon": { "type": { "name": "node" } },
+    "checkedIcon": { "type": { "name": "node" }, "default": "<RadioButtonIcon checked />" },
     "classes": { "type": { "name": "object" } },
     "color": {
       "type": {
@@ -12,7 +12,7 @@
     },
     "disabled": { "type": { "name": "bool" } },
     "disableRipple": { "type": { "name": "bool" } },
-    "icon": { "type": { "name": "node" } },
+    "icon": { "type": { "name": "node" }, "default": "<RadioButtonIcon />" },
     "id": { "type": { "name": "string" } },
     "inputProps": { "type": { "name": "object" } },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },

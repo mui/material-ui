@@ -33,13 +33,6 @@ const activeCore = [
     location: 'Dresden, Germany',
   },
   {
-    name: 'Damien Tassone',
-    github: 'dtassone',
-    twitter: 'madKakoO',
-    flag: 'Advanced components team',
-    location: 'Barcelona, Spain',
-  },
-  {
     name: 'Marija Najdova',
     github: 'mnajdova',
     twitter: 'marijanajdova',
@@ -80,6 +73,12 @@ const activeCore = [
     flag: 'Core components team',
     location: 'Bangkok, Thailand',
   },
+  {
+    name: 'Flavien Delangle',
+    github: 'flaviendelangle',
+    flag: 'Advanced components team',
+    location: 'Lille, France',
+  },
 ];
 
 const community = [
@@ -114,6 +113,13 @@ const community = [
     twitter: 'oleg008',
     flag: 'JSS',
     location: 'Berlin, Germany',
+  },
+  {
+    name: 'Ryan Cogswell',
+    github: 'ryancogswell',
+    twitter: 'ryanecogswell',
+    flag: 'Stack Overflow',
+    location: 'Minnesota, United States',
   },
 ];
 

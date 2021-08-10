@@ -53,7 +53,7 @@ module.exports = function setKarmaConfig(config) {
     client: {
       mocha: {
         // Some BrowserStack browsers can be slow.
-        timeout: (process.env.CIRCLECI === 'true' ? 5 : 2) * 1000,
+        timeout: (process.env.CIRCLECI === 'true' ? 6 : 2) * 1000,
       },
     },
     frameworks: ['mocha'],
@@ -95,7 +95,9 @@ module.exports = function setKarmaConfig(config) {
       '/fake.png': '/base/test/assets/fake.png',
       '/fake2.png': '/base/test/assets/fake2.png',
     },
-    reporters: ['dots', 'coverage-istanbul'],
+    // The CI branch fixes double log issue
+    // https://github.com/karma-runner/karma/issues/2342
+    reporters: ['dots', ...(CI ? ['coverage-istanbul'] : [])],
     webpack: {
       mode: 'development',
       devtool: CI ? 'inline-source-map' : 'eval-source-map',

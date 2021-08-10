@@ -97,9 +97,9 @@ If you don't want to rely on default components, you can override them with your
 This makes it possible to provide a styled component.
 Each unstyled component has a specific set of "slots" - that is subcomponents that you can override.
 
-Let's take a [SwitchUnstyled](../api/switchUnstyled) as an example.
+Let's take a [SwitchUnstyled](/api/switch-unstyled/) as an example.
 It has three slots: `Root`, `Thumb`, and `Input`.
-The demo below shows how to create a styled component (using [System](system/styled/) in this case, but it could well be any other solution)
+The demo below shows how to create a styled component (using [System](/system/styled/) in this case, but it could well be any other solution)
 
 {{"demo": "pages/customization/unstyled-components/StylingSlots.js"}}
 

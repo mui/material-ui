@@ -65,7 +65,9 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiRadio' });
   const {
     checked: checkedProp,
+    checkedIcon = defaultCheckedIcon,
     color = 'primary',
+    icon = defaultIcon,
     name: nameProp,
     onChange: onChangeProp,
     size = 'medium',
@@ -96,9 +98,9 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   return (
     <RadioRoot
       type="radio"
-      icon={React.cloneElement(defaultIcon, { fontSize: size === 'small' ? 'small' : 'medium' })}
-      checkedIcon={React.cloneElement(defaultCheckedIcon, {
-        fontSize: size === 'small' ? 'small' : 'medium',
+      icon={React.cloneElement(icon, { fontSize: defaultIcon.props.fontSize ?? size })}
+      checkedIcon={React.cloneElement(checkedIcon, {
+        fontSize: defaultCheckedIcon.props.fontSize ?? size,
       })}
       styleProps={styleProps}
       classes={classes}
@@ -122,6 +124,7 @@ Radio.propTypes /* remove-proptypes */ = {
   checked: PropTypes.bool,
   /**
    * The icon to display when the component is checked.
+   * @default <RadioButtonIcon checked />
    */
   checkedIcon: PropTypes.node,
   /**
@@ -146,6 +149,7 @@ Radio.propTypes /* remove-proptypes */ = {
   disableRipple: PropTypes.bool,
   /**
    * The icon to display when the component is unchecked.
+   * @default <RadioButtonIcon />
    */
   icon: PropTypes.node,
   /**

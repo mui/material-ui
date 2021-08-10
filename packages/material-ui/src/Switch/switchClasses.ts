@@ -17,9 +17,9 @@ export interface SwitchClasses {
   sizeSmall: string;
   /** Styles applied to the root element if `size="medium"`. */
   sizeMedium: string;
-  /** Pseudo-class applied to the internal `SwitchBase` component's `checked` class. */
+  /** State class applied to the internal `SwitchBase` component's `checked` class. */
   checked: string;
-  /** Pseudo-class applied to the internal SwitchBase component's disabled class. */
+  /** State class applied to the internal SwitchBase component's disabled class. */
   disabled: string;
   /** Styles applied to the internal SwitchBase component's input element. */
   input: string;

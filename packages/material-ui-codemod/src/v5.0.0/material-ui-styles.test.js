@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
@@ -18,7 +17,7 @@ describe('@material-ui/codemod', () => {
             source: read('./material-ui-styles.test/actual.js'),
             path: require.resolve('./material-ui-styles.test/actual.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
@@ -32,7 +31,7 @@ describe('@material-ui/codemod', () => {
             source: read('./material-ui-styles.test/expected.js'),
             path: require.resolve('./material-ui-styles.test/expected.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
@@ -46,7 +45,7 @@ describe('@material-ui/codemod', () => {
             source: read('./material-ui-styles.test/single-import.actual.js'),
             path: require.resolve('./material-ui-styles.test/single-import.actual.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
@@ -60,7 +59,7 @@ describe('@material-ui/codemod', () => {
             source: read('./material-ui-styles.test/core-import.actual.js'),
             path: require.resolve('./material-ui-styles.test/core-import.actual.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
@@ -74,7 +73,7 @@ describe('@material-ui/codemod', () => {
             source: read('./material-ui-styles.test/types-import.actual.js'),
             path: require.resolve('./material-ui-styles.test/types-import.actual.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 

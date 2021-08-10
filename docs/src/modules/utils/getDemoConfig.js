@@ -1,10 +1,11 @@
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
-import { getDependencies } from './helpers';
+import { getDependencies } from 'docs/src/modules/utils/helpers';
 
-function jsDemo(demoData) {
+function jsDemo(demoData, options) {
   return {
     dependencies: getDependencies(demoData.raw, {
-      muiCommitRef: process.env.PULL_REQUEST ? process.env.COMMIT_REF : undefined,
+      muiCommitRef:
+        process.env.PULL_REQUEST && options.previewPackage ? process.env.COMMIT_REF : undefined,
     }),
     files: {
       'demo.js': demoData.raw,
@@ -25,11 +26,12 @@ ReactDOM.render(
   };
 }
 
-function tsDemo(demoData) {
+function tsDemo(demoData, options) {
   return {
     dependencies: getDependencies(demoData.raw, {
       codeLanguage: CODE_VARIANTS.TS,
-      muiCommitRef: process.env.PULL_REQUEST ? process.env.COMMIT_REF : undefined,
+      muiCommitRef:
+        process.env.PULL_REQUEST && options.previewPackage ? process.env.COMMIT_REF : undefined,
     }),
     files: {
       'demo.tsx': demoData.raw,
@@ -65,7 +67,7 @@ ReactDOM.render(
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "preserve"
+    "jsx": "react"
   },
   "include": [
     "src"
@@ -80,23 +82,24 @@ ReactDOM.render(
   };
 }
 
-function getLanguageConfig(demoData) {
+function getLanguageConfig(demoData, options) {
   switch (demoData.codeVariant) {
     case CODE_VARIANTS.TS:
-      return tsDemo(demoData);
+      return tsDemo(demoData, options);
     case CODE_VARIANTS.JS:
-      return jsDemo(demoData);
+      return jsDemo(demoData, options);
     default:
       throw new Error(`Unsupported codeVariant: ${demoData.codeVariant}`);
   }
 }
 
-export default function getDemoConfig(demoData) {
+export default function getDemoConfig(demoData, options = {}) {
+  const { indexPath = 'public/index.html', previewPackage = true } = options;
   const baseConfig = {
     title: demoData.title,
     description: demoData.githubLocation,
     files: {
-      'public/index.html': `
+      [indexPath]: `
 <!DOCTYPE html>
 <html lang="${demoData.language}">
   <head>
@@ -119,7 +122,9 @@ export default function getDemoConfig(demoData) {
 `.trim(),
     },
   };
-  const languageConfig = getLanguageConfig(demoData);
+  const languageConfig = getLanguageConfig(demoData, {
+    previewPackage,
+  });
 
   return {
     ...baseConfig,
