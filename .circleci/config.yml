@@ -672,7 +672,7 @@ workflows:
       - test_e2e:
           requires:
             - checkout
-      - sonarcloud
+      - sonarcloud/run
       
   bundling:
     when:
