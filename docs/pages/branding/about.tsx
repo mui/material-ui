@@ -9,18 +9,20 @@ import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Link from 'docs/src/modules/components/Link';
 import Grid from '@material-ui/core/Grid';
 import Paper, { PaperProps } from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
+import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import Link from 'docs/src/modules/components/Link';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import ReferencesCore from 'docs/src/components/home/ReferencesCore';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import { MuiStats } from 'docs/src/components/home/Testimonials';
 import GradientText from 'docs/src/components/typography/GradientText';
-import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
 import ROUTES from 'docs/src/route';
 import IconImage from 'docs/src/components/icon/IconImage';
@@ -128,7 +130,7 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
               target="_blank"
               rel="noreferrer noopener"
             >
-              <img width="20" height="20" src={`/static/images/logos/github-light.svg`} alt="" />
+              <GitHubIcon fontSize="small" sx={{ color: 'grey.600' }} />
             </IconButton>
           )}
           {props.twitter && (
@@ -139,7 +141,7 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
               target="_blank"
               rel="noreferrer noopener"
             >
-              <img width="20" height="20" src={`/static/images/logos/twitter-light.svg`} alt="" />
+              <TwitterIcon fontSize="small" sx={{ color: 'grey.600' }} />
             </IconButton>
           )}
         </Box>
@@ -428,7 +430,7 @@ function AboutContent() {
             About us
           </Typography>
           <Typography component="h1" variant="h2" sx={{ my: 1 }}>
-            We&apos;re on a mission to make building UIs more{' '}
+            We&apos;re on a mission to make <br /> building UIs more{' '}
             <GradientText>accessible</GradientText>.
           </Typography>
           <Typography
