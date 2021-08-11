@@ -119,7 +119,7 @@ export default function TaskCard() {
         <Box sx={{ display: 'flex' }}>
           <Avatar src="/static/images/avatar/1.jpg" variant="rounded" />
           <Box sx={{ ml: 1 }}>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color="primary.200">
               Assigned to
             </Typography>
             <Typography>Michael Scott</Typography>

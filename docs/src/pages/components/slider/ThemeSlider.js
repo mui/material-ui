@@ -64,6 +64,7 @@ export default function ThemeSlider() {
             main: primary[500],
           },
         },
+        shape: { borderRadius: 10 },
         typography: {
           fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(
             ',',
@@ -122,28 +123,40 @@ export default function ThemeSlider() {
     <ThemeProvider theme={theme}>
       <Box
         sx={{
-          display: 'inline-block',
-          height: 180,
-          padding: '0.75rem 0',
-          borderRadius: 4,
-          bgcolor: mode === 'dark' ? primaryDark[700] : '#fff',
+          display: 'flex',
+          justifyContent: 'center',
+          bgcolor: mode === 'dark' ? primaryDark[800] : '#fff',
+          border: '1px solid',
+          borderColor: mode === 'dark' ? primaryDark[500] : grey[200],
+          borderRadius: 1,
+          p: 2,
         }}
       >
-        <Slider
-          getAriaLabel={() => 'Temperature'}
-          orientation="vertical"
-          getAriaValueText={valuetext}
-          defaultValue={[25, 50]}
-          marks={[
-            { value: 0 },
-            { value: 25 },
-            { value: 50 },
-            { value: 75 },
-            { value: 100 },
-          ]}
-          valueLabelFormat={valuetext}
-          valueLabelDisplay="on"
-        />
+        <Box
+          sx={{
+            display: 'inline-block',
+            height: 180,
+            padding: '0.75rem 0',
+            borderRadius: 4,
+            bgcolor: mode === 'dark' ? primaryDark[700] : '#fff',
+          }}
+        >
+          <Slider
+            getAriaLabel={() => 'Temperature'}
+            orientation="vertical"
+            getAriaValueText={valuetext}
+            defaultValue={[25, 50]}
+            marks={[
+              { value: 0 },
+              { value: 25 },
+              { value: 50 },
+              { value: 75 },
+              { value: 100 },
+            ]}
+            valueLabelFormat={valuetext}
+            valueLabelDisplay="on"
+          />
+        </Box>
       </Box>
     </ThemeProvider>
   );

@@ -52,9 +52,9 @@ export default function PlayerCard() {
         palette: {
           mode,
           background: {
-            paper: mode === 'dark' ? primaryDark[700] : '#fff',
+            paper: mode === 'dark' ? primaryDark[800] : '#fff',
           },
-          divider: mode === 'dark' ? primaryDark[400] : grey[200],
+          divider: mode === 'dark' ? primaryDark[500] : grey[200],
           ...(mode === 'light' && {
             text: {
               primary: grey[900],
@@ -82,7 +82,7 @@ export default function PlayerCard() {
             styleOverrides: {
               root: {
                 border: '1px solid',
-                borderColor: mode === 'dark' ? primaryDark[400] : '#fff',
+                borderColor: mode === 'dark' ? primaryDark[500] : '#fff',
               },
             },
           },
@@ -93,7 +93,7 @@ export default function PlayerCard() {
             styleOverrides: {
               root: {
                 border: '1px solid',
-                borderColor: mode === 'dark' ? primaryDark[400] : grey[200],
+                borderColor: mode === 'dark' ? primaryDark[500] : grey[200],
               },
             },
           },
