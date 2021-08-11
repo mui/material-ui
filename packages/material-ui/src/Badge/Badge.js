@@ -371,7 +371,7 @@ Badge.propTypes = {
   overlap: chainPropTypes(
     PropTypes.oneOf(['circle', 'rectangle', 'circular', 'rectangular']),
     (props) => {
-      const { overlap } = props;
+      const { overlap = 'rectangle' } = props;
 
       if (overlap === 'rectangle') {
         throw new Error(
