@@ -26,55 +26,7 @@ setting `"strict": true`.
 
 ## Customization of `Theme`
 
-When adding custom properties to the `Theme`, you may continue to use it in a strongly typed way by exploiting
-[TypeScript's module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
-
-The following example adds an `appDrawer` prop that is merged into the one exported by `material-ui`:
-
-```ts
-import { Breakpoint, Theme } from '@material-ui/core/styles';
-declare module '@material-ui/core/styles' {
-  interface Theme {
-    appDrawer: {
-      width: React.CSSProperties['width'];
-      breakpoint: Breakpoint;
-    };
-  }
-  // allow configuration using `createTheme`
-  interface ThemeOptions {
-    appDrawer?: {
-      width?: React.CSSProperties['width'];
-      breakpoint?: Breakpoint;
-    };
-  }
-}
-```
-
-And a custom theme factory with additional defaulted options:
-
-**./styles/createMyTheme**:
-
-```ts
-import { createTheme, ThemeOptions } from '@material-ui/core/styles';
-export default function createMyTheme(options: ThemeOptions) {
-  return createTheme({
-    appDrawer: {
-      width: 225,
-      breakpoint: 'lg',
-    },
-    ...options,
-  });
-}
-```
-
-This could be used like:
-
-```ts
-import createMyTheme from './styles/createMyTheme';
-const theme = createMyTheme({
-  appDrawer: { breakpoint: 'md' },
-});
-```
+Moved to [/customization/theming/#custom-variables](/customization/theming/#custom-variables).
 
 ## Usage of `component` prop
 
