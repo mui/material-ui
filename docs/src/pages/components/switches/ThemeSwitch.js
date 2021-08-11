@@ -84,7 +84,7 @@ export default function ThemeTabs() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', flexGrow: 1 }}>
         <Switch defaultChecked />
         <Switch />
       </Box>
