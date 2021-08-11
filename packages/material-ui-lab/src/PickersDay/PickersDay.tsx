@@ -358,7 +358,7 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
       centerRipple
       data-mui-test="day"
       disabled={disabled}
-      aria-label={!props.children ? utils.format(day, 'fullDate') : undefined}
+      aria-label={!children ? utils.format(day, 'fullDate') : undefined}
       tabIndex={selected ? 0 : -1}
       onFocus={handleFocus}
       onKeyDown={handleKeyDown}
