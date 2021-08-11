@@ -14,6 +14,9 @@ const Anchor = styled('a')<{ component?: React.ElementType }>(({ theme }) => ({
   ...theme.typography.body2,
   fontWeight: 700,
   textDecoration: 'none',
+  border: 'none',
+  width: '100%',
+  backgroundColor: 'transparent',
   color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.text.secondary,
   cursor: 'pointer',
   display: 'flex',
@@ -119,7 +122,7 @@ export default function HeaderNavDropdown() {
             <UList>
               <li>
                 <Anchor
-                  component="button"
+                  as="button"
                   onClick={() => setProductsOpen((bool) => !bool)}
                   sx={{ justifyContent: 'space-between' }}
                 >
