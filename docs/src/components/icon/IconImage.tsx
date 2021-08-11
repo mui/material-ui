@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { useTheme } from '@material-ui/core/styles';
+import { useTheme, styled, Theme } from '@material-ui/core/styles';
+import { SxProps } from '@material-ui/system';
 
 export type IconImageProps = {
   name:
@@ -12,8 +13,14 @@ export type IconImageProps = {
     | 'block-gold'
     | 'yes'
     | 'no'
-    | 'time';
+    | 'time'
+    | 'give-feedback'
+    | 'join-community'
+    | 'support-us';
+  sx?: SxProps<Theme>;
 } & JSX.IntrinsicElements['img'];
+
+const Img = styled('img')({ display: 'inline-block', verticalAlign: 'bottom' });
 
 export default function IconImage({ name, ...props }: IconImageProps) {
   const theme = useTheme();
@@ -31,15 +38,22 @@ export default function IconImage({ name, ...props }: IconImageProps) {
     width = '13';
     height = '15';
   }
-  if (name === 'yes' || name === 'no' || name === 'time') {
+  if (['yes', 'no', 'time'].indexOf(name) !== -1) {
     category = 'pricing/';
     width = '18';
     height = '18';
   }
+  if (['give-feedback', 'join-community', 'support-us'].indexOf(name) !== -1) {
+    category = 'about/';
+    mode = '';
+    width = '28';
+    height = '28';
+  }
   return (
-    <img
+    <Img
       src={`/static/branding/${category}${name}${mode}.svg`}
       alt=""
+      loading="lazy"
       width={width}
       height={height}
       {...props}

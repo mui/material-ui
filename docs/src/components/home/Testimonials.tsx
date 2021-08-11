@@ -134,6 +134,38 @@ const TESTIMONIALS = [
   },
 ];
 
+export function MuiStats({ mode }: { mode: 'light' | 'dark' }) {
+  return (
+    <Grid item xs={12} md={6} container spacing={2}>
+      {data.map((item) => (
+        <Grid key={item.title} item xs={6}>
+          <Box
+            sx={{
+              height: '100%',
+              p: 1,
+              pl: 2,
+              borderLeft: '4px solid',
+              borderColor: mode === 'dark' ? 'primaryDark.600' : 'primary.100',
+            }}
+          >
+            <Typography
+              component="div"
+              variant="h3"
+              color={mode === 'dark' ? 'primary.200' : 'primary.main'}
+              fontWeight="bold"
+            >
+              {item.title}
+            </Typography>
+            <Typography color={mode === 'dark' ? 'grey.300' : 'grey.800'}>
+              {item.metadata}
+            </Typography>
+          </Box>
+        </Grid>
+      ))}
+    </Grid>
+  );
+}
+
 const Testimonials = ({ mode: modeProp }: { mode?: 'light' | 'dark' }) => {
   const [slideIndex, setSlideIndex] = React.useState(0);
   const globalTheme = useTheme();
@@ -224,33 +256,7 @@ const Testimonials = ({ mode: modeProp }: { mode?: 'light' | 'dark' }) => {
               </SwipeableViews>
             </Box>
           </Grid>
-          <Grid item xs={12} md={6} container spacing={2}>
-            {data.map((item) => (
-              <Grid key={item.title} item xs={6}>
-                <Box
-                  sx={{
-                    height: '100%',
-                    p: 1,
-                    pl: 2,
-                    borderLeft: '4px solid',
-                    borderColor: mode === 'dark' ? 'primaryDark.600' : 'primary.100',
-                  }}
-                >
-                  <Typography
-                    component="div"
-                    variant="h3"
-                    color={mode === 'dark' ? 'primary.200' : 'primary.main'}
-                    fontWeight="bold"
-                  >
-                    {item.title}
-                  </Typography>
-                  <Typography color={mode === 'dark' ? 'grey.300' : 'grey.800'}>
-                    {item.metadata}
-                  </Typography>
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
+          <MuiStats mode={mode} />
         </Grid>
       </Container>
     </Box>

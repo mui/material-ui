@@ -130,7 +130,6 @@ const Info = ({ value, metadata }: { value: React.ReactNode; metadata?: string }
     </React.Fragment>
   );
 };
-
 const ColumnHead = ({
   label,
   metadata,
