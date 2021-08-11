@@ -1,29 +1,29 @@
 /* eslint-disable no-console */
-const chalk = require('chalk');
-const fse = require('fs-extra');
-const glob = require('globby');
-const path = require('path');
+import chalk from 'chalk';
+import fse from 'fs-extra';
+import { globby } from 'globby';
+import * as url from 'url';
 
 const passMessage = (message) => `✓ ${chalk.gray(message)}`;
 const failMessage = (message) => `✗ ${chalk.whiteBright(message)}`;
 
 async function run() {
-  const workspaceRoot = path.resolve(__dirname, '..');
+  const workspaceRoot = new url.URL('..', import.meta.url);
 
-  const eslintignoreContent = await fse.readFile(path.join(workspaceRoot, '.eslintignore'), {
+  const eslintignoreContent = await fse.readFile(new url.URL('.eslintignore', workspaceRoot), {
     encoding: 'utf8',
   });
   const eslintignore = eslintignoreContent.split(/\r?\n/).slice(0, -1);
 
-  const filenames = await glob('**/*.json', {
-    cwd: workspaceRoot,
+  const filenames = await globby('**/*.json', {
+    cwd: workspaceRoot.pathname,
     gitignore: true,
     ignore: [...eslintignore, '**/tsconfig*.json', '**/tslint.json'],
   });
 
   let passed = true;
   const checks = filenames.map(async (filename) => {
-    const content = await fse.readFile(path.join(workspaceRoot, filename), { encoding: 'utf8' });
+    const content = await fse.readFile(new url.URL(filename, workspaceRoot), { encoding: 'utf8' });
     try {
       JSON.parse(content);
       console.log(passMessage(filename));

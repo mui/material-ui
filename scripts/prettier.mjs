@@ -4,13 +4,14 @@
 
 // supported modes = check, check-changed, write, write-changed
 
-const glob = require('globby');
-const prettier = require('prettier');
-const fs = require('fs');
-const path = require('path');
-const yargs = require('yargs');
-const { LANGUAGES } = require('docs/src/modules/constants');
-const listChangedFiles = require('./listChangedFiles');
+import { globbySync } from 'globby';
+import prettier from 'prettier';
+import * as fs from 'fs';
+import * as path from 'path';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
+import { LANGUAGES } from 'docs/src/modules/constants';
+import listChangedFiles from './listChangedFiles.js';
 
 // FIXME: Incorrect assumption
 const workspaceRoot = process.cwd();
@@ -47,25 +48,23 @@ function runPrettier(options) {
       return line;
     });
 
-  const files = glob
-    .sync('**/*.{js,md,tsx,ts,json}', {
-      cwd: workspaceRoot,
-      gitignore: true,
-      ignore: [
-        // these are auto-generated
-        'docs/pages/api-docs/**/*.md',
-        ...ignoredFiles,
-      ],
-      dot: true,
-    })
-    .filter(
-      (f) =>
-        (!changedFiles || changedFiles.has(f)) &&
-        // These come from crowdin.
-        // If we would commit changes crowdin would immediately try to revert.
-        // If we want to format these files we'd need to do it in crowdin
-        !isTranslatedDocument(f),
-    );
+  const files = globbySync('**/*.{js,md,tsx,ts,json}', {
+    cwd: workspaceRoot,
+    gitignore: true,
+    ignore: [
+      // these are auto-generated
+      'docs/pages/api-docs/**/*.md',
+      ...ignoredFiles,
+    ],
+    dot: true,
+  }).filter(
+    (f) =>
+      (!changedFiles || changedFiles.has(f)) &&
+      // These come from crowdin.
+      // If we would commit changes crowdin would immediately try to revert.
+      // If we want to format these files we'd need to do it in crowdin
+      !isTranslatedDocument(f),
+  );
 
   if (!files.length) {
     return;
@@ -127,7 +126,7 @@ async function run(argv) {
   runPrettier({ changedFiles, shouldWrite, branch });
 }
 
-yargs
+yargs(hideBin(process.argv))
   .command({
     command: '$0 [mode]',
     description: 'formats codebase',

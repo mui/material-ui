@@ -100,6 +100,8 @@ module.exports = {
     '@typescript-eslint/return-await': 'off',
     'no-return-await': 'error',
 
+    // file extensions are required with ES6 modules
+    'import/extensions': 'off',
     // Not sure why it doesn't work
     'import/named': 'off',
     // Missing yarn workspace support
