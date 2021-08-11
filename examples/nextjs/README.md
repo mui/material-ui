@@ -38,7 +38,7 @@ More information [in the documentation](https://next.material-ui.com/guides/rout
 
 ## What's next?
 
+<!-- #default-branch-switch -->
+
 You now have a working example project.
 You can head back to the documentation, continuing browsing it from the [templates](https://next.material-ui.com/getting-started/templates/) section.
-
-<!-- #default-branch-switch -->

@@ -6,4 +6,6 @@ Copy the files into your project, or one of the [example projects](https://githu
 
 ## Demo
 
+<!-- #default-branch-switch -->
+
 View the demo at https://next.material-ui.com/getting-started/templates/dashboard/.
