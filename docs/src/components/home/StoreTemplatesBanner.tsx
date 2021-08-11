@@ -32,7 +32,7 @@ const Anchor = styled('a')({
   position: 'relative',
   transition: '0.3s',
   borderRadius: '50%',
-  '&:hover': {
+  '&:hover, &:focus': {
     '& > div': {
       opacity: 1,
     },
@@ -173,7 +173,7 @@ export default function StoreTemplatesBanner() {
           top: 0,
           left: 0,
           width: 400,
-          height: '100%',
+          height: '150%',
           pointerEvents: 'none',
           background: (theme) =>
             `linear-gradient(to right, ${

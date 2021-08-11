@@ -33,7 +33,7 @@ const Anchor = styled('a')({
   position: 'relative',
   transition: '0.3s',
   borderRadius: '50%',
-  '&:hover': {
+  '&:hover, &:focus': {
     boxShadow: '0 6px 12px 0 rgba(0,0,0,0.12)',
     '& > div': {
       opacity: 1,
