@@ -75,7 +75,7 @@ export default function ViewToggleButton() {
         palette: {
           mode,
           primary,
-          divider: mode === 'dark' ? primaryDark[400] : grey[200],
+          divider: mode === 'dark' ? primaryDark[500] : grey[200],
           grey,
         },
         typography: {
@@ -95,7 +95,7 @@ export default function ViewToggleButton() {
           MuiToggleButtonGroup: {
             styleOverrides: {
               root: {
-                backgroundColor: mode === 'dark' ? primaryDark[700] : '#fff',
+                backgroundColor: mode === 'dark' ? primaryDark[800] : '#fff',
               },
             },
           },

@@ -73,12 +73,12 @@ export default function NotificationCard() {
             },
           }),
           grey,
-          divider: mode === 'dark' ? primaryDark[400] : grey[200],
+          divider: mode === 'dark' ? primaryDark[500] : grey[200],
           success: {
             main: '#1DB45A',
           },
           background: {
-            paper: mode === 'dark' ? primaryDark[700] : '#fff',
+            paper: mode === 'dark' ? primaryDark[800] : '#fff',
           },
         },
         shape: {

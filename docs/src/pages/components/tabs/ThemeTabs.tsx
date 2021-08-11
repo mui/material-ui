@@ -54,7 +54,7 @@ export default function ThemeTabs() {
           MuiTabs: {
             styleOverrides: {
               root: {
-                backgroundColor: mode === 'dark' ? primary[800] : primary[500],
+                backgroundColor: mode === 'dark' ? primary[700] : primary[500],
                 borderRadius: 10,
                 boxShadow:
                   '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
@@ -95,7 +95,12 @@ export default function ThemeTabs() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Tabs value={value} onChange={handleChange} aria-label="theme example">
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        aria-label="theme example"
+        variant="fullWidth"
+      >
         <Tab label="Yesterday" />
         <Tab label="Today" />
         <Tab label="Tomorrow" />

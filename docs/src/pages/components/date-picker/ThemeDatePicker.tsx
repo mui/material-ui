@@ -59,7 +59,7 @@ export default function ThemeDatePicker() {
         mode,
         primary,
         background: {
-          paper: mode === 'dark' ? primaryDark[700] : '#fff',
+          paper: mode === 'dark' ? primaryDark[800] : '#fff',
         },
       },
       shape: {
@@ -90,13 +90,24 @@ export default function ThemeDatePicker() {
         MuiCalendarPicker: {
           styleOverrides: {
             root: {
+              width: '100%',
               '& .MuiTypography-caption': {
                 color: mode === 'dark' ? grey[600] : grey[700],
+                height: 24,
               },
               '[role="presentation"]': {
                 '& .MuiIconButton-root': {
                   padding: 0,
                 },
+              },
+              '& .PrivatePickersSlideTransition-root': {
+                minHeight: 180,
+              },
+              '[role="row"]': {
+                justifyContent: 'space-around',
+              },
+              '& .MuiCalendarPicker-viewTransitionContainer > div > div': {
+                justifyContent: 'space-around',
               },
             },
           },
@@ -104,6 +115,8 @@ export default function ThemeDatePicker() {
         MuiPickersDay: {
           styleOverrides: {
             root: {
+              width: 24,
+              height: 24,
               color: mode === 'dark' ? primary[200] : grey[800],
               fontWeight: 500,
             },
@@ -125,8 +138,11 @@ export default function ThemeDatePicker() {
           sx={{
             '& > div': {
               border: '1px solid',
-              borderColor: mode === 'dark' ? primaryDark[400] : grey[200],
+              borderColor: mode === 'dark' ? primaryDark[500] : grey[200],
               borderRadius: 1,
+            },
+            '& > div > div > div': {
+              width: '100%',
             },
           }}
         >

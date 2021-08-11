@@ -9,6 +9,7 @@ import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
 import TimelineConnector from '@material-ui/lab/TimelineConnector';
 import TimelineContent from '@material-ui/lab/TimelineContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
+import InfoOutlined from '@material-ui/icons/InfoOutlined';
 
 const primary = {
   50: '#F0F7FF',
@@ -63,13 +64,21 @@ export default function BasicTimeline() {
         palette: {
           mode,
           primary,
-          text: {
-            primary: grey[900],
-            secondary: grey[800],
-          },
-          divider: mode === 'dark' ? primaryDark[400] : grey[200],
+          ...(mode === 'light' && {
+            text: {
+              primary: grey[900],
+              secondary: grey[800],
+            },
+          }),
+          ...(mode === 'dark' && {
+            text: {
+              primary: '#fff',
+              secondary: grey[500],
+            },
+          }),
+          divider: mode === 'dark' ? primaryDark[500] : grey[200],
           background: {
-            paper: mode === 'dark' ? primaryDark[700] : '#fff',
+            paper: mode === 'dark' ? primaryDark[800] : '#fff',
           },
         },
         shape: {
@@ -132,59 +141,66 @@ export default function BasicTimeline() {
   );
   return (
     <ThemeProvider theme={theme}>
-      <Card variant="outlined" sx={{ p: 2, maxWidth: 270 }}>
-        <Box sx={{ display: 'flex', alignItems: 'flex-start' }}>
-          <Box
-            sx={{
-              p: 0.5,
-              mt: 0.75,
-              borderRadius: 1,
-              minWidth: 28,
-              textAlign: 'center',
-              bgcolor: mode === 'dark' ? 'primary.700' : 'primary.50',
-              color: mode === 'dark' ? '#fff' : 'primary.main',
-              typography: 'body2',
-            }}
-          >
-            1
-          </Box>
-          <Box sx={{ ml: 2 }}>
+      <Card
+        variant="outlined"
+        sx={{ p: 2, display: 'flex', alignItems: 'flex-start' }}
+      >
+        <Box
+          sx={{
+            p: 0.5,
+            borderRadius: 0.5,
+            minWidth: 28,
+            textAlign: 'center',
+            bgcolor: mode === 'dark' ? 'primary.700' : 'primary.50',
+            color: mode === 'dark' ? '#fff' : 'primary.main',
+            typography: 'body2',
+          }}
+        >
+          1
+        </Box>
+        <Box sx={{ ml: 2, flex: 1 }}>
+          <Box sx={{ display: 'flex' }}>
             <Typography
               color={mode === 'dark' ? 'grey.400' : 'text.secondary'}
               variant="body2"
-              sx={{ my: 1 }}
+              sx={{ mb: 1 }}
             >
-              Add space and style to the account
+              Add these properties:
             </Typography>
-            <Timeline
-              sx={{
-                pl: 0,
-                my: 0,
-                '& .MuiTimelineItem-root:before': { display: 'none' },
-              }}
-            >
-              <TimelineItem>
-                <TimelineSeparator>
-                  <TimelineDot />
-                  <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent>Margin Top</TimelineContent>
-              </TimelineItem>
-              <TimelineItem>
-                <TimelineSeparator>
-                  <TimelineDot />
-                  <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent>Padding Bottom</TimelineContent>
-              </TimelineItem>
-              <TimelineItem>
-                <TimelineSeparator>
-                  <TimelineDot />
-                </TimelineSeparator>
-                <TimelineContent>Flexbox</TimelineContent>
-              </TimelineItem>
-            </Timeline>
+            <InfoOutlined
+              fontSize="small"
+              sx={{ ml: 'auto', color: 'text.secondary' }}
+            />
           </Box>
+          <Timeline
+            sx={{
+              pl: 0,
+              py: 0,
+              my: 0,
+              '& .MuiTimelineItem-root:before': { display: 'none' },
+            }}
+          >
+            <TimelineItem>
+              <TimelineSeparator>
+                <TimelineDot />
+                <TimelineConnector />
+              </TimelineSeparator>
+              <TimelineContent>Margin Top</TimelineContent>
+            </TimelineItem>
+            <TimelineItem>
+              <TimelineSeparator>
+                <TimelineDot />
+                <TimelineConnector />
+              </TimelineSeparator>
+              <TimelineContent>Padding Bottom</TimelineContent>
+            </TimelineItem>
+            <TimelineItem>
+              <TimelineSeparator>
+                <TimelineDot />
+              </TimelineSeparator>
+              <TimelineContent>Flexbox</TimelineContent>
+            </TimelineItem>
+          </Timeline>
         </Box>
       </Card>
     </ThemeProvider>

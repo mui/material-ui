@@ -123,12 +123,12 @@ export default function BasicTable() {
               secondary: grey[600],
             },
           }),
-          divider: mode === 'dark' ? primaryDark[400] : grey[200],
+          divider: mode === 'dark' ? primaryDark[500] : grey[200],
           success: {
             main: mode === 'dark' ? '#21CC66' : '#1AA251',
           },
           background: {
-            paper: mode === 'dark' ? primaryDark[700] : '#fff',
+            paper: mode === 'dark' ? primaryDark[800] : '#fff',
           },
         },
         typography: {
@@ -143,7 +143,7 @@ export default function BasicTable() {
           MuiTableCell: {
             styleOverrides: {
               root: {
-                borderColor: mode === 'dark' ? primaryDark[400] : grey[200],
+                borderColor: mode === 'dark' ? primaryDark[500] : grey[200],
               },
               sizeSmall: {
                 padding: '0.625rem 1rem',
