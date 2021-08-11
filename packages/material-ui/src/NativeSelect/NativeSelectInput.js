@@ -88,7 +88,7 @@ export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
     color: theme.palette.action.disabled,
   },
   ...(styleProps.open && {
-    right: 7,
+    transform: 'rotate(180deg)',
   }),
   ...(styleProps.variant === 'filled' && {
     right: 7,

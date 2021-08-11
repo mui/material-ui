@@ -42,6 +42,8 @@
     "leftArrowButtonText": { "type": { "name": "string" } },
     "loading": { "type": { "name": "bool" } },
     "mask": { "type": { "name": "string" } },
+    "maxDate": { "type": { "name": "any" } },
+    "minDate": { "type": { "name": "any" } },
     "onAccept": { "type": { "name": "func" } },
     "onClose": { "type": { "name": "func" } },
     "onError": { "type": { "name": "func" } },
@@ -78,8 +80,8 @@
     "showToolbar": { "type": { "name": "bool" } },
     "ToolbarComponent": { "type": { "name": "elementType" }, "default": "DatePickerToolbar" },
     "toolbarFormat": { "type": { "name": "string" } },
-    "toolbarPlaceholder": { "type": { "name": "node" }, "default": "\"–\"" },
-    "toolbarTitle": { "type": { "name": "node" }, "default": "\"SELECT DATE\"" },
+    "toolbarPlaceholder": { "type": { "name": "node" }, "default": "'–'" },
+    "toolbarTitle": { "type": { "name": "node" }, "default": "'Select date'" },
     "value": {
       "type": {
         "name": "union",

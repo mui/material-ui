@@ -188,23 +188,15 @@ StaticTimePicker.propTypes /* remove-proptypes */ = {
    */
   mask: PropTypes.string,
   /**
-   * @ignore
+   * Max time acceptable time.
+   * For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
    */
-  maxTime: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  maxTime: PropTypes.any,
   /**
-   * @ignore
+   * Min time acceptable time.
+   * For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
    */
-  minTime: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  minTime: PropTypes.any,
   /**
    * Step over minutes.
    * @default 1
@@ -290,12 +282,12 @@ StaticTimePicker.propTypes /* remove-proptypes */ = {
   toolbarFormat: PropTypes.string,
   /**
    * Mobile picker date value placeholder, displaying if `value` === `null`.
-   * @default "–"
+   * @default '–'
    */
   toolbarPlaceholder: PropTypes.node,
   /**
    * Mobile picker title, displaying in the toolbar.
-   * @default "SELECT DATE"
+   * @default 'Select time'
    */
   toolbarTitle: PropTypes.node,
   /**

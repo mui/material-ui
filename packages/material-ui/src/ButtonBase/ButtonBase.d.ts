@@ -35,7 +35,7 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      * If `true`, the ripple effect is disabled.
      *
      * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
-     * to highlight the element by applying separate styles with the `.Mui-focusedVisible` class.
+     * to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
      * @default false
      */
     disableRipple?: boolean;
@@ -72,11 +72,10 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps<Theme>;
-    // @types/react is stricter
     /**
      * @default 0
      */
-    tabIndex?: string | number;
+    tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
     /**
      * Props applied to the `TouchRipple` element.
      */

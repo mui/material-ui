@@ -164,13 +164,15 @@ Only the two most common use cases are covered. For more information see [this s
 +const MyButton = React.forwardRef((props, ref) =>
 +  <div role="button" {...props} ref={ref} />);
 
-<Button component={MyButton} />;
+ <Button component={MyButton} />;
 ```
 
 ```diff
 -const SomeContent = props => <div {...props}>Hello, World!</div>;
-+const SomeContent = React.forwardRef((props, ref) => <div {...props} ref={ref}>Hello, World!</div>);
-<Tooltip title="Hello, again."><SomeContent /></Tooltip>;
++const SomeContent = React.forwardRef((props, ref) =>
++  <div {...props} ref={ref}>Hello, World!</div>);
+
+ <Tooltip title="Hello again."><SomeContent /></Tooltip>;
 ```
 
 To find out if the Material-UI component you're using has this requirement, check
@@ -186,13 +188,13 @@ You can use `React.forwardRef` and a designated prop in your class component to 
 Doing so should not trigger any more warnings related to the deprecation of `ReactDOM.findDOMNode`.
 
 ```diff
-class Component extends React.Component {
-  render() {
--   const { props } = this;
-+   const { forwardedRef, ...props } = this.props;
-    return <div {...props} ref={forwardedRef} />;
-  }
-}
+ class Component extends React.Component {
+   render() {
+-    const { props } = this;
++    const { forwardedRef, ...props } = this.props;
+     return <div {...props} ref={forwardedRef} />;
+   }
+ }
 
 -export default Component;
 +export default React.forwardRef((props, ref) => <Component {...props} forwardedRef={ref} />);

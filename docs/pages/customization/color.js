@@ -3,9 +3,9 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import {
   demos,
   docs,
-  requireDemo,
-} from '!@material-ui/markdown/loader!docs/src/pages/customization/color/color.md';
+  demoComponents,
+} from 'docs/src/pages/customization/color/color.md?@material-ui/markdown';
 
 export default function Page() {
-  return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />;
+  return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />;
 }

@@ -31,7 +31,7 @@ function TopLayoutCompany(props) {
     <AppFrame disableDrawer>
       <Head title={`${title} - Material-UI`} description={description} />
       <div className={classes.root}>
-        <AppContainer className={classes.container}>
+        <AppContainer component="main" className={classes.container}>
           {rendered.map((chunk, index) => {
             return <MarkdownElement key={index} renderedMarkdown={chunk} />;
           })}

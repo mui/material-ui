@@ -414,7 +414,7 @@ ButtonBase.propTypes /* remove-proptypes */ = {
    * If `true`, the ripple effect is disabled.
    *
    * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
-   * to highlight the element by applying separate styles with the `.Mui-focusedVisible` class.
+   * to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
    * @default false
    */
   disableRipple: PropTypes.bool,
@@ -510,7 +510,7 @@ ButtonBase.propTypes /* remove-proptypes */ = {
   /**
    * @default 0
    */
-  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  tabIndex: PropTypes.number,
   /**
    * Props applied to the `TouchRipple` element.
    */

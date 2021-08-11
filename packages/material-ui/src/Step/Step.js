@@ -33,12 +33,10 @@ const StepRoot = styled('div', {
     ];
   },
 })(({ styleProps }) => ({
-  /* Styles applied to the root element if `orientation="horizontal"`. */
   ...(styleProps.orientation === 'horizontal' && {
     paddingLeft: 8,
     paddingRight: 8,
   }),
-  /* Styles applied to the root element if `alternativeLabel={true}`. */
   ...(styleProps.alternativeLabel && {
     flex: 1,
     position: 'relative',

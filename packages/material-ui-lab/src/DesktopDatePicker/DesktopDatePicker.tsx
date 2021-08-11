@@ -216,23 +216,13 @@ DesktopDatePicker.propTypes /* remove-proptypes */ = {
    */
   mask: PropTypes.string,
   /**
-   * @ignore
+   * Max selectable date. @DateIOType
    */
-  maxDate: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  maxDate: PropTypes.any,
   /**
-   * @ignore
+   * Min selectable date. @DateIOType
    */
-  minDate: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  minDate: PropTypes.any,
   /**
    * Callback fired when date is accepted @DateIOType.
    */
@@ -356,12 +346,12 @@ DesktopDatePicker.propTypes /* remove-proptypes */ = {
   toolbarFormat: PropTypes.string,
   /**
    * Mobile picker date value placeholder, displaying if `value` === `null`.
-   * @default "–"
+   * @default '–'
    */
   toolbarPlaceholder: PropTypes.node,
   /**
    * Mobile picker title, displaying in the toolbar.
-   * @default "SELECT DATE"
+   * @default 'Select date'
    */
   toolbarTitle: PropTypes.node,
   /**

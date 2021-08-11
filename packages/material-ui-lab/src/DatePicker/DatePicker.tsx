@@ -25,6 +25,7 @@ type DatePickerComponent = (<TDate>(
  * Demos:
  *
  * - [Date Picker](https://material-ui.com/components/date-picker/)
+ * - [Pickers](https://material-ui.com/components/pickers/)
  *
  * API:
  *
@@ -94,7 +95,7 @@ DatePicker.propTypes /* remove-proptypes */ = {
   autoFocus: PropTypes.bool,
   /**
    * Cancel text message.
-   * @default "CANCEL"
+   * @default 'Cancel'
    */
   cancelText: PropTypes.node,
   /**
@@ -112,7 +113,7 @@ DatePicker.propTypes /* remove-proptypes */ = {
   clearable: PropTypes.bool,
   /**
    * Clear text message.
-   * @default "CLEAR"
+   * @default 'Clear'
    */
   clearText: PropTypes.node,
   /**
@@ -237,26 +238,16 @@ DatePicker.propTypes /* remove-proptypes */ = {
    */
   mask: PropTypes.string,
   /**
-   * @ignore
+   * Max selectable date. @DateIOType
    */
-  maxDate: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  maxDate: PropTypes.any,
   /**
-   * @ignore
+   * Min selectable date. @DateIOType
    */
-  minDate: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  minDate: PropTypes.any,
   /**
    * Ok button text.
-   * @default "OK"
+   * @default 'OK'
    */
   okText: PropTypes.node,
   /**
@@ -378,7 +369,7 @@ DatePicker.propTypes /* remove-proptypes */ = {
   showToolbar: PropTypes.bool,
   /**
    * Today text message.
-   * @default "TODAY"
+   * @default 'Today'
    */
   todayText: PropTypes.node,
   /**
@@ -392,12 +383,12 @@ DatePicker.propTypes /* remove-proptypes */ = {
   toolbarFormat: PropTypes.string,
   /**
    * Mobile picker date value placeholder, displaying if `value` === `null`.
-   * @default "–"
+   * @default '–'
    */
   toolbarPlaceholder: PropTypes.node,
   /**
    * Mobile picker title, displaying in the toolbar.
-   * @default "SELECT DATE"
+   * @default 'Select date'
    */
   toolbarTitle: PropTypes.node,
   /**

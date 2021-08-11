@@ -23,7 +23,6 @@ const CardActionAreaRoot = styled(ButtonBase, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })(({ theme }) => ({
-  /* Styles applied to the root element. */
   display: 'block',
   textAlign: 'inherit',
   width: '100%',
@@ -43,7 +42,6 @@ const CardActionAreaFocusHighlight = styled('span', {
   slot: 'FocusHighlight',
   overridesResolver: (props, styles) => styles.focusHighlight,
 })(({ theme }) => ({
-  /* Styles applied to the overlay that covers the action area when it is keyboard focused. */
   overflow: 'hidden',
   pointerEvents: 'none',
   position: 'absolute',

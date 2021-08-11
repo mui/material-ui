@@ -57,6 +57,13 @@ The prop is converted into a CSS property using the [`theme.spacing()`](/customi
 
 {{"demo": "pages/components/grid/SpacingGrid.js", "bg": true}}
 
+### Row & column spacing
+
+The `rowSpacing` and `columnSpacing` props allow for specifying the row and column gaps independently.
+It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap).
+
+{{"demo": "pages/components/grid/RowAndColumnSpacing.js", "bg": true}}
+
 ## Responsive values
 
 You can switch the props' value based on the active breakpoint.
@@ -82,13 +89,6 @@ Responsive values is supported by:
 > </Grid>
 > ```
 
-### Row & column spacing
-
-The `rowSpacing` and `columnSpacing` props allow for specifying the row and column gaps independently.
-It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap).
-
-{{"demo": "pages/components/grid/RowAndColumnSpacing.js", "bg": true}}
-
 ## Interactive
 
 Below is an interactive demo that lets you explore the visual results of the different settings:
@@ -101,6 +101,13 @@ The Auto-layout makes the _items_ equitably share the available space.
 That also means you can set the width of one _item_ and the others will automatically resize around it.
 
 {{"demo": "pages/components/grid/AutoGrid.js", "bg": true}}
+
+### Variable width content
+
+Set one of the size breakpoint props to `"auto"` instead of `true` / a `number` to size
+a column based on the natural width of its content.
+
+{{"demo": "pages/components/grid/VariableWidthGrid.js", "bg": true}}
 
 ## Complex Grid
 

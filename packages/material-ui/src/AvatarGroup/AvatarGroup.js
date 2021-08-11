@@ -41,7 +41,6 @@ const AvatarGroupRoot = styled('div', {
       marginLeft: 0,
     },
   },
-  /* Styles applied to the root element. */
   display: 'flex',
   flexDirection: 'row-reverse',
 }));

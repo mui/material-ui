@@ -6,17 +6,13 @@ import { ExportedClockPickerProps } from '../ClockPicker/ClockPicker';
 import { pick12hOr24hFormat } from '../internal/pickers/text-field-helper';
 import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import { TimeValidationError, ValidationProps } from '../internal/pickers/hooks/useValidation';
-import {
-  useParsedDate,
-  OverrideParseableDateProps,
-} from '../internal/pickers/hooks/date-helpers-hooks';
 import { BasePickerProps, ToolbarComponentProps } from '../internal/pickers/typings/BasePicker';
 import { ExportedDateInputProps } from '../internal/pickers/PureDateInput';
 
 export type TimePickerView = 'hours' | 'minutes' | 'seconds';
 
 export interface BaseTimePickerProps<TDate>
-  extends OverrideParseableDateProps<TDate, ExportedClockPickerProps<TDate>, 'minTime' | 'maxTime'>,
+  extends ExportedClockPickerProps<TDate>,
     BasePickerProps<ParseableDate<TDate>, TDate | null>,
     ValidationProps<TimeValidationError, ParseableDate<TDate>>,
     ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
@@ -29,6 +25,11 @@ export interface BaseTimePickerProps<TDate>
    * @default TimePickerToolbar
    */
   ToolbarComponent?: React.JSXElementConstructor<ToolbarComponentProps<TDate | null>>;
+  /**
+   * Mobile picker title, displaying in the toolbar.
+   * @default 'Select time'
+   */
+  toolbarTitle?: React.ReactNode;
   /**
    * Array of views to show.
    */
@@ -47,8 +48,6 @@ export function useTimePickerDefaultizedProps<Props extends BaseTimePickerProps<
     ampm,
     components,
     inputFormat,
-    maxTime,
-    minTime,
     openTo = 'hours',
     views = ['hours', 'minutes'],
     ...other
@@ -62,8 +61,6 @@ export function useTimePickerDefaultizedProps<Props extends BaseTimePickerProps<
     props: {
       views,
       openTo,
-      minTime: useParsedDate(minTime),
-      maxTime: useParsedDate(maxTime),
       ampm: willUseAmPm,
       acceptRegex: willUseAmPm ? /[\dapAP]/gi : /\d/gi,
       mask: '__:__',

@@ -1,6 +1,6 @@
 ---
 title: React Switch component
-components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel
+components: Switch, FormControl, FormGroup, FormLabel, FormControlLabel, SwitchUnstyled
 githubLabel: 'component: Switch'
 materialDesign: https://material.io/components/selection-controls#switches
 ---
@@ -48,7 +48,7 @@ However, you are encouraged to use [Checkboxes](/components/checkboxes/) instead
 
 {{"demo": "pages/components/switches/SwitchesGroup.js"}}
 
-## Customized switches
+## Customization
 
 Here are some examples of customizing the component. You can learn more about this in the
 [overrides documentation page](/customization/how-to-customize/).
@@ -56,6 +56,47 @@ Here are some examples of customizing the component. You can learn more about th
 {{"demo": "pages/components/switches/CustomizedSwitches.js"}}
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/switch).
+
+## Unstyled switches
+
+The switch also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+
+```jsx
+import SwitchUnstyled from '@material-ui/unstyled/SwitchUnstyled';
+```
+
+The `SwitchUnstyled` component provides default components and assigns CSS classes you can style entirely on your own.
+You are free to choose any styling solution - plain CSS classes, a CSS framework, Emotion, etc.
+It is also possible to replace these default components by other HTML elements or custom components.
+
+There are three components you can override by the `components` prop: `Root`, `Thumb` and `Input`. Each one's props can be set using the `componentsProps` object.
+
+{{"demo": "pages/components/switches/UnstyledSwitches.js"}}
+
+### Recreation of Material-UI's Switch
+
+{{"demo": "pages/components/switches/UnstyledSwitchesMaterial.js"}}
+
+### useSwitch hook
+
+For the ultimate customizability, a `useSwitch` hook is available.
+It accepts almost the same options as the SwitchUnstyled component minus the `component`, `components`, and `componentsProps` props.
+
+```jsx
+import { useSwitch } from '@material-ui/unstyled/SwitchUnstyled';
+```
+
+#### Basic example
+
+{{"demo": "pages/components/switches/UseSwitchesBasic.js"}}
+
+#### Customized look and feel
+
+{{"demo": "pages/components/switches/UseSwitchesCustom.js"}}
+
+#### Recreation of Material-UI's Switch
+
+{{"demo": "pages/components/switches/UseSwitchesMaterial.js"}}
 
 ## Label placement
 

@@ -3,9 +3,9 @@ import TopLayoutCompany from 'docs/src/modules/components/TopLayoutCompany';
 import {
   demos,
   docs,
-  requireDemo,
-} from '!@material-ui/markdown/loader!docs/src/pages/company/careers/careers.md';
+  demoComponents,
+} from 'docs/src/pages/company/careers/careers.md?@material-ui/markdown';
 
 export default function Page() {
-  return <TopLayoutCompany demos={demos} docs={docs} requireDemo={requireDemo} />;
+  return <TopLayoutCompany demos={demos} docs={docs} demoComponents={demoComponents} />;
 }

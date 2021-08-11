@@ -27,16 +27,13 @@ const CardMediaRoot = styled('div', {
     return [styles.root, isMediaComponent && styles.media, isImageComponent && styles.img];
   },
 })(({ styleProps }) => ({
-  /* Styles applied to the root element. */
   display: 'block',
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center',
-  /* Styles applied to the root element if `component="video, audio, picture, iframe, or img"`. */
   ...(styleProps.isMediaComponent && {
     width: '100%',
   }),
-  /* Styles applied to the root element if `component="picture or img"`. */
   ...(styleProps.isImageComponent && {
     // ⚠️ object-fit is not supported by IE11.
     objectFit: 'cover',

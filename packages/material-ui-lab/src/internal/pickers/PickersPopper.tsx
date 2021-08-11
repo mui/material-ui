@@ -55,7 +55,6 @@ function clickedRootScrollbar(event: MouseEvent, doc: Document) {
 /**
  * Based on @material-ui/core/ClickAwayListener without the customization.
  * We can probably strip away even more since children won't be portaled.
- *
  * @param onClickAway
  * @param onClick
  * @param onTouchStart

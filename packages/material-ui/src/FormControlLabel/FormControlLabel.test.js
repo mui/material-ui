@@ -116,12 +116,12 @@ describe('<FormControlLabel />', () => {
     });
   });
 
-  describe('componentProps: typography', () => {
+  describe('componentsProps: typography', () => {
     it('should spread its contents to the typography element', () => {
       const { getByTestId } = render(
         <FormControlLabel
           label="Pizza"
-          componentProps={{
+          componentsProps={{
             typography: {
               'data-testid': 'labelTypography',
               name: 'test',

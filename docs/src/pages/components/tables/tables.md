@@ -48,7 +48,7 @@ The Table has been given a fixed width to demonstrate horizontal scrolling. In o
 
 {{"demo": "pages/components/tables/EnhancedTable.js", "bg": true}}
 
-## Customized tables
+## Customization
 
 Here is an example of customizing the component. You can learn more about this in the
 [overrides documentation page](/customization/how-to-customize/).
@@ -77,6 +77,12 @@ You should either provide an array of:
 The `ActionsComponent` prop of the `TablePagination` component allows the implementation of custom actions.
 
 {{"demo": "pages/components/tables/CustomPaginationActionsTable.js", "bg": true}}
+
+## Theming
+
+Here is an example of theming the component. You can learn more about this in the [theming page](/customization/theming) and [theme components page](/customization/theme-components)
+
+{{"demo": "pages/components/tables/FolderTable.js", "bg": true}}
 
 ## Sticky header
 

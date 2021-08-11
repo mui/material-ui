@@ -41,7 +41,6 @@ const IconButtonRoot = styled(ButtonBase, {
   },
 })(
   ({ theme, styleProps }) => ({
-    /* Styles applied to the root element. */
     textAlign: 'center',
     flex: '0 0 auto',
     fontSize: theme.typography.pxToRem(24),
@@ -59,17 +58,14 @@ const IconButtonRoot = styled(ButtonBase, {
         backgroundColor: 'transparent',
       },
     },
-    /* Styles applied to the root element if `edge="start"`. */
     ...(styleProps.edge === 'start' && {
       marginLeft: styleProps.size === 'small' ? -3 : -12,
     }),
-    /* Styles applied to the root element if `edge="end"`. */
     ...(styleProps.edge === 'end' && {
       marginRight: styleProps.size === 'small' ? -3 : -12,
     }),
   }),
   ({ theme, styleProps }) => ({
-    /* Styles applied to the root element if `color="inherit"`. */
     ...(styleProps.color === 'inherit' && {
       color: 'inherit',
     }),
@@ -87,7 +83,6 @@ const IconButtonRoot = styled(ButtonBase, {
           },
         },
       }),
-    /* Styles applied to the root element if `size="small"`. */
     ...(styleProps.size === 'small' && {
       padding: 5,
       fontSize: theme.typography.pxToRem(18),
@@ -96,7 +91,6 @@ const IconButtonRoot = styled(ButtonBase, {
       padding: 12,
       fontSize: theme.typography.pxToRem(28),
     }),
-    /* Styles applied to the root element if `disabled={true}`. */
     [`&.${iconButtonClasses.disabled}`]: {
       backgroundColor: 'transparent',
       color: theme.palette.action.disabled,
@@ -211,7 +205,7 @@ IconButton.propTypes /* remove-proptypes */ = {
    * If `true`, the ripple effect is disabled.
    *
    * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
-   * to highlight the element by applying separate styles with the `.Mui-focusedVisible` class.
+   * to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
    * @default false
    */
   disableRipple: PropTypes.bool,

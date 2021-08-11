@@ -44,7 +44,6 @@ const StepLabelRoot = styled('span', {
     return [styles.root, styles[styleProps.orientation]];
   },
 })(({ styleProps }) => ({
-  /* Styles applied to the root element. */
   display: 'flex',
   alignItems: 'center',
   [`&.${stepLabelClasses.alternativeLabel}`]: {
@@ -53,7 +52,6 @@ const StepLabelRoot = styled('span', {
   [`&.${stepLabelClasses.disabled}`]: {
     cursor: 'default',
   },
-  /* Styles applied to the root element if `orientation="vertical"`. */
   ...(styleProps.orientation === 'vertical' && {
     textAlign: 'left',
     padding: '8px 0',
@@ -67,7 +65,6 @@ const StepLabelLabel = styled('span', {
 })(({ theme }) => ({
   ...theme.typography.body2,
   display: 'block',
-  /* Styles applied to the Typography component that wraps `children`. */
   transition: theme.transitions.create('color', {
     duration: theme.transitions.duration.shortest,
   }),
@@ -93,7 +90,6 @@ const StepLabelIconContainer = styled('span', {
   slot: 'IconContainer',
   overridesResolver: (props, styles) => styles.iconContainer,
 })(() => ({
-  /* Styles applied to the `icon` container element. */
   flexShrink: 0, // Fix IE11 issue
   display: 'flex',
   paddingRight: 8,
@@ -107,7 +103,6 @@ const StepLabelLabelContainer = styled('span', {
   slot: 'LabelContainer',
   overridesResolver: (props, styles) => styles.labelContainer,
 })(({ theme }) => ({
-  /* Styles applied to the container element which wraps `Typography` and `optional`. */
   width: '100%',
   color: theme.palette.text.secondary,
 }));
@@ -117,12 +112,12 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
   const {
     children,
     className,
+    componentsProps = {},
     error = false,
     icon: iconProp,
     optional,
     StepIconComponent: StepIconComponentProp,
     StepIconProps,
-    componentsProps = {},
     ...other
   } = props;
 

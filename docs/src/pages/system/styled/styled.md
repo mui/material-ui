@@ -67,13 +67,13 @@ If you inspect this element with the browser DevTools, you will notice that the 
 If you would like to remove some of the Material-UI specific features, you can do it like this:
 
 ```diff
-const StyledComponent = styled('div', {}, {
+ const StyledComponent = styled('div', {}, {
    name: 'MuiStyled',
    slot: 'Root',
 -  overridesResolver: (props, styles) => styles.root, // disables theme.components[name].styleOverrides
 +  skipVariantsResolver: true, // disables theme.components[name].variants
 +  skipSx: true, // disables the sx prop
-})
+ });
 ```
 
 ## Create custom `styled()` utility

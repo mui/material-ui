@@ -38,6 +38,8 @@
       "type": { "name": "union", "description": "func<br>&#124;&nbsp;{ current?: object }" }
     },
     "mask": { "type": { "name": "string" } },
+    "maxTime": { "type": { "name": "any" } },
+    "minTime": { "type": { "name": "any" } },
     "minutesStep": { "type": { "name": "number" }, "default": "1" },
     "onAccept": { "type": { "name": "func" } },
     "onClose": { "type": { "name": "func" } },
@@ -60,8 +62,8 @@
     "showToolbar": { "type": { "name": "bool" } },
     "ToolbarComponent": { "type": { "name": "elementType" }, "default": "TimePickerToolbar" },
     "toolbarFormat": { "type": { "name": "string" } },
-    "toolbarPlaceholder": { "type": { "name": "node" }, "default": "\"–\"" },
-    "toolbarTitle": { "type": { "name": "node" }, "default": "\"SELECT DATE\"" },
+    "toolbarPlaceholder": { "type": { "name": "node" }, "default": "'–'" },
+    "toolbarTitle": { "type": { "name": "node" }, "default": "'Select time'" },
     "value": {
       "type": {
         "name": "union",

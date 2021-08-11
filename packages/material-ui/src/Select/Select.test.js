@@ -862,10 +862,6 @@ describe('<Select />', () => {
 
     describe('errors', () => {
       it('should throw if non array', function test() {
-        // FIXME: leaks into subsequent tests due to https://github.com/facebook/react/issues/21765
-        if (React.version.startsWith('18')) {
-          this.skip();
-        }
         // TODO is this fixed?
         if (!/jsdom/.test(window.navigator.userAgent)) {
           // can't catch render errors in the browser for unknown reason

@@ -79,11 +79,11 @@ We introduced a new **required** `renderInput` prop. This simplifies using non-M
 Previously, props were spread on the `<TextField />` component. From now on you will need to use the new `renderInput` prop to provide these:
 
 ```diff
-<DatePicker
-- label="Date"
-- helperText="Something"
-+ renderInput={props => <TextField label="Date" helperText="Something" /> }
-/>
+ <DatePicker
+-  label="Date"
+-  helperText="Something"
++  renderInput={props => <TextField label="Date" helperText="Something" /> }
+ />
 ```
 
 ## State management
@@ -116,9 +116,9 @@ Mask is no longer required. Also, if your provided mask is not valid, pickers wi
 ## And many more
 
 - ```diff
-  <DatePicker
-  - format="DD-MMM-YYYY"
-  + inputFormat="DD-MMM-YYYY"
+   <DatePicker
+  -  format="DD-MMM-YYYY"
+  +  inputFormat="DD-MMM-YYYY"
   ```
 
 There are many changes, be careful, make sure your tests, and build pass.

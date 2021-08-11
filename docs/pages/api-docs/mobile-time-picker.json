@@ -8,10 +8,10 @@
     },
     "ampm": { "type": { "name": "bool" } },
     "ampmInClock": { "type": { "name": "bool" } },
-    "cancelText": { "type": { "name": "node" }, "default": "\"CANCEL\"" },
+    "cancelText": { "type": { "name": "node" }, "default": "'Cancel'" },
     "className": { "type": { "name": "string" } },
     "clearable": { "type": { "name": "bool" } },
-    "clearText": { "type": { "name": "node" }, "default": "\"CLEAR\"" },
+    "clearText": { "type": { "name": "node" }, "default": "'Clear'" },
     "components": {
       "type": { "name": "shape", "description": "{ OpenPickerIcon?: elementType }" }
     },
@@ -38,8 +38,10 @@
       "type": { "name": "union", "description": "func<br>&#124;&nbsp;{ current?: object }" }
     },
     "mask": { "type": { "name": "string" } },
+    "maxTime": { "type": { "name": "any" } },
+    "minTime": { "type": { "name": "any" } },
     "minutesStep": { "type": { "name": "number" }, "default": "1" },
-    "okText": { "type": { "name": "node" }, "default": "\"OK\"" },
+    "okText": { "type": { "name": "node" }, "default": "'OK'" },
     "onAccept": { "type": { "name": "func" } },
     "onClose": { "type": { "name": "func" } },
     "onError": { "type": { "name": "func" } },
@@ -60,11 +62,11 @@
     "shouldDisableTime": { "type": { "name": "func" } },
     "showTodayButton": { "type": { "name": "bool" } },
     "showToolbar": { "type": { "name": "bool" } },
-    "todayText": { "type": { "name": "node" }, "default": "\"TODAY\"" },
+    "todayText": { "type": { "name": "node" }, "default": "'Today'" },
     "ToolbarComponent": { "type": { "name": "elementType" }, "default": "TimePickerToolbar" },
     "toolbarFormat": { "type": { "name": "string" } },
-    "toolbarPlaceholder": { "type": { "name": "node" }, "default": "\"–\"" },
-    "toolbarTitle": { "type": { "name": "node" }, "default": "\"SELECT DATE\"" },
+    "toolbarPlaceholder": { "type": { "name": "node" }, "default": "'–'" },
+    "toolbarTitle": { "type": { "name": "node" }, "default": "'Select time'" },
     "value": {
       "type": {
         "name": "union",

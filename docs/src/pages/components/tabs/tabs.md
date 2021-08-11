@@ -92,12 +92,18 @@ All scrolling must be initiated through user agent scrolling mechanisms (e.g. le
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
 
-## Customized tabs
+## Customization
 
 Here is an example of customizing the component. You can learn more about this in the
 [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js"}}
+
+## Theming
+
+Here is an example of theming the component. You can learn more about this in the [theming page](/customization/theming) and [theme components page](/customization/theme-components)
+
+{{"demo": "pages/components/tabs/ThemeTabs.js"}}
 
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/tabs/).
 

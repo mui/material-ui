@@ -25,6 +25,7 @@ type DateTimePickerComponent = (<TDate>(
  * Demos:
  *
  * - [Date Time Picker](https://material-ui.com/components/date-time-picker/)
+ * - [Pickers](https://material-ui.com/components/pickers/)
  *
  * API:
  *
@@ -104,7 +105,7 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
   autoFocus: PropTypes.bool,
   /**
    * Cancel text message.
-   * @default "CANCEL"
+   * @default 'Cancel'
    */
   cancelText: PropTypes.node,
   /**
@@ -122,7 +123,7 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
   clearable: PropTypes.bool,
   /**
    * Clear text message.
-   * @default "CLEAR"
+   * @default 'Clear'
    */
   clearText: PropTypes.node,
   /**
@@ -272,59 +273,31 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
    */
   mask: PropTypes.string,
   /**
-   * @ignore
+   * Max selectable date. @DateIOType
    */
-  maxDate: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  maxDate: PropTypes.any,
   /**
    * Minimal selectable moment of time with binding to date, to set max time in each day use `maxTime`.
    */
-  maxDateTime: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  maxDateTime: PropTypes.any,
   /**
-   * @ignore
+   * Max time acceptable time.
+   * For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
    */
-  maxTime: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  maxTime: PropTypes.any,
   /**
-   * @ignore
+   * Min selectable date. @DateIOType
    */
-  minDate: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  minDate: PropTypes.any,
   /**
    * Minimal selectable moment of time with binding to date, to set min time in each day use `minTime`.
    */
-  minDateTime: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  minDateTime: PropTypes.any,
   /**
-   * @ignore
+   * Min time acceptable time.
+   * For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
    */
-  minTime: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  minTime: PropTypes.any,
   /**
    * Step over minutes.
    * @default 1
@@ -332,7 +305,7 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
   minutesStep: PropTypes.number,
   /**
    * Ok button text.
-   * @default "OK"
+   * @default 'OK'
    */
   okText: PropTypes.node,
   /**
@@ -463,7 +436,7 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
   timeIcon: PropTypes.node,
   /**
    * Today text message.
-   * @default "TODAY"
+   * @default 'Today'
    */
   todayText: PropTypes.node,
   /**
@@ -477,12 +450,12 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
   toolbarFormat: PropTypes.string,
   /**
    * Mobile picker date value placeholder, displaying if `value` === `null`.
-   * @default "–"
+   * @default '–'
    */
   toolbarPlaceholder: PropTypes.node,
   /**
    * Mobile picker title, displaying in the toolbar.
-   * @default "SELECT DATE"
+   * @default 'Select date & time'
    */
   toolbarTitle: PropTypes.node,
   /**

@@ -5,7 +5,8 @@ import { refType, elementTypeAcceptingRef } from '@material-ui/utils';
 import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import { unstable_composeClasses as composeClasses, isHostComponent } from '@material-ui/unstyled';
 import formControlState from '../FormControl/formControlState';
-import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
+import FormControlContext from '../FormControl/FormControlContext';
+import useFormControl from '../FormControl/useFormControl';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useTheme from '../styles/useTheme';
@@ -198,14 +199,12 @@ export const InputBaseComponent = styled('input', {
     ...(styleProps.size === 'small' && {
       paddingTop: 1,
     }),
-    /* Styles applied to the input element if `multiline={true}`. */
     ...(styleProps.multiline && {
       height: 'auto',
       resize: 'none',
       padding: 0,
       paddingTop: 0,
     }),
-    /* Styles applied to the input element if `type="search"`. */
     ...(styleProps.type === 'search' && {
       // Improve type search style.
       MozAppearance: 'textfield',
@@ -670,7 +669,7 @@ InputBase.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the value is changed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,

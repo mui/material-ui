@@ -26,11 +26,9 @@ const ToolbarRoot = styled('div', {
   },
 })(
   ({ theme, styleProps }) => ({
-    /* Styles applied to the root element. */
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    /* Styles applied to the root element unless `disableGutters={true}`. */
     ...(!styleProps.disableGutters && {
       paddingLeft: theme.spacing(2),
       paddingRight: theme.spacing(2),
@@ -39,12 +37,10 @@ const ToolbarRoot = styled('div', {
         paddingRight: theme.spacing(3),
       },
     }),
-    /* Styles applied to the root element if `variant="dense"`. */
     ...(styleProps.variant === 'dense' && {
       minHeight: 48,
     }),
   }),
-  /* Styles applied to the root element if `variant="regular"`. */
   ({ theme, styleProps }) => styleProps.variant === 'regular' && theme.mixins.toolbar,
 );
 

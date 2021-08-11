@@ -1,0 +1,29 @@
+{
+  "name": "nextjs-with-styled-components-typescript",
+  "version": "5.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@material-ui/core": "next",
+    "@material-ui/styled-engine": "npm:@material-ui/styled-engine-sc@next",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-is": "latest",
+    "styled-components": "latest"
+  },
+  "resolutions": {
+    "@material-ui/styled-engine": "npm:@material-ui/styled-engine-sc@next"
+  },
+  "devDependencies": {
+    "@types/react": "latest",
+    "@types/styled-components": "latest",
+    "babel-plugin-styled-components": "latest",
+    "typescript": "latest"
+  }
+}

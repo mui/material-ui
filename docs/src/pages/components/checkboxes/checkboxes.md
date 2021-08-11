@@ -71,7 +71,7 @@ You can change the placement of the label:
 
 {{"demo": "pages/components/checkboxes/FormControlLabelPosition.js"}}
 
-## Customized checkbox
+## Customization
 
 Here is an example of customizing the component. You can learn more about this in the
 [overrides documentation page](/customization/how-to-customize/).

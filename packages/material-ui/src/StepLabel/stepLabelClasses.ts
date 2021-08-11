@@ -9,17 +9,17 @@ export interface StepLabelClasses {
   vertical: string;
   /** Styles applied to the label element that wraps `children`. */
   label: string;
-  /** Pseudo-class applied to the label element if `active={true}`. */
+  /** State class applied to the label element if `active={true}`. */
   active: string;
-  /** Pseudo-class applied to the label element if `completed={true}`. */
+  /** State class applied to the label element if `completed={true}`. */
   completed: string;
-  /** Pseudo-class applied to the root and label elements if `error={true}`. */
+  /** State class applied to the root and label elements if `error={true}`. */
   error: string;
-  /** Pseudo-class applied to the root and label elements if `disabled={true}`. */
+  /** State class applied to the root and label elements if `disabled={true}`. */
   disabled: string;
   /** Styles applied to the `icon` container element. */
   iconContainer: string;
-  /** Pseudo-class applied to the root and icon container and label if `alternativeLabel={true}`. */
+  /** State class applied to the root and icon container and label if `alternativeLabel={true}`. */
   alternativeLabel: string;
   /** Styles applied to the container element which wraps label and `optional`. */
   labelContainer: string;

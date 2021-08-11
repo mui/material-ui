@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
@@ -17,6 +16,20 @@ describe('@material-ui/codemod', () => {
           {
             source: read('./variant-prop.test/actual.js'),
             path: require.resolve('./variant-prop.test/actual.js'),
+          },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./variant-prop.test/expected.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
+
+      it('should be idempotent', () => {
+        const actual = transform(
+          {
+            source: read('./variant-prop.test/expected.js'),
+            path: require.resolve('./variant-prop.test/expected.js'),
           },
           { jscodeshift },
           {},

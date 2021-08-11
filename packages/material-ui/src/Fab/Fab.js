@@ -42,7 +42,6 @@ const FabRoot = styled(ButtonBase, {
   },
 })(
   ({ theme, styleProps }) => ({
-    /* Styles applied to the root element. */
     ...theme.typography.button,
     minHeight: 36,
     transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
@@ -75,17 +74,14 @@ const FabRoot = styled(ButtonBase, {
       boxShadow: theme.shadows[0],
       backgroundColor: theme.palette.action.disabledBackground,
     },
-    /* Styles applied to the root element if `size="small"``. */
     ...(styleProps.size === 'small' && {
       width: 40,
       height: 40,
     }),
-    /* Styles applied to the root element if `size="medium"``. */
     ...(styleProps.size === 'medium' && {
       width: 48,
       height: 48,
     }),
-    /* Styles applied to the root element if `variant="extended"`. */
     ...(styleProps.variant === 'extended' && {
       borderRadius: 48 / 2,
       padding: '0 16px',
@@ -110,13 +106,11 @@ const FabRoot = styled(ButtonBase, {
         minWidth: 40,
         height: 40,
       }),
-    /* Styles applied to the root element if `color="inherit"`. */
     ...(styleProps.color === 'inherit' && {
       color: 'inherit',
     }),
   }),
   ({ theme, styleProps }) => ({
-    /* Styles applied to the root element if `color="primary"`. */
     ...(styleProps.color === 'primary' && {
       color: theme.palette.primary.contrastText,
       backgroundColor: theme.palette.primary.main,
@@ -128,7 +122,6 @@ const FabRoot = styled(ButtonBase, {
         },
       },
     }),
-    /* Styles applied to the root element if `color="secondary"`. */
     ...(styleProps.color === 'secondary' && {
       color: theme.palette.secondary.contrastText,
       backgroundColor: theme.palette.secondary.main,
@@ -245,7 +238,7 @@ Fab.propTypes /* remove-proptypes */ = {
    * @default 'large'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['large', 'medium', 'small']),
+    PropTypes.oneOf(['small', 'medium', 'large']),
     PropTypes.string,
   ]),
   /**

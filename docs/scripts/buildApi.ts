@@ -175,14 +175,14 @@ function createDescribeableProp(
 
     if (shouldHaveDefaultAnnotation) {
       throw new Error(
-        `JSDOC @default annotation not found. Add \`@default ${defaultValue.value}\` to the JSDOC of this prop.`,
+        `JSDoc @default annotation not found. Add \`@default ${defaultValue.value}\` to the JSDoc of this prop.`,
       );
     }
   } else if (jsdocDefaultValue !== undefined) {
     // `defaultValue` can't be undefined or we would've thrown earlier.
     if (jsdocDefaultValue.value !== defaultValue!.value) {
       throw new Error(
-        `Expected JSDOC @default annotation for prop '${propName}' of "${jsdocDefaultValue.value}" to equal runtime default value of "${defaultValue?.value}"`,
+        `Expected JSDoc @default annotation for prop '${propName}' of "${jsdocDefaultValue.value}" to equal runtime default value of "${defaultValue?.value}"`,
       );
     }
   }
@@ -209,8 +209,11 @@ function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
   }
 
   if (type.type === 'TypeApplication') {
-    const arrayTypeName = resolveType(type.applications[0]);
-    return `${arrayTypeName}[]`;
+    return `${resolveType(type.expression)}<${type.applications
+      .map((typeApplication) => {
+        return resolveType(typeApplication);
+      })
+      .join(', ')}>`;
   }
 
   if (type.type === 'UnionType') {
@@ -437,7 +440,7 @@ async function annotateComponentDefinition(context: {
           const bindingId = babelPath.node.declaration.name;
           const binding = babelPath.scope.bindings[bindingId];
 
-          // The JSDOC MUST be located at the declaration
+          // The JSDoc MUST be located at the declaration
           if (babel.types.isFunctionDeclaration(binding.path.node)) {
             // For function declarations the binding is equal to the declaration
             // /**
@@ -616,7 +619,7 @@ function extractClassConditions(descriptions: any) {
     [key: string]: { description: string; conditions?: string; nodeName?: string };
   } = {};
   const stylesRegex =
-    /((Styles|Pseudo-class|Class name) applied to )(.*?)(( if | unless | when |, ){1}(.*))?\./;
+    /((Styles|State class|Class name) applied to )(.*?)(( if | unless | when |, ){1}(.*))?\./;
 
   Object.entries(descriptions).forEach(([className, description]: any) => {
     if (className) {

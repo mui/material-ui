@@ -24,6 +24,7 @@ type TimePickerComponent = (<TDate>(
  *
  * Demos:
  *
+ * - [Pickers](https://material-ui.com/components/pickers/)
  * - [Time Picker](https://material-ui.com/components/time-picker/)
  *
  * API:
@@ -95,7 +96,7 @@ TimePicker.propTypes /* remove-proptypes */ = {
   ampmInClock: PropTypes.bool,
   /**
    * Cancel text message.
-   * @default "CANCEL"
+   * @default 'Cancel'
    */
   cancelText: PropTypes.node,
   /**
@@ -113,7 +114,7 @@ TimePicker.propTypes /* remove-proptypes */ = {
   clearable: PropTypes.bool,
   /**
    * Clear text message.
-   * @default "CLEAR"
+   * @default 'Clear'
    */
   clearText: PropTypes.node,
   /**
@@ -212,23 +213,15 @@ TimePicker.propTypes /* remove-proptypes */ = {
    */
   mask: PropTypes.string,
   /**
-   * @ignore
+   * Max time acceptable time.
+   * For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
    */
-  maxTime: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  maxTime: PropTypes.any,
   /**
-   * @ignore
+   * Min time acceptable time.
+   * For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
    */
-  minTime: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  minTime: PropTypes.any,
   /**
    * Step over minutes.
    * @default 1
@@ -236,7 +229,7 @@ TimePicker.propTypes /* remove-proptypes */ = {
   minutesStep: PropTypes.number,
   /**
    * Ok button text.
-   * @default "OK"
+   * @default 'OK'
    */
   okText: PropTypes.node,
   /**
@@ -319,7 +312,7 @@ TimePicker.propTypes /* remove-proptypes */ = {
   showToolbar: PropTypes.bool,
   /**
    * Today text message.
-   * @default "TODAY"
+   * @default 'Today'
    */
   todayText: PropTypes.node,
   /**
@@ -333,12 +326,12 @@ TimePicker.propTypes /* remove-proptypes */ = {
   toolbarFormat: PropTypes.string,
   /**
    * Mobile picker date value placeholder, displaying if `value` === `null`.
-   * @default "–"
+   * @default '–'
    */
   toolbarPlaceholder: PropTypes.node,
   /**
    * Mobile picker title, displaying in the toolbar.
-   * @default "SELECT DATE"
+   * @default 'Select time'
    */
   toolbarTitle: PropTypes.node,
   /**

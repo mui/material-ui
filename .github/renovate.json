@@ -5,6 +5,7 @@
   "commitMessageExtra": "to {{newValue}}",
   "commitMessageTopic": "{{depName}}",
   "dependencyDashboard": true,
+  "rebaseWhen": "conflicted",
   "ignoreDeps": [],
   "labels": ["dependencies"],
   "packageRules": [
@@ -79,8 +80,10 @@
       }
     }
   ],
+  "postUpdateOptions": ["yarnDedupeHighest"],
   "prConcurrentLimit": 30,
   "prHourlyLimit": 0,
+  "rangeStrategy": "bump",
   "schedule": "on sunday before 6:00am",
   "timezone": "UTC"
 }

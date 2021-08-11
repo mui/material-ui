@@ -9,10 +9,10 @@
     "allowSameDateSelection": { "type": { "name": "bool" } },
     "ampm": { "type": { "name": "bool" } },
     "ampmInClock": { "type": { "name": "bool" } },
-    "cancelText": { "type": { "name": "node" }, "default": "\"CANCEL\"" },
+    "cancelText": { "type": { "name": "node" }, "default": "'Cancel'" },
     "className": { "type": { "name": "string" } },
     "clearable": { "type": { "name": "bool" } },
-    "clearText": { "type": { "name": "node" }, "default": "\"CLEAR\"" },
+    "clearText": { "type": { "name": "node" }, "default": "'Clear'" },
     "components": {
       "type": {
         "name": "shape",
@@ -55,20 +55,14 @@
     "leftArrowButtonText": { "type": { "name": "string" } },
     "loading": { "type": { "name": "bool" } },
     "mask": { "type": { "name": "string" } },
-    "maxDateTime": {
-      "type": {
-        "name": "union",
-        "description": "any<br>&#124;&nbsp;Date<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
-      }
-    },
-    "minDateTime": {
-      "type": {
-        "name": "union",
-        "description": "any<br>&#124;&nbsp;Date<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
-      }
-    },
+    "maxDate": { "type": { "name": "any" } },
+    "maxDateTime": { "type": { "name": "any" } },
+    "maxTime": { "type": { "name": "any" } },
+    "minDate": { "type": { "name": "any" } },
+    "minDateTime": { "type": { "name": "any" } },
+    "minTime": { "type": { "name": "any" } },
     "minutesStep": { "type": { "name": "number" }, "default": "1" },
-    "okText": { "type": { "name": "node" }, "default": "\"OK\"" },
+    "okText": { "type": { "name": "node" }, "default": "'OK'" },
     "onAccept": { "type": { "name": "func" } },
     "onClose": { "type": { "name": "func" } },
     "onError": { "type": { "name": "func" } },
@@ -107,11 +101,11 @@
     "showTodayButton": { "type": { "name": "bool" } },
     "showToolbar": { "type": { "name": "bool" } },
     "timeIcon": { "type": { "name": "node" } },
-    "todayText": { "type": { "name": "node" }, "default": "\"TODAY\"" },
+    "todayText": { "type": { "name": "node" }, "default": "'Today'" },
     "ToolbarComponent": { "type": { "name": "elementType" }, "default": "DateTimePickerToolbar" },
     "toolbarFormat": { "type": { "name": "string" } },
-    "toolbarPlaceholder": { "type": { "name": "node" }, "default": "\"–\"" },
-    "toolbarTitle": { "type": { "name": "node" }, "default": "\"SELECT DATE\"" },
+    "toolbarPlaceholder": { "type": { "name": "node" }, "default": "'–'" },
+    "toolbarTitle": { "type": { "name": "node" }, "default": "'Select date & time'" },
     "TransitionComponent": { "type": { "name": "elementType" } },
     "value": {
       "type": {
@@ -131,7 +125,7 @@
   "spread": true,
   "filename": "/packages/material-ui-lab/src/DateTimePicker/DateTimePicker.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/components/date-time-picker/\">Date Time Picker</a></li></ul>",
+  "demos": "<ul><li><a href=\"/components/date-time-picker/\">Date Time Picker</a></li>\n<li><a href=\"/components/pickers/\">Pickers</a></li></ul>",
   "styledComponent": true,
   "cssComponent": false
 }

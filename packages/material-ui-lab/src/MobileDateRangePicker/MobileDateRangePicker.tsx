@@ -2,9 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useThemeProps } from '@material-ui/core/styles';
 import MobileWrapper, { MobileWrapperProps } from '../internal/pickers/wrappers/MobileWrapper';
-import { useUtils } from '../internal/pickers/hooks/useUtils';
-import { useParsedDate } from '../internal/pickers/hooks/date-helpers-hooks';
-import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
+import { useDefaultDates, useUtils } from '../internal/pickers/hooks/useUtils';
 import { RangeInput, DateRange } from '../DateRangePicker/RangeTypes';
 import {
   DateRangeValidationError,
@@ -108,14 +106,15 @@ const MobileDateRangePicker = React.forwardRef(function MobileDateRangePicker<TD
     startText = 'Start',
     endText = 'End',
     inputFormat: passedInputFormat,
-    minDate: minDateProp = defaultMinDate as TDate,
-    maxDate: maxDateProp = defaultMaxDate as TDate,
+    minDate: minDateProp,
+    maxDate: maxDateProp,
     ...other
   } = props;
 
   const utils = useUtils();
-  const minDate = useParsedDate(minDateProp);
-  const maxDate = useParsedDate(maxDateProp);
+  const defaultDates = useDefaultDates<TDate>();
+  const minDate = minDateProp ?? defaultDates.minDate;
+  const maxDate = maxDateProp ?? defaultDates.maxDate;
   const [currentlySelectingRangeEnd, setCurrentlySelectingRangeEnd] = React.useState<
     'start' | 'end'
   >('start');
@@ -200,7 +199,7 @@ MobileDateRangePicker.propTypes /* remove-proptypes */ = {
   calendars: PropTypes.oneOf([1, 2, 3]),
   /**
    * Cancel text message.
-   * @default "CANCEL"
+   * @default 'Cancel'
    */
   cancelText: PropTypes.node,
   /**
@@ -218,7 +217,7 @@ MobileDateRangePicker.propTypes /* remove-proptypes */ = {
   clearable: PropTypes.bool,
   /**
    * Clear text message.
-   * @default "CLEAR"
+   * @default 'Clear'
    */
   clearText: PropTypes.node,
   /**
@@ -359,7 +358,7 @@ MobileDateRangePicker.propTypes /* remove-proptypes */ = {
   minDate: PropTypes.any,
   /**
    * Ok button text.
-   * @default "OK"
+   * @default 'OK'
    */
   okText: PropTypes.node,
   /**
@@ -485,7 +484,7 @@ MobileDateRangePicker.propTypes /* remove-proptypes */ = {
   startText: PropTypes.node,
   /**
    * Today text message.
-   * @default "TODAY"
+   * @default 'Today'
    */
   todayText: PropTypes.node,
   /**
@@ -498,12 +497,12 @@ MobileDateRangePicker.propTypes /* remove-proptypes */ = {
   toolbarFormat: PropTypes.string,
   /**
    * Mobile picker date value placeholder, displaying if `value` === `null`.
-   * @default "–"
+   * @default '–'
    */
   toolbarPlaceholder: PropTypes.node,
   /**
    * Mobile picker title, displaying in the toolbar.
-   * @default "SELECT DATE"
+   * @default 'Select date range'
    */
   toolbarTitle: PropTypes.node,
   /**

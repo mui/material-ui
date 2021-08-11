@@ -9,8 +9,8 @@ export default function StandardImageList() {
       {itemData.map((item) => (
         <ImageListItem key={item.img}>
           <img
-            srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format 1x,
-                ${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
+            src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
+            srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
             alt={item.title}
             loading="lazy"
           />

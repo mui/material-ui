@@ -43,7 +43,6 @@ const TableCellRoot = styled('td', {
     ];
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
   ...theme.typography.body2,
   display: 'table-cell',
   verticalAlign: 'inherit',
@@ -57,23 +56,19 @@ const TableCellRoot = styled('td', {
     }`,
   textAlign: 'left',
   padding: 16,
-  /* Styles applied to the root element if `variant="head"` or `context.table.head`. */
   ...(styleProps.variant === 'head' && {
     color: theme.palette.text.primary,
     lineHeight: theme.typography.pxToRem(24),
     fontWeight: theme.typography.fontWeightMedium,
   }),
-  /* Styles applied to the root element if `variant="body"` or `context.table.body`. */
   ...(styleProps.variant === 'body' && {
     color: theme.palette.text.primary,
   }),
-  /* Styles applied to the root element if `variant="footer"` or `context.table.footer`. */
   ...(styleProps.variant === 'footer' && {
     color: theme.palette.text.secondary,
     lineHeight: theme.typography.pxToRem(21),
     fontSize: theme.typography.pxToRem(12),
   }),
-  /* Styles applied to the root element if `size="small"`. */
   ...(styleProps.size === 'small' && {
     padding: '6px 16px',
     [`&.${tableCellClasses.paddingCheckbox}`]: {
@@ -84,33 +79,26 @@ const TableCellRoot = styled('td', {
       },
     },
   }),
-  /* Styles applied to the root element if `padding="checkbox"`. */
   ...(styleProps.padding === 'checkbox' && {
     width: 48, // prevent the checkbox column from growing
     padding: '0 0 0 4px',
   }),
-  /* Styles applied to the root element if `padding="none"`. */
   ...(styleProps.padding === 'none' && {
     padding: 0,
   }),
-  /* Styles applied to the root element if `align="left"`. */
   ...(styleProps.align === 'left' && {
     textAlign: 'left',
   }),
-  /* Styles applied to the root element if `align="center"`. */
   ...(styleProps.align === 'center' && {
     textAlign: 'center',
   }),
-  /* Styles applied to the root element if `align="right"`. */
   ...(styleProps.align === 'right' && {
     textAlign: 'right',
     flexDirection: 'row-reverse',
   }),
-  /* Styles applied to the root element if `align="justify"`. */
   ...(styleProps.align === 'justify' && {
     textAlign: 'justify',
   }),
-  /* Styles applied to the root element if `context.table.stickyHeader={true}`. */
   ...(styleProps.stickyHeader && {
     position: 'sticky',
     top: 0,
@@ -230,7 +218,7 @@ TableCell.propTypes /* remove-proptypes */ = {
    * Specify the size of the cell.
    * The prop defaults to the value (`'medium'`) inherited from the parent Table component.
    */
-  size: PropTypes.oneOf(['medium', 'small']),
+  size: PropTypes.oneOf(['small', 'medium']),
   /**
    * Set aria-sort direction.
    */
