@@ -20,6 +20,15 @@ const ROUTES = {
   careers: '/company/careers/',
   support: '/getting-started/support/#professional-support-premium',
   contactUs: '/branding/contact-us/',
+  storeFigma: 'https://material-ui.com/store/items/figma-react/',
+  storeSketch: 'https://material-ui.com/store/items/sketch-react/',
+  storeXD: 'https://material-ui.com/store/items/adobe-xd-react/',
+  storeTemplateMaterialApp: 'https://material-ui.com/store/items/material-app/',
+  storeTemplateBarza: 'https://material-ui.com/store/items/bazar-pro-react-ecommerce-template/',
+  storeTemplateMinimalFree: 'https://material-ui.com/store/items/minimal-dashboard-free/',
+  storeTemplateMinimalDashboard: 'https://material-ui.com/store/items/minimal-dashboard/',
+  storeTemplateBerry: 'https://material-ui.com/store/items/berry-react-material-admin/',
+  storeTemplateWebbee: 'https://material-ui.com/store/items/webbee-landing-page/',
 };
 
 export default ROUTES;
