@@ -474,12 +474,7 @@ function AboutContent() {
               ].map((text) => (
                 <Box key={text} sx={{ display: 'flex', alignItems: 'flex-start', mt: 1 }}>
                   <IconImage name="yes" />
-                  <Typography
-                    variant="body2"
-                    color="text.primary"
-                    fontWeight={600}
-                    sx={{ ml: 1 }}
-                  >
+                  <Typography variant="body2" color="text.primary" fontWeight={600} sx={{ ml: 1 }}>
                     {text}
                   </Typography>
                 </Box>
@@ -511,15 +506,14 @@ function AboutContent() {
             </Button>
           </div>
           <Box display={{ xs: 'none', sm: 'block' }}>
-          <img
-            width="130"
-            height="124"
-            src="/static/branding/pricing/early-bird.svg"
-            loading="lazy"
-            alt=""
-          />
+            <img
+              width="130"
+              height="124"
+              src="/static/branding/pricing/early-bird.svg"
+              loading="lazy"
+              alt=""
+            />
           </Box>
-          
         </Box>
         <Divider sx={{ my: { xs: 2, sm: 4 } }} />
         <Typography
