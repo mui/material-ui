@@ -168,7 +168,7 @@ const ColumnHead = ({
       )}
       {tooltip && (
         <InfoOutlinedIcon
-          sx={{ fontSize: 16, verticalAlign: 'middle', ml: 0.5, color: 'grey.800',  }}
+          sx={{ fontSize: 16, verticalAlign: 'middle', ml: 0.5, color: 'grey.800' }}
         />
       )}
     </Typography>

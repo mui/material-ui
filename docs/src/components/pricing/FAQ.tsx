@@ -247,7 +247,7 @@ export default function FAQ() {
               bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'white'),
             }}
           >
-            <Box sx={{textAlign: 'left' }}>
+            <Box sx={{ textAlign: 'left' }}>
               <Typography variant="body2" color="text.primary" fontWeight="bold">
                 Got any questions unanswered or need more help?
               </Typography>
