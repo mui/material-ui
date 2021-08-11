@@ -10,7 +10,7 @@ import HeaderNavBar from 'docs/src/components/header/HeaderNavBar';
 import HeaderNavDropdown from 'docs/src/components/header/HeaderNavDropdown';
 import ThemeModeToggle from 'docs/src/components/header/ThemeModeToggle';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-import { useChangeTheme } from '../modules/ThemeContext';
+import { useChangeTheme } from 'docs/src/modules/ThemeContext';
 
 const Header = styled('div', {
   shouldForwardProp: (prop) => prop !== 'trigger',
@@ -56,7 +56,7 @@ export default function AppHeader() {
     <Header trigger={false}>
       <Container sx={{ display: 'flex', alignItems: 'center', minHeight: 64 }}>
         <NextLink href="/branding/home" passHref>
-          <Box component="a" sx={{ lineHeight: 0, mr: 2 }}>
+          <Box component="a" aria-label="Goto homepage" sx={{ lineHeight: 0, mr: 2 }}>
             <SvgMuiLogo width={32} />
           </Box>
         </NextLink>

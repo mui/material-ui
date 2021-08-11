@@ -3,7 +3,7 @@ import { ThemeProvider as MuiThemeProvider, createTheme } from '@material-ui/cor
 import GlobalStyles from '@material-ui/core/GlobalStyles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-import { getDesignTokens, getThemedComponents } from './brandingTheme';
+import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
 
 const themeInitialOptions = {
   paletteMode: 'light',

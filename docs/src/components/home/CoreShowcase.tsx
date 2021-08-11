@@ -8,9 +8,14 @@ import ReplayRounded from '@material-ui/icons/ReplayRounded';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
-import MaterialDesignDemo, { demoCode as materialDemoCode } from './MaterialDesignDemo';
-import ShowcaseContainer from './ShowcaseContainer';
-import { getMaterialThemeFrames, produceThemeOptions } from './showcaseUtils';
+import MaterialDesignDemo, {
+  demoCode as materialDemoCode,
+} from 'docs/src/components/home/MaterialDesignDemo';
+import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
+import {
+  getMaterialThemeFrames,
+  produceThemeOptions,
+} from 'docs/src/components/home/showcaseUtils';
 
 const defaultTheme = createTheme();
 const darkDesignTokens = getDesignTokens('dark');

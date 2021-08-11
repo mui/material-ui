@@ -9,7 +9,7 @@ import InputBase from '@material-ui/core/InputBase';
 import Button from '@material-ui/core/Button';
 import Link from '@material-ui/core/Link';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
-import ROUTES from '../route';
+import ROUTES from 'docs/src/route';
 
 export default function AppFooter() {
   return (
@@ -156,19 +156,19 @@ export default function AppFooter() {
             <Typography fontWeight="bold" variant="body2">
               Company
             </Typography>
-            <NextLink href={ROUTES.about}>
+            <NextLink href={ROUTES.about} passHref>
               <Link>About</Link>
             </NextLink>
-            <NextLink href={ROUTES.vision}>
+            <NextLink href={ROUTES.vision} passHref>
               <Link>Vision</Link>
             </NextLink>
-            <NextLink href={ROUTES.careers}>
+            <NextLink href={ROUTES.careers} passHref>
               <Link>Careers</Link>
             </NextLink>
-            <NextLink href={ROUTES.support}>
+            <NextLink href={ROUTES.support} passHref>
               <Link>Support</Link>
             </NextLink>
-            <NextLink href={ROUTES.contactUs}>
+            <NextLink href={ROUTES.contactUs} passHref>
               <Link>Contact us</Link>
             </NextLink>
           </Box>
@@ -177,7 +177,7 @@ export default function AppFooter() {
       <Divider />
       <Box sx={{ py: 4 }}>
         <Typography color="text.secondary" variant="body2">
-          Currently v4.11.0. Released under the MIT License. Copyright © 2020 Material-UI.
+          Currently v4.11.0. Released under the MIT License. Copyright © 2020 Material-UI SAS.
         </Typography>
       </Box>
     </Container>

@@ -164,7 +164,7 @@ const styleArg = ({ theme, styleProps }: { theme: Theme; styleProps: StyleProps 
     },
   },
   [`&.${pickersDayClasses.disabled}`]: {
-    color: theme.palette.text.secondary,
+    color: theme.palette.text.disabled,
   },
   ...(!styleProps.disableMargin && {
     margin: `0 ${DAY_MARGIN}px`,

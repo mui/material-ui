@@ -50,15 +50,15 @@ The buttons can be stacked vertically with the `orientation` prop set to "vertic
 If you want to enforce that at least one button must be active, you can adapt your handleChange function.
 
 ```jsx
-const handleFormat = (event, newFormats) => {
-  if (newFormats.length) {
-    setFormats(newFormats);
-  }
-};
-
 const handleAlignment = (event, newAlignment) => {
   if (newAlignment !== null) {
     setAlignment(newAlignment);
+  }
+};
+
+const handleDevices = (event, newDevices) => {
+  if (newDevices.length) {
+    setDevices(newDevices);
   }
 };
 ```
