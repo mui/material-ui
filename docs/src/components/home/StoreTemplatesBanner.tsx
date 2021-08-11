@@ -1,7 +1,10 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
+import { styled, alpha } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Fade from '@material-ui/core/Fade';
+import Typography from '@material-ui/core/Typography';
+import ROUTES from 'docs/src/route';
+import LaunchRounded from '@material-ui/icons/LaunchRounded';
 
 const ratio = 1367 / 939;
 
@@ -23,6 +26,68 @@ const Image = styled('img')(({ theme }) => ({
   objectFit: 'cover',
   filter: 'drop-shadow(0px 4px 20px rgba(61, 71, 82, 0.25))',
 }));
+
+const Anchor = styled('a')({
+  display: 'inline-block',
+  position: 'relative',
+  transition: '0.3s',
+  borderRadius: '50%',
+  '&:hover': {
+    '& > div': {
+      opacity: 1,
+    },
+  },
+});
+
+const StoreTemplate = React.forwardRef<
+  HTMLAnchorElement,
+  { brand: 'material-app' | 'barza' | 'minimal-free' | 'minimal-dashboard' | 'berry' | 'webbee' }
+>(({ brand, ...props }, ref) => {
+  const linkMapping = {
+    'material-app': ROUTES.storeTemplateMaterialApp,
+    barza: ROUTES.storeTemplateBarza,
+    'minimal-free': ROUTES.storeTemplateMinimalFree,
+    'minimal-dashboard': ROUTES.storeTemplateMinimalDashboard,
+    berry: ROUTES.storeTemplateBerry,
+    webbee: ROUTES.storeTemplateBerry,
+  };
+  return (
+    <Anchor
+      ref={ref}
+      aria-label="Goto MUI store"
+      href={linkMapping[brand]}
+      target="_blank"
+      {...props}
+    >
+      <Image
+        src={`/static/branding/store-templates/store-template${
+          Object.keys(linkMapping).indexOf(brand) + 1
+        }.jpeg`}
+        alt=""
+      />
+      <Box
+        sx={{
+          transition: '0.3s',
+          borderRadius: 1,
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          opacity: 0,
+          top: 0,
+          left: 0,
+          bgcolor: (theme) => alpha(theme.palette.primaryDark[500], 0.8),
+          color: '#fff',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography fontWeight="bold">Goto store</Typography>
+        <LaunchRounded fontSize="small" sx={{ ml: 1 }} />
+      </Box>
+    </Anchor>
+  );
+});
 
 export const LazyStoreTemplateImages = () => (
   <Box
@@ -73,6 +138,7 @@ export default function StoreTemplatesBanner() {
           position: 'absolute',
           width: '100%',
           height: '100%',
+          pointerEvents: 'none',
           bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
           opacity: (theme) => (theme.palette.mode === 'dark' ? 0.6 : 0),
           zIndex: 1,
@@ -86,6 +152,7 @@ export default function StoreTemplatesBanner() {
           left: 0,
           width: '100%',
           height: '100%',
+          pointerEvents: 'none',
           background: (theme) =>
             `linear-gradient(to bottom, ${
               theme.palette.mode === 'dark'
@@ -107,6 +174,7 @@ export default function StoreTemplatesBanner() {
           left: 0,
           width: 400,
           height: '100%',
+          pointerEvents: 'none',
           background: (theme) =>
             `linear-gradient(to right, ${
               theme.palette.mode === 'dark'
@@ -131,10 +199,10 @@ export default function StoreTemplatesBanner() {
             gridTemplateRows: 'min-content',
             gap: { xs: 2, sm: 4, md: 8 },
             width: 'min-content',
-            animation: 'slideup 30s ease-out forwards',
+            animation: 'slideup 20s ease-out forwards',
             '@keyframes slideup': {
               '0%': {
-                transform: 'translateY(-450px)',
+                transform: 'translateY(-250px)',
               },
               '100%': {
                 transform: 'translateY(-60px)',
@@ -143,13 +211,13 @@ export default function StoreTemplatesBanner() {
           }}
         >
           <Fade in={appearIndexes.includes(4)} timeout={1000}>
-            <Image src="/static/branding/store-templates/store-template1.jpeg" alt="" />
+            <StoreTemplate brand="material-app" />
           </Fade>
           <Fade in={appearIndexes.includes(2)} timeout={1000}>
-            <Image src="/static/branding/store-templates/store-template3.jpeg" alt="" />
+            <StoreTemplate brand="minimal-free" />
           </Fade>
           <Fade in={appearIndexes.includes(0)} timeout={1000}>
-            <Image src="/static/branding/store-templates/store-template5.jpeg" alt="" />
+            <StoreTemplate brand="berry" />
           </Fade>
         </Box>
         <Box
@@ -159,10 +227,10 @@ export default function StoreTemplatesBanner() {
             gridTemplateRows: 'min-content',
             gap: { xs: 2, sm: 4, md: 8 },
             width: 'min-content',
-            animation: 'slidedown 30s ease-out forwards',
+            animation: 'slidedown 20s ease-out forwards',
             '@keyframes slidedown': {
               '0%': {
-                transform: 'translateY(225px)',
+                transform: 'translateY(125px)',
               },
               '100%': {
                 transform: 'translateY(-120px)',
@@ -171,13 +239,13 @@ export default function StoreTemplatesBanner() {
           }}
         >
           <Fade in={appearIndexes.includes(1)} timeout={1000}>
-            <Image src="/static/branding/store-templates/store-template2.jpeg" alt="" />
+            <StoreTemplate brand="barza" />
           </Fade>
           <Fade in={appearIndexes.includes(3)} timeout={1000}>
-            <Image src="/static/branding/store-templates/store-template4.jpeg" alt="" />
+            <StoreTemplate brand="minimal-dashboard" />
           </Fade>
           <Fade in={appearIndexes.includes(5)} timeout={1000}>
-            <Image src="/static/branding/store-templates/store-template6.jpeg" alt="" />
+            <StoreTemplate brand="webbee" />
           </Fade>
         </Box>
       </Box>
