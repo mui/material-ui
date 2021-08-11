@@ -6,7 +6,7 @@ const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
 
 const workspaceRoot = path.join(__dirname, '../');
 
-const reactStrictMode = false;
+const reactStrictMode = true;
 if (reactStrictMode) {
   // eslint-disable-next-line no-console
   console.log(`Using React.StrictMode.`);
