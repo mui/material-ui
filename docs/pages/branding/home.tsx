@@ -17,6 +17,10 @@ import AppFooter from 'docs/src/layouts/AppFooter';
 export default function Home() {
   return (
     <ThemeProvider>
+      <Head
+        title="Home page - Material-UI"
+        description="The ultimate solution for your UI. MUI provides a robust, customizible and accessible library of foundational and advanced components, enabling you to build your own design system and develop React applications faster."
+      />
       <CssBaseline />
       <Head
         title="Home - Material-UI"
@@ -30,7 +34,7 @@ export default function Home() {
       <ProductSuite />
       <ValueProposition />
       <DesignSystemComponents />
-      <Testimonials />
+      <Testimonials mode="dark" />
       <Sponsors />
       <HeroEnd />
       <Divider />

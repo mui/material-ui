@@ -13,6 +13,7 @@ export interface RadioProps
   extends StandardProps<SwitchBaseProps, 'checkedIcon' | 'color' | 'icon' | 'type'> {
   /**
    * The icon to display when the component is checked.
+   * @default <RadioButtonIcon checked />
    */
   checkedIcon?: React.ReactNode;
   /**
@@ -33,6 +34,7 @@ export interface RadioProps
   disabled?: boolean;
   /**
    * The icon to display when the component is unchecked.
+   * @default <RadioButtonIcon />
    */
   icon?: React.ReactNode;
   /**

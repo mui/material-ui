@@ -100,6 +100,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       primary: blue,
       divider: mode === 'dark' ? blueDark[400] : grey[200],
       primaryDark: blueDark,
+      mode,
       ...(mode === 'dark' && {
         background: {
           default: blueDark[800],
@@ -327,7 +328,11 @@ export function getThemedComponents(theme: Theme) {
         },
         styleOverrides: {
           root: {
-            fontWeight: 'bold',
+            color:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primary[400]
+                : theme.palette.primary[600],
+            fontWeight: 500,
             display: 'inline-flex',
             alignItems: 'center',
             '&.MuiTypography-body1 > svg': {
@@ -375,6 +380,26 @@ export function getThemedComponents(theme: Theme) {
           },
           body: {
             color: theme.palette.text.secondary,
+          },
+        },
+      },
+      MuiTooltip: {
+        styleOverrides: {
+          tooltip: {
+            padding: theme.spacing(1, 2),
+            backgroundColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[700]
+                : theme.palette.background.paper,
+            color: theme.palette.text.primary,
+            border: '1px solid',
+            borderColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[400]
+                : theme.palette.primary.main,
+            ...theme.typography.caption,
+            fontWeight: 400,
+            boxShadow: '1px 1px 20px 0 rgb(90 105 120 / 20%)',
           },
         },
       },

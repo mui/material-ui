@@ -146,19 +146,19 @@ export default function AppFooter() {
             <Typography fontWeight="bold" variant="body2">
               Company
             </Typography>
-            <NextLink href={ROUTES.about}>
+            <NextLink href={ROUTES.about} passHref>
               <Link>About</Link>
             </NextLink>
-            <NextLink href={ROUTES.vision}>
+            <NextLink href={ROUTES.vision} passHref>
               <Link>Vision</Link>
             </NextLink>
-            <NextLink href={ROUTES.careers}>
+            <NextLink href={ROUTES.careers} passHref>
               <Link>Careers</Link>
             </NextLink>
-            <NextLink href={ROUTES.support}>
+            <NextLink href={ROUTES.support} passHref>
               <Link>Support</Link>
             </NextLink>
-            <NextLink href={ROUTES.contactUs}>
+            <NextLink href={ROUTES.contactUs} passHref>
               <Link>Contact us</Link>
             </NextLink>
           </Box>

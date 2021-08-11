@@ -130,7 +130,6 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
   return (
     <ToggleButtonRoot
       className={clsx(classes.root, className)}
-      color={color}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
       ref={ref}
