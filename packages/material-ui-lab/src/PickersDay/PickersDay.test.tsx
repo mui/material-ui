@@ -49,37 +49,6 @@ describe('<PickersDay />', () => {
     expect(handleDaySelect.args[0][0]).toEqualDateTime(day);
   });
 
-  it('should render children instead of default date when children prop is present', () => {
-    const handleDaySelect = spy();
-    const day = adapterToUse.date();
-    render(
-      <PickersDay day={day} outsideCurrentMonth={false} onDaySelect={handleDaySelect}>
-        <div data-testid="custom-children">{adapterToUse.format(day, 'dayOfMonth')}</div>
-      </PickersDay>,
-    );
-
-    expect(screen.getByTestId('custom-children')).to.not.equal(undefined);
-  });
-
-  it('should not display aria-label on button when children prop is not undefined', () => {
-    const handleDaySelect = spy();
-    const day = adapterToUse.date();
-    render(
-      <PickersDay
-        day={day}
-        outsideCurrentMonth={false}
-        onDaySelect={handleDaySelect}
-        data-testid="button-without-aria-label"
-      >
-        <div>{adapterToUse.format(day, 'dayOfMonth')}</div>
-      </PickersDay>,
-    );
-
-    const targetDay = screen.getByTestId('button-without-aria-label');
-
-    expect(targetDay).to.not.have.attribute('aria-label');
-  });
-
   it('renders the day of the month by default', () => {
     render(
       <PickersDay
@@ -94,5 +63,21 @@ describe('<PickersDay />', () => {
     // Investigate if we can drop `aria-label` and let screenreaders announce the full date in a calendar picker.
     expect(day).to.have.text('2');
     expect(day).toHaveAccessibleName('Feb 2, 2020');
+  });
+
+  it('should render children instead of the day of the month when children prop is present', () => {
+    render(
+      <PickersDay
+        day={adapterToUse.date('2020-02-02T02:02:02.000')}
+        outsideCurrentMonth={false}
+        onDaySelect={() => {}}
+      >
+        2 (free)
+      </PickersDay>,
+    );
+
+    const day = screen.getByRole('button');
+    expect(day).to.have.text('2 (free)');
+    expect(day).toHaveAccessibleName('2 (free)');
   });
 });
