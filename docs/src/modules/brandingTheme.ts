@@ -331,7 +331,7 @@ export function getThemedComponents(theme: Theme) {
               theme.palette.mode === 'dark'
                 ? theme.palette.primary[400]
                 : theme.palette.primary[600],
-            fontWeight: 'bold',
+            fontWeight: 500,
             display: 'inline-flex',
             alignItems: 'center',
             '&.MuiTypography-body1 > svg': {

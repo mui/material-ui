@@ -155,6 +155,7 @@ const ColumnHead = ({
       sx={{
         '&:hover > svg': { color: 'primary.main' },
         ...(href && {
+          fontWeight: 500,
           '&:hover > svg': {
             opacity: 1,
             ml: 0.5,
@@ -750,14 +751,17 @@ export default function PricingTable({
 }) {
   const [dataGridCollapsed, setDataGridCollapsed] = React.useState(false);
   const tableRef = React.useRef<HTMLDivElement | null>(null);
+  const gridSx = {
+    display: 'grid',
+    gridTemplateColumns: `minmax(200px, 1fr) repeat(${plans.length}, minmax(${
+      columnHeaderHidden ? '0px' : '260px'
+    }, 1fr))`,
+  };
   function renderRow(key: string) {
     return (
       <Box
         sx={{
-          display: 'grid',
-          gridTemplateColumns: `minmax(200px, 1fr) repeat(${plans.length}, minmax(${
-            columnHeaderHidden ? '0px' : '260px'
-          }, 1fr))`,
+          ...gridSx,
           '&:hover': {
             bgcolor: (theme) =>
               theme.palette.mode === 'dark'
@@ -795,14 +799,7 @@ export default function PricingTable({
     >
       <StickyHead container={tableRef} disableCalculation={columnHeaderHidden} />
       {!columnHeaderHidden && (
-        <Box
-          sx={{
-            display: 'grid',
-            gridTemplateColumns: `minmax(200px, 1fr) repeat(${plans.length}, minmax(${
-              columnHeaderHidden ? '0px' : '260px'
-            }, 1fr))`,
-          }}
-        >
+        <Box sx={gridSx}>
           <Typography variant="body2" fontWeight="bold" sx={{ p: 2 }}>
             Plans
           </Typography>
@@ -870,29 +867,39 @@ export default function PricingTable({
       <RowHead startIcon={<IconImage name="product-advanced" width="28" height="28" />}>
         Advanced
       </RowHead>
-      <Button
-        fullWidth
-        onClick={() => setDataGridCollapsed((bool) => !bool)}
-        endIcon={
-          <KeyboardArrowRightRounded
-            color="primary"
-            sx={{
-              transform: dataGridCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)',
-              transition: '0.7s',
-            }}
-          />
-        }
-        sx={{
-          p: 1,
-          py: 1.5,
-          justifyContent: 'flex-start',
-          fontWeight: 400,
-          borderRadius: '0px',
-          color: 'text.primary',
-        }}
-      >
-        Data Grid
-      </Button>
+      <Box sx={{ position: 'relative', minHeight: 48, ...gridSx }}>
+        <Cell />
+        <Cell />
+        <Cell highlighted />
+        <Button
+          fullWidth
+          onClick={() => setDataGridCollapsed((bool) => !bool)}
+          endIcon={
+            <KeyboardArrowRightRounded
+              color="primary"
+              sx={{
+                transform: dataGridCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)',
+                transition: '0.7s',
+              }}
+            />
+          }
+          sx={{
+            p: 1,
+            py: 1.5,
+            justifyContent: 'flex-start',
+            fontWeight: 400,
+            borderRadius: '0px',
+            color: 'text.primary',
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            width: '100%',
+            height: '100%',
+          }}
+        >
+          Data Grid
+        </Button>
+      </Box>
       <Collapse in={dataGridCollapsed} timeout={700} sx={{ position: 'relative' }}>
         <Box
           sx={{
