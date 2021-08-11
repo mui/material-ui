@@ -34,7 +34,12 @@ const UserFeedback = ({
 }) => {
   return (
     <div>
-      <Typography variant="subtitle1" color={mode === 'dark' ? '#fff' : 'grey.900'} sx={{ mb: 2 }}>
+      <Typography
+        variant="subtitle1"
+        component="div"
+        color={mode === 'dark' ? '#fff' : 'grey.900'}
+        sx={{ mb: 2 }}
+      >
         {quote}
       </Typography>
       <Box sx={{ display: 'flex' }}>
@@ -58,7 +63,7 @@ const UserFeedback = ({
             sx={{ mb: 1 }}
           >
             {profile.name},{' '}
-            <Box component="span" sx={{ color: 'grey.500', fontWeight: 'regular' }}>
+            <Box component="span" sx={{ color: 'grey.700', fontWeight: 'regular' }}>
               {profile.role}
             </Box>
           </Typography>
@@ -198,6 +203,7 @@ const Testimonials = ({ mode: modeProp }: { mode?: 'light' | 'dark' }) => {
                 >
                   <IconButton
                     size="small"
+                    aria-label="Previous testimonial"
                     disabled={slideIndex === 0}
                     onClick={() => setSlideIndex((i) => i - 1)}
                   >
@@ -205,6 +211,7 @@ const Testimonials = ({ mode: modeProp }: { mode?: 'light' | 'dark' }) => {
                   </IconButton>
                   <IconButton
                     size="small"
+                    aria-label="Next testimonial"
                     disabled={slideIndex === TESTIMONIALS.length - 1}
                     sx={{ ml: 2 }}
                     onClick={() => setSlideIndex((i) => i + 1)}
@@ -217,6 +224,7 @@ const Testimonials = ({ mode: modeProp }: { mode?: 'light' | 'dark' }) => {
                     <Box
                       key={index}
                       role="button"
+                      aria-label={`Testimonial from ${item.profile.name}`}
                       onClick={() => setSlideIndex(index)}
                       sx={{
                         cursor: 'pointer',

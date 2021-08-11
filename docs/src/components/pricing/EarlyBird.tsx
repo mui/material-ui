@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 
 export default function EarlyBird() {
   return (
-    <Container sx={{ py: 4, pt: 0 }}>
+    <Container sx={{ pt: 2, pb: { xs: 2, sm: 4, md: 8 } }}>
       <Box
         sx={{
           borderRadius: 1,
@@ -15,28 +15,37 @@ export default function EarlyBird() {
           borderColor: (theme) =>
             theme.palette.mode === 'dark' ? 'primaryDark.900' : 'primary.400',
           display: 'flex',
+          flexDirection: {
+            xs: 'column-reverse',
+            sm: 'row',
+          },
           justifyContent: 'space-between',
-          alignItems: 'center',
+          alignItems: {
+            xs: 'flex-start',
+            sm: 'center',
+          },
         }}
       >
-        <Box>
+        <div>
           <Typography fontWeight="bold" sx={{ mb: 0.5 }}>
             Early bird special! 🐦
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 600 }}>
-            Buy now at a reduced price (~25% off), and get early access to Material-UI X, with the
-            added opportunity to influence its development. This perpetual license gives access to
-            support and updates for one year. The early bird special is available for a limited
-            time, so don&apos;t miss this opportunity!
+            Buy now at a reduced price (~25% off), and get early access to MUI X, with the added
+            opportunity to influence its development. This perpetual license gives access to support
+            and updates for one year. The early bird special is available for a limited time, so
+            don&apos;t miss this opportunity!
           </Typography>
+        </div>
+        <Box sx={{ mb: { xs: 2, sm: 0 } }}>
+          <img
+            width="110"
+            height="104"
+            src="/static/branding/pricing/early-bird.svg"
+            alt=""
+            loading="lazy"
+          />
         </Box>
-        <img
-          width="130"
-          height="124"
-          loading="lazy"
-          src="/static/branding/pricing/early-bird.svg"
-          alt=""
-        />
       </Box>
     </Container>
   );

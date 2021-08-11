@@ -33,6 +33,77 @@ export const arEG: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
+        expandText: 'ظهر العنوان',
+      },
+    },
+    MuiTablePagination: {
+      defaultProps: {
+        getItemAriaLabel: (type) => {
+          if (type === 'first') {
+            return 'امش للصفحة الأولى';
+          }
+          if (type === 'last') {
+            return 'امش للصفحة الأخيرة';
+          }
+          if (type === 'next') {
+            return 'امش للصفحة التالية';
+          }
+          // if (type === 'previous') {
+          return 'امش للصفحة السابقة';
+        },
+        labelRowsPerPage: 'عدد الصفوف في الصفحة:',
+        labelDisplayedRows: ({ from, to, count }) =>
+          `${from}-${to} من ${count !== -1 ? count : ` أكثر من${to}`}`,
+      },
+    },
+    MuiRating: {
+      defaultProps: {
+        getLabelText: (value) => `${value} ${value !== 1 ? 'نجوم' : 'نجمة'}`,
+        emptyLabelText: 'فارغ',
+      },
+    },
+    MuiAutocomplete: {
+      defaultProps: {
+        clearText: 'مسح',
+        closeText: 'إغلاق',
+        loadingText: 'يتم التحميل…',
+        noOptionsText: 'لا يوجد خيارات',
+        openText: 'فتح',
+      },
+    },
+    MuiAlert: {
+      defaultProps: {
+        closeText: 'إغلاق',
+      },
+    },
+    MuiPagination: {
+      defaultProps: {
+        'aria-label': 'التنقل عبر الصفحات',
+        getItemAriaLabel: (type, page, selected) => {
+          if (type === 'page') {
+            return `${selected ? '' : 'امش إلى '} صفحة ${page}`;
+          }
+          if (type === 'first') {
+            return 'امش للصفحة الأولى';
+          }
+          if (type === 'last') {
+            return 'امش للصفحة الأخيرة';
+          }
+          if (type === 'next') {
+            return 'امش للصفحة التالية';
+          }
+          // if (type === 'previous') {
+          return 'امش  للصفحة السابقة';
+        },
+      },
+    },
+  },
+};
+
+export const arSD: Localization = {
+  components: {
+    MuiBreadcrumbs: {
+      defaultProps: {
         expandText: 'إظهر العنوان',
       },
     },

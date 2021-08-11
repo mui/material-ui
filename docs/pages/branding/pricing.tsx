@@ -2,6 +2,7 @@ import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
 import ThemeProvider from 'docs/src/modules/ThemeContext';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import HeroPricing from 'docs/src/components/pricing/HeroPricing';
@@ -25,7 +26,9 @@ export default function Pricing() {
       <AppHeader />
       <HeroPricing />
       <PricingList /> {/* Mobile, Tablet */}
-      <PricingTable /> {/* Laptop */}
+      <Container sx={{ display: { xs: 'none', md: 'block' } }}>
+        <PricingTable /> {/* Desktop */}
+      </Container>
       <EarlyBird />
       <Testimonials />
       <WhatToExpect />

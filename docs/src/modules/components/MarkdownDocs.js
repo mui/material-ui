@@ -11,8 +11,15 @@ import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 const markdownComponents = {
   'modules/components/ComponentLinkHeader.js': ComponentLinkHeader,
 };
+
+function noComponent(moduleID) {
+  return function NoComponent() {
+    throw new Error(`No demo component provided for '${moduleID}'`);
+  };
+}
+
 function MarkdownDocs(props) {
-  const { disableAd = false, disableToc = false, demos = {}, docs, requireDemo } = props;
+  const { disableAd = false, disableToc = false, demos = {}, docs, demoComponents } = props;
 
   const userLanguage = useUserLanguage();
   const t = useTranslate();
@@ -72,9 +79,9 @@ function MarkdownDocs(props) {
             key={index}
             demo={{
               raw: demo.raw,
-              js: requireDemo(demo.module).default,
+              js: demoComponents[demo.module] ?? noComponent(demo.module),
               rawTS: demo.rawTS,
-              tsx: demo.moduleTS ? requireDemo(demo.moduleTS).default : null,
+              tsx: demo.moduleTS ? demoComponents[demo.moduleTS] : null,
             }}
             disableAd={disableAd}
             demoOptions={renderedMarkdownOrDemo}
@@ -87,11 +94,11 @@ function MarkdownDocs(props) {
 }
 
 MarkdownDocs.propTypes = {
+  demoComponents: PropTypes.object,
   demos: PropTypes.object,
   disableAd: PropTypes.bool,
   disableToc: PropTypes.bool,
   docs: PropTypes.object.isRequired,
-  requireDemo: PropTypes.func,
 };
 
 if (process.env.NODE_ENV !== 'production') {

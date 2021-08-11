@@ -19,7 +19,7 @@ const Icon = ({ name }: { name: string }) => (
 
 export default function WhatToExpect() {
   return (
-    <Container sx={{ py: 4 }}>
+    <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
       <Typography
         variant="h2"
         sx={{ maxWidth: { xs: 280, sm: 320, md: 400 }, mb: { xs: 2, sm: 4 } }}
@@ -34,14 +34,14 @@ export default function WhatToExpect() {
               Volumn discount
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              The licenses are on a per-developer basis. For online purchases we offer the following
-              tiered discounts from list prices when purchasing more than one license for your
-              development team:
-              <br />
-              <br />- 2-5 Licenses: 10% discount
-              <br />- 6-10 Licenses: 15% discount
-              <br />- 11+: License capped, extra developers do not need to be licensed.
+              The licenses are on a per-developer basis. We offer the following tiered discounts
+              from list prices when purchasing more than one license for your development team:
             </Typography>
+            <Box component="ul" sx={{ px: 2.5, typography: 'body2', color: 'text.secondary' }}>
+              <li>2-5 Licenses: 10% discount</li>
+              <li>6-10 Licenses: 15% discount</li>
+              <li>11+: License capped, extra developers do not need to be licensed.</li>
+            </Box>
           </Paper>
         </Grid>
         <Grid item xs={12} sm={6}>

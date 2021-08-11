@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import {
-  useAutocomplete,
+import useAutocomplete, {
   AutocompleteGetTagProps,
-} from '@material-ui/unstyled/AutocompleteUnstyled';
+} from '@material-ui/core/useAutocomplete';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 import { styled } from '@material-ui/core/styles';

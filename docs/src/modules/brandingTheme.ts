@@ -328,7 +328,11 @@ export function getThemedComponents(theme: Theme) {
         },
         styleOverrides: {
           root: {
-            fontWeight: 'bold',
+            color:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primary[400]
+                : theme.palette.primary[600],
+            fontWeight: 500,
             display: 'inline-flex',
             alignItems: 'center',
             '&.MuiTypography-body1 > svg': {
@@ -394,7 +398,8 @@ export function getThemedComponents(theme: Theme) {
                 ? theme.palette.primaryDark[400]
                 : theme.palette.primary.main,
             ...theme.typography.caption,
-            fontWeight: 'regular',
+            fontWeight: 400,
+            boxShadow: '1px 1px 20px 0 rgb(90 105 120 / 20%)',
           },
         },
       },

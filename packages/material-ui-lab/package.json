@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/lab",
-  "version": "5.0.0-alpha.41",
+  "version": "5.0.0-alpha.42",
   "private": false,
   "author": "Material-UI Team",
   "description": "Laboratory for new Material-UI modules.",
@@ -63,13 +63,13 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.4.4",
+    "@babel/runtime": "^7.14.8",
     "@date-io/date-fns": "^2.10.6",
     "@date-io/dayjs": "^2.10.6",
     "@date-io/luxon": "^2.10.6",
     "@date-io/moment": "^2.10.6",
-    "@material-ui/system": "5.0.0-beta.2",
-    "@material-ui/unstyled": "5.0.0-alpha.41",
+    "@material-ui/system": "5.0.0-beta.3",
+    "@material-ui/unstyled": "5.0.0-alpha.42",
     "@material-ui/utils": "5.0.0-beta.1",
     "clsx": "^1.0.4",
     "prop-types": "^15.7.2",
@@ -78,7 +78,7 @@
     "rifm": "^0.12.0"
   },
   "devDependencies": {
-    "@material-ui/types": "6.0.1",
+    "@material-ui/types": "6.0.2",
     "@types/luxon": "^1.25.0",
     "date-fns": "^2.0.0",
     "dayjs": "^1.8.17",

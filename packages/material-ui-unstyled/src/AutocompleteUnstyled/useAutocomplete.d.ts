@@ -27,7 +27,9 @@ export function createFilterOptions<T>(
 
 export type AutocompleteFreeSoloValueMapping<FreeSolo> = FreeSolo extends true ? string : never;
 
-export type Value<T, Multiple, DisableClearable, FreeSolo> = Multiple extends undefined | false
+export type AutocompleteValue<T, Multiple, DisableClearable, FreeSolo> = Multiple extends
+  | undefined
+  | false
   ? DisableClearable extends true
     ? NonNullable<T | AutocompleteFreeSoloValueMapping<FreeSolo>>
     : T | null | AutocompleteFreeSoloValueMapping<FreeSolo>
@@ -246,12 +248,12 @@ export interface UseAutocompleteProps<
    * The value must have reference equality with the option in order to be selected.
    * You can customize the equality behavior with the `isOptionEqualToValue` prop.
    */
-  value?: Value<T, Multiple, DisableClearable, FreeSolo>;
+  value?: AutocompleteValue<T, Multiple, DisableClearable, FreeSolo>;
   /**
    * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null
    */
-  defaultValue?: Value<T, Multiple, DisableClearable, FreeSolo>;
+  defaultValue?: AutocompleteValue<T, Multiple, DisableClearable, FreeSolo>;
   /**
    * Callback fired when the value changes.
    *
@@ -262,7 +264,7 @@ export interface UseAutocompleteProps<
    */
   onChange?: (
     event: React.SyntheticEvent,
-    value: Value<T, Multiple, DisableClearable, FreeSolo>,
+    value: AutocompleteValue<T, Multiple, DisableClearable, FreeSolo>,
     reason: AutocompleteChangeReason,
     details?: AutocompleteChangeDetails<T>,
   ) => void;
@@ -320,7 +322,7 @@ export default function useAutocomplete<
   }) => React.HTMLAttributes<HTMLLIElement>;
   id: string;
   inputValue: string;
-  value: Value<T, Multiple, DisableClearable, FreeSolo>;
+  value: AutocompleteValue<T, Multiple, DisableClearable, FreeSolo>;
   dirty: boolean;
   popupOpen: boolean;
   focused: boolean;

@@ -10,7 +10,6 @@ import MuiAccordion from '@material-ui/core/Accordion';
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
 import MuiAccordionDetail from '@material-ui/core/AccordionDetails';
 import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
-import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 
 const faqData = [
   {
@@ -35,19 +34,19 @@ const faqData = [
         need to be licensed.
         <br />
         <br />
-        Example 1. Company ‘A’ is developing an application named ‘AppA’. The app needs to render
-        10K rows of data in a table and allow users to group, filter, and sort. The dev team adds
-        Material-UI X to the project to satisfy that requirement. 5 front-end and 10 back-end
+        <b>Example 1.</b> Company ‘A’ is developing an application named ‘AppA’. The app needs to
+        render 10K rows of data in a table and allow users to group, filter, and sort. The dev team
+        adds Material-UI X to the project to satisfy that requirement. 5 front-end and 10 back-end
         developers are working on ‘AppA’. Only 1 developer is tasked with configuring and modifying
         the data grid. The front-end developers and only are contributing code to the front-end.
         Company ‘A’ purchases 5 licenses.
         <br />
         <br />
-        Example 2. A UI development team at Company ‘A’ creates its own UI library for internal
-        development and includes Material-UI-X as a component. The team working on ‘AppA’ uses the
-        new library and so does the team working on ‘AppB’. ‘AppA’ has 5 front-end developers and
-        ‘AppB’ has 3. There are 2 front-end developers on the UI development team. Company ‘B’
-        purchases 10 licenses.
+        <b>Example 2.</b> A UI development team at Company ‘A’ creates its own UI library for
+        internal development and includes Material-UI-X as a component. The team working on ‘AppA’
+        uses the new library and so does the team working on ‘AppB’. ‘AppA’ has 5 front-end
+        developers and ‘AppB’ has 3. There are 2 front-end developers on the UI development team.
+        Company ‘B’ purchases 10 licenses.
       </React.Fragment>
     ),
   },
@@ -86,7 +85,7 @@ const faqData = [
         <br />
         If you wish to preserve your access to product updates (new features and fixes) and
         dedicated support, you need to renew your license, please{' '}
-        <Link href="mailto:sales@material-ui.com">contact sales</Link>.
+        <Link href="mailto:sales@mui.com">contact sales</Link>.
       </React.Fragment>
     ),
   },
@@ -94,27 +93,43 @@ const faqData = [
     summary: 'What is the policy on redistributing the software?',
     detail: (
       <React.Fragment>
-        Our developer licenses are royalty-free - the licensed entity can use our tools in:
+        The licenses are royalty-free. The licensed entity can use our components without a
+        sublicense in:
         <ul>
           <li>Solutions for internal company use</li>
           <li>Hosted applications</li>
-          <li>Commercial solutions deployed for end-customers by our customers</li>
+          <li>Commercial solutions deployed for end-users</li>
         </ul>
-        There are only 2 limitations that require additional discussion with our sales team:
+        Based on the &quot;Deployment&quot; section of the EULA, you can sublicense the software if
+        it&apos;s made part of a larger work. The new licenses must be in writing and substantially
+        the same as these EULA.
+        <br />
+        <br />
+        <b>Example 1.</b> Agency &apos;A&apos; is building two applications for companies
+        &apos;B&apos; and &apos;C&apos;. Agency &apos;A&apos; purchases four licenses for four
+        developers. They build the applications and sublicense the software to companies
+        &apos;B&apos; and &apos;C&apos; without any extra fee. Company &apos;B&apos; can deploy the
+        application built by the agency without modifying the sources. Company &apos;C&apos; decides
+        to continue working on the application. They purchase one license per developer working on
+        the front end of the application.
+        <br />
+        <br />
+        There are only two limitations that require additional discussion with our sales team:
         <ul>
           <li>
-            A product that exposes the components in a form that allows using them to build
-            applications, for example in a CMS or a design-builder.
+            A product that exposes the components in a form that allows for using them to build
+            applications, for example, in a CMS or a design-builder.
           </li>
           <li>
             Modules/components that DO NOT add significant primary functionality. Example: a theme
             for a set of components that is sold as a separate product and includes the XGrid
-            components. In such cases, we may offer a reseller agreement.
+            components. In such cases, we offer reseller arrangements so that everyone has an
+            incentive to enter into a relationship.
           </li>
         </ul>
         If your desired use falls under any of the three categories listed above, please{' '}
-        <Link href="mailto:sales@material-ui.com">contact sales</Link>. We will be happy to discuss
-        your needs and see what we can do to accommodate your use–case.
+        <Link href="mailto:sales@mui.com">contact sales</Link>. We will be happy to discuss your
+        needs and see what we can do to accommodate your case.
       </React.Fragment>
     ),
   },
@@ -184,7 +199,7 @@ export default function FAQ() {
     return (
       <Accordion variant="outlined">
         <AccordionSummary
-          expandIcon={<KeyboardArrowDownRounded sx={{ fontSize: 16, color: 'primary.main' }} />}
+          expandIcon={<KeyboardArrowDownRounded sx={{ fontSize: 20, color: 'primary.main' }} />}
         >
           <Typography variant="body2" fontWeight="bold">
             {faq.summary}
@@ -204,22 +219,22 @@ export default function FAQ() {
     );
   }
   return (
-    <Container sx={{ py: 4 }}>
+    <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
       <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>
         Frequently asked questions
       </Typography>
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} md={4}>
           {renderItem(0)}
           {renderItem(1)}
           {renderItem(2)}
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} md={4}>
           {renderItem(3)}
           {renderItem(4)}
           {renderItem(5)}
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} md={4}>
           {renderItem(6)}
           <Paper
             variant="outlined"
@@ -229,24 +244,23 @@ export default function FAQ() {
               borderStyle: 'dashed',
               borderColor: (theme) =>
                 theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
+              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'white'),
             }}
           >
-            <Box sx={{ maxWidth: 250, mx: 'auto' }}>
+            <Box sx={{ textAlign: 'left' }}>
               <Typography variant="body2" color="text.primary" fontWeight="bold">
                 Got any questions unanswered or need more help?
               </Typography>
-              <Typography variant="body2" color="text.primary" sx={{ my: 1 }}>
-                From community help to premium business support, we’re here to help.
-              </Typography>
-              <Link
-                variant="body2"
-                href="mailto:sales@material-ui.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Contact sales <KeyboardArrowRightRounded />
-              </Link>
             </Box>
+            <Typography variant="body2" color="text.primary" sx={{ my: 1, textAlign: 'left' }}>
+              Email us at <Link href="mailto:sales@mui.com">sales@mui.com</Link> for sales-related
+              questions.
+            </Typography>
+            <Typography variant="body2" color="text.primary" sx={{ my: 1, textAlign: 'left' }}>
+              For product-related questions, you can open new issues on{' '}
+              <Link href="https://github.com/mui-org/material-ui-x">GitHub</Link> (bugs and feature
+              requests) or email us at <Link href="mailto:x@mui.com">x@mui.com</Link>.
+            </Typography>
           </Paper>
         </Grid>
       </Grid>

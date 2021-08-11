@@ -8,8 +8,13 @@ export default function transformer(file, api, options) {
   const j = api.jscodeshift;
   const root = j(file.source);
 
-  function getFileNameWithoutExt() {
-    return nodePath.basename(file.path).replace(/^([^.]*)\.(.*)/, '$1');
+  /**
+   * @param {string} filePath
+   * @example computePrefixFromPath('/a/b/c/Anonymous.tsx') === 'Anonymous'
+   * @example computePrefixFromPath('/a/b/c/Anonymous.server.tsx') === 'Anonymous'
+   */
+  function computePrefixFromPath(filePath) {
+    return nodePath.basename(filePath, nodePath.extname(filePath)).split('.')[0];
   }
 
   /**
@@ -43,8 +48,7 @@ export default function transformer(file, api, options) {
     }
 
     if (!prefix) {
-      // 4. use file name
-      prefix = getFileNameWithoutExt();
+      prefix = computePrefixFromPath(file.path);
     }
 
     return prefix;
@@ -53,7 +57,15 @@ export default function transformer(file, api, options) {
   function getFirstJsxName() {
     const matches = file.source.match(/<\/?(\w*)[\s\S]*?>/gm);
     if (matches) {
-      return matches.slice(-1)[0].match(/<\/?(\w*)(\s|\/|>)/)[1];
+      const closingTag = matches.slice(-1)[0];
+
+      // Self closing tag
+      if (closingTag.endsWith('/>') && closingTag !== '</>') {
+        const end = closingTag.indexOf(' ') > 0 ? closingTag.indexOf(' ') : closingTag.length - 1;
+        return closingTag.substring(1, end);
+      }
+
+      return closingTag.substring(2, closingTag.length - 1);
     }
     return null;
   }
@@ -112,20 +124,44 @@ export default function transformer(file, api, options) {
     return [];
   }
 
+  function isTagNameFragment(tagName) {
+    return tagName === 'React.Fragment' || tagName === 'Fragment' || tagName === '';
+  }
+
+  function isTagNameSuspense(tagName) {
+    return tagName === 'React.Suspense' || tagName === 'Suspense';
+  }
+
   function createStyledComponent(componentName, styledComponentName, stylesFn) {
-    return j.variableDeclaration('const', [
+    let styleArg = null;
+    const rootIsFragment = isTagNameFragment(componentName);
+
+    if (rootIsFragment) {
+      // The root is React.Fragment
+      styleArg = j.stringLiteral('div');
+    } else if (componentName.match(/^[A-Z]/)) {
+      // The root is a component
+      styleArg = j.identifier(componentName);
+    } else {
+      styleArg = j.stringLiteral(componentName);
+    }
+
+    const declaration = j.variableDeclaration('const', [
       j.variableDeclarator(
         j.identifier(styledComponentName),
-        j.callExpression(
-          j.callExpression(j.identifier('styled'), [
-            componentName.match(/^[A-Z]/)
-              ? j.identifier(componentName)
-              : j.stringLiteral(componentName),
-          ]),
-          [stylesFn],
-        ),
+        j.callExpression(j.callExpression(j.identifier('styled'), [styleArg]), [stylesFn]),
       ),
     ]);
+
+    if (rootIsFragment) {
+      declaration.comments = [
+        j.commentLine(
+          ' TODO jss-to-styled codemod: The Fragment root was replaced by div. Change the tag if needed.',
+        ),
+      ];
+    }
+
+    return declaration;
   }
 
   /**
@@ -271,7 +307,13 @@ export default function transformer(file, api, options) {
   }
 
   const rootJsxName = getFirstJsxName();
-  const styledComponentName = rootJsxName.match(/^[A-Z]/) ? `Styled${rootJsxName}` : 'Root';
+  if (isTagNameSuspense(rootJsxName)) {
+    return file.source;
+  }
+  const styledComponentName =
+    rootJsxName.match(/^[A-Z]/) && !isTagNameFragment(rootJsxName)
+      ? `Styled${rootJsxName}`.replace('.', '')
+      : 'Root';
 
   const prefix = getPrefix(withStylesCall || makeStylesCall);
   const rootClassKeys = getRootClassKeys();
@@ -406,18 +448,47 @@ export default function transformer(file, api, options) {
       );
     });
 
-  /**
-   * apply <StyledComponent />
-   */
-  root
-    .findJSXElements(rootJsxName)
-    .at(0)
-    .forEach((path) => {
+  function transformJsxRootToStyledComponent(path) {
+    if (path.node.openingFragment) {
+      path.node.type = 'JSXElement';
+      path.node.openingElement = { type: 'JSXOpeningElement', name: styledComponentName };
+      path.node.closingElement = { type: 'JSXClosingElement', name: styledComponentName };
+    } else if (
+      path.node.openingElement &&
+      path.node.openingElement.name &&
+      path.node.openingElement.name.name === undefined
+    ) {
+      path.node.openingElement.name = styledComponentName;
+      if (path.node.closingElement) {
+        path.node.closingElement.name = styledComponentName;
+      }
+    } else {
       path.node.openingElement.name.name = styledComponentName;
       if (path.node.closingElement) {
         path.node.closingElement.name.name = styledComponentName;
       }
+    }
+  }
+
+  /**
+   * apply <StyledComponent />
+   */
+  if (rootJsxName === '') {
+    root.find(j.JSXFragment).at(0).forEach(transformJsxRootToStyledComponent);
+  } else if (rootJsxName.indexOf('.') > 0) {
+    let converted = false;
+    root.find(j.JSXElement).forEach((path) => {
+      if (!converted && path.node.openingElement.name.type === 'JSXMemberExpression') {
+        const tagName = `${path.node.openingElement.name.object.name}.${path.node.openingElement.name.property.name}`;
+        if (tagName === rootJsxName) {
+          converted = true;
+          transformJsxRootToStyledComponent(path);
+        }
+      }
     });
+  } else {
+    root.findJSXElements(rootJsxName).at(0).forEach(transformJsxRootToStyledComponent);
+  }
 
   /**
    * import styled if not exist

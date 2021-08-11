@@ -191,14 +191,9 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
    * The color of a button when it is selected.
    * @default 'standard'
    */
-  color: PropTypes.oneOf([
-    'error',
-    'info',
-    'primary',
-    'secondary',
-    'standard',
-    'success',
-    'warning',
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['standard', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
+    PropTypes.string,
   ]),
   /**
    * If `true`, only allow one of the child ToggleButton values to be selected.
