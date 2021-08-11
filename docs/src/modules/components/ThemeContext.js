@@ -9,6 +9,7 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@material-ui/core/locale';
 import darkScrollbar from '@material-ui/core/darkScrollbar';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/core/utils';
+import Portal from '@material-ui/core/Portal';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
@@ -198,6 +199,11 @@ export function ThemeProvider(props) {
     document.body.dir = direction;
   }, [direction]);
 
+  const tooltipContainerRef = React.useRef(null);
+  const tooltipContainer = React.useCallback(() => {
+    return tooltipContainerRef.current;
+  }, []);
+
   const theme = React.useMemo(() => {
     const nextTheme = createTheme(
       {
@@ -219,13 +225,20 @@ export function ThemeProvider(props) {
               body: paletteMode === 'dark' ? darkScrollbar() : null,
             },
           },
+          MuiTooltip: {
+            defaultProps: {
+              PopperProps: {
+                container: tooltipContainer,
+              },
+            },
+          },
         },
       },
       languageMap[userLanguage],
     );
 
     return nextTheme;
-  }, [dense, direction, paletteColors, paletteMode, spacing, userLanguage]);
+  }, [dense, direction, paletteColors, paletteMode, spacing, tooltipContainer, userLanguage]);
 
   React.useEffect(() => {
     // Expose the theme as a global variable so people can play with it.
@@ -237,6 +250,9 @@ export function ThemeProvider(props) {
 
   return (
     <MuiThemeProvider theme={theme}>
+      <Portal>
+        <div data-testid="tooltip-container" ref={tooltipContainerRef} />
+      </Portal>
       <DispatchContext.Provider value={dispatch}>{children}</DispatchContext.Provider>
     </MuiThemeProvider>
   );
