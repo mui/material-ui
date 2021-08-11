@@ -104,11 +104,10 @@ If this library doesn't cover your use case, you should consider using [react-vi
 
 ## Customization
 
-Here are some examples of customizing the component. You can learn more about this in the
+Here are some examples of customizing the component.
+You can learn more about this in the
 [overrides documentation page](/customization/how-to-customize/).
 
-{{"demo": "pages/components/lists/CustomizedList.js"}}
-
-## Customization
-
 🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/list-item).
+
+{{"demo": "pages/components/lists/CustomizedList.js"}}
