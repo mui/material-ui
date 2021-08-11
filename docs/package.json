@@ -5,6 +5,9 @@
   "author": "Material-UI Team",
   "license": "MIT",
   "exports": {
+    "./src/modules/utils/generatePropTypeDescription": "./src/modules/utils/generatePropTypeDescription.ts",
+    "./src/modules/utils/helpers": "./src/modules/utils/helpers.ts",
+    "./src/modules/utils/parseTest": "./src/modules/utils/parseTest.ts",
     "./*": "./*.js"
   },
   "scripts": {
