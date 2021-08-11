@@ -5,7 +5,7 @@ export interface AutocompleteClasses {
   root: string;
   /** Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: string;
-  /** Pseudo-class applied to the root element if focused. */
+  /** State class applied to the root element if focused. */
   focused: string;
   /** Styles applied to the tag elements, e.g. the chips. */
   tag: string;

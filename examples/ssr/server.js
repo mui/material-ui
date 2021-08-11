@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { CacheProvider } from '@emotion/react';
 import createEmotionServer from '@emotion/server/create-instance';
-import getCache from './getCache';
+import createEmotionCache from './createEmotionCache';
 import App from './App';
 import theme from './theme';
 
@@ -28,7 +28,7 @@ function renderFullPage(html, css) {
 }
 
 function handleRender(req, res) {
-  const cache = getCache();
+  const cache = createEmotionCache();
   const { extractCriticalToChunks, constructStyleTagsFromChunks } = createEmotionServer(cache);
 
   // Render the component to a string.

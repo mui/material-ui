@@ -117,7 +117,7 @@ related to the rendering of JSX.
 The Autocomplete component is built on this hook.
 
 ```jsx
-import useAutocomplete from '@material-ui/core/useAutocomplete';
+import { useAutocomplete } from '@material-ui/unstyled/AutocompleteUnstyled';
 ```
 
 - 📦 [4.5 kB gzipped](/size-snapshot).

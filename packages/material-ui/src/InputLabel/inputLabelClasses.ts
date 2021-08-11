@@ -3,15 +3,15 @@ import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unsty
 export interface InputLabelClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Pseudo-class applied to the root element if `focused={true}`. */
+  /** State class applied to the root element if `focused={true}`. */
   focused: string;
-  /** Pseudo-class applied to the root element if `disabled={true}`. */
+  /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
-  /** Pseudo-class applied to the root element if `error={true}`. */
+  /** State class applied to the root element if `error={true}`. */
   error: string;
-  /** Pseudo-class applied to the root element if `required={true}`. */
+  /** State class applied to the root element if `required={true}`. */
   required: string;
-  /** Pseudo-class applied to the asterisk element. */
+  /** State class applied to the asterisk element. */
   asterisk: string;
   /** Styles applied to the root element if the component is a descendant of `FormControl`. */
   formControl: string;

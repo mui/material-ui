@@ -35,7 +35,7 @@ For larger or smaller ratings use the `size` prop.
 
 {{"demo": "pages/components/rating/RatingSize.js"}}
 
-## Customized rating
+## Customization
 
 Here are some examples of customizing the component. You can learn more about this in the
 [overrides documentation page](/customization/how-to-customize/).

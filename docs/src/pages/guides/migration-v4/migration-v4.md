@@ -2311,7 +2311,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 Although your style overrides defined in the theme may partially work, there is an important difference on how the nested elements are styled. The `$` syntax used with JSS will not work with Emotion. You need to replace those selectors with a valid class selector.
 
-### Replace pseudo state class names
+### Replace state class names
 
 ```diff
 const theme = createTheme({
@@ -2370,7 +2370,7 @@ const theme = createTheme({
 });
 ```
 
-Take a look at the whole [list of pseudo-state global classnames](/customization/how-to-customize/#pseudo-classes) available.
+Take a look at the whole [list of global state classnames](/customization/how-to-customize/#state-classes) available.
 
 ## Migrate `makeStyles` to emotion
 
@@ -2415,7 +2415,7 @@ npx @material-ui/codemod@next v5.0.0/jss-to-styled <path>
 +  cta: `${PREFIX}-cta`,
 +  content: `${PREFIX}-content`,
 +}
-+const Root = styled('div')((theme) => ({
++const Root = styled('div')(({ theme }) => ({
 +  [`&.${classes.root}`]: {
 +    display: 'flex',
 +    alignItems: 'center',
@@ -2656,7 +2656,8 @@ declare module "@material-ui/private-theming" {
 
 ### [Jest] SyntaxError: Unexpected token 'export'
 
-In v5, `@material-ui/core/colors/red` is considered private and should not be used in your project. [More details about this error](https://github.com/mui-org/material-ui/issues/27296).
+`@material-ui/core/colors/red` is considered private since v1.0.0.
+You should replace the import, [more details about this error](https://github.com/mui-org/material-ui/issues/27296).
 
 You can use this codemod (**recommended**) to fix all the import in your project:
 

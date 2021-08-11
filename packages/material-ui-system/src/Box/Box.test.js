@@ -95,6 +95,70 @@ describe('<Box />', () => {
     });
   });
 
+  it('respect border-*-color properties order when generating the CSS', function test() {
+    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+
+    if (isJSDOM) {
+      this.skip();
+    }
+
+    const testCaseBorderPositionColorWins = render(
+      <Box
+        borderTop={1}
+        borderTopColor="rgb(0, 0, 25)"
+        borderRight={2}
+        borderRightColor="rgb(0, 0, 50)"
+        borderBottom={3}
+        borderBottomColor="rgb(0, 0, 75)"
+        borderLeft={4}
+        borderLeftColor="rgb(0, 0, 100)"
+      />,
+    );
+
+    expect(testCaseBorderPositionColorWins.container.firstChild).toHaveComputedStyle({
+      borderTopWidth: '1px',
+      borderRightWidth: '2px',
+      borderBottomWidth: '3px',
+      borderLeftWidth: '4px',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderBottomStyle: 'solid',
+      borderLeftStyle: 'solid',
+      borderTopColor: 'rgb(0, 0, 25)',
+      borderRightColor: 'rgb(0, 0, 50)',
+      borderBottomColor: 'rgb(0, 0, 75)',
+      borderLeftColor: 'rgb(0, 0, 100)',
+    });
+
+    const testCaseBorderPositionWins = render(
+      <Box
+        borderTopColor="rgb(0, 0, 25)"
+        borderTop={1}
+        borderRightColor="rgb(0, 0, 50)"
+        borderRight={2}
+        borderBottomColor="rgb(0, 0, 75)"
+        borderBottom={3}
+        borderLeftColor="rgb(0, 0, 100)"
+        borderLeft={4}
+      />,
+    );
+
+    expect(testCaseBorderPositionWins.container.firstChild).toHaveComputedStyle({
+      borderTopWidth: '1px',
+      borderRightWidth: '2px',
+      borderBottomWidth: '3px',
+      borderLeftWidth: '4px',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderBottomStyle: 'solid',
+      borderLeftStyle: 'solid',
+      borderTopColor: 'rgb(0, 0, 0)',
+      borderRightColor: 'rgb(0, 0, 0)',
+      borderBottomColor: 'rgb(0, 0, 0)',
+      borderLeftColor: 'rgb(0, 0, 0)',
+    });
+  });
+
   it('respect properties order when generating the CSS from the sx prop', function test() {
     const isJSDOM = /jsdom/.test(window.navigator.userAgent);
 
@@ -128,6 +192,66 @@ describe('<Box />', () => {
       borderRightWidth: '1px',
       borderBottomWidth: '1px',
       borderLeftWidth: '1px',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderBottomStyle: 'solid',
+      borderLeftStyle: 'solid',
+      borderTopColor: 'rgb(0, 0, 0)',
+      borderRightColor: 'rgb(0, 0, 0)',
+      borderBottomColor: 'rgb(0, 0, 0)',
+      borderLeftColor: 'rgb(0, 0, 0)',
+    });
+
+    const testCaseBorderPositionColorWins = render(
+      <Box
+        sx={{
+          borderTop: 1,
+          borderTopColor: 'rgb(0, 0, 25)',
+          borderRight: 2,
+          borderRightColor: 'rgb(0, 0, 50)',
+          borderBottom: 3,
+          borderBottomColor: 'rgb(0, 0, 75)',
+          borderLeft: 4,
+          borderLeftColor: 'rgb(0, 0, 100)',
+        }}
+      />,
+    );
+
+    expect(testCaseBorderPositionColorWins.container.firstChild).toHaveComputedStyle({
+      borderTopWidth: '1px',
+      borderRightWidth: '2px',
+      borderBottomWidth: '3px',
+      borderLeftWidth: '4px',
+      borderTopStyle: 'solid',
+      borderRightStyle: 'solid',
+      borderBottomStyle: 'solid',
+      borderLeftStyle: 'solid',
+      borderTopColor: 'rgb(0, 0, 25)',
+      borderRightColor: 'rgb(0, 0, 50)',
+      borderBottomColor: 'rgb(0, 0, 75)',
+      borderLeftColor: 'rgb(0, 0, 100)',
+    });
+
+    const testCaseBorderPositionWins = render(
+      <Box
+        sx={{
+          borderTopColor: 'rgb(0, 0, 25)',
+          borderTop: 1,
+          borderRightColor: 'rgb(0, 0, 50)',
+          borderRight: 2,
+          borderBottomColor: 'rgb(0, 0, 75)',
+          borderBottom: 3,
+          borderLeftColor: 'rgb(0, 0, 100)',
+          borderLeft: 4,
+        }}
+      />,
+    );
+
+    expect(testCaseBorderPositionWins.container.firstChild).toHaveComputedStyle({
+      borderTopWidth: '1px',
+      borderRightWidth: '2px',
+      borderBottomWidth: '3px',
+      borderLeftWidth: '4px',
       borderTopStyle: 'solid',
       borderRightStyle: 'solid',
       borderBottomStyle: 'solid',

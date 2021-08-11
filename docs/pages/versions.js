@@ -5,14 +5,14 @@ import VersionsContext from 'docs/src/pages/versions/VersionsContext';
 import {
   demos,
   docs,
-  requireDemo,
+  demoComponents,
 } from 'docs/src/pages/versions/versions.md?@material-ui/markdown';
 
 export default function Page(props) {
   const { versions } = props;
   return (
     <VersionsContext.Provider value={versions}>
-      <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} />
+      <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />
     </VersionsContext.Provider>
   );
 }

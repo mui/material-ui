@@ -10,13 +10,15 @@
   },
   "dependencies": {
     "@material-ui/core": "next",
-    "@material-ui/styled-engine-sc": "next",
+    "@material-ui/styled-engine": "npm:@material-ui/styled-engine-sc@next",
     "next": "latest",
-    "next-transpile-modules": "latest",
     "react": "latest",
     "react-dom": "latest",
     "react-is": "latest",
     "styled-components": "latest"
+  },
+  "resolutions": {
+    "@material-ui/styled-engine": "npm:@material-ui/styled-engine-sc@next"
   },
   "devDependencies": {
     "@types/react": "latest",

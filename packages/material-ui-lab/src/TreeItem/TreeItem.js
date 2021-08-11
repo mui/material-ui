@@ -106,6 +106,8 @@ const StyledTreeItemContent = styled(TreeItemContent, {
   },
   [`& .${treeItemClasses.label}`]: {
     width: '100%',
+    // fixes overflow - see https://github.com/mui-org/material-ui/issues/27372
+    minWidth: 0,
     paddingLeft: 4,
     position: 'relative',
     ...theme.typography.body1,
