@@ -138,7 +138,7 @@ type ComposedStyleProps<T> = ComposedArg<T>;
 
 export type ComposedStyleFunction<T extends Array<StyleFunction<any>>> = StyleFunction<
   ComposedStyleProps<T>
->;
+> & { filterProps: string[] };
 
 export interface CustomSystemProps extends AliasesCSSProperties, OverwriteCSSProperties {}
 

@@ -166,6 +166,70 @@ describe('ModalManager', () => {
       expect(container1.style.paddingRight).to.equal('20px');
       expect(fixedNode.style.paddingRight).to.equal('');
     });
+
+    describe('restore styles', () => {
+      let container2;
+
+      beforeEach(() => {
+        container2 = document.createElement('div');
+      });
+
+      afterEach(() => {
+        document.body.removeChild(container2);
+      });
+
+      it('should restore styles correctly if overflow existed before', () => {
+        const modal = {};
+
+        container2.style.overflow = 'scroll';
+
+        Object.defineProperty(container2, 'scrollHeight', {
+          value: 100,
+          writable: false,
+        });
+        Object.defineProperty(container2, 'clientHeight', {
+          value: 90,
+          writable: false,
+        });
+
+        document.body.appendChild(container2);
+        modalManager.add(modal, container2);
+        modalManager.mount(modal, {});
+
+        expect(container2.style.overflow).to.equal('hidden');
+        modalManager.remove(modal);
+
+        expect(container2.style.overflow).to.equal('scroll');
+        expect(fixedNode.style.paddingRight).to.equal('');
+      });
+
+      it('should restore styles correctly if overflow-x existed before', () => {
+        const modal = {};
+
+        container2.style.overflowX = 'hidden';
+
+        Object.defineProperty(container2, 'scrollHeight', {
+          value: 100,
+          writable: false,
+        });
+        Object.defineProperty(container2, 'clientHeight', {
+          value: 90,
+          writable: false,
+        });
+
+        document.body.appendChild(container2);
+
+        modalManager.add(modal, container2);
+        modalManager.mount(modal, {});
+
+        expect(container2.style.overflow).to.equal('hidden');
+
+        modalManager.remove(modal);
+
+        expect(container2.style.overflow).to.equal('');
+        expect(container2.style.overflowX).to.equal('hidden');
+      });
+    });
   });
 
   describe('multi container', () => {

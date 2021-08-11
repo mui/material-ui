@@ -61,7 +61,7 @@ For example, if your site prompts for potential subscribers to fill in their ema
 
 {{"demo": "pages/components/dialogs/FormDialog.js"}}
 
-## Customized dialogs
+## Customization
 
 Here is an example of customizing the component. You can learn more about this in the
 [overrides documentation page](/customization/how-to-customize/).

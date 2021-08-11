@@ -11,9 +11,9 @@ export interface FabClasses {
   extended: string;
   /** Styles applied to the root element if `variant="circular"`. */
   circular: string;
-  /** Pseudo-class applied to the ButtonBase root element if the button is keyboard focused. */
+  /** State class applied to the ButtonBase root element if the button is keyboard focused. */
   focusVisible: string;
-  /** Pseudo-class applied to the root element if `disabled={true}`. */
+  /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
   /** Styles applied to the root element if `color="inherit"`. */
   colorInherit: string;

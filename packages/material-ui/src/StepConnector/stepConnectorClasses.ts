@@ -9,11 +9,11 @@ export interface StepConnectorClasses {
   vertical: string;
   /** Styles applied to the root element if `alternativeLabel={true}`. */
   alternativeLabel: string;
-  /** Pseudo-class applied to the root element if `active={true}`. */
+  /** State class applied to the root element if `active={true}`. */
   active: string;
-  /** Pseudo-class applied to the root element if `completed={true}`. */
+  /** State class applied to the root element if `completed={true}`. */
   completed: string;
-  /** Pseudo-class applied to the root element if `disabled={true}`. */
+  /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
   /** Styles applied to the line element. */
   line: string;
