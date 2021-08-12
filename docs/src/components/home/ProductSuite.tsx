@@ -8,9 +8,9 @@ import ProductsSwitcher from 'docs/src/components/home/ProductsSwitcher';
 import CoreShowcase from 'docs/src/components/home/CoreShowcase';
 import AdvancedShowcase from 'docs/src/components/home/AdvancedShowcase';
 import StoreTemplatesBanner, {
-  LazyStoreTemplateImages,
+  PrefetchStoreTemplateImages,
 } from 'docs/src/components/home/StoreTemplatesBanner';
-import DesignKits, { LazyDesignKitImages } from 'docs/src/components/home/DesignKits';
+import DesignKits, { PrefetchDesignKitImages } from 'docs/src/components/home/DesignKits';
 
 const ProductSuite = () => {
   const [productIndex, setProductIndex] = React.useState(0);
@@ -40,8 +40,8 @@ const ProductSuite = () => {
             <ProductsSwitcher productIndex={productIndex} setProductIndex={setProductIndex} />
           </Grid>
           <Grid item xs={12} md={6}>
-            <LazyStoreTemplateImages />
-            <LazyDesignKitImages />
+            <PrefetchStoreTemplateImages />
+            <PrefetchDesignKitImages />
             {productIndex === 0 && <CoreShowcase />}
             {productIndex === 1 && <AdvancedShowcase />}
             {productIndex === 2 && <StoreTemplatesBanner />}

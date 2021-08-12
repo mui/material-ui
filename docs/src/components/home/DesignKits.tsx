@@ -76,7 +76,7 @@ const DesignTool = React.forwardRef<HTMLAnchorElement, { brand: 'figma' | 'sketc
   },
 );
 
-export const LazyDesignKitImages = () => (
+export const PrefetchDesignKitImages = () => (
   <Box
     sx={{
       width: 0,

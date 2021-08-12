@@ -93,7 +93,7 @@ const StoreTemplate = React.forwardRef<
   );
 });
 
-export const LazyStoreTemplateImages = () => {
+export const PrefetchStoreTemplateImages = () => {
   function makeImg(mode: string, num: number) {
     return {
       loading: 'lazy' as const,
