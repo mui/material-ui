@@ -223,6 +223,7 @@ const Sponsors = () => {
               href="mailto:diamond@mui.com"
               target="_blank"
               rel="noopener noreferrer"
+              color="primary"
               sx={{ mr: 2, border: '1px solid', borderColor: 'divider' }}
             >
               <AddRounded />

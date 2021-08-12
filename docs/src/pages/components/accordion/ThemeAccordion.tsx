@@ -148,7 +148,7 @@ export default function ViewToggleButton() {
             id="panel1a-header"
           >
             <Box sx={{ display: 'flex' }}>
-              <Folder />
+              <Folder fontSize="small" />
               <div>
                 <Typography>Fonts</Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -172,7 +172,7 @@ export default function ViewToggleButton() {
             id="panel2a-header"
           >
             <Box sx={{ display: 'flex' }}>
-              <Folder />
+              <Folder fontSize="small" />
               <div>
                 <Typography>Libs</Typography>
                 <Typography variant="body2" color="text.secondary">
