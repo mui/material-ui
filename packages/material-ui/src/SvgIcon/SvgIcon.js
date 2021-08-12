@@ -35,8 +35,8 @@ const SvgIconRoot = styled('svg', {
   },
 })(({ theme, styleProps }) => ({
   userSelect: 'none',
-  width: '1em',
-  height: '1em',
+  width: '1rem',
+  height: '1rem',
   display: 'inline-block',
   fill: 'currentColor',
   flexShrink: 0,
