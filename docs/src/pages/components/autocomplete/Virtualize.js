@@ -24,15 +24,17 @@ function renderRow(props) {
   }
 
   return (
-    <li
+    <Typography
+      component="li"
       {...dataSet[0]}
+      noWrap
       style={{
         ...style,
         top: style.top + LISTBOX_PADDING,
       }}
     >
-      <Typography noWrap>{dataSet[1]}</Typography>
-    </li>
+      {dataSet[1]}
+    </Typography>
   );
 }
 
