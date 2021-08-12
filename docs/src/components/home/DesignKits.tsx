@@ -95,6 +95,9 @@ export const PrefetchDesignKitImages = () => (
     <img src="/static/branding/design-kits/designkits4.jpeg" alt="" loading="lazy" />
     <img src="/static/branding/design-kits/designkits5.jpeg" alt="" loading="lazy" />
     <img src="/static/branding/design-kits/designkits6.jpeg" alt="" loading="lazy" />
+    <img src="/static/branding/design-kits/designkits-figma.png" alt="" loading="lazy" />
+    <img src="/static/branding/design-kits/designkits-sketch.png" alt="" loading="lazy" />
+    <img src="/static/branding/design-kits/designkits-xd.png" alt="" loading="lazy" />
   </Box>
 );
 
