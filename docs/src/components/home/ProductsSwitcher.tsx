@@ -3,9 +3,8 @@ import NextLink from 'next/link';
 import SwipeableViews from 'react-swipeable-views';
 import Box, { BoxProps } from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
+import Stack from '@material-ui/core/Stack';
 import IconImage from 'docs/src/components/icon/IconImage';
 import SvgMuiX from 'docs/src/icons/SvgMuiX';
 
@@ -27,7 +26,6 @@ function ProductItem({
     <Box
       sx={{
         display: 'flex',
-        alignItems: { md: 'center' },
         p: 2,
         flexDirection: { xs: 'column', md: 'row' },
       }}
@@ -83,8 +81,8 @@ function Highlight({
       role="button"
       onClick={onClick}
       sx={{
+        cursor: 'pointer',
         borderRadius: 1,
-        transition: '0.3s',
         height: '100%',
         border: '1px solid',
         ...(selected && {
@@ -148,10 +146,10 @@ const ProductsSwitcher = ({
   ];
   return (
     <React.Fragment>
+      <Box sx={{ mt: 2 }} />
       <Box
         sx={{
           display: { md: 'none' },
-          mt: 2,
           maxWidth: 'calc(100vw - 40px)',
           minHeight: { xs: 192, sm: 150 },
           '& > div': { pr: '32%' },
@@ -160,6 +158,7 @@ const ProductsSwitcher = ({
         <SwipeableViews
           index={productIndex}
           resistance
+          enableMouseEvents
           onChangeIndex={(index) => setProductIndex(index)}
         >
           {productElements.map((elm, index) => (
@@ -167,59 +166,27 @@ const ProductsSwitcher = ({
               key={index}
               onClick={() => setProductIndex(index)}
               selected={productIndex === index}
-              sx={{ transform: productIndex !== index ? 'scale(0.9)' : 'scale(1)' }}
+              sx={{
+                transition: '0.3s',
+                transform: productIndex !== index ? 'scale(0.9)' : 'scale(1)',
+              }}
             >
               {elm}
             </Highlight>
           ))}
         </SwipeableViews>
       </Box>
-      <Tabs
-        orientation="vertical"
-        value={productIndex}
-        onChange={(event, value) => setProductIndex(value)}
-        sx={{
-          display: { xs: 'none', md: 'flex' },
-          mt: 2,
-          maxWidth: 470,
-          overflow: 'initial',
-          '& .MuiTabs-scroller': { overflow: 'initial !important' },
-          '& .MuiTabs-flexContainer': { position: 'relative', zIndex: 1 },
-          '& .MuiTab-root': {
-            maxWidth: 'initial',
-            textAlign: 'left',
-            padding: 0,
-            alignItems: 'flex-start',
-            borderRadius: 1,
-            transition: '0.3s',
-            '&.Mui-selected:hover': {
-              boxShadow: 'inset 0 0 0 1px, 1px 1px 20px 0 rgb(90 105 120 / 20%)',
-            },
-            '&:hover:not(.Mui-selected)': {
-              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100'),
-              '@media (hover: none)': {
-                bgcolor: 'transparent',
-              },
-            },
-            '&:not(:first-of-type)': {
-              mt: 1,
-            },
-          },
-          '& .MuiTabs-indicator': {
-            width: '100%',
-            bgcolor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.700' : 'background.paper',
-            borderRadius: 1,
-            border: '1px solid',
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200',
-          },
-        }}
-      >
+      <Stack spacing={1} sx={{ display: { xs: 'none', md: 'flex' } }}>
         {productElements.map((elm, index) => (
-          <Tab key={index} component="div" label={elm} />
+          <Highlight
+            key={index}
+            onClick={() => setProductIndex(index)}
+            selected={productIndex === index}
+          >
+            {elm}
+          </Highlight>
         ))}
-      </Tabs>
+      </Stack>
     </React.Fragment>
   );
 };
