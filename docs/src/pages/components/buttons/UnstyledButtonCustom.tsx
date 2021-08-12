@@ -6,18 +6,20 @@ import ButtonUnstyled, {
 import StarOutlineIcon from '@material-ui/icons/StarOutline';
 import { styled } from '@material-ui/system';
 
-const ButtonRoot = (props: React.PropsWithChildren<{}>) => {
-  const { children, ...other } = props;
+const ButtonRoot = React.forwardRef(
+  (props: React.PropsWithChildren<{}>, ref: React.ForwardedRef<any>) => {
+    const { children, ...other } = props;
 
-  return (
-    <svg width="200" height="50" {...other}>
-      <polygon points="0,50 20,0 200,0 180,50" />
-      <foreignObject x="20" y="0" width="160" height="50">
-        <div>{children}</div>
-      </foreignObject>
-    </svg>
-  );
-};
+    return (
+      <svg width="200" height="50" {...other} ref={ref}>
+        <polygon points="0,50 20,0 200,0 180,50" />
+        <foreignObject x="20" y="0" width="160" height="50">
+          <div>{children}</div>
+        </foreignObject>
+      </svg>
+    );
+  },
+);
 
 const StyledButtonRoot = styled(ButtonRoot)(`
   overflow: visible;
@@ -71,9 +73,12 @@ const StyledButtonRoot = styled(ButtonRoot)(`
   }
 `);
 
-function SvgButton(props: ButtonUnstyledProps) {
-  return <ButtonUnstyled {...props} component={StyledButtonRoot} />;
-}
+const SvgButton = React.forwardRef(function SvgButton(
+  props: ButtonUnstyledProps,
+  ref: React.ForwardedRef<any>,
+) {
+  return <ButtonUnstyled {...props} component={StyledButtonRoot} ref={ref} />;
+});
 
 export default function UnstyledButtonCustom() {
   return (

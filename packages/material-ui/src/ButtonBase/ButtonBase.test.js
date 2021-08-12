@@ -794,7 +794,7 @@ describe('<ButtonBase />', () => {
       expect(button).to.have.class(classes.focusVisible);
     });
 
-    it('removes foucs-visible if focus is re-targetted', () => {
+    it('removes focus-visible if focus is re-targetted', () => {
       /**
        * @type {string[]}
        */
@@ -809,7 +809,7 @@ describe('<ButtonBase />', () => {
             onFocus={() => {
               const { current: focusRetarget } = focusRetargetRef;
               if (focusRetarget === null) {
-                throw new TypeError('Nothing to focous. Test cannot work.');
+                throw new TypeError('Nothing to focus. Test cannot work.');
               }
               focusRetarget.focus();
             }}
