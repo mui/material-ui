@@ -62,16 +62,16 @@ describe('<MasonryItem />', () => {
         }),
       ).to.deep.equal({
         '@media (min-width:0px)': {
-          gridRowEnd: `span ${Math.ceil(100 + Number(theme.spacing(1).replace('px', '')))}`,
-          paddingBottom: Number(theme.spacing(1).replace('px', '')) - 1,
+          gridRowEnd: `span ${Math.ceil((100 + Number(theme.spacing(1).replace('px', ''))) / 2)}`,
+          paddingBottom: Number(theme.spacing(1).replace('px', '')) - 2,
         },
         [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
-          gridRowEnd: `span ${Math.ceil(100 + Number(theme.spacing(2).replace('px', '')))}`,
-          paddingBottom: Number(theme.spacing(2).replace('px', '')) - 1,
+          gridRowEnd: `span ${Math.ceil((100 + Number(theme.spacing(2).replace('px', ''))) / 2)}`,
+          paddingBottom: Number(theme.spacing(2).replace('px', '')) - 2,
         },
         [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: {
-          gridRowEnd: `span ${Math.ceil(100 + Number(theme.spacing(3).replace('px', '')))}`,
-          paddingBottom: Number(theme.spacing(3).replace('px', '')) - 1,
+          gridRowEnd: `span ${Math.ceil((100 + Number(theme.spacing(3).replace('px', ''))) / 2)}`,
+          paddingBottom: Number(theme.spacing(3).replace('px', '')) - 2,
         },
         width: '100%',
         [`& > *`]: {
@@ -95,8 +95,8 @@ describe('<MasonryItem />', () => {
           theme,
         }),
       ).to.deep.equal({
-        gridRowEnd: `span ${Math.ceil(100 + Number(theme.spacing(1).replace('px', '')))}`,
-        paddingBottom: Number(theme.spacing(1).replace('px', '')) - 1,
+        gridRowEnd: `span ${Math.ceil((100 + Number(theme.spacing(1).replace('px', ''))) / 2)}`,
+        paddingBottom: Number(theme.spacing(1).replace('px', '')) - 2,
         width: '100%',
         [`& > *`]: {
           width: '100%',
@@ -116,7 +116,7 @@ describe('<MasonryItem />', () => {
       );
       const computedStyle = getComputedStyle(getByTestId('test-root'));
       expect(computedStyle['grid-row-end']).to.equal(
-        `span ${Math.ceil(150 + Number(theme.spacing(1).replace('px', '')))}`,
+        `span ${Math.ceil((150 + Number(theme.spacing(1).replace('px', ''))) / 2)}`,
       );
     });
   });
