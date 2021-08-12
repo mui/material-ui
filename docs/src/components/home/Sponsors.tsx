@@ -198,7 +198,7 @@ const Sponsors = () => {
         The continued development and maintenance of MUI is greatly helped by our generous
         sponsors.
       </Typography>
-      <Grid container spacing={{ xs: 2, md: 4 }} sx={{ mb: 5 }}>
+      <Grid container spacing={{ xs: 2, md: 4 }} sx={{ mb: 3 }}>
         {DIAMONDs.map((item) => (
           <Grid item key={item.name} xs={12} sm={6} md={4}>
             <SponsorCard item={item} bottom={<Label color="primary">Diamond sponsor</Label>} />
