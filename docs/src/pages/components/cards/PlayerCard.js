@@ -111,7 +111,7 @@ export default function PlayerCard() {
     <ThemeProvider theme={theme}>
       <Card variant="outlined" sx={{ display: 'flex', p: 1 }}>
         <Avatar
-          sx={{ width: 100, height: 100 }}
+          sx={{ width: 124, height: 124 }}
           src="/static/images/cards/basement-beside-myself.jpg"
           variant="rounded"
         />
