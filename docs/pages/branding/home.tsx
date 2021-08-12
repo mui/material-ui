@@ -23,15 +23,17 @@ export default function Home() {
       />
       <CssBaseline />
       <AppHeader />
-      <Hero />
-      <ReferencesCore />
-      <ProductSuite />
-      <ValueProposition />
-      <DesignSystemComponents />
-      <Testimonials mode="dark" />
-      <Sponsors />
-      <HeroEnd />
-      <Divider />
+      <main>
+        <Hero />
+        <ReferencesCore />
+        <ProductSuite />
+        <ValueProposition />
+        <DesignSystemComponents />
+        <Testimonials mode="dark" />
+        <Sponsors />
+        <HeroEnd />
+        <Divider />
+      </main>
       <AppFooter />
     </ThemeProvider>
   );

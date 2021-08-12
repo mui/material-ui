@@ -24,18 +24,20 @@ export default function Pricing() {
       />
       <CssBaseline />
       <AppHeader />
-      <HeroPricing />
-      <PricingList /> {/* Mobile, Tablet */}
-      <Container sx={{ display: { xs: 'none', md: 'block' } }}>
-        <PricingTable /> {/* Desktop */}
-      </Container>
-      <EarlyBird />
-      <Testimonials />
-      <WhatToExpect />
-      <Divider sx={{ mx: 'auto', maxWidth: 1200 }} />
-      <FAQ />
-      <HeroEnd />
-      <Divider />
+      <main>
+        <HeroPricing />
+        <PricingList /> {/* Mobile, Tablet */}
+        <Container sx={{ display: { xs: 'none', md: 'block' } }}>
+          <PricingTable /> {/* Desktop */}
+        </Container>
+        <EarlyBird />
+        <Testimonials />
+        <WhatToExpect />
+        <Divider sx={{ mx: 'auto', maxWidth: 1200 }} />
+        <FAQ />
+        <HeroEnd />
+        <Divider />
+      </main>
       <AppFooter />
     </ThemeProvider>
   );

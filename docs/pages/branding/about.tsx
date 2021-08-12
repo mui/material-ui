@@ -411,7 +411,6 @@ function AboutContent() {
   const mode = globalTheme.palette.mode;
   return (
     <React.Fragment>
-      <AppHeader />
       <Container>
         <Box
           sx={{
@@ -692,7 +691,6 @@ function AboutContent() {
       </Container>
       <HeroEnd />
       <Divider />
-      <AppFooter />
     </React.Fragment>
   );
 }
@@ -705,7 +703,11 @@ export default function About() {
         description="Material-UI started back in 2014 to unify React and Material Design. Today, Material-UI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
       />
       <CssBaseline />
-      <AboutContent />
+      <AppHeader />
+      <main>
+        <AboutContent />
+      </main>
+      <AppFooter />
     </ThemeProvider>
   );
 }
