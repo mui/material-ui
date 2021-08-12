@@ -30,7 +30,7 @@ export const style = ({ styleProps, theme }) => {
     padding: 0,
     overflow: 'auto',
     width: '100%',
-    rowGap: 1,
+    rowGap: 2,
     boxSizing: 'border-box',
   };
 

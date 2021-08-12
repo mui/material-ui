@@ -48,11 +48,11 @@ export const style = ({ styleProps, theme }) => {
   const styleFromPropValue = (propValue) => {
     const gap = styleProps.height ? Number(getValue(transformer, propValue).replace('px', '')) : 0;
     // For lazy-loaded images to load properly, masonry item should take up space greater than 1px.
-    // Taking into account a row gap of 1px, rowSpan should at least be 3.
-    const rowSpan = styleProps.height ? Math.ceil(styleProps.height + gap) : 3;
+    // Taking into account a row gap of 2px, rowSpan should at least be 2.
+    const rowSpan = styleProps.height ? Math.ceil((styleProps.height + gap) / 2) : 2;
     return {
       gridRowEnd: `span ${rowSpan}`,
-      paddingBottom: gap - 1,
+      paddingBottom: gap - 2,
     };
   };
   styles = { ...styles, ...handleBreakpoints({ theme }, spacingValues, styleFromPropValue) };
