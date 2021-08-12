@@ -148,7 +148,7 @@ export default function NotificationCard() {
   return (
     <ThemeProvider theme={theme}>
       <Card variant="outlined" sx={{ display: 'flex', p: 1.5, maxWidth: 283 }}>
-        <Avatar src="/static/images/avatar/3.jpg" variant="rounded" />
+        <Avatar src="/static/images/avatar/3.jpg" alt="Avatar" variant="rounded" />
         <Box sx={{ ml: 1, flexBasis: 180, flexGrow: 1, minWidth: '0px' }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Typography color="text.secondary" variant="caption">
