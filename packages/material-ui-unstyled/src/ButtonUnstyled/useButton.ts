@@ -104,7 +104,7 @@ export default function useButton(props: UseButtonProps) {
     event: React.MouseEvent<HTMLButtonElement>,
     otherHandler: OtherEventHandler,
   ) => {
-    if (event.target === event.currentTarget) {
+    if (event.target === event.currentTarget && !disabled) {
       setActive(true);
     }
 

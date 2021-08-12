@@ -7,17 +7,17 @@ import {
 } from '@material-ui/unstyled/ButtonUnstyled';
 import { styled } from '@material-ui/system';
 
-const StyledButtonRoot = styled('button')(`
+const CustomButtonRoot = styled('button')(`
   background-color: #007fff;
-  padding: 16px 20px;
+  padding: 15px 20px;
   border-radius: 10px;
   color: #fff;
-  font-weight: bold;
-  font-family: inherit;
-  font-size: 16px;
+  font-weight: 600;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 14px;
   transition: all 200ms ease;
   cursor: pointer;
-  box-shadow: 0 0 0 0 rgba(0, 127, 255, 0);
+  box-shadow: 0 4px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 0 rgba(0, 127, 255, 0);
   border: none;
 
   &:hover {
@@ -29,13 +29,14 @@ const StyledButtonRoot = styled('button')(`
   }
 
   &.focusVisible {
-    box-shadow: 0 0 0 5px rgba(0, 127, 255, 0.5);
+    box-shadow: 0 4px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 5px rgba(0, 127, 255, 0.5);
     outline: none;
   }
 
   &.disabled {
     opacity: 0.5;
-    pointer-events: none;
+    cursor: not-allowed;
+    box-shadow: 0 0 0 0 rgba(0, 127, 255, 0);
   }
 `);
 
@@ -47,7 +48,7 @@ const CustomButton = React.forwardRef(function CustomButton(
   const button = useButton({
     ...props,
     ref,
-    component: StyledButtonRoot,
+    component: CustomButtonRoot,
   });
 
   const classes = {
@@ -57,9 +58,9 @@ const CustomButton = React.forwardRef(function CustomButton(
   };
 
   return (
-    <StyledButtonRoot {...button.getRootProps()} className={clsx(classes)}>
+    <CustomButtonRoot {...button.getRootProps()} className={clsx(classes)}>
       {children}
-    </StyledButtonRoot>
+    </CustomButtonRoot>
   );
 });
 
