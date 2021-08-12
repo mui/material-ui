@@ -43,7 +43,10 @@ yarn add @material-ui/core@next
 In order to benefit from the [CSS overrides](/customization/theme-components/#global-style-overrides) and [default prop customization](/customization/theme-components/#default-props) with the theme, TypeScript users need to import the following types. Internally, it uses [module augmentation](/guides/typescript/#customization-of-theme) to extend the default theme structure with the extension components available in the lab.
 
 ```tsx
-import '@material-ui/lab/themeAugmentation';
+// When using TypeScript 4.x and above
+import type {} from '@material-ui/lab/themeAugmentation';
+// When using TypeScript 3.x and below
+import from '@material-ui/lab/themeAugmentation';
 
 const theme = createTheme({
   components: {
