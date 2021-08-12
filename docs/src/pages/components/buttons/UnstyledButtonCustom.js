@@ -26,7 +26,7 @@ ButtonRoot.propTypes = {
 const StyledButtonRoot = styled(ButtonRoot)(`
   overflow: visible;
   cursor: pointer;
-
+  
   & polygon {
     stroke: #0059b2;
     stroke-width: 2;

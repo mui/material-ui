@@ -30,7 +30,7 @@ export interface UseButtonProps extends UseButtonEventHandlers {
   disabled?: boolean;
   href?: string;
   ref: React.Ref<any>;
-  tabIndex?: string | number;
+  tabIndex?: number;
   to?: string;
   /**
    * Type attribute applied when the `component` is `button`.
@@ -296,12 +296,12 @@ export default function useButton(props: UseButtonProps) {
     onMouseUp: handleMouseUp,
   };
 
-  const getRootProps = (otherHandlers: Record<string, unknown>) => ({
+  const getRootProps = (otherHandlers?: Record<string, unknown>) => ({
     tabIndex: disabled ? -1 : tabIndex,
     type,
     ref: handleRef as React.Ref<any>,
     ...buttonProps,
-    ...chainEventHandlers(ownEventHandlers, otherHandlers, props as any),
+    ...chainEventHandlers(ownEventHandlers, otherHandlers ?? {}, props as any),
   });
 
   return {
