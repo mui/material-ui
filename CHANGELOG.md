@@ -1,7 +1,9 @@
 ### [Versions](https://material-ui.com/versions/)
 
 ## 5.0.0-beta4
+
 <!-- generated comparing v5.0.0-beta.3..next -->
+
 _Aug 13, 2021_
 
 Big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
@@ -53,7 +55,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 - <!-- 19 --> [theme] Add missed variants in Components interface (#27453) @nikitabobers
 
 ### Docs
- 
+
 - <!-- 36 --> [docs] Update guides for @material-ui/styled-engine-sc installation (#27602) @mnajdova
 - <!-- 35 --> [docs] Document that @material-ui/styles is not strict mode compatible (#27639) @oliviertassinari
 - <!-- 34 --> [docs] Link to "Customization of Theme" from relevant theme interfaces (#27689) @eps1lon
@@ -68,6 +70,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 - <!-- 25 --> [website] Add pricing page (#27598) @siriwatknp
 
 All contributors of this release in alphabetical order: @aaronlademann-wf, @abriginets, @DouglasPds, @eps1lon, @garronej, @kylegach, @LorenzHenk, @m4theushw, @matiasherranz, @mnajdova, @nikitabobers, @oliviertassinari, @R-Bower, @ryancogswell, @siriwatknp, @tonextone, @umidbekk, @YassinHussein
+
 ## 5.0.0-beta.3
 
 <!-- generated comparing v5.0.0-beta.2..next -->
