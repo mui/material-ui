@@ -15,7 +15,7 @@ const content = [
   },
   {
     icon: '/static/branding/mui-pencil.svg',
-    title: 'Easy customizability',
+    title: 'Easy customized',
     description:
       'Enjoy the power of our components without sacrificing the styles you want. Tweak how your components render down to the very last class.',
   },
@@ -29,7 +29,7 @@ const content = [
     icon: '/static/branding/mui-eye.svg',
     title: 'Accessible by design',
     description:
-      'We care about making it good for everyone. All of our components have built-in support for a11y, making sure you reach the largest audience possible!',
+      'We care about making your UX great for everyone. All of our components have built-in support for a11y, making sure you reach the largest audience possible!',
   },
 ];
 

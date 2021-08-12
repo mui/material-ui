@@ -515,7 +515,7 @@ const DesignSystemComponents = () => {
           }}
         >
           <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-            Want more components?
+            Need more components?
           </Typography>
           <Typography
             variant="body2"
