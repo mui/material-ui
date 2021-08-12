@@ -33,15 +33,6 @@ const jss = create({
   insertionPoint: process.browser ? document.querySelector('#insertion-point-jss') : null,
 });
 
-function useFirstRender() {
-  const firstRenderRef = React.useRef(true);
-  React.useEffect(() => {
-    firstRenderRef.current = false;
-  }, []);
-
-  return firstRenderRef.current;
-}
-
 acceptLanguage.languages(['en', 'zh', 'pt', 'ru']);
 
 function LanguageNegotiation() {
@@ -72,44 +63,27 @@ function LanguageNegotiation() {
  */
 function usePersistCodeVariant() {
   const dispatch = useDispatch();
-  const { codeVariant: initialCodeVariant = CODE_VARIANTS.JS } = useSelector(
-    (state) => state.options,
-  );
-
-  const isFirstRender = useFirstRender();
-
-  const navigatedCodeVariant = React.useMemo(() => {
-    const navigatedCodeVariantMatch =
-      typeof window !== 'undefined' ? window.location.hash.match(/\.(js|tsx)$/) : null;
-
-    if (navigatedCodeVariantMatch === null) {
-      return undefined;
-    }
-
-    return navigatedCodeVariantMatch[1] === 'tsx' ? CODE_VARIANTS.TS : CODE_VARIANTS.JS;
-  }, []);
-
-  const persistedCodeVariant = React.useMemo(() => {
-    if (typeof window === 'undefined') {
-      return undefined;
-    }
-    return getCookie('codeVariant');
-  }, []);
-
-  /**
-   * we initialize from navigation or cookies. on subsequent renders the store is the
-   * truth
-   */
-  const codeVariant =
-    isFirstRender === true
-      ? navigatedCodeVariant || persistedCodeVariant || initialCodeVariant
-      : initialCodeVariant;
+  const { codeVariant = CODE_VARIANTS.JS } = useSelector((state) => state.options);
 
   React.useEffect(() => {
-    if (codeVariant !== initialCodeVariant) {
-      dispatch({ type: ACTION_TYPES.OPTIONS_CHANGE, payload: { codeVariant } });
+    const navigatedCodeVariantMatch = window.location.hash.match(/\.(js|tsx)$/);
+    if (navigatedCodeVariantMatch !== null) {
+      const navigatedCodeVariant =
+        navigatedCodeVariantMatch[1] === 'tsx' ? CODE_VARIANTS.TS : CODE_VARIANTS.JS;
+      dispatch({
+        type: ACTION_TYPES.OPTIONS_CHANGE,
+        payload: { codeVariant: navigatedCodeVariant },
+      });
+    } else {
+      const persistedCodeVariant = getCookie('codeVariant');
+      if (persistedCodeVariant !== undefined) {
+        dispatch({
+          type: ACTION_TYPES.OPTIONS_CHANGE,
+          payload: { codeVariant: persistedCodeVariant },
+        });
+      }
     }
-  });
+  }, [dispatch]);
 
   React.useEffect(() => {
     document.cookie = `codeVariant=${codeVariant};path=/;max-age=31536000`;
