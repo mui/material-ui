@@ -70,6 +70,7 @@ export default function HeaderNavDropdown() {
   return (
     <React.Fragment>
       <IconButton
+        aria-label="Menu"
         ref={hambugerRef}
         disableRipple
         onClick={() => setOpen((value) => !value)}

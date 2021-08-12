@@ -12,11 +12,13 @@ import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRoun
 import ROUTES from 'docs/src/route';
 
 function ProductItem({
+  'aria-label': label,
   icon,
   name,
   description,
   href,
 }: {
+  'aria-label': string;
   icon: React.ReactNode;
   name: React.ReactNode;
   description: React.ReactNode;
@@ -44,7 +46,7 @@ function ProductItem({
             color="primary"
             variant="body2"
             fontWeight="bold"
-            aria-label={`Goto ${name} product`}
+            aria-label={label}
             sx={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -116,12 +118,14 @@ const ProductsSwitcher = ({
 }) => {
   const productElements = [
     <ProductItem
+      aria-label="Go to core components page"
       icon={<IconImage name="product-core" />}
       name="Core"
       description="Ready to use, forever free, foundational components."
       href={ROUTES.productCore}
     />,
     <ProductItem
+      aria-label="Go to advanced components page"
       icon={<IconImage name="product-advanced" />}
       name={
         <Box component="span" display="inline-flex" alignItems="center">
@@ -132,12 +136,14 @@ const ProductsSwitcher = ({
       href={ROUTES.productAdvanced}
     />,
     <ProductItem
+      aria-label="Go to templates page"
       icon={<IconImage name="product-templates" />}
       name="Templates"
       description="Fully built, out-of-the-box, templates for your application."
       href={ROUTES.productTemplates}
     />,
     <ProductItem
+      aria-label="Go to design-kits page"
       icon={<IconImage name="product-designkits" />}
       name="Design Kits"
       description="Our components available in your favorite design tool."
