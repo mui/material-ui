@@ -46,14 +46,14 @@ const ProgressBar = React.memo(function ProgressBar(props: ProgressBarProps) {
           left: 0,
           top: 0,
           ...(valueInPercent < 30 && {
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'error.800' : 'error.500'),
+            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'error.800' : 'error.300'),
           }),
           ...(valueInPercent >= 30 &&
             valueInPercent <= 70 && {
               bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'warning.800' : 'warning.500'),
             }),
           ...(valueInPercent > 70 && {
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'success.800' : 'success.500'),
+            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'success.800' : 'success.400'),
           }),
           width: `${valueInPercent}%`,
         }}
