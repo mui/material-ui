@@ -142,7 +142,7 @@ export default function AppFooter() {
           Copyright © {new Date().getFullYear()} Material-UI.
         </Typography>
         <Box sx={{py: {xs: 2, sm:0}}}>
-        <Stack spacing={1} direction="row">
+        <Stack spacing={2} direction="row">
             <IconButton
               target="_blank"
               rel="noopener"

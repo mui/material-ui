@@ -161,8 +161,8 @@ export default function NotificationCard() {
           <Box sx={{ display: 'flex', mt: 0.5 }}>
             <Box sx={{ flexGrow: 1, minWidth: '0px' }}>
               <Typography component="div">Great news</Typography>
-              <Typography variant="body2" color="text.secondary" noWrap>
-                Hey! Check this out, just a few minutes.
+              <Typography variant="caption" color="text.secondary" noWrap>
+                Hey! Check this out, just a few minutes ago...
               </Typography>
             </Box>
             <Chip
