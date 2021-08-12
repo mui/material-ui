@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { styled, alpha } from '@material-ui/core/styles';
+import { styled, alpha, useTheme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
 import ROUTES from 'docs/src/route';
 import LaunchRounded from '@material-ui/icons/LaunchRounded';
 
-const ratio = 1367 / 939;
+const ratio = 900 / 494;
 
 const Image = styled('img')(({ theme }) => ({
   display: 'block',
@@ -39,18 +39,22 @@ const Anchor = styled('a')({
   },
 });
 
+const linkMapping = {
+  'minimal-dashboard': ROUTES.storeTemplateMinimalDashboard,
+  theFront: ROUTES.storeTheFront,
+  'material-app': ROUTES.storeTemplateMaterialApp,
+  flexy: ROUTES.storeFlexy,
+  berry: ROUTES.storeTemplateBerry,
+  webbee: ROUTES.storeTemplateWebbee,
+};
+const brands = Object.keys(linkMapping) as Array<keyof typeof linkMapping>;
+
 const StoreTemplate = React.forwardRef<
   HTMLAnchorElement,
-  { brand: 'material-app' | 'barza' | 'minimal-free' | 'minimal-dashboard' | 'berry' | 'webbee' }
+  { brand: 'material-app' | 'theFront' | 'minimal-dashboard' | 'berry' | 'webbee' | 'flexy' }
 >(({ brand, ...props }, ref) => {
-  const linkMapping = {
-    'material-app': ROUTES.storeTemplateMaterialApp,
-    barza: ROUTES.storeTemplateBarza,
-    'minimal-free': ROUTES.storeTemplateMinimalFree,
-    'minimal-dashboard': ROUTES.storeTemplateMinimalDashboard,
-    berry: ROUTES.storeTemplateBerry,
-    webbee: ROUTES.storeTemplateBerry,
-  };
+  const globalTheme = useTheme();
+  const mode = globalTheme.palette.mode;
   return (
     <Anchor
       ref={ref}
@@ -60,7 +64,7 @@ const StoreTemplate = React.forwardRef<
       {...props}
     >
       <Image
-        src={`/static/branding/store-templates/store-template${
+        src={`/static/branding/store-templates/template-${mode}${
           Object.keys(linkMapping).indexOf(brand) + 1
         }.jpeg`}
         alt=""
@@ -89,25 +93,37 @@ const StoreTemplate = React.forwardRef<
   );
 });
 
-export const LazyStoreTemplateImages = () => (
-  <Box
-    sx={{
-      width: 0,
-      height: 0,
-      display: 'none',
-      overflow: 'hidden',
-      position: 'absolute',
-      zIndex: -1,
-    }}
-  >
-    <img src="/static/branding/store-templates/store-template1.jpeg" alt="" loading="lazy" />
-    <img src="/static/branding/store-templates/store-template2.jpeg" alt="" loading="lazy" />
-    <img src="/static/branding/store-templates/store-template3.jpeg" alt="" loading="lazy" />
-    <img src="/static/branding/store-templates/store-template4.jpeg" alt="" loading="lazy" />
-    <img src="/static/branding/store-templates/store-template5.jpeg" alt="" loading="lazy" />
-    <img src="/static/branding/store-templates/store-template6.jpeg" alt="" loading="lazy" />
-  </Box>
-);
+export const LazyStoreTemplateImages = () => {
+  function makeImg(mode: string, num: number) {
+    return {
+      loading: 'lazy' as const,
+      width: '900',
+      height: '494',
+      src: `/static/branding/store-templates/template-${mode}${num}.jpeg`,
+    };
+  }
+  return (
+    <Box
+      sx={{
+        width: 0,
+        height: 0,
+        position: 'fixed',
+        zIndex: -1,
+        top: -1000,
+        '& > img': {
+          position: 'absolute',
+        },
+      }}
+    >
+      {[...Array(6)].map((_, index) => (
+        <React.Fragment key={index}>
+          <img alt="" {...makeImg('light', index + 1)} />
+          <img alt="" {...makeImg('dark', index + 1)} />
+        </React.Fragment>
+      ))}
+    </Box>
+  );
+};
 
 export default function StoreTemplatesBanner() {
   const [appearIndexes, setAppearIndexes] = React.useState<Array<number>>([0]);
@@ -133,7 +149,7 @@ export default function StoreTemplatesBanner() {
         width: { xs: '100vw', md: '50vw' },
       }}
     >
-      <Box
+      {/* <Box
         sx={{
           position: 'absolute',
           width: '100%',
@@ -143,7 +159,7 @@ export default function StoreTemplatesBanner() {
           opacity: (theme) => (theme.palette.mode === 'dark' ? 0.6 : 0),
           zIndex: 1,
         }}
-      />
+      /> */}
       <Box
         sx={{
           display: { xs: 'block', md: 'none' },
@@ -211,13 +227,13 @@ export default function StoreTemplatesBanner() {
           }}
         >
           <Fade in={appearIndexes.includes(4)} timeout={1000}>
-            <StoreTemplate brand="material-app" />
+            <StoreTemplate brand={brands[4]} />
           </Fade>
           <Fade in={appearIndexes.includes(2)} timeout={1000}>
-            <StoreTemplate brand="minimal-free" />
+            <StoreTemplate brand={brands[2]} />
           </Fade>
           <Fade in={appearIndexes.includes(0)} timeout={1000}>
-            <StoreTemplate brand="berry" />
+            <StoreTemplate brand={brands[0]} />
           </Fade>
         </Box>
         <Box
@@ -239,13 +255,13 @@ export default function StoreTemplatesBanner() {
           }}
         >
           <Fade in={appearIndexes.includes(1)} timeout={1000}>
-            <StoreTemplate brand="barza" />
+            <StoreTemplate brand={brands[1]} />
           </Fade>
           <Fade in={appearIndexes.includes(3)} timeout={1000}>
-            <StoreTemplate brand="minimal-dashboard" />
+            <StoreTemplate brand={brands[3]} />
           </Fade>
           <Fade in={appearIndexes.includes(5)} timeout={1000}>
-            <StoreTemplate brand="webbee" />
+            <StoreTemplate brand={brands[5]} />
           </Fade>
         </Box>
       </Box>

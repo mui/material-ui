@@ -29,6 +29,8 @@ const ROUTES = {
   storeTemplateMinimalDashboard: 'https://material-ui.com/store/items/minimal-dashboard/',
   storeTemplateBerry: 'https://material-ui.com/store/items/berry-react-material-admin/',
   storeTemplateWebbee: 'https://material-ui.com/store/items/webbee-landing-page/',
+  storeTheFront: 'https://material-ui.com/store/items/the-front-landing-page/',
+  storeFlexy: 'https://material-ui.com/store/items/flexy-react-admin-dashboard/',
 };
 
 export default ROUTES;

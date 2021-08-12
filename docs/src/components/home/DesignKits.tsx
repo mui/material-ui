@@ -3,11 +3,10 @@ import { styled, alpha } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import Fade from '@material-ui/core/Fade';
-import Typography from '@material-ui/core/Typography';
 import ROUTES from 'docs/src/route';
 import LaunchRounded from '@material-ui/icons/LaunchRounded';
 
-const ratio = 1367 / 939;
+const ratio = 900 / 494;
 
 const Image = styled('img')(({ theme }) => ({
   display: 'block',
@@ -70,8 +69,7 @@ const DesignTool = React.forwardRef<HTMLAnchorElement, { brand: 'figma' | 'sketc
             justifyContent: 'center',
           }}
         >
-          <Typography fontWeight="bold">Goto store</Typography>
-          <LaunchRounded fontSize="small" />
+          <LaunchRounded />
         </Box>
       </Anchor>
     );
@@ -83,18 +81,20 @@ export const LazyDesignKitImages = () => (
     sx={{
       width: 0,
       height: 0,
-      display: 'none',
-      overflow: 'hidden',
-      position: 'absolute',
+      position: 'fixed',
+      top: -1000,
       zIndex: -1,
+      '& > img': {
+        position: 'absolute',
+      },
     }}
   >
-    <img src="/static/branding/store-templates/store-template1.jpeg" alt="" loading="lazy" />
-    <img src="/static/branding/store-templates/store-template2.jpeg" alt="" loading="lazy" />
-    <img src="/static/branding/store-templates/store-template3.jpeg" alt="" loading="lazy" />
-    <img src="/static/branding/store-templates/store-template4.jpeg" alt="" loading="lazy" />
-    <img src="/static/branding/store-templates/store-template5.jpeg" alt="" loading="lazy" />
-    <img src="/static/branding/store-templates/store-template6.jpeg" alt="" loading="lazy" />
+    <img src="/static/branding/design-kits/designkits1.jpeg" alt="" loading="lazy" />
+    <img src="/static/branding/design-kits/designkits2.jpeg" alt="" loading="lazy" />
+    <img src="/static/branding/design-kits/designkits3.jpeg" alt="" loading="lazy" />
+    <img src="/static/branding/design-kits/designkits4.jpeg" alt="" loading="lazy" />
+    <img src="/static/branding/design-kits/designkits5.jpeg" alt="" loading="lazy" />
+    <img src="/static/branding/design-kits/designkits6.jpeg" alt="" loading="lazy" />
   </Box>
 );
 
@@ -230,13 +230,13 @@ export default function DesignKits() {
           }}
         >
           <Fade in={appearIndexes.includes(4)} timeout={1000}>
-            <Image src="/static/branding/store-templates/store-template1.jpeg" alt="" />
+            <Image src="/static/branding/design-kits/designkits1.jpeg" alt="" />
           </Fade>
           <Fade in={appearIndexes.includes(2)} timeout={1000}>
-            <Image src="/static/branding/store-templates/store-template3.jpeg" alt="" />
+            <Image src="/static/branding/design-kits/designkits3.jpeg" alt="" />
           </Fade>
           <Fade in={appearIndexes.includes(0)} timeout={1000}>
-            <Image src="/static/branding/store-templates/store-template5.jpeg" alt="" />
+            <Image src="/static/branding/design-kits/designkits5.jpeg" alt="" />
           </Fade>
         </Box>
         <Box
@@ -258,13 +258,13 @@ export default function DesignKits() {
           }}
         >
           <Fade in={appearIndexes.includes(1)} timeout={1000}>
-            <Image src="/static/branding/store-templates/store-template2.jpeg" alt="" />
+            <Image src="/static/branding/design-kits/designkits2.jpeg" alt="" />
           </Fade>
           <Fade in={appearIndexes.includes(3)} timeout={1000}>
-            <Image src="/static/branding/store-templates/store-template4.jpeg" alt="" />
+            <Image src="/static/branding/design-kits/designkits4.jpeg" alt="" />
           </Fade>
           <Fade in={appearIndexes.includes(5)} timeout={1000}>
-            <Image src="/static/branding/store-templates/store-template6.jpeg" alt="" />
+            <Image src="/static/branding/design-kits/designkits6.jpeg" alt="" />
           </Fade>
         </Box>
       </Box>
