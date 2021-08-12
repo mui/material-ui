@@ -95,7 +95,7 @@ function RTL(props) {
 
 #### 4.3 JSS
 
-Having installed the plugin in your project, Material-UI components still require it to be loaded by the jss instance, as described below.
+Having installed the plugin in your project, Material-UI components still require it to be loaded by the JSS instance, as described below.
 Internally, withStyles is using this JSS plugin when `direction: 'rtl'` is set on the theme.
 Head to the [plugin README](https://github.com/alitaheri/jss-rtl) to learn more about it.
 
