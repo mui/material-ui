@@ -98,9 +98,7 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
       return () => {};
     }
     const resizeObserver = new ResizeObserver(([item]) => {
-      if (height !== item.contentRect.height) {
-        setHeight(item.contentRect.height);
-      }
+      setHeight(item.contentRect.height);
     });
     const item = masonryItemRef.current.firstChild;
     resizeObserver.observe(item);

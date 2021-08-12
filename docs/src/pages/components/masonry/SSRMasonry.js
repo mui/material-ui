@@ -9,7 +9,7 @@ export default function SSRMasonry() {
     <Box sx={{ width: 500, minHeight: 253 }}>
       <Masonry columns={4} spacing={1}>
         {heights.map((height, index) => (
-          <MasonryItem key={index} height={height}>
+          <MasonryItem key={index} defaultHeight={height}>
             <Box
               sx={{
                 textAlign: 'center',
