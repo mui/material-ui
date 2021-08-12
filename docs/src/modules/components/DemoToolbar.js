@@ -226,7 +226,7 @@ export default function DemoToolbar(props) {
   };
 
   const handleCodeLanguageClick = (event, clickedCodeVariant) => {
-    if (codeVariant !== clickedCodeVariant) {
+    if (clickedCodeVariant !== null && codeVariant !== clickedCodeVariant) {
       dispatch({
         type: ACTION_TYPES.OPTIONS_CHANGE,
         payload: {
