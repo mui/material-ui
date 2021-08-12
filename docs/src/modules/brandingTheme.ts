@@ -241,10 +241,14 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
 export function getThemedComponents(theme: Theme) {
   return {
     components: {
+      MuiButtonBase: {
+        defaultProps: {
+          disableTouchRipple: true,
+        },
+      },
       MuiButton: {
         defaultProps: {
           disableElevation: true,
-          disableTouchRipple: true,
         },
         styleOverrides: {
           sizeLarge: {

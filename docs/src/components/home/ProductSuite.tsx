@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ProductsSwitcher from 'docs/src/components/home/ProductsSwitcher';
 import CoreShowcase from 'docs/src/components/home/CoreShowcase';
-import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
+import AdvancedShowcase from 'docs/src/components/home/AdvancedShowcase';
 import StoreTemplatesBanner, {
   LazyStoreTemplateImages,
 } from 'docs/src/components/home/StoreTemplatesBanner';
@@ -43,7 +43,7 @@ const ProductSuite = () => {
             <LazyStoreTemplateImages />
             <LazyDesignKitImages />
             {productIndex === 0 && <CoreShowcase />}
-            {productIndex === 1 && <ShowcaseContainer />}
+            {productIndex === 1 && <AdvancedShowcase />}
             {productIndex === 2 && <StoreTemplatesBanner />}
             {productIndex === 3 && <DesignKits />}
           </Grid>

@@ -1,13 +1,15 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
 import NoSsr from '@material-ui/core/NoSsr';
-import Paper from '@material-ui/core/Paper';
+import Paper, { PaperProps } from '@material-ui/core/Paper';
 
 export default function ShowcaseContainer({
   preview,
+  previewSx,
   code,
 }: {
   preview?: React.ReactNode;
+  previewSx?: PaperProps['sx'];
   code?: React.ReactNode;
 }) {
   return (
@@ -16,6 +18,7 @@ export default function ShowcaseContainer({
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
+        minWidth: { lg: 600 },
       }}
     >
       <Paper
@@ -31,12 +34,7 @@ export default function ShowcaseContainer({
           borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300'),
           borderBottomLeftRadius: 0,
           borderBottomRightRadius: 0,
-          '&& *:not([class*="MuiSwitch"])': {
-            transition: '0.7s',
-          },
-          '&& [class*="MuiSwitch"]': {
-            transition: '0.3s',
-          },
+          ...previewSx,
         }}
       >
         {preview}

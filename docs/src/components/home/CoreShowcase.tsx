@@ -279,6 +279,14 @@ export default function CoreShowcase() {
           </Box>
         </ThemeProvider>
       }
+      previewSx={{
+        '&& *:not([class*="MuiSwitch"])': {
+          transition: '0.7s',
+        },
+        '&& [class*="MuiSwitch"]': {
+          transition: '0.3s',
+        },
+      }}
       code={
         <ThemeProvider theme={darkBrandingTheme}>
           {running && (

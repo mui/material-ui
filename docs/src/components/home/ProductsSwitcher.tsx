@@ -179,7 +179,7 @@ const ProductsSwitcher = ({
         onChange={(event, value) => setProductIndex(value)}
         sx={{
           display: { xs: 'none', md: 'flex' },
-          mt: 4,
+          mt: 2,
           maxWidth: 470,
           overflow: 'initial',
           '& .MuiTabs-scroller': { overflow: 'initial !important' },
