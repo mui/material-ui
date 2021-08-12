@@ -6,9 +6,9 @@ import { unstable_composeClasses as composeClasses, useButton } from '@material-
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
-import useEventCallback from '../utils/useEventCallback';
 import TouchRipple from './TouchRipple';
 import buttonBaseClasses, { getButtonBaseUtilityClass } from './buttonBaseClasses';
+import useTouchRipple from '../useTouchRipple';
 
 const useUtilityClasses = (styleProps) => {
   const { disabled, focusVisible, focusVisibleClassName, classes } = styleProps;
@@ -131,82 +131,19 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     [button],
   );
 
-  React.useEffect(() => {
-    if (button.focusVisible && focusRipple && !disableRipple) {
-      rippleRef.current.pulsate();
-    }
-  }, [button.focusVisible, disableRipple, focusRipple]);
-
-  function useRippleHandler(rippleAction) {
-    return useEventCallback((event) => {
-      if (!disableTouchRipple && rippleRef.current) {
-        rippleRef.current[rippleAction](event);
-      }
-
-      return true;
-    });
-  }
-
-  const handleMouseDown = useRippleHandler('start');
-  const handleContextMenu = useRippleHandler('stop');
-  const handleDragLeave = useRippleHandler('stop');
-  const handleMouseUp = useRippleHandler('stop');
-  const handleMouseLeave = useRippleHandler('stop');
-  const handleTouchStart = useRippleHandler('start');
-  const handleTouchEnd = useRippleHandler('stop');
-  const handleTouchMove = useRippleHandler('stop');
-  const handleBlur = useRippleHandler('stop');
-
-  /**
-   * IE11 shim for https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/repeat
-   */
-  const keydownRef = React.useRef(false);
-  const handleKeyDown = useEventCallback((event) => {
-    // Check if key is already down to avoid repeats being counted as multiple activations
-    if (
-      focusRipple &&
-      !keydownRef.current &&
-      button.focusVisible &&
-      rippleRef.current &&
-      event.key === ' '
-    ) {
-      keydownRef.current = true;
-
-      rippleRef.current.stop(event, () => {
-        rippleRef.current.start(event);
-      });
-    }
+  const rippleConfig = useTouchRipple({
+    disabled,
+    disableFocusRipple: !focusRipple,
+    disableRipple,
+    disableTouchRipple,
+    focusVisible: button.focusVisible,
+    rippleRef,
   });
-
-  const handleKeyUp = useEventCallback((event) => {
-    // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
-    // https://codesandbox.io/s/button-keyup-preventdefault-dn7f0
-    if (
-      focusRipple &&
-      event.key === ' ' &&
-      rippleRef.current &&
-      button.focusVisible &&
-      !event.defaultPrevented
-    ) {
-      keydownRef.current = false;
-      rippleRef.current.stop(event, () => {
-        rippleRef.current.pulsate(event);
-      });
-    }
-  });
-
-  const [mountedState, setMountedState] = React.useState(false);
-
-  React.useEffect(() => {
-    setMountedState(true);
-  }, []);
-
-  const enableTouchRipple = mountedState && !disableRipple && !disabled;
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
-      if (enableTouchRipple && !rippleRef.current) {
+      if (rippleConfig.enableTouchRipple && !rippleRef.current) {
         console.error(
           [
             'Material-UI: The `component` prop provided to ButtonBase is invalid.',
@@ -214,7 +151,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
           ].join('\n'),
         );
       }
-    }, [enableTouchRipple]);
+    }, [rippleConfig.enableTouchRipple]);
   }
 
   const styleProps = {
@@ -231,30 +168,16 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 
   const classes = useUtilityClasses(styleProps);
 
-  const eventHandlers = {
-    onBlur: handleBlur,
-    onContextMenu: handleContextMenu,
-    onDragLeave: handleDragLeave,
-    onKeyDown: handleKeyDown,
-    onKeyUp: handleKeyUp,
-    onMouseDown: handleMouseDown,
-    onMouseLeave: handleMouseLeave,
-    onMouseUp: handleMouseUp,
-    onTouchEnd: handleTouchEnd,
-    onTouchMove: handleTouchMove,
-    onTouchStart: handleTouchStart,
-  };
-
   return (
     <ButtonBaseRoot
       as={ComponentProp}
       className={clsx(classes.root, className)}
       styleProps={styleProps}
-      {...button.getRootProps(eventHandlers)}
+      {...button.getRootProps(rippleConfig.getRippleHandlers())}
       {...other}
     >
       {children}
-      {enableTouchRipple ? (
+      {rippleConfig.enableTouchRipple ? (
         /* TouchRipple is only needed client-side, x2 boost on the server. */
         <TouchRipple ref={rippleRef} center={centerRipple} {...TouchRippleProps} />
       ) : null}
