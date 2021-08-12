@@ -17,7 +17,7 @@ import ROUTES from 'docs/src/route';
 
 export default function AppFooter() {
   return (
-    <Container>
+    <Container component="footer">
       <Box
         sx={{
           py: 8,

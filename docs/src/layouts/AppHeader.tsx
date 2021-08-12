@@ -12,7 +12,7 @@ import ThemeModeToggle from 'docs/src/components/header/ThemeModeToggle';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { useChangeTheme } from 'docs/src/modules/ThemeContext';
 
-const Header = styled('div', {
+const Header = styled('header', {
   shouldForwardProp: (prop) => prop !== 'trigger',
 })<{ trigger: boolean }>(({ theme, trigger }) => ({
   position: 'sticky',

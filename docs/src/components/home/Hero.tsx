@@ -75,6 +75,14 @@ export default function Hero() {
                     width: { xl: 400 },
                   },
                 },
+                '&& *': {
+                  fontFamily: [
+                    '"IBM Plex Sans"',
+                    '-apple-system',
+                    'BlinkMacSystemFont',
+                    'sans-serif',
+                  ].join(','),
+                },
               }}
             >
               <Stack spacing={4} sx={{ '& > .MuiPaper-root': { maxWidth: 'none' } }}>
