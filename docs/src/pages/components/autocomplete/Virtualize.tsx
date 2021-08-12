@@ -53,10 +53,10 @@ function useResetCache(data: any) {
 }
 
 // Adapter for react-window
-const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxComponent(
-  props,
-  ref,
-) {
+const ListboxComponent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLElement>
+>(function ListboxComponent(props, ref) {
   const { children, ...other } = props;
   const itemData: React.ReactChild[] = [];
   (children as React.ReactChild[]).forEach(
@@ -85,7 +85,7 @@ const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxCompon
     if (itemCount > 8) {
       return 8 * itemSize;
     }
-    return itemData.map(getChildSize).reduce((a: number, b: number) => a + b, 0);
+    return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
   };
 
   const gridRef = useResetCache(itemCount);
@@ -144,9 +144,7 @@ export default function Virtualize() {
       sx={{ width: 300 }}
       disableListWrap
       PopperComponent={StyledPopper}
-      ListboxComponent={
-        ListboxComponent as React.ComponentType<React.HTMLAttributes<HTMLElement>>
-      }
+      ListboxComponent={ListboxComponent}
       options={OPTIONS}
       groupBy={(option) => option[0].toUpperCase()}
       renderInput={(params) => <TextField {...params} label="10,000 options" />}
