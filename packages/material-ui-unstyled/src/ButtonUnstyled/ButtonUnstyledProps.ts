@@ -1,5 +1,5 @@
 import { OverrideProps } from '@material-ui/types';
-import { UseButtonProps } from './useButton';
+import UseButtonProps from './UseButtonProps';
 
 export interface ButtonUnstyledActions {
   focusVisible(): void;

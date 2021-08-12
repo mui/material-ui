@@ -4,110 +4,10 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@material-ui/utils';
+import UseButtonProps from './UseButtonProps';
+import chainEventHandlers from '../utils/chainEventHandlers';
 
 type OtherEventHandler = () => void;
-
-export interface UseButtonProps extends UseButtonEventHandlers {
-  /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
-   * @default 'button'
-   */
-  component?: React.ElementType;
-  /**
-   * The components used for each slot inside the Button.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components?: {
-    Root?: React.ElementType;
-  };
-  /**
-   * If `true`, the component is disabled.
-   * @default false
-   */
-  disabled?: boolean;
-  href?: string;
-  ref: React.Ref<any>;
-  tabIndex?: number;
-  to?: string;
-  /**
-   * Type attribute applied when the `component` is `button`.
-   * @default 'button'
-   */
-  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
-}
-
-interface UseButtonEventHandlers {
-  onBlur?: React.FocusEventHandler;
-  onClick?: React.MouseEventHandler;
-  onFocus?: React.FocusEventHandler;
-  onFocusVisible?: React.FocusEventHandler;
-  onKeyDown?: React.KeyboardEventHandler;
-  onKeyUp?: React.KeyboardEventHandler;
-  onMouseDown?: React.MouseEventHandler;
-  onMouseLeave?: React.MouseEventHandler;
-  onMouseUp?: React.MouseEventHandler;
-}
-
-function deduplicateArray<T>(array: Array<T>): Array<T> {
-  const set = new Set(array);
-  return Array.from(set);
-}
-
-function extractEventHandlers(obj: Record<string, any>, ignoreKeys?: string[]) {
-  if (obj == null) {
-    return {};
-  }
-
-  return Object.keys(obj)
-    .filter(
-      (prop) =>
-        prop.match(/^on[A-Z]/) && typeof obj[prop] === 'function' && !ignoreKeys?.includes(prop),
-    )
-    .reduce((acc, prop) => {
-      acc[prop] = obj[prop];
-      return acc;
-    }, {} as Record<string, React.EventHandler<any>>);
-}
-
-function chainEventHandlers(
-  ownHandlers: Record<string, (event: any, otherHandler: () => void) => void>,
-  externalProps: Record<string, unknown>,
-  props: Record<string, unknown>,
-) {
-  const externalHandlers = extractEventHandlers(externalProps, ['onFocusVisible']);
-  const handlersFromProps = extractEventHandlers(props, ['onFocusVisible']);
-
-  const allHandlersKeys = deduplicateArray([
-    ...Object.keys(externalHandlers),
-    ...Object.keys(handlersFromProps),
-    ...Object.keys(ownHandlers),
-  ]);
-
-  return [...allHandlersKeys]
-    .map((key: string) => {
-      return {
-        key,
-        handler: (e: React.EventHandler<any>) => {
-          if (ownHandlers[key]) {
-            ownHandlers[key](e, () => {
-              externalHandlers[key]?.(e);
-              handlersFromProps[key]?.(e);
-            });
-          } else {
-            externalHandlers[key]?.(e);
-            handlersFromProps[key]?.(e);
-          }
-        },
-      };
-    })
-    .reduce((acc, { key, handler }) => {
-      acc[key] = handler;
-      return acc;
-    }, {} as Record<string, React.EventHandler<any>>);
-}
 
 export default function useButton(props: UseButtonProps) {
   const {
@@ -124,7 +24,7 @@ export default function useButton(props: UseButtonProps) {
 
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
 
-  const [isActive, setActive] = React.useState<boolean>(false);
+  const [active, setActive] = React.useState<boolean>(false);
 
   const {
     isFocusVisibleRef,
@@ -296,19 +196,31 @@ export default function useButton(props: UseButtonProps) {
     onMouseUp: handleMouseUp,
   };
 
-  const getRootProps = (otherHandlers?: Record<string, unknown>) => ({
-    tabIndex: disabled ? -1 : tabIndex,
-    type,
-    ref: handleRef as React.Ref<any>,
-    ...buttonProps,
-    ...chainEventHandlers(ownEventHandlers, otherHandlers ?? {}, props as any),
-  });
+  const getRootProps = (otherHandlers?: Record<string, React.EventHandler<any>>) => {
+    const chainedEventHandlers = chainEventHandlers(
+      ownEventHandlers,
+      otherHandlers ?? {},
+      props as any,
+    );
+
+    // onFocusVisible can ber present on the props, but since it's not a valid React event handler,
+    // it must not be forwarded to the inner component.
+    delete chainedEventHandlers.onFocusVisible;
+
+    return {
+      tabIndex: disabled ? -1 : tabIndex,
+      type,
+      ref: handleRef,
+      ...buttonProps,
+      ...chainedEventHandlers,
+    };
+  };
 
   return {
     getRootProps,
     focusVisible,
     setFocusVisible,
     disabled,
-    active: isActive,
+    active,
   };
 }
