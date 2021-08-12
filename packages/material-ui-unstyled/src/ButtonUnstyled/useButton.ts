@@ -210,7 +210,7 @@ export default function useButton(props: UseButtonProps) {
     return {
       tabIndex: disabled ? -1 : tabIndex,
       type,
-      ref: handleRef,
+      ref: handleRef as React.Ref<any>,
       ...buttonProps,
       ...chainedEventHandlers,
     };
