@@ -29,3 +29,10 @@ The following link leverages this demo: https://next.material-ui.com/guides/inte
 ## The idea behind the example
 
 This example demonstrates how you can setup [Create React App](https://github.com/facebookincubator/create-react-app) with [styled-components](https://styled-components.com/) as a style engine for your application.
+
+## What's next?
+
+<!-- #default-branch-switch -->
+
+You now have a working example project.
+You can head back to the documentation, continuing browsing it from the [templates](https://next.material-ui.com/getting-started/templates/) section.

@@ -9,11 +9,14 @@ const ReferencesCore = () => {
       <CompaniesGrid data={CORE_COMPANIES} />
       <Typography
         color={(theme) => (theme.palette.mode === 'dark' ? 'grey.500' : 'grey.800')}
-        maxWidth={450}
         textAlign="center"
-        mx="auto"
-        mt={4}
         variant="body2"
+        sx={{
+          minHeight: 42, // a hack to reduce CLS (layout shift)
+          mt: 4,
+          mx: 'auto',
+          maxWidth: 450,
+        }}
       >
         From startups to Fortune 500s, the world&apos;s best product teams leverage MUI to build
         their UIs.

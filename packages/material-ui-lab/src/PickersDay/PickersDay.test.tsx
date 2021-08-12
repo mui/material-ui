@@ -64,4 +64,20 @@ describe('<PickersDay />', () => {
     expect(day).to.have.text('2');
     expect(day).toHaveAccessibleName('Feb 2, 2020');
   });
+
+  it('should render children instead of the day of the month when children prop is present', () => {
+    render(
+      <PickersDay
+        day={adapterToUse.date('2020-02-02T02:02:02.000')}
+        outsideCurrentMonth={false}
+        onDaySelect={() => {}}
+      >
+        2 (free)
+      </PickersDay>,
+    );
+
+    const day = screen.getByRole('button');
+    expect(day).to.have.text('2 (free)');
+    expect(day).toHaveAccessibleName('2 (free)');
+  });
 });

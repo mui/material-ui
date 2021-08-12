@@ -24,6 +24,10 @@ The strict mode options are the same that are required for every types package
 published in the `@types/` namespace. Using a less strict `tsconfig.json` or omitting some of the libraries might cause errors. To get the best type experience with the types we recommend
 setting `"strict": true`.
 
+## Customization of `Theme`
+
+Moved to [/customization/theming/#custom-variables](/customization/theming/#custom-variables).
+
 ## Usage of `component` prop
 
 Many Material-UI components allow you to replace their root node via a `component`

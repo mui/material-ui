@@ -95,10 +95,7 @@ module.exports = {
             oneOf: [
               {
                 resourceQuery: /@material-ui\/markdown/,
-                use: [
-                  options.defaultLoaders.babel,
-                  require.resolve('@material-ui/markdown/loader'),
-                ],
+                use: require.resolve('@material-ui/markdown/loader'),
               },
               {
                 // used in some /getting-started/templates

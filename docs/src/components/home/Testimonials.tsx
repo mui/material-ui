@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useTheme } from '@material-ui/core/styles';
 import SwipeableViews from 'react-swipeable-views';
 import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
@@ -19,7 +20,9 @@ const data = [
 const UserFeedback = ({
   quote,
   profile,
+  mode,
 }: {
+  mode: 'light' | 'dark';
   quote: string;
   profile: {
     avatarSrc: string;
@@ -31,7 +34,12 @@ const UserFeedback = ({
 }) => {
   return (
     <div>
-      <Typography variant="subtitle1" color="#fff" sx={{ mb: 2 }}>
+      <Typography
+        variant="subtitle1"
+        component="div"
+        color={mode === 'dark' ? '#fff' : 'grey.900'}
+        sx={{ mb: 2 }}
+      >
         {quote}
       </Typography>
       <Box sx={{ display: 'flex' }}>
@@ -49,9 +57,13 @@ const UserFeedback = ({
           }}
         />
         <Box sx={{ ml: 2 }}>
-          <Typography color="#fff" fontWeight="bold" sx={{ mb: 1 }}>
+          <Typography
+            color={mode === 'dark' ? '#fff' : 'grey.900'}
+            fontWeight="bold"
+            sx={{ mb: 1 }}
+          >
             {profile.name},{' '}
-            <Box component="span" sx={{ color: 'grey.500', fontWeight: 'regular' }}>
+            <Box component="span" sx={{ color: 'grey.700', fontWeight: 'regular' }}>
               {profile.role}
             </Box>
           </Typography>
@@ -122,31 +134,76 @@ const TESTIMONIALS = [
   },
 ];
 
-const Testimonials = () => {
-  const [slideIndex, setSlideIndex] = React.useState(0);
-
+export function MuiStats({ mode }: { mode: 'light' | 'dark' }) {
   return (
-    <Box sx={{ bgcolor: 'primaryDark.700' }}>
+    <Grid item xs={12} md={6} container spacing={2}>
+      {data.map((item) => (
+        <Grid key={item.title} item xs={6}>
+          <Box
+            sx={{
+              height: '100%',
+              p: 1,
+              pl: 2,
+              borderLeft: '4px solid',
+              borderColor: mode === 'dark' ? 'primaryDark.600' : 'primary.100',
+            }}
+          >
+            <Typography
+              component="div"
+              variant="h3"
+              color={mode === 'dark' ? 'primary.200' : 'primary.main'}
+              fontWeight="bold"
+            >
+              {item.title}
+            </Typography>
+            <Typography color={mode === 'dark' ? 'grey.300' : 'grey.800'}>
+              {item.metadata}
+            </Typography>
+          </Box>
+        </Grid>
+      ))}
+    </Grid>
+  );
+}
+
+const Testimonials = ({ mode: modeProp }: { mode?: 'light' | 'dark' }) => {
+  const [slideIndex, setSlideIndex] = React.useState(0);
+  const globalTheme = useTheme();
+  const mode = modeProp || globalTheme.palette.mode;
+  return (
+    <Box
+      sx={{
+        ...(mode === 'dark' && {
+          bgcolor: 'primaryDark.700',
+        }),
+        ...(mode === 'light' && {
+          background: (theme) =>
+            `linear-gradient(180deg, #FFFFFF 0%, ${theme.palette.grey[50]} 100%)`,
+        }),
+      }}
+    >
       <Container sx={{ py: { xs: 4, md: 8 } }}>
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={12} md={6} sx={{ zIndex: 1 }}>
-            <Box sx={{ maxWidth: 500 }}>
+            <Box sx={{ maxWidth: { md: 500 } }}>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
                 <Box
                   sx={{
                     '& .MuiIconButton-root': {
-                      color: '#fff',
+                      color: mode === 'dark' ? '#fff' : 'primary.main',
                       border: '1px solid',
-                      borderColor: 'primaryDark.300',
+                      borderColor: mode === 'dark' ? 'primaryDark.300' : 'primary.main',
                       '&.Mui-disabled': {
                         opacity: 0.5,
-                        color: '#fff',
+                        color: mode === 'dark' ? '#fff' : 'grey.500',
+                        borderColor: mode === 'dark' ? 'primary.700' : 'grey.500',
                       },
                     },
                   }}
                 >
                   <IconButton
                     size="small"
+                    aria-label="Previous testimonial"
                     disabled={slideIndex === 0}
                     onClick={() => setSlideIndex((i) => i - 1)}
                   >
@@ -154,6 +211,7 @@ const Testimonials = () => {
                   </IconButton>
                   <IconButton
                     size="small"
+                    aria-label="Next testimonial"
                     disabled={slideIndex === TESTIMONIALS.length - 1}
                     sx={{ ml: 2 }}
                     onClick={() => setSlideIndex((i) => i + 1)}
@@ -166,6 +224,7 @@ const Testimonials = () => {
                     <Box
                       key={index}
                       role="button"
+                      aria-label={`Testimonial from ${item.profile.name}`}
                       onClick={() => setSlideIndex(index)}
                       sx={{
                         cursor: 'pointer',
@@ -180,7 +239,10 @@ const Testimonials = () => {
                         sx={{
                           height: '100%',
                           borderRadius: 1,
-                          bgcolor: index === slideIndex ? 'primaryDark.300' : 'primaryDark.500',
+                          bgcolor: mode === 'dark' ? 'primaryDark.500' : 'grey.300',
+                          ...(index === slideIndex && {
+                            bgcolor: mode === 'dark' ? 'primaryDark.300' : 'primary.main',
+                          }),
                         }}
                       />
                     </Box>
@@ -189,31 +251,12 @@ const Testimonials = () => {
               </Box>
               <SwipeableViews index={slideIndex} onChangeIndex={(index) => setSlideIndex(index)}>
                 {TESTIMONIALS.map((item) => (
-                  <UserFeedback key={item.profile.name} {...item} />
+                  <UserFeedback key={item.profile.name} mode={mode} {...item} />
                 ))}
               </SwipeableViews>
             </Box>
           </Grid>
-          <Grid item xs={12} md={6} container spacing={2}>
-            {data.map((item) => (
-              <Grid key={item.title} item xs={6}>
-                <Box
-                  sx={{
-                    height: '100%',
-                    p: 1,
-                    pl: 2,
-                    borderLeft: '4px solid',
-                    borderColor: 'primaryDark.600',
-                  }}
-                >
-                  <Typography variant="h3" color="primary.200" fontWeight="bold">
-                    {item.title}
-                  </Typography>
-                  <Typography color="grey.300">{item.metadata}</Typography>
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
+          <MuiStats mode={mode} />
         </Grid>
       </Container>
     </Box>

@@ -164,7 +164,7 @@ const styleArg = ({ theme, styleProps }: { theme: Theme; styleProps: StyleProps 
     },
   },
   [`&.${pickersDayClasses.disabled}`]: {
-    color: theme.palette.text.secondary,
+    color: theme.palette.text.disabled,
   },
   ...(!styleProps.disableMargin && {
     margin: `0 ${DAY_MARGIN}px`,
@@ -243,6 +243,7 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
     outsideCurrentMonth,
     selected = false,
     showDaysOutsideCurrentMonth = false,
+    children,
     today: isToday = false,
     ...other
   } = props;
@@ -357,14 +358,14 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
       centerRipple
       data-mui-test="day"
       disabled={disabled}
-      aria-label={utils.format(day, 'fullDate')}
+      aria-label={!children ? utils.format(day, 'fullDate') : undefined}
       tabIndex={selected ? 0 : -1}
       onFocus={handleFocus}
       onKeyDown={handleKeyDown}
       onClick={handleClick}
       {...other}
     >
-      {utils.format(day, 'dayOfMonth')}
+      {!children ? utils.format(day, 'dayOfMonth') : children}
     </PickersDayRoot>
   );
 });

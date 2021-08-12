@@ -7,6 +7,8 @@ import { ToggleButtonGroupClasses } from './toggleButtonGroupClasses';
 
 export interface ToggleButtonGroupPropsSizeOverrides {}
 
+export interface ToggleButtonGroupPropsColorOverrides {}
+
 export interface ToggleButtonGroupProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'children'> {
   /**
@@ -21,7 +23,10 @@ export interface ToggleButtonGroupProps
    * The color of a button when it is selected.
    * @default 'standard'
    */
-  color?: 'standard' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
+  color?: OverridableStringUnion<
+    'standard' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+    ToggleButtonGroupPropsColorOverrides
+  >;
   /**
    * If `true`, only allow one of the child ToggleButton values to be selected.
    * @default false
