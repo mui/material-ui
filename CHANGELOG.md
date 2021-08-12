@@ -1,5 +1,73 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-beta4
+<!-- generated comparing v5.0.0-beta.3..next -->
+_Aug 13, 2021_
+
+Big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+
+- Grid's "auto" behaviour has been fixed by @aaronlademann-wf (#27514)
+- @ryancogswell contribution fixed navigation in MenuList (#27526)
+
+### `@material-ui/core@5.0.0-beta.4`
+
+#### Breaking changes
+
+- <!-- 07 --> [Grid] Fix "auto" behavior to match natural width of its content (#27514) @aaronlademann-wf
+
+#### Changes
+
+- <!-- 30 --> [ButtonBase]: Fix tabIndex type (#27684) @kylegach
+- <!-- 13 --> [MenuList] Fix text navigation (#27526) @ryancogswell
+- <!-- 23 --> [Radio] Fix size prop forwarding with custom icons (#27656) @DouglasPds
+- <!-- 10 --> [TextField] Password visibility icons ( "visibility" ⇔ "visibility-off" ) should be reversed (#27507) @tonextone
+- <!-- 18 --> [ToggleButton] Fix handling of color prop (#27635) @oliviertassinari
+
+### `@material-ui/codemods@5.0.0-beta.4`
+
+- <!-- 20 --> [codemod] Fix filename case sensitive duplicate @oliviertassinari
+
+### `@material-ui/system@5.0.0-beta.4`
+
+- <!-- 28 --> [StyledEngineProvider] Remove unnecessary emotion cache export (#27680) @garronej
+- <!-- 11 --> [system] Fix missing filterProps in compose type (#27618) @R-Bower
+
+### `@material-ui/labs@5.0.0-alpha.42`
+
+- <!-- 27 --> [CalendarPicker] Improve contrast between enabled and disabled days (#27603) @nikitabobers
+- <!-- 32 --> [PickersDay] Render `children` if specified (#27462) @abriginets
+- <!-- 05 --> [TreeView] Fix TreeItem label overflow (#27585) @LorenzHenk
+
+### Core
+
+- <!-- 16 --> [core] Batch small changes (#27636) @oliviertassinari
+- <!-- 06 --> [core] Change range strategy to bump (#27652) @oliviertassinari
+- <!-- 24 --> [core] Fix visual regression example images (#27660) @eps1lon
+- <!-- 22 --> [core] Remove mocks of require.context in markdown loader (#27406) @eps1lon
+- <!-- 09 --> [core] Reduce use CSS when Checkbox disableRipple is set (#27568) @oliviertassinari
+- <!-- 01 --> [l10n] Add Arabic Sudan (ar-SD) locale (#27588) @YassinHussein
+- <!-- 08 --> [test] Add coverage for jss-to-styled prefix from filename (#27522) @eps1lon
+- <!-- 15 --> [test] Add current behavior for a11y name vs visible name for PickersDay (#27661) @eps1lon
+- <!-- 17 --> [test] Dodge double logging in dev mode (#27653) @oliviertassinari
+- <!-- 14 --> [test] Enable skipped test fixed by upstream React fix (#27615) @eps1lon
+- <!-- 19 --> [theme] Add missed variants in Components interface (#27453) @nikitabobers
+
+### Docs
+ 
+- <!-- 36 --> [docs] Update guides for @material-ui/styled-engine-sc installation (#27602) @mnajdova
+- <!-- 35 --> [docs] Document that @material-ui/styles is not strict mode compatible (#27639) @oliviertassinari
+- <!-- 34 --> [docs] Link to "Customization of Theme" from relevant theme interfaces (#27689) @eps1lon
+- <!-- 33 --> [docs] Update CSP page (#27627) @mnajdova
+- <!-- 29 --> [docs] Reorder and rename "enforce value" ToggleButton demo (#27678) @LorenzHenk
+- <!-- 12 --> [docs] Fix missing dependency in the DataGrid demo (#27597) @m4theushw
+- <!-- 04 --> [docs] img should have a src attribute (#27632) @oliviertassinari
+- <!-- 03 --> [docs] Add badges to Transfer List (#27634) @oliviertassinari
+- <!-- 02 --> [docs] Recommend the `direct-import` babel plugin over `transform-import` (#27335) @umidbekk
+- <!-- 31 --> [examples] Include a follow-up on the example (#27620) @matiasherranz
+- <!-- 26 --> [website] Add about page (#27599) @siriwatknp
+- <!-- 25 --> [website] Add pricing page (#27598) @siriwatknp
+
+All contributors of this release in alphabetical order: @aaronlademann-wf, @abriginets, @DouglasPds, @eps1lon, @garronej, @kylegach, @LorenzHenk, @m4theushw, @matiasherranz, @mnajdova, @nikitabobers, @oliviertassinari, @R-Bower, @ryancogswell, @siriwatknp, @tonextone, @umidbekk, @YassinHussein
 ## 5.0.0-beta.3
 
 <!-- generated comparing v5.0.0-beta.2..next -->
