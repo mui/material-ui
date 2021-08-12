@@ -679,6 +679,13 @@ const appList = [
     stars: 16700,
     dateAdded: '2021-05-06',
   },
+  {
+    title: 'Quran in English',
+    description: 'The Quran online in easy to read English.',
+    image: 'clearquran.jpg',
+    link: 'https://www.clearquran.org',
+    dateAdded: '2021-08-12',
+  },
 ];
 
 export default appList;
