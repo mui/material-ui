@@ -110,7 +110,7 @@ describe('<MasonryItem />', () => {
 
     it('should compute grid-row-end based on given height', () => {
       const { getByTestId } = render(
-        <MasonryItem height={150} data-testid="test-root">
+        <MasonryItem defaultHeight={150} data-testid="test-root">
           {children}
         </MasonryItem>,
       );
