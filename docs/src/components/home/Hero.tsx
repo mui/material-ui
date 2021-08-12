@@ -58,6 +58,7 @@ export default function Hero() {
             sx={{ maxHeight: '100%', display: { xs: 'none', md: 'initial' } }}
           >
             <Box
+              aria-hidden="true"
               sx={{
                 p: 3,
                 bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
