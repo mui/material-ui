@@ -135,7 +135,9 @@ export default function MaterialDesignDemo() {
           {active ? 'Active' : 'Inactive'} account
         </Typography>
         <Switch
-          aria-label={active ? 'disable account' : 'activate account'}
+          inputProps={{
+            'aria-label': active ? 'disable account' : 'activate account',
+          }}
           checked={active}
           onChange={(event) => setActive(event.target.checked)}
           sx={{ ml: 'auto' }}

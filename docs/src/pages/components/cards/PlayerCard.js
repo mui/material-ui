@@ -111,6 +111,7 @@ export default function PlayerCard() {
     <ThemeProvider theme={theme}>
       <Card variant="outlined" sx={{ display: 'flex', p: 1 }}>
         <Avatar
+          alt="Song cover"
           sx={{ width: 124, height: 124 }}
           src="/static/images/cards/basement-beside-myself.jpg"
           variant="rounded"
@@ -123,13 +124,17 @@ export default function PlayerCard() {
             Basement • Beside Myself
           </Typography>
           <Box sx={{ mt: 2 }}>
-            <IconButton disabled>
+            <IconButton disabled aria-label="Rewind">
               <FastRewindRounded />
             </IconButton>
-            <IconButton sx={{ mx: 2 }} onClick={() => setPaused((val) => !val)}>
+            <IconButton
+              aria-label={paused ? 'Paused' : 'Play'}
+              sx={{ mx: 2 }}
+              onClick={() => setPaused((val) => !val)}
+            >
               {paused ? <PauseRounded /> : <PlayArrowRounded />}
             </IconButton>
-            <IconButton disabled>
+            <IconButton disabled aria-label="Forward">
               <FastForwardRounded />
             </IconButton>
           </Box>

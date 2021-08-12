@@ -111,7 +111,11 @@ export default function TaskCard() {
           </Typography>
         </Box>
         <Box sx={{ display: 'flex' }}>
-          <Avatar src="/static/images/avatar/1.jpg" variant="rounded" />
+          <Avatar
+            src="/static/images/avatar/1.jpg"
+            alt="Michael Scott"
+            variant="rounded"
+          />
           <Box sx={{ ml: 1 }}>
             <Typography variant="body2" color="primary.200">
               Assigned to
@@ -120,7 +124,12 @@ export default function TaskCard() {
           </Box>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', mb: -0.5, mt: 0.5 }}>
-          <LinearProgress variant="determinate" value={60} sx={{ flexGrow: 1 }} />
+          <LinearProgress
+            aria-label="Progress"
+            variant="determinate"
+            value={60}
+            sx={{ flexGrow: 1 }}
+          />
           <Typography color="#00C8FF" variant="body2" sx={{ ml: 2 }}>
             <b>60%</b>
           </Typography>

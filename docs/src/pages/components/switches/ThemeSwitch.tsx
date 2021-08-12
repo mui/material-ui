@@ -80,12 +80,12 @@ export default function ThemeTabs() {
       }),
     [mode],
   );
-
+  const label = { inputProps: { 'aria-label': 'Themed Switch' } };
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', flexGrow: 1 }}>
-        <Switch defaultChecked />
-        <Switch />
+        <Switch defaultChecked {...label} />
+        <Switch {...label} />
       </Box>
     </ThemeProvider>
   );

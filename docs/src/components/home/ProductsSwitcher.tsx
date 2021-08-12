@@ -46,6 +46,7 @@ function ProductItem({
             color="primary"
             variant="body2"
             fontWeight="bold"
+            aria-label={`Goto ${name} product`}
             sx={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -89,7 +90,7 @@ function Highlight({
         ...(selected && {
           bgcolor: (theme) =>
             theme.palette.mode === 'dark' ? 'primaryDark.700' : 'background.paper',
-          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.200'),
+          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200'),
         }),
         ...(!selected && {
           '&:hover': {
@@ -211,7 +212,7 @@ const ProductsSwitcher = ({
             borderRadius: 1,
             border: '1px solid',
             borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.200',
+              theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200',
           },
         }}
       >
