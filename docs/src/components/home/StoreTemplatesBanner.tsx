@@ -86,7 +86,7 @@ const StoreTemplate = React.forwardRef<
           justifyContent: 'center',
         }}
       >
-        <Typography fontWeight="bold">Goto store</Typography>
+        <Typography fontWeight="bold">Go to store</Typography>
         <LaunchRounded fontSize="small" sx={{ ml: 1 }} />
       </Box>
     </Anchor>
