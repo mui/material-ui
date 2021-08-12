@@ -105,7 +105,7 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
     return () => {
       resizeObserver.unobserve(item);
     };
-  }, [isSSR, height]);
+  }, [isSSR]);
 
   const handleRef = useForkRef(ref, masonryItemRef);
   return (
