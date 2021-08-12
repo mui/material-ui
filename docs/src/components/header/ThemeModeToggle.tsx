@@ -10,7 +10,7 @@ const ThemeModeToggle = (props: { checked: boolean; onChange: (checked: boolean)
       aria-label={`Switch to ${props.checked ? 'light' : 'dark'} mode`}
       onClick={() => props.onChange(!props.checked)}
       sx={{
-        color: (theme) => (theme.palette.mode === 'dark' ? '#fff' : 'primary.main'),
+        color: (theme) => (theme.palette.mode === 'dark' ? 'grey.100' : 'primary.main'),
         borderRadius: 1,
         p: 0.5,
         border: '1px solid',

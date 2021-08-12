@@ -238,7 +238,7 @@ function buildTheme(theme: Theme): ThemeOptions {
             color:
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[100]
-                : theme.palette.primaryDark[800],
+                : theme.palette.primaryDark[700],
           },
           sizeMedium: {
             padding: theme.spacing(1, 2),

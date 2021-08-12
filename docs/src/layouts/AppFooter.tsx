@@ -179,5 +179,3 @@ export default function AppFooter() {
     </Container>
   );
 }
-
-// display="flex" alignItems="center" justifyContent="space-between"

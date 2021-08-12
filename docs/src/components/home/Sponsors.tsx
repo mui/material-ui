@@ -195,7 +195,7 @@ const Sponsors = () => {
         Our sponsors
       </Typography>
       <Typography color="text.secondary" sx={{ mb: { xs: 2, md: 4 }, maxWidth: 450 }}>
-        The continued development and maintenance of Material-UI is greatly helped by our generous
+        The continued development and maintenance of MUI is greatly helped by our generous
         sponsors.
       </Typography>
       <Grid container spacing={{ xs: 2, md: 4 }} sx={{ mb: 5 }}>
