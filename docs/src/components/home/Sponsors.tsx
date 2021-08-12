@@ -176,7 +176,7 @@ const SponsorCard = ({
         <Box sx={{ ml: 2 }}>
           <Typography variant="body2" fontWeight="bold">
             {item.name}{' '}
-            <LaunchRounded color="primary" sx={{ fontSize: 16, verticalAlign: 'sub' }} />
+            <LaunchRounded color="primary" sx={{ fontSize: 14, verticalAlign: 'middle', ml: 0.5 }} />
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {item.description}

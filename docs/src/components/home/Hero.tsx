@@ -107,10 +107,10 @@ export default function Hero() {
                   </Box>
                   <Stack spacing={2} sx={{ ml: 4 }}>
                     <ViewToggleButton />
-                    <Button size="large" variant="contained" sx={{ flexGrow: 1 }}>
+                    <Button size="medium" variant="contained" sx={{ flexGrow: 1 }}>
                       Buy Library
                     </Button>
-                    <Button size="large" variant="contained" disabled sx={{ flexGrow: 1 }}>
+                    <Button size="medium" variant="contained" disabled sx={{ flexGrow: 1 }}>
                       Buy Library
                     </Button>
                   </Stack>

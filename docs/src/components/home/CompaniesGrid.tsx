@@ -12,20 +12,20 @@ export const CORE_CUSTOMERS: Array<IconImageProps> = [
   {
     name: 'amazon',
     alt: 'Amazon logo',
-    width: 92,
-    height: 28,
+    width: 82,
+    height: 25,
   },
   {
     name: 'nasa',
     alt: 'Nasa logo',
-    width: 64,
-    height: 53,
+    width: 52,
+    height: 42,
   },
   {
     name: 'netflix',
     alt: 'Netflix logo',
-    width: 88,
-    height: 24,
+    width: 77,
+    height: 21,
   },
   {
     name: 'unity',
@@ -36,8 +36,8 @@ export const CORE_CUSTOMERS: Array<IconImageProps> = [
   {
     name: 'shutterstock',
     alt: 'Shutterstock logo',
-    width: 138,
-    height: 21,
+    width: 135,
+    height: 18,
   },
 ];
 
@@ -82,7 +82,7 @@ export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
 
 export default function CompaniesGrid({ data }: { data: Array<IconImageProps> }) {
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={4}>
       {data.map((imgProps) => (
         <Grid
           key={imgProps.name}

@@ -23,9 +23,10 @@ export default function AppFooter() {
           py: 8,
           display: 'grid',
           gridAutoColumns: '1fr',
+          alignItems: 'center',
           justifyContent: 'space-between',
           gap: (theme) => theme.spacing(4, 2),
-          gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1fr 1.75fr', lg: '1fr 1fr' },
+          gridTemplateColumns: { xs: '1fr', sm: '1fr', md: '1fr 1.75fr', lg: '1fr 1fr' },
           gridTemplateRows: 'auto',
           '& a:not(.MuiIconButton-root)': {
             mt: 1,
@@ -47,35 +48,6 @@ export default function AppFooter() {
             No spam, guaranteed.
           </Typography>
           <EmailSubscribe sx={{ mb: 1 }} />
-          <Stack spacing={1} direction="row">
-            <IconButton
-              target="_blank"
-              rel="noopener"
-              href="https://github.com/mui-org/material-ui"
-              aria-label="github"
-              title="GitHub"
-            >
-              <GitHubIcon />
-            </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener"
-              href="https://twitter.com/MaterialUI"
-              aria-label="twitter"
-              title="Twitter"
-            >
-              <TwitterIcon />
-            </IconButton>
-            <IconButton
-              target="_blank"
-              rel="noopener"
-              href="https://www.linkedin.com/company/material-ui/"
-              aria-label="linkedin"
-              title="LinkedIn"
-            >
-              <LinkedInIcon />
-            </IconButton>
-          </Stack>
         </div>
         <Box
           sx={{
@@ -165,11 +137,47 @@ export default function AppFooter() {
         </Box>
       </Box>
       <Divider />
-      <Box sx={{ py: 4 }}>
+      <Box sx={{ py: 4, display: {xs: 'block', sm: 'flex'}, alignItems: {sm: 'center'}, justifyContent: {sm: 'space-between'}}}>
         <Typography color="text.secondary" variant="body2">
           Copyright © {new Date().getFullYear()} Material-UI.
         </Typography>
+        <Box sx={{py: {xs: 2, sm:0}}}>
+        <Stack spacing={1} direction="row">
+            <IconButton
+              target="_blank"
+              rel="noopener"
+              href="https://github.com/mui-org/material-ui"
+              aria-label="github"
+              title="GitHub"
+              size="small"
+            >
+              <GitHubIcon />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener"
+              href="https://twitter.com/MaterialUI"
+              aria-label="twitter"
+              title="Twitter"
+              size="small"
+            >
+              <TwitterIcon />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener"
+              href="https://www.linkedin.com/company/material-ui/"
+              aria-label="linkedin"
+              title="LinkedIn"
+              size="small"
+            >
+              <LinkedInIcon />
+            </IconButton>
+          </Stack>
+        </Box>
       </Box>
     </Container>
   );
 }
+
+// display="flex" alignItems="center" justifyContent="space-between"

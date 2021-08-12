@@ -46,14 +46,14 @@ const ProgressBar = React.memo(function ProgressBar(props: ProgressBarProps) {
           left: 0,
           top: 0,
           ...(valueInPercent < 30 && {
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'error.800' : 'error.300'),
+            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'error.700' : 'error.200'),
           }),
           ...(valueInPercent >= 30 &&
             valueInPercent <= 70 && {
-              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'warning.800' : 'warning.500'),
+              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'warning.900' : 'warning.400'),
             }),
           ...(valueInPercent > 70 && {
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'success.800' : 'success.400'),
+            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'success.800' : 'success.300'),
           }),
           width: `${valueInPercent}%`,
         }}
@@ -83,23 +83,23 @@ const Status = React.memo((props: StatusProps) => {
         fontWeight: 'bold',
         ...(status === 'Open' && {
           borderColor: 'primary.500',
-          bgcolor: (theme) => alpha(theme.palette.primary[500], 0.2),
-          color: (theme) => (theme.palette.mode === 'dark' ? 'primary.300' : 'primary.700'),
+          bgcolor: (theme) => alpha(theme.palette.primary[500], 0.1),
+          color: (theme) => (theme.palette.mode === 'dark' ? 'primary.300' : 'primary.600'),
         }),
         ...(status === 'Filled' && {
           borderColor: 'success.500',
-          bgcolor: (theme) => alpha(theme.palette.success[500], 0.2),
-          color: (theme) => (theme.palette.mode === 'dark' ? 'success.300' : 'success.700'),
+          bgcolor: (theme) => alpha(theme.palette.success[500], 0.1),
+          color: (theme) => (theme.palette.mode === 'dark' ? 'success.500' : 'success.800'),
         }),
         ...(status === 'PartiallyFilled' && {
-          borderColor: 'warning.500',
-          bgcolor: (theme) => alpha(theme.palette.warning[500], 0.2),
-          color: (theme) => (theme.palette.mode === 'dark' ? 'warning.300' : 'warning.800'),
+          borderColor: 'warning.600',
+          bgcolor: (theme) => alpha(theme.palette.warning[500], 0.1),
+          color: (theme) => (theme.palette.mode === 'dark' ? 'warning.300' : 'warning.900'),
         }),
         ...(status === 'Rejected' && {
           borderColor: 'error.500',
-          bgcolor: (theme) => alpha(theme.palette.error[500], 0.2),
-          color: (theme) => (theme.palette.mode === 'dark' ? 'error.300' : 'error.600'),
+          bgcolor: (theme) => alpha(theme.palette.error[500], 0.1),
+          color: (theme) => (theme.palette.mode === 'dark' ? 'error.400' : 'error.600'),
         }),
       }}
     />
@@ -572,7 +572,7 @@ export default function DataTable() {
   return (
     <ShowcaseContainer
       previewSx={{
-        py: 2,
+        pt: 2,
         '& .MuiDataGrid-root': {
           border: 'none',
           bgcolor: 'background.paper',
@@ -591,7 +591,7 @@ export default function DataTable() {
           },
           '& .MuiDataGrid-columnsContainer': {
             borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.100',
+              theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200',
             bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : '#fff'),
           },
           '& .MuiDataGrid-columnHeaderTitleContainer': {
@@ -668,7 +668,7 @@ export default function DataTable() {
                 theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.100',
             }}
           >
-            <Typography color="primary.main" fontWeight={500}>
+            <Typography color="primary.main" fontWeight={600}>
               Trades, October 2020
             </Typography>
           </Box>

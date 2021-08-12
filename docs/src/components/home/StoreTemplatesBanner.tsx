@@ -132,7 +132,7 @@ export default function StoreTemplatesBanner() {
       if (appearIndexes.length < 6) {
         setAppearIndexes((current) => [...current, current.length]);
       }
-    }, 200);
+    }, 100);
     return () => {
       clearTimeout(time);
     };

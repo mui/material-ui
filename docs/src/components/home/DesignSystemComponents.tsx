@@ -390,7 +390,7 @@ const DesignSystemComponents = () => {
       <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
         Simple, accessible, declarative <GradientText>components</GradientText>.
       </Typography>
-      <Box sx={{ mt: { xs: 2, md: 4 }, mb: 2, display: 'flex', justifyContent: 'flex-end' }}>
+      <Box sx={{ mt: { xs: 2, md: 4 }, mb: 2, display: 'flex', justifyContent: {xs: 'flex-start', sm: 'flex-end'} }}>
         <StyledChip
           color="primary"
           label="Custom Theme"
@@ -522,7 +522,7 @@ const DesignSystemComponents = () => {
             color="text.secondary"
             sx={{ mb: 0.5, maxWidth: 250, mx: 'auto' }}
           >
-            Check the documentation to see the detais of every component!
+            Check the documentation to see the details of every component!
           </Typography>
           <NextLink href={ROUTES.documentation} passHref>
             <Button component="a" endIcon={<KeyboardArrowRightRounded />}>
