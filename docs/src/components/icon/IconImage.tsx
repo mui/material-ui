@@ -16,7 +16,18 @@ export type IconImageProps = {
     | 'time'
     | 'give-feedback'
     | 'join-community'
-    | 'support-us';
+    | 'support-us'
+    | 'spotify'
+    | 'amazon'
+    | 'nasa'
+    | 'netflix'
+    | 'unity'
+    | 'shutterstock'
+    | 'southwest'
+    | 'boeing'
+    | 'siemens'
+    | 'deloitte'
+    | 'volvo';
   sx?: SxProps<Theme>;
 } & JSX.IntrinsicElements['img'];
 
@@ -48,6 +59,23 @@ export default function IconImage({ name, ...props }: IconImageProps) {
     mode = '';
     width = '28';
     height = '28';
+  }
+  if (
+    [
+      'spotify',
+      'amazon',
+      'nasa',
+      'netflix',
+      'unity',
+      'shutterstock',
+      'southwest',
+      'boeing',
+      'siemens',
+      'deloitte',
+      'volvo',
+    ].indexOf(name) !== -1
+  ) {
+    category = 'companies/';
   }
   return (
     <Img
