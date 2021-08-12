@@ -292,6 +292,7 @@ const pages: readonly MuiPage[] = [
   },
   {
     pathname: '/styles',
+    title: 'Styles (legacy)',
     children: [
       { pathname: '/styles/basics' },
       { pathname: '/styles/advanced' },
