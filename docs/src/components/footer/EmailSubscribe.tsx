@@ -5,6 +5,7 @@ import Alert from '@material-ui/core/Alert';
 import AlertTitle from '@material-ui/core/AlertTitle';
 import InputBase from '@material-ui/core/InputBase';
 import Button from '@material-ui/core/Button';
+import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
 
 const Form = styled('form')(({ theme }) => ({
   display: 'inline-flex',
@@ -46,8 +47,17 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
   };
   if (form === 'sent') {
     return (
-      <Alert severity="success" sx={{ maxWidth: { sm: 400 }, ...sx }} icon={false}>
-        <AlertTitle sx={{ typography: 'body2', fontWeight: 500 }}>
+      <Alert severity="success" sx={{ maxWidth: { sm: 400 }, bgcolor: (theme) =>
+      theme.palette.mode === 'dark'
+        ? theme.palette.primaryDark[700]
+        : theme.palette.success[50], ...sx }} 
+        iconMapping={{
+          success: <CheckCircleRoundedIcon fontSize="small" sx={{color: (theme) =>
+            theme.palette.mode === 'dark'
+              ? theme.palette.success[500]
+              : theme.palette.success[700]}} />,
+        }}>
+        <AlertTitle sx={{ typography: 'body2', fontWeight: 600 }}>
           Thanks! Check your email.
         </AlertTitle>
         You should get a <strong>confirmation email</strong> soon. Open it up and confirm your email
