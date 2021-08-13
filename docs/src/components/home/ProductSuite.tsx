@@ -2,6 +2,7 @@ import * as React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
+import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ProductsSwitcher from 'docs/src/components/home/ProductsSwitcher';
@@ -43,8 +44,20 @@ const ProductSuite = () => {
           <Grid item xs={12} md={6}>
             <PrefetchStoreTemplateImages />
             <PrefetchDesignKitImages />
-            {productIndex === 0 && <CoreShowcase2 />}
-            {productIndex === 1 && <AdvancedShowcase />}
+            {productIndex === 0 && (
+              <Fade in timeout={700}>
+                <div>
+                  <CoreShowcase2 />
+                </div>
+              </Fade>
+            )}
+            {productIndex === 1 && (
+              <Fade in timeout={700}>
+                <div>
+                  <AdvancedShowcase />
+                </div>
+              </Fade>
+            )}
             {productIndex === 2 && <StoreTemplatesBanner />}
             {productIndex === 3 && <DesignKits />}
           </Grid>
