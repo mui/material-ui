@@ -7,7 +7,7 @@ githubLabel: 'component: Box'
 
 <p class="description">The Box component serves as a wrapper component for most of the CSS utility needs.</p>
 
-The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@material-ui/system`.
+The Box component packages all the [style functions](/system/basics/#all-inclusive) that are exposed in `@material-ui/system`.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
