@@ -37,13 +37,11 @@ const ImageListItemRoot = styled('li', {
   display: 'inline-block',
   position: 'relative',
   lineHeight: 0, // 🤷🏻‍♂️Fixes masonry item gap
-  /* Styles applied to the root element if `variant="standard"`. */
   ...(styleProps.variant === 'standard' && {
     // For titlebar under list item
     display: 'flex',
     flexDirection: 'column',
   }),
-  /* Styles applied to the root element if `variant="woven"`. */
   ...(styleProps.variant === 'woven' && {
     height: '100%',
     alignSelf: 'center',

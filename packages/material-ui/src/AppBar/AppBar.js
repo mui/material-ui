@@ -35,13 +35,11 @@ const AppBarRoot = styled(Paper, {
     theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[900];
 
   return {
-    /* Styles applied to the root element. */
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
     boxSizing: 'border-box', // Prevent padding issue with the Modal and fixed positioned AppBar.
     flexShrink: 0,
-    /* Styles applied to the root element if `position="fixed"`. */
     ...(styleProps.position === 'fixed' && {
       position: 'fixed',
       zIndex: theme.zIndex.appBar,
@@ -53,7 +51,6 @@ const AppBarRoot = styled(Paper, {
         position: 'absolute',
       },
     }),
-    /* Styles applied to the root element if `position="absolute"`. */
     ...(styleProps.position === 'absolute' && {
       position: 'absolute',
       zIndex: theme.zIndex.appBar,
@@ -61,7 +58,6 @@ const AppBarRoot = styled(Paper, {
       left: 'auto',
       right: 0,
     }),
-    /* Styles applied to the root element if `position="sticky"`. */
     ...(styleProps.position === 'sticky' && {
       // ⚠️ sticky is not supported by IE11.
       position: 'sticky',
@@ -70,20 +66,16 @@ const AppBarRoot = styled(Paper, {
       left: 'auto',
       right: 0,
     }),
-    /* Styles applied to the root element if `position="static"`. */
     ...(styleProps.position === 'static' && {
       position: 'static',
     }),
-    /* Styles applied to the root element if `position="relative"`. */
     ...(styleProps.position === 'relative' && {
       position: 'relative',
     }),
-    /* Styles applied to the root element if `color="default"`. */
     ...(styleProps.color === 'default' && {
       backgroundColor: backgroundColorDefault,
       color: theme.palette.getContrastText(backgroundColorDefault),
     }),
-    /* Styles applied to the root element if colors comes from palette. */
     ...(styleProps.color &&
       styleProps.color !== 'default' &&
       styleProps.color !== 'inherit' &&
@@ -91,11 +83,9 @@ const AppBarRoot = styled(Paper, {
         backgroundColor: theme.palette[styleProps.color].main,
         color: theme.palette[styleProps.color].contrastText,
       }),
-    /* Styles applied to the root element if `color="inherit"`. */
     ...(styleProps.color === 'inherit' && {
       color: 'inherit',
     }),
-    /* Styles applied to the root element if `color="transparent"`. */
     ...(styleProps.color === 'transparent' && {
       backgroundColor: 'transparent',
       color: 'inherit',

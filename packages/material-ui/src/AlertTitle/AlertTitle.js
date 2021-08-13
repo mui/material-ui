@@ -22,7 +22,6 @@ const AlertTitleRoot = styled(Typography, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })(({ theme }) => {
-  /* Styles applied to the root element. */
   return {
     fontWeight: theme.typography.fontWeightMedium,
     marginTop: -2,

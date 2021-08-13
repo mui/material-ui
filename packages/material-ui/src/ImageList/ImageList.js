@@ -27,7 +27,6 @@ const ImageListRoot = styled('ul', {
     return [styles.root, styles[styleProps.variant]];
   },
 })(({ styleProps }) => {
-  /* Styles applied to the root element. */
   return {
     display: 'grid',
     overflowY: 'auto',
@@ -35,7 +34,6 @@ const ImageListRoot = styled('ul', {
     padding: 0,
     // Add iOS momentum scrolling for iOS < 13.0
     WebkitOverflowScrolling: 'touch',
-    /* Styles applied to the root element if `variant="masonry"`. */
     ...(styleProps.variant === 'masonry' && {
       display: 'block',
     }),

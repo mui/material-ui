@@ -97,6 +97,7 @@ The list includes these transformers
 - [`modal-props`](#modal-props)
 - [`moved-lab-modules`](#moved-lab-modules)
 - [`pagination-round-circular`](#pagination-round-circular)
+- [`optimal-imports`](#optimal-imports)
 - [`root-ref`](#root-ref)
 - [`skeleton-variant`](#skeleton-variant)
 - [`styled-engine-provider`](#styled-engine-provider)
@@ -524,6 +525,74 @@ npx @material-ui/codemod@next v5.0.0/icon-button-size <path>
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#iconbutton).
 
+#### `jss-to-styled`
+
+Replace JSS styling with `makeStyles` or `withStyles` to `styled` API.
+
+```diff
+import Typography from '@material-ui/core/Typography';
+-import makeStyles from '@material-ui/styles/makeStyles';
++import { styled } from '@material-ui/core/styles';
+
+-const useStyles = makeStyles((theme) => ({
+-  root: {
+-    display: 'flex',
+-    alignItems: 'center',
+-    backgroundColor: theme.palette.primary.main
+-  },
+-  cta: {
+-    borderRadius: theme.shape.radius.
+-  },
+-  content: {
+-    color: theme.palette.common.white,
+-    fontSize: 16,
+-    lineHeight: 1.7
+-  },
+-}))
++const PREFIX = 'MyCard';
++const classes = {
++  root: `${PREFIX}-root`,
++  cta: `${PREFIX}-cta`,
++  content: `${PREFIX}-content`,
++}
++const Root = styled('div')((theme) => ({
++  [`&.${classes.root}`]: {
++    display: 'flex',
++    alignItems: 'center',
++    backgroundColor: theme.palette.primary.main
++  },
++  [`& .${classes.cta}`]: {
++    borderRadius: theme.shape.radius.
++  },
++  [`& .${classes.content}`]: {
++    color: theme.palette.common.white,
++    fontSize: 16,
++    lineHeight: 1.7
++  },
++}))
+
+export const MyCard = () => {
+  const classes = useStyles();
+  return (
+-   <div className={classes.root}>
++   <Root className={classes.root}>
+      <Typography className={classes.content}>...</Typography>
+      <Button className={classes.cta}>Go</Button>
++   </Root>
+-   </div>
+  )
+}
+```
+
+```sh
+npx @material-ui/codemod@next v5.0.0/jss-to-styled <path>
+```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#1-use-styled-or-sx-api).
+
+> **Note:** This approach converts the first element in the return statement into styled component but also increases CSS specificity to override nested children.
+> This codemod should be adopted after handling all breaking changes, [check out the migration documentation](https://next.material-ui.com/guides/migration-v4/)
+
 #### `link-underline-hover`
 
 Apply `underline="hover"` to `<Link />` that does not define `underline` prop (to get the same behavior as in v4).
@@ -655,6 +724,23 @@ npx @material-ui/codemod@next v5.0.0/pagination-round-circular <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#pagination).
+
+#### `optimal-imports`
+
+Fix private import paths.
+
+```diff
+-import red from '@material-ui/core/colors/red';
+-import createTheme from '@material-ui/core/styles/createTheme';
++import { red } from '@material-ui/core/colors';
++import { createTheme } from '@material-ui/core/styles';
+```
+
+<!-- #default-branch-switch -->
+
+```sh
+npx @material-ui/codemod@next v5.0.0/optimal-imports <path>
+```
 
 #### `root-ref`
 

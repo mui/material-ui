@@ -209,8 +209,11 @@ function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
   }
 
   if (type.type === 'TypeApplication') {
-    const arrayTypeName = resolveType(type.applications[0]);
-    return `${arrayTypeName}[]`;
+    return `${resolveType(type.expression)}<${type.applications
+      .map((typeApplication) => {
+        return resolveType(typeApplication);
+      })
+      .join(', ')}>`;
   }
 
   if (type.type === 'UnionType') {
@@ -616,7 +619,7 @@ function extractClassConditions(descriptions: any) {
     [key: string]: { description: string; conditions?: string; nodeName?: string };
   } = {};
   const stylesRegex =
-    /((Styles|Pseudo-class|Class name) applied to )(.*?)(( if | unless | when |, ){1}(.*))?\./;
+    /((Styles|State class|Class name) applied to )(.*?)(( if | unless | when |, ){1}(.*))?\./;
 
   Object.entries(descriptions).forEach(([className, description]: any) => {
     if (className) {

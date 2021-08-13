@@ -31,7 +31,6 @@ const TimelineDotRoot = styled('span', {
     ];
   },
 })(({ styleProps, theme }) => ({
-  /* Styles applied to the root element. */
   display: 'flex',
   alignSelf: 'baseline',
   borderStyle: 'solid',

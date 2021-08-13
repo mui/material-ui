@@ -35,7 +35,6 @@ const RadioRoot = styled(SwitchBase, {
     return [styles.root, styles[`color${capitalize(styleProps.color)}`]];
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
   color: theme.palette.text.secondary,
   '&:hover': {
     backgroundColor: alpha(
@@ -49,7 +48,6 @@ const RadioRoot = styled(SwitchBase, {
       backgroundColor: 'transparent',
     },
   },
-  /* Styles applied to the root element unless `color="default"`. */
   ...(styleProps.color !== 'default' && {
     [`&.${radioClasses.checked}`]: {
       color: theme.palette[styleProps.color].main,
@@ -67,7 +65,9 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiRadio' });
   const {
     checked: checkedProp,
+    checkedIcon = defaultCheckedIcon,
     color = 'primary',
+    icon = defaultIcon,
     name: nameProp,
     onChange: onChangeProp,
     size = 'medium',
@@ -98,9 +98,9 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   return (
     <RadioRoot
       type="radio"
-      icon={React.cloneElement(defaultIcon, { fontSize: size === 'small' ? 'small' : 'medium' })}
-      checkedIcon={React.cloneElement(defaultCheckedIcon, {
-        fontSize: size === 'small' ? 'small' : 'medium',
+      icon={React.cloneElement(icon, { fontSize: defaultIcon.props.fontSize ?? size })}
+      checkedIcon={React.cloneElement(checkedIcon, {
+        fontSize: defaultCheckedIcon.props.fontSize ?? size,
       })}
       styleProps={styleProps}
       classes={classes}
@@ -124,6 +124,7 @@ Radio.propTypes /* remove-proptypes */ = {
   checked: PropTypes.bool,
   /**
    * The icon to display when the component is checked.
+   * @default <RadioButtonIcon checked />
    */
   checkedIcon: PropTypes.node,
   /**
@@ -148,6 +149,7 @@ Radio.propTypes /* remove-proptypes */ = {
   disableRipple: PropTypes.bool,
   /**
    * The icon to display when the component is unchecked.
+   * @default <RadioButtonIcon />
    */
   icon: PropTypes.node,
   /**
@@ -169,7 +171,7 @@ Radio.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the state is changed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.ChangeEvent<HTMLInputElement>} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (string).
    * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */

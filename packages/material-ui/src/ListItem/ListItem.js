@@ -76,16 +76,13 @@ export const ListItemRoot = styled('div', {
   width: '100%',
   boxSizing: 'border-box',
   textAlign: 'left',
-  /* Styles applied to the component element if `disablePadding={false}`. */
   ...(!styleProps.disablePadding && {
     paddingTop: 8,
     paddingBottom: 8,
-    /* Styles applied to the component element if dense and `disablePadding={false}`. */
     ...(styleProps.dense && {
       paddingTop: 4,
       paddingBottom: 4,
     }),
-    /* Styles applied to the inner `component` element unless `disableGutters={true}` and `disablePadding={true}`. */
     ...(!styleProps.disableGutters && {
       paddingLeft: 16,
       paddingRight: 16,
@@ -116,16 +113,13 @@ export const ListItemRoot = styled('div', {
   [`&.${listItemClasses.disabled}`]: {
     opacity: theme.palette.action.disabledOpacity,
   },
-  /* Styles applied to the component element if `alignItems="flex-start"`. */
   ...(styleProps.alignItems === 'flex-start' && {
     alignItems: 'flex-start',
   }),
-  /* Styles applied to the inner `component` element if `divider={true}`. */
   ...(styleProps.divider && {
     borderBottom: `1px solid ${theme.palette.divider}`,
     backgroundClip: 'padding-box',
   }),
-  /* Styles applied to the inner `component` element if `button={true}`. */
   ...(styleProps.button && {
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
@@ -149,7 +143,6 @@ export const ListItemRoot = styled('div', {
       },
     },
   }),
-  /* Styles applied to the component element if `children` includes `ListItemSecondaryAction`. */
   ...(styleProps.hasSecondaryAction && {
     // Add some space to avoid collision as `ListItemSecondaryAction`
     // is absolutely positioned.

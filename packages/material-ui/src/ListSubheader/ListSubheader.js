@@ -38,7 +38,6 @@ const ListSubheaderRoot = styled('li', {
     ];
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
   boxSizing: 'border-box',
   lineHeight: '48px',
   listStyle: 'none',
@@ -46,24 +45,19 @@ const ListSubheaderRoot = styled('li', {
   fontFamily: theme.typography.fontFamily,
   fontWeight: theme.typography.fontWeightMedium,
   fontSize: theme.typography.pxToRem(14),
-  /* Styles applied to the root element if `color="primary"`. */
   ...(styleProps.color === 'primary' && {
     color: theme.palette.primary.main,
   }),
-  /* Styles applied to the root element if `color="inherit"`. */
   ...(styleProps.color === 'inherit' && {
     color: 'inherit',
   }),
-  /* Styles applied to the root element unless `disableGutters={true}`. */
   ...(!styleProps.disableGutters && {
     paddingLeft: 16,
     paddingRight: 16,
   }),
-  /* Styles applied to the root element if `inset={true}`. */
   ...(styleProps.inset && {
     paddingLeft: 72,
   }),
-  /* Styles applied to the root element unless `disableSticky={true}`. */
   ...(!styleProps.disableSticky && {
     position: 'sticky',
     top: 0,

@@ -1,5 +1,172 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-beta.3
+
+<!-- generated comparing v5.0.0-beta.2..next -->
+
+_Aug 6, 2021_
+
+Big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- <!-- 28 --> ✨ `jss-to-styled` codemod has been improved to support `createStyles` and `<React.Fragment>` usage (#27578) @mnajdova
+
+### `@material-ui/core@5.0.0-beta.3`
+
+- <!-- 33 --> [Modal] Restore `overflowX` and `overflowY` styles (#27487) @PCOffline
+- <!-- 07 --> [Modal] Remove unnecessary check for children.props.tabIndex (#27374) @noviicee
+- <!-- 14 --> [Select] Fix regression for icon not rotating (#27511) @mnajdova
+
+### `@material-ui/system@5.0.0-beta.3`
+
+- <!-- 38 --> [system] Added top, left, right and bottom border color CSS properties to system (#27580) @R-Bower
+
+### `@material-ui/codemod@5.0.0-beta.3`
+
+- <!-- 28 --> [codemod] Add support for `createStyles` usage in `jss-to-styled` (#27578) @mnajdova
+- <!-- 11 --> [codemod] Fix `jss-to-styled` PREFIX generation on Windows (#27491) @mnajdova
+- <!-- 39 --> [codemod] Fix `jss-to-styled` codemod to handle React.Fragment as root (#27495) @mnajdova
+
+### `@material-ui/unstyled@5.0.0-alpha.42`
+
+- <!-- 13 --> [FormControl] Create FormControlUnstyled (#27240) @michaldudak
+- <!-- 23 --> [Autocomplete] Move useAutocomplete to the Unstyled package (#27485) @michaldudak
+
+### Docs
+
+- <!-- 40 --> [docs] Fix layout shift when opening hash anchor (#27619) @oliviertassinari
+- <!-- 35 --> [docs] Add TypeScript guide for the `sx` prop (#27417) @mnajdova
+- <!-- 32 --> [docs] Hardcode listed colors in /customization/color/#playground (#27446) @eps1lon
+- <!-- 31 --> [docs] Bring back Select#onChange signature API (#27443) @eps1lon
+- <!-- 27 --> [docs] Remove backticks in the title (#27567) @oliviertassinari
+- <!-- 26 --> [docs] Fix 404 links (#27566) @oliviertassinari
+- <!-- 25 --> [docs] Use the same h2 for the customization demos (#27569) @oliviertassinari
+- <!-- 22 --> [docs] Fix syntax error in v5 migration `styled` api example (#27518) @kimbaudi
+- <!-- 21 --> [docs] Improve SSR configuration with emotion (#27496) @frandiox
+- <!-- 19 --> [docs] Change "pseudo-classes" to "state classes" (#27570) @michaldudak
+- <!-- 18 --> [docs] Add StackBlitz edit demo integration (#27391) @sulco
+- <!-- 12 --> [docs] Remove unnecessary generic argument (#27516) @bezpalko
+- <!-- 08 --> [docs] Add customization demos (#27411) @siriwatknp
+- <!-- 04 --> [docs] Restore initial descriptionRegExp logic (#27436) @oliviertassinari
+- <!-- 03 --> [docs] Polish jss-to-styled docs (#27457) @oliviertassinari
+- <!-- 34 --> [examples] Fix nextjs with styled-components example (#27583) @mnajdova
+- <!-- 29 --> [examples] Update create-react-app examples with styled-components to use package aliases (#27591) @mnajdova
+- <!-- 09 --> [examples] Improve integration examples with Next.js (#27331) @Harshita-Kanal
+- <!-- 37 --> [website] Add spicefactory as gold sponsor @oliviertassinari
+- <!-- 30 --> [website] Homepage rebranding (#27488) @siriwatknp
+- <!-- 24 --> [website] Add Flavien to team and about pages (#27575) @flaviendelangle
+- <!-- 17 --> [website] Add Ryan to Community contributors for Stack Overflow contributions (#27529) @ryancogswell
+- <!-- 02 --> [website] Add references section to home (#27444) @siriwatknp
+
+### Core
+
+- <!-- 20 --> [core] rebaseWhen=auto does not seem to work (#27565) @oliviertassinari
+- <!-- 10 --> [core] Improve instructions for the @material-ui/styles migration (#27466) @mnajdova
+- <!-- 06 --> [core] Batch small changes (#27435) @oliviertassinari
+- <!-- 01 --> [core] Receive patch and minor dependency updates (#27455) @eps1lon
+- <!-- 16 --> [test] Update coverage to include all @material-ui packages (#27521) @eps1lon
+- <!-- 15 --> [test] Lint codemod tests (#27519) @eps1lon
+- <!-- 05 --> [test] Allow tests to run for 6s before timeout (#27456) @oliviertassinari
+
+All contributors of this release in alphabetical order: @bezpalko, @eps1lon, @flaviendelangle, @frandiox, @Harshita-Kanal, @kimbaudi, @michaldudak, @mnajdova, @noviicee, @oliviertassinari, @PCOffline, @R-Bower, @ryancogswell, @siriwatknp, @sulco
+
+## 5.0.0-beta.2
+
+<!-- generated comparing v5.0.0-beta.1..next -->
+
+_Jul 26, 2021_
+
+Big thanks to the 20 contributors who made this release possible. Here are some highlights ✨:
+
+- ✨ We introduced new codemod for converting JSS styles to emotion (#27292) @siriwatknp
+  It should help adoption of v5, by making possible the removal of JSS sooner.
+
+- 🐛 The majority of other changes in this release were bug fixes, test utilities and docs.
+
+### `@material-ui/core@5.0.0-beta.2`
+
+- <!-- 54 --> [Autocomplete] Explain how the loading prop works (#27416) @michaldudak
+- <!-- 49 --> [Autocomplete] Update input value when the input changes (#27313) @turtleseason
+- <!-- 09 --> [Autocomplete] Popper is not closing when the Autocomplete is disabled (#27312) @Goodiec
+- <!-- 42 --> [Checkbox] Skip default hover styles with `disableRipple` (#27314) @faan234
+- <!-- 50 --> [Dialog] Fix override paper styles (#27423) @newsiberian
+- <!-- 17 --> [Grid] Remove width prop for rowSpacing (#27326) @sashkopavlenko
+- <!-- 33 --> [Input] Merge `componentsProps` correctly (#27371) @mnajdova
+- <!-- 55 --> [Pagination] Fixed usePagination requires @emotion in development mode (#27348) @ruppysuppy
+- <!-- 07 --> [Pagination] Fix :hover effect on previous/next button (#27304) @Aubrey-Li
+- <!-- 03 --> [Popper] Consistent timing of popper instance creation (#27233) @eps1lon
+- <!-- 45 --> [Select] Add `SelectChangeEvent` for accurate types for event in onChange prop (#27370) @eps1lon
+- <!-- 18 --> [Tabs] Use theme transition duration for the Tab animation (#27303) @florianbepunkt
+- <!-- 35 --> [TextField] Allow custom colors in FormLabel (#27337) @oliviertassinari
+- <!-- 14 --> [TextField] Fix name of componentsProps (#27338) @oliviertassinari
+- <!-- 04 --> [transitions] Make sure inline styles used for transition values if declared (#27140) @eps1lon
+
+### `@material-ui/codemod@5.0.0-beta.2`
+
+- <!-- 57 --> [codemod] Add `optimal-imports` for v5 (#27404) @mnajdova
+- <!-- 48 --> [codemod] Add jss to emotion codemod (#27292) @siriwatknp
+- <!-- 34 --> [codemod] Fix running codemod CLI on Windows (#27395) @michaldudak
+- <!-- 32 --> [codemod] Fix published version (#27384) @eps1lon
+- <!-- 10 --> [codemod] Improve README.md (#27257) @mnajdova
+
+### `@material-ui/unstyled@5.0.0-alpha.41`
+
+- <!-- 36 --> [NoSsr] Move NoSsr to the Unstyled package (#27356) @michaldudak
+
+### `@material-ui/utils@5.0.0-beta.1`
+
+- <!-- 43 --> [utils] Convert createChainedFunction to TypeScript (#27386) @eps1lon
+
+### `@material-ui/system@5.0.0-beta.2`
+
+- <!-- 39 --> [system] Compute display name of `styled` component if `name` isn't set (#27401) @eps1lon
+- <!-- 08 --> [system] Adds missing type for `shouldForwardProp` (#27310) @KLubin1
+
+### `@material-ui/lab@5.0.0-alpha.41`
+
+- <!-- 58 --> [pickers] Only accept dates from adapters in min/max props (#27392) @eps1lon
+- <!-- 15 --> [pickers] Fallback to today if all possible dates are disabled (#27294) @eps1lon
+- <!-- 06 --> [pickers] Minify error when LocalizationProvider is missing (#27295) @eps1lon
+- <!-- 01 --> [pickers] Fix Fade animation behavior change (#27283) @oliviertassinari
+
+### Docs
+
+- <!-- 56 --> [docs] Display Popper arrow correctly  (#27339) @Patil2099
+- <!-- 53 --> [docs] Focus pickers introduction on Material-UI (#27394) @eps1lon
+- <!-- 51 --> [docs] Fix wrong import path in @material-ui/styles section (#27427) @WeldonTan
+- <!-- 47 --> [docs] Update color imports  (#27321) @siriwatknp
+- <!-- 38 --> [docs] Sync params of callbacks between types and JSDoc description (#27366) @eps1lon
+- <!-- 37 --> [docs] Add migration note for synthetic native events in onChange (#27368) @eps1lon
+- <!-- 31 --> [docs] Improve unstyled docs (#27382) @oliviertassinari
+- <!-- 30 --> [docs] Update `Transitions` page (#27319) @siriwatknp
+- <!-- 29 --> [docs] Add Unstyled components docs page (#27158) @michaldudak
+- <!-- 28 --> [docs] Fix app bar regression (#27373) @mnajdova
+- <!-- 27 --> [docs] Update migration guide to have a section on nested classes (#27354) @mnajdova
+- <!-- 25 --> [docs] Convert App* components to emotion (#27150) @eps1lon
+- <!-- 23 --> [docs] Fix duplicate "Theme" header (#27353) @eps1lon
+- <!-- 22 --> [docs] Remove horizontal scrollbar in MiniDrawer (#27055) @AlvesJorge
+- <!-- 21 --> [docs] Add `makeStyles` explanation in troubleshooting (#27322) @siriwatknp
+- <!-- 20 --> [docs] Fix ExpansionPanel migration notes (#27352) @eps1lon
+- <!-- 19 --> [docs] Transpile markdown files (#27349) @eps1lon
+- <!-- 12 --> [docs] Fix typo in the word typography (#27329) @tudi2d
+- <!-- 11 --> [docs] Use actual symbol of kilogram (#27332) @getsnoopy
+- <!-- 02 --> [docs] Make migration doc easier to follow (#26948) @siriwatknp
+- <!-- 46 --> [examples] Cleanup `gatsby` examples (#27375) @mnajdova
+- <!-- 41 --> [examples] Create nextjs example using styled-components (#27088) @hboylan
+- <!-- 26 --> [examples] Update gatsby example to use custom plugin (#27357) @mnajdova
+
+### Core
+
+- <!-- 24 --> [core] Remove obsolete styles documentation (#27350) @eps1lon
+- <!-- 13 --> [core] Fix GitHub language detection (#27298) @oliviertassinari
+- <!-- 44 --> [test] Include coverage report of browser tests (#27389) @eps1lon
+- <!-- 40 --> [test] Add current behavior for getDisplayName with context components (#27402) @eps1lon
+- <!-- 05 --> [test] Enable skipped picker tests (#27268) @eps1lon
+- <!-- 52 --> [website] Add hero section to homepage (#27364) @siriwatknp
+
+All contributors of this release in alphabetical order: @AlvesJorge, @Aubrey-Li, @eps1lon, @faan234, @florianbepunkt, @g
+etsnoopy, @Goodiec, @hboylan, @KLubin1, @michaldudak, @mnajdova, @newsiberian, @oliviertassinari, @Patil2099, @ruppysupp
+y, @sashkopavlenko, @siriwatknp, @tudi2d, @turtleseason, @WeldonTan
+
 ## 5.0.0-beta.1
 
 <!-- generated comparing v5.0.0-beta.0..next -->

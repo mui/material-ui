@@ -23,7 +23,6 @@ const CardRoot = styled(Paper, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })(() => {
-  /* Styles applied to the root element. */
   return {
     overflow: 'hidden',
   };

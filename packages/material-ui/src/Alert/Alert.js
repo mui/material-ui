@@ -46,13 +46,11 @@ const AlertRoot = styled(Paper, {
   const color = styleProps.color || styleProps.severity;
 
   return {
-    /* Styles applied to the root element. */
     ...theme.typography.body2,
     borderRadius: theme.shape.borderRadius,
     backgroundColor: 'transparent',
     display: 'flex',
     padding: '6px 16px',
-    /* Styles applied to the root element if variant="standard". */
     ...(color &&
       styleProps.variant === 'standard' && {
         color: getColor(theme.palette[color].light, 0.6),
@@ -62,7 +60,6 @@ const AlertRoot = styled(Paper, {
             theme.palette.mode === 'dark' ? theme.palette[color].main : theme.palette[color].light,
         },
       }),
-    /* Styles applied to the root element if variant="outlined". */
     ...(color &&
       styleProps.variant === 'outlined' && {
         color: getColor(theme.palette[color].light, 0.6),
@@ -72,7 +69,6 @@ const AlertRoot = styled(Paper, {
             theme.palette.mode === 'dark' ? theme.palette[color].main : theme.palette[color].light,
         },
       }),
-    /* Styles applied to the root element if variant="filled". */
     ...(color &&
       styleProps.variant === 'filled' && {
         color: '#fff',
@@ -83,7 +79,6 @@ const AlertRoot = styled(Paper, {
   };
 });
 
-/* Styles applied to the icon wrapper element. */
 const AlertIcon = styled('div', {
   name: 'MuiAlert',
   slot: 'Icon',
@@ -96,7 +91,6 @@ const AlertIcon = styled('div', {
   opacity: 0.9,
 });
 
-/* Styles applied to the message wrapper element. */
 const AlertMessage = styled('div', {
   name: 'MuiAlert',
   slot: 'Message',
@@ -105,7 +99,6 @@ const AlertMessage = styled('div', {
   padding: '8px 0',
 });
 
-/* Styles applied to the action wrapper element if `action` is provided. */
 const AlertAction = styled('div', {
   name: 'MuiAlert',
   slot: 'Action',
@@ -242,7 +235,7 @@ Alert.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the component requests to be closed.
    * When provided and no `action` prop is set, a close icon button is displayed that triggers the callback when clicked.
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent} event The event source of the callback.
    */
   onClose: PropTypes.func,
   /**

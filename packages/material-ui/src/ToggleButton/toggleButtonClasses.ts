@@ -3,15 +3,15 @@ import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unsty
 export interface ToggleButtonClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Pseudo-class applied to the root element if `disabled={true}`. */
+  /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
-  /** Pseudo-class applied to the root element if `selected={true}`. */
+  /** State class applied to the root element if `selected={true}`. */
   selected: string;
-  /** Pseudo-class applied to the root element if `color="standard"`. */
+  /** State class applied to the root element if `color="standard"`. */
   standard: string;
-  /** Pseudo-class applied to the root element if `color="primary"`. */
+  /** State class applied to the root element if `color="primary"`. */
   primary: string;
-  /** Pseudo-class applied to the root element if `color="secondary"`. */
+  /** State class applied to the root element if `color="secondary"`. */
   secondary: string;
   /** Styles applied to the root element if `size="small"`. */
   sizeSmall: string;

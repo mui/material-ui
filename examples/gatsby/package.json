@@ -4,10 +4,10 @@
   "private": true,
   "dependencies": {
     "@emotion/react": "latest",
+    "@emotion/server": "latest",
     "@emotion/styled": "latest",
     "@material-ui/core": "next",
     "gatsby": "latest",
-    "gatsby-plugin-emotion": "latest",
     "gatsby-plugin-react-helmet": "latest",
     "react": "latest",
     "react-dom": "latest",

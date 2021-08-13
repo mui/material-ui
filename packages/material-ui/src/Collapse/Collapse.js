@@ -43,7 +43,6 @@ const CollapseRoot = styled('div', {
     ];
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
   height: 0,
   overflow: 'hidden',
   transition: theme.transitions.create('height'),
@@ -52,7 +51,6 @@ const CollapseRoot = styled('div', {
     width: 0,
     transition: theme.transitions.create('width'),
   }),
-  /* Styles applied to the root element when the transition has entered. */
   ...(styleProps.state === 'entered' && {
     height: 'auto',
     overflow: 'visible',
@@ -60,7 +58,6 @@ const CollapseRoot = styled('div', {
       width: 'auto',
     }),
   }),
-  /* Styles applied to the root element when the transition has exited and `collapsedSize` = 0px. */
   ...(styleProps.state === 'exited' &&
     !styleProps.in &&
     styleProps.collapsedSize === '0px' && {
@@ -68,7 +65,6 @@ const CollapseRoot = styled('div', {
     }),
 }));
 
-/* Styles applied to the outer wrapper element. */
 const CollapseWrapper = styled('div', {
   name: 'MuiCollapse',
   slot: 'Wrapper',
@@ -83,7 +79,6 @@ const CollapseWrapper = styled('div', {
   }),
 }));
 
-/* Styles applied to the inner wrapper element. */
 const CollapseWrapperInner = styled('div', {
   name: 'MuiCollapse',
   slot: 'WrapperInner',

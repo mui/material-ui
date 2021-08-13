@@ -9,13 +9,13 @@ import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import Select, { SelectChangeEvent } from '@material-ui/core/Select';
 
 export default function DialogSelect() {
   const [open, setOpen] = React.useState(false);
   const [age, setAge] = React.useState<number | string>('');
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleChange = (event: SelectChangeEvent<typeof age>) => {
     setAge(Number(event.target.value) || '');
   };
 

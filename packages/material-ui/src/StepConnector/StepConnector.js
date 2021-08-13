@@ -41,13 +41,10 @@ const StepConnectorRoot = styled('div', {
     ];
   },
 })(({ styleProps }) => ({
-  /* Styles applied to the root element. */
   flex: '1 1 auto',
-  /* Styles applied to the root element if `orientation="vertical"`. */
   ...(styleProps.orientation === 'vertical' && {
     marginLeft: 12, // half icon
   }),
-  /* Styles applied to the root element if `alternativeLabel={true}`. */
   ...(styleProps.alternativeLabel && {
     position: 'absolute',
     top: 8 + 4,
@@ -65,15 +62,12 @@ const StepConnectorLine = styled('span', {
     return [styles.line, styles[`line${capitalize(styleProps.orientation)}`]];
   },
 })(({ styleProps, theme }) => ({
-  /* Styles applied to the line element. */
   display: 'block',
   borderColor: theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
-  /* Styles applied to the root element if `orientation="horizontal"`. */
   ...(styleProps.orientation === 'horizontal' && {
     borderTopStyle: 'solid',
     borderTopWidth: 1,
   }),
-  /* Styles applied to the root element if `orientation="vertical"`. */
   ...(styleProps.orientation === 'vertical' && {
     borderLeftStyle: 'solid',
     borderLeftWidth: 1,

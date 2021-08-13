@@ -64,7 +64,9 @@ function generateGrid(globalStyles, theme, breakpoint, styleProps) {
     styles = {
       flexBasis: 'auto',
       flexGrow: 0,
+      flexShrink: 0,
       maxWidth: 'none',
+      width: 'auto',
     };
   } else {
     const columnsBreakpointValues = resolveBreakpointValues({
@@ -131,7 +133,6 @@ export function generateRowGap({ theme, styleProps }) {
 
       if (themeSpacing !== '0px') {
         return {
-          width: `calc(100% + ${getOffset(themeSpacing)})`,
           marginTop: `-${getOffset(themeSpacing)}`,
           [`& > .${gridClasses.item}`]: {
             paddingTop: getOffset(themeSpacing),

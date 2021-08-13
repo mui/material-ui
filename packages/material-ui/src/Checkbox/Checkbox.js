@@ -41,21 +41,21 @@ const CheckboxRoot = styled(SwitchBase, {
     ];
   },
 })(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
   color: theme.palette.text.secondary,
-  '&:hover': {
-    backgroundColor: alpha(
-      styleProps.color === 'default'
-        ? theme.palette.action.active
-        : theme.palette[styleProps.color].main,
-      theme.palette.action.hoverOpacity,
-    ),
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
-      backgroundColor: 'transparent',
+  ...(!styleProps.disableRipple && {
+    '&:hover': {
+      backgroundColor: alpha(
+        styleProps.color === 'default'
+          ? theme.palette.action.active
+          : theme.palette[styleProps.color].main,
+        theme.palette.action.hoverOpacity,
+      ),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
-  },
-  /* Styles applied to the root element unless `color="default"`. */
+  }),
   ...(styleProps.color !== 'default' && {
     [`&.${checkboxClasses.checked}, &.${checkboxClasses.indeterminate}`]: {
       color: theme.palette[styleProps.color].main,
@@ -103,14 +103,10 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
         ...inputProps,
       }}
       icon={React.cloneElement(icon, {
-        fontSize:
-          icon.props.fontSize === undefined && size !== 'medium' ? size : icon.props.fontSize,
+        fontSize: icon.props.fontSize ?? size,
       })}
       checkedIcon={React.cloneElement(indeterminateIcon, {
-        fontSize:
-          indeterminateIcon.props.fontSize === undefined && size !== 'medium'
-            ? size
-            : indeterminateIcon.props.fontSize,
+        fontSize: indeterminateIcon.props.fontSize ?? size,
       })}
       styleProps={styleProps}
       ref={ref}
@@ -191,7 +187,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the state is changed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.ChangeEvent<HTMLInputElement>} event The event source of the callback.
    * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
   onChange: PropTypes.func,

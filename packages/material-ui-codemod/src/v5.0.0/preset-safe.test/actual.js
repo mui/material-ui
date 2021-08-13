@@ -7,6 +7,7 @@ import {
   StylesProvider,
 } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import yellow from '@material-ui/core/colors/yellow';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -33,6 +34,7 @@ const Test = withWidth()((props) => (
   <Box
     p={2}
     bgcolor="divider"
+    color={yellow[600]}
     borderRadius={16}
     display="flex"
     alignItems="center"

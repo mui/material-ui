@@ -25,7 +25,6 @@ const StepIconRoot = styled(SvgIcon, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })(({ theme }) => ({
-  /* Styles applied to the root element. */
   display: 'block',
   transition: theme.transitions.create('color', {
     duration: theme.transitions.duration.shortest,
@@ -47,7 +46,6 @@ const StepIconText = styled('text', {
   slot: 'Text',
   overridesResolver: (props, styles) => styles.text,
 })(({ theme }) => ({
-  /* Styles applied to the SVG text element. */
   fill: theme.palette.primary.contrastText,
   fontSize: theme.typography.caption.fontSize,
   fontFamily: theme.typography.fontFamily,

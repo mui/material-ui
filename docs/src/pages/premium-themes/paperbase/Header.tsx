@@ -41,7 +41,7 @@ export default function Header(props: HeaderProps) {
             <Grid item xs />
             <Grid item>
               <Link
-                href="https://docs.paperbase.app/"
+                href="/"
                 variant="body2"
                 sx={{
                   textDecoration: 'none',

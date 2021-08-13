@@ -33,3 +33,10 @@ We are providing two Universal Module Definition (UMD) files:
 - one for production: https://unpkg.com/@material-ui/core@next/umd/material-ui.production.min.js
 
 <!-- #default-branch-switch -->
+
+## What's next?
+
+You now have a working example project.
+You can head back to the documentation, continuing browsing it from the [templates](https://next.material-ui.com/getting-started/templates/) section.
+
+<!-- #default-branch-switch -->
