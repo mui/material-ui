@@ -4,16 +4,6 @@ import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/core/Autocomplete';
 
-// ISO 3166-1 alpha-2
-// ⚠️ No support for IE11
-function countryToFlag(isoCode: string) {
-  return typeof String.fromCodePoint !== 'undefined'
-    ? isoCode
-        .toUpperCase()
-        .replace(/./g, (char) => String.fromCodePoint(char.charCodeAt(0) + 127397))
-    : isoCode;
-}
-
 export default function CountrySelect() {
   return (
     <Autocomplete
@@ -25,10 +15,14 @@ export default function CountrySelect() {
       renderOption={(props, option) => (
         <Box
           component="li"
-          sx={{ fontSize: 15, '& > span': { mr: '10px', fontSize: 18 } }}
+          sx={{ fontSize: 15, '& > img': { mr: '10px' } }}
           {...props}
         >
-          <span>{countryToFlag(option.code)}</span>
+          <img
+            loading="lazy"
+            src={`https://www.countryflags.io/${option.code}/shiny/16.png`}
+            alt={option.label}
+          />
           {option.label} ({option.code}) +{option.phone}
         </Box>
       )}
