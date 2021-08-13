@@ -17,7 +17,7 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
   /**
    * If `true`, swipe to open is disabled. This is useful in browsers where swiping triggers
    * navigation actions. Swipe to open is disabled on iOS browsers by default.
-   * @default typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent)
+   * @default typeof ['iPad', 'iPhone', 'iPod'].includes(getUserPlatform())
    */
   disableSwipeToOpen?: boolean;
   /**

@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { styled, Theme, useThemeProps } from '@material-ui/core/styles';
-import { getUserAgentPlatform } from '@material-ui/utils';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
@@ -152,8 +151,20 @@ const CalendarPickerViewTransitionContainer = styled(FadeTransitionGroup, {
   overflowY: 'auto',
 });
 
-export const defaultReduceAnimations =
-  typeof navigator !== 'undefined' && /(android)/i.test(getUserAgentPlatform());
+const getUserPlatform = (): string | null => {
+  if (typeof navigator === 'undefined') {
+    return null;
+  }
+
+  if ((navigator as any).userAgentData && (navigator as any).userAgentData.platform) {
+    return (navigator as any).userAgentData.platform;
+  }
+
+  const userPlatformResult = navigator.userAgent.match(/(android|iPad|iPhone|iPod|WebKit|Edge)/i);
+  return userPlatformResult && userPlatformResult[0];
+};
+
+export const defaultReduceAnimations = getUserPlatform() === 'android';
 
 const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends any>(
   inProps: CalendarPickerPropsWithClasses<TDate>,
