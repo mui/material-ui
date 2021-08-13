@@ -9,7 +9,7 @@ _Aug 13, 2021_
 Big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
 - Grid's "auto" behaviour has been fixed by @aaronlademann-wf (#27514)
-- @ryancogswell contribution fixed navigation in MenuList (#27526)
+- @ryancogswell contribution fixed keyboard navigation in MenuList (#27526)
 
 ### `@material-ui/core@5.0.0-beta.4`
 
