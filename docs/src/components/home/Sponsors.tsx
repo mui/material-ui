@@ -56,15 +56,15 @@ const GOLDs = [
     href: 'https://casinocanada.com/',
   },
   {
-    src: '/static/sponsors/spice-factory.png',
-    srcSet: '/static/sponsors/spice-factory-2x.png',
+    src: 'https://avatars.githubusercontent.com/u/13365608?s=40',
+    srcSet: 'https://avatars.githubusercontent.com/u/13365608?s=80 2x',
     name: 'Spice Factory',
     description: 'Next gen digital product studio.',
     href: 'https://spicefactory.co/',
   },
   {
     src: '/static/sponsors/elevator-logo.png',
-    srcSet: '/static/sponsors/elevator-logo-2x.png',
+    srcSet: '/static/sponsors/elevator-logo-2x.png 2x',
     name: 'Elevator',
     description: 'The dopest new hip hop, upcoming artsits, music.',
     href: 'https://www.elevatormag.com/',
