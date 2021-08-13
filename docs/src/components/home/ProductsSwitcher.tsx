@@ -29,10 +29,10 @@ function ProductItem({
         display: 'flex',
         p: 2,
         flexDirection: { xs: 'column', md: 'row' },
-        alignItems: { xm: 'start', md: 'center'},
+        alignItems: { xm: 'start', md: 'center' },
       }}
     >
-      <Box sx={{ mr: 2, mb: {xs: 1, md: 0}  }}>{icon}</Box>
+      <Box sx={{ mr: 2, mb: { xs: 1, md: 0 } }}>{icon}</Box>
       <Box>
         <Typography color="text.primary" variant="body2" fontWeight="bold">
           {name}
@@ -152,7 +152,7 @@ const ProductsSwitcher = ({
   ];
   return (
     <React.Fragment>
-      <Box sx={{ mt: 2 }} />
+      <Box sx={{ mt: 4 }} />
       <Box
         sx={{
           display: { md: 'none' },

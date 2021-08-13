@@ -272,6 +272,7 @@ export default function CoreShowcase() {
   }, [customized]);
   return (
     <ShowcaseContainer
+      sx={{ mt: 8 }}
       preview={
         <ThemeProvider theme={customTheme}>
           <Box sx={{ minWidth: 300, width: '80%', maxWidth: '100%' }}>
@@ -287,6 +288,7 @@ export default function CoreShowcase() {
           transition: '0.3s',
         },
       }}
+      codeSx={{ maxHeight: 460 }}
       code={
         <ThemeProvider theme={darkBrandingTheme}>
           {running && (

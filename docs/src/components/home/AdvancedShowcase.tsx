@@ -571,6 +571,7 @@ import { DataGrid } from '@material-ui/data-grid';
 export default function DataTable() {
   return (
     <ShowcaseContainer
+      sx={{ mt: 8 }}
       previewSx={{
         pt: 2,
         '& .MuiDataGrid-root': {
@@ -684,6 +685,7 @@ export default function DataTable() {
           </Box>
         </Paper>
       }
+      codeSx={{ maxHeight: 360 }}
       code={
         <Box
           sx={{

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
+import Box, { BoxProps } from '@material-ui/core/Box';
 import NoSsr from '@material-ui/core/NoSsr';
 import Paper, { PaperProps } from '@material-ui/core/Paper';
 
@@ -7,10 +7,14 @@ export default function ShowcaseContainer({
   preview,
   previewSx,
   code,
+  codeSx,
+  sx,
 }: {
   preview?: React.ReactNode;
   previewSx?: PaperProps['sx'];
   code?: React.ReactNode;
+  codeSx?: BoxProps['sx'];
+  sx?: BoxProps['sx'];
 }) {
   return (
     <Box
@@ -19,6 +23,7 @@ export default function ShowcaseContainer({
         flexDirection: 'column',
         height: '100%',
         minWidth: { lg: 600 },
+        ...sx,
       }}
     >
       <Paper
@@ -47,7 +52,6 @@ export default function ShowcaseContainer({
           maxWidth: '100%',
           position: 'relative',
           minHeight: 200,
-          maxHeight: 516,
           borderWidth: '0 1px 1px 1px',
           borderStyle: 'solid',
           borderColor: (theme) =>
@@ -55,6 +59,7 @@ export default function ShowcaseContainer({
           bgcolor: 'primaryDark.800',
           borderBottomLeftRadius: 10,
           borderBottomRightRadius: 10,
+          ...codeSx,
         }}
       >
         <NoSsr>{code}</NoSsr>
