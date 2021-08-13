@@ -90,6 +90,7 @@ export const getMaterialThemeFrames = (theme: Theme) => {
               border: '1px solid',
               borderColor: theme.palette.grey[200],
               color: theme.palette.grey[800],
+              borderRadius: 10,
               '&:hover, &.Mui-focusVisible': {
                 borderColor: theme.palette.primary.main,
                 color: theme.palette.primary.main,
@@ -128,6 +129,19 @@ export const getMaterialThemeFrames = (theme: Theme) => {
             thumb: {
               width: 14,
               height: 14,
+            },
+          },
+        },
+      },
+    },
+    {
+      components: {
+        MuiChip: {
+          styleOverrides: {
+            outlined: {
+              backgroundColor: theme.palette.success[100],
+              color: theme.palette.success[700],
+              fontWeight: 500,
             },
           },
         },

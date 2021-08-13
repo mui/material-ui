@@ -1,14 +1,17 @@
 import * as React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Box from '@material-ui/core/Box';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import Card from '@material-ui/core/Card';
-import Switch from '@material-ui/core/Switch';
-import Typography from '@material-ui/core/Typography';
-import Edit from '@material-ui/icons/Edit';
-import LocationOn from '@material-ui/icons/LocationOn';
-import BusinessRounded from '@material-ui/icons/BusinessRounded';
+import MuiAvatar from '@material-ui/core/Avatar';
+import MuiBox from '@material-ui/core/Box';
+import MuiChip from '@material-ui/core/Chip';
+import MuiDivider from '@material-ui/core/Divider';
+import MuiIconButton from '@material-ui/core/IconButton';
+import MuiCard from '@material-ui/core/Card';
+import MuiSwitch from '@material-ui/core/Switch';
+import MuiTypography from '@material-ui/core/Typography';
+import MuiStack from '@material-ui/core/Stack';
+import MuiEdit from '@material-ui/icons/Edit';
+import MuiLocationOn from '@material-ui/icons/LocationOn';
+// import MuiBusinessRounded from '@material-ui/icons/BusinessRounded';
+import { withPointer } from 'docs/src/components/home/ElementPointer';
 
 export const demoCode = {
   imports: (themed = false) => `import * as React from 'react';
@@ -89,51 +92,82 @@ ${themed ? `import { ThemeProvider, createTheme } from '@material-ui/core/styles
   },
 };
 
+export const componentCode = `<Card>
+  <Box sx={{ p: 2, display: 'flex' }}>
+    <Avatar variant="rounded" src="avatar1.jpg" />
+    <Stack spacing={0.5}>
+      <Typography fontWeight={600}>Michael Scott</Typography>
+      <Typography variant="body2" color="text.secondary">
+        <LocationOn /> Scranton, PA
+      </Typography>
+    </Stack>
+    <IconButton>
+      <Edit fontSize="small" />
+    </IconButton>
+  </Box>
+  <Divider />
+  <Stack
+    direction="row"
+    alignItems="center"
+    justifyContent="space-between"
+    sx={{ px: 2, py: 1, bgcolor: 'background.default' }}
+  >
+    <Chip variant="outlined">Active account</Chip>
+    <Switch />
+  </Stack>
+</Card>
+`;
+
+const Box = MuiBox;
+const Avatar = withPointer(MuiAvatar, { id: 'avatar', name: 'Avatar' });
+const Divider = withPointer(MuiBox, { id: 'divider', name: 'Divider' });
+const Chip = withPointer(MuiChip, { id: 'chip', name: 'Chip' });
+const IconButton = withPointer(MuiIconButton, { id: 'iconButton', name: 'IconButton' });
+const Card = withPointer(MuiCard, { id: 'card', name: 'Card' });
+const Switch = withPointer(MuiSwitch, { id: 'switch', name: 'Switch' });
+const Typography = withPointer(MuiTypography, { id: 'typography', name: 'Typography' });
+const Typography2 = withPointer(MuiTypography, { id: 'typography2', name: 'Typography' });
+const Stack = withPointer(MuiStack, { id: 'stack', name: 'Stack' });
+const Stack2 = withPointer(MuiStack, { id: 'stack2', name: 'Stack' });
+const Edit = withPointer(MuiEdit, { id: 'editIcon', name: 'EditIcon' });
+const LocationOn = withPointer(MuiLocationOn, { id: 'locationOnIcon', name: 'LocationOnIcon' });
+// const BusinessRounded = withPointer(MuiBusinessRounded, { id: 'businessIcon', name: 'BusinessIcon' });
+
 export default function MaterialDesignDemo() {
   const [active, setActive] = React.useState(true);
   return (
     <Card sx={{ overflow: 'hidden' }}>
       <Box sx={{ p: 2, display: 'flex' }}>
         <Avatar variant="rounded" src="/static/images/avatar/1.jpg" alt="" />
-        <Box
+        <Stack
+          spacing={0.5}
+          alignItems="flex-start"
           sx={{
             mx: 2,
             flexGrow: 1,
-            '& svg': { fontSize: 20, verticalAlign: 'bottom', mr: 1 },
+            '& svg': { fontSize: 20, verticalAlign: 'bottom', mr: 0.5 },
           }}
         >
           <Typography fontWeight={600}>Michael Scott</Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+          <Typography2 variant="body2" color="text.secondary">
             <LocationOn />
             Scranton, PA
-          </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-            <BusinessRounded />
-            Michael Scott
-          </Typography>
-        </Box>
-        <IconButton aria-label="Edit" size="small" sx={{ alignSelf: 'flex-start' }}>
+          </Typography2>
+        </Stack>
+        <IconButton aria-label="Edit" sx={{ alignSelf: 'flex-start' }}>
           <Edit fontSize="small" />
         </IconButton>
       </Box>
-      <Divider />
-      <Box
-        sx={{ px: 2, py: 1, display: 'flex', alignItems: 'center', bgcolor: 'background.default' }}
+      <Divider sx={{ my: -1, py: 1, position: 'relative', zIndex: 1 }}>
+        <MuiDivider />
+      </Divider>
+      <Stack2
+        direction="row"
+        alignItems="center"
+        justifyContent="space-between"
+        sx={{ px: 2, py: 1, bgcolor: 'background.default' }}
       >
-        <Box
-          sx={{
-            width: 10,
-            height: 10,
-            borderRadius: 10,
-            bgcolor: active ? 'success.main' : 'grey.500',
-            border: '2px solid',
-            borderColor: active ? 'success.light' : 'grey.300',
-            mr: 1.5,
-          }}
-        />
-        <Typography variant="body2" fontWeight={500} color={active ? 'success.main' : 'grey.700'}>
-          {active ? 'Active' : 'Inactive'} account
-        </Typography>
+        <Chip label="Active account" color="success" size="small" variant="outlined" />
         <Switch
           inputProps={{
             'aria-label': active ? 'disable account' : 'activate account',
@@ -142,7 +176,7 @@ export default function MaterialDesignDemo() {
           onChange={(event) => setActive(event.target.checked)}
           sx={{ ml: 'auto' }}
         />
-      </Box>
+      </Stack2>
     </Card>
   );
 }

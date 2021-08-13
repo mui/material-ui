@@ -5,7 +5,8 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ProductsSwitcher from 'docs/src/components/home/ProductsSwitcher';
-import CoreShowcase from 'docs/src/components/home/CoreShowcase';
+// import CoreShowcase from 'docs/src/components/home/CoreShowcase';
+import CoreShowcase2 from 'docs/src/components/home/CoreShowcase2';
 import AdvancedShowcase from 'docs/src/components/home/AdvancedShowcase';
 import StoreTemplatesBanner, {
   PrefetchStoreTemplateImages,
@@ -42,7 +43,7 @@ const ProductSuite = () => {
           <Grid item xs={12} md={6}>
             <PrefetchStoreTemplateImages />
             <PrefetchDesignKitImages />
-            {productIndex === 0 && <CoreShowcase />}
+            {productIndex === 0 && <CoreShowcase2 />}
             {productIndex === 1 && <AdvancedShowcase />}
             {productIndex === 2 && <StoreTemplatesBanner />}
             {productIndex === 3 && <DesignKits />}
