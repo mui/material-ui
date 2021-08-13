@@ -151,7 +151,7 @@ const CalendarPickerViewTransitionContainer = styled(FadeTransitionGroup, {
   overflowY: 'auto',
 });
 
-const isAndroidPlatform = (): boolean => {
+const isAndroidDevice = (): boolean => {
   if (typeof navigator === 'undefined') {
     return false;
   }
@@ -163,7 +163,7 @@ const isAndroidPlatform = (): boolean => {
   return /(android)/i.test(navigator.userAgent);
 };
 
-export const defaultReduceAnimations = isAndroidPlatform();
+export const defaultReduceAnimations = isAndroidDevice();
 
 const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends any>(
   inProps: CalendarPickerPropsWithClasses<TDate>,
