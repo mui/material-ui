@@ -15,7 +15,7 @@ const content = [
   },
   {
     icon: '/static/branding/mui-pencil.svg',
-    title: 'Easy customized',
+    title: 'Easily customized',
     description:
       'Enjoy the power of our components without sacrificing the styles you want. Tweak how your components render down to the very last class.',
   },
@@ -23,7 +23,7 @@ const content = [
     icon: '/static/branding/mui-docs.svg',
     title: 'Superb documentation',
     description:
-      "Our docs were shaped throughout the years with the help and experience of our trusted 2k people open-source community. It's all there!",
+      "Our docs were shaped throughout the years with the help and experience of our trusted +2000 member open-source community. It's all there!",
   },
   {
     icon: '/static/branding/mui-eye.svg',

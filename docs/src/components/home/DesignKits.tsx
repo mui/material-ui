@@ -61,7 +61,7 @@ const DesignTool = React.forwardRef<HTMLAnchorElement, { brand: 'figma' | 'sketc
             opacity: 0,
             top: 0,
             left: 0,
-            bgcolor: (theme) => alpha(theme.palette.primaryDark[500], 0.8),
+            bgcolor: (theme) => alpha(theme.palette.primary[500], 0.5),
             color: '#fff',
             display: 'flex',
             flexDirection: 'column',
@@ -108,7 +108,7 @@ export default function DesignKits() {
       if (appearIndexes.length < 6) {
         setAppearIndexes((current) => [...current, current.length]);
       }
-    }, 200);
+    }, 100);
     return () => {
       clearTimeout(time);
     };

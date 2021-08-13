@@ -176,7 +176,7 @@ const SponsorCard = ({
         <Box sx={{ ml: 2 }}>
           <Typography variant="body2" fontWeight="bold">
             {item.name}{' '}
-            <LaunchRounded color="primary" sx={{ fontSize: 16, verticalAlign: 'sub' }} />
+            <LaunchRounded color="primary" sx={{ fontSize: 14, verticalAlign: 'middle', ml: 0.5 }} />
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {item.description}
@@ -195,10 +195,10 @@ const Sponsors = () => {
         Our sponsors
       </Typography>
       <Typography color="text.secondary" sx={{ mb: { xs: 2, md: 4 }, maxWidth: 450 }}>
-        The continued development and maintenance of Material-UI is greatly helped by our generous
+        The continued development and maintenance of MUI is greatly helped by our generous
         sponsors.
       </Typography>
-      <Grid container spacing={{ xs: 2, md: 4 }} sx={{ mb: 5 }}>
+      <Grid container spacing={{ xs: 2, md: 4 }} sx={{ mb: 4 }}>
         {DIAMONDs.map((item) => (
           <Grid item key={item.name} xs={12} sm={6} md={4}>
             <SponsorCard item={item} bottom={<Label color="primary">Diamond sponsor</Label>} />
@@ -223,6 +223,7 @@ const Sponsors = () => {
               href="mailto:diamond@mui.com"
               target="_blank"
               rel="noopener noreferrer"
+              color="primary"
               sx={{ mr: 2, border: '1px solid', borderColor: 'divider' }}
             >
               <AddRounded />
@@ -242,7 +243,7 @@ const Sponsors = () => {
           </Paper>
         </Grid>
       </Grid>
-      <Grid container columnSpacing={{ xs: 2, md: 4 }} rowSpacing={2}>
+      <Grid container columnSpacing={{ xs: 2, md: 4 }} rowSpacing={4}>
         {GOLDs.map((item) => (
           <Grid item key={item.name} xs={12} sm={6} md={4} lg={3}>
             <SponsorCard

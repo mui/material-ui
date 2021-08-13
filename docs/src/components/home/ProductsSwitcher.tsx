@@ -6,7 +6,6 @@ import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import Stack from '@material-ui/core/Stack';
 import IconImage from 'docs/src/components/icon/IconImage';
-import SvgMuiX from 'docs/src/icons/SvgMuiX';
 
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 import ROUTES from 'docs/src/route';
@@ -30,9 +29,10 @@ function ProductItem({
         display: 'flex',
         p: 2,
         flexDirection: { xs: 'column', md: 'row' },
+        alignItems: { xm: 'start', md: 'center'},
       }}
     >
-      <Box sx={{ mr: 2 }}>{icon}</Box>
+      <Box sx={{ mr: 2, mb: {xs: 1, md: 0}  }}>{icon}</Box>
       <Box>
         <Typography color="text.primary" variant="body2" fontWeight="bold">
           {name}
@@ -129,7 +129,7 @@ const ProductsSwitcher = ({
       icon={<IconImage name="product-advanced" />}
       name={
         <Box component="span" display="inline-flex" alignItems="center">
-          Advanced&nbsp; <SvgMuiX />
+          Advanced&nbsp;
         </Box>
       }
       description="Powerful and robust components for your complex apps."

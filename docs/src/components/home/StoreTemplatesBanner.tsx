@@ -86,7 +86,7 @@ const StoreTemplate = React.forwardRef<
           justifyContent: 'center',
         }}
       >
-        <Typography fontWeight="bold">Goto store</Typography>
+        <Typography fontWeight="bold">Go to store</Typography>
         <LaunchRounded fontSize="small" sx={{ ml: 1 }} />
       </Box>
     </Anchor>
@@ -132,7 +132,7 @@ export default function StoreTemplatesBanner() {
       if (appearIndexes.length < 6) {
         setAppearIndexes((current) => [...current, current.length]);
       }
-    }, 200);
+    }, 100);
     return () => {
       clearTimeout(time);
     };
