@@ -1,6 +1,6 @@
 ### [Versions](https://material-ui.com/versions/)
 
-## 5.0.0-beta4
+## 5.0.0-beta.4
 
 <!-- generated comparing v5.0.0-beta.3..next -->
 
@@ -19,7 +19,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 
 #### Changes
 
-- <!-- 30 --> [ButtonBase]: Fix tabIndex type (#27684) @kylegach
+- <!-- 30 --> [ButtonBase] Fix tabIndex type (#27684) @kylegach
 - <!-- 13 --> [MenuList] Fix text navigation (#27526) @ryancogswell
 - <!-- 23 --> [Radio] Fix size prop forwarding with custom icons (#27656) @DouglasPds
 - <!-- 10 --> [TextField] Password visibility icons ( "visibility" ⇔ "visibility-off" ) should be reversed (#27507) @tonextone
