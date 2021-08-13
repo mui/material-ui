@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { styled, Theme, useThemeProps } from '@material-ui/core/styles';
+import { getUserAgentPlatform } from '@material-ui/utils';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
@@ -152,7 +153,7 @@ const CalendarPickerViewTransitionContainer = styled(FadeTransitionGroup, {
 });
 
 export const defaultReduceAnimations =
-  typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent);
+  typeof navigator !== 'undefined' && /(android)/i.test(getUserAgentPlatform());
 
 const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends any>(
   inProps: CalendarPickerPropsWithClasses<TDate>,

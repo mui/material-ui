@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { elementTypeAcceptingRef } from '@material-ui/utils';
+import { elementTypeAcceptingRef, getUserAgentPlatform } from '@material-ui/utils';
 import { useThemeProps } from '@material-ui/system';
 import { NoSsr } from '@material-ui/unstyled';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
@@ -130,7 +130,7 @@ function computeHasNativeHandler({ domTreeShapes, start, current, anchor }) {
   });
 }
 
-const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(navigator.userAgent);
+const iOS = typeof navigator !== 'undefined' && /iPad|iPhone|iPod/.test(getUserAgentPlatform());
 const transitionDurationDefault = { enter: duration.enteringScreen, exit: duration.leavingScreen };
 
 const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) {
