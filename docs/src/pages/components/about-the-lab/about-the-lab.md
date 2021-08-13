@@ -46,7 +46,7 @@ In order to benefit from the [CSS overrides](/customization/theme-components/#gl
 // When using TypeScript 4.x and above
 import type {} from '@material-ui/lab/themeAugmentation';
 // When using TypeScript 3.x and below
-import from '@material-ui/lab/themeAugmentation';
+import '@material-ui/lab/themeAugmentation';
 
 const theme = createTheme({
   components: {
