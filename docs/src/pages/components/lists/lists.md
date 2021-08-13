@@ -47,7 +47,7 @@ Below is an interactive demo that lets you explore the visual results of the dif
 
 ## Align list items
 
-You should change the list item alignment when displaying 3 lines or more, set the `alignItems` prop to "flex-start".
+To change the list item alignment when displaying 3 lines or more, set the `alignItems` prop to "flex-start".
 
 {{"demo": "pages/components/lists/AlignItemsList.js", "bg": true}}
 
