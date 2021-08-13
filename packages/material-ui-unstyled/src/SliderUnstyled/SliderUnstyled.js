@@ -147,7 +147,7 @@ const Identity = (x) => x;
 let cachedSupportsTouchActionNone;
 function doesSupportTouchActionNone() {
   if (cachedSupportsTouchActionNone === undefined) {
-    if (CSS && CSS.supports) {
+    if (typeof CSS !== 'undefined' && typeof CSS.supports === 'function') {
       cachedSupportsTouchActionNone = CSS.supports('touch-action: none');
     }
 
