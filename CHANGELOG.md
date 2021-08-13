@@ -21,6 +21,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 
 - <!-- 30 --> [ButtonBase] Fix tabIndex type (#27684) @kylegach
 - <!-- 13 --> [MenuList] Fix text navigation (#27526) @ryancogswell
+- <!-- 01 --> [l10n] Add Arabic Sudan (ar-SD) locale (#27588) @YassinHussein
 - <!-- 23 --> [Radio] Fix size prop forwarding with custom icons (#27656) @DouglasPds
 - <!-- 10 --> [TextField] Password visibility icons ( "visibility" ⇔ "visibility-off" ) should be reversed (#27507) @tonextone
 - <!-- 18 --> [ToggleButton] Fix handling of color prop (#27635) @oliviertassinari
@@ -40,20 +41,6 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 - <!-- 32 --> [PickersDay] Render `children` if specified (#27462) @abriginets
 - <!-- 05 --> [TreeView] Fix TreeItem label overflow (#27585) @LorenzHenk
 
-### Core
-
-- <!-- 16 --> [core] Batch small changes (#27636) @oliviertassinari
-- <!-- 06 --> [core] Change range strategy to bump (#27652) @oliviertassinari
-- <!-- 24 --> [core] Fix visual regression example images (#27660) @eps1lon
-- <!-- 22 --> [core] Remove mocks of require.context in markdown loader (#27406) @eps1lon
-- <!-- 09 --> [core] Reduce use CSS when Checkbox disableRipple is set (#27568) @oliviertassinari
-- <!-- 01 --> [l10n] Add Arabic Sudan (ar-SD) locale (#27588) @YassinHussein
-- <!-- 08 --> [test] Add coverage for jss-to-styled prefix from filename (#27522) @eps1lon
-- <!-- 15 --> [test] Add current behavior for a11y name vs visible name for PickersDay (#27661) @eps1lon
-- <!-- 17 --> [test] Dodge double logging in dev mode (#27653) @oliviertassinari
-- <!-- 14 --> [test] Enable skipped test fixed by upstream React fix (#27615) @eps1lon
-- <!-- 19 --> [theme] Add missed variants in Components interface (#27453) @nikitabobers
-
 ### Docs
 
 - <!-- 36 --> [docs] Update guides for @material-ui/styled-engine-sc installation (#27602) @mnajdova
@@ -68,6 +55,19 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 - <!-- 31 --> [examples] Include a follow-up on the example (#27620) @matiasherranz
 - <!-- 26 --> [website] Add about page (#27599) @siriwatknp
 - <!-- 25 --> [website] Add pricing page (#27598) @siriwatknp
+
+### Core
+
+- <!-- 16 --> [core] Batch small changes (#27636) @oliviertassinari
+- <!-- 06 --> [core] Change range strategy to bump (#27652) @oliviertassinari
+- <!-- 24 --> [core] Fix visual regression example images (#27660) @eps1lon
+- <!-- 22 --> [core] Remove mocks of require.context in markdown loader (#27406) @eps1lon
+- <!-- 09 --> [core] Reduce use CSS when Checkbox disableRipple is set (#27568) @oliviertassinari
+- <!-- 08 --> [test] Add coverage for jss-to-styled prefix from filename (#27522) @eps1lon
+- <!-- 15 --> [test] Add current behavior for a11y name vs visible name for PickersDay (#27661) @eps1lon
+- <!-- 17 --> [test] Dodge double logging in dev mode (#27653) @oliviertassinari
+- <!-- 14 --> [test] Enable skipped test fixed by upstream React fix (#27615) @eps1lon
+- <!-- 19 --> [theme] Add missed variants in Components interface (#27453) @nikitabobers
 
 All contributors of this release in alphabetical order: @aaronlademann-wf, @abriginets, @DouglasPds, @eps1lon, @garronej, @kylegach, @LorenzHenk, @m4theushw, @matiasherranz, @mnajdova, @nikitabobers, @oliviertassinari, @R-Bower, @ryancogswell, @siriwatknp, @tonextone, @umidbekk, @YassinHussein
 
