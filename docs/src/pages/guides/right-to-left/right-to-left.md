@@ -38,7 +38,7 @@ const theme = createTheme({
 
 ### 3. Install the rtl plugin
 
-When using either `emotion` or `styled-components`, you need this stylis plugin to flip the styles: [stylis-plugin-rtl](https://github.com/styled-components/stylis-plugin-rtl).
+When using either `emotion` or `styled-components`, you need [`stylis-plugin-rtl`](https://github.com/styled-components/stylis-plugin-rtl) to flip the styles.
 
 ```sh
 npm install stylis stylis-plugin-rtl
