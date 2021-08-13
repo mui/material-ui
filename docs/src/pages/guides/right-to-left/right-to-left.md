@@ -95,11 +95,8 @@ function RTL(props) {
 
 #### 4.3 JSS
 
-Having installed the plugin in your project, Material-UI components still require it to be loaded by the JSS instance, as described below.
-Internally, withStyles is using this JSS plugin when `direction: 'rtl'` is set on the theme.
-Head to the [plugin README](https://github.com/alitaheri/jss-rtl) to learn more about it.
-
-Once you have created a new JSS instance with the plugin, you need to make it available to all the components in the component tree.
+After installing the plugin in your project, you need to configure the JSS instance to load it.
+The next step is to make the new JSS instance available to all the components in the component tree.
 The [`StylesProvider`](/styles/api/#stylesprovider) component enables this:
 
 ```jsx
@@ -116,6 +113,9 @@ function RTL(props) {
   return <StylesProvider jss={jss}>{props.children}</StylesProvider>;
 }
 ```
+
+For more information on the plugin, head to the [plugin README](https://github.com/alitaheri/jss-rtl).
+**Note**: Internally, withStyles is using this JSS plugin when `direction: 'rtl'` is set on the theme.
 
 ## Demo
 
