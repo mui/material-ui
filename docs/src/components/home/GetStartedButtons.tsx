@@ -10,7 +10,7 @@ import ROUTES from 'docs/src/route';
 
 export default function GetStartedButtons(props: BoxProps) {
   const [copied, setCopied] = React.useState(false);
-  const installation = 'npm install @mui/core';
+  const installation = 'npm install @mui/core-material';
   const handleCopy = () => {
     setCopied(true);
     copy(installation).then(() => {

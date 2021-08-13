@@ -44,12 +44,14 @@ const Grid = styled('div')(({ theme }) => ({
   // borderColor: theme.palette.divider,
   display: 'grid',
   gridTemplateColumns: '1fr',
-  gridAutoRows: '240px',
+  gridAutoRows: 240,
   [theme.breakpoints.up('sm')]: {
+    gridAutoRows: 260,
     paddingTop: 1,
     gridTemplateColumns: '1fr 1fr',
   },
   [theme.breakpoints.up('md')]: {
+    gridAutoRows: 280,
     gridTemplateColumns: '1fr 1fr 1fr',
   },
   '& > div': {
@@ -204,11 +206,17 @@ function buildTheme(theme: Theme): ThemeOptions {
       ...theme.palette,
       primary: {
         ...theme.palette.primaryDark,
-        main: theme.palette.primaryDark[800],
+        main:
+          theme.palette.mode === 'dark'
+            ? theme.palette.primaryDark[500]
+            : theme.palette.primaryDark[800],
       },
       grey: theme.palette.grey,
       info: {
         main: theme.palette.primaryDark[600],
+      },
+      background: {
+        paper: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#fff',
       },
     },
     shape: {
@@ -264,6 +272,17 @@ function buildTheme(theme: Theme): ThemeOptions {
         styleOverrides: {
           root: {
             padding: theme.spacing(2),
+            '& .MuiAlert-icon': {
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary[500]
+                  : theme.palette.primaryDark[800],
+            },
+          },
+          filled: {
+            '& .MuiAlert-icon': {
+              color: theme.palette.mode === 'dark' ? theme.palette.primary[500] : '#fff',
+            },
           },
           message: {
             padding: 0,
@@ -364,7 +383,10 @@ function buildTheme(theme: Theme): ThemeOptions {
             padding: theme.spacing(1, 2),
             '& svg': {
               fontSize: 18,
-              color: theme.palette.primaryDark[400],
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary[500]
+                  : theme.palette.primaryDark[400],
             },
           },
         },
