@@ -130,20 +130,19 @@ function computeHasNativeHandler({ domTreeShapes, start, current, anchor }) {
   });
 }
 
-const getUserPlatform = () => {
+const isMobileAppleDevice = () => {
   if (typeof navigator === 'undefined') {
     return null;
   }
 
   if (navigator.userAgentData && navigator.userAgentData.platform) {
-    return navigator.userAgentData.platform;
+    return /iPad|iPhone|iPod/.test(navigator.userAgentData.platform);
   }
 
-  const userPlatformResult = navigator.userAgent.match(/(android|iPad|iPhone|iPod|WebKit|Edge)/i);
-  return userPlatformResult && userPlatformResult[0];
+  return /iPad|iPhone|iPod/.test(navigator.userAgent);
 };
 
-const iOS = ['iPad', 'iPhone', 'iPod'].includes(getUserPlatform());
+const iOS = isMobileAppleDevice();
 const transitionDurationDefault = { enter: duration.enteringScreen, exit: duration.leavingScreen };
 
 const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) {

@@ -151,20 +151,19 @@ const CalendarPickerViewTransitionContainer = styled(FadeTransitionGroup, {
   overflowY: 'auto',
 });
 
-const getUserPlatform = (): string | null => {
+const isAndroidPlatform = (): boolean => {
   if (typeof navigator === 'undefined') {
-    return null;
+    return false;
   }
 
   if ((navigator as any).userAgentData && (navigator as any).userAgentData.platform) {
-    return (navigator as any).userAgentData.platform;
+    return /(android)/i.test((navigator as any).userAgentData.platform);
   }
 
-  const userPlatformResult = navigator.userAgent.match(/(android|iPad|iPhone|iPod|WebKit|Edge)/i);
-  return userPlatformResult && userPlatformResult[0];
+  return /(android)/i.test(navigator.userAgent);
 };
 
-export const defaultReduceAnimations = getUserPlatform() === 'android';
+export const defaultReduceAnimations = isAndroidPlatform();
 
 const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends any>(
   inProps: CalendarPickerPropsWithClasses<TDate>,
