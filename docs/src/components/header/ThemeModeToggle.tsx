@@ -18,7 +18,11 @@ const ThemeModeToggle = (props: { checked: boolean; onChange: (checked: boolean)
         borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200'),
       }}
     >
-      {props.checked ? <LightModeOutlined fontSize="small" /> : <DarkModeOutlined fontSize="small"/>}
+      {props.checked ? (
+        <LightModeOutlined fontSize="small" />
+      ) : (
+        <DarkModeOutlined fontSize="small" />
+      )}
     </IconButton>
   );
 };

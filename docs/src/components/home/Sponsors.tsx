@@ -176,7 +176,10 @@ const SponsorCard = ({
         <Box sx={{ ml: 2 }}>
           <Typography variant="body2" fontWeight="bold">
             {item.name}{' '}
-            <LaunchRounded color="primary" sx={{ fontSize: 14, verticalAlign: 'middle', ml: 0.5 }} />
+            <LaunchRounded
+              color="primary"
+              sx={{ fontSize: 14, verticalAlign: 'middle', ml: 0.5 }}
+            />
           </Typography>
           <Typography variant="body2" color="text.secondary">
             {item.description}
@@ -195,8 +198,7 @@ const Sponsors = () => {
         Our sponsors
       </Typography>
       <Typography color="text.secondary" sx={{ mb: { xs: 2, md: 4 }, maxWidth: 450 }}>
-        The continued development and maintenance of MUI is greatly helped by our generous
-        sponsors.
+        The continued development and maintenance of MUI is greatly helped by our generous sponsors.
       </Typography>
       <Grid container spacing={{ xs: 2, md: 4 }} sx={{ mb: 4 }}>
         {DIAMONDs.map((item) => (

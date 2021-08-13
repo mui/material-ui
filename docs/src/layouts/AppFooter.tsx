@@ -137,12 +137,19 @@ export default function AppFooter() {
         </Box>
       </Box>
       <Divider />
-      <Box sx={{ py: 4, display: {xs: 'block', sm: 'flex'}, alignItems: {sm: 'center'}, justifyContent: {sm: 'space-between'}}}>
+      <Box
+        sx={{
+          py: 4,
+          display: { xs: 'block', sm: 'flex' },
+          alignItems: { sm: 'center' },
+          justifyContent: { sm: 'space-between' },
+        }}
+      >
         <Typography color="text.secondary" variant="body2">
           Copyright © {new Date().getFullYear()} Material-UI.
         </Typography>
-        <Box sx={{py: {xs: 2, sm:0}}}>
-        <Stack spacing={2} direction="row">
+        <Box sx={{ py: { xs: 2, sm: 0 } }}>
+          <Stack spacing={2} direction="row">
             <IconButton
               target="_blank"
               rel="noopener"

@@ -117,7 +117,7 @@ export default function PlayerCard() {
           variant="rounded"
         />
         <Box sx={{ alignSelf: 'center', mx: 2 }}>
-          <Typography variant="body2" fontWeight={500}>
+          <Typography variant="body1" fontWeight={500}>
             Ultraviolet
           </Typography>
           <Typography component="div" variant="caption" color="text.secondary">

@@ -47,16 +47,30 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
   };
   if (form === 'sent') {
     return (
-      <Alert severity="success" sx={{ maxWidth: { sm: 400 }, bgcolor: (theme) =>
-      theme.palette.mode === 'dark'
-        ? theme.palette.primaryDark[700]
-        : theme.palette.success[50], ...sx }} 
-        iconMapping={{
-          success: <CheckCircleRoundedIcon fontSize="small" sx={{color: (theme) =>
+      <Alert
+        severity="success"
+        sx={{
+          maxWidth: { sm: 400 },
+          bgcolor: (theme) =>
             theme.palette.mode === 'dark'
-              ? theme.palette.success[500]
-              : theme.palette.success[700]}} />,
-        }}>
+              ? theme.palette.primaryDark[700]
+              : theme.palette.success[50],
+          ...sx,
+        }}
+        iconMapping={{
+          success: (
+            <CheckCircleRoundedIcon
+              fontSize="small"
+              sx={{
+                color: (theme) =>
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.success[500]
+                    : theme.palette.success[700],
+              }}
+            />
+          ),
+        }}
+      >
         <AlertTitle sx={{ typography: 'body2', fontWeight: 600 }}>
           Thanks! Check your email.
         </AlertTitle>

@@ -94,13 +94,6 @@ export default function BasicTimeline() {
           fontWeightRegular: 500,
         },
         components: {
-          MuiPaper: {
-            styleOverrides: {
-              outlined: {
-                boxShadow: '0px 20px 25px rgba(0, 0, 0, 0.1)',
-              },
-            },
-          },
           // @ts-ignore
           MuiTimelineItem: {
             styleOverrides: {
@@ -125,7 +118,7 @@ export default function BasicTimeline() {
             styleOverrides: {
               root: {
                 margin: '-15px 0',
-                backgroundColor: mode === 'dark' ? primary[700] : primary[50],
+                backgroundColor: mode === 'dark' ? primaryDark[700] : primary[50],
               },
             },
           },
@@ -170,10 +163,7 @@ export default function BasicTimeline() {
             >
               Add these properties:
             </Typography>
-            <InfoOutlined
-              fontSize="small"
-              sx={{ ml: 'auto', color: 'text.secondary' }}
-            />
+            <InfoOutlined fontSize="small" sx={{ ml: 'auto', color: 'grey.500' }} />
           </Box>
           <Timeline
             sx={{

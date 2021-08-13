@@ -160,10 +160,7 @@ export default function BasicTimeline() {
             >
               Add these properties:
             </Typography>
-            <InfoOutlined
-              fontSize="small"
-              sx={{ ml: 'auto', color: 'grey.500' }}
-            />
+            <InfoOutlined fontSize="small" sx={{ ml: 'auto', color: 'grey.500' }} />
           </Box>
           <Timeline
             sx={{
