@@ -52,6 +52,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 - <!-- 04 --> [docs] img should have a src attribute (#27632) @oliviertassinari
 - <!-- 03 --> [docs] Add badges to Transfer List (#27634) @oliviertassinari
 - <!-- 02 --> [docs] Recommend the `direct-import` babel plugin over `transform-import` (#27335) @umidbekk
+- <!-- 37 --> [docs] Remove unused code (#27711) @eps1lon
 - <!-- 31 --> [examples] Include a follow-up on the example (#27620) @matiasherranz
 - <!-- 26 --> [website] Add about page (#27599) @siriwatknp
 - <!-- 25 --> [website] Add pricing page (#27598) @siriwatknp
