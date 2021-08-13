@@ -129,14 +129,34 @@ _Use the direction toggle button on the top right corner to flip the whole docum
 
 You have to use the template literal syntax and add the `/* @noflip */` directive before the rule or property for which you want to disable right-to-left styles.
 
-_Use the direction toggle button on the top right corner to see the effect._
+```jsx
+const AffectedText = styled('div')`
+  text-align: left;
+`;
 
-{{"demo": "pages/guides/right-to-left/RtlOptOutStylis.js", "hideEditButton": true}}
+const UnaffectedText = styled('div')`
+  /* @noflip */
+  text-align: left;
+`;
+```
+
+{{"demo": "pages/guides/right-to-left/RtlOptOutStylis.js", "hideToolbar": true}}
 
 ### JSS
 
 If you want to prevent a specific rule-set from being affected by the `rtl` transformation you can add `flip: false` at the beginning.
 
-_Use the direction toggle button on the top right corner to see the effect._
-
-{{"demo": "pages/guides/right-to-left/RtlOptOut.js", "hideEditButton": true}}
+```jsx
+const useStyles = makeStyles(
+  (theme) => ({
+    affected: {
+      textAlign: 'right',
+    },
+    unaffected: {
+      flip: false,
+      textAlign: 'right',
+    },
+  }),
+  { defaultTheme },
+);
+```
