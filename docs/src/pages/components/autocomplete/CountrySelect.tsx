@@ -13,15 +13,13 @@ export default function CountrySelect() {
       autoHighlight
       getOptionLabel={(option) => option.label}
       renderOption={(props, option) => (
-        <Box
-          component="li"
-          sx={{ fontSize: 15, '& > img': { mr: '10px' } }}
-          {...props}
-        >
+        <Box component="li" sx={{ '& > img': { mr: 2 } }} {...props}>
           <img
             loading="lazy"
-            src={`https://www.countryflags.io/${option.code}/shiny/16.png`}
-            alt={option.label}
+            width="20"
+            src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
+            srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+            alt=""
           />
           {option.label} ({option.code}) +{option.phone}
         </Box>
