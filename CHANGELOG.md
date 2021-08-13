@@ -6,7 +6,7 @@
 
 _Aug 13, 2021_
 
-Big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+Big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
 
 -  🐛 Grid's "auto" behavior has been fixed by @aaronlademann-wf (#27514)
 - ♿ An important bug with the keyboard navigation in MenuList was fixed (#27526) @ryancogswell
@@ -53,6 +53,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 - <!-- 03 --> [docs] Add badges to Transfer List (#27634) @oliviertassinari
 - <!-- 02 --> [docs] Recommend the `direct-import` babel plugin over `transform-import` (#27335) @umidbekk
 - <!-- 37 --> [docs] Remove unused code (#27711) @eps1lon
+- <!-- 39 --> [docs] Improve virtualization demo (#27340) @vedadeepta
 - <!-- 31 --> [examples] Include a follow-up on the example (#27620) @matiasherranz
 - <!-- 26 --> [website] Add about page (#27599) @siriwatknp
 - <!-- 25 --> [website] Add pricing page (#27598) @siriwatknp
@@ -62,6 +63,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 - <!-- 16 --> [core] Batch small changes (#27636) @oliviertassinari
 - <!-- 06 --> [core] Change range strategy to bump (#27652) @oliviertassinari
 - <!-- 24 --> [core] Fix visual regression example images (#27660) @eps1lon
+- <!-- 38 --> [core] Remove diff when running yarn docs:dev (#27720) @eps1lon
 - <!-- 22 --> [core] Remove mocks of require.context in markdown loader (#27406) @eps1lon
 - <!-- 09 --> [core] Reduce use CSS when Checkbox disableRipple is set (#27568) @oliviertassinari
 - <!-- 08 --> [test] Add coverage for jss-to-styled prefix from filename (#27522) @eps1lon
@@ -70,7 +72,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 - <!-- 14 --> [test] Enable skipped test fixed by upstream React fix (#27615) @eps1lon
 - <!-- 19 --> [theme] Add missed variants in Components interface (#27453) @nikitabobers
 
-All contributors of this release in alphabetical order: @aaronlademann-wf, @abriginets, @DouglasPds, @eps1lon, @garronej, @kylegach, @LorenzHenk, @m4theushw, @matiasherranz, @mnajdova, @nikitabobers, @oliviertassinari, @R-Bower, @ryancogswell, @siriwatknp, @tonextone, @umidbekk, @YassinHussein
+All contributors of this release in alphabetical order: @aaronlademann-wf, @abriginets, @DouglasPds, @eps1lon, @garronej, @kylegach, @LorenzHenk, @m4theushw, @matiasherranz, @mnajdova, @nikitabobers, @oliviertassinari, @R-Bower, @ryancogswell, @siriwatknp, @tonextone, @umidbekk, @vedadeepta, @YassinHussein
 
 ## 5.0.0-beta.3
 
