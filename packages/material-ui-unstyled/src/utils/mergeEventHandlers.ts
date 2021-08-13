@@ -1,3 +1,4 @@
+import React from 'react';
 import extractEventHandlers from './extractEventHandlers';
 
 function deduplicateArray<T>(array: Array<T>): Array<T> {
@@ -7,39 +8,39 @@ function deduplicateArray<T>(array: Array<T>): Array<T> {
 
 /**
  * Creates an object composed of the event handlers from the provided parameters.
- * This function extracts events handlers from the objects from parameters and wraps them in a function
- * that calls them in order they were passed in.
+ * This function extracts events handlers from the objects from parameters.
  * Handlers found in `ownHandlers` will be provided a function that explicitly calls the other handlers in the chain.
  *
  * @param {object} ownHandlers The object containing event handlers with explicit control over next handlers.
  * @param {...otherProps} args Objects containing other handlers to call. These objects can contain other fields as well. Handlers will be picked from these objects.
  */
-export default function chainEventHandlers(
+export default function mergeEventHandlers(
   ownHandlers: Record<string, (event: any, otherHandler: () => void) => void>,
   ...otherProps: Array<Record<string, unknown>>
 ) {
-  const otherHandlers = otherProps.map((props) => extractEventHandlers(props));
+  const otherHandlers = Object.assign({}, ...otherProps.map(extractEventHandlers)) as Record<
+    string,
+    React.EventHandler<any>
+  >;
 
   const allHandlersKeys = deduplicateArray([
     ...Object.keys(ownHandlers),
-    ...otherHandlers.map(Object.keys).flat(),
+    ...Object.keys(otherHandlers),
   ]);
 
-  const callOtherHandlers = (eventKey: string, event: any) => {
-    for (let i = 0; i < otherHandlers.length; i += 1) {
-      otherHandlers[i][eventKey]?.(event);
-    }
+  const callOtherHandler = (eventKey: string, event: any) => {
+    otherHandlers[eventKey]?.(event);
   };
 
   return allHandlersKeys
     .map((key: string) => {
       return {
         key,
-        handler: (e: React.EventHandler<any>) => {
+        handler: (event: React.EventHandler<any>) => {
           if (ownHandlers[key]) {
-            ownHandlers[key](e, () => callOtherHandlers(key, e));
+            ownHandlers[key](event, () => callOtherHandler(key, event));
           } else {
-            callOtherHandlers(key, e);
+            callOtherHandler(key, event);
           }
         },
       };

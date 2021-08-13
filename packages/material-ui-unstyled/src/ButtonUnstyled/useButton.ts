@@ -5,7 +5,7 @@ import {
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@material-ui/utils';
 import UseButtonProps from './UseButtonProps';
-import chainEventHandlers from '../utils/chainEventHandlers';
+import mergeEventHandlers from '../utils/mergeEventHandlers';
 
 type OtherEventHandler = () => void;
 
@@ -197,7 +197,7 @@ export default function useButton(props: UseButtonProps) {
   };
 
   const getRootProps = (otherHandlers?: Record<string, React.EventHandler<any>>) => {
-    const chainedEventHandlers = chainEventHandlers(
+    const mergedEventHandlers = mergeEventHandlers(
       ownEventHandlers,
       otherHandlers ?? {},
       props as any,
@@ -205,14 +205,14 @@ export default function useButton(props: UseButtonProps) {
 
     // onFocusVisible can ber present on the props, but since it's not a valid React event handler,
     // it must not be forwarded to the inner component.
-    delete chainedEventHandlers.onFocusVisible;
+    delete mergedEventHandlers.onFocusVisible;
 
     return {
       tabIndex: disabled ? -1 : tabIndex,
       type,
       ref: handleRef as React.Ref<any>,
       ...buttonProps,
-      ...chainedEventHandlers,
+      ...mergedEventHandlers,
     };
   };
 

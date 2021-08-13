@@ -173,7 +173,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       as={ComponentProp}
       className={clsx(classes.root, className)}
       styleProps={styleProps}
-      {...getRootProps(getRippleHandlers())}
+      {...getRootProps(getRippleHandlers(props))}
       {...other}
     >
       {children}
