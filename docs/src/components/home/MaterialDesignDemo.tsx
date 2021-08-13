@@ -112,7 +112,7 @@ export const componentCode = `<Card>
     justifyContent="space-between"
     sx={{ px: 2, py: 1, bgcolor: 'background.default' }}
   >
-    <Chip variant="outlined">Active account</Chip>
+    <Chip>Active account</Chip>
     <Switch />
   </Stack>
 </Card>
@@ -167,7 +167,7 @@ export default function MaterialDesignDemo() {
         justifyContent="space-between"
         sx={{ px: 2, py: 1, bgcolor: 'background.default' }}
       >
-        <Chip label="Active account" color="success" size="small" variant="outlined" />
+        <Chip label="Active account" color="success" size="small" />
         <Switch
           inputProps={{
             'aria-label': active ? 'disable account' : 'activate account',

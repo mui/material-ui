@@ -662,7 +662,7 @@ export default function DataTable() {
           <Box
             sx={{
               textAlign: 'center',
-              py: 2,
+              py: 1,
               position: 'relative',
               borderBottom: '1px solid',
               borderColor: (theme) =>
@@ -685,7 +685,6 @@ export default function DataTable() {
           </Box>
         </Paper>
       }
-      codeSx={{ maxHeight: 360 }}
       code={
         <Box
           sx={{

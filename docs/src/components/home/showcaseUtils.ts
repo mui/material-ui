@@ -26,7 +26,8 @@ export const getMaterialThemeFrames = (theme: Theme) => {
     {
       palette: {
         background: {
-          default: theme.palette.grey[50],
+          default:
+            theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[50],
         },
       },
     },
@@ -45,8 +46,9 @@ export const getMaterialThemeFrames = (theme: Theme) => {
     {
       palette: {
         text: {
-          primary: theme.palette.grey[900],
-          secondary: theme.palette.grey[700],
+          primary: theme.palette.mode === 'dark' ? '#fff' : theme.palette.grey[900],
+          secondary:
+            theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[700],
         },
       },
     },
@@ -76,7 +78,10 @@ export const getMaterialThemeFrames = (theme: Theme) => {
           styleOverrides: {
             root: {
               border: '1px solid',
-              borderColor: theme.palette.grey[300],
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[500]
+                  : theme.palette.grey[300],
             },
           },
         },

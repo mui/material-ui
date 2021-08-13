@@ -8,10 +8,6 @@ import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingT
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/MaterialDesignDemo';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
-import {
-  getMaterialThemeFrames,
-  produceThemeOptions,
-} from 'docs/src/components/home/showcaseUtils';
 import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
 
 const darkDesignTokens = getDesignTokens('dark');
@@ -90,12 +86,120 @@ const lineMapping: Record<string, number | number[]> = {
 
 export default function CoreShowcase() {
   const globalTheme = useTheme();
+  const mode = globalTheme.palette.mode;
   const [element, setElement] = React.useState<Data>({ id: null, name: null, target: null });
-  const themeFrames = React.useMemo(() => getMaterialThemeFrames(globalTheme), [globalTheme]);
   const [customized, setCustomized] = React.useState(false);
   const theme = React.useMemo(
-    () => createTheme(customized ? produceThemeOptions(themeFrames, 20) : undefined),
-    [themeFrames, customized],
+    () =>
+      customized
+        ? createTheme(globalTheme, {
+            palette: {
+              background: {
+                default:
+                  mode === 'dark'
+                    ? globalTheme.palette.primaryDark[800]
+                    : globalTheme.palette.grey[50],
+              },
+            },
+            shape: {
+              borderRadius: 12,
+            },
+            shadows: ['none', '0px 4px 20px 0px hsla(210, 14%, 28%, 0.2)'],
+            components: {
+              MuiCard: {
+                styleOverrides: {
+                  root: {
+                    boxShadow:
+                      mode === 'dark'
+                        ? '0px 4px 30px rgba(29, 29, 29, 0.6)'
+                        : '0px 4px 20px rgba(61, 71, 82, 0.2)',
+                    backgroundColor:
+                      mode === 'dark' ? globalTheme.palette.primaryDark[800] : '#fff',
+                    border: '1px solid',
+                    borderColor:
+                      mode === 'dark'
+                        ? globalTheme.palette.primaryDark[500]
+                        : globalTheme.palette.grey[200],
+                  },
+                },
+              },
+              MuiAvatar: {
+                styleOverrides: {
+                  root: {
+                    width: 64,
+                    height: 64,
+                  },
+                },
+              },
+              MuiIconButton: {
+                styleOverrides: {
+                  root: {
+                    border: '1px solid',
+                    borderColor:
+                      mode === 'dark'
+                        ? globalTheme.palette.primaryDark[500]
+                        : globalTheme.palette.grey[200],
+                    color:
+                      mode === 'dark'
+                        ? globalTheme.palette.grey[200]
+                        : globalTheme.palette.grey[800],
+                    borderRadius: 10,
+                    '&:hover, &.Mui-focusVisible': {
+                      borderColor: globalTheme.palette.primary.main,
+                      color: globalTheme.palette.primary.main,
+                    },
+                  },
+                },
+              },
+              MuiSwitch: {
+                styleOverrides: {
+                  root: {
+                    width: 32,
+                    height: 20,
+                    padding: 0,
+                  },
+                  switchBase: {
+                    height: 20,
+                    width: 20,
+                    padding: 0,
+                    '&.Mui-checked + .MuiSwitch-track': {
+                      opacity: 1,
+                    },
+                    '&.Mui-checked': {
+                      transform: 'translateX(11px)',
+                      color: '#fff',
+                    },
+                  },
+                  track: {
+                    opacity: 1,
+                    borderRadius: 32,
+                    backgroundColor: 'rgb(179, 195, 211)',
+                  },
+                  thumb: {
+                    width: 14,
+                    height: 14,
+                  },
+                },
+              },
+              MuiChip: {
+                styleOverrides: {
+                  filled: {
+                    backgroundColor:
+                      mode === 'dark'
+                        ? globalTheme.palette.success[900]
+                        : globalTheme.palette.success[100],
+                    color:
+                      mode === 'dark'
+                        ? globalTheme.palette.success[100]
+                        : globalTheme.palette.success[800],
+                    fontWeight: 500,
+                  },
+                },
+              },
+            },
+          })
+        : createTheme({ palette: { mode: globalTheme.palette.mode } }),
+    [customized, globalTheme, mode],
   );
   const highlightedLines = element.id ? lineMapping[element.id] : null;
   let startLine;
