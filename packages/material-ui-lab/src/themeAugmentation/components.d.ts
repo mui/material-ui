@@ -1,4 +1,4 @@
-import { ComponentsProps, ComponentsOverrides, ComponentsVariants } from '@material-ui/core';
+import { ComponentsProps, ComponentsOverrides, ComponentsVariants } from '@material-ui/core/styles';
 
 export interface LabComponents {
   MuiCalendarPicker?: {
@@ -98,6 +98,6 @@ export interface LabComponents {
   };
 }
 
-declare module '@material-ui/core/styles/components' {
+declare module '@material-ui/core/styles' {
   interface Components extends LabComponents {}
 }
