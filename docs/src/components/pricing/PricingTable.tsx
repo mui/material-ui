@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { alpha } from '@material-ui/core/styles';
+import { alpha, Theme } from '@material-ui/core/styles';
 import Box, { BoxProps } from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
@@ -176,7 +176,33 @@ const ColumnHead = ({
   return (
     <Box sx={{ pl: nested ? 2.5 : 1, pr: 1, alignSelf: 'center', justifySelf: 'flex-start' }}>
       {tooltip ? (
-        <Tooltip title={tooltip} placement="right" describeChild>
+        <Tooltip
+          title={tooltip}
+          placement="right"
+          describeChild
+          PopperProps={{
+            // @ts-ignore
+            sx: {
+              '& .MuiTooltip-tooltip': {
+                py: 1,
+                px: 2,
+                backgroundColor: (theme: Theme) =>
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[700]
+                    : theme.palette.background.paper,
+                color: 'text.primary',
+                border: '1px solid',
+                borderColor: (theme: Theme) =>
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[400]
+                    : theme.palette.primary.main,
+                typography: 'caption',
+                fontWeight: 400,
+                boxShadow: '1px 1px 20px 0 rgb(90 105 120 / 20%)',
+              },
+            },
+          }}
+        >
           {text}
         </Tooltip>
       ) : (

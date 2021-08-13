@@ -387,26 +387,6 @@ export function getThemedComponents(theme: Theme) {
           },
         },
       },
-      MuiTooltip: {
-        styleOverrides: {
-          tooltip: {
-            padding: theme.spacing(1, 2),
-            backgroundColor:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[700]
-                : theme.palette.background.paper,
-            color: theme.palette.text.primary,
-            border: '1px solid',
-            borderColor:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[400]
-                : theme.palette.primary.main,
-            ...theme.typography.caption,
-            fontWeight: 400,
-            boxShadow: '1px 1px 20px 0 rgb(90 105 120 / 20%)',
-          },
-        },
-      },
     },
   };
 }
