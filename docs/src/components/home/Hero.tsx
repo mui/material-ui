@@ -39,11 +39,11 @@ export default function Hero() {
           sx={{ height: '100%', maxWidth: { xs: 500, md: 'initial' }, mx: 'auto' }}
         >
           <Grid item md={7} lg={6}>
-            <Box sx={{ textAlign: { xs: 'center', md: 'left' }, maxWidth: 500 }}>
-              <Typography variant="h1" sx={{ my: 2 }}>
+            <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
+              <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
                 The <GradientText>ultimate</GradientText> solution for your UI.
               </Typography>
-              <Typography color="text.secondary" sx={{ mb: 3 }}>
+              <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
                 MUI provides a robust, customizible and accessible library of foundational and
                 advanced components, enabling you to build your own design system and develop React
                 applications faster.
