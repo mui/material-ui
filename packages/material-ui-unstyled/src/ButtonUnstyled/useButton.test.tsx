@@ -11,9 +11,9 @@ describe('useButton', () => {
       it('is set when triggered by mouse', () => {
         const TestComponent = () => {
           const buttonRef = React.useRef(null);
-          const button = useButton({ ref: buttonRef });
+          const { active, getRootProps } = useButton({ ref: buttonRef });
 
-          return <button {...button.getRootProps()} className={button.active ? 'active' : ''} />;
+          return <button {...getRootProps()} className={active ? 'active' : ''} />;
         };
 
         const { getByRole } = render(<TestComponent />);
@@ -27,9 +27,9 @@ describe('useButton', () => {
       it('is set when triggered by keyboard', () => {
         const TestComponent = () => {
           const buttonRef = React.useRef(null);
-          const button = useButton({ ref: buttonRef });
+          const { active, getRootProps } = useButton({ ref: buttonRef });
 
-          return <button {...button.getRootProps()} className={button.active ? 'active' : ''} />;
+          return <button {...getRootProps()} className={active ? 'active' : ''} />;
         };
 
         const { getByRole } = render(<TestComponent />);
@@ -46,9 +46,9 @@ describe('useButton', () => {
       it('is set when triggered by mouse', () => {
         const TestComponent = () => {
           const buttonRef = React.useRef(null);
-          const button = useButton({ ref: buttonRef, component: 'span' });
+          const { active, getRootProps } = useButton({ ref: buttonRef, component: 'span' });
 
-          return <span {...button.getRootProps()} className={button.active ? 'active' : ''} />;
+          return <span {...getRootProps()} className={active ? 'active' : ''} />;
         };
 
         const { getByRole } = render(<TestComponent />);
@@ -62,9 +62,9 @@ describe('useButton', () => {
       it('is set when triggered by keyboard', () => {
         const TestComponent = () => {
           const buttonRef = React.useRef(null);
-          const button = useButton({ ref: buttonRef, component: 'span' });
+          const { active, getRootProps } = useButton({ ref: buttonRef, component: 'span' });
 
-          return <span {...button.getRootProps()} className={button.active ? 'active' : ''} />;
+          return <span {...getRootProps()} className={active ? 'active' : ''} />;
         };
 
         const { getByRole } = render(<TestComponent />);

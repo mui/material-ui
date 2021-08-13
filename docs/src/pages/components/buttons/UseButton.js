@@ -40,20 +40,20 @@ const CustomButtonRoot = styled('button')(`
 
 const CustomButton = React.forwardRef(function CustomButton(props, ref) {
   const { children } = props;
-  const button = useButton({
+  const { active, disabled, focusVisible, getRootProps } = useButton({
     ...props,
     ref,
     component: CustomButtonRoot,
   });
 
   const classes = {
-    active: button.active,
-    disabled: button.disabled,
-    focusVisible: button.focusVisible,
+    active,
+    disabled,
+    focusVisible,
   };
 
   return (
-    <CustomButtonRoot {...button.getRootProps()} className={clsx(classes)}>
+    <CustomButtonRoot {...getRootProps()} className={clsx(classes)}>
       {children}
     </CustomButtonRoot>
   );

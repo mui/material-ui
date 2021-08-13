@@ -60,7 +60,7 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
   const handleRef = useForkRef(buttonRef, ref);
 
-  const button = useButton({
+  const { active, focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
     ref: handleRef,
   });
@@ -69,17 +69,17 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
     action,
     () => ({
       focusVisible: () => {
-        button.setFocusVisible(true);
+        setFocusVisible(true);
         buttonRef?.current?.focus();
       },
     }),
-    [button],
+    [setFocusVisible],
   );
 
   const styleProps = {
     ...props,
-    active: button.active,
-    focusVisible: button.focusVisible,
+    active,
+    focusVisible,
   };
 
   const ButtonRoot: React.ElementType = component ?? components.Root ?? 'button';
@@ -93,7 +93,7 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
 
   return (
     <ButtonRoot
-      {...button.getRootProps()}
+      {...getRootProps()}
       {...buttonRootProps}
       className={clsx(classes.root, className, buttonRootProps.className)}
     >

@@ -6,7 +6,7 @@ import ButtonUnstyled, {
 } from '@material-ui/unstyled/ButtonUnstyled';
 import { styled } from '@material-ui/system';
 
-const CustomButtonRoot = styled('button')(`
+const CustomButtonRoot = styled('span')(`
   background-color: #007fff;
   padding: 15px 20px;
   border-radius: 10px;

@@ -31,7 +31,7 @@ export default function chainEventHandlers(
     }
   };
 
-  return [...allHandlersKeys]
+  return allHandlersKeys
     .map((key: string) => {
       return {
         key,

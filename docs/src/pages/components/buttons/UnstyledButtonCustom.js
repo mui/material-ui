@@ -6,7 +6,7 @@ import ButtonUnstyled, {
 import StarOutlineIcon from '@material-ui/icons/StarOutline';
 import { styled } from '@material-ui/system';
 
-const ButtonRoot = React.forwardRef((props, ref) => {
+const ButtonRoot = React.forwardRef(function ButtonRoot(props, ref) {
   const { children, ...other } = props;
 
   return (

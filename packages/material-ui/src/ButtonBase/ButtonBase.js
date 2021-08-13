@@ -114,7 +114,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     ComponentProp = LinkComponent;
   }
 
-  const button = useButton({
+  const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
     component: ComponentProp,
     ref: handleRef,
@@ -124,26 +124,26 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     action,
     () => ({
       focusVisible: () => {
-        button.setFocusVisible(true);
+        setFocusVisible(true);
         buttonRef.current.focus();
       },
     }),
-    [button],
+    [setFocusVisible],
   );
 
-  const rippleConfig = useTouchRipple({
+  const { enableTouchRipple, getRippleHandlers } = useTouchRipple({
     disabled,
     disableFocusRipple: !focusRipple,
     disableRipple,
     disableTouchRipple,
-    focusVisible: button.focusVisible,
+    focusVisible,
     rippleRef,
   });
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
-      if (rippleConfig.enableTouchRipple && !rippleRef.current) {
+      if (enableTouchRipple && !rippleRef.current) {
         console.error(
           [
             'Material-UI: The `component` prop provided to ButtonBase is invalid.',
@@ -151,7 +151,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
           ].join('\n'),
         );
       }
-    }, [rippleConfig.enableTouchRipple]);
+    }, [enableTouchRipple]);
   }
 
   const styleProps = {
@@ -163,7 +163,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     disableTouchRipple,
     focusRipple,
     tabIndex,
-    focusVisible: button.focusVisible,
+    focusVisible,
   };
 
   const classes = useUtilityClasses(styleProps);
@@ -173,11 +173,11 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       as={ComponentProp}
       className={clsx(classes.root, className)}
       styleProps={styleProps}
-      {...button.getRootProps(rippleConfig.getRippleHandlers())}
+      {...getRootProps(getRippleHandlers())}
       {...other}
     >
       {children}
-      {rippleConfig.enableTouchRipple ? (
+      {enableTouchRipple ? (
         /* TouchRipple is only needed client-side, x2 boost on the server. */
         <TouchRipple ref={rippleRef} center={centerRipple} {...TouchRippleProps} />
       ) : null}
