@@ -15,6 +15,8 @@ export interface IconButtonClasses {
   colorSecondary: string;
   /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
+  /** State class applied to the root element if `disabled={true}`. */
+  inclusiveDisabled: string;
   /** Styles applied to the root element if `size="small"`. */
   sizeSmall: string;
   /** Styles applied to the root element if `size="medium"`. */
@@ -32,6 +34,7 @@ export function getIconButtonUtilityClass(slot: string): string {
 const iconButtonClasses: IconButtonClasses = generateUtilityClasses('MuiIconButton', [
   'root',
   'disabled',
+  'inclusiveDisabled',
   'colorInherit',
   'colorPrimary',
   'colorSecondary',

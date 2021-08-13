@@ -10,6 +10,7 @@
     "disableTouchRipple": { "type": { "name": "bool" } },
     "focusRipple": { "type": { "name": "bool" } },
     "focusVisibleClassName": { "type": { "name": "string" } },
+    "inclusiveDisabled": { "type": { "name": "bool" }, "default": "disabled" },
     "LinkComponent": { "type": { "name": "elementType" }, "default": "'a'" },
     "onFocusVisible": { "type": { "name": "func" } },
     "sx": {

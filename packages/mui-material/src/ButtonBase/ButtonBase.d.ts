@@ -59,6 +59,11 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      */
     focusVisibleClassName?: string;
     /**
+     * If `true`, the component is disabled but allows cursor interactions such as mouse hover (for tooltips) and focus.
+     * @default disabled
+     */
+    inclusiveDisabled?: boolean;
+    /**
      * The component used to render a link when the `href` prop is provided.
      * @default 'a'
      */

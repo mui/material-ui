@@ -534,38 +534,42 @@ export default function DemoToolbar(props) {
               <CodeRoundedIcon />
             </IconButton>
           </ToggleCodeTooltip>
-          {demoOptions.hideEditButton ? null : (
-            <React.Fragment>
-              <DemoTooltip title={t('codesandbox')} placement="bottom">
-                <IconButton
-                  size="large"
-                  data-ga-event-category="demo"
-                  data-ga-event-label={demoOptions.demo}
-                  data-ga-event-action="codesandbox"
-                  onClick={handleCodeSandboxClick}
-                  {...getControlProps(3)}
-                >
-                  <SvgIcon viewBox="0 0 1024 1024">
-                    <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
-                  </SvgIcon>
-                </IconButton>
-              </DemoTooltip>
-              <DemoTooltip title={t('stackblitz')} placement="bottom">
-                <IconButton
-                  size="large"
-                  data-ga-event-category="demo"
-                  data-ga-event-label={demoOptions.demo}
-                  data-ga-event-action="stackblitz"
-                  onClick={handleStackBlitzClick}
-                  {...getControlProps(4)}
-                >
-                  <SvgIcon viewBox="0 0 19 28">
-                    <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
-                  </SvgIcon>
-                </IconButton>
-              </DemoTooltip>
-            </React.Fragment>
-          )}
+          <DemoTooltip
+            title={demoOptions.hideEditButton ? t('codesandboxDisabled') : t('codesandbox')}
+            placement="bottom"
+          >
+            <IconButton
+              size="large"
+              data-ga-event-category="demo"
+              data-ga-event-label={demoOptions.demo}
+              data-ga-event-action="codesandbox"
+              inclusiveDisabled={demoOptions.hideEditButton}
+              onClick={handleCodeSandboxClick}
+              {...getControlProps(3)}
+            >
+              <SvgIcon viewBox="0 0 1024 1024">
+                <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
+              </SvgIcon>
+            </IconButton>
+          </DemoTooltip>
+          <DemoTooltip
+            title={demoOptions.hideEditButton ? t('stackblitzDisabled') : t('stackblitz')}
+            placement="bottom"
+          >
+            <IconButton
+              size="large"
+              data-ga-event-category="demo"
+              data-ga-event-label={demoOptions.demo}
+              data-ga-event-action="stackblitz"
+              inclusiveDisabled={demoOptions.hideEditButton}
+              onClick={handleStackBlitzClick}
+              {...getControlProps(4)}
+            >
+              <SvgIcon viewBox="0 0 19 28">
+                <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
+              </SvgIcon>
+            </IconButton>
+          </DemoTooltip>
           <DemoTooltip title={t('copySource')} placement="bottom">
             <IconButton
               size="large"

@@ -17,6 +17,7 @@
     "endIcon": { "type": { "name": "node" } },
     "fullWidth": { "type": { "name": "bool" } },
     "href": { "type": { "name": "string" } },
+    "inclusiveDisabled": { "type": { "name": "bool" }, "default": "disabled" },
     "size": {
       "type": {
         "name": "union",
@@ -58,6 +59,7 @@
       "disableElevation",
       "focusVisible",
       "disabled",
+      "inclusiveDisabled",
       "colorInherit",
       "textSizeSmall",
       "textSizeMedium",

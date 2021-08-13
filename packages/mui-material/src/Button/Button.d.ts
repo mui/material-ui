@@ -63,6 +63,11 @@ export type ButtonTypeMap<
      */
     href?: string;
     /**
+     * If `true`, the component is disabled but allows cursor interactions such as mouse hover (for tooltips) and focus.
+     * @default disabled
+     */
+    inclusiveDisabled?: boolean;
+    /**
      * The size of the component.
      * `small` is equivalent to the dense button styling.
      * @default 'medium'

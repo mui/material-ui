@@ -11,12 +11,13 @@ import capitalize from '../utils/capitalize';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disabled, color, edge, size } = ownerState;
+  const { classes, disabled, inclusiveDisabled, color, edge, size } = ownerState;
 
   const slots = {
     root: [
       'root',
       disabled && 'disabled',
+      inclusiveDisabled && 'inclusiveDisabled',
       color !== 'default' && `color${capitalize(color)}`,
       edge && `edge${capitalize(edge)}`,
       `size${capitalize(size)}`,
@@ -51,15 +52,16 @@ const IconButtonRoot = styled(ButtonBase, {
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
     }),
-    ...(!ownerState.disableRipple && {
-      '&:hover': {
-        backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: 'transparent',
+    ...(!ownerState.inclusiveDisabled &&
+      !ownerState.disableRipple && {
+        '&:hover': {
+          backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            backgroundColor: 'transparent',
+          },
         },
-      },
-    }),
+      }),
     ...(ownerState.edge === 'start' && {
       marginLeft: ownerState.size === 'small' ? -3 : -12,
     }),
@@ -95,9 +97,12 @@ const IconButtonRoot = styled(ButtonBase, {
       padding: 12,
       fontSize: theme.typography.pxToRem(28),
     }),
-    [`&.${iconButtonClasses.disabled}`]: {
+    [`&.${iconButtonClasses.disabled}, &.${iconButtonClasses.inclusiveDisabled}`]: {
       backgroundColor: 'transparent',
       color: theme.palette.action.disabled,
+    },
+    [`&.${iconButtonClasses.inclusiveDisabled}`]: {
+      cursor: 'not-allowed',
     },
   }),
 );
@@ -114,6 +119,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     className,
     color = 'default',
     disabled = false,
+    inclusiveDisabled = disabled,
     disableFocusRipple = false,
     size = 'medium',
     ...other
@@ -124,6 +130,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     edge,
     color,
     disabled,
+    inclusiveDisabled,
     disableFocusRipple,
     size,
   };
@@ -136,6 +143,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
       centerRipple
       focusRipple={!disableFocusRipple}
       disabled={disabled}
+      inclusiveDisabled={inclusiveDisabled}
       ref={ref}
       ownerState={ownerState}
       {...other}
@@ -221,6 +229,11 @@ IconButton.propTypes /* remove-proptypes */ = {
    * @default false
    */
   edge: PropTypes.oneOf(['end', 'start', false]),
+  /**
+   * If `true`, the component is disabled but allows cursor interactions such as mouse hover (for tooltips) and focus.
+   * @default disabled
+   */
+  inclusiveDisabled: PropTypes.bool,
   /**
    * The size of the component.
    * `small` is equivalent to the dense button styling.

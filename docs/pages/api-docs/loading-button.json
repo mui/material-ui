@@ -48,6 +48,7 @@
       "disableElevation",
       "focusVisible",
       "disabled",
+      "inclusiveDisabled",
       "colorInherit",
       "textSizeSmall",
       "textSizeMedium",
