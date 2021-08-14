@@ -62,7 +62,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
             <CheckCircleRoundedIcon
               fontSize="small"
               sx={{
-                color: (theme) =>
+                color: (theme: Theme) =>
                   theme.palette.mode === 'dark'
                     ? theme.palette.success[500]
                     : theme.palette.success[700],
