@@ -555,7 +555,7 @@ const DesignSystemComponents = () => {
           </Typography>
           <NextLink href={ROUTES.documentation} passHref>
             <Button component="a" endIcon={<KeyboardArrowRightRounded />}>
-              Get Started
+              Get started
             </Button>
           </NextLink>
         </Box>
