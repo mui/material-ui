@@ -153,7 +153,7 @@ export default function AppFooter() {
             <IconButton
               target="_blank"
               rel="noopener"
-              href="https://github.com/mui-org/material-ui"
+              href="https://github.com/mui-org"
               aria-label="github"
               title="GitHub"
               size="small"
