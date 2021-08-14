@@ -55,7 +55,13 @@ const ValueProposition = () => {
                     height: 28,
                   }}
                 />
-                <Typography fontWeight="bold" color="text.primary" variant="body2" sx={{ ml: 1 }}>
+                <Typography
+                  fontWeight="bold"
+                  component="h3"
+                  color="text.primary"
+                  variant="body2"
+                  sx={{ ml: 1 }}
+                >
                   {title}
                 </Typography>
               </Box>
