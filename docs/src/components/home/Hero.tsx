@@ -22,6 +22,17 @@ import ThemeAccordion from 'docs/src/pages/components/accordion/ThemeAccordion';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 
 export default function Hero() {
+  const frame = React.useRef<null | HTMLDivElement>(null);
+  React.useEffect(() => {
+    if (frame.current) {
+      const elements = frame.current.querySelectorAll(
+        'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])',
+      );
+      elements.forEach((elm) => {
+        elm.setAttribute('tabindex', '-1');
+      });
+    }
+  }, []);
   return (
     <Box sx={{ overflow: 'hidden' }}>
       <Container
@@ -58,6 +69,7 @@ export default function Hero() {
             sx={{ maxHeight: '100%', display: { xs: 'none', md: 'initial' } }}
           >
             <Box
+              ref={frame}
               aria-hidden="true"
               sx={{
                 p: 3,
