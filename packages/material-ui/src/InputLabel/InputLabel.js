@@ -19,9 +19,7 @@ const useUtilityClasses = (styleProps) => {
       size === 'small' && 'sizeSmall',
       variant,
     ],
-    asterisk: [
-      required && 'asterisk',
-    ]
+    asterisk: [required && 'asterisk'],
   };
 
   const composedClasses = composeClasses(slots, getInputLabelUtilityClasses, classes);
