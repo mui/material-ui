@@ -29,7 +29,7 @@ const content = [
     icon: '/static/branding/mui-eye.svg',
     title: 'Accessible by design',
     description:
-      'We care about making your UX great for everyone. All of our components have built-in support for a11y, making sure you reach the largest audience possible!',
+      'We care about making your UX great for everyone. All of our components have built-in support for accessibility, making sure you reach the largest audience possible!',
   },
 ];
 
