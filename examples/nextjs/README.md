@@ -35,3 +35,10 @@ If you prefer, you can [use styled-components instead](https://next.material-ui.
 Next.js has [a custom Link component](https://nextjs.org/docs/api-reference/next/link).
 The example folder provides adapters for usage with Material-UI.
 More information [in the documentation](https://next.material-ui.com/guides/routing/#next-js).
+
+## What's next?
+
+<!-- #default-branch-switch -->
+
+You now have a working example project.
+You can head back to the documentation, continuing browsing it from the [templates](https://next.material-ui.com/getting-started/templates/) section.

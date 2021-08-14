@@ -1,5 +1,5 @@
 {
-  "version": "5.0.0-beta.3",
+  "version": "5.0.0-beta.4",
   "private": true,
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
