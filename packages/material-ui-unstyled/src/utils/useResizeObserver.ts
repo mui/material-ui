@@ -5,18 +5,38 @@ interface Rect {
   height: number;
 }
 
-export default function useResizeObserver(): [Rect | null, (elem: Element) => () => void] {
-  const [rect, setRect] = React.useState<Rect | null>(null);
-  const ref = React.useCallback((elem: Element) => {
-    if (!elem) return () => {};
-    const observer = new ResizeObserver((entries: ResizeObserverEntry[]) => {
-      const target = entries[0];
-      setRect(target.contentRect);
+export default function useResizeObserver(
+  resizeItemRef: React.RefObject<Element | null>,
+  resizeHandler?: () => void,
+  observeChildren?: boolean,
+): Rect[] | null {
+  const [items, setItems] = React.useState<Rect[] | null>(null);
+  const resizeObserverRef = React.useRef<ResizeObserver | null>(null);
+  const resizeHandlerRef = React.useRef<() => void>();
+  resizeHandlerRef.current = resizeHandler;
+
+  React.useEffect(() => {
+    resizeObserverRef.current = new ResizeObserver((entries: ResizeObserverEntry[]) => {
+      setItems(entries.map((entry) => entry.contentRect));
+      if (resizeHandlerRef.current) {
+        resizeHandlerRef.current();
+      }
     });
-    observer.observe(elem);
+    if (resizeItemRef.current) {
+      if (observeChildren) {
+        Array.from(resizeItemRef.current.children).forEach((child) => {
+          resizeObserverRef.current?.observe(child);
+        });
+      } else {
+        resizeObserverRef.current?.observe(resizeItemRef.current);
+      }
+    }
+
     return () => {
-      observer.unobserve(elem);
+      if (resizeObserverRef.current) {
+        resizeObserverRef.current.disconnect();
+      }
     };
-  }, []);
-  return [rect, ref];
+  }, [resizeItemRef, observeChildren]);
+  return items;
 }
