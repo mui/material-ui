@@ -387,6 +387,37 @@ export function getThemedComponents(theme: Theme) {
           },
         },
       },
+      MuiSwitch: {
+        styleOverrides: {
+          root: {
+            width: 32,
+            height: 20,
+            padding: 0,
+          },
+          switchBase: {
+            height: 20,
+            width: 20,
+            padding: 0,
+            '&.Mui-checked + .MuiSwitch-track': {
+              opacity: 1,
+            },
+            '&.Mui-checked': {
+              transform: 'translateX(11px) !important',
+              color: '#fff',
+            },
+          },
+          track: {
+            opacity: 1,
+            borderRadius: 32,
+            backgroundColor: 'rgb(179, 195, 211)',
+          },
+          thumb: {
+            flexShrink: 0,
+            width: '14px !important',
+            height: '14px !important',
+          },
+        },
+      },
     },
   };
 }

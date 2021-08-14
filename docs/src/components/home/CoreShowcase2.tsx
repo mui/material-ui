@@ -3,6 +3,7 @@ import { ThemeProvider, createTheme, useTheme, styled, alpha } from '@material-u
 import { shouldForwardProp } from '@material-ui/system';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
@@ -29,7 +30,7 @@ darkBrandingTheme = createTheme(darkBrandingTheme, {
       styleOverrides: {
         root: {
           borderRadius: 40,
-          padding: darkBrandingTheme.spacing(0.5, 1),
+          padding: darkBrandingTheme.spacing('2px', 1),
         },
         sizeSmall: {
           fontSize: darkBrandingTheme.typography.pxToRem(12),
@@ -151,48 +152,31 @@ export default function CoreShowcase() {
                   },
                 },
               },
-              MuiSwitch: {
-                styleOverrides: {
-                  root: {
-                    width: 32,
-                    height: 20,
-                    padding: 0,
-                  },
-                  switchBase: {
-                    height: 20,
-                    width: 20,
-                    padding: 0,
-                    '&.Mui-checked + .MuiSwitch-track': {
-                      opacity: 1,
-                    },
-                    '&.Mui-checked': {
-                      transform: 'translateX(11px)',
-                      color: '#fff',
-                    },
-                  },
-                  track: {
-                    opacity: 1,
-                    borderRadius: 32,
-                    backgroundColor: 'rgb(179, 195, 211)',
-                  },
-                  thumb: {
-                    width: 14,
-                    height: 14,
-                  },
-                },
-              },
+              MuiSwich: globalTheme.components?.MuiSwitch,
               MuiChip: {
                 styleOverrides: {
                   filled: {
-                    backgroundColor:
-                      mode === 'dark'
-                        ? globalTheme.palette.success[900]
-                        : globalTheme.palette.success[100],
-                    color:
-                      mode === 'dark'
-                        ? globalTheme.palette.success[100]
-                        : globalTheme.palette.success[800],
                     fontWeight: 500,
+                    '&.MuiChip-colorSuccess': {
+                      backgroundColor:
+                        mode === 'dark'
+                          ? globalTheme.palette.success[900]
+                          : globalTheme.palette.success[100],
+                      color:
+                        mode === 'dark'
+                          ? globalTheme.palette.success[100]
+                          : globalTheme.palette.success[800],
+                    },
+                    '&.MuiChip-colorDefault': {
+                      backgroundColor:
+                        mode === 'dark'
+                          ? globalTheme.palette.grey[900]
+                          : globalTheme.palette.grey[200],
+                      color:
+                        mode === 'dark'
+                          ? globalTheme.palette.grey[200]
+                          : globalTheme.palette.grey[800],
+                    },
                   },
                 },
               },
@@ -212,15 +196,31 @@ export default function CoreShowcase() {
     <ShowcaseContainer
       sx={{ pt: 8 }}
       previewSx={{
-        minHeight: 180,
+        minHeight: 200,
       }}
       preview={
         <ThemeProvider theme={theme}>
+          <Typography
+            variant="caption"
+            fontWeight={500}
+            color="text.secondary"
+            noWrap
+            sx={{
+              opacity: 0.7,
+              ml: 'auto',
+              position: 'absolute',
+              bottom: 5,
+              left: '50%',
+              transform: 'translate(-50%)',
+            }}
+          >
+            💡 Hover the component will highlight the code.
+          </Typography>
           <PointerContainer
             onElementChange={setElement}
             sx={{ minWidth: 300, width: '80%', maxWidth: '100%' }}
           >
-            <MaterialDesignDemo />
+            <MaterialDesignDemo sx={{ transform: 'translate(0, -8px)' }} />
           </PointerContainer>
         </ThemeProvider>
       }
@@ -231,36 +231,34 @@ export default function CoreShowcase() {
               p: 1,
               display: 'flex',
               alignItems: 'center',
-              minHeight: 56,
-              position: 'absolute',
               right: 0,
               zIndex: 10,
             }}
           >
             <Button
               size="small"
-              variant={customized ? 'outlined' : 'text'}
-              onClick={() => {
-                setCustomized(true);
-              }}
-            >
-              Custom Theme
-            </Button>
-            <Button
-              size="small"
               variant={customized ? 'text' : 'outlined'}
               onClick={() => {
                 setCustomized(false);
               }}
-              sx={{ ml: 1 }}
             >
               Material Design
+            </Button>
+            <Button
+              size="small"
+              variant={customized ? 'outlined' : 'text'}
+              onClick={() => {
+                setCustomized(true);
+              }}
+              sx={{ ml: 1 }}
+            >
+              Custom Theme
             </Button>
           </Box>
           <Box
             sx={{
               p: 2,
-              pt: 4,
+              pt: 0,
               overflow: 'auto',
               flexGrow: 1,
               '&::-webkit-scrollbar': {

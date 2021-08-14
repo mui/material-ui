@@ -3,6 +3,7 @@ import { XGrid, GridCellParams, GridColDef } from '@material-ui/x-grid';
 import { useDemoData } from '@material-ui/x-grid-data-generator';
 import { debounce } from '@material-ui/core/utils';
 import { alpha } from '@material-ui/core/styles';
+import GlobalStyles from '@material-ui/core/GlobalStyles';
 import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import Chip from '@material-ui/core/Chip';
@@ -426,6 +427,17 @@ export default function DataTable() {
             bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : '#fff'),
           }}
         >
+          <GlobalStyles
+            styles={{
+              '.MuiDataGrid-gridMenuList': {
+                boxShadow: '0px 4px 20px rgb(61 71 82 / 25%)',
+                borderRadius: '10px',
+                '& .MuiMenuItem-root': {
+                  fontSize: 12,
+                },
+              },
+            }}
+          />
           <Box
             sx={{
               textAlign: 'center',

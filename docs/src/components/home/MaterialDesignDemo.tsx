@@ -4,13 +4,12 @@ import MuiBox from '@material-ui/core/Box';
 import MuiChip from '@material-ui/core/Chip';
 import MuiDivider from '@material-ui/core/Divider';
 import MuiIconButton from '@material-ui/core/IconButton';
-import MuiCard from '@material-ui/core/Card';
+import MuiCard, { CardProps } from '@material-ui/core/Card';
 import MuiSwitch from '@material-ui/core/Switch';
 import MuiTypography from '@material-ui/core/Typography';
 import MuiStack from '@material-ui/core/Stack';
 import MuiEdit from '@material-ui/icons/Edit';
 import MuiLocationOn from '@material-ui/icons/LocationOn';
-// import MuiBusinessRounded from '@material-ui/icons/BusinessRounded';
 import { withPointer } from 'docs/src/components/home/ElementPointer';
 
 export const demoCode = {
@@ -131,12 +130,11 @@ const Stack = withPointer(MuiStack, { id: 'stack', name: 'Stack' });
 const Stack2 = withPointer(MuiStack, { id: 'stack2', name: 'Stack' });
 const Edit = withPointer(MuiEdit, { id: 'editIcon', name: 'EditIcon' });
 const LocationOn = withPointer(MuiLocationOn, { id: 'locationOnIcon', name: 'LocationOnIcon' });
-// const BusinessRounded = withPointer(MuiBusinessRounded, { id: 'businessIcon', name: 'BusinessIcon' });
 
-export default function MaterialDesignDemo() {
-  const [active, setActive] = React.useState(true);
+export default function MaterialDesignDemo(props: CardProps) {
+  const [active, setActive] = React.useState(false);
   return (
-    <Card sx={{ overflow: 'hidden' }}>
+    <Card {...props}>
       <Box sx={{ p: 2, display: 'flex' }}>
         <Avatar variant="rounded" src="/static/images/avatar/1.jpg" alt="" />
         <Stack
@@ -167,7 +165,11 @@ export default function MaterialDesignDemo() {
         justifyContent="space-between"
         sx={{ px: 2, py: 1, bgcolor: 'background.default' }}
       >
-        <Chip label="Active account" color="success" size="small" />
+        <Chip
+          label={active ? 'Active account' : 'Inactive account'}
+          color={active ? 'success' : 'default'}
+          size="small"
+        />
         <Switch
           inputProps={{
             'aria-label': active ? 'disable account' : 'activate account',
