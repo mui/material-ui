@@ -182,7 +182,7 @@ const ProductsSwitcher = ({
           ))}
         </SwipeableViews>
       </Box>
-      <Stack spacing={1} sx={{ display: { xs: 'none', md: 'flex' } }}>
+      <Stack spacing={1} sx={{ display: { xs: 'none', md: 'flex' }, maxWidth: 500 }}>
         {productElements.map((elm, index) => (
           <Highlight
             key={index}

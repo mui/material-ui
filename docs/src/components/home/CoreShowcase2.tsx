@@ -64,7 +64,7 @@ const FlashCode = styled('div', {
   height: (endLine - startLine + 1) * 18,
   transition: '0.3s',
   ...theme.typography.caption,
-  backgroundColor: alpha(theme.palette.primary.main, 0.2),
+  backgroundColor: alpha(theme.palette.primary.main, 0.5),
   border: '1px solid',
   borderColor: theme.palette.primary.main,
 }));

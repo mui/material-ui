@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { DataGrid, GridCellParams, GridColDef } from '@material-ui/data-grid';
+import { XGrid, GridCellParams, GridColDef } from '@material-ui/x-grid';
+import { useDemoData } from '@material-ui/x-grid-data-generator';
 import { debounce } from '@material-ui/core/utils';
 import { alpha } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
@@ -268,8 +269,8 @@ const columns: Array<GridColDef> = [
     sortable: false,
     editable: true,
   },
-  { field: 'commodity', headerName: 'Commodity', width: 110, sortable: false, editable: true },
-  { field: 'traderName', headerName: 'Trader Name', width: 130, sortable: false, editable: true },
+  { field: 'commodity', headerName: 'Commodity', width: 132, editable: true },
+  { field: 'traderName', headerName: 'Trader Name', width: 148, editable: true },
   {
     field: 'filledQuantity',
     headerName: 'Filled',
@@ -298,262 +299,23 @@ const columns: Array<GridColDef> = [
   },
 ];
 
-const rows = [
-  {
-    desk: 'D-985',
-    commodity: 'Adzuki bean',
-    traderName: 'Roy Green',
-    quantity: '83,996',
-    filledQuantity: 1,
-    status: 'PartiallyFilled',
-  },
-  {
-    desk: 'D-7896',
-    commodity: 'Cotton No.2',
-    traderName: 'Philip Bradley',
-    quantity: '19,356',
-    filledQuantity: 0.504,
-    status: 'Filled',
-  },
-  {
-    desk: 'D-1289',
-    commodity: 'Oats',
-    traderName: 'Sallie Bridges',
-    quantity: '21,279',
-    filledQuantity: 0.533,
-    status: 'Rejected',
-  },
-  {
-    desk: 'D-6414',
-    commodity: 'Sugar No.14',
-    traderName: 'Mina Lee',
-    quantity: '28,872',
-    filledQuantity: 0.575,
-    status: 'PartiallyFilled',
-  },
-  {
-    desk: 'D-2239',
-    commodity: 'Wheat',
-    traderName: 'Lottie Hogan',
-    quantity: '59,489',
-    filledQuantity: 0.36,
-    status: 'Filled',
-  },
-  {
-    desk: 'D-4468',
-    commodity: 'Rapeseed',
-    traderName: 'Alma Shaw',
-    quantity: '6,272',
-    filledQuantity: 0.375,
-    status: 'Open',
-  },
-  {
-    desk: 'D-6830',
-    commodity: 'Adzuki bean',
-    traderName: 'Clifford Rios',
-    quantity: '19,854',
-    filledQuantity: 0.586,
-    status: 'Open',
-  },
-  {
-    desk: 'D-7791',
-    commodity: 'Milk',
-    traderName: 'Daniel Floyd',
-    quantity: '85,146',
-    filledQuantity: 0.205,
-    status: 'Rejected',
-  },
-  {
-    desk: 'D-7492',
-    commodity: 'Rapeseed',
-    traderName: 'Jonathan Gray',
-    quantity: '58,957',
-    filledQuantity: 0.321,
-    status: 'Filled',
-  },
-  {
-    desk: 'D-1807',
-    commodity: 'Soybean Meal',
-    traderName: 'Bernard Ballard',
-    quantity: '12,674',
-    filledQuantity: 0.669,
-    status: 'Filled',
-  },
-  {
-    desk: 'D-204',
-    commodity: 'Oats',
-    traderName: 'Aaron Fitzgerald',
-    quantity: '72,928',
-    filledQuantity: 0.656,
-    status: 'Filled',
-  },
-  {
-    desk: 'D-8778',
-    commodity: 'Oats',
-    traderName: 'Annie Caldwell',
-    quantity: '28,315',
-    filledQuantity: 0.079,
-    status: 'Open',
-  },
-  {
-    desk: 'D-5118',
-    commodity: 'Soybean Meal',
-    traderName: 'Tyler Rodriguez',
-    quantity: '21,687',
-    filledQuantity: 0.353,
-    status: 'Filled',
-  },
-  {
-    desk: 'D-326',
-    commodity: 'Cocoa',
-    traderName: 'Andre Wells',
-    quantity: '19,277',
-    filledQuantity: 0.221,
-    status: 'Open',
-  },
-  {
-    desk: 'D-7416',
-    commodity: 'Frozen Concentrated Orange Juice',
-    traderName: 'Charlie Rodriquez',
-    quantity: '83,081',
-    filledQuantity: 0.167,
-    status: 'Filled',
-  },
-  {
-    desk: 'D-6513',
-    commodity: 'Soybeans',
-    traderName: 'Winifred Welch',
-    quantity: '1,460',
-    filledQuantity: 0.01,
-    status: 'Filled',
-  },
-  {
-    desk: 'D-4625',
-    commodity: 'Sugar No.11',
-    traderName: 'Rosetta Pope',
-    quantity: '74,019',
-    filledQuantity: 0.461,
-    status: 'Filled',
-  },
-  {
-    desk: 'D-956',
-    commodity: 'Wheat',
-    traderName: 'Brett Rios',
-    quantity: '75,672',
-    filledQuantity: 0.106,
-    status: 'PartiallyFilled',
-  },
-  {
-    desk: 'D-4725',
-    commodity: 'Robusta coffee',
-    traderName: 'Gary Wong',
-    quantity: '15,094',
-    filledQuantity: 0.133,
-    status: 'PartiallyFilled',
-  },
-  {
-    desk: 'D-8581',
-    commodity: 'Soybean Oil',
-    traderName: 'Oscar Grant',
-    quantity: '30,389',
-    filledQuantity: 0.695,
-    status: 'Filled',
-  },
-  {
-    desk: 'D-7810',
-    commodity: 'Oats',
-    traderName: 'Hilda Kelley',
-    quantity: '69,649',
-    filledQuantity: 0.265,
-    status: 'Filled',
-  },
-  {
-    desk: 'D-4449',
-    commodity: 'Rapeseed',
-    traderName: 'Polly Lopez',
-    quantity: '85,777',
-    filledQuantity: 0.09,
-    status: 'PartiallyFilled',
-  },
-  {
-    desk: 'D-3790',
-    commodity: 'Sugar No.14',
-    traderName: 'Steven Holt',
-    quantity: '82,669',
-    filledQuantity: 0.484,
-    status: 'Rejected',
-  },
-  {
-    desk: 'D-1085',
-    commodity: 'Soybean Meal',
-    traderName: 'Ollie Conner',
-    quantity: '10,977',
-    filledQuantity: 0.288,
-    status: 'Filled',
-  },
-  {
-    desk: 'D-3437',
-    commodity: 'Coffee C',
-    traderName: 'Zachary Harper',
-    quantity: '80,005',
-    filledQuantity: 0.833,
-    status: 'Filled',
-  },
-  {
-    desk: 'D-8283',
-    commodity: 'Sugar No.11',
-    traderName: 'Alex Stokes',
-    quantity: '60,681',
-    filledQuantity: 0.671,
-    status: 'PartiallyFilled',
-  },
-  {
-    desk: 'D-9136',
-    commodity: 'Soybeans',
-    traderName: 'James Padilla',
-    quantity: '30,473',
-    filledQuantity: 0.183,
-    status: 'Rejected',
-  },
-  {
-    desk: 'D-3621',
-    commodity: 'Frozen Concentrated Orange Juice',
-    traderName: 'Bettie Powers',
-    quantity: '86,105',
-    filledQuantity: 0.142,
-    status: 'PartiallyFilled',
-  },
-  {
-    desk: 'D-8469',
-    commodity: 'Robusta coffee',
-    traderName: 'Dorothy Jimenez',
-    quantity: '78,438',
-    filledQuantity: 0.229,
-    status: 'Open',
-  },
-  {
-    desk: 'D-317',
-    commodity: 'Cotton No.2',
-    traderName: 'Floyd Benson',
-    quantity: '54,172',
-    filledQuantity: 0.062,
-    status: 'Filled',
-  },
-].map((item) => ({ ...item, id: item.desk }));
-
 interface ProgressBarProps {
   value: number;
 }
 
-const code = `
-import { DataGrid } from '@material-ui/data-grid';
-
-<DataGrid
+const code = `<XGrid
+  density="compact"
   rows={[
-    { desk: 'D-985', commodity: 'Adzuki bean', traderName: 'Roy Green', quantity: '83,996', filledQuantity: 1, status: 'PartiallyFilled' },
+    {
+      desk: 'D-985',
+      commodity: 'Adzuki bean',
+      traderName: 'Roy Green',
+      quantity: '83,996',
+      filledQuantity: 1,
+      status: 'PartiallyFilled',
+    },
   ]}
-  columns={[
-    // an example of column definition
+  columns={[ // column definition example
     {
       field: 'filledQuantity',
       headerName: 'Filled',
@@ -562,18 +324,20 @@ import { DataGrid } from '@material-ui/data-grid';
       renderEditCell: (params) => <EditProgress {...params} />,
     },
   ]}
-  pageSize={4}
-  checkboxSelection
-  disableSelectionOnClick
-  density="compact"
 />`;
 
 export default function DataTable() {
+  const { loading, data } = useDemoData({
+    dataSet: 'Commodity',
+    rowLength: 200,
+    maxColumns: 40,
+    editable: true,
+  });
   return (
     <ShowcaseContainer
       sx={{ mt: 8 }}
       previewSx={{
-        pt: 2,
+        py: 2,
         '& .MuiDataGrid-root': {
           border: 'none',
           bgcolor: 'background.paper',
@@ -600,6 +364,9 @@ export default function DataTable() {
           },
           '& .MuiDataGrid-columnSeparator': {
             display: 'none',
+          },
+          '& .MuiDataGrid-columnHeaderTitle': {
+            flexGrow: 1,
           },
           // -------------------------------
           // table body elements
@@ -673,13 +440,14 @@ export default function DataTable() {
               Trades, October 2020
             </Typography>
           </Box>
-          <Box sx={{ height: 236 }}>
-            <DataGrid
-              rows={rows}
+          <Box sx={{ height: 200 }}>
+            <XGrid
+              {...data}
               columns={columns}
+              loading={loading}
               pageSize={4}
-              checkboxSelection
-              disableSelectionOnClick
+              pagination={false}
+              hideFooter
               density="compact"
             />
           </Box>
