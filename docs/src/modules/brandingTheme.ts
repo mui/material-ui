@@ -398,6 +398,7 @@ export function getThemedComponents(theme: Theme) {
             height: 20,
             width: 20,
             padding: 0,
+            color: '#fff',
             '&.Mui-checked + .MuiSwitch-track': {
               opacity: 1,
             },
