@@ -70,8 +70,8 @@ const GOLDs = [
     href: 'https://www.elevatormag.com/',
   },
   {
-    src: '/static/sponsors/movavi.png',
-    srcSet: '/static/sponsors/movavi-2x.png',
+    src: 'https://images.opencollective.com/movavi-software/a1d0167/logo/40.png',
+    srcSet: 'https://images.opencollective.com/movavi-software/a1d0167/logo/80.png 2x',
     name: 'Movavi',
     description: 'Screen recorder for Mac.',
     href: 'https://www.movavi.com/',
