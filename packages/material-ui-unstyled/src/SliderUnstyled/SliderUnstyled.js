@@ -149,9 +149,9 @@ function doesSupportTouchActionNone() {
   if (cachedSupportsTouchActionNone === undefined) {
     if (typeof CSS !== 'undefined' && typeof CSS.supports === 'function') {
       cachedSupportsTouchActionNone = CSS.supports('touch-action', 'none');
+    } else {
+      cachedSupportsTouchActionNone = true;
     }
-
-    cachedSupportsTouchActionNone = true;
   }
   return cachedSupportsTouchActionNone;
 }
