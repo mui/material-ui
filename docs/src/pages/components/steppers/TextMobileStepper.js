@@ -61,6 +61,7 @@ export default function TextMobileStepper() {
         {steps[activeStep].description}
       </Box>
       <MobileStepper
+        variant="text"
         steps={maxSteps}
         position="static"
         activeStep={activeStep}
