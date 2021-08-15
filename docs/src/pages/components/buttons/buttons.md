@@ -205,7 +205,8 @@ Compare the attributes on the span with the button from the previous demo
 
 #### Complex customization
 
-You may even use SVG elements to render the button.
+You are not limited to using HTML elements for the button structure.
+SVG elements, even with complex structure, are equally acceptable.
 
 {{"demo": "pages/components/buttons/UnstyledButtonCustom.js"}}
 

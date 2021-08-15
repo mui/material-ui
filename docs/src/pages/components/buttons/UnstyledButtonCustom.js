@@ -1,90 +1,99 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import ButtonUnstyled, {
   buttonUnstyledClasses,
 } from '@material-ui/unstyled/ButtonUnstyled';
-import StarOutlineIcon from '@material-ui/icons/StarOutline';
-import { styled } from '@material-ui/system';
+import { styled, alpha } from '@material-ui/system';
 
+/* eslint-disable react/prop-types */
 const ButtonRoot = React.forwardRef(function ButtonRoot(props, ref) {
   const { children, ...other } = props;
 
   return (
-    <svg width="200" height="50" {...other} ref={ref}>
-      <polygon points="0,50 20,0 200,0 180,50" />
-      <foreignObject x="20" y="0" width="160" height="50">
-        <div>{children}</div>
+    <svg width="150" height="50" {...other} ref={ref}>
+      <polygon points="0,50 0,0 150,0 150,50" className="bg" />
+      <polygon points="0,50 0,0 150,0 150,50" className="borderEffect" />
+      <foreignObject x="0" y="0" width="150" height="50">
+        <div className="content">{children}</div>
       </foreignObject>
     </svg>
   );
 });
 
-ButtonRoot.propTypes = {
-  children: PropTypes.node,
-};
-
-const StyledButtonRoot = styled(ButtonRoot)(`
+const CustomButtonRoot = styled(ButtonRoot)(
+  ({ theme }) => `
   overflow: visible;
   cursor: pointer;
-  
+
   & polygon {
-    stroke: #0059b2;
-    stroke-width: 2;
-    stroke-dasharray: 600,600;
-    stroke-dashoffset: -600;
-    stroke-linecap: round;
-    fill: #007fff;
+    fill: transparent;
     transition: all 700ms ease;
     pointer-events: none;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
   }
 
-  &:hover polygon {
-    stroke-dashoffset: 0;
+  & .bg {
+    stroke: ${theme.palette.primary.main};
+    stroke-width: 0.5;
+    filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.1));
   }
 
-  &:focus {
-    outline: none;
+  & .borderEffect {
+    stroke: ${theme.palette.primary.main};
+    stroke-width: 2;
+    stroke-dasharray: 150 600;
+    stroke-dashoffset: 150;
   }
 
+  &:hover,
   &.${buttonUnstyledClasses.focusVisible} {
-    outline: none;
-    & polygon {
-      stroke-dashoffset: 0;
+    .borderEffect {
+      stroke-dashoffset: -600;
+    }
+
+    .bg {
+      fill: ${alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity)};
     }
   }
 
-  &.${buttonUnstyledClasses.active} polygon {
-    fill: #004386;
+  &:focus,
+  &.${buttonUnstyledClasses.focusVisible} {
+    outline: none;
+  }
+
+  &.${buttonUnstyledClasses.active} {
+    & .bg {
+      fill: ${alpha(
+        theme.palette.primary.main,
+        theme.palette.action.activatedOpacity,
+      )};
+      transition: fill 200ms ease-out;
+    }
   }
 
   & foreignObject {
     pointer-events: none;
 
-    & > div {
+    & .content {
+      font-family: Helvetica, Inter, Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 200;
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
+      color: ${theme.palette.primary.main};
+      text-transform: uppercase;
     }
 
     & svg {
       margin: 0 5px;
     }
-  }
-`);
+  }`,
+);
 
 const SvgButton = React.forwardRef(function SvgButton(props, ref) {
-  return <ButtonUnstyled {...props} component={StyledButtonRoot} ref={ref} />;
+  return <ButtonUnstyled {...props} component={CustomButtonRoot} ref={ref} />;
 });
 
 export default function UnstyledButtonCustom() {
-  return (
-    <SvgButton>
-      <StarOutlineIcon />
-      SVG Button
-      <StarOutlineIcon />
-    </SvgButton>
-  );
+  return <SvgButton>Button</SvgButton>;
 }
