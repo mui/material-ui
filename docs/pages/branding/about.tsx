@@ -702,7 +702,7 @@ export default function About() {
     <ThemeProvider>
       <Head
         title="About Us - MUI"
-        description="MUI started back in 2014 to unify React and Material Design. Today, Material-UI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
+        description="MUI (formerly Material-UI) started back in 2014 to unify React and Material Design. Today, MUI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
       />
       <CssBaseline />
       <AboutContent />
