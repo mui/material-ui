@@ -115,7 +115,7 @@
     "styled-components": "^5.0.0",
     "stylis": "^4.0.3",
     "stylis-plugin-rtl": "^2.0.2",
-    "stylis-plugin-rtl-sc": "npm:stylis-plugin-rtl@^1.1.0",
+    "stylis-plugin-rtl-sc": "npm:stylis-plugin-rtl@^2.1.0",
     "webfontloader": "^1.6.28",
     "webpack-bundle-analyzer": "^4.1.0"
   },
