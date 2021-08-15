@@ -5,28 +5,32 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import GradientText from 'docs/src/components/typography/GradientText';
+import SvgPalette from 'docs/src/icons/SvgPalette';
+import SvgPencil from 'docs/src/icons/SvgPencil';
+import SvgDocs from 'docs/src/icons/SvgDocs';
+import SvgEye from 'docs/src/icons/SvgEye';
 
 const content = [
   {
-    icon: '/static/branding/mui-palette.svg',
+    icon: <SvgPalette />,
     title: 'Beautifully designed',
     description:
       "You can start your projects with Google's Material Design or leverage our carefully designed theming capabilities.",
   },
   {
-    icon: '/static/branding/mui-pencil.svg',
+    icon: <SvgPencil />,
     title: 'Easily customized',
     description:
       'Enjoy the power of our components without sacrificing the styles you want. Tweak how your components render down to the very last class.',
   },
   {
-    icon: '/static/branding/mui-docs.svg',
+    icon: <SvgDocs />,
     title: 'Superb documentation',
     description:
       "Our docs were shaped throughout the years with the help and experience of our trusted +2000 member open-source community. It's all there!",
   },
   {
-    icon: '/static/branding/mui-eye.svg',
+    icon: <SvgEye />,
     title: 'Accessible by design',
     description:
       'We care about making your UX great for everyone. All of our components have built-in support for a11y, making sure you reach the largest audience possible!',
@@ -48,13 +52,7 @@ const ValueProposition = () => {
           <Grid key={title} item xs={12} sm={6} md={3}>
             <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                <Box
-                  sx={{
-                    backgroundImage: `url(${icon})`,
-                    width: 28,
-                    height: 28,
-                  }}
-                />
+                {icon}
                 <Typography fontWeight="bold" color="text.primary" variant="body2" sx={{ ml: 1 }}>
                   {title}
                 </Typography>
