@@ -614,7 +614,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   let childIndex = 0;
   const children = React.Children.map(childrenProp, (child) => {
-
     if (!React.isValidElement(child)) {
       return null;
     }

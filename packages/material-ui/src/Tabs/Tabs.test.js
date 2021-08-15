@@ -12,6 +12,7 @@ import {
 import Tab from '@material-ui/core/Tab';
 import Tabs, { tabsClasses as classes } from '@material-ui/core/Tabs';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import ResizeObserver from 'resize-observer-polyfill';
 import capitalize from '../utils/capitalize';
 
 function findScrollButton(container, direction) {
@@ -54,6 +55,12 @@ describe('<Tabs />', () => {
     if (isSafari) {
       this.skip();
     }
+
+    global.ResizeObserver = ResizeObserver;
+  });
+
+  after(() => {
+    delete global.ResizeObserver;
   });
 
   describeConformanceV5(<Tabs value={0} />, () => ({
