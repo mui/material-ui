@@ -64,6 +64,6 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=v14.17.5"
   }
 }

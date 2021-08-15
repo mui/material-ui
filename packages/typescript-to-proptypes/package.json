@@ -4,7 +4,7 @@
   "private": true,
   "description": "Generate proptypes from TypeScript declarations",
   "engines": {
-    "node": ">=10.3.0"
+    "node": ">=v14.17.5"
   },
   "repository": {
     "type": "git",
