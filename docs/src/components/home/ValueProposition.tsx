@@ -27,13 +27,13 @@ const content = [
     icon: <SvgDocs />,
     title: 'Superb documentation',
     description:
-      "Our docs were shaped throughout the years with the help and experience of our trusted +2000 member open-source community. It's all there!",
+      "Our docs were shaped throughout the years with the help and experience of our trusted 2,000+ open-source contributors. It's all there!",
   },
   {
     icon: <SvgEye />,
     title: 'Accessible by design',
     description:
-      'We care about making your UX great for everyone. All of our components have built-in support for a11y, making sure you reach the largest audience possible!',
+      'We care about making your UX great for everyone. All of our components have built-in support for accessibility, making sure you reach the largest audience possible!',
   },
 ];
 
@@ -53,7 +53,13 @@ const ValueProposition = () => {
             <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
               <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
                 {icon}
-                <Typography fontWeight="bold" color="text.primary" variant="body2" sx={{ ml: 1 }}>
+                <Typography
+                  fontWeight="bold"
+                  component="h3"
+                  color="text.primary"
+                  variant="body2"
+                  sx={{ ml: 1 }}
+                >
                   {title}
                 </Typography>
               </Box>

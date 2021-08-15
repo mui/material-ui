@@ -146,14 +146,14 @@ export default function AppFooter() {
         }}
       >
         <Typography color="text.secondary" variant="body2">
-          Copyright © {new Date().getFullYear()} Material-UI.
+          Copyright © {new Date().getFullYear()} Material-UI SAS.
         </Typography>
         <Box sx={{ py: { xs: 2, sm: 0 } }}>
           <Stack spacing={2} direction="row">
             <IconButton
               target="_blank"
               rel="noopener"
-              href="https://github.com/mui-org/material-ui"
+              href="https://github.com/mui-org"
               aria-label="github"
               title="GitHub"
               size="small"

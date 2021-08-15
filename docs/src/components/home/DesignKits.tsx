@@ -221,13 +221,16 @@ export default function DesignKits() {
             gridTemplateRows: 'min-content',
             gap: { xs: 2, sm: 4, md: 8 },
             width: 'min-content',
-            animation: 'slideup 20s ease-out forwards',
+            animation: 'slideup 30s ease-out forwards',
+            '@media (prefers-reduced-motion)': {
+              animation: 'none',
+            },
             '@keyframes slideup': {
               '0%': {
-                transform: 'translateY(-250px)',
+                transform: 'translateY(-300px)',
               },
               '100%': {
-                transform: 'translateY(-60px)',
+                transform: 'translateY(100px)',
               },
             },
           }}
@@ -249,13 +252,16 @@ export default function DesignKits() {
             gridTemplateRows: 'min-content',
             gap: { xs: 2, sm: 4, md: 8 },
             width: 'min-content',
-            animation: 'slidedown 20s ease-out forwards',
+            animation: 'slidedown 30s ease-out forwards',
+            '@media (prefers-reduced-motion)': {
+              animation: 'none',
+            },
             '@keyframes slidedown': {
               '0%': {
-                transform: 'translateY(125px)',
+                transform: 'translateY(150px)',
               },
               '100%': {
-                transform: 'translateY(-120px)',
+                transform: 'translateY(-150px)',
               },
             },
           }}

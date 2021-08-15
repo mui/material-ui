@@ -34,7 +34,7 @@ export default function GetStartedButtons(props: BoxProps) {
           variant="contained"
           endIcon={<KeyboardArrowRightRounded />}
         >
-          Get Started
+          Get started
         </Button>
       </NextLink>
       <Box sx={{ width: 16, height: 16 }} />
