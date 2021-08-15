@@ -1,6 +1,6 @@
 # React Engineer
 
-<p class="description">We are looking for a React Engineer to support the advanced components team, build new ambitious enterprise features, and grow the open-source adoption.</p>
+<p class="description">We are looking for a React Engineer to support the advanced components team, build new ambitious complex features, and grow the open-source adoption.</p>
 
 ## Details of the Role
 
