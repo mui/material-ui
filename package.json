@@ -149,7 +149,7 @@
     "mocha": "^9.0.0",
     "node-fetch": "^ 2.6.0",
     "nyc": "^15.0.0",
-    "playwright": "^1.6.1",
+    "playwright": "^1.14.0",
     "prettier": "^2.0.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
