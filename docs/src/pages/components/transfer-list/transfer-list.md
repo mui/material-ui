@@ -26,8 +26,8 @@ This example exchanges the "move all" buttons for a "select all / select none" c
 
 The component comes with a couple of limitations:
 
-- It only works on desktops.
-  If you have a limited amount of options to select, prefer the [Autocomplete](/components/autocomplete/) component.
+- It only works on desktop.
+  If you have a limited amount of options to select, prefer the [Autocomplete](/components/autocomplete/#multiple-values) component.
   If mobile support is important for you, have a look at [#27579](https://github.com/mui-org/material-ui/issues/27579).
 - There are no high-level components exported from npm. The demos are based on composition.
-  If it's important for you, have a look at [#27579](https://github.com/mui-org/material-ui/issues/27579).
+  If this is important for you, have a look at [#27579](https://github.com/mui-org/material-ui/issues/27579).
