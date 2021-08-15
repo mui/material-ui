@@ -1,10 +1,11 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import ButtonUnstyled, {
   buttonUnstyledClasses,
 } from '@material-ui/unstyled/ButtonUnstyled';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import { styled, alpha } from '@material-ui/system';
 
-/* eslint-disable react/prop-types */
 const ButtonRoot = React.forwardRef(function ButtonRoot(props, ref) {
   const { children, ...other } = props;
 
@@ -19,17 +20,21 @@ const ButtonRoot = React.forwardRef(function ButtonRoot(props, ref) {
   );
 });
 
+ButtonRoot.propTypes = {
+  children: PropTypes.node,
+};
+
 const CustomButtonRoot = styled(ButtonRoot)(
   ({ theme }) => `
   overflow: visible;
   cursor: pointer;
-
+  
   & polygon {
     fill: transparent;
     transition: all 700ms ease;
     pointer-events: none;
   }
-
+  
   & .bg {
     stroke: ${theme.palette.primary.main};
     stroke-width: 0.5;
@@ -59,7 +64,7 @@ const CustomButtonRoot = styled(ButtonRoot)(
     outline: none;
   }
 
-  &.${buttonUnstyledClasses.active} {
+  &.${buttonUnstyledClasses.active} { 
     & .bg {
       fill: ${alpha(
         theme.palette.primary.main,
@@ -95,5 +100,9 @@ const SvgButton = React.forwardRef(function SvgButton(props, ref) {
 });
 
 export default function UnstyledButtonCustom() {
-  return <SvgButton>Button</SvgButton>;
+  return (
+    <ThemeProvider theme={createTheme()}>
+      <SvgButton>Button</SvgButton>
+    </ThemeProvider>
+  );
 }

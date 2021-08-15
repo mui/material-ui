@@ -3,7 +3,8 @@ import ButtonUnstyled, {
   ButtonUnstyledProps,
   buttonUnstyledClasses,
 } from '@material-ui/unstyled/ButtonUnstyled';
-import { styled, alpha, Theme } from '@material-ui/system';
+import { Theme, ThemeProvider, createTheme } from '@material-ui/core/styles';
+import { styled, alpha } from '@material-ui/system';
 
 const ButtonRoot = React.forwardRef(function ButtonRoot(
   props: React.PropsWithChildren<{}>,
@@ -101,5 +102,9 @@ const SvgButton = React.forwardRef(function SvgButton(
 });
 
 export default function UnstyledButtonCustom() {
-  return <SvgButton>Button</SvgButton>;
+  return (
+    <ThemeProvider theme={createTheme()}>
+      <SvgButton>Button</SvgButton>
+    </ThemeProvider>
+  );
 }
