@@ -15,6 +15,9 @@ const defaultAlias = {
   '@material-ui/lab': resolveAliasPath('./packages/material-ui-lab/src'),
   '@material-ui/styled-engine': resolveAliasPath('./packages/material-ui-styled-engine/src'),
   '@material-ui/styled-engine-sc': resolveAliasPath('./packages/material-ui-styled-engine-sc/src'),
+  '@material-ui/styled-engine-goober': resolveAliasPath(
+    './packages/material-ui-styled-engine-goober/src',
+  ),
   '@material-ui/styles': resolveAliasPath('./packages/material-ui-styles/src'),
   '@material-ui/system': resolveAliasPath('./packages/material-ui-system/src'),
   '@material-ui/private-theming': resolveAliasPath('./packages/material-ui-private-theming/src'),

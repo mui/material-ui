@@ -36,6 +36,13 @@ const styledEngineSCContext = require.context(
 );
 styledEngineSCContext.keys().forEach(styledEngineSCContext);
 
+const styledEngineGooberContext = require.context(
+  '../packages/material-ui-styled-engine-goober/src/',
+  true,
+  /\.test\.(js|ts|tsx)$/,
+);
+styledEngineGooberContext.keys().forEach(styledEngineGooberContext);
+
 const systemContext = require.context(
   '../packages/material-ui-system/src/',
   true,

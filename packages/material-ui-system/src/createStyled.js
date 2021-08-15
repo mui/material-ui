@@ -5,7 +5,7 @@ import styleFunctionSx from './styleFunctionSx';
 import propsToClassKey from './propsToClassKey';
 
 function isEmpty(obj) {
-  return Object.keys(obj).length === 0;
+  return obj == null || Object.keys(obj).length === 0;
 }
 
 const getStyleOverrides = (name, theme) => {

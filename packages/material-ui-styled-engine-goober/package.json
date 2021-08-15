@@ -1,0 +1,54 @@
+{
+  "name": "@material-ui/styled-engine-goober",
+  "version": "5.0.0-beta.1",
+  "private": false,
+  "author": "Material-UI Team",
+  "description": "styled() API wrapper package for goober.",
+  "main": "./src/index.js",
+  "keywords": [
+    "react",
+    "react-component",
+    "material-ui",
+    "goober"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui-org/material-ui.git",
+    "directory": "packages/material-ui-styled-engine-goober"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui-org/material-ui/issues"
+  },
+  "homepage": "https://next.material-ui.com/guides/styled-engine/",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/material-ui"
+  },
+  "scripts": {
+    "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:copy-files",
+    "build:legacy": "node ../../scripts/build legacy",
+    "build:modern": "node ../../scripts/build modern",
+    "build:node": "node ../../scripts/build node",
+    "build:stable": "node ../../scripts/build stable",
+    "build:copy-files": "node ../../scripts/copy-files.js",
+    "prebuild": "rimraf build",
+    "release": "yarn build && npm publish build --tag next",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-styled-engine-goober/**/*.test.{js,ts,tsx}'",
+    "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@emotion/unitless": "^0.7.5",
+    "prop-types": "^15.7.2"
+  },
+  "peerDependencies": {
+    "goober": "^5.0.0"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}

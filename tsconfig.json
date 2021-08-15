@@ -23,6 +23,8 @@
       "@material-ui/styled-engine/*": ["./packages/material-ui-styled-engine/src/*"],
       "@material-ui/styled-engine-sc": ["./packages/material-ui-styled-engine-sc/src"],
       "@material-ui/styled-engine-sc/*": ["./packages/material-ui-styled-engine-sc/src/*"],
+      "@material-ui/styled-engine-goober": ["./packages/material-ui-styled-engine-goober/src"],
+      "@material-ui/styled-engine-goober/*": ["./packages/material-ui-styled-engine-goober/src/*"],
       "@material-ui/styles": ["./packages/material-ui-styles/src"],
       "@material-ui/styles/*": ["./packages/material-ui-styles/src/*"],
       "@material-ui/system": ["./packages/material-ui-system/src"],

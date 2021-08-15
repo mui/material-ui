@@ -14,7 +14,8 @@
     "packages/material-ui-utils",
     "packages/material-ui-unstyled",
     "packages/material-ui-styled-engine",
-    "packages/material-ui-styled-engine-sc"
+    "packages/material-ui-styled-engine-sc",
+    "packages/material-ui-styled-engine-goober"
   ],
   "publishDirectory": {
     "@material-ui/codemod": "packages/material-ui-codemod/build",
@@ -24,6 +25,7 @@
     "@material-ui/styles": "packages/material-ui-styles/build",
     "@material-ui/styled-engine": "packages/material-ui-styled-engine/build",
     "@material-ui/styled-engine-sc": "packages/material-ui-styled-engine-sc/build",
+    "@material-ui/styled-engine-goober": "packages/material-ui-styled-engine-goober/build",
     "@material-ui/system": "packages/material-ui-system/build",
     "@material-ui/private-theming": "packages/material-ui-private-theming/build",
     "@material-ui/types": "packages/material-ui-types/build",

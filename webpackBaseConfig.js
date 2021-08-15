@@ -21,6 +21,10 @@ module.exports = {
         __dirname,
         './packages/material-ui-styled-engine-sc/src',
       ),
+      '@material-ui/styled-engine-goober': path.resolve(
+        __dirname,
+        './packages/material-ui-styled-engine-goober/src',
+      ),
       '@material-ui/styles': path.resolve(__dirname, './packages/material-ui-styles/src'),
       '@material-ui/system': path.resolve(__dirname, './packages/material-ui-system/src'),
       '@material-ui/private-theming': path.resolve(

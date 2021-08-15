@@ -8674,6 +8674,11 @@ gonzales-pe@^4.3.0:
   dependencies:
     minimist "^1.2.5"
 
+goober@^2.0.0:
+  version "2.0.40"
+  resolved "https://registry.yarnpkg.com/goober/-/goober-2.0.40.tgz#7f3d4cafdf6854da55460a639e9b3a15848aaaf3"
+  integrity sha512-LnYclgtz+t2Q9fDEIEdMKCoh5+JyBwG6ORJme52Av18ZrajhqEtzACXWhL/+IIB0SegvwXLcGG7FH+BJ/Z3Ljw==
+
 good-listener@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/good-listener/-/good-listener-1.2.2.tgz#d53b30cdf9313dffb7dc9a0d477096aa6d145c50"

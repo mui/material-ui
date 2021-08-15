@@ -216,7 +216,7 @@ export function ThemeProvider(props) {
         components: {
           MuiCssBaseline: {
             styleOverrides: {
-              body: paletteMode === 'dark' ? darkScrollbar() : null,
+              body: paletteMode === 'dark' ? darkScrollbar() : {},
             },
           },
         },
