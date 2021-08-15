@@ -29,7 +29,7 @@ function flipPlacement(placement, theme) {
   }
 }
 
-function getAnchorEl(anchorEl) {
+function resolveAnchorEl(anchorEl) {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
 }
 
@@ -84,7 +84,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
       setPlacement(data.placement);
     };
 
-    const resolvedAnchorEl = getAnchorEl(anchorEl);
+    const resolvedAnchorEl = resolveAnchorEl(anchorEl);
 
     if (process.env.NODE_ENV !== 'production') {
       if (resolvedAnchorEl && resolvedAnchorEl.nodeType === 1) {
@@ -138,7 +138,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
       popperModifiers = popperModifiers.concat(popperOptions.modifiers);
     }
 
-    const popper = createPopper(getAnchorEl(anchorEl), tooltipRef.current, {
+    const popper = createPopper(resolveAnchorEl(anchorEl), tooltipRef.current, {
       placement: rtlPlacement,
       ...popperOptions,
       modifiers: popperModifiers,
@@ -204,7 +204,7 @@ const Popper = React.forwardRef(function Popper(props, ref) {
   // If the anchorEl prop is provided, use its parent body element as the container
   // If neither are provided let the Modal take care of choosing the container
   const container =
-    containerProp || (anchorEl ? ownerDocument(getAnchorEl(anchorEl)).body : undefined);
+    containerProp || (anchorEl ? ownerDocument(resolveAnchorEl(anchorEl)).body : undefined);
 
   return (
     <Portal disablePortal={disablePortal} container={container}>
@@ -258,7 +258,7 @@ Popper.propTypes /* remove-proptypes */ = {
     PropTypes.oneOfType([HTMLElementType, PropTypes.object, PropTypes.func]),
     (props) => {
       if (props.open) {
-        const resolvedAnchorEl = getAnchorEl(props.anchorEl);
+        const resolvedAnchorEl = resolveAnchorEl(props.anchorEl);
 
         if (resolvedAnchorEl && resolvedAnchorEl.nodeType === 1) {
           const box = resolvedAnchorEl.getBoundingClientRect();
