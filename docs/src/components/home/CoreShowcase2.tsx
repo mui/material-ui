@@ -3,13 +3,16 @@ import { ThemeProvider, createTheme, useTheme, styled, alpha } from '@material-u
 import { shouldForwardProp } from '@material-ui/system';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+import Tooltip from '@material-ui/core/Tooltip';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/MaterialDesignDemo';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
+import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
 
 const darkDesignTokens = getDesignTokens('dark');
 
@@ -90,6 +93,7 @@ export default function CoreShowcase() {
   const mode = globalTheme.palette.mode;
   const [element, setElement] = React.useState<Data>({ id: null, name: null, target: null });
   const [customized, setCustomized] = React.useState(false);
+  const [hidden, setHidden] = React.useState(false); // for custom theme suggestion
   const theme = React.useMemo(
     () =>
       customized
@@ -279,6 +283,51 @@ export default function CoreShowcase() {
                 <FlashCode startLine={startLine} endLine={endLine} sx={{ mx: -1 }} />
               )}
               <HighlightedCode component={MarkdownElement} code={componentCode} language="jsx" />
+              <Box
+                sx={{
+                  position: 'absolute',
+                  bottom: hidden || !customized ? -120 : 0,
+                  transition: '0.3s',
+                  left: 0,
+                  right: 0,
+                  px: 2,
+                  pt: 1,
+                  pb: 2,
+                  mb: -2,
+                  mx: -2,
+                  bgcolor: ({ palette }) => alpha(palette.primaryDark[600], 0.5),
+                  backdropFilter: 'blur(4px)',
+                  zIndex: 1,
+                  borderTop: '1px solid',
+                  borderColor: 'divider',
+                  borderRadius: '0 0 10px 10px',
+                }}
+              >
+                <Tooltip title="Hide">
+                  <IconButton
+                    onClick={() => setHidden(true)}
+                    sx={{
+                      position: 'absolute',
+                      right: 10,
+                      top: 0,
+                      transform: 'translateY(-50%)',
+                      bgcolor: 'primaryDark.600',
+                      '&:hover, &.Mui-focused': {
+                        bgcolor: 'primaryDark.600',
+                      },
+                    }}
+                  >
+                    <KeyboardArrowDownRounded />
+                  </IconButton>
+                </Tooltip>
+                <Typography fontWeight="bold" color="#fff" variant="body2">
+                  Own the styling!
+                </Typography>
+                <Typography color="grey.400" fontSize="0.75rem">
+                  Build your own design system by leveraging our theming capabilities. You can also
+                  start by using Google&apos;s Material Design.
+                </Typography>
+              </Box>
             </Box>
           </Box>
         </ThemeProvider>
