@@ -258,6 +258,7 @@ export default function AppTableOfContents(props) {
               Math.round(Math.random() * 3)
             ]
           }
+          {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
           <span className={classes.hiringLearn}>Learn more &rarr;</span>
         </Link>
       </NoSsr>
