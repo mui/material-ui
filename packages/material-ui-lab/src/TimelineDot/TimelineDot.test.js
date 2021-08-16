@@ -19,10 +19,10 @@ describe('<TimelineDot />', () => {
   it('should render with color inherit', () => {
     expect(() =>
       render(
-        <>
+        <React.Fragment>
           <TimelineDot color="inherit" />
           <TimelineDot variant="outlined" color="inherit" />
-        </>,
+        </React.Fragment>,
       ),
     ).not.to.throw();
   });
