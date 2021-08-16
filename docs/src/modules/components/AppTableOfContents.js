@@ -250,14 +250,13 @@ export default function AppTableOfContents(props) {
             width={175}
             height={119}
           />
-          {'We are hiring for 5 roles:'}
-          <br />
-          {'e.g. '}
+          {"We're hiring a "}
           {
             ['React engineer', 'Full-stack engineer', 'Product manager', 'Dev. Advocate'][
               Math.round(Math.random() * 3)
             ]
           }
+          {' and more roles.'}
           {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
           <span className={classes.hiringLearn}>Learn more &rarr;</span>
         </Link>
