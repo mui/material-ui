@@ -109,7 +109,7 @@ describe('<NativeSelect />', () => {
       <NativeSelect
         defaultValue={30}
         inputProps={{
-          'data-testid': "select",
+          'data-testid': 'select',
           name: 'age',
           id: 'uncontrolled-native',
         }}
