@@ -38,10 +38,10 @@ You will be joining the advanced components team.
 
 - You will coordinate with the engineering to ensure that the product being delivered at each iteration solves the problem.
   This involves growing a deep understanding of our technical choices and constraints.
-- If time allows you to, you will assist the engineering team and implement some of the items in the backlog. You might need to contribute part-time code in the beginning.
+- If time allows you to, you will assist the engineering team and implement some of the items in the backlog, up to part-time.
 - You will drive the revenue and community growth by owning KPIs.
 - You will grow and cultivate a deep understanding of the problems that developers have when they deal with enterprise applications. This means that you will observe and reach out to the community, run research interviews and share your insights with the team.
-- You will keep a close eye on feature requests, issues, and general improvements (mostly through GitHub issues and a bit Zendesk), to curate opportunities based on our strategy.
+- You will keep a close eye on feature requests, issues, and general improvements (mostly through GitHub issues and occasionally Zendesk), to curate opportunities based on our strategy.
 - You will build a strategy for your product area and contribute to the overall product strategy, e.g. establishing a go-to-market strategy.
 - You will assess the impact of initiatives through telemetry data and qualitative feedback to help us develop our understanding further, and decide on the next steps.
 

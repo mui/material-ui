@@ -30,7 +30,7 @@ Our solution empowers React developers to build awesome applications – hundred
 But providing React components isn't enough.
 In our [last developer survey](/blog/2020-developer-survey-results/), we learned that the majority of our audience are full-stack developers.
 They are looking for ways to move faster.
-They are working on a couple of new projects every year, and where the integration between the UI and the databases is key.
+They are working on a couple of new projects every year, and where the integration between the UI and the database is key.
 
 ## About the role
 

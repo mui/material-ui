@@ -48,12 +48,12 @@ You will support the advanced components team, build new ambitious complex featu
 #### [Technical Product Manager](/company/technical-product-manager/)
 
 You will define and maintain the product roadmap for the advanced components, identify opportunities, define specs, and work with engineers to execute on the features.
-Experience as an engineer is essential for this role. You might need to work part-time developing too in the beginning.
+Experience as an engineer is essential for this role, as you will also contribute to development work in the beginning.
 
 #### [Product Manager](/company/product-manager/)
 
-You will initiate the product exploration of a bold new product vertical.
-We are looking for an experienced and ambitious product manager that is ready to work in an entrepreneurial environment.
+You will initiate the exploration of a bold new product vertical.
+We are looking for an experienced and ambitious product manager who is ready to work in an entrepreneurial environment.
 You are a [manager of one](https://signalvnoise.com/posts/1430-hire-managers-of-one), you are curious, enjoy taking risks, and learning.
 
 #### [Developer Advocate](/company/developer-advocate/)
