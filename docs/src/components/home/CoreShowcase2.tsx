@@ -234,7 +234,7 @@ export default function CoreShowcase() {
         <ThemeProvider theme={darkBrandingTheme}>
           <Box
             sx={{
-              p: 1,
+              p: {xs: 2, sm: 1},
               display: 'flex',
               alignItems: 'center',
               right: 0,

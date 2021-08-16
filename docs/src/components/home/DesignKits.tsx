@@ -176,7 +176,7 @@ export default function DesignKits() {
       <Box
         sx={{
           position: 'absolute',
-          top: { xs: '50%', md: 'calc(50% + 80px)' },
+          top: { xs: '50%', md: 'calc(40% + 80px)' },
           transform: { xs: 'translate(-50%, -50%)' },
           left: { xs: '50%' },
           zIndex: 10,
