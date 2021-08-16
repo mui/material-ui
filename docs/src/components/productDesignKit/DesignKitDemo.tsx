@@ -11,6 +11,7 @@ import SvgTypography from 'docs/src/icons/SvgTypography';
 import SvgDatePicker from 'docs/src/icons/SvgDatePicker';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
+import Frame from 'docs/src/components/action/Frame';
 
 const DEMOS = ['Components', 'Branding', 'Iconography'];
 
@@ -49,7 +50,66 @@ export default function TemplateDemo() {
           </Group>
         </Grid>
         <Grid item xs={12} md={6}>
-          <div />
+          <Frame>
+            <Frame.Demo
+              sx={{
+                overflow: 'hidden',
+                height: { xs: 240, sm: 390 },
+                perspective: '1000px',
+                '& > img': {
+                  transition: '0.7s',
+                  display: 'block',
+                  width: { xs: 240, sm: 300 },
+                  height: 'auto',
+                  borderRadius: 1,
+                  position: 'absolute',
+                  left: '50%',
+                  filter: 'drop-shadow(0px 4px 20px rgba(61, 71, 82, 0.2))',
+                  '&:nth-of-type(1)': {
+                    top: 120,
+                    transform: 'translate(-70%)',
+                  },
+                  '&:nth-of-type(2)': {
+                    top: 80,
+                    transform: 'translate(-50%)',
+                  },
+                  '&:nth-of-type(3)': {
+                    top: 40,
+                    transform: 'translate(-30%)',
+                  },
+                },
+                '&:hover': {
+                  '& > img': {
+                    filter: 'drop-shadow(-16px 12px 20px rgba(61, 71, 82, 0.2))',
+                    '&:nth-of-type(1)': {
+                      top: 0,
+                      transform: 'scale(0.8) translate(-100%) rotateY(30deg)',
+                    },
+                    '&:nth-of-type(2)': {
+                      top: 40,
+                      transform: 'scale(0.8) translate(-50%) rotateY(30deg)',
+                    },
+                    '&:nth-of-type(3)': {
+                      top: 40,
+                      transform: 'scale(0.8) translate(-0%) rotateY(30deg)',
+                    },
+                  },
+                },
+              }}
+            >
+              <img src="/static/branding/design-kits/Button.jpeg" alt="" loading="lazy" />
+              <img src="/static/branding/design-kits/Alert.jpeg" alt="" loading="lazy" />
+              <img src="/static/branding/design-kits/Slider.jpeg" alt="" loading="lazy" />
+            </Frame.Demo>
+            <Frame.Info>
+              <Typography variant="body2" fontWeight={500} sx={{ mb: 0.5 }}>
+                MUI for Figma
+              </Typography>
+              <Typography variant="body2" color="success.600" fontWeight={500}>
+                $69
+              </Typography>
+            </Frame.Info>
+          </Frame>
         </Grid>
       </Grid>
     </Section>

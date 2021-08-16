@@ -1,10 +1,12 @@
 import * as React from 'react';
 import { styled, alpha } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
-import Box from '@material-ui/core/Box';
+import Avatar, { AvatarProps } from '@material-ui/core/Avatar';
+import Box, { BoxProps } from '@material-ui/core/Box';
 import Fade from '@material-ui/core/Fade';
 import ROUTES from 'docs/src/route';
 import LaunchRounded from '@material-ui/icons/LaunchRounded';
+import Slide from 'docs/src/components/animation/Slide';
+import useTimingAppearance from 'docs/src/components/animation/useTimingAppearance';
 
 const ratio = 900 / 494;
 
@@ -40,41 +42,51 @@ const Anchor = styled('a')({
   },
 });
 
-const DesignTool = React.forwardRef<HTMLAnchorElement, { brand: 'figma' | 'sketch' | 'xd' }>(
-  ({ brand, ...props }, ref) => {
-    return (
-      <Anchor
-        ref={ref}
-        aria-label="Goto MUI store"
-        href={{ figma: ROUTES.storeFigma, sketch: ROUTES.storeSketch, xd: ROUTES.storeXD }[brand]}
-        target="_blank"
-        {...props}
-      >
-        <Avatar src={`/static/branding/design-kits/designkits-${brand}.png`} alt="" />
-        <Box
-          sx={{
-            transition: '0.3s',
-            borderRadius: '50%',
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            opacity: 0,
-            top: 0,
-            left: 0,
-            bgcolor: (theme) => alpha(theme.palette.primary[500], 0.5),
-            color: '#fff',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <LaunchRounded />
-        </Box>
-      </Anchor>
-    );
-  },
-);
+const DesignToolLink = React.forwardRef<
+  HTMLAnchorElement,
+  React.PropsWithChildren<{ brand: 'figma' | 'sketch' | 'xd' }>
+>(({ brand, ...props }, ref) => (
+  <Anchor
+    ref={ref}
+    aria-label="Goto MUI store"
+    href={{ figma: ROUTES.storeFigma, sketch: ROUTES.storeSketch, xd: ROUTES.storeXD }[brand]}
+    target="_blank"
+    {...props}
+  >
+    <Box
+      sx={{
+        transition: '0.3s',
+        borderRadius: '50%',
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        opacity: 0,
+        top: 0,
+        left: 0,
+        bgcolor: (theme) => alpha(theme.palette.primary[500], 0.5),
+        color: '#fff',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <LaunchRounded />
+    </Box>
+  </Anchor>
+));
+
+const DesignToolLogo = React.forwardRef<
+  HTMLImageElement,
+  { brand: 'figma' | 'sketch' | 'xd' } & AvatarProps
+>(({ brand, ...props }, ref) => (
+  <Avatar
+    ref={ref}
+    src={`/static/branding/design-kits/designkits-${brand}.png`}
+    alt=""
+    {...props}
+  />
+));
 
 export const PrefetchDesignKitImages = () => (
   <Box
@@ -101,18 +113,112 @@ export const PrefetchDesignKitImages = () => (
   </Box>
 );
 
+const defaultSlideUp = {
+  '0%': {
+    transform: 'translateY(-300px)',
+  },
+  '100%': {
+    transform: 'translateY(100px)',
+  },
+};
+export function DesignKitImagesSet1({
+  keyframes = defaultSlideUp,
+  ...props
+}: BoxProps & { keyframes?: Record<string, object> }) {
+  const [appearIndexes] = useTimingAppearance(3);
+  return (
+    <Slide animationName="designkit-slideup" {...props} keyframes={keyframes}>
+      <Fade in={appearIndexes.includes(2)} timeout={1000}>
+        <Image src="/static/branding/design-kits/designkits1.jpeg" alt="" />
+      </Fade>
+      <Fade in={appearIndexes.includes(1)} timeout={1000}>
+        <Image src="/static/branding/design-kits/designkits3.jpeg" alt="" />
+      </Fade>
+      <Fade in={appearIndexes.includes(0)} timeout={1000}>
+        <Image src="/static/branding/design-kits/designkits5.jpeg" alt="" />
+      </Fade>
+    </Slide>
+  );
+}
+
+const defaultSlideDown = {
+  '0%': {
+    transform: 'translateY(150px)',
+  },
+  '100%': {
+    transform: 'translateY(-150px)',
+  },
+};
+export function DesignKitImagesSet2({
+  keyframes = defaultSlideDown,
+  ...props
+}: BoxProps & { keyframes?: Record<string, object> }) {
+  const [appearIndexes] = useTimingAppearance(3, { delay: 100 });
+  return (
+    <Slide animationName="designkit-slidedown" {...props} keyframes={keyframes}>
+      <Fade in={appearIndexes.includes(0)} timeout={1000}>
+        <Image src="/static/branding/design-kits/designkits2.jpeg" alt="" />
+      </Fade>
+      <Fade in={appearIndexes.includes(1)} timeout={1000}>
+        <Image src="/static/branding/design-kits/designkits4.jpeg" alt="" />
+      </Fade>
+      <Fade in={appearIndexes.includes(2)} timeout={1000}>
+        <Image src="/static/branding/design-kits/designkits6.jpeg" alt="" />
+      </Fade>
+    </Slide>
+  );
+}
+
+export function DesignKitTools({ disableLink, ...props }: { disableLink?: boolean } & BoxProps) {
+  const [appearIndexes] = useTimingAppearance(3, { delay: 200 });
+  function renderTool(brand: 'figma' | 'sketch' | 'xd') {
+    if (disableLink) return <DesignToolLogo brand={brand} />;
+    return (
+      <DesignToolLink brand={brand}>
+        <DesignToolLogo brand={brand} />
+      </DesignToolLink>
+    );
+  }
+  return (
+    <Box
+      {...props}
+      sx={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        zIndex: 10,
+        display: 'grid',
+        gap: { xs: 3, lg: 6 },
+        py: 4,
+        gridTemplateColumns: '1fr 1fr 1fr',
+        '& .MuiAvatar-root': {
+          width: { xs: 80, sm: 100 },
+          height: { xs: 80, sm: 100 },
+          filter: (theme) =>
+            `drop-shadow(0px 3.57436px 44.6795px ${
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[900]
+                : 'rgba(90, 105, 120, 0.36)'
+            })`,
+        },
+        ...props.sx,
+      }}
+    >
+      <Fade in={appearIndexes.includes(0)} timeout={1000}>
+        {renderTool('figma')}
+      </Fade>
+      <Fade in={appearIndexes.includes(1)} timeout={1000}>
+        {renderTool('sketch')}
+      </Fade>
+      <Fade in={appearIndexes.includes(2)} timeout={1000}>
+        {renderTool('xd')}
+      </Fade>
+    </Box>
+  );
+}
+
 export default function DesignKits() {
-  const [appearIndexes, setAppearIndexes] = React.useState<Array<number>>([0]);
-  React.useEffect(() => {
-    const time = setTimeout(() => {
-      if (appearIndexes.length < 6) {
-        setAppearIndexes((current) => [...current, current.length]);
-      }
-    }, 100);
-    return () => {
-      clearTimeout(time);
-    };
-  }, [appearIndexes]);
   return (
     <Box
       sx={{
@@ -173,39 +279,13 @@ export default function DesignKits() {
           zIndex: 2,
         }}
       />
-      <Box
+      <DesignKitTools
         sx={{
-          position: 'absolute',
-          top: { xs: '50%', md: 'calc(40% + 80px)' },
+          top: { xs: '50%', md: 'calc(50% + 80px)' },
           transform: { xs: 'translate(-50%, -50%)' },
           left: { xs: '50%' },
-          zIndex: 10,
-          display: 'grid',
-          gap: { xs: 3, lg: 6 },
-          py: 4,
-          gridTemplateColumns: '1fr 1fr 1fr',
-          '& .MuiAvatar-root': {
-            width: { xs: 80, sm: 100 },
-            height: { xs: 80, sm: 100 },
-            filter: (theme) =>
-              `drop-shadow(0px 3.57436px 44.6795px ${
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[900]
-                  : 'rgba(90, 105, 120, 0.36)'
-              })`,
-          },
         }}
-      >
-        <Fade in={appearIndexes.includes(0)} timeout={1000}>
-          <DesignTool brand="figma" />
-        </Fade>
-        <Fade in={appearIndexes.includes(1)} timeout={1000}>
-          <DesignTool brand="sketch" />
-        </Fade>
-        <Fade in={appearIndexes.includes(2)} timeout={1000}>
-          <DesignTool brand="xd" />
-        </Fade>
-      </Box>
+      />
       <Box
         sx={{
           left: '36%',
@@ -215,67 +295,8 @@ export default function DesignKits() {
           transformOrigin: 'center center',
         }}
       >
-        <Box
-          sx={{
-            display: 'grid',
-            gridTemplateRows: 'min-content',
-            gap: { xs: 2, sm: 4, md: 8 },
-            width: 'min-content',
-            animation: 'slideup 30s ease-out forwards',
-            '@media (prefers-reduced-motion)': {
-              animation: 'none',
-            },
-            '@keyframes slideup': {
-              '0%': {
-                transform: 'translateY(-300px)',
-              },
-              '100%': {
-                transform: 'translateY(100px)',
-              },
-            },
-          }}
-        >
-          <Fade in={appearIndexes.includes(4)} timeout={1000}>
-            <Image src="/static/branding/design-kits/designkits1.jpeg" alt="" />
-          </Fade>
-          <Fade in={appearIndexes.includes(2)} timeout={1000}>
-            <Image src="/static/branding/design-kits/designkits3.jpeg" alt="" />
-          </Fade>
-          <Fade in={appearIndexes.includes(0)} timeout={1000}>
-            <Image src="/static/branding/design-kits/designkits5.jpeg" alt="" />
-          </Fade>
-        </Box>
-        <Box
-          sx={{
-            ml: { xs: 2, sm: 4, md: 8 },
-            display: 'grid',
-            gridTemplateRows: 'min-content',
-            gap: { xs: 2, sm: 4, md: 8 },
-            width: 'min-content',
-            animation: 'slidedown 30s ease-out forwards',
-            '@media (prefers-reduced-motion)': {
-              animation: 'none',
-            },
-            '@keyframes slidedown': {
-              '0%': {
-                transform: 'translateY(150px)',
-              },
-              '100%': {
-                transform: 'translateY(-150px)',
-              },
-            },
-          }}
-        >
-          <Fade in={appearIndexes.includes(1)} timeout={1000}>
-            <Image src="/static/branding/design-kits/designkits2.jpeg" alt="" />
-          </Fade>
-          <Fade in={appearIndexes.includes(3)} timeout={1000}>
-            <Image src="/static/branding/design-kits/designkits4.jpeg" alt="" />
-          </Fade>
-          <Fade in={appearIndexes.includes(5)} timeout={1000}>
-            <Image src="/static/branding/design-kits/designkits6.jpeg" alt="" />
-          </Fade>
-        </Box>
+        <DesignKitImagesSet1 />
+        <DesignKitImagesSet2 />
       </Box>
     </Box>
   );

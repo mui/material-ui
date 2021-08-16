@@ -1,14 +1,16 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
+import Box, { BoxProps } from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 
 export default function HeroContainer({
   left,
   right,
+  rightSx,
 }: {
   left: React.ReactElement;
   right: React.ReactElement;
+  rightSx?: BoxProps['sx'];
 }) {
   return (
     <Box sx={{ overflow: 'hidden' }}>
@@ -38,30 +40,16 @@ export default function HeroContainer({
             <Box
               aria-hidden="true"
               sx={{
-                p: 3,
                 bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
-                minWidth: 2000,
+                minWidth: '50vw',
                 minHeight: 500,
                 height: 'calc(100vh - 120px)',
                 maxHeight: { lg: 700, xl: 1000 },
                 borderBottomLeftRadius: 10,
                 transition: 'max-height 0.3s',
-                '& > div': {
-                  width: 360,
-                  display: 'inline-flex',
-                  verticalAlign: 'top',
-                  '&:nth-of-type(2)': {
-                    width: { xl: 400 },
-                  },
-                },
-                '&& *': {
-                  fontFamily: [
-                    '"IBM Plex Sans"',
-                    '-apple-system',
-                    'BlinkMacSystemFont',
-                    'sans-serif',
-                  ].join(','),
-                },
+                position: 'relative',
+                overflow: 'hidden',
+                ...rightSx,
               }}
             >
               {right}

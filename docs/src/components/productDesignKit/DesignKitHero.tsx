@@ -8,6 +8,11 @@ import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
+import {
+  DesignKitImagesSet1,
+  DesignKitImagesSet2,
+  DesignKitTools,
+} from 'docs/src/components/home/DesignKits';
 
 export default function TemplateHero() {
   return (
@@ -30,7 +35,7 @@ export default function TemplateHero() {
             MUI in your favorite
             <br /> <GradientText>design tool</GradientText>.
           </Typography>
-          <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
+          <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 450 }}>
             For the designers out there, pick your favorite design tool to enjoy our components. Get
             the consistency right when working with developers.
           </Typography>
@@ -46,7 +51,35 @@ export default function TemplateHero() {
           </Button>
         </Box>
       }
-      right={<div />}
+      right={
+        <Box sx={{ position: 'relative', height: '100%' }}>
+          <DesignKitTools
+            disableLink
+            sx={{ filter: 'drop-shadow(0px 4px 20px rgba(61, 71, 82, 0.25))' }}
+          />
+          <Box
+            sx={{
+              left: '36%',
+              position: 'absolute',
+              display: 'flex',
+              transform: 'translateX(-40%) rotateZ(30deg) rotateX(8deg) rotateY(-8deg)',
+              transformOrigin: 'center center',
+            }}
+          >
+            <DesignKitImagesSet1
+              keyframes={{
+                '0%': {
+                  transform: 'translateY(-300px)',
+                },
+                '100%': {
+                  transform: 'translateY(0px)',
+                },
+              }}
+            />
+            <DesignKitImagesSet2 sx={{ ml: { xs: 2, sm: 4, md: 8 } }} />
+          </Box>
+        </Box>
+      }
     />
   );
 }

@@ -156,7 +156,12 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         400: '#3EE07F',
         500: '#21CC66',
         600: '#1DB45A',
-        main: '#1AA251', // contrast 3.31:1
+        ...(mode === 'dark' && {
+          main: '#1DB45A', // contrast 6.17:1 (blueDark.800)
+        }),
+        ...(mode === 'light' && {
+          main: '#1AA251', // contrast 3.31:1
+        }),
         700: '#1AA251',
         800: '#178D46',
         900: '#0F5C2E',
