@@ -11,7 +11,6 @@ import {
 } from 'test/utils';
 import Tab from '@material-ui/core/Tab';
 import Tabs, { tabsClasses as classes } from '@material-ui/core/Tabs';
-import { ResizeObserver } from 'resize-observer';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import capitalize from '../utils/capitalize';
 
@@ -55,11 +54,6 @@ describe('<Tabs />', () => {
     if (isSafari) {
       this.skip();
     }
-    global.ResizeObserver = ResizeObserver;
-  });
-
-  after(() => {
-    delete global.ResizeObserver;
   });
 
   describeConformanceV5(<Tabs value={0} />, () => ({

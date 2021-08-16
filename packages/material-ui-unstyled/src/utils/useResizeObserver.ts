@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ResizeObserver as ResizeObserverPolyfill } from 'resize-observer';
 
 export default function useResizeObserver(
   resizeItemRef: React.RefObject<Element | null>,
@@ -10,11 +11,19 @@ export default function useResizeObserver(
   resizeHandlerRef.current = resizeHandler;
 
   React.useEffect(() => {
-    resizeObserverRef.current = new ResizeObserver(() => {
-      if (resizeHandlerRef.current) {
-        resizeHandlerRef.current();
-      }
-    });
+    try {
+      resizeObserverRef.current = new ResizeObserver(() => {
+        if (resizeHandlerRef.current) {
+          resizeHandlerRef.current();
+        }
+      });
+    } catch (err) {
+      resizeObserverRef.current = new ResizeObserverPolyfill(() => {
+        if (resizeHandlerRef.current) {
+          resizeHandlerRef.current();
+        }
+      });
+    }
     if (resizeItemRef.current) {
       if (observeChildren) {
         Array.from(resizeItemRef.current.children).forEach((child) => {
