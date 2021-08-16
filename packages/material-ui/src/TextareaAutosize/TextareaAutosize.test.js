@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import sinon, { spy, stub } from 'sinon';
 import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-import ResizeObserver from 'resize-observer-polyfill';
+import { ResizeObserver } from 'resize-observer';
 
 describe('<TextareaAutosize />', () => {
   before(() => {

@@ -12,7 +12,7 @@ import {
 import Tab from '@material-ui/core/Tab';
 import Tabs, { tabsClasses as classes } from '@material-ui/core/Tabs';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import ResizeObserver from 'resize-observer-polyfill';
+import { ResizeObserver } from 'resize-observer';
 import capitalize from '../utils/capitalize';
 
 function findScrollButton(container, direction) {
