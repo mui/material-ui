@@ -29,5 +29,7 @@ yarn add @material-ui/core@next
 
 ## Documentation
 
-- [The documentation](https://material-ui.com/components/icons/#svg-material-icons)
-- [The icons search](https://material-ui.com/components/material-icons/)
+<!-- #default-branch-switch -->
+
+- [The documentation](https://next.material-ui.com/components/icons/#svg-material-icons)
+- [The icons search](https://next.material-ui.com/components/material-icons/)
