@@ -96,7 +96,7 @@
     "react-dom": "^17.0.1",
     "react-draggable": "^4.0.3",
     "react-final-form": "^6.3.0",
-    "react-imask": "^6.0.7",
+    "react-imask": "^6.1.0",
     "react-is": "^17.0.1",
     "react-number-format": "^4.7.3",
     "react-redux": "^7.1.1",
