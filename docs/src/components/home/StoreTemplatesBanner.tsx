@@ -36,7 +36,6 @@ const Anchor = styled('a')({
   display: 'inline-block',
   position: 'relative',
   transition: '0.3s',
-  borderRadius: '50%',
   '&:hover, &:focus': {
     '& > div': {
       opacity: 1,

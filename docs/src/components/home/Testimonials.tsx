@@ -5,10 +5,8 @@ import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import KeyboardArrowLeftRounded from '@material-ui/icons/KeyboardArrowLeftRounded';
-import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
+import ArrowButton from 'docs/src/components/action/ArrowButton';
 
 const data = [
   { title: '2.3M', metadata: 'Weekly downloads on npm' },
@@ -186,40 +184,26 @@ const Testimonials = ({ mode: modeProp }: { mode?: 'light' | 'dark' }) => {
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={12} md={6} sx={{ zIndex: 1 }}>
             <Box sx={{ maxWidth: { md: 500 } }}>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-                <Box
-                  sx={{
-                    '& .MuiIconButton-root': {
-                      color: mode === 'dark' ? '#fff' : 'primary.main',
-                      border: '1px solid',
-                      borderColor: mode === 'dark' ? 'primaryDark.300' : 'primary.main',
-                      '&.Mui-disabled': {
-                        opacity: 0.5,
-                        color: mode === 'dark' ? '#fff' : 'grey.500',
-                        borderColor: mode === 'dark' ? 'primary.700' : 'grey.500',
-                      },
-                    },
-                  }}
-                >
-                  <IconButton
-                    size="small"
-                    aria-label="Previous testimonial"
-                    disabled={slideIndex === 0}
-                    onClick={() => setSlideIndex((i) => i - 1)}
-                  >
-                    <KeyboardArrowLeftRounded fontSize="small" />
-                  </IconButton>
-                  <IconButton
-                    size="small"
-                    aria-label="Next testimonial"
-                    disabled={slideIndex === TESTIMONIALS.length - 1}
-                    sx={{ ml: 2 }}
-                    onClick={() => setSlideIndex((i) => i + 1)}
-                  >
-                    <KeyboardArrowRightRounded fontSize="small" />
-                  </IconButton>
-                </Box>
-                <Box alignSelf="center">
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  mb: 2,
+                }}
+              >
+                <ArrowButton
+                  direction="left"
+                  disabled={slideIndex === 0}
+                  onClick={() => setSlideIndex((i) => i - 1)}
+                />
+                <ArrowButton
+                  direction="right"
+                  disabled={slideIndex === TESTIMONIALS.length - 1}
+                  onClick={() => setSlideIndex((i) => i + 1)}
+                  sx={{ mr: 'auto' }}
+                />
+                <Box sx={{ lineHeight: 0 }}>
                   {TESTIMONIALS.map((item, index) => (
                     <Box
                       key={index}

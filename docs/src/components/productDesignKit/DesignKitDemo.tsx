@@ -39,7 +39,7 @@ export default function TemplateDemo() {
   };
   return (
     <Section bg="comfort">
-      <Grid container spacing={2}>
+      <Grid container spacing={2} alignItems="center">
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>
             <SectionHeadline
