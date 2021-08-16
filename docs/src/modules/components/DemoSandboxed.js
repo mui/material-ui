@@ -12,6 +12,7 @@ import { useTheme, styled } from '@material-ui/core/styles';
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 function FramedDemo(props) {
   const { children, document } = props;
@@ -117,6 +118,9 @@ DemoFrame.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
+// Use the default MUI theme for the demos
+const theme = createTheme();
+
 /**
  * Isolates the demo component as best as possible. Additional props are spread
  * to an `iframe` if `iframe={true}`.
@@ -131,7 +135,9 @@ function DemoSandboxed(props) {
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
       <Sandbox {...sandboxProps}>
-        <Component />
+        <ThemeProvider theme={theme}>
+          <Component />
+        </ThemeProvider>
       </Sandbox>
     </DemoErrorBoundary>
   );
