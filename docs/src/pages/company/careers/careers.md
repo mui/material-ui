@@ -41,14 +41,20 @@ You are a [manager of one](https://signalvnoise.com/posts/1430-hire-managers-of-
 
 #### [React Engineer](/company/react-engineer/)
 
-You will support the advanced components team, build new ambitious enterprise features, work on strategic problems, and help grow the adoption of the free open-source tier (freemium/open-core business model).
+You will support the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption of the free open-source tier (freemium/open-core business model).
 
 ### Product
 
-#### [Technical Product Manager](/company/product-manager/)
+#### [Technical Product Manager](/company/technical-product-manager/)
 
 You will define and maintain the product roadmap for the advanced components, identify opportunities, define specs, and work with engineers to execute on the features.
-Experience as an engineer is essential for this role. You might need to work part-time developing too in the beginning.
+Experience as an engineer is essential for this role, as you will also contribute to development work in the beginning.
+
+#### [Product Manager](/company/product-manager/)
+
+You will initiate the exploration of a bold new product vertical.
+We are looking for an experienced and ambitious product manager who is ready to work in an entrepreneurial environment.
+You are a [manager of one](https://signalvnoise.com/posts/1430-hire-managers-of-one), you are curious, enjoy taking risks, and learning.
 
 #### [Developer Advocate](/company/developer-advocate/)
 

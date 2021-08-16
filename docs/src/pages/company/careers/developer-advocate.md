@@ -46,7 +46,7 @@ We are looking for a dedicated educator and experienced developer to join us as 
 - You are passionate about helping other developers solve problems and have an educational mindset.
 - You have some formal or informal experience in teaching: training, tutoring, mentoring, etc.
 
-### What would be nice if you had, but isn't required
+### What it would be nice if you had, but isn't required
 
 - Experience working with open-source and/or with the open-source community.
 - Experience working with/editing video.
