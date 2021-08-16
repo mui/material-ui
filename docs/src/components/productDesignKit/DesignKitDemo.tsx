@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { useTheme, styled } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
+import LaunchRounded from '@material-ui/icons/LaunchRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
@@ -14,6 +16,8 @@ import SvgDatePicker from 'docs/src/icons/SvgDatePicker';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
+import Link from 'docs/src/modules/components/Link';
+import ROUTES from 'docs/src/route';
 
 const DEMOS = ['Components', 'Branding', 'Iconography'];
 
@@ -165,13 +169,24 @@ export default function TemplateDemo() {
                 />
               </Fade>
             </Frame.Demo>
-            <Frame.Info>
-              <Typography variant="body2" fontWeight={500} sx={{ mb: 0.5 }}>
-                MUI for Figma
-              </Typography>
-              <Typography variant="body2" color="success.600" fontWeight={500}>
-                $69
-              </Typography>
+            <Frame.Info sx={{ display: 'flex', alignItems: 'center', minWidth: 0 }}>
+              <Box sx={{ minWidth: 0 }}>
+                <Typography variant="body2" fontWeight={500} noWrap sx={{ mb: 0.5 }}>
+                  MUI for Figma
+                </Typography>
+                <Typography variant="body2" color="success.600" fontWeight={500}>
+                  $69
+                </Typography>
+              </Box>
+              <Button
+                component={Link}
+                noLinkStyle
+                href={ROUTES.store}
+                endIcon={<LaunchRounded sx={{ '&&': { fontSize: 16 } }} />}
+                sx={{ ml: 'auto' }}
+              >
+                Goto store
+              </Button>
             </Frame.Info>
           </Frame>
         </Grid>
