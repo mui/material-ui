@@ -53,7 +53,7 @@ You will be joining the advanced components team.
 - 1+ years experience as Product Manager or closely related roles such as Product Owner, Program Manager, or Solutions Architect.
 - Able to switch between the big picture and detailed view multiple times a day.
 
-### What would be nice if you had, but isn't required
+### What it would be nice if you had, but isn't required
 
 - Experience building developer tools.
 - Experience working with open-source and having interacted with open-source communities.

@@ -57,7 +57,7 @@ You are curious, you enjoy taking risks, and learning.
 - You can put a lot of thoughts into design, product roadmap, and the details of each feature. You won't only take a project and make it "functional."
 - You communicate your thoughts and decisions clearly and proactively, and engage with the rest of the team with an optimistic and first principles mindset.
 
-### What would be nice if you had, but isn't required
+### What it would be nice if you had, but isn't required
 
 - **You've maintained an active repository before.**
   Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams.
