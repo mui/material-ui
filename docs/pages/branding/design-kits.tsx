@@ -2,6 +2,7 @@ import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
 import ThemeProvider from 'docs/src/modules/ThemeContext';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import Divider from '@material-ui/core/Divider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import DesignKitHero from 'docs/src/components/productDesignKit/DesignKitHero';
@@ -28,6 +29,7 @@ export default function Home() {
         <Testimonials mode="dark" />
         <HeroEnd />
       </main>
+      <Divider />
       <AppFooter />
     </ThemeProvider>
   );

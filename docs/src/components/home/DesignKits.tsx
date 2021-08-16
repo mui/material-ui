@@ -53,6 +53,7 @@ const DesignToolLink = React.forwardRef<
     target="_blank"
     {...props}
   >
+    {props.children}
     <Box
       sx={{
         transition: '0.3s',
@@ -281,9 +282,9 @@ export default function DesignKits() {
       />
       <DesignKitTools
         sx={{
-          top: { xs: '50%', md: 'calc(50% + 80px)' },
+          top: { xs: '50%', md: 'calc(50% + 80px)', xl: '50%' },
           transform: { xs: 'translate(-50%, -50%)' },
-          left: { xs: '50%' },
+          left: { xs: 'min(50%, 500px)' },
         }}
       />
       <Box
@@ -296,7 +297,7 @@ export default function DesignKits() {
         }}
       >
         <DesignKitImagesSet1 />
-        <DesignKitImagesSet2 />
+        <DesignKitImagesSet2 sx={{ ml: { xs: 2, sm: 4, md: 8 } }} />
       </Box>
     </Box>
   );

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { alpha } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -52,14 +53,30 @@ export default function TemplateHero() {
         </Box>
       }
       right={
-        <Box sx={{ position: 'relative', height: '100%' }}>
+        <Box sx={{ position: 'relative', height: '100%', perspective: '1000px' }}>
           <DesignKitTools
             disableLink
             sx={{ filter: 'drop-shadow(0px 4px 20px rgba(61, 71, 82, 0.25))' }}
           />
           <Box
             sx={{
-              left: '36%',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              width: '100%',
+              height: '100%',
+              zIndex: 1,
+              background: (theme) =>
+                `linear-gradient(90deg, ${theme.palette.primaryDark[900]} 1%, ${alpha(
+                  theme.palette.primaryDark[900],
+                  0.5,
+                )})`,
+              opacity: (theme) => (theme.palette.mode === 'dark' ? 1 : 0),
+            }}
+          />
+          <Box
+            sx={{
+              left: '40%',
               position: 'absolute',
               display: 'flex',
               transform: 'translateX(-40%) rotateZ(30deg) rotateX(8deg) rotateY(-8deg)',
@@ -69,14 +86,24 @@ export default function TemplateHero() {
             <DesignKitImagesSet1
               keyframes={{
                 '0%': {
-                  transform: 'translateY(-300px)',
+                  transform: 'translateY(-200px)',
                 },
                 '100%': {
                   transform: 'translateY(0px)',
                 },
               }}
             />
-            <DesignKitImagesSet2 sx={{ ml: { xs: 2, sm: 4, md: 8 } }} />
+            <DesignKitImagesSet2
+              keyframes={{
+                '0%': {
+                  transform: 'translateY(150px)',
+                },
+                '100%': {
+                  transform: 'translateY(-80px)',
+                },
+              }}
+              sx={{ ml: { xs: 2, sm: 4, md: 8 } }}
+            />
           </Box>
         </Box>
       }

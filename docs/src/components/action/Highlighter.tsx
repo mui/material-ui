@@ -30,12 +30,12 @@ export default function Highlighter({
         height: '100%',
         border: '1px solid transparent',
         ...((!disableBorder || selected) && {
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200',
-          }),
+          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200'),
+        }),
         ...(selected && {
           bgcolor: (theme) =>
             theme.palette.mode === 'dark' ? 'primaryDark.700' : lightSelectedBg[selectedBg],
+          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.300' : 'grey.200'),
         }),
         ...(!selected && {
           '&:hover': {

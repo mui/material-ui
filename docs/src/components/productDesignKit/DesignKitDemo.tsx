@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { useTheme, styled } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
+import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
@@ -15,7 +17,20 @@ import Frame from 'docs/src/components/action/Frame';
 
 const DEMOS = ['Components', 'Branding', 'Iconography'];
 
+const Image = styled('img')(({ theme }) => ({
+  filter:
+    theme.palette.mode === 'dark'
+      ? 'drop-shadow(-8px 4px 20px rgba(0, 0, 0, 0.4))'
+      : 'drop-shadow(-8px 4px 20px rgba(61, 71, 82, 0.2))',
+  transition: '0.4s',
+  display: 'block',
+  height: 'auto',
+  borderRadius: '10px',
+}));
+
 export default function TemplateDemo() {
+  const globalTheme = useTheme();
+  const mode = globalTheme.palette.mode;
   const [demo, setDemo] = React.useState(DEMOS[0]);
   const icons = {
     [DEMOS[0]]: <SvgSwitch />,
@@ -56,50 +71,99 @@ export default function TemplateDemo() {
                 overflow: 'hidden',
                 height: { xs: 240, sm: 390 },
                 perspective: '1000px',
-                '& > img': {
-                  transition: '0.7s',
-                  display: 'block',
-                  width: { xs: 240, sm: 300 },
-                  height: 'auto',
-                  borderRadius: 1,
-                  position: 'absolute',
-                  left: '50%',
-                  filter: 'drop-shadow(0px 4px 20px rgba(61, 71, 82, 0.2))',
-                  '&:nth-of-type(1)': {
-                    top: 120,
-                    transform: 'translate(-70%)',
-                  },
-                  '&:nth-of-type(2)': {
-                    top: 80,
-                    transform: 'translate(-50%)',
-                  },
-                  '&:nth-of-type(3)': {
-                    top: 40,
-                    transform: 'translate(-30%)',
-                  },
-                },
-                '&:hover': {
-                  '& > img': {
-                    filter: 'drop-shadow(-16px 12px 20px rgba(61, 71, 82, 0.2))',
-                    '&:nth-of-type(1)': {
-                      top: 0,
-                      transform: 'scale(0.8) translate(-100%) rotateY(30deg)',
-                    },
-                    '&:nth-of-type(2)': {
-                      top: 40,
-                      transform: 'scale(0.8) translate(-50%) rotateY(30deg)',
-                    },
-                    '&:nth-of-type(3)': {
-                      top: 40,
-                      transform: 'scale(0.8) translate(-0%) rotateY(30deg)',
-                    },
-                  },
-                },
               }}
             >
-              <img src="/static/branding/design-kits/Button.jpeg" alt="" loading="lazy" />
-              <img src="/static/branding/design-kits/Alert.jpeg" alt="" loading="lazy" />
-              <img src="/static/branding/design-kits/Slider.jpeg" alt="" loading="lazy" />
+              <Fade in={demo === 'Components'} timeout={500}>
+                <Box
+                  sx={{
+                    width: '100%',
+                    height: '100%',
+                    '& img': {
+                      position: 'absolute',
+                      left: '50%',
+                      width: { xs: 240, sm: 300 },
+                      '&:nth-of-type(1)': {
+                        top: 120,
+                        transform: 'translate(-70%)',
+                      },
+                      '&:nth-of-type(2)': {
+                        top: 80,
+                        transform: 'translate(-50%)',
+                      },
+                      '&:nth-of-type(3)': {
+                        top: 40,
+                        transform: 'translate(-30%)',
+                      },
+                    },
+                    '&:hover': {
+                      '& img': {
+                        filter:
+                          mode === 'dark'
+                            ? 'drop-shadow(-16px 12px 20px rgba(0, 0, 0, 0.4))'
+                            : 'drop-shadow(-16px 12px 20px rgba(61, 71, 82, 0.2))',
+                        '&:nth-of-type(1)': {
+                          top: 0,
+                          transform: 'scale(0.8) translate(-108%) rotateY(30deg)',
+                        },
+                        '&:nth-of-type(2)': {
+                          top: 40,
+                          transform: 'scale(0.8) translate(-54%) rotateY(30deg)',
+                        },
+                        '&:nth-of-type(3)': {
+                          top: 40,
+                          transform: 'scale(0.8) translate(-0%) rotateY(30deg)',
+                        },
+                      },
+                    },
+                  }}
+                >
+                  <Image
+                    src={`/static/branding/design-kits/Button-${mode}.jpeg`}
+                    alt=""
+                    loading="lazy"
+                  />
+                  <Image
+                    src={`/static/branding/design-kits/Alert-${mode}.jpeg`}
+                    alt=""
+                    loading="lazy"
+                  />
+                  <Image
+                    src={`/static/branding/design-kits/Slider-${mode}.jpeg`}
+                    alt=""
+                    loading="lazy"
+                  />
+                </Box>
+              </Fade>
+              <Fade in={demo === 'Branding'} timeout={500}>
+                <Image
+                  src={`/static/branding/design-kits/Colors-${mode}.jpeg`}
+                  alt=""
+                  loading="lazy"
+                  width="300"
+                  sx={{
+                    width: { sm: 400 },
+                    position: 'absolute',
+                    left: '50%',
+                    top: '50%',
+                    transform: 'translate(-50%, -50%)',
+                  }}
+                />
+              </Fade>
+              <Fade in={demo === 'Iconography'} timeout={500}>
+                <Image
+                  src={`/static/branding/design-kits/Icons-${mode}.jpeg`}
+                  alt=""
+                  loading="lazy"
+                  width="300"
+                  sx={{
+                    width: { sm: 500 },
+                    position: 'absolute',
+                    left: '50%',
+                    top: 60,
+                    transform: 'translate(-40%)',
+                  }}
+                />
+              </Fade>
             </Frame.Demo>
             <Frame.Info>
               <Typography variant="body2" fontWeight={500} sx={{ mb: 0.5 }}>
