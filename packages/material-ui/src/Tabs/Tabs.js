@@ -3,12 +3,14 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import {
+  unstable_composeClasses as composeClasses,
+  unstable_useResizeObserver as useResizeObserver,
+} from '@material-ui/unstyled';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useTheme from '../styles/useTheme';
 import debounce from '../utils/debounce';
-import ownerWindow from '../utils/ownerWindow';
 import { getNormalizedScrollLeft, detectScrollType } from '../utils/scrollLeft';
 import animate from '../internal/animate';
 import ScrollbarSize from './ScrollbarSize';
@@ -554,19 +556,11 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     }
   });
 
-  React.useEffect(() => {
-    const handleResize = debounce(() => {
-      updateIndicatorState();
-      updateScrollButtonState();
-    });
-
-    const win = ownerWindow(tabsRef.current);
-    win.addEventListener('resize', handleResize);
-    return () => {
-      handleResize.clear();
-      win.removeEventListener('resize', handleResize);
-    };
-  }, [updateIndicatorState, updateScrollButtonState]);
+  const handleResize = debounce(() => {
+    updateIndicatorState();
+    updateScrollButtonState();
+  });
+  useResizeObserver(tabListRef, handleResize, true);
 
   const handleTabsScroll = React.useMemo(
     () =>
