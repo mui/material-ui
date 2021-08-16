@@ -90,7 +90,7 @@ function Highlight({
         ...(selected && {
           bgcolor: (theme) =>
             theme.palette.mode === 'dark' ? 'primaryDark.700' : 'background.paper',
-          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200'),
+          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.200'),
         }),
         ...(!selected && {
           '&:hover': {

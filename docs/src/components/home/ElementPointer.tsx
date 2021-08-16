@@ -67,7 +67,7 @@ export default function PointerContainer({
           <Box
             sx={{
               border: '1px solid',
-              borderColor: 'error.main',
+              borderColor: 'primary.main',
               pointerEvents: 'none',
               position: 'absolute',
               zIndex: 10,
@@ -86,7 +86,7 @@ export default function PointerContainer({
           >
             <Box
               sx={{
-                bgcolor: 'error.main',
+                bgcolor: 'primary.main',
                 borderTopLeftRadius: '2px',
                 borderTopRightRadius: '2px',
                 px: 0.5,

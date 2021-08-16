@@ -336,7 +336,6 @@ export default function DataTable() {
   });
   return (
     <ShowcaseContainer
-      sx={{ mt: 8 }}
       previewSx={{
         py: 2,
         '& .MuiDataGrid-root': {
@@ -376,7 +375,7 @@ export default function DataTable() {
           },
           '& .MuiDataGrid-cell': {
             borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.100',
+              theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
           },
           '& .MuiDataGrid-editInputCell': {
             fontSize: '0.75rem',
@@ -404,9 +403,9 @@ export default function DataTable() {
               p: 0.5,
               border: '1px solid',
               bgcolor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.700' : 'transparent',
+                theme.palette.mode === 'dark' ? 'primaryDark.600' : 'transparent',
               borderColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200',
+                theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200',
               '&:last-of-type': {
                 ml: 1,
               },
@@ -445,7 +444,7 @@ export default function DataTable() {
               position: 'relative',
               borderBottom: '1px solid',
               borderColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.100',
+                theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.100',
             }}
           >
             <Typography color="primary.main" fontWeight={600}>

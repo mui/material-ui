@@ -101,7 +101,7 @@ export const componentCode = `<Card>
       </Typography>
     </Stack>
     <IconButton>
-      <Edit fontSize="small" />
+      <Edit sx={{fontSize: 14}} />
     </IconButton>
   </Box>
   <Divider />
@@ -153,7 +153,7 @@ export default function MaterialDesignDemo(props: CardProps) {
           </Typography2>
         </Stack>
         <IconButton aria-label="Edit" sx={{ alignSelf: 'flex-start' }}>
-          <Edit fontSize="small" />
+          <Edit sx={{fontSize: 14}} />
         </IconButton>
       </Box>
       <Divider sx={{ my: -1, py: 1, position: 'relative', zIndex: 1 }}>
@@ -163,7 +163,7 @@ export default function MaterialDesignDemo(props: CardProps) {
         direction="row"
         alignItems="center"
         justifyContent="space-between"
-        sx={{ px: 2, py: 1, bgcolor: 'background.default' }}
+        sx={{ px: 2, py: 1.5, bgcolor: 'background.default' }}
       >
         <Chip
           label={active ? 'Active account' : 'Inactive account'}

@@ -68,9 +68,9 @@ const FlashCode = styled('div', {
   height: (endLine - startLine + 1) * 18,
   transition: '0.3s',
   ...theme.typography.caption,
-  backgroundColor: alpha(theme.palette.primary.main, 0.5),
+  backgroundColor: alpha(theme.palette.primary.main, 0.2),
   border: '1px solid',
-  borderColor: theme.palette.primary.main,
+  borderColor: theme.palette.primary.dark,
 }));
 
 const lineMapping: Record<string, number | number[]> = {
@@ -102,12 +102,12 @@ export default function CoreShowcase() {
               background: {
                 default:
                   mode === 'dark'
-                    ? globalTheme.palette.primaryDark[800]
+                    ? globalTheme.palette.primaryDark[900]
                     : globalTheme.palette.grey[50],
               },
             },
             shape: {
-              borderRadius: 12,
+              borderRadius: 10,
             },
             shadows: ['none', '0px 4px 20px 0px hsla(210, 14%, 28%, 0.2)'],
             components: {
@@ -131,8 +131,8 @@ export default function CoreShowcase() {
               MuiAvatar: {
                 styleOverrides: {
                   root: {
-                    width: 64,
-                    height: 64,
+                    width: 60,
+                    height: 60,
                   },
                 },
               },
@@ -160,7 +160,7 @@ export default function CoreShowcase() {
               MuiChip: {
                 styleOverrides: {
                   filled: {
-                    fontWeight: 500,
+                    fontWeight: 600,
                     '&.MuiChip-colorSuccess': {
                       backgroundColor:
                         mode === 'dark'
@@ -169,7 +169,7 @@ export default function CoreShowcase() {
                       color:
                         mode === 'dark'
                           ? globalTheme.palette.success[100]
-                          : globalTheme.palette.success[800],
+                          : globalTheme.palette.success[900],
                     },
                     '&.MuiChip-colorDefault': {
                       backgroundColor:
@@ -198,28 +198,30 @@ export default function CoreShowcase() {
   }
   return (
     <ShowcaseContainer
-      sx={{ pt: 8 }}
       previewSx={{
         minHeight: 200,
       }}
       preview={
         <ThemeProvider theme={theme}>
-          <Typography
-            variant="caption"
-            fontWeight={500}
-            color="text.secondary"
-            noWrap
-            sx={{
-              opacity: 0.7,
-              ml: 'auto',
-              position: 'absolute',
-              bottom: 5,
-              left: '50%',
-              transform: 'translate(-50%)',
-            }}
-          >
-            💡 Hover the component will highlight the code.
-          </Typography>
+          <Box textAlign="center" sx={{
+                  py: 0.5,
+                  ml: 'auto',
+                  position: 'absolute',
+                  bottom: 0,
+                  left: '50%',
+                  transform: 'translate(-50%)',
+                  backgroundColor: alpha(theme.palette.primary.dark, 0.05),
+                  width: '100%'
+                }}>
+            <Typography
+                variant="caption"
+                fontWeight={500}
+                color="text.primary"
+                noWrap
+              >
+               📌 Hover the component for highlighting the code.
+              </Typography>
+          </Box>
           <PointerContainer
             onElementChange={setElement}
             sx={{ minWidth: 300, width: '80%', maxWidth: '100%' }}
@@ -295,8 +297,8 @@ export default function CoreShowcase() {
                   pb: 2,
                   mb: -2,
                   mx: -2,
-                  bgcolor: ({ palette }) => alpha(palette.primaryDark[600], 0.5),
-                  backdropFilter: 'blur(4px)',
+                  bgcolor: ({ palette }) => alpha(palette.primaryDark[700], 0.5),
+                  backdropFilter: 'blur(8px)',
                   zIndex: 1,
                   borderTop: '1px solid',
                   borderColor: 'divider',
@@ -311,7 +313,7 @@ export default function CoreShowcase() {
                       right: 10,
                       top: 0,
                       transform: 'translateY(-50%)',
-                      bgcolor: 'primaryDark.600',
+                      bgcolor: 'primaryDark.500',
                       '&:hover, &.Mui-focused': {
                         bgcolor: 'primaryDark.600',
                       },
@@ -323,7 +325,7 @@ export default function CoreShowcase() {
                 <Typography fontWeight="bold" color="#fff" variant="body2">
                   Own the styling!
                 </Typography>
-                <Typography color="grey.400" fontSize="0.75rem">
+                <Typography color="grey.400" variant="body2">
                   Build your own design system by leveraging our theming capabilities. You can also
                   start by using Google&apos;s Material Design.
                 </Typography>
