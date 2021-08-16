@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { unstable_useResizeObserver as useResizeObserver } from '@material-ui/unstyled';
 import debounce from '../utils/debounce';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -115,19 +116,12 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     });
   }, [maxRows, minRows, props.placeholder]);
 
-  React.useEffect(() => {
-    const handleResize = debounce(() => {
-      renders.current = 0;
-      syncHeight();
-    });
+  const handleResize = debounce(() => {
+    renders.current = 0;
+    syncHeight();
+  });
 
-    const containerWindow = ownerWindow(inputRef.current);
-    containerWindow.addEventListener('resize', handleResize);
-    return () => {
-      handleResize.clear();
-      containerWindow.removeEventListener('resize', handleResize);
-    };
-  }, [syncHeight]);
+  useResizeObserver(inputRef, handleResize);
 
   useEnhancedEffect(() => {
     syncHeight();

@@ -8,8 +8,17 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
 import Select from '@material-ui/core/Select';
 import InputBase, { inputBaseClasses as classes } from '@material-ui/core/InputBase';
+import ResizeObserver from 'resize-observer-polyfill';
 
 describe('<InputBase />', () => {
+  before(() => {
+    global.ResizeObserver = ResizeObserver;
+  });
+
+  after(() => {
+    delete global.ResizeObserver;
+  });
+
   const render = createClientRender();
 
   describeConformanceV5(<InputBase />, () => ({
