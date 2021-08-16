@@ -99,13 +99,13 @@ const RootDiv = styled('div')(({ theme }) => {
     },
     fontFamily: theme.typography.fontFamily,
     position: 'relative',
-    marginRight: theme.spacing(2),
-    marginLeft: theme.spacing(1),
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
+    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[50],
     '&:hover': {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
+      backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : alpha(theme.palette.common.white, 0.25),
     },
+    color: theme.palette.mode === 'dark' ? 'white' : theme.palette.grey[800],
+    border: `1px solid ${theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : '#E5E8EC'}`,
+    borderRadius: 10,
   };
 });
 
@@ -125,15 +125,14 @@ const Shortcut = styled('div')(({ theme }) => {
   return {
     fontSize: theme.typography.pxToRem(13),
     lineHeight: '21px',
-    color: alpha(theme.palette.common.white, 0.8),
-    border: `1px solid ${alpha(theme.palette.common.white, 0.4)}`,
-    backgroundColor: alpha(theme.palette.common.white, 0.1),
+    border: `1px solid #D7DCE1`,
+    backgroundColor:  theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#FFF',
     padding: theme.spacing(0, 0.5),
     position: 'absolute',
     right: theme.spacing(1),
     height: 23,
     top: 'calc(50% - 11px)',
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: 4,
     transition: theme.transitions.create('opacity', {
       duration: theme.transitions.duration.shortest,
     }),

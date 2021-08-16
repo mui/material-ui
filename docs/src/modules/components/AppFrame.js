@@ -1,11 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { styled } from '@material-ui/core/styles';
+import { styled, alpha } from '@material-ui/core/styles';
 import NProgress from 'nprogress';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MuiLink from '@material-ui/core/Link';
 import AppBar from '@material-ui/core/AppBar';
+import Stack from '@material-ui/core/Stack';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -13,12 +14,11 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import NoSsr from '@material-ui/core/NoSsr';
-import LanguageIcon from '@material-ui/icons/Translate';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Divider from '@material-ui/core/Divider';
-import SettingsIcon from '@material-ui/icons/Settings';
+import SettingsIcon from '@material-ui/icons/SettingsOutlined';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import NProgressBar from '@material-ui/docs/NProgressBar';
 import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
@@ -125,6 +125,20 @@ const StyledAppBar = styled(AppBar, {
         width: 'calc(100% - 240px)',
       },
     }),
+    boxShadow: `inset 0px -1px 1px ${
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100]
+    }`,
+    backgroundColor:
+      theme.palette.mode === 'dark'
+        ? theme.palette.primaryDark[900]
+        : 'white',
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
+    '& .MuiIconButton-root': {
+      border: `1px solid ${theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : '#E5E8EC'}`,
+      borderRadius: theme.shape.borderRadius,
+      color: theme.palette.mode === 'dark' ? '#FFF' : theme.palette.primary[500],
+      backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#FFF',
+    }
   };
 });
 
@@ -134,7 +148,6 @@ const GrowingDiv = styled('div')({
 
 const LanguageSpan = styled('span')(({ theme }) => {
   return {
-    margin: theme.spacing(0, 0.5, 0, 1),
     display: 'none',
     [theme.breakpoints.up('md')]: {
       display: 'block',
@@ -228,7 +241,7 @@ function AppFrame(props) {
             <MenuIcon />
           </NavIconButton>
           <GrowingDiv />
-          <DeferredAppSearch />
+          <Stack direction="rot" gap={2}>
           <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
             <Button
               color="inherit"
@@ -238,7 +251,6 @@ function AppFrame(props) {
               data-ga-event-category="header"
               data-ga-event-action="language"
             >
-              <LanguageIcon />
               <LanguageSpan>
                 {LANGUAGES_LABEL.filter((language) => language.code === userLanguage)[0].text}
               </LanguageSpan>
@@ -288,12 +300,7 @@ function AppFrame(props) {
               </MenuItem>
             </Menu>
           </NoSsr>
-          <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-            <IconButton color="inherit" size="large" onClick={handleSettingsDrawerOpen}>
-              <SettingsIcon />
-            </IconButton>
-          </Tooltip>
-          <Notifications />
+          <DeferredAppSearch />
           <Tooltip title={t('appFrame.github')} enterDelay={300}>
             <IconButton
               component="a"
@@ -301,11 +308,17 @@ function AppFrame(props) {
               href={process.env.SOURCE_CODE_REPO}
               data-ga-event-category="header"
               data-ga-event-action="github"
-              size="large"
             >
               <GitHubIcon />
             </IconButton>
           </Tooltip>
+          <Notifications />
+          <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
+            <IconButton color="inherit" onClick={handleSettingsDrawerOpen}>
+              <SettingsIcon />
+            </IconButton>
+          </Tooltip>
+          </Stack>
         </Toolbar>
       </StyledAppBar>
       <StyledAppNavDrawer
