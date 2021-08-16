@@ -44,7 +44,7 @@ export default function HeroContainer({
                 minWidth: '50vw',
                 minHeight: 500,
                 height: 'calc(100vh - 120px)',
-                maxHeight: { lg: 700, xl: 1000 },
+                maxHeight: { md: 700, xl: 1000 },
                 borderBottomLeftRadius: 10,
                 transition: 'max-height 0.3s',
                 position: 'relative',
