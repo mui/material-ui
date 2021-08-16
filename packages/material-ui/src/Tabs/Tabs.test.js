@@ -54,8 +54,8 @@ describe('<Tabs />', () => {
     // expect(container.scrollLeft).to.equal(200); 💥
     if (isSafari) {
       this.skip();
-      global.ResizeObserver = ResizeObserver;
     }
+    global.ResizeObserver = ResizeObserver;
   });
 
   after(() => {
