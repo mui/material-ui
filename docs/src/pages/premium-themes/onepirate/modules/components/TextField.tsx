@@ -6,7 +6,7 @@ import MuiTextField, {
   StandardTextFieldProps,
 } from '@material-ui/core/TextField';
 
-const inputSyleMapping = {
+const inputStyleMapping = {
   small: 'inputSizeSmall',
   medium: 'inputSizeMedium',
   large: 'inputSizeLarge',
@@ -34,22 +34,22 @@ const styles = (theme: any) => ({
     },
   },
   disabled: {},
-  [inputSyleMapping.small]: {
+  [inputStyleMapping.small]: {
     fontSize: 14,
     padding: theme.spacing(1),
     width: `calc(100% - ${theme.spacing(2)})`,
   },
-  [inputSyleMapping.medium]: {
+  [inputStyleMapping.medium]: {
     fontSize: 16,
     padding: theme.spacing(2),
     width: `calc(100% - ${theme.spacing(4)})`,
   },
-  [inputSyleMapping.large]: {
+  [inputStyleMapping.large]: {
     fontSize: 18,
     padding: 20,
     width: `calc(100% - ${20 * 2}px)`,
   },
-  [inputSyleMapping.xlarge]: {
+  [inputStyleMapping.xlarge]: {
     fontSize: 20,
     padding: 25,
     width: `calc(100% - ${25 * 2}px)`,
@@ -96,7 +96,7 @@ function TextField(props: OnePirateTextFieldProps & WithStyles<typeof styles>) {
           root: classes.root,
           input: clsx(
             classes.input,
-            classes[inputSyleMapping[size]],
+            classes[inputStyleMapping[size]],
             {
               [classes.inputBorder]: !noBorder,
             },
