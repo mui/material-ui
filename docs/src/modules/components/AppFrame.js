@@ -241,7 +241,7 @@ function AppFrame(props) {
             <MenuIcon />
           </NavIconButton>
           <GrowingDiv />
-          <Stack direction="rot" gap={2}>
+          <Stack direction="row" gap={2}>
           <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
             <Button
               color="inherit"
