@@ -8,6 +8,10 @@ import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
+import {
+  StoreTemplatesSet1,
+  StoreTemplatesSet2,
+} from 'docs/src/components/home/StoreTemplatesBanner';
 
 export default function TemplateHero() {
   return (
@@ -47,7 +51,43 @@ export default function TemplateHero() {
           </Button>
         </Box>
       }
-      right={<div />}
+      right={
+        <Box sx={{ position: 'relative', height: '100%', perspective: '1000px' }}>
+          <Box
+            sx={{
+              left: '40%',
+              position: 'absolute',
+              display: 'flex',
+              transform: 'translateX(-40%) rotateZ(-30deg) rotateX(8deg) rotateY(8deg)',
+              transformOrigin: 'center center',
+            }}
+          >
+            <StoreTemplatesSet1
+              disableLink
+              keyframes={{
+                '0%': {
+                  transform: 'translateY(-200px)',
+                },
+                '100%': {
+                  transform: 'translateY(-40px)',
+                },
+              }}
+            />
+            <StoreTemplatesSet2
+              disableLink
+              keyframes={{
+                '0%': {
+                  transform: 'translateY(150px)',
+                },
+                '100%': {
+                  transform: 'translateY(40px)',
+                },
+              }}
+              sx={{ ml: { xs: 2, sm: 4, md: 8 } }}
+            />
+          </Box>
+        </Box>
+      }
     />
   );
 }
