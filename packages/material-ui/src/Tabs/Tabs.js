@@ -556,11 +556,21 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     }
   });
 
-  const handleResize = debounce(() => {
-    updateIndicatorState();
-    updateScrollButtonState();
-  });
+  const handleResize = React.useMemo(
+    () =>
+      debounce(() => {
+        updateIndicatorState();
+        updateScrollButtonState();
+      }),
+    [updateIndicatorState, updateScrollButtonState],
+  );
   useResizeObserver(tabListRef, handleResize, true);
+
+  React.useEffect(() => {
+    return () => {
+      handleResize.clear();
+    };
+  }, [handleResize]);
 
   const handleTabsScroll = React.useMemo(
     () =>
