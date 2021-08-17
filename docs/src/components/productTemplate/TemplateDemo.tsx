@@ -209,22 +209,6 @@ export default function TemplateDemo() {
                   ))}
                 </SwipeableViews>
               </Box>
-              <Box
-                sx={{
-                  position: 'absolute',
-                  left: '50%',
-                  transform: 'translate(-50%)',
-                  bottom: 8,
-                  borderRadius: 20,
-                  bgcolor: 'background.grey.100',
-                  lineHeight: 1,
-                  px: 0.5,
-                }}
-              >
-                <Typography color="text.secondary" variant="caption">
-                  {templateIndex + 1} / {templates.length}
-                </Typography>
-              </Box>
             </Frame.Demo>
             <Frame.Info
               sx={{
@@ -237,9 +221,17 @@ export default function TemplateDemo() {
                 <Typography variant="body2" fontWeight={500} noWrap sx={{ mb: 0.5 }}>
                   {templates[templateIndex].name}
                 </Typography>
-                <Typography variant="body2" color="success.600" fontWeight={500}>
-                  {templates[templateIndex].price}
-                </Typography>
+                <Box
+                  sx={{
+                    borderRadius: 20,
+                    lineHeight: 1,
+                    px: 0.5,
+                  }}
+                >
+                  <Typography color="grey.500" variant="caption">
+                    {templateIndex + 1} / {templates.length}
+                  </Typography>
+              </Box>
               </Box>
               {templates.length > 1 && (
                 <React.Fragment>
