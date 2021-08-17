@@ -9,7 +9,7 @@ import {
   testClassName,
   testComponentProp,
   testReactTestRenderer,
-} from './describeConformanceV5';
+} from './describeConformance';
 
 export interface SlotTestingOptions {
   testWithComponent?: React.ComponentType;

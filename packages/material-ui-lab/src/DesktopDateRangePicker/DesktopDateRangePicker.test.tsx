@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { SinonFakeTimers, spy, useFakeTimers } from 'sinon';
-import { act, describeConformanceV5, screen, fireEvent, userEvent } from 'test/utils';
+import { act, describeConformance, screen, fireEvent, userEvent } from 'test/utils';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import { DateRange } from '@material-ui/lab/DateRangePicker';
@@ -32,7 +32,7 @@ describe('<DesktopDateRangePicker />', () => {
   });
   const render = createPickerRender();
 
-  describeConformanceV5(
+  describeConformance(
     <DesktopDateRangePicker
       onChange={() => {}}
       renderInput={(props) => <TextField {...props} />}
@@ -349,7 +349,7 @@ describe('<DesktopDateRangePicker />', () => {
     expect(screen.getByRole('tooltip')).toBeVisible();
   });
 
-  // TODO: remove once we use describeConformanceV5.
+  // TODO: remove once we use describeConformance.
   it("respect theme's defaultProps", () => {
     const theme = createTheme({
       components: {

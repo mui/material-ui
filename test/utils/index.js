@@ -1,5 +1,5 @@
 export * from './components';
-export { default as describeConformanceV5 } from './describeConformanceV5';
+export { default as describeConformance } from './describeConformance';
 export { default as describeConformanceUnstyled } from './describeConformanceUnstyled';
 export * from './createClientRender';
 export { default as createMount } from './createMount';

@@ -2,7 +2,7 @@ import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { spy, useFakeTimers } from 'sinon';
 import { expect } from 'chai';
-import { act, describeConformanceV5, fireEvent, screen, userEvent } from 'test/utils';
+import { act, describeConformance, fireEvent, screen, userEvent } from 'test/utils';
 import { TransitionProps } from '@material-ui/core/transitions';
 import { TimePickerProps } from '@material-ui/lab/TimePicker';
 import DesktopTimePicker from '@material-ui/lab/DesktopTimePicker';
@@ -20,7 +20,7 @@ describe('<DesktopTimePicker />', () => {
 
   const render = createPickerRender();
 
-  describeConformanceV5(
+  describeConformance(
     <DesktopTimePicker
       onChange={() => {}}
       renderInput={(props) => <TextField {...props} />}

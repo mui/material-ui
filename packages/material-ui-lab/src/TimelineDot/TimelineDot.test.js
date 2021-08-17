@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import TimelineDot, { timelineDotClasses as classes } from '@material-ui/lab/TimelineDot';
 
 describe('<TimelineDot />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<TimelineDot />, () => ({
+  describeConformance(<TimelineDot />, () => ({
     classes,
     inheritComponent: 'span',
     render,

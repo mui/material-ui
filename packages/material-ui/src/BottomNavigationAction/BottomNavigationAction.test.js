@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { describeConformanceV5, createClientRender, within, fireEvent } from 'test/utils';
+import { describeConformance, createClientRender, within, fireEvent } from 'test/utils';
 import BottomNavigationAction, {
   bottomNavigationActionClasses as classes,
 } from '@material-ui/core/BottomNavigationAction';
@@ -10,7 +10,7 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 describe('<BottomNavigationAction />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<BottomNavigationAction />, () => ({
+  describeConformance(<BottomNavigationAction />, () => ({
     classes,
     inheritComponent: ButtonBase,
     render,

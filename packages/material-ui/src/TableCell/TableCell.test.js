@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import TableCell, { tableCellClasses as classes } from '@material-ui/core/TableCell';
 
 describe('<TableCell />', () => {
@@ -15,7 +15,7 @@ describe('<TableCell />', () => {
     );
   }
 
-  describeConformanceV5(<TableCell />, () => ({
+  describeConformance(<TableCell />, () => ({
     classes,
     inheritComponent: 'td',
     render: (node) => {

@@ -1,7 +1,7 @@
 // @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import Tab from '@material-ui/core/Tab';
 import Tabs, { tabsClasses as classes } from '@material-ui/core/Tabs';
 import TabList from './TabList';
@@ -10,7 +10,7 @@ import TabContext from '../TabContext';
 describe('<TabList />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<TabList />, () => ({
+  describeConformance(<TabList />, () => ({
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/15300
     classes,
     inheritComponent: Tabs,

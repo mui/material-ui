@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { act, describeConformanceV5, createClientRender } from 'test/utils';
+import { act, describeConformance, createClientRender } from 'test/utils';
 import { Transition } from 'react-transition-group';
 import Zoom from '@material-ui/core/Zoom';
 
 describe('<Zoom />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(
+  describeConformance(
     <Zoom in>
       <div />
     </Zoom>,

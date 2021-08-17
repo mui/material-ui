@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import BadgeUnstyled, {
   badgeUnstyledClasses as classes,
 } from '@material-ui/unstyled/BadgeUnstyled';
@@ -8,7 +8,7 @@ import BadgeUnstyled, {
 describe('<BadgeUnstyled />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(
+  describeConformance(
     <BadgeUnstyled>
       <div />
     </BadgeUnstyled>,

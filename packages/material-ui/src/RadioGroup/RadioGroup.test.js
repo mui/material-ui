@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
+import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
 import FormGroup from '@material-ui/core/FormGroup';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup, { useRadioGroup } from '@material-ui/core/RadioGroup';
@@ -10,7 +10,7 @@ import RadioGroup, { useRadioGroup } from '@material-ui/core/RadioGroup';
 describe('<RadioGroup />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<RadioGroup value="" />, () => ({
+  describeConformance(<RadioGroup value="" />, () => ({
     classes: {},
     inheritComponent: FormGroup,
     refInstanceof: window.HTMLDivElement,

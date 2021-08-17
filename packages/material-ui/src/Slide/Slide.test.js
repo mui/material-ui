@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { act, createClientRender, describeConformanceV5 } from 'test/utils';
+import { act, createClientRender, describeConformance } from 'test/utils';
 import { createTheme } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
 import Slide from '@material-ui/core/Slide';
@@ -17,7 +17,7 @@ describe('<Slide />', () => {
     direction: 'down',
   };
 
-  describeConformanceV5(
+  describeConformance(
     <Slide in>
       <div />
     </Slide>,

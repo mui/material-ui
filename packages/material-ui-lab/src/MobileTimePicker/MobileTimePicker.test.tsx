@@ -2,7 +2,7 @@ import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { spy } from 'sinon';
 import { expect } from 'chai';
-import { describeConformanceV5, fireEvent, fireTouchChangedEvent } from 'test/utils';
+import { describeConformance, fireEvent, fireTouchChangedEvent } from 'test/utils';
 import MobileTimePicker from '@material-ui/lab/MobileTimePicker';
 import {
   wrapPickerMount,
@@ -30,7 +30,7 @@ function createMouseEventWithOffsets(
 describe('<MobileTimePicker />', () => {
   const render = createPickerRender();
 
-  describeConformanceV5(
+  describeConformance(
     <MobileTimePicker
       onChange={() => {}}
       renderInput={(props) => <TextField {...props} />}

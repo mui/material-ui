@@ -209,7 +209,7 @@ export function testReactTestRenderer(element) {
 function throwMissingPropError(field) {
   throw new Error(`missing "${field}" in options
 
-  > describeConformanceV5(element, () => options)
+  > describeConformance(element, () => options)
 `);
 }
 
@@ -531,7 +531,7 @@ const fullSuite = {
  * @param {React.ReactElement} minimalElement - the component with it's minimal required props
  * @param {() => ConformanceOptions} getOptions
  */
-export default function describeConformanceV5(minimalElement, getOptions) {
+export default function describeConformance(minimalElement, getOptions) {
   describe('Material-UI component API', () => {
     const {
       after: runAfterHook = () => {},

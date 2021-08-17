@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import Timeline, { timelineClasses as classes } from '@material-ui/lab/Timeline';
 
 describe('<Timeline />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<Timeline />, () => ({
+  describeConformance(<Timeline />, () => ({
     classes,
     inheritComponent: 'ul',
     render,

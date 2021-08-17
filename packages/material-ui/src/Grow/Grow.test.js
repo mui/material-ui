@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { act, createClientRender, describeConformanceV5 } from 'test/utils';
+import { act, createClientRender, describeConformance } from 'test/utils';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
 import Grow from '@material-ui/core/Grow';
@@ -15,7 +15,7 @@ describe('<Grow />', () => {
     children: <div />,
   };
 
-  describeConformanceV5(
+  describeConformance(
     <Grow in>
       <div />
     </Grow>,

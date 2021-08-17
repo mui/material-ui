@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import Typography, { typographyClasses } from '@material-ui/core/Typography';
 import ListItemText, { listItemTextClasses as classes } from '@material-ui/core/ListItemText';
 
 describe('<ListItemText />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<ListItemText>Conformance?</ListItemText>, () => ({
+  describeConformance(<ListItemText>Conformance?</ListItemText>, () => ({
     classes,
     inheritComponent: 'div',
     render,

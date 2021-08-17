@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import {
-  describeConformanceV5,
+  describeConformance,
   fireEvent,
   fireTouchChangedEvent,
   screen,
@@ -19,7 +19,7 @@ import {
 describe('<ClockPicker />', () => {
   const render = createPickerRender();
 
-  describeConformanceV5(
+  describeConformance(
     <ClockPicker date={adapterToUse.date()} showViewSwitcher onChange={() => {}} />,
     () => ({
       classes,

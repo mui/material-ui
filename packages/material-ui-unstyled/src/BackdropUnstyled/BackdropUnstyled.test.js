@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import BackdropUnstyled, {
   backdropUnstyledClasses as classes,
 } from '@material-ui/unstyled/BackdropUnstyled';
@@ -8,7 +8,7 @@ import BackdropUnstyled, {
 describe('<BackdropUnstyled />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(
+  describeConformance(
     <BackdropUnstyled>
       <div />
     </BackdropUnstyled>,

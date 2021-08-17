@@ -1,13 +1,13 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import MobileDateRangePicker from '@material-ui/lab/MobileDateRangePicker';
-import { describeConformanceV5 } from 'test/utils';
+import { describeConformance } from 'test/utils';
 import { wrapPickerMount, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<MobileDateRangePicker />', () => {
   const render = createPickerRender();
 
-  describeConformanceV5(
+  describeConformance(
     <MobileDateRangePicker
       onChange={() => {}}
       renderInput={(props) => <TextField {...props} />}
