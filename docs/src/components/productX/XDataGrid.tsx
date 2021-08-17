@@ -7,11 +7,11 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
-import SvgButton from 'docs/src/icons/SvgButton';
-import SvgTypography from 'docs/src/icons/SvgTypography';
-import SvgTable from 'docs/src/icons/SvgTable';
-import SvgAlert from 'docs/src/icons/SvgAlert';
-import SvgDrawer from 'docs/src/icons/SvgDrawer';
+import SvgEdit from 'docs/src/icons/SvgEdit';
+import SvgFilter from 'docs/src/icons/SvgFilter';
+import SvgSelection from 'docs/src/icons/SvgSelection';
+import SvgSorting from 'docs/src/icons/SvgSorting';
+import SvgPagination from 'docs/src/icons/SvgPagination';
 import More from 'docs/src/components/action/More';
 
 const DEMOS = ['Editing', 'Selection', 'Sorting', 'Pagination', 'Filtering'];
@@ -19,11 +19,11 @@ const DEMOS = ['Editing', 'Selection', 'Sorting', 'Pagination', 'Filtering'];
 export default function CoreTheming() {
   const [demo, setDemo] = React.useState(DEMOS[0]);
   const icons = {
-    [DEMOS[0]]: <SvgButton />,
-    [DEMOS[1]]: <SvgTypography />,
-    [DEMOS[2]]: <SvgTable />,
-    [DEMOS[3]]: <SvgAlert />,
-    [DEMOS[4]]: <SvgDrawer />,
+    [DEMOS[0]]: <SvgEdit />,
+    [DEMOS[1]]: <SvgSelection />,
+    [DEMOS[2]]: <SvgSorting />,
+    [DEMOS[3]]: <SvgPagination />,
+    [DEMOS[4]]: <SvgFilter />,
   };
   return (
     <Section>
