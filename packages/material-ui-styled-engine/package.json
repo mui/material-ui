@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/styled-engine",
-  "version": "5.0.0-beta.1",
+  "version": "5.0.0-beta.4",
   "private": false,
   "author": "Material-UI Team",
   "description": "styled() API wrapper package for emotion.",
@@ -14,7 +14,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/mui-org/material-ui.git",
-    "directory": "packages/material-ui-styled"
+    "directory": "packages/material-ui-styled-engine"
   },
   "license": "MIT",
   "bugs": {

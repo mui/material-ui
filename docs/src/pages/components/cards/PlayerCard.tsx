@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import IconButton from '@material-ui/core/IconButton';
@@ -36,7 +35,7 @@ const grey = {
 };
 
 export default function PlayerCard() {
-  const [paused, setPaused] = React.useState(false);
+  const [paused, setPaused] = React.useState(true);
   /*
    * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
    *
@@ -108,10 +107,12 @@ export default function PlayerCard() {
   return (
     <ThemeProvider theme={theme}>
       <Card variant="outlined" sx={{ display: 'flex', p: 1 }}>
-        <Avatar
-          sx={{ width: 100, height: 100 }}
+        <img
+          alt="Beside Myself album cover"
+          style={{ borderRadius: 8 }}
           src="/static/images/cards/basement-beside-myself.jpg"
-          variant="rounded"
+          width="100"
+          height="100"
         />
         <Box sx={{ alignSelf: 'center', mx: 2 }}>
           <Typography variant="body2" fontWeight={500}>
@@ -121,13 +122,17 @@ export default function PlayerCard() {
             Basement • Beside Myself
           </Typography>
           <Box sx={{ mt: 2 }}>
-            <IconButton disabled>
+            <IconButton aria-label="fast rewind" disabled>
               <FastRewindRounded />
             </IconButton>
-            <IconButton sx={{ mx: 2 }} onClick={() => setPaused((val) => !val)}>
-              {paused ? <PauseRounded /> : <PlayArrowRounded />}
+            <IconButton
+              aria-label={paused ? 'play' : 'pause'}
+              sx={{ mx: 2 }}
+              onClick={() => setPaused((val) => !val)}
+            >
+              {paused ? <PlayArrowRounded /> : <PauseRounded />}
             </IconButton>
-            <IconButton disabled>
+            <IconButton aria-label="fast forward" disabled>
               <FastForwardRounded />
             </IconButton>
           </Box>

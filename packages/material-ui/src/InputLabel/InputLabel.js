@@ -9,7 +9,7 @@ import styled, { rootShouldForwardProp } from '../styles/styled';
 import { getInputLabelUtilityClasses } from './inputLabelClasses';
 
 const useUtilityClasses = (styleProps) => {
-  const { classes, formControl, size, shrink, disableAnimation, variant } = styleProps;
+  const { classes, formControl, size, shrink, disableAnimation, variant, required } = styleProps;
   const slots = {
     root: [
       'root',
@@ -19,6 +19,7 @@ const useUtilityClasses = (styleProps) => {
       size === 'small' && 'sizeSmall',
       variant,
     ],
+    asterisk: [required && 'asterisk'],
   };
 
   const composedClasses = composeClasses(slots, getInputLabelUtilityClasses, classes);
@@ -124,7 +125,7 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['size', 'variant'],
+    states: ['size', 'variant', 'required'],
   });
 
   const styleProps = {
@@ -134,6 +135,7 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
     shrink,
     size: fcs.size,
     variant: fcs.variant,
+    required: fcs.required,
   };
 
   const classes = useUtilityClasses(styleProps);

@@ -114,7 +114,10 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
             >
               <img
                 loading="lazy"
-                src={`https://www.countryflags.io/${props.country}/flat/64.png`}
+                width="32"
+                height="32"
+                src={`https://www.countryflags.io/${props.country}/flat/32.png`}
+                srcSet={`https://www.countryflags.io/${props.country}/flat/64.png 2x`}
                 alt=""
               />
             </Box>
@@ -701,8 +704,8 @@ export default function About() {
   return (
     <ThemeProvider>
       <Head
-        title="About Us - Material-UI"
-        description="Material-UI started back in 2014 to unify React and Material Design. Today, Material-UI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
+        title="About Us - MUI"
+        description="MUI (formerly Material-UI) started back in 2014 to unify React and Material Design. Today, MUI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
       />
       <CssBaseline />
       <AboutContent />
