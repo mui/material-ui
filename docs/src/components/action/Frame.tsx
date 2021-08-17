@@ -9,7 +9,7 @@ const Demo = (props: BoxProps) => {
         position: 'relative',
         bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
         border: '1px solid',
-        borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.200'),
+        borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200'),
         ...props.sx,
       }}
     />

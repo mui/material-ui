@@ -216,7 +216,7 @@ export default function TemplateDemo() {
                   transform: 'translate(-50%)',
                   bottom: 8,
                   borderRadius: 20,
-                  bgcolor: 'background.paper',
+                  bgcolor: 'background.grey.100',
                   lineHeight: 1,
                   px: 0.5,
                 }}

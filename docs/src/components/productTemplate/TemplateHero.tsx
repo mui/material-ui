@@ -33,7 +33,7 @@ export default function TemplateHero() {
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
             <GradientText>Fully built</GradientText>
             <br />
-            templates for your project.
+            templates for your project
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
             A collection of several 4.5 average rating templates, curated by our Core team to get
