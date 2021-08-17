@@ -66,7 +66,7 @@ function SvgButton({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
       ) : (
         <defs>
           <filter
-            id="svg-button"
+            id={`svg-button-${props.id}`}
             x={0}
             y={8}
             width={28}
