@@ -20,6 +20,7 @@ const ROUTES = {
   careers: '/company/careers/',
   support: '/getting-started/support/#professional-support-premium',
   contactUs: '/branding/contact-us/',
+  store: '/store/',
   storeFigma: 'https://material-ui.com/store/items/figma-react/',
   storeSketch: 'https://material-ui.com/store/items/sketch-react/',
   storeXD: 'https://material-ui.com/store/items/adobe-xd-react/',
