@@ -50,12 +50,10 @@ export default function RecipeReviewCard() {
         subheader="September 14, 2016"
       />
       <CardMedia
-        sx={{
-          height: 0,
-          paddingTop: '56.25%', // 16:9
-        }}
+        component="img"
+        height="194"
         image="/static/images/cards/paella.jpg"
-        title="Paella dish"
+        alt="Paella dish"
       />
       <CardContent>
         <Typography variant="body2" color="text.secondary">

@@ -117,7 +117,10 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
             >
               <img
                 loading="lazy"
-                src={`https://www.countryflags.io/${props.country}/flat/64.png`}
+                width="32"
+                height="32"
+                src={`https://www.countryflags.io/${props.country}/flat/32.png`}
+                srcSet={`https://www.countryflags.io/${props.country}/flat/64.png 2x`}
                 alt=""
               />
             </Box>

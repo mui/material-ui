@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import IconButton from '@material-ui/core/IconButton';
@@ -36,7 +35,7 @@ const grey = {
 };
 
 export default function PlayerCard() {
-  const [paused, setPaused] = React.useState(false);
+  const [paused, setPaused] = React.useState(true);
   /*
    * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
    *
@@ -112,7 +111,8 @@ export default function PlayerCard() {
           alt="Song cover"
           sx={{ width: 124, height: 124 }}
           src="/static/images/cards/basement-beside-myself.jpg"
-          variant="rounded"
+          width="124"
+          height="124"
         />
         <Box sx={{ alignSelf: 'center', mx: 2 }}>
           <Typography variant="body1" fontWeight={500}>
@@ -122,17 +122,17 @@ export default function PlayerCard() {
             Basement • Beside Myself
           </Typography>
           <Box sx={{ mt: 2 }}>
-            <IconButton disabled aria-label="Rewind">
+            <IconButton aria-label="fast rewind" disabled>
               <FastRewindRounded />
             </IconButton>
             <IconButton
-              aria-label={paused ? 'Paused' : 'Play'}
+              aria-label={paused ? 'play' : 'pause'}
               sx={{ mx: 2 }}
               onClick={() => setPaused((val) => !val)}
             >
-              {paused ? <PauseRounded /> : <PlayArrowRounded />}
+              {paused ? <PlayArrowRounded /> : <PauseRounded />}
             </IconButton>
-            <IconButton disabled aria-label="Forward">
+            <IconButton aria-label="fast forward" disabled>
               <FastForwardRounded />
             </IconButton>
           </Box>
