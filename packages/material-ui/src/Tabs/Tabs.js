@@ -564,6 +564,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       }),
     [updateIndicatorState, updateScrollButtonState],
   );
+
   useResizeObserver(tabListRef, handleResize, true);
 
   React.useEffect(() => {
