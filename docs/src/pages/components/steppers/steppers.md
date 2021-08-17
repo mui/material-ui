@@ -59,8 +59,8 @@ Labels can be placed below the step icon by setting the `alternativeLabel` prop 
 
 ### Customized horizontal stepper
 
-Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/how-to-customize/).
+Here is an example of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/steppers/CustomizedSteppers.js"}}
 
