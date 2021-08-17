@@ -25,6 +25,7 @@ export interface SwitchUnstyledProps extends UseSwitchProps {
     Root?: React.ElementType;
     Thumb?: React.ElementType;
     Input?: React.ElementType;
+    Track?: React.ElementType | null;
   };
 
   /**
@@ -35,6 +36,7 @@ export interface SwitchUnstyledProps extends UseSwitchProps {
     root?: {};
     thumb?: {};
     input?: {};
+    track?: {};
   };
 }
 
@@ -100,6 +102,10 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
   const Input: React.ElementType = components.Input ?? 'input';
   const inputProps = appendStyleProps(Input, componentsProps.input ?? {}, styleProps);
 
+  const Track: React.ElementType =
+    components.Track === null ? () => null : components.Track ?? 'span';
+  const trackProps = appendStyleProps(Track, componentsProps.track ?? {}, styleProps);
+
   const stateClasses = {
     [classes.checked]: checked,
     [classes.disabled]: disabled,
@@ -113,6 +119,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
       {...rootProps}
       className={clsx(classes.root, stateClasses, className, rootProps?.className)}
     >
+      <Track {...trackProps} className={clsx(classes.track, trackProps?.className)} />
       <Thumb {...thumbProps} className={clsx(classes.thumb, thumbProps?.className)} />
       <Input
         {...getInputProps(inputProps)}
