@@ -25,6 +25,7 @@ export default function TemplateHero() {
             sx={{
               display: 'flex',
               alignItems: 'center',
+              justifyContent: {xs: 'center', md: 'start'},
               '& > *': { mr: 1, width: 28, height: 28 },
             }}
           >
@@ -40,12 +41,12 @@ export default function TemplateHero() {
             your projects and application up and running today.
           </Typography>
           <Button
-            component={Link}
+            component="a"
             href={ROUTES.store}
-            noLinkStyle
             size="large"
             variant="contained"
             endIcon={<KeyboardArrowRightRounded />}
+            sx={{width: {xs: '100%', sm: 'auto'} }}
           >
             Browse templates
           </Button>
