@@ -34,8 +34,7 @@ export default function CoreComponents() {
               overline="What do you get?"
               title={
                 <Typography variant="h2">
-                  Complex components for
-                  <GradientText>advanced</GradientText> use-cases
+                  Complex components for <GradientText>advanced</GradientText> use-cases
                 </Typography>
               }
               description="Leverage the X package to build heavy data applications. We'll be adding many more components further along."

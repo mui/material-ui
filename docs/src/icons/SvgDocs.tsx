@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { useTheme } from '@material-ui/core/styles';
+import RootSvg, { RootSvgProps } from 'docs/src/icons/RootSvg';
 
-function SvgDocs(props: React.SVGProps<SVGSVGElement>) {
+function SvgDocs(props: RootSvgProps) {
   const theme = useTheme();
   if (theme.palette.mode === 'dark') {
     return (
-      <svg
+      <RootSvg
         xmlns="http://www.w3.org/2000/svg"
         width={28}
         height={28}
@@ -25,11 +26,11 @@ function SvgDocs(props: React.SVGProps<SVGSVGElement>) {
           d="M18.921 8.728l.021.026.022.026 1.572 1.888a2 2 0 01.464 1.28V21a2 2 0 01-2 2H9a2 2 0 01-2-2V7a2 2 0 012-2h7.022l2.9 3.728zm-1.32-4.956L20.5 7.5l1.573 1.887A4 4 0 0123 11.948V21a4 4 0 01-4 4H9a4 4 0 01-4-4V7a4 4 0 014-4h7.022a2 2 0 011.579.772zM10 10a1 1 0 100 2h4a1 1 0 100-2h-4zm-1 5a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1zm1 3a1 1 0 100 2h8a1 1 0 100-2h-8z"
           fill="#80BFFF"
         />
-      </svg>
+      </RootSvg>
     );
   }
   return (
-    <svg
+    <RootSvg
       xmlns="http://www.w3.org/2000/svg"
       width={28}
       height={28}
@@ -63,7 +64,7 @@ function SvgDocs(props: React.SVGProps<SVGSVGElement>) {
           <stop offset={1} stopColor="#007FFF" />
         </linearGradient>
       </defs>
-    </svg>
+    </RootSvg>
   );
 }
 

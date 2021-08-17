@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { useTheme } from '@material-ui/core/styles';
+import RootSvg, { RootSvgProps } from 'docs/src/icons/RootSvg';
 
-function SvgGuage({ active, ...props }: { active?: boolean } & React.SVGProps<SVGSVGElement>) {
+function SvgGuage({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
   const theme = useTheme();
   if (theme.palette.mode === 'dark') {
     return (
-      <svg
+      <RootSvg
         xmlns="http://www.w3.org/2000/svg"
         width={24}
         height={27}
@@ -61,11 +62,11 @@ function SvgGuage({ active, ...props }: { active?: boolean } & React.SVGProps<SV
             <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
           </filter>
         </defs>
-      </svg>
+      </RootSvg>
     );
   }
   return (
-    <svg
+    <RootSvg
       xmlns="http://www.w3.org/2000/svg"
       width={24}
       height={24}
@@ -110,7 +111,7 @@ function SvgGuage({ active, ...props }: { active?: boolean } & React.SVGProps<SV
         transform="rotate(-90 16 13)"
         fill={theme.palette.svgBg[active ? 'active' : 'base']}
       />
-    </svg>
+    </RootSvg>
   );
 }
 

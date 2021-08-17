@@ -111,9 +111,9 @@ export default function CoreHeroEnd() {
                   <Box>Almost ready to go.</Box>
                   {renderList(
                     <React.Fragment>
-                      <SvgTable active />
+                      <SvgTable id="table-lab" active />
                       <b>Data Grid</b>
-                      <SvgDatePicker active />
+                      <SvgDatePicker id="date-picker-lab" active />
                       <b>Date Picker</b>
                       <SvgTreeView active />
                       <b>Tree View</b>
@@ -141,7 +141,7 @@ export default function CoreHeroEnd() {
                           },
                         }}
                       >
-                        <SvgTable active />
+                        <SvgTable id="table-wip" active />
                       </Box>
                       <b>Data Grid</b>
                       {bullet}
@@ -158,9 +158,9 @@ export default function CoreHeroEnd() {
                   <Box>Sometime...</Box>
                   {renderList(
                     <React.Fragment>
-                      <SvgSparkline active />
+                      <SvgSparkline id="sparkline-future" active />
                       <b>Sparkline</b>
-                      <SvgCharts active />
+                      <SvgCharts id="charts-future" active />
                       <b>Charts</b>
                       <SvgUpload active />
                       <b>Upload</b>

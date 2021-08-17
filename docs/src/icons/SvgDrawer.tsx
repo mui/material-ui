@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { useTheme } from '@material-ui/core/styles';
+import RootSvg, { RootSvgProps } from 'docs/src/icons/RootSvg';
 
-function SvgDrawer({ active, ...props }: { active?: boolean } & React.SVGProps<SVGSVGElement>) {
+function SvgDrawer({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
   const theme = useTheme();
   return (
-    <svg
+    <RootSvg
       xmlns="http://www.w3.org/2000/svg"
       width={24}
       height={24}
@@ -134,7 +135,7 @@ function SvgDrawer({ active, ...props }: { active?: boolean } & React.SVGProps<S
           </filter>
         </defs>
       )}
-    </svg>
+    </RootSvg>
   );
 }
 

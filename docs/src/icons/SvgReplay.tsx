@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { useTheme } from '@material-ui/core/styles';
+import RootSvg, { RootSvgProps } from 'docs/src/icons/RootSvg';
 
-function SvgReplay(props: React.SVGProps<SVGSVGElement>) {
+function SvgReplay(props: RootSvgProps) {
   const theme = useTheme();
   if (theme.palette.mode === 'dark') {
     return (
-      <svg
+      <RootSvg
         xmlns="http://www.w3.org/2000/svg"
         width={28}
         height={28}
@@ -25,11 +26,11 @@ function SvgReplay(props: React.SVGProps<SVGSVGElement>) {
           d="M9.65 6.985a.3.3 0 000 .52l5.1 2.944a.3.3 0 00.45-.26V8.518a6.802 6.802 0 01-1 13.527 6.8 6.8 0 01-6.8-6.8 1.2 1.2 0 00-2.4 0 9.2 9.2 0 1010.2-9.146V4.3a.3.3 0 00-.45-.26l-5.1 2.945z"
           fill="#80BFFF"
         />
-      </svg>
+      </RootSvg>
     );
   }
   return (
-    <svg
+    <RootSvg
       xmlns="http://www.w3.org/2000/svg"
       width={28}
       height={28}
@@ -63,7 +64,7 @@ function SvgReplay(props: React.SVGProps<SVGSVGElement>) {
           <stop offset={1} stopColor="#007FFF" />
         </linearGradient>
       </defs>
-    </svg>
+    </RootSvg>
   );
 }
 

@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { useTheme } from '@material-ui/core/styles';
+import RootSvg, { RootSvgProps } from 'docs/src/icons/RootSvg';
 
-function SvgButton({ active, ...props }: { active?: boolean } & React.SVGProps<SVGSVGElement>) {
+function SvgDatePicker({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
   const theme = useTheme();
   return (
-    <svg
+    <RootSvg
       xmlns="http://www.w3.org/2000/svg"
       width={24}
       height={24}
@@ -14,7 +15,7 @@ function SvgButton({ active, ...props }: { active?: boolean } & React.SVGProps<S
     >
       <rect width={24} height={24} rx={5} fill={theme.palette.svgBg[active ? 'active' : 'base']} />
       <mask
-        id="svg-date-picker-mask1"
+        id={`svg-date-picker-mask1-${props.id}`}
         mask-type="alpha"
         maskUnits="userSpaceOnUse"
         x={0}
@@ -29,8 +30,8 @@ function SvgButton({ active, ...props }: { active?: boolean } & React.SVGProps<S
           fill={theme.palette.svgBg[active ? 'active' : 'base']}
         />
       </mask>
-      <g mask="url(#svg-date-picker-mask1)">
-        <g filter="url(#svg-date-picker-filter1)">
+      <g mask={`url(#svg-date-picker-mask1-${props.id})`}>
+        <g filter={`url(#svg-date-picker-filter1-${props.id})`}>
           <rect
             x={4}
             y={6}
@@ -77,7 +78,7 @@ function SvgButton({ active, ...props }: { active?: boolean } & React.SVGProps<S
       {theme.palette.mode === 'dark' && (
         <defs>
           <filter
-            id="svg-date-picker-filter1"
+            id={`svg-date-picker-filter1-${props.id}`}
             x={0}
             y={6}
             width={24}
@@ -102,7 +103,7 @@ function SvgButton({ active, ...props }: { active?: boolean } & React.SVGProps<S
       {theme.palette.mode === 'light' && (
         <defs>
           <filter
-            id="svg-date-picker-filter1"
+            id={`svg-date-picker-filter1-${props.id}`}
             x={0}
             y={6}
             width={24}
@@ -124,8 +125,8 @@ function SvgButton({ active, ...props }: { active?: boolean } & React.SVGProps<S
           </filter>
         </defs>
       )}
-    </svg>
+    </RootSvg>
   );
 }
 
-export default SvgButton;
+export default SvgDatePicker;

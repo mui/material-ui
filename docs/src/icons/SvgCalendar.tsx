@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { useTheme } from '@material-ui/core/styles';
+import RootSvg, { RootSvgProps } from 'docs/src/icons/RootSvg';
 
-function SvgCalendar(props: React.SVGProps<SVGSVGElement>) {
+function SvgCalendar(props: RootSvgProps) {
   const theme = useTheme();
   if (theme.palette.mode === 'dark') {
     return (
-      <svg
+      <RootSvg
         xmlns="http://www.w3.org/2000/svg"
         width={28}
         height={28}
@@ -26,11 +27,11 @@ function SvgCalendar(props: React.SVGProps<SVGSVGElement>) {
           d="M9 5a1 1 0 012 0v2h6V5a1 1 0 112 0v2a4 4 0 014 4v8a4 4 0 01-4 4H9a4 4 0 01-4-4v-8a4 4 0 014-4V5zm0 4h10a2 2 0 012 2H7a2 2 0 012-2zm12 4v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6h14z"
           fill="#80BFFF"
         />
-      </svg>
+      </RootSvg>
     );
   }
   return (
-    <svg
+    <RootSvg
       xmlns="http://www.w3.org/2000/svg"
       width={28}
       height={28}
@@ -50,7 +51,7 @@ function SvgCalendar(props: React.SVGProps<SVGSVGElement>) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M9 5a1 1 0 012 0v2h6V5a1 1 0 112 0v2a4 4 0 014 4v8a4 4 0 01-4 4H9a4 4 0 01-4-4v-8a4 4 0 014-4V5zm0 4h10a2 2 0 012 2H7a2 2 0 012-2zm12 4v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6h14z"
-        fill="url(#prefix__paint1_linear)"
+        fill={`url(#svg-calendar-${props.id})`}
       />
       <defs>
         <linearGradient
@@ -65,7 +66,7 @@ function SvgCalendar(props: React.SVGProps<SVGSVGElement>) {
           <stop offset={1} stopColor="#007FFF" />
         </linearGradient>
         <linearGradient
-          id="prefix__paint1_linear"
+          id={`svg-calendar-${props.id}`}
           x1={23}
           y1={23}
           x2={4.028}
@@ -76,7 +77,7 @@ function SvgCalendar(props: React.SVGProps<SVGSVGElement>) {
           <stop offset={1} stopColor="#007FFF" />
         </linearGradient>
       </defs>
-    </svg>
+    </RootSvg>
   );
 }
 

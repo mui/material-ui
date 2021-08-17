@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { useTheme } from '@material-ui/core/styles';
+import RootSvg, { RootSvgProps } from 'docs/src/icons/RootSvg';
 
-function SvgPencil(props: React.SVGProps<SVGSVGElement>) {
+function SvgPencil(props: RootSvgProps) {
   const theme = useTheme();
   if (theme.palette.mode === 'dark') {
     return (
-      <svg
+      <RootSvg
         xmlns="http://www.w3.org/2000/svg"
         width={28}
         height={28}
@@ -25,11 +26,11 @@ function SvgPencil(props: React.SVGProps<SVGSVGElement>) {
           d="M12.192 9.05l8.846 8.846-.142 2.687-2.687.141-8.845-8.845 2.828-2.829zm-1.414-1.414l-.707-.707a2 2 0 00-2.828 2.828l.707.708 2.828-2.829zm-3.546 4.94l-1.404-1.404a4 4 0 015.657-5.657L22.461 16.49c.395.396.604.94.575 1.498l-.19 3.599a1 1 0 01-.946.946l-3.598.19a1.972 1.972 0 01-1.498-.576l-9.551-9.55a.735.735 0 01-.02-.021z"
           fill="#80BFFF"
         />
-      </svg>
+      </RootSvg>
     );
   }
   return (
-    <svg
+    <RootSvg
       xmlns="http://www.w3.org/2000/svg"
       width={28}
       height={28}
@@ -63,7 +64,7 @@ function SvgPencil(props: React.SVGProps<SVGSVGElement>) {
           <stop offset={1} stopColor="#007FFF" />
         </linearGradient>
       </defs>
-    </svg>
+    </RootSvg>
   );
 }
 

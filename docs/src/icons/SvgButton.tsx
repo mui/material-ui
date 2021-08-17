@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { useTheme } from '@material-ui/core/styles';
+import RootSvg, { RootSvgProps } from 'docs/src/icons/RootSvg';
 
-function SvgButton({ active, ...props }: { active?: boolean } & React.SVGProps<SVGSVGElement>) {
+function SvgButton({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
   const theme = useTheme();
   return (
-    <svg
+    <RootSvg
       xmlns="http://www.w3.org/2000/svg"
       width={28}
       height={24}
@@ -19,7 +20,7 @@ function SvgButton({ active, ...props }: { active?: boolean } & React.SVGProps<S
         rx={5}
         fill={theme.palette.svgBg[active ? 'active' : 'base']}
       />
-      <g filter="url(#svg-button)">
+      <g filter={`url(#svg-button-${props.id})`}>
         <rect
           x={4}
           y={8}
@@ -41,7 +42,7 @@ function SvgButton({ active, ...props }: { active?: boolean } & React.SVGProps<S
       {theme.palette.mode === 'dark' ? (
         <defs>
           <filter
-            id="svg-button"
+            id={`svg-button-${props.id}`}
             x={0}
             y={8}
             width={28}
@@ -87,7 +88,7 @@ function SvgButton({ active, ...props }: { active?: boolean } & React.SVGProps<S
           </filter>
         </defs>
       )}
-    </svg>
+    </RootSvg>
   );
 }
 

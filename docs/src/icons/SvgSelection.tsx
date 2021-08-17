@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { useTheme } from '@material-ui/core/styles';
+import RootSvg, { RootSvgProps } from 'docs/src/icons/RootSvg';
 
-function SvgSelection({ active, ...props }: { active?: boolean } & React.SVGProps<SVGSVGElement>) {
+function SvgSelection({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
   const theme = useTheme();
   if (theme.palette.mode === 'dark') {
     if (active) {
       return (
-        <svg
+        <RootSvg
           xmlns="http://www.w3.org/2000/svg"
           width={24}
           height={24}
@@ -19,11 +20,11 @@ function SvgSelection({ active, ...props }: { active?: boolean } & React.SVGProp
           <path fill="#66B2FF" d="M4 8h16v4H4z" />
           <path fill="#007FFF" d="M4 12h16v4H4z" />
           <path d="M4 16h16a4 4 0 01-4 4H8a4 4 0 01-4-4z" fill="#0072E6" />
-        </svg>
+        </RootSvg>
       );
     }
     return (
-      <svg
+      <RootSvg
         xmlns="http://www.w3.org/2000/svg"
         width={24}
         height={24}
@@ -36,12 +37,12 @@ function SvgSelection({ active, ...props }: { active?: boolean } & React.SVGProp
         <path fill="#0059B3" d="M4 8h16v4H4z" />
         <path fill="#004C99" d="M4 12h16v4H4z" />
         <path d="M4 16h16a4 4 0 01-4 4H8a4 4 0 01-4-4z" fill="#003A75" />
-      </svg>
+      </RootSvg>
     );
   }
   if (active) {
     return (
-      <svg
+      <RootSvg
         xmlns="http://www.w3.org/2000/svg"
         width={24}
         height={24}
@@ -54,11 +55,11 @@ function SvgSelection({ active, ...props }: { active?: boolean } & React.SVGProp
         <path fill="#007FFF" d="M4 8h16v4H4z" />
         <path fill="#66B2FF" d="M4 12h16v4H4z" />
         <path d="M4 16h16a4 4 0 01-4 4H8a4 4 0 01-4-4z" fill="#C2E0FF" />
-      </svg>
+      </RootSvg>
     );
   }
   return (
-    <svg
+    <RootSvg
       xmlns="http://www.w3.org/2000/svg"
       width={24}
       height={24}
@@ -71,7 +72,7 @@ function SvgSelection({ active, ...props }: { active?: boolean } & React.SVGProp
       <path fill="#BFC7CF" d="M4 8h16v4H4z" />
       <path fill="#D7DCE1" d="M4 12h16v4H4z" />
       <path d="M4 16h16a4 4 0 01-4 4H8a4 4 0 01-4-4z" fill="#E5E8EC" />
-    </svg>
+    </RootSvg>
   );
 }
 
