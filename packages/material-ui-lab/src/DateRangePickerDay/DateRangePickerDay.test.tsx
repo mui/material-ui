@@ -31,6 +31,7 @@ describe('<DateRangePickerDay />', () => {
       // cannot test reactTestRenderer because of required context
       skip: [
         'componentProp',
+        'rootClass', // forwards classes to DateRangePickerDayDay, but applies root class on DateRangePickerDayRoot
         'componentsProp',
         'reactTestRenderer',
         'propsSpread',
