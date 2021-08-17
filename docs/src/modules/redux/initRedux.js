@@ -1,7 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import optionsReducer from 'docs/src/modules/redux/optionsReducer';
-import notificationsReducer from 'docs/src/modules/redux/notificationsReducer';
 import { createLogger } from 'redux-logger';
 
 // Get the Redux DevTools extension and fallback to a no-op function
@@ -31,7 +30,6 @@ export default function create(initialState) {
   return createStore(
     combineReducers({
       options: optionsReducer,
-      notifications: notificationsReducer,
     }),
     initialState, // Hydrate the store with server-side data
     compose(applyMiddleware(...middleware), devtools),
