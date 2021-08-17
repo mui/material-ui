@@ -40,7 +40,7 @@ const grey = {
   900: '#3D4752',
 };
 
-export default function ViewToggleButton() {
+export default function ThemeToggleButton() {
   const [lang, setLang] = React.useState('javascript');
   /*
    * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.

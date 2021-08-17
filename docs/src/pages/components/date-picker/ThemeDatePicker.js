@@ -106,7 +106,7 @@ export default function ThemeDatePicker() {
               '& .PrivatePickersSlideTransition-root': {
                 minHeight: 180,
               },
-              '[role="row"]': {
+              '& [role="row"]': {
                 justifyContent: 'space-around',
               },
               '& .MuiCalendarPicker-viewTransitionContainer > div > div': {
