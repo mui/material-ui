@@ -23,14 +23,15 @@ export default function useResizeObserver(
           resizeHandlerRef.current();
         }
       });
-    }
-    if (resizeItemRef.current) {
-      if (observeChildren) {
-        Array.from(resizeItemRef.current.children).forEach((child) => {
-          resizeObserverRef.current?.observe(child);
-        });
-      } else {
-        resizeObserverRef.current?.observe(resizeItemRef.current);
+    } finally {
+      if (resizeItemRef.current) {
+        if (observeChildren) {
+          Array.from(resizeItemRef.current.children).forEach((child) => {
+            resizeObserverRef.current!.observe(child);
+          });
+        } else {
+          resizeObserverRef.current!.observe(resizeItemRef.current);
+        }
       }
     }
 
