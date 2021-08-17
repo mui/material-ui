@@ -6,8 +6,7 @@ import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ProductsSwitcher from 'docs/src/components/home/ProductsSwitcher';
-// import CoreShowcase from 'docs/src/components/home/CoreShowcase';
-import CoreShowcase2 from 'docs/src/components/home/CoreShowcase2';
+import CoreShowcase from 'docs/src/components/home/CoreShowcase';
 import AdvancedShowcase from 'docs/src/components/home/AdvancedShowcase';
 import StoreTemplatesBanner, {
   PrefetchStoreTemplateImages,
@@ -47,7 +46,7 @@ const ProductSuite = () => {
             {productIndex === 0 && (
               <Fade in timeout={700}>
                 <div>
-                  <CoreShowcase2 />
+                  <CoreShowcase />
                 </div>
               </Fade>
             )}
