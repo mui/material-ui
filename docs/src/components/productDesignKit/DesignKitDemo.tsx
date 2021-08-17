@@ -174,18 +174,15 @@ export default function TemplateDemo() {
                 <Typography variant="body2" fontWeight={500} noWrap sx={{ mb: 0.5 }}>
                   MUI for Figma
                 </Typography>
-                <Typography variant="body2" color="success.600" fontWeight={500}>
-                  $69
-                </Typography>
               </Box>
               <Button
                 component={Link}
                 noLinkStyle
                 href={ROUTES.store}
                 endIcon={<LaunchRounded sx={{ '&&': { fontSize: 16 } }} />}
-                sx={{ ml: 'auto' }}
+                sx={{ ml: 'auto', color: 'primary.300'}}
               >
-                Goto store
+                Buy now
               </Button>
             </Frame.Info>
           </Frame>

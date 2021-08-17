@@ -34,7 +34,7 @@ export default function TemplateHero() {
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
             MUI in your favorite
-            <br /> <GradientText>design tool</GradientText>.
+            <br /> <GradientText>design tool</GradientText>
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 450 }}>
             For the designers out there, pick your favorite design tool to enjoy our components. Get
