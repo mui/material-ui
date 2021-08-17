@@ -51,7 +51,7 @@ function SvgCard(props: RootSvgProps) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M7 8h14a2 2 0 012 2H5a2 2 0 012-2zm-4 3v-1a4 4 0 014-4h14a4 4 0 014 4v8a4 4 0 01-4 4H7a4 4 0 01-4-4v-7zm20 1v6a2 2 0 01-2 2H7a2 2 0 01-2-2v-6h18z"
-        fill={`url(#svg-card-linear1-${props.id})`}
+        fill={`url(#svg-card-linear1-${props.id || ''})`}
       />
       <rect
         x={7.5}
@@ -59,12 +59,19 @@ function SvgCard(props: RootSvgProps) {
         width={5}
         height={1}
         rx={0.5}
-        stroke={`url(#svg-card-linear2)-${props.id}`}
+        stroke={`url(#svg-card-linear2)-${props.id || ''}`}
       />
-      <rect x={15} y={15} width={2} height={2} rx={1} fill={`url(#svg-card-linear3-${props.id})`} />
+      <rect
+        x={15}
+        y={15}
+        width={2}
+        height={2}
+        rx={1}
+        fill={`url(#svg-card-linear3-${props.id || ''})`}
+      />
       <defs>
         <linearGradient
-          id={`svg-card-linear1-${props.id}`}
+          id={`svg-card-linear1-${props.id || ''}`}
           x1={25}
           y1={22}
           x2={9.778}
@@ -75,7 +82,7 @@ function SvgCard(props: RootSvgProps) {
           <stop offset={1} stopColor="#007FFF" />
         </linearGradient>
         <linearGradient
-          id={`svg-card-linear2-${props.id}`}
+          id={`svg-card-linear2-${props.id || ''}`}
           x1={13}
           y1={17}
           x2={11.8}
@@ -86,7 +93,7 @@ function SvgCard(props: RootSvgProps) {
           <stop offset={1} stopColor="#007FFF" />
         </linearGradient>
         <linearGradient
-          id={`svg-card-linear3-${props.id}`}
+          id={`svg-card-linear3-${props.id || ''}`}
           x1={17}
           y1={17}
           x2={15}

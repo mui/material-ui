@@ -51,7 +51,7 @@ function SvgCalendar(props: RootSvgProps) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M9 5a1 1 0 012 0v2h6V5a1 1 0 112 0v2a4 4 0 014 4v8a4 4 0 01-4 4H9a4 4 0 01-4-4v-8a4 4 0 014-4V5zm0 4h10a2 2 0 012 2H7a2 2 0 012-2zm12 4v6a2 2 0 01-2 2H9a2 2 0 01-2-2v-6h14z"
-        fill={`url(#svg-calendar-${props.id})`}
+        fill={`url(#svg-calendar-${props.id || ''})`}
       />
       <defs>
         <linearGradient
@@ -66,7 +66,7 @@ function SvgCalendar(props: RootSvgProps) {
           <stop offset={1} stopColor="#007FFF" />
         </linearGradient>
         <linearGradient
-          id={`svg-calendar-${props.id}`}
+          id={`svg-calendar-${props.id || ''}`}
           x1={23}
           y1={23}
           x2={4.028}

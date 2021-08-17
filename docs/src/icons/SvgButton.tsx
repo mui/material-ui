@@ -20,7 +20,7 @@ function SvgButton({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
         rx={5}
         fill={theme.palette.svgBg[active ? 'active' : 'base']}
       />
-      <g filter={`url(#svg-button-${props.id})`}>
+      <g filter={`url(#svg-button-${props.id || ''})`}>
         <rect
           x={4}
           y={8}
@@ -42,7 +42,7 @@ function SvgButton({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
       {theme.palette.mode === 'dark' ? (
         <defs>
           <filter
-            id={`svg-button-${props.id}`}
+            id={`svg-button-${props.id || ''}`}
             x={0}
             y={8}
             width={28}
@@ -66,7 +66,7 @@ function SvgButton({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
       ) : (
         <defs>
           <filter
-            id={`svg-button-${props.id}`}
+            id={`svg-button-${props.id || ''}`}
             x={0}
             y={8}
             width={28}

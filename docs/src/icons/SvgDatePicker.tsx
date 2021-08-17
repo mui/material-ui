@@ -15,7 +15,7 @@ function SvgDatePicker({ active, ...props }: RootSvgProps<{ active?: boolean }>)
     >
       <rect width={24} height={24} rx={5} fill={theme.palette.svgBg[active ? 'active' : 'base']} />
       <mask
-        id={`svg-date-picker-mask1-${props.id}`}
+        id={`svg-date-picker-mask1-${props.id || ''}`}
         mask-type="alpha"
         maskUnits="userSpaceOnUse"
         x={0}
@@ -30,8 +30,8 @@ function SvgDatePicker({ active, ...props }: RootSvgProps<{ active?: boolean }>)
           fill={theme.palette.svgBg[active ? 'active' : 'base']}
         />
       </mask>
-      <g mask={`url(#svg-date-picker-mask1-${props.id})`}>
-        <g filter={`url(#svg-date-picker-filter1-${props.id})`}>
+      <g mask={`url(#svg-date-picker-mask1-${props.id || ''})`}>
+        <g filter={`url(#svg-date-picker-filter1-${props.id || ''})`}>
           <rect
             x={4}
             y={6}
@@ -78,7 +78,7 @@ function SvgDatePicker({ active, ...props }: RootSvgProps<{ active?: boolean }>)
       {theme.palette.mode === 'dark' && (
         <defs>
           <filter
-            id={`svg-date-picker-filter1-${props.id}`}
+            id={`svg-date-picker-filter1-${props.id || ''}`}
             x={0}
             y={6}
             width={24}
@@ -103,7 +103,7 @@ function SvgDatePicker({ active, ...props }: RootSvgProps<{ active?: boolean }>)
       {theme.palette.mode === 'light' && (
         <defs>
           <filter
-            id={`svg-date-picker-filter1-${props.id}`}
+            id={`svg-date-picker-filter1-${props.id || ''}`}
             x={0}
             y={6}
             width={24}

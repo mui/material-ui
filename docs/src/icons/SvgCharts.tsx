@@ -14,7 +14,7 @@ function SvgCharts({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
       {...props}
     >
       <rect width={24} height={24} rx={5} fill={theme.palette.svgBg[active ? 'active' : 'base']} />
-      <g filter={`url(#svg-charts-filter1-${props.id})`}>
+      <g filter={`url(#svg-charts-filter1-${props.id || ''})`}>
         <rect
           x={5}
           y={12}
@@ -24,7 +24,7 @@ function SvgCharts({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
           fill={theme.palette.svgFilled[active ? 'active' : 'base']}
         />
       </g>
-      <g filter={`url(#svg-charts-filter2-${props.id})`}>
+      <g filter={`url(#svg-charts-filter2-${props.id || ''})`}>
         <rect
           x={9}
           y={8}
@@ -34,7 +34,7 @@ function SvgCharts({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
           fill={theme.palette.svgFilled[active ? 'active' : 'base']}
         />
       </g>
-      <g filter={`url(#svg-charts-filter3-${props.id})`}>
+      <g filter={`url(#svg-charts-filter3-${props.id || ''})`}>
         <rect
           x={13}
           y={14}
@@ -44,7 +44,7 @@ function SvgCharts({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
           fill={theme.palette.svgFilled[active ? 'active' : 'base']}
         />
       </g>
-      <g filter={`url(#svg-charts-filter4-${props.id})`}>
+      <g filter={`url(#svg-charts-filter4-${props.id || ''})`}>
         <rect
           x={17}
           y={4}
@@ -57,7 +57,7 @@ function SvgCharts({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
       {theme.palette.mode === 'dark' && (
         <defs>
           <filter
-            id={`svg-charts-filter1-${props.id}`}
+            id={`svg-charts-filter1-${props.id || ''}`}
             x={1}
             y={12}
             width={10}
@@ -78,7 +78,7 @@ function SvgCharts({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
             <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
           </filter>
           <filter
-            id={`svg-charts-filter2-${props.id}`}
+            id={`svg-charts-filter2-${props.id || ''}`}
             x={5}
             y={8}
             width={10}
@@ -99,7 +99,7 @@ function SvgCharts({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
             <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
           </filter>
           <filter
-            id={`svg-charts-filter3-${props.id}`}
+            id={`svg-charts-filter3-${props.id || ''}`}
             x={9}
             y={14}
             width={10}
@@ -120,7 +120,7 @@ function SvgCharts({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
             <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
           </filter>
           <filter
-            id={`svg-charts-filter4-${props.id}`}
+            id={`svg-charts-filter4-${props.id || ''}`}
             x={13}
             y={4}
             width={10}
@@ -145,7 +145,7 @@ function SvgCharts({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
       {theme.palette.mode === 'light' && (
         <defs>
           <filter
-            id={`svg-charts-filter1-${props.id}`}
+            id={`svg-charts-filter1-${props.id || ''}`}
             x={1}
             y={12}
             width={10}
@@ -166,7 +166,7 @@ function SvgCharts({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
             <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
           </filter>
           <filter
-            id={`svg-charts-filter2-${props.id}`}
+            id={`svg-charts-filter2-${props.id || ''}`}
             x={5}
             y={8}
             width={10}
@@ -187,7 +187,7 @@ function SvgCharts({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
             <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
           </filter>
           <filter
-            id={`svg-charts-filter3-${props.id}`}
+            id={`svg-charts-filter3-${props.id || ''}`}
             x={9}
             y={14}
             width={10}
@@ -208,7 +208,7 @@ function SvgCharts({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
             <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
           </filter>
           <filter
-            id={`svg-charts-filter4-${props.id}`}
+            id={`svg-charts-filter4-${props.id || ''}`}
             x={13}
             y={4}
             width={10}

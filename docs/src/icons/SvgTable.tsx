@@ -17,7 +17,7 @@ function SvgTable({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
         >
           <rect width={24} height={24} rx={5} fill="#1E4976" />
           <mask
-            id={`svg-table-mask1-${props.id}`}
+            id={`svg-table-mask1-${props.id || ''}`}
             mask-type="alpha"
             maskUnits="userSpaceOnUse"
             x={0}
@@ -27,9 +27,9 @@ function SvgTable({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
           >
             <rect width={24} height={24} rx={5} fill="#265D97" />
           </mask>
-          <g mask={`url(#svg-table-mask1-${props.id})`}>
-            <g filter={`url(#svg-table-mask2-${props.id})`}>
-              <mask id={`svg-table-mask3-${props.id}`} fill="#fff">
+          <g mask={`url(#svg-table-mask1-${props.id || ''})`}>
+            <g filter={`url(#svg-table-mask2-${props.id || ''})`}>
+              <mask id={`svg-table-mask3-${props.id || ''}`} fill="#fff">
                 <rect x={4} y={4} width={23} height={24} rx={1} />
               </mask>
               <rect x={4} y={4} width={23} height={24} rx={1} fill="#132F4C" />
@@ -41,7 +41,7 @@ function SvgTable({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
                 rx={1}
                 stroke="#66B2FF"
                 strokeWidth={4}
-                mask={`url(#svg-table-mask3-${props.id})`}
+                mask={`url(#svg-table-mask3-${props.id || ''})`}
               />
             </g>
             <rect x={4.5} y={10.5} width={22} height={1} rx={0.5} fill="#007FFF" stroke="#66B2FF" />
@@ -51,7 +51,7 @@ function SvgTable({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
           </g>
           <defs>
             <filter
-              id={`svg-table-mask2-${props.id}`}
+              id={`svg-table-mask2-${props.id || ''}`}
               x={0}
               y={4}
               width={31}
@@ -86,7 +86,7 @@ function SvgTable({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
       >
         <rect width={24} height={24} rx={5} fill="#1E4976" />
         <mask
-          id={`svg-table-mask1-${props.id}`}
+          id={`svg-table-mask1-${props.id || ''}`}
           mask-type="alpha"
           maskUnits="userSpaceOnUse"
           x={0}
@@ -96,9 +96,9 @@ function SvgTable({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
         >
           <rect width={24} height={24} rx={5} fill="#265D97" />
         </mask>
-        <g mask={`url(#svg-table-mask1-${props.id})`}>
-          <g filter={`url(#svg-table-mask2-${props.id})`}>
-            <mask id={`svg-table-mask3-${props.id}`} fill="#fff">
+        <g mask={`url(#svg-table-mask1-${props.id || ''})`}>
+          <g filter={`url(#svg-table-mask2-${props.id || ''})`}>
+            <mask id={`svg-table-mask3-${props.id || ''}`} fill="#fff">
               <rect x={4} y={4} width={23} height={24} rx={1} />
             </mask>
             <rect x={4} y={4} width={23} height={24} rx={1} fill="#173A5E" />
@@ -110,7 +110,7 @@ function SvgTable({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
               rx={1}
               stroke="#001E3C"
               strokeWidth={4}
-              mask={`url(#svg-table-mask3-${props.id})`}
+              mask={`url(#svg-table-mask3-${props.id || ''})`}
             />
           </g>
           <rect x={4} y={10} width={23} height={2} rx={1} fill="#001E3C" />
@@ -120,7 +120,7 @@ function SvgTable({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
         </g>
         <defs>
           <filter
-            id={`svg-table-mask2-${props.id}`}
+            id={`svg-table-mask2-${props.id || ''}`}
             x={0}
             y={4}
             width={31}
@@ -155,7 +155,7 @@ function SvgTable({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
     >
       <rect width={24} height={24} rx={5} fill={theme.palette.svgBg[active ? 'active' : 'base']} />
       <mask
-        id={`svg-table-mask1-${props.id}`}
+        id={`svg-table-mask1-${props.id || ''}`}
         mask-type="alpha"
         maskUnits="userSpaceOnUse"
         x={0}
@@ -170,10 +170,10 @@ function SvgTable({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
           fill={theme.palette.svgBg[active ? 'active' : 'base']}
         />
       </mask>
-      <g mask={`url(#svg-table-mask1-${props.id})`}>
-        <g filter={`url(#svg-table-filter1-${props.id})`}>
+      <g mask={`url(#svg-table-mask1-${props.id || ''})`}>
+        <g filter={`url(#svg-table-filter1-${props.id || ''})`}>
           <mask
-            id={`svg-table-mask2-${props.id}`}
+            id={`svg-table-mask2-${props.id || ''}`}
             fill={theme.palette.svgStroke[active ? 'active' : 'base']}
           >
             <rect x={4} y={4} width={23} height={24} rx={1} />
@@ -194,7 +194,7 @@ function SvgTable({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
             rx={1}
             stroke={theme.palette.svgFilled[active ? 'active' : 'base']}
             strokeWidth={4}
-            mask={`url(#svg-table-mask2-${props.id})`}
+            mask={`url(#svg-table-mask2-${props.id || ''})`}
           />
         </g>
         <rect
@@ -232,7 +232,7 @@ function SvgTable({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
       </g>
       <defs>
         <filter
-          id={`svg-table-filter1-${props.id}`}
+          id={`svg-table-filter1-${props.id || ''}`}
           x={0}
           y={4}
           width={31}
