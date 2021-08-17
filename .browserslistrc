@@ -8,7 +8,7 @@ node 14
 # Default/Fallback
 # `npx browserslist --mobile-to-desktop "> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11"` when the last major is released.
 # Manually downgrading to ios_saf 12.4 for iPhone 6 and webpack 4 support.
-# On update check all #stable-snapshot markers
+# On update, sync references where "#stable-snapshot" is mentioned in the codebase.
 [stable]
 and_chr 91
 and_ff 89
