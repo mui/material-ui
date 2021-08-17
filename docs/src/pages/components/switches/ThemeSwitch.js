@@ -73,7 +73,7 @@ export default function ThemeSwitch() {
               track: {
                 borderRadius: 20,
                 opacity: 1,
-                backgroundColor: grey[400],
+                backgroundColor: mode === 'dark' ? grey[800] : grey[400],
               },
             },
           },

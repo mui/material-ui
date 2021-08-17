@@ -403,7 +403,7 @@ export function getThemedComponents(theme: Theme) {
               opacity: 1,
             },
             '&.Mui-checked': {
-              transform: 'translateX(11px) !important',
+              transform: 'translateX(11px)',
               color: '#fff',
             },
           },
@@ -415,8 +415,8 @@ export function getThemedComponents(theme: Theme) {
           },
           thumb: {
             flexShrink: 0,
-            width: '14px !important',
-            height: '14px !important',
+            width: '14px',
+            height: '14px',
           },
         },
       },
