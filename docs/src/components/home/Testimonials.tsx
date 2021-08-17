@@ -11,10 +11,10 @@ import KeyboardArrowLeftRounded from '@material-ui/icons/KeyboardArrowLeftRounde
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 
 const data = [
-  { title: '2M', metadata: 'Weekly downloads on npm' },
-  { title: '70k', metadata: 'Stars on GitHub' },
-  { title: '2k', metadata: 'Open-source contributors' },
-  { title: '13k', metadata: 'Followers on Twitter' },
+  { title: '2.3M', metadata: 'Weekly downloads on npm' },
+  { title: '70.2k', metadata: 'Stars on GitHub' },
+  { title: '2.2k', metadata: 'Open-source contributors' },
+  { title: '14.1k', metadata: 'Followers on Twitter' },
 ];
 
 const UserFeedback = ({
