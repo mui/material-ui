@@ -84,7 +84,7 @@
     "lodash": "^4.17.15",
     "lz-string": "^1.4.4",
     "markdown-to-jsx": "^7.0.0",
-    "material-ui-popup-state": "^1.4.1",
+    "material-ui-popup-state": "^1.9.2",
     "next": "^11.0.1",
     "notistack": "^1.0.0",
     "nprogress": "^0.2.0",

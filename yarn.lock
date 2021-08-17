@@ -2128,7 +2128,7 @@
     prop-types "^15.7.2"
     reselect "^4.0.0"
 
-"@material-ui/types@^4.0.0", "@material-ui/types@^4.1.1":
+"@material-ui/types@^4.0.0":
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@material-ui/types/-/types-4.1.1.tgz#b65e002d926089970a3271213a3ad7a21b17f02b"
   integrity sha512-AN+GZNXytX9yxGi0JOfxHrRTbhFybjUJ05rnsBVjcB+16e466Z0Xe5IxawuOayVZgTBNDxmPKo5j4V6OnMtaSQ==
@@ -10992,13 +10992,13 @@ marked@^2.0.0:
   resolved "https://registry.yarnpkg.com/marked/-/marked-2.1.3.tgz#bd017cef6431724fd4b27e0657f5ceb14bff3753"
   integrity sha512-/Q+7MGzaETqifOMWYEA7HVMaZb4XbcRfaOzcSsHZEith83KGlvaSG33u0SKu89Mj5h+T8V2hM+8O45Qc5XTgwA==
 
-material-ui-popup-state@^1.4.1:
-  version "1.8.3"
-  resolved "https://registry.yarnpkg.com/material-ui-popup-state/-/material-ui-popup-state-1.8.3.tgz#1e263682659c6b39af38c68c21ce4f316f2bb56e"
-  integrity sha512-qvrX5snjXwn3rv5i3+w/T1WF3NHRPZ6KzB/gOzh9cxowEvlWV0HkCSbPmEDTnfQt6s6r964cMV987QZ50eNhxA==
+material-ui-popup-state@^1.9.2:
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/material-ui-popup-state/-/material-ui-popup-state-1.9.2.tgz#0a154c10790051d965cac66e5a77a241166b44f1"
+  integrity sha512-LoGGHbZE9De3ybp5elwvuDRUuZqheUcvUHsRPvJYcxwH7Y27SPZs+/lAZcsbTN8E3bN8gI3EVUBSMElv5ocmzw==
   dependencies:
     "@babel/runtime" "^7.12.5"
-    "@material-ui/types" "^4.1.1"
+    "@material-ui/types" "^6.0.1"
     classnames "^2.2.6"
     prop-types "^15.7.2"
 
