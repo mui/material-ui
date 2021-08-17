@@ -3,10 +3,6 @@ const CODE_VARIANTS = {
   TS: 'TS',
 };
 
-const ACTION_TYPES = {
-  OPTIONS_CHANGE: 'OPTIONS_CHANGE',
-};
-
 // Valid languages to server-side render in production
 const LANGUAGES = ['en', 'zh', 'ru', 'pt', 'es', 'fr', 'de', 'ja'];
 
@@ -54,7 +50,6 @@ const LANGUAGES_LABEL = [
 
 module.exports = {
   CODE_VARIANTS,
-  ACTION_TYPES,
   LANGUAGES,
   LANGUAGES_SSR,
   LANGUAGES_LABEL,

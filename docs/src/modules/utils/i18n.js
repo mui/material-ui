@@ -1,5 +1,5 @@
+import PropTypes from 'prop-types';
 import * as React from 'react';
-import { useSelector } from 'react-redux';
 
 function mapTranslations(req) {
   const translations = {};
@@ -26,8 +26,36 @@ function getPath(obj, path) {
   return path.split('.').reduce((acc, item) => (acc && acc[item] ? acc[item] : null), obj);
 }
 
+const UserLanguageContext = React.createContext({ userLanguage: '', setUserLanguage: () => {} });
+if (process.env.NODE_ENV !== 'production') {
+  UserLanguageContext.displayName = 'UserLanguage';
+}
+
+export function UserLanguageProvider(props) {
+  const { children, defaultUserLanguage } = props;
+
+  const [userLanguage, setUserLanguage] = React.useState(defaultUserLanguage);
+
+  const contextValue = React.useMemo(() => {
+    return { userLanguage, setUserLanguage };
+  }, [userLanguage]);
+
+  return (
+    <UserLanguageContext.Provider value={contextValue}>{children}</UserLanguageContext.Provider>
+  );
+}
+
+UserLanguageProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+  defaultUserLanguage: PropTypes.string,
+};
+
 export function useUserLanguage() {
-  return useSelector((state) => state.options.userLanguage);
+  return React.useContext(UserLanguageContext).userLanguage;
+}
+
+export function useSetUserLanguage() {
+  return React.useContext(UserLanguageContext).setUserLanguage;
 }
 
 const warnedOnce = {};

@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import copy from 'clipboard-copy';
 import LZString from 'lz-string';
-import { useDispatch } from 'react-redux';
 import { useTheme, styled } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -23,7 +22,8 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 import ResetFocusIcon from '@material-ui/icons/CenterFocusWeak';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
+import { CODE_VARIANTS } from 'docs/src/modules/constants';
+import { useSetCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useRouter } from 'next/router';
 
@@ -214,7 +214,7 @@ export default function DemoToolbar(props) {
     showPreview,
   } = props;
 
-  const dispatch = useDispatch();
+  const setCodeVariant = useSetCodeVariant();
   const t = useTranslate();
 
   const hasTSVariant = demo.rawTS;
@@ -227,12 +227,7 @@ export default function DemoToolbar(props) {
 
   const handleCodeLanguageClick = (event, clickedCodeVariant) => {
     if (clickedCodeVariant !== null && codeVariant !== clickedCodeVariant) {
-      dispatch({
-        type: ACTION_TYPES.OPTIONS_CHANGE,
-        payload: {
-          codeVariant: clickedCodeVariant,
-        },
-      });
+      setCodeVariant(clickedCodeVariant);
     }
   };
 
