@@ -9,7 +9,14 @@ import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
-import SvgAlert from 'docs/src/icons/SvgAlert';
+import SvgTable from 'docs/src/icons/SvgTable';
+import SvgDatePicker from 'docs/src/icons/SvgDatePicker';
+import SvgTreeView from 'docs/src/icons/SvgTreeView';
+import SvgSparkline from 'docs/src/icons/SvgSparkline';
+import SvgCharts from 'docs/src/icons/SvgCharts';
+import SvgGuage from 'docs/src/icons/SvgGuage';
+import SvgUpload from 'docs/src/icons/SvgUpload';
+import SvgScheduler from 'docs/src/icons/SvgScheduler';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
 
 const darkDesignTokens = getDesignTokens('dark');
@@ -104,11 +111,11 @@ export default function CoreHeroEnd() {
                   <Box>Almost ready to go.</Box>
                   {renderList(
                     <React.Fragment>
-                      <SvgAlert />
+                      <SvgTable active />
                       <b>Data Grid</b>
-                      <SvgAlert />
+                      <SvgDatePicker active />
                       <b>Date Picker</b>
-                      <SvgAlert />
+                      <SvgTreeView active />
                       <b>Tree View</b>
                     </React.Fragment>,
                   )}
@@ -134,7 +141,7 @@ export default function CoreHeroEnd() {
                           },
                         }}
                       >
-                        <SvgAlert />
+                        <SvgTable active />
                       </Box>
                       <b>Data Grid</b>
                       {bullet}
@@ -151,15 +158,15 @@ export default function CoreHeroEnd() {
                   <Box>Sometime...</Box>
                   {renderList(
                     <React.Fragment>
-                      <SvgAlert />
+                      <SvgSparkline active />
                       <b>Sparkline</b>
-                      <SvgAlert />
+                      <SvgCharts active />
                       <b>Charts</b>
-                      <SvgAlert />
+                      <SvgUpload active />
                       <b>Upload</b>
-                      <SvgAlert />
+                      <SvgScheduler active />
                       <b>Scheduler</b>
-                      <SvgAlert />
+                      <SvgGuage active />
                       <b>Gauge</b>
                     </React.Fragment>,
                   )}
