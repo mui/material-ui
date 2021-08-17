@@ -199,8 +199,8 @@ export default function useButton(props: UseButtonProps) {
   const getRootProps = (otherHandlers?: Record<string, React.EventHandler<any>>) => {
     const mergedEventHandlers = mergeEventHandlers(
       ownEventHandlers,
-      otherHandlers ?? {},
       props as any,
+      otherHandlers ?? {},
     );
 
     // onFocusVisible can ber present on the props, but since it's not a valid React event handler,

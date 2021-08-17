@@ -21,9 +21,12 @@ describe('extractEventHandlers', () => {
   });
 
   it('returns an empty object if an empty object is provided', () => {
-    const input = {};
-    const result = extractEventHandlers(input);
+    const result = extractEventHandlers({});
+    expect(result).to.deep.equal({});
+  });
 
+  it('returns an empty object if undefined is passed in', () => {
+    const result = extractEventHandlers(undefined);
     expect(result).to.deep.equal({});
   });
 });
