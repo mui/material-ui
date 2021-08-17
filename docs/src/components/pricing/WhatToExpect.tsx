@@ -25,7 +25,7 @@ export default function WhatToExpect() {
       <Grid container spacing={{ xs: 2, sm: 4 }}>
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-            <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
+            <Typography component="h3" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
               <Icon name={<SvgTag />} />
               Volumn discount
             </Typography>
@@ -42,7 +42,7 @@ export default function WhatToExpect() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-            <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
+            <Typography component="h3" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
               <Icon name={<SvgInfinity />} />
               Perpetual license
             </Typography>
@@ -58,7 +58,7 @@ export default function WhatToExpect() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-            <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
+            <Typography component="h3" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
               <Icon name={<SvgReplay />} />
               Renewal
             </Typography>
@@ -71,7 +71,7 @@ export default function WhatToExpect() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-            <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
+            <Typography component="h3" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
               <Icon name={<SvgCalendar />} />
               Support and maintenance
             </Typography>
