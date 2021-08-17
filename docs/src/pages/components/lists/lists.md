@@ -47,7 +47,7 @@ Below is an interactive demo that lets you explore the visual results of the dif
 
 ## Align list items
 
-The vertical alignment of the avatar is wrong when displaying three lines or more.
+When displaying three lines or more, the avatar is not aligned at the top.
 You should set the `alignItems="flex-start"` prop to align the avatar at the top:
 
 {{"demo": "pages/components/lists/AlignItemsList.js", "bg": true}}
