@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import sinon, { spy, stub, useFakeTimers } from 'sinon';
-import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
+import { describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 describe('<TextareaAutosize />', () => {
   const render = createClientRender();
 
-  describeConformance(<TextareaAutosize />, () => ({
+  describeConformanceV5(<TextareaAutosize />, () => ({
     inheritComponent: 'textarea',
     refInstanceof: window.HTMLTextAreaElement,
-    skip: ['rootClass', 'componentProp'],
+    skip: ['rootClass', 'componentProp', 'componentsProp', 'themeDefaultProps'],
   }));
 
   describe('layout', () => {

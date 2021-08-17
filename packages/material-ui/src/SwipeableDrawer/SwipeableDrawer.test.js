@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { fireEvent, createClientRender, describeConformance, screen } from 'test/utils';
+import { fireEvent, createClientRender, describeConformanceV5, screen } from 'test/utils';
 import PropTypes, { checkPropTypes } from 'prop-types';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Drawer, { drawerClasses } from '@material-ui/core/Drawer';
@@ -71,12 +71,13 @@ describe('<SwipeableDrawer />', () => {
 
   const render = createClientRender();
 
-  describeConformance(<SwipeableDrawer onOpen={() => {}} onClose={() => {}} open />, () => ({
+  describeConformanceV5(<SwipeableDrawer onOpen={() => {}} onClose={() => {}} open />, () => ({
     classes: {},
     inheritComponent: Drawer,
     refInstanceof: window.HTMLDivElement,
     skip: [
       'componentProp',
+      'themeDefaultProps',
       // https://github.com/facebook/react/issues/11565
       'reactTestRenderer',
     ],

@@ -1,7 +1,7 @@
 // @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createClientRender, describeConformanceV5 } from 'test/utils';
 import Tab from '@material-ui/core/Tab';
 import Tabs, { tabsClasses as classes } from '@material-ui/core/Tabs';
 import TabList from './TabList';
@@ -10,7 +10,7 @@ import TabContext from '../TabContext';
 describe('<TabList />', () => {
   const render = createClientRender();
 
-  describeConformance(<TabList />, () => ({
+  describeConformanceV5(<TabList />, () => ({
     // @ts-expect-error https://github.com/microsoft/TypeScript/issues/15300
     classes,
     inheritComponent: Tabs,
@@ -24,7 +24,7 @@ describe('<TabList />', () => {
     },
     refInstanceof: window.HTMLDivElement,
     // TODO: no idea why reactTestRenderer fails
-    skip: ['reactTestRenderer'],
+    skip: ['componentsProp', 'themeDefaultProps', 'reactTestRenderer'],
   }));
 
   // outside of TabContext pass every test in Tabs

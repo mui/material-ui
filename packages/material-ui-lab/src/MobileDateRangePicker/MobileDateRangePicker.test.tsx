@@ -1,13 +1,13 @@
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import MobileDateRangePicker from '@material-ui/lab/MobileDateRangePicker';
-import { describeConformance } from 'test/utils';
+import { describeConformanceV5 } from 'test/utils';
 import { wrapPickerMount, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<MobileDateRangePicker />', () => {
   const render = createPickerRender();
 
-  describeConformance(
+  describeConformanceV5(
     <MobileDateRangePicker
       onChange={() => {}}
       renderInput={(props) => <TextField {...props} />}
@@ -17,7 +17,15 @@ describe('<MobileDateRangePicker />', () => {
       classes: {},
       wrapMount: wrapPickerMount,
       refInstanceof: window.HTMLDivElement,
-      skip: ['componentProp', 'mergeClassName', 'propsSpread', 'rootClass', 'reactTestRenderer'],
+      skip: [
+        'componentProp',
+        'componentsProp',
+        'themeDefaultProps',
+        'mergeClassName',
+        'propsSpread',
+        'rootClass',
+        'reactTestRenderer',
+      ],
     }),
   );
 

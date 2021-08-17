@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createClientRender, describeConformanceV5 } from 'test/utils';
 import BackdropUnstyled, {
   backdropUnstyledClasses as classes,
 } from '@material-ui/unstyled/BackdropUnstyled';
@@ -8,7 +8,7 @@ import BackdropUnstyled, {
 describe('<BackdropUnstyled />', () => {
   const render = createClientRender();
 
-  describeConformance(
+  describeConformanceV5(
     <BackdropUnstyled>
       <div />
     </BackdropUnstyled>,
@@ -18,6 +18,11 @@ describe('<BackdropUnstyled />', () => {
       render,
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'div',
+      skip: [
+        'themeDefaultProps', // unstyled
+        'themeStyleOverrides', // unstyled
+        'themeVariants', // unstyled
+      ],
     }),
   );
 

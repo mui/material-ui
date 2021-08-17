@@ -4,7 +4,7 @@ import { isWeekend } from 'date-fns';
 import { useFakeTimers } from 'sinon';
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import StaticDateRangePicker from '@material-ui/lab/StaticDateRangePicker';
-import { describeConformance } from 'test/utils';
+import { describeConformanceV5 } from 'test/utils';
 import {
   wrapPickerMount,
   createPickerRender,
@@ -30,7 +30,7 @@ describe('<StaticDateRangePicker />', () => {
 
   const render = createPickerRender();
 
-  describeConformance(
+  describeConformanceV5(
     <StaticDateRangePicker
       onChange={() => {}}
       renderInput={(props) => <TextField {...props} />}
@@ -42,6 +42,8 @@ describe('<StaticDateRangePicker />', () => {
       refInstanceof: undefined,
       skip: [
         'componentProp',
+        'componentsProp',
+        'themeDefaultProps',
         'mergeClassName',
         'propsSpread',
         'refForwarding',

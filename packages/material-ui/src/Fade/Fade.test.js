@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { act, createClientRender, describeConformance } from 'test/utils';
+import { act, createClientRender, describeConformanceV5 } from 'test/utils';
 import { Transition } from 'react-transition-group';
 import Fade from '@material-ui/core/Fade';
 
@@ -13,12 +13,14 @@ describe('<Fade />', () => {
     children: <div />,
   };
 
-  describeConformance(<Fade {...defaultProps} />, () => ({
+  describeConformanceV5(<Fade {...defaultProps} />, () => ({
     classes: {},
     inheritComponent: Transition,
     refInstanceof: window.HTMLDivElement,
     skip: [
       'componentProp',
+      'componentsProp',
+      'themeDefaultProps',
       // TODO: really?
       // react-transition-group issue
       'reactTestRenderer',

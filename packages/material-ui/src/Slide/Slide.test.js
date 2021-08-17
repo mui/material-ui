@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { act, createClientRender, describeConformance } from 'test/utils';
+import { act, createClientRender, describeConformanceV5 } from 'test/utils';
 import { createTheme } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
 import Slide from '@material-ui/core/Slide';
@@ -17,7 +17,7 @@ describe('<Slide />', () => {
     direction: 'down',
   };
 
-  describeConformance(
+  describeConformanceV5(
     <Slide in>
       <div />
     </Slide>,
@@ -27,6 +27,8 @@ describe('<Slide />', () => {
       refInstanceof: window.HTMLDivElement,
       skip: [
         'componentProp',
+        'componentsProp',
+        'themeDefaultProps',
         // react-transition-group issue
         'reactTestRenderer',
       ],

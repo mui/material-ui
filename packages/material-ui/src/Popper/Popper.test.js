@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
-import { describeConformance, act, createClientRender, fireEvent, screen } from 'test/utils';
+import { describeConformanceV5, act, createClientRender, fireEvent, screen } from 'test/utils';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import Grow from '@material-ui/core/Grow';
 import Popper from '@material-ui/core/Popper';
@@ -22,12 +22,14 @@ describe('<Popper />', () => {
     });
   });
 
-  describeConformance(<Popper {...defaultProps} />, () => ({
+  describeConformanceV5(<Popper {...defaultProps} />, () => ({
     classes: {},
     inheritComponent: 'div',
     refInstanceof: window.HTMLDivElement,
     skip: [
       'componentProp',
+      'componentsProp',
+      'themeDefaultProps',
       // https://github.com/facebook/react/issues/11565
       'reactTestRenderer',
     ],

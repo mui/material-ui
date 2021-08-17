@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformance, screen } from 'test/utils';
+import { createClientRender, createMount, describeConformanceV5, screen } from 'test/utils';
 import SliderUnstyled, {
   sliderUnstyledClasses as classes,
 } from '@material-ui/unstyled/SliderUnstyled';
@@ -12,14 +12,21 @@ describe('<SliderUnstyled />', () => {
     }
   });
 
+  const mount = createMount();
   const render = createClientRender();
 
-  describeConformance(<SliderUnstyled value={0} />, () => ({
+  describeConformanceV5(<SliderUnstyled value={0} />, () => ({
     classes,
     inheritComponent: 'span',
+    mount,
     render,
     refInstanceof: window.HTMLSpanElement,
     testComponentPropWith: 'span',
+    skip: [
+      'themeDefaultProps', // unstyled
+      'themeStyleOverrides', // unstyled
+      'themeVariants', // unstyled
+    ],
   }));
 
   it('forwards style props on the Root component', () => {

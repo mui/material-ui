@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { act, describeConformance, createClientRender } from 'test/utils';
+import { act, describeConformanceV5, createClientRender } from 'test/utils';
 import { Transition } from 'react-transition-group';
 import Zoom from '@material-ui/core/Zoom';
 
 describe('<Zoom />', () => {
   const render = createClientRender();
 
-  describeConformance(
+  describeConformanceV5(
     <Zoom in>
       <div />
     </Zoom>,
@@ -18,6 +18,8 @@ describe('<Zoom />', () => {
       refInstanceof: window.HTMLDivElement,
       skip: [
         'componentProp',
+        'componentsProp',
+        'themeDefaultProps',
         // react-transition-group issue
         'reactTestRenderer',
       ],

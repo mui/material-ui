@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { SinonFakeTimers, spy, useFakeTimers } from 'sinon';
-import { act, describeConformance, screen, fireEvent, userEvent } from 'test/utils';
+import { act, describeConformanceV5, screen, fireEvent, userEvent } from 'test/utils';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import { DateRange } from '@material-ui/lab/DateRangePicker';
@@ -32,7 +32,7 @@ describe('<DesktopDateRangePicker />', () => {
   });
   const render = createPickerRender();
 
-  describeConformance(
+  describeConformanceV5(
     <DesktopDateRangePicker
       onChange={() => {}}
       renderInput={(props) => <TextField {...props} />}
@@ -42,7 +42,15 @@ describe('<DesktopDateRangePicker />', () => {
       classes: {},
       wrapMount: wrapPickerMount,
       refInstanceof: window.HTMLDivElement,
-      skip: ['componentProp', 'mergeClassName', 'propsSpread', 'rootClass', 'reactTestRenderer'],
+      skip: [
+        'componentProp',
+        'componentsProp',
+        'themeDefaultProps',
+        'mergeClassName',
+        'propsSpread',
+        'rootClass',
+        'reactTestRenderer',
+      ],
     }),
   );
 
