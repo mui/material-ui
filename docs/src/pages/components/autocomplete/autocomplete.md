@@ -120,7 +120,7 @@ The Autocomplete component is built on this hook.
 import { useAutocomplete } from '@material-ui/unstyled/AutocompleteUnstyled';
 ```
 
-The `useAutocomplete` hook is also reexported from @material-ui/core for convenience and backwards compatibility.
+The `useAutocomplete` hook is also reexported from @material-ui/core for convenience and backward compatibility.
 
 ```js
 import useAutocomplete from '@material-ui/core/useAutocomplete';
