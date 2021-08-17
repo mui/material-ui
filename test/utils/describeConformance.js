@@ -154,8 +154,13 @@ export function testRootClass(element, getOptions) {
     }
 
     const className = randomStringValue();
-    const { container, setProps } = render(React.cloneElement(element, { className }));
-
+    const classesRootClassname = randomStringValue();
+    const { container } = render(
+      React.cloneElement(element, {
+        className,
+        classes: { ...classes, root: `${classes.root} ${classesRootClassname}` },
+      }),
+    );
     // we established that the root component renders the outermost host previously. We immediately
     // jump to the host component because some components pass the `root` class
     // to the `classes` prop of the root component.
@@ -165,9 +170,8 @@ export function testRootClass(element, getOptions) {
     expect(document.querySelectorAll(`.${classes.root}`).length).to.equal(1);
 
     // Test that classes prop works
-    setProps({ classes: { ...classes, root: `${classes.root} ${className}` } });
-    expect(container.firstChild).to.have.class(className);
-    expect(container.firstChild).not.to.have.attribute('classes');
+    expect(container.firstChild).to.have.class(classesRootClassname);
+    expect(document.querySelectorAll('[classes]').length).to.equal(0);
   });
 }
 

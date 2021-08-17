@@ -103,22 +103,4 @@ describe('<NativeSelect />', () => {
     expect(getByTestId('root')).to.have.class('foo');
     expect(getByTestId('root')).to.have.class('bar');
   });
-
-  it('should not add classes on the DOM element', () => {
-    const { getByTestId } = render(
-      <NativeSelect
-        defaultValue={30}
-        inputProps={{
-          'data-testid': 'select',
-          name: 'age',
-          id: 'uncontrolled-native',
-        }}
-      >
-        <option value={10}>Ten</option>
-        <option value={20}>Twenty</option>
-        <option value={30}>Thirty</option>
-      </NativeSelect>,
-    );
-    expect(getByTestId('select')).not.to.have.attribute('classes');
-  });
 });
