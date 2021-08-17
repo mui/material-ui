@@ -7,6 +7,7 @@ node 14
 
 # Default/Fallback
 # `npx browserslist --mobile-to-desktop "> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11"` when the last major is released.
+# Manually downgrading to ios_saf 12.4 for iPhone 6 and webpack 4 support.
 # On update check all #stable-snapshot markers
 [stable]
 and_chr 91
@@ -18,7 +19,7 @@ baidu 7.12
 chrome 90
 edge 91
 firefox 78
-ios_saf 13.4
+ios_saf 12.4
 kaios 2.5
 op_mini all
 op_mob 76
@@ -38,7 +39,7 @@ baidu 7.12
 chrome 90
 edge 91
 firefox 78
-ios_saf 13.4
+ios_saf 12.4
 kaios 2.5
 op_mini all
 op_mob 76

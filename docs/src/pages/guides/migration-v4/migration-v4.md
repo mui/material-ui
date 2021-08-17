@@ -190,7 +190,7 @@ The default bundle supports the following minimum versions:
 - Chrome 90 (up from 49)
 - Edge 91 (up from 14)
 - Firefox 78 (up from 52)
-- Safari 14 (macOS) and 13.4 (iOS) (up from 10)
+- Safari 14 (macOS) and 12.5 (iOS) (up from 10)
 - and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
 
 It no longer supports IE 11.
