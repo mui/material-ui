@@ -167,7 +167,7 @@ export function testRootClass(element, getOptions) {
     // Test that classes prop works
     setProps({ classes: { ...classes, root: `${classes.root} ${className}` } });
     expect(container.firstChild).to.have.class(className);
-    expect(container.firstChild).not.to.have.attribute('classes');
+    expect(document.querySelectorAll('[classes]').length).to.equal(0);
   });
 }
 
