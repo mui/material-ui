@@ -1127,15 +1127,15 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  <Dialog
-  - disableBackdropClick
-  - onClose={handleClose}
-  + onClose={(event, reason) => {
-  +   if (reason !== 'backdropClick') {
-  +     onClose(event, reason);
-  +   }
-  + }}
-  />
+   <Dialog
+  -  disableBackdropClick
+  -  onClose={handleClose}
+  +  onClose={(event, reason) => {
+  +    if (reason !== 'backdropClick') {
+  +      handleClose(event, reason);
+  +    }
+  +  }}
+   />
   ```
 
 - Remove the `withMobileDialog` higher-order component. The hook API allows a simpler and more flexible solution:
@@ -1517,7 +1517,7 @@ As the core components use emotion as their style engine, the props used by emot
   -  onClose={handleClose}
   +  onClose={(event, reason) => {
   +    if (reason !== 'backdropClick') {
-  +      onClose(event, reason);
+  +      handleClose(event, reason);
   +    }
   +  }}
    />

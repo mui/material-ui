@@ -35,6 +35,16 @@ describe('<InputLabel />', () => {
     expect(container.firstChild).not.to.have.class(classes.animated);
   });
 
+  it('should forward the asterisk class to AsteriskComponent when required', () => {
+    const { container } = render(
+      <InputLabel classes={{ asterisk: 'my-asterisk' }} required>
+        Foo
+      </InputLabel>,
+    );
+    expect(container.querySelector('.my-asterisk')).to.have.class('MuiFormLabel-asterisk');
+    expect(container.querySelector('.my-asterisk')).to.have.class('MuiInputLabel-asterisk');
+  });
+
   describe('with FormControl', () => {
     it('should have the formControl class', () => {
       const { getByTestId } = render(
