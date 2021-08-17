@@ -3,10 +3,7 @@ import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
-import {
-  unstable_composeClasses as composeClasses,
-  unstable_useResizeObserver as useResizeObserver,
-} from '@material-ui/unstyled';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useTheme from '../styles/useTheme';
@@ -18,6 +15,14 @@ import TabScrollButton from '../TabScrollButton';
 import useEventCallback from '../utils/useEventCallback';
 import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
 import ownerDocument from '../utils/ownerDocument';
+
+const MockResizeObserver = () => {
+  return {
+    observe: () => {},
+    unobserve: () => {},
+    disconnect: () => {},
+  };
+};
 
 const nextItem = (list, item) => {
   if (list === item) {
@@ -556,22 +561,29 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     }
   });
 
-  const handleResize = React.useMemo(
-    () =>
-      debounce(() => {
-        updateIndicatorState();
-        updateScrollButtonState();
-      }),
-    [updateIndicatorState, updateScrollButtonState],
-  );
-
-  useResizeObserver(tabListRef, handleResize, true);
+  const resizeObserverRef = React.useRef(null);
 
   React.useEffect(() => {
+    const handleResize = debounce(() => {
+      updateIndicatorState();
+      updateScrollButtonState();
+    });
+
+    try {
+      resizeObserverRef.current = new ResizeObserver(handleResize);
+    } catch (err) {
+      resizeObserverRef.current = MockResizeObserver(); // Prevent crash for old browsers
+    }
+
+    Array.from(tabListRef.current.children).forEach((child) => {
+      resizeObserverRef.current.observe(child);
+    });
+
     return () => {
       handleResize.clear();
+      resizeObserverRef.current.disconnect();
     };
-  }, [handleResize]);
+  }, [updateIndicatorState, updateScrollButtonState]);
 
   const handleTabsScroll = React.useMemo(
     () =>
