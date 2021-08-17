@@ -26,10 +26,14 @@ function getPath(obj, path) {
   return path.split('.').reduce((acc, item) => (acc && acc[item] ? acc[item] : null), obj);
 }
 
+export function useUserLanguage() {
+  return useSelector((state) => state.options.userLanguage);
+}
+
 const warnedOnce = {};
 
 export function useTranslate() {
-  const userLanguage = useSelector((state) => state.options.userLanguage);
+  const userLanguage = useUserLanguage();
 
   return React.useMemo(
     () =>
@@ -58,8 +62,4 @@ export function useTranslate() {
       },
     [userLanguage],
   );
-}
-
-export function useUserLanguage() {
-  return useSelector((state) => state.options.userLanguage);
 }
