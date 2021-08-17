@@ -1,12 +1,21 @@
 import * as React from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import CompaniesGrid, { CORE_CUSTOMERS } from 'docs/src/components/home/CompaniesGrid';
+import CompaniesGrid, {
+  CORE_CUSTOMERS,
+  ADVANCED_CUSTOMERS,
+} from 'docs/src/components/home/CompaniesGrid';
 
-const ReferencesCore = () => {
+export { CORE_CUSTOMERS, ADVANCED_CUSTOMERS };
+
+const References = ({
+  companies,
+}: {
+  companies: typeof CORE_CUSTOMERS | typeof ADVANCED_CUSTOMERS;
+}) => {
   return (
     <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
-      <CompaniesGrid data={CORE_CUSTOMERS} />
+      <CompaniesGrid data={companies} />
       <Typography
         color={(theme) => (theme.palette.mode === 'dark' ? 'grey.500' : 'grey.800')}
         textAlign="center"
@@ -25,4 +34,4 @@ const ReferencesCore = () => {
   );
 };
 
-export default ReferencesCore;
+export default References;

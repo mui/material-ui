@@ -18,7 +18,7 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import Link from 'docs/src/modules/components/Link';
 import AppHeader from 'docs/src/layouts/AppHeader';
-import ReferencesCore from 'docs/src/components/home/ReferencesCore';
+import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import { MuiStats } from 'docs/src/components/home/Testimonials';
@@ -469,7 +469,7 @@ function AboutContent() {
             barrier, making design skills accessible.
           </Typography>
         </Box>
-        <ReferencesCore />
+        <References companies={CORE_CUSTOMERS} />
       </Container>
       <Box
         sx={{ bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50') }}

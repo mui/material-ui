@@ -8,7 +8,7 @@ import CoreComponents from 'docs/src/components/productCore/CoreComponents';
 import CoreTheming from 'docs/src/components/productCore/CoreTheming';
 import CoreStyling from 'docs/src/components/productCore/CoreStyling';
 import CoreHeroEnd from 'docs/src/components/productCore/CoreHeroEnd';
-import ReferencesCore from 'docs/src/components/home/ReferencesCore';
+import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
 import AppFooter from 'docs/src/layouts/AppFooter';
 
 export default function Home() {
@@ -22,7 +22,7 @@ export default function Home() {
       <AppHeader />
       <main>
         <CoreHero />
-        <ReferencesCore />
+        <References companies={CORE_CUSTOMERS} />
         <CoreComponents />
         <CoreTheming />
         <CoreStyling />
