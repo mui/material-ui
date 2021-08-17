@@ -5,7 +5,7 @@ import CompaniesGrid, { CORE_CUSTOMERS } from 'docs/src/components/home/Companie
 
 const ReferencesCore = () => {
   return (
-    <Container sx={{ py: { xs: 4, sm: 6, md: 10 } }}>
+    <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
       <CompaniesGrid data={CORE_CUSTOMERS} />
       <Typography
         color={(theme) => (theme.palette.mode === 'dark' ? 'grey.500' : 'grey.800')}

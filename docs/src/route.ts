@@ -1,9 +1,9 @@
 const ROUTES = {
   home: '/branding/',
-  productCore: '/branding/products/core/',
-  productAdvanced: '/branding/products/advanced/',
-  productTemplates: '/branding/products/templates/',
-  productDesignKits: '/branding/products/design-kits/',
+  productCore: '/branding/core/',
+  productAdvanced: '/branding/advanced/',
+  productTemplates: '/branding/templates/',
+  productDesignKits: '/branding/design-kits/',
   materialIcons: '/components/material-icons/',
   freeTemplates: '/getting-started/templates/',
   components: '/branding/resources/components/',

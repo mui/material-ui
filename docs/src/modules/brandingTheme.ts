@@ -18,6 +18,18 @@ declare module '@material-ui/core/styles/createPalette' {
 
   interface Palette {
     primaryDark: PaletteColor;
+    svgBg: {
+      base: string;
+      active: string;
+    };
+    svgFilled: {
+      base: string;
+      active: string;
+    };
+    svgStroke: {
+      base: string;
+      active: string;
+    };
   }
 }
 
@@ -161,6 +173,18 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         700: '#F5AC00',
         800: '#DB9A00',
         900: '#8F6400',
+      },
+      svgBg: {
+        base: mode === 'dark' ? blueDark[400] : grey[50],
+        active: mode === 'dark' ? blueDark[400] : grey[50],
+      },
+      svgFilled: {
+        base: mode === 'dark' ? blueDark[800] : grey[500],
+        active: mode === 'dark' ? blue[300] : blue[500],
+      },
+      svgStroke: {
+        base: mode === 'dark' ? blueDark[600] : '#ffffff',
+        active: mode === 'dark' ? blue[700] : '#ffffff',
       },
     },
     shape: {
