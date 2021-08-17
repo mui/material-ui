@@ -185,6 +185,10 @@ export default function useAutocomplete(props) {
       return;
     }
 
+    if (!focused && !clearOnBlur) {
+      return;
+    }
+
     resetInputValue(null, value);
   }, [value, resetInputValue, focused, prevValue]);
 
