@@ -5,11 +5,11 @@ import Typography from '@material-ui/core/Typography';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
-import SvgButton from 'docs/src/icons/SvgButton';
-import SvgTypography from 'docs/src/icons/SvgTypography';
 import SvgTable from 'docs/src/icons/SvgTable';
-import SvgAlert from 'docs/src/icons/SvgAlert';
-import SvgDrawer from 'docs/src/icons/SvgDrawer';
+import SvgDatePicker from 'docs/src/icons/SvgDatePicker';
+import SvgTreeView from 'docs/src/icons/SvgTreeView';
+import SvgSparkline from 'docs/src/icons/SvgSparkline';
+import SvgCharts from 'docs/src/icons/SvgCharts';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
@@ -19,11 +19,11 @@ const DEMOS = ['Data Grid', 'Date Picker', 'Tree View', 'Sparkline', 'Charts'];
 export default function CoreComponents() {
   const [demo, setDemo] = React.useState(DEMOS[0]);
   const icons = {
-    [DEMOS[0]]: <SvgButton />,
-    [DEMOS[1]]: <SvgTypography />,
-    [DEMOS[2]]: <SvgTable />,
-    [DEMOS[3]]: <SvgAlert />,
-    [DEMOS[4]]: <SvgDrawer />,
+    [DEMOS[0]]: <SvgTable />,
+    [DEMOS[1]]: <SvgDatePicker />,
+    [DEMOS[2]]: <SvgTreeView />,
+    [DEMOS[3]]: <SvgSparkline />,
+    [DEMOS[4]]: <SvgCharts />,
   };
   return (
     <Section bg="comfort">
