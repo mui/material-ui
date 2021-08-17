@@ -108,7 +108,7 @@
     "react-virtualized": "^9.21.1",
     "react-window": "^1.8.5",
     "recast": "^0.20.2",
-    "recharts": "^2.0.3",
+    "recharts": "^2.1.0",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "rimraf": "^3.0.0",
