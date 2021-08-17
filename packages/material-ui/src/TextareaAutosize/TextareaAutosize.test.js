@@ -10,7 +10,14 @@ describe('<TextareaAutosize />', () => {
   describeConformance(<TextareaAutosize />, () => ({
     inheritComponent: 'textarea',
     refInstanceof: window.HTMLTextAreaElement,
-    skip: ['rootClass', 'componentProp', 'componentsProp', 'themeDefaultProps'],
+    skip: [
+      'rootClass',
+      'componentProp',
+      'componentsProp',
+      'themeDefaultProps',
+      'themeStyleOverrides',
+      'themeVariants',
+    ],
   }));
 
   describe('layout', () => {

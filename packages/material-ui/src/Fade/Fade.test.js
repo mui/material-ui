@@ -21,6 +21,8 @@ describe('<Fade />', () => {
       'componentProp',
       'componentsProp',
       'themeDefaultProps',
+      'themeStyleOverrides',
+      'themeVariants',
       // TODO: really?
       // react-transition-group issue
       'reactTestRenderer',

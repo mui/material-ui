@@ -15,12 +15,15 @@ describe('<DateRangePicker />', () => {
     />,
     () => ({
       classes: {},
+      muiName: 'MuiDateRangePicker',
       wrapMount: wrapPickerMount,
       refInstanceof: window.HTMLDivElement,
       skip: [
         'componentProp',
         'componentsProp',
         'themeDefaultProps',
+        'themeStyleOverrides',
+        'themeVariants',
         'mergeClassName',
         'propsSpread',
         'rootClass',

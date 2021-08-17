@@ -29,6 +29,8 @@ describe('<Slide />', () => {
         'componentProp',
         'componentsProp',
         'themeDefaultProps',
+        'themeStyleOverrides',
+        'themeVariants',
         // react-transition-group issue
         'reactTestRenderer',
       ],

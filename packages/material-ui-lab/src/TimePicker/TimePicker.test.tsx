@@ -13,12 +13,15 @@ describe('<TimePicker />', () => {
     />,
     () => ({
       classes: {},
+      muiName: 'MuiTimePicker',
       wrapMount: wrapPickerMount,
       refInstanceof: window.HTMLDivElement,
       skip: [
         'componentProp',
         'componentsProp',
         'themeDefaultProps',
+        'themeStyleOverrides',
+        'themeVariants',
         'mergeClassName',
         'propsSpread',
         'rootClass',

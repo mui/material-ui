@@ -40,12 +40,15 @@ describe('<DesktopDateRangePicker />', () => {
     />,
     () => ({
       classes: {},
+      muiName: 'MuiDesktopDateRangePicker',
       wrapMount: wrapPickerMount,
       refInstanceof: window.HTMLDivElement,
       skip: [
         'componentProp',
         'componentsProp',
         'themeDefaultProps',
+        'themeStyleOverrides',
+        'themeVariants',
         'mergeClassName',
         'propsSpread',
         'rootClass',
