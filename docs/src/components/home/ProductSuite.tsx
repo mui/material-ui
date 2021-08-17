@@ -31,7 +31,7 @@ const ProductSuite = () => {
                 Products
               </Typography>
               <Typography variant="h2" sx={{ my: 1 }}>
-                Extensive library of components, ready for <GradientText>production</GradientText>.
+                Extensive library of components, ready for <GradientText>production</GradientText>
               </Typography>
               <Typography color="text.secondary">
                 We bring together a suite of products integrated to make your life easier when it
