@@ -117,7 +117,7 @@ export default function BasicTable() {
           }),
           divider: mode === 'dark' ? primaryDark[500] : grey[200],
           success: {
-            main: mode === 'dark' ? '#21CC66' : '#1AA251',
+            main: mode === 'dark' ? '#1AA251' : '#178D46',
           },
           background: {
             paper: mode === 'dark' ? primaryDark[800] : '#fff',

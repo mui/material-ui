@@ -71,7 +71,7 @@ export default function NotificationCard() {
           grey,
           divider: mode === 'dark' ? primaryDark[500] : grey[200],
           success: {
-            main: '#1DB45A',
+            main: '#1AA251',
           },
           background: {
             paper: mode === 'dark' ? primaryDark[800] : '#fff',
