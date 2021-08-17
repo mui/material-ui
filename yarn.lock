@@ -2135,7 +2135,7 @@
   dependencies:
     "@types/react" "*"
 
-"@material-ui/x-grid-data-generator@^4.0.0-alpha.36":
+"@material-ui/x-grid-data-generator@^4.0.0-alpha.37":
   version "4.0.0-alpha.37"
   resolved "https://registry.yarnpkg.com/@material-ui/x-grid-data-generator/-/x-grid-data-generator-4.0.0-alpha.37.tgz#a1e0728eb66605f28ede598c0e365489ebd63ac4"
   integrity sha512-Xfd56za0XKJpWUZcQfjV1WukwKcAtJa+096ARc2Dki5r1a7RU1mWyc1Hr+gpH7RIGtYOqLn5SKOj5hGV7tWzFw==
@@ -2145,7 +2145,7 @@
     clsx "^1.0.4"
     lru-cache "^6.0.0"
 
-"@material-ui/x-grid@^4.0.0-alpha.36":
+"@material-ui/x-grid@^4.0.0-alpha.37":
   version "4.0.0-alpha.37"
   resolved "https://registry.yarnpkg.com/@material-ui/x-grid/-/x-grid-4.0.0-alpha.37.tgz#6514048d66a9d4b49322ad1f1b03bfa3af05df2f"
   integrity sha512-X8Vg2l7tOpNdA1lOnPK+U/tTF0QWsftL2cm4L8C4LOmG7pdHCdlPnC8Vdb5D1Tpf57RQdec6dZYtJE8JYcoq/g==

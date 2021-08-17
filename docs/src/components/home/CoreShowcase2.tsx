@@ -13,6 +13,7 @@ import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/Mate
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
 import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
+import TouchAppRounded from '@material-ui/icons/TouchAppRounded';
 
 const darkDesignTokens = getDesignTokens('dark');
 
@@ -199,42 +200,50 @@ export default function CoreShowcase() {
   return (
     <ShowcaseContainer
       previewSx={{
-        minHeight: 200,
+        minHeight: 220,
+        pb: 4,
       }}
       preview={
-        <ThemeProvider theme={theme}>
-          <Box textAlign="center" sx={{
-                  py: 0.5,
-                  ml: 'auto',
-                  position: 'absolute',
-                  bottom: 0,
-                  left: '50%',
-                  transform: 'translate(-50%)',
-                  backgroundColor: alpha(theme.palette.primary.dark, 0.05),
-                  width: '100%'
-                }}>
-            <Typography
-                variant="caption"
-                fontWeight={500}
-                color="text.primary"
-                noWrap
-              >
-               📌 Hover the component for highlighting the code.
-              </Typography>
-          </Box>
-          <PointerContainer
-            onElementChange={setElement}
-            sx={{ minWidth: 300, width: '80%', maxWidth: '100%' }}
+        <React.Fragment>
+          <Box
+            textAlign="center"
+            sx={{
+              py: 0.5,
+              ml: 'auto',
+              position: 'absolute',
+              bottom: 0,
+              left: '50%',
+              transform: 'translate(-50%)',
+              bgcolor: mode === 'dark' ? 'primaryDark.600' : 'grey.300',
+              width: '100%',
+            }}
           >
-            <MaterialDesignDemo sx={{ transform: 'translate(0, -8px)' }} />
-          </PointerContainer>
-        </ThemeProvider>
+            <Typography
+              variant="caption"
+              fontWeight={500}
+              color="text.primary"
+              noWrap
+              sx={{ opacity: 0.7 }}
+            >
+              <TouchAppRounded sx={{ fontSize: 16, verticalAlign: 'text-bottom' }} /> Hover the
+              component for highlighting the code.
+            </Typography>
+          </Box>
+          <ThemeProvider theme={theme}>
+            <PointerContainer
+              onElementChange={setElement}
+              sx={{ minWidth: 300, width: '80%', maxWidth: '100%' }}
+            >
+              <MaterialDesignDemo sx={{ transform: 'translate(0, -8px)' }} />
+            </PointerContainer>
+          </ThemeProvider>
+        </React.Fragment>
       }
       code={
         <ThemeProvider theme={darkBrandingTheme}>
           <Box
             sx={{
-              p: {xs: 2, sm: 1},
+              p: { xs: 2, sm: 1 },
               display: 'flex',
               alignItems: 'center',
               right: 0,
@@ -265,7 +274,7 @@ export default function CoreShowcase() {
             sx={{
               p: 2,
               pt: 0,
-              overflow: 'auto',
+              overflow: 'hidden',
               flexGrow: 1,
               '&::-webkit-scrollbar': {
                 display: 'none',

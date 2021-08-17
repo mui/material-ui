@@ -410,7 +410,8 @@ export function getThemedComponents(theme: Theme) {
           track: {
             opacity: 1,
             borderRadius: 32,
-            backgroundColor: 'rgb(179, 195, 211)',
+            backgroundColor:
+              theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[400],
           },
           thumb: {
             flexShrink: 0,
