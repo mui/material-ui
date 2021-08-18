@@ -1,24 +1,19 @@
 import * as React from 'react';
-import Box, { BoxProps } from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
+import ButtonBase, { ButtonBaseProps } from '@material-ui/core/ButtonBase';
 import Typography from '@material-ui/core/Typography';
 import AddCircleOutlineRounded from '@material-ui/icons/AddCircleOutlineRounded';
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 
-export default function Highlighter({
-  onClick,
-  sx,
-}: {
-  onClick?: BoxProps['onClick'];
-  sx?: BoxProps['sx'];
-}) {
+export default function Highlighter(props: ButtonBaseProps) {
   return (
-    <Box
-      role="button"
-      onClick={onClick}
+    <ButtonBase
+      {...props}
       sx={{
         p: 2,
         display: 'flex',
         alignItems: 'center',
+        justifyContent: 'flex-start',
         cursor: 'pointer',
         borderRadius: 1,
         height: '100%',
@@ -31,7 +26,7 @@ export default function Highlighter({
             bgcolor: 'transparent',
           },
         },
-        ...sx,
+        ...props.sx,
       }}
     >
       <Box sx={{ mr: 2, px: '3px', lineHeight: 0 }}>
@@ -41,6 +36,6 @@ export default function Highlighter({
         Much more{' '}
         <KeyboardArrowRightRounded color="primary" sx={{ verticalAlign: 'middle', fontSize: 15 }} />
       </Typography>
-    </Box>
+    </ButtonBase>
   );
 }
