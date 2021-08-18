@@ -284,10 +284,10 @@ RatingItem.propTypes = {
   onChange: PropTypes.func.isRequired,
   onClick: PropTypes.func.isRequired,
   onFocus: PropTypes.func.isRequired,
+  ownerState: PropTypes.object.isRequired,
   ratingValue: PropTypes.number,
   ratingValueRounded: PropTypes.number,
   readOnly: PropTypes.bool.isRequired,
-  ownerState: PropTypes.object.isRequired,
 };
 
 const defaultIcon = <Star fontSize="inherit" />;
