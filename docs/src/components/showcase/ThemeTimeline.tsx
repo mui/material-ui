@@ -86,9 +86,7 @@ export default function BasicTimeline() {
         },
         spacing: 10,
         typography: {
-          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(
-            ',',
-          ),
+          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(','),
           fontWeightRegular: 500,
         },
         components: {
@@ -134,10 +132,7 @@ export default function BasicTimeline() {
   );
   return (
     <ThemeProvider theme={theme}>
-      <Card
-        variant="outlined"
-        sx={{ p: 2, display: 'flex', alignItems: 'flex-start' }}
-      >
+      <Card variant="outlined" sx={{ p: 2, display: 'flex', alignItems: 'flex-start' }}>
         <Box
           sx={{
             p: 0.5,

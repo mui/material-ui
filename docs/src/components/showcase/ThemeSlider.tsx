@@ -64,9 +64,7 @@ export default function ThemeSlider() {
         },
         shape: { borderRadius: 10 },
         typography: {
-          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(
-            ',',
-          ),
+          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(','),
         },
         components: {
           MuiSlider: {
@@ -143,13 +141,7 @@ export default function ThemeSlider() {
             orientation="vertical"
             getAriaValueText={valuetext}
             defaultValue={[25, 50]}
-            marks={[
-              { value: 0 },
-              { value: 25 },
-              { value: 50 },
-              { value: 75 },
-              { value: 100 },
-            ]}
+            marks={[{ value: 0 }, { value: 25 }, { value: 50 }, { value: 75 }, { value: 100 }]}
             valueLabelFormat={valuetext}
             valueLabelDisplay="on"
           />

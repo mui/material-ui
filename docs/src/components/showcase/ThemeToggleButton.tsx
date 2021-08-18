@@ -61,9 +61,7 @@ export default function ThemeToggleButton() {
           grey,
         },
         typography: {
-          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(
-            ',',
-          ),
+          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(','),
         },
         shape: {
           borderRadius: 10,

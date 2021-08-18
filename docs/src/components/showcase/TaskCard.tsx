@@ -48,8 +48,7 @@ const theme = createTheme({
           props: { variant: 'gradient' },
           style: {
             background: `linear-gradient(to right bottom, ${primary.main}, ${primary[700]} 120%)`,
-            boxShadow:
-              '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
+            boxShadow: '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
           },
         },
       ],
@@ -92,11 +91,7 @@ export default function TaskCard() {
       >
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <ScheduleRounded fontSize="inherit" />
-          <Typography
-            color="text.secondary"
-            variant="caption"
-            sx={{ ml: 0.5, mt: '1px' }}
-          >
+          <Typography color="text.secondary" variant="caption" sx={{ ml: 0.5, mt: '1px' }}>
             March 25th
           </Typography>
         </Box>
