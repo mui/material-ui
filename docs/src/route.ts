@@ -9,7 +9,7 @@ const ROUTES = {
   components: '/branding/resources/components/',
   customization: '/branding/resources/customization/',
   styling: '/branding/resources/styling/',
-  documentation: '/branding/documentation/',
+  documentation: '/getting-started/usage/',
   pricing: '/branding/pricing/',
   blog: '/blog/',
   showcase: '/discover-more/showcase',
