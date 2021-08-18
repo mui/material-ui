@@ -14,9 +14,9 @@ const StyledInput = styled(Input)(({ theme }) => ({
   color: 'inherit',
   '& input': {
     padding: theme.spacing(1),
-    paddingLeft: theme.spacing(9),
+    paddingLeft: theme.spacing(6),
     transition: theme.transitions.create('width'),
-    width: 140,
+    width: 150,
     '&:focus': {
       width: 170,
     },
@@ -100,16 +100,16 @@ const RootDiv = styled('div')(({ theme }) => {
     fontFamily: theme.typography.fontFamily,
     position: 'relative',
     backgroundColor:
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[50],
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : theme.palette.grey[50],
     '&:hover': {
       backgroundColor:
         theme.palette.mode === 'dark'
           ? theme.palette.primaryDark[700]
-          : alpha(theme.palette.common.white, 0.25),
+          : theme.palette.grey[100],
     },
-    color: theme.palette.mode === 'dark' ? 'white' : theme.palette.grey[800],
+    color: theme.palette.mode === 'dark' ? 'white' : theme.palette.grey[900],
     border: `1px solid ${
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : '#E5E8EC'
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[200]
     }`,
     borderRadius: 10,
   };
@@ -117,28 +117,33 @@ const RootDiv = styled('div')(({ theme }) => {
 
 const SearchDiv = styled('div')(({ theme }) => {
   return {
-    width: theme.spacing(9),
+    width: theme.spacing(6),
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    color: theme.palette.grey[700]
   };
 });
 
 const Shortcut = styled('div')(({ theme }) => {
   return {
     fontSize: theme.typography.pxToRem(13),
+    fontWeight: 600, 
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[700],
     lineHeight: '21px',
-    border: `1px solid #D7DCE1`,
+    border: `1px solid ${
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[400] : theme.palette.grey[200]
+    }`,
     backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#FFF',
-    padding: theme.spacing(0, 0.5),
+    padding: theme.spacing(0, 1),
     position: 'absolute',
     right: theme.spacing(1),
     height: 23,
     top: 'calc(50% - 11px)',
-    borderRadius: 4,
+    borderRadius: 5,
     transition: theme.transitions.create('opacity', {
       duration: theme.transitions.duration.shortest,
     }),
@@ -265,7 +270,7 @@ export default function AppSearch() {
   return (
     <RootDiv>
       <SearchDiv>
-        <SearchIcon />
+        <SearchIcon fontSize="small" sx={{color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.primary[500],}}/>
       </SearchDiv>
       <AlgoliaStyles />
       <StyledInput

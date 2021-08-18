@@ -14,7 +14,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import NoSsr from '@material-ui/core/NoSsr';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ArrowDropDownRoundedIcon from '@material-ui/icons/ArrowDropDownRounded';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Divider from '@material-ui/core/Divider';
@@ -116,6 +116,7 @@ const StyledAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'disablePermanent',
 })(({ disablePermanent, theme }) => {
   return {
+    padding: 2,
     transition: theme.transitions.create('width'),
     ...(disablePermanent && {
       boxShadow: 'none',
@@ -132,11 +133,11 @@ const StyledAppBar = styled(AppBar, {
     color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
     '& .MuiIconButton-root': {
       border: `1px solid ${
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : '#E5E8EC'
+        theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[200]
       }`,
       borderRadius: theme.shape.borderRadius,
       color: theme.palette.mode === 'dark' ? '#FFF' : theme.palette.primary[500],
-      background: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#FFF',
+      background: theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#FFF',
     },
   };
 });
@@ -230,7 +231,7 @@ function AppFrame(props) {
       <StyledAppBar disablePermanent={disablePermanent}>
         <Toolbar>
           <NavIconButton
-            size="large"
+            fontSize="small"
             edge="start"
             color="inherit"
             aria-label={t('appFrame.openDrawer')}
@@ -240,7 +241,7 @@ function AppFrame(props) {
             <MenuIcon />
           </NavIconButton>
           <GrowingDiv />
-          <Stack direction="row" gap={2}>
+          <Stack direction="row" gap={2.5}>
             <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
               <Button
                 color="inherit"
@@ -253,7 +254,7 @@ function AppFrame(props) {
                 <LanguageSpan>
                   {LANGUAGES_LABEL.filter((language) => language.code === userLanguage)[0].text}
                 </LanguageSpan>
-                <ExpandMoreIcon fontSize="small" />
+                <ArrowDropDownRoundedIcon fontSize="small" color="primary"/>
               </Button>
             </Tooltip>
             <NoSsr defer>
@@ -308,13 +309,13 @@ function AppFrame(props) {
                 data-ga-event-category="header"
                 data-ga-event-action="github"
               >
-                <GitHubIcon />
+                <GitHubIcon fontSize="small" />
               </IconButton>
             </Tooltip>
             <Notifications />
             <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
               <IconButton color="inherit" onClick={handleSettingsDrawerOpen}>
-                <SettingsIcon />
+                <SettingsIcon fontSize="small" />
               </IconButton>
             </Tooltip>
           </Stack>
