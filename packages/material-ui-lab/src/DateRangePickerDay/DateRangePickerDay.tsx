@@ -98,9 +98,9 @@ export const dateRangePickerDayClasses: DateRangePickerDayClasses = generateUtil
   ],
 );
 
-type StyleProps = DateRangePickerDayProps<any> & { isEndOfMonth: boolean; isStartOfMonth: boolean };
+type OwnerState = DateRangePickerDayProps<any> & { isEndOfMonth: boolean; isStartOfMonth: boolean };
 
-const useUtilityClasses = (ownerState: StyleProps) => {
+const useUtilityClasses = (ownerState: OwnerState) => {
   const {
     isHighlighting,
     outsideCurrentMonth,
@@ -153,7 +153,7 @@ const DateRangePickerDayRoot = styled('div', {
   name: 'MuiDateRangePickerDay',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: StyleProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: OwnerState }>(({ theme, ownerState }) => ({
   [`&:first-of-type .${dateRangePickerDayClasses.rangeIntervalDayPreview}`]: {
     ...startBorderStyle,
     borderLeftColor: theme.palette.divider,
@@ -185,7 +185,7 @@ const DateRangePickerDayRoot = styled('div', {
 const DateRangePickerDayRangeIntervalPreview = styled('div', {
   name: 'MuiDateRangePickerDay',
   slot: 'RangeIntervalPreview',
-})<{ ownerState: StyleProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: OwnerState }>(({ theme, ownerState }) => ({
   // replace default day component margin with transparent border to avoid jumping on preview
   border: '2px solid transparent',
   ...(ownerState.isPreviewing &&
@@ -206,7 +206,7 @@ const DateRangePickerDayRangeIntervalPreview = styled('div', {
 }));
 
 const DateRangePickerDayDay = styled(PickersDay, { name: 'MuiDateRangePickerDay', slot: 'Day' })<{
-  ownerState: StyleProps;
+  ownerState: OwnerState;
 }>(({ theme, ownerState }) => ({
   // Required to overlap preview border
   transform: 'scale(1.1)',
@@ -226,7 +226,7 @@ const DateRangePickerDayDay = styled(PickersDay, { name: 'MuiDateRangePickerDay'
       color: theme.palette.getContrastText(alpha(theme.palette.primary.light, 0.6)),
     }),
 })) as unknown as <TDate>(
-  props: PickersDayProps<TDate> & { ownerState: StyleProps },
+  props: PickersDayProps<TDate> & { ownerState: OwnerState },
 ) => JSX.Element;
 
 const DateRangePickerDay = React.forwardRef(function DateRangePickerDay<TDate>(

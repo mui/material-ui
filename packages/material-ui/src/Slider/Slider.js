@@ -415,7 +415,7 @@ const extendUtilityClasses = (ownerState) => {
   };
 };
 
-const shouldSpreadStyleProps = (Component) => {
+const shouldSpreadOwnerState = (Component) => {
   return !Component || !isHostComponent(Component);
 };
 
@@ -455,25 +455,25 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
         ...componentsProps,
         root: {
           ...componentsProps.root,
-          ...(shouldSpreadStyleProps(components.Root) && {
+          ...(shouldSpreadOwnerState(components.Root) && {
             ownerState: { ...componentsProps.root?.ownerState, color, size },
           }),
         },
         thumb: {
           ...componentsProps.thumb,
-          ...(shouldSpreadStyleProps(components.Thumb) && {
+          ...(shouldSpreadOwnerState(components.Thumb) && {
             ownerState: { ...componentsProps.thumb?.ownerState, color, size },
           }),
         },
         track: {
           ...componentsProps.track,
-          ...(shouldSpreadStyleProps(components.Track) && {
+          ...(shouldSpreadOwnerState(components.Track) && {
             ownerState: { ...componentsProps.track?.ownerState, color, size },
           }),
         },
         valueLabel: {
           ...componentsProps.valueLabel,
-          ...(shouldSpreadStyleProps(components.ValueLabel) && {
+          ...(shouldSpreadOwnerState(components.ValueLabel) && {
             ownerState: { ...componentsProps.valueLabel?.ownerState, color, size },
           }),
         },

@@ -46,9 +46,9 @@ export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUL
   sx?: SxProps<Theme>;
 }
 
-type StyleProps = TimelineProps;
+type OwnerState = TimelineProps;
 
-const useUtilityClasses = (ownerState: StyleProps) => {
+const useUtilityClasses = (ownerState: OwnerState) => {
   const { position, classes } = ownerState;
 
   const slots = {
@@ -69,7 +69,7 @@ const TimelineRoot = styled('ul' as const, {
         styles[`position${capitalize(ownerState.position)}` as TimelineClassKey],
     ];
   },
-})<{ ownerState: StyleProps }>({
+})<{ ownerState: OwnerState }>({
   display: 'flex',
   flexDirection: 'column',
   padding: '6px 16px',

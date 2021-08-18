@@ -91,7 +91,7 @@ export interface PickersDayProps<TDate> extends ExtendMui<ButtonBaseProps> {
 
 export type PickersDayClassKey = keyof NonNullable<PickersDayProps<unknown>['classes']>;
 
-type StyleProps = Partial<PickersDayProps<any>>;
+type OwnerState = Partial<PickersDayProps<any>>;
 
 export function getPickersDayUtilityClass(slot: string) {
   return generateUtilityClass('MuiPickersDay', slot);
@@ -132,7 +132,7 @@ const useUtilityClasses = (ownerState: PickersDayProps<any>) => {
   return composeClasses(slots, getPickersDayUtilityClass, classes);
 };
 
-const styleArg = ({ theme, ownerState }: { theme: Theme; ownerState: StyleProps }) => ({
+const styleArg = ({ theme, ownerState }: { theme: Theme; ownerState: OwnerState }) => ({
   ...theme.typography.caption,
   width: DAY_SIZE,
   height: DAY_SIZE,
@@ -182,7 +182,7 @@ const styleArg = ({ theme, ownerState }: { theme: Theme; ownerState: StyleProps 
 });
 
 const overridesResolver = (
-  props: { ownerState: StyleProps },
+  props: { ownerState: OwnerState },
   styles: Record<PickersDayClassKey, object>,
 ) => {
   const { ownerState } = props;
@@ -203,13 +203,13 @@ const PickersDayRoot = styled(ButtonBase, {
   name: 'MuiPickersDay',
   slot: 'Root',
   overridesResolver,
-})<{ ownerState: StyleProps }>(styleArg);
+})<{ ownerState: OwnerState }>(styleArg);
 
 const PickersDayFiller = styled('div', {
   name: 'MuiPickersDay',
   slot: 'Root',
   overridesResolver,
-})<{ ownerState: StyleProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: OwnerState }>(({ theme, ownerState }) => ({
   ...styleArg({ theme, ownerState }),
   visibility: 'hidden',
 }));

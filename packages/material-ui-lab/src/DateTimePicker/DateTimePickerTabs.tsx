@@ -36,9 +36,9 @@ export interface DateTimePickerTabsProps {
   view: DateTimePickerView;
 }
 
-type StyleProps = DateTimePickerTabsProps & { wrapperVariant: WrapperVariant };
+type OwnerState = DateTimePickerTabsProps & { wrapperVariant: WrapperVariant };
 
-const DateTimePickerTabsRoot = styled(Tabs, { skipSx: true })<{ ownerState: StyleProps }>(
+const DateTimePickerTabsRoot = styled(Tabs, { skipSx: true })<{ ownerState: OwnerState }>(
   ({ ownerState, theme }) => ({
     boxShadow: `0 -1px 0 0 inset ${theme.palette.divider}`,
     ...(ownerState.wrapperVariant === 'desktop' && {
