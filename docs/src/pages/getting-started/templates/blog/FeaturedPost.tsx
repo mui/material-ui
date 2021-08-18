@@ -11,7 +11,7 @@ interface FeaturedPostProps {
     date: string;
     description: string;
     image: string;
-    imageText: string;
+    imageLabel: string;
     title: string;
   };
 }
@@ -38,9 +38,10 @@ export default function FeaturedPost(props: FeaturedPostProps) {
             </Typography>
           </CardContent>
           <CardMedia
+            component="img"
             sx={{ width: 160, display: { xs: 'none', sm: 'block' } }}
             image={post.image}
-            title={post.imageText}
+            alt={post.imageLabel}
           />
         </Card>
       </CardActionArea>

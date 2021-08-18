@@ -44,7 +44,7 @@ const featuredPosts = [
     description:
       'This is a wider card with supporting text below as a natural lead-in to additional content.',
     image: 'https://source.unsplash.com/random',
-    imageText: 'Image Text',
+    imageLabel: 'Image Text',
   },
   {
     title: 'Post title',
@@ -52,7 +52,7 @@ const featuredPosts = [
     description:
       'This is a wider card with supporting text below as a natural lead-in to additional content.',
     image: 'https://source.unsplash.com/random',
-    imageText: 'Image Text',
+    imageLabel: 'Image Text',
   },
 ];
 

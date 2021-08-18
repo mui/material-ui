@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import CompaniesGrid, { CORE_COMPANIES } from 'docs/src/components/home/CompaniesGrid';
+import CompaniesGrid, { CORE_CUSTOMERS } from 'docs/src/components/home/CompaniesGrid';
 
 const ReferencesCore = () => {
   return (
-    <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
-      <CompaniesGrid data={CORE_COMPANIES} />
+    <Container sx={{ py: { xs: 4, sm: 6, md: 10 } }}>
+      <CompaniesGrid data={CORE_CUSTOMERS} />
       <Typography
         color={(theme) => (theme.palette.mode === 'dark' ? 'grey.500' : 'grey.800')}
         textAlign="center"

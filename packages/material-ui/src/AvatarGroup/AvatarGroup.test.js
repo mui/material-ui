@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformanceV5, createClientRender } from 'test/utils';
+import { describeConformance, createClientRender } from 'test/utils';
 import Avatar from '@material-ui/core/Avatar';
 import AvatarGroup, { avatarGroupClasses as classes } from '@material-ui/core/AvatarGroup';
 
 describe('<AvatarGroup />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(
+  describeConformance(
     <AvatarGroup>
       <div />
     </AvatarGroup>,

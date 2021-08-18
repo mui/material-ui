@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createTheme, ThemeProvider, styled } from '@material-ui/core/styles';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import NativeSelect, { nativeSelectClasses as classes } from '@material-ui/core/NativeSelect';
 import Input, { inputClasses } from '@material-ui/core/Input';
 
@@ -19,7 +19,7 @@ describe('<NativeSelect />', () => {
     ],
   };
 
-  describeConformanceV5(<NativeSelect {...defaultProps} />, () => ({
+  describeConformance(<NativeSelect {...defaultProps} />, () => ({
     classes,
     inheritComponent: Input,
     render,

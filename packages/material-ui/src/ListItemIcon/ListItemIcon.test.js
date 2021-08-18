@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import ListItemIcon, { listItemIconClasses as classes } from '@material-ui/core/ListItemIcon';
 
 describe('<ListItemIcon />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(
+  describeConformance(
     <ListItemIcon>
       <div />
     </ListItemIcon>,

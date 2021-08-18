@@ -1,13 +1,13 @@
 // @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import Typography, { typographyClasses as classes } from '@material-ui/core/Typography';
 
 describe('<Typography />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<Typography />, () => ({
+  describeConformance(<Typography />, () => ({
     classes,
     inheritComponent: 'p',
     render,

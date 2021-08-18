@@ -5,25 +5,30 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
-import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import Link from '@material-ui/core/Link';
+import Stack from '@material-ui/core/Stack';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
+import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import ROUTES from 'docs/src/route';
 
 export default function AppFooter() {
   return (
-    <Container>
+    <Container component="footer">
       <Box
         sx={{
           py: 8,
           display: 'grid',
           gridAutoColumns: '1fr',
+          alignItems: 'center',
           justifyContent: 'space-between',
           gap: (theme) => theme.spacing(4, 2),
-          gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr', md: '1fr 1.75fr', lg: '1fr 1fr' },
+          gridTemplateColumns: { xs: '1fr', sm: '1fr', md: '1fr 1.75fr', lg: '1fr 1fr' },
           gridTemplateRows: 'auto',
-          '& a': {
+          '& a:not(.MuiIconButton-root)': {
             mt: 1,
             color: 'text.secondary',
             typography: 'body2',
@@ -42,50 +47,7 @@ export default function AppFooter() {
           <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
             No spam, guaranteed.
           </Typography>
-          <Box
-            sx={{
-              width: { xs: '100%', sm: 'auto' },
-              maxWidth: 360,
-              display: 'inline-flex',
-              borderRadius: 1,
-              overflow: 'hidden',
-            }}
-          >
-            <InputBase
-              placeholder="Enter your email"
-              sx={{
-                bgcolor: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[900]
-                    : theme.palette.grey[100],
-                px: 1,
-                py: 0.5,
-                typography: 'body2',
-                flexGrow: 1,
-                minWidth: 200,
-              }}
-            />
-            <Button
-              sx={{
-                bgcolor: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[600]
-                    : theme.palette.grey[300],
-                py: 1,
-                px: 2,
-                color: 'text.primary',
-                borderRadius: '0px',
-                '&:hover': {
-                  bgcolor: (theme) =>
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[700]
-                      : theme.palette.grey[400],
-                },
-              }}
-            >
-              Subscribe
-            </Button>
-          </Box>
+          <EmailSubscribe sx={{ mb: 1 }} />
         </div>
         <Box
           sx={{
@@ -175,10 +137,51 @@ export default function AppFooter() {
         </Box>
       </Box>
       <Divider />
-      <Box sx={{ py: 4 }}>
+      <Box
+        sx={{
+          py: 4,
+          display: { xs: 'block', sm: 'flex' },
+          alignItems: { sm: 'center' },
+          justifyContent: { sm: 'space-between' },
+        }}
+      >
         <Typography color="text.secondary" variant="body2">
-          Currently v4.11.0. Released under the MIT License. Copyright © 2020 Material-UI SAS.
+          Copyright © {new Date().getFullYear()} MATERIAL-UI SAS.
         </Typography>
+        <Box sx={{ py: { xs: 2, sm: 0 } }}>
+          <Stack spacing={2} direction="row">
+            <IconButton
+              target="_blank"
+              rel="noopener"
+              href="https://github.com/mui-org"
+              aria-label="github"
+              title="GitHub"
+              size="small"
+            >
+              <GitHubIcon />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener"
+              href="https://twitter.com/MaterialUI"
+              aria-label="twitter"
+              title="Twitter"
+              size="small"
+            >
+              <TwitterIcon />
+            </IconButton>
+            <IconButton
+              target="_blank"
+              rel="noopener"
+              href="https://www.linkedin.com/company/material-ui/"
+              aria-label="linkedin"
+              title="LinkedIn"
+              size="small"
+            >
+              <LinkedInIcon />
+            </IconButton>
+          </Stack>
+        </Box>
       </Box>
     </Container>
   );

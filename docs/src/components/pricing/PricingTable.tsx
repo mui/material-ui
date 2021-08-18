@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { alpha } from '@material-ui/core/styles';
+import { alpha, Theme } from '@material-ui/core/styles';
 import Box, { BoxProps } from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
@@ -168,7 +168,7 @@ const ColumnHead = ({
       )}
       {tooltip && (
         <InfoOutlinedIcon
-          sx={{ fontSize: 16, verticalAlign: 'middle', ml: 0.5, color: 'grey.800' }}
+          sx={{ fontSize: 16, verticalAlign: 'middle', ml: 0.5, color: 'text.secondary' }}
         />
       )}
     </Typography>
@@ -176,7 +176,33 @@ const ColumnHead = ({
   return (
     <Box sx={{ pl: nested ? 2.5 : 1, pr: 1, alignSelf: 'center', justifySelf: 'flex-start' }}>
       {tooltip ? (
-        <Tooltip title={tooltip} placement="right" describeChild>
+        <Tooltip
+          title={tooltip}
+          placement="right"
+          describeChild
+          PopperProps={{
+            // @ts-ignore
+            sx: {
+              '& .MuiTooltip-tooltip': {
+                py: 1,
+                px: 2,
+                backgroundColor: (theme: Theme) =>
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[700]
+                    : theme.palette.background.paper,
+                color: 'text.primary',
+                border: '1px solid',
+                borderColor: (theme: Theme) =>
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[400]
+                    : theme.palette.primary.main,
+                typography: 'caption',
+                fontWeight: 400,
+                boxShadow: '1px 1px 20px 0 rgb(90 105 120 / 20%)',
+              },
+            },
+          }}
+        >
           {text}
         </Tooltip>
       ) : (
@@ -316,20 +342,20 @@ const rowHeaders: Record<string, React.ReactNode> = {
     />
   ),
   // Advanced
-  'data-grid/column-resizing': (
-    <ColumnHead label="Column resizing" nested href={getUrl('/columns/#resizing')} />
-  ),
   'data-grid/column-groups': (
     <ColumnHead label="Column groups" nested href={getUrl('/columns/#column-groups')} />
+  ),
+  'data-grid/column-spanning': (
+    <ColumnHead label="Column spanning" nested href={getUrl('/columns/#column-spanning')} />
+  ),
+  'data-grid/column-resizing': (
+    <ColumnHead label="Column resizing" nested href={getUrl('/columns/#resizing')} />
   ),
   'data-grid/column-reorder': (
     <ColumnHead label="Column reorder" nested href={getUrl('/columns/#column-reorder')} />
   ),
   'data-grid/column-pinning': (
     <ColumnHead label="Column pinning" nested href={getUrl('/columns/#column-pinning')} />
-  ),
-  'data-grid/column-spanning': (
-    <ColumnHead label="Column spanning" nested href={getUrl('/columns/#column-spanning')} />
   ),
   'data-grid/row-sorting': (
     <ColumnHead label="Row sorting" nested href={getUrl('/rows/#row-sorting')} />
@@ -356,6 +382,9 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'data-grid/row-rangeselection': (
     <ColumnHead label="Range selection" nested href={getUrl('/selection/#range-selection')} />
   ),
+  'data-grid/filter-quick': (
+    <ColumnHead label="Quick filter" nested href={getUrl('/filtering/#quick-filter')} />
+  ),
   'data-grid/filter-column': (
     <ColumnHead label="Column filters" nested href={getUrl('/filtering/#column-filters')} />
   ),
@@ -365,9 +394,6 @@ const rowHeaders: Record<string, React.ReactNode> = {
       nested
       href={getUrl('/filtering/#multi-column-filtering')}
     />
-  ),
-  'data-grid/filter-quick': (
-    <ColumnHead label="Quick filter" nested href={getUrl('/filtering/#quick-filter')} />
   ),
   'data-grid/pagination': <ColumnHead label="Pagination" nested href={getUrl('/pagination/')} />,
   'data-grid/pagination-large': (
@@ -387,11 +413,14 @@ const rowHeaders: Record<string, React.ReactNode> = {
     <ColumnHead label="CSV export" nested href={getUrl('/export/#csv-export')} />
   ),
   'data-grid/file-print': <ColumnHead label="Print" nested href={getUrl('/export/#print')} />,
+  'data-grid/file-clipboard': (
+    <ColumnHead label="Clipboard" nested href={getUrl('/export/#clipboard')} />
+  ),
   'data-grid/file-excel': (
     <ColumnHead label="Excel export" nested href={getUrl('/export/#excel-export')} />
   ),
-  'data-grid/file-clipboard': (
-    <ColumnHead label="Clipboard" nested href={getUrl('/export/#clipboard')} />
+  'data-grid/customizable-components': (
+    <ColumnHead label="Customizable components" nested href={getUrl('/components/')} />
   ),
   'data-grid/virtualize-column': (
     <ColumnHead
@@ -406,9 +435,6 @@ const rowHeaders: Record<string, React.ReactNode> = {
       nested
       href={getUrl('/virtualization/#row-virtualization')}
     />
-  ),
-  'data-grid/customizable-components': (
-    <ColumnHead label="Customizable components" nested href={getUrl('/components/')} />
   ),
   'data-grid/tree-data': (
     <ColumnHead label="Tree data" nested href={getUrl('/group-pivot/#tree-data')} />
@@ -495,11 +521,11 @@ const communityData: Record<string, React.ReactNode> = {
   '@mui/unstyled': <IconImage name="yes" />,
   '@mui/system': <IconImage name="yes" />,
   // Advanced
-  'data-grid/column-resizing': <IconImage name="no" />,
   'data-grid/column-groups': <IconImage name="time" />,
+  'data-grid/column-spanning': <IconImage name="time" />,
+  'data-grid/column-resizing': <IconImage name="no" />,
   'data-grid/column-reorder': <IconImage name="no" />,
   'data-grid/column-pinning': <IconImage name="no" />,
-  'data-grid/column-spanning': <IconImage name="time" />,
   'data-grid/row-sorting': <IconImage name="yes" />,
   'data-grid/row-height': <IconImage name="yes" />,
   'data-grid/row-spanning': <IconImage name="time" />,
@@ -507,20 +533,20 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/row-selection': <IconImage name="yes" />,
   'data-grid/row-multiselection': <IconImage name="no" />,
   'data-grid/row-rangeselection': <IconImage name="no" />,
+  'data-grid/filter-quick': <IconImage name="time" />,
   'data-grid/filter-column': <IconImage name="yes" />,
   'data-grid/filter-multicolumn': <IconImage name="no" />,
-  'data-grid/filter-quick': <IconImage name="time" />,
   'data-grid/pagination': <IconImage name="yes" />,
   'data-grid/pagination-large': <IconImage name="no" />,
   'data-grid/edit-row': <IconImage name="time" />,
   'data-grid/edit-cell': <IconImage name="yes" />,
   'data-grid/file-csv': <IconImage name="yes" />,
   'data-grid/file-print': <IconImage name="time" />,
-  'data-grid/file-excel': <IconImage name="no" />,
   'data-grid/file-clipboard': <IconImage name="no" />,
+  'data-grid/file-excel': <IconImage name="no" />,
+  'data-grid/customizable-components': <IconImage name="yes" />,
   'data-grid/virtualize-column': <IconImage name="yes" />,
   'data-grid/virtualize-row': <IconImage name="no" />,
-  'data-grid/customizable-components': <IconImage name="yes" />,
   'data-grid/tree-data': <IconImage name="no" />,
   'data-grid/master-detail': <IconImage name="no" />,
   'data-grid/grouping': <IconImage name="no" />,
@@ -547,11 +573,11 @@ const proData: Record<string, React.ReactNode> = {
   '@mui/unstyled': <IconImage name="yes" />,
   '@mui/system': <IconImage name="yes" />,
   // Advanced
-  'data-grid/column-resizing': <IconImage name="yes" />,
   'data-grid/column-groups': <IconImage name="time" />,
+  'data-grid/column-spanning': <IconImage name="time" />,
+  'data-grid/column-resizing': <IconImage name="yes" />,
   'data-grid/column-reorder': <IconImage name="yes" />,
   'data-grid/column-pinning': <IconImage name="time" />,
-  'data-grid/column-spanning': <IconImage name="time" />,
   'data-grid/row-sorting': <IconImage name="yes" />,
   'data-grid/row-height': <IconImage name="yes" />,
   'data-grid/row-spanning': <IconImage name="time" />,
@@ -559,20 +585,20 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/row-selection': <IconImage name="yes" />,
   'data-grid/row-multiselection': <IconImage name="yes" />,
   'data-grid/row-rangeselection': <IconImage name="no" />,
+  'data-grid/filter-quick': <IconImage name="time" />,
   'data-grid/filter-column': <IconImage name="yes" />,
   'data-grid/filter-multicolumn': <IconImage name="yes" />,
-  'data-grid/filter-quick': <IconImage name="time" />,
   'data-grid/pagination': <IconImage name="yes" />,
   'data-grid/pagination-large': <IconImage name="yes" />,
   'data-grid/edit-row': <IconImage name="time" />,
   'data-grid/edit-cell': <IconImage name="yes" />,
   'data-grid/file-csv': <IconImage name="yes" />,
   'data-grid/file-print': <IconImage name="time" />,
-  'data-grid/file-excel': <IconImage name="no" />,
   'data-grid/file-clipboard': <IconImage name="time" />,
+  'data-grid/file-excel': <IconImage name="no" />,
+  'data-grid/customizable-components': <IconImage name="yes" />,
   'data-grid/virtualize-column': <IconImage name="yes" />,
   'data-grid/virtualize-row': <IconImage name="yes" />,
-  'data-grid/customizable-components': <IconImage name="yes" />,
   'data-grid/tree-data': <IconImage name="time" />,
   'data-grid/master-detail': <IconImage name="time" />,
   'data-grid/grouping': <IconImage name="no" />,
@@ -599,11 +625,11 @@ const premiumData: Record<string, React.ReactNode> = {
   '@mui/unstyled': <IconImage name="yes" />,
   '@mui/system': <IconImage name="yes" />,
   // Advanced
-  'data-grid/column-resizing': <IconImage name="yes" />,
   'data-grid/column-groups': <IconImage name="time" />,
+  'data-grid/column-spanning': <IconImage name="time" />,
+  'data-grid/column-resizing': <IconImage name="yes" />,
   'data-grid/column-reorder': <IconImage name="yes" />,
   'data-grid/column-pinning': <IconImage name="time" />,
-  'data-grid/column-spanning': <IconImage name="time" />,
   'data-grid/row-sorting': <IconImage name="yes" />,
   'data-grid/row-height': <IconImage name="yes" />,
   'data-grid/row-spanning': <IconImage name="time" />,
@@ -611,20 +637,20 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/row-selection': <IconImage name="yes" />,
   'data-grid/row-multiselection': <IconImage name="yes" />,
   'data-grid/row-rangeselection': <IconImage name="time" />,
+  'data-grid/filter-quick': <IconImage name="time" />,
   'data-grid/filter-column': <IconImage name="yes" />,
   'data-grid/filter-multicolumn': <IconImage name="yes" />,
-  'data-grid/filter-quick': <IconImage name="time" />,
   'data-grid/pagination': <IconImage name="yes" />,
   'data-grid/pagination-large': <IconImage name="yes" />,
   'data-grid/edit-row': <IconImage name="time" />,
   'data-grid/edit-cell': <IconImage name="yes" />,
   'data-grid/file-csv': <IconImage name="yes" />,
   'data-grid/file-print': <IconImage name="time" />,
-  'data-grid/file-excel': <IconImage name="no" />,
   'data-grid/file-clipboard': <IconImage name="time" />,
+  'data-grid/file-excel': <IconImage name="no" />,
+  'data-grid/customizable-components': <IconImage name="yes" />,
   'data-grid/virtualize-column': <IconImage name="yes" />,
   'data-grid/virtualize-row': <IconImage name="yes" />,
-  'data-grid/customizable-components': <IconImage name="yes" />,
   'data-grid/tree-data': <IconImage name="time" />,
   'data-grid/master-detail': <IconImage name="time" />,
   'data-grid/grouping': <IconImage name="time" />,
@@ -911,15 +937,15 @@ export default function PricingTable({
           }}
         />
         <RowCategory>Column features</RowCategory>
-        {renderRow('data-grid/column-resizing')}
-        {nestedDivider}
         {renderRow('data-grid/column-groups')}
+        {nestedDivider}
+        {renderRow('data-grid/column-spanning')}
+        {nestedDivider}
+        {renderRow('data-grid/column-resizing')}
         {nestedDivider}
         {renderRow('data-grid/column-reorder')}
         {nestedDivider}
         {renderRow('data-grid/column-pinning')}
-        {nestedDivider}
-        {renderRow('data-grid/column-spanning')}
         {nestedDivider}
         <RowCategory>Row features</RowCategory>
         {renderRow('data-grid/row-sorting')}
@@ -938,11 +964,11 @@ export default function PricingTable({
         {renderRow('data-grid/row-rangeselection')}
         {nestedDivider}
         <RowCategory>Filtering features</RowCategory>
+        {renderRow('data-grid/filter-quick')}
+        {nestedDivider}
         {renderRow('data-grid/filter-column')}
         {nestedDivider}
         {renderRow('data-grid/filter-multicolumn')}
-        {nestedDivider}
-        {renderRow('data-grid/filter-quick')}
         {nestedDivider}
         <RowCategory>Pagination features</RowCategory>
         {renderRow('data-grid/pagination')}
@@ -959,16 +985,16 @@ export default function PricingTable({
         {nestedDivider}
         {renderRow('data-grid/file-print')}
         {nestedDivider}
-        {renderRow('data-grid/file-excel')}
-        {nestedDivider}
         {renderRow('data-grid/file-clipboard')}
         {nestedDivider}
+        {renderRow('data-grid/file-excel')}
+        {nestedDivider}
         <RowCategory>Rendering features</RowCategory>
+        {renderRow('data-grid/customizable-components')}
+        {nestedDivider}
         {renderRow('data-grid/virtualize-column')}
         {nestedDivider}
         {renderRow('data-grid/virtualize-row')}
-        {nestedDivider}
-        {renderRow('data-grid/customizable-components')}
         {nestedDivider}
         <RowCategory>Group & pivot</RowCategory>
         {renderRow('data-grid/tree-data')}

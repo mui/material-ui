@@ -214,6 +214,9 @@ function ApiDocs(props) {
     // convert things like `/Table/Table.js` to ``
     .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
 
+  // Prefer linking the .tsx or .d.ts for the "Edit this page" link.
+  const apiSourceLocation = filename.replace('.js', '.d.ts');
+
   function createTocEntry(sectionName) {
     return {
       text: getTranslatedHeader(t, sectionName),
@@ -263,7 +266,7 @@ function ApiDocs(props) {
       description={description}
       disableAd={false}
       disableToc={false}
-      location={filename}
+      location={apiSourceLocation}
       title={`${componentName} API – Material-UI`}
       toc={toc}
     >

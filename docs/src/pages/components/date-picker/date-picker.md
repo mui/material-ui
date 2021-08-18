@@ -119,9 +119,3 @@ Sometimes it may be necessary to display additional info right in the calendar. 
 You can show a helper text with the date format accepted.
 
 {{"demo": "pages/components/date-picker/HelperText.js"}}
-
-## Theming
-
-Here is an example of theming the component. You can learn more about this in the [theming page](/customization/theming/) and [theme components page](/customization/theme-components/)
-
-{{"demo": "pages/components/date-picker/ThemeDatePicker.js", "bg": true}}

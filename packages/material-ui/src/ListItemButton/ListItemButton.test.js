@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
+import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
 import ListItemButton, { listItemButtonClasses as classes } from '@material-ui/core/ListItemButton';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import ListContext from '../List/ListContext';
@@ -8,7 +8,7 @@ import ListContext from '../List/ListContext';
 describe('<ListItemButton />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<ListItemButton />, () => ({
+  describeConformance(<ListItemButton />, () => ({
     classes,
     inheritComponent: ButtonBase,
     render,

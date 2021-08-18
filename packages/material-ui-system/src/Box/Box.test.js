@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import Box from '@material-ui/core/Box';
 
 describe('<Box />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<Box />, () => ({
+  describeConformance(<Box />, () => ({
     render,
     inheritComponent: 'div',
     skip: [

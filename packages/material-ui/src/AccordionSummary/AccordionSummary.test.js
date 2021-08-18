@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
+import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
 import AccordionSummary, {
   accordionSummaryClasses as classes,
 } from '@material-ui/core/AccordionSummary';
@@ -11,7 +11,7 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 describe('<AccordionSummary />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<AccordionSummary />, () => ({
+  describeConformance(<AccordionSummary />, () => ({
     classes,
     inheritComponent: ButtonBase,
     render,

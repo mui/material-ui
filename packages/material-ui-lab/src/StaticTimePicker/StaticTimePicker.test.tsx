@@ -13,10 +13,15 @@ describe('<StaticTimePicker />', () => {
     />,
     () => ({
       classes: {},
+      muiName: 'MuiStaticTimePicker',
       wrapMount: wrapPickerMount,
       refInstanceof: undefined,
       skip: [
         'componentProp',
+        'componentsProp',
+        'themeDefaultProps',
+        'themeStyleOverrides',
+        'themeVariants',
         'mergeClassName',
         'propsSpread',
         // TODO: `ref` is typed but has no effect
