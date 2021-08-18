@@ -2,11 +2,10 @@ import * as React from 'react';
 import { styled, alpha } from '@material-ui/core/styles';
 import Avatar, { AvatarProps } from '@material-ui/core/Avatar';
 import Box, { BoxProps } from '@material-ui/core/Box';
-import Fade from '@material-ui/core/Fade';
 import ROUTES from 'docs/src/route';
 import LaunchRounded from '@material-ui/icons/LaunchRounded';
 import Slide from 'docs/src/components/animation/Slide';
-import useTimingAppearance from 'docs/src/components/animation/useTimingAppearance';
+import FadeDelay from 'docs/src/components/animation/FadeDelay';
 
 const ratio = 900 / 494;
 
@@ -129,18 +128,17 @@ export function DesignKitImagesSet1({
   keyframes = defaultSlideUp,
   ...props
 }: BoxProps & { keyframes?: Record<string, object> }) {
-  const [appearIndexes] = useTimingAppearance(3);
   return (
     <Slide animationName="designkit-slideup" {...props} keyframes={keyframes}>
-      <Fade in={appearIndexes.includes(2)} timeout={1000}>
+      <FadeDelay delay={400}>
         <Image src="/static/branding/design-kits/designkits1.jpeg" alt="" />
-      </Fade>
-      <Fade in={appearIndexes.includes(1)} timeout={1000}>
+      </FadeDelay>
+      <FadeDelay delay={200}>
         <Image src="/static/branding/design-kits/designkits3.jpeg" alt="" />
-      </Fade>
-      <Fade in={appearIndexes.includes(0)} timeout={1000}>
+      </FadeDelay>
+      <FadeDelay delay={0}>
         <Image src="/static/branding/design-kits/designkits5.jpeg" alt="" />
-      </Fade>
+      </FadeDelay>
     </Slide>
   );
 }
@@ -157,24 +155,22 @@ export function DesignKitImagesSet2({
   keyframes = defaultSlideDown,
   ...props
 }: BoxProps & { keyframes?: Record<string, object> }) {
-  const [appearIndexes] = useTimingAppearance(3, { delay: 100 });
   return (
     <Slide animationName="designkit-slidedown" {...props} keyframes={keyframes}>
-      <Fade in={appearIndexes.includes(0)} timeout={1000}>
+      <FadeDelay delay={100}>
         <Image src="/static/branding/design-kits/designkits2.jpeg" alt="" />
-      </Fade>
-      <Fade in={appearIndexes.includes(1)} timeout={1000}>
+      </FadeDelay>
+      <FadeDelay delay={300}>
         <Image src="/static/branding/design-kits/designkits4.jpeg" alt="" />
-      </Fade>
-      <Fade in={appearIndexes.includes(2)} timeout={1000}>
+      </FadeDelay>
+      <FadeDelay delay={500}>
         <Image src="/static/branding/design-kits/designkits6.jpeg" alt="" />
-      </Fade>
+      </FadeDelay>
     </Slide>
   );
 }
 
 export function DesignKitTools({ disableLink, ...props }: { disableLink?: boolean } & BoxProps) {
-  const [appearIndexes] = useTimingAppearance(3, { delay: 200 });
   function renderTool(brand: 'figma' | 'sketch' | 'xd') {
     if (disableLink) return <DesignToolLogo brand={brand} />;
     return (
@@ -209,15 +205,9 @@ export function DesignKitTools({ disableLink, ...props }: { disableLink?: boolea
         ...props.sx,
       }}
     >
-      <Fade in={appearIndexes.includes(0)} timeout={1000}>
-        {renderTool('figma')}
-      </Fade>
-      <Fade in={appearIndexes.includes(1)} timeout={1000}>
-        {renderTool('sketch')}
-      </Fade>
-      <Fade in={appearIndexes.includes(2)} timeout={1000}>
-        {renderTool('xd')}
-      </Fade>
+      <FadeDelay delay={200}>{renderTool('figma')}</FadeDelay>
+      <FadeDelay delay={400}>{renderTool('sketch')}</FadeDelay>
+      <FadeDelay delay={600}>{renderTool('xd')}</FadeDelay>
     </Box>
   );
 }

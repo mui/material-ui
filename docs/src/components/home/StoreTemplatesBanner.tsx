@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { styled, alpha, useTheme } from '@material-ui/core/styles';
 import Box, { BoxProps } from '@material-ui/core/Box';
-import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
 import ROUTES from 'docs/src/route';
 import LaunchRounded from '@material-ui/icons/LaunchRounded';
 import Slide from 'docs/src/components/animation/Slide';
-import useTimingAppearance from 'docs/src/components/animation/useTimingAppearance';
+import FadeDelay from 'docs/src/components/animation/FadeDelay';
 
 const ratio = 900 / 494;
 
@@ -155,7 +154,6 @@ export function StoreTemplatesSet1({
   disableLink,
   ...props
 }: { disableLink?: boolean; keyframes?: Record<string, object> } & BoxProps) {
-  const [appearIndexes] = useTimingAppearance(3, { delay: 100 });
   function renderTemplate(brand: TemplateBrand) {
     if (disableLink) return <StoreTemplateImage brand={brand} />;
     return (
@@ -166,15 +164,9 @@ export function StoreTemplatesSet1({
   }
   return (
     <Slide animationName="template-slidedown" {...props} keyframes={keyframes}>
-      <Fade in={appearIndexes.includes(2)} timeout={1000}>
-        {renderTemplate(brands[4])}
-      </Fade>
-      <Fade in={appearIndexes.includes(1)} timeout={1000}>
-        {renderTemplate(brands[2])}
-      </Fade>
-      <Fade in={appearIndexes.includes(0)} timeout={1000}>
-        {renderTemplate(brands[0])}
-      </Fade>
+      <FadeDelay delay={400}>{renderTemplate(brands[4])}</FadeDelay>
+      <FadeDelay delay={200}>{renderTemplate(brands[2])}</FadeDelay>
+      <FadeDelay delay={0}>{renderTemplate(brands[0])}</FadeDelay>
     </Slide>
   );
 }
@@ -192,7 +184,6 @@ export function StoreTemplatesSet2({
   disableLink,
   ...props
 }: { disableLink?: boolean; keyframes?: Record<string, object> } & BoxProps) {
-  const [appearIndexes] = useTimingAppearance(3, { delay: 100 });
   function renderTemplate(brand: TemplateBrand) {
     if (disableLink) return <StoreTemplateImage brand={brand} />;
     return (
@@ -203,15 +194,9 @@ export function StoreTemplatesSet2({
   }
   return (
     <Slide animationName="template-slidedup" {...props} keyframes={keyframes}>
-      <Fade in={appearIndexes.includes(0)} timeout={1000}>
-        {renderTemplate(brands[1])}
-      </Fade>
-      <Fade in={appearIndexes.includes(1)} timeout={1000}>
-        {renderTemplate(brands[3])}
-      </Fade>
-      <Fade in={appearIndexes.includes(2)} timeout={1000}>
-        {renderTemplate(brands[5])}
-      </Fade>
+      <FadeDelay delay={100}>{renderTemplate(brands[1])}</FadeDelay>
+      <FadeDelay delay={300}>{renderTemplate(brands[3])}</FadeDelay>
+      <FadeDelay delay={500}>{renderTemplate(brands[5])}</FadeDelay>
     </Slide>
   );
 }
