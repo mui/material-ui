@@ -10,7 +10,7 @@ import SliderUnstyled, {
 } from '@material-ui/unstyled/SliderUnstyled';
 import { alpha, lighten, darken } from '@material-ui/system';
 import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import styled, { slotShouldForwardProp } from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import capitalize from '../utils/capitalize';
 
@@ -297,8 +297,9 @@ export const SliderValueLabel = styled(SliderValueLabelUnstyled, {
 export const SliderMark = styled('span', {
   name: 'MuiSlider',
   slot: 'Mark',
+  shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'markActive',
   overridesResolver: (props, styles) => styles.mark,
-})(({ theme, ownerState }) => ({
+})(({ theme, ownerState, markActive }) => ({
   position: 'absolute',
   width: 2,
   height: 2,
@@ -312,7 +313,7 @@ export const SliderMark = styled('span', {
     left: '50%',
     transform: 'translate(-50%, 1px)',
   }),
-  ...(ownerState.markActive && {
+  ...(markActive && {
     backgroundColor: theme.palette.background.paper,
     opacity: 0.8,
   }),
@@ -321,8 +322,9 @@ export const SliderMark = styled('span', {
 export const SliderMarkLabel = styled('span', {
   name: 'MuiSlider',
   slot: 'MarkLabel',
+  shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'markLabelActive',
   overridesResolver: (props, styles) => styles.markLabel,
-})(({ theme, ownerState }) => ({
+})(({ theme, ownerState, markLabelActive }) => ({
   ...theme.typography.body2,
   color: theme.palette.text.secondary,
   position: 'absolute',
@@ -341,7 +343,7 @@ export const SliderMarkLabel = styled('span', {
       left: 44,
     },
   }),
-  ...(ownerState.markLabelActive && {
+  ...(markLabelActive && {
     color: theme.palette.text.primary,
   }),
 }));

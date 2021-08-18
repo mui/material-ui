@@ -7,7 +7,7 @@ import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
 import LinearProgress from '../LinearProgress';
 import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import styled, { slotShouldForwardProp } from '../styles/styled';
 import { getMobileStepperUtilityClass } from './mobileStepperClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -69,12 +69,13 @@ const MobileStepperDots = styled('div', {
 const MobileStepperDot = styled('div', {
   name: 'MuiMobileStepper',
   slot: 'Dot',
+  shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'dotActive',
   overridesResolver: (props, styles) => {
-    const { ownerState } = props;
+    const { dotActive } = props;
 
-    return [styles.dot, ownerState.dotActive && styles.dotActive];
+    return [styles.dot, dotActive && styles.dotActive];
   },
-})(({ theme, ownerState }) => ({
+})(({ theme, ownerState, dotActive }) => ({
   ...(ownerState.variant === 'dots' && {
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
@@ -84,7 +85,7 @@ const MobileStepperDot = styled('div', {
     width: 8,
     height: 8,
     margin: '0 2px',
-    ...(ownerState.dotActive && {
+    ...(dotActive && {
       backgroundColor: theme.palette.primary.main,
     }),
   }),
@@ -145,7 +146,8 @@ const MobileStepper = React.forwardRef(function MobileStepper(inProps, ref) {
             <MobileStepperDot
               key={index}
               className={clsx(classes.dot, { [classes.dotActive]: index === activeStep })}
-              ownerState={{ ...ownerState, dotActive: index === activeStep }}
+              ownerState={ownerState}
+              dotActive={index === activeStep}
             />
           ))}
         </MobileStepperDots>

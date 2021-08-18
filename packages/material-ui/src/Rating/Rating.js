@@ -14,7 +14,7 @@ import {
 import Star from '../internal/svg-icons/Star';
 import StarBorder from '../internal/svg-icons/StarBorder';
 import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
+import styled, { slotShouldForwardProp } from '../styles/styled';
 import ratingClasses, { getRatingUtilityClass } from './ratingClasses';
 
 function clamp(value, min, max) {
@@ -158,14 +158,15 @@ const RatingIcon = styled('span', {
 const RatingDecimal = styled('span', {
   name: 'MuiRating',
   slot: 'Decimal',
+  shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'iconActive',
   overridesResolver: (props, styles) => {
-    const { ownerState } = props;
+    const { iconActive } = props;
 
-    return [styles.decimal, ownerState.iconActive && styles.iconActive];
+    return [styles.decimal, iconActive && styles.iconActive];
   },
-})(({ ownerState }) => ({
+})(({ iconActive }) => ({
   position: 'relative',
-  ...(ownerState.iconActive && {
+  ...(iconActive && {
     transform: 'scale(1.2)',
   }),
 }));
@@ -535,10 +536,8 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
             <RatingDecimal
               key={itemValue}
               className={clsx(classes.decimal, { [classes.iconActive]: isActive })}
-              ownerState={{
-                ...ownerState,
-                iconActive: isActive,
-              }}
+              ownerState={ownerState}
+              iconActive={isActive}
             >
               {items.map(($, indexDecimal) => {
                 const itemDecimalValue = roundValueToPrecision(
