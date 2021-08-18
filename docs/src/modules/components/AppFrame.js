@@ -79,7 +79,7 @@ function DeferredAppSearch() {
 const RootDiv = styled('div')(({ theme }) => {
   return {
     display: 'flex',
-    backgroundColor: theme.palette.mode === 'dark' && theme.palette.grey[900],
+    background: theme.palette.mode === 'dark' && theme.palette.primaryDark[900],
     // TODO: Should be handled by the main component
     '& #main-content': {
       outline: 0,
@@ -91,7 +91,7 @@ const SkipLink = styled(MuiLink)(({ theme }) => {
   return {
     position: 'fixed',
     padding: theme.spacing(1),
-    backgroundColor: theme.palette.background.paper,
+    background: theme.palette.background.paper,
     transition: theme.transitions.create('top', {
       easing: theme.transitions.easing.easeIn,
       duration: theme.transitions.duration.leavingScreen,
@@ -128,7 +128,7 @@ const StyledAppBar = styled(AppBar, {
     boxShadow: `inset 0px -1px 1px ${
       theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100]
     }`,
-    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : 'white',
+    background: theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#FFF',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
     '& .MuiIconButton-root': {
       border: `1px solid ${
@@ -136,7 +136,7 @@ const StyledAppBar = styled(AppBar, {
       }`,
       borderRadius: theme.shape.borderRadius,
       color: theme.palette.mode === 'dark' ? '#FFF' : theme.palette.primary[500],
-      backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#FFF',
+      background: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#FFF',
     },
   };
 });
