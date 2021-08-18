@@ -21,7 +21,6 @@ const primary = {
   800: '#004C99',
   900: '#003A75',
 };
-
 const primaryDark = {
   50: '#E2EDF8',
   100: '#CEE0F3',
@@ -34,7 +33,6 @@ const primaryDark = {
   800: '#001E3C',
   900: '#0A1929',
 };
-
 const grey = {
   50: '#F3F6F9',
   100: '#EAEEF3',
@@ -48,9 +46,11 @@ const grey = {
   900: '#3D4752',
 };
 
-const views = ['quilt', 'module', 'agenda', 'week', 'sidebar'];
+const views = ['quilt', 'module', 'agenda', 'week', 'sidebar'] as const;
 
-const viewIcons = {
+type View = typeof views[number];
+
+const viewIcons: Record<View, React.ReactElement> = {
   quilt: <ViewQuiltRounded />,
   module: <ViewModuleRounded />,
   agenda: <ViewAgendaRounded />,
@@ -59,7 +59,7 @@ const viewIcons = {
 };
 
 export default function ViewToggleButton() {
-  const [view, setView] = React.useState('quilt');
+  const [view, setView] = React.useState<View>('quilt');
   /*
    * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
    *
@@ -79,9 +79,7 @@ export default function ViewToggleButton() {
           grey,
         },
         typography: {
-          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(
-            ',',
-          ),
+          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(','),
         },
         shape: {
           borderRadius: 10,

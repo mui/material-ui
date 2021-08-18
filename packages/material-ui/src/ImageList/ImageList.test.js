@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import * as React from 'react';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import ImageList, { imageListClasses as classes } from '@material-ui/core/ImageList';
 
 const itemsData = [
@@ -19,7 +19,7 @@ const itemsData = [
 describe('<ImageList />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(
+  describeConformance(
     <ImageList>
       <div />
     </ImageList>,

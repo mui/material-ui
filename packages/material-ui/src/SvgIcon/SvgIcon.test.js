@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformanceV5, createClientRender } from 'test/utils';
+import { describeConformance, createClientRender } from 'test/utils';
 import SvgIcon, { svgIconClasses as classes } from '@material-ui/core/SvgIcon';
 
 describe('<SvgIcon />', () => {
@@ -12,7 +12,7 @@ describe('<SvgIcon />', () => {
     path = <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" data-testid="test-path" />;
   });
 
-  describeConformanceV5(
+  describeConformance(
     <SvgIcon>
       <path />
     </SvgIcon>,

@@ -7,7 +7,7 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
-import SvgHambugerMenu from 'docs/src/icons/SvgHamburgerMenu';
+import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
 import ROUTES from 'docs/src/route';
 
 const Anchor = styled('a')<{ component?: React.ElementType }>(({ theme }) => ({
@@ -100,7 +100,7 @@ export default function HeaderNavDropdown() {
           }),
         }}
       >
-        <SvgHambugerMenu />
+        <SvgHamburgerMenu />
       </IconButton>
       <ClickAwayListener
         onClickAway={(event) => {

@@ -8,6 +8,12 @@ import Typography from '@material-ui/core/Typography';
 import CodeRounded from '@material-ui/icons/CodeRounded';
 import ScheduleRounded from '@material-ui/icons/ScheduleRounded';
 
+declare module '@material-ui/core/Paper' {
+  interface PaperPropsVariantOverrides {
+    gradient: true;
+  }
+}
+
 const primary = {
   50: '#F0F7FF',
   100: '#C2E0FF',
@@ -42,8 +48,7 @@ const theme = createTheme({
           props: { variant: 'gradient' },
           style: {
             background: `linear-gradient(to right bottom, ${primary.main}, ${primary[700]} 120%)`,
-            boxShadow:
-              '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
+            boxShadow: '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
           },
         },
       ],
@@ -86,11 +91,7 @@ export default function TaskCard() {
       >
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <ScheduleRounded fontSize="inherit" />
-          <Typography
-            color="text.secondary"
-            variant="caption"
-            sx={{ ml: 0.5, mt: '1px' }}
-          >
+          <Typography color="text.secondary" variant="caption" sx={{ ml: 0.5, mt: '1px' }}>
             March 25th
           </Typography>
         </Box>
@@ -112,15 +113,15 @@ export default function TaskCard() {
         </Box>
         <Box sx={{ display: 'flex' }}>
           <Avatar
+            imgProps={{ 'aria-labelledby': 'demo-task-card-assigne-name' }}
             src="/static/images/avatar/1.jpg"
-            alt="Michael Scott"
             variant="rounded"
           />
           <Box sx={{ ml: 1 }}>
             <Typography variant="body2" color="primary.200">
               Assigned to
             </Typography>
-            <Typography>Michael Scott</Typography>
+            <Typography id="demo-task-card-assigne-name">Michael Scott</Typography>
           </Box>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', mb: -0.5, mt: 0.5 }}>

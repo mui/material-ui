@@ -45,7 +45,7 @@ const ValueProposition = () => {
       </Typography>
       <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
         Used by the world&apos;s best teams, supporting design systems of{' '}
-        <GradientText>all types</GradientText>.
+        <GradientText>all types</GradientText>
       </Typography>
       <Grid container spacing={2}>
         {content.map(({ icon, title, description }) => (

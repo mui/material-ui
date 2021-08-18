@@ -29,7 +29,7 @@ function ProductItem({
         display: 'flex',
         p: 2,
         flexDirection: { xs: 'column', md: 'row' },
-        alignItems: { xm: 'start', md: 'center' },
+        alignItems: { md: 'center' },
       }}
     >
       <Box sx={{ mr: 2, mb: { xs: 1, md: 0 } }}>{icon}</Box>

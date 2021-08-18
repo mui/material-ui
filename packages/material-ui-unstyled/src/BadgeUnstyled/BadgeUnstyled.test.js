@@ -18,6 +18,11 @@ describe('<BadgeUnstyled />', () => {
       render,
       refInstanceof: window.HTMLSpanElement,
       testComponentPropWith: 'div',
+      skip: [
+        'themeDefaultProps', // unstyled
+        'themeStyleOverrides', // unstyled
+        'themeVariants', // unstyled
+      ],
     }),
   );
 

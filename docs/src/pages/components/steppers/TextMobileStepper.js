@@ -16,7 +16,7 @@ const steps = [
               and geographical locations you want your ads to show on, and more.`,
   },
   {
-    tabel: 'Create an ad group',
+    label: 'Create an ad group',
     description:
       'An ad group contains one or more ads which target a shared set of keywords.',
   },
@@ -61,6 +61,7 @@ export default function TextMobileStepper() {
         {steps[activeStep].description}
       </Box>
       <MobileStepper
+        variant="text"
         steps={maxSteps}
         position="static"
         activeStep={activeStep}

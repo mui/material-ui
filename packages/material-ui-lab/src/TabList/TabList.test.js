@@ -10,8 +10,8 @@ import TabContext from '../TabContext';
 describe('<TabList />', () => {
   const render = createClientRender();
 
+  // @ts-ignore mui name does not exist for this component
   describeConformance(<TabList />, () => ({
-    // @ts-expect-error https://github.com/microsoft/TypeScript/issues/15300
     classes,
     inheritComponent: Tabs,
     /**
@@ -24,7 +24,14 @@ describe('<TabList />', () => {
     },
     refInstanceof: window.HTMLDivElement,
     // TODO: no idea why reactTestRenderer fails
-    skip: ['reactTestRenderer'],
+    skip: [
+      'componentsProp',
+      'themeDefaultProps',
+      'themeStyleOverrides',
+      'themeVariants',
+      'rootClass',
+      'reactTestRenderer',
+    ],
   }));
 
   // outside of TabContext pass every test in Tabs

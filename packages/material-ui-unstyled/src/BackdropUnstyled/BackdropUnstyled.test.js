@@ -18,6 +18,11 @@ describe('<BackdropUnstyled />', () => {
       render,
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'div',
+      skip: [
+        'themeDefaultProps', // unstyled
+        'themeStyleOverrides', // unstyled
+        'themeVariants', // unstyled
+      ],
     }),
   );
 

@@ -19,7 +19,7 @@ export default function Pricing() {
   return (
     <ThemeProvider>
       <Head
-        title="Pricing - Material-UI"
+        title="Pricing - MUI"
         description="The community edition lets you get going right away. Switch to a commercial plan for more components & premium support."
       />
       <CssBaseline />

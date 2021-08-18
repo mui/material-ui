@@ -5,7 +5,7 @@ import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
 import nativeSelectClasses, { getNativeSelectUtilityClasses } from './nativeSelectClasses';
-import styled from '../styles/styled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 
 const useUtilityClasses = (styleProps) => {
   const { classes, variant, disabled, open } = styleProps;
@@ -69,6 +69,7 @@ export const nativeSelectSelectStyles = ({ styleProps, theme }) => ({
 const NativeSelectSelect = styled('select', {
   name: 'MuiNativeSelect',
   slot: 'Select',
+  shouldForwardProp: rootShouldForwardProp,
   overridesResolver: (props, styles) => {
     const { styleProps } = props;
 

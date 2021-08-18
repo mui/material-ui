@@ -6,6 +6,12 @@ import Card from '@material-ui/core/Card';
 import Chip from '@material-ui/core/Chip';
 import Typography from '@material-ui/core/Typography';
 
+declare module '@material-ui/core/Chip' {
+  interface ChipPropsVariantOverrides {
+    notification: true;
+  }
+}
+
 const primary = {
   50: '#F0F7FF',
   100: '#C2E0FF',
@@ -20,7 +26,6 @@ const primary = {
   900: '#003A75',
   1000: '#132F4C',
 };
-
 const primaryDark = {
   50: '#E2EDF8',
   100: '#CEE0F3',
@@ -33,7 +38,6 @@ const primaryDark = {
   800: '#001E3C',
   900: '#0A1929',
 };
-
 const grey = {
   50: '#F3F6F9',
   100: '#EAEEF3',
@@ -82,9 +86,7 @@ export default function NotificationCard() {
         },
         spacing: 10,
         typography: {
-          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(
-            ',',
-          ),
+          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(','),
           fontWeightRegular: 500,
         },
         components: {
@@ -141,14 +143,21 @@ export default function NotificationCard() {
       }),
     [mode],
   );
-
   return (
     <ThemeProvider theme={theme}>
       <Card variant="outlined" sx={{ display: 'flex', p: 1.5, maxWidth: 283 }}>
-        <Avatar src="/static/images/avatar/3.jpg" alt="Avatar" variant="rounded" />
+        <Avatar
+          imgProps={{ 'aria-labelledby': 'demo-notification-card-messenger-name' }}
+          src="/static/images/avatar/3.jpg"
+          variant="rounded"
+        />
         <Box sx={{ ml: 1, flexBasis: 180, flexGrow: 1, minWidth: '0px' }}>
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography color="text.secondary" variant="caption">
+            <Typography
+              id="demo-notification-card-messenger-name"
+              color="text.secondary"
+              variant="caption"
+            >
               Angela Erickson
             </Typography>
             <Typography color="text.secondary" variant="caption">

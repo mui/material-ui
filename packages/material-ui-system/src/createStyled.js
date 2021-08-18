@@ -93,10 +93,17 @@ export default function createStyled(input = {}) {
       className = `${componentName}-${lowercaseFirstLetter(componentSlot || 'Root')}`;
     }
 
+    let shouldForwardPropOption = shouldForwardProp;
+
+    if (componentSlot === 'Root') {
+      shouldForwardPropOption = rootShouldForwardProp;
+    } else if (componentSlot) {
+      // any other slot specified
+      shouldForwardPropOption = slotShouldForwardProp;
+    }
+
     const defaultStyledResolver = styledEngineStyled(tag, {
-      ...(!componentSlot || componentSlot === 'Root'
-        ? { shouldForwardProp: rootShouldForwardProp }
-        : { shouldForwardProp: slotShouldForwardProp }),
+      shouldForwardProp: shouldForwardPropOption,
       label: className || componentName || '',
       ...options,
     });

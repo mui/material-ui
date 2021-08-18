@@ -410,7 +410,7 @@ const DesignSystemComponents = () => {
         What do you get?
       </Typography>
       <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
-        Simple, accessible, declarative <GradientText>components</GradientText>.
+        Simple, accessible, declarative <GradientText>components</GradientText>
       </Typography>
       <Box
         sx={{

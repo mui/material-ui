@@ -47,9 +47,7 @@ export default function ThemeChip() {
           },
         },
         typography: {
-          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(
-            ',',
-          ),
+          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(','),
           fontWeightRegular: 500,
         },
         components: {
@@ -87,14 +85,11 @@ export default function ThemeChip() {
       }),
     [mode],
   );
-  const handleDelete = () => {
-    console.info('You clicked the delete icon.');
-  };
   return (
     <ThemeProvider theme={theme}>
       <Stack direction="row" spacing={2}>
-        <Chip label="React" color="primary" onDelete={handleDelete} />
-        <Chip label="Javascript" onDelete={handleDelete} />
+        <Chip label="React" color="primary" onDelete={() => {}} />
+        <Chip label="Javascript" onDelete={() => {}} />
       </Stack>
     </ThemeProvider>
   );
