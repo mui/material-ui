@@ -38,10 +38,10 @@ export interface DateTimePickerTabsProps {
 
 type StyleProps = DateTimePickerTabsProps & { wrapperVariant: WrapperVariant };
 
-const DateTimePickerTabsRoot = styled(Tabs, { skipSx: true })<{ styleProps: StyleProps }>(
-  ({ styleProps, theme }) => ({
+const DateTimePickerTabsRoot = styled(Tabs, { skipSx: true })<{ ownerState: StyleProps }>(
+  ({ ownerState, theme }) => ({
     boxShadow: `0 -1px 0 0 inset ${theme.palette.divider}`,
-    ...(styleProps.wrapperVariant === 'desktop' && {
+    ...(ownerState.wrapperVariant === 'desktop' && {
       order: 1,
       boxShadow: `0 1px 0 0 inset ${theme.palette.divider}`,
       [`& .${tabsClasses.indicator}`]: {
@@ -59,7 +59,7 @@ const DateTimePickerTabs = (props: DateTimePickerTabsProps) => {
   const { dateRangeIcon = <DateRangeIcon />, onChange, timeIcon = <TimeIcon />, view } = props;
 
   const wrapperVariant = React.useContext(WrapperVariantContext);
-  const styleProps = { ...props, wrapperVariant };
+  const ownerState = { ...props, wrapperVariant };
 
   const handleChange = (event: React.SyntheticEvent, value: TabValue) => {
     onChange(tabToView(value));
@@ -67,7 +67,7 @@ const DateTimePickerTabs = (props: DateTimePickerTabsProps) => {
 
   return (
     <DateTimePickerTabsRoot
-      styleProps={styleProps}
+      ownerState={ownerState}
       variant="fullWidth"
       value={viewToTab(view)}
       onChange={handleChange}

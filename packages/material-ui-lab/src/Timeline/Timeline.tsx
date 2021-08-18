@@ -48,8 +48,8 @@ export interface TimelineProps extends StandardProps<React.HTMLAttributes<HTMLUL
 
 type StyleProps = TimelineProps;
 
-const useUtilityClasses = (styleProps: StyleProps) => {
-  const { position, classes } = styleProps;
+const useUtilityClasses = (ownerState: StyleProps) => {
+  const { position, classes } = ownerState;
 
   const slots = {
     root: ['root', position && `position${capitalize(position)}`],
@@ -62,14 +62,14 @@ const TimelineRoot = styled('ul' as const, {
   name: 'MuiTimeline' as const,
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
     return [
       styles.root,
-      styleProps.position &&
-        styles[`position${capitalize(styleProps.position)}` as TimelineClassKey],
+      ownerState.position &&
+        styles[`position${capitalize(ownerState.position)}` as TimelineClassKey],
     ];
   },
-})<{ styleProps: StyleProps }>({
+})<{ ownerState: StyleProps }>({
   display: 'flex',
   flexDirection: 'column',
   padding: '6px 16px',
@@ -89,13 +89,13 @@ const TimelineRoot = styled('ul' as const, {
 const Timeline = React.forwardRef<HTMLUListElement, TimelineProps>(function Timeline(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTimeline' });
   const { position = 'right', className, ...other } = props;
-  const styleProps = { ...props, position };
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = { ...props, position };
+  const classes = useUtilityClasses(ownerState);
   return (
     <TimelineContext.Provider value={{ position }}>
       <TimelineRoot
         className={clsx(classes.root, className)}
-        styleProps={styleProps}
+        ownerState={ownerState}
         // @ts-expect-error TypeScript bug, need to keep unknown for DX
         ref={ref}
         {...other}
