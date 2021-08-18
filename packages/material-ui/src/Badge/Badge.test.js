@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { BadgeUnstyled } from '@material-ui/unstyled';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import Badge, { badgeClasses as classes } from '@material-ui/core/Badge';
 
 function findBadge(container) {
@@ -20,7 +20,7 @@ describe('<Badge />', () => {
     badgeContent: 10,
   };
 
-  describeConformanceV5(
+  describeConformance(
     <Badge>
       <div />
     </Badge>,

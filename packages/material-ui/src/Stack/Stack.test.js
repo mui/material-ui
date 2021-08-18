@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import Stack from '@material-ui/core/Stack';
 import { createTheme } from '@material-ui/core/styles';
 import defaultTheme from '@material-ui/core/styles/defaultTheme';
@@ -9,7 +9,7 @@ import { style } from './Stack';
 describe('<Stack />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<Stack />, () => ({
+  describeConformance(<Stack />, () => ({
     render,
     inheritComponent: 'div',
     refInstanceof: window.HTMLDivElement,

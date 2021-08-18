@@ -77,6 +77,9 @@ describe('<SwipeableDrawer />', () => {
     refInstanceof: window.HTMLDivElement,
     skip: [
       'componentProp',
+      'themeDefaultProps',
+      'themeStyleOverrides',
+      'themeVariants',
       // https://github.com/facebook/react/issues/11565
       'reactTestRenderer',
     ],

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import TabScrollButton, {
   tabScrollButtonClasses as classes,
 } from '@material-ui/core/TabScrollButton';
@@ -12,7 +12,7 @@ describe('<TabScrollButton />', () => {
   };
   const render = createClientRender();
 
-  describeConformanceV5(<TabScrollButton {...defaultProps} />, () => ({
+  describeConformance(<TabScrollButton {...defaultProps} />, () => ({
     classes,
     inheritComponent: 'div',
     render,

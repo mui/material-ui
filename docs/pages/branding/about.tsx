@@ -26,6 +26,9 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
 import ROUTES from 'docs/src/route';
 import IconImage from 'docs/src/components/icon/IconImage';
+import SvgChat from 'docs/src/icons/SvgChat';
+import SvgPerson from 'docs/src/icons/SvgPerson';
+import SvgCard from 'docs/src/icons/SvgCard';
 
 let darkTheme = createTheme(getDesignTokens('dark'));
 
@@ -169,6 +172,28 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
           {props.about}
         </Typography>
       )}
+    </Paper>
+  );
+};
+
+const Widget = ({
+  children,
+  title,
+  icon,
+}: {
+  children: React.ReactNode;
+  title: string;
+  icon: React.ReactElement;
+}) => {
+  return (
+    <Paper variant="outlined" sx={{ height: '100%', p: 2 }}>
+      <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
+        <Box sx={{ display: 'inline-block', lineHeight: 0, verticalAlign: 'bottom', mr: 1 }}>
+          {icon}
+        </Box>
+        {title}
+      </Typography>
+      {children}
     </Paper>
   );
 };
@@ -414,7 +439,6 @@ function AboutContent() {
   const mode = globalTheme.palette.mode;
   return (
     <React.Fragment>
-      <AppHeader />
       <Container>
         <Box
           sx={{
@@ -596,11 +620,7 @@ function AboutContent() {
         </Typography>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={4}>
-            <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-              <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
-                <IconImage name="give-feedback" sx={{ mr: 1 }} />
-                Give feedback
-              </Typography>
+            <Widget icon={<SvgChat />} title="Give feedback">
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                 Tell us what and where we can improve or share your happy moments with us! You can
                 also up or downvote any page on our documentation. <br />
@@ -615,14 +635,10 @@ function AboutContent() {
                 Leave your feedback{' '}
                 <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
               </Link>
-            </Paper>
+            </Widget>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-              <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
-                <IconImage name="join-community" sx={{ mr: 1 }} />
-                Join the community
-              </Typography>
+            <Widget icon={<SvgPerson />} title="Join the community">
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                 Become a member of a huge community of developers supporting MUI. You can:
               </Typography>
@@ -668,14 +684,10 @@ function AboutContent() {
               <Link href="https://github.com/mui-org/material-ui" variant="body2">
                 See the repository <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
               </Link>
-            </Paper>
+            </Widget>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Paper variant="outlined" sx={{ height: '100%', p: 2 }}>
-              <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
-                <IconImage name="support-us" sx={{ mr: 1 }} />
-                Suport us financially
-              </Typography>
+            <Widget icon={<SvgCard />} title="Suport us financially">
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                 If you use Material-UI in a commercial project and would like to support its
                 continued development by becoming a Sponsor, or in a side or hobby project and would
@@ -689,13 +701,12 @@ function AboutContent() {
                 See Open Collective{' '}
                 <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
               </Link>
-            </Paper>
+            </Widget>
           </Grid>
         </Grid>
       </Container>
       <HeroEnd />
       <Divider />
-      <AppFooter />
     </React.Fragment>
   );
 }
@@ -708,7 +719,11 @@ export default function About() {
         description="MUI (formerly Material-UI) started back in 2014 to unify React and Material Design. Today, MUI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
       />
       <CssBaseline />
-      <AboutContent />
+      <AppHeader />
+      <main>
+        <AboutContent />
+      </main>
+      <AppFooter />
     </ThemeProvider>
   );
 }

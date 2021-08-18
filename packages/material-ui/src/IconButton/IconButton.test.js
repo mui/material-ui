@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import IconButton, { iconButtonClasses as classes } from '@material-ui/core/IconButton';
 import Icon from '@material-ui/core/Icon';
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -9,7 +9,7 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 describe('<IconButton />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<IconButton>book</IconButton>, () => ({
+  describeConformance(<IconButton>book</IconButton>, () => ({
     classes,
     inheritComponent: ButtonBase,
     render,
