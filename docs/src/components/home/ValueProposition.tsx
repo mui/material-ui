@@ -27,9 +27,9 @@ const content = [
   },
   {
     icon: '/static/branding/mui-eye.svg',
-    title: 'Accessible by design',
+    title: 'Accessibility in mind',
     description:
-      'We care about making it good for everyone. All of our components have built-in support for a11y, making sure you reach the largest audience possible!',
+      'We care about making it good for everyone. We improve accessibility for all of our components constantly, making sure you reach the largest audience possible!',
   },
 ];
 
