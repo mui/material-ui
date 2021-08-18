@@ -8,7 +8,6 @@ import Paper from '@material-ui/core/Paper';
 import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
 import IconImage from 'docs/src/components/icon/IconImage';
-import SvgMuiX from 'docs/src/icons/SvgMuiX';
 import ROUTES from 'docs/src/route';
 
 const Navigation = styled('nav')(({ theme }) => ({
@@ -220,7 +219,7 @@ export default function HeaderNavBar() {
                         icon={<IconImage name="product-advanced" />}
                         name={
                           <Box component="span" display="inline-flex" alignItems="center">
-                            Advanced&nbsp; <SvgMuiX />
+                            Advanced&nbsp;
                           </Box>
                         }
                         description="Powerful components for your complex apps."
