@@ -7,7 +7,7 @@ import {
   fireEvent,
   fireDiscreteEvent,
   screen,
-  describeConformanceV5,
+  describeConformance,
 } from 'test/utils';
 import Icon from '@material-ui/core/Icon';
 import SpeedDial, { speedDialClasses as classes } from '@material-ui/core/SpeedDial';
@@ -35,7 +35,7 @@ describe('<SpeedDial />', () => {
     ariaLabel: 'mySpeedDial',
   };
 
-  describeConformanceV5(<SpeedDial {...defaultProps} />, () => ({
+  describeConformance(<SpeedDial {...defaultProps} />, () => ({
     classes,
     inheritComponent: 'div',
     render,

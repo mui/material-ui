@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import Paper, { paperClasses as classes } from '@material-ui/core/Paper';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 describe('<Paper />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<Paper />, () => ({
+  describeConformance(<Paper />, () => ({
     classes,
     inheritComponent: 'div',
     render,

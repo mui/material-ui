@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { act, createClientRender, describeConformanceV5 } from 'test/utils';
+import { act, createClientRender, describeConformance } from 'test/utils';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
 import Collapse, { collapseClasses as classes } from '@material-ui/core/Collapse';
@@ -14,7 +14,7 @@ describe('<Collapse />', () => {
     children: <div />,
   };
 
-  describeConformanceV5(<Collapse {...defaultProps} />, () => ({
+  describeConformance(<Collapse {...defaultProps} />, () => ({
     classes,
     inheritComponent: Transition,
     render,

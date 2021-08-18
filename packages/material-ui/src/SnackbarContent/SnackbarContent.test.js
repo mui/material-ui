@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import Paper from '@material-ui/core/Paper';
 import SnackbarContent, {
   snackbarContentClasses as classes,
@@ -9,7 +9,7 @@ import SnackbarContent, {
 describe('<SnackbarContent />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<SnackbarContent message="conform?" />, () => ({
+  describeConformance(<SnackbarContent message="conform?" />, () => ({
     classes,
     inheritComponent: Paper,
     render,

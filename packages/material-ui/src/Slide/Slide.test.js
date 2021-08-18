@@ -27,6 +27,10 @@ describe('<Slide />', () => {
       refInstanceof: window.HTMLDivElement,
       skip: [
         'componentProp',
+        'componentsProp',
+        'themeDefaultProps',
+        'themeStyleOverrides',
+        'themeVariants',
         // react-transition-group issue
         'reactTestRenderer',
       ],

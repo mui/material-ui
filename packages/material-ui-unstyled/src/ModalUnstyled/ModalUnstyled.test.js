@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import ModalUnstyled, {
   modalUnstyledClasses as classes,
 } from '@material-ui/unstyled/ModalUnstyled';
@@ -17,7 +17,7 @@ describe('<ModalUnstyled />', () => {
     document.body.setAttribute('style', savedBodyStyle);
   });
 
-  describeConformanceV5(
+  describeConformance(
     <ModalUnstyled open>
       <div />
     </ModalUnstyled>,

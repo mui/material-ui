@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import {
-  describeConformanceV5,
+  describeConformance,
   act,
   createClientRender,
   fireEvent,
@@ -17,7 +17,7 @@ import CheckBox from '../internal/svg-icons/CheckBox';
 describe('<Chip />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<Chip />, () => ({
+  describeConformance(<Chip />, () => ({
     classes,
     inheritComponent: 'div',
     render,

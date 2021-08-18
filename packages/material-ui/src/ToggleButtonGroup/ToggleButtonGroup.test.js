@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformanceV5, createClientRender } from 'test/utils';
+import { describeConformance, createClientRender } from 'test/utils';
 import ToggleButtonGroup, {
   toggleButtonGroupClasses as classes,
 } from '@material-ui/core/ToggleButtonGroup';
@@ -10,7 +10,7 @@ import ToggleButton from '@material-ui/core/ToggleButton';
 describe('<ToggleButtonGroup />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<ToggleButtonGroup />, () => ({
+  describeConformance(<ToggleButtonGroup />, () => ({
     classes,
     inheritComponent: 'div',
     render,

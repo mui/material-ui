@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { SinonFakeTimers, useFakeTimers } from 'sinon';
-import { fireEvent, screen, describeConformanceV5 } from 'test/utils';
+import { fireEvent, screen, describeConformance } from 'test/utils';
 import CalendarPicker, { calendarPickerClasses as classes } from '@material-ui/lab/CalendarPicker';
 import {
   adapterToUse,
@@ -21,7 +21,7 @@ describe('<CalendarPicker />', () => {
 
   const render = createPickerRender();
 
-  describeConformanceV5(<CalendarPicker date={adapterToUse.date()} onChange={() => {}} />, () => ({
+  describeConformance(<CalendarPicker date={adapterToUse.date()} onChange={() => {}} />, () => ({
     classes,
     inheritComponent: 'div',
     render,
