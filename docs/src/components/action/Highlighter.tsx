@@ -1,31 +1,26 @@
 import * as React from 'react';
-import Box, { BoxProps } from '@material-ui/core/Box';
+import ButtonBase, { ButtonBaseProps } from '@material-ui/core/ButtonBase';
 
 export default function Highlighter({
-  children,
   disableBorder = false,
   selected = false,
   selectedBg = 'white',
-  onClick,
-  sx,
+  ...props
 }: {
   disableBorder?: boolean;
   selectedBg?: 'white' | 'comfort';
-  children: React.ReactNode;
   selected?: boolean;
-  onClick?: BoxProps['onClick'];
-  sx?: BoxProps['sx'];
-}) {
+} & ButtonBaseProps) {
   const lightSelectedBg = {
     white: '#fff',
     comfort: 'grey.50',
   };
   return (
-    <Box
-      role="button"
-      onClick={onClick}
+    <ButtonBase
+      {...props}
       sx={{
-        cursor: 'pointer',
+        justifyContent: 'flex-start',
+        textAlign: 'left',
         borderRadius: 1,
         height: '100%',
         border: '1px solid transparent',
@@ -45,10 +40,8 @@ export default function Highlighter({
             },
           },
         }),
-        ...sx,
+        ...props.sx,
       }}
-    >
-      {children}
-    </Box>
+    />
   );
 }

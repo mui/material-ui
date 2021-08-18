@@ -146,7 +146,7 @@ const defaultSlideDown = {
     transform: 'translateY(-300px)',
   },
   '100%': {
-    transform: 'translateY(100px)',
+    transform: 'translateY(-60px)',
   },
 };
 export function StoreTemplatesSet1({
@@ -176,7 +176,7 @@ const defaultSlideUp = {
     transform: 'translateY(150px)',
   },
   '100%': {
-    transform: 'translateY(-150px)',
+    transform: 'translateY(-20px)',
   },
 };
 export function StoreTemplatesSet2({
@@ -202,17 +202,6 @@ export function StoreTemplatesSet2({
 }
 
 export default function StoreTemplatesBanner() {
-  const [appearIndexes, setAppearIndexes] = React.useState<Array<number>>([0]);
-  React.useEffect(() => {
-    const time = setTimeout(() => {
-      if (appearIndexes.length < 6) {
-        setAppearIndexes((current) => [...current, current.length]);
-      }
-    }, 100);
-    return () => {
-      clearTimeout(time);
-    };
-  }, [appearIndexes]);
   return (
     <Box
       sx={{
@@ -278,7 +267,7 @@ export default function StoreTemplatesBanner() {
       />
       <Box
         sx={{
-          left: '40%',
+          left: { xs: '45%', md: '40%' },
           position: 'absolute',
           display: 'flex',
           transform: 'translateX(-40%) rotateZ(-30deg) rotateX(8deg) rotateY(8deg)',

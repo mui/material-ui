@@ -121,7 +121,7 @@ const defaultSlideUp = {
     transform: 'translateY(-300px)',
   },
   '100%': {
-    transform: 'translateY(100px)',
+    transform: 'translateY(-20px)',
   },
 };
 export function DesignKitImagesSet1({
@@ -148,7 +148,7 @@ const defaultSlideDown = {
     transform: 'translateY(150px)',
   },
   '100%': {
-    transform: 'translateY(-150px)',
+    transform: 'translateY(-80px)',
   },
 };
 export function DesignKitImagesSet2({
