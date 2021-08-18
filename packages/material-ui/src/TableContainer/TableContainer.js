@@ -6,8 +6,8 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import { getTableContainerUtilityClass } from './tableContainerClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -29,19 +29,19 @@ const TableContainer = React.forwardRef(function TableContainer(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTableContainer' });
   const { className, component = 'div', ...other } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     component,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <TableContainerRoot
       ref={ref}
       as={component}
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     />
   );

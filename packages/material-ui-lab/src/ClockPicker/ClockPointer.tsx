@@ -10,22 +10,22 @@ export interface ClockPointerProps extends React.HTMLAttributes<HTMLDivElement> 
 }
 
 const ClockPointerRoot = styled('div', { skipSx: true })<{
-  styleProps: ClockPointerProps & ClockPointer['state'];
-}>(({ theme, styleProps }) => ({
+  ownerState: ClockPointerProps & ClockPointer['state'];
+}>(({ theme, ownerState }) => ({
   width: 2,
   backgroundColor: theme.palette.primary.main,
   position: 'absolute',
   left: 'calc(50% - 1px)',
   bottom: '50%',
   transformOrigin: 'center bottom 0px',
-  ...(styleProps.toAnimateTransform && {
+  ...(ownerState.toAnimateTransform && {
     transition: theme.transitions.create(['transform', 'height']),
   }),
 }));
 
 const ClockPointerThumb = styled('div', { skipSx: true })<{
-  styleProps: ClockPointerProps & ClockPointer['state'];
-}>(({ theme, styleProps }) => ({
+  ownerState: ClockPointerProps & ClockPointer['state'];
+}>(({ theme, ownerState }) => ({
   width: 4,
   height: 4,
   backgroundColor: theme.palette.primary.contrastText,
@@ -35,7 +35,7 @@ const ClockPointerThumb = styled('div', { skipSx: true })<{
   left: `calc(50% - ${CLOCK_HOUR_WIDTH / 2}px)`,
   border: `${(CLOCK_HOUR_WIDTH - 4) / 2}px solid ${theme.palette.primary.main}`,
   boxSizing: 'content-box',
-  ...(styleProps.hasSelected && {
+  ...(ownerState.hasSelected && {
     backgroundColor: theme.palette.primary.main,
   }),
 }));
@@ -69,7 +69,7 @@ class ClockPointer extends React.Component<ClockPointerProps> {
   render() {
     const { className, hasSelected, isInner, type, value, ...other } = this.props;
 
-    const styleProps = { ...this.props, ...this.state };
+    const ownerState = { ...this.props, ...this.state };
 
     const getAngleStyle = () => {
       const max = type === 'hours' ? 12 : 60;
@@ -89,10 +89,10 @@ class ClockPointer extends React.Component<ClockPointerProps> {
       <ClockPointerRoot
         style={getAngleStyle()}
         className={className}
-        styleProps={styleProps}
+        ownerState={ownerState}
         {...other}
       >
-        <ClockPointerThumb styleProps={styleProps} />
+        <ClockPointerThumb ownerState={ownerState} />
       </ClockPointerRoot>
     );
   }

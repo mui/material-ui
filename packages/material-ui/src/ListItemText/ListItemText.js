@@ -8,8 +8,8 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import listItemTextClasses, { getListItemTextUtilityClass } from './listItemTextClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, inset, primary, secondary, dense } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, inset, primary, secondary, dense } = ownerState;
 
   const slots = {
     root: ['root', inset && 'inset', dense && 'dense', primary && secondary && 'multiline'],
@@ -24,28 +24,28 @@ const ListItemTextRoot = styled('div', {
   name: 'MuiListItemText',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       { [`& .${listItemTextClasses.primary}`]: styles.primary },
       { [`& .${listItemTextClasses.secondary}`]: styles.secondary },
       styles.root,
-      styleProps.inset && styles.inset,
-      styleProps.primary && styleProps.secondary && styles.multiline,
-      styleProps.dense && styles.dense,
+      ownerState.inset && styles.inset,
+      ownerState.primary && ownerState.secondary && styles.multiline,
+      ownerState.dense && styles.dense,
     ];
   },
-})(({ styleProps }) => ({
+})(({ ownerState }) => ({
   flex: '1 1 auto',
   minWidth: 0,
   marginTop: 4,
   marginBottom: 4,
-  ...(styleProps.primary &&
-    styleProps.secondary && {
+  ...(ownerState.primary &&
+    ownerState.secondary && {
       marginTop: 6,
       marginBottom: 6,
     }),
-  ...(styleProps.inset && {
+  ...(ownerState.inset && {
     paddingLeft: 56,
   }),
 }));
@@ -68,7 +68,7 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
   let primary = primaryProp != null ? primaryProp : children;
   let secondary = secondaryProp;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     disableTypography,
     inset,
@@ -77,7 +77,7 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
     dense,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   if (primary != null && primary.type !== Typography && !disableTypography) {
     primary = (
@@ -110,7 +110,7 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
   return (
     <ListItemTextRoot
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       {...other}
     >

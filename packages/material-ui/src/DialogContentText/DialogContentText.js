@@ -6,8 +6,8 @@ import useThemeProps from '../styles/useThemeProps';
 import Typography from '../Typography';
 import { getDialogContentTextUtilityClass } from './dialogContentTextClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -30,8 +30,8 @@ const DialogContentTextRoot = styled(Typography, {
 
 const DialogContentText = React.forwardRef(function DialogContentText(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiDialogContentText' });
-  const { children, ...styleProps } = props;
-  const classes = useUtilityClasses(styleProps);
+  const { children, ...ownerState } = props;
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <DialogContentTextRoot
@@ -39,7 +39,7 @@ const DialogContentText = React.forwardRef(function DialogContentText(inProps, r
       variant="body1"
       color="text.secondary"
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...props}
       classes={classes}
     />

@@ -8,8 +8,8 @@ import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import loadingButtonClasses, { getLoadingButtonUtilityClass } from './loadingButtonClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { loading, loadingPosition, classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { loading, loadingPosition, classes } = ownerState;
 
   const slots = {
     root: ['root', loading && 'loading'],
@@ -31,7 +31,7 @@ const useUtilityClasses = (styleProps) => {
 
 // TODO use `import { rootShouldForwardProp } from '../styles/styled';` once move to core
 const rootShouldForwardProp = (prop) =>
-  prop !== 'styleProps' && prop !== 'theme' && prop !== 'sx' && prop !== 'as' && prop !== 'classes';
+  prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as' && prop !== 'classes';
 const LoadingButtonRoot = styled(Button, {
   shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
   name: 'MuiLoadingButton',
@@ -47,7 +47,7 @@ const LoadingButtonRoot = styled(Button, {
       },
     ];
   },
-})(({ styleProps, theme }) => ({
+})(({ ownerState, theme }) => ({
   [`& .${loadingButtonClasses.startIconLoadingStart}, & .${loadingButtonClasses.endIconLoadingEnd}`]:
     {
       transition: theme.transitions.create(['opacity'], {
@@ -55,7 +55,7 @@ const LoadingButtonRoot = styled(Button, {
       }),
       opacity: 0,
     },
-  ...(styleProps.loadingPosition === 'center' && {
+  ...(ownerState.loadingPosition === 'center' && {
     transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
       duration: theme.transitions.duration.short,
     }),
@@ -69,25 +69,25 @@ const LoadingButtonLoadingIndicator = styled('div', {
   name: 'MuiLoadingButton',
   slot: 'LoadingIndicator',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
     return [
       styles.loadingIndicator,
-      styles[`loadingIndicator${capitalize(styleProps.loadingPosition)}`],
+      styles[`loadingIndicator${capitalize(ownerState.loadingPosition)}`],
     ];
   },
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   position: 'absolute',
   visibility: 'visible',
   display: 'flex',
-  ...(styleProps.loadingPosition === 'start' && {
+  ...(ownerState.loadingPosition === 'start' && {
     left: 14,
   }),
-  ...(styleProps.loadingPosition === 'center' && {
+  ...(ownerState.loadingPosition === 'center' && {
     left: '50%',
     transform: 'translate(-50%)',
     color: theme.palette.action.disabled,
   }),
-  ...(styleProps.loadingPosition === 'end' && {
+  ...(ownerState.loadingPosition === 'end' && {
     right: 14,
   }),
 }));
@@ -105,7 +105,7 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     disabled,
     loading,
@@ -113,7 +113,7 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
     loadingPosition,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <LoadingButtonRoot
@@ -121,10 +121,10 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
       ref={ref}
       {...other}
       classes={classes}
-      styleProps={styleProps}
+      ownerState={ownerState}
     >
       {loading && (
-        <LoadingButtonLoadingIndicator className={classes.loadingIndicator} styleProps={styleProps}>
+        <LoadingButtonLoadingIndicator className={classes.loadingIndicator} ownerState={ownerState}>
           {loadingIndicator}
         </LoadingButtonLoadingIndicator>
       )}

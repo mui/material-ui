@@ -15,7 +15,7 @@ const RadioButtonIconBackground = styled(RadioButtonUncheckedIcon, { skipSx: tru
 });
 
 const RadioButtonIconDot = styled(RadioButtonCheckedIcon, { skipSx: true })(
-  ({ theme, styleProps }) => ({
+  ({ theme, ownerState }) => ({
     left: 0,
     position: 'absolute',
     transform: 'scale(0)',
@@ -23,7 +23,7 @@ const RadioButtonIconDot = styled(RadioButtonCheckedIcon, { skipSx: true })(
       easing: theme.transitions.easing.easeIn,
       duration: theme.transitions.duration.shortest,
     }),
-    ...(styleProps.checked && {
+    ...(ownerState.checked && {
       transform: 'scale(1)',
       transition: theme.transitions.create('transform', {
         easing: theme.transitions.easing.easeOut,
@@ -39,16 +39,16 @@ const RadioButtonIconDot = styled(RadioButtonCheckedIcon, { skipSx: true })(
 function RadioButtonIcon(props) {
   const { checked = false, classes = {}, fontSize } = props;
 
-  const styleProps = { ...props, checked };
+  const ownerState = { ...props, checked };
 
   return (
-    <RadioButtonIconRoot className={classes.root} styleProps={styleProps}>
+    <RadioButtonIconRoot className={classes.root} ownerState={ownerState}>
       <RadioButtonIconBackground
         fontSize={fontSize}
         className={classes.background}
-        styleProps={styleProps}
+        ownerState={ownerState}
       />
-      <RadioButtonIconDot fontSize={fontSize} className={classes.dot} styleProps={styleProps} />
+      <RadioButtonIconDot fontSize={fontSize} className={classes.dot} ownerState={ownerState} />
     </RadioButtonIconRoot>
   );
 }

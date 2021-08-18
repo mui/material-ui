@@ -7,9 +7,9 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getDividerUtilityClass } from './dividerClasses';
 
-const useUtilityClasses = (styleProps) => {
+const useUtilityClasses = (ownerState) => {
   const { absolute, children, classes, flexItem, light, orientation, textAlign, variant } =
-    styleProps;
+    ownerState;
 
   const slots = {
     root: [
@@ -34,67 +34,67 @@ const DividerRoot = styled('div', {
   name: 'MuiDivider',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.root,
-      styleProps.absolute && styles.absolute,
-      styles[styleProps.variant],
-      styleProps.light && styles.light,
-      styleProps.orientation === 'vertical' && styles.vertical,
-      styleProps.flexItem && styles.flexItem,
-      styleProps.children && styles.withChildren,
-      styleProps.children && styleProps.orientation === 'vertical' && styles.withChildrenVertical,
-      styleProps.textAlign === 'right' &&
-        styleProps.orientation !== 'vertical' &&
+      ownerState.absolute && styles.absolute,
+      styles[ownerState.variant],
+      ownerState.light && styles.light,
+      ownerState.orientation === 'vertical' && styles.vertical,
+      ownerState.flexItem && styles.flexItem,
+      ownerState.children && styles.withChildren,
+      ownerState.children && ownerState.orientation === 'vertical' && styles.withChildrenVertical,
+      ownerState.textAlign === 'right' &&
+        ownerState.orientation !== 'vertical' &&
         styles.textAlignRight,
-      styleProps.textAlign === 'left' &&
-        styleProps.orientation !== 'vertical' &&
+      ownerState.textAlign === 'left' &&
+        ownerState.orientation !== 'vertical' &&
         styles.textAlignLeft,
     ];
   },
 })(
-  ({ theme, styleProps }) => ({
+  ({ theme, ownerState }) => ({
     margin: 0, // Reset browser default style.
     flexShrink: 0,
     borderWidth: 0,
     borderStyle: 'solid',
     borderColor: theme.palette.divider,
     borderBottomWidth: 'thin',
-    ...(styleProps.absolute && {
+    ...(ownerState.absolute && {
       position: 'absolute',
       bottom: 0,
       left: 0,
       width: '100%',
     }),
-    ...(styleProps.light && {
+    ...(ownerState.light && {
       borderColor: alpha(theme.palette.divider, 0.08),
     }),
-    ...(styleProps.variant === 'inset' && {
+    ...(ownerState.variant === 'inset' && {
       marginLeft: 72,
     }),
-    ...(styleProps.variant === 'middle' &&
-      styleProps.orientation === 'horizontal' && {
+    ...(ownerState.variant === 'middle' &&
+      ownerState.orientation === 'horizontal' && {
         marginLeft: theme.spacing(2),
         marginRight: theme.spacing(2),
       }),
-    ...(styleProps.variant === 'middle' &&
-      styleProps.orientation === 'vertical' && {
+    ...(ownerState.variant === 'middle' &&
+      ownerState.orientation === 'vertical' && {
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1),
       }),
-    ...(styleProps.orientation === 'vertical' && {
+    ...(ownerState.orientation === 'vertical' && {
       height: '100%',
       borderBottomWidth: 0,
       borderRightWidth: 'thin',
     }),
-    ...(styleProps.flexItem && {
+    ...(ownerState.flexItem && {
       alignSelf: 'stretch',
       height: 'auto',
     }),
   }),
-  ({ theme, styleProps }) => ({
-    ...(styleProps.children && {
+  ({ theme, ownerState }) => ({
+    ...(ownerState.children && {
       display: 'flex',
       whiteSpace: 'nowrap',
       textAlign: 'center',
@@ -109,9 +109,9 @@ const DividerRoot = styled('div', {
       },
     }),
   }),
-  ({ theme, styleProps }) => ({
-    ...(styleProps.children &&
-      styleProps.orientation === 'vertical' && {
+  ({ theme, ownerState }) => ({
+    ...(ownerState.children &&
+      ownerState.orientation === 'vertical' && {
         flexDirection: 'column',
         '&::before, &::after': {
           height: '100%',
@@ -123,9 +123,9 @@ const DividerRoot = styled('div', {
         },
       }),
   }),
-  ({ styleProps }) => ({
-    ...(styleProps.textAlign === 'right' &&
-      styleProps.orientation !== 'vertical' && {
+  ({ ownerState }) => ({
+    ...(ownerState.textAlign === 'right' &&
+      ownerState.orientation !== 'vertical' && {
         '&::before': {
           width: '90%',
         },
@@ -133,8 +133,8 @@ const DividerRoot = styled('div', {
           width: '10%',
         },
       }),
-    ...(styleProps.textAlign === 'left' &&
-      styleProps.orientation !== 'vertical' && {
+    ...(ownerState.textAlign === 'left' &&
+      ownerState.orientation !== 'vertical' && {
         '&::before': {
           width: '10%',
         },
@@ -149,15 +149,15 @@ const DividerWrapper = styled('span', {
   name: 'MuiDivider',
   slot: 'Wrapper',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
-    return [styles.wrapper, styleProps.orientation === 'vertical' && styles.wrapperVertical];
+    return [styles.wrapper, ownerState.orientation === 'vertical' && styles.wrapperVertical];
   },
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   display: 'inline-block',
   paddingLeft: theme.spacing(1.2),
   paddingRight: theme.spacing(1.2),
-  ...(styleProps.orientation === 'vertical' && {
+  ...(ownerState.orientation === 'vertical' && {
     paddingTop: theme.spacing(1.2),
     paddingBottom: theme.spacing(1.2),
   }),
@@ -179,7 +179,7 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     absolute,
     component,
@@ -191,7 +191,7 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <DividerRoot
@@ -199,11 +199,11 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
       className={clsx(classes.root, className)}
       role={role}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       {children ? (
-        <DividerWrapper className={classes.wrapper} styleProps={styleProps}>
+        <DividerWrapper className={classes.wrapper} ownerState={ownerState}>
           {children}
         </DividerWrapper>
       ) : null}

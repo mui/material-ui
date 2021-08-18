@@ -37,8 +37,8 @@ export const clockPickerClasses: ClockPickerClasses = generateUtilityClasses('Mu
   'arrowSwitcher',
 ]);
 
-const useUtilityClasses = (styleProps: ClockPickerProps<any>) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState: ClockPickerProps<any>) => {
+  const { classes } = ownerState;
   const slots = {
     arrowSwitcher: ['arrowSwitcher'],
   };
@@ -153,7 +153,7 @@ const ClockPickerArrowSwitcher = styled(PickersArrowSwitcher, {
   name: 'MuiClockPicker',
   slot: 'ArrowSwticher',
   overridesResolver: (props, styles) => styles.arrowSwitcher,
-})<{ styleProps: ClockPickerProps<any> }>({
+})<{ ownerState: ClockPickerProps<any> }>({
   position: 'absolute',
   right: 12,
   top: 15,
@@ -365,8 +365,8 @@ function ClockPicker<TDate>(inProps: ClockPickerProps<TDate>) {
     selectedId,
   ]);
 
-  const styleProps = props;
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = props;
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <React.Fragment>
@@ -381,7 +381,7 @@ function ClockPicker<TDate>(inProps: ClockPickerProps<TDate>) {
           onRightClick={openNextView}
           isLeftDisabled={previousViewAvailable}
           isRightDisabled={nextViewAvailable}
-          styleProps={styleProps}
+          ownerState={ownerState}
         />
       )}
 

@@ -6,8 +6,8 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import { getTabPanelUtilityClass } from './tabPanelClasses';
 import { getPanelId, getTabId, useTabContext } from '../TabContext';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -29,11 +29,11 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
 
   const { children, className, value, ...other } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const context = useTabContext();
   if (context === null) {
@@ -50,7 +50,7 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
       id={id}
       ref={ref}
       role="tabpanel"
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       {value === context.value && children}

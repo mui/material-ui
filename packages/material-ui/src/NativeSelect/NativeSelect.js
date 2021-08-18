@@ -10,8 +10,8 @@ import Input from '../Input';
 import useThemeProps from '../styles/useThemeProps';
 import { getNativeSelectUtilityClasses } from './nativeSelectClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -44,8 +44,8 @@ const NativeSelect = React.forwardRef(function NativeSelect(inProps, ref) {
     states: ['variant'],
   });
 
-  const styleProps = { ...props, classes: classesProp };
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = { ...props, classes: classesProp };
+  const classes = useUtilityClasses(ownerState);
   const { root, ...otherClasses } = classesProp;
 
   return React.cloneElement(input, {

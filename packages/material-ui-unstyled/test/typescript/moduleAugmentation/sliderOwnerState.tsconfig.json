@@ -1,4 +1,4 @@
 {
   "extends": "../../../../../tsconfig",
-  "files": ["sliderStyleProps.spec.tsx"]
+  "files": ["sliderOwnerState.spec.tsx"]
 }

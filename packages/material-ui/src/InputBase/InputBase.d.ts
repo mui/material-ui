@@ -59,14 +59,14 @@ export interface InputBaseProps
   componentsProps?: {
     root?: {
       as: React.ElementType;
-      styleProps?: Omit<InputBaseProps, 'components' | 'componentsProps'> & {
+      ownerState?: Omit<InputBaseProps, 'components' | 'componentsProps'> & {
         hiddenLabel?: boolean;
         focused?: boolean;
       };
     };
     input?: {
       as?: React.ElementType;
-      styleProps?: Omit<InputBaseProps, 'components' | 'componentsProps'> & {
+      ownerState?: Omit<InputBaseProps, 'components' | 'componentsProps'> & {
         hiddenLabel?: boolean;
         focused?: boolean;
       };

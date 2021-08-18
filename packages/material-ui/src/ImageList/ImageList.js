@@ -8,8 +8,8 @@ import useThemeProps from '../styles/useThemeProps';
 import { getImageListUtilityClass } from './imageListClasses';
 import ImageListContext from './ImageListContext';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, variant } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, variant } = ownerState;
 
   const slots = {
     root: ['root', variant],
@@ -22,11 +22,11 @@ const ImageListRoot = styled('ul', {
   name: 'MuiImageList',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
-    return [styles.root, styles[styleProps.variant]];
+    return [styles.root, styles[ownerState.variant]];
   },
-})(({ styleProps }) => {
+})(({ ownerState }) => {
   return {
     display: 'grid',
     overflowY: 'auto',
@@ -34,7 +34,7 @@ const ImageListRoot = styled('ul', {
     padding: 0,
     // Add iOS momentum scrolling for iOS < 13.0
     WebkitOverflowScrolling: 'touch',
-    ...(styleProps.variant === 'masonry' && {
+    ...(ownerState.variant === 'masonry' && {
       display: 'block',
     }),
   };
@@ -82,9 +82,9 @@ const ImageList = React.forwardRef(function ImageList(inProps, ref) {
       ? { columnCount: cols, columnGap: gap, ...styleProp }
       : { gridTemplateColumns: `repeat(${cols}, 1fr)`, gap, ...styleProp };
 
-  const styleProps = { ...props, component, gap, rowHeight, variant };
+  const ownerState = { ...props, component, gap, rowHeight, variant };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <ImageListRoot
@@ -92,7 +92,7 @@ const ImageList = React.forwardRef(function ImageList(inProps, ref) {
       className={clsx(classes.root, classes[variant], className)}
       ref={ref}
       style={style}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       <ImageListContext.Provider value={contextValue}>{children}</ImageListContext.Provider>

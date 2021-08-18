@@ -13,8 +13,8 @@ import TreeViewContext from './TreeViewContext';
 import { DescendantProvider } from './descendants';
 import { getTreeViewUtilityClass } from './treeViewClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -83,7 +83,7 @@ const TreeView = React.forwardRef(function TreeView(inProps, ref) {
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     defaultExpanded,
     defaultSelected,
@@ -92,7 +92,7 @@ const TreeView = React.forwardRef(function TreeView(inProps, ref) {
     multiSelect,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const treeId = useId(idProp);
 
@@ -820,7 +820,7 @@ const TreeView = React.forwardRef(function TreeView(inProps, ref) {
           onKeyDown={handleKeyDown}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          styleProps={styleProps}
+          ownerState={ownerState}
           {...other}
         >
           {children}

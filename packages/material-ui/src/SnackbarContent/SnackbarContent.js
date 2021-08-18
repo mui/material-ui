@@ -8,8 +8,8 @@ import useThemeProps from '../styles/useThemeProps';
 import Paper from '../Paper';
 import { getSnackbarContentUtilityClass } from './snackbarContentClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -68,8 +68,8 @@ const SnackbarContentAction = styled('div', {
 const SnackbarContent = React.forwardRef(function SnackbarContent(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiSnackbarContent' });
   const { action, className, message, role = 'alert', ...other } = props;
-  const styleProps = props;
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = props;
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <SnackbarContentRoot
@@ -77,15 +77,15 @@ const SnackbarContent = React.forwardRef(function SnackbarContent(inProps, ref) 
       square
       elevation={6}
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       {...other}
     >
-      <SnackbarContentMessage className={classes.message} styleProps={styleProps}>
+      <SnackbarContentMessage className={classes.message} ownerState={ownerState}>
         {message}
       </SnackbarContentMessage>
       {action ? (
-        <SnackbarContentAction className={classes.action} styleProps={styleProps}>
+        <SnackbarContentAction className={classes.action} ownerState={ownerState}>
           {action}
         </SnackbarContentAction>
       ) : null}
