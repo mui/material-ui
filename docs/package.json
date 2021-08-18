@@ -32,8 +32,6 @@
     "@fortawesome/react-fontawesome": "^0.1.15",
     "@material-ui/core": "5.0.0-beta.4",
     "@material-ui/data-grid": "^4.0.0-alpha.37",
-    "@material-ui/x-grid": "^4.0.0-alpha.37",
-    "@material-ui/x-grid-data-generator": "^4.0.0-alpha.37",
     "@material-ui/docs": "5.0.0-beta.4",
     "@material-ui/icons": "5.0.0-beta.4",
     "@material-ui/lab": "5.0.0-alpha.43",
