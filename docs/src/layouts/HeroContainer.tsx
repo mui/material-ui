@@ -38,6 +38,7 @@ export default function HeroContainer({
             sx={{ maxHeight: '100%', display: { xs: 'none', md: 'initial' } }}
           >
             <Box
+              id="hero-container-right-area"
               aria-hidden="true"
               sx={{
                 bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
