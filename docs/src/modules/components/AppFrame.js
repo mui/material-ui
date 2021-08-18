@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { styled, alpha } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import NProgress from 'nprogress';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MuiLink from '@material-ui/core/Link';
@@ -128,17 +128,16 @@ const StyledAppBar = styled(AppBar, {
     boxShadow: `inset 0px -1px 1px ${
       theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100]
     }`,
-    backgroundColor:
-      theme.palette.mode === 'dark'
-        ? theme.palette.primaryDark[900]
-        : 'white',
+    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : 'white',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
     '& .MuiIconButton-root': {
-      border: `1px solid ${theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : '#E5E8EC'}`,
+      border: `1px solid ${
+        theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : '#E5E8EC'
+      }`,
       borderRadius: theme.shape.borderRadius,
       color: theme.palette.mode === 'dark' ? '#FFF' : theme.palette.primary[500],
       backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#FFF',
-    }
+    },
   };
 });
 
@@ -242,82 +241,82 @@ function AppFrame(props) {
           </NavIconButton>
           <GrowingDiv />
           <Stack direction="row" gap={2}>
-          <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
-            <Button
-              color="inherit"
-              aria-owns={languageMenu ? 'language-menu' : undefined}
-              aria-haspopup="true"
-              onClick={handleLanguageIconClick}
-              data-ga-event-category="header"
-              data-ga-event-action="language"
-            >
-              <LanguageSpan>
-                {LANGUAGES_LABEL.filter((language) => language.code === userLanguage)[0].text}
-              </LanguageSpan>
-              <ExpandMoreIcon fontSize="small" />
-            </Button>
-          </Tooltip>
-          <NoSsr defer>
-            <Menu
-              id="language-menu"
-              anchorEl={languageMenu}
-              open={Boolean(languageMenu)}
-              onClose={handleLanguageMenuClose}
-            >
-              {LANGUAGES_LABEL.map((language) => (
+            <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
+              <Button
+                color="inherit"
+                aria-owns={languageMenu ? 'language-menu' : undefined}
+                aria-haspopup="true"
+                onClick={handleLanguageIconClick}
+                data-ga-event-category="header"
+                data-ga-event-action="language"
+              >
+                <LanguageSpan>
+                  {LANGUAGES_LABEL.filter((language) => language.code === userLanguage)[0].text}
+                </LanguageSpan>
+                <ExpandMoreIcon fontSize="small" />
+              </Button>
+            </Tooltip>
+            <NoSsr defer>
+              <Menu
+                id="language-menu"
+                anchorEl={languageMenu}
+                open={Boolean(languageMenu)}
+                onClose={handleLanguageMenuClose}
+              >
+                {LANGUAGES_LABEL.map((language) => (
+                  <MenuItem
+                    component="a"
+                    data-no-link="true"
+                    href={language.code === 'en' ? canonical : `/${language.code}${canonical}`}
+                    key={language.code}
+                    selected={userLanguage === language.code}
+                    onClick={handleLanguageMenuClose}
+                    lang={language.code}
+                    hrefLang={language.code}
+                  >
+                    {language.text}
+                  </MenuItem>
+                ))}
+                <Box sx={{ my: 1 }}>
+                  <Divider />
+                </Box>
                 <MenuItem
                   component="a"
                   data-no-link="true"
-                  href={language.code === 'en' ? canonical : `/${language.code}${canonical}`}
-                  key={language.code}
-                  selected={userLanguage === language.code}
+                  href={
+                    userLanguage === 'en'
+                      ? `${CROWDIN_ROOT_URL}`
+                      : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging`
+                  }
+                  rel="noopener nofollow"
+                  target="_blank"
+                  key={userLanguage}
+                  lang={userLanguage}
+                  hrefLang="en"
                   onClick={handleLanguageMenuClose}
-                  lang={language.code}
-                  hrefLang={language.code}
                 >
-                  {language.text}
+                  {t('appFrame.helpToTranslate')}
                 </MenuItem>
-              ))}
-              <Box sx={{ my: 1 }}>
-                <Divider />
-              </Box>
-              <MenuItem
+              </Menu>
+            </NoSsr>
+            <DeferredAppSearch />
+            <Tooltip title={t('appFrame.github')} enterDelay={300}>
+              <IconButton
                 component="a"
-                data-no-link="true"
-                href={
-                  userLanguage === 'en'
-                    ? `${CROWDIN_ROOT_URL}`
-                    : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging`
-                }
-                rel="noopener nofollow"
-                target="_blank"
-                key={userLanguage}
-                lang={userLanguage}
-                hrefLang="en"
-                onClick={handleLanguageMenuClose}
+                color="inherit"
+                href={process.env.SOURCE_CODE_REPO}
+                data-ga-event-category="header"
+                data-ga-event-action="github"
               >
-                {t('appFrame.helpToTranslate')}
-              </MenuItem>
-            </Menu>
-          </NoSsr>
-          <DeferredAppSearch />
-          <Tooltip title={t('appFrame.github')} enterDelay={300}>
-            <IconButton
-              component="a"
-              color="inherit"
-              href={process.env.SOURCE_CODE_REPO}
-              data-ga-event-category="header"
-              data-ga-event-action="github"
-            >
-              <GitHubIcon />
-            </IconButton>
-          </Tooltip>
-          <Notifications />
-          <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-            <IconButton color="inherit" onClick={handleSettingsDrawerOpen}>
-              <SettingsIcon />
-            </IconButton>
-          </Tooltip>
+                <GitHubIcon />
+              </IconButton>
+            </Tooltip>
+            <Notifications />
+            <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
+              <IconButton color="inherit" onClick={handleSettingsDrawerOpen}>
+                <SettingsIcon />
+              </IconButton>
+            </Tooltip>
           </Stack>
         </Toolbar>
       </StyledAppBar>
