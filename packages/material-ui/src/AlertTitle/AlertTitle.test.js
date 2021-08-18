@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import AlertTitle, { alertTitleClasses as classes } from '@material-ui/core/AlertTitle';
 
 describe('<AlertTitle />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<AlertTitle />, () => ({
+  describeConformance(<AlertTitle />, () => ({
     classes,
     inheritComponent: 'div',
     render,

@@ -41,26 +41,30 @@ const TimelineDotRoot = styled('span', {
   margin: '11.5px 0',
   ...(styleProps.variant === 'filled' && {
     borderColor: 'transparent',
-    ...(styleProps.color === 'grey'
-      ? {
-          color: theme.palette.grey[50],
-          backgroundColor: theme.palette.grey[400],
-        }
-      : {
-          color: theme.palette[styleProps.color].contrastText,
-          backgroundColor: theme.palette[styleProps.color].main,
-        }),
+    ...(styleProps.color !== 'inherit' && {
+      ...(styleProps.color === 'grey'
+        ? {
+            color: theme.palette.grey[50],
+            backgroundColor: theme.palette.grey[400],
+          }
+        : {
+            color: theme.palette[styleProps.color].contrastText,
+            backgroundColor: theme.palette[styleProps.color].main,
+          }),
+    }),
   }),
   ...(styleProps.variant === 'outlined' && {
     boxShadow: 'none',
     backgroundColor: 'transparent',
-    ...(styleProps.color === 'grey'
-      ? {
-          borderColor: theme.palette.grey[400],
-        }
-      : {
-          borderColor: theme.palette[styleProps.color].main,
-        }),
+    ...(styleProps.color !== 'inherit' && {
+      ...(styleProps.color === 'grey'
+        ? {
+            borderColor: theme.palette.grey[400],
+          }
+        : {
+            borderColor: theme.palette[styleProps.color].main,
+          }),
+    }),
   }),
 }));
 

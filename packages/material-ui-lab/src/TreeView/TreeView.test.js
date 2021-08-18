@@ -7,7 +7,7 @@ import {
   ErrorBoundary,
   fireEvent,
   screen,
-  describeConformanceV5,
+  describeConformance,
 } from 'test/utils';
 import Portal from '@material-ui/core/Portal';
 import TreeView, { treeViewClasses as classes } from '@material-ui/lab/TreeView';
@@ -16,7 +16,7 @@ import TreeItem from '@material-ui/lab/TreeItem';
 describe('<TreeView />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<TreeView />, () => ({
+  describeConformance(<TreeView />, () => ({
     classes,
     inheritComponent: 'ul',
     render,

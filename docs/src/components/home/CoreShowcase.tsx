@@ -199,6 +199,7 @@ export default function CoreShowcase() {
   }
   return (
     <ShowcaseContainer
+      sx={{ mt: 2 }}
       previewSx={{
         minHeight: 220,
         pb: 4,
@@ -214,7 +215,7 @@ export default function CoreShowcase() {
               bottom: 0,
               left: '50%',
               transform: 'translate(-50%)',
-              bgcolor: mode === 'dark' ? 'primaryDark.600' : 'grey.300',
+              bgcolor: mode === 'dark' ? 'primaryDark.600' : 'grey.200',
               width: '100%',
             }}
           >
@@ -225,7 +226,7 @@ export default function CoreShowcase() {
               noWrap
               sx={{ opacity: 0.7 }}
             >
-              <TouchAppRounded sx={{ fontSize: 16, verticalAlign: 'text-bottom' }} /> Hover the
+              <TouchAppRounded sx={{ fontSize: 14, verticalAlign: 'text-bottom' }} /> Hover the
               component for highlighting the code.
             </Typography>
           </Box>

@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { stub, spy } from 'sinon';
-import { act, describeConformanceV5, createClientRender, fireEvent, screen } from 'test/utils';
+import { act, describeConformance, createClientRender, fireEvent, screen } from 'test/utils';
 import Rating, { ratingClasses as classes } from '@material-ui/core/Rating';
 
 describe('<Rating />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<Rating />, () => ({
+  describeConformance(<Rating />, () => ({
     classes,
     inheritComponent: 'span',
     render,

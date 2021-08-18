@@ -23,7 +23,13 @@ describe('<MenuList />', () => {
     classes: {},
     inheritComponent: List,
     refInstanceof: window.HTMLUListElement,
-    skip: ['componentProp'],
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'themeDefaultProps',
+      'themeStyleOverrides',
+      'themeVariants',
+    ],
   }));
 
   describe('prop: children', () => {

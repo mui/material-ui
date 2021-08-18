@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import {
-  describeConformanceV5,
+  describeConformance,
   act,
   createClientRender,
   fireEvent,
@@ -13,7 +13,7 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 describe('<Button />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<Button startIcon="icon">Conformance?</Button>, () => ({
+  describeConformance(<Button startIcon="icon">Conformance?</Button>, () => ({
     classes,
     inheritComponent: ButtonBase,
     render,

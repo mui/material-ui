@@ -3,7 +3,7 @@ import { Theme } from '@material-ui/core/styles';
 import { withStyles, WithStyles } from '@material-ui/styles';
 import MuiTypography, { TypographyProps } from '@material-ui/core/Typography';
 
-const markSyleMapping: {
+const markStyleMapping: {
   [index: string]: { [subindex: string]: string };
 } = {
   center: {
@@ -33,28 +33,28 @@ const markSyleMapping: {
 };
 
 const styles = (theme: Theme) => ({
-  [markSyleMapping.center.h2]: {
+  [markStyleMapping.center.h2]: {
     height: 4,
     width: 73,
     display: 'block',
     margin: `${theme.spacing(1)} auto 0`,
     backgroundColor: theme.palette.secondary.main,
   },
-  [markSyleMapping.center.h3]: {
+  [markStyleMapping.center.h3]: {
     height: 4,
     width: 55,
     display: 'block',
     margin: `${theme.spacing(1)} auto 0`,
     backgroundColor: theme.palette.secondary.main,
   },
-  [markSyleMapping.center.h4]: {
+  [markStyleMapping.center.h4]: {
     height: 4,
     width: 55,
     display: 'block',
     margin: `${theme.spacing(1)} auto 0`,
     backgroundColor: theme.palette.secondary.main,
   },
-  [markSyleMapping.left.h6]: {
+  [markStyleMapping.left.h6]: {
     height: 2,
     width: 28,
     display: 'block',
@@ -85,8 +85,8 @@ function Typography<C extends React.ElementType>(
   const { children, variant, classes, marked = 'none', ...other } = props;
 
   let markedClassName = '';
-  if (variant && variant in markSyleMapping[marked]) {
-    markedClassName = classes[markSyleMapping[marked][variant]];
+  if (variant && variant in markStyleMapping[marked]) {
+    markedClassName = classes[markStyleMapping[marked][variant]];
   }
 
   return (

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformanceV5, act, createClientRender } from 'test/utils';
+import { describeConformance, act, createClientRender } from 'test/utils';
 import Checkbox, { checkboxClasses as classes } from '@material-ui/core/Checkbox';
 import FormControl from '@material-ui/core/FormControl';
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -9,7 +9,7 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 describe('<Checkbox />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<Checkbox checked />, () => ({
+  describeConformance(<Checkbox checked />, () => ({
     classes,
     inheritComponent: ButtonBase,
     render,

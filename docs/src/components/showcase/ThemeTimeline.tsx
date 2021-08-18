@@ -24,7 +24,6 @@ const primary = {
   900: '#003A75',
   1000: '#132F4C',
 };
-
 const primaryDark = {
   50: '#E2EDF8',
   100: '#CEE0F3',
@@ -37,7 +36,6 @@ const primaryDark = {
   800: '#001E3C',
   900: '#0A1929',
 };
-
 const grey = {
   50: '#F3F6F9',
   100: '#EAEEF3',
@@ -88,9 +86,7 @@ export default function BasicTimeline() {
         },
         spacing: 10,
         typography: {
-          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(
-            ',',
-          ),
+          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(','),
           fontWeightRegular: 500,
         },
         components: {
@@ -134,13 +130,9 @@ export default function BasicTimeline() {
       }),
     [mode],
   );
-
   return (
     <ThemeProvider theme={theme}>
-      <Card
-        variant="outlined"
-        sx={{ p: 2, display: 'flex', alignItems: 'flex-start' }}
-      >
+      <Card variant="outlined" sx={{ p: 2, display: 'flex', alignItems: 'flex-start' }}>
         <Box
           sx={{
             p: 0.5,

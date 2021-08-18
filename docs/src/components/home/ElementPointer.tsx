@@ -3,9 +3,7 @@ import Box, { BoxProps } from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { debounce } from '@material-ui/core/utils';
 
-const PointerContext = React.createContext<undefined | React.Dispatch<React.SetStateAction<Data>>>(
-  undefined,
-);
+const PointerContext = React.createContext<undefined | ((data: Data) => void)>(undefined);
 
 export const withPointer = <T extends React.ElementType>(
   Component: T,
@@ -13,7 +11,7 @@ export const withPointer = <T extends React.ElementType>(
 ) => {
   const WithPointer = (props: unknown) => {
     const root = React.useRef<null | HTMLElement>(null);
-    const setData = React.useContext(PointerContext);
+    const handleMouseOver = React.useContext(PointerContext);
     return (
       <React.Fragment>
         {/* @ts-ignore */}
@@ -22,8 +20,8 @@ export const withPointer = <T extends React.ElementType>(
           {...props}
           onMouseOver={(event: React.MouseEvent) => {
             event.stopPropagation();
-            if (setData && root.current) {
-              setData({
+            if (handleMouseOver && root.current) {
+              handleMouseOver({
                 id: options.id,
                 target: root.current,
                 name: options.name,
@@ -50,16 +48,22 @@ export default function PointerContainer({
     name: null,
     target: null,
   });
-  const debouncedSetData = React.useRef(debounce(setData, 200));
+  /* eslint-disable react-hooks/exhaustive-deps */
+  const handleMouseOver = React.useCallback(
+    debounce((elementData: Data) => {
+      setData(elementData);
+    }, 200),
+    [],
+  );
   React.useEffect(() => {
     if (onElementChange) onElementChange(data);
   }, [data, onElementChange]);
   return (
-    <PointerContext.Provider value={debouncedSetData.current}>
+    <PointerContext.Provider value={handleMouseOver}>
       <Box
         ref={container}
         {...props}
-        onMouseLeave={() => debouncedSetData.current({ id: null, name: null, target: null })}
+        onMouseLeave={() => handleMouseOver({ id: null, name: null, target: null })}
         sx={{ position: 'relative', ...props.sx }}
       >
         {props.children}

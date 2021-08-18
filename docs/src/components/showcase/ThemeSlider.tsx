@@ -15,7 +15,6 @@ const primary = {
   800: '#004C99',
   900: '#003A75',
 };
-
 const primaryDark = {
   50: '#E2EDF8',
   100: '#CEE0F3',
@@ -28,7 +27,6 @@ const primaryDark = {
   800: '#001E3C',
   900: '#0A1929',
 };
-
 const grey = {
   50: '#F3F6F9',
   100: '#EAEEF3',
@@ -42,7 +40,7 @@ const grey = {
   900: '#3D4752',
 };
 
-function valuetext(value) {
+function valuetext(value: number) {
   return `${value}°C`;
 }
 
@@ -66,9 +64,7 @@ export default function ThemeSlider() {
         },
         shape: { borderRadius: 10 },
         typography: {
-          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(
-            ',',
-          ),
+          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(','),
         },
         components: {
           MuiSlider: {
@@ -118,7 +114,6 @@ export default function ThemeSlider() {
       }),
     [mode],
   );
-
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -146,13 +141,7 @@ export default function ThemeSlider() {
             orientation="vertical"
             getAriaValueText={valuetext}
             defaultValue={[25, 50]}
-            marks={[
-              { value: 0 },
-              { value: 25 },
-              { value: 50 },
-              { value: 75 },
-              { value: 100 },
-            ]}
+            marks={[{ value: 0 }, { value: 25 }, { value: 50 }, { value: 75 }, { value: 100 }]}
             valueLabelFormat={valuetext}
             valueLabelDisplay="on"
           />

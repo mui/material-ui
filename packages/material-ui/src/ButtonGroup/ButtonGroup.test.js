@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import ButtonGroup, { buttonGroupClasses as classes } from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
 
 describe('<ButtonGroup />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(
+  describeConformance(
     <ButtonGroup>
       <Button>Conformance?</Button>
     </ButtonGroup>,

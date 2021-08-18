@@ -3,12 +3,6 @@ import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
 import ToggleButton from '@material-ui/core/ToggleButton';
 import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
 
-import ViewQuiltRounded from '@material-ui/icons/ViewQuiltRounded';
-import ViewModuleRounded from '@material-ui/icons/ViewModuleRounded';
-import ViewAgendaRounded from '@material-ui/icons/ViewAgendaRounded';
-import ViewWeekRounded from '@material-ui/icons/ViewWeekRounded';
-import ViewSidebarRounded from '@material-ui/icons/ViewSidebarRounded';
-
 const primary = {
   50: '#F0F7FF',
   100: '#C2E0FF',
@@ -46,20 +40,8 @@ const grey = {
   900: '#3D4752',
 };
 
-const views = ['quilt', 'module', 'agenda', 'week', 'sidebar'] as const;
-
-type View = typeof views[number];
-
-const viewIcons: Record<View, React.ReactElement> = {
-  quilt: <ViewQuiltRounded />,
-  module: <ViewModuleRounded />,
-  agenda: <ViewAgendaRounded />,
-  week: <ViewWeekRounded />,
-  sidebar: <ViewSidebarRounded />,
-};
-
-export default function ViewToggleButton() {
-  const [view, setView] = React.useState<View>('quilt');
+export default function ThemeToggleButton() {
+  const [lang, setLang] = React.useState('javascript');
   /*
    * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
    *
@@ -79,9 +61,7 @@ export default function ViewToggleButton() {
           grey,
         },
         typography: {
-          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(
-            ',',
-          ),
+          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(','),
         },
         shape: {
           borderRadius: 10,
@@ -102,9 +82,14 @@ export default function ViewToggleButton() {
           MuiToggleButton: {
             styleOverrides: {
               root: {
-                color: mode === 'dark' ? '#fff' : grey[400],
+                textTransform: 'none',
+                fontWeight: 600,
+                color: grey[700],
+                borderColor: mode === 'dark' ? primaryDark[500] : grey[200],
                 '&.Mui-selected': {
-                  color: mode === 'dark' ? primary[300] : primary[500],
+                  borderColor: `${primary[500]} !important`,
+                  color: mode === 'dark' ? '#fff' : primary[500],
+                  backgroundColor: mode === 'dark' ? primary[800] : primaryDark[50],
                 },
               },
             },
@@ -117,18 +102,16 @@ export default function ViewToggleButton() {
   return (
     <ThemeProvider theme={theme}>
       <ToggleButtonGroup
-        size="small"
+        fullWidth
         color="primary"
-        value={view}
+        value={lang}
         exclusive
-        onChange={(event, value) => setView(value)}
-        aria-label="view"
+        onChange={(event, value) => setLang(value)}
+        aria-label="language"
       >
-        {views.map((item) => (
-          <ToggleButton key={item} value={item} aria-label={item}>
-            {viewIcons[item]}
-          </ToggleButton>
-        ))}
+        <ToggleButton value="javascript">Javascript</ToggleButton>
+        <ToggleButton value="html">HTML</ToggleButton>
+        <ToggleButton value="css">CSS</ToggleButton>
       </ToggleButtonGroup>
     </ThemeProvider>
   );

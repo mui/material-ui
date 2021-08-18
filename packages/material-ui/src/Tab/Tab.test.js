@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
+import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
 import Tab, { tabClasses as classes } from '@material-ui/core/Tab';
 import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<Tab />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<Tab textColor="inherit" />, () => ({
+  describeConformance(<Tab textColor="inherit" />, () => ({
     classes,
     inheritComponent: ButtonBase,
     render,

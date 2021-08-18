@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import {
-  describeConformanceV5,
+  describeConformance,
   ErrorBoundary,
   act,
   createClientRender,
@@ -32,7 +32,7 @@ describe('<Select />', () => {
 
   const render = createClientRender();
 
-  describeConformanceV5(<Select value="" />, () => ({
+  describeConformance(<Select value="" />, () => ({
     classes,
     inheritComponent: OutlinedInput,
     render,
