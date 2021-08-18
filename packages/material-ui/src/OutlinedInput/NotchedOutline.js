@@ -19,8 +19,8 @@ const NotchedOutlineRoot = styled('fieldset')({
   minWidth: '0%',
 });
 
-const NotchedOutlineLegend = styled('legend', { skipSx: true })(({ styleProps, theme }) => ({
-  ...(styleProps.label === undefined && {
+const NotchedOutlineLegend = styled('legend', { skipSx: true })(({ ownerState, theme }) => ({
+  ...(ownerState.label === undefined && {
     padding: 0,
     lineHeight: '11px', // sync with `height` in `legend` styles
     transition: theme.transitions.create('width', {
@@ -28,7 +28,7 @@ const NotchedOutlineLegend = styled('legend', { skipSx: true })(({ styleProps, t
       easing: theme.transitions.easing.easeOut,
     }),
   }),
-  ...(styleProps.label !== undefined && {
+  ...(ownerState.label !== undefined && {
     display: 'block',
     width: 'auto',
     padding: 0,
@@ -45,7 +45,7 @@ const NotchedOutlineLegend = styled('legend', { skipSx: true })(({ styleProps, t
       paddingRight: 5,
       display: 'inline-block',
     },
-    ...(styleProps.notched && {
+    ...(ownerState.notched && {
       maxWidth: '100%',
       transition: theme.transitions.create('max-width', {
         duration: 100,
@@ -61,14 +61,14 @@ const NotchedOutlineLegend = styled('legend', { skipSx: true })(({ styleProps, t
  */
 export default function NotchedOutline(props) {
   const { children, classes, className, label, notched, ...other } = props;
-  const styleProps = {
+  const ownerState = {
     ...props,
     notched,
     label,
   };
   return (
-    <NotchedOutlineRoot aria-hidden className={className} styleProps={styleProps} {...other}>
-      <NotchedOutlineLegend styleProps={styleProps}>
+    <NotchedOutlineRoot aria-hidden className={className} ownerState={ownerState} {...other}>
+      <NotchedOutlineLegend ownerState={ownerState}>
         {/* Use the nominal use case of the legend, avoid rendering artefacts. */}
         {label ? (
           <span>{label}</span>

@@ -7,8 +7,8 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import { getSvgIconUtilityClass } from './svgIconClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { color, fontSize, classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { color, fontSize, classes } = ownerState;
 
   const slots = {
     root: [
@@ -25,15 +25,15 @@ const SvgIconRoot = styled('svg', {
   name: 'MuiSvgIcon',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.root,
-      styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`],
-      styles[`fontSize${capitalize(styleProps.fontSize)}`],
+      ownerState.color !== 'inherit' && styles[`color${capitalize(ownerState.color)}`],
+      styles[`fontSize${capitalize(ownerState.fontSize)}`],
     ];
   },
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   userSelect: 'none',
   width: '1em',
   height: '1em',
@@ -48,7 +48,7 @@ const SvgIconRoot = styled('svg', {
     small: theme.typography.pxToRem(20),
     medium: theme.typography.pxToRem(24),
     large: theme.typography.pxToRem(35),
-  }[styleProps.fontSize],
+  }[ownerState.fontSize],
   // TODO v5 deprecate, v6 remove for sx
   color: {
     primary: theme.palette.primary.main,
@@ -60,7 +60,7 @@ const SvgIconRoot = styled('svg', {
     error: theme.palette.error.main,
     disabled: theme.palette.action.disabled,
     inherit: undefined,
-  }[styleProps.color],
+  }[ownerState.color],
 }));
 
 const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
@@ -77,7 +77,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     color,
     component,
@@ -85,13 +85,13 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     viewBox,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <SvgIconRoot
       as={component}
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       focusable="false"
       viewBox={viewBox}
       color={htmlColor}

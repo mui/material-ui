@@ -16,21 +16,21 @@ import { listItemButtonClasses } from '../ListItemButton';
 import ListItemSecondaryAction from '../ListItemSecondaryAction';
 
 export const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
+  const { ownerState } = props;
 
   return [
     styles.root,
-    styleProps.dense && styles.dense,
-    styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart,
-    styleProps.divider && styles.divider,
-    !styleProps.disableGutters && styles.gutters,
-    !styleProps.disablePadding && styles.padding,
-    styleProps.button && styles.button,
-    styleProps.hasSecondaryAction && styles.secondaryAction,
+    ownerState.dense && styles.dense,
+    ownerState.alignItems === 'flex-start' && styles.alignItemsFlexStart,
+    ownerState.divider && styles.divider,
+    !ownerState.disableGutters && styles.gutters,
+    !ownerState.disablePadding && styles.padding,
+    ownerState.button && styles.button,
+    ownerState.hasSecondaryAction && styles.secondaryAction,
   ];
 };
 
-const useUtilityClasses = (styleProps) => {
+const useUtilityClasses = (ownerState) => {
   const {
     alignItems,
     button,
@@ -42,7 +42,7 @@ const useUtilityClasses = (styleProps) => {
     divider,
     hasSecondaryAction,
     selected,
-  } = styleProps;
+  } = ownerState;
 
   const slots = {
     root: [
@@ -67,7 +67,7 @@ export const ListItemRoot = styled('div', {
   name: 'MuiListItem',
   slot: 'Root',
   overridesResolver,
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   display: 'flex',
   justifyContent: 'flex-start',
   alignItems: 'center',
@@ -76,24 +76,24 @@ export const ListItemRoot = styled('div', {
   width: '100%',
   boxSizing: 'border-box',
   textAlign: 'left',
-  ...(!styleProps.disablePadding && {
+  ...(!ownerState.disablePadding && {
     paddingTop: 8,
     paddingBottom: 8,
-    ...(styleProps.dense && {
+    ...(ownerState.dense && {
       paddingTop: 4,
       paddingBottom: 4,
     }),
-    ...(!styleProps.disableGutters && {
+    ...(!ownerState.disableGutters && {
       paddingLeft: 16,
       paddingRight: 16,
     }),
-    ...(!!styleProps.secondaryAction && {
+    ...(!!ownerState.secondaryAction && {
       // Add some space to avoid collision as `ListItemSecondaryAction`
       // is absolutely positioned.
       paddingRight: 48,
     }),
   }),
-  ...(!!styleProps.secondaryAction && {
+  ...(!!ownerState.secondaryAction && {
     [`& > .${listItemButtonClasses.root}`]: {
       paddingRight: 48,
     },
@@ -113,14 +113,14 @@ export const ListItemRoot = styled('div', {
   [`&.${listItemClasses.disabled}`]: {
     opacity: theme.palette.action.disabledOpacity,
   },
-  ...(styleProps.alignItems === 'flex-start' && {
+  ...(ownerState.alignItems === 'flex-start' && {
     alignItems: 'flex-start',
   }),
-  ...(styleProps.divider && {
+  ...(ownerState.divider && {
     borderBottom: `1px solid ${theme.palette.divider}`,
     backgroundClip: 'padding-box',
   }),
-  ...(styleProps.button && {
+  ...(ownerState.button && {
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
     }),
@@ -143,7 +143,7 @@ export const ListItemRoot = styled('div', {
       },
     },
   }),
-  ...(styleProps.hasSecondaryAction && {
+  ...(ownerState.hasSecondaryAction && {
     // Add some space to avoid collision as `ListItemSecondaryAction`
     // is absolutely positioned.
     paddingRight: 48,
@@ -211,7 +211,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   const hasSecondaryAction =
     children.length && isMuiElement(children[children.length - 1], ['ListItemSecondaryAction']);
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     alignItems,
     autoFocus,
@@ -225,7 +225,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     selected,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const handleRef = useForkRef(listItemRef, ref);
 
@@ -270,14 +270,14 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
           as={ContainerComponent}
           className={clsx(classes.container, ContainerClassName)}
           ref={handleRef}
-          styleProps={styleProps}
+          ownerState={ownerState}
           {...ContainerProps}
         >
           <Root
             {...rootProps}
             {...(!isHostComponent(Root) && {
               as: Component,
-              styleProps: { ...styleProps, ...rootProps.styleProps },
+              ownerState: { ...ownerState, ...rootProps.ownerState },
             })}
             {...componentProps}
           >
@@ -295,9 +295,9 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
         {...rootProps}
         as={Component}
         ref={handleRef}
-        styleProps={styleProps}
+        ownerState={ownerState}
         {...(!isHostComponent(Root) && {
-          styleProps: { ...styleProps, ...rootProps.styleProps },
+          ownerState: { ...ownerState, ...rootProps.ownerState },
         })}
         {...componentProps}
       >

@@ -12,8 +12,8 @@ import AccordionContext from './AccordionContext';
 import useControlled from '../utils/useControlled';
 import accordionClasses, { getAccordionUtilityClass } from './accordionClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, square, expanded, disabled, disableGutters } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, square, expanded, disabled, disableGutters } = ownerState;
 
   const slots = {
     root: [
@@ -33,13 +33,13 @@ const AccordionRoot = styled(Paper, {
   name: 'MuiAccordion',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       { [`& .${accordionClasses.region}`]: styles.region },
       styles.root,
-      !styleProps.square && styles.rounded,
-      !styleProps.disableGutters && styles.gutters,
+      !ownerState.square && styles.rounded,
+      !ownerState.disableGutters && styles.gutters,
     ];
   },
 })(
@@ -89,8 +89,8 @@ const AccordionRoot = styled(Paper, {
       },
     };
   },
-  ({ theme, styleProps }) => ({
-    ...(!styleProps.square && {
+  ({ theme, ownerState }) => ({
+    ...(!ownerState.square && {
       borderRadius: 0,
       '&:first-of-type': {
         borderTopLeftRadius: theme.shape.borderRadius,
@@ -106,7 +106,7 @@ const AccordionRoot = styled(Paper, {
         },
       },
     }),
-    ...(!styleProps.disableGutters && {
+    ...(!ownerState.disableGutters && {
       [`&.${accordionClasses.expanded}`]: {
         margin: '16px 0',
       },
@@ -154,7 +154,7 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     [expanded, disabled, disableGutters, handleChange],
   );
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     square,
     disabled,
@@ -162,13 +162,13 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     expanded,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <AccordionRoot
       className={clsx(classes.root, className)}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       square={square}
       {...other}
     >

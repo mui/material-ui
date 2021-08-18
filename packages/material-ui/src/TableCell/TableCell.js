@@ -10,8 +10,8 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import tableCellClasses, { getTableCellUtilityClass } from './tableCellClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, variant, align, padding, size, stickyHeader } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, variant, align, padding, size, stickyHeader } = ownerState;
 
   const slots = {
     root: [
@@ -31,18 +31,18 @@ const TableCellRoot = styled('td', {
   name: 'MuiTableCell',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.root,
-      styles[styleProps.variant],
-      styles[`size${capitalize(styleProps.size)}`],
-      styleProps.padding !== 'normal' && styles[`padding${capitalize(styleProps.padding)}`],
-      styleProps.align !== 'inherit' && styles[`align${capitalize(styleProps.align)}`],
-      styleProps.stickyHeader && styles.stickyHeader,
+      styles[ownerState.variant],
+      styles[`size${capitalize(ownerState.size)}`],
+      ownerState.padding !== 'normal' && styles[`padding${capitalize(ownerState.padding)}`],
+      ownerState.align !== 'inherit' && styles[`align${capitalize(ownerState.align)}`],
+      ownerState.stickyHeader && styles.stickyHeader,
     ];
   },
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   ...theme.typography.body2,
   display: 'table-cell',
   verticalAlign: 'inherit',
@@ -56,20 +56,20 @@ const TableCellRoot = styled('td', {
     }`,
   textAlign: 'left',
   padding: 16,
-  ...(styleProps.variant === 'head' && {
+  ...(ownerState.variant === 'head' && {
     color: theme.palette.text.primary,
     lineHeight: theme.typography.pxToRem(24),
     fontWeight: theme.typography.fontWeightMedium,
   }),
-  ...(styleProps.variant === 'body' && {
+  ...(ownerState.variant === 'body' && {
     color: theme.palette.text.primary,
   }),
-  ...(styleProps.variant === 'footer' && {
+  ...(ownerState.variant === 'footer' && {
     color: theme.palette.text.secondary,
     lineHeight: theme.typography.pxToRem(21),
     fontSize: theme.typography.pxToRem(12),
   }),
-  ...(styleProps.size === 'small' && {
+  ...(ownerState.size === 'small' && {
     padding: '6px 16px',
     [`&.${tableCellClasses.paddingCheckbox}`]: {
       width: 24, // prevent the checkbox column from growing
@@ -79,27 +79,27 @@ const TableCellRoot = styled('td', {
       },
     },
   }),
-  ...(styleProps.padding === 'checkbox' && {
+  ...(ownerState.padding === 'checkbox' && {
     width: 48, // prevent the checkbox column from growing
     padding: '0 0 0 4px',
   }),
-  ...(styleProps.padding === 'none' && {
+  ...(ownerState.padding === 'none' && {
     padding: 0,
   }),
-  ...(styleProps.align === 'left' && {
+  ...(ownerState.align === 'left' && {
     textAlign: 'left',
   }),
-  ...(styleProps.align === 'center' && {
+  ...(ownerState.align === 'center' && {
     textAlign: 'center',
   }),
-  ...(styleProps.align === 'right' && {
+  ...(ownerState.align === 'right' && {
     textAlign: 'right',
     flexDirection: 'row-reverse',
   }),
-  ...(styleProps.align === 'justify' && {
+  ...(ownerState.align === 'justify' && {
     textAlign: 'justify',
   }),
-  ...(styleProps.stickyHeader && {
+  ...(ownerState.stickyHeader && {
     position: 'sticky',
     top: 0,
     zIndex: 2,
@@ -144,7 +144,7 @@ const TableCell = React.forwardRef(function TableCell(inProps, ref) {
 
   const variant = variantProp || (tablelvl2 && tablelvl2.variant);
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     align,
     component,
@@ -155,7 +155,7 @@ const TableCell = React.forwardRef(function TableCell(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   let ariaSort = null;
   if (sortDirection) {
@@ -169,7 +169,7 @@ const TableCell = React.forwardRef(function TableCell(inProps, ref) {
       className={clsx(classes.root, className)}
       aria-sort={ariaSort}
       scope={scope}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     />
   );

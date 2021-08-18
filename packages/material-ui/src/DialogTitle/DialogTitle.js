@@ -8,8 +8,8 @@ import useThemeProps from '../styles/useThemeProps';
 import { getDialogTitleUtilityClass } from './dialogTitleClasses';
 import DialogContext from '../Dialog/DialogContext';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -34,8 +34,8 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
   });
 
   const { className, id: idProp, ...other } = props;
-  const styleProps = props;
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = props;
+  const classes = useUtilityClasses(ownerState);
 
   const { titleId: id = idProp } = React.useContext(DialogContext);
 
@@ -43,7 +43,7 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
     <DialogTitleRoot
       component="h2"
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       variant="h6"
       id={id}

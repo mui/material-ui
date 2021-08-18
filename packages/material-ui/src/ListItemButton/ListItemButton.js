@@ -12,19 +12,19 @@ import ListContext from '../List/ListContext';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
 
 export const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
+  const { ownerState } = props;
 
   return [
     styles.root,
-    styleProps.dense && styles.dense,
-    styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart,
-    styleProps.divider && styles.divider,
-    !styleProps.disableGutters && styles.gutters,
+    ownerState.dense && styles.dense,
+    ownerState.alignItems === 'flex-start' && styles.alignItemsFlexStart,
+    ownerState.divider && styles.divider,
+    !ownerState.disableGutters && styles.gutters,
   ];
 };
 
-const useUtilityClasses = (styleProps) => {
-  const { alignItems, classes, dense, disabled, disableGutters, divider, selected } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { alignItems, classes, dense, disabled, disableGutters, divider, selected } = ownerState;
 
   const slots = {
     root: [
@@ -51,7 +51,7 @@ const ListItemButtonRoot = styled(ButtonBase, {
   name: 'MuiListItemButton',
   slot: 'Root',
   overridesResolver,
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   display: 'flex',
   flexGrow: 1,
   justifyContent: 'flex-start',
@@ -98,18 +98,18 @@ const ListItemButtonRoot = styled(ButtonBase, {
   [`&.${listItemButtonClasses.disabled}`]: {
     opacity: theme.palette.action.disabledOpacity,
   },
-  ...(styleProps.divider && {
+  ...(ownerState.divider && {
     borderBottom: `1px solid ${theme.palette.divider}`,
     backgroundClip: 'padding-box',
   }),
-  ...(styleProps.alignItems === 'flex-start' && {
+  ...(ownerState.alignItems === 'flex-start' && {
     alignItems: 'flex-start',
   }),
-  ...(!styleProps.disableGutters && {
+  ...(!ownerState.disableGutters && {
     paddingLeft: 16,
     paddingRight: 16,
   }),
-  ...(styleProps.dense && {
+  ...(ownerState.dense && {
     paddingTop: 4,
     paddingBottom: 4,
   }),
@@ -150,7 +150,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     }
   }, [autoFocus]);
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     alignItems,
     dense: childContext.dense,
@@ -159,7 +159,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     selected,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const handleRef = useForkRef(listItemRef, ref);
 
@@ -169,7 +169,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
         ref={handleRef}
         component={component}
         focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
-        styleProps={styleProps}
+        ownerState={ownerState}
         {...other}
         classes={classes}
       >

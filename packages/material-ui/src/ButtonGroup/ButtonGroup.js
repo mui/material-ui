@@ -10,33 +10,33 @@ import useThemeProps from '../styles/useThemeProps';
 import buttonGroupClasses, { getButtonGroupUtilityClass } from './buttonGroupClasses';
 
 const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
+  const { ownerState } = props;
 
   return [
     { [`& .${buttonGroupClasses.grouped}`]: styles.grouped },
     {
-      [`& .${buttonGroupClasses.grouped}`]: styles[`grouped${capitalize(styleProps.orientation)}`],
+      [`& .${buttonGroupClasses.grouped}`]: styles[`grouped${capitalize(ownerState.orientation)}`],
     },
-    { [`& .${buttonGroupClasses.grouped}`]: styles[`grouped${capitalize(styleProps.variant)}`] },
+    { [`& .${buttonGroupClasses.grouped}`]: styles[`grouped${capitalize(ownerState.variant)}`] },
     {
       [`& .${buttonGroupClasses.grouped}`]:
-        styles[`grouped${capitalize(styleProps.variant)}${capitalize(styleProps.orientation)}`],
+        styles[`grouped${capitalize(ownerState.variant)}${capitalize(ownerState.orientation)}`],
     },
     {
       [`& .${buttonGroupClasses.grouped}`]:
-        styles[`grouped${capitalize(styleProps.variant)}${capitalize(styleProps.color)}`],
+        styles[`grouped${capitalize(ownerState.variant)}${capitalize(ownerState.color)}`],
     },
     styles.root,
-    styles[styleProps.variant],
-    styleProps.disableElevation === true && styles.disableElevation,
-    styleProps.fullWidth && styles.fullWidth,
-    styleProps.orientation === 'vertical' && styles.vertical,
+    styles[ownerState.variant],
+    ownerState.disableElevation === true && styles.disableElevation,
+    ownerState.fullWidth && styles.fullWidth,
+    ownerState.orientation === 'vertical' && styles.vertical,
   ];
 };
 
-const useUtilityClasses = (styleProps) => {
+const useUtilityClasses = (ownerState) => {
   const { classes, color, disabled, disableElevation, fullWidth, orientation, variant } =
-    styleProps;
+    ownerState;
 
   const slots = {
     root: [
@@ -63,103 +63,103 @@ const ButtonGroupRoot = styled('div', {
   name: 'MuiButtonGroup',
   slot: 'Root',
   overridesResolver,
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   display: 'inline-flex',
   borderRadius: theme.shape.borderRadius,
-  ...(styleProps.variant === 'contained' && {
+  ...(ownerState.variant === 'contained' && {
     boxShadow: theme.shadows[2],
   }),
-  ...(styleProps.disableElevation && {
+  ...(ownerState.disableElevation && {
     boxShadow: 'none',
   }),
-  ...(styleProps.fullWidth && {
+  ...(ownerState.fullWidth && {
     width: '100%',
   }),
-  ...(styleProps.orientation === 'vertical' && {
+  ...(ownerState.orientation === 'vertical' && {
     flexDirection: 'column',
   }),
   [`& .${buttonGroupClasses.grouped}`]: {
     minWidth: 40,
     '&:not(:first-of-type)': {
-      ...(styleProps.orientation === 'horizontal' && {
+      ...(ownerState.orientation === 'horizontal' && {
         borderTopLeftRadius: 0,
         borderBottomLeftRadius: 0,
       }),
-      ...(styleProps.orientation === 'vertical' && {
+      ...(ownerState.orientation === 'vertical' && {
         borderTopRightRadius: 0,
         borderTopLeftRadius: 0,
       }),
-      ...(styleProps.variant === 'outlined' &&
-        styleProps.orientation === 'horizontal' && {
+      ...(ownerState.variant === 'outlined' &&
+        ownerState.orientation === 'horizontal' && {
           marginLeft: -1,
         }),
-      ...(styleProps.variant === 'outlined' &&
-        styleProps.orientation === 'vertical' && {
+      ...(ownerState.variant === 'outlined' &&
+        ownerState.orientation === 'vertical' && {
           marginTop: -1,
         }),
     },
     '&:not(:last-of-type)': {
-      ...(styleProps.orientation === 'horizontal' && {
+      ...(ownerState.orientation === 'horizontal' && {
         borderTopRightRadius: 0,
         borderBottomRightRadius: 0,
       }),
-      ...(styleProps.orientation === 'vertical' && {
+      ...(ownerState.orientation === 'vertical' && {
         borderBottomRightRadius: 0,
         borderBottomLeftRadius: 0,
       }),
-      ...(styleProps.variant === 'text' &&
-        styleProps.orientation === 'horizontal' && {
+      ...(ownerState.variant === 'text' &&
+        ownerState.orientation === 'horizontal' && {
           borderRight: `1px solid ${
             theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
           }`,
         }),
-      ...(styleProps.variant === 'text' &&
-        styleProps.orientation === 'vertical' && {
+      ...(ownerState.variant === 'text' &&
+        ownerState.orientation === 'vertical' && {
           borderBottom: `1px solid ${
             theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
           }`,
         }),
-      ...(styleProps.variant === 'text' &&
-        styleProps.color !== 'inherit' && {
-          borderColor: alpha(theme.palette[styleProps.color].main, 0.5),
+      ...(ownerState.variant === 'text' &&
+        ownerState.color !== 'inherit' && {
+          borderColor: alpha(theme.palette[ownerState.color].main, 0.5),
         }),
-      ...(styleProps.variant === 'outlined' &&
-        styleProps.orientation === 'horizontal' && {
+      ...(ownerState.variant === 'outlined' &&
+        ownerState.orientation === 'horizontal' && {
           borderRightColor: 'transparent',
         }),
-      ...(styleProps.variant === 'outlined' &&
-        styleProps.orientation === 'vertical' && {
+      ...(ownerState.variant === 'outlined' &&
+        ownerState.orientation === 'vertical' && {
           borderBottomColor: 'transparent',
         }),
-      ...(styleProps.variant === 'contained' &&
-        styleProps.orientation === 'horizontal' && {
+      ...(ownerState.variant === 'contained' &&
+        ownerState.orientation === 'horizontal' && {
           borderRight: `1px solid ${theme.palette.grey[400]}`,
           [`&.${buttonGroupClasses.disabled}`]: {
             borderRight: `1px solid ${theme.palette.action.disabled}`,
           },
         }),
-      ...(styleProps.variant === 'contained' &&
-        styleProps.orientation === 'vertical' && {
+      ...(ownerState.variant === 'contained' &&
+        ownerState.orientation === 'vertical' && {
           borderBottom: `1px solid ${theme.palette.grey[400]}`,
           [`&.${buttonGroupClasses.disabled}`]: {
             borderBottom: `1px solid ${theme.palette.action.disabled}`,
           },
         }),
-      ...(styleProps.variant === 'contained' &&
-        styleProps.color !== 'inherit' && {
-          borderColor: theme.palette[styleProps.color].dark,
+      ...(ownerState.variant === 'contained' &&
+        ownerState.color !== 'inherit' && {
+          borderColor: theme.palette[ownerState.color].dark,
         }),
     },
     '&:hover': {
-      ...(styleProps.variant === 'outlined' &&
-        styleProps.color !== 'inherit' && {
-          borderColor: theme.palette[styleProps.color].main,
+      ...(ownerState.variant === 'outlined' &&
+        ownerState.color !== 'inherit' && {
+          borderColor: theme.palette[ownerState.color].main,
         }),
-      ...(styleProps.variant === 'contained' && {
+      ...(ownerState.variant === 'contained' && {
         boxShadow: 'none',
       }),
     },
-    ...(styleProps.variant === 'contained' && {
+    ...(ownerState.variant === 'contained' && {
       boxShadow: 'none',
     }),
   },
@@ -183,7 +183,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     color,
     component,
@@ -197,7 +197,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <ButtonGroupRoot
@@ -205,7 +205,7 @@ const ButtonGroup = React.forwardRef(function ButtonGroup(inProps, ref) {
       role="group"
       className={clsx(classes.root, className)}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       {React.Children.map(children, (child) => {

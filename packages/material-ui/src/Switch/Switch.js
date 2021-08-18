@@ -11,8 +11,8 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, edge, size, color, checked, disabled } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, edge, size, color, checked, disabled } = ownerState;
 
   const slots = {
     root: ['root', edge && `edge${capitalize(edge)}`, `size${capitalize(size)}`],
@@ -39,15 +39,15 @@ const SwitchRoot = styled('span', {
   name: 'MuiSwitch',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.root,
-      styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`],
-      styles[`size${capitalize(styleProps.size)}`],
+      ownerState.edge && styles[`edge${capitalize(ownerState.edge)}`],
+      styles[`size${capitalize(ownerState.size)}`],
     ];
   },
-})(({ styleProps }) => ({
+})(({ ownerState }) => ({
   display: 'inline-flex',
   width: 34 + 12 * 2,
   height: 14 + 12 * 2,
@@ -61,13 +61,13 @@ const SwitchRoot = styled('span', {
   '@media print': {
     colorAdjust: 'exact',
   },
-  ...(styleProps.edge === 'start' && {
+  ...(ownerState.edge === 'start' && {
     marginLeft: -8,
   }),
-  ...(styleProps.edge === 'end' && {
+  ...(ownerState.edge === 'end' && {
     marginRight: -8,
   }),
-  ...(styleProps.size === 'small' && {
+  ...(ownerState.size === 'small' && {
     width: 40,
     height: 24,
     padding: 7,
@@ -88,12 +88,12 @@ const SwitchSwitchBase = styled(SwitchBase, {
   name: 'MuiSwitch',
   slot: 'SwitchBase',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.switchBase,
       styles.input,
-      styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`],
+      ownerState.color !== 'default' && styles[`color${capitalize(ownerState.color)}`],
     ];
   },
 })(
@@ -123,7 +123,7 @@ const SwitchSwitchBase = styled(SwitchBase, {
       width: '300%',
     },
   }),
-  ({ theme, styleProps }) => ({
+  ({ theme, ownerState }) => ({
     '&:hover': {
       backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
@@ -131,12 +131,12 @@ const SwitchSwitchBase = styled(SwitchBase, {
         backgroundColor: 'transparent',
       },
     },
-    ...(styleProps.color !== 'default' && {
+    ...(ownerState.color !== 'default' && {
       [`&.${switchClasses.checked}`]: {
-        color: theme.palette[styleProps.color].main,
+        color: theme.palette[ownerState.color].main,
         '&:hover': {
           backgroundColor: alpha(
-            theme.palette[styleProps.color].main,
+            theme.palette[ownerState.color].main,
             theme.palette.action.hoverOpacity,
           ),
           '@media (hover: none)': {
@@ -146,12 +146,12 @@ const SwitchSwitchBase = styled(SwitchBase, {
         [`&.${switchClasses.disabled}`]: {
           color:
             theme.palette.mode === 'light'
-              ? lighten(theme.palette[styleProps.color].main, 0.62)
-              : darken(theme.palette[styleProps.color].main, 0.55),
+              ? lighten(theme.palette[ownerState.color].main, 0.62)
+              : darken(theme.palette[ownerState.color].main, 0.55),
         },
       },
       [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
-        backgroundColor: theme.palette[styleProps.color].main,
+        backgroundColor: theme.palette[ownerState.color].main,
       },
     }),
   }),
@@ -190,31 +190,31 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiSwitch' });
   const { className, color = 'primary', edge = false, size = 'medium', sx, ...other } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     color,
     edge,
     size,
   };
 
-  const classes = useUtilityClasses(styleProps);
-  const icon = <SwitchThumb className={classes.thumb} styleProps={styleProps} />;
+  const classes = useUtilityClasses(ownerState);
+  const icon = <SwitchThumb className={classes.thumb} ownerState={ownerState} />;
 
   return (
-    <SwitchRoot className={clsx(classes.root, className)} sx={sx} styleProps={styleProps}>
+    <SwitchRoot className={clsx(classes.root, className)} sx={sx} ownerState={ownerState}>
       <SwitchSwitchBase
         type="checkbox"
         icon={icon}
         checkedIcon={icon}
         ref={ref}
-        styleProps={styleProps}
+        ownerState={ownerState}
         {...other}
         classes={{
           ...classes,
           root: classes.switchBase,
         }}
       />
-      <SwitchTrack className={classes.track} styleProps={styleProps} />
+      <SwitchTrack className={classes.track} ownerState={ownerState} />
     </SwitchRoot>
   );
 });

@@ -30,39 +30,39 @@ export const SliderRoot = styled('span', {
   name: 'MuiSlider',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     const marks =
-      styleProps.marksProp === true && styleProps.step !== null
-        ? [...Array(Math.floor((styleProps.max - styleProps.min) / styleProps.step) + 1)].map(
+      ownerState.marksProp === true && ownerState.step !== null
+        ? [...Array(Math.floor((ownerState.max - ownerState.min) / ownerState.step) + 1)].map(
             (_, index) => ({
-              value: styleProps.min + styleProps.step * index,
+              value: ownerState.min + ownerState.step * index,
             }),
           )
-        : styleProps.marksProp || [];
+        : ownerState.marksProp || [];
 
     const marked = marks.length > 0 && marks.some((mark) => mark.label);
 
     return [
       styles.root,
-      styles[`color${capitalize(styleProps.color)}`],
-      styleProps.size !== 'medium' && styles[`size${capitalize(styleProps.size)}`],
+      styles[`color${capitalize(ownerState.color)}`],
+      ownerState.size !== 'medium' && styles[`size${capitalize(ownerState.size)}`],
       marked && styles.marked,
-      styleProps.orientation === 'vertical' && styles.vertical,
-      styleProps.track === 'inverted' && styles.trackInverted,
-      styleProps.track === false && styles.trackFalse,
+      ownerState.orientation === 'vertical' && styles.vertical,
+      ownerState.track === 'inverted' && styles.trackInverted,
+      ownerState.track === false && styles.trackFalse,
     ];
   },
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   borderRadius: 12,
   boxSizing: 'content-box',
   display: 'inline-block',
   position: 'relative',
   cursor: 'pointer',
   touchAction: 'none',
-  color: theme.palette[styleProps.color].main,
+  color: theme.palette[ownerState.color].main,
   WebkitTapHighlightColor: 'transparent',
-  ...(styleProps.orientation === 'horizontal' && {
+  ...(ownerState.orientation === 'horizontal' && {
     height: 4,
     width: '100%',
     padding: '13px 0',
@@ -71,14 +71,14 @@ export const SliderRoot = styled('span', {
       // Reach 42px touch target, about ~8mm on screen.
       padding: '20px 0',
     },
-    ...(styleProps.size === 'small' && {
+    ...(ownerState.size === 'small' && {
       height: 2,
     }),
-    ...(styleProps.marked && {
+    ...(ownerState.marked && {
       marginBottom: 20,
     }),
   }),
-  ...(styleProps.orientation === 'vertical' && {
+  ...(ownerState.orientation === 'vertical' && {
     height: '100%',
     width: 4,
     padding: '0 13px',
@@ -87,10 +87,10 @@ export const SliderRoot = styled('span', {
       // Reach 42px touch target, about ~8mm on screen.
       padding: '0 20px',
     },
-    ...(styleProps.size === 'small' && {
+    ...(ownerState.size === 'small' && {
       width: 2,
     }),
-    ...(styleProps.marked && {
+    ...(ownerState.marked && {
       marginRight: 44,
     }),
   }),
@@ -113,25 +113,25 @@ export const SliderRail = styled('span', {
   name: 'MuiSlider',
   slot: 'Rail',
   overridesResolver: (props, styles) => styles.rail,
-})(({ styleProps }) => ({
+})(({ ownerState }) => ({
   display: 'block',
   position: 'absolute',
   borderRadius: 'inherit',
   backgroundColor: 'currentColor',
   opacity: 0.38,
-  ...(styleProps.orientation === 'horizontal' && {
+  ...(ownerState.orientation === 'horizontal' && {
     width: '100%',
     height: 'inherit',
     top: '50%',
     transform: 'translateY(-50%)',
   }),
-  ...(styleProps.orientation === 'vertical' && {
+  ...(ownerState.orientation === 'vertical' && {
     height: '100%',
     width: 'inherit',
     left: '50%',
     transform: 'translateX(-50%)',
   }),
-  ...(styleProps.track === 'inverted' && {
+  ...(ownerState.track === 'inverted' && {
     opacity: 1,
   }),
 }));
@@ -140,11 +140,11 @@ export const SliderTrack = styled('span', {
   name: 'MuiSlider',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
-})(({ theme, styleProps }) => {
+})(({ theme, ownerState }) => {
   const color = // Same logic as the LinearProgress track color
     theme.palette.mode === 'light'
-      ? lighten(theme.palette[styleProps.color].main, 0.62)
-      : darken(theme.palette[styleProps.color].main, 0.5);
+      ? lighten(theme.palette[ownerState.color].main, 0.62)
+      : darken(theme.palette[ownerState.color].main, 0.5);
   return {
     display: 'block',
     position: 'absolute',
@@ -154,23 +154,23 @@ export const SliderTrack = styled('span', {
     transition: theme.transitions.create(['left', 'width', 'bottom', 'height'], {
       duration: theme.transitions.duration.shortest,
     }),
-    ...(styleProps.size === 'small' && {
+    ...(ownerState.size === 'small' && {
       border: 'none',
     }),
-    ...(styleProps.orientation === 'horizontal' && {
+    ...(ownerState.orientation === 'horizontal' && {
       height: 'inherit',
       top: '50%',
       transform: 'translateY(-50%)',
     }),
-    ...(styleProps.orientation === 'vertical' && {
+    ...(ownerState.orientation === 'vertical' && {
       width: 'inherit',
       left: '50%',
       transform: 'translateX(-50%)',
     }),
-    ...(styleProps.track === false && {
+    ...(ownerState.track === false && {
       display: 'none',
     }),
-    ...(styleProps.track === 'inverted' && {
+    ...(ownerState.track === 'inverted' && {
       backgroundColor: color,
       borderColor: color,
     }),
@@ -181,14 +181,14 @@ export const SliderThumb = styled('span', {
   name: 'MuiSlider',
   slot: 'Thumb',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
     return [
       styles.thumb,
-      styles[`thumbColor${capitalize(styleProps.color)}`],
-      styleProps.size !== 'medium' && styles[`thumbSize${capitalize(styleProps.size)}`],
+      styles[`thumbColor${capitalize(ownerState.color)}`],
+      ownerState.size !== 'medium' && styles[`thumbSize${capitalize(ownerState.size)}`],
     ];
   },
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   position: 'absolute',
   width: 20,
   height: 20,
@@ -202,15 +202,15 @@ export const SliderThumb = styled('span', {
   transition: theme.transitions.create(['box-shadow', 'left', 'bottom'], {
     duration: theme.transitions.duration.shortest,
   }),
-  ...(styleProps.size === 'small' && {
+  ...(ownerState.size === 'small' && {
     width: 12,
     height: 12,
   }),
-  ...(styleProps.orientation === 'horizontal' && {
+  ...(ownerState.orientation === 'horizontal' && {
     top: '50%',
     transform: 'translate(-50%, -50%)',
   }),
-  ...(styleProps.orientation === 'vertical' && {
+  ...(ownerState.orientation === 'vertical' && {
     left: '50%',
     transform: 'translate(-50%, 50%)',
   }),
@@ -221,7 +221,7 @@ export const SliderThumb = styled('span', {
     width: '100%',
     height: '100%',
     boxShadow: theme.shadows[2],
-    ...(styleProps.size === 'small' && {
+    ...(ownerState.size === 'small' && {
       boxShadow: 'none',
     }),
   },
@@ -237,13 +237,13 @@ export const SliderThumb = styled('span', {
     transform: 'translate(-50%, -50%)',
   },
   [`&:hover, &.${sliderClasses.focusVisible}`]: {
-    boxShadow: `0px 0px 0px 8px ${alpha(theme.palette[styleProps.color].main, 0.16)}`,
+    boxShadow: `0px 0px 0px 8px ${alpha(theme.palette[ownerState.color].main, 0.16)}`,
     '@media (hover: none)': {
       boxShadow: 'none',
     },
   },
   [`&.${sliderClasses.active}`]: {
-    boxShadow: `0px 0px 0px 14px ${alpha(theme.palette[styleProps.color].main, 0.16)}`,
+    boxShadow: `0px 0px 0px 14px ${alpha(theme.palette[ownerState.color].main, 0.16)}`,
   },
   [`&.${sliderClasses.disabled}`]: {
     '&:hover': {
@@ -256,7 +256,7 @@ export const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   name: 'MuiSlider',
   slot: 'ValueLabel',
   overridesResolver: (props, styles) => styles.valueLabel,
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   [`&.${sliderClasses.valueLabelOpen}`]: {
     transform: 'translateY(-100%) scale(1)',
   },
@@ -278,7 +278,7 @@ export const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   alignItems: 'center',
   justifyContent: 'center',
   padding: '0.25rem 0.75rem',
-  ...(styleProps.size === 'small' && {
+  ...(ownerState.size === 'small' && {
     fontSize: theme.typography.pxToRem(12),
     padding: '0.25rem 0.5rem',
   }),
@@ -298,21 +298,21 @@ export const SliderMark = styled('span', {
   name: 'MuiSlider',
   slot: 'Mark',
   overridesResolver: (props, styles) => styles.mark,
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   position: 'absolute',
   width: 2,
   height: 2,
   borderRadius: 1,
   backgroundColor: 'currentColor',
-  ...(styleProps.orientation === 'horizontal' && {
+  ...(ownerState.orientation === 'horizontal' && {
     top: '50%',
     transform: 'translate(-1px, -50%)',
   }),
-  ...(styleProps.orientation === 'vertical' && {
+  ...(ownerState.orientation === 'vertical' && {
     left: '50%',
     transform: 'translate(-50%, 1px)',
   }),
-  ...(styleProps.markActive && {
+  ...(ownerState.markActive && {
     backgroundColor: theme.palette.background.paper,
     opacity: 0.8,
   }),
@@ -322,26 +322,26 @@ export const SliderMarkLabel = styled('span', {
   name: 'MuiSlider',
   slot: 'MarkLabel',
   overridesResolver: (props, styles) => styles.markLabel,
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   ...theme.typography.body2,
   color: theme.palette.text.secondary,
   position: 'absolute',
   whiteSpace: 'nowrap',
-  ...(styleProps.orientation === 'horizontal' && {
+  ...(ownerState.orientation === 'horizontal' && {
     top: 30,
     transform: 'translateX(-50%)',
     '@media (pointer: coarse)': {
       top: 40,
     },
   }),
-  ...(styleProps.orientation === 'vertical' && {
+  ...(ownerState.orientation === 'vertical' && {
     left: 36,
     transform: 'translateY(50%)',
     '@media (pointer: coarse)': {
       left: 44,
     },
   }),
-  ...(styleProps.markLabelActive && {
+  ...(ownerState.markLabelActive && {
     color: theme.palette.text.primary,
   }),
 }));
@@ -358,7 +358,7 @@ SliderRoot.propTypes = {
   /**
    * @ignore
    */
-  styleProps: PropTypes.shape({
+  ownerState: PropTypes.shape({
     'aria-label': PropTypes.string,
     'aria-labelledby': PropTypes.string,
     'aria-valuetext': PropTypes.string,
@@ -393,8 +393,8 @@ SliderRoot.propTypes = {
   }),
 };
 
-const extendUtilityClasses = (styleProps) => {
-  const { color, size, classes = {} } = styleProps;
+const extendUtilityClasses = (ownerState) => {
+  const { color, size, classes = {} } = ownerState;
 
   return {
     ...classes,
@@ -433,9 +433,9 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
     ...other
   } = props;
 
-  const styleProps = { ...props, color, size };
+  const ownerState = { ...props, color, size };
 
-  const classes = extendUtilityClasses(styleProps);
+  const classes = extendUtilityClasses(ownerState);
 
   return (
     <SliderUnstyled
@@ -456,25 +456,25 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
         root: {
           ...componentsProps.root,
           ...(shouldSpreadStyleProps(components.Root) && {
-            styleProps: { ...componentsProps.root?.styleProps, color, size },
+            ownerState: { ...componentsProps.root?.ownerState, color, size },
           }),
         },
         thumb: {
           ...componentsProps.thumb,
           ...(shouldSpreadStyleProps(components.Thumb) && {
-            styleProps: { ...componentsProps.thumb?.styleProps, color, size },
+            ownerState: { ...componentsProps.thumb?.ownerState, color, size },
           }),
         },
         track: {
           ...componentsProps.track,
           ...(shouldSpreadStyleProps(components.Track) && {
-            styleProps: { ...componentsProps.track?.styleProps, color, size },
+            ownerState: { ...componentsProps.track?.ownerState, color, size },
           }),
         },
         valueLabel: {
           ...componentsProps.valueLabel,
           ...(shouldSpreadStyleProps(components.ValueLabel) && {
-            styleProps: { ...componentsProps.valueLabel?.styleProps, color, size },
+            ownerState: { ...componentsProps.valueLabel?.ownerState, color, size },
           }),
         },
       }}

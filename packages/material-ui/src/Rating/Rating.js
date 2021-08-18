@@ -41,8 +41,8 @@ function roundValueToPrecision(value, precision) {
   return Number(nearest.toFixed(getDecimalPrecision(precision)));
 }
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, size, readOnly, disabled, emptyValueFocused, focusVisible } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, size, readOnly, disabled, emptyValueFocused, focusVisible } = ownerState;
 
   const slots = {
     root: [
@@ -71,16 +71,16 @@ const RatingRoot = styled('span', {
   name: 'MuiRating',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       { [`& .${ratingClasses.visuallyHidden}`]: styles.visuallyHidden },
       styles.root,
-      styles[`size${capitalize(styleProps.size)}`],
-      styleProps.readOnly && styles.readOnly,
+      styles[`size${capitalize(ownerState.size)}`],
+      ownerState.readOnly && styles.readOnly,
     ];
   },
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   display: 'inline-flex',
   // Required to position the pristine input absolutely
   position: 'relative',
@@ -97,13 +97,13 @@ const RatingRoot = styled('span', {
     outline: '1px solid #999',
   },
   [`& .${ratingClasses.visuallyHidden}`]: visuallyHidden,
-  ...(styleProps.size === 'small' && {
+  ...(ownerState.size === 'small' && {
     fontSize: theme.typography.pxToRem(18),
   }),
-  ...(styleProps.size === 'large' && {
+  ...(ownerState.size === 'large' && {
     fontSize: theme.typography.pxToRem(30),
   }),
-  ...(styleProps.readOnly && {
+  ...(ownerState.readOnly && {
     pointerEvents: 'none',
   }),
 }));
@@ -112,9 +112,9 @@ const RatingLabel = styled('label', {
   name: 'MuiRating',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
-})(({ styleProps }) => ({
+})(({ ownerState }) => ({
   cursor: 'inherit',
-  ...(styleProps.emptyValueFocused && {
+  ...(ownerState.emptyValueFocused && {
     top: 0,
     bottom: 0,
     position: 'absolute',
@@ -127,18 +127,18 @@ const RatingIcon = styled('span', {
   name: 'MuiRating',
   slot: 'Icon',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.icon,
-      styleProps.iconEmpty && styles.iconEmpty,
-      styleProps.iconFilled && styles.iconFilled,
-      styleProps.iconHover && styles.iconHover,
-      styleProps.iconFocus && styles.iconFocus,
-      styleProps.iconActive && styles.iconActive,
+      ownerState.iconEmpty && styles.iconEmpty,
+      ownerState.iconFilled && styles.iconFilled,
+      ownerState.iconHover && styles.iconHover,
+      ownerState.iconFocus && styles.iconFocus,
+      ownerState.iconActive && styles.iconActive,
     ];
   },
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   // Fit wrapper to actual icon size.
   display: 'flex',
   transition: theme.transitions.create('transform', {
@@ -147,10 +147,10 @@ const RatingIcon = styled('span', {
   // Fix mouseLeave issue.
   // https://github.com/facebook/react/issues/4492
   pointerEvents: 'none',
-  ...(styleProps.iconActive && {
+  ...(ownerState.iconActive && {
     transform: 'scale(1.2)',
   }),
-  ...(styleProps.iconEmpty && {
+  ...(ownerState.iconEmpty && {
     color: theme.palette.action.disabled,
   }),
 }));
@@ -159,13 +159,13 @@ const RatingDecimal = styled('span', {
   name: 'MuiRating',
   slot: 'Decimal',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
-    return [styles.decimal, styleProps.iconActive && styles.iconActive];
+    return [styles.decimal, ownerState.iconActive && styles.iconActive];
   },
-})(({ styleProps }) => ({
+})(({ ownerState }) => ({
   position: 'relative',
-  ...(styleProps.iconActive && {
+  ...(ownerState.iconActive && {
     transform: 'scale(1.2)',
   }),
 }));
@@ -199,7 +199,7 @@ function RatingItem(props) {
     onClick,
     onFocus,
     readOnly,
-    styleProps,
+    ownerState,
     ratingValue,
     ratingValueRounded,
   } = props;
@@ -221,8 +221,8 @@ function RatingItem(props) {
         [classes.iconFocus]: isFocused,
         [classes.iconActive]: isActive,
       })}
-      styleProps={{
-        ...styleProps,
+      ownerState={{
+        ...ownerState,
         iconEmpty: !isFilled,
         iconFilled: isFilled,
         iconHover: isHovered,
@@ -241,7 +241,7 @@ function RatingItem(props) {
   return (
     <React.Fragment>
       <RatingLabel
-        styleProps={{ ...styleProps, emptyValueFocused: undefined }}
+        ownerState={{ ...ownerState, emptyValueFocused: undefined }}
         htmlFor={id}
         {...labelProps}
       >
@@ -286,7 +286,7 @@ RatingItem.propTypes = {
   ratingValue: PropTypes.number,
   ratingValueRounded: PropTypes.number,
   readOnly: PropTypes.bool.isRequired,
-  styleProps: PropTypes.object.isRequired,
+  ownerState: PropTypes.object.isRequired,
 };
 
 const defaultIcon = <Star fontSize="inherit" />;
@@ -474,7 +474,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
 
   const [emptyValueFocused, setEmptyValueFocused] = React.useState(false);
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     defaultValue,
     disabled,
@@ -491,7 +491,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     size,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <RatingRoot
@@ -499,7 +499,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       role={readOnly ? 'img' : null}
       aria-label={readOnly ? getLabelText(value) : null}
       {...other}
@@ -525,7 +525,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
           ratingValue: value,
           ratingValueRounded: valueRounded,
           readOnly,
-          styleProps,
+          ownerState,
         };
 
         const isActive = itemValue === Math.ceil(value) && (hover !== -1 || focus !== -1);
@@ -535,8 +535,8 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
             <RatingDecimal
               key={itemValue}
               className={clsx(classes.decimal, { [classes.iconActive]: isActive })}
-              styleProps={{
-                ...styleProps,
+              ownerState={{
+                ...ownerState,
                 iconActive: isActive,
               }}
             >
@@ -586,7 +586,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
       {!readOnly && !disabled && (
         <RatingLabel
           className={clsx(classes.label, classes.labelEmptyValue)}
-          styleProps={styleProps}
+          ownerState={ownerState}
         >
           <input
             className={classes.visuallyHidden}
