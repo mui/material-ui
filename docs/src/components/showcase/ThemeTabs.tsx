@@ -38,9 +38,7 @@ export default function ThemeTabs() {
         },
         spacing: 10,
         typography: {
-          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(
-            ',',
-          ),
+          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(','),
           button: {
             textTransform: 'initial',
           },
@@ -56,8 +54,7 @@ export default function ThemeTabs() {
               root: {
                 backgroundColor: mode === 'dark' ? primary[700] : primary[500],
                 borderRadius: 10,
-                boxShadow:
-                  '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
+                boxShadow: '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
               },
               indicator: {
                 backgroundColor: 'transparent',
@@ -65,8 +62,8 @@ export default function ThemeTabs() {
                   content: '""',
                   display: 'block',
                   position: 'absolute',
-                  left: 40,
-                  right: 40,
+                  left: 30,
+                  right: 30,
                   height: '100%',
                   backgroundColor: '#fff',
                 },
@@ -95,12 +92,7 @@ export default function ThemeTabs() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        aria-label="theme example"
-        variant="fullWidth"
-      >
+      <Tabs value={value} onChange={handleChange} aria-label="theme example" variant="fullWidth">
         <Tab label="Yesterday" />
         <Tab label="Today" />
         <Tab label="Tomorrow" />

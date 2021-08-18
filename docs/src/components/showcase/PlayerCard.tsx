@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import IconButton from '@material-ui/core/IconButton';
@@ -67,9 +66,7 @@ export default function PlayerCard() {
         },
         spacing: 10,
         typography: {
-          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(
-            ',',
-          ),
+          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(','),
         },
         components: {
           MuiButtonBase: {
@@ -108,15 +105,12 @@ export default function PlayerCard() {
   return (
     <ThemeProvider theme={theme}>
       <Card variant="outlined" sx={{ display: 'flex', p: 1 }}>
-        <Avatar
-          variant="rounded"
-          alt="Song cover"
+        <img
+          alt="Beside Myself album cover"
+          style={{ borderRadius: 5 }}
           src="/static/images/cards/basement-beside-myself.jpg"
-          imgProps={{
-            width: '124',
-            height: '124',
-          }}
-          sx={{ width: 124, height: 124 }}
+          width="124"
+          height="124"
         />
         <Box sx={{ alignSelf: 'center', mx: 2 }}>
           <Typography variant="body1" fontWeight={500}>

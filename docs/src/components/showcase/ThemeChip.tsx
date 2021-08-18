@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Switch from '@material-ui/core/Switch';
+import Chip from '@material-ui/core/Chip';
+import Stack from '@material-ui/core/Stack';
 
 const primary = {
   50: '#F0F7FF',
@@ -15,7 +15,6 @@ const primary = {
   800: '#004C99',
   900: '#003A75',
 };
-
 const grey = {
   50: '#F3F6F9',
   100: '#EAEEF3',
@@ -29,7 +28,7 @@ const grey = {
   900: '#3D4752',
 };
 
-export default function ThemeSwitch() {
+export default function ThemeChip() {
   /*
    * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
    *
@@ -43,37 +42,42 @@ export default function ThemeSwitch() {
       createTheme({
         palette: {
           mode,
-          primary,
+          primary: {
+            main: primary[500],
+          },
+        },
+        typography: {
+          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(','),
+          fontWeightRegular: 500,
         },
         components: {
-          MuiSwitch: {
+          MuiChip: {
             styleOverrides: {
-              root: {
-                width: 32,
-                height: 20,
-                padding: 0,
+              label: {
+                marginBottom: '1px',
+                fontSize: 14,
+                lineHeight: 1.5,
+                fontWeight: 600,
               },
-              switchBase: {
-                padding: 3,
-                color: '#fff',
-                '&.Mui-checked': {
-                  transform: 'translateX(12px)',
-                  color: '#fff',
-                  '& + .MuiSwitch-track': {
-                    opacity: 1,
-                  },
+              filled: {
+                color: mode === 'dark' ? '#fff' : grey[800],
+                backgroundColor: mode === 'dark' ? grey[900] : grey[200],
+                '&.MuiChip-colorPrimary': {
+                  backgroundColor: primary[100],
+                  color: primary[500],
                 },
               },
-              thumb: {
-                padding: 0,
-                height: 14,
-                width: 14,
-                boxShadow: 'none',
+              deleteIcon: {
+                color: grey[700],
+                '&:hover': {
+                  color: mode === 'dark' ? grey[500] : grey[800],
+                },
               },
-              track: {
-                borderRadius: 20,
-                opacity: 1,
-                backgroundColor: mode === 'dark' ? grey[800] : grey[400],
+              deleteIconColorPrimary: {
+                color: primary[500],
+                '&:hover': {
+                  color: primary[700],
+                },
               },
             },
           },
@@ -81,14 +85,12 @@ export default function ThemeSwitch() {
       }),
     [mode],
   );
-
-  const label = { inputProps: { 'aria-label': 'Themed Switch' } };
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', flexGrow: 1 }}>
-        <Switch defaultChecked {...label} />
-        <Switch {...label} />
-      </Box>
+      <Stack direction="row" spacing={2}>
+        <Chip label="React" color="primary" onDelete={() => {}} />
+        <Chip label="Javascript" onDelete={() => {}} />
+      </Stack>
     </ThemeProvider>
   );
 }
