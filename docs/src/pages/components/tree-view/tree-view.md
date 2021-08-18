@@ -70,10 +70,6 @@ Or increasing the width of the state indicator:
 
 {{"demo": "pages/components/tree-view/CustomizedTreeView.js"}}
 
-### Folder tree
-
-{{"demo": "pages/components/tree-view/FolderTreeView.js"}}
-
 ### Gmail clone
 
 {{"demo": "pages/components/tree-view/GmailTreeView.js"}}
