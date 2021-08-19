@@ -1,19 +1,102 @@
 import * as React from 'react';
+import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
+const primary = {
+  50: '#F0F7FF',
+  100: '#C2E0FF',
+  200: '#80BFFF',
+  300: '#66B2FF',
+  400: '#3399FF',
+  500: '#007FFF',
+  600: '#0072E5',
+  700: '#0059B2',
+  800: '#004C99',
+  900: '#003A75',
+};
+
 export default function ThemeTabs() {
   const [value, setValue] = React.useState(0);
+  /*
+   * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
+   *
+   * Normally, you would implement dark mode via internal state and/or system preference at the root of the application.
+   * For more detail about toggling dark mode: https://next.material-ui.com/customization/palette/#toggling-color-mode
+   */
+  const globalTheme = useTheme();
+  const mode = globalTheme.palette.mode;
+  const theme = React.useMemo(
+    () =>
+      createTheme({
+        palette: {
+          mode,
+          primary,
+        },
+        shape: {
+          borderRadius: 8,
+        },
+        spacing: 10,
+        typography: {
+          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(','),
+          button: {
+            textTransform: 'initial',
+          },
+        },
+        components: {
+          MuiButtonBase: {
+            defaultProps: {
+              disableTouchRipple: true,
+            },
+          },
+          MuiTabs: {
+            styleOverrides: {
+              root: {
+                backgroundColor: mode === 'dark' ? primary[700] : primary[500],
+                borderRadius: 10,
+                boxShadow: '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
+              },
+              indicator: {
+                backgroundColor: 'transparent',
+                '&:before': {
+                  content: '""',
+                  display: 'block',
+                  position: 'absolute',
+                  left: 30,
+                  right: 30,
+                  height: '100%',
+                  backgroundColor: '#fff',
+                },
+              },
+            },
+          },
+          MuiTab: {
+            styleOverrides: {
+              root: {
+                color: mode === 'dark' ? primary[200] : primary[100],
+                fontSize: '1rem',
+                '&.Mui-selected': {
+                  color: '#fff',
+                },
+              },
+            },
+          },
+        },
+      }),
+    [mode],
+  );
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
   return (
-    <Tabs value={value} onChange={handleChange} aria-label="theme example" variant="fullWidth">
-      <Tab label="Yesterday" />
-      <Tab label="Today" />
-      <Tab label="Tomorrow" />
-    </Tabs>
+    <ThemeProvider theme={theme}>
+      <Tabs value={value} onChange={handleChange} aria-label="theme example" variant="fullWidth">
+        <Tab label="Yesterday" />
+        <Tab label="Today" />
+        <Tab label="Tomorrow" />
+      </Tabs>
+    </ThemeProvider>
   );
 }

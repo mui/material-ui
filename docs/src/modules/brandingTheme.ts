@@ -33,18 +33,6 @@ declare module '@material-ui/core/styles/createTypography' {
   }
 }
 
-declare module '@material-ui/core/Paper' {
-  interface PaperPropsVariantOverrides {
-    gradient: true;
-  }
-}
-
-declare module '@material-ui/core/Chip' {
-  interface ChipPropsVariantOverrides {
-    notification: true;
-  }
-}
-
 // TODO: enable this once types conflict is fixed
 // declare module '@material-ui/core/Button' {
 //   interface ButtonPropsVariantOverrides {
@@ -156,7 +144,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         400: '#3EE07F',
         500: '#21CC66',
         600: '#1DB45A',
-        main: mode === 'dark' ? '#1DB45A' : '#1AA251', // contrast 3.31:1
+        main: '#1AA251', // contrast 3.31:1
         700: '#1AA251',
         800: '#178D46',
         900: '#0F5C2E',
@@ -253,48 +241,6 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
 export function getThemedComponents(theme: Theme) {
   return {
     components: {
-      MuiAccordion: {
-        styleOverrides: {
-          root: {
-            backgroundColor:
-              theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#fff',
-            '&.Mui-expanded': {
-              margin: 0,
-            },
-            '&:not(:first-of-type)': {
-              marginTop: -1,
-            },
-          },
-        },
-      },
-      MuiAccordionSummary: {
-        styleOverrides: {
-          root: {
-            '&.Mui-expanded': {
-              minHeight: 'auto',
-            },
-          },
-          content: {
-            flexDirection: 'column',
-            margin: '20px 0 !important',
-            '& svg': {
-              color: theme.palette.mode === 'dark' ? grey[800] : grey[500],
-              marginTop: '2px',
-              marginRight: theme.spacing(2),
-            },
-          },
-          expandIconWrapper: {
-            color: theme.palette.primary[500],
-          },
-        },
-      },
-      MuiAccordionDetails: {
-        styleOverrides: {
-          root: {
-            paddingTop: 0,
-          },
-        },
-      },
       MuiButtonBase: {
         defaultProps: {
           disableTouchRipple: true,
@@ -360,56 +306,12 @@ export function getThemedComponents(theme: Theme) {
           },
         ],
       },
-      MuiCard: {
-        styleOverrides: {
-          root: {
-            backgroundColor:
-              theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#fff',
-          },
-        },
-      },
       MuiContainer: {
         styleOverrides: {
           root: {
             [theme.breakpoints.up('md')]: {
               paddingLeft: theme.spacing(2),
               paddingRight: theme.spacing(2),
-            },
-          },
-        },
-      },
-      MuiChip: {
-        variants: [
-          {
-            props: { variant: 'notification' },
-            style: { color: '#fff', fontSize: 12, height: 18 },
-          },
-        ],
-        styleOverrides: {
-          label: {
-            marginBottom: '1px',
-            fontSize: 14,
-            lineHeight: 1.5,
-            fontWeight: 600,
-          },
-          filled: {
-            color: theme.palette.mode === 'dark' ? '#fff' : grey[800],
-            backgroundColor: theme.palette.mode === 'dark' ? grey[900] : grey[200],
-            '&.MuiChip-colorPrimary': {
-              backgroundColor: theme.palette.primary[100],
-              color: theme.palette.primary[500],
-            },
-          },
-          deleteIcon: {
-            color: grey[700],
-            '&:hover': {
-              color: theme.palette.mode === 'dark' ? grey[500] : grey[800],
-            },
-          },
-          deleteIconColorPrimary: {
-            color: theme.palette.primary[500],
-            '&:hover': {
-              color: theme.palette.primary[700],
             },
           },
         },
@@ -446,126 +348,12 @@ export function getThemedComponents(theme: Theme) {
           },
         },
       },
-      MuiLinearProgress: {
-        styleOverrides: {
-          root: {
-            borderRadius: 10,
-            backgroundColor: 'rgba(255,255,255,0.12)',
-          },
-          bar: {
-            borderRadius: 10,
-            backgroundColor: '#fff',
-          },
-        },
-      },
-      MuiTabs: {
-        styleOverrides: {
-          root: {
-            backgroundColor:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primary[700]
-                : theme.palette.primary[500],
-            borderRadius: 10,
-            boxShadow: '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
-          },
-          indicator: {
-            backgroundColor: 'transparent',
-            '&:before': {
-              content: '""',
-              display: 'block',
-              position: 'absolute',
-              left: 30,
-              right: 30,
-              height: '100%',
-              backgroundColor: '#fff',
-            },
-          },
-        },
-      },
       MuiTab: {
-        styleOverrides: {
-          root: {
-            color:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primary[200]
-                : theme.palette.primary[100],
-            fontSize: '1rem',
-            fontWeight: 500,
-            '&.Mui-selected': {
-              color: '#fff',
-            },
-          },
-        },
-      },
-      MuiTimelineItem: {
-        styleOverrides: {
-          root: {
-            minHeight: 36,
-          },
-        },
-      },
-      MuiTimelineDot: {
-        styleOverrides: {
-          root: {
-            zIndex: 1,
-            padding: 3,
-            boxShadow: 'none',
-            margin: '15px 0',
-            border: 'none',
-            backgroundColor: theme.palette.primary[500],
-          },
-        },
-      },
-      MuiTimelineConnector: {
-        styleOverrides: {
-          root: {
-            margin: '-15px 0',
-            backgroundColor:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[700]
-                : theme.palette.primary[50],
-          },
-        },
-      },
-      MuiTimelineContent: {
-        styleOverrides: {
-          root: {
-            fontSize: '0.875rem',
-            color: theme.palette.mode === 'dark' ? grey[100] : grey[800],
-          },
-        },
-      },
-      MuiToggleButtonGroup: {
-        styleOverrides: {
-          root: {
-            backgroundColor:
-              theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#fff',
-          },
-        },
-      },
-      MuiToggleButton: {
-        styleOverrides: {
-          root: {
-            color: theme.palette.mode === 'dark' ? '#fff' : grey[600],
-            '&.Mui-selected': {
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primary[300]
-                  : theme.palette.primary[500],
-            },
-          },
+        defaultProps: {
+          disableTouchRipple: true,
         },
       },
       MuiPaper: {
-        variants: [
-          {
-            props: { variant: 'gradient' },
-            style: {
-              background: `linear-gradient(to right bottom, ${theme.palette.primary.main}, ${theme.palette.primary[700]} 120%)`,
-              boxShadow: '0px 20px 25px rgba(0, 0, 0, 0.1), 0px 10px 10px rgba(0, 0, 0, 0.04)',
-            },
-          },
-        ],
         styleOverrides: {
           outlined: {
             display: 'block',
@@ -596,53 +384,6 @@ export function getThemedComponents(theme: Theme) {
           },
           body: {
             color: theme.palette.text.secondary,
-          },
-          sizeSmall: {
-            padding: '0.625rem 1rem',
-          },
-        },
-      },
-      MuiSlider: {
-        styleOverrides: {
-          root: {
-            color: theme.palette.primary[500],
-          },
-          rail: {
-            opacity: 1,
-            backgroundColor:
-              theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : grey[200],
-          },
-          track: {
-            border: 'none',
-          },
-          thumb: {
-            width: 8,
-            height: 8,
-            '&:before': {
-              boxShadow: 'none',
-            },
-          },
-          vertical: {
-            '& .MuiSlider-mark[data-index="0"]': {
-              bottom: '2px !important',
-            },
-            '& .MuiSlider-mark[data-index="4"]': {
-              bottom: 'unset !important',
-            },
-            '& .MuiSlider-valueLabel': {
-              backgroundColor: 'transparent',
-              color: theme.palette.mode === 'dark' ? grey[50] : grey[500],
-              fontWeight: 700,
-              padding: 0,
-              left: '1rem',
-              '&.MuiSlider-valueLabelOpen': {
-                transform: 'none',
-                top: 'initial',
-              },
-            },
-          },
-          mark: {
-            color: grey[500],
           },
         },
       },

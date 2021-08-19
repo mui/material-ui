@@ -38,8 +38,8 @@ export default function Hero() {
       <Container
         sx={{
           minHeight: 500,
-          // height: 'calc(100vh - 120px)',
-          // maxHeight: { xs: 500, sm: 700, xl: 1000 },
+          height: 'calc(100vh - 120px)',
+          maxHeight: { xs: 500, sm: 700, xl: 1000 },
           transition: '0.3s',
         }}
       >
@@ -76,8 +76,8 @@ export default function Hero() {
                 bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
                 minWidth: 2000,
                 minHeight: 500,
-                // height: 'calc(100vh - 120px)',
-                // maxHeight: { lg: 700, xl: 1000 },
+                height: 'calc(100vh - 120px)',
+                maxHeight: { lg: 700, xl: 1000 },
                 borderBottomLeftRadius: 10,
                 transition: 'max-height 0.3s',
                 '& > div': {
