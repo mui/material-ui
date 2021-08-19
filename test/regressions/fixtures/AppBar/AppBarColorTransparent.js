@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { AppBar, Box, Typography } from '@material-ui/core';
+import { AppBar, Typography } from '@material-ui/core';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 
 const darkTheme = createTheme({
@@ -13,29 +13,21 @@ const darkTheme = createTheme({
 export default function Demo() {
   return (
     <div style={{ backgroundColor: '#ffefd5' }}>
-      <Box>
+      <AppBar position="static">
+        <Typography>Light | Default</Typography>
+      </AppBar>
+      <ThemeProvider theme={darkTheme}>
         <AppBar position="static">
-          <Typography>Light | Default</Typography>
+          <Typography>Dark | Default</Typography>
         </AppBar>
-      </Box>
-      <ThemeProvider theme={darkTheme}>
-        <Box>
-          <AppBar position="static">
-            <Typography>Dark | Default</Typography>
-          </AppBar>
-        </Box>
       </ThemeProvider>
-      <Box>
-        <AppBar position="static" color="transparent">
-          <Typography>Light | Transparent</Typography>
-        </AppBar>
-      </Box>
+      <AppBar position="static" color="transparent">
+        <Typography>Light | Transparent</Typography>
+      </AppBar>
       <ThemeProvider theme={darkTheme}>
-        <Box>
-          <AppBar position="static" color="transparent">
-            <Typography>Dark | Transparent</Typography>
-          </AppBar>
-        </Box>
+        <AppBar position="static" color="transparent">
+          <Typography>Dark | Transparent</Typography>
+        </AppBar>
       </ThemeProvider>
     </div>
   );
