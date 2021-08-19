@@ -51,6 +51,7 @@ const AccordionRoot = styled(Paper, {
     return {
       position: 'relative',
       transition: theme.transitions.create(['margin'], transition),
+      overflow: 'hidden',
       overflowAnchor: 'none', // Keep the same scrolling position
       '&:before': {
         position: 'absolute',
