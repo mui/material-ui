@@ -1,24 +1,24 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Stack from '@material-ui/core/Stack';
+// import Stack from '@material-ui/core/Stack';
 import GradientText from 'docs/src/components/typography/GradientText';
-import PlayerCard from 'docs/src/components/showcase/PlayerCard';
-import TaskCard from 'docs/src/components/showcase/TaskCard';
-import NotificationCard from 'docs/src/components/showcase/NotificationCard';
-import ThemeChip from 'docs/src/components/showcase/ThemeChip';
-import ThemeDatePicker from 'docs/src/components/showcase/ThemeDatePicker';
-import ThemeSlider from 'docs/src/components/showcase/ThemeSlider';
-import FolderTable from 'docs/src/components/showcase/FolderTable';
-import ThemeTabs from 'docs/src/components/showcase/ThemeTabs';
-import ThemeTimeline from 'docs/src/components/showcase/ThemeTimeline';
-import ViewToggleButton from 'docs/src/components/showcase/ViewToggleButton';
-import ThemeToggleButton from 'docs/src/components/showcase/ThemeToggleButton';
-import ThemeSwitch from 'docs/src/components/showcase/ThemeSwitch';
-import ThemeAccordion from 'docs/src/components/showcase/ThemeAccordion';
+// import PlayerCard from 'docs/src/components/showcase/PlayerCard';
+// import TaskCard from 'docs/src/components/showcase/TaskCard';
+// import NotificationCard from 'docs/src/components/showcase/NotificationCard';
+// import ThemeChip from 'docs/src/components/showcase/ThemeChip';
+// import ThemeDatePicker from 'docs/src/components/showcase/ThemeDatePicker';
+// import ThemeSlider from 'docs/src/components/showcase/ThemeSlider';
+// import FolderTable from 'docs/src/components/showcase/FolderTable';
+// import ThemeTabs from 'docs/src/components/showcase/ThemeTabs';
+// import ThemeTimeline from 'docs/src/components/showcase/ThemeTimeline';
+// import ViewToggleButton from 'docs/src/components/showcase/ViewToggleButton';
+// import ThemeToggleButton from 'docs/src/components/showcase/ThemeToggleButton';
+// import ThemeSwitch from 'docs/src/components/showcase/ThemeSwitch';
+// import ThemeAccordion from 'docs/src/components/showcase/ThemeAccordion';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 
 export default function Hero() {
@@ -98,7 +98,7 @@ export default function Hero() {
                 },
               }}
             >
-              <Stack spacing={4} sx={{ '& > .MuiPaper-root': { maxWidth: 'none' } }}>
+              {/* <Stack spacing={4} sx={{ '& > .MuiPaper-root': { maxWidth: 'none' } }}>
                 <TaskCard />
                 <PlayerCard />
                 <ThemeToggleButton />
@@ -129,7 +129,7 @@ export default function Hero() {
                 </Box>
                 <ThemeAccordion />
                 <NotificationCard />
-              </Stack>
+              </Stack> */}
             </Box>
           </Grid>
         </Grid>
