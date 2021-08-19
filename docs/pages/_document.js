@@ -78,11 +78,12 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
             rel="stylesheet"
           />
-          <style
-            // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={{
-              __html: `@font-face{font-family:'PlusJakartaSans';font-style:normal;font-weight:800;font-display:swap;src:url(/static/fonts/PlusJakartaSans-ExtraBold.woff2) format('woff2')}`,
-            }}
+          <link
+            rel="preload"
+            // optimized for english characters (40kb -> 6kb)
+            href="/static/fonts/PlusJakartaSans-ExtraBold-subset.woff2"
+            as="font"
+            type="font/woff2"
           />
         </Head>
         <body>
