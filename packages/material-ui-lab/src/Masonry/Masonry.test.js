@@ -9,7 +9,7 @@ import { style } from './Masonry';
 describe('<Masonry />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(
+  describeConformance(
     <Masonry>
       <div />
     </Masonry>,
