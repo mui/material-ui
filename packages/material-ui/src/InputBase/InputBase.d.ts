@@ -59,14 +59,14 @@ export interface InputBaseProps
   componentsProps?: {
     root?: {
       as: React.ElementType;
-      styleProps?: Omit<InputBaseProps, 'components' | 'componentsProps'> & {
+      ownerState?: Omit<InputBaseProps, 'components' | 'componentsProps'> & {
         hiddenLabel?: boolean;
         focused?: boolean;
       };
     };
     input?: {
       as?: React.ElementType;
-      styleProps?: Omit<InputBaseProps, 'components' | 'componentsProps'> & {
+      ownerState?: Omit<InputBaseProps, 'components' | 'componentsProps'> & {
         hiddenLabel?: boolean;
         focused?: boolean;
       };
@@ -138,7 +138,7 @@ export interface InputBaseProps
   /**
    * Callback fired when the value is changed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange?: React.ChangeEventHandler<HTMLTextAreaElement | HTMLInputElement>;

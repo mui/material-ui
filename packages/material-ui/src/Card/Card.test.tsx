@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import Card, { cardClasses as classes } from '@material-ui/core/Card';
 import Paper from '@material-ui/core/Paper';
 
 describe('<Card />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<Card />, () => ({
+  describeConformance(<Card />, () => ({
     classes,
     inheritComponent: Paper,
     render,

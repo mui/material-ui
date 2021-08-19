@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/codemod",
-  "version": "5.0.0-beta.0",
+  "version": "5.0.0-beta.4",
   "bin": "./codemod.js",
   "private": false,
   "author": "Material-UI Team",
@@ -26,15 +26,15 @@
   "license": "MIT",
   "homepage": "https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod",
   "dependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/runtime": "^7.4.4",
-    "@babel/traverse": "^7.6.2",
+    "@babel/core": "^7.15.0",
+    "@babel/runtime": "^7.14.8",
+    "@babel/traverse": "^7.15.0",
     "jscodeshift": "^0.13.0",
     "jscodeshift-add-imports": "^1.0.1",
     "yargs": "^17.0.1"
   },
   "devDependencies": {
-    "@types/jscodeshift": "0.11.0"
+    "@types/jscodeshift": "0.11.2"
   },
   "sideEffects": false,
   "publishConfig": {

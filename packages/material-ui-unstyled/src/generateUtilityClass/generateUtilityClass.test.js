@@ -6,7 +6,7 @@ describe('generateUtilityClass', () => {
     expect(generateUtilityClass('MuiTest', 'slot')).to.equal('MuiTest-slot');
   });
 
-  it('should consider if slot should generate pseudo class', () => {
+  it('should consider if slot should generate state class', () => {
     expect(generateUtilityClass('MuiTest', 'active')).to.equal('Mui-active');
     expect(generateUtilityClass('MuiTest', 'checked')).to.equal('Mui-checked');
     expect(generateUtilityClass('MuiTest', 'disabled')).to.equal('Mui-disabled');

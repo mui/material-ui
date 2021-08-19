@@ -22,9 +22,10 @@ Use `color` prop to apply theme palette to component.
 
 {{"demo": "pages/components/badges/ColorBadge.js"}}
 
-## Customized badges
+## Customization
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+Here is an example of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 

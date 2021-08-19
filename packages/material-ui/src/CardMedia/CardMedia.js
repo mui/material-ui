@@ -7,8 +7,8 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import { getCardMediaUtilityClass } from './cardMediaClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, isMediaComponent, isImageComponent } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, isMediaComponent, isImageComponent } = ownerState;
 
   const slots = {
     root: ['root', isMediaComponent && 'media', isImageComponent && 'img'],
@@ -21,23 +21,20 @@ const CardMediaRoot = styled('div', {
   name: 'MuiCardMedia',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
-    const { isMediaComponent, isImageComponent } = styleProps;
+    const { ownerState } = props;
+    const { isMediaComponent, isImageComponent } = ownerState;
 
     return [styles.root, isMediaComponent && styles.media, isImageComponent && styles.img];
   },
-})(({ styleProps }) => ({
-  /* Styles applied to the root element. */
+})(({ ownerState }) => ({
   display: 'block',
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center',
-  /* Styles applied to the root element if `component="video, audio, picture, iframe, or img"`. */
-  ...(styleProps.isMediaComponent && {
+  ...(ownerState.isMediaComponent && {
     width: '100%',
   }),
-  /* Styles applied to the root element if `component="picture or img"`. */
-  ...(styleProps.isImageComponent && {
+  ...(ownerState.isImageComponent && {
     // ⚠️ object-fit is not supported by IE11.
     objectFit: 'cover',
   }),
@@ -54,14 +51,14 @@ const CardMedia = React.forwardRef(function CardMedia(inProps, ref) {
   const composedStyle =
     !isMediaComponent && image ? { backgroundImage: `url("${image}")`, ...style } : style;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     component,
     isMediaComponent,
     isImageComponent: IMAGE_COMPONENTS.indexOf(component) !== -1,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <CardMediaRoot
@@ -69,7 +66,7 @@ const CardMedia = React.forwardRef(function CardMedia(inProps, ref) {
       as={component}
       ref={ref}
       style={composedStyle}
-      styleProps={styleProps}
+      ownerState={ownerState}
       src={isMediaComponent ? image || src : undefined}
       {...other}
     >

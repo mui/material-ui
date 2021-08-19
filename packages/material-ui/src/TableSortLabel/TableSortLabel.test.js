@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import SortIcon from '@material-ui/icons/Sort';
 import TableSortLabel, { tableSortLabelClasses as classes } from '@material-ui/core/TableSortLabel';
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -8,7 +8,7 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 describe('<TableSortLabel />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<TableSortLabel />, () => ({
+  describeConformance(<TableSortLabel />, () => ({
     classes,
     inheritComponent: ButtonBase,
     render,

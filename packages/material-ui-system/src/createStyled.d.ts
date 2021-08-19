@@ -75,19 +75,9 @@ export type PropsOf<C extends keyof JSX.IntrinsicElements | React.JSXElementCons
 
 export type Overwrapped<T, U> = Pick<T, Extract<keyof T, keyof U>>;
 
-export interface StyledComponent<InnerProps, StyleProps, Theme extends object>
-  extends React.FunctionComponent<InnerProps & StyleProps & { theme?: Theme }>,
-    ComponentSelector {
-  /**
-   * @desc this method is type-unsafe
-   */
-  withComponent<NewTag extends keyof JSX.IntrinsicElements>(
-    tag: NewTag,
-  ): StyledComponent<JSX.IntrinsicElements[NewTag], StyleProps, Theme>;
-  withComponent<Tag extends React.JSXElementConstructor<any>>(
-    tag: Tag,
-  ): StyledComponent<PropsOf<Tag>, StyleProps, Theme>;
-}
+export interface StyledComponent<InnerProps, OwnerState, Theme extends object>
+  extends React.FunctionComponent<InnerProps & OwnerState & { theme?: Theme }>,
+    ComponentSelector {}
 
 export interface StyledOptions {
   label?: string;
@@ -237,8 +227,10 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
   >;
 }
 
+export function shouldForwardProp(propName: PropertyKey): boolean;
+
 export default function createStyled<T extends object = DefaultTheme>(options?: {
   defaultTheme?: T;
-  rootShouldForwardProp?: (prop: string) => boolean;
-  slotShouldForwardProp?: (prop: string) => boolean;
+  rootShouldForwardProp?: (prop: PropertyKey) => boolean;
+  slotShouldForwardProp?: (prop: PropertyKey) => boolean;
 }): CreateMUIStyled<T>;

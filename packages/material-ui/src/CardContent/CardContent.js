@@ -6,8 +6,8 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getCardContentUtilityClass } from './cardContentClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -21,7 +21,6 @@ const CardContentRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })(() => {
-  /* Styles applied to the root element. */
   return {
     padding: 16,
     '&:last-child': {
@@ -38,15 +37,15 @@ const CardContent = React.forwardRef(function CardContent(inProps, ref) {
 
   const { className, component = 'div', ...other } = props;
 
-  const styleProps = { ...props, component };
+  const ownerState = { ...props, component };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <CardContentRoot
       as={component}
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       {...other}
     />

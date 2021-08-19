@@ -9,8 +9,8 @@ import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import stepLabelClasses, { getStepLabelUtilityClass } from './stepLabelClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, orientation, active, completed, error, disabled, alternativeLabel } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, orientation, active, completed, error, disabled, alternativeLabel } = ownerState;
 
   const slots = {
     root: [
@@ -39,12 +39,11 @@ const StepLabelRoot = styled('span', {
   name: 'MuiStepLabel',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
-    return [styles.root, styles[styleProps.orientation]];
+    return [styles.root, styles[ownerState.orientation]];
   },
-})(({ styleProps }) => ({
-  /* Styles applied to the root element. */
+})(({ ownerState }) => ({
   display: 'flex',
   alignItems: 'center',
   [`&.${stepLabelClasses.alternativeLabel}`]: {
@@ -53,8 +52,7 @@ const StepLabelRoot = styled('span', {
   [`&.${stepLabelClasses.disabled}`]: {
     cursor: 'default',
   },
-  /* Styles applied to the root element if `orientation="vertical"`. */
-  ...(styleProps.orientation === 'vertical' && {
+  ...(ownerState.orientation === 'vertical' && {
     textAlign: 'left',
     padding: '8px 0',
   }),
@@ -67,7 +65,6 @@ const StepLabelLabel = styled('span', {
 })(({ theme }) => ({
   ...theme.typography.body2,
   display: 'block',
-  /* Styles applied to the Typography component that wraps `children`. */
   transition: theme.transitions.create('color', {
     duration: theme.transitions.duration.shortest,
   }),
@@ -93,7 +90,6 @@ const StepLabelIconContainer = styled('span', {
   slot: 'IconContainer',
   overridesResolver: (props, styles) => styles.iconContainer,
 })(() => ({
-  /* Styles applied to the `icon` container element. */
   flexShrink: 0, // Fix IE11 issue
   display: 'flex',
   paddingRight: 8,
@@ -107,7 +103,6 @@ const StepLabelLabelContainer = styled('span', {
   slot: 'LabelContainer',
   overridesResolver: (props, styles) => styles.labelContainer,
 })(({ theme }) => ({
-  /* Styles applied to the container element which wraps `Typography` and `optional`. */
   width: '100%',
   color: theme.palette.text.secondary,
 }));
@@ -136,7 +131,7 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
     StepIconComponent = StepIcon;
   }
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     active,
     alternativeLabel,
@@ -146,17 +141,17 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
     orientation,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <StepLabelRoot
       className={clsx(classes.root, className)}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       {icon || StepIconComponent ? (
-        <StepLabelIconContainer className={classes.iconContainer} styleProps={styleProps}>
+        <StepLabelIconContainer className={classes.iconContainer} ownerState={ownerState}>
           <StepIconComponent
             completed={completed}
             active={active}
@@ -166,11 +161,11 @@ const StepLabel = React.forwardRef(function StepLabel(inProps, ref) {
           />
         </StepLabelIconContainer>
       ) : null}
-      <StepLabelLabelContainer className={classes.labelContainer} styleProps={styleProps}>
+      <StepLabelLabelContainer className={classes.labelContainer} ownerState={ownerState}>
         {children ? (
           <StepLabelLabel
             className={classes.label}
-            styleProps={styleProps}
+            ownerState={ownerState}
             {...componentsProps.label}
           >
             {children}

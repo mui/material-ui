@@ -13,8 +13,8 @@ import TreeViewContext from './TreeViewContext';
 import { DescendantProvider } from './descendants';
 import { getTreeViewUtilityClass } from './treeViewClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -83,7 +83,7 @@ const TreeView = React.forwardRef(function TreeView(inProps, ref) {
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     defaultExpanded,
     defaultSelected,
@@ -92,7 +92,7 @@ const TreeView = React.forwardRef(function TreeView(inProps, ref) {
     multiSelect,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const treeId = useId(idProp);
 
@@ -820,7 +820,7 @@ const TreeView = React.forwardRef(function TreeView(inProps, ref) {
           onKeyDown={handleKeyDown}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          styleProps={styleProps}
+          ownerState={ownerState}
           {...other}
         >
           {children}
@@ -915,22 +915,22 @@ TreeView.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when tree items are focused.
    *
-   * @param {object} event The event source of the callback **Warning**: This is a generic event not a focus event.
+   * @param {React.SyntheticEvent} event The event source of the callback **Warning**: This is a generic event not a focus event.
    * @param {string} value of the focused node.
    */
   onNodeFocus: PropTypes.func,
   /**
    * Callback fired when tree items are selected/unselected.
    *
-   * @param {object} event The event source of the callback
-   * @param {(array|string)} value of the selected nodes. When `multiSelect` is true
+   * @param {React.SyntheticEvent} event The event source of the callback
+   * @param {string[] | string} nodeIds Ids of the selected nodes. When `multiSelect` is true
    * this is an array of strings; when false (default) a string.
    */
   onNodeSelect: PropTypes.func,
   /**
    * Callback fired when tree items are expanded/collapsed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {array} nodeIds The ids of the expanded nodes.
    */
   onNodeToggle: PropTypes.func,

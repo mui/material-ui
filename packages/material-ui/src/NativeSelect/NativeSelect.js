@@ -10,8 +10,8 @@ import Input from '../Input';
 import useThemeProps from '../styles/useThemeProps';
 import { getNativeSelectUtilityClasses } from './nativeSelectClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -44,8 +44,8 @@ const NativeSelect = React.forwardRef(function NativeSelect(inProps, ref) {
     states: ['variant'],
   });
 
-  const styleProps = { ...props, classes: classesProp };
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = { ...props, classes: classesProp };
+  const classes = useUtilityClasses(ownerState);
   const { root, ...otherClasses } = classesProp;
 
   return React.cloneElement(input, {
@@ -103,7 +103,7 @@ NativeSelect.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when a menu item is selected.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.ChangeEvent<HTMLSelectElement>} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,

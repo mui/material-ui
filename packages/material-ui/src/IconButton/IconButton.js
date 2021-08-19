@@ -10,8 +10,8 @@ import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, disabled, color, edge, size } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, disabled, color, edge, size } = ownerState;
 
   const slots = {
     root: [
@@ -30,18 +30,17 @@ const IconButtonRoot = styled(ButtonBase, {
   name: 'MuiIconButton',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.root,
-      styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`],
-      styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`],
-      styles[`size${capitalize(styleProps.size)}`],
+      ownerState.color !== 'default' && styles[`color${capitalize(ownerState.color)}`],
+      ownerState.edge && styles[`edge${capitalize(ownerState.edge)}`],
+      styles[`size${capitalize(ownerState.size)}`],
     ];
   },
 })(
-  ({ theme, styleProps }) => ({
-    /* Styles applied to the root element. */
+  ({ theme, ownerState }) => ({
     textAlign: 'center',
     flex: '0 0 auto',
     fontSize: theme.typography.pxToRem(24),
@@ -59,26 +58,23 @@ const IconButtonRoot = styled(ButtonBase, {
         backgroundColor: 'transparent',
       },
     },
-    /* Styles applied to the root element if `edge="start"`. */
-    ...(styleProps.edge === 'start' && {
-      marginLeft: styleProps.size === 'small' ? -3 : -12,
+    ...(ownerState.edge === 'start' && {
+      marginLeft: ownerState.size === 'small' ? -3 : -12,
     }),
-    /* Styles applied to the root element if `edge="end"`. */
-    ...(styleProps.edge === 'end' && {
-      marginRight: styleProps.size === 'small' ? -3 : -12,
+    ...(ownerState.edge === 'end' && {
+      marginRight: ownerState.size === 'small' ? -3 : -12,
     }),
   }),
-  ({ theme, styleProps }) => ({
-    /* Styles applied to the root element if `color="inherit"`. */
-    ...(styleProps.color === 'inherit' && {
+  ({ theme, ownerState }) => ({
+    ...(ownerState.color === 'inherit' && {
       color: 'inherit',
     }),
-    ...(styleProps.color !== 'inherit' &&
-      styleProps.color !== 'default' && {
-        color: theme.palette[styleProps.color].main,
+    ...(ownerState.color !== 'inherit' &&
+      ownerState.color !== 'default' && {
+        color: theme.palette[ownerState.color].main,
         '&:hover': {
           backgroundColor: alpha(
-            theme.palette[styleProps.color].main,
+            theme.palette[ownerState.color].main,
             theme.palette.action.hoverOpacity,
           ),
           // Reset on touch devices, it doesn't add specificity
@@ -87,16 +83,14 @@ const IconButtonRoot = styled(ButtonBase, {
           },
         },
       }),
-    /* Styles applied to the root element if `size="small"`. */
-    ...(styleProps.size === 'small' && {
+    ...(ownerState.size === 'small' && {
       padding: 5,
       fontSize: theme.typography.pxToRem(18),
     }),
-    ...(styleProps.size === 'large' && {
+    ...(ownerState.size === 'large' && {
       padding: 12,
       fontSize: theme.typography.pxToRem(28),
     }),
-    /* Styles applied to the root element if `disabled={true}`. */
     [`&.${iconButtonClasses.disabled}`]: {
       backgroundColor: 'transparent',
       color: theme.palette.action.disabled,
@@ -121,7 +115,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     edge,
     color,
@@ -130,7 +124,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     size,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <IconButtonRoot
@@ -139,7 +133,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
       focusRipple={!disableFocusRipple}
       disabled={disabled}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       {children}

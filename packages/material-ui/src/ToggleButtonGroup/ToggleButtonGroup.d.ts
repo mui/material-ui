@@ -7,6 +7,8 @@ import { ToggleButtonGroupClasses } from './toggleButtonGroupClasses';
 
 export interface ToggleButtonGroupPropsSizeOverrides {}
 
+export interface ToggleButtonGroupPropsColorOverrides {}
+
 export interface ToggleButtonGroupProps
   extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'children'> {
   /**
@@ -21,7 +23,10 @@ export interface ToggleButtonGroupProps
    * The color of a button when it is selected.
    * @default 'standard'
    */
-  color?: 'standard' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
+  color?: OverridableStringUnion<
+    'standard' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+    ToggleButtonGroupPropsColorOverrides
+  >;
   /**
    * If `true`, only allow one of the child ToggleButton values to be selected.
    * @default false
@@ -35,7 +40,7 @@ export interface ToggleButtonGroupProps
   /**
    * Callback fired when the value changes.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.MouseEvent<HTMLElement>} event The event source of the callback.
    * @param {any} value of the selected buttons. When `exclusive` is true
    * this is a single value; when false an array of selected values. If no value
    * is selected and `exclusive` is true the value is null; when false an empty array.

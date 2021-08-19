@@ -12,8 +12,8 @@ import useThemeProps from '../styles/useThemeProps';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, indeterminate, color } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, indeterminate, color } = ownerState;
 
   const slots = {
     root: ['root', indeterminate && 'indeterminate', `color${capitalize(color)}`],
@@ -32,33 +32,33 @@ const CheckboxRoot = styled(SwitchBase, {
   name: 'MuiCheckbox',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.root,
-      styleProps.indeterminate && styles.indeterminate,
-      styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`],
+      ownerState.indeterminate && styles.indeterminate,
+      ownerState.color !== 'default' && styles[`color${capitalize(ownerState.color)}`],
     ];
   },
-})(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
+})(({ theme, ownerState }) => ({
   color: theme.palette.text.secondary,
-  '&:hover': {
-    backgroundColor: alpha(
-      styleProps.color === 'default'
-        ? theme.palette.action.active
-        : theme.palette[styleProps.color].main,
-      theme.palette.action.hoverOpacity,
-    ),
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
-      backgroundColor: 'transparent',
+  ...(!ownerState.disableRipple && {
+    '&:hover': {
+      backgroundColor: alpha(
+        ownerState.color === 'default'
+          ? theme.palette.action.active
+          : theme.palette[ownerState.color].main,
+        theme.palette.action.hoverOpacity,
+      ),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
-  },
-  /* Styles applied to the root element unless `color="default"`. */
-  ...(styleProps.color !== 'default' && {
+  }),
+  ...(ownerState.color !== 'default' && {
     [`&.${checkboxClasses.checked}, &.${checkboxClasses.indeterminate}`]: {
-      color: theme.palette[styleProps.color].main,
+      color: theme.palette[ownerState.color].main,
     },
     [`&.${checkboxClasses.disabled}`]: {
       color: theme.palette.action.disabled,
@@ -86,14 +86,14 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const icon = indeterminate ? indeterminateIconProp : iconProp;
   const indeterminateIcon = indeterminate ? indeterminateIconProp : checkedIcon;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     color,
     indeterminate,
     size,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <CheckboxRoot
@@ -103,16 +103,12 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
         ...inputProps,
       }}
       icon={React.cloneElement(icon, {
-        fontSize:
-          icon.props.fontSize === undefined && size !== 'medium' ? size : icon.props.fontSize,
+        fontSize: icon.props.fontSize ?? size,
       })}
       checkedIcon={React.cloneElement(indeterminateIcon, {
-        fontSize:
-          indeterminateIcon.props.fontSize === undefined && size !== 'medium'
-            ? size
-            : indeterminateIcon.props.fontSize,
+        fontSize: indeterminateIcon.props.fontSize ?? size,
       })}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       {...other}
       classes={classes}
@@ -191,7 +187,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the state is changed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.ChangeEvent<HTMLInputElement>} event The event source of the callback.
    * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
   onChange: PropTypes.func,

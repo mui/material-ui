@@ -5,8 +5,8 @@ import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled
 import { styled, useThemeProps } from '@material-ui/core/styles';
 import { getTimelineConnectorUtilityClass } from './timelineConnectorClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -20,7 +20,6 @@ const TimelineConnectorRoot = styled('span', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })(({ theme }) => {
-  /* Styles applied to the root element. */
   return {
     width: 2,
     backgroundColor: theme.palette.grey[400],
@@ -36,14 +35,14 @@ const TimelineConnector = React.forwardRef(function TimelineConnector(inProps, r
 
   const { className, ...other } = props;
 
-  const styleProps = props;
+  const ownerState = props;
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <TimelineConnectorRoot
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       {...other}
     />

@@ -18,4 +18,6 @@ yarn add @material-ui/system@next @emotion/react @emotion/styled
 
 ## Documentation
 
-[The documentation](https://material-ui.com/system/basics/)
+<!-- #default-branch-switch -->
+
+[The documentation](https://next.material-ui.com/system/basics/)

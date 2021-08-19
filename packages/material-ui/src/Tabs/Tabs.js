@@ -64,7 +64,7 @@ const moveFocus = (list, currentFocus, traversalFunction) => {
   }
 };
 
-const useUtilityClasses = (styleProps) => {
+const useUtilityClasses = (ownerState) => {
   const {
     vertical,
     fixed,
@@ -74,7 +74,7 @@ const useUtilityClasses = (styleProps) => {
     centered,
     scrollButtonsHideMobile,
     classes,
-  } = styleProps;
+  } = ownerState;
 
   const slots = {
     root: ['root', vertical && 'vertical'],
@@ -99,28 +99,28 @@ const TabsRoot = styled('div', {
   name: 'MuiTabs',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       { [`& .${tabsClasses.scrollButtons}`]: styles.scrollButtons },
       {
         [`& .${tabsClasses.scrollButtons}`]:
-          styleProps.scrollButtonsHideMobile && styles.scrollButtonsHideMobile,
+          ownerState.scrollButtonsHideMobile && styles.scrollButtonsHideMobile,
       },
       styles.root,
-      styleProps.vertical && styles.vertical,
+      ownerState.vertical && styles.vertical,
     ];
   },
-})(({ styleProps, theme }) => ({
+})(({ ownerState, theme }) => ({
   overflow: 'hidden',
   minHeight: 48,
   // Add iOS momentum scrolling for iOS < 13.0
   WebkitOverflowScrolling: 'touch',
   display: 'flex',
-  ...(styleProps.vertical && {
+  ...(ownerState.vertical && {
     flexDirection: 'column',
   }),
-  ...(styleProps.scrollButtonsHideMobile && {
+  ...(ownerState.scrollButtonsHideMobile && {
     [`& .${tabsClasses.scrollButtons}`]: {
       [theme.breakpoints.down('sm')]: {
         display: 'none',
@@ -133,36 +133,36 @@ const TabsScroller = styled('div', {
   name: 'MuiTabs',
   slot: 'Scroller',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
     return [
       styles.scroller,
-      styleProps.fixed && styles.fixed,
-      styleProps.hideScrollbar && styles.hideScrollbar,
-      styleProps.scrollableX && styles.scrollableX,
-      styleProps.scrollableY && styles.scrollableY,
+      ownerState.fixed && styles.fixed,
+      ownerState.hideScrollbar && styles.hideScrollbar,
+      ownerState.scrollableX && styles.scrollableX,
+      ownerState.scrollableY && styles.scrollableY,
     ];
   },
-})(({ styleProps }) => ({
+})(({ ownerState }) => ({
   position: 'relative',
   display: 'inline-block',
   flex: '1 1 auto',
   whiteSpace: 'nowrap',
-  ...(styleProps.fixed && {
+  ...(ownerState.fixed && {
     overflowX: 'hidden',
     width: '100%',
   }),
-  ...(styleProps.hideScrollbar && {
+  ...(ownerState.hideScrollbar && {
     // Hide dimensionless scrollbar on MacOS
     scrollbarWidth: 'none', // Firefox
     '&::-webkit-scrollbar': {
       display: 'none', // Safari + Chrome
     },
   }),
-  ...(styleProps.scrollableX && {
+  ...(ownerState.scrollableX && {
     overflowX: 'auto',
     overflowY: 'hidden',
   }),
-  ...(styleProps.scrollableY && {
+  ...(ownerState.scrollableY && {
     overflowY: 'auto',
     overflowX: 'hidden',
   }),
@@ -172,19 +172,19 @@ const FlexContainer = styled('div', {
   name: 'MuiTabs',
   slot: 'FlexContainer',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
     return [
       styles.flexContainer,
-      styleProps.vertical && styles.flexContainerVertical,
-      styleProps.centered && styles.centered,
+      ownerState.vertical && styles.flexContainerVertical,
+      ownerState.centered && styles.centered,
     ];
   },
-})(({ styleProps }) => ({
+})(({ ownerState }) => ({
   display: 'flex',
-  ...(styleProps.vertical && {
+  ...(ownerState.vertical && {
     flexDirection: 'column',
   }),
-  ...(styleProps.centered && {
+  ...(ownerState.centered && {
     justifyContent: 'center',
   }),
 }));
@@ -193,19 +193,19 @@ const TabsIndicator = styled('span', {
   name: 'MuiTabs',
   slot: 'Indicator',
   overridesResolver: (props, styles) => styles.indicator,
-})(({ styleProps, theme }) => ({
+})(({ ownerState, theme }) => ({
   position: 'absolute',
   height: 2,
   bottom: 0,
   width: '100%',
   transition: theme.transitions.create(),
-  ...(styleProps.indicatorColor === 'primary' && {
+  ...(ownerState.indicatorColor === 'primary' && {
     backgroundColor: theme.palette.primary.main,
   }),
-  ...(styleProps.indicatorColor === 'secondary' && {
+  ...(ownerState.indicatorColor === 'secondary' && {
     backgroundColor: theme.palette.secondary.main,
   }),
-  ...(styleProps.vertical && {
+  ...(ownerState.vertical && {
     height: '100%',
     width: 2,
     right: 0,
@@ -265,7 +265,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const clientSize = vertical ? 'clientHeight' : 'clientWidth';
   const size = vertical ? 'height' : 'width';
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     component,
     allowScrollButtonsMobile,
@@ -284,7 +284,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     scrollButtonsHideMobile: !allowScrollButtonsMobile,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   if (process.env.NODE_ENV !== 'production') {
     if (centered && scrollable) {
@@ -421,7 +421,9 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   const scroll = (scrollValue, { animation = true } = {}) => {
     if (animation) {
-      animate(scrollStart, tabsRef.current, scrollValue);
+      animate(scrollStart, tabsRef.current, scrollValue, {
+        duration: theme.transitions.duration.standard,
+      });
     } else {
       tabsRef.current[scrollStart] = scrollValue;
     }
@@ -607,7 +609,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     <TabsIndicator
       {...TabIndicatorProps}
       className={clsx(classes.indicator, TabIndicatorProps.className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       style={{
         ...indicatorStyle,
         ...TabIndicatorProps.style,
@@ -695,7 +697,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   return (
     <TabsRoot
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       as={component}
       {...other}
@@ -704,7 +706,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       {conditionalElements.scrollbarSizeListener}
       <TabsScroller
         className={classes.scroller}
-        styleProps={styleProps}
+        ownerState={ownerState}
         style={{
           overflow: scrollerStyle.overflow,
           [vertical ? `margin${isRtl ? 'Left' : 'Right'}` : 'marginBottom']: visibleScrollbar
@@ -720,7 +722,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
           aria-labelledby={ariaLabelledBy}
           aria-orientation={orientation === 'vertical' ? 'vertical' : null}
           className={classes.flexContainer}
-          styleProps={styleProps}
+          ownerState={ownerState}
           onKeyDown={handleKeyDown}
           ref={tabListRef}
           role="tablist"
@@ -793,7 +795,7 @@ Tabs.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the value changes.
    *
-   * @param {object} event The event source of the callback. **Warning**: This is a generic event not a change event.
+   * @param {React.SyntheticEvent} event The event source of the callback. **Warning**: This is a generic event not a change event.
    * @param {any} value We default to the index of the child (number)
    */
   onChange: PropTypes.func,

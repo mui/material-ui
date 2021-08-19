@@ -6,8 +6,8 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getFormGroupUtilityClass } from './formGroupClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, row } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, row } = ownerState;
 
   const slots = {
     root: ['root', row && 'row'],
@@ -20,17 +20,15 @@ const FormGroupRoot = styled('div', {
   name: 'MuiFormGroup',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
-    return [styles.root, styleProps.row && styles.row];
+    return [styles.root, ownerState.row && styles.row];
   },
-})(({ styleProps }) => ({
-  /* Styles applied to the root element. */
+})(({ ownerState }) => ({
   display: 'flex',
   flexDirection: 'column',
   flexWrap: 'wrap',
-  /* Styles applied to the root element if `row={true}`. */
-  ...(styleProps.row && {
+  ...(ownerState.row && {
     flexDirection: 'row',
   }),
 }));
@@ -47,13 +45,13 @@ const FormGroup = React.forwardRef(function FormGroup(inProps, ref) {
   });
 
   const { className, row = false, ...other } = props;
-  const styleProps = { ...props, row };
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = { ...props, row };
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <FormGroupRoot
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       {...other}
     />

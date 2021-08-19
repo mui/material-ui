@@ -9,13 +9,12 @@ import {
 } from '@material-ui/unstyled';
 import MonthPicker from '../MonthPicker/MonthPicker';
 import { useCalendarState } from './useCalendarState';
-import { useUtils } from '../internal/pickers/hooks/useUtils';
+import { useDefaultDates, useUtils } from '../internal/pickers/hooks/useUtils';
 import FadeTransitionGroup from './PickersFadeTransitionGroup';
 import PickersCalendar, { ExportedCalendarProps } from './PickersCalendar';
 import { PickerOnChangeFn, useViews } from '../internal/pickers/hooks/useViews';
 import PickersCalendarHeader, { ExportedCalendarHeaderProps } from './PickersCalendarHeader';
 import YearPicker, { ExportedYearPickerProps } from '../YearPicker/YearPicker';
-import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
 import { findClosestEnabledDate } from '../internal/pickers/date-utils';
 import { CalendarPickerView } from './shared';
 import PickerView from '../internal/pickers/Picker/PickerView';
@@ -124,9 +123,9 @@ export const calendarPickerClasses: CalendarPickerClasses = generateUtilityClass
 );
 
 const useUtilityClasses = (
-  styleProps: CalendarPickerProps<any> & { classes?: Partial<CalendarPickerClasses> },
+  ownerState: CalendarPickerProps<any> & { classes?: Partial<CalendarPickerClasses> },
 ) => {
-  const { classes } = styleProps;
+  const { classes } = ownerState;
   const slots = {
     root: ['root'],
     viewTransitionContainer: ['viewTransitionContainer'],
@@ -139,7 +138,7 @@ const CalendarPickerRoot = styled(PickerView, {
   name: 'MuiCalendarPicker',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ styleProps: CalendarPickerProps<any> }>({
+})<{ ownerState: CalendarPickerProps<any> }>({
   display: 'flex',
   flexDirection: 'column',
 });
@@ -148,7 +147,7 @@ const CalendarPickerViewTransitionContainer = styled(FadeTransitionGroup, {
   name: 'MuiCalendarPicker',
   slot: 'ViewTransitionContainer',
   overridesResolver: (props, styles) => styles.viewTransitionContainer,
-})<{ styleProps: CalendarPickerProps<any> }>({
+})<{ ownerState: CalendarPickerProps<any> }>({
   overflowY: 'auto',
 });
 
@@ -189,8 +188,9 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends an
 
   const utils = useUtils<TDate>();
 
-  const minDate = minDateProp || utils.date(defaultMinDate)!;
-  const maxDate = maxDateProp || utils.date(defaultMaxDate)!;
+  const defaultDates = useDefaultDates<TDate>();
+  const minDate = minDateProp ?? defaultDates.minDate;
+  const maxDate = maxDateProp ?? defaultDates.maxDate;
 
   const { openView, setOpenView } = useViews({
     view,
@@ -243,11 +243,11 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends an
     }
   }, [date]); // eslint-disable-line
 
-  const styleProps = props;
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = props;
+  const classes = useUtilityClasses(ownerState);
 
   return (
-    <CalendarPickerRoot ref={ref} className={clsx(classes.root, className)} styleProps={styleProps}>
+    <CalendarPickerRoot ref={ref} className={clsx(classes.root, className)} ownerState={ownerState}>
       <PickersCalendarHeader
         {...other}
         views={views}
@@ -265,7 +265,7 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends an
         reduceAnimations={reduceAnimations}
         className={classes.viewTransitionContainer}
         transKey={openView}
-        styleProps={styleProps}
+        ownerState={ownerState}
       >
         <div>
           {openView === 'year' && (

@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/markdown",
-  "version": "0.1.1",
+  "version": "5.0.0",
   "private": true,
   "type": "commonjs",
   "main": "./index.js",
@@ -12,6 +12,6 @@
   "dependencies": {
     "lodash": "^4.17.15",
     "marked": "^2.0.0",
-    "prismjs": "^1.17.1"
+    "prismjs": "^1.24.1"
   }
 }

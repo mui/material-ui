@@ -8,7 +8,7 @@ import {
   createClientRender,
   fireEvent,
   within,
-  describeConformanceV5,
+  describeConformance,
   screen,
 } from 'test/utils';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -28,7 +28,7 @@ describe('<Modal />', () => {
     document.body.setAttribute('style', savedBodyStyle);
   });
 
-  describeConformanceV5(
+  describeConformance(
     <Modal open>
       <div />
     </Modal>,

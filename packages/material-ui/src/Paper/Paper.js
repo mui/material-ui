@@ -20,8 +20,8 @@ const getOverlayAlpha = (elevation) => {
   return (alphaValue / 100).toFixed(2);
 };
 
-const useUtilityClasses = (styleProps) => {
-  const { square, elevation, variant, classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { square, elevation, variant, classes } = ownerState;
 
   const slots = {
     root: [
@@ -39,36 +39,32 @@ const PaperRoot = styled('div', {
   name: 'MuiPaper',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.root,
-      styles[styleProps.variant],
-      !styleProps.square && styles.rounded,
-      styleProps.variant === 'elevation' && styles[`elevation${styleProps.elevation}`],
+      styles[ownerState.variant],
+      !ownerState.square && styles.rounded,
+      ownerState.variant === 'elevation' && styles[`elevation${ownerState.elevation}`],
     ];
   },
-})(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
+})(({ theme, ownerState }) => ({
   backgroundColor: theme.palette.background.paper,
   color: theme.palette.text.primary,
   transition: theme.transitions.create('box-shadow'),
-  /* Styles applied to the root element unless `square={true}`. */
-  ...(!styleProps.square && {
+  ...(!ownerState.square && {
     borderRadius: theme.shape.borderRadius,
   }),
-  /* Styles applied to the root element if `variant="outlined"`. */
-  ...(styleProps.variant === 'outlined' && {
+  ...(ownerState.variant === 'outlined' && {
     border: `1px solid ${theme.palette.divider}`,
   }),
-  /* Styles applied to the root element if `variant="elevation"`. */
-  ...(styleProps.variant === 'elevation' && {
-    boxShadow: theme.shadows[styleProps.elevation],
+  ...(ownerState.variant === 'elevation' && {
+    boxShadow: theme.shadows[ownerState.elevation],
     ...(theme.palette.mode === 'dark' && {
       backgroundImage: `linear-gradient(${alpha(
         '#fff',
-        getOverlayAlpha(styleProps.elevation),
-      )}, ${alpha('#fff', getOverlayAlpha(styleProps.elevation))})`,
+        getOverlayAlpha(ownerState.elevation),
+      )}, ${alpha('#fff', getOverlayAlpha(ownerState.elevation))})`,
     }),
   }),
 }));
@@ -85,7 +81,7 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     component,
     elevation,
@@ -93,7 +89,7 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -111,7 +107,7 @@ const Paper = React.forwardRef(function Paper(inProps, ref) {
   return (
     <PaperRoot
       as={component}
-      styleProps={styleProps}
+      ownerState={ownerState}
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}

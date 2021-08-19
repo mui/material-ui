@@ -3,11 +3,11 @@ import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unsty
 export interface AccordionSummaryClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Pseudo-class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`. */
+  /** State class applied to the root element, children wrapper element and `IconButton` component if `expanded={true}`. */
   expanded: string;
-  /** Pseudo-class applied to the ButtonBase root element if the button is keyboard focused. */
+  /** State class applied to the ButtonBase root element if the button is keyboard focused. */
   focusVisible: string;
-  /** Pseudo-class applied to the root element if `disabled={true}`. */
+  /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
   /** Styles applied to the root element unless `disableGutters={true}`. */
   gutters: string;

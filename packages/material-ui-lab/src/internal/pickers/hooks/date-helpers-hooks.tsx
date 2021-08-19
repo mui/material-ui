@@ -10,17 +10,6 @@ export type OverrideParseableDateProps<TDate, TProps, TKey extends keyof TProps>
 > &
   Partial<Record<TKey, ParseableDate<TDate>>>;
 
-export function useParsedDate<TDate>(
-  possiblyUnparsedValue: ParseableDate<TDate>,
-): TDate | undefined {
-  const utils = useUtils<TDate>();
-  return React.useMemo(
-    () =>
-      typeof possiblyUnparsedValue === 'undefined' ? undefined : utils.date(possiblyUnparsedValue)!,
-    [possiblyUnparsedValue, utils],
-  );
-}
-
 interface MonthValidationOptions {
   disablePast?: boolean;
   disableFuture?: boolean;

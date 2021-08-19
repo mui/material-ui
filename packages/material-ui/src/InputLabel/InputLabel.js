@@ -8,8 +8,8 @@ import useThemeProps from '../styles/useThemeProps';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import { getInputLabelUtilityClasses } from './inputLabelClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, formControl, size, shrink, disableAnimation, variant } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, formControl, size, shrink, disableAnimation, variant, required } = ownerState;
   const slots = {
     root: [
       'root',
@@ -19,6 +19,7 @@ const useUtilityClasses = (styleProps) => {
       size === 'small' && 'sizeSmall',
       variant,
     ],
+    asterisk: [required && 'asterisk'],
   };
 
   const composedClasses = composeClasses(slots, getInputLabelUtilityClasses, classes);
@@ -34,47 +35,47 @@ const InputLabelRoot = styled(FormLabel, {
   name: 'MuiInputLabel',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
     return [
       { [`& .${formLabelClasses.asterisk}`]: styles.asterisk },
       styles.root,
-      !styleProps.formControl && styles.formControl,
-      styleProps.size === 'small' && styles.sizeSmall,
-      styleProps.shrink && styles.shrink,
-      !styleProps.disableAnimation && styles.animated,
-      styles[styleProps.variant],
+      !ownerState.formControl && styles.formControl,
+      ownerState.size === 'small' && styles.sizeSmall,
+      ownerState.shrink && styles.shrink,
+      !ownerState.disableAnimation && styles.animated,
+      styles[ownerState.variant],
     ];
   },
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   display: 'block',
   transformOrigin: 'top left',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   maxWidth: '100%',
-  ...(styleProps.formControl && {
+  ...(ownerState.formControl && {
     position: 'absolute',
     left: 0,
     top: 0,
     // slight alteration to spec spacing to match visual spec result
     transform: 'translate(0, 20px) scale(1)',
   }),
-  ...(styleProps.size === 'small' && {
+  ...(ownerState.size === 'small' && {
     // Compensation for the `Input.inputSizeSmall` style.
     transform: 'translate(0, 17px) scale(1)',
   }),
-  ...(styleProps.shrink && {
+  ...(ownerState.shrink && {
     transform: 'translate(0, -1.5px) scale(0.75)',
     transformOrigin: 'top left',
     maxWidth: '133%',
   }),
-  ...(!styleProps.disableAnimation && {
+  ...(!ownerState.disableAnimation && {
     transition: theme.transitions.create(['color', 'transform', 'max-width'], {
       duration: theme.transitions.duration.shorter,
       easing: theme.transitions.easing.easeOut,
     }),
   }),
-  ...(styleProps.variant === 'filled' && {
+  ...(ownerState.variant === 'filled' && {
     // Chrome's autofill feature gives the input field a yellow background.
     // Since the input field is behind the label in the HTML tree,
     // the input field is drawn last and hides the label with an opaque background color.
@@ -83,27 +84,27 @@ const InputLabelRoot = styled(FormLabel, {
     pointerEvents: 'none',
     transform: 'translate(12px, 16px) scale(1)',
     maxWidth: 'calc(100% - 24px)',
-    ...(styleProps.size === 'small' && {
+    ...(ownerState.size === 'small' && {
       transform: 'translate(12px, 13px) scale(1)',
     }),
-    ...(styleProps.shrink && {
+    ...(ownerState.shrink && {
       transform: 'translate(12px, 7px) scale(0.75)',
       maxWidth: 'calc(133% - 24px)',
-      ...(styleProps.size === 'small' && {
+      ...(ownerState.size === 'small' && {
         transform: 'translate(12px, 4px) scale(0.75)',
       }),
     }),
   }),
-  ...(styleProps.variant === 'outlined' && {
+  ...(ownerState.variant === 'outlined' && {
     // see comment above on filled.zIndex
     zIndex: 1,
     pointerEvents: 'none',
     transform: 'translate(14px, 16px) scale(1)',
     maxWidth: 'calc(100% - 24px)',
-    ...(styleProps.size === 'small' && {
+    ...(ownerState.size === 'small' && {
       transform: 'translate(14px, 9px) scale(1)',
     }),
-    ...(styleProps.shrink && {
+    ...(ownerState.shrink && {
       maxWidth: 'calc(133% - 24px)',
       transform: 'translate(14px, -9px) scale(0.75)',
     }),
@@ -124,23 +125,24 @@ const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['size', 'variant'],
+    states: ['size', 'variant', 'required'],
   });
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     disableAnimation,
     formControl: muiFormControl,
     shrink,
     size: fcs.size,
     variant: fcs.variant,
+    required: fcs.required,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
   return (
     <InputLabelRoot
       data-shrink={shrink}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       {...other}
       classes={classes}
@@ -164,7 +166,10 @@ InputLabel.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * If `true`, the transition animation is disabled.
    * @default false

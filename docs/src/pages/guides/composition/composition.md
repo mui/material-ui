@@ -4,18 +4,14 @@
 
 ## Wrapping components
 
-In order to provide the maximum flexibility and performance,
-we need a way to know the nature of the child elements a component receives.
-To solve this problem, we tag some of the components
-with a `muiName` static property when needed.
+To provide maximum flexibility and performance, Material-UI needs a way to know the nature of the child elements a component receives.
+To solve this problem, we tag some of the components with a `muiName` static property when needed.
 
-You may, however, need to wrap a component in order to enhance it,
-which can conflict with the `muiName` solution. If you wrap a component, verify if
-that component has this static property set.
+You may, however, need to wrap a component in order to enhance it, which can conflict with the `muiName` solution.
+If you wrap a component, verify if that component has this static property set.
 
-If you encounter this issue, you need to use the same tag for your wrapping component
-that is used with the wrapped component. In addition, you should forward the props,
-as the parent component may need to control the wrapped components props.
+If you encounter this issue, you need to use the same tag for your wrapping component that is used with the wrapped component.
+In addition, you should forward the props, as the parent component may need to control the wrapped components props.
 
 Let's see an example:
 
@@ -129,7 +125,54 @@ The component providing the `component` prop (e.g. ListItem) might not forward a
 
 ### With TypeScript
 
-You can find the details in the [TypeScript guide](/guides/typescript/#usage-of-component-prop).
+Many Material-UI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation.
+For example, a Button's root node can be replaced with a React Router's Link, and any additional props that are passed to Button, such as `to`, will be spread to the Link component.
+For a code example concerning Button and react-router-dom checkout [these demos](/guides/routing/#component-prop).
+
+To be able to use props of such a Material-UI component on their own, props should be used with type arguments. Otherwise, the `component` prop will not be present in the props of the Material-UI component.
+
+The examples below use `TypographyProps` but the same will work for any component which has props defined with `OverrideProps`.
+
+The following `CustomComponent` component has the same props as the `Typography` component.
+
+```ts
+function CustomComponent(props: TypographyProps<'a', { component: 'a' }>) {
+  /* ... */
+}
+```
+
+Now the `CustomComponent` can be used with a `component` prop which should be set to `'a'`.
+In addition, the `CustomComponent` will have all props of a `<a>` HTML element.
+The other props of the `Typography` component will also be present in props of the `CustomComponent`.
+
+It is possible to have generic `CustomComponent` which will accept any React component, custom, and HTML elements.
+
+```ts
+function GenericCustomComponent<C extends React.ElementType>(
+  props: TypographyProps<C, { component?: C }>,
+) {
+  /* ... */
+}
+```
+
+If the `GenericCustomComponent` will be used with a `component` prop provided, it should also have all props required by the provided component.
+
+```ts
+function ThirdPartyComponent({ prop1 }: { prop1: string }) {
+  return <div />;
+}
+// ...
+function ThirdPartyComponent({ prop1 }: { prop1: string }) {
+  return <div />;
+}
+// ...
+```
+
+The `prop1` became required for the `GenericCustomComponent` as the `ThirdPartyComponent` has it as a requirement.
+
+Not every component fully supports any component type you pass in.
+If you encounter a component that rejects its `component` props in TypeScript, please open an issue.
+There is an ongoing effort to fix this by making component props generic.
 
 ## Caveat with refs
 
@@ -153,7 +196,7 @@ React in your console similar to:
 > Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
 
 Note that you will still get this warning for `lazy` and `memo` components if their wrapped component can't hold a ref.
-In some instances an additional warning is issued to help with debugging, similar to:
+In some instances, an additional warning is issued to help with debugging, similar to:
 
 > Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
 
@@ -164,13 +207,15 @@ Only the two most common use cases are covered. For more information see [this s
 +const MyButton = React.forwardRef((props, ref) =>
 +  <div role="button" {...props} ref={ref} />);
 
-<Button component={MyButton} />;
+ <Button component={MyButton} />;
 ```
 
 ```diff
 -const SomeContent = props => <div {...props}>Hello, World!</div>;
-+const SomeContent = React.forwardRef((props, ref) => <div {...props} ref={ref}>Hello, World!</div>);
-<Tooltip title="Hello, again."><SomeContent /></Tooltip>;
++const SomeContent = React.forwardRef((props, ref) =>
++  <div {...props} ref={ref}>Hello, World!</div>);
+
+ <Tooltip title="Hello again."><SomeContent /></Tooltip>;
 ```
 
 To find out if the Material-UI component you're using has this requirement, check
@@ -186,13 +231,13 @@ You can use `React.forwardRef` and a designated prop in your class component to 
 Doing so should not trigger any more warnings related to the deprecation of `ReactDOM.findDOMNode`.
 
 ```diff
-class Component extends React.Component {
-  render() {
--   const { props } = this;
-+   const { forwardedRef, ...props } = this.props;
-    return <div {...props} ref={forwardedRef} />;
-  }
-}
+ class Component extends React.Component {
+   render() {
+-    const { props } = this;
++    const { forwardedRef, ...props } = this.props;
+     return <div {...props} ref={forwardedRef} />;
+   }
+ }
 
 -export default Component;
 +export default React.forwardRef((props, ref) => <Component {...props} forwardedRef={ref} />);

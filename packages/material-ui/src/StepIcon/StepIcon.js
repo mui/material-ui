@@ -9,8 +9,8 @@ import Warning from '../internal/svg-icons/Warning';
 import SvgIcon from '../SvgIcon';
 import stepIconClasses, { getStepIconUtilityClass } from './stepIconClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, active, completed, error } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, active, completed, error } = ownerState;
 
   const slots = {
     root: ['root', active && 'active', completed && 'completed', error && 'error'],
@@ -25,7 +25,6 @@ const StepIconRoot = styled(SvgIcon, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })(({ theme }) => ({
-  /* Styles applied to the root element. */
   display: 'block',
   transition: theme.transitions.create('color', {
     duration: theme.transitions.duration.shortest,
@@ -47,7 +46,6 @@ const StepIconText = styled('text', {
   slot: 'Text',
   overridesResolver: (props, styles) => styles.text,
 })(({ theme }) => ({
-  /* Styles applied to the SVG text element. */
   fill: theme.palette.primary.contrastText,
   fontSize: theme.typography.caption.fontSize,
   fontFamily: theme.typography.fontFamily,
@@ -64,8 +62,8 @@ const StepIcon = React.forwardRef(function StepIcon(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = { ...props, active, completed, error };
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = { ...props, active, completed, error };
+  const classes = useUtilityClasses(ownerState);
 
   if (typeof icon === 'number' || typeof icon === 'string') {
     const className = clsx(classNameProp, classes.root);
@@ -76,7 +74,7 @@ const StepIcon = React.forwardRef(function StepIcon(inProps, ref) {
           as={Warning}
           className={className}
           ref={ref}
-          styleProps={styleProps}
+          ownerState={ownerState}
           {...other}
         />
       );
@@ -88,21 +86,21 @@ const StepIcon = React.forwardRef(function StepIcon(inProps, ref) {
           as={CheckCircle}
           className={className}
           ref={ref}
-          styleProps={styleProps}
+          ownerState={ownerState}
           {...other}
         />
       );
     }
 
     return (
-      <StepIconRoot className={className} ref={ref} styleProps={styleProps} {...other}>
+      <StepIconRoot className={className} ref={ref} ownerState={ownerState} {...other}>
         <circle cx="12" cy="12" r="12" />
         <StepIconText
           className={classes.text}
           x="12"
           y="16"
           textAnchor="middle"
-          styleProps={styleProps}
+          ownerState={ownerState}
         >
           {icon}
         </StepIconText>

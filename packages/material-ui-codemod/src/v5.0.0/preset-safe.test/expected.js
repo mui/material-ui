@@ -21,6 +21,7 @@ import Grid from '@material-ui/core/Grid';
 import Switch from '@material-ui/core/Switch';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import { yellow } from '@material-ui/core/colors';
 
 // FIXME checkout https://material-ui.com/components/use-media-query/#migrating-from-withwidth
 const withWidth = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="xs" />;
@@ -31,6 +32,7 @@ const Test = withWidth()((props) => (
   <Box
     p={2}
     bgcolor="divider"
+    color={yellow[600]}
     borderRadius="16px"
     display="flex"
     alignItems="center"

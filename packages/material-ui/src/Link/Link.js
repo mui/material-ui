@@ -24,8 +24,8 @@ const transformDeprecatedColors = (color) => {
   return colorTransformations[color] || color;
 };
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, component, focusVisible, underline } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, component, focusVisible, underline } = ownerState;
 
   const slots = {
     root: [
@@ -43,31 +43,28 @@ const LinkRoot = styled(Typography, {
   name: 'MuiLink',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.root,
-      styles[`underline${capitalize(styleProps.underline)}`],
-      styleProps.component === 'button' && styles.button,
+      styles[`underline${capitalize(ownerState.underline)}`],
+      ownerState.component === 'button' && styles.button,
     ];
   },
-})(({ theme, styleProps }) => {
+})(({ theme, ownerState }) => {
   const color =
-    getPath(theme, `palette.${transformDeprecatedColors(styleProps.color)}`) || styleProps.color;
+    getPath(theme, `palette.${transformDeprecatedColors(ownerState.color)}`) || ownerState.color;
   return {
-    /* Styles applied to the root element if `underline="none"`. */
-    ...(styleProps.underline === 'none' && {
+    ...(ownerState.underline === 'none' && {
       textDecoration: 'none',
     }),
-    /* Styles applied to the root element if `underline="hover"`. */
-    ...(styleProps.underline === 'hover' && {
+    ...(ownerState.underline === 'hover' && {
       textDecoration: 'none',
       '&:hover': {
         textDecoration: 'underline',
       },
     }),
-    /* Styles applied to the root element if `underline="always"`. */
-    ...(styleProps.underline === 'always' && {
+    ...(ownerState.underline === 'always' && {
       textDecoration: 'underline',
       textDecorationColor: color !== 'inherit' ? alpha(color, 0.4) : undefined,
       '&:hover': {
@@ -75,8 +72,7 @@ const LinkRoot = styled(Typography, {
       },
     }),
     // Same reset as ButtonBase.root
-    /* Styles applied to the root element if `component="button"`. */
-    ...(styleProps.component === 'button' && {
+    ...(ownerState.component === 'button' && {
       position: 'relative',
       WebkitTapHighlightColor: 'transparent',
       backgroundColor: 'transparent', // Reset default value
@@ -146,7 +142,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     }
   };
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     color,
     component,
@@ -155,7 +151,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <LinkRoot
@@ -166,7 +162,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
       onBlur={handleBlur}
       onFocus={handleFocus}
       ref={handlerRef}
-      styleProps={styleProps}
+      ownerState={ownerState}
       variant={variant}
       {...other}
     />

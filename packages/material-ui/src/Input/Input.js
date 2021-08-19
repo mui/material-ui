@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { refType } from '@material-ui/utils';
+import { refType, deepmerge } from '@material-ui/utils';
 import InputBase from '../InputBase';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -13,8 +13,8 @@ import {
   InputBaseComponent as InputBaseInput,
 } from '../InputBase/InputBase';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, disableUnderline } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, disableUnderline } = ownerState;
 
   const slots = {
     root: ['root', !disableUnderline && 'underline'],
@@ -34,26 +34,26 @@ const InputRoot = styled(InputBaseRoot, {
   name: 'MuiInput',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       ...inputBaseRootOverridesResolver(props, styles),
-      !styleProps.disableUnderline && styles.underline,
+      !ownerState.disableUnderline && styles.underline,
     ];
   },
-})(({ theme, styleProps }) => {
+})(({ theme, ownerState }) => {
   const light = theme.palette.mode === 'light';
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
   return {
     position: 'relative',
-    ...(styleProps.formControl && {
+    ...(ownerState.formControl && {
       'label + &': {
         marginTop: 16,
       },
     }),
-    ...(!styleProps.disableUnderline && {
+    ...(!ownerState.disableUnderline && {
       '&:after': {
-        borderBottom: `2px solid ${theme.palette[styleProps.color].main}`,
+        borderBottom: `2px solid ${theme.palette[ownerState.color].main}`,
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -111,6 +111,8 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiInput' });
   const {
     disableUnderline,
+    components = {},
+    componentsProps: componentsPropsProp,
     fullWidth = false,
     inputComponent = 'input',
     multiline = false,
@@ -120,12 +122,17 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 
   const classes = useUtilityClasses(props);
 
-  const styleProps = { disableUnderline };
+  const ownerState = { disableUnderline };
+  const inputComponentsProps = { root: { ownerState } };
+
+  const componentsProps = componentsPropsProp
+    ? deepmerge(componentsPropsProp, inputComponentsProps)
+    : inputComponentsProps;
 
   return (
     <InputBase
-      components={{ Root: InputRoot, Input: InputInput }}
-      componentsProps={{ root: { styleProps } }}
+      components={{ Root: InputRoot, Input: InputInput, ...components }}
+      componentsProps={componentsProps}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
       multiline={multiline}
@@ -164,6 +171,20 @@ Input.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['primary', 'secondary']),
     PropTypes.string,
   ]),
+  /**
+   * The components used for each slot inside the InputBase.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Input: PropTypes.elementType,
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -236,7 +257,7 @@ Input.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the value is changed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,

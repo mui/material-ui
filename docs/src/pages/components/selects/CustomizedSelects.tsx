@@ -42,8 +42,8 @@ const BootstrapInput = styled(InputBase)(({ theme }) => ({
 
 export default function CustomizedSelects() {
   const [age, setAge] = React.useState('');
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setAge(event.target.value as string);
+  const handleChange = (event: { target: { value: string } }) => {
+    setAge(event.target.value);
   };
   return (
     <div>

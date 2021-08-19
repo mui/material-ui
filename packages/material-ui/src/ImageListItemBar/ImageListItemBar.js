@@ -7,8 +7,8 @@ import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import { getImageListItemBarUtilityClass } from './imageListItemBarClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, position, actionIcon, actionPosition } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, position, actionIcon, actionPosition } = ownerState;
 
   const slots = {
     root: ['root', `position${capitalize(position)}`],
@@ -29,13 +29,12 @@ const ImageListItemBarRoot = styled('div', {
   name: 'MuiImageListItemBar',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
-    return [styles.root, styles[`position${capitalize(styleProps.position)}`]];
+    return [styles.root, styles[`position${capitalize(ownerState.position)}`]];
   },
-})(({ theme, styleProps }) => {
+})(({ theme, ownerState }) => {
   return {
-    /* Styles applied to the root element. */
     position: 'absolute',
     left: 0,
     right: 0,
@@ -43,16 +42,13 @@ const ImageListItemBarRoot = styled('div', {
     display: 'flex',
     alignItems: 'center',
     fontFamily: theme.typography.fontFamily,
-    /* Styles applied to the root element if `position="bottom"`. */
-    ...(styleProps.position === 'bottom' && {
+    ...(ownerState.position === 'bottom' && {
       bottom: 0,
     }),
-    /* Styles applied to the root element if `position="top"`. */
-    ...(styleProps.position === 'top' && {
+    ...(ownerState.position === 'top' && {
       top: 0,
     }),
-    /* Styles applied to the root element if `position="below"`. */
-    ...(styleProps.position === 'below' && {
+    ...(ownerState.position === 'below' && {
       position: 'relative',
       background: 'transparent',
       alignItems: 'normal',
@@ -64,34 +60,30 @@ const ImageListItemBarTitleWrap = styled('div', {
   name: 'MuiImageListItemBar',
   slot: 'TitleWrap',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.titleWrap,
-      styles[`titleWrap${capitalize(styleProps.position)}`],
-      styleProps.actionIcon && styles[`titleWrapActionPos${capitalize(styleProps.actionPosition)}`],
+      styles[`titleWrap${capitalize(ownerState.position)}`],
+      ownerState.actionIcon && styles[`titleWrapActionPos${capitalize(ownerState.actionPosition)}`],
     ];
   },
-})(({ theme, styleProps }) => {
+})(({ theme, ownerState }) => {
   return {
-    /* Styles applied to the title and subtitle container element. */
     flexGrow: 1,
     padding: '12px 16px',
     color: theme.palette.common.white,
     overflow: 'hidden',
-    /* Styles applied to the title and subtitle container element if `position="below"`. */
-    ...(styleProps.position === 'below' && {
+    ...(ownerState.position === 'below' && {
       padding: '6px 0 12px',
       color: 'inherit',
     }),
-    /* Styles applied to the container element if `actionPosition="left"`. */
-    ...(styleProps.actionIcon &&
-      styleProps.actionPosition === 'left' && {
+    ...(ownerState.actionIcon &&
+      ownerState.actionPosition === 'left' && {
         paddingLeft: 0,
       }),
-    /* Styles applied to the container element if `actionPosition="right"`. */
-    ...(styleProps.actionIcon &&
-      styleProps.actionPosition === 'right' && {
+    ...(ownerState.actionIcon &&
+      ownerState.actionPosition === 'right' && {
         paddingRight: 0,
       }),
   };
@@ -103,7 +95,6 @@ const ImageListItemBarTitle = styled('div', {
   overridesResolver: (props, styles) => styles.title,
 })(({ theme }) => {
   return {
-    /* Styles applied to the title container element. */
     fontSize: theme.typography.pxToRem(16),
     lineHeight: '24px',
     textOverflow: 'ellipsis',
@@ -118,7 +109,6 @@ const ImageListItemBarSubtitle = styled('div', {
   overridesResolver: (props, styles) => styles.subtitle,
 })(({ theme }) => {
   return {
-    /* Styles applied to the subtitle container element. */
     fontSize: theme.typography.pxToRem(12),
     lineHeight: 1,
     textOverflow: 'ellipsis',
@@ -131,17 +121,16 @@ const ImageListItemBarActionIcon = styled('div', {
   name: 'MuiImageListItemBar',
   slot: 'ActionIcon',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.actionIcon,
-      styles[`actionIconActionPos${capitalize(styleProps.actionPosition)}`],
+      styles[`actionIconActionPos${capitalize(ownerState.actionPosition)}`],
     ];
   },
-})(({ styleProps }) => {
+})(({ ownerState }) => {
   return {
-    /* Styles applied to the actionIcon if `actionPosition="left"`. */
-    ...(styleProps.actionPosition === 'left' && {
+    ...(ownerState.actionPosition === 'left' && {
       order: -1,
     }),
   };
@@ -163,18 +152,18 @@ const ImageListItemBar = React.forwardRef(function ImageListItemBar(inProps, ref
     ...other
   } = props;
 
-  const styleProps = { ...props, position, actionPosition };
+  const ownerState = { ...props, position, actionPosition };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <ImageListItemBarRoot
-      styleProps={styleProps}
+      ownerState={ownerState}
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
     >
-      <ImageListItemBarTitleWrap styleProps={styleProps} className={classes.titleWrap}>
+      <ImageListItemBarTitleWrap ownerState={ownerState} className={classes.titleWrap}>
         <ImageListItemBarTitle className={classes.title}>{title}</ImageListItemBarTitle>
         {subtitle ? (
           <ImageListItemBarSubtitle className={classes.subtitle}>
@@ -183,7 +172,7 @@ const ImageListItemBar = React.forwardRef(function ImageListItemBar(inProps, ref
         ) : null}
       </ImageListItemBarTitleWrap>
       {actionIcon ? (
-        <ImageListItemBarActionIcon styleProps={styleProps} className={classes.actionIcon}>
+        <ImageListItemBarActionIcon ownerState={ownerState} className={classes.actionIcon}>
           {actionIcon}
         </ImageListItemBarActionIcon>
       ) : null}

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5, screen } from 'test/utils';
+import { createClientRender, describeConformance, screen } from 'test/utils';
 import Paper, { paperClasses } from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import MobileStepper, { mobileStepperClasses as classes } from '@material-ui/core/MobileStepper';
@@ -25,7 +25,7 @@ describe('<MobileStepper />', () => {
     ),
   };
 
-  describeConformanceV5(<MobileStepper {...defaultProps} />, () => ({
+  describeConformance(<MobileStepper {...defaultProps} />, () => ({
     classes,
     inheritComponent: Paper,
     render,

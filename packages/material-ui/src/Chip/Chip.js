@@ -12,8 +12,8 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, disabled, size, color, onDelete, clickable, variant } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, disabled, size, color, onDelete, clickable, variant } = ownerState;
 
   const slots = {
     root: [
@@ -46,8 +46,8 @@ const ChipRoot = styled('div', {
   name: 'MuiChip',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
-    const { color, clickable, onDelete, size, variant } = styleProps;
+    const { ownerState } = props;
+    const { color, clickable, onDelete, size, variant } = ownerState;
 
     return [
       { [`& .${chipClasses.avatar}`]: styles.avatar },
@@ -72,11 +72,10 @@ const ChipRoot = styled('div', {
     ];
   },
 })(
-  ({ theme, styleProps }) => {
+  ({ theme, ownerState }) => {
     const deleteIconColor = alpha(theme.palette.text.primary, 0.26);
 
     return {
-      /* Styles applied to the root element. */
       fontFamily: theme.typography.fontFamily,
       fontSize: theme.typography.pxToRem(13),
       display: 'inline-flex',
@@ -124,23 +123,19 @@ const ChipRoot = styled('div', {
         height: 18,
         fontSize: theme.typography.pxToRem(10),
       },
-      /* Styles applied to the icon element. */
       [`& .${chipClasses.icon}`]: {
         color: theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
         marginLeft: 5,
         marginRight: -6,
-        /* Styles applied to the icon element if `size="small"`. */
-        ...(styleProps.size === 'small' && {
+        ...(ownerState.size === 'small' && {
           fontSize: 18,
           marginLeft: 4,
           marginRight: -4,
         }),
-        /* Styles applied to the icon element unless `color="default"`. */
-        ...(styleProps.color !== 'default' && {
+        ...(ownerState.color !== 'default' && {
           color: 'inherit',
         }),
       },
-      /* Styles applied to the deleteIcon element. */
       [`& .${chipClasses.deleteIcon}`]: {
         WebkitTapHighlightColor: 'transparent',
         color: deleteIconColor,
@@ -150,31 +145,26 @@ const ChipRoot = styled('div', {
         '&:hover': {
           color: alpha(deleteIconColor, 0.4),
         },
-        /* Styles applied to the deleteIcon element if `size="small"`. */
-        ...(styleProps.size === 'small' && {
+        ...(ownerState.size === 'small' && {
           fontSize: 16,
           marginRight: 4,
           marginLeft: -4,
         }),
-        /* Styles applied to the deleteIcon element if not `color="default"` and `variant="filled"`. */
-        ...(styleProps.color !== 'default' && {
-          color: alpha(theme.palette[styleProps.color].contrastText, 0.7),
+        ...(ownerState.color !== 'default' && {
+          color: alpha(theme.palette[ownerState.color].contrastText, 0.7),
           '&:hover, &:active': {
-            color: theme.palette[styleProps.color].contrastText,
+            color: theme.palette[ownerState.color].contrastText,
           },
         }),
       },
-      /* Styles applied to the root element if `size="small"`. */
-      ...(styleProps.size === 'small' && {
+      ...(ownerState.size === 'small' && {
         height: 24,
       }),
-      /* Styles applied to the root element unless `color="default"`. */
-      ...(styleProps.color !== 'default' && {
-        backgroundColor: theme.palette[styleProps.color].main,
-        color: theme.palette[styleProps.color].contrastText,
+      ...(ownerState.color !== 'default' && {
+        backgroundColor: theme.palette[ownerState.color].main,
+        color: theme.palette[ownerState.color].contrastText,
       }),
-      /* Styles applied to the root element if `onDelete` is defined. */
-      ...(styleProps.onDelete && {
+      ...(ownerState.onDelete && {
         [`&.${chipClasses.focusVisible}`]: {
           backgroundColor: alpha(
             theme.palette.action.selected,
@@ -182,18 +172,16 @@ const ChipRoot = styled('div', {
           ),
         },
       }),
-      /* Styles applied to the root element if `onDelete` and not `color="default"` is defined. */
-      ...(styleProps.onDelete &&
-        styleProps.color !== 'default' && {
+      ...(ownerState.onDelete &&
+        ownerState.color !== 'default' && {
           [`&.${chipClasses.focusVisible}`]: {
-            backgroundColor: theme.palette[styleProps.color].dark,
+            backgroundColor: theme.palette[ownerState.color].dark,
           },
         }),
     };
   },
-  ({ theme, styleProps }) => ({
-    /* Styles applied to the root element if `onClick` is defined or `clickable={true}`. */
-    ...(styleProps.clickable && {
+  ({ theme, ownerState }) => ({
+    ...(ownerState.clickable && {
       userSelect: 'none',
       WebkitTapHighlightColor: 'transparent',
       cursor: 'pointer',
@@ -213,17 +201,15 @@ const ChipRoot = styled('div', {
         boxShadow: theme.shadows[1],
       },
     }),
-    /* Styles applied to the root element if `onClick` and not `color="default"` is defined or `clickable={true}`. */
-    ...(styleProps.clickable &&
-      styleProps.color !== 'default' && {
+    ...(ownerState.clickable &&
+      ownerState.color !== 'default' && {
         [`&:hover, &.${chipClasses.focusVisible}`]: {
-          backgroundColor: theme.palette[styleProps.color].dark,
+          backgroundColor: theme.palette[ownerState.color].dark,
         },
       }),
   }),
-  ({ theme, styleProps }) => ({
-    /* Styles applied to the root element if `variant="outlined"`. */
-    ...(styleProps.variant === 'outlined' && {
+  ({ theme, ownerState }) => ({
+    ...(ownerState.variant === 'outlined' && {
       backgroundColor: 'transparent',
       border: `1px solid ${
         theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[700]
@@ -253,28 +239,26 @@ const ChipRoot = styled('div', {
         marginRight: 3,
       },
     }),
-    /* Styles applied to the root element if `variant="outlined"` and not `color="default"`. */
-    ...(styleProps.variant === 'outlined' &&
-      styleProps.color !== 'default' && {
-        color: theme.palette[styleProps.color].main,
-        border: `1px solid ${alpha(theme.palette[styleProps.color].main, 0.7)}`,
+    ...(ownerState.variant === 'outlined' &&
+      ownerState.color !== 'default' && {
+        color: theme.palette[ownerState.color].main,
+        border: `1px solid ${alpha(theme.palette[ownerState.color].main, 0.7)}`,
         [`&.${chipClasses.clickable}:hover`]: {
           backgroundColor: alpha(
-            theme.palette[styleProps.color].main,
+            theme.palette[ownerState.color].main,
             theme.palette.action.hoverOpacity,
           ),
         },
         [`&.${chipClasses.focusVisible}`]: {
           backgroundColor: alpha(
-            theme.palette[styleProps.color].main,
+            theme.palette[ownerState.color].main,
             theme.palette.action.focusOpacity,
           ),
         },
-        /* Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`. */
         [`& .${chipClasses.deleteIcon}`]: {
-          color: alpha(theme.palette[styleProps.color].main, 0.7),
+          color: alpha(theme.palette[ownerState.color].main, 0.7),
           '&:hover, &:active': {
-            color: theme.palette[styleProps.color].main,
+            color: theme.palette[ownerState.color].main,
           },
         },
       }),
@@ -285,20 +269,18 @@ const ChipLabel = styled('span', {
   name: 'MuiChip',
   slot: 'Label',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
-    const { size } = styleProps;
+    const { ownerState } = props;
+    const { size } = ownerState;
 
     return [styles.label, styles[`label${capitalize(size)}`]];
   },
-})(({ styleProps }) => ({
-  /* Styles applied to the label `span` element. */
+})(({ ownerState }) => ({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   paddingLeft: 12,
   paddingRight: 12,
   whiteSpace: 'nowrap',
-  /* Styles applied to the label `span` element if `size="small"`. */
-  ...(styleProps.size === 'small' && {
+  ...(ownerState.size === 'small' && {
     paddingLeft: 8,
     paddingRight: 8,
   }),
@@ -376,7 +358,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 
   const component = clickable || onDelete ? ButtonBase : ComponentProp || 'div';
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     component,
     disabled,
@@ -387,7 +369,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const moreProps =
     component === ButtonBase
@@ -454,12 +436,12 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
       ref={handleRef}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...moreProps}
       {...other}
     >
       {avatar || icon}
-      <ChipLabel className={clsx(classes.label)} styleProps={styleProps}>
+      <ChipLabel className={clsx(classes.label)} ownerState={ownerState}>
         {label}
       </ChipLabel>
       {deleteIcon}

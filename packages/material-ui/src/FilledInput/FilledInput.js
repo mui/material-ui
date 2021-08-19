@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { refType } from '@material-ui/utils';
+import { refType, deepmerge } from '@material-ui/utils';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import InputBase from '../InputBase';
@@ -13,8 +13,8 @@ import {
   InputBaseComponent as InputBaseInput,
 } from '../InputBase/InputBase';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, disableUnderline } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, disableUnderline } = ownerState;
 
   const slots = {
     root: ['root', !disableUnderline && 'underline'],
@@ -34,18 +34,17 @@ const FilledInputRoot = styled(InputBaseRoot, {
   name: 'MuiFilledInput',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
     return [
       ...inputBaseRootOverridesResolver(props, styles),
-      !styleProps.disableUnderline && styles.underline,
+      !ownerState.disableUnderline && styles.underline,
     ];
   },
-})(({ theme, styleProps }) => {
+})(({ theme, ownerState }) => {
   const light = theme.palette.mode === 'light';
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
   const backgroundColor = light ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.09)';
   return {
-    /* Styles applied to the root element. */
     position: 'relative',
     backgroundColor,
     borderTopLeftRadius: theme.shape.borderRadius,
@@ -67,9 +66,9 @@ const FilledInputRoot = styled(InputBaseRoot, {
     [`&.${filledInputClasses.disabled}`]: {
       backgroundColor: light ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.12)',
     },
-    ...(!styleProps.disableUnderline && {
+    ...(!ownerState.disableUnderline && {
       '&:after': {
-        borderBottom: `2px solid ${theme.palette[styleProps.color].main}`,
+        borderBottom: `2px solid ${theme.palette[ownerState.color].main}`,
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -110,19 +109,19 @@ const FilledInputRoot = styled(InputBaseRoot, {
         borderBottomStyle: 'dotted',
       },
     }),
-    ...(styleProps.startAdornment && {
+    ...(ownerState.startAdornment && {
       paddingLeft: 12,
     }),
-    ...(styleProps.endAdornment && {
+    ...(ownerState.endAdornment && {
       paddingRight: 12,
     }),
-    ...(styleProps.multiline && {
+    ...(ownerState.multiline && {
       padding: '25px 12px 8px',
-      ...(styleProps.size === 'small' && {
+      ...(ownerState.size === 'small' && {
         paddingTop: 21,
         paddingBottom: 4,
       }),
-      ...(styleProps.hiddenLabel && {
+      ...(ownerState.hiddenLabel && {
         paddingTop: 16,
         paddingBottom: 17,
       }),
@@ -134,7 +133,7 @@ const FilledInputInput = styled(InputBaseInput, {
   name: 'MuiFilledInput',
   slot: 'Input',
   overridesResolver: inputBaseInputOverridesResolver,
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   paddingTop: 25,
   paddingRight: 12,
   paddingBottom: 8,
@@ -146,31 +145,28 @@ const FilledInputInput = styled(InputBaseInput, {
     borderTopLeftRadius: 'inherit',
     borderTopRightRadius: 'inherit',
   },
-  ...(styleProps.size === 'small' && {
+  ...(ownerState.size === 'small' && {
     paddingTop: 21,
     paddingBottom: 4,
   }),
-  ...(styleProps.hiddenLabel && {
+  ...(ownerState.hiddenLabel && {
     paddingTop: 16,
     paddingBottom: 17,
   }),
-  /* Styles applied to the input element if `multiline={true}`. */
-  ...(styleProps.multiline && {
+  ...(ownerState.multiline && {
     paddingTop: 0,
     paddingBottom: 0,
     paddingLeft: 0,
     paddingRight: 0,
   }),
-  /* Styles applied to the input element if `startAdornment` is provided. */
-  ...(styleProps.startAdornment && {
+  ...(ownerState.startAdornment && {
     paddingLeft: 0,
   }),
-  /* Styles applied to the input element if `endAdornment` is provided. */
-  ...(styleProps.endAdornment && {
+  ...(ownerState.endAdornment && {
     paddingRight: 0,
   }),
-  ...(styleProps.hiddenLabel &&
-    styleProps.size === 'small' && {
+  ...(ownerState.hiddenLabel &&
+    ownerState.size === 'small' && {
       paddingTop: 8,
       paddingBottom: 9,
     }),
@@ -181,6 +177,8 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
 
   const {
     disableUnderline,
+    components = {},
+    componentsProps: componentsPropsProp,
     fullWidth = false,
     hiddenLabel, // declare here to prevent spreading to DOM
     inputComponent = 'input',
@@ -189,7 +187,7 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     fullWidth,
     inputComponent,
@@ -198,11 +196,16 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
   };
 
   const classes = useUtilityClasses(props);
+  const filledInputComponentsProps = { root: { ownerState }, input: { ownerState } };
+
+  const componentsProps = componentsPropsProp
+    ? deepmerge(componentsPropsProp, filledInputComponentsProps)
+    : filledInputComponentsProps;
 
   return (
     <InputBase
-      components={{ Root: FilledInputRoot, Input: FilledInputInput }}
-      componentsProps={{ root: { styleProps }, input: { styleProps } }}
+      components={{ Root: FilledInputRoot, Input: FilledInputInput, ...components }}
+      componentsProps={componentsProps}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
       multiline={multiline}
@@ -241,6 +244,20 @@ FilledInput.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['primary', 'secondary']),
     PropTypes.string,
   ]),
+  /**
+   * The components used for each slot inside the InputBase.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Input: PropTypes.elementType,
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -320,7 +337,7 @@ FilledInput.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when the value is changed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,

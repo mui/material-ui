@@ -7,8 +7,8 @@ import useThemeProps from '../styles/useThemeProps';
 import ListContext from './ListContext';
 import { getListUtilityClass } from './listClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, disablePadding, dense, subheader } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, disablePadding, dense, subheader } = ownerState;
 
   const slots = {
     root: ['root', !disablePadding && 'padding', dense && 'dense', subheader && 'subheader'],
@@ -21,28 +21,25 @@ const ListRoot = styled('ul', {
   name: 'MuiList',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.root,
-      !styleProps.disablePadding && styles.padding,
-      styleProps.dense && styles.dense,
-      styleProps.subheader && styles.subheader,
+      !ownerState.disablePadding && styles.padding,
+      ownerState.dense && styles.dense,
+      ownerState.subheader && styles.subheader,
     ];
   },
-})(({ styleProps }) => ({
-  /* Styles applied to the root element. */
+})(({ ownerState }) => ({
   listStyle: 'none',
   margin: 0,
   padding: 0,
   position: 'relative',
-  /* Styles applied to the root element unless `disablePadding={true}`. */
-  ...(!styleProps.disablePadding && {
+  ...(!ownerState.disablePadding && {
     paddingTop: 8,
     paddingBottom: 8,
   }),
-  /* Styles applied to the root element if a `subheader` is provided. */
-  ...(styleProps.subheader && {
+  ...(ownerState.subheader && {
     paddingTop: 0,
   }),
 }));
@@ -61,14 +58,14 @@ const List = React.forwardRef(function List(inProps, ref) {
 
   const context = React.useMemo(() => ({ dense }), [dense]);
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     component,
     dense,
     disablePadding,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <ListContext.Provider value={context}>
@@ -76,7 +73,7 @@ const List = React.forwardRef(function List(inProps, ref) {
         as={component}
         className={clsx(classes.root, className)}
         ref={ref}
-        styleProps={styleProps}
+        ownerState={ownerState}
         {...other}
       >
         {subheader}

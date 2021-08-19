@@ -1,14 +1,7 @@
 import { useThemeProps } from '@material-ui/core/styles';
-import {
-  ParseableDate,
-  defaultMinDate,
-  defaultMaxDate,
-} from '../internal/pickers/constants/prop-types';
-import {
-  useParsedDate,
-  OverrideParseableDateProps,
-} from '../internal/pickers/hooks/date-helpers-hooks';
-import { MuiPickersAdapter, useUtils } from '../internal/pickers/hooks/useUtils';
+import { ParseableDate } from '../internal/pickers/constants/prop-types';
+import { OverrideParseableDateProps } from '../internal/pickers/hooks/date-helpers-hooks';
+import { MuiPickersAdapter, useDefaultDates, useUtils } from '../internal/pickers/hooks/useUtils';
 import { CalendarPickerView } from '../CalendarPicker';
 import { ExportedCalendarPickerProps } from '../CalendarPicker/CalendarPicker';
 import { DateValidationError, ValidationProps } from '../internal/pickers/hooks/useValidation';
@@ -17,11 +10,7 @@ import { BasePickerProps, ToolbarComponentProps } from '../internal/pickers/typi
 
 export type DatePickerView = 'year' | 'day' | 'month';
 export interface BaseDatePickerProps<TDate>
-  extends OverrideParseableDateProps<
-      TDate,
-      ExportedCalendarPickerProps<TDate>,
-      'minDate' | 'maxDate'
-    >,
+  extends ExportedCalendarPickerProps<TDate>,
     BasePickerProps<ParseableDate<TDate>, TDate | null>,
     ValidationProps<DateValidationError, ParseableDate<TDate>>,
     ExportedDateInputProps<ParseableDate<TDate>, TDate | null> {
@@ -95,15 +84,16 @@ export function useDatePickerDefaultizedProps<Props extends BaseDatePickerProps<
   {
     openTo = 'day',
     views = ['year', 'day'],
-    minDate: minDateProp = defaultMinDate,
-    maxDate: maxDateProp = defaultMaxDate,
+    minDate: minDateProp,
+    maxDate: maxDateProp,
     ...other
   }: Props,
   name: string,
 ): DefaultizedProps<Props> {
   const utils = useUtils();
-  const minDate = useParsedDate(minDateProp);
-  const maxDate = useParsedDate(maxDateProp);
+  const defaultDates = useDefaultDates();
+  const minDate = minDateProp ?? defaultDates.minDate;
+  const maxDate = maxDateProp ?? defaultDates.maxDate;
 
   // This is technically unsound if the type parameters appear in optional props.
   // Optional props can be filled by `useThemeProps` with types that don't match the type parameters.

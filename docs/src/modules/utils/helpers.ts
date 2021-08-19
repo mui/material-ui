@@ -110,6 +110,7 @@ function includePeerDependencies(
 
   if (newDeps['@material-ui/data-grid']) {
     newDeps['@material-ui/core'] = versions['@material-ui/core'];
+    newDeps['@material-ui/styles'] = versions['@material-ui/styles'];
   }
 
   // TODO: Where is this coming from and why does it need to be injected this way.
@@ -164,7 +165,6 @@ export function getDependencies(
     '@material-ui/icons': getMuiPackageVersion('icons', muiCommitRef),
     '@material-ui/lab': getMuiPackageVersion('lab', muiCommitRef),
     '@material-ui/styled-engine': getMuiPackageVersion('styled-engine', muiCommitRef),
-    '@material-ui/styled-engine-sc': getMuiPackageVersion('styled-engine-sc', muiCommitRef),
     '@material-ui/styles': getMuiPackageVersion('styles', muiCommitRef),
     '@material-ui/system': getMuiPackageVersion('system', muiCommitRef),
     '@material-ui/private-theming': getMuiPackageVersion('theming', muiCommitRef),

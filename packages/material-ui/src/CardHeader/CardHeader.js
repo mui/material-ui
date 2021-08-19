@@ -7,8 +7,8 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import cardHeaderClasses, { getCardHeaderUtilityClass } from './cardHeaderClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -31,7 +31,6 @@ const CardHeaderRoot = styled('div', {
     ...styles.root,
   }),
 })({
-  /* Styles applied to the root element. */
   display: 'flex',
   alignItems: 'center',
   padding: 16,
@@ -42,7 +41,6 @@ const CardHeaderAvatar = styled('div', {
   slot: 'Avatar',
   overridesResolver: (props, styles) => styles.avatar,
 })({
-  /* Styles applied to the avatar element. */
   display: 'flex',
   flex: '0 0 auto',
   marginRight: 16,
@@ -53,7 +51,6 @@ const CardHeaderAction = styled('div', {
   slot: 'Action',
   overridesResolver: (props, styles) => styles.action,
 })({
-  /* Styles applied to the action element. */
   flex: '0 0 auto',
   alignSelf: 'flex-start',
   marginTop: -4,
@@ -66,7 +63,6 @@ const CardHeaderContent = styled('div', {
   slot: 'Content',
   overridesResolver: (props, styles) => styles.content,
 })({
-  /* Styles applied to the content wrapper element. */
   flex: '1 1 auto',
 });
 
@@ -85,13 +81,13 @@ const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     component,
     disableTypography,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   let title = titleProp;
   if (title != null && title.type !== Typography && !disableTypography) {
@@ -129,21 +125,21 @@ const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
       className={clsx(classes.root, className)}
       as={component}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       {avatar && (
-        <CardHeaderAvatar className={classes.avatar} styleProps={styleProps}>
+        <CardHeaderAvatar className={classes.avatar} ownerState={ownerState}>
           {avatar}
         </CardHeaderAvatar>
       )}
 
-      <CardHeaderContent className={classes.content} styleProps={styleProps}>
+      <CardHeaderContent className={classes.content} ownerState={ownerState}>
         {title}
         {subheader}
       </CardHeaderContent>
       {action && (
-        <CardHeaderAction className={classes.action} styleProps={styleProps}>
+        <CardHeaderAction className={classes.action} ownerState={ownerState}>
           {action}
         </CardHeaderAction>
       )}

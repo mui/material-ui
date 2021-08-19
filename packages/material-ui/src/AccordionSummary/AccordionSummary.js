@@ -10,8 +10,8 @@ import accordionSummaryClasses, {
   getAccordionSummaryUtilityClass,
 } from './accordionSummaryClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, expanded, disabled, disableGutters } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, expanded, disabled, disableGutters } = ownerState;
 
   const slots = {
     root: ['root', expanded && 'expanded', disabled && 'disabled', !disableGutters && 'gutters'],
@@ -27,30 +27,26 @@ const AccordionSummaryRoot = styled(ButtonBase, {
   name: 'MuiAccordionSummary',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme, styleProps }) => {
+})(({ theme, ownerState }) => {
   const transition = {
     duration: theme.transitions.duration.shortest,
   };
 
   return {
-    /* Styles applied to the root element. */
     display: 'flex',
     minHeight: 48,
     padding: theme.spacing(0, 2),
     transition: theme.transitions.create(['min-height', 'background-color'], transition),
-    /* Styles applied to the ButtonBase root element if the button is keyboard focused. */
     [`&.${accordionSummaryClasses.focusVisible}`]: {
       backgroundColor: theme.palette.action.focus,
     },
-    /* Styles applied to the root element if `disabled={true}`. */
     [`&.${accordionSummaryClasses.disabled}`]: {
       opacity: theme.palette.action.disabledOpacity,
     },
     [`&:hover:not(.${accordionSummaryClasses.disabled})`]: {
       cursor: 'pointer',
     },
-    /* Styles applied to the root element unless `disableGutters={true}`. */
-    ...(!styleProps.disableGutters && {
+    ...(!ownerState.disableGutters && {
       [`&.${accordionSummaryClasses.expanded}`]: {
         minHeight: 64,
       },
@@ -62,13 +58,11 @@ const AccordionSummaryContent = styled('div', {
   name: 'MuiAccordionSummary',
   slot: 'Content',
   overridesResolver: (props, styles) => styles.content,
-})(({ theme, styleProps }) => ({
-  /* Styles applied to the children wrapper element. */
+})(({ theme, ownerState }) => ({
   display: 'flex',
   flexGrow: 1,
   margin: '12px 0',
-  /* Styles applied to the children wrapper element unless `disableGutters={true}`. */
-  ...(!styleProps.disableGutters && {
+  ...(!ownerState.disableGutters && {
     transition: theme.transitions.create(['margin'], {
       duration: theme.transitions.duration.shortest,
     }),
@@ -83,14 +77,12 @@ const AccordionSummaryExpandIconWrapper = styled('div', {
   slot: 'ExpandIconWrapper',
   overridesResolver: (props, styles) => styles.expandIconWrapper,
 })(({ theme }) => ({
-  /* Styles applied to the `expandIcon`'s wrapper element. */
   display: 'flex',
   color: theme.palette.action.active,
   transform: 'rotate(0deg)',
   transition: theme.transitions.create('transform', {
     duration: theme.transitions.duration.shortest,
   }),
-  /* Styles applied to the `expandIcon`'s wrapper element if `expanded={true}`. */
   [`&.${accordionSummaryClasses.expanded}`]: {
     transform: 'rotate(180deg)',
   },
@@ -110,14 +102,14 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
     }
   };
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     expanded,
     disabled,
     disableGutters,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <AccordionSummaryRoot
@@ -130,16 +122,16 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       onClick={handleChange}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
-      <AccordionSummaryContent className={classes.content} styleProps={styleProps}>
+      <AccordionSummaryContent className={classes.content} ownerState={ownerState}>
         {children}
       </AccordionSummaryContent>
       {expandIcon && (
         <AccordionSummaryExpandIconWrapper
           className={classes.expandIconWrapper}
-          styleProps={styleProps}
+          ownerState={ownerState}
         >
           {expandIcon}
         </AccordionSummaryExpandIconWrapper>

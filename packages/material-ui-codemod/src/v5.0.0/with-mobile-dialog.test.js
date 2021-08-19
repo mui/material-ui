@@ -1,4 +1,3 @@
-import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
@@ -18,7 +17,7 @@ describe('@material-ui/codemod', () => {
             source: read('./with-mobile-dialog.test/actual.js'),
             path: require.resolve('./with-mobile-dialog.test/actual.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
@@ -32,7 +31,7 @@ describe('@material-ui/codemod', () => {
             source: read('./with-mobile-dialog.test/expected.js'),
             path: require.resolve('./with-mobile-dialog.test/expected.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
@@ -46,7 +45,7 @@ describe('@material-ui/codemod', () => {
             source: read('./with-mobile-dialog.test/no-withwidth.actual.js'),
             path: require.resolve('./with-mobile-dialog.test/no-withwidth.actual.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 

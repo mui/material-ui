@@ -7,8 +7,8 @@ import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import { getIconUtilityClass } from './iconClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { color, fontSize, classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { color, fontSize, classes } = ownerState;
 
   const slots = {
     root: [
@@ -25,16 +25,15 @@ const IconRoot = styled('span', {
   name: 'MuiIcon',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.root,
-      styleProps.color !== 'inherit' && styles[`color${capitalize(styleProps.color)}`],
-      styles[`fontSize${capitalize(styleProps.fontSize)}`],
+      ownerState.color !== 'inherit' && styles[`color${capitalize(ownerState.color)}`],
+      styles[`fontSize${capitalize(ownerState.fontSize)}`],
     ];
   },
-})(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
+})(({ theme, ownerState }) => ({
   userSelect: 'none',
   width: '1em',
   height: '1em',
@@ -49,7 +48,7 @@ const IconRoot = styled('span', {
     small: theme.typography.pxToRem(20),
     medium: theme.typography.pxToRem(24),
     large: theme.typography.pxToRem(36),
-  }[styleProps.fontSize],
+  }[ownerState.fontSize],
   // TODO v5 deprecate, v6 remove for sx
   color: {
     primary: theme.palette.primary.main,
@@ -61,7 +60,7 @@ const IconRoot = styled('span', {
     error: theme.palette.error.main,
     disabled: theme.palette.action.disabled,
     inherit: undefined,
-  }[styleProps.color],
+  }[ownerState.color],
 }));
 
 const Icon = React.forwardRef(function Icon(inProps, ref) {
@@ -75,7 +74,7 @@ const Icon = React.forwardRef(function Icon(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     baseClassName,
     color,
@@ -83,7 +82,7 @@ const Icon = React.forwardRef(function Icon(inProps, ref) {
     fontSize,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <IconRoot
@@ -96,7 +95,7 @@ const Icon = React.forwardRef(function Icon(inProps, ref) {
         classes.root,
         className,
       )}
-      styleProps={styleProps}
+      ownerState={ownerState}
       aria-hidden
       ref={ref}
       {...other}

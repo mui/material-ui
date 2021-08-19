@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/lab",
-  "version": "5.0.0-alpha.39",
+  "version": "5.0.0-alpha.43",
   "private": false,
   "author": "Material-UI Team",
   "description": "Laboratory for new Material-UI modules.",
@@ -40,7 +40,7 @@
     "@types/react": "^16.8.6 || ^17.0.0",
     "date-fns": "^2.0.0",
     "dayjs": "^1.8.17",
-    "luxon": "^1.21.3",
+    "luxon": "^1.28.0",
     "moment": "^2.24.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0"
@@ -63,14 +63,14 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.4.4",
+    "@babel/runtime": "^7.14.8",
     "@date-io/date-fns": "^2.10.6",
     "@date-io/dayjs": "^2.10.6",
     "@date-io/luxon": "^2.10.6",
     "@date-io/moment": "^2.10.6",
-    "@material-ui/system": "5.0.0-beta.0",
-    "@material-ui/unstyled": "5.0.0-alpha.39",
-    "@material-ui/utils": "5.0.0-beta.0",
+    "@material-ui/system": "5.0.0-beta.4",
+    "@material-ui/unstyled": "5.0.0-alpha.43",
+    "@material-ui/utils": "5.0.0-beta.4",
     "clsx": "^1.0.4",
     "prop-types": "^15.7.2",
     "react-is": "^17.0.0",
@@ -78,11 +78,11 @@
     "rifm": "^0.12.0"
   },
   "devDependencies": {
-    "@material-ui/types": "6.0.1",
-    "@types/luxon": "^1.25.0",
+    "@material-ui/types": "6.0.2",
+    "@types/luxon": "^1.27.1",
     "date-fns": "^2.0.0",
     "dayjs": "^1.8.17",
-    "luxon": "^1.21.3",
+    "luxon": "^1.28.0",
     "moment": "^2.24.0"
   },
   "sideEffects": false,

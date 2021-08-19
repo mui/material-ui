@@ -14,8 +14,8 @@ import useForkRef from '../utils/useForkRef';
 import useControlled from '../utils/useControlled';
 import speedDialClasses, { getSpeedDialUtilityClass } from './speedDialClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, open, direction } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, open, direction } = ownerState;
 
   const slots = {
     root: ['root', `direction${capitalize(direction)}`],
@@ -53,16 +53,16 @@ const SpeedDialRoot = styled('div', {
   name: 'MuiSpeedDial',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
-    return [styles.root, styles[`direction${capitalize(styleProps.direction)}`]];
+    return [styles.root, styles[`direction${capitalize(ownerState.direction)}`]];
   },
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   zIndex: theme.zIndex.speedDial,
   display: 'flex',
   alignItems: 'center',
   pointerEvents: 'none',
-  ...(styleProps.direction === 'up' && {
+  ...(ownerState.direction === 'up' && {
     flexDirection: 'column-reverse',
     [`& .${speedDialClasses.actions}`]: {
       flexDirection: 'column-reverse',
@@ -70,7 +70,7 @@ const SpeedDialRoot = styled('div', {
       paddingBottom: spacingActions + dialRadius,
     },
   }),
-  ...(styleProps.direction === 'down' && {
+  ...(ownerState.direction === 'down' && {
     flexDirection: 'column',
     [`& .${speedDialClasses.actions}`]: {
       flexDirection: 'column',
@@ -78,7 +78,7 @@ const SpeedDialRoot = styled('div', {
       paddingTop: spacingActions + dialRadius,
     },
   }),
-  ...(styleProps.direction === 'left' && {
+  ...(ownerState.direction === 'left' && {
     flexDirection: 'row-reverse',
     [`& .${speedDialClasses.actions}`]: {
       flexDirection: 'row-reverse',
@@ -86,7 +86,7 @@ const SpeedDialRoot = styled('div', {
       paddingRight: spacingActions + dialRadius,
     },
   }),
-  ...(styleProps.direction === 'right' && {
+  ...(ownerState.direction === 'right' && {
     flexDirection: 'row',
     [`& .${speedDialClasses.actions}`]: {
       flexDirection: 'row',
@@ -108,14 +108,14 @@ const SpeedDialActions = styled('div', {
   name: 'MuiSpeedDial',
   slot: 'Actions',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
-    return [styles.actions, !styleProps.open && styles.actionsClosed];
+    return [styles.actions, !ownerState.open && styles.actionsClosed];
   },
-})(({ styleProps }) => ({
+})(({ ownerState }) => ({
   display: 'flex',
   pointerEvents: 'auto',
-  ...(!styleProps.open && {
+  ...(!ownerState.open && {
     transition: 'top 0s linear 0.2s',
     pointerEvents: 'none',
   }),
@@ -156,8 +156,8 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     state: 'open',
   });
 
-  const styleProps = { ...props, open, direction };
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = { ...props, open, direction };
+  const classes = useUtilityClasses(ownerState);
 
   const eventTimer = React.useRef();
 
@@ -376,7 +376,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
       onFocus={handleOpen}
       onMouseEnter={handleOpen}
       onMouseLeave={handleClose}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       <TransitionComponent
@@ -395,7 +395,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
           onClick={handleClick}
           className={clsx(classes.fab, FabProps.className)}
           ref={handleFabRef}
-          styleProps={styleProps}
+          ownerState={ownerState}
         >
           {React.isValidElement(icon) && isMuiElement(icon, ['SpeedDialIcon'])
             ? React.cloneElement(icon, { open })
@@ -407,7 +407,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
         role="menu"
         aria-orientation={getOrientation(direction)}
         className={clsx(classes.actions, { [classes.actionsClosed]: !open })}
-        styleProps={styleProps}
+        ownerState={ownerState}
       >
         {children}
       </SpeedDialActions>

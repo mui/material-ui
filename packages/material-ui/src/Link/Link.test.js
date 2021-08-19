@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, createClientRender, fireEvent, describeConformanceV5 } from 'test/utils';
+import { act, createClientRender, fireEvent, describeConformance } from 'test/utils';
 import Link, { linkClasses as classes } from '@material-ui/core/Link';
 import Typography, { typographyClasses } from '@material-ui/core/Typography';
 
@@ -16,7 +16,7 @@ function focusVisible(element) {
 describe('<Link />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<Link href="/">Home</Link>, () => ({
+  describeConformance(<Link href="/">Home</Link>, () => ({
     classes,
     inheritComponent: Typography,
     render,

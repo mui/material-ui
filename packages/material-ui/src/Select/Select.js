@@ -14,8 +14,8 @@ import OutlinedInput from '../OutlinedInput';
 import useThemeProps from '../styles/useThemeProps';
 import { getSelectUtilityClasses } from './selectClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -69,8 +69,8 @@ const Select = React.forwardRef(function Select(inProps, ref) {
       filled: <FilledInput />,
     }[variant];
 
-  const styleProps = { ...props, classes: classesProp };
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = { ...props, classes: classesProp };
+  const classes = useUtilityClasses(ownerState);
   const { root, ...otherClasses } = classesProp;
 
   return React.cloneElement(InputComponent, {
@@ -193,9 +193,9 @@ Select.propTypes /* remove-proptypes */ = {
   /**
    * Callback fired when a menu item is selected.
    *
-   * @param {object} event The event source of the callback.
+   * @param {SelectChangeEvent<T>} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (any).
-   * **Warning**: This is a generic event not a change event.
+   * **Warning**: This is a generic event not a change event unless the change event is caused by browser autofill.
    * @param {object} [child] The react element that was selected when `native` is `false` (default).
    */
   onChange: PropTypes.func,

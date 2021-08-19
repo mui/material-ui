@@ -3,7 +3,7 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import ArrowCirleIcon from 'docs/src/modules/branding/icons/ArrowCircle';
+import ArrowCircleIcon from 'docs/src/modules/branding/icons/ArrowCircle';
 import Link from 'docs/src/modules/components/Link';
 
 interface DiscoverMoreCardProps {
@@ -46,7 +46,7 @@ function DiscoverMoreCard(props: DiscoverMoreCardProps) {
           <Typography variant="h4" component="h3" sx={{ mr: 1 }}>
             {title}
           </Typography>
-          <ArrowCirleIcon />
+          <ArrowCircleIcon />
         </Box>
         <Typography sx={{ mt: 1, color: 'greyAA' }} variant="body2">
           {children}

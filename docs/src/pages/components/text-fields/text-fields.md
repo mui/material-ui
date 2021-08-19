@@ -1,6 +1,6 @@
 ---
 title: Text Field React component
-components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
+components: FilledInput, FormControl, FormControlUnstyled, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 githubLabel: 'component: TextField'
 materialDesign: https://material.io/components/text-fields
 ---
@@ -122,10 +122,10 @@ The `color` prop changes the highlight color of the text field when focused.
 
 {{"demo": "pages/components/text-fields/ColorTextFields.js"}}
 
-## Customized inputs
+## Customization
 
-Here are some examples of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/how-to-customize/).
+Here are some examples of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 

@@ -31,3 +31,13 @@ You can **wait a screen frame** with the `defer` property to render the children
 React does [2 commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) instead of 1.
 
 {{"demo": "pages/components/no-ssr/FrameDeferring.js"}}
+
+## Unstyled
+
+- 📦 [784 B gzipped](https://bundlephobia.com/result?p=@material-ui/unstyled@next)
+
+As the component does not have any styles, it also comes with the unstyled package.
+
+```js
+import NoSsr from '@material-ui/unstyled/NoSsr';
+```

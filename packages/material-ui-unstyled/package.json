@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/unstyled",
-  "version": "5.0.0-alpha.39",
+  "version": "5.0.0-alpha.43",
   "private": false,
   "author": "Material-UI Team",
   "description": "Unstyled React components with which to implement custom design systems.",
@@ -47,15 +47,15 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.4.4",
+    "@babel/runtime": "^7.14.8",
     "@emotion/is-prop-valid": "^1.1.0",
-    "@material-ui/utils": "5.0.0-beta.0",
+    "@material-ui/utils": "5.0.0-beta.4",
     "clsx": "^1.0.4",
     "prop-types": "^15.7.2",
     "react-is": "^17.0.0"
   },
   "devDependencies": {
-    "@material-ui/types": "6.0.1"
+    "@material-ui/types": "6.0.2"
   },
   "sideEffects": false,
   "publishConfig": {

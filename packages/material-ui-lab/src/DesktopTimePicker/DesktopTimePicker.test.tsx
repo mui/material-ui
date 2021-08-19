@@ -28,9 +28,20 @@ describe('<DesktopTimePicker />', () => {
     />,
     () => ({
       classes: {},
+      muiName: 'MuiDesktopTimePicker',
       wrapMount: wrapPickerMount,
       refInstanceof: window.HTMLDivElement,
-      skip: ['componentProp', 'mergeClassName', 'propsSpread', 'rootClass', 'reactTestRenderer'],
+      skip: [
+        'componentProp',
+        'componentsProp',
+        'themeDefaultProps',
+        'themeStyleOverrides',
+        'themeVariants',
+        'mergeClassName',
+        'propsSpread',
+        'rootClass',
+        'reactTestRenderer',
+      ],
     }),
   );
 
@@ -213,7 +224,7 @@ describe('<DesktopTimePicker />', () => {
 
         // we are running validation on value change
         function TimePickerInput() {
-          const [time, setTime] = React.useState(null);
+          const [time, setTime] = React.useState<Date | null>(null);
 
           return (
             <DesktopTimePicker

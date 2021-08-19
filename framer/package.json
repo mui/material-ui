@@ -1,6 +1,6 @@
 {
   "name": "framer",
-  "version": "1.0.21",
+  "version": "1.0.24",
   "description": "Builds Material-UI for Framer X",
   "repository": "https://github.com/mui-org/material-ui",
   "author": "Material-UI Team",
@@ -11,7 +11,7 @@
     "@types/react": "^17.0.0",
     "case": "1.6.3",
     "deepmerge": "^4.0.0",
-    "docs": "5.0.0-beta.0",
+    "docs": "5.0.0",
     "framer": "^1.2.5",
     "framer-motion": "^4.0.0",
     "mustache": "^4.0.0",

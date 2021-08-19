@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/styled-engine-sc",
-  "version": "5.0.0-beta.0",
+  "version": "5.0.0-beta.1",
   "private": false,
   "author": "Material-UI Team",
   "description": "styled() API wrapper package for styled-components.",
@@ -14,7 +14,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/mui-org/material-ui.git",
-    "directory": "packages/material-ui-styled"
+    "directory": "packages/material-ui-styled-engine-sc"
   },
   "license": "MIT",
   "bugs": {

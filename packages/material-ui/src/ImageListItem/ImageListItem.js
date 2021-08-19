@@ -10,8 +10,8 @@ import useThemeProps from '../styles/useThemeProps';
 import isMuiElement from '../utils/isMuiElement';
 import imageListItemClasses, { getImageListItemUtilityClass } from './imageListItemClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, variant } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, variant } = ownerState;
 
   const slots = {
     root: ['root', variant],
@@ -25,26 +25,24 @@ const ImageListItemRoot = styled('li', {
   name: 'MuiImageListItem',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       { [`& .${imageListItemClasses.img}`]: styles.img },
       styles.root,
-      styles[styleProps.variant],
+      styles[ownerState.variant],
     ];
   },
-})(({ styleProps }) => ({
+})(({ ownerState }) => ({
   display: 'inline-block',
   position: 'relative',
   lineHeight: 0, // 🤷🏻‍♂️Fixes masonry item gap
-  /* Styles applied to the root element if `variant="standard"`. */
-  ...(styleProps.variant === 'standard' && {
+  ...(ownerState.variant === 'standard' && {
     // For titlebar under list item
     display: 'flex',
     flexDirection: 'column',
   }),
-  /* Styles applied to the root element if `variant="woven"`. */
-  ...(styleProps.variant === 'woven' && {
+  ...(ownerState.variant === 'woven' && {
     height: '100%',
     alignSelf: 'center',
     '&:nth-of-type(even)': {
@@ -55,7 +53,7 @@ const ImageListItemRoot = styled('li', {
     objectFit: 'cover',
     width: '100%',
     height: '100%',
-    ...(styleProps.variant === 'standard' && {
+    ...(ownerState.variant === 'standard' && {
       height: 'auto',
       flexGrow: 1,
     }),
@@ -80,7 +78,7 @@ const ImageListItem = React.forwardRef(function ImageListItem(inProps, ref) {
     height = rowHeight * rows + gap * (rows - 1);
   }
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     cols,
     component,
@@ -90,7 +88,7 @@ const ImageListItem = React.forwardRef(function ImageListItem(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <ImageListItemRoot
@@ -104,7 +102,7 @@ const ImageListItem = React.forwardRef(function ImageListItem(inProps, ref) {
         marginBottom: variant === 'masonry' ? gap : undefined,
         ...style,
       }}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       {React.Children.map(children, (child) => {

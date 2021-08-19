@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import DialogActions, { dialogActionsClasses as classes } from '@material-ui/core/DialogActions';
 
 describe('<DialogActions />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<DialogActions />, () => ({
+  describeConformance(<DialogActions />, () => ({
     classes,
     inheritComponent: 'div',
     render,

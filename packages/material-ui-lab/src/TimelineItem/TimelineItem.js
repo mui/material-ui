@@ -9,8 +9,8 @@ import { timelineOppositeContentClasses } from '../TimelineOppositeContent';
 import TimelineContext from '../Timeline/TimelineContext';
 import { getTimelineItemUtilityClass } from './timelineItemClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { position, classes, hasOppositeContent } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { position, classes, hasOppositeContent } = ownerState;
 
   const slots = {
     root: [
@@ -27,19 +27,19 @@ const TimelineItemRoot = styled('li', {
   name: 'MuiTimelineItem',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
-    return [styles.root, styles[`position${capitalize(styleProps.position)}`]];
+    return [styles.root, styles[`position${capitalize(ownerState.position)}`]];
   },
-})(({ styleProps }) => ({
+})(({ ownerState }) => ({
   listStyle: 'none',
   display: 'flex',
   position: 'relative',
   minHeight: 70,
-  ...(styleProps.position === 'left' && {
+  ...(ownerState.position === 'left' && {
     flexDirection: 'row-reverse',
   }),
-  ...(styleProps.position === 'alternate' && {
+  ...(ownerState.position === 'alternate' && {
     '&:nth-of-type(even)': {
       flexDirection: 'row-reverse',
       [`& .${timelineContentClasses.root}`]: {
@@ -50,7 +50,7 @@ const TimelineItemRoot = styled('li', {
       },
     },
   }),
-  ...(!styleProps.hasOppositeContent && {
+  ...(!ownerState.hasOppositeContent && {
     '&:before': {
       content: '""',
       flex: 1,
@@ -72,19 +72,19 @@ const TimelineItem = React.forwardRef(function TimelineItem(inProps, ref) {
     }
   });
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     position: positionProp || positionContext || 'right',
     hasOppositeContent,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
-    <TimelineContext.Provider value={{ position: styleProps.position }}>
+    <TimelineContext.Provider value={{ position: ownerState.position }}>
       <TimelineItemRoot
         className={clsx(classes.root, className)}
-        styleProps={styleProps}
+        ownerState={ownerState}
         ref={ref}
         {...other}
       />

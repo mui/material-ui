@@ -47,9 +47,9 @@ The timeline can display content on opposite sides.
 
 {{"demo": "pages/components/timeline/OppositeContentTimeline.js"}}
 
-## Customized timeline
+## Customization
 
-Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/how-to-customize/).
+Here is an example of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/timeline/CustomizedTimeline.js"}}

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { SinonFakeTimers, useFakeTimers } from 'sinon';
-import { fireEvent, screen, describeConformanceV5 } from 'test/utils';
+import { fireEvent, screen, describeConformance } from 'test/utils';
 import CalendarPicker, { calendarPickerClasses as classes } from '@material-ui/lab/CalendarPicker';
 import {
   adapterToUse,
@@ -21,7 +21,7 @@ describe('<CalendarPicker />', () => {
 
   const render = createPickerRender();
 
-  describeConformanceV5(<CalendarPicker date={adapterToUse.date()} onChange={() => {}} />, () => ({
+  describeConformance(<CalendarPicker date={adapterToUse.date()} onChange={() => {}} />, () => ({
     classes,
     inheritComponent: 'div',
     render,
@@ -54,9 +54,7 @@ describe('<CalendarPicker />', () => {
     ).to.have.text('1');
   });
 
-  // Flaky, it match 201 instead of 200 in the CI
-  // eslint-disable-next-line mocha/no-skipped-tests
-  it.skip('renders year selection standalone', () => {
+  it('renders year selection standalone', () => {
     render(
       <CalendarPicker
         date={adapterToUse.date('2019-01-01T00:00:00.000')}
@@ -77,17 +75,5 @@ describe('<CalendarPicker />', () => {
 
     expect(screen.queryByLabelText(/switch to year view/i)).to.equal(null);
     expect(screen.getByLabelText('year view is open, switch to calendar view')).toBeVisible();
-  });
-
-  // eslint-disable-next-line mocha/no-skipped-tests -- TODO: test without implementation details
-  it.skip('should skip the header', () => {
-    render(
-      <CalendarPicker
-        views={['year']}
-        date={adapterToUse.date('2019-01-01T00:00:00.000')}
-        onChange={() => {}}
-      />,
-    );
-    expect(document.querySelector('.MuiPickersCalendarHeader-root')).to.equal(null);
   });
 });

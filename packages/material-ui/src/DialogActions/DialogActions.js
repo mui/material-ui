@@ -6,8 +6,8 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getDialogActionsUtilityClass } from './dialogActionsClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, disableSpacing } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, disableSpacing } = ownerState;
 
   const slots = {
     root: ['root', !disableSpacing && 'spacing'],
@@ -20,19 +20,17 @@ const DialogActionsRoot = styled('div', {
   name: 'MuiDialogActions',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
-    return [styles.root, !styleProps.disableSpacing && styles.spacing];
+    return [styles.root, !ownerState.disableSpacing && styles.spacing];
   },
-})(({ styleProps }) => ({
-  /* Styles applied to the root element. */
+})(({ ownerState }) => ({
   display: 'flex',
   alignItems: 'center',
   padding: 8,
   justifyContent: 'flex-end',
   flex: '0 0 auto',
-  /* Styles applied to the root element unless `disableSpacing={true}`. */
-  ...(!styleProps.disableSpacing && {
+  ...(!ownerState.disableSpacing && {
     '& > :not(:first-of-type)': {
       marginLeft: 8,
     },
@@ -46,13 +44,13 @@ const DialogActions = React.forwardRef(function DialogActions(inProps, ref) {
   });
 
   const { className, disableSpacing = false, ...other } = props;
-  const styleProps = { ...props, disableSpacing };
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = { ...props, disableSpacing };
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <DialogActionsRoot
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       {...other}
     />

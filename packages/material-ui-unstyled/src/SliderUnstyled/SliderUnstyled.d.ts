@@ -1,7 +1,7 @@
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@material-ui/types';
 import { SliderUnstyledClasses } from './sliderUnstyledClasses';
 
-export interface SliderStylePropsOverrides {}
+export interface SliderOwnerStateOverrides {}
 
 export interface Mark {
   value: number;
@@ -54,42 +54,42 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
     componentsProps?: {
       root?: {
         as?: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
-          SliderStylePropsOverrides;
+        ownerState?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
+          SliderOwnerStateOverrides;
       };
       track?: {
         as?: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
-          SliderStylePropsOverrides;
+        ownerState?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
+          SliderOwnerStateOverrides;
       };
       rail?: {
         as?: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
-          SliderStylePropsOverrides;
+        ownerState?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
+          SliderOwnerStateOverrides;
       };
       thumb?: {
         as?: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
-          SliderStylePropsOverrides;
+        ownerState?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
+          SliderOwnerStateOverrides;
       };
       mark?: {
         as?: React.ElementType;
-        styleProps?: Omit<
+        ownerState?: Omit<
           SliderUnstyledTypeMap<P, D>['props'],
           'components' | 'componentsProps'
-        > & { markActive?: boolean } & SliderStylePropsOverrides;
+        > & { markActive?: boolean } & SliderOwnerStateOverrides;
       };
       markLabel?: {
         as?: React.ElementType;
-        styleProps?: Omit<
+        ownerState?: Omit<
           SliderUnstyledTypeMap<P, D>['props'],
           'components' | 'componentsProps'
-        > & { markLabelActive?: boolean } & SliderStylePropsOverrides;
+        > & { markLabelActive?: boolean } & SliderOwnerStateOverrides;
       };
       valueLabel?: {
         as?: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
-          SliderStylePropsOverrides;
+        ownerState?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
+          SliderOwnerStateOverrides;
       };
     };
     /**
@@ -152,7 +152,7 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
     /**
      * Callback function that is fired when the slider's value changed.
      *
-     * @param {object} event The event source of the callback.
+     * @param {Event} event The event source of the callback.
      * You can pull out the new value by accessing `event.target.value` (any).
      * **Warning**: This is a generic event not a change event.
      * @param {number | number[]} value The new value.
@@ -162,7 +162,7 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
     /**
      * Callback function that is fired when the `mouseup` is triggered.
      *
-     * @param {object} event The event source of the callback. **Warning**: This is a generic event not a change event.
+     * @param {React.SyntheticEvent | Event} event The event source of the callback. **Warning**: This is a generic event not a change event.
      * @param {number | number[]} value The new value.
      */
     onChangeCommitted?: (event: React.SyntheticEvent | Event, value: number | number[]) => void;

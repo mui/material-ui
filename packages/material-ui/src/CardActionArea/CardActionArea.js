@@ -7,8 +7,8 @@ import styled from '../styles/styled';
 import cardActionAreaClasses, { getCardActionAreaUtilityClass } from './cardActionAreaClasses';
 import ButtonBase from '../ButtonBase';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -23,7 +23,6 @@ const CardActionAreaRoot = styled(ButtonBase, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })(({ theme }) => ({
-  /* Styles applied to the root element. */
   display: 'block',
   textAlign: 'inherit',
   width: '100%',
@@ -43,7 +42,6 @@ const CardActionAreaFocusHighlight = styled('span', {
   slot: 'FocusHighlight',
   overridesResolver: (props, styles) => styles.focusHighlight,
 })(({ theme }) => ({
-  /* Styles applied to the overlay that covers the action area when it is keyboard focused. */
   overflow: 'hidden',
   pointerEvents: 'none',
   position: 'absolute',
@@ -63,19 +61,19 @@ const CardActionArea = React.forwardRef(function CardActionArea(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiCardActionArea' });
   const { children, className, focusVisibleClassName, ...other } = props;
 
-  const styleProps = props;
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = props;
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <CardActionAreaRoot
       className={clsx(classes.root, className)}
       focusVisibleClassName={clsx(focusVisibleClassName, classes.focusVisible)}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       {children}
-      <CardActionAreaFocusHighlight className={classes.focusHighlight} styleProps={styleProps} />
+      <CardActionAreaFocusHighlight className={classes.focusHighlight} ownerState={ownerState} />
     </CardActionAreaRoot>
   );
 });

@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import OutlinedInput, { outlinedInputClasses as classes } from '@material-ui/core/OutlinedInput';
 import InputBase from '@material-ui/core/InputBase';
 
 describe('<OutlinedInput />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<OutlinedInput />, () => ({
+  describeConformance(<OutlinedInput />, () => ({
     classes,
     inheritComponent: InputBase,
     render,
@@ -30,5 +30,10 @@ describe('<OutlinedInput />', () => {
   it('should forward classes to InputBase', () => {
     render(<OutlinedInput error classes={{ error: 'error' }} />);
     expect(document.querySelector('.error')).not.to.equal(null);
+  });
+
+  it('should respects the componentsProps if passed', () => {
+    render(<OutlinedInput componentsProps={{ root: { 'data-test': 'test' } }} />);
+    expect(document.querySelector('[data-test=test]')).not.to.equal(null);
   });
 });

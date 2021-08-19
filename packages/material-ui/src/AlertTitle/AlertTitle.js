@@ -7,8 +7,8 @@ import useThemeProps from '../styles/useThemeProps';
 import Typography from '../Typography';
 import { getAlertTitleUtilityClass } from './alertTitleClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -22,7 +22,6 @@ const AlertTitleRoot = styled(Typography, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })(({ theme }) => {
-  /* Styles applied to the root element. */
   return {
     fontWeight: theme.typography.fontWeightMedium,
     marginTop: -2,
@@ -37,14 +36,14 @@ const AlertTitle = React.forwardRef(function AlertTitle(inProps, ref) {
 
   const { className, ...other } = props;
 
-  const styleProps = props;
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = props;
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <AlertTitleRoot
       gutterBottom
       component="div"
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       className={clsx(classes.root, className)}
       {...other}

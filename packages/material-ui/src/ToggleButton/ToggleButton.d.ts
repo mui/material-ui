@@ -7,6 +7,8 @@ import { ToggleButtonClasses } from './toggleButtonClasses';
 
 export interface ToggleButtonPropsSizeOverrides {}
 
+export interface ToggleButtonPropsColorOverrides {}
+
 export type ToggleButtonTypeMap<
   P = {},
   D extends React.ElementType = 'button',
@@ -24,7 +26,10 @@ export type ToggleButtonTypeMap<
      * The color of the button when it is in an active state.
      * @default 'standard'
      */
-    color?: 'standard' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
+    color?: OverridableStringUnion<
+      'standard' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+      ToggleButtonPropsColorOverrides
+    >;
     /**
      * If `true`, the component is disabled.
      * @default false

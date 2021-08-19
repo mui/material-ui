@@ -8,8 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import TimelineContext from '../Timeline/TimelineContext';
 import { getTimelineOppositeContentUtilityClass } from './timelineOppositeContentClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { position, classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { position, classes } = ownerState;
 
   const slots = {
     root: ['root', `position${capitalize(position)}`],
@@ -22,17 +22,15 @@ const TimelineOppositeContentRoot = styled(Typography, {
   name: 'MuiTimelineOppositeContent',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
-    return [styles.root, styles[`position${capitalize(styleProps.position)}`]];
+    const { ownerState } = props;
+    return [styles.root, styles[`position${capitalize(ownerState.position)}`]];
   },
-})(({ styleProps }) => ({
-  /* Styles applied to the root element. */
+})(({ ownerState }) => ({
   padding: '6px 16px',
   marginRight: 'auto',
   textAlign: 'right',
   flex: 1,
-  /* Styles applied to the root element if `position="left"`. */
-  ...(styleProps.position === 'left' && {
+  ...(ownerState.position === 'left' && {
     textAlign: 'left',
   }),
 }));
@@ -43,18 +41,18 @@ const TimelineOppositeContent = React.forwardRef(function TimelineOppositeConten
 
   const { position: positionContext } = React.useContext(TimelineContext);
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     position: positionContext || 'left',
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <TimelineOppositeContentRoot
       component="div"
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       {...other}
     />

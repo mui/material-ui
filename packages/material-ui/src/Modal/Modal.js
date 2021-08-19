@@ -9,29 +9,27 @@ import Backdrop from '../Backdrop';
 
 export const modalClasses = modalUnstyledClasses;
 
-const extendUtilityClasses = (styleProps) => {
-  return styleProps.classes;
+const extendUtilityClasses = (ownerState) => {
+  return ownerState.classes;
 };
 
 const ModalRoot = styled('div', {
   name: 'MuiModal',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
-    return [styles.root, !styleProps.open && styleProps.exited && styles.hidden];
+    return [styles.root, !ownerState.open && ownerState.exited && styles.hidden];
   },
-})(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
+})(({ theme, ownerState }) => ({
   position: 'fixed',
   zIndex: theme.zIndex.modal,
   right: 0,
   bottom: 0,
   top: 0,
   left: 0,
-  /* Styles applied to the root element if the `Modal` has exited. */
-  ...(!styleProps.open &&
-    styleProps.exited && {
+  ...(!ownerState.open &&
+    ownerState.exited && {
       visibility: 'hidden',
     }),
 }));
@@ -92,13 +90,13 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     keepMounted,
   };
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     ...commonProps,
     exited,
   };
 
-  const classes = extendUtilityClasses(styleProps);
+  const classes = extendUtilityClasses(ownerState);
 
   return (
     <ModalUnstyled
@@ -110,7 +108,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
         root: {
           ...componentsProps.root,
           ...((!components.Root || !isHostComponent(components.Root)) && {
-            styleProps: { ...componentsProps.root?.styleProps },
+            ownerState: { ...componentsProps.root?.ownerState },
           }),
         },
       }}

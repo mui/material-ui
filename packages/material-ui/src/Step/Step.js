@@ -9,8 +9,8 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import { getStepUtilityClass } from './stepClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, orientation, alternativeLabel, completed } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, orientation, alternativeLabel, completed } = ownerState;
 
   const slots = {
     root: ['root', orientation, alternativeLabel && 'alternativeLabel', completed && 'completed'],
@@ -23,23 +23,21 @@ const StepRoot = styled('div', {
   name: 'MuiStep',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.root,
-      styles[styleProps.orientation],
-      styleProps.alternativeLabel && styles.alternativeLabel,
-      styleProps.completed && styles.completed,
+      styles[ownerState.orientation],
+      ownerState.alternativeLabel && styles.alternativeLabel,
+      ownerState.completed && styles.completed,
     ];
   },
-})(({ styleProps }) => ({
-  /* Styles applied to the root element if `orientation="horizontal"`. */
-  ...(styleProps.orientation === 'horizontal' && {
+})(({ ownerState }) => ({
+  ...(ownerState.orientation === 'horizontal' && {
     paddingLeft: 8,
     paddingRight: 8,
   }),
-  /* Styles applied to the root element if `alternativeLabel={true}`. */
-  ...(styleProps.alternativeLabel && {
+  ...(ownerState.alternativeLabel && {
     flex: 1,
     position: 'relative',
   }),
@@ -81,7 +79,7 @@ const Step = React.forwardRef(function Step(inProps, ref) {
     [index, last, expanded, active, completed, disabled],
   );
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     active,
     orientation,
@@ -91,13 +89,13 @@ const Step = React.forwardRef(function Step(inProps, ref) {
     expanded,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const newChildren = (
     <StepRoot
       className={clsx(classes.root, className)}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       {connector && alternativeLabel && index !== 0 ? connector : null}

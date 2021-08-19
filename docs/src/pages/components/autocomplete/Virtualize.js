@@ -13,12 +13,29 @@ const LISTBOX_PADDING = 8; // px
 
 function renderRow(props) {
   const { data, index, style } = props;
-  return React.cloneElement(data[index], {
-    style: {
-      ...style,
-      top: style.top + LISTBOX_PADDING,
-    },
-  });
+  const dataSet = data[index];
+
+  if (dataSet.hasOwnProperty('group')) {
+    return (
+      <ListSubheader key={dataSet.key} component="div">
+        {dataSet.group}
+      </ListSubheader>
+    );
+  }
+
+  return (
+    <Typography
+      component="li"
+      {...dataSet[0]}
+      noWrap
+      style={{
+        ...style,
+        top: style.top + LISTBOX_PADDING,
+      }}
+    >
+      {dataSet[1]}
+    </Typography>
+  );
 }
 
 const OuterElementContext = React.createContext({});
@@ -41,7 +58,12 @@ function useResetCache(data) {
 // Adapter for react-window
 const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) {
   const { children, ...other } = props;
-  const itemData = React.Children.toArray(children);
+  const itemData = [];
+  children.forEach((item) => {
+    itemData.push(item);
+    itemData.push(...(item.children || []));
+  });
+
   const theme = useTheme();
   const smUp = useMediaQuery(theme.breakpoints.up('sm'), {
     noSsr: true,
@@ -51,7 +73,7 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
   const itemSize = smUp ? 36 : 48;
 
   const getChildSize = (child) => {
-    if (React.isValidElement(child) && child.type === ListSubheader) {
+    if (child.hasOwnProperty('group')) {
       return 48;
     }
 
@@ -118,13 +140,6 @@ const OPTIONS = Array.from(new Array(10000))
   .map(() => random(10 + Math.ceil(Math.random() * 20)))
   .sort((a, b) => a.toUpperCase().localeCompare(b.toUpperCase()));
 
-const renderGroup = (params) => [
-  <ListSubheader key={params.key} component="div">
-    {params.group}
-  </ListSubheader>,
-  params.children,
-];
-
 export default function Virtualize() {
   return (
     <Autocomplete
@@ -133,15 +148,11 @@ export default function Virtualize() {
       disableListWrap
       PopperComponent={StyledPopper}
       ListboxComponent={ListboxComponent}
-      renderGroup={renderGroup}
       options={OPTIONS}
       groupBy={(option) => option[0].toUpperCase()}
       renderInput={(params) => <TextField {...params} label="10,000 options" />}
-      renderOption={(props, option) => (
-        <li {...props}>
-          <Typography noWrap>{option}</Typography>
-        </li>
-      )}
+      renderOption={(props, option) => [props, option]}
+      renderGroup={(params) => params}
     />
   );
 }

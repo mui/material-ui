@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformanceV5, createClientRender, fireEvent } from 'test/utils';
+import { describeConformance, createClientRender, fireEvent } from 'test/utils';
 import Accordion, { accordionClasses as classes } from '@material-ui/core/Accordion';
 import Paper from '@material-ui/core/Paper';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -12,7 +12,7 @@ describe('<Accordion />', () => {
 
   const minimalChildren = [<AccordionSummary key="header">Header</AccordionSummary>];
 
-  describeConformanceV5(<Accordion>{minimalChildren}</Accordion>, () => ({
+  describeConformance(<Accordion>{minimalChildren}</Accordion>, () => ({
     classes,
     inheritComponent: Paper,
     render,

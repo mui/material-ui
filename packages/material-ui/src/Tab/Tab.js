@@ -9,8 +9,8 @@ import styled from '../styles/styled';
 import unsupportedProp from '../utils/unsupportedProp';
 import tabClasses, { getTabUtilityClass } from './tabClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, textColor, fullWidth, wrapped, icon, label, selected, disabled } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, textColor, fullWidth, wrapped, icon, label, selected, disabled } = ownerState;
 
   const slots = {
     root: [
@@ -31,18 +31,17 @@ const TabRoot = styled(ButtonBase, {
   name: 'MuiTab',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.root,
-      styleProps.label && styleProps.icon && styles.labelIcon,
-      styles[`textColor${capitalize(styleProps.textColor)}`],
-      styleProps.fullWidth && styles.fullWidth,
-      styleProps.wrapped && styles.wrapped,
+      ownerState.label && ownerState.icon && styles.labelIcon,
+      styles[`textColor${capitalize(ownerState.textColor)}`],
+      ownerState.fullWidth && styles.fullWidth,
+      ownerState.wrapped && styles.wrapped,
     ];
   },
-})(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
+})(({ theme, ownerState }) => ({
   ...theme.typography.button,
   maxWidth: 360,
   minWidth: 90,
@@ -55,9 +54,8 @@ const TabRoot = styled(ButtonBase, {
   textAlign: 'center',
   flexDirection: 'column',
   lineHeight: 1.25,
-  /* Styles applied to the root element if both `icon` and `label` are provided. */
-  ...(styleProps.icon &&
-    styleProps.label && {
+  ...(ownerState.icon &&
+    ownerState.label && {
       minHeight: 72,
       paddingTop: 9,
       paddingBottom: 9,
@@ -65,8 +63,7 @@ const TabRoot = styled(ButtonBase, {
         marginBottom: 6,
       },
     }),
-  /* Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="inherit"`. */
-  ...(styleProps.textColor === 'inherit' && {
+  ...(ownerState.textColor === 'inherit' && {
     color: 'inherit',
     opacity: 0.6, // same opacity as theme.palette.text.secondary
     [`&.${tabClasses.selected}`]: {
@@ -76,8 +73,7 @@ const TabRoot = styled(ButtonBase, {
       opacity: theme.palette.action.disabledOpacity,
     },
   }),
-  /* Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="primary"`. */
-  ...(styleProps.textColor === 'primary' && {
+  ...(ownerState.textColor === 'primary' && {
     color: theme.palette.text.secondary,
     [`&.${tabClasses.selected}`]: {
       color: theme.palette.primary.main,
@@ -86,8 +82,7 @@ const TabRoot = styled(ButtonBase, {
       color: theme.palette.text.disabled,
     },
   }),
-  /* Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="secondary"`. */
-  ...(styleProps.textColor === 'secondary' && {
+  ...(ownerState.textColor === 'secondary' && {
     color: theme.palette.text.secondary,
     [`&.${tabClasses.selected}`]: {
       color: theme.palette.secondary.main,
@@ -96,15 +91,13 @@ const TabRoot = styled(ButtonBase, {
       color: theme.palette.text.disabled,
     },
   }),
-  /* Styles applied to the root element if `fullWidth={true}` */
-  ...(styleProps.fullWidth && {
+  ...(ownerState.fullWidth && {
     flexShrink: 1,
     flexGrow: 1,
     flexBasis: 0,
     maxWidth: 'none',
   }),
-  /* Styles applied to the root element if `wrapped={true}`. */
-  ...(styleProps.wrapped && {
+  ...(ownerState.wrapped && {
     fontSize: theme.typography.pxToRem(12),
   }),
 }));
@@ -135,7 +128,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     disabled,
     disableFocusRipple,
@@ -147,7 +140,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     wrapped,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const handleClick = (event) => {
     if (!selected && onChange) {
@@ -179,7 +172,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
       disabled={disabled}
       onClick={handleClick}
       onFocus={handleFocus}
-      styleProps={styleProps}
+      ownerState={ownerState}
       tabIndex={selected ? 0 : -1}
       {...other}
     >
