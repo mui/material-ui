@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { useTheme } from '@material-ui/core/styles';
-import RootSvg, { RootSvgProps } from 'docs/src/icons/RootSvg';
 
-function SvgPerson(props: RootSvgProps) {
+function SvgPerson(props: React.SVGProps<SVGSVGElement>) {
   const theme = useTheme();
   if (theme.palette.mode === 'dark') {
     return (
-      <RootSvg
+      <svg
         xmlns="http://www.w3.org/2000/svg"
         width={28}
         height={28}
@@ -26,11 +25,11 @@ function SvgPerson(props: RootSvgProps) {
           strokeWidth={2.5}
         />
         <circle cx={14} cy={8} r={2.9} stroke="#80BFFF" strokeWidth={2.2} />
-      </RootSvg>
+      </svg>
     );
   }
   return (
-    <RootSvg
+    <svg
       xmlns="http://www.w3.org/2000/svg"
       width={28}
       height={28}
@@ -75,7 +74,7 @@ function SvgPerson(props: RootSvgProps) {
           <stop offset={1} stopColor="#007FFF" />
         </linearGradient>
       </defs>
-    </RootSvg>
+    </svg>
   );
 }
 

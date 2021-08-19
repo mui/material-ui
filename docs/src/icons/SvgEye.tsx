@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { useTheme } from '@material-ui/core/styles';
-import RootSvg, { RootSvgProps } from 'docs/src/icons/RootSvg';
 
-function SvgEye(props: RootSvgProps) {
+function SvgEye(props: React.SVGProps<SVGSVGElement>) {
   const theme = useTheme();
   if (theme.palette.mode === 'dark') {
     return (
-      <RootSvg
+      <svg
         xmlns="http://www.w3.org/2000/svg"
         width={28}
         height={28}
@@ -26,11 +25,11 @@ function SvgEye(props: RootSvgProps) {
           d="M6.418 14.361A12.896 12.896 0 016.172 14a13.994 13.994 0 011.879-2.285C9.491 10.308 11.503 9 14 9s4.51 1.308 5.949 2.715A13.998 13.998 0 0121.827 14a13.998 13.998 0 01-1.879 2.285C18.51 17.692 16.499 19 14 19c-2.497 0-4.51-1.308-5.949-2.715a13.994 13.994 0 01-1.633-1.924zm17.46-.84L23 14l.878.48h-.001l-.001.002-.003.006-.01.018-.035.061a14.062 14.062 0 01-.611.946c-.423.6-1.05 1.4-1.87 2.202C19.717 19.308 17.23 21 14 21c-3.23 0-5.718-1.692-7.347-3.285A16 16 0 014.3 14.781a9.158 9.158 0 01-.162-.275l-.01-.018-.003-.005-.001-.003S4.121 14.479 5 14l-.878-.48.002-.002.003-.006.01-.018a5.92 5.92 0 01.162-.275 16 16 0 012.354-2.934C8.283 8.692 10.77 7 14 7c3.23 0 5.718 1.692 7.347 3.285a16.008 16.008 0 012.354 2.934c.055.09.097.162.127.214l.035.06.01.019.003.005.001.003zM23 14l.878-.479a1 1 0 010 .958L23 14zm-18.878-.479L5 14l-.878.479a1 1 0 010-.958zM15 14a1 1 0 10-2 0 1 1 0 002 0zm2 0a3 3 0 10-6 0 3 3 0 006 0z"
           fill="#80BFFF"
         />
-      </RootSvg>
+      </svg>
     );
   }
   return (
-    <RootSvg
+    <svg
       xmlns="http://www.w3.org/2000/svg"
       width={28}
       height={28}
@@ -64,7 +63,7 @@ function SvgEye(props: RootSvgProps) {
           <stop offset={1} stopColor="#007FFF" />
         </linearGradient>
       </defs>
-    </RootSvg>
+    </svg>
   );
 }
 

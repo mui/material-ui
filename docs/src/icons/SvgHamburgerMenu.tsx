@@ -1,9 +1,8 @@
 import * as React from 'react';
-import RootSvg, { RootSvgProps } from 'docs/src/icons/RootSvg';
 
-export default function SvgHamburgerMenu(props: RootSvgProps) {
+export default function SvgHamburgerMenu(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <RootSvg
+    <svg
       xmlns="http://www.w3.org/2000/svg"
       width={20}
       height={20}
@@ -13,6 +12,6 @@ export default function SvgHamburgerMenu(props: RootSvgProps) {
     >
       <rect x={1} y={5} width={14} height={2} rx={1} fill="#007FFF" />
       <rect x={1} y={9} width={14} height={2} rx={1} fill="#007FFF" />
-    </RootSvg>
+    </svg>
   );
 }
