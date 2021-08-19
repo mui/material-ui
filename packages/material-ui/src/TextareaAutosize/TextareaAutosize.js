@@ -136,11 +136,12 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     } catch (err) {
       resizeObserverRef.current = MockResizeObserver(); // Prevent crash for old browsers
     }
-
-    resizeObserverRef.current.observe(inputRef.current);
+    const item = inputRef.current;
+    resizeObserverRef.current.observe(item);
 
     return () => {
       handleResize.clear();
+      resizeObserverRef.current.unobserve(item);
     };
   }, [syncHeight]);
 
