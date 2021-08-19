@@ -254,7 +254,7 @@ function AppFrame(props) {
                 <LanguageSpan>
                   {LANGUAGES_LABEL.filter((language) => language.code === userLanguage)[0].text}
                 </LanguageSpan>
-                <ArrowDropDownRoundedIcon fontSize="small" color="primary"/>
+                <ArrowDropDownRoundedIcon fontSize="small" color="primary" />
               </Button>
             </Tooltip>
             <NoSsr defer>
@@ -308,13 +308,14 @@ function AppFrame(props) {
                 href={process.env.SOURCE_CODE_REPO}
                 data-ga-event-category="header"
                 data-ga-event-action="github"
+                sx={{ px: '10px' }}
               >
                 <GitHubIcon fontSize="small" />
               </IconButton>
             </Tooltip>
             <Notifications />
             <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-              <IconButton color="inherit" onClick={handleSettingsDrawerOpen}>
+              <IconButton color="inherit" onClick={handleSettingsDrawerOpen} sx={{ px: '10px' }}>
                 <SettingsIcon fontSize="small" />
               </IconButton>
             </Tooltip>

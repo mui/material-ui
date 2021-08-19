@@ -103,9 +103,7 @@ const RootDiv = styled('div')(({ theme }) => {
       theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : theme.palette.grey[50],
     '&:hover': {
       backgroundColor:
-        theme.palette.mode === 'dark'
-          ? theme.palette.primaryDark[700]
-          : theme.palette.grey[100],
+        theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100],
     },
     color: theme.palette.mode === 'dark' ? 'white' : theme.palette.grey[900],
     border: `1px solid ${
@@ -124,14 +122,14 @@ const SearchDiv = styled('div')(({ theme }) => {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    color: theme.palette.grey[700]
+    color: theme.palette.grey[700],
   };
 });
 
 const Shortcut = styled('div')(({ theme }) => {
   return {
     fontSize: theme.typography.pxToRem(13),
-    fontWeight: 600, 
+    fontWeight: 600,
     color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[700],
     lineHeight: '21px',
     border: `1px solid ${
@@ -270,7 +268,13 @@ export default function AppSearch() {
   return (
     <RootDiv>
       <SearchDiv>
-        <SearchIcon fontSize="small" sx={{color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.primary[500],}}/>
+        <SearchIcon
+          fontSize="small"
+          sx={{
+            color:
+              theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.primary[500],
+          }}
+        />
       </SearchDiv>
       <AlgoliaStyles />
       <StyledInput
