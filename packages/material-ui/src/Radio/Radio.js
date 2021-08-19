@@ -12,8 +12,8 @@ import useRadioGroup from '../RadioGroup/useRadioGroup';
 import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, color } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, color } = ownerState;
 
   const slots = {
     root: ['root', `color${capitalize(color)}`],
@@ -30,17 +30,17 @@ const RadioRoot = styled(SwitchBase, {
   name: 'MuiRadio',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
-    return [styles.root, styles[`color${capitalize(styleProps.color)}`]];
+    return [styles.root, styles[`color${capitalize(ownerState.color)}`]];
   },
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   color: theme.palette.text.secondary,
   '&:hover': {
     backgroundColor: alpha(
-      styleProps.color === 'default'
+      ownerState.color === 'default'
         ? theme.palette.action.active
-        : theme.palette[styleProps.color].main,
+        : theme.palette[ownerState.color].main,
       theme.palette.action.hoverOpacity,
     ),
     // Reset on touch devices, it doesn't add specificity
@@ -48,9 +48,9 @@ const RadioRoot = styled(SwitchBase, {
       backgroundColor: 'transparent',
     },
   },
-  ...(styleProps.color !== 'default' && {
+  ...(ownerState.color !== 'default' && {
     [`&.${radioClasses.checked}`]: {
-      color: theme.palette[styleProps.color].main,
+      color: theme.palette[ownerState.color].main,
     },
   }),
   [`&.${radioClasses.disabled}`]: {
@@ -73,13 +73,13 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     size = 'medium',
     ...other
   } = props;
-  const styleProps = {
+  const ownerState = {
     ...props,
     color,
     size,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
   const radioGroup = useRadioGroup();
 
   let checked = checkedProp;
@@ -102,7 +102,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
       checkedIcon={React.cloneElement(checkedIcon, {
         fontSize: defaultCheckedIcon.props.fontSize ?? size,
       })}
-      styleProps={styleProps}
+      ownerState={ownerState}
       classes={classes}
       name={name}
       checked={checked}

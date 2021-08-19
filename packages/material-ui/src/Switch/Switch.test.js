@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
+import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
 import Switch, { switchClasses as classes } from '@material-ui/core/Switch';
 import FormControl from '@material-ui/core/FormControl';
 
 describe('<Switch />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<Switch />, () => ({
+  describeConformance(<Switch />, () => ({
     classes,
     render,
     muiName: 'MuiSwitch',

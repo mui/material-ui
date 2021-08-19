@@ -45,11 +45,11 @@ export const MobileKeyboardInputView = styled('div')({
   padding: '16px 24px',
 });
 
-const PickerRoot = styled('div', { skipSx: true })<{ styleProps: { isLandscape: boolean } }>(
-  ({ styleProps }) => ({
+const PickerRoot = styled('div', { skipSx: true })<{ ownerState: { isLandscape: boolean } }>(
+  ({ ownerState }) => ({
     display: 'flex',
     flexDirection: 'column',
-    ...(styleProps.isLandscape && {
+    ...(ownerState.isLandscape && {
       flexDirection: 'row',
     }),
   }),
@@ -110,7 +110,7 @@ function Picker(props: PickerProps) {
   });
 
   return (
-    <PickerRoot styleProps={{ isLandscape }}>
+    <PickerRoot ownerState={{ isLandscape }}>
       {toShowToolbar && (
         <ToolbarComponent
           {...other}

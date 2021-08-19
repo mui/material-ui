@@ -1,18 +1,20 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
-import LinearProgress from '@material-ui/core/LinearProgress';
+import { ThemeProvider, createTheme, useTheme, styled, alpha } from '@material-ui/core/styles';
+import { shouldForwardProp } from '@material-ui/system';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import ReplayRounded from '@material-ui/icons/ReplayRounded';
+import Tooltip from '@material-ui/core/Tooltip';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
-import MaterialDesignDemo, { demoCode as materialDemoCode } from './MaterialDesignDemo';
-import ShowcaseContainer from './ShowcaseContainer';
-import { getMaterialThemeFrames, produceThemeOptions } from './showcaseUtils';
+import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/MaterialDesignDemo';
+import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
+import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
+import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
+import TouchAppRounded from '@material-ui/icons/TouchAppRounded';
 
-const defaultTheme = createTheme();
 const darkDesignTokens = getDesignTokens('dark');
 
 let darkBrandingTheme = createTheme(darkDesignTokens);
@@ -32,7 +34,7 @@ darkBrandingTheme = createTheme(darkBrandingTheme, {
       styleOverrides: {
         root: {
           borderRadius: 40,
-          padding: darkBrandingTheme.spacing(0.5, 1),
+          padding: darkBrandingTheme.spacing('2px', 1),
         },
         sizeSmall: {
           fontSize: darkBrandingTheme.typography.pxToRem(12),
@@ -54,302 +56,291 @@ darkBrandingTheme = createTheme(darkBrandingTheme, {
   },
 });
 
-const CODES = [
-  `const theme = createTheme({
-  shape: {
-    borderRadius: 12,
-  },`,
-  `
-  spacing: 10,`,
-  `
-  shadows: [
-    'none',
-    '0px 4px 20px 0px hsla(210, 14%, 28%, 0.2)',
-  ],`,
-  `
-  typography: {
-    fontFamily: '"IBM Plex Sans", sans-serif',
-    fontWeightBold: 500,
-  },`,
-  `
-  palette: {
-    background: {
-      default: '#F3F6F9',
-    },`,
-  `
-    divider: '#E5E8EC',`,
-  `
-    primary: {
-      main: '#007FFF',
-    },`,
-  `
-    text: {
-      primary: '#3D4752',
-      secondary: '#5A6978',
-    },`,
-  `
-    success: {
-      main: '#1AA251',
-      light: '#6AE79C',
-    },
-  },`,
-  `
-  components: {
-    MuiAvatar: {
-      styleOverrides: {
-        root: {
-          width: 64,
-          height: 64,
-        },
-      },
-    },`,
-  `
-    MuiCard: {
-      styleOverrides: {
-        root: {
-          border: '1px solid',
-          borderColor: '#D7DCE1',
-        },
-      },
-    },`,
-  `
-    MuiIconButton: {
-      styleOverrides: {
-        root: {
-          border: '1px solid',
-          borderColor: '#E5E8EC',
-          color: '#5A6978',
-          '&:hover, &.Mui-focusVisible': {
-            borderColor: '#007FFF',
-            color: '#007FFF',
-          },
-        },
-      },
-    },`,
-  `
-    MuiSwitch: {
-      styleOverrides: {
-        root: { width: 32, height: 20, padding: 0 },
-        switchBase: { height: 20, width: 20, padding: 0,
-          '&.Mui-checked + .MuiSwitch-track': {
-            opacity: 1,
-          },
-          '&.Mui-checked': {
-            transform: 'translateX(11px)',
-            color: '#fff',
-          },
-        },
-        track: {
-          opacity: 1,
-          borderRadius: 32,
-          backgroundColor: '#BFC7CF'
-        },
-        thumb: { width: 14, height: 14 },
-      },
-    },
-  },
-});`,
-];
+const FlashCode = styled('div', {
+  shouldForwardProp: (prop) =>
+    shouldForwardProp(prop) && prop !== 'endLine' && prop !== 'startLine',
+})<{ endLine?: number; startLine?: number }>(({ theme, startLine = 0, endLine = 1 }) => ({
+  borderRadius: 2,
+  pointerEvents: 'none',
+  position: 'absolute',
+  left: 0,
+  right: 0,
+  top: startLine * 18,
+  height: (endLine - startLine + 1) * 18,
+  transition: '0.3s',
+  ...theme.typography.caption,
+  backgroundColor: alpha(theme.palette.primary.main, 0.2),
+  border: '1px solid',
+  borderColor: theme.palette.primary.dark,
+}));
 
-const noop = () => {};
-
-function TypeWriter({
-  step = 0,
-  codes = CODES,
-  onStepComplete = noop,
-}: {
-  step: number;
-  codes: Array<string>;
-  onStepComplete: (step: number) => void;
-}) {
-  const [result, setResult] = React.useState(``);
-  const index = React.useRef(0);
-  React.useEffect(() => {
-    index.current = 0;
-    if (step > 0) {
-      // by line
-      // const code = codes[step - 1].split('\n').map((text, i, array) => {
-      //   if (i === array.length - 1) return text;
-      //   return `${text}\n`;
-      // });
-
-      // by character
-      let code = codes[step - 1].split('');
-      code = code.reduce((final, curr) => {
-        if (
-          curr.match(/^\s*$/) &&
-          final[final.length - 1] &&
-          final[final.length - 1].match(/^\s*$/)
-        ) {
-          return [...final.slice(0, final.length - 1), `${final[final.length - 1]} `];
-        }
-        return [...final, curr];
-      }, [] as Array<string>);
-
-      const time = setInterval(() => {
-        if (index.current <= code.length - 1) {
-          setResult((current) => `${current}${code[index.current]}`);
-        }
-        index.current += 1;
-        if (index.current >= code.length) {
-          onStepComplete(step);
-          clearInterval(time);
-        }
-      }, 32);
-      return () => {
-        clearInterval(time);
-      };
-    }
-    setResult('');
-    return () => {};
-  }, [codes, step, onStepComplete]);
-  return <HighlightedCode component={MarkdownElement} code={result} language="jsx" />;
-}
+const lineMapping: Record<string, number | number[]> = {
+  avatar: 2,
+  divider: 13,
+  chip: 20,
+  stack: 3,
+  iconButton: 9,
+  card: 0,
+  switch: 21,
+  editIcon: 10,
+  typography: 4,
+  typography2: 5,
+  locationOnIcon: 6,
+  stack2: [14, 19],
+};
 
 export default function CoreShowcase() {
-  const totalStep = CODES.length;
-  const theme = useTheme();
-  const codeContainer = React.useRef<HTMLDivElement | null>(null);
-  const [step, setStep] = React.useState(0);
-  const [running, setRunning] = React.useState(false);
+  const globalTheme = useTheme();
+  const mode = globalTheme.palette.mode;
+  const [element, setElement] = React.useState<Data>({ id: null, name: null, target: null });
   const [customized, setCustomized] = React.useState(false);
-  const codeImports = materialDemoCode.imports(customized);
-  const cursor = React.useRef(0);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const themeFrames = React.useMemo(() => getMaterialThemeFrames(theme), []);
-  const [customTheme, setCustomTheme] = React.useState(defaultTheme);
-  const updateTheme = React.useMemo(
+  const [hidden, setHidden] = React.useState(false); // for custom theme suggestion
+  const theme = React.useMemo(
     () =>
-      function handleUpdateTheme(latestStep: number) {
-        if (latestStep === totalStep) {
-          setRunning(false);
-        }
-        cursor.current += CODES[latestStep - 1].split('\n').length - 1;
-        const themeOptions = produceThemeOptions(themeFrames, latestStep);
-        setCustomTheme(createTheme(themeOptions));
-        setTimeout(() => {
-          setStep((current) => (current < totalStep ? current + 1 : current));
-        }, 1500);
-      },
-    [themeFrames, totalStep],
+      customized
+        ? createTheme(globalTheme, {
+            palette: {
+              background: {
+                default:
+                  mode === 'dark'
+                    ? globalTheme.palette.primaryDark[900]
+                    : globalTheme.palette.grey[50],
+              },
+            },
+            shape: {
+              borderRadius: 10,
+            },
+            shadows: ['none', '0px 4px 20px 0px hsla(210, 14%, 28%, 0.2)'],
+            components: {
+              MuiCard: {
+                styleOverrides: {
+                  root: {
+                    boxShadow:
+                      mode === 'dark'
+                        ? '0px 4px 30px rgba(29, 29, 29, 0.6)'
+                        : '0px 4px 20px rgba(61, 71, 82, 0.2)',
+                    backgroundColor:
+                      mode === 'dark' ? globalTheme.palette.primaryDark[800] : '#fff',
+                    border: '1px solid',
+                    borderColor:
+                      mode === 'dark'
+                        ? globalTheme.palette.primaryDark[500]
+                        : globalTheme.palette.grey[200],
+                  },
+                },
+              },
+              MuiAvatar: {
+                styleOverrides: {
+                  root: {
+                    width: 60,
+                    height: 60,
+                  },
+                },
+              },
+              MuiIconButton: {
+                styleOverrides: {
+                  root: {
+                    border: '1px solid',
+                    borderColor:
+                      mode === 'dark'
+                        ? globalTheme.palette.primaryDark[500]
+                        : globalTheme.palette.grey[200],
+                    color:
+                      mode === 'dark'
+                        ? globalTheme.palette.grey[200]
+                        : globalTheme.palette.grey[800],
+                    borderRadius: 10,
+                    '&:hover, &.Mui-focusVisible': {
+                      borderColor: globalTheme.palette.primary.main,
+                      color: globalTheme.palette.primary.main,
+                    },
+                  },
+                },
+              },
+              MuiSwich: globalTheme.components?.MuiSwitch,
+              MuiChip: {
+                styleOverrides: {
+                  filled: {
+                    fontWeight: 600,
+                    '&.MuiChip-colorSuccess': {
+                      backgroundColor:
+                        mode === 'dark'
+                          ? globalTheme.palette.success[900]
+                          : globalTheme.palette.success[100],
+                      color:
+                        mode === 'dark'
+                          ? globalTheme.palette.success[100]
+                          : globalTheme.palette.success[900],
+                    },
+                    '&.MuiChip-colorDefault': {
+                      backgroundColor:
+                        mode === 'dark'
+                          ? globalTheme.palette.grey[900]
+                          : globalTheme.palette.grey[200],
+                      color:
+                        mode === 'dark'
+                          ? globalTheme.palette.grey[200]
+                          : globalTheme.palette.grey[800],
+                    },
+                  },
+                },
+              },
+            },
+          })
+        : createTheme({ palette: { mode: globalTheme.palette.mode } }),
+    [customized, globalTheme, mode],
   );
-  React.useEffect(() => {
-    if (customized && codeContainer.current) {
-      codeContainer.current.scrollTop = (cursor.current + codeImports.split('\n').length - 1) * 20;
-    }
-    if (step === 0 && customized) {
-      cursor.current = 0;
-      setRunning(true);
-      setCustomTheme(createTheme());
-      const time = setTimeout(() => {
-        setStep(1);
-      }, 200);
-      return () => {
-        clearTimeout(time);
-      };
-    }
-    return () => {};
-  }, [step, customized, codeImports]);
-  React.useEffect(() => {
-    if (customized) {
-      setStep(0);
-      setRunning(true);
-      setCustomTheme(createTheme());
-      const time = setTimeout(() => {
-        setStep(1);
-      }, 200);
-      return () => {
-        clearTimeout(time);
-      };
-    }
-    setCustomTheme(createTheme());
-    return () => {};
-  }, [customized]);
+  const highlightedLines = element.id ? lineMapping[element.id] : null;
+  let startLine;
+  let endLine;
+  if (highlightedLines !== null) {
+    startLine = Array.isArray(highlightedLines) ? highlightedLines[0] : highlightedLines;
+    endLine = Array.isArray(highlightedLines) ? highlightedLines[1] : startLine;
+  }
   return (
     <ShowcaseContainer
+      sx={{ mt: 2 }}
+      previewSx={{
+        minHeight: 220,
+        pb: 4,
+      }}
       preview={
-        <ThemeProvider theme={customTheme}>
-          <Box sx={{ minWidth: 300, width: '80%', maxWidth: '100%' }}>
-            <MaterialDesignDemo />
+        <React.Fragment>
+          <Box
+            textAlign="center"
+            sx={{
+              py: 0.5,
+              ml: 'auto',
+              position: 'absolute',
+              bottom: 0,
+              left: '50%',
+              transform: 'translate(-50%)',
+              bgcolor: mode === 'dark' ? 'primaryDark.600' : 'grey.200',
+              width: '100%',
+            }}
+          >
+            <Typography
+              variant="caption"
+              fontWeight={500}
+              color="text.primary"
+              noWrap
+              sx={{ opacity: 0.7 }}
+            >
+              <TouchAppRounded sx={{ fontSize: 14, verticalAlign: 'text-bottom' }} /> Hover the
+              component for highlighting the code.
+            </Typography>
           </Box>
-        </ThemeProvider>
+          <ThemeProvider theme={theme}>
+            <PointerContainer
+              onElementChange={setElement}
+              sx={{ minWidth: 300, width: '80%', maxWidth: '100%' }}
+            >
+              <MaterialDesignDemo sx={{ transform: 'translate(0, -8px)' }} />
+            </PointerContainer>
+          </ThemeProvider>
+        </React.Fragment>
       }
       code={
         <ThemeProvider theme={darkBrandingTheme}>
-          {running && (
-            <LinearProgress
-              variant="determinate"
-              value={(100 / totalStep) * step}
-              sx={{ flexShrink: 0 }}
-            />
-          )}
-          <Box sx={{ p: 2, display: 'flex', alignItems: 'center', minHeight: 56 }}>
-            {!running && (
-              <React.Fragment>
-                <Button
-                  size="small"
-                  variant={customized ? 'outlined' : 'text'}
-                  onClick={() => {
-                    setCustomized(true);
-                  }}
-                >
-                  Custom Theme
-                </Button>
-                <Button
-                  size="small"
-                  variant={customized ? 'text' : 'outlined'}
-                  onClick={() => {
-                    setCustomized(false);
-                  }}
-                  sx={{ ml: 1 }}
-                >
-                  Material Design
-                </Button>
-                {customized && !running && (
-                  <Button
-                    size="small"
-                    startIcon={<ReplayRounded fontSize="small" />}
-                    sx={{ ml: 'auto', color: 'primary.400' }}
-                    onClick={() => {
-                      setStep(0);
-                    }}
-                  >
-                    Replay animation
-                  </Button>
-                )}
-              </React.Fragment>
-            )}
-            {customized && running && (
-              <Typography color="text.secondary" variant="body2">
-                Animation is playing...
-              </Typography>
-            )}
+          <Box
+            sx={{
+              p: { xs: 2, sm: 1 },
+              display: 'flex',
+              alignItems: 'center',
+              right: 0,
+              zIndex: 10,
+            }}
+          >
+            <Button
+              size="small"
+              variant={customized ? 'text' : 'outlined'}
+              onClick={() => {
+                setCustomized(false);
+              }}
+            >
+              Material Design
+            </Button>
+            <Button
+              size="small"
+              variant={customized ? 'outlined' : 'text'}
+              onClick={() => {
+                setCustomized(true);
+              }}
+              sx={{ ml: 1 }}
+            >
+              Custom Theme
+            </Button>
           </Box>
           <Box
-            ref={codeContainer}
             sx={{
-              px: 2,
-              overflow: 'auto',
+              p: 2,
+              pt: 0,
+              overflow: 'hidden',
               flexGrow: 1,
               '&::-webkit-scrollbar': {
                 display: 'none',
               },
               '& pre': {
+                bgcolor: 'transparent !important',
+                position: 'relative',
+                zIndex: 1,
                 '&::-webkit-scrollbar': {
                   display: 'none',
                 },
               },
             }}
           >
-            <HighlightedCode component={MarkdownElement} code={codeImports} language="jsx" />
-            {customized && <Box height={20} />}
-            {customized && <TypeWriter step={step} codes={CODES} onStepComplete={updateTheme} />}
-            <Box height={20} />
-            <HighlightedCode
-              component={MarkdownElement}
-              code={materialDemoCode.component(customized)}
-              language="jsx"
-            />
+            <Box sx={{ position: 'relative' }}>
+              {startLine !== undefined && (
+                <FlashCode startLine={startLine} endLine={endLine} sx={{ mx: -1 }} />
+              )}
+              <HighlightedCode component={MarkdownElement} code={componentCode} language="jsx" />
+              <Box
+                sx={{
+                  position: 'absolute',
+                  bottom: hidden || !customized ? -120 : 0,
+                  transition: '0.3s',
+                  left: 0,
+                  right: 0,
+                  px: 2,
+                  pt: 1,
+                  pb: 2,
+                  mb: -2,
+                  mx: -2,
+                  bgcolor: ({ palette }) => alpha(palette.primaryDark[700], 0.5),
+                  backdropFilter: 'blur(8px)',
+                  zIndex: 1,
+                  borderTop: '1px solid',
+                  borderColor: 'divider',
+                  borderRadius: '0 0 10px 10px',
+                }}
+              >
+                <Tooltip title="Hide">
+                  <IconButton
+                    onClick={() => setHidden(true)}
+                    sx={{
+                      position: 'absolute',
+                      right: 10,
+                      top: 0,
+                      transform: 'translateY(-50%)',
+                      bgcolor: 'primaryDark.500',
+                      '&:hover, &.Mui-focused': {
+                        bgcolor: 'primaryDark.600',
+                      },
+                    }}
+                  >
+                    <KeyboardArrowDownRounded />
+                  </IconButton>
+                </Tooltip>
+                <Typography fontWeight="bold" color="#fff" variant="body2">
+                  Own the styling!
+                </Typography>
+                <Typography color="grey.400" variant="body2">
+                  Build your own design system by leveraging our theming capabilities. You can also
+                  start by using Google&apos;s Material Design.
+                </Typography>
+              </Box>
+            </Box>
           </Box>
         </ThemeProvider>
       }

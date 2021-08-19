@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import FormControl from '@material-ui/core/FormControl';
 import { inputBaseClasses } from '@material-ui/core/InputBase';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -10,7 +10,7 @@ import TextField, { textFieldClasses as classes } from '@material-ui/core/TextFi
 describe('<TextField />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<TextField variant="standard" />, () => ({
+  describeConformance(<TextField variant="standard" />, () => ({
     classes,
     inheritComponent: FormControl,
     render,

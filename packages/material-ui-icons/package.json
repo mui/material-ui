@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/icons",
-  "version": "5.0.0-beta.1",
+  "version": "5.0.0-beta.4",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material Design icons distributed as SVG React components.",
@@ -56,7 +56,7 @@
   "devDependencies": {
     "fs-extra": "^10.0.0",
     "mustache": "^4.0.0",
-    "svgo": "^2.3.0",
+    "svgo": "^2.4.0",
     "yargs": "^17.0.1"
   },
   "sideEffects": false,

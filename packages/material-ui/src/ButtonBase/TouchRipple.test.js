@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useFakeTimers } from 'sinon';
 import { expect } from 'chai';
-import { describeConformanceV5, act, createClientRender } from 'test/utils';
+import { describeConformance, act, createClientRender } from 'test/utils';
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
 
 const cb = () => {};
@@ -42,7 +42,7 @@ describe('<TouchRipple />', () => {
     };
   }
 
-  describeConformanceV5(<TouchRipple />, () => ({
+  describeConformance(<TouchRipple />, () => ({
     classes: {},
     inheritComponent: 'span',
     render,

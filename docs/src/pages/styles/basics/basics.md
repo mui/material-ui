@@ -1,8 +1,13 @@
 # @material-ui/styles
 
-<p class="description">You can use Material-UI's styling solution in your app, whether or not you are using Material-UI components.</p>
+<p class="description">The legacy styling solution of Material-UI.</p>
 
-> **Note**: `@material-ui/styles` is the _**legacy**_ styling solution for Material-UI. It is deprecated in v5. It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@material-ui/core` anymore. If you don't want to have both emotion & JSS in your bundle, please refer to the [`@material-ui/system`](/system/basics/) documentation which is the recommended alternative.
+> ⚠️ `@material-ui/styles` is the _**legacy**_ styling solution for Material-UI.
+> It is deprecated in v5.
+> It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@material-ui/core` anymore.
+> If you don't want to have both emotion & JSS in your bundle, please refer to the [`@material-ui/system`](/system/basics/) documentation which is the recommended alternative.
+
+> ⚠️ `@material-ui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
 
 Material-UI aims to provide a strong foundation for building dynamic UIs.
 For the sake of simplicity, **we expose the styling solution used in Material-UI components** as the `@material-ui/styles` package.

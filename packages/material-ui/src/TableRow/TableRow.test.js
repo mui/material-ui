@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import TableRow, { tableRowClasses as classes } from '@material-ui/core/TableRow';
 
 describe('<TableRow />', () => {
@@ -14,7 +14,7 @@ describe('<TableRow />', () => {
     );
   }
 
-  describeConformanceV5(<TableRow />, () => ({
+  describeConformance(<TableRow />, () => ({
     classes,
     inheritComponent: 'tr',
     render: (node) => {

@@ -7,8 +7,8 @@ import styled from '../styles/styled';
 import { html, body } from '../CssBaseline/CssBaseline';
 import { getScopedCssBaselineUtilityClass } from './scopedCssBaselineClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -36,19 +36,19 @@ const ScopedCssBaseline = React.forwardRef(function ScopedCssBaseline(inProps, r
   const props = useThemeProps({ props: inProps, name: 'MuiScopedCssBaseline' });
   const { className, component = 'div', ...other } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     component,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <ScopedCssBaselineRoot
       as={component}
       className={clsx(classes.root, className)}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     />
   );

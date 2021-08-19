@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
+import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
 import { useFakeTimers } from 'sinon';
 import Icon from '@material-ui/core/Icon';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -21,7 +21,7 @@ describe('<SpeedDialAction />', () => {
 
   const render = createClientRender();
 
-  describeConformanceV5(
+  describeConformance(
     <SpeedDialAction icon={<Icon>add</Icon>} tooltipTitle="placeholder" />,
     () => ({
       classes,

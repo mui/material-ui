@@ -7,13 +7,16 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
-import SvgHambugerMenu from 'docs/src/icons/SvgHamburgerMenu';
+import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
 import ROUTES from 'docs/src/route';
 
 const Anchor = styled('a')<{ component?: React.ElementType }>(({ theme }) => ({
   ...theme.typography.body2,
   fontWeight: 700,
   textDecoration: 'none',
+  border: 'none',
+  width: '100%',
+  backgroundColor: 'transparent',
   color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.text.secondary,
   cursor: 'pointer',
   display: 'flex',
@@ -67,8 +70,10 @@ export default function HeaderNavDropdown() {
   return (
     <React.Fragment>
       <IconButton
+        aria-label="Menu"
         ref={hambugerRef}
         disableRipple
+        size="small"
         onClick={() => setOpen((value) => !value)}
         sx={{
           position: 'relative',
@@ -95,7 +100,7 @@ export default function HeaderNavDropdown() {
           }),
         }}
       >
-        <SvgHambugerMenu />
+        <SvgHamburgerMenu />
       </IconButton>
       <ClickAwayListener
         onClickAway={(event) => {
@@ -119,7 +124,7 @@ export default function HeaderNavDropdown() {
             <UList>
               <li>
                 <Anchor
-                  component="button"
+                  as="button"
                   onClick={() => setProductsOpen((bool) => !bool)}
                   sx={{ justifyContent: 'space-between' }}
                 >

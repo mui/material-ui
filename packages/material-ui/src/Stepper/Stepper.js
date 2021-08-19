@@ -9,8 +9,8 @@ import { getStepperUtilityClass } from './stepperClasses';
 import StepConnector from '../StepConnector';
 import StepperContext from './StepperContext';
 
-const useUtilityClasses = (styleProps) => {
-  const { orientation, alternativeLabel, classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { orientation, alternativeLabel, classes } = ownerState;
   const slots = {
     root: ['root', orientation, alternativeLabel && 'alternativeLabel'],
   };
@@ -22,23 +22,23 @@ const StepperRoot = styled('div', {
   name: 'MuiStepper',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
     return [
       styles.root,
-      styles[styleProps.orientation],
-      styleProps.alternativeLabel && styles.alternativeLabel,
+      styles[ownerState.orientation],
+      ownerState.alternativeLabel && styles.alternativeLabel,
     ];
   },
-})(({ styleProps }) => ({
+})(({ ownerState }) => ({
   display: 'flex',
-  ...(styleProps.orientation === 'horizontal' && {
+  ...(ownerState.orientation === 'horizontal' && {
     flexDirection: 'row',
     alignItems: 'center',
   }),
-  ...(styleProps.orientation === 'vertical' && {
+  ...(ownerState.orientation === 'vertical' && {
     flexDirection: 'column',
   }),
-  ...(styleProps.alternativeLabel && {
+  ...(ownerState.alternativeLabel && {
     alignItems: 'flex-start',
   }),
 }));
@@ -58,13 +58,13 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     alternativeLabel,
     orientation,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const childrenArray = React.Children.toArray(children).filter(Boolean);
   const steps = childrenArray.map((step, index) => {
@@ -82,7 +82,7 @@ const Stepper = React.forwardRef(function Stepper(inProps, ref) {
   return (
     <StepperContext.Provider value={contextValue}>
       <StepperRoot
-        styleProps={styleProps}
+        ownerState={ownerState}
         className={clsx(classes.root, className)}
         ref={ref}
         {...other}

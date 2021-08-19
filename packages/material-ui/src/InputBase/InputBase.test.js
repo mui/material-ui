@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformanceV5, act, createClientRender, fireEvent, screen } from 'test/utils';
+import { describeConformance, act, createClientRender, fireEvent, screen } from 'test/utils';
 import FormControl, { useFormControl } from '@material-ui/core/FormControl';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
@@ -12,7 +12,7 @@ import InputBase, { inputBaseClasses as classes } from '@material-ui/core/InputB
 describe('<InputBase />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<InputBase />, () => ({
+  describeConformance(<InputBase />, () => ({
     classes,
     inheritComponent: 'div',
     render,

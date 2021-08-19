@@ -54,12 +54,12 @@ function getTransformOriginValue(transformOrigin) {
     .join(' ');
 }
 
-function getAnchorEl(anchorEl) {
+function resolveAnchorEl(anchorEl) {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
 }
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -123,7 +123,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
   const paperRef = React.useRef();
   const handlePaperRef = useForkRef(paperRef, PaperProps.ref);
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     anchorOrigin,
     anchorReference,
@@ -136,7 +136,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     TransitionProps,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   // Returns the top/left offset of the position
   // to attach to on the anchor element (or body if none is provided)
@@ -153,7 +153,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       return anchorPosition;
     }
 
-    const resolvedAnchorEl = getAnchorEl(anchorEl);
+    const resolvedAnchorEl = resolveAnchorEl(anchorEl);
 
     // If an anchor element wasn't provided, just use the parent body element of this Popover
     const anchorElement =
@@ -227,7 +227,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       const right = left + elemRect.width;
 
       // Use the parent window of the anchorEl if provided
-      const containerWindow = ownerWindow(getAnchorEl(anchorEl));
+      const containerWindow = ownerWindow(resolveAnchorEl(anchorEl));
 
       // Window thresholds taking required margin into account
       const heightThreshold = containerWindow.innerHeight - marginThreshold;
@@ -350,7 +350,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
   // If the anchorEl prop is provided, use its parent body element as the container
   // If neither are provided let the Modal take care of choosing the container
   const container =
-    containerProp || (anchorEl ? ownerDocument(getAnchorEl(anchorEl)).body : undefined);
+    containerProp || (anchorEl ? ownerDocument(resolveAnchorEl(anchorEl)).body : undefined);
 
   return (
     <PopoverRoot
@@ -359,7 +359,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       container={container}
       open={open}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       <TransitionComponent
@@ -398,7 +398,7 @@ Popover.propTypes /* remove-proptypes */ = {
    */
   anchorEl: chainPropTypes(PropTypes.oneOfType([HTMLElementType, PropTypes.func]), (props) => {
     if (props.open && (!props.anchorReference || props.anchorReference === 'anchorEl')) {
-      const resolvedAnchorEl = getAnchorEl(props.anchorEl);
+      const resolvedAnchorEl = resolveAnchorEl(props.anchorEl);
 
       if (resolvedAnchorEl && resolvedAnchorEl.nodeType === 1) {
         const box = resolvedAnchorEl.getBoundingClientRect();

@@ -100,7 +100,7 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
       componentsProps?: {
         root?: {
           as: React.ElementType;
-          styleProps?: Omit<ListItemBaseProps, 'components' | 'componentsProps'> & {
+          ownerState?: Omit<ListItemBaseProps, 'components' | 'componentsProps'> & {
             dense?: boolean;
           };
         };

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import FormGroup, { formGroupClasses as classes } from '@material-ui/core/FormGroup';
 
 describe('<FormGroup />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<FormGroup />, () => ({
+  describeConformance(<FormGroup />, () => ({
     classes,
     inheritComponent: 'div',
     render,

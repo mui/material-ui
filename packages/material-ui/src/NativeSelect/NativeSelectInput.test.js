@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformanceV5, createClientRender, fireEvent } from 'test/utils';
+import { describeConformance, createClientRender, fireEvent } from 'test/utils';
 import NativeSelectInput from './NativeSelectInput';
 
 describe('<NativeSelectInput />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<NativeSelectInput IconComponent="div" />, () => ({
+  describeConformance(<NativeSelectInput IconComponent="div" />, () => ({
     only: ['refForwarding'],
     refInstanceof: window.HTMLSelectElement,
     muiName: 'MuiNativeSelectInput',

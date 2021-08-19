@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { useFakeTimers, spy } from 'sinon';
-import { act, createClientRender, describeConformanceV5, screen } from 'test/utils';
+import { act, createClientRender, describeConformance, screen } from 'test/utils';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import Drawer, { drawerClasses as classes } from '@material-ui/core/Drawer';
 import { getAnchor, isHorizontal } from './Drawer';
@@ -20,7 +20,7 @@ describe('<Drawer />', () => {
 
   const render = createClientRender();
 
-  describeConformanceV5(
+  describeConformance(
     <Drawer open disablePortal>
       <div />
     </Drawer>,

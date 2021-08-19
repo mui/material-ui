@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformanceV5, createClientRender } from 'test/utils';
+import { describeConformance, createClientRender } from 'test/utils';
 import Radio, { radioClasses as classes } from '@material-ui/core/Radio';
 import FormControl from '@material-ui/core/FormControl';
 import ButtonBase from '@material-ui/core/ButtonBase';
@@ -8,7 +8,7 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 describe('<Radio />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<Radio />, () => ({
+  describeConformance(<Radio />, () => ({
     classes,
     inheritComponent: ButtonBase,
     render,

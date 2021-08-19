@@ -595,6 +595,28 @@ describe('styled', () => {
       expect(getByTestId('without-classes').getAttribute('data-with-classes')).to.equal('false');
     });
 
+    it('should propagate classes props to component if no slot is specified', () => {
+      const Component = styled((props) => {
+        const { classes, ...other } = props;
+        return <div data-with-classes={classes !== undefined} {...other} />;
+      })`
+        width: 200px;
+        height: 300px;
+      `;
+
+      const { getByTestId } = render(
+        <React.Fragment>
+          <Component data-testid="with-classes" classes={{ root: 'foo' }}>
+            Test
+          </Component>
+          <Component data-testid="without-classes">Test</Component>
+        </React.Fragment>,
+      );
+
+      expect(getByTestId('with-classes').getAttribute('data-with-classes')).to.equal('true');
+      expect(getByTestId('without-classes').getAttribute('data-with-classes')).to.equal('false');
+    });
+
     it('classes props should be correctly applied to root and slot elements', () => {
       const Child = (props) => {
         const { classes = {}, className, ...other } = props;

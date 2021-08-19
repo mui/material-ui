@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { describeConformanceV5, createClientRender } from 'test/utils';
+import { describeConformance, createClientRender } from 'test/utils';
 import ScopedCssBaseline, {
   scopedCssBaselineClasses as classes,
 } from '@material-ui/core/ScopedCssBaseline';
@@ -7,7 +7,7 @@ import ScopedCssBaseline, {
 describe('<ScopedCssBaseline />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<ScopedCssBaseline />, () => ({
+  describeConformance(<ScopedCssBaseline />, () => ({
     classes,
     inheritComponent: 'div',
     render,

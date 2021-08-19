@@ -8,6 +8,7 @@ import {
   Theme,
   ThemeOptions,
 } from '@material-ui/core/styles';
+import { capitalize } from '@material-ui/core/utils';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/core/Alert';
@@ -43,12 +44,14 @@ const Grid = styled('div')(({ theme }) => ({
   // borderColor: theme.palette.divider,
   display: 'grid',
   gridTemplateColumns: '1fr',
-  gridAutoRows: '240px',
+  gridAutoRows: 240,
   [theme.breakpoints.up('sm')]: {
+    gridAutoRows: 260,
     paddingTop: 1,
     gridTemplateColumns: '1fr 1fr',
   },
   [theme.breakpoints.up('md')]: {
+    gridAutoRows: 280,
     gridTemplateColumns: '1fr 1fr 1fr',
   },
   '& > div': {
@@ -160,7 +163,7 @@ function Demo({
             }}
           >
             {control.values.map((value) => (
-              <Tab key={value} value={value} label={value} />
+              <Tab key={value} value={value} label={capitalize(value)} />
             ))}
           </Tabs>
         </Box>
@@ -203,11 +206,17 @@ function buildTheme(theme: Theme): ThemeOptions {
       ...theme.palette,
       primary: {
         ...theme.palette.primaryDark,
-        main: theme.palette.primaryDark[800],
+        main:
+          theme.palette.mode === 'dark'
+            ? theme.palette.primaryDark[500]
+            : theme.palette.primaryDark[800],
       },
       grey: theme.palette.grey,
       info: {
         main: theme.palette.primaryDark[600],
+      },
+      background: {
+        paper: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#fff',
       },
     },
     shape: {
@@ -237,7 +246,7 @@ function buildTheme(theme: Theme): ThemeOptions {
             color:
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[100]
-                : theme.palette.primaryDark[800],
+                : theme.palette.primaryDark[700],
           },
           sizeMedium: {
             padding: theme.spacing(1, 2),
@@ -249,7 +258,7 @@ function buildTheme(theme: Theme): ThemeOptions {
           },
           iconSizeSmall: {
             '& > *:nth-of-type(1)': {
-              fontSize: 16,
+              fontSize: 14,
             },
           },
           iconSizeMedium: {
@@ -263,6 +272,17 @@ function buildTheme(theme: Theme): ThemeOptions {
         styleOverrides: {
           root: {
             padding: theme.spacing(2),
+            '& .MuiAlert-icon': {
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary[500]
+                  : theme.palette.primaryDark[800],
+            },
+          },
+          filled: {
+            '& .MuiAlert-icon': {
+              color: theme.palette.mode === 'dark' ? theme.palette.primary[500] : '#fff',
+            },
           },
           message: {
             padding: 0,
@@ -363,7 +383,10 @@ function buildTheme(theme: Theme): ThemeOptions {
             padding: theme.spacing(1, 2),
             '& svg': {
               fontSize: 18,
-              color: theme.palette.primaryDark[400],
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary[500]
+                  : theme.palette.primaryDark[400],
             },
           },
         },
@@ -387,9 +410,16 @@ const DesignSystemComponents = () => {
         What do you get?
       </Typography>
       <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
-        Simple, accessible, declarative <GradientText>components</GradientText>.
+        Simple, accessible, declarative <GradientText>components</GradientText>
       </Typography>
-      <Box sx={{ mt: { xs: 2, md: 4 }, mb: 2, display: 'flex', justifyContent: 'flex-end' }}>
+      <Box
+        sx={{
+          mt: { xs: 2, md: 4 },
+          mb: 2,
+          display: 'flex',
+          justifyContent: { xs: 'flex-start', sm: 'flex-end' },
+        }}
+      >
         <StyledChip
           color="primary"
           label="Custom Theme"
@@ -435,7 +465,7 @@ const DesignSystemComponents = () => {
             name="Text Field"
             control={{ prop: 'variant', values: ['outlined', 'standard', 'filled'] }}
           >
-            <TextField label="Basement" defaultValue="Ultraviolet" />
+            <TextField id="material-design-textfield" label="Username" defaultValue="Ultraviolet" />
           </Demo>
         </div>
         <div>
@@ -514,18 +544,18 @@ const DesignSystemComponents = () => {
           }}
         >
           <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-            Want more components?
+            Need more components?
           </Typography>
           <Typography
             variant="body2"
             color="text.secondary"
             sx={{ mb: 0.5, maxWidth: 250, mx: 'auto' }}
           >
-            Check the documentation to see the detais of every component!
+            Check the documentation to see the details of every component!
           </Typography>
           <NextLink href={ROUTES.documentation} passHref>
             <Button component="a" endIcon={<KeyboardArrowRightRounded />}>
-              Get Started
+              Get started
             </Button>
           </NextLink>
         </Box>
