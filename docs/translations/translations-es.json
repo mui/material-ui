@@ -38,7 +38,7 @@
   "hideSource": "Ocultar el código fuente",
   "homeFooterRelease": "Actualmente {{versionNumber}}. Publicado bajo la {{license}}.",
   "homeQuickWord": "Unas palabras de nuestros patrocinadores:",
-  "increaseSpacing": "iumentar espaciado",
+  "increaseSpacing": "Aumentar espaciado",
   "installation": "Instalación",
   "installButton": "Lea los docs de instalación",
   "installDescr": "Instale los archivos necesarios de Material-UI a través de npm. Nosotros nos encargamos de inyectar todo el CSS necesario.",
