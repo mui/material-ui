@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import MasonryItem, { masonryItemClasses as classes } from '@material-ui/lab/MasonryItem';
 import { expect } from 'chai';
 import { createTheme } from '@material-ui/core/styles';
