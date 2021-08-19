@@ -45,6 +45,7 @@ const NavItem = styled(Link, {
   const activeStyles = {
     borderLeftColor:
       theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[800],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : theme.palette.grey[800],
   };
 
   return {
@@ -56,6 +57,9 @@ const NavItem = styled(Link, {
       borderLeftColor:
         theme.palette.mode === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
     },
+    ...(!active && {
+      color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[900],
+    }),
     // TODO: We probably want `aria-current="location"` instead.
     // If so, are we sure "current" and "active" states should have the same styles?
     ...(active && activeStyles),
@@ -193,7 +197,6 @@ export default function AppTableOfContents(props) {
   const itemLink = (item, secondary) => (
     <NavItem
       display="block"
-      color={activeState === item.hash ? 'textPrimary' : 'textSecondary'}
       href={`${activePage.linkProps?.as ?? activePage.pathname}#${item.hash}`}
       underline="none"
       onClick={handleClick(item.hash)}

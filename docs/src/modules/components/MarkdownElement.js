@@ -57,6 +57,8 @@ const Root = styled('div')(({ theme }) => ({
     ...theme.typography.h3,
     fontSize: 40,
     margin: '16px 0',
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.primaryDark[900],
+    fontWeight: 800,
   },
   '& .description': {
     ...theme.typography.h5,
