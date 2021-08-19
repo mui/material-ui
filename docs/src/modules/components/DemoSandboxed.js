@@ -135,7 +135,9 @@ function DemoSandboxed(props) {
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
       <Sandbox {...sandboxProps}>
-        <ThemeProvider theme={outerTheme => outerTheme?.palette?.mode === 'dark' ? darkModeTheme : theme}>
+        <ThemeProvider
+          theme={(outerTheme) => (outerTheme?.palette?.mode === 'dark' ? darkModeTheme : theme)}
+        >
           <Component />
         </ThemeProvider>
       </Sandbox>
