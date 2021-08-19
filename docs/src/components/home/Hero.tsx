@@ -1,4 +1,5 @@
 import * as React from 'react';
+import dynamic from 'next/dynamic';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
@@ -6,20 +7,21 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Stack from '@material-ui/core/Stack';
 import GradientText from 'docs/src/components/typography/GradientText';
-import PlayerCard from 'docs/src/components/showcase/PlayerCard';
-import TaskCard from 'docs/src/components/showcase/TaskCard';
-import NotificationCard from 'docs/src/components/showcase/NotificationCard';
-import ThemeChip from 'docs/src/components/showcase/ThemeChip';
-import ThemeDatePicker from 'docs/src/components/showcase/ThemeDatePicker';
-import ThemeSlider from 'docs/src/components/showcase/ThemeSlider';
-import FolderTable from 'docs/src/components/showcase/FolderTable';
-import ThemeTabs from 'docs/src/components/showcase/ThemeTabs';
-import ThemeTimeline from 'docs/src/components/showcase/ThemeTimeline';
-import ViewToggleButton from 'docs/src/components/showcase/ViewToggleButton';
-import ThemeToggleButton from 'docs/src/components/showcase/ThemeToggleButton';
-import ThemeSwitch from 'docs/src/components/showcase/ThemeSwitch';
-import ThemeAccordion from 'docs/src/components/showcase/ThemeAccordion';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
+
+const PlayerCard = dynamic(() => import('../showcase/PlayerCard'), { ssr: false });
+const TaskCard = dynamic(() => import('../showcase/TaskCard'), { ssr: false });
+const NotificationCard = dynamic(() => import('../showcase/NotificationCard'), { ssr: false });
+const ThemeChip = dynamic(() => import('../showcase/ThemeChip'), { ssr: false });
+const ThemeDatePicker = dynamic(() => import('../showcase/ThemeDatePicker'), { ssr: false });
+const ThemeSlider = dynamic(() => import('../showcase/ThemeSlider'), { ssr: false });
+const FolderTable = dynamic(() => import('../showcase/FolderTable'), { ssr: false });
+const ThemeTabs = dynamic(() => import('../showcase/ThemeTabs'), { ssr: false });
+const ThemeTimeline = dynamic(() => import('../showcase/ThemeTimeline'), { ssr: false });
+const ViewToggleButton = dynamic(() => import('../showcase/ViewToggleButton'), { ssr: false });
+const ThemeToggleButton = dynamic(() => import('../showcase/ThemeToggleButton'), { ssr: false });
+const ThemeSwitch = dynamic(() => import('../showcase/ThemeSwitch'), { ssr: false });
+const ThemeAccordion = dynamic(() => import('../showcase/ThemeAccordion'), { ssr: false });
 
 export default function Hero() {
   const frame = React.useRef<null | HTMLDivElement>(null);
