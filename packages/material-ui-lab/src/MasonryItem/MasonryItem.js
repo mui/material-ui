@@ -13,6 +13,7 @@ import { styled, useThemeProps } from '@material-ui/core/styles';
 import { getMasonryItemUtilityClass } from './masonryItemClasses';
 import MasonryContext from '../Masonry/MasonryContext';
 
+// dummy resize observer used to prevent crash for old browsers that do not support ResizeObserver API(e.g., 11IE)
 const MockResizeObserver = () => {
   return {
     observe: () => {},
@@ -110,7 +111,7 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
         setHeight(item.contentRect.height);
       });
     } catch (err) {
-      resizeObserver.current = MockResizeObserver(); // Prevent crash for old browsers (e..g., 11IE)
+      resizeObserver.current = MockResizeObserver();
     }
     const item = masonryItemRef.current.firstChild;
     resizeObserver.current.observe(item);
