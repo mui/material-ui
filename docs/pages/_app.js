@@ -315,13 +315,10 @@ function AppWrapper(props) {
 
   const activePage = findActivePage(pages, router.pathname);
 
-  let fonts = [
-    'https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700&display=swap',
-    'https://fonts.googleapis.com/css?family=Inter:400,600,700&display=swap',
-  ];
+  let fonts = [];
   if (router.pathname.match(/onepirate/)) {
     fonts = [
-      'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400&display=swap',
+      'https://fonts.googleapis.com/css2?family=Roboto+Condensed:700|Work+Sans:300,400&display=swap',
     ];
   }
 
