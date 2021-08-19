@@ -13,7 +13,7 @@ import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 const StyledInput = styled(Input)(({ theme }) => {
   const placeholder = {
     color: theme.palette.mode === 'dark' ? 'white' : 'black',
-  }
+  };
   return {
     color: 'inherit',
     '& input': {
@@ -29,7 +29,8 @@ const StyledInput = styled(Input)(({ theme }) => {
       '&:-ms-input-placeholder': placeholder, // IE11
       '&::-ms-input-placeholder': placeholder, // Edge
     },
-}});
+  };
+});
 
 function AlgoliaStyles() {
   return (
