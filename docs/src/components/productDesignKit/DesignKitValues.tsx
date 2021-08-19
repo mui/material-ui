@@ -5,25 +5,25 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import GradientText from 'docs/src/components/typography/GradientText';
-import SvgPalette from 'docs/src/icons/SvgPalette';
-import SvgDocs from 'docs/src/icons/SvgDocs';
-import SvgCode from 'docs/src/icons/SvgCode';
+import Palette from '@material-ui/icons/Palette';
+import LibraryBooks from '@material-ui/icons/LibraryBooks';
+import CodeRounded from '@material-ui/icons/CodeRounded';
 
 const content = [
   {
-    icon: <SvgPalette />,
+    icon: <Palette fontSize="small" color="primary" />,
     title: 'For designers',
     description:
       "Save time getting the Core components all set up in your favorite design tool. Customize them however you want to match to your product's branding.",
   },
   {
-    icon: <SvgDocs />,
+    icon: <LibraryBooks fontSize="small" color="primary" />,
     title: 'For product managers',
     description:
       'Quickly put together ideas and mockups with already in hand components from your actual product.',
   },
   {
-    icon: <SvgCode />,
+    icon: <CodeRounded fontSize="small" color="primary" />,
     title: 'For developers',
     description:
       'Effortlessly communicate with designers using the same language around the Core components.',

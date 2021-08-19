@@ -8,9 +8,6 @@ import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
-import SvgDashboard from 'docs/src/icons/SvgDashboard';
-import SvgEcommerce from 'docs/src/icons/SvgEcommerce';
-import SvgLandingPage from 'docs/src/icons/SvgLandingPage';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
@@ -18,6 +15,9 @@ import ArrowButton from 'docs/src/components/action/ArrowButton';
 import LaunchRounded from '@material-ui/icons/LaunchRounded';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
+import DashboardRounded from '@material-ui/icons/DashboardRounded';
+import Layers from '@material-ui/icons/Layers';
+import ShoppingBag from '@material-ui/icons/ShoppingBag';
 
 const DEMOS = ['Dashboard', 'Landing Pages', 'E-commerce'];
 
@@ -27,9 +27,9 @@ export default function TemplateDemo() {
   const [demo, setDemo] = React.useState(DEMOS[0]);
   const [templateIndex, setTemplateIndex] = React.useState(0);
   const icons = {
-    [DEMOS[0]]: <SvgDashboard />,
-    [DEMOS[1]]: <SvgLandingPage />,
-    [DEMOS[2]]: <SvgEcommerce />,
+    [DEMOS[0]]: <DashboardRounded />,
+    [DEMOS[1]]: <Layers />,
+    [DEMOS[2]]: <ShoppingBag />,
   };
   const TEMPLATES = {
     [DEMOS[0]]: [
@@ -124,7 +124,7 @@ export default function TemplateDemo() {
                 }}
               >
                 <Item
-                  icon={React.cloneElement(icons[name], { active: name === demo })}
+                  icon={React.cloneElement(icons[name], name === demo ? { color: 'primary' } : {})}
                   title={name}
                 />
               </Highlighter>
@@ -231,7 +231,7 @@ export default function TemplateDemo() {
                   <Typography color="grey.500" variant="caption">
                     {templateIndex + 1} / {templates.length}
                   </Typography>
-              </Box>
+                </Box>
               </Box>
               {templates.length > 1 && (
                 <React.Fragment>
