@@ -170,10 +170,10 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
     typography: {
       fontFamily: ['"IBM Plex Sans"', ...systemFont].join(','),
       fontFamilyCode: ['"IBM Plex Mono"', ...systemFont].join(','),
-      fontFamilyTagline: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
+      fontFamilyTagline: ['"PlusJakartaSans"', ...systemFont].join(','),
       fontWeightExtraBold: 800,
       h1: {
-        fontFamily: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
+        fontFamily: ['"PlusJakartaSans"', ...systemFont].join(','),
         fontSize: 'clamp(2.625rem, 1.2857rem + 3.5714vw, 4.5rem)',
         fontWeight: 800,
         lineHeight: 80 / 72,
@@ -182,7 +182,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         }),
       },
       h2: {
-        fontFamily: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
+        fontFamily: ['"PlusJakartaSans"', ...systemFont].join(','),
         fontSize: 'clamp(1.5rem, 0.9643rem + 1.4286vw, 2.25rem)',
         fontWeight: 800,
         lineHeight: 44 / 36,
