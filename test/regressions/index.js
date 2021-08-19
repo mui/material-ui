@@ -4,20 +4,21 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
 
-// Get all the tests specifically written for preventing regressions.
-const requireRegression = require.context('./tests', true, /\.(js|ts|tsx)$/);
-const regressions = requireRegression.keys().reduce((res, path) => {
+// Get all the fixtures specifically written for preventing visual regressions.
+const requireRegressionFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/);
+const regressionFixtures = [];
+requireRegressionFixtures.keys().forEach((path) => {
   const [suite, name] = path
     .replace('./', '')
     .replace(/\.\w+$/, '')
     .split('/');
-  res.push({
+
+  regressionFixtures.push({
     path,
     suite: `regression-${suite}`,
     name,
-    case: requireRegression(path).default,
+    Component: requireRegressionFixtures(path).default,
   });
-  return res;
 }, []);
 
 const blacklist = [
@@ -70,14 +71,14 @@ const blacklist = [
   'docs-components-material-icons/synonyms.png', // No component
   'docs-components-menus', // Need interaction
   'docs-components-modal/KeepMountedModal.png', // Needs interaction
-  'docs-components-modal/SimpleModal.png', // Needs interaction
+  'docs-components-modal/BasicModal.png', // Needs interaction
   'docs-components-modal/SpringModal.png', // Needs interaction
   'docs-components-modal/TransitionsModal.png', // Needs interaction
   'docs-components-no-ssr/FrameDeferring.png', // Needs interaction
   'docs-components-popover/AnchorPlayground.png', // Redux isolation
   'docs-components-popover/MouseOverPopover.png', // Needs interaction
   'docs-components-popover/PopoverPopupState.png', // Needs interaction
-  'docs-components-popover/SimplePopover.png', // Needs interaction
+  'docs-components-popover/BasicPopover.png', // Needs interaction
   'docs-components-popper/PopperPopupState.png', // Needs interaction
   'docs-components-popper/PositionedPopper.png', // Needs interaction
   'docs-components-popper/ScrollPlayground.png', // Redux isolation
@@ -104,11 +105,11 @@ const blacklist = [
   'docs-components-snackbars/SimpleSnackbar.png', // Needs interaction
   'docs-components-snackbars/TransitionsSnackbar.png', // Needs interaction
   'docs-components-speed-dial', // Needs interaction
-  'docs-components-steppers/HorizontalNonLinearAlternativeLabelStepper.png', // Redundant
   'docs-components-steppers/HorizontalNonLinearStepper.png', // Redundant
   'docs-components-steppers/SwipeableTextMobileStepper.png', // Flaky image loading
   'docs-components-steppers/TextMobileStepper.png', // Flaky image loading
-  'docs-components-tabs/AccessibleTabs.png', // Need interaction
+  'docs-components-tabs/AccessibleTabs1.png', // Need interaction
+  'docs-components-tabs/AccessibleTabs2.png', // Need interaction
   'docs-components-textarea-autosize', // Superseded by a dedicated regression test
   'docs-components-time-picker/LocalizedTimePicker.png', // Redundant
   'docs-components-time-picker/ResponsiveTimePickers.png', // Redundant
@@ -164,7 +165,7 @@ const blacklist = [
 
 const unusedBlacklistPatterns = new Set(blacklist);
 
-function excludeTest(suite, name) {
+function excludeDemoFixture(suite, name) {
   if (/^docs-premium-themes(.*)/.test(suite)) {
     return true;
   }
@@ -196,25 +197,22 @@ function excludeTest(suite, name) {
 
 // Also use some of the demos to avoid code duplication.
 const requireDemos = require.context('docs/src/pages', true, /js$/);
-const demos = requireDemos.keys().reduce((res, path) => {
+const demoFixtures = [];
+requireDemos.keys().forEach((path) => {
   const [name, ...suiteArray] = path.replace('./', '').replace('.js', '').split('/').reverse();
   const suite = `docs-${suiteArray.reverse().join('-')}`;
 
-  if (excludeTest(suite, name)) {
-    return res;
+  if (!excludeDemoFixture(suite, name)) {
+    demoFixtures.push({
+      path,
+      suite,
+      name,
+      Component: requireDemos(path).default,
+    });
   }
-
-  res.push({
-    path,
-    suite,
-    name,
-    case: requireDemos(path).default,
-  });
-
-  return res;
 }, []);
 
-const tests = regressions.concat(demos);
+const fixtures = regressionFixtures.concat(demoFixtures);
 
 if (unusedBlacklistPatterns.size > 0) {
   console.warn(
@@ -267,28 +265,28 @@ function App() {
     });
   }, []);
 
-  const testPrepared = fontState !== 'pending';
+  const fixturePrepared = fontState !== 'pending';
 
-  function computePath(test) {
-    return `/${test.suite}/${test.name}`;
+  function computePath(fixture) {
+    return `/${fixture.suite}/${fixture.name}`;
   }
 
   return (
     <Router>
       <Switch>
-        {tests.map((test) => {
-          const path = computePath(test);
-          const TestCase = test.case;
-          if (TestCase === undefined) {
-            console.warn('Missing test.case for ', test);
+        {fixtures.map((fixture) => {
+          const path = computePath(fixture);
+          const FixtureComponent = fixture.Component;
+          if (FixtureComponent === undefined) {
+            console.warn('Missing `Component` for ', fixture);
             return null;
           }
 
           return (
             <Route key={path} exact path={path}>
-              {testPrepared && (
+              {fixturePrepared && (
                 <TestViewer>
-                  <TestCase />
+                  <FixtureComponent />
                 </TestViewer>
               )}
             </Route>
@@ -306,8 +304,8 @@ function App() {
           <summary id="my-test-summary">nav for all tests</summary>
           <nav id="tests">
             <ol>
-              {tests.map((test) => {
-                const path = computePath(test);
+              {fixtures.map((fixture) => {
+                const path = computePath(fixture);
                 return (
                   <li key={path}>
                     <Link to={path}>{path}</Link>
@@ -322,4 +320,11 @@ function App() {
   );
 }
 
-ReactDOM.render(<App />, document.getElementById('react-root'));
+const container = document.getElementById('react-root');
+const children = <App />;
+if (typeof ReactDOM.unstable_createRoot === 'function') {
+  const root = ReactDOM.unstable_createRoot(container);
+  root.render(children);
+} else {
+  ReactDOM.render(children, container);
+}

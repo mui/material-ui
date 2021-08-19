@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ThemeProvider, useTheme, createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider, useTheme, createTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 /**
@@ -24,7 +24,7 @@ function MyComponent() {
   return <span>{`width: ${width}`}</span>;
 }
 
-const theme = createMuiTheme();
+const theme = createTheme();
 
 export default function UseWidth() {
   return (

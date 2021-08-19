@@ -1,20 +1,8 @@
 import * as React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& .MuiTextField-root': {
-        margin: theme.spacing(1),
-        width: '25ch',
-      },
-    },
-  }),
-);
-
 export default function MultilineTextFields() {
-  const classes = useStyles();
   const [value, setValue] = React.useState('Controlled');
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,7 +10,14 @@ export default function MultilineTextFields() {
   };
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <Box
+      component="form"
+      sx={{
+        '& .MuiTextField-root': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
       <div>
         <TextField
           id="outlined-multiline-flexible"
@@ -98,6 +93,6 @@ export default function MultilineTextFields() {
           variant="standard"
         />
       </div>
-    </form>
+    </Box>
   );
 }

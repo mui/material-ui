@@ -35,12 +35,18 @@ For larger or smaller ratings use the `size` prop.
 
 {{"demo": "pages/components/rating/RatingSize.js"}}
 
-## Customized rating
+## Customization
 
-Here are some examples of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/how-to-customize/).
+Here are some examples of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/rating/CustomizedRating.js"}}
+
+## Radio group
+
+The rating is implemented with a radio group, set `highlightSelectedOnly` to restore the natural behavior.
+
+{{"demo": "pages/components/rating/RadioGroupRating.js"}}
 
 ## Accessibility
 

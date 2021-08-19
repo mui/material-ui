@@ -1,16 +1,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import prism from 'docs/src/modules/utils/prism';
+import prism from '@material-ui/markdown/prism';
 import MarkdownElement from './MarkdownElement';
 
 const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
-  const { code, language, ...other } = props;
+  const { code, language, component: Component = MarkdownElement, ...other } = props;
   const renderedCode = React.useMemo(() => {
     return prism(code.trim(), language);
   }, [code, language]);
 
   return (
-    <MarkdownElement ref={ref} {...other}>
+    <Component ref={ref} {...other}>
       <pre>
         <code
           className={`language-${language}`}
@@ -18,12 +18,13 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
           dangerouslySetInnerHTML={{ __html: renderedCode }}
         />
       </pre>
-    </MarkdownElement>
+    </Component>
   );
 });
 
 HighlightedCode.propTypes = {
   code: PropTypes.string.isRequired,
+  component: PropTypes.elementType,
   language: PropTypes.string.isRequired,
 };
 

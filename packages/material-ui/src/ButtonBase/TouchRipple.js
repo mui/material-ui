@@ -2,8 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { TransitionGroup } from 'react-transition-group';
 import clsx from 'clsx';
-import { keyframes } from '@material-ui/styled-engine';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import { keyframes } from '@material-ui/system';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Ripple from './Ripple';
 import touchRippleClasses from './touchRippleClasses';
@@ -12,42 +12,46 @@ const DURATION = 550;
 export const DELAY_RIPPLE = 80;
 
 const enterKeyframe = keyframes`
-0% {
-  transform: scale(0);
-  opacity: 0.1;
-}
-100% {
-  transform: scale(1);
-  opacity: 0.3;
-}
+  0% {
+    transform: scale(0);
+    opacity: 0.1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
 `;
 
 const exitKeyframe = keyframes`
-0% {
-  opacity: 1;
-}
-100% {
-  opacity: 0;
-}
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 `;
 
 const pulsateKeyframe = keyframes`
-0% {
-  transform: scale(1);
-}
-50% {
-  transform: scale(0.92);
-}
-100% {
-  transform: scale(1);
-}
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.92);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 `;
 
-export const TouchRippleRoot = experimentalStyled(
-  'span',
-  {},
-  { name: 'MuiTouchRipple', slot: 'Root' },
-)({
+export const TouchRippleRoot = styled('span', {
+  name: 'MuiTouchRipple',
+  slot: 'Root',
+  skipSx: true,
+})({
   overflow: 'hidden',
   pointerEvents: 'none',
   position: 'absolute',
@@ -61,11 +65,10 @@ export const TouchRippleRoot = experimentalStyled(
 
 // This `styled()` function invokes keyframes. `styled-components` only supports keyframes
 // in string templates. Do not convert these styles in JS object as it will break.
-export const TouchRippleRipple = experimentalStyled(
-  Ripple,
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
-  { name: 'MuiTouchRipple', slot: 'Ripple' },
-)`
+export const TouchRippleRipple = styled(Ripple, {
+  name: 'MuiTouchRipple',
+  slot: 'Ripple',
+})`
   opacity: 0;
   position: absolute;
 
@@ -222,7 +225,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
       if (center) {
         rippleSize = Math.sqrt((2 * rect.width ** 2 + rect.height ** 2) / 3);
 
-        // For some reason the animation is broken on Mobile Chrome if the size if even.
+        // For some reason the animation is broken on Mobile Chrome if the size is even.
         if (rippleSize % 2 === 0) {
           rippleSize += 1;
         }
@@ -269,7 +272,6 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
     // The touch interaction occurs too quickly.
     // We still want to show ripple effect.
     if (event.type === 'touchend' && startTimerCommit.current) {
-      event.persist();
       startTimerCommit.current();
       startTimerCommit.current = null;
       startTimer.current = setTimeout(() => {

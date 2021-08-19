@@ -2,7 +2,7 @@
   "props": {
     "autoWidth": { "type": { "name": "bool" } },
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "default": "{}" },
     "defaultValue": { "type": { "name": "any" } },
     "displayEmpty": { "type": { "name": "bool" } },
     "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDropDownIcon" },
@@ -11,7 +11,6 @@
     "inputProps": { "type": { "name": "object" } },
     "label": { "type": { "name": "node" } },
     "labelId": { "type": { "name": "string" } },
-    "labelWidth": { "type": { "name": "number" }, "default": "0" },
     "MenuProps": { "type": { "name": "object" } },
     "multiple": { "type": { "name": "bool" } },
     "native": { "type": { "name": "bool" } },
@@ -21,13 +20,14 @@
     "open": { "type": { "name": "bool" } },
     "renderValue": { "type": { "name": "func" } },
     "SelectDisplayProps": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "object" } },
     "value": { "type": { "name": "any" } },
     "variant": {
       "type": {
         "name": "enum",
         "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
       },
-      "default": "'standard'"
+      "default": "'outlined'"
     }
   },
   "name": "Select",
@@ -37,12 +37,13 @@
       "select",
       "filled",
       "outlined",
-      "selectMenu",
+      "standard",
       "disabled",
       "icon",
       "iconOpen",
       "iconFilled",
       "iconOutlined",
+      "iconStandard",
       "nativeInput"
     ],
     "globalClasses": { "disabled": "Mui-disabled" },
@@ -51,8 +52,8 @@
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/Select/Select.js",
-  "inheritance": { "component": "Input", "pathname": "/api/input/" },
+  "inheritance": { "component": "OutlinedInput", "pathname": "/api/outlined-input/" },
   "demos": "<ul><li><a href=\"/components/selects/\">Selects</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

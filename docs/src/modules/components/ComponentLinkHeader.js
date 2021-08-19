@@ -4,24 +4,23 @@ import Chip from '@material-ui/core/Chip';
 import Tooltip from '@material-ui/core/Tooltip';
 import SketchIcon from 'docs/src/modules/components/SketchIcon';
 import FigmaIcon from 'docs/src/modules/components/FigmaIcon';
+import AdobeXDIcon from 'docs/src/modules/components/AdobeXDIcon';
 import BundleSizeIcon from 'docs/src/modules/components/BundleSizeIcon';
 import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 import W3CIcon from 'docs/src/modules/components/W3CIcon';
 import MaterialDesignIcon from 'docs/src/modules/components/MaterialDesignIcon';
-import { makeStyles } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    margin: 0,
-    padding: 0,
-    listStyle: 'none',
-    display: 'flex',
-    flexWrap: 'wrap',
-    marginBottom: theme.spacing(2),
-    '& li': {
-      margin: theme.spacing(0.5),
-    },
+const Root = styled('ul')(({ theme }) => ({
+  margin: 0,
+  padding: 0,
+  listStyle: 'none',
+  display: 'flex',
+  flexWrap: 'wrap',
+  marginBottom: theme.spacing(2),
+  '& li': {
+    margin: theme.spacing(0.5),
   },
 }));
 
@@ -31,7 +30,6 @@ export default function ComponentLinkHeader(props) {
     headers: { packageName = '@material-ui/core' },
     options,
   } = props;
-  const classes = useStyles();
   const t = useTranslate();
 
   if (headers.materialDesign && options.design === false) {
@@ -39,7 +37,7 @@ export default function ComponentLinkHeader(props) {
   }
 
   return (
-    <ul className={classes.root}>
+    <Root>
       {headers.githubLabel ? (
         <li>
           <Chip
@@ -139,6 +137,22 @@ export default function ComponentLinkHeader(props) {
               component="a"
               variant="outlined"
               rel="nofollow"
+              href="https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
+              icon={<AdobeXDIcon />}
+              data-ga-event-category="ComponentLinkHeader"
+              data-ga-event-action="click"
+              data-ga-event-label="Adobe XD"
+              data-ga-event-split="0.1"
+              label="Adobe"
+            />
+          </li>
+          <li>
+            <Chip
+              clickable
+              role={undefined}
+              component="a"
+              variant="outlined"
+              rel="nofollow"
               href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
               icon={<SketchIcon />}
               data-ga-event-category="ComponentLinkHeader"
@@ -150,7 +164,7 @@ export default function ComponentLinkHeader(props) {
           </li>
         </React.Fragment>
       ) : null}
-    </ul>
+    </Root>
   );
 }
 

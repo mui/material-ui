@@ -1,19 +1,17 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, fireEvent, createMount, describeConformanceV5 } from 'test/utils';
+import { createClientRender, fireEvent, describeConformance } from 'test/utils';
 import { spy } from 'sinon';
+import Avatar, { avatarClasses as classes } from '@material-ui/core/Avatar';
 import CancelIcon from '../internal/svg-icons/Cancel';
-import Avatar from './Avatar';
-import classes from './avatarClasses';
 
 describe('<Avatar />', () => {
-  const mount = createMount();
   const render = createClientRender();
 
-  describeConformanceV5(<Avatar />, () => ({
+  describeConformance(<Avatar />, () => ({
     classes,
     inheritComponent: 'div',
-    mount,
+    render,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
     muiName: 'MuiAvatar',
@@ -40,7 +38,7 @@ describe('<Avatar />', () => {
       expect(avatar).to.have.class(classes.root);
       expect(avatar).to.have.class('my-avatar');
       expect(avatar).to.have.attribute('data-my-prop', 'woofAvatar');
-      expect(avatar).to.not.have.class(classes.colorDefault);
+      expect(avatar).not.to.have.class(classes.colorDefault);
       expect(img).to.have.class(classes.img);
       expect(img).to.have.attribute('alt', 'Hello World!');
       expect(img).to.have.attribute('src', '/fake.png');

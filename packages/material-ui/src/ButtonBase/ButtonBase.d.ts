@@ -3,6 +3,7 @@ import { SxProps } from '@material-ui/system';
 import { Theme } from '../styles';
 import { TouchRippleProps } from './TouchRipple';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';
+import { ButtonBaseClasses } from './buttonBaseClasses';
 
 export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button'> {
   props: P & {
@@ -11,13 +12,6 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      * It currently only supports `focusVisible()` action.
      */
     action?: React.Ref<ButtonBaseActions>;
-    /**
-     * @ignore
-     *
-     * Use that prop to pass a ref to the native button component.
-     * @deprecated Use `ref` instead.
-     */
-    buttonRef?: React.Ref<unknown>;
     /**
      * If `true`, the ripples are centered.
      * They won't start at the cursor interaction position.
@@ -31,14 +25,7 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Pseudo-class applied to the root element if `disabled={true}`. */
-      disabled?: string;
-      /** Pseudo-class applied to the root element if keyboard focused. */
-      focusVisible?: string;
-    };
+    classes?: Partial<ButtonBaseClasses>;
     /**
      * If `true`, the component is disabled.
      * @default false
@@ -48,7 +35,7 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      * If `true`, the ripple effect is disabled.
      *
      * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
-     * to highlight the element by applying separate styles with the `.Mui-focusedVisible` class.
+     * to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
      * @default false
      */
     disableRipple?: boolean;
@@ -72,6 +59,11 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      */
     focusVisibleClassName?: string;
     /**
+     * The component used to render a link when the `href` prop is provided.
+     * @default 'a'
+     */
+    LinkComponent?: React.ElementType;
+    /**
      * Callback fired when the component is focused with a keyboard.
      * We trigger a `onFocus` callback too.
      */
@@ -80,11 +72,10 @@ export interface ButtonBaseTypeMap<P = {}, D extends React.ElementType = 'button
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps<Theme>;
-    // @types/react is stricter
     /**
      * @default 0
      */
-    tabIndex?: string | number;
+    tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
     /**
      * Props applied to the `TouchRipple` element.
      */
@@ -104,7 +95,7 @@ export interface ExtendButtonBaseTypeMap<M extends OverridableTypeMap> {
 }
 
 export type ExtendButtonBase<M extends OverridableTypeMap> = ((
-  props: { href: string } & OverrideProps<ExtendButtonBaseTypeMap<M>, 'a'>
+  props: { href: string } & OverrideProps<ExtendButtonBaseTypeMap<M>, 'a'>,
 ) => JSX.Element) &
   OverridableComponent<ExtendButtonBaseTypeMap<M>>;
 
@@ -125,10 +116,8 @@ declare const ButtonBase: ExtendButtonBase<ButtonBaseTypeMap>;
 
 export type ButtonBaseProps<
   D extends React.ElementType = ButtonBaseTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<ButtonBaseTypeMap<P, D>, D>;
-
-export type ButtonBaseClassKey = keyof NonNullable<ButtonBaseTypeMap['props']['classes']>;
 
 export interface ButtonBaseActions {
   focusVisible(): void;

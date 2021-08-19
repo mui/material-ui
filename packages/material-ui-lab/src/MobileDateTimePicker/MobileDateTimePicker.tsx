@@ -1,29 +1,80 @@
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makePickerWithStateAndWrapper } from '../internal/pickers/Picker/makePickerWithState';
 import {
   BaseDateTimePickerProps,
-  dateTimePickerConfig,
-  DateTimePickerGenericComponent,
-} from '../DateTimePicker/DateTimePicker';
-import { MobileWrapper } from '../internal/pickers/wrappers/Wrapper';
+  useDateTimePickerDefaultizedProps,
+} from '../DateTimePicker/shared';
+import DateTimePickerToolbar from '../DateTimePicker/DateTimePickerToolbar';
+import MobileWrapper, { MobileWrapperProps } from '../internal/pickers/wrappers/MobileWrapper';
+import Picker from '../internal/pickers/Picker/Picker';
+import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
+import { useDateTimeValidation } from '../internal/pickers/hooks/useValidation';
+import { parsePickerInputValue } from '../internal/pickers/date-utils';
+import { PureDateInput } from '../internal/pickers/PureDateInput';
+import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
+
+const valueManager: PickerStateValueManager<unknown, unknown> = {
+  emptyValue: null,
+  parseInput: parsePickerInputValue,
+  areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
+};
+
+export interface MobileDateTimePickerProps<TDate = unknown>
+  extends BaseDateTimePickerProps<TDate>,
+    MobileWrapperProps {}
+
+type MobileDateTimePickerComponent = (<TDate>(
+  props: MobileDateTimePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
+) => JSX.Element) & { propTypes?: any };
 
 /**
- * @ignore - do not document.
+ *
+ * Demos:
+ *
+ * - [Date Time Picker](https://material-ui.com/components/date-time-picker/)
+ *
+ * API:
+ *
+ * - [MobileDateTimePicker API](https://material-ui.com/api/mobile-date-time-picker/)
  */
-/* @typescript-to-proptypes-generate */
-const MobileDateTimePicker = makePickerWithStateAndWrapper<BaseDateTimePickerProps<unknown>>(
-  MobileWrapper,
-  {
-    name: 'MuiMobileDateTimePicker',
-    ...dateTimePickerConfig,
-  },
-) as DateTimePickerGenericComponent<typeof MobileWrapper>;
+const MobileDateTimePicker = React.forwardRef(function MobileDateTimePicker<TDate>(
+  inProps: MobileDateTimePickerProps<TDate>,
+  ref: React.Ref<HTMLDivElement>,
+) {
+  // TODO: TDate needs to be instantiated at every usage.
+  const props = useDateTimePickerDefaultizedProps(
+    inProps as MobileDateTimePickerProps<unknown>,
+    'MuiMobileDateTimePicker',
+  );
 
-if (process.env.NODE_ENV !== 'production') {
-  (MobileDateTimePicker as any).displayName = 'MobileDateTimePicker';
-}
+  const validationError = useDateTimeValidation(props) !== null;
+  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
 
-MobileDateTimePicker.propTypes = {
+  // Note that we are passing down all the value without spread.
+  // It saves us >1kb gzip and make any prop available automatically on any level down.
+  const { ToolbarComponent = DateTimePickerToolbar, value, onChange, ...other } = props;
+  const DateInputProps = { ...inputProps, ...other, ref, validationError };
+
+  return (
+    <MobileWrapper
+      {...other}
+      {...wrapperProps}
+      DateInputProps={DateInputProps}
+      PureDateInputComponent={PureDateInput}
+    >
+      <Picker
+        {...pickerProps}
+        autoFocus
+        toolbarTitle={props.label || props.toolbarTitle}
+        ToolbarComponent={ToolbarComponent}
+        DateInputProps={DateInputProps}
+        {...other}
+      />
+    </MobileWrapper>
+  );
+}) as MobileDateTimePickerComponent;
+
+MobileDateTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -34,18 +85,13 @@ MobileDateTimePicker.propTypes = {
    */
   acceptRegex: PropTypes.instanceOf(RegExp),
   /**
-   * Enables keyboard listener for moving between days in calendar.
-   * @default currentWrapper !== 'static'
-   */
-  allowKeyboardControl: PropTypes.bool,
-  /**
    * If `true`, `onChange` is fired on click even if the same date is selected.
    * @default false
    */
   allowSameDateSelection: PropTypes.bool,
   /**
    * 12h/24h view for hour selection clock.
-   * @default true
+   * @default false
    */
   ampm: PropTypes.bool,
   /**
@@ -54,8 +100,12 @@ MobileDateTimePicker.propTypes = {
    */
   ampmInClock: PropTypes.bool,
   /**
+   * @ignore
+   */
+  autoFocus: PropTypes.bool,
+  /**
    * Cancel text message.
-   * @default "CANCEL"
+   * @default 'Cancel'
    */
   cancelText: PropTypes.node,
   /**
@@ -73,7 +123,7 @@ MobileDateTimePicker.propTypes = {
   clearable: PropTypes.bool,
   /**
    * Clear text message.
-   * @default "CLEAR"
+   * @default 'Clear'
    */
   clearText: PropTypes.node,
   /**
@@ -84,6 +134,7 @@ MobileDateTimePicker.propTypes = {
   components: PropTypes.shape({
     LeftArrowButton: PropTypes.elementType,
     LeftArrowIcon: PropTypes.elementType,
+    OpenPickerIcon: PropTypes.elementType,
     RightArrowButton: PropTypes.elementType,
     RightArrowIcon: PropTypes.elementType,
     SwitchViewButton: PropTypes.elementType,
@@ -95,19 +146,11 @@ MobileDateTimePicker.propTypes = {
    */
   componentsProps: PropTypes.object,
   /**
-   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing).
-   * ```jsx
-   * dateAdapter={new AdapterDateFns({ locale: ruLocale })}
-   * ```
-   */
-  dateAdapter: PropTypes.object,
-  /**
    * Date tab icon.
    */
   dateRangeIcon: PropTypes.node,
   /**
    * Default calendar month displayed when `value={null}`.
-   * @default `new Date()`
    */
   defaultCalendarMonth: PropTypes.any,
   /**
@@ -124,7 +167,6 @@ MobileDateTimePicker.propTypes = {
    */
   disabled: PropTypes.bool,
   /**
-   * Disable future dates.
    * @default false
    */
   disableFuture: PropTypes.bool,
@@ -149,13 +191,19 @@ MobileDateTimePicker.propTypes = {
    */
   disableOpenPicker: PropTypes.bool,
   /**
-   * Disable past dates.
    * @default false
    */
   disablePast: PropTypes.bool,
   /**
    * Accessible text that helps user to understand which time and view is selected.
-   * @default (view, time) => `Select ${view}. Selected time is ${format(time, 'fullTime')}`
+   * @default <TDate extends any>(
+   *   view: ClockView,
+   *   time: TDate | null,
+   *   adapter: MuiPickersAdapter<TDate>,
+   * ) =>
+   *   `Select ${view}. ${
+   *     time === null ? 'No time selected' : `Selected time is ${adapter.format(time, 'fullTime')}`
+   *   }`
    */
   getClockLabelText: PropTypes.func,
   /**
@@ -188,6 +236,15 @@ MobileDateTimePicker.propTypes = {
    */
   InputProps: PropTypes.object,
   /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.object,
+    }),
+  ]),
+  /**
    * @ignore
    */
   key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -210,59 +267,31 @@ MobileDateTimePicker.propTypes = {
    */
   mask: PropTypes.string,
   /**
-   * @ignore
+   * Max selectable date. @DateIOType
    */
-  maxDate: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  maxDate: PropTypes.any,
   /**
    * Minimal selectable moment of time with binding to date, to set max time in each day use `maxTime`.
    */
-  maxDateTime: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  maxDateTime: PropTypes.any,
   /**
-   * @ignore
+   * Max time acceptable time.
+   * For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
    */
-  maxTime: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  maxTime: PropTypes.any,
   /**
-   * @ignore
+   * Min selectable date. @DateIOType
    */
-  minDate: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  minDate: PropTypes.any,
   /**
    * Minimal selectable moment of time with binding to date, to set min time in each day use `minTime`.
    */
-  minDateTime: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  minDateTime: PropTypes.any,
   /**
-   * @ignore
+   * Min time acceptable time.
+   * For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
    */
-  minTime: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  minTime: PropTypes.any,
   /**
    * Step over minutes.
    * @default 1
@@ -270,7 +299,7 @@ MobileDateTimePicker.propTypes = {
   minutesStep: PropTypes.number,
   /**
    * Ok button text.
-   * @default "OK"
+   * @default 'OK'
    */
   okText: PropTypes.node,
   /**
@@ -278,7 +307,7 @@ MobileDateTimePicker.propTypes = {
    */
   onAccept: PropTypes.func,
   /**
-   * Callback fired when the value (the selected date) changes. @DateIOType.
+   * Callback fired when the value (the selected date) changes @DateIOType.
    */
   onChange: PropTypes.func.isRequired,
   /**
@@ -321,13 +350,9 @@ MobileDateTimePicker.propTypes = {
    */
   OpenPickerButtonProps: PropTypes.object,
   /**
-   * Icon displaying for open picker button.
-   */
-  openPickerIcon: PropTypes.node,
-  /**
    * First view to show.
    */
-  openTo: PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'seconds', 'year']),
+  openTo: PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'year']),
   /**
    * Force rendering in particular orientation.
    */
@@ -338,11 +363,11 @@ MobileDateTimePicker.propTypes = {
   readOnly: PropTypes.bool,
   /**
    * Disable heavy animations.
-   * @default /(android)/i.test(window.navigator.userAgent).
+   * @default typeof navigator !== 'undefined' && /(android)/i.test(navigator.userAgent)
    */
   reduceAnimations: PropTypes.bool,
   /**
-   * Custom renderer for day. Check [DayComponentProps api](https://material-ui-pickers.dev/api/Day) @DateIOType.
+   * Custom renderer for day. Check the [PickersDay](https://material-ui.com/api/pickers-day/) component.
    */
   renderDay: PropTypes.func,
   /**
@@ -356,7 +381,7 @@ MobileDateTimePicker.propTypes = {
   renderInput: PropTypes.func.isRequired,
   /**
    * Component displaying when passed `loading` true.
-   * @default () => "..."
+   * @default () => <span data-mui-test="loading-progress">...</span>
    */
   renderLoading: PropTypes.func,
   /**
@@ -378,7 +403,7 @@ MobileDateTimePicker.propTypes = {
   shouldDisableTime: PropTypes.func,
   /**
    * Disable specific years dynamically.
-   * Works like `shouldDisableDate` but for year selection view. @DateIOType.
+   * Works like `shouldDisableDate` but for year selection view @DateIOType.
    */
   shouldDisableYear: PropTypes.func,
   /**
@@ -401,11 +426,12 @@ MobileDateTimePicker.propTypes = {
   timeIcon: PropTypes.node,
   /**
    * Today text message.
-   * @default "TODAY"
+   * @default 'Today'
    */
   todayText: PropTypes.node,
   /**
    * Component that will replace default toolbar renderer.
+   * @default DateTimePickerToolbar
    */
   ToolbarComponent: PropTypes.elementType,
   /**
@@ -414,12 +440,12 @@ MobileDateTimePicker.propTypes = {
   toolbarFormat: PropTypes.string,
   /**
    * Mobile picker date value placeholder, displaying if `value` === `null`.
-   * @default "–"
+   * @default '–'
    */
   toolbarPlaceholder: PropTypes.node,
   /**
    * Mobile picker title, displaying in the toolbar.
-   * @default "SELECT DATE"
+   * @default 'Select date & time'
    */
   toolbarTitle: PropTypes.node,
   /**
@@ -435,10 +461,8 @@ MobileDateTimePicker.propTypes = {
    * Array of views to show.
    */
   views: PropTypes.arrayOf(
-    PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'year']).isRequired,
+    PropTypes.oneOf(['day', 'hours', 'minutes', 'month', 'year']).isRequired,
   ),
 } as any;
-
-export type MobileDateTimePickerProps = React.ComponentProps<typeof MobileDateTimePicker>;
 
 export default MobileDateTimePicker;

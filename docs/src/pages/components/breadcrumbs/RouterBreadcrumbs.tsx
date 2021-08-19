@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import * as React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import List from '@material-ui/core/List';
 import Link, { LinkProps } from '@material-ui/core/Link';
 import ListItem, { ListItemProps } from '@material-ui/core/ListItem';
@@ -40,23 +40,6 @@ function ListItemLink(props: ListItemLinkProps) {
   );
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      width: 360,
-    },
-    lists: {
-      backgroundColor: theme.palette.background.paper,
-      marginTop: theme.spacing(1),
-    },
-    nested: {
-      paddingLeft: theme.spacing(4),
-    },
-  }),
-);
-
 interface LinkRouterProps extends LinkProps {
   to: string;
   replace?: boolean;
@@ -67,7 +50,6 @@ const LinkRouter = (props: LinkRouterProps) => (
 );
 
 export default function RouterBreadcrumbs() {
-  const classes = useStyles();
   const [open, setOpen] = React.useState(true);
 
   const handleClick = () => {
@@ -76,14 +58,14 @@ export default function RouterBreadcrumbs() {
 
   return (
     <MemoryRouter initialEntries={['/inbox']} initialIndex={0}>
-      <div className={classes.root}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', width: 360 }}>
         <Route>
           {({ location }) => {
             const pathnames = location.pathname.split('/').filter((x) => x);
 
             return (
               <Breadcrumbs aria-label="breadcrumb">
-                <LinkRouter color="inherit" to="/">
+                <LinkRouter underline="hover" color="inherit" to="/">
                   Home
                 </LinkRouter>
                 {pathnames.map((value, index) => {
@@ -91,11 +73,11 @@ export default function RouterBreadcrumbs() {
                   const to = `/${pathnames.slice(0, index + 1).join('/')}`;
 
                   return last ? (
-                    <Typography color="textPrimary" key={to}>
+                    <Typography color="text.primary" key={to}>
                       {breadcrumbNameMap[to]}
                     </Typography>
                   ) : (
-                    <LinkRouter color="inherit" to={to} key={to}>
+                    <LinkRouter underline="hover" color="inherit" to={to} key={to}>
                       {breadcrumbNameMap[to]}
                     </LinkRouter>
                   );
@@ -104,19 +86,26 @@ export default function RouterBreadcrumbs() {
             );
           }}
         </Route>
-        <nav className={classes.lists} aria-label="mailbox folders">
+        <Box
+          sx={{
+            bgcolor: 'background.paper',
+            mt: 1,
+          }}
+          component="nav"
+          aria-label="mailbox folders"
+        >
           <List>
             <ListItemLink to="/inbox" open={open} onClick={handleClick} />
             <Collapse component="li" in={open} timeout="auto" unmountOnExit>
               <List disablePadding>
-                <ListItemLink to="/inbox/important" className={classes.nested} />
+                <ListItemLink sx={{ pl: 4 }} to="/inbox/important" />
               </List>
             </Collapse>
             <ListItemLink to="/trash" />
             <ListItemLink to="/spam" />
           </List>
-        </nav>
-      </div>
+        </Box>
+      </Box>
     </MemoryRouter>
   );
 }

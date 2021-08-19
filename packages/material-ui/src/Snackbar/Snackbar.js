@@ -1,23 +1,46 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import withStyles from '../styles/withStyles';
-import { duration } from '../styles/transitions';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import styled from '../styles/styled';
+import useThemeProps from '../styles/useThemeProps';
+import { duration } from '../styles/createTransitions';
 import ClickAwayListener from '../ClickAwayListener';
 import useEventCallback from '../utils/useEventCallback';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import SnackbarContent from '../SnackbarContent';
+import { getSnackbarUtilityClass } from './snackbarClasses';
 
-export const styles = (theme) => {
-  const top1 = { top: 8 };
-  const bottom1 = { bottom: 8 };
-  const right = { justifyContent: 'flex-end' };
-  const left = { justifyContent: 'flex-start' };
-  const top3 = { top: 24 };
-  const bottom3 = { bottom: 24 };
-  const right3 = { right: 24 };
-  const left3 = { left: 24 };
+const useUtilityClasses = (ownerState) => {
+  const { classes, anchorOrigin } = ownerState;
+
+  const slots = {
+    root: [
+      'root',
+      `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(anchorOrigin.horizontal)}`,
+    ],
+  };
+
+  return composeClasses(slots, getSnackbarUtilityClass, classes);
+};
+
+const SnackbarRoot = styled('div', {
+  name: 'MuiSnackbar',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [
+      styles.root,
+      styles[
+        `anchorOrigin${capitalize(ownerState.anchorOrigin.vertical)}${capitalize(
+          ownerState.anchorOrigin.horizontal,
+        )}`
+      ],
+    ];
+  },
+})(({ theme, ownerState }) => {
   const center = {
     left: '50%',
     right: 'auto',
@@ -25,82 +48,32 @@ export const styles = (theme) => {
   };
 
   return {
-    /* Styles applied to the root element. */
-    root: {
-      zIndex: theme.zIndex.snackbar,
-      position: 'fixed',
-      display: 'flex',
-      left: 8,
-      right: 8,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    /* Styles applied to the root element if `anchorOrigin={{ 'top', 'center' }}`. */
-    anchorOriginTopCenter: {
-      ...top1,
-      [theme.breakpoints.up('sm')]: {
-        ...top3,
-        ...center,
-      },
-    },
-    /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'center' }}`. */
-    anchorOriginBottomCenter: {
-      ...bottom1,
-      [theme.breakpoints.up('sm')]: {
-        ...bottom3,
-        ...center,
-      },
-    },
-    /* Styles applied to the root element if `anchorOrigin={{ 'top', 'right' }}`. */
-    anchorOriginTopRight: {
-      ...top1,
-      ...right,
-      [theme.breakpoints.up('sm')]: {
-        left: 'auto',
-        ...top3,
-        ...right3,
-      },
-    },
-    /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'right' }}`. */
-    anchorOriginBottomRight: {
-      ...bottom1,
-      ...right,
-      [theme.breakpoints.up('sm')]: {
-        left: 'auto',
-        ...bottom3,
-        ...right3,
-      },
-    },
-    /* Styles applied to the root element if `anchorOrigin={{ 'top', 'left' }}`. */
-    anchorOriginTopLeft: {
-      ...top1,
-      ...left,
-      [theme.breakpoints.up('sm')]: {
-        right: 'auto',
-        ...top3,
-        ...left3,
-      },
-    },
-    /* Styles applied to the root element if `anchorOrigin={{ 'bottom', 'left' }}`. */
-    anchorOriginBottomLeft: {
-      ...bottom1,
-      ...left,
-      [theme.breakpoints.up('sm')]: {
-        right: 'auto',
-        ...bottom3,
-        ...left3,
-      },
+    zIndex: theme.zIndex.snackbar,
+    position: 'fixed',
+    display: 'flex',
+    left: 8,
+    right: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    ...(ownerState.anchorOrigin.vertical === 'top' ? { top: 8 } : { bottom: 8 }),
+    ...(ownerState.anchorOrigin.horizontal === 'left' && { justifyContent: 'flex-start' }),
+    ...(ownerState.anchorOrigin.horizontal === 'right' && { justifyContent: 'flex-end' }),
+    [theme.breakpoints.up('sm')]: {
+      ...(ownerState.anchorOrigin.vertical === 'top' ? { top: 24 } : { bottom: 24 }),
+      ...(ownerState.anchorOrigin.horizontal === 'center' && center),
+      ...(ownerState.anchorOrigin.horizontal === 'left' && { left: 24, right: 'auto' }),
+      ...(ownerState.anchorOrigin.horizontal === 'right' && { right: 24, left: 'auto' }),
     },
   };
-};
+});
 
-const Snackbar = React.forwardRef(function Snackbar(props, ref) {
+const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiSnackbar' });
   const {
     action,
     anchorOrigin: { vertical, horizontal } = { vertical: 'bottom', horizontal: 'left' },
     autoHideDuration = null,
     children,
-    classes,
     className,
     ClickAwayListenerProps,
     ContentProps,
@@ -119,6 +92,9 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
     TransitionProps: { onEnter, onExited, ...TransitionProps } = {},
     ...other
   } = props;
+
+  const ownerState = { ...props, anchorOrigin: { vertical, horizontal } };
+  const classes = useUtilityClasses(ownerState);
 
   const timerAutoHide = React.useRef();
   const [exited, setExited] = React.useState(true);
@@ -222,14 +198,11 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
 
   return (
     <ClickAwayListener onClickAway={handleClickAway} {...ClickAwayListenerProps}>
-      <div
-        className={clsx(
-          classes.root,
-          classes[`anchorOrigin${capitalize(vertical)}${capitalize(horizontal)}`],
-          className,
-        )}
+      <SnackbarRoot
+        className={clsx(classes.root, className)}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
+        ownerState={ownerState}
         ref={ref}
         {...other}
       >
@@ -244,12 +217,12 @@ const Snackbar = React.forwardRef(function Snackbar(props, ref) {
         >
           {children || <SnackbarContent message={message} action={action} {...ContentProps} />}
         </TransitionComponent>
-      </div>
+      </SnackbarRoot>
     </ClickAwayListener>
   );
 });
 
-Snackbar.propTypes = {
+Snackbar.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -307,7 +280,7 @@ Snackbar.propTypes = {
    * e.g. <Snackbar key={message} />, otherwise, the message may update-in-place and
    * features such as autoHideDuration may be canceled.
    */
-  key: PropTypes.any,
+  key: () => null,
   /**
    * The message to display.
    */
@@ -319,7 +292,7 @@ Snackbar.propTypes = {
    * The `reason` parameter can optionally be used to control the response to `onClose`,
    * for example ignoring `clickaway`.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent<any>} event The event source of the callback.
    * @param {string} reason Can be: `"timeout"` (`autoHideDuration` expired), `"clickaway"`.
    */
   onClose: PropTypes.func,
@@ -342,6 +315,10 @@ Snackbar.propTypes = {
    * we default to `autoHideDuration / 2` ms.
    */
   resumeHideDuration: PropTypes.number,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
   /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
@@ -372,4 +349,4 @@ Snackbar.propTypes = {
   TransitionProps: PropTypes.object,
 };
 
-export default withStyles(styles, { flip: false, name: 'MuiSnackbar' })(Snackbar);
+export default Snackbar;

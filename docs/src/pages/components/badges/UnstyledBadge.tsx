@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled, Box } from '@material-ui/system';
 import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
-import Box from '@material-ui/core/Box';
 
 const StyledBadge = styled(BadgeUnstyled)`
   box-sizing: border-box;
@@ -12,6 +11,9 @@ const StyledBadge = styled(BadgeUnstyled)`
   font-variant: tabular-nums;
   list-style: none;
   font-feature-settings: 'tnum';
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol';
   position: relative;
   display: inline-block;
   line-height: 1;
@@ -55,6 +57,7 @@ const StyledBadge = styled(BadgeUnstyled)`
 function BadgeContent() {
   return (
     <Box
+      component="span"
       sx={{
         width: 42,
         height: 42,
@@ -69,8 +72,8 @@ function BadgeContent() {
 
 export default function UnstyledBadge() {
   return (
-    <Box>
-      <StyledBadge badgeContent={5} overlap="circular" sx={{ mr: 2 }}>
+    <Box sx={{ '& > :not(style) + :not(style)': { ml: 4 } }}>
+      <StyledBadge badgeContent={5} overlap="circular">
         <BadgeContent />
       </StyledBadge>
       <StyledBadge badgeContent={5} variant="dot" overlap="circular">

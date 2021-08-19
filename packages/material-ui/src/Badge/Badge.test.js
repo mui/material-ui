@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { BadgeUnstyled } from '@material-ui/unstyled';
-import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import Badge, { badgeClasses as classes } from './Badge';
+import { createClientRender, describeConformance } from 'test/utils';
+import Badge, { badgeClasses as classes } from '@material-ui/core/Badge';
 
 function findBadge(container) {
   return container.firstChild.querySelector('span');
 }
 
 describe('<Badge />', () => {
-  const mount = createMount();
   const render = createClientRender();
+
   const defaultProps = {
     children: (
       <div className="unique" data-testid="children">
@@ -20,17 +20,16 @@ describe('<Badge />', () => {
     badgeContent: 10,
   };
 
-  describeConformanceV5(
+  describeConformance(
     <Badge>
       <div />
     </Badge>,
     () => ({
       classes,
       inheritComponent: BadgeUnstyled,
-      mount,
+      render,
       refInstanceof: window.HTMLSpanElement,
       muiName: 'MuiBadge',
-      testDeepOverrides: { slotName: 'badge', slotClassName: classes.badge },
       testVariantProps: { color: 'secondary', variant: 'dot' },
     }),
   );
@@ -76,12 +75,12 @@ describe('<Badge />', () => {
   describe('prop: invisible', () => {
     it('should default to false', () => {
       const { container } = render(<Badge {...defaultProps} />);
-      expect(findBadge(container)).to.not.have.class(classes.invisible);
+      expect(findBadge(container)).not.to.have.class(classes.invisible);
     });
 
     it('should render without the invisible class when set to false', () => {
       const { container } = render(<Badge {...defaultProps} invisible={false} />);
-      expect(findBadge(container)).to.not.have.class(classes.invisible);
+      expect(findBadge(container)).not.to.have.class(classes.invisible);
     });
 
     it('should render with the invisible class when set to true', () => {
@@ -95,9 +94,10 @@ describe('<Badge />', () => {
       expect(findBadge(container)).to.have.class(classes.invisible);
       container = render(<Badge {...defaultProps} badgeContent={undefined} />).container;
       expect(findBadge(container)).to.have.class(classes.invisible);
-      container = render(<Badge {...defaultProps} badgeContent={undefined} variant="dot" />)
-        .container;
-      expect(findBadge(container)).to.not.have.class(classes.invisible);
+      container = render(
+        <Badge {...defaultProps} badgeContent={undefined} variant="dot" />,
+      ).container;
+      expect(findBadge(container)).not.to.have.class(classes.invisible);
     });
   });
 
@@ -109,12 +109,12 @@ describe('<Badge />', () => {
 
     it('should render without the invisible class when false and badgeContent is not 0', () => {
       const { container } = render(<Badge {...defaultProps} showZero />);
-      expect(findBadge(container)).to.not.have.class(classes.invisible);
+      expect(findBadge(container)).not.to.have.class(classes.invisible);
     });
 
     it('should render without the invisible class when true and badgeContent is 0', () => {
       const { container } = render(<Badge {...defaultProps} badgeContent={0} showZero />);
-      expect(findBadge(container)).to.not.have.class(classes.invisible);
+      expect(findBadge(container)).not.to.have.class(classes.invisible);
     });
 
     it('should render with the invisible class when false and badgeContent is 0', () => {
@@ -127,13 +127,13 @@ describe('<Badge />', () => {
     it('should default to standard', () => {
       const { container } = render(<Badge {...defaultProps} />);
       expect(findBadge(container)).to.have.class(classes.badge);
-      expect(findBadge(container)).to.not.have.class(classes.dot);
+      expect(findBadge(container)).not.to.have.class(classes.dot);
     });
 
     it('should render with the standard class when variant="standard"', () => {
       const { container } = render(<Badge {...defaultProps} variant="standard" />);
       expect(findBadge(container)).to.have.class(classes.badge);
-      expect(findBadge(container)).to.not.have.class(classes.dot);
+      expect(findBadge(container)).not.to.have.class(classes.dot);
     });
 
     it('should not render badgeContent when variant="dot"', () => {

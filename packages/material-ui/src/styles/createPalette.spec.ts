@@ -1,9 +1,9 @@
 import { Color } from '@material-ui/core';
 import { blue, common } from '@material-ui/core/colors';
-import { createMuiTheme, Theme } from '@material-ui/core/styles';
+import { createTheme, Theme } from '@material-ui/core/styles';
 
 {
-  const palette = createMuiTheme().palette;
+  const palette = createTheme().palette;
   const color: Color = blue;
   const option = { color: { main: blue[400] } };
 

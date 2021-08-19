@@ -2,34 +2,51 @@
   "props": {
     "onChange": { "type": { "name": "func" }, "required": true },
     "renderInput": { "type": { "name": "func" }, "required": true },
-    "acceptRegex": { "type": { "name": "instanceOf", "description": "RegExp" } },
-    "allowKeyboardControl": { "type": { "name": "bool" } },
+    "acceptRegex": {
+      "type": { "name": "instanceOf", "description": "RegExp" },
+      "default": "/\\dap/gi"
+    },
     "ampm": { "type": { "name": "bool" } },
     "ampmInClock": { "type": { "name": "bool" } },
     "className": { "type": { "name": "string" } },
-    "dateAdapter": { "type": { "name": "object" } },
-    "disableCloseOnSelect": { "type": { "name": "bool" } },
+    "components": {
+      "type": { "name": "shape", "description": "{ OpenPickerIcon?: elementType }" }
+    },
+    "disableCloseOnSelect": {
+      "type": { "name": "bool" },
+      "default": "`true` for Desktop, `false` for Mobile (based on the chosen wrapper and `desktopModeMediaQuery` prop)."
+    },
     "disabled": { "type": { "name": "bool" } },
     "disableIgnoringDatePartForTimeValidation": { "type": { "name": "bool" } },
     "disableMaskedInput": { "type": { "name": "bool" } },
     "disableOpenPicker": { "type": { "name": "bool" } },
-    "getClockLabelText": { "type": { "name": "func" } },
-    "getOpenDialogAriaText": { "type": { "name": "func" } },
+    "getClockLabelText": {
+      "type": { "name": "func" },
+      "default": "<TDate extends any>(\n  view: ClockView,\n  time: TDate | null,\n  adapter: MuiPickersAdapter<TDate>,\n) =>\n  `Select ${view}. ${\n    time === null ? 'No time selected' : `Selected time is ${adapter.format(time, 'fullTime')}`\n  }`"
+    },
+    "getOpenDialogAriaText": {
+      "type": { "name": "func" },
+      "default": "(value, utils) => `Choose date, selected date is ${utils.format(utils.date(value), 'fullDate')}`"
+    },
     "InputAdornmentProps": { "type": { "name": "object" } },
     "inputFormat": { "type": { "name": "string" } },
+    "inputRef": {
+      "type": { "name": "union", "description": "func<br>&#124;&nbsp;{ current?: object }" }
+    },
     "mask": { "type": { "name": "string" } },
-    "minutesStep": { "type": { "name": "number" } },
+    "maxTime": { "type": { "name": "any" } },
+    "minTime": { "type": { "name": "any" } },
+    "minutesStep": { "type": { "name": "number" }, "default": "1" },
     "onAccept": { "type": { "name": "func" } },
     "onClose": { "type": { "name": "func" } },
     "onError": { "type": { "name": "func" } },
     "onOpen": { "type": { "name": "func" } },
     "open": { "type": { "name": "bool" } },
     "OpenPickerButtonProps": { "type": { "name": "object" } },
-    "openPickerIcon": { "type": { "name": "node" } },
     "openTo": {
       "type": {
         "name": "enum",
-        "description": "'date'<br>&#124;&nbsp;'hours'<br>&#124;&nbsp;'minutes'<br>&#124;&nbsp;'month'<br>&#124;&nbsp;'seconds'<br>&#124;&nbsp;'year'"
+        "description": "'hours'<br>&#124;&nbsp;'minutes'<br>&#124;&nbsp;'seconds'"
       }
     },
     "orientation": {
@@ -40,10 +57,10 @@
     "rifmFormatter": { "type": { "name": "func" } },
     "shouldDisableTime": { "type": { "name": "func" } },
     "showToolbar": { "type": { "name": "bool" } },
-    "ToolbarComponent": { "type": { "name": "elementType" } },
+    "ToolbarComponent": { "type": { "name": "elementType" }, "default": "TimePickerToolbar" },
     "toolbarFormat": { "type": { "name": "string" } },
-    "toolbarPlaceholder": { "type": { "name": "node" } },
-    "toolbarTitle": { "type": { "name": "node" } },
+    "toolbarPlaceholder": { "type": { "name": "node" }, "default": "'–'" },
+    "toolbarTitle": { "type": { "name": "node" }, "default": "'Select time'" },
     "TransitionComponent": { "type": { "name": "elementType" } },
     "value": {
       "type": {
@@ -61,10 +78,10 @@
   "name": "DesktopTimePicker",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
-  "forwardsRefTo": "HTMLInputElement",
+  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui-lab/src/DesktopTimePicker/DesktopTimePicker.tsx",
   "inheritance": null,
-  "demos": "",
+  "demos": "<ul><li><a href=\"/components/time-picker/\">Time Picker</a></li></ul>",
   "styledComponent": true,
   "cssComponent": false
 }

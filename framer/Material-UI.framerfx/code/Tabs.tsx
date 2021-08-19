@@ -15,8 +15,8 @@ interface Props {
   variant: 'fullWidth' | 'scrollable' | 'standard';
   visibleScrollbar: boolean;
   appBarColor?: 'default' | 'primary' | 'secondary' | 'inherit';
-  icons: string[];
-  labels: string[];
+  icons: readonly string[];
+  labels: readonly string[];
   width: number | string;
   height: number;
 }
@@ -56,9 +56,9 @@ export function Tabs(props: Props): JSX.Element {
 Tabs.defaultProps = {
   allowScrollButtonsMobile: false,
   centered: false,
-  indicatorColor: 'secondary' as 'secondary',
+  indicatorColor: 'primary' as 'primary',
   scrollButtons: 'auto' as 'auto',
-  textColor: 'inherit' as 'inherit',
+  textColor: 'primary' as 'primary',
   variant: 'standard' as 'standard',
   visibleScrollbar: false,
   icons: ['phone', 'favorite', 'person_pin'],

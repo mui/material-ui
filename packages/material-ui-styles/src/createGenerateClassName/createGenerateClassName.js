@@ -1,4 +1,4 @@
-import nested from '../ThemeProvider/nested';
+import { unstable_nested as nested } from '@material-ui/private-theming/ThemeProvider';
 
 /**
  * This is the list of the style rule name we use as drop in replacement for the built-in
@@ -9,7 +9,7 @@ import nested from '../ThemeProvider/nested';
  * It allows them to override previously defined styles as well as
  * being untouched by simple user overrides.
  */
-const pseudoClasses = [
+const stateClasses = [
   'checked',
   'disabled',
   'error',
@@ -52,7 +52,7 @@ export default function createGenerateClassName(options = {}) {
     // Is a global static MUI style?
     if (name && name.indexOf('Mui') === 0 && !styleSheet.options.link && !disableGlobal) {
       // We can use a shorthand class name, we never use the keys to style the components.
-      if (pseudoClasses.indexOf(rule.key) !== -1) {
+      if (stateClasses.indexOf(rule.key) !== -1) {
         return `Mui-${rule.key}`;
       }
 

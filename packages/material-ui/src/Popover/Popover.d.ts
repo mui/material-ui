@@ -1,8 +1,11 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps } from '..';
 import { PaperProps } from '../Paper';
 import { ModalProps } from '../Modal';
-import { TransitionHandlerProps, TransitionProps } from '../transitions/transition';
+import { Theme } from '../styles';
+import { TransitionProps } from '../transitions/transition';
+import { PopoverClasses } from './popoverClasses';
 
 export interface PopoverOrigin {
   vertical: 'top' | 'center' | 'bottom' | number;
@@ -16,8 +19,7 @@ export interface PopoverPosition {
 
 export type PopoverReference = 'anchorEl' | 'anchorPosition' | 'none';
 
-export interface PopoverProps
-  extends StandardProps<ModalProps & Partial<TransitionHandlerProps>, 'children'> {
+export interface PopoverProps extends StandardProps<ModalProps, 'children'> {
   /**
    * A ref for imperative actions.
    * It currently only supports updatePosition() action.
@@ -60,12 +62,7 @@ export interface PopoverProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the Paper component. */
-    paper?: string;
-  };
+  classes?: Partial<PopoverClasses>;
   /**
    * An HTML element, component instance, or function that returns either.
    * The `container` will passed to the Modal component.
@@ -79,15 +76,6 @@ export interface PopoverProps
    * @default 8
    */
   elevation?: number;
-  /**
-   * This function is called in order to retrieve the content anchor element.
-   * It's the opposite of the `anchorEl` prop.
-   * The content anchor element should be an element inside the popover.
-   * It's used to correctly scroll and set the position of the popover.
-   * The positioning strategy tries to make the content anchor element just above the
-   * anchor element.
-   */
-  getContentAnchorEl?: null | ((element: Element) => Element);
   /**
    * Specifies how close to the edge of the window the popover can appear.
    * @default 16
@@ -103,6 +91,10 @@ export interface PopoverProps
    * @default {}
    */
   PaperProps?: Partial<PaperProps>;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * This is the point on the popover which
    * will attach to the anchor's origin.
@@ -121,7 +113,7 @@ export interface PopoverProps
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
    */
-  TransitionComponent?: React.ComponentType<
+  TransitionComponent?: React.JSXElementConstructor<
     TransitionProps & { children?: React.ReactElement<any, any> }
   >;
   /**
@@ -136,8 +128,6 @@ export interface PopoverProps
    */
   TransitionProps?: TransitionProps;
 }
-
-export type PopoverClassKey = keyof NonNullable<PopoverProps['classes']>;
 
 export interface PopoverActions {
   updatePosition(): void;

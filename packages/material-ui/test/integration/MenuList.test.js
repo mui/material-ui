@@ -146,7 +146,9 @@ describe('<MenuList> integration', () => {
       );
       const menuitems = getAllByRole('menuitem');
 
-      menuitems[0].focus();
+      act(() => {
+        menuitems[0].focus();
+      });
 
       expect(menuitems[0]).toHaveFocus();
       expect(menuitems[0]).to.have.property('tabIndex', 0);
@@ -434,11 +436,37 @@ describe('<MenuList> integration', () => {
         </MenuList>,
       );
       const menu = getByRole('menu');
-      menu.focus();
+      act(() => {
+        menu.focus();
+      });
 
       fireEvent.keyDown(menu, { key: 'a' });
 
       expect(getByText('Arizona')).toHaveFocus();
+    });
+
+    it('should cycle through items when repeating initial character', () => {
+      const { getAllByRole, getByText } = render(
+        <MenuList>
+          <MenuItem>Arizona</MenuItem>
+          <MenuItem>aardvark</MenuItem>
+          <MenuItem>Colorado</MenuItem>
+          <MenuItem>Argentina</MenuItem>
+        </MenuList>,
+      );
+      const menuitems = getAllByRole('menuitem');
+      act(() => {
+        menuitems[0].focus();
+      });
+
+      fireEvent.keyDown(getByText('Arizona'), { key: 'a' });
+      expect(getByText('aardvark')).toHaveFocus();
+
+      fireEvent.keyDown(getByText('aardvark'), { key: 'a' });
+      expect(getByText('Argentina')).toHaveFocus();
+
+      fireEvent.keyDown(getByText('Argentina'), { key: 'r' });
+      expect(getByText('aardvark')).toHaveFocus();
     });
 
     it('selects the next item starting with the typed character', () => {
@@ -466,8 +494,10 @@ describe('<MenuList> integration', () => {
 
       const menuitem = getByText('Arizona');
       // user click
-      fireEvent.mouseDown(menuitem);
-      menuitem.focus();
+      act(() => {
+        fireEvent.mouseDown(menuitem);
+        menuitem.focus();
+      });
       fireEvent.click(menuitem);
 
       expect(menuitem).toHaveFocus();
@@ -530,13 +560,14 @@ describe('<MenuList> integration', () => {
     it('matches rapidly typed text', () => {
       render(
         <MenuList autoFocus>
+          <MenuItem>War</MenuItem>
           <MenuItem>Worm</MenuItem>
           <MenuItem>Ordinary</MenuItem>
         </MenuList>,
       );
 
       fireEvent.keyDown(screen.getByRole('menu'), { key: 'W' });
-      fireEvent.keyDown(screen.getByText('Worm'), { key: 'o' });
+      fireEvent.keyDown(screen.getByText('War'), { key: 'o' });
 
       expect(screen.getByText('Worm')).toHaveFocus();
     });

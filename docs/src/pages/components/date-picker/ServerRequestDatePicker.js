@@ -2,10 +2,10 @@ import * as React from 'react';
 import Badge from '@material-ui/core/Badge';
 import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizaitonProvider from '@material-ui/lab/LocalizationProvider';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import PickersDay from '@material-ui/lab/PickersDay';
 import DatePicker from '@material-ui/lab/DatePicker';
-import PickersCalendarSkeleton from '@material-ui/lab/PickersCalendarSkeleton';
+import CalendarPickerSkeleton from '@material-ui/lab/CalendarPickerSkeleton';
 import getDaysInMonth from 'date-fns/getDaysInMonth';
 
 function getRandomNumber(min, max) {
@@ -73,7 +73,7 @@ export default function ServerRequestDatePicker() {
   };
 
   return (
-    <LocalizaitonProvider dateAdapter={AdapterDateFns}>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
         value={value}
         loading={isLoading}
@@ -82,7 +82,7 @@ export default function ServerRequestDatePicker() {
         }}
         onMonthChange={handleMonthChange}
         renderInput={(params) => <TextField {...params} />}
-        renderLoading={() => <PickersCalendarSkeleton />}
+        renderLoading={() => <CalendarPickerSkeleton />}
         renderDay={(day, _value, DayComponentProps) => {
           const isSelected =
             !DayComponentProps.outsideCurrentMonth &&
@@ -99,6 +99,6 @@ export default function ServerRequestDatePicker() {
           );
         }}
       />
-    </LocalizaitonProvider>
+    </LocalizationProvider>
   );
 }

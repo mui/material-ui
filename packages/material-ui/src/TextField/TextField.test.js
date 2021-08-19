@@ -1,27 +1,23 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import FormControl from '../FormControl';
-import OutlinedInput from '../OutlinedInput';
-import TextField from './TextField';
-import MenuItem from '../MenuItem';
-import { inputBaseClasses } from '../InputBase';
+import { createClientRender, describeConformance } from 'test/utils';
+import FormControl from '@material-ui/core/FormControl';
+import { inputBaseClasses } from '@material-ui/core/InputBase';
+import MenuItem from '@material-ui/core/MenuItem';
+import { outlinedInputClasses } from '@material-ui/core/OutlinedInput';
+import TextField, { textFieldClasses as classes } from '@material-ui/core/TextField';
 
 describe('<TextField />', () => {
-  let classes;
-  const mount = createMount();
   const render = createClientRender();
-
-  before(() => {
-    classes = getClasses(<TextField variant="standard" />);
-  });
 
   describeConformance(<TextField variant="standard" />, () => ({
     classes,
     inheritComponent: FormControl,
-    mount,
+    render,
+    muiName: 'MuiTextField',
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    testVariantProps: { variant: 'outlined' },
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   describe('structure', () => {
@@ -126,7 +122,6 @@ describe('<TextField />', () => {
     });
 
     it('should set shrink prop on outline from label', () => {
-      const outlinedInputClasses = getClasses(<OutlinedInput />);
       const { container } = render(<TextField InputLabelProps={{ shrink: true }} classes={{}} />);
 
       expect(container.querySelector('fieldset')).to.have.class(

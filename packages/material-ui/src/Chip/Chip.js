@@ -1,56 +1,19 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { alpha } from '@material-ui/system';
 import CancelIcon from '../internal/svg-icons/Cancel';
-import { emphasize, alpha } from '../styles/colorManipulator';
 import useForkRef from '../utils/useForkRef';
 import unsupportedProp from '../utils/unsupportedProp';
 import capitalize from '../utils/capitalize';
 import ButtonBase from '../ButtonBase';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-  const { color, clickable, onDelete, size, variant } = styleProps;
-
-  return deepmerge(styles.root || {}, {
-    ...styles[`size${capitalize(size)}`],
-    ...styles[`color${capitalize(color)}`],
-    ...(clickable && styles.clickable),
-    ...(clickable && color !== 'default' && styles[`clickableColor${capitalize(color)})`]),
-    ...(onDelete && styles.deletable),
-    ...(onDelete && color !== 'default' && styles[`deletableColor${capitalize(color)}`]),
-    ...styles[variant],
-    ...(variant === 'outlined' && styles[`outlined${capitalize(color)}`]),
-    [`& .${chipClasses.avatar}`]: {
-      ...styles.avatar,
-      ...styles[`avatar${capitalize(size)}`],
-      ...styles[`avatarColor${capitalize(color)}`],
-    },
-    [`& .${chipClasses.icon}`]: {
-      ...styles.icon,
-      ...styles[`icon${capitalize(size)}`],
-      ...styles[`iconColor${capitalize(color)}`],
-    },
-    [`& .${chipClasses.label}`]: {
-      ...styles.label,
-      ...styles[`label${capitalize(size)}`],
-    },
-    [`& .${chipClasses.deleteIcon}`]: {
-      ...styles.deleteIcon,
-      ...styles[`deleteIcon${capitalize(size)}`],
-      ...styles[`deleteIconColor${capitalize(color)}`],
-      ...styles[`deleteIconOutlinedColor${capitalize(color)}`],
-    },
-  });
-};
-
-const useUtilityClasses = (styleProps) => {
-  const { classes, disabled, size, color, onDelete, clickable, variant } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, disabled, size, color, onDelete, clickable, variant } = ownerState;
 
   const slots = {
     root: [
@@ -79,30 +42,48 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getChipUtilityClass, classes);
 };
 
-const ChipRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiChip',
-    slot: 'Root',
-    overridesResolver,
+const ChipRoot = styled('div', {
+  name: 'MuiChip',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+    const { color, clickable, onDelete, size, variant } = ownerState;
+
+    return [
+      { [`& .${chipClasses.avatar}`]: styles.avatar },
+      { [`& .${chipClasses.avatar}`]: styles[`avatar${capitalize(size)}`] },
+      { [`& .${chipClasses.avatar}`]: styles[`avatarColor${capitalize(color)}`] },
+      { [`& .${chipClasses.icon}`]: styles.icon },
+      { [`& .${chipClasses.icon}`]: styles[`icon${capitalize(size)}`] },
+      { [`& .${chipClasses.icon}`]: styles[`iconColor${capitalize(color)}`] },
+      { [`& .${chipClasses.deleteIcon}`]: styles.deleteIcon },
+      { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIcon${capitalize(size)}`] },
+      { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIconColor${capitalize(color)}`] },
+      { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIconOutlinedColor${capitalize(color)}`] },
+      styles.root,
+      styles[`size${capitalize(size)}`],
+      styles[`color${capitalize(color)}`],
+      clickable && styles.clickable,
+      clickable && color !== 'default' && styles[`clickableColor${capitalize(color)})`],
+      onDelete && styles.deletable,
+      onDelete && color !== 'default' && styles[`deletableColor${capitalize(color)}`],
+      styles[variant],
+      variant === 'outlined' && styles[`outlined${capitalize(color)}`],
+    ];
   },
-)(
-  ({ theme, styleProps }) => {
-    const backgroundColor =
-      theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[700];
+})(
+  ({ theme, ownerState }) => {
     const deleteIconColor = alpha(theme.palette.text.primary, 0.26);
 
     return {
-      /* Styles applied to the root element. */
       fontFamily: theme.typography.fontFamily,
       fontSize: theme.typography.pxToRem(13),
       display: 'inline-flex',
       alignItems: 'center',
       justifyContent: 'center',
       height: 32,
-      color: theme.palette.getContrastText(backgroundColor),
-      backgroundColor,
+      color: theme.palette.text.primary,
+      backgroundColor: theme.palette.action.selected,
       borderRadius: 32 / 2,
       whiteSpace: 'nowrap',
       transition: theme.transitions.create(['background-color', 'box-shadow']),
@@ -111,11 +92,11 @@ const ChipRoot = experimentalStyled(
       // We disable the focus ring for mouse, touch and keyboard users.
       outline: 0,
       textDecoration: 'none',
-      border: 'none', // Remove `button` border
+      border: 0, // Remove `button` border
       padding: 0, // Remove `button` padding
       verticalAlign: 'middle',
       boxSizing: 'border-box',
-      '&.Mui-disabled': {
+      [`&.${chipClasses.disabled}`]: {
         opacity: theme.palette.action.disabledOpacity,
         pointerEvents: 'none',
       },
@@ -142,27 +123,19 @@ const ChipRoot = experimentalStyled(
         height: 18,
         fontSize: theme.typography.pxToRem(10),
       },
-      /* Styles applied to the icon element. */
       [`& .${chipClasses.icon}`]: {
         color: theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[300],
         marginLeft: 5,
         marginRight: -6,
-        /* Styles applied to the icon element if `size="small"`. */
-        ...(styleProps.size === 'small' && {
+        ...(ownerState.size === 'small' && {
           fontSize: 18,
           marginLeft: 4,
           marginRight: -4,
         }),
-        /* Styles applied to the icon element if `color="primary"`. */
-        ...(styleProps.color === 'primary' && {
-          color: 'inherit',
-        }),
-        /* Styles applied to the icon element if `color="secondary"`. */
-        ...(styleProps.color === 'secondary' && {
+        ...(ownerState.color !== 'default' && {
           color: 'inherit',
         }),
       },
-      /* Styles applied to the deleteIcon element. */
       [`& .${chipClasses.deleteIcon}`]: {
         WebkitTapHighlightColor: 'transparent',
         color: deleteIconColor,
@@ -172,105 +145,80 @@ const ChipRoot = experimentalStyled(
         '&:hover': {
           color: alpha(deleteIconColor, 0.4),
         },
-        /* Styles applied to the deleteIcon element if `size="small"`. */
-        ...(styleProps.size === 'small' && {
+        ...(ownerState.size === 'small' && {
           fontSize: 16,
           marginRight: 4,
           marginLeft: -4,
         }),
-        /* Styles applied to the deleteIcon element if `color="primary"` and `variant="filled"`. */
-        ...(styleProps.color === 'primary' && {
-          color: alpha(theme.palette.primary.contrastText, 0.7),
+        ...(ownerState.color !== 'default' && {
+          color: alpha(theme.palette[ownerState.color].contrastText, 0.7),
           '&:hover, &:active': {
-            color: theme.palette.primary.contrastText,
-          },
-        }),
-        /* Styles applied to the deleteIcon element if `color="secondary"` and `variant="filled"`. */
-        ...(styleProps.color === 'secondary' && {
-          color: alpha(theme.palette.secondary.contrastText, 0.7),
-          '&:hover, &:active': {
-            color: theme.palette.secondary.contrastText,
+            color: theme.palette[ownerState.color].contrastText,
           },
         }),
       },
-      /* Styles applied to the root element if `size="small"`. */
-      ...(styleProps.size === 'small' && {
+      ...(ownerState.size === 'small' && {
         height: 24,
       }),
-      /* Styles applied to the root element if `color="primary"`. */
-      ...(styleProps.color === 'primary' && {
-        backgroundColor: theme.palette.primary.main,
-        color: theme.palette.primary.contrastText,
+      ...(ownerState.color !== 'default' && {
+        backgroundColor: theme.palette[ownerState.color].main,
+        color: theme.palette[ownerState.color].contrastText,
       }),
-      /* Styles applied to the root element if `color="secondary"`. */
-      ...(styleProps.color === 'secondary' && {
-        backgroundColor: theme.palette.secondary.main,
-        color: theme.palette.secondary.contrastText,
-      }),
-      /* Styles applied to the root element if `onDelete` is defined. */
-      ...(styleProps.onDelete && {
-        '&.Mui-focusVisible': {
-          backgroundColor: emphasize(backgroundColor, 0.08),
+      ...(ownerState.onDelete && {
+        [`&.${chipClasses.focusVisible}`]: {
+          backgroundColor: alpha(
+            theme.palette.action.selected,
+            theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+          ),
         },
       }),
-      /* Styles applied to the root element if `onDelete` and `color="primary"` is defined. */
-      ...(styleProps.onDelete &&
-        styleProps.color === 'primary' && {
-          '&.Mui-focusVisible': {
-            backgroundColor: emphasize(theme.palette.primary.main, 0.2),
-          },
-        }),
-      /* Styles applied to the root element if `onDelete` and `color="secondary"` is defined. */
-      ...(styleProps.onDelete &&
-        styleProps.color === 'secondary' && {
-          '&.Mui-focusVisible': {
-            backgroundColor: emphasize(theme.palette.secondary.main, 0.2),
+      ...(ownerState.onDelete &&
+        ownerState.color !== 'default' && {
+          [`&.${chipClasses.focusVisible}`]: {
+            backgroundColor: theme.palette[ownerState.color].dark,
           },
         }),
     };
   },
-  ({ theme, styleProps }) => {
-    const backgroundColor =
-      theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[700];
-
-    return {
-      /* Styles applied to the root element if `onClick` is defined or `clickable={true}`. */
-      ...(styleProps.clickable && {
-        userSelect: 'none',
-        WebkitTapHighlightColor: 'transparent',
-        cursor: 'pointer',
-        '&:hover, &.Mui-focusVisible': {
-          backgroundColor: emphasize(backgroundColor, 0.08),
-        },
-        '&:active': {
-          boxShadow: theme.shadows[1],
+  ({ theme, ownerState }) => ({
+    ...(ownerState.clickable && {
+      userSelect: 'none',
+      WebkitTapHighlightColor: 'transparent',
+      cursor: 'pointer',
+      '&:hover': {
+        backgroundColor: alpha(
+          theme.palette.action.selected,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+        ),
+      },
+      [`&.${chipClasses.focusVisible}`]: {
+        backgroundColor: alpha(
+          theme.palette.action.selected,
+          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+        ),
+      },
+      '&:active': {
+        boxShadow: theme.shadows[1],
+      },
+    }),
+    ...(ownerState.clickable &&
+      ownerState.color !== 'default' && {
+        [`&:hover, &.${chipClasses.focusVisible}`]: {
+          backgroundColor: theme.palette[ownerState.color].dark,
         },
       }),
-      /* Styles applied to the root element if `onClick` and `color="primary"` is defined or `clickable={true}`. */
-      ...(styleProps.clickable &&
-        styleProps.color === 'primary' && {
-          '&:hover, &.Mui-focusVisible': {
-            backgroundColor: emphasize(theme.palette.primary.main, 0.08),
-          },
-        }),
-      /* Styles applied to the root element if `onClick` and `color="secondary"` is defined or `clickable={true}`. */
-      ...(styleProps.clickable &&
-        styleProps.color === 'secondary' && {
-          '&:hover, &.Mui-focusVisible': {
-            backgroundColor: emphasize(theme.palette.secondary.main, 0.08),
-          },
-        }),
-    };
-  },
-  ({ theme, styleProps }) => ({
-    /* Styles applied to the root element if `variant="outlined"`. */
-    ...(styleProps.variant === 'outlined' && {
+  }),
+  ({ theme, ownerState }) => ({
+    ...(ownerState.variant === 'outlined' && {
       backgroundColor: 'transparent',
       border: `1px solid ${
-        theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+        theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[700]
       }`,
-      [`&.Mui-focusVisible, .${chipClasses.clickable}&:hover`]: {
-        backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+      [`&.${chipClasses.clickable}:hover`]: {
+        backgroundColor: theme.palette.action.hover,
+      },
+      [`&.${chipClasses.focusVisible}`]: {
+        backgroundColor: theme.palette.action.focus,
       },
       [`& .${chipClasses.avatar}`]: {
         marginLeft: 4,
@@ -291,57 +239,48 @@ const ChipRoot = experimentalStyled(
         marginRight: 3,
       },
     }),
-    /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
-    ...(styleProps.variant === 'outlined' &&
-      styleProps.color === 'primary' && {
-        color: theme.palette.primary.main,
-        border: `1px solid ${theme.palette.primary.main}`,
-        [`&.Mui-focusVisible, .${chipClasses.clickable}&:hover`]: {
-          backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity),
+    ...(ownerState.variant === 'outlined' &&
+      ownerState.color !== 'default' && {
+        color: theme.palette[ownerState.color].main,
+        border: `1px solid ${alpha(theme.palette[ownerState.color].main, 0.7)}`,
+        [`&.${chipClasses.clickable}:hover`]: {
+          backgroundColor: alpha(
+            theme.palette[ownerState.color].main,
+            theme.palette.action.hoverOpacity,
+          ),
         },
-        /* Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`. */
+        [`&.${chipClasses.focusVisible}`]: {
+          backgroundColor: alpha(
+            theme.palette[ownerState.color].main,
+            theme.palette.action.focusOpacity,
+          ),
+        },
         [`& .${chipClasses.deleteIcon}`]: {
-          color: alpha(theme.palette.primary.main, 0.7),
+          color: alpha(theme.palette[ownerState.color].main, 0.7),
           '&:hover, &:active': {
-            color: theme.palette.primary.main,
-          },
-        },
-      }),
-    /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
-    ...(styleProps.variant === 'outlined' &&
-      styleProps.color === 'secondary' && {
-        color: theme.palette.secondary.main,
-        border: `1px solid ${theme.palette.secondary.main}`,
-        [`&.Mui-focusVisible, .${chipClasses.clickable}&:hover`]: {
-          backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.hoverOpacity),
-        },
-        /* Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`. */
-        [`& .${chipClasses.deleteIcon}`]: {
-          color: alpha(theme.palette.secondary.main, 0.7),
-          '&:hover, &:active': {
-            color: theme.palette.secondary.main,
+            color: theme.palette[ownerState.color].main,
           },
         },
       }),
   }),
 );
 
-const ChipLabel = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiChip',
-    slot: 'Label',
+const ChipLabel = styled('span', {
+  name: 'MuiChip',
+  slot: 'Label',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+    const { size } = ownerState;
+
+    return [styles.label, styles[`label${capitalize(size)}`]];
   },
-)(({ styleProps }) => ({
-  /* Styles applied to the label `span` element. */
+})(({ ownerState }) => ({
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   paddingLeft: 12,
   paddingRight: 12,
   whiteSpace: 'nowrap',
-  /* Styles applied to the label `span` element if `size="small"`. */
-  ...(styleProps.size === 'small' && {
+  ...(ownerState.size === 'small' && {
     paddingLeft: 8,
     paddingRight: 8,
   }),
@@ -417,9 +356,9 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const clickable = clickableProp !== false && onClick ? true : clickableProp;
   const small = size === 'small';
 
-  const component = ComponentProp || (clickable || onDelete ? ButtonBase : 'div');
+  const component = clickable || onDelete ? ButtonBase : ComponentProp || 'div';
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     component,
     disabled,
@@ -430,12 +369,12 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const moreProps =
     component === ButtonBase
       ? {
-          component: 'div',
+          component: ComponentProp || 'div',
           focusVisibleClassName: classes.focusVisible,
           disableRipple: Boolean(onDelete),
         }
@@ -497,12 +436,12 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
       ref={handleRef}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...moreProps}
       {...other}
     >
       {avatar || icon}
-      <ChipLabel className={clsx(classes.label)} styleProps={styleProps}>
+      <ChipLabel className={clsx(classes.label)} ownerState={ownerState}>
         {label}
       </ChipLabel>
       {deleteIcon}
@@ -510,7 +449,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   );
 });
 
-Chip.propTypes = {
+Chip.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -545,7 +484,10 @@ Chip.propTypes = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'default'
    */
-  color: PropTypes.oneOf(['default', 'primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['default', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -589,7 +531,10 @@ Chip.propTypes = {
    * The size of the component.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

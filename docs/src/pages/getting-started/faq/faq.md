@@ -52,9 +52,9 @@ The ripple effect is exclusively coming from the `BaseButton` component.
 You can disable the ripple effect globally by providing the following in your theme:
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     // Name of the component ⚛️
     MuiButtonBase: {
@@ -73,9 +73,9 @@ Material-UI uses the same theme helper for creating all its transitions.
 Therefore you can disable all transitions by overriding the helper in your theme:
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   transitions: {
     // So we have `transition: none;` everywhere
     create: () => 'none',
@@ -88,9 +88,9 @@ It can be useful to disable transitions during visual testing or to improve perf
 You can go one step further by disabling all transitions and animations effects:
 
 ```js
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     // Name of the component ⚛️
     MuiCssBaseline: {
@@ -127,7 +127,7 @@ or are already familiar with a different API, and don't want to learn a new one?
 [Style Library Interoperability](/guides/interoperability/) section,
 where we show how simple it is to restyle Material-UI components with alternative style libraries.
 
-## When should I use inline-style vs CSS?
+## When should I use inline-style vs. CSS?
 
 As a rule of thumb, only use inline-styles for dynamic style properties.
 The CSS alternative provides more advantages, such as:
@@ -139,7 +139,7 @@ The CSS alternative provides more advantages, such as:
 
 ## How do I use react-router?
 
-We detail the [integration with third-party routing libraries](/guides/composition/#routing-libraries) like react-router, Gatsby or Next.js in our guide.
+We detail the [integration with third-party routing libraries](/guides/routing/) like react-router, Gatsby or Next.js in our guide.
 
 ## How can I access the DOM element?
 
@@ -395,9 +395,10 @@ when the `Portal` should re-render:
 ```jsx
 function App() {
   const [container, setContainer] = React.useState(null);
-  const handleRef = React.useCallback((instance) => setContainer(instance), [
-    setContainer,
-  ]);
+  const handleRef = React.useCallback(
+    (instance) => setContainer(instance),
+    [setContainer],
+  );
 
   return (
     <div className="App">

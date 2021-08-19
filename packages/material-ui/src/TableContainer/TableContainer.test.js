@@ -1,15 +1,14 @@
 import * as React from 'react';
-import { createMount, describeConformanceV5 } from 'test/utils';
-import TableContainer from './TableContainer';
-import classes from './tableContainerClasses';
+import { createClientRender, describeConformance } from 'test/utils';
+import TableContainer, { tableContainerClasses as classes } from '@material-ui/core/TableContainer';
 
 describe('<TableContainer />', () => {
-  const mount = createMount();
+  const render = createClientRender();
 
-  describeConformanceV5(<TableContainer />, () => ({
+  describeConformance(<TableContainer />, () => ({
     classes,
     inheritComponent: 'div',
-    mount,
+    render,
     muiName: 'MuiTableContainer',
     testVariantProps: { variant: 'foo' },
     refInstanceof: window.HTMLDivElement,

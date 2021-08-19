@@ -34,7 +34,7 @@ function dedupeActWarningsByComponent(consoleCalls) {
 
   consoleCalls.forEach(([stack, message]) => {
     const componentName = message.match(
-      /An update to (\w+) ran an effect, but was not wrapped in act/,
+      /An update to (.+?) ran an effect, but was not wrapped in act/,
     )?.[1];
 
     const duplicateMissingActWarning =
@@ -91,6 +91,15 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
       if (message.indexOf('act(...) is not supported in production builds of React') !== -1) {
         return;
       }
+    }
+
+    // Ignore legacy root deprecation warnings
+    // TODO: Remove once we no longer use legacy roots.
+    if (
+      message.indexOf('Use createRoot instead.') !== -1 ||
+      message.indexOf('Use hydrateRoot instead.') !== -1
+    ) {
+      return;
     }
 
     unexpectedCalls.push([

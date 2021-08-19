@@ -1,17 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, describeConformanceV5, act, createClientRender, screen } from 'test/utils';
-import Breadcrumbs from './Breadcrumbs';
-import classes from './breadcrumbsClasses';
+import { act, describeConformance, createClientRender, screen } from 'test/utils';
+import Breadcrumbs, { breadcrumbsClasses as classes } from '@material-ui/core/Breadcrumbs';
 
 describe('<Breadcrumbs />', () => {
-  const mount = createMount();
   const render = createClientRender();
 
-  describeConformanceV5(<Breadcrumbs>Conformance?</Breadcrumbs>, () => ({
+  describeConformance(<Breadcrumbs>Conformance?</Breadcrumbs>, () => ({
     classes,
     inheritComponent: 'nav',
-    mount,
+    render,
     muiName: 'MuiBreadcrumbs',
     refInstanceof: window.HTMLElement,
     testComponentPropWith: 'div',
@@ -88,7 +86,9 @@ describe('<Breadcrumbs />', () => {
       );
     }).toErrorDev([
       'Material-UI: You have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
-      'Material-UI: You have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
+      // strict mode renders twice
+      React.version.startsWith('16') &&
+        'Material-UI: You have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
     ]);
     expect(screen.getAllByRole('listitem', { hidden: false })).to.have.length(4);
     expect(screen.getByRole('list')).to.have.text('first/second/third/fourth');

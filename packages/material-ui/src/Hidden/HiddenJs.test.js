@@ -54,7 +54,7 @@ describe('<HiddenJs />', () => {
         );
 
         expect(container.firstChild).to.have.tagName('div');
-        expect(queryByText('foo')).to.not.equal(null);
+        expect(queryByText('foo')).not.to.equal(null);
       });
     });
   }

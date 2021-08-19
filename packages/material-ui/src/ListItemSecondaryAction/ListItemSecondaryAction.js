@@ -1,23 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import ListContext from '../List/ListContext';
 import { getListItemSecondaryActionClassesUtilityClass } from './listItemSecondaryActionClasses';
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.disableGutters && styles.disableGutters),
-  });
-};
-
-const useUtilityClasses = (styleProps) => {
-  const { disableGutters, classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { disableGutters, classes } = ownerState;
 
   const slots = {
     root: ['root', disableGutters && 'disableGutters'],
@@ -26,20 +17,20 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getListItemSecondaryActionClassesUtilityClass, classes);
 };
 
-const ListItemSecondaryActionRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiListItemSecondaryAction',
-    slot: 'Root',
-    overridesResolver,
+const ListItemSecondaryActionRoot = styled('div', {
+  name: 'MuiListItemSecondaryAction',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [styles.root, ownerState.disableGutters && styles.disableGutters];
   },
-)(({ styleProps }) => ({
+})(({ ownerState }) => ({
   position: 'absolute',
   right: 16,
   top: '50%',
   transform: 'translateY(-50%)',
-  ...(styleProps.disableGutters && {
+  ...(ownerState.disableGutters && {
     right: 0,
   }),
 }));
@@ -51,20 +42,20 @@ const ListItemSecondaryAction = React.forwardRef(function ListItemSecondaryActio
   const props = useThemeProps({ props: inProps, name: 'MuiListItemSecondaryAction' });
   const { className, ...other } = props;
   const context = React.useContext(ListContext);
-  const styleProps = { ...props, disableGutters: context.disableGutters };
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = { ...props, disableGutters: context.disableGutters };
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <ListItemSecondaryActionRoot
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       {...other}
     />
   );
 });
 
-ListItemSecondaryAction.propTypes = {
+ListItemSecondaryAction.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

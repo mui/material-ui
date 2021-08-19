@@ -3,7 +3,12 @@
     "autoComplete": { "type": { "name": "string" } },
     "autoFocus": { "type": { "name": "bool" } },
     "classes": { "type": { "name": "object" } },
-    "color": { "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      }
+    },
     "components": {
       "type": { "name": "shape", "description": "{ Input?: elementType, Root?: elementType }" },
       "default": "{}"
@@ -32,7 +37,12 @@
     "readOnly": { "type": { "name": "bool" } },
     "required": { "type": { "name": "bool" } },
     "rows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
-    "size": { "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" } },
+    "size": {
+      "type": {
+        "name": "union",
+        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+      }
+    },
     "startAdornment": { "type": { "name": "node" } },
     "sx": { "type": { "name": "object" } },
     "type": { "type": { "name": "string" }, "default": "'text'" },

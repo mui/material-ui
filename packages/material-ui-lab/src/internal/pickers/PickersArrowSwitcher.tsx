@@ -1,7 +1,6 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import Typography from '@material-ui/core/Typography';
-import { MuiStyles, StyleRules, WithStyles, withStyles, useTheme } from '@material-ui/core/styles';
+import { useTheme, styled } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowLeftIcon from '../svg-icons/ArrowLeft';
 import ArrowRightIcon from '../svg-icons/ArrowRight';
@@ -45,29 +44,33 @@ interface ArrowSwitcherProps extends ExportedArrowSwitcherProps, React.HTMLProps
   onLeftClick: () => void;
   onRightClick: () => void;
 }
-export type PickersArrowSwitcherClassKey = 'root' | 'spacer' | 'hidden';
 
-export const styles: MuiStyles<PickersArrowSwitcherClassKey> = (
-  theme,
-): StyleRules<PickersArrowSwitcherClassKey> => ({
-  root: {
-    display: 'flex',
-  },
-  spacer: {
-    width: theme.spacing(3),
-  },
-  hidden: {
-    visibility: 'hidden',
-  },
+const PickersArrowSwitcherRoot = styled('div', { skipSx: true })<{
+  ownerState: ArrowSwitcherProps;
+}>({
+  display: 'flex',
 });
 
-const PickersArrowSwitcher = React.forwardRef<
-  HTMLDivElement,
-  ArrowSwitcherProps & WithStyles<typeof styles>
->((props, ref) => {
+const PickersArrowSwitcherSpacer = styled('div', { skipSx: true })<{
+  ownerState: ArrowSwitcherProps;
+}>(({ theme }) => ({
+  width: theme.spacing(3),
+}));
+
+const PickersArrowSwitcherButton = styled(IconButton, { skipSx: true })<{
+  ownerState: ArrowSwitcherProps & { hidden: boolean };
+}>(({ ownerState }) => ({
+  ...(ownerState.hidden && {
+    visibility: 'hidden',
+  }),
+}));
+
+const PickersArrowSwitcher = React.forwardRef(function PickersArrowSwitcher(
+  props: Omit<ArrowSwitcherProps, 'as'>,
+  ref: React.Ref<HTMLDivElement>,
+) {
   const {
     children,
-    classes,
     className,
     components = {},
     componentsProps = {},
@@ -84,57 +87,53 @@ const PickersArrowSwitcher = React.forwardRef<
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
 
-  const LeftArrowButton = components.LeftArrowButton || IconButton;
   const leftArrowButtonProps = componentsProps.leftArrowButton || {};
   const LeftArrowIcon = components.LeftArrowIcon || ArrowLeftIcon;
 
-  const RightArrowButton = components.RightArrowButton || IconButton;
   const rightArrowButtonProps = componentsProps.rightArrowButton || {};
   const RightArrowIcon = components.RightArrowIcon || ArrowRightIcon;
 
+  const ownerState = props;
+
   return (
-    <div className={clsx(classes.root, className)} ref={ref} {...other}>
-      <LeftArrowButton
+    <PickersArrowSwitcherRoot ref={ref} className={className} ownerState={ownerState} {...other}>
+      <PickersArrowSwitcherButton
+        as={components.LeftArrowButton}
         size="small"
-        aria-hidden={isLeftHidden}
         aria-label={leftArrowButtonText}
         title={leftArrowButtonText}
         disabled={isLeftDisabled}
         edge="end"
         onClick={onLeftClick}
         {...leftArrowButtonProps}
-        className={clsx(leftArrowButtonProps.className, {
-          [classes.hidden]: isLeftHidden,
-        })}
+        className={leftArrowButtonProps.className}
+        ownerState={{ ...ownerState, ...leftArrowButtonProps, hidden: isLeftHidden }}
       >
         {isRtl ? <RightArrowIcon /> : <LeftArrowIcon />}
-      </LeftArrowButton>
+      </PickersArrowSwitcherButton>
       {children ? (
         <Typography variant="subtitle1" component="span">
           {children}
         </Typography>
       ) : (
-        <div className={classes.spacer} />
+        <PickersArrowSwitcherSpacer ownerState={ownerState} />
       )}
-      <RightArrowButton
+      <PickersArrowSwitcherButton
+        as={components.RightArrowButton}
         size="small"
-        aria-hidden={isRightHidden}
         aria-label={rightArrowButtonText}
         title={rightArrowButtonText}
         edge="start"
         disabled={isRightDisabled}
         onClick={onRightClick}
         {...rightArrowButtonProps}
-        className={clsx(rightArrowButtonProps.className, {
-          [classes.hidden]: isRightHidden,
-        })}
+        className={rightArrowButtonProps.className}
+        ownerState={{ ...ownerState, ...rightArrowButtonProps, hidden: isRightHidden }}
       >
         {isRtl ? <LeftArrowIcon /> : <RightArrowIcon />}
-      </RightArrowButton>
-    </div>
+      </PickersArrowSwitcherButton>
+    </PickersArrowSwitcherRoot>
   );
 });
 
-export default React.memo(
-  withStyles(styles, { name: 'MuiPickersArrowSwitcher' })(PickersArrowSwitcher),
-);
+export default PickersArrowSwitcher;

@@ -1,42 +1,43 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core';
+import { styled } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizaitonProvider from '@material-ui/lab/LocalizationProvider';
-import DatePicker from '@material-ui/lab/DatePicker';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+import StaticDatePicker from '@material-ui/lab/StaticDatePicker';
 import PickersDay from '@material-ui/lab/PickersDay';
-import clsx from 'clsx';
 import endOfWeek from 'date-fns/endOfWeek';
 import isSameDay from 'date-fns/isSameDay';
 import isWithinInterval from 'date-fns/isWithinInterval';
 import startOfWeek from 'date-fns/startOfWeek';
 
-const useStyles = makeStyles((theme) => ({
-  highlight: {
+const CustomPickersDay = styled(PickersDay, {
+  shouldForwardProp: (prop) =>
+    prop !== 'dayIsBetween' && prop !== 'isFirstDay' && prop !== 'isLastDay',
+})(({ theme, dayIsBetween, isFirstDay, isLastDay }) => ({
+  ...(dayIsBetween && {
     borderRadius: 0,
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.common.white,
     '&:hover, &:focus': {
       backgroundColor: theme.palette.primary.dark,
     },
-  },
-  firstHighlight: {
+  }),
+  ...(isFirstDay && {
     borderTopLeftRadius: '50%',
     borderBottomLeftRadius: '50%',
-  },
-  endHighlight: {
+  }),
+  ...(isLastDay && {
     borderTopRightRadius: '50%',
     borderBottomRightRadius: '50%',
-  },
+  }),
 }));
 
 export default function CustomDay() {
-  const classes = useStyles();
   const [value, setValue] = React.useState(new Date());
 
-  const renderWeekPickerDay = (date, _selectedDates, PickersDayComponentProps) => {
+  const renderWeekPickerDay = (date, selectedDates, pickersDayProps) => {
     if (!value) {
-      return <PickersDay {...PickersDayComponentProps} />;
+      return <PickersDay {...pickersDayProps} />;
     }
 
     const start = startOfWeek(value);
@@ -47,21 +48,20 @@ export default function CustomDay() {
     const isLastDay = isSameDay(date, end);
 
     return (
-      <PickersDay
-        {...PickersDayComponentProps}
+      <CustomPickersDay
+        {...pickersDayProps}
         disableMargin
-        className={clsx({
-          [classes.highlight]: dayIsBetween,
-          [classes.firstHighlight]: isFirstDay,
-          [classes.endHighlight]: isLastDay,
-        })}
+        dayIsBetween={dayIsBetween}
+        isFirstDay={isFirstDay}
+        isLastDay={isLastDay}
       />
     );
   };
 
   return (
-    <LocalizaitonProvider dateAdapter={AdapterDateFns}>
-      <DatePicker
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <StaticDatePicker
+        displayStaticWrapperAs="desktop"
         label="Week picker"
         value={value}
         onChange={(newValue) => {
@@ -71,6 +71,6 @@ export default function CustomDay() {
         renderInput={(params) => <TextField {...params} />}
         inputFormat="'Week of' MMM d"
       />
-    </LocalizaitonProvider>
+    </LocalizationProvider>
   );
 }

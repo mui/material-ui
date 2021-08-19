@@ -1,5 +1,6 @@
 import style from './style';
 import compose from './compose';
+import { handleBreakpoints } from './breakpoints';
 
 function transform(value) {
   return value <= 1 ? `${value * 100}%` : value;
@@ -10,10 +11,19 @@ export const width = style({
   transform,
 });
 
-export const maxWidth = style({
-  prop: 'maxWidth',
-  transform,
-});
+export const maxWidth = (props) => {
+  if (props.maxWidth) {
+    const styleFromPropValue = (propValue) => {
+      const breakpoint = props.theme.breakpoints.values[propValue];
+      return {
+        maxWidth: breakpoint || transform(propValue),
+      };
+    };
+    return handleBreakpoints(props, props.maxWidth, styleFromPropValue);
+  }
+  return null;
+};
+maxWidth.filterProps = ['maxWidth'];
 
 export const minWidth = style({
   prop: 'minWidth',

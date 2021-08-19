@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Typography from '../Typography';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getDialogTitleUtilityClass } from './dialogTitleClasses';
+import DialogContext from '../Dialog/DialogContext';
 
-const overridesResolver = (props, styles) => styles.root || {};
-
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -19,21 +18,13 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getDialogTitleUtilityClass, classes);
 };
 
-const DialogTitleRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiDialogTitle',
-    slot: 'Root',
-    overridesResolver,
-  },
-)(() => {
-  return {
-    /* Styles applied to the root element. */
-    margin: 0,
-    padding: '16px 24px',
-    flex: '0 0 auto',
-  };
+const DialogTitleRoot = styled(Typography, {
+  name: 'MuiDialogTitle',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
+  padding: '16px 24px',
+  flex: '0 0 auto',
 });
 
 const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
@@ -42,29 +33,26 @@ const DialogTitle = React.forwardRef(function DialogTitle(inProps, ref) {
     name: 'MuiDialogTitle',
   });
 
-  const { children, className, disableTypography = false, ...other } = props;
-  const styleProps = { ...props, disableTypography };
-  const classes = useUtilityClasses(styleProps);
+  const { className, id: idProp, ...other } = props;
+  const ownerState = props;
+  const classes = useUtilityClasses(ownerState);
+
+  const { titleId: id = idProp } = React.useContext(DialogContext);
 
   return (
     <DialogTitleRoot
+      component="h2"
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
+      variant="h6"
+      id={id}
       {...other}
-    >
-      {disableTypography ? (
-        children
-      ) : (
-        <Typography component="h2" variant="h6">
-          {children}
-        </Typography>
-      )}
-    </DialogTitleRoot>
+    />
   );
 });
 
-DialogTitle.propTypes = {
+DialogTitle.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -82,11 +70,9 @@ DialogTitle.propTypes = {
    */
   className: PropTypes.string,
   /**
-   * If `true`, the children won't be wrapped by a typography component.
-   * For instance, this can be useful to render an h4 instead of the default h2.
-   * @default false
+   * @ignore
    */
-  disableTypography: PropTypes.bool,
+  id: PropTypes.string,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

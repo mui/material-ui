@@ -32,8 +32,7 @@ export class MediaCard extends React.Component<Props> {
     imageUrl: 'https://source.unsplash.com/random/320x180?laptop',
     title: 'Material Improvement',
     subtitle: 'by Laura Philips',
-    body:
-      "Discover how Material-UI, the leading React Material Design component library, can help to improve your users' experience.",
+    body: "Discover how Material-UI, the leading React Material Design component library, can help to improve your users' experience.",
     icon1: 'share',
     icon2: 'more_vert',
   };
@@ -73,18 +72,8 @@ export class MediaCard extends React.Component<Props> {
   };
 
   render() {
-    const {
-      action1,
-      action2,
-      body,
-      icon1,
-      icon2,
-      imageFile,
-      imageUrl,
-      subtitle,
-      title,
-      ...other
-    } = this.props;
+    const { action1, action2, body, icon1, icon2, imageFile, imageUrl, subtitle, title, ...other } =
+      this.props;
 
     return (
       <Card {...other}>
@@ -103,12 +92,12 @@ export class MediaCard extends React.Component<Props> {
               </MuiTypography>
             )}
             {subtitle && (
-              <MuiTypography gutterBottom variant="subtitle1" color="textSecondary">
+              <MuiTypography gutterBottom variant="subtitle1" color="text.secondary">
                 {subtitle}
               </MuiTypography>
             )}
             {body && (
-              <MuiTypography component="p" color="textPrimary">
+              <MuiTypography component="p" color="text.primary">
                 {body}
               </MuiTypography>
             )}

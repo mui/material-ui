@@ -2,7 +2,15 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'standard'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      },
+      "default": "'standard'"
+    },
     "exclusive": { "type": { "name": "bool" } },
+    "fullWidth": { "type": { "name": "bool" } },
     "onChange": { "type": { "name": "func" } },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
@@ -10,11 +18,12 @@
     },
     "size": {
       "type": {
-        "name": "enum",
-        "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
+        "name": "union",
+        "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;string"
       },
       "default": "'medium'"
     },
+    "sx": { "type": { "name": "object" } },
     "value": { "type": { "name": "any" } }
   },
   "name": "ToggleButtonGroup",
@@ -28,6 +37,6 @@
   "filename": "/packages/material-ui/src/ToggleButtonGroup/ToggleButtonGroup.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/toggle-button/\">Toggle Button</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

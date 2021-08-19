@@ -2,6 +2,7 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
+    "sx": { "type": { "name": "object" } },
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Collapse" },
     "transitionDuration": {
       "type": {
@@ -23,6 +24,6 @@
   "filename": "/packages/material-ui/src/StepContent/StepContent.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/steppers/\">Steppers</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

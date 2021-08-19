@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { ServerStyleSheets } from '@material-ui/styles';
+import { createTheme } from '@material-ui/core/styles';
 import { ServerStyleSheet } from 'styled-components';
 import createEmotionServer from '@emotion/server/create-instance';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
-import { themeColor } from 'docs/src/modules/components/ThemeContext';
-import { cacheLtr } from 'docs/pages/_app';
+import createEmotionCache from 'docs/src/createEmotionCache';
 
-const { extractCritical } = createEmotionServer(cacheLtr);
+const defaultTheme = createTheme();
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -45,7 +45,7 @@ export default class MyDocument extends Document {
           */}
           <link rel="manifest" href="/static/manifest.json" />
           {/* PWA primary color */}
-          <meta name="theme-color" content={themeColor} />
+          <meta name="theme-color" content={defaultTheme.palette.primary.main} />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           {/* iOS Icon */}
           <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/180x180.png" />
@@ -73,6 +73,12 @@ export default class MyDocument extends Document {
             This includes DNS lookups, TLS negotiations, TCP handshakes.
           */}
           <link href="https://fonts.gstatic.com" rel="preconnect" crossOrigin="anonymous" />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;700&display=swap"
+            rel="stylesheet"
+          />
+          <link href="/static/fonts/Plusjakartasans.css" rel="stylesheet" />
         </Head>
         <body>
           <Main />
@@ -122,15 +128,28 @@ MyDocument.getInitialProps = async (ctx) => {
   const styledComponentsSheet = new ServerStyleSheet();
   const originalRenderPage = ctx.renderPage;
 
+  const cache = createEmotionCache();
+  const { extractCriticalToChunks } = createEmotionServer(cache);
+
   try {
     ctx.renderPage = () =>
       originalRenderPage({
         enhanceApp: (App) => (props) =>
-          styledComponentsSheet.collectStyles(materialSheets.collect(<App {...props} />)),
+          styledComponentsSheet.collectStyles(
+            materialSheets.collect(<App emotionCache={cache} {...props} />),
+          ),
       });
 
     const initialProps = await Document.getInitialProps(ctx);
-    const emotionStyles = extractCritical(initialProps.html);
+    const emotionStyles = extractCriticalToChunks(initialProps.html);
+    const emotionStyleTags = emotionStyles.styles.map((style) => (
+      <style
+        data-emotion={`${style.key} ${style.ids.join(' ')}`}
+        key={style.key}
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: style.css }}
+      />
+    ));
 
     let css = materialSheets.toString();
     // It might be undefined, e.g. after an error.
@@ -153,22 +172,16 @@ MyDocument.getInitialProps = async (ctx) => {
       userLanguage: ctx.query.userLanguage || 'en',
       // Styles fragment is rendered after the app and page rendering finish.
       styles: [
+        <style id="material-icon-font" key="material-icon-font" />,
+        <style id="font-awesome-css" key="font-awesome-css" />,
         styledComponentsSheet.getStyleElement(),
-        <style
-          id="emotion-server-side"
-          key="emotion-server-side"
-          data-emotion={`css ${emotionStyles.ids.join(' ')}`}
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: emotionStyles.css }}
-        />,
+        ...emotionStyleTags,
         <style
           id="jss-server-side"
           key="jss-server-side"
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: css }}
         />,
-        <style id="material-icon-font" key="material-icon-font" />,
-        <style id="font-awesome-css" key="font-awesome-css" />,
         <style id="app-search" key="app-search" />,
         <style id="prismjs" key="prismjs" />,
         <style id="insertion-point-jss" key="insertion-point-jss" />,

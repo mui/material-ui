@@ -1,12 +1,11 @@
-import createBreakpoints from './createBreakpoints';
-import createV4Spacing from './createV4Spacing';
+import { createBreakpoints, createSpacing } from '@material-ui/system';
 
 export default function adaptV4Theme(inputTheme) {
   if (process.env.NODE_ENV !== 'production') {
     console.warn(
       [
         'Material-UI: adaptV4Theme() is deprecated.',
-        'Follow the upgrade guide on http://next.material-ui.com/guides/migration-v4/#theme',
+        'Follow the upgrade guide on https://material-ui.com/r/migration-v4#theme.',
       ].join('\n'),
     );
   }
@@ -52,7 +51,7 @@ export default function adaptV4Theme(inputTheme) {
   });
 
   // theme.spacing
-  theme.spacing = createV4Spacing(inputTheme.spacing);
+  theme.spacing = createSpacing(inputTheme.spacing);
 
   // theme.mixins.gutters
   const breakpoints = createBreakpoints(inputTheme.breakpoints || {});

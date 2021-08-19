@@ -3,6 +3,10 @@
     "open": { "type": { "name": "bool" }, "required": true },
     "aria-describedby": { "type": { "name": "string" } },
     "aria-labelledby": { "type": { "name": "string" } },
+    "BackdropComponent": {
+      "type": { "name": "elementType" },
+      "default": "styled(Backdrop, {\n  name: 'MuiModal',\n  slot: 'Backdrop',\n  overridesResolver: (props, styles) => {\n    return styles.backdrop;\n  },\n})({\n  zIndex: -1,\n})"
+    },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "disableEscapeKeyDown": { "type": { "name": "bool" } },
@@ -10,8 +14,8 @@
     "fullWidth": { "type": { "name": "bool" } },
     "maxWidth": {
       "type": {
-        "name": "enum",
-        "description": "'lg'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;'xs'<br>&#124;&nbsp;false"
+        "name": "union",
+        "description": "'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;false<br>&#124;&nbsp;string"
       },
       "default": "'sm'"
     },
@@ -23,6 +27,7 @@
       "type": { "name": "enum", "description": "'body'<br>&#124;&nbsp;'paper'" },
       "default": "'paper'"
     },
+    "sx": { "type": { "name": "object" } },
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Fade" },
     "transitionDuration": {
       "type": {
@@ -60,6 +65,6 @@
   "filename": "/packages/material-ui/src/Dialog/Dialog.js",
   "inheritance": { "component": "Modal", "pathname": "/api/modal/" },
   "demos": "<ul><li><a href=\"/components/dialogs/\">Dialogs</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

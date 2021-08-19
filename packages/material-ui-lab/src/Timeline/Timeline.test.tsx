@@ -1,20 +1,18 @@
 import * as React from 'react';
-import { getClasses, createMount, describeConformance } from 'test/utils';
-import Timeline from './Timeline';
+import { createClientRender, describeConformance } from 'test/utils';
+import Timeline, { timelineClasses as classes } from '@material-ui/lab/Timeline';
 
 describe('<Timeline />', () => {
-  const mount = createMount();
-  let classes: Record<string, string>;
-
-  before(() => {
-    classes = getClasses(<Timeline />);
-  });
+  const render = createClientRender();
 
   describeConformance(<Timeline />, () => ({
     classes,
     inheritComponent: 'ul',
-    mount,
+    render,
+    muiName: 'MuiTimeline',
     refInstanceof: window.HTMLUListElement,
-    skip: ['componentProp'],
+    testVariantProps: { position: 'left' },
+    testStateOverrides: { prop: 'position', value: 'left', styleKey: 'positionLeft' },
+    skip: ['componentProp', 'componentsProp'],
   }));
 });

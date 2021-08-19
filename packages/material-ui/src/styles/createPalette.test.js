@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { deepOrange, indigo, pink } from '../colors';
-import { darken, lighten } from './colorManipulator';
+import { darken, lighten } from '@material-ui/system';
+import { deepOrange, blue, purple, indigo } from '../colors';
 import createPalette, { dark, light } from './createPalette';
 
 describe('createPalette()', () => {
@@ -85,11 +85,11 @@ describe('createPalette()', () => {
 
   it('should create a dark palette', () => {
     const palette = createPalette({ mode: 'dark' });
-    expect(palette.primary.main, 'should use indigo as the default primary color').to.equal(
-      indigo[500],
+    expect(palette.primary.main, 'should use blue as the default primary color').to.equal(
+      blue[200],
     );
-    expect(palette.secondary.main, 'should use pink as the default secondary color').to.equal(
-      pink.A400,
+    expect(palette.secondary.main, 'should use purple as the default secondary color').to.equal(
+      purple[200],
     );
     expect(palette.text, 'should use dark theme text').to.equal(dark.text);
   });
@@ -137,8 +137,8 @@ describe('createPalette()', () => {
   it('should create a palette with unique object references', () => {
     const redPalette = createPalette({ background: { paper: 'red' } });
     const bluePalette = createPalette({ background: { paper: 'blue' } });
-    expect(redPalette).to.not.equal(bluePalette);
-    expect(redPalette.background).to.not.equal(bluePalette.background);
+    expect(redPalette).not.to.equal(bluePalette);
+    expect(redPalette.background).not.to.equal(bluePalette.background);
   });
 
   describe('warnings', () => {
@@ -175,10 +175,7 @@ describe('createPalette()', () => {
         ({ getContrastText } = createPalette({
           contrastThreshold: 0,
         }));
-      }).toErrorDev([
-        'falls below the WCAG recommended absolute minimum contrast ratio of 3:1',
-        'falls below the WCAG recommended absolute minimum contrast ratio of 3:1',
-      ]);
+      }).not.toErrorDev();
 
       expect(() => {
         getContrastText('#fefefe');

@@ -10,9 +10,7 @@ const exec = promisify(childProcess.exec);
 
 /**
  * Fixes a wrong import path caused by https://github.com/microsoft/TypeScript/issues/39117
- *
  * @remarks Paths are hardcoded since it is unclear if all these broken import paths target "public paths".
- *
  * @param {string} importPath - POSIX path
  */
 function rewriteImportPath(importPath) {
@@ -24,6 +22,11 @@ function rewriteImportPath(importPath) {
   const stylesSrcPath = path.posix.join('..', 'material-ui-styles', 'src');
   if (importPath.startsWith(stylesSrcPath)) {
     return importPath.replace(stylesSrcPath, '@material-ui/styles');
+  }
+
+  const systemSrcPath = path.posix.join('..', 'material-ui-system', 'src');
+  if (importPath.startsWith(systemSrcPath)) {
+    return importPath.replace(systemSrcPath, '@material-ui/system');
   }
 
   throw new Error(`Don't know where to rewrite '${importPath}' to`);

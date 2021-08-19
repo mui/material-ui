@@ -1,31 +1,30 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import Dialog, { DialogProps as MuiDialogProps } from '@material-ui/core/Dialog';
-import { MuiStyles, WithStyles, withStyles } from '@material-ui/core/styles';
+import Dialog, { DialogProps as MuiDialogProps, dialogClasses } from '@material-ui/core/Dialog';
+import { styled } from '@material-ui/core/styles';
 import { DIALOG_WIDTH } from './constants/dimensions';
 
 export interface ExportedPickerModalProps {
   /**
    * Ok button text.
-   * @default "OK"
+   * @default 'OK'
    */
   okText?: React.ReactNode;
   /**
    * Cancel text message.
-   * @default "CANCEL"
+   * @default 'Cancel'
    */
   cancelText?: React.ReactNode;
   /**
    * Clear text message.
-   * @default "CLEAR"
+   * @default 'Clear'
    */
   clearText?: React.ReactNode;
   /**
    * Today text message.
-   * @default "TODAY"
+   * @default 'Today'
    */
   todayText?: React.ReactNode;
   /**
@@ -52,44 +51,39 @@ export interface PickersModalDialogProps extends ExportedPickerModalProps {
   open: boolean;
 }
 
-export type PickersModalDialogClassKey =
-  | 'container'
-  | 'paper'
-  | 'content'
-  | 'action'
-  | 'withAdditionalAction';
-
-export const styles: MuiStyles<PickersModalDialogClassKey> = {
-  container: {
+const PickersModalDialogRoot = styled(Dialog, { skipSx: true })({
+  [`& .${dialogClasses.container}`]: {
     outline: 0,
   },
-  paper: {
+  [`& .${dialogClasses.paper}`]: {
     outline: 0,
     minWidth: DIALOG_WIDTH,
   },
-  content: {
-    '&:first-child': {
-      padding: 0,
-    },
+});
+
+const PickersModalDialogContent = styled(DialogContent, { skipSx: true })({
+  '&:first-of-type': {
+    padding: 0,
   },
-  action: {},
-  withAdditionalAction: {
+});
+
+const PickersModalDialogActions = styled(DialogActions, { skipSx: true })<{
+  ownerState: PickersModalDialogProps;
+}>(({ ownerState }) => ({
+  ...((ownerState.clearable || ownerState.showTodayButton) && {
     // set justifyContent to default value to fix IE11 layout bug
     // see https://github.com/mui-org/material-ui-pickers/pull/267
     justifyContent: 'flex-start',
-    '& > *:first-child': {
+    '& > *:first-of-type': {
       marginRight: 'auto',
     },
-  },
-};
+  }),
+}));
 
-const PickersModalDialog: React.FC<PickersModalDialogProps & WithStyles<typeof styles>> = (
-  props,
-) => {
+const PickersModalDialog = (props: React.PropsWithChildren<PickersModalDialogProps>) => {
   const {
     cancelText = 'Cancel',
     children,
-    classes,
     clearable = false,
     clearText = 'Clear',
     DialogProps = {},
@@ -103,23 +97,12 @@ const PickersModalDialog: React.FC<PickersModalDialogProps & WithStyles<typeof s
     todayText = 'Today',
   } = props;
 
+  const ownerState = props;
+
   return (
-    <Dialog
-      open={open}
-      onClose={onDismiss}
-      {...DialogProps}
-      classes={{
-        ...DialogProps.classes,
-        container: classes.container,
-        paper: classes.paper,
-      }}
-    >
-      <DialogContent className={classes.content}>{children}</DialogContent>
-      <DialogActions
-        className={clsx(classes.action, {
-          [classes.withAdditionalAction]: clearable || showTodayButton,
-        })}
-      >
+    <PickersModalDialogRoot open={open} onClose={onDismiss} {...DialogProps}>
+      <PickersModalDialogContent>{children}</PickersModalDialogContent>
+      <PickersModalDialogActions ownerState={ownerState}>
         {clearable && (
           <Button data-mui-test="clear-action-button" onClick={onClear}>
             {clearText}
@@ -132,9 +115,9 @@ const PickersModalDialog: React.FC<PickersModalDialogProps & WithStyles<typeof s
         )}
         {cancelText && <Button onClick={onDismiss}>{cancelText}</Button>}
         {okText && <Button onClick={onAccept}>{okText}</Button>}
-      </DialogActions>
-    </Dialog>
+      </PickersModalDialogActions>
+    </PickersModalDialogRoot>
   );
 };
 
-export default withStyles(styles, { name: 'MuiPickersModalDialog' })(PickersModalDialog);
+export default PickersModalDialog;

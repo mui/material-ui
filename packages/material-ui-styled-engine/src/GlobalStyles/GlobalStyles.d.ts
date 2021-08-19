@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Interpolation } from '@emotion/styled';
+import { GlobalProps } from '@emotion/react';
 
 export interface GlobalStylesProps {
   defaultTheme?: object;
-  styles: Interpolation<any>;
+  styles: GlobalProps['styles'];
 }
 
 export default function GlobalStyles(props: GlobalStylesProps): React.ReactElement;

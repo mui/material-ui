@@ -17,7 +17,9 @@ Material-UI provides icons support in three ways:
 
 ## Material icons
 
-Google has created over 1,300 official Material icons, each in five different "themes" (see below). For each SVG icon, we export the respective React component from the `@material-ui/icons` package. You can [search the full list of these icons](/components/material-icons/).
+Google has created over 1,700 official Material icons, each in five different "themes" (see below).
+For each SVG icon, we export the respective React component from the `@material-ui/icons` package.
+You can [search the full list of these icons](/components/material-icons/).
 
 ### Installation
 
@@ -71,7 +73,7 @@ Each Material icon also has a "theme": Filled (default), Outlined, Rounded, Two-
 - Twotone theme is exported as `@material-ui/icons/DeleteTwoTone`,
 - Sharp theme is exported as `@material-ui/icons/DeleteSharp`.
 
-> Note: The Material Design specification names the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
+> Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
@@ -235,7 +237,7 @@ Modifying the `baseClassName` prop for each component usage is repetitive.
 You can change the default prop globally with the theme
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiIcon: {
       defaultProps: {
@@ -263,7 +265,7 @@ Note that the Font Awesome icons weren't designed like the Material Design icons
 The fa icons are cropped to use all the space available. You can adjust for this with a global override:
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiIcon: {
       styleOverrides: {
@@ -330,16 +332,14 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 You need to provide a text alternative that is only visible to assistive technologies.
 
 ```jsx
+import Box from '@material-ui/core/Box';
 import Icon from '@material-ui/core/Icon';
 import { visuallyHidden } from '@material-ui/utils';
-import { makeStyles } from '@material-ui/core/styles';
-
-const classes = makeStyles({ visuallyHidden })();
 
 // ...
 
 <Icon>add_circle</Icon>
-<span className={classes.visuallyHidden}>Create a user</span>
+<Box component="span" sx={visuallyHidden}>Create a user</Box>
 ```
 
 #### Reference

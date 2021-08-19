@@ -1,41 +1,35 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import { isFilled, isAdornedStart } from '../InputBase/utils';
 import capitalize from '../utils/capitalize';
 import isMuiElement from '../utils/isMuiElement';
 import FormControlContext from './FormControlContext';
 import { getFormControlUtilityClasses } from './formControlClasses';
 
-const overridesResolver = ({ styleProps }, styles) => {
-  return deepmerge(styles.root || {}, {
-    ...styles[`margin${capitalize(styleProps.margin)}`],
-    ...(styleProps.fullWidth && styles.fullWidth),
-  });
-};
-
-const useUtilityClasses = (styleProps) => {
-  const { classes, margin, fullWidth } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, margin, fullWidth } = ownerState;
   const slots = {
-    root: ['root', `margin${capitalize(margin)}`, fullWidth && 'fullWidth'],
+    root: ['root', margin !== 'none' && `margin${capitalize(margin)}`, fullWidth && 'fullWidth'],
   };
 
   return composeClasses(slots, getFormControlUtilityClasses, classes);
 };
 
-const FormControlRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiFormControl',
-    slot: 'Root',
-    overridesResolver,
+const FormControlRoot = styled('div', {
+  name: 'MuiFormControl',
+  slot: 'Root',
+  overridesResolver: ({ ownerState }, styles) => {
+    return {
+      ...styles.root,
+      ...styles[`margin${capitalize(ownerState.margin)}`],
+      ...(ownerState.fullWidth && styles.fullWidth),
+    };
   },
-)(({ styleProps }) => ({
+})(({ ownerState }) => ({
   display: 'inline-flex',
   flexDirection: 'column',
   position: 'relative',
@@ -45,15 +39,15 @@ const FormControlRoot = experimentalStyled(
   margin: 0,
   border: 0,
   verticalAlign: 'top', // Fix alignment issue on Safari.
-  ...(styleProps.margin === 'normal' && {
+  ...(ownerState.margin === 'normal' && {
     marginTop: 16,
     marginBottom: 8,
   }),
-  ...(styleProps.margin === 'dense' && {
+  ...(ownerState.margin === 'dense' && {
     marginTop: 8,
     marginBottom: 4,
   }),
-  ...(styleProps.fullWidth && {
+  ...(ownerState.fullWidth && {
     width: '100%',
   }),
 }));
@@ -97,11 +91,11 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     margin = 'none',
     required = false,
     size = 'medium',
-    variant = 'standard',
+    variant = 'outlined',
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     color,
     component,
@@ -115,7 +109,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const [adornedStart, setAdornedStart] = React.useState(() => {
     // We need to iterate through the children and find the Input in order
@@ -159,11 +153,11 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
   });
 
   const [focusedState, setFocused] = React.useState(false);
-  const focused = visuallyFocused !== undefined ? visuallyFocused : focusedState;
-
-  if (disabled && focused) {
+  if (disabled && focusedState) {
     setFocused(false);
   }
+
+  const focused = visuallyFocused !== undefined && !disabled ? visuallyFocused : focusedState;
 
   let registerEffect;
   if (process.env.NODE_ENV !== 'production') {
@@ -222,7 +216,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     <FormControlContext.Provider value={childContext}>
       <FormControlRoot
         as={component}
-        styleProps={styleProps}
+        ownerState={ownerState}
         className={clsx(classes.root, className)}
         ref={ref}
         {...other}
@@ -233,7 +227,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
   );
 });
 
-FormControl.propTypes = {
+FormControl.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -254,7 +248,10 @@ FormControl.propTypes = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -300,14 +297,17 @@ FormControl.propTypes = {
    * The size of the component.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.object,
   /**
    * The variant to use.
-   * @default 'standard'
+   * @default 'outlined'
    */
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };

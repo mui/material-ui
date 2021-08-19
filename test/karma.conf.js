@@ -1,27 +1,59 @@
 const playwright = require('playwright');
+const path = require('path');
 const webpack = require('webpack');
+
+const CI = Boolean(process.env.CI);
+
+let build = `material-ui local ${new Date().toISOString()}`;
+
+if (process.env.CIRCLECI) {
+  const buildPrefix =
+    process.env.CIRCLE_PR_NUMBER !== undefined
+      ? process.env.CIRCLE_PR_NUMBER
+      : process.env.CIRCLE_BRANCH;
+  build = `${buildPrefix}: ${process.env.CIRCLE_BUILD_URL}`;
+}
 
 const browserStack = {
   username: process.env.BROWSERSTACK_USERNAME,
   accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
-  build: `material-ui-${new Date().toISOString()}`,
+  build,
+  // https://github.com/browserstack/api#timeout300
+  timeout: 6 * 60, // Maximum time before a worker is terminated. Default 5 minutes.
 };
 
 process.env.CHROME_BIN = playwright.chromium.executablePath();
+
+// BrowserStack rate limit after 1600 calls every 5 minutes.
+// Per second, https://www.browserstack.com/docs/automate/api-reference/selenium/introduction#rest-api-projects
+const MAX_REQUEST_PER_SECOND_BROWSERSTACK = 1600 / (60 * 5);
+// Estimate the max number of concurrent karma builds
+// For each PR, 6 concurrent builds are used, only one is usng BrowserStack.
+const AVERAGE_KARMA_BUILD = 1 / 6;
+// CircleCI accepts up to 83 concurrent builds.
+const MAX_CIRCLE_CI_CONCURRENCY = 83;
 
 // Karma configuration
 module.exports = function setKarmaConfig(config) {
   const baseConfig = {
     basePath: '../',
     browsers: ['chromeHeadless'],
-    browserDisconnectTimeout: 120000, // default 2000
+    browserDisconnectTimeout: 3 * 60 * 1000, // default 2000
     browserDisconnectTolerance: 1, // default 0
-    browserNoActivityTimeout: 6 * 60 * 1000, // default 10000
+    browserNoActivityTimeout: 3 * 60 * 1000, // default 30000
     colors: true,
+    coverageIstanbulReporter: {
+      combineBrowserReports: true,
+      dir: path.resolve(__dirname, '../coverage'),
+      fixWebpackSourcePaths: true,
+      reports: CI ? ['lcov'] : [],
+      skipFilesWithNoCoverage: true,
+      verbose: false,
+    },
     client: {
       mocha: {
         // Some BrowserStack browsers can be slow.
-        timeout: (process.env.CIRCLECI === 'true' ? 4 : 2) * 1000,
+        timeout: (process.env.CIRCLECI === 'true' ? 6 : 2) * 1000,
       },
     },
     frameworks: ['mocha'],
@@ -39,7 +71,13 @@ module.exports = function setKarmaConfig(config) {
         served: true,
       },
     ],
-    plugins: ['karma-mocha', 'karma-chrome-launcher', 'karma-sourcemap-loader', 'karma-webpack'],
+    plugins: [
+      'karma-mocha',
+      'karma-chrome-launcher',
+      'karma-coverage-istanbul-reporter',
+      'karma-sourcemap-loader',
+      'karma-webpack',
+    ],
     /**
      * possible values:
      * - config.LOG_DISABLE
@@ -57,10 +95,12 @@ module.exports = function setKarmaConfig(config) {
       '/fake.png': '/base/test/assets/fake.png',
       '/fake2.png': '/base/test/assets/fake2.png',
     },
-    reporters: ['dots'],
+    // The CI branch fixes double log issue
+    // https://github.com/karma-runner/karma/issues/2342
+    reporters: ['dots', ...(CI ? ['coverage-istanbul'] : [])],
     webpack: {
       mode: 'development',
-      devtool: 'inline-source-map',
+      devtool: CI ? 'inline-source-map' : 'eval-source-map',
       plugins: [
         new webpack.DefinePlugin({
           'process.env.NODE_ENV': JSON.stringify('test'),
@@ -79,6 +119,15 @@ module.exports = function setKarmaConfig(config) {
               envName: 'stable',
             },
           },
+          {
+            test: /\.(js|ts|tsx)$/,
+            use: {
+              loader: 'istanbul-instrumenter-loader',
+              options: { esModules: true },
+            },
+            enforce: 'post',
+            exclude: /node_modules/,
+          },
         ],
       },
       node: {
@@ -91,7 +140,7 @@ module.exports = function setKarmaConfig(config) {
     },
     webpackMiddleware: {
       noInfo: true,
-      writeToDisk: Boolean(process.env.CI),
+      writeToDisk: CI,
     },
     customLaunchers: {
       chromeHeadless: {
@@ -99,7 +148,7 @@ module.exports = function setKarmaConfig(config) {
         flags: ['--no-sandbox'],
       },
     },
-    singleRun: Boolean(process.env.CI),
+    singleRun: CI,
   };
 
   let newConfig = baseConfig;
@@ -108,7 +157,7 @@ module.exports = function setKarmaConfig(config) {
     newConfig = {
       ...baseConfig,
       browserStack,
-      browsers: baseConfig.browsers.concat(['chrome', 'firefox', 'safar', 'edge']),
+      browsers: baseConfig.browsers.concat(['chrome', 'firefox', 'safari', 'edge']),
       plugins: baseConfig.plugins.concat(['karma-browserstack-launcher']),
       customLaunchers: {
         ...baseConfig.customLaunchers,
@@ -117,7 +166,10 @@ module.exports = function setKarmaConfig(config) {
           os: 'OS X',
           os_version: 'Catalina',
           browser: 'chrome',
-          browser_version: '84.0',
+          // We support Chrome 90.x
+          // However, >=88 fails on seemingly all focus-related tests.
+          // TODO: Investigate why.
+          browser_version: '87.0',
         },
         firefox: {
           base: 'BrowserStack',
@@ -126,13 +178,13 @@ module.exports = function setKarmaConfig(config) {
           browser: 'firefox',
           browser_version: '78.0',
         },
-        safar: {
+        safari: {
           base: 'BrowserStack',
           os: 'OS X',
           os_version: 'Catalina',
           browser: 'safari',
-          // We support 12.2 on iOS.
-          // However, 12.1 is very flaky on desktop (mobile is always flaky).
+          // We support 12.5 on iOS.
+          // However, 12.x is very flaky on desktop (mobile is always flaky).
           browser_version: '13.0',
         },
         edge: {
@@ -140,10 +192,19 @@ module.exports = function setKarmaConfig(config) {
           os: 'Windows',
           os_version: '10',
           browser: 'edge',
-          browser_version: '85.0',
+          browser_version: '91.0',
         },
       },
     };
+
+    // -1 because chrome headless runs in the local machine
+    const browserstackBrowsersUsed = newConfig.browsers.length - 1;
+
+    // default 1000, Avoid Rate Limit Exceeded
+    newConfig.browserStack.pollingTimeout =
+      ((MAX_CIRCLE_CI_CONCURRENCY * AVERAGE_KARMA_BUILD * browserstackBrowsersUsed) /
+        MAX_REQUEST_PER_SECOND_BROWSERSTACK) *
+      1000;
   }
 
   config.set(newConfig);

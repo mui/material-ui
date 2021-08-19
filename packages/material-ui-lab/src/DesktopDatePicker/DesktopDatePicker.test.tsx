@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy } from 'sinon';
+import { SinonFakeTimers, spy, useFakeTimers } from 'sinon';
 import TextField from '@material-ui/core/TextField';
-import { act, fireEvent, screen } from 'test/utils';
+import { TransitionProps } from '@material-ui/core/transitions';
+import { fireEvent, screen, userEvent } from 'test/utils';
 import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
+import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
 import {
   createPickerRender,
   FakeTransitionComponent,
@@ -40,7 +42,38 @@ const UncontrolledOpenDesktopDatePicker = (({
 }) as typeof DesktopDatePicker;
 
 describe('<DesktopDatePicker />', () => {
-  const render = createPickerRender({ strict: false });
+  let clock: SinonFakeTimers;
+  beforeEach(() => {
+    clock = useFakeTimers();
+  });
+  afterEach(() => {
+    clock.restore();
+  });
+  const render = createPickerRender();
+
+  it('prop: components.OpenPickerIcon', () => {
+    function HomeIcon(props: SvgIconProps) {
+      return (
+        <SvgIcon data-testid="component-test" {...props}>
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+        </SvgIcon>
+      );
+    }
+
+    const { getByTestId } = render(
+      <DesktopDatePicker
+        label="icon test example"
+        value={null}
+        onChange={() => {}}
+        components={{
+          OpenPickerIcon: HomeIcon,
+        }}
+        renderInput={(params) => <TextField {...params} />}
+      />,
+    );
+
+    expect(getByTestId('component-test')).not.to.equal(null);
+  });
 
   it('opens when "Choose date" is clicked', () => {
     const handleOpen = spy();
@@ -54,12 +87,30 @@ describe('<DesktopDatePicker />', () => {
       />,
     );
 
-    act(() => {
-      screen.getByLabelText(/Choose date/).click();
-    });
+    userEvent.mousePress(screen.getByLabelText(/Choose date/));
 
     expect(handleOpen.callCount).to.equal(1);
     expect(screen.queryByRole('dialog')).not.to.equal(null);
+  });
+
+  ['readOnly', 'disabled'].forEach((prop) => {
+    it(`cannot be opened when "Choose date" is clicked when ${prop}={true}`, () => {
+      const handleOpen = spy();
+      render(
+        <DesktopDatePicker
+          value={adapterToUse.date('2019-01-01T00:00:00.000')}
+          {...{ [prop]: true }}
+          onChange={() => {}}
+          onOpen={handleOpen}
+          open={false}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      userEvent.mousePress(screen.getByLabelText(/Choose date/));
+
+      expect(handleOpen.callCount).to.equal(0);
+    });
   });
 
   it('closes on clickaway', () => {
@@ -75,7 +126,7 @@ describe('<DesktopDatePicker />', () => {
       />,
     );
 
-    fireEvent.click(document.body);
+    userEvent.mousePress(document.body);
 
     expect(handleClose.callCount).to.equal(1);
   });
@@ -91,7 +142,7 @@ describe('<DesktopDatePicker />', () => {
       />,
     );
 
-    fireEvent.click(document.body);
+    userEvent.mousePress(document.body);
 
     expect(handleClose.callCount).to.equal(0);
   });
@@ -109,7 +160,7 @@ describe('<DesktopDatePicker />', () => {
       />,
     );
 
-    fireEvent.click(screen.getByLabelText('Next month'));
+    userEvent.mousePress(screen.getByLabelText('Next month'));
 
     expect(handleClose.callCount).to.equal(0);
   });
@@ -250,6 +301,78 @@ describe('<DesktopDatePicker />', () => {
 
       expect(handleClick.callCount).to.equal(1);
       expect(handleTouchStart.callCount).to.equal(1);
+    });
+  });
+
+  describe('scroll', () => {
+    const NoTransition = React.forwardRef(function NoTransition(
+      props: TransitionProps & { children?: React.ReactNode },
+      ref: React.Ref<HTMLDivElement>,
+    ) {
+      const { children, in: inProp } = props;
+
+      if (!inProp) {
+        return null;
+      }
+      return (
+        <div ref={ref} tabIndex={-1}>
+          {children}
+        </div>
+      );
+    });
+
+    before(function beforeHook() {
+      // JSDOM has neither layout nor window.scrollTo
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+    });
+
+    let originalScrollX: number;
+    let originalScrollY: number;
+    beforeEach(() => {
+      originalScrollX = window.screenX;
+      originalScrollY = window.scrollY;
+    });
+    afterEach(() => {
+      window.scrollTo(originalScrollX, originalScrollY);
+    });
+
+    it('does not scroll when opened', () => {
+      const handleClose = spy();
+      const handleOpen = spy();
+      function BottomAnchoredDesktopTimePicker() {
+        const [anchorEl, anchorElRef] = React.useState<HTMLElement | null>(null);
+
+        React.useEffect(() => {
+          if (anchorEl !== null) {
+            window.scrollTo(0, anchorEl.getBoundingClientRect().top);
+          }
+        }, [anchorEl]);
+
+        return (
+          <React.Fragment>
+            <div style={{ height: '200vh' }}>Spacer</div>
+            <DesktopDatePicker
+              value={adapterToUse.date('2018-01-01T00:00:00.000')}
+              OpenPickerButtonProps={{ ref: anchorElRef }}
+              onChange={() => {}}
+              onClose={handleClose}
+              onOpen={handleOpen}
+              renderInput={(params) => <TextField {...params} />}
+              TransitionComponent={NoTransition}
+            />
+          </React.Fragment>
+        );
+      }
+      render(<BottomAnchoredDesktopTimePicker />);
+      const scrollYBeforeOpen = window.scrollY;
+
+      fireEvent.click(screen.getByLabelText(/choose date/i));
+
+      expect(handleClose.callCount).to.equal(0);
+      expect(handleOpen.callCount).to.equal(1);
+      expect(window.scrollY, 'focus caused scroll').to.equal(scrollYBeforeOpen);
     });
   });
 });

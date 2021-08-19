@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Transition } from 'react-transition-group';
 import { elementAcceptingRef } from '@material-ui/utils';
-import { duration } from '../styles/transitions';
+import { duration } from '../styles/createTransitions';
 import useTheme from '../styles/useTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';
 import useForkRef from '../utils/useForkRef';
@@ -30,6 +30,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
   const {
     appear = true,
     children,
+    easing,
     in: inProp,
     onEnter,
     onEntered,
@@ -69,7 +70,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
     reflow(node); // So the animation always start from the start.
 
     const transitionProps = getTransitionProps(
-      { style, timeout },
+      { style, timeout, easing },
       {
         mode: 'enter',
       },
@@ -89,7 +90,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
 
   const handleExit = normalizedTransitionCallback((node) => {
     const transitionProps = getTransitionProps(
-      { style, timeout },
+      { style, timeout, easing },
       {
         mode: 'exit',
       },
@@ -136,7 +137,7 @@ const Zoom = React.forwardRef(function Zoom(props, ref) {
   );
 });
 
-Zoom.propTypes = {
+Zoom.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -151,6 +152,17 @@ Zoom.propTypes = {
    * A single child content element.
    */
   children: elementAcceptingRef,
+  /**
+   * The transition timing function.
+   * You may specify a single easing or a object containing enter and exit values.
+   */
+  easing: PropTypes.oneOfType([
+    PropTypes.shape({
+      enter: PropTypes.string,
+      exit: PropTypes.string,
+    }),
+    PropTypes.string,
+  ]),
   /**
    * If `true`, the component will transition in.
    */

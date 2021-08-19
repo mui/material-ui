@@ -1,22 +1,16 @@
 // @ts-check
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
-import Typography from './Typography';
-import classes from './typographyClasses';
+import { createClientRender, describeConformance } from 'test/utils';
+import Typography, { typographyClasses as classes } from '@material-ui/core/Typography';
 
 describe('<Typography />', () => {
-  /**
-   * @type {ReturnType<typeof createMount>}
-   */
-  const mount = createMount();
-
   const render = createClientRender();
 
-  describeConformanceV5(<Typography />, () => ({
+  describeConformance(<Typography />, () => ({
     classes,
     inheritComponent: 'p',
-    mount,
+    render,
     refInstanceof: window.HTMLParagraphElement,
     muiName: 'MuiTypography',
     testVariantProps: { variant: 'dot' },

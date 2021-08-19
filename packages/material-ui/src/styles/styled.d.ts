@@ -1,41 +1,12 @@
-import * as React from 'react';
-import { DistributiveOmit } from '@material-ui/types';
-import {
-  CreateCSSProperties,
-  StyledComponentProps,
-  WithStylesOptions,
-} from '@material-ui/styles/withStyles';
-import { Theme as DefaultTheme } from './createMuiTheme';
-
-// These definitions are almost identical to the ones in @material-ui/styles/styled
-// Only difference is that ComponentCreator has a default theme type
-// If you need to change these types, update the ones in @material-ui/styles as well
+import { CreateMUIStyled } from '@material-ui/system';
+import { Theme } from './createTheme';
 
 /**
- * @internal
+ * Custom styled utility that has a default MUI theme.
+ * @param tag HTML tag or component that should serve as base.
+ * @param options Styled options for the created component.
+ * @returns React component that has styles attached to it.
  */
-export type ComponentCreator<Component extends React.ElementType> = <
-  Theme = DefaultTheme,
-  Props extends {} = {}
->(
-  styles:
-    | CreateCSSProperties<Props>
-    | ((props: { theme: Theme } & Props) => CreateCSSProperties<Props>),
-  options?: WithStylesOptions<Theme>
-) => React.ComponentType<
-  DistributiveOmit<
-    JSX.LibraryManagedAttributes<Component, React.ComponentProps<Component>>,
-    'classes' | 'className'
-  > &
-    StyledComponentProps<'root'> & { className?: string } & (Props extends { theme: Theme }
-      ? DistributiveOmit<Props, 'theme'> & { theme?: Theme }
-      : Props)
->;
+declare const styled: CreateMUIStyled<Theme>;
 
-export interface StyledProps {
-  className: string;
-}
-
-export default function styled<Component extends React.ElementType>(
-  Component: Component
-): ComponentCreator<Component>;
+export default styled;

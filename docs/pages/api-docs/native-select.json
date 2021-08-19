@@ -1,11 +1,12 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" }, "default": "{}" },
     "IconComponent": { "type": { "name": "elementType" }, "default": "ArrowDropDownIcon" },
     "input": { "type": { "name": "element" }, "default": "<Input />" },
     "inputProps": { "type": { "name": "object" } },
     "onChange": { "type": { "name": "func" } },
+    "sx": { "type": { "name": "object" } },
     "value": { "type": { "name": "any" } },
     "variant": {
       "type": {
@@ -21,12 +22,13 @@
       "select",
       "filled",
       "outlined",
-      "selectMenu",
+      "standard",
       "disabled",
       "icon",
       "iconOpen",
       "iconFilled",
       "iconOutlined",
+      "iconStandard",
       "nativeInput"
     ],
     "globalClasses": { "disabled": "Mui-disabled" },
@@ -37,6 +39,6 @@
   "filename": "/packages/material-ui/src/NativeSelect/NativeSelect.js",
   "inheritance": { "component": "Input", "pathname": "/api/input/" },
   "demos": "<ul><li><a href=\"/components/selects/\">Selects</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

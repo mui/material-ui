@@ -4,11 +4,12 @@
     "classes": { "type": { "name": "object" } },
     "color": {
       "type": {
-        "name": "enum",
-        "description": "'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'transparent'"
+        "name": "union",
+        "description": "'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'transparent'<br>&#124;&nbsp;string"
       },
       "default": "'primary'"
     },
+    "enableColorOnDark": { "type": { "name": "bool" } },
     "position": {
       "type": {
         "name": "enum",

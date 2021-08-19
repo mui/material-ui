@@ -1,19 +1,8 @@
 import * as React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Popper from '@material-ui/core/Popper';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    paper: {
-      border: '1px solid',
-      padding: theme.spacing(1),
-      backgroundColor: theme.palette.background.paper,
-    },
-  }),
-);
-
 export default function SimplePopper() {
-  const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -29,7 +18,9 @@ export default function SimplePopper() {
         Toggle Popper
       </button>
       <Popper id={id} open={open} anchorEl={anchorEl}>
-        <div className={classes.paper}>The content of the Popper.</div>
+        <Box sx={{ border: 1, p: 1, bgcolor: 'background.paper' }}>
+          The content of the Popper.
+        </Box>
       </Popper>
     </div>
   );

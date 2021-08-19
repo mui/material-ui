@@ -1,9 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { isWeekend } from 'date-fns';
+import { useFakeTimers } from 'sinon';
 import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 import StaticDateRangePicker from '@material-ui/lab/StaticDateRangePicker';
-import { createPickerRender, adapterToUse, getAllByMuiTest } from '../internal/pickers/test-utils';
+import { describeConformance } from 'test/utils';
+import {
+  wrapPickerMount,
+  createPickerRender,
+  adapterToUse,
+  getAllByMuiTest,
+} from '../internal/pickers/test-utils';
 
 const defaultRangeRenderInput = (startProps: TextFieldProps, endProps: TextFieldProps) => (
   <React.Fragment>
@@ -13,7 +20,41 @@ const defaultRangeRenderInput = (startProps: TextFieldProps, endProps: TextField
 );
 
 describe('<StaticDateRangePicker />', () => {
+  let clock: ReturnType<typeof useFakeTimers>;
+  beforeEach(() => {
+    clock = useFakeTimers();
+  });
+  afterEach(() => {
+    clock.restore();
+  });
+
   const render = createPickerRender();
+
+  describeConformance(
+    <StaticDateRangePicker
+      onChange={() => {}}
+      renderInput={(props) => <TextField {...props} />}
+      value={[null, null]}
+    />,
+    () => ({
+      classes: {},
+      muiName: 'MuiStaticDateRangePicker',
+      wrapMount: wrapPickerMount,
+      refInstanceof: undefined,
+      skip: [
+        'componentProp',
+        'componentsProp',
+        'themeDefaultProps',
+        'themeStyleOverrides',
+        'themeVariants',
+        'mergeClassName',
+        'propsSpread',
+        'refForwarding',
+        'rootClass',
+        'reactTestRenderer',
+      ],
+    }),
+  );
 
   it('allows disabling dates', () => {
     render(

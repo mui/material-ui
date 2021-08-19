@@ -10,7 +10,7 @@
     "component": { "type": { "name": "elementType" } },
     "indicatorColor": {
       "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
-      "default": "'secondary'"
+      "default": "'primary'"
     },
     "onChange": { "type": { "name": "func" } },
     "orientation": {
@@ -23,14 +23,15 @@
       "default": "'auto'"
     },
     "selectionFollowsFocus": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } },
     "TabIndicatorProps": { "type": { "name": "object" }, "default": "{}" },
-    "TabScrollButtonProps": { "type": { "name": "object" } },
+    "TabScrollButtonProps": { "type": { "name": "object" }, "default": "{}" },
     "textColor": {
       "type": {
         "name": "enum",
         "description": "'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
       },
-      "default": "'inherit'"
+      "default": "'primary'"
     },
     "value": { "type": { "name": "any" } },
     "variant": {
@@ -67,6 +68,6 @@
   "filename": "/packages/material-ui/src/Tabs/Tabs.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tabs/\">Tabs</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

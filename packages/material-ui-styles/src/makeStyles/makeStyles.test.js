@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { SheetsRegistry } from 'jss';
 import { act } from 'react-dom/test-utils';
 import { createMount } from 'test/utils';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import createGenerateClassName from '../createGenerateClassName';
 import makeStyles from './makeStyles';
 import useTheme from '../useTheme';
@@ -12,6 +12,7 @@ import StylesProvider from '../StylesProvider';
 import ThemeProvider from '../ThemeProvider';
 
 describe('makeStyles', () => {
+  // StrictModeViolation: uses `useSynchronousEffect`
   const mount = createMount({ strict: null });
 
   /**
@@ -129,6 +130,37 @@ describe('makeStyles', () => {
         mountWithProps2({});
       }).not.to.throw();
     });
+
+    it('should warn if the key is not available', () => {
+      const theme = {
+        components: {
+          Test: {
+            styleOverrides: {
+              foo: {
+                margin: '1px',
+              },
+            },
+          },
+        },
+      };
+
+      const useStyles = makeStyles({ root: { margin: 5, padding: 3 } }, { name: 'Test' });
+      function Test() {
+        const classes = useStyles();
+        return <div className={classes.root} />;
+      }
+
+      expect(() => {
+        mount(
+          <ThemeProvider theme={theme}>
+            <Test />
+          </ThemeProvider>,
+        );
+      }).toWarnDev([
+        'Material-UI: You are trying to override a style that does not exist.\n' +
+          'Fix the `foo` key of `theme.components.Test.styleOverrides`.',
+      ]);
+    });
   });
 
   describe('classes memoization', () => {
@@ -171,7 +203,7 @@ describe('makeStyles', () => {
         classes: { root: 'bar' },
       });
       const classes2 = output.classes;
-      expect(classes1).to.not.equal(classes2);
+      expect(classes1).not.to.equal(classes2);
       expect(classes2).to.deep.equal({
         root: `${classes.root} bar`,
       });
@@ -193,7 +225,7 @@ describe('makeStyles', () => {
       };
 
       const wrapper = mount(
-        <ThemeProvider theme={createMuiTheme()}>
+        <ThemeProvider theme={createTheme()}>
           <StylesProvider
             sheetsRegistry={sheetsRegistry}
             sheetsCache={new Map()}
@@ -208,7 +240,7 @@ describe('makeStyles', () => {
       wrapper.update();
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-1' });
-      wrapper.setProps({ theme: createMuiTheme() });
+      wrapper.setProps({ theme: createTheme() });
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'makeStyles-root-2' });
 
@@ -226,7 +258,7 @@ describe('makeStyles', () => {
       };
 
       const wrapper = mount(
-        <ThemeProvider theme={createMuiTheme()}>
+        <ThemeProvider theme={createTheme()}>
           <StylesProvider
             sheetsRegistry={sheetsRegistry}
             sheetsCache={new Map()}
@@ -239,7 +271,7 @@ describe('makeStyles', () => {
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'MuiTextField-root' });
 
-      wrapper.setProps({ theme: createMuiTheme({ foo: 'bar' }) });
+      wrapper.setProps({ theme: createTheme({ foo: 'bar' }) });
       expect(sheetsRegistry.registry.length).to.equal(1);
       expect(sheetsRegistry.registry[0].classes).to.deep.equal({ root: 'MuiTextField-root' });
     });
@@ -264,7 +296,7 @@ describe('makeStyles', () => {
 
         mount(
           <ThemeProvider
-            theme={createMuiTheme({
+            theme={createTheme({
               components: {
                 MuiTextField: {
                   styleOverrides: {

@@ -1,12 +1,11 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import Button, { ButtonProps } from '@material-ui/core/Button';
-import { MuiStyles, WithStyles, withStyles } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import { TypographyProps } from '@material-ui/core/Typography';
 import PickersToolbarText from './PickersToolbarText';
 import { ExtendMui } from './typings/helpers';
 
-export interface ToolbarButtonProps extends ExtendMui<ButtonProps, 'value' | 'variant'> {
+export interface PickersToolbarButtonProps extends ExtendMui<ButtonProps, 'value' | 'variant'> {
   align?: TypographyProps['align'];
   selected: boolean;
   typographyClassName?: string;
@@ -14,46 +13,34 @@ export interface ToolbarButtonProps extends ExtendMui<ButtonProps, 'value' | 'va
   variant: TypographyProps['variant'];
 }
 
-export type PickersToolbarButtonClassKey = 'root';
+const PickersToolbarButtonRoot = styled(Button, { skipSx: true })({
+  padding: 0,
+  minWidth: 16,
+  textTransform: 'none',
+});
 
-export const styles: MuiStyles<PickersToolbarButtonClassKey> = {
-  root: {
-    padding: 0,
-    minWidth: '16px',
-    textTransform: 'none',
+const PickersToolbarButton: React.FunctionComponent<PickersToolbarButtonProps> = React.forwardRef(
+  function PickersToolbarButton(props, ref) {
+    const { align, className, selected, typographyClassName, value, variant, ...other } = props;
+
+    return (
+      <PickersToolbarButtonRoot
+        data-mui-test="toolbar-button"
+        variant="text"
+        ref={ref}
+        className={className}
+        {...other}
+      >
+        <PickersToolbarText
+          align={align}
+          className={typographyClassName}
+          variant={variant}
+          value={value}
+          selected={selected}
+        />
+      </PickersToolbarButtonRoot>
+    );
   },
-};
+);
 
-const ToolbarButton: React.FunctionComponent<ToolbarButtonProps & WithStyles<typeof styles>> = (
-  props,
-) => {
-  const {
-    align,
-    classes,
-    className,
-    selected,
-    typographyClassName,
-    value,
-    variant,
-    ...other
-  } = props;
-
-  return (
-    <Button
-      data-mui-test="toolbar-button"
-      variant="text"
-      className={clsx(classes.root, className)}
-      {...other}
-    >
-      <PickersToolbarText
-        align={align}
-        className={typographyClassName}
-        variant={variant}
-        value={value}
-        selected={selected}
-      />
-    </Button>
-  );
-};
-
-export default withStyles(styles, { name: 'MuiPickersToolbarButton' })(ToolbarButton);
+export default PickersToolbarButton;

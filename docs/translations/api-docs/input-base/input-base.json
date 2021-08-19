@@ -22,14 +22,14 @@
     "multiline": "If <code>true</code>, a <code>textarea</code> element is rendered.",
     "name": "Name attribute of the <code>input</code> element.",
     "onBlur": "Callback fired when the <code>input</code> is blurred.<br>Notice that the first argument (event) might be undefined.",
-    "onChange": "Callback fired when the value is changed.<br><br><strong>Signature:</strong><br><code>function(event: object) =&gt; void</code><br><em>event:</em> The event source of the callback. You can pull out the new value by accessing <code>event.target.value</code> (string).",
+    "onChange": "Callback fired when the value is changed.<br><br><strong>Signature:</strong><br><code>function(event: React.ChangeEvent&lt;HTMLTextAreaElement | HTMLInputElement&gt;) =&gt; void</code><br><em>event:</em> The event source of the callback. You can pull out the new value by accessing <code>event.target.value</code> (string).",
     "placeholder": "The short hint displayed in the <code>input</code> before the user enters a value.",
     "readOnly": "It prevents the user from changing the value of the field (not from interacting with the field).",
     "required": "If <code>true</code>, the <code>input</code> element is required. The prop defaults to the value (<code>false</code>) inherited from the parent FormControl component.",
     "rows": "Number of rows to display when multiline option is set to true.",
     "size": "The size of the component.",
     "startAdornment": "Start <code>InputAdornment</code> for this component.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
     "type": "Type of the <code>input</code> element. It should be <a href=\"https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types\">a valid HTML5 input type</a>.",
     "value": "The value of the <code>input</code> element, required for a controlled component."
   },
@@ -61,7 +61,7 @@
       "conditions": "<code>endAdornment</code> is provided"
     },
     "error": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>error={true}</code>"
     },

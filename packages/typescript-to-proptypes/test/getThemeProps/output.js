@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 function Modal(inProps) {
-  const props = getThemeProps({ props: { ...inProps } });
+  const props = getThemeProps({ props: inProps });
   const { onKeyDown, ...other } = props;
 
   function handleKeyDown(event) {

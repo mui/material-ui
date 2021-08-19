@@ -1,25 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import { getContainerUtilityClass } from './containerClasses';
 import capitalize from '../utils/capitalize';
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(styles.root || {}, {
-    ...styles[`maxWidth${capitalize(String(styleProps.maxWidth))}`],
-    ...(styleProps.fixed && styles.fixed),
-    ...(styleProps.disableGutters && styles.disableGutters),
-  });
-};
-
-const useUtilityClasses = (styleProps) => {
-  const { classes, fixed, disableGutters, maxWidth } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, fixed, disableGutters, maxWidth } = ownerState;
 
   const slots = {
     root: [
@@ -33,22 +22,27 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getContainerUtilityClass, classes);
 };
 
-const ContainerRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiContainer',
-    slot: 'Root',
-    overridesResolver,
+const ContainerRoot = styled('div', {
+  name: 'MuiContainer',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [
+      styles.root,
+      styles[`maxWidth${capitalize(String(ownerState.maxWidth))}`],
+      ownerState.fixed && styles.fixed,
+      ownerState.disableGutters && styles.disableGutters,
+    ];
   },
-)(
-  ({ theme, styleProps }) => ({
+})(
+  ({ theme, ownerState }) => ({
     width: '100%',
     marginLeft: 'auto',
     boxSizing: 'border-box',
     marginRight: 'auto',
     display: 'block', // Fix IE11 layout when used with main.
-    ...(!styleProps.disableGutters && {
+    ...(!ownerState.disableGutters && {
       paddingLeft: theme.spacing(2),
       paddingRight: theme.spacing(2),
       [theme.breakpoints.up('sm')]: {
@@ -57,8 +51,8 @@ const ContainerRoot = experimentalStyled(
       },
     }),
   }),
-  ({ theme, styleProps }) =>
-    styleProps.fixed &&
+  ({ theme, ownerState }) =>
+    ownerState.fixed &&
     Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
       const value = theme.breakpoints.values[breakpoint];
 
@@ -69,17 +63,18 @@ const ContainerRoot = experimentalStyled(
       }
       return acc;
     }, {}),
-  ({ theme, styleProps }) => ({
-    ...(styleProps.maxWidth === 'xs' && {
+  ({ theme, ownerState }) => ({
+    ...(ownerState.maxWidth === 'xs' && {
       [theme.breakpoints.up('xs')]: {
         maxWidth: Math.max(theme.breakpoints.values.xs, 444),
       },
     }),
-    ...(styleProps.maxWidth !== 'xs' && {
-      [theme.breakpoints.up(styleProps.maxWidth)]: {
-        maxWidth: `${theme.breakpoints.values[styleProps.maxWidth]}${theme.breakpoints.unit}`,
-      },
-    }),
+    ...(ownerState.maxWidth &&
+      ownerState.maxWidth !== 'xs' && {
+        [theme.breakpoints.up(ownerState.maxWidth)]: {
+          maxWidth: `${theme.breakpoints.values[ownerState.maxWidth]}${theme.breakpoints.unit}`,
+        },
+      }),
   }),
 );
 
@@ -94,7 +89,7 @@ const Container = React.forwardRef(function Container(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     component,
     disableGutters,
@@ -102,12 +97,12 @@ const Container = React.forwardRef(function Container(inProps, ref) {
     maxWidth,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <ContainerRoot
       as={component}
-      styleProps={styleProps}
+      ownerState={ownerState}
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
@@ -115,7 +110,7 @@ const Container = React.forwardRef(function Container(inProps, ref) {
   );
 });
 
-Container.propTypes = {
+Container.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -156,7 +151,10 @@ Container.propTypes = {
    * Set to `false` to disable `maxWidth`.
    * @default 'lg'
    */
-  maxWidth: PropTypes.oneOf(['lg', 'md', 'sm', 'xl', 'xs', false]),
+  maxWidth: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl', false]),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

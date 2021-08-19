@@ -1,15 +1,15 @@
-import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
 import transform from './top-level-imports';
+import readFile from '../util/readFile';
 
 function trim(str) {
   return str ? str.replace(/^\s+|\s+$/, '') : '';
 }
 
 function read(fileName) {
-  return fs.readFileSync(path.join(__dirname, fileName), 'utf8').toString();
+  return readFile(path.join(__dirname, fileName));
 }
 
 describe('@material-ui/codemod', () => {
@@ -21,7 +21,7 @@ describe('@material-ui/codemod', () => {
             source: read('./top-level-imports.test/actual.js'),
             path: require.resolve('./top-level-imports.test/actual.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
@@ -35,7 +35,7 @@ describe('@material-ui/codemod', () => {
             source: read('./top-level-imports.test/expected.js'),
             path: require.resolve('./top-level-imports.test/expected.js'),
           },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 

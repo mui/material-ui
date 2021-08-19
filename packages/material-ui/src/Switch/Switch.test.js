@@ -1,39 +1,20 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  getClasses,
-  createMount,
-  describeConformance,
-  act,
-  createClientRender,
-  fireEvent,
-} from 'test/utils';
-import FormControl from '../FormControl';
-import Switch from './Switch';
+import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
+import Switch, { switchClasses as classes } from '@material-ui/core/Switch';
+import FormControl from '@material-ui/core/FormControl';
 
 describe('<Switch />', () => {
-  const mount = createMount();
-  let classes;
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<Switch />);
-  });
-
-  describeConformance(<Switch />, () => ({
-    mount,
-    only: ['refForwarding'],
-    refInstanceof: window.HTMLSpanElement,
-  }));
-
-  /* TODO Switch violates root component
   describeConformance(<Switch />, () => ({
     classes,
-    inheritComponent: IconButton,
-    mount,
+    render,
+    muiName: 'MuiSwitch',
+    testDeepOverrides: { slotName: 'track', slotClassName: classes.track },
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp'],
-  })); */
+    skip: ['componentProp', 'componentsProp', 'propsSpread', 'themeDefaultProps', 'themeVariants'],
+  }));
 
   describe('styleSheet', () => {
     it('should have the classes required for SwitchBase', () => {
@@ -80,6 +61,20 @@ describe('<Switch />', () => {
     const { getByRole } = render(<Switch readOnly />);
 
     expect(getByRole('checkbox')).to.have.property('readOnly', true);
+  });
+
+  specify('renders a custom icon when provided', () => {
+    const { getByTestId } = render(<Switch icon={<span data-testid="icon" />} />);
+
+    expect(getByTestId('icon')).toBeVisible();
+  });
+
+  specify('renders a custom checked icon when provided', () => {
+    const { getByTestId } = render(
+      <Switch defaultChecked checkedIcon={<span data-testid="icon" />} />,
+    );
+
+    expect(getByTestId('icon')).toBeVisible();
   });
 
   specify('the Checked state changes after change events', () => {

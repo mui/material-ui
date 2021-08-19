@@ -1,28 +1,26 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import TableFooter from './TableFooter';
+import { createClientRender, describeConformance } from 'test/utils';
+import TableFooter, { tableFooterClasses as classes } from '@material-ui/core/TableFooter';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import classes from './tableFooterClasses';
 
 describe('<TableFooter />', () => {
-  const mount = createMount();
   const render = createClientRender();
 
   function renderInTable(node) {
     return render(<table>{node}</table>);
   }
 
-  describeConformanceV5(<TableFooter />, () => ({
+  describeConformance(<TableFooter />, () => ({
     classes,
     inheritComponent: 'tfoot',
-    mount: (node) => {
+    render: (node) => {
+      const { container, ...other } = render(<table>{node}</table>);
+      return { container: container.firstChild, ...other };
+    },
+    wrapMount: (mount) => (node) => {
       const wrapper = mount(<table>{node}</table>);
       return wrapper.find('table').childAt(0);
-    },
-    render: (node) => {
-      const { container, ...rest } = render(<table>{node}</table>);
-      return { container: container.firstChild, ...rest };
     },
     muiName: 'MuiTableFooter',
     testVariantProps: { variant: 'foo' },

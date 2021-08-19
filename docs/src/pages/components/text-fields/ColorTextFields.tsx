@@ -1,40 +1,25 @@
 import * as React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-        width: '25ch',
-      },
-    },
-  }),
-);
-
 export default function ColorTextFields() {
-  const classes = useStyles();
-
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <Box
+      component="form"
+      sx={{
+        '& > :not(style)': { m: 1, width: '25ch' },
+      }}
+      noValidate
+      autoComplete="off"
+    >
+      <TextField label="Outlined secondary" color="secondary" focused />
+      <TextField label="Filled success" variant="filled" color="success" focused />
       <TextField
-        id="outlined-secondary"
-        label="Outlined secondary"
-        color="secondary"
-      />
-      <TextField
-        id="filled-secondary"
-        label="Filled secondary"
-        variant="filled"
-        color="secondary"
-      />
-      <TextField
-        id="standard-secondary"
-        label="Standard secondary"
-        color="secondary"
+        label="Standard warning"
         variant="standard"
+        color="warning"
+        focused
       />
-    </form>
+    </Box>
   );
 }

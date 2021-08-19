@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { createMount, describeConformance, createClientRender } from 'test/utils';
+import { act, describeConformance, createClientRender } from 'test/utils';
 import { Transition } from 'react-transition-group';
-import Zoom from './Zoom';
+import Zoom from '@material-ui/core/Zoom';
 
 describe('<Zoom />', () => {
   const render = createClientRender();
-  const mount = createMount({ strict: true });
 
   describeConformance(
     <Zoom in>
@@ -16,10 +15,13 @@ describe('<Zoom />', () => {
     () => ({
       classes: {},
       inheritComponent: Transition,
-      mount,
       refInstanceof: window.HTMLDivElement,
       skip: [
         'componentProp',
+        'componentsProp',
+        'themeDefaultProps',
+        'themeStyleOverrides',
+        'themeVariants',
         // react-transition-group issue
         'reactTestRenderer',
       ],
@@ -70,7 +72,9 @@ describe('<Zoom />', () => {
       expect(handleEntering.callCount).to.equal(1);
       expect(handleEntering.args[0][0]).to.equal(child);
 
-      clock.tick(1000);
+      act(() => {
+        clock.tick(1000);
+      });
       expect(handleEntered.callCount).to.equal(1);
       expect(handleEntered.args[0][0]).to.equal(child);
 
@@ -86,7 +90,9 @@ describe('<Zoom />', () => {
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExiting.args[0][0]).to.equal(child);
 
-      clock.tick(1000);
+      act(() => {
+        clock.tick(1000);
+      });
       expect(handleExited.callCount).to.equal(1);
       expect(handleExited.args[0][0]).to.equal(child);
     });

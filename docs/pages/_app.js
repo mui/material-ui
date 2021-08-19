@@ -9,9 +9,9 @@ import PropTypes from 'prop-types';
 import acceptLanguage from 'accept-language';
 import { create } from 'jss';
 import jssRtl from 'jss-rtl';
+import { CacheProvider } from '@emotion/react';
 import { useRouter } from 'next/router';
 import { StylesProvider, jssPreset } from '@material-ui/styles';
-import StyledEngineProvider from '@material-ui/core/StyledEngineProvider';
 import pages from 'docs/src/pages';
 import initRedux from 'docs/src/modules/redux/initRedux';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -21,9 +21,11 @@ import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { pathnameToLanguage, getCookie } from 'docs/src/modules/utils/helpers';
 import { ACTION_TYPES, CODE_VARIANTS, LANGUAGES } from 'docs/src/modules/constants';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
-import DocsStyledEngineProvider, { cacheLtr } from 'docs/src/modules/utils/StyledEngineProvider';
+import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
+import createEmotionCache from 'docs/src/createEmotionCache';
 
-export { cacheLtr };
+// Client-side cache, shared for the whole session of the user in the browser.
+const clientSideEmotionCache = createEmotionCache();
 
 // Configure JSS
 const jss = create({
@@ -167,6 +169,18 @@ function Analytics() {
   return null;
 }
 
+let reloadInterval;
+
+// Avoid infinite loop when "Upload on reload" is set in the Chrome sw dev tools.
+function lazyReload() {
+  clearInterval(reloadInterval);
+  reloadInterval = setInterval(() => {
+    if (document.hasFocus()) {
+      window.location.reload();
+    }
+  }, 100);
+}
+
 // Inspired by
 // https://developers.google.com/web/tools/workbox/guides/advanced-recipes#offer_a_page_reload_for_users
 function forcePageReload(registration) {
@@ -194,7 +208,7 @@ function forcePageReload(registration) {
         registration.waiting.postMessage('skipWaiting');
       } else if (event.target.state === 'activated') {
         // Force the control of the page by the activated service worker.
-        window.location.reload();
+        lazyReload();
       }
     });
   }
@@ -319,15 +333,12 @@ function AppWrapper(props) {
         ))}
       </NextHead>
       <ReduxProvider store={redux}>
-        <PageContext.Provider value={{ activePage, pages, versions: pageProps.versions }}>
-          {/* TODO v5: remove once migration to emotion is completed */}
-          <StyledEngineProvider injectFirst>
-            <StylesProvider jss={jss}>
-              <ThemeProvider>
-                <DocsStyledEngineProvider>{children}</DocsStyledEngineProvider>
-              </ThemeProvider>
-            </StylesProvider>
-          </StyledEngineProvider>
+        <PageContext.Provider value={{ activePage, pages }}>
+          <StylesProvider jss={jss}>
+            <ThemeProvider>
+              <DocsStyledEngineProvider>{children}</DocsStyledEngineProvider>
+            </ThemeProvider>
+          </StylesProvider>
         </PageContext.Provider>
         <LanguageNegotiation />
         <Analytics />
@@ -343,17 +354,20 @@ AppWrapper.propTypes = {
 };
 
 export default function MyApp(props) {
-  const { Component, pageProps } = props;
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   return (
-    <AppWrapper pageProps={pageProps}>
-      <Component {...pageProps} />
-    </AppWrapper>
+    <CacheProvider value={emotionCache}>
+      <AppWrapper pageProps={pageProps}>
+        <Component {...pageProps} />
+      </AppWrapper>
+    </CacheProvider>
   );
 }
 
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
+  emotionCache: PropTypes.object,
   pageProps: PropTypes.object.isRequired,
 };
 

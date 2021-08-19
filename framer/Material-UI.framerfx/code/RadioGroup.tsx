@@ -5,7 +5,7 @@ import MuiFormLabel from '@material-ui/core/FormLabel';
 import { Radio } from './Radio';
 
 interface Props {
-  labels: string[];
+  labels: readonly string[];
   label: string;
   width: number | string;
   height: number;

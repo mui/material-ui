@@ -8,7 +8,8 @@ This guide is an overview of the core concepts that were changed from pickers v3
 
 ## Installation
 
-You simply need to install the `@material-ui/lab` package if it's not already installed. Nothing more is required.
+You need to install the `@material-ui/lab` package if it's not already installed.
+⚠️ Make sure you have installed the latest version, `"@material-ui/lab": ^5.0.0-alpha.30"` or above.
 
 ## Imports
 
@@ -78,11 +79,11 @@ We introduced a new **required** `renderInput` prop. This simplifies using non-M
 Previously, props were spread on the `<TextField />` component. From now on you will need to use the new `renderInput` prop to provide these:
 
 ```diff
-<DatePicker
-- label="Date"
-- helperText="Something"
-+ renderInput={props => <TextField label="Date" helperText="Something" /> }
-/>
+ <DatePicker
+-  label="Date"
+-  helperText="Something"
++  renderInput={props => <TextField label="Date" helperText="Something" /> }
+ />
 ```
 
 ## State management
@@ -115,9 +116,9 @@ Mask is no longer required. Also, if your provided mask is not valid, pickers wi
 ## And many more
 
 - ```diff
-  <DatePicker
-  - format="DD-MMM-YYYY"
-  + inputFormat="DD-MMM-YYYY"
+   <DatePicker
+  -  format="DD-MMM-YYYY"
+  +  inputFormat="DD-MMM-YYYY"
   ```
 
 There are many changes, be careful, make sure your tests, and build pass.

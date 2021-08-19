@@ -1,5 +1,8 @@
 import * as React from 'react';
 import { InternalStandardProps as StandardProps } from '@material-ui/core';
+import { Theme } from '@material-ui/core/styles';
+import { SxProps } from '@material-ui/system';
+import { TreeViewClasses } from './treeViewClasses';
 
 export interface TreeViewPropsBase extends StandardProps<React.HTMLAttributes<HTMLUListElement>> {
   /**
@@ -9,10 +12,7 @@ export interface TreeViewPropsBase extends StandardProps<React.HTMLAttributes<HT
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-  };
+  classes?: Partial<TreeViewClasses>;
   /**
    * The default icon used to collapse the node.
    */
@@ -58,17 +58,21 @@ export interface TreeViewPropsBase extends StandardProps<React.HTMLAttributes<HT
   /**
    * Callback fired when tree items are focused.
    *
-   * @param {object} event The event source of the callback **Warning**: This is a generic event not a focus event.
+   * @param {React.SyntheticEvent} event The event source of the callback **Warning**: This is a generic event not a focus event.
    * @param {string} value of the focused node.
    */
   onNodeFocus?: (event: React.SyntheticEvent, nodeId: string) => void;
   /**
    * Callback fired when tree items are expanded/collapsed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent} event The event source of the callback.
    * @param {array} nodeIds The ids of the expanded nodes.
    */
   onNodeToggle?: (event: React.SyntheticEvent, nodeIds: string[]) => void;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
 }
 
 export interface MultiSelectTreeViewProps extends TreeViewPropsBase {
@@ -91,8 +95,8 @@ export interface MultiSelectTreeViewProps extends TreeViewPropsBase {
   /**
    * Callback fired when tree items are selected/unselected.
    *
-   * @param {object} event The event source of the callback
-   * @param {(array|string)} value of the selected nodes. When `multiSelect` is true
+   * @param {React.SyntheticEvent} event The event source of the callback
+   * @param {string[] | string} nodeIds Ids of the selected nodes. When `multiSelect` is true
    * this is an array of strings; when false (default) a string.
    */
   onNodeSelect?: (event: React.SyntheticEvent, nodeIds: string[]) => void;
@@ -118,16 +122,14 @@ export interface SingleSelectTreeViewProps extends TreeViewPropsBase {
   /**
    * Callback fired when tree items are selected/unselected.
    *
-   * @param {object} event The event source of the callback
-   * @param {(array|string)} value of the selected nodes. When `multiSelect` is true
+   * @param {React.SyntheticEvent} event The event source of the callback
+   * @param {string[] | string} nodeIds Ids of the selected nodes. When `multiSelect` is true
    * this is an array of strings; when false (default) a string.
    */
   onNodeSelect?: (event: React.SyntheticEvent, nodeIds: string) => void;
 }
 
 export type TreeViewProps = SingleSelectTreeViewProps | MultiSelectTreeViewProps;
-
-export type TreeViewClassKey = keyof NonNullable<TreeViewProps['classes']>;
 
 /**
  *

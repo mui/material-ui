@@ -2,8 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { elementAcceptingRef } from '@material-ui/utils';
-import { alpha } from '../styles/colorManipulator';
-import withStyles from '../styles/withStyles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { alpha } from '@material-ui/system';
+import styled from '../styles/styled';
+import useTheme from '../styles/useTheme';
+import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import Grow from '../Grow';
 import Popper from '../Popper';
@@ -12,15 +15,53 @@ import useForkRef from '../utils/useForkRef';
 import useId from '../utils/useId';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useControlled from '../utils/useControlled';
-import useTheme from '../styles/useTheme';
+import tooltipClasses, { getTooltipUtilityClass } from './tooltipClasses';
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;
 }
 
-function arrowGenerator() {
-  return {
-    '&[data-popper-placement*="bottom"] $arrow': {
+const useUtilityClasses = (ownerState) => {
+  const { classes, disableInteractive, arrow, touch, placement } = ownerState;
+
+  const slots = {
+    popper: ['popper', !disableInteractive && 'popperInteractive', arrow && 'popperArrow'],
+    tooltip: [
+      'tooltip',
+      arrow && 'tooltipArrow',
+      touch && 'touch',
+      `tooltipPlacement${capitalize(placement.split('-')[0])}`,
+    ],
+    arrow: ['arrow'],
+  };
+
+  return composeClasses(slots, getTooltipUtilityClass, classes);
+};
+
+const TooltipPopper = styled(Popper, {
+  name: 'MuiTooltip',
+  slot: 'Popper',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [
+      styles.popper,
+      !ownerState.disableInteractive && styles.popperInteractive,
+      ownerState.arrow && styles.popperArrow,
+      !ownerState.open && styles.popperClose,
+    ];
+  },
+})(({ theme, ownerState, open }) => ({
+  zIndex: theme.zIndex.tooltip,
+  pointerEvents: 'none', // disable jss-rtl plugin
+  ...(!ownerState.disableInteractive && {
+    pointerEvents: 'auto',
+  }),
+  ...(!open && {
+    pointerEvents: 'none',
+  }),
+  ...(ownerState.arrow && {
+    [`&[data-popper-placement*="bottom"] .${tooltipClasses.arrow}`]: {
       top: 0,
       left: 0,
       marginTop: '-0.71em',
@@ -28,7 +69,7 @@ function arrowGenerator() {
         transformOrigin: '0 100%',
       },
     },
-    '&[data-popper-placement*="top"] $arrow': {
+    [`&[data-popper-placement*="top"] .${tooltipClasses.arrow}`]: {
       bottom: 0,
       left: 0,
       marginBottom: '-0.71em',
@@ -36,7 +77,7 @@ function arrowGenerator() {
         transformOrigin: '100% 0',
       },
     },
-    '&[data-popper-placement*="right"] $arrow': {
+    [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
       left: 0,
       marginLeft: '-0.71em',
       height: '1em',
@@ -45,7 +86,7 @@ function arrowGenerator() {
         transformOrigin: '100% 100%',
       },
     },
-    '&[data-popper-placement*="left"] $arrow': {
+    [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
       right: 0,
       marginRight: '-0.71em',
       height: '1em',
@@ -54,97 +95,94 @@ function arrowGenerator() {
         transformOrigin: '0 0',
       },
     },
-  };
-}
+  }),
+}));
 
-export const styles = (theme) => ({
-  /* Styles applied to the Popper component. */
-  popper: {
-    zIndex: theme.zIndex.tooltip,
-    pointerEvents: 'none', // disable jss-rtl plugin
+const TooltipTooltip = styled('div', {
+  name: 'MuiTooltip',
+  slot: 'Tooltip',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [
+      styles.tooltip,
+      ownerState.touch && styles.touch,
+      ownerState.arrow && styles.tooltipArrow,
+      styles[`tooltipPlacement${capitalize(ownerState.placement.split('-')[0])}`],
+    ];
   },
-  /* Styles applied to the Popper component unless `disableInteractive={true}`. */
-  popperInteractive: {
-    pointerEvents: 'auto',
-  },
-  /* Styles applied to the Popper component if `arrow={true}`. */
-  popperArrow: arrowGenerator(),
-  /* Styles applied to the tooltip (label wrapper) element. */
-  tooltip: {
-    backgroundColor: alpha(theme.palette.grey[700], 0.92),
-    borderRadius: theme.shape.borderRadius,
-    color: theme.palette.common.white,
-    fontFamily: theme.typography.fontFamily,
-    padding: '4px 8px',
-    fontSize: theme.typography.pxToRem(11),
-    maxWidth: 300,
-    margin: 2,
-    wordWrap: 'break-word',
-    fontWeight: theme.typography.fontWeightMedium,
-  },
-  /* Styles applied to the tooltip (label wrapper) element if `arrow={true}`. */
-  tooltipArrow: {
+})(({ theme, ownerState }) => ({
+  backgroundColor: alpha(theme.palette.grey[700], 0.92),
+  borderRadius: theme.shape.borderRadius,
+  color: theme.palette.common.white,
+  fontFamily: theme.typography.fontFamily,
+  padding: '4px 8px',
+  fontSize: theme.typography.pxToRem(11),
+  maxWidth: 300,
+  margin: 2,
+  wordWrap: 'break-word',
+  fontWeight: theme.typography.fontWeightMedium,
+  ...(ownerState.arrow && {
     position: 'relative',
     margin: 0,
-  },
-  /* Styles applied to the arrow element. */
-  arrow: {
-    overflow: 'hidden',
-    position: 'absolute',
-    width: '1em',
-    height: '0.71em' /* = width / sqrt(2) = (length of the hypotenuse) */,
-    boxSizing: 'border-box',
-    color: alpha(theme.palette.grey[700], 0.9),
-    '&::before': {
-      content: '""',
-      margin: 'auto',
-      display: 'block',
-      width: '100%',
-      height: '100%',
-      backgroundColor: 'currentColor',
-      transform: 'rotate(45deg)',
-    },
-  },
-  /* Styles applied to the tooltip (label wrapper) element if the tooltip is opened by touch. */
-  touch: {
+  }),
+  ...(ownerState.touch && {
     padding: '8px 16px',
     fontSize: theme.typography.pxToRem(14),
     lineHeight: `${round(16 / 14)}em`,
     fontWeight: theme.typography.fontWeightRegular,
-  },
-  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "left". */
-  tooltipPlacementLeft: {
+  }),
+  [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
     transformOrigin: 'right center',
-    marginRight: '24px',
-    [theme.breakpoints.up('sm')]: {
-      marginRight: '14px',
-    },
+    marginRight: '14px',
+    ...(ownerState.touch && {
+      marginRight: '24px',
+    }),
   },
-  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "right". */
-  tooltipPlacementRight: {
+  [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
     transformOrigin: 'left center',
-    marginLeft: '24px',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: '14px',
-    },
+    marginLeft: '14px',
+    ...(ownerState.touch && {
+      marginLeft: '24px',
+    }),
   },
-  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "top". */
-  tooltipPlacementTop: {
+  [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
     transformOrigin: 'center bottom',
-    marginBottom: '24px',
-    [theme.breakpoints.up('sm')]: {
-      marginBottom: '14px',
-    },
+    marginBottom: '14px',
+    ...(ownerState.touch && {
+      marginBottom: '24px',
+    }),
   },
-  /* Styles applied to the tooltip (label wrapper) element if `placement` contains "bottom". */
-  tooltipPlacementBottom: {
+  [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
     transformOrigin: 'center top',
-    marginTop: '24px',
-    [theme.breakpoints.up('sm')]: {
-      marginTop: '14px',
-    },
+    marginTop: '14px',
+    ...(ownerState.touch && {
+      marginTop: '24px',
+    }),
   },
-});
+}));
+
+const TooltipArrow = styled('span', {
+  name: 'MuiTooltip',
+  slot: 'Arrow',
+  overridesResolver: (props, styles) => styles.arrow,
+})(({ theme }) => ({
+  overflow: 'hidden',
+  position: 'absolute',
+  width: '1em',
+  height: '0.71em' /* = width / sqrt(2) = (length of the hypotenuse) */,
+  boxSizing: 'border-box',
+  color: alpha(theme.palette.grey[700], 0.9),
+  '&::before': {
+    content: '""',
+    margin: 'auto',
+    display: 'block',
+    width: '100%',
+    height: '100%',
+    backgroundColor: 'currentColor',
+    transform: 'rotate(45deg)',
+  },
+}));
 
 let hystersisOpen = false;
 let hystersisTimer = null;
@@ -163,21 +201,22 @@ function composeEventHandler(handler, eventHandler) {
   };
 }
 
-const Tooltip = React.forwardRef(function Tooltip(props, ref) {
+const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiTooltip' });
   const {
     arrow = false,
     children,
-    classes,
+    classes: classesProp,
     describeChild = false,
     disableFocusListener = false,
     disableHoverListener = false,
+    disableInteractive: disableInteractiveProp = false,
     disableTouchListener = false,
     enterDelay = 100,
     enterNextDelay = 0,
     enterTouchDelay = 700,
     followCursor = false,
     id: idProp,
-    disableInteractive: disableInteractiveProp = false,
     leaveDelay = 0,
     leaveTouchDelay = 1500,
     onClose,
@@ -191,6 +230,7 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     TransitionProps,
     ...other
   } = props;
+
   const theme = useTheme();
 
   const [childNode, setChildNode] = React.useState();
@@ -310,7 +350,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     clearTimeout(enterTimer.current);
     clearTimeout(leaveTimer.current);
     if (enterDelay || (hystersisOpen && enterNextDelay)) {
-      event.persist();
       enterTimer.current = setTimeout(
         () => {
           handleOpen(event);
@@ -325,7 +364,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
   const handleLeave = (event) => {
     clearTimeout(enterTimer.current);
     clearTimeout(leaveTimer.current);
-    event.persist();
     leaveTimer.current = setTimeout(() => {
       handleClose(event);
     }, leaveDelay);
@@ -380,7 +418,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     clearTimeout(leaveTimer.current);
     clearTimeout(closeTimer.current);
     stopTouchInteraction();
-    event.persist();
 
     prevUserSelect.current = document.body.style.WebkitUserSelect;
     // Prevent iOS text selection on long-tap.
@@ -399,7 +436,6 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
 
     clearTimeout(touchTimer.current);
     clearTimeout(leaveTimer.current);
-    event.persist();
     leaveTimer.current = setTimeout(() => {
       handleClose(event);
     }, leaveTouchDelay);
@@ -548,14 +584,23 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
     };
   }, [arrowRef, PopperProps]);
 
+  const ownerState = {
+    ...props,
+    arrow,
+    disableInteractive,
+    placement,
+    PopperComponent,
+    touch: ignoreNonTouchEvents.current,
+  };
+
+  const classes = useUtilityClasses(ownerState);
+
   return (
     <React.Fragment>
       {React.cloneElement(children, childrenProps)}
-      <PopperComponent
-        className={clsx(classes.popper, {
-          [classes.popperInteractive]: !disableInteractive,
-          [classes.popperArrow]: arrow,
-        })}
+      <TooltipPopper
+        as={PopperComponent}
+        className={classes.popper}
         placement={placement}
         anchorEl={
           followCursor
@@ -578,34 +623,28 @@ const Tooltip = React.forwardRef(function Tooltip(props, ref) {
         {...interactiveWrapperListeners}
         {...PopperProps}
         popperOptions={popperOptions}
+        ownerState={ownerState}
       >
-        {({ placement: placementInner, TransitionProps: TransitionPropsInner }) => (
+        {({ TransitionProps: TransitionPropsInner }) => (
           <TransitionComponent
             timeout={theme.transitions.duration.shorter}
             {...TransitionPropsInner}
             {...TransitionProps}
           >
-            <div
-              className={clsx(
-                classes.tooltip,
-                {
-                  [classes.touch]: ignoreNonTouchEvents.current,
-                  [classes.tooltipArrow]: arrow,
-                },
-                classes[`tooltipPlacement${capitalize(placementInner.split('-')[0])}`],
-              )}
-            >
+            <TooltipTooltip className={classes.tooltip} ownerState={ownerState}>
               {title}
-              {arrow ? <span className={classes.arrow} ref={setArrowRef} /> : null}
-            </div>
+              {arrow ? (
+                <TooltipArrow className={classes.arrow} ref={setArrowRef} ownerState={ownerState} />
+              ) : null}
+            </TooltipTooltip>
           </TransitionComponent>
         )}
-      </PopperComponent>
+      </TooltipPopper>
     </React.Fragment>
   );
 });
 
-Tooltip.propTypes = {
+Tooltip.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -634,7 +673,7 @@ Tooltip.propTypes = {
    */
   describeChild: PropTypes.bool,
   /**
-   * Do not respond to focus events.
+   * Do not respond to focus-visible events.
    * @default false
    */
   disableFocusListener: PropTypes.bool,
@@ -694,13 +733,13 @@ Tooltip.propTypes = {
   /**
    * Callback fired when the component requests to be closed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent} event The event source of the callback.
    */
   onClose: PropTypes.func,
   /**
    * Callback fired when the component requests to be open.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent} event The event source of the callback.
    */
   onOpen: PropTypes.func,
   /**
@@ -736,6 +775,10 @@ Tooltip.propTypes = {
    */
   PopperProps: PropTypes.object,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * Tooltip title. Zero-length titles string are never displayed.
    */
   title: PropTypes /* @typescript-to-proptypes-ignore */.node.isRequired,
@@ -752,4 +795,4 @@ Tooltip.propTypes = {
   TransitionProps: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTooltip', flip: false })(Tooltip);
+export default Tooltip;

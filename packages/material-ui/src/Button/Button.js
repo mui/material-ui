@@ -1,40 +1,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import { alpha } from '@material-ui/system';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { alpha } from '../styles/colorManipulator';
 import ButtonBase from '../ButtonBase';
 import capitalize from '../utils/capitalize';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-    ...styles[`${styleProps.variant}${capitalize(styleProps.color)}`],
-    ...styles[`size${capitalize(styleProps.size)}`],
-    ...styles[`${styleProps.variant}Size${capitalize(styleProps.size)}`],
-    ...(styleProps.color === 'inherit' && styles.colorInherit),
-    ...(styleProps.disableElevation && styles.disableElevation),
-    ...(styleProps.fullWidth && styles.fullWidth),
-    [`& .${buttonClasses.label}`]: styles.label,
-    [`& .${buttonClasses.startIcon}`]: {
-      ...styles.startIcon,
-      ...styles[`iconSize${capitalize(styleProps.size)}`],
-    },
-    [`& .${buttonClasses.endIcon}`]: {
-      ...styles.endIcon,
-      ...styles[`iconSize${capitalize(styleProps.size)}`],
-    },
-  });
-};
-
-const useUtilityClasses = (styleProps) => {
-  const { color, disableElevation, fullWidth, size, variant, classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { color, disableElevation, fullWidth, size, variant, classes } = ownerState;
 
   const slots = {
     root: [
@@ -52,37 +28,52 @@ const useUtilityClasses = (styleProps) => {
     endIcon: ['endIcon', `iconSize${capitalize(size)}`],
   };
 
-  return composeClasses(slots, getButtonUtilityClass, classes);
+  const composedClasses = composeClasses(slots, getButtonUtilityClass, classes);
+
+  return {
+    ...classes, // forward the focused, disabled, etc. classes to the ButtonBase
+    ...composedClasses,
+  };
 };
 
-const commonIconStyles = (styleProps) => ({
-  ...(styleProps.size === 'small' && {
+const commonIconStyles = (ownerState) => ({
+  ...(ownerState.size === 'small' && {
     '& > *:nth-of-type(1)': {
       fontSize: 18,
     },
   }),
-  ...(styleProps.size === 'medium' && {
+  ...(ownerState.size === 'medium' && {
     '& > *:nth-of-type(1)': {
       fontSize: 20,
     },
   }),
-  ...(styleProps.size === 'large' && {
+  ...(ownerState.size === 'large' && {
     '& > *:nth-of-type(1)': {
       fontSize: 22,
     },
   }),
 });
 
-const ButtonRoot = experimentalStyled(
-  ButtonBase,
-  {},
-  {
-    name: 'MuiButton',
-    slot: 'Root',
-    overridesResolver,
+const ButtonRoot = styled(ButtonBase, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiButton',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [
+      styles.root,
+      styles[ownerState.variant],
+      styles[`${ownerState.variant}${capitalize(ownerState.color)}`],
+      styles[`size${capitalize(ownerState.size)}`],
+      styles[`${ownerState.variant}Size${capitalize(ownerState.size)}`],
+      ownerState.color === 'inherit' && styles.colorInherit,
+      ownerState.disableElevation && styles.disableElevation,
+      ownerState.fullWidth && styles.fullWidth,
+    ];
   },
-)(
-  ({ theme, styleProps }) => ({
+})(
+  ({ theme, ownerState }) => ({
     ...theme.typography.button,
     minWidth: 64,
     padding: '6px 16px',
@@ -100,10 +91,10 @@ const ButtonRoot = experimentalStyled(
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
-      ...(styleProps.variant === 'text' &&
-        styleProps.color !== 'inherit' && {
+      ...(ownerState.variant === 'text' &&
+        ownerState.color !== 'inherit' && {
           backgroundColor: alpha(
-            theme.palette[styleProps.color].main,
+            theme.palette[ownerState.color].main,
             theme.palette.action.hoverOpacity,
           ),
           // Reset on touch devices, it doesn't add specificity
@@ -111,11 +102,11 @@ const ButtonRoot = experimentalStyled(
             backgroundColor: 'transparent',
           },
         }),
-      ...(styleProps.variant === 'outlined' &&
-        styleProps.color !== 'inherit' && {
-          border: `1px solid ${theme.palette[styleProps.color].main}`,
+      ...(ownerState.variant === 'outlined' &&
+        ownerState.color !== 'inherit' && {
+          border: `1px solid ${theme.palette[ownerState.color].main}`,
           backgroundColor: alpha(
-            theme.palette[styleProps.color].main,
+            theme.palette[ownerState.color].main,
             theme.palette.action.hoverOpacity,
           ),
           // Reset on touch devices, it doesn't add specificity
@@ -123,7 +114,7 @@ const ButtonRoot = experimentalStyled(
             backgroundColor: 'transparent',
           },
         }),
-      ...(styleProps.variant === 'contained' && {
+      ...(ownerState.variant === 'contained' && {
         backgroundColor: theme.palette.grey.A100,
         boxShadow: theme.shadows[4],
         // Reset on touch devices, it doesn't add specificity
@@ -132,177 +123,164 @@ const ButtonRoot = experimentalStyled(
           backgroundColor: theme.palette.grey[300],
         },
       }),
-      ...(styleProps.variant === 'contained' &&
-        styleProps.color !== 'inherit' && {
-          backgroundColor: theme.palette[styleProps.color].dark,
+      ...(ownerState.variant === 'contained' &&
+        ownerState.color !== 'inherit' && {
+          backgroundColor: theme.palette[ownerState.color].dark,
           // Reset on touch devices, it doesn't add specificity
           '@media (hover: none)': {
-            backgroundColor: theme.palette[styleProps.color].main,
+            backgroundColor: theme.palette[ownerState.color].main,
           },
         }),
     },
     '&:active': {
-      ...(styleProps.variant === 'contained' && {
+      ...(ownerState.variant === 'contained' && {
         boxShadow: theme.shadows[8],
       }),
     },
-    '&.Mui-focusVisible': {
-      ...(styleProps.variant === 'contained' && {
+    [`&.${buttonClasses.focusVisible}`]: {
+      ...(ownerState.variant === 'contained' && {
         boxShadow: theme.shadows[6],
       }),
     },
-    '&.Mui-disabled': {
+    [`&.${buttonClasses.disabled}`]: {
       color: theme.palette.action.disabled,
-      ...(styleProps.variant === 'outlined' && {
+      ...(ownerState.variant === 'outlined' && {
         border: `1px solid ${theme.palette.action.disabledBackground}`,
       }),
-      ...(styleProps.variant === 'outlined' &&
-        styleProps.color === 'secondary' && {
+      ...(ownerState.variant === 'outlined' &&
+        ownerState.color === 'secondary' && {
           border: `1px solid ${theme.palette.action.disabled}`,
         }),
-      ...(styleProps.variant === 'contained' && {
+      ...(ownerState.variant === 'contained' && {
         color: theme.palette.action.disabled,
         boxShadow: theme.shadows[0],
         backgroundColor: theme.palette.action.disabledBackground,
       }),
     },
-    ...(styleProps.variant === 'text' && {
+    ...(ownerState.variant === 'text' && {
       padding: '6px 8px',
     }),
-    ...(styleProps.variant === 'text' &&
-      styleProps.color !== 'inherit' && {
-        color: theme.palette[styleProps.color].main,
+    ...(ownerState.variant === 'text' &&
+      ownerState.color !== 'inherit' && {
+        color: theme.palette[ownerState.color].main,
       }),
-    ...(styleProps.variant === 'outlined' && {
+    ...(ownerState.variant === 'outlined' && {
       padding: '5px 15px',
       border: `1px solid ${
         theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
       }`,
     }),
-    ...(styleProps.variant === 'outlined' &&
-      styleProps.color !== 'inherit' && {
-        color: theme.palette[styleProps.color].main,
-        border: `1px solid ${alpha(theme.palette[styleProps.color].main, 0.5)}`,
+    ...(ownerState.variant === 'outlined' &&
+      ownerState.color !== 'inherit' && {
+        color: theme.palette[ownerState.color].main,
+        border: `1px solid ${alpha(theme.palette[ownerState.color].main, 0.5)}`,
       }),
-    ...(styleProps.variant === 'contained' && {
+    ...(ownerState.variant === 'contained' && {
       color: theme.palette.getContrastText(theme.palette.grey[300]),
       backgroundColor: theme.palette.grey[300],
       boxShadow: theme.shadows[2],
     }),
-    ...(styleProps.variant === 'contained' &&
-      styleProps.color !== 'inherit' && {
-        color: theme.palette[styleProps.color].contrastText,
-        backgroundColor: theme.palette[styleProps.color].main,
+    ...(ownerState.variant === 'contained' &&
+      ownerState.color !== 'inherit' && {
+        color: theme.palette[ownerState.color].contrastText,
+        backgroundColor: theme.palette[ownerState.color].main,
       }),
-    ...(styleProps.color === 'inherit' && {
+    ...(ownerState.color === 'inherit' && {
       color: 'inherit',
       borderColor: 'currentColor',
     }),
-    ...(styleProps.size === 'small' &&
-      styleProps.variant === 'text' && {
+    ...(ownerState.size === 'small' &&
+      ownerState.variant === 'text' && {
         padding: '4px 5px',
         fontSize: theme.typography.pxToRem(13),
       }),
-    ...(styleProps.size === 'large' &&
-      styleProps.variant === 'text' && {
+    ...(ownerState.size === 'large' &&
+      ownerState.variant === 'text' && {
         padding: '8px 11px',
         fontSize: theme.typography.pxToRem(15),
       }),
-    ...(styleProps.size === 'small' &&
-      styleProps.variant === 'outlined' && {
+    ...(ownerState.size === 'small' &&
+      ownerState.variant === 'outlined' && {
         padding: '3px 9px',
         fontSize: theme.typography.pxToRem(13),
       }),
-    ...(styleProps.size === 'large' &&
-      styleProps.variant === 'outlined' && {
+    ...(ownerState.size === 'large' &&
+      ownerState.variant === 'outlined' && {
         padding: '7px 21px',
         fontSize: theme.typography.pxToRem(15),
       }),
-    ...(styleProps.size === 'small' &&
-      styleProps.variant === 'contained' && {
+    ...(ownerState.size === 'small' &&
+      ownerState.variant === 'contained' && {
         padding: '4px 10px',
         fontSize: theme.typography.pxToRem(13),
       }),
-    ...(styleProps.size === 'large' &&
-      styleProps.variant === 'contained' && {
+    ...(ownerState.size === 'large' &&
+      ownerState.variant === 'contained' && {
         padding: '8px 22px',
         fontSize: theme.typography.pxToRem(15),
       }),
-    ...(styleProps.fullWidth && {
+    ...(ownerState.fullWidth && {
       width: '100%',
     }),
   }),
-  ({ styleProps }) =>
-    styleProps.disableElevation && {
+  ({ ownerState }) =>
+    ownerState.disableElevation && {
       boxShadow: 'none',
       '&:hover': {
         boxShadow: 'none',
       },
-      '&.Mui-focusVisible': {
+      [`&.${buttonClasses.focusVisible}`]: {
         boxShadow: 'none',
       },
       '&:active': {
         boxShadow: 'none',
       },
-      '&.Mui-disabled': {
+      [`&.${buttonClasses.disabled}`]: {
         boxShadow: 'none',
       },
     },
 );
 
-const ButtonLabel = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiButton',
-    slot: 'Label',
-  },
-)({
-  width: '100%', // Ensure the correct width for iOS Safari
-  display: 'inherit',
-  alignItems: 'inherit',
-  justifyContent: 'inherit',
-});
+const ButtonStartIcon = styled('span', {
+  name: 'MuiButton',
+  slot: 'StartIcon',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
 
-const ButtonStartIcon = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiButton',
-    slot: 'StartIcon',
+    return [styles.startIcon, styles[`iconSize${capitalize(ownerState.size)}`]];
   },
-)(({ styleProps }) => ({
+})(({ ownerState }) => ({
   display: 'inherit',
   marginRight: 8,
   marginLeft: -4,
-  ...(styleProps.size === 'small' && {
+  ...(ownerState.size === 'small' && {
     marginLeft: -2,
   }),
-  ...commonIconStyles(styleProps),
+  ...commonIconStyles(ownerState),
 }));
 
-const ButtonEndIcon = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiButton',
-    slot: 'EndIcon',
+const ButtonEndIcon = styled('span', {
+  name: 'MuiButton',
+  slot: 'EndIcon',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [styles.endIcon, styles[`iconSize${capitalize(ownerState.size)}`]];
   },
-)(({ styleProps }) => ({
+})(({ ownerState }) => ({
   display: 'inherit',
   marginRight: -4,
   marginLeft: 8,
-  ...(styleProps.size === 'small' && {
+  ...(ownerState.size === 'small' && {
     marginRight: -2,
   }),
-  ...commonIconStyles(styleProps),
+  ...commonIconStyles(ownerState),
 }));
 
 const Button = React.forwardRef(function Button(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiButton' });
   const {
     children,
-    className,
     color = 'primary',
     component = 'button',
     disabled = false,
@@ -318,7 +296,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     color,
     component,
@@ -331,24 +309,23 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const startIcon = startIconProp && (
-    <ButtonStartIcon className={classes.startIcon} styleProps={styleProps}>
+    <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>
       {startIconProp}
     </ButtonStartIcon>
   );
 
   const endIcon = endIconProp && (
-    <ButtonEndIcon className={classes.endIcon} styleProps={styleProps}>
+    <ButtonEndIcon className={classes.endIcon} ownerState={ownerState}>
       {endIconProp}
     </ButtonEndIcon>
   );
 
   return (
     <ButtonRoot
-      className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       component={component}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
@@ -356,23 +333,16 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       ref={ref}
       type={type}
       {...other}
+      classes={classes}
     >
-      {/*
-       * The inner <span> is required to vertically align the children.
-       * Browsers don't support `display: flex` on a <button> element.
-       * https://github.com/philipwalton/flexbugs/blob/master/README.md#flexbug-9
-       * TODO v5: evaluate if still required for the supported browsers.
-       */}
-      <ButtonLabel className={classes.label} styleProps={styleProps}>
-        {startIcon}
-        {children}
-        {endIcon}
-      </ButtonLabel>
+      {startIcon}
+      {children}
+      {endIcon}
     </ButtonRoot>
   );
 });
 
-Button.propTypes = {
+Button.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -386,15 +356,11 @@ Button.propTypes = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['inherit', 'primary', 'secondary']),
+    PropTypes.oneOf(['inherit', 'primary', 'secondary', 'success', 'error', 'info', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -421,7 +387,7 @@ Button.propTypes = {
    * If `true`, the ripple effect is disabled.
    *
    * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
-   * to highlight the element by applying separate styles with the `.Mui-focusedVisible` class.
+   * to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
    * @default false
    */
   disableRipple: PropTypes.bool,

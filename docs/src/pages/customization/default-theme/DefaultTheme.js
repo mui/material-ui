@@ -1,17 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import url from 'url';
+import Box from '@material-ui/core/Box';
 import ExpandIcon from '@material-ui/icons/ExpandMore';
 import CollapseIcon from '@material-ui/icons/ChevronRight';
 import TreeView from '@material-ui/lab/TreeView';
-import TreeItem from '@material-ui/lab/TreeItem';
+import MuiTreeItem, { treeItemClasses } from '@material-ui/lab/TreeItem';
 import clsx from 'clsx';
-import {
-  makeStyles,
-  withStyles,
-  createMuiTheme,
-  lighten,
-} from '@material-ui/core/styles';
+import { styled, createTheme, lighten } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
@@ -75,21 +70,14 @@ function getTokenType(type) {
   }
 }
 
-const useObjectEntryLabelStyles = makeStyles((theme) => ({
-  color: {
-    backgroundColor: '#fff',
-    display: 'inline-block',
-    marginBottom: -1,
-    marginRight: theme.spacing(0.5),
-    border: '1px solid',
-    backgroundImage:
-      'url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%202%202%22%3E%3Cpath%20d%3D%22M1%202V0h1v1H0v1z%22%20fill-opacity%3D%22.2%22%2F%3E%3C%2Fsvg%3E")',
-  },
-  colorInner: {
-    display: 'block',
-    width: 11,
-    height: 11,
-  },
+const Color = styled('span')(({ theme }) => ({
+  backgroundColor: '#fff',
+  display: 'inline-block',
+  marginBottom: -1,
+  marginRight: theme.spacing(0.5),
+  border: '1px solid',
+  backgroundImage:
+    'url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%202%202%22%3E%3Cpath%20d%3D%22M1%202V0h1v1H0v1z%22%20fill-opacity%3D%22.2%22%2F%3E%3C%2Fsvg%3E")',
 }));
 
 function ObjectEntryLabel(props) {
@@ -97,15 +85,18 @@ function ObjectEntryLabel(props) {
   const type = getType(objectValue);
   const label = getLabel(objectValue, type);
   const tokenType = getTokenType(type);
-  const classes = useObjectEntryLabelStyles();
 
   return (
     <React.Fragment>
       {`${objectKey}: `}
       {type === 'color' ? (
-        <span className={classes.color} style={{ borderColor: lighten(label, 0.7) }}>
-          <span className={classes.colorInner} style={{ backgroundColor: label }} />
-        </span>
+        <Color style={{ borderColor: lighten(label, 0.7) }}>
+          <Box
+            component="span"
+            sx={{ display: 'block', width: 11, height: 11 }}
+            style={{ backgroundColor: label }}
+          />
+        </Color>
       ) : null}
       <span className={clsx('token', tokenType)}>{label}</span>
     </React.Fragment>
@@ -117,14 +108,12 @@ ObjectEntryLabel.propTypes = {
   objectValue: PropTypes.any,
 };
 
-const useObjectEntryStyles = makeStyles({
-  treeItem: {
-    '&:focus > $treeItemContent': {
-      backgroundColor: lighten('#333', 0.08),
-      outline: `2px dashed ${lighten('#333', 0.3)}`,
-    },
+const TreeItem = styled(MuiTreeItem)({
+  [`&:focus > .${treeItemClasses.content}`]: {
+    backgroundColor: lighten('#333', 0.08),
+    outline: `2px dashed ${lighten('#333', 0.3)}`,
   },
-  treeItemContent: {
+  [`& .${treeItemClasses.content}`]: {
     '&:hover': {
       backgroundColor: lighten('#333', 0.08),
     },
@@ -155,14 +144,8 @@ function ObjectEntry(props) {
           });
   }
 
-  const classes = useObjectEntryStyles();
-
   return (
     <TreeItem
-      classes={{
-        root: classes.treeItem,
-        content: classes.treeItemContent,
-      }}
       nodeId={nodeId}
       label={<ObjectEntryLabel objectKey={objectKey} objectValue={objectValue} />}
     >
@@ -190,6 +173,7 @@ function Inspector(props) {
 
   return (
     <TreeView
+      sx={{ bgcolor: '#333', color: '#fff', borderRadius: 1, p: 1 }}
       key={key}
       defaultCollapseIcon={<ExpandIcon />}
       defaultEndIcon={<div style={{ width: 24 }} />}
@@ -215,21 +199,6 @@ Inspector.propTypes = {
   data: PropTypes.any,
   expandPaths: PropTypes.arrayOf(PropTypes.string),
 };
-
-const styles = (theme) => ({
-  root: {
-    width: '100%',
-  },
-  inspector: {
-    backgroundColor: '#333',
-    color: '#fff',
-    borderRadius: theme.shape.borderRadius,
-    padding: theme.spacing(1),
-  },
-  switch: {
-    paddingBottom: theme.spacing(1),
-  },
-});
 
 function computeNodeIds(object, prefix) {
   if (
@@ -261,17 +230,25 @@ function useNodeIdsLazy(object) {
   return allNodeIds;
 }
 
-function DefaultTheme(props) {
-  const { classes } = props;
+function DefaultTheme() {
   const [checked, setChecked] = React.useState(false);
   const [expandPaths, setExpandPaths] = React.useState(null);
   const t = useTranslate();
   const [darkTheme, setDarkTheme] = React.useState(false);
 
   React.useEffect(() => {
-    const URL = url.parse(document.location.href, true);
-    // 'expend-path' is for backwards compatibility of any external links with a prior typo.
-    const expandPath = URL.query['expand-path'] || URL.query['expend-path'];
+    let expandPath;
+    decodeURI(document.location.search.slice(1))
+      .split('&')
+      .forEach((param) => {
+        const [name, value] = param.split('=');
+        if (name === 'expand-path') {
+          expandPath = value;
+        } else if (name === 'expend-path' && !expandPath) {
+          // 'expend-path' is for backwards compatibility of any external links with a prior typo.
+          expandPath = value;
+        }
+      });
 
     if (!expandPath) {
       return;
@@ -290,7 +267,7 @@ function DefaultTheme(props) {
   }, []);
 
   const data = React.useMemo(() => {
-    return createMuiTheme({
+    return createTheme({
       palette: { mode: darkTheme ? 'dark' : 'light' },
     });
   }, [darkTheme]);
@@ -305,43 +282,35 @@ function DefaultTheme(props) {
   }, [checked, allNodeIds]);
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ width: '100%' }}>
       <FormControlLabel
-        className={classes.switch}
+        sx={{ pb: 1 }}
         control={
           <Switch
             checked={checked}
-            onChange={(event, newChecked) => {
-              setChecked(newChecked);
-              setExpandPaths(newChecked ? allNodeIds : []);
+            onChange={(event) => {
+              setChecked(event.target.checked);
+              setExpandPaths(event.target.checked ? allNodeIds : []);
             }}
           />
         }
         label={t('expandAll')}
       />
       <FormControlLabel
-        className={classes.switch}
+        sx={{ pb: 1 }}
         control={
           <Switch
             checked={darkTheme}
-            onChange={(event, newValue) => {
-              setDarkTheme(newValue);
+            onChange={(event) => {
+              setDarkTheme(event.target.checked);
             }}
           />
         }
         label={t('useDarkTheme')}
       />
-      <Inspector
-        className={classes.inspector}
-        data={data}
-        expandPaths={expandPaths}
-      />
-    </div>
+      <Inspector data={data} expandPaths={expandPaths} />
+    </Box>
   );
 }
 
-DefaultTheme.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(DefaultTheme);
+export default DefaultTheme;

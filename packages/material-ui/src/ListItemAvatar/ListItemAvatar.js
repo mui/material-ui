@@ -1,23 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import ListContext from '../List/ListContext';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getListItemAvatarUtilityClass } from './listItemAvatarClasses';
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart),
-  });
-};
-
-const useUtilityClasses = (styleProps) => {
-  const { alignItems, classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { alignItems, classes } = ownerState;
 
   const slots = {
     root: ['root', alignItems === 'flex-start' && 'alignItemsFlexStart'],
@@ -26,20 +17,18 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getListItemAvatarUtilityClass, classes);
 };
 
-const ListItemAvatarRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiListItemAvatar',
-    slot: 'Root',
-    overridesResolver,
+const ListItemAvatarRoot = styled('div', {
+  name: 'MuiListItemAvatar',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [styles.root, ownerState.alignItems === 'flex-start' && styles.alignItemsFlexStart];
   },
-)(({ styleProps }) => ({
-  /* Styles applied to the root element. */
+})(({ ownerState }) => ({
   minWidth: 56,
   flexShrink: 0,
-  /* Styles applied to the root element when the parent `ListItem` uses `alignItems="flex-start"`. */
-  ...(styleProps.alignItems === 'flex-start' && {
+  ...(ownerState.alignItems === 'flex-start' && {
     marginTop: 8,
   }),
 }));
@@ -55,20 +44,20 @@ const ListItemAvatar = React.forwardRef(function ListItemAvatar(inProps, ref) {
 
   const { className, ...other } = props;
   const context = React.useContext(ListContext);
-  const styleProps = { ...props, alignItems: context.alignItems };
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = { ...props, alignItems: context.alignItems };
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <ListItemAvatarRoot
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       {...other}
     />
   );
 });
 
-ListItemAvatar.propTypes = {
+ListItemAvatar.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

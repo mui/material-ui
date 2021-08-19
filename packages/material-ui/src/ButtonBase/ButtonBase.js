@@ -3,18 +3,16 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { elementTypeAcceptingRef, refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';
 import useIsFocusVisible from '../utils/useIsFocusVisible';
 import TouchRipple from './TouchRipple';
-import { getButtonBaseUtilityClass } from './buttonBaseClasses';
+import buttonBaseClasses, { getButtonBaseUtilityClass } from './buttonBaseClasses';
 
-const overridesResolver = (props, styles) => styles.root || {};
-
-const useUtilityClasses = (styleProps) => {
-  const { disabled, focusVisible, focusVisibleClassName, classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { disabled, focusVisible, focusVisibleClassName, classes } = ownerState;
 
   const slots = {
     root: ['root', disabled && 'disabled', focusVisible && 'focusVisible'],
@@ -29,11 +27,11 @@ const useUtilityClasses = (styleProps) => {
   return composedClasses;
 };
 
-export const ButtonBaseRoot = experimentalStyled(
-  'button',
-  {},
-  { name: 'MuiButtonBase', slot: 'Root', overridesResolver },
-)({
+export const ButtonBaseRoot = styled('button', {
+  name: 'MuiButtonBase',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})({
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -58,7 +56,7 @@ export const ButtonBaseRoot = experimentalStyled(
   '&::-moz-focus-inner': {
     borderStyle: 'none', // Remove Firefox dotted outline.
   },
-  '&.Mui-disabled': {
+  [`&.${buttonBaseClasses.disabled}`]: {
     pointerEvents: 'none', // Disable link interactions
     cursor: 'default',
   },
@@ -76,7 +74,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiButtonBase' });
   const {
     action,
-    buttonRef: buttonRefProp,
     centerRipple = false,
     children,
     className,
@@ -86,8 +83,11 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     disableTouchRipple = false,
     focusRipple = false,
     focusVisibleClassName,
+    LinkComponent = 'a',
     onBlur,
     onClick,
+    onContextMenu,
+    onDragLeave,
     onFocus,
     onFocusVisible,
     onKeyDown,
@@ -98,9 +98,9 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     onTouchEnd,
     onTouchMove,
     onTouchStart,
-    onDragLeave,
     tabIndex = 0,
     TouchRippleProps,
+    type,
     ...other
   } = props;
 
@@ -155,6 +155,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   }
 
   const handleMouseDown = useRippleHandler('start', onMouseDown);
+  const handleContextMenu = useRippleHandler('stop', onContextMenu);
   const handleDragLeave = useRippleHandler('stop', onDragLeave);
   const handleMouseUp = useRippleHandler('stop', onMouseUp);
   const handleMouseLeave = useRippleHandler('stop', (event) => {
@@ -222,7 +223,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       event.key === ' '
     ) {
       keydownRef.current = true;
-      event.persist();
       rippleRef.current.stop(event, () => {
         rippleRef.current.start(event);
       });
@@ -261,7 +261,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       !event.defaultPrevented
     ) {
       keydownRef.current = false;
-      event.persist();
       rippleRef.current.stop(event, () => {
         rippleRef.current.pulsate(event);
       });
@@ -284,24 +283,25 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 
   let ComponentProp = component;
 
-  if (ComponentProp === 'button' && other.href) {
-    ComponentProp = 'a';
+  if (ComponentProp === 'button' && (other.href || other.to)) {
+    ComponentProp = LinkComponent;
   }
 
   const buttonProps = {};
   if (ComponentProp === 'button') {
-    buttonProps.type = other.type === undefined ? 'button' : other.type;
+    buttonProps.type = type === undefined ? 'button' : type;
     buttonProps.disabled = disabled;
   } else {
-    if (ComponentProp !== 'a' || !other.href) {
+    if (!other.href && !other.to) {
       buttonProps.role = 'button';
     }
-    buttonProps['aria-disabled'] = disabled;
+    if (disabled) {
+      buttonProps['aria-disabled'] = disabled;
+    }
   }
 
-  const handleUserRef = useForkRef(buttonRefProp, ref);
   const handleOwnRef = useForkRef(focusVisibleRef, buttonRef);
-  const handleRef = useForkRef(handleUserRef, handleOwnRef);
+  const handleRef = useForkRef(ref, handleOwnRef);
 
   const [mountedState, setMountedState] = React.useState(false);
 
@@ -325,7 +325,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     }, [enableTouchRipple]);
   }
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     centerRipple,
     component,
@@ -337,15 +337,16 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     focusVisible,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <ButtonBaseRoot
       as={ComponentProp}
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       onBlur={handleBlur}
       onClick={onClick}
+      onContextMenu={handleContextMenu}
       onFocus={handleFocus}
       onKeyDown={handleKeyDown}
       onKeyUp={handleKeyUp}
@@ -358,6 +359,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       onTouchStart={handleTouchStart}
       ref={handleRef}
       tabIndex={disabled ? -1 : tabIndex}
+      type={type}
       {...buttonProps}
       {...other}
     >
@@ -370,7 +372,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   );
 });
 
-ButtonBase.propTypes = {
+ButtonBase.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -380,13 +382,6 @@ ButtonBase.propTypes = {
    * It currently only supports `focusVisible()` action.
    */
   action: refType,
-  /**
-   * @ignore
-   *
-   * Use that prop to pass a ref to the native button component.
-   * @deprecated Use `ref` instead.
-   */
-  buttonRef: refType,
   /**
    * If `true`, the ripples are centered.
    * They won't start at the cursor interaction position.
@@ -419,7 +414,7 @@ ButtonBase.propTypes = {
    * If `true`, the ripple effect is disabled.
    *
    * ⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure
-   * to highlight the element by applying separate styles with the `.Mui-focusedVisible` class.
+   * to highlight the element by applying separate styles with the `.Mui-focusVisible` class.
    * @default false
    */
   disableRipple: PropTypes.bool,
@@ -447,6 +442,11 @@ ButtonBase.propTypes = {
    */
   href: PropTypes /* @typescript-to-proptypes-ignore */.any,
   /**
+   * The component used to render a link when the `href` prop is provided.
+   * @default 'a'
+   */
+  LinkComponent: PropTypes.elementType,
+  /**
    * @ignore
    */
   onBlur: PropTypes.func,
@@ -454,6 +454,10 @@ ButtonBase.propTypes = {
    * @ignore
    */
   onClick: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onContextMenu: PropTypes.func,
   /**
    * @ignore
    */
@@ -506,7 +510,7 @@ ButtonBase.propTypes = {
   /**
    * @default 0
    */
-  tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  tabIndex: PropTypes.number,
   /**
    * Props applied to the `TouchRipple` element.
    */

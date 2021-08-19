@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import * as React from 'react';
 import { createClientRender, screen } from 'test/utils';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import ThemeProvider from '../ThemeProvider';
 import useThemeVariants from './useThemeVariants';
 import withStyles from '../withStyles';
@@ -18,7 +18,7 @@ describe('useThemeVariants', () => {
   const Component = withStyles({}, { name: 'Test' })(ComponentInternal);
 
   it('returns variants classes if props do match', () => {
-    const theme = createMuiTheme({
+    const theme = createTheme({
       components: {
         Test: {
           variants: [
@@ -44,7 +44,7 @@ describe('useThemeVariants', () => {
   });
 
   it('does not return variants classes if props do not match', () => {
-    const theme = createMuiTheme({
+    const theme = createTheme({
       components: {
         Test: {
           variants: [
@@ -68,7 +68,7 @@ describe('useThemeVariants', () => {
   });
 
   it('matches correctly multiple props', () => {
-    const theme = createMuiTheme({
+    const theme = createTheme({
       components: {
         Test: {
           variants: [
@@ -113,7 +113,7 @@ describe('useThemeVariants', () => {
       return <div className={`${themeVariantsClasses} ${className}`} {...other} />;
     });
 
-    const theme = createMuiTheme({
+    const theme = createTheme({
       components: {
         MuiButton: {
           variants: [
@@ -135,15 +135,16 @@ describe('useThemeVariants', () => {
         </ThemeProvider>,
       ),
     ).toErrorDev([
-      // strict mode renders twice
       [
         `Material-UI: You are using a variant value \`test\` for which you didn't define styles.`,
         `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://next.material-ui.com/r/custom-component-variants.`,
       ].join('\n'),
-      [
-        `Material-UI: You are using a variant value \`test\` for which you didn't define styles.`,
-        `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://next.material-ui.com/r/custom-component-variants.`,
-      ].join('\n'),
+      React.version.startsWith('16') &&
+        // strict mode renders twice
+        [
+          `Material-UI: You are using a variant value \`test\` for which you didn't define styles.`,
+          `Please create a new variant matcher in your theme for this variant. To learn more about matchers visit https://next.material-ui.com/r/custom-component-variants.`,
+        ].join('\n'),
     ]);
   });
 });

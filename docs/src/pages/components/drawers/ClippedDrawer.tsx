@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,39 +15,11 @@ import MailIcon from '@material-ui/icons/Mail';
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-    },
-    appBar: {
-      zIndex: theme.zIndex.drawer + 1,
-    },
-    drawer: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
-    drawerPaper: {
-      width: drawerWidth,
-      boxSizing: 'border-box',
-    },
-    drawerContainer: {
-      overflow: 'auto',
-    },
-    content: {
-      flexGrow: 1,
-      padding: theme.spacing(3),
-    },
-  }),
-);
-
 export default function ClippedDrawer() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
           <Typography variant="h6" noWrap component="div">
             Clipped drawer
@@ -55,14 +27,15 @@ export default function ClippedDrawer() {
         </Toolbar>
       </AppBar>
       <Drawer
-        className={classes.drawer}
         variant="permanent"
-        classes={{
-          paper: classes.drawerPaper,
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
         }}
       >
         <Toolbar />
-        <div className={classes.drawerContainer}>
+        <Box sx={{ overflow: 'auto' }}>
           <List>
             {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
               <ListItem button key={text}>
@@ -84,9 +57,9 @@ export default function ClippedDrawer() {
               </ListItem>
             ))}
           </List>
-        </div>
+        </Box>
       </Drawer>
-      <main className={classes.content}>
+      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -115,7 +88,7 @@ export default function ClippedDrawer() {
           eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
           posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
-      </main>
-    </div>
+      </Box>
+    </Box>
   );
 }

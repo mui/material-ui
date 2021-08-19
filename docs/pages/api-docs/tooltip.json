@@ -28,6 +28,7 @@
     },
     "PopperComponent": { "type": { "name": "elementType" }, "default": "Popper" },
     "PopperProps": { "type": { "name": "object" }, "default": "{}" },
+    "sx": { "type": { "name": "object" } },
     "TransitionComponent": { "type": { "name": "elementType" }, "default": "Grow" },
     "TransitionProps": { "type": { "name": "object" } }
   },
@@ -37,6 +38,7 @@
       "popper",
       "popperInteractive",
       "popperArrow",
+      "popperClose",
       "tooltip",
       "tooltipArrow",
       "arrow",
@@ -54,6 +56,6 @@
   "filename": "/packages/material-ui/src/Tooltip/Tooltip.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tooltips/\">Tooltips</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

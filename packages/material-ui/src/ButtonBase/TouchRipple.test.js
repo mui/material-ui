@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { useFakeTimers } from 'sinon';
 import { expect } from 'chai';
-import { createMount, describeConformanceV5, act, createClientRender } from 'test/utils';
+import { describeConformance, act, createClientRender } from 'test/utils';
 import TouchRipple, { DELAY_RIPPLE } from './TouchRipple';
 
 const cb = () => {};
 
 describe('<TouchRipple />', () => {
-  const mount = createMount();
   const render = createClientRender();
 
   /**
@@ -43,10 +42,10 @@ describe('<TouchRipple />', () => {
     };
   }
 
-  describeConformanceV5(<TouchRipple />, () => ({
+  describeConformance(<TouchRipple />, () => ({
     classes: {},
     inheritComponent: 'span',
-    mount,
+    render,
     refInstanceof: Object,
     muiName: 'MuiTouchRipple',
     skip: [
@@ -158,14 +157,10 @@ describe('<TouchRipple />', () => {
     });
 
     it('should create a specific ripple', () => {
-      const {
-        instance,
-        queryAllActiveRipples,
-        queryAllStoppingRipples,
-        queryRipple,
-      } = renderTouchRipple({
-        center: true,
-      });
+      const { instance, queryAllActiveRipples, queryAllStoppingRipples, queryRipple } =
+        renderTouchRipple({
+          center: true,
+        });
       const clientX = 1;
       const clientY = 1;
 
@@ -244,7 +239,7 @@ describe('<TouchRipple />', () => {
       expect(queryAllStoppingRipples()).to.have.lengthOf(0);
 
       act(() => {
-        instance.stop({ type: 'touchend', persist: () => {} }, cb);
+        instance.stop({ type: 'touchend' }, cb);
       });
 
       expect(queryAllActiveRipples()).to.have.lengthOf(1);

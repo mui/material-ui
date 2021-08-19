@@ -9,7 +9,7 @@ export default function Highlights() {
   return (
     <Autocomplete
       id="highlights-demo"
-      style={{ width: 300 }}
+      sx={{ width: 300 }}
       options={top100Films}
       getOptionLabel={(option) => option.title}
       renderInput={(params) => (

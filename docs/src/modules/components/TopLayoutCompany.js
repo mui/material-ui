@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
+import { createTheme } from '@material-ui/core/styles';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import AppContainer from 'docs/src/modules/components/AppContainer';
@@ -30,7 +31,7 @@ function TopLayoutCompany(props) {
     <AppFrame disableDrawer>
       <Head title={`${title} - Material-UI`} description={description} />
       <div className={classes.root}>
-        <AppContainer className={classes.container}>
+        <AppContainer component="main" className={classes.container}>
           {rendered.map((chunk, index) => {
             return <MarkdownElement key={index} renderedMarkdown={chunk} />;
           })}
@@ -46,4 +47,5 @@ TopLayoutCompany.propTypes = {
   docs: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TopLayoutCompany);
+const defaultTheme = createTheme();
+export default withStyles(styles, { defaultTheme })(TopLayoutCompany);

@@ -1,0 +1,30 @@
+{
+  "name": "vite",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "yarn vite build && concurrently --success first --kill-others \"yarn server\" \"node testViteIntegration\"",
+    "server": "serve -s build"
+  },
+  "dependencies": {
+    "@emotion/core": "11.0.0",
+    "@emotion/react": "11.4.0",
+    "@emotion/styled": "11.3.0",
+    "@material-ui/core": "5.0.0-alpha.34",
+    "@material-ui/icons": "5.0.0-alpha.34",
+    "@material-ui/lab": "5.0.0-alpha.34",
+    "@material-ui/styled-engine": "5.0.0-alpha.34",
+    "@material-ui/styles": "5.0.0-alpha.33",
+    "@material-ui/system": "5.0.0-alpha.34",
+    "@material-ui/utils": "5.0.0-alpha.33",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-is": "17.0.2",
+    "vite": "2.3.3"
+  },
+  "devDependencies": {
+    "concurrently": "6.1.0",
+    "playwright": "1.11.0",
+    "serve": "11.3.2"
+  }
+}

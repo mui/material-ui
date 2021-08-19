@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Button from '@material-ui/core/Button';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 
 // Update the Button's extendable props options
 declare module '@material-ui/core/Button' {
@@ -16,7 +16,7 @@ declare module '@material-ui/core/Button' {
 }
 
 // theme typings should work as expected
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiButton: {
       variants: [

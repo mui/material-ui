@@ -1,15 +1,14 @@
 import * as React from 'react';
-import { createMount, describeConformanceV5 } from 'test/utils';
-import DialogActions from './DialogActions';
-import classes from './dialogActionsClasses';
+import { createClientRender, describeConformance } from 'test/utils';
+import DialogActions, { dialogActionsClasses as classes } from '@material-ui/core/DialogActions';
 
 describe('<DialogActions />', () => {
-  const mount = createMount();
+  const render = createClientRender();
 
-  describeConformanceV5(<DialogActions />, () => ({
+  describeConformance(<DialogActions />, () => ({
     classes,
     inheritComponent: 'div',
-    mount,
+    render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiDialogActions',
     testVariantProps: { disableSpacing: true },

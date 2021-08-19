@@ -6,7 +6,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import Radio from '@material-ui/core/Radio';
 import Paper from '@material-ui/core/Paper';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
 type GridItemsAlignment =
@@ -24,31 +23,10 @@ type GridJustification =
   | 'space-around'
   | 'space-evenly';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    demo: {
-      height: 240,
-    },
-    paper: {
-      padding: theme.spacing(2),
-      height: '100%',
-      color: theme.palette.text.secondary,
-    },
-    control: {
-      padding: theme.spacing(2),
-    },
-  }),
-);
-
 export default function InteractiveGrid() {
-  const classes = useStyles();
   const [direction, setDirection] = React.useState<GridDirection>('row');
-  const [justifyContent, setJustifyContent] = React.useState<GridJustification>(
-    'center',
-  );
+  const [justifyContent, setJustifyContent] =
+    React.useState<GridJustification>('center');
   const [alignItems, setAlignItems] = React.useState<GridItemsAlignment>('center');
 
   const jsx = `
@@ -61,12 +39,12 @@ export default function InteractiveGrid() {
 `;
 
   return (
-    <Grid container className={classes.root}>
+    <Grid sx={{ flexGrow: 1 }} container>
       <Grid item xs={12}>
         <Grid
+          sx={{ height: 240 }}
           container
           spacing={2}
-          className={classes.demo}
           alignItems={alignItems}
           direction={direction}
           justifyContent={justifyContent}
@@ -74,10 +52,12 @@ export default function InteractiveGrid() {
           {[0, 1, 2].map((value) => (
             <Grid key={value} item>
               <Paper
-                className={classes.paper}
-                style={{
-                  paddingTop: (value + 1) * 10,
-                  paddingBottom: (value + 1) * 10,
+                sx={{
+                  p: 2,
+                  height: '100%',
+                  color: 'text.secondary',
+                  pt: `${(value + 1) * 10}px`,
+                  pb: `${(value + 1) * 10}px`,
                 }}
               >
                 {`Cell ${value + 1}`}
@@ -87,11 +67,11 @@ export default function InteractiveGrid() {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <Paper className={classes.control}>
+        <Paper sx={{ p: 2 }}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <FormControl component="fieldset">
-                <FormLabel>direction</FormLabel>
+                <FormLabel component="legend">direction</FormLabel>
                 <RadioGroup
                   row
                   name="direction"
@@ -124,7 +104,7 @@ export default function InteractiveGrid() {
             </Grid>
             <Grid item xs={12}>
               <FormControl component="fieldset">
-                <FormLabel>justifyContent</FormLabel>
+                <FormLabel component="legend">justifyContent</FormLabel>
                 <RadioGroup
                   row
                   name="justifyContent"
@@ -171,7 +151,7 @@ export default function InteractiveGrid() {
             </Grid>
             <Grid item xs={12}>
               <FormControl component="fieldset">
-                <FormLabel>alignItems</FormLabel>
+                <FormLabel component="legend">alignItems</FormLabel>
                 <RadioGroup
                   row
                   name="alignItems"

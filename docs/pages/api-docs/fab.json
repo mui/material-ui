@@ -4,8 +4,8 @@
     "classes": { "type": { "name": "object" } },
     "color": {
       "type": {
-        "name": "enum",
-        "description": "'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
+        "name": "union",
+        "description": "'default'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
       },
       "default": "'default'"
     },
@@ -16,8 +16,8 @@
     "href": { "type": { "name": "string" } },
     "size": {
       "type": {
-        "name": "enum",
-        "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
+        "name": "union",
+        "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;string"
       },
       "default": "'large'"
     },
@@ -34,7 +34,6 @@
   "styles": {
     "classes": [
       "root",
-      "label",
       "primary",
       "secondary",
       "extended",

@@ -1,17 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
-import FormGroup from './FormGroup';
-import classes from './formGroupClasses';
+import { createClientRender, describeConformance } from 'test/utils';
+import FormGroup, { formGroupClasses as classes } from '@material-ui/core/FormGroup';
 
 describe('<FormGroup />', () => {
-  const mount = createMount();
   const render = createClientRender();
 
-  describeConformanceV5(<FormGroup />, () => ({
+  describeConformance(<FormGroup />, () => ({
     classes,
     inheritComponent: 'div',
-    mount,
+    render,
     muiName: 'MuiFormGroup',
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { row: true },
@@ -25,6 +23,6 @@ describe('<FormGroup />', () => {
       </FormGroup>,
     );
 
-    expect(queryByTestId('test-children')).to.not.equal(null);
+    expect(queryByTestId('test-children')).not.to.equal(null);
   });
 });

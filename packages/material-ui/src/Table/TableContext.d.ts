@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { Padding, Size } from './Table';
 
 interface TableContextProps {
-  padding: Padding;
-  size: Size;
+  padding: 'default' | 'checkbox' | 'none';
+  size: 'default' | 'checkbox' | 'none';
 }
 
 declare const TableContext: React.Context<TableContextProps | undefined>;

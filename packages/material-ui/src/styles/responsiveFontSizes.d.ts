@@ -1,5 +1,5 @@
-import { Theme } from './createMuiTheme';
-import { Breakpoint } from './createBreakpoints';
+import { Breakpoint } from '@material-ui/system';
+import { Theme } from './createTheme';
 import { Variant } from './createTypography';
 
 export interface ResponsiveFontSizesOptions {
@@ -11,5 +11,5 @@ export interface ResponsiveFontSizesOptions {
 
 export default function responsiveFontSizes(
   theme: Theme,
-  options?: ResponsiveFontSizesOptions
+  options?: ResponsiveFontSizesOptions,
 ): Theme;

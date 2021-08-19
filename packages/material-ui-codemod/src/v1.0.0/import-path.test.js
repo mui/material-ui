@@ -1,15 +1,15 @@
-import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
 import transform from './import-path';
+import readFile from '../util/readFile';
 
 function trim(str) {
   return str ? str.replace(/^\s+|\s+$/, '') : '';
 }
 
 function read(fileName) {
-  return fs.readFileSync(path.join(__dirname, fileName), 'utf8').toString();
+  return readFile(path.join(__dirname, fileName));
 }
 
 describe('@material-ui/codemod', () => {
@@ -18,7 +18,7 @@ describe('@material-ui/codemod', () => {
       it('convert path as needed', () => {
         const actual = transform(
           { source: read('./import-path.test/actual.js') },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 
@@ -29,7 +29,7 @@ describe('@material-ui/codemod', () => {
       it('should be idempotent', () => {
         const actual = transform(
           { source: read('./import-path.test/expected.js') },
-          { jscodeshift: jscodeshift },
+          { jscodeshift },
           {},
         );
 

@@ -84,7 +84,7 @@ It's important to realize that the style of a typography component is independen
 - You can change the mapping [globally using the theme](/customization/theme-components/#default-props):
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiTypography: {
       defaultProps: {
@@ -113,6 +113,11 @@ In addition to using the default typography variants, you can add custom ones, o
 ## System props
 
 As a CSS utility component, the `Typography` supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component.
+For instance, a margin-top:
+
+```jsx
+<Typography mt={2}>
+```
 
 ## Accessibility
 

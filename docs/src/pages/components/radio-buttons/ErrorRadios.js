@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -8,17 +7,7 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
 
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(3),
-  },
-  button: {
-    margin: theme.spacing(1, 1, 0, 0),
-  },
-}));
-
 export default function ErrorRadios() {
-  const classes = useStyles();
   const [value, setValue] = React.useState('');
   const [error, setError] = React.useState(false);
   const [helperText, setHelperText] = React.useState('Choose wisely');
@@ -47,9 +36,10 @@ export default function ErrorRadios() {
   return (
     <form onSubmit={handleSubmit}>
       <FormControl
+        sx={{ m: 3 }}
         component="fieldset"
         error={error}
-        className={classes.formControl}
+        variant="standard"
       >
         <FormLabel component="legend">Pop quiz: Material-UI is...</FormLabel>
         <RadioGroup
@@ -62,7 +52,7 @@ export default function ErrorRadios() {
           <FormControlLabel value="worst" control={<Radio />} label="The worst." />
         </RadioGroup>
         <FormHelperText>{helperText}</FormHelperText>
-        <Button type="submit" variant="outlined" className={classes.button}>
+        <Button sx={{ mt: 1, mr: 1 }} type="submit" variant="outlined">
           Check Answer
         </Button>
       </FormControl>

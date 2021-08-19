@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { SOURCE_CODE_REPO } from 'docs/src/modules/constants';
 import Demo from 'docs/src/modules/components/Demo';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { exactProp } from '@material-ui/utils';
@@ -8,11 +7,19 @@ import ComponentLinkHeader from 'docs/src/modules/components/ComponentLinkHeader
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 
+// TODO: Only import on demand via @material-ui/markdown/loader
 const markdownComponents = {
   'modules/components/ComponentLinkHeader.js': ComponentLinkHeader,
 };
+
+function noComponent(moduleID) {
+  return function NoComponent() {
+    throw new Error(`No demo component provided for '${moduleID}'`);
+  };
+}
+
 function MarkdownDocs(props) {
-  const { disableAd = false, disableToc = false, demos = {}, docs, requireDemo } = props;
+  const { disableAd = false, disableToc = false, demos = {}, docs, demoComponents } = props;
 
   const userLanguage = useUserLanguage();
   const t = useTranslate();
@@ -72,13 +79,13 @@ function MarkdownDocs(props) {
             key={index}
             demo={{
               raw: demo.raw,
-              js: requireDemo(demo.module).default,
+              js: demoComponents[demo.module] ?? noComponent(demo.module),
               rawTS: demo.rawTS,
-              tsx: demo.moduleTS ? requireDemo(demo.moduleTS).default : null,
+              tsx: demo.moduleTS ? demoComponents[demo.moduleTS] : null,
             }}
             disableAd={disableAd}
             demoOptions={renderedMarkdownOrDemo}
-            githubLocation={`${SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}/docs/src/${name}`}
+            githubLocation={`${process.env.SOURCE_CODE_REPO}/blob/v${process.env.LIB_VERSION}/docs/src/${name}`}
           />
         );
       })}
@@ -87,11 +94,11 @@ function MarkdownDocs(props) {
 }
 
 MarkdownDocs.propTypes = {
+  demoComponents: PropTypes.object,
   demos: PropTypes.object,
   disableAd: PropTypes.bool,
   disableToc: PropTypes.bool,
   docs: PropTypes.object.isRequired,
-  requireDemo: PropTypes.func,
 };
 
 if (process.env.NODE_ENV !== 'production') {

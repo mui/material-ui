@@ -1,4 +1,6 @@
-const boxProps = [
+import propsToObject from '../util/propsToObject';
+
+const props = [
   'border',
   'borderTop',
   'borderRight',
@@ -75,41 +77,19 @@ const boxProps = [
   'textAlign',
 ];
 
-export default function transformer(file, api) {
+/**
+ * @param {import('jscodeshift').FileInfo} file
+ * @param {import('jscodeshift').API} api
+ */
+export default function transformer(file, api, options) {
   const j = api.jscodeshift;
+  const root = j(file.source);
 
-  function buildSxValue(node, value) {
-    value.push(
-      j.objectProperty(
-        j.identifier(node.name.name),
-        node.value.expression ? node.value.expression : node.value,
-        false,
-        false,
-      ),
-    );
-    return value;
-  }
+  const printOptions = options.printOptions || {
+    quote: 'single',
+  };
 
-  return j(file.source)
-    .findJSXElements('Box')
-    .forEach((path) => {
-      let sxValue = [];
-      const attributes = path.node.openingElement.attributes;
-      attributes.forEach((node, index) => {
-        // Only transform whitelisted props
-        if (node.type === 'JSXAttribute' && boxProps.includes(node.name.name)) {
-          sxValue = buildSxValue(node, sxValue);
-          delete attributes[index];
-        }
-      });
-      if (sxValue.length > 0) {
-        attributes.push(
-          j.jsxAttribute(
-            j.jsxIdentifier('sx'),
-            j.jsxExpressionContainer(j.objectExpression(sxValue)),
-          ),
-        );
-      }
-    })
-    .toSource();
+  return propsToObject({ j, root, componentName: 'Box', propName: 'sx', props }).toSource(
+    printOptions,
+  );
 }

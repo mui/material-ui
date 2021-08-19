@@ -1,24 +1,55 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/core/styles';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { styled, useThemeProps } from '@material-ui/core/styles';
+import { getTimelineConnectorUtilityClass } from './timelineConnectorClasses';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
+
+  const slots = {
+    root: ['root'],
+  };
+
+  return composeClasses(slots, getTimelineConnectorUtilityClass, classes);
+};
+
+const TimelineConnectorRoot = styled('span', {
+  name: 'MuiTimelineConnector',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(({ theme }) => {
+  return {
     width: 2,
     backgroundColor: theme.palette.grey[400],
     flexGrow: 1,
-  },
+  };
 });
 
-const TimelineConnector = React.forwardRef(function TimelineConnector(props, ref) {
-  const { classes, className, ...other } = props;
+const TimelineConnector = React.forwardRef(function TimelineConnector(inProps, ref) {
+  const props = useThemeProps({
+    props: inProps,
+    name: 'MuiTimelineConnector',
+  });
 
-  return <span className={clsx(classes.root, className)} ref={ref} {...other} />;
+  const { className, ...other } = props;
+
+  const ownerState = props;
+
+  const classes = useUtilityClasses(ownerState);
+
+  return (
+    <TimelineConnectorRoot
+      className={clsx(classes.root, className)}
+      ownerState={ownerState}
+      ref={ref}
+      {...other}
+    />
+  );
 });
 
-TimelineConnector.propTypes = {
+TimelineConnector.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -35,6 +66,10 @@ TimelineConnector.propTypes = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiTimelineConnector' })(TimelineConnector);
+export default TimelineConnector;

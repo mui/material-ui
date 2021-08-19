@@ -1,25 +1,21 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, describeConformance, createClientRender } from 'test/utils';
-import FormControl from '../FormControl';
-import IconButton from '../IconButton';
-import Radio from './Radio';
+import { describeConformance, createClientRender } from 'test/utils';
+import Radio, { radioClasses as classes } from '@material-ui/core/Radio';
+import FormControl from '@material-ui/core/FormControl';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<Radio />', () => {
   const render = createClientRender();
-  let classes;
-  const mount = createMount();
-
-  before(() => {
-    classes = getClasses(<Radio />);
-  });
 
   describeConformance(<Radio />, () => ({
     classes,
-    inheritComponent: IconButton,
-    mount,
+    inheritComponent: ButtonBase,
+    render,
+    muiName: 'MuiRadio',
+    testVariantProps: { color: 'secondary' },
     refInstanceof: window.HTMLSpanElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   describe('styleSheet', () => {

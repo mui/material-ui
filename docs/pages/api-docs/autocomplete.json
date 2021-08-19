@@ -19,6 +19,7 @@
     "clearOnEscape": { "type": { "name": "bool" } },
     "clearText": { "type": { "name": "string" }, "default": "'Clear'" },
     "closeText": { "type": { "name": "string" }, "default": "'Close'" },
+    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
     "defaultValue": { "type": { "name": "any" }, "default": "props.multiple ? [] : null" },
     "disableClearable": { "type": { "name": "bool" } },
     "disableCloseOnSelect": { "type": { "name": "bool" } },
@@ -40,13 +41,13 @@
       "type": { "name": "func" },
       "default": "(option) => option.label ?? option"
     },
-    "getOptionSelected": { "type": { "name": "func" } },
     "groupBy": { "type": { "name": "func" } },
     "handleHomeEndKeys": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
     "id": { "type": { "name": "string" } },
     "includeInputInList": { "type": { "name": "bool" } },
     "inputValue": { "type": { "name": "string" } },
-    "limitTags": { "type": { "name": "number" }, "default": "-1" },
+    "isOptionEqualToValue": { "type": { "name": "func" } },
+    "limitTags": { "type": { "name": "custom", "description": "integer" }, "default": "-1" },
     "ListboxComponent": { "type": { "name": "elementType" }, "default": "'ul'" },
     "ListboxProps": { "type": { "name": "object" } },
     "loading": { "type": { "name": "bool" } },
@@ -69,9 +70,13 @@
     "renderTags": { "type": { "name": "func" } },
     "selectOnFocus": { "type": { "name": "bool" }, "default": "!props.freeSolo" },
     "size": {
-      "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
+      "type": {
+        "name": "union",
+        "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;string"
+      },
       "default": "'medium'"
     },
+    "sx": { "type": { "name": "object" } },
     "value": { "type": { "name": "custom", "description": "any" } }
   },
   "name": "Autocomplete",
@@ -82,6 +87,7 @@
       "focused",
       "tag",
       "tagSizeSmall",
+      "tagSizeMedium",
       "hasPopupIcon",
       "hasClearIcon",
       "inputRoot",
@@ -109,6 +115,6 @@
   "filename": "/packages/material-ui/src/Autocomplete/Autocomplete.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/autocomplete/\">Autocomplete</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

@@ -12,4 +12,4 @@ Explore o objeto de tema padrão:
 
 <!-- #default-branch-switch -->
 
-Se você quiser aprender mais sobre como o tema é montado, dê uma olhada em [`material-ui/style/createMuiTheme.js`](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/createMuiTheme.js), e as importações relacionadas que `createMuiTheme` usa.
+If you want to learn more about how the theme is assembled, take a look at [`material-ui/style/createTheme.js`](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/styles/createTheme.js), and the related imports which `createTheme` uses.

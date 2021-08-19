@@ -1,9 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import ButtonBase from '../ButtonBase';
 import unsupportedProp from '../utils/unsupportedProp';
@@ -11,38 +10,26 @@ import bottomNavigationActionClasses, {
   getBottomNavigationActionUtilityClass,
 } from './bottomNavigationActionClasses';
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(styles.root || {}, {
-    ...(!styleProps.showLabel && !styleProps.selected && styles.iconOnly),
-    [`& .${bottomNavigationActionClasses.wrapper}`]: styles.wrapper,
-    [`& .${bottomNavigationActionClasses.label}`]: styles.label,
-  });
-};
-
-const useUtilityClasses = (styleProps) => {
-  const { classes, showLabel, selected } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, showLabel, selected } = ownerState;
 
   const slots = {
     root: ['root', !showLabel && !selected && 'iconOnly', selected && 'selected'],
-    wrapper: ['wrapper'],
     label: ['label', !showLabel && !selected && 'iconOnly', selected && 'selected'],
   };
 
   return composeClasses(slots, getBottomNavigationActionUtilityClass, classes);
 };
 
-const BottomNavigationActionRoot = experimentalStyled(
-  ButtonBase,
-  {},
-  {
-    name: 'MuiBottomNavigationAction',
-    slot: 'Root',
-    overridesResolver,
+const BottomNavigationActionRoot = styled(ButtonBase, {
+  name: 'MuiBottomNavigationAction',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [styles.root, !ownerState.showLabel && !ownerState.selected && styles.iconOnly];
   },
-)(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
+})(({ theme, ownerState }) => ({
   transition: theme.transitions.create(['color', 'padding-top'], {
     duration: theme.transitions.duration.short,
   }),
@@ -50,9 +37,10 @@ const BottomNavigationActionRoot = experimentalStyled(
   minWidth: 80,
   maxWidth: 168,
   color: theme.palette.text.secondary,
+  flexDirection: 'column',
   flex: '1',
-  ...(!styleProps.showLabel &&
-    !styleProps.selected && {
+  ...(!ownerState.showLabel &&
+    !ownerState.selected && {
       paddingTop: 16,
     }),
   [`&.${bottomNavigationActionClasses.selected}`]: {
@@ -61,38 +49,18 @@ const BottomNavigationActionRoot = experimentalStyled(
   },
 }));
 
-const BottomNavigationActionWrapper = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiBottomNavigationAction',
-    slot: 'Wrapper',
-  },
-)({
-  /* Styles applied to the span element that wraps the icon and label. */
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: '100%',
-  flexDirection: 'column',
-});
-
-const BottomNavigationActionLabel = experimentalStyled(
-  'span',
-  {},
-  {
-    name: 'MuiBottomNavigationAction',
-    slot: 'Label',
-  },
-)(({ theme, styleProps }) => ({
-  /* Styles applied to the label's span element. */
+const BottomNavigationActionLabel = styled('span', {
+  name: 'MuiBottomNavigationAction',
+  slot: 'Label',
+  overridesResolver: (props, styles) => styles.label,
+})(({ theme, ownerState }) => ({
   fontFamily: theme.typography.fontFamily,
   fontSize: theme.typography.pxToRem(12),
   opacity: 1,
   transition: 'font-size 0.2s, opacity 0.2s',
   transitionDelay: '0.1s',
-  ...(!styleProps.showLabel &&
-    !styleProps.selected && {
+  ...(!ownerState.showLabel &&
+    !ownerState.selected && {
       opacity: 0,
       transitionDelay: '0s',
     }),
@@ -108,8 +76,6 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
     icon,
     label,
     onChange,
-    onTouchStart,
-    onTouchEnd,
     onClick,
     // eslint-disable-next-line react/prop-types -- private, always overridden by BottomNavigation
     selected,
@@ -118,57 +84,10 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
     ...other
   } = props;
 
-  // TODO: convert to simple assignment after the type error in defaultPropsHandler.js:60:6 is fixed
-  const styleProps = { ...props };
-
-  const classes = useUtilityClasses(styleProps);
-
-  const touchStartPos = React.useRef();
-  const touchTimer = React.useRef();
-
-  React.useEffect(() => {
-    return () => {
-      clearTimeout(touchTimer.current);
-    };
-  }, [touchTimer]);
-
-  const handleTouchStart = (event) => {
-    if (onTouchStart) {
-      onTouchStart(event);
-    }
-
-    const { clientX, clientY } = event.touches[0];
-
-    touchStartPos.current = {
-      clientX,
-      clientY,
-    };
-  };
-
-  const handleTouchEnd = (event) => {
-    if (onTouchEnd) onTouchEnd(event);
-
-    const target = event.target;
-    const { clientX, clientY } = event.changedTouches[0];
-
-    if (
-      Math.abs(clientX - touchStartPos.current.clientX) < 10 &&
-      Math.abs(clientY - touchStartPos.current.clientY) < 10
-    ) {
-      touchTimer.current = setTimeout(() => {
-        // Simulate the native tap behavior on mobile.
-        // On the web, a tap won't trigger a click if a container is scrolling.
-        //
-        // Note that the synthetic behavior won't trigger a native <a> nor
-        // it will trigger a click at all on iOS.
-        target.dispatchEvent(new Event('click', { bubbles: true }));
-      }, 10);
-    }
-  };
+  const ownerState = props;
+  const classes = useUtilityClasses(ownerState);
 
   const handleChange = (event) => {
-    clearTimeout(touchTimer.current);
-
     if (onChange) {
       onChange(event, value);
     }
@@ -184,22 +103,18 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
       className={clsx(classes.root, className)}
       focusRipple
       onClick={handleChange}
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
-      <BottomNavigationActionWrapper className={classes.wrapper} styleProps={styleProps}>
-        {icon}
-        <BottomNavigationActionLabel className={classes.label} styleProps={styleProps}>
-          {label}
-        </BottomNavigationActionLabel>
-      </BottomNavigationActionWrapper>
+      {icon}
+      <BottomNavigationActionLabel className={classes.label} ownerState={ownerState}>
+        {label}
+      </BottomNavigationActionLabel>
     </BottomNavigationActionRoot>
   );
 });
 
-BottomNavigationAction.propTypes = {
+BottomNavigationAction.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -233,14 +148,6 @@ BottomNavigationAction.propTypes = {
    * @ignore
    */
   onClick: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onTouchEnd: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onTouchStart: PropTypes.func,
   /**
    * If `true`, the `BottomNavigationAction` will show its label.
    * By default, only the selected `BottomNavigationAction`

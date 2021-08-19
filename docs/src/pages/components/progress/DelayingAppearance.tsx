@@ -1,28 +1,11 @@
 import * as React from 'react';
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Fade from '@material-ui/core/Fade';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
-    button: {
-      margin: theme.spacing(2),
-    },
-    placeholder: {
-      height: 40,
-    },
-  }),
-);
-
 export default function DelayingAppearance() {
-  const classes = useStyles();
   const [loading, setLoading] = React.useState(false);
   const [query, setQuery] = React.useState('idle');
   const timerRef = React.useRef<number>();
@@ -55,8 +38,8 @@ export default function DelayingAppearance() {
   };
 
   return (
-    <div className={classes.root}>
-      <div className={classes.placeholder}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Box sx={{ height: 40 }}>
         <Fade
           in={loading}
           style={{
@@ -66,11 +49,11 @@ export default function DelayingAppearance() {
         >
           <CircularProgress />
         </Fade>
-      </div>
-      <Button onClick={handleClickLoading} className={classes.button}>
+      </Box>
+      <Button onClick={handleClickLoading} sx={{ m: 2 }}>
         {loading ? 'Stop loading' : 'Loading'}
       </Button>
-      <div className={classes.placeholder}>
+      <Box sx={{ height: 40 }}>
         {query === 'success' ? (
           <Typography>Success!</Typography>
         ) : (
@@ -84,10 +67,10 @@ export default function DelayingAppearance() {
             <CircularProgress />
           </Fade>
         )}
-      </div>
-      <Button onClick={handleClickQuery} className={classes.button}>
+      </Box>
+      <Button onClick={handleClickQuery} sx={{ m: 2 }}>
         {query !== 'idle' ? 'Reset' : 'Simulate a load'}
       </Button>
-    </div>
+    </Box>
   );
 }

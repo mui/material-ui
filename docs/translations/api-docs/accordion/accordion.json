@@ -7,9 +7,9 @@
     "disabled": "If <code>true</code>, the component is disabled.",
     "disableGutters": "If <code>true</code>, it removes the margin between two expanded accordion items and the increase of height.",
     "expanded": "If <code>true</code>, expands the accordion, otherwise collapse it. Setting this prop enables control over the accordion.",
-    "onChange": "Callback fired when the expand/collapse state is changed.<br><br><strong>Signature:</strong><br><code>function(event: object, expanded: boolean) =&gt; void</code><br><em>event:</em> The event source of the callback. <strong>Warning</strong>: This is a generic event not a change event.<br><em>expanded:</em> The <code>expanded</code> state of the accordion.",
+    "onChange": "Callback fired when the expand/collapse state is changed.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, expanded: boolean) =&gt; void</code><br><em>event:</em> The event source of the callback. <strong>Warning</strong>: This is a generic event not a change event.<br><em>expanded:</em> The <code>expanded</code> state of the accordion.",
     "square": "If <code>true</code>, rounded corners are disabled.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
     "TransitionComponent": "The component used for the transition. <a href=\"/components/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component.",
     "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition\"><code>Transition</code></a> component."
   },
@@ -21,12 +21,12 @@
       "conditions": "<code>square={true}</code>"
     },
     "expanded": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>expanded={true}</code>"
     },
     "disabled": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },

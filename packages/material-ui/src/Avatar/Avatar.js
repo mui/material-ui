@@ -1,26 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Person from '../internal/svg-icons/Person';
-import avatarClasses, { getAvatarUtilityClass } from './avatarClasses';
+import { getAvatarUtilityClass } from './avatarClasses';
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-    ...(styleProps.colorDefault && styles.colorDefault),
-    [`& .${avatarClasses.img}`]: styles.img,
-    [`& .${avatarClasses.fallback}`]: styles.fallback,
-  });
-};
-
-const useUtilityClasses = (styleProps) => {
-  const { classes, variant, colorDefault } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, variant, colorDefault } = ownerState;
 
   const slots = {
     root: ['root', variant, colorDefault && 'colorDefault'],
@@ -31,15 +19,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAvatarUtilityClass, classes);
 };
 
-const AvatarRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAvatar',
-    slot: 'Root',
-    overridesResolver,
+const AvatarRoot = styled('div', {
+  name: 'MuiAvatar',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [
+      styles.root,
+      styles[ownerState.variant],
+      ownerState.colorDefault && styles.colorDefault,
+    ];
   },
-)(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -53,27 +45,24 @@ const AvatarRoot = experimentalStyled(
   borderRadius: '50%',
   overflow: 'hidden',
   userSelect: 'none',
-  ...(styleProps.variant === 'rounded' && {
+  ...(ownerState.variant === 'rounded' && {
     borderRadius: theme.shape.borderRadius,
   }),
-  ...(styleProps.variant === 'square' && {
+  ...(ownerState.variant === 'square' && {
     borderRadius: 0,
   }),
-  ...(styleProps.colorDefault && {
+  ...(ownerState.colorDefault && {
     color: theme.palette.background.default,
     backgroundColor:
       theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
   }),
 }));
 
-const AvatarImg = experimentalStyled(
-  'img',
-  {},
-  {
-    name: 'MuiAvatar',
-    slot: 'Img',
-  },
-)({
+const AvatarImg = styled('img', {
+  name: 'MuiAvatar',
+  slot: 'Img',
+  overridesResolver: (props, styles) => styles.img,
+})({
   width: '100%',
   height: '100%',
   textAlign: 'center',
@@ -85,19 +74,16 @@ const AvatarImg = experimentalStyled(
   textIndent: 10000,
 });
 
-const AvatarFallback = experimentalStyled(
-  Person,
-  {},
-  {
-    name: 'MuiAvatar',
-    slot: 'Fallback',
-  },
-)({
+const AvatarFallback = styled(Person, {
+  name: 'MuiAvatar',
+  slot: 'Fallback',
+  overridesResolver: (props, styles) => styles.fallback,
+})({
   width: '75%',
   height: '75%',
 });
 
-function useLoaded({ src, srcSet }) {
+function useLoaded({ crossOrigin, referrerPolicy, src, srcSet }) {
   const [loaded, setLoaded] = React.useState(false);
 
   React.useEffect(() => {
@@ -109,10 +95,6 @@ function useLoaded({ src, srcSet }) {
 
     let active = true;
     const image = new Image();
-    image.src = src;
-    if (srcSet) {
-      image.srcset = srcSet;
-    }
     image.onload = () => {
       if (!active) {
         return;
@@ -125,11 +107,17 @@ function useLoaded({ src, srcSet }) {
       }
       setLoaded('error');
     };
+    image.crossOrigin = crossOrigin;
+    image.referrerPolicy = referrerPolicy;
+    image.src = src;
+    if (srcSet) {
+      image.srcset = srcSet;
+    }
 
     return () => {
       active = false;
     };
-  }, [src, srcSet]);
+  }, [crossOrigin, referrerPolicy, src, srcSet]);
 
   return loaded;
 }
@@ -152,18 +140,18 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   let children = null;
 
   // Use a hook instead of onError on the img element to support server-side rendering.
-  const loaded = useLoaded({ src, srcSet });
+  const loaded = useLoaded({ ...imgProps, src, srcSet });
   const hasImg = src || srcSet;
   const hasImgNotFailing = hasImg && loaded !== 'error';
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     colorDefault: !hasImgNotFailing,
     component,
     variant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   if (hasImgNotFailing) {
     children = (
@@ -172,7 +160,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
         src={src}
         srcSet={srcSet}
         sizes={sizes}
-        styleProps={styleProps}
+        ownerState={ownerState}
         className={classes.img}
         {...imgProps}
       />
@@ -188,7 +176,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   return (
     <AvatarRoot
       as={component}
-      styleProps={styleProps}
+      ownerState={ownerState}
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
@@ -198,7 +186,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   );
 });
 
-Avatar.propTypes = {
+Avatar.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

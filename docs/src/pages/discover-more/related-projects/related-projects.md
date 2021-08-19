@@ -8,14 +8,15 @@ Feel free to submit a pull request to add another project; it will be accepted i
 
 ## Design resources
 
-<a href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch" style="margin-left: 8px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-sketch.svg" alt="sketch" /></a>
-<a href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-figma.svg" alt="figma" /></a>
+<a href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma" style="margin-left: 8px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-figma.svg" alt="figma" /></a>
+<a href="https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-adobe-xd.svg" alt="adobe-xd" /></a>
+<a href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-sketch.svg" alt="sketch" /></a>
 
 A set of reusable components for design tools is available, designed to match the React components, and to help you craft great products:
 
 - [Figma](https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-figma): A large UI kit with over 600 handcrafted Material-UI components.
-- [Sketch](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch): A large UI kit with over 600 handcrafted Material-UI symbols.
 - [Adobe XD](https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-adobe-xd): A large UI kit with over 600 handcrafted Material-UI components.
+- [Sketch](https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=related-projects-sketch): A large UI kit with over 600 handcrafted Material-UI symbols.
 - [Framer](https://packages.framer.com/package/material-ui/material-ui): A small free UI kit of Material-UI components.
 
 ## Images and illustrations
@@ -66,10 +67,6 @@ This is a collection of third-party projects that extend Material-UI.
 
 - [material-ui-image](https://mui.wertarbyte.com/#material-ui-image): Images are ugly until they're loaded. Materialize it with material image! It will fade in like the material image loading pattern suggests.
 
-### Pagination
-
-- [material-ui-flat-pagination](https://github.com/szmslab/material-ui-flat-pagination): A flat design pagination component for Material-UI.
-
 ### Scheduler/Calendar
 
 - [dx-react-scheduler-material-ui](https://devexpress.github.io/devextreme-reactive/react/scheduler/): A scheduler/calendar component for Material-UI with multiple calendar views, editing, recurrence appointments and date navigation features ([paid license](https://js.devexpress.com/licensing/)).
@@ -86,9 +83,13 @@ This is a collection of third-party projects that extend Material-UI.
 
 - [material-ui-color](https://github.com/mikbry/material-ui-color): Collections of color components for material-ui. No dependencies, small, highly customizable and theming support!
 
+### Sparkline
+
+- [mui-plus](https://mui-plus.vercel.app/components/Sparkline): A sparkline is a tiny chart that can be used to indicate the trend of a value.
+
 ## Blocks
 
-- [components-extra](https://github.com/alexandre-lelain/components-extra): Provides a set of "molecule" components built on top of Material-UI like a Footer, a CookiesBanner, a BackToTop button and other complex elements highly customizable to help devs build the macro parts of their UI very quickly. Those components are often duplicated across sites - this library solves this exact problem.
+- [components-extra](https://github.com/alexandre-lelain/components-extra): Provides a set of "molecule" components built on top of Material-UI, such as a Footer, a CookiesBanner, a BackToTop button, and other highly customizable complex elements, to help devs build the macro parts of their UI very quickly. Those components are often duplicated across sites. This library solves this exact problem.
 
 ## Theming
 

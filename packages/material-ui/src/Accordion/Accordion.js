@@ -2,9 +2,9 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge, chainPropTypes } from '@material-ui/utils';
+import { chainPropTypes } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Collapse from '../Collapse';
 import Paper from '../Paper';
@@ -12,18 +12,8 @@ import AccordionContext from './AccordionContext';
 import useControlled from '../utils/useControlled';
 import accordionClasses, { getAccordionUtilityClass } from './accordionClasses';
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(styles.root || {}, {
-    ...(!styleProps.square && styles.rounded),
-    ...(!styleProps.disableGutters && styles.gutters),
-    [`& .${accordionClasses.region}`]: styles.region,
-  });
-};
-
-const useUtilityClasses = (styleProps) => {
-  const { classes, square, expanded, disabled, disableGutters } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, square, expanded, disabled, disableGutters } = ownerState;
 
   const slots = {
     root: [
@@ -39,22 +29,26 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAccordionUtilityClass, classes);
 };
 
-const AccordionRoot = experimentalStyled(
-  Paper,
-  {},
-  {
-    name: 'MuiAccordion',
-    slot: 'Root',
-    overridesResolver,
+const AccordionRoot = styled(Paper, {
+  name: 'MuiAccordion',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [
+      { [`& .${accordionClasses.region}`]: styles.region },
+      styles.root,
+      !ownerState.square && styles.rounded,
+      !ownerState.disableGutters && styles.gutters,
+    ];
   },
-)(
+})(
   ({ theme }) => {
     const transition = {
       duration: theme.transitions.duration.shortest,
     };
 
     return {
-      /* Styles applied to the root element. */
       position: 'relative',
       transition: theme.transitions.create(['margin'], transition),
       overflowAnchor: 'none', // Keep the same scrolling position
@@ -74,7 +68,6 @@ const AccordionRoot = experimentalStyled(
           display: 'none',
         },
       },
-      /* Styles applied to the root element if `expanded={true}`. */
       [`&.${accordionClasses.expanded}`]: {
         '&:before': {
           opacity: 0,
@@ -91,15 +84,13 @@ const AccordionRoot = experimentalStyled(
           },
         },
       },
-      /* Styles applied to the root element if `disabled={true}`. */
       [`&.${accordionClasses.disabled}`]: {
         backgroundColor: theme.palette.action.disabledBackground,
       },
     };
   },
-  ({ theme, styleProps }) => ({
-    /* Styles applied to the root element unless `square={true}`. */
-    ...(!styleProps.square && {
+  ({ theme, ownerState }) => ({
+    ...(!ownerState.square && {
       borderRadius: 0,
       '&:first-of-type': {
         borderTopLeftRadius: theme.shape.borderRadius,
@@ -115,8 +106,7 @@ const AccordionRoot = experimentalStyled(
         },
       },
     }),
-    /* Styles applied to the root element unless `disableGutters={true}`. */
-    ...(!styleProps.disableGutters && {
+    ...(!ownerState.disableGutters && {
       [`&.${accordionClasses.expanded}`]: {
         margin: '16px 0',
       },
@@ -164,7 +154,7 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     [expanded, disabled, disableGutters, handleChange],
   );
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     square,
     disabled,
@@ -172,13 +162,13 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     expanded,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <AccordionRoot
       className={clsx(classes.root, className)}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       square={square}
       {...other}
     >
@@ -197,7 +187,7 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
   );
 });
 
-Accordion.propTypes = {
+Accordion.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -251,7 +241,7 @@ Accordion.propTypes = {
   /**
    * Callback fired when the expand/collapse state is changed.
    *
-   * @param {object} event The event source of the callback. **Warning**: This is a generic event not a change event.
+   * @param {React.SyntheticEvent} event The event source of the callback. **Warning**: This is a generic event not a change event.
    * @param {boolean} expanded The `expanded` state of the accordion.
    */
   onChange: PropTypes.func,

@@ -32,7 +32,7 @@ export default function Why() {
         18.77%
       </Box>
       <Box sx={{ color: 'text.secondary', display: 'inline', fontSize: 12 }}>
-        vs last week
+        vs. last week
       </Box>
     </Box>
   );

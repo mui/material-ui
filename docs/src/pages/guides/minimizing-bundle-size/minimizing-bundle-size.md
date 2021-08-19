@@ -1,4 +1,4 @@
-# Minimizing Bundle Size
+# Minimizing bundle size
 
 <p class="description">Learn more about the tools you can leverage to reduce the bundle size.</p>
 
@@ -24,8 +24,9 @@ that doesn't support tree-shaking.
 
 ## Development environment
 
-Development bundles can contain the full library which can lead to **slower startup times**. This is especially noticeable if you
-import from `@material-ui/icons`. Startup times can be approximately 6x slower than without named imports from the top-level API.
+Development bundles can contain the full library which can lead to **slower startup times**.
+This is especially noticeable if you import from `@material-ui/icons`.
+Startup times can be approximately 6x slower than without named imports from the top-level API.
 
 If this is an issue for you, you have various options:
 
@@ -40,19 +41,19 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 ```
 
-instead of top level imports (without a Babel plugin):
+instead of top-level imports (without a Babel plugin):
 
 ```js
 import { Button, TextField } from '@material-ui/core';
 ```
 
-This is the option we document in all the demos, since it requires no configuration.
-It is encouraged for library authors extending the components.
+This is the option we document in all the demos since it requires no configuration.
+It is encouraged for library authors that are extending the components.
 Head to [Option 2](#option-2) for the approach that yields the best DX and UX.
 
 While importing directly in this manner doesn't use the exports in [the main file of `@material-ui/core`](https://unpkg.com/@material-ui/core), this file can serve as a handy reference as to which modules are public.
 
-Be aware that we only support first and second level imports.
+Be aware that we only support first and second-level imports.
 Anything deeper is considered private and can cause issues, such as module duplication in your bundle.
 
 ```js
@@ -90,7 +91,7 @@ If you're using `eslint` you can catch problematic imports with the [`no-restric
 
 This option provides the best User Experience and Developer Experience:
 
-- UX: The Babel plugin enables top level tree-shaking even if your bundler doesn't support it.
+- UX: The Babel plugin enables top-level tree-shaking even if your bundler doesn't support it.
 - DX: The Babel plugin makes startup time in dev mode as fast as Option 1.
 - DX: This syntax reduces the duplication of code, requiring only a single import for multiple modules.
   Overall, the code is easier to read, and you are less likely to make a mistake when importing a new module.
@@ -117,6 +118,7 @@ Pick one of the following plugins:
       'babel-plugin-import',
       {
         libraryName: '@material-ui/core',
+        libraryDirectory: '',
         camel2DashComponentName: false,
       },
       'core',
@@ -125,6 +127,7 @@ Pick one of the following plugins:
       'babel-plugin-import',
       {
         libraryName: '@material-ui/icons',
+        libraryDirectory: '',
         camel2DashComponentName: false,
       },
       'icons',
@@ -134,26 +137,17 @@ Pick one of the following plugins:
   module.exports = { plugins };
   ```
 
-- [babel-plugin-transform-imports](https://www.npmjs.com/package/babel-plugin-transform-imports) with the following configuration:
+- [babel-plugin-direct-import](https://github.com/umidbekk/babel-plugin-direct-import) with the following configuration:
 
-  `yarn add -D babel-plugin-transform-imports`
+  `yarn add -D babel-plugin-direct-import`
 
   Create a `.babelrc.js` file in the root directory of your project:
 
   ```js
   const plugins = [
     [
-      'babel-plugin-transform-imports',
-      {
-        '@material-ui/core': {
-          transform: '@material-ui/core/${member}',
-          preventFullImport: true,
-        },
-        '@material-ui/icons': {
-          transform: '@material-ui/icons/${member}',
-          preventFullImport: true,
-        },
-      },
+      'babel-plugin-direct-import',
+      { modules: ['@material-ui/core', '@material-ui/icons'] },
     ],
   ];
 
@@ -188,24 +182,6 @@ Modify your `package.json` commands:
 +   "test": "react-app-rewired test",
     "eject": "react-scripts eject"
 }
-```
-
-Note: You may run into errors like these:
-
-> Module not found: Can't resolve '@material-ui/core/makeStyles' in '/your/project'
-
-This is because `@material-ui/styles` is re-exported through `core`, but the full import is not allowed.
-
-You have an import like this in your code:
-
-```js
-import { makeStyles, createStyles } from '@material-ui/core';
-```
-
-The fix is simple, define the import separately:
-
-```js
-import { makeStyles, createStyles } from '@material-ui/core/styles';
 ```
 
 Enjoy significantly faster start times.

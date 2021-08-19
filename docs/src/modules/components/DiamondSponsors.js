@@ -1,48 +1,46 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import { useTheme, makeStyles } from '@material-ui/core/styles';
+import { useTheme, styled } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& a': {
-      display: 'block',
-      marginBottom: theme.spacing(1),
-    },
-    '& img': {
-      display: 'inline-block',
-    },
+const Root = styled('div')(({ theme }) => ({
+  '& a': {
+    display: 'block',
+    marginBottom: theme.spacing(1),
   },
-  placeholder: {
-    width: 125,
-    height: 35,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: theme.shape.borderRadius,
-    color: theme.palette.divider,
-    border: `1px dashed ${theme.palette.divider}`,
-    transition: theme.transitions.create(['color', 'border-color']),
-    '&&': {
-      display: 'flex',
-    },
-    '&:hover': {
-      borderColor: 'currentColor',
-      color: theme.palette.text.secondary,
-    },
+  '& img': {
+    display: 'inline-block',
+  },
+}));
+
+const Placeholder = styled('a')(({ theme }) => ({
+  width: 125,
+  height: 35,
+  alignItems: 'center',
+  justifyContent: 'center',
+  borderRadius: theme.shape.borderRadius,
+  color: theme.palette.divider,
+  border: `1px dashed ${theme.palette.divider}`,
+  transition: theme.transitions.create(['color', 'border-color']),
+  '&&': {
+    display: 'flex',
+  },
+  '&:hover': {
+    borderColor: 'currentColor',
+    color: theme.palette.text.secondary,
   },
 }));
 
 export default function DiamondSponsors(props) {
-  const classes = useStyles();
   const { spot } = props;
   const theme = useTheme();
   const t = useTranslate();
 
   return (
-    <div className={classes.root}>
-      <Typography variant="caption" color="textSecondary" display="block" gutterBottom>
+    <Root>
+      <Typography variant="caption" color="text.secondary" display="block" gutterBottom>
         {t('diamondSponsors')}
       </Typography>
       <a
@@ -81,16 +79,15 @@ export default function DiamondSponsors(props) {
           loading="lazy"
         />
       </a>
-      <a
+      <Placeholder
         aria-label={t('diamondSponsors')}
-        className={classes.placeholder}
         rel="noopener noreferrer"
         target="_blank"
         href="/discover-more/backers/#diamond"
       >
         <AddIcon />
-      </a>
-    </div>
+      </Placeholder>
+    </Root>
   );
 }
 

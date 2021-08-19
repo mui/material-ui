@@ -12,17 +12,13 @@ export interface InjectOptions
     | 'comment'
     | 'disablePropTypesTypeChecking'
     | 'reconcilePropTypes'
+    | 'ensureBabelPluginTransformReactRemovePropTypesIntegration'
   > {
   /**
    * By default all unused props are omitted from the result.
    * Set this to true to include them instead.
    */
   includeUnusedProps?: boolean;
-  /**
-   * By default existing PropTypes are left alone, set this to true
-   * to have them removed before injecting the PropTypes
-   */
-  removeExistingPropTypes?: boolean;
   /**
    * Used to control which props are includes in the result
    * @returns true to include the prop, false to skip it, or undefined to
@@ -32,7 +28,7 @@ export interface InjectOptions
   shouldInclude?(data: {
     component: t.Component;
     prop: t.PropTypeDefinition;
-    usedProps: string[];
+    usedProps: readonly string[];
   }): boolean | undefined;
   /**
    * You can override the order of literals in unions based on the proptype.
@@ -148,7 +144,6 @@ function plugin(
       _previous: string | undefined,
       generated: string,
     ) => generated,
-    removeExistingPropTypes = false,
     ...otherOptions
   } = options;
   const shouldInclude: Exclude<InjectOptions['shouldInclude'], undefined> = (data) => {
@@ -170,7 +165,7 @@ function plugin(
 
   function injectPropTypes(injectOptions: {
     path: babel.NodePath;
-    usedProps: string[];
+    usedProps: readonly string[];
     props: t.Component;
     nodeName: string;
   }) {
@@ -183,24 +178,36 @@ function plugin(
       reconcilePropTypes,
       shouldInclude: (prop) => shouldInclude({ component: props, prop, usedProps }),
     });
+    const emptyPropTypes = source === '';
 
-    if (source.length === 0) {
-      return;
+    if (!emptyPropTypes) {
+      needImport = true;
     }
-
-    needImport = true;
 
     const placeholder = `const a${uuid().replace(/-/g, '_')} = null;`;
 
     mapOfPropTypes.set(placeholder, source);
 
-    if (removeExistingPropTypes && originalPropTypesPath !== null) {
+    // `Component.propTypes` already exists
+    if (originalPropTypesPath !== null) {
       originalPropTypesPath.replaceWith(babel.template.ast(placeholder) as babelTypes.Statement);
-    } else if (babelTypes.isExportNamedDeclaration(path.parent)) {
+    } else if (!emptyPropTypes && babelTypes.isExportNamedDeclaration(path.parent)) {
+      // in:
+      // export function Component() {}
+      // out:
+      // function Component() {}
+      // Component.propTypes = {}
+      // export { Component }
       path.insertAfter(babel.template.ast(`export { ${nodeName} };`));
       path.insertAfter(babel.template.ast(placeholder));
       path.parentPath.replaceWith(path.node);
-    } else if (babelTypes.isExportDefaultDeclaration(path.parent)) {
+    } else if (!emptyPropTypes && babelTypes.isExportDefaultDeclaration(path.parent)) {
+      // in:
+      // export default function Component() {}
+      // out:
+      // function Component() {}
+      // Component.propTypes = {}
+      // export default Component
       path.insertAfter(babel.template.ast(`export default ${nodeName};`));
       path.insertAfter(babel.template.ast(placeholder));
       path.parentPath.replaceWith(path.node);
@@ -318,33 +325,6 @@ function plugin(
           path: path as babel.NodePath,
           props,
         });
-      },
-      VariableDeclaration(path) {
-        const { node } = path;
-
-        if (!babelTypes.isIdentifier(node.declarations[0].id)) return;
-        const nodeName = node.declarations[0].id.name;
-
-        // Handle any variable with a comment containing `@typescript-to-proptypes-generate`
-        if (
-          node.leadingComments &&
-          node.leadingComments.some((comment) =>
-            comment.value.includes('@typescript-to-proptypes-generate'),
-          )
-        ) {
-          if (!propTypes.body.some((prop) => prop.name === nodeName)) {
-            console.warn(
-              `It looks like the variable at ${node.loc} with /* @typescript-to-proptypes-generate */ is not a component, or props can not be inferred from typescript definitions.`,
-            );
-          }
-
-          injectPropTypes({
-            nodeName,
-            usedProps: [],
-            path: path as babel.NodePath<babelTypes.Node>,
-            props: propTypes.body.find((prop) => prop.name === nodeName)!,
-          });
-        }
       },
       VariableDeclarator(path) {
         const { node } = path;

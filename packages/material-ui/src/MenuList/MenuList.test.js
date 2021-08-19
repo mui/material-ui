@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { stub } from 'sinon';
-import { createMount, describeConformance, createClientRender } from 'test/utils';
-import MenuList from './MenuList';
+import { describeConformance, createClientRender } from 'test/utils';
+import MenuList from '@material-ui/core/MenuList';
+import List from '@material-ui/core/List';
 import getScrollbarSize from '../utils/getScrollbarSize';
-import List from '../List';
 
 function setStyleWidthForJsdomOrBrowser(style, width) {
   style.width = '';
@@ -17,15 +17,19 @@ function setStyleWidthForJsdomOrBrowser(style, width) {
 }
 
 describe('<MenuList />', () => {
-  const mount = createMount();
   const render = createClientRender();
 
   describeConformance(<MenuList />, () => ({
     classes: {},
     inheritComponent: List,
-    mount,
     refInstanceof: window.HTMLUListElement,
-    skip: ['componentProp'],
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'themeDefaultProps',
+      'themeStyleOverrides',
+      'themeVariants',
+    ],
   }));
 
   describe('prop: children', () => {

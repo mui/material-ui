@@ -8,7 +8,7 @@ export default function BoxSx() {
         width: 300,
         height: 300,
         bgcolor: 'primary.dark',
-        ':hover': {
+        '&:hover': {
           backgroundColor: 'primary.main',
           opacity: [0.9, 0.8, 0.7],
         },

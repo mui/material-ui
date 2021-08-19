@@ -1,15 +1,14 @@
 import * as React from 'react';
-import { createMount, describeConformanceV5 } from 'test/utils';
-import CardActions from './CardActions';
-import classes from './cardActionsClasses';
+import { createClientRender, describeConformance } from 'test/utils';
+import CardActions, { cardActionsClasses as classes } from '@material-ui/core/CardActions';
 
 describe('<CardActions />', () => {
-  const mount = createMount();
+  const render = createClientRender();
 
-  describeConformanceV5(<CardActions />, () => ({
+  describeConformance(<CardActions />, () => ({
     classes,
     inheritComponent: 'div',
-    mount,
+    render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiCardActions',
     testVariantProps: { disableSpacing: true },

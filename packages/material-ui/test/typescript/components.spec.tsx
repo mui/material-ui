@@ -71,13 +71,8 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import {
-  withStyles,
-  StyleRulesCallback,
-  WithStyles,
-  Theme,
-  createStyles,
-} from '@material-ui/core/styles';
+import { Theme } from '@material-ui/core/styles';
+import { createStyles } from '@material-ui/styles';
 import { Link as ReactRouterLink, LinkProps as ReactRouterLinkProps } from 'react-router-dom';
 import { ButtonBaseActions } from '@material-ui/core/ButtonBase';
 import { IconButtonProps } from '@material-ui/core/IconButton';
@@ -605,7 +600,6 @@ const MenuTest = () => {
         Link Item
       </MenuItem>
       <MenuItem
-        button={false}
         ref={(elem) => {
           expectType<HTMLLIElement | null, typeof elem>(elem);
         }}
@@ -614,8 +608,6 @@ const MenuTest = () => {
         action={(action) => {
           buttonActionRef.current = action;
         }}
-        // @ts-expect-error 'false' is not assignable to true | undefined
-        button={false}
         ref={(elem) => {
           // inferred from `button={false}` instead of `action`
           expectType<HTMLLIElement | null, typeof elem>(elem);
@@ -624,17 +616,6 @@ const MenuTest = () => {
     </Menu>
   );
 };
-
-const PaperTest = () => (
-  <Paper elevation={4}>
-    <Typography variant="h5" component="h3">
-      This is a sheet of paper.
-    </Typography>
-    <Typography variant="body1" component="p">
-      Paper can be used to build surface or other elements for your application.
-    </Typography>
-  </Paper>
-);
 
 const CircularProgressTest = () => (
   <div>
@@ -861,98 +842,6 @@ const TableTest = () => {
     createData('Cupcake', 305, 3.7, 67, 4.3),
     createData('Gingerbread', 356, 16.0, 49, 3.9),
   ];
-
-  function BasicTable(props: WithStyles<typeof styles>) {
-    const classes = props.classes;
-
-    return (
-      <Paper className={classes.paper}>
-        <Table>
-          <TableHead classes={{ root: 'foo' }}>
-            <TableRow>
-              <TableCell colSpan={2}>Dessert (100g serving)</TableCell>
-              <TableCell align="right">Calories</TableCell>
-              <TableCell align="right">Fat (g)</TableCell>
-              <TableCell align="right">Carbs (g)</TableCell>
-              <TableCell align="right">Protein (g)</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.map((n) => {
-              return (
-                <TableRow key={n.id}>
-                  <TableCell>{n.name}</TableCell>
-                  <TableCell align="right">{n.calories}</TableCell>
-                  <TableCell align="right">{n.fat}</TableCell>
-                  <TableCell align="right">{n.carbs}</TableCell>
-                  <TableCell align="right">{n.protein}</TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-          <TableFooter>
-            <TableRow>
-              <TablePagination
-                count={5}
-                rowsPerPage={2}
-                page={1}
-                onPageChange={() => {}}
-                onRowsPerPageChange={(event) => log({ rowsPerPage: event.target.value })}
-              />
-            </TableRow>
-          </TableFooter>
-        </Table>
-      </Paper>
-    );
-  }
-
-  return withStyles(styles)(BasicTable);
-};
-
-const TabsTest = () => {
-  const TabContainer: React.FunctionComponent = (props) => (
-    <div style={{ padding: 20 }}>{props.children}</div>
-  );
-
-  type ClassKey = 'root' | 'button';
-
-  const styles: StyleRulesCallback<Theme, any, ClassKey> = (theme) => ({
-    root: {
-      flexGrow: 1,
-      marginTop: theme.spacing(3),
-      backgroundColor: theme.palette.background.paper,
-    },
-    button: {
-      display: 'flex',
-    },
-  });
-
-  class BasicTabs extends React.Component<WithStyles<typeof styles>> {
-    state = {
-      value: 0,
-    };
-
-    render() {
-      const classes = this.props.classes;
-
-      return (
-        <div className={classes.root}>
-          <AppBar position="static">
-            <Tabs value={this.state.value} onChange={(event, value) => this.setState({ value })}>
-              <Tab label="Item One" />
-              <Tab label="Item Two" />
-              <Tab label="Item Three" />
-            </Tabs>
-          </AppBar>
-          {this.state.value === 0 && <TabContainer>Item One</TabContainer>}
-          {this.state.value === 1 && <TabContainer>Item Two</TabContainer>}
-          {this.state.value === 2 && <TabContainer>Item Three</TabContainer>}
-        </div>
-      );
-    }
-  }
-
-  return withStyles(styles)(BasicTabs);
 };
 
 const TextFieldTest = () => (
@@ -983,7 +872,7 @@ const TextFieldTest = () => (
 );
 
 const SelectTest = () => (
-  <Select input={<Input />} value={10} onChange={(e) => log(e.currentTarget.value)}>
+  <Select input={<Input />} value={10} onChange={(e) => log(e.target.value)}>
     <MenuItem value="">
       <em>None</em>
     </MenuItem>
@@ -1069,6 +958,7 @@ const refTest = () => {
   const divRef = React.createRef<HTMLDivElement>();
   const inputRef = React.createRef<HTMLInputElement>();
 
+  // @ts-expect-error too generic
   <Paper ref={genericRef} />;
   <Paper ref={divRef} />;
   // undesired: throws when assuming inputRef.current.value !== undefined

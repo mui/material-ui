@@ -1,39 +1,50 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import GlobalStyles from '@material-ui/core/GlobalStyles';
 import loadScript from 'docs/src/modules/utils/loadScript';
 import AdDisplay from 'docs/src/modules/components/AdDisplay';
 import { adStylesObject } from 'docs/src/modules/components/ad.styles';
 
-const useStyles = makeStyles((theme) => {
-  const styles = adStylesObject['body-image'](theme);
-
-  return {
-    '@global': {
-      '#carbonads': {
-        ...styles.root,
-        '& .carbon-img': styles.imgWrapper,
-        '& img': styles.img,
-        '& a, & a:hover': styles.a,
-        '& .carbon-text': styles.description,
-        '& .carbon-poweredby': styles.poweredby,
-      },
-    },
-  };
-});
-
 function AdCarbonImage() {
-  useStyles();
   const ref = React.useRef(null);
 
   React.useEffect(() => {
-    const script = loadScript(
-      'https://cdn.carbonads.com/carbon.js?serve=CKYIL27L&placement=material-uicom',
-      ref.current,
-    );
-    script.id = '_carbonads_js';
+    // The isolation logic of carbonads is flawed.
+    // Once the script starts loading, it will asynchronous resolve, with no way to stop it.
+    // This leads to duplication of the ad. To solve the issue, we debounce the load action.
+    const load = setTimeout(() => {
+      const script = loadScript(
+        'https://cdn.carbonads.com/carbon.js?serve=CKYIL27L&placement=material-uicom',
+        ref.current,
+      );
+      script.id = '_carbonads_js';
+    });
+
+    return () => {
+      clearTimeout(load);
+    };
   }, []);
 
-  return <span ref={ref} />;
+  return (
+    <React.Fragment>
+      <GlobalStyles
+        styles={(theme) => {
+          const styles = adStylesObject['body-image'](theme);
+
+          return {
+            '#carbonads': {
+              ...styles.root,
+              '& .carbon-img': styles.imgWrapper,
+              '& img': styles.img,
+              '& a, & a:hover': styles.a,
+              '& .carbon-text': styles.description,
+              '& .carbon-poweredby': styles.poweredby,
+            },
+          };
+        }}
+      />
+      <span ref={ref} />
+    </React.Fragment>
+  );
 }
 
 export function AdCarbonInline(props) {

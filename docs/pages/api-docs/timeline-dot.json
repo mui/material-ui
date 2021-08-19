@@ -5,10 +5,11 @@
     "color": {
       "type": {
         "name": "enum",
-        "description": "'grey'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
+        "description": "'error'<br>&#124;&nbsp;'grey'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'inherit'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'"
       },
       "default": "'grey'"
     },
+    "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
         "name": "union",
@@ -38,6 +39,6 @@
   "filename": "/packages/material-ui-lab/src/TimelineDot/TimelineDot.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/timeline/\">Timeline</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

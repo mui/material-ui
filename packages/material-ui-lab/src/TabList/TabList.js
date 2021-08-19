@@ -10,6 +10,10 @@ const TabList = React.forwardRef(function TabList(props, ref) {
     throw new TypeError('No TabContext provided');
   }
   const children = React.Children.map(childrenProp, (child) => {
+    if (!React.isValidElement(child)) {
+      return null;
+    }
+
     return React.cloneElement(child, {
       // SOMEDAY: `Tabs` will set those themselves
       'aria-controls': getPanelId(context, child.props.value),
@@ -24,7 +28,7 @@ const TabList = React.forwardRef(function TabList(props, ref) {
   );
 });
 
-TabList.propTypes = {
+TabList.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -32,7 +36,7 @@ TabList.propTypes = {
   /**
    * A list of `<Tab />` elements.
    */
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.node,
 };
 
 export default TabList;

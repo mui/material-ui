@@ -2,22 +2,20 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
-import FormControl, { useFormControl } from '../FormControl';
-import classes from './inputBaseClasses';
-import InputAdornment from '../InputAdornment';
-import InputBase from './InputBase';
-import TextField from '../TextField';
-import Select from '../Select';
+import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
+import FormControl, { useFormControl } from '@material-ui/core/FormControl';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import TextField from '@material-ui/core/TextField';
+import Select from '@material-ui/core/Select';
+import InputBase, { inputBaseClasses as classes } from '@material-ui/core/InputBase';
 
 describe('<InputBase />', () => {
-  const mount = createMount();
   const render = createClientRender();
 
-  describeConformanceV5(<InputBase />, () => ({
+  describeConformance(<InputBase />, () => ({
     classes,
     inheritComponent: 'div',
-    mount,
+    render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiInputBase',
     testVariantProps: { size: 'small' },
@@ -253,13 +251,12 @@ describe('<InputBase />', () => {
           render(
             <InputBase inputProps={{ ref: triggerChangeRef }} inputComponent={BadInputComponent} />,
           );
-        }).toErrorDev(
-          [
-            'Material-UI: You have provided a `inputComponent` to the input component',
-            'that does not correctly handle the `ref` prop.',
-            'Make sure the `ref` prop is called with a HTMLInputElement.',
-          ].join('\n'),
-        );
+        }).toErrorDev([
+          'Material-UI: You have provided a `inputComponent` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
+          // React 18 Strict Effects run mount effects twice
+          React.version.startsWith('18') &&
+            'Material-UI: You have provided a `inputComponent` to the input component\nthat does not correctly handle the `ref` prop.\nMake sure the `ref` prop is called with a HTMLInputElement.',
+        ]);
       });
     });
   });
@@ -481,9 +478,12 @@ describe('<InputBase />', () => {
               </div>
             </FormControl>,
           );
-        }).toErrorDev(
+        }).toErrorDev([
           'Material-UI: There are multiple `InputBase` components inside a FormControl.\nThis creates visual inconsistencies, only use one `InputBase`.',
-        );
+          // React 18 Strict Effects run mount effects twice
+          React.version.startsWith('18') &&
+            'Material-UI: There are multiple `InputBase` components inside a FormControl.\nThis creates visual inconsistencies, only use one `InputBase`.',
+        ]);
       });
 
       it('should not warn if only one input is rendered', () => {

@@ -1,17 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, createClientRender } from 'test/utils';
+import { createClientRender } from 'test/utils';
 import HiddenCss from './HiddenCss';
-import { createMuiTheme, MuiThemeProvider } from '../styles';
+import { createTheme, ThemeProvider } from '../styles';
 import classes from './hiddenCssClasses';
 
 const TestChild = () => <div data-testid="test-child">bar</div>;
 
 describe('<HiddenCss />', () => {
-  /**
-   * @type {ReturnType<typeof createMount>}
-   */
-  const mount = createMount();
   const render = createClientRender();
 
   describe('the generated class names', () => {
@@ -51,7 +47,7 @@ describe('<HiddenCss />', () => {
       const root = container.firstChild;
 
       expect(root).to.have.tagName('div');
-      Object.keys(classes).forEach((className) => expect(root).to.not.have.class(className));
+      Object.keys(classes).forEach((className) => expect(root).not.to.have.class(className));
     });
 
     it('should be ok with mdDown', () => {
@@ -84,13 +80,13 @@ describe('<HiddenCss />', () => {
     });
 
     it('allows custom breakpoints', () => {
-      const theme = createMuiTheme({ breakpoints: { keys: ['xxl'] } });
+      const theme = createTheme({ breakpoints: { keys: ['xxl'] } });
       const { container } = render(
-        <MuiThemeProvider theme={theme}>
+        <ThemeProvider theme={theme}>
           <HiddenCss xxlUp className="testid" classes={{ xxlUp: 'xxlUp' }}>
             <div />
           </HiddenCss>
-        </MuiThemeProvider>,
+        </ThemeProvider>,
       );
 
       expect(container.querySelector('.testid')).to.have.class('xxlUp');
@@ -104,7 +100,7 @@ describe('<HiddenCss />', () => {
 
       expect(root).to.have.tagName('div');
       expect(root).to.have.class(classes.mdUp);
-      expect(queryByText('foo')).to.not.equal(null);
+      expect(queryByText('foo')).not.to.equal(null);
     });
 
     it('should work when Element', () => {
@@ -117,7 +113,7 @@ describe('<HiddenCss />', () => {
 
       expect(root).to.have.tagName('div');
       expect(root).to.have.class(classes.mdUp);
-      expect(queryByTestId('test-child')).to.not.equal(null);
+      expect(queryByTestId('test-child')).not.to.equal(null);
     });
 
     it('should work when mixed ChildrenArray', () => {
@@ -134,13 +130,13 @@ describe('<HiddenCss />', () => {
       expect(root).to.have.tagName('div');
       expect(root).to.have.class(classes.mdUp);
       expect(children.length).to.equal(2);
-      expect(queryByText('foo')).to.not.equal(null);
+      expect(queryByText('foo')).not.to.equal(null);
     });
   });
 
   it('warns about excess props (potentially undeclared breakpoints)', () => {
     expect(() => {
-      mount(
+      render(
         <HiddenCss xxlUp>
           <div />
         </HiddenCss>,

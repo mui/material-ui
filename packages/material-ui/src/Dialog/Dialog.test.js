@@ -1,17 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import {
-  getClasses,
-  createMount,
-  describeConformance,
-  act,
-  createClientRender,
-  fireEvent,
-  screen,
-} from 'test/utils';
-import Modal from '../Modal';
-import Dialog from './Dialog';
+import { describeConformance, act, createClientRender, fireEvent, screen } from 'test/utils';
+import Modal from '@material-ui/core/Modal';
+import Dialog, { dialogClasses as classes } from '@material-ui/core/Dialog';
 
 /**
  * more comprehensive simulation of a user click (mousedown + click)
@@ -49,25 +41,29 @@ describe('<Dialog />', () => {
     clock.restore();
   });
 
-  const mount = createMount({ strict: true });
-  let classes;
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(<Dialog>foo</Dialog>);
-  });
-
-  describeConformance(<Dialog open>foo</Dialog>, () => ({
-    classes,
-    inheritComponent: Modal,
-    mount,
-    refInstanceof: window.HTMLDivElement,
-    skip: [
-      'componentProp',
-      // react-transition-group issue
-      'reactTestRenderer',
-    ],
-  }));
+  describeConformance(
+    <Dialog open disablePortal>
+      foo
+    </Dialog>,
+    () => ({
+      classes,
+      inheritComponent: Modal,
+      muiName: 'MuiDialog',
+      render,
+      testVariantProps: { variant: 'foo' },
+      testDeepOverrides: { slotName: 'paper', slotClassName: classes.paper },
+      refInstanceof: window.HTMLDivElement,
+      skip: [
+        'componentProp',
+        'componentsProp',
+        'themeVariants',
+        // react-transition-group issue
+        'reactTestRenderer',
+      ],
+    }),
+  );
 
   it('should render with a TransitionComponent', () => {
     const Transition = React.forwardRef(() => <div data-testid="Transition" tabIndex={-1} />);

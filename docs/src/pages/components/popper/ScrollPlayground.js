@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
-import Popper from '@material-ui/core/Popper';
+import MuiPopper from '@material-ui/core/Popper';
 import Paper from '@material-ui/core/Paper';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -15,35 +16,18 @@ import Switch from '@material-ui/core/Switch';
 import TextField from '@material-ui/core/TextField';
 import FormGroup from '@material-ui/core/FormGroup';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  scrollContainer: {
-    height: 400,
-    overflow: 'auto',
-    marginBottom: theme.spacing(3),
-  },
-  scroll: {
+const Popper = styled(MuiPopper, {
+  shouldForwardProp: (prop) => prop !== 'arrow',
+})(({ theme, arrow }) => ({
+  zIndex: 1,
+  '& > div': {
     position: 'relative',
-    width: '230%',
-    backgroundColor: theme.palette.background.paper,
-    height: '230%',
   },
-  legend: {
-    marginTop: theme.spacing(2),
-    maxWidth: 300,
-  },
-  paper: {
-    maxWidth: 400,
-    overflow: 'auto',
-  },
-  select: {
-    width: 200,
-  },
-  popper: {
-    zIndex: 1,
-    '&[data-popper-placement*="bottom"] $arrow': {
+  '&[data-popper-placement*="bottom"]': {
+    '& > div': {
+      marginTop: arrow ? 2 : 0,
+    },
+    '& .MuiPopper-arrow': {
       top: 0,
       left: 0,
       marginTop: '-0.9em',
@@ -54,7 +38,12 @@ const useStyles = makeStyles((theme) => ({
         borderColor: `transparent transparent ${theme.palette.background.paper} transparent`,
       },
     },
-    '&[data-popper-placement*="top"] $arrow': {
+  },
+  '&[data-popper-placement*="top"]': {
+    '& > div': {
+      marginBottom: arrow ? 2 : 0,
+    },
+    '& .MuiPopper-arrow': {
       bottom: 0,
       left: 0,
       marginBottom: '-0.9em',
@@ -65,7 +54,12 @@ const useStyles = makeStyles((theme) => ({
         borderColor: `${theme.palette.background.paper} transparent transparent transparent`,
       },
     },
-    '&[data-popper-placement*="right"] $arrow': {
+  },
+  '&[data-popper-placement*="right"]': {
+    '& > div': {
+      marginLeft: arrow ? 2 : 0,
+    },
+    '& .MuiPopper-arrow': {
       left: 0,
       marginLeft: '-0.9em',
       height: '3em',
@@ -75,7 +69,12 @@ const useStyles = makeStyles((theme) => ({
         borderColor: `transparent ${theme.palette.background.paper} transparent transparent`,
       },
     },
-    '&[data-popper-placement*="left"] $arrow': {
+  },
+  '&[data-popper-placement*="left"]': {
+    '& > div': {
+      marginRight: arrow ? 2 : 0,
+    },
+    '& .MuiPopper-arrow': {
       right: 0,
       marginRight: '-0.9em',
       height: '3em',
@@ -86,21 +85,22 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
-  arrow: {
-    position: 'absolute',
-    fontSize: 7,
-    width: '3em',
-    height: '3em',
-    '&::before': {
-      content: '""',
-      margin: 'auto',
-      display: 'block',
-      width: 0,
-      height: 0,
-      borderStyle: 'solid',
-    },
-  },
 }));
+
+const Arrow = styled('div')({
+  position: 'absolute',
+  fontSize: 7,
+  width: '3em',
+  height: '3em',
+  '&::before': {
+    content: '""',
+    margin: 'auto',
+    display: 'block',
+    width: 0,
+    height: 0,
+    borderStyle: 'solid',
+  },
+});
 
 export default function ScrollPlayground() {
   const anchorRef = React.useRef(null);
@@ -139,50 +139,53 @@ export default function ScrollPlayground() {
     container.scrollLeft = element.clientWidth / 4;
   };
 
-  const classes = useStyles();
-
   const jsx = `
-  <Popper
-    placement="${placement}"
-    disablePortal={${disablePortal}}
-    modifiers={[
-      {
-          name: 'flip',
-          enabled: ${flip.enabled},
-          options: {
-            altBoundary: ${flip.altBoundary},
-            rootBoundary: '${flip.rootBoundary}',
-            padding: 8
-          }
+<Popper
+  placement="${placement}"
+  disablePortal={${disablePortal}}
+  modifiers={[
+    {
+      name: 'flip',
+      enabled: ${flip.enabled},
+      options: {
+        altBoundary: ${flip.altBoundary},
+        rootBoundary: '${flip.rootBoundary}',
+        padding: 8,
       },
-      {
-        name: 'preventOverflow',
-        enabled: ${preventOverflow.enabled},
-        options: {
-          altAxis: ${preventOverflow.altAxis},
-          altBoundary: ${preventOverflow.altBoundary},
-          tether: ${preventOverflow.tether},
-          rootBoundary: ${preventOverflow.rootBoundary},
-          padding: 8
-        }
+    },
+    {
+      name: 'preventOverflow',
+      enabled: ${preventOverflow.enabled},
+      options: {
+        altAxis: ${preventOverflow.altAxis},
+        altBoundary: ${preventOverflow.altBoundary},
+        tether: ${preventOverflow.tether},
+        rootBoundary: '${preventOverflow.rootBoundary}',
+        padding: 8,
       },
-      {
-        name: 'arrow',
-        enabled: ${arrow},
-        options: {
-            element: arrowRef,
-        }
+    },
+    {
+      name: 'arrow',
+      enabled: ${arrow},
+      options: {
+        element: arrowRef,
       },
-    ]}
-  >
+    },
+  ]}
+>
   `;
   const id = open ? 'scroll-playground' : null;
 
   return (
-    <div className={classes.root}>
-      <div className={classes.scrollContainer}>
+    <Box sx={{ flexGrow: 1 }}>
+      <Box sx={{ height: 400, overflow: 'auto', mb: 3 }}>
         <Grid
-          className={classes.scroll}
+          sx={{
+            position: 'relative',
+            width: '230%',
+            bgcolor: 'background.paper',
+            height: '230%',
+          }}
           container
           alignItems="center"
           justifyContent="center"
@@ -197,17 +200,17 @@ export default function ScrollPlayground() {
             >
               Toggle Popper
             </Button>
-            <Typography className={classes.legend}>
+            <Typography sx={{ mt: 2, maxWidth: 300 }}>
               Scroll around this container to experiment with flip and
               preventOverflow modifiers.
             </Typography>
             <Popper
               id={id}
               open={open}
+              arrow={arrow}
               anchorEl={anchorRef.current}
               placement={placement}
               disablePortal={disablePortal}
-              className={classes.popper}
               modifiers={[
                 {
                   name: 'flip',
@@ -238,23 +241,27 @@ export default function ScrollPlayground() {
                 },
               ]}
             >
-              {arrow ? <div className={classes.arrow} ref={setArrowRef} /> : null}
-              <Paper className={classes.paper}>
-                <DialogTitle>{"Use Google's location service?"}</DialogTitle>
-                <DialogContent>
-                  <DialogContentText>
-                    Let Google help apps determine location.
-                  </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={handleClickButton}>Disagree</Button>
-                  <Button onClick={handleClickButton}>Agree</Button>
-                </DialogActions>
-              </Paper>
+              <div>
+                {arrow ? (
+                  <Arrow ref={setArrowRef} className="MuiPopper-arrow" />
+                ) : null}
+                <Paper sx={{ maxWidth: 400, overflow: 'auto' }}>
+                  <DialogTitle>{"Use Google's location service?"}</DialogTitle>
+                  <DialogContent>
+                    <DialogContentText>
+                      Let Google help apps determine location.
+                    </DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button onClick={handleClickButton}>Disagree</Button>
+                    <Button onClick={handleClickButton}>Agree</Button>
+                  </DialogActions>
+                </Paper>
+              </div>
             </Popper>
           </div>
         </Grid>
-      </div>
+      </Box>
       <Grid container spacing={2}>
         <Grid container item xs={12}>
           <Grid item xs={12}>
@@ -265,7 +272,7 @@ export default function ScrollPlayground() {
           <Grid item xs={6}>
             <TextField
               margin="dense"
-              className={classes.select}
+              sx={{ width: 200 }}
               label="Placement"
               select
               InputLabelProps={{
@@ -310,7 +317,7 @@ export default function ScrollPlayground() {
               }
               label="Disable portal"
             />
-            <Typography display="block" variant="caption" color="textSecondary">
+            <Typography display="block" variant="caption" color="text.secondary">
               (the children stay within it&apos;s parent DOM hierarchy)
             </Typography>
           </Grid>
@@ -492,6 +499,6 @@ export default function ScrollPlayground() {
         </Grid>
       </Grid>
       <HighlightedCode code={jsx} language="jsx" />
-    </div>
+    </Box>
   );
 }

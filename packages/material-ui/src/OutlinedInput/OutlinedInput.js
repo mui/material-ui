@@ -1,128 +1,136 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { refType } from '@material-ui/utils';
-import InputBase from '../InputBase';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import NotchedOutline from './NotchedOutline';
-import withStyles from '../styles/withStyles';
+import styled, { rootShouldForwardProp } from '../styles/styled';
+import outlinedInputClasses, { getOutlinedInputUtilityClass } from './outlinedInputClasses';
+import InputBase, {
+  rootOverridesResolver as inputBaseRootOverridesResolver,
+  inputOverridesResolver as inputBaseInputOverridesResolver,
+  InputBaseRoot,
+  InputBaseComponent as InputBaseInput,
+} from '../InputBase/InputBase';
+import useThemeProps from '../styles/useThemeProps';
 
-export const styles = (theme) => {
-  const borderColor =
-    theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
+
+  const slots = {
+    root: ['root'],
+    notchedOutline: ['notchedOutline'],
+    input: ['input'],
+  };
+
+  const composedClasses = composeClasses(slots, getOutlinedInputUtilityClass, classes);
 
   return {
-    /* Styles applied to the root element. */
-    root: {
-      position: 'relative',
-      borderRadius: theme.shape.borderRadius,
-      '&:hover $notchedOutline': {
-        borderColor: theme.palette.text.primary,
-      },
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        '&:hover $notchedOutline': {
-          borderColor,
-        },
-      },
-      '&$focused $notchedOutline': {
-        borderColor: theme.palette.primary.main,
-        borderWidth: 2,
-      },
-      '&$error $notchedOutline': {
-        borderColor: theme.palette.error.main,
-      },
-      '&$disabled $notchedOutline': {
-        borderColor: theme.palette.action.disabled,
-      },
-    },
-    /* Styles applied to the root element if the color is secondary. */
-    colorSecondary: {
-      '&$focused $notchedOutline': {
-        borderColor: theme.palette.secondary.main,
-      },
-      '&$error $notchedOutline': {
-        // To remove once we migrate to emotion
-        borderColor: theme.palette.error.main,
-      },
-    },
-    /* Styles applied to the root element if the component is focused. */
-    focused: {},
-    /* Styles applied to the root element if `disabled={true}`. */
-    disabled: {},
-    /* Styles applied to the root element if `startAdornment` is provided. */
-    adornedStart: {
-      paddingLeft: 14,
-    },
-    /* Styles applied to the root element if `endAdornment` is provided. */
-    adornedEnd: {
-      paddingRight: 14,
-    },
-    /* Pseudo-class applied to the root element if `error={true}`. */
-    error: {},
-    /* Styles applied to the input element if `size="small"`. */
-    sizeSmall: {},
-    /* Styles applied to the root element if `multiline={true}`. */
-    multiline: {
-      padding: '16.5px 14px',
-      '&$sizeSmall': {
-        paddingTop: 10.5,
-        paddingBottom: 10.5,
-      },
-    },
-    /* Styles applied to the NotchedOutline element. */
-    notchedOutline: {
-      borderColor,
-    },
-    /* Styles applied to the input element. */
-    input: {
-      padding: '16.5px 14px',
-      '&:-webkit-autofill': {
-        WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
-        WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
-        caretColor: theme.palette.mode === 'light' ? null : '#fff',
-        borderRadius: 'inherit',
-      },
-    },
-    /* Styles applied to the input element if `size="small"`. */
-    inputSizeSmall: {
-      paddingTop: 8.5,
-      paddingBottom: 8.5,
-    },
-    /* Styles applied to the input element if `multiline={true}`. */
-    inputMultiline: {
-      padding: 0,
-    },
-    /* Styles applied to the input element if `startAdornment` is provided. */
-    inputAdornedStart: {
-      paddingLeft: 0,
-    },
-    /* Styles applied to the input element if `endAdornment` is provided. */
-    inputAdornedEnd: {
-      paddingRight: 0,
-    },
+    ...classes, // forward classes to the InputBase
+    ...composedClasses,
   };
 };
 
-const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
+const OutlinedInputRoot = styled(InputBaseRoot, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiOutlinedInput',
+  slot: 'Root',
+  overridesResolver: inputBaseRootOverridesResolver,
+})(({ theme, ownerState }) => {
+  const borderColor =
+    theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
+  return {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+      borderColor: theme.palette.text.primary,
+    },
+    // Reset on touch devices, it doesn't add specificity
+    '@media (hover: none)': {
+      [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+        borderColor,
+      },
+    },
+    [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
+      borderColor: theme.palette[ownerState.color].main,
+      borderWidth: 2,
+    },
+    [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
+      borderColor: theme.palette.error.main,
+    },
+    [`&.${outlinedInputClasses.disabled} .${outlinedInputClasses.notchedOutline}`]: {
+      borderColor: theme.palette.action.disabled,
+    },
+    ...(ownerState.startAdornment && {
+      paddingLeft: 14,
+    }),
+    ...(ownerState.endAdornment && {
+      paddingRight: 14,
+    }),
+    ...(ownerState.multiline && {
+      padding: '16.5px 14px',
+      ...(ownerState.size === 'small' && {
+        padding: '8.5px 14px',
+      }),
+    }),
+  };
+});
+
+const NotchedOutlineRoot = styled(NotchedOutline, {
+  name: 'MuiOutlinedInput',
+  slot: 'NotchedOutline',
+  overridesResolver: (props, styles) => styles.notchedOutline,
+})(({ theme }) => ({
+  borderColor: theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)',
+}));
+
+const OutlinedInputInput = styled(InputBaseInput, {
+  name: 'MuiOutlinedInput',
+  slot: 'Input',
+  overridesResolver: inputBaseInputOverridesResolver,
+})(({ theme, ownerState }) => ({
+  padding: '16.5px 14px',
+  '&:-webkit-autofill': {
+    WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
+    WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
+    caretColor: theme.palette.mode === 'light' ? null : '#fff',
+    borderRadius: 'inherit',
+  },
+  ...(ownerState.size === 'small' && {
+    padding: '8.5px 14px',
+  }),
+  ...(ownerState.multiline && {
+    padding: 0,
+  }),
+  ...(ownerState.startAdornment && {
+    paddingLeft: 0,
+  }),
+  ...(ownerState.endAdornment && {
+    paddingRight: 0,
+  }),
+}));
+
+const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiOutlinedInput' });
   const {
-    classes,
+    components = {},
     fullWidth = false,
     inputComponent = 'input',
     label,
-    labelWidth = 0,
     multiline = false,
     notched,
     type = 'text',
     ...other
   } = props;
 
+  const classes = useUtilityClasses(props);
+
   return (
     <InputBase
+      components={{ Root: OutlinedInputRoot, Input: OutlinedInputInput, ...components }}
       renderSuffix={(state) => (
-        <NotchedOutline
+        <NotchedOutlineRoot
           className={classes.notchedOutline}
           label={label}
-          labelWidth={labelWidth}
           notched={
             typeof notched !== 'undefined'
               ? notched
@@ -130,22 +138,21 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(props, ref) {
           }
         />
       )}
-      classes={{
-        ...classes,
-        root: clsx(classes.root, classes.underline),
-        notchedOutline: null,
-      }}
       fullWidth={fullWidth}
       inputComponent={inputComponent}
       multiline={multiline}
       ref={ref}
       type={type}
       {...other}
+      classes={{
+        ...classes,
+        notchedOutline: null,
+      }}
     />
   );
 });
 
-OutlinedInput.propTypes = {
+OutlinedInput.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -168,7 +175,19 @@ OutlinedInput.propTypes = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['primary', 'secondary']),
+    PropTypes.string,
+  ]),
+  /**
+   * The components used for each slot inside the InputBase.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Input: PropTypes.elementType,
+    Root: PropTypes.elementType,
+  }),
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -213,15 +232,9 @@ OutlinedInput.propTypes = {
   inputRef: refType,
   /**
    * The label of the `input`. It is only used for layout. The actual labelling
-   * is handled by `InputLabel`. If specified `labelWidth` is ignored.
+   * is handled by `InputLabel`.
    */
   label: PropTypes.node,
-  /**
-   * The width of the label. Is ignored if `label` is provided. Prefer `label`
-   * if the `input` label appears with a strike through.
-   * @default 0
-   */
-  labelWidth: PropTypes.number,
   /**
    * If `dense`, will adjust vertical spacing. This is normally obtained via context from
    * FormControl.
@@ -252,7 +265,7 @@ OutlinedInput.propTypes = {
   /**
    * Callback fired when the value is changed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,
@@ -279,6 +292,10 @@ OutlinedInput.propTypes = {
    */
   startAdornment: PropTypes.node,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    * @default 'text'
    */
@@ -291,4 +308,4 @@ OutlinedInput.propTypes = {
 
 OutlinedInput.muiName = 'Input';
 
-export default withStyles(styles, { name: 'MuiOutlinedInput' })(OutlinedInput);
+export default OutlinedInput;

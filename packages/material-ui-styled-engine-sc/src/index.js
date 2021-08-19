@@ -1,14 +1,37 @@
 import scStyled from 'styled-components';
 
 export default function styled(tag, options) {
+  let stylesFactory;
+
   if (options) {
-    return scStyled(tag).withConfig({
+    stylesFactory = scStyled(tag).withConfig({
       displayName: options.label,
       shouldForwardProp: options.shouldForwardProp,
     });
+  } else {
+    stylesFactory = scStyled(tag);
   }
 
-  return scStyled(tag);
+  if (process.env.NODE_ENV !== 'production') {
+    return (...styles) => {
+      const component = typeof tag === 'string' ? `"${tag}"` : 'component';
+      if (styles.length === 0) {
+        console.error(
+          [
+            `Material-UI: Seems like you called \`styled(${component})()\` without a \`style\` argument.`,
+            'You must provide a `styles` argument: `styled("div")(styleYouForgotToPass)`.',
+          ].join('\n'),
+        );
+      } else if (styles.some((style) => style === undefined)) {
+        console.error(
+          `Material-UI: the styled(${component})(...args) API requires all its args to be defined.`,
+        );
+      }
+      return stylesFactory(...styles);
+    };
+  }
+
+  return stylesFactory;
 }
 
 export { ThemeContext, keyframes, css } from 'styled-components';

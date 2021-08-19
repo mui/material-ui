@@ -17,7 +17,7 @@ describe('<MobileDateTimePicker />', () => {
     clock.restore();
   });
 
-  const render = createPickerRender({ strict: false });
+  const render = createPickerRender();
 
   it('opens dialog on textField click for Mobile mode', () => {
     render(
@@ -66,7 +66,7 @@ describe('<MobileDateTimePicker />', () => {
     render(<DateTimePickerWithState />);
     fireEvent.click(screen.getByLabelText(/choose date/i));
 
-    expect(getByMuiTest('datetimepicker-toolbar-date')).to.have.text('Enter Date');
+    expect(getByMuiTest('datetimepicker-toolbar-day')).to.have.text('Enter Date');
     expect(getByMuiTest('hours')).to.have.text('--');
     expect(getByMuiTest('minutes')).to.have.text('--');
 
@@ -79,7 +79,7 @@ describe('<MobileDateTimePicker />', () => {
     // 2. Date
     fireEvent.click(screen.getByLabelText('Jan 15, 2010'));
 
-    expect(getByMuiTest('datetimepicker-toolbar-date')).to.have.text('Jan 15');
+    expect(getByMuiTest('datetimepicker-toolbar-day')).to.have.text('Jan 15');
 
     // 3. Hours
     fireTouchChangedEvent(getByMuiTest('clock'), 'touchmove', clockTouchEvent);

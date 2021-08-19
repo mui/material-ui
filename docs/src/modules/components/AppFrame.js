@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Router, { useRouter } from 'next/router';
-import { withStyles } from '@material-ui/core/styles';
+import { useRouter } from 'next/router';
+import { styled } from '@material-ui/core/styles';
 import NProgress from 'nprogress';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MuiLink from '@material-ui/core/Link';
@@ -25,7 +25,7 @@ import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
 import MarkdownLinks from 'docs/src/modules/components/MarkdownLinks';
-import { LANGUAGES_LABEL, SOURCE_CODE_REPO } from 'docs/src/modules/constants';
+import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
@@ -33,17 +33,24 @@ import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
 
-Router.onRouteChangeStart = () => {
-  NProgress.start();
-};
+function NextNProgressBar() {
+  const router = useRouter();
+  React.useEffect(() => {
+    const nProgressStart = () => NProgress.start();
+    const nProgressDone = () => NProgress.done();
 
-Router.onRouteChangeComplete = () => {
-  NProgress.done();
-};
+    router.events.on('routeChangeStart', nProgressStart);
+    router.events.on('routeChangeComplete', nProgressDone);
+    router.events.on('routeChangeError', nProgressDone);
+    return () => {
+      router.events.off('routeChangeStart', nProgressStart);
+      router.events.off('routeChangeComplete', nProgressDone);
+      router.events.off('routeChangeError', nProgressDone);
+    };
+  }, [router]);
 
-Router.onRouteChangeError = () => {
-  NProgress.done();
-};
+  return <NProgressBar />;
+}
 
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
 function DeferredAppSearch() {
@@ -69,20 +76,19 @@ function DeferredAppSearch() {
   );
 }
 
-const styles = (theme) => ({
-  '@global': {
-    '#main-content': {
+const RootDiv = styled('div')(({ theme }) => {
+  return {
+    display: 'flex',
+    backgroundColor: theme.palette.mode === 'dark' && theme.palette.grey[900],
+    // TODO: Should be handled by the main component
+    '& #main-content': {
       outline: 0,
     },
-  },
-  root: {
-    display: 'flex',
-    backgroundColor: theme.palette.background.level1,
-  },
-  grow: {
-    flex: '1 1 auto',
-  },
-  skipNav: {
+  };
+});
+
+const SkipLink = styled(MuiLink)(({ theme }) => {
+  return {
     position: 'fixed',
     padding: theme.spacing(1),
     backgroundColor: theme.palette.background.paper,
@@ -103,42 +109,66 @@ const styles = (theme) => ({
     '@media print': {
       display: 'none',
     },
-  },
-  appBar: {
-    color: theme.palette.mode === 'light' ? null : '#fff',
-    backgroundColor: theme.palette.mode === 'light' ? null : theme.palette.background.level2,
+  };
+});
+
+const StyledAppBar = styled(AppBar, {
+  shouldForwardProp: (prop) => prop !== 'disablePermanent',
+})(({ disablePermanent, theme }) => {
+  return {
     transition: theme.transitions.create('width'),
-  },
-  language: {
+    ...(disablePermanent && {
+      boxShadow: 'none',
+    }),
+    ...(!disablePermanent && {
+      [theme.breakpoints.up('lg')]: {
+        width: 'calc(100% - 240px)',
+      },
+    }),
+  };
+});
+
+const GrowingDiv = styled('div')({
+  flex: '1 1 auto',
+});
+
+const LanguageSpan = styled('span')(({ theme }) => {
+  return {
     margin: theme.spacing(0, 0.5, 0, 1),
     display: 'none',
     [theme.breakpoints.up('md')]: {
       display: 'block',
     },
-  },
-  appBarHome: {
-    boxShadow: 'none',
-  },
-  appBarShift: {
+  };
+});
+
+const NavIconButton = styled(IconButton, {
+  shouldForwardProp: (prop) => prop !== 'disablePermanent',
+})(({ disablePermanent, theme }) => {
+  if (disablePermanent) {
+    return {};
+  }
+  return {
     [theme.breakpoints.up('lg')]: {
-      width: 'calc(100% - 240px)',
+      display: 'none',
     },
-  },
-  drawer: {
+  };
+});
+
+const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) => {
+  if (disablePermanent) {
+    return {};
+  }
+  return {
     [theme.breakpoints.up('lg')]: {
       flexShrink: 0,
       width: 240,
     },
-  },
-  navIconHide: {
-    [theme.breakpoints.up('lg')]: {
-      display: 'none',
-    },
-  },
+  };
 });
 
 function AppFrame(props) {
-  const { children, classes, disableDrawer = false } = props;
+  const { children, disableDrawer = false } = props;
   const t = useTranslate();
   const userLanguage = useUserLanguage();
 
@@ -175,38 +205,29 @@ function AppFrame(props) {
   const { canonical } = pathnameToLanguage(router.asPath);
   const { activePage } = React.useContext(PageContext);
 
-  let disablePermanent = false;
-  let navIconClassName = '';
-  let appBarClassName = classes.appBar;
-
-  if (activePage?.disableDrawer === true || disableDrawer === true) {
-    disablePermanent = true;
-    appBarClassName += ` ${classes.appBarHome}`;
-  } else {
-    navIconClassName = classes.navIconHide;
-    appBarClassName += ` ${classes.appBarShift}`;
-  }
+  const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
 
   return (
-    <div className={classes.root}>
-      <NProgressBar />
+    <RootDiv>
+      <NextNProgressBar />
       <CssBaseline />
-      <MuiLink color="secondary" className={classes.skipNav} href="#main-content">
+      <SkipLink color="secondary" href="#main-content">
         {t('appFrame.skipToContent')}
-      </MuiLink>
+      </SkipLink>
       <MarkdownLinks />
-      <AppBar className={appBarClassName}>
+      <StyledAppBar disablePermanent={disablePermanent}>
         <Toolbar>
-          <IconButton
+          <NavIconButton
+            size="large"
             edge="start"
             color="inherit"
             aria-label={t('appFrame.openDrawer')}
+            disablePermanent={disablePermanent}
             onClick={handleNavDrawerOpen}
-            className={navIconClassName}
           >
             <MenuIcon />
-          </IconButton>
-          <div className={classes.grow} />
+          </NavIconButton>
+          <GrowingDiv />
           <DeferredAppSearch />
           <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
             <Button
@@ -218,9 +239,9 @@ function AppFrame(props) {
               data-ga-event-action="language"
             >
               <LanguageIcon />
-              <span className={classes.language}>
+              <LanguageSpan>
                 {LANGUAGES_LABEL.filter((language) => language.code === userLanguage)[0].text}
-              </span>
+              </LanguageSpan>
               <ExpandMoreIcon fontSize="small" />
             </Button>
           </Tooltip>
@@ -268,7 +289,7 @@ function AppFrame(props) {
             </Menu>
           </NoSsr>
           <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-            <IconButton color="inherit" onClick={handleSettingsDrawerOpen}>
+            <IconButton color="inherit" size="large" onClick={handleSettingsDrawerOpen}>
               <SettingsIcon />
             </IconButton>
           </Tooltip>
@@ -277,17 +298,17 @@ function AppFrame(props) {
             <IconButton
               component="a"
               color="inherit"
-              href={SOURCE_CODE_REPO}
+              href={process.env.SOURCE_CODE_REPO}
               data-ga-event-category="header"
               data-ga-event-action="github"
+              size="large"
             >
               <GitHubIcon />
             </IconButton>
           </Tooltip>
         </Toolbar>
-      </AppBar>
-      <AppNavDrawer
-        className={disablePermanent ? '' : classes.drawer}
+      </StyledAppBar>
+      <StyledAppNavDrawer
         disablePermanent={disablePermanent}
         onClose={handleNavDrawerClose}
         onOpen={handleNavDrawerOpen}
@@ -295,14 +316,13 @@ function AppFrame(props) {
       />
       {children}
       <AppSettingsDrawer onClose={handleSettingsDrawerClose} open={settingsOpen} />
-    </div>
+    </RootDiv>
   );
 }
 
 AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
-  classes: PropTypes.object.isRequired,
   disableDrawer: PropTypes.bool,
 };
 
-export default withStyles(styles)(AppFrame);
+export default AppFrame;

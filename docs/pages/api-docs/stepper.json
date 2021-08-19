@@ -1,6 +1,6 @@
 {
   "props": {
-    "activeStep": { "type": { "name": "number" }, "default": "0" },
+    "activeStep": { "type": { "name": "custom", "description": "integer" }, "default": "0" },
     "alternativeLabel": { "type": { "name": "bool" } },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -9,7 +9,8 @@
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },
       "default": "'horizontal'"
-    }
+    },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "Stepper",
   "styles": {
@@ -22,6 +23,6 @@
   "filename": "/packages/material-ui/src/Stepper/Stepper.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/steppers/\">Steppers</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

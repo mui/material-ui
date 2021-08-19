@@ -1,25 +1,29 @@
 import * as React from 'react';
-import { emphasize, withStyles } from '@material-ui/core/styles';
+import { emphasize, styled } from '@material-ui/core/styles';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Chip from '@material-ui/core/Chip';
 import HomeIcon from '@material-ui/icons/Home';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-const StyledBreadcrumb = withStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.grey[100],
+const StyledBreadcrumb = styled(Chip)(({ theme }) => {
+  const backgroundColor =
+    theme.palette.mode === 'light'
+      ? theme.palette.grey[100]
+      : theme.palette.grey[800];
+  return {
+    backgroundColor,
     height: theme.spacing(3),
-    color: theme.palette.grey[800],
+    color: theme.palette.text.primary,
     fontWeight: theme.typography.fontWeightRegular,
     '&:hover, &:focus': {
-      backgroundColor: theme.palette.grey[300],
+      backgroundColor: emphasize(backgroundColor, 0.06),
     },
     '&:active': {
       boxShadow: theme.shadows[1],
-      backgroundColor: emphasize(theme.palette.grey[300], 0.12),
+      backgroundColor: emphasize(backgroundColor, 0.12),
     },
-  },
-}))(Chip); // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591
+  };
+}); // TypeScript only: need a type cast here because https://github.com/Microsoft/TypeScript/issues/26591
 
 function handleClick(event) {
   event.preventDefault();
@@ -28,26 +32,21 @@ function handleClick(event) {
 
 export default function CustomizedBreadcrumbs() {
   return (
-    <Breadcrumbs aria-label="breadcrumb">
-      <StyledBreadcrumb
-        component="a"
-        href="#"
-        label="Home"
-        icon={<HomeIcon fontSize="small" />}
-        onClick={handleClick}
-      />
-      <StyledBreadcrumb
-        component="a"
-        href="#"
-        label="Catalog"
-        onClick={handleClick}
-      />
-      <StyledBreadcrumb
-        label="Accessories"
-        deleteIcon={<ExpandMoreIcon />}
-        onClick={handleClick}
-        onDelete={handleClick}
-      />
-    </Breadcrumbs>
+    <div role="presentation" onClick={handleClick}>
+      <Breadcrumbs aria-label="breadcrumb">
+        <StyledBreadcrumb
+          component="a"
+          href="#"
+          label="Home"
+          icon={<HomeIcon fontSize="small" />}
+        />
+        <StyledBreadcrumb component="a" href="#" label="Catalog" />
+        <StyledBreadcrumb
+          label="Accessories"
+          deleteIcon={<ExpandMoreIcon />}
+          onDelete={handleClick}
+        />
+      </Breadcrumbs>
+    </div>
   );
 }

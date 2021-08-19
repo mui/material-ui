@@ -1,7 +1,6 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
+import Box from '@material-ui/core/Box';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -13,30 +12,6 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import appList from './appList';
-
-const styles = (theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  formControl: {
-    marginBottom: theme.spacing(4),
-    minWidth: 120,
-  },
-  title: {
-    marginBottom: theme.spacing(2),
-  },
-  card: {
-    marginBottom: theme.spacing(1),
-    maxWidth: 600,
-  },
-  description: {
-    marginBottom: theme.spacing(6),
-    maxWidth: 600,
-  },
-  cardMedia: {
-    paddingTop: '75%', // 4:3
-  },
-});
 
 function stableSort(array, cmp) {
   const stabilizedThis = array.map((el, index) => [el, index]);
@@ -67,8 +42,7 @@ const sortFunctions = {
   stars: sortFactory('stars'),
 };
 
-function Showcase(props) {
-  const { classes } = props;
+export default function Showcase() {
   const [sortFunctionName, setSortFunctionName] = React.useState('dateAdded');
   const sortFunction = sortFunctions[sortFunctionName];
   const t = useTranslate();
@@ -78,12 +52,13 @@ function Showcase(props) {
   };
 
   return (
-    <div className={classes.root}>
-      <FormControl className={classes.formControl}>
+    <Box sx={{ flexGrow: 1 }}>
+      <FormControl sx={{ mb: 4, minWidth: 120 }}>
         <InputLabel htmlFor="sort">Sort by</InputLabel>
         <Select
           value={sortFunctionName}
           onChange={handleChangeSort}
+          label="Sort by"
           inputProps={{ id: 'sort' }}
         >
           <MenuItem value="dateAdded">{t('newest')}</MenuItem>
@@ -96,12 +71,7 @@ function Showcase(props) {
         sortFunction,
       ).map((app) => (
         <div key={app.title}>
-          <Typography
-            component="h2"
-            variant="h4"
-            gutterBottom
-            className={classes.title}
-          >
+          <Typography component="h2" variant="h4" gutterBottom sx={{ mb: 2 }}>
             <span>{app.title}</span>
             {app.source ? (
               <IconButton
@@ -114,14 +84,28 @@ function Showcase(props) {
             ) : null}
           </Typography>
           {app.image ? (
-            <Card className={classes.card}>
+            <Card
+              sx={{
+                mb: 1,
+                maxWidth: 600,
+                display: 'flex',
+                textDecoration: 'none',
+              }}
+              component="a"
+              href={app.link}
+              rel="noopener"
+              target="_blank"
+            >
               <CardMedia
-                component="a"
-                href={app.link}
-                rel="noopener"
-                target="_blank"
-                className={classes.cardMedia}
-                image={`/static/images/showcase/${app.image}`}
+                component="img"
+                loading="lazy"
+                src={`/static/images/showcase/${app.image}`}
+                sx={{
+                  minHeight: 200,
+                  color: (theme) =>
+                    theme.palette.mode === 'dark' ? 'grey.900' : 'grey.100',
+                  bgcolor: 'currentColor',
+                }}
                 title={app.title}
               />
             </Card>
@@ -140,19 +124,13 @@ function Showcase(props) {
           <Typography
             variant="caption"
             display="block"
-            color="textSecondary"
-            className={classes.description}
+            color="text.secondary"
+            sx={{ mb: 6, maxWidth: 600 }}
           >
             {app.dateAdded}
           </Typography>
         </div>
       ))}
-    </div>
+    </Box>
   );
 }
-
-Showcase.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(Showcase);

@@ -20,7 +20,21 @@ Buttons communicate actions that users can take. They are typically placed throu
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Contained buttons
+## Basic Button
+
+The `Button` comes with three variants: text (default), contained, and outlined.
+
+{{"demo": "pages/components/buttons/BasicButtons.js"}}
+
+### Text buttons
+
+[Text buttons](https://material.io/components/buttons#text-button)
+are typically used for less-pronounced actions, including those located: in dialogs, in cards.
+In cards, text buttons help maintain an emphasis on card content.
+
+{{"demo": "pages/components/buttons/TextButtons.js"}}
+
+### Contained buttons
 
 [Contained buttons](https://material.io/components/buttons#contained-button)
 are high-emphasis, distinguished by their use of elevation and fill.
@@ -32,23 +46,10 @@ You can remove the elevation with the `disableElevation` prop.
 
 {{"demo": "pages/components/buttons/DisableElevation.js"}}
 
-## Text buttons
+### Outlined buttons
 
-[Text buttons](https://material.io/components/buttons#text-button)
-are typically used for less-pronounced actions, including those located:
-
-- In dialogs
-- In cards
-
-In cards, text buttons help maintain an emphasis on card content.
-
-{{"demo": "pages/components/buttons/TextButtons.js"}}
-
-## Outlined buttons
-
-[Outlined buttons](https://material.io/components/buttons#outlined-button)
-are medium-emphasis buttons. They contain actions that are important,
-but aren't the primary action in an app.
+[Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons.
+They contain actions that are important but aren't the primary action in an app.
 
 Outlined buttons are also a lower emphasis alternative to contained buttons,
 or a higher emphasis alternative to text buttons.
@@ -71,15 +72,21 @@ All components accept an `onClick` handler that is applied to the root DOM eleme
 
 Note that the documentation [avoids](/guides/api/#native-properties) mentioning native props (there are a lot) in the API section of the components.
 
-## Upload button
+## Color
 
-{{"demo": "pages/components/buttons/UploadButtons.js"}}
+{{"demo": "pages/components/buttons/ColorButtons.js"}}
+
+In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/customization/palette/#adding-new-colors) example for more info.
 
 ## Sizes
 
-For larger or smaller buttons use the `size` prop.
+For larger or smaller buttons, use the `size` prop.
 
 {{"demo": "pages/components/buttons/ButtonSizes.js"}}
+
+## Upload button
+
+{{"demo": "pages/components/buttons/UploadButtons.js"}}
 
 ## Buttons with icons and label
 
@@ -96,10 +103,22 @@ deselected, such as adding or removing a star to an item.
 
 {{"demo": "pages/components/buttons/IconButtons.js"}}
 
-## Customized buttons
+### Sizes
 
-Here are some examples of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/how-to-customize/).
+For larger or smaller icon buttons, use the `size` prop.
+
+{{"demo": "pages/components/buttons/IconButtonSizes.js"}}
+
+### Colors
+
+Use `color` prop to apply theme color palette to component.
+
+{{"demo": "pages/components/buttons/IconButtonColors.js"}}
+
+## Customization
+
+Here are some examples of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
@@ -107,11 +126,11 @@ Here are some examples of customizing the component. You can learn more about th
 
 ## Loading buttons
 
-The loading buttons can show pending state and disable interactions.
+The loading buttons can show loading state and disable interactions.
 
 {{"demo": "pages/components/buttons/LoadingButtons.js"}}
 
-Toggle the switch to see the transition between the different states.
+Toggle the loading switch to see the transition between the different states.
 
 {{"demo": "pages/components/buttons/LoadingButtonsTransition.js"}}
 
@@ -124,15 +143,9 @@ You can take advantage of this lower-level component to build custom interaction
 
 ## Third-party routing library
 
-One common use case is to use the button to trigger navigation to a new page.
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.
 The `ButtonBase` component provides the `component` prop to handle this use case.
-However for certain focus polyfills `ButtonBase` requires the DOM node of the provided
-component. This is achieved by attaching a ref to the component and expecting that the
-component forwards this ref to the underlying DOM node.
-Given that many of the interactive components rely on `ButtonBase`, you should be
-able to take advantage of it everywhere.
-
-Here is an [integration example with react-router](/guides/composition/#button).
+Here is a [more detailed guide](/guides/routing/#button).
 
 ## Limitations
 
@@ -142,7 +155,7 @@ The ButtonBase component sets `pointer-events: none;` on disabled buttons, which
 
 If you wish to use `not-allowed`, you have two options:
 
-1. **CSS only**. You can remove the pointer events style on the disabled state of the `<button>` element:
+1. **CSS only**. You can remove the pointer-events style on the disabled state of the `<button>` element:
 
 ```css
 .MuiButtonBase-root:disabled {

@@ -1,18 +1,18 @@
 {
   "props": {
     "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } }
+    "classes": { "type": { "name": "object" } },
+    "position": { "type": { "name": "enum", "description": "'left'<br>&#124;&nbsp;'right'" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "TimelineItem",
   "styles": {
     "classes": [
       "root",
-      "alignLeft",
-      "alignRight",
-      "alignAlternate",
-      "missingOppositeContent",
-      "content",
-      "oppositeContent"
+      "positionLeft",
+      "positionRight",
+      "positionAlternate",
+      "missingOppositeContent"
     ],
     "globalClasses": {},
     "name": "MuiTimelineItem"
@@ -22,6 +22,6 @@
   "filename": "/packages/material-ui-lab/src/TimelineItem/TimelineItem.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/timeline/\">Timeline</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

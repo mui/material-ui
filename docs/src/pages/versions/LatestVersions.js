@@ -1,6 +1,5 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -8,17 +7,9 @@ import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import Link from 'docs/src/modules/components/Link';
 
-const styles = {
-  root: {
-    width: '100%',
-  },
-};
-
-function LatestVersions(props) {
-  const { classes } = props;
-
+function LatestVersions() {
   return (
-    <div className={classes.root}>
+    <Box sx={{ width: '100%' }}>
       <Table>
         <TableBody>
           <TableRow>
@@ -71,12 +62,8 @@ function LatestVersions(props) {
           </TableRow>
         </TableBody>
       </Table>
-    </div>
+    </Box>
   );
 }
 
-LatestVersions.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(LatestVersions);
+export default LatestVersions;

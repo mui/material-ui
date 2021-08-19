@@ -1,22 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getDialogActionsUtilityClass } from './dialogActionsClasses';
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(styles.root || {}, {
-    ...(!styleProps.disableSpacing && styles.spacing),
-  });
-};
-
-const useUtilityClasses = (styleProps) => {
-  const { classes, disableSpacing } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, disableSpacing } = ownerState;
 
   const slots = {
     root: ['root', !disableSpacing && 'spacing'],
@@ -25,23 +16,21 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getDialogActionsUtilityClass, classes);
 };
 
-const DialogActionsRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiDialogActions',
-    slot: 'Root',
-    overridesResolver,
+const DialogActionsRoot = styled('div', {
+  name: 'MuiDialogActions',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [styles.root, !ownerState.disableSpacing && styles.spacing];
   },
-)(({ styleProps }) => ({
-  /* Styles applied to the root element. */
+})(({ ownerState }) => ({
   display: 'flex',
   alignItems: 'center',
   padding: 8,
   justifyContent: 'flex-end',
   flex: '0 0 auto',
-  /* Styles applied to the root element unless `disableSpacing={true}`. */
-  ...(!styleProps.disableSpacing && {
+  ...(!ownerState.disableSpacing && {
     '& > :not(:first-of-type)': {
       marginLeft: 8,
     },
@@ -55,20 +44,20 @@ const DialogActions = React.forwardRef(function DialogActions(inProps, ref) {
   });
 
   const { className, disableSpacing = false, ...other } = props;
-  const styleProps = { ...props, disableSpacing };
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = { ...props, disableSpacing };
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <DialogActionsRoot
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       {...other}
     />
   );
 });
 
-DialogActions.propTypes = {
+DialogActions.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

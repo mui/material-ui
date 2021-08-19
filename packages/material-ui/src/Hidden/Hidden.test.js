@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils';
-import Hidden from './Hidden';
+import Hidden from '@material-ui/core/Hidden';
 
 describe('<Hidden />', () => {
   const render = createClientRender();

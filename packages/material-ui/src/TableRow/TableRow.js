@@ -1,26 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { alpha } from '@material-ui/system';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
-import { alpha } from '../styles/colorManipulator';
-
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import tableRowClasses, { getTableRowUtilityClass } from './tableRowClasses';
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.head && styles.head),
-    ...(styleProps.footer && styles.footer),
-  });
-};
-
-const useUtilityClasses = (styleProps) => {
-  const { classes, selected, hover, head, footer } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, selected, hover, head, footer } = ownerState;
 
   const slots = {
     root: ['root', selected && 'selected', hover && 'hover', head && 'head', footer && 'footer'],
@@ -29,16 +18,15 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getTableRowUtilityClass, classes);
 };
 
-const TableRowRoot = experimentalStyled(
-  'tr',
-  {},
-  {
-    name: 'MuiTableRow',
-    slot: 'Root',
-    overridesResolver,
+const TableRowRoot = styled('tr', {
+  name: 'MuiTableRow',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [styles.root, ownerState.head && styles.head, ownerState.footer && styles.footer];
   },
-)(({ theme }) => ({
-  /* Styles applied to the root element. */
+})(({ theme }) => ({
   color: 'inherit',
   display: 'table-row',
   verticalAlign: 'middle',
@@ -47,8 +35,14 @@ const TableRowRoot = experimentalStyled(
   [`&.${tableRowClasses.hover}:hover`]: {
     backgroundColor: theme.palette.action.hover,
   },
-  '&.Mui-selected, &.Mui-selected:hover': {
-    backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.selectedOpacity),
+  [`&.${tableRowClasses.selected}`]: {
+    backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+    '&:hover': {
+      backgroundColor: alpha(
+        theme.palette.primary.main,
+        theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+      ),
+    },
   },
 }));
 
@@ -68,7 +62,7 @@ const TableRow = React.forwardRef(function TableRow(inProps, ref) {
   } = props;
   const tablelvl2 = React.useContext(Tablelvl2Context);
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     component,
     hover,
@@ -77,7 +71,7 @@ const TableRow = React.forwardRef(function TableRow(inProps, ref) {
     footer: tablelvl2 && tablelvl2.variant === 'footer',
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <TableRowRoot
@@ -85,13 +79,13 @@ const TableRow = React.forwardRef(function TableRow(inProps, ref) {
       ref={ref}
       className={clsx(classes.root, className)}
       role={component === defaultComponent ? null : 'row'}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     />
   );
 });
 
-TableRow.propTypes = {
+TableRow.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

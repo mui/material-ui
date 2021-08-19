@@ -2,9 +2,9 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers, SinonFakeTimers } from 'sinon';
 import TextField from '@material-ui/core/TextField';
-import { fireEvent, screen } from 'test/utils';
+import { act, fireEvent, screen } from 'test/utils';
 import PickersDay from '@material-ui/lab/PickersDay';
-import CalendarSkeleton from '@material-ui/lab/PickersCalendarSkeleton';
+import CalendarPickerSkeleton from '@material-ui/lab/CalendarPickerSkeleton';
 import MobileDatePicker from '@material-ui/lab/MobileDatePicker';
 import {
   createPickerRender,
@@ -16,7 +16,14 @@ import {
 } from '../internal/pickers/test-utils';
 
 describe('<MobileDatePicker />', () => {
-  const render = createPickerRender({ strict: false });
+  let clock: SinonFakeTimers;
+  beforeEach(() => {
+    clock = useFakeTimers(new Date());
+  });
+  afterEach(() => {
+    clock.restore();
+  });
+  const render = createPickerRender();
 
   it('Accepts date on `OK` button click', () => {
     const onChangeMock = spy();
@@ -58,7 +65,10 @@ describe('<MobileDatePicker />', () => {
     expect(getByMuiTest('calendar-month-text')).to.have.text('January');
 
     // onChange must be dispatched with newly selected date
-    expect(onChangeMock.callCount).to.equal(1);
+    expect(onChangeMock.callCount).to.equal(
+      // Strict Effects run mount effects twice
+      React.version.startsWith('18') ? 2 : 1,
+    );
     expect(onChangeMock.args[0][0]).toEqualDateTime(adapterToUse.date('2018-01-01T00:00:00.000'));
   });
 
@@ -211,7 +221,7 @@ describe('<MobileDatePicker />', () => {
     render(
       <MobileDatePicker
         loading
-        renderLoading={() => <CalendarSkeleton data-testid="custom-loading" />}
+        renderLoading={() => <CalendarPickerSkeleton data-testid="custom-loading" />}
         open
         onChange={() => {}}
         renderInput={(params) => <TextField {...params} />}
@@ -244,8 +254,8 @@ describe('<MobileDatePicker />', () => {
         open
         value={adapterToUse.date('2018-01-01T00:00:00.000')}
         onChange={() => {}}
-        renderDay={(day, _selected, DayComponentProps) => (
-          <PickersDay {...DayComponentProps} data-testid="test-day" />
+        renderDay={(day, _selected, pickersDayProps) => (
+          <PickersDay {...pickersDayProps} data-testid="test-day" />
         )}
       />,
     );
@@ -267,39 +277,29 @@ describe('<MobileDatePicker />', () => {
     expect(screen.getByText('July')).toBeVisible();
   });
 
-  describe('mock time', () => {
-    let clock: SinonFakeTimers;
-
-    beforeEach(() => {
-      clock = useFakeTimers(new Date());
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
-    it('prop `showTodayButton` – accept current date when "today" button is clicked', () => {
-      const onCloseMock = spy();
-      const handleChange = spy();
-      render(
-        <MobileDatePicker
-          renderInput={(params) => <TextField {...params} />}
-          showTodayButton
-          cancelText="stream"
-          onClose={onCloseMock}
-          onChange={handleChange}
-          value={adapterToUse.date('2018-01-01T00:00:00.000')}
-          DialogProps={{ TransitionComponent: FakeTransitionComponent }}
-        />,
-      );
-      const start = adapterToUse.date();
-      fireEvent.click(screen.getByRole('textbox'));
+  it('prop `showTodayButton` – accept current date when "today" button is clicked', () => {
+    const onCloseMock = spy();
+    const handleChange = spy();
+    render(
+      <MobileDatePicker
+        renderInput={(params) => <TextField {...params} />}
+        showTodayButton
+        cancelText="stream"
+        onClose={onCloseMock}
+        onChange={handleChange}
+        value={adapterToUse.date('2018-01-01T00:00:00.000')}
+        DialogProps={{ TransitionComponent: FakeTransitionComponent }}
+      />,
+    );
+    const start = adapterToUse.date();
+    fireEvent.click(screen.getByRole('textbox'));
+    act(() => {
       clock.tick(10);
-      fireEvent.click(screen.getByText(/today/i));
-
-      expect(onCloseMock.callCount).to.equal(1);
-      expect(handleChange.callCount).to.equal(1);
-      expect(adapterToUse.getDiff(handleChange.args[0][0], start)).to.equal(10);
     });
+    fireEvent.click(screen.getByText(/today/i));
+
+    expect(onCloseMock.callCount).to.equal(1);
+    expect(handleChange.callCount).to.equal(1);
+    expect(adapterToUse.getDiff(handleChange.args[0][0], start)).to.equal(10);
   });
 });

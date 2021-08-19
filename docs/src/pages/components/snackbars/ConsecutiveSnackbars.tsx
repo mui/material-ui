@@ -1,17 +1,8 @@
 import * as React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    close: {
-      padding: theme.spacing(0.5),
-    },
-  }),
-);
 
 export interface SnackbarMessage {
   message: string;
@@ -20,12 +11,12 @@ export interface SnackbarMessage {
 
 export interface State {
   open: boolean;
-  snackPack: SnackbarMessage[];
+  snackPack: readonly SnackbarMessage[];
   messageInfo?: SnackbarMessage;
 }
 
 export default function ConsecutiveSnackbars() {
-  const [snackPack, setSnackPack] = React.useState<SnackbarMessage[]>([]);
+  const [snackPack, setSnackPack] = React.useState<readonly SnackbarMessage[]>([]);
   const [open, setOpen] = React.useState(false);
   const [messageInfo, setMessageInfo] = React.useState<SnackbarMessage | undefined>(
     undefined,
@@ -61,7 +52,6 @@ export default function ConsecutiveSnackbars() {
     setMessageInfo(undefined);
   };
 
-  const classes = useStyles();
   return (
     <div>
       <Button onClick={handleClick('Message A')}>Show message A</Button>
@@ -81,7 +71,7 @@ export default function ConsecutiveSnackbars() {
             <IconButton
               aria-label="close"
               color="inherit"
-              className={classes.close}
+              sx={{ p: 0.5 }}
               onClick={handleClose}
             >
               <CloseIcon />

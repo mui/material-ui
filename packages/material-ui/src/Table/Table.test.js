@@ -1,22 +1,20 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import Table from './Table';
+import { createClientRender, describeConformance } from 'test/utils';
+import Table, { tableClasses as classes } from '@material-ui/core/Table';
 import TableContext from './TableContext';
-import classes from './tableClasses';
 
 describe('<Table />', () => {
-  const mount = createMount();
   const render = createClientRender();
 
-  describeConformanceV5(
+  describeConformance(
     <Table>
       <tbody />
     </Table>,
     () => ({
       classes,
       inheritComponent: 'table',
-      mount,
+      render,
       muiName: 'MuiTable',
       testVariantProps: { variant: 'foo' },
       refInstanceof: window.HTMLTableElement,
@@ -65,7 +63,7 @@ describe('<Table />', () => {
 
     expect(context).to.deep.equal({
       size: 'medium',
-      padding: 'default',
+      padding: 'normal',
       stickyHeader: false,
     });
   });

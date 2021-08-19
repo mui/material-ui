@@ -1,42 +1,31 @@
 /* eslint react/jsx-no-target-blank: ["error", { allowReferrer: true }] */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import { adShape } from 'docs/src/modules/components/AdManager';
 import { adStylesObject } from 'docs/src/modules/components/ad.styles';
 
-const hookFactory = (shape) =>
-  makeStyles((theme) => {
+const Root = styled('span', { shouldForwardProp: (prop) => prop !== 'shape' })(
+  ({ theme, shape }) => {
     const styles = adStylesObject[`body-${shape}`](theme);
-    return {
-      root: {
-        ...styles.root,
-        '& img': styles.img,
-        '& a, & a:hover': styles.a,
-      },
-      imageWrapper: styles.imgWrapper,
-      description: styles.description,
-      poweredby: styles.poweredby,
-    };
-  });
 
-const autoShapeStyles = hookFactory(adShape);
-const inlineShapeStyles = hookFactory('inline');
+    return {
+      ...styles.root,
+      '& img': styles.img,
+      '& a, & a:hover': styles.a,
+      '& .AdDisplay-imageWrapper': styles.imgWrapper,
+      '& .AdDisplay-description': styles.description,
+      '& .AdDisplay-poweredby': styles.poweredby,
+    };
+  },
+);
 
 export default function AdDisplay(props) {
   const { ad, className, shape = 'auto' } = props;
-  let classes;
-
-  if (shape === 'inline') {
-    classes = inlineShapeStyles();
-  } else {
-    classes = autoShapeStyles();
-  }
 
   /* eslint-disable material-ui/no-hardcoded-labels, react/no-danger */
   return (
-    <span className={clsx(classes.root, className)}>
+    <Root shape={shape === 'inline' ? 'inline' : adShape} className={className}>
       <a
         href={ad.link}
         target="_blank"
@@ -49,16 +38,16 @@ export default function AdDisplay(props) {
             }
           : {})}
       >
-        <span className={classes.imageWrapper}>
-          <img height="100" width="130" className={classes.image} src={ad.img} alt={ad.name} />
+        <span className="AdDisplay-imageWrapper">
+          <img height="100" width="130" src={ad.img} alt={ad.name} />
         </span>
         <span
-          className={classes.description}
+          className="AdDisplay-description"
           dangerouslySetInnerHTML={{ __html: ad.description }}
         />
       </a>
-      <span className={classes.poweredby}>ad by {ad.poweredby}</span>
-    </span>
+      <span className="AdDisplay-poweredby">ad by {ad.poweredby}</span>
+    </Root>
   );
   /* eslint-enable material-ui/no-hardcoded-labels, react/no-danger */
 }

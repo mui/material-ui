@@ -68,6 +68,7 @@ export default function BadgeAlignment() {
         sx={{
           display: 'flex',
           justifyContent: 'center',
+          color: 'action.active',
           '& > *': {
             margin: 2,
           },

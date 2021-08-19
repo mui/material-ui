@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { SinonFakeTimers, useFakeTimers } from 'sinon';
 import TextField from '@material-ui/core/TextField';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import { fireEvent, screen } from 'test/utils';
 import StaticDatePicker from '@material-ui/lab/StaticDatePicker';
 import {
@@ -12,7 +12,14 @@ import {
 } from '../internal/pickers/test-utils';
 
 describe('<StaticDatePicker />', () => {
-  const render = createPickerRender({ strict: false });
+  let clock: SinonFakeTimers;
+  beforeEach(() => {
+    clock = useFakeTimers();
+  });
+  afterEach(() => {
+    clock.restore();
+  });
+  const render = createPickerRender();
 
   it('render proper month', () => {
     render(
@@ -50,25 +57,6 @@ describe('<StaticDatePicker />', () => {
     fireEvent.click(previousMonth);
 
     expect(getByMuiTest('calendar-month-text')).to.have.text('December');
-  });
-
-  // TODO: remove once we use describeConformanceV5
-  it("respect theme's defaultProps", () => {
-    const theme = createMuiTheme({
-      components: { MuiStaticDatePicker: { defaultProps: { toolbarTitle: 'Select A Date' } } },
-    });
-
-    render(
-      <ThemeProvider theme={theme}>
-        <StaticDatePicker
-          value={adapterToUse.date('2020-01-01T00:00:00.000')}
-          onChange={() => {}}
-          renderInput={(params) => <TextField {...params} />}
-        />
-      </ThemeProvider>,
-    );
-
-    expect(screen.queryByText('Select A Date')).not.to.equal(null);
   });
 
   it('prop `shouldDisableYear` – disables years dynamically', () => {

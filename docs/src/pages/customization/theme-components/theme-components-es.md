@@ -7,7 +7,7 @@
 You can use the theme's `styleOverrides` key to potentially change every single style injected by Material-UI into the DOM.
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     // Name of the component
     MuiButton: {
@@ -34,7 +34,7 @@ To override a lab component's styles with TypeScript, check [this section of the
 You can change the default of every prop of a Material-UI component. A `defaultProps` key is exposed in the theme's `components` key for this use case.
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     // Name of the component
     MuiButtonBase: {
@@ -45,6 +45,10 @@ const theme = createMuiTheme({
     },
   },
 });
+      Infinity,
++     }),
+    ]
+  }
       Infinity,
 +     }),
     ]
@@ -62,7 +66,7 @@ You can use the `variants` key in the theme's `components` section to add new va
 The definitions are specified in an array, under the component's name. For each of them a CSS class is added to the HTML `<head>`. The order is important, so make sure that the styles that should win are specified last.
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   components: {
     MuiButton: {
       variants: [
@@ -104,7 +108,7 @@ declare module '@material-ui/core/Button/Button' {
 Another way to override the look of all component instances is to adjust the [theme configuration variables](/customization/theming/#theme-configuration-variables).
 
 ```js
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     button: {
       fontSize: '1rem',

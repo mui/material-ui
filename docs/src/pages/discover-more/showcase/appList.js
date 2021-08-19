@@ -560,8 +560,7 @@ const appList = [
       'An open source Chrome extension allowing you to import and execute JavaScript code ' +
       'snippets from GitHub.',
     image: 'snippets.jpg',
-    link:
-      'https://chrome.google.com/webstore/detail/snippets/dcibnkkafifbanoclgjbkmkbogijndin',
+    link: 'https://chrome.google.com/webstore/detail/snippets/dcibnkkafifbanoclgjbkmkbogijndin',
     source: 'https://github.com/richardscarrott/snippets',
     stars: 42,
     dateAdded: '2018-01-19',
@@ -670,6 +669,15 @@ const appList = [
     image: 'tcespal.jpg',
     link: 'https://tcespal.com',
     dateAdded: '2021-02-06',
+  },
+  {
+    title: 'Atomic CRM',
+    description: 'A full-featured Customer Relationship Management app',
+    image: 'atomiccrm.jpg',
+    link: 'https://marmelab.com/react-admin-crm/',
+    source: 'https://github.com/marmelab/react-admin/tree/master/examples/crm',
+    stars: 16700,
+    dateAdded: '2021-05-06',
   },
 ];
 

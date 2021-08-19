@@ -2,11 +2,9 @@ import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { describeConformance } from 'test/utils';
 import StaticTimePicker from './StaticTimePicker';
-import { createPickerMount } from '../internal/pickers/test-utils';
+import { wrapPickerMount } from '../internal/pickers/test-utils';
 
 describe('<StaticTimePicker />', () => {
-  const mount = createPickerMount();
-
   describeConformance(
     <StaticTimePicker
       onChange={() => {}}
@@ -15,10 +13,15 @@ describe('<StaticTimePicker />', () => {
     />,
     () => ({
       classes: {},
-      mount,
+      muiName: 'MuiStaticTimePicker',
+      wrapMount: wrapPickerMount,
       refInstanceof: undefined,
       skip: [
         'componentProp',
+        'componentsProp',
+        'themeDefaultProps',
+        'themeStyleOverrides',
+        'themeVariants',
         'mergeClassName',
         'propsSpread',
         // TODO: `ref` is typed but has no effect

@@ -2,14 +2,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getCardContentUtilityClass } from './cardContentClasses';
 
-const overridesResolver = (props, styles) => styles.root || {};
-
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -18,16 +16,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getCardContentUtilityClass, classes);
 };
 
-const CardContentRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiCardContent',
-    slot: 'Root',
-    overridesResolver,
-  },
-)(() => {
-  /* Styles applied to the root element. */
+const CardContentRoot = styled('div', {
+  name: 'MuiCardContent',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(() => {
   return {
     padding: 16,
     '&:last-child': {
@@ -44,22 +37,22 @@ const CardContent = React.forwardRef(function CardContent(inProps, ref) {
 
   const { className, component = 'div', ...other } = props;
 
-  const styleProps = { ...props, component };
+  const ownerState = { ...props, component };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <CardContentRoot
       as={component}
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       {...other}
     />
   );
 });
 
-CardContent.propTypes = {
+CardContent.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

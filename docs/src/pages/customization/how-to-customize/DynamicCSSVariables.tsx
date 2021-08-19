@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { experimentalStyled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 
-const CustomSlider = experimentalStyled(Slider)({
+const CustomSlider = styled(Slider)({
   width: 300,
   color: 'var(--color)',
   '& .MuiSlider-thumb': {

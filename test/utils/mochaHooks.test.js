@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import * as React from 'react';
 import { stub } from 'sinon';
 import { createMochaHooks } from './mochaHooks';
-import { createClientRender } from './createClientRender';
+import { createClientRender, act } from './createClientRender';
 
 describe('mochaHooks', () => {
   // one block per hook.
@@ -46,7 +46,8 @@ describe('mochaHooks', () => {
 
     describe('dedupes missing act() warnings by component', () => {
       const mochaHooks = createMochaHooks(Mocha);
-      const render = createClientRender();
+      // missing act warnings only happen in StrictMode
+      const render = createClientRender({ strict: true });
 
       beforeEach(function beforeEachHook() {
         mochaHooks.beforeAll.forEach((beforeAllMochaHook) => {
@@ -58,25 +59,29 @@ describe('mochaHooks', () => {
       });
 
       it('', () => {
-        function Child() {
+        const Child = React.forwardRef(function Child() {
           React.useEffect(() => {});
           React.useEffect(() => {});
           return null;
-        }
+        });
 
-        let setState;
+        let unsafeSetState;
         function Parent() {
-          setState = React.useState(0)[1];
+          const [state, setState] = React.useState(0);
+          unsafeSetState = setState;
+
           React.useEffect(() => {});
           React.useEffect(() => {});
 
-          return <Child />;
+          return <Child rerender={state} />;
         }
 
         render(<Parent />);
 
         // not wrapped in act()
-        setState(1);
+        unsafeSetState(1);
+        // make sure effects are flushed
+        act(() => {});
       });
 
       afterEach(function afterEachHook() {
@@ -97,7 +102,9 @@ describe('mochaHooks', () => {
           error.match(/An update to Parent ran an effect, but was not wrapped in act/g),
         ).to.have.lengthOf(1);
         expect(
-          error.match(/An update to Child ran an effect, but was not wrapped in act/g),
+          error.match(
+            /An update to ForwardRef\(Child\) ran an effect, but was not wrapped in act/g,
+          ),
         ).to.have.lengthOf(1);
       });
     });

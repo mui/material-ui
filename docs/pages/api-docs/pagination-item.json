@@ -3,14 +3,14 @@
     "classes": { "type": { "name": "object" } },
     "color": {
       "type": {
-        "name": "enum",
-        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'standard'"
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string"
       },
       "default": "'standard'"
     },
     "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" } },
-    "page": { "type": { "name": "number" } },
+    "page": { "type": { "name": "node" } },
     "selected": { "type": { "name": "bool" } },
     "shape": {
       "type": { "name": "enum", "description": "'circular'<br>&#124;&nbsp;'rounded'" },
@@ -18,11 +18,12 @@
     },
     "size": {
       "type": {
-        "name": "enum",
-        "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
+        "name": "union",
+        "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;string"
       },
       "default": "'medium'"
     },
+    "sx": { "type": { "name": "object" } },
     "type": {
       "type": {
         "name": "enum",
@@ -53,6 +54,8 @@
       "outlinedSecondary",
       "rounded",
       "ellipsis",
+      "firstLast",
+      "previousNext",
       "focusVisible",
       "disabled",
       "selected",
@@ -70,6 +73,6 @@
   "filename": "/packages/material-ui/src/PaginationItem/PaginationItem.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/pagination/\">Pagination</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

@@ -6,7 +6,7 @@ export type WrapperVariant = 'mobile' | 'desktop' | null;
  * TODO consider getting rid from wrapper variant
  * @ignore - internal component.
  */
-export const WrapperVariantContext = React.createContext<WrapperVariant | null>(null);
+export const WrapperVariantContext = React.createContext<WrapperVariant>(null);
 
 /**
  * @ignore - internal component.

@@ -1,0 +1,17 @@
+{
+  "name": "@material-ui/markdown",
+  "version": "5.0.0",
+  "private": true,
+  "type": "commonjs",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./loader": "./loader.js",
+    "./prism": "./prism.js"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "marked": "^2.0.0",
+    "prismjs": "^1.24.1"
+  }
+}

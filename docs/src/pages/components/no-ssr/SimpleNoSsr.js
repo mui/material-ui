@@ -10,11 +10,7 @@ export default function SimpleNoSsr() {
       </Box>
       <NoSsr>
         <Box
-          sx={{
-            p: 2,
-            bgcolor: 'secondary.main',
-            color: 'primary.contrastText',
-          }}
+          sx={{ p: 2, bgcolor: 'secondary.main', color: 'secondary.contrastText' }}
         >
           Client only
         </Box>

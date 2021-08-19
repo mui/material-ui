@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import defaultTheme from '@material-ui/core/styles/defaultTheme';
 import adaptV4Theme from './adaptV4Theme';
 
 describe('adaptV4Theme', () => {
@@ -206,11 +207,11 @@ describe('adaptV4Theme', () => {
       }).toWarnDev(['adaptV4Theme() is deprecated']);
 
       expect(transformedTheme.mixins.gutters()).to.deep.equal({
-        paddingLeft: defaultSpacing * 2,
-        paddingRight: defaultSpacing * 2,
-        '@media (min-width:600px)': {
-          paddingLeft: defaultSpacing * 3,
-          paddingRight: defaultSpacing * 3,
+        paddingLeft: `${defaultSpacing * 2}px`,
+        paddingRight: `${defaultSpacing * 2}px`,
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          paddingLeft: `${defaultSpacing * 3}px`,
+          paddingRight: `${defaultSpacing * 3}px`,
         },
       });
     });
@@ -226,11 +227,11 @@ describe('adaptV4Theme', () => {
       }).toWarnDev(['adaptV4Theme() is deprecated']);
 
       expect(transformedTheme.mixins.gutters()).to.deep.equal({
-        paddingLeft: spacing * 2,
-        paddingRight: spacing * 2,
-        '@media (min-width:600px)': {
-          paddingLeft: spacing * 3,
-          paddingRight: spacing * 3,
+        paddingLeft: `${spacing * 2}px`,
+        paddingRight: `${spacing * 2}px`,
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          paddingLeft: `${spacing * 3}px`,
+          paddingRight: `${spacing * 3}px`,
         },
       });
     });
@@ -254,11 +255,11 @@ describe('adaptV4Theme', () => {
       });
 
       expect(transformedTheme.mixins.gutters()).to.deep.equal({
-        paddingLeft: defaultSpacing * 2,
-        paddingRight: defaultSpacing * 2,
-        '@media (min-width:600px)': {
-          paddingLeft: defaultSpacing * 3,
-          paddingRight: defaultSpacing * 3,
+        paddingLeft: `${defaultSpacing * 2}px`,
+        paddingRight: `${defaultSpacing * 2}px`,
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          paddingLeft: `${defaultSpacing * 3}px`,
+          paddingRight: `${defaultSpacing * 3}px`,
         },
       });
     });
@@ -313,21 +314,6 @@ describe('adaptV4Theme', () => {
       }).toWarnDev(['adaptV4Theme() is deprecated']);
 
       expect(transformedTheme.palette.mode).to.equal('dark');
-    });
-  });
-
-  describe('theme.spacing', () => {
-    it('does not add units to returned value for a single argument', () => {
-      const theme = {};
-
-      let transformedTheme;
-
-      expect(() => {
-        transformedTheme = adaptV4Theme(theme);
-      }).toWarnDev(['adaptV4Theme() is deprecated']);
-
-      expect(transformedTheme.spacing()).to.equal(8);
-      expect(transformedTheme.spacing(2)).to.equal(16);
     });
   });
 });

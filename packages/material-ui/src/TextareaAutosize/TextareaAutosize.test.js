@@ -1,18 +1,23 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import sinon, { spy, stub, useFakeTimers } from 'sinon';
-import { createMount, describeConformance, act, createClientRender, fireEvent } from 'test/utils';
-import TextareaAutosize from './TextareaAutosize';
+import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 describe('<TextareaAutosize />', () => {
-  const mount = createMount();
   const render = createClientRender();
 
   describeConformance(<TextareaAutosize />, () => ({
     inheritComponent: 'textarea',
-    mount,
     refInstanceof: window.HTMLTextAreaElement,
-    skip: ['rootClass', 'componentProp'],
+    skip: [
+      'rootClass',
+      'componentProp',
+      'componentsProp',
+      'themeDefaultProps',
+      'themeStyleOverrides',
+      'themeVariants',
+    ],
   }));
 
   describe('layout', () => {
@@ -96,7 +101,9 @@ describe('<TextareaAutosize />', () => {
         scrollHeight: 30,
         lineHeight: 15,
       });
-      input.focus();
+      act(() => {
+        input.focus();
+      });
       fireEvent.change(document.activeElement, { target: { value: 'a' } });
       expect(input.style).to.have.property('height', '30px');
       expect(input.style).to.have.property('overflow', 'hidden');
@@ -130,14 +137,14 @@ describe('<TextareaAutosize />', () => {
       const shadow = container.querySelector('textarea[aria-hidden=true]');
       setLayout(input, shadow, {
         getComputedStyle: {
-          'box-sizing': 'content-box',
+          'box-sizing': 'border-box',
           'padding-top': `${padding}px`,
         },
         scrollHeight: 30,
         lineHeight: 15,
       });
       forceUpdate();
-      expect(input.style).to.have.property('height', `${30 - padding}px`);
+      expect(input.style).to.have.property('height', `${30 + padding}px`);
       expect(input.style).to.have.property('overflow', 'hidden');
     });
 
@@ -280,7 +287,7 @@ describe('<TextareaAutosize />', () => {
           scrollHeight: 100,
           lineHeight: () => {
             index += 1;
-            return 15 + index;
+            return index;
           },
         });
 
@@ -288,9 +295,10 @@ describe('<TextareaAutosize />', () => {
           forceUpdate();
         }).toErrorDev([
           'Material-UI: Too many re-renders.',
-          // strict mode renders twice
-          'Material-UI: Too many re-renders.',
-          'Material-UI: Too many re-renders.',
+          React.version.startsWith('16') &&
+            // strict mode renders twice
+            'Material-UI: Too many re-renders.',
+          React.version.startsWith('16') && 'Material-UI: Too many re-renders.',
         ]);
       });
     });

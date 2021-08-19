@@ -1,18 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import FilledInput from './FilledInput';
-import InputBase from '../InputBase';
-import classes from './filledInputClasses';
+import { createClientRender, describeConformance } from 'test/utils';
+import FilledInput, { filledInputClasses as classes } from '@material-ui/core/FilledInput';
+import InputBase from '@material-ui/core/InputBase';
 
 describe('<FilledInput />', () => {
-  const mount = createMount();
   const render = createClientRender();
 
-  describeConformanceV5(<FilledInput open />, () => ({
+  describeConformance(<FilledInput open />, () => ({
     classes,
     inheritComponent: InputBase,
-    mount,
+    render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiFilledInput',
     testDeepOverrides: { slotName: 'input', slotClassName: classes.input },
@@ -31,5 +29,15 @@ describe('<FilledInput />', () => {
     const { container } = render(<FilledInput disableUnderline />);
     const root = container.firstChild;
     expect(root).not.to.have.class(classes.underline);
+  });
+
+  it('should forward classes to InputBase', () => {
+    render(<FilledInput error classes={{ error: 'error' }} />);
+    expect(document.querySelector('.error')).not.to.equal(null);
+  });
+
+  it('should respects the componentsProps if passed', () => {
+    render(<FilledInput componentsProps={{ root: { 'data-test': 'test' } }} />);
+    expect(document.querySelector('[data-test=test]')).not.to.equal(null);
   });
 });

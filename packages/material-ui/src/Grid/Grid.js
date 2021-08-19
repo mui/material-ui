@@ -12,12 +12,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
-import { unstable_extendSxProp as extendSxProp } from '@material-ui/system';
+import { unstable_extendSxProp as extendSxProp, handleBreakpoints } from '@material-ui/system';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import requirePropFactory from '../utils/requirePropFactory';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import GridContext from './GridContext';
 import gridClasses, { getGridUtilityClass } from './gridClasses';
 
 function getOffset(val) {
@@ -25,8 +25,29 @@ function getOffset(val) {
   return `${parse}${String(val).replace(String(parse), '') || 'px'}`;
 }
 
-function generateGrid(globalStyles, theme, breakpoint, styleProps) {
-  const size = styleProps[breakpoint];
+// Duplicated with Stack.js
+function resolveBreakpointValues({ values, base }) {
+  const keys = Object.keys(base);
+
+  if (keys.length === 0) {
+    return values;
+  }
+
+  let previous;
+
+  return keys.reduce((acc, breakpoint) => {
+    if (typeof values === 'object') {
+      acc[breakpoint] = values[breakpoint] != null ? values[breakpoint] : values[previous];
+    } else {
+      acc[breakpoint] = values;
+    }
+    previous = breakpoint;
+    return acc;
+  }, {});
+}
+
+function generateGrid(globalStyles, theme, breakpoint, ownerState) {
+  const size = ownerState[breakpoint];
 
   if (!size) return;
 
@@ -43,15 +64,22 @@ function generateGrid(globalStyles, theme, breakpoint, styleProps) {
     styles = {
       flexBasis: 'auto',
       flexGrow: 0,
+      flexShrink: 0,
       maxWidth: 'none',
+      width: 'auto',
     };
   } else {
+    const columnsBreakpointValues = resolveBreakpointValues({
+      values: ownerState.columns,
+      base: theme.breakpoints.values,
+    });
+
     // Keep 7 significant numbers.
-    const width = `${Math.round((size / 12) * 10e7) / 10e5}%`;
+    const width = `${Math.round((size / columnsBreakpointValues[breakpoint]) * 10e7) / 10e5}%`;
     let more = {};
 
-    if (styleProps.container && styleProps.item && styleProps.spacing !== 0) {
-      const themeSpacing = theme.spacing(styleProps.spacing);
+    if (ownerState.container && ownerState.item && ownerState.columnSpacing !== 0) {
+      const themeSpacing = theme.spacing(ownerState.columnSpacing);
       if (themeSpacing !== '0px') {
         const fullWidth = `calc(${width} + ${getOffset(themeSpacing)})`;
         more = {
@@ -79,58 +107,70 @@ function generateGrid(globalStyles, theme, breakpoint, styleProps) {
   }
 }
 
-function generateGap({ theme, styleProps }) {
-  const { container, spacing } = styleProps;
-  let styles = {};
+function generateDirection({ theme, ownerState }) {
+  return handleBreakpoints({ theme }, ownerState.direction, (propValue) => {
+    const output = {
+      flexDirection: propValue,
+    };
 
-  if (container && spacing !== 0) {
-    const themeSpacing = theme.spacing(spacing);
-
-    if (themeSpacing !== '0px') {
-      styles = {
-        width: `calc(100% + ${getOffset(themeSpacing)})`,
-        marginTop: `-${getOffset(themeSpacing)}`,
-        marginLeft: `-${getOffset(themeSpacing)}`,
-        [`& > .${gridClasses.item}`]: {
-          paddingTop: getOffset(themeSpacing),
-          paddingLeft: getOffset(themeSpacing),
-        },
+    if (propValue.indexOf('column') === 0) {
+      output[`& > .${gridClasses.item}`] = {
+        maxWidth: 'none',
       };
     }
+
+    return output;
+  });
+}
+
+export function generateRowGap({ theme, ownerState }) {
+  const { container, rowSpacing } = ownerState;
+  let styles = {};
+
+  if (container && rowSpacing !== 0) {
+    styles = handleBreakpoints({ theme }, rowSpacing, (propValue) => {
+      const themeSpacing = theme.spacing(propValue);
+
+      if (themeSpacing !== '0px') {
+        return {
+          marginTop: `-${getOffset(themeSpacing)}`,
+          [`& > .${gridClasses.item}`]: {
+            paddingTop: getOffset(themeSpacing),
+          },
+        };
+      }
+
+      return {};
+    });
   }
 
   return styles;
 }
 
-const overridesResolver = (props, styles) => {
-  const {
-    container,
-    direction,
-    item,
-    lg,
-    md,
-    sm,
-    spacing,
-    wrap,
-    xl,
-    xs,
-    zeroMinWidth,
-  } = props.styleProps;
+export function generateColumnGap({ theme, ownerState }) {
+  const { container, columnSpacing } = ownerState;
+  let styles = {};
 
-  return deepmerge(styles.root || {}, {
-    ...(container && styles.container),
-    ...(item && styles.item),
-    ...(zeroMinWidth && styles.zeroMinWidth),
-    ...(container && spacing !== 0 && styles[`spacing-xs-${String(spacing)}`]),
-    ...(direction !== 'row' && styles[`direction-xs-${String(direction)}`]),
-    ...(wrap !== 'wrap' && styles[`wrap-xs-${String(wrap)}`]),
-    ...(xs !== false && styles[`grid-xs-${String(xs)}`]),
-    ...(sm !== false && styles[`grid-sm-${String(sm)}`]),
-    ...(md !== false && styles[`grid-md-${String(md)}`]),
-    ...(lg !== false && styles[`grid-lg-${String(lg)}`]),
-    ...(xl !== false && styles[`grid-xl-${String(xl)}`]),
-  });
-};
+  if (container && columnSpacing !== 0) {
+    styles = handleBreakpoints({ theme }, columnSpacing, (propValue) => {
+      const themeSpacing = theme.spacing(propValue);
+
+      if (themeSpacing !== '0px') {
+        return {
+          width: `calc(100% + ${getOffset(themeSpacing)})`,
+          marginLeft: `-${getOffset(themeSpacing)}`,
+          [`& > .${gridClasses.item}`]: {
+            paddingLeft: getOffset(themeSpacing),
+          },
+        };
+      }
+
+      return {};
+    });
+  }
+
+  return styles;
+}
 
 // Default CSS values
 // flex: '0 1 auto',
@@ -138,70 +178,63 @@ const overridesResolver = (props, styles) => {
 // alignItems: 'flex-start',
 // flexWrap: 'nowrap',
 // justifyContent: 'flex-start',
-const GridRoot = experimentalStyled(
-  'div',
-  {},
-  { name: 'MuiGrid', slot: 'Root', overridesResolver },
-)(
-  ({ styleProps }) => ({
+const GridRoot = styled('div', {
+  name: 'MuiGrid',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { container, direction, item, lg, md, sm, spacing, wrap, xl, xs, zeroMinWidth } =
+      props.ownerState;
+
+    return [
+      styles.root,
+      container && styles.container,
+      item && styles.item,
+      zeroMinWidth && styles.zeroMinWidth,
+      container && spacing !== 0 && styles[`spacing-xs-${String(spacing)}`],
+      direction !== 'row' && styles[`direction-xs-${String(direction)}`],
+      wrap !== 'wrap' && styles[`wrap-xs-${String(wrap)}`],
+      xs !== false && styles[`grid-xs-${String(xs)}`],
+      sm !== false && styles[`grid-sm-${String(sm)}`],
+      md !== false && styles[`grid-md-${String(md)}`],
+      lg !== false && styles[`grid-lg-${String(lg)}`],
+      xl !== false && styles[`grid-xl-${String(xl)}`],
+    ];
+  },
+})(
+  ({ ownerState }) => ({
     boxSizing: 'border-box',
-    ...(styleProps.container && {
+    ...(ownerState.container && {
       display: 'flex',
       flexWrap: 'wrap',
       width: '100%',
     }),
-    ...(styleProps.item && {
+    ...(ownerState.item && {
       margin: 0, // For instance, it's useful when used with a `figure` element.
     }),
-    ...(styleProps.zeroMinWidth && {
+    ...(ownerState.zeroMinWidth && {
       minWidth: 0,
     }),
-    ...(styleProps.direction === 'column' && {
-      flexDirection: 'column',
-      [`& > .${gridClasses.item}`]: {
-        maxWidth: 'none',
-      },
-    }),
-    ...(styleProps.direction === 'column-reverse' && {
-      flexDirection: 'column-reverse',
-      [`& > .${gridClasses.item}`]: {
-        maxWidth: 'none',
-      },
-    }),
-    ...(styleProps.direction === 'row-reverse' && {
-      flexDirection: 'row-reverse',
-    }),
-    ...(styleProps.wrap === 'nowrap' && {
+    ...(ownerState.wrap === 'nowrap' && {
       flexWrap: 'nowrap',
     }),
-    ...(styleProps.wrap === 'reverse' && {
+    ...(ownerState.wrap === 'reverse' && {
       flexWrap: 'wrap-reverse',
     }),
   }),
-  generateGap,
-  ({ theme, styleProps }) =>
+  generateDirection,
+  generateRowGap,
+  generateColumnGap,
+  ({ theme, ownerState }) =>
     theme.breakpoints.keys.reduce((globalStyles, breakpoint) => {
       // Use side effect over immutability for better performance.
-      generateGrid(globalStyles, theme, breakpoint, styleProps);
+      generateGrid(globalStyles, theme, breakpoint, ownerState);
       return globalStyles;
     }, {}),
 );
 
-const useUtilityClasses = (styleProps) => {
-  const {
-    classes,
-    container,
-    direction,
-    item,
-    lg,
-    md,
-    sm,
-    spacing,
-    wrap,
-    xl,
-    xs,
-    zeroMinWidth,
-  } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, container, direction, item, lg, md, sm, spacing, wrap, xl, xs, zeroMinWidth } =
+    ownerState;
 
   const slots = {
     root: [
@@ -228,12 +261,15 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
   const props = extendSxProp(themeProps);
   const {
     className,
+    columns: columnsProp = 12,
+    columnSpacing: columnSpacingProp,
     component = 'div',
     container = false,
     direction = 'row',
     item = false,
     lg = false,
     md = false,
+    rowSpacing: rowSpacingProp,
     sm = false,
     spacing = 0,
     wrap = 'wrap',
@@ -243,35 +279,49 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const rowSpacing = rowSpacingProp || spacing;
+  const columnSpacing = columnSpacingProp || spacing;
+
+  const columns = React.useContext(GridContext) || columnsProp;
+
+  const ownerState = {
     ...props,
+    columns,
     container,
     direction,
     item,
     lg,
     md,
     sm,
-    spacing,
+    rowSpacing,
+    columnSpacing,
     wrap,
     xl,
     xs,
     zeroMinWidth,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
-  return (
+  const wrapChild = (element) =>
+    columns !== 12 ? (
+      <GridContext.Provider value={columns}>{element}</GridContext.Provider>
+    ) : (
+      element
+    );
+
+  return wrapChild(
     <GridRoot
-      styleProps={styleProps}
+      ownerState={ownerState}
       className={clsx(classes.root, className)}
       as={component}
       ref={ref}
       {...other}
-    />
+    />,
   );
 });
 
-Grid.propTypes = {
+Grid.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -289,6 +339,25 @@ Grid.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * The number of columns.
+   * @default 12
+   */
+  columns: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.number),
+    PropTypes.number,
+    PropTypes.object,
+  ]),
+  /**
+   * Defines the horizontal space between the type `item` components.
+   * It overrides the value of the `spacing` prop.
+   */
+  columnSpacing: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+    PropTypes.number,
+    PropTypes.object,
+    PropTypes.string,
+  ]),
+  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
@@ -304,7 +373,11 @@ Grid.propTypes = {
    * It is applied for all screen sizes.
    * @default 'row'
    */
-  direction: PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
+  direction: PropTypes.oneOfType([
+    PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
+    PropTypes.arrayOf(PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row'])),
+    PropTypes.object,
+  ]),
   /**
    * If `true`, the component will have the flex *item* behavior.
    * You should be wrapping *items* with a *container*.
@@ -330,6 +403,16 @@ Grid.propTypes = {
     PropTypes.bool,
   ]),
   /**
+   * Defines the vertical space between the type `item` components.
+   * It overrides the value of the `spacing` prop.
+   */
+  rowSpacing: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+    PropTypes.number,
+    PropTypes.object,
+    PropTypes.string,
+  ]),
+  /**
    * Defines the number of grids the component is going to use.
    * It's applied for the `sm` breakpoint and wider screens if not overridden.
    * @default false
@@ -339,11 +422,16 @@ Grid.propTypes = {
     PropTypes.bool,
   ]),
   /**
-   * Defines the space between the type `item` component.
+   * Defines the space between the type `item` components.
    * It can only be used on a type `container` component.
    * @default 0
    */
-  spacing: PropTypes.oneOf([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+  spacing: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
+    PropTypes.number,
+    PropTypes.object,
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

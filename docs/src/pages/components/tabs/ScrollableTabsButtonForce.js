@@ -1,18 +1,9 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    width: '100%',
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
+import Box from '@material-ui/core/Box';
 
 export default function ScrollableTabsButtonForce() {
-  const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -20,7 +11,7 @@ export default function ScrollableTabsButtonForce() {
   };
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ maxWidth: 480, bgcolor: 'background.paper' }}>
       <Tabs
         value={value}
         onChange={handleChange}
@@ -37,6 +28,6 @@ export default function ScrollableTabsButtonForce() {
         <Tab label="Item Six" />
         <Tab label="Item Seven" />
       </Tabs>
-    </div>
+    </Box>
   );
 }

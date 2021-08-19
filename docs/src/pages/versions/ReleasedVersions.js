@@ -1,31 +1,21 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Typography from '@material-ui/core/Typography';
 import Link from 'docs/src/modules/components/Link';
-import PageContext from 'docs/src/modules/components/PageContext';
+import VersionsContext from './VersionsContext';
 
 const GITHUB_RELEASE_BASE_URL =
   'https://github.com/mui-org/material-ui/releases/tag/';
 
-const styles = {
-  root: {
-    minHeight: 33 * 11,
-    overflow: 'auto',
-    width: '100%',
-  },
-};
-
-function ReleasedVersions(props) {
-  const { classes } = props;
-  const { versions } = React.useContext(PageContext);
+function ReleasedVersions() {
+  const versions = React.useContext(VersionsContext);
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ minHeight: 33 * 11, overflow: 'auto', width: '100%' }}>
       <Table>
         <TableBody>
           {versions.map((doc) => (
@@ -63,12 +53,8 @@ function ReleasedVersions(props) {
           ))}
         </TableBody>
       </Table>
-    </div>
+    </Box>
   );
 }
 
-ReleasedVersions.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ReleasedVersions);
+export default ReleasedVersions;

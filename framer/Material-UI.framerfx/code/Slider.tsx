@@ -3,12 +3,14 @@ import { addPropertyControls, ControlType } from 'framer';
 import MuiSlider from '@material-ui/core/Slider';
 
 interface Props {
-  color: 'primary' | 'secondary';
   disabled?: boolean;
+  disableSwap?: boolean;
   max?: number;
   min?: number;
   orientation?: 'horizontal' | 'vertical';
+  size: 'small' | 'medium';
   step?: number;
+  tabIndex?: number;
   track?: 'inverted' | 'normal' | false;
   valueLabelDisplay?: 'auto' | 'off' | 'on';
   width: number | string;
@@ -21,20 +23,19 @@ export function Slider(props: Props): JSX.Element {
 }
 
 Slider.defaultProps = {
-  color: 'primary' as 'primary',
+  size: 'medium' as 'medium',
   width: 160,
   height: 24,
 };
 
 addPropertyControls(Slider, {
-  color: {
-    type: ControlType.Enum,
-    title: 'Color',
-    options: ['primary', 'secondary'],
-  },
   disabled: {
     type: ControlType.Boolean,
     title: 'Disabled',
+  },
+  disableSwap: {
+    type: ControlType.Boolean,
+    title: 'Disable swap',
   },
   max: {
     type: ControlType.Number,
@@ -49,9 +50,18 @@ addPropertyControls(Slider, {
     title: 'Orientation',
     options: ['horizontal', 'vertical'],
   },
+  size: {
+    type: ControlType.Enum,
+    title: 'Size',
+    options: ['small', 'medium'],
+  },
   step: {
     type: ControlType.Number,
     title: 'Step',
+  },
+  tabIndex: {
+    type: ControlType.Number,
+    title: 'Tab index',
   },
   track: {
     type: ControlType.Enum,

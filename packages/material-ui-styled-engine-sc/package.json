@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/styled-engine-sc",
-  "version": "5.0.0-alpha.25",
+  "version": "5.0.0-beta.1",
   "private": false,
   "author": "Material-UI Team",
   "description": "styled() API wrapper package for styled-components.",
@@ -14,13 +14,13 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/mui-org/material-ui.git",
-    "directory": "packages/material-ui-styled"
+    "directory": "packages/material-ui-styled-engine-sc"
   },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "https://material-ui.com/styled/basics/",
+  "homepage": "https://next.material-ui.com/guides/styled-engine/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/material-ui"
@@ -34,7 +34,7 @@
     "build:copy-files": "node ../../scripts/copy-files.js",
     "prebuild": "rimraf build",
     "release": "yarn build && npm publish build --tag next",
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-styles/**/*.test.{js,ts,tsx}'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-styled-engine-sc/**/*.test.{js,ts,tsx}'",
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "dependencies": {
@@ -54,6 +54,6 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12.0.0"
   }
 }

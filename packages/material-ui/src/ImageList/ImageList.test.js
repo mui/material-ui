@@ -1,8 +1,7 @@
 import { expect } from 'chai';
 import * as React from 'react';
-import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
-import ImageList from './ImageList';
-import classes from './imageListClasses';
+import { createClientRender, describeConformance } from 'test/utils';
+import ImageList, { imageListClasses as classes } from '@material-ui/core/ImageList';
 
 const itemsData = [
   {
@@ -18,17 +17,16 @@ const itemsData = [
 ];
 
 describe('<ImageList />', () => {
-  const mount = createMount();
   const render = createClientRender();
 
-  describeConformanceV5(
+  describeConformance(
     <ImageList>
       <div />
     </ImageList>,
     () => ({
       classes,
       inheritComponent: 'ul',
-      mount,
+      render,
       refInstanceof: window.HTMLUListElement,
       testComponentPropWith: 'li',
       muiName: 'MuiImageList',

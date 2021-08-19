@@ -9,7 +9,7 @@ export default function ComboBox() {
       disablePortal
       id="combo-box-demo"
       options={top100Films}
-      style={{ width: 300 }}
+      sx={{ width: 300 }}
       renderInput={(params) => <TextField {...params} label="Movie" />}
     />
   );

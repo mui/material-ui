@@ -47,15 +47,33 @@ export const borderColor = style({
   themeKey: 'palette',
 });
 
-export const borderRadius = (props) => {
-  const propValue = props.borderRadius;
+export const borderTopColor = style({
+  prop: 'borderTopColor',
+  themeKey: 'palette',
+});
 
-  if (propValue) {
+export const borderRightColor = style({
+  prop: 'borderRightColor',
+  themeKey: 'palette',
+});
+
+export const borderBottomColor = style({
+  prop: 'borderBottomColor',
+  themeKey: 'palette',
+});
+
+export const borderLeftColor = style({
+  prop: 'borderLeftColor',
+  themeKey: 'palette',
+});
+
+export const borderRadius = (props) => {
+  if (props.borderRadius) {
     const transformer = createUnaryUnit(props.theme, 'shape.borderRadius', 4, 'borderRadius');
-    const styleFromPropValue = () => ({
+    const styleFromPropValue = (propValue) => ({
       borderRadius: getValue(transformer, propValue),
     });
-    return handleBreakpoints(props, propValue, styleFromPropValue);
+    return handleBreakpoints(props, props.borderRadius, styleFromPropValue);
   }
 
   return null;
@@ -73,6 +91,10 @@ const borders = compose(
   borderBottom,
   borderLeft,
   borderColor,
+  borderTopColor,
+  borderRightColor,
+  borderBottomColor,
+  borderLeftColor,
   borderRadius,
 );
 

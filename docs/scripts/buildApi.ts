@@ -1,10 +1,10 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
+import * as fse from 'fs-extra';
 import path from 'path';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import * as _ from 'lodash';
 import kebabCase from 'lodash/kebabCase';
-import uniqBy from 'lodash/uniqBy';
 import * as prettier from 'prettier';
 import * as recast from 'recast';
 import remark from 'remark';
@@ -13,36 +13,53 @@ import * as yargs from 'yargs';
 import * as doctrine from 'doctrine';
 import {
   defaultHandlers,
-  resolver,
   parse as docgenParse,
   PropDescriptor,
   PropTypeDescriptor,
   ReactDocgenApi,
 } from 'react-docgen';
 import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
-import muiFindAnnotatedComponentsResolver from 'docs/src/modules/utils/findAnnotatedComponentsResolver';
-import { LANGUAGES, LANGUAGES_IN_PROGRESS } from 'docs/src/modules/constants';
+import { LANGUAGES } from 'docs/src/modules/constants';
 import parseTest from 'docs/src/modules/utils/parseTest';
+import generatePropTypeDescription, {
+  escapeCell,
+  isElementTypeAcceptingRefProp,
+  isElementAcceptingRefProp,
+} from 'docs/src/modules/utils/generatePropTypeDescription';
 import { findPages, findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
-import {
-  getHeaders,
-  renderInline as renderMarkdownInline,
-} from 'docs/src/modules/utils/parseMarkdown';
+import { getHeaders, renderInline as renderMarkdownInline } from '@material-ui/markdown';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
 import createGenerateClassName from '@material-ui/styles/createGenerateClassName';
-import getStylesCreator from '@material-ui/styles/getStylesCreator';
-import { createMuiTheme } from '@material-ui/core/styles';
+import * as ttp from 'typescript-to-proptypes';
 import { getLineFeed, getUnstyledFilename } from './helpers';
 
-const DEMO_IGNORE = LANGUAGES_IN_PROGRESS.map((language) => `-${language}.md`);
+const apiDocsTranslationsDirectory = path.resolve('docs', 'translations', 'api-docs');
+function resolveApiDocsTranslationsComponentDirectory(component: ReactApi): string {
+  return path.resolve(apiDocsTranslationsDirectory, kebabCase(component.name));
+}
+function resolveApiDocsTranslationsComponentLanguagePath(
+  component: ReactApi,
+  language: typeof LANGUAGES[0],
+): string {
+  const languageSuffix = language === 'en' ? '' : `-${language}`;
+
+  return path.join(
+    resolveApiDocsTranslationsComponentDirectory(component),
+    `${kebabCase(component.name)}${languageSuffix}.json`,
+  );
+}
 
 interface ReactApi extends ReactDocgenApi {
+  /**
+   * list of page pathnames
+   * @example ['/components/Accordion']
+   */
+  demos: readonly string[];
   EOL: string;
   filename: string;
   forwardsRefTo: string | undefined;
   inheritance: { component: string; pathname: string } | null;
   name: string;
-  pagesMarkdown: Array<{ components: string[]; filename: string; pathname: string }>;
   spread: boolean | undefined;
   src: string;
   styles: {
@@ -109,100 +126,6 @@ function getChained(type: PropTypeDescriptor): false | PropDescriptor {
   return false;
 }
 
-function escapeCell(value: string): string {
-  // As the pipe is use for the table structure
-  return value.replace(/</g, '&lt;').replace(/`&lt;/g, '`<').replace(/\|/g, '\\|');
-}
-
-function isElementTypeAcceptingRefProp(type: PropTypeDescriptor): boolean {
-  return type.raw === 'elementTypeAcceptingRef';
-}
-
-function isRefType(type: PropTypeDescriptor): boolean {
-  return type.raw === 'refType';
-}
-
-function isElementAcceptingRefProp(type: PropTypeDescriptor): boolean {
-  return /^elementAcceptingRef/.test(type.raw);
-}
-
-function generatePropTypeDescription(type: PropTypeDescriptor): string | undefined {
-  switch (type.name) {
-    case 'custom': {
-      if (isElementTypeAcceptingRefProp(type)) {
-        return `element type`;
-      }
-      if (isElementAcceptingRefProp(type)) {
-        return `element`;
-      }
-      if (isRefType(type)) {
-        return `ref`;
-      }
-      if (type.raw === 'HTMLElementType') {
-        return `HTML element`;
-      }
-
-      const deprecatedInfo = getDeprecatedInfo(type);
-      if (deprecatedInfo !== false) {
-        return generatePropTypeDescription({
-          // eslint-disable-next-line react/forbid-foreign-prop-types
-          name: deprecatedInfo.propTypes,
-        } as any);
-      }
-
-      const chained = getChained(type);
-      if (chained !== false) {
-        return generatePropTypeDescription(chained.type);
-      }
-
-      return type.raw;
-    }
-
-    case 'shape':
-      return `{ ${Object.keys(type.value)
-        .map((subValue) => {
-          const subType = type.value[subValue];
-          return `${subValue}${subType.required ? '' : '?'}: ${generatePropTypeDescription(
-            subType,
-          )}`;
-        })
-        .join(', ')} }`;
-
-    case 'union':
-      return (
-        type.value
-          .map((type2) => {
-            return generatePropTypeDescription(type2);
-          })
-          // Display one value per line as it's better for visibility.
-          .join('<br>&#124;&nbsp;')
-      );
-    case 'enum':
-      return (
-        type.value
-          .map((type2) => {
-            return escapeCell(type2.value);
-          })
-          // Display one value per line as it's better for visibility.
-          .join('<br>&#124;&nbsp;')
-      );
-
-    case 'arrayOf': {
-      return `Array&lt;${generatePropTypeDescription(type.value)}&gt;`;
-    }
-
-    case 'instanceOf': {
-      if (type.value.startsWith('typeof')) {
-        return /typeof (.*) ===/.exec(type.value)![1];
-      }
-      return type.value;
-    }
-
-    default:
-      return type.name;
-  }
-}
-
 /**
  * Returns `null` if the prop should be ignored.
  * Throws if it is invalid.
@@ -213,7 +136,7 @@ function createDescribeableProp(
   prop: PropDescriptor,
   propName: string,
 ): DescribeablePropDescriptor | null {
-  const { defaultValue, jsdocDefaultValue, description, external, required, type } = prop;
+  const { defaultValue, jsdocDefaultValue, description, required, type } = prop;
 
   const renderedDefaultValue = defaultValue?.value.replace(/\r?\n/g, '');
   const renderDefaultValue = Boolean(
@@ -238,11 +161,12 @@ function createDescribeableProp(
   }
 
   if (jsdocDefaultValue !== undefined && defaultValue === undefined) {
-    if (!external) {
-      throw new Error(
-        `Declared a @default annotation in JSDOC for prop '${propName}' but could not find a default value in the implementation.`,
-      );
-    }
+    // Assume that this prop:
+    // 1. Is typed by another component
+    // 2. Is forwarded to that component
+    // Then validation is handled by the other component.
+    // Though this does break down if the prop is used in other capacity in the implementation.
+    // So let's hope we don't make this mistake too often.
   } else if (jsdocDefaultValue === undefined && defaultValue !== undefined && renderDefaultValue) {
     const shouldHaveDefaultAnnotation =
       // Discriminator for polymorphism which is not documented at the component level.
@@ -250,13 +174,15 @@ function createDescribeableProp(
       propName !== 'component';
 
     if (shouldHaveDefaultAnnotation) {
-      throw new Error(`JSDOC @default annotation not found for '${propName}'.`);
+      throw new Error(
+        `JSDoc @default annotation not found. Add \`@default ${defaultValue.value}\` to the JSDoc of this prop.`,
+      );
     }
   } else if (jsdocDefaultValue !== undefined) {
     // `defaultValue` can't be undefined or we would've thrown earlier.
     if (jsdocDefaultValue.value !== defaultValue!.value) {
       throw new Error(
-        `Expected JSDOC @default annotation for prop '${propName}' of "${jsdocDefaultValue.value}" to equal runtime default value of "${defaultValue?.value}"`,
+        `Expected JSDoc @default annotation for prop '${propName}' of "${jsdocDefaultValue.value}" to equal runtime default value of "${defaultValue?.value}"`,
       );
     }
   }
@@ -278,13 +204,20 @@ function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
     return 'void';
   }
 
+  if (type.type === 'NullLiteral') {
+    return 'null';
+  }
+
   if (type.type === 'TypeApplication') {
-    const arrayTypeName = resolveType(type.applications[0]);
-    return `${arrayTypeName}[]`;
+    return `${resolveType(type.expression)}<${type.applications
+      .map((typeApplication) => {
+        return resolveType(typeApplication);
+      })
+      .join(', ')}>`;
   }
 
   if (type.type === 'UnionType') {
-    return type.elements.map((t) => resolveType(t)).join(' \\| ');
+    return type.elements.map((t) => resolveType(t)).join(' | ');
   }
 
   if ('name' in type) {
@@ -315,10 +248,11 @@ function generatePropDescription(prop: DescribeablePropDescriptor, propName: str
 
   // Split up the parsed tags into 'arguments' and 'returns' parsed objects. If there's no
   // 'returns' parsed object (i.e., one with title being 'returns'), make one of type 'void'.
-  const parsedArgs: doctrine.Tag[] = annotation.tags.filter((tag) => tag.title === 'param');
-  let parsedReturns:
-    | { description?: string | null; type?: doctrine.Type | null }
-    | undefined = annotation.tags.find((tag) => tag.title === 'returns');
+  const parsedArgs: readonly doctrine.Tag[] = annotation.tags.filter(
+    (tag) => tag.title === 'param',
+  );
+  let parsedReturns: { description?: string | null; type?: doctrine.Type | null } | undefined =
+    annotation.tags.find((tag) => tag.title === 'returns');
   if (type.name === 'func' && (parsedArgs.length > 0 || parsedReturns !== undefined)) {
     parsedReturns = parsedReturns ?? { type: { type: 'VoidLiteral' } };
 
@@ -506,7 +440,7 @@ async function annotateComponentDefinition(context: {
           const bindingId = babelPath.node.declaration.name;
           const binding = babelPath.scope.bindings[bindingId];
 
-          // The JSDOC MUST be located at the declaration
+          // The JSDoc MUST be located at the declaration
           if (babel.types.isFunctionDeclaration(binding.path.node)) {
             // For function declarations the binding is equal to the declaration
             // /**
@@ -554,19 +488,6 @@ async function annotateComponentDefinition(context: {
     );
   }
 
-  const demos = uniqBy<ReactApi['pagesMarkdown'][0]>(
-    api.pagesMarkdown.filter((page) => {
-      // Testing for Unstyled avoids the need to mention the unstyled components in the
-      // `components` key of the markdown header YAML.
-      return (
-        page.components.includes(api.name) ||
-        (api.name.endsWith('Unstyled') &&
-          page.components.includes(api.name.replace('Unstyled', '')))
-      );
-    }, []),
-    (page) => page.pathname,
-  );
-
   let inheritanceAPILink = null;
   if (api.inheritance !== null) {
     const url = api.inheritance.pathname.startsWith('/')
@@ -581,14 +502,14 @@ async function annotateComponentDefinition(context: {
   if (markdownLines[markdownLines.length - 1] !== '') {
     markdownLines.push('');
   }
-  if (demos.length > 0) {
-    markdownLines.push(
-      'Demos:',
-      '',
-      ...demos.map((page) => `- [${pageToTitle(page)}](${HOST}${page.pathname}/)`),
-      '',
-    );
-  }
+  markdownLines.push(
+    'Demos:',
+    '',
+    ...api.demos.map((demoPathname) => {
+      return `- [${pageToTitle({ pathname: demoPathname })}](${HOST}${demoPathname}/)`;
+    }),
+    '',
+  );
 
   markdownLines.push('API:', '', `- [${api.name} API](${HOST}/api/${kebabCase(api.name)}/)`);
   if (api.inheritance !== null) {
@@ -602,234 +523,92 @@ async function annotateComponentDefinition(context: {
   writeFileSync(typesFilename, typesSourceNew, { encoding: 'utf8' });
 }
 
-const trimComment = (comment: string) => {
-  let startIdx = 0;
-  while (comment[startIdx] === '*' || comment[startIdx] === ' ') {
-    startIdx += 1;
-  }
-
-  let endIdx = comment.length - 1;
-  while (comment[endIdx] === ' ') {
-    endIdx -= 1;
-  }
-
-  return comment.substr(startIdx, endIdx - startIdx + 1);
-};
-
 function generateMuiName(name: string) {
   return `Mui${name.replace('Unstyled', '').replace('Styled', '')}`;
 }
 
-async function updateStylesDefinition(context: {
-  styles: ReactApi['styles'];
-  component: { filename: string };
-}) {
-  const { styles, component } = context;
-
-  const typesFilename = component.filename.replace(/\.js$/, '.d.ts');
-
-  const unstyledFileName = getUnstyledFilename(typesFilename, true);
-
-  try {
-    const typesSource = readFileSync(unstyledFileName, { encoding: 'utf8' });
-    const typesAST = await babel.parseAsync(typesSource, {
-      configFile: false,
-      filename: unstyledFileName,
-      presets: [require.resolve('@babel/preset-typescript')],
-    });
-    if (typesAST === null) {
-      throw new Error('No AST returned from babel.');
-    }
-
-    // is not unstyled component
-    if (typesFilename !== unstyledFileName) {
-      styles.name = generateMuiName(path.parse(component.filename).name);
-    }
-
-    traverse(typesAST, {
-      TSPropertySignature(babelPath) {
-        const { node } = babelPath;
-        const possiblyPropName = (node.key as babel.types.Identifier).name;
-        if (possiblyPropName === 'classes' && node.typeAnnotation != null) {
-          const members = (node.typeAnnotation.typeAnnotation as babel.types.TSTypeLiteral).members;
-
-          if (members) {
-            styles.descriptions = styles.descriptions || {};
-            members.forEach((member) => {
-              const className = ((member as babel.types.TSPropertySignature)
-                .key as babel.types.Identifier).name;
-              styles.classes.push(className);
-              if (member.leadingComments) {
-                styles.descriptions[className] = trimComment(member.leadingComments[0].value);
-              }
-            });
-          }
-        }
-      },
-    });
-
-    const source = readFileSync(typesFilename, { encoding: 'utf8' });
-    const sourceAST = await babel.parseAsync(source, {
-      configFile: false,
-      filename: typesFilename,
-      presets: [require.resolve('@babel/preset-typescript')],
-    });
-    if (sourceAST === null) {
-      throw new Error('No AST returned from babel.');
-    }
-
-    traverse(sourceAST, {
-      TSPropertySignature(babelPath) {
-        const { node } = babelPath;
-        const possiblyPropName = (node.key as babel.types.Identifier).name;
-        if (possiblyPropName === 'classes' && node.typeAnnotation != null) {
-          let classesDeclarationNode = null;
-          const types = (node.typeAnnotation.typeAnnotation as babel.types.TSIntersectionType)
-            .types;
-
-          if (types) {
-            types.forEach((n) => {
-              if (n.type === 'TSTypeLiteral') {
-                classesDeclarationNode = n;
-              }
-            });
-          }
-
-          const members = classesDeclarationNode
-            ? (classesDeclarationNode as babel.types.TSTypeLiteral).members
-            : [];
-
-          if (members) {
-            styles.descriptions = styles.descriptions || {};
-            members.forEach((member) => {
-              const className = ((member as babel.types.TSPropertySignature)
-                .key as babel.types.Identifier).name;
-              styles.classes.push(className);
-              if (member.leadingComments) {
-                styles.descriptions[className] = trimComment(member.leadingComments[0].value);
-              }
-            });
-          }
-        }
-      },
-    });
-  } catch (e) {
-    // Do nothing as not every components has an unstyled version
+async function parseStyles(api: ReactApi, program: ttp.ts.Program): Promise<ReactApi['styles']> {
+  // component has no classes
+  // or they're inherited from an external component and we don't want them documented on this component.
+  if (api.props.classes === undefined) {
+    return {
+      classes: [],
+      descriptions: {},
+      globalClasses: {},
+      name: null,
+    };
   }
 
-  // If there is no unstyledFile we need to extract this info from the component's definition file
-  if (typesFilename !== unstyledFileName) {
-    try {
-      const typesSource = readFileSync(typesFilename, { encoding: 'utf8' });
-      const typesAST = await babel.parseAsync(typesSource, {
-        configFile: false,
-        filename: typesFilename,
-        presets: [require.resolve('@babel/preset-typescript')],
-      });
-      if (typesAST === null) {
-        throw new Error('No AST returned from babel.');
-      }
-
-      traverse(typesAST, {
-        TSPropertySignature(babelPath) {
-          const { node } = babelPath;
-          const possiblyPropName = (node.key as babel.types.Identifier).name;
-          if (possiblyPropName === 'classes' && node.typeAnnotation != null) {
-            const members = (node.typeAnnotation.typeAnnotation as babel.types.TSTypeLiteral)
-              .members;
-
-            if (members) {
-              styles.descriptions = styles.descriptions || {};
-              members.forEach((member) => {
-                let className = ((member as babel.types.TSPropertySignature)
-                  .key as babel.types.Identifier).name;
-
-                if (!className) {
-                  // Necessary for classes defined as kebab case
-                  className = ((member as babel.types.TSPropertySignature)
-                    .key as babel.types.StringLiteral).value;
-                }
-
-                styles.classes.push(className);
-                if (member.leadingComments) {
-                  styles.descriptions[className] = trimComment(member.leadingComments[0].value);
-                }
-              });
-            }
-          }
-        },
-      });
-
-      if (styles.classes.length > 0) {
-        styles.name = generateMuiName(path.parse(component.filename).name);
-      }
-    } catch (e) {
-      // Do nothing as not every components has an unstyled version
-    }
-  }
-
-  styles.classes = Array.from(new Set(styles.classes));
-}
-
-/**
- * Add class descriptions to type definitions
- */
-async function annotateClassesDefinition(context: {
-  api: ReactApi;
-  component: { filename: string };
-  prettierConfigPath: string;
-}) {
-  const { api, component, prettierConfigPath } = context;
-
-  const typesFilename = component.filename.replace(/\.js$/, '.d.ts');
-  const typesSource = readFileSync(typesFilename, { encoding: 'utf8' });
-  const typesAST = await babel.parseAsync(typesSource, {
-    configFile: false,
-    filename: typesFilename,
-    presets: [require.resolve('@babel/preset-typescript')],
-  });
-  if (typesAST === null) {
-    throw new Error('No AST returned from babel.');
-  }
-
-  let start = 0;
-  let end: number | null = null;
-  traverse(typesAST, {
-    TSPropertySignature(babelPath) {
-      const { node } = babelPath;
-      const possiblyPropName = (node.key as babel.types.Identifier).name;
-      if (possiblyPropName === 'classes' && node.typeAnnotation != null) {
-        if (end !== null) {
-          throw new Error('Found multiple possible locations for the `classes` definition.');
-        }
-        if (node.typeAnnotation.start !== null) {
-          start = node.typeAnnotation.start;
-          end = node.typeAnnotation.end;
-        }
-      }
+  const typesFilename = api.filename.replace(/\.js$/, '.d.ts');
+  const proptypes = ttp.parseFromProgram(typesFilename, program, {
+    shouldResolveObject: ({ name }) => {
+      return name === 'classes';
     },
+    checkDeclarations: true,
   });
 
-  if (end === null || start === 0) {
-    // Some components actually don't implement this prop.
-    return;
+  const component = proptypes.body.find((internalComponent) => {
+    return internalComponent.name === api.name;
+  });
+  if (component === undefined) {
+    return {
+      classes: [],
+      descriptions: {},
+      globalClasses: {},
+      name: null,
+    };
+    // TODO: should we throw?
+    // throw new TypeError(
+    //   `Unable to find declaration of ${api.name} in one of the ${
+    //     proptypes.body.length
+    //   } components: ${proptypes.body.map(({ name }) => name)}`,
+    // );
   }
 
-  // colon is part of TSTypeAnnotation
-  let classesDefinitionSource = ': {';
-  api.styles.classes.forEach((className) => {
-    if (api.styles.descriptions[className] !== undefined) {
-      classesDefinitionSource += `\n/** ${api.styles.descriptions[className]} */`;
-    }
-    classesDefinitionSource += `\n'${className}'?: string;`;
+  const classes = component.types.find((propType) => {
+    const isClassesProp = propType.name === 'classes';
+
+    return isClassesProp;
   });
-  // semicolon is not part of TSTypeAnnotation
-  classesDefinitionSource += `\n}`;
 
-  const typesSourceNew =
-    typesSource.slice(0, start) + classesDefinitionSource + typesSource.slice(end);
+  let classesPropType: ttp.InterfaceType | undefined;
+  if (classes?.propType.type === 'InterfaceNode') {
+    // classes: {}
+    classesPropType = classes.propType;
+  } else if (classes?.propType.type === 'UnionNode') {
+    // classes?: {}
+    classesPropType = classes.propType.types.find((propType): propType is ttp.InterfaceType => {
+      return propType.type === 'InterfaceNode';
+    });
+  }
+  if (classesPropType === undefined) {
+    return {
+      classes: [],
+      descriptions: {},
+      globalClasses: {},
+      name: null,
+    };
+  }
 
-  writePrettifiedFile(typesFilename, typesSourceNew, prettierConfigPath);
+  return {
+    classes: classesPropType.types.map((unionMember) => {
+      const [className] = unionMember;
+      return className;
+    }),
+    descriptions: Object.fromEntries(
+      classesPropType.types
+        .map((unionMember) => {
+          const [className, { jsDoc }] = unionMember;
+
+          return [className, jsDoc];
+        })
+        .filter((descriptionEntry) => {
+          return descriptionEntry[1] !== undefined;
+        }),
+    ),
+    globalClasses: {},
+    name: null,
+  };
 }
 
 /**
@@ -839,7 +618,8 @@ function extractClassConditions(descriptions: any) {
   const classConditions: {
     [key: string]: { description: string; conditions?: string; nodeName?: string };
   } = {};
-  const stylesRegex = /((Styles|Pseudo-class|Class name) applied to )(.*?)(( if | unless | when |, ){1}(.*))?\./;
+  const stylesRegex =
+    /((Styles|State class|Class name) applied to )(.*?)(( if | unless | when |, ){1}(.*))?\./;
 
   Object.entries(descriptions).forEach(([className, description]: any) => {
     if (className) {
@@ -868,27 +648,21 @@ function extractClassConditions(descriptions: any) {
  * Generate list of component demos
  */
 function generateDemoList(reactAPI: ReactApi): string {
-  const pagesMarkdown = reactAPI.pagesMarkdown.filter((page) => {
-    return (
-      !DEMO_IGNORE.includes(page.filename.slice(-6)) && page.components.includes(reactAPI.name)
-    );
-  });
-
-  if (pagesMarkdown.length === 0) {
-    return '';
-  }
-
-  return `<ul>${pagesMarkdown
-    .map((page) => `<li><a href="${page.pathname}/">${pageToTitle(page)}</a></li>`)
+  return `<ul>${reactAPI.demos
+    .map(
+      (demoPathname) =>
+        `<li><a href="${demoPathname}/">${pageToTitle({ pathname: demoPathname })}</a></li>`,
+    )
     .join('\n')}</ul>`;
 }
 
 /**
- * Replaces backslashes with slashes
- * TODO: Why not using node's path.normalize?
+ * @param filepath - absolute path
+ * @example toGithubPath('/home/user/material-ui/packages/Accordion') === '/packages/Accordion'
+ * @example toGithubPath('C:\\Development\material-ui\packages\Accordion') === '/packages/Accordion'
  */
-function normalizePath(filepath: string): string {
-  return filepath.replace(/\\/g, '/');
+function toGithubPath(filepath: string, workspaceRoot: string): string {
+  return `/${path.relative(workspaceRoot, filepath).replace(/\\/g, '/')}`;
 }
 
 async function parseComponentSource(
@@ -897,19 +671,7 @@ async function parseComponentSource(
 ): Promise<ReactApi> {
   const reactAPI: ReactApi = docgenParse(
     src,
-    // Use `findExportedComponentDefinition` and fallback to `muiFindAnnotatedComponentsResolver`
-    // `findExportedComponentDefinition` was the default resolver: https://github.com/reactjs/react-docgen/blob/aba7250ff5fde608ee6af7c286b15476d1b5bb99/src/main.js#L19
-    (ast, parser, importer) => {
-      const defaultResolvedDefinition = resolver.findExportedComponentDefinition(
-        ast,
-        parser,
-        importer,
-      );
-      if (defaultResolvedDefinition !== undefined) {
-        return defaultResolvedDefinition;
-      }
-      return muiFindAnnotatedComponentsResolver(ast, parser, importer);
-    },
+    null,
     defaultHandlers.concat(muiDefaultPropsHandler),
     {
       filename: componentObject.filename,
@@ -926,108 +688,58 @@ async function parseComponentSource(
   return reactAPI;
 }
 
+function findComponentDemos(
+  api: ReactApi,
+  pagesMarkdown: ReadonlyArray<{ pathname: string; components: readonly string[] }>,
+): ReactApi['demos'] {
+  const demos = pagesMarkdown
+    .filter((page) => {
+      return page.components.includes(api.name);
+    })
+    .map((page) => {
+      return page.pathname;
+    });
+
+  return Array.from(new Set(demos));
+}
+
 async function buildDocs(options: {
   component: { filename: string };
-  pagesMarkdown: Array<{ components: string[]; filename: string; pathname: string }>;
+  pagesMarkdown: ReadonlyArray<{
+    components: readonly string[];
+    filename: string;
+    pathname: string;
+  }>;
   prettierConfigPath: string;
+  program: ttp.ts.Program;
   outputDirectory: string;
-  theme: object;
   workspaceRoot: string;
-}): Promise<void> {
+}): Promise<ReactApi | null> {
   const {
     component: componentObject,
     outputDirectory,
     workspaceRoot,
     pagesMarkdown,
     prettierConfigPath,
-    theme,
+    program,
   } = options;
 
   if (componentObject.filename.indexOf('internal') !== -1) {
-    return;
+    return null;
   }
 
   const src = readFileSync(componentObject.filename, 'utf8');
 
   if (src.match(/@ignore - internal component\./) || src.match(/@ignore - do not document\./)) {
-    return;
+    return null;
   }
 
   const spread = !src.match(/ = exactProp\(/);
 
-  // eslint-disable-next-line global-require, import/no-dynamic-require
-  const component = require(componentObject.filename);
   const name = path.parse(componentObject.filename).name;
 
-  const styles: ReactApi['styles'] = {
-    classes: [],
-    name: null,
-    descriptions: {},
-    globalClasses: {},
-  };
-
-  // styled components does not have the options static
-  const JssComponent = component?.default?.options;
-  if (!JssComponent) {
-    await updateStylesDefinition({
-      styles,
-      component: componentObject,
-    });
-  }
-
-  if (component.styles && component.default.options) {
-    // Collect the customization points of the `classes` property.
-    styles.classes = Object.keys(getStylesCreator(component.styles).create(theme)).filter(
-      (className) => !className.match(/^(@media|@keyframes|@global)/),
-    );
-    styles.name = component.default.options.name;
-    styles.globalClasses = styles.classes.reduce((acc, key) => {
-      acc[key] = generateClassName(
-        // @ts-expect-error
-        { key },
-        {
-          options: {
-            name: styles.name,
-            theme: {},
-          },
-        },
-      );
-      return acc;
-    }, {} as Record<string, string>);
-
-    let styleSrc = src;
-    // Exception for Select where the classes are imported from NativeSelect
-    if (name === 'Select') {
-      styleSrc = readFileSync(
-        componentObject.filename.replace(
-          `Select${path.sep}Select`,
-          `NativeSelect${path.sep}NativeSelect`,
-        ),
-        'utf8',
-      );
-    }
-
-    /**
-     * Collect classes comments from the source
-     */
-    // Match the styles definition in the source
-    const stylesRegexp = /export const styles.*[\r\n](.*[\r\n])*?}\){0,1};[\r\n][\r\n]/;
-    // Match the class name & description
-    const styleRegexp = /\/\* (.*) \*\/[\r\n]\s*'*(.*?)'*?[:,]/g;
-
-    // Extract the styles section from the source
-    const stylesSrc = stylesRegexp.exec(styleSrc);
-
-    if (stylesSrc) {
-      // Extract individual classes and descriptions
-      stylesSrc[0].replace(styleRegexp, (match: string, desc: string, key: string) => {
-        styles.descriptions[key] = desc;
-        return match;
-      });
-    }
-  }
-
   const reactApi: ReactApi = await parseComponentSource(src, componentObject);
+  reactApi.filename = componentObject.filename;
 
   const componentApi: {
     componentDescription: string;
@@ -1075,17 +787,15 @@ async function buildDocs(options: {
   }
 
   reactApi.name = name;
-  reactApi.styles = styles;
-  reactApi.pagesMarkdown = pagesMarkdown;
   reactApi.EOL = getLineFeed(src);
 
-  // styled components does not have the options static
-  const styledComponent = !component?.default?.options;
-  if (styledComponent) {
-    await updateStylesDefinition({
-      styles,
-      component: componentObject,
-    });
+  reactApi.demos = findComponentDemos(reactApi, pagesMarkdown);
+  if (reactApi.demos.length === 0) {
+    throw new Error(
+      'Unable to find demos. \n' +
+        `Be sure to include \`components: ${reactApi.name}\` in the markdown pages where the \`${reactApi.name}\` component is relevant. ` +
+        'Every public component should have a demo. ',
+    );
   }
 
   const testInfo = await parseTest(componentObject.filename);
@@ -1093,35 +803,50 @@ async function buildDocs(options: {
   reactApi.forwardsRefTo = testInfo.forwardsRefTo;
   reactApi.spread = testInfo.spread ?? spread;
 
-  // Relative location in the file system.
-  reactApi.filename = componentObject.filename.replace(workspaceRoot, '');
   reactApi.inheritance = getInheritance(testInfo, src);
 
-  if (reactApi.styles.classes) {
-    reactApi.styles.globalClasses = reactApi.styles.classes.reduce((acc, key) => {
-      acc[key] = generateClassName(
-        // @ts-expect-error
-        {
-          key,
-        },
-        {
-          options: {
-            name: styles.name || generateMuiName(name),
-            theme: {},
-          },
-        },
-      );
-      return acc;
-    }, {} as Record<string, string>);
-  }
+  reactApi.styles = await parseStyles(reactApi, program);
 
+  // TODO: Drop once migration to emotion is complete since this will always be true.
+  let jssComponent = false;
+  const component = await import(componentObject.filename);
+  if (component?.default?.options !== undefined) {
+    jssComponent = true;
+    reactApi.styles.name = component.default.options.name;
+  } else if (reactApi.styles.classes.length > 0 && !reactApi.name.endsWith('Unstyled')) {
+    reactApi.styles.name = generateMuiName(reactApi.name);
+  }
+  reactApi.styles.classes.forEach((key) => {
+    reactApi.styles.globalClasses[key] = generateClassName(
+      // @ts-expect-error
+      {
+        key,
+      },
+      {
+        options: {
+          name: reactApi.styles.name || generateMuiName(name),
+          theme: {},
+        },
+      },
+    );
+  });
+
+  const propErrors: Array<[propName: string, error: Error]> = [];
   const componentProps = _.fromPairs<{
     default: string | undefined;
     required: boolean | undefined;
     type: { name: string | undefined; description: string | undefined };
+    deprecated: true | undefined;
+    deprecationInfo: string | undefined;
   }>(
     Object.entries(reactApi.props).map(([propName, propDescriptor]) => {
-      const prop = createDescribeableProp(propDescriptor, propName);
+      let prop: DescribeablePropDescriptor | null;
+      try {
+        prop = createDescribeableProp(propDescriptor, propName);
+      } catch (error) {
+        propErrors.push([propName, error]);
+        prop = null;
+      }
       if (prop === null) {
         // have to delete `componentProps.undefined` later
         return [] as any;
@@ -1133,14 +858,9 @@ async function buildDocs(options: {
       if (propName === 'classes') {
         description += ' See <a href="#css">CSS API</a> below for more details.';
       } else if (propName === 'sx') {
-        description +=
-          ' See the <a href="/system/basics/#the-sx-prop">`sx` page</a> for more details.';
+        description += ' See the <a href="/system/the-sx-prop/">`sx` page</a> for more details.';
       }
-
-      componentApi.propDescriptions = {
-        ...componentApi.propDescriptions,
-        [propName]: description && description.replace(/\n@default.*$/, ''),
-      };
+      componentApi.propDescriptions[propName] = description.replace(/\n@default.*$/, '');
 
       // Only keep `default` for bool props if it isn't 'false'.
       let defaultValue: string | undefined;
@@ -1159,6 +879,8 @@ async function buildDocs(options: {
         /\.isRequired/.test(prop.type.raw) ||
         (chainedPropType !== false && chainedPropType.required);
 
+      const deprecation = (propDescriptor.description || '').match(/@deprecated(\s+(?<info>.*))?/);
+
       return [
         propName,
         {
@@ -1170,10 +892,23 @@ async function buildDocs(options: {
           default: defaultValue,
           // undefined values are not serialized => saving some bytes
           required: requiredProp || undefined,
+          deprecated: !!deprecation || undefined,
+          deprecationInfo:
+            renderMarkdownInline(deprecation?.groups?.info || '').trim() || undefined,
         },
       ];
     }),
   );
+  if (propErrors.length > 0) {
+    throw new Error(
+      `There were errors creating prop descriptions:\n${propErrors
+        .map(([propName, error]) => {
+          return `  - ${propName}: ${error}`;
+        })
+        .join('\n')}`,
+    );
+  }
+
   // created by returning the `[]` entry
   delete componentProps.undefined;
 
@@ -1182,36 +917,22 @@ async function buildDocs(options: {
    */
   componentApi.classDescriptions = extractClassConditions(reactApi.styles.descriptions);
 
-  mkdirSync(path.resolve('docs', 'translations', 'api-docs', kebabCase(reactApi.name)), {
+  mkdirSync(resolveApiDocsTranslationsComponentDirectory(reactApi), {
     mode: 0o777,
     recursive: true,
   });
 
-  // docs/translations/api-docs/component-name/component-name.json
   writePrettifiedFile(
-    path.resolve(
-      'docs',
-      'translations',
-      'api-docs',
-      kebabCase(reactApi.name),
-      `${kebabCase(reactApi.name)}.json`,
-    ),
+    resolveApiDocsTranslationsComponentLanguagePath(reactApi, 'en'),
     JSON.stringify(componentApi),
     prettierConfigPath,
   );
 
-  // docs/translations/api-docs/component-name/component-name-xx.json
   LANGUAGES.forEach((language) => {
     if (language !== 'en') {
       try {
         writePrettifiedFile(
-          path.resolve(
-            'docs',
-            'translations',
-            'api-docs',
-            kebabCase(reactApi.name),
-            `${kebabCase(reactApi.name)}-${language}.json`,
-          ),
+          resolveApiDocsTranslationsComponentLanguagePath(reactApi, language),
           JSON.stringify(componentApi),
           prettierConfigPath,
           { flag: 'wx' },
@@ -1251,10 +972,10 @@ async function buildDocs(options: {
     },
     spread: reactApi.spread,
     forwardsRefTo: reactApi.forwardsRefTo,
-    filename: normalizePath(reactApi.filename),
+    filename: toGithubPath(reactApi.filename, workspaceRoot),
     inheritance: reactApi.inheritance,
     demos: generateDemoList(reactApi),
-    styledComponent,
+    styledComponent: !jssComponent,
     cssComponent: cssComponents.indexOf(reactApi.name) >= 0,
   };
 
@@ -1300,13 +1021,7 @@ Page.getInitialProps = () => {
 
   await annotateComponentDefinition({ api: reactApi, component: componentObject });
 
-  if (JssComponent) {
-    await annotateClassesDefinition({
-      api: reactApi,
-      component: componentObject,
-      prettierConfigPath,
-    });
-  }
+  return reactApi;
 }
 
 /**
@@ -1322,9 +1037,41 @@ function generateApiPagesManifest(outputPath: string, prettierConfigPath: string
   writePrettifiedFile(outputPath, source, prettierConfigPath);
 }
 
+async function removeOutdatedApiDocsTranslations(components: readonly ReactApi[]): Promise<void> {
+  const componentDirectories = new Set<string>();
+  const files = await fse.readdir(apiDocsTranslationsDirectory);
+  await Promise.all(
+    files.map(async (filename) => {
+      const filepath = path.join(apiDocsTranslationsDirectory, filename);
+      const stats = await fse.stat(filepath);
+      if (stats.isDirectory()) {
+        componentDirectories.add(filepath);
+      }
+    }),
+  );
+
+  const currentComponentDirectories = new Set(
+    components.map((component) => {
+      return resolveApiDocsTranslationsComponentDirectory(component);
+    }),
+  );
+
+  // outdatedComponentDirectories = currentComponentDirectories.difference(componentDirectories)
+  const outdatedComponentDirectories = new Set(componentDirectories);
+  currentComponentDirectories.forEach((componentDirectory) => {
+    outdatedComponentDirectories.delete(componentDirectory);
+  });
+
+  await Promise.all(
+    Array.from(outdatedComponentDirectories, (outdatedComponentDirectory) => {
+      return fse.remove(outdatedComponentDirectory);
+    }),
+  );
+}
+
 async function run(argv: {
   apiPagesManifestPath?: string;
-  componentDirectories?: string[];
+  componentDirectories?: readonly string[];
   grep?: string;
   outputDirectory?: string;
 }) {
@@ -1342,8 +1089,6 @@ async function run(argv: {
   const prettierConfigPath = path.join(workspaceRoot, 'prettier.config.js');
 
   mkdirSync(outputDirectory, { mode: 0o777, recursive: true });
-
-  const theme = createMuiTheme();
 
   /**
    * pageMarkdown: Array<{ components: string[]; filename: string; pathname: string }>
@@ -1373,44 +1118,53 @@ async function run(argv: {
   const components = componentDirectories
     .reduce((directories, componentDirectory) => {
       return directories.concat(findComponents(componentDirectory));
-    }, [] as Array<{ filename: string }>)
+    }, [] as ReadonlyArray<{ filename: string }>)
     .filter((component) => {
+      if (component.filename.includes('ThemeProvider')) {
+        return false;
+      }
       if (grep === null) {
         return true;
       }
       return grep.test(component.filename);
     });
 
-  const componentBuilds = components.map((component) => {
-    // use Promise.allSettled once we switch to node 12
+  const tsconfig = ttp.loadConfig(path.resolve(workspaceRoot, './tsconfig.json'));
+  const program = ttp.createTSProgram(
+    components.map((component) => {
+      if (component.filename.endsWith('.tsx')) {
+        return component.filename;
+      }
+      if (component.filename.endsWith('.js')) {
+        return component.filename.replace(/\.js$/, '.d.ts');
+      }
+      throw new TypeError(
+        `Unexpected component filename '${component.filename}'. Expected either a .tsx or .js file.`,
+      );
+    }),
+    tsconfig,
+  );
 
-    // Don't document ThmeProvider API
-    if (component.filename.includes('ThemeProvider')) {
-      return Promise.resolve({ status: 'fulfilled' as const });
-    }
-
-    return buildDocs({
-      component,
-      outputDirectory,
-      pagesMarkdown,
-      prettierConfigPath,
-      theme,
-      workspaceRoot,
-    })
-      .then(() => {
-        return { status: 'fulfilled' as const };
-      })
-      .catch((error) => {
-        error.message = `${component.filename}: ${error.message}`;
-
-        return { status: 'rejected' as const, reason: error };
+  const componentBuilds = components.map(async (component) => {
+    try {
+      return await buildDocs({
+        component,
+        outputDirectory,
+        pagesMarkdown,
+        prettierConfigPath,
+        program,
+        workspaceRoot,
       });
+    } catch (error) {
+      error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
+      throw error;
+    }
   });
 
-  const builds = await Promise.all(componentBuilds);
+  const builds = await Promise.allSettled(componentBuilds);
 
   const fails = builds.filter(
-    (promise): promise is { status: 'rejected'; reason: string } => promise.status === 'rejected',
+    (promise): promise is PromiseRejectedResult => promise.status === 'rejected',
   );
 
   fails.forEach((build) => {
@@ -1421,6 +1175,16 @@ async function run(argv: {
   }
 
   generateApiPagesManifest(apiPagesManifestPath, prettierConfigPath);
+  if (grep === null) {
+    const componentApis = builds
+      .filter((build): build is PromiseFulfilledResult<ReactApi> => {
+        return build.status === 'fulfilled' && build.value !== null;
+      })
+      .map((build) => {
+        return build.value;
+      });
+    await removeOutdatedApiDocsTranslations(componentApis);
+  }
 }
 
 yargs

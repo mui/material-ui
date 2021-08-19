@@ -1,20 +1,16 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/styles';
+import { createTheme } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import Paper from '@material-ui/core/Paper';
 import AdCarbon from 'docs/src/modules/components/AdCarbon';
-import AdReadthedocs from 'docs/src/modules/components/AdReadthedocs';
 import AdInHouse from 'docs/src/modules/components/AdInHouse';
 import { AdContext, adShape } from 'docs/src/modules/components/AdManager';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const styles = (theme) => ({
-  root: {
-    position: 'relative',
-    display: 'block',
-  },
   'placement-body-image': {
     margin: theme.spacing(4, 1, 3),
     minHeight: 126,
@@ -32,9 +28,7 @@ const styles = (theme) => ({
     alignItems: 'flex-end',
   },
   paper: {
-    padding: theme.spacing(1.5),
     border: `2px solid ${theme.palette.primary.main}`,
-    display: 'block',
   },
 });
 
@@ -42,7 +36,7 @@ function PleaseDisableAdblock(props) {
   const t = useTranslate();
 
   return (
-    <Paper component="span" elevation={0} {...props}>
+    <Paper component="span" elevation={0} sx={{ display: 'block', p: 1.5 }} {...props}>
       <Typography variant="body2" display="block" component="span" gutterBottom>
         {t('likeMui')}
       </Typography>
@@ -69,52 +63,75 @@ const inHouseAds = [
   },
   {
     name: 'templates',
-    link:
-      'https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-templates',
+    link: 'https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-templates',
     img: '/static/ads-in-house/themes-2.jpg',
     description:
-      '<b>Premium Templates</b>. Start your project with the best templates for admins, dashboards and more.',
+      '<b>Premium Templates</b>. Start your project with the best templates for admins, dashboards, and more.',
   },
   {
     name: 'themes',
-    link:
-      'https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-themes',
+    link: 'https://material-ui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-themes',
     img: '/static/ads-in-house/themes.png',
     description:
       '<b>Premium Themes</b>. Kickstart your application development with a ready-made theme.',
   },
   {
     name: 'tidelift',
-    link:
-      'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise&utm_content=ad',
+    link: 'https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=enterprise&utm_content=ad',
     img: '/static/ads-in-house/tidelift.png',
     description:
       '<b>Material-UI for enterprise</b>. Save time and reduce risk. Managed open source — backed by maintainers.',
   },
   {
     name: 'sketch',
-    link:
-      'https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-sketch',
+    link: 'https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-sketch',
     img: '/static/ads-in-house/sketch.png',
     description:
       '<b>For Sketch</b>. A large UI kit with over 600 handcrafted Material-UI symbols 💎.',
   },
   {
     name: 'figma',
-    link:
-      'https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-figma',
+    link: 'https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-figma',
     img: '/static/ads-in-house/figma.png',
     description:
       '<b>For Figma</b>. A large UI kit with over 600 handcrafted Material-UI components 🎨.',
   },
-  {
-    name: 'divjoy',
-    link: 'https://divjoy.com?via=material-ui',
-    img: '/static/ads-in-house/divjoy.png',
-    description:
-      '<b>Divjoy</b>. Create your Material-UI app in minutes. You’ll get a nice template, authentication, database integration, subscription payments, and more.',
-  },
 ];
+
+class AdErrorBoundary extends React.Component {
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    eventLabel: PropTypes.string,
+  };
+
+  state = { didError: false };
+
+  static getDerivedStateFromError() {
+    return { didError: true };
+  }
+
+  componentDidCatch() {
+    // send explicit `'null'`
+    const eventLabel = String(this.props.eventLabel);
+    // TODO: Use proper error monitoring service (e.g. Sentry) instead
+    window.ga('send', {
+      hitType: 'event',
+      eventCategory: 'ad',
+      eventAction: 'crash',
+      eventLabel,
+    });
+  }
+
+  render() {
+    const { didError } = this.state;
+    const { children } = this.props;
+
+    if (didError) {
+      return null;
+    }
+    return children;
+  }
+}
 
 function Ad(props) {
   const { classes } = props;
@@ -122,13 +139,12 @@ function Ad(props) {
   const [adblock, setAdblock] = React.useState(null);
   const [carbonOut, setCarbonOut] = React.useState(null);
 
-  const { current: randomSplit } = React.useRef(Math.random());
   const { current: randomAdblock } = React.useRef(Math.random());
   const { current: randomInHouse } = React.useRef(Math.random());
 
   let children;
   let label;
-  // Hide the content to google bot.
+  // Hide the content to google bot to avoid its indexation.
   if (/Googlebot/.test(navigator.userAgent) || disable) {
     children = <span />;
   } else if (adblock) {
@@ -142,16 +158,13 @@ function Ad(props) {
   } else if (carbonOut) {
     children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
     label = 'in-house-carbon';
-  } else if (randomSplit < 0.9) {
+  } else {
     children = <AdCarbon />;
     label = 'carbon';
-  } else {
-    children = <AdReadthedocs />;
-    label = 'readthedocs';
   }
 
   const ad = React.useContext(AdContext);
-  const eventLabel = label ? `${label}-${ad.portal.placement}-${adShape}` : null;
+  const eventLabel = label ? `${label}-${ad.placement}-${adShape}` : null;
 
   const timerAdblock = React.useRef();
 
@@ -220,14 +233,19 @@ function Ad(props) {
   }, [eventLabel]);
 
   return (
-    <span
-      className={clsx(classes.root, classes[`placement-body-${adShape}`])}
+    <Box
+      component="span"
+      sx={{
+        position: 'relative',
+        display: 'block',
+      }}
+      className={classes[`placement-body-${adShape}`]}
       data-ga-event-category="ad"
       data-ga-event-action="click"
       data-ga-event-label={eventLabel}
     >
-      {children}
-    </span>
+      <AdErrorBoundary eventLabel={eventLabel}>{children}</AdErrorBoundary>
+    </Box>
   );
 }
 
@@ -235,4 +253,5 @@ Ad.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default React.memo(withStyles(styles)(Ad));
+const defaultTheme = createTheme();
+export default React.memo(withStyles(styles, { defaultTheme })(Ad));

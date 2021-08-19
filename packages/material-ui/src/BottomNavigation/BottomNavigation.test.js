@@ -1,27 +1,29 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, describeConformanceV5, createClientRender, fireEvent } from 'test/utils';
-import BottomNavigationAction from '../BottomNavigationAction';
-import Icon from '../Icon';
-import BottomNavigation from './BottomNavigation';
-import classes from './bottomNavigationClasses';
-import actionClasses from '../BottomNavigationAction/bottomNavigationActionClasses';
+import { describeConformance, createClientRender, fireEvent } from 'test/utils';
+import BottomNavigation, {
+  bottomNavigationClasses as classes,
+} from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction, {
+  bottomNavigationActionClasses as actionClasses,
+} from '@material-ui/core/BottomNavigationAction';
+import Icon from '@material-ui/core/Icon';
 
 describe('<BottomNavigation />', () => {
-  const mount = createMount();
   const render = createClientRender();
+
   const icon = <Icon>restore</Icon>;
   const getBottomNavigation = (container) => container.firstChild;
 
-  describeConformanceV5(
+  describeConformance(
     <BottomNavigation>
       <BottomNavigationAction label="One" />
     </BottomNavigation>,
     () => ({
       classes,
       inheritComponent: 'div',
-      mount,
+      render,
       muiName: 'MuiBottomNavigation',
       refInstanceof: window.HTMLDivElement,
       testComponentPropWith: 'span',
@@ -47,7 +49,7 @@ describe('<BottomNavigation />', () => {
         <BottomNavigationAction icon={icon} />
       </BottomNavigation>,
     );
-    expect(getBottomNavigation(container).childNodes[0]).to.not.have.class(actionClasses.selected);
+    expect(getBottomNavigation(container).childNodes[0]).not.to.have.class(actionClasses.selected);
     expect(getBottomNavigation(container).childNodes[1]).to.have.class(actionClasses.selected);
   });
 
@@ -58,7 +60,7 @@ describe('<BottomNavigation />', () => {
         <BottomNavigationAction icon={icon} showLabel={false} data-testid="withoutLabel" />
       </BottomNavigation>,
     );
-    expect(getByTestId('withLabel')).to.not.have.class(actionClasses.iconOnly);
+    expect(getByTestId('withLabel')).not.to.have.class(actionClasses.iconOnly);
     expect(getByTestId('withoutLabel')).to.have.class(actionClasses.iconOnly);
   });
 

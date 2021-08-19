@@ -28,15 +28,12 @@ function parseTags(commitMessage) {
 }
 
 /**
- *
  * @param {Octokit.ReposCompareCommitsResponseCommitsItem} commitsItem
  */
 function filterCommit(commitsItem) {
-  // exclude dependabot commits (sometimes they're merged manually so filtering by author is insufficient)
-  return (
-    commitsItem.author.login !== 'dependabot-preview[bot]' &&
-    !commitsItem.commit.message.startsWith('Bump')
-  );
+  // TODO: Use labels
+  // Filter dependency updates
+  return !commitsItem.commit.message.startsWith('Bump');
 }
 
 async function findLatestTaggedVersion() {
@@ -61,7 +58,7 @@ async function main(argv) {
 
   if (!githubToken) {
     throw new TypeError(
-      'Unable to authenticate. Make sure you either call the script with `--githubToken $token` or set `process.eng.GITHUB_TOKEN`.',
+      'Unable to authenticate. Make sure you either call the script with `--githubToken $token` or set `process.env.GITHUB_TOKEN`. The token needs `public_repo` permissions.',
     );
   }
   const octokit = new Octokit({

@@ -1,15 +1,8 @@
-import { ParsableDate } from '../internal/pickers/constants/prop-types';
-import { AllSharedPickerProps } from '../internal/pickers/Picker/SharedPickerProps';
+import { ParseableDate } from '../internal/pickers/constants/prop-types';
 
-export type RangeInput<TDate> = [ParsableDate<TDate>, ParsableDate<TDate>];
+export type RangeInput<TDate> = [ParseableDate<TDate>, ParseableDate<TDate>];
 export type DateRange<TDate> = [TDate | null, TDate | null];
 export type NonEmptyDateRange<TDate> = [TDate, TDate];
-
-export type AllSharedDateRangePickerProps<TDate> = Omit<
-  AllSharedPickerProps<RangeInput<TDate>, DateRange<TDate>>,
-  'renderInput' | 'orientation'
-> &
-  import('./DateRangePickerInput').ExportedDateRangePickerInputProps;
 
 export interface CurrentlySelectingRangeEndProps {
   currentlySelectingRangeEnd: 'start' | 'end';

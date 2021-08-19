@@ -1,24 +1,13 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-}));
+import Stack from '@material-ui/core/Stack';
 
 export default function TextButtons() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Stack direction="row" spacing={2}>
       <Button>Primary</Button>
-      <Button color="secondary">Secondary</Button>
       <Button disabled>Disabled</Button>
       <Button href="#text-buttons">Link</Button>
-    </div>
+    </Stack>
   );
 }

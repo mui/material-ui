@@ -1,15 +1,15 @@
-import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 import jscodeshift from 'jscodeshift';
 import transform from './optimal-imports';
+import readFile from '../util/readFile';
 
 function trim(str) {
   return str ? str.replace(/^\s+|\s+$/, '') : '';
 }
 
 function read(fileName) {
-  return fs.readFileSync(path.join(__dirname, fileName), 'utf8').toString();
+  return readFile(path.join(__dirname, fileName));
 }
 
 describe('@material-ui/codemod', () => {
@@ -17,8 +17,11 @@ describe('@material-ui/codemod', () => {
     describe('optimal-imports', () => {
       it('convert path as needed', () => {
         const actual = transform(
-          { source: read('./optimal-imports.test/actual.js'), path: require.resolve('./optimal-imports.test/actual.js') },
-          { jscodeshift: jscodeshift },
+          {
+            source: read('./optimal-imports.test/actual.js'),
+            path: require.resolve('./optimal-imports.test/actual.js'),
+          },
+          { jscodeshift },
           {},
         );
 
@@ -28,8 +31,11 @@ describe('@material-ui/codemod', () => {
 
       it('should be idempotent', () => {
         const actual = transform(
-          { source: read('./optimal-imports.test/expected.js'), path: require.resolve('./optimal-imports.test/expected.js') },
-          { jscodeshift: jscodeshift },
+          {
+            source: read('./optimal-imports.test/expected.js'),
+            path: require.resolve('./optimal-imports.test/expected.js'),
+          },
+          { jscodeshift },
           {},
         );
 

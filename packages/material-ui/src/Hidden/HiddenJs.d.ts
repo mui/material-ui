@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Breakpoint } from '../styles/createBreakpoints';
+import { Breakpoint } from '@material-ui/system';
 
 export interface HiddenJsProps {
   initialWidth?: Breakpoint;
@@ -16,6 +16,6 @@ export interface HiddenJsProps {
   xsUp?: boolean;
 }
 
-declare const HiddenJs: React.ComponentType<HiddenJsProps>;
+declare const HiddenJs: React.JSXElementConstructor<HiddenJsProps>;
 
 export default HiddenJs;

@@ -53,8 +53,6 @@ import {
   Input,
   Grow,
   TableFooter,
-  withWidth,
-  isWidthUp,
   Zoom,
   ClickAwayListener,
   ListSubheader,

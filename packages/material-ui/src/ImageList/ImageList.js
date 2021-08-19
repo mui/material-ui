@@ -1,23 +1,15 @@
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { deepmerge } from '@material-ui/utils';
+import { integerPropType } from '@material-ui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getImageListUtilityClass } from './imageListClasses';
 import ImageListContext from './ImageListContext';
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-  });
-};
-
-const useUtilityClasses = (styleProps) => {
-  const { classes, variant } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, variant } = ownerState;
 
   const slots = {
     root: ['root', variant],
@@ -26,24 +18,23 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getImageListUtilityClass, classes);
 };
 
-const ImageListRoot = experimentalStyled(
-  'ul',
-  {},
-  {
-    name: 'MuiImageList',
-    slot: 'Root',
-    overridesResolver,
+const ImageListRoot = styled('ul', {
+  name: 'MuiImageList',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [styles.root, styles[ownerState.variant]];
   },
-)(({ styleProps }) => {
-  /* Styles applied to the root element. */
+})(({ ownerState }) => {
   return {
     display: 'grid',
     overflowY: 'auto',
     listStyle: 'none',
     padding: 0,
-    WebkitOverflowScrolling: 'touch', // Add iOS momentum scrolling.
-    /* Styles applied to the root element if `variant="masonry"`. */
-    ...(styleProps.variant === 'masonry' && {
+    // Add iOS momentum scrolling for iOS < 13.0
+    WebkitOverflowScrolling: 'touch',
+    ...(ownerState.variant === 'masonry' && {
       display: 'block',
     }),
   };
@@ -67,11 +58,10 @@ const ImageList = React.forwardRef(function ImageList(inProps, ref) {
     ...other
   } = props;
 
-  const contextValue = React.useMemo(() => ({ rowHeight, gap, variant }), [
-    rowHeight,
-    gap,
-    variant,
-  ]);
+  const contextValue = React.useMemo(
+    () => ({ rowHeight, gap, variant }),
+    [rowHeight, gap, variant],
+  );
 
   React.useEffect(() => {
     if (process.env.NODE_ENV !== 'production') {
@@ -92,9 +82,9 @@ const ImageList = React.forwardRef(function ImageList(inProps, ref) {
       ? { columnCount: cols, columnGap: gap, ...styleProp }
       : { gridTemplateColumns: `repeat(${cols}, 1fr)`, gap, ...styleProp };
 
-  const styleProps = { ...props, component, gap, rowHeight, variant };
+  const ownerState = { ...props, component, gap, rowHeight, variant };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <ImageListRoot
@@ -102,7 +92,7 @@ const ImageList = React.forwardRef(function ImageList(inProps, ref) {
       className={clsx(classes.root, classes[variant], className)}
       ref={ref}
       style={style}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       <ImageListContext.Provider value={contextValue}>{children}</ImageListContext.Provider>
@@ -110,7 +100,7 @@ const ImageList = React.forwardRef(function ImageList(inProps, ref) {
   );
 });
 
-ImageList.propTypes = {
+ImageList.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -131,7 +121,7 @@ ImageList.propTypes = {
    * Number of columns.
    * @default 2
    */
-  cols: PropTypes.number,
+  cols: integerPropType,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.

@@ -1,7 +1,13 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
+import { OverridableStringUnion } from '@material-ui/types';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { SvgIconClasses } from './svgIconClasses';
+
+export interface SvgIconPropsSizeOverrides {}
+
+export interface SvgIconPropsColorOverrides {}
 
 export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
   props: P & {
@@ -12,37 +18,32 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Styles applied to the root element if `color="primary"`. */
-      colorPrimary?: string;
-      /** Styles applied to the root element if `color="secondary"`. */
-      colorSecondary?: string;
-      /** Styles applied to the root element if `color="action"`. */
-      colorAction?: string;
-      /** Styles applied to the root element if `color="error"`. */
-      colorError?: string;
-      /** Styles applied to the root element if `color="disabled"`. */
-      colorDisabled?: string;
-      /** Styles applied to the root element if `fontSize="inherit"`. */
-      fontSizeInherit?: string;
-      /** Styles applied to the root element if `fontSize="small"`. */
-      fontSizeSmall?: string;
-      /** Styles applied to the root element if `fontSize="large"`. */
-      fontSizeLarge?: string;
-    };
+    classes?: Partial<SvgIconClasses>;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
      * @default 'inherit'
      */
-    color?: 'inherit' | 'primary' | 'secondary' | 'action' | 'disabled' | 'error';
+    color?: OverridableStringUnion<
+      | 'inherit'
+      | 'action'
+      | 'disabled'
+      | 'primary'
+      | 'secondary'
+      | 'error'
+      | 'info'
+      | 'success'
+      | 'warning',
+      SvgIconPropsColorOverrides
+    >;
     /**
      * The fontSize applied to the icon. Defaults to 24px, but can be configure to inherit font size.
      * @default 'medium'
      */
-    fontSize?: 'inherit' | 'large' | 'medium' | 'small';
+    fontSize?: OverridableStringUnion<
+      'inherit' | 'large' | 'medium' | 'small',
+      SvgIconPropsSizeOverrides
+    >;
     /**
      * Applies a color attribute to the SVG element.
      */
@@ -85,13 +86,11 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
  *
  * - [SvgIcon API](https://material-ui.com/api/svg-icon/)
  */
-declare const SvgIcon: OverridableComponent<SvgIconTypeMap>;
-
-export type SvgIconClassKey = keyof NonNullable<SvgIconTypeMap['props']['classes']>;
+declare const SvgIcon: OverridableComponent<SvgIconTypeMap> & { muiName: string };
 
 export type SvgIconProps<
   D extends React.ElementType = SvgIconTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<SvgIconTypeMap<P, D>, D>;
 
 export default SvgIcon;

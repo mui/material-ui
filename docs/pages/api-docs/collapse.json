@@ -7,6 +7,12 @@
       "default": "'0px'"
     },
     "component": { "type": { "name": "custom", "description": "element type" } },
+    "easing": {
+      "type": {
+        "name": "union",
+        "description": "{ enter?: string, exit?: string }<br>&#124;&nbsp;string"
+      }
+    },
     "in": { "type": { "name": "bool" } },
     "orientation": {
       "type": { "name": "enum", "description": "'horizontal'<br>&#124;&nbsp;'vertical'" },

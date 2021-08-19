@@ -3,12 +3,12 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useTheme from '../styles/useTheme';
 import { getHiddenCssUtilityClass } from './hiddenCssClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, breakpoints } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, breakpoints } = ownerState;
 
   const slots = {
     root: [
@@ -24,20 +24,16 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getHiddenCssUtilityClass, classes);
 };
 
-const HiddenCssRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'PrivateHiddenCss',
-    slot: 'Root',
-  },
-)(({ theme, styleProps }) => {
+const HiddenCssRoot = styled('div', {
+  name: 'PrivateHiddenCss',
+  slot: 'Root',
+})(({ theme, ownerState }) => {
   const hidden = {
     display: 'none',
   };
 
   return {
-    ...styleProps.breakpoints
+    ...ownerState.breakpoints
       .map(({ breakpoint, dir }) => {
         if (dir === 'only') {
           return {
@@ -107,15 +103,15 @@ function HiddenCss(props) {
     });
   }
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     breakpoints,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
-    <HiddenCssRoot className={clsx(classes.root, className)} styleProps={styleProps}>
+    <HiddenCssRoot className={clsx(classes.root, className)} ownerState={ownerState}>
       {children}
     </HiddenCssRoot>
   );

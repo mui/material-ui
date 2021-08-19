@@ -1,61 +1,22 @@
 import * as React from 'react';
-import styled from 'styled-components';
+import { styled } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import Tooltip from '@material-ui/core/Tooltip';
 
-const StyledMenu = styled(({ className, ...props }) => (
-  <Menu {...props} classes={{ paper: className }} />
+const StyledTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
 ))`
-  box-shadow: none;
-  border: 1px solid #d3d4d5;
-
-  li {
-    padding-top: 8px;
-    padding-bottom: 8px;
+  & .MuiTooltip-tooltip {
+    background: navy;
   }
 `;
 
 export default function StyledComponentsPortal() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
   return (
-    <div>
-      <Button
-        aria-owns={anchorEl ? 'simple-menu' : undefined}
-        aria-haspopup="true"
-        variant="contained"
-        onClick={handleClick}
-      >
-        Open Menu
+    <StyledTooltip title="I am navy">
+      <Button variant="contained" color="primary">
+        Styled tooltip
       </Button>
-      <StyledMenu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-        getContentAnchorEl={null}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
-      >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
-      </StyledMenu>
-    </div>
+    </StyledTooltip>
   );
 }

@@ -27,10 +27,10 @@ A basic snackbar that aims to reproduce Google Keep's snackbar behavior.
 
 {{"demo": "pages/components/snackbars/SimpleSnackbar.js"}}
 
-## Customized snackbars
+## Customization
 
-Here are some examples of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/how-to-customize/).
+Here are some examples of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/snackbars/CustomizedSnackbars.js"}}
 
@@ -84,9 +84,9 @@ For more advanced use cases you might be able to take advantage of:
 
 This example demonstrates how to use [notistack](https://github.com/iamhosseindhv/notistack).
 notistack has an **imperative API** that makes it easy to display snackbars, without having to handle their open/close state.
-It also enables you to **stack** them on top of one another (although this is discouraged by the Material Design specification).
+It also enables you to **stack** them on top of one another (although this is discouraged by the Material Design guidelines).
 
-{{"demo": "pages/components/snackbars/IntegrationNotistack.js", "defaultCodeOpen": false}}
+TODO: Add example once notistack is compatible with v5 or replace with [#1824](https://github.com/mui-org/material-ui/issues/1824).
 
 ## Accessibility
 

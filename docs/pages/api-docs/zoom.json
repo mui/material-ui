@@ -2,6 +2,12 @@
   "props": {
     "appear": { "type": { "name": "bool" }, "default": "true" },
     "children": { "type": { "name": "custom", "description": "element" } },
+    "easing": {
+      "type": {
+        "name": "union",
+        "description": "{ enter?: string, exit?: string }<br>&#124;&nbsp;string"
+      }
+    },
     "in": { "type": { "name": "bool" } },
     "timeout": {
       "type": {

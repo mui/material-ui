@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
 import styledComponents, {
   ThemeProvider as StyledComponentsThemeProvider,
 } from 'styled-components';
@@ -20,7 +20,7 @@ const Div = styledComponents('div')(
 `,
 );
 
-const theme = createMuiTheme();
+const theme = createTheme();
 
 export default function StyledSC() {
   return (

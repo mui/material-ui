@@ -1,11 +1,20 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import useAutocomplete from '@material-ui/core/useAutocomplete';
-import NoSsr from '@material-ui/core/NoSsr';
-import { useTheme, createMuiTheme } from '@material-ui/core/styles';
+import useAutocomplete, {
+  AutocompleteGetTagProps,
+} from '@material-ui/core/useAutocomplete';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
-import styled, { ThemeProvider } from 'styled-components';
+import { styled } from '@material-ui/core/styles';
+
+const Root = styled('div')(
+  ({ theme }) => `
+  color: ${
+    theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.65)' : 'rgba(0,0,0,.85)'
+  };
+  font-size: 14px;
+`,
+);
 
 const Label = styled('label')`
   padding: 0 0 4px;
@@ -13,8 +22,8 @@ const Label = styled('label')`
   display: block;
 `;
 
-const InputWrapper = styled('div')`
-  ${({ theme }) => `
+const InputWrapper = styled('div')(
+  ({ theme }) => `
   width: 300px;
   border: 1px solid ${theme.palette.mode === 'dark' ? '#434343' : '#d9d9d9'};
   background-color: ${theme.palette.mode === 'dark' ? '#141414' : '#fff'};
@@ -24,18 +33,19 @@ const InputWrapper = styled('div')`
   flex-wrap: wrap;
 
   &:hover {
-    border-color: #40a9ff;
+    border-color: ${theme.palette.mode === 'dark' ? '#177ddc' : '#40a9ff'};
   }
 
   &.focused {
-    border-color: #40a9ff;
+    border-color: ${theme.palette.mode === 'dark' ? '#177ddc' : '#40a9ff'};
     box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
   }
 
   & input {
     background-color: ${theme.palette.mode === 'dark' ? '#141414' : '#fff'};
-    color: ${theme.palette.mode === 'dark' ? '#fff' : '#000'};
-    font-size: 14px;
+    color: ${
+      theme.palette.mode === 'dark' ? 'rgba(255,255,255,0.65)' : 'rgba(0,0,0,.85)'
+    };
     height: 30px;
     box-sizing: border-box;
     padding: 4px 6px;
@@ -46,16 +56,25 @@ const InputWrapper = styled('div')`
     margin: 0;
     outline: 0;
   }
-`}
-`;
+`,
+);
 
-const Tag = styled(({ label, onDelete, ...props }) => (
-  <div {...props}>
-    <span>{label}</span>
-    <CloseIcon onClick={onDelete} />
-  </div>
-))`
-  ${({ theme }) => `
+interface TagProps extends ReturnType<AutocompleteGetTagProps> {
+  label: string;
+}
+
+function Tag(props: TagProps) {
+  const { label, onDelete, ...other } = props;
+  return (
+    <div {...other}>
+      <span>{label}</span>
+      <CloseIcon onClick={onDelete} />
+    </div>
+  );
+}
+
+const StyledTag = styled(Tag)<TagProps>(
+  ({ theme }) => `
   display: flex;
   align-items: center;
   height: 24px;
@@ -72,8 +91,8 @@ const Tag = styled(({ label, onDelete, ...props }) => (
   overflow: hidden;
 
   &:focus {
-    border-color: #40a9ff;
-    background-color: #e6f7ff;
+    border-color: ${theme.palette.mode === 'dark' ? '#177ddc' : '#40a9ff'};
+    background-color: ${theme.palette.mode === 'dark' ? '#003b57' : '#e6f7ff'};
   }
 
   & span {
@@ -87,11 +106,11 @@ const Tag = styled(({ label, onDelete, ...props }) => (
     cursor: pointer;
     padding: 4px;
   }
-`}
-`;
+`,
+);
 
-const Listbox = styled('ul')`
-  ${({ theme }) => `
+const Listbox = styled('ul')(
+  ({ theme }) => `
   width: 300px;
   margin: 2px 0 0;
   padding: 0;
@@ -134,10 +153,8 @@ const Listbox = styled('ul')`
       color: currentColor;
     }
   }
-`}
-`;
-
-const defaultTheme = createMuiTheme();
+`,
+);
 
 export default function CustomizedHook() {
   const {
@@ -159,34 +176,28 @@ export default function CustomizedHook() {
     getOptionLabel: (option) => option.title,
   });
 
-  const theme = useTheme() || defaultTheme;
-
   return (
-    <NoSsr>
-      <ThemeProvider theme={theme}>
-        <div>
-          <div {...getRootProps()}>
-            <Label {...getInputLabelProps()}>Customized hook</Label>
-            <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
-              {value.map((option: FilmOptionType, index: number) => (
-                <Tag label={option.title} {...getTagProps({ index })} />
-              ))}
-              <input {...getInputProps()} />
-            </InputWrapper>
-          </div>
-          {groupedOptions.length > 0 ? (
-            <Listbox {...getListboxProps()}>
-              {(groupedOptions as typeof top100Films).map((option, index) => (
-                <li {...getOptionProps({ option, index })}>
-                  <span>{option.title}</span>
-                  <CheckIcon fontSize="small" />
-                </li>
-              ))}
-            </Listbox>
-          ) : null}
-        </div>
-      </ThemeProvider>
-    </NoSsr>
+    <Root>
+      <div {...getRootProps()}>
+        <Label {...getInputLabelProps()}>Customized hook</Label>
+        <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
+          {value.map((option: FilmOptionType, index: number) => (
+            <StyledTag label={option.title} {...getTagProps({ index })} />
+          ))}
+          <input {...getInputProps()} />
+        </InputWrapper>
+      </div>
+      {groupedOptions.length > 0 ? (
+        <Listbox {...getListboxProps()}>
+          {(groupedOptions as typeof top100Films).map((option, index) => (
+            <li {...getOptionProps({ option, index })}>
+              <span>{option.title}</span>
+              <CheckIcon fontSize="small" />
+            </li>
+          ))}
+        </Listbox>
+      ) : null}
+    </Root>
   );
 }
 

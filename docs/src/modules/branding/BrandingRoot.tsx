@@ -1,40 +1,41 @@
 import * as React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { lighten, darken, createMuiTheme, alpha, ThemeProvider } from '@material-ui/core/styles';
+import { darken, createTheme, alpha, ThemeProvider } from '@material-ui/core/styles';
 import NProgressBar from '@material-ui/docs/NProgressBar';
 import BrandingFooter from 'docs/src/modules/branding/BrandingFooter';
 
-interface CustomPalette {
-  vividBlue: string;
-  emeral: string;
-  sizzlingRed: string;
-  sunglow: string;
-  grey5A: string;
-  grey87: string;
-  greyAA: string;
-  greyD7: string;
-  greyE5: string;
-  greyEA: string;
-  greyF3: string;
-}
+declare module '@material-ui/core/styles' {
+  interface Palette {
+    ternary: Palette['primary'];
+    neutral: Palette['primary'];
+    vividBlue: string;
+    emerald: string;
+    sizzlingRed: string;
+    sunglow: string;
+    grey5A: string;
+    grey87: string;
+    greyAA: string;
+    greyD7: string;
+    greyE5: string;
+    greyEA: string;
+    greyF3: string;
+  }
 
-interface CustomPaletteOptions {
-  vividBlue?: string;
-  emeral?: string;
-  sizzlingRed?: string;
-  sunglow?: string;
-  grey5A?: string;
-  grey87?: string;
-  greyAA?: string;
-  greyD7?: string;
-  greyE5?: string;
-  greyEA?: string;
-  greyF3?: string;
-}
-
-declare module '@material-ui/core/styles/createPalette' {
-  interface Palette extends CustomPalette {}
-  interface PaletteOptions extends CustomPaletteOptions {}
+  interface PaletteOptions {
+    ternary?: PaletteOptions['primary'];
+    neutral?: PaletteOptions['primary'];
+    vividBlue?: string;
+    emerald?: string;
+    sizzlingRed?: string;
+    sunglow?: string;
+    grey5A?: string;
+    grey87?: string;
+    greyAA?: string;
+    greyD7?: string;
+    greyE5?: string;
+    greyEA?: string;
+    greyF3?: string;
+  }
 }
 
 // Update the Typography's variant prop options
@@ -44,13 +45,20 @@ declare module '@material-ui/core/Typography' {
   }
 }
 
+declare module '@material-ui/core/Button' {
+  interface ButtonPropsColorOverrides {
+    neutral: true;
+    ternary: true;
+  }
+}
+
 function round(value: number) {
   return Math.round(value * 1e5) / 1e5;
 }
 
 const oxfordBlue = '#001E3C';
 
-let theme = createMuiTheme({
+let theme = createTheme({
   palette: {
     text: {
       primary: oxfordBlue,
@@ -65,7 +73,7 @@ let theme = createMuiTheme({
       default: '#FFF',
     },
     vividBlue: '#00C8FF',
-    emeral: '#21CC66',
+    emerald: '#21CC66',
     sizzlingRed: '#FF505F',
     sunglow: '#FFC846',
     grey5A: '#5A6978',
@@ -93,100 +101,128 @@ let theme = createMuiTheme({
       '"Segoe UI Symbol"',
     ].join(','),
   },
-  breakpoints: {
-    values: {
-      xs: 0, // phones
-      sm: 600, // tablets
-      md: 900, // small laptops
-      lg: 1200, // desktops
-      xl: 1500, // large screens
-    },
-  },
 });
 
-theme = createMuiTheme(theme, {
+function getButtonColor(color: string) {
+  return {
+    '&.Mui-focusVisible': {
+      boxShadow: `0 0 0 0.25rem ${alpha(color, 0.5)}`,
+    },
+    '&:hover': {
+      backgroundColor: darken(color, 0.12),
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: color,
+      },
+    },
+    '&:active': {
+      boxShadow: `0 0 0 0.15rem ${alpha(color, 0.5)}`,
+      backgroundColor: darken(color, 0.25),
+    },
+  };
+}
+
+theme = createTheme(theme, {
   palette: {
+    ternary: {
+      main: theme.palette.vividBlue,
+      contrastText: '#fff',
+    },
+    neutral: {
+      main: theme.palette.grey87,
+      contrastText: '#fff',
+    },
     action: {
       active: theme.palette.grey87,
     },
     text: {
       secondary: theme.palette.grey5A,
     },
+    divider: theme.palette.greyE5,
   },
   typography: {
     h1: {
       fontWeight: 700,
       letterSpacing: `${round(-2 / 72)}em`,
       lineHeight: 1.111,
-      fontSize: 44,
+      fontSize: theme.typography.pxToRem(44),
       [theme.breakpoints.up('sm')]: {
-        fontSize: 68,
+        fontSize: theme.typography.pxToRem(68),
       },
       [theme.breakpoints.up('md')]: {
-        fontSize: 72,
+        fontSize: theme.typography.pxToRem(72),
       },
     },
     h2: {
       fontWeight: 700,
       letterSpacing: `${round(-1.5 / 52)}em`,
       lineHeight: 1.154,
-      fontSize: 40,
+      fontSize: theme.typography.pxToRem(40),
       [theme.breakpoints.up('sm')]: {
-        fontSize: 48,
+        fontSize: theme.typography.pxToRem(48),
       },
       [theme.breakpoints.up('md')]: {
-        fontSize: 52,
+        fontSize: theme.typography.pxToRem(52),
       },
     },
     h3: {
       fontWeight: 700,
       letterSpacing: `${round(-1 / 36)}em`,
       lineHeight: 1.222,
-      fontSize: 28,
+      fontSize: theme.typography.pxToRem(28),
       [theme.breakpoints.up('sm')]: {
-        fontSize: 32,
+        fontSize: theme.typography.pxToRem(32),
       },
       [theme.breakpoints.up('md')]: {
-        fontSize: 36,
+        fontSize: theme.typography.pxToRem(36),
       },
     },
     h4: {
       fontWeight: 700,
       letterSpacing: `${round(-0.5 / 24)}em`,
       lineHeight: 1.25,
-      fontSize: 24,
+      fontSize: theme.typography.pxToRem(24),
     },
-    h5: undefined,
+    h5: {
+      fontWeight: 600,
+      letterSpacing: `${round(-0.25 / 20)}em`,
+      lineHeight: 1.3,
+      fontSize: theme.typography.pxToRem(20),
+    },
     h6: undefined,
     subtitle1: undefined,
     subtitle2: undefined,
     button: {
-      fontWeight: 700,
-      fontSize: 16,
+      fontWeight: 600,
+      fontSize: theme.typography.pxToRem(16),
+      lineHeight: 1.25,
     },
     body1: {
-      fontSize: 16,
+      fontSize: theme.typography.pxToRem(16),
       [theme.breakpoints.up('sm')]: {
-        fontSize: 18,
+        fontSize: theme.typography.pxToRem(18),
       },
     },
     body2: {
-      fontSize: 14,
+      fontSize: theme.typography.pxToRem(14),
       [theme.breakpoints.up('sm')]: {
-        fontSize: 16,
+        fontSize: theme.typography.pxToRem(16),
       },
     },
     body3: {
-      fontSize: 14,
+      fontSize: theme.typography.pxToRem(14),
     },
   },
+});
+
+theme = createTheme(theme, {
   components: {
     MuiInputBase: {
       styleOverrides: {
         root: {
-          fontSize: 16,
+          fontSize: theme.typography.pxToRem(16),
           [theme.breakpoints.up('sm')]: {
-            fontSize: 16,
+            fontSize: theme.typography.pxToRem(16),
           },
         },
       },
@@ -199,9 +235,7 @@ theme = createMuiTheme(theme, {
       styleOverrides: {
         root: {
           textTransform: 'initial',
-          fontSize: 16,
-          padding: '10px 16px',
-          fontWeight: 600,
+          padding: '12px 16px',
         },
         colorInherit: {
           backgroundColor: theme.palette.greyD7,
@@ -224,47 +258,25 @@ theme = createMuiTheme(theme, {
       variants: [
         {
           props: { variant: 'contained', color: 'primary' },
-          style: {
-            '&.Mui-focusVisible': {
-              boxShadow: `0 0 0 0.25rem ${alpha(theme.palette.primary.main, 0.5)}`,
-            },
-            '&:hover': {
-              backgroundColor: darken(theme.palette.primary.main, 0.12),
-              // Reset on touch devices, it doesn't add specificity
-              '@media (hover: none)': {
-                backgroundColor: theme.palette.primary.main,
-              },
-            },
-            '&:active': {
-              boxShadow: `0 0 0 0.15rem ${alpha(theme.palette.primary.main, 0.5)}`,
-              backgroundColor: darken(theme.palette.primary.main, 0.25),
-            },
-          },
+          style: getButtonColor(theme.palette.primary.main),
         },
         {
           props: { variant: 'contained', color: 'secondary' },
-          style: {
-            '&.Mui-focusVisible': {
-              boxShadow: `0 0 0 0.25rem ${alpha(theme.palette.secondary.main, 0.5)}`,
-            },
-            '&:hover': {
-              backgroundColor: lighten(theme.palette.secondary.main, 0.09),
-              // Reset on touch devices, it doesn't add specificity
-              '@media (hover: none)': {
-                backgroundColor: theme.palette.secondary.main,
-              },
-            },
-            '&:active': {
-              boxShadow: `0 0 0 0.15rem ${alpha(theme.palette.secondary.main, 0.5)}`,
-              backgroundColor: lighten(theme.palette.secondary.main, 0.12),
-            },
-          },
+          style: getButtonColor(theme.palette.secondary.main),
+        },
+        {
+          props: { variant: 'contained', color: 'ternary' },
+          style: getButtonColor(theme.palette.ternary.main),
+        },
+        {
+          props: { variant: 'contained', color: 'neutral' },
+          style: getButtonColor(theme.palette.neutral.main),
         },
         {
           props: { size: 'small' },
           style: {
-            padding: '8px 16px',
-            fontSize: 14,
+            padding: '7px 16px',
+            fontSize: theme.typography.pxToRem(14),
             fontWeight: 700,
           },
         },
@@ -273,18 +285,11 @@ theme = createMuiTheme(theme, {
           style: {
             padding: '14px 22px',
             boxShadow: '0 2px 3px rgba(0, 30, 60, 0.08)',
-            fontSize: 18,
+            fontSize: theme.typography.pxToRem(18),
             fontWeight: 700,
           },
         },
       ],
-    },
-    MuiCssBaseline: {
-      styleOverrides: {
-        ul: {
-          listStyle: 'none',
-        },
-      },
     },
     MuiToolbar: {
       styleOverrides: {
@@ -302,6 +307,26 @@ theme = createMuiTheme(theme, {
           },
           [theme.breakpoints.up('lg')]: {
             minHeight: 80,
+          },
+        },
+      },
+    },
+    MuiTooltip: {
+      styleOverrides: {
+        tooltip: {
+          padding: '12px',
+          fontWeight: 'normal',
+          fontSize: theme.typography.pxToRem(14),
+          lineHeight: '20px',
+          color: theme.palette.secondary.contrastText,
+          backgroundColor: theme.palette.secondary.main,
+          boxShadow: '0px 2px 3px rgba(0, 30, 60, 0.08)',
+          borderRadius: theme.shape.borderRadius,
+          maxWidth: 300,
+        },
+        arrow: {
+          '&:before': {
+            backgroundColor: theme.palette.secondary.main,
           },
         },
       },

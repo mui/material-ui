@@ -10,9 +10,9 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
   count: number;
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
+   * This is important for screen reader users.
    *
    * For localization purposes, you can use the provided [translations](/guides/localization/).
-   *
    * @param {string} type The link or button type to format ('first' | 'last' | 'next' | 'previous').
    * @returns {string}
    */
@@ -25,6 +25,6 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
   showLastButton: boolean;
 }
 
-declare const TablePaginationActions: React.ComponentType<TablePaginationActionsProps>;
+declare const TablePaginationActions: React.JSXElementConstructor<TablePaginationActionsProps>;
 
 export default TablePaginationActions;

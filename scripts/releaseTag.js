@@ -4,7 +4,19 @@ const path = require('path');
 const { promisify } = require('util');
 const yargs = require('yargs');
 
-const exec = promisify(childProcess.exec);
+/**
+ * Only directly call it with side-effect free commands.
+ * Otherwise use the `exec` that's considering whether the context is supposed to be "dry" i.e. have no side-effects.
+ */
+const execActual = promisify(childProcess.exec);
+/**
+ * @param {string} command
+ * @param {unknown} [options]
+ */
+function execDry(command, options) {
+  // eslint-disable-next-line no-console
+  console.log(`exec(\`${command}\`, ${JSON.stringify(options)})`);
+}
 
 /**
  * Find the remote pointing to mui-org/material-ui.
@@ -12,7 +24,7 @@ const exec = promisify(childProcess.exec);
  * Conventionally this should be named `upstream` but some collaborators might've used a different naming scheme.
  */
 async function findMuiOrgRemote() {
-  const { stdout } = await exec(['git', 'remote', '-v'].join(' '));
+  const { stdout } = await execActual(['git', 'remote', '-v'].join(' '));
   const remoteLines = stdout.trim().split(/\r?\n/);
 
   return remoteLines
@@ -21,12 +33,20 @@ async function findMuiOrgRemote() {
       return { name, url, method };
     })
     .find((remote) => {
-      return remote.url.indexOf('mui-org/material-ui.git') && remote.method === '(push)';
+      // test: https://regex101.com/r/fBVJUX/1
+      // matching:
+      // - https://github.com/mui-org/material-ui
+      // - git@github.com:mui-org/material-ui.git
+      // but not:
+      // - git@github.com:mui-org/material-ui-docs.git
+      return /mui-org\/material-ui(\.git)?$/.test(remote.url) && remote.method === '(push)';
     });
 }
 
 async function main(argv) {
   const { dryRun } = argv;
+
+  const exec = dryRun ? execDry : execActual;
 
   const rootWorkspace = path.resolve(__dirname, '..');
   const rootWorkspaceManifest = await fse.readJSON(path.join(rootWorkspace, 'package.json'));
@@ -38,20 +58,21 @@ async function main(argv) {
   // eslint-disable-next-line no-console -- verbose logging
   console.log(`Created tag '${tag}'. To remove enter 'git tag -d ${tag}'`);
 
-  if (!dryRun) {
-    const muiOrgRemote = await findMuiOrgRemote();
-    if (muiOrgRemote === undefined) {
-      throw new TypeError(
-        'Unable to find the upstream remote. It should be a remote pointing to "mui-org/material-ui". Did you forget to add it via `git remote add upstream git@github.com:mui-org/material-ui.git`?',
-      );
-    }
-
-    await exec(['git', 'push', muiOrgRemote.name, tag].join(' '));
-    // eslint-disable-next-line no-console -- verbose logging
-    console.log(
-      `Pushed tag '${tag}' to . This should not be reversed. In case of emergency enter 'git push --delete ${muiOrgRemote.name} ${tag}' to remove.`,
+  const muiOrgRemote = await findMuiOrgRemote();
+  if (muiOrgRemote === undefined) {
+    throw new TypeError(
+      'Unable to find the upstream remote. It should be a remote pointing to "mui-org/material-ui". ' +
+        'Did you forget to add it via `git remote add upstream git@github.com:mui-org/material-ui.git`? ' +
+        'If you think this is a bug please include `git remote -v` in your report.',
     );
   }
+
+  await exec(['git', 'push', muiOrgRemote.name, tag].join(' '));
+
+  // eslint-disable-next-line no-console -- verbose logging
+  console.log(
+    `Pushed tag '${tag}' to . This should not be reversed. In case of emergency enter 'git push --delete ${muiOrgRemote.name} ${tag}' to remove.`,
+  );
 }
 
 yargs
@@ -61,7 +82,7 @@ yargs
     builder: (command) => {
       return command.option('dryRun', {
         default: false,
-        describe: "If true, tags won't be pushed.",
+        describe: 'If true, the script will not have any permanent side-effects.',
         type: 'boolean',
       });
     },

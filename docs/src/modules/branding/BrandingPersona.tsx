@@ -2,29 +2,29 @@ import * as React from 'react';
 import { OverridableComponent } from '@material-ui/core/OverridableComponent';
 import Box, { BoxTypeMap } from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
+import Stack from '@material-ui/core/Stack';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import IconButton from '@material-ui/core/IconButton';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import t1 from 'docs/src/modules/branding/t1';
 
 interface PersonaRootProps {
-  styleProps: { size: 'large' | 'small' };
+  ownerState: { size: 'large' | 'small' };
 }
 
-const PersonaRoot: OverridableComponent<BoxTypeMap<PersonaRootProps>> = styled(
-  Box,
-  {},
-  { name: 'Persona', slot: 'Root' },
-)<PersonaRootProps>(({ styleProps, theme }) => ({
+const PersonaRoot: OverridableComponent<BoxTypeMap<PersonaRootProps>> = styled(Box, {
+  name: 'Persona',
+  slot: 'Root',
+})<PersonaRootProps>(({ ownerState, theme }) => ({
   display: 'flex',
   marginTop: theme.spacing(1),
   marginBottom: theme.spacing(1),
   flexDirection: 'column',
   alignItems: 'center',
   '& [class*="MuiAvatar-root"]': {
-    width: styleProps.size === 'large' ? 200 : 120,
-    height: styleProps.size === 'large' ? 200 : 120,
+    width: ownerState.size === 'large' ? 200 : 120,
+    height: ownerState.size === 'large' ? 200 : 120,
     marginBottom: theme.spacing(1),
   },
   '& [class*="MuiIconButton-root"]': {
@@ -51,7 +51,7 @@ export default function BrandingPersona(props: BrandingPersonaProps) {
   const { name, src, srcSet, title, location, twitter, github, size = 'large' } = props;
   return (
     <PersonaRoot
-      styleProps={{ size }}
+      ownerState={{ size }}
       sx={{
         '& img': {
           borderRadius: '50%',
@@ -78,28 +78,28 @@ export default function BrandingPersona(props: BrandingPersonaProps) {
       <Typography variant="body2" sx={{ mt: 1, mb: 2 }}>
         {location}
       </Typography>
-      <Box
-        sx={{
-          display: 'flex',
-          // TODO use Stack
-          '&& > * + *': {
-            ml: 1,
-          },
-        }}
-      >
+      <Stack direction="row" spacing={1}>
         {twitter && (
           <IconButton
             component="a"
             href={`https://twitter.com/${twitter}`}
+            target="_blank"
+            rel="noopener"
             aria-label={t1('twitter')}
           >
             <TwitterIcon />
           </IconButton>
         )}
-        <IconButton component="a" href={`https://github.com/${github}`} aria-label={t1('github')}>
+        <IconButton
+          component="a"
+          href={`https://github.com/${github}`}
+          target="_blank"
+          rel="noopener"
+          aria-label={t1('github')}
+        >
           <GitHubIcon />
         </IconButton>
-      </Box>
+      </Stack>
     </PersonaRoot>
   );
 }

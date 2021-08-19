@@ -12,16 +12,17 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
     // eslint-disable-next-line react/prop-types
     actions,
     children,
+    defaultValue,
     name: nameProp,
-    value: valueProp,
     onChange,
+    value: valueProp,
     ...other
   } = props;
   const rootRef = React.useRef(null);
 
   const [value, setValueState] = useControlled({
     controlled: valueProp,
-    default: props.defaultValue,
+    default: defaultValue,
     name: 'RadioGroup',
   });
 
@@ -64,7 +65,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(props, ref) {
   );
 });
 
-RadioGroup.propTypes = {
+RadioGroup.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -76,11 +77,7 @@ RadioGroup.propTypes = {
   /**
    * The default value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.string),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  defaultValue: PropTypes.any,
   /**
    * The name used to reference the value of the control.
    * If you don't provide this prop, it falls back to a randomly generated name.
@@ -89,7 +86,8 @@ RadioGroup.propTypes = {
   /**
    * Callback fired when a radio button is selected.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.ChangeEvent<HTMLInputElement>} event The event source of the callback.
+   * @param {string} value The value of the selected radio button.
    * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,

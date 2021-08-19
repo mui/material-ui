@@ -1,23 +1,9 @@
 import * as React from 'react';
-import clsx from 'clsx';
-import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
+import { Theme, useTheme } from '@material-ui/core/styles';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120,
-      maxWidth: 300,
-    },
-    noLabel: {
-      marginTop: theme.spacing(3),
-    },
-  }),
-);
+import Select, { SelectChangeEvent } from '@material-ui/core/Select';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -43,7 +29,7 @@ const names = [
   'Kelly Snyder',
 ];
 
-function getStyles(name: string, personName: string[], theme: Theme) {
+function getStyles(name: string, personName: readonly string[], theme: Theme) {
   return {
     fontWeight:
       personName.indexOf(name) === -1
@@ -53,29 +39,34 @@ function getStyles(name: string, personName: string[], theme: Theme) {
 }
 
 export default function MultipleSelectPlaceholder() {
-  const classes = useStyles();
   const theme = useTheme();
   const [personName, setPersonName] = React.useState<string[]>([]);
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setPersonName(event.target.value as string[]);
+  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
+    const {
+      target: { value },
+    } = event;
+    setPersonName(
+      // On autofill we get a the stringified value.
+      typeof value === 'string' ? value.split(',') : value,
+    );
   };
 
   return (
     <div>
-      <FormControl className={clsx(classes.formControl, classes.noLabel)}>
+      <FormControl sx={{ m: 1, width: 300, mt: 3 }}>
         <Select
           multiple
           displayEmpty
           value={personName}
           onChange={handleChange}
-          input={<Input />}
+          input={<OutlinedInput />}
           renderValue={(selected) => {
-            if ((selected as string[]).length === 0) {
+            if (selected.length === 0) {
               return <em>Placeholder</em>;
             }
 
-            return (selected as string[]).join(', ');
+            return selected.join(', ');
           }}
           MenuProps={MenuProps}
           inputProps={{ 'aria-label': 'Without label' }}

@@ -1,34 +1,23 @@
 import * as React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120,
-    },
-  }),
-);
+import Select, { SelectChangeEvent } from '@material-ui/core/Select';
 
 export default function SelectVariants() {
-  const classes = useStyles();
   const [age, setAge] = React.useState('');
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setAge(event.target.value as string);
+  const handleChange = (event: SelectChangeEvent) => {
+    setAge(event.target.value);
   };
 
   return (
     <div>
-      <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label">Age</InputLabel>
+      <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+        <InputLabel id="demo-simple-select-standard-label">Age</InputLabel>
         <Select
-          labelId="demo-simple-select-outlined-label"
-          id="demo-simple-select-outlined"
+          labelId="demo-simple-select-standard-label"
+          id="demo-simple-select-standard"
           value={age}
           onChange={handleChange}
           label="Age"
@@ -41,7 +30,7 @@ export default function SelectVariants() {
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
       </FormControl>
-      <FormControl variant="filled" className={classes.formControl}>
+      <FormControl variant="filled" sx={{ m: 1, minWidth: 120 }}>
         <InputLabel id="demo-simple-select-filled-label">Age</InputLabel>
         <Select
           labelId="demo-simple-select-filled-label"

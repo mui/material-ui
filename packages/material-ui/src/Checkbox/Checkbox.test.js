@@ -1,20 +1,18 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createMount, describeConformanceV5, act, createClientRender } from 'test/utils';
-import Checkbox from './Checkbox';
-import FormControl from '../FormControl';
-import IconButton from '../IconButton';
-import classes from './checkboxClasses';
+import { describeConformance, act, createClientRender } from 'test/utils';
+import Checkbox, { checkboxClasses as classes } from '@material-ui/core/Checkbox';
+import FormControl from '@material-ui/core/FormControl';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<Checkbox />', () => {
   const render = createClientRender();
-  const mount = createMount();
 
-  describeConformanceV5(<Checkbox checked />, () => ({
+  describeConformance(<Checkbox checked />, () => ({
     classes,
-    inheritComponent: IconButton,
-    mount,
+    inheritComponent: ButtonBase,
+    render,
     muiName: 'MuiCheckbox',
     testVariantProps: { variant: 'foo' },
     testStateOverrides: { prop: 'color', value: 'secondary', styleKey: 'colorSecondary' },
@@ -41,7 +39,7 @@ describe('<Checkbox />', () => {
   });
 
   it('flips the checked property when clicked and calls onchange with the checked state', () => {
-    const handleChange = spy((event) => event.persist());
+    const handleChange = spy();
     const { getByRole } = render(<Checkbox onChange={handleChange} />);
 
     act(() => {

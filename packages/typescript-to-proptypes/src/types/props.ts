@@ -1,5 +1,10 @@
 import _ from 'lodash';
 
+export interface BasePropType {
+  jsDoc: string | undefined;
+  type: string;
+}
+
 export type PropType =
   | AnyType
   | ArrayType
@@ -16,158 +21,188 @@ export type PropType =
   | UndefinedType
   | UnionType;
 
-export interface AnyType {
+export interface AnyType extends BasePropType {
   type: 'any';
 }
 
-export function createAnyType(): AnyType {
+export function createAnyType(init: { jsDoc: string | undefined }): AnyType {
   return {
     type: 'any',
+    jsDoc: init.jsDoc,
   };
 }
 
-export interface ArrayType {
+export interface ArrayType extends BasePropType {
   arrayType: PropType;
   type: 'array';
 }
 
-export function createArrayType(arrayType: PropType): ArrayType {
+export function createArrayType(init: {
+  arrayType: PropType;
+  jsDoc: string | undefined;
+}): ArrayType {
   return {
     type: 'array',
-    arrayType,
+    jsDoc: init.jsDoc,
+    arrayType: init.arrayType,
   };
 }
 
-export interface BooleanType {
+export interface BooleanType extends BasePropType {
   type: 'boolean';
 }
 
-export function createBooleanType(): BooleanType {
+export function createBooleanType(init: { jsDoc: string | undefined }): BooleanType {
   return {
     type: 'boolean',
+    jsDoc: init.jsDoc,
   };
 }
 
-export interface DOMElementType {
+export interface DOMElementType extends BasePropType {
   optional?: boolean;
   type: 'DOMElementNode';
 }
 
-export function createDOMElementType(optional?: boolean): DOMElementType {
+export function createDOMElementType(init: {
+  optional: boolean | undefined;
+  jsDoc: string | undefined;
+}): DOMElementType {
   return {
     type: 'DOMElementNode',
-    optional,
+    jsDoc: init.jsDoc,
+    optional: init.optional,
   };
 }
 
-export interface ElementType {
+export interface ElementType extends BasePropType {
   elementType: 'element' | 'node' | 'elementType';
   type: 'ElementNode';
 }
 
-export function createElementType(elementType: ElementType['elementType']): ElementType {
+export function createElementType(init: {
+  elementType: ElementType['elementType'];
+  jsDoc: string | undefined;
+}): ElementType {
   return {
     type: 'ElementNode',
-    elementType,
+    jsDoc: init.jsDoc,
+    elementType: init.elementType,
   };
 }
 
-export interface FunctionType {
+export interface FunctionType extends BasePropType {
   type: 'FunctionNode';
 }
 
-export function createFunctionType(): FunctionType {
+export function createFunctionType(init: { jsDoc: string | undefined }): FunctionType {
   return {
     type: 'FunctionNode',
+    jsDoc: init.jsDoc,
   };
 }
 
-export interface InstanceOfType {
+export interface InstanceOfType extends BasePropType {
   instance: string;
   type: 'InstanceOfNode';
 }
 
-export function createInstanceOfType(instance: string): InstanceOfType {
+export function createInstanceOfType(init: {
+  jsDoc: string | undefined;
+  instance: string;
+}): InstanceOfType {
   return {
     type: 'InstanceOfNode',
-    instance,
+    instance: init.instance,
+    jsDoc: init.jsDoc,
   };
 }
 
-export interface InterfaceType {
+export interface InterfaceType extends BasePropType {
   type: 'InterfaceNode';
-  types: Array<[string, PropType]>;
+  types: ReadonlyArray<[string, PropType]>;
 }
 
-export function createInterfaceType(types: Array<[string, PropType]> = []): InterfaceType {
+export function createInterfaceType(init: {
+  jsDoc: string | undefined;
+  types: ReadonlyArray<[string, PropType]> | undefined;
+}): InterfaceType {
   return {
     type: 'InterfaceNode',
-    types,
+    jsDoc: init.jsDoc,
+    types: init.types ?? [],
   };
 }
 
-export interface LiteralType {
+export interface LiteralType extends BasePropType {
   value: unknown;
-  jsDoc?: string;
   type: 'LiteralNode';
 }
 
-export function createLiteralType(value: unknown, jsDoc?: string): LiteralType {
+export function createLiteralType(init: {
+  value: unknown;
+  jsDoc: string | undefined;
+}): LiteralType {
   return {
     type: 'LiteralNode',
-    value,
-    jsDoc,
+    value: init.value,
+    jsDoc: init.jsDoc,
   };
 }
 
-export interface NumericType {
+export interface NumericType extends BasePropType {
   type: 'NumericNode';
 }
 
-export function createNumericType(): NumericType {
+export function createNumericType(init: { jsDoc: string | undefined }): NumericType {
   return {
     type: 'NumericNode',
+    jsDoc: init.jsDoc,
   };
 }
 
-export interface ObjectType {
+export interface ObjectType extends BasePropType {
   type: 'ObjectNode';
 }
 
-export function createObjectType(): ObjectType {
+export function createObjectType(init: { jsDoc: string | undefined }): ObjectType {
   return {
     type: 'ObjectNode',
+    jsDoc: init.jsDoc,
   };
 }
 
-export interface StringType {
+export interface StringType extends BasePropType {
   type: 'StringNode';
 }
 
-export function createStringType(): StringType {
+export function createStringType(init: { jsDoc: string | undefined }): StringType {
   return {
     type: 'StringNode',
+    jsDoc: init.jsDoc,
   };
 }
 
-export interface UndefinedType {
+export interface UndefinedType extends BasePropType {
   type: 'UndefinedNode';
 }
 
-export function createUndefinedType(): UndefinedType {
+export function createUndefinedType(init: { jsDoc: string | undefined }): UndefinedType {
   return {
     type: 'UndefinedNode',
+    jsDoc: init.jsDoc,
   };
 }
 
-export interface UnionType {
+export interface UnionType extends BasePropType {
   type: 'UnionNode';
-  types: PropType[];
+  types: readonly PropType[];
 }
 
 export function uniqueUnionTypes(node: UnionType): UnionType {
   return {
     type: node.type,
+    jsDoc: node.jsDoc,
     types: _.uniqBy(node.types, (type) => {
       if (type.type === 'LiteralNode') {
         return type.value;
@@ -182,10 +217,13 @@ export function uniqueUnionTypes(node: UnionType): UnionType {
   };
 }
 
-export function createUnionType(types: PropType[]): UnionType {
+export function createUnionType(init: {
+  jsDoc: string | undefined;
+  types: readonly PropType[];
+}): UnionType {
   const flatTypes: PropType[] = [];
 
-  function flattenTypes(nodes: PropType[]) {
+  function flattenTypes(nodes: readonly PropType[]) {
     nodes.forEach((type) => {
       if (type.type === 'UnionNode') {
         flattenTypes(type.types);
@@ -195,10 +233,11 @@ export function createUnionType(types: PropType[]): UnionType {
     });
   }
 
-  flattenTypes(types);
+  flattenTypes(init.types);
 
   return uniqueUnionTypes({
     type: 'UnionNode',
+    jsDoc: init.jsDoc,
     types: flatTypes,
   });
 }

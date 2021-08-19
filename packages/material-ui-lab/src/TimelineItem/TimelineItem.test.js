@@ -1,20 +1,16 @@
 import * as React from 'react';
-import { getClasses, createMount, describeConformance } from 'test/utils';
-import TimelineItem from './TimelineItem';
+import { createClientRender, describeConformance } from 'test/utils';
+import TimelineItem, { timelineItemClasses as classes } from '@material-ui/lab/TimelineItem';
 
 describe('<TimelineItem />', () => {
-  const mount = createMount();
-  let classes;
-
-  before(() => {
-    classes = getClasses(<TimelineItem />);
-  });
+  const render = createClientRender();
 
   describeConformance(<TimelineItem />, () => ({
     classes,
     inheritComponent: 'li',
-    mount,
+    render,
+    muiName: 'MuiTimelineItem',
     refInstanceof: window.HTMLLIElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp', 'themeVariants'],
   }));
 });

@@ -1,47 +1,60 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import styled from '../styles/styled';
+import useThemeProps from '../styles/useThemeProps';
 import CheckCircle from '../internal/svg-icons/CheckCircle';
 import Warning from '../internal/svg-icons/Warning';
-import withStyles from '../styles/withStyles';
 import SvgIcon from '../SvgIcon';
+import stepIconClasses, { getStepIconUtilityClass } from './stepIconClasses';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    display: 'block',
-    transition: theme.transitions.create('color', {
-      duration: theme.transitions.duration.shortest,
-    }),
-    color: theme.palette.text.disabled,
-    '&$completed': {
-      color: theme.palette.primary.main,
-    },
-    '&$active': {
-      color: theme.palette.primary.main,
-    },
-    '&$error': {
-      color: theme.palette.error.main,
-    },
-  },
-  /* Styles applied to the SVG text element. */
-  text: {
-    fill: theme.palette.primary.contrastText,
-    fontSize: theme.typography.caption.fontSize,
-    fontFamily: theme.typography.fontFamily,
-  },
-  /* Pseudo-class applied to the root element if `active={true}`. */
-  active: {},
-  /* Pseudo-class applied to the root element if `completed={true}`. */
-  completed: {},
-  /* Pseudo-class applied to the root element if `error={true}`. */
-  error: {},
-});
+const useUtilityClasses = (ownerState) => {
+  const { classes, active, completed, error } = ownerState;
 
-const StepIcon = React.forwardRef(function StepIcon(props, ref) {
+  const slots = {
+    root: ['root', active && 'active', completed && 'completed', error && 'error'],
+    text: ['text'],
+  };
+
+  return composeClasses(slots, getStepIconUtilityClass, classes);
+};
+
+const StepIconRoot = styled(SvgIcon, {
+  name: 'MuiStepIcon',
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
+})(({ theme }) => ({
+  display: 'block',
+  transition: theme.transitions.create('color', {
+    duration: theme.transitions.duration.shortest,
+  }),
+  color: theme.palette.text.disabled,
+  [`&.${stepIconClasses.completed}`]: {
+    color: theme.palette.primary.main,
+  },
+  [`&.${stepIconClasses.active}`]: {
+    color: theme.palette.primary.main,
+  },
+  [`&.${stepIconClasses.error}`]: {
+    color: theme.palette.error.main,
+  },
+}));
+
+const StepIconText = styled('text', {
+  name: 'MuiStepIcon',
+  slot: 'Text',
+  overridesResolver: (props, styles) => styles.text,
+})(({ theme }) => ({
+  fill: theme.palette.primary.contrastText,
+  fontSize: theme.typography.caption.fontSize,
+  fontFamily: theme.typography.fontFamily,
+}));
+
+const StepIcon = React.forwardRef(function StepIcon(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiStepIcon' });
   const {
     active = false,
-    classes,
     className: classNameProp,
     completed = false,
     error = false,
@@ -49,35 +62,56 @@ const StepIcon = React.forwardRef(function StepIcon(props, ref) {
     ...other
   } = props;
 
+  const ownerState = { ...props, active, completed, error };
+  const classes = useUtilityClasses(ownerState);
+
   if (typeof icon === 'number' || typeof icon === 'string') {
-    const className = clsx(classNameProp, classes.root, {
-      [classes.active]: active,
-      [classes.error]: error,
-      [classes.completed]: completed,
-    });
+    const className = clsx(classNameProp, classes.root);
 
     if (error) {
-      return <Warning className={className} ref={ref} />;
+      return (
+        <StepIconRoot
+          as={Warning}
+          className={className}
+          ref={ref}
+          ownerState={ownerState}
+          {...other}
+        />
+      );
     }
 
     if (completed) {
-      return <CheckCircle className={className} ref={ref} />;
+      return (
+        <StepIconRoot
+          as={CheckCircle}
+          className={className}
+          ref={ref}
+          ownerState={ownerState}
+          {...other}
+        />
+      );
     }
 
     return (
-      <SvgIcon className={className} ref={ref} {...other}>
+      <StepIconRoot className={className} ref={ref} ownerState={ownerState} {...other}>
         <circle cx="12" cy="12" r="12" />
-        <text className={classes.text} x="12" y="16" textAnchor="middle">
+        <StepIconText
+          className={classes.text}
+          x="12"
+          y="16"
+          textAnchor="middle"
+          ownerState={ownerState}
+        >
           {icon}
-        </text>
-      </SvgIcon>
+        </StepIconText>
+      </StepIconRoot>
     );
   }
 
   return icon;
 });
 
-StepIcon.propTypes = {
+StepIcon.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -109,6 +143,10 @@ StepIcon.propTypes = {
    * The label displayed in the step icon.
    */
   icon: PropTypes.node,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
 };
 
-export default withStyles(styles, { name: 'MuiStepIcon' })(StepIcon);
+export default StepIcon;

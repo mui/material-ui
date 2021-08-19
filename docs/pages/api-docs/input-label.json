@@ -2,7 +2,12 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
-    "color": { "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      }
+    },
     "disableAnimation": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
     "error": { "type": { "name": "bool" } },
@@ -10,6 +15,7 @@
     "margin": { "type": { "name": "enum", "description": "'dense'" } },
     "required": { "type": { "name": "bool" } },
     "shrink": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
         "name": "enum",
@@ -31,7 +37,8 @@
       "shrink",
       "animated",
       "filled",
-      "outlined"
+      "outlined",
+      "standard"
     ],
     "globalClasses": {
       "focused": "Mui-focused",
@@ -46,6 +53,6 @@
   "filename": "/packages/material-ui/src/InputLabel/InputLabel.js",
   "inheritance": { "component": "FormLabel", "pathname": "/api/form-label/" },
   "demos": "<ul><li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

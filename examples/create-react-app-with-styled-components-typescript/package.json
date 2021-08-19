@@ -1,0 +1,46 @@
+{
+  "name": "create-react-app-with-styled-components-typescript",
+  "version": "5.0.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "next",
+    "@material-ui/lab": "next",
+    "@material-ui/styled-engine": "npm:@material-ui/styled-engine-sc@next",
+    "@testing-library/jest-dom": "latest",
+    "@testing-library/react": "latest",
+    "@testing-library/user-event": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-scripts": "latest",
+    "styled-components": "latest"
+  },
+  "resolutions": {
+    "@material-ui/styled-engine": "npm:@material-ui/styled-engine-sc@next"
+  },
+  "scripts": {
+    "tsc": "./node_modules/.bin/tsc",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@types/styled-components": "latest",
+    "typescript": "latest"
+  }
+}

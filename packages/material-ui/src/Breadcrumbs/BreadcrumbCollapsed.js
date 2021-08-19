@@ -1,18 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import experimentalStyled from '../styles/experimentalStyled';
-import { emphasize } from '../styles/colorManipulator';
+import { emphasize } from '@material-ui/system';
+import styled from '../styles/styled';
 import MoreHorizIcon from '../internal/svg-icons/MoreHoriz';
 import ButtonBase from '../ButtonBase';
 
-const BreadcrumbCollapsedButton = experimentalStyled(
-  ButtonBase,
-  {},
-  {
-    name: 'PrivateBreadcrumbCollapsed',
-    slot: 'Button',
-  },
-)(({ theme }) => ({
+const BreadcrumbCollapsedButton = styled(ButtonBase, { skipSx: true })(({ theme }) => ({
   display: 'flex',
   marginLeft: theme.spacing(0.5),
   marginRight: theme.spacing(0.5),
@@ -33,14 +26,7 @@ const BreadcrumbCollapsedButton = experimentalStyled(
   },
 }));
 
-const BreadcrumbCollapsedIcon = experimentalStyled(
-  MoreHorizIcon,
-  {},
-  {
-    name: 'PrivateBreadcrumbCollapsed',
-    slot: 'Icon',
-  },
-)({
+const BreadcrumbCollapsedIcon = styled(MoreHorizIcon)({
   width: 24,
   height: 16,
 });
@@ -49,12 +35,12 @@ const BreadcrumbCollapsedIcon = experimentalStyled(
  * @ignore - internal component.
  */
 function BreadcrumbCollapsed(props) {
-  const styleProps = props;
+  const ownerState = props;
 
   return (
     <li>
-      <BreadcrumbCollapsedButton focusRipple {...props} styleProps={styleProps}>
-        <BreadcrumbCollapsedIcon styleProps={styleProps} />
+      <BreadcrumbCollapsedButton focusRipple {...props} ownerState={ownerState}>
+        <BreadcrumbCollapsedIcon ownerState={ownerState} />
       </BreadcrumbCollapsedButton>
     </li>
   );

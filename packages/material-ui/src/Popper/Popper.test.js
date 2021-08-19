@@ -1,21 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { spy, useFakeTimers } from 'sinon';
+import { useFakeTimers } from 'sinon';
 import PropTypes from 'prop-types';
-import {
-  createMount,
-  describeConformance,
-  act,
-  createClientRender,
-  fireEvent,
-  screen,
-} from 'test/utils';
-import { ThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import Grow from '../Grow';
-import Popper from './Popper';
+import { describeConformance, act, createClientRender, fireEvent, screen } from 'test/utils';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import Grow from '@material-ui/core/Grow';
+import Popper from '@material-ui/core/Popper';
 
 describe('<Popper />', () => {
-  const mount = createMount({ strict: true });
   let rtlTheme;
   const render = createClientRender();
   const defaultProps = {
@@ -25,7 +17,7 @@ describe('<Popper />', () => {
   };
 
   before(() => {
-    rtlTheme = createMuiTheme({
+    rtlTheme = createTheme({
       direction: 'rtl',
     });
   });
@@ -33,10 +25,13 @@ describe('<Popper />', () => {
   describeConformance(<Popper {...defaultProps} />, () => ({
     classes: {},
     inheritComponent: 'div',
-    mount,
     refInstanceof: window.HTMLDivElement,
     skip: [
       'componentProp',
+      'componentsProp',
+      'themeDefaultProps',
+      'themeStyleOverrides',
+      'themeVariants',
       // https://github.com/facebook/react/issues/11565
       'reactTestRenderer',
     ],
@@ -44,17 +39,15 @@ describe('<Popper />', () => {
 
   describe('prop: placement', () => {
     it('should have top placement', () => {
-      const renderSpy = spy();
       render(
         <Popper {...defaultProps} placement="top">
           {({ placement }) => {
-            renderSpy(placement);
-            return null;
+            return <span data-testid="renderSpy" data-placement={placement} />;
           }}
         </Popper>,
       );
-      expect(renderSpy.callCount).to.equal(2); // strict mode renders twice
-      expect(renderSpy.args[0][0]).to.equal('top');
+
+      expect(screen.getByTestId('renderSpy')).to.have.attribute('data-placement', 'top');
     });
 
     [
@@ -79,19 +72,25 @@ describe('<Popper />', () => {
         out: 'top',
       },
     ].forEach((test) => {
-      it(`should ${test.in === test.out ? 'not' : ''}flip ${
+      it(`should ${test.in === test.out ? 'not' : ''} flip ${
         test.in
       } when direction=rtl is used`, () => {
-        render(
-          <ThemeProvider theme={rtlTheme}>
-            <Popper {...defaultProps} placement={test.in}>
-              {({ placement }) => {
-                return <div data-testid="placement">{placement}</div>;
-              }}
-            </Popper>
-            ,
-          </ThemeProvider>,
-        );
+        function Test() {
+          const [anchorEl, setAnchorEl] = React.useState(null);
+
+          return (
+            <ThemeProvider theme={rtlTheme}>
+              <div style={{ margin: '5em' }} ref={setAnchorEl} />
+              <Popper anchorEl={anchorEl} open={Boolean(anchorEl)} placement={test.in}>
+                {({ placement }) => {
+                  return <div data-testid="placement">{placement}</div>;
+                }}
+              </Popper>
+            </ThemeProvider>
+          );
+        }
+        render(<Test />);
+
         expect(screen.getByTestId('placement')).to.have.text(test.out);
       });
     });
@@ -257,7 +256,7 @@ describe('<Popper />', () => {
         <Popper {...defaultProps} disablePortal popperRef={popperRef} />,
       );
       // renders
-      expect(getByRole('tooltip')).to.not.equal(null);
+      expect(getByRole('tooltip')).not.to.equal(null);
       // correctly sets modifiers
       expect(popperRef.current.state.options.modifiers[0].options.altBoundary).to.equal(true);
     });
@@ -266,7 +265,7 @@ describe('<Popper />', () => {
       const popperRef = React.createRef();
       const { getByRole } = render(<Popper {...defaultProps} popperRef={popperRef} />);
       // renders
-      expect(getByRole('tooltip')).to.not.equal(null);
+      expect(getByRole('tooltip')).not.to.equal(null);
       // correctly sets modifiers
       expect(popperRef.current.state.options.modifiers[0].options.altBoundary).to.equal(false);
     });

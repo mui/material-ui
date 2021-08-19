@@ -42,11 +42,32 @@ async function main() {
     });
   });
 
-  const routes = await page.$$eval('#tests a', (links) => {
-    return links.map((link) => {
-      return link.href;
-    });
+  let routes = await page.$$eval('#tests a', (links) => {
+    return links.map((link) => link.href);
   });
+  routes = routes.map((route) => route.replace(baseUrl, ''));
+
+  async function renderFixture(index) {
+    // Use client-side routing which is much faster than full page navigation via page.goto().
+    // Could become an issue with test isolation.
+    // If tests are flaky due to global pollution switch to page.goto(route);
+    // puppeteers built-in click() times out
+    await page.$eval(`#tests li:nth-of-type(${index + 1}) a`, (link) => {
+      link.click();
+    });
+    // Move cursor offscreen to not trigger unwanted hover effects.
+    page.mouse.move(0, 0);
+
+    const testcase = await page.waitForSelector('[data-testid="testcase"]:not([aria-busy="true"])');
+
+    return testcase;
+  }
+
+  async function takeScreenshot({ testcase, route }) {
+    const screenshotPath = path.resolve(screenshotDir, `.${route}.png`);
+    await fse.ensureDir(path.dirname(screenshotPath));
+    await testcase.screenshot({ path: screenshotPath, type: 'png' });
+  }
 
   // prepare screenshots
   await fse.emptyDir(screenshotDir);
@@ -57,26 +78,61 @@ async function main() {
     });
 
     routes.forEach((route, index) => {
-      it(`creates screenshots of ${route.replace(baseUrl, '')}`, async () => {
-        // Use client-side routing which is much faster than full page navigation via page.goto().
-        // Could become an issue with test isolation.
-        // If tests are flaky due to global pollution switch to page.goto(route);
-        // puppeteers built-in click() times out
-        await page.$eval(`#tests li:nth-of-type(${index + 1}) a`, (link) => {
-          link.click();
-        });
-        // Move cursor offscreen to not trigger unwanted hover effects.
-        page.mouse.move(0, 0);
+      it(`creates screenshots of ${route}`, async function test() {
+        // With the playwright inspector we might want to call `page.pause` which would lead to a timeout.
+        if (process.env.PWDEBUG) {
+          this.timeout(0);
+        }
 
-        const testcase = await page.waitForSelector(
-          '[data-testid="testcase"]:not([aria-busy="true"])',
+        const testcase = await renderFixture(index);
+        await takeScreenshot({ testcase, route });
+      });
+    });
+
+    describe('Rating', () => {
+      it('should handle focus-visible correctly', async () => {
+        const index = routes.findIndex(
+          (route) => route === '/regression-Rating/FocusVisibleRating',
         );
-        const clip = await testcase.boundingBox();
+        const testcase = await renderFixture(index);
+        await page.keyboard.press('Tab');
+        await takeScreenshot({ testcase, route: '/regression-Rating/FocusVisibleRating2' });
+        await page.keyboard.press('ArrowLeft');
+        await takeScreenshot({ testcase, route: '/regression-Rating/FocusVisibleRating3' });
+      });
 
-        const screenshotPath = path.resolve(screenshotDir, `${route.replace(baseUrl, '.')}.png`);
-        await fse.ensureDir(path.dirname(screenshotPath));
-        // Testcase.screenshot would resize the viewport to the element bbox.
-        await page.screenshot({ clip, path: screenshotPath, type: 'png' });
+      it('should handle focus-visible with precise ratings correctly', async () => {
+        const index = routes.findIndex(
+          (route) => route === '/regression-Rating/PreciseFocusVisibleRating',
+        );
+        const testcase = await renderFixture(index);
+        await page.keyboard.press('Tab');
+        await takeScreenshot({ testcase, route: '/regression-Rating/PreciseFocusVisibleRating2' });
+        await page.keyboard.press('ArrowRight');
+        await takeScreenshot({ testcase, route: '/regression-Rating/PreciseFocusVisibleRating3' });
+      });
+    });
+
+    describe('DateTimePicker', () => {
+      it('should handle change in pointer correctly', async () => {
+        const index = routes.findIndex(
+          (route) => route === '/regression-pickers/UncontrolledDateTimePicker',
+        );
+        const testcase = await renderFixture(index);
+
+        await page.click('[aria-label="Choose date"]');
+        await page.click('[aria-label*="switch to year view"]');
+        await takeScreenshot({
+          testcase: await page.waitForSelector('[role="dialog"]'),
+          route: '/regression-pickers/UncontrolledDateTimePicker-desktop',
+        });
+        await page.evaluate(() => {
+          window.muiTogglePickerMode();
+        });
+        await takeScreenshot({
+          testcase,
+          route: '/regression-pickers/UncontrolledDateTimePicker-mobile',
+        });
       });
     });
   });

@@ -1,15 +1,16 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
-import { createClientRender, createMount, describeConformance } from 'test/utils';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { act, createClientRender, describeConformance } from 'test/utils';
+import { createTheme } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
-import Slide, { setTranslateValue } from './Slide';
+import Slide from '@material-ui/core/Slide';
+import { setTranslateValue } from './Slide';
 import { useForkRef } from '../utils';
 
 describe('<Slide />', () => {
   const render = createClientRender();
-  const mount = createMount({ strict: true });
+
   const defaultProps = {
     in: true,
     children: <div id="testChild" />,
@@ -23,10 +24,13 @@ describe('<Slide />', () => {
     () => ({
       classes: {},
       inheritComponent: Transition,
-      mount,
       refInstanceof: window.HTMLDivElement,
       skip: [
         'componentProp',
+        'componentsProp',
+        'themeDefaultProps',
+        'themeStyleOverrides',
+        'themeVariants',
         // react-transition-group issue
         'reactTestRenderer',
       ],
@@ -38,7 +42,7 @@ describe('<Slide />', () => {
       <Slide
         {...defaultProps}
         style={{ color: 'red', backgroundColor: 'yellow' }}
-        theme={createMuiTheme()}
+        theme={createTheme()}
       >
         <div id="with-slide" style={{ color: 'blue' }} />
       </Slide>,
@@ -98,7 +102,9 @@ describe('<Slide />', () => {
       expect(handleEntering.callCount).to.equal(1);
       expect(handleEntering.args[0][0]).to.equal(child);
 
-      clock.tick(1000);
+      act(() => {
+        clock.tick(1000);
+      });
       expect(handleEntered.callCount).to.equal(1);
 
       setProps({ in: false });
@@ -109,14 +115,16 @@ describe('<Slide />', () => {
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExiting.args[0][0]).to.equal(child);
 
-      clock.tick(1000);
+      act(() => {
+        clock.tick(1000);
+      });
       expect(handleExited.callCount).to.equal(1);
       expect(handleExited.args[0][0]).to.equal(child);
     });
   });
 
   describe('prop: timeout', () => {
-    it('should create proper easeOut animation onEntering', () => {
+    it('should create proper enter animation onEntering', () => {
       const handleEntering = spy();
 
       render(
@@ -134,7 +142,7 @@ describe('<Slide />', () => {
       );
     });
 
-    it('should create proper sharp animation onExit', () => {
+    it('should create proper exit animation', () => {
       const handleExit = spy();
       const { setProps } = render(
         <Slide
@@ -154,6 +162,45 @@ describe('<Slide />', () => {
     });
   });
 
+  describe('prop: easing', () => {
+    it('should create proper enter animation', () => {
+      const handleEntering = spy();
+
+      render(
+        <Slide
+          {...defaultProps}
+          easing={{
+            enter: 'cubic-bezier(1, 1, 0, 0)',
+          }}
+          onEntering={handleEntering}
+        />,
+      );
+
+      expect(handleEntering.args[0][0].style.transition).to.match(
+        /transform 225ms cubic-bezier\(1, 1, 0, 0\)( 0ms)?/,
+      );
+    });
+
+    it('should create proper exit animation', () => {
+      const handleExit = spy();
+      const { setProps } = render(
+        <Slide
+          {...defaultProps}
+          easing={{
+            exit: 'cubic-bezier(0, 0, 1, 1)',
+          }}
+          onExit={handleExit}
+        />,
+      );
+
+      setProps({ in: false });
+
+      expect(handleExit.args[0][0].style.transition).to.match(
+        /transform 195ms cubic-bezier\(0, 0, 1, 1\)( 0ms)?/,
+      );
+    });
+  });
+
   describe('prop: direction', () => {
     it('should update the position', () => {
       const { container, setProps } = render(
@@ -167,7 +214,7 @@ describe('<Slide />', () => {
       });
 
       const transition2 = child.style.transform;
-      expect(transition1).to.not.equal(transition2);
+      expect(transition1).not.to.equal(transition2);
     });
   });
 
@@ -192,7 +239,7 @@ describe('<Slide />', () => {
         }
       };
       const handleRef = useForkRef(ref, stubBoundingClientRect);
-      return <div {...props} ref={handleRef} />;
+      return <div {...props} style={{ height: 300, width: 500 }} ref={handleRef} />;
     });
 
     describe('handleEnter()', () => {
@@ -211,9 +258,7 @@ describe('<Slide />', () => {
 
         setProps({ in: true });
 
-        expect(nodeEnterTransformStyle).to.equal(
-          `translateX(${global.innerWidth}px) translateX(-300px)`,
-        );
+        expect(nodeEnterTransformStyle).to.equal(`translateX(${global.innerWidth - 300}px)`);
       });
 
       it('should set element transform and transition in the `right` direction', () => {
@@ -231,7 +276,7 @@ describe('<Slide />', () => {
 
         setProps({ in: true });
 
-        expect(nodeEnterTransformStyle).to.equal('translateX(-800px)');
+        expect(nodeEnterTransformStyle).to.equal(`translateX(-${300 + 500}px)`);
       });
 
       it('should set element transform and transition in the `up` direction', () => {
@@ -249,9 +294,7 @@ describe('<Slide />', () => {
 
         setProps({ in: true });
 
-        expect(nodeEnterTransformStyle).to.equal(
-          `translateY(${global.innerHeight}px) translateY(-200px)`,
-        );
+        expect(nodeEnterTransformStyle).to.equal(`translateY(${global.innerHeight - 200}px)`);
       });
 
       it('should set element transform and transition in the `down` direction', () => {
@@ -308,9 +351,7 @@ describe('<Slide />', () => {
 
         setProps({ in: true });
 
-        expect(nodeEnterTransformStyle).to.equal(
-          `translateY(${global.innerHeight}px) translateY(100px)`,
-        );
+        expect(nodeEnterTransformStyle).to.equal(`translateY(${global.innerHeight + 100}px)`);
       });
 
       it('should set element transform in the `left` direction when element is offscreen', () => {
@@ -329,9 +370,7 @@ describe('<Slide />', () => {
 
         setProps({ in: true });
 
-        expect(nodeEnterTransformStyle).to.equal(
-          `translateX(${global.innerWidth}px) translateX(100px)`,
-        );
+        expect(nodeEnterTransformStyle).to.equal(`translateX(${global.innerWidth + 100}px)`);
       });
     });
 
@@ -352,9 +391,7 @@ describe('<Slide />', () => {
 
         setProps({ in: false });
 
-        expect(nodeExitingTransformStyle).to.equal(
-          `translateX(${global.innerWidth}px) translateX(-300px)`,
-        );
+        expect(nodeExitingTransformStyle).to.equal(`translateX(${global.innerWidth - 300}px)`);
       });
 
       it('should set element transform and transition in the `right` direction', () => {
@@ -392,9 +429,7 @@ describe('<Slide />', () => {
 
         setProps({ in: false });
 
-        expect(nodeExitingTransformStyle).to.equal(
-          `translateY(${global.innerHeight}px) translateY(-200px)`,
-        );
+        expect(nodeExitingTransformStyle).to.equal(`translateY(${global.innerHeight - 200}px)`);
       });
 
       it('should set element transform and transition in the `down` direction', () => {
@@ -416,71 +451,111 @@ describe('<Slide />', () => {
         expect(nodeExitingTransformStyle).to.equal('translateY(-500px)');
       });
     });
-  });
 
-  describe('mount', () => {
-    it('should work when initially hidden', () => {
-      const childRef = React.createRef();
-      render(
-        <Slide in={false}>
-          <div ref={childRef}>Foo</div>
-        </Slide>,
-      );
-      const transition = childRef.current;
+    describe('prop: container', () => {
+      it('should set element transform and transition in the `up` direction', function test() {
+        if (/jsdom/.test(window.navigator.userAgent)) {
+          // Need layout
+          this.skip();
+        }
 
-      expect(transition.style.visibility).to.equal('hidden');
-      expect(transition.style.transform).to.not.equal(undefined);
-    });
-  });
-
-  describe('resize', () => {
-    let clock;
-
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
-    it('should recompute the correct position', () => {
-      const { container } = render(
-        <Slide direction="up" in={false}>
-          <div id="testChild">Foo</div>
-        </Slide>,
-      );
-
-      window.dispatchEvent(new window.Event('resize', {}));
-      clock.tick(166);
-      const child = container.querySelector('#testChild');
-
-      expect(child.style.transform).to.not.equal(undefined);
+        let nodeExitingTransformStyle;
+        const height = 200;
+        function Test(props) {
+          const [container, setContainer] = React.useState(null);
+          return (
+            <div
+              ref={(node) => {
+                setContainer(node);
+              }}
+              style={{ height, width: 200 }}
+            >
+              <Slide
+                direction="up"
+                in
+                {...props}
+                container={container}
+                onExit={(node) => {
+                  nodeExitingTransformStyle = node.style.transform;
+                }}
+              >
+                <FakeDiv rect={{ top: 8 }} />
+              </Slide>
+            </div>
+          );
+        }
+        const { setProps } = render(<Test />);
+        setProps({ in: false });
+        expect(nodeExitingTransformStyle).to.equal(`translateY(${height}px)`);
+      });
     });
 
-    it('should take existing transform into account', () => {
-      const element = {
-        fakeTransform: 'transform matrix(1, 0, 0, 1, 0, 420)',
-        getBoundingClientRect: () => ({
-          width: 500,
-          height: 300,
-          left: 300,
-          right: 800,
-          top: 1200,
-          bottom: 1500,
-        }),
-        style: {},
-      };
-      setTranslateValue('up', element);
-      expect(element.style.transform).to.equal(
-        `translateY(${global.innerHeight}px) translateY(-780px)`,
-      );
+    describe('mount', () => {
+      it('should work when initially hidden', () => {
+        const childRef = React.createRef();
+        render(
+          <Slide in={false}>
+            <div ref={childRef}>Foo</div>
+          </Slide>,
+        );
+        const transition = childRef.current;
+
+        expect(transition.style.visibility).to.equal('hidden');
+        expect(transition.style.transform).not.to.equal(undefined);
+      });
     });
 
-    it('should do nothing when visible', () => {
-      render(<Slide {...defaultProps} />);
-      window.dispatchEvent(new window.Event('resize', {}));
-      clock.tick(166);
+    describe('resize', () => {
+      let clock;
+
+      beforeEach(() => {
+        clock = useFakeTimers();
+      });
+
+      afterEach(() => {
+        clock.restore();
+      });
+
+      it('should recompute the correct position', () => {
+        const { container } = render(
+          <Slide direction="up" in={false}>
+            <div id="testChild">Foo</div>
+          </Slide>,
+        );
+
+        act(() => {
+          window.dispatchEvent(new window.Event('resize', {}));
+          clock.tick(166);
+        });
+
+        const child = container.querySelector('#testChild');
+        expect(child.style.transform).not.to.equal(undefined);
+      });
+
+      it('should take existing transform into account', () => {
+        const element = {
+          fakeTransform: 'transform matrix(1, 0, 0, 1, 0, 420)',
+          getBoundingClientRect: () => ({
+            width: 500,
+            height: 300,
+            left: 300,
+            right: 800,
+            top: 1200,
+            bottom: 1500,
+          }),
+          style: {},
+        };
+        setTranslateValue('up', element);
+        expect(element.style.transform).to.equal(`translateY(${global.innerHeight - 780}px)`);
+      });
+
+      it('should do nothing when visible', () => {
+        render(<Slide {...defaultProps} />);
+        act(() => {
+          window.dispatchEvent(new window.Event('resize', {}));
+          clock.tick(166);
+        });
+      });
     });
   });
 

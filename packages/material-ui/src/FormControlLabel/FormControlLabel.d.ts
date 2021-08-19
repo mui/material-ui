@@ -1,5 +1,8 @@
 import * as React from 'react';
-import { InternalStandardProps as StandardProps } from '..';
+import { SxProps } from '@material-ui/system';
+import { Theme, InternalStandardProps as StandardProps } from '..';
+import { TypographyProps } from '../Typography';
+import { FormControlLabelClasses } from './formControlLabelClasses';
 
 export interface FormControlLabelProps
   extends StandardProps<React.LabelHTMLAttributes<HTMLLabelElement>, 'children' | 'onChange'> {
@@ -10,19 +13,18 @@ export interface FormControlLabelProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if `labelPlacement="start"`. */
-    labelPlacementStart?: string;
-    /** Styles applied to the root element if `labelPlacement="top"`. */
-    labelPlacementTop?: string;
-    /** Styles applied to the root element if `labelPlacement="bottom"`. */
-    labelPlacementBottom?: string;
-    /** Pseudo-class applied to the root element if `disabled={true}`. */
-    disabled?: string;
-    /** Styles applied to the label's Typography component. */
-    label?: string;
+  classes?: Partial<FormControlLabelClasses>;
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps?: {
+    /**
+     * Props applied to the Typography wrapper of the passed label.
+     * This is unused if disableTpography is true.
+     * @default {}
+     */
+    typography?: TypographyProps;
   };
   /**
    * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
@@ -32,6 +34,10 @@ export interface FormControlLabelProps
    * If `true`, the control is disabled.
    */
   disabled?: boolean;
+  /**
+   * If `true`, the label is rendered as it is passed without an additional typography node.
+   */
+  disableTypography?: boolean;
   /**
    * Pass a ref to the `input` element.
    */
@@ -49,17 +55,19 @@ export interface FormControlLabelProps
   /**
    * Callback fired when the state is changed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent} event The event source of the callback.
    * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
   onChange?: (event: React.SyntheticEvent, checked: boolean) => void;
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
   /**
    * The value of the component.
    */
   value?: unknown;
 }
-
-export type FormControlLabelClassKey = keyof NonNullable<FormControlLabelProps['classes']>;
 
 /**
  * Drop-in replacement of the `Radio`, `Switch` and `Checkbox` component.

@@ -1,16 +1,16 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
 import { FabProps } from '../Fab';
-import { TransitionHandlerProps, TransitionProps } from '../transitions';
+import { TransitionProps } from '../transitions';
+import { SpeedDialClasses } from './speedDialClasses';
 
 export type CloseReason = 'toggle' | 'blur' | 'mouseLeave' | 'escapeKeyDown';
 export type OpenReason = 'toggle' | 'focus' | 'mouseEnter';
 
 export interface SpeedDialProps
-  extends StandardProps<
-    React.HTMLAttributes<HTMLDivElement> & Partial<TransitionHandlerProps>,
-    'children'
-  > {
+  extends StandardProps<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   /**
    * SpeedDialActions to display when the SpeedDial is `open`.
    */
@@ -18,24 +18,7 @@ export interface SpeedDialProps
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the Fab component. */
-    fab?: string;
-    /** Styles applied to the root element if direction="up" */
-    directionUp?: string;
-    /** Styles applied to the root element if direction="down" */
-    directionDown?: string;
-    /** Styles applied to the root element if direction="left" */
-    directionLeft?: string;
-    /** Styles applied to the root element if direction="right" */
-    directionRight?: string;
-    /** Styles applied to the actions (`children` wrapper) element. */
-    actions?: string;
-    /** Styles applied to the actions (`children` wrapper) element if `open={false}`. */
-    actionsClosed?: string;
-  };
+  classes?: Partial<SpeedDialClasses>;
   /**
    * The aria-label of the button element.
    * Also used to provide the `id` for the `SpeedDial` element and its children.
@@ -84,11 +67,15 @@ export interface SpeedDialProps
    */
   openIcon?: React.ReactNode;
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx?: SxProps<Theme>;
+  /**
    * The component used for the transition.
    * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Zoom
    */
-  TransitionComponent?: React.ComponentType<TransitionProps>;
+  TransitionComponent?: React.JSXElementConstructor<TransitionProps>;
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
@@ -104,8 +91,6 @@ export interface SpeedDialProps
    */
   TransitionProps?: TransitionProps;
 }
-
-export type SpeedDialClassKey = keyof NonNullable<SpeedDialProps['classes']>;
 
 /**
  *

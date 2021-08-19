@@ -23,14 +23,14 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
-    "elevation": { "type": { "name": "number" }, "default": "8" },
-    "getContentAnchorEl": { "type": { "name": "func" } },
+    "elevation": { "type": { "name": "custom", "description": "integer" }, "default": "8" },
     "marginThreshold": { "type": { "name": "number" }, "default": "16" },
     "onClose": { "type": { "name": "func" } },
     "PaperProps": {
       "type": { "name": "shape", "description": "{ component?: element type }" },
       "default": "{}"
     },
+    "sx": { "type": { "name": "object" } },
     "transformOrigin": {
       "type": {
         "name": "shape",
@@ -55,6 +55,6 @@
   "filename": "/packages/material-ui/src/Popover/Popover.js",
   "inheritance": { "component": "Modal", "pathname": "/api/modal/" },
   "demos": "<ul><li><a href=\"/components/menus/\">Menus</a></li>\n<li><a href=\"/components/popover/\">Popover</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

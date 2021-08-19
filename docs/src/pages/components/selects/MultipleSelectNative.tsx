@@ -1,18 +1,7 @@
 import * as React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120,
-      maxWidth: 300,
-    },
-  }),
-);
 
 const names = [
   'Oliver Hansen',
@@ -28,10 +17,9 @@ const names = [
 ];
 
 export default function MultipleSelectNative() {
-  const classes = useStyles();
   const [personName, setPersonName] = React.useState<string[]>([]);
-  const handleChangeMultiple = (event: React.ChangeEvent<{ value: unknown }>) => {
-    const { options } = event.target as HTMLSelectElement;
+  const handleChangeMultiple = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const { options } = event.target;
     const value: string[] = [];
     for (let i = 0, l = options.length; i < l; i += 1) {
       if (options[i].selected) {
@@ -43,7 +31,7 @@ export default function MultipleSelectNative() {
 
   return (
     <div>
-      <FormControl className={classes.formControl}>
+      <FormControl sx={{ m: 1, minWidth: 120, maxWidth: 300 }}>
         <InputLabel shrink htmlFor="select-multiple-native">
           Native
         </InputLabel>
@@ -51,7 +39,9 @@ export default function MultipleSelectNative() {
           multiple
           native
           value={personName}
+          // @ts-ignore Typings are not considering `native`
           onChange={handleChangeMultiple}
+          label="Native"
           inputProps={{
             id: 'select-multiple-native',
           }}

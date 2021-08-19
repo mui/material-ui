@@ -1,17 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
-import Icon from './Icon';
-import classes from './iconClasses';
+import { createClientRender, describeConformance } from 'test/utils';
+import Icon, { iconClasses as classes } from '@material-ui/core/Icon';
 
 describe('<Icon />', () => {
-  const mount = createMount();
   const render = createClientRender();
 
-  describeConformanceV5(<Icon>account_circle</Icon>, () => ({
+  describeConformance(<Icon>account_circle</Icon>, () => ({
     classes,
     inheritComponent: 'span',
-    mount,
+    render,
     muiName: 'MuiIcon',
     refInstanceof: window.HTMLSpanElement,
     testComponentPropWith: 'div',
@@ -72,7 +70,7 @@ describe('<Icon />', () => {
         </Icon>,
       );
 
-      expect(getByTestId('root')).to.not.have.class('material-icons');
+      expect(getByTestId('root')).not.to.have.class('material-icons');
     });
 
     it('should render with the supplied base class', () => {

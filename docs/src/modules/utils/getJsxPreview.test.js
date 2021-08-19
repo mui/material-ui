@@ -13,7 +13,6 @@ export default function HalfRating() {
   return <Rating name="half-rating" value={2.5} precision={0.5} />;
 }
 `,
-        true,
       ),
     ).to.equal(`<Rating name="half-rating" value={2.5} precision={0.5} />
 `);
@@ -31,7 +30,6 @@ export default function UseWidth() {
   );
 }
 `,
-        true,
       ),
     ).to.equal(`<ThemeProvider theme={theme}>
   <MyComponent />
@@ -51,7 +49,6 @@ export default function UseWidth() {
   );
 }
 `,
-        true,
       ),
     ).to.equal(`<MyComponent />
 `);
@@ -65,13 +62,29 @@ export function UseWidth() {
   return ( <MyComponent />;
 }
 `,
-        true,
       ),
     ).to.equal(`
 export function UseWidth() {
   return ( <MyComponent />;
 }
 
+`);
+  });
+
+  it('should ignore the wrapping div, Box, or Stack', () => {
+    expect(
+      getJsxPreview(
+        `
+export default function HalfRating() {
+  return (
+    <Stack>
+      <Rating />
+    </Stack>
+  );
+}
+`,
+      ),
+    ).to.equal(`<Rating />
 `);
   });
 });

@@ -26,10 +26,10 @@ It's meant to be an improved version of the "react-select" and "downshift" packa
 ## Props
 
 The Select component is implemented as a custom `<input>` element of the [InputBase](/api/input-base/).
-It extends the [text field components](/components/text-fields) sub-components, either the [Input](/api/input/), [FilledInput](/api/filled-input/), or [OutlinedInput](/api/outlined-input/), depending on the variant selected.
+It extends the [text field components](/components/text-fields) sub-components, either the [OutlinedInput](/api/outlined-input/), [Input](/api/input/), or [FilledInput](/api/filled-input/), depending on the variant selected.
 It shares the same styles and many of the same props. Refer to the respective component's API page for details.
 
-### Filled and outlined variants
+### Filled and standard variants
 
 {{"demo": "pages/components/selects/SelectVariants.js"}}
 
@@ -57,13 +57,14 @@ we allow such pattern.
 The `TextField` wrapper component is a complete form control including a label, input and help text.
 You can find an example with the select mode [in this section](/components/text-fields/#select).
 
-## Customized selects
+## Customization
 
-Here are some examples of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/how-to-customize/).
+Here are some examples of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 The first step is to style the `InputBase` component.
 Once it's styled, you can either use it directly as a text field or provide it to the select `input` prop to have a `select` field.
+Notice that the `"standard"` variant is easier to customize, since it does not wrap the contents in a `fieldset`/`legend` markup.
 
 {{"demo": "pages/components/selects/CustomizedSelects.js"}}
 
@@ -102,7 +103,7 @@ Like with the single selection, you can pull out the new value by accessing `eve
 
 ## With a dialog
 
-While it's discouraged by the Material Design specification, you can use a select inside a dialog.
+While it's discouraged by the Material Design guidelines, you can use a select inside a dialog.
 
 {{"demo": "pages/components/selects/DialogSelect.js"}}
 

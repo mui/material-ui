@@ -1,19 +1,18 @@
 import * as React from 'react';
-import { createMount, describeConformanceV5 } from 'test/utils';
-import ListItemAvatar from './ListItemAvatar';
-import classes from './listItemAvatarClasses';
+import { createClientRender, describeConformance } from 'test/utils';
+import ListItemAvatar, { listItemAvatarClasses as classes } from '@material-ui/core/ListItemAvatar';
 
 describe('<ListItemAvatar />', () => {
-  const mount = createMount();
+  const render = createClientRender();
 
-  describeConformanceV5(
+  describeConformance(
     <ListItemAvatar>
       <div />
     </ListItemAvatar>,
     () => ({
       classes,
       inheritComponent: 'div',
-      mount,
+      render,
       muiName: 'MuiListItemAvatar',
       refInstanceof: window.HTMLDivElement,
       skip: ['componentProp', 'componentsProp', 'themeVariants'],

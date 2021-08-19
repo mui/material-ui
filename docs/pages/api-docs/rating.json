@@ -9,6 +9,7 @@
       "type": { "name": "func" },
       "default": "function defaultLabelText(value) {\n  return `${value} Star${value !== 1 ? 's' : ''}`;\n}"
     },
+    "highlightSelectedOnly": { "type": { "name": "bool" } },
     "icon": { "type": { "name": "node" }, "default": "<Star fontSize=\"inherit\" />" },
     "IconContainerComponent": {
       "type": { "name": "elementType" },
@@ -22,11 +23,12 @@
     "readOnly": { "type": { "name": "bool" } },
     "size": {
       "type": {
-        "name": "enum",
-        "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
+        "name": "union",
+        "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;string"
       },
       "default": "'medium'"
     },
+    "sx": { "type": { "name": "object" } },
     "value": { "type": { "name": "number" } }
   },
   "name": "Rating",
@@ -34,6 +36,7 @@
     "classes": [
       "root",
       "sizeSmall",
+      "sizeMedium",
       "sizeLarge",
       "readOnly",
       "disabled",
@@ -57,6 +60,6 @@
   "filename": "/packages/material-ui/src/Rating/Rating.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/rating/\">Rating</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

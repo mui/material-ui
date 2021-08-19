@@ -1,26 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import { getListSubheaderUtilityClass } from './listSubheaderClasses';
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`]),
-    ...(!styleProps.disableGutters && styles.gutters),
-    ...(styleProps.inset && styles.inset),
-    ...(!styleProps.disableSticky && styles.sticky),
-  });
-};
-
-const useUtilityClasses = (styleProps) => {
-  const { classes, color, disableGutters, inset, disableSticky } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, color, disableGutters, inset, disableSticky } = ownerState;
 
   const slots = {
     root: [
@@ -35,16 +23,21 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getListSubheaderUtilityClass, classes);
 };
 
-const ListSubheaderRoot = experimentalStyled(
-  'li',
-  {},
-  {
-    name: 'MuiListSubheader',
-    slot: 'Root',
-    overridesResolver,
+const ListSubheaderRoot = styled('li', {
+  name: 'MuiListSubheader',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [
+      styles.root,
+      ownerState.color !== 'default' && styles[`color${capitalize(ownerState.color)}`],
+      !ownerState.disableGutters && styles.gutters,
+      ownerState.inset && styles.inset,
+      !ownerState.disableSticky && styles.sticky,
+    ];
   },
-)(({ theme, styleProps }) => ({
-  /* Styles applied to the root element. */
+})(({ theme, ownerState }) => ({
   boxSizing: 'border-box',
   lineHeight: '48px',
   listStyle: 'none',
@@ -52,29 +45,24 @@ const ListSubheaderRoot = experimentalStyled(
   fontFamily: theme.typography.fontFamily,
   fontWeight: theme.typography.fontWeightMedium,
   fontSize: theme.typography.pxToRem(14),
-  /* Styles applied to the root element if `color="primary"`. */
-  ...(styleProps.color === 'primary' && {
+  ...(ownerState.color === 'primary' && {
     color: theme.palette.primary.main,
   }),
-  /* Styles applied to the root element if `color="inherit"`. */
-  ...(styleProps.color === 'inherit' && {
+  ...(ownerState.color === 'inherit' && {
     color: 'inherit',
   }),
-  /* Styles applied to the root element unless `disableGutters={true}`. */
-  ...(!styleProps.disableGutters && {
+  ...(!ownerState.disableGutters && {
     paddingLeft: 16,
     paddingRight: 16,
   }),
-  /* Styles applied to the root element if `inset={true}`. */
-  ...(styleProps.inset && {
+  ...(ownerState.inset && {
     paddingLeft: 72,
   }),
-  /* Styles applied to the root element unless `disableSticky={true}`. */
-  ...(!styleProps.disableSticky && {
+  ...(!ownerState.disableSticky && {
     position: 'sticky',
     top: 0,
     zIndex: 1,
-    backgroundColor: 'inherit',
+    backgroundColor: theme.palette.background.paper,
   }),
 }));
 
@@ -90,7 +78,7 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     color,
     component,
@@ -99,20 +87,20 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
     inset,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <ListSubheaderRoot
       as={component}
       className={clsx(classes.root, className)}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     />
   );
 });
 
-ListSubheader.propTypes = {
+ListSubheader.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

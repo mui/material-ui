@@ -1,6 +1,6 @@
 # @material-ui/icons
 
-This package provides the Google [Material icons](https://material.io/tools/icons/) packaged as a set of [React](https://facebook.github.io/react/) components.
+This package provides the Google [Material icons](https://fonts.google.com/icons) packaged as a set of [React](https://facebook.github.io/react/) components.
 
 ## Installation
 
@@ -29,5 +29,7 @@ yarn add @material-ui/core@next
 
 ## Documentation
 
-- [The documentation](https://material-ui.com/components/icons/#svg-material-icons)
-- [The icons search](https://material-ui.com/components/material-icons/)
+<!-- #default-branch-switch -->
+
+- [The documentation](https://next.material-ui.com/components/icons/#svg-material-icons)
+- [The icons search](https://next.material-ui.com/components/material-icons/)

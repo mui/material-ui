@@ -2,8 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import {
-  getClasses,
-  createMount,
   describeConformance,
   act,
   createClientRender,
@@ -14,7 +12,8 @@ import {
   programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
 import { camelCase } from 'lodash/string';
-import Tooltip, { testReset } from './Tooltip';
+import Tooltip, { tooltipClasses as classes } from '@material-ui/core/Tooltip';
+import { testReset } from './Tooltip';
 
 async function raf() {
   return new Promise((resolve) => {
@@ -45,29 +44,24 @@ describe('<Tooltip />', () => {
     });
   });
 
-  const mount = createMount({ strict: true });
-  let classes;
   const render = createClientRender();
 
-  before(() => {
-    classes = getClasses(
-      <Tooltip title="Hello World">
-        <button type="submit">Hello World</button>
-      </Tooltip>,
-    );
-  });
-
   describeConformance(
-    <Tooltip title="Hello World">
+    <Tooltip title="Hello World" open>
       <button type="submit">Hello World</button>
     </Tooltip>,
     () => ({
       classes,
       inheritComponent: 'button',
-      mount,
+      render,
+      muiName: 'MuiTooltip',
       refInstanceof: window.HTMLButtonElement,
+      testRootOverrides: { slotName: 'popper', slotClassName: classes.popper },
+      testDeepOverrides: { slotName: 'tooltip', slotClassName: classes.tooltip },
       skip: [
         'componentProp',
+        'componentsProp',
+        'themeVariants',
         // react-transition-group issue
         'reactTestRenderer',
       ],
@@ -92,7 +86,7 @@ describe('<Tooltip />', () => {
         </Tooltip>,
       );
 
-      expect(getByRole('button')).to.not.have.attribute('title', 'Hello World');
+      expect(getByRole('button')).not.to.have.attribute('title', 'Hello World');
     });
   });
 
@@ -358,14 +352,19 @@ describe('<Tooltip />', () => {
   });
 
   it('is dismissable by pressing Escape', () => {
+    const handleClose = spy();
     const transitionTimeout = 0;
     render(
-      <Tooltip enterDelay={0} TransitionProps={{ timeout: transitionTimeout }} title="Movie quote">
-        <button autoFocus>Hello, Dave!</button>
+      <Tooltip
+        enterDelay={0}
+        onClose={handleClose}
+        open
+        TransitionProps={{ timeout: transitionTimeout }}
+        title="Movie quote"
+      >
+        <button />
       </Tooltip>,
     );
-
-    expect(screen.getByRole('tooltip')).not.toBeInaccessible();
 
     act(() => {
       fireEvent.keyDown(
@@ -379,7 +378,7 @@ describe('<Tooltip />', () => {
       clock.tick(transitionTimeout);
     });
 
-    expect(screen.queryByRole('tooltip')).to.equal(null);
+    expect(handleClose.callCount).to.equal(1);
   });
 
   describe('touch screen', () => {
@@ -469,7 +468,11 @@ describe('<Tooltip />', () => {
         </div>
       );
 
-      const { setProps, getByRole } = render(<AutoFocus />);
+      const { setProps, getByRole } = render(
+        <AutoFocus />,
+        // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
+        { strictEffects: false },
+      );
 
       setProps({ open: true });
       act(() => {
@@ -757,7 +760,9 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).toBeVisible();
 
       fireEvent.mouseOver(getByRole('tooltip'));
-      clock.tick(111 + 10);
+      act(() => {
+        clock.tick(111 + 10);
+      });
 
       expect(getByRole('tooltip')).not.toBeVisible();
     });
@@ -878,7 +883,9 @@ describe('<Tooltip />', () => {
 
       expect(queryByRole('tooltip')).to.equal(null);
 
-      getByRole('button').focus();
+      act(() => {
+        getByRole('button').focus();
+      });
 
       if (programmaticFocusTriggersFocusVisible()) {
         expect(queryByRole('tooltip')).not.to.equal(null);
@@ -923,7 +930,11 @@ describe('<Tooltip />', () => {
 
       act(() => {
         button.focus();
+      });
+      act(() => {
         button.blur();
+      });
+      act(() => {
         clock.tick(transitionTimeout);
       });
 

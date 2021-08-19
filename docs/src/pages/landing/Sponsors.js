@@ -1,12 +1,11 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import NoSsr from '@material-ui/core/NoSsr';
+import { makeStyles } from '@material-ui/styles';
+import NoSsr from '@material-ui/unstyled/NoSsr';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
-import { prepareMarkdown } from 'docs/src/modules/utils/parseMarkdown';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
+import { docs } from './backers.md?@material-ui/markdown';
 
 const useStyles = makeStyles(
   (theme) => ({
@@ -28,7 +27,7 @@ const useStyles = makeStyles(
   { name: 'Sponsors' },
 );
 
-export default function Sponsors({ docs }) {
+export default function Sponsors() {
   const classes = useStyles();
   const userLanguage = useUserLanguage();
   const { rendered } = docs[userLanguage];
@@ -51,18 +50,4 @@ export default function Sponsors({ docs }) {
       </NoSsr>
     </div>
   );
-}
-
-Sponsors.propTypes = {
-  docs: PropTypes.object.isRequired,
-};
-
-const requireRaw = require.context('./', false, /\.md$/);
-
-export async function getInitialProps() {
-  const { docs } = prepareMarkdown({
-    pageFilename: '/',
-    requireRaw,
-  });
-  return { docs };
 }

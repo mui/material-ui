@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { withTheme, withStyles, createMuiTheme } from '@material-ui/core/styles';
+import { withTheme, withStyles, createTheme } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import Tab from '@material-ui/core/Tab';
 import MuiTabs from '@material-ui/core/Tabs';

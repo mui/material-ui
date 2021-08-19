@@ -1,0 +1,16 @@
+{
+  "props": { "classes": { "type": { "name": "object" } }, "sx": { "type": { "name": "object" } } },
+  "name": "CalendarPickerSkeleton",
+  "styles": {
+    "classes": ["root", "week", "daySkeleton"],
+    "globalClasses": {},
+    "name": "MuiCalendarPickerSkeleton"
+  },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui-lab/src/CalendarPickerSkeleton/CalendarPickerSkeleton.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/date-picker/\">Date Picker</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

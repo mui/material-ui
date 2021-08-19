@@ -1,23 +1,28 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { MuiStyles, StyleRules, WithStyles, withStyles } from '@material-ui/core/styles';
-import { CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from '../internal/pickers/constants/dimensions';
+import { styled } from '@material-ui/core/styles';
+import { generateUtilityClasses } from '@material-ui/unstyled';
+import { CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from './shared';
 
-export interface ClockNumberProps {
+export interface ClockNumberProps extends React.HTMLAttributes<HTMLSpanElement> {
+  'aria-label': string;
   disabled: boolean;
+  /**
+   * Make sure callers pass an id which. It should be defined if selected.
+   */
+  id: string | undefined;
   index: number;
   inner: boolean;
   label: string;
   selected: boolean;
-  'aria-label': string;
 }
 
-export type ClockNumberClassKey = 'root' | 'selected' | 'disabled' | 'inner';
+export const classes = generateUtilityClasses('PrivateClockNumber', ['selected', 'disabled']);
 
-export const styles: MuiStyles<ClockNumberClassKey> = (theme): StyleRules<ClockNumberClassKey> => ({
-  root: {
-    width: CLOCK_HOUR_WIDTH,
+const ClockNumberRoot = styled('span', { skipSx: true })<{ ownerState: ClockNumberProps }>(
+  ({ theme, ownerState }) => ({
     height: CLOCK_HOUR_WIDTH,
+    width: CLOCK_HOUR_WIDTH,
     position: 'absolute',
     left: `calc((100% - ${CLOCK_HOUR_WIDTH}px) / 2)`,
     display: 'inline-flex',
@@ -28,52 +33,53 @@ export const styles: MuiStyles<ClockNumberClassKey> = (theme): StyleRules<ClockN
     '&:focused': {
       backgroundColor: theme.palette.background.paper,
     },
-    '&$selected': {
+    [`&.${classes.selected}`]: {
       color: theme.palette.primary.contrastText,
     },
-    '&$disabled': {
+    [`&.${classes.disabled}`]: {
       pointerEvents: 'none',
       color: theme.palette.text.disabled,
     },
-  },
-  selected: {},
-  disabled: {},
-  inner: {
-    ...theme.typography.body2,
-    color: theme.palette.text.secondary,
-  },
-});
+    ...(ownerState.inner && {
+      ...theme.typography.body2,
+      color: theme.palette.text.secondary,
+    }),
+  }),
+);
 
 /**
  * @ignore - internal component.
  */
-const ClockNumber: React.FC<ClockNumberProps & WithStyles<typeof styles>> = (props) => {
-  const { classes, disabled, index, inner, label, selected, ...other } = props;
+function ClockNumber(props: ClockNumberProps) {
+  const { className, disabled, index, inner, label, selected, ...other } = props;
+  const ownerState = props;
 
   const angle = ((index % 12) / 12) * Math.PI * 2 - Math.PI / 2;
   const length = ((CLOCK_WIDTH - CLOCK_HOUR_WIDTH - 2) / 2) * (inner ? 0.65 : 1);
   const x = Math.round(Math.cos(angle) * length);
   const y = Math.round(Math.sin(angle) * length);
 
-  const transformStyle = {
-    transform: `translate(${x}px, ${y + (CLOCK_WIDTH - CLOCK_HOUR_WIDTH) / 2}px`,
-  };
-
   return (
-    <span
-      className={clsx(classes.root, {
-        [classes.selected]: selected,
-        [classes.disabled]: disabled,
-        [classes.inner]: inner,
-      })}
-      style={transformStyle}
+    <ClockNumberRoot
+      className={clsx(
+        {
+          [classes.selected]: selected,
+          [classes.disabled]: disabled,
+        },
+        className,
+      )}
+      aria-disabled={disabled ? true : undefined}
+      aria-selected={selected ? true : undefined}
+      role="option"
+      style={{
+        transform: `translate(${x}px, ${y + (CLOCK_WIDTH - CLOCK_HOUR_WIDTH) / 2}px`,
+      }}
+      ownerState={ownerState}
       {...other}
     >
       {label}
-    </span>
+    </ClockNumberRoot>
   );
-};
+}
 
-export default withStyles(styles, { name: 'MuiClockNumber' })(ClockNumber) as (
-  props: ClockNumberProps,
-) => JSX.Element;
+export default ClockNumber;

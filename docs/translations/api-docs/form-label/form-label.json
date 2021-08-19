@@ -9,7 +9,8 @@
     "error": "If <code>true</code>, the label is displayed in an error state.",
     "filled": "If <code>true</code>, the label should use filled classes key.",
     "focused": "If <code>true</code>, the input of this label is focused (used by <code>FormGroup</code> components).",
-    "required": "If <code>true</code>, the label will indicate that the <code>input</code> is required."
+    "required": "If <code>true</code>, the label will indicate that the <code>input</code> is required.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details."
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
@@ -19,27 +20,27 @@
       "conditions": "the color is secondary"
     },
     "focused": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>focused={true}</code>"
     },
     "disabled": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
     "error": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>error={true}</code>"
     },
     "filled": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>filled={true}</code>"
     },
     "required": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>required={true}</code>"
     },

@@ -1,16 +1,15 @@
 import * as React from 'react';
-import { createMount, describeConformanceV5 } from 'test/utils';
-import ButtonBase from '../ButtonBase';
-import CardActionArea from './CardActionArea';
-import classes from './cardActionAreaClasses';
+import { createClientRender, describeConformance } from 'test/utils';
+import CardActionArea, { cardActionAreaClasses as classes } from '@material-ui/core/CardActionArea';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 describe('<CardActionArea />', () => {
-  const mount = createMount();
+  const render = createClientRender();
 
-  describeConformanceV5(<CardActionArea />, () => ({
+  describeConformance(<CardActionArea />, () => ({
     classes,
     inheritComponent: ButtonBase,
-    mount,
+    render,
     muiName: 'MuiCardActionArea',
     testDeepOverrides: { slotName: 'focusHighlight', slotClassName: classes.focusHighlight },
     testVariantProps: { variant: 'foo' },

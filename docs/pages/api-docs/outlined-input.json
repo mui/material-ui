@@ -3,7 +3,16 @@
     "autoComplete": { "type": { "name": "string" } },
     "autoFocus": { "type": { "name": "bool" } },
     "classes": { "type": { "name": "object" } },
-    "color": { "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+      }
+    },
+    "components": {
+      "type": { "name": "shape", "description": "{ Input?: elementType, Root?: elementType }" },
+      "default": "{}"
+    },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
     "endAdornment": { "type": { "name": "node" } },
@@ -14,7 +23,6 @@
     "inputProps": { "type": { "name": "object" }, "default": "{}" },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },
     "label": { "type": { "name": "node" } },
-    "labelWidth": { "type": { "name": "number" }, "default": "0" },
     "margin": { "type": { "name": "enum", "description": "'dense'<br>&#124;&nbsp;'none'" } },
     "maxRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "minRows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
@@ -27,6 +35,7 @@
     "required": { "type": { "name": "bool" } },
     "rows": { "type": { "name": "union", "description": "number<br>&#124;&nbsp;string" } },
     "startAdornment": { "type": { "name": "node" } },
+    "sx": { "type": { "name": "object" } },
     "type": { "type": { "name": "string" }, "default": "'text'" },
     "value": { "type": { "name": "any" } }
   },
@@ -57,6 +66,6 @@
   "filename": "/packages/material-ui/src/OutlinedInput/OutlinedInput.js",
   "inheritance": { "component": "InputBase", "pathname": "/api/input-base/" },
   "demos": "<ul><li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

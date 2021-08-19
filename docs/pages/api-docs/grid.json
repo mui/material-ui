@@ -2,12 +2,25 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
+    "columns": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;number&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object"
+      },
+      "default": "12"
+    },
+    "columnSpacing": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
+      }
+    },
     "component": { "type": { "name": "elementType" } },
     "container": { "type": { "name": "bool" } },
     "direction": {
       "type": {
-        "name": "enum",
-        "description": "'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row'"
+        "name": "union",
+        "description": "'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row'<br>&#124;&nbsp;Array&lt;'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row'&gt;<br>&#124;&nbsp;object"
       },
       "default": "'row'"
     },
@@ -26,6 +39,12 @@
       },
       "default": "false"
     },
+    "rowSpacing": {
+      "type": {
+        "name": "union",
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
+      }
+    },
     "sm": {
       "type": {
         "name": "union",
@@ -35,8 +54,8 @@
     },
     "spacing": {
       "type": {
-        "name": "enum",
-        "description": "0<br>&#124;&nbsp;1<br>&#124;&nbsp;2<br>&#124;&nbsp;3<br>&#124;&nbsp;4<br>&#124;&nbsp;5<br>&#124;&nbsp;6<br>&#124;&nbsp;7<br>&#124;&nbsp;8<br>&#124;&nbsp;9<br>&#124;&nbsp;10"
+        "name": "union",
+        "description": "Array&lt;number<br>&#124;&nbsp;string&gt;<br>&#124;&nbsp;number<br>&#124;&nbsp;object<br>&#124;&nbsp;string"
       },
       "default": "0"
     },

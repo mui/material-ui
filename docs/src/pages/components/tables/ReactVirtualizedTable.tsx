@@ -1,11 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import {
-  createStyles,
-  Theme,
-  withStyles,
-  WithStyles,
-} from '@material-ui/core/styles';
+import { withStyles, WithStyles } from '@material-ui/styles';
+import { Theme, createTheme } from '@material-ui/core/styles';
 import TableCell from '@material-ui/core/TableCell';
 import Paper from '@material-ui/core/Paper';
 import {
@@ -27,7 +23,7 @@ declare module '@material-ui/core/styles' {
 }
 
 const styles = (theme: Theme) =>
-  createStyles({
+  ({
     flexContainer: {
       display: 'flex',
       alignItems: 'center',
@@ -55,7 +51,7 @@ const styles = (theme: Theme) =>
     noClick: {
       cursor: 'initial',
     },
-  });
+  } as const);
 
 interface ColumnData {
   dataKey: string;
@@ -69,7 +65,7 @@ interface Row {
 }
 
 interface MuiVirtualizedTableProps extends WithStyles<typeof styles> {
-  columns: ColumnData[];
+  columns: readonly ColumnData[];
   headerHeight?: number;
   onRowClick?: () => void;
   rowCount: number;
@@ -172,7 +168,8 @@ class MuiVirtualizedTable extends React.PureComponent<MuiVirtualizedTableProps> 
   }
 }
 
-const VirtualizedTable = withStyles(styles)(MuiVirtualizedTable);
+const defaultTheme = createTheme();
+const VirtualizedTable = withStyles(styles, { defaultTheme })(MuiVirtualizedTable);
 
 // ---
 
@@ -186,7 +183,7 @@ interface Data {
 }
 type Sample = [string, number, number, number, number];
 
-const sample: Sample[] = [
+const sample: readonly Sample[] = [
   ['Frozen yoghurt', 159, 6.0, 24, 4.0],
   ['Ice cream sandwich', 237, 9.0, 37, 4.3],
   ['Eclair', 262, 16.0, 24, 6.0],

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ClockPicker, { ClockPickerProps } from './ClockPicker';
-import { TimePickerView } from '../internal/pickers/typings/Views';
+import { ClockView } from './shared';
 import PickerView from '../internal/pickers/Picker/PickerView';
 import { useViews } from '../internal/pickers/hooks/useViews';
 
@@ -9,15 +9,23 @@ export interface ClockPickerStandaloneProps<TDate>
     ClockPickerProps<TDate>,
     'view' | 'openNextView' | 'openPreviousView' | 'nextViewAvailable' | 'previousViewAvailable'
   > {
-  /** Controlled clock view. */
-  view?: TimePickerView;
-  /** Available views for clock. */
-  views?: TimePickerView[];
-  /** Callback fired on view change. */
-  onViewChange?: (view: TimePickerView) => void;
-  /** Initially opened view. */
-  openTo?: TimePickerView;
   className?: string;
+  /**
+   * Callback fired on view change.
+   */
+  onViewChange?: (view: ClockView) => void;
+  /**
+   * Initially opened view.
+   */
+  openTo?: ClockView;
+  /**
+   * Controlled clock view.
+   */
+  view?: ClockView;
+  /**
+   * Available views for clock.
+   */
+  views?: readonly ClockView[];
 }
 
 /**
@@ -28,14 +36,7 @@ export default React.forwardRef(function ClockPickerStandalone<TDate>(
   props: ClockPickerStandaloneProps<TDate>,
   ref: React.Ref<HTMLDivElement>,
 ) {
-  const {
-    view,
-    openTo,
-    className,
-    onViewChange,
-    views = ['hours', 'minutes'] as TimePickerView[],
-    ...other
-  } = props;
+  const { view, openTo, className, onViewChange, views = ['hours', 'minutes'], ...other } = props;
 
   const { openView, setOpenView, nextView, previousView } = useViews({
     view,

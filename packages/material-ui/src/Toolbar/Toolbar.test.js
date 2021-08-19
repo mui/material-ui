@@ -1,17 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import Toolbar from './Toolbar';
-import classes from './toolbarClasses';
+import { createClientRender, describeConformance } from 'test/utils';
+import Toolbar, { toolbarClasses as classes } from '@material-ui/core/Toolbar';
 
 describe('<Toolbar />', () => {
-  const mount = createMount();
   const render = createClientRender();
 
-  describeConformanceV5(<Toolbar />, () => ({
+  describeConformance(<Toolbar />, () => ({
     classes,
     inheritComponent: 'div',
-    mount,
+    render,
     muiName: 'MuiToolbar',
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { variant: 'foo' },

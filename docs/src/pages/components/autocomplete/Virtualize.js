@@ -1,23 +1,41 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
-import Autocomplete from '@material-ui/core/Autocomplete';
+import Autocomplete, { autocompleteClasses } from '@material-ui/core/Autocomplete';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import { useTheme, makeStyles } from '@material-ui/core/styles';
+import Popper from '@material-ui/core/Popper';
+import { useTheme, styled } from '@material-ui/core/styles';
 import { VariableSizeList } from 'react-window';
-import { Typography } from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
 
 const LISTBOX_PADDING = 8; // px
 
 function renderRow(props) {
   const { data, index, style } = props;
-  return React.cloneElement(data[index], {
-    style: {
-      ...style,
-      top: style.top + LISTBOX_PADDING,
-    },
-  });
+  const dataSet = data[index];
+
+  if (dataSet.hasOwnProperty('group')) {
+    return (
+      <ListSubheader key={dataSet.key} component="div">
+        {dataSet.group}
+      </ListSubheader>
+    );
+  }
+
+  return (
+    <Typography
+      component="li"
+      {...dataSet[0]}
+      noWrap
+      style={{
+        ...style,
+        top: style.top + LISTBOX_PADDING,
+      }}
+    >
+      {dataSet[1]}
+    </Typography>
+  );
 }
 
 const OuterElementContext = React.createContext({});
@@ -40,7 +58,12 @@ function useResetCache(data) {
 // Adapter for react-window
 const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) {
   const { children, ...other } = props;
-  const itemData = React.Children.toArray(children);
+  const itemData = [];
+  children.forEach((item) => {
+    itemData.push(item);
+    itemData.push(...(item.children || []));
+  });
+
   const theme = useTheme();
   const smUp = useMediaQuery(theme.breakpoints.up('sm'), {
     noSsr: true,
@@ -50,7 +73,7 @@ const ListboxComponent = React.forwardRef(function ListboxComponent(props, ref) 
   const itemSize = smUp ? 36 : 48;
 
   const getChildSize = (child) => {
-    if (React.isValidElement(child) && child.type === ListSubheader) {
+    if (child.hasOwnProperty('group')) {
       return 48;
     }
 
@@ -103,8 +126,8 @@ function random(length) {
   return result;
 }
 
-const useStyles = makeStyles({
-  listbox: {
+const StyledPopper = styled(Popper)({
+  [`& .${autocompleteClasses.listbox}`]: {
     boxSizing: 'border-box',
     '& ul': {
       padding: 0,
@@ -117,32 +140,19 @@ const OPTIONS = Array.from(new Array(10000))
   .map(() => random(10 + Math.ceil(Math.random() * 20)))
   .sort((a, b) => a.toUpperCase().localeCompare(b.toUpperCase()));
 
-const renderGroup = (params) => [
-  <ListSubheader key={params.key} component="div">
-    {params.group}
-  </ListSubheader>,
-  params.children,
-];
-
 export default function Virtualize() {
-  const classes = useStyles();
-
   return (
     <Autocomplete
       id="virtualize-demo"
-      style={{ width: 300 }}
+      sx={{ width: 300 }}
       disableListWrap
-      classes={classes}
+      PopperComponent={StyledPopper}
       ListboxComponent={ListboxComponent}
-      renderGroup={renderGroup}
       options={OPTIONS}
       groupBy={(option) => option[0].toUpperCase()}
       renderInput={(params) => <TextField {...params} label="10,000 options" />}
-      renderOption={(props, option) => (
-        <li {...props}>
-          <Typography noWrap>{option}</Typography>
-        </li>
-      )}
+      renderOption={(props, option) => [props, option]}
+      renderGroup={(params) => params}
     />
   );
 }

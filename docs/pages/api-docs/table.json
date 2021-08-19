@@ -6,12 +6,15 @@
     "padding": {
       "type": {
         "name": "enum",
-        "description": "'checkbox'<br>&#124;&nbsp;'default'<br>&#124;&nbsp;'none'"
+        "description": "'checkbox'<br>&#124;&nbsp;'none'<br>&#124;&nbsp;'normal'"
       },
-      "default": "'default'"
+      "default": "'normal'"
     },
     "size": {
-      "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
+      "type": {
+        "name": "union",
+        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+      },
       "default": "'medium'"
     },
     "stickyHeader": { "type": { "name": "bool" } },

@@ -6,8 +6,8 @@ import isHostComponent from '../utils/isHostComponent';
 import composeClasses from '../composeClasses';
 import { getBadgeUtilityClass } from './badgeUnstyledClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { variant, anchorOrigin, overlap, invisible, classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { variant, anchorOrigin, overlap, invisible, classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -30,9 +30,9 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
       vertical: 'top',
       horizontal: 'right',
     },
-    classes: classesProp = {},
+    classes: classesProp,
     badgeContent: badgeContentProp,
-    component: Component = 'span',
+    component = 'span',
     children,
     className,
     components = {},
@@ -72,10 +72,11 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     variant = variantProp,
   } = invisible ? prevProps : props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     anchorOrigin,
     badgeContent,
+    classes: classesProp,
     invisible,
     max,
     overlap,
@@ -88,9 +89,9 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     displayValue = badgeContent > max ? `${max}+` : badgeContent;
   }
 
-  const classes = useUtilityClasses({ ...styleProps, classes: classesProp });
+  const classes = useUtilityClasses(ownerState);
 
-  const Root = components.Root || Component;
+  const Root = components.Root || component;
   const rootProps = componentsProps.root || {};
 
   const Badge = components.Badge || 'span';
@@ -100,8 +101,8 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     <Root
       {...rootProps}
       {...(!isHostComponent(Root) && {
-        as: Component,
-        styleProps: { ...styleProps, ...rootProps.styleProps },
+        as: component,
+        ownerState: { ...ownerState, ...rootProps.ownerState },
         theme,
       })}
       ref={ref}
@@ -112,7 +113,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
       <Badge
         {...badgeProps}
         {...(!isHostComponent(Badge) && {
-          styleProps: { ...styleProps, ...badgeProps.styleProps },
+          ownerState: { ...ownerState, ...badgeProps.ownerState },
           theme,
         })}
         className={clsx(classes.badge, badgeProps.className)}
@@ -123,7 +124,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
   );
 });
 
-BadgeUnstyled.propTypes = {
+BadgeUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -149,7 +150,6 @@ BadgeUnstyled.propTypes = {
   children: PropTypes.node,
   /**
    * Override or extend the styles applied to the component.
-   * @default {}
    */
   classes: PropTypes.object,
   /**

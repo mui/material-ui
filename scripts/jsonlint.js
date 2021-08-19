@@ -33,7 +33,7 @@ async function run() {
     }
   });
 
-  await Promise.all(checks);
+  await Promise.allSettled(checks);
   if (passed === false) {
     throw new Error('At least one file did not pass. Check the console output');
   }

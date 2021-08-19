@@ -1,4 +1,4 @@
 {
   "extends": "../../../../../tsconfig",
-  "files": ["breakpointsOverrides.spec.ts"]
+  "files": ["breakpointsOverrides.spec.tsx"]
 }

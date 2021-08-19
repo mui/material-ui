@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -30,7 +30,6 @@ const options = [
 ];
 
 export interface ConfirmationDialogRawProps {
-  classes: Record<'paper', string>;
   id: string;
   keepMounted: boolean;
   value: string;
@@ -69,13 +68,13 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
 
   return (
     <Dialog
+      sx={{ '& .MuiDialog-paper': { width: '80%', maxHeight: 435 } }}
       maxWidth="xs"
       TransitionProps={{ onEntering: handleEntering }}
-      aria-labelledby="confirmation-dialog-title"
       open={open}
       {...other}
     >
-      <DialogTitle id="confirmation-dialog-title">Phone Ringtone</DialogTitle>
+      <DialogTitle>Phone Ringtone</DialogTitle>
       <DialogContent dividers>
         <RadioGroup
           ref={radioGroupRef}
@@ -104,22 +103,7 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
   );
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-      maxWidth: 360,
-      backgroundColor: theme.palette.background.paper,
-    },
-    paper: {
-      width: '80%',
-      maxHeight: 435,
-    },
-  }),
-);
-
 export default function ConfirmationDialog() {
-  const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('Dione');
 
@@ -136,7 +120,7 @@ export default function ConfirmationDialog() {
   };
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       <List component="div" role="group">
         <ListItem button divider disabled>
           <ListItemText primary="Interruptions" />
@@ -155,9 +139,6 @@ export default function ConfirmationDialog() {
           <ListItemText primary="Default notification ringtone" secondary="Tethys" />
         </ListItem>
         <ConfirmationDialogRaw
-          classes={{
-            paper: classes.paper,
-          }}
           id="ringtone-menu"
           keepMounted
           open={open}
@@ -165,6 +146,6 @@ export default function ConfirmationDialog() {
           value={value}
         />
       </List>
-    </div>
+    </Box>
   );
 }

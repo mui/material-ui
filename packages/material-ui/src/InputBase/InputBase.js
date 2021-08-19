@@ -1,13 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType, elementTypeAcceptingRef, deepmerge } from '@material-ui/utils';
+import { refType, elementTypeAcceptingRef } from '@material-ui/utils';
 import MuiError from '@material-ui/utils/macros/MuiError.macro';
 import { unstable_composeClasses as composeClasses, isHostComponent } from '@material-ui/unstyled';
 import formControlState from '../FormControl/formControlState';
-import FormControlContext, { useFormControl } from '../FormControl/FormControlContext';
-import experimentalStyled, { shouldForwardProp } from '../styles/experimentalStyled';
+import FormControlContext from '../FormControl/FormControlContext';
+import useFormControl from '../FormControl/useFormControl';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import useTheme from '../styles/useTheme';
 import capitalize from '../utils/capitalize';
 import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -16,32 +18,38 @@ import GlobalStyles from '../GlobalStyles';
 import { isFilled } from './utils';
 import inputBaseClasses, { getInputBaseUtilityClass } from './inputBaseClasses';
 
-export const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
+export const rootOverridesResolver = (props, styles) => {
+  const { ownerState } = props;
 
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.formControl && styles.formControl),
-    ...(styleProps.startAdornment && styles.adornedStart),
-    ...(styleProps.endAdornment && styles.adornedEnd),
-    ...(styleProps.error && styles.error),
-    ...(styleProps.size === 'small' && styles.sizeSmall),
-    ...(styleProps.multiline && styles.multiline),
-    ...(styleProps.color && styles[`color${capitalize(styleProps.color)}`]),
-    ...(styleProps.fullWidth && styles.fullWidth),
-    ...(styleProps.hiddenLabel && styles.hiddenLabel),
-    [`& .${inputBaseClasses.input}`]: {
-      ...styles.input,
-      ...(styleProps.size === 'small' && styles.inputSizeSmall),
-      ...(styleProps.multiline && styles.inputMultiline),
-      ...(styleProps.type === 'search' && styles.inputTypeSearch),
-      ...(styleProps.startAdornment && styles.inputAdornedStart),
-      ...(styleProps.endAdornment && styles.inputAdornedEnd),
-      ...(styleProps.hiddenLabel && styles.inputHiddenLabel),
-    },
-  });
+  return [
+    styles.root,
+    ownerState.formControl && styles.formControl,
+    ownerState.startAdornment && styles.adornedStart,
+    ownerState.endAdornment && styles.adornedEnd,
+    ownerState.error && styles.error,
+    ownerState.size === 'small' && styles.sizeSmall,
+    ownerState.multiline && styles.multiline,
+    ownerState.color && styles[`color${capitalize(ownerState.color)}`],
+    ownerState.fullWidth && styles.fullWidth,
+    ownerState.hiddenLabel && styles.hiddenLabel,
+  ];
 };
 
-const useUtilityClasses = (styleProps) => {
+export const inputOverridesResolver = (props, styles) => {
+  const { ownerState } = props;
+
+  return [
+    styles.input,
+    ownerState.size === 'small' && styles.inputSizeSmall,
+    ownerState.multiline && styles.inputMultiline,
+    ownerState.type === 'search' && styles.inputTypeSearch,
+    ownerState.startAdornment && styles.inputAdornedStart,
+    ownerState.endAdornment && styles.inputAdornedEnd,
+    ownerState.hiddenLabel && styles.inputHiddenLabel,
+  ];
+};
+
+const useUtilityClasses = (ownerState) => {
   const {
     classes,
     color,
@@ -56,7 +64,7 @@ const useUtilityClasses = (styleProps) => {
     size,
     startAdornment,
     type,
-  } = styleProps;
+  } = ownerState;
   const slots = {
     root: [
       'root',
@@ -87,15 +95,11 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getInputBaseUtilityClass, classes);
 };
 
-export const InputBaseRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiInputBase',
-    slot: 'Root',
-    overridesResolver,
-  },
-)(({ theme, styleProps }) => ({
+export const InputBaseRoot = styled('div', {
+  name: 'MuiInputBase',
+  slot: 'Root',
+  overridesResolver: rootOverridesResolver,
+})(({ theme, ownerState }) => ({
   ...theme.typography.body1,
   color: theme.palette.text.primary,
   lineHeight: '1.4375em', // 23px
@@ -104,29 +108,26 @@ export const InputBaseRoot = experimentalStyled(
   cursor: 'text',
   display: 'inline-flex',
   alignItems: 'center',
-  '&.Mui-disabled': {
+  [`&.${inputBaseClasses.disabled}`]: {
     color: theme.palette.text.disabled,
     cursor: 'default',
   },
-  ...(styleProps.multiline && {
+  ...(ownerState.multiline && {
     padding: '4px 0 5px',
-    ...(styleProps.size === 'small' && {
+    ...(ownerState.size === 'small' && {
       paddingTop: 1,
     }),
   }),
-  ...(styleProps.fullWidth && {
+  ...(ownerState.fullWidth && {
     width: '100%',
   }),
 }));
 
-export const InputBaseComponent = experimentalStyled(
-  'input',
-  { shouldForwardProp: (prop) => shouldForwardProp(prop) || prop === 'classes' },
-  {
-    name: 'MuiInputBase',
-    slot: 'Input',
-  },
-)(({ theme, styleProps }) => {
+export const InputBaseComponent = styled('input', {
+  name: 'MuiInputBase',
+  slot: 'Input',
+  overridesResolver: inputOverridesResolver,
+})(({ theme, ownerState }) => {
   const light = theme.palette.mode === 'light';
   const placeholder = {
     color: 'currentColor',
@@ -187,25 +188,24 @@ export const InputBaseComponent = experimentalStyled(
       '&:focus:-ms-input-placeholder': placeholderVisible, // IE11
       '&:focus::-ms-input-placeholder': placeholderVisible, // Edge
     },
-    '&.Mui-disabled': {
+    [`&.${inputBaseClasses.disabled}`]: {
       opacity: 1, // Reset iOS opacity
       WebkitTextFillColor: theme.palette.text.disabled, // Fix opacity Safari bug
     },
-    '&:-webkit-auto-fill': {
+    '&:-webkit-autofill': {
       animationDuration: '5000s',
       animationName: 'mui-auto-fill',
     },
-    ...(styleProps.size === 'small' && {
+    ...(ownerState.size === 'small' && {
       paddingTop: 1,
     }),
-    /* Styles applied to the input element if `multiline={true}`. */
-    ...(styleProps.multiline && {
+    ...(ownerState.multiline && {
       height: 'auto',
       resize: 'none',
       padding: 0,
+      paddingTop: 0,
     }),
-    /* Styles applied to the input element if `type="search"`. */
-    ...(styleProps.type === 'search' && {
+    ...(ownerState.type === 'search' && {
       // Improve type search style.
       MozAppearance: 'textfield',
       WebkitAppearance: 'textfield',
@@ -255,12 +255,10 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     startAdornment,
     type = 'text',
     value: valueProp,
-    /* eslint-disable-next-line react/prop-types */
-    isRtl,
-    /* eslint-disable-next-line react/prop-types */
-    theme,
     ...other
   } = props;
+
+  const theme = useTheme();
 
   const value = inputPropsProp.value != null ? inputPropsProp.value : valueProp;
   const { current: isControlled } = React.useRef(value != null);
@@ -459,7 +457,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     }
   }, [muiFormControl, startAdornment]);
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     color: fcs.color || 'primary',
     disabled: fcs.disabled,
@@ -475,7 +473,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     type,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const Root = components.Root || InputBaseRoot;
   const rootProps = componentsProps.root || {};
@@ -494,7 +492,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
       <Root
         {...rootProps}
         {...(!isHostComponent(Root) && {
-          styleProps: { ...styleProps, ...rootProps.styleProps },
+          ownerState: { ...ownerState, ...rootProps.ownerState },
           theme,
         })}
         ref={ref}
@@ -505,7 +503,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
         {startAdornment}
         <FormControlContext.Provider value={null}>
           <Input
-            styleProps={styleProps}
+            ownerState={ownerState}
             aria-invalid={fcs.error}
             aria-describedby={ariaDescribedby}
             autoComplete={autoComplete}
@@ -526,7 +524,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
             {...inputProps}
             {...(!isHostComponent(Input) && {
               as: InputComponent,
-              styleProps: { ...styleProps, ...inputProps.styleProps },
+              ownerState: { ...ownerState, ...inputProps.ownerState },
               theme,
             })}
             ref={handleInputRef}
@@ -548,7 +546,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
   );
 });
 
-InputBase.propTypes = {
+InputBase.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -579,7 +577,10 @@ InputBase.propTypes = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['primary', 'secondary', 'error', 'info', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The components used for each slot inside the InputBase.
    * Either a string to use a HTML element or a component.
@@ -668,7 +669,7 @@ InputBase.propTypes = {
   /**
    * Callback fired when the value is changed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>} event The event source of the callback.
    * You can pull out the new value by accessing `event.target.value` (string).
    */
   onChange: PropTypes.func,
@@ -713,7 +714,10 @@ InputBase.propTypes = {
   /**
    * The size of the component.
    */
-  size: PropTypes.oneOf(['medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['medium', 'small']),
+    PropTypes.string,
+  ]),
   /**
    * Start `InputAdornment` for this component.
    */

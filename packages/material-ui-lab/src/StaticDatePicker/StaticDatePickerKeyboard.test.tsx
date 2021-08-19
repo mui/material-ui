@@ -1,19 +1,26 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { useFakeTimers } from 'sinon';
 import TextField from '@material-ui/core/TextField';
 import { fireEvent, screen } from 'test/utils';
 import StaticDatePicker from '@material-ui/lab/StaticDatePicker';
 import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<StaticDatePicker /> keyboard interactions', () => {
+  let clock: ReturnType<typeof useFakeTimers>;
+  beforeEach(() => {
+    clock = useFakeTimers();
+  });
+  afterEach(() => {
+    clock.restore();
+  });
   const render = createPickerRender();
 
   describe('Calendar keyboard navigation', () => {
-    it('autofocus selected day on mount', () => {
-      // Important: Use <StaticDatePicker /> here in order to avoid async waiting for focus because of packages/material-ui-lab/src/internal/pickers/hooks/useCanAutoFocus.tsx logic
+    it('can autofocus selected day on mount', () => {
       render(
         <StaticDatePicker
-          allowKeyboardControl // required to enable focus management in static mode
+          autoFocus
           displayStaticWrapperAs="desktop"
           value={adapterToUse.date('2020-08-13T00:00:00.000')}
           onChange={() => {}}
@@ -33,10 +40,9 @@ describe('<StaticDatePicker /> keyboard interactions', () => {
       { keyCode: 40, key: 'ArrowDown', expectFocusedDay: 'Aug 20, 2020' },
     ].forEach(({ key, keyCode, expectFocusedDay }) => {
       it(key, () => {
-        // Important: Use <StaticDatePicker /> here in order to avoid async waiting for focus because of packages/material-ui-lab/src/internal/pickers/hooks/useCanAutoFocus.tsx logic
         render(
           <StaticDatePicker
-            allowKeyboardControl // required to enable focus management in static mode
+            autoFocus
             displayStaticWrapperAs="desktop"
             value={adapterToUse.date('2020-08-13T00:00:00.000')}
             onChange={() => {}}
@@ -56,7 +62,7 @@ describe('<StaticDatePicker /> keyboard interactions', () => {
   it("doesn't allow to select disabled date from keyboard", async () => {
     render(
       <StaticDatePicker
-        allowKeyboardControl
+        autoFocus
         displayStaticWrapperAs="desktop"
         value={adapterToUse.date('2020-08-13T00:00:00.000')}
         minDate={adapterToUse.date('2020-08-13T00:00:00.000')}
@@ -65,7 +71,7 @@ describe('<StaticDatePicker /> keyboard interactions', () => {
       />,
     );
 
-    expect(document.activeElement).to.have.attr('aria-label', 'Aug 13, 2020');
+    expect(document.activeElement).toHaveAccessibleName('Aug 13, 2020');
 
     for (let i = 0; i < 3; i += 1) {
       // Don't care about what's focused.
@@ -74,7 +80,7 @@ describe('<StaticDatePicker /> keyboard interactions', () => {
     }
 
     // leaves focus on the same date
-    expect(document.activeElement).to.have.attr('aria-label', 'Aug 13, 2020');
+    expect(document.activeElement).toHaveAccessibleName('Aug 13, 2020');
   });
 
   context('YearPicker keyboard navigation', () => {
@@ -87,10 +93,11 @@ describe('<StaticDatePicker /> keyboard interactions', () => {
       it(key, () => {
         render(
           <StaticDatePicker
+            autoFocus
+            // TODO: This prop does not make sense on the static variant
             open
             openTo="year"
             reduceAnimations
-            allowKeyboardControl
             displayStaticWrapperAs="desktop"
             value={adapterToUse.date('2020-08-13T00:00:00.000')}
             onChange={() => {}}

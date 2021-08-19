@@ -1,5 +1,6 @@
 import { expect } from 'chai';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
+import defaultTheme from './defaultTheme';
 import responsiveFontSizes from './responsiveFontSizes';
 
 describe('responsiveFontSizes', () => {
@@ -12,7 +13,7 @@ describe('responsiveFontSizes', () => {
       lineHeight: 1,
     };
 
-    const theme = createMuiTheme({
+    const theme = createTheme({
       typography: {
         h1: defaultVariant,
       },
@@ -21,9 +22,11 @@ describe('responsiveFontSizes', () => {
     expect(typography.h1).to.deep.equal({
       ...defaultVariant,
       fontSize: '3.5rem',
-      '@media (min-width:600px)': { fontSize: '4.75rem' },
-      '@media (min-width:960px)': { fontSize: '5.5rem' },
-      '@media (min-width:1280px)': { fontSize: defaultVariant.fontSize },
+      [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: { fontSize: '4.75rem' },
+      [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: { fontSize: '5.5rem' },
+      [`@media (min-width:${defaultTheme.breakpoints.values.lg}px)`]: {
+        fontSize: defaultVariant.fontSize,
+      },
     });
   });
 
@@ -36,7 +39,7 @@ describe('responsiveFontSizes', () => {
       lineHeight: '6rem',
     };
 
-    const theme = createMuiTheme({
+    const theme = createTheme({
       typography: {
         h1: defaultVariant,
       },
@@ -48,15 +51,17 @@ describe('responsiveFontSizes', () => {
     expect(typography.h1).to.deep.equal({
       ...defaultVariant,
       fontSize: '3.5rem',
-      '@media (min-width:600px)': { fontSize: '4.6719rem' },
-      '@media (min-width:960px)': { fontSize: '5.375rem' },
-      '@media (min-width:1280px)': { fontSize: defaultVariant.fontSize },
+      [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: { fontSize: '4.75rem' },
+      [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: { fontSize: '5.375rem' },
+      [`@media (min-width:${defaultTheme.breakpoints.values.lg}px)`]: {
+        fontSize: defaultVariant.fontSize,
+      },
     });
   });
 
   describe('when requesting a responsive typography with non unitless line height and alignment', () => {
     it('should throw an error, as this is not supported', () => {
-      const theme = createMuiTheme({
+      const theme = createTheme({
         typography: {
           h1: {
             lineHeight: '6rem',

@@ -98,7 +98,7 @@ declare global {
        * @example expect(() => render()).toWarnDev('single message')
        * @example expect(() => render()).toWarnDev(['first warning', 'then the second'])
        */
-      toWarnDev(messages?: string | string[]): void;
+      toWarnDev(messages?: string | readonly string[]): void;
       /**
        * Matches calls to `console.error` in the asserted callback.
        *
@@ -106,7 +106,7 @@ declare global {
        * @example expect(() => render()).toErrorDev('single message')
        * @example expect(() => render()).toErrorDev(['first warning', 'then the second'])
        */
-      toErrorDev(messages?: string | string[]): void;
+      toErrorDev(messages?: string | readonly string[]): void;
       /**
        * Asserts that the given callback throws an error matching the given message in development (process.env.NODE_ENV !== 'production').
        * In production it expects a minified error.
@@ -437,19 +437,21 @@ chai.use((chaiAPI, utils) => {
     /**
      * @param {string[]} expectedMessages
      */
-    function matcher(this: Chai.AssertionStatic, expectedMessages = []) {
+    function matcher(this: Chai.AssertionStatic, expectedMessagesInput = []) {
       // documented pattern to get the actual value of the assertion
       // eslint-disable-next-line no-underscore-dangle
       const callback = this._obj;
 
       if (process.env.NODE_ENV !== 'production') {
-        const remainingMessages =
-          typeof expectedMessages === 'string' ? [expectedMessages] : expectedMessages.slice();
+        const expectedMessages =
+          typeof expectedMessagesInput === 'string'
+            ? [expectedMessagesInput]
+            : expectedMessagesInput.slice();
         const unexpectedMessages: Error[] = [];
         let caughtError = null;
 
         this.assert(
-          remainingMessages.length > 0,
+          expectedMessages.length > 0,
           `Expected to call console.${methodName} but didn't provide messages. ` +
             `If you don't expect any messages prefer \`expect().not.${matcherName}();\`.`,
           `Expected no call to console.${methodName} while also expecting messages.` +
@@ -460,18 +462,33 @@ chai.use((chaiAPI, utils) => {
           undefined,
         );
 
+        // Ignore skipped messages in e.g. `[condition && 'foo']`
+        const remainingMessages = expectedMessages.filter((messageOrFalse) => {
+          return messageOrFalse !== false;
+        });
+
         // eslint-disable-next-line no-console
         const originalMethod = console[methodName];
 
-        const consoleMatcher = (format: string, ...args: unknown[]) => {
+        let messagesMatched = 0;
+        const consoleMatcher = (format: string, ...args: readonly unknown[]) => {
+          // Ignore legacy root deprecation warnings
+          // TODO: Remove once we no longer use legacy roots.
+          if (
+            format.indexOf('Use createRoot instead.') !== -1 ||
+            format.indexOf('Use hydrateRoot instead.') !== -1
+          ) {
+            return;
+          }
           const actualMessage = formatUtil(format, ...args);
           const expectedMessage = remainingMessages.shift();
+          messagesMatched += 1;
 
           let message = null;
           if (expectedMessage === undefined) {
             message = `Expected no more error messages but got:\n"${actualMessage}"`;
           } else if (!actualMessage.includes(expectedMessage)) {
-            message = `Expected "${actualMessage}"\nto include\n"${expectedMessage}"`;
+            message = `Expected #${messagesMatched} "${expectedMessage}" to be included in \n"${actualMessage}"`;
           }
 
           if (message !== null) {
@@ -508,7 +525,7 @@ chai.use((chaiAPI, utils) => {
             throw caughtError;
           }
 
-          const formatMessages = (messages: Array<Error | string>) => {
+          const formatMessages = (messages: ReadonlyArray<Error | string>) => {
             const formattedMessages = messages.map((message) => {
               if (typeof message === 'string') {
                 return `"${message}"`;

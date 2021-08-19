@@ -3,11 +3,13 @@ import { OverridableStringUnion } from '@material-ui/types';
 import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { PaperProps } from '../Paper';
+import { AlertClasses } from './alertClasses';
 
-export type Color = 'success' | 'info' | 'warning' | 'error';
+export type AlertColor = 'success' | 'info' | 'warning' | 'error';
 
 export interface AlertPropsVariantOverrides {}
-export type AlertVariantDefaults = Record<'standard' | 'filled' | 'outlined', true>;
+
+export interface AlertPropsColorOverrides {}
 
 export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
   /**
@@ -17,46 +19,7 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if `variant="filled"`. */
-    filled?: string;
-    /** Styles applied to the root element if `variant="outlined"`. */
-    outlined?: string;
-    /** Styles applied to the root element if `variant="standard"`. */
-    standard?: string;
-    /** Styles applied to the root element if `variant="standard"` and `color="success"`. */
-    standardSuccess?: string;
-    /** Styles applied to the root element if `variant="standard"` and `color="info"`. */
-    standardInfo?: string;
-    /** Styles applied to the root element if `variant="standard"` and `color="warning"`. */
-    standardWarning?: string;
-    /** Styles applied to the root element if `variant="standard"` and `color="error"`. */
-    standardError?: string;
-    /** Styles applied to the root element if `variant="outlined"` and `color="success"`. */
-    outlinedSuccess?: string;
-    /** Styles applied to the root element if `variant="outlined"` and `color="info"`. */
-    outlinedInfo?: string;
-    /** Styles applied to the root element if `variant="outlined"` and `color="warning"`. */
-    outlinedWarning?: string;
-    /** Styles applied to the root element if `variant="outlined"` and `color="error"`. */
-    outlinedError?: string;
-    /** Styles applied to the root element if `variant="filled"` and `color="success"`. */
-    filledSuccess?: string;
-    /** Styles applied to the root element if `variant="filled"` and `color="info"`. */
-    filledInfo?: string;
-    /** Styles applied to the root element if `variant="filled"` and `color="warning"`. */
-    filledWarning?: string;
-    /** Styles applied to the root element if `variant="filled"` and `color="error"`. */
-    filledError?: string;
-    /** Styles applied to the icon wrapper element. */
-    icon?: string;
-    /** Styles applied to the message wrapper element. */
-    message?: string;
-    /** Styles applied to the action wrapper element if `action` is provided. */
-    action?: string;
-  };
+  classes?: Partial<AlertClasses>;
   /**
    * Override the default label for the *close popup* icon button.
    *
@@ -67,12 +30,12 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
   /**
    * The main color for the alert. Unless provided, the value is taken from the `severity` prop.
    */
-  color?: Color;
+  color?: OverridableStringUnion<AlertColor, AlertPropsColorOverrides>;
   /**
    * The severity of the alert. This defines the color and icon used.
    * @default 'success'
    */
-  severity?: Color;
+  severity?: AlertColor;
   /**
    * Override the icon displayed before the children.
    * Unless provided, the icon is mapped to the value of the `severity` prop.
@@ -89,26 +52,23 @@ export interface AlertProps extends StandardProps<PaperProps, 'variant'> {
    * If you wish to change this mapping, you can provide your own.
    * Alternatively, you can use the `icon` prop to override the icon displayed.
    */
-  iconMapping?: Partial<Record<Color, React.ReactNode>>;
+  iconMapping?: Partial<Record<AlertColor, React.ReactNode>>;
   /**
    * Callback fired when the component requests to be closed.
    * When provided and no `action` prop is set, a close icon button is displayed that triggers the callback when clicked.
-   *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent} event The event source of the callback.
    */
   onClose?: (event: React.SyntheticEvent) => void;
   /**
    * The variant to use.
    * @default 'standard'
    */
-  variant?: OverridableStringUnion<AlertVariantDefaults, AlertPropsVariantOverrides>;
+  variant?: OverridableStringUnion<'standard' | 'filled' | 'outlined', AlertPropsVariantOverrides>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;
 }
-
-export type AlertClassKey = keyof NonNullable<AlertProps['classes']>;
 
 /**
  *

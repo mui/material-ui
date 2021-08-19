@@ -1,15 +1,21 @@
-import { ParsableDate } from './constants/prop-types';
+import { ParseableDate } from './constants/prop-types';
 import { MuiPickersAdapter } from './hooks/useUtils';
 
-export function getTextFieldAriaText(rawValue: ParsableDate, utils: MuiPickersAdapter) {
+export function getTextFieldAriaText<TDate>(
+  rawValue: ParseableDate<TDate>,
+  utils: MuiPickersAdapter<TDate>,
+) {
+  // TODO: should `isValid` narrow `TDate | null` to `NonNullable<TDate>`?
+  // Either we allow `TDate | null` to be valid and guard against calling `formatByString` with `null`.
+  // Or we ensure `formatByString` is callable with `null`.
   return rawValue && utils.isValid(utils.date(rawValue))
-    ? `Choose date, selected date is ${utils.format(utils.date(rawValue), 'fullDate')}`
+    ? `Choose date, selected date is ${utils.format(utils.date(rawValue)!, 'fullDate')}`
     : 'Choose date';
 }
 
-export const getDisplayDate = (
-  utils: MuiPickersAdapter,
-  value: ParsableDate,
+export const getDisplayDate = <TDate>(
+  utils: MuiPickersAdapter<TDate>,
+  value: ParseableDate<TDate>,
   inputFormat: string,
 ) => {
   const date = utils.date(value);
@@ -19,7 +25,15 @@ export const getDisplayDate = (
     return '';
   }
 
-  return utils.isValid(date) ? utils.formatByString(date, inputFormat) : '';
+  return utils.isValid(date)
+    ? utils.formatByString(
+        // TODO: should `isValid` narrow `TDate | null` to `NonNullable<TDate>`?
+        // Either we allow `TDate | null` to be valid and guard against calling `formatByString` with `null`.
+        // Or we ensure `formatByString` is callable with `null`.
+        date!,
+        inputFormat,
+      )
+    : '';
 };
 
 export function pick12hOr24hFormat(

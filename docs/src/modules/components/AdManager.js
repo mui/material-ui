@@ -21,15 +21,7 @@ export default function AdManager(props) {
     setPortal({ placement: 'body-top', element: description });
   }, []);
 
-  return (
-    <AdContext.Provider
-      value={{
-        portal,
-      }}
-    >
-      {props.children}
-    </AdContext.Provider>
-  );
+  return <AdContext.Provider value={portal}>{props.children}</AdContext.Provider>;
 }
 
 AdManager.propTypes = {

@@ -1,22 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  getClasses,
-  createMount,
-  createClientRender,
-  describeConformance,
-  screen,
-} from 'test/utils';
-import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
+import { createClientRender, describeConformance, screen } from 'test/utils';
+import Paper, { paperClasses } from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import MobileStepper, { mobileStepperClasses as classes } from '@material-ui/core/MobileStepper';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
-import Paper, { paperClasses } from '../Paper';
-import Button from '../Button/Button';
-import MobileStepper from './MobileStepper';
+import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 
 describe('<MobileStepper />', () => {
-  const mount = createMount();
   const render = createClientRender();
-  let classes;
   const defaultProps = {
     steps: 2,
     nextButton: (
@@ -33,16 +25,16 @@ describe('<MobileStepper />', () => {
     ),
   };
 
-  before(() => {
-    classes = getClasses(<MobileStepper {...defaultProps} />);
-  });
-
   describeConformance(<MobileStepper {...defaultProps} />, () => ({
     classes,
     inheritComponent: Paper,
-    mount,
+    render,
+    muiName: 'MuiMobileStepper',
+    testVariantProps: { variant: 'progress' },
+    testDeepOverrides: { slotName: 'dot', slotClassName: classes.dot },
+    testStateOverrides: { prop: 'position', value: 'static', styleKey: 'positionStatic' },
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: ['componentProp', 'componentsProp'],
   }));
 
   it('should render a Paper with 0 elevation', () => {
@@ -68,15 +60,15 @@ describe('<MobileStepper />', () => {
   it('should render the back button', () => {
     const { queryByTestId, getByRole } = render(<MobileStepper {...defaultProps} />);
     const backButton = getByRole('button', { name: 'back' });
-    expect(backButton).to.not.equal(null);
-    expect(queryByTestId('KeyboardArrowLeftIcon')).to.not.equal(null);
+    expect(backButton).not.to.equal(null);
+    expect(queryByTestId('KeyboardArrowLeftIcon')).not.to.equal(null);
   });
 
   it('should render next button', () => {
     const { getByRole, queryByTestId } = render(<MobileStepper {...defaultProps} />);
     const nextButton = getByRole('button', { name: 'next' });
-    expect(nextButton).to.not.equal(null);
-    expect(queryByTestId('KeyboardArrowRightIcon')).to.not.equal(null);
+    expect(nextButton).not.to.equal(null);
+    expect(queryByTestId('KeyboardArrowRightIcon')).not.to.equal(null);
   });
 
   it('should render two buttons and text displaying progress when supplied with variant text', () => {
@@ -108,7 +100,7 @@ describe('<MobileStepper />', () => {
 
   it('should render a <LinearProgress /> when supplied with variant progress', () => {
     render(<MobileStepper {...defaultProps} variant="progress" />);
-    expect(screen.queryByRole('progressbar')).to.not.equal(null);
+    expect(screen.queryByRole('progressbar')).not.to.equal(null);
   });
 
   it('should calculate the <LinearProgress /> value correctly', () => {

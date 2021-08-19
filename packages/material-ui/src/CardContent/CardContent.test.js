@@ -1,15 +1,14 @@
 import * as React from 'react';
-import { createMount, describeConformanceV5 } from 'test/utils';
-import CardContent from './CardContent';
-import classes from './cardContentClasses';
+import { createClientRender, describeConformance } from 'test/utils';
+import CardContent, { cardContentClasses as classes } from '@material-ui/core/CardContent';
 
 describe('<CardContent />', () => {
-  const mount = createMount();
+  const render = createClientRender();
 
-  describeConformanceV5(<CardContent />, () => ({
+  describeConformance(<CardContent />, () => ({
     classes,
     inheritComponent: 'div',
-    mount,
+    render,
     muiName: 'MuiCardContent',
     refInstanceof: window.HTMLDivElement,
     skip: ['componentsProp', 'themeVariants'],

@@ -1,18 +1,101 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useTheme, withStyles, useThemeVariants } from '../styles';
-import { alpha } from '../styles/colorManipulator';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { alpha } from '@material-ui/system';
+import useThemeProps from '../styles/useThemeProps';
+import paginationItemClasses, { getPaginationItemUtilityClass } from './paginationItemClasses';
+import { useTheme } from '../styles';
 import ButtonBase from '../ButtonBase';
-import { capitalize } from '../utils';
+import capitalize from '../utils/capitalize';
 import FirstPageIcon from '../internal/svg-icons/FirstPage';
 import LastPageIcon from '../internal/svg-icons/LastPage';
 import NavigateBeforeIcon from '../internal/svg-icons/NavigateBefore';
 import NavigateNextIcon from '../internal/svg-icons/NavigateNext';
+import styled from '../styles/styled';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
+const overridesResolver = (props, styles) => {
+  const { ownerState } = props;
+
+  return [
+    styles.root,
+    styles[ownerState.variant],
+    styles[`size${capitalize(ownerState.size)}`],
+    ownerState.variant === 'text' && styles[`text${capitalize(ownerState.color)}`],
+    ownerState.variant === 'outlined' && styles[`outlined${capitalize(ownerState.color)}`],
+    ownerState.shape === 'rounded' && styles.rounded,
+    ownerState.type === 'page' && styles.page,
+    (ownerState.type === 'start-ellipsis' || ownerState.type === 'end-ellipsis') && styles.ellipsis,
+    (ownerState.type === 'previous' || ownerState.type === 'next') && styles.previousNext,
+    (ownerState.type === 'first' || ownerState.type === 'last') && styles.firstLast,
+  ];
+};
+
+const useUtilityClasses = (ownerState) => {
+  const { classes, color, disabled, selected, size, shape, type, variant } = ownerState;
+
+  const slots = {
+    root: [
+      'root',
+      `size${capitalize(size)}`,
+      variant,
+      shape,
+      color !== 'standard' && `${variant}${capitalize(color)}`,
+      disabled && 'disabled',
+      selected && 'selected',
+      {
+        page: 'page',
+        first: 'firstLast',
+        last: 'firstLast',
+        'start-ellipsis': 'ellipsis',
+        'end-ellipsis': 'ellipsis',
+        previous: 'previousNext',
+        next: 'previousNext',
+      }[type],
+    ],
+    icon: ['icon'],
+  };
+
+  return composeClasses(slots, getPaginationItemUtilityClass, classes);
+};
+
+const PaginationItemEllipsis = styled('div', {
+  name: 'MuiPaginationItem',
+  slot: 'Root',
+  overridesResolver,
+})(({ theme, ownerState }) => ({
+  ...theme.typography.body2,
+  borderRadius: 32 / 2,
+  textAlign: 'center',
+  boxSizing: 'border-box',
+  minWidth: 32,
+  padding: '0 6px',
+  margin: '0 3px',
+  color: theme.palette.text.primary,
+  height: 'auto',
+  [`&.${paginationItemClasses.disabled}`]: {
+    opacity: theme.palette.action.disabledOpacity,
+  },
+  ...(ownerState.size === 'small' && {
+    minWidth: 26,
+    borderRadius: 26 / 2,
+    margin: '0 1px',
+    padding: '0 4px',
+  }),
+  ...(ownerState.size === 'large' && {
+    minWidth: 40,
+    borderRadius: 40 / 2,
+    padding: '0 10px',
+    fontSize: theme.typography.pxToRem(15),
+  }),
+}));
+
+const PaginationItemPage = styled(ButtonBase, {
+  name: 'MuiPaginationItem',
+  slot: 'Root',
+  overridesResolver,
+})(
+  ({ theme, ownerState }) => ({
     ...theme.typography.body2,
     borderRadius: 32 / 2,
     textAlign: 'center',
@@ -22,9 +105,12 @@ export const styles = (theme) => ({
     padding: '0 6px',
     margin: '0 3px',
     color: theme.palette.text.primary,
-  },
-  /* Styles applied to the root element if `type="page"`. */
-  page: {
+    [`&.${paginationItemClasses.focusVisible}`]: {
+      backgroundColor: theme.palette.action.focus,
+    },
+    [`&.${paginationItemClasses.disabled}`]: {
+      opacity: theme.palette.action.disabledOpacity,
+    },
     transition: theme.transitions.create(['color', 'background-color'], {
       duration: theme.transitions.duration.short,
     }),
@@ -35,13 +121,7 @@ export const styles = (theme) => ({
         backgroundColor: 'transparent',
       },
     },
-    '&$disabled': {
-      opacity: theme.palette.action.disabledOpacity,
-    },
-    '&$focusVisible': {
-      backgroundColor: theme.palette.action.focus,
-    },
-    '&$selected': {
+    [`&.${paginationItemClasses.selected}`]: {
       backgroundColor: theme.palette.action.selected,
       '&:hover': {
         backgroundColor: alpha(
@@ -53,157 +133,114 @@ export const styles = (theme) => ({
           backgroundColor: theme.palette.action.selected,
         },
       },
-      '&$focusVisible': {
+      [`&.${paginationItemClasses.focusVisible}`]: {
         backgroundColor: alpha(
           theme.palette.action.selected,
           theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
         ),
       },
-      '&$disabled': {
+      [`&.${paginationItemClasses.disabled}`]: {
         opacity: 1,
         color: theme.palette.action.disabled,
         backgroundColor: theme.palette.action.selected,
       },
     },
-  },
-  /* Styles applied to the root element if `size="small"`. */
-  sizeSmall: {
-    minWidth: 26,
-    height: 26,
-    borderRadius: 26 / 2,
-    margin: '0 1px',
-    padding: '0 4px',
-    '& $icon': {
-      fontSize: theme.typography.pxToRem(18),
-    },
-  },
-  /* Styles applied to the root element if `size="large"`. */
-  sizeLarge: {
-    minWidth: 40,
-    height: 40,
-    borderRadius: 40 / 2,
-    padding: '0 10px',
-    fontSize: theme.typography.pxToRem(15),
-    '& $icon': {
-      fontSize: theme.typography.pxToRem(22),
-    },
-  },
-  /* Styles applied to the root element if `variant="text"`. */
-  text: {},
-  /* Styles applied to the root element if `variant="text"` and `color="primary"`. */
-  textPrimary: {
-    '&$selected': {
-      color: theme.palette.primary.contrastText,
-      backgroundColor: theme.palette.primary.main,
-      '&:hover, &$focusVisible': {
-        backgroundColor: theme.palette.primary.dark,
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: theme.palette.primary.main,
+    ...(ownerState.size === 'small' && {
+      minWidth: 26,
+      height: 26,
+      borderRadius: 26 / 2,
+      margin: '0 1px',
+      padding: '0 4px',
+    }),
+    ...(ownerState.size === 'large' && {
+      minWidth: 40,
+      height: 40,
+      borderRadius: 40 / 2,
+      padding: '0 10px',
+      fontSize: theme.typography.pxToRem(15),
+    }),
+    ...(ownerState.shape === 'rounded' && {
+      borderRadius: theme.shape.borderRadius,
+    }),
+  }),
+  ({ theme, ownerState }) => ({
+    ...(ownerState.variant === 'text' && {
+      [`&.${paginationItemClasses.selected}`]: {
+        ...(ownerState.color !== 'standard' && {
+          color: theme.palette[ownerState.color].contrastText,
+          backgroundColor: theme.palette[ownerState.color].main,
+          '&:hover': {
+            backgroundColor: theme.palette[ownerState.color].dark,
+            // Reset on touch devices, it doesn't add specificity
+            '@media (hover: none)': {
+              backgroundColor: theme.palette[ownerState.color].main,
+            },
+          },
+          [`&.${paginationItemClasses.focusVisible}`]: {
+            backgroundColor: theme.palette[ownerState.color].dark,
+          },
+        }),
+        [`&.${paginationItemClasses.disabled}`]: {
+          color: theme.palette.action.disabled,
         },
       },
-      '&$disabled': {
-        color: theme.palette.action.disabled,
-      },
-    },
-  },
-  /* Styles applied to the root element if `variant="text"` and `color="secondary"`. */
-  textSecondary: {
-    '&$selected': {
-      color: theme.palette.secondary.contrastText,
-      backgroundColor: theme.palette.secondary.main,
-      '&:hover, &$focusVisible': {
-        backgroundColor: theme.palette.secondary.dark,
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: theme.palette.secondary.main,
+    }),
+    ...(ownerState.variant === 'outlined' && {
+      border: `1px solid ${
+        theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+      }`,
+      [`&.${paginationItemClasses.selected}`]: {
+        ...(ownerState.color !== 'standard' && {
+          color: theme.palette[ownerState.color].main,
+          border: `1px solid ${alpha(theme.palette[ownerState.color].main, 0.5)}`,
+          backgroundColor: alpha(
+            theme.palette[ownerState.color].main,
+            theme.palette.action.activatedOpacity,
+          ),
+          '&:hover': {
+            backgroundColor: alpha(
+              theme.palette[ownerState.color].main,
+              theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
+            ),
+            // Reset on touch devices, it doesn't add specificity
+            '@media (hover: none)': {
+              backgroundColor: 'transparent',
+            },
+          },
+          [`&.${paginationItemClasses.focusVisible}`]: {
+            backgroundColor: alpha(
+              theme.palette[ownerState.color].main,
+              theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
+            ),
+          },
+        }),
+        [`&.${paginationItemClasses.disabled}`]: {
+          borderColor: theme.palette.action.disabledBackground,
+          color: theme.palette.action.disabled,
         },
       },
-      '&$disabled': {
-        color: theme.palette.action.disabled,
-      },
-    },
-  },
-  /* Styles applied to the root element if `variant="outlined"`. */
-  outlined: {
-    border: `1px solid ${
-      theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-    }`,
-    '&$selected': {
-      '&$disabled': {
-        border: `1px solid ${theme.palette.action.disabledBackground}`,
-      },
-    },
-  },
-  /* Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
-  outlinedPrimary: {
-    '&$selected': {
-      color: theme.palette.primary.main,
-      border: `1px solid ${alpha(theme.palette.primary.main, 0.5)}`,
-      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-      '&:hover, &$focusVisible': {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
-        ),
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: 'transparent',
-        },
-      },
-      '&$disabled': {
-        color: theme.palette.action.disabled,
-      },
-    },
-  },
-  /* Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
-  outlinedSecondary: {
-    '&$selected': {
-      color: theme.palette.secondary.main,
-      border: `1px solid ${alpha(theme.palette.secondary.main, 0.5)}`,
-      backgroundColor: alpha(theme.palette.secondary.main, theme.palette.action.activatedOpacity),
-      '&:hover, &$focusVisible': {
-        backgroundColor: alpha(
-          theme.palette.secondary.main,
-          theme.palette.action.activatedOpacity + theme.palette.action.focusOpacity,
-        ),
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: 'transparent',
-        },
-      },
-      '&$disabled': {
-        color: theme.palette.action.disabled,
-      },
-    },
-  },
-  /* Styles applied to the root element if `rounded="true"`. */
-  rounded: {
-    borderRadius: theme.shape.borderRadius,
-  },
-  /* Styles applied to the root element if `type="start-ellipsis"` or `type="end-ellipsis"`. */
-  ellipsis: {
-    height: 'auto',
-    '&$disabled': {
-      opacity: theme.palette.action.disabledOpacity,
-    },
-  },
-  /* Pseudo-class applied to the root element if keyboard focused. */
-  focusVisible: {},
-  /* Pseudo-class applied to the root element if `disabled={true}`. */
-  disabled: {},
-  /* Pseudo-class applied to the root element if `selected={true}`. */
-  selected: {},
-  /* Styles applied to tThe icon to display. */
-  icon: {
-    fontSize: theme.typography.pxToRem(20),
-    margin: '0 -8px',
-  },
-});
+    }),
+  }),
+);
 
-const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
+const PaginationItemPageIcon = styled('div', {
+  name: 'MuiPaginationItem',
+  slot: 'Icon',
+  overridesResolver: (props, styles) => styles.icon,
+})(({ theme, ownerState }) => ({
+  fontSize: theme.typography.pxToRem(20),
+  margin: '0 -8px',
+  ...(ownerState.size === 'small' && {
+    fontSize: theme.typography.pxToRem(18),
+  }),
+  ...(ownerState.size === 'large' && {
+    fontSize: theme.typography.pxToRem(22),
+  }),
+}));
+
+const PaginationItem = React.forwardRef(function PaginationItem(inProps, ref) {
+  const props = useThemeProps({ props: inProps, name: 'MuiPaginationItem' });
   const {
-    classes,
     className,
     color = 'standard',
     component,
@@ -217,21 +254,19 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
     ...other
   } = props;
 
-  const themeVariantsClasses = useThemeVariants(
-    {
-      ...props,
-      color,
-      disabled,
-      selected,
-      shape,
-      size,
-      type,
-      variant,
-    },
-    'MuiPaginationItem',
-  );
+  const ownerState = {
+    ...props,
+    color,
+    disabled,
+    selected,
+    shape,
+    size,
+    type,
+    variant,
+  };
 
   const theme = useTheme();
+  const classes = useUtilityClasses(ownerState);
 
   const normalizedIcons =
     theme.direction === 'rtl'
@@ -251,49 +286,32 @@ const PaginationItem = React.forwardRef(function PaginationItem(props, ref) {
   const Icon = normalizedIcons[type];
 
   return type === 'start-ellipsis' || type === 'end-ellipsis' ? (
-    <div
+    <PaginationItemEllipsis
       ref={ref}
-      className={clsx(
-        classes.root,
-        classes.ellipsis,
-        {
-          [classes.disabled]: disabled,
-          [classes[`size${capitalize(size)}`]]: size !== 'medium',
-        },
-        className,
-      )}
+      ownerState={ownerState}
+      className={clsx(classes.root, className)}
+      {...other}
     >
       …
-    </div>
+    </PaginationItemEllipsis>
   ) : (
-    <ButtonBase
+    <PaginationItemPage
       ref={ref}
+      ownerState={ownerState}
       component={component}
       disabled={disabled}
-      focusVisibleClassName={classes.focusVisible}
-      className={clsx(
-        classes.root,
-        classes.page,
-        classes[variant],
-        classes[shape],
-        {
-          [classes[`${variant}${capitalize(color)}`]]: color !== 'standard',
-          [classes.disabled]: disabled,
-          [classes.selected]: selected,
-          [classes[`size${capitalize(size)}`]]: size !== 'medium',
-        },
-        themeVariantsClasses,
-        className,
-      )}
+      className={clsx(classes.root, className)}
       {...other}
     >
       {type === 'page' && page}
-      {Icon ? <Icon className={classes.icon} /> : null}
-    </ButtonBase>
+      {Icon ? (
+        <PaginationItemPageIcon as={Icon} ownerState={ownerState} className={classes.icon} />
+      ) : null}
+    </PaginationItemPage>
   );
 });
 
-PaginationItem.propTypes = {
+PaginationItem.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -314,7 +332,10 @@ PaginationItem.propTypes = {
    * The active color.
    * @default 'standard'
    */
-  color: PropTypes.oneOf(['primary', 'secondary', 'standard']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['primary', 'secondary', 'standard']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -328,7 +349,7 @@ PaginationItem.propTypes = {
   /**
    * The current page number.
    */
-  page: PropTypes.number,
+  page: PropTypes.node,
   /**
    * If `true` the pagination item is selected.
    * @default false
@@ -343,7 +364,14 @@ PaginationItem.propTypes = {
    * The size of the component.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['large', 'medium', 'small']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['small', 'medium', 'large']),
+    PropTypes.string,
+  ]),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
   /**
    * The type of pagination item.
    * @default 'page'
@@ -367,4 +395,4 @@ PaginationItem.propTypes = {
   ]),
 };
 
-export default withStyles(styles, { name: 'MuiPaginationItem' })(PaginationItem);
+export default PaginationItem;

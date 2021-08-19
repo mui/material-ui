@@ -2,13 +2,19 @@
   "props": {
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
-    "color": { "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" } },
+    "color": {
+      "type": {
+        "name": "union",
+        "description": "'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
+      }
+    },
     "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" } },
     "error": { "type": { "name": "bool" } },
     "filled": { "type": { "name": "bool" } },
     "focused": { "type": { "name": "bool" } },
-    "required": { "type": { "name": "bool" } }
+    "required": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "FormLabel",
   "styles": {
@@ -35,6 +41,6 @@
   "filename": "/packages/material-ui/src/FormLabel/FormLabel.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/checkboxes/\">Checkboxes</a></li>\n<li><a href=\"/components/radio-buttons/\">Radio Buttons</a></li>\n<li><a href=\"/components/switches/\">Switches</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

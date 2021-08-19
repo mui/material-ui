@@ -1,96 +1,119 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import formControlState from '../FormControl/formControlState';
 import useFormControl from '../FormControl/useFormControl';
-import withStyles from '../styles/withStyles';
-import FormLabel from '../FormLabel';
+import FormLabel, { formLabelClasses } from '../FormLabel';
+import useThemeProps from '../styles/useThemeProps';
+import styled, { rootShouldForwardProp } from '../styles/styled';
+import { getInputLabelUtilityClasses } from './inputLabelClasses';
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    display: 'block',
-    transformOrigin: 'top left',
+const useUtilityClasses = (ownerState) => {
+  const { classes, formControl, size, shrink, disableAnimation, variant, required } = ownerState;
+  const slots = {
+    root: [
+      'root',
+      formControl && 'formControl',
+      !disableAnimation && 'animated',
+      shrink && 'shrink',
+      size === 'small' && 'sizeSmall',
+      variant,
+    ],
+    asterisk: [required && 'asterisk'],
+  };
+
+  const composedClasses = composeClasses(slots, getInputLabelUtilityClasses, classes);
+
+  return {
+    ...classes, // forward the focused, disabled, etc. classes to the FormLabel
+    ...composedClasses,
+  };
+};
+
+const InputLabelRoot = styled(FormLabel, {
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) || prop === 'classes',
+  name: 'MuiInputLabel',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+    return [
+      { [`& .${formLabelClasses.asterisk}`]: styles.asterisk },
+      styles.root,
+      !ownerState.formControl && styles.formControl,
+      ownerState.size === 'small' && styles.sizeSmall,
+      ownerState.shrink && styles.shrink,
+      !ownerState.disableAnimation && styles.animated,
+      styles[ownerState.variant],
+    ];
   },
-  /* Pseudo-class applied to the root element if `focused={true}`. */
-  focused: {},
-  /* Pseudo-class applied to the root element if `disabled={true}`. */
-  disabled: {},
-  /* Pseudo-class applied to the root element if `error={true}`. */
-  error: {},
-  /* Pseudo-class applied to the root element if `required={true}`. */
-  required: {},
-  /* Pseudo-class applied to the asterisk element. */
-  asterisk: {},
-  /* Styles applied to the root element if the component is a descendant of `FormControl`. */
-  formControl: {
+})(({ theme, ownerState }) => ({
+  display: 'block',
+  transformOrigin: 'top left',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  maxWidth: '100%',
+  ...(ownerState.formControl && {
     position: 'absolute',
     left: 0,
     top: 0,
     // slight alteration to spec spacing to match visual spec result
-    transform: 'translate(0, 24px) scale(1)',
-  },
-  /* Styles applied to the root element if `size="small"`. */
-  sizeSmall: {
+    transform: 'translate(0, 20px) scale(1)',
+  }),
+  ...(ownerState.size === 'small' && {
     // Compensation for the `Input.inputSizeSmall` style.
-    transform: 'translate(0, 21px) scale(1)',
-  },
-  /* Styles applied to the input element if `shrink={true}`. */
-  shrink: {
-    transform: 'translate(0, 1.5px) scale(0.75)',
+    transform: 'translate(0, 17px) scale(1)',
+  }),
+  ...(ownerState.shrink && {
+    transform: 'translate(0, -1.5px) scale(0.75)',
     transformOrigin: 'top left',
-  },
-  /* Styles applied to the input element unless `disableAnimation={true}`. */
-  animated: {
-    transition: theme.transitions.create(['color', 'transform'], {
+    maxWidth: '133%',
+  }),
+  ...(!ownerState.disableAnimation && {
+    transition: theme.transitions.create(['color', 'transform', 'max-width'], {
       duration: theme.transitions.duration.shorter,
       easing: theme.transitions.easing.easeOut,
     }),
-  },
-  /* Styles applied to the root element if `variant="filled"`. */
-  filled: {
+  }),
+  ...(ownerState.variant === 'filled' && {
     // Chrome's autofill feature gives the input field a yellow background.
     // Since the input field is behind the label in the HTML tree,
     // the input field is drawn last and hides the label with an opaque background color.
     // zIndex: 1 will raise the label above opaque background-colors of input.
     zIndex: 1,
     pointerEvents: 'none',
-    transform: 'translate(12px, 20px) scale(1)',
-    '&$sizeSmall': {
-      transform: 'translate(12px, 17px) scale(1)',
-    },
-    '&$shrink': {
-      transform: 'translate(12px, 10px) scale(0.75)',
-      '&$sizeSmall': {
-        transform: 'translate(12px, 7px) scale(0.75)',
-      },
-    },
-  },
-  /* Styles applied to the root element if `variant="outlined"`. */
-  outlined: {
+    transform: 'translate(12px, 16px) scale(1)',
+    maxWidth: 'calc(100% - 24px)',
+    ...(ownerState.size === 'small' && {
+      transform: 'translate(12px, 13px) scale(1)',
+    }),
+    ...(ownerState.shrink && {
+      transform: 'translate(12px, 7px) scale(0.75)',
+      maxWidth: 'calc(133% - 24px)',
+      ...(ownerState.size === 'small' && {
+        transform: 'translate(12px, 4px) scale(0.75)',
+      }),
+    }),
+  }),
+  ...(ownerState.variant === 'outlined' && {
     // see comment above on filled.zIndex
     zIndex: 1,
     pointerEvents: 'none',
-    transform: 'translate(14px, 20px) scale(1)',
-    '&$sizeSmall': {
-      transform: 'translate(14px, 12px) scale(1)',
-    },
-    '&$shrink': {
-      transform: 'translate(14px, -6px) scale(0.75)',
-    },
-  },
-});
+    transform: 'translate(14px, 16px) scale(1)',
+    maxWidth: 'calc(100% - 24px)',
+    ...(ownerState.size === 'small' && {
+      transform: 'translate(14px, 9px) scale(1)',
+    }),
+    ...(ownerState.shrink && {
+      maxWidth: 'calc(133% - 24px)',
+      transform: 'translate(14px, -9px) scale(0.75)',
+    }),
+  }),
+}));
 
-const InputLabel = React.forwardRef(function InputLabel(props, ref) {
-  const {
-    classes,
-    className,
-    disableAnimation = false,
-    margin,
-    shrink: shrinkProp,
-    variant,
-    ...other
-  } = props;
+const InputLabel = React.forwardRef(function InputLabel(inProps, ref) {
+  const props = useThemeProps({ name: 'MuiInputLabel', props: inProps });
+  const { disableAnimation = false, margin, shrink: shrinkProp, variant, ...other } = props;
 
   const muiFormControl = useFormControl();
 
@@ -102,38 +125,32 @@ const InputLabel = React.forwardRef(function InputLabel(props, ref) {
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['size', 'variant'],
+    states: ['size', 'variant', 'required'],
   });
 
+  const ownerState = {
+    ...props,
+    disableAnimation,
+    formControl: muiFormControl,
+    shrink,
+    size: fcs.size,
+    variant: fcs.variant,
+    required: fcs.required,
+  };
+
+  const classes = useUtilityClasses(ownerState);
   return (
-    <FormLabel
+    <InputLabelRoot
       data-shrink={shrink}
-      className={clsx(
-        classes.root,
-        {
-          [classes.formControl]: muiFormControl,
-          [classes.animated]: !disableAnimation,
-          [classes.shrink]: shrink,
-          [classes.sizeSmall]: fcs.size === 'small',
-          [classes.filled]: fcs.variant === 'filled',
-          [classes.outlined]: fcs.variant === 'outlined',
-        },
-        className,
-      )}
-      classes={{
-        focused: classes.focused,
-        disabled: classes.disabled,
-        error: classes.error,
-        required: classes.required,
-        asterisk: classes.asterisk,
-      }}
+      ownerState={ownerState}
       ref={ref}
       {...other}
+      classes={classes}
     />
   );
 });
 
-InputLabel.propTypes = {
+InputLabel.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -147,13 +164,12 @@ InputLabel.propTypes = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes.oneOf(['primary', 'secondary']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * If `true`, the transition animation is disabled.
    * @default false
@@ -185,9 +201,13 @@ InputLabel.propTypes = {
    */
   shrink: PropTypes.bool,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
+  /**
    * The variant to use.
    */
   variant: PropTypes.oneOf(['filled', 'outlined', 'standard']),
 };
 
-export default withStyles(styles, { name: 'MuiInputLabel' })(InputLabel);
+export default InputLabel;

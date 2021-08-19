@@ -1,47 +1,28 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
+import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/core/Autocomplete';
-import { makeStyles } from '@material-ui/core/styles';
-
-// ISO 3166-1 alpha-2
-// ⚠️ No support for IE11
-function countryToFlag(isoCode) {
-  return typeof String.fromCodePoint !== 'undefined'
-    ? isoCode
-        .toUpperCase()
-        .replace(/./g, (char) => String.fromCodePoint(char.charCodeAt(0) + 127397))
-    : isoCode;
-}
-
-const useStyles = makeStyles({
-  option: {
-    fontSize: 15,
-    '& > span': {
-      marginRight: 10,
-      fontSize: 18,
-    },
-  },
-});
 
 export default function CountrySelect() {
-  const classes = useStyles();
-
   return (
     <Autocomplete
       id="country-select-demo"
-      style={{ width: 300 }}
+      sx={{ width: 300 }}
       options={countries}
-      classes={{
-        option: classes.option,
-      }}
       autoHighlight
       getOptionLabel={(option) => option.label}
       renderOption={(props, option) => (
-        <li {...props}>
-          <span>{countryToFlag(option.code)}</span>
+        <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
+          <img
+            loading="lazy"
+            width="20"
+            src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
+            srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+            alt=""
+          />
           {option.label} ({option.code}) +{option.phone}
-        </li>
+        </Box>
       )}
       renderInput={(params) => (
         <TextField

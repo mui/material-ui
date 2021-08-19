@@ -1,11 +1,15 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@material-ui/types';
 import { SxProps } from '@material-ui/system';
-import { PropTypes, Theme } from '..';
+import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { ChipClasses } from './chipClasses';
 
 export interface ChipPropsVariantOverrides {}
-export type ChipVariantDefaults = Record<'filled' | 'outlined', true>;
+
+export interface ChipPropsSizeOverrides {}
+
+export interface ChipPropsColorOverrides {}
 
 export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -21,82 +25,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Styles applied to the root element if `size="small"`. */
-      sizeSmall?: string;
-      /** Styles applied to the root element if `size="medium"`. */
-      sizeMedium?: string;
-      /** Styles applied to the root element if `color="primary"`. */
-      colorPrimary?: string;
-      /** Styles applied to the root element if `color="secondary"`. */
-      colorSecondary?: string;
-      /** Pseudo-class applied to the root element if `disabled={true}`. */
-      disabled?: string;
-      /** Styles applied to the root element if `onClick` is defined or `clickable={true}`. */
-      clickable?: string;
-      /** Styles applied to the root element if `onClick` and `color="primary"` is defined or `clickable={true}`. */
-      clickableColorPrimary?: string;
-      /** Styles applied to the root element if `onClick` and `color="secondary"` is defined or `clickable={true}`. */
-      clickableColorSecondary?: string;
-      /** Styles applied to the root element if `onDelete` is defined. */
-      deletable?: string;
-      /** Styles applied to the root element if `onDelete` and `color="primary"` is defined. */
-      deletableColorPrimary?: string;
-      /** Styles applied to the root element if `onDelete` and `color="secondary"` is defined. */
-      deletableColorSecondary?: string;
-      /** Styles applied to the root element if `variant="outlined"`. */
-      outlined?: string;
-      /** Styles applied to the root element if `variant="filled"`. */
-      filled?: string;
-      /** Styles applied to the root element if `variant="outlined"` and `color="primary"`. */
-      outlinedPrimary?: string;
-      /** Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
-      outlinedSecondary?: string;
-      /** Styles applied to the avatar element. */
-      avatar?: string;
-      /** Styles applied to the avatar element if `size="small"`. */
-      avatarSmall?: string;
-      /** Styles applied to the avatar element if `size="medium"`. */
-      avatarMedium?: string;
-      /** Styles applied to the avatar element if `color="primary"`. */
-      avatarColorPrimary?: string;
-      /** Styles applied to the avatar element if `color="secondary"`. */
-      avatarColorSecondary?: string;
-      /** Styles applied to the icon element. */
-      icon?: string;
-      /** Styles applied to the icon element if `size="small"`. */
-      iconSmall?: string;
-      /** Styles applied to the icon element if `size="medium"`. */
-      iconMedium?: string;
-      /** Styles applied to the icon element if `color="primary"`. */
-      iconColorPrimary?: string;
-      /** Styles applied to the icon element if `color="secondary"`. */
-      iconColorSecondary?: string;
-      /** Styles applied to the label `span` element. */
-      label?: string;
-      /** Styles applied to the label `span` element if `size="small"`. */
-      labelSmall?: string;
-      /** Styles applied to the label `span` element if `size="medium"`. */
-      labelMedium?: string;
-      /** Styles applied to the deleteIcon element. */
-      deleteIcon?: string;
-      /** Styles applied to the deleteIcon element if `size="small"`. */
-      deleteIconSmall?: string;
-      /** Styles applied to the deleteIcon element if `size="medium"`. */
-      deleteIconMedium?: string;
-      /** Styles applied to the deleteIcon element if `color="primary"` and `variant="filled"`. */
-      deleteIconColorPrimary?: string;
-      /** Styles applied to the deleteIcon element if `color="secondary"` and `variant="filled"`. */
-      deleteIconColorSecondary?: string;
-      /** Styles applied to the deleteIcon element if `color="primary"` and `variant="outlined"`. */
-      deleteIconOutlinedColorPrimary?: string;
-      /** Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`. */
-      deleteIconOutlinedColorSecondary?: string;
-      /** Pseudo-class applied to the root element if keyboard focused. */
-      focusVisible?: string;
-    };
+    classes?: Partial<ChipClasses>;
     /**
      * If `true`, the chip will appear clickable, and will raise when pressed,
      * even if the onClick prop is not defined.
@@ -110,7 +39,10 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'default'
      */
-    color?: Exclude<PropTypes.Color, 'inherit'>;
+    color?: OverridableStringUnion<
+      'default' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+      ChipPropsColorOverrides
+    >;
     /**
      * Override the default delete icon element. Shown only if `onDelete` is set.
      */
@@ -137,7 +69,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The size of the component.
      * @default 'medium'
      */
-    size?: 'small' | 'medium';
+    size?: OverridableStringUnion<'small' | 'medium', ChipPropsSizeOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
@@ -146,7 +78,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The variant to use.
      * @default 'filled'
      */
-    variant?: OverridableStringUnion<ChipVariantDefaults, ChipPropsVariantOverrides>;
+    variant?: OverridableStringUnion<'filled' | 'outlined', ChipPropsVariantOverrides>;
   };
   defaultComponent: D;
 }
@@ -164,11 +96,9 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
  */
 declare const Chip: OverridableComponent<ChipTypeMap>;
 
-export type ChipClassKey = keyof NonNullable<ChipTypeMap['props']['classes']>;
-
 export type ChipProps<
   D extends React.ElementType = ChipTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<ChipTypeMap<P, D>, D>;
 
 export default Chip;

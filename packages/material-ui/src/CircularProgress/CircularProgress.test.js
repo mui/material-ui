@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
-import CircularProgress from './CircularProgress';
-import classes from './circularProgressClasses';
+import { createClientRender, describeConformance } from 'test/utils';
+import CircularProgress, {
+  circularProgressClasses as classes,
+} from '@material-ui/core/CircularProgress';
 
 describe('<CircularProgress />', () => {
-  const mount = createMount();
   const render = createClientRender();
 
-  describeConformanceV5(<CircularProgress />, () => ({
+  describeConformance(<CircularProgress />, () => ({
     classes,
     inheritComponent: 'span',
-    mount,
+    render,
     muiName: 'MuiCircularProgress',
     testDeepOverrides: { slotName: 'circle', slotClassName: classes.circle },
     testVariantProps: { variant: 'determinate' },
@@ -79,7 +79,7 @@ describe('<CircularProgress />', () => {
       expect(circularProgress).to.have.class(classes.root);
       const svg = circularProgress.firstChild;
       expect(svg).to.have.tagName('svg');
-      expect(svg).to.not.have.class(
+      expect(svg).not.to.have.class(
         classes.svgIndeterminate,
         'should not have the svgIndeterminate class',
       );
@@ -111,7 +111,7 @@ describe('<CircularProgress />', () => {
       const svg = circularProgress.firstChild;
       const circle = svg.firstChild;
       expect(circle).to.have.tagName('circle');
-      expect(circle).to.not.have.class(classes.circleDisableShrink);
+      expect(circle).not.to.have.class(classes.circleDisableShrink);
     });
 
     it('should render without disableShrink class when set to false', () => {
@@ -123,7 +123,7 @@ describe('<CircularProgress />', () => {
       const svg = circularProgress.firstChild;
       const circle = svg.firstChild;
       expect(circle).to.have.tagName('circle');
-      expect(circle).to.not.have.class(classes.circleDisableShrink);
+      expect(circle).not.to.have.class(classes.circleDisableShrink);
     });
 
     it('should render with disableShrink class when set to true', () => {

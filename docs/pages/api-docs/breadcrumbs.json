@@ -4,9 +4,15 @@
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
     "expandText": { "type": { "name": "string" }, "default": "'Show path'" },
-    "itemsAfterCollapse": { "type": { "name": "number" }, "default": "1" },
-    "itemsBeforeCollapse": { "type": { "name": "number" }, "default": "1" },
-    "maxItems": { "type": { "name": "number" }, "default": "8" },
+    "itemsAfterCollapse": {
+      "type": { "name": "custom", "description": "integer" },
+      "default": "1"
+    },
+    "itemsBeforeCollapse": {
+      "type": { "name": "custom", "description": "integer" },
+      "default": "1"
+    },
+    "maxItems": { "type": { "name": "custom", "description": "integer" }, "default": "8" },
     "separator": { "type": { "name": "node" }, "default": "'/'" },
     "sx": { "type": { "name": "object" } }
   },

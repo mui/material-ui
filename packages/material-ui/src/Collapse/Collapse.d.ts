@@ -2,6 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TransitionProps } from '../transitions/transition';
+import { CollapseClasses } from './collapseClasses';
 
 export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'> {
   /**
@@ -12,20 +13,7 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Pseudo-class applied to the root element if `orientation="horizontal"`. */
-    horizontal?: string;
-    /** Styles applied to the root element when the transition has entered. */
-    entered?: string;
-    /** Styles applied to the root element when the transition has exited and `collapsedSize` = 0px. */
-    hidden?: string;
-    /** Styles applied to the outer wrapper element. */
-    wrapper?: string;
-    /** Styles applied to the inner wrapper element. */
-    wrapperInner?: string;
-  };
+  classes?: Partial<CollapseClasses>;
   /**
    * The width (horizontal) or height (vertical) of the container when collapsed.
    * @default '0px'
@@ -36,6 +24,11 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
    * Either a string to use a HTML element or a component.
    */
   component?: React.ElementType<TransitionProps>;
+  /**
+   * The transition timing function.
+   * You may specify a single easing or a object containing enter and exit values.
+   */
+  easing?: TransitionProps['easing'];
   /**
    * If `true`, the component will transition in.
    */
@@ -58,8 +51,6 @@ export interface CollapseProps extends StandardProps<TransitionProps, 'timeout'>
    */
   sx?: SxProps<Theme>;
 }
-
-export type CollapseClassKey = keyof NonNullable<CollapseProps['classes']>;
 
 /**
  * The Collapse transition is used by the

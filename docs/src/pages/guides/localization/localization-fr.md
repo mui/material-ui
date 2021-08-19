@@ -9,10 +9,10 @@ The default locale of Material-UI is English (United States). If you want to use
 Use the theme to configure the locale text globally:
 
 ```jsx
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { zhCN } from '@material-ui/core/locale';
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: { main: '#1976d2' },
   },
@@ -29,14 +29,17 @@ const theme = createMuiTheme({
 
 ### Supported locales
 
-| Locale                  | BCP 47 language tag | Import name |
+| Locale                  | BCP 47 language tag | Nom importé |
 |:----------------------- |:------------------- |:----------- |
 | Arabe (Égypte)          | ar-EG               | `arEG`      |
 | Armenian                | hy-AM               | `hyAM`      |
 | Azerbaijani             | az-AZ               | `azAZ`      |
+| Bangla                  | bn-BD               | `bnBD`      |
 | Bulgarian               | bg-BG               | `bgBG`      |
 | Catalan                 | ca-ES               | `caES`      |
+| Chinese (Hong Kong)     | zh-HK               | `zhHK`      |
 | Chinese (Simplified)    | zh-CN               | `zhCN`      |
+| Chinese (Taiwan)        | zh-TW               | `zhTW`      |
 | Czech                   | cs-CZ               | `csCZ`      |
 | Dutch                   | nl-NL               | `nlNL`      |
 | English (United States) | en-US               | `enUS`      |

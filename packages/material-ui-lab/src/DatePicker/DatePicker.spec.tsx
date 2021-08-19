@@ -1,8 +1,7 @@
 import * as React from 'react';
 import moment, { Moment } from 'moment';
 import DatePicker from '@material-ui/lab/DatePicker';
-import AdapterDateFns from '../AdapterDateFns';
-import MomentAdapter from '../AdapterMoment';
+import { expectType } from '@material-ui/types';
 
 // Allows to set date type right with generic JSX syntax
 <DatePicker<Date>
@@ -32,32 +31,6 @@ const InferTest = () => {
   );
 };
 
-// Infer value type from the dateAdapter
-<DatePicker
-  value={moment()}
-  onChange={(date) => console.log(date)}
-  renderInput={() => <input />}
-  dateAdapter={new MomentAdapter()}
-/>;
-
-// Conflict between value type and date adapter causes error
-<DatePicker
-  value={moment()}
-  onChange={(date) => console.log(date)}
-  renderInput={() => <input />}
-  // @ts-expect-error
-  dateAdapter={new AdapterDateFns()}
-/>;
-
-// Conflict between explicit generic type and date adapter causes error
-<DatePicker<Moment>
-  value={moment()}
-  onChange={(date) => console.log(date)}
-  renderInput={() => <input />}
-  // @ts-expect-error
-  dateAdapter={new LuxonAdapter()}
-/>;
-
 // Allows inferring for side props
 <DatePicker
   value={moment()}
@@ -67,17 +40,26 @@ const InferTest = () => {
   renderInput={() => <input />}
 />;
 
-// Edge case and known issue. When the passed `value` is not a date type
-// We cannot infer the type properly without explicit generic type or `dateAdapter` prop
-// So in this case it is expected that type will be the type of `value` as for now
-<DatePicker
-  value={null}
-  onChange={(date) =>
-    // getDate is any
-    date?.getDate()
-  }
-  renderInput={() => <input />}
-/>;
+// TypeScript can't know the type of the DateAdapter in the React context.
+// So in this case it is expected that type will be the type of `value` as for now.
+// Argueable, this usage doesn't make sense since the component would never reflect the user picked value.
+{
+  <DatePicker
+    value={null}
+    onChange={(date) => {
+      expectType<null, typeof date>(date);
+    }}
+    renderInput={() => <input />}
+  />;
+  // workaround
+  <DatePicker<Date>
+    value={null}
+    onChange={(date) => {
+      expectType<Date | null, typeof date>(date);
+    }}
+    renderInput={() => <input />}
+  />;
+}
 
 {
   <DatePicker

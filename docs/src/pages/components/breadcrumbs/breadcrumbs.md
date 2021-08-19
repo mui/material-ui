@@ -13,7 +13,7 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#breadcrumb
 
 ## Basic breadcrumbs
 
-{{"demo": "pages/components/breadcrumbs/SimpleBreadcrumbs.js"}}
+{{"demo": "pages/components/breadcrumbs/BasicBreadcrumbs.js"}}
 
 ## Active last breadcrumb
 
@@ -23,7 +23,7 @@ Keep the last breadcrumb interactive.
 
 ## Custom separator
 
-In the following examples, we are using two string separators, and an SVG icon.
+In the following examples, we are using two string separators and an SVG icon.
 
 {{"demo": "pages/components/breadcrumbs/CustomSeparator.js"}}
 
@@ -35,10 +35,10 @@ In the following examples, we are using two string separators, and an SVG icon.
 
 {{"demo": "pages/components/breadcrumbs/CollapsedBreadcrumbs.js"}}
 
-## Customized breadcrumbs
+## Customization
 
-Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/how-to-customize/).
+Here is an example of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/breadcrumbs/CustomizedBreadcrumbs.js"}}
 

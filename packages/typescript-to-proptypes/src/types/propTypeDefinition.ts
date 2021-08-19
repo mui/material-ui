@@ -2,7 +2,7 @@ import { PropType } from './props';
 
 export interface PropTypeDefinition {
   name: string;
-  jsDoc?: string;
+  jsDoc: string | undefined;
   propType: PropType;
   filenames: Set<string>;
   /**

@@ -1,29 +1,78 @@
+import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makePickerWithStateAndWrapper } from '../internal/pickers/Picker/makePickerWithState';
-import {
-  BaseTimePickerProps,
-  timePickerConfig,
-  TimePickerGenericComponent,
-} from '../TimePicker/TimePicker';
-import { MobileWrapper } from '../internal/pickers/wrappers/Wrapper';
+import { BaseTimePickerProps, useTimePickerDefaultizedProps } from '../TimePicker/shared';
+import TimePickerToolbar from '../TimePicker/TimePickerToolbar';
+import MobileWrapper, { MobileWrapperProps } from '../internal/pickers/wrappers/MobileWrapper';
+import Picker from '../internal/pickers/Picker/Picker';
+import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
+import { useTimeValidation } from '../internal/pickers/hooks/useValidation';
+import { parsePickerInputValue } from '../internal/pickers/date-utils';
+import { PureDateInput } from '../internal/pickers/PureDateInput';
+import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
 
-// @typescript-to-proptypes-generate
+const valueManager: PickerStateValueManager<unknown, unknown> = {
+  emptyValue: null,
+  parseInput: parsePickerInputValue,
+  areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
+};
+
+export interface MobileTimePickerProps<TDate = unknown>
+  extends BaseTimePickerProps<TDate>,
+    MobileWrapperProps {}
+
+type MobileTimePickerComponent = (<TDate>(
+  props: MobileTimePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
+) => JSX.Element) & { propTypes?: any };
+
 /**
+ *
+ * Demos:
+ *
+ * - [Time Picker](https://material-ui.com/components/time-picker/)
  *
  * API:
  *
  * - [MobileTimePicker API](https://material-ui.com/api/mobile-time-picker/)
  */
-const MobileTimePicker = makePickerWithStateAndWrapper<BaseTimePickerProps>(MobileWrapper, {
-  name: 'MuiMobileTimePicker',
-  ...timePickerConfig,
-}) as TimePickerGenericComponent<typeof MobileWrapper>;
+const MobileTimePicker = React.forwardRef(function MobileTimePicker<TDate>(
+  inProps: MobileTimePickerProps<TDate>,
+  ref: React.Ref<HTMLDivElement>,
+) {
+  // TODO: TDate needs to be instantiated at every usage.
+  const props = useTimePickerDefaultizedProps(
+    inProps as MobileTimePickerProps<unknown>,
+    'MuiMobileTimePicker',
+  );
 
-if (process.env.NODE_ENV !== 'production') {
-  (MobileTimePicker as any).displayName = 'MobileTimePicker';
-}
+  const validationError = useTimeValidation(props) !== null;
+  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
 
-MobileTimePicker.propTypes = {
+  // Note that we are passing down all the value without spread.
+  // It saves us >1kb gzip and make any prop available automatically on any level down.
+  const { ToolbarComponent = TimePickerToolbar, value, onChange, ...other } = props;
+  const DateInputProps = { ...inputProps, ...other, ref, validationError };
+
+  return (
+    <MobileWrapper
+      {...other}
+      {...wrapperProps}
+      DateInputProps={DateInputProps}
+      PureDateInputComponent={PureDateInput}
+    >
+      {/* @ts-ignore time picker has no component slot for the calendar header */}
+      <Picker
+        {...pickerProps}
+        autoFocus
+        toolbarTitle={props.label || props.toolbarTitle}
+        ToolbarComponent={ToolbarComponent}
+        DateInputProps={DateInputProps}
+        {...other}
+      />
+    </MobileWrapper>
+  );
+}) as MobileTimePickerComponent;
+
+MobileTimePicker.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -34,13 +83,8 @@ MobileTimePicker.propTypes = {
    */
   acceptRegex: PropTypes.instanceOf(RegExp),
   /**
-   * Enables keyboard listener for moving between days in calendar.
-   * @default currentWrapper !== 'static'
-   */
-  allowKeyboardControl: PropTypes.bool,
-  /**
    * 12h/24h view for hour selection clock.
-   * @default true
+   * @default false
    */
   ampm: PropTypes.bool,
   /**
@@ -50,7 +94,7 @@ MobileTimePicker.propTypes = {
   ampmInClock: PropTypes.bool,
   /**
    * Cancel text message.
-   * @default "CANCEL"
+   * @default 'Cancel'
    */
   cancelText: PropTypes.node,
   /**
@@ -68,16 +112,16 @@ MobileTimePicker.propTypes = {
   clearable: PropTypes.bool,
   /**
    * Clear text message.
-   * @default "CLEAR"
+   * @default 'Clear'
    */
   clearText: PropTypes.node,
   /**
-   * Allows to pass configured date-io adapter directly. More info [here](https://next.material-ui-pickers.dev/guides/date-adapter-passing).
-   * ```jsx
-   * dateAdapter={new AdapterDateFns({ locale: ruLocale })}
-   * ```
+   * The components used for each slot.
+   * Either a string to use a HTML element or a component.
    */
-  dateAdapter: PropTypes.object,
+  components: PropTypes.shape({
+    OpenPickerIcon: PropTypes.elementType,
+  }),
   /**
    * Props applied to the [`Dialog`](/api/dialog/) element.
    */
@@ -108,7 +152,14 @@ MobileTimePicker.propTypes = {
   disableOpenPicker: PropTypes.bool,
   /**
    * Accessible text that helps user to understand which time and view is selected.
-   * @default (view, time) => `Select ${view}. Selected time is ${format(time, 'fullTime')}`
+   * @default <TDate extends any>(
+   *   view: ClockView,
+   *   time: TDate | null,
+   *   adapter: MuiPickersAdapter<TDate>,
+   * ) =>
+   *   `Select ${view}. ${
+   *     time === null ? 'No time selected' : `Selected time is ${adapter.format(time, 'fullTime')}`
+   *   }`
    */
   getClockLabelText: PropTypes.func,
   /**
@@ -133,6 +184,15 @@ MobileTimePicker.propTypes = {
    */
   InputProps: PropTypes.object,
   /**
+   * Pass a ref to the `input` element.
+   */
+  inputRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.object,
+    }),
+  ]),
+  /**
    * @ignore
    */
   key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -145,23 +205,15 @@ MobileTimePicker.propTypes = {
    */
   mask: PropTypes.string,
   /**
-   * @ignore
+   * Max time acceptable time.
+   * For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
    */
-  maxTime: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  maxTime: PropTypes.any,
   /**
-   * @ignore
+   * Min time acceptable time.
+   * For input validation date part of passed object will be ignored if `disableIgnoringDatePartForTimeValidation` not specified.
    */
-  minTime: PropTypes.oneOfType([
-    PropTypes.any,
-    PropTypes.instanceOf(Date),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
+  minTime: PropTypes.any,
   /**
    * Step over minutes.
    * @default 1
@@ -169,7 +221,7 @@ MobileTimePicker.propTypes = {
   minutesStep: PropTypes.number,
   /**
    * Ok button text.
-   * @default "OK"
+   * @default 'OK'
    */
   okText: PropTypes.node,
   /**
@@ -177,7 +229,7 @@ MobileTimePicker.propTypes = {
    */
   onAccept: PropTypes.func,
   /**
-   * Callback fired when the value (the selected date) changes. @DateIOType.
+   * Callback fired when the value (the selected date) changes @DateIOType.
    */
   onChange: PropTypes.func.isRequired,
   /**
@@ -208,13 +260,9 @@ MobileTimePicker.propTypes = {
    */
   OpenPickerButtonProps: PropTypes.object,
   /**
-   * Icon displaying for open picker button.
-   */
-  openPickerIcon: PropTypes.node,
-  /**
    * First view to show.
    */
-  openTo: PropTypes.oneOf(['date', 'hours', 'minutes', 'month', 'seconds', 'year']),
+  openTo: PropTypes.oneOf(['hours', 'minutes', 'seconds']),
   /**
    * Force rendering in particular orientation.
    */
@@ -252,11 +300,12 @@ MobileTimePicker.propTypes = {
   showToolbar: PropTypes.bool,
   /**
    * Today text message.
-   * @default "TODAY"
+   * @default 'Today'
    */
   todayText: PropTypes.node,
   /**
    * Component that will replace default toolbar renderer.
+   * @default TimePickerToolbar
    */
   ToolbarComponent: PropTypes.elementType,
   /**
@@ -265,12 +314,12 @@ MobileTimePicker.propTypes = {
   toolbarFormat: PropTypes.string,
   /**
    * Mobile picker date value placeholder, displaying if `value` === `null`.
-   * @default "–"
+   * @default '–'
    */
   toolbarPlaceholder: PropTypes.node,
   /**
    * Mobile picker title, displaying in the toolbar.
-   * @default "SELECT DATE"
+   * @default 'Select time'
    */
   toolbarTitle: PropTypes.node,
   /**
@@ -287,7 +336,5 @@ MobileTimePicker.propTypes = {
    */
   views: PropTypes.arrayOf(PropTypes.oneOf(['hours', 'minutes', 'seconds']).isRequired),
 } as any;
-
-export type MobileTimePickerProps = React.ComponentProps<typeof MobileTimePicker>;
 
 export default MobileTimePicker;

@@ -63,6 +63,7 @@ describe('styleFunctionSx', () => {
           fontFamily: 'default',
           fontWeight: 'light',
           fontSize: 'fontSize',
+          maxWidth: 'sm',
           displayPrint: 'block',
           border: [1, 2, 3, 4, 5],
         },
@@ -76,6 +77,7 @@ describe('styleFunctionSx', () => {
         fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
         fontWeight: 300,
         fontSize: 14,
+        maxWidth: 600,
         '@media print': {
           display: 'block',
         },
@@ -117,7 +119,7 @@ describe('styleFunctionSx', () => {
       theme,
       sx: {
         background: 'rgb(0, 0, 255)',
-        ':hover': {
+        '&:hover': {
           backgroundColor: 'primary.main',
           opacity: {
             xs: 0.1,
@@ -135,7 +137,7 @@ describe('styleFunctionSx', () => {
 
     expect(result).to.deep.equal({
       background: 'rgb(0, 0, 255)',
-      ':hover': {
+      '&:hover': {
         backgroundColor: 'rgb(0, 0, 255)',
         '@media (min-width:0px)': {
           opacity: 0.1,

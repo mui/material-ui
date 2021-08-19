@@ -2,7 +2,7 @@
   "componentDescription": "",
   "propDescriptions": {
     "onYearChange": "Callback firing on year change @DateIOType.",
-    "shouldDisableYear": "Disable specific years dynamically. Works like <code>shouldDisableDate</code> but for year selection view. @DateIOType."
+    "shouldDisableYear": "Disable specific years dynamically. Works like <code>shouldDisableDate</code> but for year selection view @DateIOType."
   },
-  "classDescriptions": {}
+  "classDescriptions": { "root": { "description": "Styles applied to the root element." } }
 }

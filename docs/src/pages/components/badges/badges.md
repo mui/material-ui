@@ -16,9 +16,16 @@ Examples of badges containing text, using primary and secondary colors. The badg
 
 {{"demo": "pages/components/badges/SimpleBadge.js"}}
 
-## Customized badges
+## Color
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+Use `color` prop to apply theme palette to component.
+
+{{"demo": "pages/components/badges/ColorBadge.js"}}
+
+## Customization
+
+Here is an example of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
@@ -56,6 +63,20 @@ You can use the `anchorOrigin` prop to move the badge to any corner of the wrapp
 
 {{"demo": "pages/components/badges/BadgeAlignment.js", "hideToolbar": true}}
 
-## Unstyled badge
+## Unstyled
+
+The badge also comes with an unstyled version.
+It's ideal for doing heavy customizations and minimizing bundle size.
+
+```js
+import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
+```
 
 {{"demo": "pages/components/badges/UnstyledBadge.js"}}
+
+## Accessibility
+
+You can't rely on the content of the badge to be announced correctly.
+You should provide a full description, for instance, with `aria-label`:
+
+{{"demo": "pages/components/badges/AccessibleBadges.js"}}

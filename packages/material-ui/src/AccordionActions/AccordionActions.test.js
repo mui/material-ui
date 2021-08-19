@@ -1,15 +1,16 @@
 import * as React from 'react';
-import { createMount, describeConformanceV5 } from 'test/utils';
-import AccordionActions from './AccordionActions';
-import classes from './accordionActionsClasses';
+import { createClientRender, describeConformance } from 'test/utils';
+import AccordionActions, {
+  accordionActionsClasses as classes,
+} from '@material-ui/core/AccordionActions';
 
 describe('<AccordionActions />', () => {
-  const mount = createMount();
+  const render = createClientRender();
 
-  describeConformanceV5(<AccordionActions>Conformance</AccordionActions>, () => ({
+  describeConformance(<AccordionActions>Conformance</AccordionActions>, () => ({
     classes,
     inheritComponent: 'div',
-    mount,
+    render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiAccordionActions',
     testVariantProps: { disableSpacing: true },

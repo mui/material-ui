@@ -3,9 +3,9 @@ import { SxProps } from '@material-ui/system';
 import { OverridableStringUnion } from '@material-ui/types';
 import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { ToolbarClasses } from './toolbarClasses';
 
 export interface ToolbarPropsVariantOverrides {}
-export type ToolbarVariantDefaults = Record<'regular' | 'dense', true>;
 
 export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -17,16 +17,7 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Styles applied to the root element unless `disableGutters={true}`. */
-      gutters?: string;
-      /** Styles applied to the root element if `variant="regular"`. */
-      regular?: string;
-      /** Styles applied to the root element if `variant="dense"`. */
-      dense?: string;
-    };
+    classes?: Partial<ToolbarClasses>;
     /**
      * If `true`, disables gutter padding.
      * @default false
@@ -36,7 +27,7 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The variant to use.
      * @default 'regular'
      */
-    variant?: OverridableStringUnion<ToolbarVariantDefaults, ToolbarPropsVariantOverrides>;
+    variant?: OverridableStringUnion<'regular' | 'dense', ToolbarPropsVariantOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
@@ -56,11 +47,9 @@ export interface ToolbarTypeMap<P = {}, D extends React.ElementType = 'div'> {
  */
 declare const Toolbar: OverridableComponent<ToolbarTypeMap>;
 
-export type ToolbarClassKey = keyof NonNullable<ToolbarTypeMap['props']['classes']>;
-
 export type ToolbarProps<
   D extends React.ElementType = ToolbarTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<ToolbarTypeMap<P, D>, D>;
 
 export default Toolbar;

@@ -6,8 +6,8 @@
     "clickable": { "type": { "name": "bool" } },
     "color": {
       "type": {
-        "name": "enum",
-        "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
+        "name": "union",
+        "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'success'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
       "default": "'default'"
     },
@@ -18,7 +18,10 @@
     "label": { "type": { "name": "node" } },
     "onDelete": { "type": { "name": "func" } },
     "size": {
-      "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
+      "type": {
+        "name": "union",
+        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+      },
       "default": "'medium'"
     },
     "sx": { "type": { "name": "object" } },

@@ -2,9 +2,19 @@
   "props": {
     "children": { "type": { "name": "custom", "description": "element" }, "required": true },
     "open": { "type": { "name": "bool" }, "required": true },
-    "BackdropComponent": { "type": { "name": "elementType" }, "default": "SimpleBackdrop" },
+    "BackdropComponent": {
+      "type": { "name": "elementType" },
+      "default": "styled(Backdrop, {\n  name: 'MuiModal',\n  slot: 'Backdrop',\n  overridesResolver: (props, styles) => {\n    return styles.backdrop;\n  },\n})({\n  zIndex: -1,\n})"
+    },
     "BackdropProps": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" } },
     "closeAfterTransition": { "type": { "name": "bool" } },
+    "component": { "type": { "name": "elementType" } },
+    "components": {
+      "type": { "name": "shape", "description": "{ Root?: elementType }" },
+      "default": "{}"
+    },
+    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "disableAutoFocus": { "type": { "name": "bool" } },
     "disableEnforceFocus": { "type": { "name": "bool" } },
@@ -15,10 +25,11 @@
     "hideBackdrop": { "type": { "name": "bool" } },
     "keepMounted": { "type": { "name": "bool" } },
     "onBackdropClick": { "type": { "name": "func" } },
-    "onClose": { "type": { "name": "func" } }
+    "onClose": { "type": { "name": "func" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "Modal",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root", "hidden"], "globalClasses": {}, "name": "MuiModal" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/material-ui/src/Modal/Modal.js",

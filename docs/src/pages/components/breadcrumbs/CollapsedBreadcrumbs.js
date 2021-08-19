@@ -11,20 +11,22 @@ function handleClick(event) {
 
 export default function CollapsedBreadcrumbs() {
   return (
-    <Breadcrumbs maxItems={2} aria-label="breadcrumb">
-      <Link color="inherit" href="#" onClick={handleClick}>
-        Home
-      </Link>
-      <Link color="inherit" href="#" onClick={handleClick}>
-        Catalog
-      </Link>
-      <Link color="inherit" href="#" onClick={handleClick}>
-        Accessories
-      </Link>
-      <Link color="inherit" href="#" onClick={handleClick}>
-        New Collection
-      </Link>
-      <Typography color="textPrimary">Belts</Typography>
-    </Breadcrumbs>
+    <div role="presentation" onClick={handleClick}>
+      <Breadcrumbs maxItems={2} aria-label="breadcrumb">
+        <Link underline="hover" color="inherit" href="#">
+          Home
+        </Link>
+        <Link underline="hover" color="inherit" href="#">
+          Catalog
+        </Link>
+        <Link underline="hover" color="inherit" href="#">
+          Accessories
+        </Link>
+        <Link underline="hover" color="inherit" href="#">
+          New Collection
+        </Link>
+        <Typography color="text.primary">Belts</Typography>
+      </Breadcrumbs>
+    </div>
   );
 }

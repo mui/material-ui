@@ -1,27 +1,23 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { getClasses, createMount, describeConformance, act, createClientRender } from 'test/utils';
-import FormControl from '../FormControl';
-import Input from '../Input';
-import InputLabel from './InputLabel';
-import FormLabel from '../FormLabel';
+import { describeConformance, act, createClientRender } from 'test/utils';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
+import FormLabel from '@material-ui/core/FormLabel';
+import InputLabel, { inputLabelClasses as classes } from '@material-ui/core/InputLabel';
 
 describe('<InputLabel />', () => {
-  const mount = createMount();
   const render = createClientRender();
-  let classes;
-
-  before(() => {
-    classes = getClasses(<InputLabel />);
-  });
 
   describeConformance(<InputLabel>Foo</InputLabel>, () => ({
     classes,
     inheritComponent: FormLabel,
-    mount,
+    render,
     refInstanceof: window.HTMLLabelElement,
-    skip: ['componentProp'],
+    muiName: 'MuiInputLabel',
+    testVariantProps: { size: 'small' },
+    skip: ['componentsProp'],
   }));
 
   it('should render a label with text', () => {
@@ -37,6 +33,16 @@ describe('<InputLabel />', () => {
   it('should not have the animated class when disabled', () => {
     const { container } = render(<InputLabel disableAnimation>Foo</InputLabel>);
     expect(container.firstChild).not.to.have.class(classes.animated);
+  });
+
+  it('should forward the asterisk class to AsteriskComponent when required', () => {
+    const { container } = render(
+      <InputLabel classes={{ asterisk: 'my-asterisk' }} required>
+        Foo
+      </InputLabel>,
+    );
+    expect(container.querySelector('.my-asterisk')).to.have.class('MuiFormLabel-asterisk');
+    expect(container.querySelector('.my-asterisk')).to.have.class('MuiInputLabel-asterisk');
   });
 
   describe('with FormControl', () => {

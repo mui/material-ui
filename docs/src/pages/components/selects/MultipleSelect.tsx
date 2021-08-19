@@ -1,20 +1,10 @@
 import * as React from 'react';
-import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
+import { Theme, useTheme } from '@material-ui/core/styles';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120,
-      maxWidth: 300,
-    },
-  }),
-);
+import Select, { SelectChangeEvent } from '@material-ui/core/Select';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -50,25 +40,30 @@ function getStyles(name: string, personName: string[], theme: Theme) {
 }
 
 export default function MultipleSelect() {
-  const classes = useStyles();
   const theme = useTheme();
   const [personName, setPersonName] = React.useState<string[]>([]);
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    setPersonName(event.target.value as string[]);
+  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
+    const {
+      target: { value },
+    } = event;
+    setPersonName(
+      // On autofill we get a the stringified value.
+      typeof value === 'string' ? value.split(',') : value,
+    );
   };
 
   return (
     <div>
-      <FormControl className={classes.formControl}>
-        <InputLabel id="demo-mutiple-name-label">Name</InputLabel>
+      <FormControl sx={{ m: 1, width: 300 }}>
+        <InputLabel id="demo-multiple-name-label">Name</InputLabel>
         <Select
-          labelId="demo-mutiple-name-label"
-          id="demo-mutiple-name"
+          labelId="demo-multiple-name-label"
+          id="demo-multiple-name"
           multiple
           value={personName}
           onChange={handleChange}
-          input={<Input />}
+          input={<OutlinedInput label="Name" />}
           MenuProps={MenuProps}
         >
           {names.map((name) => (

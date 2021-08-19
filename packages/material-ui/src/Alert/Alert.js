@@ -1,11 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import { darken, lighten } from '@material-ui/system';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { darken, lighten } from '../styles/colorManipulator';
 import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
 import alertClasses, { getAlertUtilityClass } from './alertClasses';
@@ -16,20 +15,8 @@ import ErrorOutlineIcon from '../internal/svg-icons/ErrorOutline';
 import InfoOutlinedIcon from '../internal/svg-icons/InfoOutlined';
 import CloseIcon from '../internal/svg-icons/Close';
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(styles.root || {}, {
-    ...styles[styleProps.variant],
-    ...styles[`${styleProps.variant}${capitalize(styleProps.color || styleProps.severity)}`],
-    [`& .${alertClasses.icon}`]: styles.icon,
-    [`& .${alertClasses.message}`]: styles.message,
-    [`& .${alertClasses.action}`]: styles.action,
-  });
-};
-
-const useUtilityClasses = (styleProps) => {
-  const { variant, color, severity, classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { variant, color, severity, classes } = ownerState;
 
   const slots = {
     root: ['root', `${variant}${capitalize(color || severity)}`, `${variant}`],
@@ -41,63 +28,62 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getAlertUtilityClass, classes);
 };
 
-const AlertRoot = experimentalStyled(
-  Paper,
-  {},
-  {
-    name: 'MuiAlert',
-    slot: 'Root',
-    overridesResolver,
+const AlertRoot = styled(Paper, {
+  name: 'MuiAlert',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [
+      styles.root,
+      styles[ownerState.variant],
+      styles[`${ownerState.variant}${capitalize(ownerState.color || ownerState.severity)}`],
+    ];
   },
-)(({ theme, styleProps }) => {
+})(({ theme, ownerState }) => {
   const getColor = theme.palette.mode === 'light' ? darken : lighten;
   const getBackgroundColor = theme.palette.mode === 'light' ? lighten : darken;
-  const color = styleProps.color || styleProps.severity;
+  const color = ownerState.color || ownerState.severity;
 
   return {
-    /* Styles applied to the root element. */
     ...theme.typography.body2,
     borderRadius: theme.shape.borderRadius,
     backgroundColor: 'transparent',
     display: 'flex',
     padding: '6px 16px',
-    /* Styles applied to the root element if variant="standard". */
     ...(color &&
-      styleProps.variant === 'standard' && {
-        color: getColor(theme.palette[color].main, 0.6),
-        backgroundColor: getBackgroundColor(theme.palette[color].main, 0.9),
+      ownerState.variant === 'standard' && {
+        color: getColor(theme.palette[color].light, 0.6),
+        backgroundColor: getBackgroundColor(theme.palette[color].light, 0.9),
         [`& .${alertClasses.icon}`]: {
-          color: theme.palette[color].main,
+          color:
+            theme.palette.mode === 'dark' ? theme.palette[color].main : theme.palette[color].light,
         },
       }),
-    /* Styles applied to the root element if variant="outlined". */
     ...(color &&
-      styleProps.variant === 'outlined' && {
-        color: getColor(theme.palette[color].main, 0.6),
-        border: `1px solid ${theme.palette[color].main}`,
+      ownerState.variant === 'outlined' && {
+        color: getColor(theme.palette[color].light, 0.6),
+        border: `1px solid ${theme.palette[color].light}`,
         [`& .${alertClasses.icon}`]: {
-          color: theme.palette[color].main,
+          color:
+            theme.palette.mode === 'dark' ? theme.palette[color].main : theme.palette[color].light,
         },
       }),
-    /* Styles applied to the root element if variant="filled". */
     ...(color &&
-      styleProps.variant === 'filled' && {
+      ownerState.variant === 'filled' && {
         color: '#fff',
         fontWeight: theme.typography.fontWeightMedium,
-        backgroundColor: theme.palette[color].main,
+        backgroundColor:
+          theme.palette.mode === 'dark' ? theme.palette[color].dark : theme.palette[color].main,
       }),
   };
 });
 
-/* Styles applied to the icon wrapper element. */
-const AlertIcon = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAlert',
-    slot: 'Icon',
-  },
-)({
+const AlertIcon = styled('div', {
+  name: 'MuiAlert',
+  slot: 'Icon',
+  overridesResolver: (props, styles) => styles.icon,
+})({
   marginRight: 12,
   padding: '7px 0',
   display: 'flex',
@@ -105,31 +91,23 @@ const AlertIcon = experimentalStyled(
   opacity: 0.9,
 });
 
-/* Styles applied to the message wrapper element. */
-const AlertMessage = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAlert',
-    slot: 'Message',
-  },
-)({
+const AlertMessage = styled('div', {
+  name: 'MuiAlert',
+  slot: 'Message',
+  overridesResolver: (props, styles) => styles.message,
+})({
   padding: '8px 0',
 });
 
-/* Styles applied to the action wrapper element if `action` is provided. */
-const AlertAction = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiAlert',
-    slot: 'Action',
-  },
-)({
+const AlertAction = styled('div', {
+  name: 'MuiAlert',
+  slot: 'Action',
+  overridesResolver: (props, styles) => styles.action,
+})({
   display: 'flex',
-  alignItems: 'center',
+  alignItems: 'flex-start',
+  padding: '4px 0 0 16px',
   marginLeft: 'auto',
-  paddingLeft: 16,
   marginRight: -8,
 });
 
@@ -157,36 +135,36 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
-    variant,
     color,
     severity,
+    variant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <AlertRoot
       role={role}
       square
       elevation={0}
-      styleProps={styleProps}
+      ownerState={ownerState}
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
     >
       {icon !== false ? (
-        <AlertIcon styleProps={styleProps} className={classes.icon}>
+        <AlertIcon ownerState={ownerState} className={classes.icon}>
           {icon || iconMapping[severity] || defaultIconMapping[severity]}
         </AlertIcon>
       ) : null}
-      <AlertMessage styleProps={styleProps} className={classes.message}>
+      <AlertMessage ownerState={ownerState} className={classes.message}>
         {children}
       </AlertMessage>
       {action != null ? <AlertAction className={classes.action}>{action}</AlertAction> : null}
       {action == null && onClose ? (
-        <AlertAction styleProps={styleProps} className={classes.action}>
+        <AlertAction ownerState={ownerState} className={classes.action}>
           <IconButton
             size="small"
             aria-label={closeText}
@@ -202,7 +180,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   );
 });
 
-Alert.propTypes = {
+Alert.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -233,7 +211,10 @@ Alert.propTypes = {
   /**
    * The main color for the alert. Unless provided, the value is taken from the `severity` prop.
    */
-  color: PropTypes.oneOf(['error', 'info', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['error', 'info', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * Override the icon displayed before the children.
    * Unless provided, the icon is mapped to the value of the `severity` prop.
@@ -254,8 +235,7 @@ Alert.propTypes = {
   /**
    * Callback fired when the component requests to be closed.
    * When provided and no `action` prop is set, a close icon button is displayed that triggers the callback when clicked.
-   *
-   * @param {object} event The event source of the callback.
+   * @param {React.SyntheticEvent} event The event source of the callback.
    */
   onClose: PropTypes.func,
   /**

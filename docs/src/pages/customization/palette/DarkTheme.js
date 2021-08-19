@@ -1,44 +1,40 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import {
-  makeStyles,
+  styled,
   ThemeProvider,
   useTheme,
-  createMuiTheme,
+  createTheme,
 } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.background.default,
-    color: theme.palette.text.primary,
-    padding: theme.spacing(2),
-    [theme.breakpoints.up('md')]: {
-      padding: theme.spacing(3),
-    },
+const Root = styled('div')(({ theme }) => ({
+  backgroundColor: theme.palette.background.default,
+  color: theme.palette.text.primary,
+  padding: theme.spacing(2),
+  [theme.breakpoints.up('md')]: {
+    padding: theme.spacing(3),
   },
-  group: {
-    marginTop: theme.spacing(3),
-  },
-  color: {
-    display: 'flex',
-    alignItems: 'center',
-    '& div:first-of-type': {
-      width: theme.spacing(6),
-      height: theme.spacing(6),
-      flexShrink: 0,
-      marginRight: theme.spacing(1),
-      borderRadius: theme.shape.borderRadius,
-    },
+}));
+
+const Color = styled(Grid)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  '& div:first-of-type': {
+    width: theme.spacing(6),
+    height: theme.spacing(6),
+    flexShrink: 0,
+    marginRight: theme.spacing(1),
+    borderRadius: theme.shape.borderRadius,
   },
 }));
 
 function Demo() {
-  const classes = useStyles();
   const theme = useTheme();
 
   const item = (color, name, expanded = false, border = false) => (
-    <Grid item xs={12} sm={6} md={expanded ? 8 : 4} className={classes.color}>
+    <Color item xs={12} sm={6} md={expanded ? 8 : 4}>
       <div
         style={{
           backgroundColor: color,
@@ -47,22 +43,22 @@ function Demo() {
       />
       <div>
         <Typography variant="body2">{name}</Typography>
-        <Typography variant="body2" color="textSecondary">
+        <Typography variant="body2" color="text.secondary">
           {color}
         </Typography>
       </div>
-    </Grid>
+    </Color>
   );
 
   return (
-    <div className={classes.root}>
+    <Root>
       <Typography gutterBottom>Typography</Typography>
       <Grid container spacing={1}>
         {item(theme.palette.text.primary, 'palette.text.primary')}
         {item(theme.palette.text.secondary, 'palette.text.secondary')}
         {item(theme.palette.text.disabled, 'palette.text.disabled')}
       </Grid>
-      <Typography gutterBottom className={classes.group}>
+      <Typography gutterBottom sx={{ mt: 3 }}>
         Buttons
       </Typography>
       <Grid container spacing={1}>
@@ -76,7 +72,7 @@ function Demo() {
           true,
         )}
       </Grid>
-      <Typography gutterBottom className={classes.group}>
+      <Typography gutterBottom sx={{ mt: 3 }}>
         Background
       </Typography>
       <Grid container spacing={1}>
@@ -88,18 +84,18 @@ function Demo() {
         )}
         {item(theme.palette.background.paper, 'palette.background.paper')}
       </Grid>
-      <Typography gutterBottom className={classes.group}>
+      <Typography gutterBottom sx={{ mt: 3 }}>
         Divider
       </Typography>
       <Grid container spacing={1}>
         {item(theme.palette.divider, 'palette.divider')}
       </Grid>
-    </div>
+    </Root>
   );
 }
 
-const lightTheme = createMuiTheme();
-const darkTheme = createMuiTheme({
+const lightTheme = createTheme();
+const darkTheme = createTheme({
   palette: {
     // Switching the dark mode on is a single property value change.
     mode: 'dark',
@@ -110,13 +106,13 @@ export default function DarkTheme() {
   // Note that if you intend to use two or more themes at the same time on your site,
   // you need to wrap them with a single ThemeProvider at the root (not like in this example).
   return (
-    <div style={{ width: '100%' }}>
+    <Box sx={{ width: '100%' }}>
       <ThemeProvider theme={darkTheme}>
         <Demo />
       </ThemeProvider>
       <ThemeProvider theme={lightTheme}>
         <Demo />
       </ThemeProvider>
-    </div>
+    </Box>
   );
 }

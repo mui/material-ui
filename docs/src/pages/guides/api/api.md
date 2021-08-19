@@ -45,7 +45,7 @@ We avoid documenting native properties supported by the DOM like [`className`](/
 
 All components accept a [`classes`](/customization/how-to-customize/#overriding-styles-with-classes) prop to customize the styles.
 The classes design answers two constraints:
-to make the classes structure as simple as possible, while sufficient to implement the Material Design specification.
+to make the classes structure as simple as possible, while sufficient to implement the Material Design guidelines.
 
 - The class applied to the root element is always called `root`.
 - All the default styles are grouped in a single class.
@@ -89,14 +89,16 @@ Nested components inside a component have:
 
 ### Property naming
 
-The name of a boolean prop should be chosen based on the **default value**.
-For example, the `disabled` attribute on an input element, if supplied, defaults to `true`.
-This choice allows the shorthand notation:
+The name of a boolean prop should be chosen based on the **default value**. This choice allows:
 
-```diff
--<Input enabled={false} />
-+<Input disabled />
-```
+- the shorthand notation. For example, the `disabled` attribute on an input element, if supplied, defaults to `true`:
+
+  ```jsx
+  <Input enabled={false} /> ❌
+  <Input disabled /> ✅
+  ```
+
+- developers to know what the default value is from the name of the boolean prop. It's always the opposite.
 
 ### Controlled components
 
@@ -104,7 +106,7 @@ Most of the controlled component are controlled via the `value` and the `onChang
 however, the `open` / `onClose` / `onOpen` combination is used for display related state.
 In the cases where there are more events, we put the noun first, and then the verb, for example: `onPageChange`, `onRowsChange`.
 
-### boolean vs enum
+### boolean vs. enum
 
 There are two options to design the API for the variations of a component: with a _boolean_; or with an _enum_.
 For example, let's take a button that has different types. Each option has its pros and cons:
@@ -132,7 +134,7 @@ For example, let's take a button that has different types. Each option has its p
   This API is more verbose:
   `<Button>`, `<Button variant="contained">`, `<Button variant="fab">`.
 
-  However it prevents an invalid combination from being used,
+  However, it prevents an invalid combination from being used,
   bounds the number of props exposed,
   and can easily support new values in the future.
 

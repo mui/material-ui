@@ -1,9 +1,9 @@
 {
   "props": {
-    "count": { "type": { "name": "number" }, "required": true },
+    "count": { "type": { "name": "custom", "description": "integer" }, "required": true },
     "onPageChange": { "type": { "name": "func" }, "required": true },
-    "page": { "type": { "name": "custom", "description": "number" }, "required": true },
-    "rowsPerPage": { "type": { "name": "number" }, "required": true },
+    "page": { "type": { "name": "custom", "description": "integer" }, "required": true },
+    "rowsPerPage": { "type": { "name": "custom", "description": "integer" }, "required": true },
     "ActionsComponent": { "type": { "name": "elementType" }, "default": "TablePaginationActions" },
     "backIconButtonProps": { "type": { "name": "object" } },
     "classes": { "type": { "name": "object" } },
@@ -28,7 +28,8 @@
     },
     "SelectProps": { "type": { "name": "object" }, "default": "{}" },
     "showFirstButton": { "type": { "name": "bool" } },
-    "showLastButton": { "type": { "name": "bool" } }
+    "showLastButton": { "type": { "name": "bool" } },
+    "sx": { "type": { "name": "object" } }
   },
   "name": "TablePagination",
   "styles": {
@@ -53,6 +54,6 @@
   "filename": "/packages/material-ui/src/TablePagination/TablePagination.js",
   "inheritance": { "component": "TableCell", "pathname": "/api/table-cell/" },
   "demos": "<ul><li><a href=\"/components/tables/\">Tables</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

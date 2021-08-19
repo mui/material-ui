@@ -10,7 +10,6 @@ describe('style', () => {
 
   it('should work', () => {
     const output = bgcolor({
-      theme: {},
       bgcolor: 'blue',
     });
     expect(output).to.deep.equal({
@@ -20,7 +19,6 @@ describe('style', () => {
 
   it('should support breakpoints', () => {
     const output1 = bgcolor({
-      theme: {},
       bgcolor: ['blue', 'red'],
     });
     expect(output1).to.deep.equal({
@@ -33,7 +31,6 @@ describe('style', () => {
     });
 
     const output2 = bgcolor({
-      theme: {},
       bgcolor: {
         xs: 'blue',
         sm: 'red',
@@ -88,7 +85,6 @@ describe('style', () => {
 
   it('should transform the prop correctly', () => {
     const output1 = border({
-      theme: {},
       border: 1,
     });
     expect(output1).to.deep.equal({

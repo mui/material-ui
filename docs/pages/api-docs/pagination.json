@@ -1,22 +1,22 @@
 {
   "props": {
-    "boundaryCount": { "type": { "name": "number" }, "default": "1" },
+    "boundaryCount": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
     "classes": { "type": { "name": "object" } },
     "color": {
       "type": {
-        "name": "enum",
-        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'standard'"
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string"
       },
       "default": "'standard'"
     },
-    "count": { "type": { "name": "number" }, "default": "1" },
-    "defaultPage": { "type": { "name": "number" }, "default": "1" },
+    "count": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
+    "defaultPage": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
     "disabled": { "type": { "name": "bool" } },
     "getItemAriaLabel": { "type": { "name": "func" } },
     "hideNextButton": { "type": { "name": "bool" } },
     "hidePrevButton": { "type": { "name": "bool" } },
     "onChange": { "type": { "name": "func" } },
-    "page": { "type": { "name": "number" } },
+    "page": { "type": { "name": "custom", "description": "integer" } },
     "renderItem": {
       "type": { "name": "func" },
       "default": "(item) => <PaginationItem {...item} />"
@@ -27,14 +27,15 @@
     },
     "showFirstButton": { "type": { "name": "bool" } },
     "showLastButton": { "type": { "name": "bool" } },
-    "siblingCount": { "type": { "name": "number" }, "default": "1" },
+    "siblingCount": { "type": { "name": "custom", "description": "integer" }, "default": "1" },
     "size": {
       "type": {
-        "name": "enum",
-        "description": "'large'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'small'"
+        "name": "union",
+        "description": "'small'<br>&#124;&nbsp;'medium'<br>&#124;&nbsp;'large'<br>&#124;&nbsp;string"
       },
       "default": "'medium'"
     },
+    "sx": { "type": { "name": "object" } },
     "variant": {
       "type": {
         "name": "union",
@@ -54,6 +55,6 @@
   "filename": "/packages/material-ui/src/Pagination/Pagination.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/pagination/\">Pagination</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

@@ -4,10 +4,11 @@ import { SxProps } from '@material-ui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
 import { TypographyProps } from '../Typography';
+import { LinkClasses } from './linkClasses';
 
 export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
   props: P &
-    LinkBaseProps & {
+    DistributiveOmit<LinkBaseProps, 'classes'> & {
       /**
        * The content of the component.
        */
@@ -15,20 +16,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
       /**
        * Override or extend the styles applied to the component.
        */
-      classes?: {
-        /** Styles applied to the root element. */
-        root?: string;
-        /** Styles applied to the root element if `underline="none"`. */
-        underlineNone?: string;
-        /** Styles applied to the root element if `underline="hover"`. */
-        underlineHover?: string;
-        /** Styles applied to the root element if `underline="always"`. */
-        underlineAlways?: string;
-        /** Styles applied to the root element if `component="button"`. */
-        button?: string;
-        /** Pseudo-class applied to the root element if the link is keyboard focused. */
-        focusVisible?: string;
-      };
+      classes?: Partial<LinkClasses>;
       /**
        * The color of the link.
        * @default 'primary'
@@ -44,7 +32,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
       TypographyClasses?: TypographyProps['classes'];
       /**
        * Controls when the link should have an underline.
-       * @default 'hover'
+       * @default 'always'
        */
       underline?: 'none' | 'hover' | 'always';
       /**
@@ -70,14 +58,12 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
  */
 declare const Link: OverridableComponent<LinkTypeMap>;
 
-export type LinkClassKey = keyof NonNullable<LinkTypeMap['props']['classes']>;
-
 export type LinkBaseProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'color'> &
   DistributiveOmit<TypographyProps, 'children' | 'component' | 'color' | 'variant'>;
 
 export type LinkProps<
   D extends React.ElementType = LinkTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<LinkTypeMap<P, D>, D>;
 
 export default Link;

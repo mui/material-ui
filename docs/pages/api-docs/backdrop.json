@@ -3,6 +3,12 @@
     "open": { "type": { "name": "bool" }, "required": true },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
+    "components": {
+      "type": { "name": "shape", "description": "{ Root?: elementType }" },
+      "default": "{}"
+    },
+    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
     "invisible": { "type": { "name": "bool" } },
     "sx": { "type": { "name": "object" } },
     "transitionDuration": {

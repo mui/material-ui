@@ -22,15 +22,14 @@ const {
   ThemeProvider,
   Typography,
   Container,
-  createMuiTheme,
+  createTheme,
   Box,
   SvgIcon,
   Link,
-  StyledEngineProvider,
 } = MaterialUI;
 
 // Create a theme instance.
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     primary: {
       main: '#556cd6',
@@ -40,9 +39,6 @@ const theme = createMuiTheme({
     },
     error: {
       main: colors.red.A400,
-    },
-    background: {
-      default: '#fff',
     },
   },
 });
@@ -57,7 +53,7 @@ function LightBulbIcon(props) {
 
 function ProTip() {
   return (
-    <Typography sx={{ mt: 6, mb: 3 }} color="textSecondary">
+    <Typography sx={{ mt: 6, mb: 3 }} color="text.secondary">
       <LightBulbIcon sx={{ mr: 1, verticalAlign: 'top' }} />
       Pro tip: See more{' '}
       <Link href="https://material-ui.com/getting-started/templates/">
@@ -86,7 +82,7 @@ function App() {
     <Container maxWidth="sm">
       <Box sx={{ my: 4 }}>
         <Typography variant="h4" component="h1" gutterBottom>
-          CDN v5-alpha example
+          CDN v5-beta example
         </Typography>
         <ProTip />
         <Copyright />
@@ -96,14 +92,11 @@ function App() {
 }
 
 ReactDOM.render(
-  // TODO v5: remove once migration to emotion is completed
-  <StyledEngineProvider injectFirst>
     <ThemeProvider theme={theme}>
       {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
       <CssBaseline />
       <App />
-    </ThemeProvider>
-  </StyledEngineProvider>,
+    </ThemeProvider>,
   document.querySelector('#root'),
 );
     </script>

@@ -1,18 +1,20 @@
 {
   "props": {
-    "align": {
+    "children": { "type": { "name": "node" } },
+    "classes": { "type": { "name": "object" } },
+    "className": { "type": { "name": "string" } },
+    "position": {
       "type": {
         "name": "enum",
         "description": "'alternate'<br>&#124;&nbsp;'left'<br>&#124;&nbsp;'right'"
       },
-      "default": "'left'"
+      "default": "'right'"
     },
-    "children": { "type": { "name": "node" } },
-    "classes": { "type": { "name": "object" } }
+    "sx": { "type": { "name": "object" } }
   },
   "name": "Timeline",
   "styles": {
-    "classes": ["root", "alignLeft", "alignRight", "alignAlternate"],
+    "classes": ["root", "positionLeft", "positionRight", "positionAlternate"],
     "globalClasses": {},
     "name": "MuiTimeline"
   },
@@ -21,6 +23,6 @@
   "filename": "/packages/material-ui-lab/src/Timeline/Timeline.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/timeline/\">Timeline</a></li></ul>",
-  "styledComponent": false,
+  "styledComponent": true,
   "cssComponent": false
 }

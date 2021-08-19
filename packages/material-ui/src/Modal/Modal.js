@@ -1,43 +1,47 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { getThemeProps, useTheme } from '@material-ui/styles';
+import { isHostComponent } from '@material-ui/unstyled';
 import { elementAcceptingRef, HTMLElementType } from '@material-ui/utils';
-import ownerDocument from '../utils/ownerDocument';
-import Portal from '../Portal';
-import createChainedFunction from '../utils/createChainedFunction';
-import useForkRef from '../utils/useForkRef';
-import useEventCallback from '../utils/useEventCallback';
-import zIndex from '../styles/zIndex';
-import ModalManager, { ariaHidden } from './ModalManager';
-import TrapFocus from '../Unstable_TrapFocus';
-import SimpleBackdrop from './SimpleBackdrop';
+import ModalUnstyled, { modalUnstyledClasses } from '@material-ui/unstyled/ModalUnstyled';
+import styled from '../styles/styled';
+import useThemeProps from '../styles/useThemeProps';
+import Backdrop from '../Backdrop';
 
-function getContainer(container) {
-  return typeof container === 'function' ? container() : container;
-}
+export const modalClasses = modalUnstyledClasses;
 
-function getHasTransition(props) {
-  return props.children ? props.children.props.hasOwnProperty('in') : false;
-}
+const extendUtilityClasses = (ownerState) => {
+  return ownerState.classes;
+};
 
-// A modal manager used to track and manage the state of open Modals.
-// Modals don't open on the server so this won't conflict with concurrent requests.
-const defaultManager = new ModalManager();
+const ModalRoot = styled('div', {
+  name: 'MuiModal',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
 
-export const styles = (theme) => ({
-  /* Styles applied to the root element. */
-  root: {
-    position: 'fixed',
-    zIndex: theme.zIndex.modal,
-    right: 0,
-    bottom: 0,
-    top: 0,
-    left: 0,
+    return [styles.root, !ownerState.open && ownerState.exited && styles.hidden];
   },
-  /* Styles applied to the root element if the `Modal` has exited. */
-  hidden: {
-    visibility: 'hidden',
+})(({ theme, ownerState }) => ({
+  position: 'fixed',
+  zIndex: theme.zIndex.modal,
+  right: 0,
+  bottom: 0,
+  top: 0,
+  left: 0,
+  ...(!ownerState.open &&
+    ownerState.exited && {
+      visibility: 'hidden',
+    }),
+}));
+
+const ModalBackdrop = styled(Backdrop, {
+  name: 'MuiModal',
+  slot: 'Backdrop',
+  overridesResolver: (props, styles) => {
+    return styles.backdrop;
   },
+})({
+  zIndex: -1,
 });
 
 /**
@@ -54,14 +58,13 @@ export const styles = (theme) => ({
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
  */
 const Modal = React.forwardRef(function Modal(inProps, ref) {
-  const theme = useTheme();
-  const props = getThemeProps({ name: 'MuiModal', props: { ...inProps }, theme });
+  const props = useThemeProps({ name: 'MuiModal', props: inProps });
   const {
-    BackdropComponent = SimpleBackdrop,
-    BackdropProps,
-    children,
+    BackdropComponent = ModalBackdrop,
     closeAfterTransition = false,
-    container,
+    children,
+    components = {},
+    componentsProps = {},
     disableAutoFocus = false,
     disableEnforceFocus = false,
     disableEscapeKeyDown = false,
@@ -70,195 +73,74 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     disableScrollLock = false,
     hideBackdrop = false,
     keepMounted = false,
-    // private
-    // eslint-disable-next-line react/prop-types
-    manager = defaultManager,
-    onBackdropClick,
-    onClose,
-    onKeyDown,
-    open,
     ...other
   } = props;
 
   const [exited, setExited] = React.useState(true);
-  const modal = React.useRef({});
-  const mountNodeRef = React.useRef(null);
-  const modalRef = React.useRef(null);
-  const handleRef = useForkRef(modalRef, ref);
-  const hasTransition = getHasTransition(props);
 
-  const getDoc = () => ownerDocument(mountNodeRef.current);
-  const getModal = () => {
-    modal.current.modalRef = modalRef.current;
-    modal.current.mountNode = mountNodeRef.current;
-    return modal.current;
+  const commonProps = {
+    closeAfterTransition,
+    disableAutoFocus,
+    disableEnforceFocus,
+    disableEscapeKeyDown,
+    disablePortal,
+    disableRestoreFocus,
+    disableScrollLock,
+    hideBackdrop,
+    keepMounted,
   };
 
-  const handleMounted = () => {
-    manager.mount(getModal(), { disableScrollLock });
-
-    // Fix a bug on Chrome where the scroll isn't initially 0.
-    modalRef.current.scrollTop = 0;
+  const ownerState = {
+    ...props,
+    ...commonProps,
+    exited,
   };
 
-  const handleOpen = useEventCallback(() => {
-    const resolvedContainer = getContainer(container) || getDoc().body;
-
-    manager.add(getModal(), resolvedContainer);
-
-    // The element was already mounted.
-    if (modalRef.current) {
-      handleMounted();
-    }
-  });
-
-  const isTopModal = React.useCallback(() => manager.isTopModal(getModal()), [manager]);
-
-  const handlePortalRef = useEventCallback((node) => {
-    mountNodeRef.current = node;
-
-    if (!node) {
-      return;
-    }
-
-    if (open && isTopModal()) {
-      handleMounted();
-    } else {
-      ariaHidden(modalRef.current, true);
-    }
-  });
-
-  const handleClose = React.useCallback(() => {
-    manager.remove(getModal());
-  }, [manager]);
-
-  React.useEffect(() => {
-    return () => {
-      handleClose();
-    };
-  }, [handleClose]);
-
-  React.useEffect(() => {
-    if (open) {
-      handleOpen();
-    } else if (!hasTransition || !closeAfterTransition) {
-      handleClose();
-    }
-  }, [open, handleClose, hasTransition, closeAfterTransition, handleOpen]);
-
-  if (!keepMounted && !open && (!hasTransition || exited)) {
-    return null;
-  }
-
-  const handleEnter = () => {
-    setExited(false);
-  };
-
-  const handleExited = () => {
-    setExited(true);
-
-    if (closeAfterTransition) {
-      handleClose();
-    }
-  };
-
-  const handleBackdropClick = (event) => {
-    if (event.target !== event.currentTarget) {
-      return;
-    }
-
-    if (onBackdropClick) {
-      onBackdropClick(event);
-    }
-
-    if (onClose) {
-      onClose(event, 'backdropClick');
-    }
-  };
-
-  const handleKeyDown = (event) => {
-    if (onKeyDown) {
-      onKeyDown(event);
-    }
-
-    // The handler doesn't take event.defaultPrevented into account:
-    //
-    // event.preventDefault() is meant to stop default behaviors like
-    // clicking a checkbox to check it, hitting a button to submit a form,
-    // and hitting left arrow to move the cursor in a text input etc.
-    // Only special HTML elements have these default behaviors.
-    if (event.key !== 'Escape' || !isTopModal()) {
-      return;
-    }
-
-    if (!disableEscapeKeyDown) {
-      // Swallow the event, in case someone is listening for the escape key on the body.
-      event.stopPropagation();
-
-      if (onClose) {
-        onClose(event, 'escapeKeyDown');
-      }
-    }
-  };
-
-  const inlineStyle = styles(theme || { zIndex });
-  const childProps = {};
-  if (children.props.tabIndex === undefined) {
-    childProps.tabIndex = children.props.tabIndex || '-1';
-  }
-
-  // It's a Transition like component
-  if (hasTransition) {
-    childProps.onEnter = createChainedFunction(handleEnter, children.props.onEnter);
-    childProps.onExited = createChainedFunction(handleExited, children.props.onExited);
-  }
+  const classes = extendUtilityClasses(ownerState);
 
   return (
-    <Portal ref={handlePortalRef} container={container} disablePortal={disablePortal}>
-      {/*
-       * Marking an element with the role presentation indicates to assistive technology
-       * that this element should be ignored; it exists to support the web application and
-       * is not meant for humans to interact with directly.
-       * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
-       */}
-      <div
-        ref={handleRef}
-        onKeyDown={handleKeyDown}
-        role="presentation"
-        {...other}
-        style={{
-          ...inlineStyle.root,
-          ...(!open && exited ? inlineStyle.hidden : {}),
-          ...other.style,
-        }}
-      >
-        {hideBackdrop ? null : (
-          <BackdropComponent open={open} onClick={handleBackdropClick} {...BackdropProps} />
-        )}
-
-        <TrapFocus
-          disableEnforceFocus={disableEnforceFocus}
-          disableAutoFocus={disableAutoFocus}
-          disableRestoreFocus={disableRestoreFocus}
-          getDoc={getDoc}
-          isEnabled={isTopModal}
-          open={open}
-        >
-          {React.cloneElement(children, childProps)}
-        </TrapFocus>
-      </div>
-    </Portal>
+    <ModalUnstyled
+      components={{
+        Root: ModalRoot,
+        ...components,
+      }}
+      componentsProps={{
+        root: {
+          ...componentsProps.root,
+          ...((!components.Root || !isHostComponent(components.Root)) && {
+            ownerState: { ...componentsProps.root?.ownerState },
+          }),
+        },
+      }}
+      BackdropComponent={BackdropComponent}
+      onTransitionEnter={() => setExited(false)}
+      onTransitionExited={() => setExited(true)}
+      ref={ref}
+      {...other}
+      classes={classes}
+      {...commonProps}
+    >
+      {children}
+    </ModalUnstyled>
   );
 });
 
-Modal.propTypes = {
+Modal.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
-   * @default SimpleBackdrop
+   * @default styled(Backdrop, {
+   *   name: 'MuiModal',
+   *   slot: 'Backdrop',
+   *   overridesResolver: (props, styles) => {
+   *     return styles.backdrop;
+   *   },
+   * })({
+   *   zIndex: -1,
+   * })
    */
   BackdropComponent: PropTypes.elementType,
   /**
@@ -270,10 +152,27 @@ Modal.propTypes = {
    */
   children: elementAcceptingRef.isRequired,
   /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
+  /**
    * When set to true the Modal waits until a nested Transition is completed before closing.
    * @default false
    */
   closeAfterTransition: PropTypes.bool,
+  /**
+   * The components used for each slot inside the Modal.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Modal.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
@@ -349,17 +248,13 @@ Modal.propTypes = {
    */
   onClose: PropTypes.func,
   /**
-   * @ignore
-   */
-  onKeyDown: PropTypes.func,
-  /**
    * If `true`, the component is shown.
    */
   open: PropTypes.bool.isRequired,
   /**
-   * @ignore
+   * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  style: PropTypes.object,
+  sx: PropTypes.object,
 };
 
 export default Modal;

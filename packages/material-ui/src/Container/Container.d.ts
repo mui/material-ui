@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { SxProps } from '@material-ui/system';
+import { SxProps, Breakpoint } from '@material-ui/system';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
+import { ContainerClasses } from './containerClasses';
 
 export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -9,24 +10,7 @@ export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Styles applied to the root element if `disableGutters={true}`. */
-      disableGutters?: string;
-      /** Styles applied to the root element if `fixed={true}`. */
-      fixed?: string;
-      /** Styles applied to the root element if `maxWidth="xs"`. */
-      maxWidthXs?: string;
-      /** Styles applied to the root element if `maxWidth="sm"`. */
-      maxWidthSm?: string;
-      /** Styles applied to the root element if `maxWidth="md"`. */
-      maxWidthMd?: string;
-      /** Styles applied to the root element if `maxWidth="lg"`. */
-      maxWidthLg?: string;
-      /** Styles applied to the root element if `maxWidth="xl"`. */
-      maxWidthXl?: string;
-    };
+    classes?: Partial<ContainerClasses>;
     /**
      * If `true`, the left and right padding is removed.
      * @default false
@@ -46,7 +30,7 @@ export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * Set to `false` to disable `maxWidth`.
      * @default 'lg'
      */
-    maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
+    maxWidth?: Breakpoint | false;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
@@ -66,11 +50,9 @@ export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
  */
 declare const Container: OverridableComponent<ContainerTypeMap>;
 
-export type ContainerClassKey = keyof NonNullable<ContainerTypeMap['props']['classes']>;
-
 export type ContainerProps<
   D extends React.ElementType = ContainerTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<ContainerTypeMap<P, D>, D>;
 
 export default Container;

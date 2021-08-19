@@ -1,28 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import Typography from '../Typography';
 import ListContext from '../List/ListContext';
 import useThemeProps from '../styles/useThemeProps';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import listItemTextClasses, { getListItemTextUtilityClass } from './listItemTextClasses';
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.inset && styles.inset),
-    ...(styleProps.primary && styleProps.secondary && styles.multiline),
-    ...(styleProps.dense && styles.dense),
-    [`& .${listItemTextClasses.primary}`]: styles.primary,
-    [`& .${listItemTextClasses.secondary}`]: styles.secondary,
-  });
-};
-
-const useUtilityClasses = (styleProps) => {
-  const { classes, inset, primary, secondary, dense } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, inset, primary, secondary, dense } = ownerState;
 
   const slots = {
     root: ['root', inset && 'inset', dense && 'dense', primary && secondary && 'multiline'],
@@ -33,28 +20,32 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getListItemTextUtilityClass, classes);
 };
 
-const ListItemTextRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiListItemText',
-    slot: 'Root',
-    overridesResolver,
+const ListItemTextRoot = styled('div', {
+  name: 'MuiListItemText',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [
+      { [`& .${listItemTextClasses.primary}`]: styles.primary },
+      { [`& .${listItemTextClasses.secondary}`]: styles.secondary },
+      styles.root,
+      ownerState.inset && styles.inset,
+      ownerState.primary && ownerState.secondary && styles.multiline,
+      ownerState.dense && styles.dense,
+    ];
   },
-)(({ styleProps }) => ({
-  /* Styles applied to the root element. */
+})(({ ownerState }) => ({
   flex: '1 1 auto',
   minWidth: 0,
   marginTop: 4,
   marginBottom: 4,
-  /* Styles applied to the root if primary and secondary are set. */
-  ...(styleProps.primary &&
-    styleProps.secondary && {
+  ...(ownerState.primary &&
+    ownerState.secondary && {
       marginTop: 6,
       marginBottom: 6,
     }),
-  /* Styles applied to the root element if `inset={true}`. */
-  ...(styleProps.inset && {
+  ...(ownerState.inset && {
     paddingLeft: 56,
   }),
 }));
@@ -77,7 +68,7 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
   let primary = primaryProp != null ? primaryProp : children;
   let secondary = secondaryProp;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     disableTypography,
     inset,
@@ -86,7 +77,7 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
     dense,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   if (primary != null && primary.type !== Typography && !disableTypography) {
     primary = (
@@ -119,7 +110,7 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
   return (
     <ListItemTextRoot
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       {...other}
     >
@@ -129,7 +120,7 @@ const ListItemText = React.forwardRef(function ListItemText(inProps, ref) {
   );
 });
 
-ListItemText.propTypes = {
+ListItemText.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

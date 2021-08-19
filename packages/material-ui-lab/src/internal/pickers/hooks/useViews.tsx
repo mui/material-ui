@@ -9,33 +9,33 @@ export type PickerOnChangeFn<TDate> = (
   selectionState?: PickerSelectionState,
 ) => void;
 
-interface UseViewsOptions<TDate, TView extends AllAvailableViews> {
+interface UseViewsOptions<TDate, View extends AllAvailableViews> {
   onChange: PickerOnChangeFn<TDate>;
-  views: TView[];
-  view: TView | undefined;
-  openTo?: TView;
-  onViewChange?: (newView: TView) => void;
+  onViewChange?: (newView: View) => void;
+  openTo?: View;
+  view: View | undefined;
+  views: readonly View[];
 }
 
-export function useViews<TDate, TView extends AllAvailableViews>({
-  view,
-  views,
-  openTo,
+export function useViews<TDate, View extends AllAvailableViews>({
   onChange,
   onViewChange,
-}: UseViewsOptions<TDate, TView>) {
-  const [openView, setOpenView] = useControlled<TView>({
+  openTo,
+  view,
+  views,
+}: UseViewsOptions<TDate, View>) {
+  const [openView, setOpenView] = useControlled<View>({
     name: 'Picker',
     state: 'view',
     controlled: view,
     default: openTo && arrayIncludes(views, openTo) ? openTo : views[0],
   });
 
-  const previousView: TView | null = views[views.indexOf(openView) - 1] ?? null;
-  const nextView: TView | null = views[views.indexOf(openView) + 1] ?? null;
+  const previousView: View | null = views[views.indexOf(openView) - 1] ?? null;
+  const nextView: View | null = views[views.indexOf(openView) + 1] ?? null;
 
   const changeView = React.useCallback(
-    (newView: TView) => {
+    (newView: View) => {
       setOpenView(newView);
 
       if (onViewChange) {
@@ -68,10 +68,10 @@ export function useViews<TDate, TView extends AllAvailableViews>({
   );
 
   return {
+    handleChangeAndOpenNext,
     nextView,
     previousView,
     openNext,
-    handleChangeAndOpenNext,
     openView,
     setOpenView: changeView,
   };

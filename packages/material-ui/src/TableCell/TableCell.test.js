@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, getClasses, createMount, describeConformance } from 'test/utils';
-import TableCell from './TableCell';
+import { createClientRender, describeConformance } from 'test/utils';
+import TableCell, { tableCellClasses as classes } from '@material-ui/core/TableCell';
 
 describe('<TableCell />', () => {
-  const mount = createMount();
-  let classes;
   const render = createClientRender();
   function renderInTable(node) {
     return render(
@@ -17,14 +15,20 @@ describe('<TableCell />', () => {
     );
   }
 
-  before(() => {
-    classes = getClasses(<TableCell />);
-  });
-
   describeConformance(<TableCell />, () => ({
     classes,
     inheritComponent: 'td',
-    mount: (node) => {
+    render: (node) => {
+      const { container, ...other } = render(
+        <table>
+          <tbody>
+            <tr>{node}</tr>
+          </tbody>
+        </table>,
+      );
+      return { container: container.firstChild.firstChild.firstChild, ...other };
+    },
+    wrapMount: (mount) => (node) => {
       const wrapper = mount(
         <table>
           <tbody>
@@ -34,16 +38,18 @@ describe('<TableCell />', () => {
       );
       return wrapper.find('tr').childAt(0);
     },
-
+    muiName: 'MuiTableCell',
+    testVariantProps: { variant: 'body' },
     refInstanceof: window.HTMLTableCellElement,
     // invalid nesting otherwise
     testComponentPropWith: 'td',
+    skip: ['componentsProp'],
   }));
 
   describe('prop: padding', () => {
-    it('doesn not have a class for padding by default', () => {
-      const { container } = renderInTable(<TableCell padding="default" />);
-      expect(container.querySelector('td')).to.not.have.class(classes.paddingDefault);
+    it("doesn't not have a class for padding by default", () => {
+      const { container } = renderInTable(<TableCell padding="normal" />);
+      expect(container.querySelector('td')).not.to.have.class(classes.paddingNormal);
     });
 
     it('has a class when `none`', () => {
@@ -65,7 +71,7 @@ describe('<TableCell />', () => {
   it('should render children', () => {
     const children = <p data-testid="hello">Hello</p>;
     const { getByTestId } = renderInTable(<TableCell>{children}</TableCell>);
-    expect(getByTestId('hello')).to.not.equal(null);
+    expect(getByTestId('hello')).not.to.equal(null);
   });
 
   it('should render aria-sort="ascending" when prop sortDirection="asc" provided', () => {
@@ -81,5 +87,10 @@ describe('<TableCell />', () => {
   it('should center content', () => {
     const { container } = renderInTable(<TableCell align="center" />);
     expect(container.querySelector('td')).to.have.class(classes.alignCenter);
+  });
+
+  it('should allow the default role (rowheader) to trigger', () => {
+    const { container } = renderInTable(<TableCell component="th" scope="row" />);
+    expect(container.querySelector('th')).not.to.have.attribute('role');
   });
 });

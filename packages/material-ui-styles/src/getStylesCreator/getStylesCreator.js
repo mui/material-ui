@@ -56,7 +56,7 @@ export default function getStylesCreator(stylesOrCreator) {
             console.warn(
               [
                 'Material-UI: You are trying to override a style that does not exist.',
-                `Fix the \`${key}\` key of \`theme.overrides.${name}\`.`,
+                `Fix the \`${key}\` key of \`theme.components.${name}.styleOverrides\`.`,
                 '',
                 `If you intentionally wanted to add a new key, please use the theme.components[${name}].variants option.`,
               ].join('\n'),

@@ -1,18 +1,16 @@
 import { expect } from 'chai';
 import * as React from 'react';
-import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
-import ImageList from '../ImageList';
-import ImageListItem from './ImageListItem';
-import classes from './imageListItemClasses';
+import { createClientRender, describeConformance } from 'test/utils';
+import ImageList from '@material-ui/core/ImageList';
+import ImageListItem, { imageListItemClasses as classes } from '@material-ui/core/ImageListItem';
 
 describe('<ImageListItem />', () => {
-  const mount = createMount();
   const render = createClientRender();
 
-  describeConformanceV5(<ImageListItem />, () => ({
+  describeConformance(<ImageListItem />, () => ({
     classes,
     inheritComponent: 'li',
-    mount,
+    render,
     refInstanceof: window.HTMLLIElement,
     testComponentPropWith: 'div',
     muiName: 'MuiImageListItem',
@@ -105,7 +103,7 @@ describe('<ImageListItem />', () => {
         </ImageListItem>,
       );
 
-      expect(getByTestId('test-children')).to.not.have.class(classes.img);
+      expect(getByTestId('test-children')).not.to.have.class(classes.img);
     });
   });
 });

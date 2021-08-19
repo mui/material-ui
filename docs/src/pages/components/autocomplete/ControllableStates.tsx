@@ -24,7 +24,7 @@ export default function ControllableStates() {
         }}
         id="controllable-states-demo"
         options={options}
-        style={{ width: 300 }}
+        sx={{ width: 300 }}
         renderInput={(params) => <TextField {...params} label="Controllable" />}
       />
     </div>

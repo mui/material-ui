@@ -1,7 +1,12 @@
 import * as React from 'react';
 import { SxProps } from '@material-ui/system';
+import { OverridableStringUnion } from '@material-ui/types';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
+import { FormControlClasses } from './formControlClasses';
+
+export interface FormControlPropsSizeOverrides {}
+export interface FormControlPropsColorOverrides {}
 
 export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -12,21 +17,15 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Styles applied to the root element if `margin="normal"`. */
-      marginNormal?: string;
-      /** Styles applied to the root element if `margin="dense"`. */
-      marginDense?: string;
-      /** Styles applied to the root element if `fullWidth={true}`. */
-      fullWidth?: string;
-    };
+    classes?: Partial<FormControlClasses>;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'
      */
-    color?: 'primary' | 'secondary';
+    color?: OverridableStringUnion<
+      'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
+      FormControlPropsColorOverrides
+    >;
     /**
      * If `true`, the label, input and helper text should be displayed in a disabled state.
      * @default false
@@ -67,14 +66,14 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
      * The size of the component.
      * @default 'medium'
      */
-    size?: 'small' | 'medium';
+    size?: OverridableStringUnion<'small' | 'medium', FormControlPropsSizeOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps<Theme>;
     /**
      * The variant to use.
-     * @default 'standard'
+     * @default 'outlined'
      */
     variant?: 'standard' | 'outlined' | 'filled';
   };
@@ -118,11 +117,9 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
  */
 declare const FormControl: OverridableComponent<FormControlTypeMap>;
 
-export type FormControlClassKey = keyof NonNullable<FormControlTypeMap['props']['classes']>;
-
 export type FormControlProps<
   D extends React.ElementType = FormControlTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<FormControlTypeMap<P, D>, D>;
 
 export default FormControl;

@@ -1,10 +1,13 @@
 import * as React from 'react';
+import { SxProps } from '@material-ui/system';
+import { Theme } from '..';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
+import { TableSortLabelClasses } from './tableSortLabelClasses';
 
 export type TableSortLabelTypeMap<
   P = {},
-  D extends React.ElementType = 'span'
+  D extends React.ElementType = 'span',
 > = ExtendButtonBaseTypeMap<{
   props: P & {
     /**
@@ -19,18 +22,7 @@ export type TableSortLabelTypeMap<
     /**
      * Override or extend the styles applied to the component.
      */
-    classes?: {
-      /** Styles applied to the root element. */
-      root?: string;
-      /** Pseudo-class applied to the root element if `active={true}`. */
-      active?: string;
-      /** Styles applied to the icon component. */
-      icon?: string;
-      /** Styles applied to the icon component if `direction="desc"`. */
-      iconDirectionDesc?: string;
-      /** Styles applied to the icon component if `direction="asc"`. */
-      iconDirectionAsc?: string;
-    };
+    classes?: Partial<TableSortLabelClasses>;
     /**
      * The current sort direction.
      * @default 'asc'
@@ -45,7 +37,11 @@ export type TableSortLabelTypeMap<
      * Sort icon to use.
      * @default ArrowDownwardIcon
      */
-    IconComponent?: React.ComponentType<{ className: string }>;
+    IconComponent?: React.JSXElementConstructor<{ className: string }>;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }>;
@@ -64,11 +60,9 @@ export type TableSortLabelTypeMap<
  */
 declare const TableSortLabel: ExtendButtonBase<TableSortLabelTypeMap>;
 
-export type TableSortLabelClassKey = keyof NonNullable<TableSortLabelTypeMap['props']['classes']>;
-
 export type TableSortLabelProps<
   D extends React.ElementType = TableSortLabelTypeMap['defaultComponent'],
-  P = {}
+  P = {},
 > = OverrideProps<TableSortLabelTypeMap<P, D>, D>;
 
 export default TableSortLabel;

@@ -1,18 +1,19 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import RadioGroup, { useRadioGroup } from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Radio from '@material-ui/core/Radio';
 
-const useStyles = makeStyles((theme) => ({
-  labelChecked: {
-    color: theme.palette.secondary.main,
-  },
-}));
+const StyledFormControlLabel = styled((props) => <FormControlLabel {...props} />)(
+  ({ theme, checked }) => ({
+    '.MuiFormControlLabel-label': checked && {
+      color: theme.palette.primary.main,
+    },
+  }),
+);
 
 function MyFormControlLabel(props) {
-  const classes = useStyles();
   const radioGroup = useRadioGroup();
 
   let checked = false;
@@ -21,14 +22,7 @@ function MyFormControlLabel(props) {
     checked = radioGroup.value === props.value;
   }
 
-  return (
-    <FormControlLabel
-      classes={{
-        label: checked ? classes.labelChecked : '',
-      }}
-      {...props}
-    />
-  );
+  return <StyledFormControlLabel checked={checked} {...props} />;
 }
 
 MyFormControlLabel.propTypes = {

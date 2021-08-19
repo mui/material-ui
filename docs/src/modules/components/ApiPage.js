@@ -3,12 +3,15 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { exactProp } from '@material-ui/utils';
+import { styled } from '@material-ui/core/styles';
+import Alert from '@material-ui/core/Alert';
 import Typography from '@material-ui/core/Typography';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
-import { SOURCE_CODE_ROOT_URL } from 'docs/src/modules/constants';
+
+const Asterisk = styled('abbr')(({ theme }) => ({ color: theme.palette.error.main }));
 
 function PropsTable(props) {
   const { componentProps, propDescriptions } = props;
@@ -34,11 +37,11 @@ function PropsTable(props) {
                 <td align="left">
                   <span className={clsx('prop-name', propData.required ? 'required' : null)}>
                     {propName}
-                    {propData.required ? (
+                    {propData.required && (
                       <sup>
-                        <abbr title="required">*</abbr>
+                        <Asterisk title="required">*</Asterisk>
                       </sup>
-                    ) : null}
+                    )}
                   </span>
                 </td>
                 <td align="left">
@@ -50,12 +53,26 @@ function PropsTable(props) {
                 <td align="left">
                   {propDefault && <span className="prop-default">{propDefault}</span>}
                 </td>
-                <td
-                  align="left"
-                  dangerouslySetInnerHTML={{
-                    __html: propDescriptions[propName] || '',
-                  }}
-                />
+                <td align="left">
+                  {propData.deprecated && (
+                    <Alert severity="warning" sx={{ mb: 1, py: 0 }}>
+                      <strong>Deprecated</strong>
+                      {propData.deprecationInfo && ' - '}
+                      {propData.deprecationInfo && (
+                        <span
+                          dangerouslySetInnerHTML={{
+                            __html: propData.deprecationInfo,
+                          }}
+                        />
+                      )}
+                    </Alert>
+                  )}
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: propDescriptions[propName] || '',
+                    }}
+                  />
+                </td>
               </tr>
             )
           );
@@ -142,13 +159,13 @@ function getTranslatedHeader(t, header) {
 function Heading(props) {
   const { hash, level: Level = 'h2' } = props;
   const t = useTranslate();
+  const headingId = `heading-${hash}`;
 
   return (
-    <Level>
-      {/* eslint-disable-next-line jsx-a11y/anchor-is-valid, jsx-a11y/anchor-has-content */}
-      <a className="anchor-link" id={hash} />
+    <Level id={headingId}>
+      <span className="anchor-link" id={hash} />
       {getTranslatedHeader(t, hash)}
-      <a className="anchor-link-style" aria-hidden="true" aria-label="anchor" href={`#${hash}`}>
+      <a aria-labelledby={headingId} className="anchor-link-style" href={`#${hash}`} tabIndex={-1}>
         <svg>
           <use xlinkHref="#anchor-link-icon" />
         </svg>
@@ -176,6 +193,7 @@ function ApiDocs(props) {
     name: componentName,
     props: componentProps,
     spread,
+    // TODO: Drop once migration to emotion is complete since this will always be true.
     styledComponent,
     styles: componentStyles,
   } = pageContent;
@@ -195,6 +213,9 @@ function ApiDocs(props) {
     )
     // convert things like `/Table/Table.js` to ``
     .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
+
+  // Prefer linking the .tsx or .d.ts for the "Edit this page" link.
+  const apiSourceLocation = filename.replace('.js', '.d.ts');
 
   function createTocEntry(sectionName) {
     return {
@@ -245,7 +266,7 @@ function ApiDocs(props) {
       description={description}
       disableAd={false}
       disableToc={false}
-      location={filename}
+      location={apiSourceLocation}
       title={`${componentName} API – Material-UI`}
       toc={toc}
     >
@@ -284,6 +305,7 @@ import { ${componentName} } from '${source}';`}
           </React.Fragment>
         )}
         <Heading hash="props" />
+        <p dangerouslySetInnerHTML={{ __html: spreadHint }} />
         <PropsTable componentProps={componentProps} propDescriptions={propDescriptions} />
         <br />
         {cssComponent && (
@@ -298,8 +320,6 @@ import { ${componentName} } from '${source}';`}
           </React.Fragment>
         )}
         <span dangerouslySetInnerHTML={{ __html: refHint }} />
-        <br />
-        <span dangerouslySetInnerHTML={{ __html: spreadHint }} />
         {inheritance && (
           <React.Fragment>
             <Heading hash="inheritance" level="h3" />
@@ -333,7 +353,7 @@ import { ${componentName} } from '${source}';`}
                 dangerouslySetInnerHTML={{
                   __html: t('api-docs.overrideStylesJss').replace(
                     /{{URL}}/,
-                    `${SOURCE_CODE_ROOT_URL}${filename}`,
+                    `${process.env.SOURCE_CODE_ROOT_URL}${filename}`,
                   ),
                 }}
               />

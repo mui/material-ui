@@ -1,17 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-// use act from test/utils/createClientRender once we drop createMount from this test
-import { createClientRender, createMount, describeConformance } from 'test/utils';
-import { act } from 'react-dom/test-utils';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { act, createClientRender, describeConformance } from 'test/utils';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import { Transition } from 'react-transition-group';
-import Grow from './Grow';
+import Grow from '@material-ui/core/Grow';
 import useForkRef from '../utils/useForkRef';
 
 describe('<Grow />', () => {
   const render = createClientRender();
-  const mount = createMount({ strict: true });
+
   const defaultProps = {
     in: true,
     children: <div />,
@@ -24,10 +22,13 @@ describe('<Grow />', () => {
     () => ({
       classes: {},
       inheritComponent: Transition,
-      mount,
       refInstanceof: window.HTMLDivElement,
       skip: [
         'componentProp',
+        'componentsProp',
+        'themeDefaultProps',
+        'themeStyleOverrides',
+        'themeVariants',
         // react-transition-group issue
         'reactTestRenderer',
       ],
@@ -79,7 +80,10 @@ describe('<Grow />', () => {
       expect(handleEntering.callCount).to.equal(1);
       expect(handleEntering.args[0][0]).to.equal(child);
 
-      clock.tick(1000);
+      act(() => {
+        clock.tick(1000);
+      });
+
       expect(handleEntered.callCount).to.equal(1);
       expect(handleEntered.args[0][0]).to.equal(child);
 
@@ -100,7 +104,10 @@ describe('<Grow />', () => {
       expect(handleExiting.callCount).to.equal(1);
       expect(handleExiting.args[0][0]).to.equal(child);
 
-      clock.tick(1000);
+      act(() => {
+        clock.tick(1000);
+      });
+
       expect(handleExited.callCount).to.equal(1);
       expect(handleExited.args[0][0]).to.equal(child);
     });
@@ -138,7 +145,7 @@ describe('<Grow />', () => {
 
       it('should delay based on height when timeout is auto', () => {
         const handleEntered = spy();
-        const theme = createMuiTheme({
+        const theme = createTheme({
           transitions: {
             getAutoHeightDuration: (n) => n,
           },
@@ -242,14 +249,19 @@ describe('<Grow />', () => {
           </Grow>,
         );
 
-        clock.tick(0);
+        act(() => {
+          clock.tick(0);
+        });
 
         setProps({
           in: false,
         });
 
         expect(handleExited.callCount).to.equal(0);
-        clock.tick(0);
+        act(() => {
+          clock.tick(0);
+        });
+
         expect(handleExited.callCount).to.equal(1);
       });
 
@@ -260,15 +272,23 @@ describe('<Grow />', () => {
           <Grow {...defaultProps} timeout={timeout} onExited={handleExited} />,
         );
 
-        clock.tick(timeout);
+        act(() => {
+          clock.tick(timeout);
+        });
         setProps({
           in: false,
         });
 
         expect(handleExited.callCount).to.equal(0);
-        clock.tick(0);
+        act(() => {
+          clock.tick(0);
+        });
+
         expect(handleExited.callCount).to.equal(0);
-        clock.tick(timeout);
+        act(() => {
+          clock.tick(timeout);
+        });
+
         expect(handleExited.callCount).to.equal(1);
       });
 

@@ -1,94 +1,85 @@
 import * as React from 'react';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
-const AntTabs = withStyles({
-  root: {
-    borderBottom: '1px solid #e8e8e8',
-  },
-  indicator: {
+const AntTabs = styled(Tabs)({
+  borderBottom: '1px solid #e8e8e8',
+  '& .MuiTabs-indicator': {
     backgroundColor: '#1890ff',
   },
-})(Tabs);
+});
 
-const AntTab = withStyles((theme) => ({
-  root: {
-    textTransform: 'none',
-    minWidth: 72,
-    fontWeight: theme.typography.fontWeightRegular,
-    marginRight: theme.spacing(4),
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-    '&:hover': {
-      color: '#40a9ff',
-      opacity: 1,
-    },
-    '&$selected': {
-      color: '#1890ff',
-      fontWeight: theme.typography.fontWeightMedium,
-    },
-    '&:focus': {
-      color: '#40a9ff',
-    },
+const AntTab = styled((props) => <Tab disableRipple {...props} />)(({ theme }) => ({
+  textTransform: 'none',
+  minWidth: 0,
+  [theme.breakpoints.up('sm')]: {
+    minWidth: 0,
   },
-  selected: {},
-}))((props) => <Tab disableRipple {...props} />);
-
-const StyledTabs = withStyles({
-  indicator: {
-    display: 'flex',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-    '& > span': {
-      maxWidth: 40,
-      width: '100%',
-      backgroundColor: '#635ee7',
-    },
+  fontWeight: theme.typography.fontWeightRegular,
+  marginRight: theme.spacing(1),
+  color: 'rgba(0, 0, 0, 0.85)',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    '"Segoe UI"',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+    '"Segoe UI Emoji"',
+    '"Segoe UI Symbol"',
+  ].join(','),
+  '&:hover': {
+    color: '#40a9ff',
+    opacity: 1,
   },
-})((props) => <Tabs {...props} TabIndicatorProps={{ children: <span /> }} />);
-
-const StyledTab = withStyles((theme) => ({
-  root: {
-    textTransform: 'none',
-    color: '#fff',
-    fontWeight: theme.typography.fontWeightRegular,
-    fontSize: theme.typography.pxToRem(15),
-    marginRight: theme.spacing(1),
-    '&:focus': {
-      opacity: 1,
-    },
+  '&.Mui-selected': {
+    color: '#1890ff',
+    fontWeight: theme.typography.fontWeightMedium,
   },
-}))((props) => <Tab disableRipple {...props} />);
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  padding: {
-    padding: theme.spacing(3),
-  },
-  demo1: {
-    backgroundColor: theme.palette.background.paper,
-  },
-  demo2: {
-    backgroundColor: '#2e1534',
+  '&.Mui-focusVisible': {
+    backgroundColor: '#d1eaff',
   },
 }));
 
+const StyledTabs = styled((props) => (
+  <Tabs
+    {...props}
+    TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
+  />
+))({
+  '& .MuiTabs-indicator': {
+    display: 'flex',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+  },
+  '& .MuiTabs-indicatorSpan': {
+    maxWidth: 40,
+    width: '100%',
+    backgroundColor: '#635ee7',
+  },
+});
+
+const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
+  ({ theme }) => ({
+    textTransform: 'none',
+    fontWeight: theme.typography.fontWeightRegular,
+    fontSize: theme.typography.pxToRem(15),
+    marginRight: theme.spacing(1),
+    color: 'rgba(255, 255, 255, 0.7)',
+    '&.Mui-selected': {
+      color: '#fff',
+    },
+    '&.Mui-focusVisible': {
+      backgroundColor: 'rgba(100, 95, 228, 0.32)',
+    },
+  }),
+);
+
 export default function CustomizedTabs() {
-  const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -96,16 +87,16 @@ export default function CustomizedTabs() {
   };
 
   return (
-    <div className={classes.root}>
-      <div className={classes.demo1}>
+    <Box sx={{ width: '100%' }}>
+      <Box sx={{ bgcolor: '#fff' }}>
         <AntTabs value={value} onChange={handleChange} aria-label="ant example">
           <AntTab label="Tab 1" />
           <AntTab label="Tab 2" />
           <AntTab label="Tab 3" />
         </AntTabs>
-        <Typography className={classes.padding} />
-      </div>
-      <div className={classes.demo2}>
+        <Box sx={{ p: 3 }} />
+      </Box>
+      <Box sx={{ bgcolor: '#2e1534' }}>
         <StyledTabs
           value={value}
           onChange={handleChange}
@@ -115,8 +106,8 @@ export default function CustomizedTabs() {
           <StyledTab label="Datasets" />
           <StyledTab label="Connections" />
         </StyledTabs>
-        <Typography className={classes.padding} />
-      </div>
-    </div>
+        <Box sx={{ p: 3 }} />
+      </Box>
+    </Box>
   );
 }

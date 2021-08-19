@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Slider from '@material-ui/core/Slider';
-import { alpha, experimentalStyled } from '@material-ui/core/styles';
+import { alpha, styled } from '@material-ui/core/styles';
 
-const SuccessSlider = experimentalStyled(Slider)(({ theme }) => ({
+const SuccessSlider = styled(Slider)(({ theme }) => ({
   width: 300,
   color: theme.palette.success.main,
   '& .MuiSlider-thumb': {

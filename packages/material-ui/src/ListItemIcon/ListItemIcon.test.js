@@ -1,19 +1,18 @@
 import * as React from 'react';
-import { createMount, describeConformanceV5 } from 'test/utils';
-import ListItemIcon from './ListItemIcon';
-import classes from './listItemIconClasses';
+import { createClientRender, describeConformance } from 'test/utils';
+import ListItemIcon, { listItemIconClasses as classes } from '@material-ui/core/ListItemIcon';
 
 describe('<ListItemIcon />', () => {
-  const mount = createMount();
+  const render = createClientRender();
 
-  describeConformanceV5(
+  describeConformance(
     <ListItemIcon>
       <div />
     </ListItemIcon>,
     () => ({
       classes,
       inheritComponent: 'div',
-      mount,
+      render,
       muiName: 'MuiListItemIcon',
       refInstanceof: window.HTMLDivElement,
       skip: ['componentProp', 'componentsProp', 'themeVariants'],

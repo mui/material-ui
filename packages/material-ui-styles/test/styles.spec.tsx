@@ -219,7 +219,7 @@ withStyles((theme) =>
 
   const ListItemContent = withStyles(styles, { name: 'ui-ListItemContent' })(
     ({ children, classes, inset, row }: ListItemContentProps) => (
-      <div className={classes.root} color="textSecondary">
+      <div className={classes.root} color="text.secondary">
         {children}
       </div>
     ),
@@ -416,7 +416,6 @@ function ForwardRefTest() {
   // forwarded to function components which can't hold refs
   // @ts-expect-error property 'ref' does not exists
   <StyledAnchor ref={anchorRef} />;
-  <StyledAnchor innerRef={anchorRef} />;
 
   const RefableAnchor = React.forwardRef<HTMLAnchorElement, WithStyles<typeof styles>>(
     (props, ref) => {
@@ -430,9 +429,6 @@ function ForwardRefTest() {
   const buttonRef = React.createRef<HTMLButtonElement>();
   // @ts-expect-error HTMLButtonElement is missing properties
   <StyledRefableAnchor ref={buttonRef} />;
-  // undesired: `innerRef` is currently typed as any but for backwards compat we're keeping it
-  // especially since `innerRef` will be removed in v5 and is equivalent to `ref`
-  <StyledRefableAnchor innerRef={buttonRef} />;
 }
 
 {

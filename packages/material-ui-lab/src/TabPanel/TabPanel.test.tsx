@@ -1,24 +1,26 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import TabPanel from './TabPanel';
+import { createClientRender, describeConformance } from 'test/utils';
+import TabPanel, { tabPanelClasses as classes } from '@material-ui/lab/TabPanel';
 import TabContext from '../TabContext';
 
 describe('<TabPanel />', () => {
-  const mount = createMount();
-  let classes: Record<string, string>;
   const render = createClientRender();
-
-  before(() => {
-    classes = getClasses(<TabPanel value="0" />);
-  });
 
   describeConformance(<TabPanel value="0" />, () => ({
     classes,
     inheritComponent: 'div',
-    mount: (node) => mount(<TabContext value="0">{node}</TabContext>),
+    render: (node) => render(<TabContext value="0">{node}</TabContext>),
+    wrapMount: (mount) => (node) => mount(<TabContext value="0">{node}</TabContext>),
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp', 'reactTestRenderer'],
+    muiName: 'MuiTabPanel',
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'reactTestRenderer',
+      'themeDefaultProps',
+      'themeVariants',
+    ],
   }));
 
   it('renders a [role="tabpanel"]', () => {

@@ -1,26 +1,23 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { getClasses, createMount, createClientRender, describeConformance } from 'test/utils';
-import { typographyClasses } from '../Typography';
-import InputAdornment from './InputAdornment';
-import TextField from '../TextField';
-import FormControl from '../FormControl';
-import Input from '../Input';
+import { createClientRender, describeConformance } from 'test/utils';
+import { typographyClasses } from '@material-ui/core/Typography';
+import InputAdornment, { inputAdornmentClasses as classes } from '@material-ui/core/InputAdornment';
+import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
 
 describe('<InputAdornment />', () => {
-  const mount = createMount();
   const render = createClientRender();
-  let classes;
-
-  before(() => {
-    classes = getClasses(<InputAdornment position="start">foo</InputAdornment>);
-  });
 
   describeConformance(<InputAdornment position="start">foo</InputAdornment>, () => ({
     classes,
     inheritComponent: 'div',
-    mount,
+    render,
+    muiName: 'MuiInputAdornment',
+    testVariantProps: { color: 'primary' },
     refInstanceof: window.HTMLDivElement,
+    skip: ['componentsProp'],
     testComponentPropWith: 'span',
   }));
 
@@ -193,7 +190,9 @@ describe('<InputAdornment />', () => {
   it('applies a size small class inside <FormControl size="small" />', () => {
     const { getByTestId } = render(
       <FormControl size="small">
-        <InputAdornment data-testid="root">$</InputAdornment>
+        <InputAdornment position="start" data-testid="root">
+          $
+        </InputAdornment>
       </FormControl>,
     );
 
@@ -203,7 +202,9 @@ describe('<InputAdornment />', () => {
   it('applies a hiddenLabel class inside <FormControl hiddenLabel />', () => {
     const { getByTestId } = render(
       <FormControl hiddenLabel>
-        <InputAdornment data-testid="root">$</InputAdornment>
+        <InputAdornment position="start" data-testid="root">
+          $
+        </InputAdornment>
       </FormControl>,
     );
 

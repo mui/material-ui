@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { MuiStyles, StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import { DateRange } from './RangeTypes';
-import { useUtils } from '../internal/pickers/hooks/useUtils';
+import { useDefaultDates, useUtils } from '../internal/pickers/hooks/useUtils';
 import { calculateRangePreview } from './date-range-manager';
-import PickersCalendar, { PickersCalendarProps } from '../DayPicker/PickersCalendar';
+import PickersCalendar, { PickersCalendarProps } from '../CalendarPicker/PickersCalendar';
 import DateRangePickerDay, { DateRangePickerDayProps } from '../DateRangePickerDay';
-import { defaultMinDate, defaultMaxDate } from '../internal/pickers/constants/prop-types';
 import PickersArrowSwitcher, {
   ExportedArrowSwitcherProps,
 } from '../internal/pickers/PickersArrowSwitcher';
@@ -29,9 +28,9 @@ export interface ExportedDesktopDateRangeCalendarProps<TDate> {
   calendars?: 1 | 2 | 3;
   /**
    * Custom renderer for `<DateRangePicker />` days. @DateIOType
-   * @example (date, DateRangePickerDayProps) => <DateRangePickerDay {...DateRangePickerDayProps} />
+   * @example (date, dateRangePickerDayProps) => <DateRangePickerDay {...dateRangePickerDayProps} />
    */
-  renderDay?: (date: TDate, DateRangePickerDayProps: DateRangePickerDayProps<TDate>) => JSX.Element;
+  renderDay?: (date: TDate, dateRangePickerDayProps: DateRangePickerDayProps<TDate>) => JSX.Element;
 }
 
 interface DesktopDateRangeCalendarProps<TDate>
@@ -39,39 +38,33 @@ interface DesktopDateRangeCalendarProps<TDate>
     Omit<PickersCalendarProps<TDate>, 'renderDay' | 'onFocusedDayChange'>,
     DateValidationProps<TDate>,
     ExportedArrowSwitcherProps {
+  calendars: 1 | 2 | 3;
   date: DateRange<TDate | null>;
   changeMonth: (date: TDate) => void;
   currentlySelectingRangeEnd: 'start' | 'end';
 }
 
-type DateRangePickerViewDesktopClassKey =
-  | 'root'
-  | 'rangeCalendarContainer'
-  | 'calendar'
-  | 'arrowSwitcher';
+const DateRangePickerViewDesktopRoot = styled('div', { skipSx: true })({
+  display: 'flex',
+  flexDirection: 'row',
+});
 
-export const styles: MuiStyles<DateRangePickerViewDesktopClassKey> = (
-  theme,
-): StyleRules<DateRangePickerViewDesktopClassKey> => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'row',
+const DateRangePickerViewDesktopContainer = styled('div', { skipSx: true })(({ theme }) => ({
+  '&:not(:last-of-type)': {
+    borderRight: `2px solid ${theme.palette.divider}`,
   },
-  rangeCalendarContainer: {
-    '&:not(:last-child)': {
-      borderRight: `2px solid ${theme.palette.divider}`,
-    },
-  },
-  calendar: {
-    minWidth: 312,
-    minHeight: 288,
-  },
-  arrowSwitcher: {
-    padding: '16px 16px 8px 16px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
+}));
+
+const DateRangePickerViewDesktopCalendar = styled(PickersCalendar, { skipSx: true })({
+  minWidth: 312,
+  minHeight: 288,
+}) as typeof PickersCalendar;
+
+const DateRangePickerViewDesktopArrowSwitcher = styled(PickersArrowSwitcher, { skipSx: true })({
+  padding: '16px 16px 8px 16px',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
 });
 
 function getCalendarsArray(calendars: ExportedDesktopDateRangeCalendarProps<unknown>['calendars']) {
@@ -91,13 +84,10 @@ function getCalendarsArray(calendars: ExportedDesktopDateRangeCalendarProps<unkn
 /**
  * @ignore - internal component.
  */
-function DateRangePickerViewDesktop<TDate>(
-  props: DesktopDateRangeCalendarProps<TDate> & WithStyles<typeof styles>,
-) {
+function DateRangePickerViewDesktop<TDate>(props: DesktopDateRangeCalendarProps<TDate>) {
   const {
-    calendars = 2,
+    calendars,
     changeMonth,
-    classes,
     components,
     componentsProps,
     currentlySelectingRangeEnd,
@@ -115,8 +105,9 @@ function DateRangePickerViewDesktop<TDate>(
   } = props;
 
   const utils = useUtils<TDate>();
-  const minDate = minDateProp || utils.date(defaultMinDate);
-  const maxDate = maxDateProp || utils.date(defaultMaxDate);
+  const defaultDates = useDefaultDates<TDate>();
+  const minDate = minDateProp ?? defaultDates.minDate;
+  const maxDate = maxDateProp ?? defaultDates.maxDate;
 
   const [rangePreviewDay, setRangePreviewDay] = React.useState<TDate | null>(null);
 
@@ -162,14 +153,13 @@ function DateRangePickerViewDesktop<TDate>(
   }, [changeMonth, currentMonth, utils]);
 
   return (
-    <div className={classes.root}>
+    <DateRangePickerViewDesktopRoot>
       {getCalendarsArray(calendars).map((_, index) => {
         const monthOnIteration = utils.setMonth(currentMonth, utils.getMonth(currentMonth) + index);
 
         return (
-          <div key={index} className={classes.rangeCalendarContainer}>
-            <PickersArrowSwitcher
-              className={classes.arrowSwitcher}
+          <DateRangePickerViewDesktopContainer key={index}>
+            <DateRangePickerViewDesktopArrowSwitcher
               onLeftClick={selectPreviousMonth}
               onRightClick={selectNextMonth}
               isLeftHidden={index !== 0}
@@ -182,13 +172,12 @@ function DateRangePickerViewDesktop<TDate>(
               rightArrowButtonText={rightArrowButtonText}
             >
               {utils.format(monthOnIteration, 'monthAndYear')}
-            </PickersArrowSwitcher>
-            <PickersCalendar<TDate>
+            </DateRangePickerViewDesktopArrowSwitcher>
+            <DateRangePickerViewDesktopCalendar<TDate>
               {...other}
               key={index}
               date={date}
               onFocusedDayChange={doNothing}
-              className={classes.calendar}
               onChange={handleDayChange}
               currentMonth={monthOnIteration}
               TransitionProps={CalendarTransitionProps}
@@ -205,13 +194,11 @@ function DateRangePickerViewDesktop<TDate>(
                 })
               }
             />
-          </div>
+          </DateRangePickerViewDesktopContainer>
         );
       })}
-    </div>
+    </DateRangePickerViewDesktopRoot>
   );
 }
 
-export default withStyles(styles, { name: 'MuiDateRangePickerViewDesktop' })(
-  DateRangePickerViewDesktop,
-) as <TDate>(props: DesktopDateRangeCalendarProps<TDate>) => JSX.Element;
+export default DateRangePickerViewDesktop;

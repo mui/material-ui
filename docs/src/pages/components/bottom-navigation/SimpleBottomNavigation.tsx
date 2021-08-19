@@ -1,23 +1,16 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
-const useStyles = makeStyles({
-  root: {
-    width: 500,
-  },
-});
-
 export default function SimpleBottomNavigation() {
-  const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ width: 500 }}>
       <BottomNavigation
         showLabels
         value={value}
@@ -29,6 +22,6 @@ export default function SimpleBottomNavigation() {
         <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
         <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
       </BottomNavigation>
-    </div>
+    </Box>
   );
 }

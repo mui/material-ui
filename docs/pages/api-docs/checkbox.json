@@ -5,10 +5,10 @@
     "classes": { "type": { "name": "object" } },
     "color": {
       "type": {
-        "name": "enum",
-        "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'"
+        "name": "union",
+        "description": "'default'<br>&#124;&nbsp;'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;'error'<br>&#124;&nbsp;'info'<br>&#124;&nbsp;'succes'<br>&#124;&nbsp;'warning'<br>&#124;&nbsp;string"
       },
-      "default": "'secondary'"
+      "default": "'primary'"
     },
     "defaultChecked": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
@@ -22,7 +22,10 @@
     "onChange": { "type": { "name": "func" } },
     "required": { "type": { "name": "bool" } },
     "size": {
-      "type": { "name": "enum", "description": "'medium'<br>&#124;&nbsp;'small'" },
+      "type": {
+        "name": "union",
+        "description": "'medium'<br>&#124;&nbsp;'small'<br>&#124;&nbsp;string"
+      },
       "default": "'medium'"
     },
     "sx": { "type": { "name": "object" } },
@@ -37,7 +40,7 @@
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/material-ui/src/Checkbox/Checkbox.js",
-  "inheritance": { "component": "IconButton", "pathname": "/api/icon-button/" },
+  "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/checkboxes/\">Checkboxes</a></li>\n<li><a href=\"/components/transfer-list/\">Transfer List</a></li></ul>",
   "styledComponent": true,
   "cssComponent": false

@@ -1,20 +1,13 @@
 import * as React from 'react';
+import Box from '@material-ui/core/Box';
 import Skeleton from '@material-ui/core/Skeleton';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles({
-  root: {
-    width: 300,
-  },
-});
 
 export default function Animations() {
-  const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <Box sx={{ width: 300 }}>
       <Skeleton />
       <Skeleton animation="wave" />
       <Skeleton animation={false} />
-    </div>
+    </Box>
   );
 }

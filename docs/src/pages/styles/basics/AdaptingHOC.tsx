@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { withStyles, createStyles, WithStyles } from '@material-ui/core/styles';
+import { withStyles, WithStyles } from '@material-ui/styles';
 import Button, { ButtonProps } from '@material-ui/core/Button';
 
-const styles = createStyles({
+const styles = {
   root: {
     background: (props: MyButtonRawProps) =>
       props.color === 'red'
@@ -19,7 +19,7 @@ const styles = createStyles({
     padding: '0 30px',
     margin: 8,
   },
-});
+};
 
 interface MyButtonRawProps {
   color: 'red' | 'blue';

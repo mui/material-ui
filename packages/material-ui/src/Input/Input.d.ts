@@ -1,41 +1,13 @@
 import { SxProps } from '@material-ui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { InputBaseProps } from '../InputBase';
+import { InputClasses } from './inputClasses';
 
 export interface InputProps extends StandardProps<InputBaseProps> {
   /**
    * Override or extend the styles applied to the component.
    */
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-    /** Styles applied to the root element if the component is a descendant of `FormControl`. */
-    formControl?: string;
-    /** Styles applied to the root element if the component is focused. */
-    focused?: string;
-    /** Styles applied to the root element if `disabled={true}`. */
-    disabled?: string;
-    /** Styles applied to the root element if color secondary. */
-    colorSecondary?: string;
-    /** Styles applied to the root element unless `disableUnderline={true}`. */
-    underline?: string;
-    /** Pseudo-class applied to the root element if `error={true}`. */
-    error?: string;
-    /** Styles applied to the input element if `size="small"`. */
-    sizeSmall?: string;
-    /** Styles applied to the root element if `multiline={true}`. */
-    multiline?: string;
-    /** Styles applied to the root element if `fullWidth={true}`. */
-    fullWidth?: string;
-    /** Styles applied to the input element. */
-    input?: string;
-    /** Styles applied to the input element if `size="small"`. */
-    inputSizeSmall?: string;
-    /** Styles applied to the input element if `multiline={true}`. */
-    inputMultiline?: string;
-    /** Styles applied to the input element if `type="search"`. */
-    inputTypeSearch?: string;
-  };
+  classes?: Partial<InputClasses>;
   /**
    * If `true`, the `input` will not have an underline.
    */
@@ -45,8 +17,6 @@ export interface InputProps extends StandardProps<InputBaseProps> {
    */
   sx?: SxProps<Theme>;
 }
-
-export type InputClassKey = keyof NonNullable<InputProps['classes']>;
 
 /**
  *
@@ -59,4 +29,6 @@ export type InputClassKey = keyof NonNullable<InputProps['classes']>;
  * - [Input API](https://material-ui.com/api/input/)
  * - inherits [InputBase API](https://material-ui.com/api/input-base/)
  */
-export default function Input(props: InputProps): JSX.Element;
+declare const Input: ((props: InputProps) => JSX.Element) & { muiName: string };
+
+export default Input;

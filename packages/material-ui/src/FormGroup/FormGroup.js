@@ -1,22 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getFormGroupUtilityClass } from './formGroupClasses';
 
-const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
-
-  return deepmerge(styles.root || {}, {
-    ...(styleProps.row && styles.row),
-  });
-};
-
-const useUtilityClasses = (styleProps) => {
-  const { classes, row } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, row } = ownerState;
 
   const slots = {
     root: ['root', row && 'row'],
@@ -25,21 +16,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getFormGroupUtilityClass, classes);
 };
 
-const FormGroupRoot = experimentalStyled(
-  'div',
-  {},
-  {
-    name: 'MuiFormGroup',
-    slot: 'Root',
-    overridesResolver,
+const FormGroupRoot = styled('div', {
+  name: 'MuiFormGroup',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    const { ownerState } = props;
+
+    return [styles.root, ownerState.row && styles.row];
   },
-)(({ styleProps }) => ({
-  /* Styles applied to the root element. */
+})(({ ownerState }) => ({
   display: 'flex',
   flexDirection: 'column',
   flexWrap: 'wrap',
-  /* Styles applied to the root element if `row={true}`. */
-  ...(styleProps.row && {
+  ...(ownerState.row && {
     flexDirection: 'row',
   }),
 }));
@@ -56,20 +45,20 @@ const FormGroup = React.forwardRef(function FormGroup(inProps, ref) {
   });
 
   const { className, row = false, ...other } = props;
-  const styleProps = { ...props, row };
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = { ...props, row };
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <FormGroupRoot
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       {...other}
     />
   );
 });
 
-FormGroup.propTypes = {
+FormGroup.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |

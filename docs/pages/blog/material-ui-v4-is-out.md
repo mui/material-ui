@@ -54,8 +54,10 @@ After listening to v3 customization experiences of hundreds of developers, we re
 ```jsx
 import { StylesProvider } from '@material-ui/styles';
 
-<StylesProvider injectFirst>{/* Your component tree.
-      Styled components can override Material-UI's styles. */}</StylesProvider>;
+<StylesProvider injectFirst>
+  {/* Your component tree.
+      Styled components can override Material-UI's styles. */}
+</StylesProvider>;
 ```
 
 ![injectFirst](/static/blog/material-ui-v4-is-out/injectFirst.png)
@@ -198,7 +200,7 @@ function MyButton() {
 
 ### Material Design
 
-Most of our users are interested in the good looking functional aspect of our components, rather than in a strict application of the Material Design specification. However, we think that it's important for us to keep up to date with the guidelines. The specification received it's most significant update since Google made it the design language for its apps in 2014, at [Google I/O 2018](https://design.google/library/io-2018-our-definitive-guide-design/).
+Most of our users are interested in the good looking functional aspect of our components, rather than in a strict application of the Material Design guidelines. However, we think that it's important for us to keep up to date with the guidelines. The specification received it's most significant update since Google made it the design language for its apps in 2014, at [Google I/O 2018](https://design.google/library/io-2018-our-definitive-guide-design/).
 
 The Material Design "v2" announcement caught us by surprise when we released Material-UI v1. We have worked on upgrading our components since then. In v4, we have updated the styles of the Tab, Snackbar, Checkboxes, Radios, Switches, List, Dialog, and other components ✨.
 

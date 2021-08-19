@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createMount, createClientRender, describeConformanceV5 } from 'test/utils';
-import TableRow from './TableRow';
-import classes from './tableRowClasses';
+import { createClientRender, describeConformance } from 'test/utils';
+import TableRow, { tableRowClasses as classes } from '@material-ui/core/TableRow';
 
 describe('<TableRow />', () => {
-  const mount = createMount();
   const render = createClientRender();
 
   function renderInTable(node) {
@@ -16,24 +14,24 @@ describe('<TableRow />', () => {
     );
   }
 
-  describeConformanceV5(<TableRow />, () => ({
+  describeConformance(<TableRow />, () => ({
     classes,
     inheritComponent: 'tr',
-    mount: (node) => {
+    render: (node) => {
+      const { container, ...other } = render(
+        <table>
+          <tbody>{node}</tbody>
+        </table>,
+      );
+      return { container: container.firstChild.firstChild, ...other };
+    },
+    wrapMount: (mount) => (node) => {
       const wrapper = mount(
         <table>
           <tbody>{node}</tbody>
         </table>,
       );
       return wrapper.find('tbody').childAt(0);
-    },
-    render: (node) => {
-      const { container, ...rest } = render(
-        <table>
-          <tbody>{node}</tbody>
-        </table>,
-      );
-      return { container: container.firstChild.firstChild, ...rest };
     },
     muiName: 'MuiTableRow',
     testVariantProps: { variant: 'foo' },

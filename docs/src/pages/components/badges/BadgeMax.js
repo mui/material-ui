@@ -1,25 +1,20 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
+import Stack from '@material-ui/core/Stack';
 import Badge from '@material-ui/core/Badge';
 import MailIcon from '@material-ui/icons/Mail';
 
-const defaultProps = {
-  color: 'secondary',
-  children: <MailIcon />,
-};
-
 export default function BadgeMax() {
   return (
-    <Box
-      sx={{
-        '& > *': {
-          margin: 2,
-        },
-      }}
-    >
-      <Badge badgeContent={99} {...defaultProps} />
-      <Badge badgeContent={100} {...defaultProps} />
-      <Badge badgeContent={1000} max={999} {...defaultProps} />
-    </Box>
+    <Stack spacing={4} direction="row" sx={{ color: 'action.active' }}>
+      <Badge color="secondary" badgeContent={99}>
+        <MailIcon />
+      </Badge>
+      <Badge color="secondary" badgeContent={100}>
+        <MailIcon />
+      </Badge>
+      <Badge color="secondary" badgeContent={1000} max={999}>
+        <MailIcon />
+      </Badge>
+    </Stack>
   );
 }

@@ -1,17 +1,17 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, createMount, describeConformanceV5 } from 'test/utils';
-import AccordionDetails from './AccordionDetails';
-import classes from './accordionDetailsClasses';
+import { createClientRender, describeConformance } from 'test/utils';
+import AccordionDetails, {
+  accordionDetailsClasses as classes,
+} from '@material-ui/core/AccordionDetails';
 
 describe('<AccordionDetails />', () => {
-  const mount = createMount();
   const render = createClientRender();
 
-  describeConformanceV5(<AccordionDetails>Conformance</AccordionDetails>, () => ({
+  describeConformance(<AccordionDetails>Conformance</AccordionDetails>, () => ({
     classes,
     inheritComponent: 'div',
-    mount,
+    render,
     refInstanceof: window.HTMLDivElement,
     muiName: 'MuiAccordionDetails',
     skip: ['componentProp', 'componentsProp', 'themeVariants'],

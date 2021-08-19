@@ -30,6 +30,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
   const {
     appear = true,
     children,
+    easing,
     in: inProp,
     onEnter,
     onEntered,
@@ -69,8 +70,12 @@ const Grow = React.forwardRef(function Grow(props, ref) {
   const handleEnter = normalizedTransitionCallback((node, isAppearing) => {
     reflow(node); // So the animation always start from the start.
 
-    const { duration: transitionDuration, delay } = getTransitionProps(
-      { style, timeout },
+    const {
+      duration: transitionDuration,
+      delay,
+      easing: transitionTimingFunction,
+    } = getTransitionProps(
+      { style, timeout, easing },
       {
         mode: 'enter',
       },
@@ -92,6 +97,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
       theme.transitions.create('transform', {
         duration: duration * 0.666,
         delay,
+        easing: transitionTimingFunction,
       }),
     ].join(',');
 
@@ -105,8 +111,12 @@ const Grow = React.forwardRef(function Grow(props, ref) {
   const handleExiting = normalizedTransitionCallback(onExiting);
 
   const handleExit = normalizedTransitionCallback((node) => {
-    const { duration: transitionDuration, delay } = getTransitionProps(
-      { style, timeout },
+    const {
+      duration: transitionDuration,
+      delay,
+      easing: transitionTimingFunction,
+    } = getTransitionProps(
+      { style, timeout, easing },
       {
         mode: 'exit',
       },
@@ -128,6 +138,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
       theme.transitions.create('transform', {
         duration: duration * 0.666,
         delay: delay || duration * 0.333,
+        easing: transitionTimingFunction,
       }),
     ].join(',');
 
@@ -186,7 +197,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
   );
 });
 
-Grow.propTypes = {
+Grow.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -201,6 +212,17 @@ Grow.propTypes = {
    * A single child content element.
    */
   children: elementAcceptingRef,
+  /**
+   * The transition timing function.
+   * You may specify a single easing or a object containing enter and exit values.
+   */
+  easing: PropTypes.oneOfType([
+    PropTypes.shape({
+      enter: PropTypes.string,
+      exit: PropTypes.string,
+    }),
+    PropTypes.string,
+  ]),
   /**
    * If `true`, the component will transition in.
    */

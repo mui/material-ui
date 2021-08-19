@@ -1,48 +1,29 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import Stack from '@material-ui/core/Stack';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-    },
-  },
-  input: {
-    display: 'none',
-  },
-}));
+const Input = styled('input')({
+  display: 'none',
+});
 
 export default function UploadButtons() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
-      <input
-        accept="image/*"
-        className={classes.input}
-        id="contained-button-file"
-        multiple
-        type="file"
-      />
+    <Stack direction="row" alignItems="center" spacing={2}>
       <label htmlFor="contained-button-file">
+        <Input accept="image/*" id="contained-button-file" multiple type="file" />
         <Button variant="contained" component="span">
           Upload
         </Button>
       </label>
-      <input
-        accept="image/*"
-        className={classes.input}
-        id="icon-button-file"
-        type="file"
-      />
       <label htmlFor="icon-button-file">
+        <Input accept="image/*" id="icon-button-file" type="file" />
         <IconButton color="primary" aria-label="upload picture" component="span">
           <PhotoCamera />
         </IconButton>
       </label>
-    </div>
+    </Stack>
   );
 }

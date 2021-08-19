@@ -2,32 +2,34 @@ import * as React from 'react';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 
-function handleClick(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
   event.preventDefault();
   console.info('You clicked a breadcrumb.');
 }
 
 export default function ActiveLastBreadcrumb() {
   return (
-    <Breadcrumbs aria-label="breadcrumb">
-      <Link color="inherit" href="/" onClick={handleClick}>
-        Material-UI
-      </Link>
-      <Link
-        color="inherit"
-        href="/getting-started/installation/"
-        onClick={handleClick}
-      >
-        Core
-      </Link>
-      <Link
-        color="textPrimary"
-        href="/components/breadcrumbs/"
-        onClick={handleClick}
-        aria-current="page"
-      >
-        Breadcrumb
-      </Link>
-    </Breadcrumbs>
+    <div role="presentation" onClick={handleClick}>
+      <Breadcrumbs aria-label="breadcrumb">
+        <Link underline="hover" color="inherit" href="/">
+          Material-UI
+        </Link>
+        <Link
+          underline="hover"
+          color="inherit"
+          href="/getting-started/installation/"
+        >
+          Core
+        </Link>
+        <Link
+          underline="hover"
+          color="text.primary"
+          href="/components/breadcrumbs/"
+          aria-current="page"
+        >
+          Breadcrumbs
+        </Link>
+      </Breadcrumbs>
+    </div>
   );
 }

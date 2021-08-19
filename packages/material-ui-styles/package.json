@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/styles",
-  "version": "5.0.0-alpha.25",
+  "version": "5.0.0-beta.4",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Styles - The styling solution of Material-UI.",
@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "https://material-ui.com/styles/basics/",
+  "homepage": "https://next.material-ui.com/styles/basics/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/material-ui"
@@ -39,7 +39,7 @@
   },
   "peerDependencies": {
     "@types/react": "^16.8.6 || ^17.0.0",
-    "react": "^16.8.0 || ^17.0.0"
+    "react": "^17.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -47,10 +47,11 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.4.4",
+    "@babel/runtime": "^7.14.8",
     "@emotion/hash": "^0.8.0",
-    "@material-ui/types": "5.1.7",
-    "@material-ui/utils": "5.0.0-alpha.25",
+    "@material-ui/private-theming": "5.0.0-beta.4",
+    "@material-ui/types": "6.0.2",
+    "@material-ui/utils": "5.0.0-beta.4",
     "clsx": "^1.0.4",
     "csstype": "^3.0.2",
     "hoist-non-react-statics": "^3.3.2",
@@ -69,6 +70,6 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12.0.0"
   }
 }

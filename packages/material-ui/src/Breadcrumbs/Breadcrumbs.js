@@ -2,24 +2,16 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
+import { integerPropType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import experimentalStyled from '../styles/experimentalStyled';
+import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Typography from '../Typography';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
 import breadcrumbsClasses, { getBreadcrumbsUtilityClass } from './breadcrumbsClasses';
 
-const overridesResolver = (props, styles) => {
-  return deepmerge(styles.root || {}, {
-    [`& .${breadcrumbsClasses.ol}`]: styles.ol,
-    [`& .${breadcrumbsClasses.li}`]: styles.li,
-    [`& .${breadcrumbsClasses.separator}`]: styles.separator,
-  });
-};
-
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -31,24 +23,19 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getBreadcrumbsUtilityClass, classes);
 };
 
-const BreadcrumbsRoot = experimentalStyled(
-  Typography,
-  {},
-  {
-    name: 'MuiBreadcrumbs',
-    slot: 'Root',
-    overridesResolver,
+const BreadcrumbsRoot = styled(Typography, {
+  name: 'MuiBreadcrumbs',
+  slot: 'Root',
+  overridesResolver: (props, styles) => {
+    return [{ [`& .${breadcrumbsClasses.li}`]: styles.li }, styles.root];
   },
-)({});
+})({});
 
-const BreadcrumbsOl = experimentalStyled(
-  'ol',
-  {},
-  {
-    name: 'MuiBreadcrumbs',
-    slot: 'Ol',
-  },
-)({
+const BreadcrumbsOl = styled('ol', {
+  name: 'MuiBreadcrumbs',
+  slot: 'Ol',
+  overridesResolver: (props, styles) => styles.ol,
+})({
   display: 'flex',
   flexWrap: 'wrap',
   alignItems: 'center',
@@ -57,21 +44,18 @@ const BreadcrumbsOl = experimentalStyled(
   listStyle: 'none',
 });
 
-const BreadcrumbsSeparator = experimentalStyled(
-  'li',
-  {},
-  {
-    name: 'MuiBreadcrumbs',
-    slot: 'Separator',
-  },
-)({
+const BreadcrumbsSeparator = styled('li', {
+  name: 'MuiBreadcrumbs',
+  slot: 'Separator',
+  overridesResolver: (props, styles) => styles.separator,
+})({
   display: 'flex',
   userSelect: 'none',
   marginLeft: 8,
   marginRight: 8,
 });
 
-function insertSeparators(items, className, separator, styleProps) {
+function insertSeparators(items, className, separator, ownerState) {
   return items.reduce((acc, current, index) => {
     if (index < items.length - 1) {
       acc = acc.concat(
@@ -80,7 +64,7 @@ function insertSeparators(items, className, separator, styleProps) {
           aria-hidden
           key={`separator-${index}`}
           className={className}
-          styleProps={styleProps}
+          ownerState={ownerState}
         >
           {separator}
         </BreadcrumbsSeparator>,
@@ -109,7 +93,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
 
   const [expanded, setExpanded] = React.useState(false);
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     component,
     expanded,
@@ -120,7 +104,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     separator,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const listRef = React.useRef(null);
   const renderItemsBeforeAndAfter = (allItems) => {
@@ -183,26 +167,26 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     <BreadcrumbsRoot
       ref={ref}
       component={component}
-      color="textSecondary"
+      color="text.secondary"
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
-      <BreadcrumbsOl className={classes.ol} ref={listRef} styleProps={styleProps}>
+      <BreadcrumbsOl className={classes.ol} ref={listRef} ownerState={ownerState}>
         {insertSeparators(
           expanded || (maxItems && allItems.length <= maxItems)
             ? allItems
             : renderItemsBeforeAndAfter(allItems),
           classes.separator,
           separator,
-          styleProps,
+          ownerState,
         )}
       </BreadcrumbsOl>
     </BreadcrumbsRoot>
   );
 });
 
-Breadcrumbs.propTypes = {
+Breadcrumbs.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -235,19 +219,19 @@ Breadcrumbs.propTypes = {
    * If max items is exceeded, the number of items to show after the ellipsis.
    * @default 1
    */
-  itemsAfterCollapse: PropTypes.number,
+  itemsAfterCollapse: integerPropType,
   /**
    * If max items is exceeded, the number of items to show before the ellipsis.
    * @default 1
    */
-  itemsBeforeCollapse: PropTypes.number,
+  itemsBeforeCollapse: integerPropType,
   /**
    * Specifies the maximum number of breadcrumbs to display. When there are more
    * than the maximum number, only the first `itemsBeforeCollapse` and last `itemsAfterCollapse`
    * will be shown, with an ellipsis in between.
    * @default 8
    */
-  maxItems: PropTypes.number,
+  maxItems: integerPropType,
   /**
    * Custom separator node.
    * @default '/'

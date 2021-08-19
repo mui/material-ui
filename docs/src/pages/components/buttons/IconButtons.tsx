@@ -1,25 +1,13 @@
 import * as React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
+import Stack from '@material-ui/core/Stack';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AlarmIcon from '@material-ui/icons/Alarm';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-      },
-    },
-  }),
-);
-
 export default function IconButtons() {
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <Stack direction="row" spacing={1}>
       <IconButton aria-label="delete">
         <DeleteIcon />
       </IconButton>
@@ -32,6 +20,6 @@ export default function IconButtons() {
       <IconButton color="primary" aria-label="add to shopping cart">
         <AddShoppingCartIcon />
       </IconButton>
-    </div>
+    </Stack>
   );
 }

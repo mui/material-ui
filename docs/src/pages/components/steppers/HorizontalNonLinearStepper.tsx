@@ -1,41 +1,14 @@
 import * as React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepButton from '@material-ui/core/StepButton';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-    },
-    buttonWrapper: {
-      display: 'flex',
-      flexDirection: 'row',
-      padding: '16px 0 0',
-    },
-    button: {
-      marginRight: theme.spacing(1),
-    },
-    spacer: {
-      flex: '1 1 auto',
-    },
-    completed: {
-      display: 'inline-block',
-    },
-    instructions: {
-      marginTop: theme.spacing(2),
-      marginBottom: theme.spacing(1),
-    },
-  }),
-);
-
 const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 
 export default function HorizontalNonLinearStepper() {
-  const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState<{
     [k: number]: boolean;
@@ -88,7 +61,7 @@ export default function HorizontalNonLinearStepper() {
   };
 
   return (
-    <div className={classes.root}>
+    <Box sx={{ width: '100%' }}>
       <Stepper nonLinear activeStep={activeStep}>
         {steps.map((label, index) => (
           <Step key={label} completed={completed[index]}>
@@ -101,35 +74,33 @@ export default function HorizontalNonLinearStepper() {
       <div>
         {allStepsCompleted() ? (
           <React.Fragment>
-            <Typography className={classes.instructions}>
+            <Typography sx={{ mt: 2, mb: 1 }}>
               All steps completed - you&apos;re finished
             </Typography>
-            <div className={classes.buttonWrapper}>
-              <div className={classes.spacer} />
+            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+              <Box sx={{ flex: '1 1 auto' }} />
               <Button onClick={handleReset}>Reset</Button>
-            </div>
+            </Box>
           </React.Fragment>
         ) : (
           <React.Fragment>
-            <Typography className={classes.instructions}>
-              Step {activeStep + 1}
-            </Typography>
-            <div className={classes.buttonWrapper}>
+            <Typography sx={{ mt: 2, mb: 1 }}>Step {activeStep + 1}</Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
               <Button
                 color="inherit"
                 disabled={activeStep === 0}
                 onClick={handleBack}
-                className={classes.button}
+                sx={{ mr: 1 }}
               >
                 Back
               </Button>
-              <div className={classes.spacer} />
-              <Button onClick={handleNext} className={classes.button}>
+              <Box sx={{ flex: '1 1 auto' }} />
+              <Button onClick={handleNext} sx={{ mr: 1 }}>
                 Next
               </Button>
               {activeStep !== steps.length &&
                 (completed[activeStep] ? (
-                  <Typography variant="caption" className={classes.completed}>
+                  <Typography variant="caption" sx={{ display: 'inline-block' }}>
                     Step {activeStep + 1} already completed
                   </Typography>
                 ) : (
@@ -139,10 +110,10 @@ export default function HorizontalNonLinearStepper() {
                       : 'Complete Step'}
                   </Button>
                 ))}
-            </div>
+            </Box>
           </React.Fragment>
         )}
       </div>
-    </div>
+    </Box>
   );
 }
