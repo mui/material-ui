@@ -119,6 +119,7 @@ DemoFrame.propTypes = {
 
 // Use the default MUI theme for the demos
 const theme = createTheme();
+const darkModeTheme = createTheme({ palette: { mode: 'dark' } });
 
 /**
  * Isolates the demo component as best as possible. Additional props are spread
@@ -134,7 +135,7 @@ function DemoSandboxed(props) {
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
       <Sandbox {...sandboxProps}>
-        <ThemeProvider theme={theme}>
+        <ThemeProvider theme={outerTheme => outerTheme?.palette?.mode === 'dark' ? darkModeTheme : theme}>
           <Component />
         </ThemeProvider>
       </Sandbox>
