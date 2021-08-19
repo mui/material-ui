@@ -68,48 +68,6 @@ function ProductItem({
   );
 }
 
-// function Highlight({
-//   children,
-//   selected = false,
-//   onClick,
-//   sx,
-// }: {
-//   children: React.ReactNode;
-//   selected?: boolean;
-//   onClick?: BoxProps['onClick'];
-//   sx?: BoxProps['sx'];
-// }) {
-//   return (
-//     <Box
-//       role="button"
-//       onClick={onClick}
-//       sx={{
-//         cursor: 'pointer',
-//         borderRadius: 1,
-//         height: '100%',
-//         border: '1px solid',
-//         ...(selected && {
-//           bgcolor: (theme) =>
-//             theme.palette.mode === 'dark' ? 'primaryDark.700' : 'background.paper',
-//           borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.200'),
-//         }),
-//         ...(!selected && {
-//           '&:hover': {
-//             bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100'),
-//             '@media (hover: none)': {
-//               bgcolor: 'transparent',
-//             },
-//           },
-//           borderColor: 'transparent',
-//         }),
-//         ...sx,
-//       }}
-//     >
-//       {children}
-//     </Box>
-//   );
-// }
-
 const ProductsSwitcher = ({
   productIndex,
   setProductIndex,
