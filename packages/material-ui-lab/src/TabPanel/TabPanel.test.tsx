@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import TabPanel, { tabPanelClasses as classes } from '@material-ui/lab/TabPanel';
 import TabContext from '../TabContext';
 
 describe('<TabPanel />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<TabPanel value="0" />, () => ({
+  describeConformance(<TabPanel value="0" />, () => ({
     classes,
     inheritComponent: 'div',
     render: (node) => render(<TabContext value="0">{node}</TabContext>),

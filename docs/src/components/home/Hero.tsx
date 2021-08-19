@@ -1,106 +1,38 @@
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Stack from '@material-ui/core/Stack';
 import GradientText from 'docs/src/components/typography/GradientText';
-import PlayerCard from 'docs/src/pages/components/cards/PlayerCard';
-import TaskCard from 'docs/src/pages/components/cards/TaskCard';
-import NotificationCard from 'docs/src/pages/components/cards/NotificationCard';
-import ThemeChip from 'docs/src/pages/components/chips/ThemeChip';
-import ThemeDatePicker from 'docs/src/pages/components/date-picker/ThemeDatePicker';
-import ThemeSlider from 'docs/src/pages/components/slider/ThemeSlider';
-import FolderTable from 'docs/src/pages/components/tables/FolderTable';
-import ThemeTabs from 'docs/src/pages/components/tabs/ThemeTabs';
-import ThemeTimeline from 'docs/src/pages/components/timeline/ThemeTimeline';
-import ViewToggleButton from 'docs/src/pages/components/toggle-button/ViewToggleButton';
+import PlayerCard from 'docs/src/components/showcase/PlayerCard';
+import TaskCard from 'docs/src/components/showcase/TaskCard';
+import NotificationCard from 'docs/src/components/showcase/NotificationCard';
+import ThemeChip from 'docs/src/components/showcase/ThemeChip';
+import ThemeDatePicker from 'docs/src/components/showcase/ThemeDatePicker';
+import ThemeSlider from 'docs/src/components/showcase/ThemeSlider';
+import FolderTable from 'docs/src/components/showcase/FolderTable';
+import ThemeTabs from 'docs/src/components/showcase/ThemeTabs';
+import ThemeTimeline from 'docs/src/components/showcase/ThemeTimeline';
+import ViewToggleButton from 'docs/src/components/showcase/ViewToggleButton';
+import ThemeToggleButton from 'docs/src/components/showcase/ThemeToggleButton';
+import ThemeSwitch from 'docs/src/components/showcase/ThemeSwitch';
+import ThemeAccordion from 'docs/src/components/showcase/ThemeAccordion';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 
-const MAX_WIDTH = 1000;
-const SPAN_SIZE = 10;
-const GAP = 0;
-const GUTTER = 30;
-const grid = [
-  {
-    ui: <TaskCard />,
-    width: 330,
-    height: 280,
-    sx: {
-      '& > .MuiCard-root': {
-        height: '100%',
-        width: '100%',
-        maxWidth: '100%',
-      },
-    },
-  },
-  {
-    ui: <ThemeDatePicker />,
-    width: 320,
-    height: 380,
-  },
-  {
-    width: MAX_WIDTH - (320 + GUTTER) - (320 + GUTTER),
-    height: 388,
-  },
-  {
-    ui: <ThemeSlider />,
-    width: 70,
-    height: 180,
-  },
-  {
-    ui: <ViewToggleButton />,
-    width: 180,
-    height: 70,
-    sx: { alignSelf: 'flex-end' },
-  },
-  {
-    width: MAX_WIDTH - (320 + GUTTER) - (320 + GUTTER),
-    height: 135,
-  },
-  {
-    ui: <ThemeChip />,
-    width: 220,
-    height: 32,
-    sx: { alignSelf: 'center' },
-  },
-  {
-    ui: <PlayerCard />,
-    width: 313,
-    height: 119,
-  },
-  {
-    ui: (
-      <Box sx={{ transform: { xs: 'scale(1.11)', lg: 'scale(1)' } }}>
-        <ThemeTabs />
-      </Box>
-    ),
-    width: 310,
-    height: 50,
-  },
-  {
-    ui: <NotificationCard />,
-    width: 379,
-    height: 100,
-  },
-  {
-    ui: <FolderTable />,
-    width: 260,
-    height: 188,
-  },
-  {
-    ui: <ThemeTimeline />,
-    width: 270,
-    height: 160,
-  },
-];
-
-function getSpan(value: number) {
-  // x * SPAN_SIZE + (x - 1) * GAP = width
-  // x * (SPAN_SIZE + GAP) = width + GAP
-  return Math.ceil((value + GAP) / (SPAN_SIZE + GAP));
-}
-
 export default function Hero() {
+  const frame = React.useRef<null | HTMLDivElement>(null);
+  React.useEffect(() => {
+    if (frame.current) {
+      const elements = frame.current.querySelectorAll(
+        'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])',
+      );
+      elements.forEach((elm) => {
+        elm.setAttribute('tabindex', '-1');
+      });
+    }
+  }, []);
   return (
     <Box sx={{ overflow: 'hidden' }}>
       <Container
@@ -118,11 +50,11 @@ export default function Hero() {
           sx={{ height: '100%', maxWidth: { xs: 500, md: 'initial' }, mx: 'auto' }}
         >
           <Grid item md={7} lg={6}>
-            <Box sx={{ textAlign: { xs: 'center', md: 'left' }, maxWidth: 500 }}>
-              <Typography variant="h1" sx={{ my: 2 }}>
-                The <GradientText>ultimate</GradientText> solution for your UI.
+            <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
+              <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
+                The <GradientText>ultimate</GradientText> solution for your UI
               </Typography>
-              <Typography color="text.secondary" sx={{ mb: 3 }}>
+              <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
                 MUI provides a robust, customizible and accessible library of foundational and
                 advanced components, enabling you to build your own design system and develop React
                 applications faster.
@@ -137,6 +69,7 @@ export default function Hero() {
             sx={{ maxHeight: '100%', display: { xs: 'none', md: 'initial' } }}
           >
             <Box
+              ref={frame}
               aria-hidden="true"
               sx={{
                 p: 3,
@@ -147,49 +80,56 @@ export default function Hero() {
                 maxHeight: { lg: 700, xl: 1000 },
                 borderBottomLeftRadius: 10,
                 transition: 'max-height 0.3s',
+                '& > div': {
+                  width: 360,
+                  display: 'inline-flex',
+                  verticalAlign: 'top',
+                  '&:nth-of-type(2)': {
+                    width: { xl: 400 },
+                  },
+                },
+                '&& *': {
+                  fontFamily: [
+                    '"IBM Plex Sans"',
+                    '-apple-system',
+                    'BlinkMacSystemFont',
+                    'sans-serif',
+                  ].join(','),
+                },
               }}
             >
-              <Box
-                sx={{
-                  maxWidth: MAX_WIDTH,
-                  display: 'grid',
-                  gridTemplateColumns: `repeat(auto-fit, minmax(${SPAN_SIZE}px, 1fr))`,
-                  gridAutoRows: SPAN_SIZE,
-                  gridAutoFlow: 'dense',
-                  '& > *': {
-                    opacity: 0.6,
-                    transition: '0.4s',
-                    '&:hover': {
-                      opacity: 1,
-                    },
-                  },
-                  '& *': {
-                    fontFamily: [
-                      '"IBM Plex Sans"',
-                      '-apple-system',
-                      'BlinkMacSystemFont',
-                      'sans-serif',
-                    ].join(','),
-                  },
-                  transform: { xs: 'scale(0.9)', xl: 'scale(1)' },
-                  transformOrigin: 'top left',
-                  transition: 'transform 0.3s',
-                }}
-              >
-                {grid.map((config, index) => (
-                  <Box
-                    key={index}
-                    sx={{
-                      gridRow: `span ${getSpan(config.height + (config.ui ? GUTTER : -GUTTER))}`,
-                      gridColumn: `span ${getSpan(config.width + (config.ui ? GUTTER : -GUTTER))}`,
-                      p: 1.5,
-                      ...config.sx,
-                    }}
-                  >
-                    {config.ui || null}
+              <Stack spacing={4} sx={{ '& > .MuiPaper-root': { maxWidth: 'none' } }}>
+                <TaskCard />
+                <PlayerCard />
+                <ThemeToggleButton />
+                <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
+                  <ThemeSwitch />
+                  <Box sx={{ width: 40 }} />
+                  <ThemeChip />
+                </Box>
+                <ThemeTimeline />
+                <FolderTable />
+              </Stack>
+              <Stack spacing={4} sx={{ ml: 4, '& > .MuiPaper-root': { maxWidth: 'none' } }}>
+                <ThemeDatePicker />
+                <ThemeTabs />
+                <Box sx={{ display: 'flex' }}>
+                  <Box sx={{ flexGrow: 1 }}>
+                    <ThemeSlider />
                   </Box>
-                ))}
-              </Box>
+                  <Stack spacing={2} sx={{ ml: 4 }}>
+                    <ViewToggleButton />
+                    <Button size="medium" variant="contained" sx={{ flexGrow: 1 }}>
+                      Buy Library
+                    </Button>
+                    <Button size="medium" variant="contained" disabled sx={{ flexGrow: 1 }}>
+                      Buy Library
+                    </Button>
+                  </Stack>
+                </Box>
+                <ThemeAccordion />
+                <NotificationCard />
+              </Stack>
             </Box>
           </Grid>
         </Grid>

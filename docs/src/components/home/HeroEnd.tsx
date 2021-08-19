@@ -23,10 +23,15 @@ const HeroEnd = () => {
       <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
         <Grid container spacing={{ xs: 2, md: 4 }} alignItems="center">
           <Grid item xs={12} sm={6} md={6} sx={{ mb: { md: 4 } }}>
-            <Typography color="primary" fontWeight="bold" variant="body2" sx={{ mb: 1 }}>
+            <Typography
+              color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
+              fontWeight="bold"
+              variant="body2"
+              sx={{ mb: 1 }}
+            >
               Go live!
             </Typography>
-            <Typography variant="h2" sx={{ maxWidth: 500, mb: 1 }}>
+            <Typography variant="h2" sx={{ maxWidth: 460, mb: 1 }}>
               Start building with <GradientText>MUI</GradientText> today!
             </Typography>
             <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
@@ -51,7 +56,11 @@ const HeroEnd = () => {
                 <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                   See more projects and companies out there relying on MUI.
                 </Typography>
-                <Typography color="primary.main" variant="body2" fontWeight="bold">
+                <Typography
+                  color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
+                  variant="body2"
+                  fontWeight="bold"
+                >
                   Learn more{' '}
                   <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
                 </Typography>
@@ -71,7 +80,11 @@ const HeroEnd = () => {
                 <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                   Check behind the scenes and news from the company.
                 </Typography>
-                <Typography color="primary.main" variant="body2" fontWeight="bold">
+                <Typography
+                  color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
+                  variant="body2"
+                  fontWeight="bold"
+                >
                   Learn more{' '}
                   <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
                 </Typography>

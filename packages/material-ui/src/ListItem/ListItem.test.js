@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { describeConformanceV5, act, createClientRender, fireEvent, queries } from 'test/utils';
+import { describeConformance, act, createClientRender, fireEvent, queries } from 'test/utils';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
@@ -15,7 +15,7 @@ const NoContent = React.forwardRef(() => {
 describe('<ListItem />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<ListItem />, () => ({
+  describeConformance(<ListItem />, () => ({
     classes,
     inheritComponent: 'li',
     render,

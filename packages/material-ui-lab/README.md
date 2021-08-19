@@ -27,4 +27,6 @@ yarn add @material-ui/core@next
 
 ## Documentation
 
-[The documentation](https://material-ui.com/components/about-the-lab/)
+<!-- #default-branch-switch -->
+
+[The documentation](https://next.material-ui.com/components/about-the-lab/)

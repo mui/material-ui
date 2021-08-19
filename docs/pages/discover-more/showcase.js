@@ -3,9 +3,9 @@ import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import {
   demos,
   docs,
-  requireDemo,
+  demoComponents,
 } from 'docs/src/pages/discover-more/showcase/showcase.md?@material-ui/markdown';
 
 export default function Page() {
-  return <MarkdownDocs demos={demos} docs={docs} requireDemo={requireDemo} disableToc />;
+  return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} disableToc />;
 }

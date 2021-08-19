@@ -10,8 +10,8 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import toggleButtonClasses, { getToggleButtonUtilityClass } from './toggleButtonClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, fullWidth, selected, disabled, size, color } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, fullWidth, selected, disabled, size, color } = ownerState;
 
   const slots = {
     root: [
@@ -31,22 +31,22 @@ const ToggleButtonRoot = styled(ButtonBase, {
   name: 'MuiToggleButton',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
-    return [styles.root, styles[`size${capitalize(styleProps.size)}`]];
+    return [styles.root, styles[`size${capitalize(ownerState.size)}`]];
   },
-})(({ theme, styleProps }) => {
+})(({ theme, ownerState }) => {
   const selectedColor =
-    styleProps.color === 'standard'
+    ownerState.color === 'standard'
       ? theme.palette.text.primary
-      : theme.palette[styleProps.color].main;
+      : theme.palette[ownerState.color].main;
   return {
     ...theme.typography.button,
     borderRadius: theme.shape.borderRadius,
     padding: 11,
     border: `1px solid ${theme.palette.divider}`,
     color: theme.palette.action.active,
-    ...(styleProps.fullWidth && {
+    ...(ownerState.fullWidth && {
       width: '100%',
     }),
     [`&.${toggleButtonClasses.disabled}`]: {
@@ -75,11 +75,11 @@ const ToggleButtonRoot = styled(ButtonBase, {
         },
       },
     },
-    ...(styleProps.size === 'small' && {
+    ...(ownerState.size === 'small' && {
       padding: 7,
       fontSize: theme.typography.pxToRem(13),
     }),
-    ...(styleProps.size === 'large' && {
+    ...(ownerState.size === 'large' && {
       padding: 15,
       fontSize: theme.typography.pxToRem(15),
     }),
@@ -103,7 +103,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     color,
     disabled,
@@ -112,7 +112,7 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
     size,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const handleChange = (event) => {
     if (onClick) {
@@ -130,14 +130,13 @@ const ToggleButton = React.forwardRef(function ToggleButton(inProps, ref) {
   return (
     <ToggleButtonRoot
       className={clsx(classes.root, className)}
-      color={color}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
       ref={ref}
       onClick={handleChange}
       onChange={onChange}
       value={value}
-      styleProps={styleProps}
+      ownerState={ownerState}
       aria-pressed={selected}
       {...other}
     >

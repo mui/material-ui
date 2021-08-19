@@ -11,18 +11,18 @@ import inputAdornmentClasses, { getInputAdornmentUtilityClass } from './inputAdo
 import useThemeProps from '../styles/useThemeProps';
 
 const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
+  const { ownerState } = props;
 
   return [
     styles.root,
-    styles[`position${capitalize(styleProps.position)}`],
-    styleProps.disablePointerEvents === true && styles.disablePointerEvents,
-    styles[styleProps.variant],
+    styles[`position${capitalize(ownerState.position)}`],
+    ownerState.disablePointerEvents === true && styles.disablePointerEvents,
+    styles[ownerState.variant],
   ];
 };
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, disablePointerEvents, hiddenLabel, position, size, variant } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, disablePointerEvents, hiddenLabel, position, size, variant } = ownerState;
   const slots = {
     root: [
       'root',
@@ -41,28 +41,28 @@ const InputAdornmentRoot = styled('div', {
   name: 'MuiInputAdornment',
   slot: 'Root',
   overridesResolver,
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   display: 'flex',
   height: '0.01em', // Fix IE11 flexbox alignment. To remove at some point.
   maxHeight: '2em',
   alignItems: 'center',
   whiteSpace: 'nowrap',
   color: theme.palette.action.active,
-  ...(styleProps.variant === 'filled' && {
+  ...(ownerState.variant === 'filled' && {
     // Styles applied to the root element if `variant="filled"`.
     [`&.${inputAdornmentClasses.positionStart}&:not(.${inputAdornmentClasses.hiddenLabel})`]: {
       marginTop: 16,
     },
   }),
-  ...(styleProps.position === 'start' && {
+  ...(ownerState.position === 'start' && {
     // Styles applied to the root element if `position="start"`.
     marginRight: 8,
   }),
-  ...(styleProps.position === 'end' && {
+  ...(ownerState.position === 'end' && {
     // Styles applied to the root element if `position="end"`.
     marginLeft: 8,
   }),
-  ...(styleProps.disablePointerEvents === true && {
+  ...(ownerState.disablePointerEvents === true && {
     // Styles applied to the root element if `disablePointerEvents={true}`.
     pointerEvents: 'none',
   }),
@@ -100,7 +100,7 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
     variant = muiFormControl.variant;
   }
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     hiddenLabel: muiFormControl.hiddenLabel,
     size: muiFormControl.size,
@@ -109,13 +109,13 @@ const InputAdornment = React.forwardRef(function InputAdornment(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <FormControlContext.Provider value={null}>
       <InputAdornmentRoot
         as={component}
-        styleProps={styleProps}
+        ownerState={ownerState}
         className={clsx(classes.root, className)}
         ref={ref}
         {...other}

@@ -10,8 +10,8 @@ import Typography from '../Typography';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
 import breadcrumbsClasses, { getBreadcrumbsUtilityClass } from './breadcrumbsClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -55,7 +55,7 @@ const BreadcrumbsSeparator = styled('li', {
   marginRight: 8,
 });
 
-function insertSeparators(items, className, separator, styleProps) {
+function insertSeparators(items, className, separator, ownerState) {
   return items.reduce((acc, current, index) => {
     if (index < items.length - 1) {
       acc = acc.concat(
@@ -64,7 +64,7 @@ function insertSeparators(items, className, separator, styleProps) {
           aria-hidden
           key={`separator-${index}`}
           className={className}
-          styleProps={styleProps}
+          ownerState={ownerState}
         >
           {separator}
         </BreadcrumbsSeparator>,
@@ -93,7 +93,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
 
   const [expanded, setExpanded] = React.useState(false);
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     component,
     expanded,
@@ -104,7 +104,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     separator,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const listRef = React.useRef(null);
   const renderItemsBeforeAndAfter = (allItems) => {
@@ -169,17 +169,17 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
       component={component}
       color="text.secondary"
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
-      <BreadcrumbsOl className={classes.ol} ref={listRef} styleProps={styleProps}>
+      <BreadcrumbsOl className={classes.ol} ref={listRef} ownerState={ownerState}>
         {insertSeparators(
           expanded || (maxItems && allItems.length <= maxItems)
             ? allItems
             : renderItemsBeforeAndAfter(allItems),
           classes.separator,
           separator,
-          styleProps,
+          ownerState,
         )}
       </BreadcrumbsOl>
     </BreadcrumbsRoot>

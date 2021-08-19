@@ -7,11 +7,7 @@ import Popper from '@material-ui/core/Popper';
 import Paper from '@material-ui/core/Paper';
 import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
-import SvgProductCore from 'docs/src/icons/SvgProductCore';
-import SvgProductAdvanced from 'docs/src/icons/SvgProductAdvanced';
-import SvgProductTemplates from 'docs/src/icons/SvgProductTemplates';
-import SvgProductDesign from 'docs/src/icons/SvgProductDesign';
-import SvgMuiX from 'docs/src/icons/SvgMuiX';
+import IconImage from 'docs/src/components/icon/IconImage';
 import ROUTES from 'docs/src/route';
 
 const Navigation = styled('nav')(({ theme }) => ({
@@ -78,7 +74,19 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
           }}
           {...props}
         >
-          <Box sx={{ px: 2 }}>{icon}</Box>
+          <Box
+            sx={{
+              px: 2,
+              '& circle': {
+                fill: (theme) =>
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[700]
+                    : theme.palette.grey[100],
+              },
+            }}
+          >
+            {icon}
+          </Box>
           <Box>
             <Typography color="text.primary" variant="body2" fontWeight={600}>
               {name}
@@ -197,7 +205,7 @@ export default function HeaderNavBar() {
                         id={PRODUCT_IDS[0]}
                         role="menuitem"
                         href={ROUTES.productCore}
-                        icon={<SvgProductCore />}
+                        icon={<IconImage name="product-core" />}
                         name="Core"
                         description="Ready to use, forever free, out-of-the-box, components."
                         onKeyDown={handleKeyDown}
@@ -208,10 +216,10 @@ export default function HeaderNavBar() {
                         id={PRODUCT_IDS[1]}
                         role="menuitem"
                         href={ROUTES.productAdvanced}
-                        icon={<SvgProductAdvanced />}
+                        icon={<IconImage name="product-advanced" />}
                         name={
                           <Box component="span" display="inline-flex" alignItems="center">
-                            Advanced&nbsp; <SvgMuiX />
+                            Advanced&nbsp;
                           </Box>
                         }
                         description="Powerful components for your complex apps."
@@ -223,7 +231,7 @@ export default function HeaderNavBar() {
                         id={PRODUCT_IDS[2]}
                         role="menuitem"
                         href={ROUTES.productTemplates}
-                        icon={<SvgProductTemplates />}
+                        icon={<IconImage name="product-templates" />}
                         name="Templates"
                         description="Get a fully built template for you application."
                         onKeyDown={handleKeyDown}
@@ -234,7 +242,7 @@ export default function HeaderNavBar() {
                         id={PRODUCT_IDS[3]}
                         role="menuitem"
                         href={ROUTES.productDesignKits}
-                        icon={<SvgProductDesign />}
+                        icon={<IconImage name="product-designkits" />}
                         name="Design Kits"
                         description="Pick your favorite design tool to enjoy."
                         onKeyDown={handleKeyDown}

@@ -13,8 +13,8 @@ import InputBase, {
 } from '../InputBase/InputBase';
 import useThemeProps from '../styles/useThemeProps';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -35,7 +35,7 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
   name: 'MuiOutlinedInput',
   slot: 'Root',
   overridesResolver: inputBaseRootOverridesResolver,
-})(({ theme, styleProps }) => {
+})(({ theme, ownerState }) => {
   const borderColor =
     theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
   return {
@@ -51,7 +51,7 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
       },
     },
     [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
-      borderColor: theme.palette[styleProps.color].main,
+      borderColor: theme.palette[ownerState.color].main,
       borderWidth: 2,
     },
     [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
@@ -60,15 +60,15 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
     [`&.${outlinedInputClasses.disabled} .${outlinedInputClasses.notchedOutline}`]: {
       borderColor: theme.palette.action.disabled,
     },
-    ...(styleProps.startAdornment && {
+    ...(ownerState.startAdornment && {
       paddingLeft: 14,
     }),
-    ...(styleProps.endAdornment && {
+    ...(ownerState.endAdornment && {
       paddingRight: 14,
     }),
-    ...(styleProps.multiline && {
+    ...(ownerState.multiline && {
       padding: '16.5px 14px',
-      ...(styleProps.size === 'small' && {
+      ...(ownerState.size === 'small' && {
         padding: '8.5px 14px',
       }),
     }),
@@ -87,7 +87,7 @@ const OutlinedInputInput = styled(InputBaseInput, {
   name: 'MuiOutlinedInput',
   slot: 'Input',
   overridesResolver: inputBaseInputOverridesResolver,
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   padding: '16.5px 14px',
   '&:-webkit-autofill': {
     WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
@@ -95,16 +95,16 @@ const OutlinedInputInput = styled(InputBaseInput, {
     caretColor: theme.palette.mode === 'light' ? null : '#fff',
     borderRadius: 'inherit',
   },
-  ...(styleProps.size === 'small' && {
+  ...(ownerState.size === 'small' && {
     padding: '8.5px 14px',
   }),
-  ...(styleProps.multiline && {
+  ...(ownerState.multiline && {
     padding: 0,
   }),
-  ...(styleProps.startAdornment && {
+  ...(ownerState.startAdornment && {
     paddingLeft: 0,
   }),
-  ...(styleProps.endAdornment && {
+  ...(ownerState.endAdornment && {
     paddingRight: 0,
   }),
 }));

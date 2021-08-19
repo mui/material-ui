@@ -91,7 +91,7 @@ export interface PickersDayProps<TDate> extends ExtendMui<ButtonBaseProps> {
 
 export type PickersDayClassKey = keyof NonNullable<PickersDayProps<unknown>['classes']>;
 
-type StyleProps = Partial<PickersDayProps<any>>;
+type OwnerState = Partial<PickersDayProps<any>>;
 
 export function getPickersDayUtilityClass(slot: string) {
   return generateUtilityClass('MuiPickersDay', slot);
@@ -107,7 +107,7 @@ export const pickersDayClasses = generateUtilityClasses<PickersDayClassKey>('Mui
   'disabled',
 ]);
 
-const useUtilityClasses = (styleProps: PickersDayProps<any>) => {
+const useUtilityClasses = (ownerState: PickersDayProps<any>) => {
   const {
     selected,
     disableMargin,
@@ -116,7 +116,7 @@ const useUtilityClasses = (styleProps: PickersDayProps<any>) => {
     outsideCurrentMonth,
     showDaysOutsideCurrentMonth,
     classes,
-  } = styleProps;
+  } = ownerState;
 
   const slots = {
     root: [
@@ -132,7 +132,7 @@ const useUtilityClasses = (styleProps: PickersDayProps<any>) => {
   return composeClasses(slots, getPickersDayUtilityClass, classes);
 };
 
-const styleArg = ({ theme, styleProps }: { theme: Theme; styleProps: StyleProps }) => ({
+const styleArg = ({ theme, ownerState }: { theme: Theme; ownerState: OwnerState }) => ({
   ...theme.typography.caption,
   width: DAY_SIZE,
   height: DAY_SIZE,
@@ -164,17 +164,17 @@ const styleArg = ({ theme, styleProps }: { theme: Theme; styleProps: StyleProps 
     },
   },
   [`&.${pickersDayClasses.disabled}`]: {
-    color: theme.palette.text.secondary,
+    color: theme.palette.text.disabled,
   },
-  ...(!styleProps.disableMargin && {
+  ...(!ownerState.disableMargin && {
     margin: `0 ${DAY_MARGIN}px`,
   }),
-  ...(styleProps.outsideCurrentMonth &&
-    styleProps.showDaysOutsideCurrentMonth && {
+  ...(ownerState.outsideCurrentMonth &&
+    ownerState.showDaysOutsideCurrentMonth && {
       color: theme.palette.text.secondary,
     }),
-  ...(!styleProps.disableHighlightToday &&
-    styleProps.today && {
+  ...(!ownerState.disableHighlightToday &&
+    ownerState.today && {
       [`&:not(.${pickersDayClasses.selected})`]: {
         border: `1px solid ${theme.palette.text.secondary}`,
       },
@@ -182,19 +182,19 @@ const styleArg = ({ theme, styleProps }: { theme: Theme; styleProps: StyleProps 
 });
 
 const overridesResolver = (
-  props: { styleProps: StyleProps },
+  props: { ownerState: OwnerState },
   styles: Record<PickersDayClassKey, object>,
 ) => {
-  const { styleProps } = props;
+  const { ownerState } = props;
   return [
     styles.root,
-    !styleProps.disableMargin && styles.dayWithMargin,
-    !styleProps.disableHighlightToday && styleProps.today && styles.today,
-    !styleProps.outsideCurrentMonth &&
-      styleProps.showDaysOutsideCurrentMonth &&
+    !ownerState.disableMargin && styles.dayWithMargin,
+    !ownerState.disableHighlightToday && ownerState.today && styles.today,
+    !ownerState.outsideCurrentMonth &&
+      ownerState.showDaysOutsideCurrentMonth &&
       styles.dayOutsideMonth,
-    styleProps.outsideCurrentMonth &&
-      !styleProps.showDaysOutsideCurrentMonth &&
+    ownerState.outsideCurrentMonth &&
+      !ownerState.showDaysOutsideCurrentMonth &&
       styles.hiddenDaySpacingFiller,
   ];
 };
@@ -203,14 +203,14 @@ const PickersDayRoot = styled(ButtonBase, {
   name: 'MuiPickersDay',
   slot: 'Root',
   overridesResolver,
-})<{ styleProps: StyleProps }>(styleArg);
+})<{ ownerState: OwnerState }>(styleArg);
 
 const PickersDayFiller = styled('div', {
   name: 'MuiPickersDay',
   slot: 'Root',
   overridesResolver,
-})<{ styleProps: StyleProps }>(({ theme, styleProps }) => ({
-  ...styleArg({ theme, styleProps }),
+})<{ ownerState: OwnerState }>(({ theme, ownerState }) => ({
+  ...styleArg({ theme, ownerState }),
   visibility: 'hidden',
 }));
 
@@ -243,10 +243,11 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
     outsideCurrentMonth,
     selected = false,
     showDaysOutsideCurrentMonth = false,
+    children,
     today: isToday = false,
     ...other
   } = props;
-  const styleProps = {
+  const ownerState = {
     ...props,
     allowSameDateSelection,
     autoFocus,
@@ -258,7 +259,7 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
     today: isToday,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const utils = useUtils<TDate>();
   const ref = React.useRef<HTMLButtonElement>(null);
@@ -344,7 +345,7 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
     return (
       <PickersDayFiller
         className={clsx(classes.root, classes.hiddenDaySpacingFiller, className)}
-        styleProps={styleProps}
+        ownerState={ownerState}
       />
     );
   }
@@ -352,19 +353,19 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
   return (
     <PickersDayRoot
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={handleRef}
       centerRipple
       data-mui-test="day"
       disabled={disabled}
-      aria-label={utils.format(day, 'fullDate')}
+      aria-label={!children ? utils.format(day, 'fullDate') : undefined}
       tabIndex={selected ? 0 : -1}
       onFocus={handleFocus}
       onKeyDown={handleKeyDown}
       onClick={handleClick}
       {...other}
     >
-      {utils.format(day, 'dayOfMonth')}
+      {!children ? utils.format(day, 'dayOfMonth') : children}
     </PickersDayRoot>
   );
 });

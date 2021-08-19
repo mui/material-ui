@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, describeConformanceV5, createClientRender, screen } from 'test/utils';
+import { act, describeConformance, createClientRender, screen } from 'test/utils';
 import Breadcrumbs, { breadcrumbsClasses as classes } from '@material-ui/core/Breadcrumbs';
 
 describe('<Breadcrumbs />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<Breadcrumbs>Conformance?</Breadcrumbs>, () => ({
+  describeConformance(<Breadcrumbs>Conformance?</Breadcrumbs>, () => ({
     classes,
     inheritComponent: 'nav',
     render,

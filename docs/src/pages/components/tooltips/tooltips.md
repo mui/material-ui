@@ -27,8 +27,8 @@ They don't have directional arrows; instead, they rely on motion emanating from 
 
 ## Customization
 
-Here are some examples of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/how-to-customize/).
+Here are some examples of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tooltips/CustomizedTooltips.js"}}
 

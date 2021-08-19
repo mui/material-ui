@@ -9,8 +9,8 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import formLabelClasses, { getFormLabelUtilityClasses } from './formLabelClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, color, focused, disabled, error, filled, required } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, color, focused, disabled, error, filled, required } = ownerState;
   const slots = {
     root: [
       'root',
@@ -30,21 +30,21 @@ const useUtilityClasses = (styleProps) => {
 export const FormLabelRoot = styled('label', {
   name: 'MuiFormLabel',
   slot: 'Root',
-  overridesResolver: ({ styleProps }, styles) => {
+  overridesResolver: ({ ownerState }, styles) => {
     return {
       ...styles.root,
-      ...(styleProps.color === 'secondary' && styles.colorSecondary),
-      ...(styleProps.filled && styles.filled),
+      ...(ownerState.color === 'secondary' && styles.colorSecondary),
+      ...(ownerState.filled && styles.filled),
     };
   },
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   color: theme.palette.text.secondary,
   ...theme.typography.body1,
   lineHeight: '1.4375em',
   padding: 0,
   position: 'relative',
   [`&.${formLabelClasses.focused}`]: {
-    color: theme.palette[styleProps.color].main,
+    color: theme.palette[ownerState.color].main,
   },
   [`&.${formLabelClasses.disabled}`]: {
     color: theme.palette.text.disabled,
@@ -86,7 +86,7 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     states: ['color', 'required', 'focused', 'disabled', 'error', 'filled'],
   });
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     color: fcs.color || 'primary',
     component,
@@ -97,19 +97,19 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     required: fcs.required,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <FormLabelRoot
       as={component}
-      styleProps={styleProps}
+      ownerState={ownerState}
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
     >
       {children}
       {fcs.required && (
-        <AsteriskComponent styleProps={styleProps} aria-hidden className={classes.asterisk}>
+        <AsteriskComponent ownerState={ownerState} aria-hidden className={classes.asterisk}>
           &thinsp;{'*'}
         </AsteriskComponent>
       )}

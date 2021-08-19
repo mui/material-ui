@@ -1,13 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5, screen } from 'test/utils';
+import { createClientRender, describeConformance, screen } from 'test/utils';
 import CardMedia, { cardMediaClasses as classes } from '@material-ui/core/CardMedia';
 
 describe('<CardMedia />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<CardMedia image="/fake.png" />, () => ({
+  describeConformance(<CardMedia image="/fake.png" />, () => ({
     classes,
     inheritComponent: 'div',
     render,

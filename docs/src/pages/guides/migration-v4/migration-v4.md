@@ -187,10 +187,10 @@ The default bundle supports the following minimum versions:
 <!-- #stable-snapshot -->
 
 - Node 12 (up from 8)
-- Chrome 84 (up from 49)
-- Edge 85 (up from 14)
+- Chrome 90 (up from 49)
+- Edge 91 (up from 14)
 - Firefox 78 (up from 52)
-- Safari 13 (macOS) and 12.2 (iOS) (up from 10)
+- Safari 14 (macOS) and 12.5 (iOS) (up from 10)
 - and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
 
 It no longer supports IE 11.
@@ -1127,15 +1127,15 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  <Dialog
-  - disableBackdropClick
-  - onClose={handleClose}
-  + onClose={(event, reason) => {
-  +   if (reason !== 'backdropClick') {
-  +     onClose(event, reason);
-  +   }
-  + }}
-  />
+   <Dialog
+  -  disableBackdropClick
+  -  onClose={handleClose}
+  +  onClose={(event, reason) => {
+  +    if (reason !== 'backdropClick') {
+  +      handleClose(event, reason);
+  +    }
+  +  }}
+   />
   ```
 
 - Remove the `withMobileDialog` higher-order component. The hook API allows a simpler and more flexible solution:
@@ -1517,7 +1517,7 @@ As the core components use emotion as their style engine, the props used by emot
   -  onClose={handleClose}
   +  onClose={(event, reason) => {
   +    if (reason !== 'backdropClick') {
-  +      onClose(event, reason);
+  +      handleClose(event, reason);
   +    }
   +  }}
    />
@@ -2656,7 +2656,8 @@ declare module "@material-ui/private-theming" {
 
 ### [Jest] SyntaxError: Unexpected token 'export'
 
-In v5, `@material-ui/core/colors/red` is considered private and should not be used in your project. [More details about this error](https://github.com/mui-org/material-ui/issues/27296).
+`@material-ui/core/colors/red` is considered private since v1.0.0.
+You should replace the import, [more details about this error](https://github.com/mui-org/material-ui/issues/27296).
 
 You can use this codemod (**recommended**) to fix all the import in your project:
 

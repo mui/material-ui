@@ -8,8 +8,8 @@ import useThemeProps from '../styles/useThemeProps';
 import Paper from '../Paper';
 import { getCardUtilityClass } from './cardClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -36,16 +36,16 @@ const Card = React.forwardRef(function Card(inProps, ref) {
 
   const { className, raised = false, ...other } = props;
 
-  const styleProps = { ...props, raised };
+  const ownerState = { ...props, raised };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <CardRoot
       className={clsx(classes.root, className)}
       elevation={raised ? 8 : undefined}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     />
   );

@@ -100,6 +100,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       primary: blue,
       divider: mode === 'dark' ? blueDark[400] : grey[200],
       primaryDark: blueDark,
+      mode,
       ...(mode === 'dark' && {
         background: {
           default: blueDark[800],
@@ -240,10 +241,14 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
 export function getThemedComponents(theme: Theme) {
   return {
     components: {
+      MuiButtonBase: {
+        defaultProps: {
+          disableTouchRipple: true,
+        },
+      },
       MuiButton: {
         defaultProps: {
           disableElevation: true,
-          disableTouchRipple: true,
         },
         styleOverrides: {
           sizeLarge: {
@@ -327,7 +332,11 @@ export function getThemedComponents(theme: Theme) {
         },
         styleOverrides: {
           root: {
-            fontWeight: 'bold',
+            color:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primary[400]
+                : theme.palette.primary[600],
+            fontWeight: 500,
             display: 'inline-flex',
             alignItems: 'center',
             '&.MuiTypography-body1 > svg': {
@@ -375,6 +384,39 @@ export function getThemedComponents(theme: Theme) {
           },
           body: {
             color: theme.palette.text.secondary,
+          },
+        },
+      },
+      MuiSwitch: {
+        styleOverrides: {
+          root: {
+            width: 32,
+            height: 20,
+            padding: 0,
+          },
+          switchBase: {
+            height: 20,
+            width: 20,
+            padding: 0,
+            color: '#fff',
+            '&.Mui-checked + .MuiSwitch-track': {
+              opacity: 1,
+            },
+            '&.Mui-checked': {
+              transform: 'translateX(11px)',
+              color: '#fff',
+            },
+          },
+          track: {
+            opacity: 1,
+            borderRadius: 32,
+            backgroundColor:
+              theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[400],
+          },
+          thumb: {
+            flexShrink: 0,
+            width: '14px',
+            height: '14px',
           },
         },
       },

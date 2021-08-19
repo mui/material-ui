@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformanceV5, createClientRender } from 'test/utils';
+import { describeConformance, createClientRender } from 'test/utils';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import Pagination, { paginationClasses as classes } from '@material-ui/core/Pagination';
 
 describe('<Pagination />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<Pagination />, () => ({
+  describeConformance(<Pagination />, () => ({
     classes,
     inheritComponent: 'nav',
     render,

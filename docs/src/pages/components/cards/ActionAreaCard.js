@@ -10,9 +10,10 @@ export default function ActionAreaCard() {
     <Card sx={{ maxWidth: 345 }}>
       <CardActionArea>
         <CardMedia
-          sx={{ height: 140 }}
+          component="img"
+          height="140"
           image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
+          alt="green iguana"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

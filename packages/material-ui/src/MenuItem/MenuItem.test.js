@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { act, describeConformanceV5, createClientRender, fireEvent, screen } from 'test/utils';
+import { act, describeConformance, createClientRender, fireEvent, screen } from 'test/utils';
 import MenuItem, { menuItemClasses as classes } from '@material-ui/core/MenuItem';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import ListContext from '../List/ListContext';
@@ -9,7 +9,7 @@ import ListContext from '../List/ListContext';
 describe('<MenuItem />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<MenuItem />, () => ({
+  describeConformance(<MenuItem />, () => ({
     classes,
     inheritComponent: ButtonBase,
     render,

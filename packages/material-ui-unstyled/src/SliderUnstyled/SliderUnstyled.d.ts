@@ -1,7 +1,7 @@
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@material-ui/types';
 import { SliderUnstyledClasses } from './sliderUnstyledClasses';
 
-export interface SliderStylePropsOverrides {}
+export interface SliderOwnerStateOverrides {}
 
 export interface Mark {
   value: number;
@@ -54,42 +54,42 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
     componentsProps?: {
       root?: {
         as?: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
-          SliderStylePropsOverrides;
+        ownerState?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
+          SliderOwnerStateOverrides;
       };
       track?: {
         as?: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
-          SliderStylePropsOverrides;
+        ownerState?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
+          SliderOwnerStateOverrides;
       };
       rail?: {
         as?: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
-          SliderStylePropsOverrides;
+        ownerState?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
+          SliderOwnerStateOverrides;
       };
       thumb?: {
         as?: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
-          SliderStylePropsOverrides;
+        ownerState?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
+          SliderOwnerStateOverrides;
       };
       mark?: {
         as?: React.ElementType;
-        styleProps?: Omit<
+        ownerState?: Omit<
           SliderUnstyledTypeMap<P, D>['props'],
           'components' | 'componentsProps'
-        > & { markActive?: boolean } & SliderStylePropsOverrides;
+        > & { markActive?: boolean } & SliderOwnerStateOverrides;
       };
       markLabel?: {
         as?: React.ElementType;
-        styleProps?: Omit<
+        ownerState?: Omit<
           SliderUnstyledTypeMap<P, D>['props'],
           'components' | 'componentsProps'
-        > & { markLabelActive?: boolean } & SliderStylePropsOverrides;
+        > & { markLabelActive?: boolean } & SliderOwnerStateOverrides;
       };
       valueLabel?: {
         as?: React.ElementType;
-        styleProps?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
-          SliderStylePropsOverrides;
+        ownerState?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
+          SliderOwnerStateOverrides;
       };
     };
     /**

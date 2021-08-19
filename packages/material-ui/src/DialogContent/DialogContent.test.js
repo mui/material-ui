@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { describeConformanceV5, createClientRender } from 'test/utils';
+import { describeConformance, createClientRender } from 'test/utils';
 import DialogContent, { dialogContentClasses as classes } from '@material-ui/core/DialogContent';
 
 describe('<DialogContent />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<DialogContent />, () => ({
+  describeConformance(<DialogContent />, () => ({
     classes,
     inheritComponent: 'div',
     render,

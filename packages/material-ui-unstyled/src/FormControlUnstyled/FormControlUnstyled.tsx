@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { OverridableComponent } from '@material-ui/types';
 import { unstable_useControlled as useControlled } from '@material-ui/utils';
 import FormControlUnstyledContext, { FormControlUnstyledState } from './FormControlContext';
-import appendStyleProps from '../utils/appendStyleProps';
+import appendOwnerState from '../utils/appendOwnerState';
 import classes from './formControlUnstyledClasses';
 import FormControlUnstyledProps, {
   NativeFormControlElement,
@@ -16,13 +16,13 @@ function hasValue(value: unknown) {
   return value != null && !(Array.isArray(value) && value.length === 0) && value !== '';
 }
 
-type NonOptionalStyleProps = 'disabled' | 'error' | 'focused' | 'required';
+type NonOptionalOwnerState = 'disabled' | 'error' | 'focused' | 'required';
 
-export type FormControlUnstyledStyleProps = Omit<
+export type FormControlUnstyledOwnerState = Omit<
   FormControlUnstyledOwnProps,
-  NonOptionalStyleProps
+  NonOptionalOwnerState
 > &
-  Required<Pick<FormControlUnstyledProps, NonOptionalStyleProps>> & {
+  Required<Pick<FormControlUnstyledProps, NonOptionalOwnerState>> & {
     filled: boolean;
   };
 
@@ -93,7 +93,7 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
 
   const focused = visuallyFocused !== undefined && !disabled ? visuallyFocused : focusedState;
 
-  const styleProps: FormControlUnstyledStyleProps = {
+  const ownerState: FormControlUnstyledOwnerState = {
     ...props,
     disabled,
     error,
@@ -146,7 +146,7 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
   };
 
   const Root = component ?? components.Root ?? 'div';
-  const rootProps = appendStyleProps(Root, { ...other, ...componentsProps.root }, styleProps);
+  const rootProps = appendOwnerState(Root, { ...other, ...componentsProps.root }, ownerState);
 
   return (
     <FormControlUnstyledContext.Provider value={childContext}>

@@ -1,12 +1,12 @@
 import { expect } from 'chai';
 import * as React from 'react';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import Skeleton, { skeletonClasses as classes } from '@material-ui/core/Skeleton';
 
 describe('<Skeleton />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<Skeleton />, () => ({
+  describeConformance(<Skeleton />, () => ({
     classes,
     inheritComponent: 'span',
     render,

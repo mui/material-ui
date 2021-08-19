@@ -28,9 +28,20 @@ describe('<DesktopTimePicker />', () => {
     />,
     () => ({
       classes: {},
+      muiName: 'MuiDesktopTimePicker',
       wrapMount: wrapPickerMount,
       refInstanceof: window.HTMLDivElement,
-      skip: ['componentProp', 'mergeClassName', 'propsSpread', 'rootClass', 'reactTestRenderer'],
+      skip: [
+        'componentProp',
+        'componentsProp',
+        'themeDefaultProps',
+        'themeStyleOverrides',
+        'themeVariants',
+        'mergeClassName',
+        'propsSpread',
+        'rootClass',
+        'reactTestRenderer',
+      ],
     }),
   );
 

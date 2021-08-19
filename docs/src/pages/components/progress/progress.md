@@ -85,8 +85,8 @@ function Progress(props) {
 
 ## Customization
 
-Here are some examples of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/how-to-customize/).
+Here are some examples of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/progress/CustomizedProgressBars.js", "defaultCodeOpen": false}}
 

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformanceV5, createClientRender } from 'test/utils';
+import { describeConformance, createClientRender } from 'test/utils';
 import Divider, { dividerClasses as classes } from '@material-ui/core/Divider';
 
 describe('<Divider />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<Divider />, () => ({
+  describeConformance(<Divider />, () => ({
     classes,
     inheritComponent: 'hr',
     render,

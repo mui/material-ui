@@ -33,11 +33,11 @@ export interface BadgeUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
     componentsProps?: {
       root?: {
         as: React.ElementType;
-        styleProps?: Omit<BadgeUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
+        ownerState?: Omit<BadgeUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
       };
       badge?: {
         as?: React.ElementType;
-        styleProps?: Omit<BadgeUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
+        ownerState?: Omit<BadgeUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
       };
     };
     /**

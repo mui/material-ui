@@ -179,10 +179,6 @@ export default function Demo(props) {
   }
 
   const [codeOpen, setCodeOpen] = React.useState(demoOptions.defaultCodeOpen || false);
-  const shownOnce = React.useRef(false);
-  if (codeOpen) {
-    shownOnce.current = true;
-  }
 
   React.useEffect(() => {
     const navigatedDemoName = getDemoName(window.location.hash);
