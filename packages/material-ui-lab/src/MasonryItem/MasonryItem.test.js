@@ -4,19 +4,9 @@ import MasonryItem, { masonryItemClasses as classes } from '@material-ui/lab/Mas
 import { expect } from 'chai';
 import { createTheme } from '@material-ui/core/styles';
 import defaultTheme from '@material-ui/core/styles/defaultTheme';
-import ResizeObserver from 'resize-observer-polyfill';
 import { style } from './MasonryItem';
 
 describe('<MasonryItem />', () => {
-  // Mount ResizeObserver; otherwise, this error comes up: `[ReferenceError: ResizeObserver is not defined]`
-  before(() => {
-    global.ResizeObserver = ResizeObserver;
-  });
-
-  after(() => {
-    delete global.ResizeObserver;
-  });
-
   const render = createClientRender();
 
   describeConformanceV5(

@@ -13,6 +13,14 @@ import { styled, useThemeProps } from '@material-ui/core/styles';
 import { getMasonryItemUtilityClass } from './masonryItemClasses';
 import MasonryContext from '../Masonry/MasonryContext';
 
+const MockResizeObserver = () => {
+  return {
+    observe: () => {},
+    unobserve: () => {},
+    disconnect: () => {},
+  };
+};
+
 const useUtilityClasses = (styleProps) => {
   const { classes } = styleProps;
 
@@ -91,19 +99,23 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
   };
 
   const classes = useUtilityClasses(styleProps);
-
+  const resizeObserver = React.useRef(null);
   React.useEffect(() => {
     // do not create a resize observer in case of SSR masonry
     if (isSSR) {
       return () => {};
     }
-    const resizeObserver = new ResizeObserver(([item]) => {
-      setHeight(item.contentRect.height);
-    });
+    try {
+      resizeObserver.current = new ResizeObserver(([item]) => {
+        setHeight(item.contentRect.height);
+      });
+    } catch (err) {
+      resizeObserver.current = MockResizeObserver(); // Prevent crash for old browsers (e..g., 11IE)
+    }
     const item = masonryItemRef.current.firstChild;
-    resizeObserver.observe(item);
+    resizeObserver.current.observe(item);
     return () => {
-      resizeObserver.unobserve(item);
+      resizeObserver.current.unobserve(item);
     };
   }, [isSSR]);
 
