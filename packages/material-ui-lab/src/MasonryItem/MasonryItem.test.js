@@ -43,7 +43,7 @@ describe('<MasonryItem />', () => {
     it('should render with padding bottom and grid-row-end responsive to breakpoints', () => {
       expect(
         style({
-          styleProps: {
+          ownerState: {
             height: 100,
             columnSpan: 1,
             spacing: { xs: 1, sm: 2, md: 3 },
@@ -77,7 +77,7 @@ describe('<MasonryItem />', () => {
     it('should render with given column span', () => {
       expect(
         style({
-          styleProps: {
+          ownerState: {
             height: 100,
             columnSpan: 2,
             spacing: 1,

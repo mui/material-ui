@@ -21,8 +21,8 @@ const MockResizeObserver = () => {
   };
 };
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -31,33 +31,33 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getMasonryItemUtilityClass, classes);
 };
 
-export const style = ({ styleProps, theme }) => {
+export const style = ({ ownerState, theme }) => {
   let styles = {
     width: '100%',
     '& > *': {
       // all contents should have a width of 100%
       width: '100%',
       boxSizing: 'inherit',
-      ...(styleProps.isSSR && { height: '100%' }),
+      ...(ownerState.isSSR && { height: '100%' }),
     },
-    visibility: styleProps.height ? 'visible' : 'hidden',
-    gridColumnEnd: `span ${styleProps.columnSpan}`,
+    visibility: ownerState.height ? 'visible' : 'hidden',
+    gridColumnEnd: `span ${ownerState.columnSpan}`,
     boxSizing: 'inherit',
   };
 
   const base = {};
   Object.keys(theme.breakpoints.values).forEach((breakpoint) => {
-    if (styleProps.spacing[breakpoint] != null) {
+    if (ownerState.spacing[breakpoint] != null) {
       base[breakpoint] = true;
     }
   });
-  const spacingValues = resolveBreakpointValues({ values: styleProps.spacing, base });
+  const spacingValues = resolveBreakpointValues({ values: ownerState.spacing, base });
   const transformer = createUnarySpacing(theme);
   const styleFromPropValue = (propValue) => {
-    const gap = styleProps.height ? Number(getValue(transformer, propValue).replace('px', '')) : 0;
+    const gap = ownerState.height ? Number(getValue(transformer, propValue).replace('px', '')) : 0;
     // For lazy-loaded images to load properly, masonry item should take up space greater than 1px.
     // Taking into account a row gap of 2px, rowSpan should at least be 2.
-    const rowSpan = styleProps.height ? Math.ceil((styleProps.height + gap) / 2) : 2;
+    const rowSpan = ownerState.height ? Math.ceil((ownerState.height + gap) / 2) : 2;
     return {
       gridRowEnd: `span ${rowSpan}`,
       paddingBottom: gap - 2,
@@ -90,7 +90,7 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
 
   const [height, setHeight] = React.useState(defaultHeight);
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     isSSR,
     spacing,
@@ -98,7 +98,7 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
     height: height < 0 ? 0 : height, // MasonryItems to which negative or zero height is passed will be hidden
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
   const resizeObserver = React.useRef(null);
   React.useEffect(() => {
     // do not create a resize observer in case of SSR masonry
@@ -125,7 +125,7 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
       as={component}
       className={clsx(classes.root, className)}
       ref={handleRef}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       {React.Children.only(children)}

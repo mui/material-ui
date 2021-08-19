@@ -30,7 +30,7 @@ describe('<Masonry />', () => {
     it('should render with correct default styles', () => {
       expect(
         style({
-          styleProps: {
+          ownerState: {
             columns: 4,
             spacing: 1,
           },
@@ -52,7 +52,7 @@ describe('<Masonry />', () => {
     it('should render with column gap responsive to breakpoints', () => {
       expect(
         style({
-          styleProps: {
+          ownerState: {
             columns: 4,
             spacing: { xs: 1, sm: 2, md: 3 },
           },
@@ -84,7 +84,7 @@ describe('<Masonry />', () => {
     it('should render with grid-template-columns responsive to breakpoints', () => {
       expect(
         style({
-          styleProps: {
+          ownerState: {
             columns: { xs: 3, sm: 5, md: 7 },
             spacing: 1,
           },

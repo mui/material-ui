@@ -13,8 +13,8 @@ import { styled, useThemeProps } from '@material-ui/core/styles';
 import { getMasonryUtilityClass } from './masonryClasses';
 import MasonryContext from './MasonryContext';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -23,7 +23,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getMasonryUtilityClass, classes);
 };
 
-export const style = ({ styleProps, theme }) => {
+export const style = ({ ownerState, theme }) => {
   let styles = {
     display: 'grid',
     gridAutoRows: 0,
@@ -36,12 +36,12 @@ export const style = ({ styleProps, theme }) => {
 
   const base = {};
   Object.keys(theme.breakpoints.values).forEach((breakpoint) => {
-    if (styleProps.spacing[breakpoint] != null) {
+    if (ownerState.spacing[breakpoint] != null) {
       base[breakpoint] = true;
     }
   });
 
-  const spacingValues = resolveBreakpointValues({ values: styleProps.spacing, base });
+  const spacingValues = resolveBreakpointValues({ values: ownerState.spacing, base });
   const transformer = createUnarySpacing(theme);
   const spacingStyleFromPropValue = (propValue) => {
     return {
@@ -54,7 +54,7 @@ export const style = ({ styleProps, theme }) => {
     ...handleBreakpoints({ theme }, spacingValues, spacingStyleFromPropValue),
   };
 
-  const columnValues = resolveBreakpointValues({ values: styleProps.columns, base });
+  const columnValues = resolveBreakpointValues({ values: ownerState.columns, base });
   const columnStyleFromPropValue = (propValue) => {
     return {
       gridTemplateColumns: `repeat(${propValue}, 1fr)`,
@@ -81,8 +81,8 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
   });
 
   const { children, className, component = 'div', columns = 4, spacing = 1, ...other } = props;
-  const styleProps = { ...props, spacing, columns };
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = { ...props, spacing, columns };
+  const classes = useUtilityClasses(ownerState);
 
   const contextValue = React.useMemo(() => ({ spacing }), [spacing]);
 
@@ -92,7 +92,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
         as={component}
         className={clsx(classes.root, className)}
         ref={ref}
-        styleProps={styleProps}
+        ownerState={ownerState}
         {...other}
       >
         {children}
