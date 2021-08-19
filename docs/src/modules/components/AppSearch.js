@@ -1,7 +1,7 @@
 import * as React from 'react';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { alpha, styled, useTheme } from '@material-ui/core/styles';
+import { styled, useTheme } from '@material-ui/core/styles';
 import GlobalStyles from '@material-ui/core/GlobalStyles';
 import Input from '@material-ui/core/Input';
 import SearchIcon from '@material-ui/icons/Search';
@@ -10,18 +10,26 @@ import docsearch from 'docsearch.js';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
-const StyledInput = styled(Input)(({ theme }) => ({
-  color: 'inherit',
-  '& input': {
-    padding: theme.spacing(1),
-    paddingLeft: theme.spacing(6),
-    transition: theme.transitions.create('width'),
-    width: 150,
-    '&:focus': {
-      width: 170,
+const StyledInput = styled(Input)(({ theme }) => {
+  const placeholder = {
+    color: theme.palette.mode === 'dark' ? 'white' : 'black',
+  }
+  return {
+    color: 'inherit',
+    '& input': {
+      padding: theme.spacing(1),
+      paddingLeft: theme.spacing(6),
+      transition: theme.transitions.create('width'),
+      width: 150,
+      '&:focus': {
+        width: 170,
+      },
+      '&::-webkit-input-placeholder': placeholder,
+      '&::-moz-placeholder': placeholder, // Firefox 19+
+      '&:-ms-input-placeholder': placeholder, // IE11
+      '&::-ms-input-placeholder': placeholder, // Edge
     },
-  },
-}));
+}});
 
 function AlgoliaStyles() {
   return (

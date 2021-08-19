@@ -29,6 +29,7 @@ import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import LanguageIcon from '@material-ui/icons/Translate';
 
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
@@ -251,7 +252,16 @@ function AppFrame(props) {
                 data-ga-event-category="header"
                 data-ga-event-action="language"
               >
-                <LanguageSpan>
+                <Box
+                  component={LanguageIcon}
+                  fontSize="medium"
+                  sx={{
+                    display: { xs: 'block', md: 'none' },
+                    color: (theme) =>
+                      theme.palette.mode === 'dark' ? '#FFF' : theme.palette.primary[500],
+                  }}
+                />
+                <LanguageSpan sx={{ display: { xs: 'none', md: 'block' } }}>
                   {LANGUAGES_LABEL.filter((language) => language.code === userLanguage)[0].text}
                 </LanguageSpan>
                 <ArrowDropDownRoundedIcon fontSize="small" color="primary" />
