@@ -5,8 +5,31 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 
-const DiamondSponsors = dynamic(() => import('./DiamondSponsors'));
-const GoldSponsors = dynamic(() => import('./GoldSponsors'));
+const diamondPlaceholder = (
+  <Box
+    sx={{
+      borderRadius: 1,
+      height: { xs: 437, sm: 271, md: 146 },
+      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.50'),
+    }}
+  />
+);
+const DiamondSponsors = dynamic(() => import('./DiamondSponsors'), {
+  loading: () => diamondPlaceholder,
+});
+
+const goldPlaceholder = (
+  <Box
+    sx={{
+      borderRadius: 1,
+      height: { xs: 1200, sm: 623, md: 497, lg: 332 },
+      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.50'),
+    }}
+  />
+);
+const GoldSponsors = dynamic(() => import('./GoldSponsors'), {
+  loading: () => goldPlaceholder,
+});
 
 const Sponsors = () => {
   const { ref, inView } = useInView({
