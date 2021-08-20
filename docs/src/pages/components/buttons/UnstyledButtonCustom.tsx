@@ -30,7 +30,7 @@ const CustomButtonRoot = styled(ButtonRoot)(
   
   & polygon {
     fill: transparent;
-    transition: all 700ms ease;
+    transition: all 800ms ease;
     pointer-events: none;
   }
   
@@ -69,7 +69,7 @@ const CustomButtonRoot = styled(ButtonRoot)(
         theme.palette.primary.main,
         theme.palette.action.activatedOpacity,
       )};
-      transition: fill 200ms ease-out;
+      transition: fill 300ms ease-out;
     }
   }
 
