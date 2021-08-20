@@ -60,7 +60,7 @@ describe('createStyled', () => {
                 props: { variant: 'contained' },
                 style: {
                   '&.Mui-disabled': {
-                    opacity: 0.65,
+                    width: '300px',
                   },
                 },
               },
@@ -68,8 +68,7 @@ describe('createStyled', () => {
                 props: { variant: 'contained', color: 'primary' },
                 style: {
                   '&.Mui-disabled': {
-                    color: '#fff',
-                    backgroundColor: '#f00',
+                    height: '200px',
                   },
                 },
               },
@@ -96,9 +95,8 @@ describe('createStyled', () => {
       );
 
       expect(container.getElementsByTagName('button')[0]).toHaveComputedStyle({
-        color: 'rgb(255, 255, 255)',
-        backgroundColor: 'rgb(255, 0, 0)',
-        opacity: '0.65',
+        width: '300px',
+        height: '200px',
       });
     });
   });
