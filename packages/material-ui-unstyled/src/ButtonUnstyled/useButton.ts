@@ -5,23 +5,10 @@ import {
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@material-ui/utils';
 import UseButtonProps from './UseButtonProps';
-import mergeEventHandlers from '../utils/mergeEventHandlers';
-
-type OtherEventHandler = () => void;
+import extractEventHandlers from '../utils/extractEventHandlers';
 
 export default function useButton(props: UseButtonProps) {
-  const {
-    component,
-    components = {},
-    disabled = false,
-    href,
-    onClick,
-    onFocusVisible,
-    ref,
-    tabIndex = 0,
-    to,
-    type,
-  } = props;
+  const { component, components = {}, disabled = false, href, ref, tabIndex = 0, to, type } = props;
 
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
 
@@ -43,39 +30,42 @@ export default function useButton(props: UseButtonProps) {
     isFocusVisibleRef.current = focusVisible;
   }, [focusVisible, isFocusVisibleRef]);
 
-  const handleMouseLeave = (event: React.MouseEvent, otherHandler: OtherEventHandler) => {
-    if (focusVisible) {
-      event.preventDefault();
-    }
+  const handleMouseLeave =
+    (otherHandlers: Record<string, React.EventHandler<any>>) => (event: React.MouseEvent) => {
+      if (focusVisible) {
+        event.preventDefault();
+      }
 
-    otherHandler();
-  };
+      otherHandlers.onMouseLeave?.(event);
+    };
 
-  const handleBlur = (event: React.FocusEvent, otherHandler: OtherEventHandler) => {
-    handleBlurVisible(event);
+  const handleBlur =
+    (otherHandlers: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent) => {
+      handleBlurVisible(event);
 
-    if (isFocusVisibleRef.current === false) {
-      setFocusVisible(false);
-    }
+      if (isFocusVisibleRef.current === false) {
+        setFocusVisible(false);
+      }
 
-    otherHandler();
-  };
+      otherHandlers.onBlur?.(event);
+    };
 
   const handleFocus = useEventCallback(
-    (event: React.FocusEvent<HTMLButtonElement>, otherHandler: OtherEventHandler) => {
-      // Fix for https://github.com/facebook/react/issues/7769
-      if (!buttonRef.current) {
-        buttonRef.current = event.currentTarget;
-      }
+    (otherHandlers: Record<string, React.EventHandler<any>>) =>
+      (event: React.FocusEvent<HTMLButtonElement>) => {
+        // Fix for https://github.com/facebook/react/issues/7769
+        if (!buttonRef.current) {
+          buttonRef.current = event.currentTarget;
+        }
 
-      handleFocusVisible(event);
-      if (isFocusVisibleRef.current === true) {
-        setFocusVisible(true);
-        onFocusVisible?.(event);
-      }
+        handleFocusVisible(event);
+        if (isFocusVisibleRef.current === true) {
+          setFocusVisible(true);
+          otherHandlers.onFocusVisible?.(event);
+        }
 
-      otherHandler();
-    },
+        otherHandlers.onFocus?.(event);
+      },
   );
 
   const elementType = component ?? components.Root ?? 'button';
@@ -87,30 +77,28 @@ export default function useButton(props: UseButtonProps) {
     );
   };
 
-  const handleMouseDown = (
-    event: React.MouseEvent<HTMLButtonElement>,
-    otherHandler: OtherEventHandler,
-  ) => {
-    if (event.target === event.currentTarget && !disabled) {
-      setActive(true);
-    }
+  const handleMouseDown =
+    (otherHandlers: Record<string, React.EventHandler<any>>) =>
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      if (event.target === event.currentTarget && !disabled) {
+        setActive(true);
+      }
 
-    otherHandler();
-  };
+      otherHandlers.onMouseDown?.(event);
+    };
 
-  const handleMouseUp = (
-    event: React.MouseEvent<HTMLButtonElement>,
-    otherHandler: OtherEventHandler,
-  ) => {
-    if (event.target === event.currentTarget) {
-      setActive(false);
-    }
+  const handleMouseUp =
+    (otherHandlers: Record<string, React.EventHandler<any>>) =>
+    (event: React.MouseEvent<HTMLButtonElement>) => {
+      if (event.target === event.currentTarget) {
+        setActive(false);
+      }
 
-    otherHandler();
-  };
+      otherHandlers.onMouseUp?.(event);
+    };
 
   const handleKeyDown = useEventCallback(
-    (event: React.KeyboardEvent, otherHandler: OtherEventHandler) => {
+    (otherHandlers: Record<string, React.EventHandler<any>>) => (event: React.KeyboardEvent) => {
       if (event.target === event.currentTarget && isNonNativeButton() && event.key === ' ') {
         event.preventDefault();
       }
@@ -119,7 +107,7 @@ export default function useButton(props: UseButtonProps) {
         setActive(true);
       }
 
-      otherHandler();
+      otherHandlers.onKeyDown?.(event);
 
       // Keyboard accessibility for non interactive elements
       if (
@@ -129,13 +117,13 @@ export default function useButton(props: UseButtonProps) {
         !disabled
       ) {
         event.preventDefault();
-        onClick?.(event as unknown as React.MouseEvent);
+        otherHandlers.onClick?.(event);
       }
     },
   );
 
   const handleKeyUp = useEventCallback(
-    (event: React.KeyboardEvent, otherHandler: OtherEventHandler) => {
+    (otherHandlers: Record<string, React.EventHandler<any>>) => (event: React.KeyboardEvent) => {
       // calling preventDefault in keyUp on a <button> will not dispatch a click event if Space is pressed
       // https://codesandbox.io/s/button-keyup-preventdefault-dn7f0
 
@@ -143,7 +131,7 @@ export default function useButton(props: UseButtonProps) {
         setActive(false);
       }
 
-      otherHandler();
+      otherHandlers.onKeyUp?.(event);
 
       // Keyboard accessibility for non interactive elements
       if (
@@ -152,7 +140,7 @@ export default function useButton(props: UseButtonProps) {
         event.key === ' ' &&
         !event.defaultPrevented
       ) {
-        onClick?.(event as unknown as React.MouseEvent);
+        otherHandlers.onClick?.(event);
       }
     },
   );
@@ -173,24 +161,26 @@ export default function useButton(props: UseButtonProps) {
   const handleOwnRef = useForkRef(focusVisibleRef, buttonRef);
   const handleRef = useForkRef(ref, handleOwnRef);
 
-  const ownEventHandlers = {
-    onBlur: handleBlur,
-    onFocus: handleFocus,
-    onKeyDown: handleKeyDown,
-    onKeyUp: handleKeyUp,
-    onMouseDown: handleMouseDown,
-    onMouseLeave: handleMouseLeave,
-    onMouseUp: handleMouseUp,
-  };
-
   const getRootProps = (otherHandlers?: Record<string, React.EventHandler<any>>) => {
-    const mergedEventHandlers = mergeEventHandlers(
-      ownEventHandlers,
-      props as any,
-      otherHandlers ?? {},
-    );
+    const propsEventHandlers = extractEventHandlers(props);
+    const externalEventHandlers = { ...propsEventHandlers, ...otherHandlers };
 
-    // onFocusVisible can ber present on the props, but since it's not a valid React event handler,
+    const ownEventHandlers = {
+      onBlur: handleBlur(externalEventHandlers),
+      onFocus: handleFocus(externalEventHandlers),
+      onKeyDown: handleKeyDown(externalEventHandlers),
+      onKeyUp: handleKeyUp(externalEventHandlers),
+      onMouseDown: handleMouseDown(externalEventHandlers),
+      onMouseLeave: handleMouseLeave(externalEventHandlers),
+      onMouseUp: handleMouseUp(externalEventHandlers),
+    };
+
+    const mergedEventHandlers: Record<string, React.EventHandler<any>> = {
+      ...externalEventHandlers,
+      ...ownEventHandlers,
+    };
+
+    // onFocusVisible can be present on the props, but since it's not a valid React event handler,
     // it must not be forwarded to the inner component.
     delete mergedEventHandlers.onFocusVisible;
 
