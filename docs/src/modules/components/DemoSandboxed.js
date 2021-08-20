@@ -12,6 +12,7 @@ import { useTheme, styled, createTheme, ThemeProvider } from '@material-ui/core/
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import darkScrollbar from '@material-ui/core/darkScrollbar';
 
 function FramedDemo(props) {
   const { children, document } = props;
@@ -121,6 +122,12 @@ DemoFrame.propTypes = {
 const theme = createTheme();
 const darkModeTheme = createTheme({ palette: { mode: 'dark' } });
 
+const getTheme = (outerTheme) => {
+  const resultTheme = outerTheme?.palette?.mode === 'dark' ? darkModeTheme : theme;
+  resultTheme.direction = outerTheme?.direction;
+  return resultTheme;
+};
+
 /**
  * Isolates the demo component as best as possible. Additional props are spread
  * to an `iframe` if `iframe={true}`.
@@ -135,9 +142,7 @@ function DemoSandboxed(props) {
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
       <Sandbox {...sandboxProps}>
-        <ThemeProvider
-          theme={(outerTheme) => (outerTheme?.palette?.mode === 'dark' ? darkModeTheme : theme)}
-        >
+        <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>
           <Component />
         </ThemeProvider>
       </Sandbox>
