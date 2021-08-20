@@ -184,7 +184,7 @@ const Root = styled('div')(({ theme }) => ({
   '& a code': {
     color:
       theme.palette.mode === 'dark'
-        ? theme.palette.primary.main
+        ? theme.palette.primary.light
         : darken(theme.palette.primary.main, 0.04),
   },
   '& img, video': {
