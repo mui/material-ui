@@ -283,14 +283,14 @@ describe('styled', () => {
       });
     });
 
-    it('variants should be skipped for non root slots', () => {
+    it('variants should not be skipped for non root slots', () => {
       const TestSlot = styled('div', {
         shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
         name: 'MuiTest',
         slot: 'Slot',
         overridesResolver: (props, styles) => styles.slot,
       })`
-        width: 200px;
+        width: 800px;
         height: 300px;
       `;
 
@@ -303,7 +303,31 @@ describe('styled', () => {
       );
 
       expect(container.firstChild).toHaveComputedStyle({
-        width: '200px',
+        width: '800px',
+        height: '300px',
+      });
+    });
+
+    it('variants should not be skipped if overridesResolver is not defined', () => {
+      const TestSlot = styled('div', {
+        shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
+        name: 'MuiTest',
+        slot: 'Slot',
+      })`
+        width: 800px;
+        height: 300px;
+      `;
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <TestSlot variant="rect" size="large">
+            Test
+          </TestSlot>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '800px',
         height: '300px',
       });
     });

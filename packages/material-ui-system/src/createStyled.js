@@ -136,7 +136,7 @@ export default function createStyled(input = {}) {
         });
       }
 
-      if (componentName && overridesResolver && !skipVariantsResolver) {
+      if (componentName && !skipVariantsResolver) {
         expressionsWithDefaultTheme.push((props) => {
           const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
           return variantsResolver(
