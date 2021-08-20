@@ -3,7 +3,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import {
-  describeConformanceV5,
+  describeConformance,
   act,
   createClientRender,
   fireEvent,
@@ -33,7 +33,7 @@ describe('<ButtonBase />', () => {
     }
   });
 
-  describeConformanceV5(<ButtonBase />, () => ({
+  describeConformance(<ButtonBase />, () => ({
     classes,
     inheritComponent: 'button',
     render,
@@ -546,9 +546,9 @@ describe('<ButtonBase />', () => {
       const rippleRipple = container.querySelector('.touch-ripple-ripple');
       expect(rippleRipple).not.to.equal(null);
       // @ts-ignore
-      const rippleSyle = window.getComputedStyle(rippleRipple);
-      expect(rippleSyle).to.have.property('height', '101px');
-      expect(rippleSyle).to.have.property('width', '101px');
+      const rippleStyle = window.getComputedStyle(rippleRipple);
+      expect(rippleStyle).to.have.property('height', '101px');
+      expect(rippleStyle).to.have.property('width', '101px');
     });
 
     it('is disabled by default', () => {
@@ -571,9 +571,9 @@ describe('<ButtonBase />', () => {
       const rippleRipple = container.querySelector('.touch-ripple-ripple');
       expect(rippleRipple).not.to.equal(null);
       // @ts-ignore
-      const rippleSyle = window.getComputedStyle(rippleRipple);
-      expect(rippleSyle).not.to.have.property('height', '101px');
-      expect(rippleSyle).not.to.have.property('width', '101px');
+      const rippleStyle = window.getComputedStyle(rippleRipple);
+      expect(rippleStyle).not.to.have.property('height', '101px');
+      expect(rippleStyle).not.to.have.property('width', '101px');
     });
   });
 

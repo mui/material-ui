@@ -10,8 +10,8 @@ import accordionSummaryClasses, {
   getAccordionSummaryUtilityClass,
 } from './accordionSummaryClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, expanded, disabled, disableGutters } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, expanded, disabled, disableGutters } = ownerState;
 
   const slots = {
     root: ['root', expanded && 'expanded', disabled && 'disabled', !disableGutters && 'gutters'],
@@ -27,7 +27,7 @@ const AccordionSummaryRoot = styled(ButtonBase, {
   name: 'MuiAccordionSummary',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme, styleProps }) => {
+})(({ theme, ownerState }) => {
   const transition = {
     duration: theme.transitions.duration.shortest,
   };
@@ -46,7 +46,7 @@ const AccordionSummaryRoot = styled(ButtonBase, {
     [`&:hover:not(.${accordionSummaryClasses.disabled})`]: {
       cursor: 'pointer',
     },
-    ...(!styleProps.disableGutters && {
+    ...(!ownerState.disableGutters && {
       [`&.${accordionSummaryClasses.expanded}`]: {
         minHeight: 64,
       },
@@ -58,11 +58,11 @@ const AccordionSummaryContent = styled('div', {
   name: 'MuiAccordionSummary',
   slot: 'Content',
   overridesResolver: (props, styles) => styles.content,
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   display: 'flex',
   flexGrow: 1,
   margin: '12px 0',
-  ...(!styleProps.disableGutters && {
+  ...(!ownerState.disableGutters && {
     transition: theme.transitions.create(['margin'], {
       duration: theme.transitions.duration.shortest,
     }),
@@ -102,14 +102,14 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
     }
   };
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     expanded,
     disabled,
     disableGutters,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <AccordionSummaryRoot
@@ -122,16 +122,16 @@ const AccordionSummary = React.forwardRef(function AccordionSummary(inProps, ref
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       onClick={handleChange}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
-      <AccordionSummaryContent className={classes.content} styleProps={styleProps}>
+      <AccordionSummaryContent className={classes.content} ownerState={ownerState}>
         {children}
       </AccordionSummaryContent>
       {expandIcon && (
         <AccordionSummaryExpandIconWrapper
           className={classes.expandIconWrapper}
-          styleProps={styleProps}
+          ownerState={ownerState}
         >
           {expandIcon}
         </AccordionSummaryExpandIconWrapper>

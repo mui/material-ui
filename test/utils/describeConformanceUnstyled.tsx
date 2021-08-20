@@ -44,9 +44,9 @@ interface WithCustomProp {
   tabIndex: number;
 }
 
-interface WithStyleProps {
-  styleProps: Record<string, any>;
-  expectedStyleProps: Record<string, any>;
+interface WithOwnerState {
+  ownerState: Record<string, any>;
+  expectedOwnerState: Record<string, any>;
 }
 
 function forEachSlot(
@@ -228,7 +228,7 @@ function testComponentsPropsProp(
   });
 }
 
-function testStylePropsPropagation(
+function testOwnerStatePropagation(
   element: React.ReactElement,
   getOptions: () => UnstyledConformanceOptions,
 ) {
@@ -243,11 +243,11 @@ function testStylePropsPropagation(
   }
 
   forEachSlot(slots, (slotName) => {
-    it(`sets the styleProps prop on ${capitalize(slotName)} slot's component`, () => {
+    it(`sets the ownerState prop on ${capitalize(slotName)} slot's component`, () => {
       const TestComponent = React.forwardRef(
-        ({ styleProps, expectedStyleProps }: WithStyleProps, ref: React.Ref<any>) => {
-          expect(styleProps).not.to.equal(undefined);
-          expect(styleProps).to.deep.include(expectedStyleProps);
+        ({ ownerState, expectedOwnerState }: WithOwnerState, ref: React.Ref<any>) => {
+          expect(ownerState).not.to.equal(undefined);
+          expect(ownerState).to.deep.include(expectedOwnerState);
           return <div ref={ref} />;
         },
       );
@@ -258,7 +258,7 @@ function testStylePropsPropagation(
 
       const componentsProps = {
         [slotName]: {
-          expectedStyleProps: {
+          expectedOwnerState: {
             id: 'foo',
           },
         },
@@ -277,7 +277,7 @@ const fullSuite = {
   propsSpread: testPropForwarding,
   reactTestRenderer: testReactTestRenderer,
   refForwarding: describeRef,
-  stylePropsPropagation: testStylePropsPropagation,
+  ownerStatePropagation: testOwnerStatePropagation,
 };
 
 export default function describeConformanceUnstyled(

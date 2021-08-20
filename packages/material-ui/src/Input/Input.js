@@ -13,8 +13,8 @@ import {
   InputBaseComponent as InputBaseInput,
 } from '../InputBase/InputBase';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, disableUnderline } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, disableUnderline } = ownerState;
 
   const slots = {
     root: ['root', !disableUnderline && 'underline'],
@@ -34,26 +34,26 @@ const InputRoot = styled(InputBaseRoot, {
   name: 'MuiInput',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       ...inputBaseRootOverridesResolver(props, styles),
-      !styleProps.disableUnderline && styles.underline,
+      !ownerState.disableUnderline && styles.underline,
     ];
   },
-})(({ theme, styleProps }) => {
+})(({ theme, ownerState }) => {
   const light = theme.palette.mode === 'light';
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
   return {
     position: 'relative',
-    ...(styleProps.formControl && {
+    ...(ownerState.formControl && {
       'label + &': {
         marginTop: 16,
       },
     }),
-    ...(!styleProps.disableUnderline && {
+    ...(!ownerState.disableUnderline && {
       '&:after': {
-        borderBottom: `2px solid ${theme.palette[styleProps.color].main}`,
+        borderBottom: `2px solid ${theme.palette[ownerState.color].main}`,
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -122,8 +122,8 @@ const Input = React.forwardRef(function Input(inProps, ref) {
 
   const classes = useUtilityClasses(props);
 
-  const styleProps = { disableUnderline };
-  const inputComponentsProps = { root: { styleProps } };
+  const ownerState = { disableUnderline };
+  const inputComponentsProps = { root: { ownerState } };
 
   const componentsProps = componentsPropsProp
     ? deepmerge(componentsPropsProp, inputComponentsProps)

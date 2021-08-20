@@ -1,12 +1,14 @@
 import * as React from 'react';
-import { createTheme, Theme } from '@material-ui/core/styles';
-import styled from '@emotion/styled';
-import { ThemeProvider } from '@emotion/react';
+import rtlPlugin from 'stylis-plugin-rtl';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+import { styled } from '@material-ui/core/styles';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Switch from '@material-ui/core/Switch';
 
-const Root = styled('div')((props: { theme?: Theme }) => ({
+const Root = styled('div')((props) => ({
   width: '100%',
-  marginTop: props.theme?.spacing(4),
-  marginRight: props.theme?.spacing(2),
+  marginTop: props.theme?.spacing(6),
 }));
 
 const AffectedText = styled('div')`
@@ -18,15 +20,37 @@ const UnaffectedText = styled('div')`
   text-align: left;
 `;
 
-const theme = createTheme();
+const rtlCache = createCache({
+  key: 'muirtl',
+  // @ts-ignore external dependency
+  stylisPlugins: [rtlPlugin],
+});
+
+const ltrCache = createCache({
+  key: 'mui',
+});
 
 export default function RtlOptOut() {
+  const [rtl, setRtl] = React.useState(false);
+
+  const handleChage = () => {
+    setRtl(!rtl);
+  };
+
   return (
-    <ThemeProvider theme={theme}>
-      <Root>
-        <AffectedText>Affected</AffectedText>
-        <UnaffectedText>Unaffected</UnaffectedText>
-      </Root>
-    </ThemeProvider>
+    <React.Fragment>
+      <div>
+        <FormControlLabel
+          control={<Switch checked={rtl} onChange={handleChage} />}
+          label="RTL"
+        />
+      </div>
+      <CacheProvider value={rtl ? rtlCache : ltrCache}>
+        <Root {...(rtl ? { dir: 'rtl' } : {})}>
+          <AffectedText>Affected</AffectedText>
+          <UnaffectedText>Unaffected</UnaffectedText>
+        </Root>
+      </CacheProvider>
+    </React.Fragment>
   );
 }

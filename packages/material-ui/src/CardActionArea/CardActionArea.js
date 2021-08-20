@@ -7,8 +7,8 @@ import styled from '../styles/styled';
 import cardActionAreaClasses, { getCardActionAreaUtilityClass } from './cardActionAreaClasses';
 import ButtonBase from '../ButtonBase';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -61,19 +61,19 @@ const CardActionArea = React.forwardRef(function CardActionArea(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiCardActionArea' });
   const { children, className, focusVisibleClassName, ...other } = props;
 
-  const styleProps = props;
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = props;
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <CardActionAreaRoot
       className={clsx(classes.root, className)}
       focusVisibleClassName={clsx(focusVisibleClassName, classes.focusVisible)}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       {children}
-      <CardActionAreaFocusHighlight className={classes.focusHighlight} styleProps={styleProps} />
+      <CardActionAreaFocusHighlight className={classes.focusHighlight} ownerState={ownerState} />
     </CardActionAreaRoot>
   );
 });

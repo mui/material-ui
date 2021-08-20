@@ -9,15 +9,15 @@ import ButtonUnstyledProps, {
   ButtonUnstyledTypeMap,
 } from './ButtonUnstyledProps';
 import useButton from './useButton';
-import appendStyleProps from '../utils/appendStyleProps';
+import appendOwnerState from '../utils/appendOwnerState';
 
-export interface ButtonUnstyledStyleProps extends ButtonUnstyledOwnProps {
+export interface ButtonUnstyledOwnerState extends ButtonUnstyledOwnProps {
   focusVisible: boolean;
   active: boolean;
 }
 
-const useUtilityClasses = (styleProps: ButtonUnstyledStyleProps) => {
-  const { active, disabled, focusVisible } = styleProps;
+const useUtilityClasses = (ownerState: ButtonUnstyledOwnerState) => {
+  const { active, disabled, focusVisible } = ownerState;
 
   const slots = {
     root: ['root', disabled && 'disabled', focusVisible && 'focusVisible', active && 'active'],
@@ -76,20 +76,20 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
     [setFocusVisible],
   );
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     active,
     focusVisible,
   };
 
   const ButtonRoot: React.ElementType = component ?? components.Root ?? 'button';
-  const buttonRootProps = appendStyleProps(
+  const buttonRootProps = appendOwnerState(
     ButtonRoot,
     { ...other, ...componentsProps.root },
-    styleProps,
+    ownerState,
   );
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <ButtonRoot

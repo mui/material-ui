@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformanceV5, createClientRender, fireEvent } from 'test/utils';
+import { describeConformance, createClientRender, fireEvent } from 'test/utils';
 import BottomNavigation, {
   bottomNavigationClasses as classes,
 } from '@material-ui/core/BottomNavigation';
@@ -16,7 +16,7 @@ describe('<BottomNavigation />', () => {
   const icon = <Icon>restore</Icon>;
   const getBottomNavigation = (container) => container.firstChild;
 
-  describeConformanceV5(
+  describeConformance(
     <BottomNavigation>
       <BottomNavigationAction label="One" />
     </BottomNavigation>,

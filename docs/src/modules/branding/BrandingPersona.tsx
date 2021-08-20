@@ -10,21 +10,21 @@ import { styled } from '@material-ui/core/styles';
 import t1 from 'docs/src/modules/branding/t1';
 
 interface PersonaRootProps {
-  styleProps: { size: 'large' | 'small' };
+  ownerState: { size: 'large' | 'small' };
 }
 
 const PersonaRoot: OverridableComponent<BoxTypeMap<PersonaRootProps>> = styled(Box, {
   name: 'Persona',
   slot: 'Root',
-})<PersonaRootProps>(({ styleProps, theme }) => ({
+})<PersonaRootProps>(({ ownerState, theme }) => ({
   display: 'flex',
   marginTop: theme.spacing(1),
   marginBottom: theme.spacing(1),
   flexDirection: 'column',
   alignItems: 'center',
   '& [class*="MuiAvatar-root"]': {
-    width: styleProps.size === 'large' ? 200 : 120,
-    height: styleProps.size === 'large' ? 200 : 120,
+    width: ownerState.size === 'large' ? 200 : 120,
+    height: ownerState.size === 'large' ? 200 : 120,
     marginBottom: theme.spacing(1),
   },
   '& [class*="MuiIconButton-root"]': {
@@ -51,7 +51,7 @@ export default function BrandingPersona(props: BrandingPersonaProps) {
   const { name, src, srcSet, title, location, twitter, github, size = 'large' } = props;
   return (
     <PersonaRoot
-      styleProps={{ size }}
+      ownerState={{ size }}
       sx={{
         '& img': {
           borderRadius: '50%',

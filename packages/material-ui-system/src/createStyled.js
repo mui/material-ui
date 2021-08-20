@@ -33,14 +33,14 @@ const getVariantStyles = (name, theme) => {
 };
 
 const variantsResolver = (props, styles, theme, name) => {
-  const { styleProps = {} } = props;
+  const { ownerState = {} } = props;
   let variantsStyles = {};
   const themeVariants = theme?.components?.[name]?.variants;
   if (themeVariants) {
     themeVariants.forEach((themeVariant) => {
       let isMatch = true;
       Object.keys(themeVariant.props).forEach((key) => {
-        if (styleProps[key] !== themeVariant.props[key] && props[key] !== themeVariant.props[key]) {
+        if (ownerState[key] !== themeVariant.props[key] && props[key] !== themeVariant.props[key]) {
           isMatch = false;
         }
       });
@@ -54,7 +54,7 @@ const variantsResolver = (props, styles, theme, name) => {
 };
 
 export function shouldForwardProp(prop) {
-  return prop !== 'styleProps' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
+  return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
 }
 
 export const systemDefaultTheme = createTheme();
@@ -93,10 +93,17 @@ export default function createStyled(input = {}) {
       className = `${componentName}-${lowercaseFirstLetter(componentSlot || 'Root')}`;
     }
 
+    let shouldForwardPropOption = shouldForwardProp;
+
+    if (componentSlot === 'Root') {
+      shouldForwardPropOption = rootShouldForwardProp;
+    } else if (componentSlot) {
+      // any other slot specified
+      shouldForwardPropOption = slotShouldForwardProp;
+    }
+
     const defaultStyledResolver = styledEngineStyled(tag, {
-      ...(!componentSlot || componentSlot === 'Root'
-        ? { shouldForwardProp: rootShouldForwardProp }
-        : { shouldForwardProp: slotShouldForwardProp }),
+      shouldForwardProp: shouldForwardPropOption,
       label: className || componentName || '',
       ...options,
     });

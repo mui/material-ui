@@ -38,10 +38,15 @@ describe('<StaticDateRangePicker />', () => {
     />,
     () => ({
       classes: {},
+      muiName: 'MuiStaticDateRangePicker',
       wrapMount: wrapPickerMount,
       refInstanceof: undefined,
       skip: [
         'componentProp',
+        'componentsProp',
+        'themeDefaultProps',
+        'themeStyleOverrides',
+        'themeVariants',
         'mergeClassName',
         'propsSpread',
         'refForwarding',

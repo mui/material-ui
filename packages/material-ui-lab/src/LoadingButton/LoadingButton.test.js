@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createClientRender, describeConformanceV5, screen } from 'test/utils';
+import { createClientRender, describeConformance, screen } from 'test/utils';
 import { expect } from 'chai';
 import Button from '@material-ui/core/Button';
 import LoadingButton, { loadingButtonClasses as classes } from '@material-ui/lab/LoadingButton';
@@ -7,7 +7,7 @@ import LoadingButton, { loadingButtonClasses as classes } from '@material-ui/lab
 describe('<LoadingButton />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<LoadingButton>Conformance?</LoadingButton>, () => ({
+  describeConformance(<LoadingButton>Conformance?</LoadingButton>, () => ({
     classes,
     inheritComponent: Button,
     render,

@@ -1,13 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import {
-  describeConformanceV5,
-  fireEvent,
-  fireTouchChangedEvent,
-  screen,
-  within,
-} from 'test/utils';
+import { describeConformance, fireEvent, fireTouchChangedEvent, screen, within } from 'test/utils';
 import ClockPicker, { clockPickerClasses as classes } from '@material-ui/lab/ClockPicker';
 import {
   adapterToUse,
@@ -19,7 +13,7 @@ import {
 describe('<ClockPicker />', () => {
   const render = createPickerRender();
 
-  describeConformanceV5(
+  describeConformance(
     <ClockPicker date={adapterToUse.date()} showViewSwitcher onChange={() => {}} />,
     () => ({
       classes,

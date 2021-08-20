@@ -8,8 +8,8 @@ import capitalize from '../utils/capitalize';
 import Paper from '../Paper';
 import { getAppBarUtilityClass } from './appBarClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { color, position, classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { color, position, classes } = ownerState;
 
   const slots = {
     root: ['root', `color${capitalize(color)}`, `position${capitalize(position)}`],
@@ -22,15 +22,15 @@ const AppBarRoot = styled(Paper, {
   name: 'MuiAppBar',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.root,
-      styles[`position${capitalize(styleProps.position)}`],
-      styles[`color${capitalize(styleProps.color)}`],
+      styles[`position${capitalize(ownerState.position)}`],
+      styles[`color${capitalize(ownerState.color)}`],
     ];
   },
-})(({ theme, styleProps }) => {
+})(({ theme, ownerState }) => {
   const backgroundColorDefault =
     theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[900];
 
@@ -40,7 +40,7 @@ const AppBarRoot = styled(Paper, {
     width: '100%',
     boxSizing: 'border-box', // Prevent padding issue with the Modal and fixed positioned AppBar.
     flexShrink: 0,
-    ...(styleProps.position === 'fixed' && {
+    ...(ownerState.position === 'fixed' && {
       position: 'fixed',
       zIndex: theme.zIndex.appBar,
       top: 0,
@@ -51,14 +51,14 @@ const AppBarRoot = styled(Paper, {
         position: 'absolute',
       },
     }),
-    ...(styleProps.position === 'absolute' && {
+    ...(ownerState.position === 'absolute' && {
       position: 'absolute',
       zIndex: theme.zIndex.appBar,
       top: 0,
       left: 'auto',
       right: 0,
     }),
-    ...(styleProps.position === 'sticky' && {
+    ...(ownerState.position === 'sticky' && {
       // ⚠️ sticky is not supported by IE11.
       position: 'sticky',
       zIndex: theme.zIndex.appBar,
@@ -66,35 +66,38 @@ const AppBarRoot = styled(Paper, {
       left: 'auto',
       right: 0,
     }),
-    ...(styleProps.position === 'static' && {
+    ...(ownerState.position === 'static' && {
       position: 'static',
     }),
-    ...(styleProps.position === 'relative' && {
+    ...(ownerState.position === 'relative' && {
       position: 'relative',
     }),
-    ...(styleProps.color === 'default' && {
+    ...(ownerState.color === 'default' && {
       backgroundColor: backgroundColorDefault,
       color: theme.palette.getContrastText(backgroundColorDefault),
     }),
-    ...(styleProps.color &&
-      styleProps.color !== 'default' &&
-      styleProps.color !== 'inherit' &&
-      styleProps.color !== 'transparent' && {
-        backgroundColor: theme.palette[styleProps.color].main,
-        color: theme.palette[styleProps.color].contrastText,
+    ...(ownerState.color &&
+      ownerState.color !== 'default' &&
+      ownerState.color !== 'inherit' &&
+      ownerState.color !== 'transparent' && {
+        backgroundColor: theme.palette[ownerState.color].main,
+        color: theme.palette[ownerState.color].contrastText,
       }),
-    ...(styleProps.color === 'inherit' && {
-      color: 'inherit',
-    }),
-    ...(styleProps.color === 'transparent' && {
-      backgroundColor: 'transparent',
+    ...(ownerState.color === 'inherit' && {
       color: 'inherit',
     }),
     ...(theme.palette.mode === 'dark' &&
-      !styleProps.enableColorOnDark && {
+      !ownerState.enableColorOnDark && {
         backgroundColor: null,
         color: null,
       }),
+    ...(ownerState.color === 'transparent' && {
+      backgroundColor: 'transparent',
+      color: 'inherit',
+      ...(theme.palette.mode === 'dark' && {
+        backgroundImage: 'none',
+      }),
+    }),
   };
 });
 
@@ -108,20 +111,20 @@ const AppBar = React.forwardRef(function AppBar(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     color,
     position,
     enableColorOnDark,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <AppBarRoot
       square
       component="header"
-      styleProps={styleProps}
+      ownerState={ownerState}
       elevation={4}
       className={clsx(
         classes.root,

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import {
-  describeConformanceV5,
+  describeConformance,
   act,
   createClientRender,
   fireEvent,
@@ -46,7 +46,7 @@ describe('<Tooltip />', () => {
 
   const render = createClientRender();
 
-  describeConformanceV5(
+  describeConformance(
     <Tooltip title="Hello World" open>
       <button type="submit">Hello World</button>
     </Tooltip>,

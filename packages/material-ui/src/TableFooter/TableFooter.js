@@ -7,8 +7,8 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import { getTableFooterUtilityClass } from './tableFooterClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -35,12 +35,12 @@ const TableFooter = React.forwardRef(function TableFooter(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTableFooter' });
   const { className, component = defaultComponent, ...other } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     component,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <Tablelvl2Context.Provider value={tablelvl2}>
@@ -49,7 +49,7 @@ const TableFooter = React.forwardRef(function TableFooter(inProps, ref) {
         className={clsx(classes.root, className)}
         ref={ref}
         role={component === defaultComponent ? null : 'rowgroup'}
-        styleProps={styleProps}
+        ownerState={ownerState}
         {...other}
       />
     </Tablelvl2Context.Provider>

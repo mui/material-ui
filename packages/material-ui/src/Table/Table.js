@@ -7,8 +7,8 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import { getTableUtilityClass } from './tableClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, stickyHeader } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, stickyHeader } = ownerState;
 
   const slots = {
     root: ['root', stickyHeader && 'stickyHeader'],
@@ -21,11 +21,11 @@ const TableRoot = styled('table', {
   name: 'MuiTable',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
-    return [styles.root, styleProps.stickyHeader && styles.stickyHeader];
+    return [styles.root, ownerState.stickyHeader && styles.stickyHeader];
   },
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   display: 'table',
   width: '100%',
   borderCollapse: 'collapse',
@@ -37,7 +37,7 @@ const TableRoot = styled('table', {
     textAlign: 'left',
     captionSide: 'bottom',
   },
-  ...(styleProps.stickyHeader && {
+  ...(ownerState.stickyHeader && {
     borderCollapse: 'separate',
   }),
 }));
@@ -55,7 +55,7 @@ const Table = React.forwardRef(function Table(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     component,
     padding,
@@ -63,7 +63,7 @@ const Table = React.forwardRef(function Table(inProps, ref) {
     stickyHeader,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const table = React.useMemo(
     () => ({ padding, size, stickyHeader }),
@@ -77,7 +77,7 @@ const Table = React.forwardRef(function Table(inProps, ref) {
         role={component === defaultComponent ? null : 'table'}
         ref={ref}
         className={clsx(classes.root, className)}
-        styleProps={styleProps}
+        ownerState={ownerState}
         {...other}
       />
     </TableContext.Provider>

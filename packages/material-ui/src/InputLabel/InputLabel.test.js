@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { describeConformanceV5, act, createClientRender } from 'test/utils';
+import { describeConformance, act, createClientRender } from 'test/utils';
 import FormControl from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import FormLabel from '@material-ui/core/FormLabel';
@@ -10,7 +10,7 @@ import InputLabel, { inputLabelClasses as classes } from '@material-ui/core/Inpu
 describe('<InputLabel />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<InputLabel>Foo</InputLabel>, () => ({
+  describeConformance(<InputLabel>Foo</InputLabel>, () => ({
     classes,
     inheritComponent: FormLabel,
     render,
@@ -33,6 +33,16 @@ describe('<InputLabel />', () => {
   it('should not have the animated class when disabled', () => {
     const { container } = render(<InputLabel disableAnimation>Foo</InputLabel>);
     expect(container.firstChild).not.to.have.class(classes.animated);
+  });
+
+  it('should forward the asterisk class to AsteriskComponent when required', () => {
+    const { container } = render(
+      <InputLabel classes={{ asterisk: 'my-asterisk' }} required>
+        Foo
+      </InputLabel>,
+    );
+    expect(container.querySelector('.my-asterisk')).to.have.class('MuiFormLabel-asterisk');
+    expect(container.querySelector('.my-asterisk')).to.have.class('MuiInputLabel-asterisk');
   });
 
   describe('with FormControl', () => {
