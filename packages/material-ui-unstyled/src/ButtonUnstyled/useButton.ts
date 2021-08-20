@@ -15,6 +15,7 @@ export default function useButton(props: UseButtonProps) {
     components = {},
     disabled = false,
     href,
+    onClick,
     onFocusVisible,
     ref,
     tabIndex = 0,
@@ -58,20 +59,6 @@ export default function useButton(props: UseButtonProps) {
     }
 
     otherHandler();
-  };
-
-  const dispatchClickEvent = (preventDefault: boolean) => {
-    const clickEvent = new window.MouseEvent('click', {
-      bubbles: true,
-      cancelable: true,
-      view: window,
-    });
-
-    if (preventDefault) {
-      clickEvent.preventDefault();
-    }
-
-    buttonRef.current?.dispatchEvent(clickEvent);
   };
 
   const handleFocus = useEventCallback(
@@ -142,7 +129,7 @@ export default function useButton(props: UseButtonProps) {
         !disabled
       ) {
         event.preventDefault();
-        dispatchClickEvent(true);
+        onClick?.(event as unknown as React.MouseEvent);
       }
     },
   );
@@ -165,7 +152,7 @@ export default function useButton(props: UseButtonProps) {
         event.key === ' ' &&
         !event.defaultPrevented
       ) {
-        dispatchClickEvent(false);
+        onClick?.(event as unknown as React.MouseEvent);
       }
     },
   );
