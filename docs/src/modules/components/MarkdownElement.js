@@ -57,7 +57,7 @@ const Root = styled('div')(({ theme }) => ({
     fontSize: 40,
     fontFamily: ['"PlusJakartaSans"'].join(','),
     margin: '16px 0',
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.primary[900],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.primary[900],
     fontWeight: 800,
   },
   '& .description': {
@@ -69,23 +69,23 @@ const Root = styled('div')(({ theme }) => ({
     fontSize: 30,
     margin: '40px 0 10px',
     fontWeight: 500,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
   },
   '& h3': {
     ...theme.typography.h6,
     margin: '20px 0 10px',
     fontWeight: 500,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
   },
   '& h4': {
     ...theme.typography.h6,
     margin: '32px 0 16px',
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
   },
   '& h5': {
     ...theme.typography.subtitle2,
     margin: '32px 0 16px',
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
   },
   '& p, & ul, & ol': {
     marginTop: 0,
@@ -182,7 +182,7 @@ const Root = styled('div')(({ theme }) => ({
   },
   '& a, & a code': {
     // Style taken from the Link component
-    color: theme.palette.primary.main,
+    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
     textDecoration: 'underline',
     textDecorationColor: alpha(theme.palette.primary.main, 0.4),
     '&:hover': {
