@@ -6,7 +6,7 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { CORE_CUSTOMERS } from 'docs/src/components/home/CompaniesGrid';
 
-const CompaniesGrid = dynamic(() => import('./CompaniesGrid'), { ssr: false });
+const CompaniesGrid = dynamic(() => import('./CompaniesGrid'));
 
 const ReferencesCore = () => {
   const { ref, inView } = useInView({
