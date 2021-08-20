@@ -290,7 +290,7 @@ describe('styled', () => {
         slot: 'Slot',
         overridesResolver: (props, styles) => styles.slot,
       })`
-        width: 800px;
+        width: 200px;
         height: 300px;
       `;
 
@@ -303,7 +303,7 @@ describe('styled', () => {
       );
 
       expect(container.firstChild).toHaveComputedStyle({
-        width: '800px',
+        width: '200px',
         height: '300px',
       });
     });
