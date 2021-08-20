@@ -12,7 +12,6 @@ import { useTheme, styled, createTheme, ThemeProvider } from '@material-ui/core/
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import darkScrollbar from '@material-ui/core/darkScrollbar';
 
 function FramedDemo(props) {
   const { children, document } = props;
