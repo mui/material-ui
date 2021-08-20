@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useInView } from 'react-intersection-observer';
 import Avatar from '@material-ui/core/Avatar';
 import Box, { BoxProps } from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
@@ -139,9 +140,11 @@ function Label({
 const SponsorCard = ({
   item,
   bottom,
+  inView = false,
 }: {
   item: typeof DIAMONDs[number];
   bottom: React.ReactElement;
+  inView?: boolean;
 }) => {
   return (
     <Paper
@@ -167,10 +170,7 @@ const SponsorCard = ({
     >
       <Box sx={{ p: 2, display: 'flex', mb: 'auto' }}>
         <Avatar
-          src={item.src}
-          srcSet={item.srcSet}
-          alt={`${item.name} logo`}
-          imgProps={{ loading: 'lazy' }}
+          {...(inView && { src: item.src, srcSet: item.srcSet, alt: `${item.name} logo` })}
           sx={{ borderRadius: '4px' }}
         />
         <Box sx={{ ml: 2 }}>
@@ -192,8 +192,12 @@ const SponsorCard = ({
 };
 
 const Sponsors = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0,
+  });
   return (
-    <Container sx={{ py: { xs: 4, md: 8 } }}>
+    <Container ref={ref} sx={{ py: { xs: 4, md: 8 } }}>
       <Typography variant="h2" sx={{ my: 1 }}>
         Our sponsors
       </Typography>
@@ -203,7 +207,11 @@ const Sponsors = () => {
       <Grid container spacing={{ xs: 2, md: 4 }} sx={{ mb: 4 }}>
         {DIAMONDs.map((item) => (
           <Grid item key={item.name} xs={12} sm={6} md={4}>
-            <SponsorCard item={item} bottom={<Label color="primary">Diamond sponsor</Label>} />
+            <SponsorCard
+              inView={inView}
+              item={item}
+              bottom={<Label color="primary">Diamond sponsor</Label>}
+            />
           </Grid>
         ))}
         <Grid item xs={12} sm={6} md={4}>
@@ -249,6 +257,7 @@ const Sponsors = () => {
         {GOLDs.map((item) => (
           <Grid item key={item.name} xs={12} sm={6} md={4} lg={3}>
             <SponsorCard
+              inView={inView}
               item={item}
               bottom={
                 <Label color="warning" darker>
