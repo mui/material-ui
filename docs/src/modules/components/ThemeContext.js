@@ -224,7 +224,7 @@ export function ThemeProvider(props) {
                 paletteMode === 'dark'
                   ? darkScrollbar({
                       track: brandingDesignTokens.palette.primaryDark[900],
-                      thumb: brandingDesignTokens.palette.primaryDark[500],
+                      thumb: brandingDesignTokens.palette.primaryDark[700],
                       active: brandingDesignTokens.palette.primaryDark[200],
                     })
                   : null,
