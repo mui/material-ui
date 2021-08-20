@@ -1,32 +1,91 @@
 import * as React from 'react';
+import { useTheme } from '@material-ui/core/styles';
 import dynamic from 'next/dynamic';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
+import Box, { BoxProps } from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Stack from '@material-ui/core/Stack';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import GradientText from 'docs/src/components/typography/GradientText';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 
-const PlayerCard = dynamic(() => import('../showcase/PlayerCard'), { ssr: false });
-const TaskCard = dynamic(() => import('../showcase/TaskCard'), { ssr: false });
-const NotificationCard = dynamic(() => import('../showcase/NotificationCard'), { ssr: false });
-const ThemeChip = dynamic(() => import('../showcase/ThemeChip'), { ssr: false });
-const ThemeDatePicker = dynamic(() => import('../showcase/ThemeDatePicker'), { ssr: false });
-const ThemeSlider = dynamic(() => import('../showcase/ThemeSlider'), { ssr: false });
-const FolderTable = dynamic(() => import('../showcase/FolderTable'), { ssr: false });
-const ThemeTabs = dynamic(() => import('../showcase/ThemeTabs'), { ssr: false });
-const ThemeTimeline = dynamic(() => import('../showcase/ThemeTimeline'), { ssr: false });
-const ViewToggleButton = dynamic(() => import('../showcase/ViewToggleButton'), { ssr: false });
-const ThemeToggleButton = dynamic(() => import('../showcase/ThemeToggleButton'), { ssr: false });
-const ThemeSwitch = dynamic(() => import('../showcase/ThemeSwitch'), { ssr: false });
-const ThemeAccordion = dynamic(() => import('../showcase/ThemeAccordion'), { ssr: false });
+function createLoading(sx: BoxProps['sx']) {
+  return () => (
+    <Box
+      sx={{
+        borderRadius: 1,
+        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100'),
+        ...sx,
+      }}
+    />
+  );
+}
+
+const TaskCard = dynamic(() => import('../showcase/TaskCard'), {
+  ssr: false,
+  loading: createLoading({ width: 360, height: 280 }),
+});
+const PlayerCard = dynamic(() => import('../showcase/PlayerCard'), {
+  ssr: false,
+  loading: createLoading({ width: 360, height: 146 }),
+});
+const ThemeToggleButton = dynamic(() => import('../showcase/ThemeToggleButton'), {
+  ssr: false,
+  loading: createLoading({ width: 360, height: 48 }),
+});
+const ThemeSwitch = dynamic(() => import('../showcase/ThemeSwitch'), {
+  ssr: false,
+  loading: createLoading({ width: 108, height: 20 }),
+});
+const ThemeChip = dynamic(() => import('../showcase/ThemeChip'), {
+  ssr: false,
+  loading: createLoading({ width: 212, height: 32 }),
+});
+const ThemeTimeline = dynamic(() => import('../showcase/ThemeTimeline'), {
+  ssr: false,
+  loading: createLoading({ width: 360, height: 180 }),
+});
+const FolderTable = dynamic(() => import('../showcase/FolderTable'), {
+  ssr: false,
+  loading: createLoading({ width: 360, height: 212 }),
+});
+
+const ThemeDatePicker = dynamic(() => import('../showcase/ThemeDatePicker'), {
+  ssr: false,
+  loading: createLoading({ width: { md: 360, xl: 400 }, height: 260 }),
+});
+const ThemeTabs = dynamic(() => import('../showcase/ThemeTabs'), {
+  ssr: false,
+  loading: createLoading({ width: { md: 360, xl: 400 }, height: 48 }),
+});
+const ThemeSlider = dynamic(() => import('../showcase/ThemeSlider'), {
+  ssr: false,
+  loading: createLoading({ width: { md: 124, xl: 164 }, height: 214 }),
+});
+const ViewToggleButton = dynamic(() => import('../showcase/ViewToggleButton'), {
+  ssr: false,
+  loading: createLoading({ width: 196, height: 40 }),
+});
+const ThemeButton = dynamic(() => import('../showcase/ThemeButton'), {
+  ssr: false,
+  loading: createLoading({ width: 196, height: 154 }),
+});
+const ThemeAccordion = dynamic(() => import('../showcase/ThemeAccordion'), {
+  ssr: false,
+  loading: createLoading({ width: { md: 360, xl: 400 }, height: 171 }),
+});
+const NotificationCard = dynamic(() => import('../showcase/NotificationCard'), {
+  ssr: false,
+  loading: createLoading({ width: { md: 360, xl: 400 }, height: 146 }),
+});
 
 export default function Hero() {
   const frame = React.useRef<null | HTMLDivElement>(null);
+  const globalTheme = useTheme();
+  const isMdUp = useMediaQuery(globalTheme.breakpoints.up('md'));
   React.useEffect(() => {
-    if (frame.current) {
+    if (frame.current && isMdUp) {
       const elements = frame.current.querySelectorAll(
         'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])',
       );
@@ -34,7 +93,7 @@ export default function Hero() {
         elm.setAttribute('tabindex', '-1');
       });
     }
-  }, []);
+  }, [isMdUp]);
   return (
     <Box sx={{ overflow: 'hidden' }}>
       <Container
@@ -100,38 +159,39 @@ export default function Hero() {
                 },
               }}
             >
-              <Stack spacing={4} sx={{ '& > .MuiPaper-root': { maxWidth: 'none' } }}>
-                <TaskCard />
-                <PlayerCard />
-                <ThemeToggleButton />
-                <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}>
-                  <ThemeSwitch />
-                  <Box sx={{ width: 40 }} />
-                  <ThemeChip />
-                </Box>
-                <ThemeTimeline />
-                <FolderTable />
-              </Stack>
-              <Stack spacing={4} sx={{ ml: 4, '& > .MuiPaper-root': { maxWidth: 'none' } }}>
-                <ThemeDatePicker />
-                <ThemeTabs />
-                <Box sx={{ display: 'flex' }}>
-                  <Box sx={{ flexGrow: 1 }}>
-                    <ThemeSlider />
+              {isMdUp && (
+                <Stack spacing={4} sx={{ '& > .MuiPaper-root': { maxWidth: 'none' } }}>
+                  <TaskCard />
+                  <PlayerCard />
+                  <ThemeToggleButton />
+                  <Box
+                    sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center' }}
+                  >
+                    <ThemeSwitch />
+                    <Box sx={{ width: 40 }} />
+                    <ThemeChip />
                   </Box>
-                  <Stack spacing={2} sx={{ ml: 4 }}>
-                    <ViewToggleButton />
-                    <Button size="medium" variant="contained" sx={{ flexGrow: 1 }}>
-                      Buy Library
-                    </Button>
-                    <Button size="medium" variant="contained" disabled sx={{ flexGrow: 1 }}>
-                      Buy Library
-                    </Button>
-                  </Stack>
-                </Box>
-                <ThemeAccordion />
-                <NotificationCard />
-              </Stack>
+                  <ThemeTimeline />
+                  <FolderTable />
+                </Stack>
+              )}
+              {isMdUp && (
+                <Stack spacing={4} sx={{ ml: 4, '& > .MuiPaper-root': { maxWidth: 'none' } }}>
+                  <ThemeDatePicker />
+                  <ThemeTabs />
+                  <Box sx={{ display: 'flex' }}>
+                    <Box sx={{ flexGrow: 1 }}>
+                      <ThemeSlider />
+                    </Box>
+                    <Stack spacing={2} sx={{ ml: 4 }}>
+                      <ViewToggleButton />
+                      <ThemeButton />
+                    </Stack>
+                  </Box>
+                  <ThemeAccordion />
+                  <NotificationCard />
+                </Stack>
+              )}
             </Box>
           </Grid>
         </Grid>
