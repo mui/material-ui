@@ -99,19 +99,17 @@ export default function Hero() {
       <Container
         sx={{
           minHeight: 500,
-          height: 'calc(100vh - 120px)',
-          maxHeight: { xs: 500, sm: 700, xl: 1000 },
+          height: 'calc(100vh - 64px)',
           transition: '0.3s',
         }}
       >
         <Grid
           container
-          alignItems="center"
           wrap="nowrap"
           sx={{ height: '100%', maxWidth: { xs: 500, md: 'initial' }, mx: 'auto' }}
         >
-          <Grid item md={7} lg={6}>
-            <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
+          <Grid item md={7} lg={6} sx={{ alignSelf: 'center' }}>
+            <Box sx={{ textAlign: { xs: 'center', md: 'left' }, mb: { xs: 8 } }}>
               <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
                 The <GradientText>ultimate</GradientText> solution for your UI
               </Typography>
@@ -134,11 +132,12 @@ export default function Hero() {
               aria-hidden="true"
               sx={{
                 p: 3,
+                overflow: 'hidden',
                 bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
                 minWidth: 2000,
                 minHeight: 500,
-                height: 'calc(100vh - 120px)',
-                maxHeight: { lg: 700, xl: 1000 },
+                height: 'calc(100vh - 64px)',
+                maxHeight: { md: 'calc(100vh - 120px)', xl: 'calc(100vh - 168px)' },
                 borderBottomLeftRadius: 10,
                 transition: 'max-height 0.3s',
                 '& > div': {
