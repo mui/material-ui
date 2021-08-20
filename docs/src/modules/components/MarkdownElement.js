@@ -57,7 +57,7 @@ const Root = styled('div')(({ theme }) => ({
     ...theme.typography.h3,
     fontSize: 40,
     margin: '16px 0',
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.primaryDark[900],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.primaryDark,
     fontWeight: 800,
   },
   '& .description': {
@@ -68,22 +68,29 @@ const Root = styled('div')(({ theme }) => ({
     ...theme.typography.h4,
     fontSize: 30,
     margin: '40px 0 16px',
+    fontWeight: 600,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
   },
   '& h3': {
     ...theme.typography.h5,
     margin: '40px 0 16px',
+    fontWeight: 500,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
   },
   '& h4': {
     ...theme.typography.h6,
     margin: '32px 0 16px',
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
   },
   '& h5': {
     ...theme.typography.subtitle2,
     margin: '32px 0 16px',
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
   },
   '& p, & ul, & ol': {
     marginTop: 0,
     marginBottom: 16,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[900],
   },
   '& ul': {
     paddingLeft: 30,
