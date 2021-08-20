@@ -76,13 +76,15 @@ const TooltipPopper = styled(Popper, {
       },
     },
     [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
-      ...(!ownerState.isRtl ? {
-        left: 0,
-        marginLeft: '-0.71em',
-      } : {
-        right: 0,
-        marginRight: '-0.71em',
-      }),
+      ...(!ownerState.isRtl
+        ? {
+            left: 0,
+            marginLeft: '-0.71em',
+          }
+        : {
+            right: 0,
+            marginRight: '-0.71em',
+          }),
       height: '1em',
       width: '0.71em',
       '&::before': {
@@ -90,7 +92,9 @@ const TooltipPopper = styled(Popper, {
       },
     },
     [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
-      ...(!ownerState.isRtl ? { right: 0, marginRight: '-0.71em' } : { left: 0, marginLeft: '-0.71em' }),
+      ...(!ownerState.isRtl
+        ? { right: 0, marginRight: '-0.71em' }
+        : { left: 0, marginLeft: '-0.71em' }),
       height: '1em',
       width: '0.71em',
       '&::before': {
@@ -136,31 +140,35 @@ const TooltipTooltip = styled('div', {
   }),
   [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
     transformOrigin: 'right center',
-    ...(!ownerState.isRtl ? {
-      marginRight: '14px',
-      ...(ownerState.touch && {
-        marginRight: '24px',
-      }),
-    }: {
-      marginLeft: '14px',
-      ...(ownerState.touch && {
-        marginLeft: '24px',
-      }),
-    })
+    ...(!ownerState.isRtl
+      ? {
+          marginRight: '14px',
+          ...(ownerState.touch && {
+            marginRight: '24px',
+          }),
+        }
+      : {
+          marginLeft: '14px',
+          ...(ownerState.touch && {
+            marginLeft: '24px',
+          }),
+        }),
   },
   [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
     transformOrigin: 'left center',
-    ...(!ownerState.isRtl ? {
-      marginLeft: '14px',
-      ...(ownerState.touch && {
-        marginLeft: '24px',
-      }),
-    } : {
-      marginRight: '14px',
-      ...(ownerState.touch && {
-        marginRight: '24px',
-      }),
-    })
+    ...(!ownerState.isRtl
+      ? {
+          marginLeft: '14px',
+          ...(ownerState.touch && {
+            marginLeft: '24px',
+          }),
+        }
+      : {
+          marginRight: '14px',
+          ...(ownerState.touch && {
+            marginRight: '24px',
+          }),
+        }),
   },
   [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
     transformOrigin: 'center bottom',
