@@ -1,94 +1,29 @@
 import * as React from 'react';
-import { styled, alpha } from '@material-ui/core/styles';
-import SwitchUnstyled, {
-  switchUnstyledClasses,
-  SwitchUnstyledProps,
-} from '@material-ui/unstyled/SwitchUnstyled';
+import IconButton from '@material-ui/core/IconButton';
 import DarkModeOutlined from '@material-ui/icons/DarkModeOutlined';
 import LightModeOutlined from '@material-ui/icons/LightModeOutlined';
 
-const Root = styled('span')(({ theme }) => ({
-  fontSize: 0,
-  color: '#fff',
-  position: 'relative',
-  display: 'inline-block',
-  width: 40,
-  height: 17,
-  backgroundColor: theme.palette.grey[100],
-  borderRadius: 10,
-  margin: 10,
-  cursor: 'pointer',
-  transition: theme.transitions.create('background-color'),
-  [`& .${switchUnstyledClasses.thumb}`]: {
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'absolute',
-    padding: 2,
-    width: 24,
-    height: 24,
-    top: -3,
-    left: 0,
-    borderRadius: 24,
-    backgroundColor: theme.palette.primary.main,
-    transform: 'rotate(-90deg)',
-    transition: theme.transitions.create(['transform', 'left']),
-    '& > svg': {
-      width: 18,
-      height: 18,
-    },
-    '&:before': {
-      content: '""',
-      display: 'block',
-      position: 'absolute',
-      borderRadius: '50%',
-      zIndex: -1,
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      transform: 'scale(0)',
-      transition: theme.transitions.create('transform'),
-      backgroundColor: alpha(theme.palette.primary.main, 0.4),
-    },
-  },
-  [`&.${switchUnstyledClasses.checked} .${switchUnstyledClasses.thumb}`]: {
-    left: 16,
-    transform: 'rotate(0deg)',
-  },
-  [`&.${switchUnstyledClasses.focusVisible} .${switchUnstyledClasses.thumb}`]: {
-    '&:before': {
-      transform: 'scale(1.3)',
-    },
-  },
-  [`& .${switchUnstyledClasses.input}`]: {
-    cursor: 'inherit',
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    top: 0,
-    left: 0,
-    opacity: 0,
-    zIndex: 1,
-    margin: 0,
-  },
-  [`&.${switchUnstyledClasses.checked}`]: {
-    background: theme.palette.primary[200],
-  },
-}));
-
-const ThemeModeToggle = (props: SwitchUnstyledProps) => {
+const ThemeModeToggle = (props: { checked: boolean; onChange: (checked: boolean) => void }) => {
   return (
-    <SwitchUnstyled
-      {...props}
-      components={{ Root }}
-      componentsProps={{
-        thumb: {
-          children: props.checked ? <LightModeOutlined /> : <DarkModeOutlined />,
-        },
-        input: { 'aria-label': 'Theme mode toggle' },
+    <IconButton
+      disableTouchRipple
+      aria-label={`Switch to ${props.checked ? 'light' : 'dark'} mode`}
+      onClick={() => props.onChange(!props.checked)}
+      sx={{
+        color: (theme) => (theme.palette.mode === 'dark' ? 'grey.100' : 'primary.main'),
+        borderRadius: 1,
+        p: 0.5,
+        border: '1px solid',
+        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'transparent'),
+        borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200'),
       }}
-    />
+    >
+      {props.checked ? (
+        <LightModeOutlined fontSize="small" />
+      ) : (
+        <DarkModeOutlined fontSize="small" />
+      )}
+    </IconButton>
   );
 };
 

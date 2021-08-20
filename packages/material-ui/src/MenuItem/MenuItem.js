@@ -15,18 +15,18 @@ import { listItemTextClasses } from '../ListItemText';
 import menuItemClasses, { getMenuItemUtilityClass } from './menuItemClasses';
 
 export const overridesResolver = (props, styles) => {
-  const { styleProps } = props;
+  const { ownerState } = props;
 
   return [
     styles.root,
-    styleProps.dense && styles.dense,
-    styleProps.divider && styles.divider,
-    !styleProps.disableGutters && styles.gutters,
+    ownerState.dense && styles.dense,
+    ownerState.divider && styles.divider,
+    !ownerState.disableGutters && styles.gutters,
   ];
 };
 
-const useUtilityClasses = (styleProps) => {
-  const { disabled, dense, divider, disableGutters, selected, classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { disabled, dense, divider, disableGutters, selected, classes } = ownerState;
   const slots = {
     root: [
       'root',
@@ -51,7 +51,7 @@ const MenuItemRoot = styled(ButtonBase, {
   name: 'MuiMenuItem',
   slot: 'Root',
   overridesResolver,
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   ...theme.typography.body1,
   display: 'flex',
   justifyContent: 'flex-start',
@@ -63,11 +63,11 @@ const MenuItemRoot = styled(ButtonBase, {
   paddingBottom: 6,
   boxSizing: 'border-box',
   whiteSpace: 'nowrap',
-  ...(!styleProps.disableGutters && {
+  ...(!ownerState.disableGutters && {
     paddingLeft: 16,
     paddingRight: 16,
   }),
-  ...(styleProps.divider && {
+  ...(ownerState.divider && {
     borderBottom: `1px solid ${theme.palette.divider}`,
     backgroundClip: 'padding-box',
   }),
@@ -121,12 +121,12 @@ const MenuItemRoot = styled(ButtonBase, {
   [`& .${listItemIconClasses.root}`]: {
     minWidth: 36,
   },
-  ...(!styleProps.dense && {
+  ...(!ownerState.dense && {
     [theme.breakpoints.up('sm')]: {
       minHeight: 'auto',
     },
   }),
-  ...(styleProps.dense && {
+  ...(ownerState.dense && {
     minHeight: 36,
     ...theme.typography.body2,
     [`& .${listItemIconClasses.root} svg`]: {
@@ -168,7 +168,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     }
   }, [autoFocus]);
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     dense: childContext.dense,
     divider,
@@ -193,7 +193,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
         component={component}
         focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
         {...other}
-        styleProps={styleProps}
+        ownerState={ownerState}
         classes={classes}
       />
     </ListContext.Provider>

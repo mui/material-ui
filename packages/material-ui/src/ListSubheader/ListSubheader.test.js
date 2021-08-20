@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformanceV5, createClientRender } from 'test/utils';
+import { describeConformance, createClientRender } from 'test/utils';
 import ListSubheader, { listSubheaderClasses as classes } from '@material-ui/core/ListSubheader';
 
 describe('<ListSubheader />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<ListSubheader />, () => ({
+  describeConformance(<ListSubheader />, () => ({
     classes,
     inheritComponent: 'li',
     render,

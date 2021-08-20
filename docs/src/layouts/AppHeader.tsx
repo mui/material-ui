@@ -12,7 +12,7 @@ import ThemeModeToggle from 'docs/src/components/header/ThemeModeToggle';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { useChangeTheme } from 'docs/src/modules/ThemeContext';
 
-const Header = styled('div', {
+const Header = styled('header', {
   shouldForwardProp: (prop) => prop !== 'trigger',
 })<{ trigger: boolean }>(({ theme, trigger }) => ({
   position: 'sticky',
@@ -35,9 +35,9 @@ export default function AppHeader() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const preferredMode = prefersDarkMode ? 'dark' : 'light';
 
-  const handleChangeThemeMode = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeThemeMode = (checked: boolean) => {
     let paletteMode = 'system';
-    paletteMode = event.target.checked ? 'dark' : 'light';
+    paletteMode = checked ? 'dark' : 'light';
     if (paletteMode === null) {
       return;
     }
@@ -64,7 +64,7 @@ export default function AppHeader() {
           <HeaderNavBar />
         </Box>
         <Box sx={{ ml: 'auto' }} />
-        <Box sx={{ display: { md: 'none' } }}>
+        <Box sx={{ display: { md: 'none' }, mr: 1 }}>
           <HeaderNavDropdown />
         </Box>
         <NoSsr>

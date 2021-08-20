@@ -16,4 +16,6 @@ yarn add @material-ui/unstyled@next
 
 ## Documentation
 
-[The documentation](https://material-ui.com/)
+<!-- #default-branch-switch -->
+
+[The documentation](https://next.material-ui.com/customization/unstyled-components/)

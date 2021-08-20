@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import * as React from 'react';
 import { styled } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
@@ -16,10 +17,10 @@ const faqData = [
     summary: 'Why are you calling it "early access"?',
     detail: (
       <React.Fragment>
-        We think you&apos;ll love the features we&apos;ve built so far, but we&apos;re planning to
-        release more. We opened it up as soon as we had something useful so that you can start
-        getting value from it right away, and we&apos;ll be adding new features and components based
-        on our own ideas, and on suggestions from early access customers.
+        We think you'll love the features we've built so far, but we're planning to release more. We
+        opened it up as soon as we had something useful so that you can start getting value from it
+        right away, and we'll be adding new features and components based on our own ideas, and on
+        suggestions from early access customers.
       </React.Fragment>
     ),
   },
@@ -28,25 +29,25 @@ const faqData = [
     detail: (
       <React.Fragment>
         The number of licenses purchased must correspond to the number of concurrent developers
-        contributing changes to the front-end code of a project that uses Material-UI X. However,
-        the number of developer licenses required is capped at 10 developers for the <b>Pro plan</b>{' '}
-        and 10 developers/project for the <b>Premium plan</b>, developers above this cap don&apos;t
-        need to be licensed.
+        contributing changes to the front-end code of a project that uses MUI X. However, the number
+        of developer licenses required is capped at 10 developers for the <b>Pro plan</b> and 10
+        developers/project for the <b>Premium plan</b>, developers above this cap don't need to be
+        licensed.
         <br />
         <br />
-        <b>Example 1.</b> Company ‘A’ is developing an application named ‘AppA’. The app needs to
+        <b>Example 1.</b> Company 'A' is developing an application named 'AppA'. The app needs to
         render 10K rows of data in a table and allow users to group, filter, and sort. The dev team
-        adds Material-UI X to the project to satisfy that requirement. 5 front-end and 10 back-end
-        developers are working on ‘AppA’. Only 1 developer is tasked with configuring and modifying
+        adds MUI X to the project to satisfy that requirement. 5 front-end and 10 back-end
+        developers are working on 'AppA'. Only 1 developer is tasked with configuring and modifying
         the data grid. The front-end developers and only are contributing code to the front-end.
-        Company ‘A’ purchases 5 licenses.
+        Company 'A' purchases 5 licenses.
         <br />
         <br />
-        <b>Example 2.</b> A UI development team at Company ‘A’ creates its own UI library for
-        internal development and includes Material-UI-X as a component. The team working on ‘AppA’
-        uses the new library and so does the team working on ‘AppB’. ‘AppA’ has 5 front-end
-        developers and ‘AppB’ has 3. There are 2 front-end developers on the UI development team.
-        Company ‘B’ purchases 10 licenses.
+        <b>Example 2.</b> A UI development team at Company 'A' creates its own UI library for
+        internal development and includes MUI X as a component. The team working on 'AppA' uses the
+        new library and so does the team working on 'AppB'. 'AppA' has 5 front-end developers and
+        'AppB' has 3. There are 2 front-end developers on the UI development team. Company 'B'
+        purchases 10 licenses.
       </React.Fragment>
     ),
   },
@@ -54,7 +55,7 @@ const faqData = [
     summary: 'How to remove the "Unlicensed product" watermark?',
     detail: (
       <React.Fragment>
-        After you purchase a license, you&apos;ll receive a license key by email Once you have the
+        After you purchase a license, you'll receive a license key by email Once you have the
         license key, you need to follow the{' '}
         <Link href="/components/data-grid/getting-started/#license-key-installation">
           instructions
@@ -100,18 +101,17 @@ const faqData = [
           <li>Hosted applications</li>
           <li>Commercial solutions deployed for end-users</li>
         </ul>
-        Based on the &quot;Deployment&quot; section of the EULA, you can sublicense the software if
-        it&apos;s made part of a larger work. The new licenses must be in writing and substantially
-        the same as these EULA.
+        Based on the 'Deployment' section of the EULA, you can sublicense the software if it's made
+        part of a larger work. The new licenses must be in writing and substantially the same as
+        these EULA.
         <br />
         <br />
-        <b>Example 1.</b> Agency &apos;A&apos; is building two applications for companies
-        &apos;B&apos; and &apos;C&apos;. Agency &apos;A&apos; purchases four licenses for four
-        developers. They build the applications and sublicense the software to companies
-        &apos;B&apos; and &apos;C&apos; without any extra fee. Company &apos;B&apos; can deploy the
-        application built by the agency without modifying the sources. Company &apos;C&apos; decides
-        to continue working on the application. They purchase one license per developer working on
-        the front end of the application.
+        <b>Example 1.</b> Agency 'A' is building two applications for companies 'B' and 'C'. Agency
+        'A' purchases four licenses for four developers. They build the applications and sublicense
+        the software to companies 'B' and 'C' without any extra fee. Company 'B' can deploy the
+        application built by the agency without modifying the sources. Company 'C' decides to
+        continue working on the application. They purchase one license per developer working on the
+        front end of the application.
         <br />
         <br />
         There are only two limitations that require additional discussion with our sales team:
@@ -201,7 +201,7 @@ export default function FAQ() {
         <AccordionSummary
           expandIcon={<KeyboardArrowDownRounded sx={{ fontSize: 20, color: 'primary.main' }} />}
         >
-          <Typography variant="body2" fontWeight="bold">
+          <Typography variant="body2" fontWeight="bold" component="h3">
             {faq.summary}
           </Typography>
         </AccordionSummary>
@@ -248,7 +248,7 @@ export default function FAQ() {
             }}
           >
             <Box sx={{ textAlign: 'left' }}>
-              <Typography variant="body2" color="text.primary" fontWeight="bold">
+              <Typography variant="body2" color="text.primary" fontWeight="bold" component="h3">
                 Got any questions unanswered or need more help?
               </Typography>
             </Box>

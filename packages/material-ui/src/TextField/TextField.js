@@ -20,8 +20,8 @@ const variantComponent = {
   outlined: OutlinedInput,
 };
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -106,7 +106,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     autoFocus,
     color,
@@ -119,7 +119,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   if (process.env.NODE_ENV !== 'production') {
     if (select && !children) {
@@ -192,7 +192,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       required={required}
       color={color}
       variant={variant}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       {label && (

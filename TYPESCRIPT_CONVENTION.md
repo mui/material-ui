@@ -99,9 +99,9 @@ export function getFooUtilityClass(slot: string) {
   return generateUtilityClass('MuiFoo', slot);
 }
 
-const useUtilityClasses = (styleProps: FooProps & { extraProp: boolean }) => {
+const useUtilityClasses = (ownerState: FooProps & { extraProp: boolean }) => {
   // extraProp might be the key/value from react context that this component access
-  const { foo, disabled, classes } = styleProps;
+  const { foo, disabled, classes } = ownerState;
 
   const slots = {
     root: ['root', foo && 'foo', disabled && 'disabled'],
@@ -160,12 +160,12 @@ const BarRoot = styled(Typography, { skipSx: true })({
 ```ts
 const BarRoot = styled(Typography, { skipSx: true })<{
   component?: React.ElementType;
-  styleProps: BarProps;
-}>(({ theme, styleProps }) => ({
+  ownerState: BarProps;
+}>(({ theme, ownerState }) => ({
   // styling
 }));
-// passing `component` to BarRoot is safe and we don't forget to pass styleProps
-// <BarRoot component="span" styleProps={styleProps} />
+// passing `component` to BarRoot is safe and we don't forget to pass ownerState
+// <BarRoot component="span" ownerState={ownerState} />
 ```
 
 </details>
@@ -175,7 +175,7 @@ const BarRoot = styled(Typography, { skipSx: true })<{
 - prefer `function Component() {}` over `React.FC`
 - naming the render function in `React.forwardRef` (for devtools)
 - `useThemeProps` is needed only for public component
-- pass `styleProps` to StyledComponent for styling
+- pass `ownerState` to StyledComponent for styling
 
 <details>
   <summary>public component</summary>
@@ -191,15 +191,15 @@ const Foo = React.forwardRef<HTMLSpanElement, FooProps>(function Foo(inProps, re
 
   // ...implementation
 
-  const styleProps = { ...props, ...otherValue }
+  const ownerState = { ...props, ...otherValue }
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <FooRoot
       ref={ref}
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       {children}

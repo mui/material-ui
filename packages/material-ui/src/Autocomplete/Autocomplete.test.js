@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { describeConformanceV5, act, createClientRender, fireEvent, screen } from 'test/utils';
+import { describeConformance, act, createClientRender, fireEvent, screen } from 'test/utils';
 import { spy } from 'sinon';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -29,7 +29,7 @@ function checkHighlightIs(listbox, expected) {
 describe('<Autocomplete />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(
+  describeConformance(
     <Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} />,
     () => ({
       classes,

@@ -221,6 +221,15 @@ function AppFrame(props) {
 
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
 
+  const languageButtonProps = {
+    color: 'inherit',
+    onClick: handleLanguageIconClick,
+    'aria-owns': languageMenu ? 'language-menu' : undefined,
+    'aria-haspopup': 'true',
+    'data-ga-event-category': 'header',
+    'data-ga-event-action': 'language',
+  };
+
   return (
     <RootDiv>
       <NextNProgressBar />
@@ -244,28 +253,23 @@ function AppFrame(props) {
           <GrowingDiv />
           <Stack direction="row" gap={2.5}>
             <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
-              <Button
-                color="inherit"
-                aria-owns={languageMenu ? 'language-menu' : undefined}
-                aria-haspopup="true"
-                onClick={handleLanguageIconClick}
-                data-ga-event-category="header"
-                data-ga-event-action="language"
-              >
-                <Box
-                  component={LanguageIcon}
-                  fontSize="medium"
-                  sx={{
-                    display: { xs: 'block', md: 'none' },
-                    color: (theme) =>
-                      theme.palette.mode === 'dark' ? '#FFF' : theme.palette.primary[500],
-                  }}
-                />
+              <Button {...languageButtonProps} sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <LanguageSpan sx={{ display: { xs: 'none', md: 'block' } }}>
                   {LANGUAGES_LABEL.filter((language) => language.code === userLanguage)[0].text}
                 </LanguageSpan>
                 <ArrowDropDownRoundedIcon fontSize="small" color="primary" />
               </Button>
+            </Tooltip>
+            <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
+              <IconButton
+                {...languageButtonProps}
+                sx={{
+                  display: { xs: 'flex', md: 'none' },
+                  px: '10px',
+                }}
+              >
+                <LanguageIcon fontSize="small" />
+              </IconButton>
             </Tooltip>
             <NoSsr defer>
               <Menu

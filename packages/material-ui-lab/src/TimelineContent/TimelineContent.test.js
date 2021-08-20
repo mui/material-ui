@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import Typography from '@material-ui/core/Typography';
 import Timeline from '@material-ui/lab/Timeline';
 import TimelineItem from '@material-ui/lab/TimelineItem';
@@ -11,7 +11,7 @@ import TimelineContent, {
 describe('<TimelineContent />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<TimelineContent />, () => ({
+  describeConformance(<TimelineContent />, () => ({
     classes,
     inheritComponent: Typography,
     render,

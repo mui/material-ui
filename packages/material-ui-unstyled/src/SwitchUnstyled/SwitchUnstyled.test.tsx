@@ -32,14 +32,14 @@ describe('<SwitchUnstyled />', () => {
   }));
 
   describe('componentState', () => {
-    it('passes the styleProps prop to all the slots', () => {
+    it('passes the ownerState prop to all the slots', () => {
       interface CustomSlotProps {
-        styleProps: SwitchState;
+        ownerState: SwitchState;
         children?: React.ReactNode;
       }
 
       const CustomSlot = React.forwardRef(
-        ({ styleProps: sp, children }: CustomSlotProps, ref: React.Ref<any>) => {
+        ({ ownerState: sp, children }: CustomSlotProps, ref: React.Ref<any>) => {
           return (
             <div
               ref={ref}

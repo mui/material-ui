@@ -10,8 +10,8 @@ import useFormControl from '../FormControl/useFormControl';
 import ButtonBase from '../ButtonBase';
 import { getSwitchBaseUtilityClass } from './switchBaseClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, checked, disabled, edge } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, checked, disabled, edge } = ownerState;
 
   const slots = {
     root: ['root', checked && 'checked', disabled && 'disabled', edge && `edge${capitalize(edge)}`],
@@ -21,14 +21,14 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getSwitchBaseUtilityClass, classes);
 };
 
-const SwitchBaseRoot = styled(ButtonBase, { skipSx: true })(({ styleProps }) => ({
+const SwitchBaseRoot = styled(ButtonBase, { skipSx: true })(({ ownerState }) => ({
   padding: 9,
   borderRadius: '50%',
-  ...(styleProps.edge === 'start' && {
-    marginLeft: styleProps.size === 'small' ? -3 : -12,
+  ...(ownerState.edge === 'start' && {
+    marginLeft: ownerState.size === 'small' ? -3 : -12,
   }),
-  ...(styleProps.edge === 'end' && {
-    marginRight: styleProps.size === 'small' ? -3 : -12,
+  ...(ownerState.edge === 'end' && {
+    marginRight: ownerState.size === 'small' ? -3 : -12,
   }),
 }));
 
@@ -128,7 +128,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
 
   const hasLabelFor = type === 'checkbox' || type === 'radio';
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     checked,
     disabled,
@@ -136,7 +136,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
     edge,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <SwitchBaseRoot
@@ -149,7 +149,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
       role={undefined}
       onFocus={handleFocus}
       onBlur={handleBlur}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       {...other}
     >
@@ -165,7 +165,7 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
         readOnly={readOnly}
         ref={inputRef}
         required={required}
-        styleProps={styleProps}
+        ownerState={ownerState}
         tabIndex={tabIndex}
         type={type}
         value={value}

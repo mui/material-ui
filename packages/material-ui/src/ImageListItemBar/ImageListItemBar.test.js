@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import * as React from 'react';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import ImageListItemBar, {
   imageListItemBarClasses as classes,
 } from '@material-ui/core/ImageListItemBar';
@@ -8,7 +8,7 @@ import ImageListItemBar, {
 describe('<ImageListItemBar />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<ImageListItemBar title="conform?" />, () => ({
+  describeConformance(<ImageListItemBar title="conform?" />, () => ({
     classes,
     inheritComponent: 'div',
     render,

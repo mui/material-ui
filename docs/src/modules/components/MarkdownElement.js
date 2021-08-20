@@ -128,7 +128,6 @@ const Root = styled('div')(({ theme }) => ({
     borderCollapse: 'collapse',
     marginBottom: '16px',
     borderSpacing: 0,
-    overflow: 'hidden',
     '& .prop-name': {
       fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
     },

@@ -7,8 +7,8 @@ import useThemeProps from '../styles/useThemeProps';
 import { getListItemIconUtilityClass } from './listItemIconClasses';
 import ListContext from '../List/ListContext';
 
-const useUtilityClasses = (styleProps) => {
-  const { alignItems, classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { alignItems, classes } = ownerState;
 
   const slots = {
     root: ['root', alignItems === 'flex-start' && 'alignItemsFlexStart'],
@@ -21,16 +21,16 @@ const ListItemIconRoot = styled('div', {
   name: 'MuiListItemIcon',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
-    return [styles.root, styleProps.alignItems === 'flex-start' && styles.alignItemsFlexStart];
+    return [styles.root, ownerState.alignItems === 'flex-start' && styles.alignItemsFlexStart];
   },
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   minWidth: 56,
   color: theme.palette.action.active,
   flexShrink: 0,
   display: 'inline-flex',
-  ...(styleProps.alignItems === 'flex-start' && {
+  ...(ownerState.alignItems === 'flex-start' && {
     marginTop: 8,
   }),
 }));
@@ -46,13 +46,13 @@ const ListItemIcon = React.forwardRef(function ListItemIcon(inProps, ref) {
 
   const { className, ...other } = props;
   const context = React.useContext(ListContext);
-  const styleProps = { ...props, alignItems: context.alignItems };
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = { ...props, alignItems: context.alignItems };
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <ListItemIconRoot
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       {...other}
     />

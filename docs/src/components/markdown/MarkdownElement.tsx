@@ -7,7 +7,8 @@ import {
 } from '@material-ui/core/styles';
 
 const Root = styled('div')(({ theme }) => ({
-  ...theme.typography.body2,
+  ...theme.typography.caption,
+  fontWeight: 500,
   color: theme.palette.text.primary,
   // wordBreak: 'break-word',
   // '& .anchor-link': {
@@ -19,7 +20,6 @@ const Root = styled('div')(({ theme }) => ({
     direction: 'ltr',
     overflow: 'auto',
     margin: 0,
-    lineHeight: '20px',
     WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
     maxWidth: 'calc(100vw - 32px)',
     [theme.breakpoints.up('md')]: {
@@ -44,8 +44,8 @@ const Root = styled('div')(({ theme }) => ({
   // },
   '& code[class*="language-"]': {
     // Avoid layout jump after hydration (style injected by prism)
-    ...theme.typography.body2,
-    lineHeight: '20px',
+    ...theme.typography.caption,
+    fontWeight: 500,
     fontFamily: theme.typography.fontFamilyCode,
     WebkitFontSmoothing: 'subpixel-antialiased',
   },

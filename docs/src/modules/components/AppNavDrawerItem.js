@@ -6,39 +6,36 @@ import ButtonBase from '@material-ui/core/ButtonBase';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import Link from 'docs/src/modules/components/Link';
 
-const Item = styled('div', {
-  shouldForwardProp:
-    // disable `as` prop
-    () => true,
-})(({ theme }) => {
-  return {
-    ...theme.typography.body2,
-    display: 'flex',
-    borderRadius: theme.shape.borderRadius,
-    outline: 0,
-    width: '100%',
-    paddingTop: 8,
-    paddingBottom: 8,
-    justifyContent: 'flex-start',
-    fontWeight: theme.typography.fontWeightMedium,
-    transition: theme.transitions.create(['color', 'background-color'], {
-      duration: theme.transitions.duration.shortest,
-    }),
-    '&:hover': {
-      color: theme.palette.text.primary,
-      backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
-    },
-    '&.Mui-focusVisible': {
-      backgroundColor: theme.palette.action.focus,
-    },
-    [theme.breakpoints.up('md')]: {
-      paddingTop: 6,
-      paddingBottom: 6,
-    },
-  };
-});
+const Item = styled(({ component: Component = 'div', ...props }) => <Component {...props} />, {
+  // disable `as` prop
+  shouldForwardProp: () => true,
+})(({ theme }) => ({
+  ...theme.typography.body2,
+  display: 'flex',
+  borderRadius: theme.shape.borderRadius,
+  outline: 0,
+  width: '100%',
+  paddingTop: 8,
+  paddingBottom: 8,
+  justifyContent: 'flex-start',
+  fontWeight: theme.typography.fontWeightMedium,
+  transition: theme.transitions.create(['color', 'background-color'], {
+    duration: theme.transitions.duration.shortest,
+  }),
+  '&:hover': {
+    color: theme.palette.text.primary,
+    backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+  },
+  '&.Mui-focusVisible': {
+    backgroundColor: theme.palette.action.focus,
+  },
+  [theme.breakpoints.up('md')]: {
+    paddingTop: 6,
+    paddingBottom: 6,
+  },
+}));
 
-const ItemLink = styled(Item.withComponent(Link), {
+const ItemLink = styled(Item, {
   shouldForwardProp: (prop) => prop !== 'depth',
 })(({ depth, theme }) => {
   return {
@@ -78,7 +75,7 @@ const ItemButtonIcon = styled(ArrowRightIcon, {
   };
 });
 
-const ItemButton = styled(Item.withComponent(ButtonBase), {
+const ItemButton = styled(Item, {
   shouldForwardProp: (prop) => prop !== 'depth',
 })(({ depth, theme }) => {
   return {
@@ -120,6 +117,7 @@ export default function AppNavDrawerItem(props) {
     return (
       <StyledLi {...other} depth={depth}>
         <ItemLink
+          component={Link}
           activeClassName="app-drawer-active"
           href={href}
           underline="none"
@@ -136,6 +134,7 @@ export default function AppNavDrawerItem(props) {
   return (
     <StyledLi {...other} depth={depth}>
       <ItemButton
+        component={ButtonBase}
         depth={depth}
         disableRipple
         className={topLevel && 'algolia-lvl0'}

@@ -5,10 +5,10 @@ import { refType } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import capitalize from '../utils/capitalize';
 import nativeSelectClasses, { getNativeSelectUtilityClasses } from './nativeSelectClasses';
-import styled from '../styles/styled';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, variant, disabled, open } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, variant, disabled, open } = ownerState;
 
   const slots = {
     select: ['select', variant, disabled && 'disabled'],
@@ -18,7 +18,7 @@ const useUtilityClasses = (styleProps) => {
   return composeClasses(slots, getNativeSelectUtilityClasses, classes);
 };
 
-export const nativeSelectSelectStyles = ({ styleProps, theme }) => ({
+export const nativeSelectSelectStyles = ({ ownerState, theme }) => ({
   MozAppearance: 'none', // Reset
   WebkitAppearance: 'none', // Reset
   // When interacting quickly, the text can end up selected.
@@ -50,12 +50,12 @@ export const nativeSelectSelectStyles = ({ styleProps, theme }) => ({
     paddingRight: 24,
     minWidth: 16, // So it doesn't collapse.
   },
-  ...(styleProps.variant === 'filled' && {
+  ...(ownerState.variant === 'filled' && {
     '&&&': {
       paddingRight: 32,
     },
   }),
-  ...(styleProps.variant === 'outlined' && {
+  ...(ownerState.variant === 'outlined' && {
     borderRadius: theme.shape.borderRadius,
     '&:focus': {
       borderRadius: theme.shape.borderRadius, // Reset the reset for Chrome style
@@ -69,14 +69,15 @@ export const nativeSelectSelectStyles = ({ styleProps, theme }) => ({
 const NativeSelectSelect = styled('select', {
   name: 'MuiNativeSelect',
   slot: 'Select',
+  shouldForwardProp: rootShouldForwardProp,
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
-    return [styles.select, styles[styleProps.variant]];
+    return [styles.select, styles[ownerState.variant]];
   },
 })(nativeSelectSelectStyles);
 
-export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
+export const nativeSelectIconStyles = ({ ownerState, theme }) => ({
   // We use a position absolute over a flexbox in order to forward the pointer events
   // to the input and to support wrapping tags..
   position: 'absolute',
@@ -87,13 +88,13 @@ export const nativeSelectIconStyles = ({ styleProps, theme }) => ({
   [`&.${nativeSelectClasses.disabled}`]: {
     color: theme.palette.action.disabled,
   },
-  ...(styleProps.open && {
+  ...(ownerState.open && {
     transform: 'rotate(180deg)',
   }),
-  ...(styleProps.variant === 'filled' && {
+  ...(ownerState.variant === 'filled' && {
     right: 7,
   }),
-  ...(styleProps.variant === 'outlined' && {
+  ...(ownerState.variant === 'outlined' && {
     right: 7,
   }),
 });
@@ -102,11 +103,11 @@ const NativeSelectIcon = styled('svg', {
   name: 'MuiNativeSelect',
   slot: 'Icon',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
     return [
       styles.icon,
-      styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`],
-      styleProps.open && styles.iconOpen,
+      ownerState.variant && styles[`icon${capitalize(ownerState.variant)}`],
+      ownerState.open && styles.iconOpen,
     ];
   },
 })(nativeSelectIconStyles);
@@ -117,24 +118,24 @@ const NativeSelectIcon = styled('svg', {
 const NativeSelectInput = React.forwardRef(function NativeSelectInput(props, ref) {
   const { className, disabled, IconComponent, inputRef, variant = 'standard', ...other } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     disabled,
     variant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
   return (
     <React.Fragment>
       <NativeSelectSelect
-        styleProps={styleProps}
+        ownerState={ownerState}
         className={clsx(classes.select, className)}
         disabled={disabled}
         ref={inputRef || ref}
         {...other}
       />
       {props.multiple ? null : (
-        <NativeSelectIcon as={IconComponent} styleProps={styleProps} className={classes.icon} />
+        <NativeSelectIcon as={IconComponent} ownerState={ownerState} className={classes.icon} />
       )}
     </React.Fragment>
   );
