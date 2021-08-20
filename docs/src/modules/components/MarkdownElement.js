@@ -133,7 +133,7 @@ const Root = styled('div')(({ theme }) => ({
     overflowX: 'auto',
     WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
     borderCollapse: 'collapse',
-    marginBottom: '16px',
+    marginBottom: '20px',
     borderSpacing: 0,
     '& .prop-name': {
       fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
@@ -156,7 +156,7 @@ const Root = styled('div')(({ theme }) => ({
   '& td': {
     ...theme.typography.body2,
     borderBottom: `1px solid ${theme.palette.divider}`,
-    padding: 16,
+    padding: 20,
     color: theme.palette.text.primary,
   },
   '& td code': {
@@ -168,7 +168,7 @@ const Root = styled('div')(({ theme }) => ({
     color: theme.palette.text.primary,
     whiteSpace: 'pre',
     borderBottom: `1px solid ${theme.palette.divider}`,
-    padding: 16,
+    padding: 20,
   },
   '& blockquote': {
     borderRadius: theme.shape.borderRadius,
