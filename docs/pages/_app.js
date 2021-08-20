@@ -318,7 +318,7 @@ function AppWrapper(props) {
   let fonts = [];
   if (router.pathname.match(/onepirate/)) {
     fonts = [
-      'https://fonts.googleapis.com/css2?family=Roboto+Condensed:700|Work+Sans:300,400&display=swap',
+      'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400&display=swap',
     ];
   }
 
