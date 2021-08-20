@@ -11,15 +11,15 @@ import Fade from '@material-ui/core/Fade';
 import ToggleButton from '@material-ui/core/ToggleButton';
 import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
 import { JavaScript as JavaScriptIcon, TypeScript as TypeScriptIcon } from '@material-ui/docs';
-import CodeIcon from '@material-ui/icons/Code';
+import CodeRoundedIcon from '@material-ui/icons/CodeRounded';
 import SvgIcon from '@material-ui/core/SvgIcon';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
+import ContentCopyRoundedIcon from '@material-ui/icons/ContentCopyRounded';
 import Snackbar from '@material-ui/core/Snackbar';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip';
-import RefreshIcon from '@material-ui/icons/Refresh';
+import RefreshRoundedIcon from '@material-ui/icons/RefreshRounded';
 import ResetFocusIcon from '@material-ui/icons/CenterFocusWeak';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
 import { getCookie } from 'docs/src/modules/utils/helpers';
@@ -49,7 +49,7 @@ const Root = styled('div')(({ theme }) => ({
     flip: false,
     top: 0,
     right: theme.spacing(1),
-    height: theme.spacing(6),
+    height: theme.spacing(8),
   },
   justifyContent: 'space-between',
   alignItems: 'center',
@@ -503,7 +503,7 @@ export default function DemoToolbar(props) {
               color={demoHovered ? 'primary' : 'default'}
               {...getControlProps(2)}
             >
-              <CodeIcon fontSize="small" color="primary" />
+              <CodeRoundedIcon sx={{fontSize: 17}} color="primary" />
             </IconButton>
           </DemoTooltip>
           {demoOptions.hideEditButton ? null : (
@@ -517,7 +517,7 @@ export default function DemoToolbar(props) {
                   onClick={handleCodeSandboxClick}
                   {...getControlProps(3)}
                 >
-                  <SvgIcon fontSize="small" viewBox="0 0 1024 1024" color="primary">
+                  <SvgIcon sx={{fontSize: 17}} viewBox="0 0 1024 1024" color="primary">
                     <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
                   </SvgIcon>
                 </IconButton>
@@ -531,7 +531,7 @@ export default function DemoToolbar(props) {
                   onClick={handleStackBlitzClick}
                   {...getControlProps(4)}
                 >
-                  <SvgIcon fontSize="small" viewBox="0 0 19 28" color="primary">
+                  <SvgIcon sx={{fontSize: 17}} viewBox="0 0 19 28" color="primary">
                     <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
                   </SvgIcon>
                 </IconButton>
@@ -547,7 +547,7 @@ export default function DemoToolbar(props) {
               onClick={handleCopyClick}
               {...getControlProps(5)}
             >
-              <FileCopyIcon fontSize="small" color="primary" />
+              <ContentCopyRoundedIcon sx={{fontSize: 17}} color="primary" />
             </IconButton>
           </DemoTooltip>
           <DemoTooltip title={t('resetFocus')} placement="bottom">
@@ -559,7 +559,7 @@ export default function DemoToolbar(props) {
               onClick={handleResetFocusClick}
               {...getControlProps(6)}
             >
-              <ResetFocusIcon fontSize="small" color="primary" />
+              <ResetFocusIcon sx={{fontSize: 17}} color="primary" />
             </IconButton>
           </DemoTooltip>
           <DemoTooltip title={t('resetDemo')} placement="bottom">
@@ -572,7 +572,7 @@ export default function DemoToolbar(props) {
               onClick={onResetDemoClick}
               {...getControlProps(7)}
             >
-              <RefreshIcon fontSize="small" color="primary" />
+              <RefreshRoundedIcon sx={{fontSize: 17}} color="primary" />
             </IconButton>
           </DemoTooltip>
           <IconButton
@@ -583,7 +583,7 @@ export default function DemoToolbar(props) {
             aria-haspopup="true"
             {...getControlProps(8)}
           >
-            <MoreVertIcon fontSize="small" color="primary" />
+            <MoreVertIcon sx={{fontSize: 17}} color="primary" />
           </IconButton>
           <Menu
             id="demo-menu-more"
