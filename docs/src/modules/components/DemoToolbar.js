@@ -461,7 +461,7 @@ export default function DemoToolbar(props) {
             onChange={handleCodeLanguageClick}
           >
             <ToggleButton
-              sx={{ padding: '4px 9px' }}
+              sx={{ padding: '5px 10px', borderRadius: 0.5, borderColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200]  }}
               value={CODE_VARIANTS.JS}
               aria-label={t('showJSSource')}
               data-ga-event-category="demo"
@@ -469,10 +469,10 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demoOptions.demo}
               {...getControlProps(0)}
             >
-              <JavaScriptIcon />
+              <JavaScriptIcon sx={{fontSize: 20}} />
             </ToggleButton>
             <ToggleButton
-              sx={{ padding: '4px 9px' }}
+              sx={{ padding: '5px 10px', borderRadius: 0.5, borderColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200]  }}
               value={CODE_VARIANTS.TS}
               disabled={!hasTSVariant}
               aria-label={t('showTSSource')}
@@ -481,7 +481,7 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demoOptions.demo}
               {...getControlProps(1)}
             >
-              <TypeScriptIcon />
+              <TypeScriptIcon sx={{fontSize: 20}} />
             </ToggleButton>
           </ToggleButtonGroup>
         </Fade>
