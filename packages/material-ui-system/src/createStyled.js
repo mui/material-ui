@@ -3,6 +3,7 @@ import { getDisplayName } from '@material-ui/utils';
 import createTheme from './createTheme';
 import styleFunctionSx from './styleFunctionSx';
 import propsToClassKey from './propsToClassKey';
+import isArray from './isArray';
 
 function isEmpty(obj) {
   return Object.keys(obj).length === 0;
@@ -157,7 +158,7 @@ export default function createStyled(input = {}) {
 
       const numOfCustomFnsApplied = expressionsWithDefaultTheme.length - expressions.length;
 
-      if (Array.isArray(styleArg) && numOfCustomFnsApplied > 0) {
+      if (isArray(styleArg) && numOfCustomFnsApplied > 0) {
         const placeholders = new Array(numOfCustomFnsApplied).fill('');
         // If the type is array, than we need to add placeholders in the template for the overrides, variants and the sx styles.
         transformedStyleArg = [...styleArg, ...placeholders];

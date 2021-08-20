@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { deepmerge } from '@material-ui/utils';
 import merge from './merge';
+import isArray from './isArray';
 
 // The breakpoint **start** at this value.
 // For instance with the first breakpoint xs: [xs, sm[.
@@ -22,7 +23,7 @@ const defaultBreakpoints = {
 export function handleBreakpoints(props, propValue, styleFromPropValue) {
   const theme = props.theme || {};
 
-  if (Array.isArray(propValue)) {
+  if (isArray(propValue)) {
     const themeBreakpoints = theme.breakpoints || defaultBreakpoints;
     return propValue.reduce((acc, item, index) => {
       acc[themeBreakpoints.up(themeBreakpoints.keys[index])] = styleFromPropValue(propValue[index]);

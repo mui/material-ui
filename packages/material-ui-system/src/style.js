@@ -1,6 +1,7 @@
 import { unstable_capitalize as capitalize } from '@material-ui/utils';
 import responsivePropType from './responsivePropType';
 import { handleBreakpoints } from './breakpoints';
+import isArray from './isArray';
 
 export function getPath(obj, path) {
   if (!path || typeof path !== 'string') {
@@ -15,7 +16,7 @@ function getValue(themeMapping, transform, propValueFinal, userValue = propValue
 
   if (typeof themeMapping === 'function') {
     value = themeMapping(propValueFinal);
-  } else if (Array.isArray(themeMapping)) {
+  } else if (isArray(themeMapping)) {
     value = themeMapping[propValueFinal] || userValue;
   } else {
     value = getPath(themeMapping, propValueFinal) || userValue;

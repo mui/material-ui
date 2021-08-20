@@ -3,6 +3,7 @@ import { handleBreakpoints } from './breakpoints';
 import { getPath } from './style';
 import merge from './merge';
 import memoize from './memoize';
+import isArray from './isArray';
 
 const properties = {
   m: 'margin',
@@ -41,7 +42,7 @@ const getCssProperties = memoize((prop) => {
   const [a, b] = prop.split('');
   const property = properties[a];
   const direction = directions[b] || '';
-  return Array.isArray(direction) ? direction.map((dir) => property + dir) : [property + direction];
+  return isArray(direction) ? direction.map((dir) => property + dir) : [property + direction];
 });
 
 const marginKeys = [
@@ -100,7 +101,7 @@ export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
     };
   }
 
-  if (Array.isArray(themeSpacing)) {
+  if (isArray(themeSpacing)) {
     return (abs) => {
       if (typeof abs === 'string') {
         return abs;
