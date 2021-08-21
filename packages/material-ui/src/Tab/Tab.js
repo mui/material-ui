@@ -74,7 +74,7 @@ const TabRoot = styled(ButtonBase, {
     },
   }),
   ...(ownerState.textColor === 'primary' && {
-    color: theme.palette.text.secondary,
+    color: theme.palette.text.primary,
     [`&.${tabClasses.selected}`]: {
       color: theme.palette.primary.main,
     },

@@ -123,6 +123,20 @@ describe('<Tab />', () => {
   });
 
   describe('prop: textColor', () => {
+    it('should support primary text color', () => {
+      const { getByRole } = render(<Tab textColor="primary" />);
+
+      const tab = getByRole('tab');
+      expect(tab).to.have.class(classes.textColorPrimary);
+      expect(window.getComputedStyle(tab)).to.have.property('color', 'rgba(0, 0, 0, 0.87)');
+    });
+    it('should support secondary text color', () => {
+      const { getByRole } = render(<Tab textColor="secondary" />);
+
+      const tab = getByRole('tab');
+      expect(tab).to.have.class(classes.textColorSecondary);
+      expect(window.getComputedStyle(tab)).to.have.property('color', 'rgba(0, 0, 0, 0.6)');
+    });
     it('should support the inherit value', () => {
       const { getByRole } = render(<Tab selected textColor="inherit" />);
 
