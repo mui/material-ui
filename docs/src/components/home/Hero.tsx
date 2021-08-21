@@ -109,7 +109,7 @@ export default function Hero() {
           sx={{ height: '100%', maxWidth: { xs: 500, md: 'initial' }, mx: 'auto' }}
         >
           <Grid item md={7} lg={6} sx={{ alignSelf: 'center' }}>
-            <Box sx={{ textAlign: { xs: 'center', md: 'left' }, mb: { xs: 8 } }}>
+            <Box sx={{ textAlign: { xs: 'center', md: 'left' }, mb: { xs: 4, sm: 8 } }}>
               <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
                 The <GradientText>ultimate</GradientText> solution for your UI
               </Typography>
