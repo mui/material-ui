@@ -18,6 +18,7 @@ function MobileWrapper(props: InternalMobileWrapperProps) {
     children,
     clearable,
     clearText,
+    componentsProps,
     DateInputProps,
     DialogProps,
     okText,
@@ -39,6 +40,7 @@ function MobileWrapper(props: InternalMobileWrapperProps) {
         cancelText={cancelText}
         clearable={clearable}
         clearText={clearText}
+        componentsProps={componentsProps}
         DialogProps={DialogProps}
         okText={okText}
         onAccept={onAccept}
