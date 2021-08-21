@@ -200,7 +200,7 @@ const StyledChip = styled(Chip)(({ theme }) => ({
   },
 }));
 
-function buildTheme(theme: Theme): ThemeOptions {
+export function buildTheme(theme: Theme): ThemeOptions {
   return {
     palette: {
       ...theme.palette,
