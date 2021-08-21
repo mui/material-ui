@@ -7,8 +7,8 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import { getTableHeadUtilityClass } from './tableHeadClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -35,12 +35,12 @@ const TableHead = React.forwardRef(function TableHead(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiTableHead' });
   const { className, component = defaultComponent, ...other } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     component,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <Tablelvl2Context.Provider value={tablelvl2}>
@@ -49,7 +49,7 @@ const TableHead = React.forwardRef(function TableHead(inProps, ref) {
         className={clsx(classes.root, className)}
         ref={ref}
         role={component === defaultComponent ? null : 'rowgroup'}
-        styleProps={styleProps}
+        ownerState={ownerState}
         {...other}
       />
     </Tablelvl2Context.Provider>

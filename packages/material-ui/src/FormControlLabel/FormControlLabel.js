@@ -12,8 +12,8 @@ import formControlLabelClasses, {
   getFormControlLabelUtilityClasses,
 } from './formControlLabelClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, disabled, labelPlacement } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, disabled, labelPlacement } = ownerState;
   const slots = {
     root: ['root', disabled && 'disabled', `labelPlacement${capitalize(labelPlacement)}`],
     label: ['label', disabled && 'disabled'],
@@ -26,15 +26,15 @@ export const FormControlLabelRoot = styled('label', {
   name: 'MuiFormControlLabel',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       { [`& .${formControlLabelClasses.label}`]: styles.label },
       styles.root,
-      styles[`labelPlacement${capitalize(styleProps.labelPlacement)}`],
+      styles[`labelPlacement${capitalize(ownerState.labelPlacement)}`],
     ];
   },
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   display: 'inline-flex',
   alignItems: 'center',
   cursor: 'pointer',
@@ -46,16 +46,16 @@ export const FormControlLabelRoot = styled('label', {
   [`&.${formControlLabelClasses.disabled}`]: {
     cursor: 'default',
   },
-  ...(styleProps.labelPlacement === 'start' && {
+  ...(ownerState.labelPlacement === 'start' && {
     flexDirection: 'row-reverse',
     marginLeft: 16, // used for row presentation of radio/checkbox
     marginRight: -11,
   }),
-  ...(styleProps.labelPlacement === 'top' && {
+  ...(ownerState.labelPlacement === 'top' && {
     flexDirection: 'column-reverse',
     marginLeft: 16,
   }),
-  ...(styleProps.labelPlacement === 'bottom' && {
+  ...(ownerState.labelPlacement === 'bottom' && {
     flexDirection: 'column',
     marginLeft: 16,
   }),
@@ -108,19 +108,19 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     }
   });
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     disabled,
     label,
     labelPlacement,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <FormControlLabelRoot
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       {...other}
     >

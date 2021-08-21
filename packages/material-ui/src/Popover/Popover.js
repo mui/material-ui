@@ -58,8 +58,8 @@ function resolveAnchorEl(anchorEl) {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
 }
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -123,7 +123,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
   const paperRef = React.useRef();
   const handlePaperRef = useForkRef(paperRef, PaperProps.ref);
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     anchorOrigin,
     anchorReference,
@@ -136,7 +136,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     TransitionProps,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   // Returns the top/left offset of the position
   // to attach to on the anchor element (or body if none is provided)
@@ -359,7 +359,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
       container={container}
       open={open}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       <TransitionComponent

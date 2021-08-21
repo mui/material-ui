@@ -7,8 +7,8 @@ import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';
 import { getListSubheaderUtilityClass } from './listSubheaderClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, color, disableGutters, inset, disableSticky } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, color, disableGutters, inset, disableSticky } = ownerState;
 
   const slots = {
     root: [
@@ -27,17 +27,17 @@ const ListSubheaderRoot = styled('li', {
   name: 'MuiListSubheader',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.root,
-      styleProps.color !== 'default' && styles[`color${capitalize(styleProps.color)}`],
-      !styleProps.disableGutters && styles.gutters,
-      styleProps.inset && styles.inset,
-      !styleProps.disableSticky && styles.sticky,
+      ownerState.color !== 'default' && styles[`color${capitalize(ownerState.color)}`],
+      !ownerState.disableGutters && styles.gutters,
+      ownerState.inset && styles.inset,
+      !ownerState.disableSticky && styles.sticky,
     ];
   },
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   boxSizing: 'border-box',
   lineHeight: '48px',
   listStyle: 'none',
@@ -45,20 +45,20 @@ const ListSubheaderRoot = styled('li', {
   fontFamily: theme.typography.fontFamily,
   fontWeight: theme.typography.fontWeightMedium,
   fontSize: theme.typography.pxToRem(14),
-  ...(styleProps.color === 'primary' && {
+  ...(ownerState.color === 'primary' && {
     color: theme.palette.primary.main,
   }),
-  ...(styleProps.color === 'inherit' && {
+  ...(ownerState.color === 'inherit' && {
     color: 'inherit',
   }),
-  ...(!styleProps.disableGutters && {
+  ...(!ownerState.disableGutters && {
     paddingLeft: 16,
     paddingRight: 16,
   }),
-  ...(styleProps.inset && {
+  ...(ownerState.inset && {
     paddingLeft: 72,
   }),
-  ...(!styleProps.disableSticky && {
+  ...(!ownerState.disableSticky && {
     position: 'sticky',
     top: 0,
     zIndex: 1,
@@ -78,7 +78,7 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     color,
     component,
@@ -87,14 +87,14 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
     inset,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <ListSubheaderRoot
       as={component}
       className={clsx(classes.root, className)}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     />
   );

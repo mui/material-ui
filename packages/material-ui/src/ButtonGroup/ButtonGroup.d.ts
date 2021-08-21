@@ -7,6 +7,7 @@ import { ButtonGroupClasses } from './buttonGroupClasses';
 
 export interface ButtonGroupPropsColorOverrides {}
 export interface ButtonGroupPropsVariantOverrides {}
+export interface ButtonGroupPropsSizeOverrides {}
 
 export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -61,7 +62,7 @@ export interface ButtonGroupTypeMap<P = {}, D extends React.ElementType = 'div'>
      * `small` is equivalent to the dense button styling.
      * @default 'medium'
      */
-    size?: 'small' | 'medium' | 'large';
+    size?: OverridableStringUnion<'small' | 'medium' | 'large', ButtonGroupPropsSizeOverrides>;
     /**
      * The variant to use.
      * @default 'outlined'

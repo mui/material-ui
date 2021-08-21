@@ -156,8 +156,8 @@ function doesSupportTouchActionNone() {
   return cachedSupportsTouchActionNone;
 }
 
-const useUtilityClasses = (styleProps) => {
-  const { disabled, dragging, marked, orientation, track, classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { disabled, dragging, marked, orientation, track, classes } = ownerState;
 
   const slots = {
     root: [
@@ -617,7 +617,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
   // all props with defaults
   // consider extracting to hook an reusing the lint rule for the varints
-  const styleProps = {
+  const ownerState = {
     ...props,
     classes: classesProp,
     disabled,
@@ -634,7 +634,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     valueLabelFormat,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <Root
@@ -643,7 +643,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       {...rootProps}
       {...(!isHostComponent(Root) && {
         as: component,
-        styleProps: { ...styleProps, ...rootProps.styleProps },
+        ownerState: { ...ownerState, ...rootProps.ownerState },
       })}
       {...other}
       className={clsx(classes.root, rootProps.className, className)}
@@ -651,14 +651,14 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
       <Rail
         {...railProps}
         {...(!isHostComponent(Rail) && {
-          styleProps: { ...styleProps, ...railProps.styleProps },
+          ownerState: { ...ownerState, ...railProps.ownerState },
         })}
         className={clsx(classes.rail, railProps.className)}
       />
       <Track
         {...trackProps}
         {...(!isHostComponent(Track) && {
-          styleProps: { ...styleProps, ...trackProps.styleProps },
+          ownerState: { ...ownerState, ...trackProps.ownerState },
         })}
         className={clsx(classes.track, trackProps.className)}
         style={{ ...trackStyle, ...trackProps.style }}
@@ -688,8 +688,9 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
               data-index={index}
               {...markProps}
               {...(!isHostComponent(Mark) && {
-                styleProps: { ...styleProps, ...markProps.styleProps, markActive },
+                ownerState: { ...ownerState, ...markProps.ownerState },
               })}
+              markActive={markActive}
               style={{ ...style, ...markProps.style }}
               className={clsx(classes.mark, markProps.className, {
                 [classes.markActive]: markActive,
@@ -701,12 +702,12 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 data-index={index}
                 {...markLabelProps}
                 {...(!isHostComponent(MarkLabel) && {
-                  styleProps: {
-                    ...styleProps,
-                    ...markLabelProps.styleProps,
-                    markLabelActive: markActive,
+                  ownerState: {
+                    ...ownerState,
+                    ...markLabelProps.ownerState,
                   },
                 })}
+                markLabelActive={markActive}
                 style={{ ...style, ...markLabelProps.style }}
                 className={clsx(classes.markLabel, markLabelProps.className, {
                   [classes.markLabelActive]: markActive,
@@ -740,7 +741,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
               {...valueLabelProps}
               className={clsx(classes.valueLabel, valueLabelProps.className)}
               {...(!isHostComponent(ValueLabel) && {
-                styleProps: { ...styleProps, ...valueLabelProps.styleProps },
+                ownerState: { ...ownerState, ...valueLabelProps.ownerState },
               })}
             >
               <Thumb
@@ -753,7 +754,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                   [classes.focusVisible]: focusVisible === index,
                 })}
                 {...(!isHostComponent(Thumb) && {
-                  styleProps: { ...styleProps, ...thumbProps.styleProps },
+                  ownerState: { ...ownerState, ...thumbProps.ownerState },
                 })}
                 style={{
                   ...style,
