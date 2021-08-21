@@ -53,7 +53,12 @@ const ProductSuite = () => {
               setProductIndex={setProductIndex}
             />
           </Grid>
-          <Grid item xs={12} md={6} sx={{ minHeight: { xs: 777, sm: 757, md: 'unset' } }}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sx={productIndex === 0 ? { minHeight: { xs: 777, sm: 757, md: 'unset' } } : {}}
+          >
             {inView && (
               <React.Fragment>
                 <PrefetchStoreTemplateImages />
