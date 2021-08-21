@@ -4,7 +4,8 @@ import { useInView } from 'react-intersection-observer';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 
-const StartToday = dynamic(() => import('./StartToday'));
+const Placeholder = () => <Box sx={{ height: { xs: 615, sm: 303, md: 281 } }} />;
+const StartToday = dynamic(() => import('./StartToday'), { loading: Placeholder });
 
 const HeroEnd = () => {
   const { ref, inView } = useInView({
@@ -21,7 +22,9 @@ const HeroEnd = () => {
             : `linear-gradient(180deg, ${theme.palette.grey[50]} 0%, #FFFFFF 100%)`,
       }}
     >
-      <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>{inView && <StartToday />}</Container>
+      <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
+        {inView ? <StartToday /> : <Placeholder />}
+      </Container>
     </Box>
   );
 };

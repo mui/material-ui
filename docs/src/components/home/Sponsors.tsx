@@ -5,7 +5,7 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 
-const diamondPlaceholder = (
+const DiamondPlaceholder = () => (
   <Box
     sx={{
       borderRadius: 1,
@@ -15,10 +15,10 @@ const diamondPlaceholder = (
   />
 );
 const DiamondSponsors = dynamic(() => import('./DiamondSponsors'), {
-  loading: () => diamondPlaceholder,
+  loading: DiamondPlaceholder,
 });
 
-const goldPlaceholder = (
+const GoldPlaceholder = () => (
   <Box
     sx={{
       borderRadius: 1,
@@ -28,7 +28,7 @@ const goldPlaceholder = (
   />
 );
 const GoldSponsors = dynamic(() => import('./GoldSponsors'), {
-  loading: () => goldPlaceholder,
+  loading: GoldPlaceholder,
 });
 
 const Sponsors = () => {
@@ -44,9 +44,9 @@ const Sponsors = () => {
       <Typography color="text.secondary" sx={{ mb: { xs: 2, md: 4 }, maxWidth: 450 }}>
         The continued development and maintenance of MUI is greatly helped by our generous sponsors.
       </Typography>
-      {inView && <DiamondSponsors />}
+      {inView ? <DiamondSponsors /> : <DiamondPlaceholder />}
       <Box sx={{ mb: 4 }} />
-      {inView && <GoldSponsors />}
+      {inView ? <GoldSponsors /> : <GoldPlaceholder />}
     </Container>
   );
 };

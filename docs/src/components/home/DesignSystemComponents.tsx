@@ -6,7 +6,7 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import GradientText from 'docs/src/components/typography/GradientText';
 
-const placeholder = (
+const Placeholder = () => (
   <Box
     sx={{
       height: { xs: 1484, sm: 825, md: 605 },
@@ -17,7 +17,7 @@ const placeholder = (
 );
 
 const MaterialDesignComponents = dynamic(() => import('./MaterialDesignComponents'), {
-  loading: () => placeholder,
+  loading: Placeholder,
 });
 
 const DesignSystemComponents = () => {
@@ -33,7 +33,7 @@ const DesignSystemComponents = () => {
       <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
         Simple, accessible, declarative <GradientText>components</GradientText>
       </Typography>
-      {inView ? <MaterialDesignComponents /> : placeholder}
+      {inView ? <MaterialDesignComponents /> : <Placeholder />}
     </Container>
   );
 };
