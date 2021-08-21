@@ -165,11 +165,11 @@ These great services sponsor Material-UI's core infrastructure:
 
 [<img loading="lazy" alt="GitHub" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" height="25">](https://github.com/)
 
-GitHub allows us to host the Git repository and used for project management.
+GitHub allows us to host the Git repository and coordinate contributions.
 
 [<img loading="lazy" alt="Netlify" src="https://cdn.netlify.com/15ecf59b59c9d04b88097c6b5d2c7e8a7d1302d0/1b6d6/img/press/logos/full-logo-light.svg" height="30">](https://www.netlify.com/)
 
-Netlify allows us to distribute the documentation and also used for hosting websites.
+Netlify allows us to distribute the documentation.
 
 [<img loading="lazy" alt="CrowdIn" src="https://support.crowdin.com/assets/logos/crowdin-logo1-small.png" height="30">](https://crowdin.com/)
 
