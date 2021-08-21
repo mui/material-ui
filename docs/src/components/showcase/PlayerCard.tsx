@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme, useTheme, Theme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import FastForwardRounded from '@material-ui/icons/FastForwardRounded';
@@ -34,7 +35,7 @@ const grey = {
   900: '#3D4752',
 };
 
-export default function PlayerCard() {
+export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) {
   const [paused, setPaused] = React.useState(true);
   /*
    * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
@@ -103,14 +104,15 @@ export default function PlayerCard() {
     [mode],
   );
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={externalTheme || theme}>
       <Card variant="outlined" sx={{ display: 'flex', p: 1 }}>
-        <img
+        <CardMedia
+          component="img"
           alt="Beside Myself album cover"
-          style={{ borderRadius: 5 }}
           src="/static/images/cards/basement-beside-myself.jpg"
           width="124"
           height="124"
+          sx={{ borderRadius: 0.5, width: 'auto' }}
         />
         <Box sx={{ alignSelf: 'center', mx: 2 }}>
           <Typography variant="body1" fontWeight={500}>
