@@ -302,4 +302,25 @@ describe('<MobileDatePicker />', () => {
     expect(handleChange.callCount).to.equal(1);
     expect(adapterToUse.getDiff(handleChange.args[0][0], start)).to.equal(10);
   });
+
+  it('prop `componentsProps` - passes props to inner `MobileDatePicker` components', () => {
+    render(
+      <MobileDatePicker
+        renderInput={(params) => <TextField {...params} />}
+        onChange={() => {}}
+        value={adapterToUse.date('2021-01-01T00:00:00.000')}
+        componentsProps={{
+          clearButton: {
+            'data-foo': 'bar',
+            color: 'error', // TODO: This does not appear as an attribute on the button element - how do we check that we got the prop?
+          },
+        }}
+        clearable
+      />,
+    );
+
+    openMobilePicker();
+
+    expect(getByMuiTest('clear-action-button').attributes.getNamedItem('data-foo')).to.equal('bar');
+  });
 });
