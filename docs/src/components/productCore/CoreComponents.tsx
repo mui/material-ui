@@ -2,14 +2,14 @@ import * as React from 'react';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import InputRounded from '@material-ui/icons/InputRounded';
+import SmartButtonRounded from '@material-ui/icons/SmartButtonRounded';
+import ListAltRounded from '@material-ui/icons/ListAltRounded';
+import TableViewRounded from '@material-ui/icons/TableViewRounded';
+import WarningRounded from '@material-ui/icons/WarningRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
-import SvgButton from 'docs/src/icons/SvgButton';
-import SvgTypography from 'docs/src/icons/SvgTypography';
-import SvgTable from 'docs/src/icons/SvgTable';
-import SvgAlert from 'docs/src/icons/SvgAlert';
-import SvgDrawer from 'docs/src/icons/SvgDrawer';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
@@ -19,11 +19,11 @@ const DEMOS = ['Button', 'Text field', 'Table', 'Alert', 'Drawer'];
 export default function CoreComponents() {
   const [demo, setDemo] = React.useState(DEMOS[0]);
   const icons = {
-    [DEMOS[0]]: <SvgButton />,
-    [DEMOS[1]]: <SvgTypography />,
-    [DEMOS[2]]: <SvgTable />,
-    [DEMOS[3]]: <SvgAlert />,
-    [DEMOS[4]]: <SvgDrawer />,
+    [DEMOS[0]]: <SmartButtonRounded />,
+    [DEMOS[1]]: <InputRounded />,
+    [DEMOS[2]]: <TableViewRounded />,
+    [DEMOS[3]]: <WarningRounded />,
+    [DEMOS[4]]: <ListAltRounded />,
   };
   return (
     <Section bg="comfort">

@@ -2,51 +2,87 @@ import * as React from 'react';
 import { useTheme } from '@material-ui/core/styles';
 import RootSvg, { RootSvgProps } from 'docs/src/icons/RootSvg';
 
-function SvgButton({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
+function SvgDatePicker({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
   const theme = useTheme();
   return (
     <RootSvg
       xmlns="http://www.w3.org/2000/svg"
-      width={28}
+      width={24}
       height={24}
-      viewBox="0 0 28 24"
+      viewBox="0 0 24 24"
       fill="none"
       {...props}
     >
-      <rect
-        x={2}
+      <rect width={24} height={24} rx={5} fill={theme.palette.svgBg[active ? 'active' : 'base']} />
+      <mask
+        id={`svg-date-picker-mask1-${props.id || ''}`}
+        mask-type="alpha"
+        maskUnits="userSpaceOnUse"
+        x={0}
+        y={0}
         width={24}
         height={24}
-        rx={5}
-        fill={theme.palette.svgBg[active ? 'active' : 'base']}
-      />
-      <g filter={`url(#svg-button-${props.id || ''})`}>
+      >
+        <rect
+          width={24}
+          height={24}
+          rx={5}
+          fill={theme.palette.svgBg[active ? 'active' : 'base']}
+        />
+      </mask>
+      <g mask={`url(#svg-date-picker-mask1-${props.id || ''})`}>
+        <g filter={`url(#svg-date-picker-filter1-${props.id || ''})`}>
+          <rect
+            x={4}
+            y={6}
+            width={16}
+            height={15}
+            rx={2}
+            fill={theme.palette.svgStroke[active ? 'active' : 'base']}
+          />
+          <rect
+            x={5}
+            y={7}
+            width={14}
+            height={13}
+            rx={1}
+            stroke={theme.palette.svgFilled[active ? 'active' : 'base']}
+            strokeWidth={2}
+          />
+        </g>
         <rect
           x={4}
-          y={8}
-          width={20}
-          height={8}
-          rx={1}
+          y={6}
+          width={16}
+          height={6}
+          rx={2}
+          fill={theme.palette.svgFilled[active ? 'active' : 'base']}
+        />
+        <rect
+          x={6}
+          y={4}
+          width={3}
+          height={4}
+          rx={1.5}
+          fill={theme.palette.svgFilled[active ? 'active' : 'base']}
+        />
+        <rect
+          x={15}
+          y={4}
+          width={3}
+          height={4}
+          rx={1.5}
           fill={theme.palette.svgFilled[active ? 'active' : 'base']}
         />
       </g>
-      <circle cx={7} cy={12} r={1} fill={theme.palette.svgStroke[active ? 'active' : 'base']} />
-      <rect
-        x={10}
-        y={11}
-        width={12}
-        height={2}
-        rx={1}
-        fill={theme.palette.svgStroke[active ? 'active' : 'base']}
-      />
-      {theme.palette.mode === 'dark' ? (
+      {theme.palette.mode === 'dark' && (
         <defs>
           <filter
-            id={`svg-button-${props.id || ''}`}
+            id={`svg-date-picker-filter1-${props.id || ''}`}
             x={0}
-            y={8}
-            width={28}
-            height={16}
+            y={6}
+            width={24}
+            height={23}
             filterUnits="userSpaceOnUse"
             colorInterpolationFilters="sRGB"
           >
@@ -63,14 +99,15 @@ function SvgButton({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
             <feBlend in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
           </filter>
         </defs>
-      ) : (
+      )}
+      {theme.palette.mode === 'light' && (
         <defs>
           <filter
-            id={`svg-button-${props.id || ''}`}
+            id={`svg-date-picker-filter1-${props.id || ''}`}
             x={0}
-            y={8}
-            width={28}
-            height={16}
+            y={6}
+            width={24}
+            height={23}
             filterUnits="userSpaceOnUse"
             colorInterpolationFilters="sRGB"
           >
@@ -92,4 +129,4 @@ function SvgButton({ active, ...props }: RootSvgProps<{ active?: boolean }>) {
   );
 }
 
-export default SvgButton;
+export default SvgDatePicker;
