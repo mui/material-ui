@@ -91,7 +91,13 @@ export default function CoreTheming() {
         <Grid item xs={12} md={6}>
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo
-              sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+              sx={{
+                py: 2,
+                flexGrow: 1,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
             >
               <PlayerCard
                 {...(!customized && { theme: mode === 'dark' ? darkTheme : lightTheme })}

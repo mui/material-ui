@@ -298,7 +298,7 @@ export function buildTheme(theme: Theme): ThemeOptions {
           icon: {
             paddingTop: 1,
             paddingBottom: 0,
-            '& > *': {
+            '& > svg': {
               fontSize: 18,
             },
           },
@@ -388,6 +388,24 @@ export function buildTheme(theme: Theme): ThemeOptions {
                   ? theme.palette.primary[500]
                   : theme.palette.primaryDark[400],
             },
+          },
+        },
+      },
+      MuiTooltip: {
+        styleOverrides: {
+          tooltip: {
+            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.2))',
+            borderRadius: 4,
+            backgroundColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[500]
+                : theme.palette.primaryDark[700],
+          },
+          arrow: {
+            color:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[500]
+                : theme.palette.primaryDark[700],
           },
         },
       },

@@ -389,7 +389,7 @@ export function getThemedComponents(theme: Theme) {
             borderColor:
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[400]
-                : theme.palette.grey[100],
+                : theme.palette.grey[200],
             ...(theme.palette.mode === 'dark' && {
               backgroundColor: theme.palette.primaryDark[700],
             }),
