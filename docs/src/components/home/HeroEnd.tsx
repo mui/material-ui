@@ -36,6 +36,7 @@ const HeroEnd = () => {
           <Grid item xs={12} md={6}>
             <Paper
               component={Link}
+              passHref
               href={ROUTES.showcase}
               noLinkStyle
               variant="outlined"
@@ -60,6 +61,7 @@ const HeroEnd = () => {
           <Grid item xs={12} md={6}>
             <Paper
               component={Link}
+              passHref
               href={ROUTES.blog}
               noLinkStyle
               variant="outlined"

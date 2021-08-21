@@ -27,7 +27,7 @@ export default function TemplateHero() {
             sx={{
               display: 'flex',
               alignItems: 'center',
-              justifyContent: {xs: 'center', md: 'start'},
+              justifyContent: { xs: 'center', md: 'start' },
               '& > *': { mr: 1, width: 28, height: 28 },
             }}
           >
@@ -42,12 +42,14 @@ export default function TemplateHero() {
             the consistency right when working with developers.
           </Typography>
           <Button
-            component="a"
-            href={ROUTES.store}
+            component={Link}
+            passHref
+            noLinkStyle
+            href={ROUTES.storeDesign}
             size="large"
             variant="contained"
             endIcon={<KeyboardArrowRightRounded />}
-            sx={{width: {xs: '100%', sm: 'auto'} }}
+            sx={{ width: { xs: '100%', sm: 'auto' } }}
           >
             Buy now
           </Button>
@@ -55,10 +57,7 @@ export default function TemplateHero() {
       }
       right={
         <Box sx={{ position: 'relative', height: '100%', perspective: '1000px' }}>
-          <DesignKitTools
-            disableLink
-            sx={{ filter: 'drop-shadow(0px 4px 20px rgba(61, 71, 82, 0.25))' }}
-          />
+          <DesignKitTools />
           <Box
             sx={{
               position: 'absolute',

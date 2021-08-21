@@ -177,8 +177,9 @@ export default function TemplateDemo() {
               </Box>
               <Button
                 component={Link}
+                passHref
                 noLinkStyle
-                href={ROUTES.store}
+                href={ROUTES.storeDesign}
                 endIcon={<LaunchRounded sx={{ '&&': { fontSize: 16 } }} />}
                 sx={{ ml: 'auto', color: 'primary.300' }}
               >

@@ -25,10 +25,10 @@ const Image = styled('img')(({ theme }) => ({
   borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[400],
   borderRadius: theme.shape.borderRadius,
   objectFit: 'cover',
-  filter:
+  boxShadow:
     theme.palette.mode === 'dark'
-      ? 'drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.6))'
-      : 'drop-shadow(0px 4px 20px rgba(61, 71, 82, 0.25))',
+      ? '0px 4px 20px rgba(0, 0, 0, 0.6)'
+      : '0px 4px 20px rgba(61, 71, 82, 0.25)',
 }));
 
 const Anchor = styled('a')({
@@ -66,7 +66,10 @@ const DesignToolLink = React.forwardRef<
         opacity: 0,
         top: 0,
         left: 0,
-        bgcolor: (theme) => alpha(theme.palette.primary[500], 0.5),
+        bgcolor: (theme) =>
+          theme.palette.mode === 'dark'
+            ? alpha(theme.palette.primaryDark[800], 0.5)
+            : alpha(theme.palette.primary[500], 0.5),
         color: '#fff',
         display: 'flex',
         flexDirection: 'column',
@@ -88,6 +91,15 @@ const DesignToolLogo = React.forwardRef<
     src={`/static/branding/design-kits/designkits-${brand}.png`}
     alt=""
     {...props}
+    sx={{
+      boxShadow: (theme) =>
+        `0px 3.57436px 44.6795px ${
+          theme.palette.mode === 'dark'
+            ? theme.palette.primaryDark[900]
+            : 'rgba(90, 105, 120, 0.36)'
+        }`,
+      ...props.sx,
+    }}
   />
 ));
 
@@ -195,12 +207,6 @@ export function DesignKitTools({ disableLink, ...props }: { disableLink?: boolea
         '& .MuiAvatar-root': {
           width: { xs: 80, sm: 100 },
           height: { xs: 80, sm: 100 },
-          filter: (theme) =>
-            `drop-shadow(0px 3.57436px 44.6795px ${
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[900]
-                : 'rgba(90, 105, 120, 0.36)'
-            })`,
         },
         ...props.sx,
       }}
