@@ -86,7 +86,7 @@ This example demonstrates how to use [notistack](https://github.com/iamhosseindh
 notistack has an **imperative API** that makes it easy to display snackbars, without having to handle their open/close state.
 It also enables you to **stack** them on top of one another (although this is discouraged by the Material Design guidelines).
 
-TODO: Add example once notistack is compatible with v5 or replace with [#1824](https://github.com/mui-org/material-ui/issues/1824).
+{{"demo": "pages/components/snackbars/IntegrationNotistack.js", "defaultCodeOpen": false}}
 
 ## Accessibility
 
