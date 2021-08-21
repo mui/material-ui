@@ -11945,10 +11945,10 @@ normalize-url@^4.1.0:
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-4.4.1.tgz#81e9c153b0ad5743755696f2aa20488d48e962b6"
   integrity sha512-rjH3yRt0Ssx19mUwS0hrDUOdG9VI+oRLpLHJ7tXRdjcuQ7v7wo6qPvOZppHRrqfslTKr0L2yBhjj4UXd7c3cQg==
 
-notistack@^1.0.0:
-  version "1.0.9"
-  resolved "https://registry.yarnpkg.com/notistack/-/notistack-1.0.9.tgz#8b3d692bb0c70413efd7424d85d563d667206542"
-  integrity sha512-Dal2HtTpWrdYCZ3t0HhJt47NJZwVSPee36WzORRbqUkFR0k9pxFszxBuPSWshBLwF6Av8s86XPP+ED5zRz0CGw==
+notistack@1.0.6-next.2:
+  version "1.0.6-next.2"
+  resolved "https://registry.yarnpkg.com/notistack/-/notistack-1.0.6-next.2.tgz#025e98cd077919c5380f0cd5b30b67e3df48678e"
+  integrity sha512-ilyy7W2R7NZQG3xVe2fFkF39JtrnwkGS6CR+VekDI5aYLf+umvDrmImqs+R0WZc498C3HERFXxPOVNooPBKm0g==
   dependencies:
     clsx "^1.1.0"
     hoist-non-react-statics "^3.3.0"
