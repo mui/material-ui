@@ -22,13 +22,8 @@ export default function HeroContainer({
           transition: '0.3s',
         }}
       >
-        <Grid
-          container
-          alignItems="center"
-          wrap="nowrap"
-          sx={{ height: '100%', maxWidth: { xs: 512, md: 'initial' }, mx: 'auto' }}
-        >
-          <Grid item md={7} lg={6}>
+        <Grid container alignItems="center" wrap="nowrap" sx={{ height: '100%', mx: 'auto' }}>
+          <Grid item md={7} lg={6} sx={{ m: 'auto' }}>
             {left}
           </Grid>
           <Grid
