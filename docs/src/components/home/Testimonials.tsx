@@ -52,6 +52,7 @@ const Testimonials = ({ mode: modeProp }: { mode?: 'light' | 'dark' }) => {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0,
+    rootMargin: '500px',
   });
   const globalTheme = useTheme();
   const mode = modeProp || globalTheme.palette.mode;

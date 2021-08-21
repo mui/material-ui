@@ -21,6 +21,7 @@ const ProductSuite = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0,
+    rootMargin: '200px',
   });
   return (
     <Box

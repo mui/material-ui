@@ -11,6 +11,7 @@ const HeroEnd = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0,
+    rootMargin: '500px',
   });
   return (
     <Box

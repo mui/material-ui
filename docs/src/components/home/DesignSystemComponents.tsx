@@ -24,6 +24,7 @@ const DesignSystemComponents = () => {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0,
+    rootMargin: '500px',
   });
   return (
     <Container ref={ref} sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
