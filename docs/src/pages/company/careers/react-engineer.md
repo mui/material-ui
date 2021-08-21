@@ -109,7 +109,7 @@ We're looking for someone with strong front-end skills. More important than spec
 
 ## Compensation
 
-Competitive compensation of up to \$140,000 USD/year, depending on the profile. It could go higher for a person that can significantly push the mission forward. You can find the other perks & benefits in the [careers](/company/careers/#perks-amp-benefits) page.
+Competitive compensation, depending on the profile. You can find the other perks & benefits in the [careers](/company/careers/#perks-amp-benefits) page.
 
 ## Apply
 
