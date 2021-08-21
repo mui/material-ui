@@ -65,7 +65,7 @@ export default function TemplateDemo() {
                 />
               </Highlighter>
             ))}
-            <More />
+            <More component={Link} href={ROUTES.storeDesign} passHref noLinkStyle />
           </Group>
         </Grid>
         <Grid item xs={12} md={6}>

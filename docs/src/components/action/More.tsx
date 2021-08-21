@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import AddCircleOutlineRounded from '@material-ui/icons/AddCircleOutlineRounded';
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 
-export default function Highlighter(props: ButtonBaseProps) {
+export default (function Highlighter(props: ButtonBaseProps) {
   return (
     <ButtonBase
       {...props}
@@ -38,4 +38,4 @@ export default function Highlighter(props: ButtonBaseProps) {
       </Typography>
     </ButtonBase>
   );
-}
+} as typeof ButtonBase);

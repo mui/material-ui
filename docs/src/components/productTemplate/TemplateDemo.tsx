@@ -9,7 +9,6 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
-import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
 import ArrowButton from 'docs/src/components/action/ArrowButton';
 import LaunchRounded from '@material-ui/icons/LaunchRounded';
@@ -129,7 +128,6 @@ export default function TemplateDemo() {
                 />
               </Highlighter>
             ))}
-            <More />
           </Group>
         </Grid>
         <Grid item xs={12} md={6}>
