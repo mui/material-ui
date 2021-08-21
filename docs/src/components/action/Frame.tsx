@@ -37,6 +37,8 @@ const Frame = (props: BoxProps) => {
     <Box
       {...props}
       sx={{
+        display: 'flex',
+        flexDirection: 'column',
         '& > div:first-of-type': {
           borderTopLeftRadius: '10px',
           borderTopRightRadius: '10px',
@@ -45,6 +47,7 @@ const Frame = (props: BoxProps) => {
           borderBottomLeftRadius: '10px',
           borderBottomRightRadius: '10px',
         },
+        ...props.sx,
       }}
     />
   );
