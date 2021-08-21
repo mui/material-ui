@@ -171,10 +171,10 @@ export default function TemplateDemo() {
                         backgroundSize: 'cover',
                         backgroundRepeat: 'no-repeat',
                         bgcolor: 'grey.400',
-                        filter:
+                        boxShadow:
                           mode === 'dark'
-                            ? 'drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.6))'
-                            : 'drop-shadow(0px 4px 10px rgba(61, 71, 82, 0.25))',
+                            ? '0px 4px 10px rgba(0, 0, 0, 0.6)'
+                            : '0px 4px 10px rgba(61, 71, 82, 0.25)',
                         transition: '0.6s cubic-bezier(0.15, 0.3, 0.25, 1)',
                         transform: templateIndex !== index ? 'scale(0.92)' : 'scale(1)',
                       }}

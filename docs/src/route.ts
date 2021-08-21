@@ -21,6 +21,7 @@ const ROUTES = {
   support: '/getting-started/support/#professional-support-premium',
   contactUs: '/branding/contact-us/',
   store: '/store/',
+  storePopular: '/store/#populars',
   storeDesign: '/store/#design',
   storeFigma: 'https://material-ui.com/store/items/figma-react/',
   storeSketch: 'https://material-ui.com/store/items/sketch-react/',
