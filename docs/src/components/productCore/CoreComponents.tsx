@@ -154,7 +154,7 @@ export default function CoreComponents() {
               description="We have built the foundational components for your design system, enabling you to launch even faster that cool product you've been thinking about. We got your back!"
             />
           </Box>
-          <Group desktopColumns={2} sx={{ mt: 4 }}>
+          <Group desktopColumns={2} sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
             {DEMOS.map((name) => (
               <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>
                 <Item

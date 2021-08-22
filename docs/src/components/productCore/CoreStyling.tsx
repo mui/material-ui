@@ -73,8 +73,14 @@ const code = `<Card variant="outlined" sx={{ display: 'flex', p: 1 }}>
 
 export default function CoreStyling() {
   const [index, setIndex] = React.useState(0);
-  const startLine = [18, 10, 1];
-  const endLine = [31, 12, 1];
+  const startLine = [18, 11, 1];
+  const endLine = [31, 13, 1];
+  function getSelectedProps(i: number) {
+    return {
+      selected: index === i,
+      sx: { '& svg': { opacity: index === i ? 1 : 0.5 } },
+    };
+  }
   return (
     <Section bg="gradient">
       <Grid container spacing={2}>
@@ -91,32 +97,22 @@ export default function CoreStyling() {
               description="Want to customize the components down to the smallest detail? We provide built-in CSS utilities for rapid styling."
             />
           </Box>
-          <Group sx={{ mt: 4 }}>
-            <Highlighter disableBorder selected={index === 0} onClick={() => setIndex(0)}>
+          <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
+            <Highlighter disableBorder {...getSelectedProps(0)} onClick={() => setIndex(0)}>
               <Item
                 icon={<SvgTwinkle />}
                 title="Leverage the tokens from your theme"
                 description="Easily use the design tokens defined in your theme for any CSS property out there."
               />
             </Highlighter>
-            <Highlighter
-              disableBorder
-              selected={index === 1}
-              onClick={() => setIndex(1)}
-              sx={{ '& svg': { opacity: 0.5 } }}
-            >
+            <Highlighter disableBorder {...getSelectedProps(1)} onClick={() => setIndex(1)}>
               <Item
                 icon={<SvgTwinkle />}
                 title="No context switching"
                 description="The styling and component usage are both in the same place, right where you need them."
               />
             </Highlighter>
-            <Highlighter
-              disableBorder
-              selected={index === 2}
-              onClick={() => setIndex(2)}
-              sx={{ '& svg': { opacity: 0.5 } }}
-            >
+            <Highlighter disableBorder {...getSelectedProps(2)} onClick={() => setIndex(2)}>
               <Item
                 icon={<SvgTwinkle />}
                 title="Take care of your consistency game"

@@ -71,7 +71,7 @@ export default function CoreTheming() {
               description="Leverage the theming capabilities to easily make the components look how you want them to be. You can also quick start with Material Design."
             />
           </Box>
-          <Group sx={{ mt: 4 }}>
+          <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
             <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
               <Item
                 icon={<SvgTwinkle />}
