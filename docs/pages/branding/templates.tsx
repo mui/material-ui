@@ -11,7 +11,7 @@ import TemplateDemo from 'docs/src/components/productTemplate/TemplateDemo';
 import Testimonials from 'docs/src/components/home/Testimonials';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 
-export default function Home() {
+export default function Templates() {
   return (
     <ThemeProvider>
       <Head

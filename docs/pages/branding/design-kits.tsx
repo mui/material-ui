@@ -12,7 +12,7 @@ import DesignKitFAQ from 'docs/src/components/productDesignKit/DesignKitFAQ';
 import Testimonials from 'docs/src/components/home/Testimonials';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 
-export default function Home() {
+export default function DesignKits() {
   return (
     <ThemeProvider>
       <Head
