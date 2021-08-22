@@ -5127,7 +5127,7 @@ caseless@~0.12.0:
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
 
-chai-dom@^1.8.1:
+chai-dom@^1.9.0:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/chai-dom/-/chai-dom-1.9.0.tgz#40c1b957b60c677b0d06ca320ee8f1e276d9ea04"
   integrity sha512-UXSbhcGVBWv/5qVqbJY/giTDRyo3wKapUsWluEuVvxcJLFXkyf8l4D2PTd6trzrmca6WWnGdpaFkYdl1P0WjtA==
