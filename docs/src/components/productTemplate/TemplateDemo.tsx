@@ -32,57 +32,35 @@ export default function TemplateDemo() {
   };
   const TEMPLATES = {
     [DEMOS[0]]: [
-      // {
-      //   name: 'Minimal Free – Client & Admin Dashboard',
-      //   price: 'Free',
-      //   src: '',
-      //   href: ROUTES.storeTemplateMinimalFree,
-      // },
-      // { name: 'Devias Material Kit - React Admin Dashboard', price: 'Free', src: '', href: '' },
       {
         name: 'Flexy - React Admin Dashboard Template',
-        price: '$49',
         src: `/static/branding/store-templates/template-${mode}4.jpeg`,
         href: ROUTES.storeFlexy,
       },
-      // { name: 'Carpatin - Admin Dashboard', price: '$49', src: '', href: '' },
       {
         name: 'Minimal – Client & Admin Dashboard',
-        price: '$69',
         src: `/static/branding/store-templates/template-${mode}1.jpeg`,
         href: ROUTES.storeTemplateMinimalDashboard,
       },
       {
         name: 'Berry - React Material Admin Dashboard Template',
-        price: '$69',
         src: `/static/branding/store-templates/template-${mode}5.jpeg`,
         href: ROUTES.storeTemplateBerry,
       },
-      // {
-      //   name: 'Devias Material Kit Pro - React Client & Admin Dashboard',
-      //   price: '$69',
-      //   src: '',
-      //   href: '',
-      // },
-      // { name: 'Tokyo - React Admin Dashboard', price: '$69', src: '', href: '' },
       {
         name: 'Material App Pro - React Admin Dashboard',
-        price: '$69',
         src: `/static/branding/store-templates/template-${mode}3.jpeg`,
         href: ROUTES.storeTemplateMaterialApp,
       },
-      // { name: 'Argon Dashboard PRO', price: '$69', src: '', href: '' },
     ],
     [DEMOS[1]]: [
       {
         name: 'theFront - Multipurpose Template + UI Kit',
-        price: '$59',
         src: `/static/branding/store-templates/template-${mode}2.jpeg`,
         href: ROUTES.storeTheFront,
       },
       {
         name: 'Webbee - Multipurpose landing page UI Kit',
-        price: '$59',
         src: `/static/branding/store-templates/template-${mode}6.jpeg`,
         href: ROUTES.storeTemplateWebbee,
       },
@@ -90,7 +68,6 @@ export default function TemplateDemo() {
     [DEMOS[2]]: [
       {
         name: 'Bazar Pro - Multipurpose React Ecommerce Template',
-        price: '$59',
         src: `/static/branding/store-templates/template-bazar-${mode}.jpeg`,
         href: 'https://material-ui.com/store/items/bazar-pro-react-ecommerce-template/',
       },
