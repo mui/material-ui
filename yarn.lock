@@ -2810,7 +2810,7 @@
   dependencies:
     "@types/chai" "*"
 
-"@types/chai@*", "@types/chai@^4.2.3":
+"@types/chai@*", "@types/chai@^4.2.21":
   version "4.2.21"
   resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.2.21.tgz#9f35a5643129df132cf3b5c1ec64046ea1af0650"
   integrity sha512-yd+9qKmJxm496BOV9CMNaey8TWsikaZOwMRwPHQIjcOJM9oV+fi9ZMNw3JsVnbEEbo2gRTDnGEBv8pjyn67hNg==
@@ -5132,7 +5132,7 @@ chai-dom@^1.8.1:
   resolved "https://registry.yarnpkg.com/chai-dom/-/chai-dom-1.9.0.tgz#40c1b957b60c677b0d06ca320ee8f1e276d9ea04"
   integrity sha512-UXSbhcGVBWv/5qVqbJY/giTDRyo3wKapUsWluEuVvxcJLFXkyf8l4D2PTd6trzrmca6WWnGdpaFkYdl1P0WjtA==
 
-chai@^4.1.2:
+chai@^4.3.4:
   version "4.3.4"
   resolved "https://registry.yarnpkg.com/chai/-/chai-4.3.4.tgz#b55e655b31e1eac7099be4c08c21964fce2e6c49"
   integrity sha512-yS5H68VYOCtN1cjfwumDSuzn/9c+yza4f3reKXlE5rUg7SFcCEy90gJvydNgOYtblyf4Zi6jIWRnXOgErta0KA==
