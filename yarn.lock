@@ -2755,10 +2755,10 @@
   resolved "https://registry.yarnpkg.com/@types/autosuggest-highlight/-/autosuggest-highlight-3.1.1.tgz#afdec910b84c06f77e9a7ed1a47ffeade4c0da6d"
   integrity sha512-onPUHT+32TyI7ctiG7G/JtWlVkEBH2bw1onOWaea0L0dZmKNhP+KIOcrh7gnr2LTzD9/cjQlC7zJdv259dg0lg==
 
-"@types/babel-plugin-macros@^2.8.1":
-  version "2.8.4"
-  resolved "https://registry.yarnpkg.com/@types/babel-plugin-macros/-/babel-plugin-macros-2.8.4.tgz#5e0a11093e1902faf23e803f1cf880364e943505"
-  integrity sha512-Fi2GPlNuqaw6oIa3kQSyJx7NiUw9X1XU9af28L4nu+klsDLJyBYoIRIshQW/BQ7/N4R0vPcfyZEZLrVYRoVsfg==
+"@types/babel-plugin-macros@^2.8.5":
+  version "2.8.5"
+  resolved "https://registry.yarnpkg.com/@types/babel-plugin-macros/-/babel-plugin-macros-2.8.5.tgz#04474f9898aa9112afc22fa0e7e53a898fcaba4c"
+  integrity sha512-+NcIm/VBaSb4xaycov9f4Vmk4hMVPrgISoHEk+kalgVK6BlkwDZbXkW9kt1jCXVczTKXldL5RHIacExaWzxAkA==
   dependencies:
     "@types/babel__core" "*"
 
