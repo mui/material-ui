@@ -86,15 +86,18 @@ const AppBarRoot = styled(Paper, {
     ...(ownerState.color === 'inherit' && {
       color: 'inherit',
     }),
-    ...(ownerState.color === 'transparent' && {
-      backgroundColor: 'transparent',
-      color: 'inherit',
-    }),
     ...(theme.palette.mode === 'dark' &&
       !ownerState.enableColorOnDark && {
         backgroundColor: null,
         color: null,
       }),
+    ...(ownerState.color === 'transparent' && {
+      backgroundColor: 'transparent',
+      color: 'inherit',
+      ...(theme.palette.mode === 'dark' && {
+        backgroundImage: 'none',
+      }),
+    }),
   };
 });
 

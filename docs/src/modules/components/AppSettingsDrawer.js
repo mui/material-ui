@@ -11,7 +11,7 @@ import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
 import ToggleButton from '@material-ui/core/ToggleButton';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import Brightness4Icon from '@material-ui/icons/Brightness4';
+import Brightness2RoundedIcon from '@material-ui/icons/Brightness2Rounded';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 import SettingsBrightnessIcon from '@material-ui/icons/SettingsBrightness';
 import FormatTextdirectionLToRIcon from '@material-ui/icons/FormatTextdirectionLToR';
@@ -22,11 +22,11 @@ import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 
 const DrawerPaper = styled(Paper)({
-  width: 352,
+  width: 360,
 });
 
 const Heading = styled(Typography)({
-  margin: '16px 0 8px',
+  margin: '20px 0 10px',
 });
 
 const IconToggleButton = styled(ToggleButton)({
@@ -80,9 +80,9 @@ function AppSettingsDrawer(props) {
       {...other}
     >
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 2 }}>
-        <Typography variant="h5">{t('settings.settings')}</Typography>
+        <Typography variant="h6">{t('settings.settings')}</Typography>
         <IconButton color="inherit" onClick={onClose} edge="end">
-          <CloseIcon />
+          <CloseIcon color="primary" fontSize="small" />
         </IconButton>
       </Box>
       <Divider />
@@ -104,7 +104,7 @@ function AppSettingsDrawer(props) {
             data-ga-event-category="settings"
             data-ga-event-action="light"
           >
-            <Brightness7Icon />
+            <Brightness7Icon fontSize="small" />
             {t('settings.light')}
           </IconToggleButton>
           <IconToggleButton
@@ -113,7 +113,7 @@ function AppSettingsDrawer(props) {
             data-ga-event-category="settings"
             data-ga-event-action="system"
           >
-            <SettingsBrightnessIcon />
+            <SettingsBrightnessIcon fontSize="small" />
             {t('settings.system')}
           </IconToggleButton>
           <IconToggleButton
@@ -122,7 +122,7 @@ function AppSettingsDrawer(props) {
             data-ga-event-category="settings"
             data-ga-event-action="dark"
           >
-            <Brightness4Icon />
+            <Brightness2RoundedIcon fontSize="small" />
             {t('settings.dark')}
           </IconToggleButton>
         </ToggleButtonGroup>
