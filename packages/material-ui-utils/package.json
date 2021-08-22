@@ -46,7 +46,7 @@
   },
   "devDependencies": {
     "@babel/helper-module-imports": "^7.14.5",
-    "@types/babel-plugin-macros": "^2.8.1",
+    "@types/babel-plugin-macros": "^2.8.5",
     "babel-plugin-macros": "^3.0.0",
     "babel-plugin-tester": "^10.1.0"
   },
