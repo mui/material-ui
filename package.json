@@ -98,7 +98,7 @@
     "@types/yargs": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
     "@typescript-eslint/parser": "^4.29.0",
-    "argos-cli": "^0.3.0",
+    "argos-cli": "^0.3.3",
     "babel-loader": "^8.0.0",
     "babel-plugin-istanbul": "^6.0.0",
     "babel-plugin-macros": "^3.0.0",
