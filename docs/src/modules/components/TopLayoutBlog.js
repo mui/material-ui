@@ -23,6 +23,14 @@ const authors = {
     name: 'Matt Brookes',
     github: 'mbrookes',
   },
+  eps1lon: {
+    name: 'Sebastian Silbermann',
+    github: 'eps1lon',
+  },
+  mnajdova: {
+    name: 'Marija Najdova',
+    github: 'mnajdova',
+  },
 };
 
 const styles = (theme) => ({
