@@ -1,5 +1,5 @@
-import { useTheme as useThemeSystem } from '@mui/system';
 import * as React from 'react';
+import { useTheme as useThemeSystem } from '@mui/system';
 import defaultTheme from './defaultTheme';
 
 export default function useTheme() {
