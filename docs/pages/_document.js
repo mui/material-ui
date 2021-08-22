@@ -84,6 +84,7 @@ export default class MyDocument extends Document {
             href="/static/fonts/PlusJakartaSans-ExtraBold-subset.woff2"
             as="font"
             type="font/woff2"
+            crossOrigin="anonymous"
           />
         </Head>
         <body>
