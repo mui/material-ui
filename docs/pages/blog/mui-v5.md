@@ -2,7 +2,7 @@
 title: MUI v5.0
 description: MUI v5.0 is out 🎉
 date: 2021-09-15T00:00:00.000Z
-authors: ['oliviertassinari', 'mbrookes', 'eps1lon', 'mnajdova']
+authors: ['mbrookes', 'eps1lon', 'mnajdova', 'michaldudak', 'siriwatknp']
 card: true
 ---
 
@@ -21,7 +21,7 @@ This release features:
 
 ## A new branding
 
-- We might want to have a second blog post for this 🤔
+- I wonder if we shouldn't have a second blog post for this 🤔
 - v5 is the biggest major we have released to date, e.g. more work went into it than v1.
 - A new branding to shift developers's perception on the library, encourage them to update their previous perception on it. makeStyles -> styled + sx + dynamic theme is meant to be **major** a DX improvement.
 - e.g. https://blog.getbootstrap.com/2021/05/05/bootstrap-5/#new-logo
@@ -35,21 +35,21 @@ Give the backstory to the developers, make us accountable for spending 1 year+ o
 
 ## Improved customizability
 
-
 ### Migration from JSS to emotion
 
 - Settle on the name, emotion vs. Emotion
 - Explain the problem, the solution
-- Like the extensive research that Marija did
-- Thanks  community members that helped to make the migration of the codebase happen, it was long and fastidous
+- Like the extensive research that Marija did https://github.com/mui-org/material-ui/issues/22342
+- Thanks community members that helped to make the migration of the codebase happen, it was long and fastidous
 - Explain what's the migration path for JSS: `@material-ui/styles`
-- Start sponsoring emotion $1,000/month
+- We have started sponsoring emotion $1,000/month
 
 ### The `sx` prop
 
 - Explain the problem, the solution
 - Also available as flatten props https://material-ui.com/blog/2021-q1-update/.
 - Explain why no support of flatten on all the components (a popular request)
+- The community seems to love it https://twitter.com/AnsonLowZF/status/1397034690771443715
 
 ### Dynamic props
 
@@ -100,7 +100,7 @@ declare module '@material-ui/core/styles' {
 ## Support of multiple adapters
 
 - styled-components
-- ask for help on goober
+- ask for help on goober https://github.com/mui-org/material-ui/pull/27776
 
 ## New components
 
@@ -109,6 +109,8 @@ declare module '@material-ui/core/styles' {
 - Covered a bit in https://material-ui.com/blog/2021-q2-update/
 
 ### Promotion of components from the Lab to the Core
+
+- Covered a bit in https://material-ui.com/blog/2020/
 
 ### Stack
 
@@ -120,7 +122,7 @@ declare module '@material-ui/core/styles' {
 
 ### TrapFocus
 
-Covered a bit in https://material-ui.com/blog/2020-q3-update/.
+- Covered a bit in https://material-ui.com/blog/2020-q3-update/.
 
 ### Date pickers
 
@@ -142,15 +144,17 @@ Covered a bit in https://material-ui.com/blog/2020-q3-update/.
 - Why does it even exist
 - Present the new Data Grid component, hopefully, released as v5.0.0 at the same time.
 
-##
+## Change on the supported platforms
 
-## Updated browsers support
-
-- Stop all work on IE 11, but specific IE 11 will only be removed in v6.
+- Updated TypeScript version
+- Updated node.js version
+- Updated React's version
+- Updated browsers support. Stop all work on IE 11, but specific IE 11 will only be removed in v6.
+  Moving IE 11 to a different bundle has allowed saving [-6kB](https://github.com/mui-org/material-ui/pull/22814#issuecomment-700995216) overall.
 
 ## Improved DX
 
-### More focused demos in the docs
+### Smaller demos in the docs
 
 - Covered a bit in https://material-ui.com/blog/2021-q1-update/
 
@@ -203,5 +207,6 @@ It's new, link core and x roadmaps.
 
 ## Thank you
 
-Finally, one last thank you to everyone who's contributed to Material-UI v4. 
-I'm so excited about this release! It's just the beginning. We will keep working hard on delivering the best possible React UI framework components.
+Finally, one last thank you to everyone who's contributed to MUI v5.
+The whole team is very excited about this release! It's just the beginning.
+We will keep working hard on delivering the best possible React UI components while making it accessible to the many.

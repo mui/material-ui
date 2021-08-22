@@ -32,6 +32,18 @@ const authors = {
     name: 'Marija Najdova',
     github: 'mnajdova',
   },
+  michaldudak: {
+    name: 'Michał Dudak',
+    github: 'michaldudak',
+  },
+  siriwatknp: {
+    name: 'Siriwat Kunaporn',
+    github: 'siriwatknp',
+  },
+  'danilo-leal': {
+    name: 'Danilo Leal',
+    github: 'danilo-leal',
+  },
 };
 
 const styles = (theme) => ({
