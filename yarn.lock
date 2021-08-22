@@ -5352,7 +5352,7 @@ claudia-api-builder@^4.1.2:
   resolved "https://registry.yarnpkg.com/claudia-api-builder/-/claudia-api-builder-4.1.2.tgz#a44479ee44d41936c0bf68c2fe9c8d30f3f31daf"
   integrity sha512-xXS9ew32KRJSMQGHMTEsvSkd1FTs9GK3JjiBIuxk9EJz2hubryrWiTzsJQvcVcfBYE0fb7bO+ZhH2/fqqG7Acg==
 
-claudia@^5.12.0:
+claudia@^5.13.1:
   version "5.13.1"
   resolved "https://registry.yarnpkg.com/claudia/-/claudia-5.13.1.tgz#9c991fc257ad0e3defcef41cace4bac4909e81ca"
   integrity sha512-zLkhhX2v7ETKfPjNxfw2DAFbHH+5pMBJyVGOc05QS4EP9YCNyIkdI3Uc3zDcEvFTDHtIcghM+AC6JH5Njkuz1w==
