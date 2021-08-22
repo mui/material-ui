@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
-import Fade from '@material-ui/core/Fade';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
@@ -93,13 +92,11 @@ export default function ThemeTabs() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Fade in timeout={700}>
-        <Tabs value={value} onChange={handleChange} aria-label="theme example" variant="fullWidth">
-          <Tab label="Yesterday" />
-          <Tab label="Today" />
-          <Tab label="Tomorrow" />
-        </Tabs>
-      </Fade>
+      <Tabs value={value} onChange={handleChange} aria-label="theme example" variant="fullWidth">
+        <Tab label="Yesterday" />
+        <Tab label="Today" />
+        <Tab label="Tomorrow" />
+      </Tabs>
     </ThemeProvider>
   );
 }

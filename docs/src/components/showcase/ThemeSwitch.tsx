@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
-import Fade from '@material-ui/core/Fade';
 import Box from '@material-ui/core/Box';
 import Switch from '@material-ui/core/Switch';
 
@@ -84,12 +83,10 @@ export default function ThemeSwitch() {
   const label = { inputProps: { 'aria-label': 'Themed Switch' } };
   return (
     <ThemeProvider theme={theme}>
-      <Fade in timeout={700}>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', flexGrow: 1 }}>
-          <Switch defaultChecked {...label} />
-          <Switch {...label} />
-        </Box>
-      </Fade>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', flexGrow: 1 }}>
+        <Switch defaultChecked {...label} />
+        <Switch {...label} />
+      </Box>
     </ThemeProvider>
   );
 }
