@@ -33,7 +33,7 @@ export default function Highlighter({
           borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.300' : 'grey.200'),
         }),
         ...(!selected && {
-          '&:hover': {
+          '&:hover, &:focus': {
             bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100'),
             '@media (hover: none)': {
               bgcolor: 'transparent',

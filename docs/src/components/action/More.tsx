@@ -19,7 +19,7 @@ export default (function Highlighter(props: ButtonBaseProps) {
         height: '100%',
         border: '2px dashed',
         borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200'),
-        '&:hover': {
+        '&:hover, &:focus': {
           borderColor: 'primary.main',
           bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'primary.50'),
           '@media (hover: none)': {
