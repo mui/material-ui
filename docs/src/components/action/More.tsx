@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import AddCircleOutlineRounded from '@material-ui/icons/AddCircleOutlineRounded';
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 
-export default (function Highlighter(props: ButtonBaseProps) {
+export default (function More(props: ButtonBaseProps) {
   return (
     <ButtonBase
       {...props}
