@@ -34,7 +34,7 @@ export default function RealEstateCard() {
             alignItems: 'center',
             typography: 'caption',
             bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primary.900' : 'primary.50'),
-            color: (theme) => (theme.palette.mode === 'dark' ? '#fff' : 'primary.700'),
+            color: (theme) => (theme.palette.mode === 'dark' ? 'primary.200' : 'primary.700'),
           }}
         >
           <InfoRounded sx={{ fontSize: 16, mr: 0.5 }} /> Confidence score of 85%

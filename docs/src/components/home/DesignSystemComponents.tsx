@@ -208,7 +208,7 @@ export function buildTheme(theme: Theme): ThemeOptions {
         ...theme.palette.primaryDark,
         main:
           theme.palette.mode === 'dark'
-            ? theme.palette.primaryDark[500]
+            ? theme.palette.primaryDark[200]
             : theme.palette.primaryDark[800],
       },
       grey: theme.palette.grey,
@@ -247,6 +247,14 @@ export function buildTheme(theme: Theme): ThemeOptions {
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[100]
                 : theme.palette.primaryDark[700],
+          },
+          containedPrimary: {
+            '&:hover': {
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[300]
+                  : theme.palette.primaryDark[600],
+            },
           },
           sizeMedium: {
             padding: theme.spacing(1, 2),
