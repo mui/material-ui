@@ -4431,7 +4431,7 @@ babel-plugin-syntax-jsx@^6.18.0:
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-jsx/-/babel-plugin-syntax-jsx-6.18.0.tgz#0af32a9a6e13ca7a3fd5069e62d7b0f58d0d8946"
   integrity sha1-CvMqmm4Tyno/1QaeYtew9Y0NiUY=
 
-babel-plugin-tester@^10.0.0:
+babel-plugin-tester@^10.1.0:
   version "10.1.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-tester/-/babel-plugin-tester-10.1.0.tgz#e099ee1d8dec538439c427a7d12aad132885757b"
   integrity sha512-4P2tNaM/Mtg6ytA9YAqmgONnMYqWvdbGDuwRTpIIC9yFZGQrEHoyvDPCx+X1QALAufVb5DKieOPGj5dffiEiNg==
