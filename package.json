@@ -87,7 +87,7 @@
     "@types/chai-dom": "^0.0.10",
     "@types/enzyme": "^3.10.3",
     "@types/format-util": "^1.0.1",
-    "@types/fs-extra": "^9.0.0",
+    "@types/fs-extra": "^9.0.12",
     "@types/jsdom": "^16.2.13",
     "@types/lodash": "^4.14.138",
     "@types/mocha": "^9.0.0",
