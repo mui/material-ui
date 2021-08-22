@@ -109,7 +109,7 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "chai": "^4.1.2",
     "chai-dom": "^1.8.1",
-    "chalk": "^4.0.0",
+    "chalk": "^4.1.2",
     "compression-webpack-plugin": "^6.0.2",
     "concurrently": "^6.0.0",
     "confusing-browser-globals": "^1.0.9",
