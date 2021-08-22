@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
+import Fade from '@material-ui/core/Fade';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
@@ -134,27 +135,29 @@ export default function ThemeDatePicker() {
   return (
     <ThemeProvider theme={theme}>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Box
-          sx={{
-            '& > div': {
-              border: '1px solid',
-              borderColor: mode === 'dark' ? primaryDark[500] : grey[200],
-              borderRadius: 1,
-            },
-            '& > div > div > div': {
-              width: '100%',
-            },
-          }}
-        >
-          <StaticDatePicker
-            displayStaticWrapperAs="desktop"
-            value={value}
-            onChange={(newValue) => {
-              setValue(newValue);
+        <Fade in timeout={700}>
+          <Box
+            sx={{
+              '& > div': {
+                border: '1px solid',
+                borderColor: mode === 'dark' ? primaryDark[500] : grey[200],
+                borderRadius: 1,
+              },
+              '& > div > div > div': {
+                width: '100%',
+              },
             }}
-            renderInput={(params) => <TextField {...params} />}
-          />
-        </Box>
+          >
+            <StaticDatePicker
+              displayStaticWrapperAs="desktop"
+              value={value}
+              onChange={(newValue) => {
+                setValue(newValue);
+              }}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </Box>
+        </Fade>
       </LocalizationProvider>
     </ThemeProvider>
   );

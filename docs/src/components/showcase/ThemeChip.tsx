@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
+import Fade from '@material-ui/core/Fade';
 import Chip from '@material-ui/core/Chip';
 import Stack from '@material-ui/core/Stack';
 
@@ -87,10 +88,12 @@ export default function ThemeChip() {
   );
   return (
     <ThemeProvider theme={theme}>
-      <Stack direction="row" spacing={2}>
-        <Chip label="React" color="primary" onDelete={() => {}} />
-        <Chip label="Javascript" onDelete={() => {}} />
-      </Stack>
+      <Fade in timeout={700}>
+        <Stack direction="row" spacing={2}>
+          <Chip label="React" color="primary" onDelete={() => {}} />
+          <Chip label="Javascript" onDelete={() => {}} />
+        </Stack>
+      </Fade>
     </ThemeProvider>
   );
 }

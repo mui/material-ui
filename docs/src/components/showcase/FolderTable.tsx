@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
+import Fade from '@material-ui/core/Fade';
 import Box from '@material-ui/core/Box';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -165,54 +166,56 @@ export default function BasicTable() {
   ] as const;
   return (
     <ThemeProvider theme={theme}>
-      <TableContainer component={Paper} variant="outlined" sx={{ maxWidth: 260 }}>
-        <Table aria-label="folder table" size="small">
-          <TableHead>
-            <TableRow>
-              {headCells.map((headCell) => (
-                <TableCell
-                  key={headCell.id}
-                  sortDirection={orderBy === headCell.id ? order : false}
-                  {...headCell.TableCellProps}
-                >
-                  <TableSortLabel
-                    active={orderBy === headCell.id}
-                    direction={orderBy === headCell.id ? order : 'asc'}
-                    onClick={createSortHandler(headCell.id)}
-                    sx={{ fontSize: '0.75rem' }}
+      <Fade in timeout={700}>
+        <TableContainer component={Paper} variant="outlined" sx={{ maxWidth: 260 }}>
+          <Table aria-label="folder table" size="small">
+            <TableHead>
+              <TableRow>
+                {headCells.map((headCell) => (
+                  <TableCell
+                    key={headCell.id}
+                    sortDirection={orderBy === headCell.id ? order : false}
+                    {...headCell.TableCellProps}
                   >
-                    {headCell.label}
-                    {orderBy === headCell.id ? (
-                      <Box component="span" sx={visuallyHidden}>
-                        {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
-                      </Box>
-                    ) : null}
-                  </TableSortLabel>
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {stableSort(data, getComparator(order, orderBy)).map((row) => (
-              <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell component="th" scope="row">
-                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <Folder
-                      sx={{ mr: 1 }}
-                      fontSize="small"
-                      htmlColor={mode === 'dark' ? primary[700] : grey[300]}
-                    />{' '}
-                    {row.name}
-                  </Box>
-                </TableCell>
-                <TableCell align="right" sx={{ color: 'success.main' }}>
-                  {formatSize(row.size)}
-                </TableCell>
+                    <TableSortLabel
+                      active={orderBy === headCell.id}
+                      direction={orderBy === headCell.id ? order : 'asc'}
+                      onClick={createSortHandler(headCell.id)}
+                      sx={{ fontSize: '0.75rem' }}
+                    >
+                      {headCell.label}
+                      {orderBy === headCell.id ? (
+                        <Box component="span" sx={visuallyHidden}>
+                          {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                        </Box>
+                      ) : null}
+                    </TableSortLabel>
+                  </TableCell>
+                ))}
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {stableSort(data, getComparator(order, orderBy)).map((row) => (
+                <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableCell component="th" scope="row">
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                      <Folder
+                        sx={{ mr: 1 }}
+                        fontSize="small"
+                        htmlColor={mode === 'dark' ? primary[700] : grey[300]}
+                      />{' '}
+                      {row.name}
+                    </Box>
+                  </TableCell>
+                  <TableCell align="right" sx={{ color: 'success.main' }}>
+                    {formatSize(row.size)}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Fade>
     </ThemeProvider>
   );
 }

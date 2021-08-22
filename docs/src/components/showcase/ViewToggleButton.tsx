@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
+import Fade from '@material-ui/core/Fade';
 import ToggleButton from '@material-ui/core/ToggleButton';
 import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
 
@@ -114,20 +115,22 @@ export default function ViewToggleButton() {
 
   return (
     <ThemeProvider theme={theme}>
-      <ToggleButtonGroup
-        size="small"
-        color="primary"
-        value={view}
-        exclusive
-        onChange={(event, value) => setView(value)}
-        aria-label="view"
-      >
-        {views.map((item) => (
-          <ToggleButton key={item} value={item} aria-label={item}>
-            {viewIcons[item]}
-          </ToggleButton>
-        ))}
-      </ToggleButtonGroup>
+      <Fade in timeout={700}>
+        <ToggleButtonGroup
+          size="small"
+          color="primary"
+          value={view}
+          exclusive
+          onChange={(event, value) => setView(value)}
+          aria-label="view"
+        >
+          {views.map((item) => (
+            <ToggleButton key={item} value={item} aria-label={item}>
+              {viewIcons[item]}
+            </ToggleButton>
+          ))}
+        </ToggleButtonGroup>
+      </Fade>
     </ThemeProvider>
   );
 }

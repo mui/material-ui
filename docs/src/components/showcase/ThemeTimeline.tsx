@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
+import Fade from '@material-ui/core/Fade';
 import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import Typography from '@material-ui/core/Typography';
@@ -132,62 +133,64 @@ export default function BasicTimeline() {
   );
   return (
     <ThemeProvider theme={theme}>
-      <Card variant="outlined" sx={{ p: 2, display: 'flex', alignItems: 'flex-start' }}>
-        <Box
-          sx={{
-            p: 0.5,
-            borderRadius: 0.5,
-            minWidth: 28,
-            textAlign: 'center',
-            bgcolor: mode === 'dark' ? 'primary.700' : 'primary.50',
-            color: mode === 'dark' ? '#fff' : 'primary.main',
-            typography: 'body2',
-          }}
-        >
-          1
-        </Box>
-        <Box sx={{ ml: 2, flex: 1 }}>
-          <Box sx={{ display: 'flex' }}>
-            <Typography
-              color={mode === 'dark' ? 'grey.400' : 'text.secondary'}
-              variant="body2"
-              sx={{ mb: 1 }}
-            >
-              Add these properties:
-            </Typography>
-            <InfoOutlined fontSize="small" sx={{ ml: 'auto', color: 'grey.500' }} />
-          </Box>
-          <Timeline
+      <Fade in timeout={700}>
+        <Card variant="outlined" sx={{ p: 2, display: 'flex', alignItems: 'flex-start' }}>
+          <Box
             sx={{
-              pl: 0,
-              py: 0,
-              my: 0,
-              '& .MuiTimelineItem-root:before': { display: 'none' },
+              p: 0.5,
+              borderRadius: 0.5,
+              minWidth: 28,
+              textAlign: 'center',
+              bgcolor: mode === 'dark' ? 'primary.700' : 'primary.50',
+              color: mode === 'dark' ? '#fff' : 'primary.main',
+              typography: 'body2',
             }}
           >
-            <TimelineItem>
-              <TimelineSeparator>
-                <TimelineDot />
-                <TimelineConnector />
-              </TimelineSeparator>
-              <TimelineContent>Margin Top</TimelineContent>
-            </TimelineItem>
-            <TimelineItem>
-              <TimelineSeparator>
-                <TimelineDot />
-                <TimelineConnector />
-              </TimelineSeparator>
-              <TimelineContent>Padding Bottom</TimelineContent>
-            </TimelineItem>
-            <TimelineItem>
-              <TimelineSeparator>
-                <TimelineDot />
-              </TimelineSeparator>
-              <TimelineContent>Flexbox</TimelineContent>
-            </TimelineItem>
-          </Timeline>
-        </Box>
-      </Card>
+            1
+          </Box>
+          <Box sx={{ ml: 2, flex: 1 }}>
+            <Box sx={{ display: 'flex' }}>
+              <Typography
+                color={mode === 'dark' ? 'grey.400' : 'text.secondary'}
+                variant="body2"
+                sx={{ mb: 1 }}
+              >
+                Add these properties:
+              </Typography>
+              <InfoOutlined fontSize="small" sx={{ ml: 'auto', color: 'grey.500' }} />
+            </Box>
+            <Timeline
+              sx={{
+                pl: 0,
+                py: 0,
+                my: 0,
+                '& .MuiTimelineItem-root:before': { display: 'none' },
+              }}
+            >
+              <TimelineItem>
+                <TimelineSeparator>
+                  <TimelineDot />
+                  <TimelineConnector />
+                </TimelineSeparator>
+                <TimelineContent>Margin Top</TimelineContent>
+              </TimelineItem>
+              <TimelineItem>
+                <TimelineSeparator>
+                  <TimelineDot />
+                  <TimelineConnector />
+                </TimelineSeparator>
+                <TimelineContent>Padding Bottom</TimelineContent>
+              </TimelineItem>
+              <TimelineItem>
+                <TimelineSeparator>
+                  <TimelineDot />
+                </TimelineSeparator>
+                <TimelineContent>Flexbox</TimelineContent>
+              </TimelineItem>
+            </Timeline>
+          </Box>
+        </Card>
+      </Fade>
     </ThemeProvider>
   );
 }
