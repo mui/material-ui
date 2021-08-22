@@ -110,7 +110,7 @@ export default function DesignKitFAQ() {
         <AccordionSummary
           expandIcon={<KeyboardArrowDownRounded sx={{ fontSize: 20, color: 'primary.main' }} />}
         >
-          <Typography variant="body2" fontWeight="bold">
+          <Typography variant="body2" fontWeight="bold" component="h3">
             {faq.summary}
           </Typography>
         </AccordionSummary>
