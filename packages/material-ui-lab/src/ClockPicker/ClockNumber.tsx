@@ -19,8 +19,8 @@ export interface ClockNumberProps extends React.HTMLAttributes<HTMLSpanElement> 
 
 export const classes = generateUtilityClasses('PrivateClockNumber', ['selected', 'disabled']);
 
-const ClockNumberRoot = styled('span', { skipSx: true })<{ styleProps: ClockNumberProps }>(
-  ({ theme, styleProps }) => ({
+const ClockNumberRoot = styled('span', { skipSx: true })<{ ownerState: ClockNumberProps }>(
+  ({ theme, ownerState }) => ({
     height: CLOCK_HOUR_WIDTH,
     width: CLOCK_HOUR_WIDTH,
     position: 'absolute',
@@ -40,7 +40,7 @@ const ClockNumberRoot = styled('span', { skipSx: true })<{ styleProps: ClockNumb
       pointerEvents: 'none',
       color: theme.palette.text.disabled,
     },
-    ...(styleProps.inner && {
+    ...(ownerState.inner && {
       ...theme.typography.body2,
       color: theme.palette.text.secondary,
     }),
@@ -52,7 +52,7 @@ const ClockNumberRoot = styled('span', { skipSx: true })<{ styleProps: ClockNumb
  */
 function ClockNumber(props: ClockNumberProps) {
   const { className, disabled, index, inner, label, selected, ...other } = props;
-  const styleProps = props;
+  const ownerState = props;
 
   const angle = ((index % 12) / 12) * Math.PI * 2 - Math.PI / 2;
   const length = ((CLOCK_WIDTH - CLOCK_HOUR_WIDTH - 2) / 2) * (inner ? 0.65 : 1);
@@ -74,7 +74,7 @@ function ClockNumber(props: ClockNumberProps) {
       style={{
         transform: `translate(${x}px, ${y + (CLOCK_WIDTH - CLOCK_HOUR_WIDTH) / 2}px`,
       }}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       {label}

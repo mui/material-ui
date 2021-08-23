@@ -12,6 +12,7 @@ import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/co
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
+import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
 
 const languageMap = {
   en: enUS,
@@ -199,15 +200,18 @@ export function ThemeProvider(props) {
   }, [direction]);
 
   const theme = React.useMemo(() => {
-    const nextTheme = createTheme(
+    const brandingDesignTokens = getDesignTokens(paletteMode);
+    let nextTheme = createTheme(
       {
         direction,
+        ...brandingDesignTokens,
         nprogress: {
           color: paletteMode === 'light' ? '#000' : '#fff',
         },
         palette: {
-          mode: paletteMode,
+          ...brandingDesignTokens.palette,
           ...paletteColors,
+          mode: paletteMode,
         },
         spacing,
       },
@@ -223,6 +227,10 @@ export function ThemeProvider(props) {
       },
       languageMap[userLanguage],
     );
+
+    nextTheme = createTheme(nextTheme, {
+      ...getThemedComponents(nextTheme),
+    });
 
     return nextTheme;
   }, [dense, direction, paletteColors, paletteMode, spacing, userLanguage]);

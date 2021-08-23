@@ -1,16 +1,2 @@
-export {
-  useAutocomplete as default,
-  AutocompleteChangeDetails,
-  AutocompleteChangeReason,
-  AutocompleteCloseReason,
-  AutocompleteFreeSoloValueMapping,
-  AutocompleteGetTagProps,
-  AutocompleteGroupedOption,
-  AutocompleteHighlightChangeReason,
-  AutocompleteInputChangeReason,
-  AutocompleteValue as Value,
-  createFilterOptions,
-  CreateFilterOptionsConfig,
-  FilterOptionsState,
-  UseAutocompleteProps,
-} from '@material-ui/unstyled/AutocompleteUnstyled';
+export { useAutocomplete as default } from '@material-ui/unstyled/AutocompleteUnstyled';
+export * from '@material-ui/unstyled/AutocompleteUnstyled';

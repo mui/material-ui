@@ -43,8 +43,8 @@ export const pickersYearClasses = generateUtilityClasses<PickersYearClassKey>(
   ['root', 'modeMobile', 'modeDesktop', 'yearButton', 'disabled', 'selected'],
 );
 
-const useUtilityClasses = (styleProps: YearProps & { wrapperVariant: WrapperVariant }) => {
-  const { wrapperVariant, disabled, selected, classes } = styleProps;
+const useUtilityClasses = (ownerState: YearProps & { wrapperVariant: WrapperVariant }) => {
+  const { wrapperVariant, disabled, selected, classes } = ownerState;
 
   const slots = {
     root: ['root', wrapperVariant && `mode${capitalize(wrapperVariant)}`],
@@ -55,19 +55,19 @@ const useUtilityClasses = (styleProps: YearProps & { wrapperVariant: WrapperVari
 };
 
 const PickersYearRoot = styled('div', { skipSx: true })<{
-  styleProps: YearProps & { wrapperVariant: WrapperVariant };
-}>(({ styleProps }) => ({
+  ownerState: YearProps & { wrapperVariant: WrapperVariant };
+}>(({ ownerState }) => ({
   flexBasis: '33.3%',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  ...(styleProps?.wrapperVariant === 'desktop' && {
+  ...(ownerState?.wrapperVariant === 'desktop' && {
     flexBasis: '25%',
   }),
 }));
 
 const PickersYearButton = styled('button', { skipSx: true })<{
-  styleProps: YearProps & { wrapperVariant: WrapperVariant };
+  ownerState: YearProps & { wrapperVariant: WrapperVariant };
 }>(({ theme }) => ({
   color: 'unset',
   backgroundColor: 'transparent',
@@ -106,12 +106,12 @@ const PickersYear = React.forwardRef<HTMLButtonElement, YearProps>(function Pick
   const refHandle = useForkRef(ref, forwardedRef as React.Ref<HTMLButtonElement>);
   const wrapperVariant = React.useContext(WrapperVariantContext);
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     wrapperVariant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   // TODO: Can we just forward this to the button?
   React.useEffect(() => {
@@ -125,7 +125,7 @@ const PickersYear = React.forwardRef<HTMLButtonElement, YearProps>(function Pick
     <PickersYearRoot
       data-mui-test="year"
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
     >
       <PickersYearButton
         ref={refHandle}
@@ -136,7 +136,7 @@ const PickersYear = React.forwardRef<HTMLButtonElement, YearProps>(function Pick
         onClick={(event) => onClick(event, value)}
         onKeyDown={(event) => onKeyDown(event, value)}
         className={classes.yearButton}
-        styleProps={styleProps}
+        ownerState={ownerState}
       >
         {children}
       </PickersYearButton>

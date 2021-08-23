@@ -11,8 +11,8 @@ import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import stepButtonClasses, { getStepButtonUtilityClass } from './stepButtonClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, orientation } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, orientation } = ownerState;
 
   const slots = {
     root: ['root', orientation],
@@ -26,20 +26,20 @@ const StepButtonRoot = styled(ButtonBase, {
   name: 'MuiStepButton',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       { [`& .${stepButtonClasses.touchRipple}`]: styles.touchRipple },
       styles.root,
-      styles[styleProps.orientation],
+      styles[ownerState.orientation],
     ];
   },
-})(({ styleProps }) => ({
+})(({ ownerState }) => ({
   width: '100%',
   padding: '24px 16px',
   margin: '-24px -16px',
   boxSizing: 'content-box',
-  ...(styleProps.orientation === 'vertical' && {
+  ...(ownerState.orientation === 'vertical' && {
     justifyContent: 'flex-start',
     padding: '8px',
     margin: '-8px',
@@ -56,9 +56,9 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
   const { disabled } = React.useContext(StepContext);
   const { orientation } = React.useContext(StepperContext);
 
-  const styleProps = { ...props, orientation };
+  const ownerState = { ...props, orientation };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const childProps = {
     icon,
@@ -78,7 +78,7 @@ const StepButton = React.forwardRef(function StepButton(inProps, ref) {
       TouchRippleProps={{ className: classes.touchRipple }}
       className={clsx(classes.root, className)}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       {child}

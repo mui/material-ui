@@ -36,12 +36,12 @@ const QontoConnector = styled(StepConnector)(({ theme }) => ({
   },
 }));
 
-const QontoStepIconRoot = styled('div')(({ theme, styleProps }) => ({
+const QontoStepIconRoot = styled('div')(({ theme, ownerState }) => ({
   color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#eaeaf0',
   display: 'flex',
   height: 22,
   alignItems: 'center',
-  ...(styleProps.active && {
+  ...(ownerState.active && {
     color: '#784af4',
   }),
   '& .QontoStepIcon-completedIcon': {
@@ -61,7 +61,7 @@ function QontoStepIcon(props) {
   const { active, completed, className } = props;
 
   return (
-    <QontoStepIconRoot styleProps={{ active }} className={className}>
+    <QontoStepIconRoot ownerState={{ active }} className={className}>
       {completed ? (
         <Check className="QontoStepIcon-completedIcon" />
       ) : (
@@ -110,7 +110,7 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
   },
 }));
 
-const ColorlibStepIconRoot = styled('div')(({ theme, styleProps }) => ({
+const ColorlibStepIconRoot = styled('div')(({ theme, ownerState }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#ccc',
   zIndex: 1,
   color: '#fff',
@@ -120,12 +120,12 @@ const ColorlibStepIconRoot = styled('div')(({ theme, styleProps }) => ({
   borderRadius: '50%',
   justifyContent: 'center',
   alignItems: 'center',
-  ...(styleProps.active && {
+  ...(ownerState.active && {
     backgroundImage:
       'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
     boxShadow: '0 4px 10px 0 rgba(0,0,0,.25)',
   }),
-  ...(styleProps.completed && {
+  ...(ownerState.completed && {
     backgroundImage:
       'linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)',
   }),
@@ -141,7 +141,7 @@ function ColorlibStepIcon(props) {
   };
 
   return (
-    <ColorlibStepIconRoot styleProps={{ completed, active }} className={className}>
+    <ColorlibStepIconRoot ownerState={{ completed, active }} className={className}>
       {icons[String(props.icon)]}
     </ColorlibStepIconRoot>
   );

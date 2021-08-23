@@ -54,8 +54,8 @@ export const monthPickerClasses = generateUtilityClasses<MonthPickerClassKey>('M
   'root',
 ]);
 
-const useUtilityClasses = (styleProps: MonthPickerProps<any>) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState: MonthPickerProps<any>) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -68,7 +68,7 @@ const MonthPickerRoot = styled('div', {
   name: 'MuiMonthPicker',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ styleProps: MonthPickerProps<any> }>({
+})<{ ownerState: MonthPickerProps<any> }>({
   width: 310,
   display: 'flex',
   flexWrap: 'wrap',
@@ -95,8 +95,8 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
     onMonthChange,
     ...other
   } = props;
-  const styleProps = props;
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = props;
+  const classes = useUtilityClasses(ownerState);
 
   const utils = useUtils<TDate>();
   const now = useNow<TDate>();
@@ -130,7 +130,7 @@ const MonthPicker = React.forwardRef(function MonthPicker<TDate>(
     <MonthPickerRoot
       ref={ref}
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       {utils.getMonthArray(date || now).map((month) => {

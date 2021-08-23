@@ -12,8 +12,8 @@ import Grow from '../Grow';
 import SnackbarContent from '../SnackbarContent';
 import { getSnackbarUtilityClass } from './snackbarClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, anchorOrigin } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, anchorOrigin } = ownerState;
 
   const slots = {
     root: [
@@ -29,18 +29,18 @@ const SnackbarRoot = styled('div', {
   name: 'MuiSnackbar',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.root,
       styles[
-        `anchorOrigin${capitalize(styleProps.anchorOrigin.vertical)}${capitalize(
-          styleProps.anchorOrigin.horizontal,
+        `anchorOrigin${capitalize(ownerState.anchorOrigin.vertical)}${capitalize(
+          ownerState.anchorOrigin.horizontal,
         )}`
       ],
     ];
   },
-})(({ theme, styleProps }) => {
+})(({ theme, ownerState }) => {
   const center = {
     left: '50%',
     right: 'auto',
@@ -55,14 +55,14 @@ const SnackbarRoot = styled('div', {
     right: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    ...(styleProps.anchorOrigin.vertical === 'top' ? { top: 8 } : { bottom: 8 }),
-    ...(styleProps.anchorOrigin.horizontal === 'left' && { justifyContent: 'flex-start' }),
-    ...(styleProps.anchorOrigin.horizontal === 'right' && { justifyContent: 'flex-end' }),
+    ...(ownerState.anchorOrigin.vertical === 'top' ? { top: 8 } : { bottom: 8 }),
+    ...(ownerState.anchorOrigin.horizontal === 'left' && { justifyContent: 'flex-start' }),
+    ...(ownerState.anchorOrigin.horizontal === 'right' && { justifyContent: 'flex-end' }),
     [theme.breakpoints.up('sm')]: {
-      ...(styleProps.anchorOrigin.vertical === 'top' ? { top: 24 } : { bottom: 24 }),
-      ...(styleProps.anchorOrigin.horizontal === 'center' && center),
-      ...(styleProps.anchorOrigin.horizontal === 'left' && { left: 24, right: 'auto' }),
-      ...(styleProps.anchorOrigin.horizontal === 'right' && { right: 24, left: 'auto' }),
+      ...(ownerState.anchorOrigin.vertical === 'top' ? { top: 24 } : { bottom: 24 }),
+      ...(ownerState.anchorOrigin.horizontal === 'center' && center),
+      ...(ownerState.anchorOrigin.horizontal === 'left' && { left: 24, right: 'auto' }),
+      ...(ownerState.anchorOrigin.horizontal === 'right' && { right: 24, left: 'auto' }),
     },
   };
 });
@@ -93,8 +93,8 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = { ...props, anchorOrigin: { vertical, horizontal } };
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = { ...props, anchorOrigin: { vertical, horizontal } };
+  const classes = useUtilityClasses(ownerState);
 
   const timerAutoHide = React.useRef();
   const [exited, setExited] = React.useState(true);
@@ -202,7 +202,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
         className={clsx(classes.root, className)}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        styleProps={styleProps}
+        ownerState={ownerState}
         ref={ref}
         {...other}
       >

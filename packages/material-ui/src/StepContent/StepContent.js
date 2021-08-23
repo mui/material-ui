@@ -9,8 +9,8 @@ import StepperContext from '../Stepper/StepperContext';
 import StepContext from '../Step/StepContext';
 import { getStepContentUtilityClass } from './stepContentClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, last } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, last } = ownerState;
 
   const slots = { root: ['root', last && 'last'], transition: ['transition'] };
 
@@ -21,18 +21,18 @@ const StepContentRoot = styled('div', {
   name: 'MuiStepContent',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
-    return [styles.root, styleProps.last && styles.last];
+    return [styles.root, ownerState.last && styles.last];
   },
-})(({ styleProps, theme }) => ({
+})(({ ownerState, theme }) => ({
   marginLeft: 12, // half icon
   paddingLeft: 8 + 12, // margin + half icon
   paddingRight: 8,
   borderLeft: `1px solid ${
     theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600]
   }`,
-  ...(styleProps.last && {
+  ...(ownerState.last && {
     borderLeft: 'none',
   }),
 }));
@@ -57,8 +57,8 @@ const StepContent = React.forwardRef(function StepContent(inProps, ref) {
   const { orientation } = React.useContext(StepperContext);
   const { active, last, expanded } = React.useContext(StepContext);
 
-  const styleProps = { ...props, last };
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = { ...props, last };
+  const classes = useUtilityClasses(ownerState);
 
   if (process.env.NODE_ENV !== 'production') {
     if (orientation !== 'vertical') {
@@ -78,14 +78,14 @@ const StepContent = React.forwardRef(function StepContent(inProps, ref) {
     <StepContentRoot
       className={clsx(classes.root, className)}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       <StepContentTransition
         as={TransitionComponent}
         in={active || expanded}
         className={classes.transition}
-        styleProps={styleProps}
+        ownerState={ownerState}
         timeout={transitionDuration}
         unmountOnExit
         {...TransitionProps}

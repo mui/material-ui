@@ -10,16 +10,16 @@ import { CalendarPickerView } from '../CalendarPicker';
 
 const classes = generateUtilityClasses('PrivateDatePickerToolbar', ['penIcon']);
 
-const DatePickerToolbarRoot = styled(PickersToolbar, { skipSx: true })<{ styleProps: any }>({
+const DatePickerToolbarRoot = styled(PickersToolbar, { skipSx: true })<{ ownerState: any }>({
   [`& .${classes.penIcon}`]: {
     position: 'relative',
     top: 4,
   },
 });
 
-const DatePickerToolbarTitle = styled(Typography, { skipSx: true })<{ styleProps: any }>(
-  ({ styleProps }) => ({
-    ...(styleProps.isLandscape && {
+const DatePickerToolbarTitle = styled(Typography, { skipSx: true })<{ ownerState: any }>(
+  ({ ownerState }) => ({
+    ...(ownerState.isLandscape && {
       margin: 'auto 16px auto auto',
     }),
   }),
@@ -69,7 +69,7 @@ const DatePickerToolbar = React.forwardRef<HTMLDivElement, ToolbarComponentProps
         : utils.format(date, 'normalDate');
     }, [date, toolbarFormat, toolbarPlaceholder, utils, views]);
 
-    const styleProps = props;
+    const ownerState = props;
 
     return (
       <DatePickerToolbarRoot
@@ -79,14 +79,14 @@ const DatePickerToolbar = React.forwardRef<HTMLDivElement, ToolbarComponentProps
         toggleMobileKeyboardView={toggleMobileKeyboardView}
         isLandscape={isLandscape}
         penIconClassName={classes.penIcon}
-        styleProps={styleProps}
+        ownerState={ownerState}
         {...other}
       >
         <DatePickerToolbarTitle
           variant="h4"
           data-mui-test="datepicker-toolbar-date"
           align={isLandscape ? 'left' : 'center'}
-          styleProps={styleProps}
+          ownerState={ownerState}
         >
           {dateText}
         </DatePickerToolbarTitle>

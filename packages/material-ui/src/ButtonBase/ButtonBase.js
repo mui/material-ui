@@ -11,8 +11,8 @@ import useIsFocusVisible from '../utils/useIsFocusVisible';
 import TouchRipple from './TouchRipple';
 import buttonBaseClasses, { getButtonBaseUtilityClass } from './buttonBaseClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { disabled, focusVisible, focusVisibleClassName, classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { disabled, focusVisible, focusVisibleClassName, classes } = ownerState;
 
   const slots = {
     root: ['root', disabled && 'disabled', focusVisible && 'focusVisible'],
@@ -325,7 +325,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     }, [enableTouchRipple]);
   }
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     centerRipple,
     component,
@@ -337,13 +337,13 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     focusVisible,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <ButtonBaseRoot
       as={ComponentProp}
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       onBlur={handleBlur}
       onClick={onClick}
       onContextMenu={handleContextMenu}
