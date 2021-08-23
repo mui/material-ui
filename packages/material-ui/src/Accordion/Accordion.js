@@ -130,7 +130,7 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
     ...other
   } = props;
 
-  const [expanded, setExpandedState] = useControlled({
+  const [expanded, setExpandedState, getExpandedState] = useControlled({
     controlled: expandedProp,
     default: defaultExpanded,
     name: 'Accordion',
@@ -139,13 +139,14 @@ const Accordion = React.forwardRef(function Accordion(inProps, ref) {
 
   const handleChange = React.useCallback(
     (event) => {
-      setExpandedState(!expanded);
+      const nextExpandedState = !getExpandedState();
+      setExpandedState(nextExpandedState);
 
       if (onChange) {
-        onChange(event, !expanded);
+        onChange(event, nextExpandedState);
       }
     },
-    [expanded, onChange, setExpandedState],
+    [getExpandedState, onChange, setExpandedState],
   );
 
   const [summary, ...children] = React.Children.toArray(childrenProp);

@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks, react-hooks/exhaustive-deps */
 import * as React from 'react';
+import useStateRef from './useStateRef';
 
 export default function useControlled({ controlled, default: defaultProp, name, state = 'value' }) {
   // isControlled is ignored in the hook dependency lists as it should never change.
   const { current: isControlled } = React.useRef(controlled !== undefined);
-  const [valueState, setValue] = React.useState(defaultProp);
+  const [valueState, setValue, getValue] = useStateRef(defaultProp);
   const value = isControlled ? controlled : valueState;
 
   if (process.env.NODE_ENV !== 'production') {
@@ -45,5 +46,5 @@ export default function useControlled({ controlled, default: defaultProp, name, 
     }
   }, []);
 
-  return [value, setValueIfUncontrolled];
+  return [value, setValueIfUncontrolled, getValue];
 }
