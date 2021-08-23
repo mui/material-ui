@@ -3,7 +3,6 @@ import { styled, alpha } from '@material-ui/core/styles';
 import Avatar, { AvatarProps } from '@material-ui/core/Avatar';
 import Box, { BoxProps } from '@material-ui/core/Box';
 import ROUTES from 'docs/src/route';
-import LaunchRounded from '@material-ui/icons/LaunchRounded';
 import Slide from 'docs/src/components/animation/Slide';
 import FadeDelay from 'docs/src/components/animation/FadeDelay';
 
@@ -31,18 +30,18 @@ const Image = styled('img')(({ theme }) => ({
       : '0px 4px 20px rgba(61, 71, 82, 0.25)',
 }));
 
-const Anchor = styled('a')({
+const Anchor = styled('a')(({ theme }) => ({
   display: 'inline-block',
   position: 'relative',
   transition: '0.3s',
   borderRadius: '50%',
   '&:hover, &:focus': {
-    boxShadow: '0 6px 12px 0 rgba(0,0,0,0.12)',
-    '& > div': {
-      opacity: 1,
-    },
+    boxShadow:
+      theme.palette.mode === 'dark'
+        ? `0 6px 20px 0 ${alpha(theme.palette.primaryDark[100], 0.5)}`
+        : '0 6px 20px 0 rgba(0,0,0,0.2)',
   },
-});
+}));
 
 const DesignToolLink = React.forwardRef<
   HTMLAnchorElement,
@@ -56,29 +55,6 @@ const DesignToolLink = React.forwardRef<
     {...props}
   >
     {props.children}
-    <Box
-      sx={{
-        transition: '0.3s',
-        borderRadius: '50%',
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        opacity: 0,
-        top: 0,
-        left: 0,
-        bgcolor: (theme) =>
-          theme.palette.mode === 'dark'
-            ? alpha(theme.palette.primaryDark[800], 0.5)
-            : alpha(theme.palette.primary[500], 0.5),
-        color: '#fff',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <LaunchRounded />
-    </Box>
   </Anchor>
 ));
 

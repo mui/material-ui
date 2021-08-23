@@ -17,13 +17,13 @@ export default function ArrowButton({
       aria-label={label[direction]}
       {...props}
       sx={{
-        color: '#fff',
+        color: (theme) => (theme.palette.mode === 'dark' ? '#fff' : 'primary.main'),
         border: '1px solid',
-        borderColor: 'primaryDark.300',
+        borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.300' : 'grey.200'),
         '&.Mui-disabled': {
           opacity: 0.5,
-          color: '#fff',
-          borderColor: 'primary.700',
+          color: (theme) => (theme.palette.mode === 'dark' ? '#fff' : 'grey.500'),
+          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primary.700' : 'grey.500'),
         },
         '& + .MuiIconButton-root': {
           ml: 2,
