@@ -718,7 +718,17 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null
    */
-  defaultValue: PropTypes.any,
+  defaultValue: chainPropTypes(PropTypes.any, (props) => {
+    if (props.multiple && props.defaultValue !== undefined && !Array.isArray(props.defaultValue)) {
+      return new Error(
+        [
+          'Material-UI: The Autocomplete expects the `defaultValue` prop to be an array or undefined.',
+          `However, ${props.defaultValue} was provided.`,
+        ].join('\n'),
+      );
+    }
+    return null;
+  }),
   /**
    * If `true`, the input can't be cleared.
    * @default false
