@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import sinon, { spy, stub } from 'sinon';
+import sinon, { spy, stub, useFakeTimers } from 'sinon';
 import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
@@ -49,6 +49,42 @@ describe('<TextareaAutosize />', () => {
 
     after(() => {
       sinon.restore();
+    });
+
+    describe('resize', () => {
+      let clock;
+
+      beforeEach(() => {
+        clock = useFakeTimers();
+      });
+
+      afterEach(() => {
+        clock.restore();
+      });
+
+      it('should handle the resize event', () => {
+        const { container } = render(<TextareaAutosize />);
+        const input = container.querySelector('textarea[aria-hidden=null]');
+        const shadow = container.querySelector('textarea[aria-hidden=true]');
+        expect(input.style).to.have.property('height', '');
+        expect(input.style).to.have.property('overflow', '');
+
+        setLayout(input, shadow, {
+          getComputedStyle: {
+            'box-sizing': 'content-box',
+          },
+          scrollHeight: 30,
+          lineHeight: 15,
+        });
+        window.dispatchEvent(new window.Event('resize', {}));
+
+        act(() => {
+          clock.tick(166);
+        });
+
+        expect(input.style).to.have.property('height', '30px');
+        expect(input.style).to.have.property('overflow', 'hidden');
+      });
     });
 
     it('should update when uncontrolled', () => {

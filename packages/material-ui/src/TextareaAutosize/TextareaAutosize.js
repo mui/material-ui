@@ -123,25 +123,26 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     });
   }, [maxRows, minRows, props.placeholder]);
 
-  const resizeObserverRef = React.useRef(null);
-
   React.useEffect(() => {
     const handleResize = debounce(() => {
       renders.current = 0;
       syncHeight();
     });
-
+    const containerWindow = ownerWindow(inputRef.current);
+    containerWindow.addEventListener('resize', handleResize);
+    let resizeObserver;
     try {
-      resizeObserverRef.current = new ResizeObserver(handleResize);
+      resizeObserver = new ResizeObserver(handleResize);
     } catch (err) {
-      resizeObserverRef.current = MockResizeObserver(); // Prevent crash for old browsers
+      resizeObserver = MockResizeObserver(); // Prevent crash for old browsers and test failure
     }
     const item = inputRef.current;
-    resizeObserverRef.current.observe(item);
+    resizeObserver.observe(item);
 
     return () => {
       handleResize.clear();
-      resizeObserverRef.current.unobserve(item);
+      containerWindow.removeEventListener('resize', handleResize);
+      resizeObserver.unobserve(item);
     };
   }, [syncHeight]);
 
