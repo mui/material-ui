@@ -157,7 +157,7 @@ SwitchUnstyled.propTypes /* remove-proptypes */ = {
     Input: PropTypes.elementType,
     Root: PropTypes.elementType,
     Thumb: PropTypes.elementType,
-    Track: PropTypes.elementType,
+    Track: PropTypes.oneOfType([PropTypes.elementType, PropTypes.oneOf([null])]),
   }),
   /**
    * The props used for each slot inside the Switch.

@@ -6,7 +6,7 @@
     "components": {
       "type": {
         "name": "shape",
-        "description": "{ Input?: elementType, Root?: elementType, Thumb?: elementType, Track?: PropTypes.elementType<br>&#124;&nbsp;null }"
+        "description": "{ Input?: elementType, Root?: elementType, Thumb?: elementType, Track?: elementType<br>&#124;&nbsp;null }"
       },
       "default": "{}"
     },
