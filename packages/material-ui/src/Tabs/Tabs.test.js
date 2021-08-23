@@ -566,6 +566,47 @@ describe('<Tabs />', () => {
       expect(container.querySelectorAll(`.${classes.scrollButtonsHideMobile}`)).to.have.lengthOf(0);
     });
 
+    it('should handle window resize event', function test() {
+      if (isJSDOM) {
+        this.skip();
+      }
+
+      const { container, forceUpdate, getByRole } = render(
+        <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
+          <Tab />
+          <Tab />
+          <Tab />
+        </Tabs>,
+      );
+
+      const tablistContainer = getByRole('tablist').parentElement;
+
+      Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 - 40 * 2 });
+      tablistContainer.scrollLeft = 10;
+      Object.defineProperty(tablistContainer, 'scrollWidth', { value: 216 });
+      Object.defineProperty(tablistContainer, 'getBoundingClientRect', {
+        value: () => ({
+          left: 0,
+          right: 100,
+        }),
+      });
+      forceUpdate();
+      act(() => {
+        clock.tick(1000);
+      });
+      expect(hasLeftScrollButton(container)).to.equal(true);
+      expect(hasRightScrollButton(container)).to.equal(true);
+      tablistContainer.scrollLeft = 0;
+
+      act(() => {
+        window.dispatchEvent(new window.Event('resize', {}));
+        clock.tick(166);
+      });
+
+      expect(hasLeftScrollButton(container)).to.equal(false);
+      expect(hasRightScrollButton(container)).to.equal(true);
+    });
+
     describe('scroll button visibility states', () => {
       it('should set neither left nor right scroll button state', () => {
         const { container, forceUpdate, getByRole } = render(
