@@ -8,8 +8,8 @@ import useThemeProps from '../styles/useThemeProps';
 import fabClasses, { getFabUtilityClass } from './fabClasses';
 import styled from '../styles/styled';
 
-const useUtilityClasses = (styleProps) => {
-  const { color, variant, classes, size } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { color, variant, classes, size } = ownerState;
 
   const slots = {
     root: [
@@ -29,19 +29,19 @@ const FabRoot = styled(ButtonBase, {
   name: 'MuiFab',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.root,
-      styles[styleProps.variant],
-      styles[`size${capitalize(styleProps.size)}`],
-      styleProps.color === 'inherit' && styles.colorInherit,
-      styleProps.color === 'primary' && styles.primary,
-      styleProps.color === 'secondary' && styles.secondary,
+      styles[ownerState.variant],
+      styles[`size${capitalize(ownerState.size)}`],
+      ownerState.color === 'inherit' && styles.colorInherit,
+      ownerState.color === 'primary' && styles.primary,
+      ownerState.color === 'secondary' && styles.secondary,
     ];
   },
 })(
-  ({ theme, styleProps }) => ({
+  ({ theme, ownerState }) => ({
     ...theme.typography.button,
     minHeight: 36,
     transition: theme.transitions.create(['background-color', 'box-shadow', 'border-color'], {
@@ -74,15 +74,15 @@ const FabRoot = styled(ButtonBase, {
       boxShadow: theme.shadows[0],
       backgroundColor: theme.palette.action.disabledBackground,
     },
-    ...(styleProps.size === 'small' && {
+    ...(ownerState.size === 'small' && {
       width: 40,
       height: 40,
     }),
-    ...(styleProps.size === 'medium' && {
+    ...(ownerState.size === 'medium' && {
       width: 48,
       height: 48,
     }),
-    ...(styleProps.variant === 'extended' && {
+    ...(ownerState.variant === 'extended' && {
       borderRadius: 48 / 2,
       padding: '0 16px',
       width: 'auto',
@@ -90,28 +90,28 @@ const FabRoot = styled(ButtonBase, {
       minWidth: 48,
       height: 48,
     }),
-    ...(styleProps.variant === 'extended' &&
-      styleProps.size === 'small' && {
+    ...(ownerState.variant === 'extended' &&
+      ownerState.size === 'small' && {
         width: 'auto',
         padding: '0 8px',
         borderRadius: 34 / 2,
         minWidth: 34,
         height: 34,
       }),
-    ...(styleProps.variant === 'extended' &&
-      styleProps.size === 'medium' && {
+    ...(ownerState.variant === 'extended' &&
+      ownerState.size === 'medium' && {
         width: 'auto',
         padding: '0 16px',
         borderRadius: 40 / 2,
         minWidth: 40,
         height: 40,
       }),
-    ...(styleProps.color === 'inherit' && {
+    ...(ownerState.color === 'inherit' && {
       color: 'inherit',
     }),
   }),
-  ({ theme, styleProps }) => ({
-    ...(styleProps.color === 'primary' && {
+  ({ theme, ownerState }) => ({
+    ...(ownerState.color === 'primary' && {
       color: theme.palette.primary.contrastText,
       backgroundColor: theme.palette.primary.main,
       '&:hover': {
@@ -122,7 +122,7 @@ const FabRoot = styled(ButtonBase, {
         },
       },
     }),
-    ...(styleProps.color === 'secondary' && {
+    ...(ownerState.color === 'secondary' && {
       color: theme.palette.secondary.contrastText,
       backgroundColor: theme.palette.secondary.main,
       '&:hover': {
@@ -151,7 +151,7 @@ const Fab = React.forwardRef(function Fab(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     color,
     component,
@@ -161,7 +161,7 @@ const Fab = React.forwardRef(function Fab(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <FabRoot
@@ -170,7 +170,7 @@ const Fab = React.forwardRef(function Fab(inProps, ref) {
       disabled={disabled}
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       {...other}
     >

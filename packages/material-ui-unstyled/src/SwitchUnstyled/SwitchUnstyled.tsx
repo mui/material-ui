@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import useSwitch, { SwitchState, UseSwitchProps } from './useSwitch';
 import classes from './switchUnstyledClasses';
-import appendStyleProps from '../utils/appendStyleProps';
+import appendOwnerState from '../utils/appendOwnerState';
 
 export interface SwitchUnstyledProps extends UseSwitchProps {
   /**
@@ -85,7 +85,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
 
   const { getInputProps, checked, disabled, focusVisible, readOnly } = useSwitch(useSwitchProps);
 
-  const styleProps: SwitchState = {
+  const ownerState: SwitchState = {
     ...props,
     checked,
     disabled,
@@ -94,13 +94,13 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
   };
 
   const Root: React.ElementType = component ?? components.Root ?? 'span';
-  const rootProps = appendStyleProps(Root, { ...otherProps, ...componentsProps.root }, styleProps);
+  const rootProps = appendOwnerState(Root, { ...otherProps, ...componentsProps.root }, ownerState);
 
   const Thumb: React.ElementType = components.Thumb ?? 'span';
-  const thumbProps = appendStyleProps(Thumb, componentsProps.thumb ?? {}, styleProps);
+  const thumbProps = appendOwnerState(Thumb, componentsProps.thumb ?? {}, ownerState);
 
   const Input: React.ElementType = components.Input ?? 'input';
-  const inputProps = appendStyleProps(Input, componentsProps.input ?? {}, styleProps);
+  const inputProps = appendOwnerState(Input, componentsProps.input ?? {}, ownerState);
 
   const Track: React.ElementType =
     components.Track === null ? () => null : components.Track ?? 'span';

@@ -123,9 +123,9 @@ export const calendarPickerClasses: CalendarPickerClasses = generateUtilityClass
 );
 
 const useUtilityClasses = (
-  styleProps: CalendarPickerProps<any> & { classes?: Partial<CalendarPickerClasses> },
+  ownerState: CalendarPickerProps<any> & { classes?: Partial<CalendarPickerClasses> },
 ) => {
-  const { classes } = styleProps;
+  const { classes } = ownerState;
   const slots = {
     root: ['root'],
     viewTransitionContainer: ['viewTransitionContainer'],
@@ -138,7 +138,7 @@ const CalendarPickerRoot = styled(PickerView, {
   name: 'MuiCalendarPicker',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ styleProps: CalendarPickerProps<any> }>({
+})<{ ownerState: CalendarPickerProps<any> }>({
   display: 'flex',
   flexDirection: 'column',
 });
@@ -147,7 +147,7 @@ const CalendarPickerViewTransitionContainer = styled(FadeTransitionGroup, {
   name: 'MuiCalendarPicker',
   slot: 'ViewTransitionContainer',
   overridesResolver: (props, styles) => styles.viewTransitionContainer,
-})<{ styleProps: CalendarPickerProps<any> }>({
+})<{ ownerState: CalendarPickerProps<any> }>({
   overflowY: 'auto',
 });
 
@@ -243,11 +243,11 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends an
     }
   }, [date]); // eslint-disable-line
 
-  const styleProps = props;
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = props;
+  const classes = useUtilityClasses(ownerState);
 
   return (
-    <CalendarPickerRoot ref={ref} className={clsx(classes.root, className)} styleProps={styleProps}>
+    <CalendarPickerRoot ref={ref} className={clsx(classes.root, className)} ownerState={ownerState}>
       <PickersCalendarHeader
         {...other}
         views={views}
@@ -265,7 +265,7 @@ const CalendarPicker = React.forwardRef(function CalendarPicker<TDate extends an
         reduceAnimations={reduceAnimations}
         className={classes.viewTransitionContainer}
         transKey={openView}
-        styleProps={styleProps}
+        ownerState={ownerState}
       >
         <div>
           {openView === 'year' && (

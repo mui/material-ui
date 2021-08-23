@@ -16,8 +16,8 @@ import {
 import TouchRipple from '@material-ui/core/ButtonBase/TouchRipple';
 import useTouchRipple from '@material-ui/core/useTouchRipple';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, edge, size, color, checked, disabled, focusVisible } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, edge, size, color, checked, disabled, focusVisible } = ownerState;
 
   const slots = {
     root: [
@@ -61,17 +61,17 @@ const SwitchBase = styled('span', {
   name: 'MuiSwitch',
   slot: 'SwitchBase',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return {
       ...styles.switchBase,
       ...styles.input,
-      ...(styleProps.color !== 'default' &&
-        styles[`color${capitalize(styleProps.color)}`]),
+      ...(ownerState.color !== 'default' &&
+        styles[`color${capitalize(ownerState.color)}`]),
     };
   },
 })(
-  ({ theme, styleProps }) => ({
+  ({ theme, ownerState }) => ({
     position: 'absolute',
     top: 0,
     left: 0,
@@ -85,11 +85,11 @@ const SwitchBase = styled('span', {
     }),
     padding: 9,
     borderRadius: '50%',
-    ...(styleProps.edge === 'start' && {
-      marginLeft: styleProps.size === 'small' ? -3 : -12,
+    ...(ownerState.edge === 'start' && {
+      marginLeft: ownerState.size === 'small' ? -3 : -12,
     }),
-    ...(styleProps.edge === 'end' && {
-      marginRight: styleProps.size === 'small' ? -3 : -12,
+    ...(ownerState.edge === 'end' && {
+      marginRight: ownerState.size === 'small' ? -3 : -12,
     }),
     display: 'inline-flex',
     alignItems: 'center',
@@ -130,7 +130,7 @@ const SwitchBase = styled('span', {
       opacity: theme.palette.mode === 'light' ? 0.12 : 0.2,
     },
   }),
-  ({ theme, styleProps }) => ({
+  ({ theme, ownerState }) => ({
     '&:hover': {
       backgroundColor: alpha(
         theme.palette.action.active,
@@ -140,12 +140,12 @@ const SwitchBase = styled('span', {
         backgroundColor: 'transparent',
       },
     },
-    ...(styleProps.color !== 'default' && {
+    ...(ownerState.color !== 'default' && {
       [`&.${switchClasses.checked}`]: {
-        color: theme.palette[styleProps.color].main,
+        color: theme.palette[ownerState.color].main,
         '&:hover': {
           backgroundColor: alpha(
-            theme.palette[styleProps.color].main,
+            theme.palette[ownerState.color].main,
             theme.palette.action.hoverOpacity,
           ),
           '@media (hover: none)': {
@@ -155,12 +155,12 @@ const SwitchBase = styled('span', {
         [`&.${switchClasses.disabled}`]: {
           color:
             theme.palette.mode === 'light'
-              ? lighten(theme.palette[styleProps.color].main, 0.62)
-              : darken(theme.palette[styleProps.color].main, 0.55),
+              ? lighten(theme.palette[ownerState.color].main, 0.62)
+              : darken(theme.palette[ownerState.color].main, 0.55),
         },
       },
       [`&.${switchClasses.checked} + .${switchClasses.track}`]: {
-        backgroundColor: theme.palette[styleProps.color].main,
+        backgroundColor: theme.palette[ownerState.color].main,
       },
     }),
   }),
@@ -170,18 +170,18 @@ const SwitchRoot = styled('span', {
   name: 'MuiSwitch',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return {
       ...styles.root,
-      ...(styleProps.edge && styles[`edge${capitalize(styleProps.edge)}`]),
-      ...styles[`size${capitalize(styleProps.size)}`],
+      ...(ownerState.edge && styles[`edge${capitalize(ownerState.edge)}`]),
+      ...styles[`size${capitalize(ownerState.size)}`],
       ...styles.input,
-      ...(styleProps.color !== 'default' &&
-        styles[`color${capitalize(styleProps.color)}`]),
+      ...(ownerState.color !== 'default' &&
+        styles[`color${capitalize(ownerState.color)}`]),
     };
   },
-})(({ styleProps }) => ({
+})(({ ownerState }) => ({
   display: 'inline-flex',
   width: 34 + 12 * 2,
   height: 14 + 12 * 2,
@@ -195,13 +195,13 @@ const SwitchRoot = styled('span', {
   '@media print': {
     colorAdjust: 'exact',
   },
-  ...(styleProps.edge === 'start' && {
+  ...(ownerState.edge === 'start' && {
     marginLeft: -8,
   }),
-  ...(styleProps.edge === 'end' && {
+  ...(ownerState.edge === 'end' && {
     marginRight: -8,
   }),
-  ...(styleProps.size === 'small' && {
+  ...(ownerState.size === 'small' && {
     width: 40,
     height: 24,
     padding: 7,
@@ -266,7 +266,7 @@ const SwitchLayout = React.forwardRef((props, ref) => {
     disableRipple,
     disableTouchRipple,
     disableFocusRipple,
-    styleProps,
+    ownerState,
     TouchRippleProps,
     children,
     onFocus,
@@ -274,7 +274,7 @@ const SwitchLayout = React.forwardRef((props, ref) => {
     ...other
   } = props;
 
-  const { checked, disabled, focusVisible } = styleProps;
+  const { checked, disabled, focusVisible } = ownerState;
 
   const rippleRef = React.useRef(null);
 
@@ -292,7 +292,7 @@ const SwitchLayout = React.forwardRef((props, ref) => {
   });
 
   const classes = useUtilityClasses({
-    ...styleProps,
+    ...ownerState,
     checked,
     disabled,
     focusVisible,
@@ -303,11 +303,11 @@ const SwitchLayout = React.forwardRef((props, ref) => {
       {...other}
       className={clsx(className, classes.root)}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
     >
       <SwitchBase
         className={classes.switchBase}
-        styleProps={styleProps}
+        ownerState={ownerState}
         {...rippleHandlers}
         onFocus={onFocus}
       >
@@ -369,7 +369,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     }
   }
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     color,
     edge,
@@ -388,7 +388,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   const componentsProps = {
     root: {
       className,
-      styleProps,
+      ownerState,
       disableFocusRipple,
       disableRipple,
       disableTouchRipple,
@@ -397,11 +397,11 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
       TouchRippleProps,
     },
     input: {
-      styleProps,
+      ownerState,
       ...inputProps,
     },
     thumb: {
-      styleProps,
+      ownerState,
       icon,
       checkedIcon,
       defaultThumbClassName: switchClasses.thumb,

@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { describeConformanceV5, createClientRender } from 'test/utils';
+import { describeConformance, createClientRender } from 'test/utils';
 import DialogTitle, { dialogTitleClasses as classes } from '@material-ui/core/DialogTitle';
 
 describe('<DialogTitle />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<DialogTitle>foo</DialogTitle>, () => ({
+  describeConformance(<DialogTitle>foo</DialogTitle>, () => ({
     classes,
     inheritComponent: 'h2',
     render,

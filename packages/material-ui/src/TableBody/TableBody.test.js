@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import TableBody, { tableBodyClasses as classes } from '@material-ui/core/TableBody';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 
@@ -11,7 +11,7 @@ describe('<TableBody />', () => {
     return render(<table>{node}</table>);
   }
 
-  describeConformanceV5(<TableBody />, () => ({
+  describeConformance(<TableBody />, () => ({
     classes,
     inheritComponent: 'tbody',
     wrapMount: (mount) => (node) => {

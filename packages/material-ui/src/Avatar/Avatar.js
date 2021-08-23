@@ -7,8 +7,8 @@ import useThemeProps from '../styles/useThemeProps';
 import Person from '../internal/svg-icons/Person';
 import { getAvatarUtilityClass } from './avatarClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, variant, colorDefault } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, variant, colorDefault } = ownerState;
 
   const slots = {
     root: ['root', variant, colorDefault && 'colorDefault'],
@@ -23,15 +23,15 @@ const AvatarRoot = styled('div', {
   name: 'MuiAvatar',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.root,
-      styles[styleProps.variant],
-      styleProps.colorDefault && styles.colorDefault,
+      styles[ownerState.variant],
+      ownerState.colorDefault && styles.colorDefault,
     ];
   },
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -45,13 +45,13 @@ const AvatarRoot = styled('div', {
   borderRadius: '50%',
   overflow: 'hidden',
   userSelect: 'none',
-  ...(styleProps.variant === 'rounded' && {
+  ...(ownerState.variant === 'rounded' && {
     borderRadius: theme.shape.borderRadius,
   }),
-  ...(styleProps.variant === 'square' && {
+  ...(ownerState.variant === 'square' && {
     borderRadius: 0,
   }),
-  ...(styleProps.colorDefault && {
+  ...(ownerState.colorDefault && {
     color: theme.palette.background.default,
     backgroundColor:
       theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
@@ -144,14 +144,14 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const hasImg = src || srcSet;
   const hasImgNotFailing = hasImg && loaded !== 'error';
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     colorDefault: !hasImgNotFailing,
     component,
     variant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   if (hasImgNotFailing) {
     children = (
@@ -160,7 +160,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
         src={src}
         srcSet={srcSet}
         sizes={sizes}
-        styleProps={styleProps}
+        ownerState={ownerState}
         className={classes.img}
         {...imgProps}
       />
@@ -176,7 +176,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   return (
     <AvatarRoot
       as={component}
-      styleProps={styleProps}
+      ownerState={ownerState}
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}

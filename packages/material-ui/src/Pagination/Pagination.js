@@ -9,8 +9,8 @@ import usePagination from '../usePagination';
 import PaginationItem from '../PaginationItem';
 import styled from '../styles/styled';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, variant } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, variant } = ownerState;
 
   const slots = {
     root: ['root', variant],
@@ -24,9 +24,9 @@ const PaginationRoot = styled('nav', {
   name: 'MuiPagination',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
-    return [styles.root, styles[styleProps.variant]];
+    return [styles.root, styles[ownerState.variant]];
   },
 })({});
 
@@ -76,7 +76,7 @@ const Pagination = React.forwardRef(function Pagination(inProps, ref) {
 
   const { items } = usePagination({ ...props, componentName: 'Pagination' });
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     boundaryCount,
     color,
@@ -95,17 +95,17 @@ const Pagination = React.forwardRef(function Pagination(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <PaginationRoot
       aria-label="pagination navigation"
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       {...other}
     >
-      <PaginationUl className={classes.ul} styleProps={styleProps}>
+      <PaginationUl className={classes.ul} ownerState={ownerState}>
         {items.map((item, index) => (
           <li key={index}>
             {renderItem({

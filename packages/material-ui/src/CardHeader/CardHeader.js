@@ -7,8 +7,8 @@ import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import cardHeaderClasses, { getCardHeaderUtilityClass } from './cardHeaderClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -81,13 +81,13 @@ const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     component,
     disableTypography,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   let title = titleProp;
   if (title != null && title.type !== Typography && !disableTypography) {
@@ -125,21 +125,21 @@ const CardHeader = React.forwardRef(function CardHeader(inProps, ref) {
       className={clsx(classes.root, className)}
       as={component}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       {avatar && (
-        <CardHeaderAvatar className={classes.avatar} styleProps={styleProps}>
+        <CardHeaderAvatar className={classes.avatar} ownerState={ownerState}>
           {avatar}
         </CardHeaderAvatar>
       )}
 
-      <CardHeaderContent className={classes.content} styleProps={styleProps}>
+      <CardHeaderContent className={classes.content} ownerState={ownerState}>
         {title}
         {subheader}
       </CardHeaderContent>
       {action && (
-        <CardHeaderAction className={classes.action} styleProps={styleProps}>
+        <CardHeaderAction className={classes.action} ownerState={ownerState}>
           {action}
         </CardHeaderAction>
       )}

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import { fireEvent } from '@testing-library/dom';
 import StepButton, { stepButtonClasses as classes } from '@material-ui/core/StepButton';
 import Step from '@material-ui/core/Step';
@@ -12,7 +12,7 @@ describe('<StepButton />', () => {
   const render = createClientRender();
 
   describe('internals', () => {
-    describeConformanceV5(<StepButton />, () => ({
+    describeConformance(<StepButton />, () => ({
       classes,
       inheritComponent: ButtonBase,
       muiName: 'MuiStepButton',

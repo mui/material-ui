@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import PaginationItem, { paginationItemClasses as classes } from '@material-ui/core/PaginationItem';
 
 describe('<PaginationItem />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<PaginationItem />, () => ({
+  describeConformance(<PaginationItem />, () => ({
     classes,
     inheritComponent: 'button',
     render,

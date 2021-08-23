@@ -23,8 +23,8 @@ export interface ExportedYearPickerProps<TDate> {
   shouldDisableYear?: (day: TDate) => boolean;
 }
 
-const useUtilityClasses = (styleProps: any) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState: any) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -37,7 +37,7 @@ const YearPickerRoot = styled('div', {
   name: 'MuiYearPicker',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ styleProps: YearPickerProps<any> }>({
+})<{ ownerState: YearPickerProps<any> }>({
   display: 'flex',
   flexDirection: 'row',
   flexWrap: 'wrap',
@@ -86,8 +86,8 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
     shouldDisableYear,
   } = props;
 
-  const styleProps = props;
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = props;
+  const classes = useUtilityClasses(ownerState);
 
   const now = useNow<TDate>();
   const theme = useTheme();
@@ -169,7 +169,7 @@ const YearPicker = React.forwardRef(function YearPicker<TDate>(
   };
 
   return (
-    <YearPickerRoot ref={ref} className={clsx(classes.root, className)} styleProps={styleProps}>
+    <YearPickerRoot ref={ref} className={clsx(classes.root, className)} ownerState={ownerState}>
       {utils.getYearRange(minDate, maxDate).map((year) => {
         const yearNumber = utils.getYear(year);
         const selected = yearNumber === currentYear;

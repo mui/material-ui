@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import FilledInput, { filledInputClasses as classes } from '@material-ui/core/FilledInput';
 import InputBase from '@material-ui/core/InputBase';
 
 describe('<FilledInput />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<FilledInput open />, () => ({
+  describeConformance(<FilledInput open />, () => ({
     classes,
     inheritComponent: InputBase,
     render,

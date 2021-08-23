@@ -15,8 +15,8 @@ import ErrorOutlineIcon from '../internal/svg-icons/ErrorOutline';
 import InfoOutlinedIcon from '../internal/svg-icons/InfoOutlined';
 import CloseIcon from '../internal/svg-icons/Close';
 
-const useUtilityClasses = (styleProps) => {
-  const { variant, color, severity, classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { variant, color, severity, classes } = ownerState;
 
   const slots = {
     root: ['root', `${variant}${capitalize(color || severity)}`, `${variant}`],
@@ -32,18 +32,18 @@ const AlertRoot = styled(Paper, {
   name: 'MuiAlert',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.root,
-      styles[styleProps.variant],
-      styles[`${styleProps.variant}${capitalize(styleProps.color || styleProps.severity)}`],
+      styles[ownerState.variant],
+      styles[`${ownerState.variant}${capitalize(ownerState.color || ownerState.severity)}`],
     ];
   },
-})(({ theme, styleProps }) => {
+})(({ theme, ownerState }) => {
   const getColor = theme.palette.mode === 'light' ? darken : lighten;
   const getBackgroundColor = theme.palette.mode === 'light' ? lighten : darken;
-  const color = styleProps.color || styleProps.severity;
+  const color = ownerState.color || ownerState.severity;
 
   return {
     ...theme.typography.body2,
@@ -52,7 +52,7 @@ const AlertRoot = styled(Paper, {
     display: 'flex',
     padding: '6px 16px',
     ...(color &&
-      styleProps.variant === 'standard' && {
+      ownerState.variant === 'standard' && {
         color: getColor(theme.palette[color].light, 0.6),
         backgroundColor: getBackgroundColor(theme.palette[color].light, 0.9),
         [`& .${alertClasses.icon}`]: {
@@ -61,7 +61,7 @@ const AlertRoot = styled(Paper, {
         },
       }),
     ...(color &&
-      styleProps.variant === 'outlined' && {
+      ownerState.variant === 'outlined' && {
         color: getColor(theme.palette[color].light, 0.6),
         border: `1px solid ${theme.palette[color].light}`,
         [`& .${alertClasses.icon}`]: {
@@ -70,7 +70,7 @@ const AlertRoot = styled(Paper, {
         },
       }),
     ...(color &&
-      styleProps.variant === 'filled' && {
+      ownerState.variant === 'filled' && {
         color: '#fff',
         fontWeight: theme.typography.fontWeightMedium,
         backgroundColor:
@@ -135,36 +135,36 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     color,
     severity,
     variant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <AlertRoot
       role={role}
       square
       elevation={0}
-      styleProps={styleProps}
+      ownerState={ownerState}
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
     >
       {icon !== false ? (
-        <AlertIcon styleProps={styleProps} className={classes.icon}>
+        <AlertIcon ownerState={ownerState} className={classes.icon}>
           {icon || iconMapping[severity] || defaultIconMapping[severity]}
         </AlertIcon>
       ) : null}
-      <AlertMessage styleProps={styleProps} className={classes.message}>
+      <AlertMessage ownerState={ownerState} className={classes.message}>
         {children}
       </AlertMessage>
       {action != null ? <AlertAction className={classes.action}>{action}</AlertAction> : null}
       {action == null && onClose ? (
-        <AlertAction styleProps={styleProps} className={classes.action}>
+        <AlertAction ownerState={ownerState} className={classes.action}>
           <IconButton
             size="small"
             aria-label={closeText}

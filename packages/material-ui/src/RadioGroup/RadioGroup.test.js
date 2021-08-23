@@ -14,7 +14,13 @@ describe('<RadioGroup />', () => {
     classes: {},
     inheritComponent: FormGroup,
     refInstanceof: window.HTMLDivElement,
-    skip: ['componentProp'],
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'themeDefaultProps',
+      'themeStyleOverrides',
+      'themeVariants',
+    ],
   }));
 
   it('the root component has the radiogroup role', () => {

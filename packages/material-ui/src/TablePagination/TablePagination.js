@@ -114,8 +114,8 @@ function defaultGetAriaLabel(type) {
   return `Go to ${type} page`;
 }
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
   const slots = {
     root: ['root'],
     toolbar: ['toolbar'],
@@ -159,8 +159,8 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     ...other
   } = props;
 
-  const styleProps = props;
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = props;
+  const classes = useUtilityClasses(ownerState);
 
   const MenuItemComponent = SelectProps.native ? 'option' : TablePaginationMenuItem;
 
@@ -182,7 +182,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
       colSpan={colSpan}
       ref={ref}
       as={component}
-      styleProps={styleProps}
+      ownerState={ownerState}
       className={clsx(classes.root, className)}
       {...other}
     >
@@ -215,7 +215,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
             {rowsPerPageOptions.map((rowsPerPageOption) => (
               <MenuItemComponent
                 {...(!isHostComponent(MenuItemComponent) && {
-                  styleProps,
+                  ownerState,
                 })}
                 className={classes.menuItem}
                 key={rowsPerPageOption.label ? rowsPerPageOption.label : rowsPerPageOption}

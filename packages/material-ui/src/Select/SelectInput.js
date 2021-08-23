@@ -22,11 +22,11 @@ const SelectSelect = styled('div', {
   name: 'MuiSelect',
   slot: 'Select',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
     return [
       // Win specificity over the input base
       { [`&.${selectClasses.select}`]: styles.select },
-      { [`&.${selectClasses.select}`]: styles[styleProps.variant] },
+      { [`&.${selectClasses.select}`]: styles[ownerState.variant] },
     ];
   },
 })(nativeSelectSelectStyles, {
@@ -44,11 +44,11 @@ const SelectIcon = styled('svg', {
   name: 'MuiSelect',
   slot: 'Icon',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
     return [
       styles.icon,
-      styleProps.variant && styles[`icon${capitalize(styleProps.variant)}`],
-      styleProps.open && styles.iconOpen,
+      ownerState.variant && styles[`icon${capitalize(ownerState.variant)}`],
+      ownerState.open && styles.iconOpen,
     ];
   },
 })(nativeSelectIconStyles);
@@ -80,8 +80,8 @@ function isEmpty(display) {
   return display == null || (typeof display === 'string' && !display.trim());
 }
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, variant, disabled, open } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, variant, disabled, open } = ownerState;
 
   const slots = {
     select: ['select', variant, disabled && 'disabled'],
@@ -434,14 +434,14 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
 
   const buttonId = SelectDisplayProps.id || (name ? `mui-component-select-${name}` : undefined);
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     variant,
     value,
     open,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <React.Fragment>
@@ -460,7 +460,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         onBlur={handleBlur}
         onFocus={onFocus}
         {...SelectDisplayProps}
-        styleProps={styleProps}
+        ownerState={ownerState}
         className={clsx(classes.select, className, SelectDisplayProps.className)}
         // The id is required for proper a11y
         id={buttonId}
@@ -484,10 +484,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         disabled={disabled}
         className={classes.nativeInput}
         autoFocus={autoFocus}
-        styleProps={styleProps}
+        ownerState={ownerState}
         {...other}
       />
-      <SelectIcon as={IconComponent} className={classes.icon} styleProps={styleProps} />
+      <SelectIcon as={IconComponent} className={classes.icon} ownerState={ownerState} />
       <Menu
         id={`menu-${name || ''}`}
         anchorEl={displayNode}

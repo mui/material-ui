@@ -43,7 +43,7 @@
   "peerDependencies": {
     "@material-ui/core": "^5.0.0-alpha.36",
     "@types/react": "^16.8.6 || ^17.0.0",
-    "react": "^17.0.0"
+    "react": "^17.0.2"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -56,7 +56,7 @@
   "devDependencies": {
     "fs-extra": "^10.0.0",
     "mustache": "^4.0.0",
-    "svgo": "^2.3.0",
+    "svgo": "^2.4.0",
     "yargs": "^17.0.1"
   },
   "sideEffects": false,

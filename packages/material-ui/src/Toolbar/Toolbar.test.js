@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import Toolbar, { toolbarClasses as classes } from '@material-ui/core/Toolbar';
 
 describe('<Toolbar />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<Toolbar />, () => ({
+  describeConformance(<Toolbar />, () => ({
     classes,
     inheritComponent: 'div',
     render,

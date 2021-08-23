@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformanceV5, createClientRender } from 'test/utils';
+import { describeConformance, createClientRender } from 'test/utils';
 import ListSubheader, { listSubheaderClasses } from '@material-ui/core/ListSubheader';
 import ListItem, { listItemClasses } from '@material-ui/core/ListItem';
 import List, { listClasses as classes } from '@material-ui/core/List';
@@ -8,7 +8,7 @@ import List, { listClasses as classes } from '@material-ui/core/List';
 describe('<List />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<List />, () => ({
+  describeConformance(<List />, () => ({
     classes,
     inheritComponent: 'ul',
     render,

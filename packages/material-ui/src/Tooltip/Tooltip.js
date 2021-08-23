@@ -21,8 +21,8 @@ function round(value) {
   return Math.round(value * 1e5) / 1e5;
 }
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, disableInteractive, arrow, touch, placement } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, disableInteractive, arrow, touch, placement } = ownerState;
 
   const slots = {
     popper: ['popper', !disableInteractive && 'popperInteractive', arrow && 'popperArrow'],
@@ -42,25 +42,25 @@ const TooltipPopper = styled(Popper, {
   name: 'MuiTooltip',
   slot: 'Popper',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.popper,
-      !styleProps.disableInteractive && styles.popperInteractive,
-      styleProps.arrow && styles.popperArrow,
-      !styleProps.open && styles.popperClose,
+      !ownerState.disableInteractive && styles.popperInteractive,
+      ownerState.arrow && styles.popperArrow,
+      !ownerState.open && styles.popperClose,
     ];
   },
-})(({ theme, styleProps, open }) => ({
+})(({ theme, ownerState, open }) => ({
   zIndex: theme.zIndex.tooltip,
   pointerEvents: 'none', // disable jss-rtl plugin
-  ...(!styleProps.disableInteractive && {
+  ...(!ownerState.disableInteractive && {
     pointerEvents: 'auto',
   }),
   ...(!open && {
     pointerEvents: 'none',
   }),
-  ...(styleProps.arrow && {
+  ...(ownerState.arrow && {
     [`&[data-popper-placement*="bottom"] .${tooltipClasses.arrow}`]: {
       top: 0,
       left: 0,
@@ -102,16 +102,16 @@ const TooltipTooltip = styled('div', {
   name: 'MuiTooltip',
   slot: 'Tooltip',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.tooltip,
-      styleProps.touch && styles.touch,
-      styleProps.arrow && styles.tooltipArrow,
-      styles[`tooltipPlacement${capitalize(styleProps.placement.split('-')[0])}`],
+      ownerState.touch && styles.touch,
+      ownerState.arrow && styles.tooltipArrow,
+      styles[`tooltipPlacement${capitalize(ownerState.placement.split('-')[0])}`],
     ];
   },
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   backgroundColor: alpha(theme.palette.grey[700], 0.92),
   borderRadius: theme.shape.borderRadius,
   color: theme.palette.common.white,
@@ -122,11 +122,11 @@ const TooltipTooltip = styled('div', {
   margin: 2,
   wordWrap: 'break-word',
   fontWeight: theme.typography.fontWeightMedium,
-  ...(styleProps.arrow && {
+  ...(ownerState.arrow && {
     position: 'relative',
     margin: 0,
   }),
-  ...(styleProps.touch && {
+  ...(ownerState.touch && {
     padding: '8px 16px',
     fontSize: theme.typography.pxToRem(14),
     lineHeight: `${round(16 / 14)}em`,
@@ -135,28 +135,28 @@ const TooltipTooltip = styled('div', {
   [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
     transformOrigin: 'right center',
     marginRight: '14px',
-    ...(styleProps.touch && {
+    ...(ownerState.touch && {
       marginRight: '24px',
     }),
   },
   [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
     transformOrigin: 'left center',
     marginLeft: '14px',
-    ...(styleProps.touch && {
+    ...(ownerState.touch && {
       marginLeft: '24px',
     }),
   },
   [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
     transformOrigin: 'center bottom',
     marginBottom: '14px',
-    ...(styleProps.touch && {
+    ...(ownerState.touch && {
       marginBottom: '24px',
     }),
   },
   [`.${tooltipClasses.popper}[data-popper-placement*="bottom"] &`]: {
     transformOrigin: 'center top',
     marginTop: '14px',
-    ...(styleProps.touch && {
+    ...(ownerState.touch && {
       marginTop: '24px',
     }),
   },
@@ -584,7 +584,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     };
   }, [arrowRef, PopperProps]);
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     arrow,
     disableInteractive,
@@ -593,7 +593,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
     touch: ignoreNonTouchEvents.current,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <React.Fragment>
@@ -623,7 +623,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
         {...interactiveWrapperListeners}
         {...PopperProps}
         popperOptions={popperOptions}
-        styleProps={styleProps}
+        ownerState={ownerState}
       >
         {({ TransitionProps: TransitionPropsInner }) => (
           <TransitionComponent
@@ -631,10 +631,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
             {...TransitionPropsInner}
             {...TransitionProps}
           >
-            <TooltipTooltip className={classes.tooltip} styleProps={styleProps}>
+            <TooltipTooltip className={classes.tooltip} ownerState={ownerState}>
               {title}
               {arrow ? (
-                <TooltipArrow className={classes.arrow} ref={setArrowRef} styleProps={styleProps} />
+                <TooltipArrow className={classes.arrow} ref={setArrowRef} ownerState={ownerState} />
               ) : null}
             </TooltipTooltip>
           </TransitionComponent>
