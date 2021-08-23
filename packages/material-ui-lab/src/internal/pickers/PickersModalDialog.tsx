@@ -68,9 +68,9 @@ const PickersModalDialogContent = styled(DialogContent, { skipSx: true })({
 });
 
 const PickersModalDialogActions = styled(DialogActions, { skipSx: true })<{
-  styleProps: PickersModalDialogProps;
-}>(({ styleProps }) => ({
-  ...((styleProps.clearable || styleProps.showTodayButton) && {
+  ownerState: PickersModalDialogProps;
+}>(({ ownerState }) => ({
+  ...((ownerState.clearable || ownerState.showTodayButton) && {
     // set justifyContent to default value to fix IE11 layout bug
     // see https://github.com/mui-org/material-ui-pickers/pull/267
     justifyContent: 'flex-start',
@@ -97,12 +97,12 @@ const PickersModalDialog = (props: React.PropsWithChildren<PickersModalDialogPro
     todayText = 'Today',
   } = props;
 
-  const styleProps = props;
+  const ownerState = props;
 
   return (
     <PickersModalDialogRoot open={open} onClose={onDismiss} {...DialogProps}>
       <PickersModalDialogContent>{children}</PickersModalDialogContent>
-      <PickersModalDialogActions styleProps={styleProps}>
+      <PickersModalDialogActions ownerState={ownerState}>
         {clearable && (
           <Button data-mui-test="clear-action-button" onClick={onClear}>
             {clearText}

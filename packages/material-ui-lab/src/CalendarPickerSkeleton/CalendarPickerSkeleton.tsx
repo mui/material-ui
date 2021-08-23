@@ -44,8 +44,8 @@ export const calendarPickerSkeletonClasses: CalendarPickerSkeletonClasses = gene
   ['root', 'week', 'daySkeleton'],
 );
 
-const useUtilityClasses = (styleProps: CalendarPickerSkeletonProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState: CalendarPickerSkeletonProps) => {
+  const { classes } = ownerState;
   const slots = {
     root: ['root'],
     week: ['week'],
@@ -77,9 +77,9 @@ const CalendarPickerSkeletonDay = styled(Skeleton, {
   name: 'MuiCalendarPickerSkeleton',
   slot: 'Day',
   overridesResolver: (props, styles) => styles.daySkeleton,
-})<{ styleProps: { day: number } }>(({ styleProps }) => ({
+})<{ ownerState: { day: number } }>(({ ownerState }) => ({
   margin: `0 ${DAY_MARGIN}px`,
-  ...(styleProps.day === 0 && {
+  ...(ownerState.day === 0 && {
     visibility: 'hidden',
   }),
 }));
@@ -96,7 +96,7 @@ CalendarPickerSkeletonDay.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  styleProps: PropTypes.object,
+  ownerState: PropTypes.object,
 } as any;
 
 const monthMap = [
@@ -140,7 +140,7 @@ function CalendarPickerSkeleton(props: CalendarPickerSkeletonProps) {
               width={DAY_SIZE}
               height={DAY_SIZE}
               className={classes.daySkeleton}
-              styleProps={{ day }}
+              ownerState={{ day }}
             />
           ))}
         </CalendarPickerSkeletonWeek>

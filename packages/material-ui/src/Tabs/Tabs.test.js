@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import {
-  describeConformanceV5,
+  describeConformance,
   act,
   createClientRender,
   fireEvent,
@@ -56,7 +56,7 @@ describe('<Tabs />', () => {
     }
   });
 
-  describeConformanceV5(<Tabs value={0} />, () => ({
+  describeConformance(<Tabs value={0} />, () => ({
     classes,
     inheritComponent: 'div',
     render,

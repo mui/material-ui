@@ -10,8 +10,8 @@ import isMuiElement from '../utils/isMuiElement';
 import FormControlContext from './FormControlContext';
 import { getFormControlUtilityClasses } from './formControlClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, margin, fullWidth } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, margin, fullWidth } = ownerState;
   const slots = {
     root: ['root', margin !== 'none' && `margin${capitalize(margin)}`, fullWidth && 'fullWidth'],
   };
@@ -22,14 +22,14 @@ const useUtilityClasses = (styleProps) => {
 const FormControlRoot = styled('div', {
   name: 'MuiFormControl',
   slot: 'Root',
-  overridesResolver: ({ styleProps }, styles) => {
+  overridesResolver: ({ ownerState }, styles) => {
     return {
       ...styles.root,
-      ...styles[`margin${capitalize(styleProps.margin)}`],
-      ...(styleProps.fullWidth && styles.fullWidth),
+      ...styles[`margin${capitalize(ownerState.margin)}`],
+      ...(ownerState.fullWidth && styles.fullWidth),
     };
   },
-})(({ styleProps }) => ({
+})(({ ownerState }) => ({
   display: 'inline-flex',
   flexDirection: 'column',
   position: 'relative',
@@ -39,15 +39,15 @@ const FormControlRoot = styled('div', {
   margin: 0,
   border: 0,
   verticalAlign: 'top', // Fix alignment issue on Safari.
-  ...(styleProps.margin === 'normal' && {
+  ...(ownerState.margin === 'normal' && {
     marginTop: 16,
     marginBottom: 8,
   }),
-  ...(styleProps.margin === 'dense' && {
+  ...(ownerState.margin === 'dense' && {
     marginTop: 8,
     marginBottom: 4,
   }),
-  ...(styleProps.fullWidth && {
+  ...(ownerState.fullWidth && {
     width: '100%',
   }),
 }));
@@ -95,7 +95,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     color,
     component,
@@ -109,7 +109,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const [adornedStart, setAdornedStart] = React.useState(() => {
     // We need to iterate through the children and find the Input in order
@@ -216,7 +216,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     <FormControlContext.Provider value={childContext}>
       <FormControlRoot
         as={component}
-        styleProps={styleProps}
+        ownerState={ownerState}
         className={clsx(classes.root, className)}
         ref={ref}
         {...other}

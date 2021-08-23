@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import CardActions, { cardActionsClasses as classes } from '@material-ui/core/CardActions';
 
 describe('<CardActions />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<CardActions />, () => ({
+  describeConformance(<CardActions />, () => ({
     classes,
     inheritComponent: 'div',
     render,

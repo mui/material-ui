@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import Typography from '@material-ui/core/Typography';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -10,7 +10,7 @@ import StepLabel, { stepLabelClasses as classes } from '@material-ui/core/StepLa
 describe('<StepLabel />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<StepLabel />, () => ({
+  describeConformance(<StepLabel />, () => ({
     classes,
     inheritComponent: 'span',
     muiName: 'MuiStepLabel',

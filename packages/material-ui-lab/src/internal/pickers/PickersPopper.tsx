@@ -29,18 +29,18 @@ export interface PickerPopperProps extends ExportedPickerPopperProps, MuiPaperPr
   onClose: () => void;
 }
 
-const PickersPopperRoot = styled(Popper, { skipSx: true })<{ styleProps: PickerPopperProps }>(
+const PickersPopperRoot = styled(Popper, { skipSx: true })<{ ownerState: PickerPopperProps }>(
   ({ theme }) => ({
     zIndex: theme.zIndex.modal,
   }),
 );
 
 const PickersPopperPaper = styled(Paper, { skipSx: true })<{
-  styleProps: PickerPopperProps & Pick<MuiPopperProps, 'placement'>;
-}>(({ styleProps }) => ({
+  ownerState: PickerPopperProps & Pick<MuiPopperProps, 'placement'>;
+}>(({ ownerState }) => ({
   transformOrigin: 'top center',
   outline: 0,
-  ...(styleProps.placement === 'top' && {
+  ...(ownerState.placement === 'top' && {
     transformOrigin: 'bottom center',
   }),
 }));
@@ -177,6 +177,8 @@ function useClickAwayListener(
 
       return () => {
         doc.removeEventListener('click', handleClickAway);
+        // cleanup `handleClickAway`
+        syntheticEventRef.current = false;
       };
     }
     return undefined;
@@ -234,7 +236,7 @@ const PickersPopper = (props: PickerPopperProps) => {
   const handleRef = useForkRef(paperRef, containerRef);
   const handlePaperRef = useForkRef(handleRef, clickAwayRef as React.Ref<HTMLDivElement>);
 
-  const styleProps = props;
+  const ownerState = props;
 
   return (
     <PickersPopperRoot
@@ -242,7 +244,7 @@ const PickersPopper = (props: PickerPopperProps) => {
       role={role}
       open={open}
       anchorEl={anchorEl}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...PopperProps}
     >
       {({ TransitionProps, placement }) => (
@@ -260,7 +262,7 @@ const PickersPopper = (props: PickerPopperProps) => {
               ref={handlePaperRef}
               onClick={onPaperClick}
               onTouchStart={onPaperTouchStart}
-              styleProps={{ ...styleProps, placement }}
+              ownerState={{ ...ownerState, placement }}
             >
               {children}
             </PickersPopperPaper>

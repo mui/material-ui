@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { styled } from '@material-ui/core/styles';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+import NotificationsNoneRoundedIcon from '@material-ui/icons/NotificationsNoneRounded';
 import Tooltip from '@material-ui/core/Tooltip';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';
@@ -133,13 +133,13 @@ export default function Notifications() {
       >
         <IconButton
           color="inherit"
-          size="large"
           ref={anchorRef}
           aria-controls={open ? 'notifications-popup' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
           data-ga-event-category="AppBar"
           data-ga-event-action="toggleNotifications"
+          sx={{ px: '10px' }}
         >
           <Badge
             color="error"
@@ -152,7 +152,7 @@ export default function Notifications() {
                 : 0
             }
           >
-            <NotificationsIcon />
+            <NotificationsNoneRoundedIcon fontSize="small" />
           </Badge>
         </IconButton>
       </Tooltip>

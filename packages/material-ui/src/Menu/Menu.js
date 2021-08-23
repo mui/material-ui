@@ -22,8 +22,8 @@ const LTR_ORIGIN = {
   horizontal: 'left',
 };
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -84,7 +84,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   const theme = useTheme();
   const isRtl = theme.direction === 'rtl';
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     autoFocus,
     disableAutoFocusItem,
@@ -96,7 +96,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const autoFocusItem = autoFocus && !disableAutoFocusItem && open;
 
@@ -178,7 +178,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       ref={ref}
       transitionDuration={transitionDuration}
       TransitionProps={{ onEntering: handleEntering, ...TransitionProps }}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       <MenuMenuList

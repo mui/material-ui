@@ -14,8 +14,8 @@ const SPACINGS = {
   medium: null,
 };
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -74,14 +74,14 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   } = props;
   const clampedMax = max < 2 ? 2 : max;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     max,
     spacing,
     variant,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const children = React.Children.toArray(childrenProp).filter((child) => {
     if (process.env.NODE_ENV !== 'production') {
@@ -104,14 +104,14 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
 
   return (
     <AvatarGroupRoot
-      styleProps={styleProps}
+      ownerState={ownerState}
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}
     >
       {extraAvatars ? (
         <AvatarGroupAvatar
-          styleProps={styleProps}
+          ownerState={ownerState}
           className={classes.avatar}
           style={{
             marginLeft,

@@ -70,8 +70,10 @@ export default function HeaderNavDropdown() {
   return (
     <React.Fragment>
       <IconButton
+        aria-label="Menu"
         ref={hambugerRef}
         disableRipple
+        size="small"
         onClick={() => setOpen((value) => !value)}
         sx={{
           position: 'relative',

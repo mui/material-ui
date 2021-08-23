@@ -7,8 +7,8 @@ import styled from '../styles/styled';
 import { getContainerUtilityClass } from './containerClasses';
 import capitalize from '../utils/capitalize';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, fixed, disableGutters, maxWidth } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, fixed, disableGutters, maxWidth } = ownerState;
 
   const slots = {
     root: [
@@ -26,23 +26,23 @@ const ContainerRoot = styled('div', {
   name: 'MuiContainer',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.root,
-      styles[`maxWidth${capitalize(String(styleProps.maxWidth))}`],
-      styleProps.fixed && styles.fixed,
-      styleProps.disableGutters && styles.disableGutters,
+      styles[`maxWidth${capitalize(String(ownerState.maxWidth))}`],
+      ownerState.fixed && styles.fixed,
+      ownerState.disableGutters && styles.disableGutters,
     ];
   },
 })(
-  ({ theme, styleProps }) => ({
+  ({ theme, ownerState }) => ({
     width: '100%',
     marginLeft: 'auto',
     boxSizing: 'border-box',
     marginRight: 'auto',
     display: 'block', // Fix IE11 layout when used with main.
-    ...(!styleProps.disableGutters && {
+    ...(!ownerState.disableGutters && {
       paddingLeft: theme.spacing(2),
       paddingRight: theme.spacing(2),
       [theme.breakpoints.up('sm')]: {
@@ -51,8 +51,8 @@ const ContainerRoot = styled('div', {
       },
     }),
   }),
-  ({ theme, styleProps }) =>
-    styleProps.fixed &&
+  ({ theme, ownerState }) =>
+    ownerState.fixed &&
     Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
       const value = theme.breakpoints.values[breakpoint];
 
@@ -63,16 +63,16 @@ const ContainerRoot = styled('div', {
       }
       return acc;
     }, {}),
-  ({ theme, styleProps }) => ({
-    ...(styleProps.maxWidth === 'xs' && {
+  ({ theme, ownerState }) => ({
+    ...(ownerState.maxWidth === 'xs' && {
       [theme.breakpoints.up('xs')]: {
         maxWidth: Math.max(theme.breakpoints.values.xs, 444),
       },
     }),
-    ...(styleProps.maxWidth &&
-      styleProps.maxWidth !== 'xs' && {
-        [theme.breakpoints.up(styleProps.maxWidth)]: {
-          maxWidth: `${theme.breakpoints.values[styleProps.maxWidth]}${theme.breakpoints.unit}`,
+    ...(ownerState.maxWidth &&
+      ownerState.maxWidth !== 'xs' && {
+        [theme.breakpoints.up(ownerState.maxWidth)]: {
+          maxWidth: `${theme.breakpoints.values[ownerState.maxWidth]}${theme.breakpoints.unit}`,
         },
       }),
   }),
@@ -89,7 +89,7 @@ const Container = React.forwardRef(function Container(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     component,
     disableGutters,
@@ -97,12 +97,12 @@ const Container = React.forwardRef(function Container(inProps, ref) {
     maxWidth,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <ContainerRoot
       as={component}
-      styleProps={styleProps}
+      ownerState={ownerState}
       className={clsx(classes.root, className)}
       ref={ref}
       {...other}

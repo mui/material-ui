@@ -6,8 +6,8 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getCardActionsUtilityClass } from './cardActionsClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, disableSpacing } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, disableSpacing } = ownerState;
 
   const slots = {
     root: ['root', !disableSpacing && 'spacing'],
@@ -20,15 +20,15 @@ const CardActionsRoot = styled('div', {
   name: 'MuiCardActions',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
-    return [styles.root, !styleProps.disableSpacing && styles.spacing];
+    return [styles.root, !ownerState.disableSpacing && styles.spacing];
   },
-})(({ styleProps }) => ({
+})(({ ownerState }) => ({
   display: 'flex',
   alignItems: 'center',
   padding: 8,
-  ...(!styleProps.disableSpacing && {
+  ...(!ownerState.disableSpacing && {
     '& > :not(:first-of-type)': {
       marginLeft: 8,
     },
@@ -43,14 +43,14 @@ const CardActions = React.forwardRef(function CardActions(inProps, ref) {
 
   const { disableSpacing = false, className, ...other } = props;
 
-  const styleProps = { ...props, disableSpacing };
+  const ownerState = { ...props, disableSpacing };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <CardActionsRoot
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       {...other}
     />

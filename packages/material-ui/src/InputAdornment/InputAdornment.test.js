@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import { typographyClasses } from '@material-ui/core/Typography';
 import InputAdornment, { inputAdornmentClasses as classes } from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
@@ -10,7 +10,7 @@ import Input from '@material-ui/core/Input';
 describe('<InputAdornment />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<InputAdornment position="start">foo</InputAdornment>, () => ({
+  describeConformance(<InputAdornment position="start">foo</InputAdornment>, () => ({
     classes,
     inheritComponent: 'div',
     render,

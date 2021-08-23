@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import Typography from '@material-ui/core/Typography';
 import DialogContentText, {
   dialogContentTextClasses as classes,
@@ -8,7 +8,7 @@ import DialogContentText, {
 describe('<DialogContentText />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<DialogContentText>foo</DialogContentText>, () => ({
+  describeConformance(<DialogContentText>foo</DialogContentText>, () => ({
     classes,
     inheritComponent: Typography,
     render,

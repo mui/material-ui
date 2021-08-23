@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import FormHelperText, { formHelperTextClasses as classes } from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 
 describe('<FormHelperText />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<FormHelperText />, () => ({
+  describeConformance(<FormHelperText />, () => ({
     classes,
     inheritComponent: 'p',
     render,
