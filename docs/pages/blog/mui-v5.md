@@ -15,7 +15,7 @@ This release features:
 - [New components](#new-components)
 - [A new product line: X](#a-new-product-line-x)
 - [Improved DX](#improved-dx)
-- [v4 migration](#the-migration-from-v4)
+- [v4 migration](#v4-migration)
 - [Design kits](#design-kits)
 - [What's next?](#whats-next)
 
