@@ -26,9 +26,6 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
 import ROUTES from 'docs/src/route';
 import IconImage from 'docs/src/components/icon/IconImage';
-import SvgChat from 'docs/src/icons/SvgChat';
-import SvgPerson from 'docs/src/icons/SvgPerson';
-import SvgCard from 'docs/src/icons/SvgCard';
 import ForumRoundedIcon from '@material-ui/icons/ForumRounded';
 import PeopleRoundedIcon from '@material-ui/icons/PeopleRounded';
 import LocalAtmRoundedIcon from '@material-ui/icons/LocalAtmRounded';
@@ -530,7 +527,7 @@ function AboutContent() {
               variant="contained"
               size="large"
             >
-              Join the team
+              See open roles
             </Button>
           </div>
         </Box>
@@ -544,7 +541,7 @@ function AboutContent() {
         >
           Company
         </Typography>
-        <Typography color="text.secondary">
+        <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
           The development of the project and its ecosystem is guided by an international team.
         </Typography>
         <Box sx={{ pt: 2 }}>
@@ -569,7 +566,7 @@ function AboutContent() {
             >
               Community contributors
             </Typography>
-            <Typography color="text.secondary" sx={{ maxWidth: { md: 400 } }}>
+            <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
               Some members of the community have so enriched it, that they deserve special mention.
             </Typography>
             <Box sx={{ pt: 2, pb: { xs: 4, sm: 8 } }}>
@@ -590,11 +587,11 @@ function AboutContent() {
             >
               Community emeriti
             </Typography>
-            <Typography color="text.secondary" sx={{ maxWidth: { md: 400 } }}>
+            <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
               We honor some no-longer-active core team members who have made valuable contributions
               in the past. They advise us from time-to-time.
             </Typography>
-            <Box sx={{ pt: 4, pb: { xs: 4, md: 8 } }}>
+            <Box sx={{ pt: 2}}>
               <Grid container spacing={2}>
                 {emeriti.map((profile) => (
                   <Grid key={profile.name} item xs={12} sm={6} md={3}>
