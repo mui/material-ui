@@ -1,8 +1,9 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
 import Masonry from '@material-ui/lab/Masonry';
 import MasonryItem from '@material-ui/lab/MasonryItem';
+
+const heights = [150, 30, 90, 70, 90, 100, 150, 30, 50, 80];
 
 export default function FixedColumns() {
   return (
@@ -26,5 +27,3 @@ export default function FixedColumns() {
     </Box>
   );
 }
-
-const heights = [150, 30, 90, 70, 90, 100, 150, 30, 50, 80];
