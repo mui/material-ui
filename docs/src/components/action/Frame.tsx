@@ -1,5 +1,7 @@
 import * as React from 'react';
+import { ThemeProvider } from '@material-ui/core/styles';
 import Box, { BoxProps } from '@material-ui/core/Box';
+import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
 const Demo = (props: BoxProps) => {
   return (
@@ -18,17 +20,19 @@ const Demo = (props: BoxProps) => {
 
 const Info = (props: BoxProps) => {
   return (
-    <Box
-      {...props}
-      sx={{
-        color: '#fff',
-        p: 2,
-        bgcolor: 'primaryDark.800',
-        border: '1px solid',
-        borderColor: 'primaryDark.700',
-        ...props.sx,
-      }}
-    />
+    <ThemeProvider theme={brandingDarkTheme}>
+      <Box
+        {...props}
+        sx={{
+          color: '#fff',
+          p: 2,
+          bgcolor: 'primaryDark.800',
+          border: '1px solid',
+          borderColor: 'primaryDark.700',
+          ...props.sx,
+        }}
+      />
+    </ThemeProvider>
   );
 };
 

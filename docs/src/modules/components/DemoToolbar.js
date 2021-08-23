@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import copy from 'clipboard-copy';
 import LZString from 'lz-string';
-import { useDispatch } from 'react-redux';
 import { useTheme, styled } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -23,7 +22,8 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 import ResetFocusIcon from '@material-ui/icons/CenterFocusWeak';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
+import { CODE_VARIANTS } from 'docs/src/modules/constants';
+import { useSetCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useRouter } from 'next/router';
 
@@ -62,6 +62,25 @@ const DemoTooltip = styled((props) => {
 })(({ theme }) => ({
   zIndex: theme.zIndex.appBar - 1,
 }));
+
+function ToggleCodeTooltip(props) {
+  const { showSourceHint, ...other } = props;
+  const atLeastSmallViewport = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <DemoTooltip
+      {...other}
+      onClose={() => setOpen(false)}
+      onOpen={() => setOpen(true)}
+      open={showSourceHint && atLeastSmallViewport ? true : open}
+    />
+  );
+}
+ToggleCodeTooltip.propTypes = {
+  showSourceHint: PropTypes.bool,
+};
 
 export function DemoToolbarFallback() {
   const t = useTranslate();
@@ -214,7 +233,7 @@ export default function DemoToolbar(props) {
     showPreview,
   } = props;
 
-  const dispatch = useDispatch();
+  const setCodeVariant = useSetCodeVariant();
   const t = useTranslate();
 
   const hasTSVariant = demo.rawTS;
@@ -227,12 +246,7 @@ export default function DemoToolbar(props) {
 
   const handleCodeLanguageClick = (event, clickedCodeVariant) => {
     if (clickedCodeVariant !== null && codeVariant !== clickedCodeVariant) {
-      dispatch({
-        type: ACTION_TYPES.OPTIONS_CHANGE,
-        payload: {
-          codeVariant: clickedCodeVariant,
-        },
-      });
+      setCodeVariant(clickedCodeVariant);
     }
   };
 
@@ -362,8 +376,6 @@ export default function DemoToolbar(props) {
     showCodeLabel = showPreview ? t('showFullSource') : t('showSource');
   }
 
-  const atLeastSmallViewport = useMediaQuery((theme) => theme.breakpoints.up('sm'));
-
   const controlRefs = [
     React.useRef(null),
     React.useRef(null),
@@ -486,9 +498,8 @@ export default function DemoToolbar(props) {
           </ToggleButtonGroup>
         </Fade>
         <div>
-          <DemoTooltip
-            key={showSourceHint}
-            open={showSourceHint && atLeastSmallViewport ? true : undefined}
+          <ToggleCodeTooltip
+            showSourceHint={showSourceHint}
             PopperProps={{ disablePortal: true }}
             title={showCodeLabel}
             placement="bottom"
@@ -505,7 +516,7 @@ export default function DemoToolbar(props) {
             >
               <CodeIcon fontSize="small" />
             </IconButton>
-          </DemoTooltip>
+          </ToggleCodeTooltip>
           {demoOptions.hideEditButton ? null : (
             <React.Fragment>
               <DemoTooltip title={t('codesandbox')} placement="bottom">
@@ -585,52 +596,52 @@ export default function DemoToolbar(props) {
           >
             <MoreVertIcon fontSize="small" />
           </IconButton>
-          <Menu
-            id="demo-menu-more"
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleMoreClose}
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-          >
-            <MenuItem
-              data-ga-event-category="demo"
-              data-ga-event-label={demoOptions.demo}
-              data-ga-event-action="github"
-              component="a"
-              href={demoData.githubLocation}
-              target="_blank"
-              rel="noopener nofollow"
-              onClick={handleMoreClose}
-            >
-              {t('viewGitHub')}
-            </MenuItem>
-            <MenuItem
-              data-ga-event-category="demo"
-              data-ga-event-label={demoOptions.demo}
-              data-ga-event-action="copy-js-source-link"
-              onClick={createHandleCodeSourceLink(`${demoName}.js`)}
-            >
-              {t('copySourceLinkJS')}
-            </MenuItem>
-            <MenuItem
-              data-ga-event-category="demo"
-              data-ga-event-label={demoOptions.demo}
-              data-ga-event-action="copy-ts-source-link"
-              onClick={createHandleCodeSourceLink(`${demoName}.tsx`)}
-            >
-              {t('copySourceLinkTS')}
-            </MenuItem>
-            {devMenuItems}
-          </Menu>
         </div>
       </Root>
+      <Menu
+        id="demo-menu-more"
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMoreClose}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+      >
+        <MenuItem
+          data-ga-event-category="demo"
+          data-ga-event-label={demoOptions.demo}
+          data-ga-event-action="github"
+          component="a"
+          href={demoData.githubLocation}
+          target="_blank"
+          rel="noopener nofollow"
+          onClick={handleMoreClose}
+        >
+          {t('viewGitHub')}
+        </MenuItem>
+        <MenuItem
+          data-ga-event-category="demo"
+          data-ga-event-label={demoOptions.demo}
+          data-ga-event-action="copy-js-source-link"
+          onClick={createHandleCodeSourceLink(`${demoName}.js`)}
+        >
+          {t('copySourceLinkJS')}
+        </MenuItem>
+        <MenuItem
+          data-ga-event-category="demo"
+          data-ga-event-label={demoOptions.demo}
+          data-ga-event-action="copy-ts-source-link"
+          onClick={createHandleCodeSourceLink(`${demoName}.tsx`)}
+        >
+          {t('copySourceLinkTS')}
+        </MenuItem>
+        {devMenuItems}
+      </Menu>
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={3000}

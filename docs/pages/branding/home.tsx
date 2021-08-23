@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
 import ThemeProvider from 'docs/src/modules/ThemeContext';
+import Box from '@material-ui/core/Box';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import AppHeader from 'docs/src/layouts/AppHeader';
@@ -25,6 +26,9 @@ export default function Home() {
       <AppHeader />
       <main>
         <Hero />
+        <Box
+          sx={{ height: 10 }} // to prevent loading asset below the fold
+        />
         <References companies={CORE_CUSTOMERS} />
         <ProductSuite />
         <ValueProposition />

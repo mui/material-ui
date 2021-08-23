@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import { useTheme, ThemeProvider as MuiThemeProvider, createTheme } from '@material-ui/core/styles';
+import { ThemeProvider as MuiThemeProvider, createTheme } from '@material-ui/core/styles';
 import ThemeProvider from 'docs/src/modules/ThemeContext';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Avatar from '@material-ui/core/Avatar';
@@ -435,8 +435,6 @@ const emeriti = [
 ];
 
 function AboutContent() {
-  const globalTheme = useTheme();
-  const mode = globalTheme.palette.mode;
   return (
     <React.Fragment>
       <Container>
@@ -507,7 +505,7 @@ function AboutContent() {
                 </Box>
               ))}
             </Grid>
-            <MuiStats mode={mode} />
+            <MuiStats />
           </Grid>
         </Container>
       </Box>

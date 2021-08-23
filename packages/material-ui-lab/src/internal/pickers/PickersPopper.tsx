@@ -177,6 +177,8 @@ function useClickAwayListener(
 
       return () => {
         doc.removeEventListener('click', handleClickAway);
+        // cleanup `handleClickAway`
+        syntheticEventRef.current = false;
       };
     }
     return undefined;

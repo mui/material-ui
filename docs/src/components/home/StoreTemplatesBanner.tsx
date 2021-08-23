@@ -216,17 +216,6 @@ export default function StoreTemplatesBanner() {
     >
       <Box
         sx={{
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-          pointerEvents: 'none',
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
-          opacity: (theme) => (theme.palette.mode === 'dark' ? 0.6 : 0),
-          zIndex: 1,
-        }}
-      />
-      <Box
-        sx={{
           display: { xs: 'block', md: 'none' },
           position: 'absolute',
           top: 0,

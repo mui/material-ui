@@ -1,6 +1,4 @@
-/* eslint-disable react/no-danger, react-hooks/exhaustive-deps */
 import * as React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { styled } from '@material-ui/core/styles';
 import NotificationsNoneRoundedIcon from '@material-ui/icons/NotificationsNoneRounded';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -16,7 +14,6 @@ import MuiList from '@material-ui/core/List';
 import MuiListItem from '@material-ui/core/ListItem';
 import MuiDivider from '@material-ui/core/Divider';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-import { ACTION_TYPES } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
 const Paper = styled(MuiPaper)({
@@ -45,10 +42,11 @@ export default function Notifications() {
   const [tooltipOpen, setTooltipOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const t = useTranslate();
-  const dispatch = useDispatch();
   const userLanguage = useUserLanguage();
-  const messages = useSelector((state) => state.notifications.messages);
-  const lastSeen = useSelector((state) => state.notifications.lastSeen);
+  const [{ lastSeen, messages }, setNotifications] = React.useState({
+    lastSeen: undefined,
+    messages: undefined,
+  });
 
   const messageList = messages
     ? messages
@@ -70,13 +68,17 @@ export default function Notifications() {
     setTooltipOpen(false);
 
     if (messageList && messageList.length > 0) {
-      dispatch({
-        type: ACTION_TYPES.NOTIFICATIONS_CHANGE,
-        payload: {
-          lastSeen: messageList[0].id,
-        },
+      const newLastSeen = messageList[0].id;
+      setNotifications((notifications) => {
+        if (newLastSeen !== notifications.lastSeen) {
+          return {
+            messages: notifications.messages,
+            lastSeen: newLastSeen,
+          };
+        }
+        return notifications;
       });
-      document.cookie = `lastSeenNotification=${messageList[0].id};path=/;max-age=31536000`;
+      document.cookie = `lastSeenNotification=${newLastSeen};path=/;max-age=31536000`;
     }
   };
 
@@ -102,12 +104,9 @@ export default function Notifications() {
           if (active) {
             const seen = getCookie('lastSeenNotification');
             const lastSeenNotification = seen === '' ? 0 : parseInt(seen, 10);
-            dispatch({
-              type: ACTION_TYPES.NOTIFICATIONS_CHANGE,
-              payload: {
-                messages: newMessages || [],
-                lastSeen: lastSeenNotification,
-              },
+            setNotifications({
+              messages: newMessages || [],
+              lastSeen: lastSeenNotification,
             });
           }
         });
@@ -117,7 +116,7 @@ export default function Notifications() {
       clearTimeout(timeout);
       active = false;
     };
-  }, []);
+  }, [messages]);
 
   return (
     <React.Fragment>
@@ -183,6 +182,7 @@ export default function Notifications() {
                           <Typography gutterBottom variant="body2">
                             <span
                               id="notification-message"
+                              // eslint-disable-next-line react/no-danger
                               dangerouslySetInnerHTML={{ __html: message.text }}
                             />
                           </Typography>
