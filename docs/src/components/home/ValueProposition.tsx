@@ -33,7 +33,7 @@ const content = [
     icon: <SvgEye />,
     title: 'Accessibility in mind',
     description:
-      'We care about making it good for everyone. We improve accessibility for all of our components constantly, making sure you reach the largest audience possible!',
+      'We care about making it great for everyone. We improve accessibility for all of our components constantly, helping you to reach the largest audience possible!',
   },
 ];
 
