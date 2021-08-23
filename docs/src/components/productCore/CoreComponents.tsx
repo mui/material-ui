@@ -157,10 +157,7 @@ export default function CoreComponents() {
           <Group desktopColumns={2} sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
             {DEMOS.map((name) => (
               <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>
-                <Item
-                  icon={React.cloneElement(icons[name], { active: name === demo })}
-                  title={name}
-                />
+                <Item icon={React.cloneElement(icons[name])} title={name} />
               </Highlighter>
             ))}
             <More />
