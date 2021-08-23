@@ -87,10 +87,12 @@ export default function createStyled(input = {}) {
 
     const skipSx = inputSkipSx || false;
 
-    let className;
+    let label;
 
-    if (componentName) {
-      className = `${componentName}-${lowercaseFirstLetter(componentSlot || 'Root')}`;
+    if (process.env.NODE_ENV !== 'production') {
+      if (componentName) {
+        label = `${componentName}-${lowercaseFirstLetter(componentSlot || 'Root')}`;
+      }
     }
 
     let shouldForwardPropOption = shouldForwardProp;
@@ -104,7 +106,7 @@ export default function createStyled(input = {}) {
 
     const defaultStyledResolver = styledEngineStyled(tag, {
       shouldForwardProp: shouldForwardPropOption,
-      label: className || componentName || '',
+      label,
       ...options,
     });
     const muiStyledResolver = (styleArg, ...expressions) => {
