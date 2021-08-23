@@ -9,7 +9,7 @@ import CheckRounded from '@material-ui/icons/CheckRounded';
 import ROUTES from 'docs/src/route';
 
 export default function GetStartedButtons({
-  installation = 'npm install @mui/core-material',
+  installation = 'npm install @material-ui/core',
   ...props
 }: { installation?: string } & BoxProps) {
   const [copied, setCopied] = React.useState(false);
