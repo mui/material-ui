@@ -1,7 +1,9 @@
 import * as React from 'react';
+import dynamic from 'next/dynamic';
 import NextLink from 'next/link';
-import SwipeableViews from 'react-swipeable-views';
+import { Theme } from '@material-ui/core/styles';
 import Box, { BoxProps } from '@material-ui/core/Box';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import Stack from '@material-ui/core/Stack';
@@ -9,6 +11,8 @@ import IconImage from 'docs/src/components/icon/IconImage';
 
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 import ROUTES from 'docs/src/route';
+
+const SwipeableViews = dynamic(() => import('react-swipeable-views'), { ssr: false });
 
 function ProductItem({
   'aria-label': label,
@@ -110,12 +114,15 @@ function Highlight({
 }
 
 const ProductsSwitcher = ({
+  inView = false,
   productIndex,
   setProductIndex,
 }: {
+  inView?: boolean;
   productIndex: number;
   setProductIndex: React.Dispatch<React.SetStateAction<number>>;
 }) => {
+  const isBelowMd = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const productElements = [
     <ProductItem
       aria-label="Go to core components page"
@@ -152,35 +159,36 @@ const ProductsSwitcher = ({
   ];
   return (
     <React.Fragment>
-      <Box sx={{ mt: 4 }} />
       <Box
         sx={{
           display: { md: 'none' },
           maxWidth: 'calc(100vw - 40px)',
-          minHeight: { xs: 192, sm: 150 },
+          minHeight: { xs: 200, sm: 166 },
           '& > div': { pr: '32%' },
         }}
       >
-        <SwipeableViews
-          index={productIndex}
-          resistance
-          enableMouseEvents
-          onChangeIndex={(index) => setProductIndex(index)}
-        >
-          {productElements.map((elm, index) => (
-            <Highlight
-              key={index}
-              onClick={() => setProductIndex(index)}
-              selected={productIndex === index}
-              sx={{
-                transition: '0.3s',
-                transform: productIndex !== index ? 'scale(0.9)' : 'scale(1)',
-              }}
-            >
-              {elm}
-            </Highlight>
-          ))}
-        </SwipeableViews>
+        {isBelowMd && inView && (
+          <SwipeableViews
+            index={productIndex}
+            resistance
+            enableMouseEvents
+            onChangeIndex={(index) => setProductIndex(index)}
+          >
+            {productElements.map((elm, index) => (
+              <Highlight
+                key={index}
+                onClick={() => setProductIndex(index)}
+                selected={productIndex === index}
+                sx={{
+                  transition: '0.3s',
+                  transform: productIndex !== index ? 'scale(0.9)' : 'scale(1)',
+                }}
+              >
+                {elm}
+              </Highlight>
+            ))}
+          </SwipeableViews>
+        )}
       </Box>
       <Stack spacing={1} sx={{ display: { xs: 'none', md: 'flex' }, maxWidth: 500 }}>
         {productElements.map((elm, index) => (

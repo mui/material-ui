@@ -318,6 +318,7 @@ function AppWrapper(props) {
   const activePage = findActivePage(pages, router.pathname);
 
   let fonts = [
+    // TODO: remove this values, they are considered blocking resources and slow all the pages on first render.
     'https://fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,700&display=swap',
     'https://fonts.googleapis.com/css?family=Inter:400,600,700&display=swap',
   ];
