@@ -190,7 +190,7 @@ const ColumnHead = ({
                   theme.palette.mode === 'dark'
                     ? theme.palette.primaryDark[700]
                     : theme.palette.background.paper,
-                color: 'text.primary',
+                color: 'text.secondary',
                 border: '1px solid',
                 borderColor: (theme: Theme) =>
                   theme.palette.mode === 'dark'
@@ -863,7 +863,7 @@ export default function PricingTable({
               endIcon={<KeyboardArrowRightRounded />}
               sx={{ py: 1, mt: 'auto' }}
             >
-              Get Started
+              Buy now
             </Button>
           </ColumnHeadHighlight>
           <Box sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
