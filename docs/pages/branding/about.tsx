@@ -312,7 +312,7 @@ const contributors = [
   {
     name: 'Danica Shen',
     github: 'DDDDDanica',
-    title: '🇨🇳 Chinese docs',
+    title: 'Chinese docs',
     location: 'Ireland',
     country: 'ie',
     src: 'https://avatars.githubusercontent.com/u/12678455',
@@ -320,7 +320,7 @@ const contributors = [
   {
     name: 'Yan Lee',
     github: 'AGDholo',
-    title: '🇨🇳 Chinese docs',
+    title: 'Chinese docs',
     location: 'China',
     country: 'cn',
     src: 'https://avatars.githubusercontent.com/u/13300332',
@@ -328,7 +328,7 @@ const contributors = [
   {
     name: 'Jairon Alves Lima',
     github: 'jaironalves',
-    title: '🇧🇷 Brazilian docs',
+    title: 'Brazilian docs',
     location: 'São Paulo, Brazil',
     country: 'br',
     src: 'https://avatars.githubusercontent.com/u/29267813',
@@ -678,13 +678,13 @@ function AboutContent() {
           <Grid item xs={12} sm={6} md={4}>
             <Widget icon={<LocalAtmRoundedIcon fontSize="small" color="primary" />} title="Suport us financially">
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                If you use Material-UI in a commercial project and would like to support its
+                If you use MUI in a commercial project and would like to support its
                 continued development by becoming a Sponsor, or in a side or hobby project and would
                 like to become a Backer, you can do so through OpenCollective.
                 <br />
                 <br />
                 All funds donated are managed transparently, and Sponsors receive recognition in the
-                README and on the Material-UI home page.
+                README and on the MUI home page.
               </Typography>
               <Link href="https://opencollective.com/material-ui" variant="body2">
                 See Open Collective{' '}

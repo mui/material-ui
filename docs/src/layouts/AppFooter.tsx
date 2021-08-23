@@ -54,10 +54,10 @@ export default function AppFooter() {
             display: 'grid',
             gridTemplateColumns: { xs: '1fr 1fr', md: '1fr 1fr 1fr 1fr' },
             gridAutoColumns: '1fr',
-            gap: '16px 20px',
+            gap: '10px 20px',
           }}
         >
-          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column'}}>
             <Typography fontWeight="bold" variant="body2">
               Products
             </Typography>

@@ -215,7 +215,6 @@ export default function CoreShowcase() {
               bottom: 0,
               left: '50%',
               transform: 'translate(-50%)',
-              bgcolor: mode === 'dark' ? 'primaryDark.600' : 'grey.200',
               width: '100%',
             }}
           >
@@ -224,7 +223,7 @@ export default function CoreShowcase() {
               fontWeight={500}
               color="text.primary"
               noWrap
-              sx={{ opacity: 0.7 }}
+              sx={{ opacity: 0.5 }}
             >
               <TouchAppRounded sx={{ fontSize: 14, verticalAlign: 'text-bottom' }} /> Hover the
               component for highlighting the code.
