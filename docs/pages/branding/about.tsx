@@ -136,7 +136,7 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
               target="_blank"
               rel="noreferrer noopener"
             >
-              <GitHubIcon fontSize="small" sx={{ color: 'grey.600' }} />
+              <GitHubIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
           )}
           {props.twitter && (
@@ -147,7 +147,7 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
               target="_blank"
               rel="noreferrer noopener"
             >
-              <TwitterIcon fontSize="small" sx={{ color: 'grey.600' }} />
+              <TwitterIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
           )}
         </Box>
