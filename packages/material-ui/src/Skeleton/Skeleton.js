@@ -8,8 +8,8 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getSkeletonUtilityClass } from './skeletonClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, variant, animation, hasChildren, width, height } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, variant, animation, hasChildren, width, height } = ownerState;
 
   const slots = {
     root: [
@@ -58,19 +58,19 @@ const SkeletonRoot = styled('span', {
   name: 'MuiSkeleton',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       styles.root,
-      styles[styleProps.variant],
-      styleProps.animation !== false && styles[styleProps.animation],
-      styleProps.hasChildren && styles.withChildren,
-      styleProps.hasChildren && !styleProps.width && styles.fitContent,
-      styleProps.hasChildren && !styleProps.height && styles.heightAuto,
+      styles[ownerState.variant],
+      ownerState.animation !== false && styles[ownerState.animation],
+      ownerState.hasChildren && styles.withChildren,
+      ownerState.hasChildren && !ownerState.width && styles.fitContent,
+      ownerState.hasChildren && !ownerState.height && styles.heightAuto,
     ];
   },
 })(
-  ({ theme, styleProps }) => {
+  ({ theme, ownerState }) => {
     const radiusUnit = getUnit(theme.shape.borderRadius) || 'px';
     const radiusValue = toUnitless(theme.shape.borderRadius);
 
@@ -82,7 +82,7 @@ const SkeletonRoot = styled('span', {
         theme.palette.mode === 'light' ? 0.11 : 0.13,
       ),
       height: '1.2em',
-      ...(styleProps.variant === 'text' && {
+      ...(ownerState.variant === 'text' && {
         marginTop: 0,
         marginBottom: 0,
         height: 'auto',
@@ -95,31 +95,31 @@ const SkeletonRoot = styled('span', {
           content: '"\\00a0"',
         },
       }),
-      ...(styleProps.variant === 'circular' && {
+      ...(ownerState.variant === 'circular' && {
         borderRadius: '50%',
       }),
-      ...(styleProps.hasChildren && {
+      ...(ownerState.hasChildren && {
         '& > *': {
           visibility: 'hidden',
         },
       }),
-      ...(styleProps.hasChildren &&
-        !styleProps.width && {
+      ...(ownerState.hasChildren &&
+        !ownerState.width && {
           maxWidth: 'fit-content',
         }),
-      ...(styleProps.hasChildren &&
-        !styleProps.height && {
+      ...(ownerState.hasChildren &&
+        !ownerState.height && {
           height: 'auto',
         }),
     };
   },
-  ({ styleProps }) =>
-    styleProps.animation === 'pulse' &&
+  ({ ownerState }) =>
+    ownerState.animation === 'pulse' &&
     css`
       animation: ${pulseKeyframe} 1.5s ease-in-out 0.5s infinite;
     `,
-  ({ styleProps, theme }) =>
-    styleProps.animation === 'wave' &&
+  ({ ownerState, theme }) =>
+    ownerState.animation === 'wave' &&
     css`
       position: relative;
       overflow: hidden;
@@ -154,7 +154,7 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     animation,
     component,
@@ -162,14 +162,14 @@ const Skeleton = React.forwardRef(function Skeleton(inProps, ref) {
     hasChildren: Boolean(other.children),
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <SkeletonRoot
       as={component}
       ref={ref}
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
       style={{
         width,

@@ -10,8 +10,8 @@ import bottomNavigationActionClasses, {
   getBottomNavigationActionUtilityClass,
 } from './bottomNavigationActionClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, showLabel, selected } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, showLabel, selected } = ownerState;
 
   const slots = {
     root: ['root', !showLabel && !selected && 'iconOnly', selected && 'selected'],
@@ -25,11 +25,11 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
   name: 'MuiBottomNavigationAction',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
-    return [styles.root, !styleProps.showLabel && !styleProps.selected && styles.iconOnly];
+    return [styles.root, !ownerState.showLabel && !ownerState.selected && styles.iconOnly];
   },
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   transition: theme.transitions.create(['color', 'padding-top'], {
     duration: theme.transitions.duration.short,
   }),
@@ -39,8 +39,8 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
   color: theme.palette.text.secondary,
   flexDirection: 'column',
   flex: '1',
-  ...(!styleProps.showLabel &&
-    !styleProps.selected && {
+  ...(!ownerState.showLabel &&
+    !ownerState.selected && {
       paddingTop: 16,
     }),
   [`&.${bottomNavigationActionClasses.selected}`]: {
@@ -53,14 +53,14 @@ const BottomNavigationActionLabel = styled('span', {
   name: 'MuiBottomNavigationAction',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   fontFamily: theme.typography.fontFamily,
   fontSize: theme.typography.pxToRem(12),
   opacity: 1,
   transition: 'font-size 0.2s, opacity 0.2s',
   transitionDelay: '0.1s',
-  ...(!styleProps.showLabel &&
-    !styleProps.selected && {
+  ...(!ownerState.showLabel &&
+    !ownerState.selected && {
       opacity: 0,
       transitionDelay: '0s',
     }),
@@ -84,8 +84,8 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
     ...other
   } = props;
 
-  const styleProps = props;
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = props;
+  const classes = useUtilityClasses(ownerState);
 
   const handleChange = (event) => {
     if (onChange) {
@@ -103,11 +103,11 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
       className={clsx(classes.root, className)}
       focusRipple
       onClick={handleChange}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       {icon}
-      <BottomNavigationActionLabel className={classes.label} styleProps={styleProps}>
+      <BottomNavigationActionLabel className={classes.label} ownerState={ownerState}>
         {label}
       </BottomNavigationActionLabel>
     </BottomNavigationActionRoot>

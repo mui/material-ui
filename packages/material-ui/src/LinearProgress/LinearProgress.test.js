@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, screen, describeConformanceV5 } from 'test/utils';
+import { createClientRender, screen, describeConformance } from 'test/utils';
 import LinearProgress, { linearProgressClasses as classes } from '@material-ui/core/LinearProgress';
 
 describe('<LinearProgress />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<LinearProgress />, () => ({
+  describeConformance(<LinearProgress />, () => ({
     classes,
     inheritComponent: 'span',
     render,

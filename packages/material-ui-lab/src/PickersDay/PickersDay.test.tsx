@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformanceV5, fireEvent, screen } from 'test/utils';
+import { describeConformance, fireEvent, screen } from 'test/utils';
 import PickersDay, { pickersDayClasses as classes } from '@material-ui/lab/PickersDay';
 import { adapterToUse, wrapPickerMount, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<PickersDay />', () => {
   const render = createPickerRender();
 
-  describeConformanceV5(
+  describeConformance(
     <PickersDay
       day={adapterToUse.date()}
       outsideCurrentMonth={false}

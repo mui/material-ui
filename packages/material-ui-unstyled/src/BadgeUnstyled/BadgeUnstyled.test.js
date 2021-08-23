@@ -18,16 +18,21 @@ describe('<BadgeUnstyled />', () => {
       render,
       refInstanceof: window.HTMLSpanElement,
       testComponentPropWith: 'div',
+      skip: [
+        'themeDefaultProps', // unstyled
+        'themeStyleOverrides', // unstyled
+        'themeVariants', // unstyled
+      ],
     }),
   );
 
   it('forwards style props on the Root component', () => {
-    let styleProps = null;
+    let ownerState = null;
     let theme = null;
 
     const Root = React.forwardRef(
-      ({ styleProps: stylePropsProp, theme: themeProp, ...other }, ref) => {
-        styleProps = stylePropsProp;
+      ({ ownerState: ownerStateProp, theme: themeProp, ...other }, ref) => {
+        ownerState = ownerStateProp;
         theme = themeProp;
         return <span ref={ref} {...other} />;
       },
@@ -35,7 +40,7 @@ describe('<BadgeUnstyled />', () => {
 
     render(<BadgeUnstyled components={{ Root }} />);
 
-    expect(styleProps).not.to.equal(null);
+    expect(ownerState).not.to.equal(null);
     expect(theme).not.to.equal(null);
   });
 
@@ -51,7 +56,7 @@ describe('<BadgeUnstyled />', () => {
     );
 
     const { current: element } = elementRef;
-    expect(element.getAttribute('styleProps')).to.equal(null);
+    expect(element.getAttribute('ownerState')).to.equal(null);
     expect(element.getAttribute('theme')).to.equal(null);
   });
 });

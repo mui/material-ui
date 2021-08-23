@@ -27,7 +27,7 @@ function fakeFetch(date: Date, { signal }: { signal: AbortSignal }) {
 
     signal.onabort = () => {
       clearTimeout(timeout);
-      reject(new Error('aborted'));
+      reject(new DOMException('aborted', 'AbortError'));
     };
   });
 }
@@ -49,7 +49,12 @@ export default function ServerRequestDatePicker() {
         setHighlightedDays(daysToHighlight);
         setIsLoading(false);
       })
-      .catch(() => console.log('Wow, you are switching months too quickly 🐕'));
+      .catch((error) => {
+        // ignore the error if it's caused by `controller.abort`
+        if (error.name !== 'AbortError') {
+          throw error;
+        }
+      });
 
     requestAbortController.current = controller;
   };

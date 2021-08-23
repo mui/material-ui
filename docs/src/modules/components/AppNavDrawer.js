@@ -213,6 +213,10 @@ function AppNavDrawer(props) {
           PaperProps={{
             className: 'algolia-drawer',
             component: SwipeableDrawerPaperComponent,
+            sx: {
+              background: (theme) =>
+                theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#FFF',
+            },
           }}
         >
           <PersistScroll slot="swipeable" enabled={mobileOpen}>
@@ -226,6 +230,10 @@ function AppNavDrawer(props) {
           PaperProps={{
             component: SwipeableDrawerPaperComponent,
             elevation: 2,
+            sx: {
+              background: (theme) =>
+                theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#FFF',
+            },
           }}
           open
         >

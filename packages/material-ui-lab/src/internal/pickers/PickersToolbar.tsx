@@ -25,14 +25,14 @@ export interface PickersToolbarProps
 
 const classes = generateUtilityClasses('PrivatePickersToolbar', ['root', 'dateTitleContainer']);
 
-const PickersToolbarRoot = styled('div', { skipSx: true })<{ styleProps: PickersToolbarProps }>(
-  ({ theme, styleProps }) => ({
+const PickersToolbarRoot = styled('div', { skipSx: true })<{ ownerState: PickersToolbarProps }>(
+  ({ theme, ownerState }) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
     padding: theme.spacing(2, 3),
-    ...(styleProps.isLandscape && {
+    ...(ownerState.isLandscape && {
       height: 'auto',
       maxWidth: 160,
       padding: 16,
@@ -75,14 +75,14 @@ const PickersToolbar = React.forwardRef<
     viewType = 'calendar',
   } = props;
 
-  const styleProps = props;
+  const ownerState = props;
 
   return (
     <PickersToolbarRoot
       ref={ref}
       data-mui-test="picker-toolbar"
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
     >
       <Typography data-mui-test="picker-toolbar-title" color="text.secondary" variant="overline">
         {toolbarTitle}

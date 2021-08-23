@@ -49,8 +49,8 @@ export const timePickerToolbarClasses: TimePickerToolbarClasses = generateUtilit
   ],
 );
 
-const useUtilityClasses = (styleProps: TimePickerToolbarProps & { theme: Theme }) => {
-  const { theme, isLandscape, classes } = styleProps;
+const useUtilityClasses = (ownerState: TimePickerToolbarProps & { theme: Theme }) => {
+  const { theme, isLandscape, classes } = ownerState;
 
   const slots = {
     penIconLandscape: ['penIconLandscape'],
@@ -68,7 +68,7 @@ const useUtilityClasses = (styleProps: TimePickerToolbarProps & { theme: Theme }
 };
 
 const TimePickerToolbarRoot = styled(PickersToolbar, { skipSx: true })<{
-  styleProps: TimePickerToolbarProps;
+  ownerState: TimePickerToolbarProps;
 }>({
   [`& .${timePickerToolbarClasses.penIconLandscape}`]: {
     marginTop: 'auto',
@@ -82,12 +82,12 @@ const TimePickerToolbarSeparator = styled(PickersToolbarText, { skipSx: true })(
 });
 
 const TimePickerToolbarHourMinuteLabel = styled('div', { skipSx: true })<{
-  styleProps: TimePickerToolbarProps;
-}>(({ theme, styleProps }) => ({
+  ownerState: TimePickerToolbarProps;
+}>(({ theme, ownerState }) => ({
   display: 'flex',
   justifyContent: 'flex-end',
   alignItems: 'flex-end',
-  ...(styleProps.isLandscape && {
+  ...(ownerState.isLandscape && {
     marginTop: 'auto',
   }),
   ...(theme.direction === 'rtl' && {
@@ -96,13 +96,13 @@ const TimePickerToolbarHourMinuteLabel = styled('div', { skipSx: true })<{
 }));
 
 const TimePickerToolbarAmPmSelection = styled('div', { skipSx: true })<{
-  styleProps: TimePickerToolbarProps;
-}>(({ styleProps }) => ({
+  ownerState: TimePickerToolbarProps;
+}>(({ ownerState }) => ({
   display: 'flex',
   flexDirection: 'column',
   marginRight: 'auto',
   marginLeft: 12,
-  ...(styleProps.isLandscape && {
+  ...(ownerState.isLandscape && {
     margin: '4px 0 auto',
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -139,8 +139,8 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps> = (props) => {
   const formatHours = (time: unknown) =>
     ampm ? utils.format(time, 'hours12h') : utils.format(time, 'hours24h');
 
-  const styleProps = props;
-  const classes = useUtilityClasses({ ...styleProps, theme });
+  const ownerState = props;
+  const classes = useUtilityClasses({ ...ownerState, theme });
 
   const separator = (
     <TimePickerToolbarSeparator
@@ -160,11 +160,11 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps> = (props) => {
       isLandscape={isLandscape}
       isMobileKeyboardViewOpen={isMobileKeyboardViewOpen}
       toggleMobileKeyboardView={toggleMobileKeyboardView}
-      styleProps={styleProps}
+      ownerState={ownerState}
       penIconClassName={clsx({ [classes.penIconLandscape]: isLandscape })}
       {...other}
     >
-      <TimePickerToolbarHourMinuteLabel className={classes.hourMinuteLabel} styleProps={styleProps}>
+      <TimePickerToolbarHourMinuteLabel className={classes.hourMinuteLabel} ownerState={ownerState}>
         {arrayIncludes(views, 'hours') && (
           <PickersToolbarButton
             data-mui-test="hours"
@@ -198,7 +198,7 @@ const TimePickerToolbar: React.FC<ToolbarComponentProps> = (props) => {
         )}
       </TimePickerToolbarHourMinuteLabel>
       {showAmPmControl && (
-        <TimePickerToolbarAmPmSelection className={classes.ampmSelection} styleProps={styleProps}>
+        <TimePickerToolbarAmPmSelection className={classes.ampmSelection} ownerState={ownerState}>
           <PickersToolbarButton
             disableRipple
             variant="subtitle2"

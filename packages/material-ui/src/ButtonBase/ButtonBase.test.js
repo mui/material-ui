@@ -3,7 +3,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub } from 'sinon';
 import {
-  describeConformanceV5,
+  describeConformance,
   act,
   createClientRender,
   fireEvent,
@@ -33,7 +33,7 @@ describe('<ButtonBase />', () => {
     }
   });
 
-  describeConformanceV5(<ButtonBase />, () => ({
+  describeConformance(<ButtonBase />, () => ({
     classes,
     inheritComponent: 'button',
     render,

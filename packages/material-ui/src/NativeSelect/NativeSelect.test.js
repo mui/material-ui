@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createTheme, ThemeProvider, styled } from '@material-ui/core/styles';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import NativeSelect, { nativeSelectClasses as classes } from '@material-ui/core/NativeSelect';
 import Input, { inputClasses } from '@material-ui/core/Input';
 
@@ -19,7 +19,7 @@ describe('<NativeSelect />', () => {
     ],
   };
 
-  describeConformanceV5(<NativeSelect {...defaultProps} />, () => ({
+  describeConformance(<NativeSelect {...defaultProps} />, () => ({
     classes,
     inheritComponent: Input,
     render,
@@ -102,23 +102,5 @@ describe('<NativeSelect />', () => {
     );
     expect(getByTestId('root')).to.have.class('foo');
     expect(getByTestId('root')).to.have.class('bar');
-  });
-
-  it('should not add classes on the DOM element', () => {
-    const { getByTestId } = render(
-      <NativeSelect
-        defaultValue={30}
-        inputProps={{
-          'data-testid': 'select',
-          name: 'age',
-          id: 'uncontrolled-native',
-        }}
-      >
-        <option value={10}>Ten</option>
-        <option value={20}>Twenty</option>
-        <option value={30}>Thirty</option>
-      </NativeSelect>,
-    );
-    expect(getByTestId('select')).not.to.have.attribute('classes');
   });
 });

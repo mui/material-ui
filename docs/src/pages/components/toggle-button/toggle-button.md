@@ -76,12 +76,6 @@ You can learn more about this in the [overrides documentation page](/customizati
 
 {{"demo": "pages/components/toggle-button/CustomizedDividers.js", "bg": true}}
 
-## Theming
-
-Here is an example of theming the component. You can learn more about this in the [theming page](/customization/theming) and [theme components page](/customization/theme-components)
-
-{{"demo": "pages/components/toggle-button/ViewToggleButton.js", "bg": true}}
-
 ## Accessibility
 
 ### ARIA

@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import { spy } from 'sinon';
 import {
-  describeConformanceV5,
+  describeConformance,
   act,
   createEvent,
   createClientRender,
@@ -16,7 +16,7 @@ import TreeItem, { treeItemClasses as classes } from '@material-ui/lab/TreeItem'
 describe('<TreeItem />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<TreeItem nodeId="one" label="one" />, () => ({
+  describeConformance(<TreeItem nodeId="one" label="one" />, () => ({
     classes,
     inheritComponent: 'li',
     render,

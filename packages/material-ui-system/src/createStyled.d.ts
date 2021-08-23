@@ -75,8 +75,8 @@ export type PropsOf<C extends keyof JSX.IntrinsicElements | React.JSXElementCons
 
 export type Overwrapped<T, U> = Pick<T, Extract<keyof T, keyof U>>;
 
-export interface StyledComponent<InnerProps, StyleProps, Theme extends object>
-  extends React.FunctionComponent<InnerProps & StyleProps & { theme?: Theme }>,
+export interface StyledComponent<InnerProps, OwnerState, Theme extends object>
+  extends React.FunctionComponent<InnerProps & OwnerState & { theme?: Theme }>,
     ComponentSelector {}
 
 export interface StyledOptions {

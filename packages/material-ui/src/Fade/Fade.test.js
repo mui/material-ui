@@ -19,6 +19,10 @@ describe('<Fade />', () => {
     refInstanceof: window.HTMLDivElement,
     skip: [
       'componentProp',
+      'componentsProp',
+      'themeDefaultProps',
+      'themeStyleOverrides',
+      'themeVariants',
       // TODO: really?
       // react-transition-group issue
       'reactTestRenderer',

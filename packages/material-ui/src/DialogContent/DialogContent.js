@@ -6,8 +6,8 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getDialogContentUtilityClass } from './dialogContentClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, dividers } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, dividers } = ownerState;
 
   const slots = {
     root: ['root', dividers && 'dividers'],
@@ -20,17 +20,17 @@ const DialogContentRoot = styled('div', {
   name: 'MuiDialogContent',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
-    return [styles.root, styleProps.dividers && styles.dividers];
+    return [styles.root, ownerState.dividers && styles.dividers];
   },
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   flex: '1 1 auto',
   // Add iOS momentum scrolling for iOS < 13.0
   WebkitOverflowScrolling: 'touch',
   overflowY: 'auto',
   padding: '20px 24px',
-  ...(styleProps.dividers
+  ...(ownerState.dividers
     ? {
         padding: '16px 24px',
         borderTop: `1px solid ${theme.palette.divider}`,
@@ -50,13 +50,13 @@ const DialogContent = React.forwardRef(function DialogContent(inProps, ref) {
   });
 
   const { className, dividers = false, ...other } = props;
-  const styleProps = { ...props, dividers };
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = { ...props, dividers };
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <DialogContentRoot
       className={clsx(classes.root, className)}
-      styleProps={styleProps}
+      ownerState={ownerState}
       ref={ref}
       {...other}
     />

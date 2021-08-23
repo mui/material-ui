@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformanceV5, createClientRender } from 'test/utils';
+import { describeConformance, createClientRender } from 'test/utils';
 import Container, { containerClasses as classes } from '@material-ui/core/Container';
 
 describe('<Container />', () => {
@@ -10,7 +10,7 @@ describe('<Container />', () => {
     children: <div />,
   };
 
-  describeConformanceV5(<Container {...defaultProps} />, () => ({
+  describeConformance(<Container {...defaultProps} />, () => ({
     classes,
     inheritComponent: 'div',
     render,
