@@ -456,7 +456,7 @@ function AboutContent() {
           </Typography>
           <Typography component="h1" variant="h2" sx={{ my: 1 }}>
             We&apos;re on a mission to make <br /> building UIs more{' '}
-            <GradientText>accessible</GradientText>.
+            <GradientText>accessible</GradientText>
           </Typography>
           <Typography
             color="text.secondary"
@@ -530,15 +530,6 @@ function AboutContent() {
               Join the team
             </Button>
           </div>
-          <Box display={{ xs: 'none', sm: 'block' }}>
-            <img
-              width="130"
-              height="124"
-              src="/static/branding/pricing/early-bird.svg"
-              loading="lazy"
-              alt=""
-            />
-          </Box>
         </Box>
         <Divider sx={{ my: { xs: 2, sm: 4 } }} />
         <Typography
