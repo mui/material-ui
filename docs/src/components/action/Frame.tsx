@@ -1,9 +1,10 @@
 import * as React from 'react';
 import Box, { BoxProps } from '@material-ui/core/Box';
 
-const Demo = (props: BoxProps) => {
+const Demo = React.forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
   return (
     <Box
+      ref={ref}
       {...props}
       sx={{
         position: 'relative',
@@ -14,11 +15,12 @@ const Demo = (props: BoxProps) => {
       }}
     />
   );
-};
+});
 
-const Info = (props: BoxProps) => {
+const Info = React.forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
   return (
     <Box
+      ref={ref}
       {...props}
       sx={{
         color: '#fff',
@@ -30,7 +32,7 @@ const Info = (props: BoxProps) => {
       }}
     />
   );
-};
+});
 
 const Frame = (props: BoxProps) => {
   return (

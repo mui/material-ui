@@ -73,6 +73,7 @@ const code = `<Card variant="outlined" sx={{ display: 'flex', p: 1 }}>
 
 export default function CoreStyling() {
   const [index, setIndex] = React.useState(0);
+  const infoRef = React.useRef<HTMLDivElement | null>(null);
   const startLine = [18, 11, 1];
   const endLine = [31, 13, 1];
   function getSelectedProps(i: number) {
@@ -81,6 +82,11 @@ export default function CoreStyling() {
       sx: { '& svg': { opacity: index === i ? 1 : 0.5 } },
     };
   }
+  React.useEffect(() => {
+    if (infoRef.current) {
+      infoRef.current.scroll({ top: index === 0 ? 273 : 0, behavior: 'smooth' });
+    }
+  }, [index]);
   return (
     <Section bg="gradient">
       <Grid container spacing={2}>
@@ -134,7 +140,10 @@ export default function CoreStyling() {
             >
               <RealEstateCard />
             </Frame.Demo>
-            <Frame.Info sx={{ maxHeight: 400, overflow: 'auto', position: 'relative' }}>
+            <Frame.Info
+              ref={infoRef}
+              sx={{ maxHeight: 400, overflow: 'auto', position: 'relative' }}
+            >
               <Box sx={{ zIndex: 1, position: 'relative', '& pre': { bgcolor: 'transparent' } }}>
                 <HighlightedCode component={MarkdownElement} code={code} language="jsx" />
               </Box>
