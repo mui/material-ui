@@ -116,8 +116,14 @@ It accepts almost the same options as the Autocomplete component minus all the p
 related to the rendering of JSX.
 The Autocomplete component is built on this hook.
 
-```jsx
+```tsx
 import { useAutocomplete } from '@material-ui/unstyled/AutocompleteUnstyled';
+```
+
+The `useAutocomplete` hook is also reexported from @material-ui/core for convenience and backward compatibility.
+
+```tsx
+import useAutocomplete from '@material-ui/core/useAutocomplete';
 ```
 
 - 📦 [4.5 kB gzipped](/size-snapshot).

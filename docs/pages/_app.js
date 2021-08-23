@@ -2,7 +2,6 @@ import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import * as React from 'react';
 import find from 'lodash/find';
-import { Provider as ReduxProvider, useDispatch, useSelector } from 'react-redux';
 import { loadCSS } from 'fg-loadcss/src/loadCSS';
 import NextHead from 'next/head';
 import PropTypes from 'prop-types';
@@ -13,14 +12,22 @@ import { CacheProvider } from '@emotion/react';
 import { useRouter } from 'next/router';
 import { StylesProvider, jssPreset } from '@material-ui/styles';
 import pages from 'docs/src/pages';
-import initRedux from 'docs/src/modules/redux/initRedux';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import loadScript from 'docs/src/modules/utils/loadScript';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { pathnameToLanguage, getCookie } from 'docs/src/modules/utils/helpers';
-import { ACTION_TYPES, CODE_VARIANTS, LANGUAGES } from 'docs/src/modules/constants';
-import { useUserLanguage } from 'docs/src/modules/utils/i18n';
+import { CODE_VARIANTS, LANGUAGES } from 'docs/src/modules/constants';
+import {
+  CodeVariantProvider,
+  useCodeVariant,
+  useSetCodeVariant,
+} from 'docs/src/modules/utils/codeVariant';
+import {
+  UserLanguageProvider,
+  useSetUserLanguage,
+  useUserLanguage,
+} from 'docs/src/modules/utils/i18n';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
 
@@ -45,7 +52,7 @@ function useFirstRender() {
 acceptLanguage.languages(['en', 'zh', 'pt', 'ru']);
 
 function LanguageNegotiation() {
-  const dispatch = useDispatch();
+  const setUserLanguage = useSetUserLanguage();
   const router = useRouter();
   const userLanguage = useUserLanguage();
 
@@ -59,7 +66,7 @@ function LanguageNegotiation() {
     if (userLanguageUrl === 'en' && userLanguage !== preferedLanguage) {
       window.location = preferedLanguage === 'en' ? canonical : `/${preferedLanguage}${canonical}`;
     } else if (userLanguage !== userLanguageUrl) {
-      dispatch({ type: ACTION_TYPES.OPTIONS_CHANGE, payload: { userLanguage: userLanguageUrl } });
+      setUserLanguage(userLanguageUrl);
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -71,10 +78,8 @@ function LanguageNegotiation() {
  * @returns {string} - The persisted variant if the initial value is undefined
  */
 function usePersistCodeVariant() {
-  const dispatch = useDispatch();
-  const { codeVariant: initialCodeVariant = CODE_VARIANTS.JS } = useSelector(
-    (state) => state.options,
-  );
+  const initialCodeVariant = useCodeVariant();
+  const setCodeVariant = useSetCodeVariant();
 
   const isFirstRender = useFirstRender();
 
@@ -107,7 +112,7 @@ function usePersistCodeVariant() {
 
   React.useEffect(() => {
     if (codeVariant !== initialCodeVariant) {
-      dispatch({ type: ACTION_TYPES.OPTIONS_CHANGE, payload: { codeVariant } });
+      setCodeVariant(codeVariant);
     }
   });
 
@@ -128,7 +133,7 @@ function Analytics() {
     loadScript('https://www.google-analytics.com/analytics.js', document.querySelector('head'));
   }, []);
 
-  const options = useSelector((state) => state.options);
+  const userLanguage = useUserLanguage();
 
   const codeVariant = usePersistCodeVariant();
   React.useEffect(() => {
@@ -136,8 +141,8 @@ function Analytics() {
   }, [codeVariant]);
 
   React.useEffect(() => {
-    window.ga('set', 'dimension2', options.userLanguage);
-  }, [options.userLanguage]);
+    window.ga('set', 'dimension2', userLanguage);
+  }, [userLanguage]);
 
   React.useEffect(() => {
     /**
@@ -298,9 +303,6 @@ function AppWrapper(props) {
   const { children, pageProps } = props;
 
   const router = useRouter();
-  const [redux] = React.useState(() =>
-    initRedux({ options: { userLanguage: pageProps.userLanguage } }),
-  );
 
   React.useEffect(() => {
     loadDependencies();
@@ -332,17 +334,19 @@ function AppWrapper(props) {
           <link rel="stylesheet" href={font} key={font} />
         ))}
       </NextHead>
-      <ReduxProvider store={redux}>
-        <PageContext.Provider value={{ activePage, pages }}>
-          <StylesProvider jss={jss}>
-            <ThemeProvider>
-              <DocsStyledEngineProvider>{children}</DocsStyledEngineProvider>
-            </ThemeProvider>
-          </StylesProvider>
-        </PageContext.Provider>
-        <LanguageNegotiation />
-        <Analytics />
-      </ReduxProvider>
+      <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
+        <CodeVariantProvider>
+          <PageContext.Provider value={{ activePage, pages }}>
+            <StylesProvider jss={jss}>
+              <ThemeProvider>
+                <DocsStyledEngineProvider>{children}</DocsStyledEngineProvider>
+              </ThemeProvider>
+            </StylesProvider>
+          </PageContext.Provider>
+          <LanguageNegotiation />
+          <Analytics />
+        </CodeVariantProvider>
+      </UserLanguageProvider>
       <GoogleAnalytics key={router.route} />
     </React.Fragment>
   );

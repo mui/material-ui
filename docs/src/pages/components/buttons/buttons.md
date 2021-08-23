@@ -12,7 +12,6 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#button
 
 Buttons communicate actions that users can take. They are typically placed throughout your UI, in places like:
 
-- Dialogs
 - Modal windows
 - Forms
 - Cards

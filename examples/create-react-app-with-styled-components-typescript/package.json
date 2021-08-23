@@ -5,7 +5,7 @@
   "dependencies": {
     "@material-ui/core": "next",
     "@material-ui/lab": "next",
-    "@material-ui/styled-engine": "npm:@material-ui/styled-engine-sc@next",
+    "@material-ui/styled-engine-sc": "next",
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",
@@ -14,15 +14,12 @@
     "react-scripts": "latest",
     "styled-components": "latest"
   },
-  "resolutions": {
-    "@material-ui/styled-engine": "npm:@material-ui/styled-engine-sc@next"
-  },
   "scripts": {
     "tsc": "./node_modules/.bin/tsc",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject"
   },
   "browserslist": {
     "production": [
@@ -41,6 +38,8 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@types/styled-components": "latest",
+    "customize-cra": "latest",
+    "react-app-rewired": "latest",
     "typescript": "latest"
   }
 }
