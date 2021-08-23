@@ -7,7 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
-import { fontWeight } from '@material-ui/system';
 
 const Nav = styled('nav')(({ theme }) => {
   return {

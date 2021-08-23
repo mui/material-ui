@@ -464,7 +464,7 @@ export default function DemoToolbar(props) {
               sx={{
                 padding: '5px 10px',
                 borderRadius: 0.5,
-                borderColor:
+                borderColor: (theme) =>
                   theme.palette.mode === 'dark'
                     ? theme.palette.primaryDark[700]
                     : theme.palette.grey[200],
@@ -482,7 +482,7 @@ export default function DemoToolbar(props) {
               sx={{
                 padding: '5px 10px',
                 borderRadius: 0.5,
-                borderColor:
+                borderColor: (theme) =>
                   theme.palette.mode === 'dark'
                     ? theme.palette.primaryDark[700]
                     : theme.palette.grey[200],
@@ -520,7 +520,7 @@ export default function DemoToolbar(props) {
               <CodeRoundedIcon
                 sx={{
                   fontSize: 17,
-                  color:
+                  color: (theme) =>
                     theme.palette.mode === 'dark'
                       ? theme.palette.grey[500]
                       : theme.palette.grey[800],
@@ -542,7 +542,7 @@ export default function DemoToolbar(props) {
                   <SvgIcon
                     sx={{
                       fontSize: 17,
-                      color:
+                      color: (theme) =>
                         theme.palette.mode === 'dark'
                           ? theme.palette.grey[500]
                           : theme.palette.grey[800],
@@ -565,7 +565,7 @@ export default function DemoToolbar(props) {
                   <SvgIcon
                     sx={{
                       fontSize: 17,
-                      color:
+                      color: (theme) =>
                         theme.palette.mode === 'dark'
                           ? theme.palette.grey[500]
                           : theme.palette.grey[800],
@@ -590,7 +590,7 @@ export default function DemoToolbar(props) {
               <ContentCopyRoundedIcon
                 sx={{
                   fontSize: 17,
-                  color:
+                  color: (theme) =>
                     theme.palette.mode === 'dark'
                       ? theme.palette.grey[500]
                       : theme.palette.grey[800],
@@ -610,7 +610,7 @@ export default function DemoToolbar(props) {
               <ResetFocusIcon
                 sx={{
                   fontSize: 17,
-                  color:
+                  color: (theme) =>
                     theme.palette.mode === 'dark'
                       ? theme.palette.grey[500]
                       : theme.palette.grey[800],
@@ -631,7 +631,7 @@ export default function DemoToolbar(props) {
               <RefreshRoundedIcon
                 sx={{
                   fontSize: 17,
-                  color:
+                  color: (theme) =>
                     theme.palette.mode === 'dark'
                       ? theme.palette.grey[500]
                       : theme.palette.grey[800],
@@ -650,7 +650,7 @@ export default function DemoToolbar(props) {
             <MoreVertIcon
               sx={{
                 fontSize: 17,
-                color:
+                color: (theme) =>
                   theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
               }}
             />
