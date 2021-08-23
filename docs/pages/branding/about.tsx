@@ -29,6 +29,9 @@ import IconImage from 'docs/src/components/icon/IconImage';
 import SvgChat from 'docs/src/icons/SvgChat';
 import SvgPerson from 'docs/src/icons/SvgPerson';
 import SvgCard from 'docs/src/icons/SvgCard';
+import ForumRoundedIcon from '@material-ui/icons/ForumRounded';
+import PeopleRoundedIcon from '@material-ui/icons/PeopleRounded';
+import LocalAtmRoundedIcon from '@material-ui/icons/LocalAtmRounded';
 
 let darkTheme = createTheme(getDesignTokens('dark'));
 
@@ -609,7 +612,7 @@ function AboutContent() {
         </Typography>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={4}>
-            <Widget icon={<SvgChat />} title="Give feedback">
+            <Widget icon={<ForumRoundedIcon fontSize="small" color="primary"/>} title="Give feedback">
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                 Tell us what and where we can improve or share your happy moments with us! You can
                 also up or downvote any page on our documentation. <br />
@@ -627,7 +630,7 @@ function AboutContent() {
             </Widget>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Widget icon={<SvgPerson />} title="Join the community">
+            <Widget icon={<PeopleRoundedIcon fontSize="small" color="primary"/>} title="Join the community">
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                 Become a member of a huge community of developers supporting MUI. You can:
               </Typography>
@@ -676,7 +679,7 @@ function AboutContent() {
             </Widget>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Widget icon={<SvgCard />} title="Suport us financially">
+            <Widget icon={<LocalAtmRoundedIcon fontSize="small" color="primary" />} title="Suport us financially">
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                 If you use Material-UI in a commercial project and would like to support its
                 continued development by becoming a Sponsor, or in a side or hobby project and would
