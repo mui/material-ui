@@ -722,7 +722,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     if (props.multiple && props.defaultValue !== undefined && !Array.isArray(props.defaultValue)) {
       return new Error(
         [
-          'Material-UI: The Autocomplete expects the `defaultValue` prop to be an array or undefined.',
+          'Material-UI: The Autocomplete expects the `defaultValue` prop to be an array when `multiple={true}` or undefined.',
           `However, ${props.defaultValue} was provided.`,
         ].join('\n'),
       );

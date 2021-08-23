@@ -1352,7 +1352,7 @@ describe('<Autocomplete />', () => {
           'Autocomplete',
         );
       }).toErrorDev(
-        'The Autocomplete expects the `defaultValue` prop to be an array or undefined.',
+        'The Autocomplete expects the `defaultValue` prop to be an array when `multiple={true}` or undefined.',
       );
     });
   });
