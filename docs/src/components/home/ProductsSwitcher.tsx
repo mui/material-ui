@@ -2,12 +2,13 @@ import * as React from 'react';
 import dynamic from 'next/dynamic';
 import NextLink from 'next/link';
 import { Theme } from '@material-ui/core/styles';
-import Box, { BoxProps } from '@material-ui/core/Box';
+import Box from '@material-ui/core/Box';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import Stack from '@material-ui/core/Stack';
 import IconImage from 'docs/src/components/icon/IconImage';
+import Highlighter from 'docs/src/components/action/Highlighter';
 
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 import ROUTES from 'docs/src/route';
@@ -67,48 +68,6 @@ function ProductItem({
           </Link>
         </NextLink>
       </Box>
-    </Box>
-  );
-}
-
-function Highlight({
-  children,
-  selected = false,
-  onClick,
-  sx,
-}: {
-  children: React.ReactNode;
-  selected?: boolean;
-  onClick?: BoxProps['onClick'];
-  sx?: BoxProps['sx'];
-}) {
-  return (
-    <Box
-      role="button"
-      onClick={onClick}
-      sx={{
-        cursor: 'pointer',
-        borderRadius: 1,
-        height: '100%',
-        border: '1px solid',
-        ...(selected && {
-          bgcolor: (theme) =>
-            theme.palette.mode === 'dark' ? 'primaryDark.700' : 'background.paper',
-          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.200'),
-        }),
-        ...(!selected && {
-          '&:hover': {
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100'),
-            '@media (hover: none)': {
-              bgcolor: 'transparent',
-            },
-          },
-          borderColor: 'transparent',
-        }),
-        ...sx,
-      }}
-    >
-      {children}
     </Box>
   );
 }
@@ -175,30 +134,33 @@ const ProductsSwitcher = ({
             onChangeIndex={(index) => setProductIndex(index)}
           >
             {productElements.map((elm, index) => (
-              <Highlight
+              <Highlighter
                 key={index}
+                disableBorder
                 onClick={() => setProductIndex(index)}
                 selected={productIndex === index}
                 sx={{
+                  width: '100%',
                   transition: '0.3s',
                   transform: productIndex !== index ? 'scale(0.9)' : 'scale(1)',
                 }}
               >
                 {elm}
-              </Highlight>
+              </Highlighter>
             ))}
           </SwipeableViews>
         )}
       </Box>
       <Stack spacing={1} sx={{ display: { xs: 'none', md: 'flex' }, maxWidth: 500 }}>
         {productElements.map((elm, index) => (
-          <Highlight
+          <Highlighter
             key={index}
+            disableBorder
             onClick={() => setProductIndex(index)}
             selected={productIndex === index}
           >
             {elm}
-          </Highlight>
+          </Highlighter>
         ))}
       </Stack>
     </React.Fragment>

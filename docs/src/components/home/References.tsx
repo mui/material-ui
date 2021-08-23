@@ -4,11 +4,17 @@ import { useInView } from 'react-intersection-observer';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import { CORE_CUSTOMERS } from 'docs/src/components/home/CompaniesGrid';
+import { CORE_CUSTOMERS, ADVANCED_CUSTOMERS } from 'docs/src/components/home/CompaniesGrid';
+
+export { CORE_CUSTOMERS, ADVANCED_CUSTOMERS };
 
 const CompaniesGrid = dynamic(() => import('./CompaniesGrid'));
 
-const ReferencesCore = () => {
+const References = ({
+  companies,
+}: {
+  companies: typeof CORE_CUSTOMERS | typeof ADVANCED_CUSTOMERS;
+}) => {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0,
@@ -16,7 +22,7 @@ const ReferencesCore = () => {
   return (
     <Container ref={ref} sx={{ py: { xs: 4, sm: 6, md: 10 } }}>
       <Box sx={{ minHeight: { xs: 177, sm: 127, md: 42 } }}>
-        {inView && <CompaniesGrid data={CORE_CUSTOMERS} />}
+        {inView && <CompaniesGrid data={companies} />}
       </Box>
       <Typography
         color={(theme) => (theme.palette.mode === 'dark' ? 'grey.500' : 'grey.800')}
@@ -36,4 +42,4 @@ const ReferencesCore = () => {
   );
 };
 
-export default ReferencesCore;
+export default References;

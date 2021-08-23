@@ -1,19 +1,15 @@
 import * as React from 'react';
-import { useTheme } from '@material-ui/core/styles';
 import SwipeableViews from 'react-swipeable-views';
 import Avatar from '@material-ui/core/Avatar';
+import ButtonBase from '@material-ui/core/ButtonBase';
 import Box from '@material-ui/core/Box';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import KeyboardArrowLeftRounded from '@material-ui/icons/KeyboardArrowLeftRounded';
-import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
+import ArrowButton from 'docs/src/components/action/ArrowButton';
 
 const Feedback = ({
   quote,
   profile,
-  mode,
 }: {
-  mode: 'light' | 'dark';
   quote: string;
   profile: {
     avatarSrc: string;
@@ -24,14 +20,8 @@ const Feedback = ({
   };
 }) => {
   return (
-    <div>
-      <Typography
-        variant="subtitle1"
-        component="div"
-        color={mode === 'dark' ? '#fff' : 'grey.900'}
-        fontSize={{ xs: '1rem', sm: '1.125rem' }}
-        sx={{ mb: 2 }}
-      >
+    <Box sx={{ color: '#fff' }}>
+      <Typography variant="subtitle1" component="div" sx={{ mb: 2 }}>
         {quote}
       </Typography>
       <Box sx={{ display: 'flex' }}>
@@ -49,11 +39,7 @@ const Feedback = ({
           }}
         />
         <Box sx={{ ml: 2 }}>
-          <Typography
-            color={mode === 'dark' ? '#fff' : 'grey.900'}
-            fontWeight="bold"
-            sx={{ mb: 1 }}
-          >
+          <Typography fontWeight="bold" sx={{ mb: 1 }}>
             {profile.name},{' '}
             <Box component="span" sx={{ color: 'grey.700', fontWeight: 'regular' }}>
               {profile.role}
@@ -62,7 +48,7 @@ const Feedback = ({
           {profile.company}
         </Box>
       </Box>
-    </div>
+    </Box>
   );
 };
 
@@ -126,78 +112,57 @@ const TESTIMONIALS = [
   },
 ];
 
-export default function UserFeedbacks({ mode: modeProp }: { mode?: 'light' | 'dark' }) {
-  const globalTheme = useTheme();
-  const mode = modeProp || globalTheme.palette.mode;
+export default function UserFeedbacks() {
   const [slideIndex, setSlideIndex] = React.useState(0);
   return (
     <Box sx={{ maxWidth: { md: 500 } }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
-        <Box
-          sx={{
-            '& .MuiIconButton-root': {
-              color: mode === 'dark' ? '#fff' : 'primary.main',
-              border: '1px solid',
-              borderColor: mode === 'dark' ? 'primaryDark.300' : 'primary.main',
-              '&.Mui-disabled': {
-                opacity: 0.5,
-                color: mode === 'dark' ? '#fff' : 'grey.500',
-                borderColor: mode === 'dark' ? 'primary.700' : 'grey.500',
-              },
-            },
-          }}
-        >
-          <IconButton
-            size="small"
-            aria-label="Previous testimonial"
-            disabled={slideIndex === 0}
-            onClick={() => setSlideIndex((i) => i - 1)}
-          >
-            <KeyboardArrowLeftRounded fontSize="small" />
-          </IconButton>
-          <IconButton
-            size="small"
-            aria-label="Next testimonial"
-            disabled={slideIndex === TESTIMONIALS.length - 1}
-            sx={{ ml: 2 }}
-            onClick={() => setSlideIndex((i) => i + 1)}
-          >
-            <KeyboardArrowRightRounded fontSize="small" />
-          </IconButton>
-        </Box>
+        <ArrowButton
+          direction="left"
+          disabled={slideIndex === 0}
+          onClick={() => setSlideIndex((i) => i - 1)}
+        />
+        <ArrowButton
+          direction="right"
+          disabled={slideIndex === TESTIMONIALS.length - 1}
+          onClick={() => setSlideIndex((i) => i + 1)}
+          sx={{ mr: 'auto' }}
+        />
         <Box alignSelf="center">
           {TESTIMONIALS.map((item, index) => (
-            <Box
+            <ButtonBase
               key={index}
-              role="button"
               aria-label={`Testimonial from ${item.profile.name}`}
               onClick={() => setSlideIndex(index)}
               sx={{
-                cursor: 'pointer',
                 display: 'inline-block',
                 width: 16,
                 height: 16,
+                borderRadius: '50%',
                 p: '4px',
                 ml: index !== 0 ? '2px' : 0,
+                '&:focus': {
+                  boxShadow: (theme) => `0px 0px 0px 2px ${theme.palette.primaryDark[400]}`,
+                },
               }}
             >
               <Box
                 sx={{
                   height: '100%',
                   borderRadius: 1,
-                  bgcolor: mode === 'dark' ? 'primaryDark.500' : 'grey.300',
+                  bgcolor: 'primaryDark.500',
                   ...(index === slideIndex && {
-                    bgcolor: mode === 'dark' ? 'primaryDark.300' : 'primary.main',
+                    bgcolor: 'primaryDark.300',
                   }),
                 }}
               />
-            </Box>
+            </ButtonBase>
           ))}
         </Box>
       </Box>
       <SwipeableViews index={slideIndex} onChangeIndex={(index) => setSlideIndex(index)}>
         {TESTIMONIALS.map((item) => (
-          <Feedback key={item.profile.name} mode={mode} {...item} />
+          <Feedback key={item.profile.name} {...item} />
         ))}
       </SwipeableViews>
     </Box>
