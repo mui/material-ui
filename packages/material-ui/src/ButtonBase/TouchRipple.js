@@ -102,7 +102,8 @@ export const TouchRippleRipple = styled(Ripple, {
 
   & .${touchRippleClasses.childPulsate} {
     position: absolute;
-    left: 0;
+    /* @noflip */
+    left: 0px;
     top: 0;
     animation-name: ${pulsateKeyframe};
     animation-duration: 2500ms;
