@@ -35,20 +35,20 @@
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "peerDependencies": {
-    "react": "^17.0.0"
+    "react": "^17.0.2"
   },
   "dependencies": {
     "@babel/runtime": "^7.14.8",
-    "@types/prop-types": "^15.7.3",
+    "@types/prop-types": "^15.7.4",
     "@types/react-is": "^16.7.1 || ^17.0.0",
     "prop-types": "^15.7.2",
-    "react-is": "^17.0.0"
+    "react-is": "^17.0.2"
   },
   "devDependencies": {
     "@babel/helper-module-imports": "^7.14.5",
-    "@types/babel-plugin-macros": "^2.8.1",
-    "babel-plugin-macros": "^3.0.0",
-    "babel-plugin-tester": "^10.0.0"
+    "@types/babel-plugin-macros": "^2.8.5",
+    "babel-plugin-macros": "^3.1.0",
+    "babel-plugin-tester": "^10.1.0"
   },
   "sideEffects": false,
   "publishConfig": {

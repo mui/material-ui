@@ -79,13 +79,13 @@ const ClockPin = styled('div', { skipSx: true })(({ theme }) => ({
   transform: 'translate(-50%, -50%)',
 }));
 
-const ClockAmButton = styled(IconButton, { skipSx: true })<{ styleProps: ClockProps<any> }>(
-  ({ theme, styleProps }) => ({
+const ClockAmButton = styled(IconButton, { skipSx: true })<{ ownerState: ClockProps<any> }>(
+  ({ theme, ownerState }) => ({
     zIndex: 1,
     position: 'absolute',
     bottom: 8,
     left: 8,
-    ...(styleProps.meridiemMode === 'am' && {
+    ...(ownerState.meridiemMode === 'am' && {
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.primary.contrastText,
       '&:hover': {
@@ -95,13 +95,13 @@ const ClockAmButton = styled(IconButton, { skipSx: true })<{ styleProps: ClockPr
   }),
 );
 
-const ClockPmButton = styled(IconButton, { skipSx: true })<{ styleProps: ClockProps<any> }>(
-  ({ theme, styleProps }) => ({
+const ClockPmButton = styled(IconButton, { skipSx: true })<{ ownerState: ClockProps<any> }>(
+  ({ theme, ownerState }) => ({
     zIndex: 1,
     position: 'absolute',
     bottom: 8,
     right: 8,
-    ...(styleProps.meridiemMode === 'pm' && {
+    ...(ownerState.meridiemMode === 'pm' && {
       backgroundColor: theme.palette.primary.main,
       color: theme.palette.primary.contrastText,
       '&:hover': {
@@ -132,7 +132,7 @@ function Clock<TDate>(props: ClockProps<TDate>) {
     value,
   } = props;
 
-  const styleProps = props;
+  const ownerState = props;
 
   const utils = useUtils<TDate>();
   const wrapperVariant = React.useContext(WrapperVariantContext);
@@ -283,7 +283,7 @@ function Clock<TDate>(props: ClockProps<TDate>) {
             data-mui-test="in-clock-am-btn"
             onClick={() => handleMeridiemChange('am')}
             disabled={meridiemMode === null}
-            styleProps={styleProps}
+            ownerState={ownerState}
           >
             <Typography variant="caption">AM</Typography>
           </ClockAmButton>
@@ -291,7 +291,7 @@ function Clock<TDate>(props: ClockProps<TDate>) {
             disabled={meridiemMode === null}
             data-mui-test="in-clock-pm-btn"
             onClick={() => handleMeridiemChange('pm')}
-            styleProps={styleProps}
+            ownerState={ownerState}
           >
             <Typography variant="caption">PM</Typography>
           </ClockPmButton>

@@ -5,24 +5,24 @@ import styled from '../styles/styled';
 import capitalize from '../utils/capitalize';
 import { isHorizontal } from '../Drawer/Drawer';
 
-const SwipeAreaRoot = styled('div', { skipSx: true })(({ theme, styleProps }) => ({
+const SwipeAreaRoot = styled('div', { skipSx: true })(({ theme, ownerState }) => ({
   position: 'fixed',
   top: 0,
   left: 0,
   bottom: 0,
   zIndex: theme.zIndex.drawer - 1,
-  ...(styleProps.anchor === 'left' && {
+  ...(ownerState.anchor === 'left' && {
     right: 'auto',
   }),
-  ...(styleProps.anchor === 'right' && {
+  ...(ownerState.anchor === 'right' && {
     left: 'auto',
     right: 0,
   }),
-  ...(styleProps.anchor === 'top' && {
+  ...(ownerState.anchor === 'top' && {
     bottom: 'auto',
     right: 0,
   }),
-  ...(styleProps.anchor === 'bottom' && {
+  ...(ownerState.anchor === 'bottom' && {
     top: 'auto',
     bottom: 0,
     right: 0,
@@ -35,7 +35,7 @@ const SwipeAreaRoot = styled('div', { skipSx: true })(({ theme, styleProps }) =>
 const SwipeArea = React.forwardRef(function SwipeArea(props, ref) {
   const { anchor, classes = {}, className, width, style, ...other } = props;
 
-  const styleProps = props;
+  const ownerState = props;
 
   return (
     <SwipeAreaRoot
@@ -50,7 +50,7 @@ const SwipeArea = React.forwardRef(function SwipeArea(props, ref) {
         [isHorizontal(anchor) ? 'width' : 'height']: width,
         ...style,
       }}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     />
   );

@@ -47,7 +47,8 @@ Below is an interactive demo that lets you explore the visual results of the dif
 
 ## Align list items
 
-You should change the list item alignment when displaying 3 lines or more, set the `alignItems` prop to "flex-start".
+When displaying three lines or more, the avatar is not aligned at the top.
+You should set the `alignItems="flex-start"` prop to align the avatar at the top, following the Material Design guidelines:
 
 {{"demo": "pages/components/lists/AlignItemsList.js", "bg": true}}
 

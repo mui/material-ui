@@ -1,51 +1,51 @@
 import { expect } from 'chai';
-import appendStyleProps from './appendStyleProps';
+import appendOwnerState from './appendOwnerState';
 
-const styleProps = {
+const ownerState = {
   className: 'bar',
   checked: true,
 };
 
 const CustomComponent = () => null;
 
-describe('appendStyleProps', () => {
+describe('appendOwnerState', () => {
   describe('when a DOM element is provided as elementType', () => {
     it('returns the provided existingProps without modification ', () => {
       const existingProps = { className: 'foo' };
-      const actual = appendStyleProps('div', existingProps, styleProps);
+      const actual = appendOwnerState('div', existingProps, ownerState);
 
       expect(actual).to.equal(existingProps);
     });
   });
 
   describe('when a React component is provided as elementType', () => {
-    it('returns the provided existingProps with added styleProps', () => {
+    it('returns the provided existingProps with added ownerState', () => {
       const existingProps = { className: 'foo' };
-      const actual = appendStyleProps(CustomComponent, existingProps, styleProps);
+      const actual = appendOwnerState(CustomComponent, existingProps, ownerState);
 
       expect(actual).to.deep.equal({
         className: 'foo',
-        styleProps: {
+        ownerState: {
           className: 'bar',
           checked: true,
         },
       });
     });
 
-    it('merges the provided styleProps with existing ones', () => {
+    it('merges the provided ownerState with existing ones', () => {
       const existingProps = {
-        styleProps: {
+        ownerState: {
           className: 'foo',
           id: 'foo',
         },
         className: 'foo',
       };
 
-      const actual = appendStyleProps(CustomComponent, existingProps, styleProps);
+      const actual = appendOwnerState(CustomComponent, existingProps, ownerState);
 
       expect(actual).to.deep.equal({
         className: 'foo',
-        styleProps: {
+        ownerState: {
           className: 'bar',
           id: 'foo',
           checked: true,

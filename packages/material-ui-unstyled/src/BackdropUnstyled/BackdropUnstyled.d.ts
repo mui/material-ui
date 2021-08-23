@@ -23,7 +23,7 @@ export interface BackdropUnstyledTypeMap<P = {}, D extends React.ElementType = '
     componentsProps?: {
       root?: {
         as: React.ElementType;
-        styleProps?: Omit<BackdropUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
+        ownerState?: Omit<BackdropUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
       };
     };
     /**

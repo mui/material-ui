@@ -98,7 +98,7 @@ describe('<Grid />', () => {
     const theme = createTheme();
     expect(
       generateRowGap({
-        styleProps: {
+        ownerState: {
           container: true,
           rowSpacing: { xs: 1, sm: 2 },
         },
@@ -121,7 +121,7 @@ describe('<Grid />', () => {
 
     expect(
       generateColumnGap({
-        styleProps: {
+        ownerState: {
           container: true,
           columnSpacing: { xs: 1, sm: 2 },
         },

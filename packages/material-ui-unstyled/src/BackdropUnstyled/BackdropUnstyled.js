@@ -5,8 +5,8 @@ import composeClasses from '../composeClasses';
 import isHostComponent from '../utils/isHostComponent';
 import { getBackdropUtilityClass } from './backdropUnstyledClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, invisible } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, invisible } = ownerState;
 
   const slots = {
     root: ['root', invisible && 'invisible'],
@@ -28,13 +28,13 @@ const BackdropUnstyled = React.forwardRef(function BackdropUnstyled(props, ref) 
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     classes: classesProp,
     invisible,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const Root = components.Root || component;
   const rootProps = componentsProps.root || {};
@@ -45,7 +45,7 @@ const BackdropUnstyled = React.forwardRef(function BackdropUnstyled(props, ref) 
       {...rootProps}
       {...(!isHostComponent(Root) && {
         as: component,
-        styleProps: { ...styleProps, ...rootProps.styleProps },
+        ownerState: { ...ownerState, ...rootProps.ownerState },
         theme,
       })}
       ref={ref}

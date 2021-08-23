@@ -31,9 +31,9 @@ const content = [
   },
   {
     icon: <AccessibilityNewRounded fontSize="small" color="primary" />,
-    title: 'Accessible by design',
+    title: 'Accessible in mind',
     description:
-      'We care about making your UX great for everyone. All of our components have built-in support for accessibility, making sure you reach the largest audience possible!',
+      'We care about making it great for everyone. We improve accessibility for all of our components constantly, helping you to reach the largest audience possible!',
   },
 ];
 

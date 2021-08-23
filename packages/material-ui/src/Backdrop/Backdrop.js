@@ -8,8 +8,8 @@ import Fade from '../Fade';
 
 export const backdropClasses = backdropUnstyledClasses;
 
-const extendUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const extendUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
   return classes;
 };
 
@@ -17,11 +17,11 @@ const BackdropRoot = styled('div', {
   name: 'MuiBackdrop',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
-    return [styles.root, styleProps.invisible && styles.invisible];
+    return [styles.root, ownerState.invisible && styles.invisible];
   },
-})(({ styleProps }) => ({
+})(({ ownerState }) => ({
   position: 'fixed',
   display: 'flex',
   alignItems: 'center',
@@ -32,7 +32,7 @@ const BackdropRoot = styled('div', {
   left: 0,
   backgroundColor: 'rgba(0, 0, 0, 0.5)',
   WebkitTapHighlightColor: 'transparent',
-  ...(styleProps.invisible && {
+  ...(ownerState.invisible && {
     backgroundColor: 'transparent',
   }),
 }));
@@ -52,12 +52,12 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     invisible,
   };
 
-  const classes = extendUtilityClasses(styleProps);
+  const classes = extendUtilityClasses(ownerState);
 
   return (
     <TransitionComponent in={open} timeout={transitionDuration} {...other}>
@@ -72,7 +72,7 @@ const Backdrop = React.forwardRef(function Backdrop(inProps, ref) {
           root: {
             ...componentsProps.root,
             ...((!components.Root || !isHostComponent(components.Root)) && {
-              styleProps: { ...componentsProps.root?.styleProps },
+              ownerState: { ...componentsProps.root?.ownerState },
             }),
           },
         }}
