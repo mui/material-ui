@@ -76,7 +76,6 @@ const Root = styled('div')(({ theme }) => ({
   marginLeft: theme.spacing(-2),
   marginRight: theme.spacing(-2),
   [theme.breakpoints.up('sm')]: {
-    padding: theme.spacing(0, 1),
     marginLeft: 0,
     marginRight: 0,
   },
