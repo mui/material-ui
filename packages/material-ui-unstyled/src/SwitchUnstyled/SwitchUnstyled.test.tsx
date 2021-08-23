@@ -28,6 +28,10 @@ describe('<SwitchUnstyled />', () => {
         testWithElement: 'input',
         expectedClassName: switchUnstyledClasses.input,
       },
+      track: {
+        expectedClassName: switchUnstyledClasses.track,
+        isOptional: true,
+      },
     },
   }));
 
