@@ -90,7 +90,18 @@ const DemoRoot = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   [theme.breakpoints.up('sm')]: {
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: 10,
+    ...(bg === 'outlined' && {
+      borderLeftWidth: 1,
+      borderRightWidth: 1,
+    }),
+    /* Make no difference between the demo and the markdown. */
+    ...(bg === 'inline' && {
+      padding: theme.spacing(3),
+    }),
+    ...(hiddenToolbar && {
+      paddingTop: theme.spacing(3),
+    }),
   },
   /* Isolate the demo with an outline. */
   ...(bg === 'outlined' && {
@@ -99,28 +110,14 @@ const DemoRoot = styled('div', {
     border: `1px solid ${alpha(theme.palette.action.active, 0.12)}`,
     borderLeftWidth: 0,
     borderRightWidth: 0,
-    [theme.breakpoints.up('sm')]: {
-      borderLeftWidth: 1,
-      borderRightWidth: 1,
-    },
   }),
   /* Prepare the background to display an inner elevation. */
   ...(bg === true && {
     padding: theme.spacing(3),
     backgroundColor: theme.palette.mode === 'dark' ? '#333' : theme.palette.grey[100],
   }),
-  /* Make no difference between the demo and the markdown. */
-  ...(bg === 'inline' && {
-    // Maintain alignment with the markdown text
-    [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(3),
-    },
-  }),
   ...(hiddenToolbar && {
     paddingTop: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing(3),
-    },
   }),
 }));
 const Code = styled(HighlightedCode)(({ theme }) => ({
