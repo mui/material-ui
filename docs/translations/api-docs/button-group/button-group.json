@@ -38,7 +38,7 @@
       "conditions": "<code>disableElevation={true}</code>"
     },
     "disabled": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the child elements",
       "conditions": "<code>disabled={true}</code>"
     },

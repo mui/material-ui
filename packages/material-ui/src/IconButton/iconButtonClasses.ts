@@ -13,7 +13,7 @@ export interface IconButtonClasses {
   colorPrimary: string;
   /** Styles applied to the root element if `color="secondary"`. */
   colorSecondary: string;
-  /** Pseudo-class applied to the root element if `disabled={true}`. */
+  /** State class applied to the root element if `disabled={true}`. */
   disabled: string;
   /** Styles applied to the root element if `size="small"`. */
   sizeSmall: string;

@@ -13,8 +13,8 @@ import {
   InputBaseComponent as InputBaseInput,
 } from '../InputBase/InputBase';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, disableUnderline } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, disableUnderline } = ownerState;
 
   const slots = {
     root: ['root', !disableUnderline && 'underline'],
@@ -34,13 +34,13 @@ const FilledInputRoot = styled(InputBaseRoot, {
   name: 'MuiFilledInput',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
     return [
       ...inputBaseRootOverridesResolver(props, styles),
-      !styleProps.disableUnderline && styles.underline,
+      !ownerState.disableUnderline && styles.underline,
     ];
   },
-})(({ theme, styleProps }) => {
+})(({ theme, ownerState }) => {
   const light = theme.palette.mode === 'light';
   const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
   const backgroundColor = light ? 'rgba(0, 0, 0, 0.06)' : 'rgba(255, 255, 255, 0.09)';
@@ -66,9 +66,9 @@ const FilledInputRoot = styled(InputBaseRoot, {
     [`&.${filledInputClasses.disabled}`]: {
       backgroundColor: light ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.12)',
     },
-    ...(!styleProps.disableUnderline && {
+    ...(!ownerState.disableUnderline && {
       '&:after': {
-        borderBottom: `2px solid ${theme.palette[styleProps.color].main}`,
+        borderBottom: `2px solid ${theme.palette[ownerState.color].main}`,
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -109,19 +109,19 @@ const FilledInputRoot = styled(InputBaseRoot, {
         borderBottomStyle: 'dotted',
       },
     }),
-    ...(styleProps.startAdornment && {
+    ...(ownerState.startAdornment && {
       paddingLeft: 12,
     }),
-    ...(styleProps.endAdornment && {
+    ...(ownerState.endAdornment && {
       paddingRight: 12,
     }),
-    ...(styleProps.multiline && {
+    ...(ownerState.multiline && {
       padding: '25px 12px 8px',
-      ...(styleProps.size === 'small' && {
+      ...(ownerState.size === 'small' && {
         paddingTop: 21,
         paddingBottom: 4,
       }),
-      ...(styleProps.hiddenLabel && {
+      ...(ownerState.hiddenLabel && {
         paddingTop: 16,
         paddingBottom: 17,
       }),
@@ -133,7 +133,7 @@ const FilledInputInput = styled(InputBaseInput, {
   name: 'MuiFilledInput',
   slot: 'Input',
   overridesResolver: inputBaseInputOverridesResolver,
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   paddingTop: 25,
   paddingRight: 12,
   paddingBottom: 8,
@@ -145,28 +145,28 @@ const FilledInputInput = styled(InputBaseInput, {
     borderTopLeftRadius: 'inherit',
     borderTopRightRadius: 'inherit',
   },
-  ...(styleProps.size === 'small' && {
+  ...(ownerState.size === 'small' && {
     paddingTop: 21,
     paddingBottom: 4,
   }),
-  ...(styleProps.hiddenLabel && {
+  ...(ownerState.hiddenLabel && {
     paddingTop: 16,
     paddingBottom: 17,
   }),
-  ...(styleProps.multiline && {
+  ...(ownerState.multiline && {
     paddingTop: 0,
     paddingBottom: 0,
     paddingLeft: 0,
     paddingRight: 0,
   }),
-  ...(styleProps.startAdornment && {
+  ...(ownerState.startAdornment && {
     paddingLeft: 0,
   }),
-  ...(styleProps.endAdornment && {
+  ...(ownerState.endAdornment && {
     paddingRight: 0,
   }),
-  ...(styleProps.hiddenLabel &&
-    styleProps.size === 'small' && {
+  ...(ownerState.hiddenLabel &&
+    ownerState.size === 'small' && {
       paddingTop: 8,
       paddingBottom: 9,
     }),
@@ -187,7 +187,7 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
     ...other
   } = props;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     fullWidth,
     inputComponent,
@@ -196,7 +196,7 @@ const FilledInput = React.forwardRef(function FilledInput(inProps, ref) {
   };
 
   const classes = useUtilityClasses(props);
-  const filledInputComponentsProps = { root: { styleProps }, input: { styleProps } };
+  const filledInputComponentsProps = { root: { ownerState }, input: { ownerState } };
 
   const componentsProps = componentsPropsProp
     ? deepmerge(componentsPropsProp, filledInputComponentsProps)

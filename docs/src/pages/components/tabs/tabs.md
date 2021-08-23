@@ -92,10 +92,10 @@ All scrolling must be initiated through user agent scrolling mechanisms (e.g. le
 
 {{"demo": "pages/components/tabs/ScrollableTabsButtonPrevent.js", "bg": true}}
 
-## Customized tabs
+## Customization
 
-Here is an example of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/how-to-customize/).
+Here is an example of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/tabs/CustomizedTabs.js"}}
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import Stack from '@material-ui/core/Stack';
 import { createTheme } from '@material-ui/core/styles';
 import defaultTheme from '@material-ui/core/styles/defaultTheme';
@@ -9,7 +9,7 @@ import { style } from './Stack';
 describe('<Stack />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<Stack />, () => ({
+  describeConformance(<Stack />, () => ({
     render,
     inheritComponent: 'div',
     refInstanceof: window.HTMLDivElement,
@@ -22,7 +22,7 @@ describe('<Stack />', () => {
   it('should handle breakpoints with a missing key', () => {
     expect(
       style({
-        styleProps: {
+        ownerState: {
           direction: { xs: 'column', sm: 'row' },
           spacing: { xs: 1, sm: 2, md: 4 },
         },
@@ -56,7 +56,7 @@ describe('<Stack />', () => {
   it('should handle direction with multiple keys and spacing with one', () => {
     expect(
       style({
-        styleProps: {
+        ownerState: {
           direction: { sm: 'column', md: 'row' },
           spacing: 2,
         },
@@ -84,7 +84,7 @@ describe('<Stack />', () => {
   it('should handle spacing with multiple keys and direction with one', () => {
     expect(
       style({
-        styleProps: {
+        ownerState: {
           direction: 'column',
           spacing: { sm: 2, md: 4 },
         },
@@ -111,7 +111,7 @@ describe('<Stack />', () => {
   it('should handle spacing with multiple keys and null values', () => {
     expect(
       style({
-        styleProps: {
+        ownerState: {
           direction: 'column',
           spacing: { sm: 2, md: 0, lg: 4 },
         },
@@ -144,7 +144,7 @@ describe('<Stack />', () => {
   it('should handle flat params', () => {
     expect(
       style({
-        styleProps: {
+        ownerState: {
           direction: 'row',
           spacing: 3,
         },
@@ -163,7 +163,7 @@ describe('<Stack />', () => {
   it('should respect the theme breakpoints order', () => {
     expect(
       style({
-        styleProps: {
+        ownerState: {
           direction: { xs: 'column' },
           spacing: { lg: 2, xs: 1 },
         },

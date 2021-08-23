@@ -23,22 +23,22 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@types/babel__core": "^7.1.2",
+    "@types/babel__core": "^7.1.15",
     "@types/doctrine": "^0.0.4",
     "@types/lodash": "^4.14.136",
     "@types/node": "^16.0.0",
     "@types/prettier": "^2.0.1",
-    "@types/react": "^17.0.0",
+    "@types/react": "^17.0.19",
     "@types/uuid": "^8.0.0",
     "fast-glob": "^3.2.4",
     "prettier": "^2.0.5",
     "rimraf": "^3.0.2"
   },
   "dependencies": {
-    "@babel/core": "^7.5.4",
-    "@babel/plugin-syntax-class-properties": "^7.2.0",
-    "@babel/plugin-syntax-jsx": "^7.2.0",
-    "@babel/types": "^7.5.0",
+    "@babel/core": "^7.15.0",
+    "@babel/plugin-syntax-class-properties": "^7.12.13",
+    "@babel/plugin-syntax-jsx": "^7.14.5",
+    "@babel/types": "^7.15.0",
     "doctrine": "^3.0.0",
     "lodash": "^4.17.14",
     "typescript": "^4.1.2",

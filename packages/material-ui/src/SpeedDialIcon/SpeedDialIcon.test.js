@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import Icon from '@material-ui/core/Icon';
 import SpeedDialIcon, { speedDialIconClasses as classes } from '@material-ui/core/SpeedDialIcon';
 
@@ -8,7 +8,7 @@ describe('<SpeedDialIcon />', () => {
   const render = createClientRender();
   const icon = <Icon>font_icon</Icon>;
 
-  describeConformanceV5(<SpeedDialIcon />, () => ({
+  describeConformance(<SpeedDialIcon />, () => ({
     classes,
     inheritComponent: 'span',
     render,

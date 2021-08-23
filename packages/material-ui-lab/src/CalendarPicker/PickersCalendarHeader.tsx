@@ -58,7 +58,7 @@ export interface PickersCalendarHeaderProps<TDate>
 }
 
 const PickersCalendarHeaderRoot = styled('div', { skipSx: true })<{
-  styleProps: PickersCalendarHeaderProps<any>;
+  ownerState: PickersCalendarHeaderProps<any>;
 }>({
   display: 'flex',
   alignItems: 'center',
@@ -72,7 +72,7 @@ const PickersCalendarHeaderRoot = styled('div', { skipSx: true })<{
 });
 
 const PickersCalendarHeaderLabel = styled('div', { skipSx: true })<{
-  styleProps: PickersCalendarHeaderProps<any>;
+  ownerState: PickersCalendarHeaderProps<any>;
 }>(({ theme }) => ({
   display: 'flex',
   maxHeight: 30,
@@ -85,7 +85,7 @@ const PickersCalendarHeaderLabel = styled('div', { skipSx: true })<{
 }));
 
 const PickersCalendarHeaderLabelItem = styled('div', { skipSx: true })<{
-  styleProps: PickersCalendarHeaderProps<any>;
+  ownerState: PickersCalendarHeaderProps<any>;
 }>({
   marginRight: 6,
 });
@@ -95,12 +95,12 @@ const PickersCalendarHeaderSwitchViewButton = styled(IconButton, { skipSx: true 
 });
 
 const PickersCalendarHeaderSwitchView = styled(ArrowDropDownIcon, { skipSx: true })<{
-  styleProps: PickersCalendarHeaderProps<any>;
-}>(({ theme, styleProps }) => ({
+  ownerState: PickersCalendarHeaderProps<any>;
+}>(({ theme, ownerState }) => ({
   willChange: 'transform',
   transition: theme.transitions.create('transform'),
   transform: 'rotate(0deg)',
-  ...(styleProps.openView === 'year' && {
+  ...(ownerState.openView === 'year' && {
     transform: 'rotate(180deg)',
   }),
 }));
@@ -162,14 +162,14 @@ function PickersCalendarHeader<TDate>(props: PickersCalendarHeaderProps<TDate>) 
     return null;
   }
 
-  const styleProps = props;
+  const ownerState = props;
 
   return (
-    <PickersCalendarHeaderRoot styleProps={styleProps}>
+    <PickersCalendarHeaderRoot ownerState={ownerState}>
       <PickersCalendarHeaderLabel
         role="presentation"
         onClick={handleToggleView}
-        styleProps={styleProps}
+        ownerState={ownerState}
       >
         <FadeTransitionGroup
           reduceAnimations={reduceAnimations}
@@ -178,7 +178,7 @@ function PickersCalendarHeader<TDate>(props: PickersCalendarHeaderProps<TDate>) 
           <PickersCalendarHeaderLabelItem
             aria-live="polite"
             data-mui-test="calendar-month-text"
-            styleProps={styleProps}
+            ownerState={ownerState}
           >
             {utils.format(month, 'month')}
           </PickersCalendarHeaderLabelItem>
@@ -190,7 +190,7 @@ function PickersCalendarHeader<TDate>(props: PickersCalendarHeaderProps<TDate>) 
           <PickersCalendarHeaderLabelItem
             aria-live="polite"
             data-mui-test="calendar-year-text"
-            styleProps={styleProps}
+            ownerState={ownerState}
           >
             {utils.format(month, 'year')}
           </PickersCalendarHeaderLabelItem>
@@ -204,7 +204,7 @@ function PickersCalendarHeader<TDate>(props: PickersCalendarHeaderProps<TDate>) 
           >
             <PickersCalendarHeaderSwitchView
               as={components.SwitchViewIcon}
-              styleProps={styleProps}
+              ownerState={ownerState}
             />
           </PickersCalendarHeaderSwitchViewButton>
         )}

@@ -11,7 +11,7 @@ export interface ButtonGroupClasses {
   text: string;
   /** Styles applied to the root element if `disableElevation={true}`. */
   disableElevation: string;
-  /** Pseudo-class applied to the child elements if `disabled={true}`. */
+  /** State class applied to the child elements if `disabled={true}`. */
   disabled: string;
   /** Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: string;

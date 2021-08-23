@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { describeConformanceV5 } from 'test/utils';
+import { describeConformance } from 'test/utils';
 import DateRangePickerDay, {
   dateRangePickerDayClasses as classes,
 } from '@material-ui/lab/DateRangePickerDay';
@@ -8,7 +8,7 @@ import { adapterToUse, wrapPickerMount, createPickerRender } from '../internal/p
 describe('<DateRangePickerDay />', () => {
   const render = createPickerRender();
 
-  describeConformanceV5(
+  describeConformance(
     <DateRangePickerDay
       day={adapterToUse.date()}
       outsideCurrentMonth={false}
@@ -31,6 +31,7 @@ describe('<DateRangePickerDay />', () => {
       // cannot test reactTestRenderer because of required context
       skip: [
         'componentProp',
+        'rootClass', // forwards classes to DateRangePickerDayDay, but applies root class on DateRangePickerDayRoot
         'componentsProp',
         'reactTestRenderer',
         'propsSpread',

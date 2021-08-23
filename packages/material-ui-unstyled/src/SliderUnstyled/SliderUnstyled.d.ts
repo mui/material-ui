@@ -1,7 +1,7 @@
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@material-ui/types';
 import { SliderUnstyledClasses } from './sliderUnstyledClasses';
 
-export interface SliderStylePropsOverrides {}
+export interface SliderOwnerStateOverrides {}
 
 export interface Mark {
   value: number;

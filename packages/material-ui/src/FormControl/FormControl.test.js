@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformanceV5, act, createClientRender } from 'test/utils';
+import { describeConformance, act, createClientRender } from 'test/utils';
 import FormControl, { formControlClasses as classes } from '@material-ui/core/FormControl';
 import Input from '@material-ui/core/Input';
 import Select from '@material-ui/core/Select';
@@ -18,7 +18,7 @@ describe('<FormControl />', () => {
     return null;
   }
 
-  describeConformanceV5(<FormControl />, () => ({
+  describeConformance(<FormControl />, () => ({
     classes,
     inheritComponent: 'div',
     render,

@@ -1,5 +1,148 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-beta.4
+
+<!-- generated comparing v5.0.0-beta.3..next -->
+
+_Aug 13, 2021_
+
+Big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
+
+- 🐛 Grid's "auto" behavior has been fixed by @aaronlademann-wf (#27514)
+- ♿ An important bug with the keyboard navigation in MenuList was fixed (#27526) @ryancogswell
+
+### `@material-ui/core@5.0.0-beta.4`
+
+#### Breaking changes
+
+- <!-- 07 --> [Grid] Fix "auto" behavior to match natural width of its content (#27514) @aaronlademann-wf
+
+#### Changes
+
+- <!-- 30 --> [ButtonBase] Fix tabIndex type (#27684) @kylegach
+- <!-- 13 --> [MenuList] Fix text navigation (#27526) @ryancogswell
+- <!-- 01 --> [l10n] Add Arabic Sudan (ar-SD) locale (#27588) @YassinHussein
+- <!-- 23 --> [Radio] Fix size prop forwarding with custom icons (#27656) @DouglasPds
+- <!-- 10 --> [TextField] Password visibility icons ( "visibility" ⇔ "visibility-off" ) should be reversed (#27507) @tonextone
+- <!-- 18 --> [ToggleButton] Fix handling of color prop (#27635) @oliviertassinari
+
+### `@material-ui/codemods@5.0.0-beta.4`
+
+- <!-- 20 --> [codemod] Fix filename case sensitive duplicate @oliviertassinari
+
+### `@material-ui/system@5.0.0-beta.4`
+
+- <!-- 28 --> [StyledEngineProvider] Remove unnecessary emotion cache export (#27680) @garronej
+- <!-- 11 --> [system] Fix missing filterProps in compose type (#27618) @R-Bower
+
+### `@material-ui/labs@5.0.0-alpha.42`
+
+- <!-- 27 --> [CalendarPicker] Improve contrast between enabled and disabled days (#27603) @nikitabobers
+- <!-- 32 --> [PickersDay] Render `children` if specified (#27462) @abriginets
+- <!-- 05 --> [TreeView] Fix TreeItem label overflow (#27585) @LorenzHenk
+
+### Docs
+
+- <!-- 36 --> [docs] Update guides for @material-ui/styled-engine-sc installation (#27602) @mnajdova
+- <!-- 35 --> [docs] Document that @material-ui/styles is not strict mode compatible (#27639) @oliviertassinari
+- <!-- 34 --> [docs] Link to "Customization of Theme" from relevant theme interfaces (#27689) @eps1lon
+- <!-- 33 --> [docs] Update CSP page (#27627) @mnajdova
+- <!-- 29 --> [docs] Reorder and rename "enforce value" ToggleButton demo (#27678) @LorenzHenk
+- <!-- 12 --> [docs] Fix missing dependency in the DataGrid demo (#27597) @m4theushw
+- <!-- 04 --> [docs] img should have a src attribute (#27632) @oliviertassinari
+- <!-- 03 --> [docs] Add badges to Transfer List (#27634) @oliviertassinari
+- <!-- 02 --> [docs] Recommend the `direct-import` babel plugin over `transform-import` (#27335) @umidbekk
+- <!-- 37 --> [docs] Remove unused code (#27711) @eps1lon
+- <!-- 39 --> [docs] Improve virtualization demo (#27340) @vedadeepta
+- <!-- 31 --> [examples] Include a follow-up on the example (#27620) @matiasherranz
+- <!-- 26 --> [website] Add about page (#27599) @siriwatknp
+- <!-- 25 --> [website] Add pricing page (#27598) @siriwatknp
+
+### Core
+
+- <!-- 16 --> [core] Batch small changes (#27636) @oliviertassinari
+- <!-- 06 --> [core] Change range strategy to bump (#27652) @oliviertassinari
+- <!-- 24 --> [core] Fix visual regression example images (#27660) @eps1lon
+- <!-- 38 --> [core] Remove diff when running yarn docs:dev (#27720) @eps1lon
+- <!-- 22 --> [core] Remove mocks of require.context in markdown loader (#27406) @eps1lon
+- <!-- 09 --> [core] Reduce use CSS when Checkbox disableRipple is set (#27568) @oliviertassinari
+- <!-- 08 --> [test] Add coverage for jss-to-styled prefix from filename (#27522) @eps1lon
+- <!-- 15 --> [test] Add current behavior for a11y name vs visible name for PickersDay (#27661) @eps1lon
+- <!-- 17 --> [test] Dodge double logging in dev mode (#27653) @oliviertassinari
+- <!-- 14 --> [test] Enable skipped test fixed by upstream React fix (#27615) @eps1lon
+- <!-- 19 --> [theme] Add missed variants in Components interface (#27453) @nikitabobers
+
+All contributors of this release in alphabetical order: @aaronlademann-wf, @abriginets, @DouglasPds, @eps1lon, @garronej, @kylegach, @LorenzHenk, @m4theushw, @matiasherranz, @mnajdova, @nikitabobers, @oliviertassinari, @R-Bower, @ryancogswell, @siriwatknp, @tonextone, @umidbekk, @vedadeepta, @YassinHussein
+
+## 5.0.0-beta.3
+
+<!-- generated comparing v5.0.0-beta.2..next -->
+
+_Aug 6, 2021_
+
+Big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- <!-- 28 --> ✨ `jss-to-styled` codemod has been improved to support `createStyles` and `<React.Fragment>` usage (#27578) @mnajdova
+
+### `@material-ui/core@5.0.0-beta.3`
+
+- <!-- 33 --> [Modal] Restore `overflowX` and `overflowY` styles (#27487) @PCOffline
+- <!-- 07 --> [Modal] Remove unnecessary check for children.props.tabIndex (#27374) @noviicee
+- <!-- 14 --> [Select] Fix regression for icon not rotating (#27511) @mnajdova
+
+### `@material-ui/system@5.0.0-beta.3`
+
+- <!-- 38 --> [system] Added top, left, right and bottom border color CSS properties to system (#27580) @R-Bower
+
+### `@material-ui/codemod@5.0.0-beta.3`
+
+- <!-- 28 --> [codemod] Add support for `createStyles` usage in `jss-to-styled` (#27578) @mnajdova
+- <!-- 11 --> [codemod] Fix `jss-to-styled` PREFIX generation on Windows (#27491) @mnajdova
+- <!-- 39 --> [codemod] Fix `jss-to-styled` codemod to handle React.Fragment as root (#27495) @mnajdova
+
+### `@material-ui/unstyled@5.0.0-alpha.42`
+
+- <!-- 13 --> [FormControl] Create FormControlUnstyled (#27240) @michaldudak
+- <!-- 23 --> [Autocomplete] Move useAutocomplete to the Unstyled package (#27485) @michaldudak
+
+### Docs
+
+- <!-- 40 --> [docs] Fix layout shift when opening hash anchor (#27619) @oliviertassinari
+- <!-- 35 --> [docs] Add TypeScript guide for the `sx` prop (#27417) @mnajdova
+- <!-- 32 --> [docs] Hardcode listed colors in /customization/color/#playground (#27446) @eps1lon
+- <!-- 31 --> [docs] Bring back Select#onChange signature API (#27443) @eps1lon
+- <!-- 27 --> [docs] Remove backticks in the title (#27567) @oliviertassinari
+- <!-- 26 --> [docs] Fix 404 links (#27566) @oliviertassinari
+- <!-- 25 --> [docs] Use the same h2 for the customization demos (#27569) @oliviertassinari
+- <!-- 22 --> [docs] Fix syntax error in v5 migration `styled` api example (#27518) @kimbaudi
+- <!-- 21 --> [docs] Improve SSR configuration with emotion (#27496) @frandiox
+- <!-- 19 --> [docs] Change "pseudo-classes" to "state classes" (#27570) @michaldudak
+- <!-- 18 --> [docs] Add StackBlitz edit demo integration (#27391) @sulco
+- <!-- 12 --> [docs] Remove unnecessary generic argument (#27516) @bezpalko
+- <!-- 08 --> [docs] Add customization demos (#27411) @siriwatknp
+- <!-- 04 --> [docs] Restore initial descriptionRegExp logic (#27436) @oliviertassinari
+- <!-- 03 --> [docs] Polish jss-to-styled docs (#27457) @oliviertassinari
+- <!-- 34 --> [examples] Fix nextjs with styled-components example (#27583) @mnajdova
+- <!-- 29 --> [examples] Update create-react-app examples with styled-components to use package aliases (#27591) @mnajdova
+- <!-- 09 --> [examples] Improve integration examples with Next.js (#27331) @Harshita-Kanal
+- <!-- 37 --> [website] Add spicefactory as gold sponsor @oliviertassinari
+- <!-- 30 --> [website] Homepage rebranding (#27488) @siriwatknp
+- <!-- 24 --> [website] Add Flavien to team and about pages (#27575) @flaviendelangle
+- <!-- 17 --> [website] Add Ryan to Community contributors for Stack Overflow contributions (#27529) @ryancogswell
+- <!-- 02 --> [website] Add references section to home (#27444) @siriwatknp
+
+### Core
+
+- <!-- 20 --> [core] rebaseWhen=auto does not seem to work (#27565) @oliviertassinari
+- <!-- 10 --> [core] Improve instructions for the @material-ui/styles migration (#27466) @mnajdova
+- <!-- 06 --> [core] Batch small changes (#27435) @oliviertassinari
+- <!-- 01 --> [core] Receive patch and minor dependency updates (#27455) @eps1lon
+- <!-- 16 --> [test] Update coverage to include all @material-ui packages (#27521) @eps1lon
+- <!-- 15 --> [test] Lint codemod tests (#27519) @eps1lon
+- <!-- 05 --> [test] Allow tests to run for 6s before timeout (#27456) @oliviertassinari
+
+All contributors of this release in alphabetical order: @bezpalko, @eps1lon, @flaviendelangle, @frandiox, @Harshita-Kanal, @kimbaudi, @michaldudak, @mnajdova, @noviicee, @oliviertassinari, @PCOffline, @R-Bower, @ryancogswell, @siriwatknp, @sulco
+
 ## 5.0.0-beta.2
 
 <!-- generated comparing v5.0.0-beta.1..next -->

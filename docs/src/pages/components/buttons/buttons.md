@@ -12,7 +12,6 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#button
 
 Buttons communicate actions that users can take. They are typically placed throughout your UI, in places like:
 
-- Dialogs
 - Modal windows
 - Forms
 - Cards
@@ -115,10 +114,10 @@ Use `color` prop to apply theme color palette to component.
 
 {{"demo": "pages/components/buttons/IconButtonColors.js"}}
 
-## Customized buttons
+## Customization
 
-Here are some examples of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/how-to-customize/).
+Here are some examples of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 

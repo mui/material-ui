@@ -619,7 +619,7 @@ function extractClassConditions(descriptions: any) {
     [key: string]: { description: string; conditions?: string; nodeName?: string };
   } = {};
   const stylesRegex =
-    /((Styles|Pseudo-class|Class name) applied to )(.*?)(( if | unless | when |, ){1}(.*))?\./;
+    /((Styles|State class|Class name) applied to )(.*?)(( if | unless | when |, ){1}(.*))?\./;
 
   Object.entries(descriptions).forEach(([className, description]: any) => {
     if (className) {

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformanceV5, createClientRender, screen } from 'test/utils';
+import { describeConformance, createClientRender, screen } from 'test/utils';
 import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import defaultTheme from '@material-ui/core/styles/defaultTheme';
 import Grid, { gridClasses as classes } from '@material-ui/core/Grid';
@@ -9,7 +9,7 @@ import { generateRowGap, generateColumnGap } from './Grid';
 describe('<Grid />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<Grid />, () => ({
+  describeConformance(<Grid />, () => ({
     classes,
     inheritComponent: 'div',
     render,
@@ -49,6 +49,29 @@ describe('<Grid />', () => {
       const { container } = render(<Grid item xs="auto" />);
       expect(container.firstChild).to.have.class(classes['grid-xs-auto']);
     });
+
+    it('should apply the styles necessary for variable width nested item when set to auto', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // Need full CSS resolution
+        this.skip();
+      }
+
+      render(
+        <Grid container>
+          <Grid container item xs="auto" data-testid="auto">
+            <div style={{ width: '300px' }} />
+          </Grid>
+          <Grid item xs={11} />
+        </Grid>,
+      );
+      expect(screen.getByTestId('auto')).toHaveComputedStyle({
+        flexBasis: 'auto',
+        flexGrow: '0',
+        flexShrink: '0',
+        maxWidth: 'none',
+        width: '300px',
+      });
+    });
   });
 
   describe('prop: spacing', () => {
@@ -75,7 +98,7 @@ describe('<Grid />', () => {
     const theme = createTheme();
     expect(
       generateRowGap({
-        styleProps: {
+        ownerState: {
           container: true,
           rowSpacing: { xs: 1, sm: 2 },
         },
@@ -98,7 +121,7 @@ describe('<Grid />', () => {
 
     expect(
       generateColumnGap({
-        styleProps: {
+        ownerState: {
           container: true,
           columnSpacing: { xs: 1, sm: 2 },
         },

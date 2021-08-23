@@ -40,9 +40,20 @@ describe('<DesktopDateRangePicker />', () => {
     />,
     () => ({
       classes: {},
+      muiName: 'MuiDesktopDateRangePicker',
       wrapMount: wrapPickerMount,
       refInstanceof: window.HTMLDivElement,
-      skip: ['componentProp', 'mergeClassName', 'propsSpread', 'rootClass', 'reactTestRenderer'],
+      skip: [
+        'componentProp',
+        'componentsProp',
+        'themeDefaultProps',
+        'themeStyleOverrides',
+        'themeVariants',
+        'mergeClassName',
+        'propsSpread',
+        'rootClass',
+        'reactTestRenderer',
+      ],
     }),
   );
 
@@ -341,7 +352,7 @@ describe('<DesktopDateRangePicker />', () => {
     expect(screen.getByRole('tooltip')).toBeVisible();
   });
 
-  // TODO: remove once we use describeConformanceV5.
+  // TODO: remove once we use describeConformance.
   it("respect theme's defaultProps", () => {
     const theme = createTheme({
       components: {

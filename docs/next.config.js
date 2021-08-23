@@ -6,7 +6,7 @@ const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
 
 const workspaceRoot = path.join(__dirname, '../');
 
-const reactStrictMode = false;
+const reactStrictMode = true;
 if (reactStrictMode) {
   // eslint-disable-next-line no-console
   console.log(`Using React.StrictMode.`);
@@ -95,10 +95,7 @@ module.exports = {
             oneOf: [
               {
                 resourceQuery: /@material-ui\/markdown/,
-                use: [
-                  options.defaultLoaders.babel,
-                  require.resolve('@material-ui/markdown/loader'),
-                ],
+                use: require.resolve('@material-ui/markdown/loader'),
               },
               {
                 // used in some /getting-started/templates
@@ -127,8 +124,6 @@ module.exports = {
                         '@material-ui/icons': '../packages/material-ui-icons/lib',
                         '@material-ui/lab': '../packages/material-ui-lab/src',
                         '@material-ui/styled-engine': '../packages/material-ui-styled-engine/src',
-                        '@material-ui/styled-engine-sc':
-                          '../packages/material-ui-styled-engine-sc/src',
                         '@material-ui/styles': '../packages/material-ui-styles/src',
                         '@material-ui/system': '../packages/material-ui-system/src',
                         '@material-ui/private-theming':

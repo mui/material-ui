@@ -97,13 +97,13 @@ If you don't want to rely on default components, you can override them with your
 This makes it possible to provide a styled component.
 Each unstyled component has a specific set of "slots" - that is subcomponents that you can override.
 
-Let's take a [SwitchUnstyled](../api/switchUnstyled) as an example.
+Let's take a [SwitchUnstyled](/api/switch-unstyled/) as an example.
 It has three slots: `Root`, `Thumb`, and `Input`.
-The demo below shows how to create a styled component (using [System](system/styled/) in this case, but it could well be any other solution)
+The demo below shows how to create a styled component (using [System](/system/styled/) in this case, but it could well be any other solution)
 
 {{"demo": "pages/customization/unstyled-components/StylingSlots.js"}}
 
-The components you pass in the `components` prop receive the `styleProps` prop from the top-level component (host).
+The components you pass in the `components` prop receive the `ownerState` prop from the top-level component (host).
 By convention, it contains all props passed to the host, merged with its rendering "state".
 
 For example:
@@ -112,7 +112,7 @@ For example:
 <SwitchUnstyled components={{ Thumb: MyCustomThumb }} data-foo="42" />
 ```
 
-In this case, `MyCustomThumb` component will receive the `styleProps` object with the following data:
+In this case, `MyCustomThumb` component will receive the `ownerState` object with the following data:
 
 ```ts
 {

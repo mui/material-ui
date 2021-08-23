@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import AccordionActions, {
   accordionActionsClasses as classes,
 } from '@material-ui/core/AccordionActions';
@@ -7,7 +7,7 @@ import AccordionActions, {
 describe('<AccordionActions />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<AccordionActions>Conformance</AccordionActions>, () => ({
+  describeConformance(<AccordionActions>Conformance</AccordionActions>, () => ({
     classes,
     inheritComponent: 'div',
     render,

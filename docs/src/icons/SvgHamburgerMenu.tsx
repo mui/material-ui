@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-function SvgComponent(props: React.SVGProps<SVGSVGElement>) {
+export default function SvgHamburgerMenu(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={24}
-      height={24}
+      width={20}
+      height={20}
       viewBox="0 0 16 16"
       fill="none"
       {...props}
@@ -15,5 +15,3 @@ function SvgComponent(props: React.SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-
-export default SvgComponent;

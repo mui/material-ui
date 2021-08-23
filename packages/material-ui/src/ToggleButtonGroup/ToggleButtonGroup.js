@@ -11,8 +11,8 @@ import toggleButtonGroupClasses, {
   getToggleButtonGroupUtilityClass,
 } from './toggleButtonGroupClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes, orientation, fullWidth } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes, orientation, fullWidth } = ownerState;
 
   const slots = {
     root: ['root', orientation === 'vertical' && 'vertical', fullWidth && 'fullWidth'],
@@ -26,30 +26,30 @@ const ToggleButtonGroupRoot = styled('div', {
   name: 'MuiToggleButtonGroup',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       { [`& .${toggleButtonGroupClasses.grouped}`]: styles.grouped },
       {
         [`& .${toggleButtonGroupClasses.grouped}`]:
-          styles[`grouped${capitalize(styleProps.orientation)}`],
+          styles[`grouped${capitalize(ownerState.orientation)}`],
       },
       styles.root,
-      styleProps.orientation === 'vertical' && styles.vertical,
-      styleProps.fullWidth && styles.fullWidth,
+      ownerState.orientation === 'vertical' && styles.vertical,
+      ownerState.fullWidth && styles.fullWidth,
     ];
   },
-})(({ styleProps, theme }) => ({
+})(({ ownerState, theme }) => ({
   display: 'inline-flex',
   borderRadius: theme.shape.borderRadius,
-  ...(styleProps.orientation === 'vertical' && {
+  ...(ownerState.orientation === 'vertical' && {
     flexDirection: 'column',
   }),
-  ...(styleProps.fullWidth && {
+  ...(ownerState.fullWidth && {
     width: '100%',
   }),
   [`& .${toggleButtonGroupClasses.grouped}`]: {
-    ...(styleProps.orientation === 'horizontal'
+    ...(ownerState.orientation === 'horizontal'
       ? {
           '&:not(:first-of-type)': {
             marginLeft: -1,
@@ -101,8 +101,8 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
     value,
     ...other
   } = props;
-  const styleProps = { ...props, fullWidth, orientation, size };
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = { ...props, fullWidth, orientation, size };
+  const classes = useUtilityClasses(ownerState);
 
   const handleChange = (event, buttonValue) => {
     if (!onChange) {
@@ -135,7 +135,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
       role="group"
       className={clsx(classes.root, className)}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     >
       {React.Children.map(children, (child) => {
@@ -191,14 +191,9 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
    * The color of a button when it is selected.
    * @default 'standard'
    */
-  color: PropTypes.oneOf([
-    'error',
-    'info',
-    'primary',
-    'secondary',
-    'standard',
-    'success',
-    'warning',
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['standard', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
+    PropTypes.string,
   ]),
   /**
    * If `true`, only allow one of the child ToggleButton values to be selected.

@@ -46,13 +46,13 @@ interface ArrowSwitcherProps extends ExportedArrowSwitcherProps, React.HTMLProps
 }
 
 const PickersArrowSwitcherRoot = styled('div', { skipSx: true })<{
-  styleProps: ArrowSwitcherProps;
+  ownerState: ArrowSwitcherProps;
 }>({
   display: 'flex',
 });
 
 const PickersArrowSwitcherSpacer = styled('div', { skipSx: true })<{
-  styleProps: ArrowSwitcherProps;
+  ownerState: ArrowSwitcherProps;
 }>(({ theme }) => ({
   width: theme.spacing(3),
 }));
@@ -93,10 +93,10 @@ const PickersArrowSwitcher = React.forwardRef(function PickersArrowSwitcher(
   const rightArrowButtonProps = componentsProps.rightArrowButton || {};
   const RightArrowIcon = components.RightArrowIcon || ArrowRightIcon;
 
-  const styleProps = props;
+  const ownerState = props;
 
   return (
-    <PickersArrowSwitcherRoot ref={ref} className={className} styleProps={styleProps} {...other}>
+    <PickersArrowSwitcherRoot ref={ref} className={className} ownerState={ownerState} {...other}>
       <PickersArrowSwitcherButton
         as={components.LeftArrowButton}
         size="small"
@@ -107,7 +107,7 @@ const PickersArrowSwitcher = React.forwardRef(function PickersArrowSwitcher(
         onClick={onLeftClick}
         {...leftArrowButtonProps}
         className={leftArrowButtonProps.className}
-        styleProps={{ ...styleProps, ...leftArrowButtonProps, hidden: isLeftHidden }}
+        ownerState={{ ...ownerState, ...leftArrowButtonProps, hidden: isLeftHidden }}
       >
         {isRtl ? <RightArrowIcon /> : <LeftArrowIcon />}
       </PickersArrowSwitcherButton>
@@ -116,7 +116,7 @@ const PickersArrowSwitcher = React.forwardRef(function PickersArrowSwitcher(
           {children}
         </Typography>
       ) : (
-        <PickersArrowSwitcherSpacer styleProps={styleProps} />
+        <PickersArrowSwitcherSpacer ownerState={ownerState} />
       )}
       <PickersArrowSwitcherButton
         as={components.RightArrowButton}
@@ -128,7 +128,7 @@ const PickersArrowSwitcher = React.forwardRef(function PickersArrowSwitcher(
         onClick={onRightClick}
         {...rightArrowButtonProps}
         className={rightArrowButtonProps.className}
-        styleProps={{ ...styleProps, ...rightArrowButtonProps, hidden: isRightHidden }}
+        ownerState={{ ...ownerState, ...rightArrowButtonProps, hidden: isRightHidden }}
       >
         {isRtl ? <LeftArrowIcon /> : <RightArrowIcon />}
       </PickersArrowSwitcherButton>

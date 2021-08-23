@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
-import { describeConformanceV5, act, createClientRender, fireEvent } from 'test/utils';
+import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
 import Snackbar, { snackbarClasses as classes } from '@material-ui/core/Snackbar';
 
 describe('<Snackbar />', () => {
@@ -34,7 +34,7 @@ describe('<Snackbar />', () => {
     return result;
   }
 
-  describeConformanceV5(<Snackbar open message="message" />, () => ({
+  describeConformance(<Snackbar open message="message" />, () => ({
     classes,
     inheritComponent: 'div',
     render,

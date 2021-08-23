@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepConnector, { stepConnectorClasses as classes } from '@material-ui/core/StepConnector';
@@ -8,7 +8,7 @@ import StepConnector, { stepConnectorClasses as classes } from '@material-ui/cor
 describe('<StepConnector />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<StepConnector />, () => ({
+  describeConformance(<StepConnector />, () => ({
     classes,
     inheritComponent: 'div',
     render,

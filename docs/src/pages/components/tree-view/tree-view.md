@@ -64,7 +64,7 @@ Or increasing the width of the state indicator:
 
 {{"demo": "pages/components/tree-view/BarTreeView.js", "defaultCodeOpen": false}}
 
-## Customized tree view
+## Customization
 
 ### Custom icons, border and animation
 

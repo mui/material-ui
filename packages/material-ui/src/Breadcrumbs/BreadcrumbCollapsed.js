@@ -35,12 +35,12 @@ const BreadcrumbCollapsedIcon = styled(MoreHorizIcon)({
  * @ignore - internal component.
  */
 function BreadcrumbCollapsed(props) {
-  const styleProps = props;
+  const ownerState = props;
 
   return (
     <li>
-      <BreadcrumbCollapsedButton focusRipple {...props} styleProps={styleProps}>
-        <BreadcrumbCollapsedIcon styleProps={styleProps} />
+      <BreadcrumbCollapsedButton focusRipple {...props} ownerState={ownerState}>
+        <BreadcrumbCollapsedIcon ownerState={ownerState} />
       </BreadcrumbCollapsedButton>
     </li>
   );

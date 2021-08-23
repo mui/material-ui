@@ -134,11 +134,11 @@ export const typography: SimpleStyleFunction<
  * their composed function requires { color: string, spacing: number }
  */
 type ComposedArg<T> = T extends Array<(arg: infer P) => any> ? P : never;
-type ComposedStyleProps<T> = ComposedArg<T>;
+type ComposedOwnerState<T> = ComposedArg<T>;
 
 export type ComposedStyleFunction<T extends Array<StyleFunction<any>>> = StyleFunction<
-  ComposedStyleProps<T>
->;
+  ComposedOwnerState<T>
+> & { filterProps: string[] };
 
 export interface CustomSystemProps extends AliasesCSSProperties, OverwriteCSSProperties {}
 

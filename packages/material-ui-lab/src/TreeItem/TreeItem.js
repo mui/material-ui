@@ -11,8 +11,8 @@ import { DescendantProvider, useDescendant } from '../TreeView/descendants';
 import TreeItemContent from './TreeItemContent';
 import treeItemClasses, { getTreeItemUtilityClass } from './treeItemClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -106,6 +106,8 @@ const StyledTreeItemContent = styled(TreeItemContent, {
   },
   [`& .${treeItemClasses.label}`]: {
     width: '100%',
+    // fixes overflow - see https://github.com/mui-org/material-ui/issues/27372
+    minWidth: 0,
     paddingLeft: 4,
     position: 'relative',
     ...theme.typography.body1,
@@ -188,7 +190,7 @@ const TreeItem = React.forwardRef(function TreeItem(inProps, ref) {
   const selected = isSelected ? isSelected(nodeId) : false;
   const disabled = isDisabled ? isDisabled(nodeId) : false;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     expanded,
     focused,
@@ -196,7 +198,7 @@ const TreeItem = React.forwardRef(function TreeItem(inProps, ref) {
     disabled,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   let displayIcon;
   let expansionIcon;
@@ -282,7 +284,7 @@ const TreeItem = React.forwardRef(function TreeItem(inProps, ref) {
       id={id}
       tabIndex={-1}
       {...other}
-      styleProps={styleProps}
+      ownerState={ownerState}
       onFocus={handleFocus}
     >
       <StyledTreeItemContent
@@ -304,7 +306,7 @@ const TreeItem = React.forwardRef(function TreeItem(inProps, ref) {
         icon={icon}
         expansionIcon={expansionIcon}
         displayIcon={displayIcon}
-        styleProps={styleProps}
+        ownerState={ownerState}
         {...ContentProps}
       />
       {children && (

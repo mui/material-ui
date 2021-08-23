@@ -92,15 +92,13 @@ Material-UI is using emotion as its default styled engine.
 We need to extract the styles from the emotion instance.
 For this, we need to share the same cache configuration for both the client and server:
 
-`getCache.js`
+`createEmotionCache.js`
 
 ```js
 import createCache from '@emotion/cache';
 
-export default function getCache() {
-  const cache = createCache({ key: 'css' });
-  cache.compat = true;
-  return cache;
+export default function createEmotionCache() {
+  return createCache({ key: 'css' });
 }
 ```
 
@@ -114,13 +112,14 @@ import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
+import { CacheProvider } from '@emotion/react';
 import createEmotionServer from '@emotion/server/create-instance';
 import App from './App';
 import theme from './theme';
-import getCache from './getCache';
+import createEmotionCache from './createEmotionCache';
 
 function handleRender(req, res) {
-  const cache = getCache();
+  const cache = createEmotionCache();
   const { extractCriticalToChunks, constructStyleTagsFromChunks } =
     createEmotionServer(cache);
 
@@ -193,11 +192,13 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { CacheProvider } from '@emotion/react';
 import App from './App';
 import theme from './theme';
-import getCache from './getCache';
+import createEmotionCache from './createEmotionCache';
+
+const cache = createEmotionCache();
 
 function Main() {
   return (
-    <CacheProvider value={getCache}>
+    <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />

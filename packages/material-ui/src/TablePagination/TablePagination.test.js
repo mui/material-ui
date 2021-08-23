@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
-import { describeConformanceV5, fireEvent, createClientRender } from 'test/utils';
+import { describeConformance, fireEvent, createClientRender } from 'test/utils';
 import TableFooter from '@material-ui/core/TableFooter';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
@@ -14,7 +14,7 @@ describe('<TablePagination />', () => {
   const noop = () => {};
   const render = createClientRender();
 
-  describeConformanceV5(
+  describeConformance(
     <TablePagination count={1} onPageChange={noop} page={0} rowsPerPage={10} />,
     () => ({
       classes,

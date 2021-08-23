@@ -1,3 +1,5 @@
+export * from './AutocompleteUnstyled';
+
 export { default as BackdropUnstyled } from './BackdropUnstyled';
 export * from './BackdropUnstyled';
 
@@ -9,6 +11,9 @@ export { default as unstable_composeClasses } from './composeClasses';
 export { default as generateUtilityClass } from './generateUtilityClass';
 
 export { default as generateUtilityClasses } from './generateUtilityClasses';
+
+export { default as FormControlUnstyled } from './FormControlUnstyled';
+export * from './FormControlUnstyled';
 
 export { default as ModalUnstyled } from './ModalUnstyled';
 export * from './ModalUnstyled';

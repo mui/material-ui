@@ -2,7 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, integerPropType } from '@material-ui/utils';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import {
+  unstable_composeClasses as composeClasses,
+  useAutocomplete,
+  createFilterOptions,
+} from '@material-ui/unstyled';
 import { alpha } from '@material-ui/system';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
@@ -11,13 +15,12 @@ import IconButton from '../IconButton';
 import Chip from '../Chip';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
-import useAutocomplete, { createFilterOptions } from '../useAutocomplete';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
 
-const useUtilityClasses = (styleProps) => {
+const useUtilityClasses = (ownerState) => {
   const {
     classes,
     disablePortal,
@@ -28,7 +31,7 @@ const useUtilityClasses = (styleProps) => {
     inputFocused,
     popupOpen,
     size,
-  } = styleProps;
+  } = ownerState;
 
   const slots = {
     root: [
@@ -61,8 +64,8 @@ const AutocompleteRoot = styled('div', {
   name: 'MuiAutocomplete',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
-    const { fullWidth, hasClearIcon, hasPopupIcon, inputFocused, size } = styleProps;
+    const { ownerState } = props;
+    const { fullWidth, hasClearIcon, hasPopupIcon, inputFocused, size } = ownerState;
 
     return [
       { [`& .${autocompleteClasses.tag}`]: styles.tag },
@@ -76,7 +79,7 @@ const AutocompleteRoot = styled('div', {
       hasClearIcon && styles.hasClearIcon,
     ];
   },
-})(({ styleProps }) => ({
+})(({ ownerState }) => ({
   [`&.${autocompleteClasses.focused} .${autocompleteClasses.clearIndicator}`]: {
     visibility: 'visible',
   },
@@ -86,13 +89,13 @@ const AutocompleteRoot = styled('div', {
       visibility: 'visible',
     },
   },
-  ...(styleProps.fullWidth && {
+  ...(ownerState.fullWidth && {
     width: '100%',
   }),
   [`& .${autocompleteClasses.tag}`]: {
     margin: 3,
     maxWidth: 'calc(100% - 6px)',
-    ...(styleProps.size === 'small' && {
+    ...(ownerState.size === 'small' && {
       margin: 2,
       maxWidth: 'calc(100% - 4px)',
     }),
@@ -168,7 +171,7 @@ const AutocompleteRoot = styled('div', {
     flexGrow: 1,
     textOverflow: 'ellipsis',
     opacity: 0,
-    ...(styleProps.inputFocused && {
+    ...(ownerState.inputFocused && {
       opacity: 1,
     }),
   },
@@ -198,14 +201,14 @@ const AutocompleteClearIndicator = styled(IconButton, {
 const AutocompletePopupIndicator = styled(IconButton, {
   name: 'MuiAutocomplete',
   slot: 'PopupIndicator',
-  overridesResolver: ({ styleProps }, styles) => ({
+  overridesResolver: ({ ownerState }, styles) => ({
     ...styles.popupIndicator,
-    ...(styleProps.popupOpen && styles.popupIndicatorOpen),
+    ...(ownerState.popupOpen && styles.popupIndicatorOpen),
   }),
-})(({ styleProps }) => ({
+})(({ ownerState }) => ({
   padding: 2,
   marginRight: -2,
-  ...(styleProps.popupOpen && {
+  ...(ownerState.popupOpen && {
     transform: 'rotate(180deg)',
   }),
 }));
@@ -214,17 +217,17 @@ const AutocompletePopper = styled(Popper, {
   name: 'MuiAutocomplete',
   slot: 'Popper',
   overridesResolver: (props, styles) => {
-    const { styleProps } = props;
+    const { ownerState } = props;
 
     return [
       { [`& .${autocompleteClasses.option}`]: styles.option },
       styles.popper,
-      styleProps.disablePortal && styles.popperDisablePortal,
+      ownerState.disablePortal && styles.popperDisablePortal,
     ];
   },
-})(({ theme, styleProps }) => ({
+})(({ theme, ownerState }) => ({
   zIndex: theme.zIndex.modal,
-  ...(styleProps.disablePortal && {
+  ...(ownerState.disablePortal && {
     position: 'absolute',
   }),
 }));
@@ -432,7 +435,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const hasClearIcon = !disableClearable && !disabled && dirty;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     disablePortal,
     focused,
@@ -444,7 +447,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     size,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   let startAdornment;
 
@@ -485,12 +488,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     <li key={params.key}>
       <AutocompleteGroupLabel
         className={classes.groupLabel}
-        styleProps={styleProps}
+        ownerState={ownerState}
         component="div"
       >
         {params.group}
       </AutocompleteGroupLabel>
-      <AutocompleteGroupUl className={classes.groupUl} styleProps={styleProps}>
+      <AutocompleteGroupUl className={classes.groupUl} ownerState={ownerState}>
         {params.children}
       </AutocompleteGroupUl>
     </li>
@@ -514,7 +517,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
       <AutocompleteRoot
         ref={ref}
         className={clsx(classes.root, className)}
-        styleProps={styleProps}
+        ownerState={ownerState}
         {...getRootProps(other)}
       >
         {renderInput({
@@ -528,13 +531,13 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             className: classes.inputRoot,
             startAdornment,
             endAdornment: (
-              <AutocompleteEndAdornment className={classes.endAdornment} styleProps={styleProps}>
+              <AutocompleteEndAdornment className={classes.endAdornment} ownerState={ownerState}>
                 {hasClearIcon ? (
                   <AutocompleteClearIndicator
                     {...getClearProps()}
                     aria-label={clearText}
                     title={clearText}
-                    styleProps={styleProps}
+                    ownerState={ownerState}
                     {...componentsProps.clearIndicator}
                     className={clsx(
                       classes.clearIndicator,
@@ -552,7 +555,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                     aria-label={popupOpen ? closeText : openText}
                     title={popupOpen ? closeText : openText}
                     className={clsx(classes.popupIndicator)}
-                    styleProps={styleProps}
+                    ownerState={ownerState}
                   >
                     {popupIcon}
                   </AutocompletePopupIndicator>
@@ -575,21 +578,21 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           style={{
             width: anchorEl ? anchorEl.clientWidth : null,
           }}
-          styleProps={styleProps}
+          ownerState={ownerState}
           role="presentation"
           anchorEl={anchorEl}
           open
         >
-          <AutocompletePaper as={PaperComponent} className={classes.paper} styleProps={styleProps}>
+          <AutocompletePaper as={PaperComponent} className={classes.paper} ownerState={ownerState}>
             {loading && groupedOptions.length === 0 ? (
-              <AutocompleteLoading className={classes.loading} styleProps={styleProps}>
+              <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
                 {loadingText}
               </AutocompleteLoading>
             ) : null}
             {groupedOptions.length === 0 && !freeSolo && !loading ? (
               <AutocompleteNoOptions
                 className={classes.noOptions}
-                styleProps={styleProps}
+                ownerState={ownerState}
                 role="presentation"
                 onMouseDown={(event) => {
                   // Prevent input blur when interacting with the "no options" content
@@ -603,7 +606,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
               <AutocompleteListbox
                 as={ListboxComponent}
                 className={classes.listbox}
-                styleProps={styleProps}
+                ownerState={ownerState}
                 {...getListboxProps()}
                 {...ListboxProps}
               >

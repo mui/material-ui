@@ -6,8 +6,8 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getAccordionDetailsUtilityClass } from './accordionDetailsClasses';
 
-const useUtilityClasses = (styleProps) => {
-  const { classes } = styleProps;
+const useUtilityClasses = (ownerState) => {
+  const { classes } = ownerState;
 
   const slots = {
     root: ['root'],
@@ -27,14 +27,14 @@ const AccordionDetailsRoot = styled('div', {
 const AccordionDetails = React.forwardRef(function AccordionDetails(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiAccordionDetails' });
   const { className, ...other } = props;
-  const styleProps = props;
-  const classes = useUtilityClasses(styleProps);
+  const ownerState = props;
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <AccordionDetailsRoot
       className={clsx(classes.root, className)}
       ref={ref}
-      styleProps={styleProps}
+      ownerState={ownerState}
       {...other}
     />
   );

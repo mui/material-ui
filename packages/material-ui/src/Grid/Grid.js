@@ -46,8 +46,8 @@ function resolveBreakpointValues({ values, base }) {
   }, {});
 }
 
-function generateGrid(globalStyles, theme, breakpoint, styleProps) {
-  const size = styleProps[breakpoint];
+function generateGrid(globalStyles, theme, breakpoint, ownerState) {
+  const size = ownerState[breakpoint];
 
   if (!size) return;
 
@@ -64,11 +64,13 @@ function generateGrid(globalStyles, theme, breakpoint, styleProps) {
     styles = {
       flexBasis: 'auto',
       flexGrow: 0,
+      flexShrink: 0,
       maxWidth: 'none',
+      width: 'auto',
     };
   } else {
     const columnsBreakpointValues = resolveBreakpointValues({
-      values: styleProps.columns,
+      values: ownerState.columns,
       base: theme.breakpoints.values,
     });
 
@@ -76,8 +78,8 @@ function generateGrid(globalStyles, theme, breakpoint, styleProps) {
     const width = `${Math.round((size / columnsBreakpointValues[breakpoint]) * 10e7) / 10e5}%`;
     let more = {};
 
-    if (styleProps.container && styleProps.item && styleProps.columnSpacing !== 0) {
-      const themeSpacing = theme.spacing(styleProps.columnSpacing);
+    if (ownerState.container && ownerState.item && ownerState.columnSpacing !== 0) {
+      const themeSpacing = theme.spacing(ownerState.columnSpacing);
       if (themeSpacing !== '0px') {
         const fullWidth = `calc(${width} + ${getOffset(themeSpacing)})`;
         more = {
@@ -105,8 +107,8 @@ function generateGrid(globalStyles, theme, breakpoint, styleProps) {
   }
 }
 
-function generateDirection({ theme, styleProps }) {
-  return handleBreakpoints({ theme }, styleProps.direction, (propValue) => {
+function generateDirection({ theme, ownerState }) {
+  return handleBreakpoints({ theme }, ownerState.direction, (propValue) => {
     const output = {
       flexDirection: propValue,
     };
@@ -121,8 +123,8 @@ function generateDirection({ theme, styleProps }) {
   });
 }
 
-export function generateRowGap({ theme, styleProps }) {
-  const { container, rowSpacing } = styleProps;
+export function generateRowGap({ theme, ownerState }) {
+  const { container, rowSpacing } = ownerState;
   let styles = {};
 
   if (container && rowSpacing !== 0) {
@@ -145,8 +147,8 @@ export function generateRowGap({ theme, styleProps }) {
   return styles;
 }
 
-export function generateColumnGap({ theme, styleProps }) {
-  const { container, columnSpacing } = styleProps;
+export function generateColumnGap({ theme, ownerState }) {
+  const { container, columnSpacing } = ownerState;
   let styles = {};
 
   if (container && columnSpacing !== 0) {
@@ -181,7 +183,7 @@ const GridRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { container, direction, item, lg, md, sm, spacing, wrap, xl, xs, zeroMinWidth } =
-      props.styleProps;
+      props.ownerState;
 
     return [
       styles.root,
@@ -199,40 +201,40 @@ const GridRoot = styled('div', {
     ];
   },
 })(
-  ({ styleProps }) => ({
+  ({ ownerState }) => ({
     boxSizing: 'border-box',
-    ...(styleProps.container && {
+    ...(ownerState.container && {
       display: 'flex',
       flexWrap: 'wrap',
       width: '100%',
     }),
-    ...(styleProps.item && {
+    ...(ownerState.item && {
       margin: 0, // For instance, it's useful when used with a `figure` element.
     }),
-    ...(styleProps.zeroMinWidth && {
+    ...(ownerState.zeroMinWidth && {
       minWidth: 0,
     }),
-    ...(styleProps.wrap === 'nowrap' && {
+    ...(ownerState.wrap === 'nowrap' && {
       flexWrap: 'nowrap',
     }),
-    ...(styleProps.wrap === 'reverse' && {
+    ...(ownerState.wrap === 'reverse' && {
       flexWrap: 'wrap-reverse',
     }),
   }),
   generateDirection,
   generateRowGap,
   generateColumnGap,
-  ({ theme, styleProps }) =>
+  ({ theme, ownerState }) =>
     theme.breakpoints.keys.reduce((globalStyles, breakpoint) => {
       // Use side effect over immutability for better performance.
-      generateGrid(globalStyles, theme, breakpoint, styleProps);
+      generateGrid(globalStyles, theme, breakpoint, ownerState);
       return globalStyles;
     }, {}),
 );
 
-const useUtilityClasses = (styleProps) => {
+const useUtilityClasses = (ownerState) => {
   const { classes, container, direction, item, lg, md, sm, spacing, wrap, xl, xs, zeroMinWidth } =
-    styleProps;
+    ownerState;
 
   const slots = {
     root: [
@@ -282,7 +284,7 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
 
   const columns = React.useContext(GridContext) || columnsProp;
 
-  const styleProps = {
+  const ownerState = {
     ...props,
     columns,
     container,
@@ -299,7 +301,7 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
     zeroMinWidth,
   };
 
-  const classes = useUtilityClasses(styleProps);
+  const classes = useUtilityClasses(ownerState);
 
   const wrapChild = (element) =>
     columns !== 12 ? (
@@ -310,7 +312,7 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
 
   return wrapChild(
     <GridRoot
-      styleProps={styleProps}
+      ownerState={ownerState}
       className={clsx(classes.root, className)}
       as={component}
       ref={ref}

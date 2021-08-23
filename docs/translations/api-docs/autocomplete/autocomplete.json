@@ -70,7 +70,7 @@
       "conditions": "<code>fullWidth={true}</code>"
     },
     "focused": {
-      "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "focused"
     },

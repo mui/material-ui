@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/private-theming",
-  "version": "5.0.0-beta.2",
+  "version": "5.0.0-beta.4",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Theming - The React theme context to be shared between `@material-ui/styles` and `@material-ui/core`.",
@@ -39,7 +39,7 @@
   },
   "peerDependencies": {
     "@types/react": "^16.8.6 || ^17.0.0",
-    "react": "^17.0.0"
+    "react": "^17.0.2"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -47,8 +47,8 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.4.4",
-    "@material-ui/utils": "5.0.0-beta.1",
+    "@babel/runtime": "^7.14.8",
+    "@material-ui/utils": "5.0.0-beta.4",
     "prop-types": "^15.7.2"
   },
   "sideEffects": false,

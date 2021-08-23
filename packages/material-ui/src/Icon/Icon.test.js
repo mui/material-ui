@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5 } from 'test/utils';
+import { createClientRender, describeConformance } from 'test/utils';
 import Icon, { iconClasses as classes } from '@material-ui/core/Icon';
 
 describe('<Icon />', () => {
   const render = createClientRender();
 
-  describeConformanceV5(<Icon>account_circle</Icon>, () => ({
+  describeConformance(<Icon>account_circle</Icon>, () => ({
     classes,
     inheritComponent: 'span',
     render,
