@@ -146,7 +146,7 @@ export default function AppFooter() {
         }}
       >
         <Typography color="text.secondary" variant="body2">
-          Copyright © {new Date().getFullYear()} MATERIAL-UI SAS.
+          Copyright © {new Date().getFullYear()} Material-UI SAS.
         </Typography>
         <Box sx={{ py: { xs: 2, sm: 0 } }}>
           <Stack spacing={2} direction="row">
