@@ -1,16 +1,12 @@
 import * as React from 'react';
-import { useTheme } from '@material-ui/core/styles';
 import IconButton, { IconButtonProps } from '@material-ui/core/IconButton';
 import KeyboardArrowLeftRounded from '@material-ui/icons/KeyboardArrowLeftRounded';
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 
 export default function ArrowButton({
-  mode: modeProp,
   direction,
   ...props
-}: { direction: 'left' | 'right'; mode?: 'light' | 'dark' } & IconButtonProps) {
-  const globalTheme = useTheme();
-  const mode = modeProp || globalTheme.palette.mode;
+}: { direction: 'left' | 'right' } & IconButtonProps) {
   const label = {
     left: 'Previous',
     right: 'Next',
@@ -21,13 +17,13 @@ export default function ArrowButton({
       aria-label={label[direction]}
       {...props}
       sx={{
-        color: mode === 'dark' ? '#fff' : 'primary.main',
+        color: '#fff',
         border: '1px solid',
-        borderColor: mode === 'dark' ? 'primaryDark.300' : 'primary.main',
+        borderColor: 'primaryDark.300',
         '&.Mui-disabled': {
           opacity: 0.5,
-          color: mode === 'dark' ? '#fff' : 'grey.500',
-          borderColor: mode === 'dark' ? 'primary.700' : 'grey.500',
+          color: '#fff',
+          borderColor: 'primary.700',
         },
         '& + .MuiIconButton-root': {
           ml: 2,

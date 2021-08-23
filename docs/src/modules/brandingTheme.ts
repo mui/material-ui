@@ -452,3 +452,6 @@ export function getThemedComponents(theme: Theme) {
     },
   };
 }
+
+const darkTheme = createTheme(getDesignTokens('dark'));
+export const brandingDarkTheme = createTheme(darkTheme, getThemedComponents(darkTheme));

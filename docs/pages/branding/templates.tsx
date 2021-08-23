@@ -24,7 +24,7 @@ export default function Templates() {
         <TemplateHero />
         <ValueProposition />
         <TemplateDemo />
-        <Testimonials mode="dark" />
+        <Testimonials />
         <HeroEnd />
       </main>
       <Divider />

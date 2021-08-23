@@ -26,7 +26,7 @@ export default function DesignKits() {
         <DesignKitValues />
         <DesignKitDemo />
         <DesignKitFAQ />
-        <Testimonials mode="dark" />
+        <Testimonials />
         <HeroEnd />
       </main>
       <Divider />

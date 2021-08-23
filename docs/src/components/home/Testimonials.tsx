@@ -1,11 +1,13 @@
 import * as React from 'react';
-import { useTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 import SwipeableViews from 'react-swipeable-views';
 import Avatar from '@material-ui/core/Avatar';
+import ButtonBase from '@material-ui/core/ButtonBase';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 import ArrowButton from 'docs/src/components/action/ArrowButton';
 
 const data = [
@@ -18,9 +20,7 @@ const data = [
 const UserFeedback = ({
   quote,
   profile,
-  mode,
 }: {
-  mode: 'light' | 'dark';
   quote: string;
   profile: {
     avatarSrc: string;
@@ -31,13 +31,8 @@ const UserFeedback = ({
   };
 }) => {
   return (
-    <div>
-      <Typography
-        variant="subtitle1"
-        component="div"
-        color={mode === 'dark' ? '#fff' : 'grey.900'}
-        sx={{ mb: 2 }}
-      >
+    <Box sx={{ color: '#fff' }}>
+      <Typography variant="subtitle1" component="div" sx={{ mb: 2 }}>
         {quote}
       </Typography>
       <Box sx={{ display: 'flex' }}>
@@ -55,11 +50,7 @@ const UserFeedback = ({
           }}
         />
         <Box sx={{ ml: 2 }}>
-          <Typography
-            color={mode === 'dark' ? '#fff' : 'grey.900'}
-            fontWeight="bold"
-            sx={{ mb: 1 }}
-          >
+          <Typography fontWeight="bold" sx={{ mb: 1 }}>
             {profile.name},{' '}
             <Box component="span" sx={{ color: 'grey.700', fontWeight: 'regular' }}>
               {profile.role}
@@ -68,7 +59,7 @@ const UserFeedback = ({
           {profile.company}
         </Box>
       </Box>
-    </div>
+    </Box>
   );
 };
 
@@ -164,86 +155,80 @@ export function MuiStats({ mode }: { mode: 'light' | 'dark' }) {
   );
 }
 
-const Testimonials = ({ mode: modeProp }: { mode?: 'light' | 'dark' }) => {
+const Testimonials = () => {
   const [slideIndex, setSlideIndex] = React.useState(0);
-  const globalTheme = useTheme();
-  const mode = modeProp || globalTheme.palette.mode;
+  const mode = 'dark';
   return (
-    <Box
-      sx={{
-        ...(mode === 'dark' && {
-          bgcolor: 'primaryDark.700',
-        }),
-        ...(mode === 'light' && {
-          background: (theme) =>
-            `linear-gradient(180deg, #FFFFFF 0%, ${theme.palette.grey[50]} 100%)`,
-        }),
-      }}
-    >
-      <Container sx={{ py: { xs: 4, md: 8 } }}>
-        <Grid container spacing={3} alignItems="center">
-          <Grid item xs={12} md={6} sx={{ zIndex: 1 }}>
-            <Box sx={{ maxWidth: { md: 500 } }}>
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  mb: 2,
-                }}
-              >
-                <ArrowButton
-                  direction="left"
-                  disabled={slideIndex === 0}
-                  onClick={() => setSlideIndex((i) => i - 1)}
-                />
-                <ArrowButton
-                  direction="right"
-                  disabled={slideIndex === TESTIMONIALS.length - 1}
-                  onClick={() => setSlideIndex((i) => i + 1)}
-                  sx={{ mr: 'auto' }}
-                />
-                <Box sx={{ lineHeight: 0 }}>
-                  {TESTIMONIALS.map((item, index) => (
-                    <Box
-                      key={index}
-                      role="button"
-                      aria-label={`Testimonial from ${item.profile.name}`}
-                      onClick={() => setSlideIndex(index)}
-                      sx={{
-                        cursor: 'pointer',
-                        display: 'inline-block',
-                        width: 16,
-                        height: 16,
-                        p: '4px',
-                        ml: index !== 0 ? '2px' : 0,
-                      }}
-                    >
-                      <Box
+    <ThemeProvider theme={brandingDarkTheme}>
+      <Box sx={{ bgcolor: 'primaryDark.700' }}>
+        <Container sx={{ py: { xs: 4, md: 8 } }}>
+          <Grid container spacing={3} alignItems="center">
+            <Grid item xs={12} md={6} sx={{ zIndex: 1 }}>
+              <Box sx={{ maxWidth: { md: 500 } }}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    mb: 2,
+                  }}
+                >
+                  <ArrowButton
+                    direction="left"
+                    disabled={slideIndex === 0}
+                    onClick={() => setSlideIndex((i) => i - 1)}
+                  />
+                  <ArrowButton
+                    direction="right"
+                    disabled={slideIndex === TESTIMONIALS.length - 1}
+                    onClick={() => setSlideIndex((i) => i + 1)}
+                    sx={{ mr: 'auto' }}
+                  />
+                  <Box sx={{ lineHeight: 0 }}>
+                    {TESTIMONIALS.map((item, index) => (
+                      <ButtonBase
+                        key={index}
+                        aria-label={`Testimonial from ${item.profile.name}`}
+                        onClick={() => setSlideIndex(index)}
                         sx={{
-                          height: '100%',
-                          borderRadius: 1,
-                          bgcolor: mode === 'dark' ? 'primaryDark.500' : 'grey.300',
-                          ...(index === slideIndex && {
-                            bgcolor: mode === 'dark' ? 'primaryDark.300' : 'primary.main',
-                          }),
+                          display: 'inline-block',
+                          width: 16,
+                          height: 16,
+                          borderRadius: '50%',
+                          p: '4px',
+                          ml: index !== 0 ? '2px' : 0,
+                          '&:focus': {
+                            boxShadow: (theme) =>
+                              `0px 0px 0px 2px ${theme.palette.primaryDark[400]}`,
+                          },
                         }}
-                      />
-                    </Box>
-                  ))}
+                      >
+                        <Box
+                          sx={{
+                            height: '100%',
+                            borderRadius: 1,
+                            bgcolor: 'primaryDark.500',
+                            ...(index === slideIndex && {
+                              bgcolor: 'primaryDark.300',
+                            }),
+                          }}
+                        />
+                      </ButtonBase>
+                    ))}
+                  </Box>
                 </Box>
+                <SwipeableViews index={slideIndex} onChangeIndex={(index) => setSlideIndex(index)}>
+                  {TESTIMONIALS.map((item) => (
+                    <UserFeedback key={item.profile.name} {...item} />
+                  ))}
+                </SwipeableViews>
               </Box>
-              <SwipeableViews index={slideIndex} onChangeIndex={(index) => setSlideIndex(index)}>
-                {TESTIMONIALS.map((item) => (
-                  <UserFeedback key={item.profile.name} mode={mode} {...item} />
-                ))}
-              </SwipeableViews>
-            </Box>
+            </Grid>
+            <MuiStats mode={mode} />
           </Grid>
-          <MuiStats mode={mode} />
-        </Grid>
-      </Container>
-    </Box>
+        </Container>
+      </Box>
+    </ThemeProvider>
   );
 };
 
