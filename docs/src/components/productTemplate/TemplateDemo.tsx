@@ -109,7 +109,7 @@ export default function TemplateDemo() {
         </Grid>
         <Grid item xs={12} md={6}>
           <Frame>
-            <Frame.Demo sx={{ minHeight: { xs: 240, sm: 390 } }}>
+            <Frame.Demo sx={{ minHeight: { xs: 240, sm: 320 } }}>
               <Box
                 sx={{
                   overflow: 'hidden',
