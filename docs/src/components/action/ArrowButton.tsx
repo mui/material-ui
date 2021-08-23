@@ -20,10 +20,13 @@ export default function ArrowButton({
         color: (theme) => (theme.palette.mode === 'dark' ? '#fff' : 'primary.main'),
         border: '1px solid',
         borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.300' : 'grey.200'),
+        '&:hover': {
+          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.200' : 'grey.300'),
+        },
         '&.Mui-disabled': {
           opacity: 0.5,
-          color: (theme) => (theme.palette.mode === 'dark' ? '#fff' : 'grey.500'),
-          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primary.700' : 'grey.500'),
+          color: (theme) => (theme.palette.mode === 'dark' ? '#fff' : 'grey.700'),
+          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primary.700' : 'grey.300'),
         },
         '& + .MuiIconButton-root': {
           ml: 2,
