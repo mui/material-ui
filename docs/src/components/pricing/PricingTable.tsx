@@ -180,28 +180,6 @@ const ColumnHead = ({
           title={tooltip}
           placement="right"
           describeChild
-          PopperProps={{
-            // @ts-ignore
-            sx: {
-              '& .MuiTooltip-tooltip': {
-                py: 1,
-                px: 2,
-                backgroundColor: (theme: Theme) =>
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[700]
-                    : theme.palette.background.paper,
-                color: 'text.secondary',
-                border: '1px solid',
-                borderColor: (theme: Theme) =>
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[400]
-                    : theme.palette.primary.main,
-                typography: 'caption',
-                fontWeight: 400,
-                boxShadow: '1px 1px 20px 0 rgb(90 105 120 / 20%)',
-              },
-            },
-          }}
         >
           {text}
         </Tooltip>
