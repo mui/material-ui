@@ -288,6 +288,7 @@ describe('styled', () => {
         shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
         name: 'MuiTest',
         slot: 'Slot',
+        overridesResolver: (props, styles) => styles.slot,
       })`
         width: 200px;
         height: 300px;
