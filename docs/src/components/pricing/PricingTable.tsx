@@ -842,7 +842,7 @@ export default function PricingTable({
               endIcon={<KeyboardArrowRightRounded />}
               sx={{ py: 1, mt: 'auto' }}
             >
-              Get Started
+              Get started
             </Button>
           </Box>
           <ColumnHeadHighlight>
