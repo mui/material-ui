@@ -14,11 +14,11 @@ const Root = styled('div')(({ theme }) => ({
   '& pre': {
     margin: theme.spacing(2, 'auto'),
     padding: theme.spacing(2),
-    backgroundColor: "#001E3C",
+    backgroundColor: '#001E3C',
     direction: 'ltr',
     borderRadius: theme.shape.borderRadius,
     border: '1px solid',
-    borderColor: "#132F4C",
+    borderColor: '#132F4C',
     overflow: 'auto',
     WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
     maxWidth: 'calc(100vw - 32px)',
@@ -40,7 +40,7 @@ const Root = styled('div')(({ theme }) => ({
     borderRadius: theme.shape.borderRadius,
   },
   '& code[class*="language-"]': {
-    backgroundColor: "#001E3C",
+    backgroundColor: '#001E3C',
     color: '#fff',
     // Avoid layout jump after hydration (style injected by prism)
     lineHeight: 1.5,
@@ -172,7 +172,10 @@ const Root = styled('div')(({ theme }) => ({
   },
   '& blockquote': {
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: theme.palette.mode === 'dark' ? alpha(theme.palette.warning.main, 0.2) : theme.palette.warning[100],
+    backgroundColor:
+      theme.palette.mode === 'dark'
+        ? alpha(theme.palette.warning.main, 0.2)
+        : theme.palette.warning[100],
     padding: '10px 20px',
     margin: '20px 0',
     '& p': {

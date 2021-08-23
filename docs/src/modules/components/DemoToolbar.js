@@ -461,7 +461,14 @@ export default function DemoToolbar(props) {
             onChange={handleCodeLanguageClick}
           >
             <ToggleButton
-              sx={{ padding: '5px 10px', borderRadius: 0.5, borderColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200]  }}
+              sx={{
+                padding: '5px 10px',
+                borderRadius: 0.5,
+                borderColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[700]
+                    : theme.palette.grey[200],
+              }}
               value={CODE_VARIANTS.JS}
               aria-label={t('showJSSource')}
               data-ga-event-category="demo"
@@ -469,10 +476,17 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demoOptions.demo}
               {...getControlProps(0)}
             >
-              <JavaScriptIcon sx={{fontSize: 20}} />
+              <JavaScriptIcon sx={{ fontSize: 20 }} />
             </ToggleButton>
             <ToggleButton
-              sx={{ padding: '5px 10px', borderRadius: 0.5, borderColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200]  }}
+              sx={{
+                padding: '5px 10px',
+                borderRadius: 0.5,
+                borderColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[700]
+                    : theme.palette.grey[200],
+              }}
               value={CODE_VARIANTS.TS}
               disabled={!hasTSVariant}
               aria-label={t('showTSSource')}
@@ -481,7 +495,7 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demoOptions.demo}
               {...getControlProps(1)}
             >
-              <TypeScriptIcon sx={{fontSize: 20}} />
+              <TypeScriptIcon sx={{ fontSize: 20 }} />
             </ToggleButton>
           </ToggleButtonGroup>
         </Fade>
@@ -503,7 +517,15 @@ export default function DemoToolbar(props) {
               color={demoHovered ? 'primary' : 'default'}
               {...getControlProps(2)}
             >
-              <CodeRoundedIcon sx={{fontSize: 17, color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800]}} />
+              <CodeRoundedIcon
+                sx={{
+                  fontSize: 17,
+                  color:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.grey[500]
+                      : theme.palette.grey[800],
+                }}
+              />
             </IconButton>
           </DemoTooltip>
           {demoOptions.hideEditButton ? null : (
@@ -517,7 +539,16 @@ export default function DemoToolbar(props) {
                   onClick={handleCodeSandboxClick}
                   {...getControlProps(3)}
                 >
-                  <SvgIcon sx={{fontSize: 17, color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800]}} viewBox="0 0 1024 1024">
+                  <SvgIcon
+                    sx={{
+                      fontSize: 17,
+                      color:
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.grey[500]
+                          : theme.palette.grey[800],
+                    }}
+                    viewBox="0 0 1024 1024"
+                  >
                     <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
                   </SvgIcon>
                 </IconButton>
@@ -531,7 +562,16 @@ export default function DemoToolbar(props) {
                   onClick={handleStackBlitzClick}
                   {...getControlProps(4)}
                 >
-                  <SvgIcon sx={{fontSize: 17, color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800]}} viewBox="0 0 19 28">
+                  <SvgIcon
+                    sx={{
+                      fontSize: 17,
+                      color:
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.grey[500]
+                          : theme.palette.grey[800],
+                    }}
+                    viewBox="0 0 19 28"
+                  >
                     <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
                   </SvgIcon>
                 </IconButton>
@@ -547,7 +587,15 @@ export default function DemoToolbar(props) {
               onClick={handleCopyClick}
               {...getControlProps(5)}
             >
-              <ContentCopyRoundedIcon sx={{fontSize: 17, color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800]}} />
+              <ContentCopyRoundedIcon
+                sx={{
+                  fontSize: 17,
+                  color:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.grey[500]
+                      : theme.palette.grey[800],
+                }}
+              />
             </IconButton>
           </DemoTooltip>
           <DemoTooltip title={t('resetFocus')} placement="bottom">
@@ -559,7 +607,15 @@ export default function DemoToolbar(props) {
               onClick={handleResetFocusClick}
               {...getControlProps(6)}
             >
-              <ResetFocusIcon sx={{fontSize: 17, color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800]}} />
+              <ResetFocusIcon
+                sx={{
+                  fontSize: 17,
+                  color:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.grey[500]
+                      : theme.palette.grey[800],
+                }}
+              />
             </IconButton>
           </DemoTooltip>
           <DemoTooltip title={t('resetDemo')} placement="bottom">
@@ -572,7 +628,15 @@ export default function DemoToolbar(props) {
               onClick={onResetDemoClick}
               {...getControlProps(7)}
             >
-              <RefreshRoundedIcon sx={{fontSize: 17, color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800]}} />
+              <RefreshRoundedIcon
+                sx={{
+                  fontSize: 17,
+                  color:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.grey[500]
+                      : theme.palette.grey[800],
+                }}
+              />
             </IconButton>
           </DemoTooltip>
           <IconButton
@@ -583,7 +647,13 @@ export default function DemoToolbar(props) {
             aria-haspopup="true"
             {...getControlProps(8)}
           >
-            <MoreVertIcon sx={{fontSize: 17, color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800]}} />
+            <MoreVertIcon
+              sx={{
+                fontSize: 17,
+                color:
+                  theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
+              }}
+            />
           </IconButton>
           <Menu
             id="demo-menu-more"

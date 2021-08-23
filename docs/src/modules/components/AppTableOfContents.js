@@ -19,7 +19,7 @@ const Nav = styled('nav')(({ theme }) => {
     position: 'sticky',
     height: 'calc(100vh - 70px)',
     overflowY: 'auto',
-    padding: theme.spacing(2, 5, 2, 0  ),
+    padding: theme.spacing(2, 5, 2, 0),
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
@@ -60,7 +60,7 @@ const NavItem = styled(Link, {
     '&:hover': {
       borderLeftColor:
         theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[900],
-      color: theme.palette.grey[700]
+      color: theme.palette.grey[700],
     },
     ...(!active && {
       color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[900],
