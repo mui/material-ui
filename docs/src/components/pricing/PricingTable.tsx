@@ -834,7 +834,7 @@ export default function PricingTable({
               component={Link}
               noLinkStyle
               passHref
-              href="/components/data-grid/"
+              href="/store/items/material-ui-pro/"
               variant="contained"
               fullWidth
               endIcon={<KeyboardArrowRightRounded />}
