@@ -101,19 +101,60 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
   },
 );
 
+function getNextIndex(eventKey: KeyboardEvent['key'], currentIndex: number, length: number) {
+  if (eventKey === 'ArrowLeft') {
+    return currentIndex === 0 ? length - 1 : currentIndex - 1;
+  }
+  if (eventKey === 'ArrowRight') {
+    return currentIndex === length - 1 ? 0 : currentIndex + 1;
+  }
+  return currentIndex;
+}
+
 export default function HeaderNavBar() {
   const [subMenuOpen, setSubMenuOpen] = React.useState(false);
   const [subMenuIndex, setSubMenuIndex] = React.useState<number | null>(null);
+  const navRef = React.useRef<HTMLUListElement | null>(null);
   const productsMenuRef = React.useRef<HTMLDivElement | null>(null);
   React.useEffect(() => {
     if (typeof subMenuIndex === 'number') {
       document.getElementById(PRODUCT_IDS[subMenuIndex])?.focus();
     }
   }, [subMenuIndex]);
+  function handleLeftRightArrow(
+    event: React.KeyboardEvent,
+    target: EventTarget | HTMLElement | null = event.target,
+  ) {
+    if (navRef.current) {
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        let i = 0;
+        while (i < navRef.current.children.length) {
+          const child = navRef.current.children.item(i);
+          if (child && (target === child || child.contains(target as Node))) {
+            const prevSibling = navRef.current.children.item(
+              getNextIndex(event.key, i, navRef.current.children.length),
+            );
+            const htmlElement = prevSibling ? (prevSibling.firstChild as HTMLElement) : null;
+            if (htmlElement) {
+              htmlElement.focus();
+            }
+          }
+          i += 1;
+        }
+      }
+    }
+  }
   function handleKeyDown(event: React.KeyboardEvent) {
-    if (event.target !== productsMenuRef.current && event.key === 'Tab') {
+    if (event.key === 'Tab' && !event.shiftKey) {
       event.preventDefault();
-      return;
+      handleLeftRightArrow(
+        new KeyboardEvent('keydown', { key: 'ArrowRight' }) as unknown as React.KeyboardEvent,
+        productsMenuRef.current?.parentElement,
+      );
+    }
+    if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+      event.preventDefault();
+      handleLeftRightArrow(event, productsMenuRef.current?.parentElement);
     }
     if (event.key === 'ArrowDown') {
       event.preventDefault();
@@ -145,7 +186,7 @@ export default function HeaderNavBar() {
   }
   return (
     <Navigation>
-      <ul role="menubar">
+      <ul ref={navRef} role="menubar" onKeyDown={handleLeftRightArrow}>
         <li
           role="none"
           onMouseOver={() => setSubMenuOpen(true)}
