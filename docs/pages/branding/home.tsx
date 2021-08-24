@@ -39,6 +39,26 @@ export default function Home() {
         <Divider />
       </main>
       <AppFooter />
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: `
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Material-UI",
+  "url": "https://material-ui.com/",
+  "logo": "https://material-ui.com/static/logo.png",
+  "sameAs": [
+    "https://twitter.com/materialUI",
+    "https://github.com/mui-org/material-ui",
+    "https://opencollective.com/material-ui"
+  ]
+}
+          `,
+        }}
+      />
     </ThemeProvider>
   );
 }
