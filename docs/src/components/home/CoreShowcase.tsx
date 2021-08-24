@@ -292,7 +292,7 @@ export default function CoreShowcase() {
           >
             <Box sx={{ position: 'relative' }}>
               {startLine !== undefined && (
-                <FlashCode startLine={startLine} endLine={endLine} sx={{ mx: -1 }} />
+                <FlashCode startLine={startLine} endLine={endLine} sx={{ mx: -2 }} />
               )}
               <HighlightedCode component={MarkdownElement} code={componentCode} language="jsx" />
               <Box

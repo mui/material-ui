@@ -766,7 +766,7 @@ export default function PricingTable({
             bgcolor: (theme) =>
               theme.palette.mode === 'dark'
                 ? alpha(theme.palette.primaryDark[900], 0.3)
-                : alpha(theme.palette.grey[50], 0),
+                : alpha(theme.palette.grey[50], 0.4),
           },
         }}
       >
