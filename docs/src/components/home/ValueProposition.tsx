@@ -15,7 +15,7 @@ const content = [
     icon: <InvertColorsRoundedIcon fontSize="small" color="primary" />,
     title: 'Beautifully designed',
     description:
-      "You can start your projects with Google's Material Design or leverage our carefully designed theming capabilities.",
+      "You can start your projects with Google's Material Design or build your own designs using the sophisticated theming features.",
   },
   {
     icon: <HandymanRoundedIcon fontSize="small" color="primary" />,
