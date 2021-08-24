@@ -18,8 +18,18 @@ const Anchor = styled('a')({ cursor: 'pointer' });
 
 export const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComposedProps>(
   function NextLinkComposed(props, ref) {
-    const { to, linkAs, href, replace, scroll, passHref, shallow, prefetch, locale, ...other } =
-      props;
+    const {
+      to,
+      linkAs,
+      href,
+      replace,
+      scroll,
+      passHref = true,
+      shallow,
+      prefetch,
+      locale,
+      ...other
+    } = props;
 
     return (
       <NextLink
