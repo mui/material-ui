@@ -90,7 +90,7 @@ export default function SponsorCard({
         },
         '&:hover': {
           '& svg': {
-            transform: 'translateY(-3px)',
+            transform: 'translateY(-2px)',
           },
         },
       }}
