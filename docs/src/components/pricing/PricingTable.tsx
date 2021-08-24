@@ -18,7 +18,7 @@ const planInfo = {
     color: 'green',
     title: 'Community',
     description:
-      'Get started with the most popular and industry-standard UI library to build interfaces with React.',
+      'Get started with the industry-standard UI library for building React user interfaces.',
   },
   pro: {
     color: 'blue',
@@ -67,7 +67,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
         </Typography>
         <Box sx={{ width: 5 }} />
         <Typography variant="body2" color="text.secondary">
-          / free forever!
+          – free forever.
         </Typography>
       </Box>
     );
@@ -95,7 +95,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
         </Typography>
         <Box sx={{ width: 5 }} />
         <Typography variant="body2" color="text.secondary">
-          / per developer.
+          / developer.
         </Typography>
       </Box>
     );
@@ -107,7 +107,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
       </Typography>
       <Box sx={{ width: 5 }} />
       <Typography variant="body2" color="text.secondary">
-        / per developer.
+        / developer.
       </Typography>
     </Box>
   );

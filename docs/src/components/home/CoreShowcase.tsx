@@ -227,7 +227,7 @@ export default function CoreShowcase() {
               sx={{ opacity: 0.5 }}
             >
               <TouchAppRounded sx={{ fontSize: 14, verticalAlign: 'text-bottom' }} /> Hover the
-              component for highlighting the code.
+              component to highlight the code.
             </Typography>
           </Box>
           <ThemeProvider theme={theme}>
