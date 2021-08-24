@@ -55,7 +55,7 @@ const Root = styled('div')(({ theme }) => ({
   '& h1': {
     ...theme.typography.h3,
     fontSize: 40,
-    fontFamily: ['"PlusJakartaSans"'].join(','),
+    fontFamily: ['"PlusJakartaSans-ExtraBold"'].join(','),
     margin: '16px 0',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.primary[900],
     fontWeight: 800,
