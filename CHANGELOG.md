@@ -57,10 +57,10 @@ Big thanks to the 24 contributors who made this release possible. Here are some 
   The change was done in order to better reflect what they are, not what we think they will be used for.
 
   ```diff
-  <SomeSlotComponent
+   <SomeSlotComponent
   -  styleProps={propsAndState}
   +  ownerState={propsAndState}
-  />
+   />
   ```
 
 #### Changes
