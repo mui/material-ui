@@ -199,6 +199,7 @@
     "**/@types/react-dom": "^17.0.9",
     "**/cross-fetch": "^3.0.5",
     "**/react-is": "^17.0.2",
+    "eslint-plugin-react-hooks": "4.2.1-alpha-bc4e75112-20210815",
     "react-is": "18.0.0-alpha-bc4e75112-20210815",
     "react-test-renderer": "18.0.0-alpha-bc4e75112-20210815",
     "scheduler": "0.21.0-alpha-bc4e75112-20210815",

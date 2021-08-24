@@ -7398,10 +7398,10 @@ eslint-plugin-mocha@^9.0.0:
     eslint-utils "^3.0.0"
     ramda "^0.27.1"
 
-eslint-plugin-react-hooks@^4.0.7:
-  version "4.2.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.2.0.tgz#8c229c268d468956334c943bb45fc860280f5556"
-  integrity sha512-623WEiZJqxR7VdxFCKLI6d6LLpwJkGPYKODnkH3D7WpOG5KM8yWueBd8TLsNAetEJNF5iJmolaAKO3F8yzyVBQ==
+eslint-plugin-react-hooks@4.2.1-alpha-bc4e75112-20210815, eslint-plugin-react-hooks@^4.0.7:
+  version "4.2.1-alpha-bc4e75112-20210815"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.2.1-alpha-bc4e75112-20210815.tgz#c1cba9489748f4f381c403e1359ff5fae5f47df0"
+  integrity sha512-PFl9xtPB5jQi6kFDRZ/GCv7nLIrygvj8SYwE1lfJNNoSPulqs9ovZQVqomcyr5p/M88NKfNMXHxSM8dFCp1iag==
 
 eslint-plugin-react@^7.20.3:
   version "7.24.0"

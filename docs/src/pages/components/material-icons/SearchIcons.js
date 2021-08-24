@@ -24,20 +24,9 @@ import Radio from '@material-ui/core/Radio';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import * as mui from '@material-ui/icons';
-import synonyms from './synonyms';
-
-if (process.env.NODE_ENV !== 'production') {
-  Object.keys(synonyms).forEach((icon) => {
-    if (!mui[icon]) {
-      console.warn(`The icon ${icon} no longer exists. Remove it from \`synonyms\``);
-    }
-  });
-}
-
 // If you're working on the logic, uncomment these imports
 // and comment `import * as mui`, and the `if` block above.
 // It will be much faster than working with all of the icons.
-
 // import Menu from '@material-ui/icons/Menu';
 // import MenuOutlined from '@material-ui/icons/MenuOutlined';
 // import MenuRounded from '@material-ui/icons/MenuRounded';
@@ -58,6 +47,7 @@ if (process.env.NODE_ENV !== 'production') {
 // import DeleteForeverRounded from '@material-ui/icons/DeleteForeverRounded';
 // import DeleteForeverTwoTone from '@material-ui/icons/DeleteForeverTwoTone';
 // import DeleteForeverSharp from '@material-ui/icons/DeleteForeverSharp';
+import synonyms from './synonyms';
 
 // const mui = {
 //   ExitToApp,
@@ -81,6 +71,14 @@ if (process.env.NODE_ENV !== 'production') {
 //   DeleteForeverTwoTone,
 //   DeleteForeverSharp,
 // };
+
+if (process.env.NODE_ENV !== 'production') {
+  Object.keys(synonyms).forEach((icon) => {
+    if (!mui[icon]) {
+      console.warn(`The icon ${icon} no longer exists. Remove it from \`synonyms\``);
+    }
+  });
+}
 
 function selectNode(node) {
   // Clear any current selection
@@ -151,29 +149,25 @@ const Icons = React.memo(function Icons(props) {
     selectNode(event.currentTarget);
   };
 
-  return (
-    <div>
-      {icons.map((icon) => {
-        /* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */
-        return (
-          <StyledIcon
-            key={icon.importName}
-            onClick={handleIconClick(icon)}
-            className="markdown-body"
-          >
-            <StyledSvgIcon
-              component={icon.Component}
-              tabIndex={-1}
-              onClick={handleOpenClick}
-              title={icon.importName}
-            />
-            <p onClick={handleLabelClick}>{icon.importName}</p>
-            {/* eslint-enable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */}
-          </StyledIcon>
-        );
-      })}
-    </div>
-  );
+  return icons.map((icon) => {
+    /* eslint-disable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */
+    return (
+      <StyledIcon
+        key={icon.importName}
+        onClick={handleIconClick(icon)}
+        className="markdown-body"
+      >
+        <StyledSvgIcon
+          component={icon.Component}
+          tabIndex={-1}
+          onClick={handleOpenClick}
+          title={icon.importName}
+        />
+        <p onClick={handleLabelClick}>{icon.importName}</p>
+        {/* eslint-enable jsx-a11y/no-noninteractive-element-interactions, jsx-a11y/click-events-have-key-events */}
+      </StyledIcon>
+    );
+  });
 });
 
 Icons.propTypes = {
@@ -462,6 +456,7 @@ export default function SearchIcons() {
     setOpen(false);
   }, []);
 
+  const [pending, startTransition] = React.useTransition();
   const handleChange = React.useMemo(
     () =>
       debounce((value) => {
@@ -469,7 +464,9 @@ export default function SearchIcons() {
           setKeys(null);
         } else {
           searchIndex.searchAsync(value).then((results) => {
-            setKeys(results);
+            startTransition(() => {
+              setKeys(results);
+            });
 
             // Keep track of the no results so we can add synonyms in the future.
             if (value.length >= 4 && results.length === 0) {
@@ -513,7 +510,9 @@ export default function SearchIcons() {
                     control={
                       <Radio
                         checked={theme === currentTheme}
-                        onChange={() => setTheme(currentTheme)}
+                        onChange={() =>
+                          startTransition(() => setTheme(currentTheme))
+                        }
                         value={currentTheme}
                       />
                     }
@@ -540,7 +539,9 @@ export default function SearchIcons() {
           />
         </Paper>
         <Typography sx={{ mb: 1 }}>{`${icons.length} matching results`}</Typography>
-        <Icons icons={icons} handleOpenClick={handleOpenClick} />
+        <div style={{ filter: `blur(${pending ? '1px' : 0})` }}>
+          <Icons icons={icons} handleOpenClick={handleOpenClick} />
+        </div>
       </Grid>
       <DialogDetails
         open={open}
