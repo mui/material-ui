@@ -13,6 +13,7 @@ import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/Mate
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
 import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
+import KeyboardArrowUpRounded from '@material-ui/icons/KeyboardArrowUpRounded';
 import TouchAppRounded from '@material-ui/icons/TouchAppRounded';
 
 const darkDesignTokens = getDesignTokens('dark');
@@ -297,7 +298,8 @@ export default function CoreShowcase() {
               <Box
                 sx={{
                   position: 'absolute',
-                  bottom: hidden || !customized ? -120 : 0,
+                  bottom: 0,
+                  transform: hidden || !customized ? 'translateY(100%)' : 'translateY(0)',
                   transition: '0.3s',
                   left: 0,
                   right: 0,
@@ -314,21 +316,29 @@ export default function CoreShowcase() {
                   borderRadius: '0 0 10px 10px',
                 }}
               >
-                <Tooltip title="Hide">
+                <Tooltip title={hidden ? 'Show' : 'Hide'} placement="left">
                   <IconButton
-                    onClick={() => setHidden(true)}
+                    disabled={!customized}
+                    onClick={() => setHidden((bool) => !bool)}
                     sx={{
                       position: 'absolute',
+                      zIndex: 2,
+                      transition: '0.3s',
                       right: 10,
-                      top: 0,
-                      transform: 'translateY(-50%)',
+                      bottom: '100%',
+                      transform: hidden || !customized ? 'translateY(-10px)' : 'translateY(50%)',
+                      opacity: customized ? 1 : 0,
                       bgcolor: 'primaryDark.500',
                       '&:hover, &.Mui-focused': {
                         bgcolor: 'primaryDark.600',
                       },
                     }}
                   >
-                    <KeyboardArrowDownRounded />
+                    {hidden ? (
+                      <KeyboardArrowUpRounded fontSize="small" />
+                    ) : (
+                      <KeyboardArrowDownRounded fontSize="small" />
+                    )}
                   </IconButton>
                 </Tooltip>
                 <Typography fontWeight="bold" color="#fff" variant="body2">
