@@ -109,7 +109,12 @@ const systemFont = [
 export const getDesignTokens = (mode: 'light' | 'dark') =>
   ({
     palette: {
-      primary: blue,
+      primary: {
+        ...blue,
+        ...(mode === 'dark' && {
+          main: blue[400],
+        }),
+      },
       divider: mode === 'dark' ? blueDark[400] : grey[200],
       primaryDark: blueDark,
       mode,
@@ -285,6 +290,10 @@ export function getThemedComponents(theme: Theme) {
             ...theme.typography.body1,
             lineHeight: 21 / 16,
             fontWeight: 700,
+          },
+          containedPrimary: {
+            backgroundColor: theme.palette.primary[500],
+            color: '#fff',
           },
         },
         variants: [
