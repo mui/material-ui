@@ -17,19 +17,12 @@ Big thanks to the 24 contributors who made this release possible. Here are some 
 
 - <!-- 36 --> [core] Update `.browserslistrc` file (#27788) @DanailH
 
-The targets of the default bundle have changed.
+  The targets of the default bundle have changed:
 
-It now supports the following minimum versions:
-
-<!-- #stable-snapshot -->
-
-- Chrome 90 (up from 84)
-- Edge 91 (up from 85)
-- Safari 14 (macOS) (up from 13.1) and 12.4 (iOS) (up from 12.2)
-- Opera 76 (up from 70)
-- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
-
-If you need to support IE 11, check out our [legacy bundle](https://next.material-ui.com/guides/minimizing-bundle-size/#legacy-bundle).
+  - Chrome 90 (up from 84)
+  - Edge 91 (up from 85)
+  - Safari 14 (macOS) (up from 13.1) and 12.4 (iOS) (up from 12.2)
+  - Opera 76 (up from 70)
 
 #### Changes
 
