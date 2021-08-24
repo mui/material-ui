@@ -6,6 +6,8 @@ export interface SwitchUnstyledClasses {
   root: string;
   /** Class applied to the internal input element */
   input: string;
+  /** Class applied to the track element */
+  track: string;
   /** Class applied to the thumb element */
   thumb: string;
   /** Class applied to the root element if the switch is checked */
@@ -27,6 +29,7 @@ export function getSwitchUnstyledUtilityClass(slot: string): string {
 const switchUnstyledClasses: SwitchUnstyledClasses = generateUtilityClasses('MuiSwitch', [
   'root',
   'input',
+  'track',
   'thumb',
   'checked',
   'disabled',
