@@ -7,7 +7,7 @@ import {
   handleBreakpoints,
   unstable_resolveBreakpointValues as resolveBreakpointValues,
 } from '@material-ui/system';
-import { deepmerge } from '@material-ui/utils';
+import { deepmerge, unstable_useForkRef as useForkRef } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { styled, useThemeProps } from '@material-ui/core/styles';
 import { getMasonryUtilityClass } from './masonryClasses';
@@ -80,18 +80,43 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     name: 'MuiMasonry',
   });
 
+  const masonryRef = React.useRef();
   const { children, className, component = 'div', columns = 4, spacing = 1, ...other } = props;
   const ownerState = { ...props, spacing, columns };
   const classes = useUtilityClasses(ownerState);
 
   const contextValue = React.useMemo(() => ({ spacing }), [spacing]);
+  let didWarn = false;
+  React.useEffect(() => {
+    // scroller always appears when masonry's height goes beyond 2,000px on Chrome
+    const handleScroll = () => {
+      if (masonryRef.current.clientHeight === 1998 && !didWarn) {
+        console.warn(
+          [
+            'Material-UI: The Masonry can have the maximum height of 2,000px on Chrome browser.',
+            'Items that go beyond this height fail to be rendered on Chrome browser.',
+            'You can find more in this open issue: https://github.com/mui-org/material-ui/issues/27934',
+          ].join('\n'),
+        );
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        didWarn = true;
+      }
+    };
+    const container = masonryRef.current;
+    container.addEventListener('scroll', handleScroll);
+    return () => {
+      container.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const handleRef = useForkRef(ref, masonryRef);
   return (
     <MasonryContext.Provider value={contextValue}>
       <MasonryRoot
         as={component}
         className={clsx(classes.root, className)}
-        ref={ref}
+        ref={handleRef}
         ownerState={ownerState}
         {...other}
       >
