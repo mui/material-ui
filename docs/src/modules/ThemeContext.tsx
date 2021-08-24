@@ -68,9 +68,7 @@ const ThemeProvider = ({ children }: React.PropsWithChildren<{}>) => {
       <GlobalStyles
         styles={{
           html: {
-            a: {
-              textDecoration: 'unset',
-            },
+            fontSize: theme.typography.htmlFontSize, // for Safari (>=14.1.2)
           },
         }}
       />
