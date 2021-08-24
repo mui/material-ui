@@ -881,7 +881,7 @@ export default function PricingTable({
               color="primary"
               sx={{
                 transform: dataGridCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)',
-                transition: '0.7s',
+                transition: '0.3s',
               }}
             />
           }
