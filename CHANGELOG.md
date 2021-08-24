@@ -6,7 +6,7 @@
 
 _Aug 24, 2021_
 
-Big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
+Big thanks to the 26 contributors who made this release possible. Here are some highlights ✨:
 
 - 🐛 Fixed lots of regressions and bugs to get us closer to the [v5 stable release milestone](https://github.com/mui-org/material-ui/milestone/44)
 - 📚 Improved the docs and the migration guide for upgrading to v5
@@ -38,6 +38,7 @@ Big thanks to the 24 contributors who made this release possible. Here are some 
 - <!-- 42 --> [AppBar] Fix transparency issue on dark mode (#27281) @will-amaral
 - <!-- 29 --> Revert "[BottomNavigation] onClick does not fire if tapped while scrolling (#22524)" (#27690) @eps1lon
 - <!-- 68 --> [Autocomplete] Add verbose warning for defaultValue (#27925) @vedadeepta
+- <!-- 78 --> [Badge] Add missing classes to exported class object (#27943) @pvdstel
 - <!-- 41 --> [ButtonGroup] Allow `size` customization via module augmentation (#27834) @aaronlademann-wf
 - <!-- 67 --> [InputBase] Preserve host state  when changing `rows` from undefined to defined (#27683) @eps1lon
 - <!-- 18 --> [InputLabel] Apply `asterisk` class when `required` (#27738) @alexile
@@ -90,6 +91,10 @@ Big thanks to the 24 contributors who made this release possible. Here are some 
 
 ### Docs
 
+- <!-- 77 --> [docs] Redesign on markdown page (#27860) @mnajdova
+- <!-- 76 --> [docs] Split changelog into current and old (#27942) @eps1lon
+- <!-- 74 --> [docs] Migration, emphasize theme structure change (#27935) @oliviertassinari
+- <!-- 72 --> [docs] Fix missing `href` for AppDrawerNavItems (#27936) @eps1lon
 - <!-- 71 --> [docs] Pass window of iframe to framed demos (#27924) @eps1lon
 - <!-- 69 --> [docs] Simplify Select Chip demo styling (#27864) @LorenzHenk
 - <!-- 60 --> [docs] Move from Redux to React Context (#27828) @eps1lon
@@ -131,16 +136,18 @@ Big thanks to the 24 contributors who made this release possible. Here are some 
 - <!-- 49 --> [website] Honest a11y value proposition (#27826) @eps1lon
 - <!-- 35 --> [website] Improve homepage rebranding (#27663) @siriwatknp
 - <!-- 24 --> [website] A few polish (#27741) @oliviertassinari
+- <!-- 73 --> [website] Polish homepage (#27930) @oliviertassinari
 
 ### Core
 
 - <!-- 64 --> [core] Fix various flip: false regressions (#27920) @mnajdova
 - <!-- 31 --> [core] Fix typo in code comment (#27818) @hamidreza-nateghi
 - <!-- 19 --> [core] Fix typos in repository (#27785) @JEONGJIHUN
+- <!-- 75 --> [test] Current behavior when disabling components variants (#27376) @noviicee
 - <!-- 30 --> [tests Improve test for checking if classes is forwarded to any DOM element (#27815) @mnajdova
 - <!-- 34 --> [tests] Replace legacy `describeConformance` with `describeConformanceV5` (#27817) @mnajdova
 
-All contributors of this release in alphabetical order: @aaronlademann-wf, @alexile, @atorenherrinton, @benny0642, @DanailH, @eps1lon, @hamidreza-nateghi, @hbjORbj, @jakeanq, @JEONGJIHUN, @LorenzHenk, @mekouar-mehdi, @michaldudak, @mnajdova, @nguyenyou, @nolastemgarden, @nomanoff, @oliviertassinari, @qiweiii, @siriwatknp, @surajkumar016, @teachhay, @vedadeepta, @will-amaral
+All contributors of this release in alphabetical order: @aaronlademann-wf, @alexile, @atorenherrinton, @benny0642, @DanailH, @eps1lon, @hamidreza-nateghi, @hbjORbj, @jakeanq, @JEONGJIHUN, @LorenzHenk, @mekouar-mehdi, @michaldudak, @mnajdova, @nguyenyou, @nolastemgarden, @nomanoff, @noviicee, @oliviertassinari, @pvdstel, @qiweiii, @siriwatknp, @surajkumar016, @teachhay, @vedadeepta, @will-amaral
 
 ## 5.0.0-beta.4
 
