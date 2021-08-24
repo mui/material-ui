@@ -10,6 +10,7 @@ import {
 import { unstable_useForkRef as useForkRef } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { styled, useThemeProps } from '@material-ui/core/styles';
+import useTheme from 'packages/material-ui-system/src/useTheme';
 import { getMasonryItemUtilityClass } from './masonryItemClasses';
 import MasonryContext from '../Masonry/MasonryContext';
 
@@ -46,26 +47,29 @@ export const style = ({ ownerState, theme }) => {
     boxSizing: 'inherit',
   };
 
-  const base = {};
-  Object.keys(theme.breakpoints.values).forEach((breakpoint) => {
-    if (ownerState.spacing[breakpoint] != null) {
-      base[breakpoint] = true;
-    }
-  });
-  const spacingValues = resolveBreakpointValues({ values: ownerState.spacing, base });
-  const transformer = createUnarySpacing(theme);
-  const styleFromPropValue = (propValue) => {
-    const gap = ownerState.height ? Number(getValue(transformer, propValue).replace('px', '')) : 0;
-    // For lazy-loaded images to load properly, masonry item should take up space greater than 1px.
-    // Taking into account a row gap of 2px, rowSpan should at least be 2.
-    const rowSpan = ownerState.height ? Math.ceil((ownerState.height + gap) / 2) : 2;
-    return {
-      gridRowEnd: `span ${rowSpan}`,
-      paddingBottom: gap === 0 ? 0 : gap - 2,
+  if (Array.isArray(ownerState.spacing) || typeof ownerState.spacing === 'object') {
+    const base = {};
+    Object.keys(theme.breakpoints.values).forEach((breakpoint) => {
+      if (ownerState.spacing[breakpoint] != null) {
+        base[breakpoint] = true;
+      }
+    });
+    const spacingValues = resolveBreakpointValues({ values: ownerState.spacing, base });
+    const transformer = createUnarySpacing(theme);
+    const styleFromPropValue = (propValue) => {
+      const gap = ownerState.height
+        ? Number(getValue(transformer, propValue).replace('px', ''))
+        : 0;
+      // For lazy-loaded images to load properly, masonry item should take up space greater than 1px.
+      // Taking into account a row gap of 2px, rowSpan should at least be 2.
+      const rowSpan = ownerState.height ? Math.ceil((ownerState.height + gap) / 2) : 2;
+      return {
+        gridRowEnd: `span ${rowSpan}`,
+        paddingBottom: gap === 0 ? 0 : gap - 2,
+      };
     };
-  };
-  styles = { ...styles, ...handleBreakpoints({ theme }, spacingValues, styleFromPropValue) };
-
+    styles = { ...styles, ...handleBreakpoints({ theme }, spacingValues, styleFromPropValue) };
+  }
   return styles;
 };
 
@@ -121,12 +125,23 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
   }, [isSSR]);
 
   const handleRef = useForkRef(ref, masonryItemRef);
+
+  const theme = useTheme();
+  const styleProp = {};
+  if (!Array.isArray(spacing) && typeof spacing !== 'object') {
+    const gap = height ? Number(theme.spacing(spacing).replace('px', '')) : 0;
+    const rowSpan = height ? Math.ceil((height + gap) / 2) : 2;
+    styleProp.gridRowEnd = `span ${rowSpan}`;
+    styleProp.paddingBottom = gap === 0 ? 0 : gap - 2;
+  }
+
   return (
     <MasonryItemRoot
       as={component}
       className={clsx(classes.root, className)}
       ref={handleRef}
       ownerState={ownerState}
+      style={styleProp}
       {...other}
     >
       {React.Children.only(children)}

@@ -85,8 +85,6 @@ describe('<MasonryItem />', () => {
           theme,
         }),
       ).to.deep.equal({
-        gridRowEnd: `span ${Math.ceil((100 + Number(theme.spacing(1).replace('px', ''))) / 2)}`,
-        paddingBottom: Number(theme.spacing(1).replace('px', '')) - 2,
         width: '100%',
         [`& > *`]: {
           width: '100%',
