@@ -194,6 +194,9 @@ const StyledChip = styled(Chip)(({ theme }) => ({
   '&.MuiChip-filled': {
     border: '1px solid',
     borderColor: theme.palette.primary[300],
+    backgroundColor:
+      theme.palette.mode === 'dark' ? theme.palette.primary[700] : theme.palette.primary[500],
+    color: '#fff',
   },
 }));
 
@@ -413,17 +416,17 @@ export default function MaterialDesignComponents() {
       >
         <StyledChip
           color="primary"
-          label="Custom Theme"
-          size="small"
-          variant={customized ? 'filled' : 'outlined'}
-          onClick={() => setCustomized(true)}
-        />
-        <StyledChip
-          color="primary"
           label="Material Design"
           size="small"
           variant={!customized ? 'filled' : 'outlined'}
           onClick={() => setCustomized(false)}
+        />
+        <StyledChip
+          color="primary"
+          label="Custom Theme"
+          size="small"
+          variant={customized ? 'filled' : 'outlined'}
+          onClick={() => setCustomized(true)}
           sx={{ ml: 1 }}
         />
       </Box>
