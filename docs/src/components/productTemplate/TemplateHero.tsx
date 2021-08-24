@@ -42,7 +42,6 @@ export default function TemplateHero() {
           </Typography>
           <Button
             component={Link}
-            passHref
             noLinkStyle
             href={ROUTES.storePopular}
             size="large"
