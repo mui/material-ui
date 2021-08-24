@@ -13,7 +13,7 @@ import capitalize from '../utils/capitalize';
 
 export const badgeClasses = {
   ...badgeUnstyledClasses,
-  ...generateUtilityClasses('MuiBadge', ['colorError', 'colorPrimary', 'colorSecondary']),
+  ...generateUtilityClasses('MuiBadge', ['colorError', 'colorInfo', 'colorPrimary', 'colorSecondary', 'colorSuccess', 'colorWarning']),
 };
 
 const RADIUS_STANDARD = 10;
