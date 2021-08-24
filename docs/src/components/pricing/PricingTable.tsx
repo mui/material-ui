@@ -869,7 +869,7 @@ export default function PricingTable({
       <RowHead startIcon={<IconImage name="product-advanced" width="28" height="28" />}>
         Advanced
       </RowHead>
-      <Box sx={{ position: 'relative', minHeight: 48, ...gridSx }}>
+      <Box sx={{ position: 'relative', minHeight: 58, ...gridSx }}>
         <Cell sx={{ display: { xs: 'none', md: 'block' } }} />
         <Cell sx={{ display: { xs: 'none', md: 'block' } }} />
         <Cell highlighted sx={{ display: { xs: 'none', md: 'block' } }} />
