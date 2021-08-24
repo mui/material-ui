@@ -44,7 +44,6 @@ If you need to support IE 11, check out our [legacy bundle](https://next.materia
 - <!-- 28 --> [Stack] Match the customization standard (#27777) @oliviertassinari
 - <!-- 70 --> [SvgIcon] Apply custom color if defined in the theme (#27923) @eps1lon
 - <!-- 65 --> [Switch] Add optional `track` slot to SwitchUnstyled (#27916) @michaldudak
-- <!-- 25 --> [Timeline] Fix color="inherit" on TimelineDot (#27794) @mnajdova
 - <!-- 52 --> [Tooltip] Fix broken arrow position in rtl (#27868) @mnajdova
 - <!-- 02 --> [transitions] Allow to run Slide into a custom container (#26623) @benny0642
 
@@ -86,6 +85,7 @@ The change was done in order to better reflect what they are, not what we think 
 
 - <!-- 54 --> [DatePicker] Fix click-away logic requiring second click in some cases (#24877) @eps1lon
 - <!-- 05 --> [lab] Use the public API for module augmentation (#27735) @oliviertassinari
+- <!-- 25 --> [Timeline] Fix color="inherit" on TimelineDot (#27794) @mnajdova
 
 ### Docs
 
