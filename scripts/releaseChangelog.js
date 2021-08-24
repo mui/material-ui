@@ -122,7 +122,7 @@ async function main(argv) {
   const changes = commitsItems.map((commitsItem) => {
     // Helps changelog author keeping track of order when grouping commits under headings.
     const dateSortMarker = `<!-- ${(
-      commitsItemsByDateDesc.length - commitsItemsByDateDesc.indexOf(commitsItem)
+      commitsItems.length - commitsItems.indexOf(commitsItem)
     )
       .toString()
       // Padding them with a zero means we can just feed a list into online sorting tools like https://www.online-utility.org/text/sort.jsp
