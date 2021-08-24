@@ -176,11 +176,7 @@ const ColumnHead = ({
   return (
     <Box sx={{ pl: nested ? 2.5 : 1, pr: 1, alignSelf: 'center', justifySelf: 'flex-start' }}>
       {tooltip ? (
-        <Tooltip
-          title={tooltip}
-          placement="right"
-          describeChild
-        >
+        <Tooltip title={tooltip} placement="right" describeChild>
           {text}
         </Tooltip>
       ) : (

@@ -591,7 +591,7 @@ function AboutContent() {
               We honor some no-longer-active core team members who have made valuable contributions
               in the past. They advise us from time-to-time.
             </Typography>
-            <Box sx={{ pt: 2}}>
+            <Box sx={{ pt: 2 }}>
               <Grid container spacing={2}>
                 {emeriti.map((profile) => (
                   <Grid key={profile.name} item xs={12} sm={6} md={3}>
@@ -609,7 +609,10 @@ function AboutContent() {
         </Typography>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={4}>
-            <Widget icon={<ForumRoundedIcon fontSize="small" color="primary"/>} title="Give feedback">
+            <Widget
+              icon={<ForumRoundedIcon fontSize="small" color="primary" />}
+              title="Give feedback"
+            >
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                 Tell us what and where we can improve or share your happy moments with us! You can
                 also up or downvote any page on our documentation. <br />
@@ -627,7 +630,10 @@ function AboutContent() {
             </Widget>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Widget icon={<PeopleRoundedIcon fontSize="small" color="primary"/>} title="Join the community">
+            <Widget
+              icon={<PeopleRoundedIcon fontSize="small" color="primary" />}
+              title="Join the community"
+            >
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                 Become a member of a huge community of developers supporting MUI. You can:
               </Typography>
@@ -676,11 +682,14 @@ function AboutContent() {
             </Widget>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Widget icon={<LocalAtmRoundedIcon fontSize="small" color="primary" />} title="Suport us financially">
+            <Widget
+              icon={<LocalAtmRoundedIcon fontSize="small" color="primary" />}
+              title="Suport us financially"
+            >
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                If you use MUI in a commercial project and would like to support its
-                continued development by becoming a Sponsor, or in a side or hobby project and would
-                like to become a Backer, you can do so through OpenCollective.
+                If you use MUI in a commercial project and would like to support its continued
+                development by becoming a Sponsor, or in a side or hobby project and would like to
+                become a Backer, you can do so through OpenCollective.
                 <br />
                 <br />
                 All funds donated are managed transparently, and Sponsors receive recognition in the

@@ -23,16 +23,16 @@ export default function WhatToExpect() {
           <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <LocalOfferOutlinedIcon fontSize="small" color="primary" />
-                  <Typography
-                    fontWeight="bold"
-                    component="h3"
-                    color="text.primary"
-                    variant="body2"
-                    sx={{ ml: 1 }}
-                  >
-                    Volumn discount
-                  </Typography>
-              </Box>
+              <Typography
+                fontWeight="bold"
+                component="h3"
+                color="text.primary"
+                variant="body2"
+                sx={{ ml: 1 }}
+              >
+                Volumn discount
+              </Typography>
+            </Box>
             <Typography variant="body2" color="text.secondary">
               The licenses are on a per-developer basis. We offer the following tiered discounts
               from list prices when purchasing more than one license for your development team:
@@ -47,17 +47,17 @@ export default function WhatToExpect() {
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                <AllInclusiveOutlinedIcon fontSize="small" color="primary" />
-                    <Typography
-                      fontWeight="bold"
-                      component="h3"
-                      color="text.primary"
-                      variant="body2"
-                      sx={{ ml: 1 }}
-                    >
-                      Perpetual license
-                    </Typography>
-                </Box>
+              <AllInclusiveOutlinedIcon fontSize="small" color="primary" />
+              <Typography
+                fontWeight="bold"
+                component="h3"
+                color="text.primary"
+                variant="body2"
+                sx={{ ml: 1 }}
+              >
+                Perpetual license
+              </Typography>
+            </Box>
             <Typography variant="body2" color="text.secondary">
               With your purchase you are granted a license to use a version of the product in
               perpetuity. There are no further charges unless you choose to renew support and
@@ -70,18 +70,18 @@ export default function WhatToExpect() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                <ReplayRoundedIcon fontSize="small" color="primary" />
-                    <Typography
-                      fontWeight="bold"
-                      component="h3"
-                      color="text.primary"
-                      variant="body2"
-                      sx={{ ml: 1 }}
-                    >
-                      Renewal
-                    </Typography>
-                </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              <ReplayRoundedIcon fontSize="small" color="primary" />
+              <Typography
+                fontWeight="bold"
+                component="h3"
+                color="text.primary"
+                variant="body2"
+                sx={{ ml: 1 }}
+              >
+                Renewal
+              </Typography>
+            </Box>
             <Typography variant="body2" color="text.secondary">
               If you wish to be able to update to the latest versions and access support after the
               end of your support period, you have the option to renew support and maintenance.
@@ -91,18 +91,18 @@ export default function WhatToExpect() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-                <HelpOutlineOutlinedIcon fontSize="small" color="primary" />
-                    <Typography
-                      fontWeight="bold"
-                      component="h3"
-                      color="text.primary"
-                      variant="body2"
-                      sx={{ ml: 1 }}
-                    >
-                      Support and maintenance
-                    </Typography>
-                </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              <HelpOutlineOutlinedIcon fontSize="small" color="primary" />
+              <Typography
+                fontWeight="bold"
+                component="h3"
+                color="text.primary"
+                variant="body2"
+                sx={{ ml: 1 }}
+              >
+                Support and maintenance
+              </Typography>
+            </Box>
             <Typography variant="body2" color="text.secondary">
               With your purchase you receive support and maintenance for one year. After this time,
               you can continue to use your licensed versions in perpetuity, but will no longer be

@@ -70,7 +70,7 @@ export default function MaterialDesignDemo(props: CardProps) {
         >
           <Typography fontWeight={600}>Michael Scott</Typography>
           <Typography2 variant="body2" color="text.secondary">
-            <LocationOn sx={{color: grey[500]}} />
+            <LocationOn sx={{ color: grey[500] }} />
             Scranton, PA
           </Typography2>
         </Stack>
