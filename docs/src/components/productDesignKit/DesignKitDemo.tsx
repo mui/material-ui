@@ -65,7 +65,7 @@ export default function TemplateDemo() {
                 />
               </Highlighter>
             ))}
-            <More component={Link} href={ROUTES.storeDesign} passHref noLinkStyle />
+            <More component={Link} href={ROUTES.storeDesign} noLinkStyle />
           </Group>
         </Grid>
         <Grid item xs={12} md={6}>
@@ -177,7 +177,6 @@ export default function TemplateDemo() {
               </Box>
               <Button
                 component={Link}
-                passHref
                 noLinkStyle
                 href={ROUTES.storeDesign}
                 endIcon={<LaunchRounded sx={{ '&&': { fontSize: 16 } }} />}
