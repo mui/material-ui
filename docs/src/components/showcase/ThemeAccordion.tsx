@@ -157,8 +157,8 @@ export default function ThemeAccordion() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography variant="body2" color="text.secondary">
-              Tag line headings (h1, h2) use `Plus Jakarta Sans`, whereas the rest of the elements
-              use `IBM Plex Sans`.
+              Tag line headings (h1, h2) use Plus Jakarta Sans, whereas the rest of the elements
+              use IBM Plex Sans.
             </Typography>
           </AccordionDetails>
         </Accordion>

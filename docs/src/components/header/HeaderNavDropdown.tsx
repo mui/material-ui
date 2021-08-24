@@ -77,7 +77,11 @@ export default function HeaderNavDropdown() {
         onClick={() => setOpen((value) => !value)}
         sx={{
           position: 'relative',
+          mr: 1,
           borderRadius: 1,
+          border: '1px solid',
+          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'transparent'),
+          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200'),
           '&:focus': {
             boxShadow: (theme) =>
               `0 0 0 1px ${
@@ -139,7 +143,8 @@ export default function HeaderNavDropdown() {
                 </Anchor>
                 <Collapse in={productsOpen}>
                   <UList
-                    sx={{ borderLeft: '1px solid', borderColor: 'grey.100', pl: 1, pb: 1, ml: 1 }}
+                    sx={{ borderLeft: '1px solid', borderColor: (theme) =>
+                    theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100', pl: 1, pb: 1, ml: 1 }}
                   >
                     {PRODUCTS.map((item) => (
                       <li key={item.name}>

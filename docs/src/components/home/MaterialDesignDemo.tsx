@@ -11,6 +11,7 @@ import MuiStack from '@material-ui/core/Stack';
 import MuiEdit from '@material-ui/icons/Edit';
 import MuiLocationOn from '@material-ui/icons/LocationOn';
 import { withPointer } from 'docs/src/components/home/ElementPointer';
+import { grey } from '@material-ui/core/colors';
 
 export const componentCode = `<Card>
   <Box sx={{ p: 2, display: 'flex' }}>
@@ -18,7 +19,7 @@ export const componentCode = `<Card>
     <Stack spacing={0.5}>
       <Typography fontWeight={600}>Michael Scott</Typography>
       <Typography variant="body2" color="text.secondary">
-        <LocationOn /> Scranton, PA
+      <LocationOn sx={{color: grey[500]}} /> Scranton, PA
       </Typography>
     </Stack>
     <IconButton>
@@ -69,7 +70,7 @@ export default function MaterialDesignDemo(props: CardProps) {
         >
           <Typography fontWeight={600}>Michael Scott</Typography>
           <Typography2 variant="body2" color="text.secondary">
-            <LocationOn />
+            <LocationOn sx={{color: grey[500]}} />
             Scranton, PA
           </Typography2>
         </Stack>
