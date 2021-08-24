@@ -61,7 +61,7 @@ export const style = ({ ownerState, theme }) => {
     const rowSpan = ownerState.height ? Math.ceil((ownerState.height + gap) / 2) : 2;
     return {
       gridRowEnd: `span ${rowSpan}`,
-      paddingBottom: gap - 2,
+      paddingBottom: gap === 0 ? 0 : gap - 2,
     };
   };
   styles = { ...styles, ...handleBreakpoints({ theme }, spacingValues, styleFromPropValue) };
