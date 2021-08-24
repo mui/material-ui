@@ -5606,4 +5606,4 @@ Big thanks to the 33 contributors who made this release possible. Here are some 
 
 ## Older versions
 
-Changes before 5.x are listed in our [changelog for older versions](https://github.com/mui-org/material-ui/blob/master/CHANGELOG.md).
+Changes before 5.x are listed in our [changelog for older versions](https://github.com/mui-org/material-ui/blob/HEAD/CHANGELOG.old.md).
