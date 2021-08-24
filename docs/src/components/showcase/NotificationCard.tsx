@@ -148,7 +148,7 @@ export default function NotificationCard() {
       <Card variant="outlined" sx={{ display: 'flex', p: 1.5, maxWidth: 283 }}>
         <Avatar
           imgProps={{ 'aria-labelledby': 'demo-notification-card-messenger-name' }}
-          src="/static/images/avatar/3.jpg"
+          src="/static/images/avatar/3-sm.jpeg"
           variant="rounded"
         />
         <Box sx={{ ml: 1, flexBasis: 180, flexGrow: 1, minWidth: '0px' }}>

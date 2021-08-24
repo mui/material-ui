@@ -8,9 +8,11 @@ import ContentCopyRounded from '@material-ui/icons/ContentCopyRounded';
 import CheckRounded from '@material-ui/icons/CheckRounded';
 import ROUTES from 'docs/src/route';
 
-export default function GetStartedButtons(props: BoxProps) {
+export default function GetStartedButtons({
+  installation = 'npm install @mui/core-material',
+  ...props
+}: { installation?: string } & BoxProps) {
   const [copied, setCopied] = React.useState(false);
-  const installation = 'npm install @mui/core-material';
   const handleCopy = () => {
     setCopied(true);
     copy(installation).then(() => {

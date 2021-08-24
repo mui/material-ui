@@ -93,7 +93,12 @@ const Root = styled('div')(({ theme }) => ({
     color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[900],
   },
   '& ul': {
-    paddingLeft: 30,
+    ...(theme.direction === 'rtl' && {
+      paddingRight: 30,
+    }),
+    ...(theme.direction !== 'rtl' && {
+      paddingLeft: 30,
+    }),
   },
   '& h1, & h2, & h3, & h4': {
     '& code': {

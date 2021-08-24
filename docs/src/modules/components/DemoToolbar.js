@@ -46,10 +46,14 @@ const Root = styled('div')(({ theme }) => ({
   display: 'none',
   [theme.breakpoints.up('sm')]: {
     display: 'flex',
-    flip: false,
     top: 0,
-    right: theme.spacing(1),
     height: theme.spacing(8),
+    ...(theme.direction === 'rtl' && {
+      left: theme.spacing(1),
+    }),
+    ...(theme.direction !== 'rtl' && {
+      right: theme.spacing(1),
+    }),
   },
   justifyContent: 'space-between',
   alignItems: 'center',

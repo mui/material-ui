@@ -12,16 +12,6 @@ import {
   TableHeaderProps,
 } from 'react-virtualized';
 
-declare module '@material-ui/core/styles' {
-  // Augment the BaseCSSProperties so that we can control jss-rtl
-  interface BaseCSSProperties {
-    /*
-     * Used to control if the rule-set should be affected by rtl transformation
-     */
-    flip?: boolean;
-  }
-}
-
 const styles = (theme: Theme) =>
   ({
     flexContainer: {
@@ -33,8 +23,12 @@ const styles = (theme: Theme) =>
       // temporary right-to-left patch, waiting for
       // https://github.com/bvaughn/react-virtualized/issues/454
       '& .ReactVirtualized__Table__headerRow': {
-        flip: false,
-        paddingRight: theme.direction === 'rtl' ? '0 !important' : undefined,
+        ...(theme.direction === 'rtl' && {
+          paddingLeft: '0 !important',
+        }),
+        ...(theme.direction !== 'rtl' && {
+          paddingRight: undefined,
+        }),
       },
     },
     tableRow: {

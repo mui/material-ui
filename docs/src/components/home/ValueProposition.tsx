@@ -5,33 +5,33 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import GradientText from 'docs/src/components/typography/GradientText';
-import SvgPalette from 'docs/src/icons/SvgPalette';
-import SvgPencil from 'docs/src/icons/SvgPencil';
-import SvgDocs from 'docs/src/icons/SvgDocs';
-import SvgEye from 'docs/src/icons/SvgEye';
+import Palette from '@material-ui/icons/Palette';
+import Edit from '@material-ui/icons/Edit';
+import LibraryBooks from '@material-ui/icons/LibraryBooks';
+import AccessibilityNewRounded from '@material-ui/icons/AccessibilityNewRounded';
 
 const content = [
   {
-    icon: <SvgPalette />,
+    icon: <Palette fontSize="small" color="primary" />,
     title: 'Beautifully designed',
     description:
       "You can start your projects with Google's Material Design or leverage our carefully designed theming capabilities.",
   },
   {
-    icon: <SvgPencil />,
+    icon: <Edit fontSize="small" color="primary" />,
     title: 'Easily customized',
     description:
       'Enjoy the power of our components without sacrificing the styles you want. Tweak how your components render down to the very last class.',
   },
   {
-    icon: <SvgDocs />,
+    icon: <LibraryBooks fontSize="small" color="primary" />,
     title: 'Superb documentation',
     description:
       "Our docs were shaped throughout the years with the help and experience of our trusted 2,000+ open-source contributors. It's all there!",
   },
   {
-    icon: <SvgEye />,
-    title: 'Accessibility in mind',
+    icon: <AccessibilityNewRounded fontSize="small" color="primary" />,
+    title: 'Accessible in mind',
     description:
       'We care about making it great for everyone. We improve accessibility for all of our components constantly, helping you to reach the largest audience possible!',
   },
