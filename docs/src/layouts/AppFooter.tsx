@@ -14,6 +14,7 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import ROUTES from 'docs/src/route';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 export default function AppFooter() {
   return (
@@ -54,26 +55,30 @@ export default function AppFooter() {
             display: 'grid',
             gridTemplateColumns: { xs: '1fr 1fr', md: '1fr 1fr 1fr 1fr' },
             gridAutoColumns: '1fr',
-            gap: '10px 20px',
+            gap: 2,
           }}
         >
-          <Box sx={{ display: 'flex', flexDirection: 'column'}}>
-            <Typography fontWeight="bold" variant="body2">
-              Products
-            </Typography>
-            <NextLink href={ROUTES.productCore} passHref>
-              <Link>Core</Link>
-            </NextLink>
-            <NextLink href={ROUTES.productAdvanced} passHref>
-              <Link>Advanced X</Link>
-            </NextLink>
-            <NextLink href={ROUTES.productTemplates} passHref>
-              <Link>Templates</Link>
-            </NextLink>
-            <NextLink href={ROUTES.productDesignKits} passHref>
-              <Link>Design Kits</Link>
-            </NextLink>
-          </Box>
+          {FEATURE_TOGGLE.nav_products ? (
+            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+              <Typography fontWeight="bold" variant="body2">
+                Products
+              </Typography>
+              <NextLink href={ROUTES.productCore} passHref>
+                <Link>Core</Link>
+              </NextLink>
+              <NextLink href={ROUTES.productAdvanced} passHref>
+                <Link>Advanced X</Link>
+              </NextLink>
+              <NextLink href={ROUTES.productTemplates} passHref>
+                <Link>Templates</Link>
+              </NextLink>
+              <NextLink href={ROUTES.productDesignKits} passHref>
+                <Link>Design Kits</Link>
+              </NextLink>
+            </Box>
+          ) : (
+            <Box sx={{ display: { xs: 'none', md: 'block' } }} />
+          )}
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="bold" variant="body2">
               Resources

@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
 import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
 import ROUTES from 'docs/src/route';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 const Anchor = styled('a')<{ component?: React.ElementType }>(({ theme }) => ({
   ...theme.typography.body2,
@@ -133,47 +134,49 @@ export default function HeaderNavDropdown() {
             }}
           >
             <UList>
-              <li>
-                <Anchor
-                  as="button"
-                  onClick={() => setProductsOpen((bool) => !bool)}
-                  sx={{ justifyContent: 'space-between' }}
-                >
-                  Products
-                  <KeyboardArrowDownRounded
-                    color="primary"
-                    sx={{
-                      transition: '0.3s',
-                      transform: productsOpen ? 'rotate(-180deg)' : 'rotate(0)',
-                    }}
-                  />
-                </Anchor>
-                <Collapse in={productsOpen}>
-                  <UList
-                    sx={{
-                      borderLeft: '1px solid',
-                      borderColor: (theme) =>
-                        theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
-                      pl: 1,
-                      pb: 1,
-                      ml: 1,
-                    }}
+              {FEATURE_TOGGLE.nav_products && (
+                <li>
+                  <Anchor
+                    as="button"
+                    onClick={() => setProductsOpen((bool) => !bool)}
+                    sx={{ justifyContent: 'space-between' }}
                   >
-                    {PRODUCTS.map((item) => (
-                      <li key={item.name}>
-                        <NextLink href={item.href} passHref>
-                          <Anchor sx={{ flexDirection: 'column', alignItems: 'initial' }}>
-                            <div>{item.name}</div>
-                            <Typography variant="body2" color="text.secondary">
-                              {item.description}
-                            </Typography>
-                          </Anchor>
-                        </NextLink>
-                      </li>
-                    ))}
-                  </UList>
-                </Collapse>
-              </li>
+                    Products
+                    <KeyboardArrowDownRounded
+                      color="primary"
+                      sx={{
+                        transition: '0.3s',
+                        transform: productsOpen ? 'rotate(-180deg)' : 'rotate(0)',
+                      }}
+                    />
+                  </Anchor>
+                  <Collapse in={productsOpen}>
+                    <UList
+                      sx={{
+                        borderLeft: '1px solid',
+                        borderColor: (theme) =>
+                          theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
+                        pl: 1,
+                        pb: 1,
+                        ml: 1,
+                      }}
+                    >
+                      {PRODUCTS.map((item) => (
+                        <li key={item.name}>
+                          <NextLink href={item.href} passHref>
+                            <Anchor sx={{ flexDirection: 'column', alignItems: 'initial' }}>
+                              <div>{item.name}</div>
+                              <Typography variant="body2" color="text.secondary">
+                                {item.description}
+                              </Typography>
+                            </Anchor>
+                          </NextLink>
+                        </li>
+                      ))}
+                    </UList>
+                  </Collapse>
+                </li>
+              )}
               <li>
                 <NextLink href={ROUTES.documentation} passHref>
                   <Anchor>Docs</Anchor>

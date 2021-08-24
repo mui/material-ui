@@ -9,6 +9,7 @@ import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
 import IconImage from 'docs/src/components/icon/IconImage';
 import ROUTES from 'docs/src/route';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 const Navigation = styled('nav')(({ theme }) => ({
   '& ul': {
@@ -187,114 +188,116 @@ export default function HeaderNavBar() {
   return (
     <Navigation>
       <ul ref={navRef} role="menubar" onKeyDown={handleLeftRightArrow}>
-        <li
-          role="none"
-          onMouseOver={() => setSubMenuOpen(true)}
-          onFocus={() => setSubMenuOpen(true)}
-          onMouseOut={() => setSubMenuOpen(false)}
-          onBlur={() => setSubMenuOpen(false)}
-        >
-          <div
-            role="menuitem"
-            tabIndex={0}
-            id="products-menu"
-            ref={productsMenuRef}
-            aria-haspopup
-            aria-expanded={subMenuOpen ? 'true' : 'false'}
-            onKeyDown={handleKeyDown}
+        {FEATURE_TOGGLE.nav_products && (
+          <li
+            role="none"
+            onMouseOver={() => setSubMenuOpen(true)}
+            onFocus={() => setSubMenuOpen(true)}
+            onMouseOut={() => setSubMenuOpen(false)}
+            onBlur={() => setSubMenuOpen(false)}
           >
-            Products
-          </div>
-          <Popper
-            open={subMenuOpen}
-            anchorEl={productsMenuRef.current}
-            transition
-            placement="bottom-start"
-            style={{ zIndex: 1200 }}
-          >
-            {({ TransitionProps }) => (
-              <Fade {...TransitionProps} timeout={350}>
-                <Paper
-                  variant="outlined"
-                  sx={{
-                    minWidth: 498,
-                    overflow: 'hidden',
-                    bgcolor: (theme) =>
-                      theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
-                    boxShadow: (theme) =>
-                      `0px 4px 20px ${
-                        theme.palette.mode === 'dark'
-                          ? alpha(theme.palette.background.paper, 0.72)
-                          : 'rgba(170, 180, 190, 0.3)'
-                      }`,
-                    '& ul': {
-                      margin: 0,
-                      padding: 0,
-                      listStyle: 'none',
-                    },
-                    '& li:not(:last-of-type)': {
-                      borderBottom: '1px solid',
-                      borderColor: (theme) =>
-                        theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.100',
-                    },
-                    '& a': { textDecoration: 'none' },
-                  }}
-                >
-                  <ul role="menu">
-                    <li role="none">
-                      <ProductSubMenu
-                        id={PRODUCT_IDS[0]}
-                        role="menuitem"
-                        href={ROUTES.productCore}
-                        icon={<IconImage name="product-core" />}
-                        name="Core"
-                        description="Ready to use, forever free, out-of-the-box, components."
-                        onKeyDown={handleKeyDown}
-                      />
-                    </li>
-                    <li role="none">
-                      <ProductSubMenu
-                        id={PRODUCT_IDS[1]}
-                        role="menuitem"
-                        href={ROUTES.productAdvanced}
-                        icon={<IconImage name="product-advanced" />}
-                        name={
-                          <Box component="span" display="inline-flex" alignItems="center">
-                            Advanced&nbsp;
-                          </Box>
-                        }
-                        description="Powerful components for your complex apps."
-                        onKeyDown={handleKeyDown}
-                      />
-                    </li>
-                    <li role="none">
-                      <ProductSubMenu
-                        id={PRODUCT_IDS[2]}
-                        role="menuitem"
-                        href={ROUTES.productTemplates}
-                        icon={<IconImage name="product-templates" />}
-                        name="Templates"
-                        description="Get a fully built template for you application."
-                        onKeyDown={handleKeyDown}
-                      />
-                    </li>
-                    <li role="none">
-                      <ProductSubMenu
-                        id={PRODUCT_IDS[3]}
-                        role="menuitem"
-                        href={ROUTES.productDesignKits}
-                        icon={<IconImage name="product-designkits" />}
-                        name="Design Kits"
-                        description="Pick your favorite design tool to enjoy."
-                        onKeyDown={handleKeyDown}
-                      />
-                    </li>
-                  </ul>
-                </Paper>
-              </Fade>
-            )}
-          </Popper>
-        </li>
+            <div
+              role="menuitem"
+              tabIndex={0}
+              id="products-menu"
+              ref={productsMenuRef}
+              aria-haspopup
+              aria-expanded={subMenuOpen ? 'true' : 'false'}
+              onKeyDown={handleKeyDown}
+            >
+              Products
+            </div>
+            <Popper
+              open={subMenuOpen}
+              anchorEl={productsMenuRef.current}
+              transition
+              placement="bottom-start"
+              style={{ zIndex: 1200 }}
+            >
+              {({ TransitionProps }) => (
+                <Fade {...TransitionProps} timeout={350}>
+                  <Paper
+                    variant="outlined"
+                    sx={{
+                      minWidth: 498,
+                      overflow: 'hidden',
+                      bgcolor: (theme) =>
+                        theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
+                      boxShadow: (theme) =>
+                        `0px 4px 20px ${
+                          theme.palette.mode === 'dark'
+                            ? alpha(theme.palette.background.paper, 0.72)
+                            : 'rgba(170, 180, 190, 0.3)'
+                        }`,
+                      '& ul': {
+                        margin: 0,
+                        padding: 0,
+                        listStyle: 'none',
+                      },
+                      '& li:not(:last-of-type)': {
+                        borderBottom: '1px solid',
+                        borderColor: (theme) =>
+                          theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.100',
+                      },
+                      '& a': { textDecoration: 'none' },
+                    }}
+                  >
+                    <ul role="menu">
+                      <li role="none">
+                        <ProductSubMenu
+                          id={PRODUCT_IDS[0]}
+                          role="menuitem"
+                          href={ROUTES.productCore}
+                          icon={<IconImage name="product-core" />}
+                          name="Core"
+                          description="Ready to use, forever free, out-of-the-box, components."
+                          onKeyDown={handleKeyDown}
+                        />
+                      </li>
+                      <li role="none">
+                        <ProductSubMenu
+                          id={PRODUCT_IDS[1]}
+                          role="menuitem"
+                          href={ROUTES.productAdvanced}
+                          icon={<IconImage name="product-advanced" />}
+                          name={
+                            <Box component="span" display="inline-flex" alignItems="center">
+                              Advanced&nbsp;
+                            </Box>
+                          }
+                          description="Powerful components for your complex apps."
+                          onKeyDown={handleKeyDown}
+                        />
+                      </li>
+                      <li role="none">
+                        <ProductSubMenu
+                          id={PRODUCT_IDS[2]}
+                          role="menuitem"
+                          href={ROUTES.productTemplates}
+                          icon={<IconImage name="product-templates" />}
+                          name="Templates"
+                          description="Get a fully built template for you application."
+                          onKeyDown={handleKeyDown}
+                        />
+                      </li>
+                      <li role="none">
+                        <ProductSubMenu
+                          id={PRODUCT_IDS[3]}
+                          role="menuitem"
+                          href={ROUTES.productDesignKits}
+                          icon={<IconImage name="product-designkits" />}
+                          name="Design Kits"
+                          description="Pick your favorite design tool to enjoy."
+                          onKeyDown={handleKeyDown}
+                        />
+                      </li>
+                    </ul>
+                  </Paper>
+                </Fade>
+              )}
+            </Popper>
+          </li>
+        )}
         <li role="none">
           <NextLink href={ROUTES.documentation}>
             <a role="menuitem">Docs</a>
