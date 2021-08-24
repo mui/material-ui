@@ -82,6 +82,7 @@ export default function SponsorCard({
       variant="outlined"
       sx={{
         height: '100%',
+        textDecorationLine: 'none',
         display: 'flex',
         flexDirection: 'column',
         '& svg': {
@@ -112,7 +113,7 @@ export default function SponsorCard({
           </Typography>
         </Box>
       </Box>
-      {bottom}
+      {/* {bottom} */}
     </Paper>
   );
 }
