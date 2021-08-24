@@ -8,7 +8,7 @@ import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 
 interface NextLinkComposedProps
   extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
-    Omit<NextLinkProps, 'href' | 'as'> {
+    Omit<NextLinkProps, 'href' | 'as' | 'passHref'> {
   to: NextLinkProps['href'];
   linkAs?: NextLinkProps['as'];
   href?: NextLinkProps['href'];
@@ -16,10 +16,9 @@ interface NextLinkComposedProps
 
 const Anchor = styled('a')({ cursor: 'pointer' });
 
-export const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComposedProps>(
+const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComposedProps>(
   function NextLinkComposed(props, ref) {
-    const { to, linkAs, href, replace, scroll, passHref, shallow, prefetch, locale, ...other } =
-      props;
+    const { to, linkAs, href, replace, scroll, shallow, prefetch, locale, ...other } = props;
 
     return (
       <NextLink
@@ -29,7 +28,7 @@ export const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComp
         replace={replace}
         scroll={scroll}
         shallow={shallow}
-        passHref={passHref}
+        passHref
         locale={locale}
       >
         <Anchor ref={ref} {...other} />
