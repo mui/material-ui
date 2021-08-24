@@ -49,7 +49,9 @@ function resolveBreakpointValues({ values, base }) {
 function generateGrid(globalStyles, theme, breakpoint, ownerState) {
   const size = ownerState[breakpoint];
 
-  if (!size) return;
+  if (!size) {
+    return;
+  }
 
   let styles = {};
 

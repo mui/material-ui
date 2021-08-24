@@ -12,7 +12,9 @@ describe('Global', () => {
   const render = createClientRender();
 
   it('should provide default theme', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) this.skip();
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
 
     const { container } = render(
       <div>
@@ -27,7 +29,9 @@ describe('Global', () => {
   });
 
   it('should respect context theme if available', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) this.skip();
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
 
     const { container } = render(
       <ThemeProvider theme={customTheme}>

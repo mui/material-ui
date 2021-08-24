@@ -121,7 +121,9 @@ export default function HeaderNavBar() {
         setSubMenuOpen(true);
       }
       setSubMenuIndex((prevValue) => {
-        if (prevValue === null) return 0;
+        if (prevValue === null) {
+          return 0;
+        }
         if (prevValue === PRODUCT_IDS.length - 1) {
           return 0;
         }
@@ -131,7 +133,9 @@ export default function HeaderNavBar() {
     if (event.key === 'ArrowUp') {
       event.preventDefault();
       setSubMenuIndex((prevValue) => {
-        if (prevValue === null) return 0;
+        if (prevValue === null) {
+          return 0;
+        }
         if (prevValue === 0) {
           return PRODUCT_IDS.length - 1;
         }

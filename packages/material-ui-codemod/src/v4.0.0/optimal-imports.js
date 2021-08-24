@@ -31,14 +31,20 @@ export default function transformer(fileInfo, api, options) {
   };
 
   root.find(j.ImportDeclaration).forEach((path) => {
-    if (path.value.importKind && path.value.importKind !== 'value') return;
+    if (path.value.importKind && path.value.importKind !== 'value') {
+      return;
+    }
     const importPath = path.value.source.value.replace(/(index)?(\.js)?$/, '');
     const match = importPath.match(importRegExp);
-    if (!match) return;
+    if (!match) {
+      return;
+    }
 
     const subpath = match[1].replace(/\/$/, '');
 
-    if (/^(internal)/.test(subpath)) return;
+    if (/^(internal)/.test(subpath)) {
+      return;
+    }
     const targetImportPath = `${targetModule}/${subpath}`;
 
     const whitelist = getJSExports(
@@ -48,10 +54,16 @@ export default function transformer(fileInfo, api, options) {
     );
 
     path.node.specifiers.forEach((specifier, index) => {
-      if (!path.node.specifiers.length) return;
+      if (!path.node.specifiers.length) {
+        return;
+      }
 
-      if (specifier.importKind && specifier.importKind !== 'value') return;
-      if (specifier.type === 'ImportNamespaceSpecifier') return;
+      if (specifier.importKind && specifier.importKind !== 'value') {
+        return;
+      }
+      if (specifier.type === 'ImportNamespaceSpecifier') {
+        return;
+      }
       const localName = specifier.local.name;
       switch (specifier.type) {
         case 'ImportNamespaceSpecifier':
@@ -69,7 +81,9 @@ export default function transformer(fileInfo, api, options) {
           break;
         }
         case 'ImportSpecifier':
-          if (!whitelist.has(specifier.imported.name)) return;
+          if (!whitelist.has(specifier.imported.name)) {
+            return;
+          }
           addSpecifier(targetImportPath, specifier);
           path.get('specifiers', index).prune();
           break;
@@ -78,7 +92,9 @@ export default function transformer(fileInfo, api, options) {
       }
     });
 
-    if (!path.node.specifiers.length) path.prune();
+    if (!path.node.specifiers.length) {
+      path.prune();
+    }
   });
 
   addImports(
