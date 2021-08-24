@@ -58,9 +58,9 @@ const PickersArrowSwitcherSpacer = styled('div', { skipSx: true })<{
 }));
 
 const PickersArrowSwitcherButton = styled(IconButton, { skipSx: true })<{
-  styleProps: ArrowSwitcherProps;
-}>(({ styleProps }) => ({
-  ...(styleProps.hidden && {
+  ownerState: ArrowSwitcherProps;
+}>(({ ownerState }) => ({
+  ...(ownerState.hidden && {
     visibility: 'hidden',
   }),
 }));
