@@ -49,7 +49,7 @@ const Plan = React.forwardRef<
           component={Link}
           noLinkStyle
           passHref
-          href={plan === 'community' ? '/getting-started/usage/' : '/components/data-grid/'}
+          href={plan === 'community' ? '/getting-started/usage/' : '/store/items/material-ui-pro/'}
           endIcon={<KeyboardArrowRightRounded />}
           sx={{ py: 1 }}
         >
