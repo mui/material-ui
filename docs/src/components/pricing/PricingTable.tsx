@@ -810,6 +810,7 @@ export default function PricingTable({
             <PlanPrice plan="community" />
             <Button
               component={Link}
+              passHref
               noLinkStyle
               href="/getting-started/usage/"
               variant="outlined"
@@ -832,8 +833,9 @@ export default function PricingTable({
             <Button
               component={Link}
               noLinkStyle
+              passHref
               href="/components/data-grid/"
-              variant="outlined"
+              variant="contained"
               fullWidth
               endIcon={<KeyboardArrowRightRounded />}
               sx={{ py: 1, mt: 'auto' }}

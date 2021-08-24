@@ -44,10 +44,11 @@ const Plan = React.forwardRef<
         </Button>
       ) : (
         <Button
-          variant="outlined"
+          variant={plan === 'pro' ? 'contained' : 'outlined'}
           fullWidth
           component={Link}
           noLinkStyle
+          passHref
           href={plan === 'community' ? '/getting-started/usage/' : '/components/data-grid/'}
           endIcon={<KeyboardArrowRightRounded />}
           sx={{ py: 1 }}
