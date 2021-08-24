@@ -200,7 +200,6 @@ export default function DesignKits() {
       sx={{
         mx: { xs: -2, sm: -3, md: 0 },
         my: { md: -8 },
-        perspective: '1000px',
         height: { xs: 300, sm: 360, md: 'calc(100% + 160px)' },
         overflow: 'hidden',
         position: 'relative',
@@ -230,7 +229,15 @@ export default function DesignKits() {
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[900]
                 : theme.palette.grey[50]
-            } 0%, transparent 30%, transparent 70%, ${
+            } 0%, ${
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primaryDark[900], 0)
+                : 'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
+            } 30%, ${
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primaryDark[900], 0)
+                : 'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
+            } 70%, ${
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[900]
                 : theme.palette.grey[50]
@@ -251,7 +258,11 @@ export default function DesignKits() {
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[900]
                 : theme.palette.grey[50]
-            }, transparent)`,
+            }, ${
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primaryDark[900], 0)
+                : 'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
+            })`,
           zIndex: 2,
         }}
       />
@@ -264,15 +275,24 @@ export default function DesignKits() {
       />
       <Box
         sx={{
-          left: '36%',
-          position: 'absolute',
-          display: 'flex',
-          transform: 'translateX(-40%) rotateZ(30deg) rotateX(8deg) rotateY(-8deg)',
-          transformOrigin: 'center center',
+          // need perspective on this wrapper to work in Safari
+          position: 'relative',
+          height: '100%',
+          perspective: '1000px',
         }}
       >
-        <DesignKitImagesSet1 />
-        <DesignKitImagesSet2 sx={{ ml: { xs: 2, sm: 4, md: 8 } }} />
+        <Box
+          sx={{
+            left: '36%',
+            position: 'absolute',
+            display: 'flex',
+            transform: 'translateX(-40%) rotateZ(30deg) rotateX(8deg) rotateY(-8deg)',
+            transformOrigin: 'center center',
+          }}
+        >
+          <DesignKitImagesSet1 />
+          <DesignKitImagesSet2 sx={{ ml: { xs: 2, sm: 4, md: 8 } }} />
+        </Box>
       </Box>
     </Box>
   );
