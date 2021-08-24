@@ -17,6 +17,20 @@ Big thanks to the 24 contributors who made this release possible. Here are some 
 
 - <!-- 36 --> [core] Update `.browserslistrc` file (#27788) @DanailH
 
+The targets of the default bundle have changed.
+
+It now supports the following minimum versions:
+
+<!-- #stable-snapshot -->
+
+- Chrome 90 (up from 84)
+- Edge 91 (up from 85)
+- Safari 14 (macOS) (up from 13.1) and 12.4 (iOS) (up from 12.2)
+- Opera 76 (up from 70)
+- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
+
+If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
+
 #### Changes
 
 - <!-- 42 --> [AppBar] Fix transparency issue on dark mode (#27281) @will-amaral
@@ -30,7 +44,6 @@ Big thanks to the 24 contributors who made this release possible. Here are some 
 - <!-- 28 --> [Stack] Match the customization standard (#27777) @oliviertassinari
 - <!-- 70 --> [SvgIcon] Apply custom color if defined in the theme (#27923) @eps1lon
 - <!-- 65 --> [Switch] Add optional `track` slot to SwitchUnstyled (#27916) @michaldudak
-- <!-- 19 --> [theme] Add missed variants in Components interface (#27453) @nikitabobers
 - <!-- 25 --> [Timeline] Fix color="inherit" on TimelineDot (#27794) @mnajdova
 - <!-- 52 --> [Tooltip] Fix broken arrow position in rtl (#27868) @mnajdova
 - <!-- 02 --> [transitions] Allow to run Slide into a custom container (#26623) @benny0642
@@ -198,6 +211,7 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
 - <!-- 15 --> [test] Add current behavior for a11y name vs visible name for PickersDay (#27661) @eps1lon
 - <!-- 17 --> [test] Dodge double logging in dev mode (#27653) @oliviertassinari
 - <!-- 14 --> [test] Enable skipped test fixed by upstream React fix (#27615) @eps1lon
+- <!-- 19 --> [theme] Add missed variants in Components interface (#27453) @nikitabobers
 
 All contributors of this release in alphabetical order: @aaronlademann-wf, @abriginets, @DouglasPds, @eps1lon, @garronej, @kylegach, @LorenzHenk, @m4theushw, @matiasherranz, @mnajdova, @nikitabobers, @oliviertassinari, @R-Bower, @ryancogswell, @siriwatknp, @tonextone, @umidbekk, @vedadeepta, @YassinHussein
 
