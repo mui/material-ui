@@ -124,7 +124,14 @@ export default function HeaderNavDropdown() {
             bgcolor: 'background.paper',
           }}
         >
-          <Box sx={{ p: 2.5, bgcolor: 'background.paper' }}>
+          <Box
+            sx={{
+              p: 2.5,
+              bgcolor: 'background.paper',
+              maxHeight: 'calc(100vh - 56px)',
+              overflow: 'auto',
+            }}
+          >
             <UList>
               <li>
                 <Anchor
@@ -143,8 +150,14 @@ export default function HeaderNavDropdown() {
                 </Anchor>
                 <Collapse in={productsOpen}>
                   <UList
-                    sx={{ borderLeft: '1px solid', borderColor: (theme) =>
-                    theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100', pl: 1, pb: 1, ml: 1 }}
+                    sx={{
+                      borderLeft: '1px solid',
+                      borderColor: (theme) =>
+                        theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
+                      pl: 1,
+                      pb: 1,
+                      ml: 1,
+                    }}
                   >
                     {PRODUCTS.map((item) => (
                       <li key={item.name}>
