@@ -24,12 +24,20 @@ Big thanks to the 24 contributors who made this release possible. Here are some 
   - Safari 14 (macOS) (up from 13.1) and 12.4 (iOS) (up from 12.2)
   - Opera 76 (up from 70)
 
+- <!-- 43 --> [Autocomplete] Rename Value type to AutocompleteValue (#27804) @michaldudak
+
+  The `useAutocomplete` hook used a type called `Value`. It was a very generic name for a type specific to the `Autocomplete` control, so it was removed to `AutocompleteValue`.
+
+  ```diff
+  -import { Value } from '@material-ui/core/useAutocomplete';
+  +import { AutocompleteValue } from '@material-ui/core/useAutocomplete';
+  ```
+
 #### Changes
 
 - <!-- 42 --> [AppBar] Fix transparency issue on dark mode (#27281) @will-amaral
 - <!-- 29 --> Revert "[BottomNavigation] onClick does not fire if tapped while scrolling (#22524)" (#27690) @eps1lon
 - <!-- 68 --> [Autocomplete] Add verbose warning for defaultValue (#27925) @vedadeepta
-- <!-- 43 --> [Autocomplete] Rename Value type to AutocompleteValue (#27804) @michaldudak
 - <!-- 41 --> [ButtonGroup] Allow `size` customization via module augmentation (#27834) @aaronlademann-wf
 - <!-- 67 --> [InputBase] Preserve host state  when changing `rows` from undefined to defined (#27683) @eps1lon
 - <!-- 18 --> [InputLabel] Apply `asterisk` class when `required` (#27738) @alexile
@@ -46,14 +54,14 @@ Big thanks to the 24 contributors who made this release possible. Here are some 
 
 - <!-- 40 --> [system] Rename `styleProps` to `ownerState` (#27830) @mnajdova
 
-The change was done in order to better reflect what they are, not what we think they will be used for.
+  The change was done in order to better reflect what they are, not what we think they will be used for.
 
-```diff
- <SomeSlotComponent
--  styleProps={propsAndState}
-+  ownerState={propsAndState}
- />
-```
+  ```diff
+  <SomeSlotComponent
+  -  styleProps={propsAndState}
+  +  ownerState={propsAndState}
+  />
+  ```
 
 #### Changes
 
