@@ -1342,6 +1342,19 @@ describe('<Autocomplete />', () => {
         );
       }).toErrorDev('The Autocomplete expects the `value` prop to be an array or undefined.');
     });
+
+    it('warn if the type of the defaultValue is wrong', () => {
+      expect(() => {
+        PropTypes.checkPropTypes(
+          Autocomplete.propTypes,
+          { multiple: true, defaultValue: 'wrong-string', options: [], renderInput: () => null },
+          'prop',
+          'Autocomplete',
+        );
+      }).toErrorDev(
+        'The Autocomplete expects the `defaultValue` prop to be an array when `multiple={true}` or undefined.',
+      );
+    });
   });
 
   describe('prop: options', () => {
