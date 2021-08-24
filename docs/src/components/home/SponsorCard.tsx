@@ -81,17 +81,10 @@ export default function SponsorCard({
       rel="sponsored noopener"
       variant="outlined"
       sx={{
+        textDecoration: 'unset',
         height: '100%',
         display: 'flex',
         flexDirection: 'column',
-        '& svg': {
-          transition: '0.2s',
-        },
-        '&:hover': {
-          '& svg': {
-            transform: 'translateY(-3px)',
-          },
-        },
       }}
     >
       <Box sx={{ p: 2, display: 'flex', mb: 'auto' }}>
