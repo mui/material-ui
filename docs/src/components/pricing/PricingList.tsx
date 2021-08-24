@@ -52,7 +52,7 @@ const Plan = React.forwardRef<
           endIcon={<KeyboardArrowRightRounded />}
           sx={{ py: 1 }}
         >
-          Get started
+          {plan === 'pro' ? 'Buy now' : 'Get started'}
         </Button>
       )}
       {benefits &&

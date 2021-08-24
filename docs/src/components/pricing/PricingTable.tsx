@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { alpha, Theme } from '@material-ui/core/styles';
+import { alpha } from '@material-ui/core/styles';
 import Box, { BoxProps } from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
@@ -76,7 +76,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
     return (
       <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
         <Typography
-          variant="caption"
+          variant="body2"
           fontWeight="bold"
           color="error.500"
           sx={{
@@ -259,6 +259,7 @@ const Cell = ({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
             ? alpha(theme.palette.primaryDark[900], 0.5)
             : alpha(theme.palette.grey[50], 0.5),
       }),
+      ...props.sx,
     }}
   />
 );
@@ -867,9 +868,9 @@ export default function PricingTable({
         Advanced
       </RowHead>
       <Box sx={{ position: 'relative', minHeight: 48, ...gridSx }}>
-        <Cell />
-        <Cell />
-        <Cell highlighted />
+        <Cell sx={{ display: { xs: 'none', md: 'block' } }} />
+        <Cell sx={{ display: { xs: 'none', md: 'block' } }} />
+        <Cell highlighted sx={{ display: { xs: 'none', md: 'block' } }} />
         <Button
           fullWidth
           onClick={() => setDataGridCollapsed((bool) => !bool)}
