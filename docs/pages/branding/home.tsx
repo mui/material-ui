@@ -1,11 +1,12 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
 import ThemeProvider from 'docs/src/modules/ThemeContext';
+import Box from '@material-ui/core/Box';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import Hero from 'docs/src/components/home/Hero';
-import ReferencesCore from 'docs/src/components/home/ReferencesCore';
+import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
 import ProductSuite from 'docs/src/components/home/ProductSuite';
 import ValueProposition from 'docs/src/components/home/ValueProposition';
 import DesignSystemComponents from 'docs/src/components/home/DesignSystemComponents';
@@ -25,11 +26,14 @@ export default function Home() {
       <AppHeader />
       <main>
         <Hero />
-        <ReferencesCore />
+        <Box
+          sx={{ height: 10 }} // to prevent loading asset below the fold
+        />
+        <References companies={CORE_CUSTOMERS} />
         <ProductSuite />
         <ValueProposition />
         <DesignSystemComponents />
-        <Testimonials mode="dark" />
+        <Testimonials />
         <Sponsors />
         <HeroEnd />
         <Divider />

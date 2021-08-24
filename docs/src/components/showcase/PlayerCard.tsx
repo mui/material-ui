@@ -108,7 +108,7 @@ export default function PlayerCard() {
         <img
           alt="Beside Myself album cover"
           style={{ borderRadius: 5 }}
-          src="/static/images/cards/basement-beside-myself.jpg"
+          src="/static/images/cards/basement-beside-myself.jpeg"
           width="124"
           height="124"
         />

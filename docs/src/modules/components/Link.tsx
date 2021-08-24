@@ -1,8 +1,8 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
 import * as React from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
+import { styled } from '@material-ui/core/styles';
 import MuiLink, { LinkProps as MuiLinkProps } from '@material-ui/core/Link';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 
@@ -13,6 +13,8 @@ interface NextLinkComposedProps
   linkAs?: NextLinkProps['as'];
   href?: NextLinkProps['href'];
 }
+
+const Anchor = styled('a')({ cursor: 'pointer' });
 
 export const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComposedProps>(
   function NextLinkComposed(props, ref) {
@@ -30,7 +32,7 @@ export const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComp
         passHref={passHref}
         locale={locale}
       >
-        <a ref={ref} {...other} />
+        <Anchor ref={ref} {...other} />
       </NextLink>
     );
   },
@@ -69,7 +71,7 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
 
   if (isExternal) {
     if (noLinkStyle) {
-      return <a className={className} href={href as string} ref={ref as any} {...other} />;
+      return <Anchor className={className} href={href as string} ref={ref as any} {...other} />;
     }
 
     return <MuiLink className={className} href={href as string} ref={ref} {...other} />;

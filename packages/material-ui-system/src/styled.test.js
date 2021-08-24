@@ -308,6 +308,30 @@ describe('styled', () => {
       });
     });
 
+    it('variants should not be skipped if overridesResolver is not defined', () => {
+      const TestSlot = styled('div', {
+        shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
+        name: 'MuiTest',
+        slot: 'Root',
+      })`
+        width: 800px;
+        height: 300px;
+      `;
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <TestSlot variant="rect" size="large">
+            Test
+          </TestSlot>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '400px',
+        height: '400px',
+      });
+    });
+
     it('variants should respect skipVariantsResolver if defined', () => {
       const TestSlot = styled('div', {
         shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',

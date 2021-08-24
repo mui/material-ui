@@ -13541,6 +13541,11 @@ react-imask@^6.1.0:
     imask "^6.1.0"
     prop-types "^15.7.2"
 
+react-intersection-observer@^8.32.0:
+  version "8.32.0"
+  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-8.32.0.tgz#47249332e12e8bb99ed35a10bb7dd10446445a7b"
+  integrity sha512-RlC6FvS3MFShxTn4FHAy904bVjX5Nn4/eTjUkurW0fHK+M/fyQdXuyCy9+L7yjA+YMGogzzSJNc7M4UtfSKvtw==
+
 react-is@16.10.2, react-is@17.0.2, react-is@18.0.0-alpha-bc4e75112-20210815, react-is@^16.12.0, "react-is@^16.12.0 || ^17.0.0", react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^17.0.1, react-is@^17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-17.0.2.tgz#e691d4a8e9c789365655539ab372762b0efb54f0"
@@ -14508,7 +14513,7 @@ saxes@^5.0.1:
   dependencies:
     xmlchars "^2.2.0"
 
-scheduler@0.21.0-alpha-bc4e75112-20210815:
+scheduler@0.21.0-alpha-bc4e75112-20210815, scheduler@^0.20.2:
   version "0.21.0-alpha-bc4e75112-20210815"
   resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.21.0-alpha-bc4e75112-20210815.tgz#c82252adec7180fdb66198ce4c854af023fed91b"
   integrity sha512-99Kog0sidakC8lwNGlZYG53pUHLspFqNj7jCvJJA2xkxbKZtVVIH2JTqA1iXT+Ipw3YODEN2bNa9DSJbMF0fMg==

@@ -67,9 +67,9 @@ export default function MultipleSelectChip() {
           onChange={handleChange}
           input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
           renderValue={(selected) => (
-            <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
               {selected.map((value) => (
-                <Chip key={value} label={value} sx={{ m: '2px' }} />
+                <Chip key={value} label={value} />
               ))}
             </Box>
           )}

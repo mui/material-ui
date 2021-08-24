@@ -18,6 +18,18 @@ declare module '@material-ui/core/styles/createPalette' {
 
   interface Palette {
     primaryDark: PaletteColor;
+    svgBg: {
+      base: string;
+      active: string;
+    };
+    svgFilled: {
+      base: string;
+      active: string;
+    };
+    svgStroke: {
+      base: string;
+      active: string;
+    };
   }
 }
 
@@ -144,7 +156,12 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         400: '#3EE07F',
         500: '#21CC66',
         600: '#1DB45A',
-        main: '#1AA251', // contrast 3.31:1
+        ...(mode === 'dark' && {
+          main: '#1DB45A', // contrast 6.17:1 (blueDark.800)
+        }),
+        ...(mode === 'light' && {
+          main: '#1AA251', // contrast 3.31:1
+        }),
         700: '#1AA251',
         800: '#178D46',
         900: '#0F5C2E',
@@ -162,6 +179,18 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         800: '#DB9A00',
         900: '#8F6400',
       },
+      svgBg: {
+        base: mode === 'dark' ? blueDark[400] : grey[50],
+        active: mode === 'dark' ? blueDark[400] : grey[50],
+      },
+      svgFilled: {
+        base: mode === 'dark' ? blueDark[800] : grey[500],
+        active: mode === 'dark' ? blue[300] : blue[500],
+      },
+      svgStroke: {
+        base: mode === 'dark' ? blueDark[600] : '#ffffff',
+        active: mode === 'dark' ? blue[700] : '#ffffff',
+      },
     },
     shape: {
       borderRadius: 10,
@@ -170,10 +199,10 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
     typography: {
       fontFamily: ['"IBM Plex Sans"', ...systemFont].join(','),
       fontFamilyCode: ['"IBM Plex Mono"', ...systemFont].join(','),
-      fontFamilyTagline: ['"PlusJakartaSans"', ...systemFont].join(','),
+      fontFamilyTagline: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
       fontWeightExtraBold: 800,
       h1: {
-        fontFamily: ['"PlusJakartaSans"', ...systemFont].join(','),
+        fontFamily: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
         fontSize: 'clamp(2.625rem, 1.2857rem + 3.5714vw, 4.5rem)',
         fontWeight: 800,
         lineHeight: 80 / 72,
@@ -182,7 +211,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         }),
       },
       h2: {
-        fontFamily: ['"PlusJakartaSans"', ...systemFont].join(','),
+        fontFamily: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
         fontSize: 'clamp(1.5rem, 0.9643rem + 1.4286vw, 2.25rem)',
         fontWeight: 800,
         lineHeight: 44 / 36,
@@ -423,3 +452,6 @@ export function getThemedComponents(theme: Theme) {
     },
   };
 }
+
+const darkTheme = createTheme(getDesignTokens('dark'));
+export const brandingDarkTheme = createTheme(darkTheme, getThemedComponents(darkTheme));

@@ -84,7 +84,12 @@ const Root = styled('div')(({ theme }) => ({
     marginBottom: 16,
   },
   '& ul': {
-    paddingLeft: 30,
+    ...(theme.direction === 'rtl' && {
+      paddingRight: 30,
+    }),
+    ...(theme.direction !== 'rtl' && {
+      paddingLeft: 30,
+    }),
   },
   '& h1, & h2, & h3, & h4': {
     '& code': {

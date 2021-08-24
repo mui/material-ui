@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import { useTheme, ThemeProvider as MuiThemeProvider, createTheme } from '@material-ui/core/styles';
+import { ThemeProvider as MuiThemeProvider, createTheme } from '@material-ui/core/styles';
 import ThemeProvider from 'docs/src/modules/ThemeContext';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Avatar from '@material-ui/core/Avatar';
@@ -18,7 +18,7 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import Link from 'docs/src/modules/components/Link';
 import AppHeader from 'docs/src/layouts/AppHeader';
-import ReferencesCore from 'docs/src/components/home/ReferencesCore';
+import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import { MuiStats } from 'docs/src/components/home/Testimonials';
@@ -435,8 +435,6 @@ const emeriti = [
 ];
 
 function AboutContent() {
-  const globalTheme = useTheme();
-  const mode = globalTheme.palette.mode;
   return (
     <React.Fragment>
       <Container>
@@ -472,7 +470,7 @@ function AboutContent() {
             barrier, making design skills accessible.
           </Typography>
         </Box>
-        <ReferencesCore />
+        <References companies={CORE_CUSTOMERS} />
       </Container>
       <Box
         sx={{ bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50') }}
@@ -507,7 +505,7 @@ function AboutContent() {
                 </Box>
               ))}
             </Grid>
-            <MuiStats mode={mode} />
+            <MuiStats />
           </Grid>
         </Container>
       </Box>
