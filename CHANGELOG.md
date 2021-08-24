@@ -29,7 +29,7 @@ It now supports the following minimum versions:
 - Opera 76 (up from 70)
 - and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
 
-If you need to support IE 11, check out our [legacy bundle](/guides/minimizing-bundle-size/#legacy-bundle).
+If you need to support IE 11, check out our [legacy bundle](https://next.material-ui.com/guides/minimizing-bundle-size/#legacy-bundle).
 
 #### Changes
 
