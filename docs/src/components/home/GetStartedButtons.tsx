@@ -25,7 +25,7 @@ export default function GetStartedButtons({
       sx={{
         display: 'flex',
         flexWrap: 'wrap',
-        '&& > *': { minWidth: 'clamp(0px, (449px - 100%) * 999 ,100%)' },
+        '&& > *': { minWidth: 'clamp(0px, (492px - 100%) * 999 ,100%)' },
         ...props.sx,
       }}
     >

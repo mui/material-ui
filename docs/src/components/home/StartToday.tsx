@@ -27,7 +27,7 @@ export default function StartToday() {
           Check it for yourself, give it a try and share with us what you&apos;ve built!
         </Typography>
         <GetStartedButtons
-          sx={{ '&& > *': { minWidth: 'clamp(0px, (426px - 100%) * 999 ,100%)' } }}
+          sx={{ '&& > *': { minWidth: 'clamp(0px, (491px - 100%) * 999 ,100%)' } }}
         />
       </Grid>
       <Grid item xs={12} sm={6} md={6} container spacing={2}>
