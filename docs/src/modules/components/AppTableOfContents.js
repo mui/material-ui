@@ -13,12 +13,12 @@ const Nav = styled('nav')(({ theme }) => {
     top: 70,
     // Fix IE11 position sticky issue.
     marginTop: 70,
-    width: 175,
+    width: 200,
     flexShrink: 0,
     position: 'sticky',
     height: 'calc(100vh - 70px)',
     overflowY: 'auto',
-    padding: theme.spacing(2, 2, 2, 0),
+    padding: theme.spacing(2, 5, 2, 0),
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
@@ -29,7 +29,10 @@ const Nav = styled('nav')(({ theme }) => {
 const NavLabel = styled(Typography)(({ theme }) => {
   return {
     marginTop: theme.spacing(2),
-    paddingLeft: theme.spacing(1),
+    paddingLeft: theme.spacing(1.5),
+    fontSize: '.75rem',
+    fontWeight: 600,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[500],
   };
 });
 
@@ -45,17 +48,22 @@ const NavItem = styled(Link, {
   const activeStyles = {
     borderLeftColor:
       theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[800],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[800],
   };
 
   return {
     fontSize: '.8125rem',
-    padding: theme.spacing(0.5, 0, 0.5, secondary ? 2.5 : '5px'),
-    borderLeft: `3px solid transparent`,
+    padding: theme.spacing(0.5, 0, 1, secondary ? 3 : '10px'),
+    borderLeft: `2px solid transparent`,
     boxSizing: 'border-box',
     '&:hover': {
       borderLeftColor:
-        theme.palette.mode === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
+        theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[900],
+      color: theme.palette.grey[700],
     },
+    ...(!active && {
+      color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[900],
+    }),
     // TODO: We probably want `aria-current="location"` instead.
     // If so, are we sure "current" and "active" states should have the same styles?
     ...(active && activeStyles),
@@ -193,7 +201,6 @@ export default function AppTableOfContents(props) {
   const itemLink = (item, secondary) => (
     <NavItem
       display="block"
-      color={activeState === item.hash ? 'textPrimary' : 'textSecondary'}
       href={`${activePage.linkProps?.as ?? activePage.pathname}#${item.hash}`}
       underline="none"
       onClick={handleClick(item.hash)}

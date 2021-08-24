@@ -12,11 +12,13 @@ const Root = styled('div')(({ theme }) => ({
     position: 'absolute',
   },
   '& pre': {
-    margin: theme.spacing(3, 'auto'),
+    margin: theme.spacing(2, 'auto'),
     padding: theme.spacing(2),
-    backgroundColor: '#272c34',
+    backgroundColor: '#001E3C',
     direction: 'ltr',
     borderRadius: theme.shape.borderRadius,
+    border: '1px solid',
+    borderColor: '#132F4C',
     overflow: 'auto',
     WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
     maxWidth: 'calc(100vw - 32px)',
@@ -31,17 +33,14 @@ const Root = styled('div')(({ theme }) => ({
     display: 'inline-block',
     fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
     WebkitFontSmoothing: 'subpixel-antialiased',
-    padding: '0 3px',
+    padding: '0 5px',
     color: theme.palette.text.primary,
-    backgroundColor:
-      theme.palette.mode === 'light'
-        ? 'rgba(255, 229, 100, 0.2)'
-        : alpha(theme.palette.primary.main, 0.08),
-    fontSize: '.85em',
-    borderRadius: 2,
+    backgroundColor: alpha(theme.palette.primary.light, 0.15),
+    fontSize: '.8125em',
+    borderRadius: theme.shape.borderRadius,
   },
   '& code[class*="language-"]': {
-    backgroundColor: '#272c34',
+    backgroundColor: '#001E3C',
     color: '#fff',
     // Avoid layout jump after hydration (style injected by prism)
     lineHeight: 1.5,
@@ -56,32 +55,42 @@ const Root = styled('div')(({ theme }) => ({
   '& h1': {
     ...theme.typography.h3,
     fontSize: 40,
+    fontFamily: ['"PlusJakartaSans-ExtraBold"'].join(','),
     margin: '16px 0',
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.primary[900],
+    fontWeight: 800,
   },
   '& .description': {
     ...theme.typography.h5,
     margin: '0 0 40px',
   },
   '& h2': {
-    ...theme.typography.h4,
+    ...theme.typography.h5,
     fontSize: 30,
-    margin: '40px 0 16px',
+    margin: '40px 0 10px',
+    fontWeight: 500,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
   },
   '& h3': {
-    ...theme.typography.h5,
-    margin: '40px 0 16px',
+    ...theme.typography.h6,
+    margin: '20px 0 10px',
+    fontWeight: 500,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
   },
   '& h4': {
     ...theme.typography.h6,
     margin: '32px 0 16px',
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
   },
   '& h5': {
     ...theme.typography.subtitle2,
     margin: '32px 0 16px',
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
   },
   '& p, & ul, & ol': {
     marginTop: 0,
     marginBottom: 16,
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[900],
   },
   '& ul': {
     ...(theme.direction === 'rtl' && {
@@ -129,7 +138,7 @@ const Root = styled('div')(({ theme }) => ({
     overflowX: 'auto',
     WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
     borderCollapse: 'collapse',
-    marginBottom: '16px',
+    marginBottom: '20px',
     borderSpacing: 0,
     '& .prop-name': {
       fontFamily: 'Consolas, "Liberation Mono", Menlo, monospace',
@@ -152,7 +161,7 @@ const Root = styled('div')(({ theme }) => ({
   '& td': {
     ...theme.typography.body2,
     borderBottom: `1px solid ${theme.palette.divider}`,
-    padding: 16,
+    padding: 20,
     color: theme.palette.text.primary,
   },
   '& td code': {
@@ -164,20 +173,24 @@ const Root = styled('div')(({ theme }) => ({
     color: theme.palette.text.primary,
     whiteSpace: 'pre',
     borderBottom: `1px solid ${theme.palette.divider}`,
-    padding: 16,
+    padding: 20,
   },
   '& blockquote': {
-    borderLeft: '5px solid #ffe564',
-    backgroundColor: 'rgba(255,229,100,0.2)',
-    padding: '4px 24px',
-    margin: '24px 0',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor:
+      theme.palette.mode === 'dark'
+        ? alpha(theme.palette.warning.main, 0.2)
+        : theme.palette.warning[100],
+    padding: '10px 20px',
+    margin: '20px 0',
     '& p': {
       marginTop: '16px',
+      color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
     },
   },
   '& a, & a code': {
     // Style taken from the Link component
-    color: theme.palette.primary.main,
+    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
     textDecoration: 'underline',
     textDecorationColor: alpha(theme.palette.primary.main, 0.4),
     '&:hover': {
@@ -187,7 +200,7 @@ const Root = styled('div')(({ theme }) => ({
   '& a code': {
     color:
       theme.palette.mode === 'dark'
-        ? theme.palette.primary.main
+        ? theme.palette.primary.light
         : darken(theme.palette.primary.main, 0.04),
   },
   '& img, video': {
