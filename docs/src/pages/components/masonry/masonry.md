@@ -14,9 +14,9 @@ If a row is already filled with the specified number of columns, the next item s
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": true}}
 
-> Warning: This component has been developed with the use of CSS Grid Level 2. Unfortunately, Chrome only allows to render at most 1000 rows for each grid.
-> Hence, with the current design, a masonry component has the maximum height of 2,000px, and the items beyond this height will fail to be rendered.
-> An [issue](<[www.google.com](https://github.com/mui-org/material-ui/issues/27934)>) has been created on Github to gather workarounds for this limitation. It is worth noting that this limitation does not exist on Firefox or Safari.
+> Warning: This component has been developed with the use of CSS Grid Level 2. Unfortunately, Chrome only allows to render at most 1,000 rows for each grid.
+> Hence, with the current design, a masonry component has a maximum height of 2,000px, and the items beyond this height will fail to be rendered.
+> An [issue](https://github.com/mui-org/material-ui/issues/27934) has been created on GitHub to gather workarounds for this limitation. It is worth noting that this limitation does not exist on Firefox or Safari.
 
 ## Basic masonry
 
