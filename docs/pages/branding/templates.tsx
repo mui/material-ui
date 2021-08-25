@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import ThemeProvider from 'docs/src/modules/ThemeContext';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import AppHeader from 'docs/src/layouts/AppHeader';
@@ -13,7 +12,7 @@ import HeroEnd from 'docs/src/components/home/HeroEnd';
 
 export default function Templates() {
   return (
-    <ThemeProvider>
+    <React.Fragment>
       <Head
         title="MUI: Fully built templates for your project."
         description="A collection of several 4.5 average rating templates, curated by our Core team to get your projects and application up and running today."
@@ -29,6 +28,6 @@ export default function Templates() {
       </main>
       <Divider />
       <AppFooter />
-    </ThemeProvider>
+    </React.Fragment>
   );
 }
