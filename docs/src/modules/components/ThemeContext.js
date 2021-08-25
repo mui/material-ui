@@ -13,7 +13,11 @@ import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/co
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
-import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
+import {
+  getDesignTokens,
+  getThemedComponents,
+  getMetaThemeColor,
+} from 'docs/src/modules/brandingTheme';
 
 const languageMap = {
   en: enUS,
@@ -202,6 +206,13 @@ export function ThemeProvider(props) {
   useEnhancedEffect(() => {
     document.body.dir = direction;
   }, [direction]);
+
+  React.useEffect(() => {
+    const metas = document.querySelectorAll('meta[name="theme-color"]');
+    metas.forEach((meta) => {
+      meta.setAttribute('content', getMetaThemeColor(paletteMode));
+    });
+  }, [paletteMode]);
 
   const theme = React.useMemo(() => {
     const brandingDesignTokens = getDesignTokens(paletteMode);

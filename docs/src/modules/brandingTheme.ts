@@ -106,6 +106,14 @@ const systemFont = [
   '"Segoe UI Symbol"',
 ];
 
+export const getMetaThemeColor = (mode: 'light' | 'dark') => {
+  const themeColor = {
+    light: grey[50],
+    dark: blueDark[800],
+  };
+  return themeColor[mode];
+};
+
 export const getDesignTokens = (mode: 'light' | 'dark') =>
   ({
     palette: {
