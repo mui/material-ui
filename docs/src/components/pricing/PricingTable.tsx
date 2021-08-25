@@ -198,7 +198,7 @@ const ColumnHead = ({
       {metadata && (
         <Typography
           variant="caption"
-          color="grey.800"
+          color="text.secondary"
           fontWeight="normal"
           sx={{ display: 'block' }}
         >
