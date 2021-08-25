@@ -2,11 +2,9 @@ import * as React from 'react';
 import { styled, alpha } from '@material-ui/core/styles';
 import Avatar, { AvatarProps } from '@material-ui/core/Avatar';
 import Box, { BoxProps } from '@material-ui/core/Box';
-import Fade from '@material-ui/core/Fade';
 import ROUTES from 'docs/src/route';
-import LaunchRounded from '@material-ui/icons/LaunchRounded';
 import Slide from 'docs/src/components/animation/Slide';
-import useTimingAppearance from 'docs/src/components/animation/useTimingAppearance';
+import FadeDelay from 'docs/src/components/animation/FadeDelay';
 
 const ratio = 900 / 494;
 
@@ -26,24 +24,24 @@ const Image = styled('img')(({ theme }) => ({
   borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[400],
   borderRadius: theme.shape.borderRadius,
   objectFit: 'cover',
-  filter:
+  boxShadow:
     theme.palette.mode === 'dark'
-      ? 'drop-shadow(0px 4px 20px rgba(0, 0, 0, 0.6))'
-      : 'drop-shadow(0px 4px 20px rgba(61, 71, 82, 0.25))',
+      ? '0px 4px 20px rgba(0, 0, 0, 0.6)'
+      : '0px 4px 20px rgba(61, 71, 82, 0.25)',
 }));
 
-const Anchor = styled('a')({
+const Anchor = styled('a')(({ theme }) => ({
   display: 'inline-block',
   position: 'relative',
   transition: '0.3s',
   borderRadius: '50%',
   '&:hover, &:focus': {
-    boxShadow: '0 6px 12px 0 rgba(0,0,0,0.12)',
-    '& > div': {
-      opacity: 1,
-    },
+    boxShadow:
+      theme.palette.mode === 'dark'
+        ? `0 6px 20px 0 ${alpha(theme.palette.primaryDark[100], 0.5)}`
+        : '0 6px 20px 0 rgba(0,0,0,0.2)',
   },
-});
+}));
 
 const DesignToolLink = React.forwardRef<
   HTMLAnchorElement,
@@ -57,26 +55,6 @@ const DesignToolLink = React.forwardRef<
     {...props}
   >
     {props.children}
-    <Box
-      sx={{
-        transition: '0.3s',
-        borderRadius: '50%',
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        opacity: 0,
-        top: 0,
-        left: 0,
-        bgcolor: (theme) => alpha(theme.palette.primary[500], 0.5),
-        color: '#fff',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <LaunchRounded />
-    </Box>
   </Anchor>
 ));
 
@@ -89,6 +67,15 @@ const DesignToolLogo = React.forwardRef<
     src={`/static/branding/design-kits/designkits-${brand}.png`}
     alt=""
     {...props}
+    sx={{
+      boxShadow: (theme) =>
+        `0px 3.57436px 44.6795px ${
+          theme.palette.mode === 'dark'
+            ? theme.palette.primaryDark[900]
+            : 'rgba(90, 105, 120, 0.36)'
+        }`,
+      ...props.sx,
+    }}
   />
 ));
 
@@ -122,25 +109,24 @@ const defaultSlideUp = {
     transform: 'translateY(-300px)',
   },
   '100%': {
-    transform: 'translateY(100px)',
+    transform: 'translateY(-20px)',
   },
 };
 export function DesignKitImagesSet1({
   keyframes = defaultSlideUp,
   ...props
 }: BoxProps & { keyframes?: Record<string, object> }) {
-  const [appearIndexes] = useTimingAppearance(3);
   return (
     <Slide animationName="designkit-slideup" {...props} keyframes={keyframes}>
-      <Fade in={appearIndexes.includes(2)} timeout={1000}>
+      <FadeDelay delay={400}>
         <Image src="/static/branding/design-kits/designkits1.jpeg" alt="" />
-      </Fade>
-      <Fade in={appearIndexes.includes(1)} timeout={1000}>
+      </FadeDelay>
+      <FadeDelay delay={200}>
         <Image src="/static/branding/design-kits/designkits3.jpeg" alt="" />
-      </Fade>
-      <Fade in={appearIndexes.includes(0)} timeout={1000}>
+      </FadeDelay>
+      <FadeDelay delay={0}>
         <Image src="/static/branding/design-kits/designkits5.jpeg" alt="" />
-      </Fade>
+      </FadeDelay>
     </Slide>
   );
 }
@@ -150,31 +136,29 @@ const defaultSlideDown = {
     transform: 'translateY(150px)',
   },
   '100%': {
-    transform: 'translateY(-150px)',
+    transform: 'translateY(-80px)',
   },
 };
 export function DesignKitImagesSet2({
   keyframes = defaultSlideDown,
   ...props
 }: BoxProps & { keyframes?: Record<string, object> }) {
-  const [appearIndexes] = useTimingAppearance(3, { delay: 100 });
   return (
     <Slide animationName="designkit-slidedown" {...props} keyframes={keyframes}>
-      <Fade in={appearIndexes.includes(0)} timeout={1000}>
+      <FadeDelay delay={100}>
         <Image src="/static/branding/design-kits/designkits2.jpeg" alt="" />
-      </Fade>
-      <Fade in={appearIndexes.includes(1)} timeout={1000}>
+      </FadeDelay>
+      <FadeDelay delay={300}>
         <Image src="/static/branding/design-kits/designkits4.jpeg" alt="" />
-      </Fade>
-      <Fade in={appearIndexes.includes(2)} timeout={1000}>
+      </FadeDelay>
+      <FadeDelay delay={500}>
         <Image src="/static/branding/design-kits/designkits6.jpeg" alt="" />
-      </Fade>
+      </FadeDelay>
     </Slide>
   );
 }
 
 export function DesignKitTools({ disableLink, ...props }: { disableLink?: boolean } & BoxProps) {
-  const [appearIndexes] = useTimingAppearance(3, { delay: 200 });
   function renderTool(brand: 'figma' | 'sketch' | 'xd') {
     if (disableLink) return <DesignToolLogo brand={brand} />;
     return (
@@ -199,25 +183,13 @@ export function DesignKitTools({ disableLink, ...props }: { disableLink?: boolea
         '& .MuiAvatar-root': {
           width: { xs: 80, sm: 100 },
           height: { xs: 80, sm: 100 },
-          filter: (theme) =>
-            `drop-shadow(0px 3.57436px 44.6795px ${
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[900]
-                : 'rgba(90, 105, 120, 0.36)'
-            })`,
         },
         ...props.sx,
       }}
     >
-      <Fade in={appearIndexes.includes(0)} timeout={1000}>
-        {renderTool('figma')}
-      </Fade>
-      <Fade in={appearIndexes.includes(1)} timeout={1000}>
-        {renderTool('sketch')}
-      </Fade>
-      <Fade in={appearIndexes.includes(2)} timeout={1000}>
-        {renderTool('xd')}
-      </Fade>
+      <FadeDelay delay={200}>{renderTool('figma')}</FadeDelay>
+      <FadeDelay delay={400}>{renderTool('sketch')}</FadeDelay>
+      <FadeDelay delay={600}>{renderTool('xd')}</FadeDelay>
     </Box>
   );
 }
@@ -228,7 +200,6 @@ export default function DesignKits() {
       sx={{
         mx: { xs: -2, sm: -3, md: 0 },
         my: { md: -8 },
-        perspective: '1000px',
         height: { xs: 300, sm: 360, md: 'calc(100% + 160px)' },
         overflow: 'hidden',
         position: 'relative',
@@ -258,7 +229,15 @@ export default function DesignKits() {
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[900]
                 : theme.palette.grey[50]
-            } 0%, transparent 30%, transparent 70%, ${
+            } 0%, ${
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primaryDark[900], 0)
+                : 'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
+            } 30%, ${
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primaryDark[900], 0)
+                : 'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
+            } 70%, ${
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[900]
                 : theme.palette.grey[50]
@@ -279,7 +258,11 @@ export default function DesignKits() {
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[900]
                 : theme.palette.grey[50]
-            }, transparent)`,
+            }, ${
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primaryDark[900], 0)
+                : 'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
+            })`,
           zIndex: 2,
         }}
       />
@@ -292,15 +275,24 @@ export default function DesignKits() {
       />
       <Box
         sx={{
-          left: '36%',
-          position: 'absolute',
-          display: 'flex',
-          transform: 'translateX(-40%) rotateZ(30deg) rotateX(8deg) rotateY(-8deg)',
-          transformOrigin: 'center center',
+          // need perspective on this wrapper to work in Safari
+          position: 'relative',
+          height: '100%',
+          perspective: '1000px',
         }}
       >
-        <DesignKitImagesSet1 />
-        <DesignKitImagesSet2 sx={{ ml: { xs: 2, sm: 4, md: 8 } }} />
+        <Box
+          sx={{
+            left: '36%',
+            position: 'absolute',
+            display: 'flex',
+            transform: 'translateX(-40%) rotateZ(30deg) rotateX(8deg) rotateY(-8deg)',
+            transformOrigin: 'center center',
+          }}
+        >
+          <DesignKitImagesSet1 />
+          <DesignKitImagesSet2 sx={{ ml: { xs: 2, sm: 4, md: 8 } }} />
+        </Box>
       </Box>
     </Box>
   );

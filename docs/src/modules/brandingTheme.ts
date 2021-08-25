@@ -57,7 +57,7 @@ const defaultTheme = createTheme();
 const blue = {
   50: '#F0F7FF',
   100: '#C2E0FF',
-  200: '#80BFFF',
+  200: '#A5D8FF',
   300: '#66B2FF',
   400: '#3399FF',
   main: '#007FFF', // contrast 3.83:1
@@ -76,7 +76,7 @@ const blueDark = {
   400: '#265D97',
   500: '#1E4976',
   600: '#173A5E',
-  700: '#132F4C', // contrast 3.02:1
+  700: '#132F4C', // contrast 13.64:1
   800: '#001E3C',
   900: '#0A1929',
 };
@@ -87,10 +87,10 @@ const grey = {
   300: '#D7DCE1',
   400: '#BFC7CF',
   500: '#AAB4BE',
-  600: '#96A3B0',
-  700: '#8796A5', // contrast 3.02:1
-  800: '#5A6978', // contrast 5.63:1
-  900: '#3D4752',
+  600: '#7F8E9D',
+  700: '#46505A', // contrast 8.21:1
+  800: '#2F3A45', // contrast 11.58:1
+  900: '#20262D',
 };
 
 const systemFont = [
@@ -106,11 +106,24 @@ const systemFont = [
   '"Segoe UI Symbol"',
 ];
 
+export const getMetaThemeColor = (mode: 'light' | 'dark') => {
+  const themeColor = {
+    light: grey[50],
+    dark: blueDark[800],
+  };
+  return themeColor[mode];
+};
+
 export const getDesignTokens = (mode: 'light' | 'dark') =>
   ({
     palette: {
-      primary: blue,
-      divider: mode === 'dark' ? blueDark[400] : grey[200],
+      primary: {
+        ...blue,
+        ...(mode === 'dark' && {
+          main: blue[400],
+        }),
+      },
+      divider: mode === 'dark' ? blueDark[700] : grey[200],
       primaryDark: blueDark,
       mode,
       ...(mode === 'dark' && {
@@ -142,7 +155,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         300: '#FF99A2',
         400: '#FF7A86',
         500: '#FF505F',
-        main: '#EB0014', // contrast 4.62:1
+        main: '#EB0014', // contrast 4.63:1
         600: '#EB0014',
         700: '#C70011',
         800: '#94000D',
@@ -169,13 +182,13 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       warning: {
         50: '#FFF9EB',
         100: '#FFF4DB',
-        200: '#FFF0CC',
+        200: '#FFEDC2',
         300: '#FFE4A3',
         400: '#FFD980',
-        500: '#FFC846',
-        600: '#FFBC1F',
-        main: '#F5AC00', // does not pass constrast ratio
-        700: '#F5AC00',
+        500: '#FCC419',
+        600: '#FAB005',
+        main: '#F1A204', // does not pass constrast ratio
+        700: '#F1A204',
         800: '#DB9A00',
         900: '#8F6400',
       },
@@ -199,10 +212,10 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
     typography: {
       fontFamily: ['"IBM Plex Sans"', ...systemFont].join(','),
       fontFamilyCode: ['"IBM Plex Mono"', ...systemFont].join(','),
-      fontFamilyTagline: ['"PlusJakartaSans"', ...systemFont].join(','),
+      fontFamilyTagline: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
       fontWeightExtraBold: 800,
       h1: {
-        fontFamily: ['"PlusJakartaSans"', ...systemFont].join(','),
+        fontFamily: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
         fontSize: 'clamp(2.625rem, 1.2857rem + 3.5714vw, 4.5rem)',
         fontWeight: 800,
         lineHeight: 80 / 72,
@@ -211,7 +224,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         }),
       },
       h2: {
-        fontFamily: ['"PlusJakartaSans"', ...systemFont].join(','),
+        fontFamily: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
         fontSize: 'clamp(1.5rem, 0.9643rem + 1.4286vw, 2.25rem)',
         fontWeight: 800,
         lineHeight: 44 / 36,
@@ -285,6 +298,10 @@ export function getThemedComponents(theme: Theme) {
             ...theme.typography.body1,
             lineHeight: 21 / 16,
             fontWeight: 700,
+          },
+          containedPrimary: {
+            backgroundColor: theme.palette.primary[500],
+            color: '#fff',
           },
         },
         variants: [
@@ -365,7 +382,7 @@ export function getThemedComponents(theme: Theme) {
               theme.palette.mode === 'dark'
                 ? theme.palette.primary[400]
                 : theme.palette.primary[600],
-            fontWeight: 500,
+            fontWeight: 600,
             display: 'inline-flex',
             alignItems: 'center',
             '&.MuiTypography-body1 > svg': {
@@ -384,6 +401,11 @@ export function getThemedComponents(theme: Theme) {
       },
       MuiPaper: {
         styleOverrides: {
+          root: {
+            '&[href]': {
+              textDecorationLine: 'none',
+            },
+          },
           outlined: {
             display: 'block',
             borderColor:
@@ -452,3 +474,6 @@ export function getThemedComponents(theme: Theme) {
     },
   };
 }
+
+const darkTheme = createTheme(getDesignTokens('dark'));
+export const brandingDarkTheme = createTheme(darkTheme, getThemedComponents(darkTheme));

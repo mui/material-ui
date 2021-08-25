@@ -44,15 +44,15 @@ const Plan = React.forwardRef<
         </Button>
       ) : (
         <Button
-          variant="outlined"
+          variant={plan === 'pro' ? 'contained' : 'outlined'}
           fullWidth
           component={Link}
           noLinkStyle
-          href={plan === 'community' ? '/getting-started/usage/' : '/components/data-grid/'}
+          href={plan === 'community' ? '/getting-started/usage/' : '/store/items/material-ui-pro/'}
           endIcon={<KeyboardArrowRightRounded />}
           sx={{ py: 1 }}
         >
-          Get Started
+          {plan === 'pro' ? 'Buy now' : 'Get started'}
         </Button>
       )}
       {benefits &&

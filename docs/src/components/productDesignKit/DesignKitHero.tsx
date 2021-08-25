@@ -27,6 +27,7 @@ export default function TemplateHero() {
             sx={{
               display: 'flex',
               alignItems: 'center',
+              justifyContent: { xs: 'center', md: 'start' },
               '& > *': { mr: 1, width: 28, height: 28 },
             }}
           >
@@ -34,7 +35,7 @@ export default function TemplateHero() {
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
             MUI in your favorite
-            <br /> <GradientText>design tool</GradientText>.
+            <br /> <GradientText>design tool</GradientText>
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 450 }}>
             For the designers out there, pick your favorite design tool to enjoy our components. Get
@@ -42,11 +43,12 @@ export default function TemplateHero() {
           </Typography>
           <Button
             component={Link}
-            href={ROUTES.store}
             noLinkStyle
+            href={ROUTES.storeDesign}
             size="large"
             variant="contained"
             endIcon={<KeyboardArrowRightRounded />}
+            sx={{ width: { xs: '100%', sm: 'auto' } }}
           >
             Buy now
           </Button>
@@ -54,10 +56,7 @@ export default function TemplateHero() {
       }
       right={
         <Box sx={{ position: 'relative', height: '100%', perspective: '1000px' }}>
-          <DesignKitTools
-            disableLink
-            sx={{ filter: 'drop-shadow(0px 4px 20px rgba(61, 71, 82, 0.25))' }}
-          />
+          <DesignKitTools />
           <Box
             sx={{
               position: 'absolute',

@@ -114,7 +114,7 @@ export default function TaskCard() {
         <Box sx={{ display: 'flex' }}>
           <Avatar
             imgProps={{ 'aria-labelledby': 'demo-task-card-assigne-name' }}
-            src="/static/images/avatar/1.jpg"
+            src="/static/images/avatar/1-sm.jpeg"
             variant="rounded"
           />
           <Box sx={{ ml: 1 }}>

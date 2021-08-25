@@ -108,7 +108,7 @@ export default function DesignKitFAQ() {
         <AccordionSummary
           expandIcon={<KeyboardArrowDownRounded sx={{ fontSize: 20, color: 'primary.main' }} />}
         >
-          <Typography variant="body2" fontWeight="bold">
+          <Typography variant="body2" fontWeight="bold" component="h3">
             {faq.summary}
           </Typography>
         </AccordionSummary>
@@ -132,8 +132,8 @@ export default function DesignKitFAQ() {
       </Typography>
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
-          {renderItem(0, true)}
-          {renderItem(1, true)}
+          {renderItem(0)}
+          {renderItem(1)}
         </Grid>
         <Grid item xs={12} md={6}>
           {renderItem(2)}

@@ -109,7 +109,7 @@ export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) 
         <CardMedia
           component="img"
           alt="Beside Myself album cover"
-          src="/static/images/cards/basement-beside-myself.jpg"
+          src="/static/images/cards/basement-beside-myself.jpeg"
           width="124"
           height="124"
           sx={{ borderRadius: 0.5, width: 'auto' }}

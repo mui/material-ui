@@ -231,28 +231,29 @@ export default function GlobalCssPriority() {
 Here is an example:
 
 ```diff
-import * as React from 'react';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
+ import * as React from 'react';
+ import { CacheProvider } from '@emotion/react';
+ import createCache from '@emotion/cache';
 
-const cache = createCache({
-  key: 'css',
-+ prepend: true,
-});
+ const cache = createCache({
+   key: 'css',
++  prepend: true,
+ });
 
-export default function PlainCssPriority() {
-  return (
-    <CacheProvider value={cache}>
-      {/* Your component tree. Now you can override Material-UI's styles. */}
-    </CacheProvider>
-  );
-}
+ export default function PlainCssPriority() {
+   return (
+     <CacheProvider value={cache}>
+       {/* Your component tree. Now you can override Material-UI's styles. */}
+     </CacheProvider>
+   );
+ }
 ```
 
 > **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@material-ui/styled-engine-sc` package.
 
-#### Upgrade helper
+### Theme structure
 
+The structure of the theme has changed in v5. You need to update its shape.
 For a smoother transition, the `adaptV4Theme` helper allows you to iteratively upgrade some of the theme changes to the new theme structure.
 
 > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
@@ -268,7 +269,7 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
 +}));
 ```
 
-##### Supported changes
+> ⚠️ This adapter only handles the input arguments of `createTheme`, if you modify the shape of the theme after its creation, you need to migrate the structure manually.
 
 The following changes are supported by the adapter:
 
@@ -370,47 +371,47 @@ The following changes are supported by the adapter:
 
 - The components' definitions in the theme were restructure under the `components` key, to allow for easier discoverability of the definitions related to any one component.
 
-1. `props`
+  1. `props`
 
-```diff
-import { createTheme } from '@material-ui/core/styles';
+  ```diff
+   import { createTheme } from '@material-ui/core/styles';
 
-const theme = createTheme({
--  props: {
--    MuiButton: {
--      disableRipple: true,
--    },
--  },
-+  components: {
-+    MuiButton: {
-+      defaultProps: {
-+        disableRipple: true,
-+      },
-+    },
-+  },
-});
-```
+   const theme = createTheme({
+  -  props: {
+  -    MuiButton: {
+  -      disableRipple: true,
+  -    },
+  -  },
+  +  components: {
+  +    MuiButton: {
+  +      defaultProps: {
+  +        disableRipple: true,
+  +      },
+  +    },
+  +  },
+   });
+  ```
 
-2. `overrides`
+  2. `overrides`
 
-```diff
-import { createTheme } from '@material-ui/core/styles';
+  ```diff
+   import { createTheme } from '@material-ui/core/styles';
 
-const theme = createTheme({
--  overrides: {
--    MuiButton: {
--      root: { padding: 0 },
--    },
--  },
-+  components: {
-+    MuiButton: {
-+      styleOverrides: {
-+        root: { padding: 0 },
-+      },
-+    },
-+  },
-});
-```
+   const theme = createTheme({
+  -  overrides: {
+  -    MuiButton: {
+  -      root: { padding: 0 },
+  -    },
+  -  },
+  +  components: {
+  +    MuiButton: {
+  +      styleOverrides: {
+  +        root: { padding: 0 },
+  +      },
+  +    },
+  +  },
+   });
+  ```
 
 ### Styles
 

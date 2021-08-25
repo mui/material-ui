@@ -34,7 +34,7 @@ const getVariantStyles = (name, theme) => {
 
 const variantsResolver = (props, styles, theme, name) => {
   const { ownerState = {} } = props;
-  let variantsStyles = {};
+  const variantsStyles = [];
   const themeVariants = theme?.components?.[name]?.variants;
   if (themeVariants) {
     themeVariants.forEach((themeVariant) => {
@@ -45,7 +45,7 @@ const variantsResolver = (props, styles, theme, name) => {
         }
       });
       if (isMatch) {
-        variantsStyles = { ...variantsStyles, ...styles[propsToClassKey(themeVariant.props)] };
+        variantsStyles.push(styles[propsToClassKey(themeVariant.props)]);
       }
     });
   }
@@ -136,7 +136,7 @@ export default function createStyled(input = {}) {
         });
       }
 
-      if (componentName && overridesResolver && !skipVariantsResolver) {
+      if (componentName && !skipVariantsResolver) {
         expressionsWithDefaultTheme.push((props) => {
           const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
           return variantsResolver(

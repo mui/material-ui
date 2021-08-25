@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
 import { alpha, styled } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
@@ -9,6 +8,7 @@ import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
 import getJsxPreview from 'docs/src/modules/utils/getJsxPreview';
+import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
@@ -76,7 +76,6 @@ const Root = styled('div')(({ theme }) => ({
   marginLeft: theme.spacing(-2),
   marginRight: theme.spacing(-2),
   [theme.breakpoints.up('sm')]: {
-    padding: theme.spacing(0, 1),
     marginLeft: 0,
     marginRight: 0,
   },
@@ -90,7 +89,18 @@ const DemoRoot = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   [theme.breakpoints.up('sm')]: {
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: 10,
+    ...(bg === 'outlined' && {
+      borderLeftWidth: 1,
+      borderRightWidth: 1,
+    }),
+    /* Make no difference between the demo and the markdown. */
+    ...(bg === 'inline' && {
+      padding: theme.spacing(3),
+    }),
+    ...(hiddenToolbar && {
+      paddingTop: theme.spacing(3),
+    }),
   },
   /* Isolate the demo with an outline. */
   ...(bg === 'outlined' && {
@@ -99,28 +109,14 @@ const DemoRoot = styled('div', {
     border: `1px solid ${alpha(theme.palette.action.active, 0.12)}`,
     borderLeftWidth: 0,
     borderRightWidth: 0,
-    [theme.breakpoints.up('sm')]: {
-      borderLeftWidth: 1,
-      borderRightWidth: 1,
-    },
   }),
   /* Prepare the background to display an inner elevation. */
   ...(bg === true && {
     padding: theme.spacing(3),
     backgroundColor: theme.palette.mode === 'dark' ? '#333' : theme.palette.grey[100],
   }),
-  /* Make no difference between the demo and the markdown. */
-  ...(bg === 'inline' && {
-    // Maintain alignment with the markdown text
-    [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(3),
-    },
-  }),
   ...(hiddenToolbar && {
     paddingTop: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      paddingTop: theme.spacing(3),
-    },
   }),
 }));
 const Code = styled(HighlightedCode)(({ theme }) => ({
@@ -152,7 +148,7 @@ const InitialFocus = styled(IconButton)(({ theme }) => ({
 export default function Demo(props) {
   const { demo, demoOptions, disableAd, githubLocation } = props;
   const t = useTranslate();
-  const codeVariant = useSelector((state) => state.options.codeVariant);
+  const codeVariant = useCodeVariant();
   const demoData = useDemoData(codeVariant, demo, githubLocation);
 
   const [demoHovered, setDemoHovered] = React.useState(false);

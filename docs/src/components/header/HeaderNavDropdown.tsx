@@ -1,5 +1,4 @@
 import * as React from 'react';
-import NextLink from 'next/link';
 import { styled } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
@@ -8,31 +7,35 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
 import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
+import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
-const Anchor = styled('a')<{ component?: React.ElementType }>(({ theme }) => ({
-  ...theme.typography.body2,
-  fontWeight: 700,
-  textDecoration: 'none',
-  border: 'none',
-  width: '100%',
-  backgroundColor: 'transparent',
-  color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.text.secondary,
-  cursor: 'pointer',
-  display: 'flex',
-  alignItems: 'center',
-  padding: theme.spacing(1),
-  borderRadius: theme.spacing(1),
-  transition: theme.transitions.create('background'),
-  '&:hover, &:focus': {
-    backgroundColor:
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100],
-    // Reset on touch devices, it doesn't add specificity
-    '@media (hover: none)': {
-      backgroundColor: 'transparent',
+const Anchor = styled('a')<{ component?: React.ElementType; noLinkStyle?: boolean }>(
+  ({ theme }) => ({
+    ...theme.typography.body2,
+    fontWeight: 700,
+    textDecoration: 'none',
+    border: 'none',
+    width: '100%',
+    backgroundColor: 'transparent',
+    color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.text.secondary,
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(1),
+    borderRadius: theme.spacing(1),
+    transition: theme.transitions.create('background'),
+    '&:hover, &:focus': {
+      backgroundColor:
+        theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100],
+      // Reset on touch devices, it doesn't add specificity
+      '@media (hover: none)': {
+        backgroundColor: 'transparent',
+      },
     },
-  },
-}));
+  }),
+);
 
 const UList = styled('ul')({
   listStyleType: 'none',
@@ -77,7 +80,11 @@ export default function HeaderNavDropdown() {
         onClick={() => setOpen((value) => !value)}
         sx={{
           position: 'relative',
+          mr: 1,
           borderRadius: 1,
+          border: '1px solid',
+          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'transparent'),
+          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200'),
           '&:focus': {
             boxShadow: (theme) =>
               `0 0 0 1px ${
@@ -120,56 +127,75 @@ export default function HeaderNavDropdown() {
             bgcolor: 'background.paper',
           }}
         >
-          <Box sx={{ p: 2.5, bgcolor: 'background.paper' }}>
+          <Box
+            sx={{
+              p: 2.5,
+              bgcolor: 'background.paper',
+              maxHeight: 'calc(100vh - 56px)',
+              overflow: 'auto',
+            }}
+          >
             <UList>
-              <li>
-                <Anchor
-                  as="button"
-                  onClick={() => setProductsOpen((bool) => !bool)}
-                  sx={{ justifyContent: 'space-between' }}
-                >
-                  Products
-                  <KeyboardArrowDownRounded
-                    color="primary"
-                    sx={{
-                      transition: '0.3s',
-                      transform: productsOpen ? 'rotate(-180deg)' : 'rotate(0)',
-                    }}
-                  />
-                </Anchor>
-                <Collapse in={productsOpen}>
-                  <UList
-                    sx={{ borderLeft: '1px solid', borderColor: 'grey.100', pl: 1, pb: 1, ml: 1 }}
+              {FEATURE_TOGGLE.nav_products && (
+                <li>
+                  <Anchor
+                    as="button"
+                    onClick={() => setProductsOpen((bool) => !bool)}
+                    sx={{ justifyContent: 'space-between' }}
                   >
-                    {PRODUCTS.map((item) => (
-                      <li key={item.name}>
-                        <NextLink href={item.href} passHref>
-                          <Anchor sx={{ flexDirection: 'column', alignItems: 'initial' }}>
+                    Products
+                    <KeyboardArrowDownRounded
+                      color="primary"
+                      sx={{
+                        transition: '0.3s',
+                        transform: productsOpen ? 'rotate(-180deg)' : 'rotate(0)',
+                      }}
+                    />
+                  </Anchor>
+                  <Collapse in={productsOpen}>
+                    <UList
+                      sx={{
+                        borderLeft: '1px solid',
+                        borderColor: (theme) =>
+                          theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
+                        pl: 1,
+                        pb: 1,
+                        ml: 1,
+                      }}
+                    >
+                      {PRODUCTS.map((item) => (
+                        <li key={item.name}>
+                          <Anchor
+                            href={item.href}
+                            as={Link}
+                            noLinkStyle
+                            sx={{ flexDirection: 'column', alignItems: 'initial' }}
+                          >
                             <div>{item.name}</div>
                             <Typography variant="body2" color="text.secondary">
                               {item.description}
                             </Typography>
                           </Anchor>
-                        </NextLink>
-                      </li>
-                    ))}
-                  </UList>
-                </Collapse>
+                        </li>
+                      ))}
+                    </UList>
+                  </Collapse>
+                </li>
+              )}
+              <li>
+                <Anchor href={ROUTES.documentation} as={Link} noLinkStyle>
+                  Docs
+                </Anchor>
               </li>
               <li>
-                <NextLink href={ROUTES.documentation} passHref>
-                  <Anchor>Docs</Anchor>
-                </NextLink>
+                <Anchor href={ROUTES.pricing} as={Link} noLinkStyle>
+                  Pricing
+                </Anchor>
               </li>
               <li>
-                <NextLink href={ROUTES.pricing} passHref>
-                  <Anchor>Pricing</Anchor>
-                </NextLink>
-              </li>
-              <li>
-                <NextLink href={ROUTES.about} passHref>
-                  <Anchor>About us</Anchor>
-                </NextLink>
+                <Anchor href={ROUTES.about} as={Link} noLinkStyle>
+                  About us
+                </Anchor>
               </li>
             </UList>
           </Box>

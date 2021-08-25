@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { alpha, Theme } from '@material-ui/core/styles';
+import { alpha } from '@material-ui/core/styles';
 import Box, { BoxProps } from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
@@ -18,7 +18,7 @@ const planInfo = {
     color: 'green',
     title: 'Community',
     description:
-      'Get started with the most popular and industry-standard UI library to build interfaces with React.',
+      'Get started with the industry-standard UI library for building React user interfaces.',
   },
   pro: {
     color: 'blue',
@@ -34,21 +34,33 @@ const planInfo = {
 
 export function PlanName({
   plan,
+  centered = false,
   disableDescription = false,
 }: {
   plan: 'community' | 'pro' | 'premium';
+  centered?: boolean;
   disableDescription?: boolean;
 }) {
   const { title, color, description } = planInfo[plan];
   return (
     <React.Fragment>
-      <Typography
-        variant="body2"
-        fontWeight="bold"
-        sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-      >
-        {title} <IconImage name={`block-${color}` as IconImageProps['name']} />
-      </Typography>
+      {centered ? (
+        <Typography
+          variant="body2"
+          fontWeight="bold"
+          sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+        >
+          <IconImage name={`block-${color}` as IconImageProps['name']} sx={{ mr: 1 }} /> {title}
+        </Typography>
+      ) : (
+        <Typography
+          variant="body2"
+          fontWeight="bold"
+          sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+        >
+          {title} <IconImage name={`block-${color}` as IconImageProps['name']} />
+        </Typography>
+      )}
       {!disableDescription && (
         <Typography variant="body2" color="text.secondary" sx={{ mt: 1, minHeight: { md: 63 } }}>
           {description}
@@ -67,7 +79,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
         </Typography>
         <Box sx={{ width: 5 }} />
         <Typography variant="body2" color="text.secondary">
-          / free forever!
+          – free forever.
         </Typography>
       </Box>
     );
@@ -76,7 +88,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
     return (
       <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
         <Typography
-          variant="caption"
+          variant="body2"
           fontWeight="bold"
           color="error.500"
           sx={{
@@ -95,7 +107,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
         </Typography>
         <Box sx={{ width: 5 }} />
         <Typography variant="body2" color="text.secondary">
-          / per developer.
+          / developer.
         </Typography>
       </Box>
     );
@@ -107,7 +119,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
       </Typography>
       <Box sx={{ width: 5 }} />
       <Typography variant="body2" color="text.secondary">
-        / per developer.
+        / developer.
       </Typography>
     </Box>
   );
@@ -176,33 +188,7 @@ const ColumnHead = ({
   return (
     <Box sx={{ pl: nested ? 2.5 : 1, pr: 1, alignSelf: 'center', justifySelf: 'flex-start' }}>
       {tooltip ? (
-        <Tooltip
-          title={tooltip}
-          placement="right"
-          describeChild
-          PopperProps={{
-            // @ts-ignore
-            sx: {
-              '& .MuiTooltip-tooltip': {
-                py: 1,
-                px: 2,
-                backgroundColor: (theme: Theme) =>
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[700]
-                    : theme.palette.background.paper,
-                color: 'text.primary',
-                border: '1px solid',
-                borderColor: (theme: Theme) =>
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[400]
-                    : theme.palette.primary.main,
-                typography: 'caption',
-                fontWeight: 400,
-                boxShadow: '1px 1px 20px 0 rgb(90 105 120 / 20%)',
-              },
-            },
-          }}
-        >
+        <Tooltip title={tooltip} placement="right" describeChild>
           {text}
         </Tooltip>
       ) : (
@@ -271,10 +257,7 @@ const Cell = ({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
       pl: 2,
       display: 'flex',
       flexDirection: 'column',
-      alignItems: {
-        xs: 'center',
-        md: 'flex-start',
-      },
+      alignItems: 'center',
       justifyContent: 'center',
       ...(highlighted && {
         borderWidth: '0 1px 0 1px',
@@ -285,6 +268,7 @@ const Cell = ({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
             ? alpha(theme.palette.primaryDark[900], 0.5)
             : alpha(theme.palette.grey[50], 0.5),
       }),
+      ...props.sx,
     }}
   />
 );
@@ -750,7 +734,7 @@ const StickyHead = ({
       <Container
         sx={{
           display: 'grid',
-          gridTemplateColumns: `minmax(200px, 1fr) repeat(3, minmax(260px, 1fr))`,
+          gridTemplateColumns: `minmax(160px, 1fr) repeat(3, minmax(240px, 1fr))`,
         }}
       >
         <Typography variant="body2" fontWeight="bold" sx={{ px: 2, py: 1 }}>
@@ -758,7 +742,7 @@ const StickyHead = ({
         </Typography>
         {(['community', 'pro', 'premium'] as const).map((plan) => (
           <Box key={plan} sx={{ px: 2, py: 1 }}>
-            <PlanName plan={plan} disableDescription />
+            <PlanName plan={plan} centered disableDescription />
           </Box>
         ))}
       </Container>
@@ -778,8 +762,8 @@ export default function PricingTable({
   const tableRef = React.useRef<HTMLDivElement | null>(null);
   const gridSx = {
     display: 'grid',
-    gridTemplateColumns: `minmax(200px, 1fr) repeat(${plans.length}, minmax(${
-      columnHeaderHidden ? '0px' : '260px'
+    gridTemplateColumns: `minmax(160px, 1fr) repeat(${plans.length}, minmax(${
+      columnHeaderHidden ? '0px' : '240px'
     }, 1fr))`,
   };
   function renderRow(key: string) {
@@ -792,6 +776,9 @@ export default function PricingTable({
               theme.palette.mode === 'dark'
                 ? alpha(theme.palette.primaryDark[900], 0.3)
                 : alpha(theme.palette.grey[50], 0.4),
+            '@media (hover: none)': {
+              bgcolor: 'initial',
+            },
           },
         }}
       >
@@ -842,7 +829,7 @@ export default function PricingTable({
               endIcon={<KeyboardArrowRightRounded />}
               sx={{ py: 1, mt: 'auto' }}
             >
-              Get Started
+              Get started
             </Button>
           </Box>
           <ColumnHeadHighlight>
@@ -857,13 +844,13 @@ export default function PricingTable({
             <Button
               component={Link}
               noLinkStyle
-              href="/components/data-grid/"
-              variant="outlined"
+              href="/store/items/material-ui-pro/"
+              variant="contained"
               fullWidth
               endIcon={<KeyboardArrowRightRounded />}
               sx={{ py: 1, mt: 'auto' }}
             >
-              Get Started
+              Buy now
             </Button>
           </ColumnHeadHighlight>
           <Box sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
@@ -892,10 +879,10 @@ export default function PricingTable({
       <RowHead startIcon={<IconImage name="product-advanced" width="28" height="28" />}>
         Advanced
       </RowHead>
-      <Box sx={{ position: 'relative', minHeight: 48, ...gridSx }}>
-        <Cell />
-        <Cell />
-        <Cell highlighted />
+      <Box sx={{ position: 'relative', minHeight: 58, ...gridSx }}>
+        <Cell sx={{ display: { xs: 'none', md: 'block' } }} />
+        <Cell sx={{ display: { xs: 'none', md: 'block' } }} />
+        <Cell highlighted sx={{ display: { xs: 'none', md: 'block' } }} />
         <Button
           fullWidth
           onClick={() => setDataGridCollapsed((bool) => !bool)}
@@ -904,7 +891,7 @@ export default function PricingTable({
               color="primary"
               sx={{
                 transform: dataGridCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)',
-                transition: '0.7s',
+                transition: '0.3s',
               }}
             />
           }

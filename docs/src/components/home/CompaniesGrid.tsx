@@ -12,8 +12,8 @@ export const CORE_CUSTOMERS: Array<IconImageProps> = [
   {
     name: 'amazon',
     alt: 'Amazon logo',
-    width: 82,
-    height: 25,
+    width: 80,
+    height: 33,
   },
   {
     name: 'nasa',
@@ -94,6 +94,7 @@ export default function CompaniesGrid({ data }: { data: Array<IconImageProps> })
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            objectFit: 'contain',
           }}
         >
           <IconImage alt={imgProps.alt} {...imgProps} />

@@ -6,13 +6,13 @@ import Grid from '@material-ui/core/Grid';
 import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
 import LaunchRounded from '@material-ui/icons/LaunchRounded';
+import TextFieldsRounded from '@material-ui/icons/TextFieldsRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
-import SvgSwitch from 'docs/src/icons/SvgSwitch';
-import SvgTypography from 'docs/src/icons/SvgTypography';
-import SvgDatePicker from 'docs/src/icons/SvgDatePicker';
+import WidgetsRounded from '@material-ui/icons/WidgetsRounded';
+import ToggleOnRounded from '@material-ui/icons/ToggleOnRounded';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
@@ -37,9 +37,9 @@ export default function TemplateDemo() {
   const mode = globalTheme.palette.mode;
   const [demo, setDemo] = React.useState(DEMOS[0]);
   const icons = {
-    [DEMOS[0]]: <SvgSwitch />,
-    [DEMOS[1]]: <SvgTypography />,
-    [DEMOS[2]]: <SvgDatePicker />,
+    [DEMOS[0]]: <ToggleOnRounded />,
+    [DEMOS[1]]: <TextFieldsRounded />,
+    [DEMOS[2]]: <WidgetsRounded />,
   };
   return (
     <Section bg="comfort">
@@ -60,12 +60,12 @@ export default function TemplateDemo() {
             {DEMOS.map((name) => (
               <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>
                 <Item
-                  icon={React.cloneElement(icons[name], { active: name === demo })}
+                  icon={React.cloneElement(icons[name], name === demo ? { color: 'primary' } : {})}
                   title={name}
                 />
               </Highlighter>
             ))}
-            <More />
+            <More component={Link} href={ROUTES.storeDesign} noLinkStyle />
           </Group>
         </Grid>
         <Grid item xs={12} md={6}>
@@ -174,18 +174,15 @@ export default function TemplateDemo() {
                 <Typography variant="body2" fontWeight={500} noWrap sx={{ mb: 0.5 }}>
                   MUI for Figma
                 </Typography>
-                <Typography variant="body2" color="success.600" fontWeight={500}>
-                  $69
-                </Typography>
               </Box>
               <Button
                 component={Link}
                 noLinkStyle
-                href={ROUTES.store}
+                href={ROUTES.storeDesign}
                 endIcon={<LaunchRounded sx={{ '&&': { fontSize: 16 } }} />}
-                sx={{ ml: 'auto' }}
+                sx={{ ml: 'auto', color: 'primary.300' }}
               >
-                Goto store
+                Buy now
               </Button>
             </Frame.Info>
           </Frame>

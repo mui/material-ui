@@ -1,5 +1,4 @@
 import * as React from 'react';
-import NextLink from 'next/link';
 import { styled, alpha } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import NoSsr from '@material-ui/core/NoSsr';
@@ -10,7 +9,9 @@ import HeaderNavBar from 'docs/src/components/header/HeaderNavBar';
 import HeaderNavDropdown from 'docs/src/components/header/HeaderNavDropdown';
 import ThemeModeToggle from 'docs/src/components/header/ThemeModeToggle';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-import { useChangeTheme } from 'docs/src/modules/ThemeContext';
+import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
+import Link from 'docs/src/modules/components/Link';
+import ROUTES from '../route';
 
 const Header = styled('header', {
   shouldForwardProp: (prop) => prop !== 'trigger',
@@ -55,11 +56,14 @@ export default function AppHeader() {
   return (
     <Header trigger={false}>
       <Container sx={{ display: 'flex', alignItems: 'center', minHeight: 64 }}>
-        <NextLink href="/branding/home" passHref>
-          <Box component="a" aria-label="Goto homepage" sx={{ lineHeight: 0, mr: 2 }}>
-            <SvgMuiLogo width={32} />
-          </Box>
-        </NextLink>
+        <Box
+          component={Link}
+          href={ROUTES.home}
+          aria-label="Goto homepage"
+          sx={{ lineHeight: 0, mr: 2 }}
+        >
+          <SvgMuiLogo width={32} />
+        </Box>
         <Box sx={{ display: { xs: 'none', md: 'initial' } }}>
           <HeaderNavBar />
         </Box>

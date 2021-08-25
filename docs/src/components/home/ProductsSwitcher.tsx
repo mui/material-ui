@@ -1,14 +1,18 @@
 import * as React from 'react';
-import NextLink from 'next/link';
-import SwipeableViews from 'react-swipeable-views';
-import Box, { BoxProps } from '@material-ui/core/Box';
-import Link from '@material-ui/core/Link';
+import dynamic from 'next/dynamic';
+import { Theme } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Typography from '@material-ui/core/Typography';
 import Stack from '@material-ui/core/Stack';
 import IconImage from 'docs/src/components/icon/IconImage';
+import Highlighter from 'docs/src/components/action/Highlighter';
+import Link from 'docs/src/modules/components/Link';
 
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 import ROUTES from 'docs/src/route';
+
+const SwipeableViews = dynamic(() => import('react-swipeable-views'), { ssr: false });
 
 function ProductItem({
   'aria-label': label,
@@ -40,82 +44,41 @@ function ProductItem({
         <Typography color="text.secondary" variant="body2" fontWeight="regular" sx={{ my: 0.5 }}>
           {description}
         </Typography>
-        <NextLink href={href} passHref>
-          <Link
-            href={href}
-            color="primary"
-            variant="body2"
-            fontWeight="bold"
-            aria-label={label}
-            sx={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              minHeight: 24,
-              '& > svg': { transition: '0.2s' },
-              '&:hover > svg': { transform: 'translateX(4px)' },
-            }}
-            onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
-              event.stopPropagation();
-            }}
-          >
-            <span>Learn more</span>{' '}
-            <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px', ml: '2px' }} />
-          </Link>
-        </NextLink>
+        <Link
+          href={href}
+          color="primary"
+          variant="body2"
+          fontWeight="bold"
+          aria-label={label}
+          sx={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            minHeight: 24,
+            '& > svg': { transition: '0.2s' },
+            '&:hover > svg': { transform: 'translateX(4px)' },
+          }}
+          onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
+            event.stopPropagation();
+          }}
+        >
+          <span>Learn more</span>{' '}
+          <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px', ml: '2px' }} />
+        </Link>
       </Box>
     </Box>
   );
 }
 
-function Highlight({
-  children,
-  selected = false,
-  onClick,
-  sx,
-}: {
-  children: React.ReactNode;
-  selected?: boolean;
-  onClick?: BoxProps['onClick'];
-  sx?: BoxProps['sx'];
-}) {
-  return (
-    <Box
-      role="button"
-      onClick={onClick}
-      sx={{
-        cursor: 'pointer',
-        borderRadius: 1,
-        height: '100%',
-        border: '1px solid',
-        ...(selected && {
-          bgcolor: (theme) =>
-            theme.palette.mode === 'dark' ? 'primaryDark.700' : 'background.paper',
-          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.200'),
-        }),
-        ...(!selected && {
-          '&:hover': {
-            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100'),
-            '@media (hover: none)': {
-              bgcolor: 'transparent',
-            },
-          },
-          borderColor: 'transparent',
-        }),
-        ...sx,
-      }}
-    >
-      {children}
-    </Box>
-  );
-}
-
 const ProductsSwitcher = ({
+  inView = false,
   productIndex,
   setProductIndex,
 }: {
+  inView?: boolean;
   productIndex: number;
   setProductIndex: React.Dispatch<React.SetStateAction<number>>;
 }) => {
+  const isBelowMd = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const productElements = [
     <ProductItem
       aria-label="Go to core components page"
@@ -152,45 +115,49 @@ const ProductsSwitcher = ({
   ];
   return (
     <React.Fragment>
-      <Box sx={{ mt: 4 }} />
       <Box
         sx={{
           display: { md: 'none' },
           maxWidth: 'calc(100vw - 40px)',
-          minHeight: { xs: 192, sm: 150 },
+          minHeight: { xs: 200, sm: 166 },
           '& > div': { pr: '32%' },
         }}
       >
-        <SwipeableViews
-          index={productIndex}
-          resistance
-          enableMouseEvents
-          onChangeIndex={(index) => setProductIndex(index)}
-        >
-          {productElements.map((elm, index) => (
-            <Highlight
-              key={index}
-              onClick={() => setProductIndex(index)}
-              selected={productIndex === index}
-              sx={{
-                transition: '0.3s',
-                transform: productIndex !== index ? 'scale(0.9)' : 'scale(1)',
-              }}
-            >
-              {elm}
-            </Highlight>
-          ))}
-        </SwipeableViews>
+        {isBelowMd && inView && (
+          <SwipeableViews
+            index={productIndex}
+            resistance
+            enableMouseEvents
+            onChangeIndex={(index) => setProductIndex(index)}
+          >
+            {productElements.map((elm, index) => (
+              <Highlighter
+                key={index}
+                disableBorder
+                onClick={() => setProductIndex(index)}
+                selected={productIndex === index}
+                sx={{
+                  width: '100%',
+                  transition: '0.3s',
+                  transform: productIndex !== index ? 'scale(0.9)' : 'scale(1)',
+                }}
+              >
+                {elm}
+              </Highlighter>
+            ))}
+          </SwipeableViews>
+        )}
       </Box>
       <Stack spacing={1} sx={{ display: { xs: 'none', md: 'flex' }, maxWidth: 500 }}>
         {productElements.map((elm, index) => (
-          <Highlight
+          <Highlighter
             key={index}
+            disableBorder
             onClick={() => setProductIndex(index)}
             selected={productIndex === index}
           >
             {elm}
-          </Highlight>
+          </Highlighter>
         ))}
       </Stack>
     </React.Fragment>
