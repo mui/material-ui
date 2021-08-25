@@ -54,7 +54,7 @@ export function NextNProgressBar() {
 }
 
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
-function DeferredAppSearch() {
+export function DeferredAppSearch() {
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
     setMounted(true);

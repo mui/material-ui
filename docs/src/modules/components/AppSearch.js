@@ -1,7 +1,7 @@
 import * as React from 'react';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { styled, useTheme } from '@material-ui/core/styles';
+import { styled, useTheme, alpha } from '@material-ui/core/styles';
 import GlobalStyles from '@material-ui/core/GlobalStyles';
 import Input from '@material-ui/core/Input';
 import SearchIcon from '@material-ui/icons/Search';
@@ -39,7 +39,16 @@ function AlgoliaStyles() {
         return {
           '.algolia-autocomplete.algolia-autocomplete': {
             '& .ds-dropdown-menu': {
-              boxShadow: theme.shadows[1],
+              boxShadow: `0px 4px 20px ${
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.background.paper, 0.72)
+                  : 'rgba(170, 180, 190, 0.3)'
+              }`,
+              border: '1px solid',
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[400]
+                  : theme.palette.grey[200],
               borderRadius: theme.shape.borderRadius,
               '&::before': {
                 display: 'none',
