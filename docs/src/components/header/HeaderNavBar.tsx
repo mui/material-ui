@@ -1,6 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import NextLink, { LinkProps } from 'next/link';
 import { styled, alpha } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Popper from '@material-ui/core/Popper';
@@ -10,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import IconImage from 'docs/src/components/icon/IconImage';
 import ROUTES from 'docs/src/route';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
+import Link from 'docs/src/modules/components/Link';
 
 const Navigation = styled('nav')(({ theme }) => ({
   '& ul': {
@@ -49,55 +48,54 @@ type ProductSubMenuProps = {
   icon: React.ReactElement;
   name: React.ReactNode;
   description: React.ReactNode;
-  href: LinkProps['href'];
+  href: string;
 } & Omit<JSX.IntrinsicElements['a'], 'ref'>;
 
 const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
   function ProductSubMenu({ icon, name, description, href, ...props }, ref) {
     return (
-      <NextLink href={href} passHref>
+      <Box
+        component={Link}
+        href={href}
+        ref={ref}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          py: 2,
+          '&:hover, &:focus': {
+            backgroundColor: (theme) =>
+              theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.50',
+            outline: 'none',
+            '@media (hover: none)': {
+              backgroundColor: 'initial',
+              outline: 'initial',
+            },
+          },
+        }}
+        {...props}
+      >
         <Box
-          component="a"
-          ref={ref}
           sx={{
-            display: 'flex',
-            alignItems: 'center',
-            py: 2,
-            '&:hover, &:focus': {
-              backgroundColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.50',
-              outline: 'none',
-              '@media (hover: none)': {
-                backgroundColor: 'initial',
-                outline: 'initial',
-              },
+            px: 2,
+            '& circle': {
+              fill: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[700]
+                  : theme.palette.grey[100],
             },
           }}
-          {...props}
         >
-          <Box
-            sx={{
-              px: 2,
-              '& circle': {
-                fill: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[700]
-                    : theme.palette.grey[100],
-              },
-            }}
-          >
-            {icon}
-          </Box>
-          <Box>
-            <Typography color="text.primary" variant="body2" fontWeight={600}>
-              {name}
-            </Typography>
-            <Typography color="text.secondary" variant="body2">
-              {description}
-            </Typography>
-          </Box>
+          {icon}
         </Box>
-      </NextLink>
+        <Box>
+          <Typography color="text.primary" variant="body2" fontWeight={600}>
+            {name}
+          </Typography>
+          <Typography color="text.secondary" variant="body2">
+            {description}
+          </Typography>
+        </Box>
+      </Box>
     );
   },
 );
@@ -299,19 +297,19 @@ export default function HeaderNavBar() {
           </li>
         )}
         <li role="none">
-          <NextLink href={ROUTES.documentation}>
-            <a role="menuitem">Docs</a>
-          </NextLink>
+          <Link role="menuitem" href={ROUTES.documentation}>
+            Docs
+          </Link>
         </li>
         <li role="none">
-          <NextLink href={ROUTES.pricing}>
-            <a role="menuitem">Pricing</a>
-          </NextLink>
+          <Link role="menuitem" href={ROUTES.pricing}>
+            Pricing
+          </Link>
         </li>
         <li role="none">
-          <NextLink href={ROUTES.about}>
-            <a role="menuitem">About us</a>
-          </NextLink>
+          <Link role="menuitem" href={ROUTES.about}>
+            About us
+          </Link>
         </li>
       </ul>
     </Navigation>

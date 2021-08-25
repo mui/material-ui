@@ -822,7 +822,6 @@ export default function PricingTable({
             <PlanPrice plan="community" />
             <Button
               component={Link}
-              passHref
               noLinkStyle
               href="/getting-started/usage/"
               variant="outlined"
@@ -845,7 +844,6 @@ export default function PricingTable({
             <Button
               component={Link}
               noLinkStyle
-              passHref
               href="/store/items/material-ui-pro/"
               variant="contained"
               fullWidth

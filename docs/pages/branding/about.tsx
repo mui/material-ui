@@ -521,7 +521,6 @@ function AboutContent() {
             <Button
               component={Link}
               noLinkStyle
-              passHref
               href={ROUTES.careers}
               endIcon={<KeyboardArrowRightRounded fontSize="small" />}
               variant="contained"
