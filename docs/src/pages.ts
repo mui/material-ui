@@ -187,6 +187,7 @@ const pages: readonly MuiPage[] = [
               { pathname: '/components/time-picker' },
             ],
           },
+          { pathname: '/components/masonry' },
           { pathname: '/components/timeline' },
           { pathname: '/components/trap-focus' },
           { pathname: '/components/tree-view' },
