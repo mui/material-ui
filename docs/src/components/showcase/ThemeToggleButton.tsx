@@ -84,7 +84,7 @@ export default function ThemeToggleButton() {
               root: {
                 textTransform: 'none',
                 fontWeight: 600,
-                color: grey[700],
+                color: mode === 'dark' ? grey[300] : grey[700],
                 borderColor: mode === 'dark' ? primaryDark[500] : grey[200],
                 '&.Mui-selected': {
                   borderColor: `${primary[500]} !important`,

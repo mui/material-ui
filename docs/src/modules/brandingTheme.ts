@@ -438,6 +438,36 @@ export function getThemedComponents(theme: Theme) {
           },
         },
       },
+      MuiToggleButtonGroup: {
+        styleOverrides: {
+          root: {
+            backgroundColor:
+              theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#fff',
+          },
+        },
+      },
+      MuiToggleButton: {
+        styleOverrides: {
+          root: {
+            textTransform: 'none',
+            fontWeight: 600,
+            color:
+              theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[700],
+            borderColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[500]
+                : theme.palette.grey[200],
+            '&.Mui-selected': {
+              borderColor: `${theme.palette.primary[500]} !important`,
+              color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[500],
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary[800]
+                  : theme.palette.primaryDark[50],
+            },
+          },
+        },
+      },
       MuiSwitch: {
         styleOverrides: {
           root: {
