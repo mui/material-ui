@@ -15,6 +15,7 @@ const Root = styled('div')(({ theme }) => ({
 const Placeholder = styled('a')(({ theme }) => ({
   width: 40,
   height: 40,
+  fontSize: "14px", 
   fontWeight: 600,
   alignItems: 'center',
   justifyContent: 'center',
@@ -28,7 +29,9 @@ const Placeholder = styled('a')(({ theme }) => ({
   },
   '&:hover': {
     borderColor: 'currentColor',
-    color: theme.palette.text.secondary,
+    color: theme.palette.mode === 'dark'
+      ? theme.palette.primary[300]
+      : theme.palette.primary[500],
   },
 }));
 
@@ -39,9 +42,26 @@ export default function DiamondSponsors(props) {
 
   return (
     <Root>
-      <Typography variant="caption" color="primary.main" display="block" gutterBottom>
-        {t('diamondSponsors')}
-      </Typography>
+      <Box sx={{display: 'flex', alignItems: 'center', mb: 2}}>
+        <Box
+          sx={{
+            display: 'inline-block',
+            mr: 1,
+            borderRadius: 1,
+            width: 12,
+            height: 12,
+            bgcolor: (theme) => theme.palette.primary[500],
+            border: '3px solid',
+            borderColor: (theme) =>
+              theme.palette.mode === 'dark'
+                ? theme.palette.primary[800]
+                : theme.palette.primary[100],
+          }}
+        />
+        <Typography variant="caption" color="primary.main" display="block">
+          {t('diamondSponsors')}
+        </Typography>
+      </Box>
       <Grid container direction="row" alignItems="center" gap={2}>
         <Box
           component="a"

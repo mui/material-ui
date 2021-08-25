@@ -80,7 +80,7 @@ const StyledDrawer = styled(Drawer)(({ theme }) => {
 });
 
 const SwipeableDrawerPaperComponent = styled('div')({
-  width: 240,
+  width: 250,
   boxShadow: 'none',
 });
 
@@ -163,9 +163,9 @@ function AppNavDrawer(props) {
     return (
       <React.Fragment>
         <ToolbarIE11>
-          <ToolbarDiv>
+          <ToolbarDiv sx={{display: 'flex', justifyContent: 'space-between'}}>
             <NextLink href="/" passHref onClick={onClose}>
-              <Box component="a" aria-label="Goto homepage" sx={{ lineHeight: 0, mr: 2 }}>
+              <Box component="a" aria-label="go to homepage" sx={{ lineHeight: 0, mr: 2 }}>
                 <SvgMuiLogo width={32} />
               </Box>
             </NextLink>
@@ -175,7 +175,7 @@ function AppNavDrawer(props) {
                 variant="caption"
                 href={`https://material-ui.com${languagePrefix}/versions/`}
                 onClick={onClose}
-                sx={{ color: (theme) => (theme.palette.mode === 'dark' ? 'grey.500' : 'grey.800') }}
+                sx={{ color: (theme) => (theme.palette.mode === 'dark' ? 'grey.500' : 'grey.800'), mr: 3 }}
               >
                 {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
                 {`v${process.env.LIB_VERSION}`}
@@ -187,7 +187,10 @@ function AppNavDrawer(props) {
         <Box sx={{ mx: 3, my: 2 }}>
           <DiamondSponsors spot="drawer" />
         </Box>
-        {navItems}
+        <Divider />
+        <Box sx={{py:2}}>
+        {navItems}  
+        </Box>
       </React.Fragment>
     );
   }, [activePage, pages, onClose, t, languagePrefix]);
@@ -223,10 +226,9 @@ function AppNavDrawer(props) {
           variant="permanent"
           PaperProps={{
             component: SwipeableDrawerPaperComponent,
-            elevation: 2,
             sx: {
               background: (theme) =>
-                theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#FFF',
+                theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
             },
           }}
           open

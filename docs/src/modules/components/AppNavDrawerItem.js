@@ -15,8 +15,8 @@ const Item = styled(({ component: Component = 'div', ...props }) => <Component {
   borderRadius: theme.shape.borderRadius,
   outline: 0,
   width: '100%',
-  paddingTop: 8,
-  paddingBottom: 8,
+  paddingTop: 10,
+  paddingBottom: 10,
   justifyContent: 'flex-start',
   fontWeight: theme.typography.fontWeightMedium,
   transition: theme.transitions.create(['color', 'background-color'], {
@@ -30,8 +30,8 @@ const Item = styled(({ component: Component = 'div', ...props }) => <Component {
     backgroundColor: theme.palette.action.focus,
   },
   [theme.breakpoints.up('md')]: {
-    paddingTop: 6,
-    paddingBottom: 6,
+    paddingTop: 7,
+    paddingBottom: 7,
   },
 }));
 
@@ -41,7 +41,8 @@ const ItemLink = styled(Item, {
   return {
     color: theme.palette.text.secondary,
     '&.app-drawer-active': {
-      color: theme.palette.primary.main,
+      // color: theme.palette.primary.main,
+      color: theme.palette.mode === 'dark' ? theme.palette.primary[200] : theme.palette.primary[500],
       backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       '&:hover': {
         backgroundColor: alpha(
@@ -108,7 +109,6 @@ export default function AppNavDrawerItem(props) {
     ...other
   } = props;
   const [open, setOpen] = React.useState(openImmediately);
-
   const handleClick = () => {
     setOpen((oldOpen) => !oldOpen);
   };
