@@ -257,10 +257,7 @@ const Cell = ({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
       pl: 2,
       display: 'flex',
       flexDirection: 'column',
-      alignItems: {
-        xs: 'center',
-        md: 'flex-center',
-      },
+      alignItems: 'center',
       justifyContent: 'center',
       ...(highlighted && {
         borderWidth: '0 1px 0 1px',
