@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ThemeProvider, useTheme, createTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
+import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
 
 export default function BrandingProvider({ children }: { children: React.ReactNode }) {
   const upperTheme = useTheme();
@@ -14,6 +15,7 @@ export default function BrandingProvider({ children }: { children: React.ReactNo
   }, [mode]);
   return (
     <ThemeProvider theme={theme}>
+      <NextNProgressBar />
       <CssBaseline />
       {children}
     </ThemeProvider>

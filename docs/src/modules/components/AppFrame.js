@@ -34,7 +34,7 @@ import LanguageIcon from '@material-ui/icons/Translate';
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
 
-function NextNProgressBar() {
+export function NextNProgressBar() {
   const router = useRouter();
   React.useEffect(() => {
     const nProgressStart = () => NProgress.start();
