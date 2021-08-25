@@ -725,7 +725,7 @@ const StickyHead = ({
       <Container
         sx={{
           display: 'grid',
-          gridTemplateColumns: `minmax(200px, 1fr) repeat(3, minmax(260px, 1fr))`,
+          gridTemplateColumns: `minmax(160px, 1fr) repeat(3, minmax(240px, 1fr))`,
         }}
       >
         <Typography variant="body2" fontWeight="bold" sx={{ px: 2, py: 1 }}>
@@ -753,8 +753,8 @@ export default function PricingTable({
   const tableRef = React.useRef<HTMLDivElement | null>(null);
   const gridSx = {
     display: 'grid',
-    gridTemplateColumns: `minmax(200px, 1fr) repeat(${plans.length}, minmax(${
-      columnHeaderHidden ? '0px' : '260px'
+    gridTemplateColumns: `minmax(160px, 1fr) repeat(${plans.length}, minmax(${
+      columnHeaderHidden ? '0px' : '240px'
     }, 1fr))`,
   };
   function renderRow(key: string) {
