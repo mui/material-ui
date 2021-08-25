@@ -64,7 +64,7 @@ However, you have to choose the value of `columnSpan` for each item carefully or
 
 ## Server-side rendering
 
-This example demonstrates the use of the `defaultHeight` to configure a fixed height of each `<MasonryItem />`. This is used for server-side rendering. 
+This example demonstrates the use of the `defaultHeight` to configure a fixed height of each `<MasonryItem />`. This is used for server-side rendering.
 By default, `height: 100%` will be set to the content of `<MasonryItem />`. If you change this, there can be unwanted gap between `<MasonryItem />` and the content that you pass to it.
 
 {{"demo": "pages/components/masonry/SSRMasonry.js", "bg": true}}
