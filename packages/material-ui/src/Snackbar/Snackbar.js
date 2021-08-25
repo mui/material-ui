@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import styled from '../styles/styled';
+import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
 import { duration } from '../styles/createTransitions';
 import ClickAwayListener from '../ClickAwayListener';
@@ -42,9 +43,16 @@ const SnackbarRoot = styled('div', {
   },
 })(({ theme, ownerState }) => {
   const center = {
-    left: '50%',
-    right: 'auto',
-    transform: 'translateX(-50%)',
+    ...(!ownerState.isRtl && {
+      left: '50%',
+      right: 'auto',
+      transform: 'translateX(-50%)',
+    }),
+    ...(ownerState.isRtl && {
+      right: '50%',
+      left: 'auto',
+      transform: 'translateX(50%)',
+    }),
   };
 
   return {
@@ -61,8 +69,26 @@ const SnackbarRoot = styled('div', {
     [theme.breakpoints.up('sm')]: {
       ...(ownerState.anchorOrigin.vertical === 'top' ? { top: 24 } : { bottom: 24 }),
       ...(ownerState.anchorOrigin.horizontal === 'center' && center),
-      ...(ownerState.anchorOrigin.horizontal === 'left' && { left: 24, right: 'auto' }),
-      ...(ownerState.anchorOrigin.horizontal === 'right' && { right: 24, left: 'auto' }),
+      ...(ownerState.anchorOrigin.horizontal === 'left' && {
+        ...(!ownerState.isRtl && {
+          left: 24,
+          right: 'auto',
+        }),
+        ...(ownerState.isRtl && {
+          right: 24,
+          left: 'auto',
+        }),
+      }),
+      ...(ownerState.anchorOrigin.horizontal === 'right' && {
+        ...(!ownerState.isRtl && {
+          right: 24,
+          left: 'auto',
+        }),
+        ...(ownerState.isRtl && {
+          left: 24,
+          right: 'auto',
+        }),
+      }),
     },
   };
 });
@@ -93,7 +119,10 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     ...other
   } = props;
 
-  const ownerState = { ...props, anchorOrigin: { vertical, horizontal } };
+  const theme = useTheme();
+  const isRtl = theme.direction === 'rtl';
+
+  const ownerState = { ...props, anchorOrigin: { vertical, horizontal }, isRtl };
   const classes = useUtilityClasses(ownerState);
 
   const timerAutoHide = React.useRef();

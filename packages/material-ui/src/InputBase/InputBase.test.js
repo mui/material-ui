@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
+import { describeConformance, act, createClientRender, fireEvent, screen } from 'test/utils';
 import FormControl, { useFormControl } from '@material-ui/core/FormControl';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField';
@@ -36,19 +36,39 @@ describe('<InputBase />', () => {
   });
 
   describe('multiline', () => {
-    it('should render an <TextareaAutosize /> when passed the multiline prop', () => {
-      const { container } = render(<InputBase multiline />);
-      expect(container.querySelectorAll('textarea')).to.have.lengthOf(2);
+    it('should render a `textbox` with `aria-multiline`', () => {
+      render(<InputBase multiline />);
+
+      const textarea = screen.getByRole('textbox', { hidden: false });
+      // implicit `aria-multiline`
+      expect(textarea).to.have.tagName('textarea');
     });
 
-    it('should render an <textarea /> when passed the multiline and rows props', () => {
-      const { container } = render(<InputBase multiline rows={4} />);
-      expect(container.querySelectorAll('textarea')).to.have.lengthOf(1);
+    it('should render a `textbox` with `aria-multiline` if `rows` is specified', () => {
+      render(<InputBase multiline rows={4} />);
+
+      const textarea = screen.getByRole('textbox', { hidden: false });
+      // implicit `aria-multiline`
+      expect(textarea).to.have.tagName('textarea');
     });
 
-    it('should forward the value to the TextareaAutosize', () => {
-      const { container } = render(<InputBase multiline maxRows={4} value="Hello" />);
-      expect(container.querySelector('textarea')).to.have.value('Hello');
+    it('should forward the value to the textarea', () => {
+      render(<InputBase multiline maxRows={4} value="Hello" />);
+
+      const textarea = screen.getByRole('textbox', { hidden: false });
+      expect(textarea).to.have.value('Hello');
+    });
+
+    it('should preserve state when changing rows', () => {
+      const { setProps } = render(<InputBase multiline />);
+      const textarea = screen.getByRole('textbox', { hidden: false });
+      act(() => {
+        textarea.focus();
+      });
+
+      setProps({ rows: 4 });
+
+      expect(textarea).toHaveFocus();
     });
   });
 
