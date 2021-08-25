@@ -56,7 +56,9 @@ export default function PointerContainer({
     [],
   );
   React.useEffect(() => {
-    if (onElementChange) onElementChange(data);
+    if (onElementChange) {
+      onElementChange(data);
+    }
   }, [data, onElementChange]);
   return (
     <PointerContext.Provider value={handleMouseOver}>
