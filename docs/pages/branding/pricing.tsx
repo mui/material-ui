@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import ThemeProvider from 'docs/src/modules/ThemeContext';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
@@ -17,7 +16,7 @@ import AppFooter from 'docs/src/layouts/AppFooter';
 
 export default function Pricing() {
   return (
-    <ThemeProvider>
+    <React.Fragment>
       <Head
         title="Pricing - MUI"
         description="The community edition lets you get going right away. Switch to a commercial plan for more components & premium support."
@@ -39,6 +38,6 @@ export default function Pricing() {
         <Divider />
       </main>
       <AppFooter />
-    </ThemeProvider>
+    </React.Fragment>
   );
 }

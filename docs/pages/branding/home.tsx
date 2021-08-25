@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import ThemeProvider from 'docs/src/modules/ThemeContext';
 import Box from '@material-ui/core/Box';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
@@ -17,7 +16,7 @@ import AppFooter from 'docs/src/layouts/AppFooter';
 
 export default function Home() {
   return (
-    <ThemeProvider>
+    <React.Fragment>
       <Head
         title="MUI: A popular React UI framework"
         description="The ultimate solution for your UI. MUI provides a robust, customizible and accessible library of foundational and advanced components, enabling you to build your own design system and develop React applications faster."
@@ -59,6 +58,6 @@ export default function Home() {
           `,
         }}
       />
-    </ThemeProvider>
+    </React.Fragment>
   );
 }

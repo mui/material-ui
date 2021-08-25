@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
 import { ThemeProvider as MuiThemeProvider, createTheme } from '@material-ui/core/styles';
-import ThemeProvider from 'docs/src/modules/ThemeContext';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
@@ -712,7 +711,7 @@ function AboutContent() {
 
 export default function About() {
   return (
-    <ThemeProvider>
+    <React.Fragment>
       <Head
         title="About Us - MUI"
         description="MUI (formerly Material-UI) started back in 2014 to unify React and Material Design. Today, MUI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
@@ -723,6 +722,6 @@ export default function About() {
         <AboutContent />
       </main>
       <AppFooter />
-    </ThemeProvider>
+    </React.Fragment>
   );
 }
