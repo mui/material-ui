@@ -40,7 +40,8 @@ const PaginationDiv = styled('div')(({ theme }) => {
 const PageLinkButton = styled(Button)(({ theme }) => {
   return {
     textTransform: 'none',
-    fontWeight: theme.typography.fontWeightRegular,
+    fontWeight: theme.typography.fontWeightMedium,
+    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
   };
 });
 
@@ -253,7 +254,7 @@ export default function AppLayoutDocsFooter() {
                   component={Link}
                   noLinkStyle
                   href={prevPage.pathname}
-                  size="large"
+                  size="medium"
                   startIcon={<ChevronLeftIcon />}
                 >
                   {pageToTitleI18n(prevPage, t)}
@@ -272,19 +273,19 @@ export default function AppLayoutDocsFooter() {
                   align="center"
                   component="div"
                   id="feedback-message"
-                  variant="subtitle1"
+                  variant="body2"
                 >
                   {t('feedbackMessage')}
                 </FeedbackMessage>
                 <div>
                   <Tooltip title={t('feedbackYes')}>
                     <IconButton onClick={handleClickThumb(1)} aria-pressed={rating === 1}>
-                      <ThumbUpIcon color={rating === 1 ? 'primary' : undefined} />
+                      <ThumbUpIcon fontSize="small" color={rating === 1 ? 'primary' : undefined} />
                     </IconButton>
                   </Tooltip>
                   <Tooltip title={t('feedbackNo')}>
                     <IconButton onClick={handleClickThumb(0)} aria-pressed={rating === 0}>
-                      <ThumbDownIcon color={rating === 0 ? 'error' : undefined} />
+                      <ThumbDownIcon fontSize="small" color={rating === 0 ? 'error' : undefined} />
                     </IconButton>
                   </Tooltip>
                 </div>
@@ -294,7 +295,7 @@ export default function AppLayoutDocsFooter() {
                   component={Link}
                   noLinkStyle
                   href={nextPage.pathname}
-                  size="large"
+                  size="medium"
                   endIcon={<ChevronRightIcon />}
                 >
                   {pageToTitleI18n(nextPage, t)}
