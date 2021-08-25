@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import ThemeProvider from 'docs/src/modules/ThemeContext';
+import BrandingProvider from 'docs/src/BrandingProvider';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import CoreHero from 'docs/src/components/productCore/CoreHero';
@@ -13,7 +13,7 @@ import AppFooter from 'docs/src/layouts/AppFooter';
 
 export default function Home() {
   return (
-    <ThemeProvider>
+    <BrandingProvider>
       <Head
         title="MUI: A popular React UI framework"
         description="The ultimate solution for your UI. MUI provides a robust, customizible and accessible library of foundational and advanced components, enabling you to build your own design system and develop React applications faster."
@@ -29,6 +29,6 @@ export default function Home() {
         <CoreHeroEnd />
       </main>
       <AppFooter />
-    </ThemeProvider>
+    </BrandingProvider>
   );
 }

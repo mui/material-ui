@@ -144,7 +144,7 @@ export default function CoreStyling() {
               ref={infoRef}
               sx={{ maxHeight: 400, overflow: 'auto', position: 'relative' }}
             >
-              <Box sx={{ zIndex: 1, position: 'relative', '& pre': { bgcolor: 'transparent' } }}>
+              <Box sx={{ zIndex: 1, position: 'relative', '&& pre': { bgcolor: 'transparent' } }}>
                 <HighlightedCode component={MarkdownElement} code={code} language="jsx" />
               </Box>
               <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: 1 }} />

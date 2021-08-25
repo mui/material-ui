@@ -84,16 +84,29 @@ export default function Item({
         ...props.sx,
       }}
     >
-      {icon}
-      <Typography
-        component="span"
-        color="text.primary"
-        sx={{ ml: 2 }}
-        variant="body2"
-        fontWeight="bold"
-      >
-        {title}
-      </Typography>
+      <Box sx={{ mr: 2, lineHeight: 0 }}>{icon}</Box>
+      <div>
+        <Typography
+          component="span"
+          color="text.primary"
+          variant="body2"
+          fontWeight="bold"
+          sx={{ display: 'block' }}
+        >
+          {title}
+        </Typography>
+        {description && (
+          <Typography
+            component="span"
+            color="text.secondary"
+            variant="body2"
+            fontWeight="regular"
+            sx={{ mt: 0.5 }}
+          >
+            {description}
+          </Typography>
+        )}
+      </div>
     </Box>
   );
 }

@@ -121,7 +121,14 @@ export default function Hero() {
       right={
         <ThemeProvider
           theme={(theme: Theme) =>
-            createTheme({ palette: { mode: theme.palette.mode, primary: theme.palette.primary } })
+            createTheme({
+              palette: {
+                mode: theme.palette.mode,
+                primary: theme.palette.primary,
+                grey: theme.palette.grey,
+                background: theme.palette.background,
+              },
+            })
           }
         >
           <Paper sx={{ maxWidth: 672, p: 2, mb: 4 }}>

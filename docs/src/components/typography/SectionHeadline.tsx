@@ -6,15 +6,13 @@ export default function SectionHeadline({
   overline,
   title,
   description,
-  mode: modeProp,
 }: {
   overline: React.ReactNode;
   title: React.ReactNode;
   description: React.ReactNode;
-  mode?: 'light' | 'dark';
 }) {
   const globalTheme = useTheme();
-  const mode = modeProp || globalTheme.palette.mode;
+  const mode = globalTheme.palette.mode;
   const overlineColor = mode === 'dark' ? 'primary.400' : 'primary.600';
   const titleColor = mode === 'dark' ? 'grey.300' : 'primaryDark.900';
   const descriptionColor = mode === 'dark' ? 'grey.500' : 'grey.800';
