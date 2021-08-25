@@ -47,8 +47,9 @@ const NavItem = styled(Link, {
 })(({ active, secondary, theme }) => {
   const activeStyles = {
     borderLeftColor:
-      theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[800],
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[800],
+      theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[700],
+    color: theme.palette.mode === 'dark' ? theme.palette.primary[400] : theme.palette.primary[500],
+    fontWeight: 600
   };
 
   return {
@@ -58,8 +59,8 @@ const NavItem = styled(Link, {
     boxSizing: 'border-box',
     '&:hover': {
       borderLeftColor:
-        theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[900],
-      color: theme.palette.grey[700],
+        theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[700],
+      color: theme.palette.mode === 'light' ? theme.palette.primary[500] : theme.palette.primary[400],
     },
     ...(!active && {
       color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[900],
