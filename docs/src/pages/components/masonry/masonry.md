@@ -20,20 +20,20 @@ If a row is already filled with the specified number of columns, the next item s
 
 ## Basic masonry
 
-`<Masonry />` is a container for one or more `<MasonryItem />`s. `<MasonryItem />` can receive any element including `<div />` and `<img />`. Also, it is important to note that each `<MasonryItem />` accepts only one element.
+A simple example of a `<Masonry />`. `<Masonry />` is a container for one or more `<MasonryItem />`s. `<MasonryItem />` can receive any element including `<div />` and `<img />`. Also, it is important to note that each `<MasonryItem />` accepts only one element.
 
 {{"demo": "pages/components/masonry/BasicMasonry.js", "bg": true}}
 
 ## Image masonry
 
-`<Masonry />` orders its children by row.
+This example demonstrates the use of `<Masonry />` for images. `<Masonry />` orders its children by row.
 If you would like to order images by column, you can use `<ImageList variant="masonry" />`. More details on this component can be found in [Masonry Image List](/components/image-list/#masonry-image-list).
 
 {{"demo": "pages/components/masonry/ImageMasonry.js", "bg": true}}
 
 ## Columns
 
-By passing `columns` to `<Masonry />`, you can configure the number of columns of your masonry.
+This example demonstrates the use of the `columns` to configure the number of columns of a `<Masonry />`.
 
 {{"demo": "pages/components/masonry/FixedColumns.js", "bg": true}}
 
@@ -43,7 +43,7 @@ By passing `columns` to `<Masonry />`, you can configure the number of columns o
 
 ## Spacing
 
-By passing `spacing` to `<Masonry />`, you can configure the spacing between `<MasonryItem />`s.
+This example demonstrates the use of the `spacing` to configure the spacing between `<MasonryItem />`s.
 It is important to note that `spacing` is a factor of the theme's spacing.
 
 {{"demo": "pages/components/masonry/FixedSpacing.js", "bg": true}}
@@ -54,7 +54,7 @@ It is important to note that `spacing` is a factor of the theme's spacing.
 
 ## Column spanning
 
-By passing `columnSpan` to `<MasonryItem />`, you can configure the number of columns taken up by each `<MasonryItem />`.
+This example demonstrates the use of the `columnSpan` to configure the number of columns taken up by each `<MasonryItem />`.
 
 {{"demo": "pages/components/masonry/DiffColSizeMasonry.js", "bg": true}}
 
@@ -64,6 +64,7 @@ However, you have to choose the value of `columnSpan` for each item carefully or
 
 ## Server-side rendering
 
-By passing `defaultHeight` to `<MasonryItem />`, you can use server-side rendering. By default, `height: 100%` will be set to the content of `<MasonryItem />`. If you change this, there can be unwanted gap between `<MasonryItem />` and the content that you pass to it.
+This example demonstrates the use of the `defaultHeight` to configure a fixed height of each `<MasonryItem />`. This is used for server-side rendering. 
+By default, `height: 100%` will be set to the content of `<MasonryItem />`. If you change this, there can be unwanted gap between `<MasonryItem />` and the content that you pass to it.
 
 {{"demo": "pages/components/masonry/SSRMasonry.js", "bg": true}}
