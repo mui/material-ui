@@ -79,12 +79,12 @@ export default function HeaderNavDropdown() {
         onClick={() => setOpen((value) => !value)}
         sx={{
           position: 'relative',
-          p: '11px',
+          p: '6.5px',
           borderRadius: 1,
           border: '1px solid',
           bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'transparent'),
           borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200'),
-          '& svg': { width: 21, height: 21 },
+          '& svg': { width: 18, height: 18 },
           '&:focus': {
             boxShadow: (theme) =>
               `0 0 0 1px ${

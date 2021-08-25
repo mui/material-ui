@@ -13,12 +13,12 @@ const ThemeModeToggle = (props: { checked: boolean; onChange: (checked: boolean)
         sx={{
           color: (theme) => (theme.palette.mode === 'dark' ? 'grey.100' : 'primary.main'),
           borderRadius: 1,
-          p: '11px',
+          p: '6.5px',
           border: '1px solid',
           bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'transparent'),
           borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200'),
           '& svg': {
-            fontSize: 21,
+            fontSize: 18,
           },
         }}
       >
