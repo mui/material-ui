@@ -327,7 +327,7 @@ const contributors = [
   {
     name: 'Jairon Alves Lima',
     github: 'jaironalves',
-    title: 'Brazilian docs',
+    title: 'Brazilian Portuguese docs',
     location: 'São Paulo, Brazil',
     country: 'br',
     src: 'https://avatars.githubusercontent.com/u/29267813',
