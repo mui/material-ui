@@ -8,7 +8,7 @@ _Aug 24, 2021_
 
 Big thanks to the 26 contributors who made this release possible. Here are some highlights ✨:
 
-- 🐛 Fixed lots of regressions and bugs to get us closer to the [v5 stable release milestone](https://github.com/mui-org/material-ui/milestone/44)
+- 🐛 Fixed a lot of bugs and regressions to get us closer to the [v5 stable release milestone](https://github.com/mui-org/material-ui/milestone/44)
 - 📚 Improved the docs and the migration guide for upgrading to v5
 
 ### `@material-ui/core@5.0.0-beta.5`
