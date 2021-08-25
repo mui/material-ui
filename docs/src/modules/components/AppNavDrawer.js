@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import NextLink from 'next/link';
 import { styled } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Drawer from '@material-ui/core/Drawer';
@@ -8,6 +9,7 @@ import Divider from '@material-ui/core/Divider';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Box from '@material-ui/core/Box';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
+import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import Link from 'docs/src/modules/components/Link';
@@ -60,19 +62,9 @@ const ToolbarDiv = styled('div')(({ theme }) => {
     paddingLeft: theme.spacing(3),
     display: 'flex',
     flexGrow: 1,
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-  };
-});
-
-const TitleLink = styled(Link)(({ theme }) => {
-  return {
-    color: theme.palette.text.secondary,
-    marginBottom: theme.spacing(0.5),
-    '&:hover': {
-      color: theme.palette.primary.main,
-    },
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
   };
 });
 
@@ -172,16 +164,18 @@ function AppNavDrawer(props) {
       <React.Fragment>
         <ToolbarIE11>
           <ToolbarDiv>
-            <TitleLink href="/" underline="hover" onClick={onClose} variant="h6" color="inherit">
-              Material-UI
-            </TitleLink>
+            <NextLink href="/" passHref onClick={onClose}>
+              <Box component="a" aria-label="Goto homepage" sx={{ lineHeight: 0, mr: 2 }}>
+                <SvgMuiLogo width={32} />
+              </Box>
+            </NextLink>
             {process.env.LIB_VERSION ? (
               <Link
-                color="text.secondary"
                 underline="hover"
                 variant="caption"
                 href={`https://material-ui.com${languagePrefix}/versions/`}
                 onClick={onClose}
+                sx={{ color: (theme) => (theme.palette.mode === 'dark' ? 'grey.500' : 'grey.800') }}
               >
                 {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
                 {`v${process.env.LIB_VERSION}`}
