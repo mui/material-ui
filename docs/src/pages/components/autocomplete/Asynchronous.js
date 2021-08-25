@@ -1,4 +1,4 @@
-// *https://www.registers.service.gov.uk/registers/country/use-the-api*
+// *https://reqres.in/*
 import fetch from 'cross-fetch';
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
@@ -24,12 +24,12 @@ export default function Asynchronous() {
     }
 
     (async () => {
-      const response = await fetch('https://country.register.gov.uk/records.json?page-size=5000');
-      await sleep(1e3); // For demo purposes.
-      const countries = await response.json();
+      const response = await fetch('https://reqres.in/api/users?delay=4');
+      // await sleep(1e3); // Not required as fetch is done with 4s delay.
+      const users = await response.json();
 
       if (active) {
-        setOptions(Object.keys(countries).map((key) => countries[key].item[0]));
+        setOptions(Object.keys(users.data).map((key) => `${users.data[key].first_name} {users.data[key].last_name}`));
       }
     })();
 
