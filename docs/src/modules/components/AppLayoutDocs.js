@@ -56,7 +56,8 @@ const StyledAppContainer = styled(AppContainer, {
 
 const ActionsDiv = styled('div')({
   position: 'absolute',
-  right: 16,
+  right: 20,
+  top: 115,
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-end',
