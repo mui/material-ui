@@ -17,8 +17,8 @@ const StyledInput = styled(Input)(({ theme }) => {
   return {
     color: 'inherit',
     '& input': {
-      padding: theme.spacing(1),
-      paddingLeft: theme.spacing(6),
+      padding: theme.spacing(0.5),
+      paddingLeft: theme.spacing(4),
       transition: theme.transitions.create('width'),
       width: 150,
       '&:focus': {
@@ -124,7 +124,7 @@ const RootDiv = styled('div')(({ theme }) => {
 
 const SearchDiv = styled('div')(({ theme }) => {
   return {
-    width: theme.spacing(6),
+    width: theme.spacing(4),
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
@@ -145,7 +145,7 @@ const Shortcut = styled('div')(({ theme }) => {
       theme.palette.mode === 'dark' ? theme.palette.primaryDark[400] : theme.palette.grey[200]
     }`,
     backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#FFF',
-    padding: theme.spacing(0, 1),
+    padding: theme.spacing(0, 0.7),
     position: 'absolute',
     right: theme.spacing(1),
     height: 23,
