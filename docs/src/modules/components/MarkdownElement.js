@@ -30,6 +30,7 @@ const Root = styled('div')(({ theme }) => ({
   '& code': {
     direction: 'ltr',
     lineHeight: 1.4,
+    letterSpacing: 0.5, 
     display: 'inline-block',
     fontFamily: '"IBM Plex Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace',
     fontWeight: 600,
@@ -60,7 +61,7 @@ const Root = styled('div')(({ theme }) => ({
     fontSize: 40,
     fontFamily: ['"PlusJakartaSans-ExtraBold"'].join(','),
     margin: '16px 0',
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.primaryDark[900],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[50] : theme.palette.primaryDark[900],
     fontWeight: 800,
   },
   '& .description': {
@@ -78,17 +79,17 @@ const Root = styled('div')(({ theme }) => ({
     ...theme.typography.h6,
     margin: '20px 0 10px',
     fontWeight: 500,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
   },
   '& h4': {
     ...theme.typography.h6,
     margin: '32px 0 16px',
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
   },
   '& h5': {
     ...theme.typography.subtitle2,
     margin: '32px 0 16px',
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
   },
   '& p, & ul, & ol': {
     marginTop: 0,
@@ -180,15 +181,20 @@ const Root = styled('div')(({ theme }) => ({
   },
   '& blockquote': {
     borderRadius: theme.shape.borderRadius,
+    border: '1px solid',
+    borderColor:
+      theme.palette.mode === 'dark'
+        ? theme.palette.warning[900]
+        : theme.palette.warning[400],
     backgroundColor:
       theme.palette.mode === 'dark'
-        ? alpha(theme.palette.warning.main, 0.2)
-        : theme.palette.warning[100],
+        ? alpha(theme.palette.warning[800], 0.09)
+        : theme.palette.warning[50],
     padding: '10px 20px',
     margin: '20px 0',
     '& p': {
-      marginTop: '16px',
-      color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
+      marginTop: '10px',
+      color: theme.palette.mode === 'dark' ? theme.palette.grey[50] : theme.palette.primaryDark[800],
     },
   },
   '& a, & a code': {
