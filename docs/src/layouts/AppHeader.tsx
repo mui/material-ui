@@ -69,7 +69,7 @@ export default function AppHeader() {
           <HeaderNavBar />
         </Box>
         <Box sx={{ ml: 'auto' }} />
-        <Box sx={{ mr: 1 }}>
+        <Box sx={{ mr: 2 }}>
           <DeferredAppSearch />
         </Box>
         <Box sx={{ display: { md: 'none' }, mr: 1 }}>
