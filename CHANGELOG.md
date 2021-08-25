@@ -1,5 +1,154 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-beta.5
+
+<!-- generated comparing v5.0.0-beta.4..next -->
+
+_Aug 24, 2021_
+
+A big thanks to the 26 contributors who made this release possible. Here are some highlights ✨:
+
+- 🐛 Fixed a lot of bugs and regressions to get us closer to the [v5 stable release milestone](https://github.com/mui-org/material-ui/milestone/44)
+- 📚 Improved the docs and the migration guide for upgrading to v5
+
+### `@material-ui/core@5.0.0-beta.5`
+
+#### Breaking changes
+
+- <!-- 36 --> [core] Update `.browserslistrc` file (#27788) @DanailH
+
+  The targets of the default bundle have changed:
+
+  - Chrome 90 (up from 84)
+  - Edge 91 (up from 85)
+  - Safari 14 (macOS) (up from 13.1) and 12.4 (iOS) (up from 12.2)
+  - Opera 76 (up from 70)
+
+- <!-- 43 --> [Autocomplete] Rename Value type to AutocompleteValue (#27804) @michaldudak
+
+  The `useAutocomplete` hook used a type called `Value`. It was a very generic name for a type specific to the `Autocomplete` control, so it was removed to `AutocompleteValue`.
+
+  ```diff
+  -import { Value } from '@material-ui/core/useAutocomplete';
+  +import { AutocompleteValue } from '@material-ui/core/useAutocomplete';
+  ```
+
+#### Changes
+
+- <!-- 42 --> [AppBar] Fix transparency issue on dark mode (#27281) @will-amaral
+- <!-- 29 --> Revert "[BottomNavigation] onClick does not fire if tapped while scrolling (#22524)" (#27690) @eps1lon
+- <!-- 68 --> [Autocomplete] Add verbose warning for defaultValue (#27925) @vedadeepta
+- <!-- 78 --> [Badge] Add missing classes to exported class object (#27943) @pvdstel
+- <!-- 41 --> [ButtonGroup] Allow `size` customization via module augmentation (#27834) @aaronlademann-wf
+- <!-- 67 --> [InputBase] Preserve host state  when changing `rows` from undefined to defined (#27683) @eps1lon
+- <!-- 18 --> [InputLabel] Apply `asterisk` class when `required` (#27738) @alexile
+- <!-- 26 --> [Select] Fix NativeSelect propagating classes to the DOM element (#27797) @mnajdova
+- <!-- 28 --> [Stack] Match the customization standard (#27777) @oliviertassinari
+- <!-- 70 --> [SvgIcon] Apply custom color if defined in the theme (#27923) @eps1lon
+- <!-- 65 --> [Switch] Add optional `track` slot to SwitchUnstyled (#27916) @michaldudak
+- <!-- 52 --> [Tooltip] Fix broken arrow position in rtl (#27868) @mnajdova
+- <!-- 02 --> [transitions] Allow to run Slide into a custom container (#26623) @benny0642
+
+### `@material-ui/system@5.0.0-beta.5`
+
+#### Breaking changes
+
+- <!-- 40 --> [system] Rename `styleProps` to `ownerState` (#27830) @mnajdova
+
+  The change was done in order to better reflect what they are, not what we think they will be used for.
+
+  ```diff
+   <SomeSlotComponent
+  -  styleProps={propsAndState}
+  +  ownerState={propsAndState}
+   />
+  ```
+
+#### Changes
+
+- <!-- 63 --> [system] Remove dependency on `overridesResolver` for the `variants` (#27859) @mnajdova
+- <!-- 32 --> [system] Forward `classes` prop if no slot specified in the options (#27795) @mnajdova
+- <!-- 46 --> [system] Fix pseudo class overridden in variants (#27847) @hbjORbj
+
+### `@material-ui/icons@5.0.0-beta.5`
+
+- <!-- 13 --> [icons] Improve GitHub size (#27740) @oliviertassinari
+
+### `@material-ui/styled-engine@5.0.0-beta.5`
+
+- <!-- 27 --> [styled-engine] Remove unecessary aliases (#27779) @oliviertassinari
+- <!-- 14 --> [styled-engine] Drop withComponent support (#27780) @oliviertassinari
+
+### `@material-ui/unstyled@5.0.0-alpha.44`
+
+- <!-- 07 --> [core] Utilize `CSS.supports` in `SliderUnstyled` component (#27724) @DanailH
+
+### `@material-ui/lab@5.0.0-alpha.44`
+
+- <!-- 54 --> [DatePicker] Fix click-away logic requiring second click in some cases (#24877) @eps1lon
+- <!-- 05 --> [lab] Use the public API for module augmentation (#27735) @oliviertassinari
+- <!-- 25 --> [Timeline] Fix color="inherit" on TimelineDot (#27794) @mnajdova
+
+### Docs
+
+- <!-- 77 --> [docs] Redesign on markdown page (#27860) @mnajdova
+- <!-- 76 --> [docs] Split changelog into current and old (#27942) @eps1lon
+- <!-- 74 --> [docs] Migration, emphasize theme structure change (#27935) @oliviertassinari
+- <!-- 72 --> [docs] Fix missing `href` for AppDrawerNavItems (#27936) @eps1lon
+- <!-- 71 --> [docs] Pass window of iframe to framed demos (#27924) @eps1lon
+- <!-- 69 --> [docs] Simplify Select Chip demo styling (#27864) @LorenzHenk
+- <!-- 60 --> [docs] Move from Redux to React Context (#27828) @eps1lon
+- <!-- 58 --> [docs] Correct the useAutocomplete import path (#27805) @michaldudak
+- <!-- 56 --> [docs] Fix Tooltip flicker when hovering between code icon and demo (#27841) @eps1lon
+- <!-- 55 --> [docs] Don't log if a request was aborted in ServerRequestDatePicker demo (#27843) @eps1lon
+- <!-- 53 --> [docs] Fix false-positive useToolbar warning when using the demo toolbar menu (#27842) @eps1lon
+- <!-- 51 --> [docs] Add missing import (#27850) @nguyenyou
+- <!-- 50 --> [docs] Fix circular integration demo (#27856) @LorenzHenk
+- <!-- 48 --> [docs] A few examples is enough (#27874) @mekouar-mehdi
+- <!-- 47 --> [docs] Improve README.md (#27852) @surajkumar016
+- <!-- 45 --> [docs] Fix rtl issue on the demos (#27865) @mnajdova
+- <!-- 44 --> [docs] Apply the new branding theme and do the AppBar redesign (#27789) @mnajdova
+- <!-- 39 --> [docs] Improve grammar in 'Align list items' section (#27730) @atorenherrinton
+- <!-- 38 --> [docs] Make API documentation tables horizontally scrollable (#27787) @jakeanq
+- <!-- 37 --> [docs] Fix typo on "Customized dialogs" section (#27827) @nomanoff
+- <!-- 33 --> [docs] Fix Autocomplete country layout shift (#27814) @oliviertassinari
+- <!-- 23 --> [docs] Improve accessible labels for Card demos (#27675) @eps1lon
+- <!-- 22 --> [docs] Run in StrictMode by default (#27693) @eps1lon
+- <!-- 21 --> [docs] Display TypeScript code of demo if requested (#27691) @eps1lon
+- <!-- 20 --> [docs] Use country image instead of emoji (#27723) @qiweiii
+- <!-- 17 --> [docs] Zero runtime themeAugmentation documentation (#27706) @eps1lon
+- <!-- 15 --> [docs] Fix MobileTextStepper example to match description (#27682) @nolastemgarden
+- <!-- 12 --> [docs] Document the transfer-list limitations (#27783) @oliviertassinari
+- <!-- 11 --> [docs] Move TypeScript docs in context (#27782) @oliviertassinari
+- <!-- 10 --> [docs] Prefer linking API source TypeScript (#27781) @oliviertassinari
+- <!-- 09 --> [docs] Improve the Modal onClose migration (#27775) @oliviertassinari
+- <!-- 08 --> [docs] Fix outdated styled-engine docs (#27778) @oliviertassinari
+- <!-- 06 --> [docs] Improve right to left guide (#27713) @mnajdova
+- <!-- 04 --> [docs] Consistent line break (#27728) @oliviertassinari
+- <!-- 03 --> [docs] Don't dispatch ignored "reset code variant" actions (#27712) @eps1lon
+- <!-- 01 --> [docs] Fix sentence to be more grammatically correct (#27733) @atorenherrinton
+- <!-- 16 --> [examples] Add code sandbox config with node version (#27798) @qiweiii
+- <!-- 59 --> Revert "[examples] Fix nextjs with styled-components example (#27583)" (#27921) @mnajdova
+- <!-- 57 --> Revert "[examples] Update create-react-app examples with styled-components to use package aliases (#27591)" (#27917) @mnajdova
+- <!-- 66 --> [I10n] Add Khmer (kh-KH) locale support (#27915) @teachhay
+- <!-- 62 --> [website] Add templates & design-kits page (#27811) @siriwatknp
+- <!-- 61 --> [website] Improve rebranding homepage performance (#27838) @siriwatknp
+- <!-- 49 --> [website] Honest a11y value proposition (#27826) @eps1lon
+- <!-- 35 --> [website] Improve homepage rebranding (#27663) @siriwatknp
+- <!-- 24 --> [website] A few polish (#27741) @oliviertassinari
+- <!-- 73 --> [website] Polish homepage (#27930) @oliviertassinari
+
+### Core
+
+- <!-- 64 --> [core] Fix various flip: false regressions (#27920) @mnajdova
+- <!-- 31 --> [core] Fix typo in code comment (#27818) @hamidreza-nateghi
+- <!-- 19 --> [core] Fix typos in repository (#27785) @JEONGJIHUN
+- <!-- 75 --> [test] Current behavior when disabling components variants (#27376) @noviicee
+- <!-- 30 --> [tests Improve test for checking if classes is forwarded to any DOM element (#27815) @mnajdova
+- <!-- 34 --> [tests] Replace legacy `describeConformance` with `describeConformanceV5` (#27817) @mnajdova
+
+All contributors of this release in alphabetical order: @aaronlademann-wf, @alexile, @atorenherrinton, @benny0642, @DanailH, @eps1lon, @hamidreza-nateghi, @hbjORbj, @jakeanq, @JEONGJIHUN, @LorenzHenk, @mekouar-mehdi, @michaldudak, @mnajdova, @nguyenyou, @nolastemgarden, @nomanoff, @noviicee, @oliviertassinari, @pvdstel, @qiweiii, @siriwatknp, @surajkumar016, @teachhay, @vedadeepta, @will-amaral
+
 ## 5.0.0-beta.4
 
 <!-- generated comparing v5.0.0-beta.3..next -->
