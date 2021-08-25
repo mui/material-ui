@@ -32,9 +32,7 @@ export default function SponsorCard({
       sx={{
         p: 2,
         display: 'flex',
-        textDecoration: 'unset',
         height: '100%',
-        textDecorationLine: 'none',
         '& svg': {
           transition: '0.2s',
         },

@@ -401,6 +401,11 @@ export function getThemedComponents(theme: Theme) {
       },
       MuiPaper: {
         styleOverrides: {
+          root: {
+            '&[href]': {
+              textDecorationLine: 'none',
+            },
+          },
           outlined: {
             display: 'block',
             borderColor:
