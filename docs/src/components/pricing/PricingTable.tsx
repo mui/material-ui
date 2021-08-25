@@ -34,21 +34,33 @@ const planInfo = {
 
 export function PlanName({
   plan,
+  centered = false,
   disableDescription = false,
 }: {
   plan: 'community' | 'pro' | 'premium';
+  centered?: boolean;
   disableDescription?: boolean;
 }) {
   const { title, color, description } = planInfo[plan];
   return (
     <React.Fragment>
-      <Typography
-        variant="body2"
-        fontWeight="bold"
-        sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-      >
-        {title} <IconImage name={`block-${color}` as IconImageProps['name']} />
-      </Typography>
+      {centered ? (
+        <Typography
+          variant="body2"
+          fontWeight="bold"
+          sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+        >
+          <IconImage name={`block-${color}` as IconImageProps['name']} sx={{ mr: 1 }} /> {title}
+        </Typography>
+      ) : (
+        <Typography
+          variant="body2"
+          fontWeight="bold"
+          sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+        >
+          {title} <IconImage name={`block-${color}` as IconImageProps['name']} />
+        </Typography>
+      )}
       {!disableDescription && (
         <Typography variant="body2" color="text.secondary" sx={{ mt: 1, minHeight: { md: 63 } }}>
           {description}
@@ -733,7 +745,7 @@ const StickyHead = ({
         </Typography>
         {(['community', 'pro', 'premium'] as const).map((plan) => (
           <Box key={plan} sx={{ px: 2, py: 1 }}>
-            <PlanName plan={plan} disableDescription />
+            <PlanName plan={plan} centered disableDescription />
           </Box>
         ))}
       </Container>
