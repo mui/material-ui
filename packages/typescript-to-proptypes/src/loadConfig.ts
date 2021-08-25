@@ -11,7 +11,9 @@ export default function loadConfig(tsConfigPath: string) {
     fs.readFileSync(filePath).toString(),
   );
 
-  if (error) throw error;
+  if (error) {
+    throw error;
+  }
 
   const { options, errors } = ts.parseJsonConfigFileContent(
     config,
@@ -19,7 +21,9 @@ export default function loadConfig(tsConfigPath: string) {
     path.dirname(tsConfigPath),
   );
 
-  if (errors.length > 0) throw errors[0];
+  if (errors.length > 0) {
+    throw errors[0];
+  }
 
   return options;
 }
