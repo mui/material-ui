@@ -22,7 +22,6 @@ export default function ShowcaseContainer({
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
-        minWidth: { lg: 600 },
         ...sx,
       }}
     >
