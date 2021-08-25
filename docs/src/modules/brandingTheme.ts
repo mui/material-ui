@@ -215,7 +215,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         fontSize: 'clamp(1.5rem, 0.9643rem + 1.4286vw, 2.25rem)',
         fontWeight: 800,
         lineHeight: 44 / 36,
-        color: mode === 'dark' ? grey[300] : blue[900],
+        color: mode === 'dark' ? grey[200] : blueDark[700],
       },
       h3: {
         fontSize: defaultTheme.typography.pxToRem(36),
