@@ -41,10 +41,10 @@ const ValueProposition = () => {
   return (
     <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
       <Typography variant="body2" color="primary" fontWeight="bold">
-        Developer experience 
+        Developer experience
       </Typography>
       <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
-        Powerful tools to help you build{' '}<GradientText>all types</GradientText>{' '}of user interfaces
+        Powerful tools to help you build <GradientText>all types</GradientText> of user interfaces
       </Typography>
       <Grid container spacing={2}>
         {content.map(({ icon, title, description }) => (

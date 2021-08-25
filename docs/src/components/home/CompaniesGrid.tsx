@@ -94,7 +94,7 @@ export default function CompaniesGrid({ data }: { data: Array<IconImageProps> })
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            objectFit: "contain"
+            objectFit: 'contain',
           }}
         >
           <IconImage alt={imgProps.alt} {...imgProps} />

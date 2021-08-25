@@ -345,7 +345,8 @@ export default function CoreShowcase() {
                   Own the styling!
                 </Typography>
                 <Typography color="grey.400" variant="body2">
-                  Build your own design system using the sophisticated theming features. You can also start by using Google&apos;s Material Design.
+                  Build your own design system using the sophisticated theming features. You can
+                  also start by using Google&apos;s Material Design.
                 </Typography>
               </Box>
             </Box>
