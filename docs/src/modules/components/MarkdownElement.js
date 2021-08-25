@@ -31,7 +31,8 @@ const Root = styled('div')(({ theme }) => ({
     direction: 'ltr',
     lineHeight: 1.4,
     display: 'inline-block',
-    fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
+    fontFamily: '"IBM Plex Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace',
+    fontWeight: 600,
     WebkitFontSmoothing: 'subpixel-antialiased',
     padding: '0 5px',
     color: theme.palette.text.primary,
@@ -48,6 +49,8 @@ const Root = styled('div')(({ theme }) => ({
   // code blocks
   '& pre code': {
     fontSize: '.9em',
+    fontFamily: '"IBM Plex Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace',
+    fontWeight: 500
   },
   '& .token.operator': {
     background: 'transparent',
