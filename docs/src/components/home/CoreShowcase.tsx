@@ -227,7 +227,7 @@ export default function CoreShowcase() {
               sx={{ opacity: 0.5 }}
             >
               <TouchAppRounded sx={{ fontSize: 14, verticalAlign: 'text-bottom' }} /> Hover the
-              component for highlighting the code.
+              component to highlight the code.
             </Typography>
           </Box>
           <ThemeProvider theme={theme}>
@@ -292,7 +292,7 @@ export default function CoreShowcase() {
           >
             <Box sx={{ position: 'relative' }}>
               {startLine !== undefined && (
-                <FlashCode startLine={startLine} endLine={endLine} sx={{ mx: -1 }} />
+                <FlashCode startLine={startLine} endLine={endLine} sx={{ mx: -2 }} />
               )}
               <HighlightedCode component={MarkdownElement} code={componentCode} language="jsx" />
               <Box
@@ -345,8 +345,7 @@ export default function CoreShowcase() {
                   Own the styling!
                 </Typography>
                 <Typography color="grey.400" variant="body2">
-                  Build your own design system by leveraging our theming capabilities. You can also
-                  start by using Google&apos;s Material Design.
+                  Build your own design system using the sophisticated theming features. You can also start by using Google&apos;s Material Design.
                 </Typography>
               </Box>
             </Box>

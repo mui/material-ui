@@ -59,7 +59,6 @@ export function SponsorLabel({
 
 export default function SponsorCard({
   item,
-  bottom,
   inView = false,
 }: {
   item: {
@@ -69,7 +68,6 @@ export default function SponsorCard({
     description: string;
     href: string;
   };
-  bottom: React.ReactElement;
   inView?: boolean;
 }) {
   return (
@@ -81,31 +79,34 @@ export default function SponsorCard({
       rel="sponsored noopener"
       variant="outlined"
       sx={{
+        p: 2,
+        display: 'flex',
         textDecoration: 'unset',
         height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
+        textDecorationLine: 'none',
+        '& svg': {
+          transition: '0.2s',
+        },
+        '&:hover': {
+          '& svg': {
+            transform: 'translateY(-2px)',
+          },
+        },
       }}
     >
-      <Box sx={{ p: 2, display: 'flex', mb: 'auto' }}>
-        <Avatar
-          {...(inView && { src: item.src, srcSet: item.srcSet, alt: `${item.name} logo` })}
-          sx={{ borderRadius: '4px' }}
-        />
-        <Box sx={{ ml: 2 }}>
-          <Typography variant="body2" fontWeight="bold">
-            {item.name}{' '}
-            <LaunchRounded
-              color="primary"
-              sx={{ fontSize: 14, verticalAlign: 'middle', ml: 0.5 }}
-            />
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {item.description}
-          </Typography>
-        </Box>
+      <Avatar
+        {...(inView && { src: item.src, srcSet: item.srcSet, alt: `${item.name} logo` })}
+        sx={{ borderRadius: '4px' }}
+      />
+      <Box sx={{ ml: 2 }}>
+        <Typography variant="body2" fontWeight="bold">
+          {item.name}{' '}
+          <LaunchRounded color="primary" sx={{ fontSize: 14, verticalAlign: 'middle', ml: 0.5 }} />
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {item.description}
+        </Typography>
       </Box>
-      {bottom}
     </Paper>
   );
 }

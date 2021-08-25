@@ -28,7 +28,7 @@ export default function EarlyBird() {
       >
         <div>
           <Typography fontWeight="bold" sx={{ mb: 0.5 }}>
-            🐦 Early bird special!
+            🐦&nbsp;&nbsp;Early bird special!
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 700 }}>
             Buy now at a reduced price (~25% off), and get early access to MUI X, with the added

@@ -24,7 +24,7 @@ export default function StartToday() {
           Start building with <GradientText>MUI</GradientText> today!
         </Typography>
         <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
-          Check it for yourself, give it a try and share with us what you&apos;ve built!
+          Try it for yourself, and share with us what you&apos;ve built!
         </Typography>
         <GetStartedButtons
           sx={{ '&& > *': { minWidth: 'clamp(0px, (491px - 100%) * 999 ,100%)' } }}
@@ -40,10 +40,10 @@ export default function StartToday() {
             sx={{ p: 2, height: '100%' }}
           >
             <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-              Showcases
+              Showcase
             </Typography>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-              See more projects and companies out there relying on MUI.
+              See more projects and companies that rely on MUI.
             </Typography>
             <Typography
               color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}

@@ -18,7 +18,7 @@ const planInfo = {
     color: 'green',
     title: 'Community',
     description:
-      'Get started with the most popular and industry-standard UI library to build interfaces with React.',
+      'Get started with the industry-standard UI library for building React user interfaces.',
   },
   pro: {
     color: 'blue',
@@ -67,7 +67,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
         </Typography>
         <Box sx={{ width: 5 }} />
         <Typography variant="body2" color="text.secondary">
-          / free forever!
+          – free forever.
         </Typography>
       </Box>
     );
@@ -95,7 +95,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
         </Typography>
         <Box sx={{ width: 5 }} />
         <Typography variant="body2" color="text.secondary">
-          / per developer.
+          / developer.
         </Typography>
       </Box>
     );
@@ -107,7 +107,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
       </Typography>
       <Box sx={{ width: 5 }} />
       <Typography variant="body2" color="text.secondary">
-        / per developer.
+        / developer.
       </Typography>
     </Box>
   );
@@ -247,7 +247,7 @@ const Cell = ({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
       flexDirection: 'column',
       alignItems: {
         xs: 'center',
-        md: 'flex-start',
+        md: 'flex-center',
       },
       justifyContent: 'center',
       ...(highlighted && {
@@ -834,7 +834,7 @@ export default function PricingTable({
               component={Link}
               noLinkStyle
               passHref
-              href="/components/data-grid/"
+              href="/store/items/material-ui-pro/"
               variant="contained"
               fullWidth
               endIcon={<KeyboardArrowRightRounded />}
@@ -869,7 +869,7 @@ export default function PricingTable({
       <RowHead startIcon={<IconImage name="product-advanced" width="28" height="28" />}>
         Advanced
       </RowHead>
-      <Box sx={{ position: 'relative', minHeight: 48, ...gridSx }}>
+      <Box sx={{ position: 'relative', minHeight: 58, ...gridSx }}>
         <Cell sx={{ display: { xs: 'none', md: 'block' } }} />
         <Cell sx={{ display: { xs: 'none', md: 'block' } }} />
         <Cell highlighted sx={{ display: { xs: 'none', md: 'block' } }} />
@@ -881,7 +881,7 @@ export default function PricingTable({
               color="primary"
               sx={{
                 transform: dataGridCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)',
-                transition: '0.7s',
+                transition: '0.3s',
               }}
             />
           }

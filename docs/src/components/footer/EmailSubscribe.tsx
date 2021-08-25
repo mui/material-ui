@@ -64,7 +64,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
               sx={{
                 color: (theme: Theme) =>
                   theme.palette.mode === 'dark'
-                    ? theme.palette.success[500]
+                    ? theme.palette.success[600]
                     : theme.palette.success[700],
               }}
             />
