@@ -48,7 +48,7 @@ export const getHours = (offsetX: number, offsetY: number, ampm: boolean) => {
   let hour = value || 12;
 
   if (!ampm) {
-    if (distance < 90) {
+    if (distance < 76) {
       hour += 12;
       hour %= 24;
     }
