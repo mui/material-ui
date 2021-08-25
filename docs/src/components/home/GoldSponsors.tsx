@@ -1,8 +1,9 @@
 import * as React from 'react';
+import { useInView } from 'react-intersection-observer';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import SponsorCard, { SponsorLabel } from 'docs/src/components/home/SponsorCard';
+import SponsorCard from 'docs/src/components/home/SponsorCard';
 
 const GOLDs = [
   {
@@ -64,9 +65,14 @@ const GOLDs = [
 ];
 
 export default function GoldSponsors() {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0,
+    rootMargin: '500px',
+  });
   return (
-    <Box>
-      <Box sx={{mb: 2, display: 'flex', alignItems: 'center'}}>
+    <Box ref={ref}>
+      <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
         <Box
           sx={{
             display: 'inline-block',
@@ -90,28 +96,23 @@ export default function GoldSponsors() {
           component="h3"
           variant="h5"
           fontWeight="extraBold"
-          sx={{color: (theme) =>
-            theme.palette.mode === 'dark'
-              ? theme.palette.warning[500]
-              : theme.palette.warning[800],}}>
+          sx={{
+            color: (theme) =>
+              theme.palette.mode === 'dark'
+                ? theme.palette.warning[500]
+                : theme.palette.warning[800],
+          }}
+        >
           Gold
         </Typography>
       </Box>
       <Grid container spacing={{ xs: 2, md: 4 }}>
         {GOLDs.map((item) => (
           <Grid item key={item.name} xs={12} sm={6} md={4} lg={3}>
-            <SponsorCard
-              inView
-              item={item}
-              bottom={
-                <SponsorLabel color="warning" darker>
-                  Gold sponsor
-                </SponsorLabel>
-              }
-            />
+            <SponsorCard inView={inView} item={item} />
           </Grid>
         ))}
       </Grid>
-  </Box>
+    </Box>
   );
 }
