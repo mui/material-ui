@@ -8,7 +8,6 @@ import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useTheme from '../styles/useTheme';
 import debounce from '../utils/debounce';
-import ownerWindow from '../utils/ownerWindow';
 import { getNormalizedScrollLeft, detectScrollType } from '../utils/scrollLeft';
 import animate from '../internal/animate';
 import ScrollbarSize from './ScrollbarSize';
@@ -16,6 +15,15 @@ import TabScrollButton from '../TabScrollButton';
 import useEventCallback from '../utils/useEventCallback';
 import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
 import ownerDocument from '../utils/ownerDocument';
+import ownerWindow from '../utils/ownerWindow';
+
+const MockResizeObserver = () => {
+  return {
+    observe: () => {},
+    unobserve: () => {},
+    disconnect: () => {},
+  };
+};
 
 const nextItem = (list, item) => {
   if (list === item) {
@@ -559,12 +567,23 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       updateIndicatorState();
       updateScrollButtonState();
     });
-
     const win = ownerWindow(tabsRef.current);
     win.addEventListener('resize', handleResize);
+    let resizeObserver;
+    try {
+      resizeObserver = new ResizeObserver(handleResize);
+    } catch (err) {
+      resizeObserver = MockResizeObserver(); // Prevent crash for old browsers
+    }
+
+    Array.from(tabListRef.current.children).forEach((child) => {
+      resizeObserver.observe(child);
+    });
+
     return () => {
       handleResize.clear();
       win.removeEventListener('resize', handleResize);
+      resizeObserver.disconnect();
     };
   }, [updateIndicatorState, updateScrollButtonState]);
 
