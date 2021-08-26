@@ -4,26 +4,30 @@ import { alpha, styled } from '@material-ui/core/styles';
 import Collapse from '@material-ui/core/Collapse';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Box from '@material-ui/core/Box';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import KeyboardArrowRightRoundedIcon from '@material-ui/icons/KeyboardArrowRightRounded';
 import Link from 'docs/src/modules/components/Link';
-import DescriptionIcon from '@material-ui/icons/Description';
+import ArticleRoundedIcon from '@material-ui/icons/ArticleRounded';
 import ToggleOnIcon from '@material-ui/icons/ToggleOn';
-import CodeIcon from '@material-ui/icons/Code';
-import BuildIcon from '@material-ui/icons/Build';
-import CreateIcon from '@material-ui/icons/Create';
+import CodeRoundedIcon from '@material-ui/icons/CodeRounded';
+import BuildRoundedIcon from '@material-ui/icons/BuildRounded';
+import BorderColorRoundedIcon from '@material-ui/icons/BorderColorRounded';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import FormatColorFillRoundedIcon from '@material-ui/icons/FormatColorFillRounded';
+import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
 import StyleIcon from '@material-ui/icons/Style';
 import AddIcon from '@material-ui/icons/Add';
+import FlexGrow from 'docs/src/pages/system/flexbox/FlexGrow';
+import { width } from '@material-ui/system';
 
 const iconsMap = {
-  DescriptionIcon: DescriptionIcon,
+  DescriptionIcon: ArticleRoundedIcon,
   ToggleOnIcon: ToggleOnIcon,
-  CodeIcon: CodeIcon,
-  BuildIcon: BuildIcon,
-  CreateIcon: CreateIcon,
+  CodeIcon: CodeRoundedIcon,
+  BuildIcon: BuildRoundedIcon,
+  CreateIcon: BorderColorRoundedIcon,
   VisibilityIcon: VisibilityIcon,
-  StyleIcon: StyleIcon,
-  AddIcon: AddIcon,
+  StyleIcon: FormatColorFillRoundedIcon,
+  AddIcon: AddBoxRoundedIcon,
 };
 
 const Item = styled(({ component: Component = 'div', ...props }) => <Component {...props} />, {
@@ -32,7 +36,7 @@ const Item = styled(({ component: Component = 'div', ...props }) => <Component {
 })(({ theme }) => ({
   ...theme.typography.body2,
   display: 'flex',
-  borderRadius: theme.shape.borderRadius,
+  borderRadius: '5px',
   outline: 0,
   width: '100%',
   paddingTop: 10,
@@ -44,14 +48,14 @@ const Item = styled(({ component: Component = 'div', ...props }) => <Component {
   }),
   '&:hover': {
     color: theme.palette.text.primary,
-    backgroundColor: theme.palette.primary[50],
+    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[50],
   },
   '&.Mui-focusVisible': {
     backgroundColor: theme.palette.action.focus,
   },
   [theme.breakpoints.up('md')]: {
-    paddingTop: 4,
-    paddingBottom: 4,
+    paddingTop: 6,
+    paddingBottom: 6,
   },
 }));
 
@@ -60,12 +64,13 @@ const ItemLink = styled(Item, {
 })(({ depth, theme }) => {
   return {
     color: theme.palette.text.secondary,
-    fontSize: 14,
+    fontSize: 13,
     '&.app-drawer-active': {
       // color: theme.palette.primary.main,
       color:
         theme.palette.mode === 'dark' ? theme.palette.primary[200] : theme.palette.primary[500],
-      backgroundColor: theme.palette.primary[50],
+      backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.primary[50],
+      fontWeight: 600,
       '&:hover': {
         backgroundColor: alpha(
           theme.palette.primary.main,
@@ -87,11 +92,11 @@ const ItemLink = styled(Item, {
   };
 });
 
-const ItemButtonIcon = styled(ArrowRightIcon, {
+const ItemButtonIcon = styled(KeyboardArrowRightRoundedIcon, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ open, theme }) => {
   return {
-    fontSize: 14,
+    fontSize: 15,
     float: 'right',
     // marginLeft: -19,
     color: theme.palette.text.secondary,
@@ -103,17 +108,24 @@ const ItemButton = styled(Item, {
   shouldForwardProp: (prop) => prop !== 'depth',
 })(({ depth, theme }) => {
   return {
-    color: depth === 1 ? theme.palette.grey[500] : theme.palette.text.primary,
+    color: depth === 1 ? (theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[500]) : theme.palette.text.primary,
     fontSize: depth === 1 ? 12 : undefined,
-    fontWeight: depth === 0 ? 600 : theme.typography.fontWeightMedium,
+    fontWeight: depth === 0 ? 500 : 600,
+    marginTop: depth === 0 ? '0px' : '10px',
+    '&:hover': {
+      backgroundColor: depth === 0 ? '' : alpha(theme.palette.primary.main,0),
+      color: depth === 0 ? '' : (theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[500]),
+      cursor: depth === 0 ? '' : 'text',
+    },
     [`&:hover ${ItemButtonIcon}`]: {
       color: theme.palette.text.primary,
     },
     ...(depth === 0
       ? {
           paddingLeft: 2,
-          '& .ArrowIcon': {
+          '& .KeyboardArrowRightRoundedIcon': {
             marginLeft: 'auto',
+            marginRight: '5px'
           },
         }
       : {
@@ -181,18 +193,22 @@ export default function AppNavDrawerItem(props) {
         {hasIcon && (
           <Box
             sx={{
-              '& svg': { fontSize: 12 },
+              '& svg': { fontSize: 14 },
+              display: 'flex',
+              alignItems: 'center',
+              height: '100%',
               marginRight: 1,
+              py: 0.5,
               px: 0.5,
-              borderRadius: '1px',
-              backgroundColor: 'primary.50',
+              borderRadius: '5px',
+              backgroundColor: (theme) => theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.primary[50],
             }}
           >
             <IconComponent {...iconProps} />
           </Box>
         )}
         {title}
-        {depth === 0 && <ItemButtonIcon open={open} className="ArrowIcon" />}
+        {depth === 0 && <ItemButtonIcon open={open} className="KeyboardArrowRightRoundedIcon" />}
       </ItemButton>
       {depth === 0 ? (
         <Collapse in={open} timeout="auto" unmountOnExit>
