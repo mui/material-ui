@@ -179,7 +179,7 @@ function AppNavDrawer(props) {
                 href={`https://material-ui.com${languagePrefix}/versions/`}
                 onClick={onClose}
                 sx={{
-                  color: (theme) => (theme.palette.mode === 'dark' ? 'grey.500' : 'grey.800'),
+                  color: (theme) => theme.palette.text.secondary,
                   mr: 3,
                 }}
               >

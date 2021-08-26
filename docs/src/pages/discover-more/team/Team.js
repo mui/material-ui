@@ -79,6 +79,12 @@ const activeCore = [
     flag: 'Advanced components team',
     location: 'Lille, France',
   },
+  {
+    name: 'Danilo Leal',
+    github: 'danilo-leal',
+    flag: 'Lead Designer',
+    location: 'São Paulo, Brazil',
+  },
 ];
 
 const community = [
