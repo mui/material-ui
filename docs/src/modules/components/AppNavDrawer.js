@@ -121,6 +121,7 @@ function reduceChildRoutes(context) {
         topLevel={topLevel && !page.subheader}
         openImmediately={topLevel || Boolean(page.subheader)}
         title={title}
+        icon={page.icon}
       >
         {renderNavItems({ onClose, pages: page.children, activePage, depth: depth + 1, t })}
       </AppNavDrawerItem>,
@@ -137,6 +138,7 @@ function reduceChildRoutes(context) {
         title={title}
         href={page.pathname}
         onClick={onClose}
+        icon={page.icon}
       />,
     );
   }
