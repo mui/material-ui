@@ -54,7 +54,8 @@ const NavItem = styled(Link, {
 
   return {
     fontSize: '.8125rem',
-    padding: theme.spacing(0.5, 0, 1, secondary ? 3 : '10px'),
+    padding: theme.spacing(0, 0, 0, secondary ? 3 : '10px'),
+    margin: theme.spacing(0.5, 0, 1, 0),
     borderLeft: `2px solid transparent`,
     boxSizing: 'border-box',
     '&:hover': {
