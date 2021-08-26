@@ -48,7 +48,7 @@ const Item = styled(({ component: Component = 'div', ...props }) => <Component {
   }),
   '&:hover': {
     color: theme.palette.text.primary,
-    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[50],
+    backgroundColor: theme.palette.mode === 'dark' ? alpha(theme.palette.grey[900], 0.3) : theme.palette.grey[50],
   },
   '&.Mui-focusVisible': {
     backgroundColor: theme.palette.action.focus,
@@ -69,7 +69,7 @@ const ItemLink = styled(Item, {
       // color: theme.palette.primary.main,
       color:
         theme.palette.mode === 'dark' ? theme.palette.primary[200] : theme.palette.primary[500],
-      backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.primary[50],
+      backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.primary[50],
       fontWeight: 600,
       '&:hover': {
         backgroundColor: alpha(
@@ -88,7 +88,7 @@ const ItemLink = styled(Item, {
         ),
       },
     },
-    paddingLeft: 32,
+    paddingLeft: 38,
   };
 });
 
@@ -129,14 +129,14 @@ const ItemButton = styled(Item, {
           },
         }
       : {
-          paddingLeft: 32,
+          paddingLeft: 38,
         }),
   };
 });
 
 const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })(({ depth }) => {
   return {
-    padding: depth === 0 ? '0 8px' : '1px 0',
+    padding: depth === 0 ? '0 10px' : '1.5px 0',
     display: 'block',
   };
 });
@@ -197,7 +197,7 @@ export default function AppNavDrawerItem(props) {
               display: 'flex',
               alignItems: 'center',
               height: '100%',
-              marginRight: 1,
+              marginRight: 1.5,
               py: 0.5,
               px: 0.5,
               borderRadius: '5px',
