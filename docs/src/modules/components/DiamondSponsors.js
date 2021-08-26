@@ -30,6 +30,7 @@ const Placeholder = styled('a')(({ theme }) => ({
   '&:hover': {
     borderColor: 'currentColor',
     color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
+    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : theme.palette.primary[50],
   },
 }));
 
@@ -54,11 +55,27 @@ export default function DiamondSponsors(props) {
           href="https://octopus.com/?utm_source=materialui&utm_medium=referral"
           rel="noopener noreferrer sponsored"
           target="_blank"
-          style={{ width: 40, height: 40 }}
+          sx={{
+            width: 40,
+            height: 40,
+            pt: 0.7,
+            pl: 0.7,
+            border: `1px solid ${
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[700]
+                : theme.palette.grey[200]
+            }`,
+            borderRadius: 1,
+            transition: theme.transitions.create(['color', 'border-color']),
+            '&:hover': {
+              borderColor: 'currentColor',
+              color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
+            },
+          }}
         >
           <img
-            width="40"
-            height="40"
+            width="27"
+            height="27"
             src="/static/sponsors/octopus.png"
             alt="octopus"
             title="Repeatable, reliable deployments"
@@ -81,9 +98,14 @@ export default function DiamondSponsors(props) {
             border: `1px solid ${
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[700]
-                : theme.palette.grey[300]
+                : theme.palette.grey[200]
             }`,
-            borderRadius: 0.5,
+            borderRadius: 1,
+            transition: theme.transitions.create(['color', 'border-color']),
+            '&:hover': {
+              borderColor: 'currentColor',
+              color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
+            },
           }}
         >
           <img
