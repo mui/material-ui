@@ -1,4 +1,5 @@
 import { createTheme, ThemeOptions, Theme } from '@material-ui/core/styles';
+import { deepmerge } from '@material-ui/utils';
 
 declare module '@material-ui/core/styles/createPalette' {
   interface ColorRange {
@@ -454,4 +455,4 @@ export function getThemedComponents(theme: Theme) {
 }
 
 const darkTheme = createTheme(getDesignTokens('dark'));
-export const brandingDarkTheme = createTheme(darkTheme, getThemedComponents(darkTheme));
+export const brandingDarkTheme = deepmerge(darkTheme, getThemedComponents(darkTheme));
