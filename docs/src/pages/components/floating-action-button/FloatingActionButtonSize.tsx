@@ -5,7 +5,7 @@ import AddIcon from '@material-ui/icons/Add';
 
 export default function FloatingActionButtonSize() {
   return (
-    <Stack direction="row" spacing={1}>
+    <Stack direction="row" alignItems="center" spacing={1}>
       <Fab size="small" color="secondary" aria-label="add">
         <AddIcon />
       </Fab>

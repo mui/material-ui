@@ -8,7 +8,7 @@ import NavigationIcon from '@material-ui/icons/Navigation';
 
 export default function FloatingActionButtons() {
   return (
-    <Stack direction="row" spacing={1}>
+    <Stack direction="row" alignItems="center" spacing={1}>
       <Fab color="primary" aria-label="add">
         <AddIcon />
       </Fab>
