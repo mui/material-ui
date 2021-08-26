@@ -13,12 +13,12 @@ const Nav = styled('nav')(({ theme }) => {
     top: 70,
     // Fix IE11 position sticky issue.
     marginTop: 70,
-    width: 200,
+    width: 210,
     flexShrink: 0,
     position: 'sticky',
     height: 'calc(100vh - 70px)',
     overflowY: 'auto',
-    padding: theme.spacing(2, 5, 2, 0),
+    padding: theme.spacing(2, 4, 2, 0),
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
@@ -54,7 +54,7 @@ const NavItem = styled(Link, {
 
   return {
     fontSize: '.8125rem',
-    padding: theme.spacing(0, 0, 0, secondary ? 3 : '10px'),
+    padding: theme.spacing(0, 1, 0, secondary ? 3 : '10px'),
     margin: theme.spacing(0.5, 0, 1, 0),
     borderLeft: `2px solid transparent`,
     boxSizing: 'border-box',

@@ -50,14 +50,20 @@ const StyledAppContainer = styled(AppContainer, {
           width: `calc(100% - ${TOC_WIDTH}px)`,
         },
       }),
+      ...(!disableToc && {
+        [theme.breakpoints.up('lg')]: {
+          paddingLeft: '60px',
+          paddingRight: '60px',
+        },
+      }),
     }),
   };
 });
 
 const ActionsDiv = styled('div')({
   position: 'absolute',
-  right: 20,
-  top: 115,
+  right: 60,
+  top: 120,
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-end',
