@@ -4,6 +4,10 @@ export type SubMenuProps = Omit<MenuProps, 'open'>;
 
 /**
  *
+ * Demos:
+ *
+ * - [Menus](https://material-ui.com/components/menus/)
+ *
  * API:
  *
  * - [SubMenu API](https://material-ui.com/api/sub-menu/)

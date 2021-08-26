@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { alpha } from '@material-ui/system';
+import { makeStyles } from '@material-ui/styles';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import useTheme from '../styles/useTheme';
 import ListContext from '../List/ListContext';
 import ButtonBase from '../ButtonBase';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
@@ -13,11 +15,8 @@ import { dividerClasses } from '../Divider';
 import { listItemIconClasses } from '../ListItemIcon';
 import { listItemTextClasses } from '../ListItemText';
 import menuItemClasses, { getMenuItemUtilityClass } from './menuItemClasses';
-import { getMenuItemUtilityClass } from './menuItemClasses';
-import ListItem from '../ListItem';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import createChainedFunction from '../utils/createChainedFunction';
-import { overridesResolver as listItemOverridesResolver, ListItemRoot } from '../ListItem/ListItem';
 
 const RTL_ANCHOR_ORIGIN = {
   vertical: 'top',
@@ -51,7 +50,7 @@ export const overridesResolver = (props, styles) => {
 };
 
 const useUtilityClasses = (styleProps) => {
-  const { disabled, dense, divider, disableGutters, selected, classes } = styleProps;
+  const { disabled, dense, divider, disableGutters, openSubMenu, selected, classes } = styleProps;
   const slots = {
     root: [
       'root',
@@ -60,6 +59,7 @@ const useUtilityClasses = (styleProps) => {
       !disableGutters && 'gutters',
       divider && 'divider',
       selected && 'selected',
+      openSubMenu && 'openSubMenuParent',
     ],
   };
 
@@ -129,6 +129,9 @@ const MenuItemRoot = styled(ButtonBase, {
   [`&.${menuItemClasses.disabled}`]: {
     opacity: theme.palette.action.disabledOpacity,
   },
+  [`&.${menuItemClasses.openSubMenuParent}`]: {
+    backgroundColor: theme.palette.action.hover,
+  },
   [`& + .${dividerClasses.root}`]: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
@@ -160,7 +163,8 @@ const MenuItemRoot = styled(ButtonBase, {
   }),
 }));
 
-  /* Styles applied to a Menu Item's children when a subMenu is present */
+/* Styles applied to a Menu Item's children when a subMenu is present */
+const useStyles = makeStyles({
   subMenuItemWrapper: {
     width: '100%',
     display: 'flex',
@@ -168,30 +172,25 @@ const MenuItemRoot = styled(ButtonBase, {
   },
   /* Styles applied to the subMenuIcon when it is present. */
   subMenuIcon: {
-    marginLeft: theme.spacing(2),
-  },
-  /* Styles applied to parent item of open sub menu. */
-  openSubMenuParent: {
-    backgroundColor: theme.palette.action.hover,
+    marginLeft: ({ theme }) => theme.spacing(2),
   },
   /* Styles applied to subMenuIcon when direction is 'rtl'. */
   rtlSubMenuIcon: {
     transform: 'rotate(-180deg)',
   },
+});
 
 const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiMenuItem' });
   const {
     autoFocus = false,
     children,
-    className,
     component = 'li',
     dense = false,
     divider = false,
     disableGutters = false,
     focusVisibleClassName,
     onArrowRightKeydown,
-    ListItemClasses,
     openSubMenu = false,
     onKeyDown,
     role = 'menuitem',
@@ -209,12 +208,8 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     dense: dense || context.dense || false,
     disableGutters,
   };
-  const { theme } = props;
-  const hookClasses = useStyles({ theme });
 
-  const listItemRef = React.useRef(null);
-  const handleRef = useForkRef(listItemRef, ref);
-  const styleProps = { dense };
+  const theme = useTheme();
 
   const menuItemRef = React.useRef(null);
   useEnhancedEffect(() => {
@@ -237,6 +232,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   };
 
   const classes = useUtilityClasses(props);
+  const hookClasses = useStyles({ theme });
 
   const handleRef = useForkRef(menuItemRef, ref);
 
@@ -256,63 +252,39 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     ...allowedSubMenuProps
   } = subMenu ? subMenu.props : {};
 
-  const listItem = (
-    <ListItem
-      components={{ Root: MenuItemRoot }}
-      componentsProps={{ root: { styleProps } }}
-      key={subMenu && 'subMenuItem'}
-      button
-      role={role}
-      tabIndex={tabIndex}
-      component={component}
-      selected={selected}
-      disableGutters={disableGutters}
-      className={clsx(classes.root, { [hookClasses.openSubMenuParent]: openSubMenu }, className)}
-      ref={handleRef}
-      aria-haspopup={subMenu ? true : undefined}
-      aria-expanded={subMenu ? openSubMenu : undefined}
-      onKeyDown={createChainedFunction(onArrowRightKeydown, onKeyDown)}
-      {...other}
-      classes={ListItemClasses}
-    >
-      {subMenu ? (
-        <div className={classes.subMenuItemWrapper}>
-          {children}
-          <SubMenuIcon
-            className={clsx(classes.subMenuIcon, {
-              [classes.rtlSubMenuIcon]: theme.direction === 'rtl',
-            })}
-          />
-        </div>
-      ) : (
-        children
-      )}
-    </ListItem>
- 
-// V5 return:
-//   return (
-    // <ListContext.Provider value={childContext}>
-    //   <MenuItemRoot
-        // ref={handleRef}
-        // role={role}
-        // tabIndex={tabIndex}
-        // component={component}
-        // focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
-        // {...other}
-        // styleProps={styleProps}
-        // classes={classes}
-    //   />
-    // </ListContext.Provider>
-//   );
+  const listItemAnchorEl = menuItemRef.current;
+  const renderSubMenu = openSubMenu && listItemAnchorEl;
 
-  if (!subMenu) return listItem;
-
-  const listItemAnchorEl = listItemRef.current;
-
-  return [
-    listItem,
-    openSubMenu && listItemAnchorEl
-      ? React.cloneElement(subMenu, {
+  return (
+    <ListContext.Provider value={childContext}>
+      <MenuItemRoot
+        aria-haspopup={subMenu ? true : undefined}
+        aria-expanded={subMenu ? openSubMenu : undefined}
+        onKeyDown={createChainedFunction(onArrowRightKeydown, onKeyDown)}
+        ref={handleRef}
+        role={role}
+        tabIndex={tabIndex}
+        component={component}
+        focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
+        {...other}
+        styleProps={styleProps}
+        classes={classes}
+      >
+        {subMenu ? (
+          <div className={hookClasses.subMenuItemWrapper}>
+            {children}
+            <SubMenuIcon
+              className={clsx(hookClasses.subMenuIcon, {
+                [hookClasses.rtlSubMenuIcon]: theme.direction === 'rtl',
+              })}
+            />
+          </div>
+        ) : (
+          children
+        )}
+      </MenuItemRoot>
+      {renderSubMenu &&
+        React.cloneElement(subMenu, {
           key: 'subMenu',
           anchorEl: listItemAnchorEl,
           anchorOrigin: theme.direction === 'rtl' ? RTL_ANCHOR_ORIGIN : LTR_ANCHOR_ORIGIN,
@@ -322,9 +294,9 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
           setParentOpenSubMenuIndex,
           transformOrigin: theme.direction === 'rtl' ? RTL_TRANSFORM_ORIGIN : LTR_TRANSFORM_ORIGIN,
           ...allowedSubMenuProps,
-        })
-      : undefined,
-  ];
+        })}
+    </ListContext.Provider>
+  );
 });
 
 MenuItem.propTypes /* remove-proptypes */ = {
@@ -428,21 +400,6 @@ MenuItem.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.object,
-  /**
-   * @ignore
-   */
-  setParentOpenSubMenuIndex: PropTypes.func,
-  /**
-   * Menu to display as a sub-menu.
-   */
-  subMenu: PropTypes.node,
-  /**
-   * Normally `Icon`, `SvgIcon`, or a `@material-ui/icons`
-   * SVG icon element rendered on a MenuItem that
-   * contains a subMenu
-   * @default KeyboardArrowRight
-   */
-  subMenuIcon: PropTypes.node,
   /**
    * @default 0
    */

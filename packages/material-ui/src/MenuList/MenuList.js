@@ -198,11 +198,13 @@ const MenuList = React.forwardRef(function MenuList(props, ref) {
     }
 
     if (!event.defaultPrevented && onKeyDown) {
-      onKeyDown(event, currentFocus, moveFocus);
+      onKeyDown(event);
     }
 
     const capturedKeys = ['ArrowDown', 'ArrowUp', 'Home', 'End'];
-    if (isSubMenu && capturedKeys.includes(key)) event.preventDefault();
+    if (isSubMenu && capturedKeys.includes(key)) {
+      event.preventDefault();
+    }
   };
 
   const handleRef = useForkRef(listRef, ref);

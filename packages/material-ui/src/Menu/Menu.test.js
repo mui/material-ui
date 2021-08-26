@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { spy, useFakeTimers } from 'sinon';
 import { expect } from 'chai';
-import { createClientRender, describeConformanceV5, screen, fireEvent } from 'test/utils';
+import { act, createClientRender, describeConformanceV5, screen, fireEvent } from 'test/utils';
 import Menu, { menuClasses as classes } from '@material-ui/core/Menu';
 import Popover from '@material-ui/core/Popover';
 import Button from '../Button';
 import SubMenu from '../SubMenu';
 import MenuItem from '../MenuItem';
-import MenuList from '../MenuList';
 
 describe('<Menu />', () => {
   /**
@@ -154,7 +153,7 @@ describe('<Menu />', () => {
   });
 
   it('should open during the initial mount', () => {
-    function MenuItem(props) {
+    function MenuItemMock(props) {
       const { autoFocus, children } = props;
       return (
         <div role="menuitem" tabIndex={-1} data-autofocus={autoFocus}>
@@ -164,7 +163,7 @@ describe('<Menu />', () => {
     }
     render(
       <Menu anchorEl={document.createElement('div')} open>
-        <MenuItem>one</MenuItem>
+        <MenuItemMock>one</MenuItemMock>
       </Menu>,
     );
 
@@ -209,7 +208,7 @@ describe('<Menu />', () => {
   });
 
   it('should call onClose on tab', () => {
-    function MenuItem(props) {
+    function MenuItemMock(props) {
       const { autoFocus, children } = props;
 
       const ref = React.useRef(null);
@@ -228,7 +227,7 @@ describe('<Menu />', () => {
     const onCloseSpy = spy();
     render(
       <Menu anchorEl={document.createElement('div')} open onClose={onCloseSpy}>
-        <MenuItem>hello</MenuItem>
+        <MenuItemMock>hello</MenuItemMock>
       </Menu>,
     );
 
@@ -270,18 +269,6 @@ describe('<Menu />', () => {
   });
 
   describe('cascading menu', () => {
-    /**
-     * @type {ReturnType<typeof useFakeTimers>}
-     */
-    let clock;
-    beforeEach(() => {
-      clock = useFakeTimers();
-    });
-
-    afterEach(() => {
-      clock.restore();
-    });
-
     it('renders a subMenu', () => {
       const expected = 'SubMenuItem';
       const CascadingMenu = () => {
@@ -940,7 +927,7 @@ describe('<Menu />', () => {
       expect(getByRole('menuitem', { name: firstFocus })).to.equal(document.activeElement); // is focused
       expect(Array.from(getByRole('menuitem', { name: firstFocus }).classList)).to.include(
         'Mui-focusVisible',
-      );
+      ); // looks focused
 
       // arrow right
       act(() => {
@@ -968,10 +955,9 @@ describe('<Menu />', () => {
 
       // ensure focus moved back to first item in root menu
       expect(getByRole('menuitem', { name: firstFocus })).to.equal(document.activeElement); // is focused
-      // TODO: @eps1lon have to apply focus differently in Menu.js to test this correctly. Won't work with current dom manip method.
-      // const fFocus = getByRole('menuitem', { name: firstFocus });
-      // const hasFocusVisible = Array.from(fFocus.classList).includes('Mui-focusVisible');
-      // expect(hasFocusVisible).to.equal(true); // looks focused
+      expect(Array.from(getByRole('menuitem', { name: firstFocus }).classList)).to.include(
+        'Mui-focusVisible',
+      ); // looks focused
     });
 
     it('keeps parent items of open sub menus highlighted', () => {

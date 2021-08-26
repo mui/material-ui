@@ -9,10 +9,10 @@
     "disableGutters": "If <code>true</code>, the left and right padding is removed.",
     "divider": "If <code>true</code>, a 1px light border is added to the bottom of the menu item.",
     "focusVisibleClassName": "This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It&#39;s a polyfill for the <a href=\"https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo\">CSS :focus-visible selector</a>. The rationale for using this feature <a href=\"https://github.com/WICG/focus-visible/blob/master/explainer.md\">is explained here</a>. A <a href=\"https://github.com/WICG/focus-visible\">polyfill can be used</a> to apply a <code>focus-visible</code> class to other components if needed.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
     "openSubMenu": "When <code>true</code>, opens the subMenu, if provided.",
     "subMenu": "Menu to display as a sub-menu.",
-    "subMenuIcon": "Normally <code>Icon</code>, <code>SvgIcon</code>, or a <code>@material-ui/icons</code> SVG icon element rendered on a MenuItem that contains a subMenu"
+    "subMenuIcon": "Normally <code>Icon</code>, <code>SvgIcon</code>, or a <code>@material-ui/icons</code> SVG icon element rendered on a MenuItem that contains a subMenu",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details."
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
@@ -46,19 +46,10 @@
       "nodeName": "the root element",
       "conditions": "<code>selected={true}</code>"
     },
-    "subMenuIcon": {
-      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "the subMenuIcon",
-      "conditions": "it is present"
-    },
     "openSubMenuParent": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "parent item of open sub menu"
-    },
-    "rtlSubMenuIcon": {
-      "description": "Styles applied to {{nodeName}} when {{conditions}}.",
-      "nodeName": "subMenuIcon",
-      "conditions": "direction is 'rtl'"
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "its submenu is open"
     }
   }
 }

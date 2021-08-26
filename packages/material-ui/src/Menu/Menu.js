@@ -32,14 +32,6 @@ const useUtilityClasses = (styleProps) => {
   };
 
   return composeClasses(slots, getMenuUtilityClass, classes);
-  // Styles applied to sub`Menu`s to prevent the Modal from capturing mouse events.
-  disablePointerEvents: {
-    pointerEvents: 'none',
-  },
-  // Styles applied to sub`MenuItems` to re-enable mouse events.
-  enablePointerEvents: {
-    pointerEvents: 'auto', // To enable capturing hover events on MenuList
-  },
 };
 
 const MenuRoot = styled(Popover, {
@@ -60,6 +52,8 @@ const MenuPaper = styled(Paper, {
   maxHeight: 'calc(100% - 96px)',
   // Add iOS momentum scrolling for iOS < 13.0
   WebkitOverflowScrolling: 'touch',
+  // Turn pointer events back on for any submenus whose root had it turned off
+  pointerEvents: 'auto',
 });
 
 const MenuMenuList = styled(MenuList, {
@@ -85,9 +79,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     PopoverClasses,
     setParentOpenSubMenuIndex,
     transitionDuration = 'auto',
-    TransitionProps: { onEntering, ...TransitionProps } = {},
-    variant = 'selectedMenu',
     TransitionProps: { onEnter, onEntering, onEntered, ...TransitionProps } = {},
+    variant = 'selectedMenu',
     ...other
   } = props;
 
@@ -121,8 +114,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   const autoFocusItem = autoFocus && !disableAutoFocusItem && open;
 
   const menuListActionsRef = React.useRef(null);
-
-  const getContentAnchorEl = () => contentAnchorRef.current;
+  const contentAnchorRef = React.useRef(null);
 
   const handleEnter = (element, isAppearing) => {
     if (atLeastOneSubMenu) {
@@ -146,7 +138,9 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   };
 
   const handleEntered = (element, isAppearing) => {
-    if (atLeastOneSubMenu) setEntering(false);
+    if (atLeastOneSubMenu) {
+      setEntering(false);
+    }
 
     if (onEntered) {
       onEntered(element, isAppearing);
@@ -163,32 +157,21 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 
   const handleListKeyDown = (event) => {
     const { anchorEl } = other;
-    if (event.key === 'Tab' || event.key === 'Escape') {
+    const closeKeys = ['Tab', 'Escape'];
+    if (closeKeys.includes(event.key)) {
       handleOnClose(event);
     }
 
-    // This removes the imperatively added focusVisible class (from just below)
-    // when the user navigates away from the item and allows normal focus
-    // management to take back over.
-    anchorEl.onblur = () => anchorEl.classList.remove('Mui-focusVisible');
-
     if (event.key === 'ArrowLeft' && isSubMenu) {
-      // This assigns the focusVisible class to the parent item when closing
-      // a sub menu using the left arrow keyboard navigation.
-      
-      // TODO: @eps1lon we were just doing this before the change to `useIsFocusVisible` last August.
-      // TODO: It would be nice to figure out why this stopped working after that change.
+      // When arrowing left, we need to pass focus back to the parent MenuItem of
+      // the currently focused subMenu.
       anchorEl.focus();
-      
-      // TODO: @eps1lon this is obviously not the right way to approach this. 
-      // anchorEl.onfocus = async () => {
-      //   await anchorEl.classList.remove('MuiMenuItem-openSubMenuParent');
-      //   anchorEl.classList.add('Mui-focusVisible');
-      // };
 
-      // Tell the parent Menu to close the sub Menu that you're in, but
-      // don't trigger the sub Menu onClose cascade.
-      if (!event.defaultPrevented) setParentOpenSubMenuIndex(null);
+      // Close only the currently focused subMenu. Don't trigger the close cascade
+      // for the entire Menu structure.
+      if (!event.defaultPrevented) {
+        setParentOpenSubMenuIndex(null);
+      }
       event.preventDefault();
     }
   };
@@ -247,11 +230,9 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 
     const additionalProps = {};
 
-    // This is the original purpose of this React.Children.map and is basically unchanged.
-    if (index === activeItemIndex) {
+    if (atLeastOneSubMenu && index === activeItemIndex) {
       additionalProps.ref = (instance) => {
         contentAnchorRef.current = instance;
-        setRef(child.ref, instance);
       };
     }
 
@@ -290,10 +271,21 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     return child;
   });
 
+  const rootPointerStyles = {};
+  if (isSubMenu) {
+    rootPointerStyles.pointerEvents = 'none';
+  }
+
+  const menuOnClose = (event, name) => {
+    if (!event.defaultPrevented) {
+      onClose(event, name);
+    }
+  };
+
   return (
     <MenuRoot
       classes={PopoverClasses}
-      onClose={onClose}
+      onClose={menuOnClose}
       anchorOrigin={{
         vertical: 'bottom',
         horizontal: isRtl ? 'right' : 'left',
@@ -306,13 +298,11 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
           ...PaperProps.classes,
           root: classes.paper,
         },
-        className: clsx(PaperProps.className, { [classes.enablePointerEvents]: isSubMenu }),
       }}
       className={classes.root}
       open={open}
       ref={ref}
       transitionDuration={transitionDuration}
-      transformOrigin={theme.direction === 'rtl' ? RTL_ORIGIN : LTR_ORIGIN}
       TransitionProps={{
         onEnter: handleEnter,
         onEntering: handleEntering,
@@ -320,6 +310,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
         ...TransitionProps,
       }}
       styleProps={styleProps}
+      sx={rootPointerStyles}
       {...other}
     >
       <MenuMenuList
@@ -331,7 +322,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
         {...MenuListProps}
         className={clsx(classes.list, MenuListProps.className)}
       >
-        {children}
+        {items}
       </MenuMenuList>
     </MenuRoot>
   );
@@ -399,13 +390,13 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   PopoverClasses: PropTypes.object,
   /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx: PropTypes.object,
-  /**
    * @ignore
    */
   setParentOpenSubMenuIndex: PropTypes.func,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.object,
   /**
    * The length of the transition in `ms`, or 'auto'
    * @default 'auto'

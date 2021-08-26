@@ -4,8 +4,6 @@ import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { MenuItemClasses } from './menuItemClasses';
 
-export type MenuItemClassKey = keyof NonNullable<MenuItemTypeMap['props']['classes']>;
-
 export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = ExtendButtonBaseTypeMap<{
   props: P & {
     /**
@@ -69,6 +67,7 @@ export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Extend
      * @default KeyboardArrowRight
      */
     subMenuIcon?: React.ReactNode;
+  };
   defaultComponent: D;
 }>;
 

@@ -16,16 +16,14 @@
   "name": "MenuItem",
   "styles": {
     "classes": [
-        "root",
-        "focusVisible",
-        "dense",
-        "disabled",
-        "divider",
-        "gutters",
-        "selected",
-        "subMenuItemWrapper",
-        "subMenuIcon",
-        "rtlSubMenuIcon"
+      "root",
+      "focusVisible",
+      "dense",
+      "disabled",
+      "divider",
+      "gutters",
+      "selected",
+      "openSubMenuParent"
     ],
     "globalClasses": {
       "focusVisible": "Mui-focusVisible",

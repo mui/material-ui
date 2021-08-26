@@ -5,7 +5,7 @@
   "spread": true,
   "filename": "/packages/material-ui/src/SubMenu/SubMenu.js",
   "inheritance": null,
-  "demos": "",
+  "demos": "<ul><li><a href=\"/components/menus/\">Menus</a></li></ul>",
   "styledComponent": true,
   "cssComponent": false
 }

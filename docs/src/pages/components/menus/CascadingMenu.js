@@ -8,7 +8,6 @@ import useTheme from '@material-ui/styles/useTheme';
 export default function CascadingMenu() {
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = useState(null);
-  const [darkMode, setDarkMode] = useState(false);
 
   const handleButtonClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -16,10 +15,6 @@ export default function CascadingMenu() {
 
   const handleClose = () => {
     setAnchorEl(null);
-  };
-
-  const swapDarkMode = () => {
-    setDarkMode(!darkMode);
   };
 
   return (
@@ -44,7 +39,7 @@ export default function CascadingMenu() {
         <MenuItem
           subMenu={
             <SubMenu>
-              <MenuItem onClick={swapDarkMode}>View</MenuItem>
+              <MenuItem onClick={handleClose}>View</MenuItem>
               <MenuItem
                 subMenu={
                   <SubMenu>
