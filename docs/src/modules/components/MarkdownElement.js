@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { alpha, darken, styled } from '@material-ui/core/styles';
+import { blueDark } from 'docs/src/modules/brandingTheme';
 
 const Root = styled('div')(({ theme }) => ({
   ...theme.typography.body1,
@@ -30,7 +31,7 @@ const Root = styled('div')(({ theme }) => ({
   '& code': {
     direction: 'ltr',
     lineHeight: 1.4,
-    letterSpacing: 0.5, 
+    letterSpacing: 0.5,
     display: 'inline-block',
     fontFamily: '"IBM Plex Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace',
     fontWeight: 600,
@@ -51,7 +52,7 @@ const Root = styled('div')(({ theme }) => ({
   '& pre code': {
     fontSize: '.9em',
     fontFamily: '"IBM Plex Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace',
-    fontWeight: 500
+    fontWeight: 500,
   },
   '& .token.operator': {
     background: 'transparent',
@@ -61,7 +62,7 @@ const Root = styled('div')(({ theme }) => ({
     fontSize: 40,
     fontFamily: ['"PlusJakartaSans-ExtraBold"'].join(','),
     margin: '16px 0',
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[50] : theme.palette.primaryDark[900],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[50] : blueDark[900],
     fontWeight: 800,
   },
   '& .description': {
@@ -73,7 +74,7 @@ const Root = styled('div')(({ theme }) => ({
     fontSize: 30,
     margin: '40px 0 10px',
     fontWeight: 500,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.primaryDark[700],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : blueDark[700],
   },
   '& h3': {
     ...theme.typography.h6,
@@ -183,9 +184,7 @@ const Root = styled('div')(({ theme }) => ({
     borderRadius: theme.shape.borderRadius,
     border: '1px solid',
     borderColor:
-      theme.palette.mode === 'dark'
-        ? theme.palette.warning[900]
-        : theme.palette.warning[400],
+      theme.palette.mode === 'dark' ? theme.palette.warning[900] : theme.palette.warning[400],
     backgroundColor:
       theme.palette.mode === 'dark'
         ? alpha(theme.palette.warning[800], 0.09)
@@ -194,7 +193,7 @@ const Root = styled('div')(({ theme }) => ({
     margin: '20px 0',
     '& p': {
       marginTop: '10px',
-      color: theme.palette.mode === 'dark' ? theme.palette.grey[50] : theme.palette.primaryDark[800],
+      color: theme.palette.mode === 'dark' ? theme.palette.grey[50] : blueDark[800],
     },
   },
   '& a, & a code': {

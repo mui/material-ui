@@ -5,6 +5,7 @@ import {
   createTheme as createLegacyModeTheme,
   unstable_createMuiStrictModeTheme as createStrictModeTheme,
 } from '@material-ui/core/styles';
+import { deepmerge } from '@material-ui/utils';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@material-ui/core/locale';
 import darkScrollbar from '@material-ui/core/darkScrollbar';
@@ -228,9 +229,7 @@ export function ThemeProvider(props) {
       languageMap[userLanguage],
     );
 
-    nextTheme = createTheme(nextTheme, {
-      ...getThemedComponents(nextTheme),
-    });
+    nextTheme = deepmerge(nextTheme, getThemedComponents(nextTheme));
 
     return nextTheme;
   }, [dense, direction, paletteColors, paletteMode, spacing, userLanguage]);

@@ -163,7 +163,7 @@ function AppNavDrawer(props) {
     return (
       <React.Fragment>
         <ToolbarIE11>
-          <ToolbarDiv sx={{display: 'flex', justifyContent: 'space-between'}}>
+          <ToolbarDiv sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <NextLink href="/" passHref onClick={onClose}>
               <Box component="a" aria-label="go to homepage" sx={{ lineHeight: 0, mr: 2 }}>
                 <SvgMuiLogo width={32} />
@@ -175,7 +175,10 @@ function AppNavDrawer(props) {
                 variant="caption"
                 href={`https://material-ui.com${languagePrefix}/versions/`}
                 onClick={onClose}
-                sx={{ color: (theme) => (theme.palette.mode === 'dark' ? 'grey.500' : 'grey.800'), mr: 3 }}
+                sx={{
+                  color: (theme) => (theme.palette.mode === 'dark' ? 'grey.500' : 'grey.800'),
+                  mr: 3,
+                }}
               >
                 {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
                 {`v${process.env.LIB_VERSION}`}
@@ -188,9 +191,7 @@ function AppNavDrawer(props) {
           <DiamondSponsors spot="drawer" />
         </Box>
         <Divider />
-        <Box sx={{py:2}}>
-        {navItems}  
-        </Box>
+        <Box sx={{ py: 2 }}>{navItems}</Box>
       </React.Fragment>
     );
   }, [activePage, pages, onClose, t, languagePrefix]);

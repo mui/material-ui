@@ -67,7 +67,7 @@ const blue = {
   800: '#004C99',
   900: '#003A75',
 };
-const blueDark = {
+export const blueDark = {
   50: '#E2EDF8',
   100: '#CEE0F3',
   200: '#91B9E3',

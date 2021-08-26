@@ -4,6 +4,7 @@ import GlobalStyles from '@material-ui/core/GlobalStyles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
+import { deepmerge } from '@material-ui/utils';
 
 const themeInitialOptions = {
   paletteMode: 'light',
@@ -49,17 +50,8 @@ const ThemeProvider = ({ children }: React.PropsWithChildren<{}>) => {
   }, [preferredMode]);
   const theme = React.useMemo(() => {
     const brandingDesignTokens = getDesignTokens(paletteMode);
-    let nextTheme = createTheme({
-      ...brandingDesignTokens,
-      palette: {
-        ...brandingDesignTokens.palette,
-        mode: paletteMode,
-      },
-    });
-
-    nextTheme = createTheme(nextTheme, {
-      ...getThemedComponents(nextTheme),
-    });
+    let nextTheme = createTheme(brandingDesignTokens);
+    nextTheme = deepmerge(nextTheme, getThemedComponents(nextTheme));
 
     return nextTheme;
   }, [paletteMode]);

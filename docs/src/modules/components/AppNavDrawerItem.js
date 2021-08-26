@@ -42,7 +42,8 @@ const ItemLink = styled(Item, {
     color: theme.palette.text.secondary,
     '&.app-drawer-active': {
       // color: theme.palette.primary.main,
-      color: theme.palette.mode === 'dark' ? theme.palette.primary[200] : theme.palette.primary[500],
+      color:
+        theme.palette.mode === 'dark' ? theme.palette.primary[200] : theme.palette.primary[500],
       backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       '&:hover': {
         backgroundColor: alpha(

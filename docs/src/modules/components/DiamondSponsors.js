@@ -15,7 +15,7 @@ const Root = styled('div')(({ theme }) => ({
 const Placeholder = styled('a')(({ theme }) => ({
   width: 40,
   height: 40,
-  fontSize: "14px", 
+  fontSize: '14px',
   fontWeight: 600,
   alignItems: 'center',
   justifyContent: 'center',
@@ -29,9 +29,7 @@ const Placeholder = styled('a')(({ theme }) => ({
   },
   '&:hover': {
     borderColor: 'currentColor',
-    color: theme.palette.mode === 'dark'
-      ? theme.palette.primary[300]
-      : theme.palette.primary[500],
+    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
   },
 }));
 
@@ -42,7 +40,7 @@ export default function DiamondSponsors(props) {
 
   return (
     <Root>
-      <Box sx={{display: 'flex', alignItems: 'center', mb: 2}}>
+      <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
         <Box
           sx={{
             display: 'inline-block',
