@@ -60,6 +60,7 @@ const ToolbarDiv = styled('div')(({ theme }) => {
   return {
     ...theme.mixins.toolbar,
     paddingLeft: theme.spacing(3),
+    marginBottom: '3px',
     display: 'flex',
     flexGrow: 1,
     flexDirection: 'row',
