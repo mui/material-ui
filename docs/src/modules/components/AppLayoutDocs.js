@@ -47,7 +47,7 @@ const StyledAppContainer = styled(AppContainer, {
       },
       ...(!disableToc && {
         [theme.breakpoints.up('sm')]: {
-          maxWidth: '900px',
+          width: `calc(100% - ${TOC_WIDTH}px)`,
         },
       }),
     }),
