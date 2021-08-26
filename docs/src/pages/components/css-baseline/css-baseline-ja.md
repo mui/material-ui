@@ -52,7 +52,7 @@ export default function MyApp() {
 
 ### ページ
 
-`<html>` および `<body>` 要素は、ページ全体のデフォルトが改善されるように更新されています。 具体的には: 具体的には: 具体的には: 具体的には: 具体的には: 具体的には:
+`<html>` および `<body>` 要素は、ページ全体のデフォルトが改善されるように更新されています。 具体的には: 
 
 - すべてのブラウザの余白が削除されています。
 - デフォルトのマテリアルデザインの背景色が適用されます。 標準のデバイスや、白背景に印刷されたデバイスの為に[`theme.palette.background.default`](/customization/default-theme/?expand-path=$.palette.background) が使われています。
