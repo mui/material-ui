@@ -12,8 +12,8 @@ const StyledContainer = styled(Container)(({ theme }) => {
       maxWidth: '120ch',
     },
     [theme.breakpoints.up('lg')]: {
-      paddingLeft: theme.spacing(6),
-      paddingRight: theme.spacing(6),
+      paddingLeft: theme.spacing(8),
+      paddingRight: theme.spacing(8),
     },
   };
 });
