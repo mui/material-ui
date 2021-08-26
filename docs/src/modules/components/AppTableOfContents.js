@@ -47,8 +47,8 @@ const NavItem = styled(Link, {
 })(({ active, secondary, theme }) => {
   const activeStyles = {
     borderLeftColor:
-      theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[700],
-    color: theme.palette.mode === 'dark' ? theme.palette.primary[400] : theme.palette.primary[500],
+      theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[600],
+    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
     fontWeight: 600,
   };
 
