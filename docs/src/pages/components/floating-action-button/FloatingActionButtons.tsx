@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
+import Stack from '@material-ui/core/Stack';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import EditIcon from '@material-ui/icons/Edit';
@@ -8,11 +8,7 @@ import NavigationIcon from '@material-ui/icons/Navigation';
 
 export default function FloatingActionButtons() {
   return (
-    <Box
-      sx={{
-        '& > :not(style)': { m: 1 },
-      }}
-    >
+    <Stack direction="row" spacing={1}>
       <Fab color="primary" aria-label="add">
         <AddIcon />
       </Fab>
@@ -26,6 +22,6 @@ export default function FloatingActionButtons() {
       <Fab disabled aria-label="like">
         <FavoriteIcon />
       </Fab>
-    </Box>
+    </Stack>
   );
 }
