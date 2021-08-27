@@ -154,7 +154,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
       ref={ref}
       {...other}
     >
-      {icon !== false ? (
+      {icon !== false && icon !== null ? (
         <AlertIcon ownerState={ownerState} className={classes.icon}>
           {icon || iconMapping[severity] || defaultIconMapping[severity]}
         </AlertIcon>
