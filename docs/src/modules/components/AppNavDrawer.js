@@ -89,7 +89,7 @@ function renderNavItems(options) {
   const { pages, ...params } = options;
 
   return (
-    <List disablePadding sx={{ pb: 4 }}>
+    <List disablePadding>
       {pages.reduce(
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
         (items, page) => reduceChildRoutes({ items, page, ...params }),
@@ -195,6 +195,7 @@ function AppNavDrawer(props) {
         </Box>
         <Divider />
         <div>{navItems}</div>
+        <Box sx={{ height: 40 }} />
       </React.Fragment>
     );
   }, [activePage, pages, onClose, t, languagePrefix]);
