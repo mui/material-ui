@@ -89,7 +89,7 @@ function renderNavItems(options) {
   const { pages, ...params } = options;
 
   return (
-    <List disablePadding>
+    <List disablePadding sx={{ pb: 4 }}>
       {pages.reduce(
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
         (items, page) => reduceChildRoutes({ items, page, ...params }),
