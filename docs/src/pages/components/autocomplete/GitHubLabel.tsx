@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
 import { useTheme, styled } from '@material-ui/core/styles';
 import Popper from '@material-ui/core/Popper';

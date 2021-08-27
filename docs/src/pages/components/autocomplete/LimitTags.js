@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
 import Autocomplete from '@material-ui/core/Autocomplete';
 import TextField from '@material-ui/core/TextField';

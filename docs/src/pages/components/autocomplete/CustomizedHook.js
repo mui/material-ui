@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useAutocomplete } from '@material-ui/unstyled/AutocompleteUnstyled';

@@ -235,6 +235,15 @@ module.exports = {
         'react/prop-types': 'off',
       },
     },
+    // demos
+    {
+      files: ['docs/src/pages/**/*.js', 'docs/src/pages/**/*.tsx'],
+      rules: {
+        // This most often reports data that is defined after the component definition.
+        // This is safe to do and helps readability of the demo code since the data is mostly irrelevant.
+        '@typescript-eslint/no-use-before-define': 'off',
+      },
+    },
     {
       files: ['*.d.ts'],
       rules: {
