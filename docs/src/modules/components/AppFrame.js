@@ -150,6 +150,7 @@ const GrowingDiv = styled('div')({
 const LanguageSpan = styled('span')(({ theme }) => {
   return {
     display: 'none',
+    fontWeight: theme.typography.fontWeightMedium,
     [theme.breakpoints.up('md')]: {
       display: 'block',
     },
