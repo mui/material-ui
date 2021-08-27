@@ -40,6 +40,7 @@ export default function NewsletterToast() {
       >
         <Card
           variant="outlined"
+          role="alert"
           sx={{
             p: 1,
             position: 'absolute',
@@ -63,10 +64,10 @@ export default function NewsletterToast() {
               fontWeight={500}
               sx={{ ml: 1, mr: 2 }}
             >
-              You have subscribed to our newsletter.
+              You have subscribed to MUI newsletter.
             </Typography>
           </div>
-          <IconButton size="small" onClick={() => setHidden(true)}>
+          <IconButton aria-hidden size="small" onClick={() => setHidden(true)}>
             <CloseRounded fontSize="small" />
           </IconButton>
         </Card>
