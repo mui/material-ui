@@ -30,7 +30,8 @@ const Placeholder = styled('a')(({ theme }) => ({
   '&:hover': {
     borderColor: 'currentColor',
     color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
-    backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : theme.palette.primary[50],
+    backgroundColor:
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : theme.palette.primary[50],
   },
 }));
 
@@ -69,7 +70,10 @@ export default function DiamondSponsors(props) {
             transition: theme.transitions.create(['color', 'border-color']),
             '&:hover': {
               borderColor: 'currentColor',
-              color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary[300]
+                  : theme.palette.primary[500],
             },
           }}
         >
@@ -104,7 +108,10 @@ export default function DiamondSponsors(props) {
             transition: theme.transitions.create(['color', 'border-color']),
             '&:hover': {
               borderColor: 'currentColor',
-              color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary[300]
+                  : theme.palette.primary[500],
             },
           }}
         >

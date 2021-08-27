@@ -194,7 +194,7 @@ function AppNavDrawer(props) {
           <DiamondSponsors spot="drawer" />
         </Box>
         <Divider />
-        <Box sx={{ py: 2 }}>{navItems}</Box>
+        <div>{navItems}</div>
       </React.Fragment>
     );
   }, [activePage, pages, onClose, t, languagePrefix]);

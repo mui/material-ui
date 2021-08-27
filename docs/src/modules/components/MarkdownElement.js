@@ -236,9 +236,13 @@ const Root = styled('div')(({ theme }) => ({
     color: theme.palette.text.primary,
     verticalAlign: 'middle',
     backgroundColor: theme.palette.mode === 'dark' ? 'transparent' : theme.palette.grey[50],
-    border: `1px solid ${theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[300]}`,
+    border: `1px solid ${
+      theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[300]
+    }`,
     borderRadius: 5,
-    boxShadow: `inset 0 -1px 0 ${theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[300]}`,
+    boxShadow: `inset 0 -1px 0 ${
+      theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[300]
+    }`,
   },
 }));
 

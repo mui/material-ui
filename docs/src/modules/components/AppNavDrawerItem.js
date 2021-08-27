@@ -4,6 +4,7 @@ import { alpha, styled } from '@material-ui/core/styles';
 import Collapse from '@material-ui/core/Collapse';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import Box from '@material-ui/core/Box';
+import Divider from '@material-ui/core/Divider';
 import KeyboardArrowRightRoundedIcon from '@material-ui/icons/KeyboardArrowRightRounded';
 import Link from 'docs/src/modules/components/Link';
 import ArticleRoundedIcon from '@material-ui/icons/ArticleRounded';
@@ -48,7 +49,8 @@ const Item = styled(({ component: Component = 'div', ...props }) => <Component {
   }),
   '&:hover': {
     color: theme.palette.text.primary,
-    backgroundColor: theme.palette.mode === 'dark' ? alpha(theme.palette.grey[900], 0.3) : theme.palette.grey[50],
+    backgroundColor:
+      theme.palette.mode === 'dark' ? alpha(theme.palette.grey[900], 0.3) : theme.palette.grey[50],
   },
   '&.Mui-focusVisible': {
     backgroundColor: theme.palette.action.focus,
@@ -69,7 +71,8 @@ const ItemLink = styled(Item, {
       // color: theme.palette.primary.main,
       color:
         theme.palette.mode === 'dark' ? theme.palette.primary[200] : theme.palette.primary[500],
-      backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.primary[50],
+      backgroundColor:
+        theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.primary[50],
       fontWeight: 600,
       '&:hover': {
         backgroundColor: alpha(
@@ -108,13 +111,23 @@ const ItemButton = styled(Item, {
   shouldForwardProp: (prop) => prop !== 'depth',
 })(({ depth, theme }) => {
   return {
-    color: depth === 1 ? (theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[500]) : theme.palette.text.primary,
+    color:
+      depth === 1
+        ? theme.palette.mode === 'dark'
+          ? theme.palette.grey[800]
+          : theme.palette.grey[500]
+        : theme.palette.text.primary,
     fontSize: depth === 1 ? 12 : undefined,
     fontWeight: depth === 0 ? 500 : 600,
     marginTop: depth === 0 ? '0px' : '10px',
     '&:hover': {
-      backgroundColor: depth === 0 ? '' : alpha(theme.palette.primary.main,0),
-      color: depth === 0 ? '' : (theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[500]),
+      backgroundColor: depth === 0 ? '' : alpha(theme.palette.primary.main, 0),
+      color:
+        depth === 0
+          ? ''
+          : theme.palette.mode === 'dark'
+          ? theme.palette.grey[800]
+          : theme.palette.grey[500],
       cursor: depth === 0 ? '' : 'text',
     },
     [`&:hover ${ItemButtonIcon}`]: {
@@ -125,7 +138,7 @@ const ItemButton = styled(Item, {
           paddingLeft: 2,
           '& .KeyboardArrowRightRoundedIcon': {
             marginLeft: 'auto',
-            marginRight: '5px'
+            marginRight: '5px',
           },
         }
       : {
@@ -134,12 +147,15 @@ const ItemButton = styled(Item, {
   };
 });
 
-const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })(({ depth }) => {
-  return {
-    padding: depth === 0 ? '0 10px' : '1.5px 0',
-    display: 'block',
-  };
-});
+const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })(
+  ({ theme, depth }) => {
+    return {
+      padding: depth === 0 ? '0 10px' : '1.5px 0',
+      marginTop: depth === 0 ? theme.spacing(2) : undefined,
+      display: 'block',
+    };
+  },
+);
 
 export default function AppNavDrawerItem(props) {
   const {
@@ -182,42 +198,48 @@ export default function AppNavDrawerItem(props) {
   }
 
   return (
-    <StyledLi {...other} depth={depth}>
-      <ItemButton
-        component={ButtonBase}
-        depth={depth}
-        disableRipple
-        className={topLevel && 'algolia-lvl0'}
-        onClick={handleClick}
-      >
-        {hasIcon && (
-          <Box
-            sx={{
-              '& svg': { fontSize: 14 },
-              display: 'flex',
-              alignItems: 'center',
-              height: '100%',
-              marginRight: 1.5,
-              py: 0.5,
-              px: 0.5,
-              borderRadius: '5px',
-              backgroundColor: (theme) => theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.primary[50],
-            }}
-          >
-            <IconComponent {...iconProps} />
-          </Box>
+    <React.Fragment>
+      <StyledLi {...other} depth={depth}>
+        <ItemButton
+          component={ButtonBase}
+          depth={depth}
+          disableRipple
+          className={topLevel && 'algolia-lvl0'}
+          onClick={handleClick}
+        >
+          {hasIcon && (
+            <Box
+              sx={{
+                '& svg': { fontSize: 14 },
+                display: 'flex',
+                alignItems: 'center',
+                height: '100%',
+                marginRight: 1.5,
+                py: 0.5,
+                px: 0.5,
+                borderRadius: '5px',
+                backgroundColor: (theme) =>
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[700]
+                    : theme.palette.primary[50],
+              }}
+            >
+              <IconComponent {...iconProps} />
+            </Box>
+          )}
+          {title}
+          {depth === 0 && <ItemButtonIcon open={open} className="KeyboardArrowRightRoundedIcon" />}
+        </ItemButton>
+        {depth === 0 ? (
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            {children}
+          </Collapse>
+        ) : (
+          children
         )}
-        {title}
-        {depth === 0 && <ItemButtonIcon open={open} className="KeyboardArrowRightRoundedIcon" />}
-      </ItemButton>
-      {depth === 0 ? (
-        <Collapse in={open} timeout="auto" unmountOnExit>
-          {children}
-        </Collapse>
-      ) : (
-        children
-      )}
-    </StyledLi>
+      </StyledLi>
+      {depth === 0 && <Divider sx={{ mt: 2 }} />}
+    </React.Fragment>
   );
 }
 
