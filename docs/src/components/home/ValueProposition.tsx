@@ -9,6 +9,7 @@ import InvertColorsRoundedIcon from '@material-ui/icons/InvertColorsRounded';
 import HandymanRoundedIcon from '@material-ui/icons/HandymanRounded';
 import ArticleRoundedIcon from '@material-ui/icons/ArticleRounded';
 import AccessibilityNewRounded from '@material-ui/icons/AccessibilityNewRounded';
+import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 const content = [
   {
@@ -40,12 +41,15 @@ const content = [
 const ValueProposition = () => {
   return (
     <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
-      <Typography variant="body2" color="primary" fontWeight="bold">
-        Developer experience
-      </Typography>
-      <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
-        Powerful tools to help you build <GradientText>all types</GradientText> of user interfaces
-      </Typography>
+      <SectionHeadline
+        overline="Developer experience"
+        title={
+          <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
+            Powerful tools to help you build <GradientText>all types</GradientText> of user
+            interfaces
+          </Typography>
+        }
+      />
       <Grid container spacing={2}>
         {content.map(({ icon, title, description }) => (
           <Grid key={title} item xs={12} sm={6} md={3}>

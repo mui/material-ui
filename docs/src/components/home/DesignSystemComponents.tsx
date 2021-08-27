@@ -5,6 +5,7 @@ import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import GradientText from 'docs/src/components/typography/GradientText';
+import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 const Placeholder = () => (
   <Box
@@ -28,12 +29,14 @@ const DesignSystemComponents = () => {
   });
   return (
     <Container ref={ref} sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
-      <Typography variant="body2" color="primary" fontWeight="bold">
-        Ready to use
-      </Typography>
-      <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
-        Self-supporting, simple, declarative <GradientText>components</GradientText>
-      </Typography>
+      <SectionHeadline
+        overline="Ready to use"
+        title={
+          <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
+            Self-supporting, simple, declarative <GradientText>components</GradientText>
+          </Typography>
+        }
+      />
       {inView ? <MaterialDesignComponents /> : <Placeholder />}
     </Container>
   );
