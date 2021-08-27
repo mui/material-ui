@@ -12,7 +12,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_extendSxProp as extendSxProp, handleBreakpoints } from '@material-ui/system';
+import {
+  unstable_extendSxProp as extendSxProp,
+  handleBreakpoints,
+  unstable_resolveBreakpointValues as resolveBreakpointValues,
+} from '@material-ui/system';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import requirePropFactory from '../utils/requirePropFactory';
 import styled from '../styles/styled';
@@ -25,31 +29,12 @@ function getOffset(val) {
   return `${parse}${String(val).replace(String(parse), '') || 'px'}`;
 }
 
-// Duplicated with Stack.js
-function resolveBreakpointValues({ values, base }) {
-  const keys = Object.keys(base);
-
-  if (keys.length === 0) {
-    return values;
-  }
-
-  let previous;
-
-  return keys.reduce((acc, breakpoint) => {
-    if (typeof values === 'object') {
-      acc[breakpoint] = values[breakpoint] != null ? values[breakpoint] : values[previous];
-    } else {
-      acc[breakpoint] = values;
-    }
-    previous = breakpoint;
-    return acc;
-  }, {});
-}
-
 function generateGrid(globalStyles, theme, breakpoint, ownerState) {
   const size = ownerState[breakpoint];
 
-  if (!size) return;
+  if (!size) {
+    return;
+  }
 
   let styles = {};
 

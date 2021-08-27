@@ -285,7 +285,9 @@ const PickersDay = React.forwardRef(function PickersDay<TDate>(
   };
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (!allowSameDateSelection && selected) return;
+    if (!allowSameDateSelection && selected) {
+      return;
+    }
 
     if (!disabled) {
       onDaySelect(day, 'finish');

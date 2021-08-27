@@ -1,14 +1,13 @@
 import * as React from 'react';
 import dynamic from 'next/dynamic';
-import NextLink from 'next/link';
 import { Theme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import Stack from '@material-ui/core/Stack';
 import IconImage from 'docs/src/components/icon/IconImage';
 import Highlighter from 'docs/src/components/action/Highlighter';
+import Link from 'docs/src/modules/components/Link';
 
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 import ROUTES from 'docs/src/route';
@@ -45,28 +44,26 @@ function ProductItem({
         <Typography color="text.secondary" variant="body2" fontWeight="regular" sx={{ my: 0.5 }}>
           {description}
         </Typography>
-        <NextLink href={href} passHref>
-          <Link
-            href={href}
-            color="primary"
-            variant="body2"
-            fontWeight="bold"
-            aria-label={label}
-            sx={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              minHeight: 24,
-              '& > svg': { transition: '0.2s' },
-              '&:hover > svg': { transform: 'translateX(4px)' },
-            }}
-            onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
-              event.stopPropagation();
-            }}
-          >
-            <span>Learn more</span>{' '}
-            <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px', ml: '2px' }} />
-          </Link>
-        </NextLink>
+        <Link
+          href={href}
+          color="primary"
+          variant="body2"
+          fontWeight="bold"
+          aria-label={label}
+          sx={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            minHeight: 24,
+            '& > svg': { transition: '0.2s' },
+            '&:hover > svg': { transform: 'translateX(4px)' },
+          }}
+          onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
+            event.stopPropagation();
+          }}
+        >
+          <span>Learn more</span>{' '}
+          <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px', ml: '2px' }} />
+        </Link>
       </Box>
     </Box>
   );

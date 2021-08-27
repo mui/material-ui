@@ -190,6 +190,7 @@ const pages: readonly MuiPage[] = [
               { pathname: '/components/time-picker' },
             ],
           },
+          { pathname: '/components/masonry' },
           { pathname: '/components/timeline' },
           { pathname: '/components/trap-focus' },
           { pathname: '/components/tree-view' },
@@ -214,6 +215,7 @@ const pages: readonly MuiPage[] = [
           { pathname: '/api-docs/data-grid/grid-col-def' },
           { pathname: '/api-docs/data-grid/grid-cell-params' },
           { pathname: '/api-docs/data-grid/grid-row-params' },
+          { pathname: '/api-docs/data-grid/grid-export-csv-options' },
         ],
       },
     ]

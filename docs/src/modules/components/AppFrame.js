@@ -34,7 +34,7 @@ import LanguageIcon from '@material-ui/icons/Translate';
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
 
-function NextNProgressBar() {
+export function NextNProgressBar() {
   const router = useRouter();
   React.useEffect(() => {
     const nProgressStart = () => NProgress.start();
@@ -54,7 +54,7 @@ function NextNProgressBar() {
 }
 
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
-function DeferredAppSearch() {
+export function DeferredAppSearch() {
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
     setMounted(true);

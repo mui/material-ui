@@ -21,7 +21,7 @@ const References = ({
   });
   return (
     <Container ref={ref} sx={{ py: { xs: 4, sm: 6, md: 10 } }}>
-      <Box sx={{ minHeight: { xs: 177, sm: 127, md: 42 } }}>
+      <Box sx={{ minHeight: { xs: 236, sm: 144, md: 52 } }}>
         {inView && <CompaniesGrid data={companies} />}
       </Box>
       <Typography

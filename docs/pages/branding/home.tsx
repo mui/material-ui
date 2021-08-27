@@ -1,8 +1,6 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import ThemeProvider from 'docs/src/modules/ThemeContext';
-import Box from '@material-ui/core/Box';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import NoSsr from '@material-ui/core/NoSsr';
 import Divider from '@material-ui/core/Divider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import Hero from 'docs/src/components/home/Hero';
@@ -14,21 +12,22 @@ import Testimonials from 'docs/src/components/home/Testimonials';
 import Sponsors from 'docs/src/components/home/Sponsors';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
+import BrandingProvider from 'docs/src/BrandingProvider';
+import NewsletterToast from 'docs/src/components/home/NewsletterToast';
 
 export default function Home() {
   return (
-    <ThemeProvider>
+    <BrandingProvider>
       <Head
         title="MUI: A popular React UI framework"
         description="The ultimate solution for your UI. MUI provides a robust, customizible and accessible library of foundational and advanced components, enabling you to build your own design system and develop React applications faster."
       />
-      <CssBaseline />
+      <NoSsr>
+        <NewsletterToast />
+      </NoSsr>
       <AppHeader />
       <main>
         <Hero />
-        <Box
-          sx={{ height: 10 }} // to prevent loading asset below the fold
-        />
         <References companies={CORE_CUSTOMERS} />
         <ProductSuite />
         <ValueProposition />
@@ -39,6 +38,26 @@ export default function Home() {
         <Divider />
       </main>
       <AppFooter />
-    </ThemeProvider>
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: `
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Material-UI",
+  "url": "https://material-ui.com/",
+  "logo": "https://material-ui.com/static/logo.png",
+  "sameAs": [
+    "https://twitter.com/materialUI",
+    "https://github.com/mui-org/material-ui",
+    "https://opencollective.com/material-ui"
+  ]
+}
+          `,
+        }}
+      />
+    </BrandingProvider>
   );
 }

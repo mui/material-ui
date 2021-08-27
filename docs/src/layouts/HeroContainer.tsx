@@ -6,10 +6,12 @@ import Grid from '@material-ui/core/Grid';
 export default function HeroContainer({
   left,
   right,
+  rightRef,
   rightSx,
 }: {
   left: React.ReactElement;
   right: React.ReactElement;
+  rightRef?: React.MutableRefObject<HTMLDivElement | null>;
   rightSx?: BoxProps['sx'];
 }) {
   return (
@@ -33,6 +35,7 @@ export default function HeroContainer({
             sx={{ maxHeight: '100%', display: { xs: 'none', md: 'initial' } }}
           >
             <Box
+              ref={rightRef}
               id="hero-container-right-area"
               aria-hidden="true"
               sx={{
