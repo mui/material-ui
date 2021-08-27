@@ -4,6 +4,7 @@ import NextLink from 'next/link';
 import { styled } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import Drawer from '@material-ui/core/Drawer';
+import Button from '@material-ui/core/Button';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Divider from '@material-ui/core/Divider';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -173,19 +174,19 @@ function AppNavDrawer(props) {
               </Box>
             </NextLink>
             {process.env.LIB_VERSION ? (
-              <Link
-                underline="hover"
-                variant="caption"
+              <Button
+                component="a"
                 href={`https://material-ui.com${languagePrefix}/versions/`}
                 onClick={onClose}
+                size="small"
                 sx={{
-                  color: (theme) => theme.palette.text.secondary,
-                  mr: 3,
+                  color: (theme) =>
+                    theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
+                    mr: 3,
                 }}
               >
-                {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
                 {`v${process.env.LIB_VERSION}`}
-              </Link>
+            </Button>
             ) : null}
           </ToolbarDiv>
         </ToolbarIE11>
