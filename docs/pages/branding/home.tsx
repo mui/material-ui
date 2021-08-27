@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
 import Box from '@material-ui/core/Box';
+import NoSsr from '@material-ui/core/NoSsr';
 import Divider from '@material-ui/core/Divider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import Hero from 'docs/src/components/home/Hero';
@@ -13,6 +14,7 @@ import Sponsors from 'docs/src/components/home/Sponsors';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import BrandingProvider from 'docs/src/BrandingProvider';
+import NewsletterToast from 'docs/src/components/home/NewsletterToast';
 
 export default function Home() {
   return (
@@ -22,6 +24,9 @@ export default function Home() {
         description="The ultimate solution for your UI. MUI provides a robust, customizible and accessible library of foundational and advanced components, enabling you to build your own design system and develop React applications faster."
       />
       <AppHeader />
+      <NoSsr>
+        <NewsletterToast />
+      </NoSsr>
       <main>
         <Hero />
         <Box
