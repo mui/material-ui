@@ -119,7 +119,7 @@ export default function DiamondSponsors(props) {
         >
           <img
             width="50"
-            height="28"
+            height="26"
             src={`/static/sponsors/doit.png`}
             alt="doit-intl"
             title="Management Platform for Google Cloud and AWS"
