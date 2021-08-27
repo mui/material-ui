@@ -32,7 +32,7 @@ const NavLabel = styled(Typography)(({ theme }) => {
     paddingLeft: theme.spacing(1.5),
     fontSize: '.75rem',
     fontWeight: 600,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[600],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : theme.palette.grey[600],
   };
 });
 
@@ -48,7 +48,7 @@ const NavItem = styled(Link, {
   const activeStyles = {
     borderLeftColor:
       theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[600],
-    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
+    color: theme.palette.mode === 'dark' ? theme.palette.primary[500] : theme.palette.primary[500],
     fontWeight: 600,
   };
 
@@ -58,6 +58,7 @@ const NavItem = styled(Link, {
     margin: theme.spacing(0.5, 0, 1, 0),
     borderLeft: `2px solid transparent`,
     boxSizing: 'border-box',
+    fontWeight: theme.typography.fontWeightMedium,
     '&:hover': {
       borderLeftColor:
         theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[700],
