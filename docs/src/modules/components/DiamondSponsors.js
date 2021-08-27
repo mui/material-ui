@@ -13,8 +13,8 @@ const Root = styled('div')(({ theme }) => ({
 }));
 
 const Placeholder = styled('a')(({ theme }) => ({
-  width: 50,
-  height: 50,
+  width: '100%',
+  height: 55,
   fontSize: '14px',
   fontWeight: 600,
   alignItems: 'center',
@@ -47,7 +47,7 @@ export default function DiamondSponsors(props) {
           {t('diamondSponsors')}
         </Typography>
       </Box>
-      <Grid container direction="row" alignItems="center" gap={2}>
+      <Grid container direction="column" alignItems="center" gap={1.5}>
         <Box
           component="a"
           data-ga-event-category="sponsor"
@@ -57,10 +57,11 @@ export default function DiamondSponsors(props) {
           rel="noopener noreferrer sponsored"
           target="_blank"
           sx={{
-            width: 50,
-            height: 50,
-            pt: 0.4,
-            pl: 0.4,
+            width: '100%',
+            height: 55,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             border: `1px solid ${
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[700]
@@ -95,10 +96,11 @@ export default function DiamondSponsors(props) {
           rel="noopener noreferrer sponsored"
           target="_blank"
           sx={{
-            width: 50,
-            height: 50,
-            pt: '15px',
-            pl: '5px',
+            width: '100%',
+            height: 55,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
             border: `1px solid ${
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[700]
@@ -116,8 +118,8 @@ export default function DiamondSponsors(props) {
           }}
         >
           <img
-            width="42"
-            height="20"
+            width="50"
+            height="28"
             src={`/static/sponsors/doit.png`}
             alt="doit-intl"
             title="Management Platform for Google Cloud and AWS"
