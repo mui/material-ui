@@ -6,7 +6,6 @@ import {
   unstable_createMuiStrictModeTheme as createStrictModeTheme,
 } from '@material-ui/core/styles';
 import { deepmerge } from '@material-ui/utils';
-import GlobalStyles from '@material-ui/core/GlobalStyles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@material-ui/core/locale';
 import darkScrollbar from '@material-ui/core/darkScrollbar';
@@ -259,13 +258,6 @@ export function ThemeProvider(props) {
 
   return (
     <MuiThemeProvider theme={theme}>
-      <GlobalStyles
-        styles={{
-          html: {
-            fontSize: theme.typography.htmlFontSize, // for Safari (>=14.1.2)
-          },
-        }}
-      />
       <DispatchContext.Provider value={dispatch}>{children}</DispatchContext.Provider>
     </MuiThemeProvider>
   );
