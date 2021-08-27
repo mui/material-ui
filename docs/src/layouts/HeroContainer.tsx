@@ -11,7 +11,7 @@ export default function HeroContainer({
 }: {
   left: React.ReactElement;
   right: React.ReactElement;
-  rightRef: React.MutableRefObject<HTMLDivElement | null>;
+  rightRef?: React.MutableRefObject<HTMLDivElement | null>;
   rightSx?: BoxProps['sx'];
 }) {
   return (
