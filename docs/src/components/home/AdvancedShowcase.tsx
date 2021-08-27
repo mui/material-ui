@@ -2029,7 +2029,7 @@ export default function DataTable() {
                 boxShadow: '0px 4px 20px rgb(61 71 82 / 25%)',
                 borderRadius: '10px',
                 '& .MuiMenuItem-root': {
-                  fontSize: 12,
+                  fontSize: '0.75rem',
                 },
               },
             }}
