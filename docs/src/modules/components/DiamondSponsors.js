@@ -13,8 +13,8 @@ const Root = styled('div')(({ theme }) => ({
 }));
 
 const Placeholder = styled('a')(({ theme }) => ({
-  width: 40,
-  height: 40,
+  width: 54,
+  height: 54,
   fontSize: '14px',
   fontWeight: 600,
   alignItems: 'center',
@@ -57,8 +57,8 @@ export default function DiamondSponsors(props) {
           rel="noopener noreferrer sponsored"
           target="_blank"
           sx={{
-            width: 40,
-            height: 40,
+            width: 54,
+            height: 54,
             pt: 0.7,
             pl: 0.7,
             border: `1px solid ${
@@ -78,8 +78,8 @@ export default function DiamondSponsors(props) {
           }}
         >
           <img
-            width="27"
-            height="27"
+            width="42"
+            height="42"
             src="/static/sponsors/octopus.png"
             alt="octopus"
             title="Repeatable, reliable deployments"
@@ -95,9 +95,9 @@ export default function DiamondSponsors(props) {
           rel="noopener noreferrer sponsored"
           target="_blank"
           sx={{
-            width: 40,
-            height: 40,
-            pt: '10px',
+            width: 54,
+            height: 54,
+            pt: '15px',
             pl: '5px',
             border: `1px solid ${
               theme.palette.mode === 'dark'
@@ -116,8 +116,8 @@ export default function DiamondSponsors(props) {
           }}
         >
           <img
-            width="30"
-            height="15"
+            width="44"
+            height="22"
             src={`/static/sponsors/doit.png`}
             alt="doit-intl"
             title="Management Platform for Google Cloud and AWS"
