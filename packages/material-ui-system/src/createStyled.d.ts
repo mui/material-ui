@@ -85,10 +85,13 @@ export interface StyledOptions {
   target?: string;
 }
 
-export interface MuiStyledOptions {
+export interface MuiStyledOptions<Props, ClassKey extends string | number | symbol = ''> {
   name?: string;
   slot?: string;
-  overridesResolver?: (props: any, styles: Record<string, any>) => Record<string, any>;
+  overridesResolver?: (
+    props: Props,
+    styles: Record<ClassKey, Record<string, any>>,
+  ) => CSSInterpolation;
   skipVariantsResolver?: boolean;
   skipSx?: boolean;
 }
@@ -144,31 +147,38 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
   <
     C extends React.ComponentClass<React.ComponentProps<C>>,
     ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
+    ComponentProps = {},
+    ClassKey extends string | number | symbol = '',
   >(
     component: C,
-    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps> & MuiStyledOptions,
+    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps> &
+      MuiStyledOptions<ComponentProps, ClassKey>,
   ): CreateStyledComponent<
     Pick<PropsOf<C>, ForwardedProps> & {
       theme?: Theme;
       as?: React.ElementType;
       sx?: SxProps<Theme>;
     },
-    {},
+    ComponentProps,
     {
       ref?: React.Ref<InstanceType<C>>;
     }
   >;
 
-  <C extends React.ComponentClass<React.ComponentProps<C>>>(
+  <
+    C extends React.ComponentClass<React.ComponentProps<C>>,
+    ComponentProps = {},
+    ClassKey extends string | number | symbol = '',
+  >(
     component: C,
-    options?: StyledOptions & MuiStyledOptions,
+    options?: StyledOptions & MuiStyledOptions<ComponentProps, ClassKey>,
   ): CreateStyledComponent<
     PropsOf<C> & {
       theme?: Theme;
       as?: React.ElementType;
       sx?: SxProps<Theme>;
     },
-    {},
+    ComponentProps,
     {
       ref?: React.Ref<InstanceType<C>>;
     }
@@ -177,9 +187,12 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
   <
     C extends React.JSXElementConstructor<React.ComponentProps<C>>,
     ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
+    ComponentProps = {},
+    ClassKey extends string | number | symbol = '',
   >(
     component: C,
-    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps> & MuiStyledOptions,
+    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps> &
+      MuiStyledOptions<ComponentProps, ClassKey>,
   ): CreateStyledComponent<
     Pick<PropsOf<C>, ForwardedProps> & {
       theme?: Theme;
@@ -188,9 +201,13 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
     }
   >;
 
-  <C extends React.JSXElementConstructor<React.ComponentProps<C>>>(
+  <
+    C extends React.JSXElementConstructor<React.ComponentProps<C>>,
+    ComponentProps = {},
+    ClassKey extends string | number | symbol = '',
+  >(
     component: C,
-    options?: StyledOptions & MuiStyledOptions,
+    options?: StyledOptions & MuiStyledOptions<ComponentProps, ClassKey>,
   ): CreateStyledComponent<
     PropsOf<C> & {
       theme?: Theme;
@@ -202,9 +219,12 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
   <
     Tag extends keyof JSX.IntrinsicElements,
     ForwardedProps extends keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag],
+    ComponentProps = {},
+    ClassKey extends string | number | symbol = '',
   >(
     tag: Tag,
-    options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps> & MuiStyledOptions,
+    options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps> &
+      MuiStyledOptions<ComponentProps, ClassKey>,
   ): CreateStyledComponent<
     {
       theme?: Theme;
@@ -214,9 +234,13 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
     Pick<JSX.IntrinsicElements[Tag], ForwardedProps>
   >;
 
-  <Tag extends keyof JSX.IntrinsicElements>(
+  <
+    Tag extends keyof JSX.IntrinsicElements,
+    ComponentProps = {},
+    ClassKey extends string | number | symbol = '',
+  >(
     tag: Tag,
-    options?: StyledOptions & MuiStyledOptions,
+    options?: StyledOptions & MuiStyledOptions<ComponentProps, ClassKey>,
   ): CreateStyledComponent<
     {
       theme?: Theme;
