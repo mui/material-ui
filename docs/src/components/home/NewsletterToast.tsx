@@ -14,6 +14,7 @@ export default function NewsletterToast() {
   const [hidden, setHidden] = React.useState(newsletter !== 'subscribed');
   React.useEffect(() => {
     if (newsletter === 'subscribed') {
+      setHidden(false);
       router.replace(router.pathname);
     }
   }, [newsletter, router]);
