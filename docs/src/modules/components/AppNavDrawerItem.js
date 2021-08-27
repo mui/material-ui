@@ -56,8 +56,8 @@ const Item = styled(({ component: Component = 'div', ...props }) => <Component {
     backgroundColor: theme.palette.action.focus,
   },
   [theme.breakpoints.up('md')]: {
-    paddingTop: 6,
-    paddingBottom: 6,
+    paddingTop: 5,
+    paddingBottom: 5,
   },
 }));
 
@@ -150,7 +150,7 @@ const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })
   ({ theme, depth }) => {
     return {
       padding: depth === 0 ? '0 10px' : '1.5px 0',
-      marginTop: depth === 0 ? theme.spacing(2) : undefined,
+      marginTop: depth === 0 ? theme.spacing(1.5) : undefined,
       display: 'block',
     };
   },
@@ -237,7 +237,7 @@ export default function AppNavDrawerItem(props) {
           children
         )}
       </StyledLi>
-      {depth === 0 && <Divider sx={{ mt: 2 }} />}
+      {depth === 0 && <Divider sx={{ mt: 1.5 }} />}
     </React.Fragment>
   );
 }
