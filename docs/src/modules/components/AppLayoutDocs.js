@@ -62,7 +62,10 @@ const StyledAppContainer = styled(AppContainer, {
 
 const ActionsDiv = styled('div')({
   position: 'absolute',
-  right: 60,
+  [theme.breakpoints.up('lg')]: {
+    right: 60,
+  },
+  right: 20,
   top: 120,
   display: 'flex',
   flexDirection: 'column',

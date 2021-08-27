@@ -7,28 +7,28 @@ import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
 import KeyboardArrowRightRoundedIcon from '@material-ui/icons/KeyboardArrowRightRounded';
 import Link from 'docs/src/modules/components/Link';
-import ArticleRoundedIcon from '@material-ui/icons/ArticleRounded';
-import ToggleOnIcon from '@material-ui/icons/ToggleOn';
+import ArticleOutlinedIcon from '@material-ui/icons/ArticleOutlined';
+import ToggleOffOutlinedIcon from '@material-ui/icons/ToggleOffOutlined';
 import CodeRoundedIcon from '@material-ui/icons/CodeRounded';
-import BuildRoundedIcon from '@material-ui/icons/BuildRounded';
-import BorderColorRoundedIcon from '@material-ui/icons/BorderColorRounded';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import FormatColorFillRoundedIcon from '@material-ui/icons/FormatColorFillRounded';
-import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
+import BuildOutlinedIcon from '@material-ui/icons/BuildOutlined';
+import CreateOutlinedIcon from '@material-ui/icons/CreateOutlined';
+import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
+import ColorLensOutlinedIcon from '@material-ui/icons/ColorLensOutlined';
+import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import StyleIcon from '@material-ui/icons/Style';
 import AddIcon from '@material-ui/icons/Add';
 import FlexGrow from 'docs/src/pages/system/flexbox/FlexGrow';
 import { width } from '@material-ui/system';
 
 const iconsMap = {
-  DescriptionIcon: ArticleRoundedIcon,
-  ToggleOnIcon: ToggleOnIcon,
+  DescriptionIcon: ArticleOutlinedIcon,
+  ToggleOnIcon: ToggleOffOutlinedIcon,
   CodeIcon: CodeRoundedIcon,
-  BuildIcon: BuildRoundedIcon,
-  CreateIcon: BorderColorRoundedIcon,
-  VisibilityIcon: VisibilityIcon,
-  StyleIcon: FormatColorFillRoundedIcon,
-  AddIcon: AddBoxRoundedIcon,
+  BuildIcon: BuildOutlinedIcon,
+  CreateIcon: CreateOutlinedIcon,
+  VisibilityIcon: VisibilityOutlinedIcon,
+  StyleIcon: ColorLensOutlinedIcon,
+  AddIcon: AddCircleOutlineOutlinedIcon,
 };
 
 const Item = styled(({ component: Component = 'div', ...props }) => <Component {...props} />, {
