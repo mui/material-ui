@@ -90,8 +90,8 @@ export interface MuiStyledOptions<Props extends {}, ClassKey extends string | nu
   slot?: string;
   overridesResolver?: (
     props: Props,
-    styles: Record<ClassKey, Record<string, any>>,
-  ) => Record<string, any>;
+    styles: Record<ClassKey, CSSInterpolation>,
+  ) => CSSInterpolation;
   skipVariantsResolver?: boolean;
   skipSx?: boolean;
 }
