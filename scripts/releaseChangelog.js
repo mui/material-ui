@@ -121,15 +121,14 @@ async function main(argv) {
   });
   const changes = commitsItems.map((commitsItem) => {
     // Helps changelog author keeping track of order when grouping commits under headings.
-    const dateSortMarker = `<!-- ${(
-      commitsItemsByDateDesc.length - commitsItemsByDateDesc.indexOf(commitsItem)
-    )
+    // &#8203; is a zero-width-space that ensures that the content of the listitem is formatted properly
+    const dateSortMarker = `&#8203;<!-- ${(commitsItems.length - commitsItems.indexOf(commitsItem))
       .toString()
       // Padding them with a zero means we can just feed a list into online sorting tools like https://www.online-utility.org/text/sort.jsp
       // i.e. we can sort the lines alphanumerically
       .padStart(Math.ceil(Math.log10(commitsItemsByDateDesc.length)), '0')} -->`;
     const shortMessage = commitsItem.commit.message.split('\n')[0];
-    return `- ${dateSortMarker} ${shortMessage} @${commitsItem.author.login}`;
+    return `- ${dateSortMarker}${shortMessage} @${commitsItem.author.login}`;
   });
   const nowFormated = new Date().toLocaleDateString('en-US', {
     month: 'short',
@@ -142,7 +141,7 @@ async function main(argv) {
 <!-- generated comparing ${lastRelease}..${release} -->
 _${nowFormated}_
 
-Big thanks to the ${
+A big thanks to the ${
     authors.length
   } contributors who made this release possible. Here are some highlights ✨:
 

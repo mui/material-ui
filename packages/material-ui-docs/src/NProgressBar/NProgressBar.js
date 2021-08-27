@@ -35,7 +35,8 @@ const styles = (theme) => {
         right: 0,
         height: 2,
         zIndex: theme.zIndex.tooltip,
-        backgroundColor: '#e0e0e0',
+        backgroundColor:
+          theme.palette.mode === 'dark' ? theme.palette.primary[700] : theme.palette.primary[200],
         '& .nprogress-bar': {
           position: 'fixed',
           backgroundColor: theme.nprogress.color,

@@ -7,7 +7,7 @@ import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 export default function Head(props) {
   const t = useTranslate();
   const {
-    card = 'https://next.material-ui.com/static/branding/card.png',
+    card = 'https://next.material-ui.com/static/branding/card.jpeg',
     children,
     description = t('strapline'),
     largeCard = true,
