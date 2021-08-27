@@ -63,10 +63,10 @@ const Item = styled(({ component: Component = 'div', ...props }) => <Component {
 
 const ItemLink = styled(Item, {
   shouldForwardProp: (prop) => prop !== 'depth',
-})(({ depth, theme }) => {
+})(({ theme }) => {
   return {
     color: theme.palette.text.secondary,
-    fontSize: 13,
+    fontSize: '0.8125rem',
     '&.app-drawer-active': {
       // color: theme.palette.primary.main,
       color:
@@ -99,7 +99,7 @@ const ItemButtonIcon = styled(KeyboardArrowRightRoundedIcon, {
   shouldForwardProp: (prop) => prop !== 'open',
 })(({ open, theme }) => {
   return {
-    fontSize: 15,
+    fontSize: '1rem',
     float: 'right',
     color: theme.palette.primary.main,
     transform: open && 'rotate(90deg)',
@@ -116,7 +116,7 @@ const ItemButton = styled(Item, {
           ? theme.palette.grey[800]
           : theme.palette.grey[500]
         : theme.palette.text.primary,
-    fontSize: depth === 1 ? 12 : undefined,
+    fontSize: depth === 1 ? '0.75rem' : undefined,
     fontWeight: depth === 0 ? 500 : 600,
     marginTop: depth === 0 ? '0px' : '10px',
     '&:hover': {
@@ -209,7 +209,7 @@ export default function AppNavDrawerItem(props) {
           {hasIcon && (
             <Box
               sx={{
-                '& svg': { fontSize: 14 },
+                '& svg': { fontSize: '0.875rem' },
                 display: 'flex',
                 alignItems: 'center',
                 height: '100%',
