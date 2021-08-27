@@ -85,7 +85,9 @@ describe('<CardMedia />', () => {
       );
 
       const [img, picture] = screen.getAllByTestId('cardmedia');
+      expect(img).to.have.tagName('img');
       expect(img).not.to.have.attribute('role');
+      expect(picture).to.have.tagName('picture');
       expect(picture).not.to.have.attribute('role');
     });
   });
