@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { createClientRender, describeConformance } from 'test/utils';
+import { createClientRender, describeConformance, screen } from 'test/utils';
 import CardMedia, { cardMediaClasses as classes } from '@material-ui/core/CardMedia';
 
 describe('<CardMedia />', () => {
@@ -17,6 +17,13 @@ describe('<CardMedia />', () => {
     testVariantProps: { variant: 'foo' },
     skip: ['componentsProp'],
   }));
+
+  it('has the image role if `image` is defined', () => {
+    const { container } = render(<CardMedia image="/fake.png" />);
+
+    const cardMedia = container.firstChild;
+    expect(cardMedia).to.have.attribute('role', 'image');
+  });
 
   it('should have the backgroundImage specified', () => {
     const { container } = render(<CardMedia image="/fake.png" />);
@@ -67,6 +74,21 @@ describe('<CardMedia />', () => {
       const { container } = render(<CardMedia image="/fake.png" component="table" />);
       const cardMedia = container.firstChild;
       expect(cardMedia).not.to.have.attribute('src');
+    });
+
+    it('should not have an explicit role when host components already apply image semantics', () => {
+      render(
+        <React.Fragment>
+          <CardMedia data-testid="cardmedia" image="/fake.png" component="img" />
+          <CardMedia data-testid="cardmedia" image="/fake.png" component="picture" />
+        </React.Fragment>,
+      );
+
+      const [img, picture] = screen.getAllByTestId('cardmedia');
+      expect(img).to.have.tagName('img');
+      expect(img).not.to.have.attribute('role');
+      expect(picture).to.have.tagName('picture');
+      expect(picture).not.to.have.attribute('role');
     });
   });
 
