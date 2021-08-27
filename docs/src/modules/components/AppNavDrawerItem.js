@@ -101,8 +101,7 @@ const ItemButtonIcon = styled(KeyboardArrowRightRoundedIcon, {
   return {
     fontSize: 15,
     float: 'right',
-    // marginLeft: -19,
-    color: theme.palette.text.secondary,
+    color: theme.palette.primary.main,
     transform: open && 'rotate(90deg)',
   };
 });

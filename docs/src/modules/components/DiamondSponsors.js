@@ -13,8 +13,8 @@ const Root = styled('div')(({ theme }) => ({
 }));
 
 const Placeholder = styled('a')(({ theme }) => ({
-  width: 54,
-  height: 54,
+  width: 50,
+  height: 50,
   fontSize: '14px',
   fontWeight: 600,
   alignItems: 'center',
@@ -57,10 +57,10 @@ export default function DiamondSponsors(props) {
           rel="noopener noreferrer sponsored"
           target="_blank"
           sx={{
-            width: 54,
-            height: 54,
-            pt: 0.7,
-            pl: 0.7,
+            width: 50,
+            height: 50,
+            pt: 0.4,
+            pl: 0.4,
             border: `1px solid ${
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[700]
@@ -95,8 +95,8 @@ export default function DiamondSponsors(props) {
           rel="noopener noreferrer sponsored"
           target="_blank"
           sx={{
-            width: 54,
-            height: 54,
+            width: 50,
+            height: 50,
             pt: '15px',
             pl: '5px',
             border: `1px solid ${
@@ -116,8 +116,8 @@ export default function DiamondSponsors(props) {
           }}
         >
           <img
-            width="44"
-            height="22"
+            width="42"
+            height="20"
             src={`/static/sponsors/doit.png`}
             alt="doit-intl"
             title="Management Platform for Google Cloud and AWS"
