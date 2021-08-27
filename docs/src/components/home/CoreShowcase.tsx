@@ -287,6 +287,9 @@ export default function CoreShowcase() {
                 '&::-webkit-scrollbar': {
                   display: 'none',
                 },
+                '& code[class*="language-"]': {
+                  fontFamily: 'initial',
+                },
               },
             }}
           >
