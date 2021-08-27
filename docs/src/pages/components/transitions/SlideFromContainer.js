@@ -29,20 +29,18 @@ export default function SlideFromContainer() {
     setChecked((prev) => !prev);
   };
 
+  const options = {
+    height: 180,
+    width: 240,
+    display: 'flex',
+    padding: 2,
+    borderRadius: 1,
+    bgcolor: (theme) => (theme.palette.mode === 'light' ? 'grey.100' : 'grey.900'),
+    overflow: 'hidden',
+  };
+
   return (
-    <Box
-      sx={{
-        height: 180,
-        width: 240,
-        display: 'flex',
-        padding: 2,
-        borderRadius: 1,
-        bgcolor: (theme) =>
-          theme.palette.mode === 'light' ? 'grey.100' : 'grey.900',
-        overflow: 'hidden',
-      }}
-      ref={containerRef}
-    >
+    <Box sx={options} ref={containerRef}>
       <Box sx={{ width: 200 }}>
         <FormControlLabel
           control={<Switch checked={checked} onChange={handleChange} />}
