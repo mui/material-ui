@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { deepmerge } from '@material-ui/utils';
 import { ThemeProvider, useTheme, createTheme } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
@@ -10,7 +11,7 @@ export default function BrandingProvider({ children }: { children: React.ReactNo
   const theme = React.useMemo(() => {
     const designTokens = getDesignTokens(mode);
     let newTheme = createTheme(designTokens);
-    newTheme = createTheme(newTheme, getThemedComponents(newTheme));
+    newTheme = deepmerge(newTheme, getThemedComponents(newTheme));
     return newTheme;
   }, [mode]);
   return (

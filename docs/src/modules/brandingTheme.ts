@@ -1,3 +1,4 @@
+import { deepmerge } from '@material-ui/utils';
 import { createTheme, ThemeOptions, Theme } from '@material-ui/core/styles';
 
 declare module '@material-ui/core/styles/createPalette' {
@@ -507,4 +508,4 @@ export function getThemedComponents(theme: Theme) {
 }
 
 const darkTheme = createTheme(getDesignTokens('dark'));
-export const brandingDarkTheme = createTheme(darkTheme, getThemedComponents(darkTheme));
+export const brandingDarkTheme = deepmerge(darkTheme, getThemedComponents(darkTheme));

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import { ThemeProvider as MuiThemeProvider, createTheme } from '@material-ui/core/styles';
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
@@ -21,17 +21,13 @@ import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import { MuiStats } from 'docs/src/components/home/Testimonials';
 import GradientText from 'docs/src/components/typography/GradientText';
-import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
+import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 import ROUTES from 'docs/src/route';
 import IconImage from 'docs/src/components/icon/IconImage';
 import ForumRoundedIcon from '@material-ui/icons/ForumRounded';
 import PeopleRoundedIcon from '@material-ui/icons/PeopleRounded';
 import LocalAtmRoundedIcon from '@material-ui/icons/LocalAtmRounded';
 import BrandingProvider from 'docs/src/BrandingProvider';
-
-let darkTheme = createTheme(getDesignTokens('dark'));
-
-darkTheme = createTheme(darkTheme, getThemedComponents(darkTheme));
 
 interface Profile {
   /**
@@ -553,7 +549,7 @@ function AboutContent() {
           </Grid>
         </Box>
       </Container>
-      <MuiThemeProvider theme={darkTheme}>
+      <MuiThemeProvider theme={brandingDarkTheme}>
         <Box sx={{ bgcolor: 'primaryDark.700' }}>
           <Container sx={{ py: { xs: 4, sm: 8 } }}>
             <Typography
