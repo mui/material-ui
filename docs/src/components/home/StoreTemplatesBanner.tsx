@@ -211,7 +211,6 @@ export default function StoreTemplatesBanner() {
       sx={{
         mx: { xs: -2, sm: -3, md: 0 },
         my: { md: -8 },
-        perspective: '1000px',
         height: { xs: 300, sm: 360, md: 'calc(100% + 160px)' },
         overflow: 'hidden',
         position: 'relative',
@@ -232,7 +231,15 @@ export default function StoreTemplatesBanner() {
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[900]
                 : theme.palette.grey[50]
-            } 0%, transparent 30%, transparent 70%, ${
+            } 0%, ${
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primaryDark[900], 0)
+                : 'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
+            } 30%, ${
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primaryDark[900], 0)
+                : 'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
+            } 70%, ${
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[900]
                 : theme.palette.grey[50]
@@ -240,6 +247,28 @@ export default function StoreTemplatesBanner() {
           zIndex: 2,
         }}
       />
+      <Box
+        sx={{
+          // need perspective on this wrapper to work in Safari
+          height: '100%',
+          position: 'relative',
+          perspective: '1000px',
+        }}
+      >
+        <Box
+          sx={{
+            left: { xs: '45%', md: '40%' },
+            position: 'absolute',
+            zIndex: -1,
+            display: 'flex',
+            transform: 'translateX(-40%) rotateZ(-30deg) rotateX(8deg) rotateY(8deg)',
+            transformOrigin: 'center center',
+          }}
+        >
+          <StoreTemplatesSet1 />
+          <StoreTemplatesSet2 sx={{ ml: { xs: 2, sm: 4, md: 8 } }} />
+        </Box>
+      </Box>
       <Box
         sx={{
           display: { xs: 'none', md: 'block' },
@@ -254,22 +283,14 @@ export default function StoreTemplatesBanner() {
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[900]
                 : theme.palette.grey[50]
-            }, transparent)`,
-          zIndex: 2,
+            }, ${
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primaryDark[900], 0)
+                : 'rgba(255,255,255,0)'
+            })`,
+          zIndex: 10,
         }}
       />
-      <Box
-        sx={{
-          left: { xs: '45%', md: '40%' },
-          position: 'absolute',
-          display: 'flex',
-          transform: 'translateX(-40%) rotateZ(-30deg) rotateX(8deg) rotateY(8deg)',
-          transformOrigin: 'center center',
-        }}
-      >
-        <StoreTemplatesSet1 />
-        <StoreTemplatesSet2 sx={{ ml: { xs: 2, sm: 4, md: 8 } }} />
-      </Box>
     </Box>
   );
 }

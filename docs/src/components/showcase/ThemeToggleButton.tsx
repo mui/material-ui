@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
+import Fade from '@material-ui/core/Fade';
 import ToggleButton from '@material-ui/core/ToggleButton';
 import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
 
@@ -84,7 +85,7 @@ export default function ThemeToggleButton() {
               root: {
                 textTransform: 'none',
                 fontWeight: 600,
-                color: grey[700],
+                color: mode === 'dark' ? grey[300] : grey[700],
                 borderColor: mode === 'dark' ? primaryDark[500] : grey[200],
                 '&.Mui-selected': {
                   borderColor: `${primary[500]} !important`,
@@ -101,18 +102,20 @@ export default function ThemeToggleButton() {
 
   return (
     <ThemeProvider theme={theme}>
-      <ToggleButtonGroup
-        fullWidth
-        color="primary"
-        value={lang}
-        exclusive
-        onChange={(event, value) => setLang(value)}
-        aria-label="language"
-      >
-        <ToggleButton value="javascript">Javascript</ToggleButton>
-        <ToggleButton value="html">HTML</ToggleButton>
-        <ToggleButton value="css">CSS</ToggleButton>
-      </ToggleButtonGroup>
+      <Fade in timeout={700}>
+        <ToggleButtonGroup
+          fullWidth
+          color="primary"
+          value={lang}
+          exclusive
+          onChange={(event, value) => setLang(value)}
+          aria-label="language"
+        >
+          <ToggleButton value="javascript">Javascript</ToggleButton>
+          <ToggleButton value="html">HTML</ToggleButton>
+          <ToggleButton value="css">CSS</ToggleButton>
+        </ToggleButtonGroup>
+      </Fade>
     </ThemeProvider>
   );
 }
