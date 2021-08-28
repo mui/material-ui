@@ -15,6 +15,7 @@
     "components": {
       "type": { "name": "shape", "description": "{ OpenPickerIcon?: elementType }" }
     },
+    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
     "desktopModeMediaQuery": {
       "type": { "name": "string" },
       "default": "'@media (pointer: fine)'"

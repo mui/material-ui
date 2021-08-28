@@ -15,6 +15,7 @@
     "components": {
       "type": { "name": "shape", "description": "{ OpenPickerIcon?: elementType }" }
     },
+    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
     "DialogProps": { "type": { "name": "object" } },
     "disableCloseOnSelect": {
       "type": { "name": "bool" },

@@ -123,6 +123,11 @@ MobileTimePicker.propTypes /* remove-proptypes */ = {
     OpenPickerIcon: PropTypes.elementType,
   }),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
+  /**
    * Props applied to the [`Dialog`](/api/dialog/) element.
    */
   DialogProps: PropTypes.object,

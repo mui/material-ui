@@ -20,7 +20,7 @@
       },
       "default": "{}"
     },
-    "componentsProps": { "type": { "name": "object" }, "default": "{}" },
+    "componentsProps": { "type": { "name": "object" } },
     "dateRangeIcon": { "type": { "name": "node" } },
     "defaultCalendarMonth": { "type": { "name": "any" } },
     "desktopModeMediaQuery": {

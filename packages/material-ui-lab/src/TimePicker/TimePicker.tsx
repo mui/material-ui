@@ -125,6 +125,11 @@ TimePicker.propTypes /* remove-proptypes */ = {
     OpenPickerIcon: PropTypes.elementType,
   }),
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps: PropTypes.object,
+  /**
    * CSS media query when `Mobile` mode will be changed to `Desktop`.
    * @default '@media (pointer: fine)'
    * @example '@media (min-width: 720px)' or theme.breakpoints.up("sm")
