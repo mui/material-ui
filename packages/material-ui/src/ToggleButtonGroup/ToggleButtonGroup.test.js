@@ -37,6 +37,15 @@ describe('<ToggleButtonGroup />', () => {
     expect(getByRole('button')).to.have.class('MuiToggleButtonGroup-groupedVertical');
   });
 
+  it('should render disabled ToggleButton if disabled prop is passed', () => {
+    const { getByRole } = render(
+      <ToggleButtonGroup disabled>
+        <ToggleButton value="one">1</ToggleButton>
+      </ToggleButtonGroup>,
+    );
+    expect(getByRole('button')).to.have.class('Mui-disabled');
+  });
+
   describe('exclusive', () => {
     it('should render a selected ToggleButton if value is selected', () => {
       const { getByRole } = render(
