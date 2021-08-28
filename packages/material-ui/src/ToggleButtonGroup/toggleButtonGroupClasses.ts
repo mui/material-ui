@@ -11,6 +11,8 @@ export interface ToggleButtonGroupClasses {
   groupedHorizontal: string;
   /** Styles applied to the children if `orientation="vertical"`. */
   groupedVertical: string;
+  /** State class applied to the child elements if `disabled={true}`. */
+  disabled: string;
 }
 
 export type ToggleButtonGroupClassKey = keyof ToggleButtonGroupClasses;
@@ -21,7 +23,7 @@ export function getToggleButtonGroupUtilityClass(slot: string): string {
 
 const toggleButtonGroupClasses: ToggleButtonGroupClasses = generateUtilityClasses(
   'MuiToggleButtonGroup',
-  ['root', 'selected', 'vertical', 'grouped', 'groupedHorizontal', 'groupedVertical'],
+  ['root', 'selected', 'vertical', 'grouped', 'groupedHorizontal', 'groupedVertical', 'disabled'],
 );
 
 export default toggleButtonGroupClasses;

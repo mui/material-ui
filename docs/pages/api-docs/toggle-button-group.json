@@ -9,6 +9,7 @@
       },
       "default": "'standard'"
     },
+    "disabled": { "type": { "name": "bool" } },
     "exclusive": { "type": { "name": "bool" } },
     "fullWidth": { "type": { "name": "bool" } },
     "onChange": { "type": { "name": "func" } },
@@ -28,8 +29,8 @@
   },
   "name": "ToggleButtonGroup",
   "styles": {
-    "classes": ["root", "vertical", "grouped", "groupedHorizontal", "groupedVertical"],
-    "globalClasses": {},
+    "classes": ["root", "vertical", "grouped", "groupedHorizontal", "groupedVertical", "disabled"],
+    "globalClasses": { "disabled": "Mui-disabled" },
     "name": "MuiToggleButtonGroup"
   },
   "spread": true,

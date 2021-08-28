@@ -12,11 +12,11 @@ import toggleButtonGroupClasses, {
 } from './toggleButtonGroupClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, orientation, fullWidth } = ownerState;
+  const { classes, orientation, fullWidth, disabled } = ownerState;
 
   const slots = {
     root: ['root', orientation === 'vertical' && 'vertical', fullWidth && 'fullWidth'],
-    grouped: ['grouped', `grouped${capitalize(orientation)}`],
+    grouped: ['grouped', `grouped${capitalize(orientation)}`, disabled && 'disabled'],
   };
 
   return composeClasses(slots, getToggleButtonGroupUtilityClass, classes);
@@ -93,6 +93,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
     children,
     className,
     color = 'standard',
+    disabled = false,
     exclusive = false,
     fullWidth = false,
     onChange,
@@ -101,7 +102,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
     value,
     ...other
   } = props;
-  const ownerState = { ...props, fullWidth, orientation, size };
+  const ownerState = { ...props, disabled, fullWidth, orientation, size };
   const classes = useUtilityClasses(ownerState);
 
   const handleChange = (event, buttonValue) => {
@@ -164,6 +165,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
           size: child.props.size || size,
           fullWidth,
           color: child.props.color || color,
+          disabled: child.props.disabled || disabled,
         });
       })}
     </ToggleButtonGroupRoot>
@@ -195,6 +197,11 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['standard', 'primary', 'secondary', 'error', 'info', 'success', 'warning']),
     PropTypes.string,
   ]),
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
   /**
    * If `true`, only allow one of the child ToggleButton values to be selected.
    * @default false
