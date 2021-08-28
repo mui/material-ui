@@ -135,6 +135,7 @@ https://v1-5-0.material-ui.com/* https://v1.material-ui.com/:splat 301!
 https://v3-9-0.material-ui.com/* https://v3.material-ui.com/:splat 301!
 /company/jobs/ /company/careers/ 301
 /components/grid-list/ /components/image-list/ 301
+/api/data-grid/x-grid/ /api/data-grid/data-grid-pro/ 301
 
 # Proxies
 
@@ -154,6 +155,5 @@ https://v3-9-0.material-ui.com/* https://v3.material-ui.com/:splat 301!
 /:lang/api/*/ https://material-ui-x.netlify.app/:lang/api/:splat/ 200
 /components/* https://material-ui-x.netlify.app/components/:splat 200
 /:lang/components/* https://material-ui-x.netlify.app/:lang/components/:splat 200
-/components/data-grid/demo/ https://muix-preview.netlify.app/ 200
 /_next/* https://material-ui-x.netlify.app/_next/:splat 200
 /static/x/* https://material-ui-x.netlify.app/static/x/:splat 200
