@@ -14,6 +14,8 @@ export interface DateTimePickerProps<TDate = unknown>
    * @example '@media (min-width: 720px)' or theme.breakpoints.up("sm")
    */
   desktopModeMediaQuery?: string;
+  componentsProps?: DesktopDateTimePickerProps<TDate>['componentsProps'] &
+    MobileDateTimePickerProps<TDate>['componentsProps'];
 }
 
 type DateTimePickerComponent = (<TDate>(
@@ -142,7 +144,6 @@ DateTimePicker.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The props used for each slot inside.
-   * @default {}
    */
   componentsProps: PropTypes.object,
   /**

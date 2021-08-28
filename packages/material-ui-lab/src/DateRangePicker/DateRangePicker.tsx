@@ -71,7 +71,10 @@ const rangePickerValueManager: PickerStateValueManager<any, any> = {
 
 export interface DateRangePickerProps<TDate>
   extends BaseDateRangePickerProps<TDate>,
-    ResponsiveWrapperProps {}
+    ResponsiveWrapperProps {
+  componentsProps?: BaseDateRangePickerProps<TDate>['componentsProps'] &
+    ResponsiveWrapperProps['componentsProps'];
+}
 
 type DateRangePickerComponent = (<TDate>(
   props: DateRangePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
@@ -232,7 +235,6 @@ DateRangePicker.propTypes /* remove-proptypes */ = {
   }),
   /**
    * The props used for each slot inside.
-   * @default {}
    */
   componentsProps: PropTypes.object,
   /**
