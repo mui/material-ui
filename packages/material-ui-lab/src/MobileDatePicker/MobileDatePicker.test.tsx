@@ -321,6 +321,6 @@ describe('<MobileDatePicker />', () => {
 
     openMobilePicker();
 
-    expect(getByMuiTest('clear-action-button').attributes.getNamedItem('data-foo')).to.equal('bar');
+    expect(getByMuiTest('clear-action-button').getAttribute("data-foo")).to.equal('bar');
   });
 });
