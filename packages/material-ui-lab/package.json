@@ -1,6 +1,6 @@
 {
   "name": "@material-ui/lab",
-  "version": "5.0.0-alpha.43",
+  "version": "5.0.0-alpha.44",
   "private": false,
   "author": "Material-UI Team",
   "description": "Laboratory for new Material-UI modules.",
@@ -42,8 +42,8 @@
     "dayjs": "^1.8.17",
     "luxon": "^1.28.0",
     "moment": "^2.24.0",
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -68,12 +68,12 @@
     "@date-io/dayjs": "^2.10.6",
     "@date-io/luxon": "^2.10.6",
     "@date-io/moment": "^2.10.6",
-    "@material-ui/system": "5.0.0-beta.4",
-    "@material-ui/unstyled": "5.0.0-alpha.43",
-    "@material-ui/utils": "5.0.0-beta.4",
+    "@material-ui/system": "5.0.0-beta.5",
+    "@material-ui/unstyled": "5.0.0-alpha.44",
+    "@material-ui/utils": "5.0.0-beta.5",
     "clsx": "^1.0.4",
     "prop-types": "^15.7.2",
-    "react-is": "^17.0.0",
+    "react-is": "^17.0.2",
     "react-transition-group": "^4.4.1",
     "rifm": "^0.12.0"
   },

@@ -18,7 +18,9 @@ function callIfFn(maybeFn, arg) {
 
 function styleFunctionSx(props) {
   const { sx: styles, theme = {} } = props || {};
-  if (!styles) return null;
+  if (!styles) {
+    return null;
+  }
 
   if (typeof styles === 'function') {
     return styles(theme);

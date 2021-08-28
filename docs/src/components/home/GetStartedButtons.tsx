@@ -1,16 +1,18 @@
 import * as React from 'react';
 import copy from 'clipboard-copy';
-import NextLink from 'next/link';
 import Box, { BoxProps } from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 import ContentCopyRounded from '@material-ui/icons/ContentCopyRounded';
 import CheckRounded from '@material-ui/icons/CheckRounded';
 import ROUTES from 'docs/src/route';
+import Link from 'docs/src/modules/components/Link';
 
-export default function GetStartedButtons(props: BoxProps) {
+export default function GetStartedButtons({
+  installation = 'npm install @material-ui/core',
+  ...props
+}: { installation?: string } & BoxProps) {
   const [copied, setCopied] = React.useState(false);
-  const installation = 'npm install @mui/core-material';
   const handleCopy = () => {
     setCopied(true);
     copy(installation).then(() => {
@@ -23,20 +25,20 @@ export default function GetStartedButtons(props: BoxProps) {
       sx={{
         display: 'flex',
         flexWrap: 'wrap',
-        '&& > *': { minWidth: 'clamp(0px, (449px - 100%) * 999 ,100%)' },
+        '&& > *': { minWidth: 'clamp(0px, (492px - 100%) * 999 ,100%)' },
         ...props.sx,
       }}
     >
-      <NextLink href={ROUTES.documentation} passHref>
-        <Button
-          component="a"
-          size="large"
-          variant="contained"
-          endIcon={<KeyboardArrowRightRounded />}
-        >
-          Get started
-        </Button>
-      </NextLink>
+      <Button
+        href={ROUTES.documentation}
+        component={Link}
+        noLinkStyle
+        size="large"
+        variant="contained"
+        endIcon={<KeyboardArrowRightRounded />}
+      >
+        Get started
+      </Button>
       <Box sx={{ width: 16, height: 16 }} />
       <Button
         size="large"

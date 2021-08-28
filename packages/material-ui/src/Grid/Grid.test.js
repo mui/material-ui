@@ -147,7 +147,9 @@ describe('<Grid />', () => {
 
   describe('spacing', () => {
     it('should generate the right values', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) this.skip();
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
 
       const parentWidth = 500;
       const remValue = 16;

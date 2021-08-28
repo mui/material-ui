@@ -15,6 +15,7 @@ export interface SlotTestingOptions {
   testWithComponent?: React.ComponentType;
   testWithElement?: keyof JSX.IntrinsicElements;
   expectedClassName: string;
+  isOptional?: boolean;
 }
 
 export interface UnstyledConformanceOptions
@@ -149,6 +150,17 @@ function testComponentsProp(
       const thumb = container.querySelector(slotElement);
       expect(thumb).to.have.class(slotOptions.expectedClassName);
     });
+
+    if (slotOptions.isOptional) {
+      it(`alows omitting the optional ${capitalize(slotName)} slot by providing null`, () => {
+        const components = {
+          [capitalize(slotName)]: null,
+        };
+
+        const { container } = render(React.cloneElement(element, { components }));
+        expect(container.querySelectorAll(`.${slotOptions.expectedClassName}`)).to.have.length(0);
+      });
+    }
   });
 
   it('uses the component provided in component prop when both component and components.Root are provided', () => {

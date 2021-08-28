@@ -1,8 +1,6 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import { useTheme, ThemeProvider as MuiThemeProvider, createTheme } from '@material-ui/core/styles';
-import ThemeProvider from 'docs/src/modules/ThemeContext';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
@@ -18,21 +16,18 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import Link from 'docs/src/modules/components/Link';
 import AppHeader from 'docs/src/layouts/AppHeader';
-import ReferencesCore from 'docs/src/components/home/ReferencesCore';
+import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import { MuiStats } from 'docs/src/components/home/Testimonials';
 import GradientText from 'docs/src/components/typography/GradientText';
-import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
+import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 import ROUTES from 'docs/src/route';
 import IconImage from 'docs/src/components/icon/IconImage';
-import SvgChat from 'docs/src/icons/SvgChat';
-import SvgPerson from 'docs/src/icons/SvgPerson';
-import SvgCard from 'docs/src/icons/SvgCard';
-
-let darkTheme = createTheme(getDesignTokens('dark'));
-
-darkTheme = createTheme(darkTheme, getThemedComponents(darkTheme));
+import ForumRoundedIcon from '@material-ui/icons/ForumRounded';
+import PeopleRoundedIcon from '@material-ui/icons/PeopleRounded';
+import LocalAtmRoundedIcon from '@material-ui/icons/LocalAtmRounded';
+import BrandingProvider from 'docs/src/BrandingProvider';
 
 interface Profile {
   /**
@@ -136,7 +131,7 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
               target="_blank"
               rel="noreferrer noopener"
             >
-              <GitHubIcon fontSize="small" sx={{ color: 'grey.600' }} />
+              <GitHubIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
           )}
           {props.twitter && (
@@ -147,7 +142,7 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
               target="_blank"
               rel="noreferrer noopener"
             >
-              <TwitterIcon fontSize="small" sx={{ color: 'grey.600' }} />
+              <TwitterIcon fontSize="small" sx={{ color: 'grey.500' }} />
             </IconButton>
           )}
         </Box>
@@ -312,7 +307,7 @@ const contributors = [
   {
     name: 'Danica Shen',
     github: 'DDDDDanica',
-    title: '🇨🇳 Chinese docs',
+    title: 'Chinese docs',
     location: 'Ireland',
     country: 'ie',
     src: 'https://avatars.githubusercontent.com/u/12678455',
@@ -320,7 +315,7 @@ const contributors = [
   {
     name: 'Yan Lee',
     github: 'AGDholo',
-    title: '🇨🇳 Chinese docs',
+    title: 'Chinese docs',
     location: 'China',
     country: 'cn',
     src: 'https://avatars.githubusercontent.com/u/13300332',
@@ -328,7 +323,7 @@ const contributors = [
   {
     name: 'Jairon Alves Lima',
     github: 'jaironalves',
-    title: '🇧🇷 Brazilian docs',
+    title: 'Brazilian Portuguese docs',
     location: 'São Paulo, Brazil',
     country: 'br',
     src: 'https://avatars.githubusercontent.com/u/29267813',
@@ -435,8 +430,6 @@ const emeriti = [
 ];
 
 function AboutContent() {
-  const globalTheme = useTheme();
-  const mode = globalTheme.palette.mode;
   return (
     <React.Fragment>
       <Container>
@@ -458,7 +451,7 @@ function AboutContent() {
           </Typography>
           <Typography component="h1" variant="h2" sx={{ my: 1 }}>
             We&apos;re on a mission to make <br /> building UIs more{' '}
-            <GradientText>accessible</GradientText>.
+            <GradientText>accessible</GradientText>
           </Typography>
           <Typography
             color="text.secondary"
@@ -472,7 +465,7 @@ function AboutContent() {
             barrier, making design skills accessible.
           </Typography>
         </Box>
-        <ReferencesCore />
+        <References companies={CORE_CUSTOMERS} />
       </Container>
       <Box
         sx={{ bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50') }}
@@ -507,7 +500,7 @@ function AboutContent() {
                 </Box>
               ))}
             </Grid>
-            <MuiStats mode={mode} />
+            <MuiStats />
           </Grid>
         </Container>
       </Box>
@@ -529,18 +522,9 @@ function AboutContent() {
               variant="contained"
               size="large"
             >
-              Join the team
+              See open roles
             </Button>
           </div>
-          <Box display={{ xs: 'none', sm: 'block' }}>
-            <img
-              width="130"
-              height="124"
-              src="/static/branding/pricing/early-bird.svg"
-              loading="lazy"
-              alt=""
-            />
-          </Box>
         </Box>
         <Divider sx={{ my: { xs: 2, sm: 4 } }} />
         <Typography
@@ -552,7 +536,7 @@ function AboutContent() {
         >
           Company
         </Typography>
-        <Typography color="text.secondary">
+        <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
           The development of the project and its ecosystem is guided by an international team.
         </Typography>
         <Box sx={{ pt: 2 }}>
@@ -565,7 +549,7 @@ function AboutContent() {
           </Grid>
         </Box>
       </Container>
-      <MuiThemeProvider theme={darkTheme}>
+      <MuiThemeProvider theme={brandingDarkTheme}>
         <Box sx={{ bgcolor: 'primaryDark.700' }}>
           <Container sx={{ py: { xs: 4, sm: 8 } }}>
             <Typography
@@ -577,7 +561,7 @@ function AboutContent() {
             >
               Community contributors
             </Typography>
-            <Typography color="text.secondary" sx={{ maxWidth: { md: 400 } }}>
+            <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
               Some members of the community have so enriched it, that they deserve special mention.
             </Typography>
             <Box sx={{ pt: 2, pb: { xs: 4, sm: 8 } }}>
@@ -598,11 +582,11 @@ function AboutContent() {
             >
               Community emeriti
             </Typography>
-            <Typography color="text.secondary" sx={{ maxWidth: { md: 400 } }}>
+            <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
               We honor some no-longer-active core team members who have made valuable contributions
               in the past. They advise us from time-to-time.
             </Typography>
-            <Box sx={{ pt: 4, pb: { xs: 4, md: 8 } }}>
+            <Box sx={{ pt: 2 }}>
               <Grid container spacing={2}>
                 {emeriti.map((profile) => (
                   <Grid key={profile.name} item xs={12} sm={6} md={3}>
@@ -620,7 +604,10 @@ function AboutContent() {
         </Typography>
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={4}>
-            <Widget icon={<SvgChat />} title="Give feedback">
+            <Widget
+              icon={<ForumRoundedIcon fontSize="small" color="primary" />}
+              title="Give feedback"
+            >
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                 Tell us what and where we can improve or share your happy moments with us! You can
                 also up or downvote any page on our documentation. <br />
@@ -638,7 +625,10 @@ function AboutContent() {
             </Widget>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Widget icon={<SvgPerson />} title="Join the community">
+            <Widget
+              icon={<PeopleRoundedIcon fontSize="small" color="primary" />}
+              title="Join the community"
+            >
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                 Become a member of a huge community of developers supporting MUI. You can:
               </Typography>
@@ -687,15 +677,18 @@ function AboutContent() {
             </Widget>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <Widget icon={<SvgCard />} title="Suport us financially">
+            <Widget
+              icon={<LocalAtmRoundedIcon fontSize="small" color="primary" />}
+              title="Suport us financially"
+            >
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                If you use Material-UI in a commercial project and would like to support its
-                continued development by becoming a Sponsor, or in a side or hobby project and would
-                like to become a Backer, you can do so through OpenCollective.
+                If you use MUI in a commercial project and would like to support its continued
+                development by becoming a Sponsor, or in a side or hobby project and would like to
+                become a Backer, you can do so through OpenCollective.
                 <br />
                 <br />
                 All funds donated are managed transparently, and Sponsors receive recognition in the
-                README and on the Material-UI home page.
+                README and on the MUI home page.
               </Typography>
               <Link href="https://opencollective.com/material-ui" variant="body2">
                 See Open Collective{' '}
@@ -713,17 +706,16 @@ function AboutContent() {
 
 export default function About() {
   return (
-    <ThemeProvider>
+    <BrandingProvider>
       <Head
         title="About Us - MUI"
         description="MUI (formerly Material-UI) started back in 2014 to unify React and Material Design. Today, MUI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
       />
-      <CssBaseline />
       <AppHeader />
       <main>
         <AboutContent />
       </main>
       <AppFooter />
-    </ThemeProvider>
+    </BrandingProvider>
   );
 }

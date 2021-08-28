@@ -46,6 +46,7 @@ module.exports = {
    */
   rules: {
     'consistent-this': ['error', 'self'],
+    curly: ['error', 'all'],
     // Just as bad as "max components per file"
     'max-classes-per-file': 'off',
     // Too interruptive

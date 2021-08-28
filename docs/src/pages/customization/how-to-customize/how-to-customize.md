@@ -127,7 +127,7 @@ You can rely on the following [global class names](/styles/advanced/#with-materi
 }
 
 /* ✅ OK */
-.MuiOutinedInput-root.Mui-error {
+.MuiOutlinedInput-root.Mui-error {
   color: red;
 }
 ```

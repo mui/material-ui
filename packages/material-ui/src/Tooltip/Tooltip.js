@@ -63,7 +63,6 @@ const TooltipPopper = styled(Popper, {
   ...(ownerState.arrow && {
     [`&[data-popper-placement*="bottom"] .${tooltipClasses.arrow}`]: {
       top: 0,
-      left: 0,
       marginTop: '-0.71em',
       '&::before': {
         transformOrigin: '0 100%',
@@ -71,15 +70,21 @@ const TooltipPopper = styled(Popper, {
     },
     [`&[data-popper-placement*="top"] .${tooltipClasses.arrow}`]: {
       bottom: 0,
-      left: 0,
       marginBottom: '-0.71em',
       '&::before': {
         transformOrigin: '100% 0',
       },
     },
     [`&[data-popper-placement*="right"] .${tooltipClasses.arrow}`]: {
-      left: 0,
-      marginLeft: '-0.71em',
+      ...(!ownerState.isRtl
+        ? {
+            left: 0,
+            marginLeft: '-0.71em',
+          }
+        : {
+            right: 0,
+            marginRight: '-0.71em',
+          }),
       height: '1em',
       width: '0.71em',
       '&::before': {
@@ -87,8 +92,9 @@ const TooltipPopper = styled(Popper, {
       },
     },
     [`&[data-popper-placement*="left"] .${tooltipClasses.arrow}`]: {
-      right: 0,
-      marginRight: '-0.71em',
+      ...(!ownerState.isRtl
+        ? { right: 0, marginRight: '-0.71em' }
+        : { left: 0, marginLeft: '-0.71em' }),
       height: '1em',
       width: '0.71em',
       '&::before': {
@@ -134,17 +140,35 @@ const TooltipTooltip = styled('div', {
   }),
   [`.${tooltipClasses.popper}[data-popper-placement*="left"] &`]: {
     transformOrigin: 'right center',
-    marginRight: '14px',
-    ...(ownerState.touch && {
-      marginRight: '24px',
-    }),
+    ...(!ownerState.isRtl
+      ? {
+          marginRight: '14px',
+          ...(ownerState.touch && {
+            marginRight: '24px',
+          }),
+        }
+      : {
+          marginLeft: '14px',
+          ...(ownerState.touch && {
+            marginLeft: '24px',
+          }),
+        }),
   },
   [`.${tooltipClasses.popper}[data-popper-placement*="right"] &`]: {
     transformOrigin: 'left center',
-    marginLeft: '14px',
-    ...(ownerState.touch && {
-      marginLeft: '24px',
-    }),
+    ...(!ownerState.isRtl
+      ? {
+          marginLeft: '14px',
+          ...(ownerState.touch && {
+            marginLeft: '24px',
+          }),
+        }
+      : {
+          marginRight: '14px',
+          ...(ownerState.touch && {
+            marginRight: '24px',
+          }),
+        }),
   },
   [`.${tooltipClasses.popper}[data-popper-placement*="top"] &`]: {
     transformOrigin: 'center bottom',
@@ -232,6 +256,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   } = props;
 
   const theme = useTheme();
+  const isRtl = theme.direction === 'rtl';
 
   const [childNode, setChildNode] = React.useState();
   const [arrowRef, setArrowRef] = React.useState(null);
@@ -586,6 +611,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const ownerState = {
     ...props,
+    isRtl,
     arrow,
     disableInteractive,
     placement,

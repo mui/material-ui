@@ -17,8 +17,12 @@ const styles = (theme) => ({
     // temporary right-to-left patch, waiting for
     // https://github.com/bvaughn/react-virtualized/issues/454
     '& .ReactVirtualized__Table__headerRow': {
-      flip: false,
-      paddingRight: theme.direction === 'rtl' ? '0 !important' : undefined,
+      ...(theme.direction === 'rtl' && {
+        paddingLeft: '0 !important',
+      }),
+      ...(theme.direction !== 'rtl' && {
+        paddingRight: undefined,
+      }),
     },
   },
   tableRow: {

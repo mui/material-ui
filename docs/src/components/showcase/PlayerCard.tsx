@@ -2,6 +2,7 @@ import * as React from 'react';
 import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
+import Fade from '@material-ui/core/Fade';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import FastForwardRounded from '@material-ui/icons/FastForwardRounded';
@@ -104,38 +105,40 @@ export default function PlayerCard() {
   );
   return (
     <ThemeProvider theme={theme}>
-      <Card variant="outlined" sx={{ display: 'flex', p: 1 }}>
-        <img
-          alt="Beside Myself album cover"
-          style={{ borderRadius: 5 }}
-          src="/static/images/cards/basement-beside-myself.jpg"
-          width="124"
-          height="124"
-        />
-        <Box sx={{ alignSelf: 'center', mx: 2 }}>
-          <Typography variant="body1" fontWeight={500}>
-            Ultraviolet
-          </Typography>
-          <Typography component="div" variant="caption" color="text.secondary">
-            Basement • Beside Myself
-          </Typography>
-          <Box sx={{ mt: 2 }}>
-            <IconButton aria-label="fast rewind" disabled>
-              <FastRewindRounded />
-            </IconButton>
-            <IconButton
-              aria-label={paused ? 'play' : 'pause'}
-              sx={{ mx: 2 }}
-              onClick={() => setPaused((val) => !val)}
-            >
-              {paused ? <PlayArrowRounded /> : <PauseRounded />}
-            </IconButton>
-            <IconButton aria-label="fast forward" disabled>
-              <FastForwardRounded />
-            </IconButton>
+      <Fade in timeout={700}>
+        <Card variant="outlined" sx={{ display: 'flex', p: 1 }}>
+          <img
+            alt="Beside Myself album cover"
+            style={{ borderRadius: 5 }}
+            src="/static/images/cards/basement-beside-myself.jpeg"
+            width="124"
+            height="124"
+          />
+          <Box sx={{ alignSelf: 'center', mx: 2 }}>
+            <Typography variant="body1" fontWeight={500}>
+              Ultraviolet
+            </Typography>
+            <Typography component="div" variant="caption" color="text.secondary">
+              Basement • Beside Myself
+            </Typography>
+            <Box sx={{ mt: 2 }}>
+              <IconButton aria-label="fast rewind" disabled>
+                <FastRewindRounded />
+              </IconButton>
+              <IconButton
+                aria-label={paused ? 'play' : 'pause'}
+                sx={{ mx: 2 }}
+                onClick={() => setPaused((val) => !val)}
+              >
+                {paused ? <PlayArrowRounded /> : <PauseRounded />}
+              </IconButton>
+              <IconButton aria-label="fast forward" disabled>
+                <FastForwardRounded />
+              </IconButton>
+            </Box>
           </Box>
-        </Box>
-      </Card>
+        </Card>
+      </Fade>
     </ThemeProvider>
   );
 }

@@ -383,6 +383,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     Root: SwitchLayout,
     Input: SwitchInput,
     Thumb: SwitchThumb,
+    Track: null,
   };
 
   const componentsProps = {

@@ -4,14 +4,10 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import SvgTag from 'docs/src/icons/SvgTag';
-import SvgInfinity from 'docs/src/icons/SvgInfinity';
-import SvgReplay from 'docs/src/icons/SvgReplay';
-import SvgCalendar from 'docs/src/icons/SvgCalendar';
-
-const Icon = ({ name }: { name: React.ReactNode }) => (
-  <Box sx={{ display: 'inline-block', verticalAlign: 'bottom', mr: 1, lineHeight: 0 }}>{name}</Box>
-);
+import LocalOfferOutlinedIcon from '@material-ui/icons/LocalOfferOutlined';
+import AllInclusiveOutlinedIcon from '@material-ui/icons/AllInclusiveOutlined';
+import ReplayRoundedIcon from '@material-ui/icons/ReplayRounded';
+import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
 
 export default function WhatToExpect() {
   return (
@@ -25,10 +21,18 @@ export default function WhatToExpect() {
       <Grid container spacing={{ xs: 2, sm: 4 }}>
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-            <Typography component="h3" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
-              <Icon name={<SvgTag />} />
-              Volumn discount
-            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              <LocalOfferOutlinedIcon fontSize="small" color="primary" />
+              <Typography
+                fontWeight="bold"
+                component="h3"
+                color="text.primary"
+                variant="body2"
+                sx={{ ml: 1 }}
+              >
+                Volumn discount
+              </Typography>
+            </Box>
             <Typography variant="body2" color="text.secondary">
               The licenses are on a per-developer basis. We offer the following tiered discounts
               from list prices when purchasing more than one license for your development team:
@@ -42,10 +46,18 @@ export default function WhatToExpect() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-            <Typography component="h3" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
-              <Icon name={<SvgInfinity />} />
-              Perpetual license
-            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              <AllInclusiveOutlinedIcon fontSize="small" color="primary" />
+              <Typography
+                fontWeight="bold"
+                component="h3"
+                color="text.primary"
+                variant="body2"
+                sx={{ ml: 1 }}
+              >
+                Perpetual license
+              </Typography>
+            </Box>
             <Typography variant="body2" color="text.secondary">
               With your purchase you are granted a license to use a version of the product in
               perpetuity. There are no further charges unless you choose to renew support and
@@ -58,10 +70,18 @@ export default function WhatToExpect() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-            <Typography component="h3" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
-              <Icon name={<SvgReplay />} />
-              Renewal
-            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              <ReplayRoundedIcon fontSize="small" color="primary" />
+              <Typography
+                fontWeight="bold"
+                component="h3"
+                color="text.primary"
+                variant="body2"
+                sx={{ ml: 1 }}
+              >
+                Renewal
+              </Typography>
+            </Box>
             <Typography variant="body2" color="text.secondary">
               If you wish to be able to update to the latest versions and access support after the
               end of your support period, you have the option to renew support and maintenance.
@@ -71,10 +91,18 @@ export default function WhatToExpect() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-            <Typography component="h3" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
-              <Icon name={<SvgCalendar />} />
-              Support and maintenance
-            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              <HelpOutlineOutlinedIcon fontSize="small" color="primary" />
+              <Typography
+                fontWeight="bold"
+                component="h3"
+                color="text.primary"
+                variant="body2"
+                sx={{ ml: 1 }}
+              >
+                Support and maintenance
+              </Typography>
+            </Box>
             <Typography variant="body2" color="text.secondary">
               With your purchase you receive support and maintenance for one year. After this time,
               you can continue to use your licensed versions in perpetuity, but will no longer be

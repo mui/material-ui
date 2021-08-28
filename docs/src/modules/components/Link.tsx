@@ -1,23 +1,24 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
 import * as React from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
+import { styled } from '@material-ui/core/styles';
 import MuiLink, { LinkProps as MuiLinkProps } from '@material-ui/core/Link';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
 
 interface NextLinkComposedProps
   extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
-    Omit<NextLinkProps, 'href' | 'as'> {
+    Omit<NextLinkProps, 'href' | 'as' | 'passHref'> {
   to: NextLinkProps['href'];
   linkAs?: NextLinkProps['as'];
   href?: NextLinkProps['href'];
 }
 
-export const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComposedProps>(
+const Anchor = styled('a')({ cursor: 'pointer' });
+
+const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComposedProps>(
   function NextLinkComposed(props, ref) {
-    const { to, linkAs, href, replace, scroll, passHref, shallow, prefetch, locale, ...other } =
-      props;
+    const { to, linkAs, href, replace, scroll, shallow, prefetch, locale, ...other } = props;
 
     return (
       <NextLink
@@ -27,10 +28,10 @@ export const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComp
         replace={replace}
         scroll={scroll}
         shallow={shallow}
-        passHref={passHref}
+        passHref
         locale={locale}
       >
-        <a ref={ref} {...other} />
+        <Anchor ref={ref} {...other} />
       </NextLink>
     );
   },
@@ -69,7 +70,7 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
 
   if (isExternal) {
     if (noLinkStyle) {
-      return <a className={className} href={href as string} ref={ref as any} {...other} />;
+      return <Anchor className={className} href={href as string} ref={ref as any} {...other} />;
     }
 
     return <MuiLink className={className} href={href as string} ref={ref} {...other} />;

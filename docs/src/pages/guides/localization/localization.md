@@ -59,6 +59,7 @@ const theme = createTheme(
 | Indonesian              | id-ID               | `idID`      |
 | Italian                 | it-IT               | `itIT`      |
 | Japanese                | ja-JP               | `jaJP`      |
+| Khmer                   | kh-KH               | `khKH`      |
 | Kazakh                  | kz-KZ               | `kzKZ`      |
 | Korean                  | ko-KR               | `koKR`      |
 | Persian                 | fa-IR               | `faIR`      |

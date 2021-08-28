@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import copy from 'clipboard-copy';
 import LZString from 'lz-string';
-import { useDispatch } from 'react-redux';
 import { useTheme, styled } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -11,19 +10,20 @@ import Fade from '@material-ui/core/Fade';
 import ToggleButton from '@material-ui/core/ToggleButton';
 import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
 import { JavaScript as JavaScriptIcon, TypeScript as TypeScriptIcon } from '@material-ui/docs';
-import CodeIcon from '@material-ui/icons/Code';
+import CodeRoundedIcon from '@material-ui/icons/CodeRounded';
 import SvgIcon from '@material-ui/core/SvgIcon';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
+import ContentCopyRoundedIcon from '@material-ui/icons/ContentCopyRounded';
 import Snackbar from '@material-ui/core/Snackbar';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Tooltip from '@material-ui/core/Tooltip';
-import RefreshIcon from '@material-ui/icons/Refresh';
+import RefreshRoundedIcon from '@material-ui/icons/RefreshRounded';
 import ResetFocusIcon from '@material-ui/icons/CenterFocusWeak';
 import getDemoConfig from 'docs/src/modules/utils/getDemoConfig';
 import { getCookie } from 'docs/src/modules/utils/helpers';
-import { ACTION_TYPES, CODE_VARIANTS } from 'docs/src/modules/constants';
+import { CODE_VARIANTS } from 'docs/src/modules/constants';
+import { useSetCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useRouter } from 'next/router';
 
@@ -46,10 +46,14 @@ const Root = styled('div')(({ theme }) => ({
   display: 'none',
   [theme.breakpoints.up('sm')]: {
     display: 'flex',
-    flip: false,
     top: 0,
-    right: theme.spacing(1),
-    height: theme.spacing(6),
+    height: theme.spacing(8),
+    ...(theme.direction === 'rtl' && {
+      left: theme.spacing(1),
+    }),
+    ...(theme.direction !== 'rtl' && {
+      right: theme.spacing(1),
+    }),
   },
   justifyContent: 'space-between',
   alignItems: 'center',
@@ -62,6 +66,25 @@ const DemoTooltip = styled((props) => {
 })(({ theme }) => ({
   zIndex: theme.zIndex.appBar - 1,
 }));
+
+function ToggleCodeTooltip(props) {
+  const { showSourceHint, ...other } = props;
+  const atLeastSmallViewport = useMediaQuery((theme) => theme.breakpoints.up('sm'));
+
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <DemoTooltip
+      {...other}
+      onClose={() => setOpen(false)}
+      onOpen={() => setOpen(true)}
+      open={showSourceHint && atLeastSmallViewport ? true : open}
+    />
+  );
+}
+ToggleCodeTooltip.propTypes = {
+  showSourceHint: PropTypes.bool,
+};
 
 export function DemoToolbarFallback() {
   const t = useTranslate();
@@ -214,7 +237,7 @@ export default function DemoToolbar(props) {
     showPreview,
   } = props;
 
-  const dispatch = useDispatch();
+  const setCodeVariant = useSetCodeVariant();
   const t = useTranslate();
 
   const hasTSVariant = demo.rawTS;
@@ -227,12 +250,7 @@ export default function DemoToolbar(props) {
 
   const handleCodeLanguageClick = (event, clickedCodeVariant) => {
     if (clickedCodeVariant !== null && codeVariant !== clickedCodeVariant) {
-      dispatch({
-        type: ACTION_TYPES.OPTIONS_CHANGE,
-        payload: {
-          codeVariant: clickedCodeVariant,
-        },
-      });
+      setCodeVariant(clickedCodeVariant);
     }
   };
 
@@ -362,8 +380,6 @@ export default function DemoToolbar(props) {
     showCodeLabel = showPreview ? t('showFullSource') : t('showSource');
   }
 
-  const atLeastSmallViewport = useMediaQuery((theme) => theme.breakpoints.up('sm'));
-
   const controlRefs = [
     React.useRef(null),
     React.useRef(null),
@@ -461,7 +477,14 @@ export default function DemoToolbar(props) {
             onChange={handleCodeLanguageClick}
           >
             <ToggleButton
-              sx={{ padding: '4px 9px' }}
+              sx={{
+                padding: '5px 10px',
+                borderRadius: 0.5,
+                borderColor: (theme) =>
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[700]
+                    : theme.palette.grey[200],
+              }}
               value={CODE_VARIANTS.JS}
               aria-label={t('showJSSource')}
               data-ga-event-category="demo"
@@ -469,10 +492,17 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demoOptions.demo}
               {...getControlProps(0)}
             >
-              <JavaScriptIcon />
+              <JavaScriptIcon sx={{ fontSize: 20 }} />
             </ToggleButton>
             <ToggleButton
-              sx={{ padding: '4px 9px' }}
+              sx={{
+                padding: '5px 10px',
+                borderRadius: 0.5,
+                borderColor: (theme) =>
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[700]
+                    : theme.palette.grey[200],
+              }}
               value={CODE_VARIANTS.TS}
               disabled={!hasTSVariant}
               aria-label={t('showTSSource')}
@@ -481,14 +511,13 @@ export default function DemoToolbar(props) {
               data-ga-event-label={demoOptions.demo}
               {...getControlProps(1)}
             >
-              <TypeScriptIcon />
+              <TypeScriptIcon sx={{ fontSize: 20 }} />
             </ToggleButton>
           </ToggleButtonGroup>
         </Fade>
         <div>
-          <DemoTooltip
-            key={showSourceHint}
-            open={showSourceHint && atLeastSmallViewport ? true : undefined}
+          <ToggleCodeTooltip
+            showSourceHint={showSourceHint}
             PopperProps={{ disablePortal: true }}
             title={showCodeLabel}
             placement="bottom"
@@ -503,9 +532,17 @@ export default function DemoToolbar(props) {
               color={demoHovered ? 'primary' : 'default'}
               {...getControlProps(2)}
             >
-              <CodeIcon fontSize="small" />
+              <CodeRoundedIcon
+                sx={{
+                  fontSize: 17,
+                  color: (theme) =>
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.grey[500]
+                      : theme.palette.grey[800],
+                }}
+              />
             </IconButton>
-          </DemoTooltip>
+          </ToggleCodeTooltip>
           {demoOptions.hideEditButton ? null : (
             <React.Fragment>
               <DemoTooltip title={t('codesandbox')} placement="bottom">
@@ -517,7 +554,16 @@ export default function DemoToolbar(props) {
                   onClick={handleCodeSandboxClick}
                   {...getControlProps(3)}
                 >
-                  <SvgIcon fontSize="small" viewBox="0 0 1024 1024">
+                  <SvgIcon
+                    sx={{
+                      fontSize: 17,
+                      color: (theme) =>
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.grey[500]
+                          : theme.palette.grey[800],
+                    }}
+                    viewBox="0 0 1024 1024"
+                  >
                     <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
                   </SvgIcon>
                 </IconButton>
@@ -531,7 +577,16 @@ export default function DemoToolbar(props) {
                   onClick={handleStackBlitzClick}
                   {...getControlProps(4)}
                 >
-                  <SvgIcon fontSize="small" viewBox="0 0 19 28">
+                  <SvgIcon
+                    sx={{
+                      fontSize: 17,
+                      color: (theme) =>
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.grey[500]
+                          : theme.palette.grey[800],
+                    }}
+                    viewBox="0 0 19 28"
+                  >
                     <path d="M8.13378 16.1087H0L14.8696 0L10.8662 11.1522L19 11.1522L4.13043 27.2609L8.13378 16.1087Z" />
                   </SvgIcon>
                 </IconButton>
@@ -547,7 +602,15 @@ export default function DemoToolbar(props) {
               onClick={handleCopyClick}
               {...getControlProps(5)}
             >
-              <FileCopyIcon fontSize="small" />
+              <ContentCopyRoundedIcon
+                sx={{
+                  fontSize: 17,
+                  color: (theme) =>
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.grey[500]
+                      : theme.palette.grey[800],
+                }}
+              />
             </IconButton>
           </DemoTooltip>
           <DemoTooltip title={t('resetFocus')} placement="bottom">
@@ -559,7 +622,15 @@ export default function DemoToolbar(props) {
               onClick={handleResetFocusClick}
               {...getControlProps(6)}
             >
-              <ResetFocusIcon fontSize="small" />
+              <ResetFocusIcon
+                sx={{
+                  fontSize: 17,
+                  color: (theme) =>
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.grey[500]
+                      : theme.palette.grey[800],
+                }}
+              />
             </IconButton>
           </DemoTooltip>
           <DemoTooltip title={t('resetDemo')} placement="bottom">
@@ -572,7 +643,15 @@ export default function DemoToolbar(props) {
               onClick={onResetDemoClick}
               {...getControlProps(7)}
             >
-              <RefreshIcon fontSize="small" />
+              <RefreshRoundedIcon
+                sx={{
+                  fontSize: 17,
+                  color: (theme) =>
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.grey[500]
+                      : theme.palette.grey[800],
+                }}
+              />
             </IconButton>
           </DemoTooltip>
           <IconButton
@@ -583,54 +662,60 @@ export default function DemoToolbar(props) {
             aria-haspopup="true"
             {...getControlProps(8)}
           >
-            <MoreVertIcon fontSize="small" />
+            <MoreVertIcon
+              sx={{
+                fontSize: 17,
+                color: (theme) =>
+                  theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
+              }}
+            />
           </IconButton>
-          <Menu
-            id="demo-menu-more"
-            anchorEl={anchorEl}
-            open={Boolean(anchorEl)}
-            onClose={handleMoreClose}
-            anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'right',
-            }}
-          >
-            <MenuItem
-              data-ga-event-category="demo"
-              data-ga-event-label={demoOptions.demo}
-              data-ga-event-action="github"
-              component="a"
-              href={demoData.githubLocation}
-              target="_blank"
-              rel="noopener nofollow"
-              onClick={handleMoreClose}
-            >
-              {t('viewGitHub')}
-            </MenuItem>
-            <MenuItem
-              data-ga-event-category="demo"
-              data-ga-event-label={demoOptions.demo}
-              data-ga-event-action="copy-js-source-link"
-              onClick={createHandleCodeSourceLink(`${demoName}.js`)}
-            >
-              {t('copySourceLinkJS')}
-            </MenuItem>
-            <MenuItem
-              data-ga-event-category="demo"
-              data-ga-event-label={demoOptions.demo}
-              data-ga-event-action="copy-ts-source-link"
-              onClick={createHandleCodeSourceLink(`${demoName}.tsx`)}
-            >
-              {t('copySourceLinkTS')}
-            </MenuItem>
-            {devMenuItems}
-          </Menu>
         </div>
       </Root>
+      <Menu
+        id="demo-menu-more"
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleMoreClose}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+      >
+        <MenuItem
+          data-ga-event-category="demo"
+          data-ga-event-label={demoOptions.demo}
+          data-ga-event-action="github"
+          component="a"
+          href={demoData.githubLocation}
+          target="_blank"
+          rel="noopener nofollow"
+          onClick={handleMoreClose}
+        >
+          {t('viewGitHub')}
+        </MenuItem>
+        <MenuItem
+          data-ga-event-category="demo"
+          data-ga-event-label={demoOptions.demo}
+          data-ga-event-action="copy-js-source-link"
+          onClick={createHandleCodeSourceLink(`${demoName}.js`)}
+        >
+          {t('copySourceLinkJS')}
+        </MenuItem>
+        <MenuItem
+          data-ga-event-category="demo"
+          data-ga-event-label={demoOptions.demo}
+          data-ga-event-action="copy-ts-source-link"
+          onClick={createHandleCodeSourceLink(`${demoName}.tsx`)}
+        >
+          {t('copySourceLinkTS')}
+        </MenuItem>
+        {devMenuItems}
+      </Menu>
       <Snackbar
         open={snackbarOpen}
         autoHideDuration={3000}
