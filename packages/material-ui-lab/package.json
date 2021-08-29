@@ -39,7 +39,7 @@
     "@material-ui/core": "^5.0.0-alpha.36",
     "@types/react": "^16.8.6 || ^17.0.0",
     "date-fns": "^2.0.0",
-    "dayjs": "^1.8.17",
+    "dayjs": "^1.10.6",
     "luxon": "^1.28.0",
     "moment": "^2.24.0",
     "react": "^17.0.2",
@@ -81,7 +81,7 @@
     "@material-ui/types": "6.0.2",
     "@types/luxon": "^1.27.1",
     "date-fns": "^2.0.0",
-    "dayjs": "^1.8.17",
+    "dayjs": "^1.10.6",
     "luxon": "^1.28.0",
     "moment": "^2.24.0"
   },
