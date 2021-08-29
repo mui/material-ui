@@ -95,7 +95,7 @@ function SignUp() {
                 disabled={submitting || sent}
                 required
                 name="password"
-                autoComplete="current-password"
+                autoComplete="new-password"
                 label="Password"
                 type="password"
                 margin="normal"
