@@ -66,7 +66,7 @@
     "clipboard-copy": "^3.0.0",
     "clsx": "^1.0.4",
     "core-js": "^2.6.11",
-    "cross-env": "^7.0.0",
+    "cross-env": "^7.0.3",
     "css-mediaquery": "^0.1.2",
     "date-fns": "^2.0.0",
     "date-fns-jalali": "^2.21.3-1",
