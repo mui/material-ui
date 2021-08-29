@@ -17,7 +17,8 @@ In the following sections, you will learn how different `sx` properties are mapp
 
 ### Borders
 
-The `border` property can receive only a number as a value and and it will create a solid black border using the number as the width.
+The `border` property can receive only a number as a value.
+It creates a solid black border using the number as the width.
 
 ```jsx
 <Box sx={{ border: 1 }} />
