@@ -2,12 +2,12 @@
 # yarn lockfile v1
 
 
-"@babel/runtime@^7.3.1", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.2", "@babel/runtime@^7.6.3":
-  version "7.7.2"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.7.2.tgz#111a78002a5c25fc8e3361bedc9529c696b85a6a"
-  integrity sha512-JONRbXbTXc9WQE2mAZd1p0Z3DZ/6vaQIkgYMSTP3KjRCyd7rCZCcfhCyX+YjwcKxcZ82UrxbRD358bpExNgrjw==
+"@babel/runtime@^7.14.8", "@babel/runtime@^7.3.1", "@babel/runtime@^7.4.4", "@babel/runtime@^7.5.5", "@babel/runtime@^7.6.2", "@babel/runtime@^7.6.3":
+  version "7.15.3"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.15.3.tgz#2e1c2880ca118e5b2f9988322bd8a7656a32502b"
+  integrity sha512-OvwMLqNXkCXSz1kSm58sEsNuhqOx/fKpnUnKnFB5v8uDda5bLNEHNgKPvhDN6IU0LDcnHQ90LlJ0Q6jnyBSIBA==
   dependencies:
-    regenerator-runtime "^0.13.2"
+    regenerator-runtime "^0.13.4"
 
 "@emotion/hash@^0.8.0":
   version "0.8.0"
@@ -32,12 +32,12 @@
     react-is "^16.8.0"
     react-transition-group "^4.4.0"
 
-"@material-ui/icons@^5.0.0-alpha.4":
-  version "5.0.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@material-ui/icons/-/icons-5.0.0-alpha.4.tgz#edaa333b9612f5a02669fcec6b4af1ab91c31402"
-  integrity sha512-AE1nn/cYBNZ9FSihUMLb2c39HwdUpGXF3S1v7no68NtwOLjUorWshJJ/0i//cLgwvVEieRKI2XJpZjg6Ze/xNA==
+"@material-ui/icons@^5.0.0-beta.5":
+  version "5.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/@material-ui/icons/-/icons-5.0.0-beta.5.tgz#54295b9aa120910c88900e3d08082b7acbeb73c0"
+  integrity sha512-C2KHSf8mvDn22rzsV0UfsJyBYI3Nt/LItcKPJBAG9kgqdBHAuLMH2lfKmdMuX55qd8O+NO5rM7aIHdYQRjfcMQ==
   dependencies:
-    "@babel/runtime" "^7.4.4"
+    "@babel/runtime" "^7.14.8"
 
 "@material-ui/styles@^5.0.0-alpha.1":
   version "5.0.0-alpha.1"
@@ -264,10 +264,10 @@ react-transition-group@^4.4.0:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-regenerator-runtime@^0.13.2:
-  version "0.13.3"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.3.tgz#7cf6a77d8f5c6f60eb73c5fc1955b2ceb01e6bf5"
-  integrity sha512-naKIZz2GQ8JWh///G7L3X6LaQUAMp2lvb1rvwwsURe/VXwD6VMfr+/1NuNw3ag8v2kY1aQ/go5SNn79O9JU7yw==
+regenerator-runtime@^0.13.4:
+  version "0.13.9"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.13.9.tgz#8925742a98ffd90814988d7566ad30ca3b263b52"
+  integrity sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==
 
 tiny-warning@^1.0.2:
   version "1.0.3"

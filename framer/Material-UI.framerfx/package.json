@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^5.0.0-alpha.4",
-    "@material-ui/icons": "^5.0.0-alpha.4",
+    "@material-ui/icons": "^5.0.0-beta.5",
     "@material-ui/utils": "^5.0.0-alpha.1",
     "lodash": "^4.17.21"
   },
