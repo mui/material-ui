@@ -29,7 +29,7 @@
   },
   "name": "ToggleButtonGroup",
   "styles": {
-    "classes": ["root", "vertical", "grouped", "groupedHorizontal", "groupedVertical", "disabled"],
+    "classes": ["root", "vertical", "disabled", "grouped", "groupedHorizontal", "groupedVertical"],
     "globalClasses": { "disabled": "Mui-disabled" },
     "name": "MuiToggleButtonGroup"
   },
