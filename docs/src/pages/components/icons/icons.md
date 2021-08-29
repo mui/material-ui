@@ -254,6 +254,23 @@ Then, you can use the two-tone font directly:
 ```jsx
 <Icon>add_circle</Icon>
 ```
+#### Overriding styles for MuiSvgIcon
+
+You can globally modify the default styles of MuiSvgIcon by using `stylesOverrides` like this:
+
+```js
+const theme = createTheme({
+  components: {
+    MuiSvgIcon: {
+      styleOverrides: {
+        root: {
+         color: "rgb(0,0,0)";
+        },
+      },
+    },
+  },
+});
+```
 
 ### Font Awesome
 
