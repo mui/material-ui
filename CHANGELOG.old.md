@@ -80,8 +80,8 @@ A big thanks to the 12 contributors who made this release possible. It includes 
 - [GridList] Rename to ImageList & add deprecation warnings (#22363) @mbrookes
 - [Icons] Deprecate fontSize value of default, add medium (#23971) @mbrookes
 - [Menu] Deprecate transition onX props (#22213) @mbrookes
-- [Modal][Dialog] Deprecate duplicate props with onChange (#24081) @oliviertassinari
-- [Modal][Portal] Deprecate onRendered (#24082) @oliviertassinari
+- [Modal][dialog] Deprecate duplicate props with onChange (#24081) @oliviertassinari
+- [Modal][portal] Deprecate onRendered (#24082) @oliviertassinari
 - [Popover] Deprecate transition onX props (#22202) @mbrookes
 - [RootRef] Deprecate component (#24075) @oliviertassinari
 - [Snackbar] Deprecate transition onX props (#22206) @mbrookes
@@ -164,7 +164,7 @@ All contributors of this release in alphabetical order: @DanailH, @dtassone, @ep
 This release is intended to help prepare the migration to Material-UI v5 ⏫:
 
 - 📚 Start to add deprecations in anticipation of v5. We plan to add a deprecation for any breaking change in v5 that allows it. Each warning comes with a simple message that explains how to handle the deprecation. If no warnings are reported in the console, you are set for this first batch.
-Please report issues with the deprecations on [#22074](https://github.com/mui-org/material-ui/issues/22074) (wrong instructions, false-positives, floods in the console, etc.).
+  Please report issues with the deprecations on [#22074](https://github.com/mui-org/material-ui/issues/22074) (wrong instructions, false-positives, floods in the console, etc.).
 
 You can expect similar releases like this one in the coming months.
 
@@ -185,6 +185,7 @@ You can expect similar releases like this one in the coming months.
 - [Snackbar] Deprecate transition onX props (#22206) @mbrookes
 
 ## 4.11.3
+
 ###### _Jan 24, 2021_
 
 This release fixes an important issue with Chrome 88. The usage of NaN as a CSS property with JSS throws an exception.
@@ -223,6 +224,7 @@ This release fixes an important issue with Chrome 88. The usage of NaN as a CSS 
 - [core] Batch small changes (#24224) @oliviertassinari
 
 ## 4.11.2
+
 ###### _Dec 2, 2020_
 
 This release widens the peer dependency scope of React to accept ^17.0.0.
@@ -259,6 +261,7 @@ This is a reminder that all ongoing work has moved to v5. This means a feature f
 - [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
 
 ## 4.11.1
+
 ###### _Nov 24, 2020_
 
 A big thanks to the 12 contributors who made this release possible.
@@ -300,7 +303,7 @@ A big thanks to the 12 contributors who made this release possible.
 - [docs] Add redirection for links published on npm (#22575) @oliviertassinari
 - [docs] Allow to host code in a different repo (#23390) @oliviertassinari
 - [docs] Avoid confusion between layout grid and data grid (#22681) @oliviertassinari
-- [docs] Backport _redirect from next @oliviertassinari
+- [docs] Backport \_redirect from next @oliviertassinari
 - [docs] Change "Let Us Know" button URL (#22521) @mbrookes
 - [docs] Clear the different between table vs data grid right at the start @oliviertassinari
 - [docs] Encourage DataGrid in /components/tables/ over alternatives (#22637) @oliviertassinari
@@ -338,7 +341,8 @@ A big thanks to the 12 contributors who made this release possible.
 - [test] Update react next patch (#22393) @eps1lon
 
 ## 4.11.0
-###### *July 1, 2020*
+
+###### _July 1, 2020_
 
 A big thanks to the 8 contributors who made this release possible.
 
