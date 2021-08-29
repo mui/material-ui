@@ -50,7 +50,9 @@ Receive the latest news on Material-UI.
 
 ### Supported versions
 
-The MUI Core has been 100% open-source (MIT) since the very beginning in 2014, and always will be. Developers can ensure Material-UI is the right choice for their React applications through Material-UI's community maintenance strategy. The Material-UI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
+MUI Core has been open-source ([MIT](https://tldrlegal.com/license/mit-license)) since the very beginning, and always will be.
+Developers can ensure Material-UI is the right choice for their React applications through Material-UI's community maintenance strategy.
+The Material-UI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
 
 Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](https://material-ui.com/versions/#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v5](/guides/migration-v4/).
 The open-source community is always welcome to submit new features and bug fixes as well.
@@ -74,7 +76,8 @@ Material-UI comes in [three plans](/pricing/).
 The support available on the Community plan is mostly made possible thanks to people like you: the community. It's described in more detail in the above section. The maintainers of Material-UI focuses on solving the root issues, not direct support.
 
 The Pro plan allows developers to license extra features that are challenging to find in the OSS space.
-The maintainers of Material-UI are providing support on these paid features, aiming for a similar quality of experience to the one provided by the community on the MIT parts.
+The maintainers of Material-UI provide support for these paid features.
+They aim for a similar quality of experience to the one provided by the community on the open-source modules
 however no SLAs are provided.
 
 The Premium plan goes one step further by providing SLAs on the quality of the support.
