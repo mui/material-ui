@@ -1,3 +1,403 @@
+## 4.12.3
+
+<!-- generated comparing v4.12.2..master -->
+
+_Jul 27, 2021_
+
+### `@material-ui/core@4.12.3`
+
+- <!-- 2 --> [AccordionSummary] Fix false-positive propType warning with `disableGeneration` (#27385) @eps1lon
+- <!-- 7 --> [ImageList] Fix deprecation warnings (#27502) @mnajdova
+- <!-- 6 --> [TablePagination] Re-introduce deprecated `onChangePage` to `ActionsComponent` (#27407) @eps1lon
+- <!-- 1 --> [TextareaAutosize] Updated deprecation warning to suggest minRows instead of rowsMin (#27398) @HumbertoL
+
+### Docs
+
+- <!-- 4 --> [docs] Fix 404 link to ImageList @oliviertassinari
+- <!-- 3 --> [docs] Fix DataTable.tsx demo in v4 (#27196) @Siv-tspab
+
+### Core
+
+- <!-- 5 --> [core] Add release scripts (#27399) @eps1lon
+
+All contributors of this release in alphabetical order: @eps1lon, @mnajdova, @HumbertoL, @oliviertassinari, @Siv-tspab
+
+## 4.12.2
+
+<!-- generated comparing v4.12.1..master -->
+
+_Jul 19, 2021_
+
+### `@material-ui/core@4.12.2`
+
+- <!-- 09 --> [Accordion, Collapse] Fix failed proptype error (#27307) @serenalin121
+- <!-- 12 --> [AccordionSummary] Ensure backwards compatible deprecation of classes.focused (#27351) @eps1lon
+- <!-- 11 --> [TextField] Add support for `minRows` (#27293) @eps1lon
+
+### Docs
+
+- <!-- 07 --> [blog] Danilo Leal joins Material-UI (#27231) @oliviertassinari
+- <!-- 04 --> [blog] Jun did join in Q1 @oliviertassinari
+- <!-- 03 --> [blog] Fix typo @oliviertassinari
+- <!-- 02 --> [blog] Q2 2021 Update (#27089) @oliviertassinari
+- <!-- 10 --> [docs] Add constant for the banner height (#27309) @mnajdova
+- <!-- 08 --> [docs] Fix various layout issues with the v5 banner (#27237) @mnajdova
+- <!-- 06 --> [docs] Fix https protocol (#27262) @m4theushw
+- <!-- 01 --> [docs] Remove Ethical Ads (#27173) @mbrookes
+- <!-- 05 --> [website] Open 4 new roles (#27123) @oliviertassinari
+
+All contributors of this release in alphabetical order: @eps1lon, @m4theushw, @mbrookes, @mnajdova, @oliviertassinari, @serenalin121
+
+## 4.12.1
+
+_July 7, 2021_
+
+This release is released to fix the package.json generation in the previous release.
+
+### Core
+
+- [core] Fix generation of package.json file on Windows (#27160) @mnajdova
+
+## 4.12.0
+
+_July 6, 2021_
+
+Big thanks to the 12 contributors who made this release possible. It includes deprecations that should help developers to have an easier adoption of v5.
+
+### @material-ui/core@4.12.0
+
+- [Accordion] Deprecate classes.focused (#24083) @oliviertassinari
+- [Avatar] Change default variant and adjust deprecation message (#25549) @michal-perlakowski
+- [Badge] Add overlap circular and rectangular (#22076) @eps1lon
+- [ButtonBase] Add warning for buttonRef removal (#25897) @m4theushw
+- [Collapse] Deprecate classes.container (#24084) @oliviertassinari
+- [Collapse] Deprecate collapsedHeight (#24079) @oliviertassinari
+- [Dialog] Add deprecation warning for withMobileDialog (#23570) @RDIL
+- [Dialog] Deprecate the transition onX props (#22114) @mbrookes
+- [Fab] Deprecate variant="round" (#24080) @oliviertassinari
+- [Grid] Add deprecation for justify prop rename (#24078) @oliviertassinari
+- [Grid] Fix justifyContent="flex-start" prop types (#24788) @DukeManh
+- [GridList] Rename to ImageList & add deprecation warnings (#22363) @mbrookes
+- [Icons] Deprecate fontSize value of default, add medium (#23971) @mbrookes
+- [Menu] Deprecate transition onX props (#22213) @mbrookes
+- [Modal][Dialog] Deprecate duplicate props with onChange (#24081) @oliviertassinari
+- [Modal][Portal] Deprecate onRendered (#24082) @oliviertassinari
+- [Popover] Deprecate transition onX props (#22202) @mbrookes
+- [RootRef] Deprecate component (#24075) @oliviertassinari
+- [Snackbar] Deprecate transition onX props (#22206) @mbrookes
+- [Table] Add deprecation for renamed TablePagination props (#23789) @mnajdova
+- [Table] Deprecate padding="default" (#25990) @m4theushw
+- [TextareaAutosize] Deprecate rowsMax->maxRows & rowsMin->minRows (#23530) @mhayk
+- [TextField] Add isRequired to position prop in InputAdornment (#25912) @m4theushw
+- [theme] Deprecate theme.mixins.gutters (#22245) @joshwooding
+- [theme] Deprecate fade color utility in favor of alpha (#22837) @mnajdova
+- [theme] Deprecate createMuiTheme (#26004) @m4theushw
+- [theme] Add warning for theme.typography.round deprecation (#25916) @m4theushw
+- [theme] Add warning for theme.breakpoints.width deprecation (#25993) @m4theushw
+
+### @material-ui/system@4.12.0
+
+- [Box] Deprecate css prop in favor of sx (#23480) @mnajdova
+
+### Docs
+
+- [blog] Michał Dudak joins Material-UI (#26700)
+- [blog] Siriwat Kunaporn joins Material-UI (#26329) @oliviertassinari
+- [docs] Add gold sponsor (#26968)
+- [docs] Add v5 banner (#27070)
+- [docs] Fix 404 link (Evergreen Box) (#26430) @k-utsumi
+- [docs] Prepare for data grid auto-generated docs (#26477) @m4theushw
+- [docs] Update typography.md to non-deprecated fontsource (#26082) @kiwimahk
+- [website] Add careers page for intern (#26280) @mnajdova
+- [website] Add open application section (#26501) @oliviertassinari
+
+### Core
+
+- [test] Deprecate test-utils (#24099) @eps1lon
+
+## 4.11.4
+
+<!-- generated comparing v4.11.3..master -->
+
+_Apr 27, 2021_
+
+Big thanks to the 6 contributors who made this release possible. Here are some highlights ✨:
+
+We fixed an issue related to some packages using incompatible versions of `@material-ui/types`. This affected `@material-ui/core`, `@material-ui/lab`, and `@material-ui/styles`
+`@material-ui/types@5.1.7 accidentally included a breaking change.
+
+### @material-ui/core@4.11.4
+
+- <!-- 13 --> [Avatar] Remove circular variant deprecation (#25543) @michal-perlakowski
+- <!-- 22 --> [types] Ensure Omit type exists (#25978) @eps1lon
+
+### Docs
+
+- <!-- 21 --> [DataGrid] Update docs sections (#25980) @dtassone
+- <!-- 20 --> [docs] Sync master redirections with next @oliviertassinari
+- <!-- 19 --> [docs] Fix deploy @oliviertassinari
+- <!-- 18 --> [docs] Move DataGrid editing nav link (#25769) @dtassone
+- <!-- 11 --> [docs] Design is what matters @oliviertassinari
+- <!-- 10 --> [docs] Add the new demo page (#25285) @DanailH
+- <!-- 09 --> [docs] Add a temporary hiring block in the docs (#25111) @oliviertassinari
+- <!-- 05 --> [docs] Remove under construction icons from DataGrid feature pages (#24946) @DanailH
+- <!-- 03 --> [docs] Add HoodieBees to sponsors (#24735) @mbrookes
+- <!-- 02 --> [docs] Add sorting section (#24637) @dtassone
+- <!-- 01 --> [docs] v4 is not under active development @oliviertassinari
+
+### Core
+
+- <!-- 17 --> remove job ad @oliviertassinari
+- <!-- 07 --> clearer header @oliviertassinari
+- <!-- 16 --> [blog] Fix typos @oliviertassinari
+- <!-- 12 --> [core] Update the codesandbox issue templates (#25501) @oliviertassinari
+- <!-- 04 --> [core] Support /r/issue-template back (#24870) @oliviertassinari
+- <!-- 15 --> [website] Q1 2021 Update (#25591) @oliviertassinari
+- <!-- 14 --> [website] Matheus Wichman joins Material-UI (#25590) @oliviertassinari
+- <!-- 08 --> [website] Fix 404 page @oliviertassinari
+- <!-- 06 --> [website] Update Careers page (#24948) @oliviertassinari
+
+All contributors of this release in alphabetical order: @DanailH, @dtassone, @eps1lon, @mbrookes, @michal-perlakowski, @oliviertassinari
+
+## UNRELEASED - 4.12.0
+
+This release is intended to help prepare the migration to Material-UI v5 ⏫:
+
+- 📚 Start to add deprecations in anticipation of v5. We plan to add a deprecation for any breaking change in v5 that allows it. Each warning comes with a simple message that explains how to handle the deprecation. If no warnings are reported in the console, you are set for this first batch.
+Please report issues with the deprecations on [#22074](https://github.com/mui-org/material-ui/issues/22074) (wrong instructions, false-positives, floods in the console, etc.).
+
+You can expect similar releases like this one in the coming months.
+
+### `@material-ui/core@v4.12.0`
+
+#### Deprecations
+
+- [theme] Deprecate `fade` color utility in favor of `alpha` (#22837) @mnajdova
+- [theme] Deprecate theme.mixins.gutters (#22245) @joshwooding
+- [Avatar] Add circular variant (#22090) @eps1lon
+- [Badge] Add overlap circular and rectangular (#22076) @eps1lon
+- [Box] Deprecate css prop in favor of sx (#23480) @mnajdova
+- [CircularProgress] Backport simplified determinate style & deprecate static (#22094) @mbrookes
+- [Dialog] Deprecate the transition onX props (#22114) @mbrookes
+- [GridList] Rename to ImageList & add deprecation warnings (#22363) @mbrookes
+- [Menu] Deprecate transition onX props (#22213) @mbrookes
+- [Popover] Deprecate transition onX props (#22202) @mbrookes
+- [Snackbar] Deprecate transition onX props (#22206) @mbrookes
+
+## 4.11.3
+###### _Jan 24, 2021_
+
+This release fixes an important issue with Chrome 88. The usage of NaN as a CSS property with JSS throws an exception.
+
+### `@material-ui/core@v4.11.3`
+
+- [styles] Upgrade jss to 10.5.1 (#24570) @oliviertassinari
+
+### `@material-ui/styles@v4.11.3`
+
+- [styles] Upgrade jss to 10.5.1 (#24570) @oliviertassinari
+
+### `@material-ui/system@v4.11.3`
+
+- [system] Fix handling of null-ish values (#24527) @oliviertassinari"
+
+### Docs
+
+- [blog] 2020 in review and beyond (#24130) @oliviertassinari
+- [docs] Add ELEVATOR to backers (#23977) @mbrookes
+- [docs] Add eslint rule to docs (#23843) @jens-ox
+- [docs] Add notification for Adobe XD design assets (#23979) @mbrookes
+- [docs] Allow codesandbox deploy for demos in X (#23644) @oliviertassinari
+- [docs] Fix codesandbox datagrid demo (#24218) @brno32
+- [docs] Improve displayed versions (#24051) @oliviertassinari
+- [docs] Mention Adobe XD (#23978) @oliviertassinari
+- [docs] Sync tranlations (#23981) @l10nbot
+- [docs] Sync translation (#23719) @l10nbot
+- [docs] Sync translations (#23836) @l10nbot
+- [docs] Sync translations (#24039) @l10nbot
+- [docs] Update Divjoy URL (#24447) @mbrookes
+- [docs] Update in-house ads (#24410) @mbrookes
+
+### Core
+
+- [core] Batch small changes (#24224) @oliviertassinari
+
+## 4.11.2
+###### _Dec 2, 2020_
+
+This release widens the peer dependency scope of React to accept ^17.0.0.
+The change makes it easier for developers to upgrade React independently from Material-UI. The best support for React 17 will be found in Material-UI v5.
+
+This is a reminder that all ongoing work has moved to v5. This means a feature freeze on v4. The development of v4 is limited to important bug fixes, security patches and easing the upgrade path to v5.
+
+### `@material-ui/core@v4.11.2`
+
+- [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
+
+### `@material-ui/icons@v4.11.2`
+
+- [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
+
+### `@material-ui/lab@v4.11.2`
+
+- [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
+
+### `@material-ui/styles@v4.11.2`
+
+- [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
+
+### `@material-ui/system@v4.11.2`
+
+- [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
+
+### `@material-ui/utils@v4.11.2`
+
+- [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
+
+### `@material-ui/lab@v4.0.0-alpha.57`
+
+- [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
+
+## 4.11.1
+###### _Nov 24, 2020_
+
+Big thanks to the 12 contributors who made this release possible.
+
+- 🐛 Fix integration issue with TypeScript 4.1 (#23692) @ldrick
+- ⚛️ Fix two issues with React 17 (#22263, #23367) @eps1lon
+  v4 doesn't have official support for React 17 like v5 has. Use it at your own risk.
+- 🐛 Fix right-to-left support of Tabs since Chrome 85 (#22830) @ankit
+
+### `@material-ui/core@v4.11.1`
+
+- [styles] Add support for TypeScript 4.1 (#23692) @ldrick
+- [ClickAwayListener] Fix mounting behavior in Portals in React 17 (#23367) @eps1lon
+- [TrapFocus] Prevent possible crash in React 17 (#22263) @eps1lon
+- [Tabs] Fix RTL scrollbar with Chrome 85 (#22830) @ankit
+
+### `@material-ui/styles@v4.11.1`
+
+- [styles] Add support for TypeScript 4.1 (#23692) @ldrick
+
+### Docs
+
+- [blog] Allow to support card preview (#23087) @oliviertassinari
+- [blog] Danail Hadjiatanasov joins Material-UI (#23223) @oliviertassinari
+- [blog] New posts (#22607) @oliviertassinari
+- [blog] Q2 2020 Update (#21822) @oliviertassinari
+- [blog] Q3 2020 Update (#23055) @oliviertassinari
+- [docs] Add Backstage to showcase (#22428) @stefanalund
+- [docs] Add Design resources in installation (#22209) @oliviertassinari
+- [docs] Add DoiT diamond sponsor (#22436) @oliviertassinari
+- [docs] Add LightyearVPN to showcase (#22568) @lightyearvpn
+- [docs] Add Material-UI Builder to in-house ads (#23342) @mbrookes
+- [docs] Add Octopus diamond sponsor (#22178) @oliviertassinari
+- [docs] Add Spotify to users (#22776) @mbrookes
+- [docs] Add ethicalads.io (#21752) @oliviertassinari
+- [docs] Add live demo with DataGrid (#22697) @oliviertassinari
+- [docs] Add notification about survey @oliviertassinari
+- [docs] Add notification for MUI for Figma v4.12.0 (#23212) @mbrookes
+- [docs] Add redirection for links published on npm (#22575) @oliviertassinari
+- [docs] Allow to host code in a different repo (#23390) @oliviertassinari
+- [docs] Avoid confusion between layout grid and data grid (#22681) @oliviertassinari
+- [docs] Backport _redirect from next @oliviertassinari
+- [docs] Change "Let Us Know" button URL (#22521) @mbrookes
+- [docs] Clear the different between table vs data grid right at the start @oliviertassinari
+- [docs] Encourage DataGrid in /components/tables/ over alternatives (#22637) @oliviertassinari
+- [docs] Engage with more Russian users @oliviertassinari
+- [docs] Fix 404 reported by Moz.com @oliviertassinari
+- [docs] Fix codesandbox link @oliviertassinari
+- [docs] Fix static asset loading with X @oliviertassinari
+- [docs] Fix theme.palette.type usage @oliviertassinari
+- [docs] Forward x data-grid (#22400) @oliviertassinari
+- [docs] Improve SEO on titles (#22742) @oliviertassinari
+- [docs] Improve ad display @oliviertassinari
+- [docs] Improve codesandbox generation logic (#22221) @oliviertassinari
+- [docs] Improve export to CodeSandbox (#22346) @oliviertassinari
+- [docs] Improve position in the side nav of DataGrid @oliviertassinari
+- [docs] Include new video on customization @oliviertassinari
+- [docs] Option to disable ads (#22574) @oliviertassinari
+- [docs] Point to the production branch of x @oliviertassinari
+- [docs] Reduce tracking events (#21710) @eps1lon
+- [docs] Remove codefund Ads (#21714) @eps1lon
+- [docs] Remove expansion-panels @oliviertassinari
+- [docs] Remove v5 docs capability @oliviertassinari
+- [docs] Sync translation (#21638, #21751, #21925, #22751, #22850, #22887, #23357) @oliviertassinari
+- [docs] Update homepage quotes (#23326) @mbrookes
+- [docs] Use codesandbox deploy for demos created from deploy previews (#22616) @eps1lon
+- [docs] configuring redirects for MUI X (#22632) @dtassone
+
+### Core
+
+- [core] Remove Alert codeowner @oliviertassinari
+- [core] Small changes (master) (#22022) @oliviertassinari
+- [test] Add skip ci to Crowdin commit message (#22684) @mbrookes
+- [test] Fix CI @oliviertassinari
+- [test] Only run on push for master/next (#22627) @eps1lon
+- [test] Run CircleCI anytime (#22686) @eps1lon
+- [test] Update react next patch (#22393) @eps1lon
+
+## 4.11.0
+###### *July 1, 2020*
+
+Big thanks to the 8 contributors who made this release possible.
+
+### `@material-ui/core@v4.11.0`
+
+- [ExpansionPanel] Prepare renaming to Accordion, add warnings (#21560) @mnajdova
+  It uses a more common naming convention:
+
+  ```diff
+  -import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+  -import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+  -import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+  -import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
+  +import Accordion from '@material-ui/core/Accordion';
+  +import AccordionSummary from '@material-ui/core/AccordionSummary';
+  +import AccordionDetails from '@material-ui/core/AccordionDetails';
+  +import AccordionActions from '@material-ui/core/AccordionActions';
+
+  -<ExpansionPanel>
+  +<Accordion>
+  -  <ExpansionPanelSummary>
+  +  <AccordionSummary>
+      <Typography>Location</Typography>
+      <Typography>Select trip destination</Typography>
+  -  </ExpansionPanelSummary>
+  +  </AccordionSummary>
+  -  <ExpansionPanelDetails>
+  +  <AccordionDetails>
+      <Chip label="Barbados" onDelete={() => {}} />
+      <Typography variant="caption">Select your destination of choice</Typography>
+  -  </ExpansionPanelDetails>
+  +  </AccordionDetails>
+    <Divider />
+  -  <ExpansionPanelActions>
+  +  <AccordionActions>
+      <Button size="small">Cancel</Button>
+      <Button size="small">Save</Button>
+  -  </ExpansionPanelActions>
+  +  </AccordionActions>
+  -</ExpansionPanel>
+  +</Accordion>
+  ```
+
+### Docs
+
+- [blog] Post survey results 2020 (#21555) @mnajdova
+- [docs] Add new gold sponsor @oliviertassinari
+- [docs] CodeFund is shutting down (#21632) @oliviertassinari
+- [docs] Enable next.material-ui.com sub-domain @oliviertassinari
+- [docs] Fix ad issues @oliviertassinari
+- [docs] Fix version in localized urls (#21442) @tchmnn
+- [docs] Sync translations (#21445) @oliviertassinari
+- [docs] Sync translations (#21535) @oliviertassinari
+
+### Core
+
+- [core] Batch small changes (#21419) @oliviertassinari
+- [core] Fix react next patch and prevent regression (#21482) @eps1lon
+
 ## 4.10.2
 
 ###### _June 11, 2020_
