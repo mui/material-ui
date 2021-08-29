@@ -62,7 +62,7 @@
     "babel-plugin-optimize-clsx": "^2.6.2",
     "babel-plugin-react-remove-properties": "^0.3.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "clean-css": "^5.0.1",
+    "clean-css": "^5.1.5",
     "clipboard-copy": "^3.0.0",
     "clsx": "^1.1.1",
     "core-js": "^2.6.11",
