@@ -17,14 +17,6 @@ import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
 
-const MockResizeObserver = () => {
-  return {
-    observe: () => {},
-    unobserve: () => {},
-    disconnect: () => {},
-  };
-};
-
 const nextItem = (list, item) => {
   if (list === item) {
     return list.firstChild;
@@ -569,21 +561,22 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     });
     const win = ownerWindow(tabsRef.current);
     win.addEventListener('resize', handleResize);
-    let resizeObserver;
-    try {
-      resizeObserver = new ResizeObserver(handleResize);
-    } catch (err) {
-      resizeObserver = MockResizeObserver(); // Prevent crash for old browsers
-    }
 
-    Array.from(tabListRef.current.children).forEach((child) => {
-      resizeObserver.observe(child);
-    });
+    let resizeObserver;
+
+    if (typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(handleResize);
+      Array.from(tabListRef.current.children).forEach((child) => {
+        resizeObserver.observe(child);
+      });
+    }
 
     return () => {
       handleResize.clear();
       win.removeEventListener('resize', handleResize);
-      resizeObserver.disconnect();
+      if (resizeObserver) {
+        resizeObserver.disconnect();
+      }
     };
   }, [updateIndicatorState, updateScrollButtonState]);
 

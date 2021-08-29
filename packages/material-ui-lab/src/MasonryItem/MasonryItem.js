@@ -13,15 +13,6 @@ import { styled, useThemeProps, useTheme } from '@mui/material/styles';
 import { getMasonryItemUtilityClass } from './masonryItemClasses';
 import MasonryContext from '../Masonry/MasonryContext';
 
-// dummy resize observer used to prevent crash for old browsers that do not support ResizeObserver API(e.g., 11IE)
-const MockResizeObserver = () => {
-  return {
-    observe: () => {},
-    unobserve: () => {},
-    disconnect: () => {},
-  };
-};
-
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
 
@@ -90,38 +81,32 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
 
   const { spacing = 1 } = React.useContext(MasonryContext);
   const { children, className, component = 'div', columnSpan = 1, defaultHeight, ...other } = props;
-  const isSSR = defaultHeight !== undefined;
 
   const [height, setHeight] = React.useState(defaultHeight);
 
   const ownerState = {
     ...props,
-    isSSR,
     spacing,
     columnSpan,
     height: height < 0 ? 0 : height, // MasonryItems to which negative or zero height is passed will be hidden
   };
 
   const classes = useUtilityClasses(ownerState);
-  const resizeObserver = React.useRef(null);
+
   React.useEffect(() => {
-    // do not create a resize observer in case of SSR masonry
-    if (isSSR) {
-      return () => {};
+    if (typeof ResizeObserver === 'undefined') {
+      return null;
     }
-    try {
-      resizeObserver.current = new ResizeObserver(([item]) => {
-        setHeight(item.contentRect.height);
-      });
-    } catch (err) {
-      resizeObserver.current = MockResizeObserver();
-    }
-    const item = masonryItemRef.current.firstChild;
-    resizeObserver.current.observe(item);
+
+    const resizeObserver = new ResizeObserver(([item]) => {
+      setHeight(item.contentRect.height);
+    });
+    resizeObserver.observe(masonryItemRef.current.firstChild);
+
     return () => {
-      resizeObserver.current.unobserve(item);
+      resizeObserver.disconnect();
     };
-  }, [isSSR]);
+  }, []);
 
   const handleRef = useForkRef(ref, masonryItemRef);
 
