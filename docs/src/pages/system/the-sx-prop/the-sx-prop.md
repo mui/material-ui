@@ -193,12 +193,12 @@ Each property in the `sx` prop can receive a function callback as a value. This 
 A frequent source of confusion with the `sx` prop is TypeScript's [type widening](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
 
 ```ts
-const styles = {
+const style = {
   flexDirection: 'column',
 };
 
 export default function App() {
-  return <Button sx={styles}>Example</Button>;
+  return <Button sx={style}>Example</Button>;
 }
 //    Type '{ flexDirection: string; }' is not assignable to type 'SxProps<Theme> | undefined'.
 //    Type '{ flexDirection: string; }' is not assignable to type 'CSSSelectorObject<Theme>'.
@@ -219,7 +219,7 @@ export default function App() {
 }
 ```
 
-Alternatively, you can pass the styles object directly to the `sx` prop:
+Alternatively, you can pass the style object directly to the `sx` prop:
 
 ```ts
 export default function App() {
