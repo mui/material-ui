@@ -8,7 +8,7 @@ githubLabel: 'component: Stack'
 
 <p class="description">The Stack component manages layout of immediate children along the vertical or horizontal axis with optional spacing and/or dividers between each child.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Usage
 
