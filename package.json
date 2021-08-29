@@ -112,7 +112,7 @@
     "chalk": "^4.1.2",
     "compression-webpack-plugin": "^6.0.2",
     "concurrently": "^6.2.1",
-    "confusing-browser-globals": "^1.0.9",
+    "confusing-browser-globals": "^1.0.10",
     "core-js": "^2.6.11",
     "cpy-cli": "^3.1.1",
     "cross-env": "^7.0.3",
