@@ -62,7 +62,7 @@ This release is released to fix the package.json generation in the previous rele
 
 _July 6, 2021_
 
-Big thanks to the 12 contributors who made this release possible. It includes deprecations that should help developers to have an easier adoption of v5.
+A big thanks to the 12 contributors who made this release possible. It includes deprecations that should help developers to have an easier adoption of v5.
 
 ### @material-ui/core@4.12.0
 
@@ -121,7 +121,7 @@ Big thanks to the 12 contributors who made this release possible. It includes de
 
 _Apr 27, 2021_
 
-Big thanks to the 6 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 6 contributors who made this release possible. Here are some highlights ✨:
 
 We fixed an issue related to some packages using incompatible versions of `@material-ui/types`. This affected `@material-ui/core`, `@material-ui/lab`, and `@material-ui/styles`
 `@material-ui/types@5.1.7 accidentally included a breaking change.
@@ -261,7 +261,7 @@ This is a reminder that all ongoing work has moved to v5. This means a feature f
 ## 4.11.1
 ###### _Nov 24, 2020_
 
-Big thanks to the 12 contributors who made this release possible.
+A big thanks to the 12 contributors who made this release possible.
 
 - 🐛 Fix integration issue with TypeScript 4.1 (#23692) @ldrick
 - ⚛️ Fix two issues with React 17 (#22263, #23367) @eps1lon
@@ -340,7 +340,7 @@ Big thanks to the 12 contributors who made this release possible.
 ## 4.11.0
 ###### *July 1, 2020*
 
-Big thanks to the 8 contributors who made this release possible.
+A big thanks to the 8 contributors who made this release possible.
 
 ### `@material-ui/core@v4.11.0`
 
@@ -408,7 +408,7 @@ This means a feature freeze on v4. The development of this version will be limit
 
 You can follow our progress on the [v5 milestone](https://github.com/mui-org/material-ui/milestone/35). We will make the documentation of the v5 alpha releases available under https://next.material-ui.com/, starting next week (weekly releases, as usual).
 
-Big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
 
 - Introduce a new Timeline component (#21331) @mnajdova.
   <img width="244" alt="timeline" src="https://user-images.githubusercontent.com/3165635/84400961-ff381900-ac02-11ea-8e5e-beb6c0840fe0.png">
@@ -491,7 +491,7 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
 
 ###### _June 1, 2020_
 
-Big thanks to the 21 contributors who made this release possible.
+A big thanks to the 21 contributors who made this release possible.
 
 ### `@material-ui/core@v4.10.1`
 
@@ -543,7 +543,7 @@ Big thanks to the 21 contributors who made this release possible.
 
 ###### _May 23, 2020_
 
-Big thanks to the 30 contributors who made this release possible.
+A big thanks to the 30 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -631,7 +631,7 @@ Here are some highlights ✨:
 
 ###### _May 11, 2020_
 
-Big thanks to the 19 contributors who made this release possible.
+A big thanks to the 19 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -697,7 +697,7 @@ Here are some highlights ✨:
 
 ###### _May 4, 2020_
 
-Big thanks to the 27 contributors who made this release possible.
+A big thanks to the 27 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -766,7 +766,7 @@ Here are some highlights ✨:
 
 ###### _Apr 27, 2020_
 
-Big thanks to the 32 contributors who made this release possible.
+A big thanks to the 32 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -859,7 +859,7 @@ Here are some highlights ✨:
 
 ###### _Apr 18, 2020_
 
-Big thanks to the 25 contributors who made this release possible.
+A big thanks to the 25 contributors who made this release possible.
 
 ### `@material-ui/core@v4.9.11`
 
@@ -911,7 +911,7 @@ Big thanks to the 25 contributors who made this release possible.
 
 ###### _Apr 11, 2020_
 
-Big thanks to the 20 contributors who made this release possible.
+A big thanks to the 20 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -996,7 +996,7 @@ You can expect the following:
 
 ###### _Apr 4, 2020_
 
-Big thanks to the 20 contributors who made this release possible.
+A big thanks to the 20 contributors who made this release possible.
 
 ### `@material-ui/core@v4.9.9`
 
@@ -1047,7 +1047,7 @@ Big thanks to the 20 contributors who made this release possible.
 
 ###### _Mar 28, 2020_
 
-Big thanks to the 24 contributors who made this release possible.
+A big thanks to the 24 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -1138,7 +1138,7 @@ Here are some highlights ✨:
 
 ###### _Mar 18, 2020_
 
-Big thanks to the 39 contributors who made this release possible.
+A big thanks to the 39 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -1261,7 +1261,7 @@ Here are some highlights ✨:
 
 ###### _Feb 29, 2020_
 
-Big thanks to the 15 contributors who made this release possible.
+A big thanks to the 15 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -1302,7 +1302,7 @@ Here are some highlights ✨:
 
 ###### _Feb 23, 2020_
 
-Big thanks to the 18 contributors who made this release possible.
+A big thanks to the 18 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -1351,7 +1351,7 @@ Here are some highlights ✨:
 
 ###### _Feb 16, 2020_
 
-Big thanks to the 18 contributors who made this release possible.
+A big thanks to the 18 contributors who made this release possible.
 
 ### `@material-ui/core@v4.9.3`
 
@@ -1393,7 +1393,7 @@ Big thanks to the 18 contributors who made this release possible.
 
 ###### _Feb 9, 2020_
 
-Big thanks to the 24 contributors who made this release possible.
+A big thanks to the 24 contributors who made this release possible.
 
 ### `@material-ui/core@v4.9.2`
 
@@ -1439,7 +1439,7 @@ Big thanks to the 24 contributors who made this release possible.
 
 ###### _Feb 2, 2020_
 
-Big thanks to the 39 contributors who made this release possible.
+A big thanks to the 39 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -1525,7 +1525,7 @@ Here are some highlights ✨:
 
 ###### _Jan 22, 2020_
 
-Big thanks to the 43 contributors who made this release possible.
+A big thanks to the 43 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -1629,7 +1629,7 @@ Here are some highlights ✨:
 
 ###### _Jan 6, 2020_
 
-Big thanks to the 19 contributors who made this release possible.
+A big thanks to the 19 contributors who made this release possible.
 
 Here are some highlights since 4.8.0 ✨:
 
@@ -1674,7 +1674,7 @@ Here are some highlights since 4.8.0 ✨:
 
 ###### _Dec 30, 2019_
 
-Big thanks to the 22 contributors who made this release possible.
+A big thanks to the 22 contributors who made this release possible.
 
 ### `@material-ui/core@v4.8.2`
 
@@ -1731,7 +1731,7 @@ Big thanks to the 22 contributors who made this release possible.
 
 ###### _Dec 24, 2019_
 
-Big thanks to the 24 contributors who made this release possible.
+A big thanks to the 24 contributors who made this release possible.
 
 ### `@material-ui/core@v4.8.1`
 
@@ -1775,7 +1775,7 @@ Big thanks to the 24 contributors who made this release possible.
 
 ###### _Dec 14, 2019_
 
-Big thanks to the 29 contributors who made this release possible.
+A big thanks to the 29 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -1838,7 +1838,7 @@ Here are some highlights ✨:
 
 ###### _Dec 7, 2019_
 
-Big thanks to the 18 contributors who made this release possible.
+A big thanks to the 18 contributors who made this release possible.
 
 ### `@material-ui/core@v4.7.2`
 
@@ -1877,7 +1877,7 @@ Big thanks to the 18 contributors who made this release possible.
 
 ###### _Dec 1, 2019_
 
-Big thanks to the 27 contributors who made this release possible.
+A big thanks to the 27 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -1947,7 +1947,7 @@ Here are some highlights ✨:
 
 ###### _Nov 22, 2019_
 
-Big thanks to the 27 contributors who made this release possible.
+A big thanks to the 27 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -2019,7 +2019,7 @@ Here are some highlights ✨:
 
 ###### _Nov 12, 2019_
 
-Big thanks to the 19 contributors who made this release possible.
+A big thanks to the 19 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -2110,7 +2110,7 @@ index 757d66a97..a4f36edd5 100644
 
 ###### _Nov 5, 2019_
 
-Big thanks to the 26 contributors who made this release possible.
+A big thanks to the 26 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -2191,7 +2191,7 @@ We are proud of the community. Let's keep this trend going 🚀.
 
 ###### _Oct 28, 2019_
 
-Big thanks to the 48 contributors who made this release possible!
+A big thanks to the 48 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -2301,7 +2301,7 @@ Here are some highlights ✨:
 
 ###### _Oct 12, 2019_
 
-Big thanks to the 28 contributors who made this release possible!
+A big thanks to the 28 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -2396,7 +2396,7 @@ Here are some highlights ✨:
 
 ###### _Oct 2, 2019_
 
-Big thanks to the 20 contributors who made this release possible!
+A big thanks to the 20 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -2485,7 +2485,7 @@ Here are some highlights ✨:
 
 ###### _Sep 22, 2019_
 
-Big thanks to the 23 contributors who made this release possible!
+A big thanks to the 23 contributors who made this release possible!
 This is a stability release.
 
 ### `@material-ui/core@v4.4.3`
@@ -2555,7 +2555,7 @@ This is a stability release.
 
 ###### _Sep 11, 2019_
 
-Big thanks to the 7 contributors who made this release possible!
+A big thanks to the 7 contributors who made this release possible!
 This is a quick release after v4.4.1 to solve 3 regressions.
 
 ### `@material-ui/core@v4.4.2`
@@ -2580,7 +2580,7 @@ This is a quick release after v4.4.1 to solve 3 regressions.
 
 ###### _Sep 8, 2019_
 
-Big thanks to the 21 contributors who made this release possible!
+A big thanks to the 21 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -2653,7 +2653,7 @@ Here are some highlights ✨:
 
 ###### _Aug 31, 2019_
 
-Big thanks to the 29 contributors who made this release possible!
+A big thanks to the 29 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -2716,7 +2716,7 @@ Here are some highlights ✨:
 
 ###### _Aug 21, 2019_
 
-Big thanks to the 22 contributors who made this release possible!
+A big thanks to the 22 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -2772,7 +2772,7 @@ Here are some highlights ✨:
 
 ###### _Aug 10, 2019_
 
-Big thanks to the 22 contributors who made this release possible!
+A big thanks to the 22 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -2831,7 +2831,7 @@ Here are some highlights ✨:
 
 ###### _Aug 03, 2019_
 
-Big thanks to the 18 contributors who made this release possible!
+A big thanks to the 18 contributors who made this release possible!
 
 ### `@material-ui/core@v4.3.1`
 
@@ -2866,7 +2866,7 @@ Big thanks to the 18 contributors who made this release possible!
 
 ###### _July 28, 2019_
 
-Big thanks to the 23 contributors who made this release possible!
+A big thanks to the 23 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -3001,7 +3001,7 @@ Here are some highlights ✨:
 
 ###### _July 17, 2019_
 
-Big thanks to the 25 contributors who made this release possible!
+A big thanks to the 25 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -3078,7 +3078,7 @@ Here are some highlights ✨:
 
 ###### _July 6, 2019_
 
-Big thanks to the 24 contributors who made this release possible!
+A big thanks to the 24 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -3155,7 +3155,7 @@ Here are some highlights ✨:
 
 ###### _June 25, 2019_
 
-Big thanks to the 4 contributors who made this release possible!
+A big thanks to the 4 contributors who made this release possible!
 This is a quick release after a regression that occurred in 4.1.2.
 
 ### `@material-ui/core@v4.1.3`
@@ -3178,7 +3178,7 @@ This is a quick release after a regression that occurred in 4.1.2.
 
 ###### _June 23, 2019_
 
-Big thanks to the 30 contributors who made this release possible!
+A big thanks to the 30 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -3270,7 +3270,7 @@ Here are some highlights ✨:
 
 ###### _June 13, 2019_
 
-Big thanks to the 10 contributors who made this release possible!
+A big thanks to the 10 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -3327,7 +3327,7 @@ Here are some highlights ✨:
 
 ###### _June 10, 2019_
 
-A big thanks to the 26 contributors who made this release possible!
+A A big thanks to the 26 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -3411,7 +3411,7 @@ Here are some highlights ✨:
 
 ###### _June 3, 2019_
 
-A big thanks to the 30 contributors who made this release possible!
+A A big thanks to the 30 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -3493,7 +3493,7 @@ Here are some highlights ✨:
 
 ###### _May 27, 2019_
 
-A big thanks to the 23 contributors who made this release possible!
+A A big thanks to the 23 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -3606,7 +3606,7 @@ Some statistics with v4 compared to the release of v1 one year ago:
 
 ###### _May 20, 2019_
 
-A big thanks to the 17 contributors who made this release possible!
+A A big thanks to the 17 contributors who made this release possible!
 
 We have done the very last breaking changes (nothing significant).
 The release of v4 is imminent, stay tuned!
@@ -3688,7 +3688,7 @@ The release of v4 is imminent, stay tuned!
 
 ###### _May 13, 2019_
 
-A big thanks to the 13 contributors who made this release possible!
+A A big thanks to the 13 contributors who made this release possible!
 
 This is a stability release preparing v4.
 
@@ -3742,7 +3742,7 @@ This is a stability release preparing v4.
 
 ###### _May 5, 2019_
 
-A big thanks to the 19 contributors who made this release possible!
+A A big thanks to the 19 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -3824,7 +3824,7 @@ Here are some highlights ✨:
 
 ###### _Apr 28, 2019_
 
-A big thanks to the 21 contributors who made this release possible!
+A A big thanks to the 21 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -3958,7 +3958,7 @@ You will learn more about v4 in the final release blog post and our plans for th
 
 ###### _Apr 17, 2019_
 
-A big thanks to the 27 contributors who made this release possible!
+A A big thanks to the 27 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -4123,7 +4123,7 @@ We hope 2-3 weeks of beta will be enough. We plan on releasing v4 stable in May.
 
 ###### _Apr 8, 2019_
 
-A big thanks to the 24 contributors who made this release possible!
+A A big thanks to the 24 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -4226,7 +4226,7 @@ Here are some highlights ✨:
 
 ###### _Mar 30, 2019_
 
-A big thanks to the 20 contributors who made this release possible!
+A A big thanks to the 20 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -4312,7 +4312,7 @@ Here are some highlights ✨:
 
 ###### _Mar 28, 2019_
 
-Big thanks to the 11 contributors who made this release possible!
+A big thanks to the 11 contributors who made this release possible!
 
 This release fixes an important regression with TypeScript: https://github.com/mui-org/material-ui/issues/15076.
 
@@ -4342,7 +4342,7 @@ N/A
 
 ###### _Mar 23, 2019_
 
-A big thanks to the 23 contributors who made this release possible!
+A A big thanks to the 23 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -4423,7 +4423,7 @@ Here are some highlights ✨:
 
 ###### _Mar 17, 2019_
 
-A big thanks to the 17 contributors who made this release possible!
+A A big thanks to the 17 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -4516,7 +4516,7 @@ Here are some highlights ✨:
 
 ###### _Mar 10, 2019_
 
-A big thanks to the 14 contributors who made this release possible!
+A A big thanks to the 14 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -4615,7 +4615,7 @@ Here are some highlights ✨:
 
 ###### _Mar 3, 2019_
 
-A big thanks to the 23 contributors who made this release possible!
+A A big thanks to the 23 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -4736,7 +4736,7 @@ Here are some highlights ✨:
 
 ###### _Feb 20, 2019_
 
-A big thanks to the 16 contributors who made this release possible!
+A A big thanks to the 16 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -4854,7 +4854,7 @@ This gives us the opportunity to remove deprecated APIs, upgrade our peer depend
 - You can find the documentation following this URL: https://material-ui.com/.
 - You can track our progress following this URL: https://github.com/mui-org/material-ui/milestone/25.
 
-A big thanks to the 28 contributors who made this release possible!
+A A big thanks to the 28 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -5059,7 +5059,7 @@ _Tip: you can provide more than one argument: `theme.spacing(1, 2) // = '8px 16p
 
 ###### _Feb 03, 2019_
 
-Big thanks to the 16 contributors who made this release possible!
+A big thanks to the 16 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -5119,7 +5119,7 @@ Here are some highlights ✨:
 
 ###### _Jan 26, 2019_
 
-Big thanks to the 30 contributors who made this release possible!
+A big thanks to the 30 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -5196,7 +5196,7 @@ Here are some highlights ✨:
 
 ###### _Jan 14, 2019_
 
-Big thanks to the 17 contributors who made this release possible!
+A big thanks to the 17 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -5248,7 +5248,7 @@ Here are some highlights ✨:
 
 ###### _Jan 9, 2019_
 
-Big thanks to the 5 contributors who made this release possible!
+A big thanks to the 5 contributors who made this release possible!
 
 We are making a quick release to fix an important TypeScript regression.
 
@@ -5267,7 +5267,7 @@ We are making a quick release to fix an important TypeScript regression.
 
 ###### _Jan 7, 2019_
 
-Big thanks to the 20 contributors who made this release possible!
+A big thanks to the 20 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -5362,7 +5362,7 @@ Here are some highlights ✨:
 
 ###### _Dec 30, 2018_
 
-Big thanks to the 15 contributors who made this release possible!
+A big thanks to the 15 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -5433,7 +5433,7 @@ The Tabs `fullWidth` and `scrollable` properties can't be used at the same time.
 
 ###### _Dec 22, 2018_
 
-Big thanks to the 15 contributors who made this release possible!
+A big thanks to the 15 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -5478,7 +5478,7 @@ Here are some highlights ✨:
 
 ###### _Dec 17, 2018_
 
-Big thanks to the 11 contributors who made this release possible!
+A big thanks to the 11 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -5545,7 +5545,7 @@ you to add them up quickly in your head without having to worry about decimals.
 
 ###### _Dec 9, 2018_
 
-Big thanks to the 20 contributors who made this release possible!
+A big thanks to the 20 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -5610,7 +5610,7 @@ Here are some highlights ✨:
 
 ###### _Dec 1, 2018_
 
-Big thanks to the 15 contributors who made this release possible!
+A big thanks to the 15 contributors who made this release possible!
 
 There are no fundamental changes in this version.
 It's a stability release after v3.6.0. It contains tons of bug fixes 🐛.
@@ -5657,7 +5657,7 @@ It's a stability release after v3.6.0. It contains tons of bug fixes 🐛.
 
 ###### _Nov 26, 2018_
 
-Big thanks to the 28 contributors who made this release possible!
+A big thanks to the 28 contributors who made this release possible!
 
 The last release was two weeks ago.
 Last weekend, we have missed the release train 🚃.
@@ -5764,7 +5764,7 @@ import Divider from '@material-ui/core/Divider';
 
 ###### _Nov 13, 2018_
 
-Big thanks to the 13 contributors who made this release possible!
+A big thanks to the 13 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -5876,7 +5876,7 @@ _Corrupted, to not use._
 
 ###### _Nov 5, 2018_
 
-Big thanks to the 16 contributors who made this release possible!
+A big thanks to the 16 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -5930,7 +5930,7 @@ Here are some highlights ✨:
 
 ###### _Oct 27, 2018_
 
-Big thanks to the 17 contributors who made this release possible!
+A big thanks to the 17 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -5977,7 +5977,7 @@ Here are some highlights ✨:
 
 ###### _Oct 24, 2018_
 
-Big thanks to the 8 contributors who made this release possible!
+A big thanks to the 8 contributors who made this release possible!
 
 This is a quick patch after an important regression with the Modal component.
 
@@ -5998,7 +5998,7 @@ This is a quick patch after an important regression with the Modal component.
 
 ###### _Oct 21, 2018_
 
-Big thanks to the 26 contributors who made this release possible!
+A big thanks to the 26 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -6062,7 +6062,7 @@ Here are some highlights ✨:
 
 ###### _Oct 16, 2018_
 
-Big thanks to the 3 contributors who made this release possible!
+A big thanks to the 3 contributors who made this release possible!
 This is a quick patch after important regressions.
 
 ### `@material-ui/core@v3.2.2`
@@ -6079,7 +6079,7 @@ This is a quick patch after important regressions.
 
 ###### _Oct 14, 2018_
 
-Big thanks to the 19 contributors who made this release possible!
+A big thanks to the 19 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -6140,7 +6140,7 @@ Here are some highlights ✨:
 
 ###### _Oct 8, 2018_
 
-Big thanks to the 18 contributors who made this release possible!
+A big thanks to the 18 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -6228,7 +6228,7 @@ This change updates the variant wording to match the one used in the Material De
 
 ###### _Sep 30, 2018_
 
-Big thanks to the 16 contributors who made this release possible!
+A big thanks to the 16 contributors who made this release possible!
 It contains many bug fixes 🐛 and documentation improvements 📝.
 
 ### `@material-ui/core@v3.1.2`
@@ -6275,7 +6275,7 @@ It contains many bug fixes 🐛 and documentation improvements 📝.
 
 ###### _Sep 24, 2018_
 
-Big thanks to the 21 contributors who made this release possible!
+A big thanks to the 21 contributors who made this release possible!
 It contains many bug fixes 🐛 and documentation improvements 📝.
 
 ### `@material-ui/core@v3.1.1`
@@ -6330,7 +6330,7 @@ It contains many bug fixes 🐛 and documentation improvements 📝.
 
 ###### _Sep 16, 2018_
 
-Big thanks to the 24 contributors who made this release possible!
+A big thanks to the 24 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -6394,7 +6394,7 @@ Here are some highlights ✨:
 
 ###### _Sep 9, 2018_
 
-Big thanks to the 13 contributors who made this release possible!
+A big thanks to the 13 contributors who made this release possible!
 
 ### `@material-ui/core@v3.0.3`
 
@@ -6430,7 +6430,7 @@ Big thanks to the 13 contributors who made this release possible!
 
 ###### _Sep 3, 2018_
 
-Big thanks to the 16 contributors who made this release possible!
+A big thanks to the 16 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -6488,7 +6488,7 @@ N/A
 
 ###### _Aug 28, 2018_
 
-Big thanks to the 10 contributors who made this release possible!
+A big thanks to the 10 contributors who made this release possible!
 
 We are making a quick release after v3.0.0 to patch an incorrect peer dependency.
 It's also a good opportunity to upgrade to the stable release of Babel 7.
@@ -6526,7 +6526,7 @@ It's also a good opportunity to upgrade to the stable release of Babel 7.
 
 ###### _Aug 27, 2018_
 
-Big thanks to the 27 contributors who made this release possible!
+A big thanks to the 27 contributors who made this release possible!
 
 We are upgrading the major version of `@material-ui/core` to match the version of `@material-ui/icons`.
 The next major release is planned for [Q1, 2019](https://github.com/mui-org/material-ui/milestone/25).
@@ -6605,7 +6605,7 @@ We use the same strategy for Chrome.
 
 ###### _Aug 19, 2018_
 
-Big thanks to the 22 contributors who made this release possible!
+A big thanks to the 22 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -6671,7 +6671,7 @@ N/A
 
 ###### _Aug 12, 2018_
 
-Big thanks to the 23 contributors who made this release possible!
+A big thanks to the 23 contributors who made this release possible!
 This is a dense release!
 
 Here are some highlights ✨:
@@ -6737,7 +6737,7 @@ N/A
 
 ###### _Aug 4, 2018_
 
-Big thanks to the 15 contributors who made this release possible!
+A big thanks to the 15 contributors who made this release possible!
 This release focuses on bug fixes 🐛.
 
 ### Breaking change
@@ -6781,7 +6781,7 @@ N/A
 
 ###### _Jul 29, 2018_
 
-Big thanks to the 22 contributors who made this release possible!
+A big thanks to the 22 contributors who made this release possible!
 I hope we will soon beat our previous record: 30 contributors in a single week.
 
 Here are some highlights ✨:
@@ -6849,7 +6849,7 @@ N/A
 
 ###### _Jul 22, 2018_
 
-Big thanks to the 15 contributors who made this release possible!
+A big thanks to the 15 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -6930,7 +6930,7 @@ Here are some highlights ✨:
 
 ###### _Jul 14, 2018_
 
-Big thanks to the 21 contributors who made this release possible.
+A big thanks to the 21 contributors who made this release possible.
 Here are some highlights ✨:
 
 - Rework the Tooltip implementation (#12085)
@@ -7003,7 +7003,7 @@ N/A
 
 ###### _Jul 2, 2018_
 
-Big thanks to the 13 contributors who made this release possible.
+A big thanks to the 13 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7052,7 +7052,7 @@ N/A
 
 ###### _Jun 26, 2018_
 
-Big thanks to the 10 contributors who made this release possible.
+A big thanks to the 10 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7100,7 +7100,7 @@ N/A
 
 ###### _Jun 20, 2018_
 
-Big thanks to the 6 contributors who made this release possible.
+A big thanks to the 6 contributors who made this release possible.
 
 This release fixes some important regressions.
 We are making it outside of the normal schedule.
@@ -7135,7 +7135,7 @@ N/A
 
 ###### _Jun 18, 2018_
 
-Big thanks to the 16 contributors who made this release possible.
+A big thanks to the 16 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7201,7 +7201,7 @@ N/A
 
 ###### _Jun 10, 2018_
 
-Big thanks to the 15 contributors who made this release possible.
+A big thanks to the 15 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7257,7 +7257,7 @@ N/A
 
 ###### _Jun 3, 2018_
 
-Big thanks to the 23 contributors who made this release possible.
+A big thanks to the 23 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7321,7 +7321,7 @@ N/A
 
 ###### _May 26, 2018_
 
-Big thanks to the 30 contributors who made this release possible.
+A big thanks to the 30 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7411,7 +7411,7 @@ Some statistics with v1 while it was in alpha and beta:
 
 ###### _May 15, 2018_
 
-Big thanks to the 10 contributors who made this release possible.
+A big thanks to the 10 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7451,7 +7451,7 @@ N/A
 
 ###### _May 13, 2018_
 
-Big thanks to the 14 contributors who made this release possible.
+A big thanks to the 14 contributors who made this release possible.
 
 #### Component Fixes / Enhancements
 
@@ -7476,7 +7476,7 @@ Big thanks to the 14 contributors who made this release possible.
 
 ###### _May 13, 2018_
 
-Big thanks to the 11 contributors who made this release possible.
+A big thanks to the 11 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7579,7 +7579,7 @@ The text underline color customization change:
 
 ###### _May 9, 2018_
 
-Big thanks to the 4 contributors who made this release possible.
+A big thanks to the 4 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7608,7 +7608,7 @@ N/A
 
 ###### _May 8, 2018_
 
-Big thanks to the 7 contributors who made this release possible.
+A big thanks to the 7 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7640,7 +7640,7 @@ N/A
 
 ###### _May 6, 2018_
 
-Big thanks to the 12 contributors who made this release possible.
+A big thanks to the 12 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7774,7 +7774,7 @@ The rename started with #11090. I should have taken the time to complete it in t
 
 ###### _Apr 29, 2018_
 
-Big thanks to the 17 contributors who made this release possible.
+A big thanks to the 17 contributors who made this release possible.
 
 ### Breaking change
 
@@ -7818,7 +7818,7 @@ As long as you are providing a valid URL to `<CardMedia image />`, it should be 
 
 ###### _Apr 22, 2018_
 
-Big thanks to the 8 contributors who made this release possible.
+A big thanks to the 8 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7869,7 +7869,7 @@ Here are some highlights ✨:
 
 ###### _Apr 16, 2018_
 
-Big thanks to the 15 contributors who made this release possible.
+A big thanks to the 15 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7957,7 +7957,7 @@ const styles = {
 
 ###### _Apr 7, 2018_
 
-Big thanks to the 14 contributors who made this release possible.
+A big thanks to the 14 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -8012,7 +8012,7 @@ Here are some highlights ✨:
 
 ###### _Apr 1, 2018_
 
-Big thanks to the 4 contributors who made this release possible.
+A big thanks to the 4 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -8053,7 +8053,7 @@ Nothing has changed for people using React 15.x.
 
 ###### _Mar 28, 2018_
 
-Big thanks to the 25 contributors who made this release possible.
+A big thanks to the 25 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -8151,7 +8151,7 @@ I have made a mistake in [#8108](https://github.com/mui-org/material-ui/pull/810
 
 ###### _Mar 17, 2018_
 
-Big thanks to the 19 contributors who made this release possible.
+A big thanks to the 19 contributors who made this release possible.
 
 This release comes with important theme upgrades. Here are some highlights ✨:
 
@@ -8214,7 +8214,7 @@ N/A
 
 ###### _Mar 11, 2018_
 
-Big thanks to the 13 contributors who made this release possible.
+A big thanks to the 13 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -8290,7 +8290,7 @@ For instance, it's not about adding JavaScript polyfills.
 
 ###### _Mar 5, 2018_
 
-Big thanks to the 14 contributors who made this release possible.
+A big thanks to the 14 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -8356,7 +8356,7 @@ The best way to recover from this breaking change is to check the warnings in th
 
 ###### _Feb 24, 2018_
 
-Big thanks to the 20 contributors who made this release possible.
+A big thanks to the 20 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -8421,7 +8421,7 @@ N/A
 
 ###### _Feb 17, 2018_
 
-Big thanks to the 21 contributors who made this release possible.
+A big thanks to the 21 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -8515,7 +8515,7 @@ The Material Design specification says that selection controls elements should [
 
 ###### _Feb 10, 2018_
 
-Big thanks to the 16 contributors who made this release possible.
+A big thanks to the 16 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -8568,7 +8568,7 @@ N/A
 
 ###### _Feb 4, 2018_
 
-Big thanks to the 12 contributors who made this release possible.
+A big thanks to the 12 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -8680,7 +8680,7 @@ Umbrella pull request for: #10084, #10086, #10088.
 
 ###### _Jan 21, 2018_
 
-Big thanks to the 14 contributors who made this release possible.
+A big thanks to the 14 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -8840,7 +8840,7 @@ const theme = createMuiTheme({
 
 ###### _Jan 21, 2018_
 
-Big thanks to the 12 contributors who made this release possible.
+A big thanks to the 12 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -8927,7 +8927,7 @@ N/A
 
 ###### _Jan 16, 2018_
 
-Big thanks to the 9 contributors who made this release possible.
+A big thanks to the 9 contributors who made this release possible.
 
 We are making a release earlier than expected. The release schedule norm has been so far: one every weekend. `1.0.0-beta.28` has introduced important pain points we want to address quickly:
 
@@ -8968,7 +8968,7 @@ N/A
 
 ###### _Jan 14, 2018_
 
-Big thanks to the 22 contributors who made this release possible.
+A big thanks to the 22 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -9095,7 +9095,7 @@ To style the root element in these components, a `className` prop can be passed,
 
 ###### _Jan 6, 2018_
 
-Big thanks to the 19 contributors who made this release possible.
+A big thanks to the 19 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -9182,7 +9182,7 @@ Alternatively, you can use our preset to save bundle size.
 
 ###### _Dec 30, 2017_
 
-Big thanks to the 12 contributors who made this release possible.
+A big thanks to the 12 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -9286,7 +9286,7 @@ The zIndex object has been updated to match the usage.
 
 ###### _Dec 22, 2017_
 
-Big thanks to the 16 contributors who made this release possible.
+A big thanks to the 16 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -9347,7 +9347,7 @@ None, merry christmas 🎄.
 
 ###### _Dec 17, 2017_
 
-Big thanks to the 16 contributors who made this release possible.
+A big thanks to the 16 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -9472,7 +9472,7 @@ There is no logic attached to the `optional` boolean property. So, we can reduce
 
 ###### _Dec 9, 2017_
 
-Big thanks to the 26 contributors who made this release possible.
+A big thanks to the 26 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -9551,7 +9551,7 @@ Here are some highlights ✨:
 
 ###### _Nov 28, 2017_
 
-Big thanks to the 26 contributors who made this release possible.
+A big thanks to the 26 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -9639,7 +9639,7 @@ It was a breaking change and not needed.
 
 ###### _Nov 13, 2017_
 
-Big thanks to the 18 contributors who made this release possible.
+A big thanks to the 18 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -9712,7 +9712,7 @@ In the following diff `SwitchBase` can be a `Checkbox` a `Radio` or a `Switch`.
 
 ###### _Nov 5, 2017_
 
-Big thanks to the 12 contributors who made this release possible.
+A big thanks to the 12 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -9782,7 +9782,7 @@ Here are some highlights ✨:
 
 ###### _Oct 30, 2017_
 
-Big thanks to the 17 contributors who made this release possible.
+A big thanks to the 17 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -9872,7 +9872,7 @@ Here are some highlights ✨:
 
 ###### _Oct 24, 2017_
 
-Big thanks to the 14 contributors who made this release possible.
+A big thanks to the 14 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -9938,7 +9938,7 @@ We enforce this behavior now.
 
 ###### _Oct 16, 2017_
 
-Big thanks to the 14 contributors who made this release possible.
+A big thanks to the 14 contributors who made this release possible.
 
 This release is mostly about stability.
 We have merged many bug fixes PRs and documentation improvement PRs.
@@ -10009,7 +10009,7 @@ For instance, we need to upgrade all our dev dependencies to _react@16_ first.
 
 ###### _Oct 8, 2017_
 
-Big thanks to the 18 contributors who made this release possible.
+A big thanks to the 18 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -10100,7 +10100,7 @@ Here are some highlights ✨:
 
 ###### _Oct 1, 2017_
 
-Big thanks to the 18 contributors who made this release possible.
+A big thanks to the 18 contributors who made this release possible.
 
 ### Breaking change
 
@@ -10203,7 +10203,7 @@ Big thanks to the 18 contributors who made this release possible.
 
 ###### _Sep 24, 2017_
 
-Big thanks to the 25 contributors who made this release possible.
+A big thanks to the 25 contributors who made this release possible.
 
 Wait, what?! We have been merging 52 pull requests from 25 different people in just 6 days (and closed 60 issues).
 This is a new record for the project.
@@ -10330,7 +10330,7 @@ When `withStyles()` is used as a decorator and `strictNullChecks` is enabled, on
 
 ###### _Sep 18, 2017_
 
-Big thanks to the 12 contributors who made this release possible.
+A big thanks to the 12 contributors who made this release possible.
 
 ### Breaking change
 
@@ -10388,7 +10388,7 @@ Here are some highlights:
 - Our internal styling solution should be faster with (#8142).
   With the last release we fix a memory leak (#8036), so thanks for reporting those issues!
 
-Big thanks to the 13 contributors who made this release possible.
+A big thanks to the 13 contributors who made this release possible.
 
 ### Breaking changes
 
@@ -10459,7 +10459,7 @@ Again, this release is particularly dense! Here are some highlights:
 - A new Select component thanks to @kybarg (#8023)
 - A new Pickers documentation page (#8117)
 
-Big thanks to the 13 contributors who made this release possible.
+A big thanks to the 13 contributors who made this release possible.
 
 ### Breaking changes
 
@@ -10512,7 +10512,7 @@ N/A
 
 ###### _Sep 2, 2017_
 
-Big thanks to the 8 contributors who made this release possible.
+A big thanks to the 8 contributors who made this release possible.
 
 ### Breaking changes
 
@@ -10554,7 +10554,7 @@ This release is particularly dense! Here are some highlights:
   One of them is allowing the documentation to fully take advantage of the server-side rendering.
   We expect the documentation to render even faster with this beta.
 
-Big thanks to the 12 contributors who made this release possible.
+A big thanks to the 12 contributors who made this release possible.
 
 ### Breaking changes
 
@@ -10656,7 +10656,7 @@ If you want to avoid the default browser required property handling, you can add
 A big shout-out to @sebald for our first TypeScript coverage.
 Another notable change is [the migration of the documentation](#7759) to [Next.js](https://github.com/zeit/next.js), it's twice as fast as before 🚀.
 
-Big thanks to the 9 contributors who made this release possible.
+A big thanks to the 9 contributors who made this release possible.
 
 ### Breaking changes
 
@@ -10706,7 +10706,7 @@ Push #7741 initiative forward (use `value` and `onChange` as controlling propert
 
 ###### _Aug 15, 2017_
 
-Big thanks to the 11 contributors who made this release possible.
+A big thanks to the 11 contributors who made this release possible.
 
 ### Breaking changes
 
@@ -10773,7 +10773,7 @@ The primary motivation for this change is simplicity, it's also making our inter
 
 ###### _Aug 5, 2017_
 
-Big thanks to the 7 contributors who made this release possible.
+A big thanks to the 7 contributors who made this release possible.
 
 #### Component Fixes / Enhancements
 
@@ -10807,7 +10807,7 @@ Big thanks to the 7 contributors who made this release possible.
 
 ###### _Jul 29, 2017_
 
-Big thanks to the 8 contributors who made this release possible.
+A big thanks to the 8 contributors who made this release possible.
 
 This release is full of bug fixes and documentation improvements following the major
 styling update of the previous release.
@@ -10854,7 +10854,7 @@ Publish a new version as `v1.0.0-beta.1` was already used.
 
 ###### _Jul 23, 2017_
 
-Big thanks to the 12 contributors who made this release possible.
+A big thanks to the 12 contributors who made this release possible.
 
 This is the first beta release.
 We are proud to move to the next step after 7 months of dogfooding with the alpha releases.
@@ -11115,7 +11115,7 @@ The previous v1.0.0-alpha.18 release is corrupted.
 
 ###### _Jun 12, 2017_
 
-Big thanks to the 8 contributors who made this release possible.
+A big thanks to the 8 contributors who made this release possible.
 
 ### Breaking changes
 
@@ -11319,7 +11319,7 @@ you're going to have to change your strategy. Either use `innerRef` or `inputRef
 
 ###### _Apr 30, 2017_
 
-Big thanks to the 11 contributors who are pushing the `next` branch forward.
+A big thanks to the 11 contributors who are pushing the `next` branch forward.
 
 ### Breaking changes
 
@@ -11684,7 +11684,7 @@ In other words, the API will change if we need to.
 
 ###### _Jan 15, 2017_
 
-A big thanks to the 20 contributors who are making this release possible.
+A A big thanks to the 20 contributors who are making this release possible.
 
 #### Component Fixes / Enhancements
 

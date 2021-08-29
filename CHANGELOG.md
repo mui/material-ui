@@ -155,7 +155,7 @@ All contributors of this release in alphabetical order: @aaronlademann-wf, @alex
 
 _Aug 13, 2021_
 
-Big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
 
 - 🐛 Grid's "auto" behavior has been fixed by @aaronlademann-wf (#27514)
 - ♿ An important bug with the keyboard navigation in MenuList was fixed (#27526) @ryancogswell
@@ -229,7 +229,7 @@ All contributors of this release in alphabetical order: @aaronlademann-wf, @abri
 
 _Aug 6, 2021_
 
-Big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
 - &#8203;<!-- 28 -->✨ `jss-to-styled` codemod has been improved to support `createStyles` and `<React.Fragment>` usage (#27578) @mnajdova
 
@@ -298,7 +298,7 @@ All contributors of this release in alphabetical order: @bezpalko, @eps1lon, @fl
 
 _Jul 26, 2021_
 
-Big thanks to the 20 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 20 contributors who made this release possible. Here are some highlights ✨:
 
 - ✨ We introduced new codemod for converting JSS styles to emotion (#27292) @siriwatknp
   It should help adoption of v5, by making possible the removal of JSS sooner.
@@ -396,7 +396,7 @@ y, @sashkopavlenko, @siriwatknp, @tudi2d, @turtleseason, @WeldonTan
 
 _Jul 14, 2021_
 
-Big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
 
 - ✨ We have introduced a new unstyled component: the Switch (#26688) @michaldudak
   You can find two new versions of the Switch. A component without any styles: [`SwitchUnstyled`](https://next.material-ui.com/components/switches/#unstyled-switches), and a hook: [`useSwitch`](https://next.material-ui.com/components/switches/#useswitch-hook).
@@ -507,7 +507,7 @@ All contributors of this release in alphabetical order: @eps1lon, @mbrookes, @mi
 
 _Jul 01, 2021_
 
-Big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
 
 - 🎉 This is the first beta release of v5! A huge thanks to everyone who helped to make this happen! We're targeting the 1st of September for a stable release, and will use the next two months to polish v5, and ease the migration from v4. You can follow [the v5 stable milestone](https://github.com/mui-org/material-ui/milestone/44) for more details. We now encourage any new projects to start on v5.
 - 🚀 We have completed all the planned breaking changes.
@@ -643,7 +643,7 @@ All contributors of this release in alphabetical order: @ansh-saini, @BC-M, @Car
 
 _Jun 23, 2021_
 
-Big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
 - 🚀 We have only 2 left in the [breaking changes](https://github.com/mui-org/material-ui/issues/20012). The plan to release 5.0.0-beta.0 is on July 1st and will start to promote its usage over v4.
 - 🎨 We have updated `Slider` to match current [Material Design guidelines](https://material.io/components/sliders).
@@ -845,7 +845,7 @@ All contributors of this release in alphabetical order: @ahmed-28, @brunocavalca
 
 _Jun 15, 2021_
 
-Big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
 
 - 💄 Add support for responsive props on the Grid component (#26590) @likitarai1.
   This fixes a longstanding issue. You can now specify different values for each breakpoint.
@@ -961,7 +961,7 @@ All contributors of this release in alphabetical order: @chadmuro, @eps1lon, @li
 
 _Jun 8, 2021_
 
-Big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
 - ⚒️ We've introduced a new `ListItemButton` component that should prevent common mistakes when using `<ListItem button />` and help with customization and TypeScript support (#26446) @siriwatknp.
 - 👩‍🎤 `experimentalStyled` is now available without the `experimental` prefix.
@@ -1070,7 +1070,7 @@ All contributors of this release in alphabetical order: @coder-freestyle, @eps1l
 
 _May 31, 2021_
 
-Big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 We have completed the migration to emotion of all the components (`@material-ui/core` and `@material-ui/lab`) @siriwatknp, @mnajdova.
 - 📦 Save [10 kB gzipped](https://bundlephobia.com/result?p=@material-ui/core@5.0.0-alpha.34) by removing the dependency on `@material-ui/styles` (JSS) from the core and the lab (#26377, #26382, #26376) @mnajdova.
@@ -1233,7 +1233,7 @@ _May 18, 2021_
 
 <!-- generated comparing v5.0.0-alpha.33..next -->
 
-Big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
 
 - 💥 Make progress with the breaking changes. We have done 89 of the 109 changes [planned](https://github.com/mui-org/material-ui/issues/20012). We will release 5.0.0-beta.0 on July 1st and start to promote its usage over v4. You can also follow [our milestone](https://github.com/mui-org/material-ui/milestone/35) for more details.
 - 🚀 Make progress with components migration to emotion. We have done 153 of the 168 components (almost there!)
@@ -1396,7 +1396,7 @@ All contributors of this release in alphabetical order: @arpitBhalla, @atisheyJa
 
 _May 9, 2021_
 
-Big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
 
 - 💥 Make progress with the breaking changes. We have done 81 of the 109 changes [planned](https://github.com/mui-org/material-ui/issues/20012). We will release 5.0.0-beta.0 on July 1st and start to promote its usage over v4. You can also follow [our milestone](https://github.com/mui-org/material-ui/milestone/35) for more details.
 - And many more 🐛 bug fixes and 📚 improvements.
@@ -1738,7 +1738,7 @@ All contributors of this release in alphabetical order: @anish-khanna, @anshuman
 
 _Apr 27, 2021_
 
-Big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 We have completed the migration to emotion of all components in `@material-ui/core`. We will focus on the components in `@material-ui/lab` next.
 - 💥 Make progress with the breaking changes plan. We have done 38 out of 41 breaking changes that can be deprecated. We have done 21 out of the 39 that can't have deprecations. Once done, we will focus on updating the component for better following material design, and to improve the aesthetic.
@@ -1892,7 +1892,7 @@ All contributors of this release in alphabetical order: @DanailH, @dtassone, @ep
 
 _Apr 20, 2021_
 
-Big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Migrate 4 components to emotion.
 - 💥 Resume work on the breaking changes, aim for v5.0.0-beta.0 in the next coming months.
@@ -2038,7 +2038,7 @@ All contributors of this release in alphabetical order: @ahmed-28, @catchanuj, @
 
 _Apr 12, 2021_
 
-Big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Migrate 9 components to emotion.
 - And many more 🐛 bug fixes and 📚 improvements.
@@ -2108,7 +2108,7 @@ All contributors of this release in alphabetical order: @alcwhite, @bhairavee23,
 
 _Apr 4, 2021_
 
-Big thanks to the 26 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 26 contributors who made this release possible. Here are some highlights ✨:
 
 - 🙌 Add support in the Grid for any spacing value (#25503) @ZakMiller.
   For instance:
@@ -2191,7 +2191,7 @@ All contributors of this release in alphabetical order: @Andarist, @ashishshukla
 
 _Mar 22, 2021_
 
-Big thanks to the 34 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 34 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Convert 9 components to emotion (#25267, #25216, #25264, #25197, #25372, #25281, #25210, #25279, #2528) @natac13 @tomasznguyen @kayuapi.
   85% of the components have been migrated so far, thanks to the help of the community.
@@ -2327,7 +2327,7 @@ All contributors of this release in alphabetical order: @aheimlich, @AlfredoGJ, 
 
 _Mar 5, 2021_
 
-Big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Convert 8 components to emotion (#25091, #25158, #25146, #25142, #25166) @natac13, @mngu, @m4theushw, @praveenkumar-kalidass.
 - 📚 Convert 5 components demos to emotion (#25164, #25183, #25180, #25145, #25138) @vicasas
@@ -2400,7 +2400,7 @@ All contributors of this release in alphabetical order: @beaudry, @eps1lon, @m4t
 
 _Feb 27, 2021_
 
-Big thanks to the 26 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 26 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Convert 11 components to emotion (#24696, #24631, #24857, #25048, #24693, #24663, #25007, #24688, #24665, #24878, #24571) @praveenkuma @natac13 @xs9627 @povilass @m4theushw @natac13 @natac13 @DanailH @duganbrett @duganbrett @praveenkumar-kalidass @vinyldarkscratch.
   75% of the components have been migrated so far, thanks to the help of the community.
@@ -2586,7 +2586,7 @@ All contributors of this release in alphabetical order: @DanailH, @dborstelmann,
 
 _Feb 11, 2021_
 
-Big thanks to the 30 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 30 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Convert 32 components to emotion. Around 64% of the components have been migrated so far, thanks to the help of the community. We aim to migrate them all before the end of Q1 2021.
   The podium of the most active community members in the migration 🏆:
@@ -2757,7 +2757,7 @@ All contributors of this release in alphabetical order: @anthonyraymond, @Arnaul
 
 _Jan 26, 2021_
 
-Big thanks to the 23 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 23 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Convert 31 components to emotion. Around 40% of the components have been migrated so far thanks to the help of the community.
 - 🐛 Fix two long-standing issues with the Grid. Solve the horizontal scrollbar as well as dimensions when nesting (#24332) @greguintow.
@@ -2880,7 +2880,7 @@ All contributors of this release in alphabetical order: @artola, @CyanoFresh, @d
 
 ###### _Jan 14, 2021_
 
-Big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
 - 📚 Only document public paths in module augmentation (#24267) @eps1lon
 - 👩‍🎤 Migrate the Paper and CssBaseline to emotion (#24397, #24176) @povilass @mnajdova
@@ -2995,7 +2995,7 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
 
 ###### _Jan 4, 2021_
 
-Big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
 - ♿️ Fix major accessibility issue with the Autocomplete (#24213) @inform880
 - 👩‍🎤 Migrate the Container to emotion (#24227) @oliviertassinari
@@ -3047,7 +3047,7 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 
 ###### _Dec 30, 2020_
 
-Big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Migrate the Avatar to emotion (#24114) @oliviertassinari
 - 👩‍🎤 Migrate the Button to emotion (#24107, #24100) @mnajdova
@@ -3120,7 +3120,7 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 
 ###### _Dec 21, 2020_
 
-Big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Migrate the Typography to emotion (#23841) @DanailH
 
@@ -3198,7 +3198,7 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 
 ###### _Dec 13, 2020_
 
-Big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
 
 - 👩‍🎤 Migrate the Badge to emotion (#23745) @mnajdova.
 - 🌏 Add infrastructure to translate the API pages (#23852) @mbrookes.
@@ -3326,7 +3326,7 @@ Big thanks to the 24 contributors who made this release possible. Here are some 
 
 ###### _Dec 3, 2020_
 
-Big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 17 contributors who made this release possible. Here are some highlights ✨:
 
 - Fix most of the issues with the system (#23716, #23635, #23737, #23733, #23700, #23688) @mnajdova.
 - And many more 🐛 bug fixes and 📚 improvements.
@@ -3418,7 +3418,7 @@ Big thanks to the 17 contributors who made this release possible. Here are some 
 
 ###### _Nov 23, 2020_
 
-Big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
 - 📚 Improve the IntelliSense support for the `sx` prop (#23599) @mnajdova.
   You should now get a description for each property of the system. For instance with `mx`:
@@ -3585,7 +3585,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 
 ###### _Nov 14, 2020_
 
-Big thanks to the 34 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 34 contributors who made this release possible. Here are some highlights ✨:
 
 - 📅 Migrate the date picker to the lab (#22692) @dmtrKovalenko.
   We have integrated the components with the code infrastructure. Next we will migrate all the GitHub issues from [material-ui-pickers](https://github.com/mui-org/material-ui-pickers) and archive the repository. This migration will help provide first-class support for the date picker components. The component will stay in the lab as long as necessary to reach the high quality bar we have for core components. You can find the [new documentation here](https://next.material-ui.com/components/pickers/).
@@ -3689,7 +3689,7 @@ Big thanks to the 34 contributors who made this release possible. Here are some 
 
 ###### _Nov 4, 2020_
 
-Big thanks to the 20 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 20 contributors who made this release possible. Here are some highlights ✨:
 
 - ⚛️ Add support for React 17 (#23311) @eps1lon.
   React 17 release is unusual because it doesn't add any new developer-facing features. It was released a couple of days ago. You can learn more about it in the [introduction post](https://reactjs.org/blog/2020/10/20/react-v17.html). Material-UI now supports `^16.8.0 || ^17.0.0`.
@@ -3801,7 +3801,7 @@ Big thanks to the 20 contributors who made this release possible. Here are some 
 
 ###### _Oct 23, 2020_
 
-Big thanks to the 23 contributors who made this release possible.
+A big thanks to the 23 contributors who made this release possible.
 Here are some highlights ✨:
 
 - 💄 Introduce a new `sx` prop (#23053, #23205) @mnajdova
@@ -3972,7 +3972,7 @@ Here are some highlights ✨:
 
 ###### _Oct 17, 2020_
 
-Big thanks to the 25 contributors who made this release possible.
+A big thanks to the 25 contributors who made this release possible.
 Here are some highlights ✨:
 
 - 📦 Ship modern bundle (#22814) @eps1lon.
@@ -4098,7 +4098,7 @@ Here are some highlights ✨:
 
 ###### _Oct 11, 2020_
 
-Big thanks to the 45 contributors who made this release possible.
+A big thanks to the 45 contributors who made this release possible.
 Here are some highlights ✨:
 
 - 🧪 The promotion of 4 components from the lab to core: Autocomplete, Pagination, SpeedDial, and ToggleButton. These components have been in the lab for more than 10 months @mbrookes.
@@ -4322,7 +4322,7 @@ Here are some highlights ✨:
 
 ###### _Sep 26, 2020_
 
-Big thanks to the 29 contributors who made this release possible.
+A big thanks to the 29 contributors who made this release possible.
 Here are some highlights ✨:
 
 - 👩‍🎨 A first iteration on the new styling solution.
@@ -4556,7 +4556,7 @@ More documentation are coming.
 
 ###### _Sep 15, 2020_
 
-Big thanks to the 16 contributors who made this release possible.
+A big thanks to the 16 contributors who made this release possible.
 Here are some highlights ✨:
 
 - Keep working on the breaking changes before v5-beta.
@@ -4686,7 +4686,7 @@ Here are some highlights ✨:
 
 ###### _Sep 6, 2020_
 
-Big thanks to the 14 contributors who made this release possible.
+A big thanks to the 14 contributors who made this release possible.
 Here are some highlights ✨:
 
 - 💎 A new diamond sponsor: [DoiT](https://www.doit-intl.com/), thank you!
@@ -4739,7 +4739,7 @@ Here are some highlights ✨:
 
 ###### _Aug 31, 2020_
 
-Big thanks to the 19 contributors who made this release possible.
+A big thanks to the 19 contributors who made this release possible.
 Here are some highlights ✨:
 
 - 🎨 Inverse the customization API of the theme to be component-centric (#22347, #22293) @mnajdova.
@@ -4915,7 +4915,7 @@ const theme = createMuiTheme({
 
 ###### _Aug 22, 2020_
 
-Big thanks to the 22 contributors who made this release possible.
+A big thanks to the 22 contributors who made this release possible.
 Here are some highlights ✨:
 
 - 💎 A new diamond sponsor: [Octopus](https://octopus.com/), thank you!
@@ -5045,7 +5045,7 @@ Here are some highlights ✨:
 
 ###### _Aug 13, 2020_
 
-Big thanks to the 26 contributors who made this release possible.
+A big thanks to the 26 contributors who made this release possible.
 Here are some highlights ✨:
 
 - 💅 Introduce a new dynamic variant API (#21648) @mnajdova.
@@ -5331,7 +5331,7 @@ Here are some highlights ✨:
 
 ###### _July 28, 2020_
 
-Big thanks to the 18 contributors who made this release possible.
+A big thanks to the 18 contributors who made this release possible.
 
 ### `@material-ui/core@v5.0.0-alpha.5`
 
@@ -5402,7 +5402,7 @@ Big thanks to the 18 contributors who made this release possible.
 
 ###### _July 19, 2020_
 
-Big thanks to the 11 contributors who made this release possible.
+A big thanks to the 11 contributors who made this release possible.
 
 ### `@material-ui/core@v5.0.0-alpha.4`
 
@@ -5444,7 +5444,7 @@ Big thanks to the 11 contributors who made this release possible.
 
 ###### _July 12, 2020_
 
-Big thanks to the 14 contributors who made this release possible.
+A big thanks to the 14 contributors who made this release possible.
 
 ### `@material-ui/core@v5.0.0-alpha.3`
 
@@ -5493,7 +5493,7 @@ Big thanks to the 14 contributors who made this release possible.
 
 ###### _July 4, 2020_
 
-Big thanks to the 16 contributors who made this release possible.
+A big thanks to the 16 contributors who made this release possible.
 
 ### `@material-ui/core@v5.0.0-alpha.2`
 
@@ -5555,7 +5555,7 @@ Big thanks to the 16 contributors who made this release possible.
 
 ###### _June 27, 2020_
 
-Big thanks to the 33 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 33 contributors who made this release possible. Here are some highlights ✨:
 
 - 🔄 Introduce a new `LoadingButton` component in the lab (#21389) @mnajdova.
 - 📍 Synchronize icons with Google, add 200 new icons (#21498) @alecananian
