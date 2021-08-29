@@ -8,7 +8,7 @@ The community is your first stop for questions and advice about the framework. W
 
 ### StackOverflow <img src="/static/images/logos/stackoverflow.svg" width="24" height="24" alt="StackOverflow logo" loading="lazy" />
 
-For crowdsourced technical questions from expert Material-UI developers in our community.
+For crowdsourced answers from expert Material-UI developers in our community.
 StackOverflow is also frequented, from time to time, by the maintainers of Material-UI.
 
 [Post a question](https://stackoverflow.com/questions/tagged/material-ui)
@@ -52,7 +52,7 @@ Receive the latest news on Material-UI.
 
 The MUI Core has been 100% open-source (MIT) since the very beginning in 2014, and always will be. Developers can ensure Material-UI is the right choice for their React applications through Material-UI's community maintenance strategy. The Material-UI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
 
-Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](https://material-ui.com/versions/#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v4](/guides/migration-v3/).
+Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](https://material-ui.com/versions/#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v5](/guides/migration-v4/).
 The open-source community is always welcome to submit new features and bug fixes as well.
 
 The current status of each Material-UI version is as follows:
@@ -75,7 +75,7 @@ The support available on the Community plan is mostly made possible thanks to pe
 
 The Pro plan allows developers to license extra features that are challenging to find in the OSS space.
 The maintainers of Material-UI are providing support on these paid features, aiming for a similar quality of experience to the one provided by the community on the MIT parts.
-However, not SLAs are guaranteed.
+however no SLAs are provided.
 
 The Premium plan goes one step further by providing SLAs on the quality of the support.
 
