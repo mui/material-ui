@@ -1,4 +1,4 @@
-# Server Rendering
+# Server rendering
 
 <p class="description">The most common use case for server-side rendering is to handle the initial render when a user (or search engine crawler) first requests your app.</p>
 

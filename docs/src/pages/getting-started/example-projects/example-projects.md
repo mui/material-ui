@@ -1,4 +1,4 @@
-# Example Projects
+# Example projects
 
 <p class="description">A selection of example projects to get started with.</p>
 
