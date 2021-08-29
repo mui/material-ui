@@ -2951,7 +2951,7 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
 
 ### Docs
 
-- [docs] Add example perfomance Stepper vertical (#24292) @vicasas
+- [docs] Add example performance Stepper vertical (#24292) @vicasas
 - [docs] Change Link example from JS to TS (#24291) @vicasas
 - [docs] Do not show 'Add' if user input matches existing option (#24333) @ramdog
 - [docs] Focus docs search input when the shortcut is clicked (#24296) @eps1lon
