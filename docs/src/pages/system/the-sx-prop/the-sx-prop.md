@@ -161,7 +161,7 @@ The `fontFamily`, `fontSize`, `fontStyle`, `fontWeight` properties map their val
 // equivalent to fontWeight: theme.typography.fontWeightLight
 ```
 
-The same can be achieved by ommiting the CSS property prefix `fontWeight`.
+The same can be achieved by omitting the CSS property prefix `fontWeight`.
 
 ```jsx
 <Box sx={{ fontWeight: 'light' }} />
