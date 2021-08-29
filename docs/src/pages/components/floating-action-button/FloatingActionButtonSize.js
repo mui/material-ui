@@ -5,11 +5,7 @@ import AddIcon from '@material-ui/icons/Add';
 
 export default function FloatingActionButtonSize() {
   return (
-    <Box
-      sx={{
-        '& > :not(style)': { m: 1 },
-      }}
-    >
+    <Box sx={{ '& > :not(style)': { m: 1 } }}>
       <Fab size="small" color="secondary" aria-label="add">
         <AddIcon />
       </Fab>

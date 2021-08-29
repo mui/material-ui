@@ -5,11 +5,7 @@ import NavigationIcon from '@material-ui/icons/Navigation';
 
 export default function FloatingActionButtonExtendedSize() {
   return (
-    <Box
-      sx={{
-        '& > :not(style)': { m: 1 },
-      }}
-    >
+    <Box sx={{ '& > :not(style)': { m: 1 } }}>
       <Fab variant="extended" size="small" color="primary" aria-label="add">
         <NavigationIcon sx={{ mr: 1 }} />
         Extended
