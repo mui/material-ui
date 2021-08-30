@@ -31,7 +31,7 @@ const Root = styled('div')(({ theme }) => ({
   '& code': {
     direction: 'ltr',
     lineHeight: 1.4,
-    letterSpacing: 0.5,
+    letterSpacing: 0.2,
     display: 'inline-block',
     fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
     fontWeight: 500,

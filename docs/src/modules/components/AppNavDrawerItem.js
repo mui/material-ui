@@ -240,7 +240,7 @@ export default function AppNavDrawerItem(props) {
           children
         )}
       </StyledLi>
-      {depth === 0 && <Divider sx={{ mt: 1.5 }} />}
+      {depth === 0 && <Divider sx={{ my: 1.2 }} />}
     </React.Fragment>
   );
 }
