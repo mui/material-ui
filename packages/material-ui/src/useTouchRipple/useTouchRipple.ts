@@ -108,49 +108,35 @@ const useTouchRipple = (props: UseTouchRippleProps) => {
 
   const enableTouchRipple = mountedState && !disableRipple && !disabled;
 
-  const getRippleHandlers = React.useMemo(() => {
-    const rippleHandlers = {
-      onBlur: handleBlur,
-      onKeyDown: handleKeyDown,
-      onKeyUp: handleKeyUp,
-      onMouseDown: handleMouseDown,
-      onMouseUp: handleMouseUp,
-      onMouseLeave: handleMouseLeave,
-      onContextMenu: handleContextMenu,
-      onDragLeave: handleDragLeave,
-      onTouchStart: handleTouchStart,
-      onTouchEnd: handleTouchEnd,
-      onTouchMove: handleTouchMove,
-    } as RippleEventHandlers;
+  const rippleHandlers = {
+    onBlur: handleBlur,
+    onKeyDown: handleKeyDown,
+    onKeyUp: handleKeyUp,
+    onMouseDown: handleMouseDown,
+    onMouseUp: handleMouseUp,
+    onMouseLeave: handleMouseLeave,
+    onContextMenu: handleContextMenu,
+    onDragLeave: handleDragLeave,
+    onTouchStart: handleTouchStart,
+    onTouchEnd: handleTouchEnd,
+    onTouchMove: handleTouchMove,
+  } as RippleEventHandlers;
 
-    return (otherEvents: Partial<RippleEventHandlers> = {}) => {
-      const eventNames = Object.keys(rippleHandlers) as (keyof RippleEventHandlers)[];
-      const wrappedEvents = eventNames.map((eventName) => ({
-        name: eventName,
-        handler: (ev: any) => {
-          otherEvents[eventName]?.(ev);
-          rippleHandlers[eventName](ev);
-        },
-      }));
+  const getRippleHandlers = (otherEvents: Partial<RippleEventHandlers> = {}) => {
+    const eventNames = Object.keys(rippleHandlers) as (keyof RippleEventHandlers)[];
+    const wrappedEvents = eventNames.map((eventName) => ({
+      name: eventName,
+      handler: (ev: any) => {
+        otherEvents[eventName]?.(ev);
+        rippleHandlers[eventName](ev);
+      },
+    }));
 
-      return wrappedEvents.reduce((acc, current) => {
-        acc[current.name] = current.handler;
-        return acc;
-      }, {} as RippleEventHandlers);
-    };
-  }, [
-    handleBlur,
-    handleKeyDown,
-    handleKeyUp,
-    handleMouseDown,
-    handleMouseUp,
-    handleMouseLeave,
-    handleContextMenu,
-    handleDragLeave,
-    handleTouchStart,
-    handleTouchEnd,
-    handleTouchMove,
-  ]);
+    return wrappedEvents.reduce((acc, current) => {
+      acc[current.name] = current.handler;
+      return acc;
+    }, {} as RippleEventHandlers);
+  };
 
   return {
     enableTouchRipple,
