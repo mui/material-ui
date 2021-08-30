@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 import NoSsr from '@mui/core/NoSsr';
 
 const createComponent = (defaultComponent) => {

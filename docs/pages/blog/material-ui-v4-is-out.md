@@ -52,7 +52,7 @@ After listening to v3 customization experiences of hundreds of developers, we re
 - **CSS specificity**. The developers' style specificity needs to be higher to win over the style Material-UI injects in the page. By default, Material-UI injects its style at the end of the `<head>` element. However, styled components and other popular styling solutions inject the style just before it, losing specificity. To solve the problem, we have introduced a new prop: `injectFirst`.
 
 ```jsx
-import { StylesProvider } from '@material-ui/styles';
+import { StylesProvider } from '@mui/styles';
 
 <StylesProvider injectFirst>
   {/* Your component tree.
@@ -249,7 +249,7 @@ An example of the new spacing helper API.
 
 <p class="blog-description">Inline mode</p>
 
-- A new [@material-ui/styles](/styles/basics/) package that isolates our styling solution. It can be used independently of the core components. It comes with a hooks API that requires less boilerplate 😍
+- A new [@mui/styles](/styles/basics/) package that isolates our styling solution. It can be used independently of the core components. It comes with a hooks API that requires less boilerplate 😍
 
 ```jsx
 import * as React from 'react';
@@ -273,9 +273,9 @@ export default function Hook() {
 }
 ```
 
-⚠️ Be aware of the difference between _@material-ui/styles_ and _@mui/material/styles_. The latter contains the [default theme](/customization/default-theme/#material-ui-core-styles-vs-material-ui-styles).
+⚠️ Be aware of the difference between _@mui/styles_ and _@mui/material/styles_. The latter contains the [default theme](/customization/default-theme/#material-ui-core-styles-vs-material-ui-styles).
 
-- A well supported [Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) for _@material-ui/styles_.
+- A well supported [Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) for _@mui/styles_.
 - A [Cookbook](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380) published by Packt and written by Adam Boduch.
 
 ![cookbook](/static/blog/material-ui-v4-is-out/cookbook.png)
@@ -309,7 +309,7 @@ import { Button } from '@mui/material';
 ```
 
 - **Styled components.** We have seen many people asking for migration to styled components. We want Material-UI v5 to be better aligned with the community's best-loved tools, but at the same time, we don't want to break your code.
-  So we will work on isolating the components from the styling solution. The new _@material-ui/styles_ package is the first step in this direction. We envision a world where you can use Material-UI styled with styled components, linaria, and JSS or without any styles.
+  So we will work on isolating the components from the styling solution. The new _@mui/styles_ package is the first step in this direction. We envision a world where you can use Material-UI styled with styled components, linaria, and JSS or without any styles.
   Developers should be able to use their preferred styling solution without paying the cost of two CSS-in-JS runtimes.
 - **Accessibility.** While we try to fix all accessibility issues as they are reported by our users, we feel that we can do better. We want to run a professional ADA audit of all our components ♿️.
 

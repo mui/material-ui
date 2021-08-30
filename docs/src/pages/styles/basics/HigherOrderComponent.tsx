@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { withStyles, WithStyles } from '@material-ui/styles';
+import { withStyles, WithStyles } from '@mui/styles';
 import Button from '@mui/material/Button';
 
 const styles = {

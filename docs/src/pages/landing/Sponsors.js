@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 import NoSsr from '@mui/core/NoSsr';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Container from '@mui/material/Container';

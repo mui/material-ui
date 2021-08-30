@@ -2,7 +2,7 @@
 import Benchmark from 'benchmark';
 import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { StylesProvider } from '@material-ui/styles';
+import { StylesProvider } from '@mui/styles';
 import ButtonBase from '@mui/material/ButtonBase';
 
 const suite = new Benchmark.Suite('core', {

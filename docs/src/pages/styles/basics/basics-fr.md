@@ -1,8 +1,8 @@
-# @material-ui/styles
+# @mui/styles
 
 <p class="description">You can use Material-UI's styling solution in your app, whether or not you are using Material-UI components.</p>
 
-Material-UI aims to provide a strong foundation for building dynamic UIs. To reduce the number of packages to install when using Material-UI, and to simplify the imports, `@material-ui/styles` modules are re-exported from `@mui/material/styles`. You can use it, but you don't have to, since Material-UI is also [interoperable with](/guides/interoperability/) all the other major styling solutions.
+Material-UI aims to provide a strong foundation for building dynamic UIs. To reduce the number of packages to install when using Material-UI, and to simplify the imports, `@mui/styles` modules are re-exported from `@mui/material/styles`. You can use it, but you don't have to, since Material-UI is also [interoperable with](/guides/interoperability/) all the other major styling solutions.
 
 ## Why use Material-UI's styling solution?
 
@@ -17,20 +17,20 @@ Material-UI's styling solution is inspired by many other styling libraries such 
 - 🚀 It's [blazing fast](https://github.com/mui-org/material-ui/blob/HEAD/benchmark/server#material-uistyles).
 - 🧩 It's extensible via a [plugin](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
 - ⚡️ It uses [JSS](https://github.com/cssinjs/jss) at its core – a [high performance](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
-- 📦 Less than [15 KB gzipped](https://bundlephobia.com/result?p=@material-ui/styles); and no bundle size increase if used alongside Material-UI.
+- 📦 Less than [15 KB gzipped](https://bundlephobia.com/result?p=@mui/styles); and no bundle size increase if used alongside Material-UI.
 
 ## Installation
 
-> `@material-ui/styles` is re-exported as `@mui/material/styles` - you only need to install it if you wish to use it independently from Material-UI.
+> `@mui/styles` is re-exported as `@mui/material/styles` - you only need to install it if you wish to use it independently from Material-UI.
 
 Pour installer et enregistrer dans vos dépendances `package.json` , exécutez:
 
 ```sh
 // with npm
-npm install @material-ui/styles
+npm install @mui/styles
 
 // with yarn
-yarn add @material-ui/styles
+yarn add @mui/styles
 ```
 
 ## Getting started
@@ -199,14 +199,14 @@ const useStyles = makeStyles(theme => ({
 
 {{"demo": "pages/styles/basics/StressTest.js"}}
 
-## @mui/material/styles vs @material-ui/styles
+## @mui/material/styles vs @mui/styles
 
-Starting from v5, Material-UI no longer uses JSS as its default styling solution. To remove the need to systematically supply a theme, the default Material-UI theme is applied to the re-exported `makeStyles`, `styled`, `withTheme`, `useTheme`, and `withStyles` modules. For this, you can use the `ThemeProvider` component available in `@material-ui/styles`, or, if you are already using `@mui/material`, you should use the one exported from `@mui/material/styles` so that the same `theme` is available for components from '@mui/material'.
+Starting from v5, Material-UI no longer uses JSS as its default styling solution. To remove the need to systematically supply a theme, the default Material-UI theme is applied to the re-exported `makeStyles`, `styled`, `withTheme`, `useTheme`, and `withStyles` modules. For this, you can use the `ThemeProvider` component available in `@mui/styles`, or, if you are already using `@mui/material`, you should use the one exported from `@mui/material/styles` so that the same `theme` is available for components from '@mui/material'.
 
 ```jsx
 // Re-export with a default theme
 import { makeStyles } from '@mui/material/styles';
 
 // Original module with no default theme
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 ```

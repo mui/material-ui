@@ -64,7 +64,7 @@ async function getWebpackEntries() {
     },
     ...labComponents,
     {
-      name: '@material-ui/styles',
+      name: '@mui/styles',
       path: 'packages/material-ui-styles/build/index.js',
     },
     {
@@ -172,7 +172,7 @@ module.exports = async function webpackConfig(webpack, environment) {
             workspaceRoot,
             'packages/material-ui-styles-sc/build',
           ),
-          '@material-ui/styles': path.join(workspaceRoot, 'packages/material-ui-styles/build'),
+          '@mui/styles': path.join(workspaceRoot, 'packages/material-ui-styles/build'),
           '@mui/system': path.join(workspaceRoot, 'packages/material-ui-system/build'),
           '@mui/private-theming': path.join(
             workspaceRoot,

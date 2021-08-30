@@ -72,7 +72,7 @@ import {
   Typography,
 } from '@mui/material';
 import { Theme } from '@mui/material/styles';
-import { createStyles } from '@material-ui/styles';
+import { createStyles } from '@mui/styles';
 import { Link as ReactRouterLink, LinkProps as ReactRouterLinkProps } from 'react-router-dom';
 import { ButtonBaseActions } from '@mui/material/ButtonBase';
 import { IconButtonProps } from '@mui/material/IconButton';

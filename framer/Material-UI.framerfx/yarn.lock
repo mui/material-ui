@@ -20,7 +20,7 @@
   integrity sha512-0R7Xcf7g3vHK6T7B7vaThcZu107zGGwM+XFakShwNGlLkgVXB8qARzYReM3rLax5BIQG2K4A7FvMVxx347sKHA==
   dependencies:
     "@babel/runtime" "^7.4.4"
-    "@material-ui/styles" "^5.0.0-alpha.1"
+    "@mui/styles" "^5.0.0-alpha.1"
     "@mui/system" "^5.0.0-alpha.1"
     "@material-ui/types" "^5.1.0"
     "@mui/utils" "^5.0.0-alpha.1"
@@ -39,9 +39,9 @@
   dependencies:
     "@babel/runtime" "^7.4.4"
 
-"@material-ui/styles@^5.0.0-alpha.1":
+"@mui/styles@^5.0.0-alpha.1":
   version "5.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@material-ui/styles/-/styles-5.0.0-alpha.1.tgz#fad59945ef97d1ed0afaac5250323dd9410c258f"
+  resolved "https://registry.yarnpkg.com/@mui/styles/-/styles-5.0.0-alpha.1.tgz#fad59945ef97d1ed0afaac5250323dd9410c258f"
   integrity sha512-2DKOIVXWaePCw+QHNJKeQc2AS87RxDT9uSFIVhXQn1Zi8Fo4op86Y/tVVx1b3WDWNpOmBYcMIiO8m+j3ETCRuw==
   dependencies:
     "@babel/runtime" "^7.4.4"

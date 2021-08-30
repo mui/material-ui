@@ -389,7 +389,7 @@ You can [follow the server side guide](/guides/server-rendering/) for a more det
 
 ### Gatsby
 
-There is [an official Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@material-ui/styles`. Refer to the plugin's page for setup and usage instructions.
+There is [an official Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) that enables server-side rendering for `@mui/styles`. Refer to the plugin's page for setup and usage instructions.
 
 <!-- #default-branch-switch -->
 

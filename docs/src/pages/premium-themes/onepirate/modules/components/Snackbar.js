@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@mui/styles';
 import MuiSnackbar from '@mui/material/Snackbar';
 import Slide from '@mui/material/Slide';
 import CloseIcon from '@mui/icons-material/Close';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import withStyles from '@material-ui/styles/withStyles';
+import withStyles from '@mui/styles/withStyles';
 
 const styles = {
   root: {},

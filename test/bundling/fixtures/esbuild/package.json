@@ -15,7 +15,7 @@
     "@mui/icons-material": "5.0.0-alpha.34",
     "@mui/lab": "5.0.0-alpha.34",
     "@mui/styled-engine": "5.0.0-alpha.34",
-    "@material-ui/styles": "5.0.0-alpha.33",
+    "@mui/styles": "5.0.0-alpha.33",
     "@mui/system": "5.0.0-alpha.34",
     "@mui/utils": "5.0.0-alpha.33",
     "esbuild": "0.12.0",

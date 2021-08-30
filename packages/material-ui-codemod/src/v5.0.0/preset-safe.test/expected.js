@@ -1,7 +1,7 @@
 import React from 'react';
 import { ThemeProvider, StyledEngineProvider, createTheme, alpha, adaptV4Theme } from '@material-ui/core/styles';
-import makeStyles from '@material-ui/styles/makeStyles';
-import StylesProvider from '@material-ui/styles/StylesProvider';
+import makeStyles from '@mui/styles/makeStyles';
+import StylesProvider from '@mui/styles/StylesProvider';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Dialog from '@material-ui/core/Dialog';

@@ -170,7 +170,7 @@ interface Props {
 Dies ist jedoch nicht sehr [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) weil Sie die Klassennamen (`'root'`, `'paper'`, `'button'`, ...) an zwei verschiedenen Stellen pflegen müssen. Wir stellen einen Typoperator `WithStyles` bereit, um damit zu helfen. So kannst du einfach schreiben:
 
 ```ts
-import { createStyles } from '@material-ui/styles';
+import { createStyles } from '@mui/styles';
 import { WithStyles } from '@mui/material';
 
 const styles = (theme: Theme) =>

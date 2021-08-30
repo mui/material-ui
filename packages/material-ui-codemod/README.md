@@ -531,7 +531,7 @@ Replace JSS styling with `makeStyles` or `withStyles` to `styled` API.
 
 ```diff
 import Typography from '@material-ui/core/Typography';
--import makeStyles from '@material-ui/styles/makeStyles';
+-import makeStyles from '@mui/styles/makeStyles';
 +import { styled } from '@material-ui/core/styles';
 
 -const useStyles = makeStyles((theme) => ({
@@ -610,7 +610,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `material-ui-styles`
 
-Moves JSS imports to `@material-ui/styles`
+Moves JSS imports to `@mui/styles`
 
 ```diff
 -import {
@@ -628,16 +628,16 @@ Moves JSS imports to `@material-ui/styles`
 -  mergeClasses,
 -} from '@material-ui/core/styles';
 +import { ThemeProvider, styled } from '@material-ui/core/styles';
-+import createGenerateClassName from '@material-ui/styles/createGenerateClassName';
-+import createStyles from '@material-ui/styles/createStyles';
-+import jssPreset from '@material-ui/styles/jssPreset';
-+import makeStyles from '@material-ui/styles/makeStyles';
-+import ServerStyleSheets from '@material-ui/styles/ServerStyleSheets';
-+import useThemeVariants from '@material-ui/styles/useThemeVariants';
-+import withStyles from '@material-ui/styles/withStyles';
-+import withTheme from '@material-ui/styles/withTheme';
-+import getStylesCreator from '@material-ui/styles/getStylesCreator';
-import mergeClasses from '@material-ui/styles/mergeClasses';
++import createGenerateClassName from '@mui/styles/createGenerateClassName';
++import createStyles from '@mui/styles/createStyles';
++import jssPreset from '@mui/styles/jssPreset';
++import makeStyles from '@mui/styles/makeStyles';
++import ServerStyleSheets from '@mui/styles/ServerStyleSheets';
++import useThemeVariants from '@mui/styles/useThemeVariants';
++import withStyles from '@mui/styles/withStyles';
++import withTheme from '@mui/styles/withTheme';
++import getStylesCreator from '@mui/styles/getStylesCreator';
+import mergeClasses from '@mui/styles/mergeClasses';
 ```
 
 ```sh

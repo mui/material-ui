@@ -21,7 +21,7 @@ function rewriteImportPath(importPath) {
 
   const stylesSrcPath = path.posix.join('..', 'material-ui-styles', 'src');
   if (importPath.startsWith(stylesSrcPath)) {
-    return importPath.replace(stylesSrcPath, '@material-ui/styles');
+    return importPath.replace(stylesSrcPath, '@mui/styles');
   }
 
   const systemSrcPath = path.posix.join('..', 'material-ui-system', 'src');

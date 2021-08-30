@@ -22,7 +22,7 @@ Uma função que retorna [uma função geradora de nome de classe](https://cssin
 
 ```jsx
 import * as React from 'react';
-import { StylesProvider, createGenerateClassName } from '@material-ui/styles';
+import { StylesProvider, createGenerateClassName } from '@mui/styles';
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'c',
@@ -48,7 +48,7 @@ Esta função realmente não "faz nada" em tempo de execução, é apenas uma fu
 ### Exemplos
 
 ```jsx
-import { createStyles, makeStyles } from '@material-ui/styles';
+import { createStyles, makeStyles } from '@mui/styles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
@@ -87,7 +87,7 @@ Vincula uma folha de estilo a um componente de função usando o padrão **hook*
 
 ```jsx
 import * as React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   root: {
@@ -108,7 +108,7 @@ Esta é uma classe utilitária para manipular a renderização do lado do servid
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@material-ui/styles';
+import { ServerStyleSheets } from '@mui/styles';
 
 const sheets = new ServerStyleSheets();
 const html = ReactDOMServer.renderToString(sheets.collect(<App />));
@@ -171,7 +171,7 @@ Vincula uma folha de estilos, com uma função de componente, usando o padrão d
 
 ```jsx
 import * as React from 'react';
-import { styled, ThemeProvider } from '@material-ui/styles';
+import { styled, ThemeProvider } from '@mui/styles';
 import { createTheme } from '@mui/material/styles';
 
 const MyComponent = styled('div')({
@@ -216,7 +216,7 @@ Deve preferencialmente ser usado na **raiz da sua árvore de componentes**.
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { StylesProvider } from '@material-ui/styles';
+import { StylesProvider } from '@mui/styles';
 
 function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
@@ -302,7 +302,7 @@ Alguns detalhes de implementação que podem ser interessantes para estar ciente
 
 ```jsx
 import * as React from 'react';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@mui/styles';
 
 const styles = {
   root: {
@@ -321,7 +321,7 @@ Além disso, você pode usar com [decoradores](https://babeljs.io/docs/en/babel-
 
 ```jsx
 import * as React from 'react';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@mui/styles';
 
 const styles = {
   root: {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 import Button, { ButtonProps as MuiButtonProps } from '@mui/material/Button';
 
 interface Props {

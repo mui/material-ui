@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import NProgress from 'nprogress';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@mui/styles';
 import { createTheme } from '@mui/material/styles';
 import NoSsr from '@mui/core/NoSsr';
 import { exactProp } from '@mui/utils';

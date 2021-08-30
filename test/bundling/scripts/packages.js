@@ -168,7 +168,7 @@ export default {
     'TreeView',
     'useAutocomplete',
   ],
-  '@material-ui/styles': [
+  '@mui/styles': [
     'createGenerateClassName',
     'createStyles',
     // Types only

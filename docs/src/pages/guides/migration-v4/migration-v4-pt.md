@@ -351,11 +351,11 @@ const theme = createTheme({
 
   You can use the [`fade-rename-alpha` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#fade-rename-alpha) for automatic migration.
 
-- The `createStyles` function from `@mui/material/styles` was moved to the one exported from `@material-ui/styles`. It is necessary for removing the dependency to `@material-ui/styles` in the core package.
+- The `createStyles` function from `@mui/material/styles` was moved to the one exported from `@mui/styles`. It is necessary for removing the dependency to `@mui/styles` in the core package.
 
 ```diff
 -import { createStyles } from '@mui/material/styles';
-+import { createStyles } from '@material-ui/styles';
++import { createStyles } from '@mui/styles';
 ```
 
 ### Sistema
@@ -1847,12 +1847,12 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
 #### createGenerateClassName
 
-- The `createGenerateClassName` function is no longer exported from `@mui/material/styles`. You should import it directly from `@material-ui/styles`. 
+- The `createGenerateClassName` function is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`. 
   
 
   ```diff
   -import { createGenerateClassName } from '@mui/material/styles';
-  +import { createGenerateClassName } from '@material-ui/styles';
+  +import { createGenerateClassName } from '@mui/styles';
   ```
 
 
@@ -1860,12 +1860,12 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
 #### jssPreset
 
-- The `jssPreset` object is no longer exported from `@mui/material/styles`. You should import it directly from `@material-ui/styles`. 
+- The `jssPreset` object is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`. 
   
 
   ```diff
   -import { jssPreset } from '@mui/material/styles';
-  +import { jssPreset } from '@material-ui/styles';
+  +import { jssPreset } from '@mui/styles';
   ```
 
 
@@ -1873,12 +1873,12 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
 #### makeStyles
 
-- The `makeStyles` JSS utility is no longer exported from `@mui/material/styles`. You can use `@material-ui/styles/makeStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead. 
+- The `makeStyles` JSS utility is no longer exported from `@mui/material/styles`. You can use `@mui/styles/makeStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead. 
   
 
   ```diff
   -import { makeStyles } from '@mui/material/styles';
-  +import { makeStyles } from '@material-ui/styles';
+  +import { makeStyles } from '@mui/styles';
   +import { createTheme, ThemeProvider } from '@mui/material/styles';
 
   +const theme = createTheme();
@@ -1915,12 +1915,12 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
 #### ServerStyleSheets
 
-- The `ServerStyleSheets` component is no longer exported from `@mui/material/styles`. You should import it directly from `@material-ui/styles`. 
+- The `ServerStyleSheets` component is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`. 
   
 
   ```diff
   -import { ServerStyleSheets } from '@mui/material/styles';
-  +import { ServerStyleSheets } from '@material-ui/styles';
+  +import { ServerStyleSheets } from '@mui/styles';
   ```
 
 
@@ -1928,12 +1928,12 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
 #### styled
 
-- The `styled` JSS utility is no longer exported from `@mui/material/styles`. You can use `@material-ui/styles/styled` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead. 
+- The `styled` JSS utility is no longer exported from `@mui/material/styles`. You can use `@mui/styles/styled` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead. 
   
 
   ```diff
   -import { styled } from '@mui/material/styles';
-  +import { styled } from '@material-ui/styles';
+  +import { styled } from '@mui/styles';
   +import { createTheme, ThemeProvider } from '@mui/material/styles';
 
   +const theme = createTheme();
@@ -1950,12 +1950,12 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
 #### StylesProvider
 
-- The `StylesProvider` component is no longer exported from `@mui/material/styles`. You should import it directly from `@material-ui/styles`. 
+- The `StylesProvider` component is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`. 
   
 
   ```diff
   -import { StylesProvider } from '@mui/material/styles';
-  +import { StylesProvider } from '@material-ui/styles';
+  +import { StylesProvider } from '@mui/styles';
   ```
 
 
@@ -1963,12 +1963,12 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
 #### useThemeVariants
 
-- The `useThemeVariants` hook is no longer exported from `@mui/material/styles`. You should import it directly from `@material-ui/styles`. 
+- The `useThemeVariants` hook is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`. 
   
 
   ```diff
   -import { useThemeVariants } from '@mui/material/styles';
-  +import { useThemeVariants } from '@material-ui/styles';
+  +import { useThemeVariants } from '@mui/styles';
   ```
 
 
@@ -1982,7 +1982,7 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
   ```diff
   import * as React from 'react';
-  import { withStyles } from '@material-ui/styles';
+  import { withStyles } from '@mui/styles';
 
   const MyComponent = withStyles({
     root: {
@@ -1998,13 +1998,13 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
   ```
 
 
-- The `withStyles` JSS utility is no longer exported from `@mui/material/styles`. You can use `@material-ui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, you should use the `ThemeProvider` component from `@mui/material/styles` instead. 
+- The `withStyles` JSS utility is no longer exported from `@mui/material/styles`. You can use `@mui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, you should use the `ThemeProvider` component from `@mui/material/styles` instead. 
   
   
 
   ```diff
   -import { withStyles } from '@mui/material/styles';
-  +import { withStyles } from '@material-ui/styles';
+  +import { withStyles } from '@mui/styles';
   +import { createTheme, ThemeProvider } from '@mui/material/styles';
 
   +const defaultTheme = createTheme();
@@ -2024,13 +2024,13 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
 #### withTheme
 
-- The `withTheme` HOC utility has been removed from the `@mui/material/styles` package. You can use `@material-ui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead. 
+- The `withTheme` HOC utility has been removed from the `@mui/material/styles` package. You can use `@mui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead. 
   
   
 
   ```diff
   -import { withTheme } from '@mui/material/styles';
-  +import { withTheme } from '@material-ui/styles';
+  +import { withTheme } from '@mui/styles';
   +import { createTheme, ThemeProvider } from '@mui/material/styles';
 
   +const theme = createTheme();
@@ -2082,18 +2082,18 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
 
 
-### `@material-ui/styles`
+### `@mui/styles`
 
 
 
 #### ThemeProvider
 
-If you are using the utilities from `@material-ui/styles` together with the `@mui/material`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@mui/material/styles`. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@material-ui/styles`, like `makeStyles`, `withStyles` etc. and the Material-UI components.
+If you are using the utilities from `@mui/styles` together with the `@mui/material`, you should replace the use of `ThemeProvider` from `@mui/styles` with the one exported from `@mui/material/styles`. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@mui/styles`, like `makeStyles`, `withStyles` etc. and the Material-UI components.
 
 
 
 ```diff
--import { ThemeProvider } from '@material-ui/styles';
+-import { ThemeProvider } from '@mui/styles';
 +import { ThemeProvider } from '@mui/material/styles';
 ```
 
@@ -2102,14 +2102,14 @@ If you are using the utilities from `@material-ui/styles` together with the `@mu
 
 #### Default theme (TypeScript)
 
-The `@material-ui/styles` package is no longer part of `@mui/material/styles`. If you are using `@material-ui/styles` together with `@mui/material` you need to add a module augmentation for the `DefaultTheme`.
+The `@mui/styles` package is no longer part of `@mui/material/styles`. If you are using `@mui/styles` together with `@mui/material` you need to add a module augmentation for the `DefaultTheme`.
 
 
 
 ```ts
 import { Theme } from '@mui/material/styles';
 
-declare module '@material-ui/styles' {
+declare module '@mui/styles' {
   interface DefaultTheme extends Theme {}
 }
 ```

@@ -18,7 +18,7 @@ const alias = {
   '@mui/docs': '../packages/material-ui-docs/src',
   '@mui/icons-material': '../packages/material-ui-icons/lib',
   '@mui/lab': '../packages/material-ui-lab/src',
-  '@material-ui/styles': '../packages/material-ui-styles/src',
+  '@mui/styles': '../packages/material-ui-styles/src',
   '@mui/styled-engine-sc': '../packages/material-ui-styled-engine-sc/src',
   // Swap the comments on the next two lines for using the styled-components as style engine
   '@mui/styled-engine': '../packages/material-ui-styled-engine/src',

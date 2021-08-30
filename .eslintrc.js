@@ -286,12 +286,12 @@ module.exports = {
                 message: forbidCreateStylesMessage,
               },
               {
-                name: '@material-ui/styles',
+                name: '@mui/styles',
                 importNames: ['createStyles'],
                 message: forbidCreateStylesMessage,
               },
               {
-                name: '@material-ui/styles/createStyles',
+                name: '@mui/styles/createStyles',
                 message: forbidCreateStylesMessage,
               },
             ],

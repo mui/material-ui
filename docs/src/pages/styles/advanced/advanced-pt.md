@@ -182,7 +182,7 @@ Claro, você é livre para usar plugins adicionais. Aqui está um exemplo com o 
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@mui/styles';
 import rtl from 'jss-rtl';
 
 const jss = create({
@@ -228,7 +228,7 @@ Por padrão, os estilos são inseridos **por último** no elemento `<head>` da s
 O componente `StylesProvider` tem uma propriedade `injectFirst` para injetar as tags de estilo em **primeiro** no cabeçalho (menor prioridade):
 
 ```jsx
-import { StylesProvider } from '@material-ui/styles';
+import { StylesProvider } from '@mui/styles';
 
 <StylesProvider injectFirst>
   {/* Sua árvore de componentes.
@@ -242,7 +242,7 @@ A injeção de tags de estilo acontece na **mesma ordem** com as invocações de
 
 ```jsx
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 
 const useStylesBase = makeStyles({
   root: {
@@ -288,7 +288,7 @@ A abordagem mais simples é adicionar um comentário HTML no `<head>` que determ
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@mui/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -314,7 +314,7 @@ export default function App() {
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@mui/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -333,7 +333,7 @@ codesandbox.io impede o acesso ao elemento `<head>`. Para contornar esse comport
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@mui/styles';
 
 const styleNode = document.createComment('jss-insertion-point');
 document.head.insertBefore(styleNode, document.head.firstChild);
@@ -355,7 +355,7 @@ This example returns a string of HTML and inlines the critical CSS required, rig
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@material-ui/styles';
+import { ServerStyleSheets } from '@mui/styles';
 
 function render() {
   const sheets = new ServerStyleSheets();
@@ -381,7 +381,7 @@ Você pode [seguir o guia de renderização no servidor](/guides/server-renderin
 
 ### Gatsby
 
-Existe [um plugin oficial Gatsby](https://github.com/hupe1980/gatsby-plugin-material-ui) que permite a renderização do lado do servidor para `@material-ui/styles`. Consulte a página do plugin para obter instruções de configuração e uso.
+Existe [um plugin oficial Gatsby](https://github.com/hupe1980/gatsby-plugin-material-ui) que permite a renderização do lado do servidor para `@mui/styles`. Consulte a página do plugin para obter instruções de configuração e uso.
 
 <!-- #default-branch-switch -->
 

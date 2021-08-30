@@ -1,4 +1,4 @@
-# @material-ui/styles
+# @mui/styles
 
 <p class="description">Sie können die Styling-Lösung von Material-UI in Ihrer App verwenden, unabhängig davon, ob Sie Material-UI-Komponenten verwenden.</p>
 
@@ -17,20 +17,20 @@ Die Styling-Lösung von Material-UI ist von vielen anderen Styling-Bibliotheken 
 - 🚀 Es ist [blitzschnell](https://github.com/mui-org/material-ui/blob/HEAD/benchmark/server#material-uistyles).
 - 🧩 Es ist erweiterbar über eine [Plugin](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
 - ⚡️ Es verwednet [JSS](https://github.com/cssinjs/jss) im Kern - ein JavaScript zum CSS-Compiler mit [hohe Leistung](https://github.com/cssinjs/jss/blob/master/docs/performance.md), der zur Laufzeit und serverseitig arbeitet.
-- 📦 Weniger als [15 KB komprimiert](https://bundlephobia.com/result?p=@material-ui/styles); und keine Erhöhung der Bündelgröße, wenn es zusammen mit der Material-UI verwendet wird.
+- 📦 Weniger als [15 KB komprimiert](https://bundlephobia.com/result?p=@mui/styles); und keine Erhöhung der Bündelgröße, wenn es zusammen mit der Material-UI verwendet wird.
 
 ## Installation
 
-> `@material-ui/styles` wird erneut exportiert als `@mui/material/styles` - Sie müssen es nur installieren, wenn Sie es unabhängig von Material-UI verwenden möchten.
+> `@mui/styles` wird erneut exportiert als `@mui/material/styles` - Sie müssen es nur installieren, wenn Sie es unabhängig von Material-UI verwenden möchten.
 
 Um die Abhängigkeit zu ihrer `package.json` hinzuzufügen, führen Sie folgenden Befehl aus:
 
 ```sh
 // mit npm
-npm install @material-ui/styles
+npm install @mui/styles
 
 // mit yarn
-yarn add @material-ui/styles
+yarn add @mui/styles
 ```
 
 ## Erste Schritte
@@ -41,7 +41,7 @@ Es gibt 3 mögliche APIs, die Sie verwenden können, um Stile zu generieren und 
 
 ```jsx
 import * as React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 import Button from '@mui/material/Button';
 
 const useStyles = makeStyles({
@@ -70,7 +70,7 @@ Hinweis: Dies gilt nur für aufrufende Syntax-Stil-Definitionen, die noch ein JS
 
 ```jsx
 import * as React from 'react';
-import { styled } from '@material-ui/styles';
+import { styled } from '@mui/styles';
 import Button from '@mui/material/Button';
 
 const MyButton = styled(Button)({
@@ -95,7 +95,7 @@ export default function StyledComponents() {
 ```jsx
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@mui/styles';
 import Button from '@mui/material/Button';
 
 const styles = {
@@ -201,10 +201,10 @@ const useStyles = makeStyles(theme => ({
 
 ## Using the theme context
 
-Starting from v5, Material-UI no longer uses JSS as its default styling solution. If you still want to use the utilities exported by `@material-ui/styles`, you will need to provide the `theme` as part of the context. For this, you can use the `ThemeProvider` component available in `@material-ui/styles`, or, if you are already using `@mui/material`, you should use the one exported from `@mui/material/styles` so that the same `theme` is available for components from '@mui/material'.
+Starting from v5, Material-UI no longer uses JSS as its default styling solution. If you still want to use the utilities exported by `@mui/styles`, you will need to provide the `theme` as part of the context. For this, you can use the `ThemeProvider` component available in `@mui/styles`, or, if you are already using `@mui/material`, you should use the one exported from `@mui/material/styles` so that the same `theme` is available for components from '@mui/material'.
 
 ```jsx
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createMuiTheme();

@@ -44,22 +44,22 @@ A versão miníma necessária do React foi incrementada de `react@^16.3.0` para 
 
 ### Atualize a versão do Material-UI Styles
 
-Se você estava usando anteriormente `@material-ui/styles` com a versão 3, precisa atualizar o `package.json` para usar a última versão de Material-UI Styles.
+Se você estava usando anteriormente `@mui/styles` com a versão 3, precisa atualizar o `package.json` para usar a última versão de Material-UI Styles.
 
 ```json
 "dependencies": {
-  "@material-ui/styles": "^4.0.0"
+  "@mui/styles": "^4.0.0"
 }
 ```
 
 Ou execute
 
 ```sh
-npm install @material-ui/styles
+npm install @mui/styles
 
 ou
 
-yarn add @material-ui/styles
+yarn add @mui/styles
 ```
 
 ## Tratamento de alterações recentes

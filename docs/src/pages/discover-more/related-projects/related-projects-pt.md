@@ -31,7 +31,7 @@ Esta é uma coleção de projetos de terceiros que estendem Material-UI.
 
 - [Material-UI Snippets](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets) extensão VSCode fornecendo snippets.
 - [Material-UI Codemorphs](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs) extensão VSCode fornecendo codemods.
-- [eslint: detect unused classes](https://github.com/jens-ox/eslint-plugin-material-ui-unused-classes): Plugin ESLint para detectar classes de estilo não usadas com `@material-ui/styles`.
+- [eslint: detect unused classes](https://github.com/jens-ox/eslint-plugin-material-ui-unused-classes): Plugin ESLint para detectar classes de estilo não usadas com `@mui/styles`.
 
 ## Componentes
 

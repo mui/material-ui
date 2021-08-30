@@ -153,7 +153,7 @@ import * as Core from '@mui/material';
 import * as Unstyled from '@mui/core';
 import * as Icons from '@mui/icons-material';
 import * as Lab from '@mui/lab';
-import * as Styles from '@material-ui/styles';
+import * as Styles from '@mui/styles';
 import * as System from '@mui/system';
 import * as Utils from '@mui/utils';
     `;
@@ -171,8 +171,8 @@ import * as Utils from '@mui/utils';
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/icons-material',
       '@mui/lab':
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/lab',
-      '@material-ui/styles':
-        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/styles',
+      '@mui/styles':
+        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/styles',
       '@mui/system':
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/system',
       '@mui/utils':

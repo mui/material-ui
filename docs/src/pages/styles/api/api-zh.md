@@ -22,7 +22,7 @@
 
 ```jsx
 import * as React from 'react';
-import { StylesProvider, createGenerateClassName } from '@material-ui/styles';
+import { StylesProvider, createGenerateClassName } from '@mui/styles';
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'c',
@@ -48,7 +48,7 @@ export default function App() {
 ### 例子
 
 ```jsx
-import { createStyles, makeStyles } from '@material-ui/styles';
+import { createStyles, makeStyles } from '@mui/styles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
@@ -87,7 +87,7 @@ export default function MyComponent {
 
 ```jsx
 import * as React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   root: {
@@ -108,7 +108,7 @@ export default function MyComponent(props) {
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@material-ui/styles';
+import { ServerStyleSheets } from '@mui/styles';
 
 const sheets = new ServerStyleSheets();
 const html = ReactDOMServer.renderToString(sheets.collect(<App />));
@@ -171,7 +171,7 @@ const response = `
 
 ```jsx
 import * as React from 'react';
-import { styled, ThemeProvider } from '@material-ui/styles';
+import { styled, ThemeProvider } from '@mui/styles';
 import { createTheme } from '@mui/material/styles';
 
 const MyComponent = styled('div')({
@@ -216,7 +216,7 @@ export default function StyledComponents() {
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { StylesProvider } from '@material-ui/styles';
+import { StylesProvider } from '@mui/styles';
 
 function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
@@ -302,7 +302,7 @@ export default function MyComponent() {
 
 ```jsx
 import * as React from 'react';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@mui/styles';
 
 const styles = {
   root: {
@@ -321,7 +321,7 @@ export default withStyles(styles)(MyComponent);
 
 ```jsx
 import * as React from 'react';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@mui/styles';
 
 const styles = {
   root: {

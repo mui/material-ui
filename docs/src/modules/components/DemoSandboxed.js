@@ -7,7 +7,7 @@ import rtlPluginSc from 'stylis-plugin-rtl-sc';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { StyleSheetManager } from 'styled-components';
-import { jssPreset, StylesProvider } from '@material-ui/styles';
+import { jssPreset, StylesProvider } from '@mui/styles';
 import { useTheme, styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';

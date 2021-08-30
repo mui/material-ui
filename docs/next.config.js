@@ -124,7 +124,7 @@ module.exports = {
                         '@mui/icons-material': '../packages/material-ui-icons/lib',
                         '@mui/lab': '../packages/material-ui-lab/src',
                         '@mui/styled-engine': '../packages/material-ui-styled-engine/src',
-                        '@material-ui/styles': '../packages/material-ui-styles/src',
+                        '@mui/styles': '../packages/material-ui-styles/src',
                         '@mui/system': '../packages/material-ui-system/src',
                         '@mui/private-theming':
                           '../packages/material-ui-private-theming/src',

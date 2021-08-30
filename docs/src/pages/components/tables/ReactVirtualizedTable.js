@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@mui/styles';
 import { createTheme } from '@mui/material/styles';
 import TableCell from '@mui/material/TableCell';
 import Paper from '@mui/material/Paper';

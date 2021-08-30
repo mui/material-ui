@@ -176,7 +176,7 @@ interface Props {
 然而，这是不是很 [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) ，因为它需要你在两个不同的地方保持类名（如 `“root”`， `“paper”`， `“button”`，...）。 我们提供了一个类型操作符 `WithStyles` 来帮助解决这个问题，因此您可以直接写入：:
 
 ```ts
-import { createStyles } from '@material-ui/styles';
+import { createStyles } from '@mui/styles';
 import { WithStyles } from '@mui/material';
 
 const styles = (theme: Theme) =>

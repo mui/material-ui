@@ -3,7 +3,7 @@ import {
   ThemeProvider,
   WithTheme as WithThemeProps,
   withTheme,
-} from '@material-ui/styles';
+} from '@mui/styles';
 
 interface Theme {
   spacing: string;

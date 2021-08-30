@@ -51,7 +51,7 @@ The _why_ will be covered in an upcoming blog post on Medium.
 
 ## `ThemeProvider` setup
 
-Make sure that `ThemeProvider` is defined at the root of your application (even if you are using the **default theme**) and **NO** `useStyles` is called before `<ThemeProvider>`. This is because we are going to use `@material-ui/styles` temporarily which require `ThemeProvider`.
+Make sure that `ThemeProvider` is defined at the root of your application (even if you are using the **default theme**) and **NO** `useStyles` is called before `<ThemeProvider>`. This is because we are going to use `@mui/styles` temporarily which require `ThemeProvider`.
 
 ```js
 import { ThemeProvider, createMuiTheme, makeStyles } from '@mui/material/styles';
@@ -96,13 +96,13 @@ yarn add @mui/icons-material@next @mui/lab@next
 
 > **Note:** if you are using `@material-ui/pickers`, it has moved to `@mui/lab`. The details is in "Handling breaking changes" section.
 
-In this migration process, you will need to install/update `@material-ui/styles` (JSS) for temporary transition to v5.
+In this migration process, you will need to install/update `@mui/styles` (JSS) for temporary transition to v5.
 
 ```sh
-npm install @material-ui/styles@next
+npm install @mui/styles@next
 
 // or with `yarn`
-yarn add @material-ui/styles@next
+yarn add @mui/styles@next
 ```
 
 > ⚠️ After this step, your application is expected to crash because the style library has changed from **JSS (v4)** to **emotion (v5)**.
@@ -430,23 +430,23 @@ The following changes are supported by the adapter:
   }));
   ```
 
-- The `createStyles` function from `@mui/material/styles` was moved to the one exported from `@material-ui/styles`. It is necessary for removing the dependency to `@material-ui/styles` in the core package.
+- The `createStyles` function from `@mui/material/styles` was moved to the one exported from `@mui/styles`. It is necessary for removing the dependency to `@mui/styles` in the core package.
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
   -import { createStyles } from '@mui/material/styles';
-  +import { createStyles } from '@material-ui/styles';
+  +import { createStyles } from '@mui/styles';
   ```
 
-### @material-ui/styles
+### @mui/styles
 
 #### ThemeProvider
 
-If you are using the utilities from `@material-ui/styles` together with the `@mui/material`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@mui/material/styles`. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@material-ui/styles`, like `makeStyles`, `withStyles` etc. and the Material-UI components.
+If you are using the utilities from `@mui/styles` together with the `@mui/material`, you should replace the use of `ThemeProvider` from `@mui/styles` with the one exported from `@mui/material/styles`. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@mui/styles`, like `makeStyles`, `withStyles` etc. and the Material-UI components.
 
 ```diff
--import { ThemeProvider } from '@material-ui/styles';
+-import { ThemeProvider } from '@mui/styles';
 +import { ThemeProvider } from '@mui/material/styles';
 ```
 
@@ -454,7 +454,7 @@ Make sure to add a `ThemeProvider` at the root of your application, as the `defa
 
 #### Default theme (TypeScript)
 
-The `@material-ui/styles` package is no longer part of `@mui/material/styles`. If you are using `@material-ui/styles` together with `@mui/material` you need to add a module augmentation for the `DefaultTheme`.
+The `@mui/styles` package is no longer part of `@mui/material/styles`. If you are using `@mui/styles` together with `@mui/material` you need to add a module augmentation for the `DefaultTheme`.
 
 > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
@@ -462,7 +462,7 @@ The `@material-ui/styles` package is no longer part of `@mui/material/styles`. I
 // in your theme file that you call `createTheme()`
 import { Theme } from '@mui/material/styles';
 
-declare module '@material-ui/styles' {
+declare module '@mui/styles' {
   interface DefaultTheme extends Theme {}
 }
 ```
@@ -482,13 +482,13 @@ declare module '@material-ui/styles' {
 
 #### createGenerateClassName
 
-- The `createGenerateClassName` function is no longer exported from `@mui/material/styles`. You should import it directly from `@material-ui/styles`.
+- The `createGenerateClassName` function is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
   -import { createGenerateClassName } from '@mui/material/styles';
-  +import { createGenerateClassName } from '@material-ui/styles';
+  +import { createGenerateClassName } from '@mui/styles';
   ```
 
 #### createMuiTheme
@@ -507,24 +507,24 @@ declare module '@material-ui/styles' {
 
 #### jssPreset
 
-- The `jssPreset` object is no longer exported from `@mui/material/styles`. You should import it directly from `@material-ui/styles`.
+- The `jssPreset` object is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
   -import { jssPreset } from '@mui/material/styles';
-  +import { jssPreset } from '@material-ui/styles';
+  +import { jssPreset } from '@mui/styles';
   ```
 
 #### makeStyles
 
-- The `makeStyles` JSS utility is no longer exported from `@mui/material/styles`. You can use `@material-ui/styles/makeStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended that you use the `ThemeProvider` component from `@mui/material/styles` instead.
+- The `makeStyles` JSS utility is no longer exported from `@mui/material/styles`. You can use `@mui/styles/makeStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended that you use the `ThemeProvider` component from `@mui/material/styles` instead.
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
   -import { makeStyles } from '@mui/material/styles';
-  +import { makeStyles } from '@material-ui/styles';
+  +import { makeStyles } from '@mui/styles';
   +import { createTheme, ThemeProvider } from '@mui/material/styles';
 
   +const theme = createTheme();
@@ -556,22 +556,22 @@ declare module '@material-ui/styles' {
 
 #### ServerStyleSheets
 
-- The `ServerStyleSheets` component is no longer exported from `@mui/material/styles`. You should import it directly from `@material-ui/styles`.
+- The `ServerStyleSheets` component is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
   -import { ServerStyleSheets } from '@mui/material/styles';
-  +import { ServerStyleSheets } from '@material-ui/styles';
+  +import { ServerStyleSheets } from '@mui/styles';
   ```
 
 #### styled
 
-- The `styled` JSS utility is no longer exported from `@mui/material/styles`. You can use `@material-ui/styles/styled` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead.
+- The `styled` JSS utility is no longer exported from `@mui/material/styles`. You can use `@mui/styles/styled` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead.
 
   ```diff
   -import { styled } from '@mui/material/styles';
-  +import { styled } from '@material-ui/styles';
+  +import { styled } from '@mui/styles';
   +import { createTheme, ThemeProvider } from '@mui/material/styles';
 
   +const theme = createTheme();
@@ -585,24 +585,24 @@ declare module '@material-ui/styles' {
 
 #### StylesProvider
 
-- The `StylesProvider` component is no longer exported from `@mui/material/styles`. You should import it directly from `@material-ui/styles`.
+- The `StylesProvider` component is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
   -import { StylesProvider } from '@mui/material/styles';
-  +import { StylesProvider } from '@material-ui/styles';
+  +import { StylesProvider } from '@mui/styles';
   ```
 
 #### useThemeVariants
 
-- The `useThemeVariants` hook is no longer exported from `@mui/material/styles`. You should import it directly from `@material-ui/styles`.
+- The `useThemeVariants` hook is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
   -import { useThemeVariants } from '@mui/material/styles';
-  +import { useThemeVariants } from '@material-ui/styles';
+  +import { useThemeVariants } from '@mui/styles';
   ```
 
 #### withStyles
@@ -613,7 +613,7 @@ declare module '@material-ui/styles' {
 
   ```diff
    import * as React from 'react';
-   import { withStyles } from '@material-ui/styles';
+   import { withStyles } from '@mui/styles';
 
    const MyComponent = withStyles({
      root: {
@@ -628,13 +628,13 @@ declare module '@material-ui/styles' {
    }
   ```
 
-- The `withStyles` JSS utility is no longer exported from `@mui/material/styles`. You can use `@material-ui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, you should use the `ThemeProvider` component from `@mui/material/styles` instead.
+- The `withStyles` JSS utility is no longer exported from `@mui/material/styles`. You can use `@mui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, you should use the `ThemeProvider` component from `@mui/material/styles` instead.
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
   -import { withStyles } from '@mui/material/styles';
-  +import { withStyles } from '@material-ui/styles';
+  +import { withStyles } from '@mui/styles';
   +import { createTheme, ThemeProvider } from '@mui/material/styles';
 
   +const defaultTheme = createTheme();
@@ -651,13 +651,13 @@ declare module '@material-ui/styles' {
 
 #### withTheme
 
-- The `withTheme` HOC utility has been removed from the `@mui/material/styles` package. You can use `@material-ui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead.
+- The `withTheme` HOC utility has been removed from the `@mui/material/styles` package. You can use `@mui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead.
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
   -import { withTheme } from '@mui/material/styles';
-  +import { withTheme } from '@material-ui/styles';
+  +import { withTheme } from '@mui/styles';
   +import { createTheme, ThemeProvider } from '@mui/material/styles';
 
   +const theme = createTheme();
@@ -673,7 +673,7 @@ declare module '@material-ui/styles' {
 
   ```diff
   import * as React from 'react';
-  import { withTheme } from '@material-ui/styles';
+  import { withTheme } from '@mui/styles';
 
   const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
 
@@ -2375,7 +2375,7 @@ Take a look at the whole [list of global state classnames](/customization/how-to
 
 ## Migrate `makeStyles` to emotion
 
-This is the last step in the migration process to remove `@material-ui/styles` package from your codebase.
+This is the last step in the migration process to remove `@mui/styles` package from your codebase.
 We recommend two options.
 
 ### 1. Use `styled` or `sx` API
@@ -2392,7 +2392,7 @@ npx @material-ui/codemod@next v5.0.0/jss-to-styled <path>
 
 ```diff
  import Typography from '@mui/material/Typography';
--import makeStyles from '@material-ui/styles/makeStyles';
+-import makeStyles from '@mui/styles/makeStyles';
 +import { styled } from '@mui/material/styles';
 
 -const useStyles = makeStyles((theme) => ({
@@ -2452,7 +2452,7 @@ We recommend `sx` API over `styled` when you have to create responsive styles or
 
 ```diff
  import Chip from '@mui/material/Chip';
--import makeStyles from '@material-ui/styles/makeStyles';
+-import makeStyles from '@mui/styles/makeStyles';
 +import { styled } from '@mui/material/styles';
 
 -const useStyles = makeStyles((theme) => ({
@@ -2486,7 +2486,7 @@ We recommend `sx` API over `styled` when you have to create responsive styles or
 In some cases, you might want to create multiple styled components in a file instead of increasing CSS specificity. for example:
 
 ```diff
--import makeStyles from '@material-ui/styles/makeStyles';
+-import makeStyles from '@mui/styles/makeStyles';
 +import { styled } from '@mui/material/styles';
 
 -const useStyles = makeStyles((theme) => ({
@@ -2536,13 +2536,13 @@ The API is similar to JSS `makeStyles` but work with emotion.
 
 > **Note:** this library is **not maintained** by Material-UI. If you have any issue regarding to it, please open an issue in [tss-react repository](https://github.com/garronej/tss-react/issues/new).
 
-💡 Once you migrate all of the styling, remove unnecessary `@material-ui/styles` by
+💡 Once you migrate all of the styling, remove unnecessary `@mui/styles` by
 
 ```sh
-npm uninstall @material-ui/styles
+npm uninstall @mui/styles
 
 // or with `yarn`
-yarn remove @material-ui/styles
+yarn remove @mui/styles
 ```
 
 ## Troubleshooting
@@ -2626,7 +2626,7 @@ For more details, checkout [this issue](https://github.com/mui-org/material-ui/i
 
 ### [Types] Property "palette", "spacing" does not exist on type 'DefaultTheme'
 
-Since `makeStyles` is now exported from `@material-ui/styles` package which does not know about `Theme` in the core package. To fix this, you need to augment the `DefaultTheme` (empty object) in `@material-ui/styles` with `Theme` from the core. [Read more about module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)
+Since `makeStyles` is now exported from `@mui/styles` package which does not know about `Theme` in the core package. To fix this, you need to augment the `DefaultTheme` (empty object) in `@mui/styles` with `Theme` from the core. [Read more about module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)
 
 **Typescript Project**
 
@@ -2636,7 +2636,7 @@ Put this snippet to your theme file:
 // it could be your App.tsx file or theme file that is included in your tsconfig.json
 import { Theme } from '@mui/material/styles';
 
-declare module '@material-ui/styles/defaultTheme' {
+declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface (remove this line if you don't have the rule enabled)
   interface DefaultTheme extends Theme {}
 }
@@ -2680,7 +2680,7 @@ This error occurs when calling `useStyles` (result of `makeStyles`) or `withStyl
 ```js
 import * as React from 'react';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import makeStyles from '@material-ui/styles/makeStyles';
+import makeStyles from '@mui/styles/makeStyles';
 import Card from '@mui/material/Card';
 import CssBaseline from '@mui/material/CssBaseline';
 

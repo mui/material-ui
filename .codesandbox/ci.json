@@ -21,7 +21,7 @@
     "@mui/material": "packages/material-ui/build",
     "@mui/icons-material": "packages/material-ui-icons/build",
     "@mui/lab": "packages/material-ui-lab/build",
-    "@material-ui/styles": "packages/material-ui-styles/build",
+    "@mui/styles": "packages/material-ui-styles/build",
     "@mui/styled-engine": "packages/material-ui-styled-engine/build",
     "@mui/styled-engine-sc": "packages/material-ui-styled-engine-sc/build",
     "@mui/system": "packages/material-ui-system/build",

@@ -44,22 +44,22 @@ yarn add @mui/material
 
 ### 更新 Material-UI Styles 的版本
 
-若您以前使用 v3 版本的 `@material-ui/styles`，您则需要更新 `package.json`，这样才能使用最新版本的 Material-UI Styles。
+若您以前使用 v3 版本的 `@mui/styles`，您则需要更新 `package.json`，这样才能使用最新版本的 Material-UI Styles。
 
 ```json
 "dependencies": {
-  "@material-ui/styles": "^4.0.0"
+  "@mui/styles": "^4.0.0"
 }
 ```
 
 或者运行
 
 ```sh
-npm install @material-ui/styles
+npm install @mui/styles
 
 或者
 
-yarn add @material-ui/styles
+yarn add @mui/styles
 ```
 
 ## 处理变化带来的系统崩溃

@@ -177,7 +177,7 @@ JSS 使用插件来扩展其核心，您可以挑选所需的功能，并且只�
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@mui/styles';
 import rtl from 'jss-rtl';
 
 const jss = create({
@@ -223,7 +223,7 @@ const useStyles = makeStyles({
 `StylesProvider`组件的属性 `injectFirst` 会把style标签注入到head的**前部**(意味着更低的权重)。
 
 ```jsx
-import { StylesProvider } from '@material-ui/styles';
+import { StylesProvider } from '@mui/styles';
 
 <StylesProvider injectFirst>
   {/* 你的组件树。
@@ -237,7 +237,7 @@ import { StylesProvider } from '@material-ui/styles';
 
 ```jsx
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 
 const useStylesBase = makeStyles({
   root: {
@@ -283,7 +283,7 @@ JSS [提供了一种机制](https://github.com/cssinjs/jss/blob/master/docs/setu
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@mui/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -309,7 +309,7 @@ export default function App() {
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@mui/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -328,7 +328,7 @@ codesandbox.io 阻止访问 `<head>` 元素。 要解决这个问题，您可以
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@mui/styles';
 
 const styleNode = document.createComment('jss-insertion-point');
 document.head.insertBefore(styleNode, document.head.firstChild);
@@ -350,7 +350,7 @@ This example returns a string of HTML and inlines the critical CSS required, rig
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@material-ui/styles';
+import { ServerStyleSheets } from '@mui/styles';
 
 function render() {
   const sheets = new ServerStyleSheets();

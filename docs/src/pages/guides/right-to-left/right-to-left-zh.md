@@ -65,7 +65,7 @@ npm install stylis-plugin-rtl
 ```jsx
 import { create } from 'jss';
 import rtl from 'jss-rtl';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@mui/styles';
 
 // Configure JSS
 const jss = create({

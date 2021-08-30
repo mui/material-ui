@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Theme } from '@mui/material/styles';
-import { withStyles, WithStyles } from '@material-ui/styles';
+import { withStyles, WithStyles } from '@mui/styles';
 import MuiTypography, { TypographyProps } from '@mui/material/Typography';
 
 const markStyleMapping: {

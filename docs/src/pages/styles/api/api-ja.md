@@ -22,7 +22,7 @@
 
 ```jsx
 import * as React from 'react';
-import { StylesProvider, createGenerateClassName } from '@material-ui/styles';
+import { StylesProvider, createGenerateClassName } from '@mui/styles';
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'c',
@@ -48,7 +48,7 @@ This function doesn't really "do anything" at runtime, it's just the identity fu
 ### 例
 
 ```jsx
-import { createStyles, makeStyles } from '@material-ui/styles';
+import { createStyles, makeStyles } from '@mui/styles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
@@ -87,7 +87,7 @@ Link a style sheet with a function component using the **hook** pattern.
 
 ```jsx
 import * as React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   root: {
@@ -109,7 +109,7 @@ This is a class helper to handle server-side rendering. [You can follow this gui
 ```jsx
 
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@material-ui/styles';
+import { ServerStyleSheets } from '@mui/styles';
 
 const sheets = new ServerStyleSheets();
 const html = ReactDOMServer.renderToString(sheets.collect(<App />));
@@ -172,7 +172,7 @@ Link a style sheet with a function component using the **styled components** pat
 
 ```jsx
 import * as React from 'react';
-import { styled, ThemeProvider } from '@material-ui/styles';
+import { styled, ThemeProvider } from '@mui/styles';
 import { createTheme } from '@mui/material/styles';
 
 const MyComponent = styled('div')({
@@ -217,7 +217,7 @@ It should preferably be used at **the root of your component tree**.
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { StylesProvider } from '@material-ui/styles';
+import { StylesProvider } from '@mui/styles';
 
 function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
@@ -305,7 +305,7 @@ Link a style sheet with a component using the **higher-order component** pattern
 
 ```jsx
 import * as React from 'react';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@mui/styles';
 
 const styles = {
   root: {
@@ -324,7 +324,7 @@ export default withStyles(styles)(MyComponent);
 
 ```jsx
 import * as React from 'react';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@mui/styles';
 
 const styles = {
   root: {

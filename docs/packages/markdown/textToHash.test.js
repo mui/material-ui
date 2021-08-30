@@ -13,7 +13,7 @@ describe('textToHash', () => {
         'creategenerateclassname-options-class-name-generator',
       ],
       [
-        '@mui/material/styles vs @material-ui/styles',
+        '@mui/material/styles vs @mui/styles',
         'material-ui-core-styles-vs-material-ui-styles',
       ],
       ['Blog 📝', 'blog'],

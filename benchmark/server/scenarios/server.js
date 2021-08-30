@@ -9,7 +9,7 @@ import {
   StylesProvider,
   ThemeProvider,
   createGenerateClassName,
-} from '@material-ui/styles';
+} from '@mui/styles';
 import { green, red } from '@mui/material/colors';
 import Pricing from 'docs/src/pages/getting-started/templates/pricing/Pricing';
 import { spacing, palette, unstable_styleFunctionSx as styleFunction } from '@mui/system';

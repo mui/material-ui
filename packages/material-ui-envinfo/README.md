@@ -28,7 +28,7 @@ $ npx @material-ui/envinfo
     @mui/lab:  5.0.0-alpha.18
     @mui/styled-engine:  5.0.0-alpha.18
     @mui/styled-engine-sc:  5.0.0-alpha.18
-    @material-ui/styles:  5.0.0-alpha.18
+    @mui/styles:  5.0.0-alpha.18
     @mui/system:  5.0.0-alpha.18
     @material-ui/types:  5.1.0
     @mui/core:  5.0.0-alpha.18

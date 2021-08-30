@@ -9,7 +9,7 @@ import {
   CSSProperties,
   CreateCSSProperties,
   PropsFunc,
-} from '@material-ui/styles';
+} from '@mui/styles';
 import Button from '@mui/material/Button';
 import { Theme } from '@mui/material/styles';
 import { expectType } from '@material-ui/types';

@@ -168,7 +168,7 @@ interface Props {
 しかし、これはあまり[DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)ではありません。なぜなら、クラス名(`'root'`、`'paper'`、`'button'`、...。) を二つの異なる場所に維持する必要があるからです。 このために、型演算子`WithStyles`を使用して、次のように記述します。
 
 ```ts
-import { createStyles } from '@material-ui/styles';
+import { createStyles } from '@mui/styles';
 import { WithStyles } from '@mui/material';
 
 const styles = (theme: Theme) =>

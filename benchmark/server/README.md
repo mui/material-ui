@@ -26,7 +26,7 @@ Markdown x 946 ops/sec ±4.04% (176 runs sampled)
 MarkdownElement x 3,941 ops/sec ±5.53% (185 runs sampled)
 ```
 
-## `@material-ui/styles`
+## `@mui/styles`
 
 _Synthetic benchmark_
 

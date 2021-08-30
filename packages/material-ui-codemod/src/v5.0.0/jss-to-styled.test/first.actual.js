@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { connect } from 'react-redux';
-import withStyles from '@material-ui/styles/withStyles';
+import withStyles from '@mui/styles/withStyles';
 import NoSsr from '@material-ui/core/NoSsr';
 import IconClose from '@mui/icons-material/Close';
 import IconMenu from '@mui/icons-material/Menu';

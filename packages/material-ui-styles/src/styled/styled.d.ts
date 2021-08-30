@@ -3,7 +3,7 @@ import {
   CreateCSSProperties,
   StyledComponentProps,
   WithStylesOptions,
-} from '@material-ui/styles/withStyles';
+} from '@mui/styles/withStyles';
 import * as React from 'react';
 import { DefaultTheme } from '../defaultTheme';
 
