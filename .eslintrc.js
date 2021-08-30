@@ -145,6 +145,8 @@ module.exports = {
     'react/jsx-filename-extension': ['error', { extensions: ['.js', '.tsx'] }],
     // Prefer <React.Fragment> over <>.
     'react/jsx-fragments': ['error', 'element'],
+    // Enforces premature optimization
+    'react/jsx-no-bind': 'off',
     // We are a UI library.
     'react/jsx-props-no-spreading': 'off',
     // This rule is great for raising people awareness of what a key is and how it works.
