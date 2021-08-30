@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 import GradientText from 'docs/src/components/typography/GradientText';
 import InvertColorsRoundedIcon from '@material-ui/icons/InvertColorsRounded';
 import HandymanRoundedIcon from '@material-ui/icons/HandymanRounded';

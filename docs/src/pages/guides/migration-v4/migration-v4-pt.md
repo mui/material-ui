@@ -26,18 +26,18 @@ Você precisa atualizar seu `package.json` para usar a versão mais recente do M
 "dependencies": {
   "@emotion/react": "^11.0.0",
   "@emotion/styled": "^11.0.0",
-  "@material-ui/core": "^5.0.0"
+  "@mui/material": "^5.0.0"
 }
 ```
 
 Ou execute
 
 ```sh
-npm install @material-ui/core@next @emotion/react @emotion/styled
+npm install @mui/material@next @emotion/react @emotion/styled
 
 ou
 
-yarn add @material-ui/core@next @emotion/react @emotion/styled
+yarn add @mui/material@next @emotion/react @emotion/styled
 ```
 
 ## Tratamento de alterações recentes
@@ -77,7 +77,7 @@ The style library used by default in v5 is [`emotion`](https://github.com/emotio
 
 ```jsx
 import * as React from 'react';
-import { StyledEngineProvider } from '@material-ui/core/styles';
+import { StyledEngineProvider } from '@mui/material/styles';
 
 export default function GlobalCssPriority() {
   return (
@@ -104,7 +104,7 @@ export default function CssModulesPriority() {
 
 ```jsx
 Agora você pode sobrescrever os estilos do Material-UI. import * as React from 'react';
-import { StylesProvider } from '@material-ui/core';
+import { StylesProvider } from '@mui/material';
 
 export default function GlobalCssPriority() {
   return (
@@ -134,8 +134,8 @@ export default function CssModulesPriority() {
 - The function `createMuiTheme` was renamed to `createTheme` to make more intuitive to use with `ThemeProvider`.
 
   ```diff
-  -import { createMuiTheme } from '@material-ui/core/styles';
-  +import { createTheme } from '@material-ui/core/styles';
+  -import { createMuiTheme } from '@mui/material/styles';
+  +import { createTheme } from '@mui/material/styles';
 
   -const theme = createMuiTheme({
   +const theme = createTheme({
@@ -210,7 +210,7 @@ export default function CssModulesPriority() {
   If you prefer the old breakpoint values, use the snippet below.
 
   ```js
-  import { createTheme } from '@material-ui/core/styles';
+  import { createTheme } from '@mui/material/styles';
 
   const theme = createTheme({
     breakpoints: {
@@ -230,8 +230,8 @@ export default function CssModulesPriority() {
 For a smoother transition, the `adaptV4Theme` helper allows you to iteratively upgrade to the new theme structure.
 
 ```diff
--import { createMuiTheme } from '@material-ui/core/styles';
-+import { createTheme, adaptV4Theme } from '@material-ui/core/styles';
+-import { createMuiTheme } from '@mui/material/styles';
++import { createTheme, adaptV4Theme } from '@mui/material/styles';
 
 -const theme = createMuiTheme({
 +const theme = createTheme(adaptV4Theme({
@@ -275,7 +275,7 @@ As seguintes alterações são aplicadas por este utilitário adaptador:
 - The `theme.palette.type` key was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
 
   ```diff
-  import { createTheme } from '@material-ui/core/styles';
+  import { createTheme } from '@mui/material/styles';
   -const theme = createTheme({palette: { type: 'dark' }}),
   +const theme = createTheme({palette: { mode: 'dark' }}),
   ```
@@ -283,7 +283,7 @@ As seguintes alterações são aplicadas por este utilitário adaptador:
 - A chave `theme.palette.text.hint` não era usada em componentes do Material-UI e foi removida. Se você depende dela, você pode adicioná-la de volta:
 
   ```diff
-  import { createTheme } from '@material-ui/core/styles';
+  import { createTheme } from '@mui/material/styles';
 
   -const theme = createTheme(),
   +const theme = createTheme({
@@ -296,7 +296,7 @@ As seguintes alterações são aplicadas por este utilitário adaptador:
 1. `props`
 
 ```diff
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
 -  props: {
@@ -317,7 +317,7 @@ const theme = createTheme({
 2. `sobrescrevendo`
 
 ```diff
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
 -  overrides: {
@@ -340,8 +340,8 @@ const theme = createTheme({
 - Renomeado `fade` para `alpha` para descrever melhor a sua funcionalidade. O nome anterior estava gerando confusão quando a cor de entrada já tinha um valor alfa. O utilitário **sobrescreve** o valor alfa da cor.
 
   ```diff
-  - import { fade } from '@material-ui/core/styles';
-  + import { alpha } from '@material-ui/core/styles';
+  - import { fade } from '@mui/material/styles';
+  + import { alpha } from '@mui/material/styles';
 
   const classes = makeStyles(theme => ({
   -  backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
@@ -351,10 +351,10 @@ const theme = createTheme({
 
   You can use the [`fade-rename-alpha` codemod](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#fade-rename-alpha) for automatic migration.
 
-- The `createStyles` function from `@material-ui/core/styles` was moved to the one exported from `@material-ui/styles`. It is necessary for removing the dependency to `@material-ui/styles` in the core package.
+- The `createStyles` function from `@mui/material/styles` was moved to the one exported from `@material-ui/styles`. It is necessary for removing the dependency to `@material-ui/styles` in the core package.
 
 ```diff
--import { createStyles } from '@material-ui/core/styles';
+-import { createStyles } from '@mui/material/styles';
 +import { createStyles } from '@material-ui/styles';
 ```
 
@@ -408,8 +408,8 @@ As the core components use emotion as their style engine, the props used by emot
   ```diff
   -import Alert from '@material-ui/lab/Alert';
   -import AlertTitle from '@material-ui/lab/AlertTitle';
-  +import Alert from '@material-ui/core/Alert';
-  +import AlertTitle from '@material-ui/core/AlertTitle';
+  +import Alert from '@mui/material/Alert';
+  +import AlertTitle from '@mui/material/AlertTitle';
   ```
 
 Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
@@ -421,8 +421,8 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
   ```diff
   -import Autocomplete from '@material-ui/lab/Autocomplete';
   -import useAutocomplete  from '@material-ui/lab/useAutocomplete';
-  +import Autocomplete from '@material-ui/core/Autocomplete';
-  +import useAutoComplete from '@material-ui/core/useAutocomplete';
+  +import Autocomplete from '@mui/material/Autocomplete';
+  +import useAutoComplete from '@mui/material/useAutocomplete';
   ```
 
   Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
@@ -500,7 +500,7 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
   ```diff
   -import AvatarGroup from '@material-ui/lab/AvatarGroup';
-  +import AvatarGroup from '@material-ui/core/AvatarGroup';
+  +import AvatarGroup from '@mui/material/AvatarGroup';
   ```
 
   Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
@@ -774,8 +774,8 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 - Remove the `withMobileDialog` higher-order component. A hook API permite uma solução mais simples e flexível:
 
   ```diff
-  -import withMobileDialog from '@material-ui/core/withMobileDialog';
-  +import { useTheme, useMediaQuery } from '@material-ui/core';
+  -import withMobileDialog from '@mui/material/withMobileDialog';
+  +import { useTheme, useMediaQuery } from '@mui/material';
 
   function ResponsiveDialog(props) {
   - const { fullScreen } = props;
@@ -816,14 +816,14 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 - Renomeie os componentes `ExpansionPanel` para `Accordion` para usar uma convenção de nome mais comum:
 
   ```diff
-  -import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-  -import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-  -import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-  -import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
-  +import Accordion from '@material-ui/core/Accordion';
-  +import AccordionSummary from '@material-ui/core/AccordionSummary';
-  +import AccordionDetails from '@material-ui/core/AccordionDetails';
-  +import AccordionActions from '@material-ui/core/AccordionActions';
+  -import ExpansionPanel from '@mui/material/ExpansionPanel';
+  -import ExpansionPanelSummary from '@mui/material/ExpansionPanelSummary';
+  -import ExpansionPanelDetails from '@mui/material/ExpansionPanelDetails';
+  -import ExpansionPanelActions from '@mui/material/ExpansionPanelActions';
+  +import Accordion from '@mui/material/Accordion';
+  +import AccordionSummary from '@mui/material/AccordionSummary';
+  +import AccordionDetails from '@mui/material/AccordionDetails';
+  +import AccordionActions from '@mui/material/AccordionActions';
 
   -<ExpansionPanel>
   +<Accordion>
@@ -938,12 +938,12 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 - Use CSS object-fit. For IE11 support either use a polyfill such as https://www.npmjs.com/package/object-fit-images, or continue to use the v4 component.
 
   ```diff
-  -import GridList from '@material-ui/core/GridList';
-  -import GridListTile from '@material-ui/core/GridListTile';
-  -import GridListTileBar from '@material-ui/core/GridListTileBar';
-  +import ImageList from '@material-ui/core/ImageList';
-  +import ImageListItem from '@material-ui/core/ImageListItem';
-  +import ImageListItemBar from '@material-ui/core/ImageListItemBar';
+  -import GridList from '@mui/material/GridList';
+  -import GridListTile from '@mui/material/GridListTile';
+  -import GridListTileBar from '@mui/material/GridListTileBar';
+  +import ImageList from '@mui/material/ImageList';
+  +import ImageListItem from '@mui/material/ImageListItem';
+  +import ImageListItemBar from '@mui/material/ImageListItemBar';
 
   -<GridList spacing={8} cellHeight={200}>
   -  <GridListTile>
@@ -1143,9 +1143,9 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   -import Pagination from '@material-ui/lab/Pagination';
   -import PaginationItem from '@material-ui/lab/PaginationItem';
   -import { usePagination } from '@material-ui/lab/Pagination';
-  +import Pagination from '@material-ui/core/Pagination';
-  +import PaginationItem from '@material-ui/core/PaginationItem';
-  +import usePagination from '@material-ui/core/usePagination';
+  +import Pagination from '@mui/material/Pagination';
+  +import PaginationItem from '@mui/material/PaginationItem';
+  +import usePagination from '@mui/material/usePagination';
   ```
 
   Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
@@ -1240,7 +1240,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   ```diff
   -import Rating from '@material-ui/lab/Rating';
-  +import Rating from '@material-ui/core/Rating';
+  +import Rating from '@mui/material/Rating';
   ```
 
   Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod#moved-lab-modules) para realizar uma migração automática.
@@ -1321,7 +1321,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 
   ```diff
   -import Skeleton from '@material-ui/lab/Skeleton';
-  +import Skeleton from '@material-ui/core/Skeleton';
+  +import Skeleton from '@mui/material/Skeleton';
   ```
 
 
@@ -1427,9 +1427,9 @@ You can use the [`use-transitionprops` codemod](https://github.com/mui-org/mater
   -import SpeedDial from '@material-ui/lab/SpeedDial';
   -import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
   -import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
-  +import SpeedDial from '@material-ui/core/SpeedDial';
-  +import SpeedDialAction from '@material-ui/core/SpeedDialAction';
-  +import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
+  +import SpeedDial from '@mui/material/SpeedDial';
+  +import SpeedDialAction from '@mui/material/SpeedDialAction';
+  +import SpeedDialIcon from '@mui/material/SpeedDialIcon';
   ```
 
 
@@ -1771,8 +1771,8 @@ You can use the [`variant-prop` codemod](https://github.com/mui-org/material-ui/
   ```diff
   -import ToggleButton from '@material-ui/lab/ToggleButton';
   -import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-  +import ToggleButton from '@material-ui/core/ToggleButton';
-  +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
+  +import ToggleButton from '@mui/material/ToggleButton';
+  +import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
   ```
 
 
@@ -1841,17 +1841,17 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
 
 
-### `@material-ui/core/styles`
+### `@mui/material/styles`
 
 
 
 #### createGenerateClassName
 
-- The `createGenerateClassName` function is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`. 
+- The `createGenerateClassName` function is no longer exported from `@mui/material/styles`. You should import it directly from `@material-ui/styles`. 
   
 
   ```diff
-  -import { createGenerateClassName } from '@material-ui/core/styles';
+  -import { createGenerateClassName } from '@mui/material/styles';
   +import { createGenerateClassName } from '@material-ui/styles';
   ```
 
@@ -1860,11 +1860,11 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
 #### jssPreset
 
-- The `jssPreset` object is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`. 
+- The `jssPreset` object is no longer exported from `@mui/material/styles`. You should import it directly from `@material-ui/styles`. 
   
 
   ```diff
-  -import { jssPreset } from '@material-ui/core/styles';
+  -import { jssPreset } from '@mui/material/styles';
   +import { jssPreset } from '@material-ui/styles';
   ```
 
@@ -1873,13 +1873,13 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
 #### makeStyles
 
-- The `makeStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/makeStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead. 
+- The `makeStyles` JSS utility is no longer exported from `@mui/material/styles`. You can use `@material-ui/styles/makeStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead. 
   
 
   ```diff
-  -import { makeStyles } from '@material-ui/core/styles';
+  -import { makeStyles } from '@mui/material/styles';
   +import { makeStyles } from '@material-ui/styles';
-  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+  +import { createTheme, ThemeProvider } from '@mui/material/styles';
 
   +const theme = createTheme();
    const useStyles = makeStyles((theme) => ({
@@ -1902,12 +1902,12 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
 #### MuiThemeProvider
 
-- The `MuiThemeProvider` component is no longer exported from `@material-ui/core/styles`. Use `ThemeProvider` instead. 
+- The `MuiThemeProvider` component is no longer exported from `@mui/material/styles`. Use `ThemeProvider` instead. 
   
 
   ```diff
-  -import { MuiThemeProvider } from '@material-ui/core/styles';
-  +import { ThemeProvider } from '@material-ui/core/styles';
+  -import { MuiThemeProvider } from '@mui/material/styles';
+  +import { ThemeProvider } from '@mui/material/styles';
   ```
 
 
@@ -1915,11 +1915,11 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
 #### ServerStyleSheets
 
-- The `ServerStyleSheets` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`. 
+- The `ServerStyleSheets` component is no longer exported from `@mui/material/styles`. You should import it directly from `@material-ui/styles`. 
   
 
   ```diff
-  -import { ServerStyleSheets } from '@material-ui/core/styles';
+  -import { ServerStyleSheets } from '@mui/material/styles';
   +import { ServerStyleSheets } from '@material-ui/styles';
   ```
 
@@ -1928,13 +1928,13 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
 #### styled
 
-- The `styled` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/styled` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead. 
+- The `styled` JSS utility is no longer exported from `@mui/material/styles`. You can use `@material-ui/styles/styled` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead. 
   
 
   ```diff
-  -import { styled } from '@material-ui/core/styles';
+  -import { styled } from '@mui/material/styles';
   +import { styled } from '@material-ui/styles';
-  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+  +import { createTheme, ThemeProvider } from '@mui/material/styles';
 
   +const theme = createTheme();
    const MyComponent = styled('div')(({ theme }) => ({ background: theme.palette.primary.main }));
@@ -1950,11 +1950,11 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
 #### StylesProvider
 
-- The `StylesProvider` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`. 
+- The `StylesProvider` component is no longer exported from `@mui/material/styles`. You should import it directly from `@material-ui/styles`. 
   
 
   ```diff
-  -import { StylesProvider } from '@material-ui/core/styles';
+  -import { StylesProvider } from '@mui/material/styles';
   +import { StylesProvider } from '@material-ui/styles';
   ```
 
@@ -1963,11 +1963,11 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
 #### useThemeVariants
 
-- The `useThemeVariants` hook is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`. 
+- The `useThemeVariants` hook is no longer exported from `@mui/material/styles`. You should import it directly from `@material-ui/styles`. 
   
 
   ```diff
-  -import { useThemeVariants } from '@material-ui/core/styles';
+  -import { useThemeVariants } from '@mui/material/styles';
   +import { useThemeVariants } from '@material-ui/styles';
   ```
 
@@ -1998,14 +1998,14 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
   ```
 
 
-- The `withStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, you should use the `ThemeProvider` component from `@material-ui/core/styles` instead. 
+- The `withStyles` JSS utility is no longer exported from `@mui/material/styles`. You can use `@material-ui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, you should use the `ThemeProvider` component from `@mui/material/styles` instead. 
   
   
 
   ```diff
-  -import { withStyles } from '@material-ui/core/styles';
+  -import { withStyles } from '@mui/material/styles';
   +import { withStyles } from '@material-ui/styles';
-  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+  +import { createTheme, ThemeProvider } from '@mui/material/styles';
 
   +const defaultTheme = createTheme();
    const MyComponent = withStyles((props) => {
@@ -2024,14 +2024,14 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
 #### withTheme
 
-- The `withTheme` HOC utility has been removed from the `@material-ui/core/styles` package. You can use `@material-ui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead. 
+- The `withTheme` HOC utility has been removed from the `@mui/material/styles` package. You can use `@material-ui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead. 
   
   
 
   ```diff
-  -import { withTheme } from '@material-ui/core/styles';
+  -import { withTheme } from '@mui/material/styles';
   +import { withTheme } from '@material-ui/styles';
-  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+  +import { createTheme, ThemeProvider } from '@mui/material/styles';
 
   +const theme = createTheme();
    const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
@@ -2049,7 +2049,7 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
   ```diff
   import * as React from 'react';
-  import { withTheme  } from '@material-ui/core/styles';
+  import { withTheme  } from '@mui/material/styles';
 
   const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
 
@@ -2088,13 +2088,13 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 
 #### ThemeProvider
 
-If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@material-ui/styles`, like `makeStyles`, `withStyles` etc. and the Material-UI components.
+If you are using the utilities from `@material-ui/styles` together with the `@mui/material`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@mui/material/styles`. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@material-ui/styles`, like `makeStyles`, `withStyles` etc. and the Material-UI components.
 
 
 
 ```diff
 -import { ThemeProvider } from '@material-ui/styles';
-+import { ThemeProvider } from '@material-ui/core/styles';
++import { ThemeProvider } from '@mui/material/styles';
 ```
 
 
@@ -2102,12 +2102,12 @@ If you are using the utilities from `@material-ui/styles` together with the `@ma
 
 #### Default theme (TypeScript)
 
-The `@material-ui/styles` package is no longer part of `@material-ui/core/styles`. If you are using `@material-ui/styles` together with `@material-ui/core` you need to add a module augmentation for the `DefaultTheme`.
+The `@material-ui/styles` package is no longer part of `@mui/material/styles`. If you are using `@material-ui/styles` together with `@mui/material` you need to add a module augmentation for the `DefaultTheme`.
 
 
 
 ```ts
-import { Theme } from '@material-ui/core/styles';
+import { Theme } from '@mui/material/styles';
 
 declare module '@material-ui/styles' {
   interface DefaultTheme extends Theme {}

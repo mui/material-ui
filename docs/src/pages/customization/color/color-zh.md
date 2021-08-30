@@ -21,7 +21,7 @@ Material Design 团队也搭建了一个非常棒的调色板配置工具： [ma
 The output can be fed into `createTheme()` function:
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
@@ -50,8 +50,8 @@ const theme = createTheme({
 The output shown in the color sample can be pasted directly into a [`createTheme()`](/customization/theming/#createtheme-options-theme) function (to be used with [`ThemeProvider`](/customization/theming/#theme-provider)):
 
 ```jsx
-import { createTheme } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
+import { createTheme } from '@mui/material/styles';
+import purple from '@mui/material/colors/purple';
 
 const theme = createTheme({
   palette: {
@@ -89,7 +89,7 @@ If you are using the default primary and / or secondary shades then by providing
 若给定了一种_色调_（如红色，粉红色等）以及一个_阴影_ （500，600等），你可以这样导入颜色：
 
 ```jsx
-import HUE from '@material-ui/core/colors/HUE';
+import HUE from '@mui/material/colors/HUE';
 
 const color = HUE[SHADE];
 ```
@@ -101,8 +101,8 @@ const color = HUE[SHADE];
 例如：您可以参考互补的主色和重点色，像 "red 500" 和 "purple A200" 这样的：
 
 ```js
-import purple from '@material-ui/core/colors/purple';
-import red from '@material-ui/core/colors/red';
+import purple from '@mui/material/colors/purple';
+import red from '@mui/material/colors/red';
 
 const primary = red[500]; // #f44336
 const accent = purple['A200']; // #e040fb

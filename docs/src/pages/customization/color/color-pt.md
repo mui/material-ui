@@ -20,7 +20,7 @@ A equipe do Material Design também criou uma ferramenta de configuração de pa
 The output can be fed into `createTheme()` function:
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
@@ -49,8 +49,8 @@ Para testar um esquema de cores do [material.io/design/color](https://material.i
 The output shown in the color sample can be pasted directly into a [`createTheme()`](/customization/theming/#createtheme-options-theme) function (to be used with [`ThemeProvider`](/customization/theming/#theme-provider)):
 
 ```jsx
-import { createTheme } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
+import { createTheme } from '@mui/material/styles';
+import purple from '@mui/material/colors/purple';
 
 const theme = createTheme({
   palette: {
@@ -88,7 +88,7 @@ Estas paletas de cores, originalmente criadas por Material Design em 2014, são 
 Dado que _HUE_ seja (red, pink, etc.) e _SHADE_ (500, 600, etc.) você pode importar a cor assim:
 
 ```jsx
-import HUE from '@material-ui/core/colors/HUE';
+import HUE from '@mui/material/colors/HUE';
 
 const color = HUE[SHADE];
 ```
@@ -100,8 +100,8 @@ const color = HUE[SHADE];
 Por exemplo, você pode se referir a cores complementares primárias e de destaque, "vermelho 500" e "roxo A200" assim:
 
 ```js
-import purple from '@material-ui/core/colors/purple';
-import red from '@material-ui/core/colors/red';
+import purple from '@mui/material/colors/purple';
+import red from '@mui/material/colors/red';
 
 const primary = red[500]; // #f44336
 const accent = purple['A200']; // #e040fb

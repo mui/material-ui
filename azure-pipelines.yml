@@ -78,7 +78,7 @@ jobs:
           npm version 0.0.0-canary.$(Build.SourceVersion) --no-git-tag-version
           npm pack
           mv material-ui-core-0.0.0-canary.$(Build.SourceVersion).tgz ../../../material-ui-core.tgz
-        displayName: 'create @material-ui/core canary distributable'
+        displayName: 'create @mui/material canary distributable'
 
       - task: S3Upload@1
         inputs:

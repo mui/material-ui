@@ -13,7 +13,7 @@ Material-UI 组件是独立工作的。 **它们是自我支持的**，只需注
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 
 function App() {
   return <Button variant="contained">你好，世界</Button>;

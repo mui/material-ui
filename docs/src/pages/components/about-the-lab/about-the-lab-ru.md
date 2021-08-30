@@ -31,10 +31,10 @@ yarn add @material-ui/lab
 
 ```sh
 // для npm
-npm install @material-ui/core
+npm install @mui/material
 
 // для yarn
-yarn add @material-ui/core
+yarn add @mui/material
 ```
 
 ## TypeScript

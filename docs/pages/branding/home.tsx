@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import NoSsr from '@material-ui/core/NoSsr';
-import Divider from '@material-ui/core/Divider';
+import NoSsr from '@mui/material/NoSsr';
+import Divider from '@mui/material/Divider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import Hero from 'docs/src/components/home/Hero';
 import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';

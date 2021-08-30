@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Card from '@material-ui/core/Card';
-import Fade from '@material-ui/core/Fade';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import Fade from '@mui/material/Fade';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
 import FastForwardRounded from '@material-ui/icons/FastForwardRounded';
 import FastRewindRounded from '@material-ui/icons/FastRewindRounded';
 import PlayArrowRounded from '@material-ui/icons/PlayArrowRounded';

@@ -1,6 +1,6 @@
 # API
 
-<p class="description">The API reference of @material-ui/core/styles.</p>
+<p class="description">The API reference of @mui/material/styles.</p>
 
 ## `createGenerateClassName([options]) => class name generator`
 
@@ -51,7 +51,7 @@ style rules to `makeStyles`/`withStyles` which are a function of the `Theme`.
 
 ```jsx
 import { createStyles, makeStyles } from '@material-ui/styles';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -188,7 +188,7 @@ Link a style sheet with a function component using the **styled components** pat
 ```jsx
 import * as React from 'react';
 import { styled, ThemeProvider } from '@material-ui/styles';
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
 const MyComponent = styled('div')({
   backgroundColor: 'red',
@@ -258,7 +258,7 @@ It should preferably be used at **the root of your component tree**.
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@mui/material/styles';
 
 const theme = {};
 
@@ -281,7 +281,7 @@ This hook returns the `theme` object so it can be used inside a function compone
 
 ```jsx
 import * as React from 'react';
-import { useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@mui/material/styles';
 
 export default function MyComponent() {
   const theme = useTheme();

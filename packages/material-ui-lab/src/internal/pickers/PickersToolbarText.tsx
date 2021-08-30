@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import { styled } from '@material-ui/core/styles';
+import Typography, { TypographyProps } from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
 import { generateUtilityClasses } from '@material-ui/unstyled';
 
 export interface PickersToolbarTextProps extends Omit<TypographyProps, 'classes'> {

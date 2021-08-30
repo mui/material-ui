@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Link from '@material-ui/core/Link';
-import Box from '@material-ui/core/Box';
+import Link from '@mui/material/Link';
+import Box from '@mui/material/Box';
 
 export default function LinkDemo() {
   return (

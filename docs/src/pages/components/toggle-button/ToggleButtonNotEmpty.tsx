@@ -5,9 +5,9 @@ import FormatAlignRightIcon from '@material-ui/icons/FormatAlignRight';
 import LaptopIcon from '@material-ui/icons/Laptop';
 import TvIcon from '@material-ui/icons/Tv';
 import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
-import Stack from '@material-ui/core/Stack';
-import ToggleButton from '@material-ui/core/ToggleButton';
-import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
+import Stack from '@mui/material/Stack';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 export default function ToggleButtonNotEmpty() {
   const [alignment, setAlignment] = React.useState('left');

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverridableComponent } from '@material-ui/core/OverridableComponent';
+import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { expectType } from '@material-ui/types';
 
 interface MyOverrideProps {

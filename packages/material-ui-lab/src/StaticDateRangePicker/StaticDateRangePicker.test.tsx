@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { isWeekend } from 'date-fns';
 import { useFakeTimers } from 'sinon';
-import TextField, { TextFieldProps } from '@material-ui/core/TextField';
+import TextField, { TextFieldProps } from '@mui/material/TextField';
 import StaticDateRangePicker from '@material-ui/lab/StaticDateRangePicker';
 import { describeConformance } from 'test/utils';
 import {

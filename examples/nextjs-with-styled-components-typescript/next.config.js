@@ -1,4 +1,4 @@
-const withTM = require('next-transpile-modules')(['@material-ui/core', '@material-ui/system']); // pass the modules you would like to see transpiled
+const withTM = require('next-transpile-modules')(['@mui/material', '@material-ui/system']); // pass the modules you would like to see transpiled
 
 module.exports = withTM({
   reactStrictMode: true,

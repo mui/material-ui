@@ -44,7 +44,7 @@ Scrolling is blocked as soon as a modal is opened. This prevents interacting wit
 Der Ripple-Effekt kommt ausschließlich von der `BaseButton` Komponente. Sie können den Ripple-Effekt global deaktivieren, indem Sie in Ihrem Theme folgendes angeben:
 
 ```js
-import { createTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   components: {
@@ -63,7 +63,7 @@ const theme = createTheme({
 Material-UI uses the same theme helper for creating all its transitions. Therefore you can disable all transitions by overriding the helper in your theme:
 
 ```js
-import { createTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   transitions: {
@@ -78,7 +78,7 @@ It can be useful to disable transitions during visual testing or to improve perf
 You can go one step further by disabling all transitions and animations effects:
 
 ```js
-import { createTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   components: {
@@ -304,7 +304,7 @@ function handleRender(req, res) {
   - // Eine Sheet Instanz erstellen.
   ```
 
-- Sie müssen sicherstellen, dass auf Ihrem Client und Server die **exakt dieselbe Version** von Material-UI ausführen. Es kann vorkommen, dass eine Nichtübereinstimmung von selbst kleinerer Versionen zu Stilproblemen führen kann. Um die Versionsnummern zu überprüfen, führen Sie `npm list@material-ui/core` in der Umgebung aus, in der Sie Ihre Anwendung erstellen, und in Ihrer Implementierungsumgebung.
+- Sie müssen sicherstellen, dass auf Ihrem Client und Server die **exakt dieselbe Version** von Material-UI ausführen. Es kann vorkommen, dass eine Nichtübereinstimmung von selbst kleinerer Versionen zu Stilproblemen führen kann. Um die Versionsnummern zu überprüfen, führen Sie `npm list@mui/material` in der Umgebung aus, in der Sie Ihre Anwendung erstellen, und in Ihrer Implementierungsumgebung.
 
   Sie können die gleiche Version in verschiedenen Umgebungen festlegen, indem Sie in den Abhängigkeiten Ihrer package.json eine bestimmte MUI-Version angeben.
 
@@ -315,8 +315,8 @@ function handleRender(req, res) {
     ...
 
 -
-  "@material-ui/core": "^4.0.0",
-+   "@material-ui/core": "4.0.0",
+  "@mui/material": "^4.0.0",
++   "@mui/material": "4.0.0",
     ...
   },
     },

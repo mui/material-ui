@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import Box from '@material-ui/core/Box';
-import Slider from '@material-ui/core/Slider';
+import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
 
 export default function SliderSizes() {
   return (

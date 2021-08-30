@@ -109,7 +109,7 @@ export function createMuiTheme(...args) {
         [
           'Material-UI: the createMuiTheme function was renamed to createTheme.',
           '',
-          "You should use `import { createTheme } from '@material-ui/core/styles'`",
+          "You should use `import { createTheme } from '@mui/material/styles'`",
         ].join('\n'),
       );
     }

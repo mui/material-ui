@@ -15,7 +15,7 @@ Möglicherweise kennen Sie [normalize.css](https://github.com/necolas/normalize.
 
 ```jsx
 import * as React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import CssBaseline from '@mui/material/CssBaseline';
 
 export default function MyApp() {
   return (
@@ -33,7 +33,7 @@ Allerdings könnte es sein, dass Sie schrittweise eine Website auf Material-UI m
 
 ```jsx
 import * as React from 'react';
-import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
+import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
 import MyApp from './MyApp';
 
 export default function MyApp() {
@@ -66,7 +66,7 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode).
 
 ```jsx
-import darkScrollbar from '@material-ui/core/darkScrollbar';
+import darkScrollbar from '@mui/material/darkScrollbar';
 
 const theme = createTheme({
   components: {

@@ -301,8 +301,8 @@ CSS 属性中有大量的速记语法。 这些语法在之后的文档中都有
 
 ```jsx
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import Box from '@mui/material/Box';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
   breakpoints: {
@@ -336,7 +336,7 @@ export default function CustomBreakpoints() {
 如果你使用的是 TypeScript，那么将需要使用 [模块扩展（module augmentation）](/guides/typescript/#customization-of-theme) 来让主题接收上述值。
 
 ```ts
-declare module "@material-ui/core/styles/createBreakpoints" {
+declare module "@mui/material/styles/createBreakpoints" {
   interface BreakpointOverrides {
     xs: false; // 移除 `xs` 断点
     sm: false;
@@ -370,10 +370,10 @@ declare module "@material-ui/core/styles/createBreakpoints" {
 
 ### 3。 2. 自定义组件
 
-In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@material-ui/core/styles`.
+In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@mui/material/styles`.
 
 ```jsx
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 
 const Div = styled('div')``;
 ```

@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled, { InterpolationFunction, ThemeProvider } from 'styled-components';
 import { unstable_styleFunctionSx, SxProps } from '@material-ui/system';
 import NoSsr from '@material-ui/unstyled/NoSsr';
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
 interface DivProps {
   sx?: SxProps;

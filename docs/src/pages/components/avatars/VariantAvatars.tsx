@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Stack from '@material-ui/core/Stack';
-import { deepOrange, green } from '@material-ui/core/colors';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import { deepOrange, green } from '@mui/material/colors';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 
 export default function VariantAvatars() {

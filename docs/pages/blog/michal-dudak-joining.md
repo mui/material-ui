@@ -22,7 +22,7 @@ Marija initiated this effort with a couple of new modules under the [@material-u
 This is a strategic effort for us, with the intent to solve two problems:
 
 1. Share logic between Material Design and the second design specification that [Jun will work on](/blog/siriwat-kunaporn-joining/). This is important to stay efficient.
-2. Grow the audience of the library. It provides a new customization tradeoff. It maximizes freedom and minimizes bundle-size. We have recently exceeded [20%](https://docs.google.com/spreadsheets/d/1l5j3Xjtvm9XZtmb4ulLiWElQaXSlZlyCWT5ONrQMpBo/edit#gid=0) market share of the React ecosystem (@material-ui/core downloads divided by react-dom downloads). We're aiming for [+20%](https://npm-stat.com/charts.html?package=@angular/core,@angular/material,@angular/cdk) of the market coming from this effort in the next four years.
+2. Grow the audience of the library. It provides a new customization tradeoff. It maximizes freedom and minimizes bundle-size. We have recently exceeded [20%](https://docs.google.com/spreadsheets/d/1l5j3Xjtvm9XZtmb4ulLiWElQaXSlZlyCWT5ONrQMpBo/edit#gid=0) market share of the React ecosystem (@mui/material downloads divided by react-dom downloads). We're aiming for [+20%](https://npm-stat.com/charts.html?package=@angular/core,@angular/material,@angular/cdk) of the market coming from this effort in the next four years.
 
 Michał is the third of a series of five new positions we have recently opened and filled.
 We will reach 11 people by the end of June.

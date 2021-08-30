@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Typography from '@material-ui/core/Typography';
-import { useTheme, styled } from '@material-ui/core/styles';
+import Typography from '@mui/material/Typography';
+import { useTheme, styled } from '@mui/material/styles';
 import AddIcon from '@material-ui/icons/Add';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 

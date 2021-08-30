@@ -2,7 +2,7 @@
 import Benchmark from 'benchmark';
 import { unstable_styleFunctionSx as styleFunctionSx } from '@material-ui/system';
 import styledSystemCss from '@styled-system/css';
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 import { css as chakraCss } from '@chakra-ui/system';
 
 const suite = new Benchmark.Suite('system', {

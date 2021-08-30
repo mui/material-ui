@@ -11,7 +11,7 @@ O tamanho do pacote do Material-UI é levado muito a sério. Fotos contendo o ta
 Tree-shaking no Material-UI funciona de uma forma moderna. Material-UI expõe sua API completa na importação de nível superior `material-ui`. If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
 
 ```js
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField } from '@mui/material';
 ```
 
 ⚠️ As instruções a seguir são somente necessárias se você deseja otimizar o tempo de startup em desenvolvimento ou se você esta utilizando um bundler antigo que não suporte tree-shaking.
@@ -28,35 +28,35 @@ Você pode usar as importações de caminho para evitar puxar módulos não util
 
 ```js
 // 🚀 Rápida
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 ```
 
 em vez de importações de nível superior (sem um plugin do Babel):
 
 ```js
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField } from '@mui/material';
 ```
 
 Esta é a opção que apresentamos em todas as demonstrações, pois não exige qualquer configuração. É o mais recomendável para autores de biblioteca que estendem os componentes. Vá até [Opção 2](#option-2) para uma abordagem que produz uma melhor DX e UX.
 
-Ao importar diretamente desta maneira, não usa as exportações do [arquivo principal do `@material-ui/core`](https://unpkg.com/@material-ui/core), este arquivo pode servir como uma referência útil para quais módulos são públicos.
+Ao importar diretamente desta maneira, não usa as exportações do [arquivo principal do `@mui/material`](https://unpkg.com/@mui/material), este arquivo pode servir como uma referência útil para quais módulos são públicos.
 
 Esteja ciente de que apenas damos suporte para as importações de primeiro e segundo nível. Qualquer coisa em níveis mais profundos é considerado privado e pode causar problemas, como a duplicação de módulos em seu pacote.
 
 ```js
 // ✅ OK
 import { Add as AddIcon } from '@material-ui/icons';
-import { Tabs } from '@material-ui/core';
+import { Tabs } from '@mui/material';
 //                                 ^^^^ 1° ou nível superior
 
 // ✅ OK
 import AddIcon from '@material-ui/icons/Add';
-import Tabs from '@material-ui/core/Tabs';
+import Tabs from '@mui/material/Tabs';
 //                                  ^^^^ 2° nível
 
 // ❌ NÃO OK
-import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
+import TabIndicator from '@mui/material/Tabs/TabIndicator';
 //                                               ^^^^^^^^^^^^ 3° nível
 ```
 
@@ -68,7 +68,7 @@ Se você estiver usando `eslint` você pode capturar está problemática de impo
     "no-restricted-imports": [
       "error",
       {
-        "patterns": ["@material-ui/*/*/*", "!@material-ui/core/test-utils/*"]
+        "patterns": ["@material-ui/*/*/*", "!@mui/material/test-utils/*"]
       }
     ]
   }
@@ -84,7 +84,7 @@ Esta opção fornece a melhor Experiência do Usuário e Experiência do Desenvo
 - DX: Essa sintaxe reduz a duplicação de código, exigindo apenas uma única importação para vários módulos. Em geral, o código é mais fácil de ser lido, e é menos provável que você cometa um erro ao importar um novo módulo.
 
 ```js
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField } from '@mui/material';
 ```
 
 No entanto, você precisa aplicar as duas etapas seguintes corretamente.
@@ -104,7 +104,7 @@ Escolha um dos seguintes plugins:
     [
       'babel-plugin-import',
       {
-        libraryName: '@material-ui/core',
+        libraryName: '@mui/material',
         libraryDirectory: '',
         camel2DashComponentName: false,
       },
@@ -135,8 +135,8 @@ Escolha um dos seguintes plugins:
     [
       'babel-plugin-transform-imports',
       {
-        '@material-ui/core': {
-          transform: '@material-ui/core/${member}',
+        '@mui/material': {
+          transform: '@mui/material/${member}',
           preventFullImport: true,
         },
         '@material-ui/icons': {
@@ -187,9 +187,9 @@ Desfrute do tempo de inicialização significativamente mais rápido.
 Finalmente, você pode converter sua base de código existente com esse [codemod top-level-imports](https://www.npmjs.com/package/@material-ui/codemod#top-level-imports). Ele executará as seguintes alterações:
 
 ```diff
--import Button from '@material-ui/core/Button';
--import TextField from '@material-ui/core/TextField';
-+import { Button, TextField } from '@material-ui/core';
+-import Button from '@mui/material/Button';
+-import TextField from '@mui/material/TextField';
++import { Button, TextField } from '@mui/material';
 ```
 
 ## Pacotes disponíveis
@@ -200,8 +200,8 @@ O pacote publicado no npm é **transpilado** com [Babel](https://github.com/babe
 
 ### Pacote moderno
 
-O pacote moderno pode ser encontrado sob a [pasta `/modern`](https://unpkg.com/@material-ui/core/modern/). Ela tem como alvo as versões mais recentes de navegadores evergreen (Chrome, Firefox, Safari, Edge). Isso pode ser usado para criar pacotes separados visando diferentes navegadores.
+O pacote moderno pode ser encontrado sob a [pasta `/modern`](https://unpkg.com/@mui/material/modern/). Ela tem como alvo as versões mais recentes de navegadores evergreen (Chrome, Firefox, Safari, Edge). Isso pode ser usado para criar pacotes separados visando diferentes navegadores.
 
 ### Pacote legado
 
-Se você precisar suportar o IE 11, você não pode usar o pacote padrão ou moderno sem transpilação. No entanto, você pode usar o pacote legado encontrado sob [pasta `/legacy`](https://unpkg.com/@material-ui/core/legacy/). Você não precisa de nenhum polyfill adicional.
+Se você precisar suportar o IE 11, você não pode usar o pacote padrão ou moderno sem transpilação. No entanto, você pode usar o pacote legado encontrado sob [pasta `/legacy`](https://unpkg.com/@mui/material/legacy/). Você não precisa de nenhum polyfill adicional.

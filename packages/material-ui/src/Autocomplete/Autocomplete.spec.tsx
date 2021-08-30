@@ -2,7 +2,7 @@ import * as React from 'react';
 import Autocomplete, {
   AutocompleteProps,
   AutocompleteRenderGetTagProps,
-} from '@material-ui/core/Autocomplete';
+} from '@mui/material/Autocomplete';
 import { expectType } from '@material-ui/types';
 
 interface MyAutocompleteProps<

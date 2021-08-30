@@ -52,8 +52,8 @@ interface PaletteColor {
 La forma más sencilla de personalizar un propósito de color es importar uno o más de los colores proporcionados y aplicarlos a una intención de paleta:
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
-import blue from '@material-ui/core/colors/blue';
+import { createTheme } from '@mui/material/styles';
+import blue from '@mui/material/colors/blue';
 
 const theme = createTheme({
   palette: {
@@ -67,7 +67,7 @@ const theme = createTheme({
 Si desea proporcionar colores más personalizados, puede crear su propio objeto de color, o directamente proporciona colores a algunas o todas las claves del propósito de color:
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
@@ -127,7 +127,7 @@ Note that "contrastThreshold" follows a non-linear curve.
 You can add new colors inside and outside the palette of the theme as follow:
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   status: {
@@ -152,9 +152,9 @@ If you are using TypeScript, you would also need to use [module augmentation](/g
 
 ```ts
 import * as React from 'react';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { createMuiTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -216,9 +216,9 @@ For instance, you can enable the dark mode automatically:
 
 ```jsx
 import * as React from 'react';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');

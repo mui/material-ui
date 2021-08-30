@@ -5,7 +5,7 @@ const forbidTopLevelMessage = [
   'See https://github.com/mui-org/material-ui/pull/24147 for the kind of win it can unlock.',
 ].join('\n');
 // This only applies to packages published from this monorepo.
-// If you build a library around `@material-ui/core` you can safely use `createStyles` without running into the same issue as we are.
+// If you build a library around `@mui/material` you can safely use `createStyles` without running into the same issue as we are.
 const forbidCreateStylesMessage =
   'Use `MuiStyles<ClassKey, Props>` instead if the styles are exported. Otherwise use `as const` assertions. ' +
   '`createStyles` will lead to inlined, at-compile-time-resolved type-imports. ' +
@@ -281,7 +281,7 @@ module.exports = {
           {
             paths: [
               {
-                name: '@material-ui/core/styles',
+                name: '@mui/material/styles',
                 importNames: ['createStyles'],
                 message: forbidCreateStylesMessage,
               },
@@ -360,7 +360,7 @@ module.exports = {
           {
             paths: [
               {
-                name: '@material-ui/core',
+                name: '@mui/material',
                 message: forbidTopLevelMessage,
               },
               {

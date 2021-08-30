@@ -10,7 +10,7 @@ import FastfoodIcon from '@material-ui/icons/Fastfood';
 import LaptopMacIcon from '@material-ui/icons/LaptopMac';
 import HotelIcon from '@material-ui/icons/Hotel';
 import RepeatIcon from '@material-ui/icons/Repeat';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 
 export default function CustomizedTimeline() {
   return (

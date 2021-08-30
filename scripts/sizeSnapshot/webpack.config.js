@@ -14,11 +14,11 @@ async function getWebpackEntries() {
       let entryName = componentName;
       // adjust for legacy names
       if (componentName === 'Paper') {
-        entryName = '@material-ui/core/Paper.esm';
+        entryName = '@mui/material/Paper.esm';
       } else if (componentName === 'TextareaAutosize') {
-        entryName = '@material-ui/core/Textarea';
+        entryName = '@mui/material/Textarea';
       } else if (['Popper'].indexOf(componentName) !== -1) {
-        entryName = `@material-ui/core/${componentName}`;
+        entryName = `@mui/material/${componentName}`;
       }
 
       return {
@@ -54,7 +54,7 @@ async function getWebpackEntries() {
 
   return [
     {
-      name: '@material-ui/core',
+      name: '@mui/material',
       path: path.join(path.relative(workspaceRoot, corePackagePath), 'index.js'),
     },
     ...coreComponents,
@@ -84,7 +84,7 @@ async function getWebpackEntries() {
       path: 'packages/material-ui-system/build/esm/createStyled.js',
     },
     {
-      name: '@material-ui/core/styles/createTheme',
+      name: '@mui/material/styles/createTheme',
       path: 'packages/material-ui/build/styles/createTheme.js',
     },
     {
@@ -96,11 +96,11 @@ async function getWebpackEntries() {
       path: 'packages/material-ui-lab/build/useAutocomplete/index.js',
     },
     {
-      name: '@material-ui/core/useMediaQuery',
+      name: '@mui/material/useMediaQuery',
       path: 'packages/material-ui/build/useMediaQuery/index.js',
     },
     {
-      name: '@material-ui/core/useScrollTrigger',
+      name: '@mui/material/useScrollTrigger',
       path: 'packages/material-ui/build/useScrollTrigger/index.js',
     },
     {
@@ -115,12 +115,12 @@ async function getWebpackEntries() {
     // TODO: Requires webpack v5
     // Resolution of webpack/acorn to 7.x is blocked by nextjs (https://github.com/vercel/next.js/issues/11947)
     // {
-    //   name: '@material-ui/core.modern',
+    //   name: '@mui/material.modern',
     //   webpack: true,
     //   path: path.join(path.relative(workspaceRoot, corePackagePath), 'modern/index.js'),
     // },
     {
-      name: '@material-ui/core.legacy',
+      name: '@mui/material.legacy',
       path: path.join(path.relative(workspaceRoot, corePackagePath), 'legacy/index.js'),
     },
   ];
@@ -162,7 +162,7 @@ module.exports = async function webpackConfig(webpack, environment) {
       ],
       resolve: {
         alias: {
-          '@material-ui/core': path.join(workspaceRoot, 'packages/material-ui/build'),
+          '@mui/material': path.join(workspaceRoot, 'packages/material-ui/build'),
           '@material-ui/lab': path.join(workspaceRoot, 'packages/material-ui-lab/build'),
           '@material-ui/styled-engine': path.join(
             workspaceRoot,

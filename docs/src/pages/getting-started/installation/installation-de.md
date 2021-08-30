@@ -2,7 +2,7 @@
 
 <p class="description">Installieren Sie Material-UI, das weltweit beliebteste React UI-Framework.</p>
 
-Material-UI ist als [npm-Paket](https://www.npmjs.com/package/@material-ui/core) verfügbar.
+Material-UI ist als [npm-Paket](https://www.npmjs.com/package/@mui/material) verfügbar.
 
 ## npm
 
@@ -10,10 +10,10 @@ Um die Abhängigkeit zu ihrer `package.json` hinzuzufügen, führen Sie folgende
 
 ```sh
 // with npm
-npm install @material-ui/core@next @emotion/react @emotion/styled
+npm install @mui/material@next @emotion/react @emotion/styled
 
 // with yarn
-yarn add @material-ui/core@next @emotion/react @emotion/styled
+yarn add @mui/material@next @emotion/react @emotion/styled
 ```
 
 <!-- #react-peer-version -->
@@ -24,10 +24,10 @@ Or if you want to use `styled-components` as a styling engine:
 
 ```sh
 // with npm
-npm install @material-ui/core@next @material-ui/styled-engine-sc@next styled-components
+npm install @mui/material@next @material-ui/styled-engine-sc@next styled-components
 
 // with yarn
-yarn add @material-ui/core@next @material-ui/styled-engine-sc@next styled-components
+yarn add @mui/material@next @material-ui/styled-engine-sc@next styled-components
 ```
 
 Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
@@ -66,14 +66,14 @@ Sie können mit der Material-UI mit minimaler Front-End-Infrastruktur verwenden,
 
 Two Universal Module Definition (**UMD**) files are provided:
 
-- eine für die Entwicklung: https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js
-- eine für die Entwicklung: https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js
+- eine für die Entwicklung: https://unpkg.com/@mui/material@latest/umd/material-ui.development.js
+- eine für die Entwicklung: https://unpkg.com/@mui/material@latest/umd/material-ui.production.min.js
 
 Sie können diesem [CDN-Beispiel](https://github.com/mui-org/material-ui/tree/master/examples/cdn) folgen um schnell anfangen zu können.
 
 ⚠️ Using this approach in **production** is **discouraged** though - the client has to download the entire library, regardless of which components are actually used, affecting performance and bandwidth utilization.
 
-⚠️ Die UMD-Links verwenden den `neueste` Tag, um auf die neueste Version der Bibliothek zu verweisen. ⚠️ Die UMD-Links verwenden den `neueste` Tag, um auf die neueste Version der Bibliothek zu verweisen. You should consider pointing to a specific version, such as [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js).
+⚠️ Die UMD-Links verwenden den `neueste` Tag, um auf die neueste Version der Bibliothek zu verweisen. ⚠️ Die UMD-Links verwenden den `neueste` Tag, um auf die neueste Version der Bibliothek zu verweisen. You should consider pointing to a specific version, such as [v4.4.0](https://unpkg.com/@mui/material@4.4.0/umd/material-ui.development.js).
 
 ## Design-Ressourcen
 

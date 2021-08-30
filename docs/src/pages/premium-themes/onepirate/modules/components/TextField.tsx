@@ -4,7 +4,7 @@ import { withStyles, WithStyles } from '@material-ui/styles';
 import MuiTextField, {
   FilledTextFieldProps,
   StandardTextFieldProps,
-} from '@material-ui/core/TextField';
+} from '@mui/material/TextField';
 
 const inputStyleMapping = {
   small: 'inputSizeSmall',

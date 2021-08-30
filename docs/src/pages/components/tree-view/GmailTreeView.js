@@ -1,10 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem, { treeItemClasses } from '@material-ui/lab/TreeItem';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 import MailIcon from '@material-ui/icons/Mail';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Label from '@material-ui/icons/Label';

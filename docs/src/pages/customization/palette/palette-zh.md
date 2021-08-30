@@ -52,8 +52,8 @@ interface PaletteColor {
 自定义调色板的最简单方法是导入一个或多个提供的颜色：
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
-import blue from '@material-ui/core/colors/blue';
+import { createTheme } from '@mui/material/styles';
+import blue from '@mui/material/colors/blue';
 
 const theme = createTheme({
   palette: {
@@ -67,7 +67,7 @@ const theme = createTheme({
 如果你想要提供更多的自定义颜色，你可以创建你自己的调色板，或者直接为一些或者所有的 `theme.palette` 键提供颜色：
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
@@ -123,7 +123,7 @@ type PaletteTonalOffset =
 您可以在主题的调色板内外添加新的颜色，如下所示：
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   status: {
@@ -147,7 +147,7 @@ const theme = createTheme({
 <!-- tested with packages/material-ui/test/typescript/augmentation/paletteColors.spec.ts -->
 
 ```ts
-declare module '@material-ui/core/styles/createMuiTheme' {
+declare module '@mui/material/styles/createMuiTheme' {
   interface Theme {
     status: {
       danger: React.CSSProperties['color'];
@@ -166,7 +166,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
   }
 }
 
-declare module '@material-ui/core/styles/createPalette' {
+declare module '@mui/material/styles/createPalette' {
   interface Palette {
     neutral: Palette['primary'];
   }
@@ -214,9 +214,9 @@ You can use the React context to toggle the mode with a button inside your page.
 
 ```jsx
 import * as React from 'react';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');

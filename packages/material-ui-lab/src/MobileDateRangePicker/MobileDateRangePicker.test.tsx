@@ -1,5 +1,5 @@
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
+import TextField from '@mui/material/TextField';
 import MobileDateRangePicker from '@material-ui/lab/MobileDateRangePicker';
 import { describeConformance } from 'test/utils';
 import { wrapPickerMount, createPickerRender } from '../internal/pickers/test-utils';

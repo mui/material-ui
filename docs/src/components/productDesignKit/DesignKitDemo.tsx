@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { useTheme, styled } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import Fade from '@material-ui/core/Fade';
-import Typography from '@material-ui/core/Typography';
+import { useTheme, styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Fade from '@mui/material/Fade';
+import Typography from '@mui/material/Typography';
 import LaunchRounded from '@material-ui/icons/LaunchRounded';
 import TextFieldsRounded from '@material-ui/icons/TextFieldsRounded';
 import Section from 'docs/src/layouts/Section';

@@ -3,7 +3,7 @@
   "version": "5.0.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "next",
+    "@mui/material": "next",
     "@material-ui/lab": "next",
     "@material-ui/styled-engine-sc": "next",
     "@testing-library/jest-dom": "latest",

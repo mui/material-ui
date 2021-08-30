@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
-import ToggleButton from '@material-ui/core/ToggleButton';
-import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 import ViewQuiltRounded from '@material-ui/icons/ViewQuiltRounded';
 import ViewModuleRounded from '@material-ui/icons/ViewModuleRounded';

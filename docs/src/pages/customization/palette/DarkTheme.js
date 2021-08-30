@@ -1,13 +1,13 @@
 import * as React from 'react';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import {
   styled,
   ThemeProvider,
   useTheme,
   createTheme,
-} from '@material-ui/core/styles';
+} from '@mui/material/styles';
 
 const Root = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.default,

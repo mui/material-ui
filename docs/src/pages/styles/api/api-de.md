@@ -1,6 +1,6 @@
 # API
 
-<p class="description">The API reference of @material-ui/core/styles.</p>
+<p class="description">The API reference of @mui/material/styles.</p>
 
 ## `createGenerateClassName([options]) => class name generator`
 
@@ -49,7 +49,7 @@ Diese Funktion "macht zur Laufzeit nicht wirklich etwas", es ist nur die Identit
 
 ```jsx
 import { createStyles, makeStyles } from '@material-ui/styles';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
@@ -172,7 +172,7 @@ Verknüpfen Sie ein Stylesheet mit einer Funktionskomponente mit dem **styled co
 ```jsx
 import * as React from 'react';
 import { styled, ThemeProvider } from '@material-ui/styles';
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
 const MyComponent = styled('div')({
   backgroundColor: 'red',
@@ -241,7 +241,7 @@ Diese Komponente hat eine `Theme` Eigenschaft. Diese wird durch den Kontext in d
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@mui/material/styles';
 
 const theme = {};
 
@@ -266,7 +266,7 @@ Dieser Hook gibt das `Theme`-Objekt zurück, so dass es innerhalb einer Funktion
 
 ```jsx
 import * as React from 'react';
-import { useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@mui/material/styles';
 
 export default function MyComponent() {
   const theme = useTheme();
@@ -357,7 +357,7 @@ Geben Sie das `Theme`-Objekt als Eigenschaft der Eingabekomponente weiter, sodas
 
 ```jsx
 import * as React from 'react';
-import { withTheme } from '@material-ui/core/styles';
+import { withTheme } from '@mui/material/styles';
 
 function MyComponent(props) {
   return <div>{props.theme.direction}</div>;

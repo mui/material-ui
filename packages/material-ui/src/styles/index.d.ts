@@ -58,7 +58,7 @@ export { default as useThemeProps } from './useThemeProps';
 export * from './useThemeProps';
 export { default as styled } from './styled';
 /**
- * @deprecated will be removed in v5.beta, please use styled from @material-ui/core/styles instead
+ * @deprecated will be removed in v5.beta, please use styled from @mui/material/styles instead
  */
 export { default as experimentalStyled } from './styled';
 export { default as ThemeProvider } from './ThemeProvider';

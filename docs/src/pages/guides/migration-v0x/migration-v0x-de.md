@@ -27,21 +27,21 @@ Mit yarn:
 
 ```sh
 yarn add material-ui
-  yarn add @material-ui/core
+  yarn add @mui/material
 ```
 
 Oder mit npm:
 
 ```sh
 npm install material-ui
-  npm install @material-ui/core
+  npm install @mui/material
 ```
 
 dann
 
 ```js
 import FlatButton from 'material-ui/FlatButton'; // v0.x
-  import Button from '@material-ui/core/Button'; // v1.x
+  import Button from '@mui/material/Button'; // v1.x
 ```
 
 2. Führen Sie den [Migrationshelfer](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) auf Ihrem Projekt aus.
@@ -49,7 +49,7 @@ import FlatButton from 'material-ui/FlatButton'; // v0.x
 
 ```jsx
 import * as React from 'react';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; // v1.x
+import { MuiThemeProvider, createMuiTheme } from '@mui/material/styles'; // v1.x
 import { MuiThemeProvider as V0MuiThemeProvider } from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
@@ -98,7 +98,7 @@ Dadurch werden folgende Änderungen wie die folgende angewendet:
 
 ```diff
 -import FlatButton from 'material-ui/FlatButton';
-+import Button from '@material-ui/core/Button';
++import Button from '@mui/material/Button';
 
 -<FlatButton />
 +<Button />
@@ -110,7 +110,7 @@ Erhöhter Button-Aktualisierungspfad:
 
 ```diff
 -import RaisedButton from 'material-ui/RaisedButton';
-+import Button from '@material-ui/core/Button';
++import Button from '@mui/material/Button';
 
 -<RaisedButton />
 +<Button variant="contained" />
@@ -120,7 +120,7 @@ Erhöhter Button-Aktualisierungspfad:
 
 ```diff
 -import Subheader from 'material-ui/Subheader';
-+import ListSubheader from '@material-ui/core/ListSubheader';
++import ListSubheader from '@mui/material/ListSubheader';
 
 -<Subheader>Sub Heading</Subheader>
 +<ListSubheader>Sub Heading</ListSubheader>
@@ -130,7 +130,7 @@ Erhöhter Button-Aktualisierungspfad:
 
 ```diff
 -import Toggle from 'material-ui/Toggle';
-+import Switch from '@material-ui/core/Switch';
++import Switch from '@mui/material/Switch';
 
 -<Toggle
 
@@ -147,7 +147,7 @@ Erhöhter Button-Aktualisierungspfad:
 
 ```diff
 -import MenuItem from 'material-ui/MenuItem';
-+import MenuItem from '@material-ui/core/MenuItem';
++import MenuItem from '@mui/material/MenuItem';
 
 -<MenuItem primaryText="Profile" />
 +<MenuItem>Profile</MenuItem>
@@ -157,7 +157,7 @@ Erhöhter Button-Aktualisierungspfad:
 
 ```diff
 -import FontIcon from 'material-ui/FontIcon';
-+import Icon from '@material-ui/core/Icon';
++import Icon from '@mui/material/Icon';
 
 -<FontIcon>home</FontIcon>
 +<Icon>home</Icon>
@@ -167,7 +167,7 @@ Erhöhter Button-Aktualisierungspfad:
 
 ```diff
 -import CircularProgress from 'material-ui/CircularProgress';
-+import CircularProgress from '@material-ui/core/CircularProgress';
++import CircularProgress from '@mui/material/CircularProgress';
 
 -<CircularProgress mode="indeterminate" />
 +<CircularProgress variant="indeterminate" />
@@ -177,7 +177,7 @@ Erhöhter Button-Aktualisierungspfad:
 
 ```diff
 -import DropDownMenu from 'material-ui/DropDownMenu';
-+import Select from '@material-ui/core/Select';
++import Select from '@mui/material/Select';
 
 -<DropDownMenu></DropDownMenu>
 +<Select value={this.state.value}></Select>

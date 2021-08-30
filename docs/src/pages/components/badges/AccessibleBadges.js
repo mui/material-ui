@@ -1,6 +1,6 @@
 import * as React from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
+import IconButton from '@mui/material/IconButton';
+import Badge from '@mui/material/Badge';
 import MailIcon from '@material-ui/icons/Mail';
 
 function notificationsLabel(count) {

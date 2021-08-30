@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { SinonFakeTimers, useFakeTimers } from 'sinon';
-import TextField from '@material-ui/core/TextField';
+import TextField from '@mui/material/TextField';
 import { fireEvent, screen } from 'test/utils';
 import StaticDatePicker from '@material-ui/lab/StaticDatePicker';
 import {

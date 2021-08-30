@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Slider, { SliderThumb } from '@material-ui/core/Slider';
-import { styled } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
-import Box from '@material-ui/core/Box';
+import Slider, { SliderThumb } from '@mui/material/Slider';
+import { styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
+import Box from '@mui/material/Box';
 
 interface Props {
   children: React.ReactElement;

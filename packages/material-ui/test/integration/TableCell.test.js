@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils';
-import TableCell, { tableCellClasses as classes } from '@material-ui/core/TableCell';
-import Table from '@material-ui/core/Table';
-import TableFooter from '@material-ui/core/TableFooter';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import TableBody from '@material-ui/core/TableBody';
+import TableCell, { tableCellClasses as classes } from '@mui/material/TableCell';
+import Table from '@mui/material/Table';
+import TableFooter from '@mui/material/TableFooter';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import TableBody from '@mui/material/TableBody';
 
 describe('<TableRow> integration', () => {
   const render = createClientRender();

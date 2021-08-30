@@ -1,5 +1,5 @@
 export default {
-  '@material-ui/core': [
+  '@mui/material': [
     'Accordion',
     'AccordionActions',
     'AccordionDetails',

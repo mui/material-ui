@@ -5,7 +5,7 @@ import {
 } from '@material-ui/unstyled/AutocompleteUnstyled';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 
 const Root = styled('div')(
   ({ theme }) => `

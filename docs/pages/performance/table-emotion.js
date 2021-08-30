@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-// import { styled } from '@material-ui/core/styles';
+// import { styled } from '@mui/material/styles';
 import NoSsr from '@material-ui/unstyled/NoSsr';
 
 const createComponent = (defaultComponent) => {

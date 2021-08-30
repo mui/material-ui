@@ -1,5 +1,5 @@
 import { useTheme, makeStyles, styled } from '@material-ui/styles';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 import { expectType } from '@material-ui/types';
 
 declare module '@material-ui/styles' {

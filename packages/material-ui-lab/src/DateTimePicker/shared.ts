@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useThemeProps } from '@material-ui/core/styles';
+import { useThemeProps } from '@mui/material/styles';
 import { useDefaultDates, useUtils } from '../internal/pickers/hooks/useUtils';
 import { ExportedClockPickerProps } from '../ClockPicker/ClockPicker';
 import { pick12hOr24hFormat } from '../internal/pickers/text-field-helper';

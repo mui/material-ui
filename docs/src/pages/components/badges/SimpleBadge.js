@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Badge from '@material-ui/core/Badge';
+import Badge from '@mui/material/Badge';
 import MailIcon from '@material-ui/icons/Mail';
 
 export default function SimpleBadge() {

@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 import { expect } from 'chai';
 import * as React from 'react';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ReactTestRenderer from 'react-test-renderer';
 import createMount from './createMount';
 import findOutermostIntrinsic from './findOutermostIntrinsic';

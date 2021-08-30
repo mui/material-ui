@@ -6,15 +6,15 @@ import {
   unstable_composeClasses as composeClasses,
 } from '@material-ui/unstyled';
 import { alpha, darken, lighten, useThemeProps, styled } from '@material-ui/system';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
-import { capitalize } from '@material-ui/core/utils';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { capitalize } from '@mui/material/utils';
 import {
   useFormControl,
   switchClasses,
   getSwitchUtilityClass,
-} from '@material-ui/core';
-import TouchRipple from '@material-ui/core/ButtonBase/TouchRipple';
-import useTouchRipple from '@material-ui/core/useTouchRipple';
+} from '@mui/material';
+import TouchRipple from '@mui/material/ButtonBase/TouchRipple';
+import useTouchRipple from '@mui/material/useTouchRipple';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, edge, size, color, checked, disabled, focusVisible } = ownerState;

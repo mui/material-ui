@@ -31,10 +31,10 @@ yarn add @material-ui/lab@next
 
 ```sh
 // npmの場合
-npm install @material-ui/core@next
+npm install @mui/material@next
 
 // yarnの場合
-yarn add @material-ui/core@next
+yarn add @mui/material@next
 
 ```
 

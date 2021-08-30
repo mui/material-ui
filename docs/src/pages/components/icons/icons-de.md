@@ -37,10 +37,10 @@ If you aren't already using Material-UI in your project, you can add it with:
 
 ```sh
 // mit npm
-npm install @material-ui/core
+npm install @mui/material
 
 // mit yarn
-yarn add @material-ui/core
+yarn add @mui/material
 ```
 
 ### Nutzung
@@ -182,7 +182,7 @@ Note: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has a
 Die `Symbol-` Komponente zeigt ein Symbol aus einer beliebigen Symbolschriftart an, die Ligaturen unterstützt. Die `Symbol-` Komponente zeigt ein Symbol aus einer beliebigen Symbolschriftart an, die Ligaturen unterstützt. Um ein Symbol zu verwenden, wickeln Sie einfach das Symbol Namen (Schrift Ligatur) mit der `Icon` Komponente zum Beispiel:
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <Icon>star</Icon>
 ```
@@ -204,7 +204,7 @@ Standardmäßig erbt ein Symbol die aktuelle Textfarbe. Optional können Sie die
 For other fonts, you can customize the baseline class name using the `baseClassName` prop. For instance, you can display two-tone icons with Material Design:
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <link
   rel="stylesheet"
@@ -291,8 +291,8 @@ You should include the `titleAccess` prop with a meaningful value. The `role="im
 In the case of focusable interactive elements, for example when used with an icon button, you can use the `aria-label` prop:
 
 ```jsx
-import IconButton from '@material-ui/core/IconButton';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import IconButton from '@mui/material/IconButton';
+import SvgIcon from '@mui/material/SvgIcon';
 
 // ...
 
@@ -308,8 +308,8 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 You need to provide a text alternative that is only visible to assistive technologies.
 
 ```jsx
-import Box from '@material-ui/core/Box';
-import Icon from '@material-ui/core/Icon';
+import Box from '@mui/material/Box';
+import Icon from '@mui/material/Icon';
 import { visuallyHidden } from '@material-ui/utils';
 
 // ...

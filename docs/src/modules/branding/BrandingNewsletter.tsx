@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Alert from '@material-ui/core/Alert';
-import AlertTitle from '@material-ui/core/AlertTitle';
-import InputBase from '@material-ui/core/InputBase';
-import Typography from '@material-ui/core/Typography';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import InputBase from '@mui/material/InputBase';
+import Typography from '@mui/material/Typography';
 import t1 from 'docs/src/modules/branding/t1';
 
 function searchParams(params: any) {

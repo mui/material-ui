@@ -31,10 +31,10 @@ Le laboratoire dépend des composants du package principal. Si vous n'utilisez p
 
 ```sh
 // Avec npm
-npm install @material-ui/core@next
+npm install @mui/material@next
 
 // Avec yarn
-yarn add @material-ui/core@next
+yarn add @mui/material@next
 ```
 
 ## TypeScript

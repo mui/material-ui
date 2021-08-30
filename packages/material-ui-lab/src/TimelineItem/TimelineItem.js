@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { capitalize, isMuiElement } from '@material-ui/core/utils';
-import { styled, useThemeProps } from '@material-ui/core/styles';
+import { capitalize, isMuiElement } from '@mui/material/utils';
+import { styled, useThemeProps } from '@mui/material/styles';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { timelineContentClasses } from '../TimelineContent';
 import { timelineOppositeContentClasses } from '../TimelineOppositeContent';

@@ -31,10 +31,10 @@ Das Labor hat eine Peer-Abhängigkeit von den Kernkomponenten. Wenn Sie in Ihrem
 
 ```sh
 // mit npm
-npm install @material-ui/core
+npm install @mui/material
 
 // mit yarn
-yarn add @material-ui/core
+yarn add @mui/material
 ```
 
 ## TypeScript

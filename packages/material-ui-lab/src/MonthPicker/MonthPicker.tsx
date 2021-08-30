@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { SxProps } from '@material-ui/system';
-import { styled, useThemeProps, Theme } from '@material-ui/core/styles';
+import { styled, useThemeProps, Theme } from '@mui/material/styles';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,

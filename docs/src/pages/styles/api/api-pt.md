@@ -1,6 +1,6 @@
 # API
 
-<p class="description">A referência da API do @material-ui/core/styles.</p>
+<p class="description">A referência da API do @mui/material/styles.</p>
 
 ## `createGenerateClassName([options]) => class name generator`
 
@@ -49,7 +49,7 @@ Esta função realmente não "faz nada" em tempo de execução, é apenas uma fu
 
 ```jsx
 import { createStyles, makeStyles } from '@material-ui/styles';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
@@ -172,7 +172,7 @@ Vincula uma folha de estilos, com uma função de componente, usando o padrão d
 ```jsx
 import * as React from 'react';
 import { styled, ThemeProvider } from '@material-ui/styles';
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
 const MyComponent = styled('div')({
   backgroundColor: 'red',
@@ -241,7 +241,7 @@ Este componente tem uma propriedade `theme`, e se torna disponível pela árvore
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@mui/material/styles';
 
 const theme = {};
 
@@ -264,7 +264,7 @@ Este hook retorna o objeto `theme`, para que possa ser usado dentro de um compon
 
 ```jsx
 import * as React from 'react';
-import { useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@mui/material/styles';
 
 export default function MyComponent() {
   const theme = useTheme();
@@ -355,7 +355,7 @@ Fornece o objeto `theme` como uma propriedade do componente de entrada, para que
 
 ```jsx
 import * as React from 'react';
-import { withTheme } from '@material-ui/core/styles';
+import { withTheme } from '@mui/material/styles';
 
 function MyComponent(props) {
   return <div>{props.theme.direction}</div>;

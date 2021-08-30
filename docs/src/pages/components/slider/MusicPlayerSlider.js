@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { styled, useTheme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/core/Slider';
-import IconButton from '@material-ui/core/IconButton';
-import Stack from '@material-ui/core/Stack';
+import { styled, useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Slider from '@mui/material/Slider';
+import IconButton from '@mui/material/IconButton';
+import Stack from '@mui/material/Stack';
 import PauseRounded from '@material-ui/icons/PauseRounded';
 import PlayArrowRounded from '@material-ui/icons/PlayArrowRounded';
 import FastForwardRounded from '@material-ui/icons/FastForwardRounded';

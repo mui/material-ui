@@ -317,8 +317,8 @@ You can also specify your own custom breakpoints, and use them as keys when defi
 
 ```jsx
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import Box from '@mui/material/Box';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
   breakpoints: {
@@ -352,7 +352,7 @@ export default function CustomBreakpoints() {
 If you are using TypeScript, you will also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
 ```ts
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface BreakpointOverrides {
     xs: false; // removes the `xs` breakpoint
     sm: false;
@@ -387,10 +387,10 @@ It renders a `<div>` element by default.
 
 ### 3. Custom components
 
-In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@material-ui/core/styles`.
+In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@mui/material/styles`.
 
 ```jsx
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 
 const Div = styled('div')``;
 ```

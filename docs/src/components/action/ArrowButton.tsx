@@ -1,5 +1,5 @@
 import * as React from 'react';
-import IconButton, { IconButtonProps } from '@material-ui/core/IconButton';
+import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import KeyboardArrowLeftRounded from '@material-ui/icons/KeyboardArrowLeftRounded';
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 

@@ -75,7 +75,7 @@ Para situações de uso avançadas de customização, um hook `useRadioGroup()` 
 ### API
 
 ```jsx
-import { useRadioGroup } from '@material-ui/core/RadioGroup';
+import { useRadioGroup } from '@mui/material/RadioGroup';
 ```
 
 #### Retornos

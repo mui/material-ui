@@ -21,7 +21,7 @@ $ npx @material-ui/envinfo
     @emotion/react: ^11.0.0 => 11.1.1
     @emotion/styled: ^11.0.0 => 11.0.0
     @material-ui/codemod:  5.0.0-alpha.17
-    @material-ui/core:  5.0.0-alpha.18
+    @mui/material:  5.0.0-alpha.18
     @material-ui/docs:  5.0.0-alpha.1
     @material-ui/envinfo:  1.0.0
     @material-ui/icons:  5.0.0-alpha.15

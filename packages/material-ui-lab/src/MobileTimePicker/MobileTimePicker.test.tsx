@@ -1,5 +1,5 @@
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
+import TextField from '@mui/material/TextField';
 import { spy } from 'sinon';
 import { expect } from 'chai';
 import { describeConformance, fireEvent, fireTouchChangedEvent } from 'test/utils';

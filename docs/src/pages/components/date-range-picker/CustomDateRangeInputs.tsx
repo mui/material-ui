@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DateRangePicker, { DateRange } from '@material-ui/lab/DateRangePicker';

@@ -169,7 +169,7 @@ No entanto isto não é muito elegante de acordo com o princípio de software [D
 
 ```ts
 import { createStyles } from '@material-ui/styles';
-import { WithStyles } from '@material-ui/core';
+import { WithStyles } from '@mui/material';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -224,9 +224,9 @@ Ao adicionar propriedades customizadas ao `Theme`, você pode continuar a utiliz
 O exemplo a seguir adiciona uma propriedade `appDrawer` que é mesclada na que foi exportada pelo `material-ui`:
 
 ```ts
-import { Breakpoint, Theme } from '@material-ui/core/styles';
+import { Breakpoint, Theme } from '@mui/material/styles';
 
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface Theme {
     appDrawer: {
       width: React.CSSProperties['width'];
@@ -248,7 +248,7 @@ E uma fábrica customizada de temas com opções padrão adicionais:
 **./styles/createMyTheme**:
 
 ```ts
-import { createTheme, ThemeOptions } from '@material-ui/core/styles';
+import { createTheme, ThemeOptions } from '@mui/material/styles';
 
 export default function createMyTheme(options: ThemeOptions) {
   return createTheme({

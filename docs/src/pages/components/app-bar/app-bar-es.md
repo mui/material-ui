@@ -128,7 +128,7 @@ Aparece un botón de acción flotante al desplazarse para que sea fácil volver 
 #### Ejemplos
 
 ```jsx
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
 
 function HideOnScroll(props) {
   const trigger = useScrollTrigger();

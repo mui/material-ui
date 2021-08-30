@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { IconButtonProps, InternalStandardProps as StandardProps, Theme } from '@material-ui/core';
-import { ChipProps, ChipTypeMap } from '@material-ui/core/Chip';
-import { PopperProps } from '@material-ui/core/Popper';
+import { IconButtonProps, InternalStandardProps as StandardProps, Theme } from '@mui/material';
+import { ChipProps, ChipTypeMap } from '@mui/material/Chip';
+import { PopperProps } from '@mui/material/Popper';
 import { SxProps } from '@material-ui/system';
 import { OverridableStringUnion } from '@material-ui/types';
 import {

@@ -31,10 +31,10 @@ Lab tiene como dependencia par a los componentes del core. Si aún no estás usa
 
 ```sh
 // usando npm
-npm install @material-ui/core
+npm install @mui/material
 
 // usando yarn
-yarn add @material-ui/core
+yarn add @mui/material
 ```
 
 ## TypeScript

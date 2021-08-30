@@ -1,13 +1,13 @@
 import * as React from 'react';
 import AlarmIcon from '@material-ui/icons/Alarm';
 import SnoozeIcon from '@material-ui/icons/Snooze';
-import TextField from '@material-ui/core/TextField';
+import TextField from '@mui/material/TextField';
 import ClockIcon from '@material-ui/icons/AccessTime';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DateTimePicker from '@material-ui/lab/DateTimePicker';
 import MobileDateTimePicker from '@material-ui/lab/MobileDateTimePicker';
-import Stack from '@material-ui/core/Stack';
+import Stack from '@mui/material/Stack';
 
 export default function CustomDateTimePicker() {
   const [clearedDate, setClearedDate] = React.useState<Date | null>(null);

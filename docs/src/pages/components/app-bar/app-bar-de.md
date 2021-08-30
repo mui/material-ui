@@ -125,7 +125,7 @@ Beim Scrollen erscheint ein schwebender Button, um einfach wieder zum Seitenanfa
 #### Beispiele
 
 ```jsx
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
 
 function HideOnScroll(props) {
   const trigger = useScrollTrigger();

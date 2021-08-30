@@ -94,7 +94,7 @@ If you're using TypeScript, you'll need to specify your new variants/colors, usi
 <!-- Tested with packages/material-ui/test/typescript/augmentation/themeComponents.spec.ts -->
 
 ```tsx
-declare module '@material-ui/core/Button/Button' {
+declare module '@mui/material/Button/Button' {
   interface ButtonPropsVariantOverrides {
     dashed: true;
   }

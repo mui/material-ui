@@ -50,7 +50,7 @@ El componente Box tiene una propiedad `clone` para permitir el uso del método d
 ## API
 
 ```jsx
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 ```
 
 | Nombre                                      | Tipo                                                                                                                          | Por defecto                             | Descripción                                                                                              |

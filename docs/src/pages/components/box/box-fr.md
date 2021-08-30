@@ -50,7 +50,7 @@ The Box component has a `clone` property to enable the usage of the clone elemen
 ## API
 
 ```jsx
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 ```
 
 | Nom                                            | Type                                                                                                                          | Défaut                                  | Description                                                                                                            |

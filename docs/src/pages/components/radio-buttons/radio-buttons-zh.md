@@ -75,7 +75,7 @@ Use the `size` prop or customize the font size of the svg icons to change the si
 ### API
 
 ```jsx
-import { useRadioGroup } from '@material-ui/core/RadioGroup';
+import { useRadioGroup } from '@mui/material/RadioGroup';
 ```
 
 #### 返回结果

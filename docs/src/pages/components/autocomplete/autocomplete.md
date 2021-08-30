@@ -120,10 +120,10 @@ The Autocomplete component is built on this hook.
 import { useAutocomplete } from '@material-ui/unstyled/AutocompleteUnstyled';
 ```
 
-The `useAutocomplete` hook is also reexported from @material-ui/core for convenience and backward compatibility.
+The `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.
 
 ```tsx
-import useAutocomplete from '@material-ui/core/useAutocomplete';
+import useAutocomplete from '@mui/material/useAutocomplete';
 ```
 
 - 📦 [4.5 kB gzipped](/size-snapshot).
@@ -229,7 +229,7 @@ The component exposes a factory to create a filter method that can provided to t
 You can use it to change the default option filter behavior.
 
 ```js
-import { createFilterOptions } from '@material-ui/core/Autocomplete';
+import { createFilterOptions } from '@mui/material/Autocomplete';
 ```
 
 ### `createFilterOptions(config) => filterOptions`

@@ -1,6 +1,6 @@
 # Advanced 进阶
 
-<p class="description">本节包含了 @material-ui/core/styles 的一些更多的进阶用法。</p>
+<p class="description">本节包含了 @mui/material/styles 的一些更多的进阶用法。</p>
 
 ## Theming 主题
 
@@ -9,7 +9,7 @@
 > 此示例为自定义组件创建了一个主题对象（theme object）。 If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createTheme()` method. 请前往 [theming 部分](/customization/theming/) 学习如何构建自己的 Material-UI 主题。
 
 ```jsx
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import DeepChild from './my_components/DeepChild';
 
 const theme = {
@@ -36,7 +36,7 @@ function Theming() {
 在函数组件（function components）中的使用：
 
 ```jsx
-import { useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@mui/material/styles';
 
 function DeepChild() {
   const theme = useTheme();
@@ -51,7 +51,7 @@ function DeepChild() {
 在类（class）或函数（function）组件中的使用：
 
 ```jsx
-import { withTheme } from '@material-ui/core/styles';
+import { withTheme } from '@mui/material/styles';
 
 function DeepChildRaw(props) {
   return <span>{`spacing ${props.theme.spacing}`}</span>;
@@ -394,7 +394,7 @@ function render() {
 
 ### 默认值
 
-默认情况下，`@material-ui/core/styles` 生成的类名 **不是固定值**； 所以你不能指望它们保持不变。 让我们以下面的样式（style）作为示例：
+默认情况下，`@mui/material/styles` 生成的类名 **不是固定值**； 所以你不能指望它们保持不变。 让我们以下面的样式（style）作为示例：
 
 ```js
 const useStyles = makeStyles({
@@ -427,15 +427,15 @@ const identifier = 123;
 const className = `${productionPrefix}-${identifier}`;
 ```
 
-### 与 `@material-ui/core` 一起使用
+### 与 `@mui/material` 一起使用
 
-`@material-ui/core` 组件生成的类名表现大相径庭。 当满足以下条件时，类名是 **确定的**：
+`@mui/material` 组件生成的类名表现大相径庭。 当满足以下条件时，类名是 **确定的**：
 
 - 仅使用一个主题提供程序（**无主题嵌套**）。
 - 样式表的名称以 `Mui` 开头（包含所有 Material-UI 组件）。
 - [类名生成器](/styles/api/#creategenerateclassname-options-class-name-generator)的 `disableGlobal` 选项为 `false`（默认值）。
 
-`@material-ui/core` 最常见的用例可以满足这些条件。 例如，在这个样式表中：
+`@mui/material` 最常见的用例可以满足这些条件。 例如，在这个样式表中：
 
 ```jsx
 const useStyles = makeStyles(
@@ -487,13 +487,13 @@ const useStyles = makeStyles(
 }
 ```
 
-_这是对 `@material-ui/core/Button` 组件样式表的简化。_
+_这是对 `@mui/material/Button` 组件样式表的简化。_
 
 使用 [`classes` API](#overriding-styles-classes-prop) 来自定义 TextField 可能会很麻烦，所以你必须定义类属性（classes prop）。 如上文所述，使用默认值会比较容易。 例如:
 
 ```jsx
 import styled from 'styled-components';
-import { TextField } from '@material-ui/core';
+import { TextField } from '@mui/material';
 
 const StyledTextField = styled(TextField)`
   label.focused {

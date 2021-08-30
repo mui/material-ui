@@ -37,10 +37,10 @@ yarn add @material-ui/icons@next
 
 ```sh
 // 用 npm 安装
-npm install @material-ui/core@next
+npm install @mui/material@next
 
 // 用 yarn 安装
-yarn add @material-ui/core@next
+yarn add @mui/material@next
 ```
 
 ### 使用
@@ -182,7 +182,7 @@ FontAwesomeIcon 的 `fullWidth` 属性也可以用来应用近似正确的尺寸
 对于支持连字的任何图标字体，`Icon` 组件能够将其显示为一个图标。 对于支持连字的任何图标字体，`Icon` 组件能够将其显示为一个图标。 若想要使用图标，您只需把图标名（字体连字）和 `Icon` 组件包装到一起，例如：
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <Icon>star</Icon>
 ```
@@ -204,7 +204,7 @@ import Icon from '@material-ui/core/Icon';
 对于其他字体，你可以使用 `baseClassName` 属性来自定义基线类名。 例如，你可以使用 Material Design 显示 two-tone 图标：
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <link
   rel="stylesheet"
@@ -291,8 +291,8 @@ const theme = createTheme({
 对于可聚焦的交互式元素，例如当与图标按钮一起使用时，你可以使用 `aria-label` 属性：
 
 ```jsx
-import IconButton from '@material-ui/core/IconButton';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import IconButton from '@mui/material/IconButton';
+import SvgIcon from '@mui/material/SvgIcon';
 
 // ...
 
@@ -308,8 +308,8 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 你需要提供一个只有辅助技术才能看到的文本替代方案：
 
 ```jsx
-import Box from '@material-ui/core/Box';
-import Icon from '@material-ui/core/Icon';
+import Box from '@mui/material/Box';
+import Icon from '@mui/material/Icon';
 import { visuallyHidden } from '@material-ui/utils';
 
 // ...

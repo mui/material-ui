@@ -44,7 +44,7 @@ Scrolling is blocked as soon as a modal is opened. This prevents interacting wit
 The ripple effect is exclusively coming from the `BaseButton` component. You can disable the ripple effect globally by providing the following in your theme:
 
 ```js
-import { createTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   components: {
@@ -63,7 +63,7 @@ const theme = createTheme({
 Material-UI uses the same theme helper for creating all its transitions. Therefore you can disable all transitions by overriding the helper in your theme:
 
 ```js
-import { createTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   transitions: {
@@ -78,7 +78,7 @@ It can be useful to disable transitions during visual testing or to improve perf
 You can go one step further by disabling all transitions and animations effects:
 
 ```js
-import { createTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   components: {
@@ -305,7 +305,7 @@ function handleRender(req, res) {
   -// Create a sheets instance.
   ```
 
-- You need to verify that your client and server are running the **exactly the same version** of Material-UI. It is possible that a mismatch of even minor versions can cause styling problems. To check version numbers, run `npm list @material-ui/core` in the environment where you build your application and also in your deployment environment.
+- You need to verify that your client and server are running the **exactly the same version** of Material-UI. It is possible that a mismatch of even minor versions can cause styling problems. To check version numbers, run `npm list @mui/material` in the environment where you build your application and also in your deployment environment.
 
   You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
 
@@ -314,8 +314,8 @@ function handleRender(req, res) {
   ```diff
     "dependencies": {
     ...
-  -   "@material-ui/core": "^4.0.0",
-+   "@material-ui/core": "4.0.0",
+  -   "@mui/material": "^4.0.0",
++   "@mui/material": "4.0.0",
     ...
     },
   ```

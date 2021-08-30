@@ -21,10 +21,10 @@ If you are not already using Material-UI in your project, you can add it with:
 
 ```sh
 // with npm
-npm install @material-ui/core@next
+npm install @mui/material@next
 
 // with yarn
-yarn add @material-ui/core@next
+yarn add @mui/material@next
 ```
 
 ## Documentation

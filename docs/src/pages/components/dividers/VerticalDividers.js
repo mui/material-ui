@@ -4,8 +4,8 @@ import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter';
 import FormatAlignRightIcon from '@material-ui/icons/FormatAlignRight';
 import FormatBoldIcon from '@material-ui/icons/FormatBold';
 import FormatItalicIcon from '@material-ui/icons/FormatItalic';
-import Box from '@material-ui/core/Box';
-import Divider from '@material-ui/core/Divider';
+import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
 
 export default function VerticalDividers() {
   return (

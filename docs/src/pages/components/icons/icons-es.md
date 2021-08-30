@@ -37,10 +37,10 @@ If you aren't already using Material-UI in your project, you can add it with:
 
 ```sh
 // usando npm
-npm install @material-ui/core
+npm install @mui/material
 
 // usando yarn
-yarn add @material-ui/core
+yarn add @mui/material
 ```
 
 ### Implementación
@@ -182,7 +182,7 @@ Nota: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) ya ha
 El componente `Icon` mostrará iconos de cualquier fuente compatible con ligaduras. El componente `Icon` mostrará iconos de cualquier fuente compatible con ligaduras. Para usar un icono, simplemente se envuelve el nombre del icono (ligadura de la fuente) con el componente `Icono`, por ejemplo:
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <Icon>star</Icon>
 ```
@@ -204,7 +204,7 @@ Por defecto, un Icono heredará el color del texto actual. Opcionalmente, se pue
 For other fonts, you can customize the baseline class name using the `baseClassName` prop. For instance, you can display two-tone icons with Material Design:
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <link
   rel="stylesheet"
@@ -291,8 +291,8 @@ You should include the `titleAccess` prop with a meaningful value. The `role="im
 In the case of focusable interactive elements, for example when used with an icon button, you can use the `aria-label` prop:
 
 ```jsx
-import IconButton from '@material-ui/core/IconButton';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import IconButton from '@mui/material/IconButton';
+import SvgIcon from '@mui/material/SvgIcon';
 
 // ...
 
@@ -308,8 +308,8 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 You need to provide a text alternative that is only visible to assistive technologies.
 
 ```jsx
-import Box from '@material-ui/core/Box';
-import Icon from '@material-ui/core/Icon';
+import Box from '@mui/material/Box';
+import Icon from '@mui/material/Icon';
 import { visuallyHidden } from '@material-ui/utils';
 
 // ...

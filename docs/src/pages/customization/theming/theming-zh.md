@@ -43,7 +43,7 @@ const theme = createTheme({
 如果您使用的是 TypeScript，您还需要使用 [module augmentation](/guides/typescript/#customization-of-theme) 来让主题接受上述值。
 
 ```tsx
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface Theme {
     status: {
       danger: string;
@@ -111,9 +111,9 @@ declare module '@material-ui/core/styles' {
 #### 例子
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
+import { createTheme } from '@mui/material/styles';
+import purple from '@mui/material/colors/purple';
+import green from '@mui/material/colors/green';
 
 const theme = createTheme({
   palette: {
@@ -148,7 +148,7 @@ const theme = createTheme({
 #### 例子
 
 ```js
-import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
@@ -176,7 +176,7 @@ theme = responsiveFontSizes(theme);
 #### 例子
 
 ```js
-import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
+import { unstable_createMuiStrictModeTheme } from '@mui/material/styles';
 
 const theme = unstable_createMuiStrictModeTheme();
 

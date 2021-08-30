@@ -86,7 +86,7 @@ const theme = createTheme({
 <!-- Tested with packages/material-ui/test/typescript/augmentation/themeComponents.spec.ts -->
 
 ```tsx
-declare module '@material-ui/core/Button/Button' {
+declare module '@mui/material/Button/Button' {
   interface ButtonPropsVariantOverrides {
     dashed: true;
   }

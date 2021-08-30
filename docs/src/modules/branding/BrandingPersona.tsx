@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { OverridableComponent } from '@material-ui/core/OverridableComponent';
-import Box, { BoxTypeMap } from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Stack from '@material-ui/core/Stack';
+import { OverridableComponent } from '@mui/material/OverridableComponent';
+import Box, { BoxTypeMap } from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';
-import IconButton from '@material-ui/core/IconButton';
-import { styled } from '@material-ui/core/styles';
+import IconButton from '@mui/material/IconButton';
+import { styled } from '@mui/material/styles';
 import t1 from 'docs/src/modules/branding/t1';
 
 interface PersonaRootProps {

@@ -24,14 +24,14 @@ Here are the most significant improvements in September:
 
 - 📊 Launch a [developer survey](https://www.surveymonkey.com/r/5XHDL76) as a precursor to a major Date Picker enhancement effort. We plan a new investment batch of between 100 and 500 hours.
 
-- 📚 Change imports from `@material-ui/styles` to `@material-ui/core/styles`
+- 📚 Change imports from `@material-ui/styles` to `@mui/material/styles`
 
-  The presence of two almost identical import paths has been a source of confusion: @material-ui/styles and @material-ui/core/styles.
-  Starting with v4.5.1, the documentation mentions @material-ui/core/styles as much as possible.
+  The presence of two almost identical import paths has been a source of confusion: @material-ui/styles and @mui/material/styles.
+  Starting with v4.5.1, the documentation mentions @mui/material/styles as much as possible.
 
   ```diff
   -import { makeStyles } from '@material-ui/styles';
-  +import { makeStyles } from '@material-ui/core/styles';
+  +import { makeStyles } from '@mui/material/styles';
   ```
 
   This change removes the need to install the `@material-ui/styles` package directly.

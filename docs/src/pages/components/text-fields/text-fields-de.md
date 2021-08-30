@@ -122,7 +122,7 @@ For advanced customization use cases, a `useFormControl()` hook is exposed. This
 **API**
 
 ```jsx
-import { useFormControl } from '@material-ui/core/FormControl';
+import { useFormControl } from '@mui/material/FormControl';
 ```
 
 **Rückgabewerte**

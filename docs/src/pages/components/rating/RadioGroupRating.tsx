@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Rating, { IconContainerProps } from '@material-ui/core/Rating';
+import Rating, { IconContainerProps } from '@mui/material/Rating';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 import SentimentDissatisfiedIcon from '@material-ui/icons/SentimentDissatisfied';
 import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';

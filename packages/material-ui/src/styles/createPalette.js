@@ -238,7 +238,7 @@ export default function createPalette(palette) {
           '\n' +
           'Did you intend to use one of the following approaches?\n' +
           '\n' +
-          'import { green } from "@material-ui/core/colors";\n' +
+          'import { green } from "@mui/material/colors";\n' +
           '\n' +
           'const theme1 = createTheme({ palette: {\n' +
           '  primary: green,\n' +

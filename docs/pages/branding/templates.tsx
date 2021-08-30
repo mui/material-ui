@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import Divider from '@material-ui/core/Divider';
+import Divider from '@mui/material/Divider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import TemplateHero from 'docs/src/components/productTemplate/TemplateHero';

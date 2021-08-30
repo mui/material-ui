@@ -171,7 +171,7 @@ Dies ist jedoch nicht sehr [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yo
 
 ```ts
 import { createStyles } from '@material-ui/styles';
-import { WithStyles } from '@material-ui/core';
+import { WithStyles } from '@mui/material';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -226,9 +226,9 @@ Beim Hinzufügen benutzerdefinierter Eigenschaften zum `Theme` können Sie es we
 Im folgenden Beispiel wird eine `appDrawer` Eigenschaft hinzugefügt, welche in das von `material-ui` exportierte Theme eingefügt wird:
 
 ```ts
-import { Breakpoint, Theme } from '@material-ui/core/styles';
+import { Breakpoint, Theme } from '@mui/material/styles';
 
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface Theme {
     appDrawer: {
       width: React.CSSProperties['width'];
@@ -250,7 +250,7 @@ Und eine benutzerdefinierte Theme Generierung mit zusätzlichen Standardoptionen
 **./styles/createMyTheme**:
 
 ```ts
-import { createTheme, ThemeOptions } from '@material-ui/core/styles';
+import { createTheme, ThemeOptions } from '@mui/material/styles';
 
 export default function createMyTheme(options: ThemeOptions) {
   return createTheme({

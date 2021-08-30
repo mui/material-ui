@@ -9,8 +9,8 @@ La localización predeterminada de Material-UI es Inglés (Estados Unidos). Si q
 Utilice el tema para configurar el texto regional globalmente:
 
 ```jsx
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import { zhCN } from '@material-ui/core/locale';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { zhCN } from '@mui/material/locale';
 
 const theme = createTheme(
   {

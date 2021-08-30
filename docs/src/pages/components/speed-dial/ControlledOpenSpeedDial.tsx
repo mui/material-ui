@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import SpeedDial from '@material-ui/core/SpeedDial';
-import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
-import SpeedDialAction from '@material-ui/core/SpeedDialAction';
+import Box from '@mui/material/Box';
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
 import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
 import SaveIcon from '@material-ui/icons/Save';
 import PrintIcon from '@material-ui/icons/Print';

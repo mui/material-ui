@@ -50,7 +50,7 @@ For non-Material-UI components, use the `component` prop.
 ## API
 
 ```jsx
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 ```
 
 | 名称                                       | 类型                                                                                                                            | 默认值                                     | 描述                                         |

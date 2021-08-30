@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SpeedDial from '@material-ui/core/SpeedDial';
+import SpeedDial from '@mui/material/SpeedDial';
 
 let warnedOnce = false;
 
@@ -12,8 +12,8 @@ export default React.forwardRef(function DeprecatedSpeedDial(props, ref) {
       [
         'Material-UI: The SpeedDial component was moved from the lab to the core.',
         '',
-        "You should use `import { SpeedDial } from '@material-ui/core'`",
-        "or `import SpeedDial from '@material-ui/core/SpeedDial'`",
+        "You should use `import { SpeedDial } from '@mui/material'`",
+        "or `import SpeedDial from '@mui/material/SpeedDial'`",
       ].join('\n'),
     );
 

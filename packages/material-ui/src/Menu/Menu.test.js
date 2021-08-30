@@ -2,8 +2,8 @@ import * as React from 'react';
 import { spy, useFakeTimers } from 'sinon';
 import { expect } from 'chai';
 import { createClientRender, describeConformance, screen, fireEvent } from 'test/utils';
-import Menu, { menuClasses as classes } from '@material-ui/core/Menu';
-import Popover from '@material-ui/core/Popover';
+import Menu, { menuClasses as classes } from '@mui/material/Menu';
+import Popover from '@mui/material/Popover';
 
 describe('<Menu />', () => {
   /**

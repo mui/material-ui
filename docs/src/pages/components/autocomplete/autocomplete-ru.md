@@ -113,7 +113,7 @@ If you intend to use this mode for a [combo box](#combo-box) like experience (an
 For advanced customization use cases, a headless `useAutocomplete()` hook is exposed. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component is built on this hook.
 
 ```jsx
-import useAutocomplete from '@material-ui/core/useAutocomplete';
+import useAutocomplete from '@mui/material/useAutocomplete';
 ```
 
 - 4.5 [4,5 кБ в сжатом виде](/size-snapshot).
@@ -219,7 +219,7 @@ The following demo relies on [autosuggest-highlight](https://github.com/moroshko
 The component exposes a factory to create a filter method that can provided to the `filterOptions` prop. You can use it to change the default option filter behavior.
 
 ```js
-import { createFilterOptions } from '@material-ui/core/Autocomplete';
+import { createFilterOptions } from '@mui/material/Autocomplete';
 ```
 
 ### `createFilterOptions(config) => filterOptions`

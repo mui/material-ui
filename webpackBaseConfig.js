@@ -9,7 +9,7 @@ module.exports = {
   resolve: {
     modules: [__dirname, 'node_modules'],
     alias: {
-      '@material-ui/core': path.resolve(__dirname, './packages/material-ui/src'),
+      '@mui/material': path.resolve(__dirname, './packages/material-ui/src'),
       '@material-ui/docs': path.resolve(__dirname, './packages/material-ui-docs/src'),
       '@material-ui/icons': path.resolve(__dirname, './packages/material-ui-icons/lib'),
       '@material-ui/lab': path.resolve(__dirname, './packages/material-ui-lab/src'),

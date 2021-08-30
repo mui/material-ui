@@ -24,18 +24,18 @@ Você precisa atualizar seu `package.json` para usar a versão mais recente do M
 
 ```json
 "dependencies": {
-  "@material-ui/core": "^4.0.0"
+  "@mui/material": "^4.0.0"
 }
 ```
 
 Ou execute
 
 ```sh
-npm install @material-ui/core
+npm install @mui/material
 
 ou
 
-yarn add @material-ui/core
+yarn add @mui/material
 ```
 
 ### Atualize a versão do React
@@ -83,8 +83,8 @@ yarn add @material-ui/styles
 - Renomeie `convertHexToRGB` para `hexToRgb`.
 
   ```diff
-  -import { convertHexToRgb } from '@material-ui/core/styles/colorManipulator';
-  +import { hexToRgb } from '@material-ui/core/styles';
+  -import { convertHexToRgb } from '@mui/material/styles/colorManipulator';
+  +import { hexToRgb } from '@mui/material/styles';
   ```
 
 - Escopo da [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). Você deve aplicar as seguintes alterações na sua base de código. Ele ajuda a isolar a lógica da animação:
@@ -159,7 +159,7 @@ yarn add @material-ui/styles
 
   ```diff
   -import Container from '@material-ui/lab/Container';
-  +import Container from '@material-ui/core/Container';
+  +import Container from '@mui/material/Container';
   ```
 
 ### TypeScript
@@ -196,16 +196,16 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
   ```
 
   ```diff
-  -import Button from '@material-ui/core/Button';
+  -import Button from '@mui/material/Button';
   -<Button variant="fab" />
-  +import Fab from '@material-ui/core/Fab';
+  +import Fab from '@mui/material/Fab';
   +<Fab />
   ```
 
   ```diff
-  -import Button from '@material-ui/core/Button';
+  -import Button from '@mui/material/Button';
   -<Button variant="extendedFab" />
-  +import Fab from '@material-ui/core/Fab';
+  +import Fab from '@mui/material/Fab';
   +<Fab variant="extended" />
   ```
 
@@ -290,11 +290,11 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
 
 ### Slider
 
-- [Slider] Mova de `@material-ui/lab` para `@material-ui/core`.
+- [Slider] Mova de `@material-ui/lab` para `@mui/material`.
 
   ```diff
   -import Slider from '@material-ui/lab/Slider'
-  +import Slider from '@material-ui/core/Slider'
+  +import Slider from '@mui/material/Slider'
   ```
 
 ### Interruptor

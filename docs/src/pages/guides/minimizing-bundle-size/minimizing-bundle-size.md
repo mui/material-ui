@@ -16,7 +16,7 @@ Material-UI exposes its full API on the top-level `material-ui` import.
 If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
 
 ```js
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField } from '@mui/material';
 ```
 
 ⚠️ The following instructions are only needed if you want to optimize your development startup times or if you are using an older bundler
@@ -37,21 +37,21 @@ For instance, use:
 
 ```js
 // 🚀 Fast
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 ```
 
 instead of top-level imports (without a Babel plugin):
 
 ```js
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField } from '@mui/material';
 ```
 
 This is the option we document in all the demos since it requires no configuration.
 It is encouraged for library authors that are extending the components.
 Head to [Option 2](#option-2) for the approach that yields the best DX and UX.
 
-While importing directly in this manner doesn't use the exports in [the main file of `@material-ui/core`](https://unpkg.com/@material-ui/core), this file can serve as a handy reference as to which modules are public.
+While importing directly in this manner doesn't use the exports in [the main file of `@mui/material`](https://unpkg.com/@mui/material), this file can serve as a handy reference as to which modules are public.
 
 Be aware that we only support first and second-level imports.
 Anything deeper is considered private and can cause issues, such as module duplication in your bundle.
@@ -59,16 +59,16 @@ Anything deeper is considered private and can cause issues, such as module dupli
 ```js
 // ✅ OK
 import { Add as AddIcon } from '@material-ui/icons';
-import { Tabs } from '@material-ui/core';
+import { Tabs } from '@mui/material';
 //                                 ^^^^ 1st or top-level
 
 // ✅ OK
 import AddIcon from '@material-ui/icons/Add';
-import Tabs from '@material-ui/core/Tabs';
+import Tabs from '@mui/material/Tabs';
 //                                  ^^^^ 2nd level
 
 // ❌ NOT OK
-import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
+import TabIndicator from '@mui/material/Tabs/TabIndicator';
 //                                               ^^^^^^^^^^^^ 3rd level
 ```
 
@@ -80,7 +80,7 @@ If you're using `eslint` you can catch problematic imports with the [`no-restric
     "no-restricted-imports": [
       "error",
       {
-        "patterns": ["@material-ui/*/*/*", "!@material-ui/core/test-utils/*"]
+        "patterns": ["@material-ui/*/*/*", "!@mui/material/test-utils/*"]
       }
     ]
   }
@@ -97,7 +97,7 @@ This option provides the best User Experience and Developer Experience:
   Overall, the code is easier to read, and you are less likely to make a mistake when importing a new module.
 
 ```js
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField } from '@mui/material';
 ```
 
 However, you need to apply the two following steps correctly.
@@ -117,7 +117,7 @@ Pick one of the following plugins:
     [
       'babel-plugin-import',
       {
-        libraryName: '@material-ui/core',
+        libraryName: '@mui/material',
         libraryDirectory: '',
         camel2DashComponentName: false,
       },
@@ -147,7 +147,7 @@ Pick one of the following plugins:
   const plugins = [
     [
       'babel-plugin-direct-import',
-      { modules: ['@material-ui/core', '@material-ui/icons'] },
+      { modules: ['@mui/material', '@material-ui/icons'] },
     ],
   ];
 
@@ -192,9 +192,9 @@ Finally, you can convert your existing codebase to this option with this [top-le
 It will perform the following diffs:
 
 ```diff
--import Button from '@material-ui/core/Button';
--import TextField from '@material-ui/core/TextField';
-+import { Button, TextField } from '@material-ui/core';
+-import Button from '@mui/material/Button';
+-import TextField from '@mui/material/TextField';
++import { Button, TextField } from '@mui/material';
 ```
 
 ## Available bundles
@@ -205,12 +205,12 @@ The package published on npm is **transpiled**, with [Babel](https://github.com/
 
 ### Modern bundle
 
-The modern bundle can be found under the [`/modern` folder](https://unpkg.com/@material-ui/core/modern/).
+The modern bundle can be found under the [`/modern` folder](https://unpkg.com/@mui/material/modern/).
 It targets the latest released versions of evergreen browsers (Chrome, Firefox, Safari, Edge).
 This can be used to make separate bundles targeting different browsers.
 
 ### Legacy bundle
 
 If you need to support IE 11 you cannot use the default or modern bundle without transpilation.
-However, you can use the legacy bundle found under the [`/legacy` folder](https://unpkg.com/@material-ui/core/legacy/).
+However, you can use the legacy bundle found under the [`/legacy` folder](https://unpkg.com/@mui/material/legacy/).
 You don't need any additional polyfills.

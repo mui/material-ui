@@ -9,7 +9,7 @@ import {
 } from '@material-ui/system';
 import { deepmerge, unstable_useForkRef as useForkRef } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { styled, useThemeProps } from '@material-ui/core/styles';
+import { styled, useThemeProps } from '@mui/material/styles';
 import { getMasonryUtilityClass } from './masonryClasses';
 import MasonryContext from './MasonryContext';
 

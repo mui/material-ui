@@ -9,7 +9,7 @@ This utility is built on top of the `styled()` module of [`@material-ui/styled-e
 
 ### Import path
 
-You can use the utility coming from the `@material-ui/system` package, or if you are using `@material-ui/core`, you can import it from `@material-ui/core/styles`.
+You can use the utility coming from the `@material-ui/system` package, or if you are using `@mui/material`, you can import it from `@mui/material/styles`.
 The difference is in the default `theme` that is used (if no theme is available in the React context).
 
 ### What problems does it solve?

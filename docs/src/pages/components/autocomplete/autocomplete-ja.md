@@ -113,7 +113,7 @@ Google searchやreact-autowhateverなどの検索候補が表示されるよう�
 For advanced customization use cases, a headless `useAutocomplete()` hook is exposed. JSXのレンダリングに関連する値以外は、Autocompleteコンポーネントとほぼ同じ値をとります。 Autocompleteコンポーネントは内部でこのhookを使用しています。 Autocompleteコンポーネントは内部でこのhookを使用しています。 The Autocomplete component is built on this hook.
 
 ```jsx
-import useAutocomplete from '@material-ui/core/useAutocomplete';
+import useAutocomplete from '@mui/material/useAutocomplete';
 ```
 
 - 📦 [4.5 kB gzipped](/size-snapshot).
@@ -219,7 +219,7 @@ GitHubのラベルピッカーを再現したデモです。
 コンポーネントは `filterOptions` プロパティに提供できるフィルタメソッドを作成するためのファクトリを公開しています。 デフォルトのフィルター挙動を変更するのに使うことができます。
 
 ```js
-import { createFilterOptions } from '@material-ui/core/Autocomplete';
+import { createFilterOptions } from '@mui/material/Autocomplete';
 ```
 
 ### `createFilterOptions(config) => filterOptions`

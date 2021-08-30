@@ -300,8 +300,8 @@ Você também pode especificar seus próprios pontos de quebras customizados, e 
 
 ```jsx
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import Box from '@mui/material/Box';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
   breakpoints: {
@@ -335,7 +335,7 @@ export default function CustomBreakpoints() {
 Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](/guides/typescript/#customization-of-theme) para que o tema aceite os valores acima.
 
 ```ts
-declare module "@material-ui/core/styles/createBreakpoints" {
+declare module "@mui/material/styles/createBreakpoints" {
   interface BreakpointOverrides {
     xs: false; // removes the `xs` breakpoint
     sm: false;
@@ -369,10 +369,10 @@ Todos os componentes Material-UI do core suportarão a propriedade `sx`.
 
 ### 3. Componentes customizados
 
-In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@material-ui/core/styles`.
+In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@mui/material/styles`.
 
 ```jsx
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 
 const Div = styled('div')``;
 ```

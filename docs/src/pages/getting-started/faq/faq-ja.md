@@ -44,7 +44,7 @@ Scrolling is blocked as soon as a modal is opened. This prevents interacting wit
 Material-UI uses the same theme helper for creating all its transitions. Therefore you can disable all transitions by overriding the helper in your theme:
 
 ```js
-import { createTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   components: {
@@ -63,7 +63,7 @@ const theme = createTheme({
 Material-UI uses the same theme helper for creating all its transitions. Therefore you can disable all transitions by overriding the helper in your theme:
 
 ```js
-import { createTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   transitions: {
@@ -78,7 +78,7 @@ It can be useful to disable transitions during visual testing or to improve perf
 You can go one step further by disabling all transitions and animations effects:
 
 ```js
-import { createTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   components: {
@@ -305,7 +305,7 @@ function handleRender(req, res) {
   -// Create a sheets instance.
   ```
 
-- しかし、異なるリクエスト間で**createGenerateClassName()**を共有すべきではありません。 マイナーバージョンの不一致でも、スタイルの問題が発生する可能性があります。 バージョン番号を確認するには、アプリケーションを構築する環境と配備環境で`npm list@material-ui/core`を実行します
+- しかし、異なるリクエスト間で**createGenerateClassName()**を共有すべきではありません。 マイナーバージョンの不一致でも、スタイルの問題が発生する可能性があります。 バージョン番号を確認するには、アプリケーションを構築する環境と配備環境で`npm list@mui/material`を実行します
 
   Package.jsonの依存関係に特定のMUIバージョンを指定することで、異なる環境で同じバージョンを使用することもできます。
 
@@ -314,8 +314,8 @@ function handleRender(req, res) {
   ```diff
     "dependencies": {
     ...
-  -   "@material-ui/core": "^4.0.0",
-+   "@material-ui/core": "4.0.0",
+  -   "@mui/material": "^4.0.0",
++   "@mui/material": "4.0.0",
     ...
     },
   ```

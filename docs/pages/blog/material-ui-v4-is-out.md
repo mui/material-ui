@@ -148,7 +148,7 @@ import {
   TableHead,
   TableRow,
   Paper,
-} from '@material-ui/core';
+} from '@mui/material';
 ```
 
 - **Bundle size reduction**. The bundle size went from 95 kB gzipped to below 80 kB gzipped between the last v3 release and the first v4 beta release. This is _remarkable_ considering that we have added new features and components along the way 😍! This was made possible by many small incremental changes: tree shaking, removal of [multiple](https://github.com/timoxley/keycode) [internal](https://github.com/oliviertassinari/react-event-listener) dependencies, hooks migration, clsx migration, [smart Babel plugin](https://github.com/merceyz/babel-plugin-optimize-clsx), etc.
@@ -173,7 +173,7 @@ Material-UI v4 depends on React ≥16.8.0. This is the first version of React th
 - **Ref forwarding**. Most of the time, you use the `ref` prop to access the underlying DOM node of a React element. You might want to focus an element, compute the position of an element, and so on. You should never need to access a Material-UI component's instance methods, they are considered private. The components expose an `action` when it's really needed. For instance, you might want to update the tab indicator position when it goes out of sync with the tab item position. To ease this use case, Sebastian has lead an effort to implement [`React.forwardRef()`](https://reactjs.org/docs/react-api.html#reactforwardref). In practice, this means that you can retrieve a reference to the DOM node like you would do with a built-in component (`button`, `div`, etc.):
 
 ```jsx
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material';
 
 function MyButton() {
   const myRef = React.useRef();
@@ -253,7 +253,7 @@ An example of the new spacing helper API.
 
 ```jsx
 import * as React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/material/styles';
 
 const useStyles = makeStyles({
   root: {
@@ -273,7 +273,7 @@ export default function Hook() {
 }
 ```
 
-⚠️ Be aware of the difference between _@material-ui/styles_ and _@material-ui/core/styles_. The latter contains the [default theme](/customization/default-theme/#material-ui-core-styles-vs-material-ui-styles).
+⚠️ Be aware of the difference between _@material-ui/styles_ and _@mui/material/styles_. The latter contains the [default theme](/customization/default-theme/#material-ui-core-styles-vs-material-ui-styles).
 
 - A well supported [Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) for _@material-ui/styles_.
 - A [Cookbook](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380) published by Packt and written by Adam Boduch.
@@ -303,7 +303,7 @@ Let us know the components you want! 🚀
 - **Use `system` in the core.** We have received great feedback on the new system package. Going forward, we will try to move it to the core components. Ideally, you should be able to use dynamic color & variants from your theme as well as have access to all the props:
 
 ```jsx
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material';
 
 <Button mt={{ xs: 2, md: 3 }}>Hello worlds</Button>;
 ```

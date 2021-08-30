@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import { alpha } from '@material-ui/core/styles';
+import Box from '@mui/material/Box';
+import { alpha } from '@mui/material/styles';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 
 export default function Demo() {

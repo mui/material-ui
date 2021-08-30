@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Rating from '@material-ui/core/Rating';
-import Box from '@material-ui/core/Box';
+import Rating from '@mui/material/Rating';
+import Box from '@mui/material/Box';
 import StarIcon from '@material-ui/icons/Star';
 
 const labels: { [index: string]: string } = {

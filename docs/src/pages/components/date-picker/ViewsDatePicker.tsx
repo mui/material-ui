@@ -1,9 +1,9 @@
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
+import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DatePicker from '@material-ui/lab/DatePicker';
-import Stack from '@material-ui/core/Stack';
+import Stack from '@mui/material/Stack';
 
 export default function ViewsDatePicker() {
   const [value, setValue] = React.useState<Date | null>(new Date());

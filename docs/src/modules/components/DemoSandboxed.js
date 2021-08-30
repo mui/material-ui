@@ -8,7 +8,7 @@ import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { StyleSheetManager } from 'styled-components';
 import { jssPreset, StylesProvider } from '@material-ui/styles';
-import { useTheme, styled, createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { useTheme, styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from 'docs/src/modules/utils/i18n';

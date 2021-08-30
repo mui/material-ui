@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Rating from '@material-ui/core/Rating';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 
 const StyledRating = styled(Rating)({
   '& .MuiRating-iconFilled': {

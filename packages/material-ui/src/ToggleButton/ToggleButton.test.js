@@ -2,8 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createClientRender, describeConformance, createServerRender } from 'test/utils';
-import ToggleButton, { toggleButtonClasses as classes } from '@material-ui/core/ToggleButton';
-import ButtonBase from '@material-ui/core/ButtonBase';
+import ToggleButton, { toggleButtonClasses as classes } from '@mui/material/ToggleButton';
+import ButtonBase from '@mui/material/ButtonBase';
 
 describe('<ToggleButton />', () => {
   const render = createClientRender();

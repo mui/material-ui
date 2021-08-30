@@ -4,7 +4,7 @@
 
 > ⚠️ `@material-ui/styles` is the _**legacy**_ styling solution for Material-UI.
 > It is deprecated in v5.
-> It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@material-ui/core` anymore.
+> It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore.
 > If you don't want to have both emotion & JSS in your bundle, please refer to the [`@material-ui/system`](/system/basics/) documentation which is the recommended alternative.
 
 > ⚠️ `@material-ui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
@@ -53,7 +53,7 @@ There are 3 possible APIs you can use to generate and apply styles, however they
 ```jsx
 import * as React from 'react';
 import { makeStyles } from '@material-ui/styles';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 
 const useStyles = makeStyles({
   root: {
@@ -83,7 +83,7 @@ You can also [change this behavior](/styles/advanced/#string-templates), with so
 ```jsx
 import * as React from 'react';
 import { styled } from '@material-ui/styles';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 
 const MyButton = styled(Button)({
   background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -108,7 +108,7 @@ export default function StyledComponents() {
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/styles';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 
 const styles = {
   root: {
@@ -219,11 +219,11 @@ const useStyles = makeStyles((theme) => ({
 
 ## Using the theme context
 
-Starting from v5, Material-UI no longer uses JSS as its default styling solution. If you still want to use the utilities exported by `@material-ui/styles` and they depend on the `theme`, you will need to provide the `theme` as part of the context. For this, you can use the `ThemeProvider` component available in `@material-ui/styles`, or, if you are already using `@material-ui/core`, you should use the one exported from `@material-ui/core/styles` so that the same `theme` is available for components from '@material-ui/core'.
+Starting from v5, Material-UI no longer uses JSS as its default styling solution. If you still want to use the utilities exported by `@material-ui/styles` and they depend on the `theme`, you will need to provide the `theme` as part of the context. For this, you can use the `ThemeProvider` component available in `@material-ui/styles`, or, if you are already using `@mui/material`, you should use the one exported from `@mui/material/styles` so that the same `theme` is available for components from '@mui/material'.
 
 ```jsx
 import { makeStyles } from '@material-ui/styles';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme();
 

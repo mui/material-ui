@@ -2,8 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, describeConformance } from 'test/utils';
 import SortIcon from '@material-ui/icons/Sort';
-import TableSortLabel, { tableSortLabelClasses as classes } from '@material-ui/core/TableSortLabel';
-import ButtonBase from '@material-ui/core/ButtonBase';
+import TableSortLabel, { tableSortLabelClasses as classes } from '@mui/material/TableSortLabel';
+import ButtonBase from '@mui/material/ButtonBase';
 
 describe('<TableSortLabel />', () => {
   const render = createClientRender();

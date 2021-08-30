@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import { styled } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import StaticDatePicker from '@material-ui/lab/StaticDatePicker';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useThemeProps } from '@material-ui/core/styles';
+import { useThemeProps } from '@mui/material/styles';
 import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
 import { useDefaultDates, useUtils } from '../internal/pickers/hooks/useUtils';
 import { RangeInput, DateRange } from '../DateRangePicker/RangeTypes';

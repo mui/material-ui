@@ -105,11 +105,11 @@ function includePeerDependencies(
   };
 
   if (newDeps['@material-ui/lab']) {
-    newDeps['@material-ui/core'] = versions['@material-ui/core'];
+    newDeps['@mui/material'] = versions['@mui/material'];
   }
 
   if (newDeps['@material-ui/data-grid']) {
-    newDeps['@material-ui/core'] = versions['@material-ui/core'];
+    newDeps['@mui/material'] = versions['@mui/material'];
     newDeps['@material-ui/styles'] = versions['@material-ui/styles'];
   }
 
@@ -161,7 +161,7 @@ export function getDependencies(
     'react-dom': 'latest',
     '@emotion/react': 'latest',
     '@emotion/styled': 'latest',
-    '@material-ui/core': getMuiPackageVersion('core', muiCommitRef),
+    '@mui/material': getMuiPackageVersion('core', muiCommitRef),
     '@material-ui/icons': getMuiPackageVersion('icons', muiCommitRef),
     '@material-ui/lab': getMuiPackageVersion('lab', muiCommitRef),
     '@material-ui/styled-engine': getMuiPackageVersion('styled-engine', muiCommitRef),
@@ -215,9 +215,9 @@ export function getDependencies(
     deps.typescript = 'latest';
   }
 
-  if (!deps['@material-ui/core']) {
-    // The `index.js` imports StyledEngineProvider from '@material-ui/core', so we need to make sure we have it as a dependency
-    const name = '@material-ui/core';
+  if (!deps['@mui/material']) {
+    // The `index.js` imports StyledEngineProvider from '@mui/material', so we need to make sure we have it as a dependency
+    const name = '@mui/material';
     deps[name] = versions[name] ? versions[name] : 'latest';
   }
 

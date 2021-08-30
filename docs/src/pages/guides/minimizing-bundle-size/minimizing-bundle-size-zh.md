@@ -11,7 +11,7 @@ Material-UI 的打包文件大小至关重要。 每一次提交代码时，我�
 在现代框架中，Material-UI 的 Tree-shaking 可开箱即用。 Material-UI 在导入顶层的 `material-ui` 时会提供出其完整的 API。 If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
 
 ```js
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField } from '@mui/material';
 ```
 
 ⚠️ 只有当您想要优化您的开发启动时间，或者您使用的是不支持 tree-shaking 的较旧的模块打包器时，才需要以下说明。
@@ -28,35 +28,35 @@ import { Button, TextField } from '@material-ui/core';
 
 ```js
 // 🚀 快速的
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 ```
 
 而不是像这样通过顶层的方式进行导入（不使用 Babel 插件）：
 
 ```js
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField } from '@mui/material';
 ```
 
 这是我们在所有演示中记录的选项，因为它不需要配置。 我们鼓励库的创建者来扩充已有组件。 请前往带来最佳 DX 和 UX 的方法： [选项2](#option-2)。
 
-虽然以这种方式直接进行导入不会使用 [`@material-ui/core` 主文件](https://unpkg.com/@material-ui/core) 中的导出模块（exports），但该文件可以方便地参考哪些模块是可供公共使用的。
+虽然以这种方式直接进行导入不会使用 [`@mui/material` 主文件](https://unpkg.com/@mui/material) 中的导出模块（exports），但该文件可以方便地参考哪些模块是可供公共使用的。
 
 请注意，我们只支持第一级和第二级的导入。 再深入的导入就是私有的，它们会造成一些问题，譬如你的打包文件会产生重复的模块。
 
 ```js
 // ✅ 可行
 import { Add as AddIcon } from '@material-ui/icons';
-import { Tabs } from '@material-ui/core';
+import { Tabs } from '@mui/material';
 //                                 ^^^^  第一级或者最上级
 
 // ✅ 可行
 import AddIcon from '@material-ui/icons/Add';
-import Tabs from '@material-ui/core/Tabs';
+import Tabs from '@mui/material/Tabs';
 //                                  ^^^^ 第二级
 
 // ❌ 不可行
-import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
+import TabIndicator from '@mui/material/Tabs/TabIndicator';
 //                                               ^^^^^^^^^^^^ 第三级
 ```
 
@@ -68,7 +68,7 @@ import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
     "no-restricted-imports": [
       "error",
       {
-        "patterns": ["@material-ui/*/*/*", "!@material-ui/core/test-utils/*"]
+        "patterns": ["@material-ui/*/*/*", "!@mui/material/test-utils/*"]
       }
     ]
   }
@@ -84,7 +84,7 @@ import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
 - DX: 这种语法减少了代码的重复，只需要一次导入就可以实现多个模块。 总的来说，代码会变得更容易阅读，在导入一个新模块时，您也更不容易出错。
 
 ```js
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField } from '@mui/material';
 ```
 
 但是，您需要正确地实施以下两步。
@@ -104,7 +104,7 @@ import { Button, TextField } from '@material-ui/core';
     [
       'babel-plugin-import',
       {
-        libraryName: '@material-ui/core',
+        libraryName: '@mui/material',
         libraryDirectory: '',
         camel2DashComponentName: false,
       },
@@ -135,8 +135,8 @@ import { Button, TextField } from '@material-ui/core';
     [
       'babel-plugin-transform-imports',
       {
-        '@material-ui/core': {
-          transform: '@material-ui/core/${member}',
+        '@mui/material': {
+          transform: '@mui/material/${member}',
           preventFullImport: true,
         },
         '@material-ui/icons': {
@@ -187,9 +187,9 @@ module.exports = override(useBabelRc());
 最后，你可以使用这个 [top-level-imports codemod](https://www.npmjs.com/package/@material-ui/codemod#top-level-imports) 将现有的代码库转换为此选项。 它将执行以下的差异：
 
 ```diff
--import Button from '@material-ui/core/Button';
--import TextField from '@material-ui/core/TextField';
-+import { Button, TextField } from '@material-ui/core';
+-import Button from '@mui/material/Button';
+-import TextField from '@mui/material/TextField';
++import { Button, TextField } from '@mui/material';
 ```
 
 ## 可用的捆绑包
@@ -200,8 +200,8 @@ module.exports = override(useBabelRc());
 
 ### 现代的捆绑包
 
-modern bundle 可以在 [`/modern` 文件夹](https://unpkg.com/@material-ui/core/modern/) 下找到。 它的目标是最新发布的常青（evergreen）浏览器版本（Chrome、Firefox、Safari、Edge）。 这样一来，针对不同的浏览器，您可以编译出不同的打包文件。
+modern bundle 可以在 [`/modern` 文件夹](https://unpkg.com/@mui/material/modern/) 下找到。 它的目标是最新发布的常青（evergreen）浏览器版本（Chrome、Firefox、Safari、Edge）。 这样一来，针对不同的浏览器，您可以编译出不同的打包文件。
 
 ### 旧版的捆绑包
 
-如果你需要对 IE11 进行兼容支持，那么你不能在不适用转换（transpilation）的情况下使用默认或者 modern bundle。 然而，你可以在 [`legacy` 文件夹下](https://unpkg.com/@material-ui/core/legacy/) 找到 legacy bundle。 你不需要编写额外的 polyfills 来转换它。
+如果你需要对 IE11 进行兼容支持，那么你不能在不适用转换（transpilation）的情况下使用默认或者 modern bundle。 然而，你可以在 [`legacy` 文件夹下](https://unpkg.com/@mui/material/legacy/) 找到 legacy bundle。 你不需要编写额外的 polyfills 来转换它。

@@ -169,7 +169,7 @@ interface Props {
 
 ```ts
 import { createStyles } from '@material-ui/styles';
-import { WithStyles } from '@material-ui/core';
+import { WithStyles } from '@mui/material';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -224,9 +224,9 @@ const DecoratedClass = withStyles(styles)(
 次の例では、`material-ui`によって書き出されたプロパティに合成される`appDrawer`プロパティを追加します。
 
 ```ts
-import { Breakpoint, Theme } from '@material-ui/core/styles';
+import { Breakpoint, Theme } from '@mui/material/styles';
 
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface Theme {
     appDrawer: {
       width: React.CSSProperties['width'];
@@ -248,7 +248,7 @@ declare module '@material-ui/core/styles' {
 **./styles/createMyTheme**:
 
 ```ts
-import { createTheme, ThemeOptions } from '@material-ui/core/styles';
+import { createTheme, ThemeOptions } from '@mui/material/styles';
 
 export default function createMyTheme(options: ThemeOptions) {
   return createTheme({

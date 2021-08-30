@@ -10,8 +10,8 @@ import {
   CreateCSSProperties,
   PropsFunc,
 } from '@material-ui/styles';
-import Button from '@material-ui/core/Button';
-import { Theme } from '@material-ui/core/styles';
+import Button from '@mui/material/Button';
+import { Theme } from '@mui/material/styles';
 import { expectType } from '@material-ui/types';
 
 // Example 1

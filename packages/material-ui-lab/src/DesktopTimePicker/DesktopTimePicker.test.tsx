@@ -1,9 +1,9 @@
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
+import TextField from '@mui/material/TextField';
 import { spy, useFakeTimers } from 'sinon';
 import { expect } from 'chai';
 import { act, describeConformance, fireEvent, screen, userEvent } from 'test/utils';
-import { TransitionProps } from '@material-ui/core/transitions';
+import { TransitionProps } from '@mui/material/transitions';
 import { TimePickerProps } from '@material-ui/lab/TimePicker';
 import DesktopTimePicker from '@material-ui/lab/DesktopTimePicker';
 import { wrapPickerMount, createPickerRender, adapterToUse } from '../internal/pickers/test-utils';

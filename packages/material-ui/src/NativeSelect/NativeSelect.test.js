@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createTheme, ThemeProvider, styled } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import { createClientRender, describeConformance } from 'test/utils';
-import NativeSelect, { nativeSelectClasses as classes } from '@material-ui/core/NativeSelect';
-import Input, { inputClasses } from '@material-ui/core/Input';
+import NativeSelect, { nativeSelectClasses as classes } from '@mui/material/NativeSelect';
+import Input, { inputClasses } from '@mui/material/Input';
 
 describe('<NativeSelect />', () => {
   const render = createClientRender();

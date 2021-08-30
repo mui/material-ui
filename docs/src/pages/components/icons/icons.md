@@ -39,10 +39,10 @@ If you aren't already using Material-UI in your project, you can add it with:
 
 ```sh
 // with npm
-npm install @material-ui/core@next
+npm install @mui/material@next
 
 // with yarn
-yarn add @material-ui/core@next
+yarn add @mui/material@next
 ```
 
 ### Usage
@@ -192,7 +192,7 @@ To use an icon simply wrap the icon name (font ligature) with the `Icon` compone
 for example:
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <Icon>star</Icon>;
 ```
@@ -220,7 +220,7 @@ For other fonts, you can customize the baseline class name using the `baseClassN
 For instance, you can display two-tone icons with Material Design:
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <link
   rel="stylesheet"
@@ -315,8 +315,8 @@ The `role="img"` attribute and the `<title>` element are added so that your icon
 In the case of focusable interactive elements, for example when used with an icon button, you can use the `aria-label` prop:
 
 ```jsx
-import IconButton from '@material-ui/core/IconButton';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import IconButton from '@mui/material/IconButton';
+import SvgIcon from '@mui/material/SvgIcon';
 
 // ...
 
@@ -332,8 +332,8 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 You need to provide a text alternative that is only visible to assistive technologies.
 
 ```jsx
-import Box from '@material-ui/core/Box';
-import Icon from '@material-ui/core/Icon';
+import Box from '@mui/material/Box';
+import Icon from '@mui/material/Icon';
 import { visuallyHidden } from '@material-ui/utils';
 
 // ...

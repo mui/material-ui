@@ -34,7 +34,7 @@ export interface Theme extends SystemTheme {
 
 /**
  * @deprecated
- * Use `import { createTheme } from '@material-ui/core/styles'` instead.
+ * Use `import { createTheme } from '@mui/material/styles'` instead.
  */
 export function createMuiTheme(options?: ThemeOptions, ...args: object[]): Theme;
 

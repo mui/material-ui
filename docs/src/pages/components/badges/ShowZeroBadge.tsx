@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Stack from '@material-ui/core/Stack';
-import Badge from '@material-ui/core/Badge';
+import Stack from '@mui/material/Stack';
+import Badge from '@mui/material/Badge';
 import MailIcon from '@material-ui/icons/Mail';
 
 export default function ShowZeroBadge() {

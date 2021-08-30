@@ -37,10 +37,10 @@ yarn add @material-ui/icons@next
 
 ```sh
 // npmの場合
-npm install @material-ui/core@next
+npm install @mui/material@next
 
 // yarnの場合
-yarn add @material-ui/core@next
+yarn add @mui/material@next
 
 ```
 
@@ -183,7 +183,7 @@ Note: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has a
 `Icon` will set the correct class name for the Material icon font. As a prerequisite, you must include one, such as the [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web) in your project. アイコンを使用するには、単純にアイコン名（フォントの合字）を `Icon` コンポーネントでラップします。例えば：
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <Icon>star</Icon>
 ```
@@ -205,7 +205,7 @@ import Icon from '@material-ui/core/Icon';
 他のフォントを使用する場合、 `baseClassName` プロパティを使用してベースラインクラス名をカスタマイズできます。 たとえば、two-toneのMaterial Designアイコンを表示できます。
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <link
   rel="stylesheet"
@@ -292,8 +292,8 @@ const theme = createTheme({
 アイコンボタンと一緒に使用したときのようにフォーカス可能なインタラクティブ要素の場合は、 `aria-label` プロパティを使用できます。
 
 ```jsx
-import IconButton from '@material-ui/core/IconButton';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import IconButton from '@mui/material/IconButton';
+import SvgIcon from '@mui/material/SvgIcon';
 
 // ...
 
@@ -309,8 +309,8 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 支援技術にのみ表示される代替テキストを提供する必要があります。
 
 ```jsx
-import Box from '@material-ui/core/Box';
-import Icon from '@material-ui/core/Icon';
+import Box from '@mui/material/Box';
+import Icon from '@mui/material/Icon';
 import { visuallyHidden } from '@material-ui/utils';
 
 // ...

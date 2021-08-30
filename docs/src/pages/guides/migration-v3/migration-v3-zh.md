@@ -24,18 +24,18 @@
 
 ```json
 "dependencies": {
-  "@material-ui/core": "^4.0.0"
+  "@mui/material": "^4.0.0"
 }
 ```
 
 或者运行
 
 ```sh
-npm install @material-ui/core
+npm install @mui/material
 
 或者
 
-yarn add @material-ui/core
+yarn add @mui/material
 ```
 
 ### 更新 React 的版本
@@ -83,8 +83,8 @@ yarn add @material-ui/styles
 - 重命名 `convertHexToRGB` 为 `hexToRgb`。
 
   ```diff
-  -import { convertHexToRgb } from '@material-ui/core/styles/colorManipulator';
-  +import { hexToRgb } from '@material-ui/core/styles';
+  -import { convertHexToRgb } from '@mui/material/styles/colorManipulator';
+  +import { hexToRgb } from '@mui/material/styles';
   ```
 
 - 设置 [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation) 的范围。 您应该在您的代码中做出以下改变。 这对分离动画的逻辑有所帮助：
@@ -155,11 +155,11 @@ yarn add @material-ui/styles
 
   从今往后，您可以使用主题来实现 [一个自定义的网格间距变换函数](https://material-ui.com/system/spacing/#transformation)。
 
-- [Container] 从 `@material-ui/lab` 迁移到 `@material-ui/core`。
+- [Container] 从 `@material-ui/lab` 迁移到 `@mui/material`。
 
   ```diff
   -import Container from '@material-ui/lab/Container';
-  +import Container from '@material-ui/core/Container';
+  +import Container from '@mui/material/Container';
   ```
 
 ### TypeScript
@@ -196,16 +196,16 @@ function MySelect({ children }) {
   ```
 
   ```diff
-  -import Button from '@material-ui/core/Button';
+  -import Button from '@mui/material/Button';
   -<Button variant="fab" />
-  +import Fab from '@material-ui/core/Fab';
+  +import Fab from '@mui/material/Fab';
   +<Fab />
   ```
 
   ```diff
-  -import Button from '@material-ui/core/Button';
+  -import Button from '@mui/material/Button';
   -<Button variant="extendedFab" />
-  +import Fab from '@material-ui/core/Fab';
+  +import Fab from '@mui/material/Fab';
   +<Fab variant="extended" />
   ```
 
@@ -290,11 +290,11 @@ function MySelect({ children }) {
 
 ### Slider
 
-- [Slider] 从 `@material-ui/lab` 迁移到 `@material-ui/core`。
+- [Slider] 从 `@material-ui/lab` 迁移到 `@mui/material`。
 
   ```diff
   -import Slider from '@material-ui/lab/Slider'
-  +import Slider from '@material-ui/core/Slider'
+  +import Slider from '@mui/material/Slider'
   ```
 
 ### Switch 开关

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Typography from '@material-ui/core/Typography';
-import { useTheme, styled } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
+import Typography from '@mui/material/Typography';
+import { useTheme, styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
 import ArrowLeftIcon from '../svg-icons/ArrowLeft';
 import ArrowRightIcon from '../svg-icons/ArrowRight';
 

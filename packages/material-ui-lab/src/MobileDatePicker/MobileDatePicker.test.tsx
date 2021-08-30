@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers, SinonFakeTimers } from 'sinon';
-import TextField from '@material-ui/core/TextField';
+import TextField from '@mui/material/TextField';
 import { act, fireEvent, screen } from 'test/utils';
 import PickersDay from '@material-ui/lab/PickersDay';
 import CalendarPickerSkeleton from '@material-ui/lab/CalendarPickerSkeleton';

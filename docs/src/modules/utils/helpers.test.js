@@ -13,12 +13,12 @@ describe('docs getDependencies helpers', () => {
   const s1 = `
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Select from '@material-ui/core/Select';
+import { withStyles } from '@mui/material/styles';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import FormHelperText from '@mui/material/FormHelperText';
+import Select from '@mui/material/Select';
 import SliderUnstyled from '@material-ui/unstyled/SliderUnstyled';
 import FooBar, { Qux } from '@foo-bar/bip';
 const styles = theme => ({
@@ -36,7 +36,7 @@ const styles = theme => ({
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
-      '@material-ui/core': 'next',
+      '@mui/material': 'next',
       '@material-ui/unstyled': 'next',
       'prop-types': 'latest',
     });
@@ -50,10 +50,10 @@ import * as _ from '@unexisting/thing';
 import Draggable from 'react-draggable';
 import match from 'autosuggest-highlight/match';
 import parse from 'autosuggest-highlight/parse';
-import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
-import MenuItem from '@material-ui/core/MenuItem';
-import { withStyles } from '@material-ui/core/styles';
+import TextField from '@mui/material/TextField';
+import Paper from '@mui/material/Paper';
+import MenuItem from '@mui/material/MenuItem';
+import { withStyles } from '@mui/material/styles';
 const suggestions = [
 `;
 
@@ -62,7 +62,7 @@ const suggestions = [
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@material-ui/core': 'next',
+      '@mui/material': 'next',
       '@unexisting/thing': 'latest',
       'autosuggest-highlight': 'latest',
       'prop-types': 'latest',
@@ -74,8 +74,8 @@ const suggestions = [
     const source = `
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Grid from '@material-ui/core/Grid';
-import { withStyles } from '@material-ui/core/styles';
+import Grid from '@mui/material/Grid';
+import { withStyles } from '@mui/material/styles';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/lab';
 `;
@@ -86,7 +86,7 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
       'prop-types': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@material-ui/core': 'next',
+      '@mui/material': 'next',
       '@material-ui/lab': 'next',
       'date-fns': 'latest',
     });
@@ -100,7 +100,7 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
-      '@material-ui/core': 'next',
+      '@mui/material': 'next',
       '@material-ui/unstyled': 'next',
       '@types/foo-bar__bip': 'latest',
       '@types/prop-types': 'latest',
@@ -126,7 +126,7 @@ import {
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@material-ui/core': 'next',
+      '@mui/material': 'next',
       '@material-ui/lab': 'next',
       'date-fns': 'latest',
     });
@@ -142,14 +142,14 @@ import lab from '@material-ui/lab';
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@material-ui/core': 'next',
+      '@mui/material': 'next',
       '@material-ui/lab': 'next',
     });
   });
 
   it('can use codesandbox deploys if a commit is given', () => {
     const source = `
-import * as Core from '@material-ui/core';
+import * as Core from '@mui/material';
 import * as Unstyled from '@material-ui/unstyled';
 import * as Icons from '@material-ui/icons';
 import * as Lab from '@material-ui/lab';
@@ -165,8 +165,8 @@ import * as Utils from '@material-ui/utils';
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@material-ui/core':
-        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/core',
+      '@mui/material':
+        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/material',
       '@material-ui/icons':
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/icons',
       '@material-ui/lab':
@@ -196,7 +196,7 @@ import AdapterMoment from '@material-ui/lab/AdapterMoment';
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@material-ui/core': 'next',
+      '@mui/material': 'next',
       '@material-ui/lab': 'next',
       'date-fns': 'latest',
       dayjs: 'latest',

@@ -16,7 +16,7 @@ const exec = promisify(childProcess.exec);
 function rewriteImportPath(importPath) {
   const coreSrcPath = path.posix.join('..', 'material-ui', 'src');
   if (importPath.startsWith(coreSrcPath)) {
-    return importPath.replace(coreSrcPath, '@material-ui/core');
+    return importPath.replace(coreSrcPath, '@mui/material');
   }
 
   const stylesSrcPath = path.posix.join('..', 'material-ui-styles', 'src');
@@ -67,7 +67,7 @@ async function main() {
       // First and last character are quotes.
       // TypeScript mixes single and double quotes.
       const importPath = importTypeMatch[1].slice(1, -1);
-      // In filesystem semantics `@material-ui/core` is a relative path.
+      // In filesystem semantics `@mui/material` is a relative path.
       // But when resolving imports these specifiers are considered "bare specifiers" and work differently.
       // We're only interested in imports that are considered "relative path imports".
       const isBareImportSpecifier = !importPath.startsWith('.');

@@ -37,10 +37,10 @@ Si vous n'utilisez pas déjà Material-UI dans votre projet, vous pouvez l'ajout
 
 ```sh
 // Avec npm
-npm install @material-ui/core@next
+npm install @mui/material@next
 
 // Avec yarn
-yarn add @material-ui/core@next
+yarn add @mui/material@next
 ```
 
 ### Utilisation
@@ -182,7 +182,7 @@ Note: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has a
 Le composant `Icon` affichera une icône à partir de toute police d’icône prenant en charge les ligatures. Le composant `Icon` affichera une icône à partir de toute police d’icône prenant en charge les ligatures. Pour utiliser une icône, enveloppez simplement le nom de l'icône (ligature de police) avec le composant `Icon` , par exemple:
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <Icon>star</Icon>
 ```
@@ -204,7 +204,7 @@ Par défaut, une icône héritera de la couleur de texte actuelle. Vous pouvez �
 Pour les autres polices, vous pouvez personnaliser le nom de la classe de base en utilisant la propriété `baseClassName`. Par exemple, vous pouvez afficher des icônes two-tone avec Material Design:
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <link
   rel="stylesheet"
@@ -291,8 +291,8 @@ Vous devez inclure la propriété `titleAccess` avec une valeur significative. L
 Dans le cas d'éléments interactifs ciblables, par exemple lorsqu'il est utilisé avec un bouton d'icône, vous pouvez utiliser la propriété `aria-label`:
 
 ```jsx
-import IconButton from '@material-ui/core/IconButton';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import IconButton from '@mui/material/IconButton';
+import SvgIcon from '@mui/material/SvgIcon';
 
 // ...
 
@@ -308,9 +308,9 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 Vous devez fournir une alternative de texte qui n'est visible que pour les technologies d'assistance.
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 import { visuallyHidden } from '@material-ui/utils';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/material/styles';
 
 const classes = makeStyles({ visuallyHidden })();
 

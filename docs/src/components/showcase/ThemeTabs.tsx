@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
-import Fade from '@material-ui/core/Fade';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import Fade from '@mui/material/Fade';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 const primary = {
   50: '#F0F7FF',

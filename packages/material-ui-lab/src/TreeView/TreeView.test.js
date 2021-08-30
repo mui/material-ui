@@ -9,7 +9,7 @@ import {
   screen,
   describeConformance,
 } from 'test/utils';
-import Portal from '@material-ui/core/Portal';
+import Portal from '@mui/material/Portal';
 import TreeView, { treeViewClasses as classes } from '@material-ui/lab/TreeView';
 import TreeItem from '@material-ui/lab/TreeItem';
 

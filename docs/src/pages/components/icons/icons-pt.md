@@ -37,10 +37,10 @@ Se você ainda não estiver usando Material-UI no seu projeto, você pode adicio
 
 ```sh
 // usando npm
-npm install @material-ui/core
+npm install @mui/material
 
 // usando yarn
-yarn add @material-ui/core
+yarn add @mui/material
 ```
 
 ### Uso
@@ -182,7 +182,7 @@ Nota: A biblioteca [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-mater
 O componente `Icon` exibirá um ícone de qualquer fonte de ícone que suporte ligadura tipográfica (ligatures). O componente `Icon` exibirá um ícone de qualquer fonte de ícone que suporte ligadura tipográfica (ligatures). Para usar um ícone, simplesmente coloque o nome do ícone (font ligature) com o componente `Icon`, por exemplo:
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <Icon>star</Icon>
 ```
@@ -204,7 +204,7 @@ Por padrão, um ícone herdará a cor do texto atual. Opcionalmente, você pode 
 Para outras fontes, você pode customizar o nome de classe base usando a propriedade `baseClassName`. Por exemplo, você pode exibir ícones de dois tons com Material Design:
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <link
   rel="stylesheet"
@@ -291,8 +291,8 @@ Você deve incluir a propriedade `titleAccess` com um valor significativo. O atr
 No caso de elementos interativos focalizáveis, por exemplo, quando usado com um botão de ícone, você pode usar a propriedade `aria-label`:
 
 ```jsx
-import IconButton from '@material-ui/core/IconButton';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import IconButton from '@mui/material/IconButton';
+import SvgIcon from '@mui/material/SvgIcon';
 
 // ...
 
@@ -308,8 +308,8 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 Você precisa fornecer um texto alternativo que só seja visível para tecnologia assistiva.
 
 ```jsx
-import Box from '@material-ui/core/Box';
-import Icon from '@material-ui/core/Icon';
+import Box from '@mui/material/Box';
+import Icon from '@mui/material/Icon';
 import { visuallyHidden } from '@material-ui/utils';
 
 // ...

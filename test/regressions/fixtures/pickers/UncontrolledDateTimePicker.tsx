@@ -1,6 +1,6 @@
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
-import { TransitionProps } from '@material-ui/core/transitions';
+import TextField from '@mui/material/TextField';
+import { TransitionProps } from '@mui/material/transitions';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DateTimePicker from '@material-ui/lab/DateTimePicker';

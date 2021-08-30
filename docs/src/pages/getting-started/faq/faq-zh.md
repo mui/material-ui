@@ -44,7 +44,7 @@
 涟漪效果完全来自 `BaseButton` 组件。 您可以通过在您的主题中提供以下内容，来全局地禁用涟漪效果：
 
 ```js
-import { createTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   components: {
@@ -64,7 +64,7 @@ const theme = createTheme({
 Material-UI 使用相同的主题助手来创建其所有的过渡动画。 因此，您可以通过覆盖主题助手来禁用所有的过渡：
 
 ```js
-import { createTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   transitions: {
@@ -79,7 +79,7 @@ const theme = createTheme({
 您可以更进一步地禁用所有的过渡和动画效果。
 
 ```js
-import { createTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   components: {
@@ -288,7 +288,7 @@ function handleRender(req, res) {
     const html = ReactDOMServer.renderToString(
   ```
 
-- 你需要验证你的客户端和服务端运行的 Material-UI 的**版本** 是否完全相同。 即使是小小的版本的不匹配也可能导致样式问题。 若想检查版本号，您可以在搭建应用程序的环境以及部署环境中都运行 `npm list @material-ui/core`。
+- 你需要验证你的客户端和服务端运行的 Material-UI 的**版本** 是否完全相同。 即使是小小的版本的不匹配也可能导致样式问题。 若想检查版本号，您可以在搭建应用程序的环境以及部署环境中都运行 `npm list @mui/material`。
 
   您也可以通过在 package.json 的依赖项中指定某一个特定的 MUI 版本，这样能够确保在不同环境中使用的版本是一致的。
 
@@ -297,8 +297,8 @@ function handleRender(req, res) {
   ```diff
     "dependencies": {
       ...
-  -   "@material-ui/core": "^4.0.0",
-  +   "@material-ui/core": "4.0.0",
+  -   "@mui/material": "^4.0.0",
+  +   "@mui/material": "4.0.0",
       ...
     },
   ```

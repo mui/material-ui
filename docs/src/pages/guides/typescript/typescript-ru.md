@@ -169,7 +169,7 @@ However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yours
 
 ```ts
 import { createStyles } from '@material-ui/styles';
-import { WithStyles } from '@material-ui/core';
+import { WithStyles } from '@mui/material';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -224,9 +224,9 @@ When adding custom properties to the `Theme`, you may continue to use it in a st
 The following example adds an `appDrawer` property that is merged into the one exported by `material-ui`:
 
 ```ts
-import { Breakpoint, Theme } from '@material-ui/core/styles';
+import { Breakpoint, Theme } from '@mui/material/styles';
 
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface Theme {
     appDrawer: {
       width: React.CSSProperties['width'];
@@ -248,7 +248,7 @@ And a custom theme factory with additional defaulted options:
 **./styles/createMyTheme**:
 
 ```ts
-import { createTheme, ThemeOptions } from '@material-ui/core/styles';
+import { createTheme, ThemeOptions } from '@mui/material/styles';
 
 export default function createMyTheme(options: ThemeOptions) {
   return createTheme({

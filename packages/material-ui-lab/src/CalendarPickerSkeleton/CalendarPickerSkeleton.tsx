@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import Skeleton from '@material-ui/core/Skeleton';
-import { styled, useThemeProps, Theme } from '@material-ui/core/styles';
+import Skeleton from '@mui/material/Skeleton';
+import { styled, useThemeProps, Theme } from '@mui/material/styles';
 import { SxProps } from '@material-ui/system';
 import {
   unstable_composeClasses as composeClasses,

@@ -45,7 +45,7 @@ Here are the most significant improvements since June 2020. This was a dense qua
   });
 
   // Optionally retain type safety:
-  declare module '@material-ui/core/Button' {
+  declare module '@mui/material/Button' {
     interface ButtonPropsVariantOverrides {
       dashed: true;
     }

@@ -299,7 +299,7 @@ You can skip breakpoints with the `null` value:
 You can also specify your own custom breakpoints, and use them as keys when defining the breakpoints object. Here is an example of how to do that.
 
 ```jsx
-declare module "@material-ui/core/styles/createBreakpoints" {
+declare module "@mui/material/styles/createBreakpoints" {
   interface BreakpointOverrides {
     xs: false; // removes the `xs` breakpoint
     sm: false;
@@ -317,8 +317,8 @@ If you are using TypeScript, you will also need to use [module augmentation](/gu
 
 ```ts
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import Box from '@mui/material/Box';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
   breakpoints: {
@@ -369,10 +369,10 @@ All core Material-UI components will support the `sx` prop.
 
 ### 3. Custom components
 
-In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@material-ui/core/styles`.
+In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@mui/material/styles`.
 
 ```jsx
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 
 const Div = styled('div')``;
 ```

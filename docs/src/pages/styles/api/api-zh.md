@@ -1,6 +1,6 @@
 # API
 
-<p class="description">@material-ui/core/styles 的 API 参考文档。</p>
+<p class="description">@mui/material/styles 的 API 参考文档。</p>
 
 ## `createGenerateClassName([options]) => class name generator`
 
@@ -49,7 +49,7 @@ export default function App() {
 
 ```jsx
 import { createStyles, makeStyles } from '@material-ui/styles';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
@@ -172,7 +172,7 @@ const response = `
 ```jsx
 import * as React from 'react';
 import { styled, ThemeProvider } from '@material-ui/styles';
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
 const MyComponent = styled('div')({
   backgroundColor: 'red',
@@ -241,7 +241,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@mui/material/styles';
 
 const theme = {};
 
@@ -264,7 +264,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ```jsx
 import * as React from 'react';
-import { useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@mui/material/styles';
 
 export default function MyComponent() {
   const theme = useTheme();
@@ -355,7 +355,7 @@ export default MyComponent;
 
 ```jsx
 import * as React from 'react';
-import { withTheme } from '@material-ui/core/styles';
+import { withTheme } from '@mui/material/styles';
 
 function MyComponent(props) {
   return <div>{props.theme.direction}</div>;

@@ -26,8 +26,8 @@ Crie um tema que será compartilhado entre o cliente e o servidor:
 `theme.js`
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
-import red from '@material-ui/core/colors/red';
+import { createTheme } from '@mui/material/styles';
+import red from '@mui/material/colors/red';
 
 // Cria a instância do tema.
 const theme = createTheme({
@@ -104,8 +104,8 @@ Vamos ver como isso é passado na função `renderFullPage`.
 import express from 'express';
 import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
 import createEmotionServer from '@emotion/server/create-instance';
 import App from './App';
 import theme from './theme';
@@ -178,8 +178,8 @@ The client-side is straightforward. All we need to do is use the same cache conf
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider } from '@emotion/react';
 import App from './App';
 import theme from './theme';

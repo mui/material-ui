@@ -1,6 +1,6 @@
 # Material-UI benchmark
 
-## `@material-ui/core`
+## `@mui/material`
 
 _Synthetic benchmark_
 

@@ -248,7 +248,7 @@ jobs:
       - run:
           name: Test module augmenation
           command: |
-            yarn workspace @material-ui/core typescript:module-augmentation
+            yarn workspace @mui/material typescript:module-augmentation
             yarn workspace @material-ui/unstyled typescript:module-augmentation
 
       - restore_cache:
@@ -367,8 +367,8 @@ jobs:
           name: yarn test:e2e
           command: yarn test:e2e
       - run:
-          name: Can we generate the @material-ui/core umd build?
-          command: yarn workspace @material-ui/core build:umd
+          name: Can we generate the @mui/material umd build?
+          command: yarn workspace @mui/material build:umd
       - run:
           name: Test umd release
           command: yarn test:umd

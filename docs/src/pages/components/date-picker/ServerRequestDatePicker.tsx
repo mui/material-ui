@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Badge from '@material-ui/core/Badge';
-import TextField from '@material-ui/core/TextField';
+import Badge from '@mui/material/Badge';
+import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import PickersDay from '@material-ui/lab/PickersDay';

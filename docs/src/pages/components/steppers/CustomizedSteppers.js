@@ -1,17 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled } from '@material-ui/core/styles';
-import Stack from '@material-ui/core/Stack';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
+import { styled } from '@mui/material/styles';
+import Stack from '@mui/material/Stack';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
 import Check from '@material-ui/icons/Check';
 import SettingsIcon from '@material-ui/icons/Settings';
 import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import VideoLabelIcon from '@material-ui/icons/VideoLabel';
 import StepConnector, {
   stepConnectorClasses,
-} from '@material-ui/core/StepConnector';
+} from '@mui/material/StepConnector';
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({
   [`&.${stepConnectorClasses.alternativeLabel}`]: {

@@ -31,10 +31,10 @@ yarn add @material-ui/lab@next
 
 ```sh
 // 用 npm 安装
-npm install @material-ui/core@next
+npm install @mui/material@next
 
 // 用 yarn 安装
-yarn add @material-ui/core@next
+yarn add @mui/material@next
 ```
 
 ## TypeScript

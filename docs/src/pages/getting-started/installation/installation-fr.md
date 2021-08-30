@@ -2,7 +2,7 @@
 
 <p class="description">Installez Material-UI, le framework d'interface utilisateur React le plus populaire au monde.</p>
 
-Material-UI est disponible sous forme de package [npm](https://www.npmjs.com/package/@material-ui/core).
+Material-UI est disponible sous forme de package [npm](https://www.npmjs.com/package/@mui/material).
 
 ## npm
 
@@ -10,10 +10,10 @@ Pour installer et enregistrer dans vos dépendances `package.json` , exécutez:
 
 ```sh
 // with npm
-npm install @material-ui/core@next @emotion/react @emotion/styled
+npm install @mui/material@next @emotion/react @emotion/styled
 
 // with yarn
-yarn add @material-ui/core@next @emotion/react @emotion/styled
+yarn add @mui/material@next @emotion/react @emotion/styled
 ```
 
 <!-- #react-peer-version -->
@@ -62,14 +62,14 @@ Vous pouvez commencer à utiliser Material-UI avec une infrastructure frontale m
 
 Two Universal Module Definition (**UMD**) files are provided:
 
-- un pour le développement: https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js
-- un pour la production: https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js
+- un pour le développement: https://unpkg.com/@mui/material@latest/umd/material-ui.development.js
+- un pour la production: https://unpkg.com/@mui/material@latest/umd/material-ui.production.min.js
 
 Vous pouvez suivre [cet exemple CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn) pour commencer rapidement.
 
 ⚠️ Using this approach in **production** is **discouraged** though - the client has to download the entire library, regardless of which components are actually used, affecting performance and bandwidth utilization.
 
-⚠️ The UMD links are using the `latest` tag to point to the latest version of the library. ⚠️ The UMD links are using the `latest` tag to point to the latest version of the library. You should consider pointing to a specific version, such as [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js).
+⚠️ The UMD links are using the `latest` tag to point to the latest version of the library. ⚠️ The UMD links are using the `latest` tag to point to the latest version of the library. You should consider pointing to a specific version, such as [v4.4.0](https://unpkg.com/@mui/material@4.4.0/umd/material-ui.development.js).
 
 ## Design resources
 

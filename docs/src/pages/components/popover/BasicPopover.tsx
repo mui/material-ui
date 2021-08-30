@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Popover from '@material-ui/core/Popover';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
 
 export default function BasicPopover() {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);

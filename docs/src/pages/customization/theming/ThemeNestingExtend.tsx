@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { createTheme, Theme, ThemeProvider } from '@material-ui/core/styles';
-import Checkbox from '@material-ui/core/Checkbox';
-import { green, orange } from '@material-ui/core/colors';
+import { createTheme, Theme, ThemeProvider } from '@mui/material/styles';
+import Checkbox from '@mui/material/Checkbox';
+import { green, orange } from '@mui/material/colors';
 
 const outerTheme = createTheme({
   palette: {

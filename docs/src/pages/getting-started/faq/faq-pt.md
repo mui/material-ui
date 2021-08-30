@@ -44,7 +44,7 @@ A rolagem é bloqueada assim que um modal é aberto. Isto impede a interação c
 O efeito cascata é exclusivamente proveniente do componente `BaseButton`. Você pode desativar o efeito cascata globalmente aplicando as seguintes configurações no seu tema:
 
 ```js
-import { createTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   components: {
@@ -63,7 +63,7 @@ const theme = createTheme({
 Material-UI usa o mesmo auxiliar de tema para criar todas as transições. Portanto, você pode desativar todas as transições substituindo o auxiliar no seu tema:
 
 ```js
-import { createTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   transitions: {
@@ -78,7 +78,7 @@ Pode ser útil desabilitar transições durante testes visuais ou para melhorar 
 Você pode ir além, desabilitando todas as transições e efeitos de animações:
 
 ```js
-import { createTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   components: {
@@ -286,7 +286,7 @@ function handleRender(req, res) {
     const html = ReactDOMServer.renderToString(
   ```
 
-- Você precisa verificar se seu cliente e servidor estão executando o **exatamente a mesma versão** do Material-UI. É possível que uma incompatibilidade de versões menores possa causar problemas de estilo. Para verificar números de versão, execute `npm list @material-ui/core` no ambiente em que você cria sua aplicação e também em seu ambiente de implementação.
+- Você precisa verificar se seu cliente e servidor estão executando o **exatamente a mesma versão** do Material-UI. É possível que uma incompatibilidade de versões menores possa causar problemas de estilo. Para verificar números de versão, execute `npm list @mui/material` no ambiente em que você cria sua aplicação e também em seu ambiente de implementação.
 
   Você também pode garantir a mesma versão em diferentes ambientes, definindo uma versão específica do MUI nas dependências do seu package.json.
 
@@ -295,8 +295,8 @@ function handleRender(req, res) {
   ```diff
     "dependencies": {
     ...
-  -   "@material-ui/core": "^4.0.0",
-+   "@material-ui/core": "4.0.0",
+  -   "@mui/material": "^4.0.0",
++   "@mui/material": "4.0.0",
     ...
     },
   ```

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import LoadingButton from '@material-ui/lab/LoadingButton';
 import SaveIcon from '@material-ui/icons/Save';
-import Stack from '@material-ui/core/Stack';
+import Stack from '@mui/material/Stack';
 
 export default function LoadingButtons() {
   return (

@@ -70,13 +70,13 @@ import {
   Toolbar,
   Tooltip,
   Typography,
-} from '@material-ui/core';
-import { Theme } from '@material-ui/core/styles';
+} from '@mui/material';
+import { Theme } from '@mui/material/styles';
 import { createStyles } from '@material-ui/styles';
 import { Link as ReactRouterLink, LinkProps as ReactRouterLinkProps } from 'react-router-dom';
-import { ButtonBaseActions } from '@material-ui/core/ButtonBase';
-import { IconButtonProps } from '@material-ui/core/IconButton';
-import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
+import { ButtonBaseActions } from '@mui/material/ButtonBase';
+import { IconButtonProps } from '@mui/material/IconButton';
+import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
 import { expectType } from '@material-ui/types';
 
 const log = console.log;

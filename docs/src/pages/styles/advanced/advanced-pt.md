@@ -1,6 +1,6 @@
 # Avançado
 
-<p class="description">Esta seção aborda o uso mais avançado de @material-ui/core/styles.</p>
+<p class="description">Esta seção aborda o uso mais avançado de @mui/material/styles.</p>
 
 ## Temas
 
@@ -9,7 +9,7 @@ Adicione um `ThemeProvider` para o nível superior de sua aplicação para passa
 > Este exemplo cria um objeto de tema para componentes customizados. If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createTheme()` method. Vá até a [seção de temas](/customization/theming/) para aprender como construir seu tema customizado do Material-UI.
 
 ```jsx
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@mui/material/styles';
 import DeepChild from './my_components/DeepChild';
 
 const theme = {
@@ -36,7 +36,7 @@ Você pode precisar acessar as variáveis de tema dentro de seus componentes Rea
 Para uso em componentes de função:
 
 ```jsx
-import { useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@mui/material/styles';
 
 function DeepChild() {
   const theme = useTheme();
@@ -51,7 +51,7 @@ function DeepChild() {
 Para uso em componentes de classe ou função:
 
 ```jsx
-import { withTheme } from '@material-ui/core/styles';
+import { withTheme } from '@mui/material/styles';
 
 function DeepChildRaw(props) {
   return <span>{`spacing ${props.theme.spacing}`}</span>;
@@ -399,7 +399,7 @@ Os nomes de classes são gerados pelo [gerador de nome de classe](/styles/api/#c
 
 ### Padrão
 
-Por padrão, os nomes de classes gerados por `@material-ui/core/styles` são **não determinísticos**; você não pode confiar que eles irão permanecer os mesmos. Vejamos o seguinte estilo como um exemplo:
+Por padrão, os nomes de classes gerados por `@mui/material/styles` são **não determinísticos**; você não pode confiar que eles irão permanecer os mesmos. Vejamos o seguinte estilo como um exemplo:
 
 ```js
 const useStyles = makeStyles({
@@ -432,15 +432,15 @@ const identifier = 123;
 const className = `${productionPrefix}-${identifier}`;
 ```
 
-### Com `@material-ui/core`
+### Com `@mui/material`
 
-Os nomes de classe gerados dos componentes do pacote `@material-ui/core` se comportam de maneira diferente. Quando as seguintes condições são atendidas, os nomes das classes são **determinísticos**:
+Os nomes de classe gerados dos componentes do pacote `@mui/material` se comportam de maneira diferente. Quando as seguintes condições são atendidas, os nomes das classes são **determinísticos**:
 
 - Apenas um provedor de tema é usado (**Sem aninhamento de tema **)
 - A folha de estilo tem um nome que começa com `Mui` (todos os componentes do Material-UI).
 - A opção `disableGlobal` do [gerador de nome de classe](/styles/api/#creategenerateclassname-options-class-name-generator) é `false` (o padrão).
 
-Essas condições são atendidas com a situação de uso mais comum de `@material-ui/core`. Por exemplo, esta folha de estilo:
+Essas condições são atendidas com a situação de uso mais comum de `@mui/material`. Por exemplo, esta folha de estilo:
 
 ```jsx
 const useStyles = makeStyles(
@@ -484,13 +484,13 @@ gera os seguintes nomes de classe que você pode sobrescrever:
 }
 ```
 
-_Esta é uma simplificação da folha de estilo do componente `@material-ui/core/Button`._
+_Esta é uma simplificação da folha de estilo do componente `@mui/material/Button`._
 
 A customização de campos de texto pode ser incômoda com a [API `classes`](#overriding-styles-classes-prop), onde você tem que definir a propriedade classes. É mais fácil usar os valores padrão, conforme descrito acima. Por exemplo:
 
 ```jsx
 import styled from 'styled-components';
-import { TextField } from '@material-ui/core';
+import { TextField } from '@mui/material';
 
 const StyledTextField = styled(TextField)`
   label.focused {

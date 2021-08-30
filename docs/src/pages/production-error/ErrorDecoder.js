@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
-import Link from '@material-ui/core/Link';
-import Typography from '@material-ui/core/Typography';
-import { styled } from '@material-ui/core/styles';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { renderInline as renderInlineMarkdown } from '@material-ui/markdown';
 

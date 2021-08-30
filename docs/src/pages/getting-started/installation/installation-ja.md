@@ -2,7 +2,7 @@
 
 <p class="description">Material-UIをインストールします。世界で最も人気のあるReact UIフレームワークです。</p>
 
-Material-UIは[ npmパッケージ](https://www.npmjs.com/package/@material-ui/core) として入手可能です。
+Material-UIは[ npmパッケージ](https://www.npmjs.com/package/@mui/material) として入手可能です。
 
 ## npm
 
@@ -10,10 +10,10 @@ Material-UIは[ npmパッケージ](https://www.npmjs.com/package/@material-ui/c
 
 ```sh
 // with npm
-npm install @material-ui/core@next @emotion/react @emotion/styled
+npm install @mui/material@next @emotion/react @emotion/styled
 
 // with yarn
-yarn add @material-ui/core@next @emotion/react @emotion/styled
+yarn add @mui/material@next @emotion/react @emotion/styled
 ```
 
 <!-- #react-peer-version -->
@@ -24,10 +24,10 @@ Or if you want to use `styled-components` as a styling engine:
 
 ```sh
 // with npm
-npm install @material-ui/core@next @material-ui/styled-engine-sc@next styled-components
+npm install @mui/material@next @material-ui/styled-engine-sc@next styled-components
 
 // with yarn
-yarn add @material-ui/core@next @material-ui/styled-engine-sc@next styled-components
+yarn add @mui/material@next @material-ui/styled-engine-sc@next styled-components
 ```
 
 Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
@@ -66,14 +66,14 @@ yarn add @material-ui/icons
 
 2つのユニバーサルモジュール定義 (**UMD**) ファイルが提供されています:
 
-- 開発用: https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js
-- 本番用: https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js
+- 開発用: https://unpkg.com/@mui/material@latest/umd/material-ui.development.js
+- 本番用: https://unpkg.com/@mui/material@latest/umd/material-ui.production.min.js
 
 [CDN example](https://github.com/mui-org/material-ui/tree/master/examples/cdn)に従うことで、すぐに開発を始めることができます。
 
 ⚠️ただし、**本番環境**でこのアプローチを使用することは**推奨しません**。クライアントは、実際にどのコンポーネントが使用されているかにかかわらず、ライブラリ全体をダウンロードする必要があるため、パフォーマンスと帯域幅の使用率に影響を与えます。
 
-⚠️ UMDリンクは、ライブラリの最新バージョンを示すために`latest`タグを使用しています。 このポインターは**不安定で** 、新しいバージョンがリリースされると変わります。 [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js) のような特定のバージョンを指すことを考慮する必要があります。
+⚠️ UMDリンクは、ライブラリの最新バージョンを示すために`latest`タグを使用しています。 このポインターは**不安定で** 、新しいバージョンがリリースされると変わります。 [v4.4.0](https://unpkg.com/@mui/material@4.4.0/umd/material-ui.development.js) のような特定のバージョンを指すことを考慮する必要があります。
 
 ## Design resources
 

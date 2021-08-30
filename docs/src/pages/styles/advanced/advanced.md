@@ -2,7 +2,7 @@
 
 <p class="description">This section covers more advanced usage of @material-ui/styles.</p>
 
-> **Note**: `@material-ui/styles` is the _**legacy**_ styling solution for Material-UI. It is deprecated in v5. It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@material-ui/core` anymore. If you don't want to have both emotion & JSS in your bundle, please refer to the [`@material-ui/system`](/system/basics/) documentation which is the recommended alternative.
+> **Note**: `@material-ui/styles` is the _**legacy**_ styling solution for Material-UI. It is deprecated in v5. It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore. If you don't want to have both emotion & JSS in your bundle, please refer to the [`@material-ui/system`](/system/basics/) documentation which is the recommended alternative.
 
 ## Theming
 
@@ -626,7 +626,7 @@ However this isn't very [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yours
 
 ```ts
 import { createStyles } from '@material-ui/styles';
-import { WithStyles } from '@material-ui/core';
+import { WithStyles } from '@mui/material';
 
 const styles = (theme: Theme) =>
   createStyles({

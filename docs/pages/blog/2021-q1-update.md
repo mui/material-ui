@@ -51,7 +51,7 @@ Here are the most significant improvements since December 2020.
   Developers can now do the following:
 
 ```jsx
-import { createMuiTheme, Button } from '@material-ui/core';
+import { createMuiTheme, Button } from '@mui/material';
 
 // 1. Extend the theme.
 const theme = createMuiTheme({
@@ -63,7 +63,7 @@ const theme = createMuiTheme({
 });
 
 // 2. Notify TypeScript about the new color in the palette
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface Palette {
     neutral: Palette['primary'];
   }
@@ -133,7 +133,7 @@ The date picker is at the border between the advanced components and the design 
 - ♿️ We have fixed a couple of accessibility issues (more in progress).
 - 🌏 We have introduced support for [custom locales](/components/data-grid/localization/).
 - 🚨 We have started to work on breaking changes to reach a stable state.
-- 💾 We have extended the support of @material-ui/core to handle v4 and v5 at the same time.
+- 💾 We have extended the support of @mui/material to handle v4 and v5 at the same time.
   In the future, we might desynchronize the release version of _mui/material-ui_ and _mui/material-ui-x_.
   For Material-UI X, we will likely need to release breaking changes at a higher frequency: every six months.
 - 🎛 We have added a column selector.
