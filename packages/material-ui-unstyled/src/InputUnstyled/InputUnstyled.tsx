@@ -22,6 +22,8 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
 ) {
   const {
     'aria-describedby': ariaDescribedby,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledby,
     autoComplete,
     autoFocus,
     className,
@@ -80,6 +82,8 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
 
   const propsToForward = {
     'aria-describedby': ariaDescribedby,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledby,
     autoComplete,
     autoFocus,
     id,
@@ -158,6 +162,14 @@ InputUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   'aria-describedby': PropTypes.string,
+  /**
+   * @ignore
+   */
+  'aria-label': PropTypes.string,
+  /**
+   * @ignore
+   */
+  'aria-labelledby': PropTypes.string,
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import InputUnstyled from '@material-ui/unstyled/InputUnstyled';
+import { useInput } from '@material-ui/unstyled';
 import { styled } from '@material-ui/system';
 
 const StyledInputElement = styled('input')(`
@@ -27,12 +27,26 @@ const StyledInputElement = styled('input')(`
   }
 `);
 
-const CustomInput = React.forwardRef(function CustomInput(props, ref) {
+const CustomInput = React.forwardRef(function CustomInput(
+  props: React.InputHTMLAttributes<HTMLInputElement>,
+  ref: React.ForwardedRef<HTMLInputElement>,
+) {
+  const { getRootProps, getInputProps } = useInput({
+    ...props,
+    componentsProps: {
+      input: {
+        ref,
+      },
+    },
+  });
+
   return (
-    <InputUnstyled components={{ Input: StyledInputElement }} {...props} ref={ref} />
+    <div {...getRootProps()}>
+      <StyledInputElement {...props} {...getInputProps()} />
+    </div>
   );
 });
 
-export default function UnstyledInput() {
+export default function UseInput() {
   return <CustomInput aria-label="Demo input" placeholder="Type something..." />;
 }

@@ -176,9 +176,9 @@ export default function useInput(props: InputProps) {
     }),
     getInputProps: () => ({
       'aria-invalid': error || undefined,
-      defaultValue,
+      defaultValue: defaultValue as string | number | readonly string[] | undefined,
       ref: handleInputRef,
-      value,
+      value: value as string | number | readonly string[] | undefined,
       required,
       disabled,
       onBlur: handleBlur,

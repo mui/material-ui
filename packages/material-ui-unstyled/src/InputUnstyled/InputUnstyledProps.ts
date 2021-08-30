@@ -11,6 +11,8 @@ export interface InputOwnerState
 
 export interface InputUnstyledOwnProps extends InputProps {
   'aria-describedby'?: string;
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
    * The name can be confusing, as it's more like an autofill.

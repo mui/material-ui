@@ -307,12 +307,20 @@ For more advanced use cases, you might be able to take advantage of:
 
 ## Unstyled
 
+For advanced customization scenarios, you can use the unstyled primitives.
+
+The basic building blocks are the `InputUnstyled` component and the `useInput` hook.
+
 ### Unstyled component
 
-The `<InputUnstyled>` component
+The `InputUnstyled` component wraps the native `input` or `textarea` element.
+You can, optionally, provide a custom component to be rendered instead.
 
 {{"demo": "pages/components/text-fields/UnstyledInput.js"}}
 
 ### Hook
 
-The `useInput` hook
+The `useInput` hook is the headless version of the `InputUnstyled` component.
+Use it for even greater control over the rendered output.
+
+{{"demo": "pages/components/text-fields/UseInput.js"}}
