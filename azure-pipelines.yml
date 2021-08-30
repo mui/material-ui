@@ -41,6 +41,9 @@ jobs:
     displayName: 'Bundle size monitoring'
     condition: eq(variables['command'], 'sizeSnapshot')
     steps:
+      - checkout: self
+        fetchDepth: 1
+
       - task: NodeTool@0
         inputs:
           versionSpec: '12.x'
@@ -151,6 +154,9 @@ jobs:
     displayName: 'Performance monitoring'
     condition: eq(variables['command'], 'benchmark')
     steps:
+      - checkout: self
+        fetchDepth: 1
+
       - task: NodeTool@0
         inputs:
           versionSpec: '12.x'
