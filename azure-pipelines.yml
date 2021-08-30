@@ -77,7 +77,7 @@ jobs:
           cd packages/material-ui/build
           npm version 0.0.0-canary.$(Build.SourceVersion) --no-git-tag-version
           npm pack
-          mv material-ui-core-0.0.0-canary.$(Build.SourceVersion).tgz ../../../material-ui-core.tgz
+          mv mui-material-0.0.0-canary.$(Build.SourceVersion).tgz ../../../mui-material.tgz
         displayName: 'create @mui/material canary distributable'
 
       - task: S3Upload@1
@@ -96,7 +96,7 @@ jobs:
       - task: PublishPipelineArtifact@1
         inputs:
           artifactName: 'canaries'
-          targetPath: 'material-ui-core.tgz'
+          targetPath: 'mui-material.tgz'
 
       - script: |
           yarn size:snapshot
