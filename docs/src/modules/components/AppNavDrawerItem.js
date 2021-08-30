@@ -109,7 +109,7 @@ const ItemButton = styled(Item, {
     color: (() => {
       if (depth === 1) {
         if (theme.palette.mode === 'dark') {
-          return theme.palette.grey[800];
+          return alpha(theme.palette.grey[500], 0.5);
         }
         return theme.palette.grey[500];
       }
@@ -125,7 +125,7 @@ const ItemButton = styled(Item, {
           return '';
         }
         if (theme.palette.mode === 'dark') {
-          return theme.palette.grey[800];
+          return alpha(theme.palette.grey[500], 0.5);
         }
         return theme.palette.grey[500];
       })(),

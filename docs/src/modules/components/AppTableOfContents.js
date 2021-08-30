@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
-import { styled } from '@material-ui/core/styles';
+import { styled, alpha } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -32,7 +32,7 @@ const NavLabel = styled(Typography)(({ theme }) => {
     paddingLeft: theme.spacing(1.5),
     fontSize: '.75rem',
     fontWeight: 600,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[700] : theme.palette.grey[600],
+    color: theme.palette.mode === 'dark' ? alpha(theme.palette.grey[500], 0.5) : theme.palette.grey[600],
   };
 });
 
