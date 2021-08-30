@@ -106,7 +106,7 @@ module.exports = {
           // transpile 3rd party packages with dependencies in this repository
           {
             test: /\.(js|mjs|jsx)$/,
-            include: /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid)/,
+            include: /node_modules(\/|\\)(notistack|@material-ui(\/|\\)data-grid)/,
             use: {
               loader: 'babel-loader',
               options: {
@@ -129,6 +129,17 @@ module.exports = {
                         '@mui/private-theming': '../packages/material-ui-private-theming/src',
                         '@mui/utils': '../packages/material-ui-utils/src',
                         '@mui/core': '../packages/material-ui-unstyled/src',
+                        // all legacy package names in this monorepo
+                        '@material-ui/core': '../packages/material-ui/src',
+                        '@material-ui/docs': '../packages/material-ui-docs/src',
+                        '@material-ui/icons': '../packages/material-ui-icons/lib',
+                        '@material-ui/lab': '../packages/material-ui-lab/src',
+                        '@material-ui/styled-engine': '../packages/material-ui-styled-engine/src',
+                        '@material-ui/styles': '../packages/material-ui-styles/src',
+                        '@material-ui/system': '../packages/material-ui-system/src',
+                        '@material-ui/private-theming': '../packages/material-ui-private-theming/src',
+                        '@material-ui/utils': '../packages/material-ui-utils/src',
+                        '@material-ui/unstyled': '../packages/material-ui-unstyled/src',
                       },
                       transformFunctions: ['require'],
                     },
