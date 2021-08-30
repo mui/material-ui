@@ -2,7 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import Stack from '@mui/material/Stack';
 import { ButtonUnstyledProps, useButton } from '@mui/core/ButtonUnstyled';
-import { styled } from '@material-ui/system';
+import { styled } from '@mui/system';
 
 const CustomButtonRoot = styled('button')(`
   background-color: #007fff;

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Stack from '@mui/material/Stack';
 import { useButton } from '@mui/core/ButtonUnstyled';
-import { styled } from '@material-ui/system';
+import { styled } from '@mui/system';
 
 const CustomButtonRoot = styled('button')(`
   background-color: #007fff;
