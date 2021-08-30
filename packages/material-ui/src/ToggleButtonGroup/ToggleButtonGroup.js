@@ -198,7 +198,7 @@ ToggleButtonGroup.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * If `true`, the component is disabled.
+   * If `true`, the component is disabled. This implies that all ToggleButton children will be disabled.
    * @default false
    */
   disabled: PropTypes.bool,

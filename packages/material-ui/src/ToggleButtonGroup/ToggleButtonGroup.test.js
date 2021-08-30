@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, createClientRender } from 'test/utils';
+import { describeConformance, createClientRender, screen } from 'test/utils';
 import ToggleButtonGroup, {
   toggleButtonGroupClasses as classes,
 } from '@material-ui/core/ToggleButtonGroup';
@@ -37,13 +37,16 @@ describe('<ToggleButtonGroup />', () => {
     expect(getByRole('button')).to.have.class('MuiToggleButtonGroup-groupedVertical');
   });
 
-  it('should render disabled ToggleButton if disabled prop is passed', () => {
-    const { getByRole } = render(
+  it('should disable all ToggleButton if disabled prop is passed', () => {
+    render(
       <ToggleButtonGroup disabled>
         <ToggleButton value="one">1</ToggleButton>
+        <ToggleButton value="two">2</ToggleButton>
       </ToggleButtonGroup>,
     );
-    expect(getByRole('button')).to.have.class('Mui-disabled');
+    const [firstButton, secondButton] = screen.getAllByRole('button');
+    expect(firstButton).to.have.property('disabled', true);
+    expect(secondButton).to.have.property('disabled', true);
   });
 
   describe('exclusive', () => {
