@@ -31,6 +31,9 @@ export default function Highlighter({
           bgcolor: (theme) =>
             theme.palette.mode === 'dark' ? 'primaryDark.700' : lightSelectedBg[selectedBg],
           borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.300' : 'grey.200'),
+          '& svg': {
+            color: (theme) => (theme.palette.mode === 'dark' ? 'primary.300' : 'primary.500'),
+          },
         }),
         ...(!selected && {
           '&:hover, &:focus': {
@@ -40,6 +43,9 @@ export default function Highlighter({
             },
           },
         }),
+        '&.Mui-disabled': {
+          opacity: 0.4,
+        },
         ...props.sx,
       }}
     />
