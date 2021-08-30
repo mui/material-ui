@@ -108,34 +108,53 @@ const useTouchRipple = (props: UseTouchRippleProps) => {
 
   const enableTouchRipple = mountedState && !disableRipple && !disabled;
 
-  const rippleHandlers = {
-    onBlur: handleBlur,
-    onKeyDown: handleKeyDown,
-    onKeyUp: handleKeyUp,
-    onMouseDown: handleMouseDown,
-    onMouseUp: handleMouseUp,
-    onMouseLeave: handleMouseLeave,
-    onContextMenu: handleContextMenu,
-    onDragLeave: handleDragLeave,
-    onTouchStart: handleTouchStart,
-    onTouchEnd: handleTouchEnd,
-    onTouchMove: handleTouchMove,
-  } as RippleEventHandlers;
-
-  const getRippleHandlers = (otherEvents: Partial<RippleEventHandlers>) => {
-    const eventNames = Object.keys(rippleHandlers) as (keyof RippleEventHandlers)[];
-    const wrappedEvents = eventNames.map((eventName) => ({
-      name: eventName,
-      handler: (ev: any) => {
-        otherEvents[eventName]?.(ev);
-        rippleHandlers[eventName](ev);
+  const getRippleHandlers = (componentProps: Partial<RippleEventHandlers>) => {
+    return {
+      onBlur(event: React.FocusEvent) {
+        handleBlur(event);
+        componentProps.onBlur?.(event);
       },
-    }));
-
-    return wrappedEvents.reduce((acc, current) => {
-      acc[current.name] = current.handler;
-      return acc;
-    }, {} as RippleEventHandlers);
+      onKeyDown(event: React.KeyboardEvent) {
+        handleKeyDown(event);
+        componentProps.onKeyDown?.(event);
+      },
+      onKeyUp(event: React.KeyboardEvent) {
+        handleKeyUp(event);
+        componentProps.onKeyUp?.(event);
+      },
+      onMouseDown(event: React.MouseEvent) {
+        handleMouseDown(event);
+        componentProps.onMouseDown?.(event);
+      },
+      onMouseUp(event: React.MouseEvent) {
+        handleMouseUp(event);
+        componentProps.onMouseUp?.(event);
+      },
+      onMouseLeave(event: React.MouseEvent) {
+        handleMouseLeave(event);
+        componentProps.onMouseLeave?.(event);
+      },
+      onContextMenu(event: React.MouseEvent) {
+        handleContextMenu(event);
+        componentProps.onContextMenu?.(event);
+      },
+      onDragLeave(event: React.DragEvent) {
+        handleDragLeave(event);
+        componentProps.onDragLeave?.(event);
+      },
+      onTouchStart(event: React.TouchEvent) {
+        handleTouchStart(event);
+        componentProps.onTouchStart?.(event);
+      },
+      onTouchEnd(event: React.TouchEvent) {
+        handleTouchEnd(event);
+        componentProps.onTouchEnd?.(event);
+      },
+      onTouchMove(event: React.TouchEvent) {
+        handleTouchMove(event);
+        componentProps.onTouchMove?.(event);
+      },
+    };
   };
 
   return {
