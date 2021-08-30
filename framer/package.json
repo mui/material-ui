@@ -10,7 +10,7 @@
     "@types/draft-js": "^0.11.4",
     "@types/react": "^17.0.19",
     "case": "1.6.3",
-    "deepmerge": "^4.0.0",
+    "deepmerge": "^4.2.2",
     "docs": "5.0.0",
     "framer": "^1.2.5",
     "framer-motion": "^4.0.0",
