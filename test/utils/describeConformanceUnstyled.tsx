@@ -74,9 +74,14 @@ function testPropForwarding(
   }
 
   it('forwards custom props to the root element if a component is provided', () => {
-    const CustomRoot = ({ fooBar, tabIndex, 'aria-label': ariaLabel }: WithCustomProp) => {
-      return <div data-foobar={fooBar} tabIndex={tabIndex} aria-label={ariaLabel} />;
-    };
+    const CustomRoot = React.forwardRef(
+      (
+        { fooBar, tabIndex, 'aria-label': ariaLabel }: WithCustomProp,
+        ref: React.ForwardedRef<any>,
+      ) => {
+        return <div ref={ref} data-foobar={fooBar} tabIndex={tabIndex} aria-label={ariaLabel} />;
+      },
+    );
 
     const otherProps = {
       tabIndex: '0',
@@ -187,9 +192,8 @@ function testComponentsProp(
       }),
     );
 
-    /* eslint-disable @typescript-eslint/no-unused-expressions */
-    expect(queryByTestId('a')).to.exist;
-    expect(queryByTestId('b')).not.to.exist;
+    expect(queryByTestId('a')).not.to.equal(null);
+    expect(queryByTestId('b')).to.equal(null);
   });
 }
 
@@ -254,6 +258,7 @@ function testOwnerStatePropagation(
     it(`sets the ownerState prop on ${capitalize(slotName)} slot's component`, () => {
       const TestComponent = React.forwardRef(
         ({ ownerState, expectedOwnerState }: WithOwnerState, ref: React.Ref<any>) => {
+          expect(ownerState).not.to.equal(undefined);
           expect(ownerState).to.deep.include(expectedOwnerState);
           return <div ref={ref} />;
         },
