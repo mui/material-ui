@@ -165,20 +165,14 @@ import * as Utils from '@mui/utils';
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/material':
-        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/material',
+      '@mui/material': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/material',
       '@mui/icons-material':
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/icons-material',
-      '@mui/lab':
-        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/lab',
-      '@mui/styles':
-        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/styles',
-      '@mui/system':
-        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/system',
-      '@mui/utils':
-        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/utils',
-      '@mui/core':
-        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/core',
+      '@mui/lab': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/lab',
+      '@mui/styles': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/styles',
+      '@mui/system': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/system',
+      '@mui/utils': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/utils',
+      '@mui/core': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/core',
     });
   });
 

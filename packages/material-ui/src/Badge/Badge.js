@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { usePreviousProps } from '@mui/utils';
 import { generateUtilityClasses, isHostComponent } from '@mui/core';
-import BadgeUnstyled, {
-  badgeUnstyledClasses,
-  getBadgeUtilityClass,
-} from '@mui/core/BadgeUnstyled';
+import BadgeUnstyled, { badgeUnstyledClasses, getBadgeUtilityClass } from '@mui/core/BadgeUnstyled';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import capitalize from '../utils/capitalize';

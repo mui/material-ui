@@ -5,9 +5,7 @@ import { useFakeTimers } from 'sinon';
 import Icon from '@mui/material/Icon';
 import Tooltip from '@mui/material/Tooltip';
 import { fabClasses } from '@mui/material/Fab';
-import SpeedDialAction, {
-  speedDialActionClasses as classes,
-} from '@mui/material/SpeedDialAction';
+import SpeedDialAction, { speedDialActionClasses as classes } from '@mui/material/SpeedDialAction';
 
 describe('<SpeedDialAction />', () => {
   let clock;

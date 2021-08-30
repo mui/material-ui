@@ -78,9 +78,7 @@ async function run(context) {
     ].map(async (muiPackageName) => {
       // clean coyp
       try {
-        await rmRecursiveForce(
-          new URL(`./node_modules/@mui/${muiPackageName}/`, fixtureUrl),
-        );
+        await rmRecursiveForce(new URL(`./node_modules/@mui/${muiPackageName}/`, fixtureUrl));
       } catch (error) {
         // already exists
       }

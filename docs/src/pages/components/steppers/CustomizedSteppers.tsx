@@ -8,9 +8,7 @@ import Check from '@mui/icons-material/Check';
 import SettingsIcon from '@mui/icons-material/Settings';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import VideoLabelIcon from '@mui/icons-material/VideoLabel';
-import StepConnector, {
-  stepConnectorClasses,
-} from '@mui/material/StepConnector';
+import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector';
 import { StepIconProps } from '@mui/material/StepIcon';
 
 const QontoConnector = styled(StepConnector)(({ theme }) => ({

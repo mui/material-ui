@@ -4,9 +4,7 @@ import { createClientRender, describeConformance } from 'test/utils';
 import Typography from '@mui/material/Typography';
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
-import TimelineContent, {
-  timelineContentClasses as classes,
-} from '@mui/lab/TimelineContent';
+import TimelineContent, { timelineContentClasses as classes } from '@mui/lab/TimelineContent';
 
 describe('<TimelineContent />', () => {
   const render = createClientRender();

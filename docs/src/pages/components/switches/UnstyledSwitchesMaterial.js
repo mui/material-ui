@@ -8,11 +8,7 @@ import {
 import { alpha, darken, lighten, useThemeProps, styled } from '@mui/system';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { capitalize } from '@mui/material/utils';
-import {
-  useFormControl,
-  switchClasses,
-  getSwitchUtilityClass,
-} from '@mui/material';
+import { useFormControl, switchClasses, getSwitchUtilityClass } from '@mui/material';
 import TouchRipple from '@mui/material/ButtonBase/TouchRipple';
 import useTouchRipple from '@mui/material/useTouchRipple';
 

@@ -1,10 +1,5 @@
 import * as React from 'react';
-import {
-  createTheme,
-  styled,
-  ThemeProvider,
-  darken,
-} from '@mui/material/styles';
+import { createTheme, styled, ThemeProvider, darken } from '@mui/material/styles';
 import Slider from '@mui/material/Slider';
 import Box from '@mui/material/Box';
 

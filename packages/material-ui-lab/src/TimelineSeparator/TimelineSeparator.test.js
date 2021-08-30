@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { createClientRender, describeConformance } from 'test/utils';
-import TimelineSeparator, {
-  timelineSeparatorClasses as classes,
-} from '@mui/lab/TimelineSeparator';
+import TimelineSeparator, { timelineSeparatorClasses as classes } from '@mui/lab/TimelineSeparator';
 
 describe('<TimelineSeparator />', () => {
   const render = createClientRender();

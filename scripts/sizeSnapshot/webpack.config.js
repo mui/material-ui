@@ -168,10 +168,7 @@ module.exports = async function webpackConfig(webpack, environment) {
             workspaceRoot,
             'packages/material-ui-styled-engine/build',
           ),
-          '@mui/styled-engine-sc': path.join(
-            workspaceRoot,
-            'packages/material-ui-styles-sc/build',
-          ),
+          '@mui/styled-engine-sc': path.join(workspaceRoot, 'packages/material-ui-styles-sc/build'),
           '@mui/styles': path.join(workspaceRoot, 'packages/material-ui-styles/build'),
           '@mui/system': path.join(workspaceRoot, 'packages/material-ui-system/build'),
           '@mui/private-theming': path.join(

@@ -1,18 +1,11 @@
 /* eslint-disable no-restricted-imports, react/prop-types */
 import * as React from 'react';
 import clsx from 'clsx';
-import {
-  unstable_composeClasses as composeClasses,
-  useSwitch,
-} from '@mui/core';
+import { unstable_composeClasses as composeClasses, useSwitch } from '@mui/core';
 import { alpha, darken, lighten, useThemeProps, styled } from '@mui/system';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { capitalize } from '@mui/material/utils';
-import {
-  useFormControl,
-  switchClasses,
-  getSwitchUtilityClass,
-} from '@mui/material';
+import { useFormControl, switchClasses, getSwitchUtilityClass } from '@mui/material';
 import TouchRipple from '@mui/material/ButtonBase/TouchRipple';
 import useTouchRipple from '@mui/material/useTouchRipple';
 

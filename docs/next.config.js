@@ -126,8 +126,7 @@ module.exports = {
                         '@mui/styled-engine': '../packages/material-ui-styled-engine/src',
                         '@mui/styles': '../packages/material-ui-styles/src',
                         '@mui/system': '../packages/material-ui-system/src',
-                        '@mui/private-theming':
-                          '../packages/material-ui-private-theming/src',
+                        '@mui/private-theming': '../packages/material-ui-private-theming/src',
                         '@mui/utils': '../packages/material-ui-utils/src',
                         '@mui/core': '../packages/material-ui-unstyled/src',
                       },

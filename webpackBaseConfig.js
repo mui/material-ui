@@ -13,20 +13,14 @@ module.exports = {
       '@mui/docs': path.resolve(__dirname, './packages/material-ui-docs/src'),
       '@mui/icons-material': path.resolve(__dirname, './packages/material-ui-icons/lib'),
       '@mui/lab': path.resolve(__dirname, './packages/material-ui-lab/src'),
-      '@mui/styled-engine': path.resolve(
-        __dirname,
-        './packages/material-ui-styled-engine/src',
-      ),
+      '@mui/styled-engine': path.resolve(__dirname, './packages/material-ui-styled-engine/src'),
       '@mui/styled-engine-sc': path.resolve(
         __dirname,
         './packages/material-ui-styled-engine-sc/src',
       ),
       '@mui/styles': path.resolve(__dirname, './packages/material-ui-styles/src'),
       '@mui/system': path.resolve(__dirname, './packages/material-ui-system/src'),
-      '@mui/private-theming': path.resolve(
-        __dirname,
-        './packages/material-ui-private-theming/src',
-      ),
+      '@mui/private-theming': path.resolve(__dirname, './packages/material-ui-private-theming/src'),
       '@mui/core': path.resolve(__dirname, './packages/material-ui-unstyled/src'),
       '@mui/utils': path.resolve(__dirname, './packages/material-ui-utils/src'),
       'typescript-to-proptypes': path.resolve(__dirname, './packages/typescript-to-proptypes/src'),

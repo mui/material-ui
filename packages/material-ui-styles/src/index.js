@@ -7,8 +7,7 @@ if (
   process.env.NODE_ENV !== 'test' &&
   typeof window !== 'undefined'
 ) {
-  ponyfillGlobal['__@mui/styles-init__'] =
-    ponyfillGlobal['__@mui/styles-init__'] || 0;
+  ponyfillGlobal['__@mui/styles-init__'] = ponyfillGlobal['__@mui/styles-init__'] || 0;
 
   if (ponyfillGlobal['__@mui/styles-init__'] === 1) {
     console.warn(

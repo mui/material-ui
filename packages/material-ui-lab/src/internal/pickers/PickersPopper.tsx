@@ -2,9 +2,7 @@ import * as React from 'react';
 import Grow from '@mui/material/Grow';
 import Paper, { PaperProps as MuiPaperProps } from '@mui/material/Paper';
 import Popper, { PopperProps as MuiPopperProps } from '@mui/material/Popper';
-import TrapFocus, {
-  TrapFocusProps as MuiTrapFocusProps,
-} from '@mui/material/Unstable_TrapFocus';
+import TrapFocus, { TrapFocusProps as MuiTrapFocusProps } from '@mui/material/Unstable_TrapFocus';
 import { useForkRef, useEventCallback, ownerDocument } from '@mui/material/utils';
 import { styled } from '@mui/material/styles';
 import { TransitionProps as MuiTransitionProps } from '@mui/material/transitions';

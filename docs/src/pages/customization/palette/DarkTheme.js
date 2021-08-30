@@ -2,12 +2,7 @@ import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import {
-  styled,
-  ThemeProvider,
-  useTheme,
-  createTheme,
-} from '@mui/material/styles';
+import { styled, ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
 
 const Root = styled('div')(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
