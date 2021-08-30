@@ -965,6 +965,18 @@ describe('<Select />', () => {
     expect(ref.current.node).to.have.tagName('input');
   });
 
+  describe('When passing input and the ref for this input', () => {
+    it('show the correct element with the ref value', () => {
+      const inputRef = React.createRef();
+      const { getByTestId } = render(
+        <Select input={<input data-testid="input" ref={inputRef} />} />,
+      );
+      const input = getByTestId('input');
+      fireEvent.change(input, { target: { value: '30' } });
+      expect(inputRef.current.value).to.be.equal('30');
+    });
+  });
+
   describe('prop: inputRef', () => {
     it('should be able to return the input node via a ref object', () => {
       const ref = React.createRef();
