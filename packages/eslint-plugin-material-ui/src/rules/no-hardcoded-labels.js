@@ -1,5 +1,7 @@
 const createEmojiRegex = require('emoji-regex');
 
+const defaultAllow = ['API'];
+
 module.exports = {
   meta: {
     messages: {
@@ -8,12 +10,15 @@ module.exports = {
     },
   },
   create(context) {
-    const { allow = [] } = context.options[0] || {};
+    const { allow: allowOption = [] } = context.options[0] || {};
     const emojiRegex = createEmojiRegex();
+
+    const allow = defaultAllow.concat(allowOption);
 
     function valueViolatesRule(value) {
       const sanitizedValue = typeof value === 'string' ? value.trim() : value;
-      const hasTranslateableContent = sanitizedValue !== '' && !emojiRegex.test(sanitizedValue);
+      const hasTranslateableContent =
+        sanitizedValue !== '' && !emojiRegex.test(sanitizedValue) && /\w+/.test(sanitizedValue);
 
       return hasTranslateableContent && !allow.includes(sanitizedValue);
     }
