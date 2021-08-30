@@ -404,6 +404,8 @@ export function getThemedComponents(theme: Theme) {
       MuiPaper: {
         styleOverrides: {
           root: {
+            backgroundColor:
+              theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
             '&[href]': {
               textDecorationLine: 'none',
             },
@@ -444,7 +446,7 @@ export function getThemedComponents(theme: Theme) {
         styleOverrides: {
           root: {
             backgroundColor:
-              theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#fff',
+              theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
           },
         },
       },
@@ -465,7 +467,7 @@ export function getThemedComponents(theme: Theme) {
               backgroundColor:
                 theme.palette.mode === 'dark'
                   ? theme.palette.primary[800]
-                  : theme.palette.primaryDark[50],
+                  : theme.palette.primary[50],
             },
           },
         },
