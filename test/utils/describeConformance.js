@@ -196,7 +196,7 @@ export function testReactTestRenderer(element) {
 /**
  * @typedef {Object} ConformanceOptions
  * @property {() => void} [after]
- * @property {object} classes - `classes` of the component provided by `@material-ui/styled-engine`
+ * @property {object} classes - `classes` of the component provided by `@mui/styled-engine`
  * @property {import('react').ElementType} [inheritComponent] - The element type that receives spread props or `undefined` if props are not spread.
  * @property {string} muiName
  * @property {(node: React.ReactElement) => import('./createClientRender').MuiRenderResult} [render] - Should be a return value from createClientRender

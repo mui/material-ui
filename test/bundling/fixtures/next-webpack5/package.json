@@ -12,7 +12,7 @@
     "@mui/material": "5.0.0-alpha.34",
     "@material-ui/icons": "5.0.0-alpha.34",
     "@material-ui/lab": "5.0.0-alpha.34",
-    "@material-ui/styled-engine": "5.0.0-alpha.34",
+    "@mui/styled-engine": "5.0.0-alpha.34",
     "@material-ui/styles": "5.0.0-alpha.33",
     "@mui/system": "5.0.0-alpha.34",
     "@material-ui/utils": "5.0.0-alpha.33",

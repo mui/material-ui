@@ -74,7 +74,7 @@ A big thanks to the 26 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 13 --> [icons] Improve GitHub size (#27740) @oliviertassinari
 
-### `@material-ui/styled-engine@5.0.0-beta.5`
+### `@mui/styled-engine@5.0.0-beta.5`
 
 - &#8203;<!-- 27 --> [styled-engine] Remove unecessary aliases (#27779) @oliviertassinari
 - &#8203;<!-- 14 --> [styled-engine] Drop withComponent support (#27780) @oliviertassinari
@@ -192,7 +192,7 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
 
 ### Docs
 
-- &#8203;<!-- 36 -->[docs] Update guides for @material-ui/styled-engine-sc installation (#27602) @mnajdova
+- &#8203;<!-- 36 -->[docs] Update guides for @mui/styled-engine-sc installation (#27602) @mnajdova
 - &#8203;<!-- 35 -->[docs] Document that @material-ui/styles is not strict mode compatible (#27639) @oliviertassinari
 - &#8203;<!-- 34 -->[docs] Link to "Customization of Theme" from relevant theme interfaces (#27689) @eps1lon
 - &#8203;<!-- 33 -->[docs] Update CSP page (#27627) @mnajdova
@@ -835,7 +835,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 - &#8203;<!-- 40 -->[core] Update babel-plugin-optimize-clsx (#26861) @oliviertassinari
 - &#8203;<!-- 24 -->[core] Assume no document.all at runtime (#26821) @eps1lon
 - &#8203;<!-- 20 -->[core] Remove dependency on `@material-ui/private-theming` (#26793) @mnajdova
-- &#8203;<!-- 15 -->[core] Remove dependency on `@material-ui/styled-engine` (#26792) @mnajdova
+- &#8203;<!-- 15 -->[core] Remove dependency on `@mui/styled-engine` (#26792) @mnajdova
 
 All contributors of this release in alphabetical order: @ahmed-28, @brunocavalcante, @DanielBretzigheimer, @dijonkitchen, @dmrqx, @eps1lon, @Izhaki, @kshuiroy, @l10nbot, @michal-perlakowski, @michaldudak, @mnajdova, @oliviertassinari, @pavinduLakshan, @shadab14meb346, @siriwatknp, @tungdt-90, @varandasi
 
@@ -1169,7 +1169,7 @@ We are progressively moving all modules that are relevant to styling custom desi
 - [system] Add Box to system (#26379) @mnajdova
 - [system] Add createStyled utility (#26485) @mnajdova
 
-### `@material-ui/styled-engine-sc@5.0.0-alpha.35`
+### `@mui/styled-engine-sc@5.0.0-alpha.35`
 
 - [styled-engine] Fix styled() util to respect `options` (#26339) @pasDamola
 
@@ -1844,7 +1844,7 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
 - &#8203;<!-- 06 -->[Timeline] Migrate Timeline to emotion (#25838) @siriwatknp
 - &#8203;<!-- 55 -->[TreeView] Migrate TreeItem to emotion (#25835) @siriwatknp
 
-### `@material-ui/styled-engine@5.0.0-alpha.32`
+### `@mui/styled-engine@5.0.0-alpha.32`
 
 - &#8203;<!-- 02 -->[styled-engine] Skip variants resolver for non root slots by default (#25865) @mnajdova
 
@@ -1985,7 +1985,7 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
 - &#8203;<!-- 47 -->[Timeline] Migrate TimelineOppositeContent to emotion (#25816) @vicasas
 - &#8203;<!-- 54 -->[TrapFocus] Make isEnabled and getDoc optional (#25784) @m4theushw
 
-### `@material-ui/styled-engine@5.0.0-alpha.31`
+### `@mui/styled-engine@5.0.0-alpha.31`
 
 - &#8203;<!-- 27 -->[styled-engine] Fix shouldForwardProp on slots (#25780) @mnajdova
 - &#8203;<!-- 11 -->[styled-engine] Improve GlobalStyles props (#25751) @mnajdova
@@ -2677,7 +2677,7 @@ Big thanks to the 30 contributors who made this release possible. Here are some 
   >
   ```
 
-### `@material-ui/styled-engine@5.0.0-alpha.25`
+### `@mui/styled-engine@5.0.0-alpha.25`
 
 - &#8203;<!-- 34 -->[styled-engine] Fix GlobalStyles not to throw when no theme is available (#24671) @mnajdova
 
@@ -2821,7 +2821,7 @@ Big thanks to the 23 contributors who made this release possible. Here are some 
 - &#8203;<!-- 12 -->[DateRangePicker] Remove variant prop override for Textfield (#24433) @praveenkumar-kalidass
 - &#8203;<!-- 03 -->[lab] Reflect draft pattern of picker value in implementation (#24367) @eps1lon
 
-### `@material-ui/styled-engine@5.0.0-alpha.24`
+### `@mui/styled-engine@5.0.0-alpha.24`
 
 - &#8203;<!-- 13 -->[styled-engine] Rename StylesProvider to StyledEngineProvider (#24429) @mnajdova
 
@@ -2945,7 +2945,7 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
 - [lab] Fix import paths in generated declaration files (#24380) @eps1lon
 - [lab] Prevent possible null pointer in useValidation (#24318) @eps1lon
 
-### `@material-ui/styled-engine@v5.0.0-alpha.23`/`@material-ui/styled-engine-sc@v5.0.0-alpha.23`
+### `@mui/styled-engine@v5.0.0-alpha.23`/`@mui/styled-engine-sc@v5.0.0-alpha.23`
 
 - [styled-engine] Add `GlobalStyles` component (#24176) @mnajdova
 
@@ -3087,7 +3087,7 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 
 - [styles] Fix for supporting non string props in propsToClassKey (#24101) @mnajdova
 
-### `@material-ui/styled-engine@v5.0.0-alpha.21`/`@material-ui/styled-engine-sc@v5.0.0-alpha.21`
+### `@mui/styled-engine@v5.0.0-alpha.21`/`@mui/styled-engine-sc@v5.0.0-alpha.21`
 
 - [styled-engine] Fix StylesProvider injectFirst with sc (#24104) @mnajdova
 
@@ -3168,7 +3168,7 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - [Slider][badge] Fix classes prop not working (#24034) @mnajdova
 - [Typography] Migrate styles to emotion (#23841) @DanailH
 
-### `@material-ui/styled-engine@v5.0.0-alpha.20`/`@material-ui/styled-engine-sc@v5.0.0-alpha.20`
+### `@mui/styled-engine@v5.0.0-alpha.20`/`@mui/styled-engine-sc@v5.0.0-alpha.20`
 
 - [styled-engine] Add name and slot options (#23964) @mnajdova
 - [styled-engine] Add StylesProvider with injectFirst option (#23934) @mnajdova
@@ -3379,7 +3379,7 @@ Big thanks to the 17 contributors who made this release possible. Here are some 
 - [DatePicker] Found one prop that was renamed (#23676) @oliviertassinari
 - [DateRangePicker] Allow same date selection (#23701) @hmaddisb
 
-### `@material-ui/styled-engine@v5.0.0-alpha.18`/`@material-ui/styled-engine-sc@v5.0.0-alpha.18`
+### `@mui/styled-engine@v5.0.0-alpha.18`/`@mui/styled-engine-sc@v5.0.0-alpha.18`
 
 - [styled-engine] Fix tagged template syntax with multiple expressions (#23269) @eps1lon
 
@@ -3639,7 +3639,7 @@ Big thanks to the 34 contributors who made this release possible. Here are some 
 - [system] Remove css utility in favor of sx (#23454) @mnajdova
 - [system] Warn for spacing when non integer value is used with theme.spacing array (#23460) @mnajdova
 
-### `@material-ui/styled-engine@v5.0.0-alpha.16`
+### `@mui/styled-engine@v5.0.0-alpha.16`
 
 - [styled-engine] Upgrade emotion to 11 RC (#23007) @mnajdova
 
@@ -3901,7 +3901,7 @@ Here are some highlights ✨:
 - [Rating] Ensure hover and click are in sync (#23117) @redbmk
 - [Select] Fix SelectDisplayProps className concat (#23211) @reedanders
 
-### `@material-ui/styled-engine@v5.0.0-alpha.14`
+### `@mui/styled-engine@v5.0.0-alpha.14`
 
 - [styled] Add @babel/runtime dependency (#23175) @koistya
 
@@ -4033,11 +4033,11 @@ Here are some highlights ✨:
 
 - [core] Ship modern bundle (#22814) @eps1lon
 
-### `@material-ui/styled-engine@v5.0.0-alpha.13`
+### `@mui/styled-engine@v5.0.0-alpha.13`
 
 - [core] Ship modern bundle (#22814) @eps1lon
 
-### `@material-ui/styled-engine-sc@v5.0.0-alpha.13`
+### `@mui/styled-engine-sc@v5.0.0-alpha.13`
 
 - [core] Ship modern bundle (#22814) @eps1lon
 
@@ -4102,7 +4102,7 @@ Big thanks to the 45 contributors who made this release possible.
 Here are some highlights ✨:
 
 - 🧪 The promotion of 4 components from the lab to core: Autocomplete, Pagination, SpeedDial, and ToggleButton. These components have been in the lab for more than 10 months @mbrookes.
-- 📦 Switch the style engine of the `Box` component from JSS to _@material-ui/styled-engine_ (use emotion by default) (#22945) @mnajdova.
+- 📦 Switch the style engine of the `Box` component from JSS to _@mui/styled-engine_ (use emotion by default) (#22945) @mnajdova.
   The early benchmark we have run shows that performance has improved. We will share more detailed results in #21657.
 - 🐙 Migrate a large portion of the tests from enzyme to react-testing-library @eladmotola, @baterson, @bewong89, @devrasec, @guillermaster, @itamar244, @jeferson-sb, @The24thDS.
   Last month, react-testing-library had [more downloads](https://npm-stat.com/charts.html?package=enzyme&package=%40testing-library%2Freact&from=2019-10-10&to=2020-10-10) than enzyme in the ecosystem!
@@ -4188,7 +4188,7 @@ Here are some highlights ✨:
 - [Tooltip] Use label semantics (#22729) @eps1lon
 - [useAutocomplete] Fix getXProps functions type (#22749) @kentaro84207
 
-### `@material-ui/styled-engine@v5.0.0-alpha.12`
+### `@mui/styled-engine@v5.0.0-alpha.12`
 
 - [styled] Support default theme when none is available (#22791) @mnajdova
 
@@ -4496,11 +4496,11 @@ Here are some highlights ✨:
 - [Autocomplete] Fix accessibility issue with empty option set (#22712) @tylerjlawson
 - [Autocomplete] Update GitHub customization example (#22735) @hmaddisb
 
-### `@material-ui/styled-engine@v5.0.0-alpha.11`
+### `@mui/styled-engine@v5.0.0-alpha.11`
 
 The new default style engine leveraging emotion.
 
-### `@material-ui/styled-engine-sc@v5.0.0-alpha.11`
+### `@mui/styled-engine-sc@v5.0.0-alpha.11`
 
 Allows developer to swap emotion with styled-components.
 More documentation are coming.

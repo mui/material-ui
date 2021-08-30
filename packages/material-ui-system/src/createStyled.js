@@ -1,4 +1,4 @@
-import styledEngineStyled from '@material-ui/styled-engine';
+import styledEngineStyled from '@mui/styled-engine';
 import { getDisplayName } from '@material-ui/utils';
 import createTheme from './createTheme';
 import styleFunctionSx from './styleFunctionSx';

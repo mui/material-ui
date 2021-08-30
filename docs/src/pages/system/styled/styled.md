@@ -5,7 +5,7 @@
 ## Introduction
 
 All the Material-UI components are styled with this `styled()` utility.
-This utility is built on top of the `styled()` module of [`@material-ui/styled-engine`](/guides/styled-engine/) and provides additional features.
+This utility is built on top of the `styled()` module of [`@mui/styled-engine`](/guides/styled-engine/) and provides additional features.
 
 ### Import path
 

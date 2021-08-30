@@ -96,7 +96,7 @@ const nestedFolder = {
       return resolved;
     }
 
-    if (importee.indexOf('@material-ui/styled-engine/') === 0) {
+    if (importee.indexOf('@mui/styled-engine/') === 0) {
       const folder = importee.split('/')[2];
       const resolved = path.resolve(
         __dirname,

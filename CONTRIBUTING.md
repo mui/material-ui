@@ -269,7 +269,7 @@ index 791a7da1f4..a5db13b414 100644
 @@ -61,7 +61,7 @@
    "dependencies": {
      "@babel/runtime": "^7.4.4",
-     "@material-ui/styled-engine": "^5.0.0-alpha.16",
+     "@mui/styled-engine": "^5.0.0-alpha.16",
 -    "@mui/material": "^5.0.0-alpha.15",
 +    "@mui/material": "https://pkg.csb.dev/mui-org/material-ui/commit/371c952b/@mui/material",
      "@mui/system": "^5.0.0-alpha.16",

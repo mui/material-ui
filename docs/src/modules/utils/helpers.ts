@@ -164,7 +164,7 @@ export function getDependencies(
     '@mui/material': getMuiPackageVersion('core', muiCommitRef),
     '@material-ui/icons': getMuiPackageVersion('icons', muiCommitRef),
     '@material-ui/lab': getMuiPackageVersion('lab', muiCommitRef),
-    '@material-ui/styled-engine': getMuiPackageVersion('styled-engine', muiCommitRef),
+    '@mui/styled-engine': getMuiPackageVersion('styled-engine', muiCommitRef),
     '@material-ui/styles': getMuiPackageVersion('styles', muiCommitRef),
     '@mui/system': getMuiPackageVersion('system', muiCommitRef),
     '@material-ui/private-theming': getMuiPackageVersion('theming', muiCommitRef),

@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@mui/material": "next",
-    "@material-ui/styled-engine-sc": "next",
+    "@mui/styled-engine-sc": "next",
     "next": "latest",
     "next-transpile-modules": "latest",
     "react": "latest",

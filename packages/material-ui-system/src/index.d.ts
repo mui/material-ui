@@ -107,7 +107,7 @@ export {
   GlobalStyles,
   GlobalStylesProps,
   StyledEngineProvider,
-} from '@material-ui/styled-engine';
+} from '@mui/styled-engine';
 
 export * from './style';
 export * from './spacing';

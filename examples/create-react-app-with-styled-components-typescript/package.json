@@ -5,7 +5,7 @@
   "dependencies": {
     "@mui/material": "next",
     "@material-ui/lab": "next",
-    "@material-ui/styled-engine-sc": "next",
+    "@mui/styled-engine-sc": "next",
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",

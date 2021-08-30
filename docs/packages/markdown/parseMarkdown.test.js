@@ -12,11 +12,11 @@ describe('parseMarkdown', () => {
     it('remove backticks', () => {
       expect(
         getTitle(`
-# \`@material-ui/styled-engine\`
+# \`@mui/styled-engine\`
 
 <p class="description">Configuring your preferred styling library.</p>
       `),
-      ).to.equal('@material-ui/styled-engine');
+      ).to.equal('@mui/styled-engine');
     });
   });
 

@@ -13,11 +13,11 @@ module.exports = {
       '@material-ui/docs': path.resolve(__dirname, './packages/material-ui-docs/src'),
       '@material-ui/icons': path.resolve(__dirname, './packages/material-ui-icons/lib'),
       '@material-ui/lab': path.resolve(__dirname, './packages/material-ui-lab/src'),
-      '@material-ui/styled-engine': path.resolve(
+      '@mui/styled-engine': path.resolve(
         __dirname,
         './packages/material-ui-styled-engine/src',
       ),
-      '@material-ui/styled-engine-sc': path.resolve(
+      '@mui/styled-engine-sc': path.resolve(
         __dirname,
         './packages/material-ui-styled-engine-sc/src',
       ),
