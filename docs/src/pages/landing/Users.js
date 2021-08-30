@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
-import NoSsr from '@material-ui/unstyled/NoSsr';
+import NoSsr from '@mui/core/NoSsr';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';

@@ -61,7 +61,7 @@ You can use the `anchorOrigin` prop to move the badge to any corner of the wrapp
 The badge also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
-import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
+import BadgeUnstyled from '@mui/core/BadgeUnstyled';
 ```
 
 {{"demo": "pages/components/badges/UnstyledBadge.js"}}

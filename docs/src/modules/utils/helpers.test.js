@@ -19,7 +19,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 import Select from '@mui/material/Select';
-import SliderUnstyled from '@material-ui/unstyled/SliderUnstyled';
+import SliderUnstyled from '@mui/core/SliderUnstyled';
 import FooBar, { Qux } from '@foo-bar/bip';
 const styles = theme => ({
   container: {
@@ -37,7 +37,7 @@ const styles = theme => ({
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
       '@mui/material': 'next',
-      '@material-ui/unstyled': 'next',
+      '@mui/core': 'next',
       'prop-types': 'latest',
     });
   });
@@ -101,7 +101,7 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
       '@mui/material': 'next',
-      '@material-ui/unstyled': 'next',
+      '@mui/core': 'next',
       '@types/foo-bar__bip': 'latest',
       '@types/prop-types': 'latest',
       '@types/react-dom': 'latest',
@@ -150,7 +150,7 @@ import lab from '@material-ui/lab';
   it('can use codesandbox deploys if a commit is given', () => {
     const source = `
 import * as Core from '@mui/material';
-import * as Unstyled from '@material-ui/unstyled';
+import * as Unstyled from '@mui/core';
 import * as Icons from '@mui/icons-material';
 import * as Lab from '@material-ui/lab';
 import * as Styles from '@material-ui/styles';
@@ -177,8 +177,8 @@ import * as Utils from '@material-ui/utils';
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/system',
       '@material-ui/utils':
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/utils',
-      '@material-ui/unstyled':
-        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/unstyled',
+      '@mui/core':
+        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/core',
     });
   });
 

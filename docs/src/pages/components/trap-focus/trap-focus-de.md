@@ -22,12 +22,12 @@ Die Style-Funktion der [Palette](/system/palette/).
 
 ## Unstyled
 
-- 📦 [2.0 kB gzipped](https://bundlephobia.com/result?p=@material-ui/unstyled@next)
+- 📦 [2.0 kB gzipped](https://bundlephobia.com/result?p=@mui/core@next)
 
 As the component does not have any styles, it also comes with the unstyled package.
 
 ```js
-import TrapFocus from '@material-ui/unstyled/Unstable_TrapFocus';
+import TrapFocus from '@mui/core/Unstable_TrapFocus';
 ```
 
 ## Disable enforce focus

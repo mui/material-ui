@@ -31,7 +31,7 @@ $ npx @material-ui/envinfo
     @material-ui/styles:  5.0.0-alpha.18
     @mui/system:  5.0.0-alpha.18
     @material-ui/types:  5.1.0
-    @material-ui/unstyled:  5.0.0-alpha.18
+    @mui/core:  5.0.0-alpha.18
     @material-ui/utils:  5.0.0-alpha.18
     @types/react: ^17.0.0 => 17.0.0
     react: ^16.14.0 => 16.14.0

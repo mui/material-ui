@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { chainPropTypes } from '@material-ui/utils';
 import { capitalize } from '@mui/material/utils';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { unstable_composeClasses as composeClasses } from '@mui/core';
 import { styled, useThemeProps } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import CircularProgress from '@mui/material/CircularProgress';

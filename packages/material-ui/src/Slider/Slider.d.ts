@@ -3,7 +3,7 @@ import {
   ExtendSliderUnstyledTypeMap,
   ExtendSliderUnstyled,
   SliderUnstyledTypeMap,
-} from '@material-ui/unstyled/SliderUnstyled';
+} from '@mui/core/SliderUnstyled';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@material-ui/types';
 import { Theme } from '../styles';

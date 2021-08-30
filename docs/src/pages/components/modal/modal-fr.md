@@ -41,7 +41,7 @@ Notez que vous pouvez désactiver le contour (souvent bleu ou or) avec la propri
 The modal also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
-import ModalUnstyled from '@material-ui/unstyled/ModalUnstyled';
+import ModalUnstyled from '@mui/core/ModalUnstyled';
 ```
 
 {{"demo": "pages/components/modal/ModalUnstyled.js"}}

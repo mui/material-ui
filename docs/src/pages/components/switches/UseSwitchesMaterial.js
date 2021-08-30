@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import {
   unstable_composeClasses as composeClasses,
   useSwitch,
-} from '@material-ui/unstyled';
+} from '@mui/core';
 import { alpha, darken, lighten, useThemeProps, styled } from '@mui/system';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { capitalize } from '@mui/material/utils';

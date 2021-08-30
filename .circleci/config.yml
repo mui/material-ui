@@ -249,7 +249,7 @@ jobs:
           name: Test module augmenation
           command: |
             yarn workspace @mui/material typescript:module-augmentation
-            yarn workspace @material-ui/unstyled typescript:module-augmentation
+            yarn workspace @mui/core typescript:module-augmentation
 
       - restore_cache:
           name: Restore generated declaration files

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 // import { styled } from '@mui/material/styles';
-import NoSsr from '@material-ui/unstyled/NoSsr';
+import NoSsr from '@mui/core/NoSsr';
 
 const createComponent = (defaultComponent) => {
   const Root = styled('div')`

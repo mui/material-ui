@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useAutocomplete } from '@material-ui/unstyled/AutocompleteUnstyled';
+import { useAutocomplete } from '@mui/core/AutocompleteUnstyled';
 import { styled } from '@mui/material/styles';
 
 const Label = styled('label')({

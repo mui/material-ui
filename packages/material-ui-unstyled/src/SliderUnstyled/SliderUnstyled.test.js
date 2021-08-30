@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { createClientRender, createMount, describeConformance, screen } from 'test/utils';
 import SliderUnstyled, {
   sliderUnstyledClasses as classes,
-} from '@material-ui/unstyled/SliderUnstyled';
+} from '@mui/core/SliderUnstyled';
 
 describe('<SliderUnstyled />', () => {
   before(function beforeHook() {

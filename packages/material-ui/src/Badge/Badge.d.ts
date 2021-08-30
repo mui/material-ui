@@ -4,7 +4,7 @@ import { OverridableStringUnion } from '@material-ui/types';
 import {
   ExtendBadgeUnstyledTypeMap,
   BadgeUnstyledTypeMap,
-} from '@material-ui/unstyled/BadgeUnstyled';
+} from '@mui/core/BadgeUnstyled';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 

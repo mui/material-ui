@@ -9,7 +9,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import NoSsr from '@material-ui/unstyled/NoSsr';
+import NoSsr from '@mui/core/NoSsr';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import { useTranslate } from 'docs/src/modules/utils/i18n';

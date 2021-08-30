@@ -3,7 +3,7 @@ import { SxProps } from '@mui/system';
 import {
   ExtendBackdropUnstyledTypeMap,
   BackdropUnstyledTypeMap,
-} from '@material-ui/unstyled/BackdropUnstyled';
+} from '@mui/core/BackdropUnstyled';
 import { FadeProps } from '../Fade';
 import { TransitionProps } from '../transitions/transition';
 import { Theme } from '../styles';

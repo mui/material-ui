@@ -12,7 +12,7 @@ import {
   AutocompleteInputChangeReason,
   createFilterOptions,
   UseAutocompleteProps,
-} from '@material-ui/unstyled';
+} from '@mui/core';
 import { AutocompleteClasses } from './autocompleteClasses';
 
 export {

@@ -75,10 +75,10 @@ function sizeSnapshot(options) {
 }
 
 // Resolve imports like:
-// import Portal from '@material-ui/unstyled/Portal';
+// import Portal from '@mui/core/Portal';
 const nestedFolder = {
   resolveId: (importee) => {
-    if (importee.indexOf('@material-ui/unstyled/') === 0) {
+    if (importee.indexOf('@mui/core/') === 0) {
       const folder = importee.split('/')[2];
       const resolved = path.resolve(
         __dirname,

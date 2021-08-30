@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { createClientRender, describeConformance } from 'test/utils';
 import ModalUnstyled, {
   modalUnstyledClasses as classes,
-} from '@material-ui/unstyled/ModalUnstyled';
+} from '@mui/core/ModalUnstyled';
 
 describe('<ModalUnstyled />', () => {
   const render = createClientRender();

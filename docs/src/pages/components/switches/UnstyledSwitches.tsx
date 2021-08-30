@@ -2,7 +2,7 @@ import * as React from 'react';
 import { styled } from '@mui/system';
 import SwitchUnstyled, {
   switchUnstyledClasses,
-} from '@material-ui/unstyled/SwitchUnstyled';
+} from '@mui/core/SwitchUnstyled';
 
 const Root = styled('span')(`
   font-size: 0;

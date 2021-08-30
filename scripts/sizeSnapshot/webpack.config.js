@@ -104,7 +104,7 @@ async function getWebpackEntries() {
       path: 'packages/material-ui/build/useScrollTrigger/index.js',
     },
     {
-      name: '@material-ui/unstyled',
+      name: '@mui/core',
       path: path.join(path.relative(workspaceRoot, unstyledPackagePath), 'index.js'),
     },
     ...unstyledComponents,
@@ -179,7 +179,7 @@ module.exports = async function webpackConfig(webpack, environment) {
             'packages/material-ui-private-theming/build',
           ),
           '@material-ui/utils': path.join(workspaceRoot, 'packages/material-ui-utils/build'),
-          '@material-ui/unstyled': path.join(workspaceRoot, 'packages/material-ui-unstyled/build'),
+          '@mui/core': path.join(workspaceRoot, 'packages/material-ui-unstyled/build'),
         },
       },
       entry: { [entry.name]: path.join(workspaceRoot, entry.path) },

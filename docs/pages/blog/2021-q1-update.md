@@ -83,7 +83,7 @@ This new feature removes the need to create a wrapper component.
   At the same time, they have increased the number of provided icons from 6,500 to 8,500.
   You can find all these icons under the `@mui/icons-material` package.
 
-- 🦴 We have migrated a couple of components to the `@material-ui/unstyled` package.
+- 🦴 We have migrated a couple of components to the `@mui/core` package.
   The aim of the package is to host the unstyled and headless (hooks) components.
   So far, you can only find:
 

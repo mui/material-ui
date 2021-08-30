@@ -4,7 +4,7 @@ import { OverrideProps } from '@material-ui/types';
 import {
   ExtendModalUnstyledTypeMap,
   ExtendModalUnstyled,
-} from '@material-ui/unstyled/ModalUnstyled';
+} from '@mui/core/ModalUnstyled';
 import { Theme } from '../styles';
 import { BackdropProps } from '../Backdrop';
 

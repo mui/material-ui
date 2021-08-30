@@ -1,5 +1,5 @@
 import { deepmerge } from '@material-ui/utils';
-import { generateUtilityClass } from '@material-ui/unstyled';
+import { generateUtilityClass } from '@mui/core';
 import { createTheme as systemCreateTheme } from '@mui/system';
 import createMixins from './createMixins';
 import createPalette from './createPalette';

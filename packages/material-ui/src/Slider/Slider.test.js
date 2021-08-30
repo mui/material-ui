@@ -4,7 +4,7 @@ import { spy, stub } from 'sinon';
 import { expect } from 'chai';
 import { describeConformance, act, createClientRender, fireEvent, screen } from 'test/utils';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { SliderUnstyled } from '@material-ui/unstyled';
+import { SliderUnstyled } from '@mui/core';
 import Slider, { sliderClasses as classes } from '@mui/material/Slider';
 
 function createTouches(touches) {

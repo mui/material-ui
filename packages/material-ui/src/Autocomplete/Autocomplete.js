@@ -6,7 +6,7 @@ import {
   unstable_composeClasses as composeClasses,
   useAutocomplete,
   createFilterOptions,
-} from '@material-ui/unstyled';
+} from '@mui/core';
 import { alpha } from '@mui/system';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';

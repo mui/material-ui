@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses, isHostComponent } from '@material-ui/unstyled';
+import { unstable_composeClasses as composeClasses, isHostComponent } from '@mui/core';
 import { chainPropTypes, elementTypeAcceptingRef } from '@material-ui/utils';
 import { alpha } from '@mui/system';
 import styled from '../styles/styled';

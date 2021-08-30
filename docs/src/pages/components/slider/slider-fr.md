@@ -131,7 +131,7 @@ Dans la démo suivante, la valeur _x_ représente la valeur _2^x_. Chaque augmen
 The slider also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
-import SliderUnstyled from '@material-ui/unstyled/SliderUnstyled';
+import SliderUnstyled from '@mui/core/SliderUnstyled';
 ```
 
 {{"demo": "pages/components/slider/UnstyledSlider.js"}}

@@ -8,7 +8,7 @@ import {
   unstable_resolveBreakpointValues as resolveBreakpointValues,
 } from '@mui/system';
 import { deepmerge, unstable_useForkRef as useForkRef } from '@material-ui/utils';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { unstable_composeClasses as composeClasses } from '@mui/core';
 import { styled, useThemeProps } from '@mui/material/styles';
 import { getMasonryUtilityClass } from './masonryClasses';
 import MasonryContext from './MasonryContext';

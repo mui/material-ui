@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { createClientRender, describeConformance } from 'test/utils';
 import BackdropUnstyled, {
   backdropUnstyledClasses as classes,
-} from '@material-ui/unstyled/BackdropUnstyled';
+} from '@mui/core/BackdropUnstyled';
 
 describe('<BackdropUnstyled />', () => {
   const render = createClientRender();

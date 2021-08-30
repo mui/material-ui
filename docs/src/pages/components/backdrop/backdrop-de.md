@@ -21,5 +21,5 @@ The backdrop signals to the user of a state change within the application and ca
 The backdrop also comes with the unstyled package. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
-import Backdrop from '@material-ui/unstyled/Backdrop';
+import Backdrop from '@mui/core/Backdrop';
 ```

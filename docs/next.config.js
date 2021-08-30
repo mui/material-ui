@@ -129,7 +129,7 @@ module.exports = {
                         '@material-ui/private-theming':
                           '../packages/material-ui-private-theming/src',
                         '@material-ui/utils': '../packages/material-ui-utils/src',
-                        '@material-ui/unstyled': '../packages/material-ui-unstyled/src',
+                        '@mui/core': '../packages/material-ui-unstyled/src',
                       },
                       transformFunctions: ['require'],
                     },

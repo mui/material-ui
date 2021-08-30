@@ -3,7 +3,7 @@ import { createMount, createClientRender, describeConformanceUnstyled } from 'te
 import SwitchUnstyled, {
   SwitchState,
   switchUnstyledClasses,
-} from '@material-ui/unstyled/SwitchUnstyled';
+} from '@mui/core/SwitchUnstyled';
 import { expect } from 'chai';
 
 describe('<SwitchUnstyled />', () => {
