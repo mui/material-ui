@@ -1,8 +1,6 @@
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
-import ButtonUnstyled, {
-  buttonUnstyledClasses,
-} from '@mui/core/ButtonUnstyled';
+import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/core/ButtonUnstyled';
 import { styled } from '@material-ui/system';
 
 const CustomButtonRoot = styled('span')(`
