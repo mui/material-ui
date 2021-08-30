@@ -4,7 +4,7 @@ import ButtonUnstyled, {
   ButtonUnstyledProps,
   buttonUnstyledClasses,
 } from '@mui/core/ButtonUnstyled';
-import { styled } from '@material-ui/system';
+import { styled } from '@mui/system';
 
 const CustomButtonRoot = styled('span')(`
   background-color: #007fff;
