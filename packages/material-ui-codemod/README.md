@@ -117,6 +117,7 @@ The list includes these transformers
 - [`use-transitionprops`](#use-transitionprops)
 - [`with-mobile-dialog`](#with-mobile-dialog)
 - [`with-width`](#with-width)
+- [`mui-replace`](#mui-replace)
 
 #### `adapter-v4`
 
@@ -1066,6 +1067,39 @@ npx @material-ui/codemod@next v5.0.0/with-width <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#material-ui-core-styles).
+
+#### `mui-replace`
+
+Replaces all `@material-ui` related prefix with `@mui`
+
+```diff
+- import Alert from '@material-ui/core/Alert';
++ import Alert from '@mui/material/Alert';
+- import { makeStyles } from '@material-ui/styles';
++ import { makeStyles } from '@mui/styles';
+- import { SxProps } from '@material-ui/system';
++ import { SxProps } from '@mui/system';
+- import { deepmerge } from '@material-ui/utils';
++ import { deepmerge } from '@mui/utils';
+- import Mansory from '@material-ui/lab/Mansory';
++ import Mansory from '@mui/lab-material/Mansory';
+- import { DistributiveOmit } from '@material-ui/types';
++ import { DistributiveOmit } from '@mui/types';
+
+// package.json
+- "@material-ui/core": "next",
+- "@material-ui/lab": "next",
+- "@material-ui/styled-engine-sc": "next",
++ "@mui/material": "next",
++ "@mui/lab-material": "next",
++ "@mui/styled-engine-sc": "next",
+```
+
+```sh
+npx @material-ui/codemod@next v5.0.0/mui-replace <path>
+```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#rename-to-mui).
 
 ### v4.0.0
 
