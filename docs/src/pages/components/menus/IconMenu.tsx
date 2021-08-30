@@ -6,10 +6,10 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Typography from '@mui/material/Typography';
-import ContentCut from '@material-ui/icons/ContentCut';
-import ContentCopy from '@material-ui/icons/ContentCopy';
-import ContentPaste from '@material-ui/icons/ContentPaste';
-import Cloud from '@material-ui/icons/Cloud';
+import ContentCut from '@mui/icons-material/ContentCut';
+import ContentCopy from '@mui/icons-material/ContentCopy';
+import ContentPaste from '@mui/icons-material/ContentPaste';
+import Cloud from '@mui/icons-material/Cloud';
 
 export default function IconMenu() {
   return (

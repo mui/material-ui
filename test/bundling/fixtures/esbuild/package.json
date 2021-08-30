@@ -12,7 +12,7 @@
     "@emotion/react": "11.4.0",
     "@emotion/styled": "11.3.0",
     "@mui/material": "5.0.0-alpha.34",
-    "@material-ui/icons": "5.0.0-alpha.34",
+    "@mui/icons-material": "5.0.0-alpha.34",
     "@material-ui/lab": "5.0.0-alpha.34",
     "@mui/styled-engine": "5.0.0-alpha.34",
     "@material-ui/styles": "5.0.0-alpha.33",

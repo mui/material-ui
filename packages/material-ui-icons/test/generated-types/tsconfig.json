@@ -12,8 +12,8 @@
     "paths": {
       "@mui/material": ["./material-ui/src"],
       "@mui/material/*": ["./material-ui/src/*"],
-      "@material-ui/icons": ["./material-ui-icons/build"],
-      "@material-ui/icons/*": ["./material-ui-icons/build/*"]
+      "@mui/icons-material": ["./material-ui-icons/build"],
+      "@mui/icons-material/*": ["./material-ui-icons/build/*"]
     }
   },
   "exclude": ["**/node_modules/"]

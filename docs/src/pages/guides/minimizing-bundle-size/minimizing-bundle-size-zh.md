@@ -18,7 +18,7 @@ import { Button, TextField } from '@mui/material';
 
 ## 开发者环境
 
-开发者环境下的模块打包器能够包含完整的库，但这会造成**较慢的启动时间**。 如果您从 `@material-ui/icons` 这个库进行导入操作时，这一点尤其明显。 加载时间会大约比那些从顶层 API 的命名导入方式慢六倍。
+开发者环境下的模块打包器能够包含完整的库，但这会造成**较慢的启动时间**。 如果您从 `@mui/icons-material` 这个库进行导入操作时，这一点尤其明显。 加载时间会大约比那些从顶层 API 的命名导入方式慢六倍。
 
 如果您觉得这样不妥，您还有以下几个选择：
 
@@ -46,12 +46,12 @@ import { Button, TextField } from '@mui/material';
 
 ```js
 // ✅ 可行
-import { Add as AddIcon } from '@material-ui/icons';
+import { Add as AddIcon } from '@mui/icons-material';
 import { Tabs } from '@mui/material';
 //                                 ^^^^  第一级或者最上级
 
 // ✅ 可行
-import AddIcon from '@material-ui/icons/Add';
+import AddIcon from '@mui/icons-material/Add';
 import Tabs from '@mui/material/Tabs';
 //                                  ^^^^ 第二级
 
@@ -113,7 +113,7 @@ import { Button, TextField } from '@mui/material';
     [
       'babel-plugin-import',
       {
-        libraryName: '@material-ui/icons',
+        libraryName: '@mui/icons-material',
         libraryDirectory: '',
         camel2DashComponentName: false,
       },
@@ -139,8 +139,8 @@ import { Button, TextField } from '@mui/material';
           transform: '@mui/material/${member}',
           preventFullImport: true,
         },
-        '@material-ui/icons': {
-          transform: '@material-ui/icons/${member}',
+        '@mui/icons-material': {
+          transform: '@mui/icons-material/${member}',
           preventFullImport: true,
         },
       },

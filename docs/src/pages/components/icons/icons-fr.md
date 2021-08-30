@@ -17,7 +17,7 @@ Material-UI provides icons support in three ways:
 
 ## Icônes de Material
 
-For each SVG icon, we export the respective React component from the @material-ui/icons package. Material Design has standardized over 1,100 official icons, each in five different "themes" (see below). You can [search the full list of these icons](/components/material-icons/).
+For each SVG icon, we export the respective React component from the @mui/icons-material package. Material Design has standardized over 1,100 official icons, each in five different "themes" (see below). You can [search the full list of these icons](/components/material-icons/).
 
 ### Installation
 
@@ -25,10 +25,10 @@ Installez le package dans votre répertoire de projet avec:
 
 ```sh
 // with npm
-npm install @material-ui/icons
+npm install @mui/icons-material
 
 // with yarn
-yarn add @material-ui/icons
+yarn add @mui/icons-material
 ```
 
 Ces composants utilisent le composant Material-UI `SvgIcon` pour afficher le chemin SVG pour chaque icône, et ont donc une dépendance sur `@materialui/core`.
@@ -50,36 +50,36 @@ Import icons using one of these two options:
 - Option 1:
 
   ```jsx
-  import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
-  import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
+  import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+  import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
   ```
 
 - Option 2:
 
   ```jsx
-  import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
+  import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
   ```
 
 La plus sûre pour la taille des packages est l'option 1, mais certains développeurs préfèrent l'option 2. Make sure you follow the [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the second approach.
 
-Chaque icône de Material a également un "thème" : Configuré (par défaut), `Outlined`, `Rounded`, `Two-tone`, et `Sharp`. Pour importer le composant d'icône avec un autre thème que celui par défaut, ajoutez le nom du thème au nom de l'icône. For example `@material-ui/icons/Delete` icon with:
+Chaque icône de Material a également un "thème" : Configuré (par défaut), `Outlined`, `Rounded`, `Two-tone`, et `Sharp`. Pour importer le composant d'icône avec un autre thème que celui par défaut, ajoutez le nom du thème au nom de l'icône. For example `@mui/icons-material/Delete` icon with:
 
-- Filled theme (default) is exported as `@material-ui/icons/Delete`,
-- Outlined theme is exported as `@material-ui/icons/DeleteOutlined`,
-- Rounded theme is exported as `@material-ui/icons/DeleteRounded`,
-- Twotone theme is exported as `@material-ui/icons/DeleteTwoTone`,
-- Sharp theme is exported as `@material-ui/icons/DeleteSharp`.
+- Filled theme (default) is exported as `@mui/icons-material/Delete`,
+- Outlined theme is exported as `@mui/icons-material/DeleteOutlined`,
+- Rounded theme is exported as `@mui/icons-material/DeleteRounded`,
+- Twotone theme is exported as `@mui/icons-material/DeleteTwoTone`,
+- Sharp theme is exported as `@mui/icons-material/DeleteSharp`.
 
-> Note: The Material Design specification names the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
+> Note: The Material Design specification names the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@mui/icons-material` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
 ### Test
 
-Pour tester les fins, chaque icône importée de `@material-ui/icons` a un attribut `data-testid` avec le nom de l'icône. Par exemple:
+Pour tester les fins, chaque icône importée de `@mui/icons-material` a un attribut `data-testid` avec le nom de l'icône. Par exemple:
 
 ```jsx
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from '@mui/icons-material/Delete';
 ```
 
 a l'attribut suivant une fois monté :

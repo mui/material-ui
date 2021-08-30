@@ -8,8 +8,8 @@ import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
-import FaceIcon from '@material-ui/icons/Face';
-import DoneIcon from '@material-ui/icons/Done';
+import FaceIcon from '@mui/icons-material/Face';
+import DoneIcon from '@mui/icons-material/Done';
 
 function ChipsPlayground() {
   const [state, setState] = React.useState({

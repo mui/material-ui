@@ -85,13 +85,13 @@ npm install @mui/material@next @emotion/react @emotion/styled
 yarn add @mui/material@next @emotion/react @emotion/styled
 ```
 
-**Optional** if your project includes `@material-ui/icons` and/or `@material-ui/lab`, use the `next` version of them.
+**Optional** if your project includes `@mui/icons-material` and/or `@material-ui/lab`, use the `next` version of them.
 
 ```sh
-npm install @material-ui/icons@next @material-ui/lab@next
+npm install @mui/icons-material@next @material-ui/lab@next
 
 // or with `yarn`
-yarn add @material-ui/icons@next @material-ui/lab@next
+yarn add @mui/icons-material@next @material-ui/lab@next
 ```
 
 > **Note:** if you are using `@material-ui/pickers`, it has moved to `@material-ui/lab`. The details is in "Handling breaking changes" section.

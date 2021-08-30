@@ -62,16 +62,16 @@ For instance, via Google Web Fonts:
 ## SVG Icons
 
 In order to use prebuilt SVG Material icons, such as those found in the [icons demos](/components/icons/)
-you must first install the [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) package:
+you must first install the [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material) package:
 
 <!-- #default-branch-switch -->
 
 ```sh
 // with npm
-npm install @material-ui/icons@next
+npm install @mui/icons-material@next
 
 // with yarn
-yarn add @material-ui/icons@next
+yarn add @mui/icons-material@next
 ```
 
 ## CDN

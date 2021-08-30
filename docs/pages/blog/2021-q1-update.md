@@ -81,7 +81,7 @@ This new feature removes the need to create a wrapper component.
 - 📍 We have synchronized the icons with the latest update of the Material Design icons.<br />
   Google has moved its icons to a new location: https://fonts.google.com/icons.
   At the same time, they have increased the number of provided icons from 6,500 to 8,500.
-  You can find all these icons under the `@material-ui/icons` package.
+  You can find all these icons under the `@mui/icons-material` package.
 
 - 🦴 We have migrated a couple of components to the `@material-ui/unstyled` package.
   The aim of the package is to host the unstyled and headless (hooks) components.

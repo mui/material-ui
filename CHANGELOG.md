@@ -70,7 +70,7 @@ A big thanks to the 26 contributors who made this release possible. Here are som
 - &#8203;<!-- 32 --> [system] Forward `classes` prop if no slot specified in the options (#27795) @mnajdova
 - &#8203;<!-- 46 --> [system] Fix pseudo class overridden in variants (#27847) @hbjORbj
 
-### `@material-ui/icons@5.0.0-beta.5`
+### `@mui/icons-material@5.0.0-beta.5`
 
 - &#8203;<!-- 13 --> [icons] Improve GitHub size (#27740) @oliviertassinari
 
@@ -563,7 +563,7 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 
 - &#8203;<!-- 37 -->[codemod] Add CLI (#26941) @eps1lon
 
-### @material-ui/icons@5.0.0-beta.0
+### @mui/icons-material@5.0.0-beta.0
 
 - &#8203;<!-- 29 -->[icons] Regenerate transpiled files (#26985) @eps1lon
 
@@ -808,7 +808,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 ### Docs
 
 - &#8203;<!-- 45 -->[docs] Fix misspelling of the word Typography (#26898) @dmrqx
-- &#8203;<!-- 42 -->[docs] Instruct users to install @material-ui/icons with the next tag (#26873) @michal-perlakowski
+- &#8203;<!-- 42 -->[docs] Instruct users to install @mui/icons-material with the next tag (#26873) @michal-perlakowski
 - &#8203;<!-- 26 -->[docs] Sync translations (#26828) @l10nbot
 - &#8203;<!-- 25 -->[docs] Improve grammar of autocomplete/autofill section (#26798) @dijonkitchen
 - &#8203;<!-- 18 -->[docs] Explain "inherited props" better in the props table (#26778) @eps1lon
@@ -921,7 +921,7 @@ Big thanks to the 11 contributors who made this release possible. Here are some 
 - &#8203;<!-- 04 -->[Slider] Improve TS definition (#26642) @mnajdova
 - &#8203;<!-- 21 -->[TrapFocus] Capture nodeToRestore via relatedTarget (#26696) @eps1lon
 
-### `@material-ui/icons@5.0.0-alpha.37`
+### `@mui/icons-material@5.0.0-alpha.37`
 
 - &#8203;<!-- 03 -->Revert "[icons] Only ship ES modules (#26310)" (#26656) @eps1lon
 
@@ -966,7 +966,7 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 - ⚒️ We've introduced a new `ListItemButton` component that should prevent common mistakes when using `<ListItem button />` and help with customization and TypeScript support (#26446) @siriwatknp.
 - 👩‍🎤 `experimentalStyled` is now available without the `experimental` prefix.
   We're confident that its API shouldn't receive any major changes until the stable release of v5 (#26558) @mnajdova.
-- 📦 `@material-ui/icons` only ships ES modules and no longer CommonJS modules.
+- 📦 `@mui/icons-material` only ships ES modules and no longer CommonJS modules.
   This reduces the download size of the package from 1.7 MB to 1.2 MB and install size from 15.6 MB to 6.7 MB (#26310) @eps1lon.
 - 💄 Add support for [row and column spacing](https://next.material-ui.com/components/grid/#row-amp-column-spacing) in the Grid component (#26559) @likitarai1.
   <img width="549" alt="grid spacing demo" src="https://user-images.githubusercontent.com/3165635/121089288-383fa500-c7e7-11eb-8c43-53457b7430f1.png">
@@ -1014,13 +1014,13 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 - &#8203;<!-- 20 -->[TextField] Fix support for custom `size` prop value (#26585) @coder-freestyle
 - &#8203;<!-- 04 -->[Tooltip] Finish exiting once started (#26535) @eps1lon
 
-### `@material-ui/icons@5.0.0-alpha.36`
+### `@mui/icons-material@5.0.0-alpha.36`
 
 #### Breaking changes
 
 - &#8203;<!-- 15 -->[icons] Only ship ES modules (#26310) @eps1lon
 
-  The `require()` of `@material-ui/icons` is no longer supported.
+  The `require()` of `@mui/icons-material` is no longer supported.
   This should not affect you if you're using a bundler like `webpack` or `snowpack` or meta frameworks like `next` or `gatsby`.
 
 ### `@material-ui/lab@5.0.0-alpha.36`
@@ -1156,7 +1156,7 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 - [codemod] Add multiple codemods to migrate components from v4 to v5 (#24867) @mbrookes
 - [codemod] Correct path and add target placeholder (#26414) @mbrookes
 
-### `@material-ui/icons@5.0.0-alpha.35`
+### `@mui/icons-material@5.0.0-alpha.35`
 
 - [icons] Use array children instead of React fragments (#26309) @eps1lon
 
@@ -1346,7 +1346,7 @@ Big thanks to the 16 contributors who made this release possible. Here are some 
 - &#8203;<!-- 25 -->[pickers] Migrate PickersDay to emotion (#25995) @siriwatknp
 - &#8203;<!-- 06 -->[pickers] Migrate PickersToolbarButton to emotion (#25989) @siriwatknp
 
-### `@material-ui/icons@5.0.0-alpha.34`
+### `@mui/icons-material@5.0.0-alpha.34`
 
 - &#8203;<!-- 52 -->[icons] Remove extraneous React.Fragment (#26308) @eps1lon
 - &#8203;<!-- 50 -->[icons] Synchronize icons (#26302) @eps1lon
@@ -2476,7 +2476,7 @@ Big thanks to the 26 contributors who made this release possible. Here are some 
 - &#8203;<!-- 065 -->[Pickers] Fix picker components not opening on click in React 17 (#24981) @eps1lon
 - &#8203;<!-- 013 -->[Pickers] Fix outdated link to PickersDay (#24883) @oliviertassinari
 
-### `@material-ui/icons@5.0.0-alpha.26`
+### `@mui/icons-material@5.0.0-alpha.26`
 
 - &#8203;<!-- 087 -->[icons] Synchronize icons (#25055) @eps1lon
 
@@ -3752,7 +3752,7 @@ Big thanks to the 20 contributors who made this release possible. Here are some 
 - [lab] Migrate Timeline to TypeScript (#23242) @oliviertassinari
 - [core] Allow React 17 (#23311) @eps1lon
 
-### `@material-ui/icons@v5.0.0-alpha.15`
+### `@mui/icons-material@v5.0.0-alpha.15`
 
 - [core] Allow React 17 (#23311) @eps1lon
 
@@ -3836,7 +3836,7 @@ Here are some highlights ✨:
   Imports such as the one below should work again with this release:
 
   ```jsx
-  import CloseIcon from '@material-ui/icons/Close';
+  import CloseIcon from '@mui/icons-material/Close';
   ```
 
 - And many more 🐛 bug fixes and 📚 improvements.
@@ -3910,7 +3910,7 @@ Here are some highlights ✨:
 - [Box] Add sx prop (#23053) @mnajdova
 - [core] Fix bundles for packages without subpackages (#23157) @eps1lon
 
-### `@material-ui/icons@v5.0.0-alpha.14`
+### `@mui/icons-material@v5.0.0-alpha.14`
 
 - [core] Fix bundles for packages without subpackages (#23157) @eps1lon
 
@@ -4041,7 +4041,7 @@ Here are some highlights ✨:
 
 - [core] Ship modern bundle (#22814) @eps1lon
 
-### `@material-ui/icons@v5.0.0-alpha.13`
+### `@mui/icons-material@v5.0.0-alpha.13`
 
 - [core] Ship modern bundle (#22814) @eps1lon
 
@@ -4505,7 +4505,7 @@ The new default style engine leveraging emotion.
 Allows developer to swap emotion with styled-components.
 More documentation are coming.
 
-### `@material-ui/icons@v5.0.0-alpha.11`
+### `@mui/icons-material@v5.0.0-alpha.11`
 
 - [icons] Synchronize with Google (#22680) @delewis13
 
@@ -4997,7 +4997,7 @@ Here are some highlights ✨:
 - [TrapFocus] Fix compatibility issues with React 17 (#22270) @eps1lon
 - [TrapFocus] Prevent possible crash in React 17 (#22262) @eps1lon
 
-### `@material-ui/icons@v5.0.0-alpha.7`
+### `@mui/icons-material@v5.0.0-alpha.7`
 
 - [icons] Synchronize icons (#22186) @oliviertassinari
 
@@ -5416,7 +5416,7 @@ Big thanks to the 11 contributors who made this release possible.
   Rely on the context over the `React.cloneElement()` API.
   This change makes composition easier.
 
-### `@material-ui/icons@v5.0.0-alpha.4`
+### `@mui/icons-material@v5.0.0-alpha.4`
 
 - [icons] Add Google brand icon (#21807) @bmg02
 
@@ -5697,7 +5697,7 @@ Big thanks to the 33 contributors who made this release possible. Here are some 
 - [TreeView] Minor styling changes (#21573) @joshwooding
 - [TreeView] Simplify customization (#21514) @joshwooding
 
-### `@material-ui/icons@v5.0.0-alpha.1`
+### `@mui/icons-material@v5.0.0-alpha.1`
 
 - [icons] Synchronize icons with Google (#21498) @alecananian
 

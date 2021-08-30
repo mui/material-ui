@@ -8,8 +8,8 @@ import MuiCard, { CardProps } from '@mui/material/Card';
 import MuiSwitch from '@mui/material/Switch';
 import MuiTypography from '@mui/material/Typography';
 import MuiStack from '@mui/material/Stack';
-import MuiEdit from '@material-ui/icons/Edit';
-import MuiLocationOn from '@material-ui/icons/LocationOn';
+import MuiEdit from '@mui/icons-material/Edit';
+import MuiLocationOn from '@mui/icons-material/LocationOn';
 import { withPointer } from 'docs/src/components/home/ElementPointer';
 import { grey } from '@mui/material/colors';
 

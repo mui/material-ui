@@ -6,9 +6,9 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Fab from '@mui/material/Fab';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
-import AddIcon from '@material-ui/icons/Add';
+import AddIcon from '@mui/icons-material/Add';
 
 function ColorDemo(props) {
   const { data } = props;

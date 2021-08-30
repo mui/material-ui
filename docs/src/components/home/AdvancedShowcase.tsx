@@ -14,10 +14,10 @@ import Tooltip from '@mui/material/Tooltip';
 import Slider from '@mui/material/Slider';
 import Select from '@mui/material/Select';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
-import ReportProblemIcon from '@material-ui/icons/ReportProblem';
-import InfoIcon from '@material-ui/icons/Info';
-import AutorenewIcon from '@material-ui/icons/Autorenew';
-import DoneIcon from '@material-ui/icons/Done';
+import ReportProblemIcon from '@mui/icons-material/ReportProblem';
+import InfoIcon from '@mui/icons-material/Info';
+import AutorenewIcon from '@mui/icons-material/Autorenew';
+import DoneIcon from '@mui/icons-material/Done';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 

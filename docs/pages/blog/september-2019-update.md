@@ -13,7 +13,7 @@ Here are the most significant improvements in September:
   ![button icons](/static/blog/september-2019-update/button-icon.png)
 
   ```jsx
-  import DeleteIcon from '@material-ui/icons/Delete';
+  import DeleteIcon from '@mui/icons-material/Delete';
 
   <Button startIcon={<DeleteIcon />}>Delete</Button>;
   ```

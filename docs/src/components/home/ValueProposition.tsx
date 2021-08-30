@@ -5,10 +5,10 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import GradientText from 'docs/src/components/typography/GradientText';
-import InvertColorsRoundedIcon from '@material-ui/icons/InvertColorsRounded';
-import HandymanRoundedIcon from '@material-ui/icons/HandymanRounded';
-import ArticleRoundedIcon from '@material-ui/icons/ArticleRounded';
-import AccessibilityNewRounded from '@material-ui/icons/AccessibilityNewRounded';
+import InvertColorsRoundedIcon from '@mui/icons-material/InvertColorsRounded';
+import HandymanRoundedIcon from '@mui/icons-material/HandymanRounded';
+import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
+import AccessibilityNewRounded from '@mui/icons-material/AccessibilityNewRounded';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 const content = [

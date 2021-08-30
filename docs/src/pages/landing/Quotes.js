@@ -8,7 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
-import TwitterIcon from '@material-ui/icons/Twitter';
+import TwitterIcon from '@mui/icons-material/Twitter';
 import NoSsr from '@material-ui/unstyled/NoSsr';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';

@@ -26,12 +26,12 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import ShoppingCartRounded from '@material-ui/icons/ShoppingCartRounded';
-import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
-import CheckCircleRounded from '@material-ui/icons/CheckCircleRounded';
-import MailRounded from '@material-ui/icons/MailRounded';
-import VerifiedUserRounded from '@material-ui/icons/VerifiedUserRounded';
-import HelpCenterRounded from '@material-ui/icons/HelpCenterRounded';
+import ShoppingCartRounded from '@mui/icons-material/ShoppingCartRounded';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import CheckCircleRounded from '@mui/icons-material/CheckCircleRounded';
+import MailRounded from '@mui/icons-material/MailRounded';
+import VerifiedUserRounded from '@mui/icons-material/VerifiedUserRounded';
+import HelpCenterRounded from '@mui/icons-material/HelpCenterRounded';
 import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
 

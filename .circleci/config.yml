@@ -157,8 +157,8 @@ jobs:
 
             if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
               echo "changes, let's run the tests"
-              yarn workspace @material-ui/icons build:typings
-              yarn workspace @material-ui/icons test:built-typings
+              yarn workspace @mui/icons-material build:typings
+              yarn workspace @mui/icons-material test:built-typings
             else
               echo "no changes"
             fi

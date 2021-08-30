@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import { connect } from 'react-redux';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCartOutlined';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCartOutlined';
 import * as recompose from 'recompose';
 import Typography from '@material-ui/core/Typography';
 import Link from 'modules/components/Link';

@@ -10,7 +10,7 @@ import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
 import TimelineConnector from '@material-ui/lab/TimelineConnector';
 import TimelineContent from '@material-ui/lab/TimelineContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
-import InfoOutlined from '@material-ui/icons/InfoOutlined';
+import InfoOutlined from '@mui/icons-material/InfoOutlined';
 
 const primary = {
   50: '#F0F7FF',

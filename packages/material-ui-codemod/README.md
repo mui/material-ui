@@ -1188,14 +1188,14 @@ npx @material-ui/codemod@next v1.0.0/color-imports <path> -- --importPath='mui/s
 
 #### `svg-icon-imports`
 
-Updates the `svg-icons` import paths from `material-ui/svg-icons/<category>/<icon-name>` to `@material-ui/icons/<IconName>`, to use the new [`@material-ui/icons`](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-icons) package.
+Updates the `svg-icons` import paths from `material-ui/svg-icons/<category>/<icon-name>` to `@mui/icons-material/<IconName>`, to use the new [`@mui/icons-material`](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-icons) package.
 The diff should look like this:
 
 ```diff
 -import AccessAlarmIcon from 'material-ui/svg-icons/device/AccessAlarm';
 -import ThreeDRotation from 'material-ui/svg-icons/action/ThreeDRotation';
-+import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
-+import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
++import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
++import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
 ```
 
 <!-- #default-branch-switch -->

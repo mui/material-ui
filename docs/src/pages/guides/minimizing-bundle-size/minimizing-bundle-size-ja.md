@@ -18,7 +18,7 @@ import { Button, TextField } from '@mui/material';
 
 ## 開発環境
 
-開発時のバンドルはライブラリの全てを含むので、 **遅い起動時間**の原因となります。 これは、特に`@material-ui/icons`からインポートする場合に顕著です。 起動時間は、上位からの名前指定インポートがない場合に比べて、約6倍遅い場合もあります。
+開発時のバンドルはライブラリの全てを含むので、 **遅い起動時間**の原因となります。 これは、特に`@mui/icons-material`からインポートする場合に顕著です。 起動時間は、上位からの名前指定インポートがない場合に比べて、約6倍遅い場合もあります。
 
 この課題を持っているのであれば、様々な対応を取ることができます。
 
@@ -45,12 +45,12 @@ While importing directly in this manner doesn't use the exports in [the main fil
 
 ```js
 // ✅ OK
-import { Add as AddIcon } from '@material-ui/icons';
+import { Add as AddIcon } from '@mui/icons-material';
 import { Tabs } from '@mui/material';
 //                                 ^^^^ 1st or top-level
 
 // ✅ OK
-import AddIcon from '@material-ui/icons/Add';
+import AddIcon from '@mui/icons-material/Add';
 import Tabs from '@mui/material/Tabs';
 //                                  ^^^^ 2nd level
 
@@ -113,7 +113,7 @@ import { Button, TextField } from '@mui/material';
     [
       'babel-plugin-import',
       {
-        libraryName: '@material-ui/icons',
+        libraryName: '@mui/icons-material',
         libraryDirectory: '',
         camel2DashComponentName: false,
       },
@@ -140,8 +140,8 @@ import { Button, TextField } from '@mui/material';
           transform: '@mui/material/${member}',
           preventFullImport: true,
         },
-        '@material-ui/icons': {
-          transform: '@material-ui/icons/${member}',
+        '@mui/icons-material': {
+          transform: '@mui/icons-material/${member}',
           preventFullImport: true,
         },
       },

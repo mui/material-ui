@@ -12,9 +12,9 @@ import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/MaterialDesignDemo';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
-import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
-import KeyboardArrowUpRounded from '@material-ui/icons/KeyboardArrowUpRounded';
-import TouchAppRounded from '@material-ui/icons/TouchAppRounded';
+import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
+import KeyboardArrowUpRounded from '@mui/icons-material/KeyboardArrowUpRounded';
+import TouchAppRounded from '@mui/icons-material/TouchAppRounded';
 
 const darkDesignTokens = getDesignTokens('dark');
 

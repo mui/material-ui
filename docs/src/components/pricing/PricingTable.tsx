@@ -7,12 +7,12 @@ import Collapse from '@mui/material/Collapse';
 import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
-import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import Link from 'docs/src/modules/components/Link';
 import IconImage, { IconImageProps } from 'docs/src/components/icon/IconImage';
-import LaunchRounded from '@material-ui/icons/LaunchRounded';
-import UnfoldMoreRounded from '@material-ui/icons/UnfoldMoreRounded';
+import LaunchRounded from '@mui/icons-material/LaunchRounded';
+import UnfoldMoreRounded from '@mui/icons-material/UnfoldMoreRounded';
 
 const planInfo = {
   community: {

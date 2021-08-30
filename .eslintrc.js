@@ -68,7 +68,7 @@ module.exports = {
           // Importing from the top level pulls in CommonJS instead of ES modules
           // Allowing /icons as to reduce cold-start of dev builds significantly.
           // There's nothing to tree-shake when importing from /icons this way:
-          // '@material-ui/icons/*/',
+          // '@mui/icons-material/*/',
           '@mui/system/*',
           '@material-ui/utils/*',
           // End block

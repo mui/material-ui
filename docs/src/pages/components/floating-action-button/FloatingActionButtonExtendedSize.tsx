@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
-import NavigationIcon from '@material-ui/icons/Navigation';
+import NavigationIcon from '@mui/icons-material/Navigation';
 
 export default function FloatingActionButtonExtendedSize() {
   return (

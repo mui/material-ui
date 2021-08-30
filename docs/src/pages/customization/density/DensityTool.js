@@ -8,8 +8,8 @@ import IconButton from '@mui/material/IconButton';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { DispatchContext } from 'docs/src/modules/components/ThemeContext';
-import IncreaseIcon from '@material-ui/icons/AddCircleOutline';
-import DecreaseIcon from '@material-ui/icons/RemoveCircleOutline';
+import IncreaseIcon from '@mui/icons-material/AddCircleOutline';
+import DecreaseIcon from '@mui/icons-material/RemoveCircleOutline';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const minSpacing = 0;

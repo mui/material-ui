@@ -89,7 +89,7 @@ Material-UI 不提供用于解决此问题的高级 API。 Material-UI doesn't p
 
 ```diff
 -import AddIcon from 'material-ui/svg-icons/Add';
-+import AddIcon from '@material-ui/icons/Add';
++import AddIcon from '@mui/icons-material/Add';
 
 <AddIcon />
 ```

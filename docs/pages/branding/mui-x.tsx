@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import { styled } from '@mui/material/styles';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import InLabIcon from 'docs/src/modules/branding/icons/InLab';
 import WorkInProgressIcon from 'docs/src/modules/branding/icons/WorkInProgress';
 import PlanningBuildIcon from 'docs/src/modules/branding/icons/PlanningBuild';

@@ -17,7 +17,7 @@ Material-UIはアイコンについて、3種類の提供方法をサポート�
 
 ## マテリアルアイコン（Material Icons）
 
-Google has created over 1,700 official Material icons, each in five different "themes" (see below). SVGアイコンは、`@material-ui/icons` パッケージでReactコンポーネントとしてそれぞれエクスポートされています。 [これらのアイコンの一覧を検索](/components/material-icons/)することが出来ます。
+Google has created over 1,700 official Material icons, each in five different "themes" (see below). SVGアイコンは、`@mui/icons-material` パッケージでReactコンポーネントとしてそれぞれエクスポートされています。 [これらのアイコンの一覧を検索](/components/material-icons/)することが出来ます。
 
 ### インストール
 
@@ -25,10 +25,10 @@ Google has created over 1,700 official Material icons, each in five different "t
 
 ```sh
 // npmの場合
-npm install @material-ui/icons@next
+npm install @mui/icons-material@next
 
 // yarnの場合
-yarn add @material-ui/icons@next
+yarn add @mui/icons-material@next
 ```
 
 これらのコンポーネントはMaterial-UIの `SvgIcon` コンポーネントを使用してそれぞれのアイコンを表示するため、`@materialui/core` をpeer-dependencyに持っています。
@@ -51,36 +51,36 @@ yarn add @mui/material@next
 - Option 1:
 
   ```jsx
-  import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
-  import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
+  import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+  import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
   ```
 
 - Option 2:
 
   ```jsx
-  import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
+  import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
   ```
 
 バンドルサイズの面で最も安全なのはOption 1ですが、一部の開発者はOption 2を好みます。 2番目の方法を使用する前に [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) に従ってください。
 
-各マテリアルアイコンには「テーマ」があります。Filled(デフォルト)、Outline、Rounded、Two-tone、そしてSharpです。 デフォルト以外のテーマでアイコンコンポーネントをインポートするには、アイコン名にテーマ名を追加します。 例えば `@material-ui/icons/Delete` アイコンには次のものが含まれます:
+各マテリアルアイコンには「テーマ」があります。Filled(デフォルト)、Outline、Rounded、Two-tone、そしてSharpです。 デフォルト以外のテーマでアイコンコンポーネントをインポートするには、アイコン名にテーマ名を追加します。 例えば `@mui/icons-material/Delete` アイコンには次のものが含まれます:
 
-- `@material-ui/icons/Delete` としてエクスポートされた Filled テーマ(デフォルト)
-- `@material-ui/icons/DeleteOutlined` としてエクスポートされた Outlinedテーマ
-- `@material-ui/icons/DeleteRounded` としてエクスポートされた Roundedテーマ
-- `@material-ui/icons/DeleteTwoTone` としてエクスポートされた Twotone テーマ
-- `@material-ui/icons/DeleteSharp` としてエクスポートされた Sharpテーマ
+- `@mui/icons-material/Delete` としてエクスポートされた Filled テーマ(デフォルト)
+- `@mui/icons-material/DeleteOutlined` としてエクスポートされた Outlinedテーマ
+- `@mui/icons-material/DeleteRounded` としてエクスポートされた Roundedテーマ
+- `@mui/icons-material/DeleteTwoTone` としてエクスポートされた Twotone テーマ
+- `@mui/icons-material/DeleteSharp` としてエクスポートされた Sharpテーマ
 
-> Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
+> Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@mui/icons-material` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
 ### テスト
 
-テストの目的で、 `@material-ui/icons` で公開された各アイコンには、アイコンの名前を持つ `data-testid` 属性があります。 例えば：
+テストの目的で、 `@mui/icons-material` で公開された各アイコンには、アイコンの名前を持つ `data-testid` 属性があります。 例えば：
 
 ```jsx
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from '@mui/icons-material/Delete';
 ```
 
 は次の属性を持っています

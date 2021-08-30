@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import ExpandIcon from '@material-ui/icons/ExpandMore';
-import CollapseIcon from '@material-ui/icons/ChevronRight';
+import ExpandIcon from '@mui/icons-material/ExpandMore';
+import CollapseIcon from '@mui/icons-material/ChevronRight';
 import TreeView from '@material-ui/lab/TreeView';
 import MuiTreeItem, { treeItemClasses } from '@material-ui/lab/TreeItem';
 import clsx from 'clsx';

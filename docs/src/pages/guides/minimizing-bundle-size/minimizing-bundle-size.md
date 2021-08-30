@@ -25,7 +25,7 @@ that doesn't support tree-shaking.
 ## Development environment
 
 Development bundles can contain the full library which can lead to **slower startup times**.
-This is especially noticeable if you import from `@material-ui/icons`.
+This is especially noticeable if you import from `@mui/icons-material`.
 Startup times can be approximately 6x slower than without named imports from the top-level API.
 
 If this is an issue for you, you have various options:
@@ -58,12 +58,12 @@ Anything deeper is considered private and can cause issues, such as module dupli
 
 ```js
 // ✅ OK
-import { Add as AddIcon } from '@material-ui/icons';
+import { Add as AddIcon } from '@mui/icons-material';
 import { Tabs } from '@mui/material';
 //                                 ^^^^ 1st or top-level
 
 // ✅ OK
-import AddIcon from '@material-ui/icons/Add';
+import AddIcon from '@mui/icons-material/Add';
 import Tabs from '@mui/material/Tabs';
 //                                  ^^^^ 2nd level
 
@@ -126,7 +126,7 @@ Pick one of the following plugins:
     [
       'babel-plugin-import',
       {
-        libraryName: '@material-ui/icons',
+        libraryName: '@mui/icons-material',
         libraryDirectory: '',
         camel2DashComponentName: false,
       },
@@ -147,7 +147,7 @@ Pick one of the following plugins:
   const plugins = [
     [
       'babel-plugin-direct-import',
-      { modules: ['@mui/material', '@material-ui/icons'] },
+      { modules: ['@mui/material', '@mui/icons-material'] },
     ],
   ];
 

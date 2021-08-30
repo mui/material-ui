@@ -9,7 +9,7 @@ import Radio from '@mui/material/Radio';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import CheckIcon from '@material-ui/icons/Check';
+import CheckIcon from '@mui/icons-material/Check';
 import Slider from '@mui/material/Slider';
 import { capitalize } from '@mui/material/utils';
 import { DispatchContext } from 'docs/src/modules/components/ThemeContext';

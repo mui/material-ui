@@ -3,7 +3,7 @@ import { loadCSS } from 'fg-loadcss';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Icon from '@mui/material/Icon';
-import MdPhone from '@material-ui/icons/Phone';
+import MdPhone from '@mui/icons-material/Phone';
 import Chip from '@mui/material/Chip';
 
 const theme = createTheme({

@@ -151,7 +151,7 @@ import lab from '@material-ui/lab';
     const source = `
 import * as Core from '@mui/material';
 import * as Unstyled from '@material-ui/unstyled';
-import * as Icons from '@material-ui/icons';
+import * as Icons from '@mui/icons-material';
 import * as Lab from '@material-ui/lab';
 import * as Styles from '@material-ui/styles';
 import * as System from '@mui/system';
@@ -167,8 +167,8 @@ import * as Utils from '@material-ui/utils';
       '@emotion/styled': 'latest',
       '@mui/material':
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/material',
-      '@material-ui/icons':
-        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/icons',
+      '@mui/icons-material':
+        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/icons-material',
       '@material-ui/lab':
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/lab',
       '@material-ui/styles':

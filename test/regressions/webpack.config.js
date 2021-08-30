@@ -21,7 +21,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './template.html'),
     }),
-    // Avoid bundling the whole @material-ui/icons package. x2 the bundling speed.
+    // Avoid bundling the whole @mui/icons-material package. x2 the bundling speed.
     new webpack.IgnorePlugin(/material-icons\/SearchIcons\.js/),
   ],
   module: {

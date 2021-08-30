@@ -6,7 +6,7 @@ import FormLabel from '@mui/material/FormLabel';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import Box from '@mui/material/Box';
-import MailIcon from '@material-ui/icons/Mail';
+import MailIcon from '@mui/icons-material/Mail';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
 export default function BadgeAlignment() {

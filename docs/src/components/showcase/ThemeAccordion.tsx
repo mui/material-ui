@@ -6,8 +6,8 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Folder from '@material-ui/icons/Folder';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Folder from '@mui/icons-material/Folder';
 
 const primary = {
   50: '#F0F7FF',

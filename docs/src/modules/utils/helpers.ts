@@ -162,7 +162,7 @@ export function getDependencies(
     '@emotion/react': 'latest',
     '@emotion/styled': 'latest',
     '@mui/material': getMuiPackageVersion('core', muiCommitRef),
-    '@material-ui/icons': getMuiPackageVersion('icons', muiCommitRef),
+    '@mui/icons-material': getMuiPackageVersion('icons', muiCommitRef),
     '@material-ui/lab': getMuiPackageVersion('lab', muiCommitRef),
     '@mui/styled-engine': getMuiPackageVersion('styled-engine', muiCommitRef),
     '@material-ui/styles': getMuiPackageVersion('styles', muiCommitRef),

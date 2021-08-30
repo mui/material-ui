@@ -89,7 +89,7 @@ Caminho de atualização do RaisedButton:
 
 ```diff
 -import AddIcon from 'material-ui/svg-icons/Add';
-+import AddIcon from '@material-ui/icons/Add';
++import AddIcon from '@mui/icons-material/Add';
 
 <AddIcon />
 ```

@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import { alpha, styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
-import SearchIcon from '@material-ui/icons/Search';
+import SearchIcon from '@mui/icons-material/Search';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const Root = styled('div')(({ theme }) => ({

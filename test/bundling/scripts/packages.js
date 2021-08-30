@@ -132,7 +132,7 @@ export default {
     'utils',
     'Zoom',
   ],
-  '@material-ui/icons': [
+  '@mui/icons-material': [
     // Icons are generated.
     // So the behavior of a single item should be equivalent to all icons.
     'Accessibility',

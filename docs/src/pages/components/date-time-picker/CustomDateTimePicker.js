@@ -1,8 +1,8 @@
 import * as React from 'react';
-import AlarmIcon from '@material-ui/icons/Alarm';
-import SnoozeIcon from '@material-ui/icons/Snooze';
+import AlarmIcon from '@mui/icons-material/Alarm';
+import SnoozeIcon from '@mui/icons-material/Snooze';
 import TextField from '@mui/material/TextField';
-import ClockIcon from '@material-ui/icons/AccessTime';
+import ClockIcon from '@mui/icons-material/AccessTime';
 import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
 import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 import DateTimePicker from '@material-ui/lab/DateTimePicker';

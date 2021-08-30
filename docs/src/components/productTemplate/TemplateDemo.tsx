@@ -11,12 +11,12 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
 import ArrowButton from 'docs/src/components/action/ArrowButton';
-import LaunchRounded from '@material-ui/icons/LaunchRounded';
+import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
-import DashboardRounded from '@material-ui/icons/DashboardRounded';
-import Layers from '@material-ui/icons/Layers';
-import ShoppingBag from '@material-ui/icons/ShoppingBag';
+import DashboardRounded from '@mui/icons-material/DashboardRounded';
+import Layers from '@mui/icons-material/Layers';
+import ShoppingBag from '@mui/icons-material/ShoppingBag';
 
 const DEMOS = ['Dashboard', 'Landing Pages', 'E-commerce'];
 

@@ -50,14 +50,14 @@ To use the font `Icon` component, you must first add the [Material icons](https:
 
 ## SVG Иконки
 
-Для того, чтобы использовать предварительно собранные SVG-иконки Material, такие как те, которые используются для [демонстрации](/components/icons/), сначала необходимо установить пакет [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons):
+Для того, чтобы использовать предварительно собранные SVG-иконки Material, такие как те, которые используются для [демонстрации](/components/icons/), сначала необходимо установить пакет [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material):
 
 ```sh
 // через npm
-npm install @material-ui/icons
+npm install @mui/icons-material
 
 // через yarn
-yarn add @material-ui/icons
+yarn add @mui/icons-material
 ```
 
 ## CDN

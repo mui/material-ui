@@ -3,8 +3,8 @@ import {
   useAutocomplete,
   AutocompleteGetTagProps,
 } from '@material-ui/unstyled/AutocompleteUnstyled';
-import CheckIcon from '@material-ui/icons/Check';
-import CloseIcon from '@material-ui/icons/Close';
+import CheckIcon from '@mui/icons-material/Check';
+import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
 
 const Root = styled('div')(

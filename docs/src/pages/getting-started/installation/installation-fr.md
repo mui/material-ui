@@ -46,14 +46,14 @@ Materiel-UI a été conçu avec la police [Roboto](https://fonts.google.com/spec
 
 ## Icônes SVG
 
-In order to use prebuilt SVG Material icons, such as those found in the [icons demos](/components/icons/) you must first install the [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) package:
+In order to use prebuilt SVG Material icons, such as those found in the [icons demos](/components/icons/) you must first install the [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material) package:
 
 ```sh
 // with npm
-npm install @material-ui/icons
+npm install @mui/icons-material
 
 // with yarn
-yarn add @material-ui/icons
+yarn add @mui/icons-material
 ```
 
 ## CDN

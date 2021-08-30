@@ -1067,7 +1067,7 @@ Here are some highlights ✨:
 - [TextField] Prevent overriding legend display styles (#19389) @Alexeyun1k
 - [TextField] Reduce helper text height to match spec (#19390) @suliskh
 
-### `@material-ui/icons@v4.9.1`
+### `@mui/icons-material@v4.9.1`
 
 - [icons] Remove extraneous path (#19483) @timmydoza
 - [icons] Synchronize components with Google (#19485) @oliviertassinari
@@ -1945,7 +1945,7 @@ Here are some highlights ✨:
 - [Slider] Fix drag interruption when leaving browser (#17765) @hoop71
 - [Table] Add aria-label & caption in table demos (#17696) @adeelibr
 
-### `@material-ui/icons@v4.5.1`
+### `@mui/icons-material@v4.5.1`
 
 - [icons] Introduce a new GitHub brand icon
 
@@ -2003,7 +2003,7 @@ Here are some highlights ✨:
 - 💄 Add startIcon and endIcon props for the button (#17600) @mbrookes
 
   ```jsx
-  import DeleteIcon from '@material-ui/icons/Delete';
+  import DeleteIcon from '@mui/icons-material/Delete';
 
   <Button startIcon={<DeleteIcon />}>Delete</Button>;
   ```
@@ -2111,7 +2111,7 @@ This is a stability release.
 - [Skeleton] Make default CSS display mode to block (#17406) @ahtcx
 - [SpeedDial] Rework part of the logic (#17301) @hashwin
 
-### `@material-ui/icons@v4.4.3`
+### `@mui/icons-material@v4.4.3`
 
 - [docs] Update README.md
 
@@ -2203,7 +2203,7 @@ Here are some highlights ✨:
 - [TextareaAutosize] Show scrollbar when rowsMax is exceeded (#17310) @Shubhamchinda
 - [useMediaQuery] Workaround Safari wrong implementation of matchMedia (#17315) @momentpaul
 
-### `@material-ui/icons@v4.4.1`
+### `@mui/icons-material@v4.4.1`
 
 - [icons] Add social icons (#17274) @mbrookes
 - [icons] Refresh material icons (#17259) @colemars
@@ -2810,7 +2810,7 @@ Here are some highlights ✨:
 - [Textarea] Update height when maxRows prop changes (#16298) @tasinet
 - [TouchRipple] Fix ripple staying on fast updates (#16291) @eps1lon
 
-### `@material-ui/icons@v4.2.1`
+### `@mui/icons-material@v4.2.1`
 
 - [icons] Remove noise from Google source (#16258) @oliviertassinari
 
@@ -2890,7 +2890,7 @@ Here are some highlights ✨:
 
 - [styles] Fix react-hot-loader regression (#16195) @oliviertassinari
 
-### `@material-ui/icons@v4.2.0`
+### `@mui/icons-material@v4.2.0`
 
 - [icons] Fix generated index.d.ts (#16139) @MayhemYDG
 - [icons] Update and clean the icons (#16166) @oliviertassinari
@@ -2964,7 +2964,7 @@ Here are some highlights ✨:
 - [styles] Fix styled type definition not including properties (#15548) @merceyz
 - [styles] Upgrade jss (#16121) @eps1lon
 
-### `@material-ui/icons@v4.1.0`
+### `@mui/icons-material@v4.1.0`
 
 - [icons] Simplify generated index.d.ts to reduce TS compile time (#16083) @phryneas
 
@@ -3111,7 +3111,7 @@ Here are some highlights ✨:
 - [Tooltip] Fix alignment issues (#15811) @pkmnct
 - [styles] Add MuiLink to ComponentsPropsList (#15814) @stuartgrigg
 
-### `@material-ui/icons@v4.0.1`
+### `@mui/icons-material@v4.0.1`
 
 - [icons] Fix the TypeScript definition of createSvgIcon (#15861) @alexkirsz
 
@@ -3252,7 +3252,7 @@ The release of v4 is imminent, stay tuned!
 - [Tabs] Update onChange docs to match types (#15672) @jharrilim
 - [ToggleButtonGroup] Add size prop (#15644) @isaacblinder
 
-### `@material-ui/icons@v4.0.0-rc.0`
+### `@mui/icons-material@v4.0.0-rc.0`
 
 - [icons] Forward ref (#15683) @eps1lon
 
@@ -4415,13 +4415,13 @@ Remove the first option argument of `withTheme()`. The first argument was a plac
 - [styles] Add react-hot-loader support (#14583) @oliviertassinari
 - [styles] Warn if missing ThemeProvider (#14581) @oliviertassinari
 
-### `@material-ui/icons@v4.0.0-alpha.1`
+### `@mui/icons-material@v4.0.0-alpha.1`
 
 - [icons] Remove es folder (#14518) @mgansler
 
 ### Docs
 
-- [docs] yarn command to add @material-ui/icons (#14502) @Inambe
+- [docs] yarn command to add @mui/icons-material (#14502) @Inambe
 - [docs] Update CHANGELOG.md (#14516) @saculbr
 - [examples] Add lib to tsconfig (#14507) @eps1lon
 - [docs] Enable es, fr, pt & ru (#14537) @oliviertassinari
@@ -4585,7 +4585,7 @@ _Tip: you can provide more than one argument: `theme.spacing(1, 2) // = '8px 16p
 
 - [core] Increase React peer dependency to v16.8.0 (#14432) @oliviertassinari
 
-### `@material-ui/icons@v4.0.0-alpha.0`
+### `@mui/icons-material@v4.0.0-alpha.0`
 
 - [core] Increase React peer dependency to v16.8.0 (#14432) @oliviertassinari
 
@@ -4885,7 +4885,7 @@ Here are some highlights ✨:
 - [core] Relax @babel/runtime version to ^7.2.0 (#14096) @NMinhNguyen
 - [MenuList] Wrap focus by default, add disableListWrap (#14100) @dallin-christensen
 
-### `@material-ui/icons@v3.0.2`
+### `@mui/icons-material@v3.0.2`
 
 - [core] Relax @babel/runtime version to ^7.2.0 (#14096) @NMinhNguyen
 
@@ -6101,7 +6101,7 @@ It's also a good opportunity to upgrade to the stable release of Babel 7.
 - [Stepper] Add a new test case (#12684) @Anugraha123
 - [core] Upgrade the dependencies (#12693) @oliviertassinari
 
-### `@material-ui/icons@v3.0.1`
+### `@mui/icons-material@v3.0.1`
 
 - [core] Fix for incorrect peer dependency version warning (#12677) @xaviergonz
 - [core] Upgrade the dependencies (#12693) @oliviertassinari
@@ -6128,7 +6128,7 @@ It's also a good opportunity to upgrade to the stable release of Babel 7.
 
 Big thanks to the 27 contributors who made this release possible!
 
-We are upgrading the major version of `@material-ui/core` to match the version of `@material-ui/icons`.
+We are upgrading the major version of `@material-ui/core` to match the version of `@mui/icons-material`.
 The next major release is planned for [Q1, 2019](https://github.com/mui-org/material-ui/milestone/25).
 
 ### Breaking change
@@ -6141,8 +6141,8 @@ It's not OK to have some installation timeout.
 We have removed the `/es` folder.
 
 ```diff
--import AccessAlarm from '@material-ui/icons/es/AccessAlarm';
-+import AccessAlarm from '@material-ui/icons/AccessAlarm';
+-import AccessAlarm from '@mui/icons-material/es/AccessAlarm';
++import AccessAlarm from '@mui/icons-material/AccessAlarm';
 ```
 
 - [core] Drop Firefox 45 support (#12669)
@@ -6461,7 +6461,7 @@ Here are some highlights ✨:
 | <span class="prop-name">label</span> | Styles applied to the span element that wraps the children. |
 | …                                    | …                                                           |
 
-- After many iterations, we are happy to announce `@material-ui/icons` v2.0.0 💃.
+- After many iterations, we are happy to announce `@mui/icons-material` v2.0.0 💃.
   With this version, you can take advantage of all the icons recently released by Google:
   https://material.io/tools/icons/. There are more than 5,000 icons.
   (#12016, #12036, #12170, #12111, #12225)
@@ -6476,7 +6476,7 @@ Here are some highlights ✨:
 
 ### Breaking change
 
-@material-ui/icons@2.0.0 allows React users to take advantage of the icons revamp the Material Design Team has been recently released. Some icons have been removed, ~150 new icons have been added, and some icons have been renamed. There are also currently some issues with the size of certain icons. Please refer to #12016 for further details.
+@mui/icons-material@2.0.0 allows React users to take advantage of the icons revamp the Material Design Team has been recently released. Some icons have been removed, ~150 new icons have been added, and some icons have been renamed. There are also currently some issues with the size of certain icons. Please refer to #12016 for further details.
 
 #### Component Fixes / Enhancements
 
@@ -7525,7 +7525,7 @@ const styles = {
 - [Tooltip] Remove title from chldrenProps (#10977) @mbrookes
 - [theme] Expose augmentColor for colors outside the palette (#10985) @AiusDa
 - [Select] Update onChange props definition to match with SelectInput (#11012) @t49tran
-- [lab] Bump version for @material-ui/icons dependency (#10992) @mbrookes
+- [lab] Bump version for @mui/icons-material dependency (#10992) @mbrookes
 - [Drawer] Improve the "Mini variant drawer" demo (#11010) @andriyor
 - [Step] Remove private modules from the export (#11020) @oliviertassinari
 - [Grid] Update propTypes to accept false (#11022) @oliviertassinari
@@ -7567,11 +7567,11 @@ Here are some highlights ✨:
 
 ### Breaking change
 
-- Move the icon package from `material-ui-icons` to `@material-ui/icons` (#10957) @oliviertassinari
+- Move the icon package from `material-ui-icons` to `@mui/icons-material` (#10957) @oliviertassinari
 
 ```diff
 -import FormatTextdirectionRToL from 'material-ui-icons/FormatTextdirectionRToL';
-+import FormatTextdirectionRToL from '@material-ui/icons/FormatTextdirectionRToL';
++import FormatTextdirectionRToL from '@mui/icons-material/FormatTextdirectionRToL';
 ```
 
 #### Component Fixes / Enhancements

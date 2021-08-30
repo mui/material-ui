@@ -1,7 +1,7 @@
 import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
-import MailIcon from '@material-ui/icons/Mail';
+import MailIcon from '@mui/icons-material/Mail';
 
 function notificationsLabel(count: number) {
   if (count === 0) {

@@ -5,9 +5,9 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import GradientText from 'docs/src/components/typography/GradientText';
-import Palette from '@material-ui/icons/Palette';
-import LibraryBooks from '@material-ui/icons/LibraryBooks';
-import CodeRounded from '@material-ui/icons/CodeRounded';
+import Palette from '@mui/icons-material/Palette';
+import LibraryBooks from '@mui/icons-material/LibraryBooks';
+import CodeRounded from '@mui/icons-material/CodeRounded';
 
 const content = [
   {

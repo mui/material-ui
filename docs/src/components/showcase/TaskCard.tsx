@@ -6,8 +6,8 @@ import Card from '@mui/material/Card';
 import Fade from '@mui/material/Fade';
 import LinearProgress from '@mui/material/LinearProgress';
 import Typography from '@mui/material/Typography';
-import CodeRounded from '@material-ui/icons/CodeRounded';
-import ScheduleRounded from '@material-ui/icons/ScheduleRounded';
+import CodeRounded from '@mui/icons-material/CodeRounded';
+import ScheduleRounded from '@mui/icons-material/ScheduleRounded';
 
 declare module '@mui/material/Paper' {
   interface PaperPropsVariantOverrides {

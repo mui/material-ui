@@ -6,7 +6,7 @@ import { ListItemIconClasses } from './listItemIconClasses';
 export interface ListItemIconProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The content of the component, normally `Icon`, `SvgIcon`,
-   * or a `@material-ui/icons` SVG icon element.
+   * or a `@mui/icons-material` SVG icon element.
    */
   children?: React.ReactNode;
   /**

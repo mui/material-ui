@@ -5,8 +5,8 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import CloseRounded from '@material-ui/icons/CloseRounded';
-import MarkEmailReadTwoTone from '@material-ui/icons/MarkEmailReadTwoTone';
+import CloseRounded from '@mui/icons-material/CloseRounded';
+import MarkEmailReadTwoTone from '@mui/icons-material/MarkEmailReadTwoTone';
 
 export default function NewsletterToast() {
   const router = useRouter();

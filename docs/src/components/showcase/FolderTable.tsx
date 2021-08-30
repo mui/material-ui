@@ -10,7 +10,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { visuallyHidden } from '@material-ui/utils';
-import Folder from '@material-ui/icons/Folder';
+import Folder from '@mui/icons-material/Folder';
 
 const data = [
   { name: 'Fonts', size: 125600 },

@@ -18,7 +18,7 @@ import { Button, TextField } from '@mui/material';
 
 ## Ambiente de desenvolvimento
 
-Os pacotes de desenvolvimento podem conter a biblioteca completa que pode deixar **o tempo de inicialização mais lento**. Isso é especialmente perceptível se você importar de `@material-ui/icons`. Os tempos de inicialização podem ser aproximadamente 6 vezes mais lentos do que sem utilizar importações nomeadas da API de nível superior.
+Os pacotes de desenvolvimento podem conter a biblioteca completa que pode deixar **o tempo de inicialização mais lento**. Isso é especialmente perceptível se você importar de `@mui/icons-material`. Os tempos de inicialização podem ser aproximadamente 6 vezes mais lentos do que sem utilizar importações nomeadas da API de nível superior.
 
 Se isso é um problema para você, tem várias opções:
 
@@ -46,12 +46,12 @@ Esteja ciente de que apenas damos suporte para as importações de primeiro e se
 
 ```js
 // ✅ OK
-import { Add as AddIcon } from '@material-ui/icons';
+import { Add as AddIcon } from '@mui/icons-material';
 import { Tabs } from '@mui/material';
 //                                 ^^^^ 1° ou nível superior
 
 // ✅ OK
-import AddIcon from '@material-ui/icons/Add';
+import AddIcon from '@mui/icons-material/Add';
 import Tabs from '@mui/material/Tabs';
 //                                  ^^^^ 2° nível
 
@@ -113,7 +113,7 @@ Escolha um dos seguintes plugins:
     [
       'babel-plugin-import',
       {
-        libraryName: '@material-ui/icons',
+        libraryName: '@mui/icons-material',
         libraryDirectory: '',
         camel2DashComponentName: false,
       },
@@ -139,8 +139,8 @@ Escolha um dos seguintes plugins:
           transform: '@mui/material/${member}',
           preventFullImport: true,
         },
-        '@material-ui/icons': {
-          transform: '@material-ui/icons/${member}',
+        '@mui/icons-material': {
+          transform: '@mui/icons-material/${member}',
           preventFullImport: true,
         },
       },
