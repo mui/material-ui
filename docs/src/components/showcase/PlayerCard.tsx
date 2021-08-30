@@ -104,7 +104,7 @@ export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) 
     [mode],
   );
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={externalTheme || theme}>
       <Fade in timeout={700}>
         <Card variant="outlined" sx={{ display: 'flex', p: 1 }}>
           <img

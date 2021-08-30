@@ -28,9 +28,10 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
-import { buildTheme } from 'docs/src/components/home/DesignSystemComponents';
+import { buildTheme } from 'docs/src/components/home/MaterialDesignComponents';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
+import StylingInfo from 'docs/src/components/action/StylingInfo';
 
 const DEMOS = ['Button', 'Text field', 'Table', 'Alert', 'Tooltip'] as const;
 
@@ -301,6 +302,7 @@ export default function CoreComponents() {
               sx={{
                 maxHeight: demo === 'Table' ? 260 : 'none',
                 position: 'relative',
+                overflow: 'hidden',
               }}
             >
               <Box sx={{ height: 'calc(100% + 40px)', overflow: 'auto', m: -2, p: 2 }}>
@@ -336,6 +338,7 @@ export default function CoreComponents() {
                   Custom Theme
                 </StyledButton>
               </Box>
+              <StylingInfo appeared={customized} />
             </Frame.Info>
           </Frame>
         </Grid>

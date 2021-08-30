@@ -84,6 +84,21 @@ const TabsDemo = () => {
   );
 };
 
+const SlideDemo = () => {
+  const [value, setValue] = React.useState([30, 60]);
+  return (
+    <Stack spacing={2} direction="row" alignItems="center">
+      <AcUnitRounded color="primary" sx={{ opacity: `max(0.4, ${(100 - value[0]) / 100})` }} />
+      <Slider
+        getAriaLabel={() => 'Temperature range'}
+        value={value}
+        onChange={(_, newValue) => setValue(newValue as number[])}
+      />
+      <LocalFireDepartment color="error" sx={{ opacity: `max(0.4, ${value[1] / 100})` }} />
+    </Stack>
+  );
+};
+
 export default function Hero() {
   return (
     <HeroContainer
@@ -220,11 +235,7 @@ export default function Hero() {
                 <Typography sx={{ mb: 1 }} variant="subtitle2">
                   Room temperature range
                 </Typography>
-                <Stack spacing={2} direction="row" alignItems="center">
-                  <AcUnitRounded sx={{ opacity: 0.4 }} />
-                  <Slider getAriaLabel={() => 'Temperature range'} defaultValue={[30, 60]} />
-                  <LocalFireDepartment sx={{ opacity: 0.4 }} />
-                </Stack>
+                <SlideDemo />
               </Paper>
               <TextField defaultValue="Ultraviolet" label="Basement" />
               <Card sx={{ maxWidth: 345 }}>
