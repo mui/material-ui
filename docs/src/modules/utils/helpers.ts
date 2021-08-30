@@ -161,14 +161,14 @@ export function getDependencies(
     'react-dom': 'latest',
     '@emotion/react': 'latest',
     '@emotion/styled': 'latest',
-    '@mui/material': getMuiPackageVersion('core', muiCommitRef),
-    '@mui/icons-material': getMuiPackageVersion('icons', muiCommitRef),
+    '@mui/material': getMuiPackageVersion('material', muiCommitRef),
+    '@mui/icons-material': getMuiPackageVersion('icons-material', muiCommitRef),
     '@mui/lab': getMuiPackageVersion('lab', muiCommitRef),
     '@mui/styled-engine': getMuiPackageVersion('styled-engine', muiCommitRef),
     '@mui/styles': getMuiPackageVersion('styles', muiCommitRef),
     '@mui/system': getMuiPackageVersion('system', muiCommitRef),
     '@mui/private-theming': getMuiPackageVersion('theming', muiCommitRef),
-    '@mui/core': getMuiPackageVersion('unstyled', muiCommitRef),
+    '@mui/core': getMuiPackageVersion('core', muiCommitRef),
     '@mui/utils': getMuiPackageVersion('utils', muiCommitRef),
   };
 
