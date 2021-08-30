@@ -2,7 +2,7 @@
 title: 日付範囲入力コンポーネント
 components: DateRangePicker, DateRangePickerDay, DesktopDateRangePicker, MobileDateRangePicker, StaticDateRangePicker
 githubLabel: 'component: DateRangePicker'
-packageName: '@material-ui/lab'
+packageName: '@mui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
 
@@ -24,9 +24,9 @@ materialDesign: https://material.io/components/date-pickers
 
 ```jsx
 // 以下のようにするか、 
-import DateFnsAdapter from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-//@material-ui/lab/dateAdapter/{dayjs,luxon,moment} を使うか、
+import DateFnsAdapter from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+//@mui/lab/dateAdapter/{dayjs,luxon,moment} を使うか、
 //その他のdate-ioアダプターを設定してください
 
 function App() {

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import DateTimePicker from '@material-ui/lab/DateTimePicker';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DateTimePicker from '@mui/lab/DateTimePicker';
 import Stack from '@mui/material/Stack';
 
 export default function DateTimeValidation() {

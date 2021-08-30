@@ -21,10 +21,10 @@ Installieren Sie das Paket innerhalb des Projektordners mit:
 
 ```sh
 // mit npm
-npm install @material-ui/lab
+npm install @mui/lab
 
 // mit yarn
-yarn add @material-ui/lab
+yarn add @mui/lab
 ```
 
 Das Labor hat eine Peer-Abhängigkeit von den Kernkomponenten. Wenn Sie in Ihrem Projekt noch keine Material-UI verwenden, können Sie es mit folgendem installieren:
@@ -42,7 +42,7 @@ yarn add @mui/material
 In order to benefit from the [CSS overrides](/customization/theme-components/#global-style-overrides) and [default prop customization](/customization/theme-components/#default-props) with the theme, TypeScript users need to import the following types. Internally, it uses [module augmentation](/guides/typescript/#customization-of-theme) to extend the default theme structure with the extension components available in the lab.
 
 ```tsx
-import '@material-ui/lab/themeAugmentation';
+import '@mui/lab/themeAugmentation';
 
 const theme = createTheme({
   components: {

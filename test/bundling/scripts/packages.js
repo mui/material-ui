@@ -137,7 +137,7 @@ export default {
     // So the behavior of a single item should be equivalent to all icons.
     'Accessibility',
   ],
-  '@material-ui/lab': [
+  '@mui/lab': [
     'Alert',
     'AlertTitle',
     'Autocomplete',

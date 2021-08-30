@@ -76,8 +76,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Grid from '@mui/material/Grid';
 import { withStyles } from '@mui/material/styles';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/lab';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePicker, KeyboardDatePicker } from '@mui/lab';
 `;
 
     expect(getDependencies(source)).to.deep.equal({
@@ -87,7 +87,7 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@mui/material': 'next',
-      '@material-ui/lab': 'next',
+      '@mui/lab': 'next',
       'date-fns': 'latest',
     });
   });
@@ -113,12 +113,12 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
   it('should handle multilines', () => {
     const source = `
 import * as React from 'react';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import {
   LocalizationProvider as MuiPickersLocalizationProvider,
   KeyboardTimePicker,
   KeyboardDatePicker,
-} from '@material-ui/lab';
+} from '@mui/lab';
     `;
 
     expect(getDependencies(source)).to.deep.equal({
@@ -127,14 +127,14 @@ import {
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@mui/material': 'next',
-      '@material-ui/lab': 'next',
+      '@mui/lab': 'next',
       'date-fns': 'latest',
     });
   });
 
   it('should include core if lab present', () => {
     const source = `
-import lab from '@material-ui/lab';
+import lab from '@mui/lab';
     `;
 
     expect(getDependencies(source)).to.deep.equal({
@@ -143,7 +143,7 @@ import lab from '@material-ui/lab';
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@mui/material': 'next',
-      '@material-ui/lab': 'next',
+      '@mui/lab': 'next',
     });
   });
 
@@ -152,7 +152,7 @@ import lab from '@material-ui/lab';
 import * as Core from '@mui/material';
 import * as Unstyled from '@mui/core';
 import * as Icons from '@mui/icons-material';
-import * as Lab from '@material-ui/lab';
+import * as Lab from '@mui/lab';
 import * as Styles from '@material-ui/styles';
 import * as System from '@mui/system';
 import * as Utils from '@material-ui/utils';
@@ -169,8 +169,8 @@ import * as Utils from '@material-ui/utils';
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/material',
       '@mui/icons-material':
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/icons-material',
-      '@material-ui/lab':
-        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/lab',
+      '@mui/lab':
+        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/lab',
       '@material-ui/styles':
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/styles',
       '@mui/system':
@@ -185,10 +185,10 @@ import * as Utils from '@material-ui/utils';
   it('should date adapters', () => {
     const source = `
 import * as React from 'react';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import AdapterDayjs from '@material-ui/lab/AdapterDayjs';
-import AdapterLuxon from '@material-ui/lab/AdapterLuxon';
-import AdapterMoment from '@material-ui/lab/AdapterMoment';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import AdapterDayjs from '@mui/lab/AdapterDayjs';
+import AdapterLuxon from '@mui/lab/AdapterLuxon';
+import AdapterMoment from '@mui/lab/AdapterMoment';
     `;
 
     expect(getDependencies(source)).to.deep.equal({
@@ -197,7 +197,7 @@ import AdapterMoment from '@material-ui/lab/AdapterMoment';
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@mui/material': 'next',
-      '@material-ui/lab': 'next',
+      '@mui/lab': 'next',
       'date-fns': 'latest',
       dayjs: 'latest',
       luxon: 'latest',

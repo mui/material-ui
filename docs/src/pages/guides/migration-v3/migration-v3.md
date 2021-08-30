@@ -171,10 +171,10 @@ yarn add @material-ui/styles
 
   Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://material-ui.com/system/spacing/#transformation).
 
-- [Container] Moved from `@material-ui/lab` to `@mui/material`.
+- [Container] Moved from `@mui/lab` to `@mui/material`.
 
   ```diff
-  -import Container from '@material-ui/lab/Container';
+  -import Container from '@mui/lab/Container';
   +import Container from '@mui/material/Container';
   ```
 
@@ -318,10 +318,10 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 
 ### Slider
 
-- [Slider] Move from `@material-ui/lab` to `@mui/material`.
+- [Slider] Move from `@mui/lab` to `@mui/material`.
 
   ```diff
-  -import Slider from '@material-ui/lab/Slider'
+  -import Slider from '@mui/lab/Slider'
   +import Slider from '@mui/material/Slider'
   ```
 

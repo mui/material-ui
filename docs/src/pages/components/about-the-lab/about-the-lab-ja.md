@@ -21,10 +21,10 @@ Coreパッケージに移るためには以下の基準を考慮します。
 
 ```sh
 // npmの場合
-npm install @material-ui/lab@next
+npm install @mui/lab@next
 
 // yarnの場合
-yarn add @material-ui/lab@next
+yarn add @mui/lab@next
 ```
 
 このラボには、コアコンポーネントへのピア依存関係があります。 プロジェクトでまだMaterial-UIを使用していない場合は、次のコマンドでインストールできます。
@@ -43,7 +43,7 @@ yarn add @mui/material@next
 [CSSのオーバーライド](/customization/theme-components/#global-style-overrides)と[デフォルトのプロパティのカスタマイズ](/customization/theme-components/#default-props)をするには、TypeScriptユーザーは以下の型をインポートする必要があります。  内部的には、[module augmentation](/guides/typescript/#customization-of-theme)を使って、デフォルトのテーマ構造をLabで利用可能なコンポーネントに拡張します
 
 ```tsx
-import '@material-ui/lab/themeAugmentation';
+import '@mui/lab/themeAugmentation';
 
 const theme = createTheme({
   components: {

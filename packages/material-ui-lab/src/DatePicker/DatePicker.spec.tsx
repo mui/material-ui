@@ -1,6 +1,6 @@
 import * as React from 'react';
 import moment, { Moment } from 'moment';
-import DatePicker from '@material-ui/lab/DatePicker';
+import DatePicker from '@mui/lab/DatePicker';
 import { expectType } from '@material-ui/types';
 
 // Allows to set date type right with generic JSX syntax

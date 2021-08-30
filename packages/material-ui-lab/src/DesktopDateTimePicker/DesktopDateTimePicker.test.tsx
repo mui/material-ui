@@ -4,7 +4,7 @@ import { expect } from 'chai';
 import { useFakeTimers, SinonFakeTimers, spy } from 'sinon';
 import { act, fireEvent, screen, userEvent } from 'test/utils';
 import 'dayjs/locale/ru';
-import DesktopDateTimePicker from '@material-ui/lab/DesktopDateTimePicker';
+import DesktopDateTimePicker from '@mui/lab/DesktopDateTimePicker';
 import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<DesktopDateTimePicker />', () => {

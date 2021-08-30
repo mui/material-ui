@@ -12,7 +12,7 @@ module.exports = {
       '@mui/material': path.resolve(__dirname, './packages/material-ui/src'),
       '@material-ui/docs': path.resolve(__dirname, './packages/material-ui-docs/src'),
       '@mui/icons-material': path.resolve(__dirname, './packages/material-ui-icons/lib'),
-      '@material-ui/lab': path.resolve(__dirname, './packages/material-ui-lab/src'),
+      '@mui/lab': path.resolve(__dirname, './packages/material-ui-lab/src'),
       '@mui/styled-engine': path.resolve(
         __dirname,
         './packages/material-ui-styled-engine/src',

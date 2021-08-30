@@ -158,7 +158,7 @@ yarn add @material-ui/styles
 - Você pode remover com segurança a próxima variante da criação de temas:
 
   ```diff
-  -import Container from '@material-ui/lab/Container';
+  -import Container from '@mui/lab/Container';
   +import Container from '@mui/material/Container';
   ```
 
@@ -290,10 +290,10 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
 
 ### Slider
 
-- [Slider] Mova de `@material-ui/lab` para `@mui/material`.
+- [Slider] Mova de `@mui/lab` para `@mui/material`.
 
   ```diff
-  -import Slider from '@material-ui/lab/Slider'
+  -import Slider from '@mui/lab/Slider'
   +import Slider from '@mui/material/Slider'
   ```
 

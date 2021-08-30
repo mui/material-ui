@@ -364,7 +364,7 @@ module.exports = {
                 message: forbidTopLevelMessage,
               },
               {
-                name: '@material-ui/lab',
+                name: '@mui/lab',
                 message: forbidTopLevelMessage,
               },
             ],

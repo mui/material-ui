@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@mui/material": "next",
-    "@material-ui/lab": "next",
+    "@mui/lab": "next",
     "@mui/styled-engine-sc": "next",
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",

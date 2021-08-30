@@ -52,7 +52,7 @@ describe('@material-ui/envinfo', () => {
     expect(envinfo).to.have.nested.property('npmPackages.@emotion/styled');
     // Non-exhaustive list of `@material-ui/*` packages
     expect(envinfo).to.have.nested.property('npmPackages.@mui/material');
-    expect(envinfo).to.have.nested.property('npmPackages.@material-ui/lab');
+    expect(envinfo).to.have.nested.property('npmPackages.@mui/lab');
     expect(envinfo).to.have.nested.property('npmPackages.react');
     expect(envinfo).to.have.nested.property('npmPackages.react-dom');
     expect(envinfo).to.have.nested.property('npmPackages.styled-components');

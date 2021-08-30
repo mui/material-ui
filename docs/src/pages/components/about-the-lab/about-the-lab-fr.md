@@ -21,10 +21,10 @@ Installez le package dans votre répertoire de projet avec:
 
 ```sh
 // Avec npm
-npm install @material-ui/lab@next
+npm install @mui/lab@next
 
 // Avec yarn
-yarn add @material-ui/lab@next
+yarn add @mui/lab@next
 ```
 
 Le laboratoire dépend des composants du package principal. Si vous n'utilisez pas encore Material-UI dans votre projet, vous pouvez l'installer avec:
@@ -42,7 +42,7 @@ yarn add @mui/material@next
 De manière à pouvoir [ outrepasser le CSS ](/customization/theme-components/#global-style-overrides) et [ à personnaliser les propriétés par défaut ](/customization/theme-components/#default-props) avec le thème, les utilisateurs de TypeScript devront importer les types suivant. En interne, il utilise [le module d'augmentation](/guides/typescript/#customization-of-theme) pour étendre la structure du thème par défaut avec l'extension de composant disponible dans le laboratoire.
 
 ```tsx
-import '@material-ui/lab/themeAugmentation';
+import '@mui/lab/themeAugmentation';
 
 const theme = createTheme({
   components: {

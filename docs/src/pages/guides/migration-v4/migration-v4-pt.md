@@ -406,8 +406,8 @@ As the core components use emotion as their style engine, the props used by emot
 - Mova o componente do lab para o core. O componente agora é estável.
 
   ```diff
-  -import Alert from '@material-ui/lab/Alert';
-  -import AlertTitle from '@material-ui/lab/AlertTitle';
+  -import Alert from '@mui/lab/Alert';
+  -import AlertTitle from '@mui/lab/AlertTitle';
   +import Alert from '@mui/material/Alert';
   +import AlertTitle from '@mui/material/AlertTitle';
   ```
@@ -419,8 +419,8 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 - Mova o componente do lab para o core. O componente agora é estável.
 
   ```diff
-  -import Autocomplete from '@material-ui/lab/Autocomplete';
-  -import useAutocomplete  from '@material-ui/lab/useAutocomplete';
+  -import Autocomplete from '@mui/lab/Autocomplete';
+  -import useAutocomplete  from '@mui/lab/useAutocomplete';
   +import Autocomplete from '@mui/material/Autocomplete';
   +import useAutoComplete from '@mui/material/useAutocomplete';
   ```
@@ -499,7 +499,7 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
 - Mova o componente AvatarGroup do lab para o core.
 
   ```diff
-  -import AvatarGroup from '@material-ui/lab/AvatarGroup';
+  -import AvatarGroup from '@mui/lab/AvatarGroup';
   +import AvatarGroup from '@mui/material/AvatarGroup';
   ```
 
@@ -1140,9 +1140,9 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 - Mova o componente do lab para o core. O componente agora é estável.
 
   ```diff
-  -import Pagination from '@material-ui/lab/Pagination';
-  -import PaginationItem from '@material-ui/lab/PaginationItem';
-  -import { usePagination } from '@material-ui/lab/Pagination';
+  -import Pagination from '@mui/lab/Pagination';
+  -import PaginationItem from '@mui/lab/PaginationItem';
+  -import { usePagination } from '@mui/lab/Pagination';
   +import Pagination from '@mui/material/Pagination';
   +import PaginationItem from '@mui/material/PaginationItem';
   +import usePagination from '@mui/material/usePagination';
@@ -1239,7 +1239,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
 - Mova o componente do lab para o core. O componente agora é estável.
 
   ```diff
-  -import Rating from '@material-ui/lab/Rating';
+  -import Rating from '@mui/lab/Rating';
   +import Rating from '@mui/material/Rating';
   ```
 
@@ -1320,7 +1320,7 @@ You can use the [`collapse-rename-collapsedheight` codemod](https://github.com/m
   
 
   ```diff
-  -import Skeleton from '@material-ui/lab/Skeleton';
+  -import Skeleton from '@mui/lab/Skeleton';
   +import Skeleton from '@mui/material/Skeleton';
   ```
 
@@ -1424,9 +1424,9 @@ You can use the [`use-transitionprops` codemod](https://github.com/mui-org/mater
   
 
   ```diff
-  -import SpeedDial from '@material-ui/lab/SpeedDial';
-  -import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
-  -import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
+  -import SpeedDial from '@mui/lab/SpeedDial';
+  -import SpeedDialAction from '@mui/lab/SpeedDialAction';
+  -import SpeedDialIcon from '@mui/lab/SpeedDialIcon';
   +import SpeedDial from '@mui/material/SpeedDial';
   +import SpeedDialAction from '@mui/material/SpeedDialAction';
   +import SpeedDialIcon from '@mui/material/SpeedDialIcon';
@@ -1769,8 +1769,8 @@ You can use the [`variant-prop` codemod](https://github.com/mui-org/material-ui/
   
 
   ```diff
-  -import ToggleButton from '@material-ui/lab/ToggleButton';
-  -import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+  -import ToggleButton from '@mui/lab/ToggleButton';
+  -import ToggleButtonGroup from '@mui/lab/ToggleButtonGroup';
   +import ToggleButton from '@mui/material/ToggleButton';
   +import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
   ```

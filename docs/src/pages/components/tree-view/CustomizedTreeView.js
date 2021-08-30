@@ -2,8 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import SvgIcon from '@mui/material/SvgIcon';
 import { alpha, styled } from '@mui/material/styles';
-import TreeView from '@material-ui/lab/TreeView';
-import TreeItem, { treeItemClasses } from '@material-ui/lab/TreeItem';
+import TreeView from '@mui/lab/TreeView';
+import TreeItem, { treeItemClasses } from '@mui/lab/TreeItem';
 import Collapse from '@mui/material/Collapse';
 // web.cjs is required for IE11 support
 import { useSpring, animated } from 'react-spring/web.cjs';

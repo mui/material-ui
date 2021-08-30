@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { SinonFakeTimers, useFakeTimers } from 'sinon';
 import TextField from '@mui/material/TextField';
 import { fireEvent, screen } from 'test/utils';
-import StaticDatePicker from '@material-ui/lab/StaticDatePicker';
+import StaticDatePicker from '@mui/lab/StaticDatePicker';
 import {
   createPickerRender,
   adapterToUse,

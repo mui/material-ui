@@ -678,17 +678,17 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `moved-lab-modules`
 
-Updates all imports for `@material-ui/lab` components that have moved to `@material-ui/core`.
+Updates all imports for `@mui/lab` components that have moved to `@material-ui/core`.
 
 ```diff
--import Skeleton from '@material-ui/lab/Skeleton';
+-import Skeleton from '@mui/lab/Skeleton';
 +import Skeleton from '@material-ui/core/Skeleton';
 ```
 
 or
 
 ```diff
--import { SpeedDial } from '@material-ui/lab';
+-import { SpeedDial } from '@mui/lab';
 +import { SpeedDial } from '@material-ui/core';
 ```
 
@@ -968,7 +968,7 @@ npx @material-ui/codemod@next v5.0.0/transitions <path>
 Renames `useAutocomplete` related import from lab to core
 
 ```diff
--import useAutocomplete from '@material-ui/lab/useAutocomplete';
+-import useAutocomplete from '@mui/lab/useAutocomplete';
 +import useAutocomplete from '@material-ui/core/useAutocomplete';
 ```
 

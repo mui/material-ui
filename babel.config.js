@@ -12,7 +12,7 @@ const defaultAlias = {
   '@mui/material': resolveAliasPath('./packages/material-ui/src'),
   '@material-ui/docs': resolveAliasPath('./packages/material-ui-docs/src'),
   '@mui/icons-material': resolveAliasPath('./packages/material-ui-icons/lib'),
-  '@material-ui/lab': resolveAliasPath('./packages/material-ui-lab/src'),
+  '@mui/lab': resolveAliasPath('./packages/material-ui-lab/src'),
   '@mui/styled-engine': resolveAliasPath('./packages/material-ui-styled-engine/src'),
   '@mui/styled-engine-sc': resolveAliasPath('./packages/material-ui-styled-engine-sc/src'),
   '@material-ui/styles': resolveAliasPath('./packages/material-ui-styles/src'),

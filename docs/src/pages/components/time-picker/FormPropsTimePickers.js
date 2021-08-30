@@ -1,9 +1,9 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import Stack from '@mui/material/Stack';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import TimePicker from '@material-ui/lab/TimePicker';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import TimePicker from '@mui/lab/TimePicker';
 
 export default function FormPropsTimePickers() {
   const [value, setValue] = React.useState(null);

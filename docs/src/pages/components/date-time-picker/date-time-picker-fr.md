@@ -2,7 +2,7 @@
 title: Composant react Date Time Picker
 components: DateTimePicker
 githubLabel: 'component: DateTimePicker'
-packageName: '@material-ui/lab'
+packageName: '@mui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
 
@@ -23,9 +23,9 @@ Ce composant compatible avec les bibliothèques de gestion des dates de votre ch
 Veuillez installer l'une de ces bibliothèques et configurer le bon moteur de date en enveloppant votre racine (ou le niveau le plus élevé que vous souhaitez que les sélecteurs soient disponibles) avec `LocalizationProvider`:
 
 ```jsx
-// ou @material-ui/lab/Adapter{Dayjs,Luxon,Moment} ou tout adaptateur date-io valide
-importer AdapterDateFns depuis '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+// ou @mui/lab/Adapter{Dayjs,Luxon,Moment} ou tout adaptateur date-io valide
+importer AdapterDateFns depuis '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 function App() {
   return (

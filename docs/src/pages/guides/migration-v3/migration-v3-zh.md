@@ -155,10 +155,10 @@ yarn add @material-ui/styles
 
   从今往后，您可以使用主题来实现 [一个自定义的网格间距变换函数](https://material-ui.com/system/spacing/#transformation)。
 
-- [Container] 从 `@material-ui/lab` 迁移到 `@mui/material`。
+- [Container] 从 `@mui/lab` 迁移到 `@mui/material`。
 
   ```diff
-  -import Container from '@material-ui/lab/Container';
+  -import Container from '@mui/lab/Container';
   +import Container from '@mui/material/Container';
   ```
 
@@ -290,10 +290,10 @@ function MySelect({ children }) {
 
 ### Slider
 
-- [Slider] 从 `@material-ui/lab` 迁移到 `@mui/material`。
+- [Slider] 从 `@mui/lab` 迁移到 `@mui/material`。
 
   ```diff
-  -import Slider from '@material-ui/lab/Slider'
+  -import Slider from '@mui/lab/Slider'
   +import Slider from '@mui/material/Slider'
   ```
 

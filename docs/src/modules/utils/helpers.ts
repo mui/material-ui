@@ -4,7 +4,7 @@ import { CODE_VARIANTS, LANGUAGES } from '../constants';
 
 /**
  * Mapping from the date adapter sub-packages to the npm packages they require.
- * @example `@material-ui/lab/AdapterDateFns` has a peer dependency on `date-fns`.
+ * @example `@mui/lab/AdapterDateFns` has a peer dependency on `date-fns`.
  */
 const dateAdapterPackageMapping: Record<string, string> = {
   AdapterDateFns: 'date-fns',
@@ -104,7 +104,7 @@ function includePeerDependencies(
     '@emotion/styled': versions['@emotion/styled'],
   };
 
-  if (newDeps['@material-ui/lab']) {
+  if (newDeps['@mui/lab']) {
     newDeps['@mui/material'] = versions['@mui/material'];
   }
 
@@ -163,7 +163,7 @@ export function getDependencies(
     '@emotion/styled': 'latest',
     '@mui/material': getMuiPackageVersion('core', muiCommitRef),
     '@mui/icons-material': getMuiPackageVersion('icons', muiCommitRef),
-    '@material-ui/lab': getMuiPackageVersion('lab', muiCommitRef),
+    '@mui/lab': getMuiPackageVersion('lab', muiCommitRef),
     '@mui/styled-engine': getMuiPackageVersion('styled-engine', muiCommitRef),
     '@material-ui/styles': getMuiPackageVersion('styles', muiCommitRef),
     '@mui/system': getMuiPackageVersion('system', muiCommitRef),

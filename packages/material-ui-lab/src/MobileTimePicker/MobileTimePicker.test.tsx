@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import { spy } from 'sinon';
 import { expect } from 'chai';
 import { describeConformance, fireEvent, fireTouchChangedEvent } from 'test/utils';
-import MobileTimePicker from '@material-ui/lab/MobileTimePicker';
+import MobileTimePicker from '@mui/lab/MobileTimePicker';
 import {
   wrapPickerMount,
   createPickerRender,

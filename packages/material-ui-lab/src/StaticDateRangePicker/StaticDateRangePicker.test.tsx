@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { isWeekend } from 'date-fns';
 import { useFakeTimers } from 'sinon';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
-import StaticDateRangePicker from '@material-ui/lab/StaticDateRangePicker';
+import StaticDateRangePicker from '@mui/lab/StaticDateRangePicker';
 import { describeConformance } from 'test/utils';
 import {
   wrapPickerMount,

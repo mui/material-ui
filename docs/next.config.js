@@ -122,7 +122,7 @@ module.exports = {
                         '@mui/material': '../packages/material-ui/src',
                         '@material-ui/docs': '../packages/material-ui-docs/src',
                         '@mui/icons-material': '../packages/material-ui-icons/lib',
-                        '@material-ui/lab': '../packages/material-ui-lab/src',
+                        '@mui/lab': '../packages/material-ui-lab/src',
                         '@mui/styled-engine': '../packages/material-ui-styled-engine/src',
                         '@material-ui/styles': '../packages/material-ui-styles/src',
                         '@mui/system': '../packages/material-ui-system/src',

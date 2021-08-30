@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import { expect } from 'chai';
 import { spy, useFakeTimers, SinonSpy, SinonFakeTimers } from 'sinon';
 import { fireEvent, fireTouchChangedEvent, screen } from 'test/utils';
-import MobileDateTimePicker from '@material-ui/lab/MobileDateTimePicker';
+import MobileDateTimePicker from '@mui/lab/MobileDateTimePicker';
 import { adapterToUse, getByMuiTest, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<MobileDateTimePicker />', () => {

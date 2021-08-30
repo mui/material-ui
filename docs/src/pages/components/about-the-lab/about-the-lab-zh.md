@@ -21,10 +21,10 @@
 
 ```sh
 // 用 npm 安装
-npm install @material-ui/lab@next
+npm install @mui/lab@next
 
 // 用 yarn 安装
-yarn add @material-ui/lab@next
+yarn add @mui/lab@next
 ```
 
 该 lab 和那些核心组件是对等依赖的。 若您还未在项目中使用 Material-UI，那可以按如下方式安装：
@@ -42,7 +42,7 @@ yarn add @mui/material@next
 为了从 theme 中的 [CSS重载](/customization/theme-components/#global-style-overrides) 和 [默认的属性自定义](/customization/theme-components/#default-props) 中获益，使用 TypeScript 的用户需要引入如下类型的 types。 TypeScript 在内部将实验室里可用的扩展组件和 [模块扩展(module augmentation)](/guides/typescript/#customization-of-theme) 一起使用，这样可以拓展默认的主题（theme）结构。
 
 ```tsx
-import '@material-ui/lab/themeAugmentation';
+import '@mui/lab/themeAugmentation';
 
 const theme = createTheme({
   components: {

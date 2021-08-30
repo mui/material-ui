@@ -10,8 +10,8 @@ import {
   describeConformance,
 } from 'test/utils';
 import Portal from '@mui/material/Portal';
-import TreeView, { treeViewClasses as classes } from '@material-ui/lab/TreeView';
-import TreeItem from '@material-ui/lab/TreeItem';
+import TreeView, { treeViewClasses as classes } from '@mui/lab/TreeView';
+import TreeItem from '@mui/lab/TreeItem';
 
 describe('<TreeView />', () => {
   const render = createClientRender();

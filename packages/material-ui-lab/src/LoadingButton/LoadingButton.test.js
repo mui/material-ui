@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createClientRender, describeConformance, screen } from 'test/utils';
 import { expect } from 'chai';
 import Button from '@mui/material/Button';
-import LoadingButton, { loadingButtonClasses as classes } from '@material-ui/lab/LoadingButton';
+import LoadingButton, { loadingButtonClasses as classes } from '@mui/lab/LoadingButton';
 
 describe('<LoadingButton />', () => {
   const render = createClientRender();

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import DateRangePicker, { DateRange } from '@material-ui/lab/DateRangePicker';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DateRangePicker, { DateRange } from '@mui/lab/DateRangePicker';
 import Box from '@mui/material/Box';
 
 export default function CalendarsDateRangePicker() {

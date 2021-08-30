@@ -85,16 +85,16 @@ npm install @mui/material@next @emotion/react @emotion/styled
 yarn add @mui/material@next @emotion/react @emotion/styled
 ```
 
-**Optional** if your project includes `@mui/icons-material` and/or `@material-ui/lab`, use the `next` version of them.
+**Optional** if your project includes `@mui/icons-material` and/or `@mui/lab`, use the `next` version of them.
 
 ```sh
-npm install @mui/icons-material@next @material-ui/lab@next
+npm install @mui/icons-material@next @mui/lab@next
 
 // or with `yarn`
-yarn add @mui/icons-material@next @material-ui/lab@next
+yarn add @mui/icons-material@next @mui/lab@next
 ```
 
-> **Note:** if you are using `@material-ui/pickers`, it has moved to `@material-ui/lab`. The details is in "Handling breaking changes" section.
+> **Note:** if you are using `@material-ui/pickers`, it has moved to `@mui/lab`. The details is in "Handling breaking changes" section.
 
 In this migration process, you will need to install/update `@material-ui/styles` (JSS) for temporary transition to v5.
 
@@ -750,8 +750,8 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import Alert from '@material-ui/lab/Alert';
-  -import AlertTitle from '@material-ui/lab/AlertTitle';
+  -import Alert from '@mui/lab/Alert';
+  -import AlertTitle from '@mui/lab/AlertTitle';
   +import Alert from '@mui/material/Alert';
   +import AlertTitle from '@mui/material/AlertTitle';
   ```
@@ -763,8 +763,8 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import Autocomplete from '@material-ui/lab/Autocomplete';
-  -import useAutocomplete  from '@material-ui/lab/useAutocomplete';
+  -import Autocomplete from '@mui/lab/Autocomplete';
+  -import useAutocomplete  from '@mui/lab/useAutocomplete';
   +import Autocomplete from '@mui/material/Autocomplete';
   +import useAutoComplete from '@mui/material/useAutocomplete';
   ```
@@ -849,7 +849,7 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import AvatarGroup from '@material-ui/lab/AvatarGroup';
+  -import AvatarGroup from '@mui/lab/AvatarGroup';
   +import AvatarGroup from '@mui/material/AvatarGroup';
   ```
 
@@ -1582,9 +1582,9 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import Pagination from '@material-ui/lab/Pagination';
-  -import PaginationItem from '@material-ui/lab/PaginationItem';
-  -import { usePagination } from '@material-ui/lab/Pagination';
+  -import Pagination from '@mui/lab/Pagination';
+  -import PaginationItem from '@mui/lab/PaginationItem';
+  -import { usePagination } from '@mui/lab/Pagination';
   +import Pagination from '@mui/material/Pagination';
   +import PaginationItem from '@mui/material/PaginationItem';
   +import usePagination from '@mui/material/usePagination';
@@ -1686,7 +1686,7 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import Rating from '@material-ui/lab/Rating';
+  -import Rating from '@mui/lab/Rating';
   +import Rating from '@mui/material/Rating';
   ```
 
@@ -1769,7 +1769,7 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import Skeleton from '@material-ui/lab/Skeleton';
+  -import Skeleton from '@mui/lab/Skeleton';
   +import Skeleton from '@mui/material/Skeleton';
   ```
 
@@ -1857,9 +1857,9 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import SpeedDial from '@material-ui/lab/SpeedDial';
-  -import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
-  -import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
+  -import SpeedDial from '@mui/lab/SpeedDial';
+  -import SpeedDialAction from '@mui/lab/SpeedDialAction';
+  -import SpeedDialIcon from '@mui/lab/SpeedDialIcon';
   +import SpeedDial from '@mui/material/SpeedDial';
   +import SpeedDialAction from '@mui/material/SpeedDialAction';
   +import SpeedDialIcon from '@mui/material/SpeedDialIcon';
@@ -2140,8 +2140,8 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import ToggleButton from '@material-ui/lab/ToggleButton';
-  -import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+  -import ToggleButton from '@mui/lab/ToggleButton';
+  -import ToggleButtonGroup from '@mui/lab/ToggleButtonGroup';
   +import ToggleButton from '@mui/material/ToggleButton';
   +import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
   ```

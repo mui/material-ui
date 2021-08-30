@@ -4,7 +4,7 @@ import { SinonFakeTimers, spy, useFakeTimers } from 'sinon';
 import TextField from '@mui/material/TextField';
 import { TransitionProps } from '@mui/material/transitions';
 import { fireEvent, screen, userEvent } from 'test/utils';
-import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 import {
   createPickerRender,

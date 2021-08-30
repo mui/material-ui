@@ -6,9 +6,9 @@ import enLocale from 'date-fns/locale/en-US';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import TextField from '@mui/material/TextField';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import DatePicker from '@material-ui/lab/DatePicker';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import DatePicker from '@mui/lab/DatePicker';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 const localeMap = {
   en: enLocale,

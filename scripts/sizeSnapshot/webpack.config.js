@@ -59,7 +59,7 @@ async function getWebpackEntries() {
     },
     ...coreComponents,
     {
-      name: '@material-ui/lab',
+      name: '@mui/lab',
       path: path.join(path.relative(workspaceRoot, labPackagePath), 'index.js'),
     },
     ...labComponents,
@@ -163,7 +163,7 @@ module.exports = async function webpackConfig(webpack, environment) {
       resolve: {
         alias: {
           '@mui/material': path.join(workspaceRoot, 'packages/material-ui/build'),
-          '@material-ui/lab': path.join(workspaceRoot, 'packages/material-ui-lab/build'),
+          '@mui/lab': path.join(workspaceRoot, 'packages/material-ui-lab/build'),
           '@mui/styled-engine': path.join(
             workspaceRoot,
             'packages/material-ui-styled-engine/build',

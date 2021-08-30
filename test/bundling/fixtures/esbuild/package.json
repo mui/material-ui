@@ -13,7 +13,7 @@
     "@emotion/styled": "11.3.0",
     "@mui/material": "5.0.0-alpha.34",
     "@mui/icons-material": "5.0.0-alpha.34",
-    "@material-ui/lab": "5.0.0-alpha.34",
+    "@mui/lab": "5.0.0-alpha.34",
     "@mui/styled-engine": "5.0.0-alpha.34",
     "@material-ui/styles": "5.0.0-alpha.33",
     "@mui/system": "5.0.0-alpha.34",

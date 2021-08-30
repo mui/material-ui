@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-restricted-imports */
-import { Skeleton } from '@material-ui/lab';
+import { Skeleton } from '@mui/lab';
 import useAutocomplete, {
   FilterOptionsState as MuiFilterOptionsState,
   createFilterOptions,
