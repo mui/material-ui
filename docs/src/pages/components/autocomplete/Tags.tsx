@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
 import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/core/Autocomplete';
