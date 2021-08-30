@@ -49,7 +49,7 @@ A big thanks to the 26 contributors who made this release possible. Here are som
 - &#8203;<!-- 52 --> [Tooltip] Fix broken arrow position in rtl (#27868) @mnajdova
 - &#8203;<!-- 02 --> [transitions] Allow to run Slide into a custom container (#26623) @benny0642
 
-### `@mui/system@5.0.0-beta.5`
+### `@material-ui/system@5.0.0-beta.5`
 
 #### Breaking changes
 
@@ -70,11 +70,11 @@ A big thanks to the 26 contributors who made this release possible. Here are som
 - &#8203;<!-- 32 --> [system] Forward `classes` prop if no slot specified in the options (#27795) @mnajdova
 - &#8203;<!-- 46 --> [system] Fix pseudo class overridden in variants (#27847) @hbjORbj
 
-### `@mui/icons-material@5.0.0-beta.5`
+### `@material-ui/icons@5.0.0-beta.5`
 
 - &#8203;<!-- 13 --> [icons] Improve GitHub size (#27740) @oliviertassinari
 
-### `@mui/styled-engine@5.0.0-beta.5`
+### `@material-ui/styled-engine@5.0.0-beta.5`
 
 - &#8203;<!-- 27 --> [styled-engine] Remove unecessary aliases (#27779) @oliviertassinari
 - &#8203;<!-- 14 --> [styled-engine] Drop withComponent support (#27780) @oliviertassinari
@@ -179,7 +179,7 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
 
 - &#8203;<!-- 20 -->[codemod] Fix filename case sensitive duplicate @oliviertassinari
 
-### `@mui/system@5.0.0-beta.4`
+### `@material-ui/system@5.0.0-beta.4`
 
 - &#8203;<!-- 28 -->[StyledEngineProvider] Remove unnecessary emotion cache export (#27680) @garronej
 - &#8203;<!-- 11 -->[system] Fix missing filterProps in compose type (#27618) @R-Bower
@@ -192,7 +192,7 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
 
 ### Docs
 
-- &#8203;<!-- 36 -->[docs] Update guides for @mui/styled-engine-sc installation (#27602) @mnajdova
+- &#8203;<!-- 36 -->[docs] Update guides for @material-ui/styled-engine-sc installation (#27602) @mnajdova
 - &#8203;<!-- 35 -->[docs] Document that @material-ui/styles is not strict mode compatible (#27639) @oliviertassinari
 - &#8203;<!-- 34 -->[docs] Link to "Customization of Theme" from relevant theme interfaces (#27689) @eps1lon
 - &#8203;<!-- 33 -->[docs] Update CSP page (#27627) @mnajdova
@@ -239,7 +239,7 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
 - &#8203;<!-- 07 -->[Modal] Remove unnecessary check for children.props.tabIndex (#27374) @noviicee
 - &#8203;<!-- 14 -->[Select] Fix regression for icon not rotating (#27511) @mnajdova
 
-### `@mui/system@5.0.0-beta.3`
+### `@material-ui/system@5.0.0-beta.3`
 
 - &#8203;<!-- 38 -->[system] Added top, left, right and bottom border color CSS properties to system (#27580) @R-Bower
 
@@ -339,7 +339,7 @@ Big thanks to the 20 contributors who made this release possible. Here are some 
 
 - &#8203;<!-- 43 -->[utils] Convert createChainedFunction to TypeScript (#27386) @eps1lon
 
-### `@mui/system@5.0.0-beta.2`
+### `@material-ui/system@5.0.0-beta.2`
 
 - &#8203;<!-- 39 -->[system] Compute display name of `styled` component if `name` isn't set (#27401) @eps1lon
 - &#8203;<!-- 08 -->[system] Adds missing type for `shouldForwardProp` (#27310) @KLubin1
@@ -440,7 +440,7 @@ Big thanks to the 17 contributors who made this release possible. Here are some 
 - [codemod] Add v5 important migration (#27032) @siriwatknp
 - [codemod] Fix v5 codemods on Windows (#27254) @michaldudak
 
-### `@mui/system@5.0.0-beta.1`
+### `@material-ui/system@5.0.0-beta.1`
 
 - [Box] Add breakpoint value support to maxWidth prop (#26984) @ansh-saini
 
@@ -563,7 +563,7 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 
 - &#8203;<!-- 37 -->[codemod] Add CLI (#26941) @eps1lon
 
-### @mui/icons-material@5.0.0-beta.0
+### @material-ui/icons@5.0.0-beta.0
 
 - &#8203;<!-- 29 -->[icons] Regenerate transpiled files (#26985) @eps1lon
 
@@ -592,7 +592,7 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - &#8203;<!-- 12 -->[lab] Fix missing dependency on unstyled (#26937) @fishyFrogFace
 - &#8203;<!-- 50 -->[pickers] Consider TDate in ToolbarComponent types (#27035) @michal-perlakowski
 
-### `@mui/system@5.0.0-beta.0`
+### `@material-ui/system@5.0.0-beta.0`
 
 - &#8203;<!-- 14 -->[system] Support array overridesResolver (#26824) @siriwatknp
 
@@ -761,7 +761,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
    import {
   -  unstable_useThemeProps,
   +  useThemeProps,
-   } from '@mui/system';
+   } from '@material-ui/system';
   ```
 
   - `@material-ui/core`
@@ -788,14 +788,14 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 - &#8203;<!-- 36 -->[Tabs] Show error when Tab has display: none (#26783) @michal-perlakowski
 - &#8203;<!-- 46 -->[theme] Add base color palette type to components (#26697) @siriwatknp
 
-### `@mui/system@5.0.0-alpha.38`
+### `@material-ui/system@5.0.0-alpha.38`
 
 #### Breaking Changes
 
 - &#8203;<!-- 35 -->[system] Normalize api for `createBox` (#26820) @mnajdova
 
   ```diff
-   import { createBox } from '@mui/system';
+   import { createBox } from '@material-ui/system';
 
   -const styled = createBox(defaultTheme);
   +const styled = createBox({ defaultTheme });
@@ -808,7 +808,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 ### Docs
 
 - &#8203;<!-- 45 -->[docs] Fix misspelling of the word Typography (#26898) @dmrqx
-- &#8203;<!-- 42 -->[docs] Instruct users to install @mui/icons-material with the next tag (#26873) @michal-perlakowski
+- &#8203;<!-- 42 -->[docs] Instruct users to install @material-ui/icons with the next tag (#26873) @michal-perlakowski
 - &#8203;<!-- 26 -->[docs] Sync translations (#26828) @l10nbot
 - &#8203;<!-- 25 -->[docs] Improve grammar of autocomplete/autofill section (#26798) @dijonkitchen
 - &#8203;<!-- 18 -->[docs] Explain "inherited props" better in the props table (#26778) @eps1lon
@@ -835,7 +835,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 - &#8203;<!-- 40 -->[core] Update babel-plugin-optimize-clsx (#26861) @oliviertassinari
 - &#8203;<!-- 24 -->[core] Assume no document.all at runtime (#26821) @eps1lon
 - &#8203;<!-- 20 -->[core] Remove dependency on `@material-ui/private-theming` (#26793) @mnajdova
-- &#8203;<!-- 15 -->[core] Remove dependency on `@mui/styled-engine` (#26792) @mnajdova
+- &#8203;<!-- 15 -->[core] Remove dependency on `@material-ui/styled-engine` (#26792) @mnajdova
 
 All contributors of this release in alphabetical order: @ahmed-28, @brunocavalcante, @DanielBretzigheimer, @dijonkitchen, @dmrqx, @eps1lon, @Izhaki, @kshuiroy, @l10nbot, @michal-perlakowski, @michaldudak, @mnajdova, @oliviertassinari, @pavinduLakshan, @shadab14meb346, @siriwatknp, @tungdt-90, @varandasi
 
@@ -860,7 +860,7 @@ Big thanks to the 11 contributors who made this release possible. Here are some 
 
   Head to the [documentation](https://next.material-ui.com/components/grid/#responsive-values) for more details.
 
-- ⚒️ We've introduced a new `useTheme` and `useThemeProps` hooks in the `@mui/system` package.
+- ⚒️ We've introduced a new `useTheme` and `useThemeProps` hooks in the `@material-ui/system` package.
   We believe that this package can be used as a standalone styling solution for building custom design systems (#26649) @mnajdova.
 - 💥 Made progress with the breaking changes. We have done 105 of the 109 changes [planned](https://github.com/mui-org/material-ui/issues/20012). We are getting closer to our goal of releasing 5.0.0-beta.0 on July 1st and start to promote its usage over v4. You can also follow [our milestone](https://github.com/mui-org/material-ui/milestone/35) for more details.
 - And many more 🐛 bug fixes and 📚 improvements.
@@ -888,7 +888,7 @@ Big thanks to the 11 contributors who made this release possible. Here are some 
 - &#8203;<!-- 05 -->[List] Add ListItemButton export to index (#26667) @chadmuro
 - &#8203;<!-- 09 -->[theme] Fix missing exported Breakpoints types (#26684) @robphoenix
 
-### `@mui/system@5.0.0-alpha.37`
+### `@material-ui/system@5.0.0-alpha.37`
 
 #### Breaking changes
 
@@ -921,7 +921,7 @@ Big thanks to the 11 contributors who made this release possible. Here are some 
 - &#8203;<!-- 04 -->[Slider] Improve TS definition (#26642) @mnajdova
 - &#8203;<!-- 21 -->[TrapFocus] Capture nodeToRestore via relatedTarget (#26696) @eps1lon
 
-### `@mui/icons-material@5.0.0-alpha.37`
+### `@material-ui/icons@5.0.0-alpha.37`
 
 - &#8203;<!-- 03 -->Revert "[icons] Only ship ES modules (#26310)" (#26656) @eps1lon
 
@@ -966,7 +966,7 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 - ⚒️ We've introduced a new `ListItemButton` component that should prevent common mistakes when using `<ListItem button />` and help with customization and TypeScript support (#26446) @siriwatknp.
 - 👩‍🎤 `experimentalStyled` is now available without the `experimental` prefix.
   We're confident that its API shouldn't receive any major changes until the stable release of v5 (#26558) @mnajdova.
-- 📦 `@mui/icons-material` only ships ES modules and no longer CommonJS modules.
+- 📦 `@material-ui/icons` only ships ES modules and no longer CommonJS modules.
   This reduces the download size of the package from 1.7 MB to 1.2 MB and install size from 15.6 MB to 6.7 MB (#26310) @eps1lon.
 - 💄 Add support for [row and column spacing](https://next.material-ui.com/components/grid/#row-amp-column-spacing) in the Grid component (#26559) @likitarai1.
   <img width="549" alt="grid spacing demo" src="https://user-images.githubusercontent.com/3165635/121089288-383fa500-c7e7-11eb-8c43-53457b7430f1.png">
@@ -1014,13 +1014,13 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 - &#8203;<!-- 20 -->[TextField] Fix support for custom `size` prop value (#26585) @coder-freestyle
 - &#8203;<!-- 04 -->[Tooltip] Finish exiting once started (#26535) @eps1lon
 
-### `@mui/icons-material@5.0.0-alpha.36`
+### `@material-ui/icons@5.0.0-alpha.36`
 
 #### Breaking changes
 
 - &#8203;<!-- 15 -->[icons] Only ship ES modules (#26310) @eps1lon
 
-  The `require()` of `@mui/icons-material` is no longer supported.
+  The `require()` of `@material-ui/icons` is no longer supported.
   This should not affect you if you're using a bundler like `webpack` or `snowpack` or meta frameworks like `next` or `gatsby`.
 
 ### `@material-ui/lab@5.0.0-alpha.36`
@@ -1039,7 +1039,7 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
   - openPickerIcon={<ClockIcon />}
   ```
 
-### `@mui/system@5.0.0-alpha.36`
+### `@material-ui/system@5.0.0-alpha.36`
 
 - &#8203;<!-- 18 -->[system] Add createTheme util (#26490) @mnajdova
 
@@ -1156,20 +1156,20 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 - [codemod] Add multiple codemods to migrate components from v4 to v5 (#24867) @mbrookes
 - [codemod] Correct path and add target placeholder (#26414) @mbrookes
 
-### `@mui/icons-material@5.0.0-alpha.35`
+### `@material-ui/icons@5.0.0-alpha.35`
 
 - [icons] Use array children instead of React fragments (#26309) @eps1lon
 
   Reduce a bit the size of the package.
 
-### `@mui/system@5.0.0-alpha.35`
+### `@material-ui/system@5.0.0-alpha.35`
 
 We are progressively moving all modules that are relevant to styling custom design systems in this package. It's meant to be complementary with `@material-ui/unstyled`.
 
 - [system] Add Box to system (#26379) @mnajdova
 - [system] Add createStyled utility (#26485) @mnajdova
 
-### `@mui/styled-engine-sc@5.0.0-alpha.35`
+### `@material-ui/styled-engine-sc@5.0.0-alpha.35`
 
 - [styled-engine] Fix styled() util to respect `options` (#26339) @pasDamola
 
@@ -1346,7 +1346,7 @@ Big thanks to the 16 contributors who made this release possible. Here are some 
 - &#8203;<!-- 25 -->[pickers] Migrate PickersDay to emotion (#25995) @siriwatknp
 - &#8203;<!-- 06 -->[pickers] Migrate PickersToolbarButton to emotion (#25989) @siriwatknp
 
-### `@mui/icons-material@5.0.0-alpha.34`
+### `@material-ui/icons@5.0.0-alpha.34`
 
 - &#8203;<!-- 52 -->[icons] Remove extraneous React.Fragment (#26308) @eps1lon
 - &#8203;<!-- 50 -->[icons] Synchronize icons (#26302) @eps1lon
@@ -1844,11 +1844,11 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
 - &#8203;<!-- 06 -->[Timeline] Migrate Timeline to emotion (#25838) @siriwatknp
 - &#8203;<!-- 55 -->[TreeView] Migrate TreeItem to emotion (#25835) @siriwatknp
 
-### `@mui/styled-engine@5.0.0-alpha.32`
+### `@material-ui/styled-engine@5.0.0-alpha.32`
 
 - &#8203;<!-- 02 -->[styled-engine] Skip variants resolver for non root slots by default (#25865) @mnajdova
 
-### `@mui/system@5.0.0-alpha.32`
+### `@material-ui/system@5.0.0-alpha.32`
 
 - &#8203;<!-- 12 -->[system] Add missing `main` entry for styleFunctionSx (#25885) @eps1lon
 
@@ -1985,7 +1985,7 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
 - &#8203;<!-- 47 -->[Timeline] Migrate TimelineOppositeContent to emotion (#25816) @vicasas
 - &#8203;<!-- 54 -->[TrapFocus] Make isEnabled and getDoc optional (#25784) @m4theushw
 
-### `@mui/styled-engine@5.0.0-alpha.31`
+### `@material-ui/styled-engine@5.0.0-alpha.31`
 
 - &#8203;<!-- 27 -->[styled-engine] Fix shouldForwardProp on slots (#25780) @mnajdova
 - &#8203;<!-- 11 -->[styled-engine] Improve GlobalStyles props (#25751) @mnajdova
@@ -2348,7 +2348,7 @@ Big thanks to the 12 contributors who made this release possible. Here are some 
 - &#8203;<!-- 27 -->[Table] Use primary cover over secondary for selected state (#25182) @beaudry
 - &#8203;<!-- 23 -->[theme] Fix styleOverrides with nested selectors (#25156) @ruppysuppy
 
-### `@mui/system@5.0.0-alpha.27`
+### `@material-ui/system@5.0.0-alpha.27`
 
 - &#8203;<!-- 02 -->[system] Fix behavior of visuallyHidden when used with `sx` prop (#25110) @niting143
 
@@ -2476,7 +2476,7 @@ Big thanks to the 26 contributors who made this release possible. Here are some 
 - &#8203;<!-- 065 -->[Pickers] Fix picker components not opening on click in React 17 (#24981) @eps1lon
 - &#8203;<!-- 013 -->[Pickers] Fix outdated link to PickersDay (#24883) @oliviertassinari
 
-### `@mui/icons-material@5.0.0-alpha.26`
+### `@material-ui/icons@5.0.0-alpha.26`
 
 - &#8203;<!-- 087 -->[icons] Synchronize icons (#25055) @eps1lon
 
@@ -2509,7 +2509,7 @@ Big thanks to the 26 contributors who made this release possible. Here are some 
 
   We are getting closer to the maximum number of icons our infrastructure can support. In the future, we might remove the least popular icons in favor of the most frequently used ones.
 
-### `@mui/system@5.0.0-alpha.26`
+### `@material-ui/system@5.0.0-alpha.26`
 
 - &#8203;<!-- 057 -->[system] Fix gap, rowGap, columnGap, borderRadius reponsive support (#24994) @oliviertassinari
 
@@ -2662,7 +2662,7 @@ Big thanks to the 30 contributors who made this release possible. Here are some 
 - &#8203;<!-- 90 -->[Table] Migrate TableFooter to emotion (#24684) @natac13
 - &#8203;<!-- 92 -->[Skeleton] Migrate to emotion (#24652) @kodai3
 
-### `@mui/system@5.0.0-alpha.25`
+### `@material-ui/system@5.0.0-alpha.25`
 
 #### Breaking changes
 
@@ -2677,7 +2677,7 @@ Big thanks to the 30 contributors who made this release possible. Here are some 
   >
   ```
 
-### `@mui/styled-engine@5.0.0-alpha.25`
+### `@material-ui/styled-engine@5.0.0-alpha.25`
 
 - &#8203;<!-- 34 -->[styled-engine] Fix GlobalStyles not to throw when no theme is available (#24671) @mnajdova
 
@@ -2821,11 +2821,11 @@ Big thanks to the 23 contributors who made this release possible. Here are some 
 - &#8203;<!-- 12 -->[DateRangePicker] Remove variant prop override for Textfield (#24433) @praveenkumar-kalidass
 - &#8203;<!-- 03 -->[lab] Reflect draft pattern of picker value in implementation (#24367) @eps1lon
 
-### `@mui/styled-engine@5.0.0-alpha.24`
+### `@material-ui/styled-engine@5.0.0-alpha.24`
 
 - &#8203;<!-- 13 -->[styled-engine] Rename StylesProvider to StyledEngineProvider (#24429) @mnajdova
 
-### `@mui/system@5.0.0-alpha.24`
+### `@material-ui/system@5.0.0-alpha.24`
 
 - &#8203;<!-- 44 -->[system] Fix handling of null-ish values (#24530) @oliviertassinari
 
@@ -2945,7 +2945,7 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
 - [lab] Fix import paths in generated declaration files (#24380) @eps1lon
 - [lab] Prevent possible null pointer in useValidation (#24318) @eps1lon
 
-### `@mui/styled-engine@v5.0.0-alpha.23`/`@mui/styled-engine-sc@v5.0.0-alpha.23`
+### `@material-ui/styled-engine@v5.0.0-alpha.23`/`@material-ui/styled-engine-sc@v5.0.0-alpha.23`
 
 - [styled-engine] Add `GlobalStyles` component (#24176) @mnajdova
 
@@ -3068,7 +3068,7 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 - [Slider] Fix circular type reference in SliderValueLabel (#24190) @eps1lon
 - [Skeleton] Fix default TypeScript component type (#24191) @eps1lon
 
-### `@mui/system@v5.0.0-alpha.21`
+### `@material-ui/system@v5.0.0-alpha.21`
 
 - [system] Fix sx prop typings to support grid gap props (#24093) @mnajdova
 - [system] Improve the SxProp typings structure, by splitting them in a separate module. (#24090) @mnajdova
@@ -3087,7 +3087,7 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 
 - [styles] Fix for supporting non string props in propsToClassKey (#24101) @mnajdova
 
-### `@mui/styled-engine@v5.0.0-alpha.21`/`@mui/styled-engine-sc@v5.0.0-alpha.21`
+### `@material-ui/styled-engine@v5.0.0-alpha.21`/`@material-ui/styled-engine-sc@v5.0.0-alpha.21`
 
 - [styled-engine] Fix StylesProvider injectFirst with sc (#24104) @mnajdova
 
@@ -3168,12 +3168,12 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - [Slider][badge] Fix classes prop not working (#24034) @mnajdova
 - [Typography] Migrate styles to emotion (#23841) @DanailH
 
-### `@mui/styled-engine@v5.0.0-alpha.20`/`@mui/styled-engine-sc@v5.0.0-alpha.20`
+### `@material-ui/styled-engine@v5.0.0-alpha.20`/`@material-ui/styled-engine-sc@v5.0.0-alpha.20`
 
 - [styled-engine] Add name and slot options (#23964) @mnajdova
 - [styled-engine] Add StylesProvider with injectFirst option (#23934) @mnajdova
 
-### `@mui/system@v5.0.0-alpha.20`
+### `@material-ui/system@v5.0.0-alpha.20`
 
 - [system] Fix transform not firing when theme provided (#24010) @ZovcIfzm
 
@@ -3244,7 +3244,7 @@ Big thanks to the 24 contributors who made this release possible. Here are some 
 
 - [core] Use Lerna to publish (#23793) @oliviertassinari
 
-### `@mui/system@v5.0.0-alpha.19`
+### `@material-ui/system@v5.0.0-alpha.19`
 
 #### Breaking changes
 
@@ -3253,7 +3253,7 @@ Big thanks to the 24 contributors who made this release possible. Here are some 
   Only applies if you've installed v5.0.0-alpha.1
 
   ```diff
-  -import { visuallyHidden } from '@mui/system';
+  -import { visuallyHidden } from '@material-ui/system';
   +import { visuallyHidden } from '@material-ui/utils';
   ```
 
@@ -3357,7 +3357,7 @@ Big thanks to the 17 contributors who made this release possible. Here are some 
 - [Switch] Add preventDefault check for state change (#23786) @praveenkumar-kalidass
 - [Tabs] Remove duplicate styles (#23561) @cmfcmf
 
-### `@mui/system@v5.0.0-alpha.18`
+### `@material-ui/system@v5.0.0-alpha.18`
 
 - [system] Allow values to use shorter string when the prop name is contained in the value (#23635) @mnajdova
 - [system] Another round of perf improvements (#23737) @mnajdova
@@ -3379,7 +3379,7 @@ Big thanks to the 17 contributors who made this release possible. Here are some 
 - [DatePicker] Found one prop that was renamed (#23676) @oliviertassinari
 - [DateRangePicker] Allow same date selection (#23701) @hmaddisb
 
-### `@mui/styled-engine@v5.0.0-alpha.18`/`@mui/styled-engine-sc@v5.0.0-alpha.18`
+### `@material-ui/styled-engine@v5.0.0-alpha.18`/`@material-ui/styled-engine-sc@v5.0.0-alpha.18`
 
 - [styled-engine] Fix tagged template syntax with multiple expressions (#23269) @eps1lon
 
@@ -3521,7 +3521,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 
 - [Grid] Improve warning when a prop is missing (#23630) @udayRedI
 
-### `@mui/system@v5.0.0-alpha.17`
+### `@material-ui/system@v5.0.0-alpha.17`
 
 - [system] Improve the `sx` prop IntelliSense (#23599) @mnajdova
 
@@ -3630,7 +3630,7 @@ Big thanks to the 34 contributors who made this release possible. Here are some 
 
 - [DatePicker] Migrate to the lab #22692 @dmtrKovalenko
 
-### `@mui/system@v5.0.0-alpha.16`
+### `@material-ui/system@v5.0.0-alpha.16`
 
 - [system] Add typography prop that will pull from theme.typography (#23451) @mnajdova
 - [system] Create separate margin and padding functions (#23452) @mnajdova
@@ -3639,7 +3639,7 @@ Big thanks to the 34 contributors who made this release possible. Here are some 
 - [system] Remove css utility in favor of sx (#23454) @mnajdova
 - [system] Warn for spacing when non integer value is used with theme.spacing array (#23460) @mnajdova
 
-### `@mui/styled-engine@v5.0.0-alpha.16`
+### `@material-ui/styled-engine@v5.0.0-alpha.16`
 
 - [styled-engine] Upgrade emotion to 11 RC (#23007) @mnajdova
 
@@ -3752,7 +3752,7 @@ Big thanks to the 20 contributors who made this release possible. Here are some 
 - [lab] Migrate Timeline to TypeScript (#23242) @oliviertassinari
 - [core] Allow React 17 (#23311) @eps1lon
 
-### `@mui/icons-material@v5.0.0-alpha.15`
+### `@material-ui/icons@v5.0.0-alpha.15`
 
 - [core] Allow React 17 (#23311) @eps1lon
 
@@ -3760,7 +3760,7 @@ Big thanks to the 20 contributors who made this release possible. Here are some 
 
 - [core] Allow React 17 (#23311) @eps1lon
 
-### `@mui/system@v5.0.0-alpha.15`
+### `@material-ui/system@v5.0.0-alpha.15`
 
 - [core] Allow React 17 (#23311) @eps1lon
 - [theme] Fix spacing string arguments (#23224) @GuilleDF
@@ -3836,7 +3836,7 @@ Here are some highlights ✨:
   Imports such as the one below should work again with this release:
 
   ```jsx
-  import CloseIcon from '@mui/icons-material/Close';
+  import CloseIcon from '@material-ui/icons/Close';
   ```
 
 - And many more 🐛 bug fixes and 📚 improvements.
@@ -3901,16 +3901,16 @@ Here are some highlights ✨:
 - [Rating] Ensure hover and click are in sync (#23117) @redbmk
 - [Select] Fix SelectDisplayProps className concat (#23211) @reedanders
 
-### `@mui/styled-engine@v5.0.0-alpha.14`
+### `@material-ui/styled-engine@v5.0.0-alpha.14`
 
 - [styled] Add @babel/runtime dependency (#23175) @koistya
 
-### `@mui/system@v5.0.0-alpha.14`
+### `@material-ui/system@v5.0.0-alpha.14`
 
 - [Box] Add sx prop (#23053) @mnajdova
 - [core] Fix bundles for packages without subpackages (#23157) @eps1lon
 
-### `@mui/icons-material@v5.0.0-alpha.14`
+### `@material-ui/icons@v5.0.0-alpha.14`
 
 - [core] Fix bundles for packages without subpackages (#23157) @eps1lon
 
@@ -4025,7 +4025,7 @@ Here are some highlights ✨:
 
 - [core] Ship modern bundle (#22814) @eps1lon
 
-### `@mui/system@v5.0.0-alpha.13`
+### `@material-ui/system@v5.0.0-alpha.13`
 
 - [core] Ship modern bundle (#22814) @eps1lon
 
@@ -4033,15 +4033,15 @@ Here are some highlights ✨:
 
 - [core] Ship modern bundle (#22814) @eps1lon
 
-### `@mui/styled-engine@v5.0.0-alpha.13`
+### `@material-ui/styled-engine@v5.0.0-alpha.13`
 
 - [core] Ship modern bundle (#22814) @eps1lon
 
-### `@mui/styled-engine-sc@v5.0.0-alpha.13`
+### `@material-ui/styled-engine-sc@v5.0.0-alpha.13`
 
 - [core] Ship modern bundle (#22814) @eps1lon
 
-### `@mui/icons-material@v5.0.0-alpha.13`
+### `@material-ui/icons@v5.0.0-alpha.13`
 
 - [core] Ship modern bundle (#22814) @eps1lon
 
@@ -4102,7 +4102,7 @@ Big thanks to the 45 contributors who made this release possible.
 Here are some highlights ✨:
 
 - 🧪 The promotion of 4 components from the lab to core: Autocomplete, Pagination, SpeedDial, and ToggleButton. These components have been in the lab for more than 10 months @mbrookes.
-- 📦 Switch the style engine of the `Box` component from JSS to _@mui/styled-engine_ (use emotion by default) (#22945) @mnajdova.
+- 📦 Switch the style engine of the `Box` component from JSS to _@material-ui/styled-engine_ (use emotion by default) (#22945) @mnajdova.
   The early benchmark we have run shows that performance has improved. We will share more detailed results in #21657.
 - 🐙 Migrate a large portion of the tests from enzyme to react-testing-library @eladmotola, @baterson, @bewong89, @devrasec, @guillermaster, @itamar244, @jeferson-sb, @The24thDS.
   Last month, react-testing-library had [more downloads](https://npm-stat.com/charts.html?package=enzyme&package=%40testing-library%2Freact&from=2019-10-10&to=2020-10-10) than enzyme in the ecosystem!
@@ -4188,7 +4188,7 @@ Here are some highlights ✨:
 - [Tooltip] Use label semantics (#22729) @eps1lon
 - [useAutocomplete] Fix getXProps functions type (#22749) @kentaro84207
 
-### `@mui/styled-engine@v5.0.0-alpha.12`
+### `@material-ui/styled-engine@v5.0.0-alpha.12`
 
 - [styled] Support default theme when none is available (#22791) @mnajdova
 
@@ -4496,16 +4496,16 @@ Here are some highlights ✨:
 - [Autocomplete] Fix accessibility issue with empty option set (#22712) @tylerjlawson
 - [Autocomplete] Update GitHub customization example (#22735) @hmaddisb
 
-### `@mui/styled-engine@v5.0.0-alpha.11`
+### `@material-ui/styled-engine@v5.0.0-alpha.11`
 
 The new default style engine leveraging emotion.
 
-### `@mui/styled-engine-sc@v5.0.0-alpha.11`
+### `@material-ui/styled-engine-sc@v5.0.0-alpha.11`
 
 Allows developer to swap emotion with styled-components.
 More documentation are coming.
 
-### `@mui/icons-material@v5.0.0-alpha.11`
+### `@material-ui/icons@v5.0.0-alpha.11`
 
 - [icons] Synchronize with Google (#22680) @delewis13
 
@@ -4513,7 +4513,7 @@ More documentation are coming.
 
 - [Slider] Create unstyled version and migrate to emotion & styled-components (#22435) @mnajdova
 
-### `@mui/system@v5.0.0-alpha.11`
+### `@material-ui/system@v5.0.0-alpha.11`
 
 - [core] Port createSpacing to TypeScript (#22720) @eps1lon
 
@@ -4997,7 +4997,7 @@ Here are some highlights ✨:
 - [TrapFocus] Fix compatibility issues with React 17 (#22270) @eps1lon
 - [TrapFocus] Prevent possible crash in React 17 (#22262) @eps1lon
 
-### `@mui/icons-material@v5.0.0-alpha.7`
+### `@material-ui/icons@v5.0.0-alpha.7`
 
 - [icons] Synchronize icons (#22186) @oliviertassinari
 
@@ -5285,7 +5285,7 @@ Here are some highlights ✨:
 - [TreeView] Test current behavior of active item removal (#21720) @eps1lon
 - [TreeView] Test selection behavior (#21901) @joshwooding
 
-### `@mui/system@v5.0.0-alpha.6`
+### `@material-ui/system@v5.0.0-alpha.6`
 
 - [core] Bump csstype to 3.0.0 (#22048) @eps1lon
 
@@ -5416,7 +5416,7 @@ Big thanks to the 11 contributors who made this release possible.
   Rely on the context over the `React.cloneElement()` API.
   This change makes composition easier.
 
-### `@mui/icons-material@v5.0.0-alpha.4`
+### `@material-ui/icons@v5.0.0-alpha.4`
 
 - [icons] Add Google brand icon (#21807) @bmg02
 
@@ -5697,11 +5697,11 @@ Big thanks to the 33 contributors who made this release possible. Here are some 
 - [TreeView] Minor styling changes (#21573) @joshwooding
 - [TreeView] Simplify customization (#21514) @joshwooding
 
-### `@mui/icons-material@v5.0.0-alpha.1`
+### `@material-ui/icons@v5.0.0-alpha.1`
 
 - [icons] Synchronize icons with Google (#21498) @alecananian
 
-### `@mui/system@v5.0.0-alpha.1`
+### `@material-ui/system@v5.0.0-alpha.1`
 
 - [system] Introduce visuallyHidden style utility (#21413) @mnajdova
 
