@@ -15,10 +15,6 @@ import CreateOutlinedIcon from '@material-ui/icons/CreateOutlined';
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 import ColorLensOutlinedIcon from '@material-ui/icons/ColorLensOutlined';
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
-import StyleIcon from '@material-ui/icons/Style';
-import AddIcon from '@material-ui/icons/Add';
-import FlexGrow from 'docs/src/pages/system/flexbox/FlexGrow';
-import { width } from '@material-ui/system';
 
 const iconsMap = {
   DescriptionIcon: ArticleOutlinedIcon,
@@ -33,7 +29,7 @@ const iconsMap = {
 
 const Item = styled(({ component: Component = 'div', ...props }) => <Component {...props} />, {
   // disable `as` prop
-  shouldForwardProp: (prop) => true,
+  shouldForwardProp: () => true,
 })(({ theme }) => ({
   ...theme.typography.body2,
   display: 'flex',
@@ -110,23 +106,29 @@ const ItemButton = styled(Item, {
   shouldForwardProp: (prop) => prop !== 'depth',
 })(({ depth, theme }) => {
   return {
-    color:
-      depth === 1
-        ? theme.palette.mode === 'dark'
-          ? theme.palette.grey[800]
-          : theme.palette.grey[500]
-        : theme.palette.text.primary,
+    color: (() => {
+      if (depth === 1) {
+        if (theme.palette.mode === 'dark') {
+          return theme.palette.grey[800];
+        }
+        return theme.palette.grey[500];
+      }
+      return theme.palette.text.primary;
+    })(),
     fontSize: depth === 1 ? '0.75rem' : undefined,
     fontWeight: depth === 0 ? 500 : 600,
     marginTop: depth === 0 ? '0px' : '10px',
     '&:hover': {
       backgroundColor: depth === 0 ? '' : alpha(theme.palette.primary.main, 0),
-      color:
-        depth === 0
-          ? ''
-          : theme.palette.mode === 'dark'
-          ? theme.palette.grey[800]
-          : theme.palette.grey[500],
+      color: (() => {
+        if (depth === 0) {
+          return '';
+        }
+        if (theme.palette.mode === 'dark') {
+          return theme.palette.grey[800];
+        }
+        return theme.palette.grey[500];
+      })(),
       cursor: depth === 0 ? '' : 'text',
     },
     [`&:hover ${ItemButtonIcon}`]: {
@@ -246,6 +248,7 @@ AppNavDrawerItem.propTypes = {
   children: PropTypes.node,
   depth: PropTypes.number.isRequired,
   href: PropTypes.string,
+  icon: PropTypes.string,
   linkProps: PropTypes.object,
   onClick: PropTypes.func,
   openImmediately: PropTypes.bool,

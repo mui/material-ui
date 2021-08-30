@@ -13,7 +13,6 @@ import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/ut
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
-import Link from 'docs/src/modules/components/Link';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
@@ -169,7 +168,7 @@ function AppNavDrawer(props) {
         <ToolbarIE11>
           <ToolbarDiv sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <NextLink href="/" passHref onClick={onClose}>
-              <Box component="a" aria-label="go to homepage" sx={{ lineHeight: 0, mr: 2 }}>
+              <Box component="a" aria-label={t('goToHome')} sx={{ lineHeight: 0, mr: 2 }}>
                 <SvgMuiLogo width={32} />
               </Box>
             </NextLink>
@@ -181,12 +180,15 @@ function AppNavDrawer(props) {
                 size="small"
                 sx={{
                   color: (theme) =>
-                    theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
-                    mr: 3,
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primary[300]
+                      : theme.palette.primary[500],
+                  mr: 3,
                 }}
               >
+                {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
                 {`v${process.env.LIB_VERSION}`}
-            </Button>
+              </Button>
             ) : null}
           </ToolbarDiv>
         </ToolbarIE11>

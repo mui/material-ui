@@ -6,7 +6,7 @@ import Box from '@material-ui/core/Box';
 import { useTheme, styled } from '@material-ui/core/styles';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
-const Root = styled('div')(({ theme }) => ({
+const Root = styled('div')(() => ({
   '& img': {
     display: 'inline-block',
   },
@@ -131,6 +131,7 @@ export default function DiamondSponsors(props) {
           rel="noopener noreferrer"
           target="_blank"
           href="/discover-more/backers/#diamond"
+          // eslint-disable-next-line material-ui/no-hardcoded-labels
         >
           +1
         </Placeholder>
