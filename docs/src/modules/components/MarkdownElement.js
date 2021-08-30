@@ -15,11 +15,11 @@ const Root = styled('div')(({ theme }) => ({
   '& pre': {
     margin: theme.spacing(2, 'auto'),
     padding: theme.spacing(2),
-    backgroundColor: '#001E3C',
+    backgroundColor: blueDark[800],
     direction: 'ltr',
     borderRadius: theme.shape.borderRadius,
     border: '1px solid',
-    borderColor: '#132F4C',
+    borderColor: blueDark[700],
     overflow: 'auto',
     WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
     maxWidth: 'calc(100vw - 32px)',
@@ -43,7 +43,7 @@ const Root = styled('div')(({ theme }) => ({
     borderRadius: 5,
   },
   '& code[class*="language-"]': {
-    backgroundColor: '#001E3C',
+    backgroundColor: blueDark[800],
     color: '#fff',
     // Avoid layout jump after hydration (style injected by prism)
     lineHeight: 1.5,
