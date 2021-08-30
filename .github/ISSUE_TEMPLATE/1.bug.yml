@@ -24,15 +24,15 @@ body:
           required: true
   - type: textarea
     attributes:
-      label: Current Behavior 😯
+      label: Current behavior 😯
       description: Describe what happens instead of the expected behavior.
   - type: textarea
     attributes:
-      label: Expected Behavior 🤔
+      label: Expected behavior 🤔
       description: Describe what should happen.
   - type: textarea
     attributes:
-      label: Steps to Reproduce 🕹
+      label: Steps to reproduce 🕹
       description: |
         Provide a link to a live example (you can use codesandbox.io) and an unambiguous set of steps to reproduce this bug.
         Include code to reproduce, if relevant (which it most likely is).
@@ -53,3 +53,16 @@ body:
     attributes:
       label: Context 🔦
       description: What are you trying to accomplish? How has this issue affected you? Providing context helps us come up with a solution that is more useful in the real world.
+  - type: textarea
+    attributes:
+      label: Your environment 🌎
+      description: Run `npx @material-ui/envinfo` and post the results. If you encounter issues with TypeScript please include the used tsconfig.
+      value: |
+        <details>
+          <summary>`npx @material-ui/envinfo`</summary>
+
+        ```
+          Don't forget to mention which browser you used.
+          Output from `npx @material-ui/envinfo` goes here.
+        ```
+        </details>
