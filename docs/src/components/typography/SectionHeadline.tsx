@@ -10,7 +10,6 @@ export default function SectionHeadline({
   overline: React.ReactNode;
   title: React.ReactNode;
   description?: React.ReactNode;
-  mode?: 'light' | 'dark';
 }) {
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
