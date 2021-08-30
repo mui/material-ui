@@ -2178,7 +2178,7 @@ As the core components use emotion as their style engine, the props used by emot
 - Remove the `srOnly` variant. You can use the `visuallyHidden` utility in conjunction with the `sx` prop instead.
 
   ```diff
-  +import { visuallyHidden } from '@material-ui/utils';
+  +import { visuallyHidden } from '@mui/utils';
 
   -<Typography variant="srOnly">Create a user</Typography>
   +<span style={visuallyHidden}>Create a user</span>

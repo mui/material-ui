@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { isHostComponent } from '@mui/core';
-import { elementAcceptingRef, HTMLElementType } from '@material-ui/utils';
+import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
 import ModalUnstyled, { modalUnstyledClasses } from '@mui/core/ModalUnstyled';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';

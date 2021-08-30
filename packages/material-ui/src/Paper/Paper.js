@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, integerPropType } from '@material-ui/utils';
+import { chainPropTypes, integerPropType } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/core';
 import { alpha } from '@mui/system';
 import styled from '../styles/styled';

@@ -359,16 +359,16 @@ import { sizing as sizing_system } from '@mui/system';
 import { spacing as spacing_system } from '@mui/system';
 import { style as style_system } from '@mui/system';
 import { typography as typography_system } from '@mui/system';
-import { chainPropTypes as chainPropTypes_utils } from '@material-ui/utils';
-import { deepmerge as deepmerge_utils } from '@material-ui/utils';
-import { elementAcceptingRef as elementAcceptingRef_utils } from '@material-ui/utils';
-import { elementTypeAcceptingRef as elementTypeAcceptingRef_utils } from '@material-ui/utils';
-import { exactProp as exactProp_utils } from '@material-ui/utils';
-import { formatMuiErrorMessage as formatMuiErrorMessage_utils } from '@material-ui/utils';
-import { getDisplayName as getDisplayName_utils } from '@material-ui/utils';
-import { HTMLElementType as HTMLElementType_utils } from '@material-ui/utils';
-import { ponyfillGlobal as ponyfillGlobal_utils } from '@material-ui/utils';
-import { refType as refType_utils } from '@material-ui/utils';
+import { chainPropTypes as chainPropTypes_utils } from '@mui/utils';
+import { deepmerge as deepmerge_utils } from '@mui/utils';
+import { elementAcceptingRef as elementAcceptingRef_utils } from '@mui/utils';
+import { elementTypeAcceptingRef as elementTypeAcceptingRef_utils } from '@mui/utils';
+import { exactProp as exactProp_utils } from '@mui/utils';
+import { formatMuiErrorMessage as formatMuiErrorMessage_utils } from '@mui/utils';
+import { getDisplayName as getDisplayName_utils } from '@mui/utils';
+import { HTMLElementType as HTMLElementType_utils } from '@mui/utils';
+import { ponyfillGlobal as ponyfillGlobal_utils } from '@mui/utils';
+import { refType as refType_utils } from '@mui/utils';
 /* eslint-enable import/no-duplicates */
 // #endregion
 

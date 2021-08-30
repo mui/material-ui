@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { elementTypeAcceptingRef } from '@material-ui/utils';
+import { elementTypeAcceptingRef } from '@mui/utils';
 import Collapse from '@mui/material/Collapse';
 import { alpha, styled, useThemeProps } from '@mui/material/styles';
 import { ownerDocument, useForkRef, unsupportedProp } from '@mui/material/utils';

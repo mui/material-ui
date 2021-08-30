@@ -19,7 +19,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
-import { visuallyHidden } from '@material-ui/utils';
+import { visuallyHidden } from '@mui/utils';
 
 interface Data {
   calories: number;

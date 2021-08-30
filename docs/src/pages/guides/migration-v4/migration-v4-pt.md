@@ -1807,7 +1807,7 @@ Você pode usar o  [codemod `moved-lab-modules`](https://github.com/mui-org/mate
   
 
   ```diff
-  +import { visuallyHidden } from '@material-ui/utils';
+  +import { visuallyHidden } from '@mui/utils';
 
   -<Typography variant="srOnly">Create a user</Typography>
   +<span style={visuallyHidden}>Create a user</span>

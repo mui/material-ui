@@ -1,4 +1,4 @@
-import { deepmerge } from '@material-ui/utils';
+import { deepmerge } from '@mui/utils';
 import { generateUtilityClass } from '@mui/core';
 import { createTheme as systemCreateTheme } from '@mui/system';
 import createMixins from './createMixins';

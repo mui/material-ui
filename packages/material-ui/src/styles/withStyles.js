@@ -1,4 +1,4 @@
-import MuiError from '@material-ui/utils/macros/MuiError.macro';
+import MuiError from '@mui/utils/macros/MuiError.macro';
 
 export default function withStyles() {
   throw new MuiError(

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { refType, deepmerge } from '@material-ui/utils';
+import { refType, deepmerge } from '@mui/utils';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/core';
 import InputBase from '../InputBase';

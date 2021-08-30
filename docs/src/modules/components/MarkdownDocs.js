@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Demo from 'docs/src/modules/components/Demo';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import { exactProp } from '@material-ui/utils';
+import { exactProp } from '@mui/utils';
 import ComponentLinkHeader from 'docs/src/modules/components/ComponentLinkHeader';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';

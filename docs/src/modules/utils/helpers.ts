@@ -169,7 +169,7 @@ export function getDependencies(
     '@mui/system': getMuiPackageVersion('system', muiCommitRef),
     '@material-ui/private-theming': getMuiPackageVersion('theming', muiCommitRef),
     '@mui/core': getMuiPackageVersion('unstyled', muiCommitRef),
-    '@material-ui/utils': getMuiPackageVersion('utils', muiCommitRef),
+    '@mui/utils': getMuiPackageVersion('utils', muiCommitRef),
   };
 
   // TODO: Where is this coming from and why does it need to be injected this way.

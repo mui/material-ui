@@ -8,7 +8,7 @@ import {
   elementTypeAcceptingRef,
   refType,
   HTMLElementType,
-} from '@material-ui/utils';
+} from '@mui/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import debounce from '../utils/debounce';

@@ -155,7 +155,7 @@ import * as Icons from '@mui/icons-material';
 import * as Lab from '@mui/lab';
 import * as Styles from '@material-ui/styles';
 import * as System from '@mui/system';
-import * as Utils from '@material-ui/utils';
+import * as Utils from '@mui/utils';
     `;
 
     expect(
@@ -175,8 +175,8 @@ import * as Utils from '@material-ui/utils';
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/styles',
       '@mui/system':
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/system',
-      '@material-ui/utils':
-        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@material-ui/utils',
+      '@mui/utils':
+        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/utils',
       '@mui/core':
         'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/core',
     });

@@ -27,7 +27,7 @@
     "@mui/system": "packages/material-ui-system/build",
     "@material-ui/private-theming": "packages/material-ui-private-theming/build",
     "@material-ui/types": "packages/material-ui-types/build",
-    "@material-ui/utils": "packages/material-ui-utils/build",
+    "@mui/utils": "packages/material-ui-utils/build",
     "@mui/core": "packages/material-ui-unstyled/build"
   },
   "sandboxes": [

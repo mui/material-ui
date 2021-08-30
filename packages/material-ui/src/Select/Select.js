@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { deepmerge } from '@material-ui/utils';
+import { deepmerge } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/core';
 import SelectInput from './SelectInput';
 import formControlState from '../FormControl/formControlState';

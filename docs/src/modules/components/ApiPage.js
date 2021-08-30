@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { exactProp } from '@material-ui/utils';
+import { exactProp } from '@mui/utils';
 import { styled } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import Typography from '@mui/material/Typography';

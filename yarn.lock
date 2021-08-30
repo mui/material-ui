@@ -2123,7 +2123,7 @@
   resolved "https://registry.yarnpkg.com/@material-ui/data-grid/-/data-grid-4.0.0-alpha.37.tgz#89d907c4e94e6a0db4e89e4f59160f7811546ca2"
   integrity sha512-3T2AG31aad/lWLMLwn1XUP4mUf3H9YZES17dGuYByzkRLCXbBZHBTPEnCctWukajzwm+v0KGg3QpwitGoiDAjA==
   dependencies:
-    "@material-ui/utils" "^5.0.0-alpha.14"
+    "@mui/utils" "^5.0.0-alpha.14"
     clsx "^1.0.4"
     prop-types "^15.7.2"
     reselect "^4.0.0"

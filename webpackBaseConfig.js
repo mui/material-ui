@@ -28,7 +28,7 @@ module.exports = {
         './packages/material-ui-private-theming/src',
       ),
       '@mui/core': path.resolve(__dirname, './packages/material-ui-unstyled/src'),
-      '@material-ui/utils': path.resolve(__dirname, './packages/material-ui-utils/src'),
+      '@mui/utils': path.resolve(__dirname, './packages/material-ui-utils/src'),
       'typescript-to-proptypes': path.resolve(__dirname, './packages/typescript-to-proptypes/src'),
       docs: path.resolve(__dirname, './docs'),
     },

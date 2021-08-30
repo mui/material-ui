@@ -7,7 +7,7 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Divider from '@mui/material/Divider';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
-import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
 import Link from 'docs/src/modules/components/Link';

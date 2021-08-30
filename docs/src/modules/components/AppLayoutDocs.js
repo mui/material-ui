@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
-import { exactProp } from '@material-ui/utils';
+import { exactProp } from '@mui/utils';
 import NoSsr from '@mui/material/NoSsr';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';

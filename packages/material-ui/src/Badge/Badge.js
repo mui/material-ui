@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { usePreviousProps } from '@material-ui/utils';
+import { usePreviousProps } from '@mui/utils';
 import { generateUtilityClasses, isHostComponent } from '@mui/core';
 import BadgeUnstyled, {
   badgeUnstyledClasses,

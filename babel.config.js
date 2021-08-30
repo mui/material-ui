@@ -19,7 +19,7 @@ const defaultAlias = {
   '@mui/system': resolveAliasPath('./packages/material-ui-system/src'),
   '@material-ui/private-theming': resolveAliasPath('./packages/material-ui-private-theming/src'),
   '@mui/core': resolveAliasPath('./packages/material-ui-unstyled/src'),
-  '@material-ui/utils': resolveAliasPath('./packages/material-ui-utils/src'),
+  '@mui/utils': resolveAliasPath('./packages/material-ui-utils/src'),
 };
 
 const productionPlugins = [

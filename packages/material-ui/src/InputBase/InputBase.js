@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType, elementTypeAcceptingRef } from '@material-ui/utils';
-import MuiError from '@material-ui/utils/macros/MuiError.macro';
+import { refType, elementTypeAcceptingRef } from '@mui/utils';
+import MuiError from '@mui/utils/macros/MuiError.macro';
 import { unstable_composeClasses as composeClasses, isHostComponent } from '@mui/core';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';

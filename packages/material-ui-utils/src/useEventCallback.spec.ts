@@ -1,4 +1,4 @@
-import { unstable_useEventCallback as useEventCallback } from '@material-ui/utils';
+import { unstable_useEventCallback as useEventCallback } from '@mui/utils';
 import { expectType } from '@material-ui/types';
 
 function InferenceTest() {

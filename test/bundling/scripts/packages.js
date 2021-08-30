@@ -211,7 +211,7 @@ export default {
     // 'styleFunctionSx',
     'typography',
   ],
-  '@material-ui/utils': [
+  '@mui/utils': [
     'chainPropTypes',
     'deepmerge',
     'elementAcceptingRef',

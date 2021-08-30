@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { deepmerge } from '@material-ui/utils';
+import { deepmerge } from '@mui/utils';
 import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';

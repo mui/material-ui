@@ -310,7 +310,7 @@ Você precisa fornecer um texto alternativo que só seja visível para tecnologi
 ```jsx
 import Box from '@mui/material/Box';
 import Icon from '@mui/material/Icon';
-import { visuallyHidden } from '@material-ui/utils';
+import { visuallyHidden } from '@mui/utils';
 
 // ...
 

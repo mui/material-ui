@@ -309,7 +309,7 @@ Vous devez fournir une alternative de texte qui n'est visible que pour les techn
 
 ```jsx
 import Icon from '@mui/material/Icon';
-import { visuallyHidden } from '@material-ui/utils';
+import { visuallyHidden } from '@mui/utils';
 import { makeStyles } from '@mui/material/styles';
 
 const classes = makeStyles({ visuallyHidden })();

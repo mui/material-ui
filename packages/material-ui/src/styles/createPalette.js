@@ -1,5 +1,5 @@
-import { deepmerge } from '@material-ui/utils';
-import MuiError from '@material-ui/utils/macros/MuiError.macro';
+import { deepmerge } from '@mui/utils';
+import MuiError from '@mui/utils/macros/MuiError.macro';
 import { darken, getContrastRatio, lighten } from '@mui/system';
 import common from '../colors/common';
 import grey from '../colors/grey';

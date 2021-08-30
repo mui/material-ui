@@ -70,12 +70,12 @@ module.exports = {
           // There's nothing to tree-shake when importing from /icons this way:
           // '@mui/icons-material/*/',
           '@mui/system/*',
-          '@material-ui/utils/*',
+          '@mui/utils/*',
           // End block
           // Macros are fine since their import path is transpiled away
-          '!@material-ui/utils/macros',
-          '@material-ui/utils/macros/*',
-          '!@material-ui/utils/macros/*.macro',
+          '!@mui/utils/macros',
+          '@mui/utils/macros/*',
+          '!@mui/utils/macros/*.macro',
         ],
       },
     ],
@@ -264,7 +264,7 @@ module.exports = {
               // Allow deeper imports for TypeScript types. TODO?
               '@material-ui/*/*/*/*',
               // Macros are fine since they're transpiled into something else
-              '!@material-ui/utils/macros/*.macro',
+              '!@mui/utils/macros/*.macro',
             ],
           },
         ],
@@ -299,7 +299,7 @@ module.exports = {
               // Allow deeper imports for TypeScript types. TODO?
               '@material-ui/*/*/*/*',
               // Macros are fine since they're transpiled into something else
-              '!@material-ui/utils/macros/*.macro',
+              '!@mui/utils/macros/*.macro',
             ],
           },
         ],

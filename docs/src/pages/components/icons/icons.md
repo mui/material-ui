@@ -334,7 +334,7 @@ You need to provide a text alternative that is only visible to assistive technol
 ```jsx
 import Box from '@mui/material/Box';
 import Icon from '@mui/material/Icon';
-import { visuallyHidden } from '@material-ui/utils';
+import { visuallyHidden } from '@mui/utils';
 
 // ...
 

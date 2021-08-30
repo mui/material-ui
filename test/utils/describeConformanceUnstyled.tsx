@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { unstable_capitalize as capitalize } from '@material-ui/utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { MuiRenderResult, RenderOptions } from './createClientRender';
 import {
   ConformanceOptions,

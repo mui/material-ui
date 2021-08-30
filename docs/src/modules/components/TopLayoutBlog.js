@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import AppFooter from 'docs/src/modules/components/AppFooter';
-import { exactProp } from '@material-ui/utils';
+import { exactProp } from '@mui/utils';
 import MarkdownElement from './MarkdownElement';
 
 const authors = {

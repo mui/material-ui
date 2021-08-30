@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { elementTypeAcceptingRef } from '@material-ui/utils';
+import { elementTypeAcceptingRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/core';
 import { alpha, getPath } from '@mui/system';
 import capitalize from '../utils/capitalize';

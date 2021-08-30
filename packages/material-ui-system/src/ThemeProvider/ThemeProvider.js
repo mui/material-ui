@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/private-theming';
-import { exactProp } from '@material-ui/utils';
+import { exactProp } from '@mui/utils';
 import { ThemeContext as StyledEngineThemeContext } from '@mui/styled-engine';
 import useTheme from '../useTheme';
 

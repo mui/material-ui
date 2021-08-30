@@ -109,7 +109,7 @@ async function getWebpackEntries() {
     },
     ...unstyledComponents,
     {
-      name: '@material-ui/utils',
+      name: '@mui/utils',
       path: 'packages/material-ui-utils/build/esm/index.js',
     },
     // TODO: Requires webpack v5
@@ -178,7 +178,7 @@ module.exports = async function webpackConfig(webpack, environment) {
             workspaceRoot,
             'packages/material-ui-private-theming/build',
           ),
-          '@material-ui/utils': path.join(workspaceRoot, 'packages/material-ui-utils/build'),
+          '@mui/utils': path.join(workspaceRoot, 'packages/material-ui-utils/build'),
           '@mui/core': path.join(workspaceRoot, 'packages/material-ui-unstyled/build'),
         },
       },

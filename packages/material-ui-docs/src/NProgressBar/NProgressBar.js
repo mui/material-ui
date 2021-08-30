@@ -4,7 +4,7 @@ import NProgress from 'nprogress';
 import { withStyles } from '@material-ui/styles';
 import { createTheme } from '@mui/material/styles';
 import NoSsr from '@mui/core/NoSsr';
-import { exactProp } from '@material-ui/utils';
+import { exactProp } from '@mui/utils';
 
 NProgress.configure({
   barSelector: '.nprogress-bar',

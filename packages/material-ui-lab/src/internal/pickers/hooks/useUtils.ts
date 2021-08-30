@@ -1,5 +1,5 @@
 import * as React from 'react';
-import MuiError from '@material-ui/utils/macros/MuiError.macro';
+import MuiError from '@mui/utils/macros/MuiError.macro';
 import {
   MuiPickersAdapterContext,
   MuiPickersAdapterContextValue,

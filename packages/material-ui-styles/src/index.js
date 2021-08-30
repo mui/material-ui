@@ -1,5 +1,5 @@
 /* eslint-disable import/export */
-import { ponyfillGlobal } from '@material-ui/utils';
+import { ponyfillGlobal } from '@mui/utils';
 
 /* Warning if there are several instances of @material-ui/styles */
 if (

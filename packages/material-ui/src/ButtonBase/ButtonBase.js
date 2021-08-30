@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { elementTypeAcceptingRef, refType } from '@material-ui/utils';
+import { elementTypeAcceptingRef, refType } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/core';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';

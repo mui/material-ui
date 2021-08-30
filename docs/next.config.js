@@ -128,7 +128,7 @@ module.exports = {
                         '@mui/system': '../packages/material-ui-system/src',
                         '@material-ui/private-theming':
                           '../packages/material-ui-private-theming/src',
-                        '@material-ui/utils': '../packages/material-ui-utils/src',
+                        '@mui/utils': '../packages/material-ui-utils/src',
                         '@mui/core': '../packages/material-ui-unstyled/src',
                       },
                       transformFunctions: ['require'],

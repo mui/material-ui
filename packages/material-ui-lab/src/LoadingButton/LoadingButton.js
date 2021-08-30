@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { chainPropTypes } from '@material-ui/utils';
+import { chainPropTypes } from '@mui/utils';
 import { capitalize } from '@mui/material/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/core';
 import { styled, useThemeProps } from '@mui/material/styles';

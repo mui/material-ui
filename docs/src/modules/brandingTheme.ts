@@ -1,4 +1,4 @@
-import { deepmerge } from '@material-ui/utils';
+import { deepmerge } from '@mui/utils';
 import { createTheme, ThemeOptions, Theme } from '@mui/material/styles';
 
 declare module '@mui/material/styles/createPalette' {
