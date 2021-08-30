@@ -25,7 +25,12 @@ interface RippleEventHandlers {
   onTouchStart: React.TouchEventHandler;
 }
 
-const useTouchRipple = (props: UseTouchRippleProps) => {
+const useTouchRipple = (
+  props: UseTouchRippleProps,
+): {
+  enableTouchRipple: boolean;
+  getRippleHandlers: (componentProps: Partial<RippleEventHandlers>) => RippleEventHandlers;
+} => {
   const {
     disabled,
     disableFocusRipple,
@@ -108,7 +113,7 @@ const useTouchRipple = (props: UseTouchRippleProps) => {
 
   const enableTouchRipple = mountedState && !disableRipple && !disabled;
 
-  const getRippleHandlers = (componentProps: Partial<RippleEventHandlers>) => {
+  const getRippleHandlers = (componentProps: Partial<RippleEventHandlers>): RippleEventHandlers => {
     return {
       onBlur(event: React.FocusEvent) {
         handleBlur(event);
