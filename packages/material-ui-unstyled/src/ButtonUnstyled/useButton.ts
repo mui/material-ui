@@ -3,7 +3,7 @@ import {
   unstable_useEventCallback as useEventCallback,
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
-} from '@material-ui/utils';
+} from '@mui/utils';
 import UseButtonProps from './UseButtonProps';
 import extractEventHandlers from '../utils/extractEventHandlers';
 
