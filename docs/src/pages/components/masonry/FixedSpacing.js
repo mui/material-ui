@@ -3,7 +3,6 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Masonry from '@mui/lab/Masonry';
-import MasonryItem from '@mui/lab/MasonryItem';
 
 const heights = [150, 30, 90, 70, 90, 100, 150, 30, 50, 80];
 
@@ -20,9 +19,9 @@ export default function FixedSpacing() {
     <Box sx={{ width: 500, minHeight: 377 }}>
       <Masonry columns={3} spacing={3}>
         {heights.map((height, index) => (
-          <MasonryItem key={index}>
-            <Item sx={{ height }}>{index + 1}</Item>
-          </MasonryItem>
+          <Item key={index} sx={{ height }}>
+            {index + 1}
+          </Item>
         ))}
       </Masonry>
     </Box>

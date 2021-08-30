@@ -2,8 +2,7 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Masonry from '@mui/lab/Masonry';
-import MasonryItem from '@mui/lab/MasonryItem';
+import Masonry from '@mui/lab/Masonry';;
 
 const heights = [150, 30, 90, 70, 110, 150, 130, 80, 50, 90, 100, 150, 30, 50, 80];
 
@@ -20,9 +19,9 @@ export default function BasicMasonry() {
     <Box sx={{ width: 500, minHeight: 393 }}>
       <Masonry columns={4} spacing={1}>
         {heights.map((height, index) => (
-          <MasonryItem key={index}>
-            <Item sx={{ height }}>{index + 1}</Item>
-          </MasonryItem>
+          <Item key={index} sx={{ height }}>
+            {index + 1}
+          </Item>
         ))}
       </Masonry>
     </Box>

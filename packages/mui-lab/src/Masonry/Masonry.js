@@ -11,7 +11,15 @@ import { deepmerge, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/core';
 import { styled, useThemeProps } from '@mui/material/styles';
 import { getMasonryUtilityClass } from './masonryClasses';
-import MasonryContext from './MasonryContext';
+
+// dummy resize observer used to prevent crash for old browsers that do not support ResizeObserver API(e.g., 11IE)
+const MockResizeObserver = () => {
+  return {
+    observe: () => {},
+    unobserve: () => {},
+    disconnect: () => {},
+  };
+};
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -23,15 +31,24 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getMasonryUtilityClass, classes);
 };
 
+const configureChildrenOrder = (columns) => {
+  const childrenOrder = {};
+  childrenOrder[`& *:nth-of-type(${columns}n)`] = { order: columns };
+  for (let i = 1; i < columns; i += 1) {
+    childrenOrder[`& *:nth-of-type(${columns}n+${i})`] = { order: i };
+  }
+  return childrenOrder;
+};
+
 export const style = ({ ownerState, theme }) => {
   let styles = {
-    display: 'grid',
-    gridAutoRows: 0,
-    padding: 0,
-    overflow: 'auto',
-    width: '100%',
-    rowGap: 2,
+    display: 'flex',
+    flexFlow: 'column wrap',
+    alignContent: 'space-between',
     boxSizing: 'border-box',
+    '& *': {
+      boxSizing: 'border-box',
+    },
   };
 
   const base = {};
@@ -44,20 +61,28 @@ export const style = ({ ownerState, theme }) => {
   const spacingValues = resolveBreakpointValues({ values: ownerState.spacing, base });
   const transformer = createUnarySpacing(theme);
   const spacingStyleFromPropValue = (propValue) => {
+    const spacing = Number(getValue(transformer, propValue).replace('px', ''));
     return {
-      columnGap: getValue(transformer, propValue),
+      '& *': {
+        margin: spacing / 2,
+      },
+      ...(ownerState.maxColumnHeight &&
+        ownerState.maxNumOfRows && {
+          height: ownerState.maxColumnHeight + spacing * ownerState.maxNumOfRows,
+        }),
     };
   };
 
-  styles = {
-    ...styles,
-    ...handleBreakpoints({ theme }, spacingValues, spacingStyleFromPropValue),
-  };
+  styles = deepmerge(
+    styles,
+    handleBreakpoints({ theme }, spacingValues, spacingStyleFromPropValue),
+  );
 
   const columnValues = resolveBreakpointValues({ values: ownerState.columns, base });
   const columnStyleFromPropValue = (propValue) => {
     return {
-      gridTemplateColumns: `repeat(${propValue}, 1fr)`,
+      ...configureChildrenOrder(propValue),
+      '& *': { width: `${(100 / propValue).toFixed(2)}%` },
     };
   };
 
@@ -81,48 +106,84 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
   });
 
   const masonryRef = React.useRef();
+  const [maxColumnHeight, setMaxColumnHeight] = React.useState();
+  const [maxNumOfRows, setMaxNumOfRows] = React.useState();
   const { children, className, component = 'div', columns = 4, spacing = 1, ...other } = props;
-  const ownerState = { ...props, spacing, columns };
+  const ownerState = { ...props, spacing, columns, maxColumnHeight, maxNumOfRows };
   const classes = useUtilityClasses(ownerState);
+  const lineBreakStyle = {
+    flexBasis: '100%',
+    width: 0,
+    margin: 0,
+    padding: 0,
+    content: '',
+  };
 
-  const contextValue = React.useMemo(() => ({ spacing }), [spacing]);
-  let didWarn = false;
   React.useEffect(() => {
-    // scroller always appears when masonry's height goes beyond 2,000px on Chrome
-    const handleScroll = () => {
-      if (masonryRef.current.clientHeight === 1998 && !didWarn) {
-        console.warn(
-          [
-            'MUI: The Masonry can have the maximum height of 2,000px on Chrome browser.',
-            'Items that go beyond this height fail to be rendered on Chrome browser.',
-            'You can find more in this open issue: https://github.com/mui-org/material-ui/issues/27934',
-          ].join('\n'),
-        );
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        didWarn = true;
+    const handleResize = () => {
+      const columnHeights = [];
+      const numOfRows = [];
+      let skip = false;
+      Array.from(masonryRef.current.children).forEach((child) => {
+        if (child.className.includes('line-break') || skip) {
+          return;
+        }
+        const computedStyle = window.getComputedStyle(child);
+        // if any one of children is not rendered yet, container's height shouldn't be set;
+        // this is especially crucial for image masonry
+        if (computedStyle.height === '0px') {
+          skip = true;
+          return;
+        }
+        const order = computedStyle.order;
+        const height = Number(computedStyle.height.replace('px', ''));
+        columnHeights[order - 1] = columnHeights[order - 1]
+          ? columnHeights[order - 1] + Math.ceil(height)
+          : Math.ceil(height);
+        numOfRows[order - 1] = numOfRows[order - 1] ? numOfRows[order - 1] + 1 : 1;
+      });
+      if (!skip) {
+        setMaxColumnHeight(Math.max(...columnHeights));
+        setMaxNumOfRows(Math.max(...numOfRows));
       }
     };
+    let resizeObserver;
+    try {
+      resizeObserver = new ResizeObserver(handleResize);
+    } catch (err) {
+      resizeObserver = MockResizeObserver();
+    }
     const container = masonryRef.current;
-    container.addEventListener('scroll', handleScroll);
+    resizeObserver.observe(container);
     return () => {
-      container.removeEventListener('scroll', handleScroll);
+      resizeObserver.unobserve(container);
     };
   }, []);
 
   const handleRef = useForkRef(ref, masonryRef);
+
   return (
-    <MasonryContext.Provider value={contextValue}>
-      <MasonryRoot
-        as={component}
-        className={clsx(classes.root, className)}
-        ref={handleRef}
-        ownerState={ownerState}
-        {...other}
-      >
-        {children}
-      </MasonryRoot>
-    </MasonryContext.Provider>
+    <MasonryRoot
+      as={component}
+      className={clsx(classes.root, className)}
+      ref={handleRef}
+      ownerState={ownerState}
+      {...other}
+    >
+      {children}
+      {new Array(
+        columns - 1 ||
+          columns.xl - 1 ||
+          columns.lg - 1 ||
+          columns.md - 1 ||
+          columns.sm - 1 ||
+          columns.xs - 1,
+      )
+        .fill('')
+        .map((_, index) => (
+          <span key={index} className="line-break" style={lineBreakStyle} />
+        ))}
+    </MasonryRoot>
   );
 });
 
@@ -132,7 +193,7 @@ Masonry.propTypes /* remove-proptypes */ = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * The content of the component. It's recommended to be `<MasonryItem />`s.
+   * The content of the component.
    */
   children: PropTypes /* @typescript-to-proptypes-ignore */.node.isRequired,
   /**

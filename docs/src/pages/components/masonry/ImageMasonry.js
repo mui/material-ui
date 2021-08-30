@@ -1,21 +1,19 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Masonry from '@mui/lab/Masonry';
-import MasonryItem from '@mui/lab/MasonryItem';
+import Box from '@material-ui/core/Box';
+import Masonry from '@material-ui/lab/Masonry';
 
 export default function ImageMasonry() {
   return (
     <Box sx={{ width: 500, minHeight: 829 }}>
       <Masonry columns={3} spacing={1}>
-        {itemData.map((item) => (
-          <MasonryItem key={item.img}>
-            <img
-              src={`${item.img}?w=162&auto=format`}
-              srcSet={`${item.img}?w=162&auto=format&dpr=2 2x`}
-              alt={item.title}
-              loading="lazy"
-            />
-          </MasonryItem>
+        {itemData.map((item, index) => (
+          <img
+            key={index}
+            src={`${item.img}?w=162&auto=format`}
+            srcSet={`${item.img}?w=162&auto=format&dpr=2 2x`}
+            alt={item.title}
+            loading="lazy"
+          />
         ))}
       </Masonry>
     </Box>
