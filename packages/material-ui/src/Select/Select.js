@@ -101,7 +101,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
       ...(input ? input.props.inputProps : {}),
     },
     ...(multiple && native && variant === 'outlined' ? { notched: true } : {}),
-    ref,
+    ref: input ? undefined : ref,
     className: clsx(classes.root, InputComponent.props.className, className),
     ...other,
   });
