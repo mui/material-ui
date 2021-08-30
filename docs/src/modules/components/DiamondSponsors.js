@@ -62,11 +62,7 @@ export default function DiamondSponsors(props) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            border: `1px solid ${
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[700]
-                : theme.palette.grey[200]
-            }`,
+            border: `1px solid ${theme.palette.divider}`,
             borderRadius: 1,
             transition: theme.transitions.create(['color', 'border-color']),
             '&:hover': {
@@ -101,11 +97,7 @@ export default function DiamondSponsors(props) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            border: `1px solid ${
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[700]
-                : theme.palette.grey[200]
-            }`,
+            border: `1px solid ${theme.palette.divider}`,
             borderRadius: 1,
             transition: theme.transitions.create(['color', 'border-color']),
             '&:hover': {

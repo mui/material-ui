@@ -36,8 +36,8 @@ const Item = styled(({ component: Component = 'div', ...props }) => <Component {
   borderRadius: '5px',
   outline: 0,
   width: '100%',
-  paddingTop: 10,
-  paddingBottom: 10,
+  paddingTop: 5,
+  paddingBottom: 5,
   justifyContent: 'flex-start',
   fontWeight: theme.typography.fontWeightMedium,
   transition: theme.transitions.create(['color', 'background-color'], {

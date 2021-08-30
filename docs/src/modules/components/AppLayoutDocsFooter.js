@@ -50,6 +50,7 @@ const FeedbackGrid = styled(Grid)(({ theme }) => {
     width: 'auto',
     [theme.breakpoints.down('sm')]: {
       order: 3,
+      marginTop: 40,
       width: '100%',
     },
   };
