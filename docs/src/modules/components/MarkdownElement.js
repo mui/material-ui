@@ -39,7 +39,7 @@ const Root = styled('div')(({ theme }) => ({
     padding: '0 5px',
     color: theme.palette.text.primary,
     backgroundColor: alpha(theme.palette.primary.light, 0.15),
-    fontSize: '.875em',
+    fontSize: '.8125em',
     borderRadius: 5,
   },
   '& code[class*="language-"]': {
@@ -50,7 +50,7 @@ const Root = styled('div')(({ theme }) => ({
   },
   // code blocks
   '& pre code': {
-    fontSize: '.875em',
+    fontSize: '.8125em',
     fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
     fontWeight: 500,
   },
