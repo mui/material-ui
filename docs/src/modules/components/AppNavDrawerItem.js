@@ -46,7 +46,7 @@ const Item = styled(({ component: Component = 'div', ...props }) => <Component {
   '&:hover': {
     color: theme.palette.text.primary,
     backgroundColor:
-      theme.palette.mode === 'dark' ? alpha(theme.palette.grey[900], 0.3) : theme.palette.grey[50],
+      theme.palette.mode === 'dark' ? alpha(theme.palette.grey[900], 0.6) : theme.palette.grey[50],
   },
   '&.Mui-focusVisible': {
     backgroundColor: theme.palette.action.focus,
@@ -117,7 +117,7 @@ const ItemButton = styled(Item, {
     })(),
     fontSize: depth === 1 ? '0.75rem' : undefined,
     fontWeight: depth === 0 ? 500 : 600,
-    marginTop: depth === 0 ? '0px' : '10px',
+    marginTop: depth === 0 ? '0px' : '0px',
     '&:hover': {
       backgroundColor: depth === 0 ? '' : alpha(theme.palette.primary.main, 0),
       color: (() => {
@@ -151,8 +151,8 @@ const ItemButton = styled(Item, {
 const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })(
   ({ theme, depth }) => {
     return {
-      padding: depth === 0 ? '0 10px' : '1.5px 0',
-      marginTop: depth === 0 ? theme.spacing(1.5) : undefined,
+      padding: depth === 0 ? '0 10px' : '2px 0',
+      marginTop: depth === 0 ? theme.spacing(1) : undefined,
       display: 'block',
     };
   },
@@ -207,6 +207,7 @@ export default function AppNavDrawerItem(props) {
           disableRipple
           className={topLevel && 'algolia-lvl0'}
           onClick={handleClick}
+          sx={{my: 0.5}}
         >
           {hasIcon && (
             <Box
