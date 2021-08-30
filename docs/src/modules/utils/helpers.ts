@@ -108,7 +108,7 @@ function includePeerDependencies(
     newDeps['@mui/material'] = versions['@mui/material'];
   }
 
-  if (newDeps['@mui/x-data-grid']) {
+  if (newDeps['@material-ui/data-grid']) {
     newDeps['@mui/material'] = versions['@mui/material'];
     newDeps['@mui/styles'] = versions['@mui/styles'];
   }

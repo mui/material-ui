@@ -64,7 +64,7 @@ module.exports = {
       config.externals = [
         (ctx, callback) => {
           const { request } = ctx;
-          const hasDependencyOnRepoPackages = ['notistack', '@mui/x-data-grid'].includes(
+          const hasDependencyOnRepoPackages = ['notistack', '@material-ui/data-grid'].includes(
             request,
           );
 
