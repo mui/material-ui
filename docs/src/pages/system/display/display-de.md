@@ -119,7 +119,7 @@ Verwenden Sie für eine schnellere, mobilere Entwicklung responsive Anzeigeklass
 ## API
 
 ```js
-import { display } from '@material-ui/system';
+import { display } from '@mui/system';
 ```
 
 | Inportname     | Eigenschaften  | CSS-Eigenschaft | Theme-Schlüssel |

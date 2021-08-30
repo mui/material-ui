@@ -18,7 +18,7 @@ Los asistentes te permiten controlar la profundidad relativa, o la distancia ent
 ## API
 
 ```js
-import { shadows } from '@material-ui/system';
+import { shadows } from '@mui/system';
 ```
 
 | Nombre del import | Prop        | Propiedad CSS | Clave del tema |

@@ -5,7 +5,7 @@ import {
   SwitchUnstyled,
   unstable_composeClasses as composeClasses,
 } from '@material-ui/unstyled';
-import { alpha, darken, lighten, useThemeProps, styled } from '@material-ui/system';
+import { alpha, darken, lighten, useThemeProps, styled } from '@mui/system';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { capitalize } from '@mui/material/utils';
 import {

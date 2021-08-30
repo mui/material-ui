@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ThemeProvider, createTheme, useTheme, styled, alpha } from '@mui/material/styles';
-import { shouldForwardProp } from '@material-ui/system';
+import { shouldForwardProp } from '@mui/system';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';

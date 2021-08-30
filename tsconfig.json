@@ -25,7 +25,7 @@
       "@material-ui/styled-engine-sc/*": ["./packages/material-ui-styled-engine-sc/src/*"],
       "@material-ui/styles": ["./packages/material-ui-styles/src"],
       "@material-ui/styles/*": ["./packages/material-ui-styles/src/*"],
-      "@material-ui/system": ["./packages/material-ui-system/src"],
+      "@mui/system": ["./packages/material-ui-system/src"],
       "@material-ui/private-theming": ["./packages/material-ui-private-theming/src"],
       "@material-ui/private-theming/*": ["./packages/material-ui-private-theming/src/*"],
       "@material-ui/types": ["./packages/material-ui-types"],

@@ -52,7 +52,7 @@ export {
   lighten,
   ColorFormat,
   ColorObject,
-} from '@material-ui/system';
+} from '@mui/system';
 export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
 export * from './useThemeProps';
@@ -65,7 +65,7 @@ export { default as ThemeProvider } from './ThemeProvider';
 export { ComponentsProps } from './props';
 export { ComponentsVariants } from './variants';
 export { ComponentsOverrides } from './overrides';
-export { StyledEngineProvider } from '@material-ui/system';
+export { StyledEngineProvider } from '@mui/system';
 
 export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
 

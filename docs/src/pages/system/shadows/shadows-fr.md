@@ -18,7 +18,7 @@ The helpers allow you to control relative depth, or distance, between two surfac
 ## API
 
 ```js
-import { shadows } from '@material-ui/system';
+import { shadows } from '@mui/system';
 ```
 
 | Nom importé | Propriété   | Propriété CSS | Clé du thème |

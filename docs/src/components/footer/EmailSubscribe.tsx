@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Theme, styled } from '@mui/material/styles';
-import { SxProps } from '@material-ui/system';
+import { SxProps } from '@mui/system';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Box from '@mui/material/Box';

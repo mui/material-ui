@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { InternalStandardProps as StandardProps, Theme } from '@mui/material';
 import { TransitionProps } from '@mui/material/transitions';
-import { SxProps } from '@material-ui/system';
+import { SxProps } from '@mui/system';
 import { TreeItemContentProps } from './TreeItemContent';
 import { TreeItemClasses } from './treeItemClasses';
 

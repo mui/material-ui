@@ -12,7 +12,7 @@ import {
 } from '@material-ui/styles';
 import { green, red } from '@mui/material/colors';
 import Pricing from 'docs/src/pages/getting-started/templates/pricing/Pricing';
-import { spacing, palette, unstable_styleFunctionSx as styleFunction } from '@material-ui/system';
+import { spacing, palette, unstable_styleFunctionSx as styleFunction } from '@mui/system';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 

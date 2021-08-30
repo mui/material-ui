@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SxProps } from '@material-ui/system';
+import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@material-ui/types';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { CircularProgressClasses } from './circularProgressClasses';

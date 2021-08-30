@@ -6,7 +6,7 @@ import {
   getValue,
   handleBreakpoints,
   unstable_resolveBreakpointValues as resolveBreakpointValues,
-} from '@material-ui/system';
+} from '@mui/system';
 import { unstable_useForkRef as useForkRef } from '@material-ui/utils';
 import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
 import { styled, useThemeProps, useTheme } from '@mui/material/styles';

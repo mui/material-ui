@@ -21,7 +21,7 @@
   dependencies:
     "@babel/runtime" "^7.4.4"
     "@material-ui/styles" "^5.0.0-alpha.1"
-    "@material-ui/system" "^5.0.0-alpha.1"
+    "@mui/system" "^5.0.0-alpha.1"
     "@material-ui/types" "^5.1.0"
     "@material-ui/utils" "^5.0.0-alpha.1"
     "@types/react-transition-group" "^4.2.0"
@@ -61,9 +61,9 @@
     jss-plugin-vendor-prefixer "^10.0.3"
     prop-types "^15.7.2"
 
-"@material-ui/system@^5.0.0-alpha.1":
+"@mui/system@^5.0.0-alpha.1":
   version "5.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@material-ui/system/-/system-5.0.0-alpha.1.tgz#83980bb8bcb7e20ce1db744ed471f93529786f5e"
+  resolved "https://registry.yarnpkg.com/@mui/system/-/system-5.0.0-alpha.1.tgz#83980bb8bcb7e20ce1db744ed471f93529786f5e"
   integrity sha512-6wbmqGdN/j407rp1HXMzMG/DH83vclG05mWmP3/J/6PBH4jZp1/mNqRgHNljl8NEJK+vRXQmAccXK8aRBeelHQ==
   dependencies:
     "@babel/runtime" "^7.4.4"

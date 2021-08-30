@@ -1,6 +1,6 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { styled } from '@material-ui/system';
+import { styled } from '@mui/system';
 import { useSwitch, UseSwitchProps } from '@material-ui/unstyled/SwitchUnstyled';
 
 const SwitchRoot = styled('span')(`

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { palette, PaletteProps, spacing, SpacingProps } from '@material-ui/system';
+import { palette, PaletteProps, spacing, SpacingProps } from '@mui/system';
 import NoSsr from '@material-ui/unstyled/NoSsr';
 
 const Div = styled.div<PaletteProps & SpacingProps>`

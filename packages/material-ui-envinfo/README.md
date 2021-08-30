@@ -29,7 +29,7 @@ $ npx @material-ui/envinfo
     @material-ui/styled-engine:  5.0.0-alpha.18
     @material-ui/styled-engine-sc:  5.0.0-alpha.18
     @material-ui/styles:  5.0.0-alpha.18
-    @material-ui/system:  5.0.0-alpha.18
+    @mui/system:  5.0.0-alpha.18
     @material-ui/types:  5.1.0
     @material-ui/unstyled:  5.0.0-alpha.18
     @material-ui/utils:  5.0.0-alpha.18

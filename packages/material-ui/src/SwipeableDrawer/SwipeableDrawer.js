@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { elementTypeAcceptingRef } from '@material-ui/utils';
-import { useThemeProps } from '@material-ui/system';
+import { useThemeProps } from '@mui/system';
 import { NoSsr } from '@material-ui/unstyled';
 import Drawer, { getAnchor, isHorizontal } from '../Drawer/Drawer';
 import ownerDocument from '../utils/ownerDocument';

@@ -11,7 +11,7 @@ export {
   alpha,
   darken,
   lighten,
-} from '@material-ui/system';
+} from '@mui/system';
 export { default as createTheme, createMuiTheme } from './createTheme';
 export { default as unstable_createMuiStrictModeTheme } from './createMuiStrictModeTheme';
 export { default as createStyles } from './createStyles';
@@ -23,7 +23,7 @@ export { default as useThemeProps } from './useThemeProps';
 export { default as styled } from './styled';
 export { default as experimentalStyled } from './styled';
 export { default as ThemeProvider } from './ThemeProvider';
-export { StyledEngineProvider } from '@material-ui/system';
+export { StyledEngineProvider } from '@mui/system';
 // The legacy utilities from @material-ui/styles
 // These are just empty functions that throws when invoked
 export { default as makeStyles } from './makeStyles';

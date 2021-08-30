@@ -15,7 +15,7 @@
     "@material-ui/lab": "5.0.0-alpha.34",
     "@material-ui/styled-engine": "5.0.0-alpha.34",
     "@material-ui/styles": "5.0.0-alpha.33",
-    "@material-ui/system": "5.0.0-alpha.34",
+    "@mui/system": "5.0.0-alpha.34",
     "@material-ui/utils": "5.0.0-alpha.33",
     "react-is": "16.13.1"
   }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@material-ui/types';
-import { SxProps } from '@material-ui/system';
+import { SxProps } from '@mui/system';
 import { Theme } from '@mui/material/styles';
 import { InternalStandardProps as StandardProps } from '@mui/material';
 import { TimelineDotClasses } from './timelineDotClasses';

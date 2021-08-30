@@ -22,7 +22,7 @@ module.exports = {
         './packages/material-ui-styled-engine-sc/src',
       ),
       '@material-ui/styles': path.resolve(__dirname, './packages/material-ui-styles/src'),
-      '@material-ui/system': path.resolve(__dirname, './packages/material-ui-system/src'),
+      '@mui/system': path.resolve(__dirname, './packages/material-ui-system/src'),
       '@material-ui/private-theming': path.resolve(
         __dirname,
         './packages/material-ui-private-theming/src',

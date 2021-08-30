@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import Skeleton from '@mui/material/Skeleton';
 import { styled, useThemeProps, Theme } from '@mui/material/styles';
-import { SxProps } from '@material-ui/system';
+import { SxProps } from '@mui/system';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,

@@ -92,7 +92,7 @@ However, you can also use `margin-left: auto;`, `margin-right: auto;`, and a wid
 ## API
 
 ```js
-import { spacing } from '@material-ui/system';
+import { spacing } from '@mui/system';
 ```
 
 | Import name | Prop | CSS property                    | Theme key                                                        |

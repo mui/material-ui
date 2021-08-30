@@ -112,7 +112,7 @@ The `grid-area` property allows you to give an item a name so that it can be ref
 ## API
 
 ```js
-import { flexbox } from '@material-ui/system';
+import { flexbox } from '@mui/system';
 ```
 
 | Nombre del import     | Prop                  | Propiedad CSS           | Clave del tema |

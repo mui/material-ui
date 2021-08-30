@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { SxProps } from '@material-ui/system';
+import { SxProps } from '@mui/system';
 // eslint-disable-next-line no-restricted-imports -- importing types
 import { InternalStandardProps as StandardProps } from '@mui/material';
 import { capitalize } from '@mui/material/utils';

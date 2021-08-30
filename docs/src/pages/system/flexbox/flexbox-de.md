@@ -106,7 +106,7 @@ Wenn Sie **neu sind oder Flexbox nicht gut kennen**, empfehlen wir Ihnen, dies z
 ## API
 
 ```js
-import { flexbox } from '@material-ui/system';
+import { flexbox } from '@mui/system';
 ```
 
 | Inportname       | Eigenschaften    | CSS-Eigenschaft   | Theme-Schlüssel |

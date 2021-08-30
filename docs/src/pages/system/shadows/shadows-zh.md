@@ -28,7 +28,7 @@
 ## API
 
 ```js
-import { shadows } from '@material-ui/system';
+import { shadows } from '@mui/system';
 ```
 
 | 导入名称        | 属性          | CSS 属性       | Theme key |

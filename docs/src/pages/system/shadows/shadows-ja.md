@@ -18,7 +18,7 @@ Elevationヘルパーを使用すると、 **z-axis** に沿った2つのサー�
 ## API
 
 ```js
-import { shadows } from '@material-ui/system';
+import { shadows } from '@mui/system';
 ```
 
 | Import name | Prop        | CSS property | Theme key |

@@ -221,7 +221,7 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
 
 ```diff
 -import Typography from '@mui/material/Typography';
-  +import { visuallyHidden } from '@material-ui/system';
+  +import { visuallyHidden } from '@mui/system';
   +import styled from 'styled-component';
 
   +const Span = styled('span')(visuallyHidden);

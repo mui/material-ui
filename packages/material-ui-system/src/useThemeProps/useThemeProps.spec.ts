@@ -1,4 +1,4 @@
-import { useThemeProps } from '@material-ui/system';
+import { useThemeProps } from '@mui/system';
 import { expectType } from '@material-ui/types';
 
 interface SliderProps {

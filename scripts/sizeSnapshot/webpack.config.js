@@ -72,7 +72,7 @@ async function getWebpackEntries() {
       path: 'packages/material-ui-private-theming/build/index.js',
     },
     {
-      name: '@material-ui/system',
+      name: '@mui/system',
       path: 'packages/material-ui-system/build/esm/index.js',
     },
     {
@@ -173,7 +173,7 @@ module.exports = async function webpackConfig(webpack, environment) {
             'packages/material-ui-styles-sc/build',
           ),
           '@material-ui/styles': path.join(workspaceRoot, 'packages/material-ui-styles/build'),
-          '@material-ui/system': path.join(workspaceRoot, 'packages/material-ui-system/build'),
+          '@mui/system': path.join(workspaceRoot, 'packages/material-ui-system/build'),
           '@material-ui/private-theming': path.join(
             workspaceRoot,
             'packages/material-ui-private-theming/build',

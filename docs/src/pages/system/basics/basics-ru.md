@@ -18,20 +18,20 @@ _(Resize the window to see the responsive breakpoints)_
 
 ```jsx
 // with npm
-npm install @material-ui/system@next @emotion/react @emotion/styled
+npm install @mui/system@next @emotion/react @emotion/styled
 
 // with yarn
-yarn add @material-ui/system@next @emotion/react @emotion/styled
+yarn add @mui/system@next @emotion/react @emotion/styled
 ```
 
 Or if you want to use `styled-components` as a styling engine:
 
 ```sh
 // with npm
-npm install @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
+npm install @mui/system@next @material-ui/styled-engine-sc@next styled-components
 
 // with yarn
-yarn add @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
+yarn add @mui/system@next @material-ui/styled-engine-sc@next styled-components
 ```
 
 Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
@@ -178,7 +178,7 @@ The system relies on CSS-in-JS. It works with both emotion and styled-components
 Pros:
 
 - 📚 It allows a lot of flexibility in the API. The `sx` prop supports a superset of CSS. There is **no need to learn CSS twice**. You are set once you have learn the standardized CSS syntax, it's safe, it hasn't changed for a decade. Then, you can **optionally** learn the shorthands if you value the save of time they bring.
-- 📦 Auto-purge. Only the used CSS on the page is sent to the client. The initial bundle size cost is **fixed**. It's not growing with the number of used CSS properties. You pay the cost of [@emotion/react](https://bundlephobia.com/result?p=@emotion/react) and [@material-ui/system](https://bundlephobia.com/result?p=@material-ui/system). It cost around ~15 kB gzipped. If you are already using the core components, it comes with no extra overhead.
+- 📦 Auto-purge. Only the used CSS on the page is sent to the client. The initial bundle size cost is **fixed**. It's not growing with the number of used CSS properties. You pay the cost of [@emotion/react](https://bundlephobia.com/result?p=@emotion/react) and [@mui/system](https://bundlephobia.com/result?p=@mui/system). It cost around ~15 kB gzipped. If you are already using the core components, it comes with no extra overhead.
 
 Cons:
 

@@ -1,4 +1,4 @@
-import { createStyled, shouldForwardProp } from '@material-ui/system';
+import { createStyled, shouldForwardProp } from '@mui/system';
 import defaultTheme from './defaultTheme';
 
 export const rootShouldForwardProp = (prop) => shouldForwardProp(prop) && prop !== 'classes';

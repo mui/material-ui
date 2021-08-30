@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses, isHostComponent } from '@material-ui/unstyled';
 import { chainPropTypes, elementTypeAcceptingRef } from '@material-ui/utils';
-import { alpha } from '@material-ui/system';
+import { alpha } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import ButtonBase from '../ButtonBase';

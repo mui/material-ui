@@ -1,4 +1,4 @@
-import { ResponsiveStyleValue, SxProps } from '@material-ui/system';
+import { ResponsiveStyleValue, SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
 import { Theme } from '@mui/material/styles';
 import { MasonryClasses } from './masonryClasses';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, Box } from '@material-ui/system';
+import { styled, Box } from '@mui/system';
 import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
 
 const StyledBadge = styled(BadgeUnstyled)`

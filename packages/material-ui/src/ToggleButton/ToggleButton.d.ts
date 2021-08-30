@@ -1,4 +1,4 @@
-import { SxProps } from '@material-ui/system';
+import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@material-ui/types';
 import { Theme } from '..';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';

@@ -1,6 +1,6 @@
 import { deepmerge } from '@material-ui/utils';
 import { generateUtilityClass } from '@material-ui/unstyled';
-import { createTheme as systemCreateTheme } from '@material-ui/system';
+import { createTheme as systemCreateTheme } from '@mui/system';
 import createMixins from './createMixins';
 import createPalette from './createPalette';
 import createTypography from './createTypography';

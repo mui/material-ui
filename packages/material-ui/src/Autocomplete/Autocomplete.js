@@ -7,7 +7,7 @@ import {
   useAutocomplete,
   createFilterOptions,
 } from '@material-ui/unstyled';
-import { alpha } from '@material-ui/system';
+import { alpha } from '@mui/system';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
 import Paper from '../Paper';

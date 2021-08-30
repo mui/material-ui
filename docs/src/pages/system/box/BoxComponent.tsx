@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box } from '@material-ui/system';
+import { Box } from '@mui/system';
 import Button from '@mui/material/Button';
 
 export default function BoxComponent() {

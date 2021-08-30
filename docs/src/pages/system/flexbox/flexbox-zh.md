@@ -124,7 +124,7 @@
 ## API
 
 ```js
-import { flexbox } from '@material-ui/system';
+import { flexbox } from '@mui/system';
 ```
 
 | 导入名称             | 属性               | CSS 属性            | Theme key |

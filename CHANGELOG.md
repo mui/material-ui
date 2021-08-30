@@ -49,7 +49,7 @@ A big thanks to the 26 contributors who made this release possible. Here are som
 - &#8203;<!-- 52 --> [Tooltip] Fix broken arrow position in rtl (#27868) @mnajdova
 - &#8203;<!-- 02 --> [transitions] Allow to run Slide into a custom container (#26623) @benny0642
 
-### `@material-ui/system@5.0.0-beta.5`
+### `@mui/system@5.0.0-beta.5`
 
 #### Breaking changes
 
@@ -179,7 +179,7 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
 
 - &#8203;<!-- 20 -->[codemod] Fix filename case sensitive duplicate @oliviertassinari
 
-### `@material-ui/system@5.0.0-beta.4`
+### `@mui/system@5.0.0-beta.4`
 
 - &#8203;<!-- 28 -->[StyledEngineProvider] Remove unnecessary emotion cache export (#27680) @garronej
 - &#8203;<!-- 11 -->[system] Fix missing filterProps in compose type (#27618) @R-Bower
@@ -239,7 +239,7 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
 - &#8203;<!-- 07 -->[Modal] Remove unnecessary check for children.props.tabIndex (#27374) @noviicee
 - &#8203;<!-- 14 -->[Select] Fix regression for icon not rotating (#27511) @mnajdova
 
-### `@material-ui/system@5.0.0-beta.3`
+### `@mui/system@5.0.0-beta.3`
 
 - &#8203;<!-- 38 -->[system] Added top, left, right and bottom border color CSS properties to system (#27580) @R-Bower
 
@@ -339,7 +339,7 @@ Big thanks to the 20 contributors who made this release possible. Here are some 
 
 - &#8203;<!-- 43 -->[utils] Convert createChainedFunction to TypeScript (#27386) @eps1lon
 
-### `@material-ui/system@5.0.0-beta.2`
+### `@mui/system@5.0.0-beta.2`
 
 - &#8203;<!-- 39 -->[system] Compute display name of `styled` component if `name` isn't set (#27401) @eps1lon
 - &#8203;<!-- 08 -->[system] Adds missing type for `shouldForwardProp` (#27310) @KLubin1
@@ -440,7 +440,7 @@ Big thanks to the 17 contributors who made this release possible. Here are some 
 - [codemod] Add v5 important migration (#27032) @siriwatknp
 - [codemod] Fix v5 codemods on Windows (#27254) @michaldudak
 
-### `@material-ui/system@5.0.0-beta.1`
+### `@mui/system@5.0.0-beta.1`
 
 - [Box] Add breakpoint value support to maxWidth prop (#26984) @ansh-saini
 
@@ -592,7 +592,7 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - &#8203;<!-- 12 -->[lab] Fix missing dependency on unstyled (#26937) @fishyFrogFace
 - &#8203;<!-- 50 -->[pickers] Consider TDate in ToolbarComponent types (#27035) @michal-perlakowski
 
-### `@material-ui/system@5.0.0-beta.0`
+### `@mui/system@5.0.0-beta.0`
 
 - &#8203;<!-- 14 -->[system] Support array overridesResolver (#26824) @siriwatknp
 
@@ -761,7 +761,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
    import {
   -  unstable_useThemeProps,
   +  useThemeProps,
-   } from '@material-ui/system';
+   } from '@mui/system';
   ```
 
   - `@material-ui/core`
@@ -788,14 +788,14 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 - &#8203;<!-- 36 -->[Tabs] Show error when Tab has display: none (#26783) @michal-perlakowski
 - &#8203;<!-- 46 -->[theme] Add base color palette type to components (#26697) @siriwatknp
 
-### `@material-ui/system@5.0.0-alpha.38`
+### `@mui/system@5.0.0-alpha.38`
 
 #### Breaking Changes
 
 - &#8203;<!-- 35 -->[system] Normalize api for `createBox` (#26820) @mnajdova
 
   ```diff
-   import { createBox } from '@material-ui/system';
+   import { createBox } from '@mui/system';
 
   -const styled = createBox(defaultTheme);
   +const styled = createBox({ defaultTheme });
@@ -860,7 +860,7 @@ Big thanks to the 11 contributors who made this release possible. Here are some 
 
   Head to the [documentation](https://next.material-ui.com/components/grid/#responsive-values) for more details.
 
-- ⚒️ We've introduced a new `useTheme` and `useThemeProps` hooks in the `@material-ui/system` package.
+- ⚒️ We've introduced a new `useTheme` and `useThemeProps` hooks in the `@mui/system` package.
   We believe that this package can be used as a standalone styling solution for building custom design systems (#26649) @mnajdova.
 - 💥 Made progress with the breaking changes. We have done 105 of the 109 changes [planned](https://github.com/mui-org/material-ui/issues/20012). We are getting closer to our goal of releasing 5.0.0-beta.0 on July 1st and start to promote its usage over v4. You can also follow [our milestone](https://github.com/mui-org/material-ui/milestone/35) for more details.
 - And many more 🐛 bug fixes and 📚 improvements.
@@ -888,7 +888,7 @@ Big thanks to the 11 contributors who made this release possible. Here are some 
 - &#8203;<!-- 05 -->[List] Add ListItemButton export to index (#26667) @chadmuro
 - &#8203;<!-- 09 -->[theme] Fix missing exported Breakpoints types (#26684) @robphoenix
 
-### `@material-ui/system@5.0.0-alpha.37`
+### `@mui/system@5.0.0-alpha.37`
 
 #### Breaking changes
 
@@ -1039,7 +1039,7 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
   - openPickerIcon={<ClockIcon />}
   ```
 
-### `@material-ui/system@5.0.0-alpha.36`
+### `@mui/system@5.0.0-alpha.36`
 
 - &#8203;<!-- 18 -->[system] Add createTheme util (#26490) @mnajdova
 
@@ -1162,7 +1162,7 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 
   Reduce a bit the size of the package.
 
-### `@material-ui/system@5.0.0-alpha.35`
+### `@mui/system@5.0.0-alpha.35`
 
 We are progressively moving all modules that are relevant to styling custom design systems in this package. It's meant to be complementary with `@material-ui/unstyled`.
 
@@ -1848,7 +1848,7 @@ Big thanks to the 15 contributors who made this release possible. Here are some 
 
 - &#8203;<!-- 02 -->[styled-engine] Skip variants resolver for non root slots by default (#25865) @mnajdova
 
-### `@material-ui/system@5.0.0-alpha.32`
+### `@mui/system@5.0.0-alpha.32`
 
 - &#8203;<!-- 12 -->[system] Add missing `main` entry for styleFunctionSx (#25885) @eps1lon
 
@@ -2348,7 +2348,7 @@ Big thanks to the 12 contributors who made this release possible. Here are some 
 - &#8203;<!-- 27 -->[Table] Use primary cover over secondary for selected state (#25182) @beaudry
 - &#8203;<!-- 23 -->[theme] Fix styleOverrides with nested selectors (#25156) @ruppysuppy
 
-### `@material-ui/system@5.0.0-alpha.27`
+### `@mui/system@5.0.0-alpha.27`
 
 - &#8203;<!-- 02 -->[system] Fix behavior of visuallyHidden when used with `sx` prop (#25110) @niting143
 
@@ -2509,7 +2509,7 @@ Big thanks to the 26 contributors who made this release possible. Here are some 
 
   We are getting closer to the maximum number of icons our infrastructure can support. In the future, we might remove the least popular icons in favor of the most frequently used ones.
 
-### `@material-ui/system@5.0.0-alpha.26`
+### `@mui/system@5.0.0-alpha.26`
 
 - &#8203;<!-- 057 -->[system] Fix gap, rowGap, columnGap, borderRadius reponsive support (#24994) @oliviertassinari
 
@@ -2662,7 +2662,7 @@ Big thanks to the 30 contributors who made this release possible. Here are some 
 - &#8203;<!-- 90 -->[Table] Migrate TableFooter to emotion (#24684) @natac13
 - &#8203;<!-- 92 -->[Skeleton] Migrate to emotion (#24652) @kodai3
 
-### `@material-ui/system@5.0.0-alpha.25`
+### `@mui/system@5.0.0-alpha.25`
 
 #### Breaking changes
 
@@ -2825,7 +2825,7 @@ Big thanks to the 23 contributors who made this release possible. Here are some 
 
 - &#8203;<!-- 13 -->[styled-engine] Rename StylesProvider to StyledEngineProvider (#24429) @mnajdova
 
-### `@material-ui/system@5.0.0-alpha.24`
+### `@mui/system@5.0.0-alpha.24`
 
 - &#8203;<!-- 44 -->[system] Fix handling of null-ish values (#24530) @oliviertassinari
 
@@ -3068,7 +3068,7 @@ Big thanks to the 14 contributors who made this release possible. Here are some 
 - [Slider] Fix circular type reference in SliderValueLabel (#24190) @eps1lon
 - [Skeleton] Fix default TypeScript component type (#24191) @eps1lon
 
-### `@material-ui/system@v5.0.0-alpha.21`
+### `@mui/system@v5.0.0-alpha.21`
 
 - [system] Fix sx prop typings to support grid gap props (#24093) @mnajdova
 - [system] Improve the SxProp typings structure, by splitting them in a separate module. (#24090) @mnajdova
@@ -3173,7 +3173,7 @@ Big thanks to the 13 contributors who made this release possible. Here are some 
 - [styled-engine] Add name and slot options (#23964) @mnajdova
 - [styled-engine] Add StylesProvider with injectFirst option (#23934) @mnajdova
 
-### `@material-ui/system@v5.0.0-alpha.20`
+### `@mui/system@v5.0.0-alpha.20`
 
 - [system] Fix transform not firing when theme provided (#24010) @ZovcIfzm
 
@@ -3244,7 +3244,7 @@ Big thanks to the 24 contributors who made this release possible. Here are some 
 
 - [core] Use Lerna to publish (#23793) @oliviertassinari
 
-### `@material-ui/system@v5.0.0-alpha.19`
+### `@mui/system@v5.0.0-alpha.19`
 
 #### Breaking changes
 
@@ -3253,7 +3253,7 @@ Big thanks to the 24 contributors who made this release possible. Here are some 
   Only applies if you've installed v5.0.0-alpha.1
 
   ```diff
-  -import { visuallyHidden } from '@material-ui/system';
+  -import { visuallyHidden } from '@mui/system';
   +import { visuallyHidden } from '@material-ui/utils';
   ```
 
@@ -3357,7 +3357,7 @@ Big thanks to the 17 contributors who made this release possible. Here are some 
 - [Switch] Add preventDefault check for state change (#23786) @praveenkumar-kalidass
 - [Tabs] Remove duplicate styles (#23561) @cmfcmf
 
-### `@material-ui/system@v5.0.0-alpha.18`
+### `@mui/system@v5.0.0-alpha.18`
 
 - [system] Allow values to use shorter string when the prop name is contained in the value (#23635) @mnajdova
 - [system] Another round of perf improvements (#23737) @mnajdova
@@ -3521,7 +3521,7 @@ Big thanks to the 18 contributors who made this release possible. Here are some 
 
 - [Grid] Improve warning when a prop is missing (#23630) @udayRedI
 
-### `@material-ui/system@v5.0.0-alpha.17`
+### `@mui/system@v5.0.0-alpha.17`
 
 - [system] Improve the `sx` prop IntelliSense (#23599) @mnajdova
 
@@ -3630,7 +3630,7 @@ Big thanks to the 34 contributors who made this release possible. Here are some 
 
 - [DatePicker] Migrate to the lab #22692 @dmtrKovalenko
 
-### `@material-ui/system@v5.0.0-alpha.16`
+### `@mui/system@v5.0.0-alpha.16`
 
 - [system] Add typography prop that will pull from theme.typography (#23451) @mnajdova
 - [system] Create separate margin and padding functions (#23452) @mnajdova
@@ -3760,7 +3760,7 @@ Big thanks to the 20 contributors who made this release possible. Here are some 
 
 - [core] Allow React 17 (#23311) @eps1lon
 
-### `@material-ui/system@v5.0.0-alpha.15`
+### `@mui/system@v5.0.0-alpha.15`
 
 - [core] Allow React 17 (#23311) @eps1lon
 - [theme] Fix spacing string arguments (#23224) @GuilleDF
@@ -3905,7 +3905,7 @@ Here are some highlights ✨:
 
 - [styled] Add @babel/runtime dependency (#23175) @koistya
 
-### `@material-ui/system@v5.0.0-alpha.14`
+### `@mui/system@v5.0.0-alpha.14`
 
 - [Box] Add sx prop (#23053) @mnajdova
 - [core] Fix bundles for packages without subpackages (#23157) @eps1lon
@@ -4025,7 +4025,7 @@ Here are some highlights ✨:
 
 - [core] Ship modern bundle (#22814) @eps1lon
 
-### `@material-ui/system@v5.0.0-alpha.13`
+### `@mui/system@v5.0.0-alpha.13`
 
 - [core] Ship modern bundle (#22814) @eps1lon
 
@@ -4513,7 +4513,7 @@ More documentation are coming.
 
 - [Slider] Create unstyled version and migrate to emotion & styled-components (#22435) @mnajdova
 
-### `@material-ui/system@v5.0.0-alpha.11`
+### `@mui/system@v5.0.0-alpha.11`
 
 - [core] Port createSpacing to TypeScript (#22720) @eps1lon
 
@@ -5285,7 +5285,7 @@ Here are some highlights ✨:
 - [TreeView] Test current behavior of active item removal (#21720) @eps1lon
 - [TreeView] Test selection behavior (#21901) @joshwooding
 
-### `@material-ui/system@v5.0.0-alpha.6`
+### `@mui/system@v5.0.0-alpha.6`
 
 - [core] Bump csstype to 3.0.0 (#22048) @eps1lon
 
@@ -5701,7 +5701,7 @@ Big thanks to the 33 contributors who made this release possible. Here are some 
 
 - [icons] Synchronize icons with Google (#21498) @alecananian
 
-### `@material-ui/system@v5.0.0-alpha.1`
+### `@mui/system@v5.0.0-alpha.1`
 
 - [system] Introduce visuallyHidden style utility (#21413) @mnajdova
 

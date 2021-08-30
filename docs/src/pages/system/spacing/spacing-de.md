@@ -91,7 +91,7 @@ The CSS flex and grid display properties are often used to align elements at the
 ## API
 
 ```js
-import { spacing } from '@material-ui/system';
+import { spacing } from '@mui/system';
 ```
 
 | Inportname | Eigenschaften | CSS-Eigenschaft                 | Theme-Schlüssel                                                  |

@@ -3,7 +3,7 @@ import { createTheme } from '@mui/material/styles';
 import styledComponents, {
   ThemeProvider as StyledComponentsThemeProvider,
 } from 'styled-components';
-import { spacing, palette, typography, compose } from '@material-ui/system';
+import { spacing, palette, typography, compose } from '@mui/system';
 
 const materialSystem = compose(palette, spacing, typography);
 const materialSystemTheme = createTheme();
@@ -20,7 +20,7 @@ export default function StyledComponentsBoxMaterialUISystem() {
           fontSize={['h6.fontSize', 'h4.fontSize', 'h3.fontSize']}
           p={[2, 3, 4]}
         >
-          @material-ui/system
+          @mui/system
         </BoxMaterialSystem>
       ))}
     </StyledComponentsThemeProvider>

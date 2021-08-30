@@ -189,7 +189,7 @@ export default {
     'withStyles',
     'withTheme',
   ],
-  '@material-ui/system': [
+  '@mui/system': [
     'borders',
     'breakpoints',
     'compose',

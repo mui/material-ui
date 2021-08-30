@@ -1,7 +1,7 @@
 import { ExtendButton, ExtendButtonTypeMap, ButtonClasses } from '@mui/material/Button';
 import { OverrideProps } from '@mui/material/OverridableComponent';
 import { Theme } from '@mui/material/styles';
-import { SxProps } from '@material-ui/system';
+import { SxProps } from '@mui/system';
 
 export type LoadingButtonTypeMap<
   P = {},

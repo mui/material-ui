@@ -42,7 +42,7 @@ As funções de estilo de dimensionamento suportam diferentes tipos de entrada d
 ## API
 
 ```js
-import { sizing } from '@material-ui/system';
+import { sizing } from '@mui/system';
 ```
 
 | Nome da importação | Propriedade | Propriedade CSS | Chave do tema |

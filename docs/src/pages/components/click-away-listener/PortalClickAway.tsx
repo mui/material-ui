@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Portal from '@mui/material/Portal';
-import { SxProps } from '@material-ui/system';
+import { SxProps } from '@mui/system';
 
 export default function PortalClickAway() {
   const [open, setOpen] = React.useState(false);

@@ -44,7 +44,7 @@ EmotionServerCssButton x 43,701 ops/sec ±1.04% (190 runs sampled)
 Naked x 58,694 ops/sec ±0.86% (188 runs sampled)
 ```
 
-## `@material-ui/system`
+## `@mui/system`
 
 _Synthetic benchmark_
 
@@ -53,7 +53,7 @@ yarn server:system
 
 @styled-system/css x 64,606 ops/sec ±0.45% (188 runs sampled)
 @chakra-ui/system/css x 126,272 ops/sec ±0.21% (191 runs sampled)
-@material-ui/system styleFunctionSx x 40,867 ops/sec ±0.50% (191 runs sampled)
+@mui/system styleFunctionSx x 40,867 ops/sec ±0.50% (191 runs sampled)
 ```
 
 ## Real-world benchmark

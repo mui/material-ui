@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Theme } from '@mui/material/styles';
-import { SxProps } from '@material-ui/system';
+import { SxProps } from '@mui/system';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';

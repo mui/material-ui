@@ -8,7 +8,7 @@ import SliderUnstyled, {
   sliderUnstyledClasses,
   getSliderUtilityClass,
 } from '@material-ui/unstyled/SliderUnstyled';
-import { alpha, lighten, darken } from '@material-ui/system';
+import { alpha, lighten, darken } from '@mui/system';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { slotShouldForwardProp } from '../styles/styled';
 import useTheme from '../styles/useTheme';

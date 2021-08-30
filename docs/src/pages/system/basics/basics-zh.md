@@ -18,20 +18,20 @@ _（调整窗口大小以查看响应的断点）_
 
 ```jsx
 // with npm
-npm install @material-ui/system@next @emotion/react @emotion/styled
+npm install @mui/system@next @emotion/react @emotion/styled
 
 // with yarn
-yarn add @material-ui/system@next @emotion/react @emotion/styled
+yarn add @mui/system@next @emotion/react @emotion/styled
 ```
 
 Or if you want to use `styled-components` as a styling engine:
 
 ```sh
 // with npm
-npm install @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
+npm install @mui/system@next @material-ui/styled-engine-sc@next styled-components
 
 // with yarn
-yarn add @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
+yarn add @mui/system@next @material-ui/styled-engine-sc@next styled-components
 ```
 
 Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
@@ -178,7 +178,7 @@ This prop provides a superset of CSS (contains all CSS properties/selectors in a
 优点：
 
 - 📚 它允许 API 具有很大的灵活性。 `sx` 属性支持 CSS 的超集。 所以**不需要重学 CSS**。 只要你学会了标准化的 CSS 语法，就可以了，很安全，十年来都没有变化。 当然如果你想要节省时间的话，也可以**选择**学习速记语法。
-- 📦 自动清除。 只有页面上使用过的 CSS 才会被发送到客户端。 所以初始化该捆绑包的大小成本是**灵活的**。 它的大小不会随着使用 CSS 属性的数量变多而同时增长。 你只需要在 [@emotion/react](https://bundlephobia.com/result?p=@emotion/react) 和 [@material-ui/system](https://bundlephobia.com/result?p=@material-ui/system) 上考虑打包大小。 在 gzip 的环境下，它们大概占用约 15kb 的空间。 如果你已经正在使用核心组件，那么将不会带来额外的捆绑包资源占用。
+- 📦 自动清除。 只有页面上使用过的 CSS 才会被发送到客户端。 所以初始化该捆绑包的大小成本是**灵活的**。 它的大小不会随着使用 CSS 属性的数量变多而同时增长。 你只需要在 [@emotion/react](https://bundlephobia.com/result?p=@emotion/react) 和 [@mui/system](https://bundlephobia.com/result?p=@mui/system) 上考虑打包大小。 在 gzip 的环境下，它们大概占用约 15kb 的空间。 如果你已经正在使用核心组件，那么将不会带来额外的捆绑包资源占用。
 
 缺点：
 

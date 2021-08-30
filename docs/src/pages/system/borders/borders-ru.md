@@ -55,7 +55,7 @@ Use border utilities to add or remove an element's borders. Можно уста�
 ## API
 
 ```js
-import { borders } from '@material-ui/system';
+import { borders } from '@mui/system';
 ```
 
 | Импорт         | Свойство       | Свойство CSS    | В теме                                                           |

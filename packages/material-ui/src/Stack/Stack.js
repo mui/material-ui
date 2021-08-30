@@ -6,7 +6,7 @@ import {
   handleBreakpoints,
   unstable_extendSxProp as extendSxProp,
   unstable_resolveBreakpointValues as resolveBreakpointValues,
-} from '@material-ui/system';
+} from '@mui/system';
 import { deepmerge } from '@material-ui/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';

@@ -37,7 +37,7 @@
 ## API
 
 ```js
-import { palette } from '@material-ui/system';
+import { palette } from '@mui/system';
 ```
 
 | Импорт    | Свойство  | Свойство CSS      | В теме                                                           |

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { SxProps } from '@material-ui/system';
+import { SxProps } from '@mui/system';
 import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
 import {

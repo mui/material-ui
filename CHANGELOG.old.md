@@ -257,7 +257,7 @@ Here are some highlights ✨:
 
 - [styles] Return simpler type from ComponentCreator (#20854) @vlazh
 
-### `@material-ui/system@v4.9.14`
+### `@mui/system@v4.9.14`
 
 - [system] Add csstype as dependency to material-ui-system (#20922) @govizlora
 
@@ -325,7 +325,7 @@ Here are some highlights ✨:
 - [styles] Fix wording in indexCounter comment (#20874) @iamclaytonray
 - [styles] Improve component props inference of styled (#20830) @vlazh
 
-### `@material-ui/system@v4.9.13`
+### `@mui/system@v4.9.13`
 
 - [system] Improve breakpoints types (#20753) @nodeTempest
 
@@ -561,7 +561,7 @@ You can expect the following:
 
 - [TypeScript] Fix support for TypeScript 3.2 (#20443) @NMinhNguyen
 
-### `@material-ui/system@4.9.10`
+### `@mui/system@4.9.10`
 
 - [TypeScript] Fix support for TypeScript 3.2 (#20443) @NMinhNguyen
 
@@ -777,7 +777,7 @@ Here are some highlights ✨:
 - [styles] Fix theme default props overridden by Component default (#20091) @adridavid
 - [styles] Name anonymous function type (#19996) @eps1lon
 
-### `@material-ui/system@v4.9.6`
+### `@mui/system@v4.9.6`
 
 - [theme] Array reject on spacing transformation fixed (#19900) Weslen do Nascimento
 
@@ -958,7 +958,7 @@ Big thanks to the 18 contributors who made this release possible.
 - [l10n] Add Estonian (et-EE) locale (#19707) @villuv
 - [ScopedCssBaseline] Allow css to be only applied on children (#19669) @TomPradat
 
-### `@material-ui/system@v4.9.3`
+### `@mui/system@v4.9.3`
 
 - [system] Add boxSizing to sizing styled system (#19684) @mesteche
 
@@ -1072,7 +1072,7 @@ Here are some highlights ✨:
 - [icons] Remove extraneous path (#19483) @timmydoza
 - [icons] Synchronize components with Google (#19485) @oliviertassinari
 
-### `@material-ui/system@v4.9.1`
+### `@mui/system@v4.9.1`
 
 - [system] Add grid support (#17326) @Lavoaster
 
@@ -1841,7 +1841,7 @@ Here are some highlights ✨:
 
 - [styles] Allow ref on withTheme components in TS (#17695) @ianschmitz
 
-### `@material-ui/system@v4.5.2`
+### `@mui/system@v4.5.2`
 
 - [system] Support style.transform return React.CSSProperties (#18030) @yoyooyooo
 
@@ -1953,7 +1953,7 @@ Here are some highlights ✨:
 
 - [SpeedDial] Pass event and reason to onOpen, onClose (#17783) @lsnch
 
-### `@material-ui/system@v4.5.1`
+### `@mui/system@v4.5.1`
 
 - [system] Fallback to value if theme's value is an array and index missing (#17661) @stasiukanya
 
@@ -2042,7 +2042,7 @@ Here are some highlights ✨:
   +import { Slider } from '@material-ui/core';
   ```
 
-### `@material-ui/system@v4.5.0`
+### `@mui/system@v4.5.0`
 
 - [system] Fix props being required from `style` function (#17534) @abukurov
 
@@ -2115,7 +2115,7 @@ This is a stability release.
 
 - [docs] Update README.md
 
-### `@material-ui/system@v4.4.3`
+### `@mui/system@v4.4.3`
 
 - [core] Replace warning with manual console.error (#17404) @eps1lon
 
@@ -2401,7 +2401,7 @@ Here are some highlights ✨:
 - [TreeView] Fix the height of the customization demo (#16874) @mbrookes
 - [Skeleton] New component (#16786) @oliviertassinari
 
-### `@material-ui/system@v4.3.3`
+### `@mui/system@v4.3.3`
 
 - [system] Avoid `!important` in `borderColor` prop (#16875) @rogerclotet
 
@@ -2543,7 +2543,7 @@ Here are some highlights ✨:
 
 - [codemod] Add codemods for optimal tree-shakeable imports (#16192) @jedwards1211
 
-### `@material-ui/system@v4.3.2`
+### `@mui/system@v4.3.2`
 
 - [core] Import esm babel helpers (#16701) @TrySound
 
@@ -2633,7 +2633,7 @@ Here are some highlights ✨:
 - [styles] Make theme optional for `styled` components (#16379) (#16478) @akomm
 - [core] Upgrade deepmerge (#16520) @TrySound
 
-### `@material-ui/system@v4.3.1`
+### `@mui/system@v4.3.1`
 
 - [core] Upgrade deepmerge (#16520) @TrySound
 
@@ -2814,7 +2814,7 @@ Here are some highlights ✨:
 
 - [icons] Remove noise from Google source (#16258) @oliviertassinari
 
-### `@material-ui/system@v4.3.0`
+### `@mui/system@v4.3.0`
 
 - [system] Add support for marginX, marginY, paddingX, and paddingY (#16169) @dimitropoulos
 - [system] Add visibility property to display (#16231) @aditya1906
@@ -2899,7 +2899,7 @@ Here are some highlights ✨:
 
 - [Slider] Support range (#15703) @oliviertassinari
 
-### `@material-ui/system@v4.2.0`
+### `@mui/system@v4.2.0`
 
 - [system] Add overflow, textOverflow, whiteSpace properties (#16129) @aditya1906
 - [system] Add remaining flexbox properties (#16164) @aditya1906
@@ -2952,7 +2952,7 @@ Here are some highlights ✨:
 - [Tab] Improve the textColor description (#16085) @sPaCeMoNk3yIam
 - [withWidth] Migrate to hooks (#15678) @jacobbogers
 
-### `@material-ui/system@v4.1.0`
+### `@mui/system@v4.1.0`
 
 - [system] Add flex to FlexboxProps type definitions (#16045) @ljvanschie
 - [system] Add fontStyle, letterSpacing, lineHeight props (#16109) @aditya1906
@@ -3041,7 +3041,7 @@ Here are some highlights ✨:
 - [styles] Remove warning when component with no displayName is provided (#15913) @eps1lon
 - [styles] Fix createStyles for TypeScript v3.5 (#15990) @merceyz
 
-### `@material-ui/system@v4.0.2`
+### `@mui/system@v4.0.2`
 
 - [system] Fix typing for flexDirection prop (#15987) @rhmoller
 
@@ -3183,7 +3183,7 @@ Some statistics with v4 compared to the release of v1 one year ago:
 
 - [ToggleButtonGroup] Added missing size prop to type declarations (#15785) @CoolCyberBrain
 
-### `@material-ui/system@v4.0.0`
+### `@mui/system@v4.0.0`
 
 - [system] Add missing TypeScript types for flexbox and shadows (#15781) @willbamford
 
@@ -3306,7 +3306,7 @@ This is a stability release preparing v4.
 - [styles] Fix warning false positive (#15595) @oliviertassinari
 - [styles] Keep MuiThemeProvider for backward compatibility (#15650) @oliviertassinari
 
-### `@material-ui/system@v4.0.0-beta.2`
+### `@mui/system@v4.0.0-beta.2`
 
 - [system] Fix css function rejecting certain prop types (#15611) @eps1lon
 
@@ -3387,7 +3387,7 @@ Here are some highlights ✨:
 
 - [types] Add @material-ui/types package (#15577) @eps1lon
 
-### `@material-ui/system@v4.0.0-beta.1`
+### `@mui/system@v4.0.0-beta.1`
 
 - [system] Test types (#15575) @eps1lon
 
@@ -3653,7 +3653,7 @@ We hope 2-3 weeks of beta will be enough. We plan on releasing v4 stable in May.
 - Fix dependency duplication issue @oliviertassinari
 - [styles] Improve typings for makeStyles (#15366) @geirsagberg
 
-### `@material-ui/system@v4.0.0-alpha.8`
+### `@mui/system@v4.0.0-alpha.8`
 
 - [system] Add types (#15357) @eps1lon
 
@@ -4581,7 +4581,7 @@ _Tip: you can provide more than one argument: `theme.spacing(1, 2) // = '8px 16p
 
 - [core] Increase React peer dependency to v16.8.0 (#14432) @oliviertassinari
 
-### `@material-ui/system@v4.0.0-alpha.0`
+### `@mui/system@v4.0.0-alpha.0`
 
 - [core] Increase React peer dependency to v16.8.0 (#14432) @oliviertassinari
 
@@ -4761,7 +4761,7 @@ Here are some highlights ✨:
 
 - [Slider] Support multitouch for dragging multiple sliders (#13320) @Pajn
 
-### `@material-ui/system@v3.0.0-alpha.2`
+### `@mui/system@v3.0.0-alpha.2`
 
 - [system] Add fractions support (#14209) @oliviertassinari
 - [system] Better zindex documentation (#14229) @oliviertassinari
@@ -4900,7 +4900,7 @@ Here are some highlights ✨:
 - [styles] Upgrade JSS to 10.0.0-alpha.7 (#14090) @oliviertassinari
 - [core] Relax @babel/runtime version to ^7.2.0 (#14096) @NMinhNguyen
 
-### `@material-ui/system@v3.0.0-alpha.1`
+### `@mui/system@v3.0.0-alpha.1`
 
 - [core] Relax @babel/runtime version to ^7.2.0 (#14096) @NMinhNguyen
 
@@ -4918,7 +4918,7 @@ Here are some highlights ✨:
 - [docs] CSS to MUI loader documentation updated (#14060) @Kaliyani
 - [docs] Fix spelling mistake in Premium themes footer (#14071) @nikhilem
 - [docs] Update showcase with 36 new sites (#14083) @mbrookes
-- [docs] Update URL for @material-ui/system (#14043) @NMinhNguyen
+- [docs] Update URL for @mui/system (#14043) @NMinhNguyen
 - [docs] Add complementary form building project (#14081) @skirunman
 - [docs] Update broken link to cssinjs.org in css-in-js (#14080) @valerieernst
 - [docs] Tweeper theme (#14034) @siriwatknp
@@ -4998,9 +4998,9 @@ The Tabs `fullWidth` and `scrollable` properties can't be used at the same time.
 - [Tabs] Fix infinite loop in the scroll button logic (#14033) @joshwooding
 - [styles] Fix component animations (#14035) @joshwooding
 
-### `@material-ui/system@v3.0.0-alpha.0`
+### `@mui/system@v3.0.0-alpha.0`
 
-- @material-ui/system (#13632) @oliviertassinari
+- @mui/system (#13632) @oliviertassinari
 - [system] Fix responsivePropType typo (#14011) @eps1lon
 - [styles] Add defaultTheme option for makeStyles (#14032) @joshwooding
 

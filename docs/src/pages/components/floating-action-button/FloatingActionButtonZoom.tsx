@@ -12,7 +12,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import UpIcon from '@material-ui/icons/KeyboardArrowUp';
 import { green } from '@mui/material/colors';
 import Box from '@mui/material/Box';
-import { SxProps } from '@material-ui/system';
+import { SxProps } from '@mui/system';
 
 interface TabPanelProps {
   children?: React.ReactNode;

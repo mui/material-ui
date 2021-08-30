@@ -42,7 +42,7 @@ Sizing 样式函数支持不同的属性输入类型：
 ## API
 
 ```js
-import { sizing } from '@material-ui/system';
+import { sizing } from '@mui/system';
 ```
 
 | 导入名称        | 属性          | CSS 属性       | Theme key |

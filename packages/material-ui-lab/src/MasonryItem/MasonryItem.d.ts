@@ -1,4 +1,4 @@
-import { SxProps } from '@material-ui/system';
+import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
 import { Theme } from '@mui/material/styles';
 import { MasonryItemClasses } from './masonryItemClasses';
