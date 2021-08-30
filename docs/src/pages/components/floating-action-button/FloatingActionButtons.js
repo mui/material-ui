@@ -8,11 +8,7 @@ import NavigationIcon from '@material-ui/icons/Navigation';
 
 export default function FloatingActionButtons() {
   return (
-    <Box
-      sx={{
-        '& > :not(style)': { m: 1 },
-      }}
-    >
+    <Box sx={{ '& > :not(style)': { m: 1 } }}>
       <Fab color="primary" aria-label="add">
         <AddIcon />
       </Fab>

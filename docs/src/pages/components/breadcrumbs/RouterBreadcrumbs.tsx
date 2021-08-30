@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import * as React from 'react';
 import Box from '@material-ui/core/Box';
 import List from '@material-ui/core/List';
@@ -30,11 +29,16 @@ function ListItemLink(props: ListItemLinkProps) {
   const { to, open, ...other } = props;
   const primary = breadcrumbNameMap[to];
 
+  let icon = null;
+  if (open != null) {
+    icon = open ? <ExpandLess /> : <ExpandMore />;
+  }
+
   return (
     <li>
       <ListItem button component={RouterLink as any} to={to} {...other}>
         <ListItemText primary={primary} />
-        {open != null ? open ? <ExpandLess /> : <ExpandMore /> : null}
+        {icon}
       </ListItem>
     </li>
   );

@@ -1,0 +1,19 @@
+{
+  "props": {
+    "children": { "type": { "name": "element" }, "required": true },
+    "classes": { "type": { "name": "object" } },
+    "columnSpan": { "type": { "name": "number" }, "default": "1" },
+    "component": { "type": { "name": "elementType" } },
+    "defaultHeight": { "type": { "name": "number" } },
+    "sx": { "type": { "name": "object" } }
+  },
+  "name": "MasonryItem",
+  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiMasonryItem" },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/material-ui-lab/src/MasonryItem/MasonryItem.js",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/components/masonry/\">Masonry</a></li></ul>",
+  "styledComponent": true,
+  "cssComponent": false
+}

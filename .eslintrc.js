@@ -46,6 +46,7 @@ module.exports = {
    */
   rules: {
     'consistent-this': ['error', 'self'],
+    curly: ['error', 'all'],
     // Just as bad as "max components per file"
     'max-classes-per-file': 'off',
     // Too interruptive
@@ -144,6 +145,8 @@ module.exports = {
     'react/jsx-filename-extension': ['error', { extensions: ['.js', '.tsx'] }],
     // Prefer <React.Fragment> over <>.
     'react/jsx-fragments': ['error', 'element'],
+    // Enforces premature optimization
+    'react/jsx-no-bind': 'off',
     // We are a UI library.
     'react/jsx-props-no-spreading': 'off',
     // This rule is great for raising people awareness of what a key is and how it works.
@@ -232,6 +235,15 @@ module.exports = {
       files: ['docs/pages/**/*.js'],
       rules: {
         'react/prop-types': 'off',
+      },
+    },
+    // demos
+    {
+      files: ['docs/src/pages/**/*.js', 'docs/src/pages/**/*.tsx'],
+      rules: {
+        // This most often reports data that is defined after the component definition.
+        // This is safe to do and helps readability of the demo code since the data is mostly irrelevant.
+        '@typescript-eslint/no-use-before-define': 'off',
       },
     },
     {

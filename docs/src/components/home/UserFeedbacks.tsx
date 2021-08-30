@@ -41,7 +41,7 @@ const Feedback = ({
         <Box sx={{ ml: 2 }}>
           <Typography fontWeight="bold" sx={{ mb: 1 }}>
             {profile.name},{' '}
-            <Box component="span" sx={{ color: 'grey.700', fontWeight: 'regular' }}>
+            <Box component="span" sx={{ color: 'grey.600', fontWeight: 'regular' }}>
               {profile.role}
             </Box>
           </Typography>

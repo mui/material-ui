@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Stack from '@material-ui/core/Stack';

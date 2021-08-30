@@ -13,6 +13,7 @@ import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/Mate
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
 import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
+import KeyboardArrowUpRounded from '@material-ui/icons/KeyboardArrowUpRounded';
 import TouchAppRounded from '@material-ui/icons/TouchAppRounded';
 
 const darkDesignTokens = getDesignTokens('dark');
@@ -215,7 +216,6 @@ export default function CoreShowcase() {
               bottom: 0,
               left: '50%',
               transform: 'translate(-50%)',
-              bgcolor: mode === 'dark' ? 'primaryDark.600' : 'grey.200',
               width: '100%',
             }}
           >
@@ -224,10 +224,10 @@ export default function CoreShowcase() {
               fontWeight={500}
               color="text.primary"
               noWrap
-              sx={{ opacity: 0.7 }}
+              sx={{ opacity: 0.5 }}
             >
               <TouchAppRounded sx={{ fontSize: 14, verticalAlign: 'text-bottom' }} /> Hover the
-              component for highlighting the code.
+              component to highlight the code.
             </Typography>
           </Box>
           <ThemeProvider theme={theme}>
@@ -292,13 +292,14 @@ export default function CoreShowcase() {
           >
             <Box sx={{ position: 'relative' }}>
               {startLine !== undefined && (
-                <FlashCode startLine={startLine} endLine={endLine} sx={{ mx: -1 }} />
+                <FlashCode startLine={startLine} endLine={endLine} sx={{ mx: -2 }} />
               )}
               <HighlightedCode component={MarkdownElement} code={componentCode} language="jsx" />
               <Box
                 sx={{
                   position: 'absolute',
-                  bottom: hidden || !customized ? -120 : 0,
+                  bottom: 0,
+                  transform: hidden || !customized ? 'translateY(100%)' : 'translateY(0)',
                   transition: '0.3s',
                   left: 0,
                   right: 0,
@@ -315,29 +316,37 @@ export default function CoreShowcase() {
                   borderRadius: '0 0 10px 10px',
                 }}
               >
-                <Tooltip title="Hide">
+                <Tooltip title={hidden ? 'Show' : 'Hide'} placement="left">
                   <IconButton
-                    onClick={() => setHidden(true)}
+                    disabled={!customized}
+                    onClick={() => setHidden((bool) => !bool)}
                     sx={{
                       position: 'absolute',
+                      zIndex: 2,
+                      transition: '0.3s',
                       right: 10,
-                      top: 0,
-                      transform: 'translateY(-50%)',
+                      bottom: '100%',
+                      transform: hidden || !customized ? 'translateY(-10px)' : 'translateY(50%)',
+                      opacity: customized ? 1 : 0,
                       bgcolor: 'primaryDark.500',
                       '&:hover, &.Mui-focused': {
                         bgcolor: 'primaryDark.600',
                       },
                     }}
                   >
-                    <KeyboardArrowDownRounded />
+                    {hidden ? (
+                      <KeyboardArrowUpRounded fontSize="small" />
+                    ) : (
+                      <KeyboardArrowDownRounded fontSize="small" />
+                    )}
                   </IconButton>
                 </Tooltip>
                 <Typography fontWeight="bold" color="#fff" variant="body2">
                   Own the styling!
                 </Typography>
                 <Typography color="grey.400" variant="body2">
-                  Build your own design system by leveraging our theming capabilities. You can also
-                  start by using Google&apos;s Material Design.
+                  Build your own design system using the sophisticated theming features. You can
+                  also start by using Google&apos;s Material Design.
                 </Typography>
               </Box>
             </Box>

@@ -7,28 +7,22 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
 import ROUTES from 'docs/src/route';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
+import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 export default function StartToday() {
   return (
     <Grid container spacing={{ xs: 2, md: 4 }} alignItems="center">
       <Grid item xs={12} sm={6} md={6} sx={{ mb: { md: 4 } }}>
-        <Typography
-          color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
-          fontWeight="bold"
-          variant="body2"
-          sx={{ mb: 1 }}
-        >
-          Go live!
-        </Typography>
-        <Typography variant="h2" sx={{ maxWidth: 460, mb: 1 }}>
-          Start building with <GradientText>MUI</GradientText> today!
-        </Typography>
-        <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
-          Check it for yourself, give it a try and share with us what you&apos;ve built!
-        </Typography>
-        <GetStartedButtons
-          sx={{ '&& > *': { minWidth: 'clamp(0px, (426px - 100%) * 999 ,100%)' } }}
+        <SectionHeadline
+          overline="Go live!"
+          title={
+            <Typography variant="h2" sx={{ maxWidth: 460, mb: 1 }}>
+              Start building with <GradientText>MUI</GradientText> today!
+            </Typography>
+          }
+          description="Try it for yourself, and share with us what you've built!"
         />
+        <GetStartedButtons />
       </Grid>
       <Grid item xs={12} sm={6} md={6} container spacing={2}>
         <Grid item xs={12} md={6}>
@@ -40,10 +34,10 @@ export default function StartToday() {
             sx={{ p: 2, height: '100%' }}
           >
             <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-              Showcases
+              Showcase
             </Typography>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-              See more projects and companies out there relying on MUI.
+              See more projects and companies that rely on MUI.
             </Typography>
             <Typography
               color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}

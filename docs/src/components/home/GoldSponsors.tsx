@@ -1,6 +1,9 @@
 import * as React from 'react';
+import { useInView } from 'react-intersection-observer';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import SponsorCard, { SponsorLabel } from 'docs/src/components/home/SponsorCard';
+import SponsorCard from 'docs/src/components/home/SponsorCard';
 
 const GOLDs = [
   {
@@ -61,22 +64,55 @@ const GOLDs = [
   },
 ];
 
-export default function DiamondSponsors() {
+export default function GoldSponsors() {
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0,
+    rootMargin: '500px',
+  });
   return (
-    <Grid container spacing={{ xs: 2, md: 4 }}>
-      {GOLDs.map((item) => (
-        <Grid item key={item.name} xs={12} sm={6} md={4} lg={3}>
-          <SponsorCard
-            inView
-            item={item}
-            bottom={
-              <SponsorLabel color="warning" darker>
-                Gold sponsor
-              </SponsorLabel>
-            }
-          />
-        </Grid>
-      ))}
-    </Grid>
+    <Box ref={ref}>
+      <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
+        <Box
+          sx={{
+            display: 'inline-block',
+            mr: 1,
+            mt: 0.5,
+            borderRadius: 1,
+            width: 12,
+            height: 12,
+            bgcolor: (theme) =>
+              theme.palette.mode === 'dark'
+                ? theme.palette.warning[200]
+                : theme.palette.warning[800],
+            border: '3px solid',
+            borderColor: (theme) =>
+              theme.palette.mode === 'dark'
+                ? theme.palette.warning[800]
+                : theme.palette.warning[300],
+          }}
+        />
+        <Typography
+          component="h3"
+          variant="h5"
+          fontWeight="extraBold"
+          sx={{
+            color: (theme) =>
+              theme.palette.mode === 'dark'
+                ? theme.palette.warning[500]
+                : theme.palette.warning[800],
+          }}
+        >
+          Gold
+        </Typography>
+      </Box>
+      <Grid container spacing={{ xs: 2, md: 4 }}>
+        {GOLDs.map((item) => (
+          <Grid item key={item.name} xs={12} sm={6} md={4} lg={3}>
+            <SponsorCard inView={inView} item={item} />
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 }

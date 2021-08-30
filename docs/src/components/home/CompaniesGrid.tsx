@@ -7,13 +7,13 @@ export const CORE_CUSTOMERS: Array<IconImageProps> = [
     name: 'spotify',
     alt: 'Spotify logo',
     width: 100,
-    height: 30,
+    height: 52,
   },
   {
     name: 'amazon',
     alt: 'Amazon logo',
-    width: 82,
-    height: 25,
+    width: 80,
+    height: 52,
   },
   {
     name: 'nasa',
@@ -24,20 +24,20 @@ export const CORE_CUSTOMERS: Array<IconImageProps> = [
   {
     name: 'netflix',
     alt: 'Netflix logo',
-    width: 77,
-    height: 21,
+    width: 80,
+    height: 52,
   },
   {
     name: 'unity',
     alt: 'Unity logo',
     width: 69,
-    height: 25,
+    height: 52,
   },
   {
     name: 'shutterstock',
     alt: 'Shutterstock logo',
-    width: 135,
-    height: 18,
+    width: 100,
+    height: 52,
   },
 ];
 
@@ -94,6 +94,7 @@ export default function CompaniesGrid({ data }: { data: Array<IconImageProps> })
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            objectFit: 'contain',
           }}
         >
           <IconImage alt={imgProps.alt} {...imgProps} />

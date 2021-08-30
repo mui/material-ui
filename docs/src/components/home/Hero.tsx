@@ -84,21 +84,33 @@ export default function Hero() {
   const globalTheme = useTheme();
   const isMdUp = useMediaQuery(globalTheme.breakpoints.up('md'));
   React.useEffect(() => {
-    if (frame.current && isMdUp) {
-      const elements = frame.current.querySelectorAll(
-        'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])',
-      );
-      elements.forEach((elm) => {
-        elm.setAttribute('tabindex', '-1');
-      });
+    let obs: undefined | MutationObserver;
+    function suppressTabIndex() {
+      if (frame.current && isMdUp) {
+        const elements = frame.current.querySelectorAll(
+          'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])',
+        );
+        elements.forEach((elm) => {
+          elm.setAttribute('tabindex', '-1');
+        });
+      }
     }
+    if (typeof MutationObserver !== 'undefined' && frame.current) {
+      obs = new MutationObserver(suppressTabIndex);
+      obs.observe(frame.current, { childList: true, subtree: true });
+    }
+    return () => {
+      if (obs) {
+        obs.disconnect();
+      }
+    };
   }, [isMdUp]);
   return (
     <HeroContainer
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
-            The <GradientText>ultimate</GradientText> solution for your UI.
+            The <GradientText>ultimate</GradientText> solution for your&nbsp;UI
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
             MUI provides a robust, customizible and accessible library of foundational and advanced
@@ -125,6 +137,7 @@ export default function Hero() {
           ),
         },
       }}
+      rightRef={frame}
       right={
         <React.Fragment>
           {isMdUp && (

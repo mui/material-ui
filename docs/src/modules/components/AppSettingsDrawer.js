@@ -23,6 +23,8 @@ import { getCookie } from 'docs/src/modules/utils/helpers';
 
 const DrawerPaper = styled(Paper)({
   width: 360,
+  borderTopRightRadius: 0,
+  borderBottomRightRadius: 0,
 });
 
 const Heading = styled(Typography)({

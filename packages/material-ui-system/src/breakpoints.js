@@ -113,4 +113,27 @@ export function mergeBreakpointsInOrder(breakpointsInput, ...styles) {
   return removeUnusedBreakpoints(Object.keys(emptyBreakpoints), mergedOutput);
 }
 
+export function resolveBreakpointValues({ values: breakpointValues, base }) {
+  const keys = Object.keys(base);
+
+  if (keys.length === 0) {
+    return breakpointValues;
+  }
+
+  let previous;
+
+  return keys.reduce((acc, breakpoint) => {
+    if (typeof breakpointValues === 'object') {
+      acc[breakpoint] =
+        breakpointValues[breakpoint] != null
+          ? breakpointValues[breakpoint]
+          : breakpointValues[previous];
+    } else {
+      acc[breakpoint] = breakpointValues;
+    }
+    previous = breakpoint;
+    return acc;
+  }, {});
+}
+
 export default breakpoints;

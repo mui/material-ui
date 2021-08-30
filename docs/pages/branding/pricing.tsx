@@ -1,7 +1,5 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import ThemeProvider from 'docs/src/modules/ThemeContext';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
 import AppHeader from 'docs/src/layouts/AppHeader';
@@ -14,15 +12,15 @@ import WhatToExpect from 'docs/src/components/pricing/WhatToExpect';
 import FAQ from 'docs/src/components/pricing/FAQ';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
+import BrandingProvider from 'docs/src/BrandingProvider';
 
 export default function Pricing() {
   return (
-    <ThemeProvider>
+    <BrandingProvider>
       <Head
         title="Pricing - MUI"
         description="The community edition lets you get going right away. Switch to a commercial plan for more components & premium support."
       />
-      <CssBaseline />
       <AppHeader />
       <main>
         <HeroPricing />
@@ -39,6 +37,6 @@ export default function Pricing() {
         <Divider />
       </main>
       <AppFooter />
-    </ThemeProvider>
+    </BrandingProvider>
   );
 }

@@ -94,7 +94,7 @@ export default function SignUp() {
                 label="Password"
                 type="password"
                 id="password"
-                autoComplete="current-password"
+                autoComplete="new-password"
               />
             </Grid>
             <Grid item xs={12}>

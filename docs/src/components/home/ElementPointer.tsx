@@ -48,15 +48,17 @@ export default function PointerContainer({
     name: null,
     target: null,
   });
-  /* eslint-disable react-hooks/exhaustive-deps */
-  const handleMouseOver = React.useCallback(
-    debounce((elementData: Data) => {
-      setData(elementData);
-    }, 200),
+  const handleMouseOver = React.useMemo(
+    () =>
+      debounce((elementData: Data) => {
+        setData(elementData);
+      }, 200),
     [],
   );
   React.useEffect(() => {
-    if (onElementChange) onElementChange(data);
+    if (onElementChange) {
+      onElementChange(data);
+    }
   }, [data, onElementChange]);
   return (
     <PointerContext.Provider value={handleMouseOver}>

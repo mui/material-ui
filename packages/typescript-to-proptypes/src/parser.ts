@@ -674,10 +674,14 @@ export function parseFromProgram(
       node.heritageClauses.length === 1
     ) {
       const heritage = node.heritageClauses[0];
-      if (heritage.types.length !== 1) return;
+      if (heritage.types.length !== 1) {
+        return;
+      }
 
       const arg = heritage.types[0];
-      if (!arg.typeArguments) return;
+      if (!arg.typeArguments) {
+        return;
+      }
 
       if (reactImports.includes(arg.expression.getText())) {
         parsePropsSymbol(

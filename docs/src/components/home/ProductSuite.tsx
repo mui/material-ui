@@ -10,6 +10,7 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import ProductsSwitcher from 'docs/src/components/home/ProductsSwitcher';
 import { PrefetchStoreTemplateImages } from 'docs/src/components/home/StoreTemplatesBanner';
 import { PrefetchDesignKitImages } from 'docs/src/components/home/DesignKits';
+import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 const CoreShowcase = dynamic(() => import('./CoreShowcase'));
 const AdvancedShowcase = dynamic(() => import('./AdvancedShowcase'));
@@ -36,16 +37,16 @@ const ProductSuite = () => {
         <Grid container spacing={2}>
           <Grid item md={6}>
             <Box maxWidth={500}>
-              <Typography variant="body2" color="primary" fontWeight="bold">
-                Products
-              </Typography>
-              <Typography variant="h2" sx={{ my: 1 }}>
-                Extensive library of components, ready for <GradientText>production</GradientText>
-              </Typography>
-              <Typography color="text.secondary">
-                We bring together a suite of products integrated to make your life easier when it
-                comes to setting up design systems.
-              </Typography>
+              <SectionHeadline
+                overline="Products"
+                title={
+                  <Typography variant="h2" sx={{ my: 1 }}>
+                    Extensive library of components, ready for{' '}
+                    <GradientText>production</GradientText>
+                  </Typography>
+                }
+                description="We bring together a suite of products integrated to make your life easier when it comes to setting up design systems."
+              />
             </Box>
             <Box sx={{ mt: 4 }} />
             <ProductsSwitcher

@@ -6,6 +6,7 @@ import { createTheme } from '@material-ui/core/styles';
 declare module '@material-ui/core/Button' {
   interface ButtonPropsVariantOverrides {
     dashed: true;
+    contained: false;
   }
   interface ButtonPropsColorOverrides {
     success: true;
@@ -39,4 +40,9 @@ const theme = createTheme({
 
 <Button variant="dashed" color="success" size="extraLarge">
   Custom
+</Button>;
+
+// @ts-expect-error The contained variant was disabled
+<Button variant="contained" color="primary">
+  Invalid
 </Button>;

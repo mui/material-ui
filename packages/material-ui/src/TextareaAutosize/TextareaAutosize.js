@@ -5,6 +5,14 @@ import useForkRef from '../utils/useForkRef';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 import ownerWindow from '../utils/ownerWindow';
 
+const MockResizeObserver = () => {
+  return {
+    observe: () => {},
+    unobserve: () => {},
+    disconnect: () => {},
+  };
+};
+
 function getStyleValue(computedStyle, property) {
   return parseInt(computedStyle[property], 10) || 0;
 }
@@ -120,12 +128,21 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
       renders.current = 0;
       syncHeight();
     });
-
     const containerWindow = ownerWindow(inputRef.current);
     containerWindow.addEventListener('resize', handleResize);
+    let resizeObserver;
+    try {
+      resizeObserver = new ResizeObserver(handleResize);
+    } catch (err) {
+      resizeObserver = MockResizeObserver(); // Prevent crash for old browsers and test failure
+    }
+    const item = inputRef.current;
+    resizeObserver.observe(item);
+
     return () => {
       handleResize.clear();
       containerWindow.removeEventListener('resize', handleResize);
+      resizeObserver.unobserve(item);
     };
   }, [syncHeight]);
 

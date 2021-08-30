@@ -198,7 +198,7 @@ const styles = {
 };
 
 export default function App() {
-  return <Button sx={sx}>Example</Button>;
+  return <Button sx={styles}>Example</Button>;
 }
 //    Type '{ flexDirection: string; }' is not assignable to type 'SxProps<Theme> | undefined'.
 //    Type '{ flexDirection: string; }' is not assignable to type 'CSSSelectorObject<Theme>'.

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import NextLink from 'next/link';
 import {
   styled,
   createTheme,
@@ -34,6 +33,7 @@ import MailRounded from '@material-ui/icons/MailRounded';
 import VerifiedUserRounded from '@material-ui/icons/VerifiedUserRounded';
 import HelpCenterRounded from '@material-ui/icons/HelpCenterRounded';
 import ROUTES from 'docs/src/route';
+import Link from 'docs/src/modules/components/Link';
 
 const Grid = styled('div')(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
@@ -194,6 +194,9 @@ const StyledChip = styled(Chip)(({ theme }) => ({
   '&.MuiChip-filled': {
     border: '1px solid',
     borderColor: theme.palette.primary[300],
+    backgroundColor:
+      theme.palette.mode === 'dark' ? theme.palette.primary[700] : theme.palette.primary[500],
+    color: '#fff',
   },
 }));
 
@@ -413,17 +416,17 @@ export default function MaterialDesignComponents() {
       >
         <StyledChip
           color="primary"
-          label="Custom Theme"
-          size="small"
-          variant={customized ? 'filled' : 'outlined'}
-          onClick={() => setCustomized(true)}
-        />
-        <StyledChip
-          color="primary"
           label="Material Design"
           size="small"
           variant={!customized ? 'filled' : 'outlined'}
           onClick={() => setCustomized(false)}
+        />
+        <StyledChip
+          color="primary"
+          label="Custom Theme"
+          size="small"
+          variant={customized ? 'filled' : 'outlined'}
+          onClick={() => setCustomized(true)}
           sx={{ ml: 1 }}
         />
       </Box>
@@ -544,11 +547,14 @@ export default function MaterialDesignComponents() {
           >
             Check the documentation to see the details of every component!
           </Typography>
-          <NextLink href={ROUTES.documentation} passHref>
-            <Button component="a" endIcon={<KeyboardArrowRightRounded />}>
-              Get started
-            </Button>
-          </NextLink>
+          <Button
+            component={Link}
+            noLinkStyle
+            href={ROUTES.documentation}
+            endIcon={<KeyboardArrowRightRounded />}
+          >
+            Get started
+          </Button>
         </Box>
       </Grid>
     </Box>
