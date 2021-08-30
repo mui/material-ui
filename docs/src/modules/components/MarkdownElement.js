@@ -75,14 +75,14 @@ const Root = styled('div')(({ theme }) => ({
     fontFamily: ['"PlusJakartaSans-ExtraBold"'].join(','),
     margin: '40px 0 10px',
     fontWeight: 600,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : blueDark[700],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : blueDark[700],
   },
   '& h3': {
     ...theme.typography.h6,
     margin: '20px 0 10px',
     fontFamily: ['"PlusJakartaSans-Bold"'].join(','),
     fontWeight: 500,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.grey[900],
   },
   '& h4': {
     ...theme.typography.h6,
