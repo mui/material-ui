@@ -251,7 +251,7 @@ const filterOptions = createFilterOptions({
 Para mecanismos de filtragem mais ricos, como correspondência difusa, recomenda-se explorar o [match-sorter](https://github.com/kentcdodds/match-sorter). Por exemplo:
 
 ```jsx
-import matchSorter from 'match-sorter';
+import { matchSorter } from 'match-sorter';
 
 const filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);
 

@@ -146,7 +146,7 @@ Si votre logique consiste à récupérer de nouvelles options à chaque frappe e
 De plus, vous devrez désactiver le filtrage intégré du composant `Auto-complétion` en écrasant les propriétés `filterOptions` :
 
 ```jsx
-import matchSorter from 'match-sorter';
+import { matchSorter } from 'match-sorter';
 
 const filterOptions = (options, { inputValue }) =>
   matchSorter(options, inputValue);
@@ -257,7 +257,7 @@ const filterOptions = createFilterOptions({
 Pour les mécanismes de filtrage plus riches, comme les correspondances floues, il est recommandé de regarder [matchs-sorter](https://github.com/kentcdodds/match-sorter). Par exemple:
 
 ```jsx
-import matchSorter from 'match-sorter';
+import { matchSorter } from 'match-sorter';
 
 const filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);
 
