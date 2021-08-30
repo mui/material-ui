@@ -120,7 +120,7 @@ module.exports = {
                       alias: {
                         // all packages in this monorepo
                         '@mui/material': '../packages/material-ui/src',
-                        '@material-ui/docs': '../packages/material-ui-docs/src',
+                        '@mui/docs': '../packages/material-ui-docs/src',
                         '@mui/icons-material': '../packages/material-ui-icons/lib',
                         '@mui/lab': '../packages/material-ui-lab/src',
                         '@mui/styled-engine': '../packages/material-ui-styled-engine/src',

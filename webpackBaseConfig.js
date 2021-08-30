@@ -10,7 +10,7 @@ module.exports = {
     modules: [__dirname, 'node_modules'],
     alias: {
       '@mui/material': path.resolve(__dirname, './packages/material-ui/src'),
-      '@material-ui/docs': path.resolve(__dirname, './packages/material-ui-docs/src'),
+      '@mui/docs': path.resolve(__dirname, './packages/material-ui-docs/src'),
       '@mui/icons-material': path.resolve(__dirname, './packages/material-ui-icons/lib'),
       '@mui/lab': path.resolve(__dirname, './packages/material-ui-lab/src'),
       '@mui/styled-engine': path.resolve(

@@ -22,7 +22,7 @@ $ npx @material-ui/envinfo
     @emotion/styled: ^11.0.0 => 11.0.0
     @material-ui/codemod:  5.0.0-alpha.17
     @mui/material:  5.0.0-alpha.18
-    @material-ui/docs:  5.0.0-alpha.1
+    @mui/docs:  5.0.0-alpha.1
     @material-ui/envinfo:  1.0.0
     @mui/icons-material:  5.0.0-alpha.15
     @mui/lab:  5.0.0-alpha.18

@@ -1,4 +1,4 @@
-# @material-ui/docs
+# @mui/docs
 
 This package hosts the documentation building blocks.
 
@@ -8,10 +8,10 @@ Install the package in your project directory with:
 
 ```sh
 // with npm
-npm install @material-ui/docs@next
+npm install @mui/docs@next
 
 // with yarn
-yarn add @material-ui/docs@next
+yarn add @mui/docs@next
 ```
 
 The docs has a peer dependency on the core components.

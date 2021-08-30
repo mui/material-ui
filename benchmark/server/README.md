@@ -15,7 +15,7 @@ ButtonBase disable ripple x 61,748 ops/sec ±0.35% (190 runs sampled)
 Markdown x 954 ops/sec ±1.35% (187 runs sampled)
 ```
 
-## `@material-ui/docs`
+## `@mui/docs`
 
 _Synthetic benchmark_
 

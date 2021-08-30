@@ -1,7 +1,7 @@
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { darken, createTheme, alpha, ThemeProvider } from '@mui/material/styles';
-import NProgressBar from '@material-ui/docs/NProgressBar';
+import NProgressBar from '@mui/docs/NProgressBar';
 import BrandingFooter from 'docs/src/modules/branding/BrandingFooter';
 
 declare module '@mui/material/styles' {

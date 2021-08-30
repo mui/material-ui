@@ -9,7 +9,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import Fade from '@mui/material/Fade';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-import { JavaScript as JavaScriptIcon, TypeScript as TypeScriptIcon } from '@material-ui/docs';
+import { JavaScript as JavaScriptIcon, TypeScript as TypeScriptIcon } from '@mui/docs';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
 import SvgIcon from '@mui/material/SvgIcon';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded';

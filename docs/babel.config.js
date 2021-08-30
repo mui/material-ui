@@ -15,7 +15,7 @@ function resolvePath(sourcePath, currentFile, opts) {
 
 const alias = {
   '@mui/material': '../packages/material-ui/src',
-  '@material-ui/docs': '../packages/material-ui-docs/src',
+  '@mui/docs': '../packages/material-ui-docs/src',
   '@mui/icons-material': '../packages/material-ui-icons/lib',
   '@mui/lab': '../packages/material-ui-lab/src',
   '@material-ui/styles': '../packages/material-ui-styles/src',

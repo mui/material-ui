@@ -31,8 +31,8 @@
       "@material-ui/types": ["./packages/material-ui-types"],
       "@mui/core": ["./packages/material-ui-unstyled/src"],
       "@mui/core/*": ["./packages/material-ui-unstyled/src/*"],
-      "@material-ui/docs": ["./packages/material-ui-docs/src"],
-      "@material-ui/docs/*": ["./packages/material-ui-docs/src/*"],
+      "@mui/docs": ["./packages/material-ui-docs/src"],
+      "@mui/docs/*": ["./packages/material-ui-docs/src/*"],
       "test/*": ["./test/*"],
       "typescript-to-proptypes": ["./packages/typescript-to-proptypes/src"]
     },

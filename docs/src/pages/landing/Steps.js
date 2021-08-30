@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
-import { FileDownload as FileDownloadIcon } from '@material-ui/docs';
+import { FileDownload as FileDownloadIcon } from '@mui/docs';
 import BuildIcon from '@mui/icons-material/Build';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Link from 'docs/src/modules/components/Link';
