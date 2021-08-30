@@ -44,6 +44,7 @@ export default function ComponentLinkHeader(props) {
             clickable
             role={undefined}
             component="a"
+            size="small"
             variant="outlined"
             rel="nofollow"
             href={`https://github.com/mui-org/material-ui/labels/${encodeURIComponent(
@@ -64,6 +65,7 @@ export default function ComponentLinkHeader(props) {
             clickable
             role={undefined}
             component="a"
+            size="small"
             variant="outlined"
             rel="nofollow"
             href={headers.waiAria}
@@ -73,6 +75,7 @@ export default function ComponentLinkHeader(props) {
             data-ga-event-label="WAI-ARIA"
             data-ga-event-split="0.1"
             label="WAI-ARIA"
+            sx={{pl: 0.5}}
           />
         </li>
       ) : null}
@@ -82,6 +85,7 @@ export default function ComponentLinkHeader(props) {
             clickable
             role={undefined}
             component="a"
+            size="small"
             variant="outlined"
             rel="nofollow"
             href={`https://bundlephobia.com/result?p=${packageName}@next`}
@@ -91,6 +95,7 @@ export default function ComponentLinkHeader(props) {
             data-ga-event-label={t('bundleSize')}
             data-ga-event-split="0.1"
             label={t('bundleSize')}
+            sx={{pl: 0.5}}
           />
         </Tooltip>
       </li>
@@ -100,6 +105,7 @@ export default function ComponentLinkHeader(props) {
             clickable
             role={undefined}
             component="a"
+            size="small"
             variant="outlined"
             rel="nofollow"
             href={headers.materialDesign}
@@ -109,6 +115,7 @@ export default function ComponentLinkHeader(props) {
             data-ga-event-label="Material Design"
             data-ga-event-split="0.1"
             label="Material Design"
+            sx={{pl: 0.5}}
           />
         </li>
       ) : null}
@@ -119,6 +126,7 @@ export default function ComponentLinkHeader(props) {
               clickable
               role={undefined}
               component="a"
+              size="small"
               variant="outlined"
               rel="nofollow"
               href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
@@ -128,6 +136,7 @@ export default function ComponentLinkHeader(props) {
               data-ga-event-label="Figma"
               data-ga-event-split="0.1"
               label="Figma"
+              sx={{pl: 0.5}}
             />
           </li>
           <li>
@@ -135,6 +144,7 @@ export default function ComponentLinkHeader(props) {
               clickable
               role={undefined}
               component="a"
+              size="small"
               variant="outlined"
               rel="nofollow"
               href="https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
@@ -144,6 +154,7 @@ export default function ComponentLinkHeader(props) {
               data-ga-event-label="Adobe XD"
               data-ga-event-split="0.1"
               label="Adobe"
+              sx={{pl: 0.5}}
             />
           </li>
           <li>
@@ -151,6 +162,7 @@ export default function ComponentLinkHeader(props) {
               clickable
               role={undefined}
               component="a"
+              size="small"
               variant="outlined"
               rel="nofollow"
               href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
@@ -160,6 +172,7 @@ export default function ComponentLinkHeader(props) {
               data-ga-event-label="Sketch"
               data-ga-event-split="0.1"
               label="Sketch"
+              sx={{pl: 0.5}}
             />
           </li>
         </React.Fragment>
