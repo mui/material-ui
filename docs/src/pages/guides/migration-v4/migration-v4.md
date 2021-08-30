@@ -2648,7 +2648,7 @@ If your IDE (ex. VSCode) is able to infer types from `d.ts` file, create `index.
 
 ```js
 // index.d.ts
-declare module "@material-ui/private-theming" {
+declare module "@mui/private-theming" {
   import type { Theme } from "@mui/material/styles";
 
   interface DefaultTheme extends Theme {}

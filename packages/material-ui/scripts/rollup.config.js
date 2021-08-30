@@ -87,7 +87,7 @@ const nestedFolder = {
       return resolved;
     }
 
-    if (importee.indexOf('@material-ui/private-theming/') === 0) {
+    if (importee.indexOf('@mui/private-theming/') === 0) {
       const folder = importee.split('/')[2];
       const resolved = path.resolve(
         __dirname,
