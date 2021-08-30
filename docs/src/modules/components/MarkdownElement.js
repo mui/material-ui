@@ -60,7 +60,7 @@ const Root = styled('div')(({ theme }) => ({
   '& h1': {
     ...theme.typography.h3,
     fontSize: '2.5rem',
-    // fontFamily: ['"PlusJakartaSans-ExtraBold"'].join(','),
+    fontFamily: ['"PlusJakartaSans-ExtraBold"'].join(','),
     margin: '16px 0',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[50] : blueDark[900],
     fontWeight: 800,
@@ -72,7 +72,7 @@ const Root = styled('div')(({ theme }) => ({
   '& h2': {
     ...theme.typography.h5,
     fontSize: '1.875',
-    // fontFamily: ['"PlusJakartaSans-ExtraBold"'].join(','),
+    fontFamily: ['"PlusJakartaSans-ExtraBold"'].join(','),
     margin: '40px 0 10px',
     fontWeight: 600,
     color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : blueDark[700],
@@ -80,18 +80,18 @@ const Root = styled('div')(({ theme }) => ({
   '& h3': {
     ...theme.typography.h6,
     margin: '20px 0 10px',
-    // fontFamily: ['"PlusJakartaSans-Bold"'].join(','),
+    fontFamily: ['"PlusJakartaSans-Bold"'].join(','),
     fontWeight: 500,
     color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
   },
   '& h4': {
     ...theme.typography.h6,
-    margin: '32px 0 16px',
+    margin: '10px 0 16px',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
   },
   '& h5': {
     ...theme.typography.subtitle2,
-    margin: '32px 0 16px',
+    margin: '10px 0 16px',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
   },
   '& p, & ul, & ol': {
