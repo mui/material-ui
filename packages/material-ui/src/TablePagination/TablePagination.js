@@ -173,7 +173,9 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
   const labelId = useId(SelectProps.labelId);
 
   const getLabelDisplayedRowsTo = () => {
-    if (count === -1) return (page + 1) * rowsPerPage;
+    if (count === -1) {
+      return (page + 1) * rowsPerPage;
+    }
     return rowsPerPage === -1 ? count : Math.min(count, (page + 1) * rowsPerPage);
   };
 

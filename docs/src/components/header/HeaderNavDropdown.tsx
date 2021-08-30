@@ -76,15 +76,15 @@ export default function HeaderNavDropdown() {
         aria-label="Menu"
         ref={hambugerRef}
         disableRipple
-        size="small"
         onClick={() => setOpen((value) => !value)}
         sx={{
           position: 'relative',
-          mr: 1,
+          p: '6.5px',
           borderRadius: 1,
           border: '1px solid',
           bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'transparent'),
           borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200'),
+          '& svg': { width: 18, height: 18 },
           '&:focus': {
             boxShadow: (theme) =>
               `0 0 0 1px ${

@@ -155,7 +155,9 @@ export function StoreTemplatesSet1({
   ...props
 }: { disableLink?: boolean; keyframes?: Record<string, object> } & BoxProps) {
   function renderTemplate(brand: TemplateBrand) {
-    if (disableLink) return <StoreTemplateImage brand={brand} />;
+    if (disableLink) {
+      return <StoreTemplateImage brand={brand} />;
+    }
     return (
       <StoreTemplateLink brand={brand}>
         <StoreTemplateImage brand={brand} />
@@ -185,7 +187,9 @@ export function StoreTemplatesSet2({
   ...props
 }: { disableLink?: boolean; keyframes?: Record<string, object> } & BoxProps) {
   function renderTemplate(brand: TemplateBrand) {
-    if (disableLink) return <StoreTemplateImage brand={brand} />;
+    if (disableLink) {
+      return <StoreTemplateImage brand={brand} />;
+    }
     return (
       <StoreTemplateLink brand={brand}>
         <StoreTemplateImage brand={brand} />

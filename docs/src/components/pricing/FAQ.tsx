@@ -257,9 +257,12 @@ export default function FAQ() {
               questions.
             </Typography>
             <Typography variant="body2" color="text.primary" sx={{ my: 1, textAlign: 'left' }}>
-              For product-related questions, you can open new issues on{' '}
-              <Link href="https://github.com/mui-org/material-ui-x">GitHub</Link> (bugs and feature
-              requests) or email us at <Link href="mailto:x@mui.com">x@mui.com</Link>.
+              For product-related problems, please open
+              <Link href="https://github.com/mui-org/material-ui-x/issues/new/choose">
+                a new GitHub issue
+              </Link>
+              . If you need to share private information, you can{' '}
+              <Link href="mailto:x@mui.com">email us</Link>.
             </Typography>
           </Paper>
         </Grid>

@@ -161,7 +161,9 @@ export default function HeaderNavBar() {
         setSubMenuOpen(true);
       }
       setSubMenuIndex((prevValue) => {
-        if (prevValue === null) return 0;
+        if (prevValue === null) {
+          return 0;
+        }
         if (prevValue === PRODUCT_IDS.length - 1) {
           return 0;
         }
@@ -171,7 +173,9 @@ export default function HeaderNavBar() {
     if (event.key === 'ArrowUp') {
       event.preventDefault();
       setSubMenuIndex((prevValue) => {
-        if (prevValue === null) return 0;
+        if (prevValue === null) {
+          return 0;
+        }
         if (prevValue === 0) {
           return PRODUCT_IDS.length - 1;
         }
@@ -219,6 +223,8 @@ export default function HeaderNavBar() {
                     sx={{
                       minWidth: 498,
                       overflow: 'hidden',
+                      borderColor: (theme) =>
+                        theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.200',
                       bgcolor: (theme) =>
                         theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
                       boxShadow: (theme) =>
@@ -235,7 +241,7 @@ export default function HeaderNavBar() {
                       '& li:not(:last-of-type)': {
                         borderBottom: '1px solid',
                         borderColor: (theme) =>
-                          theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.100',
+                          theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
                       },
                       '& a': { textDecoration: 'none' },
                     }}

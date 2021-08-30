@@ -1,3 +1,4 @@
+import { deepmerge } from '@material-ui/utils';
 import { createTheme, ThemeOptions, Theme } from '@material-ui/core/styles';
 
 declare module '@material-ui/core/styles/createPalette' {
@@ -228,7 +229,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         fontSize: 'clamp(1.5rem, 0.9643rem + 1.4286vw, 2.25rem)',
         fontWeight: 800,
         lineHeight: 44 / 36,
-        color: mode === 'dark' ? grey[300] : blue[900],
+        color: mode === 'dark' ? grey[200] : blueDark[700],
       },
       h3: {
         fontSize: defaultTheme.typography.pxToRem(36),
@@ -272,6 +273,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         letterSpacing: 0,
       },
       caption: {
+        display: 'inline-block',
         fontSize: defaultTheme.typography.pxToRem(12), // 12px
         lineHeight: 18 / 12,
         letterSpacing: 0,
@@ -438,6 +440,36 @@ export function getThemedComponents(theme: Theme) {
           },
         },
       },
+      MuiToggleButtonGroup: {
+        styleOverrides: {
+          root: {
+            backgroundColor:
+              theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#fff',
+          },
+        },
+      },
+      MuiToggleButton: {
+        styleOverrides: {
+          root: {
+            textTransform: 'none',
+            fontWeight: 600,
+            color:
+              theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[700],
+            borderColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[500]
+                : theme.palette.grey[200],
+            '&.Mui-selected': {
+              borderColor: `${theme.palette.primary[500]} !important`,
+              color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[500],
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary[800]
+                  : theme.palette.primaryDark[50],
+            },
+          },
+        },
+      },
       MuiSwitch: {
         styleOverrides: {
           root: {
@@ -476,4 +508,4 @@ export function getThemedComponents(theme: Theme) {
 }
 
 const darkTheme = createTheme(getDesignTokens('dark'));
-export const brandingDarkTheme = createTheme(darkTheme, getThemedComponents(darkTheme));
+export const brandingDarkTheme = deepmerge(darkTheme, getThemedComponents(darkTheme));

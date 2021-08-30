@@ -4,6 +4,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import Card from '@material-ui/core/Card';
 import Chip from '@material-ui/core/Chip';
+import Fade from '@material-ui/core/Fade';
 import Typography from '@material-ui/core/Typography';
 
 declare module '@material-ui/core/Chip' {
@@ -145,42 +146,44 @@ export default function NotificationCard() {
   );
   return (
     <ThemeProvider theme={theme}>
-      <Card variant="outlined" sx={{ display: 'flex', p: 1.5, maxWidth: 283 }}>
-        <Avatar
-          imgProps={{ 'aria-labelledby': 'demo-notification-card-messenger-name' }}
-          src="/static/images/avatar/3-sm.jpeg"
-          variant="rounded"
-        />
-        <Box sx={{ ml: 1, flexBasis: 180, flexGrow: 1, minWidth: '0px' }}>
-          <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Typography
-              id="demo-notification-card-messenger-name"
-              color="text.secondary"
-              variant="caption"
-            >
-              Angela Erickson
-            </Typography>
-            <Typography color="text.secondary" variant="caption">
-              12:50
-            </Typography>
-          </Box>
-          <Box sx={{ display: 'flex', mt: 0.5 }}>
-            <Box sx={{ flexGrow: 1, minWidth: '0px' }}>
-              <Typography component="div">Great news</Typography>
-              <Typography variant="caption" color="text.secondary" noWrap>
-                Hey! Check this out, just a few minutes ago...
+      <Fade in timeout={700}>
+        <Card variant="outlined" sx={{ display: 'flex', p: 1.5, maxWidth: 283 }}>
+          <Avatar
+            imgProps={{ 'aria-labelledby': 'demo-notification-card-messenger-name' }}
+            src="/static/images/avatar/3-sm.jpeg"
+            variant="rounded"
+          />
+          <Box sx={{ ml: 1, flexBasis: 180, flexGrow: 1, minWidth: '0px' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Typography
+                id="demo-notification-card-messenger-name"
+                color="text.secondary"
+                variant="caption"
+              >
+                Angela Erickson
+              </Typography>
+              <Typography color="text.secondary" variant="caption">
+                12:50
               </Typography>
             </Box>
-            <Chip
-              label="3"
-              color="success"
-              variant="notification"
-              size="small"
-              sx={{ mt: '3px' }}
-            />
+            <Box sx={{ display: 'flex', mt: 0.5 }}>
+              <Box sx={{ flexGrow: 1, minWidth: '0px' }}>
+                <Typography component="div">Great news</Typography>
+                <Typography variant="caption" color="text.secondary" noWrap>
+                  Hey! Check this out, just a few minutes ago...
+                </Typography>
+              </Box>
+              <Chip
+                label="3"
+                color="success"
+                variant="notification"
+                size="small"
+                sx={{ mt: '3px' }}
+              />
+            </Box>
           </Box>
-        </Box>
-      </Card>
+        </Card>
+      </Fade>
     </ThemeProvider>
   );
 }

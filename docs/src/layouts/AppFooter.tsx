@@ -77,7 +77,7 @@ export default function AppFooter() {
             <Link href={ROUTES.freeTemplates}>Free templates</Link>
             <Link href={ROUTES.components}>Components</Link>
             <Link href={ROUTES.customization}>Customization</Link>
-            <Link href={ROUTES.styling}>Styling</Link>
+            <Link href={ROUTES.theming}>Theming</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="bold" variant="body2">
@@ -97,7 +97,9 @@ export default function AppFooter() {
             <Link href={ROUTES.vision}>Vision</Link>
             <Link href={ROUTES.careers}>Careers</Link>
             <Link href={ROUTES.support}>Support</Link>
-            <Link href={ROUTES.contactUs}>Contact us</Link>
+            <Link target="_blank" rel="noopener noreferrer" href="mailto:contact@material-ui.com">
+              Contact us
+            </Link>
           </Box>
         </Box>
       </Box>

@@ -5,7 +5,7 @@
   "description": "Custom eslint rules for Material-UI.",
   "main": "src/index.js",
   "dependencies": {
-    "emoji-regex": "^9.0.0"
+    "emoji-regex": "^9.2.2"
   },
   "devDependencies": {
     "@types/eslint": "^7.2.0",

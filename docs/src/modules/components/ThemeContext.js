@@ -221,7 +221,7 @@ export function ThemeProvider(props) {
         direction,
         ...brandingDesignTokens,
         nprogress: {
-          color: paletteMode === 'light' ? '#000' : '#fff',
+          color: brandingDesignTokens.palette.primary.main,
         },
         palette: {
           ...brandingDesignTokens.palette,

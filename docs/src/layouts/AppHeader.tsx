@@ -11,7 +11,8 @@ import ThemeModeToggle from 'docs/src/components/header/ThemeModeToggle';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import Link from 'docs/src/modules/components/Link';
-import ROUTES from '../route';
+import { DeferredAppSearch } from 'docs/src/modules/components/AppFrame';
+import ROUTES from 'docs/src/route';
 
 const Header = styled('header', {
   shouldForwardProp: (prop) => prop !== 'trigger',
@@ -68,6 +69,9 @@ export default function AppHeader() {
           <HeaderNavBar />
         </Box>
         <Box sx={{ ml: 'auto' }} />
+        <Box sx={{ mr: 2 }}>
+          <DeferredAppSearch />
+        </Box>
         <Box sx={{ display: { md: 'none' }, mr: 1 }}>
           <HeaderNavDropdown />
         </Box>

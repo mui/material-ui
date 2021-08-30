@@ -9,7 +9,8 @@ export default function SectionHeadline({
 }: {
   overline: React.ReactNode;
   title: React.ReactNode;
-  description: React.ReactNode;
+  description?: React.ReactNode;
+  mode?: 'light' | 'dark';
 }) {
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
@@ -18,7 +19,13 @@ export default function SectionHeadline({
   const descriptionColor = mode === 'dark' ? 'grey.500' : 'grey.800';
   return (
     <React.Fragment>
-      <Typography color={overlineColor} fontWeight="bold" variant="body2" sx={{ mb: 1 }}>
+      <Typography
+        color={overlineColor}
+        component="h1"
+        fontWeight="bold"
+        variant="body2"
+        sx={{ mb: 1 }}
+      >
         {overline}
       </Typography>
       {typeof title === 'string' ? (
@@ -28,9 +35,11 @@ export default function SectionHeadline({
       ) : (
         title
       )}
-      <Typography color={descriptionColor} sx={{ mt: 1, mb: 2, maxWidth: 450 }}>
-        {description}
-      </Typography>
+      {description && (
+        <Typography color={descriptionColor} sx={{ mt: 1, mb: 2, maxWidth: 450 }}>
+          {description}
+        </Typography>
+      )}
     </React.Fragment>
   );
 }

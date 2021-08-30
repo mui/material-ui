@@ -12,6 +12,7 @@ import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRoun
 import Link from 'docs/src/modules/components/Link';
 import IconImage, { IconImageProps } from 'docs/src/components/icon/IconImage';
 import LaunchRounded from '@material-ui/icons/LaunchRounded';
+import UnfoldMoreRounded from '@material-ui/icons/UnfoldMoreRounded';
 
 const planInfo = {
   community: {
@@ -197,7 +198,7 @@ const ColumnHead = ({
       {metadata && (
         <Typography
           variant="caption"
-          color="grey.800"
+          color="text.secondary"
           fontWeight="normal"
           sx={{ display: 'block' }}
         >
@@ -879,10 +880,26 @@ export default function PricingTable({
       <RowHead startIcon={<IconImage name="product-advanced" width="28" height="28" />}>
         Advanced
       </RowHead>
-      <Box sx={{ position: 'relative', minHeight: 58, ...gridSx }}>
-        <Cell sx={{ display: { xs: 'none', md: 'block' } }} />
-        <Cell sx={{ display: { xs: 'none', md: 'block' } }} />
-        <Cell highlighted sx={{ display: { xs: 'none', md: 'block' } }} />
+      <Box sx={{ position: 'relative', minHeight: 58, '& svg': { transition: '0.3s' }, ...gridSx }}>
+        <Cell />
+        <Cell sx={{ minHeight: 60 }}>
+          <UnfoldMoreRounded
+            fontSize="small"
+            sx={{ color: 'grey.600', opacity: dataGridCollapsed ? 0 : 1 }}
+          />
+        </Cell>
+        <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+          <UnfoldMoreRounded
+            fontSize="small"
+            sx={{ color: 'grey.600', opacity: dataGridCollapsed ? 0 : 1 }}
+          />
+        </Cell>
+        <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+          <UnfoldMoreRounded
+            fontSize="small"
+            sx={{ color: 'grey.600', opacity: dataGridCollapsed ? 0 : 1 }}
+          />
+        </Cell>
         <Button
           fullWidth
           onClick={() => setDataGridCollapsed((bool) => !bool)}
@@ -891,7 +908,6 @@ export default function PricingTable({
               color="primary"
               sx={{
                 transform: dataGridCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)',
-                transition: '0.3s',
               }}
             />
           }

@@ -1871,7 +1871,9 @@ export const kzKZ: Localization = {
         'aria-label': 'Беттерді шарлау',
         getItemAriaLabel: (type, page, selected) => {
           if (type === 'page') {
-            if (selected) return `${page} — бет`;
+            if (selected) {
+              return `${page} — бет`;
+            }
             return `${page} — бетке өту`;
           }
           if (type === 'first') {
@@ -2320,7 +2322,9 @@ export const ruRU: Localization = {
         'aria-label': 'Навигация по страницам',
         getItemAriaLabel: (type, page, selected) => {
           if (type === 'page') {
-            if (selected) return `${page} страница`;
+            if (selected) {
+              return `${page} страница`;
+            }
             return `Перейти на ${page} страницу`;
           }
           if (type === 'first') {
