@@ -33,4 +33,12 @@ module.exports = {
       },
     ]),
   },
+  resolve: {
+    ...webpackBaseConfig.resolve,
+    alias: {
+      ...webpackBaseConfig.resolve.alias,
+      '@material-ui/core': path.resolve(__dirname, '../../packages/material-ui/src'),
+      '@material-ui/styles': path.resolve(__dirname, '../../packages/material-ui-styles/src'),
+    },
+  },
 };
