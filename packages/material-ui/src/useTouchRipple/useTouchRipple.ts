@@ -122,7 +122,7 @@ const useTouchRipple = (props: UseTouchRippleProps) => {
     onTouchMove: handleTouchMove,
   } as RippleEventHandlers;
 
-  const getRippleHandlers = (otherEvents: Partial<RippleEventHandlers> = {}) => {
+  const getRippleHandlers = (otherEvents: Partial<RippleEventHandlers>) => {
     const eventNames = Object.keys(rippleHandlers) as (keyof RippleEventHandlers)[];
     const wrappedEvents = eventNames.map((eventName) => ({
       name: eventName,
