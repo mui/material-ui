@@ -9,11 +9,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 
 export default function InputWithIcon() {
   return (
-    <Box
-      sx={{
-        '& > :not(style)': { m: 1 },
-      }}
-    >
+    <Box sx={{ '& > :not(style)': { m: 1 } }}>
       <FormControl variant="standard">
         <InputLabel htmlFor="input-with-icon-adornment">
           With a start adornment
