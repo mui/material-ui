@@ -40,7 +40,7 @@ export default function transformer(file, api, options) {
     'StylesContext',
   ];
 
-  const stylesPackage = '@mui/styles';
+  const stylesPackage = '@material-ui/styles';
 
   // https://github.com/facebook/jscodeshift/blob/master/recipes/retain-first-comment.md
   const getFirstNode = () => root.find(j.Program).get('body', 0).node;

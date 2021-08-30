@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from '@material-ui/styles/makeStyles';
 import Container from 'modules/components/Container';
 import Button from 'modules/components/Button';
 import Link from 'modules/components/Link';

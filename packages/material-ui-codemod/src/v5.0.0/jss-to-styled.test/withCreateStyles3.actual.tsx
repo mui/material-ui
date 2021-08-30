@@ -1,6 +1,6 @@
 import * as React from 'react';
-import createStyles from '@mui/styles/createStyles';
-import makeStyles from '@mui/styles/makeStyles';
+import createStyles from '@material-ui/styles/createStyles';
+import makeStyles from '@material-ui/styles/makeStyles';
 
 const useStyles = makeStyles(createStyles({
     root: {

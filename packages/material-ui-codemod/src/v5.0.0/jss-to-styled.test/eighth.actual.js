@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import MuiLink from '@material-ui/core/Link';
 import Container from 'modules/components/Container';
-import makeStyles from '@mui/styles/makeStyles';
+import makeStyles from '@material-ui/styles/makeStyles';
 import AppAppBar from 'modules/components/AppAppBar';
 import OrderBody from 'modules/components/OrderBody';
 import Button from 'modules/components/Button';

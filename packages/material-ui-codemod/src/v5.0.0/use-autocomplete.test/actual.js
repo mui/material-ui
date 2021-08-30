@@ -11,8 +11,8 @@ import {
   UseAutocompleteProps,
   AutocompleteHighlightChangeReason,
   AutocompleteInputChangeReason,
-} from '@mui/lab';
+} from '@material-ui/lab';
 import {
   AutocompleteChangeReason as ChangeReason,
   AutocompleteCloseReason,
-} from '@mui/lab/useAutocomplete';
+} from '@material-ui/lab/useAutocomplete';

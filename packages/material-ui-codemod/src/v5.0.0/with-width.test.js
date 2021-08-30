@@ -8,7 +8,7 @@ function read(fileName) {
   return readFile(path.join(__dirname, fileName));
 }
 
-describe('@mui/codemod', () => {
+describe('@material-ui/codemod', () => {
   describe('v5.0.0', () => {
     describe('with-width', () => {
       it('transforms props as needed', () => {

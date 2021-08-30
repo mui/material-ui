@@ -36,7 +36,7 @@ export default function transformer(file, api, options) {
           const sourcePath = path.get('source');
           sourcePath.replace(j.stringLiteral(`@material-ui/core/${componentName}`));
         }
-      } else if (importSouce === '@mui/lab') {
+      } else if (importSouce === '@material-ui/lab') {
         // Sieve import specifiers into /core and /lab
         const labImportSpecifiers = [];
         const coreImportSpecifiers = [];
@@ -48,8 +48,8 @@ export default function transformer(file, api, options) {
               labImportSpecifiers.push(specifier);
             }
           } else {
-            // `import Lab from '@mui/lab'`
-            // `import * as Lab from '@mui/lab'`
+            // `import Lab from '@material-ui/lab'`
+            // `import * as Lab from '@material-ui/lab'`
             // These imports would require scope analysis.
             console.warn(`Can't handle ${specifier.type}`);
           }
@@ -58,7 +58,7 @@ export default function transformer(file, api, options) {
         if (coreImportSpecifiers.length > 0) {
           path.replace(
             j.importDeclaration(coreImportSpecifiers, j.stringLiteral('@material-ui/core')),
-            j.importDeclaration(labImportSpecifiers, j.stringLiteral('@mui/lab')),
+            j.importDeclaration(labImportSpecifiers, j.stringLiteral('@material-ui/lab')),
           );
         }
       }
