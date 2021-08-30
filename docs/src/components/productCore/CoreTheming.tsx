@@ -97,6 +97,7 @@ export default function CoreTheming() {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
+                minHeight: 188,
               }}
             >
               <PlayerCard
