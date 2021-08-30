@@ -1,11 +1,21 @@
+import { OverridableComponent } from '@material-ui/types';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';
 import appendOwnerState from '../utils/appendOwnerState';
 import classes from './inputUnstyledClasses';
-import { InputUnstyledProps } from './InputUnstyledProps';
+import InputUnstyledProps, { InputUnstyledTypeMap } from './InputUnstyledProps';
 import useInput from './useInput';
-
+/**
+ *
+ * Demos:
+ *
+ * - [Text Fields](https://material-ui.com/components/text-fields/)
+ *
+ * API:
+ *
+ * - [InputUnstyled API](https://material-ui.com/api/input-unstyled/)
+ */
 const InputUnstyled = React.forwardRef(function InputUnstyled(
   props: InputUnstyledProps,
   ref: React.ForwardedRef<any>,
@@ -46,6 +56,7 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
   } = useInput(props);
 
   const ownerState = {
+    ...props,
     disabled: disabledState,
     error: errorState,
     focused,
@@ -136,7 +147,7 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
       <Input {...inputProps} />
     </Root>
   );
-});
+}) as OverridableComponent<InputUnstyledTypeMap>;
 
 InputUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -160,9 +171,14 @@ InputUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
+  children: PropTypes.node,
+  /**
+   * Class name applied to the root element.
+   */
   className: PropTypes.string,
   /**
-   * @ignore
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**
@@ -210,7 +226,7 @@ InputUnstyled.propTypes /* remove-proptypes */ = {
    * If `true`, a `textarea` element is rendered.
    * @default false
    */
-  multiline: PropTypes.bool.isRequired,
+  multiline: PropTypes.bool,
   /**
    * Name attribute of the `input` element.
    */

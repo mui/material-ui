@@ -1,3 +1,4 @@
+import { OverrideProps } from '@material-ui/types';
 import React from 'react';
 import { FormControlUnstyledState } from '../FormControlUnstyled/FormControlContext';
 import { InputProps } from './useInput';
@@ -8,7 +9,7 @@ export interface InputOwnerState
   focused: boolean;
 }
 
-export interface InputUnstyledProps extends InputProps {
+export interface InputUnstyledOwnProps extends InputProps {
   'aria-describedby'?: string;
   /**
    * This prop helps users to fill forms faster, especially on mobile devices.
@@ -20,8 +21,10 @@ export interface InputUnstyledProps extends InputProps {
    * If `true`, the `input` element is focused during the first mount.
    */
   autoFocus?: boolean;
+  /**
+   * Class name applied to the root element.
+   */
   className?: string;
-  component?: React.ElementType;
   /**
    * The components used for each slot inside the InputBase.
    * Either a string to use a HTML element or a component.
@@ -48,7 +51,7 @@ export interface InputUnstyledProps extends InputProps {
    * If `true`, a `textarea` element is rendered.
    * @default false
    */
-  multiline: boolean;
+  multiline?: boolean;
   /**
    * Name attribute of the `input` element.
    */
@@ -86,3 +89,22 @@ export interface InputUnstyledProps extends InputProps {
    */
   value?: unknown;
 }
+
+export interface InputUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P & InputUnstyledOwnProps;
+  defaultComponent: D;
+}
+
+type InputUnstyledProps<
+  D extends React.ElementType = InputUnstyledTypeMap['defaultComponent'],
+  P = {},
+> = OverrideProps<InputUnstyledTypeMap<P, D>, D> & {
+  /**
+   * The component used for the Root slot.
+   * Either a string to use a HTML element or a component.
+   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
+   */
+  component?: D;
+};
+
+export default InputUnstyledProps;
