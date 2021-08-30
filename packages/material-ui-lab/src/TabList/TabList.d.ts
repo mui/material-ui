@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { TabsTypeMap } from '@mui/material/Tabs';
-import { DistributiveOmit } from '@material-ui/types';
+import { DistributiveOmit } from '@mui/types';
 import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
 
 export interface TabListTypeMap<

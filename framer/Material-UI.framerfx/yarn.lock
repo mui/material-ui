@@ -22,7 +22,7 @@
     "@babel/runtime" "^7.4.4"
     "@mui/styles" "^5.0.0-alpha.1"
     "@mui/system" "^5.0.0-alpha.1"
-    "@material-ui/types" "^5.1.0"
+    "@mui/types" "^5.1.0"
     "@mui/utils" "^5.0.0-alpha.1"
     "@types/react-transition-group" "^4.2.0"
     clsx "^1.0.4"
@@ -46,7 +46,7 @@
   dependencies:
     "@babel/runtime" "^7.4.4"
     "@emotion/hash" "^0.8.0"
-    "@material-ui/types" "^5.1.0"
+    "@mui/types" "^5.1.0"
     "@mui/utils" "^5.0.0-alpha.1"
     clsx "^1.0.4"
     csstype "^2.5.2"
@@ -71,9 +71,9 @@
     csstype "^2.5.2"
     prop-types "^15.7.2"
 
-"@material-ui/types@^5.1.0":
+"@mui/types@^5.1.0":
   version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@material-ui/types/-/types-5.1.0.tgz#efa1c7a0b0eaa4c7c87ac0390445f0f88b0d88f2"
+  resolved "https://registry.yarnpkg.com/@mui/types/-/types-5.1.0.tgz#efa1c7a0b0eaa4c7c87ac0390445f0f88b0d88f2"
   integrity sha512-7cqRjrY50b8QzRSYyhSpx4WRw2YuO0KKIGQEVk5J8uoz2BanawykgZGoWEqKm7pVIbzFDN0SpPcVV4IhOFkl8A==
 
 "@mui/utils@^5.0.0-alpha.1":

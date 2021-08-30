@@ -646,11 +646,11 @@ npx @material-ui/codemod@next v5.0.0/material-ui-styles <path>
 
 #### `material-ui-types`
 
-Renames `Omit` import from `@material-ui/types` to `DistributiveOmit`
+Renames `Omit` import from `@mui/types` to `DistributiveOmit`
 
 ```diff
--import { Omit } from '@material-ui/types';
-+import { DistributiveOmit } from '@material-ui/types';
+-import { Omit } from '@mui/types';
++import { DistributiveOmit } from '@mui/types';
 ```
 
 ```sh

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import FormControlUnstyled from '@mui/core/FormControlUnstyled';
-import { expectType } from '@material-ui/types';
+import { expectType } from '@mui/types';
 
 const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
 

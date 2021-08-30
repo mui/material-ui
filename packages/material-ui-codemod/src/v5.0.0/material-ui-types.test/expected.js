@@ -1,4 +1,4 @@
-import { DistributiveOmit } from '@material-ui/types';
+import { DistributiveOmit } from '@mui/types';
 
 // DistributiveOmit<{}, ''>
 // Extract<DistributiveOmit<{}, ''>, ''>

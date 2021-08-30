@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { OverrideProps } from '@material-ui/types';
+import { OverrideProps } from '@mui/types';
 import {
   ExtendModalUnstyledTypeMap,
   ExtendModalUnstyled,

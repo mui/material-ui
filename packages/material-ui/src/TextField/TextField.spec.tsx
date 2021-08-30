@@ -1,6 +1,6 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
-import { expectType } from '@material-ui/types';
+import { expectType } from '@mui/types';
 
 {
   // https://github.com/mui-org/material-ui/issues/12999

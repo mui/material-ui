@@ -78,7 +78,7 @@
     "rifm": "^0.12.0"
   },
   "devDependencies": {
-    "@material-ui/types": "6.0.2",
+    "@mui/types": "6.0.2",
     "@types/luxon": "^1.27.1",
     "date-fns": "^2.0.0",
     "dayjs": "^1.10.6",

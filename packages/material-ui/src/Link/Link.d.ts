@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DistributiveOmit } from '@material-ui/types';
+import { DistributiveOmit } from '@mui/types';
 import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';

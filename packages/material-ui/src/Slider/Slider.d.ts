@@ -5,7 +5,7 @@ import {
   SliderUnstyledTypeMap,
 } from '@mui/core/SliderUnstyled';
 import { SxProps } from '@mui/system';
-import { OverridableStringUnion } from '@material-ui/types';
+import { OverridableStringUnion } from '@mui/types';
 import { Theme } from '../styles';
 import { OverrideProps } from '../OverridableComponent';
 

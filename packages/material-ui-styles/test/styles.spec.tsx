@@ -12,7 +12,7 @@ import {
 } from '@mui/styles';
 import Button from '@mui/material/Button';
 import { Theme } from '@mui/material/styles';
-import { expectType } from '@material-ui/types';
+import { expectType } from '@mui/types';
 
 // Example 1
 const simpleStyles = ({ palette, spacing }: Theme) => ({

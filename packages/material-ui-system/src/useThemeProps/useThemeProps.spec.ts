@@ -1,5 +1,5 @@
 import { useThemeProps } from '@mui/system';
-import { expectType } from '@material-ui/types';
+import { expectType } from '@mui/types';
 
 interface SliderProps {
   track?: boolean;

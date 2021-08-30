@@ -3,7 +3,7 @@ import { IconButtonProps, InternalStandardProps as StandardProps, Theme } from '
 import { ChipProps, ChipTypeMap } from '@mui/material/Chip';
 import { PopperProps } from '@mui/material/Popper';
 import { SxProps } from '@mui/system';
-import { OverridableStringUnion } from '@material-ui/types';
+import { OverridableStringUnion } from '@mui/types';
 import {
   useAutocomplete,
   AutocompleteChangeDetails,

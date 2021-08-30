@@ -1,6 +1,6 @@
 import { useTheme, makeStyles, styled } from '@mui/styles';
 import Grid from '@mui/material/Grid';
-import { expectType } from '@material-ui/types';
+import { expectType } from '@mui/types';
 
 declare module '@mui/styles' {
   interface DefaultTheme {

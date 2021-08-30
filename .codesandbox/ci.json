@@ -26,7 +26,7 @@
     "@mui/styled-engine-sc": "packages/material-ui-styled-engine-sc/build",
     "@mui/system": "packages/material-ui-system/build",
     "@mui/private-theming": "packages/material-ui-private-theming/build",
-    "@material-ui/types": "packages/material-ui-types/build",
+    "@mui/types": "packages/material-ui-types/build",
     "@mui/utils": "packages/material-ui-utils/build",
     "@mui/core": "packages/material-ui-unstyled/build"
   },

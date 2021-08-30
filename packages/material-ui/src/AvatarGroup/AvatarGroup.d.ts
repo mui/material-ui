@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { InternalStandardProps as StandardProps, Theme } from '@mui/material';
-import { OverridableStringUnion } from '@material-ui/types';
+import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
 import { AvatarGroupClasses } from './avatarGroupClasses';
 

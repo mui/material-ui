@@ -1,5 +1,5 @@
 import { useAutocomplete, FilterOptionsState } from '@mui/core/AutocompleteUnstyled';
-import { expectType } from '@material-ui/types';
+import { expectType } from '@mui/types';
 
 interface Person {
   id: string;

@@ -77,7 +77,7 @@ import { Link as ReactRouterLink, LinkProps as ReactRouterLinkProps } from 'reac
 import { ButtonBaseActions } from '@mui/material/ButtonBase';
 import { IconButtonProps } from '@mui/material/IconButton';
 import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
-import { expectType } from '@material-ui/types';
+import { expectType } from '@mui/types';
 
 const log = console.log;
 const FakeIcon = () => <div>ICON</div>;

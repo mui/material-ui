@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { DistributiveOmit, OverridableStringUnion } from '@material-ui/types';
+import { DistributiveOmit, OverridableStringUnion } from '@mui/types';
 import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
 import { PropTypes, Theme } from '..';
 import { PaperProps } from '../Paper';

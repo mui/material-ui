@@ -1,4 +1,4 @@
-import { DistributiveOmit, Overwrite } from '@material-ui/types';
+import { DistributiveOmit, Overwrite } from '@mui/types';
 import {
   CreateCSSProperties,
   StyledComponentProps,

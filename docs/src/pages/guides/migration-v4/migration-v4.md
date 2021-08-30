@@ -2299,13 +2299,13 @@ As the core components use emotion as their style engine, the props used by emot
   }
   ```
 
-### `@material-ui/types`
+### `@mui/types`
 
-- Rename the exported `Omit` type in `@material-ui/types`. The module is now called `DistributiveOmit`. The change removes the confusion with the built-in `Omit` helper introduced in TypeScript v3.5. The built-in `Omit`, while similar, is non-distributive. This leads to differences when applied to union types. [See this StackOverflow answer for further details](https://stackoverflow.com/a/57103940/1009797).
+- Rename the exported `Omit` type in `@mui/types`. The module is now called `DistributiveOmit`. The change removes the confusion with the built-in `Omit` helper introduced in TypeScript v3.5. The built-in `Omit`, while similar, is non-distributive. This leads to differences when applied to union types. [See this StackOverflow answer for further details](https://stackoverflow.com/a/57103940/1009797).
 
   ```diff
-  -import { Omit } from '@material-ui/types';
-  +import { DistributiveOmit } from '@material-ui/types';
+  -import { Omit } from '@mui/types';
+  +import { DistributiveOmit } from '@mui/types';
   ```
 
 ## Migrate theme's `styleOverrides` to emotion

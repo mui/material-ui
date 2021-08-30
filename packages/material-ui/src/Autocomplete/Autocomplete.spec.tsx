@@ -3,7 +3,7 @@ import Autocomplete, {
   AutocompleteProps,
   AutocompleteRenderGetTagProps,
 } from '@mui/material/Autocomplete';
-import { expectType } from '@material-ui/types';
+import { expectType } from '@mui/types';
 
 interface MyAutocompleteProps<
   T,

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverridableStringUnion } from '@material-ui/types';
+import { OverridableStringUnion } from '@mui/types';
 import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
 import { SxProps } from '@mui/system';
 import { Theme } from '../styles';

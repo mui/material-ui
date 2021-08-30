@@ -1,4 +1,4 @@
-import { Omit } from '@material-ui/types';
+import { Omit } from '@mui/types';
 
 // Omit<{}, ''>
 // Extract<Omit<{}, ''>, ''>

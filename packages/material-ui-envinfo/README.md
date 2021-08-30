@@ -30,7 +30,7 @@ $ npx @material-ui/envinfo
     @mui/styled-engine-sc:  5.0.0-alpha.18
     @mui/styles:  5.0.0-alpha.18
     @mui/system:  5.0.0-alpha.18
-    @material-ui/types:  5.1.0
+    @mui/types:  5.1.0
     @mui/core:  5.0.0-alpha.18
     @mui/utils:  5.0.0-alpha.18
     @types/react: ^17.0.0 => 17.0.0

@@ -39,7 +39,7 @@
     "@mui/styled-engine-sc": "5.0.0-beta.5",
     "@mui/styles": "5.0.0-beta.5",
     "@mui/system": "5.0.0-beta.5",
-    "@material-ui/types": "6.0.2",
+    "@mui/types": "6.0.2",
     "@mui/core": "5.0.0-alpha.44",
     "@trendmicro/react-interpolate": "^0.5.5",
     "@types/autosuggest-highlight": "^3.1.1",
