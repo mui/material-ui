@@ -5,7 +5,7 @@ import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
-import { docs } from './backers.md?@material-ui/markdown';
+import { docs } from './backers.md?@mui/markdown';
 
 const useStyles = makeStyles(
   (theme) => ({

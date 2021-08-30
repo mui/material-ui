@@ -11,7 +11,7 @@ declare module 'docs/src/modules/components/HighlightedCode' {
     code: string;
     /**
      * short identifier of the code language
-     * see @material-ui/markdown/prism for possible languages
+     * see @mui/markdown/prism for possible languages
      */
     language: string;
     /**

@@ -4,7 +4,7 @@ import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import { renderInline as renderInlineMarkdown } from '@material-ui/markdown';
+import { renderInline as renderInlineMarkdown } from '@mui/markdown';
 
 const ErrorMessageSection = styled('div')({
   // reset display: block from Demo
