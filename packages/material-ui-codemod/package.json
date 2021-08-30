@@ -1,5 +1,5 @@
 {
-  "name": "@material-ui/codemod",
+  "name": "@mui/codemod",
   "version": "5.0.0-beta.4",
   "bin": "./codemod.js",
   "private": false,

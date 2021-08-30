@@ -4,7 +4,7 @@ const path = require('path');
 
 const isRunningOnWindows = process.platform === 'win32';
 
-describe('@material-ui/envinfo', () => {
+describe('@mui/envinfo', () => {
   const packagePath = __dirname;
   before(function beforeHook() {
     // only run in node
@@ -50,7 +50,7 @@ describe('@material-ui/envinfo', () => {
     expect(envinfo).to.have.nested.property('Browsers');
     expect(envinfo).to.have.nested.property('npmPackages.@emotion/react');
     expect(envinfo).to.have.nested.property('npmPackages.@emotion/styled');
-    // Non-exhaustive list of `@material-ui/*` packages
+    // Non-exhaustive list of `@mui/*` packages
     expect(envinfo).to.have.nested.property('npmPackages.@mui/material');
     expect(envinfo).to.have.nested.property('npmPackages.@mui/lab');
     expect(envinfo).to.have.nested.property('npmPackages.react');

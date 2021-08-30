@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataGrid, GridCellParams, GridColDef } from '@material-ui/data-grid';
+import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid';
 import { debounce } from '@mui/material/utils';
 import { alpha } from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';

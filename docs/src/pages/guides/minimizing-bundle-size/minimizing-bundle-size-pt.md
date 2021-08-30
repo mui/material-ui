@@ -60,7 +60,7 @@ import TabIndicator from '@mui/material/Tabs/TabIndicator';
 //                                               ^^^^^^^^^^^^ 3° nível
 ```
 
-Se você estiver usando `eslint` você pode capturar está problemática de importações com a regra [`no-restricted-imports`](https://eslint.org/docs/rules/no-restricted-imports). A configuração `.eslintrc` a seguir irá capturar as problemáticas das importações dos pacotes `@material-ui`:
+Se você estiver usando `eslint` você pode capturar está problemática de importações com a regra [`no-restricted-imports`](https://eslint.org/docs/rules/no-restricted-imports). A configuração `.eslintrc` a seguir irá capturar as problemáticas das importações dos pacotes `@mui`:
 
 ```json
 {
@@ -68,7 +68,7 @@ Se você estiver usando `eslint` você pode capturar está problemática de impo
     "no-restricted-imports": [
       "error",
       {
-        "patterns": ["@material-ui/*/*/*", "!@mui/material/test-utils/*"]
+        "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
       }
     ]
   }
@@ -184,7 +184,7 @@ Desfrute do tempo de inicialização significativamente mais rápido.
 
 #### 2. Converta todas as suas importações
 
-Finalmente, você pode converter sua base de código existente com esse [codemod top-level-imports](https://www.npmjs.com/package/@material-ui/codemod#top-level-imports). Ele executará as seguintes alterações:
+Finalmente, você pode converter sua base de código existente com esse [codemod top-level-imports](https://www.npmjs.com/package/@mui/codemod#top-level-imports). Ele executará as seguintes alterações:
 
 ```diff
 -import Button from '@mui/material/Button';

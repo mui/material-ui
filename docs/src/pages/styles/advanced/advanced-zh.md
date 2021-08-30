@@ -376,7 +376,7 @@ function render() {
 
 ### Gatsby
 
-这个 [官方的 Gatsby 插件](https://github.com/hupe1980/gatsby-plugin-material-ui)，可以利用它来实现 `@material-ui/style` 的服务器端渲染。 请参考插件页面的设置和使用说明。
+这个 [官方的 Gatsby 插件](https://github.com/hupe1980/gatsby-plugin-material-ui)，可以利用它来实现 `@mui/style` 的服务器端渲染。 请参考插件页面的设置和使用说明。
 
 <!-- #default-branch-switch -->
 

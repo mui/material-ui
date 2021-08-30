@@ -1,4 +1,4 @@
-# @material-ui/envinfo
+# @mui/envinfo
 
 Prints information about the current environment relevant to Material-UI packages to the console.
 Please use this package if you report [issues to Material-UI](https://github.com/mui-org/material-ui/issues).
@@ -6,7 +6,7 @@ Please use this package if you report [issues to Material-UI](https://github.com
 ## Usage
 
 ```bash
-$ npx @material-ui/envinfo
+$ npx @mui/envinfo
 
   System:
     OS: Linux 5.4 Ubuntu 20.04.1 LTS (Focal Fossa)
@@ -20,10 +20,10 @@ $ npx @material-ui/envinfo
   npmPackages:
     @emotion/react: ^11.0.0 => 11.1.1
     @emotion/styled: ^11.0.0 => 11.0.0
-    @material-ui/codemod:  5.0.0-alpha.17
+    @mui/codemod:  5.0.0-alpha.17
     @mui/material:  5.0.0-alpha.18
     @mui/docs:  5.0.0-alpha.1
-    @material-ui/envinfo:  1.0.0
+    @mui/envinfo:  1.0.0
     @mui/icons-material:  5.0.0-alpha.15
     @mui/lab:  5.0.0-alpha.18
     @mui/styled-engine:  5.0.0-alpha.18

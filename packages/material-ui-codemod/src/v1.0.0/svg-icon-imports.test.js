@@ -12,7 +12,7 @@ function read(fileName) {
   return readFile(path.join(__dirname, fileName));
 }
 
-describe('@material-ui/codemod', () => {
+describe('@mui/codemod', () => {
   describe('v1.0.0', () => {
     describe('svg-icon-imports', () => {
       it('update svg-icon imports', () => {

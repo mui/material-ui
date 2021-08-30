@@ -78,7 +78,7 @@ function addTypeDeps(deps: Record<string, string>): void {
   const packagesWithDTPackage = Object.keys(deps)
     .filter((name) => packagesWithBundledTypes.indexOf(name) === -1)
     // All the Material-UI packages come with bundled types
-    .filter((name) => name.indexOf('@material-ui/') !== 0);
+    .filter((name) => name.indexOf('@mui/') !== 0);
 
   packagesWithDTPackage.forEach((name) => {
     let resolvedName = name;
@@ -108,7 +108,7 @@ function includePeerDependencies(
     newDeps['@mui/material'] = versions['@mui/material'];
   }
 
-  if (newDeps['@material-ui/data-grid']) {
+  if (newDeps['@mui/x-data-grid']) {
     newDeps['@mui/material'] = versions['@mui/material'];
     newDeps['@mui/styles'] = versions['@mui/styles'];
   }
@@ -135,7 +135,7 @@ function getMuiPackageVersion(packageName: string, commitRef?: string): string {
     return 'next';
   }
   const shortSha = commitRef.slice(0, 8);
-  return `https://pkg.csb.dev/mui-org/material-ui/commit/${shortSha}/@material-ui/${packageName}`;
+  return `https://pkg.csb.dev/mui-org/material-ui/commit/${shortSha}/@mui/${packageName}`;
 }
 
 /**
@@ -148,7 +148,7 @@ export function getDependencies(
   options: {
     codeLanguage?: 'JS' | 'TS';
     /**
-     * If specified use `@material-ui/*` packages from a specific commit.
+     * If specified use `@mui/*` packages from a specific commit.
      */
     muiCommitRef?: string;
   } = {},
@@ -196,7 +196,7 @@ export function getDependencies(
     }
 
     // e.g date-fns
-    const dateAdapterMatch = m[2].match(/^@material-ui\/lab\/(Adapter.*)/);
+    const dateAdapterMatch = m[2].match(/^@mui\/lab\/(Adapter.*)/);
     if (dateAdapterMatch !== null) {
       const packageName = dateAdapterPackageMapping[dateAdapterMatch[1]];
       if (packageName === undefined) {

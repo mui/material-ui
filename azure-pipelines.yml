@@ -70,8 +70,8 @@ jobs:
         displayName: Cache node_modules/.cache
 
       - script: |
-          yarn lerna run --ignore @mui/icons-material --parallel --scope "@material-ui/*" build
-        displayName: 'build @material-ui packages'
+          yarn lerna run --ignore @mui/icons-material --parallel --scope "@mui/*" build
+        displayName: 'build @mui packages'
 
       - script: |
           cd packages/material-ui/build

@@ -79,7 +79,7 @@ async function run(context) {
       // clean coyp
       try {
         await rmRecursiveForce(
-          new URL(`./node_modules/@material-ui/${muiPackageName}/`, fixtureUrl),
+          new URL(`./node_modules/@mui/${muiPackageName}/`, fixtureUrl),
         );
       } catch (error) {
         // already exists
@@ -89,7 +89,7 @@ async function run(context) {
           `./packages/material-ui${muiPackageName === 'core' ? '' : `-${muiPackageName}`}/build/`,
           workspaceRoot,
         ),
-        new URL(`./node_modules/@material-ui/${muiPackageName}/`, fixtureUrl),
+        new URL(`./node_modules/@mui/${muiPackageName}/`, fixtureUrl),
       );
     }),
   );

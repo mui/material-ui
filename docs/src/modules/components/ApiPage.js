@@ -209,7 +209,7 @@ function ApiDocs(props) {
   const source = filename
     .replace(
       /\/packages\/material-ui(-(.+?))?\/src/,
-      (match, dash, pkg) => `@material-ui/${pkg || 'core'}`,
+      (match, dash, pkg) => `@mui/${pkg || 'core'}`,
     )
     // convert things like `/Table/Table.js` to ``
     .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');

@@ -422,7 +422,7 @@ jobs:
       - install_js
       - run:
           name: Build packages for fixtures
-          command: yarn lerna run --scope "@material-ui/*" build
+          command: yarn lerna run --scope "@mui/*" build
       - persist_to_workspace:
           root: packages
           paths:

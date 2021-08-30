@@ -116,7 +116,7 @@ We have prepared these codemods to ease your migration experience.
 This codemod contains most of the transformers that are useful for migration. (**This codemod should be applied only once per folder**)
 
 ```sh
-npx @material-ui/codemod@next v5.0.0/preset-safe <path>
+npx @mui/codemod@next v5.0.0/preset-safe <path>
 ```
 
 > If you want to run the transformers one by one, check out [preset-safe codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#-preset-safe) for more details.
@@ -142,7 +142,7 @@ createMuiTheme({
 However, if you want to keep `variant="standard"` to you components, run this codemod or configure theme default props.
 
 ```sh
-npx @material-ui/codemod@next v5.0.0/variant-prop <path>
+npx @mui/codemod@next v5.0.0/variant-prop <path>
 ```
 
 For more details, checkout [variant-prop codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#variant-prop).
@@ -168,7 +168,7 @@ createMuiTheme({
 However, if you want to keep `variant="hover"` to you components, run this codemod or configure theme default props.
 
 ```sh
-npx @material-ui/codemod@next v5.0.0/link-underline-hover <path>
+npx @mui/codemod@next v5.0.0/link-underline-hover <path>
 ```
 
 For more details, checkout [link-underline-hover codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#link-underline-hover).
@@ -2385,7 +2385,7 @@ We recommend two options.
 We provide [a codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#jss-to-styled) to help migrate JSS styles to `styled` API, but this approach **increases the CSS specificity**.
 
 ```sh
-npx @material-ui/codemod@next v5.0.0/jss-to-styled <path>
+npx @mui/codemod@next v5.0.0/jss-to-styled <path>
 ```
 
 **Example transformation**:
@@ -2663,7 +2663,7 @@ You should replace the import, [more details about this error](https://github.co
 You can use this codemod (**recommended**) to fix all the import in your project:
 
 ```sh
-npx @material-ui/codemod@next v5.0.0/optimal-imports <path>
+npx @mui/codemod@next v5.0.0/optimal-imports <path>
 ```
 
 or fix it manually like this:

@@ -60,7 +60,7 @@ import TabIndicator from '@mui/material/Tabs/TabIndicator';
 //                                               ^^^^^^^^^^^^ 第三级
 ```
 
-如果您正在使用 `eslint`，您可以通过 [`no-restricted-imports` 规则](https://eslint.org/docs/rules/no-restricted-imports)拦截有问题的导入。 以下的 `.eslintrc` 配置将突出一些有问题的从 `@material-ui` 包的导入:
+如果您正在使用 `eslint`，您可以通过 [`no-restricted-imports` 规则](https://eslint.org/docs/rules/no-restricted-imports)拦截有问题的导入。 以下的 `.eslintrc` 配置将突出一些有问题的从 `@mui` 包的导入:
 
 ```json
 {
@@ -68,7 +68,7 @@ import TabIndicator from '@mui/material/Tabs/TabIndicator';
     "no-restricted-imports": [
       "error",
       {
-        "patterns": ["@material-ui/*/*/*", "!@mui/material/test-utils/*"]
+        "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
       }
     ]
   }
@@ -184,7 +184,7 @@ module.exports = override(useBabelRc());
 
 #### 2. 转换您的所有模块导入方式
 
-最后，你可以使用这个 [top-level-imports codemod](https://www.npmjs.com/package/@material-ui/codemod#top-level-imports) 将现有的代码库转换为此选项。 它将执行以下的差异：
+最后，你可以使用这个 [top-level-imports codemod](https://www.npmjs.com/package/@mui/codemod#top-level-imports) 将现有的代码库转换为此选项。 它将执行以下的差异：
 
 ```diff
 -import Button from '@mui/material/Button';
