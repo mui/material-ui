@@ -1,7 +1,11 @@
 import * as React from 'react';
+import { XGrid, GridColDef, GridCellParams } from '@material-ui/x-grid';
+import { useDemoData } from '@material-ui/x-grid-data-generator';
+import { createTheme, ThemeProvider, Theme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
@@ -9,8 +13,81 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import SvgTwinkle from 'docs/src/icons/SvgTwinkle';
 import SvgMaterialDesign from 'docs/src/icons/SvgMaterialDesign';
+import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
+import ProgressBar from 'docs/src/components/x-grid/ProgressBar';
+import EditProgress from 'docs/src/components/x-grid/EditProgress';
+import Status from 'docs/src/components/x-grid/Status';
+import EditStatus from 'docs/src/components/x-grid/EditStatus';
+
+const lightTheme = createTheme();
+const darkTheme = createTheme({ palette: { mode: 'dark' } });
 
 export default function CoreTheming() {
+  const [customized, setCustomized] = React.useState(true);
+  const { loading, data } = useDemoData({
+    dataSet: 'Commodity',
+    rowLength: 1000,
+    maxColumns: 40,
+    editable: true,
+  });
+  const baseFilledQuantityCol = data.columns.find(({ field }) => field === 'filledQuantity');
+  const baseStatusCol = data.columns.find(({ field }) => field === 'status');
+  function getColumns() {
+    const columns: Array<GridColDef> = [
+      {
+        field: 'desk',
+        headerName: 'desk',
+        width: customized ? 72 : 100,
+        sortable: false,
+        editable: true,
+      },
+      {
+        field: 'commodity',
+        headerName: 'Commodity',
+        width: customized ? 132 : 160,
+        editable: true,
+      },
+      {
+        field: 'traderName',
+        headerName: 'Trader Name',
+        width: customized ? 148 : 172,
+        editable: true,
+      },
+      {
+        field: 'filledQuantity',
+        headerName: 'Filled',
+        ...baseFilledQuantityCol,
+        width: customized ? 130 : 150,
+        sortable: false,
+        editable: true,
+        ...(customized && {
+          renderCell: (params: GridCellParams) => {
+            return <ProgressBar value={Number(params.value)!} />;
+          },
+          renderEditCell: (params: GridCellParams) => {
+            return <EditProgress {...params} />;
+          },
+        }),
+      },
+      {
+        field: 'status',
+        headerName: 'Status',
+        ...baseStatusCol,
+        width: 150,
+        sortable: false,
+        editable: true,
+        ...(customized && {
+          renderCell: (params: GridCellParams) => {
+            return <Status status={(params.value || '').toString()} />;
+          },
+          renderEditCell: (params: GridCellParams) => {
+            return <EditStatus {...params} />;
+          },
+        }),
+      },
+    ];
+    return columns;
+  }
   return (
     <Section bg="comfort">
       <Grid container spacing={2}>
@@ -27,14 +104,14 @@ export default function CoreTheming() {
             />
           </Box>
           <Group sx={{ mt: 4 }}>
-            <Highlighter disableBorder selected>
+            <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
               <Item
                 icon={<SvgTwinkle />}
                 title="Custom Theme"
                 description="Make the components look your own and reflect your branding and personality."
               />
             </Highlighter>
-            <Highlighter disableBorder>
+            <Highlighter disableBorder selected={!customized} onClick={() => setCustomized(false)}>
               <Item
                 icon={<SvgMaterialDesign />}
                 title="Material Design"
@@ -44,7 +121,41 @@ export default function CoreTheming() {
           </Group>
         </Grid>
         <Grid item xs={12} md={6}>
-          <div />
+          {customized ? (
+            <Paper variant="outlined" sx={{ height: 418 }}>
+              <XGridGlobalStyles />
+              <XGrid
+                {...data}
+                columns={getColumns()}
+                disableSelectionOnClick
+                checkboxSelection
+                loading={loading}
+                pagination
+                density="compact"
+              />
+            </Paper>
+          ) : (
+            <ThemeProvider
+              theme={(globalTheme: Theme) => {
+                if (globalTheme.palette.mode === 'dark') {
+                  return darkTheme;
+                }
+                return lightTheme;
+              }}
+            >
+              <Paper elevation={0} sx={{ height: 418 }}>
+                <XGrid
+                  {...data}
+                  columns={getColumns()}
+                  disableSelectionOnClick
+                  checkboxSelection
+                  loading={loading}
+                  pagination
+                  density="compact"
+                />
+              </Paper>
+            </ThemeProvider>
+          )}
         </Grid>
       </Grid>
     </Section>

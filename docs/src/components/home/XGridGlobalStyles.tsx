@@ -1,0 +1,118 @@
+import * as React from 'react';
+import { useTheme } from '@material-ui/core/styles';
+import GlobalStyles from '@material-ui/core/GlobalStyles';
+
+export default function XGridGlobalStyles() {
+  const theme = useTheme();
+  return (
+    <GlobalStyles
+      styles={{
+        body: {
+          '& .MuiDataGrid-root': {
+            border: 'none',
+            bgcolor: 'background.paper',
+            fontSize: '0.75rem',
+            borderRadius: '0px',
+            '& .MuiCheckbox-root': {
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary[300]
+                  : theme.palette.grey[600],
+              padding: theme.spacing(0.5),
+              '& > svg': {
+                fontSize: '1.25rem',
+              },
+            },
+            '& .MuiIconButton-root:not(.Mui-disabled)': {
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primary[300]
+                  : theme.palette.primary.main,
+              opacity: 1,
+            },
+            // table head elements
+            '& .MuiDataGrid-menuIcon svg': {
+              fontSize: '1rem',
+            },
+            '& .MuiDataGrid-columnsContainer': {
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[500]
+                  : theme.palette.grey[200],
+              bgcolor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#fff',
+            },
+            '& .MuiDataGrid-columnHeaderTitleContainer': {
+              padding: 0,
+            },
+            '& .MuiDataGrid-columnSeparator': {
+              display: 'none',
+            },
+            '& .MuiDataGrid-columnHeaderTitle': {
+              flexGrow: 1,
+            },
+            // -------------------------------
+            // table body elements
+            '& .MuiDataGrid-viewport': {
+              bgcolor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[900]
+                  : theme.palette.grey[50],
+            },
+            '& .MuiDataGrid-cell': {
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[700]
+                  : theme.palette.grey[200],
+            },
+            '& .MuiDataGrid-editInputCell': {
+              fontSize: '0.75rem',
+              '& > input': {
+                padding: theme.spacing(0, 1),
+              },
+            },
+            '& .MuiDataGrid-cell--editing': {
+              '& .MuiSelect-root': {
+                '& .MuiListItemIcon-root': {
+                  display: 'none',
+                },
+                '& .MuiTypography-root': {
+                  fontSize: '0.75rem',
+                },
+              },
+            },
+            '& .MuiTablePagination-root': {
+              marginRight: theme.spacing(1),
+              '& .MuiIconButton-root': {
+                '&:not([disabled])': {
+                  color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary.main,
+                },
+                borderRadius: theme.shape.borderRadius,
+                padding: theme.spacing(0.5),
+                border: '1px solid',
+                bgcolor:
+                  theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : 'transparent',
+                borderColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[600]
+                    : theme.palette.grey[200],
+                '&:last-of-type': {
+                  marginLeft: theme.spacing(1),
+                },
+                '& > svg': {
+                  fontSize: '1.25rem',
+                },
+              },
+            },
+          },
+          '& .MuiDataGrid-gridMenuList': {
+            boxShadow: '0px 4px 20px rgb(61 71 82 / 25%)',
+            borderRadius: '10px',
+            '& .MuiMenuItem-root': {
+              fontSize: '0.75rem',
+            },
+          },
+        },
+      }}
+    />
+  );
+}
