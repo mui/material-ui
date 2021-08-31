@@ -22,6 +22,9 @@ const Root = styled('ul')(({ theme }) => ({
   '& li': {
     margin: theme.spacing(0.5),
   },
+  '& .MuiChip-root .MuiChip-iconSmall': {
+    marginLeft: 4,
+  },
 }));
 
 export default function ComponentLinkHeader(props) {
@@ -75,7 +78,6 @@ export default function ComponentLinkHeader(props) {
             data-ga-event-label="WAI-ARIA"
             data-ga-event-split="0.1"
             label="WAI-ARIA"
-            sx={{ pl: 0.5 }}
           />
         </li>
       ) : null}
@@ -95,7 +97,6 @@ export default function ComponentLinkHeader(props) {
             data-ga-event-label={t('bundleSize')}
             data-ga-event-split="0.1"
             label={t('bundleSize')}
-            sx={{ pl: 0.5 }}
           />
         </Tooltip>
       </li>
@@ -115,7 +116,6 @@ export default function ComponentLinkHeader(props) {
             data-ga-event-label="Material Design"
             data-ga-event-split="0.1"
             label="Material Design"
-            sx={{ pl: 0.5 }}
           />
         </li>
       ) : null}
@@ -136,7 +136,6 @@ export default function ComponentLinkHeader(props) {
               data-ga-event-label="Figma"
               data-ga-event-split="0.1"
               label="Figma"
-              sx={{ pl: 0.5 }}
             />
           </li>
           <li>
@@ -154,7 +153,6 @@ export default function ComponentLinkHeader(props) {
               data-ga-event-label="Adobe XD"
               data-ga-event-split="0.1"
               label="Adobe"
-              sx={{ pl: 0.5 }}
             />
           </li>
           <li>
@@ -172,7 +170,6 @@ export default function ComponentLinkHeader(props) {
               data-ga-event-label="Sketch"
               data-ga-event-split="0.1"
               label="Sketch"
-              sx={{ pl: 0.5 }}
             />
           </li>
         </React.Fragment>
