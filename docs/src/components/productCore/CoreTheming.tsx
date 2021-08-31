@@ -93,6 +93,7 @@ export default function CoreTheming() {
             <Frame.Demo
               sx={{
                 py: 2,
+                px: 2,
                 flexGrow: 1,
                 display: 'flex',
                 justifyContent: 'center',
