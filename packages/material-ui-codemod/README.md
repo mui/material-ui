@@ -1072,7 +1072,6 @@ You can find more details about this breaking change in [the migration guide](ht
 
 Replace every occurrence of `material-ui` related package with the the new package name (listed below) except these packages (`@material-ui/pickers`, `@material-ui/data-grid`, `@material-ui/x-grid` & `@material-ui/x-grid-data-generator`)
 
-
 **Material design components**
 
 ```diff
@@ -1088,24 +1087,28 @@ Replace every occurrence of `material-ui` related package with the the new packa
 ```
 
 **System package**
+
 ```diff
 - import { SxProps } from '@material-ui/system';
 + import { SxProps } from '@mui/system';
 ```
 
 **Utilities package**
+
 ```diff
 - import { deepmerge } from '@material-ui/utils';
 + import { deepmerge } from '@mui/utils';
 ```
 
 **Lab**
+
 ```diff
 - import Mansory from '@material-ui/lab/Mansory';
 + import Mansory from '@mui/lab/Mansory';
 ```
 
 **Dependencies**
+
 ```diff
 // package.json
 - "@material-ui/core": "next",
