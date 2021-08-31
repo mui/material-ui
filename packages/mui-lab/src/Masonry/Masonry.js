@@ -9,7 +9,7 @@ import {
 } from '@mui/system';
 import { deepmerge, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/core';
-import { styled, useThemeProps } from '@mui/material/styles';
+import { styled, useThemeProps, useTheme } from '@mui/material/styles';
 import { getMasonryUtilityClass } from './masonryClasses';
 
 // dummy resize observer used to prevent crash for old browsers that do not support ResizeObserver API(e.g., 11IE)
@@ -26,6 +26,7 @@ const useUtilityClasses = (ownerState) => {
 
   const slots = {
     root: ['root'],
+    break: ['break'],
   };
 
   return composeClasses(slots, getMasonryUtilityClass, classes);
@@ -40,6 +41,28 @@ const configureChildrenOrder = (columns) => {
   return childrenOrder;
 };
 
+const computeBreakpointsBase = (breakpoints, prop) => {
+  const base = {};
+  Object.keys(breakpoints.values).forEach((breakpoint) => {
+    if (prop[breakpoint] != null) {
+      base[breakpoint] = true;
+    }
+  });
+  return base;
+};
+
+const computeNumberOfLineBreaks = (columnValues) => {
+  let result = 0;
+  if (Array.isArray(columnValues)) {
+    result = Math.max(...columnValues);
+  } else if (typeof columnValues === 'object') {
+    result = Math.max(...Object.values(columnValues));
+  } else {
+    result = columnValues;
+  }
+  return result > 0 ? result - 1 : 0;
+};
+
 export const style = ({ ownerState, theme }) => {
   let styles = {
     display: 'flex',
@@ -51,14 +74,11 @@ export const style = ({ ownerState, theme }) => {
     },
   };
 
-  const base = {};
-  Object.keys(theme.breakpoints.values).forEach((breakpoint) => {
-    if (ownerState.spacing[breakpoint] != null) {
-      base[breakpoint] = true;
-    }
+  const spacingValues = resolveBreakpointValues({
+    values: ownerState.spacing,
+    base: computeBreakpointsBase(theme.breakpoints, ownerState.spacing),
   });
 
-  const spacingValues = resolveBreakpointValues({ values: ownerState.spacing, base });
   const transformer = createUnarySpacing(theme);
   const spacingStyleFromPropValue = (propValue) => {
     const spacing = Number(getValue(transformer, propValue).replace('px', ''));
@@ -78,7 +98,11 @@ export const style = ({ ownerState, theme }) => {
     handleBreakpoints({ theme }, spacingValues, spacingStyleFromPropValue),
   );
 
-  const columnValues = resolveBreakpointValues({ values: ownerState.columns, base });
+  const columnValues = resolveBreakpointValues({
+    values: ownerState.columns,
+    base: computeBreakpointsBase(theme.breakpoints, ownerState.columns),
+  });
+
   const columnStyleFromPropValue = (propValue) => {
     return {
       ...configureChildrenOrder(propValue),
@@ -125,7 +149,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       const numOfRows = [];
       let skip = false;
       Array.from(masonryRef.current.children).forEach((child) => {
-        if (child.className.includes('line-break') || skip) {
+        if (child.className.includes('MuiMasonry-break') || skip) {
           return;
         }
         const computedStyle = window.getComputedStyle(child);
@@ -161,6 +185,11 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
   }, []);
 
   const handleRef = useForkRef(ref, masonryRef);
+  const theme = useTheme();
+  const columnValues = resolveBreakpointValues({
+    values: columns,
+    base: computeBreakpointsBase(theme.breakpoints, columns),
+  });
 
   return (
     <MasonryRoot
@@ -171,18 +200,9 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       {...other}
     >
       {children}
-      {new Array(
-        columns - 1 ||
-          columns.xl - 1 ||
-          columns.lg - 1 ||
-          columns.md - 1 ||
-          columns.sm - 1 ||
-          columns.xs - 1,
-      )
-        .fill('')
-        .map((_, index) => (
-          <span key={index} className="line-break" style={lineBreakStyle} />
-        ))}
+      {new Array(computeNumberOfLineBreaks(columnValues)).fill('').map((_, index) => (
+        <span key={index} className={classes.break} style={lineBreakStyle} />
+      ))}
     </MasonryRoot>
   );
 });

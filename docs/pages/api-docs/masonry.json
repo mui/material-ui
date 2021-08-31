@@ -20,7 +20,7 @@
     "sx": { "type": { "name": "object" } }
   },
   "name": "Masonry",
-  "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiMasonry" },
+  "styles": { "classes": ["root", "break"], "globalClasses": {}, "name": "MuiMasonry" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-lab/src/Masonry/Masonry.js",
