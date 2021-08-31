@@ -8,7 +8,7 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
-import SvgTwinkle from 'docs/src/icons/SvgTwinkle';
+import AutoAwesomeRounded from '@material-ui/icons/AutoAwesomeRounded';
 import SvgMaterialDesign from 'docs/src/icons/SvgMaterialDesign';
 import Frame from 'docs/src/components/action/Frame';
 import PlayerCard from 'docs/src/components/showcase/PlayerCard';
@@ -74,7 +74,7 @@ export default function CoreTheming() {
           <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
             <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
               <Item
-                icon={<SvgTwinkle />}
+                icon={<AutoAwesomeRounded color="warning" />}
                 title="Custom Theme"
                 description="Theming allows you to use your brand's design tokens, easily making the components reflect its look and feel."
               />

@@ -8,8 +8,8 @@ import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
-import Highlighter from 'docs/src/components/action/Highlighter';
-import SvgTwinkle from 'docs/src/icons/SvgTwinkle';
+import Highlighter from 'docs/src/components/action/Highlighter'
+import AutoAwesomeRounded from '@material-ui/icons/AutoAwesomeRounded';
 import Frame from 'docs/src/components/action/Frame';
 import RealEstateCard from 'docs/src/components/showcase/RealEstateCard';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
@@ -171,21 +171,21 @@ export default function CoreStyling() {
           <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
             <Highlighter disableBorder {...getSelectedProps(0)} onClick={() => setIndex(0)}>
               <Item
-                icon={<SvgTwinkle />}
+                icon={<AutoAwesomeRounded color="warning" />}
                 title="Leverage the tokens from your theme"
                 description="Easily use the design tokens defined in your theme for any CSS property out there."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(1)} onClick={() => setIndex(1)}>
               <Item
-                icon={<SvgTwinkle />}
+                icon={<AutoAwesomeRounded color="warning" />}
                 title="No context switching"
                 description="The styling and component usage are both in the same place, right where you need them."
               />
             </Highlighter>
             <Highlighter disableBorder {...getSelectedProps(2)} onClick={() => setIndex(2)}>
               <Item
-                icon={<SvgTwinkle />}
+                icon={<AutoAwesomeRounded color="warning" />}
                 title="Responsive styles right inside system prop"
                 description="An elegant API for writing CSS media queries that match your theme breakpoints."
               />
