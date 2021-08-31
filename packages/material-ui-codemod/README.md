@@ -1070,11 +1070,18 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `mui-replace`
 
-Replaces all `@material-ui` related prefix with `@mui`
+Replace every occurrence of `@material-ui` prefix with the the new package scope `@mui`.
+
+**Material design components**
 
 ```diff
 - import Alert from '@material-ui/core/Alert';
 + import Alert from '@mui/material/Alert';
+```
+
+**JSS styles package**
+
+```diff
 - import { makeStyles } from '@material-ui/styles';
 + import { makeStyles } from '@mui/styles';
 - import { SxProps } from '@material-ui/system';

@@ -23,8 +23,8 @@ import { deepmerge } from '@mui/utils';
 import Edit from '@mui/icons-material/Edit';
 
 // lab
-import Mansory from '@mui/lab-material/Mansory';
-import { DatePicker } from '@mui/lab-material';
+import Mansory from '@mui/lab/Mansory';
+import { DatePicker } from '@mui/lab';
 
 // styled engine
 module.exports = override(
@@ -35,8 +35,12 @@ module.exports = override(
 // json
 const dependencies = {
   '@mui/material': 'next',
-  '@mui/lab-material': 'next',
+  '@mui/lab': 'next',
   '@mui/styled-engine-sc': 'next',
+  // whitelist packages below
+  '@material-ui/data-grid': '^4.0.0-alpha.36',
+  '@material-ui/x-grid': '^4.0.0-alpha.36',
+  '@material-ui/x-grid-data-generator': '^4.0.0-alpha.36',
 };
 const tsconfig = {
   paths: {
@@ -49,3 +53,11 @@ import { DistributiveOmit } from '@mui/types';
 
 // private-theming
 import { ThemeProvider as PrivateThemeProvider } from '@mui/private-theming';
+
+// Pickers does not change
+import { DatePicker } from '@material-ui/pickers';
+
+// DataGrid does not change
+import { DataGrid } from '@material-ui/data-grid';
+import { XGrid } from '@material-ui/x-grid';
+import { useDemoData } from '@material-ui/x-grid-data-generator';

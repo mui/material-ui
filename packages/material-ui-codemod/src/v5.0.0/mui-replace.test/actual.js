@@ -37,6 +37,10 @@ const dependencies = {
   '@material-ui/core': 'next',
   '@material-ui/lab': 'next',
   '@material-ui/styled-engine-sc': 'next',
+  // whitelist packages below
+  '@material-ui/data-grid': '^4.0.0-alpha.36',
+  '@material-ui/x-grid': '^4.0.0-alpha.36',
+  '@material-ui/x-grid-data-generator': '^4.0.0-alpha.36',
 };
 const tsconfig = {
   paths: {
@@ -49,3 +53,11 @@ import { DistributiveOmit } from '@material-ui/types';
 
 // private-theming
 import { ThemeProvider as PrivateThemeProvider } from '@material-ui/private-theming';
+
+// Pickers does not change
+import { DatePicker } from '@material-ui/pickers';
+
+// DataGrid does not change
+import { DataGrid } from '@material-ui/data-grid';
+import { XGrid } from '@material-ui/x-grid';
+import { useDemoData } from '@material-ui/x-grid-data-generator';
