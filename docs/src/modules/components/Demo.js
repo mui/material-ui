@@ -20,7 +20,7 @@ const DemoToolbarFallbackRoot = styled('div')(({ theme }) => {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'flex',
-      height: theme.spacing(6),
+      height: theme.spacing(8),
     },
   };
 });
