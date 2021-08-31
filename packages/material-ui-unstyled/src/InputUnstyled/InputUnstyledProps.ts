@@ -1,7 +1,7 @@
 import { OverrideProps } from '@material-ui/types';
 import React from 'react';
 import { FormControlUnstyledState } from '../FormControlUnstyled/FormControlContext';
-import { InputProps } from './useInput';
+import { UseInputProps } from './useInput';
 
 export interface InputOwnerState
   extends Omit<InputUnstyledProps, 'component' | 'components' | 'componentsProps'> {
@@ -9,7 +9,7 @@ export interface InputOwnerState
   focused: boolean;
 }
 
-export interface InputUnstyledOwnProps extends InputProps {
+export interface InputUnstyledOwnProps extends UseInputProps {
   'aria-describedby'?: string;
   'aria-label'?: string;
   'aria-labelledby'?: string;

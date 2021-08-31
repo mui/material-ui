@@ -15,7 +15,7 @@ export function isFilled(obj: HTMLInputElement | HTMLTextAreaElement, SSR = fals
   );
 }
 
-export interface InputProps {
+export interface UseInputProps {
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -46,7 +46,7 @@ export interface InputProps {
   value?: unknown;
 }
 
-export default function useInput(props: InputProps) {
+export default function useInput(props: UseInputProps) {
   const {
     defaultValue,
     disabled: disabledProp = false,
@@ -148,7 +148,7 @@ export default function useInput(props: InputProps) {
       if (element == null) {
         throw new MuiError(
           'Material-UI: Expected valid input target. ' +
-            'Did you use a custom `inputComponent` and forget to forward refs? ' +
+            'Did you use a custom `components.Input` and forget to forward refs? ' +
             'See https://material-ui.com/r/input-component-ref-interface for more info.',
         );
       }
