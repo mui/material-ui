@@ -42,11 +42,9 @@ export default function DiamondSponsors(props) {
 
   return (
     <Root>
-      <Box sx={{ mb: 2 }}>
-        <Typography variant="caption" color="primary.main" display="block">
-          {t('diamondSponsors')}
-        </Typography>
-      </Box>
+      <Typography variant="caption" color="primary.main" display="block" sx={{ mb: 2 }}>
+        {t('diamondSponsors')}
+      </Typography>
       <Grid container direction="column" alignItems="center" gap={1.5}>
         <Box
           component="a"
