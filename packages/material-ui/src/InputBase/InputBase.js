@@ -212,6 +212,16 @@ export const InputBaseComponent = styled('input', {
     }),
   };
 });
+
+const InputGlobalStyles = React.memo(() => (
+  <GlobalStyles
+    styles={{
+      '@keyframes mui-auto-fill': { from: { display: 'block' } },
+      '@keyframes mui-auto-fill-cancel': { from: { display: 'block' } },
+    }}
+  />
+));
+
 /**
  * `InputBase` contains as few styles as possible.
  * It aims to be a simple building block for creating an input.
@@ -483,12 +493,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   return (
     <React.Fragment>
-      <GlobalStyles
-        styles={{
-          '@keyframes mui-auto-fill': { from: {} },
-          '@keyframes mui-auto-fill-cancel': { from: {} },
-        }}
-      />
+      <InputGlobalStyles />
       <Root
         {...rootProps}
         {...(!isHostComponent(Root) && {
