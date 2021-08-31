@@ -65,10 +65,10 @@ export default function CoreTheming() {
               overline="Theming"
               title={
                 <Typography variant="h2">
-                  Choose the <GradientText>design</GradientText> you like the most
+                  Build <GradientText>your design system</GradientText> just as you want it to be
                 </Typography>
               }
-              description="Leverage the theming capabilities to easily make the components look how you want them to be. You can also quick start with Material Design."
+              description="Use the advanced theming feature to easily tailor the components to your needs. You can also quick start with Material Design."
             />
           </Box>
           <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
@@ -76,14 +76,14 @@ export default function CoreTheming() {
               <Item
                 icon={<SvgTwinkle />}
                 title="Custom Theme"
-                description="Make the components look your own and reflect your branding and personality."
+                description="Theming allows you to print any type of branding, creating unique look and feel to fully featured components."
               />
             </Highlighter>
             <Highlighter disableBorder selected={!customized} onClick={() => setCustomized(false)}>
               <Item
                 icon={<SvgMaterialDesign />}
                 title="Material Design"
-                description="Leverage the tried and test Google's Material Design to quick-strart you design system."
+                description="Every component comes with Google's tried and tested design system ready for use."
               />
             </Highlighter>
           </Group>
