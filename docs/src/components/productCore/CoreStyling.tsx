@@ -161,11 +161,11 @@ export default function CoreStyling() {
               overline="Styling"
               title={
                 <Typography variant="h2">
-                  Quickly design as you want it to be with{' '}
+                  Rapidly add and tweak any styles using{' '}
                   <GradientText>CSS utilities</GradientText>
                 </Typography>
               }
-              description="Want to customize the components down to the smallest detail? We provide built-in CSS utilities for rapid styling."
+              description="CSS utilities allow you to move faster and make for a smooth developer experience when styling any component."
             />
           </Box>
           <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
@@ -187,7 +187,7 @@ export default function CoreStyling() {
               <Item
                 icon={<SvgTwinkle />}
                 title="Responsive styles right inside system prop"
-                description="An elegant API for writing css media query that match your theme breakpoints."
+                description="An elegant API for writing CSS media queries that match your theme breakpoints."
               />
             </Highlighter>
           </Group>
