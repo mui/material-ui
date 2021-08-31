@@ -60,7 +60,7 @@ const Root = styled('div')(({ theme }) => ({
   },
   '& h1': {
     ...theme.typography.h3,
-    fontSize: '2.5rem',
+    fontSize: theme.typography.pxToRem(40),
     fontFamily: ['"PlusJakartaSans-ExtraBold"'].join(','),
     margin: '16px 0',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[50] : blueDark[900],
@@ -72,7 +72,7 @@ const Root = styled('div')(({ theme }) => ({
   },
   '& h2': {
     ...theme.typography.h5,
-    fontSize: '1.875',
+    fontSize: theme.typography.pxToRem(30),
     fontFamily: ['"PlusJakartaSans-ExtraBold"'].join(','),
     margin: '40px 0 10px',
     fontWeight: 600,
@@ -195,7 +195,7 @@ const Root = styled('div')(({ theme }) => ({
     padding: '10px 20px',
     margin: '20px 0',
     '& p': {
-      marginTop: '10px',
+      marginTop: 10,
       color: theme.palette.mode === 'dark' ? theme.palette.grey[50] : blueDark[800],
     },
   },
