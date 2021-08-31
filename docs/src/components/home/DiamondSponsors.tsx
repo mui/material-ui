@@ -39,7 +39,7 @@ export default function DiamondSponsors() {
           sx={{
             display: 'inline-block',
             mr: 1,
-            mt: 0.5,
+            mt: 0.2,
             borderRadius: 1,
             width: 12,
             height: 12,
