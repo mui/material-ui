@@ -67,7 +67,8 @@ const Root = styled('div')(({ theme }) => ({
     fontWeight: 800,
   },
   '& .description': {
-    ...theme.typography.h5,
+    ...theme.typography.h6,
+    fontWeight: 400,
     margin: '0 0 40px',
   },
   '& h2': {

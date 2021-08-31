@@ -7,9 +7,9 @@ const StyledContainer = styled(Container)(({ theme }) => {
     paddingTop: 80 + 20,
     [theme.breakpoints.up('md')]: {
       // We're mostly hosting text content so max-width by px does not make sense considering font-size is system-adjustable.
-      // 95ch ≈ 912px (theme.breakpoints.values.md) using 16px IBM Plex Sans
+      // 94ch ≈ 902px (theme.breakpoints.values.md) using 16px IBM Plex Sans
       // TODO Does it make sense to create breakpoints based on `ch`?
-      maxWidth: '95ch',
+      maxWidth: '94ch',
     },
     [theme.breakpoints.up('lg')]: {
       paddingLeft: theme.spacing(8),
