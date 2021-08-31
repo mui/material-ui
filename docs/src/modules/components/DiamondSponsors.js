@@ -6,7 +6,8 @@ import Box from '@material-ui/core/Box';
 import { useTheme, styled } from '@material-ui/core/styles';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
-const Root = styled('div')(() => ({
+const Root = styled('div')(({ theme }) => ({
+  margin: theme.spacing(2, 3),
   '& img': {
     display: 'inline-block',
   },

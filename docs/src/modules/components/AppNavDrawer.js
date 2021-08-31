@@ -193,9 +193,7 @@ function AppNavDrawer(props) {
           </ToolbarDiv>
         </ToolbarIE11>
         <Divider />
-        <Box sx={{ mx: 3, my: 2 }}>
-          <DiamondSponsors spot="drawer" />
-        </Box>
+        <DiamondSponsors spot="drawer" />
         <Divider />
         {navItems}
         <Box sx={{ height: 40 }} />
