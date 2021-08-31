@@ -76,7 +76,7 @@ export default function CoreTheming() {
               <Item
                 icon={<SvgTwinkle />}
                 title="Custom Theme"
-                description="Theming allows you to print any type of branding, creating unique look and feel to fully featured components."
+                description="Theming allows you to use your brand's design tokens, easily making the components reflect its look and feel."
               />
             </Highlighter>
             <Highlighter disableBorder selected={!customized} onClick={() => setCustomized(false)}>
