@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import Stack from '@material-ui/core/Stack';
 import Box from '@material-ui/core/Box';
 import { useTheme, styled } from '@material-ui/core/styles';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
@@ -45,7 +45,7 @@ export default function DiamondSponsors(props) {
       <Typography variant="caption" color="primary.main" display="block" sx={{ mb: 2 }}>
         {t('diamondSponsors')}
       </Typography>
-      <Grid container direction="column" alignItems="center" gap={1.5}>
+      <Stack spacing={1.5}>
         <Box
           component="a"
           data-ga-event-category="sponsor"
@@ -125,7 +125,7 @@ export default function DiamondSponsors(props) {
         >
           +1
         </Placeholder>
-      </Grid>
+      </Stack>
     </Root>
   );
 }
