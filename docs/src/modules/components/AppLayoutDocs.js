@@ -13,7 +13,7 @@ import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 
-const TOC_WIDTH = 175;
+const TOC_WIDTH = 210;
 const NAV_WIDTH = 240;
 
 const Main = styled('main', {
