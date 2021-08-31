@@ -114,7 +114,7 @@ export default function Hero() {
               '& > *': { mr: 1, width: 28, height: 28 },
             }}
           >
-            <IconImage name="product-core" /> Advanced
+            <IconImage name="product-core" /> Core
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
             Ready to use, <br />
