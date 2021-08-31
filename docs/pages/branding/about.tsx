@@ -259,7 +259,7 @@ const teamMembers: Array<Profile> = [
     title: 'Core components team',
     location: 'Silesia, Poland',
     country: 'pl',
-    about: 'Motorcyclist, gamer and coder (UI and more!)',
+    about: 'Motorcyclist, gamer, and coder (UI and more!)',
     twitter: 'michaldudak',
     github: 'michaldudak',
   },
@@ -486,7 +486,7 @@ function AboutContent() {
                 We plan on doing all that cultivating our values:
               </Typography>
               {[
-                'Customer obsessession. We put our customers front & center.',
+                'Customer obsessed. We put our customers front & center.',
                 'Transparency. Most of our work is public.',
                 'Freedom. We work from anywhere in the world.',
                 'Autonomy. We want to create a safe, high-trust team.',
@@ -584,7 +584,7 @@ function AboutContent() {
             </Typography>
             <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
               We honor some no-longer-active core team members who have made valuable contributions
-              in the past. They advise us from time-to-time.
+              in the past. They advise us from time to time.
             </Typography>
             <Box sx={{ pt: 2 }}>
               <Grid container spacing={2}>
@@ -611,8 +611,8 @@ function AboutContent() {
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                 Tell us what and where we can improve or share your happy moments with us! You can
                 also up or downvote any page on our documentation. <br />
-                <br /> And lastly, from time to time, we send our community a survey for a more
-                structured feedback, you&apos;re always invinted to participate to share you
+                <br /> And lastly, from time to time, we send our community a survey for more
+                structured feedback, you&apos;re always invited to participate to share your
                 thoughts.
               </Typography>
               <Link

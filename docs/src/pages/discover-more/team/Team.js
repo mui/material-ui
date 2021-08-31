@@ -291,7 +291,7 @@ some of whom have chosen to be featured below.`}
         title="Community emeriti"
         description={`We honor some no-longer-active core team members who have made
 valuable contributions in the past.
-They advise us from time-to-time.`}
+They advise us from time to time.`}
         members={emeriti}
         {...props}
       />
