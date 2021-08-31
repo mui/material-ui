@@ -75,17 +75,13 @@ function testPropForwarding(
 
   it('forwards custom props to the root element if a component is provided', () => {
     const CustomRoot = React.forwardRef(
-      (
-        { fooBar, tabIndex, 'aria-label': ariaLabel }: WithCustomProp,
-        ref: React.ForwardedRef<any>,
-      ) => {
-        return <div ref={ref} data-foobar={fooBar} tabIndex={tabIndex} aria-label={ariaLabel} />;
+      ({ fooBar, tabIndex }: WithCustomProp, ref: React.ForwardedRef<any>) => {
+        return <div ref={ref} data-foobar={fooBar} tabIndex={tabIndex} />;
       },
     );
 
     const otherProps = {
       tabIndex: '0',
-      'aria-label': randomStringValue(),
       fooBar: randomStringValue(),
     };
 
@@ -94,14 +90,13 @@ function testPropForwarding(
     );
 
     expect(container.firstChild).to.have.attribute('tabindex', otherProps.tabIndex.toString());
-    expect(container.firstChild).to.have.attribute('aria-label', otherProps['aria-label']);
     expect(container.firstChild).to.have.attribute('data-foobar', otherProps.fooBar);
   });
 
   it('does forward standard props to the root element if an intrinsic element is provided', () => {
     const otherProps = {
       tabIndex: '0',
-      'aria-label': randomStringValue(),
+      'data-foobar': randomStringValue(),
     };
 
     const { container } = render(
@@ -109,7 +104,7 @@ function testPropForwarding(
     );
 
     expect(container.firstChild).to.have.attribute('tabindex', otherProps.tabIndex);
-    expect(container.firstChild).to.have.attribute('aria-label', otherProps['aria-label']);
+    expect(container.firstChild).to.have.attribute('data-foobar', otherProps['data-foobar']);
   });
 }
 
