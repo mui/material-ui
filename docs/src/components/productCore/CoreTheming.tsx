@@ -18,14 +18,14 @@ import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 const lightTheme = createTheme();
 const darkTheme = createTheme({ palette: { mode: 'dark' } });
 
-const code = `<Card variant="outlined" sx={{ display: 'flex', p: 1 }}>
+const code = `<Card variant="outlined" sx={{p: 1, display: 'flex', flexDirection: {xs: 'column', sm: 'row'} }}>
   <CardMedia
     component="img"
     alt="Beside Myself album cover"
     src="/static/images/cards/basement-beside-myself.jpg"
     width="124"
     height="124"
-    sx={{ borderRadius: 0.5, width: 'auto' }}
+    sx={{ borderRadius: 0.5, width: 'auto', objectFit: 'cover' }}
   />
   <Box sx={{ alignSelf: 'center', mx: 2 }}>
     <Typography variant="body1" fontWeight={500}>
