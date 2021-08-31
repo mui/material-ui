@@ -14,7 +14,7 @@ export default function SectionHeadline({
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
   const overlineColor = mode === 'dark' ? 'primary.400' : 'primary.600';
-  const titleColor = mode === 'dark' ? 'grey.300' : 'primaryDark.900';
+  const titleColor = mode === 'dark' ? 'grey.100' : 'primaryDark.900';
   const descriptionColor = mode === 'dark' ? 'grey.500' : 'grey.800';
   return (
     <React.Fragment>
@@ -28,7 +28,7 @@ export default function SectionHeadline({
         {overline}
       </Typography>
       {typeof title === 'string' ? (
-        <Typography variant="h3" color={titleColor}>
+        <Typography variant="h2" color={titleColor}>
           {title}
         </Typography>
       ) : (
