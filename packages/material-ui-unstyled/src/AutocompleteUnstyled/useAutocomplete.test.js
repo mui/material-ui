@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, screen, ErrorBoundary } from 'test/utils';
+import {
+  createClientRender,
+  screen,
+  ErrorBoundary,
+  strictModeDoubleLoggingSupressed,
+} from 'test/utils';
 import { useAutocomplete, createFilterOptions } from '@material-ui/unstyled/AutocompleteUnstyled';
 
 describe('useAutocomplete', () => {
@@ -263,12 +268,10 @@ describe('useAutocomplete', () => {
       React.version.startsWith('18') &&
         "Error: Uncaught [TypeError: Cannot read property 'removeAttribute' of null]",
       'The above error occurred in the <ul> component',
-      // strict mode renders twice
       React.version.startsWith('16') && 'The above error occurred in the <ul> component',
       'The above error occurred in the <Test> component',
       // strict effects runs effects twice
       React.version.startsWith('18') && 'The above error occurred in the <Test> component',
-      // strict mode renders twice
       React.version.startsWith('16') && 'The above error occurred in the <Test> component',
     ];
 
