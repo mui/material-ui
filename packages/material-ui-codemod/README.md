@@ -117,6 +117,7 @@ The list includes these transformers
 - [`use-transitionprops`](#use-transitionprops)
 - [`with-mobile-dialog`](#with-mobile-dialog)
 - [`with-width`](#with-width)
+- [`mui-replace`](#mui-replace)
 
 #### `adapter-v4`
 
@@ -1066,6 +1067,67 @@ npx @material-ui/codemod@next v5.0.0/with-width <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#material-ui-core-styles).
+
+#### `mui-replace`
+
+Replace every occurrence of `material-ui` related package with the new package names (listed below) except these packages (`@material-ui/pickers`, `@material-ui/data-grid`, `@material-ui/x-grid` & `@material-ui/x-grid-data-generator`). [More details about why package names are changed](https://github.com/mui-org/material-ui/issues/27666)
+
+**Material Design components**
+
+```diff
+-import Alert from '@material-ui/core/Alert';
++import Alert from '@mui/material/Alert';
+```
+
+**JSS styles package**
+
+```diff
+-import { makeStyles } from '@material-ui/styles';
++import { makeStyles } from '@mui/styles';
+```
+
+**System package**
+
+```diff
+-import { SxProps } from '@material-ui/system';
++import { SxProps } from '@mui/system';
+```
+
+**Utilities package**
+
+```diff
+-import { deepmerge } from '@material-ui/utils';
++import { deepmerge } from '@mui/utils';
+```
+
+**Lab**
+
+```diff
+-import Mansory from '@material-ui/lab/Mansory';
++import Mansory from '@mui/lab/Mansory';
+```
+
+**Dependencies**
+
+```diff
+// package.json
+-"@material-ui/core": "next",
+-"@material-ui/icons": "next",
+-"@material-ui/lab": "next",
+-"@material-ui/unstyled": "next",
+-"@material-ui/styled-engine-sc": "next",
++"@mui/material": "next",
++"@mui/icons-material": "next",
++"@mui/lab": "next",
++"@mui/core": "next",
++"@mui/styled-engine-sc": "next",
+```
+
+```sh
+npx @material-ui/codemod@next v5.0.0/mui-replace <path>
+```
+
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#update-material-ui-version).
 
 ### v4.0.0
 
