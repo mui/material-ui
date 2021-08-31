@@ -16,6 +16,7 @@ const Root = styled('div')(({ theme }) => ({
     margin: theme.spacing(2, 'auto'),
     padding: theme.spacing(2),
     backgroundColor: blueDark[800],
+    colorScheme: 'dark',
     direction: 'ltr',
     borderRadius: theme.shape.borderRadius,
     border: '1px solid',
