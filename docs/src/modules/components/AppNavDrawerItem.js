@@ -119,7 +119,7 @@ const ItemButton = styled(Item, {
     })(),
     fontSize: depth === 1 ? '0.75rem' : undefined,
     fontWeight: depth === 0 ? 500 : 600,
-    marginTop: 0,
+    margin: theme.spacing(0.5, 0),
     '&:hover': {
       backgroundColor: depth === 0 ? '' : alpha(theme.palette.primary.main, 0),
       color: (() => {
@@ -209,7 +209,6 @@ export default function AppNavDrawerItem(props) {
           disableRipple
           className={topLevel && 'algolia-lvl0'}
           onClick={handleClick}
-          sx={{ my: 0.5 }}
         >
           {hasIcon && (
             <Box
