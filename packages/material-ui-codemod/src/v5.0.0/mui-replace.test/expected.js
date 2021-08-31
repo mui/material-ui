@@ -24,7 +24,7 @@ import Edit from '@mui/icons-material/Edit';
 
 // lab
 import Mansory from '@mui/lab/Mansory';
-import { DatePicker } from '@mui/lab';
+import { DateRangePicker } from '@mui/lab';
 
 // styled engine
 module.exports = override(

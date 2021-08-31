@@ -24,7 +24,7 @@ import Edit from '@material-ui/icons/Edit';
 
 // lab
 import Mansory from '@material-ui/lab/Mansory';
-import { DatePicker } from '@material-ui/lab';
+import { DateRangePicker } from '@material-ui/lab';
 
 // styled engine
 module.exports = override(
