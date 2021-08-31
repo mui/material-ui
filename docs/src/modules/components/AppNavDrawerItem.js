@@ -119,7 +119,7 @@ const ItemButton = styled(Item, {
     })(),
     fontSize: depth === 1 ? '0.75rem' : undefined,
     fontWeight: depth === 0 ? 500 : 600,
-    marginTop: depth === 0 ? '0px' : '0px',
+    marginTop: 0,
     '&:hover': {
       backgroundColor: depth === 0 ? '' : alpha(theme.palette.primary.main, 0),
       color: (() => {
