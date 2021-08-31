@@ -65,7 +65,7 @@ const ToolbarDiv = styled('div')(({ theme }) => {
     flexGrow: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
   };
 });
 
@@ -166,7 +166,7 @@ function AppNavDrawer(props) {
     return (
       <React.Fragment>
         <ToolbarIE11>
-          <ToolbarDiv sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <ToolbarDiv>
             <NextLink href="/" passHref onClick={onClose}>
               <Box component="a" aria-label={t('goToHome')} sx={{ lineHeight: 0, mr: 2 }}>
                 <SvgMuiLogo width={32} />
