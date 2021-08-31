@@ -26,7 +26,6 @@ const useUtilityClasses = (ownerState) => {
 
   const slots = {
     root: ['root'],
-    break: ['break'],
   };
 
   return composeClasses(slots, getMasonryUtilityClass, classes);
@@ -149,7 +148,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       const numOfRows = [];
       let skip = false;
       masonryRef.current.childNodes.forEach((child) => {
-        if (child.className.includes('MuiMasonry-break') || skip) {
+        if (child.dataset.class === 'line-break' || skip) {
           return;
         }
         const computedStyle = window.getComputedStyle(child);
@@ -201,7 +200,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     >
       {children}
       {new Array(computeNumberOfLineBreaks(columnValues)).fill('').map((_, index) => (
-        <span key={index} className={classes.break} style={lineBreakStyle} />
+        <span key={index} data-class="line-break" style={lineBreakStyle} />
       ))}
     </MasonryRoot>
   );
