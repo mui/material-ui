@@ -253,6 +253,7 @@ function AppFrame(props) {
           </NavIconButton>
           <GrowingDiv />
           <Stack direction="row" gap={2.5}>
+            <DeferredAppSearch />
             <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
               <Button {...languageButtonProps} sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <LanguageSpan sx={{ display: { xs: 'none', md: 'block' } }}>
@@ -315,7 +316,6 @@ function AppFrame(props) {
                 </MenuItem>
               </Menu>
             </NoSsr>
-            <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>
               <IconButton
                 component="a"
