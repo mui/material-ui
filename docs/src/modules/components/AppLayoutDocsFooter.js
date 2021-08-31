@@ -48,6 +48,7 @@ const PageLinkButton = styled(Button)(({ theme }) => {
 const FeedbackGrid = styled(Grid)(({ theme }) => {
   return {
     width: 'auto',
+    color: theme.palette.text.secondary,
     [theme.breakpoints.down('sm')]: {
       order: 3,
       marginTop: 40,
