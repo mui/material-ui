@@ -485,8 +485,8 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
     <React.Fragment>
       <GlobalStyles
         styles={{
-          '@keyframes mui-auto-fill': { from: {} },
-          '@keyframes mui-auto-fill-cancel': { from: {} },
+          '@keyframes mui-auto-fill': { from: { display: 'block' } },
+          '@keyframes mui-auto-fill-cancel': { from: { display: 'block' } },
         }}
       />
       <Root
