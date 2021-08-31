@@ -1075,52 +1075,52 @@ Replace every occurrence of `material-ui` related package with the new package n
 **Material Design components**
 
 ```diff
-- import Alert from '@material-ui/core/Alert';
-+ import Alert from '@mui/material/Alert';
+-import Alert from '@material-ui/core/Alert';
++import Alert from '@mui/material/Alert';
 ```
 
 **JSS styles package**
 
 ```diff
-- import { makeStyles } from '@material-ui/styles';
-+ import { makeStyles } from '@mui/styles';
+-import { makeStyles } from '@material-ui/styles';
++import { makeStyles } from '@mui/styles';
 ```
 
 **System package**
 
 ```diff
-- import { SxProps } from '@material-ui/system';
-+ import { SxProps } from '@mui/system';
+-import { SxProps } from '@material-ui/system';
++import { SxProps } from '@mui/system';
 ```
 
 **Utilities package**
 
 ```diff
-- import { deepmerge } from '@material-ui/utils';
-+ import { deepmerge } from '@mui/utils';
+-import { deepmerge } from '@material-ui/utils';
++import { deepmerge } from '@mui/utils';
 ```
 
 **Lab**
 
 ```diff
-- import Mansory from '@material-ui/lab/Mansory';
-+ import Mansory from '@mui/lab/Mansory';
+-import Mansory from '@material-ui/lab/Mansory';
++import Mansory from '@mui/lab/Mansory';
 ```
 
 **Dependencies**
 
 ```diff
 // package.json
-- "@material-ui/core": "next",
-- "@material-ui/icons": "next",
-- "@material-ui/lab": "next",
-- "@material-ui/unstyled": "next",
-- "@material-ui/styled-engine-sc": "next",
-+ "@mui/material": "next",
-+ "@mui/icons-material": "next",
-+ "@mui/lab": "next",
-+ "@mui/core": "next",
-+ "@mui/styled-engine-sc": "next",
+-"@material-ui/core": "next",
+-"@material-ui/icons": "next",
+-"@material-ui/lab": "next",
+-"@material-ui/unstyled": "next",
+-"@material-ui/styled-engine-sc": "next",
++"@mui/material": "next",
++"@mui/icons-material": "next",
++"@mui/lab": "next",
++"@mui/core": "next",
++"@mui/styled-engine-sc": "next",
 ```
 
 ```sh
