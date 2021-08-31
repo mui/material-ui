@@ -33,7 +33,7 @@ const Item = styled(({ component: Component = 'div', ...props }) => <Component {
 })(({ theme }) => ({
   ...theme.typography.body2,
   display: 'flex',
-  borderRadius: '5px',
+  borderRadius: 5,
   outline: 0,
   width: '100%',
   paddingTop: 5,
