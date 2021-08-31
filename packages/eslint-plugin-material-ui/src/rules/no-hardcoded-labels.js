@@ -6,7 +6,7 @@ module.exports = {
   meta: {
     messages: {
       'literal-label':
-        "Don't use hardcoded labels. Prefer translated values by using `useTranslates`. New translations should be added to `docs/translations/translations.json`.",
+        "Don't use hardcoded labels. Prefer translated values by using `useTranslate`. New translations should be added to `docs/translations/translations.json`.",
     },
   },
   create(context) {
