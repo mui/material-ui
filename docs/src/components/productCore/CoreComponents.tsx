@@ -54,80 +54,80 @@ const StyledButton = styled(Button)(({ theme }) => ({
 }));
 
 const CODES = {
-  Button: `const Demo = () => (
-  <div>
-    <Button variant="text" startIcon={<ShoppingCartRounded />}>
-      Add to Cart
-    </Button>
-    <Button variant="contained" startIcon={<ShoppingCartRounded />}>
-      Add to Cart
-    </Button>
-    <Button variant="outlined" startIcon={<ShoppingCartRounded />}>
-      Add to Cart
-    </Button>
-  </div>
-);`,
-  'Text field': `const Demo = () => (
-  <div>
-    <TextField variant="standard" label="Username" />
-    <TextField variant="outlined" label="Email" type="email" />
-    <TextField variant="filled" label="Password" type="password" />
-  </div>
-);`,
-  Table: `const Demo = () => (
-  <TableContainer
-    component={Paper} 
-    variant="outlined"
-  >
-    <Table aria-label="demo table">
-      <TableHead>
-        <TableRow>
-          <TableCell>Dessert</TableCell>
-          <TableCell>Calories</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        <TableRow>
-          <TableCell>Frozen yoghurt</TableCell>
-          <TableCell>109</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>Cupcake</TableCell>
-          <TableCell>305</TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
-  </TableContainer>
-);`,
-  Alert: `const Demo = () => (
-  <div>
-    <Alert variant="standard" color="info">
-      Check out this alert!
-    </Alert>
-    <Alert variant="outlined" color="info">
-      Check out this alert!
-    </Alert>
-    <Alert variant="filled" color="info">
-      Check out this alert!
-    </Alert>
-  </div>
-);`,
-  Tooltip: `const Demo = () => (
-  <div>
-    <Tooltip title="This is a tooltip" arrow placement="top">
-      <Typography>Top</Typography>
-    </Tooltip>
-    <Tooltip title="This is a tooltip" arrow placement="right">
-      <Typography>Right</Typography>
-    </Tooltip>
-    <Tooltip title="This is a tooltip" arrow placement="left">
-      <Typography>Left</Typography>
-    </Tooltip>
-    <Tooltip title="This is a tooltip" arrow placement="bottom">
-      <Typography>Bottom</Typography>
-    </Tooltip>
-  </div>
-);`,
+  Button: `
+<div>
+  <Button variant="text" startIcon={<ShoppingCartRounded />}>
+    Add to Cart
+  </Button>
+  <Button variant="contained" startIcon={<ShoppingCartRounded />}>
+    Add to Cart
+  </Button>
+  <Button variant="outlined" startIcon={<ShoppingCartRounded />}>
+    Add to Cart
+  </Button>
+</div>
+`,
+  'Text field': `
+<div>
+  <TextField variant="standard" label="Username" />
+  <TextField variant="outlined" label="Email" type="email" />
+  <TextField variant="filled" label="Password" type="password" />
+</div>
+`,
+  Table: `
+<TableContainer
+  component={Paper} 
+  variant="outlined"
+>
+  <Table aria-label="demo table">
+    <TableHead>
+      <TableRow>
+        <TableCell>Dessert</TableCell>
+        <TableCell>Calories</TableCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>
+      <TableRow>
+        <TableCell>Frozen yoghurt</TableCell>
+        <TableCell>109</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Cupcake</TableCell>
+        <TableCell>305</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</TableContainer>
+`,
+  Alert: `
+<div>
+  <Alert variant="standard" color="info">
+    Check out this alert!
+  </Alert>
+  <Alert variant="outlined" color="info">
+    Check out this alert!
+  </Alert>
+  <Alert variant="filled" color="info">
+    Check out this alert!
+  </Alert>
+</div>
+`,
+  Tooltip: `
+<div>
+  <Tooltip title="This is a tooltip" arrow placement="top">
+    <Typography>Top</Typography>
+  </Tooltip>
+  <Tooltip title="This is a tooltip" arrow placement="right">
+    <Typography>Right</Typography>
+  </Tooltip>
+  <Tooltip title="This is a tooltip" arrow placement="left">
+    <Typography>Left</Typography>
+  </Tooltip>
+  <Tooltip title="This is a tooltip" arrow placement="bottom">
+    <Typography>Bottom</Typography>
+  </Tooltip>
+</div>
+`,
 };
 
 export default function CoreComponents() {
@@ -279,19 +279,19 @@ export default function CoreComponents() {
                     spacing={1}
                     sx={{ minHeight: 100, py: 2 }}
                   >
-                    <Tooltip title="This is a tooltip" arrow placement="top">
+                    <Tooltip title="Appears on hover" arrow placement="top">
                       <Typography color="text.secondary">Top</Typography>
                     </Tooltip>
                     <Box sx={{ '& > *': { display: 'inline-block' } }}>
-                      <Tooltip title="This is a tooltip" arrow placement="left">
+                      <Tooltip title="Always display" arrow placement="left" open>
                         <Typography color="text.secondary">Left</Typography>
                       </Tooltip>
                       <Box sx={{ display: 'inline-block', width: 80 }} />
-                      <Tooltip title="This is a tooltip" arrow placement="right">
+                      <Tooltip title="Appears on hover" arrow placement="right">
                         <Typography color="text.secondary">Right</Typography>
                       </Tooltip>
                     </Box>
-                    <Tooltip title="This is a tooltip" arrow placement="bottom">
+                    <Tooltip title="Appears on hover" arrow placement="bottom">
                       <Typography color="text.secondary">Bottom</Typography>
                     </Tooltip>
                   </Stack>
@@ -300,9 +300,11 @@ export default function CoreComponents() {
             </Frame.Demo>
             <Frame.Info
               sx={{
+                minHeight: 200,
                 maxHeight: demo === 'Table' ? 260 : 'none',
                 position: 'relative',
                 overflow: 'hidden',
+                pt: 3,
               }}
             >
               <Box sx={{ height: 'calc(100% + 40px)', overflow: 'auto', m: -2, p: 2 }}>

@@ -20,7 +20,7 @@ export default function SectionHeadline({
     <React.Fragment>
       <Typography
         color={overlineColor}
-        component="h1"
+        component="h2"
         fontWeight="bold"
         variant="body2"
         sx={{ mb: 1 }}
@@ -28,7 +28,7 @@ export default function SectionHeadline({
         {overline}
       </Typography>
       {typeof title === 'string' ? (
-        <Typography variant="h2" color={titleColor}>
+        <Typography variant="h3" color={titleColor}>
           {title}
         </Typography>
       ) : (

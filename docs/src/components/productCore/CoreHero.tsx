@@ -90,7 +90,7 @@ const SlideDemo = () => {
     <Stack spacing={2} direction="row" alignItems="center">
       <AcUnitRounded color="primary" sx={{ opacity: `max(0.4, ${(100 - value[0]) / 100})` }} />
       <Slider
-        getAriaLabel={() => 'Temperature range'}
+        aria-labelledby="temperature-slider"
         value={value}
         onChange={(_, newValue) => setValue(newValue as number[])}
       />
@@ -232,7 +232,12 @@ export default function Hero() {
                 </Button>
               </Box>
               <Paper sx={{ p: 2 }}>
-                <Typography sx={{ mb: 1 }} variant="subtitle2">
+                <Typography
+                  id="temperature-slider"
+                  component="div"
+                  variant="subtitle2"
+                  sx={{ mb: 1 }}
+                >
                   Room temperature range
                 </Typography>
                 <SlideDemo />

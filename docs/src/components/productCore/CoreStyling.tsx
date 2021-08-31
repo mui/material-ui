@@ -33,14 +33,30 @@ const FlashCode = styled('div', {
   borderColor: theme.palette.primary.dark,
 }));
 
-const code = `<Card variant="outlined" sx={{ display: 'flex', p: 1 }}>
+const code = `
+<Card
+  variant="outlined"
+  sx={{
+    display: 'flex',
+    p: 1,
+    flexDirection: {
+      xs: 'column', // mobile
+      sm: 'row', // tablet and up
+    },
+  }}
+>
   <CardMedia
     component="img"
     width="146"
     height="100"
     alt="123 Main St, Phoenix, AZ cover"
     src="/static/images/cards/real-estate.png"
-    sx={{ width: 146, borderRadius: 0.5 }}
+    sx={{
+      borderRadius: 0.5,
+      width: { xs: '100%', sm: 146 },
+      mr: { sm: 1.5 },
+      mb: { xs: 1.5, sm: 0 },
+    }}
   />
   <Box sx={{ alignSelf: 'center', ml: 2 }}>
     <Typography variant="body2" color="text.secondary">
@@ -74,8 +90,9 @@ const code = `<Card variant="outlined" sx={{ display: 'flex', p: 1 }}>
 export default function CoreStyling() {
   const [index, setIndex] = React.useState(0);
   const infoRef = React.useRef<HTMLDivElement | null>(null);
-  const startLine = [18, 11, 1];
-  const endLine = [31, 13, 1];
+  const startLine = [33, 26, 6];
+  const endLine = [46, 31, 9];
+  const scrollTo = [540, 320, 0];
   function getSelectedProps(i: number) {
     return {
       selected: index === i,
@@ -84,7 +101,7 @@ export default function CoreStyling() {
   }
   React.useEffect(() => {
     if (infoRef.current) {
-      infoRef.current.scroll({ top: index === 0 ? 273 : 0, behavior: 'smooth' });
+      infoRef.current.scroll({ top: scrollTo[index], behavior: 'smooth' });
     }
   }, [index]);
   return (
@@ -121,8 +138,8 @@ export default function CoreStyling() {
             <Highlighter disableBorder {...getSelectedProps(2)} onClick={() => setIndex(2)}>
               <Item
                 icon={<SvgTwinkle />}
-                title="Take care of your consistency game"
-                description="Even when customizing, you can still maintain consistency constrained by the theme's design tokens."
+                title="Responsive styles right inside system prop"
+                description="An elegant API for creating responsive component."
               />
             </Highlighter>
           </Group>

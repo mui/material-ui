@@ -270,6 +270,9 @@ export function buildTheme(theme: Theme): ThemeOptions {
         },
       },
       MuiAlert: {
+        defaultProps: {
+          icon: <CheckCircleRounded />,
+        },
         styleOverrides: {
           root: {
             padding: theme.spacing(2),
@@ -363,6 +366,7 @@ export function buildTheme(theme: Theme): ThemeOptions {
           },
         },
       },
+      MuiTooltip: theme.components?.MuiTooltip,
       MuiPaper: theme.components?.MuiPaper,
       MuiTableCell: deepmerge(theme.components?.MuiTableCell, {
         styleOverrides: {
@@ -459,9 +463,7 @@ export default function MaterialDesignComponents() {
             name="Alert"
             control={{ prop: 'variant', values: ['standard', 'filled', 'outlined'] }}
           >
-            <Alert color="info" icon={<CheckCircleRounded />}>
-              Check out this alert!
-            </Alert>
+            <Alert color="info">Check out this alert!</Alert>
           </Demo>
         </div>
         <div>

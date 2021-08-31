@@ -470,6 +470,14 @@ export function getThemedComponents(theme: Theme) {
           },
         },
       },
+      MuiTooltip: {
+        styleOverrides: {
+          tooltip: {
+            paddingTop: 7,
+            paddingBottom: 7,
+          },
+        },
+      },
       MuiSwitch: {
         styleOverrides: {
           root: {
