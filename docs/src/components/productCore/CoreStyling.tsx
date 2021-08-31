@@ -14,6 +14,7 @@ import Frame from 'docs/src/components/action/Frame';
 import RealEstateCard from 'docs/src/components/showcase/RealEstateCard';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
+import DragHandleRounded from '@material-ui/icons/DragHandleRounded';
 
 const FlashCode = styled('div', {
   shouldForwardProp: (prop) =>
@@ -47,13 +48,13 @@ const code = `
 >
   <CardMedia
     component="img"
-    width="146"
+    width="100"
     height="100"
     alt="123 Main St, Phoenix, AZ cover"
     src="/static/images/cards/real-estate.png"
     sx={{
       borderRadius: 0.5,
-      width: { xs: '100%', sm: 146 },
+      width: { xs: '100%', sm: 100 },
       mr: { sm: 1.5 },
       mb: { xs: 1.5, sm: 0 },
     }}
@@ -73,7 +74,6 @@ const code = `
         py: 0.5,
         borderRadius: 1,
         display: 'flex',
-        alignItems: 'center',
         typography: 'caption',
         bgcolor: (theme) => 
           theme.palette.mode === 'dark' ? 'primary.900' : 'primary.50',
@@ -81,17 +81,27 @@ const code = `
           theme.palette.mode === 'dark' ? '#fff' : 'primary.700',
       }}
     >
-      <InfoRounded sx={{ fontSize: 16, mr: 0.5 }} />
+      <InfoRounded sx={{ fontSize: 16, mr: 0.5, mt: '1px' }} />
       Confidence score of 85%
     </Box>
   </Box>
 </Card>`;
 
+const isTouchEvent = (event: MouseEvent | TouchEvent): event is TouchEvent => {
+  return Boolean((event as TouchEvent).touches && (event as TouchEvent).touches.length);
+};
+
+const isMouseEvent = (event: MouseEvent | TouchEvent): event is MouseEvent => {
+  return Boolean((event as MouseEvent).clientX || (event as MouseEvent).clientX === 0);
+};
+
 export default function CoreStyling() {
   const [index, setIndex] = React.useState(0);
+  const [dragging, setDragging] = React.useState<false | number>(false);
+  const objectRef = React.useRef<HTMLDivElement | null>(null);
   const infoRef = React.useRef<HTMLDivElement | null>(null);
   const startLine = [33, 26, 6];
-  const endLine = [46, 31, 9];
+  const endLine = [45, 31, 9];
   const scrollTo = [540, 320, 0];
   function getSelectedProps(i: number) {
     return {
@@ -103,7 +113,44 @@ export default function CoreStyling() {
     if (infoRef.current) {
       infoRef.current.scroll({ top: scrollTo[index], behavior: 'smooth' });
     }
+    if (objectRef.current) {
+      objectRef.current.style.width = '100%';
+    }
   }, [index]);
+  React.useEffect(() => {
+    function resizeObject(event: MouseEvent | TouchEvent) {
+      let clientX;
+      if (isMouseEvent(event)) {
+        event.preventDefault();
+        clientX = event.clientX;
+      }
+      if (isTouchEvent(event)) {
+        clientX = event.touches[0].clientX;
+      }
+
+      if (objectRef.current && typeof dragging === 'number' && clientX) {
+        const objectRect = objectRef.current.getBoundingClientRect();
+        const newWidth = clientX - objectRect.left + dragging;
+        objectRef.current.style.width = `clamp(253px, ${Math.floor(newWidth)}px, 100%)`;
+      }
+    }
+    function stopResize() {
+      setDragging(false);
+    }
+
+    if (typeof dragging === 'number') {
+      document.addEventListener('mousemove', resizeObject);
+      document.addEventListener('mouseup', stopResize);
+      document.addEventListener('touchmove', resizeObject);
+      document.addEventListener('touchup', stopResize);
+      return () => {
+        document.removeEventListener('mousemove', resizeObject);
+        document.removeEventListener('mouseup', stopResize);
+        document.addEventListener('touchmove', resizeObject);
+        document.addEventListener('touchup', stopResize);
+      };
+    }
+  }, [dragging]);
   return (
     <Section bg="gradient">
       <Grid container spacing={2}>
@@ -148,18 +195,104 @@ export default function CoreStyling() {
           <Frame sx={{ height: '100%' }}>
             <Frame.Demo
               sx={{
-                py: 2,
-                flexGrow: 1,
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
+                bgcolor: 'background.paper',
               }}
             >
-              <RealEstateCard />
+              <Box
+                ref={objectRef}
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  position: 'relative',
+                  p: 2,
+                  pr: 3,
+                  minHeight: index === 2 ? 280 : 'initial',
+                  bgcolor: (theme) =>
+                    theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
+                }}
+              >
+                {index === 2 && (
+                  <React.Fragment>
+                    <Box
+                      sx={{
+                        cursor: 'col-resize',
+                        display: 'flex',
+                        alignItems: 'center',
+                        position: 'absolute',
+                        right: 0,
+                        top: 0,
+                        height: '100%',
+                        color: (theme) => (theme.palette.mode === 'dark' ? 'grey.500' : 'grey.600'),
+                        '&:hover': {
+                          color: (theme) =>
+                            theme.palette.mode === 'dark' ? 'grey.300' : 'grey.700',
+                        },
+                      }}
+                      onMouseDown={(event) => {
+                        const rect = (event.target as HTMLElement).getBoundingClientRect();
+                        setDragging(rect.width - (event.clientX - rect.x));
+                      }}
+                      onTouchStart={(event) => {
+                        const rect = (event.target as HTMLElement).getBoundingClientRect();
+                        setDragging(rect.width - (event.touches[0].clientX - rect.x));
+                      }}
+                    >
+                      <DragHandleRounded sx={{ transform: 'rotate(90deg)' }} />
+                    </Box>
+                    <Box
+                      sx={{
+                        width: '1px',
+                        bgcolor: (theme) =>
+                          theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.400',
+                        position: 'absolute',
+                        left: 345,
+                        height: '100%',
+                      }}
+                    >
+                      <Box
+                        sx={{
+                          position: 'absolute',
+                          bottom: 5,
+                          typography: 'caption',
+                          left: -30,
+                          color: 'text.secondary',
+                          borderRadius: '2px',
+                          bgcolor: (theme) =>
+                            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+                          px: 0.5,
+                        }}
+                      >
+                        xs
+                      </Box>
+                      <Box
+                        sx={{
+                          position: 'absolute',
+                          bottom: 5,
+                          typography: 'caption',
+                          left: 7,
+                          color: 'text.secondary',
+                          borderRadius: '2px',
+                          bgcolor: (theme) =>
+                            theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
+                          px: 0.5,
+                        }}
+                      >
+                        sm
+                      </Box>
+                    </Box>
+                  </React.Fragment>
+                )}
+                <RealEstateCard sx={{ width: '100%', maxWidth: 343 }} />
+              </Box>
             </Frame.Demo>
             <Frame.Info
               ref={infoRef}
-              sx={{ maxHeight: 400, overflow: 'auto', position: 'relative' }}
+              sx={{
+                maxHeight: index === 2 ? 282 : 400,
+                overflow: 'auto',
+                position: 'relative',
+              }}
             >
               <Box sx={{ zIndex: 1, position: 'relative', '&& pre': { bgcolor: 'transparent' } }}>
                 <HighlightedCode component={MarkdownElement} code={code} language="jsx" />
