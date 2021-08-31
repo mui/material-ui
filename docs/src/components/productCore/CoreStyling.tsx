@@ -187,7 +187,7 @@ export default function CoreStyling() {
               <Item
                 icon={<SvgTwinkle />}
                 title="Responsive styles right inside system prop"
-                description="An elegant API for creating responsive component."
+                description="An elegant API for writing css media query that match your theme breakpoints."
               />
             </Highlighter>
           </Group>
