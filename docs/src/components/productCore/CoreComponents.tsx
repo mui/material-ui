@@ -175,11 +175,15 @@ export default function CoreComponents() {
                 }
               >
                 {demo === 'Button' && (
-                  <Box
+                  <Stack gap={2}
                     sx={{
                       height: '100%',
-                      py: 1,
+                      py: 5,
                       display: 'flex',
+                      flexDirection: {
+                        xs: 'column',
+                        sm: 'row',
+                      },
                       justifyContent: 'center',
                       alignItems: 'center',
                       flexWrap: 'wrap',
@@ -187,6 +191,7 @@ export default function CoreComponents() {
                         mt: 0,
                         mx: 0.5,
                       },
+                      
                     }}
                   >
                     <Button variant="text" startIcon={<ShoppingCartRounded />}>
@@ -198,7 +203,7 @@ export default function CoreComponents() {
                     <Button variant="outlined" startIcon={<ShoppingCartRounded />}>
                       Add to Cart
                     </Button>
-                  </Box>
+                  </Stack>
                 )}
                 {demo === 'Text field' && (
                   <Stack
