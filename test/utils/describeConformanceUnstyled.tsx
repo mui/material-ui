@@ -41,7 +41,6 @@ interface WithClassName {
 
 interface WithCustomProp {
   fooBar: string;
-  'aria-label': string;
   tabIndex: number;
 }
 
