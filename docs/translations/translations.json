@@ -5,6 +5,7 @@
     "cssComponent": "As a CSS utility, the {{name}} component also supports all <a href=\"/system/properties/\"><code>system</code></a> properties. You can use them as props directly on the component.",
     "default": "Default",
     "demos": "Demos",
+    "deprecated": "Deprecated",
     "description": "Description",
     "globalClass": "Global class",
     "import": "Import",
