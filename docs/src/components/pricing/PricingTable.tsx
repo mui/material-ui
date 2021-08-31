@@ -29,7 +29,7 @@ const planInfo = {
   premium: {
     color: 'gold',
     title: 'Premium',
-    description: 'Unlock all the most advances features including premium support.',
+    description: 'Unlock all the most advanced features including premium support.',
   },
 } as const;
 
