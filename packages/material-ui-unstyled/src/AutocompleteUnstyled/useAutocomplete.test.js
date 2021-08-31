@@ -1,11 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import {
-  createClientRender,
-  screen,
-  ErrorBoundary,
-  strictModeDoubleLoggingSupressed,
-} from 'test/utils';
+import { createClientRender, screen, ErrorBoundary } from 'test/utils';
 import { useAutocomplete, createFilterOptions } from '@material-ui/unstyled/AutocompleteUnstyled';
 
 describe('useAutocomplete', () => {
