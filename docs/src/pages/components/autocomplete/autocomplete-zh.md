@@ -251,7 +251,7 @@ const filterOptions = createFilterOptions({
 对于更复杂的过滤机制，譬如模糊匹配（fuzzy matching），我们推荐您看一下 [match-sorter](https://github.com/kentcdodds/match-sorter)。 就像这样：
 
 ```jsx
-import { matchSorter } from 'match-sorter';
+import matchSorter from 'match-sorter';
 
 const filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);
 

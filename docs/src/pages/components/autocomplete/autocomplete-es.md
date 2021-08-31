@@ -146,7 +146,7 @@ If your logic is fetching new options on each keystroke and using the current va
 Additionally, you will need to disable the built-in filtering of the `Autocomplete` component by overriding the `filterOptions` prop:
 
 ```jsx
-import { matchSorter } from 'match-sorter';
+import matchSorter from 'match-sorter';
 
 const filterOptions = (options, { inputValue }) =>
   matchSorter(options, inputValue);
@@ -257,7 +257,7 @@ const filterOptions = createFilterOptions({
 Para mecanismos de filtrado más completos, como la coincidencia aproximada, se recomienda buscar en [match-sorter de](https://github.com/kentcdodds/match-sorter). Por ejemplo:
 
 ```jsx
-import { matchSorter } from 'match-sorter';
+import matchSorter from 'match-sorter';
 
 const filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);
 

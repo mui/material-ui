@@ -146,7 +146,7 @@ Head to the [Customized Autocomplete](#customized-autocomplete) section for a cu
 さらに、 `filterOptions` プロパティを 上書きすることで、 `Autocomplete` コンポーネントの組み込みフィルタリングを無効にする必要があります。
 
 ```jsx
-import { matchSorter } from 'match-sorter';
+import matchSorter from 'match-sorter';
 
 const filterOptions = (options, { inputValue }) =>
   matchSorter(options, inputValue);
@@ -257,7 +257,7 @@ const filterOptions = createFilterOptions({
 Fuzzy matchingのような高度なメカニズムについては  [match-sorter](https://github.com/kentcdodds/match-sorter) を見ることをおすすめします。 例えば：
 
 ```jsx
-import { matchSorter } from 'match-sorter';
+import matchSorter from 'match-sorter';
 
 const filterOptions = (options, { inputValue }) => matchSorter(options, inputValue);
 
