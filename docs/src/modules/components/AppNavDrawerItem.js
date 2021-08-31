@@ -46,7 +46,9 @@ const Item = styled(({ component: Component = 'div', ...props }) => <Component {
   '&:hover': {
     color: theme.palette.text.primary,
     backgroundColor:
-      theme.palette.mode === 'dark' ? alpha(theme.palette.primaryDark[700], 0.4) : theme.palette.grey[50],
+      theme.palette.mode === 'dark'
+        ? alpha(theme.palette.primaryDark[700], 0.4)
+        : theme.palette.grey[50],
   },
   '&.Mui-focusVisible': {
     backgroundColor: theme.palette.action.focus,
@@ -207,7 +209,7 @@ export default function AppNavDrawerItem(props) {
           disableRipple
           className={topLevel && 'algolia-lvl0'}
           onClick={handleClick}
-          sx={{my: 0.5}}
+          sx={{ my: 0.5 }}
         >
           {hasIcon && (
             <Box

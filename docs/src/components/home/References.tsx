@@ -35,8 +35,8 @@ const References = ({
           maxWidth: 400,
         }}
       >
-        From startups to Fortune 500s, the world&apos;s best product teams use MUI to build
-        their UIs.
+        From startups to Fortune 500s, the world&apos;s best product teams use MUI to build their
+        UIs.
       </Typography>
     </Container>
   );
