@@ -14,11 +14,11 @@ async function getWebpackEntries() {
       let entryName = componentName;
       // adjust for legacy names
       if (componentName === 'Paper') {
-        entryName = '@mui/material/Paper.esm';
+        entryName = '@material-ui/core/Paper.esm';
       } else if (componentName === 'TextareaAutosize') {
-        entryName = '@mui/material/Textarea';
+        entryName = '@material-ui/core/Textarea';
       } else if (['Popper'].indexOf(componentName) !== -1) {
-        entryName = `@mui/material/${componentName}`;
+        entryName = `@material-ui/core/${componentName}`;
       }
 
       return {
@@ -54,25 +54,25 @@ async function getWebpackEntries() {
 
   return [
     {
-      name: '@mui/material',
+      name: '@material-ui/core',
       path: path.join(path.relative(workspaceRoot, corePackagePath), 'index.js'),
     },
     ...coreComponents,
     {
-      name: '@mui/lab',
+      name: '@material-ui/lab',
       path: path.join(path.relative(workspaceRoot, labPackagePath), 'index.js'),
     },
     ...labComponents,
     {
-      name: '@mui/styles',
+      name: '@material-ui/styles',
       path: 'packages/material-ui-styles/build/index.js',
     },
     {
-      name: '@mui/private-theming',
+      name: '@material-ui/private-theming',
       path: 'packages/material-ui-private-theming/build/index.js',
     },
     {
-      name: '@mui/system',
+      name: '@material-ui/system',
       path: 'packages/material-ui-system/build/esm/index.js',
     },
     {
@@ -84,7 +84,7 @@ async function getWebpackEntries() {
       path: 'packages/material-ui-system/build/esm/createStyled.js',
     },
     {
-      name: '@mui/material/styles/createTheme',
+      name: '@material-ui/core/styles/createTheme',
       path: 'packages/material-ui/build/styles/createTheme.js',
     },
     {
@@ -96,31 +96,31 @@ async function getWebpackEntries() {
       path: 'packages/material-ui-lab/build/useAutocomplete/index.js',
     },
     {
-      name: '@mui/material/useMediaQuery',
+      name: '@material-ui/core/useMediaQuery',
       path: 'packages/material-ui/build/useMediaQuery/index.js',
     },
     {
-      name: '@mui/material/useScrollTrigger',
+      name: '@material-ui/core/useScrollTrigger',
       path: 'packages/material-ui/build/useScrollTrigger/index.js',
     },
     {
-      name: '@mui/core',
+      name: '@material-ui/unstyled',
       path: path.join(path.relative(workspaceRoot, unstyledPackagePath), 'index.js'),
     },
     ...unstyledComponents,
     {
-      name: '@mui/utils',
+      name: '@material-ui/utils',
       path: 'packages/material-ui-utils/build/esm/index.js',
     },
     // TODO: Requires webpack v5
     // Resolution of webpack/acorn to 7.x is blocked by nextjs (https://github.com/vercel/next.js/issues/11947)
     // {
-    //   name: '@mui/material.modern',
+    //   name: '@material-ui/core.modern',
     //   webpack: true,
     //   path: path.join(path.relative(workspaceRoot, corePackagePath), 'modern/index.js'),
     // },
     {
-      name: '@mui/material.legacy',
+      name: '@material-ui/core.legacy',
       path: path.join(path.relative(workspaceRoot, corePackagePath), 'legacy/index.js'),
     },
   ];
@@ -162,21 +162,24 @@ module.exports = async function webpackConfig(webpack, environment) {
       ],
       resolve: {
         alias: {
-          '@mui/material': path.join(workspaceRoot, 'packages/material-ui/build'),
-          '@mui/lab': path.join(workspaceRoot, 'packages/material-ui-lab/build'),
-          '@mui/styled-engine': path.join(
+          '@material-ui/core': path.join(workspaceRoot, 'packages/material-ui/build'),
+          '@material-ui/lab': path.join(workspaceRoot, 'packages/material-ui-lab/build'),
+          '@material-ui/styled-engine': path.join(
             workspaceRoot,
             'packages/material-ui-styled-engine/build',
           ),
-          '@mui/styled-engine-sc': path.join(workspaceRoot, 'packages/material-ui-styles-sc/build'),
-          '@mui/styles': path.join(workspaceRoot, 'packages/material-ui-styles/build'),
-          '@mui/system': path.join(workspaceRoot, 'packages/material-ui-system/build'),
-          '@mui/private-theming': path.join(
+          '@material-ui/styled-engine-sc': path.join(
+            workspaceRoot,
+            'packages/material-ui-styles-sc/build',
+          ),
+          '@material-ui/styles': path.join(workspaceRoot, 'packages/material-ui-styles/build'),
+          '@material-ui/system': path.join(workspaceRoot, 'packages/material-ui-system/build'),
+          '@material-ui/private-theming': path.join(
             workspaceRoot,
             'packages/material-ui-private-theming/build',
           ),
-          '@mui/utils': path.join(workspaceRoot, 'packages/material-ui-utils/build'),
-          '@mui/core': path.join(workspaceRoot, 'packages/material-ui-unstyled/build'),
+          '@material-ui/utils': path.join(workspaceRoot, 'packages/material-ui-utils/build'),
+          '@material-ui/unstyled': path.join(workspaceRoot, 'packages/material-ui-unstyled/build'),
         },
       },
       entry: { [entry.name]: path.join(workspaceRoot, entry.path) },
