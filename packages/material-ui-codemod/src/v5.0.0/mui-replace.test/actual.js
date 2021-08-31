@@ -48,4 +48,4 @@ const tsconfig = {
 import { DistributiveOmit } from '@material-ui/types';
 
 // private-theming
-import { ThemeProvider } from '@material-ui/private-theming';
+import { ThemeProvider as PrivateThemeProvider } from '@material-ui/private-theming';

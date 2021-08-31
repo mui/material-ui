@@ -48,4 +48,4 @@ const tsconfig = {
 import { DistributiveOmit } from '@mui/types';
 
 // private-theming
-import { ThemeProvider } from '@mui/private-theming';
+import { ThemeProvider as PrivateThemeProvider } from '@mui/private-theming';
