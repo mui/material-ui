@@ -70,7 +70,7 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
     () => ({
       focusVisible: () => {
         setFocusVisible(true);
-        buttonRef?.current?.focus();
+        buttonRef.current!.focus();
       },
     }),
     [setFocusVisible],
