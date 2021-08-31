@@ -95,14 +95,15 @@ const isMouseEvent = (event: MouseEvent | TouchEvent): event is MouseEvent => {
   return Boolean((event as MouseEvent).clientX || (event as MouseEvent).clientX === 0);
 };
 
+const startLine = [33, 26, 6];
+const endLine = [45, 31, 9];
+const scrollTo = [540, 320, 0];
+
 export default function CoreStyling() {
   const [index, setIndex] = React.useState(0);
   const [dragging, setDragging] = React.useState<false | number>(false);
   const objectRef = React.useRef<HTMLDivElement | null>(null);
   const infoRef = React.useRef<HTMLDivElement | null>(null);
-  const startLine = [33, 26, 6];
-  const endLine = [45, 31, 9];
-  const scrollTo = [540, 320, 0];
   function getSelectedProps(i: number) {
     return {
       selected: index === i,
@@ -116,7 +117,7 @@ export default function CoreStyling() {
     if (objectRef.current) {
       objectRef.current.style.width = '100%';
     }
-  }, [index]);
+  }, [index, scrollTo]);
   React.useEffect(() => {
     function resizeObject(event: MouseEvent | TouchEvent) {
       let clientX;
