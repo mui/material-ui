@@ -1070,7 +1070,8 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `mui-replace`
 
-Replace every occurrence of `@material-ui` prefix with the the new package scope `@mui`.
+Replace every occurrence of `material-ui` related package with the the new package name (listed below) except these packages (`@material-ui/pickers`, `@material-ui/data-grid`, `@material-ui/x-grid` & `@material-ui/x-grid-data-generator`)
+
 
 **Material design components**
 
@@ -1084,21 +1085,38 @@ Replace every occurrence of `@material-ui` prefix with the the new package scope
 ```diff
 - import { makeStyles } from '@material-ui/styles';
 + import { makeStyles } from '@mui/styles';
+```
+
+**System package**
+```diff
 - import { SxProps } from '@material-ui/system';
 + import { SxProps } from '@mui/system';
+```
+
+**Utilities package**
+```diff
 - import { deepmerge } from '@material-ui/utils';
 + import { deepmerge } from '@mui/utils';
-- import Mansory from '@material-ui/lab/Mansory';
-+ import Mansory from '@mui/lab-material/Mansory';
-- import { DistributiveOmit } from '@material-ui/types';
-+ import { DistributiveOmit } from '@mui/types';
+```
 
+**Lab**
+```diff
+- import Mansory from '@material-ui/lab/Mansory';
++ import Mansory from '@mui/lab/Mansory';
+```
+
+**Dependencies**
+```diff
 // package.json
 - "@material-ui/core": "next",
+- "@material-ui/icons": "next",
 - "@material-ui/lab": "next",
+- "@material-ui/unstyled": "next",
 - "@material-ui/styled-engine-sc": "next",
 + "@mui/material": "next",
-+ "@mui/lab-material": "next",
++ "@mui/icons-material": "next",
++ "@mui/lab": "next",
++ "@mui/core": "next",
 + "@mui/styled-engine-sc": "next",
 ```
 
@@ -1106,7 +1124,7 @@ Replace every occurrence of `@material-ui` prefix with the the new package scope
 npx @material-ui/codemod@next v5.0.0/mui-replace <path>
 ```
 
-You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#rename-to-mui).
+You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#update-material-ui-version).
 
 ### v4.0.0
 
