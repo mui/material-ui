@@ -148,7 +148,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       const columnHeights = [];
       const numOfRows = [];
       let skip = false;
-      Array.from(masonryRef.current.children).forEach((child) => {
+      masonryRef.current.childNodes.forEach((child) => {
         if (child.className.includes('MuiMasonry-break') || skip) {
           return;
         }
