@@ -1070,9 +1070,9 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `mui-replace`
 
-Replace every occurrence of `material-ui` related package with the the new package name (listed below) except these packages (`@material-ui/pickers`, `@material-ui/data-grid`, `@material-ui/x-grid` & `@material-ui/x-grid-data-generator`)
+Replace every occurrence of `material-ui` related package with the new package names (listed below) except these packages (`@material-ui/pickers`, `@material-ui/data-grid`, `@material-ui/x-grid` & `@material-ui/x-grid-data-generator`).
 
-**Material design components**
+**Material Design components**
 
 ```diff
 - import Alert from '@material-ui/core/Alert';
