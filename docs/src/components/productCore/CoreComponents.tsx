@@ -20,7 +20,7 @@ import SmartButtonRounded from '@material-ui/icons/SmartButtonRounded';
 import TableViewRounded from '@material-ui/icons/TableViewRounded';
 import WarningRounded from '@material-ui/icons/WarningRounded';
 import ShoppingCartRounded from '@material-ui/icons/ShoppingCartRounded';
-import InfoOutlined from '@material-ui/icons/InfoOutlined';
+import InfoRounded from '@material-ui/icons/InfoRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
@@ -134,11 +134,11 @@ export default function CoreComponents() {
   const [demo, setDemo] = React.useState<typeof DEMOS[number]>(DEMOS[0]);
   const [customized, setCustomized] = React.useState(false);
   const icons = {
-    [DEMOS[0]]: <SmartButtonRounded />,
-    [DEMOS[1]]: <InputRounded />,
-    [DEMOS[2]]: <TableViewRounded />,
-    [DEMOS[3]]: <WarningRounded />,
-    [DEMOS[4]]: <InfoOutlined />,
+    [DEMOS[0]]: <SmartButtonRounded fontSize="small" />,
+    [DEMOS[1]]: <InputRounded fontSize="small" />,
+    [DEMOS[2]]: <TableViewRounded fontSize="small" />,
+    [DEMOS[3]]: <WarningRounded fontSize="small" />,
+    [DEMOS[4]]: <InfoRounded fontSize="small" />,
   };
   return (
     <Section bg="comfort">
@@ -146,7 +146,7 @@ export default function CoreComponents() {
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>
             <SectionHeadline
-              overline="What do you get?"
+              overline="Component library"
               title={
                 <Typography variant="h2">
                   <GradientText>40+</GradientText> building block components
@@ -166,7 +166,7 @@ export default function CoreComponents() {
         </Grid>
         <Grid item xs={12} md={6}>
           <Frame sx={{ height: '100%' }}>
-            <Frame.Demo sx={{ flexGrow: 1 }}>
+            <Frame.Demo sx={{ flexGrow: 1}}>
               <ThemeProvider
                 theme={(theme: Theme) =>
                   createTheme(
@@ -178,13 +178,13 @@ export default function CoreComponents() {
                   <Box
                     sx={{
                       height: '100%',
-                      py: 2,
+                      py: 1,
                       display: 'flex',
                       justifyContent: 'center',
                       alignItems: 'center',
                       flexWrap: 'wrap',
                       '& > button': {
-                        mt: 1,
+                        mt: 0,
                         mx: 0.5,
                       },
                     }}
@@ -304,7 +304,7 @@ export default function CoreComponents() {
                 maxHeight: demo === 'Table' ? 260 : 'none',
                 position: 'relative',
                 overflow: 'hidden',
-                pt: 3,
+                pt: 5,
               }}
             >
               <Box sx={{ height: 'calc(100% + 40px)', overflow: 'auto', m: -2, p: 2 }}>
@@ -316,7 +316,7 @@ export default function CoreComponents() {
                   alignItems: 'center',
                   position: 'absolute',
                   top: 15,
-                  right: 10,
+                  left: 10,
                   zIndex: 10,
                 }}
               >

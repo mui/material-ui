@@ -65,7 +65,7 @@ export default function StylingInfo({ appeared, ...props }: { appeared: boolean 
         </Typography>
         <Typography color="grey.400" variant="body2">
           Build your own design system using the{' '}
-          <Link href={ROUTES.theming}>sophisticated theming features</Link>. You can also start by
+          <Link href={ROUTES.theming} sx={{color: 'primary.300'}}>sophisticated theming features</Link>. You can also start by
           using Google&apos;s Material Design.
         </Typography>
       </Box>
