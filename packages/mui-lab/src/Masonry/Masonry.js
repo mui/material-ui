@@ -112,13 +112,14 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       let curNumOfCols;
       let skip = false;
       masonryRef.current.childNodes.forEach((child) => {
-        if (child.dataset.class === 'line-break' || skip) {
+        if (child.nodeType !== Node.ELEMENT_NODE || child.dataset.class === 'line-break' || skip) {
           return;
         }
         const computedStyle = window.getComputedStyle(child);
         const parentWidth = Number(
           window.getComputedStyle(masonryRef.current).width.replace('px', ''),
         );
+
         const width = Number(computedStyle.width.replace('px', ''));
         const height = Number(computedStyle.height.replace('px', ''));
         // if any one of children is not rendered yet, container's height shouldn't be set;
@@ -170,6 +171,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     margin: 0,
     padding: 0,
   };
+
   return (
     <MasonryRoot
       as={component}
