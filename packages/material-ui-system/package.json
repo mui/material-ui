@@ -1,6 +1,6 @@
 {
   "name": "@mui/system",
-  "version": "5.0.0-beta.5",
+  "version": "5.0.0-rc.0",
   "private": false,
   "author": "Material-UI Team",
   "description": "CSS utilities for rapidly laying out custom designs.",
@@ -56,10 +56,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.14.8",
-    "@mui/private-theming": "5.0.0-beta.5",
-    "@mui/styled-engine": "5.0.0-beta.5",
-    "@mui/types": "6.0.2",
-    "@mui/utils": "5.0.0-beta.5",
+    "@mui/private-theming": "5.0.0-rc.0",
+    "@mui/styled-engine": "5.0.0-rc.0",
+    "@mui/types": "7.0.0-rc.0",
+    "@mui/utils": "5.0.0-rc.0",
     "clsx": "^1.1.1",
     "csstype": "^3.0.8",
     "prop-types": "^15.7.2"
