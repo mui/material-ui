@@ -8,7 +8,7 @@ _Sep 1, 2021_
 
 A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
-- 🎉 Renamed packages to `@mui/*` as part of rebranding the company, following the strategy of expanding the library scope beyond Material Design. For more details about it, check the [GitHub discussion](https://github.com/mui-org/material-ui/discussions/27803). 
+- 🎉 Renamed packages to `@mui/*` as part of rebranding the company, following the strategy of expanding the library scope beyond Material Design. For more details about it, check the [GitHub discussion](https://github.com/mui-org/material-ui/discussions/27803).
 - 🛠 Added `mui-replace` codemod for migrating `@material-ui/*` to new packages `@mui/*`. Check out this [codemod detail](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#mui-replace) or head to [migration guide](https://next.material-ui.com/guides/migration-v4/#preset-safe)
 - 🧪 Added new `<Mansory>` component to the lab, [check it out](https://next.material-ui.com/components/masonry/). It has been crafted by our first intern, @hbjORbj 👏!
 
@@ -30,7 +30,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
   @material-ui/private-theming -> @mui/private-theming
   @material-ui/codemod -> @mui/codemod
   ```
-  
+
   except these 3 packages that are renamed.
 
   ```
@@ -38,7 +38,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
   @material-ui/icons => @mui/icons-material // represents Material Design icons.
   @material-ui/unstyled => @mui/core        // fully functional components with minimum styles.
   ```
-  
+
   > **Note**: `@mui/core` (previously `@material-ui/unstyled`) is not the same as `@material-ui/core`.
 
   We encourage you to use the [codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#mui-replace) for smooth migration.
