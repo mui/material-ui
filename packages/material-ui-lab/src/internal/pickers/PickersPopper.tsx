@@ -2,6 +2,8 @@ import * as React from 'react';
 import Grow from '@material-ui/core/Grow';
 import Paper, { PaperProps as MuiPaperProps } from '@material-ui/core/Paper';
 import Popper, { PopperProps as MuiPopperProps } from '@material-ui/core/Popper';
+import Button from '@material-ui/core/Button';
+import DialogActions from '@material-ui/core/DialogActions';
 import TrapFocus, {
   TrapFocusProps as MuiTrapFocusProps,
 } from '@material-ui/core/Unstable_TrapFocus';
@@ -11,6 +13,11 @@ import { TransitionProps as MuiTransitionProps } from '@material-ui/core/transit
 
 export interface ExportedPickerPopperProps {
   /**
+   * Today text message.
+   * @default 'Today'
+   */
+  todayText?: React.ReactNode;
+  /**
    * Popper props passed down to [Popper](https://material-ui.com/api/popper/) component.
    */
   PopperProps?: Partial<MuiPopperProps>;
@@ -18,6 +25,11 @@ export interface ExportedPickerPopperProps {
    * Custom component for popper [Transition](https://material-ui.com/components/transitions/#transitioncomponent-prop).
    */
   TransitionComponent?: React.JSXElementConstructor<MuiTransitionProps>;
+  /**
+   * If `true`, the today button is displayed. **Note** that `showClearButton` has a higher priority.
+   * @default false
+   */
+  showTodayButton?: boolean;
 }
 
 export interface PickerPopperProps extends ExportedPickerPopperProps, MuiPaperProps {
@@ -27,6 +39,7 @@ export interface PickerPopperProps extends ExportedPickerPopperProps, MuiPaperPr
   open: MuiPopperProps['open'];
   containerRef?: React.Ref<HTMLDivElement>;
   onClose: () => void;
+  onSetToday: () => void;
 }
 
 const PickersPopperRoot = styled(Popper, { skipSx: true })<{ ownerState: PickerPopperProps }>(
@@ -42,6 +55,19 @@ const PickersPopperPaper = styled(Paper, { skipSx: true })<{
   outline: 0,
   ...(ownerState.placement === 'top' && {
     transformOrigin: 'bottom center',
+  }),
+}));
+
+const PickersPopperActions = styled(DialogActions, { skipSx: true })<{
+  ownerState: PickerPopperProps;
+}>(({ ownerState }) => ({
+  ...((ownerState.showTodayButton) && {
+    // set justifyContent to default value to fix IE11 layout bug
+    // see https://github.com/mui-org/material-ui-pickers/pull/267
+    justifyContent: 'flex-start',
+    '& > *:first-of-type': {
+      marginRight: 'auto',
+    },
   }),
 }));
 
@@ -189,6 +215,7 @@ function useClickAwayListener(
 
 const PickersPopper = (props: PickerPopperProps) => {
   const {
+    todayText = 'Today',
     anchorEl,
     children,
     containerRef = null,
@@ -198,6 +225,8 @@ const PickersPopper = (props: PickerPopperProps) => {
     role,
     TransitionComponent = Grow,
     TrapFocusProps,
+    showTodayButton = false,
+    onSetToday
   } = props;
 
   React.useEffect(() => {
@@ -264,7 +293,16 @@ const PickersPopper = (props: PickerPopperProps) => {
               onTouchStart={onPaperTouchStart}
               ownerState={{ ...ownerState, placement }}
             >
-              {children}
+              <>
+                {children}
+                <PickersPopperActions ownerState={ownerState}>
+                  {showTodayButton && (
+                    <Button data-mui-test="today-action-button" onClick={onSetToday}>
+                      {todayText}
+                    </Button>
+                  )}
+                </PickersPopperActions>
+              </>
             </PickersPopperPaper>
           </TransitionComponent>
         </TrapFocus>

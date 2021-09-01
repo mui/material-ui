@@ -276,9 +276,19 @@ DesktopTimePicker.propTypes /* remove-proptypes */ = {
    */
   shouldDisableTime: PropTypes.func,
   /**
+   * If `true`, the today button is displayed. **Note** that `showClearButton` has a higher priority.
+   * @default false
+   */
+  showTodayButton: PropTypes.bool,
+  /**
    * If `true`, show the toolbar even in desktop mode.
    */
   showToolbar: PropTypes.bool,
+  /**
+   * Today text message.
+   * @default 'Today'
+   */
+  todayText: PropTypes.node,
   /**
    * Component that will replace default toolbar renderer.
    * @default TimePickerToolbar

@@ -24,6 +24,9 @@ function DesktopWrapper(props: InternalDesktopWrapperProps) {
     open,
     PopperProps,
     TransitionComponent,
+    showTodayButton,
+    todayText,
+    onSetToday,
   } = props;
   const ownInputRef = React.useRef<HTMLInputElement>(null);
   const inputRef = useForkRef(DateInputProps.inputRef, ownInputRef);
@@ -38,6 +41,9 @@ function DesktopWrapper(props: InternalDesktopWrapperProps) {
         TransitionComponent={TransitionComponent}
         PopperProps={PopperProps}
         onClose={onDismiss}
+        showTodayButton={showTodayButton}
+        onSetToday={onSetToday}
+        todayText={todayText}
       >
         {children}
       </PickersPopper>
