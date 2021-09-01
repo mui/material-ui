@@ -3,18 +3,15 @@ import { ThemeProvider, createTheme, useTheme, styled, alpha } from '@mui/materi
 import { shouldForwardProp } from '@mui/system';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Tooltip from '@mui/material/Tooltip';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/MaterialDesignDemo';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
-import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
-import KeyboardArrowUpRounded from '@mui/icons-material/KeyboardArrowUpRounded';
 import TouchAppRounded from '@mui/icons-material/TouchAppRounded';
+import StylingInfo from 'docs/src/components/action/StylingInfo';
 
 const darkDesignTokens = getDesignTokens('dark');
 
@@ -95,7 +92,6 @@ export default function CoreShowcase() {
   const mode = globalTheme.palette.mode;
   const [element, setElement] = React.useState<Data>({ id: null, name: null, target: null });
   const [customized, setCustomized] = React.useState(false);
-  const [hidden, setHidden] = React.useState(false); // for custom theme suggestion
   const theme = React.useMemo(
     () =>
       customized
@@ -298,60 +294,7 @@ export default function CoreShowcase() {
                 <FlashCode startLine={startLine} endLine={endLine} sx={{ mx: -2 }} />
               )}
               <HighlightedCode component={MarkdownElement} code={componentCode} language="jsx" />
-              <Box
-                sx={{
-                  position: 'absolute',
-                  bottom: 0,
-                  transform: hidden || !customized ? 'translateY(100%)' : 'translateY(0)',
-                  transition: '0.3s',
-                  left: 0,
-                  right: 0,
-                  px: 2,
-                  pt: 1,
-                  pb: 2,
-                  mb: -2,
-                  mx: -2,
-                  bgcolor: ({ palette }) => alpha(palette.primaryDark[700], 0.5),
-                  backdropFilter: 'blur(8px)',
-                  zIndex: 1,
-                  borderTop: '1px solid',
-                  borderColor: 'divider',
-                  borderRadius: '0 0 10px 10px',
-                }}
-              >
-                <Tooltip title={hidden ? 'Show' : 'Hide'} placement="left">
-                  <IconButton
-                    disabled={!customized}
-                    onClick={() => setHidden((bool) => !bool)}
-                    sx={{
-                      position: 'absolute',
-                      zIndex: 2,
-                      transition: '0.3s',
-                      right: 10,
-                      bottom: '100%',
-                      transform: hidden || !customized ? 'translateY(-10px)' : 'translateY(50%)',
-                      opacity: customized ? 1 : 0,
-                      bgcolor: 'primaryDark.500',
-                      '&:hover, &.Mui-focused': {
-                        bgcolor: 'primaryDark.600',
-                      },
-                    }}
-                  >
-                    {hidden ? (
-                      <KeyboardArrowUpRounded fontSize="small" />
-                    ) : (
-                      <KeyboardArrowDownRounded fontSize="small" />
-                    )}
-                  </IconButton>
-                </Tooltip>
-                <Typography fontWeight="bold" color="#fff" variant="body2">
-                  Own the styling!
-                </Typography>
-                <Typography color="grey.400" variant="body2">
-                  Build your own design system using the sophisticated theming features. You can
-                  also start by using Google&apos;s Material Design.
-                </Typography>
-              </Box>
+              <StylingInfo appeared={customized} sx={{ mb: -2, mx: -2 }} />
             </Box>
           </Box>
         </ThemeProvider>

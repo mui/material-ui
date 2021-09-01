@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { deepmerge } from '@mui/utils';
 import {
   styled,
   createTheme,
@@ -200,7 +201,7 @@ const StyledChip = styled(Chip)(({ theme }) => ({
   },
 }));
 
-function buildTheme(theme: Theme): ThemeOptions {
+export function buildTheme(theme: Theme): ThemeOptions {
   return {
     palette: {
       ...theme.palette,
@@ -269,6 +270,9 @@ function buildTheme(theme: Theme): ThemeOptions {
         },
       },
       MuiAlert: {
+        defaultProps: {
+          icon: <CheckCircleRounded />,
+        },
         styleOverrides: {
           root: {
             padding: theme.spacing(2),
@@ -298,7 +302,7 @@ function buildTheme(theme: Theme): ThemeOptions {
           icon: {
             paddingTop: 1,
             paddingBottom: 0,
-            '& > *': {
+            '& > svg': {
               fontSize: '1.125rem',
             },
           },
@@ -362,7 +366,18 @@ function buildTheme(theme: Theme): ThemeOptions {
           },
         },
       },
-      MuiTableCell: theme.components?.MuiTableCell,
+      MuiTooltip: theme.components?.MuiTooltip,
+      MuiPaper: theme.components?.MuiPaper,
+      MuiTableCell: deepmerge(theme.components?.MuiTableCell, {
+        styleOverrides: {
+          root: {
+            borderColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[400]
+                : theme.palette.divider,
+          },
+        },
+      }),
       MuiPopover: {
         styleOverrides: {
           paper: {
@@ -448,9 +463,7 @@ export default function MaterialDesignComponents() {
             name="Alert"
             control={{ prop: 'variant', values: ['standard', 'filled', 'outlined'] }}
           >
-            <Alert color="info" icon={<CheckCircleRounded />}>
-              Check out this alert!
-            </Alert>
+            <Alert color="info">Check out this alert!</Alert>
           </Demo>
         </div>
         <div>

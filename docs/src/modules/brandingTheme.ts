@@ -415,7 +415,7 @@ export function getThemedComponents(theme: Theme) {
             borderColor:
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[400]
-                : theme.palette.grey[100],
+                : theme.palette.grey[200],
             ...(theme.palette.mode === 'dark' && {
               backgroundColor: theme.palette.primaryDark[700],
             }),
@@ -469,6 +469,14 @@ export function getThemedComponents(theme: Theme) {
                   ? theme.palette.primary[800]
                   : theme.palette.primary[50],
             },
+          },
+        },
+      },
+      MuiTooltip: {
+        styleOverrides: {
+          tooltip: {
+            paddingTop: 7,
+            paddingBottom: 7,
           },
         },
       },
