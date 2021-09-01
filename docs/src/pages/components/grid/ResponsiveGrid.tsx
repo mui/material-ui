@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { experimentalStyled as styled } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import { experimentalStyled as styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,

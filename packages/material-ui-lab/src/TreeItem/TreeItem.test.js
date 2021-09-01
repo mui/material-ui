@@ -10,8 +10,8 @@ import {
   fireEvent,
   screen,
 } from 'test/utils';
-import TreeView from '@material-ui/lab/TreeView';
-import TreeItem, { treeItemClasses as classes } from '@material-ui/lab/TreeItem';
+import TreeView from '@mui/lab/TreeView';
+import TreeItem, { treeItemClasses as classes } from '@mui/lab/TreeItem';
 
 describe('<TreeItem />', () => {
   const render = createClientRender();

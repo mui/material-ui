@@ -1,15 +1,15 @@
 import * as React from 'react';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import Grid from '@material-ui/core/Grid';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Radio from '@material-ui/core/Radio';
-import Avatar from '@material-ui/core/Avatar';
-import Chip from '@material-ui/core/Chip';
-import FaceIcon from '@material-ui/icons/Face';
-import DoneIcon from '@material-ui/icons/Done';
+import Grid from '@mui/material/Grid';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import RadioGroup from '@mui/material/RadioGroup';
+import Radio from '@mui/material/Radio';
+import Avatar from '@mui/material/Avatar';
+import Chip from '@mui/material/Chip';
+import FaceIcon from '@mui/icons-material/Face';
+import DoneIcon from '@mui/icons-material/Done';
 
 function ChipsPlayground() {
   const [state, setState] = React.useState({

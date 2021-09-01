@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { act, createClientRender, describeConformance } from 'test/utils';
 import { Transition } from 'react-transition-group';
-import Fade from '@material-ui/core/Fade';
+import Fade from '@mui/material/Fade';
 
 describe('<Fade />', () => {
   const render = createClientRender();

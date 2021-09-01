@@ -1,10 +1,10 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { withStyles, WithStyles } from '@material-ui/styles';
+import { withStyles, WithStyles } from '@mui/styles';
 import MuiTextField, {
   FilledTextFieldProps,
   StandardTextFieldProps,
-} from '@material-ui/core/TextField';
+} from '@mui/material/TextField';
 
 const inputStyleMapping = {
   small: 'inputSizeSmall',

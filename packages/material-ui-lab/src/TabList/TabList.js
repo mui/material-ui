@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Tabs from '@material-ui/core/Tabs';
+import Tabs from '@mui/material/Tabs';
 import { useTabContext, getTabId, getPanelId } from '../TabContext';
 
 const TabList = React.forwardRef(function TabList(props, ref) {

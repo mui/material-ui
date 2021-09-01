@@ -1,4 +1,4 @@
-import { getDisplayName } from '@material-ui/utils';
+import { getDisplayName } from '@mui/utils';
 
 export default function mergeClasses(options = {}) {
   const { baseClasses, newClasses, Component } = options;

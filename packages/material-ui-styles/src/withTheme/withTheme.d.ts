@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ConsistentWith, DistributiveOmit, PropInjector } from '@material-ui/types';
+import { ConsistentWith, DistributiveOmit, PropInjector } from '@mui/types';
 import { DefaultTheme } from '../defaultTheme';
 
 export interface WithThemeCreatorOption<Theme = DefaultTheme> {

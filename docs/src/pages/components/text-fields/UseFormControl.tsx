@@ -1,8 +1,8 @@
 import * as React from 'react';
-import FormControl, { useFormControl } from '@material-ui/core/FormControl';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import Box from '@material-ui/core/Box';
-import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl, { useFormControl } from '@mui/material/FormControl';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import Box from '@mui/material/Box';
+import FormHelperText from '@mui/material/FormHelperText';
 
 function MyFormHelperText() {
   const { focused } = useFormControl() || {};

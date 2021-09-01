@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { exactProp } from '@material-ui/utils';
+import { exactProp } from '@mui/utils';
 import ThemeContext from '../useTheme/ThemeContext';
 import useTheme from '../useTheme';
 import nested from './nested';

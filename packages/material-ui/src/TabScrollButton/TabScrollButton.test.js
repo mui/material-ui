@@ -1,9 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, describeConformance } from 'test/utils';
-import TabScrollButton, {
-  tabScrollButtonClasses as classes,
-} from '@material-ui/core/TabScrollButton';
+import TabScrollButton, { tabScrollButtonClasses as classes } from '@mui/material/TabScrollButton';
 
 describe('<TabScrollButton />', () => {
   const defaultProps = {

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Stack from '@material-ui/core/Stack';
-import { deepOrange } from '@material-ui/core/colors';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import { deepOrange } from '@mui/material/colors';
 
 export default function FallbackAvatars() {
   return (

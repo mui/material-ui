@@ -1,4 +1,4 @@
-import { createStyles } from '@material-ui/styles';
+import { createStyles } from '@mui/styles';
 
 {
   // Missing types for @font-face

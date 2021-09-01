@@ -1,10 +1,7 @@
 import * as React from 'react';
-import { SxProps } from '@material-ui/system';
-import { OverrideProps } from '@material-ui/types';
-import {
-  ExtendModalUnstyledTypeMap,
-  ExtendModalUnstyled,
-} from '@material-ui/unstyled/ModalUnstyled';
+import { SxProps } from '@mui/system';
+import { OverrideProps } from '@mui/types';
+import { ExtendModalUnstyledTypeMap, ExtendModalUnstyled } from '@mui/core/ModalUnstyled';
 import { Theme } from '../styles';
 import { BackdropProps } from '../Backdrop';
 

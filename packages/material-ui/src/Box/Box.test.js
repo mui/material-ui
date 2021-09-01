@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { createClientRender, describeConformance } from 'test/utils';
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 
 describe('<Box />', () => {
   const render = createClientRender();

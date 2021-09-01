@@ -29,18 +29,18 @@ You need to update your `package.json` to use the latest version of Material-UI.
 
 ```json
 "dependencies": {
-  "@material-ui/core": "^4.0.0"
+  "@mui/material": "^4.0.0"
 }
 ```
 
 Or run
 
 ```sh
-npm install @material-ui/core
+npm install @mui/material
 
 or
 
-yarn add @material-ui/core
+yarn add @mui/material
 ```
 
 ### Update React version
@@ -50,22 +50,22 @@ This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html) (we
 
 ### Update Material-UI Styles version
 
-If you were previously using `@material-ui/styles` with v3 you need to update your `package.json` to use the latest version of Material-UI Styles.
+If you were previously using `@mui/styles` with v3 you need to update your `package.json` to use the latest version of Material-UI Styles.
 
 ```json
 "dependencies": {
-  "@material-ui/styles": "^4.0.0"
+  "@mui/styles": "^4.0.0"
 }
 ```
 
 Or run
 
 ```sh
-npm install @material-ui/styles
+npm install @mui/styles
 
 or
 
-yarn add @material-ui/styles
+yarn add @mui/styles
 ```
 
 ## Handling breaking changes
@@ -97,8 +97,8 @@ yarn add @material-ui/styles
 - Rename `convertHexToRGB` to `hexToRgb`.
 
   ```diff
-  -import { convertHexToRgb } from '@material-ui/core/styles/colorManipulator';
-  +import { hexToRgb } from '@material-ui/core/styles';
+  -import { convertHexToRgb } from '@mui/material/styles/colorManipulator';
+  +import { hexToRgb } from '@mui/material/styles';
   ```
 
 - Scope the [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). You should apply the following changes in your codebase.
@@ -171,11 +171,11 @@ yarn add @material-ui/styles
 
   Going forward, you can use the theme to implement [a custom Grid spacing transformation function](https://material-ui.com/system/spacing/#transformation).
 
-- [Container] Moved from `@material-ui/lab` to `@material-ui/core`.
+- [Container] Moved from `@mui/lab` to `@mui/material`.
 
   ```diff
-  -import Container from '@material-ui/lab/Container';
-  +import Container from '@material-ui/core/Container';
+  -import Container from '@mui/lab/Container';
+  +import Container from '@mui/material/Container';
   ```
 
 ### TypeScript
@@ -213,16 +213,16 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
   ```
 
   ```diff
-  -import Button from '@material-ui/core/Button';
+  -import Button from '@mui/material/Button';
   -<Button variant="fab" />
-  +import Fab from '@material-ui/core/Fab';
+  +import Fab from '@mui/material/Fab';
   +<Fab />
   ```
 
   ```diff
-  -import Button from '@material-ui/core/Button';
+  -import Button from '@mui/material/Button';
   -<Button variant="extendedFab" />
-  +import Fab from '@material-ui/core/Fab';
+  +import Fab from '@mui/material/Fab';
   +<Fab variant="extended" />
   ```
 
@@ -318,11 +318,11 @@ This change is explained in more detail in the [TypeScript guide](/guides/typesc
 
 ### Slider
 
-- [Slider] Move from `@material-ui/lab` to `@material-ui/core`.
+- [Slider] Move from `@mui/lab` to `@mui/material`.
 
   ```diff
-  -import Slider from '@material-ui/lab/Slider'
-  +import Slider from '@material-ui/core/Slider'
+  -import Slider from '@mui/lab/Slider'
+  +import Slider from '@mui/material/Slider'
   ```
 
 ### Switch

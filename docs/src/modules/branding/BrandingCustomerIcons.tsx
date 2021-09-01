@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 
 const customerIconsData = [
   { image: '/static/branding/companies/coursera.svg', width: 102, height: 16, alt: 'Coursera' },

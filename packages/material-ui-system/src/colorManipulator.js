@@ -1,4 +1,4 @@
-import MuiError from '@material-ui/utils/macros/MuiError.macro';
+import MuiError from '@mui/utils/macros/MuiError.macro';
 
 /**
  * Returns a number whose value is limited to the given range.

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, describeConformance } from 'test/utils';
-import FormControl from '@material-ui/core/FormControl';
-import { inputBaseClasses } from '@material-ui/core/InputBase';
-import MenuItem from '@material-ui/core/MenuItem';
-import { outlinedInputClasses } from '@material-ui/core/OutlinedInput';
-import TextField, { textFieldClasses as classes } from '@material-ui/core/TextField';
+import FormControl from '@mui/material/FormControl';
+import { inputBaseClasses } from '@mui/material/InputBase';
+import MenuItem from '@mui/material/MenuItem';
+import { outlinedInputClasses } from '@mui/material/OutlinedInput';
+import TextField, { textFieldClasses as classes } from '@mui/material/TextField';
 
 describe('<TextField />', () => {
   const render = createClientRender();

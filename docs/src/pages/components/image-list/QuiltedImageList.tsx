@@ -1,6 +1,6 @@
 import * as React from 'react';
-import ImageList from '@material-ui/core/ImageList';
-import ImageListItem from '@material-ui/core/ImageListItem';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
 
 function srcset(image: string, size: number, rows = 1, cols = 1) {
   return {

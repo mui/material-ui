@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import Link from '@material-ui/core/Link';
+import Link from '@mui/material/Link';
 
 export default function ButtonLink() {
   return (

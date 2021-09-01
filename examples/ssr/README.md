@@ -28,7 +28,7 @@ or:
 
 This is the reference implementation of the [Server Rendering tutorial](https://next.material-ui.com/guides/server-rendering/).
 
-The example project includes `@material-ui/core` and its peer dependencies, including `emotion`, the default style engine in Material-UI v5.
+The example project includes `@mui/material` and its peer dependencies, including `emotion`, the default style engine in Material-UI v5.
 If you prefer, you can [use styled-components instead](https://next.material-ui.com/guides/interoperability/#styled-components).
 
 ## What's next?

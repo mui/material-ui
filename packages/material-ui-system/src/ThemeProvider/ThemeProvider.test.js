@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils';
-import { useTheme } from '@material-ui/private-theming';
-import { ThemeContext } from '@material-ui/styled-engine';
+import { useTheme } from '@mui/private-theming';
+import { ThemeContext } from '@mui/styled-engine';
 import ThemeProvider from './ThemeProvider';
 
 describe('ThemeProvider', () => {

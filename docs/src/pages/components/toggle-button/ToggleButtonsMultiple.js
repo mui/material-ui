@@ -1,11 +1,11 @@
 import * as React from 'react';
-import FormatBoldIcon from '@material-ui/icons/FormatBold';
-import FormatItalicIcon from '@material-ui/icons/FormatItalic';
-import FormatUnderlinedIcon from '@material-ui/icons/FormatUnderlined';
-import FormatColorFillIcon from '@material-ui/icons/FormatColorFill';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ToggleButton from '@material-ui/core/ToggleButton';
-import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
+import FormatBoldIcon from '@mui/icons-material/FormatBold';
+import FormatItalicIcon from '@mui/icons-material/FormatItalic';
+import FormatUnderlinedIcon from '@mui/icons-material/FormatUnderlined';
+import FormatColorFillIcon from '@mui/icons-material/FormatColorFill';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 export default function ToggleButtonsMultiple() {
   const [formats, setFormats] = React.useState(() => ['bold', 'italic']);

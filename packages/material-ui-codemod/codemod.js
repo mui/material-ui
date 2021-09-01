@@ -81,7 +81,7 @@ function run(argv) {
 yargs
   .command({
     command: '$0 <codemod> <paths...>',
-    describe: 'Applies a `@material-ui/codemod` to the specified paths',
+    describe: 'Applies a `@mui/codemod` to the specified paths',
     builder: (command) => {
       return command
         .positional('codemod', {
@@ -111,7 +111,7 @@ yargs
     },
     handler: run,
   })
-  .scriptName('npx @material-ui/codemod')
+  .scriptName('npx @mui/codemod')
   .example('$0 v4.0.0/theme-spacing-api src')
   .example('$0 v5.0.0/component-rename-prop src -- --component=Grid --from=prop --to=newProp')
   .help()

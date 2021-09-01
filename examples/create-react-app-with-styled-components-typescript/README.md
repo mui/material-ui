@@ -4,7 +4,7 @@ The main difference between this and the non-typescript example is that you need
 
 ```json
 "paths": {
-  "@material-ui/styled-engine": ["./node_modules/@material-ui/styled-engine-sc"]
+  "@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"]
 }
 ```
 

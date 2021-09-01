@@ -2,10 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { exactProp } from '@material-ui/utils';
-import { styled } from '@material-ui/core/styles';
-import Alert from '@material-ui/core/Alert';
-import Typography from '@material-ui/core/Typography';
+import { exactProp } from '@mui/utils';
+import { styled } from '@mui/material/styles';
+import Alert from '@mui/material/Alert';
+import Typography from '@mui/material/Typography';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
@@ -207,10 +207,7 @@ function ApiDocs(props) {
   const description = t('api-docs.pageDescription').replace(/{{name}}/, componentName);
 
   const source = filename
-    .replace(
-      /\/packages\/material-ui(-(.+?))?\/src/,
-      (match, dash, pkg) => `@material-ui/${pkg || 'core'}`,
-    )
+    .replace(/\/packages\/material-ui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg || 'core'}`)
     // convert things like `/Table/Table.js` to ``
     .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
 

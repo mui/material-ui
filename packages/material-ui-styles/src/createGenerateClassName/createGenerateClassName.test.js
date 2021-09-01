@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { unstable_nested as nested } from '@material-ui/private-theming/ThemeProvider';
+import { unstable_nested as nested } from '@mui/private-theming/ThemeProvider';
 import createGenerateClassName from './createGenerateClassName';
 
 describe('createGenerateClassName', () => {

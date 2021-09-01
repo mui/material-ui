@@ -6,7 +6,7 @@ import {
   elementAcceptingRef,
   unstable_useForkRef as useForkRef,
   unstable_ownerDocument as ownerDocument,
-} from '@material-ui/utils';
+} from '@mui/utils';
 
 // Inspired by https://github.com/focus-trap/tabbable
 const candidatesSelector = [

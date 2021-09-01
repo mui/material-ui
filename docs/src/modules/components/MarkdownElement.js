@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { alpha, darken, styled } from '@material-ui/core/styles';
+import { alpha, darken, styled } from '@mui/material/styles';
 
 const Root = styled('div')(({ theme }) => ({
   ...theme.typography.body1,

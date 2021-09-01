@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useControlled } from '@material-ui/core/utils';
+import { useControlled } from '@mui/material/utils';
 import { arrayIncludes } from '../utils';
 import { PickerSelectionState } from './usePickerState';
 import { AllAvailableViews } from '../typings/Views';

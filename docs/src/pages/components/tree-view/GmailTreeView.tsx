@@ -1,19 +1,19 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import TreeView from '@material-ui/lab/TreeView';
-import TreeItem, { TreeItemProps, treeItemClasses } from '@material-ui/lab/TreeItem';
-import Typography from '@material-ui/core/Typography';
-import MailIcon from '@material-ui/icons/Mail';
-import DeleteIcon from '@material-ui/icons/Delete';
-import Label from '@material-ui/icons/Label';
-import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
-import InfoIcon from '@material-ui/icons/Info';
-import ForumIcon from '@material-ui/icons/Forum';
-import LocalOfferIcon from '@material-ui/icons/LocalOffer';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
-import { SvgIconProps } from '@material-ui/core/SvgIcon';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import TreeView from '@mui/lab/TreeView';
+import TreeItem, { TreeItemProps, treeItemClasses } from '@mui/lab/TreeItem';
+import Typography from '@mui/material/Typography';
+import MailIcon from '@mui/icons-material/Mail';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Label from '@mui/icons-material/Label';
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
+import InfoIcon from '@mui/icons-material/Info';
+import ForumIcon from '@mui/icons-material/Forum';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import { SvgIconProps } from '@mui/material/SvgIcon';
 
 declare module 'react' {
   interface CSSProperties {

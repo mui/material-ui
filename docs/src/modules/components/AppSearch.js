@@ -1,10 +1,10 @@
 import * as React from 'react';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { styled, useTheme, alpha } from '@material-ui/core/styles';
-import GlobalStyles from '@material-ui/core/GlobalStyles';
-import Input from '@material-ui/core/Input';
-import SearchIcon from '@material-ui/icons/Search';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { styled, useTheme, alpha } from '@mui/material/styles';
+import GlobalStyles from '@mui/material/GlobalStyles';
+import Input from '@mui/material/Input';
+import SearchIcon from '@mui/icons-material/Search';
 import { handleEvent } from 'docs/src/modules/components/MarkdownLinks';
 import docsearch from 'docsearch.js';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';

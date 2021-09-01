@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { Theme } from '@material-ui/core/styles';
-import { withStyles, WithStyles } from '@material-ui/styles';
-import MuiTypography, { TypographyProps } from '@material-ui/core/Typography';
+import { Theme } from '@mui/material/styles';
+import { withStyles, WithStyles } from '@mui/styles';
+import MuiTypography, { TypographyProps } from '@mui/material/Typography';
 
 const markStyleMapping: {
   [index: string]: { [subindex: string]: string };

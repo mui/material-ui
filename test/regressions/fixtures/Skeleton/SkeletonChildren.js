@@ -1,8 +1,8 @@
 import * as React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import Avatar from '@material-ui/core/Avatar';
-import Skeleton from '@material-ui/core/Skeleton';
+import CssBaseline from '@mui/material/CssBaseline';
+import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
+import Skeleton from '@mui/material/Skeleton';
 
 export default function SkeletonChildren() {
   return (

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, describeConformance } from 'test/utils';
-import TabPanel, { tabPanelClasses as classes } from '@material-ui/lab/TabPanel';
+import TabPanel, { tabPanelClasses as classes } from '@mui/lab/TabPanel';
 import TabContext from '../TabContext';
 
 describe('<TabPanel />', () => {

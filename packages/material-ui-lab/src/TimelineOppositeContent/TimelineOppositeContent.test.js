@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, describeConformance } from 'test/utils';
-import Typography from '@material-ui/core/Typography';
-import Timeline from '@material-ui/lab/Timeline';
-import TimelineItem from '@material-ui/lab/TimelineItem';
+import Typography from '@mui/material/Typography';
+import Timeline from '@mui/lab/Timeline';
+import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineOppositeContent, {
   timelineOppositeContentClasses as classes,
-} from '@material-ui/lab/TimelineOppositeContent';
+} from '@mui/lab/TimelineOppositeContent';
 
 describe('<TimelineOppositeContent />', () => {
   const render = createClientRender();

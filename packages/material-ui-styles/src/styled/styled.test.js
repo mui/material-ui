@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import { SheetsRegistry } from 'jss';
 import { createClientRender, screen } from 'test/utils';
-import { createGenerateClassName } from '@material-ui/styles';
+import { createGenerateClassName } from '@mui/styles';
 import styled from './styled';
 import StylesProvider from '../StylesProvider';
 

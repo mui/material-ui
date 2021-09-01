@@ -1,12 +1,12 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/styles';
-import NoSsr from '@material-ui/unstyled/NoSsr';
-import Divider from '@material-ui/core/Divider';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@mui/styles';
+import NoSsr from '@mui/core/NoSsr';
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const users = [

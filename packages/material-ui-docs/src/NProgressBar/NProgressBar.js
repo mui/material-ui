@@ -1,10 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import NProgress from 'nprogress';
-import { withStyles } from '@material-ui/styles';
-import { createTheme } from '@material-ui/core/styles';
-import NoSsr from '@material-ui/unstyled/NoSsr';
-import { exactProp } from '@material-ui/utils';
+import { withStyles } from '@mui/styles';
+import { createTheme } from '@mui/material/styles';
+import NoSsr from '@mui/core/NoSsr';
+import { exactProp } from '@mui/utils';
 
 NProgress.configure({
   barSelector: '.nprogress-bar',
