@@ -156,7 +156,7 @@ const Shortcut = styled('div')(({ theme }) => {
     backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#FFF',
     padding: theme.spacing(0, 0.7),
     position: 'absolute',
-    right: theme.spacing(1),
+    right: theme.spacing(0.5),
     height: 23,
     top: 'calc(50% - 11px)',
     borderRadius: 5,
