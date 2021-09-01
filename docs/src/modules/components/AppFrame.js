@@ -257,6 +257,24 @@ function AppFrame(props) {
           <GrowingDiv />
           <Stack direction="row" gap={2.5}>
             <DeferredAppSearch />
+            <Tooltip title={t('appFrame.github')} enterDelay={300}>
+              <IconButton
+                component="a"
+                color="inherit"
+                href={process.env.SOURCE_CODE_REPO}
+                data-ga-event-category="header"
+                data-ga-event-action="github"
+                sx={{ px: '10px' }}
+              >
+                <GitHubIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            <Notifications />
+            <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
+              <IconButton color="inherit" onClick={handleSettingsDrawerOpen} sx={{ px: '10px' }}>
+                <SettingsIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
             <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
               <Button {...languageButtonProps} sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <LanguageSpan sx={{ display: { xs: 'none', md: 'block' } }}>
@@ -319,24 +337,6 @@ function AppFrame(props) {
                 </MenuItem>
               </Menu>
             </NoSsr>
-            <Tooltip title={t('appFrame.github')} enterDelay={300}>
-              <IconButton
-                component="a"
-                color="inherit"
-                href={process.env.SOURCE_CODE_REPO}
-                data-ga-event-category="header"
-                data-ga-event-action="github"
-                sx={{ px: '10px' }}
-              >
-                <GitHubIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            <Notifications />
-            <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-              <IconButton color="inherit" onClick={handleSettingsDrawerOpen} sx={{ px: '10px' }}>
-                <SettingsIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
           </Stack>
         </Toolbar>
       </StyledAppBar>
