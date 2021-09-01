@@ -135,7 +135,7 @@ const Info = ({ value, metadata }: { value: React.ReactNode; metadata?: string }
           variant="caption"
           color="text.secondary"
           fontWeight="normal"
-          sx={{ display: 'block', mt: 0.5 }}
+          sx={{ display: 'block', mt: 0.8, textAlign: 'center' }}
         >
           {metadata}
         </Typography>

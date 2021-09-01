@@ -60,7 +60,7 @@ const ProductSuite = () => {
                     <GradientText>production</GradientText>
                   </Typography>
                 }
-                description="We bring together a suite of products integrated to make your life easier when it comes to setting up design systems."
+                description="A suite of products integrated to make your life easier when it comes to setting up design systems."
               />
             </Box>
             <Box sx={{ mt: 4 }} />

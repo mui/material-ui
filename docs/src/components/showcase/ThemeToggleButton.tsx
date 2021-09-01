@@ -111,8 +111,8 @@ export default function ThemeToggleButton() {
           onChange={(event, value) => setLang(value)}
           aria-label="language"
         >
-          <ToggleButton value="javascript">Javascript</ToggleButton>
-          <ToggleButton value="html">HTML</ToggleButton>
+          <ToggleButton value="javascript">React</ToggleButton>
+          <ToggleButton value="html">Typescript</ToggleButton>
           <ToggleButton value="css">CSS</ToggleButton>
         </ToggleButtonGroup>
       </Fade>
