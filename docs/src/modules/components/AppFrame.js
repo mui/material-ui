@@ -117,7 +117,7 @@ const StyledAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'disablePermanent',
 })(({ disablePermanent, theme }) => {
   return {
-    padding: 2,
+    padding: '0 2px',
     transition: theme.transitions.create('width'),
     ...(disablePermanent && {
       boxShadow: 'none',
@@ -127,9 +127,12 @@ const StyledAppBar = styled(AppBar, {
         width: 'calc(100% - 240px)',
       },
     }),
-    boxShadow: `inset 0px -1px 1px ${
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100]
-    }`,
+    boxShadow: 'none',
+    borderStyle: 'solid',
+    borderColor:
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100],
+    borderWidth: 0,
+    borderBottomWidth: 'thin',
     background: theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#FFF',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
     '& .MuiIconButton-root': {
