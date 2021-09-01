@@ -35,6 +35,7 @@ const adBodyImageStyles = (theme) => ({
     color: theme.palette.text.secondary,
     display: 'block',
     marginTop: theme.spacing(0.5),
+    fontWeight: 500,
   },
 });
 

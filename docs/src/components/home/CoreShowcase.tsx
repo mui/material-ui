@@ -66,8 +66,8 @@ const FlashCode = styled('div', {
   position: 'absolute',
   left: 0,
   right: 0,
-  top: startLine * 18,
-  height: (endLine - startLine + 1) * 18,
+  top: `calc(0.75rem * 1.5 * ${startLine})`,
+  height: `calc(0.75rem * 1.5 * ${endLine - startLine + 1})`,
   transition: '0.3s',
   ...theme.typography.caption,
   backgroundColor: alpha(theme.palette.primary.main, 0.2),
@@ -226,8 +226,8 @@ export default function CoreShowcase() {
               noWrap
               sx={{ opacity: 0.5 }}
             >
-              <TouchAppRounded sx={{ fontSize: 14, verticalAlign: 'text-bottom' }} /> Hover the
-              component to highlight the code.
+              <TouchAppRounded sx={{ fontSize: '0.875rem', verticalAlign: 'text-bottom' }} /> Hover
+              the component to highlight the code.
             </Typography>
           </Box>
           <ThemeProvider theme={theme}>
@@ -286,6 +286,9 @@ export default function CoreShowcase() {
                 zIndex: 1,
                 '&::-webkit-scrollbar': {
                   display: 'none',
+                },
+                '& code[class*="language-"]': {
+                  fontSize: 'inherit',
                 },
               },
             }}

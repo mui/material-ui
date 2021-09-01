@@ -661,6 +661,7 @@ const RowCategory = (props: BoxProps) => (
     {...props}
     sx={{
       typography: 'caption',
+      display: 'block',
       fontWeight: 500,
       bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
       py: 1,

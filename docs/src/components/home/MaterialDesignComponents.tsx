@@ -258,12 +258,12 @@ function buildTheme(theme: Theme): ThemeOptions {
           },
           iconSizeSmall: {
             '& > *:nth-of-type(1)': {
-              fontSize: 14,
+              fontSize: '0.875rem',
             },
           },
           iconSizeMedium: {
             '& > *:nth-of-type(1)': {
-              fontSize: 16,
+              fontSize: '1rem',
             },
           },
         },
@@ -299,7 +299,7 @@ function buildTheme(theme: Theme): ThemeOptions {
             paddingTop: 1,
             paddingBottom: 0,
             '& > *': {
-              fontSize: 18,
+              fontSize: '1.125rem',
             },
           },
         },
@@ -382,7 +382,7 @@ function buildTheme(theme: Theme): ThemeOptions {
           root: {
             padding: theme.spacing(1, 2),
             '& svg': {
-              fontSize: 18,
+              fontSize: '1.125rem',
               color:
                 theme.palette.mode === 'dark'
                   ? theme.palette.primary[500]

@@ -79,6 +79,13 @@ const activeCore = [
     flag: 'Advanced components team',
     location: 'Lille, France',
   },
+  {
+    name: 'Danilo Leal',
+    github: 'danilo-leal',
+    twitter: 'danilobleal',
+    flag: 'Lead Designer',
+    location: 'São Paulo, Brazil',
+  },
 ];
 
 const community = [
@@ -190,7 +197,7 @@ const styles = (theme) => ({
     padding: theme.spacing(1),
   },
   container: {
-    margin: theme.spacing(2, 0, 4),
+    margin: theme.spacing(2, -2, 4),
   },
 });
 

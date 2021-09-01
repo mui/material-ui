@@ -5,7 +5,7 @@ import {
   createTheme as createLegacyModeTheme,
   unstable_createMuiStrictModeTheme as createStrictModeTheme,
 } from '@mui/material/styles';
-import GlobalStyles from '@mui/material/GlobalStyles';
+import { deepmerge } from '@mui/utils';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@mui/material/locale';
 import darkScrollbar from '@mui/material/darkScrollbar';
@@ -243,9 +243,7 @@ export function ThemeProvider(props) {
       languageMap[userLanguage],
     );
 
-    nextTheme = createTheme(nextTheme, {
-      ...getThemedComponents(nextTheme),
-    });
+    nextTheme = deepmerge(nextTheme, getThemedComponents(nextTheme));
 
     return nextTheme;
   }, [dense, direction, paletteColors, paletteMode, spacing, userLanguage]);
@@ -260,13 +258,6 @@ export function ThemeProvider(props) {
 
   return (
     <MuiThemeProvider theme={theme}>
-      <GlobalStyles
-        styles={{
-          html: {
-            fontSize: theme.typography.htmlFontSize, // for Safari (>=14.1.2)
-          },
-        }}
-      />
       <DispatchContext.Provider value={dispatch}>{children}</DispatchContext.Provider>
     </MuiThemeProvider>
   );
