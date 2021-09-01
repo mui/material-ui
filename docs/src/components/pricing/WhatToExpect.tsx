@@ -30,7 +30,7 @@ export default function WhatToExpect() {
                 variant="body2"
                 sx={{ ml: 1 }}
               >
-                Volumn discount
+                Volume discount
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary">
@@ -59,7 +59,7 @@ export default function WhatToExpect() {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary">
-              With your purchase you are granted a license to use a version of the product in
+              With your purchase, you are granted a license to use a version of the product in
               perpetuity. There are no further charges unless you choose to renew support and
               maintenance to cover newer versions. Please note that while the use of the software is
               perpetual, support and maintenance are not. We roll bug fixes, performance
@@ -104,7 +104,7 @@ export default function WhatToExpect() {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary">
-              With your purchase you receive support and maintenance for one year. After this time,
+              With your purchase, you receive support and maintenance for one year. After this time,
               you can continue to use your licensed versions in perpetuity, but will no longer be
               able to update to the latest version.
             </Typography>

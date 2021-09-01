@@ -1,4 +1,4 @@
-/* eslint-disable material-ui/no-hardcoded-labels, react/no-danger */
+/* eslint-disable react/no-danger */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
@@ -56,7 +56,7 @@ function PropsTable(props) {
                 <td align="left">
                   {propData.deprecated && (
                     <Alert severity="warning" sx={{ mb: 1, py: 0 }}>
-                      <strong>Deprecated</strong>
+                      <strong>{t('api-docs.deprecated')}</strong>
                       {propData.deprecationInfo && ' - '}
                       {propData.deprecationInfo && (
                         <span
