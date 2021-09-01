@@ -1,4 +1,4 @@
-import { OverrideProps } from '@material-ui/types';
+import { OverrideProps } from '@mui/types';
 import * as React from 'react';
 
 export type NativeFormControlElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;

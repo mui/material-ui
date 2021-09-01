@@ -16,8 +16,8 @@ import {
   unstable_extendSxProp as extendSxProp,
   handleBreakpoints,
   unstable_resolveBreakpointValues as resolveBreakpointValues,
-} from '@material-ui/system';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+} from '@mui/system';
+import { unstable_composeClasses as composeClasses } from '@mui/core';
 import requirePropFactory from '../utils/requirePropFactory';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';

@@ -1,18 +1,18 @@
 import * as React from 'react';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Radio from '@material-ui/core/Radio';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import RadioGroup from '@mui/material/RadioGroup';
+import Radio from '@mui/material/Radio';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import Grid from '@material-ui/core/Grid';
-import { green } from '@material-ui/core/colors';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Popover from '@material-ui/core/Popover';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
+import Grid from '@mui/material/Grid';
+import { green } from '@mui/material/colors';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Popover from '@mui/material/Popover';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
 
 const inlineStyles = {
   anchorVertical: {

@@ -5,7 +5,7 @@ const forbidTopLevelMessage = [
   'See https://github.com/mui-org/material-ui/pull/24147 for the kind of win it can unlock.',
 ].join('\n');
 // This only applies to packages published from this monorepo.
-// If you build a library around `@material-ui/core` you can safely use `createStyles` without running into the same issue as we are.
+// If you build a library around `@mui/material` you can safely use `createStyles` without running into the same issue as we are.
 const forbidCreateStylesMessage =
   'Use `MuiStyles<ClassKey, Props>` instead if the styles are exported. Otherwise use `as const` assertions. ' +
   '`createStyles` will lead to inlined, at-compile-time-resolved type-imports. ' +
@@ -63,19 +63,19 @@ module.exports = {
       'error',
       {
         patterns: [
-          '@material-ui/*/*/*',
+          '@mui/*/*/*',
           // Begin block: Packages with files instead of packages in the top level
           // Importing from the top level pulls in CommonJS instead of ES modules
           // Allowing /icons as to reduce cold-start of dev builds significantly.
           // There's nothing to tree-shake when importing from /icons this way:
-          // '@material-ui/icons/*/',
-          '@material-ui/system/*',
-          '@material-ui/utils/*',
+          // '@mui/icons-material/*/',
+          '@mui/system/*',
+          '@mui/utils/*',
           // End block
           // Macros are fine since their import path is transpiled away
-          '!@material-ui/utils/macros',
-          '@material-ui/utils/macros/*',
-          '!@material-ui/utils/macros/*.macro',
+          '!@mui/utils/macros',
+          '@mui/utils/macros/*',
+          '!@mui/utils/macros/*.macro',
         ],
       },
     ],
@@ -262,9 +262,9 @@ module.exports = {
           {
             patterns: [
               // Allow deeper imports for TypeScript types. TODO?
-              '@material-ui/*/*/*/*',
+              '@mui/*/*/*/*',
               // Macros are fine since they're transpiled into something else
-              '!@material-ui/utils/macros/*.macro',
+              '!@mui/utils/macros/*.macro',
             ],
           },
         ],
@@ -281,25 +281,25 @@ module.exports = {
           {
             paths: [
               {
-                name: '@material-ui/core/styles',
+                name: '@mui/material/styles',
                 importNames: ['createStyles'],
                 message: forbidCreateStylesMessage,
               },
               {
-                name: '@material-ui/styles',
+                name: '@mui/styles',
                 importNames: ['createStyles'],
                 message: forbidCreateStylesMessage,
               },
               {
-                name: '@material-ui/styles/createStyles',
+                name: '@mui/styles/createStyles',
                 message: forbidCreateStylesMessage,
               },
             ],
             patterns: [
               // Allow deeper imports for TypeScript types. TODO?
-              '@material-ui/*/*/*/*',
+              '@mui/*/*/*/*',
               // Macros are fine since they're transpiled into something else
-              '!@material-ui/utils/macros/*.macro',
+              '!@mui/utils/macros/*.macro',
             ],
           },
         ],
@@ -360,11 +360,11 @@ module.exports = {
           {
             paths: [
               {
-                name: '@material-ui/core',
+                name: '@mui/material',
                 message: forbidTopLevelMessage,
               },
               {
-                name: '@material-ui/lab',
+                name: '@mui/lab',
                 message: forbidTopLevelMessage,
               },
             ],

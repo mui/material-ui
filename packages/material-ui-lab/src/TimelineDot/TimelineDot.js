@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { styled, useThemeProps } from '@material-ui/core/styles';
-import { capitalize } from '@material-ui/core/utils';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { styled, useThemeProps } from '@mui/material/styles';
+import { capitalize } from '@mui/material/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/core';
 import { getTimelineDotUtilityClass } from './timelineDotClasses';
 
 const useUtilityClasses = (ownerState) => {

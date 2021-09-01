@@ -724,7 +724,7 @@ const synonyms = {
   SupervisedUserCircle: 'avatar human people person profile supervisor',
   SupervisorAccount:
     'administrator avatar human people person profile supervised user',
-  SurroundSound: 'audio circle speaker system volumn',
+  SurroundSound: 'audio circle speaker system volume',
   SwapCalls: 'arrow',
   SwapHoriz: 'arrows back direction horizontal',
   SwapHorizontalCircle: 'arrows back direction',

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 import SponsorCard from 'docs/src/components/home/SponsorCard';
 
 const GOLDs = [
@@ -77,7 +77,7 @@ export default function GoldSponsors() {
           sx={{
             display: 'inline-block',
             mr: 1,
-            mt: 0.5,
+            mt: 0.2,
             borderRadius: 1,
             width: 12,
             height: 12,

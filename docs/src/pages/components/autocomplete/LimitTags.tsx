@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Autocomplete from '@material-ui/core/Autocomplete';
-import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 
 export default function LimitTags() {
   return (

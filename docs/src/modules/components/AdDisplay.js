@@ -1,7 +1,7 @@
 /* eslint react/jsx-no-target-blank: ["error", { allowReferrer: true }] */
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import { adShape } from 'docs/src/modules/components/AdManager';
 import { adStylesObject } from 'docs/src/modules/components/ad.styles';
 

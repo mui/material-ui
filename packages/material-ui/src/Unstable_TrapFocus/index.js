@@ -1,1 +1,1 @@
-export { default } from '@material-ui/unstyled/Unstable_TrapFocus';
+export { default } from '@mui/core/Unstable_TrapFocus';

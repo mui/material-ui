@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import IconButton from '@material-ui/core/IconButton';
-import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@mui/material/IconButton';
+import InputAdornment from '@mui/material/InputAdornment';
 import { useUtils } from './hooks/useUtils';
 import CalendarIcon from '../svg-icons/Calendar';
 import { useMaskedInput } from './hooks/useMaskedInput';

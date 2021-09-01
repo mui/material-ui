@@ -1,19 +1,18 @@
 /* eslint-disable import/export */
-import { ponyfillGlobal } from '@material-ui/utils';
+import { ponyfillGlobal } from '@mui/utils';
 
-/* Warning if there are several instances of @material-ui/styles */
+/* Warning if there are several instances of @mui/styles */
 if (
   process.env.NODE_ENV !== 'production' &&
   process.env.NODE_ENV !== 'test' &&
   typeof window !== 'undefined'
 ) {
-  ponyfillGlobal['__@material-ui/styles-init__'] =
-    ponyfillGlobal['__@material-ui/styles-init__'] || 0;
+  ponyfillGlobal['__@mui/styles-init__'] = ponyfillGlobal['__@mui/styles-init__'] || 0;
 
-  if (ponyfillGlobal['__@material-ui/styles-init__'] === 1) {
+  if (ponyfillGlobal['__@mui/styles-init__'] === 1) {
     console.warn(
       [
-        'It looks like there are several instances of `@material-ui/styles` initialized in this application.',
+        'It looks like there are several instances of `@mui/styles` initialized in this application.',
         'This may cause theme propagation issues, broken class names, ' +
           'specificity issues, and makes your application bigger without a good reason.',
         '',
@@ -22,7 +21,7 @@ if (
     );
   }
 
-  ponyfillGlobal['__@material-ui/styles-init__'] += 1;
+  ponyfillGlobal['__@mui/styles-init__'] += 1;
 }
 
 export { default as createGenerateClassName } from './createGenerateClassName';

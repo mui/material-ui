@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Fab from '@material-ui/core/Fab';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import Icon from '@material-ui/core/Icon';
+import Fab from '@mui/material/Fab';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import Icon from '@mui/material/Icon';
 
 export default function FontSvgIcons() {
   return (

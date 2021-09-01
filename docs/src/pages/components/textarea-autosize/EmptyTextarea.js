@@ -1,5 +1,5 @@
 import * as React from 'react';
-import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 export default function EmptyTextarea() {
   return (

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
 export default function EditPage(props) {
@@ -26,6 +26,10 @@ export default function EditPage(props) {
       data-ga-event-category={userLanguage === 'en' ? undefined : 'l10n'}
       data-ga-event-action={userLanguage === 'en' ? undefined : 'edit-button'}
       data-ga-event-label={userLanguage === 'en' ? undefined : userLanguage}
+      sx={{
+        color: (theme) =>
+          theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
+      }}
     >
       {t('editPage')}
     </Button>

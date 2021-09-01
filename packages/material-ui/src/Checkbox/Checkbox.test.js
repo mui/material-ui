@@ -2,9 +2,9 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { describeConformance, act, createClientRender } from 'test/utils';
-import Checkbox, { checkboxClasses as classes } from '@material-ui/core/Checkbox';
-import FormControl from '@material-ui/core/FormControl';
-import ButtonBase from '@material-ui/core/ButtonBase';
+import Checkbox, { checkboxClasses as classes } from '@mui/material/Checkbox';
+import FormControl from '@mui/material/FormControl';
+import ButtonBase from '@mui/material/ButtonBase';
 
 describe('<Checkbox />', () => {
   const render = createClientRender();

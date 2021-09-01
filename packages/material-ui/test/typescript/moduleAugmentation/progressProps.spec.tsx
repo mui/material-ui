@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { CircularProgress, LinearProgress } from '@material-ui/core';
+import { CircularProgress, LinearProgress } from '@mui/material';
 
-declare module '@material-ui/core/CircularProgress' {
+declare module '@mui/material/CircularProgress' {
   interface CircularProgressPropsColorOverrides {
     customCircularColor: true;
   }
 }
-declare module '@material-ui/core/LinearProgress' {
+declare module '@mui/material/LinearProgress' {
   interface LinearProgressPropsColorOverrides {
     customLinearColor: true;
   }

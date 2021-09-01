@@ -13,7 +13,7 @@ function invertObject(object) {
 
 /**
  * Supported imports:
- * 1. bare specifier e.g. `'@material-ui/utils/macros/MuiError.macro'`
+ * 1. bare specifier e.g. `'@mui/utils/macros/MuiError.macro'`
  * 2. relative import from `packages/material-ui-utils/src` e.g. `'../macros/MuiError.macro'`
  * @param {import('babel-plugin-macros').MacroParams} param0
  */
@@ -129,15 +129,15 @@ function muiError({ references, babel, config, source }) {
     errorCode = parseInt(errorCode, 10);
 
     if (formatMuiErrorMessageIdentifier === null) {
-      const isBareImportSourceIdentifier = source.startsWith('@material-ui/utils');
+      const isBareImportSourceIdentifier = source.startsWith('@mui/utils');
       if (isBareImportSourceIdentifier) {
-        // Input: import MuiError from '@material-ui/utils/macros/MuiError.macro'
+        // Input: import MuiError from '@mui/utils/macros/MuiError.macro'
         // Outputs:
-        // import { formatMuiErrorMessage } from '@material-ui/utils';
+        // import { formatMuiErrorMessage } from '@mui/utils';
         formatMuiErrorMessageIdentifier = helperModuleImports.addNamed(
           babelPath,
           'formatMuiErrorMessage',
-          '@material-ui/utils',
+          '@mui/utils',
         );
       } else {
         const normalizedRelativeImport = path

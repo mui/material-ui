@@ -1,20 +1,20 @@
 /* eslint-disable no-restricted-globals */
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import DialogActions from '@material-ui/core/DialogActions';
-import TextField from '@material-ui/core/TextField';
-import Collapse from '@material-ui/core/Collapse';
-import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
-import IconButton from '@material-ui/core/IconButton';
-import ThumbUpIcon from '@material-ui/icons/ThumbUpAlt';
-import ThumbDownIcon from '@material-ui/icons/ThumbDownAlt';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import Snackbar from '@material-ui/core/Snackbar';
+import { styled } from '@mui/material/styles';
+import DialogActions from '@mui/material/DialogActions';
+import TextField from '@mui/material/TextField';
+import Collapse from '@mui/material/Collapse';
+import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
+import IconButton from '@mui/material/IconButton';
+import ThumbUpIcon from '@mui/icons-material/ThumbUpAlt';
+import ThumbDownIcon from '@mui/icons-material/ThumbDownAlt';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import Snackbar from '@mui/material/Snackbar';
 import { getCookie, pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import Link from 'docs/src/modules/components/Link';
@@ -40,15 +40,18 @@ const PaginationDiv = styled('div')(({ theme }) => {
 const PageLinkButton = styled(Button)(({ theme }) => {
   return {
     textTransform: 'none',
-    fontWeight: theme.typography.fontWeightRegular,
+    fontWeight: theme.typography.fontWeightMedium,
+    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
   };
 });
 
 const FeedbackGrid = styled(Grid)(({ theme }) => {
   return {
     width: 'auto',
+    color: theme.palette.text.secondary,
     [theme.breakpoints.down('sm')]: {
       order: 3,
+      marginTop: 40,
       width: '100%',
     },
   };
@@ -253,7 +256,7 @@ export default function AppLayoutDocsFooter() {
                   component={Link}
                   noLinkStyle
                   href={prevPage.pathname}
-                  size="large"
+                  size="medium"
                   startIcon={<ChevronLeftIcon />}
                 >
                   {pageToTitleI18n(prevPage, t)}
@@ -272,19 +275,19 @@ export default function AppLayoutDocsFooter() {
                   align="center"
                   component="div"
                   id="feedback-message"
-                  variant="subtitle1"
+                  variant="body2"
                 >
                   {t('feedbackMessage')}
                 </FeedbackMessage>
                 <div>
                   <Tooltip title={t('feedbackYes')}>
                     <IconButton onClick={handleClickThumb(1)} aria-pressed={rating === 1}>
-                      <ThumbUpIcon color={rating === 1 ? 'primary' : undefined} />
+                      <ThumbUpIcon fontSize="small" color={rating === 1 ? 'primary' : undefined} />
                     </IconButton>
                   </Tooltip>
                   <Tooltip title={t('feedbackNo')}>
                     <IconButton onClick={handleClickThumb(0)} aria-pressed={rating === 0}>
-                      <ThumbDownIcon color={rating === 0 ? 'error' : undefined} />
+                      <ThumbDownIcon fontSize="small" color={rating === 0 ? 'error' : undefined} />
                     </IconButton>
                   </Tooltip>
                 </div>
@@ -294,7 +297,7 @@ export default function AppLayoutDocsFooter() {
                   component={Link}
                   noLinkStyle
                   href={nextPage.pathname}
-                  size="large"
+                  size="medium"
                   endIcon={<ChevronRightIcon />}
                 >
                   {pageToTitleI18n(nextPage, t)}

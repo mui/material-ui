@@ -1,2 +1,2 @@
-export { default } from '@material-ui/core/Skeleton';
-export * from '@material-ui/core/Skeleton';
+export { default } from '@mui/material/Skeleton';
+export * from '@mui/material/Skeleton';

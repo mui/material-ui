@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { Theme } from '@material-ui/core/styles';
-import { SxProps } from '@material-ui/system';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
+import { Theme } from '@mui/material/styles';
+import { SxProps } from '@mui/system';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
 
 const item: SxProps<Theme> = {

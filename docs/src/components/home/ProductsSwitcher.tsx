@@ -1,15 +1,15 @@
 import * as React from 'react';
 import dynamic from 'next/dynamic';
-import { Theme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import Typography from '@material-ui/core/Typography';
-import Stack from '@material-ui/core/Stack';
+import { Theme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
 import IconImage from 'docs/src/components/icon/IconImage';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Link from 'docs/src/modules/components/Link';
 
-import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import ROUTES from 'docs/src/route';
 
 const SwipeableViews = dynamic(() => import('react-swipeable-views'), { ssr: false });

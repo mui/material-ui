@@ -1,9 +1,9 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import Typography, { TypographyTypeMap } from '@material-ui/core/Typography';
-import { styled } from '@material-ui/core/styles';
-import { OverridableComponent } from '@material-ui/core/OverridableComponent';
-import { generateUtilityClasses } from '@material-ui/unstyled';
+import Typography, { TypographyTypeMap } from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
+import { OverridableComponent } from '@mui/material/OverridableComponent';
+import { generateUtilityClasses } from '@mui/core';
 import { onSpaceOrEnter } from '../internal/pickers/utils';
 
 const classes = generateUtilityClasses('PrivatePickersMonth', ['root', 'selected']);

@@ -1,19 +1,19 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import Grid from '@material-ui/core/Grid';
-import Paper, { PaperProps } from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
-import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import GitHubIcon from '@material-ui/icons/GitHub';
+import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import Grid from '@mui/material/Grid';
+import Paper, { PaperProps } from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import Link from 'docs/src/modules/components/Link';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
@@ -24,9 +24,9 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 import ROUTES from 'docs/src/route';
 import IconImage from 'docs/src/components/icon/IconImage';
-import ForumRoundedIcon from '@material-ui/icons/ForumRounded';
-import PeopleRoundedIcon from '@material-ui/icons/PeopleRounded';
-import LocalAtmRoundedIcon from '@material-ui/icons/LocalAtmRounded';
+import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
+import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
+import LocalAtmRoundedIcon from '@mui/icons-material/LocalAtmRounded';
 import BrandingProvider from 'docs/src/BrandingProvider';
 
 interface Profile {
@@ -259,7 +259,7 @@ const teamMembers: Array<Profile> = [
     title: 'Core components team',
     location: 'Silesia, Poland',
     country: 'pl',
-    about: 'Motorcyclist, gamer and coder (UI and more!)',
+    about: 'Motorcyclist, gamer, and coder (UI and more!)',
     twitter: 'michaldudak',
     github: 'michaldudak',
   },
@@ -486,7 +486,7 @@ function AboutContent() {
                 We plan on doing all that cultivating our values:
               </Typography>
               {[
-                'Customer obsessession. We put our customers front & center.',
+                'Customer obsessed. We put our customers front & center.',
                 'Transparency. Most of our work is public.',
                 'Freedom. We work from anywhere in the world.',
                 'Autonomy. We want to create a safe, high-trust team.',
@@ -584,7 +584,7 @@ function AboutContent() {
             </Typography>
             <Typography color="text.secondary" sx={{ maxWidth: { md: 500 } }}>
               We honor some no-longer-active core team members who have made valuable contributions
-              in the past. They advise us from time-to-time.
+              in the past. They advise us from time to time.
             </Typography>
             <Box sx={{ pt: 2 }}>
               <Grid container spacing={2}>
@@ -611,8 +611,8 @@ function AboutContent() {
               <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                 Tell us what and where we can improve or share your happy moments with us! You can
                 also up or downvote any page on our documentation. <br />
-                <br /> And lastly, from time to time, we send our community a survey for a more
-                structured feedback, you&apos;re always invinted to participate to share you
+                <br /> And lastly, from time to time, we send our community a survey for more
+                structured feedback, you&apos;re always invited to participate to share your
                 thoughts.
               </Typography>
               <Link

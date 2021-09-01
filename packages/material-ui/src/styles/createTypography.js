@@ -1,4 +1,4 @@
-import { deepmerge } from '@material-ui/utils';
+import { deepmerge } from '@mui/utils';
 
 function round(value) {
   return Math.round(value * 1e5) / 1e5;

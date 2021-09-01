@@ -99,7 +99,7 @@ export function unstable_getThemeValue(prop: string, value: any, theme: object):
  */
 export type ResponsiveStyleValue<T> = T | Array<T | null> | { [key: string]: T | null };
 
-export { DefaultTheme } from '@material-ui/private-theming';
+export { DefaultTheme } from '@mui/private-theming';
 
 export {
   css,
@@ -107,7 +107,7 @@ export {
   GlobalStyles,
   GlobalStylesProps,
   StyledEngineProvider,
-} from '@material-ui/styled-engine';
+} from '@mui/styled-engine';
 
 export * from './style';
 export * from './spacing';

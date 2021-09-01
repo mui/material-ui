@@ -6,7 +6,7 @@
     "@emotion/react": "latest",
     "@emotion/server": "latest",
     "@emotion/styled": "latest",
-    "@material-ui/core": "next",
+    "@mui/material": "next",
     "gatsby": "latest",
     "gatsby-plugin-react-helmet": "latest",
     "react": "latest",

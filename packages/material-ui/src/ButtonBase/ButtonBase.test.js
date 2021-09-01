@@ -13,8 +13,8 @@ import {
   programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
 import PropTypes from 'prop-types';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
-import ButtonBase, { buttonBaseClasses as classes } from '@material-ui/core/ButtonBase';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import ButtonBase, { buttonBaseClasses as classes } from '@mui/material/ButtonBase';
 
 describe('<ButtonBase />', () => {
   const render = createClientRender();

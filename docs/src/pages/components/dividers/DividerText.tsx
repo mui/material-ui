@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import Divider from '@material-ui/core/Divider';
-import Chip from '@material-ui/core/Chip';
+import { styled } from '@mui/material/styles';
+import Divider from '@mui/material/Divider';
+import Chip from '@mui/material/Chip';
 
 const Root = styled('div')(({ theme }) => ({
   width: '100%',

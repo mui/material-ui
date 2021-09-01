@@ -10,7 +10,7 @@ import {
 import FormControlUnstyled, {
   formControlUnstyledClasses,
   useFormControlUnstyled,
-} from '@material-ui/unstyled/FormControlUnstyled';
+} from '@mui/core/FormControlUnstyled';
 
 describe('<FormControlUnstyled />', () => {
   const mount = createMount();

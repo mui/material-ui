@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Box, { BoxProps } from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
+import Box, { BoxProps } from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 interface MaterialUixCardProps {
   children?: React.ReactNode;

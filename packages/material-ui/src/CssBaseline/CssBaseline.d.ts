@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyledComponentProps } from '@material-ui/core/styles';
+import { StyledComponentProps } from '@mui/material/styles';
 
 export interface CssBaselineProps extends StyledComponentProps<never> {
   /**

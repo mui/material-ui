@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import Container from '@material-ui/core/Container';
-import Divider from '@material-ui/core/Divider';
+import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import HeroPricing from 'docs/src/components/pricing/HeroPricing';
 import PricingTable from 'docs/src/components/pricing/PricingTable';

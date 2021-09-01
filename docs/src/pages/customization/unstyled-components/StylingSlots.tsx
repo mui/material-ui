@@ -1,8 +1,6 @@
 import * as React from 'react';
-import { styled } from '@material-ui/system';
-import SwitchUnstyled, {
-  switchUnstyledClasses,
-} from '@material-ui/unstyled/SwitchUnstyled';
+import { styled } from '@mui/system';
+import SwitchUnstyled, { switchUnstyledClasses } from '@mui/core/SwitchUnstyled';
 
 const Root = styled('span')(`
   font-size: 0;

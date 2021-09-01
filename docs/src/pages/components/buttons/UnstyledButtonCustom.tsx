@@ -2,8 +2,8 @@ import * as React from 'react';
 import ButtonUnstyled, {
   ButtonUnstyledProps,
   buttonUnstyledClasses,
-} from '@material-ui/unstyled/ButtonUnstyled';
-import { styled, Theme } from '@material-ui/system';
+} from '@mui/core/ButtonUnstyled';
+import { styled, Theme } from '@mui/system';
 
 const ButtonRoot = React.forwardRef(function ButtonRoot(
   props: React.PropsWithChildren<{}>,

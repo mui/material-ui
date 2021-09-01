@@ -1,3 +1,3 @@
-import { unstable_ownerWindow as ownerWindow } from '@material-ui/utils';
+import { unstable_ownerWindow as ownerWindow } from '@mui/utils';
 
 export default ownerWindow;

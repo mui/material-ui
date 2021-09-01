@@ -1,3 +1,3 @@
-import { unstable_isMuiElement as isMuiElement } from '@material-ui/utils';
+import { unstable_isMuiElement as isMuiElement } from '@mui/utils';
 
 export default isMuiElement;
