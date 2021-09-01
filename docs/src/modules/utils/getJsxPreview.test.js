@@ -120,14 +120,9 @@ export default function SlideFromContainer() {
   );
 }
     `),
-    ).to.equal(`theme.palette.mode === 'light' ? 'grey.100' : 'grey.900',
-erflow: 'hidden',
-
-{containerRef}
-
- sx={{ width: 200 }}>
-lide />
-x>
+    ).to.equal(`<Box sx={{ width: 200 }}>
+  <Slide />
+</Box>
 `);
   });
 });
