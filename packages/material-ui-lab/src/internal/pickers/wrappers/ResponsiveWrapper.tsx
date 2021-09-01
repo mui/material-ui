@@ -47,6 +47,8 @@ export function ResponsiveTooltipWrapper(props: InternalResponsiveWrapperProps) 
       KeyboardDateInputComponent={KeyboardDateInputComponent}
       PopperProps={PopperProps}
       TransitionComponent={TransitionComponent}
+      showTodayButton={showTodayButton}
+      todayText={todayText}
       {...other}
     />
   ) : (

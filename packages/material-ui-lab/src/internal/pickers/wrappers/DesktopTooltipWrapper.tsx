@@ -14,6 +14,9 @@ function DesktopTooltipWrapper(props: InternalDesktopWrapperProps) {
     open,
     PopperProps,
     TransitionComponent,
+    onSetToday,
+    showTodayButton,
+    todayText,
   } = props;
   const inputContainerRef = React.useRef<HTMLDivElement>(null);
   const popperRef = React.useRef<HTMLDivElement>(null);
@@ -45,6 +48,9 @@ function DesktopTooltipWrapper(props: InternalDesktopWrapperProps) {
         PopperProps={PopperProps}
         onBlur={handleBlur}
         onClose={onDismiss}
+        onSetToday={onSetToday}
+        showTodayButton={showTodayButton}
+        todayText={todayText}
       >
         {children}
       </PickersPopper>

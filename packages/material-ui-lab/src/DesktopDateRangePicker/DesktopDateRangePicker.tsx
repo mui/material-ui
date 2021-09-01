@@ -111,6 +111,8 @@ const DesktopDateRangePicker = React.forwardRef(function DesktopDateRangePicker<
     maxDate: maxDateProp,
     PopperProps,
     TransitionComponent,
+    showTodayButton,
+    todayText,
     ...other
   } = props;
 
@@ -161,6 +163,8 @@ const DesktopDateRangePicker = React.forwardRef(function DesktopDateRangePicker<
       KeyboardDateInputComponent={KeyboardDateInputComponent}
       PopperProps={PopperProps}
       TransitionComponent={TransitionComponent}
+      showTodayButton={showTodayButton}
+      todayText={todayText}
     >
       <DateRangePickerView<any>
         open={wrapperProps.open}
@@ -456,6 +460,10 @@ DesktopDateRangePicker.propTypes /* remove-proptypes */ = {
    * If `true`, the today button is displayed. **Note** that `showClearButton` has a higher priority.
    * @default false
    */
+  showTodayButton: PropTypes.bool,
+  /**
+   * If `true`, show the toolbar even in desktop mode.
+   */
   showToolbar: PropTypes.bool,
   /**
    * Text for start input label and toolbar placeholder.
@@ -465,6 +473,10 @@ DesktopDateRangePicker.propTypes /* remove-proptypes */ = {
   /**
    * Today text message.
    * @default 'Today'
+   */
+  todayText: PropTypes.node,
+  /**
+   * Component that will replace default toolbar renderer.
    */
   ToolbarComponent: PropTypes.elementType,
   /**

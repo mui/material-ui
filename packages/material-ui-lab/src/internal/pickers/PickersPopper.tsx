@@ -224,7 +224,7 @@ const PickersPopper = (props: PickerPopperProps) => {
     TransitionComponent = Grow,
     TrapFocusProps,
     showTodayButton = false,
-    onSetToday,
+    onSetToday = () => {},
   } = props;
 
   React.useEffect(() => {
@@ -291,7 +291,7 @@ const PickersPopper = (props: PickerPopperProps) => {
               onTouchStart={onPaperTouchStart}
               ownerState={{ ...ownerState, placement }}
             >
-              <>
+              <React.Fragment>
                 {children}
                 {showTodayButton && (
                   <PickersPopperActions ownerState={ownerState}>
@@ -300,7 +300,7 @@ const PickersPopper = (props: PickerPopperProps) => {
                     </Button>
                   </PickersPopperActions>
                 )}
-              </>
+              </React.Fragment>
             </PickersPopperPaper>
           </TransitionComponent>
         </TrapFocus>
