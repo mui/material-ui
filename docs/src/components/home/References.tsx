@@ -29,14 +29,14 @@ const References = ({
         textAlign="center"
         variant="body2"
         sx={{
-          minHeight: 42, // a hack to reduce CLS (layout shift)
+          minHeight: 42, // hard-coded to reduce CLS (layout shift)
           mt: 4,
           mx: 'auto',
-          maxWidth: 450,
+          maxWidth: 400,
         }}
       >
-        From startups to Fortune 500s, the world&apos;s best product teams leverage MUI to build
-        their UIs.
+        From startups to Fortune 500s, the world&apos;s best product teams use MUI to build their
+        UIs.
       </Typography>
     </Container>
   );
