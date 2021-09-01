@@ -87,22 +87,82 @@ const code = `
   </Box>
 </Card>`;
 
-const isTouchEvent = (event: MouseEvent | TouchEvent): event is TouchEvent => {
-  return Boolean((event as TouchEvent).touches && (event as TouchEvent).touches.length);
-};
-
-const isMouseEvent = (event: MouseEvent | TouchEvent): event is MouseEvent => {
-  return Boolean((event as MouseEvent).clientX || (event as MouseEvent).clientX === 0);
-};
-
 const startLine = [33, 26, 6];
 const endLine = [45, 31, 9];
 const scrollTo = [540, 320, 0];
 
+const useResizeHandle = (
+  target: React.MutableRefObject<HTMLDivElement | null>,
+  options?: { minWidth?: string; maxWidth?: string },
+) => {
+  const { minWidth = '0px', maxWidth = '100%' } = options || {};
+  const [dragging, setDragging] = React.useState(false);
+  const [dragOffset, setDragOffset] = React.useState(0);
+  const isTouchEvent = (event: MouseEvent | TouchEvent): event is TouchEvent => {
+    return Boolean((event as TouchEvent).touches && (event as TouchEvent).touches.length);
+  };
+  const isMouseEvent = (event: MouseEvent | TouchEvent): event is MouseEvent => {
+    return Boolean((event as MouseEvent).clientX || (event as MouseEvent).clientX === 0);
+  };
+  const getClientX = (event: MouseEvent | TouchEvent) => {
+    let clientX;
+    if (isMouseEvent(event)) {
+      clientX = event.clientX;
+    }
+    if (isTouchEvent(event)) {
+      clientX = event.touches[0].clientX;
+    }
+    return clientX as number;
+  };
+  const handleStart = (event: React.MouseEvent | React.TouchEvent) => {
+    const clientX = getClientX(event.nativeEvent);
+    const rect = (event.target as HTMLElement).getBoundingClientRect();
+    setDragging(true);
+    setDragOffset(rect.width - (clientX - rect.x));
+  };
+  React.useEffect(() => {
+    function resizeObject(event: MouseEvent | TouchEvent) {
+      if (event.cancelable) {
+        event.preventDefault();
+      }
+      const clientX = getClientX(event);
+
+      if (target.current && dragging && clientX) {
+        const objectRect = target.current.getBoundingClientRect();
+        const newWidth = clientX - objectRect.left + dragOffset;
+        target.current.style.width = `clamp(${minWidth}, ${Math.floor(newWidth)}px, ${maxWidth})`;
+      }
+    }
+    function stopResize() {
+      setDragging(false);
+    }
+
+    if (dragging) {
+      document.addEventListener('mousemove', resizeObject, { passive: false });
+      document.addEventListener('mouseup', stopResize);
+      document.addEventListener('touchmove', resizeObject, { passive: false });
+      document.addEventListener('touchend', stopResize);
+      return () => {
+        document.removeEventListener('mousemove', resizeObject);
+        document.removeEventListener('mouseup', stopResize);
+        document.removeEventListener('touchmove', resizeObject);
+        document.removeEventListener('touchend', stopResize);
+      };
+    }
+  }, [dragging]);
+  return {
+    dragging,
+    getDragHandlers: () => ({
+      onTouchStart: handleStart,
+      onMouseDown: handleStart,
+    }),
+  };
+};
+
 export default function CoreStyling() {
   const [index, setIndex] = React.useState(0);
-  const [dragging, setDragging] = React.useState<false | number>(false);
   const objectRef = React.useRef<HTMLDivElement | null>(null);
+  const { dragging, getDragHandlers } = useResizeHandle(objectRef, { minWidth: '253px' });
   const infoRef = React.useRef<HTMLDivElement | null>(null);
   function getSelectedProps(i: number) {
     return {
@@ -118,40 +178,7 @@ export default function CoreStyling() {
       objectRef.current.style.width = '100%';
     }
   }, [index, scrollTo]);
-  React.useEffect(() => {
-    function resizeObject(event: MouseEvent | TouchEvent) {
-      let clientX;
-      if (isMouseEvent(event)) {
-        event.preventDefault();
-        clientX = event.clientX;
-      }
-      if (isTouchEvent(event)) {
-        clientX = event.touches[0].clientX;
-      }
 
-      if (objectRef.current && typeof dragging === 'number' && clientX) {
-        const objectRect = objectRef.current.getBoundingClientRect();
-        const newWidth = clientX - objectRect.left + dragging;
-        objectRef.current.style.width = `clamp(253px, ${Math.floor(newWidth)}px, 100%)`;
-      }
-    }
-    function stopResize() {
-      setDragging(false);
-    }
-
-    if (typeof dragging === 'number') {
-      document.addEventListener('mousemove', resizeObject);
-      document.addEventListener('mouseup', stopResize);
-      document.addEventListener('touchmove', resizeObject);
-      document.addEventListener('touchup', stopResize);
-      return () => {
-        document.removeEventListener('mousemove', resizeObject);
-        document.removeEventListener('mouseup', stopResize);
-        document.addEventListener('touchmove', resizeObject);
-        document.addEventListener('touchup', stopResize);
-      };
-    }
-  }, [dragging]);
   return (
     <Section bg="gradient">
       <Grid container spacing={2}>
@@ -200,6 +227,7 @@ export default function CoreStyling() {
             >
               <Box
                 ref={objectRef}
+                style={{ touchAction: dragging ? 'none' : 'auto' }}
                 sx={{
                   display: 'flex',
                   justifyContent: 'center',
@@ -229,19 +257,13 @@ export default function CoreStyling() {
                             theme.palette.mode === 'dark' ? 'grey.300' : 'grey.700',
                         },
                       }}
-                      onMouseDown={(event) => {
-                        const rect = (event.target as HTMLElement).getBoundingClientRect();
-                        setDragging(rect.width - (event.clientX - rect.x));
-                      }}
-                      onTouchStart={(event) => {
-                        const rect = (event.target as HTMLElement).getBoundingClientRect();
-                        setDragging(rect.width - (event.touches[0].clientX - rect.x));
-                      }}
+                      {...getDragHandlers()}
                     >
                       <DragHandleRounded sx={{ transform: 'rotate(90deg)' }} />
                     </Box>
                     <Box
                       sx={{
+                        pointerEvents: 'none',
                         width: '1px',
                         bgcolor: (theme) =>
                           theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.400',
