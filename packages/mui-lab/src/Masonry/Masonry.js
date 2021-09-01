@@ -12,15 +12,6 @@ import { unstable_composeClasses as composeClasses } from '@mui/core';
 import { styled, useThemeProps, useTheme } from '@mui/material/styles';
 import { getMasonryUtilityClass } from './masonryClasses';
 
-// dummy resize observer used to prevent crash for old browsers that do not support ResizeObserver API(e.g., 11IE)
-const MockResizeObserver = () => {
-  return {
-    observe: () => {},
-    unobserve: () => {},
-    disconnect: () => {},
-  };
-};
-
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
 
@@ -170,12 +161,11 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
         setMaxNumOfRows(Math.max(...numOfRows));
       }
     };
-    let resizeObserver;
-    try {
-      resizeObserver = new ResizeObserver(handleResize);
-    } catch (err) {
-      resizeObserver = MockResizeObserver();
+    if (typeof ResizeObserver === 'undefined') {
+      return null;
     }
+    const resizeObserver = new ResizeObserver(handleResize);
+
     const container = masonryRef.current;
     resizeObserver.observe(container);
     return () => {
