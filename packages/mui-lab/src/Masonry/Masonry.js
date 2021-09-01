@@ -52,6 +52,7 @@ export const style = ({ ownerState, theme }) => {
   const spacingStyleFromPropValue = (propValue) => {
     const spacing = Number(getValue(transformer, propValue).replace('px', ''));
     return {
+      margin: -(spacing / 2),
       '& *': {
         margin: spacing / 2,
       },
