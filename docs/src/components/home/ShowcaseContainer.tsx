@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Box, { BoxProps } from '@mui/material/Box';
-import Fade from '@mui/core/Fade';
+import Fade from '@mui/material/Fade';
 import NoSsr from '@mui/material/NoSsr';
 import Paper, { PaperProps } from '@mui/material/Paper';
 
