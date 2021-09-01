@@ -255,7 +255,7 @@ const Cell = ({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
     {...props}
     sx={{
       py: 2,
-      pl: 2,
+      px: 2,
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
