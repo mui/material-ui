@@ -48,7 +48,7 @@ export default function ShowcaseContainer({
         </Paper>
         <Box
           sx={{
-            flexGrow: 1,
+            flexGrow: 0,
             display: 'flex',
             flexDirection: 'column',
             maxWidth: '100%',

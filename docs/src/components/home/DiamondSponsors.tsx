@@ -11,15 +11,15 @@ import SponsorCard from 'docs/src/components/home/SponsorCard';
 
 const DIAMONDs = [
   {
-    src: 'https://avatars3.githubusercontent.com/u/1287123?s=40',
-    srcSet: 'https://avatars3.githubusercontent.com/u/1287123?s=80 2x',
+    src: '/static/sponsors/octopus.svg',
+    srcSet: '/static/sponsors/octopus.svg',
     name: 'Octopus Deploy',
     description: 'Repeatable reliable deployments.',
     href: 'https://octopus.com/',
   },
   {
-    src: 'https://avatars3.githubusercontent.com/u/8424863?s=40',
-    srcSet: 'https://avatars3.githubusercontent.com/u/8424863?s=80 2x',
+    src: '/static/sponsors/doit-square.svg',
+    srcSet: '/static/sponsors/doit-square.svg',
     name: 'Doit International',
     description: 'Management platform for Google Cloud and AWS.',
     href: 'https://www.doit-intl.com/',
