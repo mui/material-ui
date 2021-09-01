@@ -270,28 +270,19 @@ function AppFrame(props) {
               </IconButton>
             </Tooltip>
             <Notifications />
-            <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-              <IconButton color="inherit" onClick={handleSettingsDrawerOpen} sx={{ px: '10px' }}>
-                <SettingsIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
-              <Button {...languageButtonProps} sx={{ display: { xs: 'none', md: 'flex' } }}>
-                <LanguageSpan sx={{ display: { xs: 'none', md: 'block' } }}>
-                  {LANGUAGES_LABEL.filter((language) => language.code === userLanguage)[0].text}
-                </LanguageSpan>
-                <ArrowDropDownRoundedIcon fontSize="small" color="primary" />
-              </Button>
-            </Tooltip>
             <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
               <IconButton
                 {...languageButtonProps}
                 sx={{
-                  display: { xs: 'flex', md: 'none' },
                   px: '10px',
                 }}
               >
                 <LanguageIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
+              <IconButton color="inherit" onClick={handleSettingsDrawerOpen} sx={{ px: '10px' }}>
+                <SettingsIcon fontSize="small" />
               </IconButton>
             </Tooltip>
             <NoSsr defer>
