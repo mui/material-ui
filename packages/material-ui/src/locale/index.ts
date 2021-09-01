@@ -1630,7 +1630,7 @@ export const zhCN: Localization = {
       backIconButtonText: '上一页',
       labelRowsPerPage: '每页行数:',
       labelDisplayedRows: ({ from, to, count }) =>
-        `${from}-${to} 的 ${count !== -1 ? count : `超过 ${to}`}`,
+         `第 ${from} 条至第 ${to} 条，${count !== -1 ? `共 ${count} 条` : `至少 ${to} 条`}`,
       nextIconButtonText: '下一页',
     },
     MuiRating: {
