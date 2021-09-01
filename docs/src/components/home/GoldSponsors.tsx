@@ -7,8 +7,8 @@ import SponsorCard from 'docs/src/components/home/SponsorCard';
 
 const GOLDs = [
   {
-    src: 'https://avatars.githubusercontent.com/u/30204434?s=40',
-    srcSet: 'https://avatars.githubusercontent.com/u/30204434?s=80 2x',
+    src: '/static/sponsors/tidelift.svg',
+    srcSet: '/static/sponsors/tidelift.svg',
     name: 'Tidelift',
     description: 'Enterprise-ready open source software.',
     href: 'https://tidelift.com/',
@@ -28,8 +28,8 @@ const GOLDs = [
     href: 'https://www.text-em-all.com/',
   },
   {
-    src: 'https://images.opencollective.com/canadacasino/5b19004/logo/40.png',
-    srcSet: 'https://images.opencollective.com/canadacasino/5b19004/logo/80.png 2x',
+    src: '/static/sponsors/canada-casino.svg',
+    srcSet: '/static/sponsors/canada-casino.svg',
     name: 'Canada Casino',
     description: 'Safe and rewarding online casino experience',
     href: 'https://casinocanada.com/',
