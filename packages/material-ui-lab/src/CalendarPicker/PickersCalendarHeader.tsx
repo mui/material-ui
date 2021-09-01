@@ -43,7 +43,7 @@ export interface PickersCalendarHeaderProps<TDate>
    * @default {}
    */
   componentsProps?: ExportedArrowSwitcherProps['componentsProps'] & {
-    switchViewButton?: Record<string, any>;
+    switchViewButton?: React.ComponentPropsWithRef<typeof IconButton>;
   };
   currentMonth: TDate;
   views: readonly CalendarPickerView[];

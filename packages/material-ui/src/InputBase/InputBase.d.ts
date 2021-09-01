@@ -56,8 +56,8 @@ export interface InputBaseProps
    * @default {}
    */
   componentsProps?: {
-    root?: Record<string, any>;
-    input?: Record<string, any>;
+    root?: React.HTMLAttributes<HTMLDivElement>;
+    input?: React.InputHTMLAttributes<HTMLInputElement>;
   };
   /**
    * The default value. Use when the component is not controlled.

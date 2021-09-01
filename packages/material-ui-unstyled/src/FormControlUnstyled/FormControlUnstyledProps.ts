@@ -21,7 +21,7 @@ export interface FormControlUnstyledOwnProps {
     Root?: React.ElementType;
   };
   componentsProps?: {
-    root?: object;
+    root?: React.HTMLAttributes<HTMLDivElement>;
   };
   defaultValue?: unknown;
   /**

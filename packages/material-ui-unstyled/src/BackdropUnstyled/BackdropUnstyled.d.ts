@@ -21,7 +21,7 @@ export interface BackdropUnstyledTypeMap<P = {}, D extends React.ElementType = '
      * @default {}
      */
     componentsProps?: {
-      root?: Record<string, any>;
+      root?: React.HTMLAttributes<HTMLDivElement>;
     };
     /**
      * Override or extend the styles applied to the component.

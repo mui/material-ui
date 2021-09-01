@@ -33,10 +33,10 @@ export interface SwitchUnstyledProps extends UseSwitchProps {
    * @default {}
    */
   componentsProps?: {
-    root?: Record<string, any>;
-    thumb?: Record<string, any>;
-    input?: Record<string, any>;
-    track?: Record<string, any>;
+    root?: React.HTMLAttributes<HTMLSpanElement>;
+    thumb?: React.HTMLAttributes<HTMLSpanElement>;
+    input?: React.InputHTMLAttributes<HTMLInputElement>;
+    track?: React.HTMLAttributes<HTMLSpanElement>;
   };
 }
 

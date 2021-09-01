@@ -1,5 +1,6 @@
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
 import { SliderUnstyledClasses } from './sliderUnstyledClasses';
+import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 
 export interface SliderOwnerStateOverrides {}
 
@@ -52,13 +53,13 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
      * @default {}
      */
     componentsProps?: {
-      root?: Record<string, any>;
-      track?: Record<string, any>;
-      rail?: Record<string, any>;
-      thumb?: Record<string, any>;
-      mark?: Record<string, any>;
-      markLabel?: Record<string, any>;
-      valueLabel?: Record<string, any>;
+      root?: React.HTMLAttributes<HTMLSpanElement>;
+      track?: React.HTMLAttributes<HTMLSpanElement>;
+      rail?: React.HTMLAttributes<HTMLSpanElement>;
+      thumb?: React.HTMLAttributes<HTMLSpanElement>;
+      mark?: React.HTMLAttributes<HTMLSpanElement>;
+      markLabel?: React.HTMLAttributes<HTMLSpanElement>;
+      valueLabel?: React.ComponentPropsWithRef<typeof SliderValueLabelUnstyled>;
     };
     /**
      * The default value. Use when the component is not controlled.

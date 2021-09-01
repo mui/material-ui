@@ -98,7 +98,7 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
        * @default {}
        */
       componentsProps?: {
-        root?: Record<string, any>;
+        root?: React.HTMLAttributes<HTMLDivElement>;
       };
     };
   defaultComponent: D;

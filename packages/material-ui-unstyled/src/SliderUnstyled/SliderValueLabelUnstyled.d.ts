@@ -27,4 +27,4 @@ export interface ValueLabelUnstyledProps {
   valueLabelDisplay?: 'on' | 'auto' | 'off';
 }
 
-export default function ValueLabel(props: ValueLabelUnstyledProps): JSX.Element;
+export default function SliderValueLabelUnstyled(props: ValueLabelUnstyledProps): JSX.Element;

@@ -1,4 +1,5 @@
 import { OverrideProps } from '@mui/types';
+import React from 'react';
 import UseButtonProps from './UseButtonProps';
 
 export interface ButtonUnstyledActions {
@@ -13,7 +14,7 @@ export interface ButtonUnstyledOwnProps extends Omit<UseButtonProps, 'ref'> {
   children?: React.ReactNode;
   className?: string;
   componentsProps?: {
-    root?: Record<string, any>;
+    root?: React.ButtonHTMLAttributes<HTMLButtonElement>;
   };
 }
 

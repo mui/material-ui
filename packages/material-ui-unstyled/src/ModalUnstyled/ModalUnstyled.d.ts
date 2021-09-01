@@ -40,7 +40,7 @@ export interface ModalUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
      * @default {}
      */
     componentsProps?: {
-      root?: Record<string, any>;
+      root?: React.HTMLAttributes<HTMLDivElement>;
     };
     /**
      * An HTML element or function that returns one.

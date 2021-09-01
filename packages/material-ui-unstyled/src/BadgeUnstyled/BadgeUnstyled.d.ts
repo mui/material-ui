@@ -31,8 +31,8 @@ export interface BadgeUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
      * @default {}
      */
     componentsProps?: {
-      root?: Record<string, any>;
-      badge?: Record<string, any>;
+      root?: React.HTMLAttributes<HTMLDivElement>;
+      badge?: React.HTMLAttributes<HTMLSpanElement>;
     };
     /**
      * Wrapped shape the badge should overlap.
