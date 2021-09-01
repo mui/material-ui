@@ -2,7 +2,7 @@ import * as React from 'react';
 import { describeConformance } from 'test/utils';
 import DateRangePickerDay, {
   dateRangePickerDayClasses as classes,
-} from '@material-ui/lab/DateRangePickerDay';
+} from '@mui/lab/DateRangePickerDay';
 import { adapterToUse, wrapPickerMount, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<DateRangePickerDay />', () => {

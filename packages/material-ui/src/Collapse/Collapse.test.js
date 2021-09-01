@@ -2,9 +2,9 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import { act, createClientRender, describeConformance } from 'test/utils';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Transition } from 'react-transition-group';
-import Collapse, { collapseClasses as classes } from '@material-ui/core/Collapse';
+import Collapse, { collapseClasses as classes } from '@mui/material/Collapse';
 
 describe('<Collapse />', () => {
   const render = createClientRender();

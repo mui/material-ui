@@ -3,9 +3,9 @@ import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { fireEvent, createClientRender, describeConformance, screen } from 'test/utils';
 import PropTypes, { checkPropTypes } from 'prop-types';
-import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import Drawer, { drawerClasses } from '@material-ui/core/Drawer';
-import { backdropClasses } from '@material-ui/core/Backdrop';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import Drawer, { drawerClasses } from '@mui/material/Drawer';
+import { backdropClasses } from '@mui/material/Backdrop';
 import useForkRef from '../utils/useForkRef';
 
 const FakePaper = React.forwardRef(function FakeWidthPaper(props, ref) {

@@ -2,10 +2,10 @@ import * as React from 'react';
 import { faEllipsisV } from '@fortawesome/free-solid-svg-icons/faEllipsisV';
 import { faInfo } from '@fortawesome/free-solid-svg-icons/faInfo';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import SvgIcon from '@mui/material/SvgIcon';
 
 type FontAwesomeSvgIconProps = {
   icon: any;

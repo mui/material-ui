@@ -21,10 +21,10 @@ Install the package in your project directory with:
 
 ```sh
 // with npm
-npm install @material-ui/lab@next
+npm install @mui/lab@next
 
 // with yarn
-yarn add @material-ui/lab@next
+yarn add @mui/lab@next
 ```
 
 The lab has a peer dependency on the core components.
@@ -32,10 +32,10 @@ If you are not already using Material-UI in your project, you can install it wit
 
 ```sh
 // with npm
-npm install @material-ui/core@next
+npm install @mui/material@next
 
 // with yarn
-yarn add @material-ui/core@next
+yarn add @mui/material@next
 ```
 
 ## TypeScript
@@ -44,9 +44,9 @@ In order to benefit from the [CSS overrides](/customization/theme-components/#gl
 
 ```tsx
 // When using TypeScript 4.x and above
-import type {} from '@material-ui/lab/themeAugmentation';
+import type {} from '@mui/lab/themeAugmentation';
 // When using TypeScript 3.x and below
-import '@material-ui/lab/themeAugmentation';
+import '@mui/lab/themeAugmentation';
 
 const theme = createTheme({
   components: {

@@ -17,18 +17,18 @@
     "packages/material-ui-styled-engine-sc"
   ],
   "publishDirectory": {
-    "@material-ui/codemod": "packages/material-ui-codemod/build",
-    "@material-ui/core": "packages/material-ui/build",
-    "@material-ui/icons": "packages/material-ui-icons/build",
-    "@material-ui/lab": "packages/material-ui-lab/build",
-    "@material-ui/styles": "packages/material-ui-styles/build",
-    "@material-ui/styled-engine": "packages/material-ui-styled-engine/build",
-    "@material-ui/styled-engine-sc": "packages/material-ui-styled-engine-sc/build",
-    "@material-ui/system": "packages/material-ui-system/build",
-    "@material-ui/private-theming": "packages/material-ui-private-theming/build",
-    "@material-ui/types": "packages/material-ui-types/build",
-    "@material-ui/utils": "packages/material-ui-utils/build",
-    "@material-ui/unstyled": "packages/material-ui-unstyled/build"
+    "@mui/codemod": "packages/material-ui-codemod/build",
+    "@mui/material": "packages/material-ui/build",
+    "@mui/icons-material": "packages/material-ui-icons/build",
+    "@mui/lab": "packages/material-ui-lab/build",
+    "@mui/styles": "packages/material-ui-styles/build",
+    "@mui/styled-engine": "packages/material-ui-styled-engine/build",
+    "@mui/styled-engine-sc": "packages/material-ui-styled-engine-sc/build",
+    "@mui/system": "packages/material-ui-system/build",
+    "@mui/private-theming": "packages/material-ui-private-theming/build",
+    "@mui/types": "packages/material-ui-types/build",
+    "@mui/utils": "packages/material-ui-utils/build",
+    "@mui/core": "packages/material-ui-unstyled/build"
   },
   "sandboxes": [
     "material-ui-issue-dh2yh",

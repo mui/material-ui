@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, createTheme, ThemeProvider } from '@material-ui/system';
+import { styled, createTheme, ThemeProvider } from '@mui/system';
 
 const customTheme = createTheme({
   components: {

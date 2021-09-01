@@ -1,6 +1,6 @@
-import { Color } from '@material-ui/core';
-import { blue, common } from '@material-ui/core/colors';
-import { createTheme, Theme } from '@material-ui/core/styles';
+import { Color } from '@mui/material';
+import { blue, common } from '@mui/material/colors';
+import { createTheme, Theme } from '@mui/material/styles';
 
 {
   const palette = createTheme().palette;

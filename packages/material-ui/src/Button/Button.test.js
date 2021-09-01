@@ -7,8 +7,8 @@ import {
   fireEvent,
   createServerRender,
 } from 'test/utils';
-import Button, { buttonClasses as classes } from '@material-ui/core/Button';
-import ButtonBase from '@material-ui/core/ButtonBase';
+import Button, { buttonClasses as classes } from '@mui/material/Button';
+import ButtonBase from '@mui/material/ButtonBase';
 
 describe('<Button />', () => {
   const render = createClientRender();

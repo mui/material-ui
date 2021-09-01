@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Stack from '@material-ui/core/Stack';
-import Badge from '@material-ui/core/Badge';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import Badge from '@mui/material/Badge';
 
 const shapeStyles = { bgcolor: 'primary.main', width: 40, height: 40 };
 const shapeCircleStyles = { borderRadius: '50%' };

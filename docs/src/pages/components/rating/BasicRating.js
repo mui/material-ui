@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Rating from '@material-ui/core/Rating';
-import Typography from '@material-ui/core/Typography';
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
 
 export default function BasicRating() {
   const [value, setValue] = React.useState(2);

@@ -1,13 +1,13 @@
 import * as React from 'react';
-import AlarmIcon from '@material-ui/icons/Alarm';
-import SnoozeIcon from '@material-ui/icons/Snooze';
-import TextField from '@material-ui/core/TextField';
-import ClockIcon from '@material-ui/icons/AccessTime';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import DateTimePicker from '@material-ui/lab/DateTimePicker';
-import MobileDateTimePicker from '@material-ui/lab/MobileDateTimePicker';
-import Stack from '@material-ui/core/Stack';
+import AlarmIcon from '@mui/icons-material/Alarm';
+import SnoozeIcon from '@mui/icons-material/Snooze';
+import TextField from '@mui/material/TextField';
+import ClockIcon from '@mui/icons-material/AccessTime';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DateTimePicker from '@mui/lab/DateTimePicker';
+import MobileDateTimePicker from '@mui/lab/MobileDateTimePicker';
+import Stack from '@mui/material/Stack';
 
 export default function CustomDateTimePicker() {
   const [clearedDate, setClearedDate] = React.useState(null);

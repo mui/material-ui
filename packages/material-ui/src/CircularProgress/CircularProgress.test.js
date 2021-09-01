@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { createClientRender, describeConformance } from 'test/utils';
 import CircularProgress, {
   circularProgressClasses as classes,
-} from '@material-ui/core/CircularProgress';
+} from '@mui/material/CircularProgress';
 
 describe('<CircularProgress />', () => {
   const render = createClientRender();

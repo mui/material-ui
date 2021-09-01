@@ -5,7 +5,7 @@ import {
   unstable_useEventCallback as useEventCallback,
   unstable_useControlled as useControlled,
   unstable_useId as useId,
-} from '@material-ui/utils';
+} from '@mui/utils';
 
 // https://stackoverflow.com/questions/990904/remove-accents-diacritics-in-a-string-in-javascript
 // Give up on IE11 support for this feature

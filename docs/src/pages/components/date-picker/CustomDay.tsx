@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import StaticDatePicker from '@material-ui/lab/StaticDatePicker';
-import PickersDay, { PickersDayProps } from '@material-ui/lab/PickersDay';
+import { styled } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import StaticDatePicker from '@mui/lab/StaticDatePicker';
+import PickersDay, { PickersDayProps } from '@mui/lab/PickersDay';
 import endOfWeek from 'date-fns/endOfWeek';
 import isSameDay from 'date-fns/isSameDay';
 import isWithinInterval from 'date-fns/isWithinInterval';

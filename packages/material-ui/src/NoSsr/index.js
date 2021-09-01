@@ -1,1 +1,1 @@
-export { default } from '@material-ui/unstyled/NoSsr';
+export { default } from '@mui/core/NoSsr';

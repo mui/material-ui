@@ -1,6 +1,6 @@
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
-import DateTimePicker from '@material-ui/lab/DateTimePicker';
+import TextField from '@mui/material/TextField';
+import DateTimePicker from '@mui/lab/DateTimePicker';
 import { createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<DateTimePicker />', () => {

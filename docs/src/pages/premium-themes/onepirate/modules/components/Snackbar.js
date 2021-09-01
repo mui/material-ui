@@ -1,12 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 
-import { withStyles } from '@material-ui/styles';
-import MuiSnackbar from '@material-ui/core/Snackbar';
-import Slide from '@material-ui/core/Slide';
-import CloseIcon from '@material-ui/icons/Close';
-import InfoIcon from '@material-ui/icons/Info';
-import IconButton from '@material-ui/core/IconButton';
+import { withStyles } from '@mui/styles';
+import MuiSnackbar from '@mui/material/Snackbar';
+import Slide from '@mui/material/Slide';
+import CloseIcon from '@mui/icons-material/Close';
+import InfoIcon from '@mui/icons-material/Info';
+import IconButton from '@mui/material/IconButton';
 
 const styles = (theme) => ({
   content: {

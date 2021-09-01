@@ -3,18 +3,18 @@ import express from 'express';
 import * as React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { SheetsRegistry } from 'jss';
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 import {
   styled as materialStyled,
   StylesProvider,
   ThemeProvider,
   createGenerateClassName,
-} from '@material-ui/styles';
-import { green, red } from '@material-ui/core/colors';
+} from '@mui/styles';
+import { green, red } from '@mui/material/colors';
 import Pricing from 'docs/src/pages/getting-started/templates/pricing/Pricing';
-import { spacing, palette, unstable_styleFunctionSx as styleFunction } from '@material-ui/system';
-import Avatar from '@material-ui/core/Avatar';
-import Box from '@material-ui/core/Box';
+import { spacing, palette, unstable_styleFunctionSx as styleFunction } from '@mui/system';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
 
 const StyledFunction = materialStyled('div')(() => ({
   color: 'blue',

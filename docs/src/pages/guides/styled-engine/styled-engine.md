@@ -1,4 +1,4 @@
-# `@material-ui/styled-engine`
+# `@mui/styled-engine`
 
 <p class="description">Configuring your preferred styling library.</p>
 
@@ -11,11 +11,11 @@ This API is supported by multiple popular styling libraries, which makes it poss
 If you already have [styled-components](https://github.com/styled-components/styled-components) installed, it's possible to use it exclusively.
 There are currently two packages available to choose from:
 
-- `@material-ui/styled-engine` - a thin wrapper around [emotion's `styled()`](https://emotion.sh/docs/styled) API, with the addition of few other required utilities, such as the `<GlobalStyles />` component, the `css` and `keyframe` helpers, etc. This is the default.
-- `@material-ui/styled-engine-sc` - a similar wrapper around `styled-components`.
+- `@mui/styled-engine` - a thin wrapper around [emotion's `styled()`](https://emotion.sh/docs/styled) API, with the addition of few other required utilities, such as the `<GlobalStyles />` component, the `css` and `keyframe` helpers, etc. This is the default.
+- `@mui/styled-engine-sc` - a similar wrapper around `styled-components`.
 
 These two packages implement the same interface, which makes it makes possible to replace one with the other.
-By default, `@material-ui/core` has `@material-ui/styled-engine` as a dependency, but you can configure your bundler to replace it with `@material-ui/styled-engine-sc` using a package alias:
+By default, `@mui/material` has `@mui/styled-engine` as a dependency, but you can configure your bundler to replace it with `@mui/styled-engine-sc` using a package alias:
 
 **package.json**
 
@@ -24,11 +24,11 @@ By default, `@material-ui/core` has `@material-ui/styled-engine` as a dependency
 ```diff
  {
    "dependencies": {
--    "@material-ui/styled-engine": "next"
-+    "@material-ui/styled-engine": "npm:@material-ui/styled-engine-sc@next"
+-    "@mui/styled-engine": "next"
++    "@mui/styled-engine": "npm:@mui/styled-engine-sc@next"
    },
 +  "resolutions": {
-+    "@material-ui/styled-engine": "npm:@material-ui/styled-engine-sc@next"
++    "@mui/styled-engine": "npm:@mui/styled-engine-sc@next"
 +  },
  }
 ```
@@ -36,6 +36,6 @@ By default, `@material-ui/core` has `@material-ui/styled-engine` as a dependency
 If you are using create-react-app, there is a ready-to-use template in the example projects.
 You can use the [create-react-app-with-styled-components example](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components), or its [TypeScript equivalent](https://github.com/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components-typescript).
 
-> **Note**: `@emotion/react`, `@emotion/styled`, and `styled-components` are optional peer dependencies of `@material-ui/core`, so you need to install them yourself. See the [Installation guide](/getting-started/installation/) for more info.
+> **Note**: `@emotion/react`, `@emotion/styled`, and `styled-components` are optional peer dependencies of `@mui/material`, so you need to install them yourself. See the [Installation guide](/getting-started/installation/) for more info.
 
 > **Note:** This package-swap approach is identical to the replacement of React with [Preact](https://github.com/preactjs/preact). The Preact team has documented a large number of installation configurations. If you are stuck with Material-UI + styled-components, don't hesitate to check out how they solve the problem, as you can likely transfer the solution.

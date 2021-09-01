@@ -2,12 +2,10 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
 import { useFakeTimers } from 'sinon';
-import Icon from '@material-ui/core/Icon';
-import Tooltip from '@material-ui/core/Tooltip';
-import { fabClasses } from '@material-ui/core/Fab';
-import SpeedDialAction, {
-  speedDialActionClasses as classes,
-} from '@material-ui/core/SpeedDialAction';
+import Icon from '@mui/material/Icon';
+import Tooltip from '@mui/material/Tooltip';
+import { fabClasses } from '@mui/material/Fab';
+import SpeedDialAction, { speedDialActionClasses as classes } from '@mui/material/SpeedDialAction';
 
 describe('<SpeedDialAction />', () => {
   let clock;

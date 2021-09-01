@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
-import Box from '@material-ui/core/Box';
-import Card from '@material-ui/core/Card';
-import Chip from '@material-ui/core/Chip';
-import Fade from '@material-ui/core/Fade';
-import Typography from '@material-ui/core/Typography';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import Chip from '@mui/material/Chip';
+import Fade from '@mui/material/Fade';
+import Typography from '@mui/material/Typography';
 
-declare module '@material-ui/core/Chip' {
+declare module '@mui/material/Chip' {
   interface ChipPropsVariantOverrides {
     notification: true;
   }

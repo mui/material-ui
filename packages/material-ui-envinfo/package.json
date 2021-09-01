@@ -1,11 +1,11 @@
 {
-  "name": "@material-ui/envinfo",
+  "name": "@mui/envinfo",
   "private": false,
   "publishConfig": {
     "access": "public"
   },
   "license": "MIT",
-  "description": "Logs infos about the environment relevant to @material-ui/*",
+  "description": "Logs infos about the environment relevant to @mui/*",
   "version": "1.1.6",
   "bin": "./envinfo.js",
   "dependencies": {

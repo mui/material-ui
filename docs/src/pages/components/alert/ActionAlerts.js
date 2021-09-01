@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Alert from '@material-ui/core/Alert';
-import Button from '@material-ui/core/Button';
-import Stack from '@material-ui/core/Stack';
+import Alert from '@mui/material/Alert';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 
 export default function ActionAlerts() {
   return (

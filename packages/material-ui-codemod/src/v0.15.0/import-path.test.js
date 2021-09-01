@@ -12,7 +12,7 @@ function read(fileName) {
   return readFile(path.join(__dirname, fileName));
 }
 
-describe('@material-ui/codemod', () => {
+describe('@mui/codemod', () => {
   describe('v0.15.0', () => {
     describe('import-path', () => {
       it('convert path as needed', () => {

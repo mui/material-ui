@@ -1,5 +1,5 @@
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
+import TextField from '@mui/material/TextField';
 import { describeConformance } from 'test/utils';
 import StaticTimePicker from './StaticTimePicker';
 import { wrapPickerMount } from '../internal/pickers/test-utils';

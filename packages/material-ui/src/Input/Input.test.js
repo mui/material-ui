@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, describeConformance } from 'test/utils';
-import InputBase from '@material-ui/core/InputBase';
-import Input, { inputClasses as classes } from '@material-ui/core/Input';
+import InputBase from '@mui/material/InputBase';
+import Input, { inputClasses as classes } from '@mui/material/Input';
 
 describe('<Input />', () => {
   const render = createClientRender();

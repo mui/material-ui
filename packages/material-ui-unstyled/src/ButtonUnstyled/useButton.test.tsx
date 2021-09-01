@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useButton } from '@material-ui/unstyled/ButtonUnstyled';
+import { useButton } from '@mui/core/ButtonUnstyled';
 import { createClientRender, fireEvent } from 'test/utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';

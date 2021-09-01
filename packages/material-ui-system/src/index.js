@@ -1,4 +1,4 @@
-export { css, keyframes, GlobalStyles, StyledEngineProvider } from '@material-ui/styled-engine';
+export { css, keyframes, GlobalStyles, StyledEngineProvider } from '@mui/styled-engine';
 export { default as borders } from './borders';
 export * from './borders';
 export { default as breakpoints } from './breakpoints';

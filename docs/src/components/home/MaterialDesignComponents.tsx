@@ -6,32 +6,32 @@ import {
   useTheme,
   Theme,
   ThemeOptions,
-} from '@material-ui/core/styles';
-import { capitalize } from '@material-ui/core/utils';
-import Alert from '@material-ui/core/Alert';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Chip from '@material-ui/core/Chip';
-import Tabs from '@material-ui/core/Tabs';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import Paper from '@material-ui/core/Paper';
-import Tab from '@material-ui/core/Tab';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import ShoppingCartRounded from '@material-ui/icons/ShoppingCartRounded';
-import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
-import CheckCircleRounded from '@material-ui/icons/CheckCircleRounded';
-import MailRounded from '@material-ui/icons/MailRounded';
-import VerifiedUserRounded from '@material-ui/icons/VerifiedUserRounded';
-import HelpCenterRounded from '@material-ui/icons/HelpCenterRounded';
+} from '@mui/material/styles';
+import { capitalize } from '@mui/material/utils';
+import Alert from '@mui/material/Alert';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Chip from '@mui/material/Chip';
+import Tabs from '@mui/material/Tabs';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Paper from '@mui/material/Paper';
+import Tab from '@mui/material/Tab';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import ShoppingCartRounded from '@mui/icons-material/ShoppingCartRounded';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import CheckCircleRounded from '@mui/icons-material/CheckCircleRounded';
+import MailRounded from '@mui/icons-material/MailRounded';
+import VerifiedUserRounded from '@mui/icons-material/VerifiedUserRounded';
+import HelpCenterRounded from '@mui/icons-material/HelpCenterRounded';
 import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
 

@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unstyled';
+import { generateUtilityClass, generateUtilityClasses } from '@mui/core';
 
 export function getHiddenCssUtilityClass(slot) {
   return generateUtilityClass('PrivateHiddenCss', slot);

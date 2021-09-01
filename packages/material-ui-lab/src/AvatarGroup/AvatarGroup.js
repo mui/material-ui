@@ -1,5 +1,5 @@
 import * as React from 'react';
-import AvatarGroup from '@material-ui/core/AvatarGroup';
+import AvatarGroup from '@mui/material/AvatarGroup';
 
 let warnedOnce = false;
 
@@ -12,8 +12,8 @@ export default React.forwardRef(function DeprecatedAvatarGroup(props, ref) {
       [
         'Material-UI: The AvatarGroup component was moved from the lab to the core.',
         '',
-        "You should use `import { AvatarGroup } from '@material-ui/core'`",
-        "or `import AvatarGroup from '@material-ui/core/AvatarGroup'`",
+        "You should use `import { AvatarGroup } from '@mui/material'`",
+        "or `import AvatarGroup from '@mui/material/AvatarGroup'`",
       ].join('\n'),
     );
 

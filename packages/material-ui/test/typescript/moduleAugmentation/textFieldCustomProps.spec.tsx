@@ -1,9 +1,9 @@
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
-import { createTheme } from '@material-ui/core/styles';
+import TextField from '@mui/material/TextField';
+import { createTheme } from '@mui/material/styles';
 
 // Update the TextField's extendable props options
-declare module '@material-ui/core/TextField' {
+declare module '@mui/material/TextField' {
   interface TextFieldPropsColorOverrides {
     customPalette: true;
   }
@@ -11,7 +11,7 @@ declare module '@material-ui/core/TextField' {
     extraLarge: true;
   }
 }
-declare module '@material-ui/core/FormControl' {
+declare module '@mui/material/FormControl' {
   interface FormControlPropsColorOverrides {
     customPalette: true;
   }
@@ -19,12 +19,12 @@ declare module '@material-ui/core/FormControl' {
     extraLarge: true;
   }
 }
-declare module '@material-ui/core/InputBase' {
+declare module '@mui/material/InputBase' {
   interface InputBasePropsSizeOverrides {
     extraLarge: true;
   }
 }
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface Palette {
     customPalette: Palette['primary'];
   }

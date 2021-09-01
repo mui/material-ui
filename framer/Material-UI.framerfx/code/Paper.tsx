@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import MuiPaper from '@material-ui/core/Paper';
+import MuiPaper from '@mui/material/Paper';
 
 interface Props {
   elevation: number;

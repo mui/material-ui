@@ -7,9 +7,9 @@ import styledEmotion from '@emotion/styled';
 import { css } from '@emotion/react';
 import { renderStylesToString } from '@emotion/server';
 import injectSheet, { JssProvider, SheetsRegistry } from 'react-jss';
-import { styled as styledMui, withStyles, makeStyles, StylesProvider } from '@material-ui/styles';
+import { styled as styledMui, withStyles, makeStyles, StylesProvider } from '@mui/styles';
 import jss, { getDynamicStyles } from 'jss';
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 
 const suite = new Benchmark.Suite('styles', {
   onError: (event) => {
