@@ -12,7 +12,7 @@ Masonry maintains a list of content blocks with a consistent width but variable 
 The contents are ordered by row.
 If a row is already filled with the specified number of columns, the next item starts another row, and it is added to the shortest column.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": true}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 > Warning: This component has been developed with the use of CSS Grid Level 2. Unfortunately, Chrome only allows to render at most 1,000 rows for each grid.
 > Hence, with the current design, a masonry component has a maximum height of 2,000px, and the items beyond this height will fail to be rendered.
