@@ -104,7 +104,7 @@ const useResizeHandle = (
   const isMouseEvent = (event: MouseEvent | TouchEvent): event is MouseEvent => {
     return Boolean((event as MouseEvent).clientX || (event as MouseEvent).clientX === 0);
   };
-  const getClientX = (event: MouseEvent | TouchEvent) => {
+  const getClientX = React.useCallback((event: MouseEvent | TouchEvent) => {
     let clientX;
     if (isMouseEvent(event)) {
       clientX = event.clientX;
@@ -113,7 +113,7 @@ const useResizeHandle = (
       clientX = event.touches[0].clientX;
     }
     return clientX as number;
-  };
+  }, []);
   const handleStart = (event: React.MouseEvent | React.TouchEvent) => {
     const clientX = getClientX(event.nativeEvent);
     const rect = (event.target as HTMLElement).getBoundingClientRect();
@@ -149,7 +149,8 @@ const useResizeHandle = (
         document.removeEventListener('touchend', stopResize);
       };
     }
-  }, [dragging]);
+    return () => {};
+  }, [dragOffset, dragging, getClientX, maxWidth, minWidth, target]);
   return {
     dragging,
     getDragHandlers: () => ({
@@ -177,7 +178,7 @@ export default function CoreStyling() {
     if (objectRef.current) {
       objectRef.current.style.width = '100%';
     }
-  }, [index, scrollTo]);
+  }, [index]);
 
   return (
     <Section bg="gradient">
