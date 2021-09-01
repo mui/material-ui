@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createClientRender, describeConformance } from 'test/utils';
-import Masonry, { masonryClasses as classes } from '@material-ui/lab/Masonry';
+import Masonry, { masonryClasses as classes } from '@mui/lab/Masonry';
 
 describe('<Masonry />', () => {
   const render = createClientRender();

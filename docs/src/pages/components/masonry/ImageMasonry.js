@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Masonry from '@material-ui/lab/Masonry';
+import Box from '@mui/material/Box';
+import Masonry from '@mui/lab/Masonry';
 
 export default function ImageMasonry() {
   return (
