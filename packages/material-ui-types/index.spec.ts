@@ -1,4 +1,4 @@
-import { expectType } from '@material-ui/types';
+import { expectType } from '@mui/types';
 
 function expectTypeTypes() {
   // it rejects assignability to `any`

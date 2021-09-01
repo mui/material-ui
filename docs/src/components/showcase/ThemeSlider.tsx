@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Slider from '@material-ui/core/Slider';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Fade from '@mui/material/Fade';
+import Slider from '@mui/material/Slider';
 
 const primary = {
   50: '#F0F7FF',
@@ -116,37 +117,39 @@ export default function ThemeSlider() {
   );
   return (
     <ThemeProvider theme={theme}>
-      <Box
-        sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          bgcolor: mode === 'dark' ? primaryDark[800] : '#fff',
-          border: '1px solid',
-          borderColor: mode === 'dark' ? primaryDark[500] : grey[200],
-          borderRadius: 1,
-          p: 2,
-        }}
-      >
+      <Fade in timeout={700}>
         <Box
           sx={{
-            display: 'inline-block',
-            height: 180,
-            padding: '0.75rem 0',
-            borderRadius: 4,
-            bgcolor: mode === 'dark' ? primaryDark[700] : '#fff',
+            display: 'flex',
+            justifyContent: 'center',
+            bgcolor: mode === 'dark' ? primaryDark[800] : '#fff',
+            border: '1px solid',
+            borderColor: mode === 'dark' ? primaryDark[500] : grey[200],
+            borderRadius: 1,
+            p: 2,
           }}
         >
-          <Slider
-            getAriaLabel={() => 'Temperature'}
-            orientation="vertical"
-            getAriaValueText={valuetext}
-            defaultValue={[25, 50]}
-            marks={[{ value: 0 }, { value: 25 }, { value: 50 }, { value: 75 }, { value: 100 }]}
-            valueLabelFormat={valuetext}
-            valueLabelDisplay="on"
-          />
+          <Box
+            sx={{
+              display: 'inline-block',
+              height: 180,
+              padding: '0.75rem 0',
+              borderRadius: 4,
+              bgcolor: mode === 'dark' ? primaryDark[700] : '#fff',
+            }}
+          >
+            <Slider
+              getAriaLabel={() => 'Temperature'}
+              orientation="vertical"
+              getAriaValueText={valuetext}
+              defaultValue={[25, 50]}
+              marks={[{ value: 0 }, { value: 25 }, { value: 50 }, { value: 75 }, { value: 100 }]}
+              valueLabelFormat={valuetext}
+              valueLabelDisplay="on"
+            />
+          </Box>
         </Box>
-      </Box>
+      </Fade>
     </ThemeProvider>
   );
 }

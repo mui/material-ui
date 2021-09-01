@@ -1,11 +1,11 @@
 import * as React from 'react';
-import Container from '@material-ui/core/Container';
-import Dialog from '@material-ui/core/Dialog';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import Container from '@mui/material/Container';
+import Dialog from '@mui/material/Dialog';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // testing docs/src/pages/customization/breakpoints/breakpoints.md
 
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface BreakpointOverrides {
     xs: false; // removes the `xs` breakpoint
     sm: false;

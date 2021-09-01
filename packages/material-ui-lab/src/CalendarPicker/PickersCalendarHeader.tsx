@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Fade from '@material-ui/core/Fade';
-import { styled } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
+import Fade from '@mui/material/Fade';
+import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
 import { SlideDirection } from './PickersSlideTransition';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import FadeTransitionGroup from './PickersFadeTransitionGroup';

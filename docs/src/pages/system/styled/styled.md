@@ -5,11 +5,11 @@
 ## Introduction
 
 All the Material-UI components are styled with this `styled()` utility.
-This utility is built on top of the `styled()` module of [`@material-ui/styled-engine`](/guides/styled-engine/) and provides additional features.
+This utility is built on top of the `styled()` module of [`@mui/styled-engine`](/guides/styled-engine/) and provides additional features.
 
 ### Import path
 
-You can use the utility coming from the `@material-ui/system` package, or if you are using `@material-ui/core`, you can import it from `@material-ui/core/styles`.
+You can use the utility coming from the `@mui/system` package, or if you are using `@mui/material`, you can import it from `@mui/material/styles`.
 The difference is in the default `theme` that is used (if no theme is available in the React context).
 
 ### What problems does it solve?
@@ -81,7 +81,7 @@ If you would like to remove some of the Material-UI specific features, you can d
 If you want to have a different default theme for the `styled()` utility, you can create your own version of it, using the `createStyled()` utility.
 
 ```js
-import { createStyled, createTheme } from '@material-ui/system';
+import { createStyled, createTheme } from '@mui/system';
 
 const defaultTheme = createTheme({
   // your custom theme values

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { unstable_composeClasses as composeClasses } from '@mui/core';
 import capitalize from '../utils/capitalize';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
@@ -50,17 +50,13 @@ const SvgIconRoot = styled('svg', {
     large: theme.typography.pxToRem(35),
   }[ownerState.fontSize],
   // TODO v5 deprecate, v6 remove for sx
-  color: {
-    primary: theme.palette.primary.main,
-    secondary: theme.palette.secondary.main,
-    info: theme.palette.info.main,
-    success: theme.palette.success.main,
-    warning: theme.palette.warning.main,
-    action: theme.palette.action.active,
-    error: theme.palette.error.main,
-    disabled: theme.palette.action.disabled,
-    inherit: undefined,
-  }[ownerState.color],
+  color:
+    theme.palette[ownerState.color]?.main ??
+    {
+      action: theme.palette.action.active,
+      disabled: theme.palette.action.disabled,
+      inherit: undefined,
+    }[ownerState.color],
 }));
 
 const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {

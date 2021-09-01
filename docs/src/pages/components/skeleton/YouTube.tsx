@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Skeleton from '@material-ui/core/Skeleton';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Skeleton from '@mui/material/Skeleton';
 
 const data = [
   {

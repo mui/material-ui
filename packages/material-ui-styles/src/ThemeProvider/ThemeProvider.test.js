@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import ThemeProvider from '@material-ui/private-theming/ThemeProvider';
+import ThemeProvider from '@mui/private-theming/ThemeProvider';
 import { createClientRender } from 'test/utils';
 import makeStyles from '../makeStyles';
 

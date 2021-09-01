@@ -137,7 +137,7 @@ To automate this setup, you can use the [`responsiveFontSizes()`](/customization
 You can see this in action in the example below. Adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/customization/breakpoints/):
 
 ```js
-import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
@@ -243,7 +243,7 @@ You need to make sure that the typings for the theme's `typography` variants and
 <!-- Tested with packages/material-ui/test/typescript/augmentation/typographyVariants.spec.ts -->
 
 ```ts
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface TypographyVariants {
     poster: React.CSSProperties;
   }
@@ -255,7 +255,7 @@ declare module '@material-ui/core/styles' {
 }
 
 // Update the Typography's variant prop options
-declare module '@material-ui/core/Typography' {
+declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
     poster: true;
     h3: false;

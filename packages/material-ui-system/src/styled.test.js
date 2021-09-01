@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, screen } from 'test/utils';
-import { styled, createTheme, ThemeProvider } from '@material-ui/system';
+import { styled, createTheme, ThemeProvider } from '@mui/system';
 
 describe('styled', () => {
   const render = createClientRender();
@@ -305,6 +305,30 @@ describe('styled', () => {
       expect(container.firstChild).toHaveComputedStyle({
         width: '200px',
         height: '300px',
+      });
+    });
+
+    it('variants should not be skipped if overridesResolver is not defined', () => {
+      const TestSlot = styled('div', {
+        shouldForwardProp: (prop) => prop !== 'variant' && prop !== 'size' && prop !== 'sx',
+        name: 'MuiTest',
+        slot: 'Root',
+      })`
+        width: 800px;
+        height: 300px;
+      `;
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <TestSlot variant="rect" size="large">
+            Test
+          </TestSlot>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).toHaveComputedStyle({
+        width: '400px',
+        height: '400px',
       });
     });
 

@@ -1,5 +1,5 @@
 export default {
-  '@material-ui/core': [
+  '@mui/material': [
     'Accordion',
     'AccordionActions',
     'AccordionDetails',
@@ -132,12 +132,12 @@ export default {
     'utils',
     'Zoom',
   ],
-  '@material-ui/icons': [
+  '@mui/icons-material': [
     // Icons are generated.
     // So the behavior of a single item should be equivalent to all icons.
     'Accessibility',
   ],
-  '@material-ui/lab': [
+  '@mui/lab': [
     'Alert',
     'AlertTitle',
     'Autocomplete',
@@ -168,7 +168,7 @@ export default {
     'TreeView',
     'useAutocomplete',
   ],
-  '@material-ui/styles': [
+  '@mui/styles': [
     'createGenerateClassName',
     'createStyles',
     // Types only
@@ -189,7 +189,7 @@ export default {
     'withStyles',
     'withTheme',
   ],
-  '@material-ui/system': [
+  '@mui/system': [
     'borders',
     'breakpoints',
     'compose',
@@ -211,7 +211,7 @@ export default {
     // 'styleFunctionSx',
     'typography',
   ],
-  '@material-ui/utils': [
+  '@mui/utils': [
     'chainPropTypes',
     'deepmerge',
     'elementAcceptingRef',

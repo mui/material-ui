@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { refType, elementTypeAcceptingRef } from '@material-ui/utils';
-import MuiError from '@material-ui/utils/macros/MuiError.macro';
-import { unstable_composeClasses as composeClasses, isHostComponent } from '@material-ui/unstyled';
+import { refType, elementTypeAcceptingRef } from '@mui/utils';
+import MuiError from '@mui/utils/macros/MuiError.macro';
+import { unstable_composeClasses as composeClasses, isHostComponent } from '@mui/core';
 import formControlState from '../FormControl/formControlState';
 import FormControlContext from '../FormControl/FormControlContext';
 import useFormControl from '../FormControl/useFormControl';
@@ -212,6 +212,16 @@ export const InputBaseComponent = styled('input', {
     }),
   };
 });
+
+const inputGlobalStyles = (
+  <GlobalStyles
+    styles={{
+      '@keyframes mui-auto-fill': { from: { display: 'block' } },
+      '@keyframes mui-auto-fill-cancel': { from: { display: 'block' } },
+    }}
+  />
+);
+
 /**
  * `InputBase` contains as few styles as possible.
  * It aims to be a simple building block for creating an input.
@@ -430,10 +440,10 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
       }
       inputProps = {
         type: undefined,
+        minRows: rows,
+        maxRows: rows,
         ...inputProps,
       };
-
-      InputComponent = 'textarea';
     } else {
       inputProps = {
         type: undefined,
@@ -441,9 +451,9 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
         minRows,
         ...inputProps,
       };
-
-      InputComponent = TextareaAutosize;
     }
+
+    InputComponent = TextareaAutosize;
   }
 
   const handleAutoFill = (event) => {
@@ -483,12 +493,7 @@ const InputBase = React.forwardRef(function InputBase(inProps, ref) {
 
   return (
     <React.Fragment>
-      <GlobalStyles
-        styles={{
-          '@keyframes mui-auto-fill': {},
-          '@keyframes mui-auto-fill-cancel': {},
-        }}
-      />
+      {inputGlobalStyles}
       <Root
         {...rootProps}
         {...(!isHostComponent(Root) && {

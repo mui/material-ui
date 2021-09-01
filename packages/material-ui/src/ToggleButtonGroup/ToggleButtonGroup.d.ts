@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { SxProps } from '@material-ui/system';
-import { OverridableStringUnion } from '@material-ui/types';
+import { SxProps } from '@mui/system';
+import { OverridableStringUnion } from '@mui/types';
 import { InternalStandardProps as StandardProps } from '..';
 import { Theme } from '../styles';
 import { ToggleButtonGroupClasses } from './toggleButtonGroupClasses';
@@ -32,6 +32,11 @@ export interface ToggleButtonGroupProps
    * @default false
    */
   exclusive?: boolean;
+  /**
+   * If `true`, the component is disabled. This implies that all ToggleButton children will be disabled.
+   * @default false
+   */
+  disabled?: boolean;
   /**
    * If `true`, the button group will take up the full width of its container.
    * @default false

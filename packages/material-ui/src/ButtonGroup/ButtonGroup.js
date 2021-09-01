@@ -2,8 +2,8 @@ import * as React from 'react';
 import { isFragment } from 'react-is';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { alpha } from '@material-ui/system';
+import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { alpha } from '@mui/system';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -305,7 +305,10 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
    * `small` is equivalent to the dense button styling.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['small', 'medium', 'large']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

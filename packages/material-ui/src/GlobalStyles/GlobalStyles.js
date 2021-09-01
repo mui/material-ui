@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { GlobalStyles as SystemGlobalStyles } from '@material-ui/system';
+import { GlobalStyles as SystemGlobalStyles } from '@mui/system';
 import defaultTheme from '../styles/defaultTheme';
 
 function GlobalStyles(props) {

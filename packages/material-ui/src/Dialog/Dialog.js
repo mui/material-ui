@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { unstable_useId as useId } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { unstable_useId as useId } from '@mui/utils';
 import capitalize from '../utils/capitalize';
 import Modal from '../Modal';
 import Fade from '../Fade';

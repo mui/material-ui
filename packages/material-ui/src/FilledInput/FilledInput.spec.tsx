@@ -1,5 +1,5 @@
 import * as React from 'react';
-import FilledInput from '@material-ui/core/FilledInput';
+import FilledInput from '@mui/material/FilledInput';
 
 function TestHiddenLabel() {
   return <FilledInput hiddenLabel />;

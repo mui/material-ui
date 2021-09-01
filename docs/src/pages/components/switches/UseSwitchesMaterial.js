@@ -1,20 +1,13 @@
 /* eslint-disable no-restricted-imports, react/prop-types */
 import * as React from 'react';
 import clsx from 'clsx';
-import {
-  unstable_composeClasses as composeClasses,
-  useSwitch,
-} from '@material-ui/unstyled';
-import { alpha, darken, lighten, useThemeProps, styled } from '@material-ui/system';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
-import { capitalize } from '@material-ui/core/utils';
-import {
-  useFormControl,
-  switchClasses,
-  getSwitchUtilityClass,
-} from '@material-ui/core';
-import TouchRipple from '@material-ui/core/ButtonBase/TouchRipple';
-import useTouchRipple from '@material-ui/core/useTouchRipple';
+import { unstable_composeClasses as composeClasses, useSwitch } from '@mui/core';
+import { alpha, darken, lighten, useThemeProps, styled } from '@mui/system';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { capitalize } from '@mui/material/utils';
+import { useFormControl, switchClasses, getSwitchUtilityClass } from '@mui/material';
+import TouchRipple from '@mui/material/ButtonBase/TouchRipple';
+import useTouchRipple from '@mui/material/useTouchRipple';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, edge, size, color, checked, disabled, focusVisible } = ownerState;

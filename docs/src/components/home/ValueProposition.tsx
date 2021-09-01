@@ -1,37 +1,38 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 import GradientText from 'docs/src/components/typography/GradientText';
-import SvgPalette from 'docs/src/icons/SvgPalette';
-import SvgPencil from 'docs/src/icons/SvgPencil';
-import SvgDocs from 'docs/src/icons/SvgDocs';
-import SvgEye from 'docs/src/icons/SvgEye';
+import InvertColorsRoundedIcon from '@mui/icons-material/InvertColorsRounded';
+import HandymanRoundedIcon from '@mui/icons-material/HandymanRounded';
+import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
+import AccessibilityNewRounded from '@mui/icons-material/AccessibilityNewRounded';
+import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 const content = [
   {
-    icon: <SvgPalette />,
+    icon: <InvertColorsRoundedIcon fontSize="small" color="primary" />,
     title: 'Beautifully designed',
     description:
-      "You can start your projects with Google's Material Design or leverage our carefully designed theming capabilities.",
+      "You can start your projects with Google's Material Design or build your own designs using the sophisticated theming features.",
   },
   {
-    icon: <SvgPencil />,
+    icon: <HandymanRoundedIcon fontSize="small" color="primary" />,
     title: 'Easily customized',
     description:
       'Enjoy the power of our components without sacrificing the styles you want. Tweak how your components render down to the very last class.',
   },
   {
-    icon: <SvgDocs />,
+    icon: <ArticleRoundedIcon fontSize="small" color="primary" />,
     title: 'Superb documentation',
     description:
       "Our docs were shaped throughout the years with the help and experience of our trusted 2,000+ open-source contributors. It's all there!",
   },
   {
-    icon: <SvgEye />,
-    title: 'Accessibility in mind',
+    icon: <AccessibilityNewRounded fontSize="small" color="primary" />,
+    title: 'Accessible in mind',
     description:
       'We care about making it great for everyone. We improve accessibility for all of our components constantly, helping you to reach the largest audience possible!',
   },
@@ -40,13 +41,15 @@ const content = [
 const ValueProposition = () => {
   return (
     <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
-      <Typography variant="body2" color="primary" fontWeight="bold">
-        Why go with us?
-      </Typography>
-      <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
-        Used by the world&apos;s best teams, supporting design systems of{' '}
-        <GradientText>all types</GradientText>
-      </Typography>
+      <SectionHeadline
+        overline="Developer experience"
+        title={
+          <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
+            Powerful tools to help you build <GradientText>all types</GradientText> of user
+            interfaces
+          </Typography>
+        }
+      />
       <Grid container spacing={2}>
         {content.map(({ icon, title, description }) => (
           <Grid key={title} item xs={12} sm={6} md={3}>

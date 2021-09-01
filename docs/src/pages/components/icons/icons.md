@@ -18,7 +18,7 @@ Material-UI provides icons support in three ways:
 ## Material icons
 
 Google has created over 1,700 official Material icons, each in five different "themes" (see below).
-For each SVG icon, we export the respective React component from the `@material-ui/icons` package.
+For each SVG icon, we export the respective React component from the `@mui/icons-material` package.
 You can [search the full list of these icons](/components/material-icons/).
 
 ### Installation
@@ -27,10 +27,10 @@ Install the package in your project directory with:
 
 ```sh
 // with npm
-npm install @material-ui/icons@next
+npm install @mui/icons-material@next
 
 // with yarn
-yarn add @material-ui/icons@next
+yarn add @mui/icons-material@next
 ```
 
 These components use the Material-UI `SvgIcon` component to render the SVG path for each icon, and so have a peer-dependency on `@materialui/core`.
@@ -39,10 +39,10 @@ If you aren't already using Material-UI in your project, you can add it with:
 
 ```sh
 // with npm
-npm install @material-ui/core@next
+npm install @mui/material@next
 
 // with yarn
-yarn add @material-ui/core@next
+yarn add @mui/material@next
 ```
 
 ### Usage
@@ -52,37 +52,37 @@ Import icons using one of these two options:
 - Option 1:
 
   ```jsx
-  import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
-  import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
+  import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+  import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
   ```
 
 - Option 2:
 
   ```jsx
-  import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
+  import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
   ```
 
 The safest for bundle size is Option 1, but some developers prefer Option 2.
 Make sure you follow the [minimizing bundle size guide](/guides/minimizing-bundle-size/#option-2) before using the second approach.
 
-Each Material icon also has a "theme": Filled (default), Outlined, Rounded, Two-tone, and Sharp. To import the icon component with a theme other than the default, append the theme name to the icon name. For example `@material-ui/icons/Delete` icon with:
+Each Material icon also has a "theme": Filled (default), Outlined, Rounded, Two-tone, and Sharp. To import the icon component with a theme other than the default, append the theme name to the icon name. For example `@mui/icons-material/Delete` icon with:
 
-- Filled theme (default) is exported as `@material-ui/icons/Delete`,
-- Outlined theme is exported as `@material-ui/icons/DeleteOutlined`,
-- Rounded theme is exported as `@material-ui/icons/DeleteRounded`,
-- Twotone theme is exported as `@material-ui/icons/DeleteTwoTone`,
-- Sharp theme is exported as `@material-ui/icons/DeleteSharp`.
+- Filled theme (default) is exported as `@mui/icons-material/Delete`,
+- Outlined theme is exported as `@mui/icons-material/DeleteOutlined`,
+- Rounded theme is exported as `@mui/icons-material/DeleteRounded`,
+- Twotone theme is exported as `@mui/icons-material/DeleteTwoTone`,
+- Sharp theme is exported as `@mui/icons-material/DeleteSharp`.
 
-> Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
+> Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@mui/icons-material` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
 ### Testing
 
-For testing purposes, each icon exposed from `@material-ui/icons` has a `data-testid` attribute with the name of the icon. For instance:
+For testing purposes, each icon exposed from `@mui/icons-material` has a `data-testid` attribute with the name of the icon. For instance:
 
 ```jsx
-import DeleteIcon from '@material-ui/icons/Delete';
+import DeleteIcon from '@mui/icons-material/Delete';
 ```
 
 has the following attribute once mounted:
@@ -192,7 +192,7 @@ To use an icon simply wrap the icon name (font ligature) with the `Icon` compone
 for example:
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <Icon>star</Icon>;
 ```
@@ -220,7 +220,7 @@ For other fonts, you can customize the baseline class name using the `baseClassN
 For instance, you can display two-tone icons with Material Design:
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <link
   rel="stylesheet"
@@ -315,8 +315,8 @@ The `role="img"` attribute and the `<title>` element are added so that your icon
 In the case of focusable interactive elements, for example when used with an icon button, you can use the `aria-label` prop:
 
 ```jsx
-import IconButton from '@material-ui/core/IconButton';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import IconButton from '@mui/material/IconButton';
+import SvgIcon from '@mui/material/SvgIcon';
 
 // ...
 
@@ -332,9 +332,9 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 You need to provide a text alternative that is only visible to assistive technologies.
 
 ```jsx
-import Box from '@material-ui/core/Box';
-import Icon from '@material-ui/core/Icon';
-import { visuallyHidden } from '@material-ui/utils';
+import Box from '@mui/material/Box';
+import Icon from '@mui/material/Icon';
+import { visuallyHidden } from '@mui/utils';
 
 // ...
 

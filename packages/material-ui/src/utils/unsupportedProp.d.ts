@@ -1,3 +1,3 @@
-import { unstable_unsupportedProp as unsupportedProp } from '@material-ui/utils';
+import { unstable_unsupportedProp as unsupportedProp } from '@mui/utils';
 
 export default unsupportedProp;

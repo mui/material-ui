@@ -2,8 +2,8 @@
 import * as React from 'react';
 import { MemoryRouter as Router } from 'react-router';
 import { Link as RouterLink } from 'react-router-dom';
-import Link from '@material-ui/core/Link';
-import Box from '@material-ui/core/Box';
+import Link from '@mui/material/Link';
+import Box from '@mui/material/Box';
 
 const LinkBehavior = React.forwardRef((props, ref) => (
   <RouterLink ref={ref} to="/getting-started/installation/" {...props} />

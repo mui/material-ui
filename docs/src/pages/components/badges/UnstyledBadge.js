@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { styled, Box } from '@material-ui/system';
-import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
+import { styled, Box } from '@mui/system';
+import BadgeUnstyled from '@mui/core/BadgeUnstyled';
 
 const StyledBadge = styled(BadgeUnstyled)`
   box-sizing: border-box;

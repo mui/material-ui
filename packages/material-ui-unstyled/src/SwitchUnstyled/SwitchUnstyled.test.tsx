@@ -1,9 +1,6 @@
 import * as React from 'react';
 import { createMount, createClientRender, describeConformanceUnstyled } from 'test/utils';
-import SwitchUnstyled, {
-  SwitchState,
-  switchUnstyledClasses,
-} from '@material-ui/unstyled/SwitchUnstyled';
+import SwitchUnstyled, { SwitchState, switchUnstyledClasses } from '@mui/core/SwitchUnstyled';
 import { expect } from 'chai';
 
 describe('<SwitchUnstyled />', () => {
@@ -27,6 +24,10 @@ describe('<SwitchUnstyled />', () => {
       input: {
         testWithElement: 'input',
         expectedClassName: switchUnstyledClasses.input,
+      },
+      track: {
+        expectedClassName: switchUnstyledClasses.track,
+        isOptional: true,
       },
     },
   }));

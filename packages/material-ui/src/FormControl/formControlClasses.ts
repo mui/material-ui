@@ -1,4 +1,4 @@
-import { generateUtilityClasses, generateUtilityClass } from '@material-ui/unstyled';
+import { generateUtilityClasses, generateUtilityClass } from '@mui/core';
 
 export interface FormControlClasses {
   /** Styles applied to the root element. */

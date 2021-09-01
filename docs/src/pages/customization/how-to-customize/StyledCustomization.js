@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Slider from '@material-ui/core/Slider';
-import { alpha, styled } from '@material-ui/core/styles';
+import Slider from '@mui/material/Slider';
+import { alpha, styled } from '@mui/material/styles';
 
 const SuccessSlider = styled(Slider)(({ theme }) => ({
   width: 300,

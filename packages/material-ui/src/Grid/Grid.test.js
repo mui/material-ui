@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, createClientRender, screen } from 'test/utils';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import defaultTheme from '@material-ui/core/styles/defaultTheme';
-import Grid, { gridClasses as classes } from '@material-ui/core/Grid';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import defaultTheme from '@mui/material/styles/defaultTheme';
+import Grid, { gridClasses as classes } from '@mui/material/Grid';
 import { generateRowGap, generateColumnGap } from './Grid';
 
 describe('<Grid />', () => {
@@ -147,7 +147,9 @@ describe('<Grid />', () => {
 
   describe('spacing', () => {
     it('should generate the right values', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) this.skip();
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
 
       const parentWidth = 500;
       const remValue = 16;

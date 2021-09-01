@@ -7,7 +7,7 @@
 import { expect } from 'chai';
 import * as MaterialUI from './index';
 
-describe('@material-ui/unstyled', () => {
+describe('@mui/core', () => {
   it('should have exports', () => {
     expect(typeof MaterialUI).to.equal('object');
   });

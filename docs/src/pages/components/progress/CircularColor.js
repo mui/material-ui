@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Stack from '@material-ui/core/Stack';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import Stack from '@mui/material/Stack';
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function CircularColor() {
   return (

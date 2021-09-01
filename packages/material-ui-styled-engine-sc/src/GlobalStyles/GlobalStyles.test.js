@@ -9,7 +9,9 @@ describe('GlobalStyles', () => {
   const render = createClientRender();
 
   it('should add global styles', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) this.skip();
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
 
     const { container } = render(
       <div>
@@ -24,7 +26,9 @@ describe('GlobalStyles', () => {
   });
 
   it('should add global styles using JS syntax', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) this.skip();
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
 
     const { container } = render(
       <div>
@@ -39,7 +43,9 @@ describe('GlobalStyles', () => {
   });
 
   it('should add global styles using function', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) this.skip();
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
 
     const { container } = render(
       <ThemeProvider theme={{ color: 'rgb(0, 0, 255)' }}>
@@ -65,7 +71,9 @@ describe('GlobalStyles', () => {
   });
 
   it('should give presedence to styled()', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) this.skip();
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
 
     const Span = styled('span')`
       color: rgb(255, 0, 0);
@@ -84,7 +92,9 @@ describe('GlobalStyles', () => {
   });
 
   it('should give presedence to styled() using JS syntax', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) this.skip();
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
 
     const Span = styled('span')({
       color: 'rgb(255, 0, 0)',

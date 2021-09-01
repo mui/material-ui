@@ -1,19 +1,17 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme, styled, alpha } from '@material-ui/core/styles';
-import { shouldForwardProp } from '@material-ui/system';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
+import { ThemeProvider, createTheme, useTheme, styled, alpha } from '@mui/material/styles';
+import { shouldForwardProp } from '@mui/system';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/MaterialDesignDemo';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
-import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
-import TouchAppRounded from '@material-ui/icons/TouchAppRounded';
+import TouchAppRounded from '@mui/icons-material/TouchAppRounded';
+import StylingInfo from 'docs/src/components/action/StylingInfo';
 
 const darkDesignTokens = getDesignTokens('dark');
 
@@ -65,8 +63,8 @@ const FlashCode = styled('div', {
   position: 'absolute',
   left: 0,
   right: 0,
-  top: startLine * 18,
-  height: (endLine - startLine + 1) * 18,
+  top: `calc(0.75rem * 1.5 * ${startLine})`,
+  height: `calc(0.75rem * 1.5 * ${endLine - startLine + 1})`,
   transition: '0.3s',
   ...theme.typography.caption,
   backgroundColor: alpha(theme.palette.primary.main, 0.2),
@@ -94,7 +92,6 @@ export default function CoreShowcase() {
   const mode = globalTheme.palette.mode;
   const [element, setElement] = React.useState<Data>({ id: null, name: null, target: null });
   const [customized, setCustomized] = React.useState(false);
-  const [hidden, setHidden] = React.useState(false); // for custom theme suggestion
   const theme = React.useMemo(
     () =>
       customized
@@ -215,7 +212,6 @@ export default function CoreShowcase() {
               bottom: 0,
               left: '50%',
               transform: 'translate(-50%)',
-              bgcolor: mode === 'dark' ? 'primaryDark.600' : 'grey.200',
               width: '100%',
             }}
           >
@@ -224,10 +220,10 @@ export default function CoreShowcase() {
               fontWeight={500}
               color="text.primary"
               noWrap
-              sx={{ opacity: 0.7 }}
+              sx={{ opacity: 0.5 }}
             >
-              <TouchAppRounded sx={{ fontSize: 14, verticalAlign: 'text-bottom' }} /> Hover the
-              component for highlighting the code.
+              <TouchAppRounded sx={{ fontSize: '0.875rem', verticalAlign: 'text-bottom' }} /> Hover
+              the component to highlight the code.
             </Typography>
           </Box>
           <ThemeProvider theme={theme}>
@@ -287,59 +283,18 @@ export default function CoreShowcase() {
                 '&::-webkit-scrollbar': {
                   display: 'none',
                 },
+                '& code[class*="language-"]': {
+                  fontSize: 'inherit',
+                },
               },
             }}
           >
             <Box sx={{ position: 'relative' }}>
               {startLine !== undefined && (
-                <FlashCode startLine={startLine} endLine={endLine} sx={{ mx: -1 }} />
+                <FlashCode startLine={startLine} endLine={endLine} sx={{ mx: -2 }} />
               )}
               <HighlightedCode component={MarkdownElement} code={componentCode} language="jsx" />
-              <Box
-                sx={{
-                  position: 'absolute',
-                  bottom: hidden || !customized ? -120 : 0,
-                  transition: '0.3s',
-                  left: 0,
-                  right: 0,
-                  px: 2,
-                  pt: 1,
-                  pb: 2,
-                  mb: -2,
-                  mx: -2,
-                  bgcolor: ({ palette }) => alpha(palette.primaryDark[700], 0.5),
-                  backdropFilter: 'blur(8px)',
-                  zIndex: 1,
-                  borderTop: '1px solid',
-                  borderColor: 'divider',
-                  borderRadius: '0 0 10px 10px',
-                }}
-              >
-                <Tooltip title="Hide">
-                  <IconButton
-                    onClick={() => setHidden(true)}
-                    sx={{
-                      position: 'absolute',
-                      right: 10,
-                      top: 0,
-                      transform: 'translateY(-50%)',
-                      bgcolor: 'primaryDark.500',
-                      '&:hover, &.Mui-focused': {
-                        bgcolor: 'primaryDark.600',
-                      },
-                    }}
-                  >
-                    <KeyboardArrowDownRounded />
-                  </IconButton>
-                </Tooltip>
-                <Typography fontWeight="bold" color="#fff" variant="body2">
-                  Own the styling!
-                </Typography>
-                <Typography color="grey.400" variant="body2">
-                  Build your own design system by leveraging our theming capabilities. You can also
-                  start by using Google&apos;s Material Design.
-                </Typography>
-              </Box>
+              <StylingInfo appeared={customized} sx={{ mb: -2, mx: -2 }} />
             </Box>
           </Box>
         </ThemeProvider>

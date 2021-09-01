@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { TransitionGroup } from 'react-transition-group';
 import clsx from 'clsx';
-import { keyframes } from '@material-ui/system';
+import { keyframes } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Ripple from './Ripple';
@@ -102,7 +102,8 @@ export const TouchRippleRipple = styled(Ripple, {
 
   & .${touchRippleClasses.childPulsate} {
     position: absolute;
-    left: 0;
+    /* @noflip */
+    left: 0px;
     top: 0;
     animation-name: ${pulsateKeyframe};
     animation-duration: 2500ms;

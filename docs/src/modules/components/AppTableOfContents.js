@@ -2,8 +2,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
-import { styled } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import { styled, alpha } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
@@ -13,12 +13,12 @@ const Nav = styled('nav')(({ theme }) => {
     top: 70,
     // Fix IE11 position sticky issue.
     marginTop: 70,
-    width: 175,
+    width: 210,
     flexShrink: 0,
     position: 'sticky',
     height: 'calc(100vh - 70px)',
     overflowY: 'auto',
-    padding: theme.spacing(2, 2, 2, 0),
+    padding: theme.spacing(2, 4, 2, 0),
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
@@ -29,7 +29,11 @@ const Nav = styled('nav')(({ theme }) => {
 const NavLabel = styled(Typography)(({ theme }) => {
   return {
     marginTop: theme.spacing(2),
-    paddingLeft: theme.spacing(1),
+    paddingLeft: theme.spacing(1.5),
+    fontSize: '.75rem',
+    fontWeight: 600,
+    color:
+      theme.palette.mode === 'dark' ? alpha(theme.palette.grey[500], 0.5) : theme.palette.grey[500],
   };
 });
 
@@ -44,18 +48,27 @@ const NavItem = styled(Link, {
 })(({ active, secondary, theme }) => {
   const activeStyles = {
     borderLeftColor:
-      theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[800],
+      theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[600],
+    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
+    fontWeight: 600,
   };
 
   return {
     fontSize: '.8125rem',
-    padding: theme.spacing(0.5, 0, 0.5, secondary ? 2.5 : '5px'),
-    borderLeft: `3px solid transparent`,
+    padding: theme.spacing(0, 1, 0, secondary ? 3 : '10px'),
+    margin: theme.spacing(0.5, 0, 1, 0),
+    borderLeft: `2px solid transparent`,
     boxSizing: 'border-box',
+    fontWeight: theme.typography.fontWeightMedium,
     '&:hover': {
       borderLeftColor:
-        theme.palette.mode === 'light' ? theme.palette.grey[200] : theme.palette.grey[900],
+        theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[700],
+      color:
+        theme.palette.mode === 'light' ? theme.palette.primary[500] : theme.palette.primary[400],
     },
+    ...(!active && {
+      color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[900],
+    }),
     // TODO: We probably want `aria-current="location"` instead.
     // If so, are we sure "current" and "active" states should have the same styles?
     ...(active && activeStyles),
@@ -193,7 +206,6 @@ export default function AppTableOfContents(props) {
   const itemLink = (item, secondary) => (
     <NavItem
       display="block"
-      color={activeState === item.hash ? 'textPrimary' : 'textSecondary'}
       href={`${activePage.linkProps?.as ?? activePage.pathname}#${item.hash}`}
       underline="none"
       onClick={handleClick(item.hash)}

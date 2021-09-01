@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Slider from '@material-ui/core/Slider';
+import Slider from '@mui/material/Slider';
 
 function testOnChange() {
   function handleSliderChange(event: Event, value: unknown) {}

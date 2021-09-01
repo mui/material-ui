@@ -1,15 +1,15 @@
 import * as React from 'react';
-import Divider from '@material-ui/core/Divider';
-import Paper from '@material-ui/core/Paper';
-import MenuList from '@material-ui/core/MenuList';
-import MenuItem from '@material-ui/core/MenuItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import Typography from '@material-ui/core/Typography';
-import ContentCut from '@material-ui/icons/ContentCut';
-import ContentCopy from '@material-ui/icons/ContentCopy';
-import ContentPaste from '@material-ui/icons/ContentPaste';
-import Cloud from '@material-ui/icons/Cloud';
+import Divider from '@mui/material/Divider';
+import Paper from '@mui/material/Paper';
+import MenuList from '@mui/material/MenuList';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Typography from '@mui/material/Typography';
+import ContentCut from '@mui/icons-material/ContentCut';
+import ContentCopy from '@mui/icons-material/ContentCopy';
+import ContentPaste from '@mui/icons-material/ContentPaste';
+import Cloud from '@mui/icons-material/Cloud';
 
 export default function IconMenu() {
   return (

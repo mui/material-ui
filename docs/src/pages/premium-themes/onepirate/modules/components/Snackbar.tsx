@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Theme } from '@material-ui/core/styles';
-import { withStyles, WithStyles } from '@material-ui/styles';
-import MuiSnackbar, { SnackbarProps } from '@material-ui/core/Snackbar';
-import Slide from '@material-ui/core/Slide';
-import CloseIcon from '@material-ui/icons/Close';
-import InfoIcon from '@material-ui/icons/Info';
-import IconButton from '@material-ui/core/IconButton';
-import { TransitionProps } from '@material-ui/core/transitions/transition';
+import { Theme } from '@mui/material/styles';
+import { withStyles, WithStyles } from '@mui/styles';
+import MuiSnackbar, { SnackbarProps } from '@mui/material/Snackbar';
+import Slide from '@mui/material/Slide';
+import CloseIcon from '@mui/icons-material/Close';
+import InfoIcon from '@mui/icons-material/Info';
+import IconButton from '@mui/material/IconButton';
+import { TransitionProps } from '@mui/material/transitions/transition';
 
 const styles = (theme: Theme) =>
   ({

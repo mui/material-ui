@@ -3,12 +3,10 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import PropTypes from 'prop-types';
 import { describeConformance, fireEvent, createClientRender } from 'test/utils';
-import TableFooter from '@material-ui/core/TableFooter';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
-import TablePagination, {
-  tablePaginationClasses as classes,
-} from '@material-ui/core/TablePagination';
+import TableFooter from '@mui/material/TableFooter';
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
+import TablePagination, { tablePaginationClasses as classes } from '@mui/material/TablePagination';
 
 describe('<TablePagination />', () => {
   const noop = () => {};
