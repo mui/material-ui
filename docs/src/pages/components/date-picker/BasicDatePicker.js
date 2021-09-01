@@ -11,7 +11,6 @@ export default function BasicDatePicker() {
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
         label="Basic example"
-        showTodayButton
         value={value}
         onChange={(newValue) => {
           setValue(newValue);
