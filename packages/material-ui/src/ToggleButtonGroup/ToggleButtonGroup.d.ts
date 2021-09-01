@@ -33,6 +33,11 @@ export interface ToggleButtonGroupProps
    */
   exclusive?: boolean;
   /**
+   * If `true`, the component is disabled. This implies that all ToggleButton children will be disabled.
+   * @default false
+   */
+  disabled?: boolean;
+  /**
    * If `true`, the button group will take up the full width of its container.
    * @default false
    */
