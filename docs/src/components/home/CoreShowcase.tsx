@@ -200,7 +200,7 @@ export default function CoreShowcase() {
   }
   return (
     <ShowcaseContainer
-      sx={{ mt: 2 }}
+      sx={{ mt: { md: 2 } }}
       previewSx={{
         minHeight: 220,
         pb: 4,

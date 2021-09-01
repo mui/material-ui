@@ -1933,6 +1933,7 @@ const rows = [
 export default function DataTable() {
   return (
     <ShowcaseContainer
+      sx={{ mt: { md: 2 } }}
       previewSx={{
         py: 2,
         '& .MuiDataGrid-root': {
