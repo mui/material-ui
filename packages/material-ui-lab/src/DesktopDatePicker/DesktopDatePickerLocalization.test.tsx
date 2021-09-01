@@ -2,8 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import deLocale from 'date-fns/locale/de';
 import enLocale from 'date-fns/locale/en-US';
-import TextField from '@material-ui/core/TextField';
-import DesktopDatePicker, { DesktopDatePickerProps } from '@material-ui/lab/DesktopDatePicker';
+import TextField from '@mui/material/TextField';
+import DesktopDatePicker, { DesktopDatePickerProps } from '@mui/lab/DesktopDatePicker';
 import { fireEvent, screen } from 'test/utils';
 import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils';
 

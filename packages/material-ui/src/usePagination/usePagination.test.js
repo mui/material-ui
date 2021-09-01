@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createClientRender } from 'test/utils';
 import { expect } from 'chai';
-import usePagination from '@material-ui/core/usePagination';
+import usePagination from '@mui/material/usePagination';
 
 describe('usePagination', () => {
   const render = createClientRender();

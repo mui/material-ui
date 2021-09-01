@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import { styled, useTheme } from '@material-ui/core/styles';
-import * as colors from '@material-ui/core/colors';
+import Box from '@mui/material/Box';
+import { styled, useTheme } from '@mui/material/styles';
+import * as colors from '@mui/material/colors';
 
 const mainColors = [
   'Red',

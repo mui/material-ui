@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, describeConformance } from 'test/utils';
-import Typography from '@material-ui/core/Typography';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import { stepIconClasses as iconClasses } from '@material-ui/core/StepIcon';
-import StepLabel, { stepLabelClasses as classes } from '@material-ui/core/StepLabel';
+import Typography from '@mui/material/Typography';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import { stepIconClasses as iconClasses } from '@mui/material/StepIcon';
+import StepLabel, { stepLabelClasses as classes } from '@mui/material/StepLabel';
 
 describe('<StepLabel />', () => {
   const render = createClientRender();

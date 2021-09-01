@@ -12,7 +12,7 @@ It's a simple style object of type `React.CSSProperties`.
 If you don't have a strict CSP policy in place, you can also do:
 
 ```jsx
-import { visuallyHidden } from '@material-ui/utils';
+import { visuallyHidden } from '@mui/utils';
 
 <div style={visuallyHidden}>about how to visually hide elements</div>;
 ```

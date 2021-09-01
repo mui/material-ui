@@ -1,14 +1,14 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import {
   createTheme,
   ThemeProvider,
   useTheme,
   rgbToHex,
   styled,
-} from '@material-ui/core/styles';
+} from '@mui/material/styles';
 
 const Group = styled(Typography)(({ theme }) => ({
   marginTop: theme.spacing(3),

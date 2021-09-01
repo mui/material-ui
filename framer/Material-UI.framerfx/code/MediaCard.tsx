@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { PropertyControls, ControlType } from 'framer';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import MuiButton from '@material-ui/core/Button';
-import MuiTypography from '@material-ui/core/Typography';
+import Card from '@mui/material/Card';
+import CardActionArea from '@mui/material/CardActionArea';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import MuiButton from '@mui/material/Button';
+import MuiTypography from '@mui/material/Typography';
 import { IconButton } from './IconButton';
 
 // Define type of property

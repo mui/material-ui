@@ -1,4 +1,4 @@
-import { StyleRules } from '@material-ui/styles/withStyles';
+import { StyleRules } from '@mui/styles/withStyles';
 
 /**
  * This function doesn't really "do anything" at runtime, it's just the identity

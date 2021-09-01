@@ -29,8 +29,8 @@ The client has to download the entire library, regardless of which components ar
 
 We are providing two Universal Module Definition (UMD) files:
 
-- one for development: https://unpkg.com/@material-ui/core@next/umd/material-ui.development.js
-- one for production: https://unpkg.com/@material-ui/core@next/umd/material-ui.production.min.js
+- one for development: https://unpkg.com/@mui/material@next/umd/material-ui.development.js
+- one for production: https://unpkg.com/@mui/material@next/umd/material-ui.production.min.js
 
 <!-- #default-branch-switch -->
 

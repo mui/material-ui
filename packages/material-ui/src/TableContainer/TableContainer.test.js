@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createClientRender, describeConformance } from 'test/utils';
-import TableContainer, { tableContainerClasses as classes } from '@material-ui/core/TableContainer';
+import TableContainer, { tableContainerClasses as classes } from '@mui/material/TableContainer';
 
 describe('<TableContainer />', () => {
   const render = createClientRender();

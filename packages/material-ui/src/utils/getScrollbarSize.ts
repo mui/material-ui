@@ -1,3 +1,3 @@
-import { unstable_getScrollbarSize as getScrollbarSize } from '@material-ui/utils';
+import { unstable_getScrollbarSize as getScrollbarSize } from '@mui/utils';
 
 export default getScrollbarSize;

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Alert from '@material-ui/core/Alert';
-import AlertTitle from '@material-ui/core/AlertTitle';
-import Stack from '@material-ui/core/Stack';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Stack from '@mui/material/Stack';
 
 export default function DescriptionAlerts() {
   return (

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { createTheme, Theme, ThemeProvider } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import { blue } from '@material-ui/core/colors';
+import { createTheme, Theme, ThemeProvider } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import { blue } from '@mui/material/colors';
 
 {
   // Overriding styles

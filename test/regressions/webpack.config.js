@@ -21,7 +21,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './template.html'),
     }),
-    // Avoid bundling the whole @material-ui/icons package. x2 the bundling speed.
+    // Avoid bundling the whole @mui/icons-material package. x2 the bundling speed.
     new webpack.IgnorePlugin(/material-icons\/SearchIcons\.js/),
   ],
   module: {
@@ -32,5 +32,13 @@ module.exports = {
         loader: 'url-loader',
       },
     ]),
+  },
+  resolve: {
+    ...webpackBaseConfig.resolve,
+    alias: {
+      ...webpackBaseConfig.resolve.alias,
+      '@material-ui/core': path.resolve(__dirname, '../../packages/material-ui/src'),
+      '@material-ui/styles': path.resolve(__dirname, '../../packages/material-ui-styles/src'),
+    },
   },
 };

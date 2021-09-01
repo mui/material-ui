@@ -1,12 +1,12 @@
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import Box from '@material-ui/core/Box';
-import Stack from '@material-ui/core/Stack';
-import MobileDateRangePicker from '@material-ui/lab/MobileDateRangePicker';
-import DesktopDateRangePicker from '@material-ui/lab/DesktopDateRangePicker';
-import { DateRange } from '@material-ui/lab/DateRangePicker';
+import TextField from '@mui/material/TextField';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
+import MobileDateRangePicker from '@mui/lab/MobileDateRangePicker';
+import DesktopDateRangePicker from '@mui/lab/DesktopDateRangePicker';
+import { DateRange } from '@mui/lab/DateRangePicker';
 
 export default function ResponsiveDateRangePicker() {
   const [value, setValue] = React.useState<DateRange<Date>>([null, null]);

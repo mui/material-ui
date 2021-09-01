@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createClientRender, describeConformance } from 'test/utils';
-import TimelineItem, { timelineItemClasses as classes } from '@material-ui/lab/TimelineItem';
+import TimelineItem, { timelineItemClasses as classes } from '@mui/lab/TimelineItem';
 
 describe('<TimelineItem />', () => {
   const render = createClientRender();

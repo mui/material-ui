@@ -2,8 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { describeConformance, createClientRender } from 'test/utils';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import Pagination, { paginationClasses as classes } from '@material-ui/core/Pagination';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Pagination, { paginationClasses as classes } from '@mui/material/Pagination';
 
 describe('<Pagination />', () => {
   const render = createClientRender();

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Tab from '@material-ui/core/Tab';
-import Tabs, { tabsClasses } from '@material-ui/core/Tabs';
-import { styled } from '@material-ui/core/styles';
+import Tab from '@mui/material/Tab';
+import Tabs, { tabsClasses } from '@mui/material/Tabs';
+import { styled } from '@mui/material/styles';
 import TimeIcon from '../internal/svg-icons/Time';
 import DateRangeIcon from '../internal/svg-icons/DateRange';
 import {

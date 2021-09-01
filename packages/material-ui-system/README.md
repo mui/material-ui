@@ -1,4 +1,4 @@
-# @material-ui/system
+# @mui/system
 
 CSS utilities for rapidly laying out custom designs.
 
@@ -10,10 +10,10 @@ Install the package in your project directory with:
 
 ```sh
 // with npm
-npm install @material-ui/system@next @emotion/react @emotion/styled
+npm install @mui/system@next @emotion/react @emotion/styled
 
 // with yarn
-yarn add @material-ui/system@next @emotion/react @emotion/styled
+yarn add @mui/system@next @emotion/react @emotion/styled
 ```
 
 ## Documentation

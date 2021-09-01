@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import * as React from 'react';
 import { createClientRender, describeConformance } from 'test/utils';
-import ImageList from '@material-ui/core/ImageList';
-import ImageListItem, { imageListItemClasses as classes } from '@material-ui/core/ImageListItem';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem, { imageListItemClasses as classes } from '@mui/material/ImageListItem';
 
 describe('<ImageListItem />', () => {
   const render = createClientRender();

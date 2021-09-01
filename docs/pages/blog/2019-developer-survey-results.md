@@ -296,7 +296,7 @@ As the React ecosystem matures, we might see a [big](https://www.rank2traffic.co
 
 Multiple options were allowed.
 
-- @material-ui/styles: 85%
+- @mui/styles: 85%
 - Styled components: 30%
 - Good old CSS (+sass, less, etc): 24%
 - CSS Modules (+sass, less, etc): 16%

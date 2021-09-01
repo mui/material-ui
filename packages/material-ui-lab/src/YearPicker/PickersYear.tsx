@@ -1,12 +1,12 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { useForkRef, capitalize } from '@material-ui/core/utils';
-import { alpha, styled } from '@material-ui/core/styles';
+import { useForkRef, capitalize } from '@mui/material/utils';
+import { alpha, styled } from '@mui/material/styles';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
-} from '@material-ui/unstyled';
+} from '@mui/core';
 import {
   WrapperVariant,
   WrapperVariantContext,

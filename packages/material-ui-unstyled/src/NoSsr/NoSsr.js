@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { exactProp, unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
+import { exactProp, unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 
 /**
  * NoSsr purposely removes components from the subject of Server Side Rendering (SSR).

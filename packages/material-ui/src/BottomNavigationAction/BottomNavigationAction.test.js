@@ -4,8 +4,8 @@ import { spy } from 'sinon';
 import { describeConformance, createClientRender, within } from 'test/utils';
 import BottomNavigationAction, {
   bottomNavigationActionClasses as classes,
-} from '@material-ui/core/BottomNavigationAction';
-import ButtonBase from '@material-ui/core/ButtonBase';
+} from '@mui/material/BottomNavigationAction';
+import ButtonBase from '@mui/material/ButtonBase';
 
 describe('<BottomNavigationAction />', () => {
   const render = createClientRender();

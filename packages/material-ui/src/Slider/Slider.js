@@ -1,14 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes } from '@material-ui/utils';
-import { generateUtilityClasses, isHostComponent } from '@material-ui/unstyled';
+import { chainPropTypes } from '@mui/utils';
+import { generateUtilityClasses, isHostComponent } from '@mui/core';
 import SliderUnstyled, {
   SliderValueLabelUnstyled,
   sliderUnstyledClasses,
   getSliderUtilityClass,
-} from '@material-ui/unstyled/SliderUnstyled';
-import { alpha, lighten, darken } from '@material-ui/system';
+} from '@mui/core/SliderUnstyled';
+import { alpha, lighten, darken } from '@mui/system';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { slotShouldForwardProp } from '../styles/styled';
 import useTheme from '../styles/useTheme';

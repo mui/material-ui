@@ -1,2 +1,2 @@
-export { default } from '@material-ui/core/AvatarGroup';
-export * from '@material-ui/core/AvatarGroup';
+export { default } from '@mui/material/AvatarGroup';
+export * from '@mui/material/AvatarGroup';

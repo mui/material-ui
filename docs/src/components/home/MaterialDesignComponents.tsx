@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { deepmerge } from '@mui/utils';
 import {
   styled,
   createTheme,
@@ -6,32 +7,32 @@ import {
   useTheme,
   Theme,
   ThemeOptions,
-} from '@material-ui/core/styles';
-import { capitalize } from '@material-ui/core/utils';
-import Alert from '@material-ui/core/Alert';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Chip from '@material-ui/core/Chip';
-import Tabs from '@material-ui/core/Tabs';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import Paper from '@material-ui/core/Paper';
-import Tab from '@material-ui/core/Tab';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import ShoppingCartRounded from '@material-ui/icons/ShoppingCartRounded';
-import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
-import CheckCircleRounded from '@material-ui/icons/CheckCircleRounded';
-import MailRounded from '@material-ui/icons/MailRounded';
-import VerifiedUserRounded from '@material-ui/icons/VerifiedUserRounded';
-import HelpCenterRounded from '@material-ui/icons/HelpCenterRounded';
+} from '@mui/material/styles';
+import { capitalize } from '@mui/material/utils';
+import Alert from '@mui/material/Alert';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Chip from '@mui/material/Chip';
+import Tabs from '@mui/material/Tabs';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Paper from '@mui/material/Paper';
+import Tab from '@mui/material/Tab';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import ShoppingCartRounded from '@mui/icons-material/ShoppingCartRounded';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import CheckCircleRounded from '@mui/icons-material/CheckCircleRounded';
+import MailRounded from '@mui/icons-material/MailRounded';
+import VerifiedUserRounded from '@mui/icons-material/VerifiedUserRounded';
+import HelpCenterRounded from '@mui/icons-material/HelpCenterRounded';
 import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
 
@@ -200,7 +201,7 @@ const StyledChip = styled(Chip)(({ theme }) => ({
   },
 }));
 
-function buildTheme(theme: Theme): ThemeOptions {
+export function buildTheme(theme: Theme): ThemeOptions {
   return {
     palette: {
       ...theme.palette,
@@ -258,17 +259,20 @@ function buildTheme(theme: Theme): ThemeOptions {
           },
           iconSizeSmall: {
             '& > *:nth-of-type(1)': {
-              fontSize: 14,
+              fontSize: '0.875rem',
             },
           },
           iconSizeMedium: {
             '& > *:nth-of-type(1)': {
-              fontSize: 16,
+              fontSize: '1rem',
             },
           },
         },
       },
       MuiAlert: {
+        defaultProps: {
+          icon: <CheckCircleRounded />,
+        },
         styleOverrides: {
           root: {
             padding: theme.spacing(2),
@@ -298,8 +302,8 @@ function buildTheme(theme: Theme): ThemeOptions {
           icon: {
             paddingTop: 1,
             paddingBottom: 0,
-            '& > *': {
-              fontSize: 18,
+            '& > svg': {
+              fontSize: '1.125rem',
             },
           },
         },
@@ -362,7 +366,18 @@ function buildTheme(theme: Theme): ThemeOptions {
           },
         },
       },
-      MuiTableCell: theme.components?.MuiTableCell,
+      MuiTooltip: theme.components?.MuiTooltip,
+      MuiPaper: theme.components?.MuiPaper,
+      MuiTableCell: deepmerge(theme.components?.MuiTableCell, {
+        styleOverrides: {
+          root: {
+            borderColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[400]
+                : theme.palette.divider,
+          },
+        },
+      }),
       MuiPopover: {
         styleOverrides: {
           paper: {
@@ -382,7 +397,7 @@ function buildTheme(theme: Theme): ThemeOptions {
           root: {
             padding: theme.spacing(1, 2),
             '& svg': {
-              fontSize: 18,
+              fontSize: '1.125rem',
               color:
                 theme.palette.mode === 'dark'
                   ? theme.palette.primary[500]
@@ -448,9 +463,7 @@ export default function MaterialDesignComponents() {
             name="Alert"
             control={{ prop: 'variant', values: ['standard', 'filled', 'outlined'] }}
           >
-            <Alert color="info" icon={<CheckCircleRounded />}>
-              Check out this alert!
-            </Alert>
+            <Alert color="info">Check out this alert!</Alert>
           </Demo>
         </div>
         <div>

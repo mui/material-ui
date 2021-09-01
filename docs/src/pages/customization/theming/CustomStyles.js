@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Checkbox from '@material-ui/core/Checkbox';
-import { createTheme, ThemeProvider, styled } from '@material-ui/core/styles';
-import { orange } from '@material-ui/core/colors';
+import Checkbox from '@mui/material/Checkbox';
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import { orange } from '@mui/material/colors';
 
 const CustomCheckbox = styled(Checkbox)(({ theme }) => ({
   color: theme.status.danger,

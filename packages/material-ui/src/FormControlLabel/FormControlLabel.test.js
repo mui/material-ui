@@ -3,10 +3,10 @@ import { expect } from 'chai';
 import { createClientRender, describeConformance } from 'test/utils';
 import FormControlLabel, {
   formControlLabelClasses as classes,
-} from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControl from '@material-ui/core/FormControl';
-import Typography from '@material-ui/core/Typography';
+} from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import FormControl from '@mui/material/FormControl';
+import Typography from '@mui/material/Typography';
 
 describe('<FormControlLabel />', () => {
   const render = createClientRender();

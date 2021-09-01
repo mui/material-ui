@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, describeConformance } from 'test/utils';
-import Paper from '@material-ui/core/Paper';
-import SnackbarContent, {
-  snackbarContentClasses as classes,
-} from '@material-ui/core/SnackbarContent';
+import Paper from '@mui/material/Paper';
+import SnackbarContent, { snackbarContentClasses as classes } from '@mui/material/SnackbarContent';
 
 describe('<SnackbarContent />', () => {
   const render = createClientRender();

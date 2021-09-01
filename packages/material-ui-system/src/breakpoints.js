@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { deepmerge } from '@material-ui/utils';
+import { deepmerge } from '@mui/utils';
 import merge from './merge';
 
 // The breakpoint **start** at this value.

@@ -352,7 +352,7 @@ if (require.main === module) {
           .option('file-suffix', {
             type: 'string',
             describe:
-              'Filter only files ending with a suffix (pretty much only for @material-ui/icons)',
+              'Filter only files ending with a suffix (pretty much only for @mui/icons-material)',
           })
           .option('rename-filter', {
             type: 'string',
