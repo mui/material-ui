@@ -60,9 +60,9 @@ export default function CommunitySayCard(props: CommunitySayCardProps) {
         >
           <img loading="lazy" src={avatar} width="48" height="48" alt={`${name} avatar`} />
         </Avatar>
-        <Box sx={{ fontSize: 16, lineHeight: '24px' }}>
+        <Box sx={{ fontSize: '1rem', lineHeight: '24px' }}>
           <Typography sx={{ fontWeight: 'bold' }}>{name}</Typography>
-          <Typography sx={{ fontSize: 16 }}>{id}</Typography>
+          <Typography sx={{ fontSize: '1rem' }}>{id}</Typography>
         </Box>
       </Box>
     </Box>

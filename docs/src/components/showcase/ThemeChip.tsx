@@ -55,7 +55,7 @@ export default function ThemeChip() {
             styleOverrides: {
               label: {
                 marginBottom: '1px',
-                fontSize: 14,
+                fontSize: '0.875rem',
                 lineHeight: 1.5,
                 fontWeight: 600,
               },

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { deepmerge } from '@mui/utils';
 import {
   styled,
   createTheme,
@@ -200,7 +201,7 @@ const StyledChip = styled(Chip)(({ theme }) => ({
   },
 }));
 
-function buildTheme(theme: Theme): ThemeOptions {
+export function buildTheme(theme: Theme): ThemeOptions {
   return {
     palette: {
       ...theme.palette,
@@ -258,17 +259,20 @@ function buildTheme(theme: Theme): ThemeOptions {
           },
           iconSizeSmall: {
             '& > *:nth-of-type(1)': {
-              fontSize: 14,
+              fontSize: '0.875rem',
             },
           },
           iconSizeMedium: {
             '& > *:nth-of-type(1)': {
-              fontSize: 16,
+              fontSize: '1rem',
             },
           },
         },
       },
       MuiAlert: {
+        defaultProps: {
+          icon: <CheckCircleRounded />,
+        },
         styleOverrides: {
           root: {
             padding: theme.spacing(2),
@@ -298,8 +302,8 @@ function buildTheme(theme: Theme): ThemeOptions {
           icon: {
             paddingTop: 1,
             paddingBottom: 0,
-            '& > *': {
-              fontSize: 18,
+            '& > svg': {
+              fontSize: '1.125rem',
             },
           },
         },
@@ -362,7 +366,18 @@ function buildTheme(theme: Theme): ThemeOptions {
           },
         },
       },
-      MuiTableCell: theme.components?.MuiTableCell,
+      MuiTooltip: theme.components?.MuiTooltip,
+      MuiPaper: theme.components?.MuiPaper,
+      MuiTableCell: deepmerge(theme.components?.MuiTableCell, {
+        styleOverrides: {
+          root: {
+            borderColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[400]
+                : theme.palette.divider,
+          },
+        },
+      }),
       MuiPopover: {
         styleOverrides: {
           paper: {
@@ -382,7 +397,7 @@ function buildTheme(theme: Theme): ThemeOptions {
           root: {
             padding: theme.spacing(1, 2),
             '& svg': {
-              fontSize: 18,
+              fontSize: '1.125rem',
               color:
                 theme.palette.mode === 'dark'
                   ? theme.palette.primary[500]
@@ -448,9 +463,7 @@ export default function MaterialDesignComponents() {
             name="Alert"
             control={{ prop: 'variant', values: ['standard', 'filled', 'outlined'] }}
           >
-            <Alert color="info" icon={<CheckCircleRounded />}>
-              Check out this alert!
-            </Alert>
+            <Alert color="info">Check out this alert!</Alert>
           </Demo>
         </div>
         <div>

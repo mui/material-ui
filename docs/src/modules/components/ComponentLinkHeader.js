@@ -22,6 +22,9 @@ const Root = styled('ul')(({ theme }) => ({
   '& li': {
     margin: theme.spacing(0.5),
   },
+  '& .MuiChip-root .MuiChip-iconSmall': {
+    marginLeft: 4,
+  },
 }));
 
 export default function ComponentLinkHeader(props) {
@@ -44,6 +47,7 @@ export default function ComponentLinkHeader(props) {
             clickable
             role={undefined}
             component="a"
+            size="small"
             variant="outlined"
             rel="nofollow"
             href={`https://github.com/mui-org/material-ui/labels/${encodeURIComponent(
@@ -64,6 +68,7 @@ export default function ComponentLinkHeader(props) {
             clickable
             role={undefined}
             component="a"
+            size="small"
             variant="outlined"
             rel="nofollow"
             href={headers.waiAria}
@@ -82,6 +87,7 @@ export default function ComponentLinkHeader(props) {
             clickable
             role={undefined}
             component="a"
+            size="small"
             variant="outlined"
             rel="nofollow"
             href={`https://bundlephobia.com/result?p=${packageName}@next`}
@@ -100,6 +106,7 @@ export default function ComponentLinkHeader(props) {
             clickable
             role={undefined}
             component="a"
+            size="small"
             variant="outlined"
             rel="nofollow"
             href={headers.materialDesign}
@@ -119,6 +126,7 @@ export default function ComponentLinkHeader(props) {
               clickable
               role={undefined}
               component="a"
+              size="small"
               variant="outlined"
               rel="nofollow"
               href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
@@ -135,6 +143,7 @@ export default function ComponentLinkHeader(props) {
               clickable
               role={undefined}
               component="a"
+              size="small"
               variant="outlined"
               rel="nofollow"
               href="https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
@@ -151,6 +160,7 @@ export default function ComponentLinkHeader(props) {
               clickable
               role={undefined}
               component="a"
+              size="small"
               variant="outlined"
               rel="nofollow"
               href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"

@@ -19,7 +19,7 @@ const Plan = React.forwardRef<
     benefits?: Array<string>;
     unavailable?: boolean;
   } & PaperProps
->(({ plan, benefits, unavailable, sx, ...props }, ref) => {
+>(function Plan({ plan, benefits, unavailable, sx, ...props }, ref) {
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
   return (

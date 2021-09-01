@@ -68,7 +68,7 @@ const blue = {
   800: '#004C99',
   900: '#003A75',
 };
-const blueDark = {
+export const blueDark = {
   50: '#E2EDF8',
   100: '#CEE0F3',
   200: '#91B9E3',
@@ -404,6 +404,8 @@ export function getThemedComponents(theme: Theme) {
       MuiPaper: {
         styleOverrides: {
           root: {
+            backgroundColor:
+              theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
             '&[href]': {
               textDecorationLine: 'none',
             },
@@ -413,7 +415,7 @@ export function getThemedComponents(theme: Theme) {
             borderColor:
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[400]
-                : theme.palette.grey[100],
+                : theme.palette.grey[200],
             ...(theme.palette.mode === 'dark' && {
               backgroundColor: theme.palette.primaryDark[700],
             }),
@@ -444,7 +446,7 @@ export function getThemedComponents(theme: Theme) {
         styleOverrides: {
           root: {
             backgroundColor:
-              theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#fff',
+              theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
           },
         },
       },
@@ -465,8 +467,16 @@ export function getThemedComponents(theme: Theme) {
               backgroundColor:
                 theme.palette.mode === 'dark'
                   ? theme.palette.primary[800]
-                  : theme.palette.primaryDark[50],
+                  : theme.palette.primary[50],
             },
+          },
+        },
+      },
+      MuiTooltip: {
+        styleOverrides: {
+          tooltip: {
+            paddingTop: 7,
+            paddingBottom: 7,
           },
         },
       },

@@ -678,7 +678,7 @@ export default function DemoToolbar(props) {
         open={Boolean(anchorEl)}
         onClose={handleMoreClose}
         anchorOrigin={{
-          vertical: 'top',
+          vertical: 'bottom',
           horizontal: 'right',
         }}
         transformOrigin={{
