@@ -252,11 +252,11 @@ export default function FAQ() {
                 Got any questions unanswered or need more help?
               </Typography>
             </Box>
-            <Typography variant="body2" color="text.primary" sx={{ my: 1, textAlign: 'left' }}>
+            <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
               Email us at <Link href="mailto:sales@mui.com">sales@mui.com</Link> for sales-related
               questions.
             </Typography>
-            <Typography variant="body2" color="text.primary" sx={{ my: 1, textAlign: 'left' }}>
+            <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
               For product-related problems, please open
               <Link href="https://github.com/mui-org/material-ui-x/issues/new/choose">
                 a new GitHub issue
