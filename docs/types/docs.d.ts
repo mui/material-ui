@@ -1,6 +1,6 @@
 declare module 'docs/src/modules/components/HighlightedCode' {
   import * as React from 'react';
-  import { StyledComponentProps } from '@material-ui/core/styles';
+  import { StyledComponentProps } from '@mui/material/styles';
 
   type ClassKey = 'root';
   export interface Props extends StyledComponentProps<ClassKey> {
@@ -11,7 +11,7 @@ declare module 'docs/src/modules/components/HighlightedCode' {
     code: string;
     /**
      * short identifier of the code language
-     * see @material-ui/markdown/prism for possible languages
+     * see @mui/markdown/prism for possible languages
      */
     language: string;
     /**

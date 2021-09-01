@@ -2,7 +2,7 @@ import * as React from 'react';
 import { spy } from 'sinon';
 import { expect } from 'chai';
 import { fireEvent, screen, describeConformance } from 'test/utils';
-import MonthPicker, { monthPickerClasses as classes } from '@material-ui/lab/MonthPicker';
+import MonthPicker, { monthPickerClasses as classes } from '@mui/lab/MonthPicker';
 import { adapterToUse, wrapPickerMount, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<MonthPicker />', () => {

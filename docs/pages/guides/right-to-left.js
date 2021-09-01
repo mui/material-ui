@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   demoComponents,
-} from 'docs/src/pages/guides/right-to-left/right-to-left.md?@material-ui/markdown';
+} from 'docs/src/pages/guides/right-to-left/right-to-left.md?@mui/markdown';
 
 export default function Page() {
   return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />;

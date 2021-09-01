@@ -1,4 +1,4 @@
-import * as colors from '@material-ui/core/colors';
+import * as colors from '@mui/material/colors';
 import * as fse from 'fs-extra';
 import * as path from 'path';
 

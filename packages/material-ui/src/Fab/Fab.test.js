@@ -7,9 +7,9 @@ import {
   act,
   fireEvent,
 } from 'test/utils';
-import Fab, { fabClasses as classes } from '@material-ui/core/Fab';
-import ButtonBase, { touchRippleClasses } from '@material-ui/core/ButtonBase';
-import Icon from '@material-ui/core/Icon';
+import Fab, { fabClasses as classes } from '@mui/material/Fab';
+import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
+import Icon from '@mui/material/Icon';
 
 describe('<Fab />', () => {
   const render = createClientRender();

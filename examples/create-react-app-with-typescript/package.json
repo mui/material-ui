@@ -5,7 +5,7 @@
   "dependencies": {
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
-    "@material-ui/core": "next",
+    "@mui/material": "next",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "react": "latest",

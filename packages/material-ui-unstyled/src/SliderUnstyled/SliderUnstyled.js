@@ -10,7 +10,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useControlled as useControlled,
   visuallyHidden,
-} from '@material-ui/utils';
+} from '@mui/utils';
 import isHostComponent from '../utils/isHostComponent';
 import composeClasses from '../composeClasses';
 import { getSliderUtilityClass } from './sliderUnstyledClasses';

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { createClientRender, describeConformance } from 'test/utils';
-import MasonryItem, { masonryItemClasses as classes } from '@material-ui/lab/MasonryItem';
+import MasonryItem, { masonryItemClasses as classes } from '@mui/lab/MasonryItem';
 import { expect } from 'chai';
-import { createTheme } from '@material-ui/core/styles';
-import defaultTheme from '@material-ui/core/styles/defaultTheme';
+import { createTheme } from '@mui/material/styles';
+import defaultTheme from '@mui/material/styles/defaultTheme';
 import { style } from './MasonryItem';
 
 describe('<MasonryItem />', () => {

@@ -75,10 +75,10 @@ function sizeSnapshot(options) {
 }
 
 // Resolve imports like:
-// import Portal from '@material-ui/unstyled/Portal';
+// import Portal from '@mui/core/Portal';
 const nestedFolder = {
   resolveId: (importee) => {
-    if (importee.indexOf('@material-ui/unstyled/') === 0) {
+    if (importee.indexOf('@mui/core/') === 0) {
       const folder = importee.split('/')[2];
       const resolved = path.resolve(
         __dirname,
@@ -87,7 +87,7 @@ const nestedFolder = {
       return resolved;
     }
 
-    if (importee.indexOf('@material-ui/private-theming/') === 0) {
+    if (importee.indexOf('@mui/private-theming/') === 0) {
       const folder = importee.split('/')[2];
       const resolved = path.resolve(
         __dirname,
@@ -96,7 +96,7 @@ const nestedFolder = {
       return resolved;
     }
 
-    if (importee.indexOf('@material-ui/styled-engine/') === 0) {
+    if (importee.indexOf('@mui/styled-engine/') === 0) {
       const folder = importee.split('/')[2];
       const resolved = path.resolve(
         __dirname,
@@ -105,7 +105,7 @@ const nestedFolder = {
       return resolved;
     }
 
-    if (importee.indexOf('@material-ui/system/') === 0) {
+    if (importee.indexOf('@mui/system/') === 0) {
       const folder = importee.split('/')[2];
       const resolved = path.resolve(
         __dirname,

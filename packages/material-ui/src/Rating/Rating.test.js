@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { stub, spy } from 'sinon';
 import { act, describeConformance, createClientRender, fireEvent, screen } from 'test/utils';
-import Rating, { ratingClasses as classes } from '@material-ui/core/Rating';
+import Rating, { ratingClasses as classes } from '@mui/material/Rating';
 
 describe('<Rating />', () => {
   const render = createClientRender();

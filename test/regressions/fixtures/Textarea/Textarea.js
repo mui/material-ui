@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Input from '@material-ui/core/Input';
+import Input from '@mui/material/Input';
 
 function Textarea() {
   const [value, setValue] = React.useState(

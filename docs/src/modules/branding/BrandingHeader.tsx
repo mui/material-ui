@@ -1,17 +1,17 @@
 import * as React from 'react';
-import AppBar, { AppBarProps } from '@material-ui/core/AppBar';
-import Box from '@material-ui/core/Box';
-import Toolbar from '@material-ui/core/Toolbar';
-import Fade from '@material-ui/core/Fade';
-import Modal from '@material-ui/core/Modal';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import CloseIcon from '@material-ui/icons/Close';
+import AppBar, { AppBarProps } from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Fade from '@mui/material/Fade';
+import Modal from '@mui/material/Modal';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import Link from 'docs/src/modules/components/Link';
-import { styled, alpha, darken } from '@material-ui/core/styles';
+import { styled, alpha, darken } from '@mui/material/styles';
 import BrandingLogo from 'docs/src/modules/branding/BrandingLogo';
 import t1 from 'docs/src/modules/branding/t1';
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
 
 const links = (
   <ul className="BrandingHeader-linksWrapper">

@@ -2,7 +2,7 @@
 
 <p class="description">The `sx` prop is a shortcut for defining custom style that has access to the theme.</p>
 
-The property is a superset of CSS that packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@material-ui/system`.
+The property is a superset of CSS that packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@mui/system`.
 You can specify any valid CSS using this prop.
 
 ## Example

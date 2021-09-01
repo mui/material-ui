@@ -1,8 +1,8 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import Fade from '@material-ui/core/Fade';
-import { styled } from '@material-ui/core/styles';
-import { generateUtilityClasses } from '@material-ui/unstyled';
+import Fade from '@mui/material/Fade';
+import { styled } from '@mui/material/styles';
+import { generateUtilityClasses } from '@mui/core';
 import { TransitionGroup } from 'react-transition-group';
 
 interface FadeTransitionProps {

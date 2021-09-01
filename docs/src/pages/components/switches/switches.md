@@ -62,7 +62,7 @@ You can learn more about this in the [overrides documentation page](/customizati
 The switch also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```jsx
-import SwitchUnstyled from '@material-ui/unstyled/SwitchUnstyled';
+import SwitchUnstyled from '@mui/core/SwitchUnstyled';
 ```
 
 The `SwitchUnstyled` component provides default components and assigns CSS classes you can style entirely on your own.
@@ -83,7 +83,7 @@ For the ultimate customizability, a `useSwitch` hook is available.
 It accepts almost the same options as the SwitchUnstyled component minus the `component`, `components`, and `componentsProps` props.
 
 ```jsx
-import { useSwitch } from '@material-ui/unstyled/SwitchUnstyled';
+import { useSwitch } from '@mui/core/SwitchUnstyled';
 ```
 
 #### Basic example

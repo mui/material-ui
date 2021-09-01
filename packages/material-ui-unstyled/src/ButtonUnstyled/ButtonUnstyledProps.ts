@@ -1,4 +1,4 @@
-import { OverrideProps } from '@material-ui/types';
+import { OverrideProps } from '@mui/types';
 import UseButtonProps from './UseButtonProps';
 
 export interface ButtonUnstyledActions {

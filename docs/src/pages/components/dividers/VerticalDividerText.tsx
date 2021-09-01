@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import MuiGrid from '@material-ui/core/Grid';
-import Divider from '@material-ui/core/Divider';
+import { styled } from '@mui/material/styles';
+import MuiGrid from '@mui/material/Grid';
+import Divider from '@mui/material/Divider';
 
 const Grid = styled(MuiGrid)(({ theme }) => ({
   width: '100%',

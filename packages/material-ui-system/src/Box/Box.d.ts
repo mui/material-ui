@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverridableComponent, OverrideProps } from '@material-ui/types';
+import { OverridableComponent, OverrideProps } from '@mui/types';
 import { Theme } from '../createTheme';
 import {
   SxProps,

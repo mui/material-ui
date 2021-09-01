@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Popover from '@material-ui/core/Popover';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Popover from '@mui/material/Popover';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 
 export default function PopoverPopupState() {

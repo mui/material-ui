@@ -19,7 +19,7 @@ By default, there is 25 elevation levels.
 ## API
 
 ```js
-import { shadows } from '@material-ui/system';
+import { shadows } from '@mui/system';
 ```
 
 | Import name | Prop        | CSS property | Theme key |
