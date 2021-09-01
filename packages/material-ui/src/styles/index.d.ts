@@ -21,7 +21,6 @@ export {
   Variant as TypographyVariant,
 } from './createTypography';
 export { default as responsiveFontSizes } from './responsiveFontSizes';
-export { ComponentsPropsList } from './props';
 export {
   Duration,
   Easing,
@@ -62,9 +61,10 @@ export { default as styled } from './styled';
  */
 export { default as experimentalStyled } from './styled';
 export { default as ThemeProvider } from './ThemeProvider';
-export { ComponentsProps } from './props';
+export { ComponentsProps, ComponentsPropsList } from './props';
 export { ComponentsVariants } from './variants';
-export { ComponentsOverrides } from './overrides';
+export { ComponentsOverrides, ComponentNameToClassKey } from './overrides';
+export { Components } from './components';
 export { StyledEngineProvider } from '@mui/system';
 
 export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
