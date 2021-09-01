@@ -102,7 +102,7 @@ export default function DiamondSponsors() {
               <Typography variant="body2" color="text.primary" fontWeight="bold">
                 Become our sponsor!
               </Typography>
-              <Typography variant="body2" color="text.primary">
+              <Typography variant="body2" color="text.secondary">
                 To join us, contact us at{' '}
                 <Link href="mailto:diamond@mui.com" target="_blank" rel="noopener noreferrer">
                   diamond@mui.com

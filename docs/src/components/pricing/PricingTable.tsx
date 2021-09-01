@@ -879,7 +879,7 @@ export default function PricingTable({
       {renderRow('@mui/system')}
 
       <RowHead startIcon={<IconImage name="product-advanced" width="28" height="28" />}>
-        Advanced
+        X Pro
       </RowHead>
       <Box sx={{ position: 'relative', minHeight: 58, '& svg': { transition: '0.3s' }, ...gridSx }}>
         <Cell />

@@ -92,7 +92,7 @@ const ProductsSwitcher = ({
       icon={<IconImage name="product-advanced" />}
       name={
         <Box component="span" display="inline-flex" alignItems="center">
-          Advanced&nbsp;
+          X Pro&nbsp;
         </Box>
       }
       description="Powerful and robust components for your complex apps."
