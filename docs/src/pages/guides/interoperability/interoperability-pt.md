@@ -34,7 +34,7 @@ Nada extravagante, apenas CSS.
 
 ```jsx
 import * as React from 'react';
-import Slider from '@mui/material/Slider';
+import Slider from '@material-ui/core/Slider';
 import './PlainCssSlider.css';
 
 export default function PlainCssSlider() {
@@ -53,7 +53,7 @@ export default function PlainCssSlider() {
 
 ```jsx
 import * as React from 'react';
-import { StyledEngineProvider } from '@mui/material/styles';
+import { StyledEngineProvider } from '@material-ui/core/styles';
 
 export default function GlobalCssPriority() {
   return (
@@ -80,7 +80,7 @@ export default function CssModulesPriority() {
 
 ```jsx
 Agora você pode sobrescrever os estilos do Material-UI. import * as React from 'react';
-import { StylesProvider } from '@mui/material';
+import { StylesProvider } from '@material-ui/core';
 
 export default function GlobalCssPriority() {
   return (
@@ -103,7 +103,7 @@ export default function CssModulesPriority() {
 }
 ```
 
-**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@mui/styled-engine-sc` package.
+**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
 
 ### Elementos mais profundos
 
@@ -133,7 +133,7 @@ Os exemplos a seguir substituem o estilo de `thumb` do controle slider, além do
 
 ```jsx
 import * as React from 'react';
-import Slider from '@mui/material/Slider';
+import Slider from '@material-ui/core/Slider';
 import './PlainCssSliderDeep1.css';
 
 export default function PlainCssSliderDeep1() {
@@ -168,7 +168,7 @@ A demonstração acima depende dos [valores padrão de `className`](/styles/adva
 
 ```jsx
 import * as React from 'react';
-import Slider from '@mui/material/Slider';
+import Slider from '@material-ui/core/Slider';
 import './PlainCssSliderDeep2.css';
 
 export default function PlainCssSliderDeep2() {
@@ -207,7 +207,7 @@ Fornecer explicitamente os nomes das classes ao componente é um esforço excess
 
 ```jsx
 import * as React from 'react';
-import Slider from '@mui/material/Slider';
+import Slider from '@material-ui/core/Slider';
 import './GlobalCssSlider.css';
 
 export default function GlobalCssSlider() {
@@ -221,7 +221,7 @@ export default function GlobalCssSlider() {
 
 ```jsx
 import * as React from 'react';
-import { StyledEngineProvider } from '@mui/material/styles';
+import { StyledEngineProvider } from '@material-ui/core/styles';
 
 export default function GlobalCssPriority() {
   return (
@@ -277,7 +277,7 @@ export default function CssModulesPriority() {
 }
 ```
 
-**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@mui/styled-engine-sc` package.
+**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
 
 ### Elementos mais profundos
 
@@ -307,7 +307,7 @@ O exemplo a seguir substituem o estilo de `thumb` do controle slider, além dos 
 
 ```jsx
 import * as React from 'react';
-import Slider from '@mui/material/Slider';
+import Slider from '@material-ui/core/Slider';
 import './GlobalCssSliderDeep.css';
 
 export default function GlobalCssSliderDeep() {
@@ -323,7 +323,7 @@ export default function GlobalCssSliderDeep() {
 
 Por padrão, os componentes do Material-UI vêm com emotion como seu motor de estilo. Se, no entanto, você gostaria de usar `styled-components`, você pode configurar sua aplicação seguindo este [projeto de exemplo](https://github.com/mui-org/material-ui/blob/next/examples/create-react-app-with-styled-components). Seguir esta abordagem reduz o tamanho do pacote e remove a necessidade de configurar a ordem de injeção de CSS.
 
-After the style engine is configured properly, you can use the [`styled()`](/customization/styled/) utility from `@mui/material/styles` and have direct access to the theme.
+After the style engine is configured properly, you can use the [`styled()`](/customization/styled/) utility from `@material-ui/core/styles` and have direct access to the theme.
 
 {{"demo": "pages/guides/interoperability/StyledComponents.js", "hideToolbar": true}}
 
@@ -331,8 +331,8 @@ After the style engine is configured properly, you can use the [`styled()`](/cus
 
 ```jsx
 import * as React from 'react';
-import Slider from '@mui/material/Slider';
-import { styled } from '@mui/material/styles';
+import Slider from '@material-ui/core/Slider';
+import { styled } from '@material-ui/core/styles';
 
 const CustomizedSlider = styled(Slider)`
   color: #20b2aa;
@@ -359,8 +359,8 @@ A demonstração acima depende dos [valores padrão de `className`](/styles/adva
 
 ```jsx
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Slider from '@mui/material/Slider';
+import { styled } from '@material-ui/core/styles';
+import Slider from '@material-ui/core/Slider';
 
 const CustomizedSlider = styled((props) => (
   <Slider componentsProps={{ thumb: { className: 'thumb' } }} {...props} />
@@ -416,9 +416,9 @@ For example, if you attempt to style the `tooltip` generated by the [Tooltip](/c
 
 ```jsx
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
+import { styled } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const StyledTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
@@ -457,7 +457,7 @@ const StyledTooltip = styled(({ className, ...props }) => (
 
 ```jsx
 import * as React from 'react';
-import Slider from '@mui/material/Slider';
+import Slider from '@material-ui/core/Slider';
 // webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesSlider.module.css';
 
@@ -477,7 +477,7 @@ export default function CssModulesSlider() {
 
 ```jsx
 import * as React from 'react';
-import { StyledEngineProvider } from '@mui/material/styles';
+import { StyledEngineProvider } from '@material-ui/core/styles';
 
 export default function GlobalCssPriority() {
   return (
@@ -533,7 +533,7 @@ export default function CssModulesPriority() {
 }
 ```
 
-**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@mui/styled-engine-sc` package.
+**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look on the `StylesProvider` implementation in the `@material-ui/styled-engine-sc` package.
 
 ### Elementos mais profundos
 
@@ -565,7 +565,7 @@ Os exemplos a seguir substituem o estilo de `thumb` do controle slider, além do
 import * as React from 'react';
 // webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep1.module.css';
-import Slider from '@mui/material/Slider';
+import Slider from '@material-ui/core/Slider';
 
 export default function CssModulesSliderDeep1() {
   return (
@@ -601,7 +601,7 @@ A demonstração acima depende dos [valores padrão de `className`](/styles/adva
 import * as React from 'react';
 // webpack, parcel or else will inject the CSS into the page
 import styles from './CssModulesSliderDeep2.module.css';
-import Slider from '@mui/material/Slider';
+import Slider from '@material-ui/core/Slider';
 
 export default function CssModulesSliderDeep2() {
   return (

@@ -2,7 +2,7 @@
 title: React Date Picker コンポーネント
 components: CalendarPicker, CalendarPickerSkeleton, DatePicker, DesktopDatePicker, MobileDatePicker, MonthPicker, PickersDay, StaticDatePicker, YearPicker
 githubLabel: 'component: DatePicker'
-packageName: '@mui/lab'
+packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
 
@@ -24,9 +24,9 @@ Date pickers を使用すると、ユーザーが日付を選択できるよう�
 これらのライブラリのうちいずれかをインストールし、ルート（またはピッカーを使用できるようにする最高レベル）を`LocalizationProvider`でラップして、適切な日付エンジンを設定してください。
 
 ```jsx
-// または @mui/lab/Adapter{DayJS,Luxon,Moment} や任意の有効な date-io アダプター
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+// または @material-ui/lab/Adapter{DayJS,Luxon,Moment} や任意の有効な date-io アダプター
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 
 function App() {
   return (

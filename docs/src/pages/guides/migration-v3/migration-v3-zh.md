@@ -24,18 +24,18 @@
 
 ```json
 "dependencies": {
-  "@mui/material": "^4.0.0"
+  "@material-ui/core": "^4.0.0"
 }
 ```
 
 或者运行
 
 ```sh
-npm install @mui/material
+npm install @material-ui/core
 
 或者
 
-yarn add @mui/material
+yarn add @material-ui/core
 ```
 
 ### 更新 React 的版本
@@ -44,22 +44,22 @@ yarn add @mui/material
 
 ### 更新 Material-UI Styles 的版本
 
-若您以前使用 v3 版本的 `@mui/styles`，您则需要更新 `package.json`，这样才能使用最新版本的 Material-UI Styles。
+若您以前使用 v3 版本的 `@material-ui/styles`，您则需要更新 `package.json`，这样才能使用最新版本的 Material-UI Styles。
 
 ```json
 "dependencies": {
-  "@mui/styles": "^4.0.0"
+  "@material-ui/styles": "^4.0.0"
 }
 ```
 
 或者运行
 
 ```sh
-npm install @mui/styles
+npm install @material-ui/styles
 
 或者
 
-yarn add @mui/styles
+yarn add @material-ui/styles
 ```
 
 ## 处理变化带来的系统崩溃
@@ -83,8 +83,8 @@ yarn add @mui/styles
 - 重命名 `convertHexToRGB` 为 `hexToRgb`。
 
   ```diff
-  -import { convertHexToRgb } from '@mui/material/styles/colorManipulator';
-  +import { hexToRgb } from '@mui/material/styles';
+  -import { convertHexToRgb } from '@material-ui/core/styles/colorManipulator';
+  +import { hexToRgb } from '@material-ui/core/styles';
   ```
 
 - 设置 [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation) 的范围。 您应该在您的代码中做出以下改变。 这对分离动画的逻辑有所帮助：
@@ -155,11 +155,11 @@ yarn add @mui/styles
 
   从今往后，您可以使用主题来实现 [一个自定义的网格间距变换函数](https://material-ui.com/system/spacing/#transformation)。
 
-- [Container] 从 `@mui/lab` 迁移到 `@mui/material`。
+- [Container] 从 `@material-ui/lab` 迁移到 `@material-ui/core`。
 
   ```diff
-  -import Container from '@mui/lab/Container';
-  +import Container from '@mui/material/Container';
+  -import Container from '@material-ui/lab/Container';
+  +import Container from '@material-ui/core/Container';
   ```
 
 ### TypeScript
@@ -196,16 +196,16 @@ function MySelect({ children }) {
   ```
 
   ```diff
-  -import Button from '@mui/material/Button';
+  -import Button from '@material-ui/core/Button';
   -<Button variant="fab" />
-  +import Fab from '@mui/material/Fab';
+  +import Fab from '@material-ui/core/Fab';
   +<Fab />
   ```
 
   ```diff
-  -import Button from '@mui/material/Button';
+  -import Button from '@material-ui/core/Button';
   -<Button variant="extendedFab" />
-  +import Fab from '@mui/material/Fab';
+  +import Fab from '@material-ui/core/Fab';
   +<Fab variant="extended" />
   ```
 
@@ -290,11 +290,11 @@ function MySelect({ children }) {
 
 ### Slider
 
-- [Slider] 从 `@mui/lab` 迁移到 `@mui/material`。
+- [Slider] 从 `@material-ui/lab` 迁移到 `@material-ui/core`。
 
   ```diff
-  -import Slider from '@mui/lab/Slider'
-  +import Slider from '@mui/material/Slider'
+  -import Slider from '@material-ui/lab/Slider'
+  +import Slider from '@material-ui/core/Slider'
   ```
 
 ### Switch 开关

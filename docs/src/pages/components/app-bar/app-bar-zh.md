@@ -125,7 +125,7 @@ function App() {
 #### 例子
 
 ```jsx
-import useScrollTrigger from '@mui/material/useScrollTrigger';
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 
 function HideOnScroll(props) {
   const trigger = useScrollTrigger();

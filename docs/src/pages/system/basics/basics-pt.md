@@ -18,20 +18,20 @@ _(Redimensione a janela para ver os pontos de quebra responsivos)_
 
 ```jsx
 // with npm
-npm install @mui/system@next @emotion/react @emotion/styled
+npm install @material-ui/system@next @emotion/react @emotion/styled
 
 // with yarn
-yarn add @mui/system@next @emotion/react @emotion/styled
+yarn add @material-ui/system@next @emotion/react @emotion/styled
 ```
 
 Or if you want to use `styled-components` as a styling engine:
 
 ```sh
 // with npm
-npm install @mui/system@next @mui/styled-engine-sc@next styled-components
+npm install @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
 
 // with yarn
-yarn add @mui/system@next @mui/styled-engine-sc@next styled-components
+yarn add @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
 ```
 
 Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
@@ -178,7 +178,7 @@ O sistema depende do CSS-in-JS. Funciona com ambos, emotion e styled-components.
 Prós:
 
 - 📚 Permite uma grande flexibilidade na API. A propriedade `sx` suporta um super conjunto de CSS. Não há **nenhuma necessidade de aprender CSS duas vezes**. Uma vez que você aprendeu a sintaxe padronizada do CSS, é seguro pois, não mudou durante uma década. Então, você pode **opcionalmente** aprender os atalhos, se você valoriza a economia de tempo que eles trazem.
-- 📦 Auto-purge. Somente o CSS usado na página é enviado para o cliente. O custo inicial do tamanho do pacote é **fixo**. Ele não aumenta com o número de propriedades CSS usadas. Você paga o custo de [@emotion/react](https://bundlephobia.com/result?p=@emotion/react) e [@mui/system](https://bundlephobia.com/result?p=@mui/system). Custa cerca de ~15 kB gzipped. Se você já está usando os componentes principais, eles não vêm com sobrecarga extra.
+- 📦 Auto-purge. Somente o CSS usado na página é enviado para o cliente. O custo inicial do tamanho do pacote é **fixo**. Ele não aumenta com o número de propriedades CSS usadas. Você paga o custo de [@emotion/react](https://bundlephobia.com/result?p=@emotion/react) e [@material-ui/system](https://bundlephobia.com/result?p=@material-ui/system). Custa cerca de ~15 kB gzipped. Se você já está usando os componentes principais, eles não vêm com sobrecarga extra.
 
 Contras:
 
@@ -300,8 +300,8 @@ Você também pode especificar seus próprios pontos de quebras customizados, e 
 
 ```jsx
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Box from '@material-ui/core/Box';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const theme = createTheme({
   breakpoints: {
@@ -335,7 +335,7 @@ export default function CustomBreakpoints() {
 Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](/guides/typescript/#customization-of-theme) para que o tema aceite os valores acima.
 
 ```ts
-declare module "@mui/material/styles/createBreakpoints" {
+declare module "@material-ui/core/styles/createBreakpoints" {
   interface BreakpointOverrides {
     xs: false; // removes the `xs` breakpoint
     sm: false;
@@ -369,10 +369,10 @@ Todos os componentes Material-UI do core suportarão a propriedade `sx`.
 
 ### 3. Componentes customizados
 
-In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@mui/material/styles`.
+In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@material-ui/core/styles`.
 
 ```jsx
-import { styled } from '@mui/material/styles';
+import { styled } from '@material-ui/core/styles';
 
 const Div = styled('div')``;
 ```

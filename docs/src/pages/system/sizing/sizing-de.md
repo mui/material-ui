@@ -42,7 +42,7 @@ Die Größenstilfunktionen unterstützen verschiedene Eigenschafteneingabetypen:
 ## API
 
 ```js
-import { sizing } from '@mui/system';
+import { sizing } from '@material-ui/system';
 ```
 
 | Inportname  | Eigenschaften | CSS-Eigenschaft | Theme-Schlüssel |

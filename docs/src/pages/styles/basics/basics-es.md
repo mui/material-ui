@@ -1,4 +1,4 @@
-# @mui/styles
+# @material-ui/styles
 
 <p class="description">Puede utilizar la solución de estilo de Material-UI en su aplicación, tanto si está usando o no componentes de Material-UI.</p>
 
@@ -17,20 +17,20 @@ Material-UI's styling solution is inspired by many other styling libraries such 
 - 🚀 Es [ultra rápida](https://github.com/mui-org/material-ui/blob/HEAD/benchmark/server#material-uistyles).
 - 🧩 Es extensible a través de una [plugin](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
 - ⚡ Utiliza [JSS](https://github.com/cssinjs/jss) en su núcleo – un compilador de JavaScript a CSS de [alto rendimiento](https://github.com/cssinjs/jss/blob/master/docs/performance.md) que funciona en tiempo de ejecución y por el lado del servidor.
-- 📦 Less than [15 KB comprimido](https://bundlephobia.com/result?p=@mui/styles); and no bundle size increase if used alongside Material-UI.
+- 📦 Less than [15 KB comprimido](https://bundlephobia.com/result?p=@material-ui/styles); and no bundle size increase if used alongside Material-UI.
 
 ## Instalación
 
-> `@mui/styles` es reexportado como `@mui/material/styles` - sólo necesitas instalarlo si deseas usarlo independientemente de Material-UI.
+> `@material-ui/styles` es reexportado como `@material-ui/core/styles` - sólo necesitas instalarlo si deseas usarlo independientemente de Material-UI.
 
 Para instalarlo y guardarlo en las dependencias de tu ` package.json `, ejecuta:
 
 ```sh
 // with npm
-npm install @mui/styles
+npm install @material-ui/styles
 
 // with yarn
-yarn add @mui/styles
+yarn add @material-ui/styles
 ```
 
 ## Primeros pasos
@@ -41,8 +41,8 @@ There are 3 possible APIs you can use to generate and apply styles, however they
 
 ```jsx
 import * as React from 'react';
-import { makeStyles } from '@mui/styles';
-import Button from '@mui/material/Button';
+import { makeStyles } from '@material-ui/styles';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
   root: {
@@ -70,8 +70,8 @@ Note: this only applies to the calling syntax – style definitions still use a 
 
 ```jsx
 import * as React from 'react';
-import { styled } from '@mui/styles';
-import Button from '@mui/material/Button';
+import { styled } from '@material-ui/styles';
+import Button from '@material-ui/core/Button';
 
 const MyButton = styled(Button)({
   background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -95,8 +95,8 @@ export default function StyledComponents() {
 ```jsx
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@mui/styles';
-import Button from '@mui/material/Button';
+import { withStyles } from '@material-ui/styles';
+import Button from '@material-ui/core/Button';
 
 const styles = {
   root: {
@@ -201,11 +201,11 @@ const useStyles = makeStyles(theme => ({
 
 ## Using the theme context
 
-Starting from v5, Material-UI no longer uses JSS as its default styling solution. If you still want to use the utilities exported by `@mui/styles`, you will need to provide the `theme` as part of the context. For this, you can use the `ThemeProvider` component available in `@mui/styles`, or, if you are already using `@mui/material`, you should use the one exported from `@mui/material/styles` so that the same `theme` is available for components from '@mui/material'.
+Starting from v5, Material-UI no longer uses JSS as its default styling solution. If you still want to use the utilities exported by `@material-ui/styles`, you will need to provide the `theme` as part of the context. For this, you can use the `ThemeProvider` component available in `@material-ui/styles`, or, if you are already using `@material-ui/core`, you should use the one exported from `@material-ui/core/styles` so that the same `theme` is available for components from '@material-ui/core'.
 
 ```jsx
-import { makeStyles } from '@mui/styles';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { makeStyles } from '@material-ui/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const theme = createMuiTheme();
 

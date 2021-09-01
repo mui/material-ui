@@ -1,6 +1,6 @@
 # Advanced 进阶
 
-<p class="description">本节包含了 @mui/material/styles 的一些更多的进阶用法。</p>
+<p class="description">本节包含了 @material-ui/core/styles 的一些更多的进阶用法。</p>
 
 ## Theming 主题
 
@@ -9,7 +9,7 @@
 > 此示例为自定义组件创建了一个主题对象（theme object）。 If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createTheme()` method. 请前往 [theming 部分](/customization/theming/) 学习如何构建自己的 Material-UI 主题。
 
 ```jsx
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 import DeepChild from './my_components/DeepChild';
 
 const theme = {
@@ -36,7 +36,7 @@ function Theming() {
 在函数组件（function components）中的使用：
 
 ```jsx
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from '@material-ui/core/styles';
 
 function DeepChild() {
   const theme = useTheme();
@@ -51,7 +51,7 @@ function DeepChild() {
 在类（class）或函数（function）组件中的使用：
 
 ```jsx
-import { withTheme } from '@mui/material/styles';
+import { withTheme } from '@material-ui/core/styles';
 
 function DeepChildRaw(props) {
   return <span>{`spacing ${props.theme.spacing}`}</span>;
@@ -177,7 +177,7 @@ JSS 使用插件来扩展其核心，您可以挑选所需的功能，并且只�
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@mui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 import rtl from 'jss-rtl';
 
 const jss = create({
@@ -223,7 +223,7 @@ const useStyles = makeStyles({
 `StylesProvider`组件的属性 `injectFirst` 会把style标签注入到head的**前部**(意味着更低的权重)。
 
 ```jsx
-import { StylesProvider } from '@mui/styles';
+import { StylesProvider } from '@material-ui/styles';
 
 <StylesProvider injectFirst>
   {/* 你的组件树。
@@ -237,7 +237,7 @@ import { StylesProvider } from '@mui/styles';
 
 ```jsx
 import clsx from 'clsx';
-import { makeStyles } from '@mui/styles';
+import { makeStyles } from '@material-ui/styles';
 
 const useStylesBase = makeStyles({
   root: {
@@ -283,7 +283,7 @@ JSS [提供了一种机制](https://github.com/cssinjs/jss/blob/master/docs/setu
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@mui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -309,7 +309,7 @@ export default function App() {
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@mui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -328,7 +328,7 @@ codesandbox.io 阻止访问 `<head>` 元素。 要解决这个问题，您可以
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@mui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 const styleNode = document.createComment('jss-insertion-point');
 document.head.insertBefore(styleNode, document.head.firstChild);
@@ -350,7 +350,7 @@ This example returns a string of HTML and inlines the critical CSS required, rig
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@mui/styles';
+import { ServerStyleSheets } from '@material-ui/styles';
 
 function render() {
   const sheets = new ServerStyleSheets();
@@ -376,7 +376,7 @@ function render() {
 
 ### Gatsby
 
-这个 [官方的 Gatsby 插件](https://github.com/hupe1980/gatsby-plugin-material-ui)，可以利用它来实现 `@mui/style` 的服务器端渲染。 请参考插件页面的设置和使用说明。
+这个 [官方的 Gatsby 插件](https://github.com/hupe1980/gatsby-plugin-material-ui)，可以利用它来实现 `@material-ui/style` 的服务器端渲染。 请参考插件页面的设置和使用说明。
 
 <!-- #default-branch-switch -->
 
@@ -394,7 +394,7 @@ function render() {
 
 ### 默认值
 
-默认情况下，`@mui/material/styles` 生成的类名 **不是固定值**； 所以你不能指望它们保持不变。 让我们以下面的样式（style）作为示例：
+默认情况下，`@material-ui/core/styles` 生成的类名 **不是固定值**； 所以你不能指望它们保持不变。 让我们以下面的样式（style）作为示例：
 
 ```js
 const useStyles = makeStyles({
@@ -427,15 +427,15 @@ const identifier = 123;
 const className = `${productionPrefix}-${identifier}`;
 ```
 
-### 与 `@mui/material` 一起使用
+### 与 `@material-ui/core` 一起使用
 
-`@mui/material` 组件生成的类名表现大相径庭。 当满足以下条件时，类名是 **确定的**：
+`@material-ui/core` 组件生成的类名表现大相径庭。 当满足以下条件时，类名是 **确定的**：
 
 - 仅使用一个主题提供程序（**无主题嵌套**）。
 - 样式表的名称以 `Mui` 开头（包含所有 Material-UI 组件）。
 - [类名生成器](/styles/api/#creategenerateclassname-options-class-name-generator)的 `disableGlobal` 选项为 `false`（默认值）。
 
-`@mui/material` 最常见的用例可以满足这些条件。 例如，在这个样式表中：
+`@material-ui/core` 最常见的用例可以满足这些条件。 例如，在这个样式表中：
 
 ```jsx
 const useStyles = makeStyles(
@@ -487,13 +487,13 @@ const useStyles = makeStyles(
 }
 ```
 
-_这是对 `@mui/material/Button` 组件样式表的简化。_
+_这是对 `@material-ui/core/Button` 组件样式表的简化。_
 
 使用 [`classes` API](#overriding-styles-classes-prop) 来自定义 TextField 可能会很麻烦，所以你必须定义类属性（classes prop）。 如上文所述，使用默认值会比较容易。 例如:
 
 ```jsx
 import styled from 'styled-components';
-import { TextField } from '@mui/material';
+import { TextField } from '@material-ui/core';
 
 const StyledTextField = styled(TextField)`
   label.focused {

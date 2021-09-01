@@ -151,7 +151,7 @@ Use border utilities to add or remove an element's borders. 选择所有边框�
 ## API
 
 ```js
-import { borders } from '@mui/system';
+import { borders } from '@material-ui/system';
 ```
 
 | 导入名称           | 属性             | CSS 属性          | Theme key                                                        |

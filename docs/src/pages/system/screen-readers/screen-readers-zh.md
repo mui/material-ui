@@ -12,7 +12,7 @@ The visually hidden style utility provides a common mechanism for hidings elemen
 如果你不追求实现严格的 CSP 政策，那么也可以这样编写代码：
 
 ```jsx
-import { visuallyHidden } from '@mui/utils';
+import { visuallyHidden } from '@material-ui/utils';
 
 <div style={visuallyHidden}>about how to visually hide elements</div>;
 ```

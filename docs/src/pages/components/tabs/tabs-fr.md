@@ -22,7 +22,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tabpanel'
 
 ## Experimental API
 
-`@mui/lab` offers utility components that inject props to implement accessible tabs following [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
+`@material-ui/lab` offers utility components that inject props to implement accessible tabs following [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
 
 {{"demo": "pages/components/tabs/TabsWrappedLabel.js", "bg": true}}
 
@@ -131,7 +131,7 @@ The following steps are needed in order to provide necessary information for ass
 1. Label `Tabs` via `aria-label` or `aria-labelledby`.
 2. `Tab`s need to be connected to their corresponding `[role="tabpanel"]` by setting the correct `id`, `aria-controls` and `aria-labelledby`.
 
-An example for the current implementation can be found in the demos on this page. We've also published [an experimental API](#experimental-api) in `@mui/lab` that does not require extra work.
+An example for the current implementation can be found in the demos on this page. We've also published [an experimental API](#experimental-api) in `@material-ui/lab` that does not require extra work.
 
 ### Keyboard navigation
 

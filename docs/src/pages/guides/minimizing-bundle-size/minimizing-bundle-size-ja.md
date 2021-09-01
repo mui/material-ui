@@ -11,14 +11,14 @@ Material-UIはバンドルサイズについてとても気をつけている。
 Material-UIのtree-shakingは、モダンフレームワークにおいて設定なしに動作します。 Material-UIはすべてのAPIを上位の`material-ui`インポートで公開しています。 If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
 
 ```js
-import { Button, TextField } from '@mui/material';
+import { Button, TextField } from '@material-ui/core';
 ```
 
 ⚠️ 以下の指示は開発時の初期化時間を改善したい場合、または、tree-shakingに対応していない古いバンドラーをしようしている場合にのみ必要です。
 
 ## 開発環境
 
-開発時のバンドルはライブラリの全てを含むので、 **遅い起動時間**の原因となります。 これは、特に`@mui/icons-material`からインポートする場合に顕著です。 起動時間は、上位からの名前指定インポートがない場合に比べて、約6倍遅い場合もあります。
+開発時のバンドルはライブラリの全てを含むので、 **遅い起動時間**の原因となります。 これは、特に`@material-ui/icons`からインポートする場合に顕著です。 起動時間は、上位からの名前指定インポートがない場合に比べて、約6倍遅い場合もあります。
 
 この課題を持っているのであれば、様々な対応を取ることができます。
 
@@ -27,39 +27,39 @@ import { Button, TextField } from '@mui/material';
 パス指定インポートを利用して、使用していないモジュールのインポートを避けることができます。 例えば：
 
 ```js
-// 🚀 早い! import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+// 🚀 早い! import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 ```
 
 上位インポート(Babelを使用していない) の代わりに
 
 ```js
-import { Button, TextField } from '@mui/material';
+import { Button, TextField } from '@material-ui/core';
 ```
 
 設定を必要としないので、この選択肢は全てのデモで利用しています。 コンポーネントを利用するパッケージ作成者には推奨されています。 最高のDXとUXをもたらすアプローチは[選択肢 2](#option-2)をみましょう。
 
-While importing directly in this manner doesn't use the exports in [the main file of `@mui/material`](https://unpkg.com/@mui/material), this file can serve as a handy reference as to which modules are public.
+While importing directly in this manner doesn't use the exports in [the main file of `@material-ui/core`](https://unpkg.com/@material-ui/core), this file can serve as a handy reference as to which modules are public.
 
 1, 2階層までのインポートのみ対応していることに注意してください。 これより深い階層はプライベートとみなされ、バンドルのモジュール重複などの問題を引き起こします。
 
 ```js
 // ✅ OK
-import { Add as AddIcon } from '@mui/icons-material';
-import { Tabs } from '@mui/material';
+import { Add as AddIcon } from '@material-ui/icons';
+import { Tabs } from '@material-ui/core';
 //                                 ^^^^ 1st or top-level
 
 // ✅ OK
-import AddIcon from '@mui/icons-material/Add';
-import Tabs from '@mui/material/Tabs';
+import AddIcon from '@material-ui/icons/Add';
+import Tabs from '@material-ui/core/Tabs';
 //                                  ^^^^ 2nd level
 
 // ❌ NOT OK
-import TabIndicator from '@mui/material/Tabs/TabIndicator';
+import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
 //                                               ^^^^^^^^^^^^ 3rd level
 ```
 
-`eslint`を使用している場合、 [`no-restricted-imports` ルール](https://eslint.org/docs/rules/no-restricted-imports)で問題のあるインポートを検知可能です。 以下の `.eslintrc`設定は、`@mui`からの問題のあるインポート文をハイライトします。
+`eslint`を使用している場合、 [`no-restricted-imports` ルール](https://eslint.org/docs/rules/no-restricted-imports)で問題のあるインポートを検知可能です。 以下の `.eslintrc`設定は、`@material-ui`からの問題のあるインポート文をハイライトします。
 
 ```json
 {
@@ -67,7 +67,7 @@ import TabIndicator from '@mui/material/Tabs/TabIndicator';
     "no-restricted-imports": [
       "error",
       {
-        "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
+        "patterns": ["@material-ui/*/*/*", "!@material-ui/core/test-utils/*"]
       }
     ]
   }
@@ -83,7 +83,7 @@ import TabIndicator from '@mui/material/Tabs/TabIndicator';
 - この記法は、一つのインポート文で複数のモジュールに対応するのでコードの重複をへらします。 全体として、読みやすく、新しいモジュールをimportする際に間違いをする機会を削減します。
 
 ```js
-import { Button, TextField } from '@mui/material';
+import { Button, TextField } from '@material-ui/core';
 ```
 
 ただし、以下の2つの手順を正しく適用する必要があります。
@@ -104,7 +104,7 @@ import { Button, TextField } from '@mui/material';
     [
       'babel-plugin-import',
       {
-        libraryName: '@mui/material',
+        libraryName: '@material-ui/core',
         libraryDirectory: '',
         camel2DashComponentName: false,
       },
@@ -113,7 +113,7 @@ import { Button, TextField } from '@mui/material';
     [
       'babel-plugin-import',
       {
-        libraryName: '@mui/icons-material',
+        libraryName: '@material-ui/icons',
         libraryDirectory: '',
         camel2DashComponentName: false,
       },
@@ -136,12 +136,12 @@ import { Button, TextField } from '@mui/material';
     [
       'babel-plugin-transform-imports',
       {
-        '@mui/material': {
-          transform: '@mui/material/${member}',
+        '@material-ui/core': {
+          transform: '@material-ui/core/${member}',
           preventFullImport: true,
         },
-        '@mui/icons-material': {
-          transform: '@mui/icons-material/${member}',
+        '@material-ui/icons': {
+          transform: '@material-ui/icons/${member}',
           preventFullImport: true,
         },
       },
@@ -186,12 +186,12 @@ Modify your `package.json` start command:
 
 #### 2. すべてのインポートを変換する
 
-Finally, you can convert your existing codebase to this option with this [top-level-imports codemod](https://www.npmjs.com/package/@mui/codemod#top-level-imports). 以下のような 変更になります。
+Finally, you can convert your existing codebase to this option with this [top-level-imports codemod](https://www.npmjs.com/package/@material-ui/codemod#top-level-imports). 以下のような 変更になります。
 
 ```diff
--import Button from '@mui/material/Button';
--import TextField from '@mui/material/TextField';
-+import { Button, TextField } from '@mui/material';
+-import Button from '@material-ui/core/Button';
+-import TextField from '@material-ui/core/TextField';
++import { Button, TextField } from '@material-ui/core';
 ```
 
 ## Available bundles
@@ -202,8 +202,8 @@ npmに公開されたパッケージは[Babel](https://github.com/babel/babel)�
 
 ### Modern bundle
 
-The modern bundle can be found under the [`/modern` folder](https://unpkg.com/@mui/material/modern/). It targets the latest released versions of evergreen browsers (Chrome, Firefox, Safari, Edge). これは、異なるブラウザに対して別々のバンドルを作成するために使用できます。
+The modern bundle can be found under the [`/modern` folder](https://unpkg.com/@material-ui/core/modern/). It targets the latest released versions of evergreen browsers (Chrome, Firefox, Safari, Edge). これは、異なるブラウザに対して別々のバンドルを作成するために使用できます。
 
 ### Legacy bundle
 
-If you need to support IE 11 you cannot use the default or modern bundle without transpilation. However, you can use the legacy bundle found under the [`/legacy` folder](https://unpkg.com/@mui/material/legacy/). You don't need any additional polyfills.
+If you need to support IE 11 you cannot use the default or modern bundle without transpilation. However, you can use the legacy bundle found under the [`/legacy` folder](https://unpkg.com/@material-ui/core/legacy/). You don't need any additional polyfills.

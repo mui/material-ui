@@ -2,7 +2,7 @@
 title: Icônes Material
 components: Icones, SvgIcon
 materialDesign: https://material.io/design/iconography/system-icons.html
-packageName: '@mui/icons-material'
+packageName: '@material-ui/icons'
 githubLabel: 'icônes'
 ---
 
@@ -10,7 +10,7 @@ githubLabel: 'icônes'
 
 <p class="description">Plus de 1 100 Icônes Material conçues pour React sont disponibles depuis le site officiel.</p>
 
-Le package [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material) inclut plus de 1 100 [Icones Material](https://material.io/tools/icons/?style=baseline) officielles converties en composants [`SvgIcon`](/api/svg-icon/).
+Le package [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) inclut plus de 1 100 [Icones Material](https://material.io/tools/icons/?style=baseline) officielles converties en composants [`SvgIcon`](/api/svg-icon/).
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

@@ -7,7 +7,7 @@ githubLabel: 'component: Box'
 
 <p class="description">对于大多数 CSS 实用程序来说，Box 组件能够作为一个包装组件来使用。</p>
 
-在`@mui/system`中，您可以找到所述 Box 组件包的 [所有的样式功能](/system/basics/#all-inclusive)。
+在`@material-ui/system`中，您可以找到所述 Box 组件包的 [所有的样式功能](/system/basics/#all-inclusive)。
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -50,7 +50,7 @@ For non-Material-UI components, use the `component` prop.
 ## API
 
 ```jsx
-import Box from '@mui/material/Box';
+import Box from '@material-ui/core/Box';
 ```
 
 | 名称                                       | 类型                                                                                                                            | 默认值                                     | 描述                                         |

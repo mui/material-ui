@@ -17,7 +17,7 @@ Material-UI fornece suporte de ícones de três maneiras:
 
 ## Ícones Material
 
-Google has created over 1,700 official Material icons, each in five different "themes" (see below). Para cada ícone SVG, exportamos o respectivo componente React do pacote @mui/icons-material. Você pode [pesquisar na lista completa destes ícones](/components/material-icons/).
+Google has created over 1,700 official Material icons, each in five different "themes" (see below). Para cada ícone SVG, exportamos o respectivo componente React do pacote @material-ui/icons. Você pode [pesquisar na lista completa destes ícones](/components/material-icons/).
 
 ### Instalação
 
@@ -25,10 +25,10 @@ Instale o pacote no diretório do seu projeto com:
 
 ```sh
 // usando npm
-npm install @mui/icons-material
+npm install @material-ui/icons
 
 // usando yarn
-yarn add @mui/icons-material
+yarn add @material-ui/icons
 ```
 
 Esses componentes usam o componente `SvgIcon` do Material-UI para renderizar o caminho SVG de cada ícone, e por isso tem uma dependência com `@materialui/core`.
@@ -37,10 +37,10 @@ Se você ainda não estiver usando Material-UI no seu projeto, você pode adicio
 
 ```sh
 // usando npm
-npm install @mui/material
+npm install @material-ui/core
 
 // usando yarn
-yarn add @mui/material
+yarn add @material-ui/core
 ```
 
 ### Uso
@@ -50,36 +50,36 @@ Importe ícones usando uma destas duas opções:
 - Opção 1:
 
   ```jsx
-  import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
-  import ThreeDRotation from '@mui/icons-material/ThreeDRotation';
+  import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
+  import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
   ```
 
 - Opção 2:
 
   ```jsx
-  import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
+  import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
   ```
 
 O mais seguro para o tamanho do pacote é a opção 1, mas alguns desenvolvedores preferem a opção 2. Certifique-se de seguir o guia [minimizando o tamanho do pacote](/guides/minimizing-bundle-size/#option-2) antes de usar a segunda abordagem.
 
-Cada ícone Material também tem um "tema": Filled (padrão), Outlined, Rounded, Two-tone, e Sharp. Para importar o componente de ícone com um tema diferente do padrão, acrescente o nome do tema ao nome do ícone. Por exemplo, para usar o ícone `@mui/icons-material/Delete`, temos:
+Cada ícone Material também tem um "tema": Filled (padrão), Outlined, Rounded, Two-tone, e Sharp. Para importar o componente de ícone com um tema diferente do padrão, acrescente o nome do tema ao nome do ícone. Por exemplo, para usar o ícone `@material-ui/icons/Delete`, temos:
 
-- Tema Filled (preenchido que é o padrão) é exportado como `@mui/icons-material/Delete`,
-- Tema Outlined (contornado) é exportado como `@mui/icons-material/DeleteOutlined`,
-- Tema Rounded (arredondado) é exportado como `@mui/icons-material/DeleteRounded`,
-- Tema Two tone (dois tons) é exportado como `@mui/icons-material/DeleteTwoTone`,
-- Tema Sharp (pontiagudo) é exportado como `@mui/icons-material/DeleteSharp`.
+- Tema Filled (preenchido que é o padrão) é exportado como `@material-ui/icons/Delete`,
+- Tema Outlined (contornado) é exportado como `@material-ui/icons/DeleteOutlined`,
+- Tema Rounded (arredondado) é exportado como `@material-ui/icons/DeleteRounded`,
+- Tema Two tone (dois tons) é exportado como `@material-ui/icons/DeleteTwoTone`,
+- Tema Sharp (pontiagudo) é exportado como `@material-ui/icons/DeleteSharp`.
 
-> Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@mui/icons-material` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). Há três exceções a essa regra de nomenclatura: `3d_rotation` exportado como `ThreeDRotation`, `4k` exportado como `FourK`e `360` exportado como `ThreeSixty`.
+> Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). Há três exceções a essa regra de nomenclatura: `3d_rotation` exportado como `ThreeDRotation`, `4k` exportado como `FourK`e `360` exportado como `ThreeSixty`.
 
 {{"demo": "pages/components/icons/SvgMaterialIcons.js"}}
 
 ### Testando
 
-Para fins de teste, cada ícone exposto do `@mui/icons-material` tem um atributo `data-testid` com o nome do ícone. Por exemplo:
+Para fins de teste, cada ícone exposto do `@material-ui/icons` tem um atributo `data-testid` com o nome do ícone. Por exemplo:
 
 ```jsx
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from '@material-ui/icons/Delete';
 ```
 
 tem o seguinte atributo assim que montado:
@@ -182,7 +182,7 @@ Nota: A biblioteca [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-mater
 O componente `Icon` exibirá um ícone de qualquer fonte de ícone que suporte ligadura tipográfica (ligatures). O componente `Icon` exibirá um ícone de qualquer fonte de ícone que suporte ligadura tipográfica (ligatures). Para usar um ícone, simplesmente coloque o nome do ícone (font ligature) com o componente `Icon`, por exemplo:
 
 ```jsx
-import Icon from '@mui/material/Icon';
+import Icon from '@material-ui/core/Icon';
 
 <Icon>star</Icon>
 ```
@@ -204,7 +204,7 @@ Por padrão, um ícone herdará a cor do texto atual. Opcionalmente, você pode 
 Para outras fontes, você pode customizar o nome de classe base usando a propriedade `baseClassName`. Por exemplo, você pode exibir ícones de dois tons com Material Design:
 
 ```jsx
-import Icon from '@mui/material/Icon';
+import Icon from '@material-ui/core/Icon';
 
 <link
   rel="stylesheet"
@@ -291,8 +291,8 @@ Você deve incluir a propriedade `titleAccess` com um valor significativo. O atr
 No caso de elementos interativos focalizáveis, por exemplo, quando usado com um botão de ícone, você pode usar a propriedade `aria-label`:
 
 ```jsx
-import IconButton from '@mui/material/IconButton';
-import SvgIcon from '@mui/material/SvgIcon';
+import IconButton from '@material-ui/core/IconButton';
+import SvgIcon from '@material-ui/core/SvgIcon';
 
 // ...
 
@@ -308,9 +308,9 @@ import SvgIcon from '@mui/material/SvgIcon';
 Você precisa fornecer um texto alternativo que só seja visível para tecnologia assistiva.
 
 ```jsx
-import Box from '@mui/material/Box';
-import Icon from '@mui/material/Icon';
-import { visuallyHidden } from '@mui/utils';
+import Box from '@material-ui/core/Box';
+import Icon from '@material-ui/core/Icon';
+import { visuallyHidden } from '@material-ui/utils';
 
 // ...
 

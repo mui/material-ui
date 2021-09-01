@@ -65,7 +65,7 @@ Depois de criar uma nova instância do JSS com o plugin, você precisará dispon
 ```jsx
 import { create } from 'jss';
 import rtl from 'jss-rtl';
-import { StylesProvider, jssPreset } from '@mui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 // Configure JSS
 const jss = create({

@@ -44,7 +44,7 @@
 涟漪效果完全来自 `BaseButton` 组件。 您可以通过在您的主题中提供以下内容，来全局地禁用涟漪效果：
 
 ```js
-import { createTheme } from '@mui/material';
+import { createTheme } from '@material-ui/core';
 
 const theme = createTheme({
   components: {
@@ -64,7 +64,7 @@ const theme = createTheme({
 Material-UI 使用相同的主题助手来创建其所有的过渡动画。 因此，您可以通过覆盖主题助手来禁用所有的过渡：
 
 ```js
-import { createTheme } from '@mui/material';
+import { createTheme } from '@material-ui/core';
 
 const theme = createTheme({
   transitions: {
@@ -79,7 +79,7 @@ const theme = createTheme({
 您可以更进一步地禁用所有的过渡和动画效果。
 
 ```js
-import { createTheme } from '@mui/material';
+import { createTheme } from '@material-ui/core';
 
 const theme = createTheme({
   components: {
@@ -147,47 +147,47 @@ const element = ref.current;
 
 ## 我的页面上有多个样式实例。
 
-如果您在控制台中看到类似下面的警告消息，那么您可能已经在页面上初始化了多个 `@mui/styles` 实例。
+如果您在控制台中看到类似下面的警告消息，那么您可能已经在页面上初始化了多个 `@material-ui/styles` 实例。
 
-> 看起来在这个应用程序中初始化了多个 `@mui/styles` 实例。 这可能会导致主题传播问题、类名称损坏、专一性问题，并使你的应用程序尺寸无端变大。
+> 看起来在这个应用程序中初始化了多个 `@material-ui/styles` 实例。 这可能会导致主题传播问题、类名称损坏、专一性问题，并使你的应用程序尺寸无端变大。
 
 ### 可能的原因
 
 出现这些问题通常有几个常见的原因：
 
-- 在您的依赖包中还存在另一个 `@mui/styles` 库。
-- 您的项目是 monorepo 结构（例如，lerna，yarn workspaces），并且有多个包依赖着 `@mui/styles` 模块（这与前一个包或多或少相同）。
-- 您有几个使用 `@mui/styles` 的应用程序在同一页面上运行（例如，webpack 中的几个入口点被加载在同一页面上）。
+- 在您的依赖包中还存在另一个 `@material-ui/styles` 库。
+- 您的项目是 monorepo 结构（例如，lerna，yarn workspaces），并且有多个包依赖着 `@material-ui/styles` 模块（这与前一个包或多或少相同）。
+- 您有几个使用 `@material-ui/styles` 的应用程序在同一页面上运行（例如，webpack 中的几个入口点被加载在同一页面上）。
 
 ### 在 node_modules 中重复的模块
 
-如果您认为问题可能出现在您的依赖关系中的 @mui/styles 模块的重复，那么有几种方法可以检查。 您可以在应用程序文件夹中使用 `npm ls @mui/styles`、`yarn list @mui/styles` 或 `find -L ./node_modules | grep /@mui/styles/package.json` 这些命令行来检查。
+如果您认为问题可能出现在您的依赖关系中的 @material-ui/styles 模块的重复，那么有几种方法可以检查。 您可以在应用程序文件夹中使用 `npm ls @material-ui/styles`、`yarn list @material-ui/styles` 或 `find -L ./node_modules | grep /@material-ui/styles/package.json` 这些命令行来检查。
 
-如果使用了这些命令之后都没有发现重复的依赖，请尝试分析您的捆绑包中是否有多个 @mui/styles 实例。 您可以直接去检查捆绑包的源代码，或者使用 [source-map-explorer](https://github.com/danvk/source-map-explorer) 或 [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) 这样的工具来帮助检查。
+如果使用了这些命令之后都没有发现重复的依赖，请尝试分析您的捆绑包中是否有多个 @material-ui/styles 实例。 您可以直接去检查捆绑包的源代码，或者使用 [source-map-explorer](https://github.com/danvk/source-map-explorer) 或 [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer) 这样的工具来帮助检查。
 
 如果您确定当前遇到的问题是模块重复，那么您可以尝试这样解决：
 
 如果您正在使用的是 npm，那么您可以尝试运行 `npm dedupe` 命令。 这条命令将会搜索本地的依赖关系，并试图通过将共同的依赖包移到树的更上层，这样来简化结构。
 
-如果您使用的是 webpack，您可以更改 [解析](https://webpack.js.org/configuration/resolve/#resolve-modules) @mui/styles 模块的方式。 您可以使用覆盖 webpack 查找依赖项的默认顺序这个方法，这样应用程序中的 node_modules 比默认的 node module 解析顺序更优先地进行渲染。
+如果您使用的是 webpack，您可以更改 [解析](https://webpack.js.org/configuration/resolve/#resolve-modules) @material-ui/styles 模块的方式。 您可以使用覆盖 webpack 查找依赖项的默认顺序这个方法，这样应用程序中的 node_modules 比默认的 node module 解析顺序更优先地进行渲染。
 
 ```diff
   resolve: {
 +   alias: {
-+     "@mui/styles": path.resolve(appFolder, "node_modules", "@mui/styles"),
++     "@material-ui/styles": path.resolve(appFolder, "node_modules", "@material-ui/styles"),
 +   }
   }
 ```
 
 ### 与 Lerna 一起使用
 
-如果您想要让 @mui/styles 在 Lerna monorepo 中跨包运行，一个可行的修复方法是 [提升（hoist）](https://github.com/lerna/lerna/blob/master/doc/hoist.md)共享的依赖包到 monorepo 文件的根部。 您可以尝试使用 --hoist 标识运行引导的选项。
+如果您想要让 @material-ui/styles 在 Lerna monorepo 中跨包运行，一个可行的修复方法是 [提升（hoist）](https://github.com/lerna/lerna/blob/master/doc/hoist.md)共享的依赖包到 monorepo 文件的根部。 您可以尝试使用 --hoist 标识运行引导的选项。
 
 ```sh
 lerna bootstrap --hoist
 ```
 
-另外，您也可以从 package.json 文件中删除 @mui/styles 项，然后手动将它移动到您顶层的 package.json 文件中。
+另外，您也可以从 package.json 文件中删除 @material-ui/styles 项，然后手动将它移动到您顶层的 package.json 文件中。
 
 Lerna 根目录下的 package.json 文件示例：
 
@@ -198,7 +198,7 @@ Lerna 根目录下的 package.json 文件示例：
     "lerna": "latest"
   },
   "dependencies": {
-    "@mui/styles": "^4.0.0"
+    "@material-ui/styles": "^4.0.0"
   },
   "scripts": {
     "bootstrap": "lerna bootstrap",
@@ -211,12 +211,12 @@ Lerna 根目录下的 package.json 文件示例：
 
 ### 在一个页面上运行多个应用程序
 
-如果您在一个页面上需要运行多个程序，那么请考虑在所有程序中使用一个 @mui/styles 模块。 如果您正在使用 webpack，那么您可以使用 [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) 来创建一个显式的 [第三方代码块（vendor chunk）](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk)，其中将包含 @mui/styles 模块：
+如果您在一个页面上需要运行多个程序，那么请考虑在所有程序中使用一个 @material-ui/styles 模块。 如果您正在使用 webpack，那么您可以使用 [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) 来创建一个显式的 [第三方代码块（vendor chunk）](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk)，其中将包含 @material-ui/styles 模块：
 
 ```diff
   module.exports = {
     entry: {
-+     vendor: ["@mui/styles"],
++     vendor: ["@material-ui/styles"],
       app1: "./src/app.1.js",
       app2: "./src/app.2.js",
     },
@@ -288,7 +288,7 @@ function handleRender(req, res) {
     const html = ReactDOMServer.renderToString(
   ```
 
-- 你需要验证你的客户端和服务端运行的 Material-UI 的**版本** 是否完全相同。 即使是小小的版本的不匹配也可能导致样式问题。 若想检查版本号，您可以在搭建应用程序的环境以及部署环境中都运行 `npm list @mui/material`。
+- 你需要验证你的客户端和服务端运行的 Material-UI 的**版本** 是否完全相同。 即使是小小的版本的不匹配也可能导致样式问题。 若想检查版本号，您可以在搭建应用程序的环境以及部署环境中都运行 `npm list @material-ui/core`。
 
   您也可以通过在 package.json 的依赖项中指定某一个特定的 MUI 版本，这样能够确保在不同环境中使用的版本是一致的。
 
@@ -297,8 +297,8 @@ function handleRender(req, res) {
   ```diff
     "dependencies": {
       ...
-  -   "@mui/material": "^4.0.0",
-  +   "@mui/material": "4.0.0",
+  -   "@material-ui/core": "^4.0.0",
+  +   "@material-ui/core": "4.0.0",
       ...
     },
   ```

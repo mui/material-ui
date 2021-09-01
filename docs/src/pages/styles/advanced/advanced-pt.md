@@ -1,6 +1,6 @@
 # Avançado
 
-<p class="description">Esta seção aborda o uso mais avançado de @mui/material/styles.</p>
+<p class="description">Esta seção aborda o uso mais avançado de @material-ui/core/styles.</p>
 
 ## Temas
 
@@ -9,7 +9,7 @@ Adicione um `ThemeProvider` para o nível superior de sua aplicação para passa
 > Este exemplo cria um objeto de tema para componentes customizados. If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createTheme()` method. Vá até a [seção de temas](/customization/theming/) para aprender como construir seu tema customizado do Material-UI.
 
 ```jsx
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 import DeepChild from './my_components/DeepChild';
 
 const theme = {
@@ -36,7 +36,7 @@ Você pode precisar acessar as variáveis de tema dentro de seus componentes Rea
 Para uso em componentes de função:
 
 ```jsx
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from '@material-ui/core/styles';
 
 function DeepChild() {
   const theme = useTheme();
@@ -51,7 +51,7 @@ function DeepChild() {
 Para uso em componentes de classe ou função:
 
 ```jsx
-import { withTheme } from '@mui/material/styles';
+import { withTheme } from '@material-ui/core/styles';
 
 function DeepChildRaw(props) {
   return <span>{`spacing ${props.theme.spacing}`}</span>;
@@ -182,7 +182,7 @@ Claro, você é livre para usar plugins adicionais. Aqui está um exemplo com o 
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@mui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 import rtl from 'jss-rtl';
 
 const jss = create({
@@ -228,7 +228,7 @@ Por padrão, os estilos são inseridos **por último** no elemento `<head>` da s
 O componente `StylesProvider` tem uma propriedade `injectFirst` para injetar as tags de estilo em **primeiro** no cabeçalho (menor prioridade):
 
 ```jsx
-import { StylesProvider } from '@mui/styles';
+import { StylesProvider } from '@material-ui/styles';
 
 <StylesProvider injectFirst>
   {/* Sua árvore de componentes.
@@ -242,7 +242,7 @@ A injeção de tags de estilo acontece na **mesma ordem** com as invocações de
 
 ```jsx
 import clsx from 'clsx';
-import { makeStyles } from '@mui/styles';
+import { makeStyles } from '@material-ui/styles';
 
 const useStylesBase = makeStyles({
   root: {
@@ -288,7 +288,7 @@ A abordagem mais simples é adicionar um comentário HTML no `<head>` que determ
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@mui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -314,7 +314,7 @@ export default function App() {
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@mui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 const jss = create({
   ...jssPreset(),
@@ -333,7 +333,7 @@ codesandbox.io impede o acesso ao elemento `<head>`. Para contornar esse comport
 
 ```jsx
 import { create } from 'jss';
-import { StylesProvider, jssPreset } from '@mui/styles';
+import { StylesProvider, jssPreset } from '@material-ui/styles';
 
 const styleNode = document.createComment('jss-insertion-point');
 document.head.insertBefore(styleNode, document.head.firstChild);
@@ -355,7 +355,7 @@ This example returns a string of HTML and inlines the critical CSS required, rig
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@mui/styles';
+import { ServerStyleSheets } from '@material-ui/styles';
 
 function render() {
   const sheets = new ServerStyleSheets();
@@ -381,7 +381,7 @@ Você pode [seguir o guia de renderização no servidor](/guides/server-renderin
 
 ### Gatsby
 
-Existe [um plugin oficial Gatsby](https://github.com/hupe1980/gatsby-plugin-material-ui) que permite a renderização do lado do servidor para `@mui/styles`. Consulte a página do plugin para obter instruções de configuração e uso.
+Existe [um plugin oficial Gatsby](https://github.com/hupe1980/gatsby-plugin-material-ui) que permite a renderização do lado do servidor para `@material-ui/styles`. Consulte a página do plugin para obter instruções de configuração e uso.
 
 <!-- #default-branch-switch -->
 
@@ -399,7 +399,7 @@ Os nomes de classes são gerados pelo [gerador de nome de classe](/styles/api/#c
 
 ### Padrão
 
-Por padrão, os nomes de classes gerados por `@mui/material/styles` são **não determinísticos**; você não pode confiar que eles irão permanecer os mesmos. Vejamos o seguinte estilo como um exemplo:
+Por padrão, os nomes de classes gerados por `@material-ui/core/styles` são **não determinísticos**; você não pode confiar que eles irão permanecer os mesmos. Vejamos o seguinte estilo como um exemplo:
 
 ```js
 const useStyles = makeStyles({
@@ -432,15 +432,15 @@ const identifier = 123;
 const className = `${productionPrefix}-${identifier}`;
 ```
 
-### Com `@mui/material`
+### Com `@material-ui/core`
 
-Os nomes de classe gerados dos componentes do pacote `@mui/material` se comportam de maneira diferente. Quando as seguintes condições são atendidas, os nomes das classes são **determinísticos**:
+Os nomes de classe gerados dos componentes do pacote `@material-ui/core` se comportam de maneira diferente. Quando as seguintes condições são atendidas, os nomes das classes são **determinísticos**:
 
 - Apenas um provedor de tema é usado (**Sem aninhamento de tema **)
 - A folha de estilo tem um nome que começa com `Mui` (todos os componentes do Material-UI).
 - A opção `disableGlobal` do [gerador de nome de classe](/styles/api/#creategenerateclassname-options-class-name-generator) é `false` (o padrão).
 
-Essas condições são atendidas com a situação de uso mais comum de `@mui/material`. Por exemplo, esta folha de estilo:
+Essas condições são atendidas com a situação de uso mais comum de `@material-ui/core`. Por exemplo, esta folha de estilo:
 
 ```jsx
 const useStyles = makeStyles(
@@ -484,13 +484,13 @@ gera os seguintes nomes de classe que você pode sobrescrever:
 }
 ```
 
-_Esta é uma simplificação da folha de estilo do componente `@mui/material/Button`._
+_Esta é uma simplificação da folha de estilo do componente `@material-ui/core/Button`._
 
 A customização de campos de texto pode ser incômoda com a [API `classes`](#overriding-styles-classes-prop), onde você tem que definir a propriedade classes. É mais fácil usar os valores padrão, conforme descrito acima. Por exemplo:
 
 ```jsx
 import styled from 'styled-components';
-import { TextField } from '@mui/material';
+import { TextField } from '@material-ui/core';
 
 const StyledTextField = styled(TextField)`
   label.focused {

@@ -22,12 +22,12 @@ githubLabel: 'component: TrapFocus'
 
 ## Unstyled
 
-- 📦 [2.0kB 已压缩的包](https://bundlephobia.com/result?p=@mui/core@next)
+- 📦 [2.0kB 已压缩的包](https://bundlephobia.com/result?p=@material-ui/unstyled@next)
 
 As the component does not have any styles, it also comes with the unstyled package.
 
 ```js
-import TrapFocus from '@mui/core/Unstable_TrapFocus';
+import TrapFocus from '@material-ui/unstyled/Unstable_TrapFocus';
 ```
 
 ## 禁用强制对焦

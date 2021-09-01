@@ -21,20 +21,20 @@ Instala el paquete en el directorio de tu proyecto con:
 
 ```sh
 // usando npm
-npm install @mui/lab
+npm install @material-ui/lab
 
 // usando yarn
-yarn add @mui/lab
+yarn add @material-ui/lab
 ```
 
 Lab tiene como dependencia par a los componentes del core. Si aún no estás usando Material-UI en tu proyecto, puedes instalarlo con:
 
 ```sh
 // usando npm
-npm install @mui/material
+npm install @material-ui/core
 
 // usando yarn
-yarn add @mui/material
+yarn add @material-ui/core
 ```
 
 ## TypeScript
@@ -42,7 +42,7 @@ yarn add @mui/material
 Con el fin de beneficiarse de la [sobrescritura de CSS](/customization/theme-components/#global-style-overrides) y de la [customización de las propiedades por defecto](/customization/theme-components/#default-props), los usuarios de TypeScript necesitan importar los siguientes tipos. Internamente, utiliza [ampliación de módulos](/guides/typescript/#customization-of-theme) para extender la estructura por defecto del tema con los componentes de extensión disponibles en el laboratorio.
 
 ```tsx
-import '@mui/lab/themeAugmentation';
+import '@material-ui/lab/themeAugmentation';
 
 const theme = createTheme({
   components: {

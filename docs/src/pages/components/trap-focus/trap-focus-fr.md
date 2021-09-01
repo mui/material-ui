@@ -27,7 +27,7 @@ Lorsque `open={true}` le piège est activé, et en appuyant sur <kbd class="key"
 As the component does not have any styles, it also comes with the unstyled package.
 
 ```js
-import TrapFocus from '@mui/core/Unstable_TrapFocus';
+import TrapFocus from '@material-ui/unstyled/Unstable_TrapFocus';
 ```
 
 ## Désactiver le focus imposé

@@ -106,7 +106,7 @@
 ## API
 
 ```js
-import { flexbox } from '@mui/system';
+import { flexbox } from '@material-ui/system';
 ```
 
 | Nombre del import | Prop             | Propiedad CSS     | Clave del tema |

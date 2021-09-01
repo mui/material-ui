@@ -22,12 +22,12 @@ When `open={true}` the trap is enabled, and pressing <kbd class="key">Tab</kbd> 
 
 ## Unstyled
 
-- 📦 [2.0 kB gzipped](https://bundlephobia.com/result?p=@mui/core@next)
+- 📦 [2.0 kB gzipped](https://bundlephobia.com/result?p=@material-ui/unstyled@next)
 
 As the component does not have any styles, it also comes with the unstyled package.
 
 ```js
-import TrapFocus from '@mui/core/Unstable_TrapFocus';
+import TrapFocus from '@material-ui/unstyled/Unstable_TrapFocus';
 ```
 
 ## Desabilitar o forçar foco

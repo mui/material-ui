@@ -13,7 +13,7 @@ Voici un exemple rapide pour vous aider à commencer, **c'est tout ce dont vous 
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import Button from '@mui/material/Button';
+import Button from '@material-ui/core/Button';
 
 function App() {
   return (

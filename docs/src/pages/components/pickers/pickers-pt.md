@@ -4,7 +4,7 @@ components: TextField
 githubLabel: 'component: DatePicker'
 materialDesign: https://material.io/components/date-pickers
 waiAria: https://www.w3.org/TR/wai-aria-practices/examples/dialog-modal/datepicker-dialog.html
-packageName: '@mui/lab'
+packageName: '@material-ui/lab'
 ---
 
 # Seletores Data / Hora

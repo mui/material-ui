@@ -2,7 +2,7 @@
 title: React タイムピッカー・コンポーネント
 components: DesktopTimePicker, MobileTimePicker, StaticTimePicker, TimePicker, ClockPicker
 githubLabel: 'component: TimePicker'
-packageName: '@mui/lab'
+packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/time-pickers
 ---
 
@@ -21,9 +21,9 @@ materialDesign: https://material.io/components/time-pickers
 これらのライブラリのうちいずれかをインストールし、ルート（またはピッカーを使用できるようにする最高レベル）を`LocalizationProvider`でラップして、適切な日付エンジンを設定してください。
 
 ```jsx
-// または @mui/lab/Adapter{DayJS,Luxon,Moment} や任意の有効な date-io アダプター
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+// または @material-ui/lab/Adapter{DayJS,Luxon,Moment} や任意の有効な date-io アダプター
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 
 function App() {
   return (

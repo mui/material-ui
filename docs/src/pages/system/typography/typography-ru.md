@@ -84,7 +84,7 @@
 ## API
 
 ```js
-import { typography } from '@mui/system';
+import { typography } from '@material-ui/system';
 ```
 
 | Импорт          | Свойство        | Свойство CSS                                                                                 | В теме                                                                 |

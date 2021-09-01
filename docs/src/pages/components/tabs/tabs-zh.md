@@ -22,7 +22,7 @@ A basic example with tab panels.
 
 ## 实验性的 API
 
-遵循 [WAI-ARIA 项目实践](https://www.w3.org/TR/wai-aria-practices/#tabpanel)，`@mui/lab` 提供了工具集组件，该组件通过注入属性的方式来实现无障碍设计的选项卡。
+遵循 [WAI-ARIA 项目实践](https://www.w3.org/TR/wai-aria-practices/#tabpanel)，`@material-ui/lab` 提供了工具集组件，该组件通过注入属性的方式来实现无障碍设计的选项卡。
 
 {{"demo": "pages/components/tabs/LabTabs.js"}}
 
@@ -131,7 +131,7 @@ One frequent use case is to perform navigation on the client only, without an HT
 1. 在 `Tabs` 上应用 `aria-label` 或 `aria-labelledby` 标签。
 2. 通过设置 `id`、`aria-controls` 和 `aria-labelledby` ，`Tab` 需要连接到其对应的 `[role="tabpanel"]`。
 
-实现这样的设计例子可以在本页面的演示中找到。 我们还在 `@mui/lab` 中发布了不需要额外工作就能使用的 [一个实验性的 API](#experimental-api)。
+实现这样的设计例子可以在本页面的演示中找到。 我们还在 `@material-ui/lab` 中发布了不需要额外工作就能使用的 [一个实验性的 API](#experimental-api)。
 
 ### 键盘导航
 

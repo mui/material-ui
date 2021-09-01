@@ -113,7 +113,7 @@ Puedes agrupar las opciones con el accesorio `groupBy`. Si lo haces, asegúrate 
 For advanced customization use cases, we expose a headless `useAutocomplete()` hook. Acepta casi las mismas opciones que el componente Autocompletar menus las propiedades relacionadas al renderizado de JSX. El componente Autocompletar usa este hook internamente.
 
 ```jsx
-importar useAutocomplete de '@mui/material/useAutocomplete';
+importar useAutocomplete de '@material-ui/core/useAutocomplete';
 ```
 
 - 📦 [4.5 kB comprimido](/size-snapshot).
@@ -219,7 +219,7 @@ La siguiente demostración se basa en [autosuggest-highlight](https://github.com
 El componente expone una factoría para crear un método de filtrado para proveer a la propiedad `filterOptions`. Puede usarse para cambiar el comportamiento de filtrado por defecto.
 
 ```js
-import { createFilterOptions } from '@mui/material/Autocomplete';
+import { createFilterOptions } from '@material-ui/core/Autocomplete';
 ```
 
 ### `createFilterOptions(config) => filterOptions`

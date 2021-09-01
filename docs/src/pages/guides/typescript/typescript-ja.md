@@ -168,8 +168,8 @@ interface Props {
 しかし、これはあまり[DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself)ではありません。なぜなら、クラス名(`'root'`、`'paper'`、`'button'`、...。) を二つの異なる場所に維持する必要があるからです。 このために、型演算子`WithStyles`を使用して、次のように記述します。
 
 ```ts
-import { createStyles } from '@mui/styles';
-import { WithStyles } from '@mui/material';
+import { createStyles } from '@material-ui/styles';
+import { WithStyles } from '@material-ui/core';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -224,9 +224,9 @@ const DecoratedClass = withStyles(styles)(
 次の例では、`material-ui`によって書き出されたプロパティに合成される`appDrawer`プロパティを追加します。
 
 ```ts
-import { Breakpoint, Theme } from '@mui/material/styles';
+import { Breakpoint, Theme } from '@material-ui/core/styles';
 
-declare module '@mui/material/styles' {
+declare module '@material-ui/core/styles' {
   interface Theme {
     appDrawer: {
       width: React.CSSProperties['width'];
@@ -248,7 +248,7 @@ declare module '@mui/material/styles' {
 **./styles/createMyTheme**:
 
 ```ts
-import { createTheme, ThemeOptions } from '@mui/material/styles';
+import { createTheme, ThemeOptions } from '@material-ui/core/styles';
 
 export default function createMyTheme(options: ThemeOptions) {
   return createTheme({

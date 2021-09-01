@@ -42,7 +42,7 @@ The sizing style functions support different property input type:
 ## API
 
 ```js
-import { sizing } from '@mui/system';
+import { sizing } from '@material-ui/system';
 ```
 
 | Nombre del import | Prop        | Propiedad CSS | Clave del tema |

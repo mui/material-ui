@@ -20,7 +20,7 @@ The Material Design team has also built an awesome palette configuration tool: [
 The output can be fed into `createTheme()` function:
 
 ```js
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from '@material-ui/core/styles';
 
 const theme = createTheme({
   palette: {
@@ -49,8 +49,8 @@ To test a [material.io/design/color](https://material.io/design/color/) color sc
 The output shown in the color sample can be pasted directly into a [`createTheme()`](/customization/theming/#createtheme-options-theme) function (to be used with [`ThemeProvider`](/customization/theming/#theme-provider)):
 
 ```jsx
-import { createTheme } from '@mui/material/styles';
-import purple from '@mui/material/colors/purple';
+import { createTheme } from '@material-ui/core/styles';
+import purple from '@material-ui/core/colors/purple';
 
 const theme = createTheme({
   palette: {
@@ -88,7 +88,7 @@ These color palettes, originally created by Material Design in 2014, are compris
 HUEが与えられた場合* （赤、ピンクなど）および* SHADE * （500、600など）次のように色をインポートできます。
 
 ```jsx
-import HUE from '@mui/material/colors/HUE';
+import HUE from '@material-ui/core/colors/HUE';
 
 const color = HUE[SHADE];
 ```
@@ -100,8 +100,8 @@ const color = HUE[SHADE];
 HUEが与えられた場合* （赤、ピンクなど）および* SHADE * （500、600など）次のように色をインポートできます。
 
 ```js
-import purple from '@mui/material/colors/purple';
-import red from '@mui/material/colors/red';
+import purple from '@material-ui/core/colors/purple';
+import red from '@material-ui/core/colors/red';
 
 const primary = red[500]; // #f44336
 const accent = purple['A200']; // #e040fb

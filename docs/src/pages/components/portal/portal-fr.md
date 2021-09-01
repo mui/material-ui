@@ -27,5 +27,5 @@ React [doesn't support](https://github.com/facebook/react/issues/13097) the [`cr
 As the component does not have any styles, it also comes with the unstyled package.
 
 ```js
-import Portal from '@mui/core/Portal';
+import Portal from '@material-ui/unstyled/Portal';
 ```

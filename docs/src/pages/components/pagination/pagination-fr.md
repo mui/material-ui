@@ -51,7 +51,7 @@ Vous pouvez spécifier le nombre de chiffres à afficher de chaque côté de la 
 For advanced customization use cases, we expose a headless `usePagination()` hook. Il accepte presque les mêmes options que le composant de Pagination moins tous les propriétés liés au rendu de JSX. Il accepte presque les mêmes options que le composant de Pagination moins tous les propriétés liés au rendu de JSX.
 
 ```jsx
-import { usePagination } from '@mui/material/Pagination';
+import { usePagination } from '@material-ui/core/Pagination';
 ```
 
 {{"demo": "pages/components/pagination/UsePagination.js"}}

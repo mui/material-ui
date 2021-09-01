@@ -126,12 +126,12 @@ In the following demo, the value _x_ represents the value _2^x_. Increasing _x_ 
 
 <!-- #default-branch-switch -->
 
-- 📦 [5.6 kB comprimido](https://bundlephobia.com/result?p=@mui/core@next)
+- 📦 [5.6 kB comprimido](https://bundlephobia.com/result?p=@material-ui/unstyled@next)
 
 The slider also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
-import SliderUnstyled from '@mui/core/SliderUnstyled';
+import SliderUnstyled from '@material-ui/unstyled/SliderUnstyled';
 ```
 
 {{"demo": "pages/components/slider/UnstyledSlider.js"}}

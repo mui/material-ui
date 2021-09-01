@@ -1,6 +1,6 @@
 # API
 
-<p class="description">@mui/material/styles 的 API 参考文档。</p>
+<p class="description">@material-ui/core/styles 的 API 参考文档。</p>
 
 ## `createGenerateClassName([options]) => class name generator`
 
@@ -22,7 +22,7 @@
 
 ```jsx
 import * as React from 'react';
-import { StylesProvider, createGenerateClassName } from '@mui/styles';
+import { StylesProvider, createGenerateClassName } from '@material-ui/styles';
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'c',
@@ -48,8 +48,8 @@ export default function App() {
 ### 例子
 
 ```jsx
-import { createStyles, makeStyles } from '@mui/styles';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createStyles, makeStyles } from '@material-ui/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
@@ -87,7 +87,7 @@ export default function MyComponent {
 
 ```jsx
 import * as React from 'react';
-import { makeStyles } from '@mui/styles';
+import { makeStyles } from '@material-ui/styles';
 
 const useStyles = makeStyles({
   root: {
@@ -108,7 +108,7 @@ export default function MyComponent(props) {
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@mui/styles';
+import { ServerStyleSheets } from '@material-ui/styles';
 
 const sheets = new ServerStyleSheets();
 const html = ReactDOMServer.renderToString(sheets.collect(<App />));
@@ -171,8 +171,8 @@ const response = `
 
 ```jsx
 import * as React from 'react';
-import { styled, ThemeProvider } from '@mui/styles';
-import { createTheme } from '@mui/material/styles';
+import { styled, ThemeProvider } from '@material-ui/styles';
+import { createTheme } from '@material-ui/core/styles';
 
 const MyComponent = styled('div')({
   backgroundColor: 'red',
@@ -216,7 +216,7 @@ export default function StyledComponents() {
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { StylesProvider } from '@mui/styles';
+import { StylesProvider } from '@material-ui/styles';
 
 function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
@@ -241,7 +241,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 const theme = {};
 
@@ -264,7 +264,7 @@ ReactDOM.render(<App />, document.querySelector('#app'));
 
 ```jsx
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from '@material-ui/core/styles';
 
 export default function MyComponent() {
   const theme = useTheme();
@@ -302,7 +302,7 @@ export default function MyComponent() {
 
 ```jsx
 import * as React from 'react';
-import { withStyles } from '@mui/styles';
+import { withStyles } from '@material-ui/styles';
 
 const styles = {
   root: {
@@ -321,7 +321,7 @@ export default withStyles(styles)(MyComponent);
 
 ```jsx
 import * as React from 'react';
-import { withStyles } from '@mui/styles';
+import { withStyles } from '@material-ui/styles';
 
 const styles = {
   root: {
@@ -355,7 +355,7 @@ export default MyComponent;
 
 ```jsx
 import * as React from 'react';
-import { withTheme } from '@mui/material/styles';
+import { withTheme } from '@material-ui/core/styles';
 
 function MyComponent(props) {
   return <div>{props.theme.direction}</div>;

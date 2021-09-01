@@ -7,7 +7,7 @@ githubLabel: 'component: Box'
 
 <p class="description">Boxコンポーネントは、CSSユーティリティーのほとんどのニーズに対応するラッパーコンポーネントとして機能します</p>
 
-Boxコンポーネントは、`@mui/system`で公開される[すべてのスタイル関数](/system/basics/#all-inclusive) をパッケージ化します。
+Boxコンポーネントは、`@material-ui/system`で公開される[すべてのスタイル関数](/system/basics/#all-inclusive) をパッケージ化します。
 
 [The palette](/system/palette/) style関数。
 
@@ -50,7 +50,7 @@ For non-Material-UI components, use the `component` prop.
 ## API
 
 ```jsx
-import Box from '@mui/material/Box';
+import Box from '@material-ui/core/Box';
 ```
 
 | Name                                     | Type                                                                                                                          | Default                                 | Description                                   |

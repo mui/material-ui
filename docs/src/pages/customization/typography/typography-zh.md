@@ -128,7 +128,7 @@ theme.typography.h3 = {
 您可以在下面的示例中看到这个操作。 请尝试调整浏览器的窗口大小，您可以注意到当切换到不同的 [breakpoints](/customization/breakpoints/) 设置的宽度，字体的大小也随之改变。
 
 ```js
-import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
@@ -232,7 +232,7 @@ You need to make sure that the typings for the theme's `typography` variants and
 <!-- Tested with packages/material-ui/test/typescript/augmentation/typographyVariants.spec.ts -->
 
 ```ts
-declare module '@mui/material/styles' {
+declare module '@material-ui/core/styles' {
   interface TypographyVariants {
     poster: React.CSSProperties;
   }
@@ -244,7 +244,7 @@ declare module '@mui/material/styles' {
 }
 
 // Update the Typography's variant prop options
-declare module '@mui/material/Typography' {
+declare module '@material-ui/core/Typography' {
   interface TypographyPropsVariantOverrides {
     poster: true;
     h3: false;

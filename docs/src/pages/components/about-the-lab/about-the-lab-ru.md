@@ -21,20 +21,20 @@
 
 ```sh
 // для npm
-npm install @mui/lab
+npm install @material-ui/lab
 
 // для yarn
-yarn add @mui/lab
+yarn add @material-ui/lab
 ```
 
 Пакет lab зависит напрямую от пакета основных компонентов. Если Material-UI ещё не использовался вашем проекте, вы можете установить его командой:
 
 ```sh
 // для npm
-npm install @mui/material
+npm install @material-ui/core
 
 // для yarn
-yarn add @mui/material
+yarn add @material-ui/core
 ```
 
 ## TypeScript
@@ -42,7 +42,7 @@ yarn add @mui/material
 Чтобы воспользоваться преимуществами [переопределения CSS](/customization/theme-components/#global-style-overrides) и [изменения свойств по умолчанию](/customization/theme-components/#default-props), разработчикам, использующим TypeScript, необходимо импортировать следующие типы. Чтобы расширить структуру темы по умолчанию для использования компонентов доступных в пакете lab, внутри используется [аугментация модулей](/guides/typescript/#customization-of-theme).
 
 ```tsx
-import '@mui/lab/themeAugmentation';
+import '@material-ui/lab/themeAugmentation';
 
 const theme = createTheme({
   components: {

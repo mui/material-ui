@@ -84,7 +84,7 @@
 ## API
 
 ```js
-import { typography } from '@mui/system';
+import { typography } from '@material-ui/system';
 ```
 
 | Import name     | Prop            | CSS property                                                                                 | Theme key                                                              |

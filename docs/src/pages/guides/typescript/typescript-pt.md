@@ -168,8 +168,8 @@ interface Props {
 No entanto isto não é muito elegante de acordo com o princípio de software [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself), porque requer que você mantenha os nomes das classes (`'root'`, `'paper'`, `'button'`, ...) em dois locais diferentes. Nós fornecemos um operador de tipo `WithStyles` para ajudar com isso, assim você pode apenas escrever:
 
 ```ts
-import { createStyles } from '@mui/styles';
-import { WithStyles } from '@mui/material';
+import { createStyles } from '@material-ui/styles';
+import { WithStyles } from '@material-ui/core';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -224,9 +224,9 @@ Ao adicionar propriedades customizadas ao `Theme`, você pode continuar a utiliz
 O exemplo a seguir adiciona uma propriedade `appDrawer` que é mesclada na que foi exportada pelo `material-ui`:
 
 ```ts
-import { Breakpoint, Theme } from '@mui/material/styles';
+import { Breakpoint, Theme } from '@material-ui/core/styles';
 
-declare module '@mui/material/styles' {
+declare module '@material-ui/core/styles' {
   interface Theme {
     appDrawer: {
       width: React.CSSProperties['width'];
@@ -248,7 +248,7 @@ E uma fábrica customizada de temas com opções padrão adicionais:
 **./styles/createMyTheme**:
 
 ```ts
-import { createTheme, ThemeOptions } from '@mui/material/styles';
+import { createTheme, ThemeOptions } from '@material-ui/core/styles';
 
 export default function createMyTheme(options: ThemeOptions) {
   return createTheme({

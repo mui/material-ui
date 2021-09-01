@@ -80,7 +80,7 @@ Vous pouvez définir une largeur maximale dans la boîte de dialogue à l’aide
 Vous pouvez créer une boîte de dialogue en plein écran en utilisant [`useMediaQuery`](/components/use-media-query/#usemediaquery).
 
 ```jsx
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {
   const theme = useTheme();

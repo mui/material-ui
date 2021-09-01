@@ -1,6 +1,6 @@
 # Migration depuis @material-ui-pickers
 
-<p class="description">@material-ui/pickers a été déplacé vers le @mui/lab.</p>
+<p class="description">@material-ui/pickers a été déplacé vers le @material-ui/lab.</p>
 
 > **⚠️ Les composants du sélecteur de date ont été réécrit**. Dans la plupart des endroits, la logique a été réécrite à partir de zéro, donc il n'est pas possible de maintenir la liste complète des changements. Voici un aperçu des concepts les plus importants qui ont été changés. Si vous voulez mettre à jour, la façon la plus simple pourrait être de passer par chaque utilisation du sélecteur dans votre codebase, et les réécrire un à la fois. N'oubliez pas d'exécuter vos tests après chaque!
 
@@ -8,7 +8,7 @@ Ce guide est un aperçu des concepts de base qui ont été changés des sélecte
 
 ## Installation
 
-You simply need to install the `@mui/lab` package if it's not already installed. ⚠️ Make sure you have installed the latest version, `"@mui/lab": ^5.0.0-alpha.30"` or above.
+You simply need to install the `@material-ui/lab` package if it's not already installed. ⚠️ Make sure you have installed the latest version, `"@material-ui/lab": ^5.0.0-alpha.30"` or above.
 
 ## Importations
 
@@ -16,7 +16,7 @@ La version `keyboard` des sélecteurs n'est plus publiée. Toutes les versions d
 
 ```diff
 -import { KeyboardDatePicker } from '@material-ui/pickers';
-+import DatePicker from '@mui/lab/DatePicker';
++import DatePicker from '@material-ui/lab/DatePicker';
 
 -<KeyboardDatePicker />
 +<DatePicker />
@@ -31,7 +31,7 @@ De plus, au lieu de fournir une prop `variante` , ceux-ci ont été déplacés v
 
 ```diff
 -import { DatePicker } from '@material-ui/pickers';
-+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
++import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
 
 -<DatePicker variant="inline" />
 +<DesktopDatePicker />
@@ -53,8 +53,8 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 ✅ Après :
 
 ```jsx
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 
 
 function App() {

@@ -2,7 +2,7 @@
 title: React Date Range Picker component
 components: DateRangePicker, DateRangePickerDay, DesktopDateRangePicker, MobileDateRangePicker, StaticDateRangePicker
 githubLabel: 'component: DateRangePicker'
-packageName: '@mui/lab'
+packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
 
@@ -23,9 +23,9 @@ materialDesign: https://material.io/components/date-pickers
 Пожалуйста, установите любую из этих библиотек и настройте правильно механизм даты, обернув root (или самый высокий уровень, на котором вы хотели бы иметь доступ к pickers) с `LocalizationProvider`:
 
 ```jsx
-// or @mui/lab/dateAdapter/{dayjs,luxon,moment} or any valid date-io adapter
-import DateFnsAdapter from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+// or @material-ui/lab/dateAdapter/{dayjs,luxon,moment} or any valid date-io adapter
+import DateFnsAdapter from '@material-ui/lab/AdapterDateFns';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 
 function App() {
   return (

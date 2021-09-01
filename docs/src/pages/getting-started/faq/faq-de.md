@@ -44,7 +44,7 @@ Scrolling is blocked as soon as a modal is opened. This prevents interacting wit
 Der Ripple-Effekt kommt ausschließlich von der `BaseButton` Komponente. Sie können den Ripple-Effekt global deaktivieren, indem Sie in Ihrem Theme folgendes angeben:
 
 ```js
-import { createTheme } from '@mui/material';
+import { createTheme } from '@material-ui/core';
 
 const theme = createTheme({
   components: {
@@ -63,7 +63,7 @@ const theme = createTheme({
 Material-UI uses the same theme helper for creating all its transitions. Therefore you can disable all transitions by overriding the helper in your theme:
 
 ```js
-import { createTheme } from '@mui/material';
+import { createTheme } from '@material-ui/core';
 
 const theme = createTheme({
   transitions: {
@@ -78,7 +78,7 @@ It can be useful to disable transitions during visual testing or to improve perf
 You can go one step further by disabling all transitions and animations effects:
 
 ```js
-import { createTheme } from '@mui/material';
+import { createTheme } from '@material-ui/core';
 
 const theme = createTheme({
   components: {
@@ -144,47 +144,47 @@ was anzeigt, dass Sie mit einem ref auf das DOM-Element zugreifen können.
 
 ## Ich habe mehrere Instanzen von Stilen auf der Seite
 
-Wenn in der Konsole eine Warnmeldung wie die folgende angezeigt wird, haben Sie wahrscheinlich mehrere Instanzen von `@mui/styles` auf der Seite initialisiert.
+Wenn in der Konsole eine Warnmeldung wie die folgende angezeigt wird, haben Sie wahrscheinlich mehrere Instanzen von `@material-ui/styles` auf der Seite initialisiert.
 
-> It looks like there are several instances of `@mui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason.
+> It looks like there are several instances of `@material-ui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason.
 
 ### Mögliche Gründe
 
 Dafür gibt es mehrere häufige Gründe:
 
-- Sie haben eine andere `@mui/styles` Bibliothek irgendwo in Ihren Abhängigkeiten.
-- One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) shared dependencies to the root of your monorepo file.
-- Wenn Sie mehrere Anwendungen auf einer Seite ausführen, sollten Sie ein @mui/styles-Modul für alle verwenden.
+- Sie haben eine andere `@material-ui/styles` Bibliothek irgendwo in Ihren Abhängigkeiten.
+- One possible fix to get @material-ui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) shared dependencies to the root of your monorepo file.
+- Wenn Sie mehrere Anwendungen auf einer Seite ausführen, sollten Sie ein @material-ui/styles-Modul für alle verwenden.
 
 ### Dupliziertes Modul in node_modules
 
-Sie können die `npm ls @mui/styles`, `yarn list @mui/styles` oder `find -L ./node_modules | grep /@mui/styles/package.json` Befehle in Ihrem Anwendungsordner ausführen. If you think that the issue may be in the duplication of the @mui/styles module somewhere in your dependencies, there are several ways to check this.
+Sie können die `npm ls @material-ui/styles`, `yarn list @material-ui/styles` oder `find -L ./node_modules | grep /@material-ui/styles/package.json` Befehle in Ihrem Anwendungsordner ausführen. If you think that the issue may be in the duplication of the @material-ui/styles module somewhere in your dependencies, there are several ways to check this.
 
-Wenn keiner dieser Befehle die Duplizierung identifiziert, analysieren Sie Ihr Bundle auf mehrere Instanzen von @mui/styles. Sie können einfach Ihre Bundle-Quelle überprüfen oder ein Tool wie [source-map-explorer verwenden](https://github.com/danvk/source-map-explorer) oder [Webpack-Bundle-Analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer).
+Wenn keiner dieser Befehle die Duplizierung identifiziert, analysieren Sie Ihr Bundle auf mehrere Instanzen von @material-ui/styles. Sie können einfach Ihre Bundle-Quelle überprüfen oder ein Tool wie [source-map-explorer verwenden](https://github.com/danvk/source-map-explorer) oder [Webpack-Bundle-Analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer).
 
 Wenn Sie festgestellt haben, dass Duplizierung das Problem ist, können sie mehrere Dinge ausprobieren, um dies zu lösen:
 
 Wenn Sie npm verwenden, können Sie versuchen, `npm dedupe` auszuführen. Dieser Befehl durchsucht die lokalen Abhängigkeiten und versucht, die Struktur zu vereinfachen, indem allgemeine Abhängigkeiten weiter nach oben verschoben werden.
 
-Wenn Sie das Webpack verwenden, können Sie die Art und Weise ändern, in der das @mui/styles Modul [aufgelöst wird](https://webpack.js.org/configuration/resolve/#resolve-modules). Sie können die Standardreihenfolge überschreiben, in der Webpack nach Abhängigkeiten sucht, und die Priorität Ihrer "node_modules" in Ihrer Anwendung gegenüber der Standardreihenfolge für die Auflösung von Knotenmodulen erhöhen:
+Wenn Sie das Webpack verwenden, können Sie die Art und Weise ändern, in der das @material-ui/styles Modul [aufgelöst wird](https://webpack.js.org/configuration/resolve/#resolve-modules). Sie können die Standardreihenfolge überschreiben, in der Webpack nach Abhängigkeiten sucht, und die Priorität Ihrer "node_modules" in Ihrer Anwendung gegenüber der Standardreihenfolge für die Auflösung von Knotenmodulen erhöhen:
 
 ```diff
   resolve: {
 +   alias: {
-+     "@mui/styles": path.resolve(appFolder, "node_modules", "@mui/styles"),
++     "@material-ui/styles": path.resolve(appFolder, "node_modules", "@material-ui/styles"),
 +   }
   }
 ```
 
 ### Verwendung mit Lerna
 
-One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) shared dependencies to the root of your monorepo file. Versuchen Sie, die Bootstrap-Option mit dem Flag --hoist auszuführen.
+One possible fix to get @material-ui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) shared dependencies to the root of your monorepo file. Versuchen Sie, die Bootstrap-Option mit dem Flag --hoist auszuführen.
 
 ```sh
 lerna bootstrap --hoist
 ```
 
-Alternativ können Sie @mui/styles aus Ihrer package.json-Datei entfernen und manuell in Ihre package.json-Datei an der obersten Ebene einfügen.
+Alternativ können Sie @material-ui/styles aus Ihrer package.json-Datei entfernen und manuell in Ihre package.json-Datei an der obersten Ebene einfügen.
 
 Beispiel für eine package.json-Datei in einem Lerna-Stammverzeichnis
 
@@ -195,7 +195,7 @@ Beispiel für eine package.json-Datei in einem Lerna-Stammverzeichnis
     "lerna": "latest"
   },
   "dependencies": {
-    "@mui/styles": "^4.0.0"
+    "@material-ui/styles": "^4.0.0"
   },
   "scripts": {
     "bootstrap": "lerna bootstrap",
@@ -208,12 +208,12 @@ Beispiel für eine package.json-Datei in einem Lerna-Stammverzeichnis
 
 ### Mehrere Anwendungen auf einer Seite ausführen
 
-Sie haben mehrere Anwendungen, die `@mui/styles` verwenden, und auf derselben Seite ausgeführt werden (z. Wenn Sie Webpack verwenden, können Sie das [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) verwenden. So erstellen Sie einen expliziten [vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), das das Modul @ material-ui/styles enthält:
+Sie haben mehrere Anwendungen, die `@material-ui/styles` verwenden, und auf derselben Seite ausgeführt werden (z. Wenn Sie Webpack verwenden, können Sie das [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) verwenden. So erstellen Sie einen expliziten [vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), das das Modul @ material-ui/styles enthält:
 
 ```diff
   module.exports = {
     entry: {
-+     vendor: ["@mui/styles"],
++     vendor: ["@material-ui/styles"],
       app1: "./src/app.1.js",
       app2: "./src/app.2.js",
     },
@@ -304,7 +304,7 @@ function handleRender(req, res) {
   - // Eine Sheet Instanz erstellen.
   ```
 
-- Sie müssen sicherstellen, dass auf Ihrem Client und Server die **exakt dieselbe Version** von Material-UI ausführen. Es kann vorkommen, dass eine Nichtübereinstimmung von selbst kleinerer Versionen zu Stilproblemen führen kann. Um die Versionsnummern zu überprüfen, führen Sie `npm list@mui/material` in der Umgebung aus, in der Sie Ihre Anwendung erstellen, und in Ihrer Implementierungsumgebung.
+- Sie müssen sicherstellen, dass auf Ihrem Client und Server die **exakt dieselbe Version** von Material-UI ausführen. Es kann vorkommen, dass eine Nichtübereinstimmung von selbst kleinerer Versionen zu Stilproblemen führen kann. Um die Versionsnummern zu überprüfen, führen Sie `npm list@material-ui/core` in der Umgebung aus, in der Sie Ihre Anwendung erstellen, und in Ihrer Implementierungsumgebung.
 
   Sie können die gleiche Version in verschiedenen Umgebungen festlegen, indem Sie in den Abhängigkeiten Ihrer package.json eine bestimmte MUI-Version angeben.
 
@@ -315,8 +315,8 @@ function handleRender(req, res) {
     ...
 
 -
-  "@mui/material": "^4.0.0",
-+   "@mui/material": "4.0.0",
+  "@material-ui/core": "^4.0.0",
++   "@material-ui/core": "4.0.0",
     ...
   },
     },

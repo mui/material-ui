@@ -7,7 +7,7 @@ githubLabel: 'component: Box'
 
 <p class="description">Box компонент используется как обертка компонента для большинства используемых CSS свойств.</p>
 
-The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@mui/system`.
+The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@material-ui/system`.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -50,7 +50,7 @@ For non-Material-UI components, use the `component` prop.
 ## API
 
 ```jsx
-import Box from '@mui/material/Box';
+import Box from '@material-ui/core/Box';
 ```
 
 | Имя                                      | Тип                                                                                                                           | По-умолчанию                            | Описание                                                                                   |

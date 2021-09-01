@@ -99,7 +99,7 @@ The CSS flex and grid display properties are often used to align elements at the
 ## API
 
 ```js
-import { spacing } from '@mui/system';
+import { spacing } from '@material-ui/system';
 ```
 
 | 导入名称      | 属性   | CSS 属性                          | Theme key                                                        |

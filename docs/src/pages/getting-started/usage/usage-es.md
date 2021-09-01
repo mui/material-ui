@@ -13,7 +13,7 @@ Aquí está un ejemplo rápido para empezar. **Es, literalmente, todo lo que nec
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import Button from '@mui/material/Button';
+import Button from '@material-ui/core/Button';
 
 function App() {
   return (

@@ -42,7 +42,7 @@
 ## API
 
 ```js
-import { sizing } from '@mui/system';
+import { sizing } from '@material-ui/system';
 ```
 
 | Import name | Prop        | CSS property | Theme key |

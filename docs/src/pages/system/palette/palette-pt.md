@@ -301,7 +301,7 @@
 ## API
 
 ```js
-import { palette } from '@mui/system';
+import { palette } from '@material-ui/system';
 ```
 
 | Nome da importação | Propriedade | Propriedade CSS   | Chave do tema                                                    |

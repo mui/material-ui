@@ -2,7 +2,7 @@
 
 <p class="description">Установите Material-UI, самый популярный в мире фреймворк для пользовательского интерфейса React.</p>
 
-Material-UI доступен в виде пакета [ npm ](https://www.npmjs.com/package/@mui/material).
+Material-UI доступен в виде пакета [ npm ](https://www.npmjs.com/package/@material-ui/core).
 
 ## npm
 
@@ -10,10 +10,10 @@ Material-UI доступен в виде пакета [ npm ](https://www.npmjs.
 
 ```sh
 // для npm
-npm install @mui/material@next @emotion/react @emotion/styled
+npm install @material-ui/core@next @emotion/react @emotion/styled
 
 // для yarn
-yarn add @mui/material@next @emotion/react @emotion/styled
+yarn add @material-ui/core@next @emotion/react @emotion/styled
 ```
 
 <!-- #react-peer-version -->
@@ -24,10 +24,10 @@ Or if you want to use `styled-components` as a styling engine:
 
 ```sh
 // with npm
-npm install @mui/material@next @mui/styled-engine-sc@next styled-components
+npm install @material-ui/core@next @material-ui/styled-engine-sc@next styled-components
 
 // with yarn
-yarn add @mui/material@next @mui/styled-engine-sc@next styled-components
+yarn add @material-ui/core@next @material-ui/styled-engine-sc@next styled-components
 ```
 
 Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
@@ -50,14 +50,14 @@ To use the font `Icon` component, you must first add the [Material icons](https:
 
 ## SVG Иконки
 
-Для того, чтобы использовать предварительно собранные SVG-иконки Material, такие как те, которые используются для [демонстрации](/components/icons/), сначала необходимо установить пакет [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material):
+Для того, чтобы использовать предварительно собранные SVG-иконки Material, такие как те, которые используются для [демонстрации](/components/icons/), сначала необходимо установить пакет [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons):
 
 ```sh
 // через npm
-npm install @mui/icons-material
+npm install @material-ui/icons
 
 // через yarn
-yarn add @mui/icons-material
+yarn add @material-ui/icons
 ```
 
 ## CDN
@@ -66,14 +66,14 @@ yarn add @mui/icons-material
 
 Предоставляются два файла в формате **UMD**:
 
-- один для разработки: https://unpkg.com/@mui/material@latest/umd/material-ui.development.js
-- один для публикации: https://unpkg.com/@mui/material@latest/umd/material-ui.production.min.js
+- один для разработки: https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js
+- один для публикации: https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js
 
 Вы можете следовать [этому примеру CDN](https://github.com/mui-org/material-ui/tree/master/examples/cdn) для быстрого старта.
 
 Использование этого подхода в **продакшене** **не рекомендуется** - клиент вынужден загружать целую библиотеку, независимо от того, какие компоненты фактически используются, что оказывает влияние на производительность и загруженность полосы пропускания.
 
-В ссылках на UMD-файлы используется тег `latest` для указания на последнюю версию библиотеки. Этот указатель **нестабильный**, он изменяется при появлении новых версий. Вы можете указывать конкретную версию, например, [v4.4.0](https://unpkg.com/@mui/material@4.4.0/umd/material-ui.development.js).
+В ссылках на UMD-файлы используется тег `latest` для указания на последнюю версию библиотеки. Этот указатель **нестабильный**, он изменяется при появлении новых версий. Вы можете указывать конкретную версию, например, [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js).
 
 ## Design resources
 

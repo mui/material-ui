@@ -22,7 +22,7 @@ A basic example with tab panels.
 
 ## API experimental
 
-O `@mui/lab` oferece componentes auxiliares que injetam propriedades para implementar abas acessíveis seguindo as [práticas de autoria da WAI-ARIA](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
+O `@material-ui/lab` oferece componentes auxiliares que injetam propriedades para implementar abas acessíveis seguindo as [práticas de autoria da WAI-ARIA](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
 
 {{"demo": "pages/components/tabs/LabTabs.js"}}
 
@@ -131,7 +131,7 @@ As etapas a seguir são necessárias para fornecer a informação coerente para 
 1. Rotule o componente `Tabs` com `aria-label` ou `aria-labelledby`.
 2. Para os componentes `Tab`, precisam estar conectados com seu correspondente `[role="tabpanel"]` definindo o correto `id`, `aria-controls` e `aria-labelledby`.
 
-Um exemplo para a implementação atual pode ser encontrado nas demonstrações desta página. Nós também publicamos [uma API experimental](#experimental-api) no pacote `@mui/lab` que não requer nenhum trabalho extra.
+Um exemplo para a implementação atual pode ser encontrado nas demonstrações desta página. Nós também publicamos [uma API experimental](#experimental-api) no pacote `@material-ui/lab` que não requer nenhum trabalho extra.
 
 ### Navegação por teclado
 

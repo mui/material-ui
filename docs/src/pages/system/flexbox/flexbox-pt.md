@@ -165,7 +165,7 @@ Se você é **novo ou não está familiarizado com o flexbox**, nós recomendamo
 ## API
 
 ```js
-import { flexbox } from '@mui/system';
+import { flexbox } from '@material-ui/system';
 ```
 
 | Nome da importação | Propriedade      | Propriedade CSS   | Chave do tema |

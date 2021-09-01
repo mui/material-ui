@@ -2,7 +2,7 @@
 title: React Date Time Picker コンポーネント
 components: DateTimePicker,DesktopDateTimePicker,MobileDateTimePicker,StaticDateTimePicker
 githubLabel: 'component: DateTimePicker'
-packageName: '@mui/lab'
+packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
 
@@ -23,9 +23,9 @@ materialDesign: https://material.io/components/date-pickers
 これらのライブラリのうちいずれかをインストールし、ルート（またはピッカーを使用できるようにする最高レベル）を`LocalizationProvider`でラップして、適切な日付エンジンを設定してください。
 
 ```jsx
-// または @mui/lab/Adapter{Dayjs,Luxon,Moment} や任意の有効な date-io アダプター
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+// または @material-ui/lab/Adapter{Dayjs,Luxon,Moment} や任意の有効な date-io アダプター
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 
 function App() {
   return (

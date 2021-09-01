@@ -170,8 +170,8 @@ interface Props {
 Dies ist jedoch nicht sehr [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) weil Sie die Klassennamen (`'root'`, `'paper'`, `'button'`, ...) an zwei verschiedenen Stellen pflegen müssen. Wir stellen einen Typoperator `WithStyles` bereit, um damit zu helfen. So kannst du einfach schreiben:
 
 ```ts
-import { createStyles } from '@mui/styles';
-import { WithStyles } from '@mui/material';
+import { createStyles } from '@material-ui/styles';
+import { WithStyles } from '@material-ui/core';
 
 const styles = (theme: Theme) =>
   createStyles({
@@ -226,9 +226,9 @@ Beim Hinzufügen benutzerdefinierter Eigenschaften zum `Theme` können Sie es we
 Im folgenden Beispiel wird eine `appDrawer` Eigenschaft hinzugefügt, welche in das von `material-ui` exportierte Theme eingefügt wird:
 
 ```ts
-import { Breakpoint, Theme } from '@mui/material/styles';
+import { Breakpoint, Theme } from '@material-ui/core/styles';
 
-declare module '@mui/material/styles' {
+declare module '@material-ui/core/styles' {
   interface Theme {
     appDrawer: {
       width: React.CSSProperties['width'];
@@ -250,7 +250,7 @@ Und eine benutzerdefinierte Theme Generierung mit zusätzlichen Standardoptionen
 **./styles/createMyTheme**:
 
 ```ts
-import { createTheme, ThemeOptions } from '@mui/material/styles';
+import { createTheme, ThemeOptions } from '@material-ui/core/styles';
 
 export default function createMyTheme(options: ThemeOptions) {
   return createTheme({

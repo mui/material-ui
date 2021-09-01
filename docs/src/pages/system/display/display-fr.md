@@ -119,7 +119,7 @@ For faster mobile-friendly development, use responsive display classes for showi
 ## API
 
 ```js
-import { display } from '@mui/system';
+import { display } from '@material-ui/system';
 ```
 
 | Nom importé    | Propriété      | Propriété CSS   | Clé du thème |

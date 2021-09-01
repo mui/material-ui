@@ -24,18 +24,18 @@ Você precisa atualizar seu `package.json` para usar a versão mais recente do M
 
 ```json
 "dependencies": {
-  "@mui/material": "^4.0.0"
+  "@material-ui/core": "^4.0.0"
 }
 ```
 
 Ou execute
 
 ```sh
-npm install @mui/material
+npm install @material-ui/core
 
 ou
 
-yarn add @mui/material
+yarn add @material-ui/core
 ```
 
 ### Atualize a versão do React
@@ -44,22 +44,22 @@ A versão miníma necessária do React foi incrementada de `react@^16.3.0` para 
 
 ### Atualize a versão do Material-UI Styles
 
-Se você estava usando anteriormente `@mui/styles` com a versão 3, precisa atualizar o `package.json` para usar a última versão de Material-UI Styles.
+Se você estava usando anteriormente `@material-ui/styles` com a versão 3, precisa atualizar o `package.json` para usar a última versão de Material-UI Styles.
 
 ```json
 "dependencies": {
-  "@mui/styles": "^4.0.0"
+  "@material-ui/styles": "^4.0.0"
 }
 ```
 
 Ou execute
 
 ```sh
-npm install @mui/styles
+npm install @material-ui/styles
 
 ou
 
-yarn add @mui/styles
+yarn add @material-ui/styles
 ```
 
 ## Tratamento de alterações recentes
@@ -83,8 +83,8 @@ yarn add @mui/styles
 - Renomeie `convertHexToRGB` para `hexToRgb`.
 
   ```diff
-  -import { convertHexToRgb } from '@mui/material/styles/colorManipulator';
-  +import { hexToRgb } from '@mui/material/styles';
+  -import { convertHexToRgb } from '@material-ui/core/styles/colorManipulator';
+  +import { hexToRgb } from '@material-ui/core/styles';
   ```
 
 - Escopo da [keyframes API](https://cssinjs.org/jss-syntax/#keyframes-animation). Você deve aplicar as seguintes alterações na sua base de código. Ele ajuda a isolar a lógica da animação:
@@ -158,8 +158,8 @@ yarn add @mui/styles
 - Você pode remover com segurança a próxima variante da criação de temas:
 
   ```diff
-  -import Container from '@mui/lab/Container';
-  +import Container from '@mui/material/Container';
+  -import Container from '@material-ui/lab/Container';
+  +import Container from '@material-ui/core/Container';
   ```
 
 ### TypeScript
@@ -196,16 +196,16 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
   ```
 
   ```diff
-  -import Button from '@mui/material/Button';
+  -import Button from '@material-ui/core/Button';
   -<Button variant="fab" />
-  +import Fab from '@mui/material/Fab';
+  +import Fab from '@material-ui/core/Fab';
   +<Fab />
   ```
 
   ```diff
-  -import Button from '@mui/material/Button';
+  -import Button from '@material-ui/core/Button';
   -<Button variant="extendedFab" />
-  +import Fab from '@mui/material/Fab';
+  +import Fab from '@material-ui/core/Fab';
   +<Fab variant="extended" />
   ```
 
@@ -290,11 +290,11 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/guides/type
 
 ### Slider
 
-- [Slider] Mova de `@mui/lab` para `@mui/material`.
+- [Slider] Mova de `@material-ui/lab` para `@material-ui/core`.
 
   ```diff
-  -import Slider from '@mui/lab/Slider'
-  +import Slider from '@mui/material/Slider'
+  -import Slider from '@material-ui/lab/Slider'
+  +import Slider from '@material-ui/core/Slider'
   ```
 
 ### Interruptor

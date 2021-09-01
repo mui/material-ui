@@ -1,6 +1,6 @@
 # 从 @material-ui-pickers 进行迁移
 
-<p class="description">@material-ui/pickers 现在已经整合进了 @mui/lab。</p>
+<p class="description">@material-ui/pickers 现在已经整合进了 @material-ui/lab。</p>
 
 > **⚠️时间选择器组件已被重写**。 我们重写了大部分的逻辑，所以不可能维护整个更改列表。 这个部分概述了最重要的改变内容。 如果你要升级，最简单的方法可能是把你代码库中每个选择器的用法都浏览一遍，然后逐一重写。 别忘了每次都要运行你的测试代码！
 
@@ -8,7 +8,7 @@
 
 ## 安装
 
-You need to install the `@mui/lab` package if it's not already installed. ⚠️ Make sure you have installed the latest version, `"@mui/lab": ^5.0.0-alpha.30"` or above.
+You need to install the `@material-ui/lab` package if it's not already installed. ⚠️ Make sure you have installed the latest version, `"@material-ui/lab": ^5.0.0-alpha.30"` or above.
 
 ## 导入
 
@@ -16,7 +16,7 @@ You need to install the `@mui/lab` package if it's not already installed. ⚠️
 
 ```diff
 -import { KeyboardDatePicker } from '@material-ui/pickers';
-+import DatePicker from '@mui/lab/DatePicker';
++import DatePicker from '@material-ui/lab/DatePicker';
 
 -<KeyboardDatePicker />
 +<DatePicker />
@@ -31,7 +31,7 @@ You need to install the `@mui/lab` package if it's not already installed. ⚠️
 
 ```diff
 -import { DatePicker } from '@material-ui/pickers';
-+import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
++import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
 
 -<DatePicker variant="inline" />
 +<DesktopDatePicker />
@@ -53,8 +53,8 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 ✅ 之后：
 
 ```jsx
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 
 
 function App() {

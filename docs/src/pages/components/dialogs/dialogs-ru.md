@@ -80,7 +80,7 @@ Use title bar alerts only for high-risk situations, such as the potential loss o
 You may make a dialog responsively full screen using [`useMediaQuery`](/components/use-media-query/#usemediaquery).
 
 ```jsx
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {
   const theme = useTheme();

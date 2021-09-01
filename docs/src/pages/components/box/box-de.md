@@ -7,7 +7,7 @@ githubLabel: 'component: Box'
 
 <p class="description">Die Box-Komponente dient als Wrapper-Komponente für die meisten Anforderungen des CSS-Dienstprogramms.</p>
 
-Die Box-Komponente kombiniert [alle Stilfunktionen](/system/basics/#all-inclusive), die in `@mui/system` verfügbar sind.
+Die Box-Komponente kombiniert [alle Stilfunktionen](/system/basics/#all-inclusive), die in `@material-ui/system` verfügbar sind.
 
 Die Style-Funktion der [Palette](/system/palette/).
 
@@ -50,7 +50,7 @@ For non-Material-UI components, use the `component` prop.
 ## API
 
 ```jsx
-import Box from '@mui/material/Box';
+import Box from '@material-ui/core/Box';
 ```
 
 | Name                                     | Typ                                                                                                                           | Standard                                | Beschreibung                                                                                                               |

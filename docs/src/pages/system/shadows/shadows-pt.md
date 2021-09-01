@@ -63,7 +63,7 @@ Os utilitários permitem que você controle a profundidade ou distância relativ
 ## API
 
 ```js
-import { shadows } from '@mui/system';
+import { shadows } from '@material-ui/system';
 ```
 
 | Nome da importação | Propriedade | Propriedade CSS | Chave do tema |

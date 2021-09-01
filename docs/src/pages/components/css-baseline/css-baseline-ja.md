@@ -15,7 +15,7 @@ githubLabel: 'component: CssBaseline'
 
 ```jsx
 import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 export default function MyApp() {
   return (
@@ -33,7 +33,7 @@ export default function MyApp() {
 
 ```jsx
 import * as React from 'react';
-import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
+import ScopedCssBaseline from '@material-ui/core/ScopedCssBaseline';
 import MyApp from './MyApp';
 
 export default function MyApp() {
@@ -66,7 +66,7 @@ export default function MyApp() {
 The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode).
 
 ```jsx
-import darkScrollbar from '@mui/material/darkScrollbar';
+import darkScrollbar from '@material-ui/core/darkScrollbar';
 
 const theme = createTheme({
   components: {

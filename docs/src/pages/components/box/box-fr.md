@@ -7,7 +7,7 @@ githubLabel: 'component: Box'
 
 <p class="description">Le composant Box sert de composant de wrapper pour la plupart des besoins de l'utilitaire CSS.</p>
 
-Le composant Box contiens [toutes les fonctions de style](/system/basics/#all-inclusive) qui sont exposées dans `@mui/system`.
+Le composant Box contiens [toutes les fonctions de style](/system/basics/#all-inclusive) qui sont exposées dans `@material-ui/system`.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -50,7 +50,7 @@ The Box component has a `clone` property to enable the usage of the clone elemen
 ## API
 
 ```jsx
-import Box from '@mui/material/Box';
+import Box from '@material-ui/core/Box';
 ```
 
 | Nom                                            | Type                                                                                                                          | Défaut                                  | Description                                                                                                            |

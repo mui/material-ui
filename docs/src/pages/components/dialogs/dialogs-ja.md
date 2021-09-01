@@ -80,7 +80,7 @@ Dialogは、重要な情報を提供したり決定を求めたりするため�
 [`useMediaQuery`](/components/use-media-query/#usemediaquery)を使用して、ダイアログを全画面表示にすることができます。
 
 ```jsx
-import useMediaQuery from '@mui/material/useMediaQuery';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 function MyComponent() {
   const theme = useTheme();

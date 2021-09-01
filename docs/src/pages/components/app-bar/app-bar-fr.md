@@ -128,7 +128,7 @@ Au défilement un bouton d'action flottant apparaît pour faciliter le retour au
 #### Exemples
 
 ```jsx
-import useScrollTrigger from '@mui/material/useScrollTrigger';
+import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 
 function HideOnScroll(props) {
   const trigger = useScrollTrigger();

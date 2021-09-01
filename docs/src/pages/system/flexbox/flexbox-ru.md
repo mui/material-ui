@@ -106,7 +106,7 @@
 ## API
 
 ```js
-import { flexbox } from '@mui/system';
+import { flexbox } from '@material-ui/system';
 ```
 
 | Импорт           | Свойство         | Свойство CSS      | В теме |

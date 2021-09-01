@@ -2,7 +2,7 @@
 title: Composant React Date Range Picker (Sélecteur de plage de dates)
 components: DateRangePicker
 githubLabel: 'component: DateRangePicker'
-packageName: '@mui/lab'
+packageName: '@material-ui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
 
@@ -23,9 +23,9 @@ Ce composant compatible avec les bibliothèques de gestion des dates de votre ch
 Veuillez installer l'une de ces bibliothèques et configurer le bon moteur de date en enveloppant votre racine (ou le niveau le plus élevé que vous souhaitez que les sélecteurs soient disponibles) avec `LocalizationProvider`:
 
 ```jsx
-// ou @mui/lab/dateAdapter/{dayjs,luxon,moment} ou tout adaptateur date-io valide
-import DateFnsAdapter from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+// ou @material-ui/lab/dateAdapter/{dayjs,luxon,moment} ou tout adaptateur date-io valide
+import DateFnsAdapter from '@material-ui/lab/AdapterDateFns';
+import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
 
 function App() {
   return (

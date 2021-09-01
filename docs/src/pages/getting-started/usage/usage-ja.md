@@ -13,7 +13,7 @@ Material-UIコンポーネントは独立して機能します。 **これらは
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import Button from '@mui/material/Button';
+import Button from '@material-ui/core/Button';
 
 function App() {
   return (

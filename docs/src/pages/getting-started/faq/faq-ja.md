@@ -27,7 +27,7 @@ To correct this issue, all components on the page need to be initialized such th
 
 さまざまなシナリオで、誤って2つのクラス名ジェネレータを使用することになる事例
 
-- 誤って2つのバージョンのMaterial-UIを**バンドル**してしまっている場合。 If you think that the issue may be in the duplication of the @mui/styles module somewhere in your dependencies, there are several ways to check this. --hoistフラグを指定してbootstrap option を実行してみてください。
+- 誤って2つのバージョンのMaterial-UIを**バンドル**してしまっている場合。 If you think that the issue may be in the duplication of the @material-ui/styles module somewhere in your dependencies, there are several ways to check this. --hoistフラグを指定してbootstrap option を実行してみてください。
 - Reactツリーの**サブセット**に`StylesProvider`を使用している場合
 - バンドラーを使用していて、それが原因で複数のクラス名ジェネレータインスタンスが作成されるようにコードを分割している場合。
 
@@ -44,7 +44,7 @@ Scrolling is blocked as soon as a modal is opened. This prevents interacting wit
 Material-UI uses the same theme helper for creating all its transitions. Therefore you can disable all transitions by overriding the helper in your theme:
 
 ```js
-import { createTheme } from '@mui/material';
+import { createTheme } from '@material-ui/core';
 
 const theme = createTheme({
   components: {
@@ -63,7 +63,7 @@ const theme = createTheme({
 Material-UI uses the same theme helper for creating all its transitions. Therefore you can disable all transitions by overriding the helper in your theme:
 
 ```js
-import { createTheme } from '@mui/material';
+import { createTheme } from '@material-ui/core';
 
 const theme = createTheme({
   transitions: {
@@ -78,7 +78,7 @@ It can be useful to disable transitions during visual testing or to improve perf
 You can go one step further by disabling all transitions and animations effects:
 
 ```js
-import { createTheme } from '@mui/material';
+import { createTheme } from '@material-ui/core';
 
 const theme = createTheme({
   components: {
@@ -144,47 +144,47 @@ refを使用してDOM要素にアクセスできることを示します。
 
 ## ページにスタイルのインスタンスがいくつかあります
 
-次のような警告メッセージがコンソールに表示される場合は、ページ上で`@mui/styles`のインスタンスがいくつか初期化されている可能性があります。
+次のような警告メッセージがコンソールに表示される場合は、ページ上で`@material-ui/styles`のインスタンスがいくつか初期化されている可能性があります。
 
-> It looks like there are several instances of `@mui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason.
+> It looks like there are several instances of `@material-ui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason.
 
 ### 考えられる理由:
 
 これが起こる一般的な理由はいくつかあります。
 
-- 依存関係のどこかに別の`@mui/styles`ライブラリがあります。
-- プロジェクト(例：yarn workspaces)にmonorepo構造があり、`@mui/styles`モジュールが複数のパッケージ(これは前のとだいたい同じです)に依存しています。
-- `@mui/styles`を使用する複数のアプリケーションが同じページ(たとえば、webpackの複数のエントリポイントが同じページにロードされる。)で実行されています。
+- 依存関係のどこかに別の`@material-ui/styles`ライブラリがあります。
+- プロジェクト(例：yarn workspaces)にmonorepo構造があり、`@material-ui/styles`モジュールが複数のパッケージ(これは前のとだいたい同じです)に依存しています。
+- `@material-ui/styles`を使用する複数のアプリケーションが同じページ(たとえば、webpackの複数のエントリポイントが同じページにロードされる。)で実行されています。
 
 ### node_modulesの重複モジュール
 
-You can use `npm ls @mui/styles`, `yarn list @mui/styles` or `find -L ./node_modules | grep /@mui/styles/package.json` commands in your application folder. If you think that the issue may be in the duplication of the @mui/styles module somewhere in your dependencies, there are several ways to check this.
+You can use `npm ls @material-ui/styles`, `yarn list @material-ui/styles` or `find -L ./node_modules | grep /@material-ui/styles/package.json` commands in your application folder. If you think that the issue may be in the duplication of the @material-ui/styles module somewhere in your dependencies, there are several ways to check this.
 
-If you think that the issue may be in the duplication of the @mui/styles module somewhere in your dependencies, there are several ways to check this. --hoistフラグを指定してbootstrap option を実行してみてください。
+If you think that the issue may be in the duplication of the @material-ui/styles module somewhere in your dependencies, there are several ways to check this. --hoistフラグを指定してbootstrap option を実行してみてください。
 
 重複が発生している問題であることがわかった場合は、いくつかの解決方法があります。
 
 Npmを使用している場合は、`npm dedupe`を実行してみてください。 このコマンドは、ローカルの依存関係を検索し、共通の依存関係をツリーの上位に移動して構造を単純化しようとします。
 
-One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) shared dependencies to the root of your monorepo file. --hoistフラグを指定してbootstrap option を実行してみてください。
+One possible fix to get @material-ui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) shared dependencies to the root of your monorepo file. --hoistフラグを指定してbootstrap option を実行してみてください。
 
 ```diff
   resolve: {
 +   alias: {
-+     "@mui/styles": path.resolve(appFolder, "node_modules", "@mui/styles"),
++     "@material-ui/styles": path.resolve(appFolder, "node_modules", "@material-ui/styles"),
 +   }
   }
 ```
 
 ### Lernaでの使用
 
-One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) shared dependencies to the root of your monorepo file. --hoistフラグを指定してbootstrap option を実行してみてください。
+One possible fix to get @material-ui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) shared dependencies to the root of your monorepo file. --hoistフラグを指定してbootstrap option を実行してみてください。
 
 ```sh
 lerna bootstrap --hoist
 ```
 
-または、パッケージから@mui/stylesを削除することもできます。jsonファイルを作成し、手動で最上位のパッケージに上げます。jsonファイルを使用します。
+または、パッケージから@material-ui/stylesを削除することもできます。jsonファイルを作成し、手動で最上位のパッケージに上げます。jsonファイルを使用します。
 
 Lernaルートフォルダー内のpackage.jsonファイルの例
 
@@ -195,7 +195,7 @@ Lernaルートフォルダー内のpackage.jsonファイルの例
     "lerna": "latest"
   },
   "dependencies": {
-    "@mui/styles": "^4.0.0"
+    "@material-ui/styles": "^4.0.0"
   },
   "scripts": {
     "bootstrap": "lerna bootstrap",
@@ -208,12 +208,12 @@ Lernaルートフォルダー内のpackage.jsonファイルの例
 
 ### 1つのページで複数のアプリケーションを実行する
 
-1つのページで複数のアプリケーションを実行している場合は、それらすべてに1つの@mui/stylesモジュールを使用することを検討してください。 1つのページで複数のアプリケーションを実行している場合は、それらすべてに1つの@mui/stylesモジュールを使用することを検討してください。 Webパックを使用している場合は、[CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/)を使用して@mui/stylesモジュールを含む明示的な[vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), を作成できます。 1つのページで複数のアプリケーションを実行している場合は、それらすべてに1つの@mui/stylesモジュールを使用することを検討してください。 Webパックを使用している場合は、[CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/)を使用して@mui/stylesモジュールを含む明示的な[vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), を作成できます。 1つのページで複数のアプリケーションを実行している場合は、それらすべてに1つの@mui/stylesモジュールを使用することを検討してください。 Webパックを使用している場合は、[CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/)を使用して@mui/stylesモジュールを含む明示的な[vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), を作成できます。
+1つのページで複数のアプリケーションを実行している場合は、それらすべてに1つの@material-ui/stylesモジュールを使用することを検討してください。 1つのページで複数のアプリケーションを実行している場合は、それらすべてに1つの@material-ui/stylesモジュールを使用することを検討してください。 Webパックを使用している場合は、[CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/)を使用して@material-ui/stylesモジュールを含む明示的な[vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), を作成できます。 1つのページで複数のアプリケーションを実行している場合は、それらすべてに1つの@material-ui/stylesモジュールを使用することを検討してください。 Webパックを使用している場合は、[CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/)を使用して@material-ui/stylesモジュールを含む明示的な[vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), を作成できます。 1つのページで複数のアプリケーションを実行している場合は、それらすべてに1つの@material-ui/stylesモジュールを使用することを検討してください。 Webパックを使用している場合は、[CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/)を使用して@material-ui/stylesモジュールを含む明示的な[vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), を作成できます。
 
 ```diff
   module.exports = {
     entry: {
-+     vendor: ["@mui/styles"],
++     vendor: ["@material-ui/styles"],
       app1: "./src/app.1.js",
       app2: "./src/app.2.js",
     },
@@ -305,7 +305,7 @@ function handleRender(req, res) {
   -// Create a sheets instance.
   ```
 
-- しかし、異なるリクエスト間で**createGenerateClassName()**を共有すべきではありません。 マイナーバージョンの不一致でも、スタイルの問題が発生する可能性があります。 バージョン番号を確認するには、アプリケーションを構築する環境と配備環境で`npm list@mui/material`を実行します
+- しかし、異なるリクエスト間で**createGenerateClassName()**を共有すべきではありません。 マイナーバージョンの不一致でも、スタイルの問題が発生する可能性があります。 バージョン番号を確認するには、アプリケーションを構築する環境と配備環境で`npm list@material-ui/core`を実行します
 
   Package.jsonの依存関係に特定のMUIバージョンを指定することで、異なる環境で同じバージョンを使用することもできます。
 
@@ -314,8 +314,8 @@ function handleRender(req, res) {
   ```diff
     "dependencies": {
     ...
-  -   "@mui/material": "^4.0.0",
-+   "@mui/material": "4.0.0",
+  -   "@material-ui/core": "^4.0.0",
++   "@material-ui/core": "4.0.0",
     ...
     },
   ```

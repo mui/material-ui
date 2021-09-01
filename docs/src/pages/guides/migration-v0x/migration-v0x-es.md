@@ -27,21 +27,21 @@ Con yarn:
 
 ```sh
 yarn add material-ui
-  yarn add @mui/material
+  yarn add @material-ui/core
 ```
 
 Or with npm:
 
 ```sh
 npm install material-ui
-  npm install @mui/material
+  npm install @material-ui/core
 ```
 
 then
 
 ```js
 import FlatButton from 'material-ui/FlatButton'; // v0.x
-  import Button from '@mui/material/Button'; // v1.x
+  import Button from '@material-ui/core/Button'; // v1.x
 ```
 
 2. Run [the migration helper](https://github.com/mui-org/material-ui/tree/master/packages/material-ui-codemod) on your project.
@@ -49,7 +49,7 @@ import FlatButton from 'material-ui/FlatButton'; // v0.x
 
 ```jsx
 import * as React from 'react';
-import { MuiThemeProvider, createMuiTheme } from '@mui/material/styles'; // v1.x
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'; // v1.x
 import { MuiThemeProvider as V0MuiThemeProvider } from 'material-ui';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
@@ -89,7 +89,7 @@ This will apply a change such as the following:
 
 ```diff
 -import AddIcon from 'material-ui/svg-icons/Add';
-+import AddIcon from '@mui/icons-material/Add';
++import AddIcon from '@material-ui/icons/Add';
 
 <AddIcon />
 ```
@@ -98,7 +98,7 @@ This will apply a change such as the following:
 
 ```diff
 -import FlatButton from 'material-ui/FlatButton';
-+import Button from '@mui/material/Button';
++import Button from '@material-ui/core/Button';
 
 -<FlatButton />
 +<Button />
@@ -110,7 +110,7 @@ RaisedButton upgrade path:
 
 ```diff
 -import RaisedButton from 'material-ui/RaisedButton';
-+import Button from '@mui/material/Button';
++import Button from '@material-ui/core/Button';
 
 -<RaisedButton />
 +<Button variant="contained" />
@@ -120,7 +120,7 @@ RaisedButton upgrade path:
 
 ```diff
 -import Subheader from 'material-ui/Subheader';
-+import ListSubheader from '@mui/material/ListSubheader';
++import ListSubheader from '@material-ui/core/ListSubheader';
 
 -<Subheader>Sub Heading</Subheader>
 +<ListSubheader>Sub Heading</ListSubheader>
@@ -130,7 +130,7 @@ RaisedButton upgrade path:
 
 ```diff
 -import Toggle from 'material-ui/Toggle';
-+import Switch from '@mui/material/Switch';
++import Switch from '@material-ui/core/Switch';
 
 -<Toggle
 
@@ -147,7 +147,7 @@ RaisedButton upgrade path:
 
 ```diff
 -import MenuItem from 'material-ui/MenuItem';
-+import MenuItem from '@mui/material/MenuItem';
++import MenuItem from '@material-ui/core/MenuItem';
 
 -<MenuItem primaryText="Profile" />
 +<MenuItem>Profile</MenuItem>
@@ -157,7 +157,7 @@ RaisedButton upgrade path:
 
 ```diff
 -import FontIcon from 'material-ui/FontIcon';
-+import Icon from '@mui/material/Icon';
++import Icon from '@material-ui/core/Icon';
 
 -<FontIcon>home</FontIcon>
 +<Icon>home</Icon>
@@ -167,7 +167,7 @@ RaisedButton upgrade path:
 
 ```diff
 -import CircularProgress from 'material-ui/CircularProgress';
-+import CircularProgress from '@mui/material/CircularProgress';
++import CircularProgress from '@material-ui/core/CircularProgress';
 
 -<CircularProgress mode="indeterminate" />
 +<CircularProgress variant="indeterminate" />
@@ -177,7 +177,7 @@ RaisedButton upgrade path:
 
 ```diff
 -import DropDownMenu from 'material-ui/DropDownMenu';
-+import Select from '@mui/material/Select';
++import Select from '@material-ui/core/Select';
 
 -<DropDownMenu></DropDownMenu>
 +<Select value={this.state.value}></Select>

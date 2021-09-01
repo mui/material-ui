@@ -61,7 +61,7 @@ BadgeContentが0の場合、バッジは自動的に非表示になります。 
 The badge also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
-import BadgeUnstyled from '@mui/core/BadgeUnstyled';
+import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
 ```
 
 {{"demo": "pages/components/badges/UnstyledBadge.js"}}

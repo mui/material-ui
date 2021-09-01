@@ -14,7 +14,7 @@
 ## API
 
 ```js
-import { positions } from '@mui/system';
+import { positions } from '@material-ui/system';
 ```
 
 | Import name | Prop       | CSS property | Theme key                                                      |

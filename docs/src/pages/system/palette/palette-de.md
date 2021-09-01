@@ -37,7 +37,7 @@
 ## API
 
 ```js
-import { palette } from '@mui/system';
+import { palette } from '@material-ui/system';
 ```
 
 | Inportname | Eigenschaften | CSS-Eigenschaft   | Theme-Schlüssel                                                  |
