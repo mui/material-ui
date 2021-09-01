@@ -1,20 +1,20 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { alpha, styled } from '@material-ui/core/styles';
-import Collapse from '@material-ui/core/Collapse';
-import ButtonBase from '@material-ui/core/ButtonBase';
-import Box from '@material-ui/core/Box';
-import Divider from '@material-ui/core/Divider';
-import KeyboardArrowRightRoundedIcon from '@material-ui/icons/KeyboardArrowRightRounded';
+import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
+import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
+import { alpha, styled } from '@mui/material/styles';
+import Collapse from '@mui/material/Collapse';
+import ButtonBase from '@mui/material/ButtonBase';
 import Link from 'docs/src/modules/components/Link';
-import ArticleOutlinedIcon from '@material-ui/icons/ArticleOutlined';
-import ToggleOffOutlinedIcon from '@material-ui/icons/ToggleOffOutlined';
-import CodeRoundedIcon from '@material-ui/icons/CodeRounded';
-import BuildOutlinedIcon from '@material-ui/icons/BuildOutlined';
-import CreateOutlinedIcon from '@material-ui/icons/CreateOutlined';
-import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
-import ColorLensOutlinedIcon from '@material-ui/icons/ColorLensOutlined';
-import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
+import ToggleOffOutlinedIcon from '@mui/icons-material/ToggleOffOutlined';
+import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
+import BuildOutlinedIcon from '@mui/icons-material/BuildOutlined';
+import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
+import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
+import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
 
 const iconsMap = {
   DescriptionIcon: ArticleOutlinedIcon,

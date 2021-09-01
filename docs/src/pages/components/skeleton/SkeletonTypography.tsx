@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import Skeleton from '@material-ui/core/Skeleton';
-import Grid from '@material-ui/core/Grid';
+import Typography, { TypographyProps } from '@mui/material/Typography';
+import Skeleton from '@mui/material/Skeleton';
+import Grid from '@mui/material/Grid';
 
 const variants = [
   'h1',

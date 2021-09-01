@@ -145,7 +145,7 @@ This hook returns the context value of the parent `FormControl` component.
 **API**
 
 ```jsx
-import { useFormControl } from '@material-ui/core/FormControl';
+import { useFormControl } from '@mui/material/FormControl';
 ```
 
 **Returns**

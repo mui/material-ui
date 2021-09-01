@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { SinonFakeTimers, useFakeTimers } from 'sinon';
 import { fireEvent, screen, describeConformance } from 'test/utils';
-import CalendarPicker, { calendarPickerClasses as classes } from '@material-ui/lab/CalendarPicker';
+import CalendarPicker, { calendarPickerClasses as classes } from '@mui/lab/CalendarPicker';
 import {
   adapterToUse,
   wrapPickerMount,

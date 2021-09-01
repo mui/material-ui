@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { makeStyles } from '@material-ui/styles';
-import NoSsr from '@material-ui/unstyled/NoSsr';
+import { makeStyles } from '@mui/styles';
+import NoSsr from '@mui/core/NoSsr';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
-import Container from '@material-ui/core/Container';
-import Divider from '@material-ui/core/Divider';
+import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
-import { docs } from './backers.md?@material-ui/markdown';
+import { docs } from './backers.md?@mui/markdown';
 
 const useStyles = makeStyles(
   (theme) => ({

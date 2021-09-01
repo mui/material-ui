@@ -1,11 +1,11 @@
 import * as React from 'react';
 import dynamic from 'next/dynamic';
 import { useInView } from 'react-intersection-observer';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
-import Fade from '@material-ui/core/Fade';
-import Typography from '@material-ui/core/Typography';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import Fade from '@mui/material/Fade';
+import Typography from '@mui/material/Typography';
 import GradientText from 'docs/src/components/typography/GradientText';
 import ProductsSwitcher from 'docs/src/components/home/ProductsSwitcher';
 import { PrefetchStoreTemplateImages } from 'docs/src/components/home/StoreTemplatesBanner';

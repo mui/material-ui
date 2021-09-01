@@ -1,5 +1,5 @@
 import * as React from 'react';
-import CardHeader, { CardHeaderProps, CardHeaderTypeMap } from '@material-ui/core/CardHeader';
+import CardHeader, { CardHeaderProps, CardHeaderTypeMap } from '@mui/material/CardHeader';
 
 const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
 

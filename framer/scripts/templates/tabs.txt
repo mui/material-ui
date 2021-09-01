@@ -1,9 +1,9 @@
 {{=« »=}}
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import MuiAppBar from '@material-ui/core/AppBar';
-import Mui«componentName» from '@material-ui/core/«componentName»';
-import MuiTab from '@material-ui/core/Tab';
+import MuiAppBar from '@mui/material/AppBar';
+import Mui«componentName» from '@mui/material/«componentName»';
+import MuiTab from '@mui/material/Tab';
 import { Icon } from './Icon';
 
 interface Props {

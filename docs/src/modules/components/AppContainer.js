@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import { styled } from '@mui/material/styles';
+import Container from '@mui/material/Container';
 
 const StyledContainer = styled(Container)(({ theme }) => {
   return {

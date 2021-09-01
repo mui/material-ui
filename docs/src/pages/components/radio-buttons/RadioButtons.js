@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Radio from '@material-ui/core/Radio';
+import Radio from '@mui/material/Radio';
 
 export default function RadioButtons() {
   const [selectedValue, setSelectedValue] = React.useState('a');

@@ -3,6 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const CI = Boolean(process.env.CI);
+const isPR = Boolean(process.env.CIRCLE_PR_NUMBER);
 
 let build = `material-ui local ${new Date().toISOString()}`;
 
@@ -15,6 +16,11 @@ if (process.env.CIRCLECI) {
 }
 
 const browserStack = {
+  // |commits in PRs| >> |Merged commits|.
+  // Since we have limited ressources on browserstack we often time out on PRs.
+  // However, browserstack rarely fails with a true-positive so we use it as a stop gap for release not merge.
+  // But always enable it locally since people usually have to explicitly have to expose their browserstack access key anyway.
+  enabled: !CI || !isPR || process.env.BROWSERSTACK_FORCE === 'true',
   username: process.env.BROWSERSTACK_USERNAME,
   accessKey: process.env.BROWSERSTACK_ACCESS_KEY,
   build,
@@ -153,7 +159,7 @@ module.exports = function setKarmaConfig(config) {
 
   let newConfig = baseConfig;
 
-  if (browserStack.accessKey) {
+  if (browserStack.enabled && browserStack.accessKey) {
     newConfig = {
       ...baseConfig,
       browserStack,

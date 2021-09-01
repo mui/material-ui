@@ -2,8 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { createClientRender, describeConformance, act } from 'test/utils';
-import Backdrop, { backdropClasses as classes } from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
+import Backdrop, { backdropClasses as classes } from '@mui/material/Backdrop';
+import Fade from '@mui/material/Fade';
 
 describe('<Backdrop />', () => {
   const render = createClientRender();

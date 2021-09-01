@@ -12,7 +12,7 @@ function jsDemo(demoData, options) {
       'index.js': `
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { StyledEngineProvider } from '@material-ui/core/styles';
+import { StyledEngineProvider } from '@mui/material/styles';
 import Demo from './demo';
 
 ReactDOM.render(
@@ -38,7 +38,7 @@ function tsDemo(demoData, options) {
       'index.tsx': `
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { StyledEngineProvider } from '@material-ui/core/styles';
+import { StyledEngineProvider } from '@mui/material/styles';
 import Demo from './demo';
 
 ReactDOM.render(

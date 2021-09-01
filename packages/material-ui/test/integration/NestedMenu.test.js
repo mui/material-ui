@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, within } from 'test/utils';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 function NestedMenu(props) {
   const { firstMenuOpen, secondMenuOpen } = props;

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import Tooltip from '@material-ui/core/Tooltip';
-import DarkModeOutlined from '@material-ui/icons/DarkModeOutlined';
-import LightModeOutlined from '@material-ui/icons/LightModeOutlined';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import DarkModeOutlined from '@mui/icons-material/DarkModeOutlined';
+import LightModeOutlined from '@mui/icons-material/LightModeOutlined';
 
 const ThemeModeToggle = (props: { checked: boolean; onChange: (checked: boolean) => void }) => {
   return (

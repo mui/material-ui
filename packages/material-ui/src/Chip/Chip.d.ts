@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { OverridableStringUnion } from '@material-ui/types';
-import { SxProps } from '@material-ui/system';
+import { OverridableStringUnion } from '@mui/types';
+import { SxProps } from '@mui/system';
 import { Theme } from '..';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ChipClasses } from './chipClasses';

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import addWeeks from 'date-fns/addWeeks';
-import TextField from '@material-ui/core/TextField';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import DateRangePicker, { DateRange } from '@material-ui/lab/DateRangePicker';
-import Box from '@material-ui/core/Box';
+import TextField from '@mui/material/TextField';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DateRangePicker, { DateRange } from '@mui/lab/DateRangePicker';
+import Box from '@mui/material/Box';
 
 function getWeeksAfter(date: Date | null, amount: number) {
   return date ? addWeeks(date, amount) : undefined;

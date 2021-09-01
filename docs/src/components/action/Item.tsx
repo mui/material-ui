@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { useTheme } from '@material-ui/core/styles';
-import Box, { BoxProps } from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
+import { useTheme } from '@mui/material/styles';
+import Box, { BoxProps } from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 export function Group({ desktopColumns = 1, ...props }: { desktopColumns?: number } & BoxProps) {
   const theme = useTheme();

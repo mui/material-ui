@@ -10,8 +10,8 @@ import {
   simulatePointerDevice,
   programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
-import Avatar from '@material-ui/core/Avatar';
-import Chip, { chipClasses as classes } from '@material-ui/core/Chip';
+import Avatar from '@mui/material/Avatar';
+import Chip, { chipClasses as classes } from '@mui/material/Chip';
 import CheckBox from '../internal/svg-icons/CheckBox';
 
 describe('<Chip />', () => {

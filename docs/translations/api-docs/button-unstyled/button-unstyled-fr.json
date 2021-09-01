@@ -1,0 +1,7 @@
+{
+  "componentDescription": "",
+  "propDescriptions": {
+    "component": "The component used for the Root slot. Either a string to use a HTML element or a component. This is equivalent to <code>components.Root</code>. If both are provided, the <code>component</code> is used."
+  },
+  "classDescriptions": {}
+}

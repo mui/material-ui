@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, createClientRender } from 'test/utils';
-import Container, { containerClasses as classes } from '@material-ui/core/Container';
+import Container, { containerClasses as classes } from '@mui/material/Container';
 
 describe('<Container />', () => {
   const render = createClientRender();

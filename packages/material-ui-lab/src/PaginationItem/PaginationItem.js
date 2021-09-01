@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PaginationItem from '@material-ui/core/PaginationItem';
+import PaginationItem from '@mui/material/PaginationItem';
 
 let warnedOnce = false;
 
@@ -12,8 +12,8 @@ export default React.forwardRef(function DeprecatedPaginationItem(props, ref) {
       [
         'Material-UI: The PaginationItem component was moved from the lab to the core.',
         '',
-        "You should use `import { PaginationItem } from '@material-ui/core'`",
-        "or `import PaginationItem from '@material-ui/core/PaginationItem'`",
+        "You should use `import { PaginationItem } from '@mui/material'`",
+        "or `import PaginationItem from '@mui/material/PaginationItem'`",
       ].join('\n'),
     );
 

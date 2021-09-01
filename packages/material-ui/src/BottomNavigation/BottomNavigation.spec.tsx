@@ -1,5 +1,5 @@
 import * as React from 'react';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigation from '@mui/material/BottomNavigation';
 
 function testOnChange() {
   function handleBottomNavigationChange(event: React.SyntheticEvent, tabsValue: unknown) {}

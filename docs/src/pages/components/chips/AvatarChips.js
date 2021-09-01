@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Chip from '@material-ui/core/Chip';
-import Stack from '@material-ui/core/Stack';
+import Avatar from '@mui/material/Avatar';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 
 export default function AvatarChips() {
   return (

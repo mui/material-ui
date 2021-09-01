@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 import ArrowCircleIcon from 'docs/src/modules/branding/icons/ArrowCircle';
 import Link from 'docs/src/modules/components/Link';
 

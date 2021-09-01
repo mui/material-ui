@@ -1,15 +1,11 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
+import Box from '@mui/material/Box';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
 
 export default function FloatingActionButtonSize() {
   return (
-    <Box
-      sx={{
-        '& :not(style)': { m: 1 },
-      }}
-    >
+    <Box sx={{ '& > :not(style)': { m: 1 } }}>
       <Fab size="small" color="secondary" aria-label="add">
         <AddIcon />
       </Fab>

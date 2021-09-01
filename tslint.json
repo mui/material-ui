@@ -5,7 +5,7 @@
   "rules": {
     "deprecation": true,
     // $ExpectError -> @ts-expect-error
-    // $ExpectType -> `expectType` from `@material-ui/types`
+    // $ExpectType -> `expectType` from `@mui/types`
     // Don't disable this rule unless you made sure `tsc` runs on the same files
     // Otherwise some files won't be type-checked
     "expect": true,

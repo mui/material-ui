@@ -1,7 +1,7 @@
 {{=« »=}}
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import Mui«componentName» from '@material-ui/core/«componentName»';
+import Mui«componentName» from '@mui/material/«componentName»';
 import { Icon } from './Icon';
 import { Avatar } from './Avatar';
 

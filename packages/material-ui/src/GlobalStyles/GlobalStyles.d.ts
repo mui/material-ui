@@ -1,4 +1,4 @@
-import { GlobalStylesProps as StyledGlobalStylesProps } from '@material-ui/system';
+import { GlobalStylesProps as StyledGlobalStylesProps } from '@mui/system';
 
 export interface GlobalStylesProps {
   /**

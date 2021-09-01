@@ -1,11 +1,11 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import FilledInput from '@material-ui/core/FilledInput';
-import FormControl from '@material-ui/core/FormControl';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
+import Box from '@mui/material/Box';
+import FilledInput from '@mui/material/FilledInput';
+import FormControl from '@mui/material/FormControl';
+import FormHelperText from '@mui/material/FormHelperText';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
 export default function ComposedTextField() {
   const [name, setName] = React.useState('Composed TextField');

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, describeConformance, screen } from 'test/utils';
-import Paper, { paperClasses } from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
-import MobileStepper, { mobileStepperClasses as classes } from '@material-ui/core/MobileStepper';
+import Paper, { paperClasses } from '@mui/material/Paper';
+import Button from '@mui/material/Button';
+import MobileStepper, { mobileStepperClasses as classes } from '@mui/material/MobileStepper';
 import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
 

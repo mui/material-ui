@@ -9,9 +9,9 @@ import {
   screen,
   createServerRender,
 } from 'test/utils';
-import Tab from '@material-ui/core/Tab';
-import Tabs, { tabsClasses as classes } from '@material-ui/core/Tabs';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import Tab from '@mui/material/Tab';
+import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import capitalize from '../utils/capitalize';
 
 function findScrollButton(container, direction) {

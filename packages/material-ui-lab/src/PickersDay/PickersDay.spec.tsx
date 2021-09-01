@@ -1,5 +1,5 @@
 import * as React from 'react';
-import PickersDay from '@material-ui/lab/PickersDay';
+import PickersDay from '@mui/lab/PickersDay';
 
 <PickersDay<Date>
   day={new Date()}

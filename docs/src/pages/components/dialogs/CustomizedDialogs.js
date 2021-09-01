@@ -1,14 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import { styled } from '@material-ui/core/styles';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogActions from '@material-ui/core/DialogActions';
-import IconButton from '@material-ui/core/IconButton';
-import CloseIcon from '@material-ui/icons/Close';
-import Typography from '@material-ui/core/Typography';
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import Typography from '@mui/material/Typography';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuDialogContent-root': {

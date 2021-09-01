@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { alpha, styled } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import Collapse from '@material-ui/core/Collapse';
-import NoSsr from '@material-ui/core/NoSsr';
+import { alpha, styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import Collapse from '@mui/material/Collapse';
+import NoSsr from '@mui/material/NoSsr';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
