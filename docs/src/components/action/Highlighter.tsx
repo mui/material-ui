@@ -27,8 +27,7 @@ export default function Highlighter({
         border: '1px solid transparent',
         transitionProperty: 'all',
         transitionDuration: '150ms',
-        color: (theme) =>
-            theme.palette.mode === 'dark' ? 'grey.600' : 'grey.500',
+        color: (theme) => (theme.palette.mode === 'dark' ? 'grey.600' : 'grey.500'),
         ...((!disableBorder || selected) && {
           borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200'),
         }),
@@ -36,8 +35,7 @@ export default function Highlighter({
           bgcolor: (theme) =>
             theme.palette.mode === 'dark' ? 'primaryDark.700' : lightSelectedBg[selectedBg],
           borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.300' : 'grey.200'),
-          color: (theme) =>
-            theme.palette.mode === 'dark' ? 'primary.400' : 'primary.500'
+          color: (theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.500'),
         }),
         ...(!selected && {
           '&:hover, &:focus': {

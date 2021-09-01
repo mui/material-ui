@@ -10,17 +10,12 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Divider from '@material-ui/core/Divider';
-import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
 import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
 import Typography from '@material-ui/core/Typography';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -57,21 +52,19 @@ import FormatAlignJustifyIcon from '@material-ui/icons/FormatAlignJustify';
 import ToggleButton from '@material-ui/core/ToggleButton';
 import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
 import Badge from '@material-ui/core/Badge';
-import MailIcon from '@material-ui/icons/Mail';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 const ToggleButtons = () => {
   const [alignment, setAlignment] = React.useState('left');
-  const handleAlignment = (event, newAlignment) => {
-    setAlignment(newAlignment);
-  };
   return (
     <ToggleButtonGroup
       value={alignment}
       exclusive
-      onChange={handleAlignment}
+      onChange={(event, newAlignment) => {
+        setAlignment(newAlignment);
+      }}
       aria-label="text alignment"
     >
       <ToggleButton value="left" aria-label="left aligned" size="small">
@@ -83,7 +76,7 @@ const ToggleButtons = () => {
       <ToggleButton value="right" aria-label="right aligned" size="small">
         <FormatAlignRightIcon fontSize="small" />
       </ToggleButton>
-      <ToggleButton value="justify" aria-label="justified" size="small" disabled> 
+      <ToggleButton value="justify" aria-label="justified" size="small" disabled>
         <FormatAlignJustifyIcon fontSize="small" />
       </ToggleButton>
     </ToggleButtonGroup>
@@ -110,23 +103,21 @@ const TabsDemo = () => {
 
 const BadgeVisibilityDemo = () => {
   const [count, setCount] = React.useState(1);
-  const [invisible, setInvisible] = React.useState(false);
-  const handleBadgeVisibility = () => {
-    setInvisible(!invisible);
-  };
   return (
-    <Paper variant="outlined" elevation="0"
-    sx={{
-      color: 'action.active',
-      p: 2,
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      '& .MuiBadge-root': {
-        marginRight: 4,
-      },
-    }}
-  >
+    <Paper
+      variant="outlined"
+      elevation={0}
+      sx={{
+        color: 'action.active',
+        p: 2,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        '& .MuiBadge-root': {
+          marginRight: 4,
+        },
+      }}
+    >
       <div>
         <Badge color="primary" badgeContent={count}>
           <ShoppingCartRounded fontSize="small" />
@@ -156,14 +147,16 @@ const BadgeVisibilityDemo = () => {
   );
 };
 
-const SwitchToggleDemo = () =>{
+const SwitchToggleDemo = () => {
   const label = { inputProps: { 'aria-label': 'Switch demo' } };
   return (
-    <Box sx={{width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+    <Box
+      sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+    >
       <Switch {...label} defaultChecked />
       <Switch {...label} />
-      <ToggleButtons/>
-  </Box>
+      <ToggleButtons />
+    </Box>
   );
 };
 
@@ -171,13 +164,21 @@ const SlideDemo = () => {
   const [value, setValue] = React.useState([30, 60]);
   return (
     <Stack spacing={2} direction="row" alignItems="center">
-      <AcUnitRounded fontSize="small" color="primary" sx={{ opacity: `max(0.4, ${(100 - value[0]) / 100})` }} />
+      <AcUnitRounded
+        fontSize="small"
+        color="primary"
+        sx={{ opacity: `max(0.4, ${(100 - value[0]) / 100})` }}
+      />
       <Slider
         aria-labelledby="temperature-slider"
         value={value}
         onChange={(_, newValue) => setValue(newValue as number[])}
       />
-      <LocalFireDepartment fontSize="small" color="error" sx={{ opacity: `max(0.4, ${value[1] / 100})` }} />
+      <LocalFireDepartment
+        fontSize="small"
+        color="error"
+        sx={{ opacity: `max(0.4, ${value[1] / 100})` }}
+      />
     </Stack>
   );
 };
@@ -253,9 +254,15 @@ export default function Hero() {
           >
             <Stack spacing={4}>
               <Box>
-                <Accordion elevation="0" variant="outlined" defaultExpanded disableGutters sx={{borderBottom: 0}}>
+                <Accordion
+                  elevation={0}
+                  variant="outlined"
+                  defaultExpanded
+                  disableGutters
+                  sx={{ borderBottom: 0 }}
+                >
                   <AccordionSummary
-                    expandIcon={<ExpandMoreRoundedIcon fontSize="small"/>}
+                    expandIcon={<ExpandMoreRoundedIcon fontSize="small" />}
                     aria-controls="panel1a-content"
                     id="panel1a-header"
                   >
@@ -263,11 +270,12 @@ export default function Hero() {
                   </AccordionSummary>
                   <AccordionDetails>
                     <Typography variant="body2">
-                    MUI components work in isolation. They are self-supporting, and will only inject the styles they need to display.
+                      MUI components work in isolation. They are self-supporting, and will only
+                      inject the styles they need to display.
                     </Typography>
                   </AccordionDetails>
                 </Accordion>
-                <Accordion elevation="0" variant="outlined" disableGutters>
+                <Accordion elevation={0} variant="outlined" disableGutters>
                   <AccordionSummary
                     expandIcon={<ExpandMoreRoundedIcon fontSize="small" />}
                     aria-controls="panel2a-content"
@@ -276,12 +284,13 @@ export default function Hero() {
                     <Typography variant="body2">Globals</Typography>
                   </AccordionSummary>
                   <AccordionDetails>
-                  <Typography variant="body2">
-                    MUI usage experience can be improved with a handful of important globals that you'll need to be aware of.
+                    <Typography variant="body2">
+                      MUI usage experience can be improved with a handful of important globals that
+                      you&apos;ll need to be aware of.
                     </Typography>
                   </AccordionDetails>
                 </Accordion>
-                <Accordion disabled elevation="0" disableGutters>
+                <Accordion disabled elevation={0} disableGutters>
                   <AccordionSummary
                     expandIcon={<ExpandMoreRoundedIcon fontSize="small" />}
                     aria-controls="panel3a-content"
@@ -295,9 +304,9 @@ export default function Hero() {
               <Alert variant="filled" color="info" icon={<CheckCircleRounded fontSize="small" />}>
                 Check out this library!
               </Alert>
-              <SwitchToggleDemo/>
+              <SwitchToggleDemo />
               <TabsDemo />
-              <Paper elevation="0" variant="outlined" sx={{ overflow: 'hidden' }}>
+              <Paper elevation={0} variant="outlined" sx={{ overflow: 'hidden' }}>
                 <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
                   <ListItem alignItems="flex-start">
                     <ListItemAvatar>
@@ -354,7 +363,7 @@ export default function Hero() {
                   Add to Cart
                 </Button>
               </Box>
-              <Paper elevation="0" variant="outlined" sx={{ p: 2 }}>
+              <Paper elevation={0} variant="outlined" sx={{ p: 2 }}>
                 <Typography
                   id="temperature-slider"
                   component="div"
@@ -366,9 +375,19 @@ export default function Hero() {
                 <SlideDemo />
               </Paper>
               <TextField defaultValue="Ultraviolet" label="Basement" />
-              <Box sx={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                <BadgeVisibilityDemo/>
-                <Paper variant="outlined" elevation="0" sx={{py: 2, px: 1, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+              <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                <BadgeVisibilityDemo />
+                <Paper
+                  variant="outlined"
+                  elevation={0}
+                  sx={{
+                    py: 2,
+                    px: 1,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
                   <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
                 </Paper>
               </Box>
@@ -395,7 +414,10 @@ export default function Hero() {
                 />
                 <CardContent sx={{ pb: 0 }}>
                   <Typography variant="body2" color="text.secondary">
-                    Not just a great valley, but a shrine to human foresight, the strength of granite, the power of glaciers, the persistence of life, and the tranquility of the High Sierra. It’s famed for its giant, ancient sequoia trees, and the granite cliffs of El Capitan and Half Dome.
+                    Not just a great valley, but a shrine to human foresight, the strength of
+                    granite, the power of glaciers, the persistence of life, and the tranquility of
+                    the High Sierra. It’s famed for its giant, ancient sequoia trees, and the
+                    granite cliffs of El Capitan and Half Dome.
                   </Typography>
                 </CardContent>
                 <CardActions disableSpacing>

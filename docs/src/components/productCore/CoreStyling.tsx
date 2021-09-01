@@ -8,7 +8,7 @@ import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
-import Highlighter from 'docs/src/components/action/Highlighter'
+import Highlighter from 'docs/src/components/action/Highlighter';
 import AutoAwesomeRounded from '@material-ui/icons/AutoAwesomeRounded';
 import Frame from 'docs/src/components/action/Frame';
 import RealEstateCard from 'docs/src/components/showcase/RealEstateCard';
@@ -161,8 +161,7 @@ export default function CoreStyling() {
               overline="Styling"
               title={
                 <Typography variant="h2">
-                  Rapidly add and tweak any styles using{' '}
-                  <GradientText>CSS utilities</GradientText>
+                  Rapidly add and tweak any styles using <GradientText>CSS utilities</GradientText>
                 </Typography>
               }
               description="CSS utilities allow you to move faster and make for a smooth developer experience when styling any component."

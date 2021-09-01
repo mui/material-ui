@@ -166,7 +166,7 @@ export default function CoreComponents() {
         </Grid>
         <Grid item xs={12} md={6}>
           <Frame sx={{ height: '100%' }}>
-            <Frame.Demo sx={{ flexGrow: 1}}>
+            <Frame.Demo sx={{ flexGrow: 1 }}>
               <ThemeProvider
                 theme={(theme: Theme) =>
                   createTheme(
@@ -175,7 +175,8 @@ export default function CoreComponents() {
                 }
               >
                 {demo === 'Button' && (
-                  <Stack gap={2}
+                  <Stack
+                    gap={2}
                     sx={{
                       height: '100%',
                       py: 5,
@@ -191,7 +192,6 @@ export default function CoreComponents() {
                         mt: 0,
                         mx: 0.5,
                       },
-                      
                     }}
                   >
                     <Button variant="text" startIcon={<ShoppingCartRounded />}>

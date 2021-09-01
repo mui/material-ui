@@ -32,11 +32,15 @@ export default (function More(props: ButtonBaseProps) {
       }}
     >
       <Box sx={{ mr: 1, px: '3px', lineHeight: 0 }}>
-        <AddCircleOutlineRounded color="primary" fontSize="small"/>
+        <AddCircleOutlineRounded color="primary" fontSize="small" />
       </Box>
       <Typography color="primary.main" variant="body2" fontWeight="bold">
         Much more{' '}
-        <KeyboardArrowRightRounded color="primary" fontSize="small" sx={{ verticalAlign: 'middle'}} />
+        <KeyboardArrowRightRounded
+          color="primary"
+          fontSize="small"
+          sx={{ verticalAlign: 'middle' }}
+        />
       </Typography>
     </ButtonBase>
   );
