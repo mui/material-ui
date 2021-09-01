@@ -61,7 +61,7 @@ const PickersPopperPaper = styled(Paper, { skipSx: true })<{
 const PickersPopperActions = styled(DialogActions, { skipSx: true })<{
   ownerState: PickerPopperProps;
 }>(({ ownerState }) => ({
-  ...((ownerState.showTodayButton) && {
+  ...(ownerState.showTodayButton && {
     // set justifyContent to default value to fix IE11 layout bug
     // see https://github.com/mui-org/material-ui-pickers/pull/267
     justifyContent: 'flex-start',
@@ -226,7 +226,7 @@ const PickersPopper = (props: PickerPopperProps) => {
     TransitionComponent = Grow,
     TrapFocusProps,
     showTodayButton = false,
-    onSetToday
+    onSetToday,
   } = props;
 
   React.useEffect(() => {
