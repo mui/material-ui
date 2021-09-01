@@ -9,7 +9,7 @@ import {
 } from '@mui/system';
 import { deepmerge, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/core';
-import { styled, useThemeProps, useTheme } from '@mui/material/styles';
+import { styled, useThemeProps } from '@mui/material/styles';
 import { getMasonryUtilityClass } from './masonryClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -22,15 +22,6 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getMasonryUtilityClass, classes);
 };
 
-const configureChildrenOrder = (columns) => {
-  const childrenOrder = {};
-  childrenOrder[`& *:nth-of-type(${columns}n)`] = { order: columns };
-  for (let i = 1; i < columns; i += 1) {
-    childrenOrder[`& *:nth-of-type(${columns}n+${i})`] = { order: i };
-  }
-  return childrenOrder;
-};
-
 const computeBreakpointsBase = (breakpoints, prop) => {
   const base = {};
   Object.keys(breakpoints.values).forEach((breakpoint) => {
@@ -39,18 +30,6 @@ const computeBreakpointsBase = (breakpoints, prop) => {
     }
   });
   return base;
-};
-
-const computeNumberOfLineBreaks = (columnValues) => {
-  let result = 0;
-  if (Array.isArray(columnValues)) {
-    result = Math.max(...columnValues);
-  } else if (typeof columnValues === 'object') {
-    result = Math.max(...Object.values(columnValues));
-  } else {
-    result = columnValues;
-  }
-  return result > 0 ? result - 1 : 0;
 };
 
 export const style = ({ ownerState, theme }) => {
@@ -95,7 +74,6 @@ export const style = ({ ownerState, theme }) => {
 
   const columnStyleFromPropValue = (propValue) => {
     return {
-      ...configureChildrenOrder(propValue),
       '& *': { width: `${(100 / propValue).toFixed(2)}%` },
     };
   };
@@ -122,43 +100,55 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
   const masonryRef = React.useRef();
   const [maxColumnHeight, setMaxColumnHeight] = React.useState();
   const [maxNumOfRows, setMaxNumOfRows] = React.useState();
+  const [numberOfLineBreaks, setNumberOfLineBreaks] = React.useState(0);
   const { children, className, component = 'div', columns = 4, spacing = 1, ...other } = props;
   const ownerState = { ...props, spacing, columns, maxColumnHeight, maxNumOfRows };
   const classes = useUtilityClasses(ownerState);
-  const lineBreakStyle = {
-    flexBasis: '100%',
-    width: 0,
-    margin: 0,
-    padding: 0,
-    content: '',
-  };
 
   React.useEffect(() => {
     const handleResize = () => {
-      const columnHeights = [];
-      const numOfRows = [];
+      let columnHeights;
+      let numOfRows;
+      let curNumOfCols;
       let skip = false;
       masonryRef.current.childNodes.forEach((child) => {
         if (child.dataset.class === 'line-break' || skip) {
           return;
         }
         const computedStyle = window.getComputedStyle(child);
+        const parentWidth = Number(
+          window.getComputedStyle(masonryRef.current).width.replace('px', ''),
+        );
+        const width = Number(computedStyle.width.replace('px', ''));
+        const height = Number(computedStyle.height.replace('px', ''));
         // if any one of children is not rendered yet, container's height shouldn't be set;
         // this is especially crucial for image masonry
-        if (computedStyle.height === '0px') {
+        if (parentWidth === 0 || width === 0 || height === 0) {
           skip = true;
           return;
         }
-        const order = computedStyle.order;
-        const height = Number(computedStyle.height.replace('px', ''));
-        columnHeights[order - 1] = columnHeights[order - 1]
-          ? columnHeights[order - 1] + Math.ceil(height)
-          : Math.ceil(height);
-        numOfRows[order - 1] = numOfRows[order - 1] ? numOfRows[order - 1] + 1 : 1;
+        if (!curNumOfCols) {
+          curNumOfCols = Math.floor(parentWidth / width);
+        }
+        if (!columnHeights) {
+          columnHeights = new Array(curNumOfCols).fill(0);
+        }
+        if (!numOfRows) {
+          numOfRows = new Array(curNumOfCols).fill(0);
+        }
+
+        // find the current shortest column (where the current item will be placed)
+        const curMinColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
+        columnHeights[curMinColumnIndex] += height;
+        numOfRows[curMinColumnIndex] += 1;
+        const order = curMinColumnIndex + 1;
+        child.style.order = order;
       });
       if (!skip) {
         setMaxColumnHeight(Math.max(...columnHeights));
         setMaxNumOfRows(Math.max(...numOfRows));
+        const numOfLineBreaks = curNumOfCols > 0 ? curNumOfCols - 1 : 0;
+        setNumberOfLineBreaks(numOfLineBreaks);
       }
     };
     if (typeof ResizeObserver === 'undefined') {
@@ -174,12 +164,12 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
   }, []);
 
   const handleRef = useForkRef(ref, masonryRef);
-  const theme = useTheme();
-  const columnValues = resolveBreakpointValues({
-    values: columns,
-    base: computeBreakpointsBase(theme.breakpoints, columns),
-  });
-
+  const lineBreakStyle = {
+    flexBasis: '100%',
+    width: 0,
+    margin: 0,
+    padding: 0,
+  };
   return (
     <MasonryRoot
       as={component}
@@ -189,8 +179,8 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       {...other}
     >
       {children}
-      {new Array(computeNumberOfLineBreaks(columnValues)).fill('').map((_, index) => (
-        <span key={index} data-class="line-break" style={lineBreakStyle} />
+      {new Array(numberOfLineBreaks).fill('').map((_, index) => (
+        <span key={index} data-class="line-break" style={{ ...lineBreakStyle, order: index + 1 }} />
       ))}
     </MasonryRoot>
   );
