@@ -206,3 +206,22 @@ If you just want to add some global baseline styles for some of the HTML element
 If you are already using the [CssBaseline](/components/css-baseline/) component for setting baseline styles, you can also add these global styles as overrides for this component. Here is how you can achieve the same by using this approach.
 
 {{"demo": "pages/customization/how-to-customize/OverrideCssBaseline.js", "iframe": true, "height": 100}}
+
+> Note: It is a good practice to hoist the `<GlobalStyles />` to a static constant, to avoid rerendering. This will ensure that the `<style>` tag generated would not recalculate on each render.
+
+```diff
+ import * as React from 'react';
+ import GlobalStyles from '@mui/material/GlobalStyles';
+
++const inputGlobalStyles = <GlobalStyles styles={...} />;
+
+ const Input = (props) => {
+   return (
+     <React.Fragment>
+-      <GlobalStyles styles={...} />
++      {inputGlobalStyles}
+       <input {...props} />
+     </React.Fragment>
+   )
+ }
+```
