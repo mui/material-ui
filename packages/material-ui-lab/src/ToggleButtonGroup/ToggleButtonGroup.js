@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 let warnedOnce = false;
 
@@ -12,8 +12,8 @@ export default React.forwardRef(function DeprecatedToggleButtonGroup(props, ref)
       [
         'Material-UI: The ToggleButtonGroup component was moved from the lab to the core.',
         '',
-        "You should use `import { ToggleButtonGroup } from '@material-ui/core'`",
-        "or `import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup'`",
+        "You should use `import { ToggleButtonGroup } from '@mui/material'`",
+        "or `import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'`",
       ].join('\n'),
     );
 

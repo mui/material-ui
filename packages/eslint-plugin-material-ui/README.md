@@ -40,7 +40,7 @@ Removed in favor of [`no-restricted-imports`](https://eslint.org/docs/rules/no-r
     "no-restricted-imports": [
       "error",
       {
-        "patterns": ["@material-ui/*/*/*", "!@material-ui/core/test-utils/*"]
+        "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
       }
     ]
   }

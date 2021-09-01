@@ -1,4 +1,4 @@
-import { deepmerge } from '@material-ui/utils';
+import { deepmerge } from '@mui/utils';
 import createTheme from './createTheme';
 
 export default function createMuiStrictModeTheme(options, ...args) {

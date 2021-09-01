@@ -14,16 +14,16 @@
   resolved "https://registry.yarnpkg.com/@emotion/hash/-/hash-0.8.0.tgz#bbbff68978fefdbe68ccb533bc8cbe1d1afb5413"
   integrity sha512-kBJtf7PH6aWwZ6fka3zQ0p6SBYzx4fl1LoZXE2RrnYST9Xljm7WfKJrU4g/Xr3Beg72MLrp1AWNUmuYJTL7Cow==
 
-"@material-ui/core@^5.0.0-alpha.4":
+"@mui/material@^5.0.0-alpha.4":
   version "5.0.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@material-ui/core/-/core-5.0.0-alpha.4.tgz#32b20f7e0b219b8d8a31204ecc1e2e47cdb64519"
+  resolved "https://registry.yarnpkg.com/@mui/material/-/core-5.0.0-alpha.4.tgz#32b20f7e0b219b8d8a31204ecc1e2e47cdb64519"
   integrity sha512-0R7Xcf7g3vHK6T7B7vaThcZu107zGGwM+XFakShwNGlLkgVXB8qARzYReM3rLax5BIQG2K4A7FvMVxx347sKHA==
   dependencies:
     "@babel/runtime" "^7.4.4"
-    "@material-ui/styles" "^5.0.0-alpha.1"
-    "@material-ui/system" "^5.0.0-alpha.1"
-    "@material-ui/types" "^5.1.0"
-    "@material-ui/utils" "^5.0.0-alpha.1"
+    "@mui/styles" "^5.0.0-alpha.1"
+    "@mui/system" "^5.0.0-alpha.1"
+    "@mui/types" "^5.1.0"
+    "@mui/utils" "^5.0.0-alpha.1"
     "@types/react-transition-group" "^4.2.0"
     clsx "^1.0.4"
     hoist-non-react-statics "^3.3.2"
@@ -32,22 +32,22 @@
     react-is "^16.8.0"
     react-transition-group "^4.4.0"
 
-"@material-ui/icons@^5.0.0-alpha.4":
+"@mui/icons-material@^5.0.0-alpha.4":
   version "5.0.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/@material-ui/icons/-/icons-5.0.0-alpha.4.tgz#edaa333b9612f5a02669fcec6b4af1ab91c31402"
+  resolved "https://registry.yarnpkg.com/@mui/icons-material/-/icons-5.0.0-alpha.4.tgz#edaa333b9612f5a02669fcec6b4af1ab91c31402"
   integrity sha512-AE1nn/cYBNZ9FSihUMLb2c39HwdUpGXF3S1v7no68NtwOLjUorWshJJ/0i//cLgwvVEieRKI2XJpZjg6Ze/xNA==
   dependencies:
     "@babel/runtime" "^7.4.4"
 
-"@material-ui/styles@^5.0.0-alpha.1":
+"@mui/styles@^5.0.0-alpha.1":
   version "5.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@material-ui/styles/-/styles-5.0.0-alpha.1.tgz#fad59945ef97d1ed0afaac5250323dd9410c258f"
+  resolved "https://registry.yarnpkg.com/@mui/styles/-/styles-5.0.0-alpha.1.tgz#fad59945ef97d1ed0afaac5250323dd9410c258f"
   integrity sha512-2DKOIVXWaePCw+QHNJKeQc2AS87RxDT9uSFIVhXQn1Zi8Fo4op86Y/tVVx1b3WDWNpOmBYcMIiO8m+j3ETCRuw==
   dependencies:
     "@babel/runtime" "^7.4.4"
     "@emotion/hash" "^0.8.0"
-    "@material-ui/types" "^5.1.0"
-    "@material-ui/utils" "^5.0.0-alpha.1"
+    "@mui/types" "^5.1.0"
+    "@mui/utils" "^5.0.0-alpha.1"
     clsx "^1.0.4"
     csstype "^2.5.2"
     hoist-non-react-statics "^3.3.2"
@@ -61,24 +61,24 @@
     jss-plugin-vendor-prefixer "^10.0.3"
     prop-types "^15.7.2"
 
-"@material-ui/system@^5.0.0-alpha.1":
+"@mui/system@^5.0.0-alpha.1":
   version "5.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@material-ui/system/-/system-5.0.0-alpha.1.tgz#83980bb8bcb7e20ce1db744ed471f93529786f5e"
+  resolved "https://registry.yarnpkg.com/@mui/system/-/system-5.0.0-alpha.1.tgz#83980bb8bcb7e20ce1db744ed471f93529786f5e"
   integrity sha512-6wbmqGdN/j407rp1HXMzMG/DH83vclG05mWmP3/J/6PBH4jZp1/mNqRgHNljl8NEJK+vRXQmAccXK8aRBeelHQ==
   dependencies:
     "@babel/runtime" "^7.4.4"
-    "@material-ui/utils" "^5.0.0-alpha.1"
+    "@mui/utils" "^5.0.0-alpha.1"
     csstype "^2.5.2"
     prop-types "^15.7.2"
 
-"@material-ui/types@^5.1.0":
+"@mui/types@^5.1.0":
   version "5.1.0"
-  resolved "https://registry.yarnpkg.com/@material-ui/types/-/types-5.1.0.tgz#efa1c7a0b0eaa4c7c87ac0390445f0f88b0d88f2"
+  resolved "https://registry.yarnpkg.com/@mui/types/-/types-5.1.0.tgz#efa1c7a0b0eaa4c7c87ac0390445f0f88b0d88f2"
   integrity sha512-7cqRjrY50b8QzRSYyhSpx4WRw2YuO0KKIGQEVk5J8uoz2BanawykgZGoWEqKm7pVIbzFDN0SpPcVV4IhOFkl8A==
 
-"@material-ui/utils@^5.0.0-alpha.1":
+"@mui/utils@^5.0.0-alpha.1":
   version "5.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/@material-ui/utils/-/utils-5.0.0-alpha.1.tgz#6835345d3e4a5dcbf2f96d3512502dceba8d4771"
+  resolved "https://registry.yarnpkg.com/@mui/utils/-/utils-5.0.0-alpha.1.tgz#6835345d3e4a5dcbf2f96d3512502dceba8d4771"
   integrity sha512-FxkoLR/KA2133Oy1v/JLoTp/euui/xQXiBoybaBm2qWbKNzaJLM1d7KikA/9f1/y+cbSXiQUWYnQ3MtVddoHeQ==
   dependencies:
     "@babel/runtime" "^7.4.4"

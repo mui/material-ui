@@ -11,9 +11,9 @@ import {
   describeConformance,
   screen,
 } from 'test/utils';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import Fade from '@material-ui/core/Fade';
-import Modal, { modalClasses as classes } from '@material-ui/core/Modal';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Fade from '@mui/material/Fade';
+import Modal, { modalClasses as classes } from '@mui/material/Modal';
 
 describe('<Modal />', () => {
   const render = createClientRender();

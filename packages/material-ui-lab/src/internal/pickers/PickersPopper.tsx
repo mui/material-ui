@@ -1,13 +1,11 @@
 import * as React from 'react';
-import Grow from '@material-ui/core/Grow';
-import Paper, { PaperProps as MuiPaperProps } from '@material-ui/core/Paper';
-import Popper, { PopperProps as MuiPopperProps } from '@material-ui/core/Popper';
-import TrapFocus, {
-  TrapFocusProps as MuiTrapFocusProps,
-} from '@material-ui/core/Unstable_TrapFocus';
-import { useForkRef, useEventCallback, ownerDocument } from '@material-ui/core/utils';
-import { styled } from '@material-ui/core/styles';
-import { TransitionProps as MuiTransitionProps } from '@material-ui/core/transitions';
+import Grow from '@mui/material/Grow';
+import Paper, { PaperProps as MuiPaperProps } from '@mui/material/Paper';
+import Popper, { PopperProps as MuiPopperProps } from '@mui/material/Popper';
+import TrapFocus, { TrapFocusProps as MuiTrapFocusProps } from '@mui/material/Unstable_TrapFocus';
+import { useForkRef, useEventCallback, ownerDocument } from '@mui/material/utils';
+import { styled } from '@mui/material/styles';
+import { TransitionProps as MuiTransitionProps } from '@mui/material/transitions';
 
 export interface ExportedPickerPopperProps {
   /**
@@ -53,7 +51,7 @@ function clickedRootScrollbar(event: MouseEvent, doc: Document) {
 }
 
 /**
- * Based on @material-ui/core/ClickAwayListener without the customization.
+ * Based on @mui/material/ClickAwayListener without the customization.
  * We can probably strip away even more since children won't be portaled.
  * @param onClickAway
  * @param onClick

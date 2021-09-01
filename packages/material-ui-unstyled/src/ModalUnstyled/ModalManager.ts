@@ -2,7 +2,7 @@ import {
   unstable_ownerWindow as ownerWindow,
   unstable_ownerDocument as ownerDocument,
   unstable_getScrollbarSize as getScrollbarSize,
-} from '@material-ui/utils';
+} from '@mui/utils';
 
 export interface ManagedModalProps {
   disableScrollLock?: boolean;

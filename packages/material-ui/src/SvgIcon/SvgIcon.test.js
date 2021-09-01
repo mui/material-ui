@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, createClientRender } from 'test/utils';
-import SvgIcon, { svgIconClasses as classes } from '@material-ui/core/SvgIcon';
+import SvgIcon, { svgIconClasses as classes } from '@mui/material/SvgIcon';
 
 describe('<SvgIcon />', () => {
   const render = createClientRender();

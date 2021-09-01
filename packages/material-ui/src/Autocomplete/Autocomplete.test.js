@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { describeConformance, act, createClientRender, fireEvent, screen } from 'test/utils';
 import { spy } from 'sinon';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Chip from '@material-ui/core/Chip';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
+import Chip from '@mui/material/Chip';
 import Autocomplete, {
   autocompleteClasses as classes,
   createFilterOptions,
-} from '@material-ui/core/Autocomplete';
+} from '@mui/material/Autocomplete';
 
 function checkHighlightIs(listbox, expected) {
   const focused = listbox.querySelector(`.${classes.focused}`);

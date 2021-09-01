@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
+import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
 import Link from 'docs/src/modules/components/Link';
 
 interface CommunitySayCardProps {
@@ -60,9 +60,9 @@ export default function CommunitySayCard(props: CommunitySayCardProps) {
         >
           <img loading="lazy" src={avatar} width="48" height="48" alt={`${name} avatar`} />
         </Avatar>
-        <Box sx={{ fontSize: 16, lineHeight: '24px' }}>
+        <Box sx={{ fontSize: '1rem', lineHeight: '24px' }}>
           <Typography sx={{ fontWeight: 'bold' }}>{name}</Typography>
-          <Typography sx={{ fontSize: 16 }}>{id}</Typography>
+          <Typography sx={{ fontSize: '1rem' }}>{id}</Typography>
         </Box>
       </Box>
     </Box>

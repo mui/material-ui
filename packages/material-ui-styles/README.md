@@ -1,4 +1,4 @@
-# @material-ui/styles
+# @mui/styles
 
 You can leverage our styling solution, even if you are not using our components.
 
@@ -8,10 +8,10 @@ Install the package in your project directory with:
 
 ```sh
 // with npm
-npm install @material-ui/styles
+npm install @mui/styles
 
 // with yarn
-yarn add @material-ui/styles
+yarn add @mui/styles
 ```
 
 ## Documentation

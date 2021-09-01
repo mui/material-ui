@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import fr from 'date-fns/locale/fr';
-import TextField from '@material-ui/core/TextField';
-import MobileDatePicker from '@material-ui/lab/MobileDatePicker';
+import TextField from '@mui/material/TextField';
+import MobileDatePicker from '@mui/lab/MobileDatePicker';
 import { fireEvent, screen } from 'test/utils';
 import { adapterToUse, getByMuiTest, createPickerRender } from '../internal/pickers/test-utils';
 

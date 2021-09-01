@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { SxProps } from '@material-ui/system';
-import { Theme } from '@material-ui/core/styles';
-import { InternalStandardProps as StandardProps, TypographyProps } from '@material-ui/core';
+import { SxProps } from '@mui/system';
+import { Theme } from '@mui/material/styles';
+import { InternalStandardProps as StandardProps, TypographyProps } from '@mui/material';
 import { TimelineContentClasses } from './timelineContentClasses';
 
 export interface TimelineContentProps extends StandardProps<TypographyProps> {

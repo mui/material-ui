@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { useTheme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import { useTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 
 export default function SectionHeadline({
   overline,

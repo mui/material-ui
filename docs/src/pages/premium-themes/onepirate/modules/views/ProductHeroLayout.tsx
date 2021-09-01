@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Theme, styled } from '@material-ui/core/styles';
-import { SxProps } from '@material-ui/system';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
+import { Theme, styled } from '@mui/material/styles';
+import { SxProps } from '@mui/system';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 
 const ProductHeroLayoutRoot = styled('section')(({ theme }) => ({
   color: theme.palette.common.white,

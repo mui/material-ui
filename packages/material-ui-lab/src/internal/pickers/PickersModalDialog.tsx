@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import Dialog, { DialogProps as MuiDialogProps, dialogClasses } from '@material-ui/core/Dialog';
-import { styled } from '@material-ui/core/styles';
+import Button from '@mui/material/Button';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import Dialog, { DialogProps as MuiDialogProps, dialogClasses } from '@mui/material/Dialog';
+import { styled } from '@mui/material/styles';
 import { DIALOG_WIDTH } from './constants/dimensions';
 
 export interface ExportedPickerModalProps {

@@ -1,13 +1,13 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 import GradientText from 'docs/src/components/typography/GradientText';
-import Palette from '@material-ui/icons/Palette';
-import LibraryBooks from '@material-ui/icons/LibraryBooks';
-import CodeRounded from '@material-ui/icons/CodeRounded';
+import Palette from '@mui/icons-material/Palette';
+import LibraryBooks from '@mui/icons-material/LibraryBooks';
+import CodeRounded from '@mui/icons-material/CodeRounded';
 
 const content = [
   {

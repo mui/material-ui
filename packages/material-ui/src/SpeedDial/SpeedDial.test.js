@@ -9,10 +9,10 @@ import {
   screen,
   describeConformance,
 } from 'test/utils';
-import Icon from '@material-ui/core/Icon';
-import SpeedDial, { speedDialClasses as classes } from '@material-ui/core/SpeedDial';
-import SpeedDialAction from '@material-ui/core/SpeedDialAction';
-import { tooltipClasses } from '@material-ui/core/Tooltip';
+import Icon from '@mui/material/Icon';
+import SpeedDial, { speedDialClasses as classes } from '@mui/material/SpeedDial';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
+import { tooltipClasses } from '@mui/material/Tooltip';
 
 describe('<SpeedDial />', () => {
   let clock;

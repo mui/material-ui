@@ -2,7 +2,7 @@ import * as React from 'react';
 import { spy } from 'sinon';
 import { expect } from 'chai';
 import { fireEvent, screen, describeConformance } from 'test/utils';
-import YearPicker, { yearPickerClasses as classes } from '@material-ui/lab/YearPicker';
+import YearPicker, { yearPickerClasses as classes } from '@mui/lab/YearPicker';
 import { adapterToUse, wrapPickerMount, createPickerRender } from '../internal/pickers/test-utils';
 
 describe('<YearPicker />', () => {

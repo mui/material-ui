@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { act, describeConformance, createClientRender } from 'test/utils';
 import { Transition } from 'react-transition-group';
-import Zoom from '@material-ui/core/Zoom';
+import Zoom from '@mui/material/Zoom';
 
 describe('<Zoom />', () => {
   const render = createClientRender();

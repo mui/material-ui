@@ -1,4 +1,4 @@
-import { createBreakpoints, createSpacing } from '@material-ui/system';
+import { createBreakpoints, createSpacing } from '@mui/system';
 
 export default function adaptV4Theme(inputTheme) {
   if (process.env.NODE_ENV !== 'production') {

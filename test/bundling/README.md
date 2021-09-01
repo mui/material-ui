@@ -13,7 +13,7 @@ The created file might need some manual adjustment since not every edge case is 
    - to test a Pull Request
      1. checkout branch
      1. `yarn`
-     1. `yarn lerna run build --scope "@material-ui/*"`
+     1. `yarn lerna run build --scope "@mui/*"`
      1. `cd` to fixture
      1. `yarn install`
      1. `node ../../scripts/useBuildFromSource.js .`
@@ -44,7 +44,7 @@ curl --request POST \
 
 1. Create a folder in `test/fixtures/bundling`
 1. Add the necessary dependencies
-1. Re-use the entries for `dependencies` and `resolutions` for `@material-ui/*` packages from the other fixtures
+1. Re-use the entries for `dependencies` and `resolutions` for `@mui/*` packages from the other fixtures
 1. Create a template
 1. Write a factory that fills the template in `test/bundling/scripts/createFixture`
 1. Add an entry into the `bundling` CircleCI pipeline (`.circleci/config.yml`)

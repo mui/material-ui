@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import TrapFocus from '@material-ui/core/Unstable_TrapFocus';
+import Box from '@mui/material/Box';
+import TrapFocus from '@mui/material/Unstable_TrapFocus';
 
 export default function DisableEnforceFocus() {
   const [open, setOpen] = React.useState(false);

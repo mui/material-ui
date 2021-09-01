@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { integerPropType } from '@material-ui/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { integerPropType } from '@mui/utils';
 import useThemeProps from '../styles/useThemeProps';
 import { getPaginationUtilityClass } from './paginationClasses';
 import usePagination from '../usePagination';

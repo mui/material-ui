@@ -1,2 +1,2 @@
-export { default } from '@material-ui/core/ToggleButton';
-export * from '@material-ui/core/ToggleButton';
+export { default } from '@mui/material/ToggleButton';
+export * from '@mui/material/ToggleButton';

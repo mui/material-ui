@@ -18,6 +18,9 @@ ruleTester.run('no-hardcoded-labels', rule, {
     { code: '<a>Material-UI</a>', options: [{ allow: 'Material-UI' }] },
     '<span> ❤️</span>',
     `<button>{t("a")}{' '}</button>`,
+    '<h2>{componentName} API</h2>',
+    '<span>*</span>',
+    '<span>.{className}</span>',
   ],
   invalid: [
     { code: '<button aria-label="a" />', errors: [{ messageId: 'literal-label' }] },

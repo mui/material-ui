@@ -7,7 +7,7 @@ import {
   unstable_useEnhancedEffect as useEnhancedEffect,
   unstable_useForkRef as useForkRef,
   unstable_setRef as setRef,
-} from '@material-ui/utils';
+} from '@mui/utils';
 
 function getContainer(container) {
   return typeof container === 'function' ? container() : container;

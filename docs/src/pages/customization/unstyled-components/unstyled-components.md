@@ -26,7 +26,7 @@ If, however, you:
 - need to customize Material Design with your brand colors,
 - or need to implement a design system based on Material Design,
 
-then you may be better off using the `@material-ui/core` package and [customizing it](/customization/how-to-customize/).
+then you may be better off using the `@mui/material` package and [customizing it](/customization/how-to-customize/).
 
 ## Components vs. hooks
 

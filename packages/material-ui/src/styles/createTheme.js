@@ -1,6 +1,6 @@
-import { deepmerge } from '@material-ui/utils';
-import { generateUtilityClass } from '@material-ui/unstyled';
-import { createTheme as systemCreateTheme } from '@material-ui/system';
+import { deepmerge } from '@mui/utils';
+import { generateUtilityClass } from '@mui/core';
+import { createTheme as systemCreateTheme } from '@mui/system';
 import createMixins from './createMixins';
 import createPalette from './createPalette';
 import createTypography from './createTypography';
@@ -109,7 +109,7 @@ export function createMuiTheme(...args) {
         [
           'Material-UI: the createMuiTheme function was renamed to createTheme.',
           '',
-          "You should use `import { createTheme } from '@material-ui/core/styles'`",
+          "You should use `import { createTheme } from '@mui/material/styles'`",
         ].join('\n'),
       );
     }

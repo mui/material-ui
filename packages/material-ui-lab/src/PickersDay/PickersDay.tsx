@@ -1,16 +1,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { SxProps } from '@material-ui/system';
-import ButtonBase, { ButtonBaseProps } from '@material-ui/core/ButtonBase';
-import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
+import { SxProps } from '@mui/system';
+import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
-} from '@material-ui/unstyled';
-import { useTheme, alpha, styled, useThemeProps, Theme } from '@material-ui/core/styles';
-import { useForkRef } from '@material-ui/core/utils';
+} from '@mui/core';
+import { useTheme, alpha, styled, useThemeProps, Theme } from '@mui/material/styles';
+import { useForkRef } from '@mui/material/utils';
 import { ExtendMui } from '../internal/pickers/typings/helpers';
 import { useUtils } from '../internal/pickers/hooks/useUtils';
 import { DAY_SIZE, DAY_MARGIN } from '../internal/pickers/constants/dimensions';

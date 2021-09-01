@@ -1,14 +1,14 @@
 import * as React from 'react';
-import Stack from '@material-ui/core/Stack';
-import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
-import EditIcon from '@material-ui/icons/Edit';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import NavigationIcon from '@material-ui/icons/Navigation';
+import Box from '@mui/material/Box';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+import EditIcon from '@mui/icons-material/Edit';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import NavigationIcon from '@mui/icons-material/Navigation';
 
 export default function FloatingActionButtons() {
   return (
-    <Stack direction="row" alignItems="center" spacing={1}>
+    <Box sx={{ '& > :not(style)': { m: 1 } }}>
       <Fab color="primary" aria-label="add">
         <AddIcon />
       </Fab>
@@ -22,6 +22,6 @@ export default function FloatingActionButtons() {
       <Fab disabled aria-label="like">
         <FavoriteIcon />
       </Fab>
-    </Stack>
+    </Box>
   );
 }

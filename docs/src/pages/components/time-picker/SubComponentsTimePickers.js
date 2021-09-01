@@ -1,7 +1,7 @@
 import * as React from 'react';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import ClockPicker from '@material-ui/lab/ClockPicker';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import ClockPicker from '@mui/lab/ClockPicker';
 
 export default function SubComponentsTimePickers() {
   const [date, setDate] = React.useState(new Date());

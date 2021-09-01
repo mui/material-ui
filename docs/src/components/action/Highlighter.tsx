@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ButtonBase, { ButtonBaseProps } from '@material-ui/core/ButtonBase';
+import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
 
 export default function Highlighter({
   disableBorder = false,

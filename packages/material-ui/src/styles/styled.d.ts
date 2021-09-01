@@ -1,4 +1,4 @@
-import { CreateMUIStyled } from '@material-ui/system';
+import { CreateMUIStyled } from '@mui/system';
 import { Theme } from './createTheme';
 
 /**

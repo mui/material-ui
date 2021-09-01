@@ -2,8 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { stub } from 'sinon';
 import { describeConformance, createClientRender } from 'test/utils';
-import MenuList from '@material-ui/core/MenuList';
-import List from '@material-ui/core/List';
+import MenuList from '@mui/material/MenuList';
+import List from '@mui/material/List';
 import getScrollbarSize from '../utils/getScrollbarSize';
 
 function setStyleWidthForJsdomOrBrowser(style, width) {

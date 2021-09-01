@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { styled, alpha } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import NoSsr from '@material-ui/core/NoSsr';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
+import { styled, alpha } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import NoSsr from '@mui/material/NoSsr';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 import HeaderNavBar from 'docs/src/components/header/HeaderNavBar';
 import HeaderNavDropdown from 'docs/src/components/header/HeaderNavDropdown';

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { TextFieldProps as MuiTextFieldPropsType } from '@material-ui/core/TextField';
-import { IconButtonProps } from '@material-ui/core/IconButton';
-import { InputAdornmentProps } from '@material-ui/core/InputAdornment';
+import { TextFieldProps as MuiTextFieldPropsType } from '@mui/material/TextField';
+import { IconButtonProps } from '@mui/material/IconButton';
+import { InputAdornmentProps } from '@mui/material/InputAdornment';
 import { onSpaceOrEnter } from './utils';
 import { ParseableDate } from './constants/prop-types';
 import { useUtils, MuiPickersAdapter } from './hooks/useUtils';

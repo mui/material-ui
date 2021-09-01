@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Skeleton from '@material-ui/core/Skeleton';
+import Skeleton from '@mui/material/Skeleton';
 
 let warnedOnce = false;
 
@@ -12,8 +12,8 @@ export default React.forwardRef(function DeprecatedSkeleton(props, ref) {
       [
         'Material-UI: The Skeleton component was moved from the lab to the core.',
         '',
-        "You should use `import { Skeleton } from '@material-ui/core'`",
-        "or `import Skeleton from '@material-ui/core/Skeleton'`",
+        "You should use `import { Skeleton } from '@mui/material'`",
+        "or `import Skeleton from '@mui/material/Skeleton'`",
       ].join('\n'),
     );
 

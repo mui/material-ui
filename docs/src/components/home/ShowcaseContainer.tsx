@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Box, { BoxProps } from '@material-ui/core/Box';
-import NoSsr from '@material-ui/core/NoSsr';
-import Paper, { PaperProps } from '@material-ui/core/Paper';
+import Box, { BoxProps } from '@mui/material/Box';
+import NoSsr from '@mui/material/NoSsr';
+import Paper, { PaperProps } from '@mui/material/Paper';
 
 export default function ShowcaseContainer({
   preview,

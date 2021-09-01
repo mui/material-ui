@@ -1,2 +1,2 @@
-export { useAutocomplete as default } from '@material-ui/unstyled/AutocompleteUnstyled';
-export * from '@material-ui/unstyled/AutocompleteUnstyled';
+export { useAutocomplete as default } from '@mui/core/AutocompleteUnstyled';
+export * from '@mui/core/AutocompleteUnstyled';
