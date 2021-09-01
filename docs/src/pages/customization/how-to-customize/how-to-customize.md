@@ -207,7 +207,7 @@ If you are already using the [CssBaseline](/components/css-baseline/) component 
 
 {{"demo": "pages/customization/how-to-customize/OverrideCssBaseline.js", "iframe": true, "height": 100}}
 
-> Note: It is a good practice to hoist the `<GlobalStyles />` to a static constant, to avoid rerendering. This will ensure that the `<style>` tag generated would not change on each render.
+> Note: It is a good practice to hoist the `<GlobalStyles />` to a static constant, to avoid rerendering. This will ensure that the `<style>` tag generated would not recalculate on each render.
 
 ```diff
  import * as React from 'react';
