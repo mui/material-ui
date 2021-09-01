@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
 import BrandingProvider from 'docs/src/BrandingProvider';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import CssBaseline from '@mui/material/CssBaseline';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import CoreHero from 'docs/src/components/productCore/CoreHero';
 import CoreComponents from 'docs/src/components/productCore/CoreComponents';
