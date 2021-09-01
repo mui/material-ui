@@ -1,9 +1,9 @@
 import * as React from 'react';
-import ImageList from '@material-ui/core/ImageList';
-import ImageListItem from '@material-ui/core/ImageListItem';
-import ImageListItemBar from '@material-ui/core/ImageListItemBar';
-import IconButton from '@material-ui/core/IconButton';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+import IconButton from '@mui/material/IconButton';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 function srcset(image, width, height, rows = 1, cols = 1) {
   return {

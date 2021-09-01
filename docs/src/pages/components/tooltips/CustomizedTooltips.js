@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Tooltip, { tooltipClasses } from '@material-ui/core/Tooltip';
-import Typography from '@material-ui/core/Typography';
+import { styled } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
+import Typography from '@mui/material/Typography';
 
 const LightTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />

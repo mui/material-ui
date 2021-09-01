@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import ButtonBase, { ButtonBaseProps } from '@material-ui/core/ButtonBase';
-import Typography from '@material-ui/core/Typography';
-import AddCircleOutlineRounded from '@material-ui/icons/AddCircleOutlineRounded';
-import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
+import Box from '@mui/material/Box';
+import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
+import Typography from '@mui/material/Typography';
+import AddCircleOutlineRounded from '@mui/icons-material/AddCircleOutlineRounded';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 
 export default (function More(props: ButtonBaseProps) {
   return (

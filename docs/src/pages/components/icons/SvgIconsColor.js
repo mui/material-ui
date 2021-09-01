@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import { pink } from '@material-ui/core/colors';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import Box from '@mui/material/Box';
+import { pink } from '@mui/material/colors';
+import SvgIcon from '@mui/material/SvgIcon';
 
 function HomeIcon(props) {
   return (

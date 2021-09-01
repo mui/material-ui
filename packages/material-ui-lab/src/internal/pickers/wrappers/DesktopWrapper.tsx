@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useForkRef } from '@material-ui/core/utils';
+import { useForkRef } from '@mui/material/utils';
 import { WrapperVariantContext } from './WrapperVariantContext';
 import PickersPopper, { ExportedPickerPopperProps } from '../PickersPopper';
 import { DateInputPropsLike, PrivateWrapperProps } from './WrapperProps';

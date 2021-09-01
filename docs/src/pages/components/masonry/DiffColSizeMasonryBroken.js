@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Masonry from '@material-ui/lab/Masonry';
-import MasonryItem from '@material-ui/lab/MasonryItem';
+import Box from '@mui/material/Box';
+import Masonry from '@mui/lab/Masonry';
+import MasonryItem from '@mui/lab/MasonryItem';
 
 export default function DiffColSizeMasonryBroken() {
   return (

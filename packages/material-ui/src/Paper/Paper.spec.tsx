@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Paper from '@material-ui/core/Paper';
+import Paper from '@mui/material/Paper';
 
 const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
 

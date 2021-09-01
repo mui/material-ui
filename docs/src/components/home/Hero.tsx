@@ -1,10 +1,10 @@
 import * as React from 'react';
 import dynamic from 'next/dynamic';
-import { useTheme } from '@material-ui/core/styles';
-import Box, { BoxProps } from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Stack from '@material-ui/core/Stack';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import Box, { BoxProps } from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import GradientText from 'docs/src/components/typography/GradientText';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import HeroContainer from 'docs/src/layouts/HeroContainer';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Box, { BoxProps } from '@material-ui/core/Box';
+import Box, { BoxProps } from '@mui/material/Box';
 import Link from 'docs/src/modules/components/Link';
 import t1 from 'docs/src/modules/branding/t1';
 

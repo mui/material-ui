@@ -1,9 +1,9 @@
 import * as React from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import { useTheme, alpha } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import { useTheme, alpha } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
@@ -11,12 +11,12 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
 import ArrowButton from 'docs/src/components/action/ArrowButton';
-import LaunchRounded from '@material-ui/icons/LaunchRounded';
+import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
-import DashboardRounded from '@material-ui/icons/DashboardRounded';
-import Layers from '@material-ui/icons/Layers';
-import ShoppingBag from '@material-ui/icons/ShoppingBag';
+import DashboardRounded from '@mui/icons-material/DashboardRounded';
+import Layers from '@mui/icons-material/Layers';
+import ShoppingBag from '@mui/icons-material/ShoppingBag';
 
 const DEMOS = ['Dashboard', 'Landing Pages', 'E-commerce'];
 

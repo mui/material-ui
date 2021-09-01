@@ -1,4 +1,4 @@
-import { createBox } from '@material-ui/system';
+import { createBox } from '@mui/system';
 import { createTheme } from '../styles';
 
 const defaultTheme = createTheme();

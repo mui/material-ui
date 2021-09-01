@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { integerPropType } from '@material-ui/utils';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { integerPropType } from '@mui/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/core';
 import StepperContext from '../Stepper/StepperContext';
 import StepContext from './StepContext';
 import useThemeProps from '../styles/useThemeProps';

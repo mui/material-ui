@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ThemeProvider, makeStyles } from '@material-ui/styles';
+import { ThemeProvider, makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({
   root: {

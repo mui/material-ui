@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, describeConformance } from 'test/utils';
-import TableHead, { tableHeadClasses as classes } from '@material-ui/core/TableHead';
+import TableHead, { tableHeadClasses as classes } from '@mui/material/TableHead';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 
 describe('<TableHead />', () => {

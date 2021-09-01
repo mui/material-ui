@@ -1,7 +1,7 @@
-import { deepmerge } from '@material-ui/utils';
-import { createTheme, ThemeOptions, Theme } from '@material-ui/core/styles';
+import { deepmerge } from '@mui/utils';
+import { createTheme, ThemeOptions, Theme } from '@mui/material/styles';
 
-declare module '@material-ui/core/styles/createPalette' {
+declare module '@mui/material/styles/createPalette' {
   interface ColorRange {
     50: string;
     100: string;
@@ -34,7 +34,7 @@ declare module '@material-ui/core/styles/createPalette' {
   }
 }
 
-declare module '@material-ui/core/styles/createTypography' {
+declare module '@mui/material/styles/createTypography' {
   interface TypographyOptions {
     fontWeightExtraBold?: number;
     fontFamilyCode?: string;
@@ -47,7 +47,7 @@ declare module '@material-ui/core/styles/createTypography' {
 }
 
 // TODO: enable this once types conflict is fixed
-// declare module '@material-ui/core/Button' {
+// declare module '@mui/material/Button' {
 //   interface ButtonPropsVariantOverrides {
 //     code: true;
 //   }

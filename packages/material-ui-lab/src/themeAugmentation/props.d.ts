@@ -64,7 +64,7 @@ export interface LabComponentsPropsList {
   MuiYearPicker: YearPickerProps<unknown>;
 }
 
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface ComponentsPropsList extends LabComponentsPropsList {}
 }
 

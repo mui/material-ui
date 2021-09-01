@@ -1,4 +1,4 @@
-import { InternalStandardProps as StandardProps } from '@material-ui/core';
+import { InternalStandardProps as StandardProps } from '@mui/material';
 import * as React from 'react';
 
 export interface TreeItemContentProps extends StandardProps<React.HTMLAttributes<HTMLElement>> {

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Modal from '@material-ui/core/Modal';
-import Button from '@material-ui/core/Button';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Button from '@mui/material/Button';
 
 const style = {
   position: 'absolute' as 'absolute',

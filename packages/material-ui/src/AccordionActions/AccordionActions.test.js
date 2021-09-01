@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createClientRender, describeConformance } from 'test/utils';
 import AccordionActions, {
   accordionActionsClasses as classes,
-} from '@material-ui/core/AccordionActions';
+} from '@mui/material/AccordionActions';
 
 describe('<AccordionActions />', () => {
   const render = createClientRender();

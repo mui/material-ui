@@ -1,4 +1,4 @@
-import { deepmerge } from '@material-ui/utils';
+import { deepmerge } from '@mui/utils';
 import createBreakpoints from './createBreakpoints';
 import shape from './shape';
 import createSpacing from './createSpacing';

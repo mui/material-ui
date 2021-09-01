@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import GradientText from 'docs/src/components/typography/GradientText';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemButton from '@material-ui/core/ListItemButton';
-import ListItemText from '@material-ui/core/ListItemText';
+import Box from '@mui/material/Box';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
 import { FixedSizeList } from 'react-window';
 
 function renderRow(props) {

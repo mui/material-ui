@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { alpha, styled } from '@material-ui/core/styles';
-import Collapse from '@material-ui/core/Collapse';
-import ButtonBase from '@material-ui/core/ButtonBase';
-import ArrowRightIcon from '@material-ui/icons/ArrowRight';
+import { alpha, styled } from '@mui/material/styles';
+import Collapse from '@mui/material/Collapse';
+import ButtonBase from '@mui/material/ButtonBase';
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import Link from 'docs/src/modules/components/Link';
 
 const Item = styled(({ component: Component = 'div', ...props }) => <Component {...props} />, {

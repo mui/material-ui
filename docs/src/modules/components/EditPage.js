@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
 export default function EditPage(props) {

@@ -3,10 +3,10 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createClientRender, describeConformance } from 'test/utils';
 import { fireEvent } from '@testing-library/dom';
-import StepButton, { stepButtonClasses as classes } from '@material-ui/core/StepButton';
-import Step from '@material-ui/core/Step';
-import StepLabel, { stepLabelClasses } from '@material-ui/core/StepLabel';
-import ButtonBase from '@material-ui/core/ButtonBase';
+import StepButton, { stepButtonClasses as classes } from '@mui/material/StepButton';
+import Step from '@mui/material/Step';
+import StepLabel, { stepLabelClasses } from '@mui/material/StepLabel';
+import ButtonBase from '@mui/material/ButtonBase';
 
 describe('<StepButton />', () => {
   const render = createClientRender();

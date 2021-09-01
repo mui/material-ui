@@ -4,7 +4,7 @@ import {
   unstable_useEventCallback as useEventCallback,
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
-} from '@material-ui/utils';
+} from '@mui/utils';
 
 export interface SwitchState {
   checked: Readonly<boolean>;

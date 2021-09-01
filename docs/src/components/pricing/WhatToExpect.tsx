@@ -1,13 +1,13 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-import LocalOfferOutlinedIcon from '@material-ui/icons/LocalOfferOutlined';
-import AllInclusiveOutlinedIcon from '@material-ui/icons/AllInclusiveOutlined';
-import ReplayRoundedIcon from '@material-ui/icons/ReplayRounded';
-import HelpOutlineOutlinedIcon from '@material-ui/icons/HelpOutlineOutlined';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
+import AllInclusiveOutlinedIcon from '@mui/icons-material/AllInclusiveOutlined';
+import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
+import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 
 export default function WhatToExpect() {
   return (

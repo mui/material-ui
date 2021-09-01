@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { ThemeProvider } from '@material-ui/core/styles';
-import Box, { BoxProps } from '@material-ui/core/Box';
+import { ThemeProvider } from '@mui/material/styles';
+import Box, { BoxProps } from '@mui/material/Box';
 import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
 const Demo = (props: BoxProps) => {

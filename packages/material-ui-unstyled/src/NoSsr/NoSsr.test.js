@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, createServerRender } from 'test/utils';
-import NoSsr from '@material-ui/unstyled/NoSsr';
+import NoSsr from '@mui/core/NoSsr';
 
 describe('<NoSsr />', () => {
   const render = createClientRender();

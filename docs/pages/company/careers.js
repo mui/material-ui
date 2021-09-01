@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   demoComponents,
-} from 'docs/src/pages/company/careers/careers.md?@material-ui/markdown';
+} from 'docs/src/pages/company/careers/careers.md?@mui/markdown';
 
 export default function Page() {
   return <TopLayoutCompany demos={demos} docs={docs} demoComponents={demoComponents} />;

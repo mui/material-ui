@@ -39,7 +39,7 @@ Box Theme-UI:
   172 ±8%
 Box Chakra-UI:
   115 ±8%
-styled-components Box + @material-ui/system:
+styled-components Box + @mui/system:
   194 ±9%
 styled-components Box + styled-system:
   162 ±10%

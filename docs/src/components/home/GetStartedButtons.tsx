@@ -1,15 +1,15 @@
 import * as React from 'react';
 import copy from 'clipboard-copy';
-import Box, { BoxProps } from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
-import ContentCopyRounded from '@material-ui/icons/ContentCopyRounded';
-import CheckRounded from '@material-ui/icons/CheckRounded';
+import Box, { BoxProps } from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import ContentCopyRounded from '@mui/icons-material/ContentCopyRounded';
+import CheckRounded from '@mui/icons-material/CheckRounded';
 import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
 
 export default function GetStartedButtons({
-  installation = 'npm install @material-ui/core',
+  installation = 'npm install @mui/material',
   ...props
 }: { installation?: string } & BoxProps) {
   const [copied, setCopied] = React.useState(false);

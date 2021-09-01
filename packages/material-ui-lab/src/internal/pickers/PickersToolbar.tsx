@@ -1,10 +1,10 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import { styled } from '@material-ui/core/styles';
-import { generateUtilityClasses } from '@material-ui/unstyled';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import { styled } from '@mui/material/styles';
+import { generateUtilityClasses } from '@mui/core';
 import PenIcon from '../svg-icons/Pen';
 import CalendarIcon from '../svg-icons/Calendar';
 import ClockIcon from '../svg-icons/Clock';

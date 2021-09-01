@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   demoComponents,
-} from 'docs/src/pages/components/date-time-picker/date-time-picker.md?@material-ui/markdown';
+} from 'docs/src/pages/components/date-time-picker/date-time-picker.md?@mui/markdown';
 
 export default function Page() {
   return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />;

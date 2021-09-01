@@ -86,7 +86,7 @@ When the `fullWidth` prop is true, the dialog will adapt based on the `maxWidth`
 You may make a dialog responsively full screen using [`useMediaQuery`](/components/use-media-query/#usemediaquery).
 
 ```jsx
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function MyComponent() {
   const theme = useTheme();

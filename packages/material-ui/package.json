@@ -1,5 +1,5 @@
 {
-  "name": "@material-ui/core",
+  "name": "@mui/material",
   "version": "5.0.0-beta.5",
   "private": false,
   "author": "Material-UI Team",
@@ -60,10 +60,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.14.8",
-    "@material-ui/system": "5.0.0-beta.5",
-    "@material-ui/types": "6.0.2",
-    "@material-ui/unstyled": "5.0.0-alpha.44",
-    "@material-ui/utils": "5.0.0-beta.5",
+    "@mui/system": "5.0.0-beta.5",
+    "@mui/types": "6.0.2",
+    "@mui/core": "5.0.0-alpha.44",
+    "@mui/utils": "5.0.0-beta.5",
     "@popperjs/core": "^2.4.4",
     "@types/react-transition-group": "^4.2.0",
     "clsx": "^1.1.1",

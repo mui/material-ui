@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SxProps } from '@material-ui/system';
+import { SxProps } from '@mui/system';
 import { Theme, InternalStandardProps as StandardProps } from '..';
 import { TypographyProps } from '../Typography';
 import { FormControlLabelClasses } from './formControlLabelClasses';

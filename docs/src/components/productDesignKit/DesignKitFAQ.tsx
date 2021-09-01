@@ -1,16 +1,16 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
 import InternalLink from 'docs/src/modules/components/Link';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import MuiAccordion from '@material-ui/core/Accordion';
-import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
-import MuiAccordionDetail from '@material-ui/core/AccordionDetails';
-import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import MuiAccordion from '@mui/material/Accordion';
+import MuiAccordionSummary from '@mui/material/AccordionSummary';
+import MuiAccordionDetail from '@mui/material/AccordionDetails';
+import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
 
 const faqData = [
   {

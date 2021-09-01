@@ -1,2 +1,2 @@
-export { default } from '@material-ui/core/SpeedDial';
-export * from '@material-ui/core/SpeedDial';
+export { default } from '@mui/material/SpeedDial';
+export * from '@mui/material/SpeedDial';

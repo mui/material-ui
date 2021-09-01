@@ -8,7 +8,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_createChainedFunction as createChainedFunction,
   unstable_useEventCallback as useEventCallback,
-} from '@material-ui/utils';
+} from '@mui/utils';
 import composeClasses from '../composeClasses';
 import isHostComponent from '../utils/isHostComponent';
 import Portal from '../Portal';

@@ -1,8 +1,8 @@
-import { useTheme, makeStyles, styled } from '@material-ui/styles';
-import Grid from '@material-ui/core/Grid';
-import { expectType } from '@material-ui/types';
+import { useTheme, makeStyles, styled } from '@mui/styles';
+import Grid from '@mui/material/Grid';
+import { expectType } from '@mui/types';
 
-declare module '@material-ui/styles' {
+declare module '@mui/styles' {
   interface DefaultTheme {
     myProperty: string;
   }

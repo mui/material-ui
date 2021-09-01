@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import defaultTheme from '@material-ui/core/styles/defaultTheme';
+import defaultTheme from '@mui/material/styles/defaultTheme';
 import adaptV4Theme from './adaptV4Theme';
 
 describe('adaptV4Theme', () => {

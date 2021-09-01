@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Rating from '@material-ui/core/Rating';
+import Rating from '@mui/material/Rating';
 
 let warnedOnce = false;
 
@@ -12,8 +12,8 @@ export default React.forwardRef(function DeprecatedRating(props, ref) {
       [
         'Material-UI: The Rating component was moved from the lab to the core.',
         '',
-        "You should use `import { Rating } from '@material-ui/core'`",
-        "or `import Rating from '@material-ui/core/Rating'`",
+        "You should use `import { Rating } from '@mui/material'`",
+        "or `import Rating from '@mui/material/Rating'`",
       ].join('\n'),
     );
 
