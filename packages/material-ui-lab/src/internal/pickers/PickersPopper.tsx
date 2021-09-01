@@ -2,8 +2,8 @@ import * as React from 'react';
 import Grow from '@mui/material/Grow';
 import Paper, { PaperProps as MuiPaperProps } from '@mui/material/Paper';
 import Popper, { PopperProps as MuiPopperProps } from '@mui/material/Popper';
-import Button from '@material-ui/core/Button';
-import DialogActions from '@material-ui/core/DialogActions';
+import Button from '@mui/material/Button';
+import DialogActions from '@mui/material/DialogActions';
 import TrapFocus, { TrapFocusProps as MuiTrapFocusProps } from '@mui/material/Unstable_TrapFocus';
 import { useForkRef, useEventCallback, ownerDocument } from '@mui/material/utils';
 import { styled } from '@mui/material/styles';
@@ -293,13 +293,13 @@ const PickersPopper = (props: PickerPopperProps) => {
             >
               <>
                 {children}
-                <PickersPopperActions ownerState={ownerState}>
-                  {showTodayButton && (
+                {showTodayButton && (
+                  <PickersPopperActions ownerState={ownerState}>
                     <Button data-mui-test="today-action-button" onClick={onSetToday}>
                       {todayText}
                     </Button>
-                  )}
-                </PickersPopperActions>
+                  </PickersPopperActions>
+                )}
               </>
             </PickersPopperPaper>
           </TransitionComponent>
