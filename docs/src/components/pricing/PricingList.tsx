@@ -94,7 +94,7 @@ export default function PricingList() {
             borderBottom: '1px solid',
             borderColor: 'divider',
             '&.Mui-selected': {
-              bgcolor: 'grey.50',
+              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.50'),
             },
           },
         }}
