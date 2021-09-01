@@ -12,7 +12,7 @@ const UserFeedbacks = dynamic(() => import('./UserFeedbacks'));
 
 const data = [
   { title: '2.3M', metadata: 'Weekly downloads on npm' },
-  { title: '70.2k', metadata: 'Stars on GitHub' },
+  { title: '70.7k', metadata: 'Stars on GitHub' },
   { title: '2.2k', metadata: 'Open-source contributors' },
   { title: '14.1k', metadata: 'Followers on Twitter' },
 ];

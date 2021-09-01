@@ -9,7 +9,7 @@ import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
 
 export default function GetStartedButtons({
-  installation = 'npm install @material-ui/core',
+  installation = 'npm install @mui/material',
   ...props
 }: { installation?: string } & BoxProps) {
   const [copied, setCopied] = React.useState(false);

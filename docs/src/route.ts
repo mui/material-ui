@@ -11,7 +11,7 @@ const ROUTES = {
   theming: '/customization/theming/',
   documentation: '/getting-started/usage/',
   pricing: '/branding/pricing/',
-  blog: '/blog/',
+  blog: 'https://medium.com/material-ui',
   showcase: '/discover-more/showcase',
   roadmap: '/discover-more/roadmap',
   languages: '/discover-more/languages',
