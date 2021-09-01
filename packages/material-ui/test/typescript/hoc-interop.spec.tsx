@@ -8,9 +8,9 @@
  *
  * See https://github.com/Microsoft/TypeScript/issues/28339 for in-depth discussion
  */
-import { Button } from '@material-ui/core';
-import { createStyles, withStyles } from '@material-ui/styles';
-import TextField, { TextFieldProps } from '@material-ui/core/TextField';
+import { Button } from '@mui/material';
+import { createStyles, withStyles } from '@mui/styles';
+import TextField, { TextFieldProps } from '@mui/material/TextField';
 import emotionStyled from '@emotion/styled';
 import * as React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';

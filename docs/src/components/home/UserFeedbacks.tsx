@@ -1,9 +1,9 @@
 import * as React from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import Avatar from '@material-ui/core/Avatar';
-import ButtonBase from '@material-ui/core/ButtonBase';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
+import Avatar from '@mui/material/Avatar';
+import ButtonBase from '@mui/material/ButtonBase';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import ArrowButton from 'docs/src/components/action/ArrowButton';
 
 const Feedback = ({

@@ -20,7 +20,7 @@ This can help you create a color palette for your UI, as well as measure the acc
 The output can be fed into `createTheme()` function:
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
@@ -50,8 +50,8 @@ Alternatively, you can enter hex values in the Primary and Secondary text fields
 The output shown in the color sample can be pasted directly into a [`createTheme()`](/customization/theming/#createtheme-options-theme) function (to be used with [`ThemeProvider`](/customization/theming/#theme-provider)):
 
 ```jsx
-import { createTheme } from '@material-ui/core/styles';
-import { purple } from '@material-ui/core/colors';
+import { createTheme } from '@mui/material/styles';
+import { purple } from '@mui/material/colors';
 
 const theme = createTheme({
   palette: {
@@ -92,7 +92,7 @@ These color palettes, originally created by Material Design in 2014, are compris
 Given a _HUE_ (red, pink, etc.) and a _SHADE_ (500, 600, etc.) you can import the color like this:
 
 ```jsx
-import { red } from '@material-ui/core/colors';
+import { red } from '@mui/material/colors';
 
 const color = red[500];
 ```
@@ -104,7 +104,7 @@ const color = red[500];
 For instance, you can refer to complementary primary and accent colors, "red 500" and "purple A200" like so:
 
 ```js
-import { purple, red } from '@material-ui/core/colors';
+import { purple, red } from '@mui/material/colors';
 
 const primary = red[500]; // #f44336
 const accent = purple['A200']; // #e040fb

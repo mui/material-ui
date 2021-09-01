@@ -20,7 +20,7 @@ Here are the most significant improvements in July:
   Read our [Minimizing Bundle Size](/guides/minimizing-bundle-size/) guide to learn how your project should be configured.
 
   ```js
-  import { Button, TextField } from '@material-ui/core';
+  import { Button, TextField } from '@mui/material';
   ```
 
 - ⭐️ We have introduced a new [Rating component](/components/rating/) in the lab.

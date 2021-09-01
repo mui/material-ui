@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { elementTypeAcceptingRef, refType } from '@material-ui/utils';
-import { useButton } from '@material-ui/unstyled/ButtonUnstyled';
-import composeClasses from '@material-ui/unstyled/composeClasses';
+import { elementTypeAcceptingRef, refType } from '@mui/utils';
+import { useButton } from '@mui/core/ButtonUnstyled';
+import composeClasses from '@mui/core/composeClasses';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';

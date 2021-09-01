@@ -4,12 +4,12 @@ import {
   ThemeProvider as MuiThemeProvider,
   createTheme as createLegacyModeTheme,
   unstable_createMuiStrictModeTheme as createStrictModeTheme,
-} from '@material-ui/core/styles';
-import GlobalStyles from '@material-ui/core/GlobalStyles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@material-ui/core/locale';
-import darkScrollbar from '@material-ui/core/darkScrollbar';
-import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/core/utils';
+} from '@mui/material/styles';
+import { deepmerge } from '@mui/utils';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@mui/material/locale';
+import darkScrollbar from '@mui/material/darkScrollbar';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/utils';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
@@ -243,9 +243,7 @@ export function ThemeProvider(props) {
       languageMap[userLanguage],
     );
 
-    nextTheme = createTheme(nextTheme, {
-      ...getThemedComponents(nextTheme),
-    });
+    nextTheme = deepmerge(nextTheme, getThemedComponents(nextTheme));
 
     return nextTheme;
   }, [dense, direction, paletteColors, paletteMode, spacing, userLanguage]);
@@ -260,13 +258,6 @@ export function ThemeProvider(props) {
 
   return (
     <MuiThemeProvider theme={theme}>
-      <GlobalStyles
-        styles={{
-          html: {
-            fontSize: theme.typography.htmlFontSize, // for Safari (>=14.1.2)
-          },
-        }}
-      />
       <DispatchContext.Provider value={dispatch}>{children}</DispatchContext.Provider>
     </MuiThemeProvider>
   );

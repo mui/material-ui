@@ -1,3 +1,3 @@
-import { unstable_useIsFocusVisible as useIsFocusVisible } from '@material-ui/utils';
+import { unstable_useIsFocusVisible as useIsFocusVisible } from '@mui/utils';
 
 export default useIsFocusVisible;

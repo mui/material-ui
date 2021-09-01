@@ -2,9 +2,9 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { isWeekend } from 'date-fns';
-import TextField from '@material-ui/core/TextField';
+import TextField from '@mui/material/TextField';
 import { fireEvent, screen } from 'test/utils';
-import DesktopDatePicker, { DesktopDatePickerProps } from '@material-ui/lab/DesktopDatePicker';
+import DesktopDatePicker, { DesktopDatePickerProps } from '@mui/lab/DesktopDatePicker';
 import { adapterToUse, createPickerRender } from '../internal/pickers/test-utils';
 import { MakeOptional } from '../internal/pickers/typings/helpers';
 

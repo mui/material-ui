@@ -2,9 +2,9 @@ import * as React from 'react';
 // import of a small, pure module in a private demo
 // bundle size and module duplication is negligible
 /* eslint-disable-next-line no-restricted-imports */
-import { convertLength } from '@material-ui/core/styles/cssUtils';
-import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
+import { convertLength } from '@mui/material/styles/cssUtils';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+import Box from '@mui/material/Box';
 import {
   Legend,
   Tooltip,

@@ -1,4 +1,4 @@
-import { CSSInterpolation } from '@material-ui/system';
+import { CSSInterpolation } from '@mui/system';
 import { ComponentsPropsList } from './props';
 
 export type ComponentsVariants = {

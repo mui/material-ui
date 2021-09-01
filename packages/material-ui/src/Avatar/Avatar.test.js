@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, fireEvent, describeConformance } from 'test/utils';
 import { spy } from 'sinon';
-import Avatar, { avatarClasses as classes } from '@material-ui/core/Avatar';
+import Avatar, { avatarClasses as classes } from '@mui/material/Avatar';
 import CancelIcon from '../internal/svg-icons/Cancel';
 
 describe('<Avatar />', () => {

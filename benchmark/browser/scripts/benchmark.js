@@ -168,7 +168,7 @@ async function run() {
         name: 'React components',
         path: './components/index.js',
       },
-      // Test that @material-ui/styled-engine doesn't add an signifiant overhead
+      // Test that @mui/styled-engine doesn't add an signifiant overhead
       {
         name: 'Styled Material-UI',
         path: './styled-material-ui/index.js',
@@ -205,7 +205,7 @@ async function run() {
       },
       // Test the system perf difference with alternatives
       {
-        name: 'styled-components Box + @material-ui/system',
+        name: 'styled-components Box + @mui/system',
         path: './styled-components-box-material-ui-system/index.js',
       },
       {

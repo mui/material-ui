@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Radio from '@material-ui/core/Radio';
-import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import Radio from '@mui/material/Radio';
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 
 export default function RadioIconSizeSmall() {
   return (

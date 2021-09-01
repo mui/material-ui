@@ -61,7 +61,11 @@ export default function transformer(file, api, options) {
   if (adaptV4Called) {
     const size = root
       .find(j.ImportDeclaration)
-      .filter(({ node }) => node.source.value.match(/^@material-ui\/core\/?(styles)?$/))
+      .filter(
+        ({ node }) =>
+          node.source.value.match(/^@material-ui\/core\/?(styles)?$/) ||
+          node.source.value.match(/^@mui\/material\/?(styles)$/),
+      )
       .at(0)
       .forEach(({ node }) => {
         if (!node.specifiers.find(({ imported }) => imported.name === 'adaptV4Theme')) {

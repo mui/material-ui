@@ -1,4 +1,4 @@
-import { createTheme, styled } from '@material-ui/core/styles';
+import { createTheme, styled } from '@mui/material/styles';
 
 {
   const theme = createTheme({

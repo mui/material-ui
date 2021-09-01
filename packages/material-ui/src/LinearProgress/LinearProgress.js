@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
-import { keyframes, css, darken, lighten } from '@material-ui/system';
+import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { keyframes, css, darken, lighten } from '@mui/system';
 import capitalize from '../utils/capitalize';
 import useTheme from '../styles/useTheme';
 import styled from '../styles/styled';

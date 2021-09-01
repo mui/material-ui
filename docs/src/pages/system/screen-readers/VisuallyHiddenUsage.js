@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Link from '@material-ui/core/Link';
-import Box from '@material-ui/core/Box';
-import { visuallyHidden } from '@material-ui/utils';
+import Link from '@mui/material/Link';
+import Box from '@mui/material/Box';
+import { visuallyHidden } from '@mui/utils';
 
 export default function VisuallyHiddenUsage() {
   return (

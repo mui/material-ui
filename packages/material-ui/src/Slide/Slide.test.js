@@ -2,9 +2,9 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import { act, createClientRender, describeConformance } from 'test/utils';
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 import { Transition } from 'react-transition-group';
-import Slide from '@material-ui/core/Slide';
+import Slide from '@mui/material/Slide';
 import { setTranslateValue } from './Slide';
 import { useForkRef } from '../utils';
 

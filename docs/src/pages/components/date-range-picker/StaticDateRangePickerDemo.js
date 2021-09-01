@@ -1,9 +1,9 @@
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
-import StaticDateRangePicker from '@material-ui/lab/StaticDateRangePicker';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import Box from '@material-ui/core/Box';
+import TextField from '@mui/material/TextField';
+import StaticDateRangePicker from '@mui/lab/StaticDateRangePicker';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import Box from '@mui/material/Box';
 
 export default function StaticDateRangePickerDemo() {
   const [value, setValue] = React.useState([null, null]);

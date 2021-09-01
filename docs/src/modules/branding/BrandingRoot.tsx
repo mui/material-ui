@@ -1,10 +1,10 @@
 import * as React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { darken, createTheme, alpha, ThemeProvider } from '@material-ui/core/styles';
-import NProgressBar from '@material-ui/docs/NProgressBar';
+import CssBaseline from '@mui/material/CssBaseline';
+import { darken, createTheme, alpha, ThemeProvider } from '@mui/material/styles';
+import NProgressBar from '@mui/docs/NProgressBar';
 import BrandingFooter from 'docs/src/modules/branding/BrandingFooter';
 
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface Palette {
     ternary: Palette['primary'];
     neutral: Palette['primary'];
@@ -39,13 +39,13 @@ declare module '@material-ui/core/styles' {
 }
 
 // Update the Typography's variant prop options
-declare module '@material-ui/core/Typography' {
+declare module '@mui/material/Typography' {
   interface TypographyPropsVariantOverrides {
     body3: true;
   }
 }
 
-declare module '@material-ui/core/Button' {
+declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
     neutral: true;
     ternary: true;
