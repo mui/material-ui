@@ -6,7 +6,6 @@ import {
   unstable_createMuiStrictModeTheme as createStrictModeTheme,
 } from '@mui/material/styles';
 import { deepmerge } from '@mui/utils';
-import GlobalStyles from '@mui/material/GlobalStyles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@mui/material/locale';
 import darkScrollbar from '@mui/material/darkScrollbar';

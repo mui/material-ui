@@ -4,7 +4,6 @@ import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { useTheme, styled } from '@mui/material/styles';
-import AddIcon from '@mui/icons-material/Add';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const Root = styled('div')(({ theme }) => ({
