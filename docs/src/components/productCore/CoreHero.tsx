@@ -195,6 +195,7 @@ export default function Hero() {
             sx={{
               display: 'flex',
               alignItems: 'center',
+              justifyContent: { xs: 'center', md: 'flex-start' },
               '& > *': { mr: 1, width: 28, height: 28 },
             }}
           >
