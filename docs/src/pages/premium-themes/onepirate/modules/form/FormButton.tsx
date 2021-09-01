@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ButtonProps } from '@material-ui/core';
+import { ButtonProps } from '@mui/material';
 import Button from '../components/Button';
 import defer from './defer';
 

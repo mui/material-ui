@@ -2,7 +2,7 @@
 
 ## Component
 
-> **Public components** are considered all components exported from `@material-ui/core` or `@material-ui/lab`.
+> **Public components** are considered all components exported from `@mui/material` or `@mui/lab`.
 >
 > **Internal components** are considered all components that are not exported from the packages, but only used in some public component. There is no need to have `sx` prop on these components
 

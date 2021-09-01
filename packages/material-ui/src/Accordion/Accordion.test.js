@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { describeConformance, createClientRender, fireEvent } from 'test/utils';
-import Accordion, { accordionClasses as classes } from '@material-ui/core/Accordion';
-import Paper from '@material-ui/core/Paper';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
+import Accordion, { accordionClasses as classes } from '@mui/material/Accordion';
+import Paper from '@mui/material/Paper';
+import AccordionSummary from '@mui/material/AccordionSummary';
 
 describe('<Accordion />', () => {
   const render = createClientRender();

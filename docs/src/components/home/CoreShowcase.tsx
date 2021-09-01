@@ -1,20 +1,20 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme, styled, alpha } from '@material-ui/core/styles';
-import { shouldForwardProp } from '@material-ui/system';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
+import { ThemeProvider, createTheme, useTheme, styled, alpha } from '@mui/material/styles';
+import { shouldForwardProp } from '@mui/system';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/MaterialDesignDemo';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer';
-import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
-import KeyboardArrowUpRounded from '@material-ui/icons/KeyboardArrowUpRounded';
-import TouchAppRounded from '@material-ui/icons/TouchAppRounded';
+import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
+import KeyboardArrowUpRounded from '@mui/icons-material/KeyboardArrowUpRounded';
+import TouchAppRounded from '@mui/icons-material/TouchAppRounded';
 
 const darkDesignTokens = getDesignTokens('dark');
 
@@ -66,8 +66,8 @@ const FlashCode = styled('div', {
   position: 'absolute',
   left: 0,
   right: 0,
-  top: startLine * 18,
-  height: (endLine - startLine + 1) * 18,
+  top: `calc(0.75rem * 1.5 * ${startLine})`,
+  height: `calc(0.75rem * 1.5 * ${endLine - startLine + 1})`,
   transition: '0.3s',
   ...theme.typography.caption,
   backgroundColor: alpha(theme.palette.primary.main, 0.2),
@@ -226,8 +226,8 @@ export default function CoreShowcase() {
               noWrap
               sx={{ opacity: 0.5 }}
             >
-              <TouchAppRounded sx={{ fontSize: 14, verticalAlign: 'text-bottom' }} /> Hover the
-              component to highlight the code.
+              <TouchAppRounded sx={{ fontSize: '0.875rem', verticalAlign: 'text-bottom' }} /> Hover
+              the component to highlight the code.
             </Typography>
           </Box>
           <ThemeProvider theme={theme}>
@@ -286,6 +286,9 @@ export default function CoreShowcase() {
                 zIndex: 1,
                 '&::-webkit-scrollbar': {
                   display: 'none',
+                },
+                '& code[class*="language-"]': {
+                  fontSize: 'inherit',
                 },
               },
             }}

@@ -9,26 +9,20 @@ module.exports = {
   resolve: {
     modules: [__dirname, 'node_modules'],
     alias: {
-      '@material-ui/core': path.resolve(__dirname, './packages/material-ui/src'),
-      '@material-ui/docs': path.resolve(__dirname, './packages/material-ui-docs/src'),
-      '@material-ui/icons': path.resolve(__dirname, './packages/material-ui-icons/lib'),
-      '@material-ui/lab': path.resolve(__dirname, './packages/material-ui-lab/src'),
-      '@material-ui/styled-engine': path.resolve(
-        __dirname,
-        './packages/material-ui-styled-engine/src',
-      ),
-      '@material-ui/styled-engine-sc': path.resolve(
+      '@mui/material': path.resolve(__dirname, './packages/material-ui/src'),
+      '@mui/docs': path.resolve(__dirname, './packages/material-ui-docs/src'),
+      '@mui/icons-material': path.resolve(__dirname, './packages/material-ui-icons/lib'),
+      '@mui/lab': path.resolve(__dirname, './packages/material-ui-lab/src'),
+      '@mui/styled-engine': path.resolve(__dirname, './packages/material-ui-styled-engine/src'),
+      '@mui/styled-engine-sc': path.resolve(
         __dirname,
         './packages/material-ui-styled-engine-sc/src',
       ),
-      '@material-ui/styles': path.resolve(__dirname, './packages/material-ui-styles/src'),
-      '@material-ui/system': path.resolve(__dirname, './packages/material-ui-system/src'),
-      '@material-ui/private-theming': path.resolve(
-        __dirname,
-        './packages/material-ui-private-theming/src',
-      ),
-      '@material-ui/unstyled': path.resolve(__dirname, './packages/material-ui-unstyled/src'),
-      '@material-ui/utils': path.resolve(__dirname, './packages/material-ui-utils/src'),
+      '@mui/styles': path.resolve(__dirname, './packages/material-ui-styles/src'),
+      '@mui/system': path.resolve(__dirname, './packages/material-ui-system/src'),
+      '@mui/private-theming': path.resolve(__dirname, './packages/material-ui-private-theming/src'),
+      '@mui/core': path.resolve(__dirname, './packages/material-ui-unstyled/src'),
+      '@mui/utils': path.resolve(__dirname, './packages/material-ui-utils/src'),
       'typescript-to-proptypes': path.resolve(__dirname, './packages/typescript-to-proptypes/src'),
       docs: path.resolve(__dirname, './docs'),
     },

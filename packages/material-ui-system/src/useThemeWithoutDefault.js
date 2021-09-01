@@ -1,4 +1,4 @@
-import { useTheme as muiUseTheme } from '@material-ui/private-theming';
+import { useTheme as muiUseTheme } from '@mui/private-theming';
 
 function isObjectEmpty(obj) {
   return Object.keys(obj).length === 0;

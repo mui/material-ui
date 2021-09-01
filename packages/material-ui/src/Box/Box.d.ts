@@ -1,4 +1,4 @@
-import { SxProps, SystemProps } from '@material-ui/system';
+import { SxProps, SystemProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
 

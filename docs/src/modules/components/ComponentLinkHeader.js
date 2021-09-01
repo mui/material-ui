@@ -1,15 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Chip from '@material-ui/core/Chip';
-import Tooltip from '@material-ui/core/Tooltip';
+import Chip from '@mui/material/Chip';
+import Tooltip from '@mui/material/Tooltip';
 import SketchIcon from 'docs/src/modules/components/SketchIcon';
 import FigmaIcon from 'docs/src/modules/components/FigmaIcon';
 import AdobeXDIcon from 'docs/src/modules/components/AdobeXDIcon';
 import BundleSizeIcon from 'docs/src/modules/components/BundleSizeIcon';
-import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import W3CIcon from 'docs/src/modules/components/W3CIcon';
 import MaterialDesignIcon from 'docs/src/modules/components/MaterialDesignIcon';
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const Root = styled('ul')(({ theme }) => ({
@@ -22,12 +22,15 @@ const Root = styled('ul')(({ theme }) => ({
   '& li': {
     margin: theme.spacing(0.5),
   },
+  '& .MuiChip-root .MuiChip-iconSmall': {
+    marginLeft: 4,
+  },
 }));
 
 export default function ComponentLinkHeader(props) {
   const {
     headers,
-    headers: { packageName = '@material-ui/core' },
+    headers: { packageName = '@mui/material' },
     options,
   } = props;
   const t = useTranslate();
@@ -44,6 +47,7 @@ export default function ComponentLinkHeader(props) {
             clickable
             role={undefined}
             component="a"
+            size="small"
             variant="outlined"
             rel="nofollow"
             href={`https://github.com/mui-org/material-ui/labels/${encodeURIComponent(
@@ -64,6 +68,7 @@ export default function ComponentLinkHeader(props) {
             clickable
             role={undefined}
             component="a"
+            size="small"
             variant="outlined"
             rel="nofollow"
             href={headers.waiAria}
@@ -82,6 +87,7 @@ export default function ComponentLinkHeader(props) {
             clickable
             role={undefined}
             component="a"
+            size="small"
             variant="outlined"
             rel="nofollow"
             href={`https://bundlephobia.com/result?p=${packageName}@next`}
@@ -100,6 +106,7 @@ export default function ComponentLinkHeader(props) {
             clickable
             role={undefined}
             component="a"
+            size="small"
             variant="outlined"
             rel="nofollow"
             href={headers.materialDesign}
@@ -119,6 +126,7 @@ export default function ComponentLinkHeader(props) {
               clickable
               role={undefined}
               component="a"
+              size="small"
               variant="outlined"
               rel="nofollow"
               href="https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
@@ -135,6 +143,7 @@ export default function ComponentLinkHeader(props) {
               clickable
               role={undefined}
               component="a"
+              size="small"
               variant="outlined"
               rel="nofollow"
               href="https://material-ui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"
@@ -151,6 +160,7 @@ export default function ComponentLinkHeader(props) {
               clickable
               role={undefined}
               component="a"
+              size="small"
               variant="outlined"
               rel="nofollow"
               href="https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=component-link-header"

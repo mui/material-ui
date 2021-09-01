@@ -1,4 +1,4 @@
-import { colors, Color } from '@material-ui/core';
+import { colors, Color } from '@mui/material';
 
 const {
   amber,

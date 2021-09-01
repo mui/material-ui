@@ -1,18 +1,18 @@
 import * as React from 'react';
-import { alpha } from '@material-ui/core/styles';
-import Box, { BoxProps } from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-import Collapse from '@material-ui/core/Collapse';
-import Divider from '@material-ui/core/Divider';
-import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
-import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
+import { alpha } from '@mui/material/styles';
+import Box, { BoxProps } from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import Collapse from '@mui/material/Collapse';
+import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import Link from 'docs/src/modules/components/Link';
 import IconImage, { IconImageProps } from 'docs/src/components/icon/IconImage';
-import LaunchRounded from '@material-ui/icons/LaunchRounded';
-import UnfoldMoreRounded from '@material-ui/icons/UnfoldMoreRounded';
+import LaunchRounded from '@mui/icons-material/LaunchRounded';
+import UnfoldMoreRounded from '@mui/icons-material/UnfoldMoreRounded';
 
 const planInfo = {
   community: {

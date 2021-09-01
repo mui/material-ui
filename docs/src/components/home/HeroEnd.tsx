@@ -1,8 +1,8 @@
 import * as React from 'react';
 import dynamic from 'next/dynamic';
 import { useInView } from 'react-intersection-observer';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 
 const Placeholder = () => <Box sx={{ height: { xs: 587, sm: 303, md: 289 } }} />;
 const StartToday = dynamic(() => import('./StartToday'), { loading: Placeholder });

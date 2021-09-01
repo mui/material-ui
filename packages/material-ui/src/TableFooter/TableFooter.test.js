@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, describeConformance } from 'test/utils';
-import TableFooter, { tableFooterClasses as classes } from '@material-ui/core/TableFooter';
+import TableFooter, { tableFooterClasses as classes } from '@mui/material/TableFooter';
 import Tablelvl2Context from '../Table/Tablelvl2Context';
 
 describe('<TableFooter />', () => {

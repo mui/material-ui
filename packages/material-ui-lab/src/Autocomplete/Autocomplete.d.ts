@@ -1,1 +1,1 @@
-export { default } from '@material-ui/core/Autocomplete';
+export { default } from '@mui/material/Autocomplete';

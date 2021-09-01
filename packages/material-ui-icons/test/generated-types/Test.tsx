@@ -1,5 +1,5 @@
-import { AccessAlarm } from '@material-ui/icons';
-import AccessAlarmOutlined from '@material-ui/icons/AccessAlarmOutlined';
+import { AccessAlarm } from '@mui/icons-material';
+import AccessAlarmOutlined from '@mui/icons-material/AccessAlarmOutlined';
 import * as React from 'react';
 
 export default function Test() {

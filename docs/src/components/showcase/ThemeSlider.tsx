@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Fade from '@material-ui/core/Fade';
-import Slider from '@material-ui/core/Slider';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Fade from '@mui/material/Fade';
+import Slider from '@mui/material/Slider';
 
 const primary = {
   50: '#F0F7FF',

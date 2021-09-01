@@ -1,13 +1,13 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import SpeedDial from '@material-ui/core/SpeedDial';
-import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
-import SpeedDialAction from '@material-ui/core/SpeedDialAction';
-import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
-import SaveIcon from '@material-ui/icons/Save';
-import PrintIcon from '@material-ui/icons/Print';
-import ShareIcon from '@material-ui/icons/Share';
-import EditIcon from '@material-ui/icons/Edit';
+import Box from '@mui/material/Box';
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
+import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
+import SaveIcon from '@mui/icons-material/Save';
+import PrintIcon from '@mui/icons-material/Print';
+import ShareIcon from '@mui/icons-material/Share';
+import EditIcon from '@mui/icons-material/Edit';
 
 const actions = [
   { icon: <FileCopyIcon />, name: 'Copy' },

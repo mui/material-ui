@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { SxProps } from '@material-ui/system';
-import { Theme } from '@material-ui/core/styles';
-import { OverridableStringUnion } from '@material-ui/types';
+import { SxProps } from '@mui/system';
+import { Theme } from '@mui/material/styles';
+import { OverridableStringUnion } from '@mui/types';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { AvatarClasses } from './avatarClasses';
 

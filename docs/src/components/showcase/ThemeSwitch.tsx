@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Switch from '@material-ui/core/Switch';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Switch from '@mui/material/Switch';
 
 const primary = {
   50: '#F0F7FF',

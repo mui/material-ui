@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { useThemeProps } from '@material-ui/core/styles';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useThemeProps } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import PropTypes from 'prop-types';
 import DesktopDateTimePicker, { DesktopDateTimePickerProps } from '../DesktopDateTimePicker';
 import MobileDateTimePicker, { MobileDateTimePickerProps } from '../MobileDateTimePicker';

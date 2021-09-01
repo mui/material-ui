@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import { SnackbarProvider, useSnackbar } from 'notistack';
 
 function MyApp() {

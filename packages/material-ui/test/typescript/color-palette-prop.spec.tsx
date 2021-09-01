@@ -17,8 +17,8 @@ import {
   TextField,
   SvgIcon,
   Switch,
-} from '@material-ui/core';
-import { TimelineDot } from '@material-ui/lab';
+} from '@mui/material';
+import { TimelineDot } from '@mui/lab';
 
 function TestBaseColorPaletteProp() {
   const baseColorPalette = ['primary', 'secondary', 'error', 'info', 'success', 'warning'] as const;

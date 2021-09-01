@@ -1,8 +1,8 @@
 // testing docs/src/pages/customization/theme-components/theme-components.md
-import { blue, red } from '@material-ui/core/colors';
-import { createTheme } from '@material-ui/core/styles';
+import { blue, red } from '@mui/material/colors';
+import { createTheme } from '@mui/material/styles';
 
-declare module '@material-ui/core/Button' {
+declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
     dashed: true;
   }

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, describeConformance } from 'test/utils';
-import { typographyClasses } from '@material-ui/core/Typography';
-import CardHeader, { cardHeaderClasses as classes } from '@material-ui/core/CardHeader';
+import { typographyClasses } from '@mui/material/Typography';
+import CardHeader, { cardHeaderClasses as classes } from '@mui/material/CardHeader';
 
 describe('<CardHeader />', () => {
   const render = createClientRender();

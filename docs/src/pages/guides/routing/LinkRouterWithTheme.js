@@ -2,10 +2,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { MemoryRouter as Router } from 'react-router';
 import { Link as RouterLink } from 'react-router-dom';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Stack from '@material-ui/core/Stack';
-import Link from '@material-ui/core/Link';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import Link from '@mui/material/Link';
 
 const LinkBehavior = React.forwardRef((props, ref) => {
   const { href, ...other } = props;

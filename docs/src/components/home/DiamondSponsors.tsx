@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import AddRounded from '@material-ui/icons/AddRounded';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import AddRounded from '@mui/icons-material/AddRounded';
 import Link from 'docs/src/modules/components/Link';
 import SponsorCard from 'docs/src/components/home/SponsorCard';
 

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { loadCSS } from 'fg-loadcss';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Icon from '@material-ui/core/Icon';
-import MdPhone from '@material-ui/icons/Phone';
-import Chip from '@material-ui/core/Chip';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Icon from '@mui/material/Icon';
+import MdPhone from '@mui/icons-material/Phone';
+import Chip from '@mui/material/Chip';
 
 const theme = createTheme({
   components: {

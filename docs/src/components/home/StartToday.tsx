@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
 import Link from 'docs/src/modules/components/Link';
 import GradientText from 'docs/src/components/typography/GradientText';
-import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import ROUTES from 'docs/src/route';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';

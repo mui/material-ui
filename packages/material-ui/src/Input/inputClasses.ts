@@ -1,4 +1,4 @@
-import { generateUtilityClasses, generateUtilityClass } from '@material-ui/unstyled';
+import { generateUtilityClasses, generateUtilityClass } from '@mui/core';
 
 export interface InputClasses {
   /** Styles applied to the root element. */

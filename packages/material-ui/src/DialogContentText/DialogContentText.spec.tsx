@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DialogContentText } from '@material-ui/core';
+import { DialogContentText } from '@mui/material';
 
 const DialogContentTextTest = () => {
   const CustomComponent: React.FC<{ prop1: string; prop2: number }> = () => <div />;

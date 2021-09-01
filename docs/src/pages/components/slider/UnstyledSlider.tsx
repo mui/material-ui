@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { styled, alpha, Box } from '@material-ui/system';
-import SliderUnstyled from '@material-ui/unstyled/SliderUnstyled';
+import { styled, alpha, Box } from '@mui/system';
+import SliderUnstyled from '@mui/core/SliderUnstyled';
 
 const StyledSlider = styled(SliderUnstyled)(
   ({ theme }) => `

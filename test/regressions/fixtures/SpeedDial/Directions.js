@@ -1,10 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Avatar from '@material-ui/core/Avatar';
-import Box from '@material-ui/core/Box';
-import SpeedDial from '@material-ui/core/SpeedDial';
-import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
-import SpeedDialAction from '@material-ui/core/SpeedDialAction';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
+import SpeedDialAction from '@mui/material/SpeedDialAction';
 
 function SimpleSpeedDial(props) {
   const tooltipPlacement = {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import MobileWrapper, { MobileWrapperProps } from './MobileWrapper';
 import { DesktopWrapperProps } from './DesktopWrapper';
 import DesktopTooltipWrapper from './DesktopTooltipWrapper';

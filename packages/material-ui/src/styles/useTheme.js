@@ -1,4 +1,4 @@
-import { useTheme as useThemeSystem } from '@material-ui/system';
+import { useTheme as useThemeSystem } from '@mui/system';
 import * as React from 'react';
 import defaultTheme from './defaultTheme';
 

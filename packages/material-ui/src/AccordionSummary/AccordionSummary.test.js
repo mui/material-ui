@@ -4,9 +4,9 @@ import { spy } from 'sinon';
 import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
 import AccordionSummary, {
   accordionSummaryClasses as classes,
-} from '@material-ui/core/AccordionSummary';
-import Accordion from '@material-ui/core/Accordion';
-import ButtonBase from '@material-ui/core/ButtonBase';
+} from '@mui/material/AccordionSummary';
+import Accordion from '@mui/material/Accordion';
+import ButtonBase from '@mui/material/ButtonBase';
 
 describe('<AccordionSummary />', () => {
   const render = createClientRender();

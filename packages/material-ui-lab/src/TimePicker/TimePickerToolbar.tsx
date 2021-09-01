@@ -1,11 +1,11 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { useTheme, styled, Theme } from '@material-ui/core/styles';
+import { useTheme, styled, Theme } from '@mui/material/styles';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
-} from '@material-ui/unstyled';
+} from '@mui/core';
 import PickersToolbarText from '../internal/pickers/PickersToolbarText';
 import PickersToolbarButton from '../internal/pickers/PickersToolbarButton';
 import PickersToolbar from '../internal/pickers/PickersToolbar';
