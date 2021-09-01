@@ -1,7 +1,6 @@
 import * as React from 'react';
-import InputUnstyled from '@material-ui/unstyled/InputUnstyled';
-import { styled } from '@material-ui/system';
-import InputUnstyledProps from '@material-ui/unstyled/InputUnstyled/InputUnstyledProps';
+import InputUnstyled, { InputUnstyledProps } from '@mui/core/InputUnstyled';
+import { styled } from '@mui/system';
 
 const StyledInputElement = styled('input')(`
   width: 200px;

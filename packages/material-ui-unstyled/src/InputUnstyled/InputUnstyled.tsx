@@ -1,4 +1,4 @@
-import { OverridableComponent } from '@material-ui/types';
+import { OverridableComponent } from '@mui/types';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React from 'react';

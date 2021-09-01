@@ -1,5 +1,5 @@
-import { OverrideProps } from '@material-ui/types';
 import React from 'react';
+import { OverrideProps } from '@mui/types';
 import { FormControlUnstyledState } from '../FormControlUnstyled/FormControlContext';
 import { UseInputProps } from './useInput';
 

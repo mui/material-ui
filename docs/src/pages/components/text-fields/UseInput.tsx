@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { useInput } from '@material-ui/unstyled';
-import { styled } from '@material-ui/system';
+import { useInput } from '@mui/core';
+import { styled } from '@mui/system';
 
 const StyledInputElement = styled('input')(`
   width: 200px;

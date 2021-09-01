@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createMount, createClientRender, describeConformanceUnstyled } from 'test/utils';
-import InputUnstyled, { inputUnstyledClasses } from '@material-ui/unstyled/InputUnstyled';
+import InputUnstyled, { inputUnstyledClasses } from '@mui/core/InputUnstyled';
 
 describe('<InputUnstyled />', () => {
   const mount = createMount();

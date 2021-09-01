@@ -1,6 +1,6 @@
 import * as React from 'react';
-import MuiError from '@material-ui/utils/macros/MuiError.macro';
-import { unstable_useForkRef as useForkRef } from '@material-ui/utils';
+import MuiError from '@mui/utils/macros/MuiError.macro';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import useFormControl from '../FormControlUnstyled/useFormControl';
 
 export function hasValue(value: unknown) {
