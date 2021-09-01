@@ -4,11 +4,11 @@ import { spy } from 'sinon';
 import { describeConformance, createClientRender, fireEvent } from 'test/utils';
 import BottomNavigation, {
   bottomNavigationClasses as classes,
-} from '@material-ui/core/BottomNavigation';
+} from '@mui/material/BottomNavigation';
 import BottomNavigationAction, {
   bottomNavigationActionClasses as actionClasses,
-} from '@material-ui/core/BottomNavigationAction';
-import Icon from '@material-ui/core/Icon';
+} from '@mui/material/BottomNavigationAction';
+import Icon from '@mui/material/Icon';
 
 describe('<BottomNavigation />', () => {
   const render = createClientRender();

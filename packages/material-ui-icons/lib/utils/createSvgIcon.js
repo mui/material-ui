@@ -10,4 +10,4 @@ Object.defineProperty(exports, "default", {
   }
 });
 
-var _utils = require("@material-ui/core/utils");
+var _utils = require("@mui/material/utils");

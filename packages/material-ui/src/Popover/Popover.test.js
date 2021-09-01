@@ -3,10 +3,10 @@ import { expect } from 'chai';
 import { spy, stub, useFakeTimers } from 'sinon';
 import { act, createMount, createClientRender, describeConformance, screen } from 'test/utils';
 import PropTypes from 'prop-types';
-import Grow from '@material-ui/core/Grow';
-import Modal from '@material-ui/core/Modal';
-import Paper from '@material-ui/core/Paper';
-import Popover, { popoverClasses as classes } from '@material-ui/core/Popover';
+import Grow from '@mui/material/Grow';
+import Modal from '@mui/material/Modal';
+import Paper from '@mui/material/Paper';
+import Popover, { popoverClasses as classes } from '@mui/material/Popover';
 import { getOffsetLeft, getOffsetTop } from './Popover';
 import useForkRef from '../utils/useForkRef';
 

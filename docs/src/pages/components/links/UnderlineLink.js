@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Link from '@material-ui/core/Link';
+import Box from '@mui/material/Box';
+import Link from '@mui/material/Link';
 
 const preventDefault = (event) => event.preventDefault();
 

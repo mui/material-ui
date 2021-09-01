@@ -2,8 +2,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, describeConformance } from 'test/utils';
-import Tab from '@material-ui/core/Tab';
-import Tabs, { tabsClasses as classes } from '@material-ui/core/Tabs';
+import Tab from '@mui/material/Tab';
+import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
 import TabList from './TabList';
 import TabContext from '../TabContext';
 

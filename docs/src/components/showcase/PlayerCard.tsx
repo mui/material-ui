@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Card from '@material-ui/core/Card';
-import Fade from '@material-ui/core/Fade';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import FastForwardRounded from '@material-ui/icons/FastForwardRounded';
-import FastRewindRounded from '@material-ui/icons/FastRewindRounded';
-import PlayArrowRounded from '@material-ui/icons/PlayArrowRounded';
-import PauseRounded from '@material-ui/icons/PauseRounded';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import Fade from '@mui/material/Fade';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import FastForwardRounded from '@mui/icons-material/FastForwardRounded';
+import FastRewindRounded from '@mui/icons-material/FastRewindRounded';
+import PlayArrowRounded from '@mui/icons-material/PlayArrowRounded';
+import PauseRounded from '@mui/icons-material/PauseRounded';
 
 const primaryDark = {
   50: '#E2EDF8',

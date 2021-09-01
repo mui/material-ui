@@ -1,4 +1,4 @@
-export * from '@material-ui/unstyled/ModalUnstyled';
+export * from '@mui/core/ModalUnstyled';
 
 export { default } from './Modal';
 export * from './Modal';

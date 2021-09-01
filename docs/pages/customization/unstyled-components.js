@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   demoComponents,
-} from 'docs/src/pages/customization/unstyled-components/unstyled-components.md?@material-ui/markdown';
+} from 'docs/src/pages/customization/unstyled-components/unstyled-components.md?@mui/markdown';
 
 export default function Page() {
   return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />;

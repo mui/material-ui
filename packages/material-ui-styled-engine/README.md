@@ -1,8 +1,8 @@
-# @material-ui/styled-engine
+# @mui/styled-engine
 
 This package is a wrapper around the `@emotion/react` package.
 It also provides a shared interface that can be used with other styled engines, like styled-components.
-It is used internally in the `@material-ui/system` package.
+It is used internally in the `@mui/system` package.
 
 ## Documentation
 

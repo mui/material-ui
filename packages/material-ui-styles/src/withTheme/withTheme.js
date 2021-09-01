@@ -1,6 +1,6 @@
 import * as React from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import { getDisplayName } from '@material-ui/utils';
+import { getDisplayName } from '@mui/utils';
 import useTheme from '../useTheme';
 
 export function withThemeCreator(options = {}) {

@@ -10,7 +10,7 @@ import { create } from 'jss';
 import jssRtl from 'jss-rtl';
 import { CacheProvider } from '@emotion/react';
 import { useRouter } from 'next/router';
-import { StylesProvider, jssPreset } from '@material-ui/styles';
+import { StylesProvider, jssPreset } from '@mui/styles';
 import pages from 'docs/src/pages';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';

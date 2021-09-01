@@ -7,8 +7,8 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const workspaceRoot = path.join(__dirname, '..', '..');
 
 async function getWebpackEntries() {
-  const corePackagePath = path.join(workspaceRoot, 'packages/material-ui/build');
-  const coreComponents = (await glob(path.join(corePackagePath, '([A-Z])*/index.js'))).map(
+  const materialPackagePath = path.join(workspaceRoot, 'packages/material-ui/build');
+  const materialComponents = (await glob(path.join(materialPackagePath, '([A-Z])*/index.js'))).map(
     (componentPath) => {
       const componentName = path.basename(path.dirname(componentPath));
       let entryName = componentName;
@@ -28,8 +28,8 @@ async function getWebpackEntries() {
     },
   );
 
-  const unstyledPackagePath = path.join(workspaceRoot, 'packages/material-ui-unstyled/build');
-  const unstyledComponents = (await glob(path.join(unstyledPackagePath, '([A-Z])*/index.js'))).map(
+  const corePackagePath = path.join(workspaceRoot, 'packages/material-ui-unstyled/build');
+  const coreComponents = (await glob(path.join(corePackagePath, '([A-Z])*/index.js'))).map(
     (componentPath) => {
       const componentName = path.basename(path.dirname(componentPath));
 
@@ -54,10 +54,12 @@ async function getWebpackEntries() {
 
   return [
     {
+      // WARNING: Changing the name will break tracking of bundle size over time
+      // If the name of the package changes, rename its display name in https://github.com/eps1lon/mui-contributor-dashboard/blob/main/src/pages/SizeComparison.tsx
       name: '@material-ui/core',
-      path: path.join(path.relative(workspaceRoot, corePackagePath), 'index.js'),
+      path: path.join(path.relative(workspaceRoot, materialPackagePath), 'index.js'),
     },
-    ...coreComponents,
+    ...materialComponents,
     {
       name: '@material-ui/lab',
       path: path.join(path.relative(workspaceRoot, labPackagePath), 'index.js'),
@@ -105,9 +107,9 @@ async function getWebpackEntries() {
     },
     {
       name: '@material-ui/unstyled',
-      path: path.join(path.relative(workspaceRoot, unstyledPackagePath), 'index.js'),
+      path: path.join(path.relative(workspaceRoot, corePackagePath), 'index.js'),
     },
-    ...unstyledComponents,
+    ...coreComponents,
     {
       name: '@material-ui/utils',
       path: 'packages/material-ui-utils/build/esm/index.js',
@@ -117,11 +119,11 @@ async function getWebpackEntries() {
     // {
     //   name: '@material-ui/core.modern',
     //   webpack: true,
-    //   path: path.join(path.relative(workspaceRoot, corePackagePath), 'modern/index.js'),
+    //   path: path.join(path.relative(workspaceRoot, materialPackagePath), 'modern/index.js'),
     // },
     {
       name: '@material-ui/core.legacy',
-      path: path.join(path.relative(workspaceRoot, corePackagePath), 'legacy/index.js'),
+      path: path.join(path.relative(workspaceRoot, materialPackagePath), 'legacy/index.js'),
     },
   ];
 }
@@ -162,24 +164,21 @@ module.exports = async function webpackConfig(webpack, environment) {
       ],
       resolve: {
         alias: {
-          '@material-ui/core': path.join(workspaceRoot, 'packages/material-ui/build'),
-          '@material-ui/lab': path.join(workspaceRoot, 'packages/material-ui-lab/build'),
-          '@material-ui/styled-engine': path.join(
+          '@mui/material': path.join(workspaceRoot, 'packages/material-ui/build'),
+          '@mui/lab': path.join(workspaceRoot, 'packages/material-ui-lab/build'),
+          '@mui/styled-engine': path.join(
             workspaceRoot,
             'packages/material-ui-styled-engine/build',
           ),
-          '@material-ui/styled-engine-sc': path.join(
-            workspaceRoot,
-            'packages/material-ui-styles-sc/build',
-          ),
-          '@material-ui/styles': path.join(workspaceRoot, 'packages/material-ui-styles/build'),
-          '@material-ui/system': path.join(workspaceRoot, 'packages/material-ui-system/build'),
-          '@material-ui/private-theming': path.join(
+          '@mui/styled-engine-sc': path.join(workspaceRoot, 'packages/material-ui-styles-sc/build'),
+          '@mui/styles': path.join(workspaceRoot, 'packages/material-ui-styles/build'),
+          '@mui/system': path.join(workspaceRoot, 'packages/material-ui-system/build'),
+          '@mui/private-theming': path.join(
             workspaceRoot,
             'packages/material-ui-private-theming/build',
           ),
-          '@material-ui/utils': path.join(workspaceRoot, 'packages/material-ui-utils/build'),
-          '@material-ui/unstyled': path.join(workspaceRoot, 'packages/material-ui-unstyled/build'),
+          '@mui/utils': path.join(workspaceRoot, 'packages/material-ui-utils/build'),
+          '@mui/core': path.join(workspaceRoot, 'packages/material-ui-unstyled/build'),
         },
       },
       entry: { [entry.name]: path.join(workspaceRoot, entry.path) },

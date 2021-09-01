@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { elementAcceptingRef, exactProp } from '@material-ui/utils';
+import { elementAcceptingRef, exactProp } from '@mui/utils';
 import ownerDocument from '../utils/ownerDocument';
 import useForkRef from '../utils/useForkRef';
 import useEventCallback from '../utils/useEventCallback';

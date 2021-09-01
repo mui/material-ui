@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import TextField from '@material-ui/core/TextField';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
-import StaticDateRangePicker from '@material-ui/lab/StaticDateRangePicker';
-import MuiDateRangePickerDay from '@material-ui/lab/DateRangePickerDay';
+import StaticDateRangePicker from '@mui/lab/StaticDateRangePicker';
+import MuiDateRangePickerDay from '@mui/lab/DateRangePickerDay';
 
 const DateRangePickerDay = styled(MuiDateRangePickerDay)(
   ({ theme, isHighlighting, isStartOfHighlighting, isEndOfHighlighting }) => ({

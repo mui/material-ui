@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import SvgIcon from '@mui/material/SvgIcon';
 
 function FavoriteRounded(props) {
   return (

@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@material-ui/core/styles';
-import Fade from '@material-ui/core/Fade';
-import ToggleButton from '@material-ui/core/ToggleButton';
-import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
+import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import Fade from '@mui/material/Fade';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 const primary = {
   50: '#F0F7FF',

@@ -1,1 +1,1 @@
-export { ThemeProvider as default } from '@material-ui/system';
+export { ThemeProvider as default } from '@mui/system';

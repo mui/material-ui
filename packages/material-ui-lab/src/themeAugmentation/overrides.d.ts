@@ -41,7 +41,7 @@ export interface LabComponentNameToClassKey {
   MuiYearPicker: YearPickerClassKey;
 }
 
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface ComponentNameToClassKey extends LabComponentNameToClassKey {}
 }
 

@@ -1,3 +1,3 @@
-import { unstable_useId as useId } from '@material-ui/utils';
+import { unstable_useId as useId } from '@mui/utils';
 
 export default useId;

@@ -1,6 +1,6 @@
 # Migration from @material-ui-pickers
 
-<p class="description">@material-ui/pickers was moved to the @material-ui/lab.</p>
+<p class="description">@material-ui/pickers was moved to the @mui/lab.</p>
 
 > **⚠️ The date picker components were rewritten**. In most places, the logic was rewritten from scratch, so it isn't possible to maintain the whole list of changes. Here's an overview of the most important concepts that were changed. If you are going to upgrade, the easiest way might be to go through each picker usage in your codebase, and rewrite them one at a time. Don't forget to run your tests after each!
 
@@ -8,8 +8,8 @@ This guide is an overview of the core concepts that were changed from pickers v3
 
 ## Installation
 
-You need to install the `@material-ui/lab` package if it's not already installed.
-⚠️ Make sure you have installed the latest version, `"@material-ui/lab": ^5.0.0-alpha.30"` or above.
+You need to install the `@mui/lab` package if it's not already installed.
+⚠️ Make sure you have installed the latest version, `"@mui/lab": ^5.0.0-alpha.30"` or above.
 
 ## Imports
 
@@ -17,7 +17,7 @@ The `keyboard` version of pickers is no longer published. All versions of mobile
 
 ```diff
 -import { KeyboardDatePicker } from '@material-ui/pickers';
-+import DatePicker from '@material-ui/lab/DatePicker';
++import DatePicker from '@mui/lab/DatePicker';
 
 -<KeyboardDatePicker />
 +<DatePicker />
@@ -32,7 +32,7 @@ Also, instead of providing a `variant` prop, these were moved to different impor
 
 ```diff
 -import { DatePicker } from '@material-ui/pickers';
-+import DesktopDatePicker from '@material-ui/lab/DesktopDatePicker';
++import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 
 -<DatePicker variant="inline" />
 +<DesktopDatePicker />
@@ -54,8 +54,8 @@ import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 ✅ After:
 
 ```jsx
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 
 function App() {

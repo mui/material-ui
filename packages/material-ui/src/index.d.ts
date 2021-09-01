@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DistributiveOmit } from '@material-ui/types';
+import { DistributiveOmit } from '@mui/types';
 import { StyledComponentProps } from './styles';
 
 export { StyledComponentProps };
@@ -74,7 +74,7 @@ export * from './styles';
 
 export * from './utils';
 
-export * from '@material-ui/unstyled';
+export * from '@mui/core';
 
 export { default as Accordion } from './Accordion';
 export * from './Accordion';
@@ -470,6 +470,6 @@ export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 
 /**
- * @deprecated will be removed in v5.beta, please use StyledEngineProvider from @material-ui/core/styles instead
+ * @deprecated will be removed in v5.beta, please use StyledEngineProvider from @mui/material/styles instead
  */
 export { StyledEngineProvider } from './styles';

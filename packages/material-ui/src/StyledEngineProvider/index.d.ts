@@ -1,4 +1,4 @@
 /**
- * @deprecated will be removed in v5.beta, please use StyledEngineProvider from @material-ui/core/styles instead
+ * @deprecated will be removed in v5.beta, please use StyledEngineProvider from @mui/material/styles instead
  */
-export { StyledEngineProvider as default } from '@material-ui/system';
+export { StyledEngineProvider as default } from '@mui/system';

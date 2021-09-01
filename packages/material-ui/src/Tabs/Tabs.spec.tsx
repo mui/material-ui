@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Tabs from '@material-ui/core/Tabs';
+import Tabs from '@mui/material/Tabs';
 
 function testOnChange() {
   function handleTabsChange(event: React.SyntheticEvent, tabsValue: unknown) {}

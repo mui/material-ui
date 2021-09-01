@@ -3,9 +3,9 @@
   "version": "5.0.0",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "next",
-    "@material-ui/lab": "next",
-    "@material-ui/styled-engine-sc": "next",
+    "@mui/material": "next",
+    "@mui/lab": "next",
+    "@mui/styled-engine-sc": "next",
     "@testing-library/jest-dom": "latest",
     "@testing-library/react": "latest",
     "@testing-library/user-event": "latest",

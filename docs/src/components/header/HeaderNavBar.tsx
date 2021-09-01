@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { styled, alpha } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Popper from '@material-ui/core/Popper';
-import Paper from '@material-ui/core/Paper';
-import Fade from '@material-ui/core/Fade';
-import Typography from '@material-ui/core/Typography';
+import { styled, alpha } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Popper from '@mui/material/Popper';
+import Paper from '@mui/material/Paper';
+import Fade from '@mui/material/Fade';
+import Typography from '@mui/material/Typography';
 import IconImage from 'docs/src/components/icon/IconImage';
 import ROUTES from 'docs/src/route';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';

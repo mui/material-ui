@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Stack from '@material-ui/core/Stack';
-import Badge from '@material-ui/core/Badge';
-import MailIcon from '@material-ui/icons/Mail';
+import Stack from '@mui/material/Stack';
+import Badge from '@mui/material/Badge';
+import MailIcon from '@mui/icons-material/Mail';
 
 export default function BadgeMax() {
   return (

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { DistributiveOmit } from '@material-ui/types';
-import { SxProps } from '@material-ui/system';
+import { DistributiveOmit } from '@mui/types';
+import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
 import { TypographyProps } from '../Typography';

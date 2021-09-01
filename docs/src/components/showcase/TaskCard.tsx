@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
-import Box from '@material-ui/core/Box';
-import Card from '@material-ui/core/Card';
-import Fade from '@material-ui/core/Fade';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import Typography from '@material-ui/core/Typography';
-import CodeRounded from '@material-ui/icons/CodeRounded';
-import ScheduleRounded from '@material-ui/icons/ScheduleRounded';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import Fade from '@mui/material/Fade';
+import LinearProgress from '@mui/material/LinearProgress';
+import Typography from '@mui/material/Typography';
+import CodeRounded from '@mui/icons-material/CodeRounded';
+import ScheduleRounded from '@mui/icons-material/ScheduleRounded';
 
-declare module '@material-ui/core/Paper' {
+declare module '@mui/material/Paper' {
   interface PaperPropsVariantOverrides {
     gradient: true;
   }
