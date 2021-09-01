@@ -13,7 +13,7 @@ import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 
-const TOC_WIDTH = 175;
+const TOC_WIDTH = 210;
 const NAV_WIDTH = 240;
 
 const Main = styled('main', {
@@ -50,13 +50,20 @@ const StyledAppContainer = styled(AppContainer, {
           width: `calc(100% - ${TOC_WIDTH}px)`,
         },
       }),
+      ...(!disableToc && {
+        [theme.breakpoints.up('lg')]: {
+          paddingLeft: '60px',
+          paddingRight: '60px',
+        },
+      }),
     }),
   };
 });
 
 const ActionsDiv = styled('div')({
   position: 'absolute',
-  right: 16,
+  right: 20,
+  top: 120,
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-end',

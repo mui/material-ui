@@ -108,7 +108,7 @@ export default function NotificationCard() {
             variants: [
               {
                 props: { variant: 'notification' },
-                style: { color: '#fff', fontSize: 12, height: 18 },
+                style: { color: '#fff', fontSize: '0.75rem', height: 18 },
               },
             ],
           },

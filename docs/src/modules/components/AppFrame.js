@@ -117,7 +117,7 @@ const StyledAppBar = styled(AppBar, {
   shouldForwardProp: (prop) => prop !== 'disablePermanent',
 })(({ disablePermanent, theme }) => {
   return {
-    padding: 2,
+    padding: '0 2px',
     transition: theme.transitions.create('width'),
     ...(disablePermanent && {
       boxShadow: 'none',
@@ -127,9 +127,12 @@ const StyledAppBar = styled(AppBar, {
         width: 'calc(100% - 240px)',
       },
     }),
-    boxShadow: `inset 0px -1px 1px ${
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100]
-    }`,
+    boxShadow: 'none',
+    borderStyle: 'solid',
+    borderColor:
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100],
+    borderWidth: 0,
+    borderBottomWidth: 'thin',
     background: theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#FFF',
     color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
     '& .MuiIconButton-root': {
@@ -150,6 +153,7 @@ const GrowingDiv = styled('div')({
 const LanguageSpan = styled('span')(({ theme }) => {
   return {
     display: 'none',
+    fontWeight: theme.typography.fontWeightMedium,
     [theme.breakpoints.up('md')]: {
       display: 'block',
     },
@@ -252,6 +256,7 @@ function AppFrame(props) {
           </NavIconButton>
           <GrowingDiv />
           <Stack direction="row" gap={2.5}>
+            <DeferredAppSearch />
             <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
               <Button {...languageButtonProps} sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <LanguageSpan sx={{ display: { xs: 'none', md: 'block' } }}>
@@ -314,7 +319,6 @@ function AppFrame(props) {
                 </MenuItem>
               </Menu>
             </NoSsr>
-            <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>
               <IconButton
                 component="a"

@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -13,12 +13,12 @@ const Nav = styled('nav')(({ theme }) => {
     top: 70,
     // Fix IE11 position sticky issue.
     marginTop: 70,
-    width: 200,
+    width: 210,
     flexShrink: 0,
     position: 'sticky',
     height: 'calc(100vh - 70px)',
     overflowY: 'auto',
-    padding: theme.spacing(2, 5, 2, 0),
+    padding: theme.spacing(2, 4, 2, 0),
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
@@ -32,7 +32,8 @@ const NavLabel = styled(Typography)(({ theme }) => {
     paddingLeft: theme.spacing(1.5),
     fontSize: '.75rem',
     fontWeight: 600,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[600],
+    color:
+      theme.palette.mode === 'dark' ? alpha(theme.palette.grey[500], 0.5) : theme.palette.grey[500],
   };
 });
 
@@ -47,19 +48,23 @@ const NavItem = styled(Link, {
 })(({ active, secondary, theme }) => {
   const activeStyles = {
     borderLeftColor:
-      theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[800],
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[800],
+      theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[600],
+    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
+    fontWeight: 600,
   };
 
   return {
     fontSize: '.8125rem',
-    padding: theme.spacing(0.5, 0, 1, secondary ? 3 : '10px'),
+    padding: theme.spacing(0, 1, 0, secondary ? 3 : '10px'),
+    margin: theme.spacing(0.5, 0, 1, 0),
     borderLeft: `2px solid transparent`,
     boxSizing: 'border-box',
+    fontWeight: theme.typography.fontWeightMedium,
     '&:hover': {
       borderLeftColor:
-        theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[900],
-      color: theme.palette.grey[700],
+        theme.palette.mode === 'light' ? theme.palette.primary[200] : theme.palette.primary[700],
+      color:
+        theme.palette.mode === 'light' ? theme.palette.primary[500] : theme.palette.primary[400],
     },
     ...(!active && {
       color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[900],

@@ -1,16 +1,18 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import NextLink from 'next/link';
+import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
 import { styled } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import Divider from '@mui/material/Divider';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Box from '@mui/material/Box';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
+import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 import DiamondSponsors from 'docs/src/modules/components/DiamondSponsors';
 import AppNavDrawerItem from 'docs/src/modules/components/AppNavDrawerItem';
-import Link from 'docs/src/modules/components/Link';
 import { pageToTitleI18n } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
@@ -58,21 +60,12 @@ const ToolbarDiv = styled('div')(({ theme }) => {
   return {
     ...theme.mixins.toolbar,
     paddingLeft: theme.spacing(3),
+    marginBottom: '3px',
     display: 'flex',
     flexGrow: 1,
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-  };
-});
-
-const TitleLink = styled(Link)(({ theme }) => {
-  return {
-    color: theme.palette.text.secondary,
-    marginBottom: theme.spacing(0.5),
-    '&:hover': {
-      color: theme.palette.primary.main,
-    },
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   };
 });
 
@@ -88,7 +81,7 @@ const StyledDrawer = styled(Drawer)(({ theme }) => {
 });
 
 const SwipeableDrawerPaperComponent = styled('div')({
-  width: 240,
+  width: 250,
   boxShadow: 'none',
 });
 
@@ -129,6 +122,7 @@ function reduceChildRoutes(context) {
         topLevel={topLevel && !page.subheader}
         openImmediately={topLevel || Boolean(page.subheader)}
         title={title}
+        icon={page.icon}
       >
         {renderNavItems({ onClose, pages: page.children, activePage, depth: depth + 1, t })}
       </AppNavDrawerItem>,
@@ -145,6 +139,7 @@ function reduceChildRoutes(context) {
         title={title}
         href={page.pathname}
         onClick={onClose}
+        icon={page.icon}
       />,
     );
   }
@@ -172,28 +167,36 @@ function AppNavDrawer(props) {
       <React.Fragment>
         <ToolbarIE11>
           <ToolbarDiv>
-            <TitleLink href="/" underline="hover" onClick={onClose} variant="h6" color="inherit">
-              Material-UI
-            </TitleLink>
+            <NextLink href="/" passHref onClick={onClose}>
+              <Box component="a" aria-label={t('goToHome')} sx={{ lineHeight: 0, mr: 2 }}>
+                <SvgMuiLogo width={32} />
+              </Box>
+            </NextLink>
             {process.env.LIB_VERSION ? (
-              <Link
-                color="text.secondary"
-                underline="hover"
-                variant="caption"
+              <Button
+                component="a"
                 href={`https://material-ui.com${languagePrefix}/versions/`}
                 onClick={onClose}
+                size="small"
+                sx={{
+                  color: (theme) =>
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primary[300]
+                      : theme.palette.primary[500],
+                  mr: 3,
+                }}
               >
                 {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
                 {`v${process.env.LIB_VERSION}`}
-              </Link>
+              </Button>
             ) : null}
           </ToolbarDiv>
         </ToolbarIE11>
         <Divider />
-        <Box sx={{ mx: 3, my: 2 }}>
-          <DiamondSponsors spot="drawer" />
-        </Box>
+        <DiamondSponsors spot="drawer" />
+        <Divider />
         {navItems}
+        <Box sx={{ height: 40 }} />
       </React.Fragment>
     );
   }, [activePage, pages, onClose, t, languagePrefix]);
@@ -229,10 +232,9 @@ function AppNavDrawer(props) {
           variant="permanent"
           PaperProps={{
             component: SwipeableDrawerPaperComponent,
-            elevation: 2,
             sx: {
               background: (theme) =>
-                theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#FFF',
+                theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
             },
           }}
           open
