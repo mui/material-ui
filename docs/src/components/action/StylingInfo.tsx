@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { ThemeProvider, alpha } from '@material-ui/core/styles';
-import Box, { BoxProps } from '@material-ui/core/Box';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import KeyboardArrowUpRounded from '@material-ui/icons/KeyboardArrowUpRounded';
-import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
+import { ThemeProvider, alpha } from '@mui/material/styles';
+import Box, { BoxProps } from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import KeyboardArrowUpRounded from '@mui/icons-material/KeyboardArrowUpRounded';
+import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
 import Link from 'docs/src/modules/components/Link';
 import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 import ROUTES from 'docs/src/route';

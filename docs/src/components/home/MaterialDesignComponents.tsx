@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { deepmerge } from '@material-ui/utils';
+import { deepmerge } from '@mui/utils';
 import {
   styled,
   createTheme,

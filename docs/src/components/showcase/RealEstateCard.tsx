@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Card, { CardProps } from '@material-ui/core/Card';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-import InfoRounded from '@material-ui/icons/InfoRounded';
+import Box from '@mui/material/Box';
+import Card, { CardProps } from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import InfoRounded from '@mui/icons-material/InfoRounded';
 
 export default function RealEstateCard(props: CardProps) {
   return (

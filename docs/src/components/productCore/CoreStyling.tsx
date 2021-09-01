@@ -1,20 +1,20 @@
 import * as React from 'react';
-import { styled, alpha } from '@material-ui/core/styles';
-import { shouldForwardProp } from '@material-ui/system';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import { styled, alpha } from '@mui/material/styles';
+import { shouldForwardProp } from '@mui/system';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
-import AutoAwesomeRounded from '@material-ui/icons/AutoAwesomeRounded';
+import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
 import Frame from 'docs/src/components/action/Frame';
 import RealEstateCard from 'docs/src/components/showcase/RealEstateCard';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
-import DragHandleRounded from '@material-ui/icons/DragHandleRounded';
+import DragHandleRounded from '@mui/icons-material/DragHandleRounded';
 
 const FlashCode = styled('div', {
   shouldForwardProp: (prop) =>
