@@ -924,6 +924,15 @@ export default function PricingTable({
             top: 0,
             width: '100%',
             height: '100%',
+            '&:hover': {
+              bgcolor: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.primaryDark[900], 0.3)
+                  : alpha(theme.palette.grey[50], 0.4),
+              '@media (hover: none)': {
+                bgcolor: 'initial',
+              },
+            },
           }}
         >
           Data Grid
