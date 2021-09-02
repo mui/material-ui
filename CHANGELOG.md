@@ -1,5 +1,106 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-rc.0
+
+<!-- generated comparing v5.0.0-beta.5..next -->
+
+_Sep 1, 2021_
+
+A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
+
+- 🎉 Renamed packages to `@mui/*` as part of rebranding the company, following the strategy of expanding the library scope beyond Material Design. For more details about it, check the [GitHub discussion](https://github.com/mui-org/material-ui/discussions/27803).
+- 🛠 Added `mui-replace` codemod for migrating `@material-ui/*` to new packages `@mui/*`. Check out this [codemod detail](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#mui-replace) or head to [migration guide](https://next.material-ui.com/guides/migration-v4/#preset-safe)
+- 🧪 Added new `<Mansory>` component to the lab, [check it out](https://next.material-ui.com/components/masonry/). It has been crafted by our first intern, @hbjORbj 👏!
+
+### `@mui/material@5.0.0-rc.0`
+
+#### Breaking changes
+
+- &#8203;<!-- 33 -->[core] Rename packages (#28049) @mnajdova
+
+  replace `@material-ui/*` prefix with `@mui/*`:
+
+  ```
+  @material-ui/system -> @mui/system
+  @material-ui/styles -> @mui/styles
+  @material-ui/lab -> @mui/lab
+  @material-ui/types -> @mui/types
+  @material-ui/styled-engine -> @mui/styled-engine
+  @material-ui/styled-engine-sc ->@mui/styled-engine-sc
+  @material-ui/private-theming -> @mui/private-theming
+  @material-ui/codemod -> @mui/codemod
+  ```
+
+  except these 3 packages that are renamed.
+
+  ```
+  @material-ui/core => @mui/material        // represents Material Design components.
+  @material-ui/icons => @mui/icons-material // represents Material Design icons.
+  @material-ui/unstyled => @mui/core        // fully functional components with minimum styles.
+  ```
+
+  > **Note**: `@mui/core` (previously `@material-ui/unstyled`) is not the same as `@material-ui/core`.
+
+  We encourage you to use the [codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#mui-replace) for smooth migration.
+
+#### Changes
+
+- &#8203;<!-- 39 -->[Autocomplete] Update warning for `value` prop (#27977) @vedadeepta
+- &#8203;<!-- 37 -->[ButtonGroup] Update PropTypes to match augmentable interface (#27944) @aaronlademann-wf
+- &#8203;<!-- 36 -->[CardMedia] Add `image` role if `image` prop is specified but no image `component` is specified (#27676) @eps1lon
+- &#8203;<!-- 10 -->[InputBase] Fix autofill issue (#28070) @mnajdova
+- &#8203;<!-- 08 -->[Tabs] Fix indicator position when tab size changes (ResizeObserver) (#27791) @hbjORbj
+- &#8203;<!-- 06 -->[TextareaAutosize] Sync height when the width of the textarea changes (#27840) @hbjORbj
+- &#8203;<!-- 05 -->[ToggleButtonGroup] Add "disabled" prop (#27998) @chetas411
+- &#8203;<!-- 34 -->[core] Export types for module augmentation (#28078) @m4theushw
+
+### `@mui/core@5.0.0-alpha.45`
+
+- &#8203;<!-- 38 -->[Button] Create ButtonUnstyled and useButton (#27600) @michaldudak
+
+### `@mui/lab@5.0.0-rc.0`
+
+- &#8203;<!-- 09 -->[Masonry] Add new component (#27439) @hbjORbj
+
+### `@mui/codemod@5.0.0-rc.0`
+
+- &#8203;<!-- 35 -->[codemod] Add `mui-replace` codemod transform (#28060) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 28 -->[docs] Fix preview for multiline JSX attributes (#28092) @eps1lon
+- &#8203;<!-- 27 -->[docs] Add a recommendation for hoisting GlobalStyles to static constant (#28088) @mnajdova
+- &#8203;<!-- 26 -->[docs] Update toolbar menu to behave closer to default (#28086) @oliviertassinari
+- &#8203;<!-- 25 -->[docs] Markdown redesign polish (#27956) @mnajdova
+- &#8203;<!-- 24 -->[docs] Fully translated /api/\* pages (#28044) @eps1lon
+- &#8203;<!-- 23 -->[docs] Fix matchSorter import path in Autocomplete (#28063) @StefanBRas
+- &#8203;<!-- 22 -->[docs] Fix Fab demo overflow on mobile (#28033) @rajzik
+- &#8203;<!-- 21 -->[docs] Add notistack example compatible with v5.x.x (#27881) @iamhosseindhv
+- &#8203;<!-- 20 -->[docs] Change sign-up template autocomplete to use "new-password" (#28028) @StefanTobler
+- &#8203;<!-- 19 -->[docs] Improve the support expectations for developers (#27999) @oliviertassinari
+- &#8203;<!-- 18 -->[docs] Don't use nested ternary (#27986) @eps1lon
+- &#8203;<!-- 17 -->[docs] Sync redirections from X into Core @oliviertassinari
+- &#8203;<!-- 16 -->[docs] Fix typo '.MuiOutinedInput' -> '.MuiOutlinedInput' (#27997) @rsxdalv
+- &#8203;<!-- 15 -->[docs] fix floating action button broken demo (#27976) @rajzik
+- &#8203;<!-- 14 -->[docs] Update correct variable name (#27960) @bene-we
+- &#8203;<!-- 13 -->[docs] Fix Performance typo (#27965) @tdmiller1
+- &#8203;<!-- 12 -->[docs] Add GridExportCSVOptions page to documentation pages (#27951) @flaviendelangle
+- &#8203;<!-- 04 -->[website] Add product core page (#27952) @siriwatknp
+- &#8203;<!-- 03 -->[website] Make AppBar height and border consistent with nav header (#28085) @michaldudak
+- &#8203;<!-- 02 -->[website] Fix typos in the rebranding (#28069) @oliviertassinari
+- &#8203;<!-- 01 -->[website] Refine home, pricing and about pages (#27927) @siriwatknp
+
+### Core
+
+- &#8203;<!-- 11 -->[eslint-plugin-material-ui] Only require translation of word characters and not API (#28043) @eps1lon
+- &#8203;<!-- 32 -->[core] Use lintable pattern for debounced callbacks (#27985) @eps1lon
+- &#8203;<!-- 31 -->[core] Remove file-wide disables of `no-use-before-define` (#27984) @eps1lon
+- &#8203;<!-- 30 -->[core] Improve `release:changelog` script (#27941) @eps1lon
+- &#8203;<!-- 29 -->[core] Enforce curly braces for block statements (#27946) @eps1lon
+- &#8203;<!-- 07 -->[test] Disable browserstack for PRs (#28041) @eps1lon
+
+All contributors of this release in alphabetical order: @aaronlademann-wf, @bene-we, @chetas411, @eps1lon, @flaviendelangle, @hbjORbj, @iamhosseindhv, @m4theushw, @michaldudak, @mnajdova, @oliviertassinari, @rajzik, @rsxdalv, @siriwatknp, @StefanBRas, @StefanTobler, @tdmiller1, @vedadeepta
+
 ## 5.0.0-beta.5
 
 <!-- generated comparing v5.0.0-beta.4..next -->
