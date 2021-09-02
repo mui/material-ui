@@ -30,13 +30,13 @@ export default function XComponents() {
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>
             <SectionHeadline
-              overline="What do you get?"
+              overline="Component library"
               title={
                 <Typography variant="h2">
-                  Complex components for <GradientText>advanced</GradientText> use-cases
+                  Powerful components for <GradientText>advanced</GradientText> use-cases
                 </Typography>
               }
-              description="Leverage the X package to build heavy data applications. We'll be adding many more components further along."
+              description="The MUI X package enables applications to have complex use-cases, supported by several advanced components."
             />
           </Box>
           <Group desktopColumns={2} sx={{ mt: 4 }}>

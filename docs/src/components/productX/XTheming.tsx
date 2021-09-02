@@ -100,7 +100,7 @@ export default function XTheming() {
                   Advanced and <GradientText>beautiful</GradientText>
                 </Typography>
               }
-              description="Leverage the theming capabilities to make your advanced componens look good. You can also use the built-in CSS properties."
+              description="Use the sophisticated theming features to make the MUI X components looks exactly as you want. "
             />
           </Box>
           <Group sx={{ mt: 4 }}>
@@ -108,14 +108,14 @@ export default function XTheming() {
               <Item
                 icon={<SvgTwinkle />}
                 title="Custom Theme"
-                description="Make the components look your own and reflect your branding and personality."
+                description="Theming allows you to use your brand's design tokens, easily making the components reflect its look and feel."
               />
             </Highlighter>
             <Highlighter disableBorder selected={!customized} onClick={() => setCustomized(false)}>
               <Item
                 icon={<SvgMaterialDesign />}
                 title="Material Design"
-                description="Leverage the tried and test Google's Material Design to quick-strart you design system."
+                description="Every component comes with Google's tried and tested design system ready for use."
               />
             </Highlighter>
           </Group>

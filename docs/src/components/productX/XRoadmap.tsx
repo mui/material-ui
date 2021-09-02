@@ -70,7 +70,7 @@ export default function XRoadmap() {
                 <SectionHeadline
                   overline="Roadmap"
                   title="Follow the lab for future updates"
-                  description="We're just starting with the advanced components. There's a lot more to come in the near future!"
+                  description="It's just the beginning of the MUI X components. Stay tuned for the exciting news and updates coming soon!"
                 />
                 <Button
                   component={Link}
