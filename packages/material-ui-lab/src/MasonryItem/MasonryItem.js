@@ -30,7 +30,9 @@ export const style = ({ ownerState, theme }) => {
       // all contents should have a width of 100%
       width: '100%',
       boxSizing: 'inherit',
-      ...(ownerState.isSSR && { height: '100%' }),
+      ...(ownerState.hasDefaultHeight && {
+        height: '100%',
+      }),
     },
     visibility: ownerState.height ? 'visible' : 'hidden',
     gridColumnEnd: `span ${ownerState.columnSpan}`,
@@ -81,12 +83,14 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
 
   const { spacing = 1 } = React.useContext(MasonryContext);
   const { children, className, component = 'div', columnSpan = 1, defaultHeight, ...other } = props;
+  const hasDefaultHeight = defaultHeight !== undefined;
 
   const [height, setHeight] = React.useState(defaultHeight);
 
   const ownerState = {
     ...props,
     spacing,
+    hasDefaultHeight,
     columnSpan,
     height: height < 0 ? 0 : height, // MasonryItems to which negative or zero height is passed will be hidden
   };
@@ -94,6 +98,11 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   React.useEffect(() => {
+    // Do not create a resize observer in case of provided height masonry
+    if (hasDefaultHeight) {
+      return null;
+    }
+
     if (typeof ResizeObserver === 'undefined') {
       return null;
     }
@@ -106,7 +115,7 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
     return () => {
       resizeObserver.disconnect();
     };
-  }, []);
+  }, [hasDefaultHeight]);
 
   const handleRef = useForkRef(ref, masonryItemRef);
 
