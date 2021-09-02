@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { GridCellParams } from '@material-ui/data-grid';
-import { debounce } from '@material-ui/core/utils';
-import { alpha } from '@material-ui/core/styles';
-import Slider from '@material-ui/core/Slider';
-import Tooltip from '@material-ui/core/Tooltip';
+import { debounce } from '@mui/material/utils';
+import { alpha } from '@mui/material/styles';
+import Slider from '@mui/material/Slider';
+import Tooltip from '@mui/material/Tooltip';
 
 function ValueLabelComponent(props: {
   open: boolean;

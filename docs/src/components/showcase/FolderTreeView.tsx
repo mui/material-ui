@@ -1,17 +1,17 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { styled } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import TreeView from '@material-ui/lab/TreeView';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import TreeView from '@mui/lab/TreeView';
 import TreeItem, {
   useTreeItem,
   TreeItemProps,
   TreeItemContentProps,
-} from '@material-ui/lab/TreeItem';
-import Typography from '@material-ui/core/Typography';
-import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
-import KeyboardArrowUpRounded from '@material-ui/icons/KeyboardArrowUpRounded';
-import FolderRounded from '@material-ui/icons/FolderRounded';
+} from '@mui/lab/TreeItem';
+import Typography from '@mui/material/Typography';
+import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
+import KeyboardArrowUpRounded from '@mui/icons-material/KeyboardArrowUpRounded';
+import FolderRounded from '@mui/icons-material/FolderRounded';
 
 const CustomContent = React.forwardRef(function CustomContent(
   props: TreeItemContentProps & { lastNestedChild?: boolean },

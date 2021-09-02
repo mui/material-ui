@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { useTheme } from '@material-ui/core/styles';
-import GlobalStyles from '@material-ui/core/GlobalStyles';
+import { useTheme } from '@mui/material/styles';
+import GlobalStyles from '@mui/material/GlobalStyles';
 
 export default function XGridGlobalStyles() {
   const theme = useTheme();

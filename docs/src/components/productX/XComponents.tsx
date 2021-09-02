@@ -1,17 +1,17 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
-import TableChartRounded from '@material-ui/icons/TableChartRounded';
-import DateRangeRounded from '@material-ui/icons/DateRangeRounded';
-import AccountTreeRounded from '@material-ui/icons/AccountTreeRounded';
-import ShowChartRounded from '@material-ui/icons/ShowChartRounded';
-import BarChartRounded from '@material-ui/icons/BarChartRounded';
+import TableChartRounded from '@mui/icons-material/TableChartRounded';
+import DateRangeRounded from '@mui/icons-material/DateRangeRounded';
+import AccountTreeRounded from '@mui/icons-material/AccountTreeRounded';
+import ShowChartRounded from '@mui/icons-material/ShowChartRounded';
+import BarChartRounded from '@mui/icons-material/BarChartRounded';
 
 const DEMOS = ['Data Grid', 'Date Picker', 'Tree View', 'Sparkline', 'Charts'];
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { alpha } from '@material-ui/core/styles';
-import Chip from '@material-ui/core/Chip';
+import { alpha } from '@mui/material/styles';
+import Chip from '@mui/material/Chip';
 
 interface StatusProps {
   status: string;
