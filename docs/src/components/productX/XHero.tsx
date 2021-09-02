@@ -106,6 +106,7 @@ export default function XHero() {
                   '& .MuiDataGrid-viewport': {
                     '& .MuiDataGrid-cell': {
                       fontSize: '0.875rem',
+                      color: (theme) => theme.palette.text.secondary,
                     },
                     '& .MuiInputBase-input': {
                       fontSize: '0.875rem',
