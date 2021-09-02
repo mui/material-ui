@@ -11,10 +11,8 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Tooltip from '@mui/material/Tooltip';
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import NoSsr from '@mui/material/NoSsr';
-import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
@@ -148,16 +146,6 @@ const StyledAppBar = styled(AppBar, {
 
 const GrowingDiv = styled('div')({
   flex: '1 1 auto',
-});
-
-const LanguageSpan = styled('span')(({ theme }) => {
-  return {
-    display: 'none',
-    fontWeight: theme.typography.fontWeightMedium,
-    [theme.breakpoints.up('md')]: {
-      display: 'block',
-    },
-  };
 });
 
 const NavIconButton = styled(IconButton, {
