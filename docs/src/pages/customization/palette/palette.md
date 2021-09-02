@@ -209,6 +209,10 @@ The colors modified by the palette mode are the following:
 
 {{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideToolbar": true}}
 
+> Note: The colors are modified only if you use the default palette. If you have a custom palette, you need to make sure that you have the correct values based on the `mode`.
+
+{{"demo": "pages/customization/palette/DarkThemeWithCustomPalette.js", "defaultCodeOpen": false}}
+
 ### Toggling color mode
 
 You can use the React context to toggle the mode with a button inside your page.
