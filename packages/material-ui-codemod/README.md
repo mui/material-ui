@@ -1124,7 +1124,7 @@ Replace every occurrence of `material-ui` related package with the new package n
 ```
 
 ```sh
-npx @material-ui/codemod@next v5.0.0/mui-replace <path>
+npx @mui/codemod@next v5.0.0/mui-replace <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://next.material-ui.com/guides/migration-v4/#update-material-ui-version).
