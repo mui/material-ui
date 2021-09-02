@@ -1,4 +1,4 @@
-import { promises as fs } from 'fs';
+import { promises as fs, existsSync } from 'fs';
 import path from 'path';
 import zlib from 'zlib';
 import { promisify } from 'util';
@@ -74,44 +74,40 @@ function sizeSnapshot(options) {
   };
 }
 
+function resolveNestedImport(packageFolder, importee) {
+  const folder = importee.split('/')[2];
+  const resolvedFilename = path.resolve(
+    __dirname,
+    `../../../packages/${packageFolder}/src/${folder}/index`,
+  );
+
+  const resolvedTs = `${resolvedFilename}.ts`;
+
+  if (existsSync(resolvedTs)) {
+    return resolvedTs;
+  }
+
+  return `${resolvedFilename}.js`;
+}
+
 // Resolve imports like:
 // import Portal from '@mui/core/Portal';
 const nestedFolder = {
   resolveId: (importee) => {
     if (importee.indexOf('@mui/core/') === 0) {
-      const folder = importee.split('/')[2];
-      const resolved = path.resolve(
-        __dirname,
-        `../../../packages/material-ui-unstyled/src/${folder}/index.js`,
-      );
-      return resolved;
+      return resolveNestedImport('material-ui-unstyled', importee);
     }
 
     if (importee.indexOf('@mui/private-theming/') === 0) {
-      const folder = importee.split('/')[2];
-      const resolved = path.resolve(
-        __dirname,
-        `../../../packages/material-ui-private-theming/src/${folder}/index.js`,
-      );
-      return resolved;
+      return resolveNestedImport('material-ui-private-theming', importee);
     }
 
     if (importee.indexOf('@mui/styled-engine/') === 0) {
-      const folder = importee.split('/')[2];
-      const resolved = path.resolve(
-        __dirname,
-        `../../../packages/material-ui-styled-engine/src/${folder}/index.js`,
-      );
-      return resolved;
+      return resolveNestedImport('material-ui-styled-engine', importee);
     }
 
     if (importee.indexOf('@mui/system/') === 0) {
-      const folder = importee.split('/')[2];
-      const resolved = path.resolve(
-        __dirname,
-        `../../../packages/material-ui-system/src/${folder}/index.js`,
-      );
-      return resolved;
+      return resolveNestedImport('material-ui-system', importee);
     }
 
     return undefined;
