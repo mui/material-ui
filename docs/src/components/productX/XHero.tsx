@@ -82,7 +82,7 @@ export default function XHero() {
             </Box>
             <Box
               sx={{
-                height: { md: 300, xl: 500 },
+                height: { md: 300, xl: 370 },
                 '& .MuiDataGrid-root': {
                   '& .MuiCheckbox-root': {
                     p: 0.5,
