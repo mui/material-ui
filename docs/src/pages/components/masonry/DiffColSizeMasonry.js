@@ -1,7 +1,17 @@
 import * as React from 'react';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
 import Masonry from '@mui/lab/Masonry';
 import MasonryItem from '@mui/lab/MasonryItem';
+
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  color: theme.palette.text.secondary,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+}));
 
 export default function DiffColSizeMasonry() {
   return (
@@ -9,16 +19,7 @@ export default function DiffColSizeMasonry() {
       <Masonry columns={4} spacing={1}>
         {itemData.map((item, index) => (
           <MasonryItem key={index} columnSpan={item.span}>
-            <Box
-              sx={{
-                textAlign: 'center',
-                height: item.height,
-                border: 1,
-                bgcolor: 'background.paper',
-              }}
-            >
-              {index + 1}
-            </Box>
+            <Item sx={{ height: item.height }}>{index + 1}</Item>
           </MasonryItem>
         ))}
       </Masonry>
