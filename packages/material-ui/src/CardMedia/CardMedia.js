@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes } from '@material-ui/utils';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { chainPropTypes } from '@mui/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/core';
 import useThemeProps from '../styles/useThemeProps';
 import styled from '../styles/styled';
 import { getCardMediaUtilityClass } from './cardMediaClasses';
@@ -64,6 +64,7 @@ const CardMedia = React.forwardRef(function CardMedia(inProps, ref) {
     <CardMediaRoot
       className={clsx(classes.root, className)}
       as={component}
+      role={!isMediaComponent && image ? 'image' : undefined}
       ref={ref}
       style={composedStyle}
       ownerState={ownerState}

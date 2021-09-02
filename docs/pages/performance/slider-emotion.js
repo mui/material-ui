@@ -1,6 +1,6 @@
 import * as React from 'react';
-import NoSsr from '@material-ui/unstyled/NoSsr';
-import Slider from '@material-ui/core/Slider';
+import NoSsr from '@mui/core/NoSsr';
+import Slider from '@mui/material/Slider';
 
 const data = {
   name: 'Frozen yoghurt',

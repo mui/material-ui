@@ -1,6 +1,6 @@
-import { SxProps } from '@material-ui/system';
-import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
-import { Theme } from '@material-ui/core/styles';
+import { SxProps } from '@mui/system';
+import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
+import { Theme } from '@mui/material/styles';
 import { MasonryItemClasses } from './masonryItemClasses';
 
 export interface MasonryItemTypeMap<P = {}, D extends React.ElementType = 'div'> {

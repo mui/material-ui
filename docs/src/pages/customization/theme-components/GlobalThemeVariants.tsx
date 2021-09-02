@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Button from '@mui/material/Button';
 
-declare module '@material-ui/core/Button' {
+declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
     dashed: true;
   }

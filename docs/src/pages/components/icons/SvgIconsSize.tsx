@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import SvgIcon, { SvgIconProps } from '@material-ui/core/SvgIcon';
+import Box from '@mui/material/Box';
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon';
 
 function HomeIcon(props: SvgIconProps) {
   return (

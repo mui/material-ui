@@ -1,6 +1,6 @@
-import { ResponsiveStyleValue, SxProps } from '@material-ui/system';
-import { OverridableComponent, OverrideProps } from '@material-ui/core/OverridableComponent';
-import { Theme } from '@material-ui/core/styles';
+import { ResponsiveStyleValue, SxProps } from '@mui/system';
+import { OverridableComponent, OverrideProps } from '@mui/material/OverridableComponent';
+import { Theme } from '@mui/material/styles';
 import { MasonryClasses } from './masonryClasses';
 
 export interface MasonryTypeMap<P = {}, D extends React.ElementType = 'div'> {

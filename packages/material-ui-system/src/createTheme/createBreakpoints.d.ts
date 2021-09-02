@@ -1,4 +1,4 @@
-import { OverridableStringUnion } from '@material-ui/types';
+import { OverridableStringUnion } from '@mui/types';
 
 export interface BreakpointOverrides {}
 

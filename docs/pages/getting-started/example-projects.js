@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   demoComponents,
-} from 'docs/src/pages/getting-started/example-projects/example-projects.md?@material-ui/markdown';
+} from 'docs/src/pages/getting-started/example-projects/example-projects.md?@mui/markdown';
 
 export default function Page() {
   return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />;

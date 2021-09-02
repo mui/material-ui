@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Theme } from '@material-ui/system';
+import { Box, Theme } from '@mui/system';
 
 interface TestProps {
   test?: string;

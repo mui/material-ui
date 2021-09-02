@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 import * as React from 'react';
-import ImageList from '@material-ui/core/ImageList';
-import ImageListItem from '@material-ui/core/ImageListItem';
-import ImageListItemBar from '@material-ui/core/ImageListItemBar';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
 
 export default function TitlebarBelowImageList() {
   return (

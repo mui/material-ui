@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { styled, alpha } from '@material-ui/core/styles';
-import Avatar, { AvatarProps } from '@material-ui/core/Avatar';
-import Box, { BoxProps } from '@material-ui/core/Box';
+import { styled, alpha } from '@mui/material/styles';
+import Avatar, { AvatarProps } from '@mui/material/Avatar';
+import Box, { BoxProps } from '@mui/material/Box';
 import ROUTES from 'docs/src/route';
 import Slide from 'docs/src/components/animation/Slide';
 import FadeDelay from 'docs/src/components/animation/FadeDelay';
@@ -46,38 +46,42 @@ const Anchor = styled('a')(({ theme }) => ({
 const DesignToolLink = React.forwardRef<
   HTMLAnchorElement,
   React.PropsWithChildren<{ brand: 'figma' | 'sketch' | 'xd' }>
->(({ brand, ...props }, ref) => (
-  <Anchor
-    ref={ref}
-    aria-label="Goto MUI store"
-    href={{ figma: ROUTES.storeFigma, sketch: ROUTES.storeSketch, xd: ROUTES.storeXD }[brand]}
-    target="_blank"
-    {...props}
-  >
-    {props.children}
-  </Anchor>
-));
+>(function DesignToolLink({ brand, ...props }, ref) {
+  return (
+    <Anchor
+      ref={ref}
+      aria-label="Goto MUI store"
+      href={{ figma: ROUTES.storeFigma, sketch: ROUTES.storeSketch, xd: ROUTES.storeXD }[brand]}
+      target="_blank"
+      {...props}
+    >
+      {props.children}
+    </Anchor>
+  );
+});
 
 const DesignToolLogo = React.forwardRef<
   HTMLImageElement,
   { brand: 'figma' | 'sketch' | 'xd' } & AvatarProps
->(({ brand, ...props }, ref) => (
-  <Avatar
-    ref={ref}
-    src={`/static/branding/design-kits/designkits-${brand}.png`}
-    alt=""
-    {...props}
-    sx={{
-      boxShadow: (theme) =>
-        `0px 3.57436px 44.6795px ${
-          theme.palette.mode === 'dark'
-            ? theme.palette.primaryDark[900]
-            : 'rgba(90, 105, 120, 0.36)'
-        }`,
-      ...props.sx,
-    }}
-  />
-));
+>(function DesignToolLogo({ brand, ...props }, ref) {
+  return (
+    <Avatar
+      ref={ref}
+      src={`/static/branding/design-kits/designkits-${brand}.png`}
+      alt=""
+      {...props}
+      sx={{
+        boxShadow: (theme) =>
+          `0px 3.57436px 44.6795px ${
+            theme.palette.mode === 'dark'
+              ? theme.palette.primaryDark[900]
+              : 'rgba(90, 105, 120, 0.36)'
+          }`,
+        ...props.sx,
+      }}
+    />
+  );
+});
 
 export const PrefetchDesignKitImages = () => (
   <Box
@@ -202,7 +206,6 @@ export default function DesignKits() {
       sx={{
         mx: { xs: -2, sm: -3, md: 0 },
         my: { md: -8 },
-        perspective: '1000px',
         height: { xs: 300, sm: 360, md: 'calc(100% + 160px)' },
         overflow: 'hidden',
         position: 'relative',
@@ -232,7 +235,15 @@ export default function DesignKits() {
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[900]
                 : theme.palette.grey[50]
-            } 0%, transparent 30%, transparent 70%, ${
+            } 0%, ${
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primaryDark[900], 0)
+                : 'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
+            } 30%, ${
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primaryDark[900], 0)
+                : 'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
+            } 70%, ${
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[900]
                 : theme.palette.grey[50]
@@ -253,7 +264,11 @@ export default function DesignKits() {
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[900]
                 : theme.palette.grey[50]
-            }, transparent)`,
+            }, ${
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primaryDark[900], 0)
+                : 'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
+            })`,
           zIndex: 2,
         }}
       />
@@ -266,15 +281,24 @@ export default function DesignKits() {
       />
       <Box
         sx={{
-          left: '36%',
-          position: 'absolute',
-          display: 'flex',
-          transform: 'translateX(-40%) rotateZ(30deg) rotateX(8deg) rotateY(-8deg)',
-          transformOrigin: 'center center',
+          // need perspective on this wrapper to work in Safari
+          position: 'relative',
+          height: '100%',
+          perspective: '1000px',
         }}
       >
-        <DesignKitImagesSet1 />
-        <DesignKitImagesSet2 sx={{ ml: { xs: 2, sm: 4, md: 8 } }} />
+        <Box
+          sx={{
+            left: '36%',
+            position: 'absolute',
+            display: 'flex',
+            transform: 'translateX(-40%) rotateZ(30deg) rotateX(8deg) rotateY(-8deg)',
+            transformOrigin: 'center center',
+          }}
+        >
+          <DesignKitImagesSet1 />
+          <DesignKitImagesSet2 sx={{ ml: { xs: 2, sm: 4, md: 8 } }} />
+        </Box>
       </Box>
     </Box>
   );

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Dialog } from '@material-ui/core';
+import { Dialog } from '@mui/material';
 
 function optionalChildrenTest() {
   <Dialog open />;

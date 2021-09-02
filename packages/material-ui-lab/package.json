@@ -1,6 +1,6 @@
 {
-  "name": "@material-ui/lab",
-  "version": "5.0.0-alpha.44",
+  "name": "@mui/lab",
+  "version": "5.0.0-alpha.45",
   "private": false,
   "author": "Material-UI Team",
   "description": "Laboratory for new Material-UI modules.",
@@ -36,10 +36,10 @@
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "peerDependencies": {
-    "@material-ui/core": "^5.0.0-alpha.36",
+    "@mui/material": "^5.0.0-rc.0",
     "@types/react": "^16.8.6 || ^17.0.0",
     "date-fns": "^2.0.0",
-    "dayjs": "^1.8.17",
+    "dayjs": "^1.10.6",
     "luxon": "^1.28.0",
     "moment": "^2.24.0",
     "react": "^17.0.2",
@@ -68,20 +68,20 @@
     "@date-io/dayjs": "^2.10.6",
     "@date-io/luxon": "^2.10.6",
     "@date-io/moment": "^2.10.6",
-    "@material-ui/system": "5.0.0-beta.5",
-    "@material-ui/unstyled": "5.0.0-alpha.44",
-    "@material-ui/utils": "5.0.0-beta.5",
-    "clsx": "^1.0.4",
+    "@mui/core": "5.0.0-alpha.45",
+    "@mui/system": "5.0.0-rc.0",
+    "@mui/utils": "5.0.0-rc.0",
+    "clsx": "^1.1.1",
     "prop-types": "^15.7.2",
     "react-is": "^17.0.2",
     "react-transition-group": "^4.4.1",
     "rifm": "^0.12.0"
   },
   "devDependencies": {
-    "@material-ui/types": "6.0.2",
+    "@mui/types": "7.0.0-rc.0",
     "@types/luxon": "^1.27.1",
     "date-fns": "^2.0.0",
-    "dayjs": "^1.8.17",
+    "dayjs": "^1.10.6",
     "luxon": "^1.28.0",
     "moment": "^2.24.0"
   },

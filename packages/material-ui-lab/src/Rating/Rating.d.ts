@@ -1,2 +1,2 @@
-export { default } from '@material-ui/core/Rating';
-export * from '@material-ui/core/Rating';
+export { default } from '@mui/material/Rating';
+export * from '@mui/material/Rating';

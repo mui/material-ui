@@ -2,7 +2,7 @@
 
 <p class="description">Install Material-UI, the world's most popular React UI framework.</p>
 
-Material-UI is available as an [npm package](https://www.npmjs.com/package/@material-ui/core).
+Material-UI is available as an [npm package](https://www.npmjs.com/package/@mui/material).
 
 ## npm
 
@@ -10,10 +10,10 @@ To install and save in your `package.json` dependencies, run:
 
 ```sh
 // with npm
-npm install @material-ui/core@next @emotion/react @emotion/styled
+npm install @mui/material@next @emotion/react @emotion/styled
 
 // with yarn
-yarn add @material-ui/core@next @emotion/react @emotion/styled
+yarn add @mui/material@next @emotion/react @emotion/styled
 ```
 
 <!-- #react-peer-version -->
@@ -24,10 +24,10 @@ Or if you want to use `styled-components` as a styling engine:
 
 ```sh
 // with npm
-npm install @material-ui/core@next @material-ui/styled-engine-sc@next styled-components
+npm install @mui/material@next @mui/styled-engine-sc@next styled-components
 
 // with yarn
-yarn add @material-ui/core@next @material-ui/styled-engine-sc@next styled-components
+yarn add @mui/material@next @mui/styled-engine-sc@next styled-components
 ```
 
 Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
@@ -62,16 +62,16 @@ For instance, via Google Web Fonts:
 ## SVG Icons
 
 In order to use prebuilt SVG Material icons, such as those found in the [icons demos](/components/icons/)
-you must first install the [@material-ui/icons](https://www.npmjs.com/package/@material-ui/icons) package:
+you must first install the [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material) package:
 
 <!-- #default-branch-switch -->
 
 ```sh
 // with npm
-npm install @material-ui/icons@next
+npm install @mui/icons-material@next
 
 // with yarn
-yarn add @material-ui/icons@next
+yarn add @mui/icons-material@next
 ```
 
 ## CDN
@@ -81,8 +81,8 @@ which is great for prototyping.
 
 Two Universal Module Definition (**UMD**) files are provided:
 
-- one for development: https://unpkg.com/@material-ui/core@latest/umd/material-ui.development.js
-- one for production: https://unpkg.com/@material-ui/core@latest/umd/material-ui.production.min.js
+- one for development: https://unpkg.com/@mui/material@latest/umd/material-ui.development.js
+- one for production: https://unpkg.com/@mui/material@latest/umd/material-ui.production.min.js
 
 You can follow [this CDN example](https://github.com/mui-org/material-ui/tree/master/examples/cdn) to quickly get started.
 
@@ -92,7 +92,7 @@ affecting performance and bandwidth utilization.
 
 ⚠️ The UMD links are using the `latest` tag to point to the latest version of the library.
 This pointer is **unstable**, it shifts as we release new versions.
-You should consider pointing to a specific version, such as [v4.4.0](https://unpkg.com/@material-ui/core@4.4.0/umd/material-ui.development.js).
+You should consider pointing to a specific version, such as [v4.4.0](https://unpkg.com/@mui/material@4.4.0/umd/material-ui.development.js).
 
 ## Design resources
 

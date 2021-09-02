@@ -21,7 +21,7 @@ export interface Localization {
         'clearText' | 'closeText' | 'loadingText' | 'noOptionsText' | 'openText'
       >;
     };
-    // The core package has no dependencies on the @material-ui/lab components.
+    // The core package has no dependencies on the @mui/lab components.
     // We can't use ComponentsPropsList, we have to duplicate and inline the definitions.
     MuiPagination?: {
       defaultProps: Pick<ComponentsPropsList['MuiPagination'], 'aria-label' | 'getItemAriaLabel'>;

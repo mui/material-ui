@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { useSwitch, UseSwitchProps } from '@material-ui/unstyled/SwitchUnstyled';
-import { styled } from '@material-ui/system';
+import { useSwitch, UseSwitchProps } from '@mui/core/SwitchUnstyled';
+import { styled } from '@mui/system';
 
 const BasicSwitchRoot = styled('span')(`
   font-size: 0;

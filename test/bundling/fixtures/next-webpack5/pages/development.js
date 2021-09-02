@@ -1,6 +1,6 @@
 import * as React from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import AccessibilityIcon from '@material-ui/icons/Accessibility';
+import IconButton from '@mui/material/IconButton';
+import AccessibilityIcon from '@mui/icons-material/Accessibility';
 
 export default function Development() {
   return (

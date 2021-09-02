@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { SliderUnstyled } from '@material-ui/unstyled';
+import { SliderUnstyled } from '@mui/core';
 
-declare module '@material-ui/unstyled' {
+declare module '@mui/core' {
   interface SliderOwnerStateOverrides {
     color?: 'primary' | 'secondary';
   }

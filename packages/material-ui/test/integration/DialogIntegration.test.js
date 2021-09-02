@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
 import { createClientRender, screen } from 'test/utils';
 
 describe('<Dialog /> integration', () => {

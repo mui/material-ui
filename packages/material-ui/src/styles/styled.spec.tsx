@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 
 const Box = styled('div')(({ theme }) => ({
   color: theme.palette.primary.main,

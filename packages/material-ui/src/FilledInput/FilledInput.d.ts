@@ -1,4 +1,4 @@
-import { SxProps } from '@material-ui/system';
+import { SxProps } from '@mui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { InputBaseProps } from '../InputBase';
 import { FilledInputClasses } from './filledInputClasses';

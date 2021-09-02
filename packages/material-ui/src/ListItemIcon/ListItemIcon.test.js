@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createClientRender, describeConformance } from 'test/utils';
-import ListItemIcon, { listItemIconClasses as classes } from '@material-ui/core/ListItemIcon';
+import ListItemIcon, { listItemIconClasses as classes } from '@mui/material/ListItemIcon';
 
 describe('<ListItemIcon />', () => {
   const render = createClientRender();

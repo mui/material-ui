@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { DistributiveOmit, OverridableStringUnion } from '@material-ui/types';
-import { SxProps } from '@material-ui/system';
+import { DistributiveOmit, OverridableStringUnion } from '@mui/types';
+import { SxProps } from '@mui/system';
 import { Theme } from '../styles';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps, OverridableComponent, OverridableTypeMap } from '../OverridableComponent';

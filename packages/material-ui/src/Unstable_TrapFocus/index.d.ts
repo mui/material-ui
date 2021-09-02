@@ -1,2 +1,2 @@
-export { default } from '@material-ui/unstyled/Unstable_TrapFocus';
-export * from '@material-ui/unstyled/Unstable_TrapFocus';
+export { default } from '@mui/core/Unstable_TrapFocus';
+export * from '@mui/core/Unstable_TrapFocus';

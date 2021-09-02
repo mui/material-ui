@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Backdrop from '@material-ui/core/Backdrop';
-import Box from '@material-ui/core/Box';
-import Modal from '@material-ui/core/Modal';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import Backdrop from '@mui/material/Backdrop';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 // web.cjs is required for IE11 support
 import { useSpring, animated } from 'react-spring/web.cjs';
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, screen } from 'test/utils';
-import { styled, createTheme, ThemeProvider } from '@material-ui/system';
+import { styled, createTheme, ThemeProvider } from '@mui/system';
 
 describe('styled', () => {
   const render = createClientRender();

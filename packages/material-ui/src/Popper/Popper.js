@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { createPopper } from '@popperjs/core';
-import { chainPropTypes, refType, HTMLElementType } from '@material-ui/utils';
+import { chainPropTypes, refType, HTMLElementType } from '@mui/utils';
 import { useTheme } from '../styles';
 import Portal from '../Portal';
 import ownerDocument from '../utils/ownerDocument';

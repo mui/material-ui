@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { styled, alpha, useTheme } from '@material-ui/core/styles';
-import Box, { BoxProps } from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
+import { styled, alpha, useTheme } from '@mui/material/styles';
+import Box, { BoxProps } from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import ROUTES from 'docs/src/route';
-import LaunchRounded from '@material-ui/icons/LaunchRounded';
+import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import Slide from 'docs/src/components/animation/Slide';
 import FadeDelay from 'docs/src/components/animation/FadeDelay';
 
@@ -59,42 +59,44 @@ const StoreTemplateLink = React.forwardRef<
   React.PropsWithChildren<{
     brand: TemplateBrand;
   }>
->(({ brand, ...props }, ref) => (
-  <Anchor
-    ref={ref}
-    aria-label="Goto MUI store"
-    href={linkMapping[brand]}
-    target="_blank"
-    {...props}
-  >
-    {props.children}
-    <Box
-      sx={{
-        transition: '0.3s',
-        borderRadius: 1,
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        opacity: 0,
-        top: 0,
-        left: 0,
-        bgcolor: (theme) => alpha(theme.palette.primaryDark[500], 0.8),
-        color: '#fff',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
+>(function StoreTemplateLink({ brand, ...props }, ref) {
+  return (
+    <Anchor
+      ref={ref}
+      aria-label="Goto MUI store"
+      href={linkMapping[brand]}
+      target="_blank"
+      {...props}
     >
-      <Typography fontWeight="bold">Go to store</Typography>
-      <LaunchRounded fontSize="small" sx={{ ml: 1 }} />
-    </Box>
-  </Anchor>
-));
+      {props.children}
+      <Box
+        sx={{
+          transition: '0.3s',
+          borderRadius: 1,
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          opacity: 0,
+          top: 0,
+          left: 0,
+          bgcolor: (theme) => alpha(theme.palette.primaryDark[500], 0.8),
+          color: '#fff',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography fontWeight="bold">Go to store</Typography>
+        <LaunchRounded fontSize="small" sx={{ ml: 1 }} />
+      </Box>
+    </Anchor>
+  );
+});
 
 const StoreTemplateImage = React.forwardRef<
   HTMLImageElement,
   { brand: TemplateBrand } & JSX.IntrinsicElements['img']
->(({ brand, ...props }, ref) => {
+>(function StoreTemplateImage({ brand, ...props }, ref) {
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
   return (
@@ -211,7 +213,6 @@ export default function StoreTemplatesBanner() {
       sx={{
         mx: { xs: -2, sm: -3, md: 0 },
         my: { md: -8 },
-        perspective: '1000px',
         height: { xs: 300, sm: 360, md: 'calc(100% + 160px)' },
         overflow: 'hidden',
         position: 'relative',
@@ -232,7 +233,15 @@ export default function StoreTemplatesBanner() {
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[900]
                 : theme.palette.grey[50]
-            } 0%, transparent 30%, transparent 70%, ${
+            } 0%, ${
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primaryDark[900], 0)
+                : 'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
+            } 30%, ${
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primaryDark[900], 0)
+                : 'rgba(255,255,255,0)' // transparent does not work in Safari & Mobile device
+            } 70%, ${
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[900]
                 : theme.palette.grey[50]
@@ -240,6 +249,28 @@ export default function StoreTemplatesBanner() {
           zIndex: 2,
         }}
       />
+      <Box
+        sx={{
+          // need perspective on this wrapper to work in Safari
+          height: '100%',
+          position: 'relative',
+          perspective: '1000px',
+        }}
+      >
+        <Box
+          sx={{
+            left: { xs: '45%', md: '40%' },
+            position: 'absolute',
+            zIndex: -1,
+            display: 'flex',
+            transform: 'translateX(-40%) rotateZ(-30deg) rotateX(8deg) rotateY(8deg)',
+            transformOrigin: 'center center',
+          }}
+        >
+          <StoreTemplatesSet1 />
+          <StoreTemplatesSet2 sx={{ ml: { xs: 2, sm: 4, md: 8 } }} />
+        </Box>
+      </Box>
       <Box
         sx={{
           display: { xs: 'none', md: 'block' },
@@ -254,22 +285,14 @@ export default function StoreTemplatesBanner() {
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[900]
                 : theme.palette.grey[50]
-            }, transparent)`,
-          zIndex: 2,
+            }, ${
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primaryDark[900], 0)
+                : 'rgba(255,255,255,0)'
+            })`,
+          zIndex: 10,
         }}
       />
-      <Box
-        sx={{
-          left: { xs: '45%', md: '40%' },
-          position: 'absolute',
-          display: 'flex',
-          transform: 'translateX(-40%) rotateZ(-30deg) rotateX(8deg) rotateY(8deg)',
-          transformOrigin: 'center center',
-        }}
-      >
-        <StoreTemplatesSet1 />
-        <StoreTemplatesSet2 sx={{ ml: { xs: 2, sm: 4, md: 8 } }} />
-      </Box>
     </Box>
   );
 }

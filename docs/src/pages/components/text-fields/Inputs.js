@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Input from '@material-ui/core/Input';
+import Box from '@mui/material/Box';
+import Input from '@mui/material/Input';
 
 const ariaLabel = { 'aria-label': 'description' };
 

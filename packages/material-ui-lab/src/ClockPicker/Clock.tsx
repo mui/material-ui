@@ -1,8 +1,8 @@
 import * as React from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import { styled } from '@material-ui/core/styles';
-import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import ClockPointer from './ClockPointer';
 import { useUtils, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
 import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';

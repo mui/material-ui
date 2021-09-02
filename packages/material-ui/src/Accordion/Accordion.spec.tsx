@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Accordion from '@material-ui/core/Accordion';
+import Accordion from '@mui/material/Accordion';
 
 function testOnChange() {
   function handleAccordionChange(event: React.SyntheticEvent, tabsValue: unknown) {}

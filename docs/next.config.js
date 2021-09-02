@@ -94,8 +94,8 @@ module.exports = {
             test: /\.md$/,
             oneOf: [
               {
-                resourceQuery: /@material-ui\/markdown/,
-                use: require.resolve('@material-ui/markdown/loader'),
+                resourceQuery: /@mui\/markdown/,
+                use: require.resolve('@mui/markdown/loader'),
               },
               {
                 // used in some /getting-started/templates
@@ -119,6 +119,17 @@ module.exports = {
                     {
                       alias: {
                         // all packages in this monorepo
+                        '@mui/material': '../packages/material-ui/src',
+                        '@mui/docs': '../packages/material-ui-docs/src',
+                        '@mui/icons-material': '../packages/material-ui-icons/lib',
+                        '@mui/lab': '../packages/material-ui-lab/src',
+                        '@mui/styled-engine': '../packages/material-ui-styled-engine/src',
+                        '@mui/styles': '../packages/material-ui-styles/src',
+                        '@mui/system': '../packages/material-ui-system/src',
+                        '@mui/private-theming': '../packages/material-ui-private-theming/src',
+                        '@mui/utils': '../packages/material-ui-utils/src',
+                        '@mui/core': '../packages/material-ui-unstyled/src',
+                        // all legacy package names in this monorepo
                         '@material-ui/core': '../packages/material-ui/src',
                         '@material-ui/docs': '../packages/material-ui-docs/src',
                         '@material-ui/icons': '../packages/material-ui-icons/lib',
@@ -130,6 +141,7 @@ module.exports = {
                           '../packages/material-ui-private-theming/src',
                         '@material-ui/utils': '../packages/material-ui-utils/src',
                         '@material-ui/unstyled': '../packages/material-ui-unstyled/src',
+                        '@material-ui/core/*': '../packages/material-ui/src/*',
                       },
                       transformFunctions: ['require'],
                     },

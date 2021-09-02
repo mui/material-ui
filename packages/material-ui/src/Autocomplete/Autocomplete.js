@@ -1,13 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, integerPropType } from '@material-ui/utils';
+import { chainPropTypes, integerPropType } from '@mui/utils';
 import {
   unstable_composeClasses as composeClasses,
   useAutocomplete,
   createFilterOptions,
-} from '@material-ui/unstyled';
-import { alpha } from '@material-ui/system';
+} from '@mui/core';
+import { alpha } from '@mui/system';
 import Popper from '../Popper';
 import ListSubheader from '../ListSubheader';
 import Paper from '../Paper';
@@ -1023,7 +1023,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     if (props.multiple && props.value !== undefined && !Array.isArray(props.value)) {
       return new Error(
         [
-          'Material-UI: The Autocomplete expects the `value` prop to be an array or undefined.',
+          'Material-UI: The Autocomplete expects the `value` prop to be an array when `multiple={true}` or undefined.',
           `However, ${props.value} was provided.`,
         ].join('\n'),
       );

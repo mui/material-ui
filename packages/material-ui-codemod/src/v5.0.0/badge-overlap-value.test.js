@@ -8,7 +8,7 @@ function read(fileName) {
   return readFile(path.join(__dirname, fileName));
 }
 
-describe('@material-ui/codemod', () => {
+describe('@mui/codemod', () => {
   describe('v5.0.0', () => {
     describe('badge-overlap-value', () => {
       it('transforms props as needed', () => {

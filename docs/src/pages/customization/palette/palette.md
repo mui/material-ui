@@ -55,8 +55,8 @@ The simplest way to customize a palette color is to import one or more of the pr
 and apply them:
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
-import blue from '@material-ui/core/colors/blue';
+import { createTheme } from '@mui/material/styles';
+import blue from '@mui/material/colors/blue';
 
 const theme = createTheme({
   palette: {
@@ -71,7 +71,7 @@ If you wish to provide more customized colors, you can either create your own pa
 or directly supply colors to some or all of the `theme.palette` keys:
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
@@ -133,7 +133,7 @@ Note that "contrastThreshold" follows a non-linear curve.
 You can add new colors inside and outside the palette of the theme as follow:
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   status: {
@@ -157,7 +157,7 @@ If you are using TypeScript, you would also need to use [module augmentation](/g
 <!-- tested with packages/material-ui/test/typescript/augmentation/paletteColors.spec.ts -->
 
 ```ts
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface Theme {
     status: {
       danger: React.CSSProperties['color'];
@@ -226,9 +226,9 @@ For instance, you can enable the dark mode automatically:
 
 ```jsx
 import * as React from 'react';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 function App() {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');

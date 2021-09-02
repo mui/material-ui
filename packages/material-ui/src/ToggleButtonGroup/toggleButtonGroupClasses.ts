@@ -1,10 +1,12 @@
-import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unstyled';
+import { generateUtilityClass, generateUtilityClasses } from '@mui/core';
 
 export interface ToggleButtonGroupClasses {
   /** Styles applied to the root element. */
   root: string;
   /** Styles applied to the root element if `orientation="vertical"`. */
   vertical: string;
+  /** State class applied to the root element if `disabled={true}`. */
+  disabled: string;
   /** Styles applied to the children. */
   grouped: string;
   /** Styles applied to the children if `orientation="horizontal"`. */
@@ -21,7 +23,7 @@ export function getToggleButtonGroupUtilityClass(slot: string): string {
 
 const toggleButtonGroupClasses: ToggleButtonGroupClasses = generateUtilityClasses(
   'MuiToggleButtonGroup',
-  ['root', 'selected', 'vertical', 'grouped', 'groupedHorizontal', 'groupedVertical'],
+  ['root', 'selected', 'vertical', 'disabled', 'grouped', 'groupedHorizontal', 'groupedVertical'],
 );
 
 export default toggleButtonGroupClasses;

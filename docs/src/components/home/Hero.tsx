@@ -1,10 +1,10 @@
 import * as React from 'react';
 import dynamic from 'next/dynamic';
-import { useTheme } from '@material-ui/core/styles';
-import Box, { BoxProps } from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Stack from '@material-ui/core/Stack';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
+import Box, { BoxProps } from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import GradientText from 'docs/src/components/typography/GradientText';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
@@ -84,24 +84,36 @@ export default function Hero() {
   const globalTheme = useTheme();
   const isMdUp = useMediaQuery(globalTheme.breakpoints.up('md'));
   React.useEffect(() => {
-    if (frame.current && isMdUp) {
-      const elements = frame.current.querySelectorAll(
-        'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])',
-      );
-      elements.forEach((elm) => {
-        elm.setAttribute('tabindex', '-1');
-      });
+    let obs: undefined | MutationObserver;
+    function suppressTabIndex() {
+      if (frame.current && isMdUp) {
+        const elements = frame.current.querySelectorAll(
+          'a, button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])',
+        );
+        elements.forEach((elm) => {
+          elm.setAttribute('tabindex', '-1');
+        });
+      }
     }
+    if (typeof MutationObserver !== 'undefined' && frame.current) {
+      obs = new MutationObserver(suppressTabIndex);
+      obs.observe(frame.current, { childList: true, subtree: true });
+    }
+    return () => {
+      if (obs) {
+        obs.disconnect();
+      }
+    };
   }, [isMdUp]);
   return (
     <HeroContainer
       left={
         <Box sx={{ textAlign: { xs: 'center', md: 'left' } }}>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
-            The <GradientText>ultimate</GradientText> solution for your UI.
+            The <GradientText>ultimate</GradientText> solution for your&nbsp;UI
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
-            MUI provides a robust, customizible and accessible library of foundational and advanced
+            MUI provides a robust, customizable, and accessible library of foundational and advanced
             components, enabling you to build your own design system and develop React applications
             faster.
           </Typography>
@@ -125,6 +137,7 @@ export default function Hero() {
           ),
         },
       }}
+      rightRef={frame}
       right={
         <React.Fragment>
           {isMdUp && (

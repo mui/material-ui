@@ -5,8 +5,8 @@ export default function createStyles(styles) {
   if (!warnedOnce) {
     console.warn(
       [
-        'Material-UI: createStyles from @material-ui/core/styles is deprecated.',
-        'Please use @material-ui/styles/createStyles',
+        'Material-UI: createStyles from @mui/material/styles is deprecated.',
+        'Please use @mui/styles/createStyles',
       ].join('\n'),
     );
 
