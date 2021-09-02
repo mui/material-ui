@@ -41,7 +41,7 @@ body:
 
         If you have an issue concerning TypeScript please start from this TypeScript playground: https://material-ui.com/r/ts-issue-template.
 
-        Issues that we can't reproduced are closed.
+        Issues that we can't reproduce will be closed.
       value: |
         Steps:
 
