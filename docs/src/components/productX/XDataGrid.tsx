@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { XGrid, GridApi } from '@material-ui/x-grid';
 import { useDemoData } from '@material-ui/x-grid-data-generator';
-import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -23,7 +22,7 @@ import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
 
-const DEMOS = ['Editing', 'Selection', 'Sorting', 'Pagination', 'Filtering'];
+const DEMOS = ['Editing', 'Selection', 'Sorting', 'Pagination', 'Filtering'] as const;
 
 const code = `<DataGrid
   columns={[ // column definition example
@@ -51,8 +50,8 @@ const startLine = {
 const dataGridStyleOverrides = <XGridGlobalStyles selector="#data-grid-demo" />;
 
 export default function XDataGrid() {
-  const [demo, setDemo] = React.useState(DEMOS[0]);
-  const gridApiRef = React.useRef<GridApi | null>(null);
+  const [demo, setDemo] = React.useState<typeof DEMOS[number] | null>(null);
+  const gridApiRef = React.useRef<GridApi>();
   const icons = {
     [DEMOS[0]]: <EditOutlined />,
     [DEMOS[1]]: <CheckBoxRounded />,
@@ -70,20 +69,47 @@ export default function XDataGrid() {
   React.useEffect(() => {
     if (gridApiRef.current && !loading) {
       gridApiRef.current.scroll({ top: 0, left: 0 });
-      if (demo === DEMOS[2]) {
-        gridApiRef.current.sortColumn({ field: 'name', sortable: true }, 'asc');
-      } else {
-        gridApiRef.current.sortColumn({ field: 'name', sortable: true }, null);
-      }
       if (demo === DEMOS[0]) {
-        gridApiRef.current.setCellMode(firstRowId, 'name', 'edit');
+        document.body.focus();
+        setTimeout(() => {
+          const cell = document.querySelector(
+            '#data-grid-demo div[role="cell"][data-field="name"]',
+          );
+          if (cell) {
+            const clickEvent = document.createEvent('MouseEvents');
+            clickEvent.initEvent('dblclick', true, true);
+            cell.dispatchEvent(clickEvent);
+          }
+        }, 120);
+      }
+      if (demo === DEMOS[1]) {
+        const checkbox = document.querySelector(
+          '#data-grid-demo div[data-field="__check__"] input',
+        ) as HTMLInputElement | null;
+        if (checkbox) {
+          checkbox.click();
+        }
+      }
+      if (demo === DEMOS[2]) {
+        // gridApiRef.current.sortColumn({ field: 'name', sortable: true }, 'asc');
+        const sorter = document.querySelector(
+          '#data-grid-demo button[aria-label="Sort"]',
+        ) as HTMLButtonElement | null;
+        if (sorter) {
+          sorter.click();
+        }
+      }
+      if (demo === DEMOS[3]) {
+        const nextPage = document.querySelector(
+          '#data-grid-demo button[aria-label="Go to next page"]',
+        ) as HTMLButtonElement | null;
+        if (nextPage) {
+          nextPage.click();
+        }
       }
       if (demo === DEMOS[4]) {
-        gridApiRef.current.applyFilter({
-          columnField: 'name',
-          value: 'Ad',
-          operatorValue: 'contains',
-        });
+        document.body.focus();
+        gridApiRef.current.showFilterPanel('name');
       }
     }
   }, [demo, loading, firstRowId]);
@@ -150,45 +176,12 @@ export default function XDataGrid() {
                   },
                 },
               },
-              // '& .FlashView-highlight': {
-              //   borderRadius: '2px 2px 0 0',
-              //   pointerEvents: 'none',
-              //   position: 'absolute',
-              //   backgroundColor: (theme) => alpha(theme.palette.success[300], 0.2),
-              //   transition: '0.3s',
-              //   border: '1px solid',
-              //   borderColor: 'success.dark',
-              // },
-              // '& .FlashView-content': {
-              //   borderRadius: 1,
-              //   backgroundColor: 'success.700',
-              //   color: '#fff',
-              //   width: 'max-content',
-              //   position: 'absolute',
-              //   px: 1,
-              //   py: 0.25,
-              //   boxShadow: '0 0 8px 0 rgba(0,0,0,0.12)',
-              //   bottom: -5,
-              //   left: -1,
-              //   transform: 'translate(0, 100%)',
-              //   fontWeight: 500,
-              // },
-              // '& .FlashView-overlay': {
-              //   display: 'none',
-              //   pointerEvents: 'none',
-              //   position: 'absolute',
-              //   bgcolor: 'rgba(0,0,0,0.12)',
-              //   top: 0,
-              //   left: 0,
-              //   right: 0,
-              //   bottom: 0,
-              // },
             }}
           >
             {dataGridStyleOverrides}
             <XGrid
               {...data}
-              apiRef={gridApiRef}
+              apiRef={gridApiRef as React.MutableRefObject<GridApi>}
               loading={loading}
               density="compact"
               checkboxSelection
@@ -217,7 +210,7 @@ export default function XDataGrid() {
               <Box sx={{ position: 'relative', zIndex: 1 }}>
                 <HighlightedCode component={MarkdownElement} code={code} language="jsx" />
               </Box>
-              <FlashCode startLine={startLine[demo]} sx={{ mx: -2 }} />
+              {demo && <FlashCode startLine={startLine[demo]} sx={{ mx: -2 }} />}
             </Box>
           </Frame.Info>
         </Grid>
