@@ -104,21 +104,21 @@ export default function XRoadmap() {
               >
                 <Paper variant="outlined">
                   <Box sx={{ fontWeight: 'bold' }}>In the lab:</Box>
-                  <Box>Almost ready to go.</Box>
+                  <Box sx={{color: (theme) => theme.palette.text.secondary}}>Almost ready to go.</Box>
                   {renderList(
                     <React.Fragment>
-                      <TableChartRounded />
+                      <TableChartRounded fontSize="small" />
                       <b>Data Grid</b>
-                      <DateRangeRounded />
+                      <DateRangeRounded fontSize="small" />
                       <b>Date Picker</b>
-                      <AccountTreeRounded />
+                      <AccountTreeRounded fontSize="small" />
                       <b>Tree View</b>
                     </React.Fragment>,
                   )}
                 </Paper>
                 <Paper variant="outlined">
                   <Box sx={{ fontWeight: 'bold' }}>Working in progress</Box>
-                  <Box>Getting there.</Box>
+                  <Box sx={{color: (theme) => theme.palette.text.secondary}}>Getting there.</Box>
                   {renderList(
                     <React.Fragment>
                       <Box
@@ -137,7 +137,7 @@ export default function XRoadmap() {
                           },
                         }}
                       >
-                        <TableChartRounded />
+                        <TableChartRounded fontSize="small" />
                       </Box>
                       <b>Data Grid</b>
                       {bullet}
@@ -151,18 +151,18 @@ export default function XRoadmap() {
                 </Paper>
                 <Paper variant="outlined">
                   <Box sx={{ fontWeight: 'bold' }}>On the list</Box>
-                  <Box>Sometime...</Box>
+                  <Box sx={{color: (theme) => theme.palette.text.secondary}}>Sometime soon...</Box>
                   {renderList(
                     <React.Fragment>
-                      <ShowChartRounded />
+                      <ShowChartRounded fontSize="small" />
                       <b>Sparkline</b>
-                      <BarChartRounded />
+                      <BarChartRounded fontSize="small" />
                       <b>Charts</b>
-                      <FileUploadRounded />
+                      <FileUploadRounded fontSize="small" />
                       <b>Upload</b>
-                      <PendingActionsRounded />
+                      <PendingActionsRounded fontSize="small" />
                       <b>Scheduler</b>
-                      <SpeedRounded />
+                      <SpeedRounded fontSize="small" />
                       <b>Gauge</b>
                     </React.Fragment>,
                   )}
