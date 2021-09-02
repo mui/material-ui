@@ -205,6 +205,7 @@ export default function CoreStyling() {
             <Frame.Demo
               sx={{
                 bgcolor: 'background.paper',
+                overflow: 'auto',
               }}
             >
               <Box
