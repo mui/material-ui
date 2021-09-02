@@ -64,7 +64,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
 ### `@mui/codemod@5.0.0-rc.0`
 
-- &#8203;<!-- 35 -->[codemod] Add `mui-replace` transform (#28060) @siriwatknp
+- &#8203;<!-- 35 -->[codemod] Add `mui-replace` codemod transform (#28060) @siriwatknp
 
 ### Docs
 
