@@ -11,11 +11,11 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
-import EditOutlined from '@mui/icons-material/EditOutlined';
-import CheckBoxRounded from '@mui/icons-material/CheckBoxRounded';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import LibraryAddCheckRounded from '@mui/icons-material/LibraryAddCheckRounded';
 import SortByAlphaRounded from '@mui/icons-material/SortByAlphaRounded';
 import AutoStoriesOutlined from '@mui/icons-material/AutoStoriesOutlined';
-import FilterAltOutlined from '@mui/icons-material/FilterAltOutlined';
+import FilterAltRounded from '@mui/icons-material/FilterAltRounded';
 import Frame from 'docs/src/components/action/Frame';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
@@ -53,11 +53,11 @@ export default function XDataGrid() {
   const [demo, setDemo] = React.useState<typeof DEMOS[number] | null>(null);
   const gridApiRef = React.useRef<GridApi>();
   const icons = {
-    [DEMOS[0]]: <EditOutlined />,
-    [DEMOS[1]]: <CheckBoxRounded />,
-    [DEMOS[2]]: <SortByAlphaRounded />,
-    [DEMOS[3]]: <AutoStoriesOutlined />,
-    [DEMOS[4]]: <FilterAltOutlined />,
+    [DEMOS[0]]: <EditRoundedIcon fontSize="small" />,
+    [DEMOS[1]]: <LibraryAddCheckRounded fontSize="small" />,
+    [DEMOS[2]]: <SortByAlphaRounded fontSize="small" />,
+    [DEMOS[3]]: <AutoStoriesOutlined fontSize="small" />,
+    [DEMOS[4]]: <FilterAltRounded fontSize="small" />,
   };
   const { loading, data } = useDemoData({
     dataSet: 'Employee',
@@ -151,19 +151,20 @@ export default function XDataGrid() {
               zIndex: 1,
               height: 220,
               borderRadius: '10px 10px 0 0',
+              borderColor: 'primaryDark.700',
               '& .MuiDataGrid-root': {
                 '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
                 '& .MuiDataGrid-renderingZone': {
                   '& .MuiDataGrid-cell': {
                     bgcolor: (theme) =>
-                      theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.50',
+                      theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50',
                   },
                 },
                 '& .MuiDataGrid-footerContainer': {
                   minHeight: 48,
                   borderTop: '1px solid',
                   borderColor: (theme) =>
-                    theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.200',
+                    theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200',
                 },
                 '& .MuiTablePagination-root': {
                   fontSize: '0.75rem',
