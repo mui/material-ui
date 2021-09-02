@@ -64,8 +64,8 @@ const CustomContent = React.forwardRef(function CustomContent(
       {lastNestedChild ? (
         <Box
           sx={{
-            width: 4,
-            height: 4,
+            width: 6,
+            height: 6,
             borderRadius: '50%',
             bgcolor: 'warning.main',
             display: 'inline-block',
@@ -88,7 +88,7 @@ const CustomContent = React.forwardRef(function CustomContent(
         sx={{
           '&&': {
             color: lastNestedChild ? 'text.secondary' : 'text.primary',
-            fontWeight: lastNestedChild ? 400 : 700,
+            fontWeight: lastNestedChild ? 400 : 500,
           },
         }}
       >
@@ -127,7 +127,7 @@ const StyledTreeItem = styled(TreeItem)(({ theme }) => ({
       height: '100%',
       width: 2,
       backgroundColor:
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[200],
+        theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[200],
     },
   },
   '& .MuiTreeItem-group': {
@@ -141,7 +141,7 @@ const StyledTreeItem = styled(TreeItem)(({ theme }) => ({
         width: 24,
         height: 2,
         backgroundColor:
-          theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[200],
+          theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[200],
         top: '50%',
         left: 6,
         transform: 'translate(-100%, -50%)',
@@ -183,6 +183,11 @@ export default function FolderTreeView() {
           <CustomTreeItem
             nodeId="6"
             label="job-mapping.js"
+            ContentProps={{ lastNestedChild: true }}
+          />
+          <CustomTreeItem
+            nodeId="6"
+            label="articles.js"
             ContentProps={{ lastNestedChild: true }}
           />
         </CustomTreeItem>
