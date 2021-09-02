@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { XGrid } from '@material-ui/x-grid';
+import { XGrid, GridApi } from '@material-ui/x-grid';
 import { useDemoData } from '@material-ui/x-grid-data-generator';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -21,6 +21,7 @@ import Frame from 'docs/src/components/action/Frame';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import FlashCode from 'docs/src/components/animation/FlashCode';
+import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
 
 const DEMOS = ['Editing', 'Selection', 'Sorting', 'Pagination', 'Filtering'];
 
@@ -47,8 +48,11 @@ const startLine = {
   [DEMOS[4]]: 7,
 };
 
+const dataGridStyleOverrides = <XGridGlobalStyles selector="#data-grid-demo" />;
+
 export default function XDataGrid() {
   const [demo, setDemo] = React.useState(DEMOS[0]);
+  const gridApiRef = React.useRef<GridApi | null>(null);
   const icons = {
     [DEMOS[0]]: <EditOutlined />,
     [DEMOS[1]]: <CheckBoxRounded />,
@@ -62,33 +66,27 @@ export default function XDataGrid() {
     maxColumns: 5,
     editable: true,
   });
-  // React.useEffect(() => {
-  //   const container = document.querySelector(
-  //     '#data-grid-demo .MuiDataGrid-windowContainer',
-  //   ) as HTMLDivElement | null;
-  //   const overlay = document.createElement('div');
-  //   overlay.classList.add('FlashView-overlay');
-  //   const flashView = document.createElement('div');
-  //   const content = document.createElement('div');
-  //   flashView.appendChild(content);
-  //   flashView.classList.add('FlashView-highlight');
-  //   flashView.style.top = '75px';
-  //   flashView.style.left = '150px';
-  //   flashView.style.width = '120px';
-  //   flashView.style.height = '36px';
-  //   content.classList.add('FlashView-content');
-  //   content.textContent = 'Double click on the cell to edit.';
-  //   if (container && !loading) {
-  //     container.style.position = 'relative';
-  //     container.appendChild(overlay);
-  //     container.appendChild(flashView);
-  //     return () => {
-  //       container.removeChild(flashView);
-  //       container.removeChild(overlay);
-  //     };
-  //   }
-  //   return () => {};
-  // }, [demo, loading]);
+  const firstRowId = data.rows[0]?.id;
+  React.useEffect(() => {
+    if (gridApiRef.current && !loading) {
+      gridApiRef.current.scroll({ top: 0, left: 0 });
+      if (demo === DEMOS[2]) {
+        gridApiRef.current.sortColumn({ field: 'name', sortable: true }, 'asc');
+      } else {
+        gridApiRef.current.sortColumn({ field: 'name', sortable: true }, null);
+      }
+      if (demo === DEMOS[0]) {
+        gridApiRef.current.setCellMode(firstRowId, 'name', 'edit');
+      }
+      if (demo === DEMOS[4]) {
+        gridApiRef.current.applyFilter({
+          columnField: 'name',
+          value: 'Ad',
+          operatorValue: 'contains',
+        });
+      }
+    }
+  }, [demo, loading, firstRowId]);
   return (
     <Section>
       <Grid container spacing={2}>
@@ -187,8 +185,10 @@ export default function XDataGrid() {
               // },
             }}
           >
+            {dataGridStyleOverrides}
             <XGrid
               {...data}
+              apiRef={gridApiRef}
               loading={loading}
               density="compact"
               checkboxSelection

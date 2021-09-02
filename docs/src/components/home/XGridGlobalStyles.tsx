@@ -2,12 +2,12 @@ import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';
 
-export default function XGridGlobalStyles() {
+export default function XGridGlobalStyles({ selector = 'body' }: { selector?: string }) {
   const theme = useTheme();
   return (
     <GlobalStyles
       styles={{
-        body: {
+        [selector]: {
           '& .MuiDataGrid-root': {
             border: 'none',
             bgcolor: 'background.paper',
