@@ -1,5 +1,5 @@
 import * as React from 'react';
-import AlertTitle from '@material-ui/core/AlertTitle';
+import AlertTitle from '@mui/material/AlertTitle';
 
 let warnedOnce = false;
 
@@ -12,8 +12,8 @@ export default React.forwardRef(function DeprecatedAlertTitle(props, ref) {
       [
         'Material-UI: The AlertTitle component was moved from the lab to the core.',
         '',
-        "You should use `import { AlertTitle } from '@material-ui/core'`",
-        "or `import AlertTitle from '@material-ui/core/AlertTitle'`",
+        "You should use `import { AlertTitle } from '@mui/material'`",
+        "or `import AlertTitle from '@mui/material/AlertTitle'`",
       ].join('\n'),
     );
 

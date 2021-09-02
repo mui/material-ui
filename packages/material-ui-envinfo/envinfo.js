@@ -6,7 +6,7 @@ envinfo
   .run(
     {
       npmPackages: `{${[
-        '@material-ui/*',
+        '@mui/*',
         // Peer dependencies
         'react',
         'react-dom',

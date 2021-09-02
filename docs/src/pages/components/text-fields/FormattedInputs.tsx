@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { IMaskInput } from 'react-imask';
 import NumberFormat from 'react-number-format';
-import Box from '@material-ui/core/Box';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
+import Box from '@mui/material/Box';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import TextField from '@mui/material/TextField';
+import FormControl from '@mui/material/FormControl';
 
 interface CustomProps {
   onChange: (event: { target: { name: string; value: string } }) => void;

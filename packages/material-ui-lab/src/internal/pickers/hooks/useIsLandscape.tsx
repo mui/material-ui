@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { unstable_useEnhancedEffect as useEnhancedEffect } from '@material-ui/utils';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import { arrayIncludes } from '../utils';
 import { AllAvailableViews } from '../typings/Views';
 

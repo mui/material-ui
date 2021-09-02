@@ -1,13 +1,13 @@
 import * as React from 'react';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Grid from '@material-ui/core/Grid';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Grid from '@mui/material/Grid';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import Paper from '@material-ui/core/Paper';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Radio from '@material-ui/core/Radio';
-import Stack, { StackProps } from '@material-ui/core/Stack';
+import Paper from '@mui/material/Paper';
+import RadioGroup from '@mui/material/RadioGroup';
+import Radio from '@mui/material/Radio';
+import Stack, { StackProps } from '@mui/material/Stack';
 
 export default function InteractiveStack() {
   const [direction, setDirection] = React.useState<StackProps['direction']>('row');

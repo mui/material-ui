@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import DateRangePicker, { DateRange } from '@material-ui/lab/DateRangePicker';
+import Box from '@mui/material/Box';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DateRangePicker, { DateRange } from '@mui/lab/DateRangePicker';
 
 export default function CustomDateRangeInputs() {
   const [value, setValue] = React.useState<DateRange<Date>>([null, null]);

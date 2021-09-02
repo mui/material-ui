@@ -1,4 +1,4 @@
-import { ThemeOptions as SystemThemeOptions, Theme as SystemTheme } from '@material-ui/system';
+import { ThemeOptions as SystemThemeOptions, Theme as SystemTheme } from '@mui/system';
 import { Mixins, MixinsOptions } from './createMixins';
 import { Palette, PaletteOptions } from './createPalette';
 import { Typography, TypographyOptions } from './createTypography';
@@ -34,7 +34,7 @@ export interface Theme extends SystemTheme {
 
 /**
  * @deprecated
- * Use `import { createTheme } from '@material-ui/core/styles'` instead.
+ * Use `import { createTheme } from '@mui/material/styles'` instead.
  */
 export function createMuiTheme(options?: ThemeOptions, ...args: object[]): Theme;
 

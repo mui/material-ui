@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Typography, { TypographyProps } from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
 import Steps from 'docs/src/pages/landing/Steps';
 import Themes from 'docs/src/pages/landing/Themes';
 import QuickWord from 'docs/src/pages/landing/QuickWord';

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import NProgress from 'nprogress';
-import { withStyles } from '@material-ui/styles';
-import { createTheme } from '@material-ui/core/styles';
-import NoSsr from '@material-ui/unstyled/NoSsr';
-import { exactProp } from '@material-ui/utils';
+import { withStyles } from '@mui/styles';
+import { createTheme } from '@mui/material/styles';
+import NoSsr from '@mui/core/NoSsr';
+import { exactProp } from '@mui/utils';
 
 NProgress.configure({
   barSelector: '.nprogress-bar',
@@ -35,7 +35,8 @@ const styles = (theme) => {
         right: 0,
         height: 2,
         zIndex: theme.zIndex.tooltip,
-        backgroundColor: '#e0e0e0',
+        backgroundColor:
+          theme.palette.mode === 'dark' ? theme.palette.primary[700] : theme.palette.primary[200],
         '& .nprogress-bar': {
           position: 'fixed',
           backgroundColor: theme.nprogress.color,

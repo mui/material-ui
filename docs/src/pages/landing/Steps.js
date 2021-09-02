@@ -1,14 +1,14 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/styles';
-import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
-import Paper from '@material-ui/core/Paper';
-import { FileDownload as FileDownloadIcon } from '@material-ui/docs';
-import BuildIcon from '@material-ui/icons/Build';
+import { makeStyles } from '@mui/styles';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
+import Divider from '@mui/material/Divider';
+import Paper from '@mui/material/Paper';
+import { FileDownload as FileDownloadIcon } from '@mui/docs';
+import BuildIcon from '@mui/icons-material/Build';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
@@ -87,7 +87,7 @@ function HomeSteps() {
                 {t('installDescr')}
               </Typography>
               <HighlightedCode
-                code="$ npm install @material-ui/core@next @emotion/react @emotion/styled"
+                code="$ npm install @mui/material@next @emotion/react @emotion/styled"
                 language="sh"
               />
               <Link
@@ -131,7 +131,7 @@ function HomeSteps() {
               <HighlightedCode
                 code={`
 import * as React from 'react';
-import { Button } from '@material-ui/core';
+import { Button } from '@mui/material';
 
 function App() {
   return <Button>Hello World</Button>;

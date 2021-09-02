@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SxProps } from '@material-ui/system';
+import { SxProps } from '@mui/system';
 import { TypographyTypeMap } from '../Typography';
 import { OverrideProps, OverridableComponent } from '../OverridableComponent';
 import { Theme } from '../styles';

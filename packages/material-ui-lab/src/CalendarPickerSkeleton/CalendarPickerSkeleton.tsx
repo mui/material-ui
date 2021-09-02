@@ -1,14 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import Skeleton from '@material-ui/core/Skeleton';
-import { styled, useThemeProps, Theme } from '@material-ui/core/styles';
-import { SxProps } from '@material-ui/system';
+import Skeleton from '@mui/material/Skeleton';
+import { styled, useThemeProps, Theme } from '@mui/material/styles';
+import { SxProps } from '@mui/system';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
-} from '@material-ui/unstyled';
+} from '@mui/core';
 import { DAY_SIZE, DAY_MARGIN } from '../internal/pickers/constants/dimensions';
 
 type HTMLDivProps = JSX.IntrinsicElements['div'];

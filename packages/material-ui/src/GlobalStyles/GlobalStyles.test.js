@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender } from 'test/utils';
-import GlobalStyles from '@material-ui/core/GlobalStyles';
-import { ThemeProvider, createTheme } from '@material-ui/core//styles/';
+import GlobalStyles from '@mui/material/GlobalStyles';
+import { ThemeProvider, createTheme } from '@mui/material//styles/';
 
 const customTheme = createTheme({
   spacing: 10,
@@ -12,7 +12,9 @@ describe('Global', () => {
   const render = createClientRender();
 
   it('should provide default theme', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) this.skip();
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
 
     const { container } = render(
       <div>
@@ -27,7 +29,9 @@ describe('Global', () => {
   });
 
   it('should respect context theme if available', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) this.skip();
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
 
     const { container } = render(
       <ThemeProvider theme={customTheme}>

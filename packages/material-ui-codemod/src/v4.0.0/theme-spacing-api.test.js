@@ -13,7 +13,7 @@ function read(fileName) {
   return readFile(path.join(__dirname, fileName));
 }
 
-describe('@material-ui/codemod', () => {
+describe('@mui/codemod', () => {
   describe('v4.0.0', () => {
     describe('theme-spacing', () => {
       it('update theme spacing API', () => {

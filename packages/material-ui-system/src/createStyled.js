@@ -1,5 +1,5 @@
-import styledEngineStyled from '@material-ui/styled-engine';
-import { getDisplayName } from '@material-ui/utils';
+import styledEngineStyled from '@mui/styled-engine';
+import { getDisplayName } from '@mui/utils';
 import createTheme from './createTheme';
 import styleFunctionSx from './styleFunctionSx';
 import propsToClassKey from './propsToClassKey';
@@ -136,7 +136,7 @@ export default function createStyled(input = {}) {
         });
       }
 
-      if (componentName && overridesResolver && !skipVariantsResolver) {
+      if (componentName && !skipVariantsResolver) {
         expressionsWithDefaultTheme.push((props) => {
           const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
           return variantsResolver(

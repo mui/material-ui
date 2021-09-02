@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { chainPropTypes, getDisplayName } from '@material-ui/utils';
+import { chainPropTypes, getDisplayName } from '@mui/utils';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import makeStyles from '../makeStyles';
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { elementAcceptingRef } from '@material-ui/utils';
+import { elementAcceptingRef } from '@mui/utils';
 import { Transition } from 'react-transition-group';
 import useTheme from '../styles/useTheme';
 import { reflow, getTransitionProps } from '../transitions/utils';

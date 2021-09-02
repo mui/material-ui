@@ -2,8 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, describeConformance, createClientRender, fireEvent, screen } from 'test/utils';
-import MenuItem, { menuItemClasses as classes } from '@material-ui/core/MenuItem';
-import ButtonBase from '@material-ui/core/ButtonBase';
+import MenuItem, { menuItemClasses as classes } from '@mui/material/MenuItem';
+import ButtonBase from '@mui/material/ButtonBase';
 import ListContext from '../List/ListContext';
 
 describe('<MenuItem />', () => {

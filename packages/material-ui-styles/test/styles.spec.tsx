@@ -9,10 +9,10 @@ import {
   CSSProperties,
   CreateCSSProperties,
   PropsFunc,
-} from '@material-ui/styles';
-import Button from '@material-ui/core/Button';
-import { Theme } from '@material-ui/core/styles';
-import { expectType } from '@material-ui/types';
+} from '@mui/styles';
+import Button from '@mui/material/Button';
+import { Theme } from '@mui/material/styles';
+import { expectType } from '@mui/types';
 
 // Example 1
 const simpleStyles = ({ palette, spacing }: Theme) => ({

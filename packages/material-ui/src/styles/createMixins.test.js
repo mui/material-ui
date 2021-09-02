@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 import createMixins from './createMixins';
 
 describe('createMixins', () => {

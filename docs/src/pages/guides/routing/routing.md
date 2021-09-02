@@ -103,7 +103,7 @@ The [example folder](https://github.com/mui-org/material-ui/tree/HEAD/examples/n
   This is similar to react-router's Link component.
 
   ```tsx
-  import Button from '@material-ui/core/Button';
+  import Button from '@mui/material/Button';
   import { NextLinkComposed } from '../src/Link';
 
   export default function Index() {

@@ -1,16 +1,16 @@
 /* eslint-disable react/no-unescaped-entities */
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import MuiAccordion from '@material-ui/core/Accordion';
-import MuiAccordionSummary from '@material-ui/core/AccordionSummary';
-import MuiAccordionDetail from '@material-ui/core/AccordionDetails';
-import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import MuiAccordion from '@mui/material/Accordion';
+import MuiAccordionSummary from '@mui/material/AccordionSummary';
+import MuiAccordionDetail from '@mui/material/AccordionDetails';
+import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
 
 const faqData = [
   {
@@ -257,9 +257,12 @@ export default function FAQ() {
               questions.
             </Typography>
             <Typography variant="body2" color="text.primary" sx={{ my: 1, textAlign: 'left' }}>
-              For product-related questions, you can open new issues on{' '}
-              <Link href="https://github.com/mui-org/material-ui-x">GitHub</Link> (bugs and feature
-              requests) or email us at <Link href="mailto:x@mui.com">x@mui.com</Link>.
+              For product-related problems, please open
+              <Link href="https://github.com/mui-org/material-ui-x/issues/new/choose">
+                a new GitHub issue
+              </Link>
+              . If you need to share private information, you can{' '}
+              <Link href="mailto:x@mui.com">email us</Link>.
             </Typography>
           </Paper>
         </Grid>

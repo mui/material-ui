@@ -2,10 +2,10 @@ import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
 import { describeConformance, act, createClientRender, fireEvent, queries } from 'test/utils';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItem, { listItemClasses as classes } from '@material-ui/core/ListItem';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemSecondaryAction from '@mui/material/ListItemSecondaryAction';
+import ListItem, { listItemClasses as classes } from '@mui/material/ListItem';
 import ListContext from '../List/ListContext';
 
 const NoContent = React.forwardRef(() => {

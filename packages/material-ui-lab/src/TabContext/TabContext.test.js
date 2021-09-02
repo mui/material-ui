@@ -27,7 +27,9 @@ describe('<TabContext />', () => {
      */
     function Tabs({ value }) {
       const context = useTabContext();
-      if (context === null) throw new TypeError();
+      if (context === null) {
+        throw new TypeError();
+      }
 
       return (
         <React.Fragment>
@@ -59,7 +61,9 @@ describe('<TabContext />', () => {
      */
     function Tabs({ value }) {
       const context = useTabContext();
-      if (context === null) throw new TypeError();
+      if (context === null) {
+        throw new TypeError();
+      }
 
       return (
         <React.Fragment>
@@ -87,7 +91,9 @@ describe('<TabContext />', () => {
      */
     function Tabs({ value }) {
       const context = useTabContext();
-      if (context === null) throw new TypeError();
+      if (context === null) {
+        throw new TypeError();
+      }
 
       return (
         <React.Fragment>
