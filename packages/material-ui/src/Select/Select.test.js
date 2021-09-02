@@ -965,18 +965,6 @@ describe('<Select />', () => {
     expect(ref.current.node).to.have.tagName('input');
   });
 
-  describe('When passing input and the ref for this input', () => {
-    it('show the correct element with the ref value', () => {
-      const inputRef = React.createRef();
-      const { getByTestId } = render(
-        <Select input={<input data-testid="input" ref={inputRef} />} />,
-      );
-      const input = getByTestId('input');
-      fireEvent.change(input, { target: { value: '30' } });
-      expect(inputRef.current.value).to.be.equal('30');
-    });
-  });
-
   describe('prop: inputRef', () => {
     it('should be able to return the input node via a ref object', () => {
       const ref = React.createRef();
@@ -1207,11 +1195,37 @@ describe('<Select />', () => {
     );
   });
 
-  it('should merge the class names', () => {
-    const { getByTestId } = render(
-      <Select className="foo" input={<InputBase data-testid="root" className="bar" />} value="" />,
-    );
-    expect(getByTestId('root')).to.have.class('foo');
-    expect(getByTestId('root')).to.have.class('bar');
+  describe('prop: input', () => {
+    it('merges `ref` of `Select` and `input`', () => {
+      const Input = React.forwardRef(function Input(props, ref) {
+        const { inputProps, inputComponent: Component, ...other } = props;
+
+        React.useImperativeHandle(ref, () => {
+          return { refToInput: true };
+        });
+
+        return <Component {...inputProps} {...other} ref={ref} />;
+      });
+      const inputRef = React.createRef();
+      const selectRef = React.createRef();
+      render(
+        <Select input={<Input data-testid="input" ref={inputRef} value="" />} ref={selectRef} />,
+      );
+
+      expect(inputRef).to.deep.equal({ current: { refToInput: true } });
+      expect(selectRef).to.deep.equal({ current: { refToInput: true } });
+    });
+
+    it('should merge the class names', () => {
+      const { getByTestId } = render(
+        <Select
+          className="foo"
+          input={<InputBase data-testid="root" className="bar" />}
+          value=""
+        />,
+      );
+      expect(getByTestId('root')).to.have.class('foo');
+      expect(getByTestId('root')).to.have.class('bar');
+    });
   });
 });
