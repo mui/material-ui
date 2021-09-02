@@ -28,13 +28,6 @@ const GOLDs = [
     href: 'https://www.text-em-all.com/',
   },
   {
-    src: 'https://images.opencollective.com/canadacasino/5b19004/logo/40.png',
-    srcSet: 'https://images.opencollective.com/canadacasino/5b19004/logo/80.png 2x',
-    name: 'Canada Casino',
-    description: 'Safe and rewarding online casino experience',
-    href: 'https://casinocanada.com/',
-  },
-  {
     src: 'https://avatars.githubusercontent.com/u/13365608?s=40',
     srcSet: 'https://avatars.githubusercontent.com/u/13365608?s=80 2x',
     name: 'Spice Factory',
