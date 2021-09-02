@@ -21,7 +21,7 @@ startDate.setDate(10);
 const endDate = new Date();
 endDate.setDate(endDate.getDate() + 28);
 
-export default function Hero() {
+export default function XHero() {
   const { loading, data } = useDemoData({
     dataSet: 'Commodity',
     rowLength: 1000,

@@ -2118,7 +2118,7 @@
     npmlog "^4.1.2"
     write-file-atomic "^3.0.3"
 
-"@material-ui/data-grid@^4.0.0-alpha.36":
+"@material-ui/data-grid@^4.0.0-alpha.37":
   version "4.0.0-alpha.37"
   resolved "https://registry.yarnpkg.com/@material-ui/data-grid/-/data-grid-4.0.0-alpha.37.tgz#89d907c4e94e6a0db4e89e4f59160f7811546ca2"
   integrity sha512-3T2AG31aad/lWLMLwn1XUP4mUf3H9YZES17dGuYByzkRLCXbBZHBTPEnCctWukajzwm+v0KGg3QpwitGoiDAjA==
@@ -2150,6 +2150,36 @@
     "@types/react-is" "^16.7.1 || ^17.0.0"
     prop-types "^15.7.2"
     react-is "^17.0.2"
+
+"@material-ui/x-grid-data-generator@^4.0.0-alpha.37":
+  version "4.0.0-alpha.37"
+  resolved "https://registry.yarnpkg.com/@material-ui/x-grid-data-generator/-/x-grid-data-generator-4.0.0-alpha.37.tgz#a1e0728eb66605f28ede598c0e365489ebd63ac4"
+  integrity sha512-Xfd56za0XKJpWUZcQfjV1WukwKcAtJa+096ARc2Dki5r1a7RU1mWyc1Hr+gpH7RIGtYOqLn5SKOj5hGV7tWzFw==
+  dependencies:
+    "@types/chance" "^1.1.0"
+    chance "^1.1.6"
+    clsx "^1.0.4"
+    lru-cache "^6.0.0"
+
+"@material-ui/x-grid@^4.0.0-alpha.37":
+  version "4.0.0-alpha.37"
+  resolved "https://registry.yarnpkg.com/@material-ui/x-grid/-/x-grid-4.0.0-alpha.37.tgz#6514048d66a9d4b49322ad1f1b03bfa3af05df2f"
+  integrity sha512-X8Vg2l7tOpNdA1lOnPK+U/tTF0QWsftL2cm4L8C4LOmG7pdHCdlPnC8Vdb5D1Tpf57RQdec6dZYtJE8JYcoq/g==
+  dependencies:
+    "@material-ui/utils" "^5.0.0-alpha.14"
+    "@material-ui/x-license" "4.0.0-alpha.37"
+    clsx "^1.0.4"
+    prop-types "^15.7.2"
+    reselect "^4.0.0"
+
+"@material-ui/x-license@4.0.0-alpha.37":
+  version "4.0.0-alpha.37"
+  resolved "https://registry.yarnpkg.com/@material-ui/x-license/-/x-license-4.0.0-alpha.37.tgz#49ecd287fbd963bfd141f9a61a7911f4f89f4522"
+  integrity sha512-MA4kTjnzxnGCw3qmbSzFsApDeAFgR7/HOp1O/TIz5kp7OUiPcl4CX3QiXBxQ9rtDJZe8r42GeMYz4xrb7gLG1g==
+  dependencies:
+    "@material-ui/utils" "^5.0.0-alpha.14"
+    esm "^3.2.25"
+    yargs "^17.0.1"
 
 "@mdx-js/react@^1.6.22":
   version "1.6.22"

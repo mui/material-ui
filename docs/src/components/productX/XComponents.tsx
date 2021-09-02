@@ -15,7 +15,7 @@ import BarChartRounded from '@mui/icons-material/BarChartRounded';
 
 const DEMOS = ['Data Grid', 'Date Picker', 'Tree View', 'Sparkline', 'Charts'];
 
-export default function CoreComponents() {
+export default function XComponents() {
   const [demo, setDemo] = React.useState(DEMOS[0]);
   const icons = {
     [DEMOS[0]]: <TableChartRounded />,

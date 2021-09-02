@@ -37,7 +37,7 @@ const code = `<DataGrid
   pagination
 />`;
 
-export default function CoreTheming() {
+export default function XDataGrid() {
   const [demo, setDemo] = React.useState(DEMOS[0]);
   const icons = {
     [DEMOS[0]]: <EditOutlined />,
@@ -76,10 +76,7 @@ export default function CoreTheming() {
                 selected={name === demo}
                 onClick={() => setDemo(name)}
               >
-                <Item
-                  icon={React.cloneElement(icons[name], { active: name === demo })}
-                  title={name}
-                />
+                <Item icon={icons[name]} title={name} />
               </Highlighter>
             ))}
             <More />
@@ -92,6 +89,7 @@ export default function CoreTheming() {
               position: 'relative',
               zIndex: 1,
               height: 220,
+              borderRadius: '10px 10px 0 0',
               '& .MuiDataGrid-root': {
                 '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
                 '& .MuiDataGrid-renderingZone': {

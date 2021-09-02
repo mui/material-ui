@@ -22,7 +22,7 @@ import EditStatus from 'docs/src/components/x-grid/EditStatus';
 const lightTheme = createTheme();
 const darkTheme = createTheme({ palette: { mode: 'dark' } });
 
-export default function CoreTheming() {
+export default function XTheming() {
   const [customized, setCustomized] = React.useState(true);
   const { loading, data } = useDemoData({
     dataSet: 'Commodity',

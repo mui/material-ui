@@ -19,14 +19,7 @@ import FileUploadRounded from '@mui/icons-material/FileUploadRounded';
 import PendingActionsRounded from '@mui/icons-material/PendingActions';
 import SpeedRounded from '@mui/icons-material/SpeedRounded';
 
-// const darkDesignTokens = getDesignTokens('dark');
-// let darkTheme = createTheme(darkDesignTokens);
-// darkTheme = createTheme(darkTheme, getThemedComponents(darkTheme));
-// // @ts-ignore
-// darkTheme.components.MuiPaper.styleOverrides.outlined.backgroundColor =
-//   darkTheme.palette.primaryDark[600];
-
-export default function CoreHeroEnd() {
+export default function XRoadmap() {
   function renderList(content: React.ReactElement) {
     return (
       <Box
