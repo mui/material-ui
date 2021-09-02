@@ -172,7 +172,7 @@
     "stylelint-processor-styled-components": "^1.10.0",
     "terser-webpack-plugin": "^4.2.2",
     "tslint": "5.14.0",
-    "typescript": "^4.1.2",
+    "typescript": "^4.4.2",
     "unist-util-visit": "^2.0.2",
     "url-loader": "^4.1.0",
     "webpack": "^4.41.0",
