@@ -83,7 +83,7 @@ const ProductsSwitcher = ({
     <ProductItem
       aria-label="Go to core components page"
       icon={<IconImage name="product-core" />}
-      name="Core"
+      name="MUI Core"
       description="Ready to use, forever free, foundational components."
       href={ROUTES.productCore}
     />,
@@ -92,7 +92,7 @@ const ProductsSwitcher = ({
       icon={<IconImage name="product-advanced" />}
       name={
         <Box component="span" display="inline-flex" alignItems="center">
-          X Pro&nbsp;
+          MUI X
         </Box>
       }
       description="Powerful and robust components for your complex apps."
