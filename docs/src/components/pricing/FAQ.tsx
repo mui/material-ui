@@ -29,10 +29,10 @@ const faqData = [
     detail: (
       <React.Fragment>
         The number of licenses purchased must correspond to the number of concurrent developers
-        contributing changes to the front-end code of a project that uses MUI X Pro. However, the number
-        of developer licenses required is capped at 10 developers for the <b>Pro plan</b> and 10
-        developers/project for the <b>Premium plan</b>, developers above this cap don't need to be
-        licensed.
+        contributing changes to the front-end code of a project that uses MUI X Pro. However, the
+        number of developer licenses required is capped at 10 developers for the <b>Pro plan</b> and
+        10 developers/project for the <b>Premium plan</b>, developers above this cap don't need to
+        be licensed.
         <br />
         <br />
         <b>Example 1.</b> Company 'A' is developing an application named 'AppA'. The app needs to
@@ -44,9 +44,9 @@ const faqData = [
         <br />
         <br />
         <b>Example 2.</b> A UI development team at Company 'A' creates its own UI library for
-        internal development and includes MUI X Pro as a component. The team working on 'AppA' uses the
-        new library and so does the team working on 'AppB'. 'AppA' has 5 front-end developers and
-        'AppB' has 3. There are 2 front-end developers on the UI development team. Company 'B'
+        internal development and includes MUI X Pro as a component. The team working on 'AppA' uses
+        the new library and so does the team working on 'AppB'. 'AppA' has 5 front-end developers
+        and 'AppB' has 3. There are 2 front-end developers on the UI development team. Company 'B'
         purchases 10 licenses.
       </React.Fragment>
     ),
