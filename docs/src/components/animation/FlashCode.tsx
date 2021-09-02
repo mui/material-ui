@@ -5,7 +5,7 @@ const FlashCode = styled('div', {
   shouldForwardProp: (prop) =>
     shouldForwardProp(prop) && prop !== 'endLine' && prop !== 'startLine' && prop !== 'lineHeight',
 })<{ endLine?: number; startLine?: number; lineHeight?: number | string }>(
-  ({ theme, startLine = 0, endLine = 1, lineHeight = '0.75rem' }) => ({
+  ({ theme, startLine = 0, endLine = startLine, lineHeight = '0.75rem' }) => ({
     borderRadius: 2,
     pointerEvents: 'none',
     position: 'absolute',

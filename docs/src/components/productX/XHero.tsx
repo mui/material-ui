@@ -24,7 +24,7 @@ endDate.setDate(endDate.getDate() + 28);
 export default function XHero() {
   const { loading, data } = useDemoData({
     dataSet: 'Commodity',
-    rowLength: 1000,
+    rowLength: 10000,
     maxColumns: 40,
     editable: true,
   });
@@ -113,15 +113,6 @@ export default function XHero() {
                       px: 0.5,
                     },
                   },
-                  '& .MuiDataGrid-footerContainer': {
-                    minHeight: 48,
-                    '& .MuiToolbar-root': {
-                      minHeight: 48,
-                    },
-                    '&  *:not(svg)': {
-                      fontSize: '0.875rem',
-                    },
-                  },
                 },
               }}
             >
@@ -129,8 +120,8 @@ export default function XHero() {
                 {...data}
                 disableSelectionOnClick
                 checkboxSelection
+                hideFooter
                 loading={loading}
-                pagination
                 density="compact"
               />
             </Box>

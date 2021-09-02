@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { XGrid } from '@material-ui/x-grid';
 import { useDemoData } from '@material-ui/x-grid-data-generator';
+import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -12,13 +13,14 @@ import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import EditOutlined from '@mui/icons-material/EditOutlined';
-import HighlightAltRounded from '@mui/icons-material/HighlightAltRounded';
+import CheckBoxRounded from '@mui/icons-material/CheckBoxRounded';
 import SortByAlphaRounded from '@mui/icons-material/SortByAlphaRounded';
 import AutoStoriesOutlined from '@mui/icons-material/AutoStoriesOutlined';
 import FilterAltOutlined from '@mui/icons-material/FilterAltOutlined';
 import Frame from 'docs/src/components/action/Frame';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
+import FlashCode from 'docs/src/components/animation/FlashCode';
 
 const DEMOS = ['Editing', 'Selection', 'Sorting', 'Pagination', 'Filtering'];
 
@@ -37,11 +39,19 @@ const code = `<DataGrid
   pagination
 />`;
 
+const startLine = {
+  [DEMOS[0]]: 5,
+  [DEMOS[1]]: 10,
+  [DEMOS[2]]: 6,
+  [DEMOS[3]]: 12,
+  [DEMOS[4]]: 7,
+};
+
 export default function XDataGrid() {
   const [demo, setDemo] = React.useState(DEMOS[0]);
   const icons = {
     [DEMOS[0]]: <EditOutlined />,
-    [DEMOS[1]]: <HighlightAltRounded />,
+    [DEMOS[1]]: <CheckBoxRounded />,
     [DEMOS[2]]: <SortByAlphaRounded />,
     [DEMOS[3]]: <AutoStoriesOutlined />,
     [DEMOS[4]]: <FilterAltOutlined />,
@@ -52,6 +62,33 @@ export default function XDataGrid() {
     maxColumns: 5,
     editable: true,
   });
+  // React.useEffect(() => {
+  //   const container = document.querySelector(
+  //     '#data-grid-demo .MuiDataGrid-windowContainer',
+  //   ) as HTMLDivElement | null;
+  //   const overlay = document.createElement('div');
+  //   overlay.classList.add('FlashView-overlay');
+  //   const flashView = document.createElement('div');
+  //   const content = document.createElement('div');
+  //   flashView.appendChild(content);
+  //   flashView.classList.add('FlashView-highlight');
+  //   flashView.style.top = '75px';
+  //   flashView.style.left = '150px';
+  //   flashView.style.width = '120px';
+  //   flashView.style.height = '36px';
+  //   content.classList.add('FlashView-content');
+  //   content.textContent = 'Double click on the cell to edit.';
+  //   if (container && !loading) {
+  //     container.style.position = 'relative';
+  //     container.appendChild(overlay);
+  //     container.appendChild(flashView);
+  //     return () => {
+  //       container.removeChild(flashView);
+  //       container.removeChild(overlay);
+  //     };
+  //   }
+  //   return () => {};
+  // }, [demo, loading]);
   return (
     <Section>
       <Grid container spacing={2}>
@@ -84,6 +121,7 @@ export default function XDataGrid() {
         </Grid>
         <Grid item xs={12} md={6}>
           <Paper
+            id="data-grid-demo"
             variant="outlined"
             sx={{
               position: 'relative',
@@ -114,6 +152,39 @@ export default function XDataGrid() {
                   },
                 },
               },
+              // '& .FlashView-highlight': {
+              //   borderRadius: '2px 2px 0 0',
+              //   pointerEvents: 'none',
+              //   position: 'absolute',
+              //   backgroundColor: (theme) => alpha(theme.palette.success[300], 0.2),
+              //   transition: '0.3s',
+              //   border: '1px solid',
+              //   borderColor: 'success.dark',
+              // },
+              // '& .FlashView-content': {
+              //   borderRadius: 1,
+              //   backgroundColor: 'success.700',
+              //   color: '#fff',
+              //   width: 'max-content',
+              //   position: 'absolute',
+              //   px: 1,
+              //   py: 0.25,
+              //   boxShadow: '0 0 8px 0 rgba(0,0,0,0.12)',
+              //   bottom: -5,
+              //   left: -1,
+              //   transform: 'translate(0, 100%)',
+              //   fontWeight: 500,
+              // },
+              // '& .FlashView-overlay': {
+              //   display: 'none',
+              //   pointerEvents: 'none',
+              //   position: 'absolute',
+              //   bgcolor: 'rgba(0,0,0,0.12)',
+              //   top: 0,
+              //   left: 0,
+              //   right: 0,
+              //   bottom: 0,
+              // },
             }}
           >
             <XGrid
@@ -134,14 +205,20 @@ export default function XDataGrid() {
               '&::-webkit-scrollbar': {
                 display: 'none',
               },
-              '& pre': {
+              '&& pre': {
+                bgcolor: 'transparent',
                 '&::-webkit-scrollbar': {
                   display: 'none',
                 },
               },
             }}
           >
-            <HighlightedCode component={MarkdownElement} code={code} language="jsx" />
+            <Box sx={{ position: 'relative' }}>
+              <Box sx={{ position: 'relative', zIndex: 1 }}>
+                <HighlightedCode component={MarkdownElement} code={code} language="jsx" />
+              </Box>
+              <FlashCode startLine={startLine[demo]} sx={{ mx: -2 }} />
+            </Box>
           </Frame.Info>
         </Grid>
       </Grid>
