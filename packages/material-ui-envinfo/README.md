@@ -23,7 +23,7 @@ $ npx @mui/envinfo
     @mui/codemod:  5.0.0-alpha.17
     @mui/material:  5.0.0-alpha.18
     @mui/docs:  5.0.0-alpha.1
-    @mui/envinfo:  1.0.0
+    @mui/envinfo:  2.0.0
     @mui/icons-material:  5.0.0-alpha.15
     @mui/lab:  5.0.0-alpha.18
     @mui/styled-engine:  5.0.0-alpha.18

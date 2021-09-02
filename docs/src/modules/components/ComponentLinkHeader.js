@@ -35,10 +35,6 @@ export default function ComponentLinkHeader(props) {
   } = props;
   const t = useTranslate();
 
-  if (headers.materialDesign && options.design === false) {
-    throw new Error('missing design assets');
-  }
-
   return (
     <Root>
       {headers.githubLabel ? (
