@@ -88,10 +88,11 @@ export default function XRoadmap() {
               <Box
                 sx={{
                   display: 'grid',
+                  mt: {xs: 2, sm: 0},
                   overflow: { xs: 'auto', lg: 'unset' },
                   gap: 2,
                   alignItems: 'flex-start',
-                  gridTemplateColumns: 'repeat(3, minmax(200px, 1fr))',
+                  gridTemplateColumns: {xs: 'repeat(1)', lg: 'repeat(3, minmax(200px, 1fr))'},
                   typography: 'body2',
                   '& .MuiPaper-root': {
                     p: 2,
