@@ -1,11 +1,11 @@
 /* eslint-disable material-ui/no-hardcoded-labels */
 import * as React from 'react';
 import Interpolate from '@trendmicro/react-interpolate';
-import { styled } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
-import Divider from '@material-ui/core/Divider';
+import { styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
 import Link from 'docs/src/modules/components/Link';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 

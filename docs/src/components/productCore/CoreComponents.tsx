@@ -1,26 +1,26 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, styled, Theme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Alert from '@material-ui/core/Alert';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import Stack from '@material-ui/core/Stack';
-import Paper from '@material-ui/core/Paper';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
-import InputRounded from '@material-ui/icons/InputRounded';
-import SmartButtonRounded from '@material-ui/icons/SmartButtonRounded';
-import TableViewRounded from '@material-ui/icons/TableViewRounded';
-import WarningRounded from '@material-ui/icons/WarningRounded';
-import ShoppingCartRounded from '@material-ui/icons/ShoppingCartRounded';
-import InfoOutlined from '@material-ui/icons/InfoOutlined';
+import { ThemeProvider, createTheme, styled, Theme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Alert from '@mui/material/Alert';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Paper from '@mui/material/Paper';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
+import InputRounded from '@mui/icons-material/InputRounded';
+import SmartButtonRounded from '@mui/icons-material/SmartButtonRounded';
+import TableViewRounded from '@mui/icons-material/TableViewRounded';
+import WarningRounded from '@mui/icons-material/WarningRounded';
+import ShoppingCartRounded from '@mui/icons-material/ShoppingCartRounded';
+import InfoRounded from '@mui/icons-material/InfoRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
@@ -54,91 +54,91 @@ const StyledButton = styled(Button)(({ theme }) => ({
 }));
 
 const CODES = {
-  Button: `const Demo = () => (
-  <div>
-    <Button variant="text" startIcon={<ShoppingCartRounded />}>
-      Add to Cart
-    </Button>
-    <Button variant="contained" startIcon={<ShoppingCartRounded />}>
-      Add to Cart
-    </Button>
-    <Button variant="outlined" startIcon={<ShoppingCartRounded />}>
-      Add to Cart
-    </Button>
-  </div>
-);`,
-  'Text field': `const Demo = () => (
-  <div>
-    <TextField variant="standard" label="Username" />
-    <TextField variant="outlined" label="Email" type="email" />
-    <TextField variant="filled" label="Password" type="password" />
-  </div>
-);`,
-  Table: `const Demo = () => (
-  <TableContainer
-    component={Paper} 
-    variant="outlined"
-  >
-    <Table aria-label="demo table">
-      <TableHead>
-        <TableRow>
-          <TableCell>Dessert</TableCell>
-          <TableCell>Calories</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        <TableRow>
-          <TableCell>Frozen yoghurt</TableCell>
-          <TableCell>109</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell>Cupcake</TableCell>
-          <TableCell>305</TableCell>
-        </TableRow>
-      </TableBody>
-    </Table>
-  </TableContainer>
-);`,
-  Alert: `const Demo = () => (
-  <div>
-    <Alert variant="standard" color="info">
-      Check out this alert!
-    </Alert>
-    <Alert variant="outlined" color="info">
-      Check out this alert!
-    </Alert>
-    <Alert variant="filled" color="info">
-      Check out this alert!
-    </Alert>
-  </div>
-);`,
-  Tooltip: `const Demo = () => (
-  <div>
-    <Tooltip title="This is a tooltip" arrow placement="top">
-      <Typography>Top</Typography>
-    </Tooltip>
-    <Tooltip title="This is a tooltip" arrow placement="right">
-      <Typography>Right</Typography>
-    </Tooltip>
-    <Tooltip title="This is a tooltip" arrow placement="left">
-      <Typography>Left</Typography>
-    </Tooltip>
-    <Tooltip title="This is a tooltip" arrow placement="bottom">
-      <Typography>Bottom</Typography>
-    </Tooltip>
-  </div>
-);`,
+  Button: `
+<div>
+  <Button variant="text" startIcon={<ShoppingCartRounded />}>
+    Add to Cart
+  </Button>
+  <Button variant="contained" startIcon={<ShoppingCartRounded />}>
+    Add to Cart
+  </Button>
+  <Button variant="outlined" startIcon={<ShoppingCartRounded />}>
+    Add to Cart
+  </Button>
+</div>
+`,
+  'Text field': `
+<div>
+  <TextField variant="standard" label="Username" />
+  <TextField variant="outlined" label="Email" type="email" />
+  <TextField variant="filled" label="Password" type="password" />
+</div>
+`,
+  Table: `
+<TableContainer
+  component={Paper} 
+  variant="outlined"
+>
+  <Table aria-label="demo table">
+    <TableHead>
+      <TableRow>
+        <TableCell>Dessert</TableCell>
+        <TableCell>Calories</TableCell>
+      </TableRow>
+    </TableHead>
+    <TableBody>
+      <TableRow>
+        <TableCell>Frozen yoghurt</TableCell>
+        <TableCell>109</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell>Cupcake</TableCell>
+        <TableCell>305</TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</TableContainer>
+`,
+  Alert: `
+<div>
+  <Alert variant="standard" color="info">
+    Check out this alert!
+  </Alert>
+  <Alert variant="outlined" color="info">
+    Check out this alert!
+  </Alert>
+  <Alert variant="filled" color="info">
+    Check out this alert!
+  </Alert>
+</div>
+`,
+  Tooltip: `
+<div>
+  <Tooltip title="This is a tooltip" arrow placement="top">
+    <Typography>Top</Typography>
+  </Tooltip>
+  <Tooltip title="This is a tooltip" arrow placement="right">
+    <Typography>Right</Typography>
+  </Tooltip>
+  <Tooltip title="This is a tooltip" arrow placement="left">
+    <Typography>Left</Typography>
+  </Tooltip>
+  <Tooltip title="This is a tooltip" arrow placement="bottom">
+    <Typography>Bottom</Typography>
+  </Tooltip>
+</div>
+`,
 };
 
 export default function CoreComponents() {
   const [demo, setDemo] = React.useState<typeof DEMOS[number]>(DEMOS[0]);
   const [customized, setCustomized] = React.useState(false);
   const icons = {
-    [DEMOS[0]]: <SmartButtonRounded />,
-    [DEMOS[1]]: <InputRounded />,
-    [DEMOS[2]]: <TableViewRounded />,
-    [DEMOS[3]]: <WarningRounded />,
-    [DEMOS[4]]: <InfoOutlined />,
+    [DEMOS[0]]: <SmartButtonRounded fontSize="small" />,
+    [DEMOS[1]]: <InputRounded fontSize="small" />,
+    [DEMOS[2]]: <TableViewRounded fontSize="small" />,
+    [DEMOS[3]]: <WarningRounded fontSize="small" />,
+    [DEMOS[4]]: <InfoRounded fontSize="small" />,
   };
   return (
     <Section bg="comfort">
@@ -146,7 +146,7 @@ export default function CoreComponents() {
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>
             <SectionHeadline
-              overline="What do you get?"
+              overline="Component library"
               title={
                 <Typography variant="h2">
                   <GradientText>40+</GradientText> building block components
@@ -175,16 +175,21 @@ export default function CoreComponents() {
                 }
               >
                 {demo === 'Button' && (
-                  <Box
+                  <Stack
+                    gap={2}
                     sx={{
                       height: '100%',
-                      py: 2,
+                      py: 5,
                       display: 'flex',
+                      flexDirection: {
+                        xs: 'column',
+                        sm: 'row',
+                      },
                       justifyContent: 'center',
                       alignItems: 'center',
                       flexWrap: 'wrap',
                       '& > button': {
-                        mt: 1,
+                        mt: 0,
                         mx: 0.5,
                       },
                     }}
@@ -198,7 +203,7 @@ export default function CoreComponents() {
                     <Button variant="outlined" startIcon={<ShoppingCartRounded />}>
                       Add to Cart
                     </Button>
-                  </Box>
+                  </Stack>
                 )}
                 {demo === 'Text field' && (
                   <Stack
@@ -279,19 +284,19 @@ export default function CoreComponents() {
                     spacing={1}
                     sx={{ minHeight: 100, py: 2 }}
                   >
-                    <Tooltip title="This is a tooltip" arrow placement="top">
+                    <Tooltip title="Appears on hover" arrow placement="top">
                       <Typography color="text.secondary">Top</Typography>
                     </Tooltip>
                     <Box sx={{ '& > *': { display: 'inline-block' } }}>
-                      <Tooltip title="This is a tooltip" arrow placement="left">
+                      <Tooltip title="Always display" arrow placement="left" open>
                         <Typography color="text.secondary">Left</Typography>
                       </Tooltip>
                       <Box sx={{ display: 'inline-block', width: 80 }} />
-                      <Tooltip title="This is a tooltip" arrow placement="right">
+                      <Tooltip title="Appears on hover" arrow placement="right">
                         <Typography color="text.secondary">Right</Typography>
                       </Tooltip>
                     </Box>
-                    <Tooltip title="This is a tooltip" arrow placement="bottom">
+                    <Tooltip title="Appears on hover" arrow placement="bottom">
                       <Typography color="text.secondary">Bottom</Typography>
                     </Tooltip>
                   </Stack>
@@ -300,9 +305,11 @@ export default function CoreComponents() {
             </Frame.Demo>
             <Frame.Info
               sx={{
+                minHeight: 200,
                 maxHeight: demo === 'Table' ? 260 : 'none',
                 position: 'relative',
                 overflow: 'hidden',
+                pt: 5,
               }}
             >
               <Box sx={{ height: 'calc(100% + 40px)', overflow: 'auto', m: -2, p: 2 }}>
@@ -314,7 +321,7 @@ export default function CoreComponents() {
                   alignItems: 'center',
                   position: 'absolute',
                   top: 15,
-                  right: 10,
+                  left: 10,
                   zIndex: 10,
                 }}
               >

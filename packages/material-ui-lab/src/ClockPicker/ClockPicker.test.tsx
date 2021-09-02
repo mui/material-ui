@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { describeConformance, fireEvent, fireTouchChangedEvent, screen, within } from 'test/utils';
-import ClockPicker, { clockPickerClasses as classes } from '@material-ui/lab/ClockPicker';
+import ClockPicker, { clockPickerClasses as classes } from '@mui/lab/ClockPicker';
 import {
   adapterToUse,
   wrapPickerMount,

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, describeConformance } from 'test/utils';
-import OutlinedInput, { outlinedInputClasses as classes } from '@material-ui/core/OutlinedInput';
-import InputBase from '@material-ui/core/InputBase';
+import OutlinedInput, { outlinedInputClasses as classes } from '@mui/material/OutlinedInput';
+import InputBase from '@mui/material/InputBase';
 
 describe('<OutlinedInput />', () => {
   const render = createClientRender();

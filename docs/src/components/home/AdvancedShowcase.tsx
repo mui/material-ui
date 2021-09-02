@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { DataGrid, GridCellParams, GridColDef } from '@material-ui/data-grid';
-import Box from '@material-ui/core/Box';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
@@ -1725,6 +1725,9 @@ export default function DataTable() {
             '& pre': {
               '&::-webkit-scrollbar': {
                 display: 'none',
+              },
+              '& code[class*="language-"]': {
+                fontSize: 'inherit',
               },
             },
           }}

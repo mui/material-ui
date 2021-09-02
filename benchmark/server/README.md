@@ -1,6 +1,6 @@
 # Material-UI benchmark
 
-## `@material-ui/core`
+## `@mui/material`
 
 _Synthetic benchmark_
 
@@ -15,7 +15,7 @@ ButtonBase disable ripple x 61,748 ops/sec ±0.35% (190 runs sampled)
 Markdown x 954 ops/sec ±1.35% (187 runs sampled)
 ```
 
-## `@material-ui/docs`
+## `@mui/docs`
 
 _Synthetic benchmark_
 
@@ -26,7 +26,7 @@ Markdown x 946 ops/sec ±4.04% (176 runs sampled)
 MarkdownElement x 3,941 ops/sec ±5.53% (185 runs sampled)
 ```
 
-## `@material-ui/styles`
+## `@mui/styles`
 
 _Synthetic benchmark_
 
@@ -44,7 +44,7 @@ EmotionServerCssButton x 43,701 ops/sec ±1.04% (190 runs sampled)
 Naked x 58,694 ops/sec ±0.86% (188 runs sampled)
 ```
 
-## `@material-ui/system`
+## `@mui/system`
 
 _Synthetic benchmark_
 
@@ -53,7 +53,7 @@ yarn server:system
 
 @styled-system/css x 64,606 ops/sec ±0.45% (188 runs sampled)
 @chakra-ui/system/css x 126,272 ops/sec ±0.21% (191 runs sampled)
-@material-ui/system styleFunctionSx x 40,867 ops/sec ±0.50% (191 runs sampled)
+@mui/system styleFunctionSx x 40,867 ops/sec ±0.50% (191 runs sampled)
 ```
 
 ## Real-world benchmark

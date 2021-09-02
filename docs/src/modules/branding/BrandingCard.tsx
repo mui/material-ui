@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Box, { BoxProps } from '@material-ui/core/Box';
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
+import Box, { BoxProps } from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
 
 interface BrandingCardProps {
   children?: React.ReactNode;

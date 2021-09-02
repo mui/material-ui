@@ -1,9 +1,9 @@
-import { DistributiveOmit, Overwrite } from '@material-ui/types';
+import { DistributiveOmit, Overwrite } from '@mui/types';
 import {
   CreateCSSProperties,
   StyledComponentProps,
   WithStylesOptions,
-} from '@material-ui/styles/withStyles';
+} from '@mui/styles/withStyles';
 import * as React from 'react';
 import { DefaultTheme } from '../defaultTheme';
 

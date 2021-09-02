@@ -79,7 +79,7 @@ The Radio component uses this hook internally.
 ### API
 
 ```jsx
-import { useRadioGroup } from '@material-ui/core/RadioGroup';
+import { useRadioGroup } from '@mui/material/RadioGroup';
 ```
 
 #### Returns

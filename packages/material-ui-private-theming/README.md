@@ -1,3 +1,3 @@
-# @material-ui/private-theming
+# @mui/private-theming
 
-The React theme context to be shared between `@material-ui/styles` and `@material-ui/core`.
+The React theme context to be shared between `@mui/styles` and `@mui/material`.

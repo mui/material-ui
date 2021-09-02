@@ -1,5 +1,5 @@
-import { styled, Theme } from '@material-ui/core/styles';
-import { SxProps } from '@material-ui/system';
+import { styled, Theme } from '@mui/material/styles';
+import { SxProps } from '@mui/system';
 
 export type RootSvgProps<P = unknown> = React.SVGProps<SVGSVGElement> & { sx?: SxProps<Theme> } & P;
 

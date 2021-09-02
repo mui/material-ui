@@ -1,10 +1,10 @@
 import * as React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
 import Link from 'docs/src/modules/components/Link';
-import LaunchRounded from '@material-ui/icons/LaunchRounded';
+import LaunchRounded from '@mui/icons-material/LaunchRounded';
 
 export default function SponsorCard({
   item,

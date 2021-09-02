@@ -27,9 +27,9 @@ import generatePropTypeDescription, {
   isElementAcceptingRefProp,
 } from 'docs/src/modules/utils/generatePropTypeDescription';
 import { findPages, findPagesMarkdown, findComponents } from 'docs/src/modules/utils/find';
-import { getHeaders, renderInline as renderMarkdownInline } from '@material-ui/markdown';
+import { getHeaders, renderInline as renderMarkdownInline } from '@mui/markdown';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
-import createGenerateClassName from '@material-ui/styles/createGenerateClassName';
+import createGenerateClassName from '@mui/styles/createGenerateClassName';
 import * as ttp from 'typescript-to-proptypes';
 import { getLineFeed, getUnstyledFilename } from './helpers';
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { useTheme } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import { useTheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
 
 export default function SectionHeadline({
   overline,
@@ -14,13 +14,13 @@ export default function SectionHeadline({
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
   const overlineColor = mode === 'dark' ? 'primary.400' : 'primary.600';
-  const titleColor = mode === 'dark' ? 'grey.300' : 'primaryDark.900';
+  const titleColor = mode === 'dark' ? 'grey.100' : 'primaryDark.900';
   const descriptionColor = mode === 'dark' ? 'grey.500' : 'grey.800';
   return (
     <React.Fragment>
       <Typography
         color={overlineColor}
-        component="h1"
+        component="h2"
         fontWeight="bold"
         variant="body2"
         sx={{ mb: 1 }}

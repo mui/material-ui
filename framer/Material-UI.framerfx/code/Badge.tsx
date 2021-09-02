@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import MuiBadge from '@material-ui/core/Badge';
+import MuiBadge from '@mui/material/Badge';
 import { Icon } from './Icon';
 
 interface Props {

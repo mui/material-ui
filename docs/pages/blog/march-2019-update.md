@@ -9,14 +9,14 @@ Olivier Tassinari. April 5, 2019.
 Here are the most significant improvements in March:
 
 - We have removed the old styles modules 💅.
-  Be aware [of the difference](/customization/default-theme/#material-ui-core-styles-vs-material-ui-styles) between `@material-ui/core/styles` and `@material-ui/styles`.
+  Be aware [of the difference](/customization/default-theme/#material-ui-core-styles-vs-material-ui-styles) between `@mui/material/styles` and `@mui/styles`.
 - The community has helped us to add many TypeScript demo variants. In order to minimize the overhead of handling two variants per demo (JavaScript & TypeScript), the JavaScript variant is generated from the TypeScript variant. If you are using TypeScript, you can ignore the `.propTypes =` assignations.
 - We have migrated a few demos from the `withStyles()` API to the `makeStyles()` API.
   If you are wondering which you should use, we would encourage the use of `makeStyles()` where possible. `withStyles()` is interesting for overriding component styles or for handling legacy class logics.
 - We have made the [Box API](/system/basics/) stable 🥳.
   ```diff
-  -import { unstable_Box as Box } from '@material-ui/core/Box';
-  +import Box from '@material-ui/core/Box';
+  -import { unstable_Box as Box } from '@mui/material/Box';
+  +import Box from '@mui/material/Box';
   ```
 - We have committed to [a new Roadmap](/discover-more/roadmap/) (prioritized) for the next 6 months.
 - We have migrated 50% of the codebase from the Classes API to the Hooks API. Once we are done with this task we can remove the internal usage of higher-order components.

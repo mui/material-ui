@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Alert from '@material-ui/core/Alert';
-import CheckIcon from '@material-ui/icons/Check';
-import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
-import Stack from '@material-ui/core/Stack';
+import Alert from '@mui/material/Alert';
+import CheckIcon from '@mui/icons-material/Check';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import Stack from '@mui/material/Stack';
 
 export default function IconAlerts() {
   return (

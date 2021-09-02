@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ListItemText } from '@material-ui/core';
+import { ListItemText } from '@mui/material';
 
 const CustomComponent: React.FC<{ prop1: string; prop2: number }> = () => <div />;
 

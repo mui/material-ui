@@ -125,7 +125,7 @@ A floating action buttons appears on scroll to make it easy to get back to the t
 #### Examples
 
 ```jsx
-import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import useScrollTrigger from '@mui/material/useScrollTrigger';
 
 function HideOnScroll(props) {
   const trigger = useScrollTrigger();

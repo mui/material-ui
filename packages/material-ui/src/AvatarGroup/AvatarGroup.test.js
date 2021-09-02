@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, createClientRender } from 'test/utils';
-import Avatar from '@material-ui/core/Avatar';
-import AvatarGroup, { avatarGroupClasses as classes } from '@material-ui/core/AvatarGroup';
+import Avatar from '@mui/material/Avatar';
+import AvatarGroup, { avatarGroupClasses as classes } from '@mui/material/AvatarGroup';
 
 describe('<AvatarGroup />', () => {
   const render = createClientRender();

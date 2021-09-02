@@ -1,19 +1,24 @@
 const createEmojiRegex = require('emoji-regex');
 
+const defaultAllow = ['API'];
+
 module.exports = {
   meta: {
     messages: {
       'literal-label':
-        "Don't use hardcoded labels. Prefer translated values by using `t` from the redux store.",
+        "Don't use hardcoded labels. Prefer translated values by using `useTranslate`. New translations should be added to `docs/translations/translations.json`.",
     },
   },
   create(context) {
-    const { allow = [] } = context.options[0] || {};
+    const { allow: allowOption = [] } = context.options[0] || {};
     const emojiRegex = createEmojiRegex();
+
+    const allow = defaultAllow.concat(allowOption);
 
     function valueViolatesRule(value) {
       const sanitizedValue = typeof value === 'string' ? value.trim() : value;
-      const hasTranslateableContent = sanitizedValue !== '' && !emojiRegex.test(sanitizedValue);
+      const hasTranslateableContent =
+        sanitizedValue !== '' && !emojiRegex.test(sanitizedValue) && /\w+/.test(sanitizedValue);
 
       return hasTranslateableContent && !allow.includes(sanitizedValue);
     }

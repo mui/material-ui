@@ -12,7 +12,7 @@ import {
   programmaticFocusTriggersFocusVisible,
 } from 'test/utils';
 import { camelCase } from 'lodash/string';
-import Tooltip, { tooltipClasses as classes } from '@material-ui/core/Tooltip';
+import Tooltip, { tooltipClasses as classes } from '@mui/material/Tooltip';
 import { testReset } from './Tooltip';
 
 async function raf() {

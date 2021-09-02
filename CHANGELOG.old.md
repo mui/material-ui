@@ -1,3 +1,407 @@
+## 4.12.3
+
+<!-- generated comparing v4.12.2..master -->
+
+_Jul 27, 2021_
+
+### `@material-ui/core@4.12.3`
+
+- <!-- 2 --> [AccordionSummary] Fix false-positive propType warning with `disableGeneration` (#27385) @eps1lon
+- <!-- 7 --> [ImageList] Fix deprecation warnings (#27502) @mnajdova
+- <!-- 6 --> [TablePagination] Re-introduce deprecated `onChangePage` to `ActionsComponent` (#27407) @eps1lon
+- <!-- 1 --> [TextareaAutosize] Updated deprecation warning to suggest minRows instead of rowsMin (#27398) @HumbertoL
+
+### Docs
+
+- <!-- 4 --> [docs] Fix 404 link to ImageList @oliviertassinari
+- <!-- 3 --> [docs] Fix DataTable.tsx demo in v4 (#27196) @Siv-tspab
+
+### Core
+
+- <!-- 5 --> [core] Add release scripts (#27399) @eps1lon
+
+All contributors of this release in alphabetical order: @eps1lon, @mnajdova, @HumbertoL, @oliviertassinari, @Siv-tspab
+
+## 4.12.2
+
+<!-- generated comparing v4.12.1..master -->
+
+_Jul 19, 2021_
+
+### `@material-ui/core@4.12.2`
+
+- <!-- 09 --> [Accordion, Collapse] Fix failed proptype error (#27307) @serenalin121
+- <!-- 12 --> [AccordionSummary] Ensure backwards compatible deprecation of classes.focused (#27351) @eps1lon
+- <!-- 11 --> [TextField] Add support for `minRows` (#27293) @eps1lon
+
+### Docs
+
+- <!-- 07 --> [blog] Danilo Leal joins Material-UI (#27231) @oliviertassinari
+- <!-- 04 --> [blog] Jun did join in Q1 @oliviertassinari
+- <!-- 03 --> [blog] Fix typo @oliviertassinari
+- <!-- 02 --> [blog] Q2 2021 Update (#27089) @oliviertassinari
+- <!-- 10 --> [docs] Add constant for the banner height (#27309) @mnajdova
+- <!-- 08 --> [docs] Fix various layout issues with the v5 banner (#27237) @mnajdova
+- <!-- 06 --> [docs] Fix https protocol (#27262) @m4theushw
+- <!-- 01 --> [docs] Remove Ethical Ads (#27173) @mbrookes
+- <!-- 05 --> [website] Open 4 new roles (#27123) @oliviertassinari
+
+All contributors of this release in alphabetical order: @eps1lon, @m4theushw, @mbrookes, @mnajdova, @oliviertassinari, @serenalin121
+
+## 4.12.1
+
+_July 7, 2021_
+
+This release is released to fix the package.json generation in the previous release.
+
+### Core
+
+- [core] Fix generation of package.json file on Windows (#27160) @mnajdova
+
+## 4.12.0
+
+_July 6, 2021_
+
+A big thanks to the 12 contributors who made this release possible. It includes deprecations that should help developers to have an easier adoption of v5.
+
+### @material-ui/core@4.12.0
+
+- [Accordion] Deprecate classes.focused (#24083) @oliviertassinari
+- [Avatar] Change default variant and adjust deprecation message (#25549) @michal-perlakowski
+- [Badge] Add overlap circular and rectangular (#22076) @eps1lon
+- [ButtonBase] Add warning for buttonRef removal (#25897) @m4theushw
+- [Collapse] Deprecate classes.container (#24084) @oliviertassinari
+- [Collapse] Deprecate collapsedHeight (#24079) @oliviertassinari
+- [Dialog] Add deprecation warning for withMobileDialog (#23570) @RDIL
+- [Dialog] Deprecate the transition onX props (#22114) @mbrookes
+- [Fab] Deprecate variant="round" (#24080) @oliviertassinari
+- [Grid] Add deprecation for justify prop rename (#24078) @oliviertassinari
+- [Grid] Fix justifyContent="flex-start" prop types (#24788) @DukeManh
+- [GridList] Rename to ImageList & add deprecation warnings (#22363) @mbrookes
+- [Icons] Deprecate fontSize value of default, add medium (#23971) @mbrookes
+- [Menu] Deprecate transition onX props (#22213) @mbrookes
+- [Modal][dialog] Deprecate duplicate props with onChange (#24081) @oliviertassinari
+- [Modal][portal] Deprecate onRendered (#24082) @oliviertassinari
+- [Popover] Deprecate transition onX props (#22202) @mbrookes
+- [RootRef] Deprecate component (#24075) @oliviertassinari
+- [Snackbar] Deprecate transition onX props (#22206) @mbrookes
+- [Table] Add deprecation for renamed TablePagination props (#23789) @mnajdova
+- [Table] Deprecate padding="default" (#25990) @m4theushw
+- [TextareaAutosize] Deprecate rowsMax->maxRows & rowsMin->minRows (#23530) @mhayk
+- [TextField] Add isRequired to position prop in InputAdornment (#25912) @m4theushw
+- [theme] Deprecate theme.mixins.gutters (#22245) @joshwooding
+- [theme] Deprecate fade color utility in favor of alpha (#22837) @mnajdova
+- [theme] Deprecate createMuiTheme (#26004) @m4theushw
+- [theme] Add warning for theme.typography.round deprecation (#25916) @m4theushw
+- [theme] Add warning for theme.breakpoints.width deprecation (#25993) @m4theushw
+
+### @material-ui/system@4.12.0
+
+- [Box] Deprecate css prop in favor of sx (#23480) @mnajdova
+
+### Docs
+
+- [blog] Michał Dudak joins Material-UI (#26700)
+- [blog] Siriwat Kunaporn joins Material-UI (#26329) @oliviertassinari
+- [docs] Add gold sponsor (#26968)
+- [docs] Add v5 banner (#27070)
+- [docs] Fix 404 link (Evergreen Box) (#26430) @k-utsumi
+- [docs] Prepare for data grid auto-generated docs (#26477) @m4theushw
+- [docs] Update typography.md to non-deprecated fontsource (#26082) @kiwimahk
+- [website] Add careers page for intern (#26280) @mnajdova
+- [website] Add open application section (#26501) @oliviertassinari
+
+### Core
+
+- [test] Deprecate test-utils (#24099) @eps1lon
+
+## 4.11.4
+
+<!-- generated comparing v4.11.3..master -->
+
+_Apr 27, 2021_
+
+A big thanks to the 6 contributors who made this release possible. Here are some highlights ✨:
+
+We fixed an issue related to some packages using incompatible versions of `@material-ui/types`. This affected `@material-ui/core`, `@material-ui/lab`, and `@material-ui/styles`
+`@material-ui/types@5.1.7 accidentally included a breaking change.
+
+### @material-ui/core@4.11.4
+
+- <!-- 13 --> [Avatar] Remove circular variant deprecation (#25543) @michal-perlakowski
+- <!-- 22 --> [types] Ensure Omit type exists (#25978) @eps1lon
+
+### Docs
+
+- <!-- 21 --> [DataGrid] Update docs sections (#25980) @dtassone
+- <!-- 20 --> [docs] Sync master redirections with next @oliviertassinari
+- <!-- 19 --> [docs] Fix deploy @oliviertassinari
+- <!-- 18 --> [docs] Move DataGrid editing nav link (#25769) @dtassone
+- <!-- 11 --> [docs] Design is what matters @oliviertassinari
+- <!-- 10 --> [docs] Add the new demo page (#25285) @DanailH
+- <!-- 09 --> [docs] Add a temporary hiring block in the docs (#25111) @oliviertassinari
+- <!-- 05 --> [docs] Remove under construction icons from DataGrid feature pages (#24946) @DanailH
+- <!-- 03 --> [docs] Add HoodieBees to sponsors (#24735) @mbrookes
+- <!-- 02 --> [docs] Add sorting section (#24637) @dtassone
+- <!-- 01 --> [docs] v4 is not under active development @oliviertassinari
+
+### Core
+
+- <!-- 17 --> remove job ad @oliviertassinari
+- <!-- 07 --> clearer header @oliviertassinari
+- <!-- 16 --> [blog] Fix typos @oliviertassinari
+- <!-- 12 --> [core] Update the codesandbox issue templates (#25501) @oliviertassinari
+- <!-- 04 --> [core] Support /r/issue-template back (#24870) @oliviertassinari
+- <!-- 15 --> [website] Q1 2021 Update (#25591) @oliviertassinari
+- <!-- 14 --> [website] Matheus Wichman joins Material-UI (#25590) @oliviertassinari
+- <!-- 08 --> [website] Fix 404 page @oliviertassinari
+- <!-- 06 --> [website] Update Careers page (#24948) @oliviertassinari
+
+All contributors of this release in alphabetical order: @DanailH, @dtassone, @eps1lon, @mbrookes, @michal-perlakowski, @oliviertassinari
+
+## UNRELEASED - 4.12.0
+
+This release is intended to help prepare the migration to Material-UI v5 ⏫:
+
+- 📚 Start to add deprecations in anticipation of v5. We plan to add a deprecation for any breaking change in v5 that allows it. Each warning comes with a simple message that explains how to handle the deprecation. If no warnings are reported in the console, you are set for this first batch.
+  Please report issues with the deprecations on [#22074](https://github.com/mui-org/material-ui/issues/22074) (wrong instructions, false-positives, floods in the console, etc.).
+
+You can expect similar releases like this one in the coming months.
+
+### `@material-ui/core@v4.12.0`
+
+#### Deprecations
+
+- [theme] Deprecate `fade` color utility in favor of `alpha` (#22837) @mnajdova
+- [theme] Deprecate theme.mixins.gutters (#22245) @joshwooding
+- [Avatar] Add circular variant (#22090) @eps1lon
+- [Badge] Add overlap circular and rectangular (#22076) @eps1lon
+- [Box] Deprecate css prop in favor of sx (#23480) @mnajdova
+- [CircularProgress] Backport simplified determinate style & deprecate static (#22094) @mbrookes
+- [Dialog] Deprecate the transition onX props (#22114) @mbrookes
+- [GridList] Rename to ImageList & add deprecation warnings (#22363) @mbrookes
+- [Menu] Deprecate transition onX props (#22213) @mbrookes
+- [Popover] Deprecate transition onX props (#22202) @mbrookes
+- [Snackbar] Deprecate transition onX props (#22206) @mbrookes
+
+## 4.11.3
+
+###### _Jan 24, 2021_
+
+This release fixes an important issue with Chrome 88. The usage of NaN as a CSS property with JSS throws an exception.
+
+### `@material-ui/core@v4.11.3`
+
+- [styles] Upgrade jss to 10.5.1 (#24570) @oliviertassinari
+
+### `@material-ui/styles@v4.11.3`
+
+- [styles] Upgrade jss to 10.5.1 (#24570) @oliviertassinari
+
+### `@material-ui/system@v4.11.3`
+
+- [system] Fix handling of null-ish values (#24527) @oliviertassinari"
+
+### Docs
+
+- [blog] 2020 in review and beyond (#24130) @oliviertassinari
+- [docs] Add ELEVATOR to backers (#23977) @mbrookes
+- [docs] Add eslint rule to docs (#23843) @jens-ox
+- [docs] Add notification for Adobe XD design assets (#23979) @mbrookes
+- [docs] Allow codesandbox deploy for demos in X (#23644) @oliviertassinari
+- [docs] Fix codesandbox datagrid demo (#24218) @brno32
+- [docs] Improve displayed versions (#24051) @oliviertassinari
+- [docs] Mention Adobe XD (#23978) @oliviertassinari
+- [docs] Sync tranlations (#23981) @l10nbot
+- [docs] Sync translation (#23719) @l10nbot
+- [docs] Sync translations (#23836) @l10nbot
+- [docs] Sync translations (#24039) @l10nbot
+- [docs] Update Divjoy URL (#24447) @mbrookes
+- [docs] Update in-house ads (#24410) @mbrookes
+
+### Core
+
+- [core] Batch small changes (#24224) @oliviertassinari
+
+## 4.11.2
+
+###### _Dec 2, 2020_
+
+This release widens the peer dependency scope of React to accept ^17.0.0.
+The change makes it easier for developers to upgrade React independently from Material-UI. The best support for React 17 will be found in Material-UI v5.
+
+This is a reminder that all ongoing work has moved to v5. This means a feature freeze on v4. The development of v4 is limited to important bug fixes, security patches and easing the upgrade path to v5.
+
+### `@material-ui/core@v4.11.2`
+
+- [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
+
+### `@material-ui/icons@v4.11.2`
+
+- [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
+
+### `@material-ui/lab@v4.11.2`
+
+- [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
+
+### `@material-ui/styles@v4.11.2`
+
+- [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
+
+### `@material-ui/system@v4.11.2`
+
+- [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
+
+### `@material-ui/utils@v4.11.2`
+
+- [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
+
+### `@material-ui/lab@v4.0.0-alpha.57`
+
+- [core] Allow React 17 in peer dependencies (#23697) @oliviertassinari
+
+## 4.11.1
+
+###### _Nov 24, 2020_
+
+A big thanks to the 12 contributors who made this release possible.
+
+- 🐛 Fix integration issue with TypeScript 4.1 (#23692) @ldrick
+- ⚛️ Fix two issues with React 17 (#22263, #23367) @eps1lon
+  v4 doesn't have official support for React 17 like v5 has. Use it at your own risk.
+- 🐛 Fix right-to-left support of Tabs since Chrome 85 (#22830) @ankit
+
+### `@material-ui/core@v4.11.1`
+
+- [styles] Add support for TypeScript 4.1 (#23692) @ldrick
+- [ClickAwayListener] Fix mounting behavior in Portals in React 17 (#23367) @eps1lon
+- [TrapFocus] Prevent possible crash in React 17 (#22263) @eps1lon
+- [Tabs] Fix RTL scrollbar with Chrome 85 (#22830) @ankit
+
+### `@material-ui/styles@v4.11.1`
+
+- [styles] Add support for TypeScript 4.1 (#23692) @ldrick
+
+### Docs
+
+- [blog] Allow to support card preview (#23087) @oliviertassinari
+- [blog] Danail Hadjiatanasov joins Material-UI (#23223) @oliviertassinari
+- [blog] New posts (#22607) @oliviertassinari
+- [blog] Q2 2020 Update (#21822) @oliviertassinari
+- [blog] Q3 2020 Update (#23055) @oliviertassinari
+- [docs] Add Backstage to showcase (#22428) @stefanalund
+- [docs] Add Design resources in installation (#22209) @oliviertassinari
+- [docs] Add DoiT diamond sponsor (#22436) @oliviertassinari
+- [docs] Add LightyearVPN to showcase (#22568) @lightyearvpn
+- [docs] Add Material-UI Builder to in-house ads (#23342) @mbrookes
+- [docs] Add Octopus diamond sponsor (#22178) @oliviertassinari
+- [docs] Add Spotify to users (#22776) @mbrookes
+- [docs] Add ethicalads.io (#21752) @oliviertassinari
+- [docs] Add live demo with DataGrid (#22697) @oliviertassinari
+- [docs] Add notification about survey @oliviertassinari
+- [docs] Add notification for MUI for Figma v4.12.0 (#23212) @mbrookes
+- [docs] Add redirection for links published on npm (#22575) @oliviertassinari
+- [docs] Allow to host code in a different repo (#23390) @oliviertassinari
+- [docs] Avoid confusion between layout grid and data grid (#22681) @oliviertassinari
+- [docs] Backport \_redirect from next @oliviertassinari
+- [docs] Change "Let Us Know" button URL (#22521) @mbrookes
+- [docs] Clear the different between table vs data grid right at the start @oliviertassinari
+- [docs] Encourage DataGrid in /components/tables/ over alternatives (#22637) @oliviertassinari
+- [docs] Engage with more Russian users @oliviertassinari
+- [docs] Fix 404 reported by Moz.com @oliviertassinari
+- [docs] Fix codesandbox link @oliviertassinari
+- [docs] Fix static asset loading with X @oliviertassinari
+- [docs] Fix theme.palette.type usage @oliviertassinari
+- [docs] Forward x data-grid (#22400) @oliviertassinari
+- [docs] Improve SEO on titles (#22742) @oliviertassinari
+- [docs] Improve ad display @oliviertassinari
+- [docs] Improve codesandbox generation logic (#22221) @oliviertassinari
+- [docs] Improve export to CodeSandbox (#22346) @oliviertassinari
+- [docs] Improve position in the side nav of DataGrid @oliviertassinari
+- [docs] Include new video on customization @oliviertassinari
+- [docs] Option to disable ads (#22574) @oliviertassinari
+- [docs] Point to the production branch of x @oliviertassinari
+- [docs] Reduce tracking events (#21710) @eps1lon
+- [docs] Remove codefund Ads (#21714) @eps1lon
+- [docs] Remove expansion-panels @oliviertassinari
+- [docs] Remove v5 docs capability @oliviertassinari
+- [docs] Sync translation (#21638, #21751, #21925, #22751, #22850, #22887, #23357) @oliviertassinari
+- [docs] Update homepage quotes (#23326) @mbrookes
+- [docs] Use codesandbox deploy for demos created from deploy previews (#22616) @eps1lon
+- [docs] configuring redirects for MUI X (#22632) @dtassone
+
+### Core
+
+- [core] Remove Alert codeowner @oliviertassinari
+- [core] Small changes (master) (#22022) @oliviertassinari
+- [test] Add skip ci to Crowdin commit message (#22684) @mbrookes
+- [test] Fix CI @oliviertassinari
+- [test] Only run on push for master/next (#22627) @eps1lon
+- [test] Run CircleCI anytime (#22686) @eps1lon
+- [test] Update react next patch (#22393) @eps1lon
+
+## 4.11.0
+
+###### _July 1, 2020_
+
+A big thanks to the 8 contributors who made this release possible.
+
+### `@material-ui/core@v4.11.0`
+
+- [ExpansionPanel] Prepare renaming to Accordion, add warnings (#21560) @mnajdova
+  It uses a more common naming convention:
+
+  ```diff
+  -import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+  -import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+  -import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+  -import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
+  +import Accordion from '@material-ui/core/Accordion';
+  +import AccordionSummary from '@material-ui/core/AccordionSummary';
+  +import AccordionDetails from '@material-ui/core/AccordionDetails';
+  +import AccordionActions from '@material-ui/core/AccordionActions';
+
+  -<ExpansionPanel>
+  +<Accordion>
+  -  <ExpansionPanelSummary>
+  +  <AccordionSummary>
+      <Typography>Location</Typography>
+      <Typography>Select trip destination</Typography>
+  -  </ExpansionPanelSummary>
+  +  </AccordionSummary>
+  -  <ExpansionPanelDetails>
+  +  <AccordionDetails>
+      <Chip label="Barbados" onDelete={() => {}} />
+      <Typography variant="caption">Select your destination of choice</Typography>
+  -  </ExpansionPanelDetails>
+  +  </AccordionDetails>
+    <Divider />
+  -  <ExpansionPanelActions>
+  +  <AccordionActions>
+      <Button size="small">Cancel</Button>
+      <Button size="small">Save</Button>
+  -  </ExpansionPanelActions>
+  +  </AccordionActions>
+  -</ExpansionPanel>
+  +</Accordion>
+  ```
+
+### Docs
+
+- [blog] Post survey results 2020 (#21555) @mnajdova
+- [docs] Add new gold sponsor @oliviertassinari
+- [docs] CodeFund is shutting down (#21632) @oliviertassinari
+- [docs] Enable next.material-ui.com sub-domain @oliviertassinari
+- [docs] Fix ad issues @oliviertassinari
+- [docs] Fix version in localized urls (#21442) @tchmnn
+- [docs] Sync translations (#21445) @oliviertassinari
+- [docs] Sync translations (#21535) @oliviertassinari
+
+### Core
+
+- [core] Batch small changes (#21419) @oliviertassinari
+- [core] Fix react next patch and prevent regression (#21482) @eps1lon
+
 ## 4.10.2
 
 ###### _June 11, 2020_
@@ -8,7 +412,7 @@ This means a feature freeze on v4. The development of this version will be limit
 
 You can follow our progress on the [v5 milestone](https://github.com/mui-org/material-ui/milestone/35). We will make the documentation of the v5 alpha releases available under https://next.material-ui.com/, starting next week (weekly releases, as usual).
 
-Big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
 
 - Introduce a new Timeline component (#21331) @mnajdova.
   <img width="244" alt="timeline" src="https://user-images.githubusercontent.com/3165635/84400961-ff381900-ac02-11ea-8e5e-beb6c0840fe0.png">
@@ -91,7 +495,7 @@ Big thanks to the 19 contributors who made this release possible. Here are some 
 
 ###### _June 1, 2020_
 
-Big thanks to the 21 contributors who made this release possible.
+A big thanks to the 21 contributors who made this release possible.
 
 ### `@material-ui/core@v4.10.1`
 
@@ -143,7 +547,7 @@ Big thanks to the 21 contributors who made this release possible.
 
 ###### _May 23, 2020_
 
-Big thanks to the 30 contributors who made this release possible.
+A big thanks to the 30 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -231,7 +635,7 @@ Here are some highlights ✨:
 
 ###### _May 11, 2020_
 
-Big thanks to the 19 contributors who made this release possible.
+A big thanks to the 19 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -297,7 +701,7 @@ Here are some highlights ✨:
 
 ###### _May 4, 2020_
 
-Big thanks to the 27 contributors who made this release possible.
+A big thanks to the 27 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -366,7 +770,7 @@ Here are some highlights ✨:
 
 ###### _Apr 27, 2020_
 
-Big thanks to the 32 contributors who made this release possible.
+A big thanks to the 32 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -459,7 +863,7 @@ Here are some highlights ✨:
 
 ###### _Apr 18, 2020_
 
-Big thanks to the 25 contributors who made this release possible.
+A big thanks to the 25 contributors who made this release possible.
 
 ### `@material-ui/core@v4.9.11`
 
@@ -511,7 +915,7 @@ Big thanks to the 25 contributors who made this release possible.
 
 ###### _Apr 11, 2020_
 
-Big thanks to the 20 contributors who made this release possible.
+A big thanks to the 20 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -596,7 +1000,7 @@ You can expect the following:
 
 ###### _Apr 4, 2020_
 
-Big thanks to the 20 contributors who made this release possible.
+A big thanks to the 20 contributors who made this release possible.
 
 ### `@material-ui/core@v4.9.9`
 
@@ -647,7 +1051,7 @@ Big thanks to the 20 contributors who made this release possible.
 
 ###### _Mar 28, 2020_
 
-Big thanks to the 24 contributors who made this release possible.
+A big thanks to the 24 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -738,7 +1142,7 @@ Here are some highlights ✨:
 
 ###### _Mar 18, 2020_
 
-Big thanks to the 39 contributors who made this release possible.
+A big thanks to the 39 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -861,7 +1265,7 @@ Here are some highlights ✨:
 
 ###### _Feb 29, 2020_
 
-Big thanks to the 15 contributors who made this release possible.
+A big thanks to the 15 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -902,7 +1306,7 @@ Here are some highlights ✨:
 
 ###### _Feb 23, 2020_
 
-Big thanks to the 18 contributors who made this release possible.
+A big thanks to the 18 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -951,7 +1355,7 @@ Here are some highlights ✨:
 
 ###### _Feb 16, 2020_
 
-Big thanks to the 18 contributors who made this release possible.
+A big thanks to the 18 contributors who made this release possible.
 
 ### `@material-ui/core@v4.9.3`
 
@@ -993,7 +1397,7 @@ Big thanks to the 18 contributors who made this release possible.
 
 ###### _Feb 9, 2020_
 
-Big thanks to the 24 contributors who made this release possible.
+A big thanks to the 24 contributors who made this release possible.
 
 ### `@material-ui/core@v4.9.2`
 
@@ -1039,7 +1443,7 @@ Big thanks to the 24 contributors who made this release possible.
 
 ###### _Feb 2, 2020_
 
-Big thanks to the 39 contributors who made this release possible.
+A big thanks to the 39 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -1125,7 +1529,7 @@ Here are some highlights ✨:
 
 ###### _Jan 22, 2020_
 
-Big thanks to the 43 contributors who made this release possible.
+A big thanks to the 43 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -1229,7 +1633,7 @@ Here are some highlights ✨:
 
 ###### _Jan 6, 2020_
 
-Big thanks to the 19 contributors who made this release possible.
+A big thanks to the 19 contributors who made this release possible.
 
 Here are some highlights since 4.8.0 ✨:
 
@@ -1274,7 +1678,7 @@ Here are some highlights since 4.8.0 ✨:
 
 ###### _Dec 30, 2019_
 
-Big thanks to the 22 contributors who made this release possible.
+A big thanks to the 22 contributors who made this release possible.
 
 ### `@material-ui/core@v4.8.2`
 
@@ -1331,7 +1735,7 @@ Big thanks to the 22 contributors who made this release possible.
 
 ###### _Dec 24, 2019_
 
-Big thanks to the 24 contributors who made this release possible.
+A big thanks to the 24 contributors who made this release possible.
 
 ### `@material-ui/core@v4.8.1`
 
@@ -1375,7 +1779,7 @@ Big thanks to the 24 contributors who made this release possible.
 
 ###### _Dec 14, 2019_
 
-Big thanks to the 29 contributors who made this release possible.
+A big thanks to the 29 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -1438,7 +1842,7 @@ Here are some highlights ✨:
 
 ###### _Dec 7, 2019_
 
-Big thanks to the 18 contributors who made this release possible.
+A big thanks to the 18 contributors who made this release possible.
 
 ### `@material-ui/core@v4.7.2`
 
@@ -1477,7 +1881,7 @@ Big thanks to the 18 contributors who made this release possible.
 
 ###### _Dec 1, 2019_
 
-Big thanks to the 27 contributors who made this release possible.
+A big thanks to the 27 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -1547,7 +1951,7 @@ Here are some highlights ✨:
 
 ###### _Nov 22, 2019_
 
-Big thanks to the 27 contributors who made this release possible.
+A big thanks to the 27 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -1619,7 +2023,7 @@ Here are some highlights ✨:
 
 ###### _Nov 12, 2019_
 
-Big thanks to the 19 contributors who made this release possible.
+A big thanks to the 19 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -1710,7 +2114,7 @@ index 757d66a97..a4f36edd5 100644
 
 ###### _Nov 5, 2019_
 
-Big thanks to the 26 contributors who made this release possible.
+A big thanks to the 26 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -1791,7 +2195,7 @@ We are proud of the community. Let's keep this trend going 🚀.
 
 ###### _Oct 28, 2019_
 
-Big thanks to the 48 contributors who made this release possible!
+A big thanks to the 48 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -1901,7 +2305,7 @@ Here are some highlights ✨:
 
 ###### _Oct 12, 2019_
 
-Big thanks to the 28 contributors who made this release possible!
+A big thanks to the 28 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -1996,7 +2400,7 @@ Here are some highlights ✨:
 
 ###### _Oct 2, 2019_
 
-Big thanks to the 20 contributors who made this release possible!
+A big thanks to the 20 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -2085,7 +2489,7 @@ Here are some highlights ✨:
 
 ###### _Sep 22, 2019_
 
-Big thanks to the 23 contributors who made this release possible!
+A big thanks to the 23 contributors who made this release possible!
 This is a stability release.
 
 ### `@material-ui/core@v4.4.3`
@@ -2155,7 +2559,7 @@ This is a stability release.
 
 ###### _Sep 11, 2019_
 
-Big thanks to the 7 contributors who made this release possible!
+A big thanks to the 7 contributors who made this release possible!
 This is a quick release after v4.4.1 to solve 3 regressions.
 
 ### `@material-ui/core@v4.4.2`
@@ -2180,7 +2584,7 @@ This is a quick release after v4.4.1 to solve 3 regressions.
 
 ###### _Sep 8, 2019_
 
-Big thanks to the 21 contributors who made this release possible!
+A big thanks to the 21 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -2253,7 +2657,7 @@ Here are some highlights ✨:
 
 ###### _Aug 31, 2019_
 
-Big thanks to the 29 contributors who made this release possible!
+A big thanks to the 29 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -2316,7 +2720,7 @@ Here are some highlights ✨:
 
 ###### _Aug 21, 2019_
 
-Big thanks to the 22 contributors who made this release possible!
+A big thanks to the 22 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -2372,7 +2776,7 @@ Here are some highlights ✨:
 
 ###### _Aug 10, 2019_
 
-Big thanks to the 22 contributors who made this release possible!
+A big thanks to the 22 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -2431,7 +2835,7 @@ Here are some highlights ✨:
 
 ###### _Aug 03, 2019_
 
-Big thanks to the 18 contributors who made this release possible!
+A big thanks to the 18 contributors who made this release possible!
 
 ### `@material-ui/core@v4.3.1`
 
@@ -2466,7 +2870,7 @@ Big thanks to the 18 contributors who made this release possible!
 
 ###### _July 28, 2019_
 
-Big thanks to the 23 contributors who made this release possible!
+A big thanks to the 23 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -2601,7 +3005,7 @@ Here are some highlights ✨:
 
 ###### _July 17, 2019_
 
-Big thanks to the 25 contributors who made this release possible!
+A big thanks to the 25 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -2678,7 +3082,7 @@ Here are some highlights ✨:
 
 ###### _July 6, 2019_
 
-Big thanks to the 24 contributors who made this release possible!
+A big thanks to the 24 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -2755,7 +3159,7 @@ Here are some highlights ✨:
 
 ###### _June 25, 2019_
 
-Big thanks to the 4 contributors who made this release possible!
+A big thanks to the 4 contributors who made this release possible!
 This is a quick release after a regression that occurred in 4.1.2.
 
 ### `@material-ui/core@v4.1.3`
@@ -2778,7 +3182,7 @@ This is a quick release after a regression that occurred in 4.1.2.
 
 ###### _June 23, 2019_
 
-Big thanks to the 30 contributors who made this release possible!
+A big thanks to the 30 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -2870,7 +3274,7 @@ Here are some highlights ✨:
 
 ###### _June 13, 2019_
 
-Big thanks to the 10 contributors who made this release possible!
+A big thanks to the 10 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -2927,7 +3331,7 @@ Here are some highlights ✨:
 
 ###### _June 10, 2019_
 
-A big thanks to the 26 contributors who made this release possible!
+A A big thanks to the 26 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -3011,7 +3415,7 @@ Here are some highlights ✨:
 
 ###### _June 3, 2019_
 
-A big thanks to the 30 contributors who made this release possible!
+A A big thanks to the 30 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -3093,7 +3497,7 @@ Here are some highlights ✨:
 
 ###### _May 27, 2019_
 
-A big thanks to the 23 contributors who made this release possible!
+A A big thanks to the 23 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -3206,7 +3610,7 @@ Some statistics with v4 compared to the release of v1 one year ago:
 
 ###### _May 20, 2019_
 
-A big thanks to the 17 contributors who made this release possible!
+A A big thanks to the 17 contributors who made this release possible!
 
 We have done the very last breaking changes (nothing significant).
 The release of v4 is imminent, stay tuned!
@@ -3288,7 +3692,7 @@ The release of v4 is imminent, stay tuned!
 
 ###### _May 13, 2019_
 
-A big thanks to the 13 contributors who made this release possible!
+A A big thanks to the 13 contributors who made this release possible!
 
 This is a stability release preparing v4.
 
@@ -3342,7 +3746,7 @@ This is a stability release preparing v4.
 
 ###### _May 5, 2019_
 
-A big thanks to the 19 contributors who made this release possible!
+A A big thanks to the 19 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -3424,7 +3828,7 @@ Here are some highlights ✨:
 
 ###### _Apr 28, 2019_
 
-A big thanks to the 21 contributors who made this release possible!
+A A big thanks to the 21 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -3558,7 +3962,7 @@ You will learn more about v4 in the final release blog post and our plans for th
 
 ###### _Apr 17, 2019_
 
-A big thanks to the 27 contributors who made this release possible!
+A A big thanks to the 27 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -3723,7 +4127,7 @@ We hope 2-3 weeks of beta will be enough. We plan on releasing v4 stable in May.
 
 ###### _Apr 8, 2019_
 
-A big thanks to the 24 contributors who made this release possible!
+A A big thanks to the 24 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -3826,7 +4230,7 @@ Here are some highlights ✨:
 
 ###### _Mar 30, 2019_
 
-A big thanks to the 20 contributors who made this release possible!
+A A big thanks to the 20 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -3912,7 +4316,7 @@ Here are some highlights ✨:
 
 ###### _Mar 28, 2019_
 
-Big thanks to the 11 contributors who made this release possible!
+A big thanks to the 11 contributors who made this release possible!
 
 This release fixes an important regression with TypeScript: https://github.com/mui-org/material-ui/issues/15076.
 
@@ -3942,7 +4346,7 @@ N/A
 
 ###### _Mar 23, 2019_
 
-A big thanks to the 23 contributors who made this release possible!
+A A big thanks to the 23 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -4023,7 +4427,7 @@ Here are some highlights ✨:
 
 ###### _Mar 17, 2019_
 
-A big thanks to the 17 contributors who made this release possible!
+A A big thanks to the 17 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -4116,7 +4520,7 @@ Here are some highlights ✨:
 
 ###### _Mar 10, 2019_
 
-A big thanks to the 14 contributors who made this release possible!
+A A big thanks to the 14 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -4215,7 +4619,7 @@ Here are some highlights ✨:
 
 ###### _Mar 3, 2019_
 
-A big thanks to the 23 contributors who made this release possible!
+A A big thanks to the 23 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -4336,7 +4740,7 @@ Here are some highlights ✨:
 
 ###### _Feb 20, 2019_
 
-A big thanks to the 16 contributors who made this release possible!
+A A big thanks to the 16 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -4454,7 +4858,7 @@ This gives us the opportunity to remove deprecated APIs, upgrade our peer depend
 - You can find the documentation following this URL: https://material-ui.com/.
 - You can track our progress following this URL: https://github.com/mui-org/material-ui/milestone/25.
 
-A big thanks to the 28 contributors who made this release possible!
+A A big thanks to the 28 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -4659,7 +5063,7 @@ _Tip: you can provide more than one argument: `theme.spacing(1, 2) // = '8px 16p
 
 ###### _Feb 03, 2019_
 
-Big thanks to the 16 contributors who made this release possible!
+A big thanks to the 16 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -4719,7 +5123,7 @@ Here are some highlights ✨:
 
 ###### _Jan 26, 2019_
 
-Big thanks to the 30 contributors who made this release possible!
+A big thanks to the 30 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -4796,7 +5200,7 @@ Here are some highlights ✨:
 
 ###### _Jan 14, 2019_
 
-Big thanks to the 17 contributors who made this release possible!
+A big thanks to the 17 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -4848,7 +5252,7 @@ Here are some highlights ✨:
 
 ###### _Jan 9, 2019_
 
-Big thanks to the 5 contributors who made this release possible!
+A big thanks to the 5 contributors who made this release possible!
 
 We are making a quick release to fix an important TypeScript regression.
 
@@ -4867,7 +5271,7 @@ We are making a quick release to fix an important TypeScript regression.
 
 ###### _Jan 7, 2019_
 
-Big thanks to the 20 contributors who made this release possible!
+A big thanks to the 20 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -4962,7 +5366,7 @@ Here are some highlights ✨:
 
 ###### _Dec 30, 2018_
 
-Big thanks to the 15 contributors who made this release possible!
+A big thanks to the 15 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -5033,7 +5437,7 @@ The Tabs `fullWidth` and `scrollable` properties can't be used at the same time.
 
 ###### _Dec 22, 2018_
 
-Big thanks to the 15 contributors who made this release possible!
+A big thanks to the 15 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -5078,7 +5482,7 @@ Here are some highlights ✨:
 
 ###### _Dec 17, 2018_
 
-Big thanks to the 11 contributors who made this release possible!
+A big thanks to the 11 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -5145,7 +5549,7 @@ you to add them up quickly in your head without having to worry about decimals.
 
 ###### _Dec 9, 2018_
 
-Big thanks to the 20 contributors who made this release possible!
+A big thanks to the 20 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -5210,7 +5614,7 @@ Here are some highlights ✨:
 
 ###### _Dec 1, 2018_
 
-Big thanks to the 15 contributors who made this release possible!
+A big thanks to the 15 contributors who made this release possible!
 
 There are no fundamental changes in this version.
 It's a stability release after v3.6.0. It contains tons of bug fixes 🐛.
@@ -5257,7 +5661,7 @@ It's a stability release after v3.6.0. It contains tons of bug fixes 🐛.
 
 ###### _Nov 26, 2018_
 
-Big thanks to the 28 contributors who made this release possible!
+A big thanks to the 28 contributors who made this release possible!
 
 The last release was two weeks ago.
 Last weekend, we have missed the release train 🚃.
@@ -5364,7 +5768,7 @@ import Divider from '@material-ui/core/Divider';
 
 ###### _Nov 13, 2018_
 
-Big thanks to the 13 contributors who made this release possible!
+A big thanks to the 13 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -5476,7 +5880,7 @@ _Corrupted, to not use._
 
 ###### _Nov 5, 2018_
 
-Big thanks to the 16 contributors who made this release possible!
+A big thanks to the 16 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -5530,7 +5934,7 @@ Here are some highlights ✨:
 
 ###### _Oct 27, 2018_
 
-Big thanks to the 17 contributors who made this release possible!
+A big thanks to the 17 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -5577,7 +5981,7 @@ Here are some highlights ✨:
 
 ###### _Oct 24, 2018_
 
-Big thanks to the 8 contributors who made this release possible!
+A big thanks to the 8 contributors who made this release possible!
 
 This is a quick patch after an important regression with the Modal component.
 
@@ -5598,7 +6002,7 @@ This is a quick patch after an important regression with the Modal component.
 
 ###### _Oct 21, 2018_
 
-Big thanks to the 26 contributors who made this release possible!
+A big thanks to the 26 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -5662,7 +6066,7 @@ Here are some highlights ✨:
 
 ###### _Oct 16, 2018_
 
-Big thanks to the 3 contributors who made this release possible!
+A big thanks to the 3 contributors who made this release possible!
 This is a quick patch after important regressions.
 
 ### `@material-ui/core@v3.2.2`
@@ -5679,7 +6083,7 @@ This is a quick patch after important regressions.
 
 ###### _Oct 14, 2018_
 
-Big thanks to the 19 contributors who made this release possible!
+A big thanks to the 19 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -5740,7 +6144,7 @@ Here are some highlights ✨:
 
 ###### _Oct 8, 2018_
 
-Big thanks to the 18 contributors who made this release possible!
+A big thanks to the 18 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -5828,7 +6232,7 @@ This change updates the variant wording to match the one used in the Material De
 
 ###### _Sep 30, 2018_
 
-Big thanks to the 16 contributors who made this release possible!
+A big thanks to the 16 contributors who made this release possible!
 It contains many bug fixes 🐛 and documentation improvements 📝.
 
 ### `@material-ui/core@v3.1.2`
@@ -5875,7 +6279,7 @@ It contains many bug fixes 🐛 and documentation improvements 📝.
 
 ###### _Sep 24, 2018_
 
-Big thanks to the 21 contributors who made this release possible!
+A big thanks to the 21 contributors who made this release possible!
 It contains many bug fixes 🐛 and documentation improvements 📝.
 
 ### `@material-ui/core@v3.1.1`
@@ -5930,7 +6334,7 @@ It contains many bug fixes 🐛 and documentation improvements 📝.
 
 ###### _Sep 16, 2018_
 
-Big thanks to the 24 contributors who made this release possible!
+A big thanks to the 24 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -5994,7 +6398,7 @@ Here are some highlights ✨:
 
 ###### _Sep 9, 2018_
 
-Big thanks to the 13 contributors who made this release possible!
+A big thanks to the 13 contributors who made this release possible!
 
 ### `@material-ui/core@v3.0.3`
 
@@ -6030,7 +6434,7 @@ Big thanks to the 13 contributors who made this release possible!
 
 ###### _Sep 3, 2018_
 
-Big thanks to the 16 contributors who made this release possible!
+A big thanks to the 16 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -6088,7 +6492,7 @@ N/A
 
 ###### _Aug 28, 2018_
 
-Big thanks to the 10 contributors who made this release possible!
+A big thanks to the 10 contributors who made this release possible!
 
 We are making a quick release after v3.0.0 to patch an incorrect peer dependency.
 It's also a good opportunity to upgrade to the stable release of Babel 7.
@@ -6126,7 +6530,7 @@ It's also a good opportunity to upgrade to the stable release of Babel 7.
 
 ###### _Aug 27, 2018_
 
-Big thanks to the 27 contributors who made this release possible!
+A big thanks to the 27 contributors who made this release possible!
 
 We are upgrading the major version of `@material-ui/core` to match the version of `@material-ui/icons`.
 The next major release is planned for [Q1, 2019](https://github.com/mui-org/material-ui/milestone/25).
@@ -6205,7 +6609,7 @@ We use the same strategy for Chrome.
 
 ###### _Aug 19, 2018_
 
-Big thanks to the 22 contributors who made this release possible!
+A big thanks to the 22 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -6271,7 +6675,7 @@ N/A
 
 ###### _Aug 12, 2018_
 
-Big thanks to the 23 contributors who made this release possible!
+A big thanks to the 23 contributors who made this release possible!
 This is a dense release!
 
 Here are some highlights ✨:
@@ -6337,7 +6741,7 @@ N/A
 
 ###### _Aug 4, 2018_
 
-Big thanks to the 15 contributors who made this release possible!
+A big thanks to the 15 contributors who made this release possible!
 This release focuses on bug fixes 🐛.
 
 ### Breaking change
@@ -6381,7 +6785,7 @@ N/A
 
 ###### _Jul 29, 2018_
 
-Big thanks to the 22 contributors who made this release possible!
+A big thanks to the 22 contributors who made this release possible!
 I hope we will soon beat our previous record: 30 contributors in a single week.
 
 Here are some highlights ✨:
@@ -6449,7 +6853,7 @@ N/A
 
 ###### _Jul 22, 2018_
 
-Big thanks to the 15 contributors who made this release possible!
+A big thanks to the 15 contributors who made this release possible!
 
 Here are some highlights ✨:
 
@@ -6530,7 +6934,7 @@ Here are some highlights ✨:
 
 ###### _Jul 14, 2018_
 
-Big thanks to the 21 contributors who made this release possible.
+A big thanks to the 21 contributors who made this release possible.
 Here are some highlights ✨:
 
 - Rework the Tooltip implementation (#12085)
@@ -6603,7 +7007,7 @@ N/A
 
 ###### _Jul 2, 2018_
 
-Big thanks to the 13 contributors who made this release possible.
+A big thanks to the 13 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -6652,7 +7056,7 @@ N/A
 
 ###### _Jun 26, 2018_
 
-Big thanks to the 10 contributors who made this release possible.
+A big thanks to the 10 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -6700,7 +7104,7 @@ N/A
 
 ###### _Jun 20, 2018_
 
-Big thanks to the 6 contributors who made this release possible.
+A big thanks to the 6 contributors who made this release possible.
 
 This release fixes some important regressions.
 We are making it outside of the normal schedule.
@@ -6735,7 +7139,7 @@ N/A
 
 ###### _Jun 18, 2018_
 
-Big thanks to the 16 contributors who made this release possible.
+A big thanks to the 16 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -6801,7 +7205,7 @@ N/A
 
 ###### _Jun 10, 2018_
 
-Big thanks to the 15 contributors who made this release possible.
+A big thanks to the 15 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -6857,7 +7261,7 @@ N/A
 
 ###### _Jun 3, 2018_
 
-Big thanks to the 23 contributors who made this release possible.
+A big thanks to the 23 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -6921,7 +7325,7 @@ N/A
 
 ###### _May 26, 2018_
 
-Big thanks to the 30 contributors who made this release possible.
+A big thanks to the 30 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7011,7 +7415,7 @@ Some statistics with v1 while it was in alpha and beta:
 
 ###### _May 15, 2018_
 
-Big thanks to the 10 contributors who made this release possible.
+A big thanks to the 10 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7051,7 +7455,7 @@ N/A
 
 ###### _May 13, 2018_
 
-Big thanks to the 14 contributors who made this release possible.
+A big thanks to the 14 contributors who made this release possible.
 
 #### Component Fixes / Enhancements
 
@@ -7076,7 +7480,7 @@ Big thanks to the 14 contributors who made this release possible.
 
 ###### _May 13, 2018_
 
-Big thanks to the 11 contributors who made this release possible.
+A big thanks to the 11 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7179,7 +7583,7 @@ The text underline color customization change:
 
 ###### _May 9, 2018_
 
-Big thanks to the 4 contributors who made this release possible.
+A big thanks to the 4 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7208,7 +7612,7 @@ N/A
 
 ###### _May 8, 2018_
 
-Big thanks to the 7 contributors who made this release possible.
+A big thanks to the 7 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7240,7 +7644,7 @@ N/A
 
 ###### _May 6, 2018_
 
-Big thanks to the 12 contributors who made this release possible.
+A big thanks to the 12 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7374,7 +7778,7 @@ The rename started with #11090. I should have taken the time to complete it in t
 
 ###### _Apr 29, 2018_
 
-Big thanks to the 17 contributors who made this release possible.
+A big thanks to the 17 contributors who made this release possible.
 
 ### Breaking change
 
@@ -7418,7 +7822,7 @@ As long as you are providing a valid URL to `<CardMedia image />`, it should be 
 
 ###### _Apr 22, 2018_
 
-Big thanks to the 8 contributors who made this release possible.
+A big thanks to the 8 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7469,7 +7873,7 @@ Here are some highlights ✨:
 
 ###### _Apr 16, 2018_
 
-Big thanks to the 15 contributors who made this release possible.
+A big thanks to the 15 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7557,7 +7961,7 @@ const styles = {
 
 ###### _Apr 7, 2018_
 
-Big thanks to the 14 contributors who made this release possible.
+A big thanks to the 14 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7612,7 +8016,7 @@ Here are some highlights ✨:
 
 ###### _Apr 1, 2018_
 
-Big thanks to the 4 contributors who made this release possible.
+A big thanks to the 4 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7653,7 +8057,7 @@ Nothing has changed for people using React 15.x.
 
 ###### _Mar 28, 2018_
 
-Big thanks to the 25 contributors who made this release possible.
+A big thanks to the 25 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7751,7 +8155,7 @@ I have made a mistake in [#8108](https://github.com/mui-org/material-ui/pull/810
 
 ###### _Mar 17, 2018_
 
-Big thanks to the 19 contributors who made this release possible.
+A big thanks to the 19 contributors who made this release possible.
 
 This release comes with important theme upgrades. Here are some highlights ✨:
 
@@ -7814,7 +8218,7 @@ N/A
 
 ###### _Mar 11, 2018_
 
-Big thanks to the 13 contributors who made this release possible.
+A big thanks to the 13 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7890,7 +8294,7 @@ For instance, it's not about adding JavaScript polyfills.
 
 ###### _Mar 5, 2018_
 
-Big thanks to the 14 contributors who made this release possible.
+A big thanks to the 14 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -7956,7 +8360,7 @@ The best way to recover from this breaking change is to check the warnings in th
 
 ###### _Feb 24, 2018_
 
-Big thanks to the 20 contributors who made this release possible.
+A big thanks to the 20 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -8021,7 +8425,7 @@ N/A
 
 ###### _Feb 17, 2018_
 
-Big thanks to the 21 contributors who made this release possible.
+A big thanks to the 21 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -8115,7 +8519,7 @@ The Material Design specification says that selection controls elements should [
 
 ###### _Feb 10, 2018_
 
-Big thanks to the 16 contributors who made this release possible.
+A big thanks to the 16 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -8168,7 +8572,7 @@ N/A
 
 ###### _Feb 4, 2018_
 
-Big thanks to the 12 contributors who made this release possible.
+A big thanks to the 12 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -8280,7 +8684,7 @@ Umbrella pull request for: #10084, #10086, #10088.
 
 ###### _Jan 21, 2018_
 
-Big thanks to the 14 contributors who made this release possible.
+A big thanks to the 14 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -8440,7 +8844,7 @@ const theme = createMuiTheme({
 
 ###### _Jan 21, 2018_
 
-Big thanks to the 12 contributors who made this release possible.
+A big thanks to the 12 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -8527,7 +8931,7 @@ N/A
 
 ###### _Jan 16, 2018_
 
-Big thanks to the 9 contributors who made this release possible.
+A big thanks to the 9 contributors who made this release possible.
 
 We are making a release earlier than expected. The release schedule norm has been so far: one every weekend. `1.0.0-beta.28` has introduced important pain points we want to address quickly:
 
@@ -8568,7 +8972,7 @@ N/A
 
 ###### _Jan 14, 2018_
 
-Big thanks to the 22 contributors who made this release possible.
+A big thanks to the 22 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -8695,7 +9099,7 @@ To style the root element in these components, a `className` prop can be passed,
 
 ###### _Jan 6, 2018_
 
-Big thanks to the 19 contributors who made this release possible.
+A big thanks to the 19 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -8782,7 +9186,7 @@ Alternatively, you can use our preset to save bundle size.
 
 ###### _Dec 30, 2017_
 
-Big thanks to the 12 contributors who made this release possible.
+A big thanks to the 12 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -8886,7 +9290,7 @@ The zIndex object has been updated to match the usage.
 
 ###### _Dec 22, 2017_
 
-Big thanks to the 16 contributors who made this release possible.
+A big thanks to the 16 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -8947,7 +9351,7 @@ None, merry christmas 🎄.
 
 ###### _Dec 17, 2017_
 
-Big thanks to the 16 contributors who made this release possible.
+A big thanks to the 16 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -9072,7 +9476,7 @@ There is no logic attached to the `optional` boolean property. So, we can reduce
 
 ###### _Dec 9, 2017_
 
-Big thanks to the 26 contributors who made this release possible.
+A big thanks to the 26 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -9151,7 +9555,7 @@ Here are some highlights ✨:
 
 ###### _Nov 28, 2017_
 
-Big thanks to the 26 contributors who made this release possible.
+A big thanks to the 26 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -9239,7 +9643,7 @@ It was a breaking change and not needed.
 
 ###### _Nov 13, 2017_
 
-Big thanks to the 18 contributors who made this release possible.
+A big thanks to the 18 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -9312,7 +9716,7 @@ In the following diff `SwitchBase` can be a `Checkbox` a `Radio` or a `Switch`.
 
 ###### _Nov 5, 2017_
 
-Big thanks to the 12 contributors who made this release possible.
+A big thanks to the 12 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -9382,7 +9786,7 @@ Here are some highlights ✨:
 
 ###### _Oct 30, 2017_
 
-Big thanks to the 17 contributors who made this release possible.
+A big thanks to the 17 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -9472,7 +9876,7 @@ Here are some highlights ✨:
 
 ###### _Oct 24, 2017_
 
-Big thanks to the 14 contributors who made this release possible.
+A big thanks to the 14 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -9538,7 +9942,7 @@ We enforce this behavior now.
 
 ###### _Oct 16, 2017_
 
-Big thanks to the 14 contributors who made this release possible.
+A big thanks to the 14 contributors who made this release possible.
 
 This release is mostly about stability.
 We have merged many bug fixes PRs and documentation improvement PRs.
@@ -9609,7 +10013,7 @@ For instance, we need to upgrade all our dev dependencies to _react@16_ first.
 
 ###### _Oct 8, 2017_
 
-Big thanks to the 18 contributors who made this release possible.
+A big thanks to the 18 contributors who made this release possible.
 
 Here are some highlights ✨:
 
@@ -9700,7 +10104,7 @@ Here are some highlights ✨:
 
 ###### _Oct 1, 2017_
 
-Big thanks to the 18 contributors who made this release possible.
+A big thanks to the 18 contributors who made this release possible.
 
 ### Breaking change
 
@@ -9803,7 +10207,7 @@ Big thanks to the 18 contributors who made this release possible.
 
 ###### _Sep 24, 2017_
 
-Big thanks to the 25 contributors who made this release possible.
+A big thanks to the 25 contributors who made this release possible.
 
 Wait, what?! We have been merging 52 pull requests from 25 different people in just 6 days (and closed 60 issues).
 This is a new record for the project.
@@ -9930,7 +10334,7 @@ When `withStyles()` is used as a decorator and `strictNullChecks` is enabled, on
 
 ###### _Sep 18, 2017_
 
-Big thanks to the 12 contributors who made this release possible.
+A big thanks to the 12 contributors who made this release possible.
 
 ### Breaking change
 
@@ -9988,7 +10392,7 @@ Here are some highlights:
 - Our internal styling solution should be faster with (#8142).
   With the last release we fix a memory leak (#8036), so thanks for reporting those issues!
 
-Big thanks to the 13 contributors who made this release possible.
+A big thanks to the 13 contributors who made this release possible.
 
 ### Breaking changes
 
@@ -10059,7 +10463,7 @@ Again, this release is particularly dense! Here are some highlights:
 - A new Select component thanks to @kybarg (#8023)
 - A new Pickers documentation page (#8117)
 
-Big thanks to the 13 contributors who made this release possible.
+A big thanks to the 13 contributors who made this release possible.
 
 ### Breaking changes
 
@@ -10112,7 +10516,7 @@ N/A
 
 ###### _Sep 2, 2017_
 
-Big thanks to the 8 contributors who made this release possible.
+A big thanks to the 8 contributors who made this release possible.
 
 ### Breaking changes
 
@@ -10154,7 +10558,7 @@ This release is particularly dense! Here are some highlights:
   One of them is allowing the documentation to fully take advantage of the server-side rendering.
   We expect the documentation to render even faster with this beta.
 
-Big thanks to the 12 contributors who made this release possible.
+A big thanks to the 12 contributors who made this release possible.
 
 ### Breaking changes
 
@@ -10256,7 +10660,7 @@ If you want to avoid the default browser required property handling, you can add
 A big shout-out to @sebald for our first TypeScript coverage.
 Another notable change is [the migration of the documentation](#7759) to [Next.js](https://github.com/zeit/next.js), it's twice as fast as before 🚀.
 
-Big thanks to the 9 contributors who made this release possible.
+A big thanks to the 9 contributors who made this release possible.
 
 ### Breaking changes
 
@@ -10306,7 +10710,7 @@ Push #7741 initiative forward (use `value` and `onChange` as controlling propert
 
 ###### _Aug 15, 2017_
 
-Big thanks to the 11 contributors who made this release possible.
+A big thanks to the 11 contributors who made this release possible.
 
 ### Breaking changes
 
@@ -10373,7 +10777,7 @@ The primary motivation for this change is simplicity, it's also making our inter
 
 ###### _Aug 5, 2017_
 
-Big thanks to the 7 contributors who made this release possible.
+A big thanks to the 7 contributors who made this release possible.
 
 #### Component Fixes / Enhancements
 
@@ -10407,7 +10811,7 @@ Big thanks to the 7 contributors who made this release possible.
 
 ###### _Jul 29, 2017_
 
-Big thanks to the 8 contributors who made this release possible.
+A big thanks to the 8 contributors who made this release possible.
 
 This release is full of bug fixes and documentation improvements following the major
 styling update of the previous release.
@@ -10454,7 +10858,7 @@ Publish a new version as `v1.0.0-beta.1` was already used.
 
 ###### _Jul 23, 2017_
 
-Big thanks to the 12 contributors who made this release possible.
+A big thanks to the 12 contributors who made this release possible.
 
 This is the first beta release.
 We are proud to move to the next step after 7 months of dogfooding with the alpha releases.
@@ -10715,7 +11119,7 @@ The previous v1.0.0-alpha.18 release is corrupted.
 
 ###### _Jun 12, 2017_
 
-Big thanks to the 8 contributors who made this release possible.
+A big thanks to the 8 contributors who made this release possible.
 
 ### Breaking changes
 
@@ -10919,7 +11323,7 @@ you're going to have to change your strategy. Either use `innerRef` or `inputRef
 
 ###### _Apr 30, 2017_
 
-Big thanks to the 11 contributors who are pushing the `next` branch forward.
+A big thanks to the 11 contributors who are pushing the `next` branch forward.
 
 ### Breaking changes
 
@@ -11284,7 +11688,7 @@ In other words, the API will change if we need to.
 
 ###### _Jan 15, 2017_
 
-A big thanks to the 20 contributors who are making this release possible.
+A A big thanks to the 20 contributors who are making this release possible.
 
 #### Component Fixes / Enhancements
 

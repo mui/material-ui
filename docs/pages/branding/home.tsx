@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import NoSsr from '@material-ui/core/NoSsr';
-import Divider from '@material-ui/core/Divider';
+import NoSsr from '@mui/material/NoSsr';
+import Divider from '@mui/material/Divider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import Hero from 'docs/src/components/home/Hero';
 import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
@@ -20,7 +20,7 @@ export default function Home() {
     <BrandingProvider>
       <Head
         title="MUI: A popular React UI framework"
-        description="The ultimate solution for your UI. MUI provides a robust, customizible and accessible library of foundational and advanced components, enabling you to build your own design system and develop React applications faster."
+        description="The ultimate solution for your UI. MUI provides a robust, customizable, and accessible library of foundational and advanced components, enabling you to build your own design system and develop React applications faster."
       />
       <NoSsr>
         <NewsletterToast />

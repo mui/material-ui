@@ -1,4 +1,4 @@
-import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@material-ui/types';
+import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
 import { SliderUnstyledClasses } from './sliderUnstyledClasses';
 
 export interface SliderOwnerStateOverrides {}

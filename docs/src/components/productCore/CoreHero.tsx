@@ -1,68 +1,85 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, Theme } from '@material-ui/core/styles';
-import Alert from '@material-ui/core/Alert';
-import Avatar from '@material-ui/core/Avatar';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Divider from '@material-ui/core/Divider';
-import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
-import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
-import Paper from '@material-ui/core/Paper';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Typography from '@material-ui/core/Typography';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import TextField from '@material-ui/core/TextField';
-import Slider from '@material-ui/core/Slider';
-import Stack from '@material-ui/core/Stack';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import CheckCircleRounded from '@material-ui/icons/CheckCircleRounded';
-import CakeRounded from '@material-ui/icons/CakeRounded';
-import CelebrationRounded from '@material-ui/icons/CelebrationRounded';
-import AttractionsRounded from '@material-ui/icons/AttractionsRounded';
-import ShoppingCartRounded from '@material-ui/icons/ShoppingCartRounded';
-import LocalFireDepartment from '@material-ui/icons/LocalFireDepartment';
-import AcUnitRounded from '@material-ui/icons/AcUnitRounded';
-import FavoriteBorderRounded from '@material-ui/icons/FavoriteBorderRounded';
-import ShareRounded from '@material-ui/icons/ShareRounded';
-import RateReviewOutlined from '@material-ui/icons/RateReviewOutlined';
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
-import StaticDatePicker from '@material-ui/lab/StaticDatePicker';
+import { ThemeProvider, createTheme, Theme } from '@mui/material/styles';
+import Alert from '@mui/material/Alert';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardMedia from '@mui/material/CardMedia';
+import CardContent from '@mui/material/CardContent';
+import CardActions from '@mui/material/CardActions';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import ListItemText from '@mui/material/ListItemText';
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import TextField from '@mui/material/TextField';
+import Slider from '@mui/material/Slider';
+import Stack from '@mui/material/Stack';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import CheckCircleRounded from '@mui/icons-material/CheckCircleRounded';
+import CakeRounded from '@mui/icons-material/CakeRounded';
+import CelebrationRounded from '@mui/icons-material/CelebrationRounded';
+import AttractionsRounded from '@mui/icons-material/AttractionsRounded';
+import ShoppingCartRounded from '@mui/icons-material/ShoppingCartRounded';
+import LocalFireDepartment from '@mui/icons-material/LocalFireDepartment';
+import AcUnitRounded from '@mui/icons-material/AcUnitRounded';
+import FavoriteBorderRounded from '@mui/icons-material/FavoriteBorderRounded';
+import ShareRounded from '@mui/icons-material/ShareRounded';
+import RateReviewOutlined from '@mui/icons-material/RateReviewOutlined';
 import GradientText from 'docs/src/components/typography/GradientText';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMore';
+import Rating from '@mui/material/Rating';
+import Switch from '@mui/material/Switch';
+import FormatAlignLeftIcon from '@mui/icons-material/FormatAlignLeft';
+import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
+import FormatAlignRightIcon from '@mui/icons-material/FormatAlignRight';
+import FormatAlignJustifyIcon from '@mui/icons-material/FormatAlignJustify';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import Badge from '@mui/material/Badge';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
+import ButtonGroup from '@mui/material/ButtonGroup';
 
-const DatePickerDemo = () => {
-  const [value, setValue] = React.useState<Date | null>(new Date());
+const ToggleButtons = () => {
+  const [alignment, setAlignment] = React.useState('left');
   return (
-    <Paper sx={{ '& > div': { bgcolor: 'transparent' } }}>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <StaticDatePicker
-          displayStaticWrapperAs="desktop"
-          value={value}
-          onChange={(newValue) => {
-            setValue(newValue);
-          }}
-          renderInput={(params) => <TextField {...params} />}
-        />
-      </LocalizationProvider>
-    </Paper>
+    <ToggleButtonGroup
+      value={alignment}
+      exclusive
+      onChange={(event, newAlignment) => {
+        setAlignment(newAlignment);
+      }}
+      aria-label="text alignment"
+    >
+      <ToggleButton value="left" aria-label="left aligned" size="small">
+        <FormatAlignLeftIcon fontSize="small" />
+      </ToggleButton>
+      <ToggleButton value="center" aria-label="centered" size="small">
+        <FormatAlignCenterIcon fontSize="small" />
+      </ToggleButton>
+      <ToggleButton value="right" aria-label="right aligned" size="small">
+        <FormatAlignRightIcon fontSize="small" />
+      </ToggleButton>
+      <ToggleButton value="justify" aria-label="justified" size="small" disabled>
+        <FormatAlignJustifyIcon fontSize="small" />
+      </ToggleButton>
+    </ToggleButtonGroup>
   );
 };
 
@@ -76,11 +93,70 @@ const TabsDemo = () => {
         variant="fullWidth"
         aria-label="icon label tabs example"
       >
-        <Tab icon={<CakeRounded />} label="Cakes" />
-        <Tab icon={<CelebrationRounded />} label="Party" />
-        <Tab icon={<AttractionsRounded />} label="Park" />
+        <Tab icon={<CakeRounded fontSize="small" />} label="Cakes" />
+        <Tab icon={<CelebrationRounded fontSize="small" />} label="Party" />
+        <Tab icon={<AttractionsRounded fontSize="small" />} label="Park" />
       </Tabs>
     </Paper>
+  );
+};
+
+const BadgeVisibilityDemo = () => {
+  const [count, setCount] = React.useState(1);
+  return (
+    <Paper
+      variant="outlined"
+      elevation={0}
+      sx={{
+        color: 'action.active',
+        p: 2,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        '& .MuiBadge-root': {
+          marginRight: 4,
+        },
+      }}
+    >
+      <div>
+        <Badge color="primary" badgeContent={count}>
+          <ShoppingCartRounded fontSize="small" />
+        </Badge>
+        <ButtonGroup>
+          <Button
+            size="small"
+            aria-label="reduce"
+            onClick={() => {
+              setCount(Math.max(count - 1, 0));
+            }}
+          >
+            <RemoveIcon fontSize="small" />
+          </Button>
+          <Button
+            size="small"
+            aria-label="increase"
+            onClick={() => {
+              setCount(count + 1);
+            }}
+          >
+            <AddIcon fontSize="small" />
+          </Button>
+        </ButtonGroup>
+      </div>
+    </Paper>
+  );
+};
+
+const SwitchToggleDemo = () => {
+  const label = { inputProps: { 'aria-label': 'Switch demo' } };
+  return (
+    <Box
+      sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
+    >
+      <Switch {...label} defaultChecked />
+      <Switch {...label} />
+      <ToggleButtons />
+    </Box>
   );
 };
 
@@ -88,13 +164,21 @@ const SlideDemo = () => {
   const [value, setValue] = React.useState([30, 60]);
   return (
     <Stack spacing={2} direction="row" alignItems="center">
-      <AcUnitRounded color="primary" sx={{ opacity: `max(0.4, ${(100 - value[0]) / 100})` }} />
+      <AcUnitRounded
+        fontSize="small"
+        color="primary"
+        sx={{ opacity: `max(0.4, ${(100 - value[0]) / 100})` }}
+      />
       <Slider
-        getAriaLabel={() => 'Temperature range'}
+        aria-labelledby="temperature-slider"
         value={value}
         onChange={(_, newValue) => setValue(newValue as number[])}
       />
-      <LocalFireDepartment color="error" sx={{ opacity: `max(0.4, ${value[1] / 100})` }} />
+      <LocalFireDepartment
+        fontSize="small"
+        color="error"
+        sx={{ opacity: `max(0.4, ${value[1] / 100})` }}
+      />
     </Stack>
   );
 };
@@ -111,14 +195,15 @@ export default function Hero() {
             sx={{
               display: 'flex',
               alignItems: 'center',
+              justifyContent: { xs: 'center', md: 'flex-start' },
               '& > *': { mr: 1, width: 28, height: 28 },
             }}
           >
-            <IconImage name="product-core" /> Advanced
+            <IconImage name="product-core" /> Core
           </Typography>
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
             Ready to use, <br />
-            <GradientText>forever free</GradientText>,<br /> components.
+            <GradientText>forever free</GradientText>,<br /> components
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
             Get a growing list of components, ready to use, forever free with built-in
@@ -147,15 +232,15 @@ export default function Hero() {
           }
         >
           <Paper sx={{ maxWidth: 672, p: 2, mb: 4 }}>
-            <Stepper activeStep={0}>
+            <Stepper activeStep={1}>
               <Step>
-                <StepLabel>Select campaign settings</StepLabel>
+                <StepLabel>Search for React UI libraries</StepLabel>
               </Step>
               <Step>
-                <StepLabel>Create an ad group</StepLabel>
+                <StepLabel>Spot MUI</StepLabel>
               </Step>
               <Step>
-                <StepLabel>Create an ad</StepLabel>
+                <StepLabel>Choose MUI</StepLabel>
               </Step>
             </Stepper>
           </Paper>
@@ -169,12 +254,60 @@ export default function Hero() {
             }}
           >
             <Stack spacing={4}>
-              <DatePickerDemo />
-              <Alert variant="filled" color="info" icon={<CheckCircleRounded />}>
-                Check out this alert!
+              <Box>
+                <Accordion
+                  elevation={0}
+                  variant="outlined"
+                  defaultExpanded
+                  disableGutters
+                  sx={{ borderBottom: 0 }}
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreRoundedIcon fontSize="small" />}
+                    aria-controls="panel1a-content"
+                    id="panel1a-header"
+                  >
+                    <Typography variant="body2">Usage</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography variant="body2">
+                      MUI components work in isolation. They are self-supporting, and will only
+                      inject the styles they need to display.
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+                <Accordion elevation={0} variant="outlined" disableGutters>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreRoundedIcon fontSize="small" />}
+                    aria-controls="panel2a-content"
+                    id="panel2a-header"
+                  >
+                    <Typography variant="body2">Globals</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <Typography variant="body2">
+                      MUI usage experience can be improved with a handful of important globals that
+                      you&apos;ll need to be aware of.
+                    </Typography>
+                  </AccordionDetails>
+                </Accordion>
+                <Accordion disabled elevation={0} disableGutters>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreRoundedIcon fontSize="small" />}
+                    aria-controls="panel3a-content"
+                    id="panel3a-header"
+                  >
+                    <Typography variant="body2">Secret Files</Typography>
+                  </AccordionSummary>
+                </Accordion>
+              </Box>
+              {/* <DatePickerDemo /> */}
+              <Alert variant="filled" color="info" icon={<CheckCircleRounded fontSize="small" />}>
+                Check out this library!
               </Alert>
+              <SwitchToggleDemo />
               <TabsDemo />
-              <Paper sx={{ overflow: 'hidden' }}>
+              <Paper elevation={0} variant="outlined" sx={{ overflow: 'hidden' }}>
                 <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
                   <ListItem alignItems="flex-start">
                     <ListItemAvatar>
@@ -190,7 +323,7 @@ export default function Hero() {
                             variant="body2"
                             color="text.primary"
                           >
-                            Ali Connors
+                            Michael Scott
                           </Typography>
                           {" — I'll be in your neighborhood doing errands this…"}
                         </React.Fragment>
@@ -212,7 +345,7 @@ export default function Hero() {
                             variant="body2"
                             color="text.primary"
                           >
-                            to Scott, Alex, Jennifer
+                            to Jim, Pam and Ryan
                           </Typography>
                           {" — Wish I could come, but I'm out of town this…"}
                         </React.Fragment>
@@ -223,29 +356,50 @@ export default function Hero() {
               </Paper>
             </Stack>
             <Stack spacing={4} sx={{ ml: 4, '& > .MuiPaper-root': { maxWidth: 'none' } }}>
-              <Box sx={{ display: 'flex' }}>
-                <Button variant="contained" startIcon={<ShoppingCartRounded />}>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Button variant="contained" startIcon={<ShoppingCartRounded fontSize="small" />}>
                   Add to Cart
                 </Button>
-                <Button variant="outlined" startIcon={<ShoppingCartRounded />} sx={{ ml: 2 }}>
+                <Button variant="outlined" startIcon={<ShoppingCartRounded fontSize="small" />}>
                   Add to Cart
                 </Button>
               </Box>
-              <Paper sx={{ p: 2 }}>
-                <Typography sx={{ mb: 1 }} variant="subtitle2">
-                  Room temperature range
+              <Paper elevation={0} variant="outlined" sx={{ p: 2 }}>
+                <Typography
+                  id="temperature-slider"
+                  component="div"
+                  variant="subtitle2"
+                  sx={{ mb: 1, fontWeight: 400 }}
+                >
+                  Temperature range
                 </Typography>
                 <SlideDemo />
               </Paper>
               <TextField defaultValue="Ultraviolet" label="Basement" />
+              <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                <BadgeVisibilityDemo />
+                <Paper
+                  variant="outlined"
+                  elevation={0}
+                  sx={{
+                    py: 2,
+                    px: 1,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Rating name="half-rating" defaultValue={2.5} precision={0.5} />
+                </Paper>
+              </Box>
               <Card sx={{ maxWidth: 345 }}>
                 <CardHeader
                   avatar={
                     <Avatar
-                      sx={{ bgcolor: 'primary.100', color: 'primary.700' }}
+                      sx={{ bgcolor: 'primary.50', color: 'primary.600' }}
                       aria-label="recipe"
                     >
-                      YN
+                      <b>YN</b>
                     </Avatar>
                   }
                   title="Yosemite National Park"
@@ -254,45 +408,31 @@ export default function Hero() {
                 <CardMedia
                   sx={{
                     height: 0,
-                    paddingTop: '30%', // 16:9
+                    paddingTop: '34%', // 16:9
                   }}
                   image="/static/images/cards/yosemite.jpeg"
                   title="Paella dish"
                 />
                 <CardContent sx={{ pb: 0 }}>
                   <Typography variant="body2" color="text.secondary">
-                    It’s famed for its giant, ancient sequoia trees, and for Tunnel View, the iconic
-                    vista of towering Bridalveil Fall and the granite cliffs of El Capitan and Half
-                    Dome.
+                    Not just a great valley, but a shrine to human foresight, the strength of
+                    granite, the power of glaciers, the persistence of life, and the tranquility of
+                    the High Sierra. It’s famed for its giant, ancient sequoia trees, and the
+                    granite cliffs of El Capitan and Half Dome.
                   </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
                   <IconButton aria-label="add to favorites">
-                    <FavoriteBorderRounded size="small" />
+                    <FavoriteBorderRounded fontSize="small" />
                   </IconButton>
                   <IconButton aria-label="share">
-                    <ShareRounded size="small" />
+                    <ShareRounded fontSize="small" />
                   </IconButton>
                   <IconButton aria-label="share" sx={{ ml: 'auto' }}>
-                    <RateReviewOutlined size="small" />
+                    <RateReviewOutlined fontSize="small" />
                   </IconButton>
                 </CardActions>
               </Card>
-              <FormControl component="fieldset">
-                <FormLabel component="legend">Do you accept our terms?</FormLabel>
-                <RadioGroup
-                  aria-label="terms and conditions"
-                  defaultValue="yes"
-                  name="radio-buttons-group"
-                >
-                  <FormControlLabel
-                    value="yes"
-                    control={<Radio />}
-                    label="Yes, I accept the terms and condition."
-                  />
-                  <FormControlLabel value="no" control={<Radio />} label="No." />
-                </RadioGroup>
-              </FormControl>
             </Stack>
           </Box>
         </ThemeProvider>

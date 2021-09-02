@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { createTheme, useTheme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import { createTheme, useTheme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
-import SvgTwinkle from 'docs/src/icons/SvgTwinkle';
+import AutoAwesomeRounded from '@mui/icons-material/AutoAwesomeRounded';
 import SvgMaterialDesign from 'docs/src/icons/SvgMaterialDesign';
 import Frame from 'docs/src/components/action/Frame';
 import PlayerCard from 'docs/src/components/showcase/PlayerCard';
@@ -18,14 +18,14 @@ import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 const lightTheme = createTheme();
 const darkTheme = createTheme({ palette: { mode: 'dark' } });
 
-const code = `<Card variant="outlined" sx={{ display: 'flex', p: 1 }}>
+const code = `<Card variant="outlined" sx={{p: 1, display: 'flex', flexDirection: {xs: 'column', sm: 'row'} }}>
   <CardMedia
     component="img"
     alt="Beside Myself album cover"
     src="/static/images/cards/basement-beside-myself.jpg"
     width="124"
     height="124"
-    sx={{ borderRadius: 0.5, width: 'auto' }}
+    sx={{ borderRadius: 0.5, width: 'auto', objectFit: 'cover' }}
   />
   <Box sx={{ alignSelf: 'center', mx: 2 }}>
     <Typography variant="body1" fontWeight={500}>
@@ -65,25 +65,25 @@ export default function CoreTheming() {
               overline="Theming"
               title={
                 <Typography variant="h2">
-                  Choose the <GradientText>design</GradientText> you like the most
+                  Build <GradientText>your design system</GradientText> just as you want it to be
                 </Typography>
               }
-              description="Leverage the theming capabilities to easily make the components look how you want them to be. You can also quick start with Material Design."
+              description="Use the advanced theming feature to easily tailor the components to your needs. You can also quick start with Material Design."
             />
           </Box>
           <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
             <Highlighter disableBorder selected={customized} onClick={() => setCustomized(true)}>
               <Item
-                icon={<SvgTwinkle />}
+                icon={<AutoAwesomeRounded color="warning" />}
                 title="Custom Theme"
-                description="Make the components look your own and reflect your branding and personality."
+                description="Theming allows you to use your brand's design tokens, easily making the components reflect its look and feel."
               />
             </Highlighter>
             <Highlighter disableBorder selected={!customized} onClick={() => setCustomized(false)}>
               <Item
                 icon={<SvgMaterialDesign />}
                 title="Material Design"
-                description="Leverage the tried and test Google's Material Design to quick-strart you design system."
+                description="Every component comes with Google's tried and tested design system ready for use."
               />
             </Highlighter>
           </Group>
@@ -93,6 +93,7 @@ export default function CoreTheming() {
             <Frame.Demo
               sx={{
                 py: 2,
+                px: 2,
                 flexGrow: 1,
                 display: 'flex',
                 justifyContent: 'center',

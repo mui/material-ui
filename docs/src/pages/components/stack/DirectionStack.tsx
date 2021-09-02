@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Paper from '@material-ui/core/Paper';
-import Stack from '@material-ui/core/Stack';
-import { styled } from '@material-ui/core/styles';
+import Paper from '@mui/material/Paper';
+import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
 
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,

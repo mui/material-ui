@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Box, { BoxProps } from '@material-ui/core/Box';
+import Box, { BoxProps } from '@mui/material/Box';
 
-const Demo = React.forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
+const FrameDemo = React.forwardRef<HTMLDivElement, BoxProps>(function FrameDemo(props, ref) {
   return (
     <Box
       ref={ref}
@@ -17,7 +17,7 @@ const Demo = React.forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
   );
 });
 
-const Info = React.forwardRef<HTMLDivElement, BoxProps>((props, ref) => {
+const FrameInfo = React.forwardRef<HTMLDivElement, BoxProps>(function FrameInfo(props, ref) {
   return (
     <Box
       ref={ref}
@@ -55,7 +55,7 @@ const Frame = (props: BoxProps) => {
   );
 };
 
-Frame.Demo = Demo;
-Frame.Info = Info;
+Frame.Demo = FrameDemo;
+Frame.Info = FrameInfo;
 
 export default Frame;

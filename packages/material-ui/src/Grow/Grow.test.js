@@ -2,9 +2,9 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { act, createClientRender, describeConformance } from 'test/utils';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Transition } from 'react-transition-group';
-import Grow from '@material-ui/core/Grow';
+import Grow from '@mui/material/Grow';
 import useForkRef from '../utils/useForkRef';
 
 describe('<Grow />', () => {

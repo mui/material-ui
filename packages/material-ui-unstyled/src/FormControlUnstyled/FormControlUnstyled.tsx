@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { OverridableComponent } from '@material-ui/types';
-import { unstable_useControlled as useControlled } from '@material-ui/utils';
+import { OverridableComponent } from '@mui/types';
+import { unstable_useControlled as useControlled } from '@mui/utils';
 import FormControlUnstyledContext, { FormControlUnstyledState } from './FormControlContext';
 import appendOwnerState from '../utils/appendOwnerState';
 import classes from './formControlUnstyledClasses';

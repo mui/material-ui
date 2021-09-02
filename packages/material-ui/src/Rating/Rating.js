@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes, visuallyHidden } from '@material-ui/utils';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { chainPropTypes, visuallyHidden } from '@mui/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/core';
 import { useTheme } from '../styles';
 import {
   capitalize,

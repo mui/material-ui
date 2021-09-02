@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { styled, alpha, useTheme } from '@material-ui/core/styles';
-import Box, { BoxProps } from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
+import { styled, alpha, useTheme } from '@mui/material/styles';
+import Box, { BoxProps } from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import ROUTES from 'docs/src/route';
-import LaunchRounded from '@material-ui/icons/LaunchRounded';
+import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import Slide from 'docs/src/components/animation/Slide';
 import FadeDelay from 'docs/src/components/animation/FadeDelay';
 
@@ -59,42 +59,44 @@ const StoreTemplateLink = React.forwardRef<
   React.PropsWithChildren<{
     brand: TemplateBrand;
   }>
->(({ brand, ...props }, ref) => (
-  <Anchor
-    ref={ref}
-    aria-label="Goto MUI store"
-    href={linkMapping[brand]}
-    target="_blank"
-    {...props}
-  >
-    {props.children}
-    <Box
-      sx={{
-        transition: '0.3s',
-        borderRadius: 1,
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        opacity: 0,
-        top: 0,
-        left: 0,
-        bgcolor: (theme) => alpha(theme.palette.primaryDark[500], 0.8),
-        color: '#fff',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
+>(function StoreTemplateLink({ brand, ...props }, ref) {
+  return (
+    <Anchor
+      ref={ref}
+      aria-label="Goto MUI store"
+      href={linkMapping[brand]}
+      target="_blank"
+      {...props}
     >
-      <Typography fontWeight="bold">Go to store</Typography>
-      <LaunchRounded fontSize="small" sx={{ ml: 1 }} />
-    </Box>
-  </Anchor>
-));
+      {props.children}
+      <Box
+        sx={{
+          transition: '0.3s',
+          borderRadius: 1,
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          opacity: 0,
+          top: 0,
+          left: 0,
+          bgcolor: (theme) => alpha(theme.palette.primaryDark[500], 0.8),
+          color: '#fff',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography fontWeight="bold">Go to store</Typography>
+        <LaunchRounded fontSize="small" sx={{ ml: 1 }} />
+      </Box>
+    </Anchor>
+  );
+});
 
 const StoreTemplateImage = React.forwardRef<
   HTMLImageElement,
   { brand: TemplateBrand } & JSX.IntrinsicElements['img']
->(({ brand, ...props }, ref) => {
+>(function StoreTemplateImage({ brand, ...props }, ref) {
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
   return (

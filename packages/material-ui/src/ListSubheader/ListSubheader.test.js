@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, createClientRender } from 'test/utils';
-import ListSubheader, { listSubheaderClasses as classes } from '@material-ui/core/ListSubheader';
+import ListSubheader, { listSubheaderClasses as classes } from '@mui/material/ListSubheader';
 
 describe('<ListSubheader />', () => {
   const render = createClientRender();

@@ -47,6 +47,7 @@ import transformUseTransitionProps from './use-transitionprops';
 import transformWithMobileDialog from './with-mobile-dialog';
 import transformWithWidth from './with-width';
 import transformUseAutocomplete from './use-autocomplete';
+import transformMuiReplace from './mui-replace';
 
 /**
  * @param {import('jscodeshift').FileInfo} file
@@ -102,6 +103,9 @@ export default function transformer(file, api, options) {
   file.source = transformWithMobileDialog(file, api, options);
   file.source = transformWithWidth(file, api, options);
   file.source = transformUseAutocomplete(file, api, options);
+
+  // mui-replace should be the last
+  file.source = transformMuiReplace(file, api, options);
 
   return file.source;
 }

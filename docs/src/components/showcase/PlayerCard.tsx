@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme, Theme } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Card from '@material-ui/core/Card';
-import Fade from '@material-ui/core/Fade';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import FastForwardRounded from '@material-ui/icons/FastForwardRounded';
-import FastRewindRounded from '@material-ui/icons/FastRewindRounded';
-import PlayArrowRounded from '@material-ui/icons/PlayArrowRounded';
-import PauseRounded from '@material-ui/icons/PauseRounded';
+import { ThemeProvider, createTheme, useTheme, Theme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Card from '@mui/material/Card';
+import Fade from '@mui/material/Fade';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import FastForwardRounded from '@mui/icons-material/FastForwardRounded';
+import FastRewindRounded from '@mui/icons-material/FastRewindRounded';
+import PlayArrowRounded from '@mui/icons-material/PlayArrowRounded';
+import PauseRounded from '@mui/icons-material/PauseRounded';
 
 const primaryDark = {
   50: '#E2EDF8',
@@ -106,19 +106,39 @@ export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) 
   return (
     <ThemeProvider theme={externalTheme || theme}>
       <Fade in timeout={700}>
-        <Card variant="outlined" sx={{ display: 'flex', p: 1 }}>
-          <img
-            alt="Beside Myself album cover"
-            style={{ borderRadius: 5 }}
-            src="/static/images/cards/basement-beside-myself.jpeg"
-            width="124"
-            height="124"
-          />
+        <Card
+          variant="outlined"
+          sx={{ p: 1, display: 'flex', flexDirection: { xs: 'column', sm: 'row' } }}
+        >
+          <Box
+            sx={{
+              display: 'flex',
+              mb: { xs: 1, sm: 0 },
+              justifyContent: { xs: 'center', sm: 'flex-start' },
+            }}
+          >
+            <img
+              alt="Beside Myself album cover"
+              style={{ borderRadius: 5, objectFit: 'cover', width: '100%' }}
+              src="/static/images/cards/basement-beside-myself.jpeg"
+              width="124"
+              height="124"
+            />
+          </Box>
           <Box sx={{ alignSelf: 'center', mx: 2 }}>
-            <Typography variant="body1" fontWeight={500}>
+            <Typography
+              variant="body1"
+              fontWeight={500}
+              sx={{ textAlign: { xs: 'center', sm: 'start' } }}
+            >
               Ultraviolet
             </Typography>
-            <Typography component="div" variant="caption" color="text.secondary">
+            <Typography
+              component="div"
+              variant="caption"
+              color="text.secondary"
+              sx={{ textAlign: { xs: 'center', sm: 'start' } }}
+            >
               Basement • Beside Myself
             </Typography>
             <Box sx={{ mt: 2 }}>
