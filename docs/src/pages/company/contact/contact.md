@@ -1,4 +1,4 @@
-# Contact Us
+# Contact us
 
 <p class="description">We're all ears.</p>
 
