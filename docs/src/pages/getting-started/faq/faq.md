@@ -117,16 +117,6 @@ If you choose not to use it, you can still disable transitions and animations by
 }
 ```
 
-## Do I have to use JSS to style my app?
-
-No, it's not required.
-But this dependency comes built in, so carries no additional bundle size overhead.
-
-Perhaps, however, you're adding some Material-UI components to an app that already uses another styling solution,
-or are already familiar with a different API, and don't want to learn a new one? In that case, head over to the
-[Style Library Interoperability](/guides/interoperability/) section,
-where we show how simple it is to restyle Material-UI components with alternative style libraries.
-
 ## When should I use inline-style vs. CSS?
 
 As a rule of thumb, only use inline-styles for dynamic style properties.
