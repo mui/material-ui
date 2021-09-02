@@ -9,6 +9,8 @@ export interface InputBasePropsSizeOverrides {}
 
 export interface InputBasePropsColorOverrides {}
 
+export interface InputBaseComponentsPropsOverrides {}
+
 export interface InputBaseProps
   extends StandardProps<
     React.HTMLAttributes<HTMLDivElement>,
@@ -56,8 +58,8 @@ export interface InputBaseProps
    * @default {}
    */
   componentsProps?: {
-    root?: React.HTMLAttributes<HTMLDivElement>;
-    input?: React.InputHTMLAttributes<HTMLInputElement>;
+    root?: React.HTMLAttributes<HTMLDivElement> & InputBaseComponentsPropsOverrides;
+    input?: React.InputHTMLAttributes<HTMLInputElement> & InputBaseComponentsPropsOverrides;
   };
   /**
    * The default value. Use when the component is not controlled.

@@ -16,6 +16,8 @@ export interface ValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
   value: number;
 }
 
+export interface SliderUnstyledComponentsPropsOverrides {}
+
 export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
     /**
@@ -53,13 +55,14 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
      * @default {}
      */
     componentsProps?: {
-      root?: React.HTMLAttributes<HTMLSpanElement>;
-      track?: React.HTMLAttributes<HTMLSpanElement>;
-      rail?: React.HTMLAttributes<HTMLSpanElement>;
-      thumb?: React.HTMLAttributes<HTMLSpanElement>;
-      mark?: React.HTMLAttributes<HTMLSpanElement>;
-      markLabel?: React.HTMLAttributes<HTMLSpanElement>;
-      valueLabel?: React.ComponentPropsWithRef<typeof SliderValueLabelUnstyled>;
+      root?: React.HTMLAttributes<HTMLSpanElement> & SliderUnstyledComponentsPropsOverrides;
+      track?: React.HTMLAttributes<HTMLSpanElement> & SliderUnstyledComponentsPropsOverrides;
+      rail?: React.HTMLAttributes<HTMLSpanElement> & SliderUnstyledComponentsPropsOverrides;
+      thumb?: React.HTMLAttributes<HTMLSpanElement> & SliderUnstyledComponentsPropsOverrides;
+      mark?: React.HTMLAttributes<HTMLSpanElement> & SliderUnstyledComponentsPropsOverrides;
+      markLabel?: React.HTMLAttributes<HTMLSpanElement> & SliderUnstyledComponentsPropsOverrides;
+      valueLabel?: React.ComponentPropsWithRef<typeof SliderValueLabelUnstyled> &
+        SliderUnstyledComponentsPropsOverrides;
     };
     /**
      * The default value. Use when the component is not controlled.

@@ -6,6 +6,8 @@ export interface ButtonUnstyledActions {
   focusVisible(): void;
 }
 
+export interface ButtonUnstyledComponentsPropsOverrides {}
+
 export interface ButtonUnstyledOwnProps extends Omit<UseButtonProps, 'ref'> {
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
@@ -14,7 +16,7 @@ export interface ButtonUnstyledOwnProps extends Omit<UseButtonProps, 'ref'> {
   children?: React.ReactNode;
   className?: string;
   componentsProps?: {
-    root?: React.ButtonHTMLAttributes<HTMLButtonElement>;
+    root?: React.ButtonHTMLAttributes<HTMLButtonElement> & ButtonUnstyledComponentsPropsOverrides;
   };
 }
 

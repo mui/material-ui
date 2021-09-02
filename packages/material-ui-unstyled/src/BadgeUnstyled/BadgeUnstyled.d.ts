@@ -7,7 +7,9 @@ export interface BadgeOrigin {
   horizontal: 'left' | 'right';
 }
 
-export interface BadgeUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
+export interface BadgeUnstyledComponentsPropsOverrides {}
+
+export interface BadgeUnstyledTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
     /**
      * The anchor of the badge.
@@ -31,8 +33,8 @@ export interface BadgeUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
      * @default {}
      */
     componentsProps?: {
-      root?: React.HTMLAttributes<HTMLDivElement>;
-      badge?: React.HTMLAttributes<HTMLSpanElement>;
+      root?: React.HTMLAttributes<HTMLSpanElement> & BadgeUnstyledComponentsPropsOverrides;
+      badge?: React.HTMLAttributes<HTMLSpanElement> & BadgeUnstyledComponentsPropsOverrides;
     };
     /**
      * Wrapped shape the badge should overlap.
