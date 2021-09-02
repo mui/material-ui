@@ -91,7 +91,6 @@ export default function XDataGrid() {
         }
       }
       if (demo === DEMOS[2]) {
-        // gridApiRef.current.sortColumn({ field: 'name', sortable: true }, 'asc');
         const sorter = document.querySelector(
           '#data-grid-demo button[aria-label="Sort"]',
         ) as HTMLButtonElement | null;
