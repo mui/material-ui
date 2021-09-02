@@ -149,7 +149,7 @@ export default function XDataGrid() {
             sx={{
               position: 'relative',
               zIndex: 1,
-              height: 220,
+              height: 240,
               borderRadius: '10px 10px 0 0',
               borderColor: (theme) =>
                 theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200',

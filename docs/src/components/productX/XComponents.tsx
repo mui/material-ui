@@ -18,11 +18,11 @@ const DEMOS = ['Data Grid', 'Date Picker', 'Tree View', 'Sparkline', 'Charts'];
 export default function XComponents() {
   const [demo, setDemo] = React.useState(DEMOS[0]);
   const icons = {
-    [DEMOS[0]]: <TableChartRounded />,
-    [DEMOS[1]]: <DateRangeRounded />,
-    [DEMOS[2]]: <AccountTreeRounded />,
-    [DEMOS[3]]: <ShowChartRounded />,
-    [DEMOS[4]]: <BarChartRounded />,
+    [DEMOS[0]]: <TableChartRounded fontSize="small" />,
+    [DEMOS[1]]: <DateRangeRounded fontSize="small" />,
+    [DEMOS[2]]: <AccountTreeRounded fontSize="small" />,
+    [DEMOS[3]]: <ShowChartRounded fontSize="small" />,
+    [DEMOS[4]]: <BarChartRounded fontSize="small" />,
   };
   return (
     <Section bg="comfort">
