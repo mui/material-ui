@@ -3,10 +3,10 @@ import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
-import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
+import { ThemeProvider, useTheme, createTheme, PaletteMode } from '@mui/material/styles';
 import { amber, deepOrange, grey } from '@mui/material/colors';
 
-const getDesignTokens = (mode = 'light') => ({
+const getDesignTokens = (mode: PaletteMode = 'light') => ({
   palette: {
     primary: {
       ...amber,
