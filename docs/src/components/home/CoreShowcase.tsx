@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Tooltip from '@mui/material/Tooltip';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
@@ -15,6 +14,8 @@ import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer'
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
 import KeyboardArrowUpRounded from '@mui/icons-material/KeyboardArrowUpRounded';
 import TouchAppRounded from '@mui/icons-material/TouchAppRounded';
+import Link from 'docs/src/modules/components/Link';
+import ROUTES from 'docs/src/route';
 
 const darkDesignTokens = getDesignTokens('dark');
 
@@ -319,37 +320,38 @@ export default function CoreShowcase() {
                   borderRadius: '0 0 10px 10px',
                 }}
               >
-                <Tooltip title={hidden ? 'Show' : 'Hide'} placement="left">
-                  <IconButton
-                    disabled={!customized}
-                    onClick={() => setHidden((bool) => !bool)}
-                    sx={{
-                      position: 'absolute',
-                      zIndex: 2,
-                      transition: '0.3s',
-                      right: 10,
-                      bottom: '100%',
-                      transform: hidden || !customized ? 'translateY(-10px)' : 'translateY(50%)',
-                      opacity: customized ? 1 : 0,
-                      bgcolor: 'primaryDark.500',
-                      '&:hover, &.Mui-focused': {
-                        bgcolor: 'primaryDark.600',
-                      },
-                    }}
-                  >
-                    {hidden ? (
-                      <KeyboardArrowUpRounded fontSize="small" />
-                    ) : (
-                      <KeyboardArrowDownRounded fontSize="small" />
-                    )}
-                  </IconButton>
-                </Tooltip>
+                <IconButton
+                  aria-label={hidden ? 'show' : 'hide'}
+                  onClick={() => setHidden((bool) => !bool)}
+                  sx={{
+                    position: 'absolute',
+                    zIndex: 2,
+                    transition: '0.3s',
+                    right: 10,
+                    bottom: '100%',
+                    transform: hidden || !customized ? 'translateY(-10px)' : 'translateY(50%)',
+                    opacity: customized ? 1 : 0,
+                    bgcolor: 'primaryDark.500',
+                    '&:hover, &.Mui-focused': {
+                      bgcolor: 'primaryDark.600',
+                    },
+                  }}
+                >
+                  {hidden ? (
+                    <KeyboardArrowUpRounded fontSize="small" />
+                  ) : (
+                    <KeyboardArrowDownRounded fontSize="small" />
+                  )}
+                </IconButton>
                 <Typography fontWeight="bold" color="#fff" variant="body2">
                   Own the styling!
                 </Typography>
                 <Typography color="grey.400" variant="body2">
                   Build your own design system using the sophisticated theming features. You can
-                  also start by using Google&apos;s Material Design.
+                  also start by using Google&apos;s Material Design.{' '}
+                  <Link href={ROUTES.theming} target="_blank">
+                    Learn more about theming
+                  </Link>
                 </Typography>
               </Box>
             </Box>
