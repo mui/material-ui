@@ -46,38 +46,42 @@ const Anchor = styled('a')(({ theme }) => ({
 const DesignToolLink = React.forwardRef<
   HTMLAnchorElement,
   React.PropsWithChildren<{ brand: 'figma' | 'sketch' | 'xd' }>
->(({ brand, ...props }, ref) => (
-  <Anchor
-    ref={ref}
-    aria-label="Goto MUI store"
-    href={{ figma: ROUTES.storeFigma, sketch: ROUTES.storeSketch, xd: ROUTES.storeXD }[brand]}
-    target="_blank"
-    {...props}
-  >
-    {props.children}
-  </Anchor>
-));
+>(function DesignToolLink({ brand, ...props }, ref) {
+  return (
+    <Anchor
+      ref={ref}
+      aria-label="Goto MUI store"
+      href={{ figma: ROUTES.storeFigma, sketch: ROUTES.storeSketch, xd: ROUTES.storeXD }[brand]}
+      target="_blank"
+      {...props}
+    >
+      {props.children}
+    </Anchor>
+  );
+});
 
 const DesignToolLogo = React.forwardRef<
   HTMLImageElement,
   { brand: 'figma' | 'sketch' | 'xd' } & AvatarProps
->(({ brand, ...props }, ref) => (
-  <Avatar
-    ref={ref}
-    src={`/static/branding/design-kits/designkits-${brand}.png`}
-    alt=""
-    {...props}
-    sx={{
-      boxShadow: (theme) =>
-        `0px 3.57436px 44.6795px ${
-          theme.palette.mode === 'dark'
-            ? theme.palette.primaryDark[900]
-            : 'rgba(90, 105, 120, 0.36)'
-        }`,
-      ...props.sx,
-    }}
-  />
-));
+>(function DesignToolLogo({ brand, ...props }, ref) {
+  return (
+    <Avatar
+      ref={ref}
+      src={`/static/branding/design-kits/designkits-${brand}.png`}
+      alt=""
+      {...props}
+      sx={{
+        boxShadow: (theme) =>
+          `0px 3.57436px 44.6795px ${
+            theme.palette.mode === 'dark'
+              ? theme.palette.primaryDark[900]
+              : 'rgba(90, 105, 120, 0.36)'
+          }`,
+        ...props.sx,
+      }}
+    />
+  );
+});
 
 export const PrefetchDesignKitImages = () => (
   <Box

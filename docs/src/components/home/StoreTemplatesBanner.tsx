@@ -59,42 +59,44 @@ const StoreTemplateLink = React.forwardRef<
   React.PropsWithChildren<{
     brand: TemplateBrand;
   }>
->(({ brand, ...props }, ref) => (
-  <Anchor
-    ref={ref}
-    aria-label="Goto MUI store"
-    href={linkMapping[brand]}
-    target="_blank"
-    {...props}
-  >
-    {props.children}
-    <Box
-      sx={{
-        transition: '0.3s',
-        borderRadius: 1,
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        opacity: 0,
-        top: 0,
-        left: 0,
-        bgcolor: (theme) => alpha(theme.palette.primaryDark[500], 0.8),
-        color: '#fff',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
+>(function StoreTemplateLink({ brand, ...props }, ref) {
+  return (
+    <Anchor
+      ref={ref}
+      aria-label="Goto MUI store"
+      href={linkMapping[brand]}
+      target="_blank"
+      {...props}
     >
-      <Typography fontWeight="bold">Go to store</Typography>
-      <LaunchRounded fontSize="small" sx={{ ml: 1 }} />
-    </Box>
-  </Anchor>
-));
+      {props.children}
+      <Box
+        sx={{
+          transition: '0.3s',
+          borderRadius: 1,
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          opacity: 0,
+          top: 0,
+          left: 0,
+          bgcolor: (theme) => alpha(theme.palette.primaryDark[500], 0.8),
+          color: '#fff',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Typography fontWeight="bold">Go to store</Typography>
+        <LaunchRounded fontSize="small" sx={{ ml: 1 }} />
+      </Box>
+    </Anchor>
+  );
+});
 
 const StoreTemplateImage = React.forwardRef<
   HTMLImageElement,
   { brand: TemplateBrand } & JSX.IntrinsicElements['img']
->(({ brand, ...props }, ref) => {
+>(function StoreTemplateImage({ brand, ...props }, ref) {
   const globalTheme = useTheme();
   const mode = globalTheme.palette.mode;
   return (

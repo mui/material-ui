@@ -1,6 +1,6 @@
 {
   "name": "@mui/icons-material",
-  "version": "5.0.0-beta.5",
+  "version": "5.0.0-rc.0",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material Design icons distributed as SVG React components.",
@@ -41,7 +41,7 @@
     "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
   },
   "peerDependencies": {
-    "@mui/material": "^5.0.0-alpha.36",
+    "@mui/material": "^5.0.0-rc.0",
     "@types/react": "^16.8.6 || ^17.0.0",
     "react": "^17.0.2"
   },

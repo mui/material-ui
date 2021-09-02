@@ -1,11 +1,10 @@
 import * as React from 'react';
-import { ThemeProvider } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/material/Box';
-import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
-const Demo = (props: BoxProps) => {
+const FrameDemo = React.forwardRef<HTMLDivElement, BoxProps>(function FrameDemo(props, ref) {
   return (
     <Box
+      ref={ref}
       {...props}
       sx={{
         position: 'relative',
@@ -16,31 +15,32 @@ const Demo = (props: BoxProps) => {
       }}
     />
   );
-};
+});
 
-const Info = (props: BoxProps) => {
+const FrameInfo = React.forwardRef<HTMLDivElement, BoxProps>(function FrameInfo(props, ref) {
   return (
-    <ThemeProvider theme={brandingDarkTheme}>
-      <Box
-        {...props}
-        sx={{
-          color: '#fff',
-          p: 2,
-          bgcolor: 'primaryDark.800',
-          border: '1px solid',
-          borderColor: 'primaryDark.700',
-          ...props.sx,
-        }}
-      />
-    </ThemeProvider>
+    <Box
+      ref={ref}
+      {...props}
+      sx={{
+        color: '#fff',
+        p: 2,
+        bgcolor: 'primaryDark.800',
+        border: '1px solid',
+        borderColor: 'primaryDark.700',
+        ...props.sx,
+      }}
+    />
   );
-};
+});
 
 const Frame = (props: BoxProps) => {
   return (
     <Box
       {...props}
       sx={{
+        display: 'flex',
+        flexDirection: 'column',
         '& > div:first-of-type': {
           borderTopLeftRadius: '10px',
           borderTopRightRadius: '10px',
@@ -49,12 +49,13 @@ const Frame = (props: BoxProps) => {
           borderBottomLeftRadius: '10px',
           borderBottomRightRadius: '10px',
         },
+        ...props.sx,
       }}
     />
   );
 };
 
-Frame.Demo = Demo;
-Frame.Info = Info;
+Frame.Demo = FrameDemo;
+Frame.Info = FrameInfo;
 
 export default Frame;

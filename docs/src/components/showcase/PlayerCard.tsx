@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, useTheme, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Fade from '@mui/material/Fade';
@@ -35,7 +35,7 @@ const grey = {
   900: '#3D4752',
 };
 
-export default function PlayerCard() {
+export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) {
   const [paused, setPaused] = React.useState(true);
   /*
    * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
@@ -104,21 +104,41 @@ export default function PlayerCard() {
     [mode],
   );
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={externalTheme || theme}>
       <Fade in timeout={700}>
-        <Card variant="outlined" sx={{ display: 'flex', p: 1 }}>
-          <img
-            alt="Beside Myself album cover"
-            style={{ borderRadius: 5 }}
-            src="/static/images/cards/basement-beside-myself.jpeg"
-            width="124"
-            height="124"
-          />
+        <Card
+          variant="outlined"
+          sx={{ p: 1, display: 'flex', flexDirection: { xs: 'column', sm: 'row' } }}
+        >
+          <Box
+            sx={{
+              display: 'flex',
+              mb: { xs: 1, sm: 0 },
+              justifyContent: { xs: 'center', sm: 'flex-start' },
+            }}
+          >
+            <img
+              alt="Beside Myself album cover"
+              style={{ borderRadius: 5, objectFit: 'cover', width: '100%' }}
+              src="/static/images/cards/basement-beside-myself.jpeg"
+              width="124"
+              height="124"
+            />
+          </Box>
           <Box sx={{ alignSelf: 'center', mx: 2 }}>
-            <Typography variant="body1" fontWeight={500}>
+            <Typography
+              variant="body1"
+              fontWeight={500}
+              sx={{ textAlign: { xs: 'center', sm: 'start' } }}
+            >
               Ultraviolet
             </Typography>
-            <Typography component="div" variant="caption" color="text.secondary">
+            <Typography
+              component="div"
+              variant="caption"
+              color="text.secondary"
+              sx={{ textAlign: { xs: 'center', sm: 'start' } }}
+            >
               Basement • Beside Myself
             </Typography>
             <Box sx={{ mt: 2 }}>

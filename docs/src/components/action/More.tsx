@@ -18,6 +18,8 @@ export default (function More(props: ButtonBaseProps) {
         borderRadius: 1,
         height: '100%',
         border: '2px dashed',
+        transitionProperty: 'all',
+        transitionDuration: '150ms',
         borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200'),
         '&:hover, &:focus': {
           borderColor: 'primary.main',
@@ -29,12 +31,16 @@ export default (function More(props: ButtonBaseProps) {
         ...props.sx,
       }}
     >
-      <Box sx={{ mr: 2, px: '3px', lineHeight: 0 }}>
-        <AddCircleOutlineRounded color="primary" sx={{ fontSize: 17 }} />
+      <Box sx={{ mr: 1, px: '3px', lineHeight: 0 }}>
+        <AddCircleOutlineRounded color="primary" fontSize="small" />
       </Box>
       <Typography color="primary.main" variant="body2" fontWeight="bold">
         Much more{' '}
-        <KeyboardArrowRightRounded color="primary" sx={{ verticalAlign: 'middle', fontSize: 15 }} />
+        <KeyboardArrowRightRounded
+          color="primary"
+          fontSize="small"
+          sx={{ verticalAlign: 'middle' }}
+        />
       </Typography>
     </ButtonBase>
   );
