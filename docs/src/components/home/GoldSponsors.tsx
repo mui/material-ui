@@ -72,26 +72,7 @@ export default function GoldSponsors() {
   });
   return (
     <Box ref={ref}>
-      <Box sx={{ mb: 2, display: 'flex', alignItems: 'center' }}>
-        <Box
-          sx={{
-            display: 'inline-block',
-            mr: 1,
-            mt: 0.2,
-            borderRadius: 1,
-            width: 12,
-            height: 12,
-            bgcolor: (theme) =>
-              theme.palette.mode === 'dark'
-                ? theme.palette.warning[200]
-                : theme.palette.warning[800],
-            border: '3px solid',
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark'
-                ? theme.palette.warning[800]
-                : theme.palette.warning[300],
-          }}
-        />
+      <Box sx={{ mb: 2 }}>
         <Typography
           component="h3"
           variant="h5"
