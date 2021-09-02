@@ -122,7 +122,7 @@ export default function XTheming() {
         </Grid>
         <Grid item xs={12} md={6}>
           {customized ? (
-            <Paper variant="outlined" sx={{ height: 418 }}>
+            <Paper variant="outlined" sx={{ height: 418, borderColor: 'primaryDark.600', }}>
               <XGridGlobalStyles />
               <XGrid
                 {...data}

@@ -151,7 +151,7 @@ export default function XDataGrid() {
               zIndex: 1,
               height: 220,
               borderRadius: '10px 10px 0 0',
-              borderColor: 'primaryDark.700',
+              borderColor: 'primaryDark.600',
               '& .MuiDataGrid-root': {
                 '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
                 '& .MuiDataGrid-renderingZone': {
