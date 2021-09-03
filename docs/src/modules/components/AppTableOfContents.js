@@ -31,7 +31,7 @@ const NavLabel = styled(Typography)(({ theme }) => {
     marginTop: theme.spacing(2),
     paddingLeft: theme.spacing(1.5),
     fontSize: '.75rem',
-    fontWeight: 600,
+    fontWeight: 700,
     color:
       theme.palette.mode === 'dark' ? alpha(theme.palette.grey[500], 0.5) : theme.palette.grey[500],
   };

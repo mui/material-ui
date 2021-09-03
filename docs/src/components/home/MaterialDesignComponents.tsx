@@ -183,7 +183,7 @@ function Demo({
 }
 
 const StyledChip = styled(Chip)(({ theme }) => ({
-  fontWeight: 600,
+  fontWeight: 700,
   transition: 'none',
   '&.MuiChip-outlined': {
     border: 'none',
@@ -290,7 +290,7 @@ export function buildTheme(theme: Theme): ThemeOptions {
           },
           message: {
             padding: 0,
-            fontWeight: 600,
+            fontWeight: 700,
           },
           standardInfo: {
             backgroundColor: theme.palette.primaryDark[100],
@@ -331,7 +331,7 @@ export function buildTheme(theme: Theme): ThemeOptions {
                   : theme.palette.grey[300],
             },
             '& .MuiInputBase-input': {
-              fontWeight: 600,
+              fontWeight: 700,
             },
             '& .MuiFilledInput-root': {
               backgroundColor:

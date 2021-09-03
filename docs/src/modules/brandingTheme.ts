@@ -253,7 +253,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         fontSize: defaultTheme.typography.pxToRem(12), // 12px
         lineHeight: 18 / 12,
         letterSpacing: 0,
-        fontWeight: 600,
+        fontWeight: 700,
       },
     },
   } as ThemeOptions);
@@ -360,7 +360,7 @@ export function getThemedComponents(theme: Theme) {
               theme.palette.mode === 'dark'
                 ? theme.palette.primary[400]
                 : theme.palette.primary[600],
-            fontWeight: 600,
+            fontWeight: 700,
             display: 'inline-flex',
             alignItems: 'center',
             '&.MuiTypography-body1 > svg': {
@@ -411,7 +411,7 @@ export function getThemedComponents(theme: Theme) {
           },
           head: {
             color: theme.palette.text.primary,
-            fontWeight: 600,
+            fontWeight: 700,
           },
           body: {
             color: theme.palette.text.secondary,
@@ -430,7 +430,7 @@ export function getThemedComponents(theme: Theme) {
         styleOverrides: {
           root: {
             textTransform: 'none',
-            fontWeight: 600,
+            fontWeight: 700,
             color:
               theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[700],
             borderColor:

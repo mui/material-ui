@@ -20,7 +20,7 @@ const Navigation = styled('nav')(({ theme }) => ({
   '& li': {
     color: theme.palette.text.secondary,
     ...theme.typography.body2,
-    fontWeight: 600,
+    fontWeight: 700,
     '& > a, & > div': {
       display: 'inline-block',
       color: 'inherit',
@@ -88,7 +88,7 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
           {icon}
         </Box>
         <Box>
-          <Typography color="text.primary" variant="body2" fontWeight={600}>
+          <Typography color="text.primary" variant="body2" fontWeight={700}>
             {name}
           </Typography>
           <Typography color="text.secondary" variant="body2">

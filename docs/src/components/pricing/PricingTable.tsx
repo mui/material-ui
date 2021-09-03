@@ -288,7 +288,7 @@ const RowHead = ({
       p: 1,
       transition: 'none',
       typography: 'body2',
-      fontWeight: 600,
+      fontWeight: 700,
       display: 'flex',
       alignItems: 'center',
       ...props.sx,

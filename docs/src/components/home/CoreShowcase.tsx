@@ -158,7 +158,7 @@ export default function CoreShowcase() {
               MuiChip: {
                 styleOverrides: {
                   filled: {
-                    fontWeight: 600,
+                    fontWeight: 700,
                     '&.MuiChip-colorSuccess': {
                       backgroundColor:
                         mode === 'dark'

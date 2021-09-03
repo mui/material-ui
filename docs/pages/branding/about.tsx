@@ -494,7 +494,7 @@ function AboutContent() {
               ].map((text) => (
                 <Box key={text} sx={{ display: 'flex', alignItems: 'flex-start', mt: 1 }}>
                   <IconImage name="yes" />
-                  <Typography variant="body2" color="text.primary" fontWeight={600} sx={{ ml: 1 }}>
+                  <Typography variant="body2" color="text.primary" fontWeight={700} sx={{ ml: 1 }}>
                     {text}
                   </Typography>
                 </Box>

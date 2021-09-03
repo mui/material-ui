@@ -17,7 +17,7 @@ const Placeholder = styled('a')(({ theme }) => ({
   width: '100%',
   height: 55,
   fontSize: '14px',
-  fontWeight: 600,
+  fontWeight: 700,
   alignItems: 'center',
   justifyContent: 'center',
   textDecoration: 'none',

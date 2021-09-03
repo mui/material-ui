@@ -77,7 +77,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
           ),
         }}
       >
-        <AlertTitle sx={{ typography: 'body2', fontWeight: 600 }}>
+        <AlertTitle sx={{ typography: 'body2', fontWeight: 700 }}>
           Thanks! Check your email.
         </AlertTitle>
         You should get a <strong>confirmation email</strong> soon. Open it up and confirm your email
