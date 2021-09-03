@@ -137,7 +137,7 @@ export default function TemplateDemo() {
                 />
               </Highlighter>
             ))}
-            <More />
+            <More component={Link} href={ROUTES.storePopular} noLinkStyle />
           </Group>
         </Grid>
         <Grid item xs={12} md={6}>
