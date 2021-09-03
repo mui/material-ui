@@ -433,7 +433,7 @@ chai.use((chaiAPI, utils) => {
 });
 
 chai.use((chaiAPI, utils) => {
-  function addConsoleMatcher(matcherName: string, methodName: keyof typeof console) {
+  function addConsoleMatcher(matcherName: string, methodName: 'error' | 'warn') {
     /**
      * @param {string[]} expectedMessages
      */

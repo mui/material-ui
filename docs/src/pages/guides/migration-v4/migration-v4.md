@@ -20,7 +20,7 @@ The _why_ will be covered in an upcoming blog post on Medium.
 - [Update React & TypeScript](#update-react-amp-typescript-version)
 - [ThemeProvider setup](#themeprovider-setup)
 - [Update Material-UI](#update-material-ui-version)
-- [Run Codemod](#run-codemod)
+- [Run codemods](#run-codemods)
   - [🪄 preset-safe](#preset-safe)
   - [variant-prop (optional)](#variant-prop)
   - [link-underline-hover (optional)](#link-underline-hover)

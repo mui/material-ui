@@ -844,7 +844,7 @@ async function buildDocs(options: {
       try {
         prop = createDescribeableProp(propDescriptor, propName);
       } catch (error) {
-        propErrors.push([propName, error]);
+        propErrors.push([propName, error as Error]);
         prop = null;
       }
       if (prop === null) {
@@ -1155,7 +1155,7 @@ async function run(argv: {
         program,
         workspaceRoot,
       });
-    } catch (error) {
+    } catch (error: any) {
       error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
       throw error;
     }
