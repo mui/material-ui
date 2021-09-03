@@ -99,10 +99,10 @@ export default function LandingPage() {
             <Content maxWidth="md">
               <Logo src="/static/logo_raw.svg" alt="" />
               <div>
-                <Title variant="h3" component="h1" color="inherit" gutterBottom>
+                <Title variant="h3" component="h1" color="white" gutterBottom>
                   {'MATERIAL-UI'}
                 </Title>
-                <Typography variant="h5" component="p" color="inherit">
+                <Typography variant="h5" component="p" color="white">
                   {t('strapline')}
                 </Typography>
                 <Button
@@ -111,6 +111,8 @@ export default function LandingPage() {
                   href="/getting-started/installation"
                   sx={{ mt: 4 }}
                   variant="outlined"
+                  size="large"
+                  style={{ color: 'white' }}
                 >
                   {t('getStarted')}
                 </Button>
