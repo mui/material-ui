@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import Fade from '@mui/material/Fade';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
@@ -12,6 +13,7 @@ import DateRangeRounded from '@mui/icons-material/DateRangeRounded';
 import AccountTreeRounded from '@mui/icons-material/AccountTreeRounded';
 import ShowChartRounded from '@mui/icons-material/ShowChartRounded';
 import BarChartRounded from '@mui/icons-material/BarChartRounded';
+import XGridFullDemo from 'docs/src/components/productX/XGridFullDemo';
 
 const DEMOS = ['Data Grid', 'Date Picker', 'Tree View', 'Sparkline', 'Charts'];
 
@@ -53,7 +55,13 @@ export default function XComponents() {
           </Group>
         </Grid>
         <Grid item xs={12} md={6}>
-          <div />
+          {demo === DEMOS[0] && (
+            <Fade in timeout={500}>
+              <Box sx={{ height: '100%' }}>
+                <XGridFullDemo />
+              </Box>
+            </Fade>
+          )}
         </Grid>
       </Grid>
     </Section>
