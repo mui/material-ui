@@ -64,7 +64,7 @@ const ItemLink = styled(Item, {
 })(({ theme }) => {
   return {
     color: theme.palette.text.secondary,
-    fontSize: '0.8125rem',
+    fontSize: '0.865em',
     '&.app-drawer-active': {
       // color: theme.palette.primary.main,
       color:
