@@ -128,6 +128,8 @@ const RootDiv = styled('div')(({ theme }) => {
       theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.grey[200]
     }`,
     borderRadius: 10,
+    transitionProperty: 'all',
+    transitionDuration: '150ms',
   };
 });
 
