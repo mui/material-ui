@@ -200,7 +200,7 @@ export default function TemplateDemo() {
                           opacity: 0,
                           top: 0,
                           left: 0,
-                          bgcolor: (theme) => alpha(theme.palette.primaryDark[500], 0.8),
+                          bgcolor: (theme) => alpha(theme.palette.primaryDark[900], 0.4),
                           color: '#fff',
                           display: 'flex',
                           alignItems: 'center',
