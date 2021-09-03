@@ -216,15 +216,13 @@ export function ThemeProvider(props) {
 
   const theme = React.useMemo(() => {
     const brandingDesignTokens = getDesignTokens(paletteMode);
-    let nextTheme = createTheme(
+    const nextTheme = createTheme(
       {
         direction,
-        ...brandingDesignTokens,
         nprogress: {
           color: brandingDesignTokens.palette.primary.main,
         },
         palette: {
-          ...brandingDesignTokens.palette,
           ...paletteColors,
           mode: paletteMode,
         },
@@ -242,8 +240,6 @@ export function ThemeProvider(props) {
       },
       languageMap[userLanguage],
     );
-
-    nextTheme = deepmerge(nextTheme, getThemedComponents(nextTheme));
 
     return nextTheme;
   }, [dense, direction, paletteColors, paletteMode, spacing, userLanguage]);
