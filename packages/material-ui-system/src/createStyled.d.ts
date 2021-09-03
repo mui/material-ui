@@ -85,7 +85,7 @@ export interface StyledOptions {
   target?: string;
 }
 
-export interface MuiStyledOptions<Props extends {}, ClassKey extends string | number | symbol> {
+export interface MuiStyledOptions<Props extends {}, ClassKey extends string> {
   name?: string;
   slot?: string;
   overridesResolver?: (
@@ -148,7 +148,7 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
     C extends React.ComponentClass<React.ComponentProps<C>>,
     ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
     ComponentProps extends {} = any,
-    ClassKey extends string | number | symbol = any,
+    ClassKey extends string = any,
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps> &
@@ -168,7 +168,7 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
   <
     C extends React.ComponentClass<React.ComponentProps<C>>,
     ComponentProps extends {} = any,
-    ClassKey extends string | number | symbol = any,
+    ClassKey extends string = any,
   >(
     component: C,
     options?: StyledOptions & MuiStyledOptions<ComponentProps, ClassKey>,
@@ -188,7 +188,7 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
     C extends React.JSXElementConstructor<React.ComponentProps<C>>,
     ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
     ComponentProps extends {} = any,
-    ClassKey extends string | number | symbol = any,
+    ClassKey extends string = any,
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps> &
@@ -204,7 +204,7 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
   <
     C extends React.JSXElementConstructor<React.ComponentProps<C>>,
     ComponentProps extends {} = any,
-    ClassKey extends string | number | symbol = any,
+    ClassKey extends string = any,
   >(
     component: C,
     options?: StyledOptions & MuiStyledOptions<ComponentProps, ClassKey>,
@@ -220,7 +220,7 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
     Tag extends keyof JSX.IntrinsicElements,
     ForwardedProps extends keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag],
     ComponentProps extends {} = any,
-    ClassKey extends string | number | symbol = any,
+    ClassKey extends string = any,
   >(
     tag: Tag,
     options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps> &
@@ -237,7 +237,7 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
   <
     Tag extends keyof JSX.IntrinsicElements,
     ComponentProps extends {} = any,
-    ClassKey extends string | number | symbol = any,
+    ClassKey extends string = any,
   >(
     tag: Tag,
     options?: StyledOptions & MuiStyledOptions<ComponentProps, ClassKey>,
