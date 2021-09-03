@@ -14,7 +14,7 @@ const content = [
     icon: <Palette fontSize="small" color="primary" />,
     title: 'For designers',
     description:
-      "Save time getting the MUI Core components all setup, leveraging the latest features from your favorite design tool.",
+      'Save time getting the MUI Core components all setup, leveraging the latest features from your favorite design tool.',
   },
   {
     icon: <LibraryBooks fontSize="small" color="primary" />,
