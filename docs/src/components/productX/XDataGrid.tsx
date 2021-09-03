@@ -21,6 +21,7 @@ import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
+import ROUTES from 'docs/src/route';
 
 const DEMOS = ['Editing', 'Selection', 'Sorting', 'Pagination', 'Filtering'] as const;
 
@@ -139,7 +140,7 @@ export default function XDataGrid() {
                 <Item icon={icons[name]} title={name} />
               </Highlighter>
             ))}
-            <More />
+            <More href={ROUTES.roadmap} />
           </Group>
         </Grid>
         <Grid item xs={12} md={6}>
