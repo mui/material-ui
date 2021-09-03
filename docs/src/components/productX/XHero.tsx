@@ -40,6 +40,7 @@ export default function XHero() {
             sx={{
               display: 'flex',
               alignItems: 'center',
+              justifyContent: { xs: 'center', md: 'flex-start' },
               '& > *': { mr: 1, width: 28, height: 28 },
             }}
           >
@@ -48,10 +49,11 @@ export default function XHero() {
           <Typography variant="h1" sx={{ my: 2, maxWidth: 500 }}>
             Performant
             <br />
-            <GradientText>advanced</GradientText><br /> components
+            <GradientText>advanced</GradientText>
+            <br /> components
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
-            Build complex and data-rich applications using a growing list of advanced components. 
+            Build complex and data-rich applications using a growing list of advanced components.
             We&apos;re kicking it off with the most powerful Data Grid on the market.
           </Typography>
           <GetStartedButtons
