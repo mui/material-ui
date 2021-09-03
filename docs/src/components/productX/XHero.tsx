@@ -57,7 +57,7 @@ export default function XHero() {
             We&apos;re kicking it off with the most powerful Data Grid on the market.
           </Typography>
           <GetStartedButtons
-            installation="npm install @mui/x"
+            installation="npm install @mui/x-data-grid"
             sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }}
           />
         </Box>
