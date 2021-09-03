@@ -115,10 +115,10 @@ export default function TemplateDemo() {
               overline="Use cases"
               title={
                 <Typography variant="h2">
-                  Get the right template for your <GradientText>specific need</GradientText>
+                  The right template for your <GradientText>specific need</GradientText>
                 </Typography>
               }
-              description="We've gathered templates for lots of use-cases, all powered with the Core components carefully curated from MUI's team."
+              description="A growing list of templates for diverse use-cases, all powered by MUI Core components and carefully curated by MUI's team."
             />
           </Box>
           <Group desktopColumns={2} sx={{ mt: 4 }}>
