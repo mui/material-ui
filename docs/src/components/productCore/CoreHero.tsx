@@ -231,7 +231,7 @@ export default function Hero() {
             })
           }
         >
-          <Paper sx={{ maxWidth: 672, p: 2, mb: 4 }}>
+          <Paper sx={{ maxWidth: 780, p: 2, mb: 4 }}>
             <Stepper activeStep={1}>
               <Step>
                 <StepLabel>Search for React UI libraries</StepLabel>
@@ -247,7 +247,7 @@ export default function Hero() {
           <Box
             sx={{
               '& > div': {
-                width: 320,
+                width: 370,
                 display: 'inline-flex',
                 verticalAlign: 'top',
               },
@@ -383,7 +383,7 @@ export default function Hero() {
                   elevation={0}
                   sx={{
                     py: 2,
-                    px: 1,
+                    px: 2,
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
