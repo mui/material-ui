@@ -69,7 +69,7 @@ export default function XRoadmap() {
               <Box maxWidth={500}>
                 <SectionHeadline
                   overline="Roadmap"
-                  title="Follow the lab for future updates"
+                  title="Follow the MUI X roadmap for future updates"
                   description="It's just the beginning of the MUI X components. Stay tuned for the exciting news and updates coming soon!"
                 />
                 <Button
