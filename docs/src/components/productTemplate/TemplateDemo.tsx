@@ -19,6 +19,7 @@ import Layers from '@mui/icons-material/Layers';
 import ShoppingBag from '@mui/icons-material/ShoppingBag';
 import KeyboardArrowLeftRounded from '@mui/icons-material/KeyboardArrowLeftRounded';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
+import More from 'docs/src/components/action/More';
 
 const DEMOS = ['Dashboard', 'Landing Pages', 'E-commerce'];
 
@@ -57,9 +58,9 @@ export default function TemplateDemo() {
   const [demo, setDemo] = React.useState(DEMOS[0]);
   const [templateIndex, setTemplateIndex] = React.useState(0);
   const icons = {
-    [DEMOS[0]]: <DashboardRounded />,
-    [DEMOS[1]]: <Layers />,
-    [DEMOS[2]]: <ShoppingBag />,
+    [DEMOS[0]]: <DashboardRounded fontSize="small" />,
+    [DEMOS[1]]: <Layers fontSize="small" />,
+    [DEMOS[2]]: <ShoppingBag fontSize="small" />,
   };
   const TEMPLATES = {
     [DEMOS[0]]: [
@@ -136,6 +137,7 @@ export default function TemplateDemo() {
                 />
               </Highlighter>
             ))}
+            <More />
           </Group>
         </Grid>
         <Grid item xs={12} md={6}>
