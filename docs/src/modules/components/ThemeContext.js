@@ -5,7 +5,6 @@ import {
   createTheme as createLegacyModeTheme,
   unstable_createMuiStrictModeTheme as createStrictModeTheme,
 } from '@mui/material/styles';
-import { deepmerge } from '@mui/utils';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@mui/material/locale';
 import darkScrollbar from '@mui/material/darkScrollbar';
@@ -13,11 +12,7 @@ import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/material/u
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
-import {
-  getDesignTokens,
-  getThemedComponents,
-  getMetaThemeColor,
-} from 'docs/src/modules/brandingTheme';
+import { getDesignTokens, getMetaThemeColor } from 'docs/src/modules/brandingTheme';
 
 const languageMap = {
   en: enUS,
