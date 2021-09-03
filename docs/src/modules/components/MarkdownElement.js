@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { alpha, darken, styled } from '@mui/material/styles';
-import { blueDark } from 'docs/src/modules/brandingTheme';
+import { blueDark, yellow } from 'docs/src/modules/brandingTheme';
 
 const Root = styled('div')(({ theme }) => ({
   ...theme.typography.body1,
@@ -187,16 +187,8 @@ const Root = styled('div')(({ theme }) => ({
   '& blockquote': {
     borderRadius: theme.shape.borderRadius,
     border: '1px solid',
-    borderColor:
-      theme.palette.mode === 'dark'
-        ? // Support Material design theme
-          theme.palette.warning[900] ?? theme.palette.warning.dark
-        : theme.palette.warning[400] ?? theme.palette.warning.light,
-    backgroundColor:
-      theme.palette.mode === 'dark'
-        ? // Support Material design theme
-          alpha(theme.palette.warning[800] ?? theme.palette.warning.dark, 0.09)
-        : theme.palette.warning[50] ?? theme.palette.warning.light,
+    borderColor: theme.palette.mode === 'dark' ? yellow[900] : yellow[400],
+    backgroundColor: theme.palette.mode === 'dark' ? alpha(yellow[800], 0.09) : yellow[50],
     padding: '10px 20px',
     margin: '20px 0',
     '& p': {
