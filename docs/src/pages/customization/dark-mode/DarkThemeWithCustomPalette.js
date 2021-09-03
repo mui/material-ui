@@ -5,39 +5,33 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
 import { amber, deepOrange, grey } from '@mui/material/colors';
-import { PaletteMode } from '@mui/material';
 
-const getDesignTokens = (mode: PaletteMode) => ({
+const getDesignTokens = (mode) => ({
   palette: {
+    mode,
     primary: {
       ...amber,
       ...(mode === 'dark' && {
         main: amber[300],
       }),
     },
-    divider: mode === 'dark' ? deepOrange[700] : grey[200],
-    mode,
     ...(mode === 'dark' && {
       background: {
         default: deepOrange[900],
         paper: deepOrange[900],
       },
     }),
-    common: {
-      black: '#1D1D1D',
+    text: {
+      ...(mode === 'light'
+        ? {
+            primary: grey[900],
+            secondary: grey[800],
+          }
+        : {
+            primary: '#fff',
+            secondary: grey[500],
+          }),
     },
-    ...(mode === 'light' && {
-      text: {
-        primary: grey[900],
-        secondary: grey[800],
-      },
-    }),
-    ...(mode === 'dark' && {
-      text: {
-        primary: '#fff',
-        secondary: grey[500],
-      },
-    }),
   },
 });
 
@@ -72,13 +66,11 @@ function MyApp() {
 }
 
 export default function ToggleColorMode() {
-  const [mode, setMode] = React.useState<PaletteMode>('light');
+  const [mode, setMode] = React.useState('light');
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode((prevMode: PaletteMode) =>
-          prevMode === 'light' ? 'dark' : 'light',
-        );
+        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
       },
     }),
     [],
