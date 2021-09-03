@@ -93,6 +93,19 @@ const grey = {
   800: '#2F3A45', // contrast 11.58:1
   900: '#20262D',
 };
+export const yellow = {
+  50: '#FFF9EB',
+  100: '#FFF4DB',
+  200: '#FFEDC2',
+  300: '#FFE4A3',
+  400: '#FFD980',
+  500: '#FCC419',
+  600: '#FAB005',
+  main: '#F1A204', // does not pass constrast ratio
+  700: '#F1A204',
+  800: '#DB9A00',
+  900: '#8F6400',
+};
 
 const systemFont = [
   '-apple-system',
@@ -180,19 +193,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         800: '#178D46',
         900: '#0F5C2E',
       },
-      warning: {
-        50: '#FFF9EB',
-        100: '#FFF4DB',
-        200: '#FFEDC2',
-        300: '#FFE4A3',
-        400: '#FFD980',
-        500: '#FCC419',
-        600: '#FAB005',
-        main: '#F1A204', // does not pass constrast ratio
-        700: '#F1A204',
-        800: '#DB9A00',
-        900: '#8F6400',
-      },
+      warning: yellow,
       svgBg: {
         base: mode === 'dark' ? blueDark[400] : grey[50],
         active: mode === 'dark' ? blueDark[400] : grey[50],
