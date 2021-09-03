@@ -2,6 +2,7 @@ import * as React from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import { useTheme, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
@@ -10,15 +11,45 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
-import ArrowButton from 'docs/src/components/action/ArrowButton';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 import DashboardRounded from '@mui/icons-material/DashboardRounded';
 import Layers from '@mui/icons-material/Layers';
 import ShoppingBag from '@mui/icons-material/ShoppingBag';
+import KeyboardArrowLeftRounded from '@mui/icons-material/KeyboardArrowLeftRounded';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 
 const DEMOS = ['Dashboard', 'Landing Pages', 'E-commerce'];
+
+const ActionArea = (props: ButtonBaseProps) => (
+  <ButtonBase
+    {...props}
+    sx={{
+      width: 100,
+      height: 100,
+      borderRadius: '50%',
+      transition: '0.2s',
+      '&.Mui-disabled': {
+        opacity: 0,
+      },
+      '& > svg': { transition: '0.2s' },
+      backdropFilter: 'blur(4px)',
+      bgcolor: (theme) =>
+        theme.palette.mode === 'dark'
+          ? alpha(theme.palette.primary[500], 0.5)
+          : alpha(theme.palette.primaryDark[500], 0.5),
+      '&:hover, &:focus': {
+        '& > svg': { fontSize: 28 },
+      },
+      position: 'absolute',
+      top: 'calc(50% - 50px)',
+      color: '#fff',
+      p: 1.5,
+      ...props.sx,
+    }}
+  />
+);
 
 export default function TemplateDemo() {
   const globalTheme = useTheme();
@@ -172,7 +203,7 @@ export default function TemplateDemo() {
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
-                          '&:hover': {
+                          '&:hover, &:focus': {
                             opacity: 1,
                           },
                         }}
@@ -183,6 +214,28 @@ export default function TemplateDemo() {
                     </Box>
                   ))}
                 </SwipeableViews>
+                {templates.length > 1 && (
+                  <React.Fragment>
+                    <ActionArea
+                      aria-label="Previous template"
+                      disabled={templateIndex === 0}
+                      onClick={() => setTemplateIndex((current) => Math.max(0, current - 1))}
+                      sx={{ left: 0, transform: 'translate(-50%)', justifyContent: 'flex-end' }}
+                    >
+                      <KeyboardArrowLeftRounded />
+                    </ActionArea>
+                    <ActionArea
+                      aria-label="Next template"
+                      disabled={templateIndex === templates.length - 1}
+                      onClick={() =>
+                        setTemplateIndex((current) => Math.min(templates.length - 1, current + 1))
+                      }
+                      sx={{ right: 0, transform: 'translate(50%)', justifyContent: 'flex-start' }}
+                    >
+                      <KeyboardArrowRightRounded />
+                    </ActionArea>
+                  </React.Fragment>
+                )}
               </Box>
             </Frame.Demo>
             <Frame.Info
@@ -208,23 +261,6 @@ export default function TemplateDemo() {
                   </Typography>
                 </Box>
               </Box>
-              {templates.length > 1 && (
-                <React.Fragment>
-                  <ArrowButton
-                    direction="left"
-                    disabled={templateIndex === 0}
-                    onClick={() => setTemplateIndex((current) => Math.max(0, current - 1))}
-                    sx={{ ml: 'auto' }}
-                  />
-                  <ArrowButton
-                    direction="right"
-                    disabled={templateIndex === templates.length - 1}
-                    onClick={() =>
-                      setTemplateIndex((current) => Math.min(templates.length - 1, current + 1))
-                    }
-                  />
-                </React.Fragment>
-              )}
             </Frame.Info>
           </Frame>
         </Grid>
