@@ -302,7 +302,7 @@ export function getThemedComponents(theme: Theme) {
                 borderColor: theme.palette.primary.main,
                 backgroundColor:
                   theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[500]
+                    ? theme.palette.primaryDark[600]
                     : theme.palette.primary[50],
                 '& .MuiButton-endIcon': {
                   color:
