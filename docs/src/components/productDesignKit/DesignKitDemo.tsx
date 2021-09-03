@@ -37,9 +37,9 @@ export default function TemplateDemo() {
   const mode = globalTheme.palette.mode;
   const [demo, setDemo] = React.useState(DEMOS[0]);
   const icons = {
-    [DEMOS[0]]: <ToggleOnRounded />,
-    [DEMOS[1]]: <TextFieldsRounded />,
-    [DEMOS[2]]: <WidgetsRounded />,
+    [DEMOS[0]]: <ToggleOnRounded fontSize="small" />,
+    [DEMOS[1]]: <TextFieldsRounded fontSize="small" />,
+    [DEMOS[2]]: <WidgetsRounded fontSize="small" />,
   };
   return (
     <Section bg="comfort">
@@ -53,7 +53,7 @@ export default function TemplateDemo() {
                   Upgrade your <GradientText>design workflow</GradientText>
                 </Typography>
               }
-              description="The UI kits contain all the MUI components with states, variations, colors, typography, and icons. We frequently updated it to sync with the most up-to-date MUI release."
+              description="The UI kits contain many of the MUI components with states, variations, colors, typography, and icons. We frequently updated it to sync with the most up-to-date MUI release."
             />
           </Box>
           <Group desktopColumns={2} sx={{ mt: 4 }}>
