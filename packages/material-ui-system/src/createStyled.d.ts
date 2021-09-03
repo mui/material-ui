@@ -85,12 +85,12 @@ export interface StyledOptions {
   target?: string;
 }
 
-export interface MuiStyledOptions<Props extends {}, ClassKey extends string> {
+export interface MuiStyledOptions<Props extends {}, Classes extends {}> {
   name?: string;
   slot?: string;
   overridesResolver?: (
     props: Props,
-    styles: Record<ClassKey, CSSInterpolation>,
+    styles: Record<keyof Classes, CSSInterpolation>,
   ) => CSSInterpolation;
   skipVariantsResolver?: boolean;
   skipSx?: boolean;
@@ -148,11 +148,11 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
     C extends React.ComponentClass<React.ComponentProps<C>>,
     ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
     ComponentProps extends {} = any,
-    ClassKey extends string = any,
+    Classes extends {} = any,
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps> &
-      MuiStyledOptions<ComponentProps, ClassKey>,
+      MuiStyledOptions<ComponentProps, Classes>,
   ): CreateStyledComponent<
     Pick<PropsOf<C>, ForwardedProps> & {
       theme?: Theme;
@@ -168,10 +168,10 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
   <
     C extends React.ComponentClass<React.ComponentProps<C>>,
     ComponentProps extends {} = any,
-    ClassKey extends string = any,
+    Classes extends {} = any,
   >(
     component: C,
-    options?: StyledOptions & MuiStyledOptions<ComponentProps, ClassKey>,
+    options?: StyledOptions & MuiStyledOptions<ComponentProps, Classes>,
   ): CreateStyledComponent<
     PropsOf<C> & {
       theme?: Theme;
@@ -188,11 +188,11 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
     C extends React.JSXElementConstructor<React.ComponentProps<C>>,
     ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
     ComponentProps extends {} = any,
-    ClassKey extends string = any,
+    Classes extends {} = any,
   >(
     component: C,
     options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps> &
-      MuiStyledOptions<ComponentProps, ClassKey>,
+      MuiStyledOptions<ComponentProps, Classes>,
   ): CreateStyledComponent<
     Pick<PropsOf<C>, ForwardedProps> & {
       theme?: Theme;
@@ -204,10 +204,10 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
   <
     C extends React.JSXElementConstructor<React.ComponentProps<C>>,
     ComponentProps extends {} = any,
-    ClassKey extends string = any,
+    Classes extends {} = any,
   >(
     component: C,
-    options?: StyledOptions & MuiStyledOptions<ComponentProps, ClassKey>,
+    options?: StyledOptions & MuiStyledOptions<ComponentProps, Classes>,
   ): CreateStyledComponent<
     PropsOf<C> & {
       theme?: Theme;
@@ -220,11 +220,11 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
     Tag extends keyof JSX.IntrinsicElements,
     ForwardedProps extends keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag],
     ComponentProps extends {} = any,
-    ClassKey extends string = any,
+    Classes extends {} = any,
   >(
     tag: Tag,
     options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps> &
-      MuiStyledOptions<ComponentProps, ClassKey>,
+      MuiStyledOptions<ComponentProps, Classes>,
   ): CreateStyledComponent<
     {
       theme?: Theme;
@@ -237,10 +237,10 @@ export interface CreateMUIStyled<Theme extends object = DefaultTheme> {
   <
     Tag extends keyof JSX.IntrinsicElements,
     ComponentProps extends {} = any,
-    ClassKey extends string = any,
+    Classes extends {} = any,
   >(
     tag: Tag,
-    options?: StyledOptions & MuiStyledOptions<ComponentProps, ClassKey>,
+    options?: StyledOptions & MuiStyledOptions<ComponentProps, Classes>,
   ): CreateStyledComponent<
     {
       theme?: Theme;
