@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 import { ClockView, CLOCK_WIDTH, CLOCK_HOUR_WIDTH } from './shared';
 
 export interface ClockPointerProps extends React.HTMLAttributes<HTMLDivElement> {

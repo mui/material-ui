@@ -1,4 +1,4 @@
-import { deepmerge } from '@material-ui/utils';
+import { deepmerge } from '@mui/utils';
 import propsToClassKey from '../propsToClassKey';
 import noopTheme from './noopTheme';
 

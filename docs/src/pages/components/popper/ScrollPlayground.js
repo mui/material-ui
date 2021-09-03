@@ -1,20 +1,20 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { styled } from '@mui/material/styles';
+import FormControlLabel from '@mui/material/FormControlLabel';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import MuiPopper from '@material-ui/core/Popper';
-import Paper from '@material-ui/core/Paper';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Switch from '@material-ui/core/Switch';
-import TextField from '@material-ui/core/TextField';
-import FormGroup from '@material-ui/core/FormGroup';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import MuiPopper from '@mui/material/Popper';
+import Paper from '@mui/material/Paper';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import Switch from '@mui/material/Switch';
+import TextField from '@mui/material/TextField';
+import FormGroup from '@mui/material/FormGroup';
 
 const Popper = styled(MuiPopper, {
   shouldForwardProp: (prop) => prop !== 'arrow',

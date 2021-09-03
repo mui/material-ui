@@ -3,7 +3,7 @@ import * as React from 'react';
 import { createClientRender, describeConformance } from 'test/utils';
 import ImageListItemBar, {
   imageListItemBarClasses as classes,
-} from '@material-ui/core/ImageListItemBar';
+} from '@mui/material/ImageListItemBar';
 
 describe('<ImageListItemBar />', () => {
   const render = createClientRender();

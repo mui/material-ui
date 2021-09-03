@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, describeConformance } from 'test/utils';
-import Typography, { typographyClasses } from '@material-ui/core/Typography';
-import ListItemText, { listItemTextClasses as classes } from '@material-ui/core/ListItemText';
+import Typography, { typographyClasses } from '@mui/material/Typography';
+import ListItemText, { listItemTextClasses as classes } from '@mui/material/ListItemText';
 
 describe('<ListItemText />', () => {
   const render = createClientRender();

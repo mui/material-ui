@@ -1,5 +1,5 @@
-import { SxProps } from '@material-ui/system';
-import { Theme } from '@material-ui/core/styles';
+import { SxProps } from '@mui/system';
+import { Theme } from '@mui/material/styles';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { MenuItemClasses } from './menuItemClasses';

@@ -1,2 +1,2 @@
-export { default } from '@material-ui/core/usePagination';
-export * from '@material-ui/core/usePagination';
+export { default } from '@mui/material/usePagination';
+export * from '@mui/material/usePagination';

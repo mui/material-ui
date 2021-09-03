@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { getThemeProps, useThemeWithoutDefault as useTheme } from '@material-ui/system';
+import { getThemeProps, useThemeWithoutDefault as useTheme } from '@mui/system';
 import useEnhancedEffect from '../utils/useEnhancedEffect';
 
 export default function useMediaQuery(queryInput, options = {}) {

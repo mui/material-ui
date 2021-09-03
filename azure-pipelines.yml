@@ -70,15 +70,15 @@ jobs:
         displayName: Cache node_modules/.cache
 
       - script: |
-          yarn lerna run --ignore @material-ui/icons --parallel --scope "@material-ui/*" build
-        displayName: 'build @material-ui packages'
+          yarn lerna run --ignore @mui/icons-material --parallel --scope "@mui/*" build
+        displayName: 'build @mui packages'
 
       - script: |
           cd packages/material-ui/build
           npm version 0.0.0-canary.$(Build.SourceVersion) --no-git-tag-version
           npm pack
-          mv material-ui-core-0.0.0-canary.$(Build.SourceVersion).tgz ../../../material-ui-core.tgz
-        displayName: 'create @material-ui/core canary distributable'
+          mv mui-material-0.0.0-canary.$(Build.SourceVersion).tgz ../../../mui-material.tgz
+        displayName: 'create @mui/material canary distributable'
 
       - task: S3Upload@1
         inputs:
@@ -96,7 +96,7 @@ jobs:
       - task: PublishPipelineArtifact@1
         inputs:
           artifactName: 'canaries'
-          targetPath: 'material-ui-core.tgz'
+          targetPath: 'mui-material.tgz'
 
       - script: |
           yarn size:snapshot

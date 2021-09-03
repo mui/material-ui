@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SxProps } from '@material-ui/system';
+import { SxProps } from '@mui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TableCellClasses } from './tableCellClasses';
 
@@ -62,8 +62,8 @@ export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align
   variant?: 'head' | 'body' | 'footer';
 }
 
-export type TableCellBaseProps = React.ThHTMLAttributes<HTMLTableHeaderCellElement> &
-  React.TdHTMLAttributes<HTMLTableDataCellElement>;
+export type TableCellBaseProps = React.ThHTMLAttributes<HTMLTableCellElement> &
+  React.TdHTMLAttributes<HTMLTableCellElement>;
 
 export type SortDirection = 'asc' | 'desc' | false;
 

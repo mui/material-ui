@@ -1,4 +1,4 @@
-import { alpha } from '@material-ui/core/styles';
+import { alpha } from '@mui/material/styles';
 import { adShape } from 'docs/src/modules/components/AdManager';
 
 const adBodyImageStyles = (theme) => ({
@@ -35,6 +35,7 @@ const adBodyImageStyles = (theme) => ({
     color: theme.palette.text.secondary,
     display: 'block',
     marginTop: theme.spacing(0.5),
+    fontWeight: 500,
   },
 });
 

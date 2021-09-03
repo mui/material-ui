@@ -1,14 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Box from '@material-ui/core/Box';
-import ExpandIcon from '@material-ui/icons/ExpandMore';
-import CollapseIcon from '@material-ui/icons/ChevronRight';
-import TreeView from '@material-ui/lab/TreeView';
-import MuiTreeItem, { treeItemClasses } from '@material-ui/lab/TreeItem';
+import Box from '@mui/material/Box';
+import ExpandIcon from '@mui/icons-material/ExpandMore';
+import CollapseIcon from '@mui/icons-material/ChevronRight';
+import TreeView from '@mui/lab/TreeView';
+import MuiTreeItem, { treeItemClasses } from '@mui/lab/TreeItem';
 import clsx from 'clsx';
-import { styled, createTheme, lighten } from '@material-ui/core/styles';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Switch from '@material-ui/core/Switch';
+import { styled, createTheme, lighten } from '@mui/material/styles';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 /**

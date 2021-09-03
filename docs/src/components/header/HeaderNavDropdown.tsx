@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Collapse from '@material-ui/core/Collapse';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import KeyboardArrowDownRounded from '@material-ui/icons/KeyboardArrowDownRounded';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Collapse from '@mui/material/Collapse';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
 import SvgHamburgerMenu from 'docs/src/icons/SvgHamburgerMenu';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';

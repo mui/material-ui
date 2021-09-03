@@ -1,4 +1,4 @@
-# Production Error
+# Production error
 
 <p class="description">In the production build of Material-UI error messages are minified to reduce the size of your application.</p>
 

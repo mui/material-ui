@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Breakpoint } from '@material-ui/system';
+import { Breakpoint } from '@mui/system';
 
 export interface HiddenJsProps {
   initialWidth?: Breakpoint;

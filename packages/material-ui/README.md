@@ -1,4 +1,4 @@
-# @material-ui/core
+# @mui/material
 
 React components that implement Google's Material Design.
 
@@ -8,10 +8,10 @@ Install the package in your project directory with:
 
 ```sh
 // with npm
-npm install @material-ui/core@next
+npm install @mui/material@next
 
 // with yarn
-yarn add @material-ui/core@next
+yarn add @mui/material@next
 ```
 
 ## Documentation

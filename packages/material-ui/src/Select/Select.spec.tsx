@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Select, { SelectChangeEvent } from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
 function genericValueTest() {
   function handleChangeWithSameTypeAsSelect(event: SelectChangeEvent<number>) {}

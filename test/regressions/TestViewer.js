@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useFakeTimers } from 'sinon';
-import Box from '@material-ui/core/Box';
-import GlobalStyles from '@material-ui/core/GlobalStyles';
+import Box from '@mui/material/Box';
+import GlobalStyles from '@mui/material/GlobalStyles';
 
 function TestViewer(props) {
   const { children } = props;

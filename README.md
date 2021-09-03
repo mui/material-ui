@@ -9,9 +9,9 @@
 Quickly build beautiful [React](https://reactjs.org/) apps. Material-UI is a simple and customizable component library to build faster, beautiful, and more accessible React applications. Follow your own design system, or start with [Material Design](https://material.io/design/introduction/).
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/mui-org/material-ui/blob/master/LICENSE)
-[![npm latest package](https://img.shields.io/npm/v/@material-ui/core/latest.svg)](https://www.npmjs.com/package/@material-ui/core)
-[![npm next package](https://img.shields.io/npm/v/@material-ui/core/next.svg)](https://www.npmjs.com/package/@material-ui/core)
-[![npm downloads](https://img.shields.io/npm/dm/@material-ui/core.svg)](https://www.npmjs.com/package/@material-ui/core)
+[![npm latest package](https://img.shields.io/npm/v/@mui/material/latest.svg)](https://www.npmjs.com/package/@mui/material)
+[![npm next package](https://img.shields.io/npm/v/@mui/material/next.svg)](https://www.npmjs.com/package/@mui/material)
+[![npm downloads](https://img.shields.io/npm/dm/@mui/material.svg)](https://www.npmjs.com/package/@mui/material)
 [![CircleCI](https://img.shields.io/circleci/project/github/mui-org/material-ui/next.svg)](https://app.circleci.com/pipelines/github/mui-org/material-ui?branch=next)
 [![Coverage Status](https://img.shields.io/codecov/c/github/mui-org/material-ui/next.svg)](https://codecov.io/gh/mui-org/material-ui/branch/next)
 [![Follow on Twitter](https://img.shields.io/twitter/follow/MaterialUI.svg?label=follow+Material-UI)](https://twitter.com/MaterialUI)
@@ -24,16 +24,16 @@ Quickly build beautiful [React](https://reactjs.org/) apps. Material-UI is a sim
 
 ## Installation
 
-Material-UI is available as an [npm package](https://www.npmjs.com/package/@material-ui/core).
+Material-UI is available as an [npm package](https://www.npmjs.com/package/@mui/material).
 
 **[Stable channel v4](https://material-ui.com/)**
 
 ```sh
 // with npm
-npm install @material-ui/core
+npm install @mui/material
 
 // with yarn
-yarn add @material-ui/core
+yarn add @mui/material
 ```
 
 ⚠️ All ongoing work has moved to v5. The development of v4 is limited to important bug fixes, security patches and easing the upgrade path to v5.
@@ -42,10 +42,10 @@ yarn add @material-ui/core
 
 ```sh
 // with npm
-npm install @material-ui/core@next @emotion/react @emotion/styled
+npm install @mui/material@next @emotion/react @emotion/styled
 
 // with yarn
-yarn add @material-ui/core@next @emotion/react @emotion/styled
+yarn add @mui/material@next @emotion/react @emotion/styled
 ```
 
 <details>
@@ -83,7 +83,6 @@ via [OpenCollective](https://opencollective.com/material-ui)
 
 <p style="display: flex; justify-content: center; flex-wrap: wrap;">
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="textemall" href="https://www.text-em-all.com" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/callemall/a6946da/logo/192.png" alt="call-em-all" title="Mass Text Messaging & Automated Calling" height="96" width="96" loading="lazy"></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="canadacasino" href="https://www.canadacasino.ca/" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/canadacasino/5b19004/logo/192.png" alt="canadacasino" loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="hoodiebees" href="https://hoodiebees.com/" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/hoodiebees1/617b451/logo/192.png" alt="hoodiebees" loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="movavi" href="https://www.movavi.com/" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/movavi-software/a1d0167/logo/192.png" alt="Screen recorder for Mac" loading="lazy" /></a>
 </p>
@@ -107,7 +106,7 @@ Here is a quick example to get you started, **it's all you need**:
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 
 function App() {
   return <Button variant="contained">Hello World</Button>;

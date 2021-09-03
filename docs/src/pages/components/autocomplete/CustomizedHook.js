@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useAutocomplete } from '@material-ui/unstyled/AutocompleteUnstyled';
-import CheckIcon from '@material-ui/icons/Check';
-import CloseIcon from '@material-ui/icons/Close';
-import { styled } from '@material-ui/core/styles';
+import { useAutocomplete } from '@mui/core/AutocompleteUnstyled';
+import CheckIcon from '@mui/icons-material/Check';
+import CloseIcon from '@mui/icons-material/Close';
+import { styled } from '@mui/material/styles';
 
 const Root = styled('div')(
   ({ theme }) => `

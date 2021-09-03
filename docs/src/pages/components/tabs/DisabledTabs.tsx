@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 export default function DisabledTabs() {
   const [value, setValue] = React.useState(2);

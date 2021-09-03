@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ResponsiveStyleValue, SxProps, SystemProps } from '@material-ui/system';
+import { ResponsiveStyleValue, SxProps, SystemProps } from '@mui/system';
 import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { GridClasses } from './gridClasses';

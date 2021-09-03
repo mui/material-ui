@@ -1,5 +1,5 @@
 import * as React from 'react';
-import AppBar from '@material-ui/core/AppBar';
+import AppBar from '@mui/material/AppBar';
 
 const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
 

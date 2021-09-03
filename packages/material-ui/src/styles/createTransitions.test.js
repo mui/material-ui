@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 import createTransitions, { easing, duration } from './createTransitions';
 
 describe('createTransitions', () => {

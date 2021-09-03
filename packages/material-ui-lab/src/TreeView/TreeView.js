@@ -1,14 +1,14 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { styled, useTheme, useThemeProps } from '@material-ui/core/styles';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { styled, useTheme, useThemeProps } from '@mui/material/styles';
+import { unstable_composeClasses as composeClasses } from '@mui/core';
 import {
   useControlled,
   useForkRef,
   ownerDocument,
   unstable_useId as useId,
-} from '@material-ui/core/utils';
+} from '@mui/material/utils';
 import TreeViewContext from './TreeViewContext';
 import { DescendantProvider } from './descendants';
 import { getTreeViewUtilityClass } from './treeViewClasses';

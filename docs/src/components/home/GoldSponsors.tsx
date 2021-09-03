@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 import SponsorCard from 'docs/src/components/home/SponsorCard';
 
 const GOLDs = [
@@ -26,13 +26,6 @@ const GOLDs = [
     name: 'Text-em-all',
     description: 'The easy way to message your group.',
     href: 'https://www.text-em-all.com/',
-  },
-  {
-    src: 'https://images.opencollective.com/canadacasino/5b19004/logo/40.png',
-    srcSet: 'https://images.opencollective.com/canadacasino/5b19004/logo/80.png 2x',
-    name: 'Canada Casino',
-    description: 'Safe and rewarding online casino experience',
-    href: 'https://casinocanada.com/',
   },
   {
     src: 'https://avatars.githubusercontent.com/u/13365608?s=40',
@@ -77,7 +70,7 @@ export default function GoldSponsors() {
           sx={{
             display: 'inline-block',
             mr: 1,
-            mt: 0.5,
+            mt: 0.2,
             borderRadius: 1,
             width: 12,
             height: 12,

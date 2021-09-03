@@ -4,7 +4,7 @@ import {
   // alpha,
   // darken,
   styled,
-} from '@material-ui/core/styles';
+} from '@mui/material/styles';
 
 const Root = styled('div')(({ theme }) => ({
   ...theme.typography.caption,

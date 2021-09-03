@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import { green } from '@material-ui/core/colors';
-import Icon from '@material-ui/core/Icon';
+import Box from '@mui/material/Box';
+import { green } from '@mui/material/colors';
+import Icon from '@mui/material/Icon';
 
 export default function Icons() {
   return (

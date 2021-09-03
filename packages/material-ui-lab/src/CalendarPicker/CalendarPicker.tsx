@@ -1,12 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { styled, Theme, useThemeProps } from '@material-ui/core/styles';
+import { styled, Theme, useThemeProps } from '@mui/material/styles';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
-} from '@material-ui/unstyled';
+} from '@mui/core';
 import MonthPicker from '../MonthPicker/MonthPicker';
 import { useCalendarState } from './useCalendarState';
 import { useDefaultDates, useUtils } from '../internal/pickers/hooks/useUtils';

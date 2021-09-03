@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { refType } from '@material-ui/utils';
-import { unstable_composeClasses as composeClasses } from '@material-ui/unstyled';
+import { refType } from '@mui/utils';
+import { unstable_composeClasses as composeClasses } from '@mui/core';
 import NotchedOutline from './NotchedOutline';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import outlinedInputClasses, { getOutlinedInputUtilityClass } from './outlinedInputClasses';

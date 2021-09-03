@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Container from '@material-ui/core/Container';
-import Box, { BoxProps } from '@material-ui/core/Box';
+import Container from '@mui/material/Container';
+import Box, { BoxProps } from '@mui/material/Box';
 
 export default function Section({
   bg = 'white',

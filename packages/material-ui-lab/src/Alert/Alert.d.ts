@@ -1,2 +1,2 @@
-export { default } from '@material-ui/core/Alert';
-export * from '@material-ui/core/Alert';
+export { default } from '@mui/material/Alert';
+export * from '@mui/material/Alert';

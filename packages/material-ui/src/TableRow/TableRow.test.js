@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, describeConformance } from 'test/utils';
-import TableRow, { tableRowClasses as classes } from '@material-ui/core/TableRow';
+import TableRow, { tableRowClasses as classes } from '@mui/material/TableRow';
 
 describe('<TableRow />', () => {
   const render = createClientRender();

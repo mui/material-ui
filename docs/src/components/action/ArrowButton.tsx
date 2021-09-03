@@ -1,7 +1,7 @@
 import * as React from 'react';
-import IconButton, { IconButtonProps } from '@material-ui/core/IconButton';
-import KeyboardArrowLeftRounded from '@material-ui/icons/KeyboardArrowLeftRounded';
-import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
+import IconButton, { IconButtonProps } from '@mui/material/IconButton';
+import KeyboardArrowLeftRounded from '@mui/icons-material/KeyboardArrowLeftRounded';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 
 export default function ArrowButton({
   direction,

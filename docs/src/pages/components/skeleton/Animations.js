@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Skeleton from '@material-ui/core/Skeleton';
+import Box from '@mui/material/Box';
+import Skeleton from '@mui/material/Skeleton';
 
 export default function Animations() {
   return (

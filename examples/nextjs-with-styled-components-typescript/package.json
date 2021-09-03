@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@material-ui/core": "next",
-    "@material-ui/styled-engine-sc": "next",
+    "@mui/material": "next",
+    "@mui/styled-engine-sc": "next",
     "next": "latest",
     "next-transpile-modules": "latest",
     "react": "latest",

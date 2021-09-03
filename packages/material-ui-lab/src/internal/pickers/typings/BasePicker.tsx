@@ -1,8 +1,8 @@
 import { AllAvailableViews } from './Views';
 
 export type CalendarAndClockProps<TDate> =
-  import('@material-ui/lab/CalendarPicker/CalendarPicker').ExportedCalendarPickerProps<TDate> &
-    import('@material-ui/lab/ClockPicker/ClockPicker').ExportedClockPickerProps<TDate>;
+  import('@mui/lab/CalendarPicker/CalendarPicker').ExportedCalendarPickerProps<TDate> &
+    import('@mui/lab/ClockPicker/ClockPicker').ExportedClockPickerProps<TDate>;
 
 // TODO: TDate should be required
 export type ToolbarComponentProps<TDate = unknown> = CalendarAndClockProps<TDate> & {

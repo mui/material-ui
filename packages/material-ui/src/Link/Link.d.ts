@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { DistributiveOmit } from '@material-ui/types';
-import { SxProps } from '@material-ui/system';
+import { DistributiveOmit } from '@mui/types';
+import { SxProps } from '@mui/system';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { Theme } from '../styles';
 import { TypographyProps } from '../Typography';
@@ -59,7 +59,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
 declare const Link: OverridableComponent<LinkTypeMap>;
 
 export type LinkBaseProps = Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'color'> &
-  DistributiveOmit<TypographyProps, 'children' | 'component' | 'color' | 'variant'>;
+  DistributiveOmit<TypographyProps, 'children' | 'component' | 'color' | 'ref' | 'variant'>;
 
 export type LinkProps<
   D extends React.ElementType = LinkTypeMap['defaultComponent'],

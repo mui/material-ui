@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Stack from '@material-ui/core/Stack';
-import Chip from '@material-ui/core/Chip';
-import Autocomplete from '@material-ui/core/Autocomplete';
-import TextField from '@material-ui/core/TextField';
+import Stack from '@mui/material/Stack';
+import Chip from '@mui/material/Chip';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 
 export default function Sizes() {
   return (
