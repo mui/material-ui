@@ -69,6 +69,7 @@ function SettingsPanel(props: GridToolbarContainerProps) {
         '& > *': { '&:not(:first-child)': { ml: 1 }, '&:last-child': { ml: 'auto' } },
         '& .MuiFilledInput-root': {
           borderRadius: 1,
+          backgroundColor: 'transparent',
         },
         '& .MuiInputBase-sizeSmall': {
           fontSize: '0.875rem',
