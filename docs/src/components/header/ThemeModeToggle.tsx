@@ -15,7 +15,7 @@ const ThemeModeToggle = (props: { checked: boolean; onChange: (checked: boolean)
           borderRadius: 1,
           p: '6.5px',
           border: '1px solid',
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'transparent'),
+          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'transparent'),
           borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200'),
           '& svg': {
             fontSize: (theme) => theme.typography.pxToRem(18),
