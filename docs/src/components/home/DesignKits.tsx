@@ -24,6 +24,8 @@ const Image = styled('img')(({ theme }) => ({
   borderColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[400],
   borderRadius: theme.shape.borderRadius,
   objectFit: 'cover',
+  transitionProperty: 'all',
+  transitionDuration: '150ms',
   boxShadow:
     theme.palette.mode === 'dark'
       ? '0px 4px 20px rgba(0, 0, 0, 0.6)'
