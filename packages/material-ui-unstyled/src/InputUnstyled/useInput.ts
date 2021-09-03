@@ -2,6 +2,7 @@ import * as React from 'react';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import useFormControl from '../FormControlUnstyled/useFormControl';
+import extractEventHandlers from '../utils/extractEventHandlers';
 
 export function hasValue(value: unknown) {
   return value != null && !(Array.isArray(value) && value.length === 0);
@@ -52,7 +53,6 @@ export default function useInput(props: UseInputProps) {
     disabled: disabledProp = false,
     error: errorProp = false,
     onBlur,
-    onClick,
     onChange,
     onFocus,
     componentsProps = {},
@@ -107,88 +107,120 @@ export default function useInput(props: UseInputProps) {
     if (!formControlContext && disabled && focused) {
       setFocused(false);
 
-      // TODO: call onBlur from getRootProps' overrides
       // @ts-ignore
       onBlur?.();
     }
   }, [formControlContext, disabled, focused, onBlur]);
 
-  const handleFocus = (event: React.FocusEvent<HTMLInputElement>) => {
-    // Fix a bug with IE11 where the focus/blur events are triggered
-    // while the component is disabled.
-    if (formControlContext?.disabled) {
-      event.stopPropagation();
-      return;
-    }
-
-    onFocus?.(event);
-    componentsProps.input?.onFocus?.(event);
-
-    if (formControlContext && formControlContext.onFocus) {
-      formControlContext?.onFocus?.();
-    } else {
-      setFocused(true);
-    }
-  };
-
-  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
-    onBlur?.(event);
-    componentsProps.input?.onBlur?.(event);
-
-    if (formControlContext && formControlContext.onBlur) {
-      formControlContext.onBlur();
-    } else {
-      setFocused(false);
-    }
-  };
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>, ...args: unknown[]) => {
-    if (!isControlled) {
-      const element = event.target || inputRef.current;
-      if (element == null) {
-        throw new MuiError(
-          'Material-UI: Expected valid input target. ' +
-            'Did you use a custom `components.Input` and forget to forward refs? ' +
-            'See https://material-ui.com/r/input-component-ref-interface for more info.',
-        );
+  const handleFocus =
+    (otherHandlers: Record<string, React.EventHandler<any>>) =>
+    (event: React.FocusEvent<HTMLInputElement>) => {
+      // Fix a bug with IE11 where the focus/blur events are triggered
+      // while the component is disabled.
+      if (formControlContext?.disabled) {
+        event.stopPropagation();
+        return;
       }
-    }
 
-    formControlContext?.onChange?.(event);
+      otherHandlers.onFocus?.(event);
 
-    // @ts-ignore
-    componentsProps.input?.onChange?.(event, ...args);
-    // @ts-ignore
-    onChange?.(event, ...args);
+      if (formControlContext && formControlContext.onFocus) {
+        formControlContext?.onFocus?.();
+      } else {
+        setFocused(true);
+      }
+    };
+
+  const handleBlur =
+    (otherHandlers: Record<string, React.EventHandler<any>>) =>
+    (event: React.FocusEvent<HTMLInputElement>) => {
+      otherHandlers.onBlur?.(event);
+
+      if (formControlContext && formControlContext.onBlur) {
+        formControlContext.onBlur();
+      } else {
+        setFocused(false);
+      }
+    };
+
+  const handleChange =
+    (otherHandlers: Record<string, React.EventHandler<any>>) =>
+    (event: React.ChangeEvent<HTMLInputElement>, ...args: unknown[]) => {
+      if (!isControlled) {
+        const element = event.target || inputRef.current;
+        if (element == null) {
+          throw new MuiError(
+            'Material-UI: Expected valid input target. ' +
+              'Did you use a custom `components.Input` and forget to forward refs? ' +
+              'See https://material-ui.com/r/input-component-ref-interface for more info.',
+          );
+        }
+      }
+
+      formControlContext?.onChange?.(event);
+
+      // @ts-ignore
+      otherHandlers.onChange?.(event, ...args);
+    };
+
+  const handleClick =
+    (otherHandlers: Record<string, React.EventHandler<any>>) =>
+    (event: React.MouseEvent<HTMLInputElement>) => {
+      if (inputRef.current && event.currentTarget === event.target) {
+        inputRef.current.focus();
+      }
+
+      otherHandlers.onClick?.(event);
+    };
+
+  const getRootProps = (otherHandlers?: Record<string, React.EventHandler<any>>) => {
+    // onBlur, onChange and onFocus are forwarded to the input slot.
+    const propsEventHandlers = extractEventHandlers(props, ['onBlur', 'onChange', 'onFocus']);
+    const slotEventHandlers = extractEventHandlers(componentsProps.root);
+    const externalEventHandlers = { ...propsEventHandlers, ...slotEventHandlers, ...otherHandlers };
+
+    return {
+      ...externalEventHandlers,
+      onClick: handleClick(externalEventHandlers),
+    };
   };
 
-  const handleClick = (event: React.MouseEvent<HTMLInputElement>) => {
-    if (inputRef.current && event.currentTarget === event.target) {
-      inputRef.current.focus();
-    }
+  const getInputProps = (otherHandlers?: Record<string, React.EventHandler<any>>) => {
+    const propsEventHandlers: Record<string, React.EventHandler<any> | undefined> = {
+      onBlur,
+      onChange,
+      onFocus,
+    };
 
-    onClick?.(event);
-  };
+    const slotEventHandlers = extractEventHandlers(componentsProps.input);
 
-  return {
-    getRootProps: () => ({
-      onClick: handleClick,
-    }),
-    getInputProps: () => ({
+    const externalEventHandlers = { ...propsEventHandlers, ...slotEventHandlers, ...otherHandlers };
+
+    const mergedEventHandlers: Record<string, React.EventHandler<any>> = {
+      ...externalEventHandlers,
+      onBlur: handleBlur(externalEventHandlers),
+      onChange: handleChange(externalEventHandlers),
+      onFocus: handleFocus(externalEventHandlers),
+    };
+
+    return {
       'aria-invalid': error || undefined,
       defaultValue: defaultValue as string | number | readonly string[] | undefined,
       ref: handleInputRef,
       value: value as string | number | readonly string[] | undefined,
       required,
       disabled,
-      onBlur: handleBlur,
-      onChange: handleChange,
-      onFocus: handleFocus,
-    }),
+      ...mergedEventHandlers,
+    };
+  };
+
+  return {
     disabled,
     error,
     focused,
     formControlContext,
+    getInputProps,
+    getRootProps,
     required,
     value,
   };
