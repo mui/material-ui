@@ -235,7 +235,7 @@ function AppFrame(props) {
                   href={process.env.SOURCE_CODE_REPO}
                   data-ga-event-category="header"
                   data-ga-event-action="github"
-                  sx={{ px: '10px' }}
+                  sx={{ px: '10px', py: 1 }}
                 >
                   <GitHubIcon fontSize="small" />
                 </IconButton>
@@ -246,13 +246,18 @@ function AppFrame(props) {
                   {...languageButtonProps}
                   sx={{
                     px: '10px',
+                    py: 1,
                   }}
                 >
                   <LanguageIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
               <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-                <IconButton color="inherit" onClick={handleSettingsDrawerOpen} sx={{ px: '10px' }}>
+                <IconButton
+                  color="inherit"
+                  onClick={handleSettingsDrawerOpen}
+                  sx={{ px: '10px', py: 1 }}
+                >
                   <SettingsIcon fontSize="small" />
                 </IconButton>
               </Tooltip>

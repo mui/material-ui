@@ -139,7 +139,7 @@ export default function Notifications() {
           onClick={handleToggle}
           data-ga-event-category="AppBar"
           data-ga-event-action="toggleNotifications"
-          sx={{ px: '10px' }}
+          sx={{ px: '10px', py: 1 }}
         >
           <Badge
             color="error"

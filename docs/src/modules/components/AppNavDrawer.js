@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import NextLink from 'next/link';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
+import Toolbar from '@mui/material/Toolbar';
 import { styled } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
@@ -52,21 +53,6 @@ PersistScroll.propTypes = {
   enabled: PropTypes.bool.isRequired,
   slot: PropTypes.string.isRequired,
 };
-
-// https://github.com/philipwalton/flexbugs#3-min-height-on-a-flex-container-wont-apply-to-its-flex-items
-const ToolbarIE11 = styled('div')({ display: 'flex' });
-
-const ToolbarDiv = styled('div')(({ theme }) => {
-  return {
-    ...theme.mixins.toolbar,
-    paddingLeft: theme.spacing(3),
-    display: 'flex',
-    flexGrow: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  };
-});
 
 const StyledDrawer = styled(Drawer)(({ theme }) => {
   return {
@@ -164,33 +150,30 @@ function AppNavDrawer(props) {
 
     return (
       <React.Fragment>
-        <ToolbarIE11>
-          <ToolbarDiv>
-            <NextLink href="/" passHref onClick={onClose}>
-              <Box component="a" aria-label={t('goToHome')} sx={{ lineHeight: 0, mr: 2 }}>
-                <SvgMuiLogo width={32} />
-              </Box>
-            </NextLink>
-            {process.env.LIB_VERSION ? (
-              <Button
-                component="a"
-                href={`https://material-ui.com${languagePrefix}/versions/`}
-                onClick={onClose}
-                size="small"
-                sx={{
-                  color: (theme) =>
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primary[300]
-                      : theme.palette.primary[500],
-                  mr: 3,
-                }}
-              >
-                {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
-                {`v${process.env.LIB_VERSION}`}
-              </Button>
-            ) : null}
-          </ToolbarDiv>
-        </ToolbarIE11>
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
+          <NextLink href="/" passHref onClick={onClose}>
+            <Box component="a" aria-label={t('goToHome')} sx={{ lineHeight: 0, mr: 2 }}>
+              <SvgMuiLogo width={32} />
+            </Box>
+          </NextLink>
+          {process.env.LIB_VERSION ? (
+            <Button
+              component="a"
+              href={`https://material-ui.com${languagePrefix}/versions/`}
+              onClick={onClose}
+              size="small"
+              sx={{
+                color: (theme) =>
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primary[300]
+                    : theme.palette.primary[500],
+              }}
+            >
+              {/* eslint-disable-next-line material-ui/no-hardcoded-labels -- version string is untranslatable */}
+              {`v${process.env.LIB_VERSION}`}
+            </Button>
+          ) : null}
+        </Toolbar>
         <Divider />
         <DiamondSponsors spot="drawer" />
         <Divider />
