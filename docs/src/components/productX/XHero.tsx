@@ -161,6 +161,7 @@ export default function XHero() {
                   margin: { md: '4px 0', xl: '6px 0' },
                 },
                 '& .MuiDateRangePickerDay-root': {
+                  lineHeight: 0,
                   margin: 0,
                 },
                 '& .MuiPickersDay-root': {
@@ -171,6 +172,7 @@ export default function XHero() {
               }}
             >
               <LocalizationProvider dateAdapter={AdapterDateFns}>
+                {/* @ts-ignore - renderInput is unnecessary */}
                 <StaticDateRangePicker
                   displayStaticWrapperAs="desktop"
                   value={value}

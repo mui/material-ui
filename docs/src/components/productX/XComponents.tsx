@@ -14,6 +14,7 @@ import AccountTreeRounded from '@mui/icons-material/AccountTreeRounded';
 import ShowChartRounded from '@mui/icons-material/ShowChartRounded';
 import BarChartRounded from '@mui/icons-material/BarChartRounded';
 import XGridFullDemo from 'docs/src/components/productX/XGridFullDemo';
+import XDateRangeDemo from 'docs/src/components/productX/XDateRangeDemo';
 
 const DEMOS = ['Data Grid', 'Date Picker', 'Tree View', 'Sparkline', 'Charts'];
 
@@ -59,6 +60,13 @@ export default function XComponents() {
             <Fade in timeout={500}>
               <Box sx={{ height: '100%' }}>
                 <XGridFullDemo />
+              </Box>
+            </Fade>
+          )}
+          {demo === DEMOS[1] && (
+            <Fade in timeout={500}>
+              <Box>
+                <XDateRangeDemo />
               </Box>
             </Fade>
           )}
