@@ -17,7 +17,14 @@ function renderRow(props) {
 
   if (dataSet.hasOwnProperty('group')) {
     return (
-      <ListSubheader key={dataSet.key} component="div">
+      <ListSubheader
+        key={dataSet.key}
+        component="div"
+        style={{
+          ...style,
+          top: style.top + LISTBOX_PADDING,
+        }}
+      >
         {dataSet.group}
       </ListSubheader>
     );
