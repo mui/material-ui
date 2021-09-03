@@ -3,7 +3,7 @@ import { deepmerge } from '@mui/utils';
 import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
-import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
+import NextNProgressBar from 'docs/src/modules/components/NextNProgressBar';
 
 export default function BrandingProvider({ children }: { children: React.ReactNode }) {
   const upperTheme = useTheme();
