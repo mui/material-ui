@@ -23,7 +23,7 @@ However, the Link component has some different default props than the Typography
 
 ## Underline
 
-The `underline` prop can be used to set the underline behavior. The default is `hover`.
+The `underline` prop can be used to set the underline behavior. The default is `always`.
 
 {{"demo": "pages/components/links/UnderlineLink.js"}}
 
