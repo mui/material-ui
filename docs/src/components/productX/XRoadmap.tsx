@@ -88,11 +88,11 @@ export default function XRoadmap() {
               <Box
                 sx={{
                   display: 'grid',
-                  mt: {xs: 2, sm: 0},
+                  mt: { xs: 2, sm: 0 },
                   overflow: { xs: 'auto', lg: 'unset' },
                   gap: 2,
                   alignItems: 'flex-start',
-                  gridTemplateColumns: {xs: 'repeat(1)', lg: 'repeat(3, minmax(200px, 1fr))'},
+                  gridTemplateColumns: { xs: 'repeat(1)', lg: 'repeat(3, minmax(200px, 1fr))' },
                   typography: 'body2',
                   '& .MuiPaper-root': {
                     p: 2,
@@ -105,7 +105,9 @@ export default function XRoadmap() {
               >
                 <Paper variant="outlined">
                   <Box sx={{ fontWeight: 'bold' }}>In the lab:</Box>
-                  <Box sx={{color: (theme) => theme.palette.text.secondary}}>Almost ready to go.</Box>
+                  <Box sx={{ color: (theme) => theme.palette.text.secondary }}>
+                    Almost ready to go.
+                  </Box>
                   {renderList(
                     <React.Fragment>
                       <TableChartRounded fontSize="small" />
@@ -119,7 +121,7 @@ export default function XRoadmap() {
                 </Paper>
                 <Paper variant="outlined">
                   <Box sx={{ fontWeight: 'bold' }}>Working in progress</Box>
-                  <Box sx={{color: (theme) => theme.palette.text.secondary}}>Getting there.</Box>
+                  <Box sx={{ color: (theme) => theme.palette.text.secondary }}>Getting there.</Box>
                   {renderList(
                     <React.Fragment>
                       <Box
@@ -152,7 +154,9 @@ export default function XRoadmap() {
                 </Paper>
                 <Paper variant="outlined">
                   <Box sx={{ fontWeight: 'bold' }}>On the list</Box>
-                  <Box sx={{color: (theme) => theme.palette.text.secondary}}>Sometime soon...</Box>
+                  <Box sx={{ color: (theme) => theme.palette.text.secondary }}>
+                    Sometime soon...
+                  </Box>
                   {renderList(
                     <React.Fragment>
                       <ShowChartRounded fontSize="small" />
