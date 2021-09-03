@@ -46,7 +46,7 @@ export default function XRoadmap() {
           content: '""',
           display: 'block',
           height: 2,
-          width: 20,
+          width: 15,
           bgcolor: 'primaryDark.400',
         },
         '&:after': {
@@ -56,6 +56,7 @@ export default function XRoadmap() {
           bgcolor: 'warning.500',
           borderRadius: '50%',
           display: 'block',
+          marginRight: 1.5,
         },
       }}
     />
@@ -132,7 +133,7 @@ export default function XRoadmap() {
                             content: '""',
                             display: 'block',
                             position: 'absolute',
-                            height: 114,
+                            height: 155,
                             width: 2,
                             bgcolor: 'primaryDark.400',
                             bottom: 0,
@@ -149,6 +150,8 @@ export default function XRoadmap() {
                       <b>Grouping</b>
                       {bullet}
                       <b>Column pinning</b>
+                      {bullet}
+                      <Link href={ROUTES.dataGridFeatures} sx={{color: (theme) => theme.palette.primary[300]}}>And more!</Link>
                     </React.Fragment>,
                   )}
                 </Paper>
