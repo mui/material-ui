@@ -26,6 +26,7 @@ import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useSetCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useRouter } from 'next/router';
+import DocsLayoutProvider from 'docs/src/modules/components/DocsLayoutProvider';
 
 function compress(object) {
   return LZString.compressToBase64(JSON.stringify(object))
@@ -471,7 +472,7 @@ export default function DemoToolbar(props) {
   }
 
   return (
-    <React.Fragment>
+    <DocsLayoutProvider>
       <Root aria-label={t('demoToolbarLabel')} {...toolbarProps}>
         <Fade in={codeOpen}>
           <ToggleButtonGroup
@@ -670,7 +671,7 @@ export default function DemoToolbar(props) {
         onClose={handleSnackbarClose}
         message={snackbarMessage}
       />
-    </React.Fragment>
+    </DocsLayoutProvider>
   );
 }
 

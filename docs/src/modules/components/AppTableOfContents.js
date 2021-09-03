@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import DocsLayoutProvider from 'docs/src/modules/components/DocsLayoutProvider';
 
 const Nav = styled('nav')(({ theme }) => {
   return {
@@ -217,27 +218,29 @@ export default function AppTableOfContents(props) {
   );
 
   return (
-    <Nav aria-label={t('pageTOC')}>
-      {items.length > 0 ? (
-        <React.Fragment>
-          <NavLabel gutterBottom>{t('tableOfContents')}</NavLabel>
-          <NavList component="ul">
-            {items.map((item) => (
-              <li key={item.text}>
-                {itemLink(item)}
-                {item.children.length > 0 ? (
-                  <NavList as="ul">
-                    {item.children.map((subitem) => (
-                      <li key={subitem.text}>{itemLink(subitem, true)}</li>
-                    ))}
-                  </NavList>
-                ) : null}
-              </li>
-            ))}
-          </NavList>
-        </React.Fragment>
-      ) : null}
-    </Nav>
+    <DocsLayoutProvider>
+      <Nav aria-label={t('pageTOC')}>
+        {items.length > 0 ? (
+          <React.Fragment>
+            <NavLabel gutterBottom>{t('tableOfContents')}</NavLabel>
+            <NavList component="ul">
+              {items.map((item) => (
+                <li key={item.text}>
+                  {itemLink(item)}
+                  {item.children.length > 0 ? (
+                    <NavList as="ul">
+                      {item.children.map((subitem) => (
+                        <li key={subitem.text}>{itemLink(subitem, true)}</li>
+                      ))}
+                    </NavList>
+                  ) : null}
+                </li>
+              ))}
+            </NavList>
+          </React.Fragment>
+        ) : null}
+      </Nav>
+    </DocsLayoutProvider>
   );
 }
 

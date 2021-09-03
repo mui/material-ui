@@ -2,7 +2,6 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { styled } from '@mui/material/styles';
-import NProgress from 'nprogress';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiLink from '@mui/material/Link';
 import AppBar from '@mui/material/AppBar';
@@ -18,7 +17,6 @@ import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
 import SettingsIcon from '@mui/icons-material/SettingsOutlined';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import NProgressBar from '@mui/docs/NProgressBar';
 import AppNavDrawer from 'docs/src/modules/components/AppNavDrawer';
 import AppSettingsDrawer from 'docs/src/modules/components/AppSettingsDrawer';
 import Notifications from 'docs/src/modules/components/Notifications';
@@ -27,29 +25,13 @@ import { LANGUAGES_LABEL } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import PageContext from 'docs/src/modules/components/PageContext';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
+import NextNProgressBar from 'docs/src/modules/components/NextNProgressBar';
 import LanguageIcon from '@mui/icons-material/Translate';
+import DocsLayoutProvider from 'docs/src/modules/components/DocsLayoutProvider';
+import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
 const LOCALES = { zh: 'zh-CN', pt: 'pt-BR', es: 'es-ES' };
 const CROWDIN_ROOT_URL = 'https://translate.material-ui.com/project/material-ui-docs/';
-
-export function NextNProgressBar() {
-  const router = useRouter();
-  React.useEffect(() => {
-    const nProgressStart = () => NProgress.start();
-    const nProgressDone = () => NProgress.done();
-
-    router.events.on('routeChangeStart', nProgressStart);
-    router.events.on('routeChangeComplete', nProgressDone);
-    router.events.on('routeChangeError', nProgressDone);
-    return () => {
-      router.events.off('routeChangeStart', nProgressStart);
-      router.events.off('routeChangeComplete', nProgressDone);
-      router.events.off('routeChangeError', nProgressDone);
-    };
-  }, [router]);
-
-  return <NProgressBar />;
-}
 
 const AppSearch = React.lazy(() => import('docs/src/modules/components/AppSearch'));
 export function DeferredAppSearch() {
@@ -78,7 +60,7 @@ export function DeferredAppSearch() {
 const RootDiv = styled('div')(({ theme }) => {
   return {
     display: 'flex',
-    background: theme.palette.mode === 'dark' && theme.palette.primaryDark[900],
+    background: theme.palette.mode === 'dark' && brandingDarkTheme.palette.primaryDark[900],
     // TODO: Should be handled by the main component
     '& #main-content': {
       outline: 0,
@@ -230,103 +212,107 @@ function AppFrame(props) {
         {t('appFrame.skipToContent')}
       </SkipLink>
       <MarkdownLinks />
-      <StyledAppBar disablePermanent={disablePermanent}>
-        <Toolbar>
-          <NavIconButton
-            fontSize="small"
-            edge="start"
-            color="inherit"
-            aria-label={t('appFrame.openDrawer')}
-            disablePermanent={disablePermanent}
-            onClick={handleNavDrawerOpen}
-          >
-            <MenuIcon />
-          </NavIconButton>
-          <GrowingDiv />
-          <Stack direction="row" gap={2.5}>
-            <DeferredAppSearch />
-            <Tooltip title={t('appFrame.github')} enterDelay={300}>
-              <IconButton
-                component="a"
-                color="inherit"
-                href={process.env.SOURCE_CODE_REPO}
-                data-ga-event-category="header"
-                data-ga-event-action="github"
-                sx={{ px: '10px' }}
-              >
-                <GitHubIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            <Notifications />
-            <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
-              <IconButton
-                {...languageButtonProps}
-                sx={{
-                  px: '10px',
-                }}
-              >
-                <LanguageIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-              <IconButton color="inherit" onClick={handleSettingsDrawerOpen} sx={{ px: '10px' }}>
-                <SettingsIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            <NoSsr defer>
-              <Menu
-                id="language-menu"
-                anchorEl={languageMenu}
-                open={Boolean(languageMenu)}
-                onClose={handleLanguageMenuClose}
-              >
-                {LANGUAGES_LABEL.map((language) => (
+      <DocsLayoutProvider>
+        <StyledAppBar disablePermanent={disablePermanent}>
+          <Toolbar>
+            <NavIconButton
+              fontSize="small"
+              edge="start"
+              color="inherit"
+              aria-label={t('appFrame.openDrawer')}
+              disablePermanent={disablePermanent}
+              onClick={handleNavDrawerOpen}
+            >
+              <MenuIcon />
+            </NavIconButton>
+            <GrowingDiv />
+            <Stack direction="row" gap={2.5}>
+              <DeferredAppSearch />
+              <Tooltip title={t('appFrame.github')} enterDelay={300}>
+                <IconButton
+                  component="a"
+                  color="inherit"
+                  href={process.env.SOURCE_CODE_REPO}
+                  data-ga-event-category="header"
+                  data-ga-event-action="github"
+                  sx={{ px: '10px' }}
+                >
+                  <GitHubIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+              <Notifications />
+              <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
+                <IconButton
+                  {...languageButtonProps}
+                  sx={{
+                    px: '10px',
+                  }}
+                >
+                  <LanguageIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
+                <IconButton color="inherit" onClick={handleSettingsDrawerOpen} sx={{ px: '10px' }}>
+                  <SettingsIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+              <NoSsr defer>
+                <Menu
+                  id="language-menu"
+                  anchorEl={languageMenu}
+                  open={Boolean(languageMenu)}
+                  onClose={handleLanguageMenuClose}
+                >
+                  {LANGUAGES_LABEL.map((language) => (
+                    <MenuItem
+                      component="a"
+                      data-no-link="true"
+                      href={language.code === 'en' ? canonical : `/${language.code}${canonical}`}
+                      key={language.code}
+                      selected={userLanguage === language.code}
+                      onClick={handleLanguageMenuClose}
+                      lang={language.code}
+                      hrefLang={language.code}
+                    >
+                      {language.text}
+                    </MenuItem>
+                  ))}
+                  <Box sx={{ my: 1 }}>
+                    <Divider />
+                  </Box>
                   <MenuItem
                     component="a"
                     data-no-link="true"
-                    href={language.code === 'en' ? canonical : `/${language.code}${canonical}`}
-                    key={language.code}
-                    selected={userLanguage === language.code}
+                    href={
+                      userLanguage === 'en'
+                        ? `${CROWDIN_ROOT_URL}`
+                        : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging`
+                    }
+                    rel="noopener nofollow"
+                    target="_blank"
+                    key={userLanguage}
+                    lang={userLanguage}
+                    hrefLang="en"
                     onClick={handleLanguageMenuClose}
-                    lang={language.code}
-                    hrefLang={language.code}
                   >
-                    {language.text}
+                    {t('appFrame.helpToTranslate')}
                   </MenuItem>
-                ))}
-                <Box sx={{ my: 1 }}>
-                  <Divider />
-                </Box>
-                <MenuItem
-                  component="a"
-                  data-no-link="true"
-                  href={
-                    userLanguage === 'en'
-                      ? `${CROWDIN_ROOT_URL}`
-                      : `${CROWDIN_ROOT_URL}${crowdInLocale}#/staging`
-                  }
-                  rel="noopener nofollow"
-                  target="_blank"
-                  key={userLanguage}
-                  lang={userLanguage}
-                  hrefLang="en"
-                  onClick={handleLanguageMenuClose}
-                >
-                  {t('appFrame.helpToTranslate')}
-                </MenuItem>
-              </Menu>
-            </NoSsr>
-          </Stack>
-        </Toolbar>
-      </StyledAppBar>
-      <StyledAppNavDrawer
-        disablePermanent={disablePermanent}
-        onClose={handleNavDrawerClose}
-        onOpen={handleNavDrawerOpen}
-        mobileOpen={mobileOpen}
-      />
+                </Menu>
+              </NoSsr>
+            </Stack>
+          </Toolbar>
+        </StyledAppBar>
+        <StyledAppNavDrawer
+          disablePermanent={disablePermanent}
+          onClose={handleNavDrawerClose}
+          onOpen={handleNavDrawerOpen}
+          mobileOpen={mobileOpen}
+        />
+      </DocsLayoutProvider>
       {children}
-      <AppSettingsDrawer onClose={handleSettingsDrawerClose} open={settingsOpen} />
+      <DocsLayoutProvider>
+        <AppSettingsDrawer onClose={handleSettingsDrawerClose} open={settingsOpen} />
+      </DocsLayoutProvider>
     </RootDiv>
   );
 }
