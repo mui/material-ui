@@ -318,6 +318,10 @@ You can, optionally, provide a custom component to be rendered instead.
 
 {{"demo": "pages/components/text-fields/UnstyledInput.js"}}
 
+Here's how a Material Design input can be implemented using `InputUnstyled`:
+
+{{"demo": "pages/components/text-fields/UnstyledInputMaterial.js"}}
+
 ### Hook
 
 The `useInput` hook is the headless version of the `InputUnstyled` component.
