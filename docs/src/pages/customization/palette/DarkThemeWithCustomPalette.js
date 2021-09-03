@@ -6,7 +6,7 @@ import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
 import { amber, deepOrange, grey } from '@mui/material/colors';
 
-const getDesignTokens = (mode = 'light') => ({
+const getDesignTokens = (mode) => ({
   palette: {
     primary: {
       ...amber,

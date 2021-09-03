@@ -7,7 +7,7 @@ import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
 import { amber, deepOrange, grey } from '@mui/material/colors';
 import { PaletteMode } from '@mui/material';
 
-const getDesignTokens = (mode: PaletteMode = 'light') => ({
+const getDesignTokens = (mode: PaletteMode) => ({
   palette: {
     primary: {
       ...amber,
@@ -72,11 +72,13 @@ function MyApp() {
 }
 
 export default function ToggleColorMode() {
-  const [mode, setMode] = React.useState('light');
+  const [mode, setMode] = React.useState<PaletteMode>('light');
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+        setMode((prevMode: PaletteMode) =>
+          prevMode === 'light' ? 'dark' : 'light',
+        );
       },
     }),
     [],
