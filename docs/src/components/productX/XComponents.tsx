@@ -15,6 +15,8 @@ import ShowChartRounded from '@mui/icons-material/ShowChartRounded';
 import BarChartRounded from '@mui/icons-material/BarChartRounded';
 import XGridFullDemo from 'docs/src/components/productX/XGridFullDemo';
 import XDateRangeDemo from 'docs/src/components/productX/XDateRangeDemo';
+import More from 'docs/src/components/action/More';
+import ROUTES from 'docs/src/route';
 
 const DEMOS = ['Data Grid', 'Date Picker', 'Tree View', 'Sparkline', 'Charts'];
 
@@ -53,6 +55,7 @@ export default function XComponents() {
                 <Item icon={React.cloneElement(icons[name])} title={name} />
               </Highlighter>
             ))}
+            <More href={ROUTES.roadmap} />
           </Group>
         </Grid>
         <Grid item xs={12} md={6}>
