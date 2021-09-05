@@ -2,9 +2,21 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { useRouter } from 'next/router';
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
-import { styled } from '@mui/material/styles';
 import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link';
+import { styled } from '@mui/material/styles';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
+
+/**
+ * File to keep in sync with:
+ *
+ * - /docs/src/modules/components/Link.tsx
+ * - /examples/nextjs/src/Link.tsx
+ * - /examples/nextjs-with-typescript/src/Link.tsx
+ * - /examples/nextjs-with-styled-components-typescript/src/Link.tsx
+ */
+
+// Add support for the sx prop for consistency with the other branches.
+const Anchor = styled('a')({});
 
 interface NextLinkComposedProps
   extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
@@ -13,8 +25,6 @@ interface NextLinkComposedProps
   linkAs?: NextLinkProps['as'];
   href?: NextLinkProps['href'];
 }
-
-const Anchor = styled('a')({ cursor: 'pointer' });
 
 const NextLinkComposed = React.forwardRef<HTMLAnchorElement, NextLinkComposedProps>(
   function NextLinkComposed(props, ref) {
@@ -70,14 +80,14 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
 
   if (isExternal) {
     if (noLinkStyle) {
-      return <Anchor className={className} href={href as string} ref={ref as any} {...other} />;
+      return <Anchor className={className} href={href} ref={ref} {...other} />;
     }
 
-    return <MuiLink className={className} href={href as string} ref={ref} {...other} />;
+    return <MuiLink className={className} href={href} ref={ref} {...other} />;
   }
 
   if (noLinkStyle) {
-    return <NextLinkComposed className={className} ref={ref as any} to={href} {...other} />;
+    return <NextLinkComposed className={className} ref={ref} to={href} {...other} />;
   }
 
   let linkAs = linkAsProp || (href as string);
