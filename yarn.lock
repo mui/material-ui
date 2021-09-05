@@ -8056,10 +8056,10 @@ flatted@^3.1.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.2.tgz#64bfed5cb68fe3ca78b3eb214ad97b63bedce561"
   integrity sha512-JaTY/wtrcSyvXJl4IMFHPKyFur1sE9AUqc0QnhOaJ0CxHtAoIV8pYDzeEfAaNEtGkOfq4gr3LBFmdXW5mOQFnA==
 
-flexsearch@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/flexsearch/-/flexsearch-0.7.0.tgz#6d98317b86259a99c71285d0bc84b9942e6b639e"
-  integrity sha512-Ejr7vz2f66F9TQwmj2Tv6wZcFWoDvJZK9hbkrWjo1lmMYh2RYoCimBi6p39wkQyuuOS7PI5vnNepTtI5+WTtKw==
+flexsearch@^0.7.21:
+  version "0.7.21"
+  resolved "https://registry.yarnpkg.com/flexsearch/-/flexsearch-0.7.21.tgz#0f5ede3f2aae67ddc351efbe3b24b69d29e9d48b"
+  integrity sha512-W7cHV7Hrwjid6lWmy0IhsWDFQboWSng25U3VVywpHOTJnnAZNPScog67G+cVpeX9f7yDD21ih0WDrMMT+JoaYg==
 
 flow-parser@0.*:
   version "0.98.0"
