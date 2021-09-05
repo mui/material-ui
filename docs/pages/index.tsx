@@ -99,10 +99,19 @@ export default function LandingPage() {
             <Content maxWidth="md">
               <Logo src="/static/logo_raw.svg" alt="" />
               <div>
-                <Title variant="h3" component="h1" color="white" gutterBottom>
+                <Title
+                  variant="h3"
+                  component="h1"
+                  color={(theme) => (theme.palette.mode === 'dark' ? '#fff' : 'primary.main')}
+                  gutterBottom
+                >
                   {'MATERIAL-UI'}
                 </Title>
-                <Typography variant="h5" component="p" color="white">
+                <Typography
+                  variant="h5"
+                  component="p"
+                  color={(theme) => (theme.palette.mode === 'dark' ? '#fff' : 'primary.main')}
+                >
                   {t('strapline')}
                 </Typography>
                 <Button
@@ -112,7 +121,7 @@ export default function LandingPage() {
                   sx={{ mt: 4 }}
                   variant="outlined"
                   size="large"
-                  style={{ color: 'white' }}
+                  color="primary"
                 >
                   {t('getStarted')}
                 </Button>
