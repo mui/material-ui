@@ -123,6 +123,6 @@
     "@types/marked": "^2.0.0",
     "@types/recharts": "^2.0.0",
     "cross-fetch": "^3.1.4",
-    "gm": "^1.23.0"
+    "gm": "^1.23.1"
   }
 }
