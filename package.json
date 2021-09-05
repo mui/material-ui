@@ -148,7 +148,7 @@
     "lodash": "^4.17.21",
     "mocha": "^9.0.0",
     "node-fetch": "^2.6.1",
-    "nyc": "^15.0.0",
+    "nyc": "^15.1.0",
     "playwright": "^1.14.1",
     "prettier": "^2.0.1",
     "prop-types": "^15.7.2",
