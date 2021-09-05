@@ -2887,10 +2887,10 @@
   resolved "https://registry.yarnpkg.com/@types/doctrine/-/doctrine-0.0.4.tgz#2d9ac2699f809dffe8f33ec28aa7de7f6d651214"
   integrity sha512-5IEvUPe/pxCTCknr9XYydfaZBP7urNMcJZhclQrPWB3ExnktEWBchzIrG3BazegvW6bwOZSFSLlGuW+9MsSMkQ==
 
-"@types/draft-js@^0.11.4":
-  version "0.11.4"
-  resolved "https://registry.yarnpkg.com/@types/draft-js/-/draft-js-0.11.4.tgz#96637c1d29dff1dcd6394d9ea0192867354691a1"
-  integrity sha512-T/z+wlf7rVloFdUsrNJV15DVbKvJbq44Lkf9WPTuS1g3Lqaqw83MzeFFZntPrKcsiCNBlHZQw+14PGW2rYN+fg==
+"@types/draft-js@^0.11.5":
+  version "0.11.5"
+  resolved "https://registry.yarnpkg.com/@types/draft-js/-/draft-js-0.11.5.tgz#53e0c91b8c297b6ba88e6b1440a56efc81b6d70b"
+  integrity sha512-rf33PMmHMOcTR4HyUcdheTB+1Wpmj5bMLIEDSHoXMAYnkYPO58TLcUxYdDy5chrGyzwNrsFHxwFX2NvbEOQVWA==
   dependencies:
     "@types/react" "*"
     immutable "~3.7.4"
