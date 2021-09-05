@@ -81,7 +81,7 @@
     "jss": "^10.7.1",
     "jss-plugin-template": "^10.7.1",
     "jss-rtl": "^0.3.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "lz-string": "^1.4.4",
     "markdown-to-jsx": "^7.0.0",
     "material-ui-popup-state": "^1.9.2",
