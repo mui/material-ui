@@ -1,7 +1,13 @@
 import * as React from 'react';
 import { spy, useFakeTimers } from 'sinon';
 import { expect } from 'chai';
-import { createClientRender, describeConformance, screen, fireEvent } from 'test/utils';
+import {
+  createClientRender,
+  describeConformance,
+  screen,
+  fireEvent,
+  strictModeDoubleLoggingSupressed,
+} from 'test/utils';
 import Menu, { menuClasses as classes } from '@mui/material/Menu';
 import Popover from '@mui/material/Popover';
 
@@ -253,14 +259,14 @@ describe('<Menu />', () => {
     it('warns a Fragment is passed as a child', () => {
       expect(() => {
         render(
-          <Menu anchorEl={document.createElement('div')} open>
+          <Menu anchorEl={document.createElement('div')} open={false}>
             <React.Fragment />
           </Menu>,
         );
       }).toErrorDev([
         "Material-UI: The Menu component doesn't accept a Fragment as a child.",
-        // twice in StrictMode
-        "Material-UI: The Menu component doesn't accept a Fragment as a child.",
+        !strictModeDoubleLoggingSupressed &&
+          "Material-UI: The Menu component doesn't accept a Fragment as a child.",
       ]);
     });
   });

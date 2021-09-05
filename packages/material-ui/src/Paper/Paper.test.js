@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';
-import { createClientRender, describeConformance } from 'test/utils';
+import {
+  createClientRender,
+  describeConformance,
+  strictModeDoubleLoggingSupressed,
+} from 'test/utils';
 import Paper, { paperClasses as classes } from '@mui/material/Paper';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -89,9 +93,11 @@ describe('<Paper />', () => {
     it('warns if the given `elevation` is not implemented in the theme', () => {
       expect(() => {
         render(<Paper elevation={25} />);
-      }).toErrorDev(
+      }).toErrorDev([
         'Material-UI: The elevation provided <Paper elevation={25}> is not available in the theme.',
-      );
+        !strictModeDoubleLoggingSupressed &&
+          'Material-UI: The elevation provided <Paper elevation={25}> is not available in the theme.',
+      ]);
     });
 
     it('warns if `elevation={numberGreaterThanZero}` is used with `variant="outlined"`', () => {

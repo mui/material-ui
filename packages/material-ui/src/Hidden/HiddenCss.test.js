@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender } from 'test/utils';
+import { createClientRender, strictModeDoubleLoggingSupressed } from 'test/utils';
 import HiddenCss from './HiddenCss';
 import { createTheme, ThemeProvider } from '../styles';
 import classes from './hiddenCssClasses';
@@ -141,8 +141,10 @@ describe('<HiddenCss />', () => {
           <div />
         </HiddenCss>,
       );
-    }).toErrorDev(
+    }).toErrorDev([
       'Material-UI: Unsupported props received by `<Hidden implementation="css" />`: xxlUp.',
-    );
+      !strictModeDoubleLoggingSupressed &&
+        'Material-UI: Unsupported props received by `<Hidden implementation="css" />`: xxlUp.',
+    ]);
   });
 });

@@ -1,7 +1,13 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import sinon, { spy, stub, useFakeTimers } from 'sinon';
-import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
+import {
+  describeConformance,
+  act,
+  createClientRender,
+  fireEvent,
+  strictModeDoubleLoggingSupressed,
+} from 'test/utils';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 describe('<TextareaAutosize />', () => {
@@ -295,10 +301,8 @@ describe('<TextareaAutosize />', () => {
           forceUpdate();
         }).toErrorDev([
           'Material-UI: Too many re-renders.',
-          React.version.startsWith('16') &&
-            // strict mode renders twice
-            'Material-UI: Too many re-renders.',
-          React.version.startsWith('16') && 'Material-UI: Too many re-renders.',
+          !strictModeDoubleLoggingSupressed && 'Material-UI: Too many re-renders.',
+          !strictModeDoubleLoggingSupressed && 'Material-UI: Too many re-renders.',
         ]);
       });
     });
