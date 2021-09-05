@@ -256,7 +256,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 - &#8203;<!-- 31 -->[core] Remove file-wide disables of `no-use-before-define` (#27984) @eps1lon
 - &#8203;<!-- 30 -->[core] Improve `release:changelog` script (#27941) @eps1lon
 - &#8203;<!-- 29 -->[core] Enforce curly braces for block statements (#27946) @eps1lon
-- &#8203;<!-- 07 -->[test] Disable browserstack for PRs (#28041) @eps1lon
+- &#8203;<!-- 07 -->[test] Disable BrowserStack for PRs (#28041) @eps1lon
 
 All contributors of this release in alphabetical order: @aaronlademann-wf, @bene-we, @chetas411, @eps1lon, @flaviendelangle, @hbjORbj, @iamhosseindhv, @m4theushw, @michaldudak, @mnajdova, @oliviertassinari, @rajzik, @rsxdalv, @siriwatknp, @StefanBRas, @StefanTobler, @tdmiller1, @vedadeepta
 
@@ -1640,7 +1640,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 
 - &#8203;<!-- 60 -->[core] Skip sx prop in internal components (#26235) @mnajdova
 - &#8203;<!-- 59 -->[core] Remove `withStyles` dependencies from `@material-ui/core/styles` (#26277) @mnajdova
-- &#8203;<!-- 55 -->[core] Include human readable target in the browserstack build (#26322) @eps1lon
+- &#8203;<!-- 55 -->[core] Include human readable target in the BrowserStack build (#26322) @eps1lon
 - &#8203;<!-- 53 -->[core] Fix NotchedOutlineProps type (#26305) @gnowland
 - &#8203;<!-- 51 -->[core] Add file for git-blame --ignore-revs-file (#26295) @eps1lon
 - &#8203;<!-- 49 -->[core] Ensure component class keys aren't missing (#25754) @eps1lon

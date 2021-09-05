@@ -2,7 +2,7 @@ version: 2.1
 
 parameters:
   browserstack-force:
-    description: Whether to force browserstack usage. We have limited resources on browserstack so the pipeline might decide to skip browserstack if this parameter isn't set to true.
+    description: Whether to force BrowserStack usage. We have limited resources on BrowserStack so the pipeline might decide to skip BrowserStack if this parameter isn't set to true.
     type: boolean
     default: false
   react-dist-tag:
