@@ -8625,7 +8625,7 @@ globjoin@^0.1.4:
   resolved "https://registry.yarnpkg.com/globjoin/-/globjoin-0.1.4.tgz#2f4494ac8919e3767c5cbb691e9f463324285d43"
   integrity sha1-L0SUrIkZ43Z8XLtpHp9GMyQoXUM=
 
-gm@^1.23.0:
+gm@^1.23.1:
   version "1.23.1"
   resolved "https://registry.yarnpkg.com/gm/-/gm-1.23.1.tgz#2edeeb958084d0f8ea7988e5d995b1c7dfc14777"
   integrity sha1-Lt7rlYCE0PjqeYjl2ZWxx9/BR3c=
