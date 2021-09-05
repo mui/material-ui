@@ -3049,10 +3049,10 @@
   dependencies:
     markdown-to-jsx "*"
 
-"@types/marked@^2.0.0":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@types/marked/-/marked-2.0.3.tgz#c8ea93684e530cc3b667d3e7226556dd0844ad1f"
-  integrity sha512-lbhSN1rht/tQ+dSWxawCzGgTfxe9DB31iLgiT1ZVT5lshpam/nyOA1m3tKHRoNPctB2ukSL22JZI5Fr+WI/zYg==
+"@types/marked@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@types/marked/-/marked-2.0.5.tgz#453e27f1e97199d45bb25297b0dd2b9bbc1e05ea"
+  integrity sha512-shRZ7XnYFD/8n8zSjKvFdto1QNSf4tONZIlNEZGrJe8GsOE8DL/hG1Hbl8gZlfLnjS7+f5tZGIaTgfpyW38h4w==
 
 "@types/mdast@^3.0.0":
   version "3.0.3"
@@ -11028,7 +11028,7 @@ markdown-to-jsx@*, markdown-to-jsx@^7.1.3:
   resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-7.1.3.tgz#f00bae66c0abe7dd2d274123f84cb6bd2a2c7c6a"
   integrity sha512-jtQ6VyT7rMT5tPV0g2EJakEnXLiPksnvlYtwQsVVZ611JsWGN8bQ1tVSDX4s6JllfEH6wmsYxNjTUAMrPmNA8w==
 
-marked@^2.0.0:
+marked@^2.1.3:
   version "2.1.3"
   resolved "https://registry.yarnpkg.com/marked/-/marked-2.1.3.tgz#bd017cef6431724fd4b27e0657f5ceb14bff3753"
   integrity sha512-/Q+7MGzaETqifOMWYEA7HVMaZb4XbcRfaOzcSsHZEith83KGlvaSG33u0SKu89Mj5h+T8V2hM+8O45Qc5XTgwA==
