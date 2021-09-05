@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useThemeProps } from '@material-ui/core/styles';
+import { useThemeProps } from '@mui/material/styles';
 import ClockIcon from '../internal/svg-icons/Clock';
 import { ParseableDate } from '../internal/pickers/constants/prop-types';
 import { ExportedClockPickerProps } from '../ClockPicker/ClockPicker';

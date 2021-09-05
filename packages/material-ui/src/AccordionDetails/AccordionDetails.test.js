@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { createClientRender, describeConformance } from 'test/utils';
 import AccordionDetails, {
   accordionDetailsClasses as classes,
-} from '@material-ui/core/AccordionDetails';
+} from '@mui/material/AccordionDetails';
 
 describe('<AccordionDetails />', () => {
   const render = createClientRender();

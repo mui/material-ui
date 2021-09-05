@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createClientRender, screen, ErrorBoundary } from 'test/utils';
-import { useAutocomplete, createFilterOptions } from '@material-ui/unstyled/AutocompleteUnstyled';
+import { useAutocomplete, createFilterOptions } from '@mui/core/AutocompleteUnstyled';
 
 describe('useAutocomplete', () => {
   const render = createClientRender();

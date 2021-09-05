@@ -1,7 +1,7 @@
 // testing docs/src/pages/customization/palette/palette.md
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface Theme {
     status: {
       danger: React.CSSProperties['color'];

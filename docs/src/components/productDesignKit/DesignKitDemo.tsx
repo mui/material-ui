@@ -1,18 +1,18 @@
 import * as React from 'react';
-import { useTheme, styled } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import Fade from '@material-ui/core/Fade';
-import Typography from '@material-ui/core/Typography';
-import LaunchRounded from '@material-ui/icons/LaunchRounded';
-import TextFieldsRounded from '@material-ui/icons/TextFieldsRounded';
+import { useTheme, styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Fade from '@mui/material/Fade';
+import Typography from '@mui/material/Typography';
+import LaunchRounded from '@mui/icons-material/LaunchRounded';
+import TextFieldsRounded from '@mui/icons-material/TextFieldsRounded';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 import Item, { Group } from 'docs/src/components/action/Item';
-import WidgetsRounded from '@material-ui/icons/WidgetsRounded';
-import ToggleOnRounded from '@material-ui/icons/ToggleOnRounded';
+import WidgetsRounded from '@mui/icons-material/WidgetsRounded';
+import ToggleOnRounded from '@mui/icons-material/ToggleOnRounded';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
@@ -37,9 +37,9 @@ export default function TemplateDemo() {
   const mode = globalTheme.palette.mode;
   const [demo, setDemo] = React.useState(DEMOS[0]);
   const icons = {
-    [DEMOS[0]]: <ToggleOnRounded />,
-    [DEMOS[1]]: <TextFieldsRounded />,
-    [DEMOS[2]]: <WidgetsRounded />,
+    [DEMOS[0]]: <ToggleOnRounded fontSize="small" />,
+    [DEMOS[1]]: <TextFieldsRounded fontSize="small" />,
+    [DEMOS[2]]: <WidgetsRounded fontSize="small" />,
   };
   return (
     <Section bg="comfort">
@@ -47,13 +47,13 @@ export default function TemplateDemo() {
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>
             <SectionHeadline
-              overline="Use cases"
+              overline="Features"
               title={
                 <Typography variant="h2">
-                  Get the right template for your <GradientText>specific need</GradientText>
+                  Upgrade your <GradientText>design workflow</GradientText>
                 </Typography>
               }
-              description="We've gathered templates for lots of use-cases, all powered with the Core components carefully curated from MUI's team."
+              description="The UI kits contain many of the MUI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date MUI release."
             />
           </Box>
           <Group desktopColumns={2} sx={{ mt: 4 }}>

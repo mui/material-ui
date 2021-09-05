@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ThemeProvider, useTheme } from '@material-ui/styles';
+import { ThemeProvider, useTheme } from '@mui/styles';
 
 function DeepChild() {
   const theme = useTheme();

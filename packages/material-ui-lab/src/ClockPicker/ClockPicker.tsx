@@ -1,12 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_useId as useId } from '@material-ui/utils';
-import { styled, Theme, useThemeProps } from '@material-ui/core/styles';
+import { unstable_useId as useId } from '@mui/utils';
+import { styled, Theme, useThemeProps } from '@mui/material/styles';
 import {
   unstable_composeClasses as composeClasses,
   generateUtilityClass,
   generateUtilityClasses,
-} from '@material-ui/unstyled';
+} from '@mui/core';
 import Clock from './Clock';
 import { pipe } from '../internal/pickers/utils';
 import { useUtils, useNow, MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';

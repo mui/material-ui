@@ -3,10 +3,10 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { stub } from 'sinon';
 import { SheetsRegistry } from 'jss';
-import Input from '@material-ui/core/Input';
+import Input from '@mui/material/Input';
 import { createClientRender, screen } from 'test/utils';
-import { isMuiElement } from '@material-ui/core/utils';
-import { createTheme } from '@material-ui/core/styles';
+import { isMuiElement } from '@mui/material/utils';
+import { createTheme } from '@mui/material/styles';
 import StylesProvider from '../StylesProvider';
 import createGenerateClassName from '../createGenerateClassName';
 import ThemeProvider from '../ThemeProvider';
@@ -25,7 +25,7 @@ describe('withStyles', () => {
 
   it('hoists mui internals', () => {
     expect(isMuiElement(<Input />, ['Input'])).to.equal(true);
-    // the imported Input is decorated with @material-ui/core/styles
+    // the imported Input is decorated with @mui/material/styles
     const StyledInput = withStyles({})(Input);
 
     expect(isMuiElement(<StyledInput />, ['Input'])).to.equal(true);

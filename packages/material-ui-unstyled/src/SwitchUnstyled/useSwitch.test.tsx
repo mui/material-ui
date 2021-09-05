@@ -9,7 +9,7 @@ import {
   screen,
   simulatePointerDevice,
 } from 'test/utils';
-import { useSwitch, UseSwitchProps, UseSwitchResult } from '@material-ui/unstyled/SwitchUnstyled';
+import { useSwitch, UseSwitchProps, UseSwitchResult } from '@mui/core/SwitchUnstyled';
 
 describe('useSwitch', () => {
   const render = createClientRender();

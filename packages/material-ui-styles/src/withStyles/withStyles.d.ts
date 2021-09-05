@@ -1,4 +1,4 @@
-import { PropInjector } from '@material-ui/types';
+import { PropInjector } from '@mui/types';
 import * as CSS from 'csstype';
 import * as JSS from 'jss';
 import { DefaultTheme } from '../defaultTheme';

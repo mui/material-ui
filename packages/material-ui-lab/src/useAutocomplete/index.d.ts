@@ -1,1 +1,1 @@
-export { useAutocomplete as default } from '@material-ui/unstyled';
+export { useAutocomplete as default } from '@mui/core';

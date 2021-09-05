@@ -106,7 +106,7 @@ If you are **new to or unfamiliar with flexbox**, we encourage you to read this 
 ## API
 
 ```js
-import { flexbox } from '@material-ui/system';
+import { flexbox } from '@mui/system';
 ```
 
 | Import name      | Prop             | CSS property      | Theme key |

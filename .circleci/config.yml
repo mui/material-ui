@@ -157,8 +157,8 @@ jobs:
 
             if [ $FOLDER_COMMIT = $LATEST_COMMIT ]; then
               echo "changes, let's run the tests"
-              yarn workspace @material-ui/icons build:typings
-              yarn workspace @material-ui/icons test:built-typings
+              yarn workspace @mui/icons-material build:typings
+              yarn workspace @mui/icons-material test:built-typings
             else
               echo "no changes"
             fi
@@ -248,8 +248,8 @@ jobs:
       - run:
           name: Test module augmenation
           command: |
-            yarn workspace @material-ui/core typescript:module-augmentation
-            yarn workspace @material-ui/unstyled typescript:module-augmentation
+            yarn workspace @mui/material typescript:module-augmentation
+            yarn workspace @mui/core typescript:module-augmentation
 
       - restore_cache:
           name: Restore generated declaration files
@@ -367,8 +367,8 @@ jobs:
           name: yarn test:e2e
           command: yarn test:e2e
       - run:
-          name: Can we generate the @material-ui/core umd build?
-          command: yarn workspace @material-ui/core build:umd
+          name: Can we generate the @mui/material umd build?
+          command: yarn workspace @mui/material build:umd
       - run:
           name: Test umd release
           command: yarn test:umd
@@ -422,7 +422,7 @@ jobs:
       - install_js
       - run:
           name: Build packages for fixtures
-          command: yarn lerna run --scope "@material-ui/*" build
+          command: yarn lerna run --scope "@mui/*" build
       - persist_to_workspace:
           root: packages
           paths:

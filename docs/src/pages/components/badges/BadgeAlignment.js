@@ -1,12 +1,12 @@
 import * as React from 'react';
-import Badge from '@material-ui/core/Badge';
-import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Box from '@material-ui/core/Box';
-import MailIcon from '@material-ui/icons/Mail';
+import Badge from '@mui/material/Badge';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import Box from '@mui/material/Box';
+import MailIcon from '@mui/icons-material/Mail';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
 export default function BadgeAlignment() {

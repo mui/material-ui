@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy, useFakeTimers } from 'sinon';
 import { describeConformance, act, createClientRender, fireEvent } from 'test/utils';
-import Snackbar, { snackbarClasses as classes } from '@material-ui/core/Snackbar';
+import Snackbar, { snackbarClasses as classes } from '@mui/material/Snackbar';
 
 describe('<Snackbar />', () => {
   /**

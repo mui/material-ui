@@ -1,6 +1,6 @@
 {
-  "name": "@material-ui/codemod",
-  "version": "5.0.0-beta.4",
+  "name": "@mui/codemod",
+  "version": "5.0.0-rc.0",
   "bin": "./codemod.js",
   "private": false,
   "author": "Material-UI Team",
@@ -30,7 +30,7 @@
     "@babel/runtime": "^7.14.8",
     "@babel/traverse": "^7.15.0",
     "jscodeshift": "^0.13.0",
-    "jscodeshift-add-imports": "^1.0.1",
+    "jscodeshift-add-imports": "^1.0.10",
     "yargs": "^17.0.1"
   },
   "devDependencies": {

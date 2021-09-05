@@ -1,4 +1,4 @@
-import { useThemeProps } from '@material-ui/core/styles';
+import { useThemeProps } from '@mui/material/styles';
 import { ParseableDate } from '../internal/pickers/constants/prop-types';
 import { OverrideParseableDateProps } from '../internal/pickers/hooks/date-helpers-hooks';
 import { MuiPickersAdapter, useDefaultDates, useUtils } from '../internal/pickers/hooks/useUtils';

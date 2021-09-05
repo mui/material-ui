@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unstyled';
+import { generateUtilityClass, generateUtilityClasses } from '@mui/core';
 
 export interface ListItemClasses {
   /** Styles applied to the (normally root) `component` element. May be wrapped by a `container`. */

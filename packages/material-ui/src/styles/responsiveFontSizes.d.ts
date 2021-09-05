@@ -1,4 +1,4 @@
-import { Breakpoint } from '@material-ui/system';
+import { Breakpoint } from '@mui/system';
 import { Theme } from './createTheme';
 import { Variant } from './createTypography';
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import Divider from '@material-ui/core/Divider';
+import Divider from '@mui/material/Divider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import TemplateHero from 'docs/src/components/productTemplate/TemplateHero';
@@ -15,7 +15,7 @@ export default function Templates() {
     <BrandingProvider>
       <Head
         title="MUI: Fully built templates for your project."
-        description="A collection of several 4.5 average rating templates, curated by our Core team to get your projects and application up and running today."
+        description="A collection of 4.5 average rating templates, selected and curated by MUI's team of maintainers to get your projects up and running today."
       />
       <AppHeader />
       <main>

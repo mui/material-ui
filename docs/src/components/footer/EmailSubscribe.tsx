@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { Theme, styled } from '@material-ui/core/styles';
-import { SxProps } from '@material-ui/system';
-import Alert from '@material-ui/core/Alert';
-import AlertTitle from '@material-ui/core/AlertTitle';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import InputBase from '@material-ui/core/InputBase';
-import CheckCircleRoundedIcon from '@material-ui/icons/CheckCircleRounded';
+import { Theme, styled } from '@mui/material/styles';
+import { SxProps } from '@mui/system';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import FormLabel from '@mui/material/FormLabel';
+import FormHelperText from '@mui/material/FormHelperText';
+import InputBase from '@mui/material/InputBase';
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 
 const Form = styled('form')({});
 

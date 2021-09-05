@@ -7,7 +7,7 @@ import {
   screen,
   strictModeDoubleLoggingSupressed,
 } from 'test/utils';
-import Breadcrumbs, { breadcrumbsClasses as classes } from '@material-ui/core/Breadcrumbs';
+import Breadcrumbs, { breadcrumbsClasses as classes } from '@mui/material/Breadcrumbs';
 
 describe('<Breadcrumbs />', () => {
   const render = createClientRender();

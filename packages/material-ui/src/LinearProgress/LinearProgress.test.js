@@ -6,7 +6,7 @@ import {
   describeConformance,
   strictModeDoubleLoggingSupressed,
 } from 'test/utils';
-import LinearProgress, { linearProgressClasses as classes } from '@material-ui/core/LinearProgress';
+import LinearProgress, { linearProgressClasses as classes } from '@mui/material/LinearProgress';
 
 describe('<LinearProgress />', () => {
   const render = createClientRender();

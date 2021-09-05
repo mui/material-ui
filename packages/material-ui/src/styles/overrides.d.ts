@@ -1,4 +1,4 @@
-import { CSSObject, CSSInterpolation } from '@material-ui/system';
+import { CSSObject, CSSInterpolation } from '@mui/system';
 import { AccordionActionsClassKey } from '../AccordionActions';
 import { AccordionClassKey } from '../Accordion';
 import { AccordionDetailsClassKey } from '../AccordionDetails';

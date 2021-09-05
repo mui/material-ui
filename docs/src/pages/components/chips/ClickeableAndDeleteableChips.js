@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Chip from '@material-ui/core/Chip';
-import Stack from '@material-ui/core/Stack';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 
 export default function ClickeableAndDeleteableChips() {
   const handleClick = () => {

@@ -7,7 +7,7 @@
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
     "@emotion/server": "latest",
-    "@material-ui/core": "next",
+    "@mui/material": "next",
     "clsx": "latest",
     "next": "latest",
     "prop-types": "latest",

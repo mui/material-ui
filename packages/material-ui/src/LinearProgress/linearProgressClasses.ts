@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@material-ui/unstyled';
+import { generateUtilityClass, generateUtilityClasses } from '@mui/core';
 
 export interface LinearProgressClasses {
   /** Styles applied to the root element. */

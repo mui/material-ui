@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import Divider from '@material-ui/core/Divider';
+import Divider from '@mui/material/Divider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import DesignKitHero from 'docs/src/components/productDesignKit/DesignKitHero';
@@ -16,7 +16,7 @@ export default function DesignKits() {
     <BrandingProvider>
       <Head
         title="MUI in your favorite design tool."
-        description="For the designers out there, pick your favorite design tool to enjoy our components. Get the consistency right when working with developers."
+        description="Pick your favorite design tool to enjoy and use MUI components. Boost consistency and facilitate communication when working with developers."
       />
       <AppHeader />
       <main>

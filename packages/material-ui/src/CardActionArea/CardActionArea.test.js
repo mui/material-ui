@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createClientRender, describeConformance } from 'test/utils';
-import CardActionArea, { cardActionAreaClasses as classes } from '@material-ui/core/CardActionArea';
-import ButtonBase from '@material-ui/core/ButtonBase';
+import CardActionArea, { cardActionAreaClasses as classes } from '@mui/material/CardActionArea';
+import ButtonBase from '@mui/material/ButtonBase';
 
 describe('<CardActionArea />', () => {
   const render = createClientRender();

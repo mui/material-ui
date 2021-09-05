@@ -8,8 +8,8 @@ import {
   fireEvent,
   strictModeDoubleLoggingSupressed,
 } from 'test/utils';
-import Menu, { menuClasses as classes } from '@material-ui/core/Menu';
-import Popover from '@material-ui/core/Popover';
+import Menu, { menuClasses as classes } from '@mui/material/Menu';
+import Popover from '@mui/material/Popover';
 
 describe('<Menu />', () => {
   /**

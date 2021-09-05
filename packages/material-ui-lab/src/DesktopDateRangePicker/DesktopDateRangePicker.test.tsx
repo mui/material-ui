@@ -2,10 +2,10 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { SinonFakeTimers, spy, useFakeTimers } from 'sinon';
 import { act, describeConformance, screen, fireEvent, userEvent } from 'test/utils';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import TextField, { TextFieldProps } from '@material-ui/core/TextField';
-import { DateRange } from '@material-ui/lab/DateRangePicker';
-import DesktopDateRangePicker from '@material-ui/lab/DesktopDateRangePicker';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import TextField, { TextFieldProps } from '@mui/material/TextField';
+import { DateRange } from '@mui/lab/DateRangePicker';
+import DesktopDateRangePicker from '@mui/lab/DesktopDateRangePicker';
 import {
   wrapPickerMount,
   createPickerRender,
