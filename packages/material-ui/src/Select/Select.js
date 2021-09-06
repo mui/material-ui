@@ -12,6 +12,7 @@ import NativeSelectInput from '../NativeSelect/NativeSelectInput';
 import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
 import useThemeProps from '../styles/useThemeProps';
+import useForkRef from '../utils/useForkRef';
 import { getSelectUtilityClasses } from './selectClasses';
 
 const useUtilityClasses = (ownerState) => {
@@ -73,6 +74,8 @@ const Select = React.forwardRef(function Select(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
   const { root, ...otherClasses } = classesProp;
 
+  const inputComponentRef = useForkRef(ref, InputComponent.ref);
+
   return React.cloneElement(InputComponent, {
     // Most of the logic is implemented in `SelectInput`.
     // The `Select` component is a simple API wrapper to expose something better to play with.
@@ -101,7 +104,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
       ...(input ? input.props.inputProps : {}),
     },
     ...(multiple && native && variant === 'outlined' ? { notched: true } : {}),
-    ref,
+    ref: inputComponentRef,
     className: clsx(classes.root, InputComponent.props.className, className),
     ...other,
   });

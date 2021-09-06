@@ -1,7 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { expect } from 'chai';
-import { describeConformance, act, createClientRender, fireEvent, screen } from 'test/utils';
+import {
+  describeConformance,
+  act,
+  createClientRender,
+  fireEvent,
+  screen,
+  strictModeDoubleLoggingSupressed,
+} from 'test/utils';
 import { spy } from 'sinon';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
@@ -1231,11 +1238,9 @@ describe('<Autocomplete />', () => {
         fireEvent.keyDown(textbox, { key: 'Enter' });
       }).toErrorDev([
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
-        // strict mode renders twice
-        React.version.startsWith('16') &&
+        !strictModeDoubleLoggingSupressed &&
           'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
-        // strict mode renders twice
-        React.version.startsWith('16') &&
+        !strictModeDoubleLoggingSupressed &&
           'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
         'Material-UI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
@@ -1290,13 +1295,14 @@ describe('<Autocomplete />', () => {
         );
       }).toWarnDev([
         'None of the options match with `"not a good value"`',
-        // strict mode renders twice
-        React.version.startsWith('16') && 'None of the options match with `"not a good value"`',
+        !strictModeDoubleLoggingSupressed && 'None of the options match with `"not a good value"`',
         'None of the options match with `"not a good value"`',
-        // strict mode renders twice
-        React.version.startsWith('16') && 'None of the options match with `"not a good value"`',
+        !strictModeDoubleLoggingSupressed && 'None of the options match with `"not a good value"`',
         // React 18 Strict Effects run mount effects twice which lead to a cascading update
         React.version.startsWith('18') && 'None of the options match with `"not a good value"`',
+        React.version.startsWith('18') &&
+          !strictModeDoubleLoggingSupressed &&
+          'None of the options match with `"not a good value"`',
       ]);
     });
 
@@ -1322,10 +1328,12 @@ describe('<Autocomplete />', () => {
         );
       }).toWarnDev([
         'returns duplicated headers',
-        // strict mode renders twice
-        React.version.startsWith('16') && 'returns duplicated headers',
+        !strictModeDoubleLoggingSupressed && 'returns duplicated headers',
         // React 18 Strict Effects run mount effects twice which lead to a cascading update
         React.version.startsWith('18') && 'returns duplicated headers',
+        React.version.startsWith('18') &&
+          !strictModeDoubleLoggingSupressed &&
+          'returns duplicated headers',
       ]);
       const options = screen.getAllByRole('option').map((el) => el.textContent);
       expect(options).to.have.length(7);

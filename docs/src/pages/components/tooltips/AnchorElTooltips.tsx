@@ -27,14 +27,14 @@ export default function AnchorElTooltips() {
       PopperProps={{
         popperRef,
         anchorEl: {
-          getBoundingClientRect: () => ({
-            top: areaRef.current!.getBoundingClientRect().top,
-            left: positionRef.current.x,
-            right: positionRef.current.x,
-            bottom: areaRef.current!.getBoundingClientRect().bottom,
-            width: 0,
-            height: 0,
-          }),
+          getBoundingClientRect: () => {
+            return new DOMRect(
+              positionRef.current.x,
+              areaRef.current!.getBoundingClientRect().y,
+              0,
+              0,
+            );
+          },
         },
       }}
     >

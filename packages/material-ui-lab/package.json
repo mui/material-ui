@@ -41,7 +41,7 @@
     "date-fns": "^2.0.0",
     "dayjs": "^1.10.6",
     "luxon": "^1.28.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
@@ -83,7 +83,7 @@
     "date-fns": "^2.0.0",
     "dayjs": "^1.10.6",
     "luxon": "^1.28.0",
-    "moment": "^2.24.0"
+    "moment": "^2.29.1"
   },
   "sideEffects": false,
   "publishConfig": {

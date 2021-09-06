@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes, visuallyHidden } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/core';
-import { useTheme } from '../styles';
+import useTheme from '../styles/useTheme';
 import {
   capitalize,
   useForkRef,

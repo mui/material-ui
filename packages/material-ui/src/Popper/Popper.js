@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { createPopper } from '@popperjs/core';
 import { chainPropTypes, refType, HTMLElementType } from '@mui/utils';
-import { useTheme } from '../styles';
+import { useThemeWithoutDefault as useTheme } from '@mui/system';
 import Portal from '../Portal';
 import ownerDocument from '../utils/ownerDocument';
 import useForkRef from '../utils/useForkRef';

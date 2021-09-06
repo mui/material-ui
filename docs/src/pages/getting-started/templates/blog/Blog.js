@@ -5,6 +5,7 @@ import Container from '@mui/material/Container';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Header from './Header';
 import MainFeaturedPost from './MainFeaturedPost';
 import FeaturedPost from './FeaturedPost';
@@ -82,9 +83,11 @@ const sidebar = {
   ],
 };
 
+const theme = createTheme();
+
 export default function Blog() {
   return (
-    <React.Fragment>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth="lg">
         <Header title="Blog" sections={sections} />
@@ -110,6 +113,6 @@ export default function Blog() {
         title="Footer"
         description="Something here to give the footer a purpose!"
       />
-    </React.Fragment>
+    </ThemeProvider>
   );
 }
