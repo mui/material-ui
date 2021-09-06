@@ -63,7 +63,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/Alert/Alert.js",
+  "filename": "/packages/mui-material/src/Alert/Alert.js",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
   "demos": "<ul><li><a href=\"/components/alert/\">Alert</a></li></ul>",
   "styledComponent": true,

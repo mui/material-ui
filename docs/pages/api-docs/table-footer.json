@@ -9,7 +9,7 @@
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTableFooter" },
   "spread": true,
   "forwardsRefTo": "HTMLTableSectionElement",
-  "filename": "/packages/material-ui/src/TableFooter/TableFooter.js",
+  "filename": "/packages/mui-material/src/TableFooter/TableFooter.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tables/\">Tables</a></li></ul>",
   "styledComponent": true,

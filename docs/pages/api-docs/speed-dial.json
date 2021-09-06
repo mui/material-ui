@@ -45,7 +45,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/SpeedDial/SpeedDial.js",
+  "filename": "/packages/mui-material/src/SpeedDial/SpeedDial.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/speed-dial/\">Speed Dial</a></li></ul>",
   "styledComponent": true,

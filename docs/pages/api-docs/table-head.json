@@ -9,7 +9,7 @@
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTableHead" },
   "spread": true,
   "forwardsRefTo": "HTMLTableSectionElement",
-  "filename": "/packages/material-ui/src/TableHead/TableHead.js",
+  "filename": "/packages/mui-material/src/TableHead/TableHead.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tables/\">Tables</a></li></ul>",
   "styledComponent": true,

@@ -9,7 +9,7 @@
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiCard" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/Card/Card.js",
+  "filename": "/packages/mui-material/src/Card/Card.js",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
   "demos": "<ul><li><a href=\"/components/cards/\">Cards</a></li></ul>",
   "styledComponent": true,

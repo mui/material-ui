@@ -8,7 +8,7 @@
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTimelineSeparator" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui-lab/src/TimelineSeparator/TimelineSeparator.js",
+  "filename": "/packages/mui-lab/src/TimelineSeparator/TimelineSeparator.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/timeline/\">Timeline</a></li></ul>",
   "styledComponent": true,

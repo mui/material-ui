@@ -11,7 +11,6 @@
       },
       "default": "'primary'"
     },
-    "component": { "type": { "name": "elementType" } },
     "components": {
       "type": {
         "name": "shape",
@@ -106,7 +105,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
-  "filename": "/packages/material-ui/src/Slider/Slider.js",
+  "filename": "/packages/mui-material/src/Slider/Slider.js",
   "inheritance": { "component": "SliderUnstyled", "pathname": "/api/slider-unstyled/" },
   "demos": "<ul><li><a href=\"/components/slider/\">Slider</a></li></ul>",
   "styledComponent": true,

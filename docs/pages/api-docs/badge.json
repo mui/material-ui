@@ -17,7 +17,6 @@
       },
       "default": "'default'"
     },
-    "component": { "type": { "name": "elementType" } },
     "components": {
       "type": { "name": "shape", "description": "{ Badge?: elementType, Root?: elementType }" },
       "default": "{}"
@@ -67,7 +66,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
-  "filename": "/packages/material-ui/src/Badge/Badge.js",
+  "filename": "/packages/mui-material/src/Badge/Badge.js",
   "inheritance": { "component": "BadgeUnstyled", "pathname": "/api/badge-unstyled/" },
   "demos": "<ul><li><a href=\"/components/avatars/\">Avatars</a></li>\n<li><a href=\"/components/badges/\">Badges</a></li></ul>",
   "styledComponent": true,

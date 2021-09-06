@@ -9,7 +9,6 @@
     "BackdropProps": { "type": { "name": "object" } },
     "classes": { "type": { "name": "object" } },
     "closeAfterTransition": { "type": { "name": "bool" } },
-    "component": { "type": { "name": "elementType" } },
     "components": {
       "type": { "name": "shape", "description": "{ Root?: elementType }" },
       "default": "{}"
@@ -32,7 +31,7 @@
   "styles": { "classes": ["root", "hidden"], "globalClasses": {}, "name": "MuiModal" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/Modal/Modal.js",
+  "filename": "/packages/mui-material/src/Modal/Modal.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/modal/\">Modal</a></li></ul>",
   "styledComponent": true,
