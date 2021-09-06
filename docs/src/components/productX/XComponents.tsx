@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { ThemeProvider } from '@mui/material/styles';
+import { shouldForwardProp } from '@mui/system';
+import { ThemeProvider, styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
 import Grid from '@mui/material/Grid';
@@ -26,6 +27,17 @@ import Frame from 'docs/src/components/action/Frame';
 import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
 const DEMOS = ['Data Grid', 'Date Picker', 'Tree View', 'Sparkline', 'Charts'];
+
+const AspectRatioImage = styled('div', {
+  shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'src' && prop !== 'ratio',
+})<{ ratio: number; src: string }>(({ src, ratio }) => ({
+  height: 0,
+  backgroundImage: `url(${src})`,
+  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'contain',
+  paddingBottom: `${(1 / ratio) * 100}%`,
+  margin: 'auto',
+}));
 
 export default function XComponents() {
   const [demo, setDemo] = React.useState(DEMOS[0]);
@@ -86,86 +98,68 @@ export default function XComponents() {
             <Fade in timeout={500}>
               <Box sx={{ height: '100%' }}>
                 <Frame sx={{ height: '100%' }}>
-                  <Frame.Demo sx={{ p: 2, flexGrow: 1 }}>
-                    <Box sx={{ textAlign: 'right', mb: 2, lineHeight: 1 }}>
+                  <Frame.Demo sx={{ p: { xs: 1, sm: 2 }, flexGrow: 1 }}>
+                    <Box sx={{ textAlign: 'right', mb: { xs: 1, sm: 2 }, lineHeight: 1 }}>
                       <Tooltip title="This is just a marketing example image. The actual component might be different once implemented.">
                         <Chip label="PNG Preview" size="small" sx={{ fontWeight: 500 }} />
                       </Tooltip>
                     </Box>
-                    <Box
-                      sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        overflow: 'auto',
-                        minWidth: '100%',
-                        '& img': {
-                          maxHeight: 220,
-                          minWidth: '50%',
-                          objectFit: 'contain',
-                        },
-                      }}
-                    >
-                      {demo === DEMOS[3] && (
-                        <React.Fragment>
-                          <Box
-                            sx={{
-                              display: 'flex',
-                              flexDirection: { xs: 'column', sm: 'row' },
-                              justifyContent: 'center',
-                            }}
-                          >
-                            <img
-                              alt="sparkline 1"
+                    {demo === DEMOS[3] && (
+                      <Grid container justifyContent="space-around" spacing={1}>
+                        <Grid item xs={6}>
+                          <Box sx={{ maxWidth: 200, ml: 'auto' }}>
+                            <AspectRatioImage
                               src="/static/branding/mui-x/sparkline1.png"
-                              loading="lazy"
-                              height="220"
+                              ratio={211 / 220}
                             />
-                            <Box sx={{ ml: { xs: 0, sm: 4 }, mt: { xs: 2, sm: 0 } }}>
-                              <img
-                                alt="sparkline 2"
-                                src="/static/branding/mui-x/sparkline2.png"
-                                loading="lazy"
-                                height="220"
-                              />
-                            </Box>
                           </Box>
-                        </React.Fragment>
-                      )}
-                      {demo === DEMOS[4] && (
-                        <React.Fragment>
-                          <Grid container spacing={1}>
-                            <Grid item md={6} sx={{ textAlign: { xs: 'center', sm: 'end' } }}>
-                              <img
-                                alt="chart 1"
-                                src="/static/branding/mui-x/chart1.png"
-                                loading="lazy"
-                                height="120"
-                              />
-                              <img
-                                alt="chart 2"
-                                src="/static/branding/mui-x/chart2.png"
-                                loading="lazy"
-                                height="120"
-                              />
-                            </Grid>
-                            <Grid item md={6} sx={{ textAlign: { xs: 'center', sm: 'start' } }}>
-                              <img
-                                alt="chart 3"
-                                src="/static/branding/mui-x/chart3.png"
-                                loading="lazy"
-                                height="120"
-                              />
-                              <img
-                                alt="chart 4"
-                                src="/static/branding/mui-x/chart4.png"
-                                loading="lazy"
-                                height="120"
-                              />
-                            </Grid>
-                          </Grid>
-                        </React.Fragment>
-                      )}
-                    </Box>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <Box sx={{ maxWidth: 200, mr: 'auto' }}>
+                            <AspectRatioImage
+                              src="/static/branding/mui-x/sparkline2.png"
+                              ratio={211 / 220}
+                            />
+                          </Box>
+                        </Grid>
+                      </Grid>
+                    )}
+                    {demo === DEMOS[4] && (
+                      <Grid container spacing={1} justifyContent="center">
+                        <Grid item xs={6}>
+                          <Box sx={{ width: { xs: 200, sm: 240 }, maxWidth: '100%', ml: 'auto' }}>
+                            <AspectRatioImage
+                              src="/static/branding/mui-x/chart1.png"
+                              ratio={219 / 120}
+                            />
+                          </Box>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <Box sx={{ width: { xs: 200, sm: 240 }, maxWidth: '100%', mr: 'auto' }}>
+                            <AspectRatioImage
+                              src="/static/branding/mui-x/chart2.png"
+                              ratio={219 / 120}
+                            />
+                          </Box>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <Box sx={{ width: { xs: 200, sm: 240 }, maxWidth: '100%', ml: 'auto' }}>
+                            <AspectRatioImage
+                              src="/static/branding/mui-x/chart3.png"
+                              ratio={219 / 120}
+                            />
+                          </Box>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <Box sx={{ width: { xs: 200, sm: 240 }, maxWidth: '100%', mr: 'auto' }}>
+                            <AspectRatioImage
+                              src="/static/branding/mui-x/chart4.png"
+                              ratio={219 / 120}
+                            />
+                          </Box>
+                        </Grid>
+                      </Grid>
+                    )}
                   </Frame.Demo>
                   <ThemeProvider theme={brandingDarkTheme}>
                     <Frame.Info>
