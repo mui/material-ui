@@ -7,7 +7,7 @@ import TreeView from '@mui/lab/TreeView';
 import MuiTreeItem, { useTreeItem, TreeItemProps, TreeItemContentProps } from '@mui/lab/TreeItem';
 import Typography from '@mui/material/Typography';
 import AddBoxOutlined from '@mui/icons-material/AddBoxOutlined';
-import IndeterminateCheckboxOutlined from '@mui/icons-material/IndeterminateCheckboxOutlined';
+import IndeterminateCheckBoxOutlined from '@mui/icons-material/IndeterminateCheckBoxOutlined';
 import FolderRounded from '@mui/icons-material/FolderRounded';
 import FolderOpenRounded from '@mui/icons-material/FolderOpenRounded';
 import PhotoOutlined from '@mui/icons-material/PhotoOutlined';
@@ -203,7 +203,7 @@ export default function XDateRangeDemo() {
           <TreeView
             aria-label="file system navigator"
             defaultExpanded={['2', '2.3']}
-            defaultCollapseIcon={<IndeterminateCheckboxOutlined />}
+            defaultCollapseIcon={<IndeterminateCheckBoxOutlined />}
             defaultExpandIcon={<AddBoxOutlined />}
             sx={{ height: { xs: 300, sm: 380 }, overflowY: 'auto', p: 1 }}
           >
