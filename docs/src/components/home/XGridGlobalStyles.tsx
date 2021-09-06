@@ -18,6 +18,27 @@ export default function XGridGlobalStyles({
             border: 'none',
             fontSize: '0.75rem',
             borderRadius: '0px',
+            // toolbar
+            // style GridToolbar
+            '& .MuiDataGrid-toolbarContainer': {
+              padding: theme.spacing(1, 1, 0.5, 1),
+              overflow: 'auto',
+              '& > button': {
+                flexShrink: 0,
+                border: '1px solid',
+                padding: theme.spacing(0, 1),
+                borderColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[500]
+                    : theme.palette.grey[200],
+                '& svg': {
+                  fontSize: '1.125rem',
+                },
+              },
+              '& > button:not(:last-of-type)': {
+                marginRight: theme.spacing(0.5),
+              },
+            },
             '& .MuiCheckbox-root': {
               color:
                 theme.palette.mode === 'dark'

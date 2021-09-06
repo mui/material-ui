@@ -165,21 +165,6 @@ export default function XGridFullDemo() {
           sx={{
             height: 328,
             '& .MuiDataGrid-root': {
-              // style GridToolbar
-              '& .MuiDataGrid-toolbarContainer': {
-                justifyContent: 'flex-end',
-                pt: 1,
-                px: 1,
-                '& > button': {
-                  border: '1px solid',
-                  px: 1,
-                  borderColor: (theme) =>
-                    theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200',
-                },
-                '& > button:not(:last-of-type)': {
-                  mr: 0.5,
-                },
-              },
               '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
               '& .MuiDataGrid-renderingZone': {
                 '& .MuiDataGrid-cell': {
