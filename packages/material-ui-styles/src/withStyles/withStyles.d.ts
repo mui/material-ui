@@ -107,7 +107,7 @@ export type WithStyles<
   StylesType extends ClassKeyInferable<any, any>,
   IncludeTheme extends boolean | undefined = false,
 > = (IncludeTheme extends true ? { theme: ThemeOfStyles<StylesType> } : {}) & {
-  classes: ClassNameMap<ClassKeyOfStyles<StylesType>>;
+  classes?: Partial<ClassNameMap<ClassKeyOfStyles<StylesType>>>;
 } & PropsOfStyles<StylesType>;
 
 export interface StyledComponentProps<ClassKey extends string = string> {
