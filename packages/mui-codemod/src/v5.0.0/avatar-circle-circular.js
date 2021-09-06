@@ -20,7 +20,7 @@ export default function transformer(file, api, options) {
         }
 
         if (node.type === 'JSXAttribute' && node.name.name === 'classes') {
-          node.value.expression.properties.forEach((subNode) => {
+          node.value?.expression?.properties?.forEach((subNode) => {
             if (subNode.key.name === 'circle') {
               subNode.key.name = 'circular';
             }

@@ -24,14 +24,14 @@ export default function transformer(file, api, options) {
 
   root.findJSXElements('TablePagination').forEach(({ node }) => {
     node.openingElement.attributes.forEach((attr) => {
-      if (attr.name.name === 'onChangeRowsPerPage') {
+      if (attr.type === 'JSXAttribute' && attr.name.name === 'onChangeRowsPerPage') {
         attr.name.name = 'onRowsPerPageChange';
       }
-      if (attr.name.name === 'onChangePage') {
+      if (attr.type === 'JSXAttribute' && attr.name?.name === 'onChangePage') {
         attr.name.name = 'onPageChange';
       }
 
-      if (attr.type === 'JSXAttribute' && attr.name.name === 'classes') {
+      if (attr.type === 'JSXAttribute' && attr.name?.name === 'classes') {
         (attr.value.expression.properties || []).forEach((subNode) => {
           if (subNode.key.name === 'input') {
             subNode.key.name = 'select';
