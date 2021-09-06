@@ -49,8 +49,8 @@ const CustomContent = React.forwardRef(function CustomContent(
   };
 
   return (
-    <button
-      type="button"
+    /* @ts-ignore -- Key event is handled by the TreeView */
+    <Box
       className={clsx(className, classes.root, {
         [classes.expanded]: expanded,
         [classes.selected]: selected,
@@ -95,7 +95,7 @@ const CustomContent = React.forwardRef(function CustomContent(
         {label}
       </Typography>
       {icon}
-    </button>
+    </Box>
   );
 });
 

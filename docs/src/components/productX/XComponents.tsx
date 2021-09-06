@@ -15,6 +15,7 @@ import ShowChartRounded from '@mui/icons-material/ShowChartRounded';
 import BarChartRounded from '@mui/icons-material/BarChartRounded';
 import XGridFullDemo from 'docs/src/components/productX/XGridFullDemo';
 import XDateRangeDemo from 'docs/src/components/productX/XDateRangeDemo';
+import XTreeViewDemo from 'docs/src/components/productX/XTreeViewDemo';
 import More from 'docs/src/components/action/More';
 import ROUTES from 'docs/src/route';
 
@@ -45,13 +46,8 @@ export default function XComponents() {
             />
           </Box>
           <Group desktopColumns={2} sx={{ mt: 4 }}>
-            {DEMOS.map((name, index) => (
-              <Highlighter
-                disabled={![0, 1].includes(index)}
-                key={name}
-                selected={name === demo}
-                onClick={() => setDemo(name)}
-              >
+            {DEMOS.map((name) => (
+              <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>
                 <Item icon={React.cloneElement(icons[name])} title={name} />
               </Highlighter>
             ))}
@@ -70,6 +66,13 @@ export default function XComponents() {
             <Fade in timeout={500}>
               <Box>
                 <XDateRangeDemo />
+              </Box>
+            </Fade>
+          )}
+          {demo === DEMOS[2] && (
+            <Fade in timeout={500}>
+              <Box>
+                <XTreeViewDemo />
               </Box>
             </Fade>
           )}
