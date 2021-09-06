@@ -21,6 +21,8 @@ import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import FlashCode from 'docs/src/components/animation/FlashCode';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
+import StylingInfo from 'docs/src/components/action/StylingInfo';
+import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 
 const DEMOS = ['Editing', 'Selection', 'Sorting', 'Pagination', 'Filtering'] as const;
@@ -68,8 +70,10 @@ export default function XDataGrid() {
   });
   const firstRowId = data.rows[0]?.id;
   React.useEffect(() => {
-    if (gridApiRef.current && !loading) {
-      gridApiRef.current.scroll({ top: 0, left: 0 });
+    if (gridApiRef && gridApiRef.current && !loading) {
+      if (demo) {
+        gridApiRef.current.scroll({ top: 0, left: 0 });
+      }
       if (demo === DEMOS[0]) {
         document.body.focus();
         setTimeout(() => {
@@ -206,6 +210,7 @@ export default function XDataGrid() {
                   display: 'none',
                 },
               },
+              overflow: 'hidden',
             }}
           >
             <Box sx={{ position: 'relative' }}>
@@ -213,6 +218,25 @@ export default function XDataGrid() {
                 <HighlightedCode component={MarkdownElement} code={code} language="jsx" />
               </Box>
               {demo && <FlashCode startLine={startLine[demo]} sx={{ mx: -2 }} />}
+              <StylingInfo
+                appeared={demo === DEMOS[3]}
+                content={
+                  <React.Fragment>
+                    <Typography fontWeight="bold" color="#fff" variant="body2">
+                      Pagination &gt; 100 rows per page is a paid feature!
+                    </Typography>
+                    <Typography color="grey.400" variant="body2">
+                      The Data Grid and all other MUI X components are available on free and paid
+                      versions. For more details about each plan and its features, check{' '}
+                      <Link href={ROUTES.pricing} sx={{ color: 'primary.300' }}>
+                        the pricing page
+                      </Link>
+                      .
+                    </Typography>
+                  </React.Fragment>
+                }
+                sx={{ mx: -2, mb: -1 }}
+              />
             </Box>
           </Frame.Info>
         </Grid>
