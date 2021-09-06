@@ -13,7 +13,7 @@ const ROUTES = {
   pricing: '/branding/pricing/',
   blog: '/blog/',
   showcase: '/discover-more/showcase',
-  roadmap: '/discover-more/roadmap',
+  roadmap: 'https://github.com/mui-org/material-ui-x/projects/1',
   languages: '/discover-more/languages',
   about: '/branding/about/',
   vision: '/discover-more/vision/',
