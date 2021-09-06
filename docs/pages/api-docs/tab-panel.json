@@ -9,7 +9,7 @@
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTabPanel" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui-lab/src/TabPanel/TabPanel.js",
+  "filename": "/packages/mui-lab/src/TabPanel/TabPanel.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tabs/\">Tabs</a></li></ul>",
   "styledComponent": true,

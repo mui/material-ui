@@ -19,7 +19,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/CardHeader/CardHeader.js",
+  "filename": "/packages/mui-material/src/CardHeader/CardHeader.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/cards/\">Cards</a></li></ul>",
   "styledComponent": true,

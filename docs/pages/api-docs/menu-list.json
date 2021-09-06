@@ -14,7 +14,7 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLUListElement",
-  "filename": "/packages/material-ui/src/MenuList/MenuList.js",
+  "filename": "/packages/mui-material/src/MenuList/MenuList.js",
   "inheritance": { "component": "List", "pathname": "/api/list/" },
   "demos": "<ul><li><a href=\"/components/menus/\">Menus</a></li></ul>",
   "styledComponent": true,

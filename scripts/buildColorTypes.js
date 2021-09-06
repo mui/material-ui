@@ -10,7 +10,7 @@ function getColorHref(name, variant) {
 }
 
 function buildColorType(name, variants) {
-  const typesFilename = path.resolve(__dirname, `../packages/material-ui/src/colors/${name}.d.ts`);
+  const typesFilename = path.resolve(__dirname, `../packages/mui-material/src/colors/${name}.d.ts`);
 
   const typescript = `/* tslint:disable max-line-length */
 /**
