@@ -159,7 +159,7 @@ const CustomTreeItem = (
 export default function FolderTreeView() {
   return (
     <TreeView
-      aria-label="gmail"
+      aria-label="folder"
       defaultExpanded={['1', '2', '5']}
       defaultCollapseIcon={<KeyboardArrowUpRounded sx={{ fontSize: 16, color: 'primary.main' }} />}
       defaultExpandIcon={<KeyboardArrowDownRounded sx={{ fontSize: 16, color: 'grey.600' }} />}
