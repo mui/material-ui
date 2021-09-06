@@ -8,4 +8,9 @@
   />
   <Table padding="normal" />
   <TableCell padding="normal" />
+  <TablePagination
+    onRowsPerPageChange={() => {}}
+    onPageChange={() =>{}}
+    {...props}
+  />
 </>;
