@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { XGrid, GridToolbar } from '@material-ui/x-grid';
-import { useDemoData } from '@material-ui/x-grid-data-generator';
+import { DataGridPro, GridToolbar } from '@mui/x-data-grid-pro';
+import { useDemoData } from '@mui/x-data-grid-generator';
 import { ThemeProvider } from '@mui/material/styles';
 import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
@@ -190,7 +190,7 @@ export default function XGridFullDemo() {
             },
           }}
         >
-          <XGrid
+          <DataGridPro
             density="compact"
             {...data}
             components={{

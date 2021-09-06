@@ -1,6 +1,11 @@
 import * as React from 'react';
-import { XGrid, GridColDef, GridCellParams } from '@material-ui/x-grid';
-import { useDemoData } from '@material-ui/x-grid-data-generator';
+import {
+  DataGridPro,
+  GridColDef,
+  GridCellParams,
+  GridRenderEditCellParams,
+} from '@mui/x-data-grid-pro';
+import { useDemoData } from '@mui/x-data-grid-generator';
 import { createTheme, ThemeProvider, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -66,7 +71,7 @@ export default function XTheming() {
           renderCell: (params: GridCellParams) => {
             return <ProgressBar value={Number(params.value)!} />;
           },
-          renderEditCell: (params: GridCellParams) => {
+          renderEditCell: (params: GridRenderEditCellParams) => {
             return <EditProgress {...params} />;
           },
         }),
@@ -82,7 +87,7 @@ export default function XTheming() {
           renderCell: (params: GridCellParams) => {
             return <Status status={(params.value || '').toString()} />;
           },
-          renderEditCell: (params: GridCellParams) => {
+          renderEditCell: (params: GridRenderEditCellParams) => {
             return <EditStatus {...params} />;
           },
         }),
@@ -134,7 +139,7 @@ export default function XTheming() {
               }}
             >
               {dataGridStyleOverrides}
-              <XGrid
+              <DataGridPro
                 {...data}
                 columns={getColumns()}
                 disableSelectionOnClick
@@ -154,7 +159,7 @@ export default function XTheming() {
               }}
             >
               <Paper elevation={0} sx={{ height: 418 }}>
-                <XGrid
+                <DataGridPro
                   {...data}
                   columns={getColumns()}
                   disableSelectionOnClick

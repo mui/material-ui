@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { GridCellParams } from '@material-ui/data-grid';
+import { GridRenderEditCellParams } from '@mui/x-data-grid';
 import { debounce } from '@mui/material/utils';
 import { alpha } from '@mui/material/styles';
 import Slider from '@mui/material/Slider';
@@ -18,7 +18,7 @@ function ValueLabelComponent(props: {
   );
 }
 
-export default function EditProgress(props: GridCellParams) {
+export default function EditProgress(props: GridRenderEditCellParams) {
   const { id, value, api, field } = props;
   const [valueState, setValueState] = React.useState(Number(value));
 

@@ -66,9 +66,9 @@ module.exports = {
           const { request } = ctx;
           const hasDependencyOnRepoPackages = [
             'notistack',
-            '@material-ui/data-grid',
-            '@material-ui/x-grid',
-            '@material-ui/x-grid-data-generator',
+            '@mui/x-data-grid',
+            '@mui/x-data-grid-pro',
+            '@mui/x-data-grid-generator',
             '@material-ui/x-license',
           ].includes(request);
 
@@ -111,7 +111,7 @@ module.exports = {
           {
             test: /\.(js|mjs|jsx)$/,
             include:
-              /node_modules(\/|\\)(notistack|@material-ui(\/|\\)data-grid|@material-ui(\/|\\)x-grid|@material-ui(\/|\\)x-license|@material-ui(\/|\\)x-grid-data-generator)/,
+              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator)/,
             use: {
               loader: 'babel-loader',
               options: {
