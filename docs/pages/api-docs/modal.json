@@ -9,6 +9,7 @@
     "BackdropProps": { "type": { "name": "object" } },
     "classes": { "type": { "name": "object" } },
     "closeAfterTransition": { "type": { "name": "bool" } },
+    "component": { "type": { "name": "elementType" } },
     "components": {
       "type": { "name": "shape", "description": "{ Root?: elementType }" },
       "default": "{}"

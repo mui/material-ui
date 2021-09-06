@@ -55,7 +55,7 @@ function getUnstyledFilename(filename, definitionFile = false) {
     } else {
       unstyledFile = unstyledFile.replace(
         /packages\\mui-lab|packages\\mui-material/g,
-        'packages\\mui-unstyled',
+        'packages\\mui-core',
       );
     }
 

@@ -17,6 +17,7 @@
       },
       "default": "'default'"
     },
+    "component": { "type": { "name": "elementType" } },
     "components": {
       "type": { "name": "shape", "description": "{ Badge?: elementType, Root?: elementType }" },
       "default": "{}"
