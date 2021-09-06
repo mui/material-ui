@@ -20,7 +20,7 @@ import PendingActionsRounded from '@mui/icons-material/PendingActions';
 import SpeedRounded from '@mui/icons-material/SpeedRounded';
 
 export default function XRoadmap() {
-  function renderList(content: React.ReactElement) {
+  function renderList(content: React.ReactElement, nested?: boolean) {
     return (
       <Box
         sx={{
@@ -29,6 +29,19 @@ export default function XRoadmap() {
           alignItems: 'center',
           gap: 2,
           gridTemplateColumns: 'max-content 1fr',
+          position: 'relative',
+          ...(nested && {
+            '&:before': {
+              content: '""',
+              display: 'block',
+              position: 'absolute',
+              width: 2,
+              bgcolor: 'primaryDark.400',
+              top: 24,
+              bottom: 10,
+              left: 10,
+            },
+          }),
         }}
       >
         {content}
@@ -65,8 +78,8 @@ export default function XRoadmap() {
     <ThemeProvider theme={brandingDarkTheme}>
       <Section bg="dim">
         <Box sx={{ py: 4 }}>
-          <Grid container spacing={2} alignItems="center">
-            <Grid item xs={12} md={6}>
+          <Grid container spacing={2} alignItems="center" justifyContent="space-between">
+            <Grid item xs={12} md={5}>
               <Box maxWidth={500}>
                 <SectionHeadline
                   overline="Roadmap"
@@ -85,26 +98,26 @@ export default function XRoadmap() {
                 </Button>
               </Box>
             </Grid>
-            <Grid item xs={12} md={6} sx={{ minWidth: 0 }}>
-              <Box
-                sx={{
-                  display: 'grid',
-                  mt: { xs: 2, sm: 0 },
-                  overflow: { xs: 'auto', lg: 'unset' },
-                  gap: 2,
-                  alignItems: 'flex-start',
-                  gridTemplateColumns: { xs: 'repeat(1)', lg: 'repeat(3, minmax(200px, 1fr))' },
-                  typography: 'body2',
-                  '& .MuiPaper-root': {
-                    p: 2,
-                    bgcolor: 'primaryDark.600',
-                  },
-                  '& svg': {
-                    color: 'primary.300',
-                  },
-                }}
-              >
-                <Paper variant="outlined">
+            <Grid
+              item
+              xs={12}
+              md={7}
+              lg="auto"
+              container
+              spacing={2}
+              sx={{
+                typography: 'body2',
+                '& .MuiPaper-root': {
+                  p: 2,
+                  bgcolor: 'primaryDark.600',
+                },
+                '& svg': {
+                  color: 'primary.300',
+                },
+              }}
+            >
+              <Grid item xs={12} sm={4} lg="auto">
+                <Paper variant="outlined" sx={{ minWidth: { lg: 180 } }}>
                   <Box sx={{ fontWeight: 'bold' }}>In the lab:</Box>
                   <Box sx={{ color: (theme) => theme.palette.text.secondary }}>
                     Almost ready to go.
@@ -120,7 +133,9 @@ export default function XRoadmap() {
                     </React.Fragment>,
                   )}
                 </Paper>
-                <Paper variant="outlined">
+              </Grid>
+              <Grid item xs={12} sm={4} lg="auto">
+                <Paper variant="outlined" sx={{ minWidth: { lg: 180 } }}>
                   <Box sx={{ fontWeight: 'bold' }}>Working in progress</Box>
                   <Box sx={{ color: (theme) => theme.palette.text.secondary }}>Getting there.</Box>
                   {renderList(
@@ -128,17 +143,6 @@ export default function XRoadmap() {
                       <Box
                         sx={{
                           lineHeight: 0,
-                          position: 'relative',
-                          '&:before': {
-                            content: '""',
-                            display: 'block',
-                            position: 'absolute',
-                            height: 155,
-                            width: 2,
-                            bgcolor: 'primaryDark.400',
-                            bottom: 0,
-                            transform: 'translate(10px, 100%)',
-                          },
                         }}
                       >
                         <TableChartRounded fontSize="small" />
@@ -158,9 +162,12 @@ export default function XRoadmap() {
                         And more!
                       </Link>
                     </React.Fragment>,
+                    true,
                   )}
                 </Paper>
-                <Paper variant="outlined">
+              </Grid>
+              <Grid item xs={12} sm={4} lg="auto">
+                <Paper variant="outlined" sx={{ minWidth: { lg: 180 } }}>
                   <Box sx={{ fontWeight: 'bold' }}>On the list</Box>
                   <Box sx={{ color: (theme) => theme.palette.text.secondary }}>
                     Sometime soon...
@@ -180,7 +187,7 @@ export default function XRoadmap() {
                     </React.Fragment>,
                   )}
                 </Paper>
-              </Box>
+              </Grid>
             </Grid>
           </Grid>
         </Box>
