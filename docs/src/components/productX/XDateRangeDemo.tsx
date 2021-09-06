@@ -55,7 +55,6 @@ export default function XDateRangeDemo() {
           }}
         >
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            {/* @ts-ignore - renderInput is unnecessary */}
             <StaticDateRangePicker
               displayStaticWrapperAs="desktop"
               value={value}

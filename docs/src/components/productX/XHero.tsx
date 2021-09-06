@@ -105,7 +105,7 @@ export default function XHero() {
                   '& .MuiDataGrid-viewport': {
                     '& .MuiDataGrid-cell': {
                       fontSize: '0.875rem',
-                      color: (theme) => theme.palette.text.secondary,
+                      color: 'text.secondary',
                     },
                     '& .MuiInputBase-input': {
                       fontSize: '0.875rem',
@@ -169,7 +169,6 @@ export default function XHero() {
               }}
             >
               <LocalizationProvider dateAdapter={AdapterDateFns}>
-                {/* @ts-ignore - renderInput is unnecessary */}
                 <StaticDateRangePicker
                   displayStaticWrapperAs="desktop"
                   value={value}
