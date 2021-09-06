@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
 import Grid from '@mui/material/Grid';
 import Chip from '@mui/material/Chip';
+import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import Section from 'docs/src/layouts/Section';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
@@ -87,62 +88,87 @@ export default function XComponents() {
                 <Frame sx={{ height: '100%' }}>
                   <Frame.Demo sx={{ p: 2, flexGrow: 1 }}>
                     <Box sx={{ textAlign: 'right', mb: 2, lineHeight: 1 }}>
-                      <Chip variant="outlined" label="PNG Preview" size="small" />
+                      <Tooltip title="This is just a marketing example image. The actual component might be different once implemented.">
+                        <Chip label="PNG Preview" size="small" sx={{fontWeight: 500}}/>
+                      </Tooltip>
                     </Box>
                     <Box
                       sx={{
                         display: 'flex',
                         justifyContent: 'center',
                         overflow: 'auto',
+                        minWidth: '100%',
                         '& img': {
-                          maxHeight: 160,
-                          maxWidth: 240,
-                          '&:not(:first-of-type)': { marginLeft: 2 },
+                          maxHeight: 220,
+                          minWidth: '50%',
+                          objectFit: 'contain',
                         },
                       }}
                     >
                       {demo === DEMOS[3] && (
                         <React.Fragment>
-                          <img
-                            alt="sparkline 1"
-                            src="/static/branding/mui-x/sparkline1.png"
-                            loading="lazy"
-                            height="160"
-                          />
-                          <img
-                            alt="sparkline 2"
-                            src="/static/branding/mui-x/sparkline2.png"
-                            loading="lazy"
-                            height="160"
-                          />
+                          <Box sx={{display: 'flex', flexDirection: {xs: 'column', sm: 'row'}, justifyContent: 'center'}}>
+                            <img
+                              alt="sparkline 1"
+                              src="/static/branding/mui-x/sparkline1.png"
+                              loading="lazy"
+                              height="220"
+                            />
+                            <Box sx={{ml: {xs: 0, sm: 4}, mt: {xs: 2, sm: 0}}}>
+                              <img
+                                alt="sparkline 2"
+                                src="/static/branding/mui-x/sparkline2.png"
+                                loading="lazy"
+                                height="220"
+                              />
+                            </Box>
+                          </Box>
                         </React.Fragment>
                       )}
                       {demo === DEMOS[4] && (
                         <React.Fragment>
-                          <img
-                            alt="chart 1"
-                            src="/static/branding/mui-x/chart1.png"
-                            loading="lazy"
-                            height="132"
-                          />
-                          <img
-                            alt="chart 2"
-                            src="/static/branding/mui-x/chart2.png"
-                            loading="lazy"
-                            height="132"
-                          />
+                          <Grid container spacing={1}>
+                            <Grid item md={6} sx={{textAlign: {xs: 'center', sm: 'end'}}}>
+                                <img
+                                  alt="chart 1"
+                                  src="/static/branding/mui-x/chart1.png"
+                                  loading="lazy"
+                                  height="120"
+                                />
+                                <img
+                                  alt="chart 2"
+                                  src="/static/branding/mui-x/chart2.png"
+                                  loading="lazy"
+                                  height="120"
+                                />
+                              </Grid>
+                              <Grid item md={6} sx={{textAlign: {xs: 'center', sm: 'start'}}}>
+                                <img
+                                  alt="chart 3"
+                                  src="/static/branding/mui-x/chart3.png"
+                                  loading="lazy"
+                                  height="120"
+                                />
+                                <img
+                                  alt="chart 4"
+                                  src="/static/branding/mui-x/chart4.png"
+                                  loading="lazy"
+                                  height="120"
+                                />
+                            </Grid>
+                          </Grid>
                         </React.Fragment>
                       )}
                     </Box>
                   </Frame.Demo>
                   <ThemeProvider theme={brandingDarkTheme}>
                     <Frame.Info>
-                      <Typography fontWeight="bold">Coming soon!</Typography>
-                      <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                      <Typography variant="body2" fontWeight="bold">Coming soon!</Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ mt: 1, mb: 1 }}>
                         Subscribe to our newsletter to get first-hand info about the development and
                         release of new components.
                       </Typography>
-                      <EmailSubscribe sx={{ '& > div': { maxWidth: 'initial' } }} />
+                      <EmailSubscribe sx={{ '& > div': { maxWidth: 'initial', border: '1px solid', borderColor: 'primaryDark.600' } }} />
                     </Frame.Info>
                   </ThemeProvider>
                 </Frame>
