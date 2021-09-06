@@ -76,6 +76,8 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
     icon,
     label,
     onChange,
+    onTouchStart,
+    onTouchEnd,
     onClick,
     // eslint-disable-next-line react/prop-types -- private, always overridden by BottomNavigation
     selected,
@@ -87,7 +89,54 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
   const ownerState = props;
   const classes = useUtilityClasses(ownerState);
 
+  const touchStartPos = React.useRef();
+  const touchTimer = React.useRef();
+
+  React.useEffect(() => {
+    return () => {
+      clearTimeout(touchTimer.current);
+    };
+  }, [touchTimer]);
+
+  const handleTouchStart = (event) => {
+    if (onTouchStart) {
+      onTouchStart(event);
+    }
+
+    const { clientX, clientY } = event.touches[0];
+
+    touchStartPos.current = {
+      clientX,
+      clientY,
+    };
+  };
+
+  const handleTouchEnd = (event) => {
+    if (onTouchEnd) {
+      onTouchEnd(event);
+    }
+
+    const target = event.target;
+    const { clientX, clientY } = event.changedTouches[0];
+
+    if (
+      Math.abs(clientX - touchStartPos.current.clientX) < 10 &&
+      Math.abs(clientY - touchStartPos.current.clientY) < 10
+    ) {
+      touchTimer.current = setTimeout(() => {
+        // Simulate the native tap behavior on mobile.
+        // On the web, a tap won't trigger a click if a container is scrolling.
+        //
+        // Note that the synthetic behavior won't trigger a native <a> nor
+        // it will trigger a click at all on iOS.
+        target.dispatchEvent(new window.Event('click', { bubbles: true }));
+      }, 10);
+    }
+  };
+
   const handleChange = (event) => {
+    clearTimeout(touchTimer.current);
+
     if (onChange) {
       onChange(event, value);
     }
@@ -104,6 +153,8 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
       focusRipple
       onClick={handleChange}
       ownerState={ownerState}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
       {...other}
     >
       {icon}
@@ -148,6 +199,14 @@ BottomNavigationAction.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onClick: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onTouchEnd: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onTouchStart: PropTypes.func,
   /**
    * If `true`, the `BottomNavigationAction` will show its label.
    * By default, only the selected `BottomNavigationAction`
