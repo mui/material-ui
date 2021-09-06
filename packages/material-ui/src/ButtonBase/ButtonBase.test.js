@@ -522,7 +522,7 @@ describe('<ButtonBase />', () => {
         expect(container.querySelectorAll('.ripple-pulsate')).to.have.lengthOf(1);
       });
 
-      it('should stop the ripple on blur even if disableTouchRipple is set', () => {
+      it('should stop the ripple on blur if disableTouchRipple is set', () => {
         const buttonActions = React.createRef();
 
         const { getByRole } = render(
