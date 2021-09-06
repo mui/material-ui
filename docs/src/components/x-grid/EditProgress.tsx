@@ -45,7 +45,10 @@ export default function EditProgress(props: GridCellParams) {
 
   const handleRef = (element: any) => {
     if (element) {
-      element.querySelector('[role="slider"]')?.focus();
+      const input = element.querySelector('input') as null | HTMLInputElement;
+      if (input) {
+        input.focus();
+      }
     }
   };
 

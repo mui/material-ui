@@ -185,7 +185,7 @@ export default function FolderTreeView() {
             label="job-mapping.js"
             ContentProps={{ lastNestedChild: true }}
           />
-          <CustomTreeItem nodeId="6" label="articles.js" ContentProps={{ lastNestedChild: true }} />
+          <CustomTreeItem nodeId="7" label="articles.js" ContentProps={{ lastNestedChild: true }} />
         </CustomTreeItem>
       </CustomTreeItem>
     </TreeView>
