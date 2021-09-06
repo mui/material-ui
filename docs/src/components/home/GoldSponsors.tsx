@@ -121,9 +121,11 @@ export default function GoldSponsors() {
                 Become our sponsor!
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                To join us, <Link href={ROUTES.goldSponsor} target="_blank" rel="noopener noreferrer">
+                To join us,{' '}
+                <Link href={ROUTES.goldSponsor} target="_blank" rel="noopener noreferrer">
                   choose how
-                </Link>{' '}you want to contribute.
+                </Link>{' '}
+                you want to contribute.
               </Typography>
             </Box>
           </Paper>
