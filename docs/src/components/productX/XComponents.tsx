@@ -88,7 +88,7 @@ export default function XComponents() {
                 <Frame sx={{ height: '100%' }}>
                   <Frame.Demo sx={{ p: 2, flexGrow: 1 }}>
                     <Box sx={{ textAlign: 'right', mb: 2, lineHeight: 1 }}>
-                      <Tooltip title="This is just a marketing example image. The actual component might be different once implemented.">
+                      <Tooltip title="This is just a marketing example image. The actual component might be difference once developed and released.">
                         <Chip label="PNG Preview" size="small" sx={{ fontWeight: 500 }} />
                       </Tooltip>
                     </Box>
