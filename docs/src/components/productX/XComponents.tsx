@@ -89,7 +89,7 @@ export default function XComponents() {
                   <Frame.Demo sx={{ p: 2, flexGrow: 1 }}>
                     <Box sx={{ textAlign: 'right', mb: 2, lineHeight: 1 }}>
                       <Tooltip title="This is just a marketing example image. The actual component might be different once implemented.">
-                        <Chip label="PNG Preview" size="small" sx={{fontWeight: 500}}/>
+                        <Chip label="PNG Preview" size="small" sx={{ fontWeight: 500 }} />
                       </Tooltip>
                     </Box>
                     <Box
@@ -107,14 +107,20 @@ export default function XComponents() {
                     >
                       {demo === DEMOS[3] && (
                         <React.Fragment>
-                          <Box sx={{display: 'flex', flexDirection: {xs: 'column', sm: 'row'}, justifyContent: 'center'}}>
+                          <Box
+                            sx={{
+                              display: 'flex',
+                              flexDirection: { xs: 'column', sm: 'row' },
+                              justifyContent: 'center',
+                            }}
+                          >
                             <img
                               alt="sparkline 1"
                               src="/static/branding/mui-x/sparkline1.png"
                               loading="lazy"
                               height="220"
                             />
-                            <Box sx={{ml: {xs: 0, sm: 4}, mt: {xs: 2, sm: 0}}}>
+                            <Box sx={{ ml: { xs: 0, sm: 4 }, mt: { xs: 2, sm: 0 } }}>
                               <img
                                 alt="sparkline 2"
                                 src="/static/branding/mui-x/sparkline2.png"
@@ -128,33 +134,33 @@ export default function XComponents() {
                       {demo === DEMOS[4] && (
                         <React.Fragment>
                           <Grid container spacing={1}>
-                            <Grid item md={6} sx={{textAlign: {xs: 'center', sm: 'end'}}}>
-                                <img
-                                  alt="chart 1"
-                                  src="/static/branding/mui-x/chart1.png"
-                                  loading="lazy"
-                                  height="120"
-                                />
-                                <img
-                                  alt="chart 2"
-                                  src="/static/branding/mui-x/chart2.png"
-                                  loading="lazy"
-                                  height="120"
-                                />
-                              </Grid>
-                              <Grid item md={6} sx={{textAlign: {xs: 'center', sm: 'start'}}}>
-                                <img
-                                  alt="chart 3"
-                                  src="/static/branding/mui-x/chart3.png"
-                                  loading="lazy"
-                                  height="120"
-                                />
-                                <img
-                                  alt="chart 4"
-                                  src="/static/branding/mui-x/chart4.png"
-                                  loading="lazy"
-                                  height="120"
-                                />
+                            <Grid item md={6} sx={{ textAlign: { xs: 'center', sm: 'end' } }}>
+                              <img
+                                alt="chart 1"
+                                src="/static/branding/mui-x/chart1.png"
+                                loading="lazy"
+                                height="120"
+                              />
+                              <img
+                                alt="chart 2"
+                                src="/static/branding/mui-x/chart2.png"
+                                loading="lazy"
+                                height="120"
+                              />
+                            </Grid>
+                            <Grid item md={6} sx={{ textAlign: { xs: 'center', sm: 'start' } }}>
+                              <img
+                                alt="chart 3"
+                                src="/static/branding/mui-x/chart3.png"
+                                loading="lazy"
+                                height="120"
+                              />
+                              <img
+                                alt="chart 4"
+                                src="/static/branding/mui-x/chart4.png"
+                                loading="lazy"
+                                height="120"
+                              />
                             </Grid>
                           </Grid>
                         </React.Fragment>
@@ -163,12 +169,22 @@ export default function XComponents() {
                   </Frame.Demo>
                   <ThemeProvider theme={brandingDarkTheme}>
                     <Frame.Info>
-                      <Typography variant="body2" fontWeight="bold">Coming soon!</Typography>
+                      <Typography variant="body2" fontWeight="bold">
+                        Coming soon!
+                      </Typography>
                       <Typography variant="body2" color="text.secondary" sx={{ mt: 1, mb: 1 }}>
                         Subscribe to our newsletter to get first-hand info about the development and
                         release of new components.
                       </Typography>
-                      <EmailSubscribe sx={{ '& > div': { maxWidth: 'initial', border: '1px solid', borderColor: 'primaryDark.600' } }} />
+                      <EmailSubscribe
+                        sx={{
+                          '& > div': {
+                            maxWidth: 'initial',
+                            border: '1px solid',
+                            borderColor: 'primaryDark.600',
+                          },
+                        }}
+                      />
                     </Frame.Info>
                   </ThemeProvider>
                 </Frame>

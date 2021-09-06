@@ -244,7 +244,11 @@ export default function XDateRangeDemo() {
               </TreeItem>
             </TreeItem>
             <TreeItem nodeId="2" label="Favorite">
-              <TreeItem nodeId="2.1" label="MUI Retreat Picture.jpg" ContentProps={{ lastNestedChild: true }} />
+              <TreeItem
+                nodeId="2.1"
+                label="MUI Retreat Picture.jpg"
+                ContentProps={{ lastNestedChild: true }}
+              />
               <TreeItem
                 nodeId="2.2"
                 label="v5 launch video.mkv"
