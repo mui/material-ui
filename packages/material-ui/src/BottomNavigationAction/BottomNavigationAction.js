@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/core';
+import { DELAY_RIPPLE } from '../ButtonBase/TouchRipple';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import ButtonBase from '../ButtonBase';
@@ -130,7 +131,7 @@ const BottomNavigationAction = React.forwardRef(function BottomNavigationAction(
         // Note that the synthetic behavior won't trigger a native <a> nor
         // it will trigger a click at all on iOS.
         target.dispatchEvent(new window.Event('click', { bubbles: true }));
-      }, 10);
+      }, DELAY_RIPPLE);
     }
   };
 

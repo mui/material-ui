@@ -122,7 +122,7 @@ describe('<BottomNavigationAction />', () => {
         ],
       });
 
-      clock.tick(15);
+      clock.tick(100);
 
       expect(handleClick.callCount).to.equal(1);
     });
@@ -159,7 +159,7 @@ describe('<BottomNavigationAction />', () => {
 
       getByRole('button').click();
 
-      clock.tick(15);
+      clock.tick(100);
 
       expect(handleClick.callCount).to.equal(1);
     });
