@@ -119,9 +119,7 @@ export default function XRoadmap() {
               <Grid item xs={12} sm={4} lg="auto">
                 <Paper variant="outlined" sx={{ minWidth: { lg: 180 } }}>
                   <Box sx={{ fontWeight: 'bold' }}>In the lab:</Box>
-                  <Box sx={{ color: (theme) => theme.palette.text.secondary }}>
-                    Almost ready to go.
-                  </Box>
+                  <Box sx={{ color: 'text.secondary' }}>Almost ready to go.</Box>
                   {renderList(
                     <React.Fragment>
                       <TableChartRounded fontSize="small" />
@@ -137,7 +135,7 @@ export default function XRoadmap() {
               <Grid item xs={12} sm={4} lg="auto">
                 <Paper variant="outlined" sx={{ minWidth: { lg: 180 } }}>
                   <Box sx={{ fontWeight: 'bold' }}>Working in progress</Box>
-                  <Box sx={{ color: (theme) => theme.palette.text.secondary }}>Getting there.</Box>
+                  <Box sx={{ color: 'text.secondary' }}>Getting there.</Box>
                   {renderList(
                     <React.Fragment>
                       <Box
@@ -155,10 +153,7 @@ export default function XRoadmap() {
                       {bullet}
                       <b>Column pinning</b>
                       {bullet}
-                      <Link
-                        href={ROUTES.dataGridFeatures}
-                        sx={{ color: (theme) => theme.palette.primary[300] }}
-                      >
+                      <Link href={ROUTES.dataGridFeatures} sx={{ color: 'primary.300' }}>
                         And more!
                       </Link>
                     </React.Fragment>,
@@ -169,7 +164,7 @@ export default function XRoadmap() {
               <Grid item xs={12} sm={4} lg="auto">
                 <Paper variant="outlined" sx={{ minWidth: { lg: 180 } }}>
                   <Box sx={{ fontWeight: 'bold' }}>On the list</Box>
-                  <Box sx={{ color: (theme) => theme.palette.text.secondary }}>Sometime soon…</Box>
+                  <Box sx={{ color: 'text.secondary' }}>Sometime soon…</Box>
                   {renderList(
                     <React.Fragment>
                       <ShowChartRounded fontSize="small" />
