@@ -2,7 +2,13 @@ import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';
 
-export default function XGridGlobalStyles({ selector = 'body' }: { selector?: string }) {
+export default function XGridGlobalStyles({
+  selector = 'body',
+  pro = false,
+}: {
+  selector?: string;
+  pro?: boolean;
+}) {
   const theme = useTheme();
   return (
     <GlobalStyles
@@ -10,7 +16,6 @@ export default function XGridGlobalStyles({ selector = 'body' }: { selector?: st
         [selector]: {
           '& .MuiDataGrid-root': {
             border: 'none',
-            bgcolor: 'background.paper',
             fontSize: '0.75rem',
             borderRadius: '0px',
             '& .MuiCheckbox-root': {
@@ -45,7 +50,17 @@ export default function XGridGlobalStyles({ selector = 'body' }: { selector?: st
               padding: 0,
             },
             '& .MuiDataGrid-columnSeparator': {
-              display: 'none',
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[400]
+                  : theme.palette.grey[200],
+              '&:hover': {
+                color:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[100]
+                    : theme.palette.grey[800],
+              },
+              ...(!pro && { display: 'none' }),
             },
             '& .MuiDataGrid-columnHeaderTitle': {
               flexGrow: 1,

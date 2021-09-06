@@ -22,6 +22,8 @@ import EditStatus from 'docs/src/components/x-grid/EditStatus';
 const lightTheme = createTheme();
 const darkTheme = createTheme({ palette: { mode: 'dark' } });
 
+const dataGridStyleOverrides = <XGridGlobalStyles selector="#data-grid-theming" pro />;
+
 export default function XTheming() {
   const [customized, setCustomized] = React.useState(true);
   const { loading, data } = useDemoData({
@@ -123,6 +125,7 @@ export default function XTheming() {
         <Grid item xs={12} md={6}>
           {customized ? (
             <Paper
+              id="data-grid-theming"
               variant="outlined"
               sx={{
                 height: 418,
@@ -130,7 +133,7 @@ export default function XTheming() {
                   theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200',
               }}
             >
-              <XGridGlobalStyles />
+              {dataGridStyleOverrides}
               <XGrid
                 {...data}
                 columns={getColumns()}

@@ -95,9 +95,6 @@ export default function XHero() {
                   '& .MuiDataGrid-columnHeaderTitleContainer': {
                     padding: 0,
                   },
-                  '& .MuiDataGrid-columnSeparator': {
-                    display: 'none',
-                  },
                   '& .MuiDataGrid-columnHeaderTitle': {
                     flexGrow: 1,
                     fontSize: '0.875rem',

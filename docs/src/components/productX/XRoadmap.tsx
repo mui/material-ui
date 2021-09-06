@@ -169,9 +169,7 @@ export default function XRoadmap() {
               <Grid item xs={12} sm={4} lg="auto">
                 <Paper variant="outlined" sx={{ minWidth: { lg: 180 } }}>
                   <Box sx={{ fontWeight: 'bold' }}>On the list</Box>
-                  <Box sx={{ color: (theme) => theme.palette.text.secondary }}>
-                    Sometime soon...
-                  </Box>
+                  <Box sx={{ color: (theme) => theme.palette.text.secondary }}>Sometime soon…</Box>
                   {renderList(
                     <React.Fragment>
                       <ShowChartRounded fontSize="small" />

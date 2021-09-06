@@ -13,7 +13,7 @@ import Frame from 'docs/src/components/action/Frame';
 import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
 
-const dataGridStyleOverrides = <XGridGlobalStyles selector="#data-grid-full" />;
+const dataGridStyleOverrides = <XGridGlobalStyles selector="#data-grid-full" pro />;
 
 type GridDataType = 'Employee' | 'Commodity';
 

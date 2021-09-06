@@ -48,7 +48,7 @@ const startLine = {
   [DEMOS[4]]: 7,
 };
 
-const dataGridStyleOverrides = <XGridGlobalStyles selector="#data-grid-demo" />;
+const dataGridStyleOverrides = <XGridGlobalStyles selector="#data-grid-demo" pro />;
 
 export default function XDataGrid() {
   const [demo, setDemo] = React.useState<typeof DEMOS[number] | null>(null);
