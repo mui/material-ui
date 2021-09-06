@@ -8,7 +8,7 @@ import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 
 export default function ComposedTextField() {
-  const [name, setName] = React.useState('Composed TextField');
+  const [name, setName] = React.useState('Composed Text Field');
 
   const handleChange = (event) => {
     setName(event.target.value);
