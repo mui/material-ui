@@ -1,9 +1,14 @@
 import * as React from 'react';
 import { useInView } from 'react-intersection-observer';
 import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import AddRounded from '@mui/icons-material/AddRounded';
 import Grid from '@mui/material/Grid';
 import SponsorCard from 'docs/src/components/home/SponsorCard';
+import Link from 'docs/src/modules/components/Link';
+import ROUTES from 'docs/src/route';
 
 const GOLDs = [
   {
@@ -87,6 +92,42 @@ export default function GoldSponsors() {
             <SponsorCard inView={inView} item={item} />
           </Grid>
         ))}
+        <Grid item xs={12} sm={6} md={4} lg={3}>
+          <Paper
+            variant="outlined"
+            sx={{
+              p: 2,
+              display: 'flex',
+              alignItems: 'center',
+              height: '100%',
+              borderStyle: 'dashed',
+              borderColor: (theme) =>
+                theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
+            }}
+          >
+            <IconButton
+              aria-label="Become MUI sponsor"
+              component="a"
+              href={ROUTES.goldSponsor}
+              target="_blank"
+              rel="noopener noreferrer"
+              color="primary"
+              sx={{ mr: 2, border: '1px solid', borderColor: 'divider' }}
+            >
+              <AddRounded />
+            </IconButton>
+            <Box>
+              <Typography variant="body2" color="text.primary" fontWeight="bold">
+                Become our sponsor!
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                To join us, <Link href={ROUTES.goldSponsor} target="_blank" rel="noopener noreferrer">
+                  choose how
+                </Link>{' '}you want to contribute.
+              </Typography>
+            </Box>
+          </Paper>
+        </Grid>
       </Grid>
     </Box>
   );

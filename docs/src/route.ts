@@ -19,6 +19,7 @@ const ROUTES = {
   vision: '/discover-more/vision/',
   careers: '/company/careers/',
   support: '/getting-started/support/#professional-support-premium',
+  goldSponsor: '/discover-more/backers/#gold/',
   store: '/store/',
   storePopular: '/store/#populars',
   storeDesign: '/store/#design',
