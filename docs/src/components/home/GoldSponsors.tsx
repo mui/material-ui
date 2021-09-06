@@ -112,7 +112,8 @@ export default function GoldSponsors() {
               target="_blank"
               rel="noopener noreferrer"
               color="primary"
-              sx={{ mr: 2, border: '1px solid', borderColor: 'divider' }}
+              sx={{ mr: 2, border: '1px solid', borderColor: (theme) =>
+              theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300', }}
             >
               <AddRounded />
             </IconButton>
