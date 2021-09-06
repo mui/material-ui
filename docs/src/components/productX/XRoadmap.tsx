@@ -118,8 +118,8 @@ export default function XRoadmap() {
             >
               <Grid item xs={12} sm={4} lg="auto">
                 <Paper variant="outlined" sx={{ minWidth: { lg: 180 } }}>
-                  <Box sx={{ fontWeight: 'bold' }}>In the lab:</Box>
-                  <Box sx={{ color: 'text.secondary' }}>Almost ready to go.</Box>
+                  <Box sx={{ fontWeight: 'bold' }}>Released</Box>
+                  <Box sx={{ color: 'text.secondary' }}>More updates coming.</Box>
                   {renderList(
                     <React.Fragment>
                       <TableChartRounded fontSize="small" />
