@@ -29,13 +29,6 @@ const GOLDs = [
     href: 'https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: '/static/sponsors/canada-casino.svg',
-    srcSet: '/static/sponsors/canada-casino.svg',
-    name: 'Canada Casino',
-    description: 'Safe and rewarding online casino experience',
-    href: 'https://casinocanada.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
-  {
     src: 'https://avatars.githubusercontent.com/u/13365608?s=40',
     srcSet: 'https://avatars.githubusercontent.com/u/13365608?s=80 2x',
     name: 'Spice Factory',
