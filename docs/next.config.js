@@ -222,4 +222,5 @@ module.exports = {
   async rewrites() {
     return [{ source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' }];
   },
+  optimizeFonts: false,
 };
