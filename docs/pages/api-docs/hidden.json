@@ -31,7 +31,7 @@
   "name": "Hidden",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
-  "filename": "/packages/material-ui/src/Hidden/Hidden.js",
+  "filename": "/packages/mui-material/src/Hidden/Hidden.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/hidden/\">Hidden</a></li></ul>",
   "styledComponent": true,

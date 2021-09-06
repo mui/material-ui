@@ -52,7 +52,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLElement",
-  "filename": "/packages/material-ui/src/Pagination/Pagination.js",
+  "filename": "/packages/mui-material/src/Pagination/Pagination.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/pagination/\">Pagination</a></li></ul>",
   "styledComponent": true,

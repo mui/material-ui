@@ -46,7 +46,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/Snackbar/Snackbar.js",
+  "filename": "/packages/mui-material/src/Snackbar/Snackbar.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/snackbars/\">Snackbars</a></li></ul>",
   "styledComponent": true,

@@ -42,7 +42,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
-  "filename": "/packages/material-ui/src/ToggleButton/ToggleButton.js",
+  "filename": "/packages/mui-material/src/ToggleButton/ToggleButton.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/toggle-button/\">Toggle Button</a></li></ul>",
   "styledComponent": true,

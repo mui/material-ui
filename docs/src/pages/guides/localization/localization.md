@@ -79,7 +79,7 @@ const theme = createTheme(
 
 <!-- #default-branch-switch -->
 
-You can [find the source](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/locale/index.ts) in the GitHub repository.
+You can [find the source](https://github.com/mui-org/material-ui/blob/next/packages/mui-material/src/locale/index.ts) in the GitHub repository.
 
 To create your own translation, or to customize the English text, copy this file to your project, make any changes needed and import the locale from there.
 
