@@ -66,7 +66,7 @@ function MyApp() {
   );
 }
 
-export default function ToggleColorMode() {
+export default function DarkThemeWithCustomPalette() {
   const [mode, setMode] = React.useState<PaletteMode>('light');
   const colorMode = React.useMemo(
     () => ({
