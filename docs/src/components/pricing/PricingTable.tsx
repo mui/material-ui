@@ -871,7 +871,9 @@ export default function PricingTable({
           </Box>
         </Box>
       )}
-      <RowHead startIcon={<IconImage name="product-core" width="28" height="28" />}>MUI Core</RowHead>
+      <RowHead startIcon={<IconImage name="product-core" width="28" height="28" />}>
+        MUI Core
+      </RowHead>
       {renderRow('@mui/core')}
       {divider}
       {renderRow('@mui/unstyled')}
