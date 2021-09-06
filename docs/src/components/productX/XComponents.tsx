@@ -86,7 +86,7 @@ export default function XComponents() {
               <Box sx={{ height: '100%' }}>
                 <Frame sx={{ height: '100%' }}>
                   <Frame.Demo sx={{ p: 2, flexGrow: 1 }}>
-                    <Box sx={{ textAlign: 'right', mb: 1 }}>
+                    <Box sx={{ textAlign: 'right', mb: 2, lineHeight: 1 }}>
                       <Chip variant="outlined" label="PNG Preview" size="small" />
                     </Box>
                     <Box
