@@ -19,7 +19,7 @@ import AppHeader from 'docs/src/layouts/AppHeader';
 import References, { CORE_CUSTOMERS } from 'docs/src/components/home/References';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
-import { MuiStats } from 'docs/src/components/home/Testimonials';
+import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 import GradientText from 'docs/src/components/typography/GradientText';
 import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 import ROUTES from 'docs/src/route';
@@ -500,7 +500,7 @@ function AboutContent() {
                 </Box>
               ))}
             </Grid>
-            <MuiStats />
+            <MuiStatistics />
           </Grid>
         </Container>
       </Box>
