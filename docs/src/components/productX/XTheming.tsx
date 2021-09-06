@@ -1,5 +1,10 @@
 import * as React from 'react';
-import { DataGridPro, GridColDef, GridCellParams } from '@mui/x-data-grid-pro';
+import {
+  DataGridPro,
+  GridColDef,
+  GridCellParams,
+  GridRenderEditCellParams,
+} from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
 import { createTheme, ThemeProvider, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -66,7 +71,7 @@ export default function XTheming() {
           renderCell: (params: GridCellParams) => {
             return <ProgressBar value={Number(params.value)!} />;
           },
-          renderEditCell: (params: GridCellParams) => {
+          renderEditCell: (params: GridRenderEditCellParams) => {
             return <EditProgress {...params} />;
           },
         }),
@@ -82,7 +87,7 @@ export default function XTheming() {
           renderCell: (params: GridCellParams) => {
             return <Status status={(params.value || '').toString()} />;
           },
-          renderEditCell: (params: GridCellParams) => {
+          renderEditCell: (params: GridRenderEditCellParams) => {
             return <EditStatus {...params} />;
           },
         }),
