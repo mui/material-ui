@@ -76,7 +76,7 @@ function App() {
   });
 
   const umd = await fse.readFile(
-    path.join(rootPath, 'packages/material-ui/build/umd/material-ui.development.js'),
+    path.join(rootPath, 'packages/mui-material/build/umd/material-ui.development.js'),
     'utf8',
   );
   app.get(umdPath, (req, res) => {

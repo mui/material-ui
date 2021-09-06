@@ -13,7 +13,7 @@
     "release:publish:dry-run": "lerna publish from-package --dist-tag next --contents build --registry=\"http://localhost:4873/\"",
     "release:tag": "node scripts/releaseTag",
     "docs:api": "rimraf ./docs/pages/api-docs && yarn docs:api:build",
-    "docs:api:build": "cross-env BABEL_ENV=development __NEXT_EXPORT_TRAILING_SLASH=true babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/buildApi.ts  ./docs/pages/api-docs ./packages/material-ui-unstyled/src ./packages/material-ui/src ./packages/material-ui-lab/src --apiPagesManifestPath ./docs/src/pagesApi.js",
+    "docs:api:build": "cross-env BABEL_ENV=development __NEXT_EXPORT_TRAILING_SLASH=true babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/buildApi.ts  ./docs/pages/api-docs ./packages/mui-core/src ./packages/mui-material/src ./packages/mui-lab/src --apiPagesManifestPath ./docs/src/pagesApi.js",
     "docs:build": "yarn workspace docs build",
     "docs:build-sw": "yarn workspace docs build-sw",
     "docs:build-color-preview": "babel-node scripts/buildColorTypes",
@@ -57,7 +57,7 @@
     "test:regressions:dev": "concurrently \"yarn test:regressions:build --watch\" \"yarn test:regressions:server\"",
     "test:regressions:run": "mocha --config test/regressions/.mocharc.js --delay 'test/regressions/**/*.test.js'",
     "test:regressions:server": "serve test/regressions",
-    "test:umd": "node packages/material-ui/test/umd/run.js",
+    "test:umd": "node packages/mui-material/test/umd/run.js",
     "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' 'scripts/**/*.test.{js,ts,tsx}' 'test/utils/**/*.test.{js,ts,tsx}'",
     "test:watch": "yarn test:unit --watch",
     "test:argos": "node ./scripts/pushArgos.js",
@@ -202,7 +202,7 @@
   },
   "nyc": {
     "include": [
-      "packages/material-ui*/src/**/*.{js,ts,tsx}"
+      "packages/mui*/src/**/*.{js,ts,tsx}"
     ],
     "exclude": [
       "**/*.test.{js,ts,tsx}",

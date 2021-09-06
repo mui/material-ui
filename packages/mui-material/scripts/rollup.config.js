@@ -95,19 +95,19 @@ function resolveNestedImport(packageFolder, importee) {
 const nestedFolder = {
   resolveId: (importee) => {
     if (importee.indexOf('@mui/core/') === 0) {
-      return resolveNestedImport('material-ui-unstyled', importee);
+      return resolveNestedImport('mui-core', importee);
     }
 
     if (importee.indexOf('@mui/private-theming/') === 0) {
-      return resolveNestedImport('material-ui-private-theming', importee);
+      return resolveNestedImport('mui-private-theming', importee);
     }
 
     if (importee.indexOf('@mui/styled-engine/') === 0) {
-      return resolveNestedImport('material-ui-styled-engine', importee);
+      return resolveNestedImport('mui-styled-engine', importee);
     }
 
     if (importee.indexOf('@mui/system/') === 0) {
-      return resolveNestedImport('material-ui-system', importee);
+      return resolveNestedImport('mui-system', importee);
     }
 
     return undefined;

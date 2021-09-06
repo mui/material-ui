@@ -15,11 +15,11 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-envinfo",
+  "homepage": "https://github.com/mui-org/material-ui/tree/HEAD/packages/mui-envinfo",
   "repository": {
     "type": "git",
     "url": "https://github.com/mui-org/material-ui",
-    "directory": "packages/material-ui-envinfo"
+    "directory": "packages/mui-envinfo"
   },
   "files": [],
   "scripts": {

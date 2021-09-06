@@ -14,7 +14,7 @@ function invertObject(object) {
 /**
  * Supported imports:
  * 1. bare specifier e.g. `'@mui/utils/macros/MuiError.macro'`
- * 2. relative import from `packages/material-ui-utils/src` e.g. `'../macros/MuiError.macro'`
+ * 2. relative import from `packages/mui-utils/src` e.g. `'../macros/MuiError.macro'`
  * @param {import('babel-plugin-macros').MacroParams} param0
  */
 function muiError({ references, babel, config, source }) {

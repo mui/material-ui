@@ -17,13 +17,13 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/mui-org/material-ui.git",
-    "directory": "packages/material-ui-types"
+    "directory": "packages/mui-types"
   },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "https://github.com/mui-org/material-ui/tree/next/packages/material-ui-types",
+  "homepage": "https://github.com/mui-org/material-ui/tree/next/packages/mui-types",
   "scripts": {
     "build": "mkdir build && cpy index.d.ts build/ && yarn build:copy-files",
     "build:copy-files": "node ../../scripts/copy-files.js",

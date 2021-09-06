@@ -14,17 +14,17 @@ const exec = promisify(childProcess.exec);
  * @param {string} importPath - POSIX path
  */
 function rewriteImportPath(importPath) {
-  const coreSrcPath = path.posix.join('..', 'material-ui', 'src');
+  const coreSrcPath = path.posix.join('..', 'mui-material', 'src');
   if (importPath.startsWith(coreSrcPath)) {
     return importPath.replace(coreSrcPath, '@mui/material');
   }
 
-  const stylesSrcPath = path.posix.join('..', 'material-ui-styles', 'src');
+  const stylesSrcPath = path.posix.join('..', 'mui-styles', 'src');
   if (importPath.startsWith(stylesSrcPath)) {
     return importPath.replace(stylesSrcPath, '@mui/styles');
   }
 
-  const systemSrcPath = path.posix.join('..', 'material-ui-system', 'src');
+  const systemSrcPath = path.posix.join('..', 'mui-system', 'src');
   if (importPath.startsWith(systemSrcPath)) {
     return importPath.replace(systemSrcPath, '@mui/system');
   }

@@ -6,7 +6,7 @@ import getJSExports from '../util/getJSExports';
 if (process.env.NODE_ENV === 'test') {
   const resolve = require.resolve;
   require.resolve = (source) =>
-    resolve(source.replace(/^@material-ui\/core\/modern/, '../../../material-ui/src'));
+    resolve(source.replace(/^@material-ui\/core\/modern/, '../../../mui-material/src'));
 }
 
 export default function transformer(fileInfo, api, options) {

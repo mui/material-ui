@@ -10,10 +10,10 @@
     "baseUrl": "../../../",
     "noErrorTruncation": true,
     "paths": {
-      "@mui/material": ["./material-ui/src"],
-      "@mui/material/*": ["./material-ui/src/*"],
-      "@mui/icons-material": ["./material-ui-icons/build"],
-      "@mui/icons-material/*": ["./material-ui-icons/build/*"]
+      "@mui/material": ["./mui-material/src"],
+      "@mui/material/*": ["./mui-material/src/*"],
+      "@mui/icons-material": ["./mui-icons-material/build"],
+      "@mui/icons-material/*": ["./mui-icons-material/build/*"]
     }
   },
   "exclude": ["**/node_modules/"]

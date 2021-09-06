@@ -13,7 +13,7 @@
     "jscodeshift"
   ],
   "scripts": {
-    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/material-ui-codemod/**/*.test.js'",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-codemod/**/*.test.js'",
     "prebuild": "rimraf build",
     "build": "node ../../scripts/build node --out-dir ./build && cpy README.md build && cpy package.json build && cpy codemod.js build",
     "release": "yarn build && npm publish --tag next"
@@ -21,10 +21,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/mui-org/material-ui.git",
-    "directory": "packages/material-ui-codemod"
+    "directory": "packages/mui-codemod"
   },
   "license": "MIT",
-  "homepage": "https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod",
+  "homepage": "https://github.com/mui-org/material-ui/tree/next/packages/mui-codemod",
   "dependencies": {
     "@babel/core": "^7.15.0",
     "@babel/runtime": "^7.14.8",
