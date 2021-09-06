@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { XGrid, GridApi } from '@material-ui/x-grid';
-import { useDemoData } from '@material-ui/x-grid-data-generator';
+import { DataGridPro, GridApi } from '@mui/x-data-grid-pro';
+import { useDemoData } from '@mui/x-data-grid-generator';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -185,7 +185,7 @@ export default function XDataGrid() {
             }}
           >
             {dataGridStyleOverrides}
-            <XGrid
+            <DataGridPro
               {...data}
               apiRef={gridApiRef as React.MutableRefObject<GridApi>}
               loading={loading}

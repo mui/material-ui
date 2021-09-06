@@ -1,5 +1,5 @@
 /* eslint-disable import/first */
-import { LicenseInfo } from '@material-ui/x-grid';
+import { LicenseInfo } from '@mui/x-data-grid-pro';
 
 // Remove the license warning from demonstration purposes
 LicenseInfo.setLicenseKey(

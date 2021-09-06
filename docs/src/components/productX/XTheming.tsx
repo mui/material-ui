@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { XGrid, GridColDef, GridCellParams } from '@material-ui/x-grid';
-import { useDemoData } from '@material-ui/x-grid-data-generator';
+import { DataGridPro, GridColDef, GridCellParams } from '@mui/x-data-grid-pro';
+import { useDemoData } from '@mui/x-data-grid-generator';
 import { createTheme, ThemeProvider, Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -134,7 +134,7 @@ export default function XTheming() {
               }}
             >
               {dataGridStyleOverrides}
-              <XGrid
+              <DataGridPro
                 {...data}
                 columns={getColumns()}
                 disableSelectionOnClick
@@ -154,7 +154,7 @@ export default function XTheming() {
               }}
             >
               <Paper elevation={0} sx={{ height: 418 }}>
-                <XGrid
+                <DataGridPro
                   {...data}
                   columns={getColumns()}
                   disableSelectionOnClick

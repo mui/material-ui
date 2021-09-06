@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { GridCellParams } from '@material-ui/data-grid';
+import { GridCellParams } from '@mui/x-data-grid';
 import { debounce } from '@mui/material/utils';
 import { alpha } from '@mui/material/styles';
 import Slider from '@mui/material/Slider';
