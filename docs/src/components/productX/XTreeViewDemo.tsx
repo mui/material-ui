@@ -199,12 +199,12 @@ export default function XDateRangeDemo() {
   return (
     <Frame>
       <Frame.Demo sx={{ p: 2, flexGrow: 1 }}>
-        <Paper variant="outlined" sx={{ maxWidth: 400, mx: 'auto' }}>
+        <Paper variant="outlined" sx={{ maxWidth: '100%', mx: 'auto' }}>
           <TreeView
             aria-label="file system navigator"
             defaultExpanded={['2', '2.3']}
-            defaultCollapseIcon={<IndeterminateCheckBoxOutlined />}
-            defaultExpandIcon={<AddBoxOutlined />}
+            defaultCollapseIcon={<IndeterminateCheckBoxOutlined fontSize="small" />}
+            defaultExpandIcon={<AddBoxOutlined fontSize="small" />}
             sx={{ height: { xs: 300, sm: 380 }, overflowY: 'auto', p: 1 }}
           >
             <TreeItem nodeId="1" label="Drive">
@@ -233,21 +233,21 @@ export default function XDateRangeDemo() {
                 />
                 <TreeItem
                   nodeId="1.2.2"
-                  label="Untitled.png"
+                  label="My Dog.png"
                   ContentProps={{ lastNestedChild: true }}
                 />
                 <TreeItem
                   nodeId="1.2.3"
-                  label="Untitled (copy2).png"
+                  label="Friends.png"
                   ContentProps={{ lastNestedChild: true }}
                 />
               </TreeItem>
             </TreeItem>
             <TreeItem nodeId="2" label="Favorite">
-              <TreeItem nodeId="2.1" label="เอกสาร" ContentProps={{ lastNestedChild: true }} />
+              <TreeItem nodeId="2.1" label="MUI Retreat Picture.jpg" ContentProps={{ lastNestedChild: true }} />
               <TreeItem
                 nodeId="2.2"
-                label="ชัดจริ๊ง (4K)-UHD.mkv"
+                label="v5 launch video.mkv"
                 ContentProps={{ lastNestedChild: true }}
               />
               <TreeItem nodeId="2.3" label="images">
