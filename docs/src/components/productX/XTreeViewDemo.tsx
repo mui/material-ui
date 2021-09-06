@@ -12,7 +12,7 @@ import FolderRounded from '@mui/icons-material/FolderRounded';
 import FolderOpenRounded from '@mui/icons-material/FolderOpenRounded';
 import PhotoOutlined from '@mui/icons-material/PhotoOutlined';
 import PictureAsPdfOutlined from '@mui/icons-material/PictureAsPdfOutlined';
-import VideoCamOutlined from '@mui/icons-material/VideoCamOutlined';
+import VideocamOutlined from '@mui/icons-material/VideocamOutlined';
 import FourKOutlined from '@mui/icons-material/FourKOutlined';
 import Frame from 'docs/src/components/action/Frame';
 
@@ -68,7 +68,7 @@ const CustomContent = React.forwardRef(function CustomContent(
       return <PictureAsPdfOutlined />;
     }
     if (extension === 'mp4') {
-      return <VideoCamOutlined />;
+      return <VideocamOutlined />;
     }
     if (extension === 'mkv') {
       return <FourKOutlined />;
