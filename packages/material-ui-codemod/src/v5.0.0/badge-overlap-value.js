@@ -26,9 +26,9 @@ export default function transformer(file, api, options) {
         if (
           node.type === 'JSXAttribute' &&
           node.name.name === 'classes' &&
-          Array.isArray(node.value.expression.properties)
+          Array.isArray(node.value?.expression?.properties)
         ) {
-          node.value.expression.properties.forEach((subNode) => {
+          node.value?.expression?.properties?.forEach((subNode) => {
             if (subNode.key) {
               if (subNode.key.name.endsWith('Circle')) {
                 subNode.key.name = subNode.key.name.replace('Circle', 'Circular');
