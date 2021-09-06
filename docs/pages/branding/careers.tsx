@@ -37,8 +37,6 @@ const Widget = ({
       sx={{
         height: '100%',
         p: 2,
-        border: '2px dashed',
-        borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.400'),
       }}
     >
       <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
@@ -445,14 +443,16 @@ function CareersContent() {
             <Grid item xs={12} md={6}>
               <Question question="Does MUI do whiteboarding during interviews?">
                 <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-                  ...{/* Need Answer */}
+                  No. We ask applicants to complete challenges that are close to their future
+                  day-to-day contributions.
                 </Typography>
               </Question>
             </Grid>
             <Grid item xs={12} md={6}>
               <Question question="Does MUI offer contract job opportunities?">
                 <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-                  ...{/* Need Answer */}
+                  Yes. People outside of France will be hired as full-time contractors. (Benefits
+                  may vary.)
                 </Typography>
               </Question>
             </Grid>
