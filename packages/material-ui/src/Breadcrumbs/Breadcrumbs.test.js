@@ -1,6 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { act, describeConformance, createClientRender, screen } from 'test/utils';
+import {
+  act,
+  describeConformance,
+  createClientRender,
+  screen,
+  strictModeDoubleLoggingSupressed,
+} from 'test/utils';
 import Breadcrumbs, { breadcrumbsClasses as classes } from '@mui/material/Breadcrumbs';
 
 describe('<Breadcrumbs />', () => {
@@ -86,8 +92,7 @@ describe('<Breadcrumbs />', () => {
       );
     }).toErrorDev([
       'Material-UI: You have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
-      // strict mode renders twice
-      React.version.startsWith('16') &&
+      !strictModeDoubleLoggingSupressed &&
         'Material-UI: You have provided an invalid combination of props to the Breadcrumbs.\nitemsAfterCollapse={2} + itemsBeforeCollapse={2} >= maxItems={3}',
     ]);
     expect(screen.getAllByRole('listitem', { hidden: false })).to.have.length(4);

@@ -8,6 +8,7 @@ import {
   fireEvent,
   screen,
   createServerRender,
+  strictModeDoubleLoggingSupressed,
 } from 'test/utils';
 import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses as classes } from '@mui/material/Tabs';
@@ -90,12 +91,10 @@ describe('<Tabs />', () => {
         render(<Tabs value={0} centered variant="scrollable" />);
       }).toErrorDev([
         'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
-        React.version.startsWith('16') &&
-          // StrictMode renders twice
+        !strictModeDoubleLoggingSupressed &&
           'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
         'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
-        React.version.startsWith('16') &&
-          // StrictMode renders twice
+        !strictModeDoubleLoggingSupressed &&
           'Material-UI: You can not use the `centered={true}` and `variant="scrollable"`',
       ]);
     });

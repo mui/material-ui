@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { createClientRender, screen, describeConformance } from 'test/utils';
+import {
+  createClientRender,
+  screen,
+  describeConformance,
+  strictModeDoubleLoggingSupressed,
+} from 'test/utils';
 import LinearProgress, { linearProgressClasses as classes } from '@mui/material/LinearProgress';
 
 describe('<LinearProgress />', () => {
@@ -149,13 +154,18 @@ describe('<LinearProgress />', () => {
 
       expect(() => {
         ({ rerender } = render(<LinearProgress variant="determinate" value={undefined} />));
-      }).toErrorDev('Material-UI: You need to provide a value prop');
+      }).toErrorDev([
+        'Material-UI: You need to provide a value prop',
+        !strictModeDoubleLoggingSupressed && 'Material-UI: You need to provide a value prop',
+      ]);
 
       expect(() => {
         rerender(<LinearProgress variant="buffer" value={undefined} />);
       }).toErrorDev([
         'Material-UI: You need to provide a value prop',
         'Material-UI: You need to provide a valueBuffer prop',
+        !strictModeDoubleLoggingSupressed && 'Material-UI: You need to provide a value prop',
+        !strictModeDoubleLoggingSupressed && 'Material-UI: You need to provide a valueBuffer prop',
       ]);
     });
   });

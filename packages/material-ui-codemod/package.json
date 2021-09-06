@@ -30,7 +30,7 @@
     "@babel/runtime": "^7.14.8",
     "@babel/traverse": "^7.15.0",
     "jscodeshift": "^0.13.0",
-    "jscodeshift-add-imports": "^1.0.1",
+    "jscodeshift-add-imports": "^1.0.10",
     "yargs": "^17.0.1"
   },
   "devDependencies": {

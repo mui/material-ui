@@ -2,7 +2,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { act, createClientRender, createServerRender, screen, RenderCounter } from 'test/utils';
+import {
+  act,
+  createClientRender,
+  createServerRender,
+  screen,
+  RenderCounter,
+  strictModeDoubleLoggingSupressed,
+} from 'test/utils';
 import mediaQuery from 'css-mediaquery';
 import { expect } from 'chai';
 import { stub } from 'sinon';
@@ -296,8 +303,7 @@ describe('useMediaQuery', () => {
         render(<MyComponent />);
       }).toErrorDev([
         'Material-UI: The `query` argument provided is invalid',
-        React.version.startsWith('16') &&
-          // logs warning twice in StrictMode
+        !strictModeDoubleLoggingSupressed &&
           'Material-UI: The `query` argument provided is invalid',
       ]);
     });
