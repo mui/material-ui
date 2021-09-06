@@ -193,4 +193,4 @@ Need inspiration? The Material Design team has built an [palette configuration t
 
 ## Dark mode
 
-For more details of how you can set up a dark mode for your theme, head to the [dark mode guide](/customization/dark-mode).
+For details of how you can set up a dark mode for your theme, head to the [dark mode guide](/customization/dark-mode/).
