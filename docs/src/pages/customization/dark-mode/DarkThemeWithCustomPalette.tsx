@@ -1,8 +1,5 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
 import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
 import { amber, deepOrange, grey } from '@mui/material/colors';
 import { PaletteMode } from '@mui/material';
@@ -36,11 +33,8 @@ const getDesignTokens = (mode: PaletteMode) => ({
   },
 });
 
-const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
-
 function MyApp() {
   const theme = useTheme();
-  const colorMode = React.useContext(ColorModeContext);
   return (
     <Box
       sx={{
@@ -54,38 +48,17 @@ function MyApp() {
         p: 3,
       }}
     >
-      {theme.palette.mode} mode
-      <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
-        {theme.palette.mode === 'dark' ? (
-          <Brightness7Icon color="primary" />
-        ) : (
-          <Brightness4Icon color="primary" />
-        )}
-      </IconButton>
+      This is a {theme.palette.mode} mode theme with custom palette
     </Box>
   );
 }
 
+const darkModeTheme = createTheme(getDesignTokens('dark'));
+
 export default function DarkThemeWithCustomPalette() {
-  const [mode, setMode] = React.useState<PaletteMode>('light');
-  const colorMode = React.useMemo(
-    () => ({
-      toggleColorMode: () => {
-        setMode((prevMode: PaletteMode) =>
-          prevMode === 'light' ? 'dark' : 'light',
-        );
-      },
-    }),
-    [],
-  );
-
-  const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
-
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <MyApp />
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+    <ThemeProvider theme={darkModeTheme}>
+      <MyApp />
+    </ThemeProvider>
   );
 }
