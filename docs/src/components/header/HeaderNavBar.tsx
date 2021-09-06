@@ -317,11 +317,6 @@ export default function HeaderNavBar() {
             About us
           </Link>
         </li>
-        <li role="none">
-          <Link role="menuitem" href={ROUTES.newCareers}>
-            Careers
-          </Link>
-        </li>
       </ul>
     </Navigation>
   );

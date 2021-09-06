@@ -197,11 +197,6 @@ export default function HeaderNavDropdown() {
                   About us
                 </Anchor>
               </li>
-              <li>
-                <Anchor href={ROUTES.newCareers} as={Link} noLinkStyle>
-                  Careers
-                </Anchor>
-              </li>
             </UList>
           </Box>
         </Collapse>
