@@ -100,11 +100,11 @@ const MasonryItem = React.forwardRef(function MasonryItem(inProps, ref) {
   React.useEffect(() => {
     // Do not create a resize observer in case of provided height masonry
     if (hasDefaultHeight) {
-      return null;
+      return undefined;
     }
 
     if (typeof ResizeObserver === 'undefined') {
-      return null;
+      return undefined;
     }
 
     const resizeObserver = new ResizeObserver(([item]) => {
