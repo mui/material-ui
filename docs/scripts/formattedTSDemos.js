@@ -67,6 +67,14 @@ async function transpileFile(tsxPath, program) {
   try {
     const source = await fse.readFile(tsxPath, 'utf8');
 
+    const transformOptions = { ...babelConfig, filename: tsxPath };
+    const enableJSXPreview = !tsxPath.includes(path.join('pages', 'premium-themes'));
+    if (enableJSXPreview) {
+      transformOptions.plugins.push([
+        require.resolve('docs/src/modules/utils/babel-plugin-jsx-preview'),
+        { maxLines: 17, outputFilename: `${tsxPath}.preview` },
+      ]);
+    }
     const { code } = await babel.transformAsync(source, { ...babelConfig, filename: tsxPath });
 
     if (/import \w* from 'prop-types'/.test(code)) {

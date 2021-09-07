@@ -1,0 +1,5 @@
+<Box sx={{ gridArea: 'header', bgcolor: 'primary.main' }}>Header</Box>
+<Box sx={{ gridArea: 'main', bgcolor: 'secondary.main' }}>Main</Box>
+<Box sx={{ gridArea: 'sidebar', bgcolor: 'info.main' }}>Sidebar</Box>
+<Box sx={{ gridArea: 'footer', bgcolor: 'warning.main' }}>Footer</Box>
+Box>

@@ -1,0 +1,3 @@
+<ThemeProvider theme={createTheme()}>
+  <SvgButton>Button</SvgButton>
+</ThemeProvider>
