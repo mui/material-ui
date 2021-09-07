@@ -74,9 +74,9 @@ export default function DiamondSponsors(props) {
           }}
         >
           <img
-            width="42"
-            height="42"
-            src="/static/sponsors/octopus.svg"
+            width="137"
+            height="30"
+            src={`/static/sponsors/octopus-${theme.palette.mode}.svg`}
             alt="octopus"
             title="Repeatable, reliable deployments"
             loading="lazy"

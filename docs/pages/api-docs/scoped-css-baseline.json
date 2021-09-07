@@ -8,7 +8,7 @@
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiScopedCssBaseline" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/ScopedCssBaseline/ScopedCssBaseline.js",
+  "filename": "/packages/mui-material/src/ScopedCssBaseline/ScopedCssBaseline.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/css-baseline/\">Css Baseline</a></li></ul>",
   "styledComponent": true,

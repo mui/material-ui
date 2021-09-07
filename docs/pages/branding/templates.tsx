@@ -15,7 +15,7 @@ export default function Templates() {
     <BrandingProvider>
       <Head
         title="MUI: Fully built templates for your project."
-        description="A collection of several 4.5 average rating templates, curated by our Core team to get your projects and application up and running today."
+        description="A collection of 4.5 average rating templates, selected and curated by MUI's team of maintainers to get your projects up and running today."
       />
       <AppHeader />
       <main>

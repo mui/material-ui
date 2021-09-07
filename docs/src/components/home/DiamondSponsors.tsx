@@ -15,14 +15,14 @@ const DIAMONDs = [
     srcSet: 'https://avatars3.githubusercontent.com/u/1287123?s=80 2x',
     name: 'Octopus Deploy',
     description: 'Repeatable reliable deployments.',
-    href: 'https://octopus.com/',
+    href: 'https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://avatars3.githubusercontent.com/u/8424863?s=40',
     srcSet: 'https://avatars3.githubusercontent.com/u/8424863?s=80 2x',
     name: 'Doit International',
     description: 'Management platform for Google Cloud and AWS.',
-    href: 'https://www.doit-intl.com/',
+    href: 'https://www.doit-intl.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
 ];
 
