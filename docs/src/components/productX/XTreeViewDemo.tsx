@@ -202,7 +202,7 @@ export default function XDateRangeDemo() {
         <Paper variant="outlined" sx={{ maxWidth: '100%', mx: 'auto' }}>
           <TreeView
             aria-label="file system navigator"
-            defaultExpanded={['2', '2.3']}
+            defaultExpanded={['2', '2.3', '3']}
             defaultCollapseIcon={<IndeterminateCheckBoxOutlined fontSize="small" />}
             defaultExpandIcon={<AddBoxOutlined fontSize="small" />}
             sx={{ height: { xs: 300, sm: 380 }, overflowY: 'auto', p: 1 }}

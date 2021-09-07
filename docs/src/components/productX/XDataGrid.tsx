@@ -219,11 +219,12 @@ export default function XDataGrid() {
               </Box>
               {demo && <FlashCode startLine={startLine[demo]} sx={{ mx: -2 }} />}
               <StylingInfo
-                appeared={demo === DEMOS[3]}
+                appeared={demo === DEMOS[3] || demo === DEMOS[4]}
                 content={
                   <React.Fragment>
                     <Typography fontWeight="bold" color="#fff" variant="body2">
-                      Pagination &gt; 100 rows per page is a paid feature!
+                      {demo === DEMOS[3] && 'Pagination > 100 rows per page is a paid feature!'}
+                      {demo === DEMOS[4] && 'Multi-column filtering is a paid feature!'}
                     </Typography>
                     <Typography color="grey.400" variant="body2">
                       The Data Grid and all other MUI X components are available on free and paid

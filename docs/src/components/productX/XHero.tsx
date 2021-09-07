@@ -15,6 +15,7 @@ import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
 import FolderTreeView from 'docs/src/components/showcase/FolderTreeView';
+import ROUTES from 'docs/src/route';
 
 const startDate = new Date();
 startDate.setDate(10);
@@ -58,6 +59,7 @@ export default function XHero() {
           </Typography>
           <GetStartedButtons
             installation="npm install @mui/x-data-grid"
+            to={ROUTES.dataGridDocs}
             sx={{ justifyContent: { xs: 'center', md: 'flex-start' } }}
           />
         </Box>
