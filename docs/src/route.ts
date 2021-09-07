@@ -7,6 +7,7 @@ const ROUTES = {
   careers: '/branding/careers',
   pricing: '/branding/pricing/',
   about: '/branding/about/',
+  handbook: 'https://www.notion.so/mui-org/Handbook-f086d47e10794d5e839aef9dc67f324b',
   materialIcons: '/components/material-icons/',
   freeTemplates: '/getting-started/templates/',
   components: '/getting-started/supported-components/',

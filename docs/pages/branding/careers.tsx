@@ -21,36 +21,6 @@ import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetail from '@mui/material/AccordionDetails';
 
-const Widget = ({
-  title,
-  children,
-  url,
-  linkText,
-}: {
-  title: string;
-  children: React.ReactNode;
-  url: string;
-  linkText?: string;
-}) => {
-  return (
-    <Paper
-      variant="outlined"
-      sx={{
-        height: '100%',
-        p: 2,
-      }}
-    >
-      <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
-        {title}
-      </Typography>
-      {children}
-      <Link href={url} variant="body2">
-        {linkText || 'Learn more'} <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
-      </Link>
-    </Paper>
-  );
-};
-
 const Role = ({
   title,
   description,
@@ -288,21 +258,52 @@ function CareersContent() {
               ))}
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <Widget
-                title="Handbook"
-                url={'https://www.notion.so/mui-org/Handbook-f086d47e10794d5e839aef9dc67f324b'}
+              <Paper
+                component={Link}
+                href={ROUTES.handbook}
+                noLinkStyle
+                variant="outlined"
+                sx={{ p: 2 }}
               >
+                <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
+                  Handbook
+                </Typography>
                 <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                   See how we run the company and the way we work.
                 </Typography>
-              </Widget>
+                <Typography
+                  color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
+                  variant="body2"
+                  fontWeight="bold"
+                >
+                  Learn more{' '}
+                  <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
+                </Typography>
+              </Paper>
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <Widget title="Blog" url={'https://medium.com/material-ui'}>
+              <Paper
+                component={Link}
+                href={ROUTES.blog}
+                noLinkStyle
+                variant="outlined"
+                sx={{ p: 2 }}
+              >
+                <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
+                  Blog
+                </Typography>
                 <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                   Check behind the scenes and news from the company.
                 </Typography>
-              </Widget>
+                <Typography
+                  color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
+                  variant="body2"
+                  fontWeight="bold"
+                >
+                  Learn more{' '}
+                  <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
+                </Typography>
+              </Paper>
             </Grid>
           </Grid>
         </Container>
