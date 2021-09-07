@@ -14,7 +14,7 @@
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiMonthPicker" },
   "spread": false,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui-lab/src/MonthPicker/MonthPicker.tsx",
+  "filename": "/packages/mui-lab/src/MonthPicker/MonthPicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/date-picker/\">Date Picker</a></li></ul>",
   "styledComponent": true,

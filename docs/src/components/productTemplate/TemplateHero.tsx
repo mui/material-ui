@@ -37,8 +37,8 @@ export default function TemplateHero() {
             templates for your project
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
-            A collection of several 4.5 average rating templates, curated by our Core team to get
-            your projects and application up and running today.
+            A collection of 4.5 average rating templates, selected and curated by MUI&apos;s team of
+            maintainers to get your projects up and running today.
           </Typography>
           <Button
             component={Link}

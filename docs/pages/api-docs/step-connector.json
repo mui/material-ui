@@ -19,7 +19,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/StepConnector/StepConnector.js",
+  "filename": "/packages/mui-material/src/StepConnector/StepConnector.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/steppers/\">Steppers</a></li></ul>",
   "styledComponent": true,

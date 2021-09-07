@@ -154,7 +154,7 @@ const theme = createTheme({
 
 If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
-<!-- tested with packages/material-ui/test/typescript/augmentation/paletteColors.spec.ts -->
+<!-- tested with packages/mui-material/test/typescript/augmentation/paletteColors.spec.ts -->
 
 ```ts
 declare module '@mui/material/styles' {

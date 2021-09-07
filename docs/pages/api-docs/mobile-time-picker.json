@@ -84,7 +84,7 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui-lab/src/MobileTimePicker/MobileTimePicker.tsx",
+  "filename": "/packages/mui-lab/src/MobileTimePicker/MobileTimePicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/time-picker/\">Time Picker</a></li></ul>",
   "styledComponent": true,

@@ -73,10 +73,6 @@ There are three components you can override by the `components` prop: `Root`, `T
 
 {{"demo": "pages/components/switches/UnstyledSwitches.js"}}
 
-### Recreation of Material-UI's Switch
-
-{{"demo": "pages/components/switches/UnstyledSwitchesMaterial.js"}}
-
 ### useSwitch hook
 
 For the ultimate customizability, a `useSwitch` hook is available.
@@ -93,10 +89,6 @@ import { useSwitch } from '@mui/core/SwitchUnstyled';
 #### Customized look and feel
 
 {{"demo": "pages/components/switches/UseSwitchesCustom.js"}}
-
-#### Recreation of Material-UI's Switch
-
-{{"demo": "pages/components/switches/UseSwitchesMaterial.js"}}
 
 ## Label placement
 

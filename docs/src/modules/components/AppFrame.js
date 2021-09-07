@@ -11,10 +11,8 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Tooltip from '@mui/material/Tooltip';
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import NoSsr from '@mui/material/NoSsr';
-import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
@@ -150,16 +148,6 @@ const GrowingDiv = styled('div')({
   flex: '1 1 auto',
 });
 
-const LanguageSpan = styled('span')(({ theme }) => {
-  return {
-    display: 'none',
-    fontWeight: theme.typography.fontWeightMedium,
-    [theme.breakpoints.up('md')]: {
-      display: 'block',
-    },
-  };
-});
-
 const NavIconButton = styled(IconButton, {
   shouldForwardProp: (prop) => prop !== 'disablePermanent',
 })(({ disablePermanent, theme }) => {
@@ -257,23 +245,32 @@ function AppFrame(props) {
           <GrowingDiv />
           <Stack direction="row" gap={2.5}>
             <DeferredAppSearch />
-            <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
-              <Button {...languageButtonProps} sx={{ display: { xs: 'none', md: 'flex' } }}>
-                <LanguageSpan sx={{ display: { xs: 'none', md: 'block' } }}>
-                  {LANGUAGES_LABEL.filter((language) => language.code === userLanguage)[0].text}
-                </LanguageSpan>
-                <ArrowDropDownRoundedIcon fontSize="small" color="primary" />
-              </Button>
+            <Tooltip title={t('appFrame.github')} enterDelay={300}>
+              <IconButton
+                component="a"
+                color="inherit"
+                href={process.env.SOURCE_CODE_REPO}
+                data-ga-event-category="header"
+                data-ga-event-action="github"
+                sx={{ px: '10px' }}
+              >
+                <GitHubIcon fontSize="small" />
+              </IconButton>
             </Tooltip>
+            <Notifications />
             <Tooltip title={t('appFrame.changeLanguage')} enterDelay={300}>
               <IconButton
                 {...languageButtonProps}
                 sx={{
-                  display: { xs: 'flex', md: 'none' },
                   px: '10px',
                 }}
               >
                 <LanguageIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
+              <IconButton color="inherit" onClick={handleSettingsDrawerOpen} sx={{ px: '10px' }}>
+                <SettingsIcon fontSize="small" />
               </IconButton>
             </Tooltip>
             <NoSsr defer>
@@ -319,24 +316,6 @@ function AppFrame(props) {
                 </MenuItem>
               </Menu>
             </NoSsr>
-            <Tooltip title={t('appFrame.github')} enterDelay={300}>
-              <IconButton
-                component="a"
-                color="inherit"
-                href={process.env.SOURCE_CODE_REPO}
-                data-ga-event-category="header"
-                data-ga-event-action="github"
-                sx={{ px: '10px' }}
-              >
-                <GitHubIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            <Notifications />
-            <Tooltip title={t('appFrame.toggleSettings')} enterDelay={300}>
-              <IconButton color="inherit" onClick={handleSettingsDrawerOpen} sx={{ px: '10px' }}>
-                <SettingsIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
           </Stack>
         </Toolbar>
       </StyledAppBar>

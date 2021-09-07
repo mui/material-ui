@@ -188,11 +188,15 @@ const Root = styled('div')(({ theme }) => ({
     borderRadius: theme.shape.borderRadius,
     border: '1px solid',
     borderColor:
-      theme.palette.mode === 'dark' ? theme.palette.warning[900] : theme.palette.warning[400],
+      theme.palette.mode === 'dark'
+        ? // Support Material design theme
+          theme.palette.warning[900] ?? theme.palette.warning.dark
+        : theme.palette.warning[400] ?? theme.palette.warning.light,
     backgroundColor:
       theme.palette.mode === 'dark'
-        ? alpha(theme.palette.warning[800], 0.09)
-        : theme.palette.warning[50],
+        ? // Support Material design theme
+          alpha(theme.palette.warning[800] ?? theme.palette.warning.dark, 0.09)
+        : theme.palette.warning[50] ?? theme.palette.warning.light,
     padding: '10px 20px',
     margin: '20px 0',
     '& p': {
