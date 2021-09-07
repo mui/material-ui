@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataGrid, GridCellParams, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridCellParams, GridRenderEditCellParams, GridColDef } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
@@ -31,7 +31,7 @@ const columns: Array<GridColDef> = [
     renderCell: (params: GridCellParams) => {
       return <ProgressBar value={Number(params.value)!} />;
     },
-    renderEditCell: (params: GridCellParams) => {
+    renderEditCell: (params: GridRenderEditCellParams) => {
       return <EditProgress {...params} />;
     },
   },
@@ -44,7 +44,7 @@ const columns: Array<GridColDef> = [
     renderCell: (params: GridCellParams) => {
       return <Status status={(params.value || '').toString()} />;
     },
-    renderEditCell: (params: GridCellParams) => {
+    renderEditCell: (params: GridRenderEditCellParams) => {
       return <EditStatus {...params} />;
     },
   },
