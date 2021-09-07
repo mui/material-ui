@@ -136,7 +136,7 @@ module.exports = async function webpackConfig(webpack, environment) {
   const configurations = entries.map((entry) => {
     return {
       // ideally this would be computed from the bundles peer dependencies
-      externals: /^(react|react-dom|react\/jsx-runtime)$/,
+      externals: /^(date-fns|dayjs|luxon|moment|react|react-dom|react\/jsx-runtime)$/,
       mode: 'production',
       optimization: {
         concatenateModules,
