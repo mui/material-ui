@@ -583,6 +583,7 @@ export default function Careers() {
       <main>
         <CareersContent />
       </main>
+      <Divider />
       <AppFooter />
     </BrandingProvider>
   );
