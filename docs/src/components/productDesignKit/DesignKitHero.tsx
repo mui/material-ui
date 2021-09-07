@@ -38,8 +38,8 @@ export default function TemplateHero() {
             <br /> <GradientText>design tool</GradientText>
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 450 }}>
-            For the designers out there, pick your favorite design tool to enjoy our components. Get
-            the consistency right when working with developers.
+            Pick your favorite design tool to enjoy and use MUI components. Boost consistency and
+            facilitate communication when working with developers.
           </Typography>
           <Button
             component={Link}

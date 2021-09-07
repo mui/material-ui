@@ -49,7 +49,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
-  "filename": "/packages/material-ui/src/Fab/Fab.js",
+  "filename": "/packages/mui-material/src/Fab/Fab.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/floating-action-button/\">Floating Action Button</a></li></ul>",
   "styledComponent": true,

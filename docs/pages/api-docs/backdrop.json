@@ -22,7 +22,7 @@
   "styles": { "classes": ["root", "invisible"], "globalClasses": {}, "name": "MuiBackdrop" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/Backdrop/Backdrop.js",
+  "filename": "/packages/mui-material/src/Backdrop/Backdrop.js",
   "inheritance": { "component": "Fade", "pathname": "/api/fade/" },
   "demos": "<ul><li><a href=\"/components/backdrop/\">Backdrop</a></li></ul>",
   "styledComponent": true,

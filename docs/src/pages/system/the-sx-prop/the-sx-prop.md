@@ -17,7 +17,8 @@ In the following sections, you will learn how different `sx` properties are mapp
 
 ### Borders
 
-The `border` property can receive only a number as a value and and it will create a solid black border using the number as the width.
+The `border` property can receive only a number as a value.
+It creates a solid black border using the number as the width.
 
 ```jsx
 <Box sx={{ border: 1 }} />
@@ -160,7 +161,7 @@ The `fontFamily`, `fontSize`, `fontStyle`, `fontWeight` properties map their val
 // equivalent to fontWeight: theme.typography.fontWeightLight
 ```
 
-The same can be achieved by ommiting the CSS property prefix `fontWeight`.
+The same can be achieved by omitting the CSS property prefix `fontWeight`.
 
 ```jsx
 <Box sx={{ fontWeight: 'light' }} />
@@ -193,12 +194,12 @@ Each property in the `sx` prop can receive a function callback as a value. This 
 A frequent source of confusion with the `sx` prop is TypeScript's [type widening](https://mariusschulz.com/blog/typescript-2-1-literal-type-widening), which causes this example not to work as expected:
 
 ```ts
-const styles = {
+const style = {
   flexDirection: 'column',
 };
 
 export default function App() {
-  return <Button sx={styles}>Example</Button>;
+  return <Button sx={style}>Example</Button>;
 }
 //    Type '{ flexDirection: string; }' is not assignable to type 'SxProps<Theme> | undefined'.
 //    Type '{ flexDirection: string; }' is not assignable to type 'CSSSelectorObject<Theme>'.
@@ -219,7 +220,7 @@ export default function App() {
 }
 ```
 
-Alternatively, you can pass the styles object directly to the `sx` prop:
+Alternatively, you can pass the style object directly to the `sx` prop:
 
 ```ts
 export default function App() {

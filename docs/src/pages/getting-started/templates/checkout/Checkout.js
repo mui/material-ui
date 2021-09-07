@@ -11,6 +11,7 @@ import StepLabel from '@mui/material/StepLabel';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
@@ -43,7 +44,9 @@ function getStepContent(step) {
   }
 }
 
-function CheckoutContent() {
+const theme = createTheme();
+
+export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -55,7 +58,7 @@ function CheckoutContent() {
   };
 
   return (
-    <React.Fragment>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <AppBar
         position="absolute"
@@ -63,7 +66,7 @@ function CheckoutContent() {
         elevation={0}
         sx={{
           position: 'relative',
-          borderBottom: (theme) => `1px solid ${theme.palette.divider}`,
+          borderBottom: (t) => `1px solid ${t.palette.divider}`,
         }}
       >
         <Toolbar>
@@ -120,10 +123,6 @@ function CheckoutContent() {
         </Paper>
         <Copyright />
       </Container>
-    </React.Fragment>
+    </ThemeProvider>
   );
-}
-
-export default function Checkout() {
-  return <CheckoutContent />;
 }

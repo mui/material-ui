@@ -1,0 +1,69 @@
+{
+  "name": "@mui/icons-material",
+  "version": "5.0.0-rc.0",
+  "private": false,
+  "author": "Material-UI Team",
+  "description": "Material Design icons distributed as SVG React components.",
+  "main": "./src/index.js",
+  "keywords": [
+    "react",
+    "react-component",
+    "material-ui",
+    "material design",
+    "icons"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui-org/material-ui.git",
+    "directory": "packages/mui-icons-material"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui-org/material-ui/issues"
+  },
+  "homepage": "https://next.material-ui.com/components/material-icons/",
+  "scripts": {
+    "build": "cp -r lib/ build/ && yarn build:typings && yarn build:copy-files",
+    "build:lib": "yarn build:node && yarn build:stable",
+    "build:lib:clean": "rimraf lib/ && yarn build:lib",
+    "build:legacy": "echo 'Skip legacy build'",
+    "build:modern": "echo 'Skip modern build'",
+    "build:node": "node ../../scripts/build node --largeFiles --outDir lib",
+    "build:stable": "node ../../scripts/build stable --largeFiles --outDir lib",
+    "build:copy-files": "node ../../scripts/copy-files.js",
+    "build:typings": "babel-node --config-file ../../babel.config.js ./scripts/create-typings.js",
+    "prebuild": "rimraf build",
+    "release": "yarn build && npm publish build --tag next",
+    "src:download": "cd ../../ && babel-node --config-file ./babel.config.js packages/mui-icons-material/scripts/download.js",
+    "src:icons": "cd ../../ && UV_THREADPOOL_SIZE=64 babel-node --config-file ./babel.config.js packages/mui-icons-material/builder.js --output-dir packages/mui-icons-material/src --svg-dir packages/mui-icons-material/material-icons --renameFilter ./renameFilters/material-design-icons.js && cd packages/mui-icons-material && yarn build:lib:clean",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-icons-material/**/*.test.{js,ts,tsx}'",
+    "test:built-typings": "tslint -p test/generated-types/tsconfig.json \"test/generated-types/*.{ts,tsx}\"",
+    "typescript": "tslint -p tsconfig.json \"src/**/*.{ts,tsx}\""
+  },
+  "peerDependencies": {
+    "@mui/material": "^5.0.0-rc.0",
+    "@types/react": "^16.8.6 || ^17.0.0",
+    "react": "^17.0.2"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.14.8"
+  },
+  "devDependencies": {
+    "fs-extra": "^10.0.0",
+    "mustache": "^4.0.0",
+    "svgo": "^2.4.0",
+    "yargs": "^17.0.1"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}

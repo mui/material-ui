@@ -18,7 +18,7 @@
     "overrideStyles": "You can override the style of the component using one of these customization options:\n",
     "overrideStylesJss": "<ul>\n<li>With a rule name of the <a href=\"/customization/components/#overriding-styles-with-classes\"><code>classes</code> object prop</a>.</li>\n<li>With a <a href=\"/customization/components/#overriding-styles-with-global-class-names\">global class name</a>.</li>\n<li>With a theme and an <a href=\"/customization/globals/#css\"><code>styleOverrides</code> property</a>.</li>\n</ul>\nIf that isn't sufficient, you can check the <a href=\"{{URL}}\">implementation of the component</a> for more detail.",
     "overrideStylesStyledComponent": "<ul>\n<li>With a <a href=\"/guides/interoperability/#global-css\">global class name</a>.</li>\n<li>With a rule name as part of the component's <a href=\"/customization/theme-components/#global-style-overrides\"><code>styleOverrides</code> property</a> in a custom theme.</li>\n</ul>",
-    "pageDescription": "API documentation for the React {{name}} component. Learn about the available props, and the CSS API.",
+    "pageDescription": "API documentation for the React {{name}} component. Learn about the available props and the CSS API.",
     "props": "Props",
     "refNotHeld": "The component cannot hold a ref.",
     "refRootElement": "The <code>ref</code> is forwarded to the root element.",

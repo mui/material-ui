@@ -105,7 +105,7 @@ Make sure the following is true:
   - If this is a common use case, consider adding an example to the documentation.
 - When adding new features or modifying existing ones, please include tests to confirm the new behavior. You can read more about our test setup in our test [README](https://github.com/mui-org/material-ui/blob/HEAD/test/README.md).
 - If props were added or prop types were changed, the TypeScript declarations were updated.
-- When submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-lab).
+- When submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/HEAD/packages/mui-lab).
 - The branch is not [behind its target branch](https://github.community/t/branch-10-commits-behind/2403).
 
 Because we will only merge a Pull Request for which all tests pass. The following items need to be true:
@@ -195,7 +195,7 @@ on _Details_ to find out more about them.
 ### Updating the component API documentation
 
 The component API in the component `propTypes` and under `docs/pages/api-docs` is auto-generated from the [JSDoc](https://jsdoc.app/about-getting-started.html) in the TypeScript declarations.
-Be sure to update the documentation in the corresponding `.d.ts` files (e.g. `packages/material-ui/src/Button/Button.d.ts` for `<Button>`) and then run:
+Be sure to update the documentation in the corresponding `.d.ts` files (e.g. `packages/mui-material/src/Button/Button.d.ts` for `<Button>`) and then run:
 
 ```sh
 $ yarn proptypes

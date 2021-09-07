@@ -87,4 +87,42 @@ export default function HalfRating() {
     ).to.equal(`<Rating />
 `);
   });
+
+  it('should ignore sx prop', () => {
+    expect(
+      getJsxPreview(`
+export default function SlideFromContainer() {
+  const [checked, setChecked] = React.useState(false);
+  const containerRef = React.useRef(null);
+
+  const handleChange = () => {
+    setChecked((prev) => !prev);
+  };
+
+  return (
+    <Box
+      sx={{
+        height: 180,
+        width: 240,
+        display: 'flex',
+        padding: 2,
+        borderRadius: 1,
+        bgcolor: (theme) =>
+          theme.palette.mode === 'light' ? 'grey.100' : 'grey.900',
+        overflow: 'hidden',
+      }}
+      ref={containerRef}
+    >
+      <Box sx={{ width: 200 }}>
+        <Slide />
+      </Box>
+    </Box>
+  );
+}
+    `),
+    ).to.equal(`<Box sx={{ width: 200 }}>
+  <Slide />
+</Box>
+`);
+  });
 });
