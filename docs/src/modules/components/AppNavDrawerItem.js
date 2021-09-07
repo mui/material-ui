@@ -61,7 +61,7 @@ const Item = styled(({ component: Component = 'div', ...props }) => <Component {
 
 const ItemLink = styled(Item, {
   shouldForwardProp: (prop) => prop !== 'depth',
-})(({ theme }) => {
+})(({ theme, depth }) => {
   return {
     color: theme.palette.text.secondary,
     fontSize: '0.8125rem',
@@ -89,7 +89,7 @@ const ItemLink = styled(Item, {
         ),
       },
     },
-    paddingLeft: 38,
+    paddingLeft: 38 + (depth - 1)*10,
   };
 });
 
@@ -145,7 +145,7 @@ const ItemButton = styled(Item, {
           },
         }
       : {
-          paddingLeft: 38,
+          paddingLeft: 38 + (depth - 1)*10,
         }),
   };
 });
