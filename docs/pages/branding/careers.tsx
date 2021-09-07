@@ -130,13 +130,13 @@ const openRolesData = {
       title: 'Full-stack Engineer',
       description:
         'You will initiate the development of a bold new product vertical. We are looking for an experienced and ambitious full-stack engineer that is ready to work in an entrepreneurial environment. You are a manager of one, you are curious, enjoy taking risks, and learning.',
-      url: 'https://material-ui.com/company/full-stack-engineer/',
+      url: '/company/full-stack-engineer/',
     },
     {
       title: 'React Engineer',
       description:
         'You will support the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption of the free open-source tier (freemium/open-core business model).',
-      url: 'https://material-ui.com/company/react-engineer/',
+      url: '/company/react-engineer/',
     },
   ],
   product: [
@@ -144,19 +144,19 @@ const openRolesData = {
       title: 'Technical Product Manager',
       description:
         'You will define and maintain the product roadmap for the advanced components, identify opportunities, define specs, and work with engineers to execute on the features. Experience as an engineer is essential for this role, as you will also contribute to development work in the beginning.',
-      url: 'https://material-ui.com/company/technical-product-manager/',
+      url: '/company/technical-product-manager/',
     },
     {
       title: 'Product Manager',
       description:
         'You will initiate the exploration of a bold new product vertical. We are looking for an experienced and ambitious product manager who is ready to work in an entrepreneurial environment. You are a manager of one, you are curious, enjoy taking risks, and learning.',
-      url: 'https://material-ui.com/company/product-manager/',
+      url: '/company/product-manager/',
     },
     {
       title: 'Developer Advocate',
       description:
         'You will educate users on the latest features, craft high-quality examples and demos, engage with the community, write documentation, advocate for creating faster and more appealing UIs, and help to promote/market the advanced components.',
-      url: 'https://material-ui.com/company/developer-advocate/',
+      url: '/company/developer-advocate/',
     },
   ],
 };
