@@ -20,6 +20,7 @@ import BrandingProvider from 'docs/src/BrandingProvider';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetail from '@mui/material/AccordionDetails';
+import ROUTES from 'docs/src/route';
 
 const Role = ({
   title,
