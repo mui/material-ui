@@ -8,7 +8,7 @@
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiAccordionDetails" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/AccordionDetails/AccordionDetails.js",
+  "filename": "/packages/mui-material/src/AccordionDetails/AccordionDetails.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/accordion/\">Accordion</a></li></ul>",
   "styledComponent": true,

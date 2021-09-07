@@ -83,10 +83,7 @@ async function run(context) {
         // already exists
       }
       await copyDirectory(
-        new URL(
-          `./packages/material-ui${muiPackageName === 'core' ? '' : `-${muiPackageName}`}/build/`,
-          workspaceRoot,
-        ),
+        new URL(`./packages/mui${`-${muiPackageName}`}/build/`, workspaceRoot),
         new URL(`./node_modules/@mui/${muiPackageName}/`, fixtureUrl),
       );
     }),

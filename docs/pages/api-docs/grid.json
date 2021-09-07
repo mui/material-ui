@@ -125,7 +125,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/Grid/Grid.js",
+  "filename": "/packages/mui-material/src/Grid/Grid.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/grid/\">Grid</a></li></ul>",
   "styledComponent": true,

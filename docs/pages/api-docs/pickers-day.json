@@ -29,7 +29,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
-  "filename": "/packages/material-ui-lab/src/PickersDay/PickersDay.tsx",
+  "filename": "/packages/mui-lab/src/PickersDay/PickersDay.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/date-picker/\">Date Picker</a></li></ul>",
   "styledComponent": true,

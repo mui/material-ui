@@ -24,7 +24,7 @@
   "styles": { "classes": ["root", "stickyHeader"], "globalClasses": {}, "name": "MuiTable" },
   "spread": true,
   "forwardsRefTo": "HTMLTableElement",
-  "filename": "/packages/material-ui/src/Table/Table.js",
+  "filename": "/packages/mui-material/src/Table/Table.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tables/\">Tables</a></li></ul>",
   "styledComponent": true,

@@ -70,7 +70,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/ButtonGroup/ButtonGroup.js",
+  "filename": "/packages/mui-material/src/ButtonGroup/ButtonGroup.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/button-group/\">Button Group</a></li></ul>",
   "styledComponent": true,

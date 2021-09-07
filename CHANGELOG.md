@@ -9,7 +9,7 @@ _Sep 1, 2021_
 A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
 - 🎉 Renamed packages to `@mui/*` as part of rebranding the company, following the strategy of expanding the library scope beyond Material Design. For more details about it, check the [GitHub discussion](https://github.com/mui-org/material-ui/discussions/27803).
-- 🛠 Added `mui-replace` codemod for migrating `@material-ui/*` to new packages `@mui/*`. Check out this [codemod detail](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#mui-replace) or head to [migration guide](https://next.material-ui.com/guides/migration-v4/#preset-safe)
+- 🛠 Added `mui-replace` codemod for migrating `@material-ui/*` to new packages `@mui/*`. Check out this [codemod detail](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#mui-replace) or head to [migration guide](https://next.material-ui.com/guides/migration-v4/#preset-safe)
 - 🧪 Added new `<Mansory>` component to the lab, [check it out](https://next.material-ui.com/components/masonry/). It has been crafted by our first intern, @hbjORbj 👏!
 
 ### `@mui/material@5.0.0-rc.0`
@@ -41,7 +41,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
   > **Note**: `@mui/core` (previously `@material-ui/unstyled`) is not the same as `@material-ui/core`.
 
-  We encourage you to use the [codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#mui-replace) for smooth migration.
+  We encourage you to use the [codemod](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#mui-replace) for smooth migration.
 
 #### Changes
 
@@ -612,7 +612,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 
 - 🎉 This is the first beta release of v5! A huge thanks to everyone who helped to make this happen! We're targeting the 1st of September for a stable release, and will use the next two months to polish v5, and ease the migration from v4. You can follow [the v5 stable milestone](https://github.com/mui-org/material-ui/milestone/44) for more details. We now encourage any new projects to start on v5.
 - 🚀 We have completed all the planned breaking changes.
-- ⚒️ We added the codemod CLI to simplify migration to v5 (#26941) @eps1lon. You can find it at [`@material-ui/codemod`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod).
+- ⚒️ We added the codemod CLI to simplify migration to v5 (#26941) @eps1lon. You can find it at [`@material-ui/codemod`](https://github.com/mui-org/material-ui/tree/HEAD/packages/mui-codemod).
 - 🐛 The majority of other changes in this release were bug fixes, test utilities and docs.
 
 ### `@material-ui/core@5.0.0-beta.0`
@@ -1175,7 +1175,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 
 - 👩‍🎤 We have completed the migration to emotion of all the components (`@material-ui/core` and `@material-ui/lab`) @siriwatknp, @mnajdova.
 - 📦 Save [10 kB gzipped](https://bundlephobia.com/result?p=@material-ui/core@5.0.0-alpha.34) by removing the dependency on `@material-ui/styles` (JSS) from the core and the lab (#26377, #26382, #26376) @mnajdova.
-- ⚒️ Add many new [codemods](https://github.com/mui-org/material-ui/blob/HEAD/packages/material-ui-codemod/README.md) to automate the migration from v4 to v5 (#24867) @mbrookes.
+- ⚒️ Add many new [codemods](https://github.com/mui-org/material-ui/blob/HEAD/packages/mui-codemod/README.md) to automate the migration from v4 to v5 (#24867) @mbrookes.
 - And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@5.0.0-alpha.35`
@@ -2004,7 +2004,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 #### Breaking changes
 
 - [FormControl] Change default variant from standard to outlined (#24895) @petyosi
-  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#variant-prop) will automatically update your code.
+  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/mui-codemod#variant-prop) will automatically update your code.
 
   ```diff
   -<FormControl value="Standard" />
@@ -2016,7 +2016,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [Menu] The `selectedMenu` variant will not vertically align the selected item with the anchor anymore. (#25691) @m4theushw
 - [Popover] Remove the `getContentAnchorEl` prop to simplify the positioning logic. (#25691) @m4theushw
 - [Select] Change default variant from standard to outlined (#24895) @petyosi
-  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#variant-prop) will automatically update your code.
+  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/mui-codemod#variant-prop) will automatically update your code.
 
   ```diff
   -<Select value="Standard" />
@@ -3438,7 +3438,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 - [Box] Remove deprecated props (#23716) @mnajdova
   All props are now available under the `sx` prop. A deprecation will be landing in v4.
-  Thanks to @mbrookes developers can automate the migration with a [codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#box-sx-prop).
+  Thanks to @mbrookes developers can automate the migration with a [codemod](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#box-sx-prop).
 
   ```diff
   -<Box p={2} bgColor="primary.main">
@@ -3702,7 +3702,7 @@ A big thanks to the 34 contributors who made this release possible. Here are som
 #### Breaking changes
 
 - [TextField] Change default variant from standard to outlined (#23503) @mbrookes
-  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#variant-prop) will automatically update your code.
+  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/mui-codemod#variant-prop) will automatically update your code.
 
   ```diff
   -<TextField value="Standard" />
