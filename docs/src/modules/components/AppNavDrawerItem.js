@@ -89,7 +89,7 @@ const ItemLink = styled(Item, {
         ),
       },
     },
-    paddingLeft: 38 + (depth - 1)*10,
+    paddingLeft: 38 + (depth - 2)*10,
   };
 });
 
@@ -118,7 +118,7 @@ const ItemButton = styled(Item, {
       return theme.palette.text.primary;
     })(),
     fontSize: depth === 1 ? '0.75rem' : undefined,
-    fontWeight: depth === 0 ? 500 : 600,
+    fontWeight: depth === 0 ? 500 : 700,
     margin: theme.spacing(0.5, 0),
     '&:hover': {
       backgroundColor: depth === 0 ? '' : alpha(theme.palette.primary.main, 0),
@@ -145,7 +145,7 @@ const ItemButton = styled(Item, {
           },
         }
       : {
-          paddingLeft: 38 + (depth - 1)*10,
+          paddingLeft: 38,
         }),
   };
 });

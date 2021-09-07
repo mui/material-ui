@@ -11,8 +11,8 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import Brightness2RoundedIcon from '@mui/icons-material/Brightness2Rounded';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import SettingsBrightnessIcon from '@mui/icons-material/SettingsBrightness';
 import FormatTextdirectionLToRIcon from '@mui/icons-material/FormatTextdirectionLToR';
 import FormatTextdirectionRToLIcon from '@mui/icons-material/FormatTextdirectionRToL';
@@ -106,7 +106,7 @@ function AppSettingsDrawer(props) {
             data-ga-event-category="settings"
             data-ga-event-action="light"
           >
-            <Brightness7Icon fontSize="small" />
+            <LightModeIcon fontSize="small" />
             {t('settings.light')}
           </IconToggleButton>
           <IconToggleButton
@@ -124,7 +124,7 @@ function AppSettingsDrawer(props) {
             data-ga-event-category="settings"
             data-ga-event-action="dark"
           >
-            <Brightness2RoundedIcon fontSize="small" />
+            <DarkModeOutlinedIcon fontSize="small" />
             {t('settings.dark')}
           </IconToggleButton>
         </ToggleButtonGroup>
