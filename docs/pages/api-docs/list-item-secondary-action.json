@@ -12,7 +12,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/ListItemSecondaryAction/ListItemSecondaryAction.js",
+  "filename": "/packages/mui-material/src/ListItemSecondaryAction/ListItemSecondaryAction.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/lists/\">Lists</a></li></ul>",
   "styledComponent": true,

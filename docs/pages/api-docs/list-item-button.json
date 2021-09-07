@@ -37,7 +37,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/ListItemButton/ListItemButton.js",
+  "filename": "/packages/mui-material/src/ListItemButton/ListItemButton.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/lists/\">Lists</a></li></ul>",
   "styledComponent": true,
