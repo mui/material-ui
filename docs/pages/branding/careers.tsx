@@ -258,7 +258,7 @@ function CareersContent() {
       {/* Perks & benefits */}
       <Box>
         <Container sx={{ py: { xs: 4, md: 8 } }}>
-          <Grid container alignItems="center" spacing={4}>
+          <Grid container alignItems="center" spacing={{ xs: 2, sm: 4 }}>
             <Grid item xs={12} md={6}>
               <Typography variant="h2" sx={{ my: 1 }}>
                 {'Perks & benefits'}
@@ -287,7 +287,7 @@ function CareersContent() {
                 </Box>
               ))}
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <Widget
                 title="Handbook"
                 url={'https://www.notion.so/mui-org/Handbook-f086d47e10794d5e839aef9dc67f324b'}
@@ -297,7 +297,7 @@ function CareersContent() {
                 </Typography>
               </Widget>
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={12} sm={6} md={3}>
               <Widget title="Blog" url={'https://medium.com/material-ui'}>
                 <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                   Check behind the scenes and news from the company.
