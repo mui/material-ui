@@ -16,7 +16,7 @@ export default function DesignKits() {
     <BrandingProvider>
       <Head
         title="MUI in your favorite design tool."
-        description="For the designers out there, pick your favorite design tool to enjoy our components. Get the consistency right when working with developers."
+        description="Pick your favorite design tool to enjoy and use MUI components. Boost consistency and facilitate communication when working with developers."
       />
       <AppHeader />
       <main>

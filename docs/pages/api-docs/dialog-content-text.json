@@ -8,7 +8,7 @@
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiDialogContentText" },
   "spread": true,
   "forwardsRefTo": "HTMLParagraphElement",
-  "filename": "/packages/material-ui/src/DialogContentText/DialogContentText.js",
+  "filename": "/packages/mui-material/src/DialogContentText/DialogContentText.js",
   "inheritance": { "component": "Typography", "pathname": "/api/typography/" },
   "demos": "<ul><li><a href=\"/components/dialogs/\">Dialogs</a></li></ul>",
   "styledComponent": true,

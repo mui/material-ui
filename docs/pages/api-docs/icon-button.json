@@ -47,7 +47,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
-  "filename": "/packages/material-ui/src/IconButton/IconButton.js",
+  "filename": "/packages/mui-material/src/IconButton/IconButton.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/buttons/\">Buttons</a></li></ul>",
   "styledComponent": true,

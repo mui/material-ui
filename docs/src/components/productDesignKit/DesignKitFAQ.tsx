@@ -132,7 +132,7 @@ export default function DesignKitFAQ() {
       </Typography>
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
-          {renderItem(0)}
+          {renderItem(0, true)}
           {renderItem(1)}
         </Grid>
         <Grid item xs={12} md={6}>

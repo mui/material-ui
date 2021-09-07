@@ -38,7 +38,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/ImageListItemBar/ImageListItemBar.js",
+  "filename": "/packages/mui-material/src/ImageListItemBar/ImageListItemBar.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/image-list/\">Image List</a></li></ul>",
   "styledComponent": true,
