@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { useTheme, styled, Theme } from '@material-ui/core/styles';
-import { SxProps } from '@material-ui/system';
+import { useTheme, styled, Theme } from '@mui/material/styles';
+import { SxProps } from '@mui/system';
 
 export type IconImageProps = {
   name:

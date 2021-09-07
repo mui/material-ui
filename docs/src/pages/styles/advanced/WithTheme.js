@@ -1,6 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { ThemeProvider, withTheme } from '@material-ui/styles';
+import { ThemeProvider, withTheme } from '@mui/styles';
 
 function DeepChildRaw(props) {
   return <span>{`spacing ${props.theme.spacing}`}</span>;

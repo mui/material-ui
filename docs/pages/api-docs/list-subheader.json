@@ -23,7 +23,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLLIElement",
-  "filename": "/packages/material-ui/src/ListSubheader/ListSubheader.js",
+  "filename": "/packages/mui-material/src/ListSubheader/ListSubheader.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/lists/\">Lists</a></li></ul>",
   "styledComponent": true,

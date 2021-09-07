@@ -9,6 +9,7 @@
       },
       "default": "'standard'"
     },
+    "disabled": { "type": { "name": "bool" } },
     "exclusive": { "type": { "name": "bool" } },
     "fullWidth": { "type": { "name": "bool" } },
     "onChange": { "type": { "name": "func" } },
@@ -28,13 +29,13 @@
   },
   "name": "ToggleButtonGroup",
   "styles": {
-    "classes": ["root", "vertical", "grouped", "groupedHorizontal", "groupedVertical"],
-    "globalClasses": {},
+    "classes": ["root", "vertical", "disabled", "grouped", "groupedHorizontal", "groupedVertical"],
+    "globalClasses": { "disabled": "Mui-disabled" },
     "name": "MuiToggleButtonGroup"
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/ToggleButtonGroup/ToggleButtonGroup.js",
+  "filename": "/packages/mui-material/src/ToggleButtonGroup/ToggleButtonGroup.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/toggle-button/\">Toggle Button</a></li></ul>",
   "styledComponent": true,

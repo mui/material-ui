@@ -24,10 +24,10 @@ You have to wait for the client-side hydration to see the children.
 
 ## Unstyled
 
-- 📦 [970 B gzipped](https://bundlephobia.com/result?p=@material-ui/unstyled@next)
+- 📦 [970 B gzipped](https://bundlephobia.com/result?p=@mui/core@next)
 
 As the component does not have any styles, it also comes with the unstyled package.
 
 ```js
-import Portal from '@material-ui/unstyled/Portal';
+import Portal from '@mui/core/Portal';
 ```

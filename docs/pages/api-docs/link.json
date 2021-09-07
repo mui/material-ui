@@ -36,7 +36,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLAnchorElement",
-  "filename": "/packages/material-ui/src/Link/Link.js",
+  "filename": "/packages/mui-material/src/Link/Link.js",
   "inheritance": { "component": "Typography", "pathname": "/api/typography/" },
   "demos": "<ul><li><a href=\"/components/breadcrumbs/\">Breadcrumbs</a></li>\n<li><a href=\"/components/links/\">Links</a></li></ul>",
   "styledComponent": true,

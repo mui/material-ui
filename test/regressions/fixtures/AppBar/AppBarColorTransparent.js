@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { AppBar, Typography } from '@material-ui/core';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import { AppBar, Typography } from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 const darkTheme = createTheme({
   palette: {

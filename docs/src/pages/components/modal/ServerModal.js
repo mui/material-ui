@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Modal from '@material-ui/core/Modal';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import Modal from '@mui/material/Modal';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 export default function ServerModal() {
   const rootRef = React.useRef(null);

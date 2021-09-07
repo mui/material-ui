@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Switch from '@material-ui/core/Switch';
-import Paper from '@material-ui/core/Paper';
-import Slide from '@material-ui/core/Slide';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Box from '@mui/material/Box';
+import Switch from '@mui/material/Switch';
+import Paper from '@mui/material/Paper';
+import Slide from '@mui/material/Slide';
+import FormControlLabel from '@mui/material/FormControlLabel';
 
 const icon = (
   <Paper sx={{ m: 1, width: 100, height: 100 }} elevation={4}>

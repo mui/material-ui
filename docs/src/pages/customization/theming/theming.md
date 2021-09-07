@@ -47,7 +47,7 @@ const theme = createTheme({
 If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
 ```tsx
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface Theme {
     status: {
       danger: string;
@@ -117,8 +117,8 @@ Generate a theme base on the options received.
 #### Examples
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
-import { green, purple } from '@material-ui/core/colors';
+import { createTheme } from '@mui/material/styles';
+import { green, purple } from '@mui/material/colors';
 
 const theme = createTheme({
   palette: {
@@ -156,7 +156,7 @@ Generate responsive typography settings based on the options received.
 #### Examples
 
 ```js
-import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
@@ -184,7 +184,7 @@ Currently `unstable_createMuiStrictModeTheme` adds no additional requirements.
 #### Examples
 
 ```js
-import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
+import { unstable_createMuiStrictModeTheme } from '@mui/material/styles';
 
 const theme = unstable_createMuiStrictModeTheme();
 

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { withStyles, WithStyles } from '@material-ui/styles';
-import { Theme, createTheme } from '@material-ui/core/styles';
-import TableCell from '@material-ui/core/TableCell';
-import Paper from '@material-ui/core/Paper';
+import { withStyles, WithStyles } from '@mui/styles';
+import { Theme, createTheme } from '@mui/material/styles';
+import TableCell from '@mui/material/TableCell';
+import Paper from '@mui/material/Paper';
 import {
   AutoSizer,
   Column,

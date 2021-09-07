@@ -52,7 +52,7 @@ The ripple effect is exclusively coming from the `BaseButton` component.
 You can disable the ripple effect globally by providing the following in your theme:
 
 ```js
-import { createTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   components: {
@@ -73,7 +73,7 @@ Material-UI uses the same theme helper for creating all its transitions.
 Therefore you can disable all transitions by overriding the helper in your theme:
 
 ```js
-import { createTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   transitions: {
@@ -88,7 +88,7 @@ It can be useful to disable transitions during visual testing or to improve perf
 You can go one step further by disabling all transitions and animations effects:
 
 ```js
-import { createTheme } from '@material-ui/core';
+import { createTheme } from '@mui/material';
 
 const theme = createTheme({
   components: {
@@ -166,50 +166,50 @@ indicating that you can access the DOM element with a ref.
 
 ## I have several instances of styles on the page
 
-If you are seeing a warning message in the console like the one below, you probably have several instances of `@material-ui/styles` initialized on the page.
+If you are seeing a warning message in the console like the one below, you probably have several instances of `@mui/styles` initialized on the page.
 
-> It looks like there are several instances of `@material-ui/styles` initialized in this application.
+> It looks like there are several instances of `@mui/styles` initialized in this application.
 > This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason.
 
 ### Possible reasons
 
 There are several common reasons for this to happen:
 
-- You have another `@material-ui/styles` library somewhere in your dependencies.
-- You have a monorepo structure for your project (e.g, lerna, yarn workspaces) and `@material-ui/styles` module is a dependency in more than one package (this one is more or less the same as the previous one).
-- You have several applications that are using `@material-ui/styles` running on the same page (e.g., several entry points in webpack are loaded on the same page).
+- You have another `@mui/styles` library somewhere in your dependencies.
+- You have a monorepo structure for your project (e.g, lerna, yarn workspaces) and `@mui/styles` module is a dependency in more than one package (this one is more or less the same as the previous one).
+- You have several applications that are using `@mui/styles` running on the same page (e.g., several entry points in webpack are loaded on the same page).
 
 ### Duplicated module in node_modules
 
-If you think that the issue may be in the duplication of the @material-ui/styles module somewhere in your dependencies, there are several ways to check this.
-You can use `npm ls @material-ui/styles`, `yarn list @material-ui/styles` or `find -L ./node_modules | grep /@material-ui/styles/package.json` commands in your application folder.
+If you think that the issue may be in the duplication of the @mui/styles module somewhere in your dependencies, there are several ways to check this.
+You can use `npm ls @mui/styles`, `yarn list @mui/styles` or `find -L ./node_modules | grep /@mui/styles/package.json` commands in your application folder.
 
-If none of these commands identified the duplication, try analyzing your bundle for multiple instances of @material-ui/styles. You can just check your bundle source, or use a tool like [source-map-explorer](https://github.com/danvk/source-map-explorer) or [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer).
+If none of these commands identified the duplication, try analyzing your bundle for multiple instances of @mui/styles. You can just check your bundle source, or use a tool like [source-map-explorer](https://github.com/danvk/source-map-explorer) or [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer).
 
 If you identified that duplication is the issue that you are encountering there are several things you can try to solve it:
 
 If you are using npm you can try running `npm dedupe`.
 This command searches the local dependencies and tries to simplify the structure by moving common dependencies further up the tree.
 
-If you are using webpack, you can change the way it will [resolve](https://webpack.js.org/configuration/resolve/#resolve-modules) the @material-ui/styles module. You can overwrite the default order in which webpack will look for your dependencies and make your application node_modules more prioritized than default node module resolution order:
+If you are using webpack, you can change the way it will [resolve](https://webpack.js.org/configuration/resolve/#resolve-modules) the @mui/styles module. You can overwrite the default order in which webpack will look for your dependencies and make your application node_modules more prioritized than default node module resolution order:
 
 ```diff
   resolve: {
 +   alias: {
-+     "@material-ui/styles": path.resolve(appFolder, "node_modules", "@material-ui/styles"),
++     "@mui/styles": path.resolve(appFolder, "node_modules", "@mui/styles"),
 +   }
   }
 ```
 
 ### Usage with Lerna
 
-One possible fix to get @material-ui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) shared dependencies to the root of your monorepo file. Try running the bootstrap option with the --hoist flag.
+One possible fix to get @mui/styles to run in a Lerna monorepo across packages is to [hoist](https://github.com/lerna/lerna/blob/master/doc/hoist.md) shared dependencies to the root of your monorepo file. Try running the bootstrap option with the --hoist flag.
 
 ```sh
 lerna bootstrap --hoist
 ```
 
-Alternatively, you can remove @material-ui/styles from your package.json file and hoist it manually to your top-level package.json file.
+Alternatively, you can remove @mui/styles from your package.json file and hoist it manually to your top-level package.json file.
 
 Example of a package.json file in a Lerna root folder
 
@@ -220,7 +220,7 @@ Example of a package.json file in a Lerna root folder
     "lerna": "latest"
   },
   "dependencies": {
-    "@material-ui/styles": "^4.0.0"
+    "@mui/styles": "^4.0.0"
   },
   "scripts": {
     "bootstrap": "lerna bootstrap",
@@ -233,12 +233,12 @@ Example of a package.json file in a Lerna root folder
 
 ### Running multiple applications on one page
 
-If you have several applications running on one page, consider using one @material-ui/styles module for all of them. If you are using webpack, you can use [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) to create an explicit [vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), that will contain the @material-ui/styles module:
+If you have several applications running on one page, consider using one @mui/styles module for all of them. If you are using webpack, you can use [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/) to create an explicit [vendor chunk](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk), that will contain the @mui/styles module:
 
 ```diff
   module.exports = {
     entry: {
-+     vendor: ["@material-ui/styles"],
++     vendor: ["@mui/styles"],
       app1: "./src/app.1.js",
       app2: "./src/app.2.js",
     },
@@ -320,7 +320,7 @@ This generator needs to behave identically on the server and on the client. For 
 
 - You need to verify that your client and server are running the **exactly the same version** of Material-UI.
   It is possible that a mismatch of even minor versions can cause styling problems.
-  To check version numbers, run `npm list @material-ui/core` in the environment where you build your application and also in your deployment environment.
+  To check version numbers, run `npm list @mui/material` in the environment where you build your application and also in your deployment environment.
 
   You can also ensure the same version in different environments by specifying a specific MUI version in the dependencies of your package.json.
 
@@ -329,8 +329,8 @@ This generator needs to behave identically on the server and on the client. For 
   ```diff
     "dependencies": {
       ...
-  -   "@material-ui/core": "^4.0.0",
-  +   "@material-ui/core": "4.0.0",
+  -   "@mui/material": "^4.0.0",
+  +   "@mui/material": "4.0.0",
       ...
     },
   ```

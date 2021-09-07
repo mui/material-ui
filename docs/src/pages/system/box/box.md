@@ -7,7 +7,7 @@ githubLabel: 'component: Box'
 
 <p class="description">The Box component serves as a wrapper component for most of the CSS utility needs.</p>
 
-The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@material-ui/system`.
+The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@mui/system`.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -57,7 +57,7 @@ For non-Material-UI components, use the `component` prop.
 ## API
 
 ```jsx
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 ```
 
 | Name                                     | Type                                                                                                        | Default                                 | Description                                                                                |
@@ -80,7 +80,7 @@ For instance, a margin-top:
 If you want to have a different default theme for the `Box` component, you can create your own version of it, using the `createBox()` utility.
 
 ```js
-import { createBox, createTheme } from '@material-ui/system';
+import { createBox, createTheme } from '@mui/system';
 
 const defaultTheme = createTheme({
   // your custom theme values

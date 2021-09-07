@@ -1,18 +1,18 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import Box from '@material-ui/core/Box';
-import Collapse from '@material-ui/core/Collapse';
-import IconButton from '@material-ui/core/IconButton';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import Box from '@mui/material/Box';
+import Collapse from '@mui/material/Collapse';
+import IconButton from '@mui/material/IconButton';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 function createData(name, calories, fat, carbs, protein, price) {
   return {

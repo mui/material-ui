@@ -114,7 +114,7 @@
   "name": "StaticDateTimePicker",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
-  "filename": "/packages/material-ui-lab/src/StaticDateTimePicker/StaticDateTimePicker.tsx",
+  "filename": "/packages/mui-lab/src/StaticDateTimePicker/StaticDateTimePicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/date-time-picker/\">Date Time Picker</a></li></ul>",
   "styledComponent": true,

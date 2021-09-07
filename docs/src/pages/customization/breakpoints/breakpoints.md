@@ -102,10 +102,10 @@ const theme = createTheme({
 
 If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
-<!-- Tested with packages/material-ui/test/typescript/breakpointsOverrides.augmentation.tsconfig.json -->
+<!-- Tested with packages/mui-material/test/typescript/breakpointsOverrides.augmentation.tsconfig.json -->
 
 ```ts
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface BreakpointOverrides {
     xs: false; // removes the `xs` breakpoint
     sm: false;

@@ -1,11 +1,11 @@
-const withTM = require('next-transpile-modules')(['@material-ui/core', '@material-ui/system']); // pass the modules you would like to see transpiled
+const withTM = require('next-transpile-modules')(['@mui/material', '@mui/system']); // pass the modules you would like to see transpiled
 
 module.exports = withTM({
   reactStrictMode: true,
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@material-ui/styled-engine': '@material-ui/styled-engine-sc',
+      '@mui/styled-engine': '@mui/styled-engine-sc',
     };
     return config;
   },

@@ -9,8 +9,8 @@ The default locale of Material-UI is English (United States). If you want to use
 Use the theme to configure the locale text globally:
 
 ```jsx
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import { zhCN } from '@material-ui/core/locale';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { zhCN } from '@mui/material/locale';
 
 const theme = createTheme(
   {
@@ -79,7 +79,7 @@ const theme = createTheme(
 
 <!-- #default-branch-switch -->
 
-You can [find the source](https://github.com/mui-org/material-ui/blob/next/packages/material-ui/src/locale/index.ts) in the GitHub repository.
+You can [find the source](https://github.com/mui-org/material-ui/blob/next/packages/mui-material/src/locale/index.ts) in the GitHub repository.
 
 To create your own translation, or to customize the English text, copy this file to your project, make any changes needed and import the locale from there.
 

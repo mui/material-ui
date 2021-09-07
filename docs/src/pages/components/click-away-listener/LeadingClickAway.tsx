@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import { SxProps } from '@material-ui/system';
+import Box from '@mui/material/Box';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import { SxProps } from '@mui/system';
 
 export default function LeadingClickAway() {
   const [open, setOpen] = React.useState(false);

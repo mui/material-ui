@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Button from '@material-ui/core/Button';
-import Stack from '@material-ui/core/Stack';
-import SnackbarContent from '@material-ui/core/SnackbarContent';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import SnackbarContent from '@mui/material/SnackbarContent';
 
 const action = (
   <Button color="secondary" size="small">

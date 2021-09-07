@@ -29,7 +29,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
-  "filename": "/packages/material-ui/src/Tab/Tab.js",
+  "filename": "/packages/mui-material/src/Tab/Tab.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/tabs/\">Tabs</a></li></ul>",
   "styledComponent": true,

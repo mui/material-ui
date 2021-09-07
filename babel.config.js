@@ -9,17 +9,17 @@ function resolveAliasPath(relativeToBabelConf) {
 }
 
 const defaultAlias = {
-  '@material-ui/core': resolveAliasPath('./packages/material-ui/src'),
-  '@material-ui/docs': resolveAliasPath('./packages/material-ui-docs/src'),
-  '@material-ui/icons': resolveAliasPath('./packages/material-ui-icons/lib'),
-  '@material-ui/lab': resolveAliasPath('./packages/material-ui-lab/src'),
-  '@material-ui/styled-engine': resolveAliasPath('./packages/material-ui-styled-engine/src'),
-  '@material-ui/styled-engine-sc': resolveAliasPath('./packages/material-ui-styled-engine-sc/src'),
-  '@material-ui/styles': resolveAliasPath('./packages/material-ui-styles/src'),
-  '@material-ui/system': resolveAliasPath('./packages/material-ui-system/src'),
-  '@material-ui/private-theming': resolveAliasPath('./packages/material-ui-private-theming/src'),
-  '@material-ui/unstyled': resolveAliasPath('./packages/material-ui-unstyled/src'),
-  '@material-ui/utils': resolveAliasPath('./packages/material-ui-utils/src'),
+  '@mui/material': resolveAliasPath('./packages/mui-material/src'),
+  '@mui/docs': resolveAliasPath('./packages/mui-docs/src'),
+  '@mui/icons-material': resolveAliasPath('./packages/mui-icons-material/lib'),
+  '@mui/lab': resolveAliasPath('./packages/mui-lab/src'),
+  '@mui/styled-engine': resolveAliasPath('./packages/mui-styled-engine/src'),
+  '@mui/styled-engine-sc': resolveAliasPath('./packages/mui-styled-engine-sc/src'),
+  '@mui/styles': resolveAliasPath('./packages/mui-styles/src'),
+  '@mui/system': resolveAliasPath('./packages/mui-system/src'),
+  '@mui/private-theming': resolveAliasPath('./packages/mui-private-theming/src'),
+  '@mui/core': resolveAliasPath('./packages/mui-core/src'),
+  '@mui/utils': resolveAliasPath('./packages/mui-utils/src'),
 };
 
 const productionPlugins = [

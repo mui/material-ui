@@ -52,7 +52,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/Paper/Paper.js",
+  "filename": "/packages/mui-material/src/Paper/Paper.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/cards/\">Cards</a></li>\n<li><a href=\"/components/paper/\">Paper</a></li></ul>",
   "styledComponent": true,

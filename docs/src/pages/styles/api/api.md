@@ -1,6 +1,6 @@
 # API
 
-<p class="description">The API reference of @material-ui/core/styles.</p>
+<p class="description">The API reference of @mui/material/styles.</p>
 
 ## `createGenerateClassName([options]) => class name generator`
 
@@ -22,7 +22,7 @@ A function which returns [a class name generator function](https://cssinjs.org/j
 
 ```jsx
 import * as React from 'react';
-import { StylesProvider, createGenerateClassName } from '@material-ui/styles';
+import { StylesProvider, createGenerateClassName } from '@mui/styles';
 
 const generateClassName = createGenerateClassName({
   productionPrefix: 'c',
@@ -50,8 +50,8 @@ style rules to `makeStyles`/`withStyles` which are a function of the `Theme`.
 ### Examples
 
 ```jsx
-import { createStyles, makeStyles } from '@material-ui/styles';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createStyles, makeStyles } from '@mui/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -99,7 +99,7 @@ the style sheet.
 
 ```jsx
 import * as React from 'react';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles({
   root: {
@@ -120,7 +120,7 @@ This is a class helper to handle server-side rendering. [You can follow this gui
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
-import { ServerStyleSheets } from '@material-ui/styles';
+import { ServerStyleSheets } from '@mui/styles';
 
 const sheets = new ServerStyleSheets();
 const html = ReactDOMServer.renderToString(sheets.collect(<App />));
@@ -187,8 +187,8 @@ Link a style sheet with a function component using the **styled components** pat
 
 ```jsx
 import * as React from 'react';
-import { styled, ThemeProvider } from '@material-ui/styles';
-import { createTheme } from '@material-ui/core/styles';
+import { styled, ThemeProvider } from '@mui/styles';
+import { createTheme } from '@mui/material/styles';
 
 const MyComponent = styled('div')({
   backgroundColor: 'red',
@@ -232,7 +232,7 @@ It should preferably be used at **the root of your component tree**.
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { StylesProvider } from '@material-ui/styles';
+import { StylesProvider } from '@mui/styles';
 
 function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
@@ -258,7 +258,7 @@ It should preferably be used at **the root of your component tree**.
 ```jsx
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { ThemeProvider } from '@material-ui/core/styles';
+import { ThemeProvider } from '@mui/material/styles';
 
 const theme = {};
 
@@ -281,7 +281,7 @@ This hook returns the `theme` object so it can be used inside a function compone
 
 ```jsx
 import * as React from 'react';
-import { useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@mui/material/styles';
 
 export default function MyComponent() {
   const theme = useTheme();
@@ -325,7 +325,7 @@ Some implementation details that might be interesting to being aware of:
 
 ```jsx
 import * as React from 'react';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@mui/styles';
 
 const styles = {
   root: {
@@ -344,7 +344,7 @@ Also, you can use as [decorators](https://babeljs.io/docs/en/babel-plugin-propos
 
 ```jsx
 import * as React from 'react';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@mui/styles';
 
 const styles = {
   root: {
@@ -379,7 +379,7 @@ in the render method.
 
 ```jsx
 import * as React from 'react';
-import { withTheme } from '@material-ui/styles';
+import { withTheme } from '@mui/styles';
 
 function MyComponent(props) {
   return <div>{props.theme.direction}</div>;

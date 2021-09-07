@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 import { expect } from 'chai';
 import * as React from 'react';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import ReactTestRenderer from 'react-test-renderer';
 import createMount from './createMount';
 import findOutermostIntrinsic from './findOutermostIntrinsic';
@@ -196,7 +196,7 @@ export function testReactTestRenderer(element) {
 /**
  * @typedef {Object} ConformanceOptions
  * @property {() => void} [after]
- * @property {object} classes - `classes` of the component provided by `@material-ui/styled-engine`
+ * @property {object} classes - `classes` of the component provided by `@mui/styled-engine`
  * @property {import('react').ElementType} [inheritComponent] - The element type that receives spread props or `undefined` if props are not spread.
  * @property {string} muiName
  * @property {(node: React.ReactElement) => import('./createClientRender').MuiRenderResult} [render] - Should be a return value from createClientRender
