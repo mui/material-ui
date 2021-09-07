@@ -521,6 +521,36 @@ describe('<ButtonBase />', () => {
         fireEvent.click(getByTestId('trigger'));
         expect(container.querySelectorAll('.ripple-pulsate')).to.have.lengthOf(1);
       });
+
+      it('should stop the ripple on blur if disableTouchRipple is set', () => {
+        const buttonActions = React.createRef();
+
+        const { getByRole } = render(
+          <ButtonBase
+            action={buttonActions}
+            focusRipple
+            disableTouchRipple
+            TouchRippleProps={{
+              classes: {
+                rippleVisible: 'ripple-visible',
+                child: 'child',
+                childLeaving: 'child-leaving',
+              },
+            }}
+          />,
+        );
+
+        const button = getByRole('button');
+
+        simulatePointerDevice();
+        focusVisible(button);
+
+        act(() => {
+          button.blur();
+        });
+
+        expect(button.querySelectorAll('.ripple-visible .child-leaving')).to.have.lengthOf(1);
+      });
     });
   });
 
