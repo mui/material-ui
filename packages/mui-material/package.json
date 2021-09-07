@@ -1,0 +1,83 @@
+{
+  "name": "@mui/material",
+  "version": "5.0.0-rc.0",
+  "private": false,
+  "author": "Material-UI Team",
+  "description": "Quickly build beautiful React apps. Material-UI is a simple and customizable component library to build faster, beautiful, and more accessible React applications. Follow your own design system, or start with Material Design.",
+  "main": "./src/index.ts",
+  "keywords": [
+    "react",
+    "react-component",
+    "material-ui",
+    "material design"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui-org/material-ui.git",
+    "directory": "packages/mui-material"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui-org/material-ui/issues"
+  },
+  "homepage": "https://material-ui.com/",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/material-ui"
+  },
+  "scripts": {
+    "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:umd && yarn build:types && yarn build:copy-files",
+    "build:legacy": "node ../../scripts/build legacy",
+    "build:modern": "node ../../scripts/build modern",
+    "build:node": "node ../../scripts/build node",
+    "build:stable": "node ../../scripts/build stable",
+    "build:umd": "cross-env BABEL_ENV=stable rollup -c scripts/rollup.config.js",
+    "build:copy-files": "node ../../scripts/copy-files.js",
+    "build:types": "node ../../scripts/buildTypes",
+    "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
+    "release": "yarn build && npm publish build --tag next",
+    "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-material/**/*.test.{js,ts,tsx}'",
+    "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json",
+    "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
+    "@types/react": "^16.8.6 || ^17.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  },
+  "peerDependenciesMeta": {
+    "@types/react": {
+      "optional": true
+    },
+    "@emotion/react": {
+      "optional": true
+    },
+    "@emotion/styled": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.14.8",
+    "@mui/core": "5.0.0-alpha.45",
+    "@mui/system": "5.0.0-rc.0",
+    "@mui/types": "7.0.0-rc.0",
+    "@mui/utils": "5.0.0-rc.0",
+    "@popperjs/core": "^2.4.4",
+    "@types/react-transition-group": "^4.2.0",
+    "clsx": "^1.1.1",
+    "csstype": "^3.0.8",
+    "hoist-non-react-statics": "^3.3.2",
+    "prop-types": "^15.7.2",
+    "react-is": "^17.0.2",
+    "react-transition-group": "^4.4.0"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}

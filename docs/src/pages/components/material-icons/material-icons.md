@@ -1,12 +1,12 @@
 ---
-title: Material Icons
+title: Material icons
 components: Icon, SvgIcon
 materialDesign: https://material.io/design/iconography/system-icons.html
 packageName: '@mui/icons-material'
 githubLabel: 'package: icons'
 ---
 
-# Material Icons
+# Material icons
 
 <p class="description">1,700+ React Material icons ready to use from the official website.</p>
 

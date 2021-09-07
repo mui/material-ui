@@ -39,7 +39,7 @@ Here are the most significant improvements since March 2021.
   In v5, we have standardized on the `styled()` API as the styling foundation we build on top of, and introduced the [the `sx` prop](https://next.material-ui.com/system/the-sx-prop/) for one-off customizations.
   The `styled()` API is loved by the community, and implemented by a number of styling libraries: styled-components, emotion, stitches, goober, etc. It allows us to support them all with [adapters](https://next.material-ui.com/guides/styled-engine/#how-to-switch-to-styled-components).
 
-- ⚒️ We added a [codemod CLI](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod) and 17 transformations (so far) to automatically migrate codebases from v4 to v5.
+- ⚒️ We added a [codemod CLI](https://github.com/mui-org/material-ui/tree/HEAD/packages/mui-codemod) and 17 transformations (so far) to automatically migrate codebases from v4 to v5.
   If you're not familiar with what a codemod is, check out [Effective Refactoring with Codemods by Edd Yerburgh](https://www.youtube.com/watch?v=H9qtLutnT_g).
 
 - 💄 We have [updated the style of the Slider](https://next.material-ui.com/components/slider/#sizes) to better match the Material Design guidelines, and kept a similar style as before under `size="small"`:

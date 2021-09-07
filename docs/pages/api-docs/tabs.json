@@ -65,7 +65,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/Tabs/Tabs.js",
+  "filename": "/packages/mui-material/src/Tabs/Tabs.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tabs/\">Tabs</a></li></ul>",
   "styledComponent": true,

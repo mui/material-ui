@@ -9,7 +9,7 @@
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTableContainer" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/TableContainer/TableContainer.js",
+  "filename": "/packages/mui-material/src/TableContainer/TableContainer.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tables/\">Tables</a></li></ul>",
   "styledComponent": true,

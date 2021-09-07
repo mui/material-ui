@@ -37,9 +37,9 @@ export default function TemplateDemo() {
   const mode = globalTheme.palette.mode;
   const [demo, setDemo] = React.useState(DEMOS[0]);
   const icons = {
-    [DEMOS[0]]: <ToggleOnRounded />,
-    [DEMOS[1]]: <TextFieldsRounded />,
-    [DEMOS[2]]: <WidgetsRounded />,
+    [DEMOS[0]]: <ToggleOnRounded fontSize="small" />,
+    [DEMOS[1]]: <TextFieldsRounded fontSize="small" />,
+    [DEMOS[2]]: <WidgetsRounded fontSize="small" />,
   };
   return (
     <Section bg="comfort">
@@ -47,13 +47,13 @@ export default function TemplateDemo() {
         <Grid item md={6} sx={{ minWidth: 0 }}>
           <Box maxWidth={500}>
             <SectionHeadline
-              overline="Use cases"
+              overline="Features"
               title={
                 <Typography variant="h2">
-                  Get the right template for your <GradientText>specific need</GradientText>
+                  Upgrade your <GradientText>design workflow</GradientText>
                 </Typography>
               }
-              description="We've gathered templates for lots of use-cases, all powered with the Core components carefully curated from MUI's team."
+              description="The UI kits contain many of the MUI components with states, variations, colors, typography, and icons. We frequently update it to sync with the most up-to-date MUI release."
             />
           </Box>
           <Group desktopColumns={2} sx={{ mt: 4 }}>

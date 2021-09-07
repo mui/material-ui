@@ -15,7 +15,7 @@
   },
   "spread": true,
   "forwardsRefTo": "SVGSVGElement",
-  "filename": "/packages/material-ui/src/StepIcon/StepIcon.js",
+  "filename": "/packages/mui-material/src/StepIcon/StepIcon.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/steppers/\">Steppers</a></li></ul>",
   "styledComponent": true,

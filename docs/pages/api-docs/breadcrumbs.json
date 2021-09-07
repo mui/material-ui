@@ -24,7 +24,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLElement",
-  "filename": "/packages/material-ui/src/Breadcrumbs/Breadcrumbs.js",
+  "filename": "/packages/mui-material/src/Breadcrumbs/Breadcrumbs.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/breadcrumbs/\">Breadcrumbs</a></li></ul>",
   "styledComponent": true,

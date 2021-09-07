@@ -11,7 +11,7 @@
   "styles": { "classes": ["root", "media", "img"], "globalClasses": {}, "name": "MuiCardMedia" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/CardMedia/CardMedia.js",
+  "filename": "/packages/mui-material/src/CardMedia/CardMedia.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/cards/\">Cards</a></li></ul>",
   "styledComponent": true,
