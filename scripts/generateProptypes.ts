@@ -307,6 +307,7 @@ async function run(argv: HandlerArgv) {
       path.resolve(__dirname, '../packages/mui-core/src'),
       path.resolve(__dirname, '../packages/mui-material/src'),
       path.resolve(__dirname, '../packages/mui-lab/src'),
+      path.resolve(__dirname, '../packages/mui-material-next/src'),
     ].map((folderPath) =>
       glob('+([A-Z])*/+([A-Z])*.*@(d.ts|ts|tsx)', {
         absolute: true,
