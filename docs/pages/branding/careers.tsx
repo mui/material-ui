@@ -124,6 +124,67 @@ const faqData = [
   },
 ];
 
+const openRolesData = {
+  engineering: [
+    {
+      title: 'Full-stack Engineer',
+      description:
+        'You will initiate the development of a bold new product vertical. We are looking for an experienced and ambitious full-stack engineer that is ready to work in an entrepreneurial environment. You are a manager of one, you are curious, enjoy taking risks, and learning.',
+      url: 'https://material-ui.com/company/full-stack-engineer/',
+    },
+    {
+      title: 'React Engineer',
+      description:
+        'You will support the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption of the free open-source tier (freemium/open-core business model).',
+      url: 'https://material-ui.com/company/react-engineer/',
+    },
+  ],
+  product: [
+    {
+      title: 'Technical Product Manager',
+      description:
+        'You will define and maintain the product roadmap for the advanced components, identify opportunities, define specs, and work with engineers to execute on the features. Experience as an engineer is essential for this role, as you will also contribute to development work in the beginning.',
+      url: 'https://material-ui.com/company/technical-product-manager/',
+    },
+    {
+      title: 'Product Manager',
+      description:
+        'You will initiate the exploration of a bold new product vertical. We are looking for an experienced and ambitious product manager who is ready to work in an entrepreneurial environment. You are a manager of one, you are curious, enjoy taking risks, and learning.',
+      url: 'https://material-ui.com/company/product-manager/',
+    },
+    {
+      title: 'Developer Advocate',
+      description:
+        'You will educate users on the latest features, craft high-quality examples and demos, engage with the community, write documentation, advocate for creating faster and more appealing UIs, and help to promote/market the advanced components.',
+      url: 'https://material-ui.com/company/developer-advocate/',
+    },
+  ],
+};
+
+const futureRolesData = {
+  product: [
+    {
+      title: 'Product Designer',
+      description:
+        'Design is critical to the success of our mission. We will be looking for skills that complement our lead designer. It could be a graphic designer or a UX expert for instance, depending on our exact needs.',
+    },
+  ],
+  operations: [
+    {
+      title: 'Head of talent',
+      description:
+        'Recruit an exceptional team and lay the foundations for a modern corporation. We will be looking for a self-starter who acts as a strategic designer, builder, and champion for our engineering-centric and customer-oriented culture. They will serve as part of the company’s leadership team, collaborating to continuously evolve our high-performance, high-engagement crew.',
+    },
+  ],
+  customerSuccess: [
+    {
+      title: 'Support Engineer',
+      description:
+        'Ensure that our users wildly succeed on their journey with Material-UI. You’ll directly work with users, customers, and potential customers to unblock them from using the products, triage and resolve issues, and use this direct feedback to drive direct improvements in Material-UI.',
+    },
+  ],
+};
+
 function renderFAQItem(index: number, defaultExpanded?: boolean) {
   const faq = faqData[index];
   return (
@@ -343,30 +404,18 @@ function CareersContent() {
         >
           Engineering
         </Typography>
-        <Role
-          title="Full-stack Engineer"
-          description="You will initiate the development of a bold new product vertical. We are looking for an experienced and ambitious full-stack engineer that is ready to work in an entrepreneurial environment. You are a manager of one, you are curious, enjoy taking risks, and learning."
-          url="https://material-ui.com/company/full-stack-engineer/"
-        />
-        <Divider
-          sx={{
-            my: { xs: 1, sm: 2 },
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.100',
-          }}
-        />
-        <Role
-          title="React Engineer"
-          description="You will support the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption of the free open-source tier (freemium/open-core business model)."
-          url="https://material-ui.com/company/react-engineer/"
-        />
-        <Divider
-          sx={{
-            my: { xs: 1, sm: 2 },
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.100',
-          }}
-        />
+        {openRolesData.engineering.map((role) => (
+          <React.Fragment>
+            <Role title={role.title} description={role.description} url={role.url} />
+            <Divider
+              sx={{
+                my: { xs: 1, sm: 2 },
+                borderColor: (theme) =>
+                  theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.100',
+              }}
+            />
+          </React.Fragment>
+        ))}
         <Typography
           component="h3"
           variant="h5"
@@ -376,35 +425,20 @@ function CareersContent() {
         >
           Product
         </Typography>
-        <Role
-          title="Technical Product Manager"
-          description="You will define and maintain the product roadmap for the advanced components, identify opportunities, define specs, and work with engineers to execute on the features. Experience as an engineer is essential for this role, as you will also contribute to development work in the beginning."
-          url="https://material-ui.com/company/technical-product-manager/"
-        />
-        <Divider
-          sx={{
-            my: { xs: 1, sm: 2 },
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.100',
-          }}
-        />
-        <Role
-          title="Product Manager"
-          description="You will initiate the exploration of a bold new product vertical. We are looking for an experienced and ambitious product manager who is ready to work in an entrepreneurial environment. You are a manager of one, you are curious, enjoy taking risks, and learning."
-          url="https://material-ui.com/company/product-manager/"
-        />
-        <Divider
-          sx={{
-            my: { xs: 1, sm: 2 },
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.100',
-          }}
-        />
-        <Role
-          title="Developer Advocate"
-          description="You will educate users on the latest features, craft high-quality examples and demos, engage with the community, write documentation, advocate for creating faster and more appealing UIs, and help to promote/market the advanced components."
-          url="https://material-ui.com/company/developer-advocate/"
-        />
+        {openRolesData.product.map((role, idx, arr) => (
+          <React.Fragment>
+            <Role title={role.title} description={role.description} url={role.url} />
+            {idx < arr.length - 1 && (
+              <Divider
+                sx={{
+                  my: { xs: 1, sm: 2 },
+                  borderColor: (theme) =>
+                    theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.100',
+                }}
+              />
+            )}
+          </React.Fragment>
+        ))}
       </Container>
       {/* Future roles */}
       <MuiThemeProvider theme={brandingDarkTheme}>
@@ -455,11 +489,12 @@ function CareersContent() {
             >
               Product
             </Typography>
-            <Role
-              title="Product Designer"
-              description="Design is critical to the success of our mission. We will be looking for skills that complement our lead designer. It could be a graphic designer or a UX expert for instance, depending on our exact needs."
-            />
-            <Divider sx={{ my: { xs: 1, sm: 2 }, borderColor: 'primaryDark.600' }} />
+            {futureRolesData.product.map((role) => (
+              <React.Fragment>
+                <Role title={role.title} description={role.description} />
+                <Divider sx={{ my: { xs: 1, sm: 2 }, borderColor: 'primaryDark.600' }} />
+              </React.Fragment>
+            ))}
             <Typography
               component="h3"
               variant="h5"
@@ -469,11 +504,12 @@ function CareersContent() {
             >
               Operations
             </Typography>
-            <Role
-              title="Head of talent"
-              description="Recruit an exceptional team and lay the foundations for a modern corporation. We will be looking for a self-starter who acts as a strategic designer, builder, and champion for our engineering-centric and customer-oriented culture. They will serve as part of the company’s leadership team, collaborating to continuously evolve our high-performance, high-engagement crew."
-            />
-            <Divider sx={{ my: { xs: 1, sm: 2 }, borderColor: 'primaryDark.600' }} />
+            {futureRolesData.operations.map((role) => (
+              <React.Fragment>
+                <Role title={role.title} description={role.description} />
+                <Divider sx={{ my: { xs: 1, sm: 2 }, borderColor: 'primaryDark.600' }} />
+              </React.Fragment>
+            ))}
             <Typography
               component="h3"
               variant="h5"
@@ -483,10 +519,14 @@ function CareersContent() {
             >
               Customer Success
             </Typography>
-            <Role
-              title="Support Engineer"
-              description="Ensure that our users wildly succeed on their journey with Material-UI. You’ll directly work with users, customers, and potential customers to unblock them from using the products, triage and resolve issues, and use this direct feedback to drive direct improvements in Material-UI."
-            />
+            {futureRolesData.customerSuccess.map((role, idx, arr) => (
+              <React.Fragment>
+                <Role title={role.title} description={role.description} />
+                {idx < arr.length - 1 && (
+                  <Divider sx={{ my: { xs: 1, sm: 2 }, borderColor: 'primaryDark.600' }} />
+                )}
+              </React.Fragment>
+            ))}
           </Container>
         </Box>
       </MuiThemeProvider>
