@@ -221,4 +221,6 @@ module.exports = {
   async rewrites() {
     return [{ source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' }];
   },
+  // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
+  optimizeFonts: false,
 };
