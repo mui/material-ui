@@ -207,7 +207,7 @@ function ApiDocs(props) {
   const description = t('api-docs.pageDescription').replace(/{{name}}/, componentName);
 
   const source = filename
-    .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg || 'core'}`)
+    .replace(/\/packages\/mui(-(.+?))?\/src/, (match, dash, pkg) => `@mui/${pkg}`)
     // convert things like `/Table/Table.js` to ``
     .replace(/\/([^/]+)\/\1\.(js|tsx)$/, '');
 

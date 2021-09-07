@@ -65,15 +65,15 @@ async function run(context) {
   const workspaceRoot = new URL('../../../', import.meta.url);
   await Promise.all(
     [
-      'core',
-      'icons',
+      'material',
+      'icons-material',
       'lab',
       'private-theming',
       'styled-engine',
       'styles',
       'system',
       'types',
-      'unstyled',
+      'core',
       'utils',
     ].map(async (muiPackageName) => {
       // clean coyp
