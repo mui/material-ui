@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
+import { ThemeProvider as MuiThemeProvider, styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
@@ -8,7 +8,6 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import KeyboardArrowUpRounded from '@mui/icons-material/KeyboardArrowUpRounded';
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
 import Link from 'docs/src/modules/components/Link';
 import AppHeader from 'docs/src/layouts/AppHeader';
@@ -18,6 +17,9 @@ import GradientText from 'docs/src/components/typography/GradientText';
 import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 import IconImage from 'docs/src/components/icon/IconImage';
 import BrandingProvider from 'docs/src/BrandingProvider';
+import MuiAccordion from '@mui/material/Accordion';
+import MuiAccordionSummary from '@mui/material/AccordionSummary';
+import MuiAccordionDetail from '@mui/material/AccordionDetails';
 
 const Widget = ({
   title,
@@ -45,40 +47,6 @@ const Widget = ({
       <Link href={url} variant="body2">
         {linkText || 'Learn more'} <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
       </Link>
-    </Paper>
-  );
-};
-
-const Question = ({
-  question,
-  children,
-  defaultShowAnswer = false,
-}: {
-  question: string;
-  children: React.ReactNode;
-  defaultShowAnswer?: boolean;
-}) => {
-  const [showAnswer, setShowAnswer] = React.useState(defaultShowAnswer);
-  return (
-    <Paper variant="outlined" sx={{ height: '100%', p: 2 }}>
-      <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between' }}>
-        <Typography component="div" variant="body2" fontWeight="bold">
-          {question}
-        </Typography>
-        <span
-          role="button"
-          onClick={() => setShowAnswer(!showAnswer)}
-          onKeyDown={() => setShowAnswer(!showAnswer)}
-          tabIndex={0}
-        >
-          {showAnswer ? (
-            <KeyboardArrowUpRounded color="primary" fontSize="small" sx={{ mt: '1px' }} />
-          ) : (
-            <KeyboardArrowDownRounded color="primary" fontSize="small" sx={{ mt: '1px' }} />
-          )}
-        </span>
-      </div>
-      {showAnswer && children}
     </Paper>
   );
 };
@@ -117,6 +85,100 @@ const Role = ({
     )}
   </Box>
 );
+
+const Accordion = styled(MuiAccordion)(({ theme }) => ({
+  padding: theme.spacing(2),
+  transition: theme.transitions.create('box-shadow'),
+  '&&': {
+    borderRadius: theme.shape.borderRadius,
+  },
+  '&:hover': {
+    boxShadow: '1px 1px 20px 0 rgb(90 105 120 / 20%)',
+  },
+  '&:not(:last-of-type)': {
+    marginBottom: theme.spacing(2),
+  },
+  '&:before': {
+    display: 'none',
+  },
+  '&:after': {
+    display: 'none',
+  },
+}));
+
+const AccordionSummary = styled(MuiAccordionSummary)(({ theme }) => ({
+  padding: theme.spacing(2),
+  margin: theme.spacing(-2),
+  minHeight: 'auto',
+  '&.Mui-expanded': {
+    minHeight: 'auto',
+  },
+  '& .MuiAccordionSummary-content': {
+    margin: 0,
+    paddingRight: theme.spacing(2),
+    '&.Mui-expanded': {
+      margin: 0,
+    },
+  },
+}));
+
+const AccordionDetails = styled(MuiAccordionDetail)(({ theme }) => ({
+  marginTop: theme.spacing(1),
+  padding: 0,
+}));
+
+const faqData = [
+  {
+    summary: 'Are there application deadlines?',
+    detail: (
+      <React.Fragment>
+        No. If a job is visible on our careers page, then you can still apply.
+      </React.Fragment>
+    ),
+  },
+  {
+    summary: 'Does MUI do whiteboarding during interviews?',
+    detail: (
+      <React.Fragment>
+        No. We ask applicants to complete challenges that are close to their future day-to-day
+        contributions.
+      </React.Fragment>
+    ),
+  },
+  {
+    summary: 'Does MUI offer contract job opportunities?',
+    detail: (
+      <React.Fragment>
+        Yes. People outside of France will be hired as full-time contractors. (Benefits may vary.)
+      </React.Fragment>
+    ),
+  },
+];
+
+function renderFAQItem(index: number, defaultExpanded?: boolean) {
+  const faq = faqData[index];
+  return (
+    <Accordion variant="outlined" defaultExpanded={defaultExpanded}>
+      <AccordionSummary
+        expandIcon={<KeyboardArrowDownRounded sx={{ fontSize: 20, color: 'primary.main' }} />}
+      >
+        <Typography variant="body2" fontWeight="bold" component="h3">
+          {faq.summary}
+        </Typography>
+      </AccordionSummary>
+      <AccordionDetails>
+        <Typography
+          component="div"
+          variant="body2"
+          color="text.secondary"
+          sx={{ '& ul': { pl: 2 } }}
+        >
+          {faq.detail}
+        </Typography>
+      </AccordionDetails>
+    </Accordion>
+  );
+}
 
 function CareersContent() {
   return (
@@ -429,49 +491,43 @@ function CareersContent() {
         </Box>
       </MuiThemeProvider>
       {/* Frequently asked questions */}
-      <Box>
-        <Container sx={{ py: { xs: 4, md: 8 } }}>
-          <Typography variant="h2" sx={{ my: 1 }}>
-            Frequently Asked Questions
-          </Typography>
-          <Grid container alignItems="start" spacing={3} sx={{ my: 1 }}>
-            <Grid item xs={12} md={6}>
-              <Question question="Are there application deadlines?" defaultShowAnswer>
-                <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-                  No. If a job is visible on our careers page, then you can still apply.
-                </Typography>
-              </Question>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Question question="Does MUI do whiteboarding during interviews?">
-                <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-                  No. We ask applicants to complete challenges that are close to their future
-                  day-to-day contributions.
-                </Typography>
-              </Question>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Question question="Does MUI offer contract job opportunities?">
-                <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-                  Yes. People outside of France will be hired as full-time contractors. (Benefits
-                  may vary.)
-                </Typography>
-              </Question>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Widget
-                title="Got any questions unanswered or need more help?"
-                url={'mailto:contact@material-ui.com'}
-                linkText="Contact us"
-              >
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                  We&apos;re to help you with any other question you have about our hiring process.
-                </Typography>
-              </Widget>
-            </Grid>
+
+      <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
+        <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>
+          Frequently asked questions
+        </Typography>
+        <Grid container spacing={2}>
+          <Grid item xs={12} md={6}>
+            {renderFAQItem(0, true)}
+            {renderFAQItem(1)}
           </Grid>
-        </Container>
-      </Box>
+          <Grid item xs={12} md={6}>
+            {renderFAQItem(2)}
+            <Paper
+              variant="outlined"
+              sx={{
+                p: 2,
+                borderStyle: 'dashed',
+                borderColor: (theme) =>
+                  theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
+                bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'white'),
+              }}
+            >
+              <Box sx={{ textAlign: 'left' }}>
+                <Typography variant="body2" color="text.primary" fontWeight="bold">
+                  Got any questions unanswered or need more help?
+                </Typography>
+              </Box>
+              <Typography variant="body2" color="text.primary" sx={{ my: 1, textAlign: 'left' }}>
+                We&apos;re to help you with any other question you have about our hiring process.
+              </Typography>
+              <Link href="mailto:contact@mui.com" variant="body2">
+                Contact us <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
+              </Link>
+            </Paper>
+          </Grid>
+        </Grid>
+      </Container>
     </React.Fragment>
   );
 }
