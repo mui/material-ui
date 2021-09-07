@@ -51,7 +51,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLTableCellElement",
-  "filename": "/packages/material-ui/src/TableCell/TableCell.js",
+  "filename": "/packages/mui-material/src/TableCell/TableCell.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tables/\">Tables</a></li></ul>",
   "styledComponent": true,

@@ -35,7 +35,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/ToggleButtonGroup/ToggleButtonGroup.js",
+  "filename": "/packages/mui-material/src/ToggleButtonGroup/ToggleButtonGroup.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/toggle-button/\">Toggle Button</a></li></ul>",
   "styledComponent": true,

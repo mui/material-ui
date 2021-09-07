@@ -21,7 +21,7 @@
   "name": "ClickAwayListener",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
-  "filename": "/packages/material-ui/src/ClickAwayListener/ClickAwayListener.tsx",
+  "filename": "/packages/mui-material/src/ClickAwayListener/ClickAwayListener.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/click-away-listener/\">Click Away Listener</a></li>\n<li><a href=\"/components/menus/\">Menus</a></li></ul>",
   "styledComponent": true,

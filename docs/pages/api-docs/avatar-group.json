@@ -23,7 +23,7 @@
   "styles": { "classes": ["root", "avatar"], "globalClasses": {}, "name": "MuiAvatarGroup" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/AvatarGroup/AvatarGroup.js",
+  "filename": "/packages/mui-material/src/AvatarGroup/AvatarGroup.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/avatars/\">Avatars</a></li></ul>",
   "styledComponent": true,

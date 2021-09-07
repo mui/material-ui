@@ -23,7 +23,7 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/Stack/Stack.js",
+  "filename": "/packages/mui-material/src/Stack/Stack.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/stack/\">Stack</a></li></ul>",
   "styledComponent": true,

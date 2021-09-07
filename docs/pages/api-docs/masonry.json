@@ -23,7 +23,7 @@
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiMasonry" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui-lab/src/Masonry/Masonry.js",
+  "filename": "/packages/mui-lab/src/Masonry/Masonry.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/masonry/\">Masonry</a></li></ul>",
   "styledComponent": true,

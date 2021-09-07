@@ -74,7 +74,7 @@ jobs:
         displayName: 'build @mui packages'
 
       - script: |
-          cd packages/material-ui/build
+          cd packages/mui-material/build
           npm version 0.0.0-canary.$(Build.SourceVersion) --no-git-tag-version
           npm pack
           mv mui-material-0.0.0-canary.$(Build.SourceVersion).tgz ../../../mui-material.tgz
