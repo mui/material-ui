@@ -10,7 +10,6 @@ import Typography from '@mui/material/Typography';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import KeyboardArrowUpRounded from '@mui/icons-material/KeyboardArrowUpRounded';
 import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRounded';
-import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 import Link from 'docs/src/modules/components/Link';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
@@ -93,12 +92,19 @@ const Role = ({
   description: string;
   url?: string;
 }) => (
-  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+  <Box
+    sx={{
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: { xs: 'start', sm: 'center' },
+      flexDirection: { xs: 'column', sm: 'row' },
+    }}
+  >
     <div>
-      <Typography variant="body2" color="text.primary" fontWeight={600} sx={{ my: 1 }}>
+      <Typography variant="body1" color="text.primary" fontWeight={600} sx={{ my: 1 }}>
         {title}
       </Typography>
-      <Typography color="text.secondary" sx={{ mb: 1, maxWidth: 450 }}>
+      <Typography color="text.secondary" sx={{ mb: 1, maxWidth: 700 }}>
         {description}
       </Typography>
     </div>
@@ -134,7 +140,7 @@ function CareersContent() {
             Careers
           </Typography>
           <Typography component="h1" variant="h2" sx={{ my: 1 }}>
-            Build the <GradientText>next generation</GradientText> of tools for UI development.
+            Build the <GradientText>next generation</GradientText> of tools for UI development
           </Typography>
           <Typography
             color="text.secondary"
@@ -241,7 +247,13 @@ function CareersContent() {
       </Box>
       {/* Open roles */}
       <Container sx={{ py: { xs: 4, md: 8 } }}>
-        <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
           <div>
             <Typography variant="h2" sx={{ my: 1 }}>
               Open roles
@@ -251,10 +263,6 @@ function CareersContent() {
               fast (x2-3 YoY). We doubled the team in 2020 and are on track to do the same in 2021.
               We&apos;re looking for help keep growing in the following areas:
             </Typography>
-          </div>
-          <div style={{ display: 'flex', alignSelf: 'start', paddingTop: '0.5em' }}>
-            <Typography fontWeight="bold">All areas</Typography>
-            <ArrowDropDown color="primary" fontSize="small" sx={{ ml: '1em' }} />
           </div>
         </Box>
         <Divider
@@ -360,12 +368,6 @@ function CareersContent() {
                   want to wait for the positions to be opened, you can jump ahead and submit an open
                   application.
                 </Typography>
-              </div>
-              <div style={{ display: 'flex', alignSelf: 'start', paddingTop: '0.5em' }}>
-                <Typography color="text.secondary" fontWeight="bold">
-                  All areas
-                </Typography>
-                <ArrowDropDown color="primary" fontSize="small" sx={{ ml: '1em' }} />
               </div>
             </Box>
             <Divider sx={{ my: { xs: 2, sm: 4 }, borderColor: 'primaryDark.600' }} />
