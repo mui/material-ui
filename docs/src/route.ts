@@ -10,7 +10,7 @@ const ROUTES = {
   customization: '/customization/how-to-customize/',
   theming: '/customization/theming/',
   documentation: '/getting-started/usage/',
-  dataGridDocs: '/',
+  dataGridDocs: '/components/data-grid/getting-started/',
   pricing: '/branding/pricing/',
   blog: '/blog/',
   showcase: '/discover-more/showcase',
