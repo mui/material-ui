@@ -1,8 +1,0 @@
-<Typography id="server-modal-title" variant="h6" component="h2">
-  Server-side modal
-</Typography>
-<Typography id="server-modal-description" sx={{ pt: 2 }}>
-  If you disable JavaScript, you will still see me.
-</Typography>
-Box>
-dal>
