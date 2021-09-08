@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { SxProps } from '@mui/system';
+import { CSSInterpolation, SxProps } from '@mui/system';
 import ButtonBase, { ButtonBaseProps } from '@mui/material/ButtonBase';
 import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import {
@@ -183,7 +183,7 @@ const styleArg = ({ theme, ownerState }: { theme: Theme; ownerState: OwnerState 
 
 const overridesResolver = (
   props: { ownerState: OwnerState },
-  styles: Record<PickersDayClassKey, object>,
+  styles: Record<PickersDayClassKey, CSSInterpolation>,
 ) => {
   const { ownerState } = props;
   return [
