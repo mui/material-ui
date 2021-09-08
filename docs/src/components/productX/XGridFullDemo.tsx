@@ -166,8 +166,7 @@ export default function XGridFullDemo() {
             height: 328,
             overflow: 'auto',
             '& .MuiDataGrid-root': {
-              bgcolor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.900' : '#fff',
+              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : '#fff'),
               '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
               '& .MuiDataGrid-renderingZone': {
                 '& .MuiDataGrid-cell': {

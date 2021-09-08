@@ -198,7 +198,14 @@ export default function XDateRangeDemo() {
   return (
     <Frame>
       <Frame.Demo sx={{ p: 2, flexGrow: 1 }}>
-        <Paper variant="outlined" sx={{ maxWidth: '100%', mx: 'auto', bgcolor: (theme) => theme.palette.mode === 'dark' ? 'primaryDark.900' : '#fff', }}>
+        <Paper
+          variant="outlined"
+          sx={{
+            maxWidth: '100%',
+            mx: 'auto',
+            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : '#fff'),
+          }}
+        >
           <TreeView
             aria-label="file system navigator"
             defaultExpanded={['2', '2.3', '3']}
