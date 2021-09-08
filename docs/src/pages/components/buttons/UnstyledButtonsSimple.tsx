@@ -43,7 +43,7 @@ function CustomButton(props: ButtonUnstyledProps) {
   return <ButtonUnstyled {...props} component={CustomButtonRoot} />;
 }
 
-export default function UnstyledButton() {
+export default function UnstyledButtonsSimple() {
   return (
     <Stack spacing={2} direction="row">
       <CustomButton>Button</CustomButton>
