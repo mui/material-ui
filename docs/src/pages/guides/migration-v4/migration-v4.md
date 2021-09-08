@@ -2514,7 +2514,7 @@ In some cases, you might want to create multiple styled components in a file ins
  function Status({ label }) {
 -  const classes = useStyles();
    return (
--    <div className={classe.root}>
+-    <div className={classes.root}>
 -      {icon}
 -      <span className={classes.label}>{label}</span>
 -    </div>
