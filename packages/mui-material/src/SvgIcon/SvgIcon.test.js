@@ -96,4 +96,18 @@ describe('<SvgIcon />', () => {
       expect(container.firstChild).to.have.class(classes.fontSizeInherit);
     });
   });
+
+  describe('prop: inheritViewBox', () => {
+    it('should render with given viewBox if false', () => {
+      const { container } = render(<SvgIcon inheritViewBox={false} viewBox='0 0 24 24'>{path}</SvgIcon>);
+
+      expect(container.firstChild).to.have.attribute('viewBox', '0 0 24 24');
+    });
+
+    it('should pass custom component\'s viewBox if true', () => {
+      const { container } = render(<SvgIcon component={() => <svg viewBox='-4 -4 24 24'>{path}</svg>} inheritViewBox={true} />);
+
+      expect(container.firstChild).to.have.attribute('viewBox', '-4 -4 24 24');
+    });
+  });
 });
