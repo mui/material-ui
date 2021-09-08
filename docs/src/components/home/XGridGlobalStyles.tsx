@@ -29,7 +29,7 @@ export default function XGridGlobalStyles({
                 padding: theme.spacing(0, 1),
                 borderColor:
                   theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[500]
+                    ? theme.palette.primaryDark[600]
                     : theme.palette.grey[200],
                 '& svg': {
                   fontSize: '1.125rem',
@@ -95,6 +95,10 @@ export default function XGridGlobalStyles({
                   : theme.palette.grey[50],
             },
             '& .MuiDataGrid-cell': {
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[800]
+                  : theme.palette.grey[50],
               borderColor:
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[700]

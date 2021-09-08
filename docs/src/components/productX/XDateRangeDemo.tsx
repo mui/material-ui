@@ -25,7 +25,8 @@ export default function XDateRangeDemo() {
         <Paper
           variant="outlined"
           sx={{
-            '& > div': { borderRadius: 1, overflow: 'auto', bgcolor: 'transparent' },
+            '& > div': { borderRadius: 1, overflow: 'auto', bgcolor: (theme) =>
+            theme.palette.mode === 'dark' ? 'primaryDark.900' : '#fff', },
             '& > div > div > div > div': {
               flexGrow: 1,
             },
