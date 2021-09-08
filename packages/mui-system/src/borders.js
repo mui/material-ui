@@ -68,7 +68,7 @@ export const borderLeftColor = style({
 });
 
 export const borderRadius = (props) => {
-  if (props.borderRadius) {
+  if (props.borderRadius !== undefined && props.borderRadius !== null) {
     const transformer = createUnaryUnit(props.theme, 'shape.borderRadius', 4, 'borderRadius');
     const styleFromPropValue = (propValue) => ({
       borderRadius: getValue(transformer, propValue),
