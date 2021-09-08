@@ -1,0 +1,13 @@
+<LocalizationProvider dateAdapter={AdapterDateFns}>
+  <StaticDatePicker
+    displayStaticWrapperAs="desktop"
+    label="Week picker"
+    value={value}
+    onChange={(newValue) => {
+      setValue(newValue);
+    }}
+    renderDay={renderWeekPickerDay}
+    renderInput={(params) => <TextField {...params} />}
+    inputFormat="'Week of' MMM d"
+  />
+</LocalizationProvider>

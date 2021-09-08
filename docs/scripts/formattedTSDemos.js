@@ -67,7 +67,17 @@ async function transpileFile(tsxPath, program) {
   try {
     const source = await fse.readFile(tsxPath, 'utf8');
 
-    const { code } = await babel.transformAsync(source, { ...babelConfig, filename: tsxPath });
+    const transformOptions = { ...babelConfig, filename: tsxPath };
+    const enableJSXPreview = !tsxPath.includes(path.join('pages', 'premium-themes'));
+    if (enableJSXPreview) {
+      transformOptions.plugins = transformOptions.plugins.concat([
+        [
+          require.resolve('docs/src/modules/utils/babel-plugin-jsx-preview'),
+          { maxLines: 16, outputFilename: `${tsxPath}.preview` },
+        ],
+      ]);
+    }
+    const { code } = await babel.transformAsync(source, transformOptions);
 
     if (/import \w* from 'prop-types'/.test(code)) {
       throw new Error('TypeScript demo contains prop-types, please remove them');
