@@ -20,6 +20,7 @@ const defaultAlias = {
   '@mui/private-theming': resolveAliasPath('./packages/mui-private-theming/src'),
   '@mui/core': resolveAliasPath('./packages/mui-core/src'),
   '@mui/utils': resolveAliasPath('./packages/mui-utils/src'),
+  '@mui/material-next': resolveAliasPath('./packages/mui-material-next/src'),
 };
 
 const productionPlugins = [

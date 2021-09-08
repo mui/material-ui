@@ -52,6 +52,18 @@ async function getWebpackEntries() {
     },
   );
 
+  const materialNextPackagePath = path.join(workspaceRoot, 'packages/mui-material-next/build');
+  const materialNextComponents = (
+    await glob(path.join(materialNextPackagePath, '([A-Z])*/index.js'))
+  ).map((componentPath) => {
+    const componentName = path.basename(path.dirname(componentPath));
+
+    return {
+      name: componentName,
+      path: path.relative(workspaceRoot, path.dirname(componentPath)),
+    };
+  });
+
   return [
     {
       // WARNING: Changing the name will break tracking of bundle size over time
@@ -125,6 +137,11 @@ async function getWebpackEntries() {
       name: '@material-ui/core.legacy',
       path: path.join(path.relative(workspaceRoot, materialPackagePath), 'legacy/index.js'),
     },
+    {
+      name: '@mui/material-next',
+      path: path.join(path.relative(workspaceRoot, materialNextPackagePath), 'index.js'),
+    },
+    ...materialNextComponents,
   ];
 }
 

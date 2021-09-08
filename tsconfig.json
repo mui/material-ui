@@ -33,6 +33,8 @@
       "@mui/core/*": ["./packages/mui-core/src/*"],
       "@mui/docs": ["./packages/mui-docs/src"],
       "@mui/docs/*": ["./packages/mui-docs/src/*"],
+      "@mui/material-next": ["./packages/mui-material-next/src"],
+      "@mui/material-next/*": ["./packages/mui-material-next/src/*"],
       "test/*": ["./test/*"],
       "typescript-to-proptypes": ["./packages/typescript-to-proptypes/src"]
     },
