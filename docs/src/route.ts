@@ -15,7 +15,6 @@ const ROUTES = {
   theming: '/customization/theming/',
   documentation: '/getting-started/usage/',
   dataGridDocs: '/components/data-grid/getting-started/',
-  pricing: '/branding/pricing/',
   blog: 'https://medium.com/material-ui',
   showcase: '/discover-more/showcase',
   roadmap: 'https://github.com/mui-org/material-ui-x/projects/1',
