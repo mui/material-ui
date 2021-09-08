@@ -3,7 +3,6 @@ const fs = require('fs');
 const pluginName = 'babel-plugin-jsx-preview';
 
 /**
- * @param {import('@babel/core').ConfigAPI & import('@babel/core')} babel
  * @returns {import('@babel/core').PluginObj}
  */
 export default function babelPluginJsxPreview() {
