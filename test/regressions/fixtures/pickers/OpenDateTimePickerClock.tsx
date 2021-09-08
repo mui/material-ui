@@ -30,6 +30,10 @@ export default function OpenDateTimePicker() {
         onChange={() => {}}
         open
         openTo="hours"
+        PopperProps={{
+          // @ts-expect-error
+          'data-testid': 'screenshot-target',
+        }}
         renderInput={(params) => <TextField {...params} />}
         TransitionComponent={NoTransition}
         value={adapterToUse.date('2019-01-01T00:00:00.000')}
