@@ -355,9 +355,9 @@ describe('<Tabs />', () => {
             );
           }).toErrorDev([
             [
-              'Material-UI: The value provided to the Tabs component is invalid.',
-              'The Tab with this value (`hidden-tab`) is not part of the document layout.',
-              "Make sure the tab item is present in the document or that it's not display none.",
+              'Material-UI: The `value` provided to the Tabs component is invalid.',
+              'The Tab with this `value` ("hidden-tab") is not part of the document layout.',
+              "Make sure the tab item is present in the document or that it's not `display: none`.",
             ].join('\n'),
           ]);
         });
