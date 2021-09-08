@@ -22,7 +22,7 @@ async function getWebpackEntries() {
       }
 
       return {
-        name: entryName,
+        id: entryName,
         path: path.relative(workspaceRoot, path.dirname(componentPath)),
       };
     },
@@ -34,7 +34,7 @@ async function getWebpackEntries() {
       const componentName = path.basename(path.dirname(componentPath));
 
       return {
-        name: componentName,
+        id: componentName,
         path: path.relative(workspaceRoot, path.dirname(componentPath)),
       };
     },
@@ -46,7 +46,7 @@ async function getWebpackEntries() {
       const componentName = path.basename(path.dirname(componentPath));
 
       return {
-        name: componentName,
+        id: componentName,
         path: path.relative(workspaceRoot, path.dirname(componentPath)),
       };
     },
@@ -68,73 +68,73 @@ async function getWebpackEntries() {
     {
       // WARNING: Changing the name will break tracking of bundle size over time
       // If the name of the package changes, rename its display name in https://github.com/eps1lon/mui-contributor-dashboard/blob/main/src/pages/SizeComparison.tsx
-      name: '@material-ui/core',
+      id: '@material-ui/core',
       path: path.join(path.relative(workspaceRoot, materialPackagePath), 'index.js'),
     },
     ...materialComponents,
     {
-      name: '@material-ui/lab',
+      id: '@material-ui/lab',
       path: path.join(path.relative(workspaceRoot, labPackagePath), 'index.js'),
     },
     ...labComponents,
     {
-      name: '@material-ui/styles',
+      id: '@material-ui/styles',
       path: 'packages/mui-styles/build/index.js',
     },
     {
-      name: '@material-ui/private-theming',
+      id: '@material-ui/private-theming',
       path: 'packages/mui-private-theming/build/index.js',
     },
     {
-      name: '@material-ui/system',
+      id: '@material-ui/system',
       path: 'packages/mui-system/build/esm/index.js',
     },
     {
-      name: 'createBox',
+      id: 'createBox',
       path: 'packages/mui-system/build/esm/createBox.js',
     },
     {
-      name: 'createStyled',
+      id: 'createStyled',
       path: 'packages/mui-system/build/esm/createStyled.js',
     },
     {
-      name: '@material-ui/core/styles/createTheme',
+      id: '@material-ui/core/styles/createTheme',
       path: 'packages/mui-material/build/styles/createTheme.js',
     },
     {
-      name: 'colorManipulator',
+      id: 'colorManipulator',
       path: 'packages/mui-system/build/colorManipulator.js',
     },
     {
-      name: 'useAutocomplete',
+      id: 'useAutocomplete',
       path: 'packages/mui-lab/build/useAutocomplete/index.js',
     },
     {
-      name: '@material-ui/core/useMediaQuery',
+      id: '@material-ui/core/useMediaQuery',
       path: 'packages/mui-material/build/useMediaQuery/index.js',
     },
     {
-      name: '@material-ui/core/useScrollTrigger',
+      id: '@material-ui/core/useScrollTrigger',
       path: 'packages/mui-material/build/useScrollTrigger/index.js',
     },
     {
-      name: '@material-ui/unstyled',
+      id: '@material-ui/unstyled',
       path: path.join(path.relative(workspaceRoot, corePackagePath), 'index.js'),
     },
     ...coreComponents,
     {
-      name: '@material-ui/utils',
+      id: '@material-ui/utils',
       path: 'packages/mui-utils/build/esm/index.js',
     },
     // TODO: Requires webpack v5
     // Resolution of webpack/acorn to 7.x is blocked by nextjs (https://github.com/vercel/next.js/issues/11947)
     // {
-    //   name: '@material-ui/core.modern',
+    //   id: '@material-ui/core.modern',
     //   webpack: true,
     //   path: path.join(path.relative(workspaceRoot, materialPackagePath), 'modern/index.js'),
     // },
     {
-      name: '@material-ui/core.legacy',
+      id: '@material-ui/core.legacy',
       path: path.join(path.relative(workspaceRoot, materialPackagePath), 'legacy/index.js'),
     },
     {
@@ -153,7 +153,8 @@ module.exports = async function webpackConfig(webpack, environment) {
   const configurations = entries.map((entry) => {
     return {
       // ideally this would be computed from the bundles peer dependencies
-      externals: /^(react|react-dom|react\/jsx-runtime)$/,
+      // Ensure that `react` as well as `react/*` are considered externals but not `react*`
+      externals: /^(date-fns|dayjs|luxon|moment|react|react-dom)(\/.*)?$/,
       mode: 'production',
       optimization: {
         concatenateModules,
@@ -176,7 +177,7 @@ module.exports = async function webpackConfig(webpack, environment) {
           // If opened with `webpack --config . --analyze` it'll still open one new tab though.
           openAnalyzer: false,
           // '[name].html' not supported: https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/12
-          reportFilename: `${entry.name}.html`,
+          reportFilename: `${entry.id}.html`,
         }),
       ],
       resolve: {
@@ -192,7 +193,7 @@ module.exports = async function webpackConfig(webpack, environment) {
           '@mui/core': path.join(workspaceRoot, 'packages/mui-core/build'),
         },
       },
-      entry: { [entry.name]: path.join(workspaceRoot, entry.path) },
+      entry: { [entry.id]: path.join(workspaceRoot, entry.path) },
     };
   });
 
