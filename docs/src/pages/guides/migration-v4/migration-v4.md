@@ -2518,7 +2518,7 @@ In some cases, you might want to create multiple styled components in a file ins
 -      {icon}
 -      <span className={classes.label}>{label}</span>
 -    </div>
-+    <Root className={classes.root}>
++    <Root>
 +      {icon}
 +      <Label>{label}</Label>
 +    </Root>
