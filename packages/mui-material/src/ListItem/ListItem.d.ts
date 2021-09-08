@@ -5,6 +5,8 @@ import { ExtendButtonBase } from '../ButtonBase';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ListItemClasses } from './listItemClasses';
 
+export interface ListItemComponentsPropsOverrides {}
+
 interface ListItemBaseProps {
   /**
    * Defines the `align-items` style property.
@@ -98,12 +100,7 @@ export interface ListItemTypeMap<P, D extends React.ElementType> {
        * @default {}
        */
       componentsProps?: {
-        root?: {
-          as: React.ElementType;
-          ownerState?: Omit<ListItemBaseProps, 'components' | 'componentsProps'> & {
-            dense?: boolean;
-          };
-        };
+        root?: React.HTMLAttributes<HTMLDivElement> & ListItemComponentsPropsOverrides;
       };
     };
   defaultComponent: D;

@@ -1,5 +1,6 @@
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
 import { SliderUnstyledClasses } from './sliderUnstyledClasses';
+import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 
 export interface SliderOwnerStateOverrides {}
 
@@ -14,6 +15,8 @@ export interface ValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
   open: boolean;
   value: number;
 }
+
+export interface SliderUnstyledComponentsPropsOverrides {}
 
 export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
@@ -52,45 +55,14 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
      * @default {}
      */
     componentsProps?: {
-      root?: {
-        as?: React.ElementType;
-        ownerState?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
-          SliderOwnerStateOverrides;
-      };
-      track?: {
-        as?: React.ElementType;
-        ownerState?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
-          SliderOwnerStateOverrides;
-      };
-      rail?: {
-        as?: React.ElementType;
-        ownerState?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
-          SliderOwnerStateOverrides;
-      };
-      thumb?: {
-        as?: React.ElementType;
-        ownerState?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
-          SliderOwnerStateOverrides;
-      };
-      mark?: {
-        as?: React.ElementType;
-        ownerState?: Omit<
-          SliderUnstyledTypeMap<P, D>['props'],
-          'components' | 'componentsProps'
-        > & { markActive?: boolean } & SliderOwnerStateOverrides;
-      };
-      markLabel?: {
-        as?: React.ElementType;
-        ownerState?: Omit<
-          SliderUnstyledTypeMap<P, D>['props'],
-          'components' | 'componentsProps'
-        > & { markLabelActive?: boolean } & SliderOwnerStateOverrides;
-      };
-      valueLabel?: {
-        as?: React.ElementType;
-        ownerState?: Omit<SliderUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'> &
-          SliderOwnerStateOverrides;
-      };
+      root?: React.HTMLAttributes<HTMLSpanElement> & SliderUnstyledComponentsPropsOverrides;
+      track?: React.HTMLAttributes<HTMLSpanElement> & SliderUnstyledComponentsPropsOverrides;
+      rail?: React.HTMLAttributes<HTMLSpanElement> & SliderUnstyledComponentsPropsOverrides;
+      thumb?: React.HTMLAttributes<HTMLSpanElement> & SliderUnstyledComponentsPropsOverrides;
+      mark?: React.HTMLAttributes<HTMLSpanElement> & SliderUnstyledComponentsPropsOverrides;
+      markLabel?: React.HTMLAttributes<HTMLSpanElement> & SliderUnstyledComponentsPropsOverrides;
+      valueLabel?: React.ComponentPropsWithRef<typeof SliderValueLabelUnstyled> &
+        SliderUnstyledComponentsPropsOverrides;
     };
     /**
      * The default value. Use when the component is not controlled.

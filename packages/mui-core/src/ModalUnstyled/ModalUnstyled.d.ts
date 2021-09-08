@@ -4,6 +4,8 @@ import { BackdropUnstyledProps } from '../BackdropUnstyled';
 import { PortalProps } from '../Portal';
 import { ModalUnstyledClasses } from './modalUnstyledClasses';
 
+export interface ModalUnstyledComponentsPropsOverrides {}
+
 export interface ModalUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
@@ -40,10 +42,7 @@ export interface ModalUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
      * @default {}
      */
     componentsProps?: {
-      root?: {
-        as: React.ElementType;
-        ownerState?: Omit<ModalUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
-      };
+      root?: React.HTMLAttributes<HTMLDivElement> & ModalUnstyledComponentsPropsOverrides;
     };
     /**
      * An HTML element or function that returns one.

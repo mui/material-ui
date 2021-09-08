@@ -5,6 +5,8 @@ import useSwitch, { SwitchState, UseSwitchProps } from './useSwitch';
 import classes from './switchUnstyledClasses';
 import appendOwnerState from '../utils/appendOwnerState';
 
+export interface SwitchUnstyledComponentsPropsOverrides {}
+
 export interface SwitchUnstyledProps extends UseSwitchProps {
   /**
    * Class name applied to the root element.
@@ -33,10 +35,10 @@ export interface SwitchUnstyledProps extends UseSwitchProps {
    * @default {}
    */
   componentsProps?: {
-    root?: {};
-    thumb?: {};
-    input?: {};
-    track?: {};
+    root?: React.HTMLAttributes<HTMLSpanElement> & SwitchUnstyledComponentsPropsOverrides;
+    thumb?: React.HTMLAttributes<HTMLSpanElement> & SwitchUnstyledComponentsPropsOverrides;
+    input?: React.InputHTMLAttributes<HTMLInputElement> & SwitchUnstyledComponentsPropsOverrides;
+    track?: React.HTMLAttributes<HTMLSpanElement> & SwitchUnstyledComponentsPropsOverrides;
   };
 }
 

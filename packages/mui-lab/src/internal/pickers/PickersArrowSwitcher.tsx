@@ -22,8 +22,8 @@ export interface ExportedArrowSwitcherProps {
    * @default {}
    */
   componentsProps?: {
-    leftArrowButton?: any;
-    rightArrowButton?: any;
+    leftArrowButton?: Record<string, any>;
+    rightArrowButton?: Record<string, any>;
   };
   /**
    * Left arrow icon aria-label text.
@@ -58,7 +58,7 @@ const PickersArrowSwitcherSpacer = styled('div', { skipSx: true })<{
 }));
 
 const PickersArrowSwitcherButton = styled(IconButton, { skipSx: true })<{
-  ownerState: ArrowSwitcherProps & { hidden: boolean };
+  ownerState: ArrowSwitcherProps;
 }>(({ ownerState }) => ({
   ...(ownerState.hidden && {
     visibility: 'hidden',
