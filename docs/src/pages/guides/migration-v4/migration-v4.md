@@ -2502,27 +2502,27 @@ In some cases, you might want to create multiple styled components in a file ins
 -    color: theme.palette.primary.main,
 -  }
 -}))
-+const Root = style('div')(({ theme }) => ({
++const Root = styled('div')(({ theme }) => ({
 +  display: 'flex',
 +  alignItems: 'center',
 +  borderRadius: 20,
 +  background: theme.palette.grey[50],
 +}))
 
-+const Label = style('span')(({ theme }) => ({
++const Label = styled('span')(({ theme }) => ({
 +  color: theme.palette.primary.main,
 +}))
 
  function Status({ label }) {
-   const classes = useStyles();
+-  const classes = useStyles();
    return (
--    <div className={classe.root}>
+-    <div className={classes.root}>
 -      {icon}
 -      <span className={classes.label}>{label}</span>
 -    </div>
-+    <Root className={classe.root}>
++    <Root>
 +      {icon}
-+      <Label className={classes.label}>{label}</Label>
++      <Label>{label}</Label>
 +    </Root>
    )
  }
