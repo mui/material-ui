@@ -89,7 +89,7 @@ const ItemLink = styled(Item, {
         ),
       },
     },
-    paddingLeft: 38 + (depth - 2)*10,
+    paddingLeft: 38 + (depth - 2) * 10,
   };
 });
 
