@@ -180,7 +180,7 @@ However:
 
 This has the advantage of supporting any element, for instance, a link `<a>` element.
 
-## Unstyled button
+## Unstyled
 
 The button also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
 
@@ -200,7 +200,7 @@ If a non-interactive element (such as a span) is provided this way, the `ButtonU
 
 {{"demo": "pages/components/buttons/UnstyledButtonsSpan.js"}}
 
-Compare the attributes on the span with the button from the previous demo
+Compare the attributes on the span with the button from the previous demo.
 
 #### Complex customization
 

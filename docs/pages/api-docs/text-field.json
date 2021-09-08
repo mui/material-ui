@@ -60,7 +60,7 @@
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiTextField" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/TextField/TextField.js",
+  "filename": "/packages/mui-material/src/TextField/TextField.js",
   "inheritance": { "component": "FormControl", "pathname": "/api/form-control/" },
   "demos": "<ul><li><a href=\"/components/autocomplete/\">Autocomplete</a></li>\n<li><a href=\"/components/pickers/\">Pickers</a></li>\n<li><a href=\"/components/text-fields/\">Text Fields</a></li></ul>",
   "styledComponent": true,

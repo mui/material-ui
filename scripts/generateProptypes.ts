@@ -304,9 +304,9 @@ async function run(argv: HandlerArgv) {
 
   const allFiles = await Promise.all(
     [
-      path.resolve(__dirname, '../packages/material-ui-unstyled/src'),
-      path.resolve(__dirname, '../packages/material-ui/src'),
-      path.resolve(__dirname, '../packages/material-ui-lab/src'),
+      path.resolve(__dirname, '../packages/mui-core/src'),
+      path.resolve(__dirname, '../packages/mui-material/src'),
+      path.resolve(__dirname, '../packages/mui-lab/src'),
     ].map((folderPath) =>
       glob('+([A-Z])*/+([A-Z])*.*@(d.ts|ts|tsx)', {
         absolute: true,

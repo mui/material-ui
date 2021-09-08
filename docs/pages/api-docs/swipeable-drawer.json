@@ -26,7 +26,7 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/SwipeableDrawer/SwipeableDrawer.js",
+  "filename": "/packages/mui-material/src/SwipeableDrawer/SwipeableDrawer.js",
   "inheritance": { "component": "Drawer", "pathname": "/api/drawer/" },
   "demos": "<ul><li><a href=\"/components/drawers/\">Drawers</a></li></ul>",
   "styledComponent": true,

@@ -41,7 +41,7 @@
   "styles": { "classes": ["arrowSwitcher"], "globalClasses": {}, "name": "MuiClockPicker" },
   "spread": false,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui-lab/src/ClockPicker/ClockPicker.tsx",
+  "filename": "/packages/mui-lab/src/ClockPicker/ClockPicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/time-picker/\">Time Picker</a></li></ul>",
   "styledComponent": true,

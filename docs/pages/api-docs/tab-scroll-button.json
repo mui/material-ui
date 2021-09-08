@@ -21,7 +21,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/TabScrollButton/TabScrollButton.js",
+  "filename": "/packages/mui-material/src/TabScrollButton/TabScrollButton.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/tabs/\">Tabs</a></li></ul>",
   "styledComponent": true,
