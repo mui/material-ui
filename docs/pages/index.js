@@ -195,8 +195,8 @@ export default function LandingPage(props) {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Material-UI",
-  "url": "https://material-ui.com/",
-  "logo": "https://material-ui.com/static/logo.png",
+  "url": "https://v4.material-ui.com/",
+  "logo": "https://v4.material-ui.com/static/logo.png",
   "sameAs": [
     "https://twitter.com/materialUI",
     "https://github.com/mui-org/material-ui",
