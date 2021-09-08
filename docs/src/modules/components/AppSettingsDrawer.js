@@ -21,12 +21,6 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useChangeTheme } from 'docs/src/modules/components/ThemeContext';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 
-const DrawerPaper = styled(Paper)({
-  width: 360,
-  borderTopRightRadius: 0,
-  borderBottomRightRadius: 0,
-});
-
 const Heading = styled(Typography)({
   margin: '20px 0 10px',
 });
@@ -78,7 +72,7 @@ function AppSettingsDrawer(props) {
       anchor="right"
       onClose={onClose}
       open={open}
-      PaperProps={{ component: DrawerPaper }}
+      PaperProps={{ elevation: 0, sx: { width: 360 } }}
       {...other}
     >
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', p: 2 }}>
