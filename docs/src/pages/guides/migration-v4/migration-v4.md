@@ -10,9 +10,11 @@ This is a reference for upgrading your site from Material-UI v4 to v5.
 While there's a lot covered here, you probably won't need to do everything.
 We'll do our best to keep things easy to follow, and as sequential as possible, so you can quickly get rocking on v5!
 
+> 💡 We are excited to share that the org & package names have been changed from `@material-ui` to `@mui` as part of the rebranding effort! For more details about it, check the [GitHub discussion](https://github.com/mui-org/material-ui/discussions/27803).
+
 ## Why you should migrate
 
-This documentation page covers the _how_ of migrating from v4 to v5.
+To get the benefits of bug fixes and a lot of improvements such as the new styling engine. This documentation page covers the _how_ of migrating from v4 to v5.
 The _why_ will be covered in an upcoming blog post on Medium.
 
 ## Migration steps
@@ -105,7 +107,7 @@ npm install @mui/styles@next
 yarn add @mui/styles@next
 ```
 
-> ⚠️ After this step, your application is expected to crash because the style library has changed from **JSS (v4)** to **emotion (v5)**.
+> After the migration, you should remove all `@material-ui/*` packages by running `yarn remove` or `npm uninstall`.
 
 ## Run codemods
 
