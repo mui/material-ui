@@ -1,8 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/core/ButtonUnstyled';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { styled, alpha } from '@mui/system';
+import { styled } from '@mui/system';
 
 const ButtonRoot = React.forwardRef(function ButtonRoot(props, ref) {
   const { children, ...other } = props;
@@ -26,7 +25,20 @@ const CustomButtonRoot = styled(ButtonRoot)(
   ({ theme }) => `
   overflow: visible;
   cursor: pointer;
-  
+  --main-color: ${
+    theme.palette.mode === 'light' ? 'rgb(25,118,210)' : 'rgb(144,202,249)'
+  };
+  --hover-color: ${
+    theme.palette.mode === 'light'
+      ? 'rgba(25,118,210,0.04)'
+      : 'rgba(144,202,249,0.08)'
+  };
+  --active-color: ${
+    theme.palette.mode === 'light'
+      ? 'rgba(25,118,210,0.12)'
+      : 'rgba(144,202,249,0.24)'
+  };
+
   & polygon {
     fill: transparent;
     transition: all 800ms ease;
@@ -34,16 +46,18 @@ const CustomButtonRoot = styled(ButtonRoot)(
   }
   
   & .bg {
-    stroke: ${theme.palette.primary.main};
+    stroke: var(--main-color);
     stroke-width: 0.5;
     filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.1));
+    fill: transparent;
   }
 
   & .borderEffect {
-    stroke: ${theme.palette.primary.main};
+    stroke: var(--main-color);
     stroke-width: 2;
     stroke-dasharray: 150 600;
     stroke-dashoffset: 150;
+    fill: transparent;
   }
 
   &:hover,
@@ -53,7 +67,7 @@ const CustomButtonRoot = styled(ButtonRoot)(
     }
 
     .bg {
-      fill: ${alpha(theme.palette.primary.main, theme.palette.action.hoverOpacity)};
+      fill: var(--hover-color);
     }
   }
 
@@ -64,10 +78,7 @@ const CustomButtonRoot = styled(ButtonRoot)(
 
   &.${buttonUnstyledClasses.active} { 
     & .bg {
-      fill: ${alpha(
-        theme.palette.primary.main,
-        theme.palette.action.activatedOpacity,
-      )};
+      fill: var(--active-color);
       transition: fill 300ms ease-out;
     }
   }
@@ -83,7 +94,7 @@ const CustomButtonRoot = styled(ButtonRoot)(
       display: flex;
       align-items: center;
       justify-content: center;
-      color: ${theme.palette.primary.main};
+      color: var(--main-color);
       text-transform: uppercase;
     }
 
@@ -98,9 +109,5 @@ const SvgButton = React.forwardRef(function SvgButton(props, ref) {
 });
 
 export default function UnstyledButtonCustom() {
-  return (
-    <ThemeProvider theme={createTheme()}>
-      <SvgButton>Button</SvgButton>
-    </ThemeProvider>
-  );
+  return <SvgButton>Button</SvgButton>;
 }
