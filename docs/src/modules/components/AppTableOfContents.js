@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import NoSsr from '@material-ui/core/NoSsr';
+// import NoSsr from '@material-ui/core/NoSsr';
 import { BANNER_HEIGHT } from 'docs/src/modules/constants';
 import Link from 'docs/src/modules/components/Link';
 import PageContext from 'docs/src/modules/components/PageContext';
@@ -119,7 +119,7 @@ export default function AppTableOfContents(props) {
   const { items } = props;
   const classes = useStyles();
   const t = useSelector((state) => state.options.t);
-  const theme = useTheme();
+  // const theme = useTheme();
 
   const itemsWithNodeRef = React.useRef([]);
   React.useEffect(() => {
@@ -241,26 +241,30 @@ export default function AppTableOfContents(props) {
           </Typography>
         </div>
       ) : null}
-      <NoSsr>
-        <Link href="/company/careers/" underline="none" className={classes.hiring}>
-          <img
-            src={`/static/hiring-toc-${theme.palette.type}.png`}
-            alt=""
-            loading="lazy"
-            width={175}
-            height={119}
-          />
-          {"We're hiring a "}
-          {
-            ['React engineer', 'Full-stack engineer', 'Product manager', 'Dev. Advocate'][
-              Math.round(Math.random() * 3)
-            ]
-          }
-          {' and more roles.'}
-          {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-          <span className={classes.hiringLearn}>Learn more &rarr;</span>
-        </Link>
-      </NoSsr>
+      {/**
+        <NoSsr>
+          <Link href="/company/careers/" underline="none" className={classes.hiring}>
+            <img
+              src={`/static/hiring-toc-${theme.palette.type}.png`}
+              alt=""
+              loading="lazy"
+              width={175}
+              height={119}
+            />
+            {"We're hiring a "}
+            {
+              ['React engineer', 'Full-stack engineer', 'Product manager', 'Dev. Advocate'][
+                Math.round(Math.random() * 3)
+              ]
+            }
+            {' and more roles.'}
+          */}
+      {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+      {/**
+            <span className={classes.hiringLearn}>Learn more &rarr;</span>
+          </Link>
+        </NoSsr>
+        */}
     </nav>
   );
 }
