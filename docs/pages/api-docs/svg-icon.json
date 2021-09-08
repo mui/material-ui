@@ -18,6 +18,7 @@
       "default": "'medium'"
     },
     "htmlColor": { "type": { "name": "string" } },
+    "inheritViewBox": { "type": { "name": "bool" } },
     "shapeRendering": { "type": { "name": "string" } },
     "sx": {
       "type": {
