@@ -40,7 +40,7 @@ const Root = styled('div')(({ theme }) => ({
     padding: '0 5px',
     color: theme.palette.text.primary,
     backgroundColor: alpha(theme.palette.primary.light, 0.15),
-    fontSize: '.8125em',
+    fontSize: theme.typography.pxToRem(13),
     borderRadius: 5,
   },
   '& code[class*="language-"]': {
@@ -51,7 +51,7 @@ const Root = styled('div')(({ theme }) => ({
   },
   // code blocks
   '& pre code': {
-    fontSize: '.8125em',
+    fontSize: theme.typography.pxToRem(13),
     fontFamily: 'Consolas, "Liberation Mono", Menlo, Courier, monospace',
     fontWeight: 500,
   },
@@ -140,7 +140,7 @@ const Root = styled('div')(({ theme }) => ({
     },
   },
   '& h2 code': {
-    fontSize: '1.5rem',
+    fontSize: theme.typography.pxToRem(24),
   },
   '& table': {
     // Trade display table for scroll overflow
