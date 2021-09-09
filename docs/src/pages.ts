@@ -259,6 +259,7 @@ const pages: readonly MuiPage[] = [
         children: [
           { pathname: '/customization/theming' },
           { pathname: '/customization/palette' },
+          { pathname: '/customization/dark-mode', title: 'Dark mode' },
           { pathname: '/customization/typography' },
           { pathname: '/customization/spacing' },
           { pathname: '/customization/breakpoints' },

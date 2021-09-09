@@ -1,0 +1,7 @@
+<Masonry columns={3} spacing={3}>
+  {heights.map((height, index) => (
+    <MasonryItem key={index}>
+      <Item sx={{ height }}>{index + 1}</Item>
+    </MasonryItem>
+  ))}
+</Masonry>

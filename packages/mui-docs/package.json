@@ -1,6 +1,6 @@
 {
   "name": "@mui/docs",
-  "version": "5.0.0-rc.0",
+  "version": "5.0.0-rc.1",
   "private": false,
   "author": "Material-UI Team",
   "description": "Material-UI Docs - Documentation building blocks.",
@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.14.8",
-    "@mui/utils": "5.0.0-rc.0",
+    "@mui/utils": "5.0.0-rc.1",
     "nprogress": "^0.2.0"
   },
   "publishConfig": {

@@ -14,7 +14,8 @@
     "packages/mui-utils",
     "packages/mui-core",
     "packages/mui-styled-engine",
-    "packages/mui-styled-engine-sc"
+    "packages/mui-styled-engine-sc",
+    "packages/mui-material-next"
   ],
   "publishDirectory": {
     "@mui/codemod": "packages/mui-codemod/build",
@@ -28,7 +29,8 @@
     "@mui/private-theming": "packages/mui-private-theming/build",
     "@mui/types": "packages/mui-types/build",
     "@mui/utils": "packages/mui-utils/build",
-    "@mui/core": "packages/mui-core/build"
+    "@mui/core": "packages/mui-core/build",
+    "@mui/material-next": "packages/mui-material-next/build"
   },
   "sandboxes": [
     "material-ui-issue-dh2yh",

@@ -26,6 +26,8 @@ export type ExportedCalendarHeaderProps<TDate> = Pick<
   | 'rightArrowButtonText'
 >;
 
+export interface PickersCalendarHeaderComponentsPropsOverides {}
+
 export interface PickersCalendarHeaderProps<TDate>
   extends ExportedArrowSwitcherProps,
     Omit<DateValidationProps<TDate>, 'shouldDisableDate'> {
@@ -43,7 +45,8 @@ export interface PickersCalendarHeaderProps<TDate>
    * @default {}
    */
   componentsProps?: ExportedArrowSwitcherProps['componentsProps'] & {
-    switchViewButton?: any;
+    switchViewButton?: React.ComponentPropsWithRef<typeof IconButton> &
+      PickersCalendarHeaderComponentsPropsOverides;
   };
   currentMonth: TDate;
   views: readonly CalendarPickerView[];
@@ -201,7 +204,6 @@ function PickersCalendarHeader<TDate>(props: PickersCalendarHeaderProps<TDate>) 
             as={components.SwitchViewButton}
             aria-label={getViewSwitchingButtonText(currentView)}
             {...switchViewButtonProps}
-            ownerState={{ ...ownerState, ...switchViewButtonProps }}
           >
             <PickersCalendarHeaderSwitchView
               as={components.SwitchViewIcon}

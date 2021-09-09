@@ -5,7 +5,7 @@ import { handleBreakpoints } from './breakpoints';
 import responsivePropType from './responsivePropType';
 
 export const gap = (props) => {
-  if (props.gap) {
+  if (props.gap !== undefined && props.gap !== null) {
     const transformer = createUnaryUnit(props.theme, 'spacing', 8, 'gap');
     const styleFromPropValue = (propValue) => ({
       gap: getValue(transformer, propValue),
@@ -21,7 +21,7 @@ gap.propTypes = process.env.NODE_ENV !== 'production' ? { gap: responsivePropTyp
 gap.filterProps = ['gap'];
 
 export const columnGap = (props) => {
-  if (props.columnGap) {
+  if (props.columnGap !== undefined && props.columnGap !== null) {
     const transformer = createUnaryUnit(props.theme, 'spacing', 8, 'columnGap');
     const styleFromPropValue = (propValue) => ({
       columnGap: getValue(transformer, propValue),
@@ -38,7 +38,7 @@ columnGap.propTypes =
 columnGap.filterProps = ['columnGap'];
 
 export const rowGap = (props) => {
-  if (props.rowGap) {
+  if (props.rowGap !== undefined && props.rowGap !== null) {
     const transformer = createUnaryUnit(props.theme, 'spacing', 8, 'rowGap');
     const styleFromPropValue = (propValue) => ({
       rowGap: getValue(transformer, propValue),

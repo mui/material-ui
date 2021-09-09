@@ -4,7 +4,7 @@ import merge from './merge';
 
 // The breakpoint **start** at this value.
 // For instance with the first breakpoint xs: [xs, sm[.
-const values = {
+export const values = {
   xs: 0, // phone
   sm: 600, // tablets
   md: 900, // small laptop

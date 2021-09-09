@@ -1,0 +1,6 @@
+<Rating
+  name="highlight-selected-only"
+  defaultValue={2}
+  IconContainerComponent={IconContainer}
+  highlightSelectedOnly
+/>

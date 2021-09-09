@@ -1,6 +1,6 @@
 {
   "name": "@mui/core",
-  "version": "5.0.0-alpha.45",
+  "version": "5.0.0-alpha.46",
   "private": false,
   "author": "Material-UI Team",
   "description": "Unstyled React components with which to implement custom design systems.",
@@ -49,13 +49,13 @@
   "dependencies": {
     "@babel/runtime": "^7.14.8",
     "@emotion/is-prop-valid": "^1.1.0",
-    "@mui/utils": "5.0.0-rc.0",
+    "@mui/utils": "5.0.0-rc.1",
     "clsx": "^1.1.1",
     "prop-types": "^15.7.2",
     "react-is": "^17.0.2"
   },
   "devDependencies": {
-    "@mui/types": "7.0.0-rc.0"
+    "@mui/types": "7.0.0-rc.1"
   },
   "sideEffects": false,
   "publishConfig": {

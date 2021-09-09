@@ -2,6 +2,8 @@ import * as React from 'react';
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
 import { BackdropUnstyledClasses } from './backdropUnstyledClasses';
 
+export interface BackdropUnstyledComponentsPropsOverrides {}
+
 export interface BackdropUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
@@ -21,10 +23,7 @@ export interface BackdropUnstyledTypeMap<P = {}, D extends React.ElementType = '
      * @default {}
      */
     componentsProps?: {
-      root?: {
-        as: React.ElementType;
-        ownerState?: Omit<BackdropUnstyledTypeMap<P, D>['props'], 'components' | 'componentsProps'>;
-      };
+      root?: React.HTMLAttributes<HTMLDivElement> & BackdropUnstyledComponentsPropsOverrides;
     };
     /**
      * Override or extend the styles applied to the component.

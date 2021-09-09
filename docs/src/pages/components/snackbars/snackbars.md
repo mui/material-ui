@@ -61,7 +61,7 @@ Snackbars should appear above FABs (on mobile).
 
 {{"demo": "pages/components/snackbars/FabIntegrationSnackbar.js", "iframe": true, "maxWidth": 400}}
 
-### Change Transition
+### Change transition
 
 [Grow](/components/transitions/#grow) is the default transition but you can use a different one.
 
@@ -70,6 +70,22 @@ Snackbars should appear above FABs (on mobile).
 ### Control Slide direction
 
 You can change the direction of the [Slide](/components/transitions/#slide) transition.
+
+Example of making the slide transition to the left:
+
+```jsx
+import Slide from '@material-ui/core/Slide';
+
+function TransitionLeft(props) {
+  return <Slide {...props} direction="left" />;
+}
+
+export default function MyComponent() {
+  return <Snackbar TransitionComponent={TransitionLeft} />;
+}
+```
+
+Other examples:
 
 {{"demo": "pages/components/snackbars/DirectionSnackbar.js"}}
 

@@ -29,6 +29,8 @@ export interface ClockPickerClasses {
 
 export type ClockPickerClassKey = keyof ClockPickerClasses;
 
+export interface ClockPickerComponentsPropsOverrides {}
+
 export function getClockPickerUtilityClass(slot: string) {
   return generateUtilityClass('MuiClockPicker', slot);
 }
@@ -104,8 +106,8 @@ export interface ClockPickerProps<TDate> extends ExportedClockPickerProps<TDate>
    * The props used for each slot inside.
    */
   componentsProps?: {
-    leftArrowButton?: any;
-    rightArrowButton?: any;
+    leftArrowButton?: React.SVGAttributes<SVGSVGElement> & ClockPickerComponentsPropsOverrides;
+    rightArrowButton?: React.SVGAttributes<SVGSVGElement> & ClockPickerComponentsPropsOverrides;
   };
 
   /**

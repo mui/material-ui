@@ -11,6 +11,19 @@ describe('grid', () => {
     });
   });
 
+  it('should accept 0', () => {
+    const output = grid({
+      gap: 0,
+      columnGap: 0,
+      rowGap: 0,
+    });
+    expect(output).to.deep.equal({
+      gap: 0,
+      columnGap: 0,
+      rowGap: 0,
+    });
+  });
+
   it('should support breakpoints', () => {
     const output = grid({
       gap: [1, 2],
