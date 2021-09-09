@@ -47,7 +47,7 @@ const theme = createTheme({
 If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
 ```tsx
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface Theme {
     status: {
       danger: string;
@@ -91,14 +91,6 @@ You can extend the outer theme by providing a function:
 
 {{"demo": "pages/customization/theming/ThemeNestingExtend.js"}}
 
-**A note on performance**
-
-The performance implications of nesting the `ThemeProvider` component are linked to JSS's work behind the scenes.
-The main point to understand is that the injected CSS is cached with the following tuple `(styles, theme)`.
-
-- `theme`: If you provide a new theme at each render, a new CSS object will be computed and injected. Both for UI consistency and performance, it's better to render a limited number of theme objects.
-- `styles`: The larger the styles object is, the more work is needed.
-
 ## API
 
 ### `createTheme(options, ...args) => theme`
@@ -110,6 +102,16 @@ Generate a theme base on the options received.
 1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
 2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
 
+> Note: Only the first argument (`options`) is being processed by the `createdTheme` function.
+> If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function.
+
+```js
+import { deepmerge } from '@mui/utils';
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme(deepmerge(options1, options2));
+```
+
 #### Returns
 
 `theme` (_object_): A complete, ready-to-use theme object.
@@ -117,8 +119,8 @@ Generate a theme base on the options received.
 #### Examples
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
-import { green, purple } from '@material-ui/core/colors';
+import { createTheme } from '@mui/material/styles';
+import { green, purple } from '@mui/material/colors';
 
 const theme = createTheme({
   palette: {
@@ -156,7 +158,7 @@ Generate responsive typography settings based on the options received.
 #### Examples
 
 ```js
-import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
 
 let theme = createTheme();
 theme = responsiveFontSizes(theme);
@@ -184,7 +186,7 @@ Currently `unstable_createMuiStrictModeTheme` adds no additional requirements.
 #### Examples
 
 ```js
-import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
+import { unstable_createMuiStrictModeTheme } from '@mui/material/styles';
 
 const theme = unstable_createMuiStrictModeTheme();
 

@@ -70,7 +70,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLLIElement",
-  "filename": "/packages/material-ui/src/ListItem/ListItem.js",
+  "filename": "/packages/mui-material/src/ListItem/ListItem.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/lists/\">Lists</a></li>\n<li><a href=\"/components/transfer-list/\">Transfer List</a></li></ul>",
   "styledComponent": true,

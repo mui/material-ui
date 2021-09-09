@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Typography, { TypographyProps } from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Typography, { TypographyProps } from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
 import Steps from 'docs/src/pages/landing/Steps';
 import Themes from 'docs/src/pages/landing/Themes';
 import QuickWord from 'docs/src/pages/landing/QuickWord';
@@ -99,10 +99,19 @@ export default function LandingPage() {
             <Content maxWidth="md">
               <Logo src="/static/logo_raw.svg" alt="" />
               <div>
-                <Title variant="h3" component="h1" color="inherit" gutterBottom>
+                <Title
+                  variant="h3"
+                  component="h1"
+                  color={(theme) => (theme.palette.mode === 'dark' ? '#fff' : 'primary.main')}
+                  gutterBottom
+                >
                   {'MATERIAL-UI'}
                 </Title>
-                <Typography variant="h5" component="p" color="inherit">
+                <Typography
+                  variant="h5"
+                  component="p"
+                  color={(theme) => (theme.palette.mode === 'dark' ? '#fff' : 'primary.main')}
+                >
                   {t('strapline')}
                 </Typography>
                 <Button
@@ -111,6 +120,8 @@ export default function LandingPage() {
                   href="/getting-started/installation"
                   sx={{ mt: 4 }}
                   variant="outlined"
+                  size="large"
+                  color="primary"
                 >
                   {t('getStarted')}
                 </Button>

@@ -4,7 +4,7 @@ The main difference between this and the non-typescript example is that you need
 
 ```json
 "paths": {
-  "@material-ui/styled-engine": ["./node_modules/@material-ui/styled-engine-sc"]
+  "@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"]
 }
 ```
 
@@ -37,6 +37,8 @@ npm start
 ## CodeSandbox
 
 <!-- #default-branch-switch -->
+
+Note that CodeSandbox is not supporting react-app-rewired, yet you can [still see the code](https://codesandbox.io/s/github/mui-org/material-ui/tree/next/examples/create-react-app-with-styled-components-typescript).
 
 The following link leverages this demo: https://next.material-ui.com/guides/interoperability/#change-the-default-styled-engine with Parcel's alias feature within the `package.json`
 

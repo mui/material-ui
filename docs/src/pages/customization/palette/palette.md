@@ -55,8 +55,8 @@ The simplest way to customize a palette color is to import one or more of the pr
 and apply them:
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
-import blue from '@material-ui/core/colors/blue';
+import { createTheme } from '@mui/material/styles';
+import blue from '@mui/material/colors/blue';
 
 const theme = createTheme({
   palette: {
@@ -71,7 +71,7 @@ If you wish to provide more customized colors, you can either create your own pa
 or directly supply colors to some or all of the `theme.palette` keys:
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
@@ -133,7 +133,7 @@ Note that "contrastThreshold" follows a non-linear curve.
 You can add new colors inside and outside the palette of the theme as follow:
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   status: {
@@ -154,10 +154,10 @@ const theme = createTheme({
 
 If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
-<!-- tested with packages/material-ui/test/typescript/augmentation/paletteColors.spec.ts -->
+<!-- tested with packages/mui-material/test/typescript/augmentation/paletteColors.spec.ts -->
 
 ```ts
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface Theme {
     status: {
       danger: React.CSSProperties['color'];
@@ -193,61 +193,4 @@ Need inspiration? The Material Design team has built an [palette configuration t
 
 ## Dark mode
 
-Material-UI comes with two palette modes: light (the default) and dark.
-You can make the theme dark by setting `mode: 'dark'`.
-
-```js
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-  },
-});
-```
-
-While it's only a single value change, the `createTheme` helper modifies several palette values.
-The colors modified by the palette mode are the following:
-
-{{"demo": "pages/customization/palette/DarkTheme.js", "bg": "inline", "hideToolbar": true}}
-
-### Toggling color mode
-
-You can use the React context to toggle the mode with a button inside your page.
-
-{{"demo": "pages/customization/palette/ToggleColorMode.js", "defaultCodeOpen": false}}
-
-### System preference
-
-Users might have specified a preference for a light or dark theme.
-The method by which the user expresses their preference can vary. It might be a system-wide setting exposed by the Operating System, or a setting controlled by the User Agent.
-
-You can leverage this preference dynamically with the [useMediaQuery](/components/use-media-query/) hook and the [prefers-color-scheme](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) media query.
-
-For instance, you can enable the dark mode automatically:
-
-```jsx
-import * as React from 'react';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-
-function App() {
-  const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode: prefersDarkMode ? 'dark' : 'light',
-        },
-      }),
-    [prefersDarkMode],
-  );
-
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Routes />
-    </ThemeProvider>
-  );
-}
-```
+For details of how you can set up a dark mode for your theme, head to the [dark mode guide](/customization/dark-mode/).

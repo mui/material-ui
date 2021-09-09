@@ -1,6 +1,6 @@
 ---
 title: React Button component
-components: Button, IconButton, ButtonBase, LoadingButton
+components: Button, IconButton, ButtonBase, LoadingButton, ButtonUnstyled
 materialDesign: https://material.io/components/buttons
 githubLabel: 'component: Button'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#button
@@ -12,7 +12,6 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#button
 
 Buttons communicate actions that users can take. They are typically placed throughout your UI, in places like:
 
-- Dialogs
 - Modal windows
 - Forms
 - Cards
@@ -117,8 +116,8 @@ Use `color` prop to apply theme color palette to component.
 
 ## Customization
 
-Here are some examples of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/how-to-customize/).
+Here are some examples of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/buttons/CustomizedButtons.js", "defaultCodeOpen": false}}
 
@@ -180,3 +179,46 @@ However:
 ```
 
 This has the advantage of supporting any element, for instance, a link `<a>` element.
+
+## Unstyled
+
+The button also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
+
+### Unstyled component
+
+```js
+import ButtonUnstyled from '@mui/core/ButtonUnstyled';
+```
+
+{{"demo": "pages/components/buttons/UnstyledButtonsSimple.js"}}
+
+#### Customizing the root element
+
+By default, the `ButtonUnstyled` renders a native `button` element.
+You are free to override this by setting the `component` or `components.Root` prop.
+If a non-interactive element (such as a span) is provided this way, the `ButtonUnstyled` will take care of adding accessibility attributes.
+
+{{"demo": "pages/components/buttons/UnstyledButtonsSpan.js"}}
+
+Compare the attributes on the span with the button from the previous demo.
+
+#### Complex customization
+
+You are not limited to using HTML elements for the button structure.
+SVG elements, even with complex structure, are equally acceptable.
+
+{{"demo": "pages/components/buttons/UnstyledButtonCustom.js"}}
+
+### useButton hook
+
+```js
+import { useButton } from '@mui/core/ButtonUnstyled';
+```
+
+If you need to use Button's functionality in another component, you can use the `useButton` hook.
+It returns props to be placed on a custom button element and fields representing the internal state of the button.
+
+The `useButton` hook requires the ref of the element it'll be used on.
+Additionally, you need to provide the `component` prop (unless you intend to use the plain `button`).
+
+{{"demo": "pages/components/buttons/UseButton.js"}}

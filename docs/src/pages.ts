@@ -4,6 +4,7 @@ export interface MuiPage {
   pathname: string;
   children?: MuiPage[];
   disableDrawer?: boolean;
+  icon?: string;
   /**
    * Pages are considered to be ordered depth-first.
    * If a page should be excluded from this order, set `order: false`.
@@ -28,6 +29,7 @@ export interface OrderedMuiPage extends MuiPage {
 const pages: readonly MuiPage[] = [
   {
     pathname: '/getting-started',
+    icon: 'DescriptionIcon',
     children: [
       { pathname: '/getting-started/installation' },
       { pathname: '/getting-started/usage' },
@@ -42,6 +44,7 @@ const pages: readonly MuiPage[] = [
   },
   {
     pathname: '/components',
+    icon: 'ToggleOnIcon',
     children: [
       {
         pathname: '/components',
@@ -187,6 +190,7 @@ const pages: readonly MuiPage[] = [
               { pathname: '/components/time-picker' },
             ],
           },
+          { pathname: '/components/masonry' },
           { pathname: '/components/timeline' },
           { pathname: '/components/trap-focus' },
           { pathname: '/components/tree-view' },
@@ -197,6 +201,7 @@ const pages: readonly MuiPage[] = [
   {
     title: 'Component API',
     pathname: '/api-docs',
+    icon: 'CodeIcon',
     children: [
       ...pagesApi,
       {
@@ -210,6 +215,7 @@ const pages: readonly MuiPage[] = [
           { pathname: '/api-docs/data-grid/grid-col-def' },
           { pathname: '/api-docs/data-grid/grid-cell-params' },
           { pathname: '/api-docs/data-grid/grid-row-params' },
+          { pathname: '/api-docs/data-grid/grid-export-csv-options' },
         ],
       },
     ]
@@ -222,6 +228,7 @@ const pages: readonly MuiPage[] = [
   },
   {
     pathname: '/system',
+    icon: 'BuildIcon',
     children: [
       { pathname: '/system/basics' },
       { pathname: '/system/properties' },
@@ -244,6 +251,7 @@ const pages: readonly MuiPage[] = [
   },
   {
     pathname: '/customization',
+    icon: 'CreateIcon',
     children: [
       {
         pathname: '/customization',
@@ -251,6 +259,7 @@ const pages: readonly MuiPage[] = [
         children: [
           { pathname: '/customization/theming' },
           { pathname: '/customization/palette' },
+          { pathname: '/customization/dark-mode', title: 'Dark mode' },
           { pathname: '/customization/typography' },
           { pathname: '/customization/spacing' },
           { pathname: '/customization/breakpoints' },
@@ -269,6 +278,7 @@ const pages: readonly MuiPage[] = [
   {
     pathname: '/guides',
     title: 'How To Guides',
+    icon: 'VisibilityIcon',
     children: [
       { pathname: '/guides/api', title: 'API Design Approach' },
       { pathname: '/guides/typescript', title: 'TypeScript' },
@@ -292,6 +302,8 @@ const pages: readonly MuiPage[] = [
   },
   {
     pathname: '/styles',
+    title: 'Styles (legacy)',
+    icon: 'StyleIcon',
     children: [
       { pathname: '/styles/basics' },
       { pathname: '/styles/advanced' },
@@ -309,6 +321,7 @@ const pages: readonly MuiPage[] = [
   },
   {
     pathname: '/discover-more',
+    icon: 'AddIcon',
     children: [
       { pathname: '/discover-more/showcase' },
       { pathname: '/discover-more/related-projects' },

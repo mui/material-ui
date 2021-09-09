@@ -1,9 +1,9 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import Link from 'docs/src/modules/components/Link';
 
 export default function BrandingBeginToday() {

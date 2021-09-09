@@ -7,8 +7,8 @@ import rtlPluginSc from 'stylis-plugin-rtl-sc';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { StyleSheetManager } from 'styled-components';
-import { jssPreset, StylesProvider } from '@material-ui/styles';
-import { useTheme, styled } from '@material-ui/core/styles';
+import { jssPreset, StylesProvider } from '@mui/styles';
+import { useTheme, styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import rtl from 'jss-rtl';
 import DemoErrorBoundary from 'docs/src/modules/components/DemoErrorBoundary';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
@@ -117,6 +117,16 @@ DemoFrame.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
+// Use the default MUI theme for the demos
+const theme = createTheme();
+const darkModeTheme = createTheme({ palette: { mode: 'dark' } });
+
+const getTheme = (outerTheme) => {
+  const resultTheme = outerTheme?.palette?.mode === 'dark' ? darkModeTheme : theme;
+  resultTheme.direction = outerTheme?.direction;
+  return resultTheme;
+};
+
 /**
  * Isolates the demo component as best as possible. Additional props are spread
  * to an `iframe` if `iframe={true}`.
@@ -130,9 +140,12 @@ function DemoSandboxed(props) {
 
   return (
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
-      <Sandbox {...sandboxProps}>
-        <Component />
-      </Sandbox>
+      <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>
+        <Sandbox {...sandboxProps}>
+          {/* WARNING: `<Component />` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
+          <Component />
+        </Sandbox>
+      </ThemeProvider>
     </DemoErrorBoundary>
   );
 }

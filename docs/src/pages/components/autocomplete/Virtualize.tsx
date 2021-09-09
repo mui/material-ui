@@ -1,26 +1,36 @@
 import * as React from 'react';
-import TextField from '@material-ui/core/TextField';
-import Autocomplete, {
-  AutocompleteRenderGroupParams,
-  autocompleteClasses,
-} from '@material-ui/core/Autocomplete';
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import Popper from '@material-ui/core/Popper';
-import { useTheme, styled } from '@material-ui/core/styles';
+import TextField from '@mui/material/TextField';
+import Autocomplete, { autocompleteClasses } from '@mui/material/Autocomplete';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import ListSubheader from '@mui/material/ListSubheader';
+import Popper from '@mui/material/Popper';
+import { useTheme, styled } from '@mui/material/styles';
 import { VariableSizeList, ListChildComponentProps } from 'react-window';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 
 const LISTBOX_PADDING = 8; // px
 
 function renderRow(props: ListChildComponentProps) {
   const { data, index, style } = props;
-  return React.cloneElement(data[index], {
-    style: {
-      ...style,
-      top: (style.top as number) + LISTBOX_PADDING,
-    },
-  });
+  const dataSet = data[index];
+  const inlineStyle = {
+    ...style,
+    top: (style.top as number) + LISTBOX_PADDING,
+  };
+
+  if (dataSet.hasOwnProperty('group')) {
+    return (
+      <ListSubheader key={dataSet.key} component="div" style={inlineStyle}>
+        {dataSet.group}
+      </ListSubheader>
+    );
+  }
+
+  return (
+    <Typography component="li" {...dataSet[0]} noWrap style={inlineStyle}>
+      {dataSet[1]}
+    </Typography>
+  );
 }
 
 const OuterElementContext = React.createContext({});
@@ -41,12 +51,19 @@ function useResetCache(data: any) {
 }
 
 // Adapter for react-window
-const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxComponent(
-  props,
-  ref,
-) {
+const ListboxComponent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLElement>
+>(function ListboxComponent(props, ref) {
   const { children, ...other } = props;
-  const itemData = React.Children.toArray(children);
+  const itemData: React.ReactChild[] = [];
+  (children as React.ReactChild[]).forEach(
+    (item: React.ReactChild & { children?: React.ReactChild[] }) => {
+      itemData.push(item);
+      itemData.push(...(item.children || []));
+    },
+  );
+
   const theme = useTheme();
   const smUp = useMediaQuery(theme.breakpoints.up('sm'), {
     noSsr: true,
@@ -54,8 +71,8 @@ const ListboxComponent = React.forwardRef<HTMLDivElement>(function ListboxCompon
   const itemCount = itemData.length;
   const itemSize = smUp ? 36 : 48;
 
-  const getChildSize = (child: React.ReactNode) => {
-    if (React.isValidElement(child) && child.type === ListSubheader) {
+  const getChildSize = (child: React.ReactChild) => {
+    if (child.hasOwnProperty('group')) {
       return 48;
     }
 
@@ -118,13 +135,6 @@ const OPTIONS = Array.from(new Array(10000))
   .map(() => random(10 + Math.ceil(Math.random() * 20)))
   .sort((a: string, b: string) => a.toUpperCase().localeCompare(b.toUpperCase()));
 
-const renderGroup = (params: AutocompleteRenderGroupParams) => [
-  <ListSubheader key={params.key} component="div">
-    {params.group}
-  </ListSubheader>,
-  params.children,
-];
-
 export default function Virtualize() {
   return (
     <Autocomplete
@@ -132,18 +142,12 @@ export default function Virtualize() {
       sx={{ width: 300 }}
       disableListWrap
       PopperComponent={StyledPopper}
-      ListboxComponent={
-        ListboxComponent as React.ComponentType<React.HTMLAttributes<HTMLElement>>
-      }
-      renderGroup={renderGroup}
+      ListboxComponent={ListboxComponent}
       options={OPTIONS}
       groupBy={(option) => option[0].toUpperCase()}
       renderInput={(params) => <TextField {...params} label="10,000 options" />}
-      renderOption={(props, option) => (
-        <li {...props}>
-          <Typography noWrap>{option}</Typography>
-        </li>
-      )}
+      renderOption={(props, option) => [props, option]}
+      renderGroup={(params) => params}
     />
   );
 }

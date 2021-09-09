@@ -106,10 +106,21 @@ module.exports = async function demoLoader() {
       demoModuleIDs.add(moduleID);
 
       try {
+        const previewFilepath = moduleFilepath.replace(/\.js$/, '.tsx.preview');
+
+        const jsxPreview = await fs.readFile(previewFilepath, { encoding: 'utf-8' });
+        this.addDependency(previewFilepath);
+
+        demos[demoName].jsxPreview = jsxPreview;
+      } catch (error) {
+        // No preview exists. This is fine.
+      }
+
+      try {
         const moduleTS = moduleID.replace(/\.js$/, '.tsx');
         const moduleTSFilepath = path.join(
           path.dirname(this.resourcePath),
-          moduleID.replace(/\//g, path.sep),
+          moduleTS.replace(/\//g, path.sep),
         );
         this.addDependency(moduleTSFilepath);
         const rawTS = await fs.readFile(moduleTSFilepath, { encoding: 'utf-8' });

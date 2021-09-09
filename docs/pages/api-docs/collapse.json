@@ -35,7 +35,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/Collapse/Collapse.js",
+  "filename": "/packages/mui-material/src/Collapse/Collapse.js",
   "inheritance": {
     "component": "Transition",
     "pathname": "https://reactcommunity.org/react-transition-group/transition#Transition-props"

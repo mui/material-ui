@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { unstable_capitalize as capitalize } from '@material-ui/utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { MuiRenderResult, RenderOptions } from './createClientRender';
 import {
   ConformanceOptions,
@@ -15,6 +15,7 @@ export interface SlotTestingOptions {
   testWithComponent?: React.ComponentType;
   testWithElement?: keyof JSX.IntrinsicElements;
   expectedClassName: string;
+  isOptional?: boolean;
 }
 
 export interface UnstyledConformanceOptions
@@ -44,9 +45,9 @@ interface WithCustomProp {
   tabIndex: number;
 }
 
-interface WithStyleProps {
-  styleProps: Record<string, any>;
-  expectedStyleProps: Record<string, any>;
+interface WithOwnerState {
+  ownerState: Record<string, any>;
+  expectedOwnerState: Record<string, any>;
 }
 
 function forEachSlot(
@@ -73,9 +74,14 @@ function testPropForwarding(
   }
 
   it('forwards custom props to the root element if a component is provided', () => {
-    const CustomRoot = ({ fooBar, tabIndex, 'aria-label': ariaLabel }: WithCustomProp) => {
-      return <div data-foobar={fooBar} tabIndex={tabIndex} aria-label={ariaLabel} />;
-    };
+    const CustomRoot = React.forwardRef(
+      (
+        { fooBar, tabIndex, 'aria-label': ariaLabel }: WithCustomProp,
+        ref: React.ForwardedRef<any>,
+      ) => {
+        return <div ref={ref} data-foobar={fooBar} tabIndex={tabIndex} aria-label={ariaLabel} />;
+      },
+    );
 
     const otherProps = {
       tabIndex: '0',
@@ -149,6 +155,17 @@ function testComponentsProp(
       const thumb = container.querySelector(slotElement);
       expect(thumb).to.have.class(slotOptions.expectedClassName);
     });
+
+    if (slotOptions.isOptional) {
+      it(`alows omitting the optional ${capitalize(slotName)} slot by providing null`, () => {
+        const components = {
+          [capitalize(slotName)]: null,
+        };
+
+        const { container } = render(React.cloneElement(element, { components }));
+        expect(container.querySelectorAll(`.${slotOptions.expectedClassName}`)).to.have.length(0);
+      });
+    }
   });
 
   it('uses the component provided in component prop when both component and components.Root are provided', () => {
@@ -175,9 +192,8 @@ function testComponentsProp(
       }),
     );
 
-    /* eslint-disable @typescript-eslint/no-unused-expressions */
-    expect(queryByTestId('a')).to.exist;
-    expect(queryByTestId('b')).not.to.exist;
+    expect(queryByTestId('a')).not.to.equal(null);
+    expect(queryByTestId('b')).to.equal(null);
   });
 }
 
@@ -224,7 +240,7 @@ function testComponentsPropsProp(
   });
 }
 
-function testStylePropsPropagation(
+function testOwnerStatePropagation(
   element: React.ReactElement,
   getOptions: () => UnstyledConformanceOptions,
 ) {
@@ -239,10 +255,11 @@ function testStylePropsPropagation(
   }
 
   forEachSlot(slots, (slotName) => {
-    it(`sets the styleProps prop on ${capitalize(slotName)} slot's component`, () => {
+    it(`sets the ownerState prop on ${capitalize(slotName)} slot's component`, () => {
       const TestComponent = React.forwardRef(
-        ({ styleProps, expectedStyleProps }: WithStyleProps, ref: React.Ref<any>) => {
-          expect(styleProps).to.deep.include(expectedStyleProps);
+        ({ ownerState, expectedOwnerState }: WithOwnerState, ref: React.Ref<any>) => {
+          expect(ownerState).not.to.equal(undefined);
+          expect(ownerState).to.deep.include(expectedOwnerState);
           return <div ref={ref} />;
         },
       );
@@ -253,7 +270,7 @@ function testStylePropsPropagation(
 
       const componentsProps = {
         [slotName]: {
-          expectedStyleProps: {
+          expectedOwnerState: {
             id: 'foo',
           },
         },
@@ -272,7 +289,7 @@ const fullSuite = {
   propsSpread: testPropForwarding,
   reactTestRenderer: testReactTestRenderer,
   refForwarding: describeRef,
-  stylePropsPropagation: testStylePropsPropagation,
+  ownerStatePropagation: testOwnerStatePropagation,
 };
 
 export default function describeConformanceUnstyled(

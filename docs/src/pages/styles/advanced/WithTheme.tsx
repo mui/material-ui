@@ -1,9 +1,5 @@
 import * as React from 'react';
-import {
-  ThemeProvider,
-  WithTheme as WithThemeProps,
-  withTheme,
-} from '@material-ui/styles';
+import { ThemeProvider, WithTheme as WithThemeProps, withTheme } from '@mui/styles';
 
 interface Theme {
   spacing: string;

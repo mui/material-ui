@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Popper from '@material-ui/core/Popper';
+import Box from '@mui/material/Box';
+import Popper from '@mui/material/Popper';
 // web.cjs is required for IE11 support
 import { useSpring, animated } from 'react-spring/web.cjs';
 

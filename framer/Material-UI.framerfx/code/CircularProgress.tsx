@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { addPropertyControls, ControlType } from 'framer';
-import MuiCircularProgress from '@material-ui/core/CircularProgress';
+import MuiCircularProgress from '@mui/material/CircularProgress';
 
 interface Props {
   thickness: number;

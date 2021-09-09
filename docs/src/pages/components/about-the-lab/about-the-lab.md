@@ -21,10 +21,10 @@ Install the package in your project directory with:
 
 ```sh
 // with npm
-npm install @material-ui/lab@next
+npm install @mui/lab@next
 
 // with yarn
-yarn add @material-ui/lab@next
+yarn add @mui/lab@next
 ```
 
 The lab has a peer dependency on the core components.
@@ -32,10 +32,10 @@ If you are not already using Material-UI in your project, you can install it wit
 
 ```sh
 // with npm
-npm install @material-ui/core@next
+npm install @mui/material@next
 
 // with yarn
-yarn add @material-ui/core@next
+yarn add @mui/material@next
 ```
 
 ## TypeScript
@@ -43,7 +43,10 @@ yarn add @material-ui/core@next
 In order to benefit from the [CSS overrides](/customization/theme-components/#global-style-overrides) and [default prop customization](/customization/theme-components/#default-props) with the theme, TypeScript users need to import the following types. Internally, it uses [module augmentation](/guides/typescript/#customization-of-theme) to extend the default theme structure with the extension components available in the lab.
 
 ```tsx
-import '@material-ui/lab/themeAugmentation';
+// When using TypeScript 4.x and above
+import type {} from '@mui/lab/themeAugmentation';
+// When using TypeScript 3.x and below
+import '@mui/lab/themeAugmentation';
 
 const theme = createTheme({
   components: {

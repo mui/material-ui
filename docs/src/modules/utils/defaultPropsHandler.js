@@ -182,7 +182,7 @@ function getPropsPath(functionBody) {
       (path) => {
         const declaratorPath = path.get('declarations', 0);
         // find `const {} = props`
-        // but not `const styleProps = props`
+        // but not `const ownerState = props`
         if (
           declaratorPath.get('init', 'name').value === 'props' &&
           declaratorPath.get('id', 'type').value === 'ObjectPattern'

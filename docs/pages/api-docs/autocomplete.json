@@ -20,7 +20,10 @@
     "clearText": { "type": { "name": "string" }, "default": "'Clear'" },
     "closeText": { "type": { "name": "string" }, "default": "'Close'" },
     "componentsProps": { "type": { "name": "object" }, "default": "{}" },
-    "defaultValue": { "type": { "name": "any" }, "default": "props.multiple ? [] : null" },
+    "defaultValue": {
+      "type": { "name": "custom", "description": "any" },
+      "default": "props.multiple ? [] : null"
+    },
     "disableClearable": { "type": { "name": "bool" } },
     "disableCloseOnSelect": { "type": { "name": "bool" } },
     "disabled": { "type": { "name": "bool" } },
@@ -112,7 +115,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/Autocomplete/Autocomplete.js",
+  "filename": "/packages/mui-material/src/Autocomplete/Autocomplete.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/autocomplete/\">Autocomplete</a></li></ul>",
   "styledComponent": true,

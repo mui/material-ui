@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { styled, alpha } from '@material-ui/core/styles';
-import TreeView from '@material-ui/lab/TreeView';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import { styled, alpha } from '@mui/material/styles';
+import TreeView from '@mui/lab/TreeView';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import TreeItem, {
   TreeItemProps,
   useTreeItem,
   TreeItemContentProps,
-} from '@material-ui/lab/TreeItem';
+} from '@mui/lab/TreeItem';
 import clsx from 'clsx';
-import Typography from '@material-ui/core/Typography';
+import Typography from '@mui/material/Typography';
 
 const CustomContentRoot = styled('div')(({ theme }) => ({
   WebkitTapHighlightColor: 'transparent',

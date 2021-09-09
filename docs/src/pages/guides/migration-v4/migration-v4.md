@@ -10,9 +10,11 @@ This is a reference for upgrading your site from Material-UI v4 to v5.
 While there's a lot covered here, you probably won't need to do everything.
 We'll do our best to keep things easy to follow, and as sequential as possible, so you can quickly get rocking on v5!
 
+> 💡 We are excited to share that the org & package names have been changed from `@material-ui` to `@mui` as part of the rebranding effort! For more details about it, check the [GitHub discussion](https://github.com/mui-org/material-ui/discussions/27803).
+
 ## Why you should migrate
 
-This documentation page covers the _how_ of migrating from v4 to v5.
+To get the benefits of bug fixes and a lot of improvements such as the new styling engine. This documentation page covers the _how_ of migrating from v4 to v5.
 The _why_ will be covered in an upcoming blog post on Medium.
 
 ## Migration steps
@@ -20,7 +22,7 @@ The _why_ will be covered in an upcoming blog post on Medium.
 - [Update React & TypeScript](#update-react-amp-typescript-version)
 - [ThemeProvider setup](#themeprovider-setup)
 - [Update Material-UI](#update-material-ui-version)
-- [Run Codemod](#run-codemod)
+- [Run codemods](#run-codemods)
   - [🪄 preset-safe](#preset-safe)
   - [variant-prop (optional)](#variant-prop)
   - [link-underline-hover (optional)](#link-underline-hover)
@@ -51,10 +53,10 @@ The _why_ will be covered in an upcoming blog post on Medium.
 
 ## `ThemeProvider` setup
 
-Make sure that `ThemeProvider` is defined at the root of your application (even if you are using the **default theme**) and **NO** `useStyles` is called before `<ThemeProvider>`. This is because we are going to use `@material-ui/styles` temporarily which require `ThemeProvider`.
+Make sure that `ThemeProvider` is defined at the root of your application (even if you are using the **default theme**) and **NO** `useStyles` is called before `<ThemeProvider>`. This is because we are going to use `@mui/styles` temporarily which require `ThemeProvider`.
 
 ```js
-import { ThemeProvider, createMuiTheme, makeStyles } from '@material-ui/core/styles';
+import { ThemeProvider, createMuiTheme, makeStyles } from '@mui/material/styles';
 
 const theme = createMuiTheme();
 
@@ -79,33 +81,33 @@ To use the `next` version of Material-UI.
 > 💡 If you want to use Material-UI v5 with **styled-components** instead of emotion, check out [the installation guide](/getting-started/installation/#npm)
 
 ```sh
-npm install @material-ui/core@next @emotion/react @emotion/styled
+npm install @mui/material@next @emotion/react @emotion/styled
 
 // or with `yarn`
-yarn add @material-ui/core@next @emotion/react @emotion/styled
+yarn add @mui/material@next @emotion/react @emotion/styled
 ```
 
-**Optional** if your project includes `@material-ui/icons` and/or `@material-ui/lab`, use the `next` version of them.
+**Optional** if your project includes `@mui/icons-material` and/or `@mui/lab`, use the `next` version of them.
 
 ```sh
-npm install @material-ui/icons@next @material-ui/lab@next
+npm install @mui/icons-material@next @mui/lab@next
 
 // or with `yarn`
-yarn add @material-ui/icons@next @material-ui/lab@next
+yarn add @mui/icons-material@next @mui/lab@next
 ```
 
-> **Note:** if you are using `@material-ui/pickers`, it has moved to `@material-ui/lab`. The details is in "Handling breaking changes" section.
+> **Note:** if you are using `@material-ui/pickers`, it has moved to `@mui/lab`. The details is in "Handling breaking changes" section.
 
-In this migration process, you will need to install/update `@material-ui/styles` (JSS) for temporary transition to v5.
+In this migration process, you will need to install/update `@mui/styles` (JSS) for temporary transition to v5.
 
 ```sh
-npm install @material-ui/styles@next
+npm install @mui/styles@next
 
 // or with `yarn`
-yarn add @material-ui/styles@next
+yarn add @mui/styles@next
 ```
 
-> ⚠️ After this step, your application is expected to crash because the style library has changed from **JSS (v4)** to **emotion (v5)**.
+> After the migration, you should remove all `@material-ui/*` packages by running `yarn remove` or `npm uninstall`.
 
 ## Run codemods
 
@@ -116,10 +118,10 @@ We have prepared these codemods to ease your migration experience.
 This codemod contains most of the transformers that are useful for migration. (**This codemod should be applied only once per folder**)
 
 ```sh
-npx @material-ui/codemod@next v5.0.0/preset-safe <path>
+npx @mui/codemod@next v5.0.0/preset-safe <path>
 ```
 
-> If you want to run the transformers one by one, check out [preset-safe codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#-preset-safe) for more details.
+> If you want to run the transformers one by one, check out [preset-safe codemod](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#-preset-safe) for more details.
 
 ### variant-prop
 
@@ -142,10 +144,10 @@ createMuiTheme({
 However, if you want to keep `variant="standard"` to you components, run this codemod or configure theme default props.
 
 ```sh
-npx @material-ui/codemod@next v5.0.0/variant-prop <path>
+npx @mui/codemod@next v5.0.0/variant-prop <path>
 ```
 
-For more details, checkout [variant-prop codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#variant-prop).
+For more details, checkout [variant-prop codemod](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#variant-prop).
 
 ### link-underline-hover
 
@@ -168,10 +170,10 @@ createMuiTheme({
 However, if you want to keep `variant="hover"` to you components, run this codemod or configure theme default props.
 
 ```sh
-npx @material-ui/codemod@next v5.0.0/link-underline-hover <path>
+npx @mui/codemod@next v5.0.0/link-underline-hover <path>
 ```
 
-For more details, checkout [link-underline-hover codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#link-underline-hover).
+For more details, checkout [link-underline-hover codemod](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#link-underline-hover).
 
 Once you have completed the codemod step, try running your application again. At this point, it should be running without error. Otherwise check out the [Troubleshooting](#troubleshooting) section. Next step, handling breaking changes in each component.
 
@@ -187,10 +189,10 @@ The default bundle supports the following minimum versions:
 <!-- #stable-snapshot -->
 
 - Node 12 (up from 8)
-- Chrome 84 (up from 49)
-- Edge 85 (up from 14)
+- Chrome 90 (up from 49)
+- Edge 91 (up from 14)
 - Firefox 78 (up from 52)
-- Safari 13 (macOS) and 12.2 (iOS) (up from 10)
+- Safari 14 (macOS) and 12.5 (iOS) (up from 10)
 - and more (see [.browserslistrc (`stable` entry)](https://github.com/mui-org/material-ui/blob/HEAD/.browserslistrc#L11))
 
 It no longer supports IE 11.
@@ -212,7 +214,7 @@ Here is an example:
 
 ```jsx
 import * as React from 'react';
-import { StyledEngineProvider } from '@material-ui/core/styles';
+import { StyledEngineProvider } from '@mui/material/styles';
 
 export default function GlobalCssPriority() {
   return (
@@ -231,35 +233,36 @@ export default function GlobalCssPriority() {
 Here is an example:
 
 ```diff
-import * as React from 'react';
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
+ import * as React from 'react';
+ import { CacheProvider } from '@emotion/react';
+ import createCache from '@emotion/cache';
 
-const cache = createCache({
-  key: 'css',
-+ prepend: true,
-});
+ const cache = createCache({
+   key: 'css',
++  prepend: true,
+ });
 
-export default function PlainCssPriority() {
-  return (
-    <CacheProvider value={cache}>
-      {/* Your component tree. Now you can override Material-UI's styles. */}
-    </CacheProvider>
-  );
-}
+ export default function PlainCssPriority() {
+   return (
+     <CacheProvider value={cache}>
+       {/* Your component tree. Now you can override Material-UI's styles. */}
+     </CacheProvider>
+   );
+ }
 ```
 
-> **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@material-ui/styled-engine-sc` package.
+> **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui-org/material-ui/blob/next/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@mui/styled-engine-sc` package.
 
-#### Upgrade helper
+### Theme structure
 
+The structure of the theme has changed in v5. You need to update its shape.
 For a smoother transition, the `adaptV4Theme` helper allows you to iteratively upgrade some of the theme changes to the new theme structure.
 
 > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
 ```diff
--import { createMuiTheme } from '@material-ui/core/styles';
-+import { createTheme, adaptV4Theme } from '@material-ui/core/styles';
+-import { createMuiTheme } from '@mui/material/styles';
++import { createTheme, adaptV4Theme } from '@mui/material/styles';
 
 -const theme = createMuiTheme({
 +const theme = createTheme(adaptV4Theme({
@@ -268,7 +271,7 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
 +}));
 ```
 
-##### Supported changes
+> ⚠️ This adapter only handles the input arguments of `createTheme`, if you modify the shape of the theme after its creation, you need to migrate the structure manually.
 
 The following changes are supported by the adapter:
 
@@ -306,7 +309,7 @@ The following changes are supported by the adapter:
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-   import { createTheme } from '@material-ui/core/styles';
+   import { createTheme } from '@mui/material/styles';
   -const theme = createTheme({palette: { type: 'dark' }}),
   +const theme = createTheme({palette: { mode: 'dark' }}),
   ```
@@ -360,7 +363,7 @@ The following changes are supported by the adapter:
   If you depend on it, you can add it back:
 
   ```diff
-   import { createTheme } from '@material-ui/core/styles';
+   import { createTheme } from '@mui/material/styles';
 
   -const theme = createTheme(),
   +const theme = createTheme({
@@ -370,47 +373,47 @@ The following changes are supported by the adapter:
 
 - The components' definitions in the theme were restructure under the `components` key, to allow for easier discoverability of the definitions related to any one component.
 
-1. `props`
+  1. `props`
 
-```diff
-import { createTheme } from '@material-ui/core/styles';
+  ```diff
+   import { createTheme } from '@mui/material/styles';
 
-const theme = createTheme({
--  props: {
--    MuiButton: {
--      disableRipple: true,
--    },
--  },
-+  components: {
-+    MuiButton: {
-+      defaultProps: {
-+        disableRipple: true,
-+      },
-+    },
-+  },
-});
-```
+   const theme = createTheme({
+  -  props: {
+  -    MuiButton: {
+  -      disableRipple: true,
+  -    },
+  -  },
+  +  components: {
+  +    MuiButton: {
+  +      defaultProps: {
+  +        disableRipple: true,
+  +      },
+  +    },
+  +  },
+   });
+  ```
 
-2. `overrides`
+  2. `overrides`
 
-```diff
-import { createTheme } from '@material-ui/core/styles';
+  ```diff
+   import { createTheme } from '@mui/material/styles';
 
-const theme = createTheme({
--  overrides: {
--    MuiButton: {
--      root: { padding: 0 },
--    },
--  },
-+  components: {
-+    MuiButton: {
-+      styleOverrides: {
-+        root: { padding: 0 },
-+      },
-+    },
-+  },
-});
-```
+   const theme = createTheme({
+  -  overrides: {
+  -    MuiButton: {
+  -      root: { padding: 0 },
+  -    },
+  -  },
+  +  components: {
+  +    MuiButton: {
+  +      styleOverrides: {
+  +        root: { padding: 0 },
+  +      },
+  +    },
+  +  },
+   });
+  ```
 
 ### Styles
 
@@ -420,8 +423,8 @@ const theme = createTheme({
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  - import { fade } from '@material-ui/core/styles';
-  + import { alpha } from '@material-ui/core/styles';
+  - import { fade } from '@mui/material/styles';
+  + import { alpha } from '@mui/material/styles';
 
   const classes = makeStyles(theme => ({
   -  backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
@@ -429,65 +432,65 @@ const theme = createTheme({
   }));
   ```
 
-- The `createStyles` function from `@material-ui/core/styles` was moved to the one exported from `@material-ui/styles`. It is necessary for removing the dependency to `@material-ui/styles` in the core package.
+- The `createStyles` function from `@mui/material/styles` was moved to the one exported from `@mui/styles`. It is necessary for removing the dependency to `@mui/styles` in the core package.
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import { createStyles } from '@material-ui/core/styles';
-  +import { createStyles } from '@material-ui/styles';
+  -import { createStyles } from '@mui/material/styles';
+  +import { createStyles } from '@mui/styles';
   ```
 
-### @material-ui/styles
+### @mui/styles
 
 #### ThemeProvider
 
-If you are using the utilities from `@material-ui/styles` together with the `@material-ui/core`, you should replace the use of `ThemeProvider` from `@material-ui/styles` with the one exported from `@material-ui/core/styles`. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@material-ui/styles`, like `makeStyles`, `withStyles` etc. and the Material-UI components.
+If you are using the utilities from `@mui/styles` together with the `@mui/material`, you should replace the use of `ThemeProvider` from `@mui/styles` with the one exported from `@mui/material/styles`. This way, the `theme` provided in the context will be available in both the styling utilities exported from `@mui/styles`, like `makeStyles`, `withStyles` etc. and the Material-UI components.
 
 ```diff
--import { ThemeProvider } from '@material-ui/styles';
-+import { ThemeProvider } from '@material-ui/core/styles';
+-import { ThemeProvider } from '@mui/styles';
++import { ThemeProvider } from '@mui/material/styles';
 ```
 
 Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available.
 
 #### Default theme (TypeScript)
 
-The `@material-ui/styles` package is no longer part of `@material-ui/core/styles`. If you are using `@material-ui/styles` together with `@material-ui/core` you need to add a module augmentation for the `DefaultTheme`.
+The `@mui/styles` package is no longer part of `@mui/material/styles`. If you are using `@mui/styles` together with `@mui/material` you need to add a module augmentation for the `DefaultTheme`.
 
 > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
 ```ts
 // in your theme file that you call `createTheme()`
-import { Theme } from '@material-ui/core/styles';
+import { Theme } from '@mui/material/styles';
 
-declare module '@material-ui/styles' {
+declare module '@mui/styles' {
   interface DefaultTheme extends Theme {}
 }
 ```
 
-### @material-ui/core/colors
+### @mui/material/colors
 
-- Nested imports of more than 1 level are private. You can't import color from `@material-ui/core/colors/red`.
+- Nested imports of more than 1 level are private. You can't import color from `@mui/material/colors/red`.
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import red from '@material-ui/core/colors/red';
-  +import { red } from '@material-ui/core/colors';
+  -import red from '@mui/material/colors/red';
+  +import { red } from '@mui/material/colors';
   ```
 
-### @material-ui/core/styles
+### @mui/material/styles
 
 #### createGenerateClassName
 
-- The `createGenerateClassName` function is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `createGenerateClassName` function is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import { createGenerateClassName } from '@material-ui/core/styles';
-  +import { createGenerateClassName } from '@material-ui/styles';
+  -import { createGenerateClassName } from '@mui/material/styles';
+  +import { createGenerateClassName } from '@mui/styles';
   ```
 
 #### createMuiTheme
@@ -497,8 +500,8 @@ declare module '@material-ui/styles' {
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import { createMuiTheme } from '@material-ui/core/styles';
-  +import { createTheme } from '@material-ui/core/styles';
+  -import { createMuiTheme } from '@mui/material/styles';
+  +import { createTheme } from '@mui/material/styles';
 
   -const theme = createMuiTheme({
   +const theme = createTheme({
@@ -506,25 +509,25 @@ declare module '@material-ui/styles' {
 
 #### jssPreset
 
-- The `jssPreset` object is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `jssPreset` object is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import { jssPreset } from '@material-ui/core/styles';
-  +import { jssPreset } from '@material-ui/styles';
+  -import { jssPreset } from '@mui/material/styles';
+  +import { jssPreset } from '@mui/styles';
   ```
 
 #### makeStyles
 
-- The `makeStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/makeStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended that you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+- The `makeStyles` JSS utility is no longer exported from `@mui/material/styles`. You can use `@mui/styles/makeStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended that you use the `ThemeProvider` component from `@mui/material/styles` instead.
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import { makeStyles } from '@material-ui/core/styles';
-  +import { makeStyles } from '@material-ui/styles';
-  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+  -import { makeStyles } from '@mui/material/styles';
+  +import { makeStyles } from '@mui/styles';
+  +import { createTheme, ThemeProvider } from '@mui/material/styles';
 
   +const theme = createTheme();
    const useStyles = makeStyles((theme) => ({
@@ -544,34 +547,34 @@ declare module '@material-ui/styles' {
 
 #### MuiThemeProvider
 
-- The `MuiThemeProvider` component is no longer exported from `@material-ui/core/styles`. Use `ThemeProvider` instead.
+- The `MuiThemeProvider` component is no longer exported from `@mui/material/styles`. Use `ThemeProvider` instead.
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import { MuiThemeProvider } from '@material-ui/core/styles';
-  +import { ThemeProvider } from '@material-ui/core/styles';
+  -import { MuiThemeProvider } from '@mui/material/styles';
+  +import { ThemeProvider } from '@mui/material/styles';
   ```
 
 #### ServerStyleSheets
 
-- The `ServerStyleSheets` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `ServerStyleSheets` component is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import { ServerStyleSheets } from '@material-ui/core/styles';
-  +import { ServerStyleSheets } from '@material-ui/styles';
+  -import { ServerStyleSheets } from '@mui/material/styles';
+  +import { ServerStyleSheets } from '@mui/styles';
   ```
 
 #### styled
 
-- The `styled` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/styled` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+- The `styled` JSS utility is no longer exported from `@mui/material/styles`. You can use `@mui/styles/styled` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead.
 
   ```diff
-  -import { styled } from '@material-ui/core/styles';
-  +import { styled } from '@material-ui/styles';
-  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+  -import { styled } from '@mui/material/styles';
+  +import { styled } from '@mui/styles';
+  +import { createTheme, ThemeProvider } from '@mui/material/styles';
 
   +const theme = createTheme();
    const MyComponent = styled('div')(({ theme }) => ({ background: theme.palette.primary.main }));
@@ -584,24 +587,24 @@ declare module '@material-ui/styles' {
 
 #### StylesProvider
 
-- The `StylesProvider` component is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `StylesProvider` component is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import { StylesProvider } from '@material-ui/core/styles';
-  +import { StylesProvider } from '@material-ui/styles';
+  -import { StylesProvider } from '@mui/material/styles';
+  +import { StylesProvider } from '@mui/styles';
   ```
 
 #### useThemeVariants
 
-- The `useThemeVariants` hook is no longer exported from `@material-ui/core/styles`. You should import it directly from `@material-ui/styles`.
+- The `useThemeVariants` hook is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import { useThemeVariants } from '@material-ui/core/styles';
-  +import { useThemeVariants } from '@material-ui/styles';
+  -import { useThemeVariants } from '@mui/material/styles';
+  +import { useThemeVariants } from '@mui/styles';
   ```
 
 #### withStyles
@@ -612,7 +615,7 @@ declare module '@material-ui/styles' {
 
   ```diff
    import * as React from 'react';
-   import { withStyles } from '@material-ui/styles';
+   import { withStyles } from '@mui/styles';
 
    const MyComponent = withStyles({
      root: {
@@ -627,14 +630,14 @@ declare module '@material-ui/styles' {
    }
   ```
 
-- The `withStyles` JSS utility is no longer exported from `@material-ui/core/styles`. You can use `@material-ui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, you should use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+- The `withStyles` JSS utility is no longer exported from `@mui/material/styles`. You can use `@mui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, you should use the `ThemeProvider` component from `@mui/material/styles` instead.
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import { withStyles } from '@material-ui/core/styles';
-  +import { withStyles } from '@material-ui/styles';
-  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+  -import { withStyles } from '@mui/material/styles';
+  +import { withStyles } from '@mui/styles';
+  +import { createTheme, ThemeProvider } from '@mui/material/styles';
 
   +const defaultTheme = createTheme();
    const MyComponent = withStyles((props) => {
@@ -650,14 +653,14 @@ declare module '@material-ui/styles' {
 
 #### withTheme
 
-- The `withTheme` HOC utility has been removed from the `@material-ui/core/styles` package. You can use `@material-ui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@material-ui/core`, it's recommended you use the `ThemeProvider` component from `@material-ui/core/styles` instead.
+- The `withTheme` HOC utility has been removed from the `@mui/material/styles` package. You can use `@mui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead.
 
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import { withTheme } from '@material-ui/core/styles';
-  +import { withTheme } from '@material-ui/styles';
-  +import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+  -import { withTheme } from '@mui/material/styles';
+  +import { withTheme } from '@mui/styles';
+  +import { createTheme, ThemeProvider } from '@mui/material/styles';
 
   +const theme = createTheme();
    const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
@@ -672,7 +675,7 @@ declare module '@material-ui/styles' {
 
   ```diff
   import * as React from 'react';
-  import { withTheme } from '@material-ui/styles';
+  import { withTheme } from '@mui/styles';
 
   const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
 
@@ -749,10 +752,10 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import Alert from '@material-ui/lab/Alert';
-  -import AlertTitle from '@material-ui/lab/AlertTitle';
-  +import Alert from '@material-ui/core/Alert';
-  +import AlertTitle from '@material-ui/core/AlertTitle';
+  -import Alert from '@mui/lab/Alert';
+  -import AlertTitle from '@mui/lab/AlertTitle';
+  +import Alert from '@mui/material/Alert';
+  +import AlertTitle from '@mui/material/AlertTitle';
   ```
 
 ### Autocomplete
@@ -762,10 +765,10 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import Autocomplete from '@material-ui/lab/Autocomplete';
-  -import useAutocomplete  from '@material-ui/lab/useAutocomplete';
-  +import Autocomplete from '@material-ui/core/Autocomplete';
-  +import useAutoComplete from '@material-ui/core/useAutocomplete';
+  -import Autocomplete from '@mui/lab/Autocomplete';
+  -import useAutocomplete  from '@mui/lab/useAutocomplete';
+  +import Autocomplete from '@mui/material/Autocomplete';
+  +import useAutoComplete from '@mui/material/useAutocomplete';
   ```
 
 - Remove `debug` prop. There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), or React devtools prop setter.
@@ -848,8 +851,8 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import AvatarGroup from '@material-ui/lab/AvatarGroup';
-  +import AvatarGroup from '@material-ui/core/AvatarGroup';
+  -import AvatarGroup from '@mui/lab/AvatarGroup';
+  +import AvatarGroup from '@mui/material/AvatarGroup';
   ```
 
 ### Badge
@@ -1058,7 +1061,7 @@ As the core components use emotion as their style engine, the props used by emot
 
 ### CssBaseline
 
-- The component was migrated to use the `@material-ui/styled-engine` (`emotion` or `styled-components`) instead of `jss`. You should remove the `@global` key when defining the style overrides for it. You could also start using the CSS template syntax over the JavaScript object syntax.
+- The component was migrated to use the `@mui/styled-engine` (`emotion` or `styled-components`) instead of `jss`. You should remove the `@global` key when defining the style overrides for it. You could also start using the CSS template syntax over the JavaScript object syntax.
 
   ```diff
   const theme = createTheme({
@@ -1127,15 +1130,15 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  <Dialog
-  - disableBackdropClick
-  - onClose={handleClose}
-  + onClose={(event, reason) => {
-  +   if (reason !== 'backdropClick') {
-  +     onClose(event, reason);
-  +   }
-  + }}
-  />
+   <Dialog
+  -  disableBackdropClick
+  -  onClose={handleClose}
+  +  onClose={(event, reason) => {
+  +    if (reason !== 'backdropClick') {
+  +      handleClose(event, reason);
+  +    }
+  +  }}
+   />
   ```
 
 - Remove the `withMobileDialog` higher-order component. The hook API allows a simpler and more flexible solution:
@@ -1143,8 +1146,8 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe) by applying hard-coded function to prevent application crash, further fixes are required.
 
   ```diff
-  -import withMobileDialog from '@material-ui/core/withMobileDialog';
-  +import { useTheme, useMediaQuery } from '@material-ui/core';
+  -import withMobileDialog from '@mui/material/withMobileDialog';
+  +import { useTheme, useMediaQuery } from '@mui/material';
 
   function ResponsiveDialog(props) {
   - const { fullScreen } = props;
@@ -1190,14 +1193,14 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-  -import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-  -import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-  -import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
-  +import Accordion from '@material-ui/core/Accordion';
-  +import AccordionSummary from '@material-ui/core/AccordionSummary';
-  +import AccordionDetails from '@material-ui/core/AccordionDetails';
-  +import AccordionActions from '@material-ui/core/AccordionActions';
+  -import ExpansionPanel from '@mui/material/ExpansionPanel';
+  -import ExpansionPanelSummary from '@mui/material/ExpansionPanelSummary';
+  -import ExpansionPanelDetails from '@mui/material/ExpansionPanelDetails';
+  -import ExpansionPanelActions from '@mui/material/ExpansionPanelActions';
+  +import Accordion from '@mui/material/Accordion';
+  +import AccordionSummary from '@mui/material/AccordionSummary';
+  +import AccordionDetails from '@mui/material/AccordionDetails';
+  +import AccordionActions from '@mui/material/AccordionActions';
 
   -<ExpansionPanel>
   +<Accordion>
@@ -1345,12 +1348,12 @@ As the core components use emotion as their style engine, the props used by emot
   https://www.npmjs.com/package/object-fit-images, or continue to use the v4 component.
 
   ```diff
-  -import GridList from '@material-ui/core/GridList';
-  -import GridListTile from '@material-ui/core/GridListTile';
-  -import GridListTileBar from '@material-ui/core/GridListTileBar';
-  +import ImageList from '@material-ui/core/ImageList';
-  +import ImageListItem from '@material-ui/core/ImageListItem';
-  +import ImageListItemBar from '@material-ui/core/ImageListItemBar';
+  -import GridList from '@mui/material/GridList';
+  -import GridListTile from '@mui/material/GridListTile';
+  -import GridListTileBar from '@mui/material/GridListTileBar';
+  +import ImageList from '@mui/material/ImageList';
+  +import ImageListItem from '@mui/material/ImageListItem';
+  +import ImageListItemBar from '@mui/material/ImageListItemBar';
 
   -<GridList spacing={8} cellHeight={200}>
   -  <GridListTile>
@@ -1517,7 +1520,7 @@ As the core components use emotion as their style engine, the props used by emot
   -  onClose={handleClose}
   +  onClose={(event, reason) => {
   +    if (reason !== 'backdropClick') {
-  +      onClose(event, reason);
+  +      handleClose(event, reason);
   +    }
   +  }}
    />
@@ -1581,12 +1584,12 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import Pagination from '@material-ui/lab/Pagination';
-  -import PaginationItem from '@material-ui/lab/PaginationItem';
-  -import { usePagination } from '@material-ui/lab/Pagination';
-  +import Pagination from '@material-ui/core/Pagination';
-  +import PaginationItem from '@material-ui/core/PaginationItem';
-  +import usePagination from '@material-ui/core/usePagination';
+  -import Pagination from '@mui/lab/Pagination';
+  -import PaginationItem from '@mui/lab/PaginationItem';
+  -import { usePagination } from '@mui/lab/Pagination';
+  +import Pagination from '@mui/material/Pagination';
+  +import PaginationItem from '@mui/material/PaginationItem';
+  +import usePagination from '@mui/material/usePagination';
   ```
 
 - Rename `round` to `circular` for consistency:
@@ -1685,8 +1688,8 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import Rating from '@material-ui/lab/Rating';
-  +import Rating from '@material-ui/core/Rating';
+  -import Rating from '@mui/lab/Rating';
+  +import Rating from '@mui/material/Rating';
   ```
 
 - Change the default empty icon to improve accessibility.
@@ -1768,8 +1771,8 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import Skeleton from '@material-ui/lab/Skeleton';
-  +import Skeleton from '@material-ui/core/Skeleton';
+  -import Skeleton from '@mui/lab/Skeleton';
+  +import Skeleton from '@mui/material/Skeleton';
   ```
 
 - Rename `circle` to `circular` and `rect` to `rectangular` for consistency:
@@ -1856,12 +1859,12 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import SpeedDial from '@material-ui/lab/SpeedDial';
-  -import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
-  -import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
-  +import SpeedDial from '@material-ui/core/SpeedDial';
-  +import SpeedDialAction from '@material-ui/core/SpeedDialAction';
-  +import SpeedDialIcon from '@material-ui/core/SpeedDialIcon';
+  -import SpeedDial from '@mui/lab/SpeedDial';
+  -import SpeedDialAction from '@mui/lab/SpeedDialAction';
+  -import SpeedDialIcon from '@mui/lab/SpeedDialIcon';
+  +import SpeedDial from '@mui/material/SpeedDial';
+  +import SpeedDialAction from '@mui/material/SpeedDialAction';
+  +import SpeedDialIcon from '@mui/material/SpeedDialIcon';
   ```
 
 ### Stepper
@@ -2139,10 +2142,10 @@ As the core components use emotion as their style engine, the props used by emot
   > ✅ This is handled in [🪄preset-safe codemod](#preset-safe).
 
   ```diff
-  -import ToggleButton from '@material-ui/lab/ToggleButton';
-  -import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
-  +import ToggleButton from '@material-ui/core/ToggleButton';
-  +import ToggleButtonGroup from '@material-ui/core/ToggleButtonGroup';
+  -import ToggleButton from '@mui/lab/ToggleButton';
+  -import ToggleButtonGroup from '@mui/lab/ToggleButtonGroup';
+  +import ToggleButton from '@mui/material/ToggleButton';
+  +import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
   ```
 
 - `span` element that wraps children has been removed. `label` classKey is also removed. More details about [this change](https://github.com/mui-org/material-ui/pull/27111).
@@ -2177,7 +2180,7 @@ As the core components use emotion as their style engine, the props used by emot
 - Remove the `srOnly` variant. You can use the `visuallyHidden` utility in conjunction with the `sx` prop instead.
 
   ```diff
-  +import { visuallyHidden } from '@material-ui/utils';
+  +import { visuallyHidden } from '@mui/utils';
 
   -<Typography variant="srOnly">Create a user</Typography>
   +<span style={visuallyHidden}>Create a user</span>
@@ -2257,7 +2260,7 @@ As the core components use emotion as their style engine, the props used by emot
   If you prefer the old breakpoint values, use the snippet below.
 
   ```js
-  import { createTheme } from '@material-ui/core/styles';
+  import { createTheme } from '@mui/material/styles';
 
   const theme = createTheme({
     breakpoints: {
@@ -2298,13 +2301,13 @@ As the core components use emotion as their style engine, the props used by emot
   }
   ```
 
-### `@material-ui/types`
+### `@mui/types`
 
-- Rename the exported `Omit` type in `@material-ui/types`. The module is now called `DistributiveOmit`. The change removes the confusion with the built-in `Omit` helper introduced in TypeScript v3.5. The built-in `Omit`, while similar, is non-distributive. This leads to differences when applied to union types. [See this StackOverflow answer for further details](https://stackoverflow.com/a/57103940/1009797).
+- Rename the exported `Omit` type in `@mui/types`. The module is now called `DistributiveOmit`. The change removes the confusion with the built-in `Omit` helper introduced in TypeScript v3.5. The built-in `Omit`, while similar, is non-distributive. This leads to differences when applied to union types. [See this StackOverflow answer for further details](https://stackoverflow.com/a/57103940/1009797).
 
   ```diff
-  -import { Omit } from '@material-ui/types';
-  +import { DistributiveOmit } from '@material-ui/types';
+  -import { Omit } from '@mui/types';
+  +import { DistributiveOmit } from '@mui/types';
   ```
 
 ## Migrate theme's `styleOverrides` to emotion
@@ -2352,7 +2355,7 @@ const theme = createTheme({
 > Note: For each component we export a `[component]Classes` constant that contains all nested classes for that component. You can rely on this instead of hardcoding the classes.
 
 ```diff
-+import { outlinedInputClasses } from '@material-ui/core/OutlinedInput';
++import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 
 const theme = createTheme({
   components: {
@@ -2374,25 +2377,25 @@ Take a look at the whole [list of global state classnames](/customization/how-to
 
 ## Migrate `makeStyles` to emotion
 
-This is the last step in the migration process to remove `@material-ui/styles` package from your codebase.
+This is the last step in the migration process to remove `@mui/styles` package from your codebase.
 We recommend two options.
 
 ### 1. Use `styled` or `sx` API
 
 #### Codemod
 
-We provide [a codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#jss-to-styled) to help migrate JSS styles to `styled` API, but this approach **increases the CSS specificity**.
+We provide [a codemod](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#jss-to-styled) to help migrate JSS styles to `styled` API, but this approach **increases the CSS specificity**.
 
 ```sh
-npx @material-ui/codemod@next v5.0.0/jss-to-styled <path>
+npx @mui/codemod@next v5.0.0/jss-to-styled <path>
 ```
 
 **Example transformation**:
 
 ```diff
- import Typography from '@material-ui/core/Typography';
--import makeStyles from '@material-ui/styles/makeStyles';
-+import { styled } from '@material-ui/core/styles';
+ import Typography from '@mui/material/Typography';
+-import makeStyles from '@mui/styles/makeStyles';
++import { styled } from '@mui/material/styles';
 
 -const useStyles = makeStyles((theme) => ({
 -  root: {
@@ -2450,9 +2453,9 @@ npx @material-ui/codemod@next v5.0.0/jss-to-styled <path>
 We recommend `sx` API over `styled` when you have to create responsive styles or needs minor CSS overrides. [Read more about `sx`](/system/the-sx-prop/#main-content).
 
 ```diff
- import Chip from '@material-ui/core/Chip';
--import makeStyles from '@material-ui/styles/makeStyles';
-+import { styled } from '@material-ui/core/styles';
+ import Chip from '@mui/material/Chip';
+-import makeStyles from '@mui/styles/makeStyles';
++import { styled } from '@mui/material/styles';
 
 -const useStyles = makeStyles((theme) => ({
 -  wrapper: {
@@ -2485,8 +2488,8 @@ We recommend `sx` API over `styled` when you have to create responsive styles or
 In some cases, you might want to create multiple styled components in a file instead of increasing CSS specificity. for example:
 
 ```diff
--import makeStyles from '@material-ui/styles/makeStyles';
-+import { styled } from '@material-ui/core/styles';
+-import makeStyles from '@mui/styles/makeStyles';
++import { styled } from '@mui/material/styles';
 
 -const useStyles = makeStyles((theme) => ({
 -  root: {
@@ -2499,27 +2502,27 @@ In some cases, you might want to create multiple styled components in a file ins
 -    color: theme.palette.primary.main,
 -  }
 -}))
-+const Root = style('div')(({ theme }) => ({
++const Root = styled('div')(({ theme }) => ({
 +  display: 'flex',
 +  alignItems: 'center',
 +  borderRadius: 20,
 +  background: theme.palette.grey[50],
 +}))
 
-+const Label = style('span')(({ theme }) => ({
++const Label = styled('span')(({ theme }) => ({
 +  color: theme.palette.primary.main,
 +}))
 
  function Status({ label }) {
-   const classes = useStyles();
+-  const classes = useStyles();
    return (
--    <div className={classe.root}>
+-    <div className={classes.root}>
 -      {icon}
 -      <span className={classes.label}>{label}</span>
 -    </div>
-+    <Root className={classe.root}>
++    <Root>
 +      {icon}
-+      <Label className={classes.label}>{label}</Label>
++      <Label>{label}</Label>
 +    </Root>
    )
  }
@@ -2535,13 +2538,13 @@ The API is similar to JSS `makeStyles` but work with emotion.
 
 > **Note:** this library is **not maintained** by Material-UI. If you have any issue regarding to it, please open an issue in [tss-react repository](https://github.com/garronej/tss-react/issues/new).
 
-💡 Once you migrate all of the styling, remove unnecessary `@material-ui/styles` by
+💡 Once you migrate all of the styling, remove unnecessary `@mui/styles` by
 
 ```sh
-npm uninstall @material-ui/styles
+npm uninstall @mui/styles
 
 // or with `yarn`
-yarn remove @material-ui/styles
+yarn remove @mui/styles
 ```
 
 ## Troubleshooting
@@ -2625,7 +2628,7 @@ For more details, checkout [this issue](https://github.com/mui-org/material-ui/i
 
 ### [Types] Property "palette", "spacing" does not exist on type 'DefaultTheme'
 
-Since `makeStyles` is now exported from `@material-ui/styles` package which does not know about `Theme` in the core package. To fix this, you need to augment the `DefaultTheme` (empty object) in `@material-ui/styles` with `Theme` from the core. [Read more about module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)
+Since `makeStyles` is now exported from `@mui/styles` package which does not know about `Theme` in the core package. To fix this, you need to augment the `DefaultTheme` (empty object) in `@mui/styles` with `Theme` from the core. [Read more about module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)
 
 **Typescript Project**
 
@@ -2633,9 +2636,9 @@ Put this snippet to your theme file:
 
 ```ts
 // it could be your App.tsx file or theme file that is included in your tsconfig.json
-import { Theme } from '@material-ui/core/styles';
+import { Theme } from '@mui/material/styles';
 
-declare module '@material-ui/styles/defaultTheme' {
+declare module '@mui/styles/defaultTheme' {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface (remove this line if you don't have the rule enabled)
   interface DefaultTheme extends Theme {}
 }
@@ -2647,8 +2650,8 @@ If your IDE (ex. VSCode) is able to infer types from `d.ts` file, create `index.
 
 ```js
 // index.d.ts
-declare module "@material-ui/private-theming" {
-  import type { Theme } from "@material-ui/core/styles";
+declare module "@mui/private-theming" {
+  import type { Theme } from "@mui/material/styles";
 
   interface DefaultTheme extends Theme {}
 }
@@ -2656,20 +2659,20 @@ declare module "@material-ui/private-theming" {
 
 ### [Jest] SyntaxError: Unexpected token 'export'
 
-`@material-ui/core/colors/red` is considered private since v1.0.0.
+`@mui/material/colors/red` is considered private since v1.0.0.
 You should replace the import, [more details about this error](https://github.com/mui-org/material-ui/issues/27296).
 
 You can use this codemod (**recommended**) to fix all the import in your project:
 
 ```sh
-npx @material-ui/codemod@next v5.0.0/optimal-imports <path>
+npx @mui/codemod@next v5.0.0/optimal-imports <path>
 ```
 
 or fix it manually like this:
 
 ```diff
--import red from '@material-ui/core/colors/red';
-+import { red } from '@material-ui/core/colors';
+-import red from '@mui/material/colors/red';
++import { red } from '@mui/material/colors';
 ```
 
 ### makeStyles - TypeError: Cannot read property 'drawer' of undefined
@@ -2678,10 +2681,10 @@ This error occurs when calling `useStyles` (result of `makeStyles`) or `withStyl
 
 ```js
 import * as React from 'react';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
-import makeStyles from '@material-ui/styles/makeStyles';
-import Card from '@material-ui/core/Card';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import Card from '@mui/material/Card';
+import CssBaseline from '@mui/material/CssBaseline';
 
 const useStyles = makeStyles((theme) => ({
   root: {

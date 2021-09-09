@@ -2,7 +2,7 @@
 title: React Date Picker component
 components: CalendarPicker, CalendarPickerSkeleton, DatePicker, DesktopDatePicker, MobileDatePicker, MonthPicker, PickersDay, StaticDatePicker, YearPicker
 githubLabel: 'component: DatePicker'
-packageName: '@material-ui/lab'
+packageName: '@mui/lab'
 materialDesign: https://material.io/components/date-pickers
 ---
 
@@ -24,9 +24,9 @@ This component relies on the date management library of your choice. It supports
 Please install any of these libraries and set up the right date engine by wrapping your root (or the highest level you wish the pickers to be available) with `LocalizationProvider`:
 
 ```jsx
-// or @material-ui/lab/Adapter{DayJS,Luxon,Moment} or any valid date-io adapter
-import AdapterDateFns from '@material-ui/lab/AdapterDateFns';
-import LocalizationProvider from '@material-ui/lab/LocalizationProvider';
+// or @mui/lab/Adapter{DayJS,Luxon,Moment} or any valid date-io adapter
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 function App() {
   return (
@@ -119,9 +119,3 @@ Sometimes it may be necessary to display additional info right in the calendar. 
 You can show a helper text with the date format accepted.
 
 {{"demo": "pages/components/date-picker/HelperText.js"}}
-
-## Theming
-
-Here is an example of theming the component. You can learn more about this in the [theming page](/customization/theming/) and [theme components page](/customization/theme-components/)
-
-{{"demo": "pages/components/date-picker/ThemeDatePicker.js", "bg": true}}

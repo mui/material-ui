@@ -1,9 +1,9 @@
 import * as React from 'react';
 import clsx from 'clsx';
-import { withStyles, WithStyles } from '@material-ui/styles';
-import { Theme, createTheme } from '@material-ui/core/styles';
-import TableCell from '@material-ui/core/TableCell';
-import Paper from '@material-ui/core/Paper';
+import { withStyles, WithStyles } from '@mui/styles';
+import { Theme, createTheme } from '@mui/material/styles';
+import TableCell from '@mui/material/TableCell';
+import Paper from '@mui/material/Paper';
 import {
   AutoSizer,
   Column,
@@ -11,16 +11,6 @@ import {
   TableCellRenderer,
   TableHeaderProps,
 } from 'react-virtualized';
-
-declare module '@material-ui/core/styles' {
-  // Augment the BaseCSSProperties so that we can control jss-rtl
-  interface BaseCSSProperties {
-    /*
-     * Used to control if the rule-set should be affected by rtl transformation
-     */
-    flip?: boolean;
-  }
-}
 
 const styles = (theme: Theme) =>
   ({
@@ -33,8 +23,12 @@ const styles = (theme: Theme) =>
       // temporary right-to-left patch, waiting for
       // https://github.com/bvaughn/react-virtualized/issues/454
       '& .ReactVirtualized__Table__headerRow': {
-        flip: false,
-        paddingRight: theme.direction === 'rtl' ? '0 !important' : undefined,
+        ...(theme.direction === 'rtl' && {
+          paddingLeft: '0 !important',
+        }),
+        ...(theme.direction !== 'rtl' && {
+          paddingRight: undefined,
+        }),
       },
     },
     tableRow: {

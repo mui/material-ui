@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { styled, createTheme, ThemeProvider } from '@material-ui/system';
+import { styled, createTheme, ThemeProvider } from '@mui/system';
 
 interface MyThemeComponentProps {
   color?: 'primary' | 'secondary';
@@ -45,11 +45,11 @@ const MyThemeComponent = styled('div', {
   name: 'MyThemeComponent',
   slot: 'Root',
   // We are specifying here how the styleOverrides are being applied based on props
-  overridesResolver: (props, styles) => ({
-    ...styles.root,
-    ...(props.color === 'primary' && styles.primary),
-    ...(props.color === 'secondary' && styles.secondary),
-  }),
+  overridesResolver: (props, styles) => [
+    styles.root,
+    props.color === 'primary' && styles.primary,
+    props.color === 'secondary' && styles.secondary,
+  ],
 })<MyThemeComponentProps>(({ theme }) => ({
   backgroundColor: 'aliceblue',
   padding: theme.spacing(1),

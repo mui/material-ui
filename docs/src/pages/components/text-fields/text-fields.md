@@ -124,8 +124,8 @@ The `color` prop changes the highlight color of the text field when focused.
 
 ## Customization
 
-Here are some examples of customizing the component. You can learn more about this in the
-[overrides documentation page](/customization/how-to-customize/).
+Here are some examples of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/text-fields/CustomizedInputs.js"}}
 
@@ -145,7 +145,7 @@ This hook returns the context value of the parent `FormControl` component.
 **API**
 
 ```jsx
-import { useFormControl } from '@material-ui/core/FormControl';
+import { useFormControl } from '@mui/material/FormControl';
 ```
 
 **Returns**

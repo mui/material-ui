@@ -92,7 +92,7 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui-lab/src/DesktopDateRangePicker/DesktopDateRangePicker.tsx",
+  "filename": "/packages/mui-lab/src/DesktopDateRangePicker/DesktopDateRangePicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/date-range-picker/\">Date Range Picker</a></li></ul>",
   "styledComponent": true,

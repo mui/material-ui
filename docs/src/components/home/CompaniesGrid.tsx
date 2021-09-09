@@ -1,61 +1,103 @@
 import * as React from 'react';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
+import IconImage, { IconImageProps } from 'docs/src/components/icon/IconImage';
 
-export const CORE_COMPANIES = [
+export const CORE_CUSTOMERS: Array<IconImageProps> = [
   {
-    src: '/static/branding/companies/coursera.svg',
-    alt: 'Coursera logo',
-    width: 102,
-    height: 16,
+    name: 'spotify',
+    alt: 'Spotify logo',
+    width: 100,
+    height: 52,
   },
   {
-    src: '/static/branding/companies/amazon.svg',
+    name: 'amazon',
     alt: 'Amazon logo',
-    width: 92,
-    height: 28,
+    width: 80,
+    height: 52,
   },
   {
-    src: '/static/branding/companies/nasa.svg',
+    name: 'nasa',
     alt: 'Nasa logo',
-    width: 64,
-    height: 53,
+    width: 52,
+    height: 42,
   },
   {
-    src: '/static/branding/companies/netflix.svg',
+    name: 'netflix',
     alt: 'Netflix logo',
-    width: 88,
-    height: 24,
+    width: 80,
+    height: 52,
   },
   {
-    src: '/static/branding/companies/unity.svg',
+    name: 'unity',
     alt: 'Unity logo',
-    width: 110,
-    height: 40,
+    width: 69,
+    height: 52,
   },
   {
-    src: '/static/branding/companies/shutterstock.svg',
+    name: 'shutterstock',
     alt: 'Shutterstock logo',
-    width: 138,
-    height: 21,
+    width: 100,
+    height: 52,
   },
 ];
 
-export default function CompaniesGrid({ data }: { data: Array<JSX.IntrinsicElements['img']> }) {
+export const ADVANCED_CUSTOMERS: Array<IconImageProps> = [
+  {
+    name: 'southwest',
+    alt: 'Southwest logo',
+    width: 125,
+    height: 19,
+  },
+  {
+    name: 'boeing',
+    alt: 'Boeing logo',
+    width: 95,
+    height: 22,
+  },
+  {
+    name: 'siemens',
+    alt: 'Siemens logo',
+    width: 105,
+    height: 25,
+  },
+  {
+    name: 'deloitte',
+    alt: 'Deloitte logo',
+    width: 97,
+    height: 21,
+  },
+  {
+    name: 'volvo',
+    alt: 'Volvo logo',
+    width: 131,
+    height: 18,
+  },
+  {
+    name: 'unity',
+    alt: 'Unity logo',
+    width: 69,
+    height: 25,
+  },
+];
+
+export default function CompaniesGrid({ data }: { data: Array<IconImageProps> }) {
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={4}>
       {data.map((imgProps) => (
         <Grid
-          key={imgProps.src}
+          key={imgProps.name}
           item
-          xs={4}
+          xs={6}
+          sm={4}
           md={2}
           sx={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
+            objectFit: 'contain',
           }}
         >
-          <img alt={imgProps.alt} loading="lazy" {...imgProps} />
+          <IconImage alt={imgProps.alt} {...imgProps} />
         </Grid>
       ))}
     </Grid>

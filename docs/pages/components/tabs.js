@@ -1,10 +1,6 @@
 import * as React from 'react';
 import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
-import {
-  demos,
-  docs,
-  demoComponents,
-} from 'docs/src/pages/components/tabs/tabs.md?@material-ui/markdown';
+import { demos, docs, demoComponents } from 'docs/src/pages/components/tabs/tabs.md?@mui/markdown';
 
 export default function Page() {
   return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />;

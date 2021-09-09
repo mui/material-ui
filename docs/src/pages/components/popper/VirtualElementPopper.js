@@ -1,8 +1,8 @@
 import * as React from 'react';
-import Popper from '@material-ui/core/Popper';
-import Typography from '@material-ui/core/Typography';
-import Fade from '@material-ui/core/Fade';
-import Paper from '@material-ui/core/Paper';
+import Popper from '@mui/material/Popper';
+import Typography from '@mui/material/Typography';
+import Fade from '@mui/material/Fade';
+import Paper from '@mui/material/Paper';
 
 export default function VirtualElementPopper() {
   const [open, setOpen] = React.useState(false);

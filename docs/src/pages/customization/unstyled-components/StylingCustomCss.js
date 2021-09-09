@@ -1,7 +1,5 @@
 import * as React from 'react';
-import SwitchUnstyled, {
-  switchUnstyledClasses,
-} from '@material-ui/unstyled/SwitchUnstyled';
+import SwitchUnstyled, { switchUnstyledClasses } from '@mui/core/SwitchUnstyled';
 
 const css = `
   .my-switch {

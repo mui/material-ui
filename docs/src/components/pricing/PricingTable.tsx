@@ -1,24 +1,25 @@
 import * as React from 'react';
-import { alpha } from '@material-ui/core/styles';
-import Box, { BoxProps } from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
-import Collapse from '@material-ui/core/Collapse';
-import Divider from '@material-ui/core/Divider';
-import Typography from '@material-ui/core/Typography';
-import Tooltip from '@material-ui/core/Tooltip';
-import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-import KeyboardArrowRightRounded from '@material-ui/icons/KeyboardArrowRightRounded';
+import { alpha } from '@mui/material/styles';
+import Box, { BoxProps } from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import Collapse from '@mui/material/Collapse';
+import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
+import Tooltip from '@mui/material/Tooltip';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import Link from 'docs/src/modules/components/Link';
 import IconImage, { IconImageProps } from 'docs/src/components/icon/IconImage';
-import LaunchRounded from '@material-ui/icons/LaunchRounded';
+import LaunchRounded from '@mui/icons-material/LaunchRounded';
+import UnfoldMoreRounded from '@mui/icons-material/UnfoldMoreRounded';
 
 const planInfo = {
   community: {
     color: 'green',
     title: 'Community',
     description:
-      'Get started with the most popular and industry-standard UI library to build interfaces with React.',
+      'Get started with the industry-standard UI library for building React user interfaces.',
   },
   pro: {
     color: 'blue',
@@ -28,27 +29,39 @@ const planInfo = {
   premium: {
     color: 'gold',
     title: 'Premium',
-    description: 'Unlock all the most advances features including premium support.',
+    description: 'Unlock all the most advanced features including premium support.',
   },
 } as const;
 
 export function PlanName({
   plan,
+  centered = false,
   disableDescription = false,
 }: {
   plan: 'community' | 'pro' | 'premium';
+  centered?: boolean;
   disableDescription?: boolean;
 }) {
   const { title, color, description } = planInfo[plan];
   return (
     <React.Fragment>
-      <Typography
-        variant="body2"
-        fontWeight="bold"
-        sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-      >
-        {title} <IconImage name={`block-${color}` as IconImageProps['name']} />
-      </Typography>
+      {centered ? (
+        <Typography
+          variant="body2"
+          fontWeight="bold"
+          sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+        >
+          <IconImage name={`block-${color}` as IconImageProps['name']} sx={{ mr: 1 }} /> {title}
+        </Typography>
+      ) : (
+        <Typography
+          variant="body2"
+          fontWeight="bold"
+          sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+        >
+          {title} <IconImage name={`block-${color}` as IconImageProps['name']} />
+        </Typography>
+      )}
       {!disableDescription && (
         <Typography variant="body2" color="text.secondary" sx={{ mt: 1, minHeight: { md: 63 } }}>
           {description}
@@ -67,7 +80,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
         </Typography>
         <Box sx={{ width: 5 }} />
         <Typography variant="body2" color="text.secondary">
-          / free forever!
+          – free forever.
         </Typography>
       </Box>
     );
@@ -76,7 +89,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
     return (
       <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
         <Typography
-          variant="caption"
+          variant="body2"
           fontWeight="bold"
           color="error.500"
           sx={{
@@ -95,7 +108,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
         </Typography>
         <Box sx={{ width: 5 }} />
         <Typography variant="body2" color="text.secondary">
-          / per developer.
+          / developer.
         </Typography>
       </Box>
     );
@@ -107,7 +120,7 @@ export function PlanPrice({ plan }: { plan: 'community' | 'pro' | 'premium' }) {
       </Typography>
       <Box sx={{ width: 5 }} />
       <Typography variant="body2" color="text.secondary">
-        / per developer.
+        / developer.
       </Typography>
     </Box>
   );
@@ -168,7 +181,7 @@ const ColumnHead = ({
       )}
       {tooltip && (
         <InfoOutlinedIcon
-          sx={{ fontSize: 16, verticalAlign: 'middle', ml: 0.5, color: 'grey.800' }}
+          sx={{ fontSize: 16, verticalAlign: 'middle', ml: 0.5, color: 'text.secondary' }}
         />
       )}
     </Typography>
@@ -185,7 +198,7 @@ const ColumnHead = ({
       {metadata && (
         <Typography
           variant="caption"
-          color="grey.800"
+          color="text.secondary"
           fontWeight="normal"
           sx={{ display: 'block' }}
         >
@@ -245,10 +258,7 @@ const Cell = ({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
       pl: 2,
       display: 'flex',
       flexDirection: 'column',
-      alignItems: {
-        xs: 'center',
-        md: 'flex-start',
-      },
+      alignItems: 'center',
       justifyContent: 'center',
       ...(highlighted && {
         borderWidth: '0 1px 0 1px',
@@ -259,6 +269,7 @@ const Cell = ({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
             ? alpha(theme.palette.primaryDark[900], 0.5)
             : alpha(theme.palette.grey[50], 0.5),
       }),
+      ...props.sx,
     }}
   />
 );
@@ -316,20 +327,20 @@ const rowHeaders: Record<string, React.ReactNode> = {
     />
   ),
   // Advanced
-  'data-grid/column-resizing': (
-    <ColumnHead label="Column resizing" nested href={getUrl('/columns/#resizing')} />
-  ),
   'data-grid/column-groups': (
     <ColumnHead label="Column groups" nested href={getUrl('/columns/#column-groups')} />
+  ),
+  'data-grid/column-spanning': (
+    <ColumnHead label="Column spanning" nested href={getUrl('/columns/#column-spanning')} />
+  ),
+  'data-grid/column-resizing': (
+    <ColumnHead label="Column resizing" nested href={getUrl('/columns/#resizing')} />
   ),
   'data-grid/column-reorder': (
     <ColumnHead label="Column reorder" nested href={getUrl('/columns/#column-reorder')} />
   ),
   'data-grid/column-pinning': (
     <ColumnHead label="Column pinning" nested href={getUrl('/columns/#column-pinning')} />
-  ),
-  'data-grid/column-spanning': (
-    <ColumnHead label="Column spanning" nested href={getUrl('/columns/#column-spanning')} />
   ),
   'data-grid/row-sorting': (
     <ColumnHead label="Row sorting" nested href={getUrl('/rows/#row-sorting')} />
@@ -356,6 +367,9 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'data-grid/row-rangeselection': (
     <ColumnHead label="Range selection" nested href={getUrl('/selection/#range-selection')} />
   ),
+  'data-grid/filter-quick': (
+    <ColumnHead label="Quick filter" nested href={getUrl('/filtering/#quick-filter')} />
+  ),
   'data-grid/filter-column': (
     <ColumnHead label="Column filters" nested href={getUrl('/filtering/#column-filters')} />
   ),
@@ -365,9 +379,6 @@ const rowHeaders: Record<string, React.ReactNode> = {
       nested
       href={getUrl('/filtering/#multi-column-filtering')}
     />
-  ),
-  'data-grid/filter-quick': (
-    <ColumnHead label="Quick filter" nested href={getUrl('/filtering/#quick-filter')} />
   ),
   'data-grid/pagination': <ColumnHead label="Pagination" nested href={getUrl('/pagination/')} />,
   'data-grid/pagination-large': (
@@ -387,11 +398,14 @@ const rowHeaders: Record<string, React.ReactNode> = {
     <ColumnHead label="CSV export" nested href={getUrl('/export/#csv-export')} />
   ),
   'data-grid/file-print': <ColumnHead label="Print" nested href={getUrl('/export/#print')} />,
+  'data-grid/file-clipboard': (
+    <ColumnHead label="Clipboard" nested href={getUrl('/export/#clipboard')} />
+  ),
   'data-grid/file-excel': (
     <ColumnHead label="Excel export" nested href={getUrl('/export/#excel-export')} />
   ),
-  'data-grid/file-clipboard': (
-    <ColumnHead label="Clipboard" nested href={getUrl('/export/#clipboard')} />
+  'data-grid/customizable-components': (
+    <ColumnHead label="Customizable components" nested href={getUrl('/components/')} />
   ),
   'data-grid/virtualize-column': (
     <ColumnHead
@@ -406,9 +420,6 @@ const rowHeaders: Record<string, React.ReactNode> = {
       nested
       href={getUrl('/virtualization/#row-virtualization')}
     />
-  ),
-  'data-grid/customizable-components': (
-    <ColumnHead label="Customizable components" nested href={getUrl('/components/')} />
   ),
   'data-grid/tree-data': (
     <ColumnHead label="Tree data" nested href={getUrl('/group-pivot/#tree-data')} />
@@ -495,11 +506,11 @@ const communityData: Record<string, React.ReactNode> = {
   '@mui/unstyled': <IconImage name="yes" />,
   '@mui/system': <IconImage name="yes" />,
   // Advanced
-  'data-grid/column-resizing': <IconImage name="no" />,
   'data-grid/column-groups': <IconImage name="time" />,
+  'data-grid/column-spanning': <IconImage name="time" />,
+  'data-grid/column-resizing': <IconImage name="no" />,
   'data-grid/column-reorder': <IconImage name="no" />,
   'data-grid/column-pinning': <IconImage name="no" />,
-  'data-grid/column-spanning': <IconImage name="time" />,
   'data-grid/row-sorting': <IconImage name="yes" />,
   'data-grid/row-height': <IconImage name="yes" />,
   'data-grid/row-spanning': <IconImage name="time" />,
@@ -507,20 +518,20 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/row-selection': <IconImage name="yes" />,
   'data-grid/row-multiselection': <IconImage name="no" />,
   'data-grid/row-rangeselection': <IconImage name="no" />,
+  'data-grid/filter-quick': <IconImage name="time" />,
   'data-grid/filter-column': <IconImage name="yes" />,
   'data-grid/filter-multicolumn': <IconImage name="no" />,
-  'data-grid/filter-quick': <IconImage name="time" />,
   'data-grid/pagination': <IconImage name="yes" />,
   'data-grid/pagination-large': <IconImage name="no" />,
   'data-grid/edit-row': <IconImage name="time" />,
   'data-grid/edit-cell': <IconImage name="yes" />,
   'data-grid/file-csv': <IconImage name="yes" />,
   'data-grid/file-print': <IconImage name="time" />,
-  'data-grid/file-excel': <IconImage name="no" />,
   'data-grid/file-clipboard': <IconImage name="no" />,
+  'data-grid/file-excel': <IconImage name="no" />,
+  'data-grid/customizable-components': <IconImage name="yes" />,
   'data-grid/virtualize-column': <IconImage name="yes" />,
   'data-grid/virtualize-row': <IconImage name="no" />,
-  'data-grid/customizable-components': <IconImage name="yes" />,
   'data-grid/tree-data': <IconImage name="no" />,
   'data-grid/master-detail': <IconImage name="no" />,
   'data-grid/grouping': <IconImage name="no" />,
@@ -547,11 +558,11 @@ const proData: Record<string, React.ReactNode> = {
   '@mui/unstyled': <IconImage name="yes" />,
   '@mui/system': <IconImage name="yes" />,
   // Advanced
-  'data-grid/column-resizing': <IconImage name="yes" />,
   'data-grid/column-groups': <IconImage name="time" />,
+  'data-grid/column-spanning': <IconImage name="time" />,
+  'data-grid/column-resizing': <IconImage name="yes" />,
   'data-grid/column-reorder': <IconImage name="yes" />,
   'data-grid/column-pinning': <IconImage name="time" />,
-  'data-grid/column-spanning': <IconImage name="time" />,
   'data-grid/row-sorting': <IconImage name="yes" />,
   'data-grid/row-height': <IconImage name="yes" />,
   'data-grid/row-spanning': <IconImage name="time" />,
@@ -559,20 +570,20 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/row-selection': <IconImage name="yes" />,
   'data-grid/row-multiselection': <IconImage name="yes" />,
   'data-grid/row-rangeselection': <IconImage name="no" />,
+  'data-grid/filter-quick': <IconImage name="time" />,
   'data-grid/filter-column': <IconImage name="yes" />,
   'data-grid/filter-multicolumn': <IconImage name="yes" />,
-  'data-grid/filter-quick': <IconImage name="time" />,
   'data-grid/pagination': <IconImage name="yes" />,
   'data-grid/pagination-large': <IconImage name="yes" />,
   'data-grid/edit-row': <IconImage name="time" />,
   'data-grid/edit-cell': <IconImage name="yes" />,
   'data-grid/file-csv': <IconImage name="yes" />,
   'data-grid/file-print': <IconImage name="time" />,
-  'data-grid/file-excel': <IconImage name="no" />,
   'data-grid/file-clipboard': <IconImage name="time" />,
+  'data-grid/file-excel': <IconImage name="no" />,
+  'data-grid/customizable-components': <IconImage name="yes" />,
   'data-grid/virtualize-column': <IconImage name="yes" />,
   'data-grid/virtualize-row': <IconImage name="yes" />,
-  'data-grid/customizable-components': <IconImage name="yes" />,
   'data-grid/tree-data': <IconImage name="time" />,
   'data-grid/master-detail': <IconImage name="time" />,
   'data-grid/grouping': <IconImage name="no" />,
@@ -599,11 +610,11 @@ const premiumData: Record<string, React.ReactNode> = {
   '@mui/unstyled': <IconImage name="yes" />,
   '@mui/system': <IconImage name="yes" />,
   // Advanced
-  'data-grid/column-resizing': <IconImage name="yes" />,
   'data-grid/column-groups': <IconImage name="time" />,
+  'data-grid/column-spanning': <IconImage name="time" />,
+  'data-grid/column-resizing': <IconImage name="yes" />,
   'data-grid/column-reorder': <IconImage name="yes" />,
   'data-grid/column-pinning': <IconImage name="time" />,
-  'data-grid/column-spanning': <IconImage name="time" />,
   'data-grid/row-sorting': <IconImage name="yes" />,
   'data-grid/row-height': <IconImage name="yes" />,
   'data-grid/row-spanning': <IconImage name="time" />,
@@ -611,20 +622,20 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/row-selection': <IconImage name="yes" />,
   'data-grid/row-multiselection': <IconImage name="yes" />,
   'data-grid/row-rangeselection': <IconImage name="time" />,
+  'data-grid/filter-quick': <IconImage name="time" />,
   'data-grid/filter-column': <IconImage name="yes" />,
   'data-grid/filter-multicolumn': <IconImage name="yes" />,
-  'data-grid/filter-quick': <IconImage name="time" />,
   'data-grid/pagination': <IconImage name="yes" />,
   'data-grid/pagination-large': <IconImage name="yes" />,
   'data-grid/edit-row': <IconImage name="time" />,
   'data-grid/edit-cell': <IconImage name="yes" />,
   'data-grid/file-csv': <IconImage name="yes" />,
   'data-grid/file-print': <IconImage name="time" />,
-  'data-grid/file-excel': <IconImage name="no" />,
   'data-grid/file-clipboard': <IconImage name="time" />,
+  'data-grid/file-excel': <IconImage name="no" />,
+  'data-grid/customizable-components': <IconImage name="yes" />,
   'data-grid/virtualize-column': <IconImage name="yes" />,
   'data-grid/virtualize-row': <IconImage name="yes" />,
-  'data-grid/customizable-components': <IconImage name="yes" />,
   'data-grid/tree-data': <IconImage name="time" />,
   'data-grid/master-detail': <IconImage name="time" />,
   'data-grid/grouping': <IconImage name="time" />,
@@ -650,6 +661,7 @@ const RowCategory = (props: BoxProps) => (
     {...props}
     sx={{
       typography: 'caption',
+      display: 'block',
       fontWeight: 500,
       bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
       py: 1,
@@ -724,7 +736,7 @@ const StickyHead = ({
       <Container
         sx={{
           display: 'grid',
-          gridTemplateColumns: `minmax(200px, 1fr) repeat(3, minmax(260px, 1fr))`,
+          gridTemplateColumns: `minmax(160px, 1fr) repeat(3, minmax(240px, 1fr))`,
         }}
       >
         <Typography variant="body2" fontWeight="bold" sx={{ px: 2, py: 1 }}>
@@ -732,7 +744,7 @@ const StickyHead = ({
         </Typography>
         {(['community', 'pro', 'premium'] as const).map((plan) => (
           <Box key={plan} sx={{ px: 2, py: 1 }}>
-            <PlanName plan={plan} disableDescription />
+            <PlanName plan={plan} centered disableDescription />
           </Box>
         ))}
       </Container>
@@ -752,8 +764,8 @@ export default function PricingTable({
   const tableRef = React.useRef<HTMLDivElement | null>(null);
   const gridSx = {
     display: 'grid',
-    gridTemplateColumns: `minmax(200px, 1fr) repeat(${plans.length}, minmax(${
-      columnHeaderHidden ? '0px' : '260px'
+    gridTemplateColumns: `minmax(160px, 1fr) repeat(${plans.length}, minmax(${
+      columnHeaderHidden ? '0px' : '240px'
     }, 1fr))`,
   };
   function renderRow(key: string) {
@@ -766,6 +778,9 @@ export default function PricingTable({
               theme.palette.mode === 'dark'
                 ? alpha(theme.palette.primaryDark[900], 0.3)
                 : alpha(theme.palette.grey[50], 0.4),
+            '@media (hover: none)': {
+              bgcolor: 'initial',
+            },
           },
         }}
       >
@@ -816,7 +831,7 @@ export default function PricingTable({
               endIcon={<KeyboardArrowRightRounded />}
               sx={{ py: 1, mt: 'auto' }}
             >
-              Get Started
+              Get started
             </Button>
           </Box>
           <ColumnHeadHighlight>
@@ -831,13 +846,13 @@ export default function PricingTable({
             <Button
               component={Link}
               noLinkStyle
-              href="/components/data-grid/"
-              variant="outlined"
+              href="/store/items/material-ui-pro/"
+              variant="contained"
               fullWidth
               endIcon={<KeyboardArrowRightRounded />}
               sx={{ py: 1, mt: 'auto' }}
             >
-              Get Started
+              Buy now
             </Button>
           </ColumnHeadHighlight>
           <Box sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
@@ -866,10 +881,26 @@ export default function PricingTable({
       <RowHead startIcon={<IconImage name="product-advanced" width="28" height="28" />}>
         Advanced
       </RowHead>
-      <Box sx={{ position: 'relative', minHeight: 48, ...gridSx }}>
+      <Box sx={{ position: 'relative', minHeight: 58, '& svg': { transition: '0.3s' }, ...gridSx }}>
         <Cell />
-        <Cell />
-        <Cell highlighted />
+        <Cell sx={{ minHeight: 60 }}>
+          <UnfoldMoreRounded
+            fontSize="small"
+            sx={{ color: 'grey.600', opacity: dataGridCollapsed ? 0 : 1 }}
+          />
+        </Cell>
+        <Cell highlighted sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+          <UnfoldMoreRounded
+            fontSize="small"
+            sx={{ color: 'grey.600', opacity: dataGridCollapsed ? 0 : 1 }}
+          />
+        </Cell>
+        <Cell sx={{ display: { xs: 'none', md: 'flex' }, minHeight: 60 }}>
+          <UnfoldMoreRounded
+            fontSize="small"
+            sx={{ color: 'grey.600', opacity: dataGridCollapsed ? 0 : 1 }}
+          />
+        </Cell>
         <Button
           fullWidth
           onClick={() => setDataGridCollapsed((bool) => !bool)}
@@ -878,7 +909,6 @@ export default function PricingTable({
               color="primary"
               sx={{
                 transform: dataGridCollapsed ? 'rotate(-90deg)' : 'rotate(90deg)',
-                transition: '0.7s',
               }}
             />
           }
@@ -911,15 +941,15 @@ export default function PricingTable({
           }}
         />
         <RowCategory>Column features</RowCategory>
-        {renderRow('data-grid/column-resizing')}
-        {nestedDivider}
         {renderRow('data-grid/column-groups')}
+        {nestedDivider}
+        {renderRow('data-grid/column-spanning')}
+        {nestedDivider}
+        {renderRow('data-grid/column-resizing')}
         {nestedDivider}
         {renderRow('data-grid/column-reorder')}
         {nestedDivider}
         {renderRow('data-grid/column-pinning')}
-        {nestedDivider}
-        {renderRow('data-grid/column-spanning')}
         {nestedDivider}
         <RowCategory>Row features</RowCategory>
         {renderRow('data-grid/row-sorting')}
@@ -938,11 +968,11 @@ export default function PricingTable({
         {renderRow('data-grid/row-rangeselection')}
         {nestedDivider}
         <RowCategory>Filtering features</RowCategory>
+        {renderRow('data-grid/filter-quick')}
+        {nestedDivider}
         {renderRow('data-grid/filter-column')}
         {nestedDivider}
         {renderRow('data-grid/filter-multicolumn')}
-        {nestedDivider}
-        {renderRow('data-grid/filter-quick')}
         {nestedDivider}
         <RowCategory>Pagination features</RowCategory>
         {renderRow('data-grid/pagination')}
@@ -959,16 +989,16 @@ export default function PricingTable({
         {nestedDivider}
         {renderRow('data-grid/file-print')}
         {nestedDivider}
-        {renderRow('data-grid/file-excel')}
-        {nestedDivider}
         {renderRow('data-grid/file-clipboard')}
         {nestedDivider}
+        {renderRow('data-grid/file-excel')}
+        {nestedDivider}
         <RowCategory>Rendering features</RowCategory>
+        {renderRow('data-grid/customizable-components')}
+        {nestedDivider}
         {renderRow('data-grid/virtualize-column')}
         {nestedDivider}
         {renderRow('data-grid/virtualize-row')}
-        {nestedDivider}
-        {renderRow('data-grid/customizable-components')}
         {nestedDivider}
         <RowCategory>Group & pivot</RowCategory>
         {renderRow('data-grid/tree-data')}

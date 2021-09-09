@@ -39,7 +39,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLElement",
-  "filename": "/packages/material-ui/src/AppBar/AppBar.js",
+  "filename": "/packages/mui-material/src/AppBar/AppBar.js",
   "inheritance": { "component": "Paper", "pathname": "/api/paper/" },
   "demos": "<ul><li><a href=\"/components/app-bar/\">App Bar</a></li></ul>",
   "styledComponent": true,

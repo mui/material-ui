@@ -1,17 +1,17 @@
 import * as React from 'react';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import CardActionArea from '@mui/material/CardActionArea';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
 
 interface FeaturedPostProps {
   post: {
     date: string;
     description: string;
     image: string;
-    imageText: string;
+    imageLabel: string;
     title: string;
   };
 }
@@ -38,9 +38,10 @@ export default function FeaturedPost(props: FeaturedPostProps) {
             </Typography>
           </CardContent>
           <CardMedia
+            component="img"
             sx={{ width: 160, display: { xs: 'none', sm: 'block' } }}
             image={post.image}
-            title={post.imageText}
+            alt={post.imageLabel}
           />
         </Card>
       </CardActionArea>

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Button from '@mui/material/Button';
 
 const theme = createTheme({
   palette: {
@@ -11,7 +11,7 @@ const theme = createTheme({
   },
 });
 
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface Palette {
     neutral: Palette['primary'];
   }
@@ -23,7 +23,7 @@ declare module '@material-ui/core/styles' {
 }
 
 // Update the Button's color prop options
-declare module '@material-ui/core/Button' {
+declare module '@mui/material/Button' {
   interface ButtonPropsColorOverrides {
     neutral: true;
   }

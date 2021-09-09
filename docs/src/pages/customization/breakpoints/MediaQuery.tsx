@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { styled } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import { green } from '@material-ui/core/colors';
+import { styled } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+import { green } from '@mui/material/colors';
 
 const Root = styled('div')(({ theme }) => ({
   padding: theme.spacing(1),

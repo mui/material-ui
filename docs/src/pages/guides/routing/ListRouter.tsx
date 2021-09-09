@@ -1,14 +1,14 @@
 import * as React from 'react';
-import List from '@material-ui/core/List';
-import Box from '@material-ui/core/Box';
-import ListItem from '@material-ui/core/ListItem';
-import Paper from '@material-ui/core/Paper';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import InboxIcon from '@material-ui/icons/Inbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import Typography from '@material-ui/core/Typography';
+import List from '@mui/material/List';
+import Box from '@mui/material/Box';
+import ListItem from '@mui/material/ListItem';
+import Paper from '@mui/material/Paper';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
+import InboxIcon from '@mui/icons-material/Inbox';
+import DraftsIcon from '@mui/icons-material/Drafts';
+import Typography from '@mui/material/Typography';
 import { Route, MemoryRouter } from 'react-router';
 import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
 

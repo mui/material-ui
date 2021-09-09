@@ -1,21 +1,13 @@
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
-
-const Icon = ({ name }: { name: string }) => (
-  <Box sx={{ display: 'inline-block', verticalAlign: 'bottom', mr: 1, lineHeight: 0 }}>
-    <img
-      width="28"
-      height="28"
-      loading="lazy"
-      src={`/static/branding/pricing/${name}.svg`}
-      alt=""
-    />
-  </Box>
-);
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
+import AllInclusiveOutlinedIcon from '@mui/icons-material/AllInclusiveOutlined';
+import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
+import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 
 export default function WhatToExpect() {
   return (
@@ -29,10 +21,18 @@ export default function WhatToExpect() {
       <Grid container spacing={{ xs: 2, sm: 4 }}>
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-            <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
-              <Icon name="volume-discount" />
-              Volumn discount
-            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              <LocalOfferOutlinedIcon fontSize="small" color="primary" />
+              <Typography
+                fontWeight="bold"
+                component="h3"
+                color="text.primary"
+                variant="body2"
+                sx={{ ml: 1 }}
+              >
+                Volume discount
+              </Typography>
+            </Box>
             <Typography variant="body2" color="text.secondary">
               The licenses are on a per-developer basis. We offer the following tiered discounts
               from list prices when purchasing more than one license for your development team:
@@ -46,12 +46,20 @@ export default function WhatToExpect() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-            <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
-              <Icon name="perpetual" />
-              Perpetual license
-            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              <AllInclusiveOutlinedIcon fontSize="small" color="primary" />
+              <Typography
+                fontWeight="bold"
+                component="h3"
+                color="text.primary"
+                variant="body2"
+                sx={{ ml: 1 }}
+              >
+                Perpetual license
+              </Typography>
+            </Box>
             <Typography variant="body2" color="text.secondary">
-              With your purchase you are granted a license to use a version of the product in
+              With your purchase, you are granted a license to use a version of the product in
               perpetuity. There are no further charges unless you choose to renew support and
               maintenance to cover newer versions. Please note that while the use of the software is
               perpetual, support and maintenance are not. We roll bug fixes, performance
@@ -62,10 +70,18 @@ export default function WhatToExpect() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-            <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
-              <Icon name="renewal" />
-              Renewal
-            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              <ReplayRoundedIcon fontSize="small" color="primary" />
+              <Typography
+                fontWeight="bold"
+                component="h3"
+                color="text.primary"
+                variant="body2"
+                sx={{ ml: 1 }}
+              >
+                Renewal
+              </Typography>
+            </Box>
             <Typography variant="body2" color="text.secondary">
               If you wish to be able to update to the latest versions and access support after the
               end of your support period, you have the option to renew support and maintenance.
@@ -75,12 +91,20 @@ export default function WhatToExpect() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-            <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
-              <Icon name="support-maintenance" />
-              Support and maintenance
-            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              <HelpOutlineOutlinedIcon fontSize="small" color="primary" />
+              <Typography
+                fontWeight="bold"
+                component="h3"
+                color="text.primary"
+                variant="body2"
+                sx={{ ml: 1 }}
+              >
+                Support and maintenance
+              </Typography>
+            </Box>
             <Typography variant="body2" color="text.secondary">
-              With your purchase you receive support and maintenance for one year. After this time,
+              With your purchase, you receive support and maintenance for one year. After this time,
               you can continue to use your licensed versions in perpetuity, but will no longer be
               able to update to the latest version.
             </Typography>

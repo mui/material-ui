@@ -24,7 +24,8 @@ Use `color` prop to apply theme palette to component.
 
 ## Customization
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+Here is an example of customizing the component.
+You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
 
 {{"demo": "pages/components/badges/CustomizedBadges.js"}}
 
@@ -68,7 +69,7 @@ The badge also comes with an unstyled version.
 It's ideal for doing heavy customizations and minimizing bundle size.
 
 ```js
-import BadgeUnstyled from '@material-ui/unstyled/BadgeUnstyled';
+import BadgeUnstyled from '@mui/core/BadgeUnstyled';
 ```
 
 {{"demo": "pages/components/badges/UnstyledBadge.js"}}

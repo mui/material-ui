@@ -13,7 +13,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
-  "filename": "/packages/material-ui/src/SpeedDialIcon/SpeedDialIcon.js",
+  "filename": "/packages/mui-material/src/SpeedDialIcon/SpeedDialIcon.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/speed-dial/\">Speed Dial</a></li></ul>",
   "styledComponent": true,

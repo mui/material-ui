@@ -6,7 +6,7 @@ const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
 
 const workspaceRoot = path.join(__dirname, '../');
 
-const reactStrictMode = false;
+const reactStrictMode = true;
 if (reactStrictMode) {
   // eslint-disable-next-line no-console
   console.log(`Using React.StrictMode.`);
@@ -94,8 +94,8 @@ module.exports = {
             test: /\.md$/,
             oneOf: [
               {
-                resourceQuery: /@material-ui\/markdown/,
-                use: require.resolve('@material-ui/markdown/loader'),
+                resourceQuery: /@mui\/markdown/,
+                use: require.resolve('@mui/markdown/loader'),
               },
               {
                 // used in some /getting-started/templates
@@ -119,19 +119,29 @@ module.exports = {
                     {
                       alias: {
                         // all packages in this monorepo
-                        '@material-ui/core': '../packages/material-ui/src',
-                        '@material-ui/docs': '../packages/material-ui-docs/src',
-                        '@material-ui/icons': '../packages/material-ui-icons/lib',
-                        '@material-ui/lab': '../packages/material-ui-lab/src',
-                        '@material-ui/styled-engine': '../packages/material-ui-styled-engine/src',
-                        '@material-ui/styled-engine-sc':
-                          '../packages/material-ui-styled-engine-sc/src',
-                        '@material-ui/styles': '../packages/material-ui-styles/src',
-                        '@material-ui/system': '../packages/material-ui-system/src',
-                        '@material-ui/private-theming':
-                          '../packages/material-ui-private-theming/src',
-                        '@material-ui/utils': '../packages/material-ui-utils/src',
-                        '@material-ui/unstyled': '../packages/material-ui-unstyled/src',
+                        '@mui/material': '../packages/mui-material/src',
+                        '@mui/docs': '../packages/mui-docs/src',
+                        '@mui/icons-material': '../packages/mui-icons-material/lib',
+                        '@mui/lab': '../packages/mui-lab/src',
+                        '@mui/styled-engine': '../packages/mui-styled-engine/src',
+                        '@mui/styles': '../packages/mui-styles/src',
+                        '@mui/system': '../packages/mui-system/src',
+                        '@mui/private-theming': '../packages/mui-private-theming/src',
+                        '@mui/utils': '../packages/mui-utils/src',
+                        '@mui/core': '../packages/mui-core/src',
+                        '@mui/material-next': '../packages/mui-material-next/src',
+                        // all legacy package names in this monorepo
+                        '@material-ui/core': '../packages/mui-material/src',
+                        '@material-ui/docs': '../packages/mui-docs/src',
+                        '@material-ui/icons': '../packages/mui-icons-material/lib',
+                        '@material-ui/lab': '../packages/mui-lab/src',
+                        '@material-ui/styled-engine': '../packages/mui-styled-engine/src',
+                        '@material-ui/styles': '../packages/mui-styles/src',
+                        '@material-ui/system': '../packages/mui-system/src',
+                        '@material-ui/private-theming': '../packages/mui-private-theming/src',
+                        '@material-ui/utils': '../packages/mui-utils/src',
+                        '@material-ui/unstyled': '../packages/mui-core/src',
+                        '@material-ui/core/*': '../packages/mui-material/src/*',
                       },
                       transformFunctions: ['require'],
                     },
@@ -144,7 +154,7 @@ module.exports = {
           {
             test: /\.(js|mjs|tsx|ts)$/,
             include: [workspaceRoot],
-            exclude: /(node_modules|material-ui-icons)/,
+            exclude: /(node_modules|mui-icons-material)/,
             use: options.defaultLoaders.babel,
           },
         ]),
@@ -212,4 +222,6 @@ module.exports = {
   async rewrites() {
     return [{ source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' }];
   },
+  // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
+  optimizeFonts: false,
 };
