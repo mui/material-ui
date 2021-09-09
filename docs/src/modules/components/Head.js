@@ -7,7 +7,7 @@ import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 export default function Head(props) {
   const t = useTranslate();
   const {
-    card = 'https://next.material-ui.com/static/branding/card.jpeg',
+    card = 'https://material-ui.com/static/branding/card.jpeg',
     children,
     description = t('strapline'),
     largeCard = true,
@@ -36,7 +36,7 @@ export default function Head(props) {
       <meta property="og:ttl" content="604800" />
       {/* Algolia */}
       <meta name="docsearch:language" content={userLanguage} />
-      <meta name="docsearch:version" content="next" />
+      <meta name="docsearch:version" content="master" />
       {children}
     </NextHead>
   );
