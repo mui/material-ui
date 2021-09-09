@@ -139,6 +139,9 @@ const Root = styled('div')(({ theme }) => ({
       },
     },
   },
+  '& h2 code': {
+    fontSize: '1.5rem',
+  },
   '& table': {
     // Trade display table for scroll overflow
     display: 'block',
