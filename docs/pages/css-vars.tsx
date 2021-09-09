@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { createTheme, styled, alpha } from '@mui/material/styles';
 import CssVarsProvider, { useModeToggle } from '@mui/system/CssVars';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import SliderUnstyled from '@mui/core/SliderUnstyled';
 import Box from '@mui/material/Box';
 import NoSsr from '@mui/material/NoSsr';
@@ -70,7 +71,7 @@ function ModeToggle() {
           onChange={(event: any) => {
             setMode(event.target.checked ? 'dark' : 'light');
           }}
-          sx={{ color: (theme) => theme.cssVarsMap.alias.textMain }}
+          sx={{ color: (theme) => theme.alias.textMain }}
         />
       </NoSsr>
     </Box>
@@ -79,7 +80,7 @@ function ModeToggle() {
 
 const StyledSlider = styled(SliderUnstyled)(
   ({ theme }) => `
-  color: ${theme.cssVarsMap.alias.surfacePrimary};
+  color: ${theme.alias.surfacePrimary};
   height: 4px;
   width: 100%;
   padding: 13px 0;
@@ -121,8 +122,9 @@ const StyledSlider = styled(SliderUnstyled)(
     border-radius: 50%;
     outline: 0;
     border: 2px solid currentColor;
-    background-color: ${theme.cssVarsMap.alias.surface};
+    background-color: ${theme.alias.surface};
 
+    // cause className recalculation
     :hover,
     &.Mui-focusVisible {
       box-shadow: 0 0 0 0.25rem ${alpha(
@@ -132,7 +134,7 @@ const StyledSlider = styled(SliderUnstyled)(
     }
 
     &.Mui-active {
-      box-shadow: 0 0 0 0.25rem ${theme.cssVarsMap.alias.surfacePrimaryAlpha};
+      box-shadow: 0 0 0 0.25rem ${theme.alias.surfacePrimaryAlpha};
     }
   }
 `,
@@ -141,19 +143,20 @@ const StyledSlider = styled(SliderUnstyled)(
 const Card = styled('div')(({ theme }) => ({
   display: 'flex',
   padding: theme.spacing(1),
-  backgroundColor: theme.cssVarsMap.alias.surface,
+  backgroundColor: theme.alias.surface,
   borderRadius: '10px',
   border: '1px solid',
-  borderColor: theme.cssVarsMap.alias.border,
+  borderColor: theme.alias.border,
 }));
 
 export default function CssVars() {
   const [paused, setPaused] = React.useState(true);
   return (
     <CssVarsProvider
-      theme={{
-        light: lightTheme,
-        dark: darkTheme,
+      theme={lightTheme}
+      paletteSchemes={{
+        light: lightTheme.palette,
+        dark: darkTheme.palette,
       }}
       alias={{
         background: {
@@ -186,6 +189,14 @@ export default function CssVars() {
         },
       }}
     >
+      <GlobalStyles
+        styles={{
+          body: {
+            margin: 0,
+            padding: 0,
+          },
+        }}
+      />
       <Box
         sx={{
           width: '100vw',
@@ -193,7 +204,7 @@ export default function CssVars() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          bgcolor: (theme) => theme.cssVarsMap.alias.background,
+          bgcolor: (theme) => theme.alias.background,
         }}
       >
         <ModeToggle />
@@ -207,17 +218,15 @@ export default function CssVars() {
               height="124"
             />
             <Box sx={{ alignSelf: 'center', mx: 2 }}>
-              <Box sx={{ fontWeight: 500, color: (theme) => theme.cssVarsMap.alias.textMain }}>
+              <Box sx={{ fontWeight: 500, color: (theme) => theme.alias.textMain }}>
                 Ultraviolet
               </Box>
-              <Box sx={{ color: (theme) => theme.cssVarsMap.alias.textSupport }}>
-                Basement • Beside Myself
-              </Box>
+              <Box sx={{ color: (theme) => theme.alias.textSupport }}>Basement • Beside Myself</Box>
               <Box
                 sx={{
                   mt: 2,
                   display: 'flex',
-                  color: (theme) => theme.cssVarsMap.alias.textSupport,
+                  color: (theme) => theme.alias.textSupport,
                 }}
               >
                 <Box aria-label="fast rewind">

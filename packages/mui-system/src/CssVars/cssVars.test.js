@@ -6,6 +6,7 @@ import {
   makeAliasVars,
   makeCssVarsTheme,
   generateGlobalVars,
+  generateCssVars,
 } from './cssVars';
 
 describe('CSS Vars', () => {
@@ -78,6 +79,27 @@ describe('CSS Vars', () => {
         cssVarsMap: {
           color: 'var(--mui-color)',
           fontFamily: 'var(--mui-fontFamily)',
+        },
+      });
+    });
+
+    it('accept shouldSkipKey', () => {
+      expect(
+        CssVarsBuilder(
+          {
+            fontFamily: 'Roboto',
+            color: '#000',
+          },
+          {
+            shouldSkipKey: (key) => key === 'fontFamily',
+          },
+        ),
+      ).to.deep.equal({
+        cssVars: {
+          '--color': '#000',
+        },
+        cssVarsMap: {
+          color: 'var(--color)',
         },
       });
     });
@@ -170,6 +192,26 @@ describe('CSS Vars', () => {
         },
       });
     });
+
+    it('accept shouldSkipKey', () => {
+      expect(
+        makeCssVars(
+          { palette: { primary: { main: '#ff5252' }, mode: 'light' } },
+          { shouldSkipKey: (key) => key === 'mode' },
+        ),
+      ).to.deep.equal({
+        cssVars: {
+          '--palette-primary-main': '#ff5252',
+        },
+        cssVarsMap: {
+          palette: {
+            primary: {
+              main: 'var(--palette-primary-main)',
+            },
+          },
+        },
+      });
+    });
   });
 
   describe('makeAliasVars', () => {
@@ -186,15 +228,13 @@ describe('CSS Vars', () => {
           },
         }),
       ).to.deep.equal({
-        themeCssVars: {
-          light: {
-            '--background': 'var(--palette-neutral-50)',
-            '--surface': 'var(--palette-neutral-100)',
-          },
-          dark: {
-            '--background': 'var(--palette-neutral-900)',
-            '--surface': 'var(--palette-neutral-800)',
-          },
+        light: {
+          '--background': 'var(--palette-neutral-50)',
+          '--surface': 'var(--palette-neutral-100)',
+        },
+        dark: {
+          '--background': 'var(--palette-neutral-900)',
+          '--surface': 'var(--palette-neutral-800)',
         },
         cssVarsMap: {
           background: 'var(--background)',
@@ -214,10 +254,8 @@ describe('CSS Vars', () => {
           { formatter: (key) => `--mui-${key.replace(/\./g, '_')}` },
         ),
       ).to.deep.equal({
-        themeCssVars: {
-          light: {
-            '--mui-background': 'var(--palette-neutral-50)',
-          },
+        light: {
+          '--mui-background': 'var(--palette-neutral-50)',
         },
         cssVarsMap: {
           background: 'var(--mui-background)',
@@ -229,50 +267,20 @@ describe('CSS Vars', () => {
   describe('makeCssVarsTheme', () => {
     it('create theme with css vars', () => {
       expect(
-        makeCssVarsTheme(
-          {
-            light: {
-              palette: { neutral: { 50: '#ff5252', 900: '#000' } },
-            },
-          },
-          {
-            alias: {
-              background: {
-                light: 'var(--palette-neutral-50)',
-                dark: 'var(--palette-neutral-900)',
-              },
-            },
-          },
-        ),
+        makeCssVarsTheme('palette', {
+          light: { neutral: { 50: '#ff5252', 900: '#000' } },
+        }),
       ).to.deep.equal({
-        theme: {
-          light: {
-            palette: { neutral: { 50: '#ff5252', 900: '#000' } },
-          },
-          cssVarsMap: {
-            palette: {
-              neutral: {
-                50: 'var(--palette-neutral-50)',
-                900: 'var(--palette-neutral-900)',
-              },
-            },
-            alias: {
-              background: 'var(--background)',
-            },
-          },
+        light: {
+          '--palette-neutral-50': '#ff5252',
+          '--palette-neutral-900': '#000',
         },
-        tokenThemeVars: {
-          light: {
-            '--palette-neutral-50': '#ff5252',
-            '--palette-neutral-900': '#000',
-          },
-        },
-        aliasThemeVars: {
-          dark: {
-            '--background': 'var(--palette-neutral-900)',
-          },
-          light: {
-            '--background': 'var(--palette-neutral-50)',
+        cssVarsMap: {
+          palette: {
+            neutral: {
+              50: 'var(--palette-neutral-50)',
+              900: 'var(--palette-neutral-900)',
+            },
           },
         },
       });
@@ -282,7 +290,6 @@ describe('CSS Vars', () => {
   describe('generateGlobalVars', () => {
     it('create default tokens', () => {
       expect(generateGlobalVars({ light: 'light', dark: 'dark' })).to.deep.equal({
-        ':root': 'light',
         '@media(prefers-color-scheme: light)': { ':root': 'light' },
         '@media(prefers-color-scheme: dark)': { ':root': 'dark' },
         '[data-theme="light"]': 'light',
@@ -291,10 +298,7 @@ describe('CSS Vars', () => {
     });
 
     it('use default theme if specify', () => {
-      expect(
-        generateGlobalVars({ light: 'light', dark: 'dark' }, { defaultSchemeKey: 'dark' }),
-      ).to.deep.equal({
-        ':root': 'dark',
+      expect(generateGlobalVars({ light: 'light', dark: 'dark' })).to.deep.equal({
         '@media(prefers-color-scheme: light)': { ':root': 'light' },
         '@media(prefers-color-scheme: dark)': { ':root': 'dark' },
         '[data-theme="light"]': 'light',
@@ -306,7 +310,6 @@ describe('CSS Vars', () => {
       expect(
         generateGlobalVars({ comfort: 'comfort', dim: 'dim' }, { light: 'comfort', dark: 'dim' }),
       ).to.deep.equal({
-        ':root': 'comfort',
         '@media(prefers-color-scheme: light)': { ':root': 'comfort' },
         '@media(prefers-color-scheme: dark)': { ':root': 'dim' },
         '[data-theme="comfort"]': 'comfort',
@@ -316,15 +319,125 @@ describe('CSS Vars', () => {
 
     it('support extra themes', () => {
       expect(
-        generateGlobalVars({ light: 'light', dark: 'dark', comfort: 'comfort', dim: 'dim' }),
+        generateGlobalVars({
+          light: 'light',
+          dark: 'dark',
+          comfort: 'comfort',
+          dim: 'dim',
+        }),
       ).to.deep.equal({
-        ':root': 'light',
         '@media(prefers-color-scheme: light)': { ':root': 'light' },
         '@media(prefers-color-scheme: dark)': { ':root': 'dark' },
         '[data-theme="light"]': 'light',
         '[data-theme="dark"]': 'dark',
         '[data-theme="comfort"]': 'comfort',
         '[data-theme="dim"]': 'dim',
+      });
+    });
+  });
+
+  describe('generateCssVars', () => {
+    it('works with default theme', () => {
+      expect(
+        generateCssVars({
+          theme: { palette: { mode: 'light', primary: { main: '#ff5252' } } },
+        }),
+      ).to.deep.equal({
+        theme: {
+          palette: { mode: 'light', primary: { main: '#ff5252' } },
+          vars: {
+            palette: { primary: { main: 'var(--palette-primary-main)' } },
+          },
+        },
+        rootCssVars: {
+          '--palette-primary-main': '#ff5252',
+        },
+      });
+    });
+
+    it('support dark palette', () => {
+      expect(
+        generateCssVars({
+          theme: { palette: { mode: 'light', primary: { main: '#ff5252' } } },
+          paletteSchemes: {
+            dark: {
+              primary: { main: '#000' },
+            },
+          },
+        }),
+      ).to.deep.equal({
+        theme: {
+          palette: { mode: 'light', primary: { main: '#ff5252' } },
+          vars: {
+            palette: { primary: { main: 'var(--palette-primary-main)' } },
+          },
+        },
+        rootCssVars: {
+          '--palette-primary-main': '#ff5252',
+        },
+        schemeCssVars: {
+          dark: {
+            '--palette-primary-main': '#000',
+          },
+        },
+      });
+    });
+
+    it('support multiple schemes', () => {
+      expect(
+        generateCssVars({
+          theme: { palette: { mode: 'light', primary: { main: '#ff5252' } } },
+          paletteSchemes: {
+            dark: {
+              primary: { main: '#000' },
+            },
+            red: {
+              primary: { main: 'red' },
+            },
+          },
+          currentScheme: 'red',
+        }),
+      ).to.deep.equal({
+        theme: {
+          palette: { mode: 'red', primary: { main: 'red' } },
+          vars: {
+            palette: { primary: { main: 'var(--palette-primary-main)' } },
+          },
+        },
+        rootCssVars: {
+          '--palette-primary-main': '#ff5252',
+        },
+        schemeCssVars: {
+          dark: {
+            '--palette-primary-main': '#000',
+          },
+          red: {
+            '--palette-primary-main': 'red',
+          },
+        },
+      });
+    });
+
+    it('support alias', () => {
+      const result = generateCssVars({
+        theme: { palette: { mode: 'light', primary: { main: '#ff5252' } } },
+        paletteSchemes: {
+          dark: {
+            primary: { main: '#000' },
+          },
+        },
+        alias: { surface: { light: '#ff5252', dark: '#000' } },
+      });
+      expect(result.aliasCssVars).to.deep.equal({
+        light: {
+          '--surface': '#ff5252',
+        },
+        dark: {
+          '--surface': '#000',
+        },
+      });
+      expect(result.theme.alias).to.deep.equal({
+        surface: 'var(--surface)',
       });
     });
   });

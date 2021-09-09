@@ -1,12 +1,15 @@
-import { deepmerge } from '@material-ui/utils';
+import { deepmerge } from '@mui/utils';
 
 export const toCssVar = (key) =>
   Array.isArray(key) ? `--${key.join('-')}` : `--${key.toString().replace(/\./g, '-')}`;
 
 export const CssVarsBuilder = (object, options = {}) => {
-  const { formatter = toCssVar } = options || {};
+  const { formatter = toCssVar, shouldSkipKey } = options || {};
   const result = { cssVars: {}, cssVarsMap: Array.isArray(object) ? [] : {} };
   Object.entries(object).forEach(([key, value]) => {
+    if (shouldSkipKey && shouldSkipKey(key)) {
+      return;
+    }
     if (['number', 'string'].indexOf(typeof value) !== -1) {
       const cssVar = formatter(key);
       result.cssVars[cssVar] = value;
@@ -17,6 +20,9 @@ export const CssVarsBuilder = (object, options = {}) => {
 };
 
 export const makeAliasVars = (alias, options = {}) => {
+  if (!alias) {
+    return {};
+  }
   const { formatter = toCssVar } = options;
   const themeCssVars = {};
   const cssVarsMap = {};
@@ -31,16 +37,18 @@ export const makeAliasVars = (alias, options = {}) => {
     });
   });
 
-  return { themeCssVars, cssVarsMap };
+  return { ...themeCssVars, cssVarsMap };
 };
 
-export const makeCssVars = (host) => {
+export const makeCssVars = (host, options = {}) => {
+  const { shouldSkipKey } = options;
   const cssVars = {};
   const cssVarsMap = {};
 
   function recurse(object, nestedCssVarsMap = cssVarsMap, parentKeys = []) {
     const newResult = CssVarsBuilder(object, {
       formatter: (lastKey) => toCssVar([...parentKeys, lastKey]),
+      shouldSkipKey,
     });
     Object.assign(cssVars, newResult.cssVars);
     Object.assign(nestedCssVarsMap, newResult.cssVarsMap);
@@ -57,52 +65,95 @@ export const makeCssVars = (host) => {
 };
 
 export const generateGlobalVars = (themeCssVars, options = {}) => {
+  if (!themeCssVars) {
+    return themeCssVars;
+  }
   const {
-    defaultSchemeKey = 'light',
     light = 'light',
     dark = 'dark',
     attribute = 'data-theme',
+    enableColorScheme = true,
   } = options;
-  const {
-    [defaultSchemeKey]: rootSchemeVars,
-    [light]: lightScheme,
-    [dark]: darkScheme,
-  } = themeCssVars;
+  const { [light]: lightScheme, [dark]: darkScheme } = themeCssVars;
   const attributeThemeVars = {};
   Object.entries(themeCssVars).forEach(([themeName, cssVars]) => {
     attributeThemeVars[`[${attribute}="${themeName}"]`] = cssVars;
   });
   return {
-    // system preference
-    ':root': rootSchemeVars || themeCssVars[Object.keys(themeCssVars)[0]],
-    '@media(prefers-color-scheme: light)': {
-      ':root': lightScheme,
-    },
-    '@media(prefers-color-scheme: dark)': {
-      ':root': darkScheme,
-    },
+    // TODO dont need this,
+    ...(enableColorScheme && {
+      '@media(prefers-color-scheme: light)': {
+        ':root': lightScheme,
+      },
+      '@media(prefers-color-scheme: dark)': {
+        ':root': darkScheme,
+      },
+    }),
     // application preference
     ...attributeThemeVars,
   };
 };
 
-export const makeCssVarsTheme = (theme, options = {}) => {
-  const { alias = {} } = options;
+export const generateSchemeVars = (schemeCssVars, options = {}) => {
+  if (!schemeCssVars) {
+    return schemeCssVars;
+  }
+  const { attribute = 'data-theme' } = options;
+  const attributeThemeVars = {};
+  Object.entries(schemeCssVars).forEach(([themeName, cssVars]) => {
+    attributeThemeVars[`[${attribute}="${themeName}"]`] = cssVars;
+  });
+  return attributeThemeVars;
+};
+
+export const makeCssVarsTheme = (scope, input) => {
+  if (!input) {
+    return input;
+  }
+  // input = { [schemeKey]: { ... } }
   const themeVars = {};
-  let themeCssVarsMap = {};
-  Object.entries(theme).forEach(([themeName, themeInput]) => {
-    const { cssVars, cssVarsMap } = makeCssVars({ palette: themeInput.palette });
-    themeVars[themeName] = cssVars;
-    themeCssVarsMap = deepmerge(themeCssVarsMap, cssVarsMap);
+  let cssVarsMap = {};
+  Object.entries(input).forEach(([schemeKey, schemeInput]) => {
+    const result = makeCssVars({ [scope]: schemeInput });
+    themeVars[schemeKey] = result.cssVars;
+    cssVarsMap = deepmerge(cssVarsMap, result.cssVarsMap);
   });
 
-  const aliasVars = makeAliasVars(alias);
+  return { ...themeVars, cssVarsMap };
+};
 
-  theme.cssVarsMap = {
-    ...themeCssVarsMap,
-    alias: aliasVars.cssVarsMap,
+export const generateCssVars = ({
+  theme,
+  paletteSchemes,
+  currentScheme = theme.palette.mode,
+  alias,
+}) => {
+  const finalTheme = { ...theme };
+  const root = makeCssVars(theme, {
+    shouldSkipKey: (key) => key === 'mode',
+  });
+  const { cssVarsMap: schemeVarsMap, ...schemeCssVars } = makeCssVarsTheme(
+    'palette',
+    paletteSchemes,
+  );
+  const { cssVarsMap: aliasVarsMap, ...aliasCssVars } = makeAliasVars(alias);
+
+  finalTheme.vars = root.cssVarsMap;
+
+  if (paletteSchemes && paletteSchemes[currentScheme]) {
+    finalTheme.palette = { mode: currentScheme, ...paletteSchemes[currentScheme] };
+  }
+
+  if (aliasVarsMap) {
+    finalTheme.alias = aliasVarsMap;
+  }
+
+  return {
+    theme: finalTheme,
+    rootCssVars: root.cssVars,
+    ...(paletteSchemes && { schemeCssVars }),
+    ...(alias && { aliasCssVars }),
   };
-  return { theme, tokenThemeVars: themeVars, aliasThemeVars: aliasVars.themeCssVars };
 };
 
 export default {};

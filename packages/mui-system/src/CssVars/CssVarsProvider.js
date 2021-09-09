@@ -4,28 +4,27 @@ import { ThemeProvider as MuiThemeProvider } from '@mui/private-theming';
 import { exactProp } from '@mui/utils';
 import { ThemeContext as StyledEngineThemeContext, GlobalStyles } from '@mui/styled-engine';
 import ModeProvider, { useModeToggle } from './ModeProvider';
-import { makeCssVarsTheme, generateGlobalVars } from './cssVars';
+import { generateSchemeVars, generateCssVars } from './cssVars';
 
 function CssVarsContent({ ...props }) {
-  const { defaultTheme, mode } = useModeToggle();
-  const { children, theme: themeInput, alias } = props;
-  const { theme, tokenThemeVars, aliasThemeVars } = makeCssVarsTheme(themeInput, { alias });
-  const globalTokens = generateGlobalVars(tokenThemeVars);
-  const globalAlias = generateGlobalVars(aliasThemeVars);
-  const finalTheme = { ...theme, ...theme[mode || defaultTheme] };
+  const { mode } = useModeToggle();
+  const { children, theme, paletteSchemes, alias } = props;
+
+  const {
+    theme: finalTheme,
+    rootCssVars,
+    schemeCssVars,
+    aliasCssVars,
+  } = generateCssVars({ theme, currentScheme: mode, paletteSchemes, alias });
+
+  console.log('finalTheme', finalTheme);
+
   return (
     <MuiThemeProvider theme={finalTheme}>
       <StyledEngineThemeContext.Provider value={finalTheme}>
-        <GlobalStyles
-          styles={{
-            body: {
-              margin: 0,
-              padding: 0,
-            },
-          }}
-        />
-        <GlobalStyles styles={globalTokens} />
-        <GlobalStyles styles={globalAlias} />
+        <GlobalStyles styles={{ ':root': rootCssVars }} />
+        <GlobalStyles styles={generateSchemeVars(schemeCssVars)} />
+        <GlobalStyles styles={generateSchemeVars(aliasCssVars)} />
         {children}
       </StyledEngineThemeContext.Provider>
     </MuiThemeProvider>
@@ -36,9 +35,9 @@ function CssVarsContent({ ...props }) {
  * This component makes the `theme` available down the React tree.
  * It should preferably be used at **the root of your component tree**.
  */
-function CssVarsProvider({ children, initialMode, defaultTheme, ...props }) {
+function CssVarsProvider({ children, initialMode, ...props }) {
   return (
-    <ModeProvider initialMode={initialMode} defaultTheme={defaultTheme}>
+    <ModeProvider initialMode={initialMode}>
       <CssVarsContent {...props}>{children}</CssVarsContent>
     </ModeProvider>
   );
@@ -50,7 +49,6 @@ CssVarsProvider.propTypes = {
    * Your component tree.
    */
   children: PropTypes.node,
-  defaultTheme: PropTypes.string,
   initialMode: PropTypes.string,
   /**
    * A theme object. You can provide a function to extend the outer theme.

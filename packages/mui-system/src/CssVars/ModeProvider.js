@@ -29,12 +29,7 @@ export const useModeToggle = () => {
   };
 };
 
-const ModeProvider = ({
-  children,
-  attribute = 'data-theme',
-  initialMode: initialModeProp,
-  defaultTheme = 'light',
-}) => {
+const ModeProvider = ({ children, attribute = 'data-theme', initialMode: initialModeProp }) => {
   let initialMode = initialModeProp;
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   if (prefersDarkMode) {
@@ -56,9 +51,7 @@ const ModeProvider = ({
       document.body.setAttribute(attribute, mode);
     }
   }, [mode, attribute]);
-  return (
-    <ModeContext.Provider value={{ defaultTheme, mode, setMode }}>{children}</ModeContext.Provider>
-  );
+  return <ModeContext.Provider value={{ mode, setMode }}>{children}</ModeContext.Provider>;
 };
 
 ModeProvider.propTypes = {
@@ -67,7 +60,6 @@ ModeProvider.propTypes = {
    * Your component tree.
    */
   children: PropTypes.node,
-  defaultTheme: PropTypes.string,
   initialMode: PropTypes.string,
 };
 
