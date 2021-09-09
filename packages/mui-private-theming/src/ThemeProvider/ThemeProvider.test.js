@@ -109,9 +109,9 @@ describe('ThemeProvider', () => {
           </ThemeProvider>,
         );
       }).toErrorDev([
-        'Material-UI: You should return an object from your theme function',
+        'MUI: You should return an object from your theme function',
         !strictModeDoubleLoggingSupressed &&
-          'Material-UI: You should return an object from your theme function',
+          'MUI: You should return an object from your theme function',
       ]);
     });
   });

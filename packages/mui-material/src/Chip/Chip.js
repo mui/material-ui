@@ -421,7 +421,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   if (process.env.NODE_ENV !== 'production') {
     if (avatar && icon) {
       console.error(
-        'Material-UI: The Chip component can not handle the avatar ' +
+        'MUI: The Chip component can not handle the avatar ' +
           'and the icon prop at the same time. Pick one.',
       );
     }

@@ -1,4 +1,4 @@
-# Material-UI Scripts
+# MUI Scripts
 
 ## Release
 
@@ -44,6 +44,6 @@ yarn docs:deploy
 ### Announce
 
 1. **GitHub**. Make a new release on GitHub (for people subscribing to updates). https://github.com/mui-org/material-ui/releases
-1. **Twitter**. It's even better to synchronize with the release of Material-UI X: https://trello.com/c/kYF9OLLi/105-release-steps, to have a single announcement/version covering the two.
+1. **Twitter**. It's even better to synchronize with the release of MUI X: https://trello.com/c/kYF9OLLi/105-release-steps, to have a single announcement/version covering the two.
    Send a tweet with the main Twitter account to summarize what happened.
    Example of template https://twitter.com/MaterialUI/status/1341422029862526977

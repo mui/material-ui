@@ -49,7 +49,7 @@ describe('system spacing', () => {
             p: 3,
           });
         }).toErrorDev(
-          'Material-UI: The value provided (3) overflows.\n' +
+          'MUI: The value provided (3) overflows.\n' +
             'The supported values are: [0,3,5].\n' +
             '3 > 2, you need to add the missing values.',
         );
@@ -66,7 +66,7 @@ describe('system spacing', () => {
             p: 3,
           });
         }).toErrorDev(
-          'Material-UI: The `theme.spacing` value ([object Object]) is invalid.\n' +
+          'MUI: The `theme.spacing` value ([object Object]) is invalid.\n' +
             'It should be a number, an array or a function.',
         );
         expect(output).to.deep.equal({ padding: undefined });
@@ -82,7 +82,7 @@ describe('system spacing', () => {
             p: 0.5,
           });
         }).toErrorDev(
-          'Material-UI: The `theme.spacing` array type cannot be combined with non integer values.',
+          'MUI: The `theme.spacing` array type cannot be combined with non integer values.',
         );
         expect(output).to.deep.equal({ padding: undefined });
       });
@@ -227,7 +227,7 @@ describe('system spacing', () => {
             m: 3,
           });
         }).toErrorDev(
-          'Material-UI: The value provided (3) overflows.\n' +
+          'MUI: The value provided (3) overflows.\n' +
             'The supported values are: [0,3,5].\n' +
             '3 > 2, you need to add the missing values.',
         );
@@ -244,7 +244,7 @@ describe('system spacing', () => {
             m: 3,
           });
         }).toErrorDev(
-          'Material-UI: The `theme.spacing` value ([object Object]) is invalid.\n' +
+          'MUI: The `theme.spacing` value ([object Object]) is invalid.\n' +
             'It should be a number, an array or a function.',
         );
         expect(output).to.deep.equal({ margin: undefined });
@@ -260,7 +260,7 @@ describe('system spacing', () => {
             m: 0.5,
           });
         }).toErrorDev(
-          'Material-UI: The `theme.spacing` array type cannot be combined with non integer values.',
+          'MUI: The `theme.spacing` array type cannot be combined with non integer values.',
         );
         expect(output).to.deep.equal({ margin: undefined });
       });
@@ -405,7 +405,7 @@ describe('system spacing', () => {
             p: 3,
           });
         }).toErrorDev(
-          'Material-UI: The value provided (3) overflows.\n' +
+          'MUI: The value provided (3) overflows.\n' +
             'The supported values are: [0,3,5].\n' +
             '3 > 2, you need to add the missing values.',
         );
@@ -422,7 +422,7 @@ describe('system spacing', () => {
             p: 3,
           });
         }).toErrorDev(
-          'Material-UI: The `theme.spacing` value ([object Object]) is invalid.\n' +
+          'MUI: The `theme.spacing` value ([object Object]) is invalid.\n' +
             'It should be a number, an array or a function.',
         );
         expect(output).to.deep.equal({ padding: undefined });
@@ -438,7 +438,7 @@ describe('system spacing', () => {
             p: 0.5,
           });
         }).toErrorDev(
-          'Material-UI: The `theme.spacing` array type cannot be combined with non integer values.',
+          'MUI: The `theme.spacing` array type cannot be combined with non integer values.',
         );
         expect(output).to.deep.equal({ padding: undefined });
       });

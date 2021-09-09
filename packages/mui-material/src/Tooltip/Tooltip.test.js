@@ -685,7 +685,7 @@ describe('<Tooltip />', () => {
           </Tooltip>,
         );
       }).toErrorDev(
-        'Material-UI: You are providing a disabled `button` child to the Tooltip component',
+        'MUI: You are providing a disabled `button` child to the Tooltip component',
       );
     });
 
@@ -985,7 +985,7 @@ describe('<Tooltip />', () => {
       expect(() => {
         setProps({ open: true });
       }).toErrorDev(
-        'Material-UI: A component is changing the uncontrolled open state of Tooltip to be controlled.',
+        'MUI: A component is changing the uncontrolled open state of Tooltip to be controlled.',
       );
     });
 

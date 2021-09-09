@@ -3,8 +3,8 @@
   "version": "5.0.0-rc.1",
   "bin": "./codemod.js",
   "private": false,
-  "author": "Material-UI Team",
-  "description": "Codemod scripts for Material-UI.",
+  "author": "MUI Team",
+  "description": "Codemod scripts for MUI.",
   "keywords": [
     "react",
     "react-component",

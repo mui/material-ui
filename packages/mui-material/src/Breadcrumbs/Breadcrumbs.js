@@ -127,7 +127,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
       if (process.env.NODE_ENV !== 'production') {
         console.error(
           [
-            'Material-UI: You have provided an invalid combination of props to the Breadcrumbs.',
+            'MUI: You have provided an invalid combination of props to the Breadcrumbs.',
             `itemsAfterCollapse={${itemsAfterCollapse}} + itemsBeforeCollapse={${itemsBeforeCollapse}} >= maxItems={${maxItems}}`,
           ].join('\n'),
         );
@@ -148,7 +148,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
         if (isFragment(child)) {
           console.error(
             [
-              "Material-UI: The Breadcrumbs component doesn't accept a Fragment as a child.",
+              "MUI: The Breadcrumbs component doesn't accept a Fragment as a child.",
               'Consider providing an array instead.',
             ].join('\n'),
           );

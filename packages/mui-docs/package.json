@@ -2,8 +2,8 @@
   "name": "@mui/docs",
   "version": "5.0.0-rc.1",
   "private": false,
-  "author": "Material-UI Team",
-  "description": "Material-UI Docs - Documentation building blocks.",
+  "author": "MUI Team",
+  "description": "MUI Docs - Documentation building blocks.",
   "main": "./src/index.js",
   "keywords": [
     "react",

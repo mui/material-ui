@@ -25,7 +25,7 @@ Our users are continuously providing feedback on the most important [pains they 
 
 ### Why this is interesting
 
-Our solution is empowering React developers to build awesome applications. It should be easy, it shouldn't require any advanced technical skills. Hundreds of thousands of developers use Material-UI every month.
+Our solution is empowering React developers to build awesome applications. It should be easy, it shouldn't require any advanced technical skills. Hundreds of thousands of developers use MUI every month.
 We are the second most used UI library in the world, after Bootstrap.
 
 Our enterprise components portfolio is still small, with a million interesting and challenging problems to solve.

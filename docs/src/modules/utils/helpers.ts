@@ -77,7 +77,7 @@ const packagesWithBundledTypes = ['date-fns', '@emotion/react', '@emotion/styled
 function addTypeDeps(deps: Record<string, string>): void {
   const packagesWithDTPackage = Object.keys(deps)
     .filter((name) => packagesWithBundledTypes.indexOf(name) === -1)
-    // All the Material-UI packages come with bundled types
+    // All the MUI packages come with bundled types
     .filter((name) => name.indexOf('@mui/') !== 0);
 
   packagesWithDTPackage.forEach((name) => {

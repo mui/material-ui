@@ -75,7 +75,7 @@ Card.propTypes /* remove-proptypes */ = {
   raised: chainPropTypes(PropTypes.bool, (props) => {
     if (props.raised && props.variant === 'outlined') {
       return new Error(
-        'Material-UI: Combining `raised={true}` with `variant="outlined"` has no effect.',
+        'MUI: Combining `raised={true}` with `variant="outlined"` has no effect.',
       );
     }
 

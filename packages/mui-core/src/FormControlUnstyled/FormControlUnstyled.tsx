@@ -110,7 +110,7 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
       if (registeredInput.current) {
         console.error(
           [
-            'Material-UI: There are multiple `Input` components inside a FormControl.',
+            'MUI: There are multiple `Input` components inside a FormControl.',
             'This creates visual inconsistencies, only use one `Input`.',
           ].join('\n'),
         );

@@ -69,7 +69,7 @@ const ImageList = React.forwardRef(function ImageList(inProps, ref) {
       if (document !== undefined && 'objectFit' in document.documentElement.style === false) {
         console.error(
           [
-            'Material-UI: ImageList v5+ no longer natively supports Internet Explorer.',
+            'MUI: ImageList v5+ no longer natively supports Internet Explorer.',
             'Use v4 of this component instead, or polyfill CSS object-fit.',
           ].join('\n'),
         );

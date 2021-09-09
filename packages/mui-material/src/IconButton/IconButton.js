@@ -157,7 +157,7 @@ IconButton.propTypes /* remove-proptypes */ = {
     if (found) {
       return new Error(
         [
-          'Material-UI: You are providing an onClick event listener to a child of a button element.',
+          'MUI: You are providing an onClick event listener to a child of a button element.',
           'Prefer applying it to the IconButton directly.',
           'This guarantees that the whole <button> will be responsive to click events.',
         ].join('\n'),

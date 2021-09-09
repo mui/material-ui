@@ -2,7 +2,7 @@
   "name": "@mui/material-next",
   "version": "6.0.0-alpha.0",
   "private": false,
-  "author": "Material-UI Team",
+  "author": "MUI Team",
   "description": "Material Design components built using @mui/core.",
   "main": "./src/index.ts",
   "keywords": [

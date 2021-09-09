@@ -2,7 +2,7 @@
   "name": "@mui/core",
   "version": "5.0.0-alpha.46",
   "private": false,
-  "author": "Material-UI Team",
+  "author": "MUI Team",
   "description": "Unstyled React components with which to implement custom design systems.",
   "main": "./src/index.js",
   "keywords": [

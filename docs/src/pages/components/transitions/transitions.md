@@ -8,7 +8,7 @@ githubLabel: 'component: Transition'
 
 <p class="description">Transitions help to make a UI expressive and easy to use.</p>
 
-Material-UI provides transitions that can be used to introduce some basic [motion](https://material.io/design/motion/) to your applications.
+MUI provides transitions that can be used to introduce some basic [motion](https://material.io/design/motion/) to your applications.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -65,7 +65,7 @@ This example also demonstrates how to delay the enter transition.
 
 ## Child requirement
 
-- **Forward the style**: To better support server rendering, Material-UI provides a `style` prop to the children of some transition components (Fade, Grow, Zoom, Slide).
+- **Forward the style**: To better support server rendering, MUI provides a `style` prop to the children of some transition components (Fade, Grow, Zoom, Slide).
   The `style` prop must be applied to the DOM for the animation to work as expected.
 - **Forward the ref**: The transition components require the first child element to forward its ref to the DOM node. For more details about ref, check out [Caveat with refs](/guides/composition/#caveat-with-refs)
 - **Single element**: The transition components require only one child element (`React.Fragment` is not allowed).
@@ -100,7 +100,7 @@ As components are added or removed, the `in` prop is toggled automatically by `T
 
 ## TransitionComponent prop
 
-Some Material-UI components use these transitions internally. These accept a `TransitionComponent` prop to customize the default transition.
+Some MUI components use these transitions internally. These accept a `TransitionComponent` prop to customize the default transition.
 You can use any of the above components or your own.
 It should respect the following conditions:
 

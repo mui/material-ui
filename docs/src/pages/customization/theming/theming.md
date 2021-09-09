@@ -1,6 +1,6 @@
 # Theming
 
-<p class="description">Customize Material-UI with your theme. You can change the colors, the typography and much more.</p>
+<p class="description">Customize MUI with your theme. You can change the colors, the typography and much more.</p>
 
 The theme specifies the color of the components, darkness of the surfaces, level of shadow, appropriate opacity of ink elements, etc.
 
@@ -11,14 +11,14 @@ To promote greater consistency between apps, light and dark theme types are avai
 ## Theme provider
 
 If you wish to customize the theme, you need to use the `ThemeProvider` component in order to inject a theme into your application.
-However, this is optional; Material-UI components come with a default theme.
+However, this is optional; MUI components come with a default theme.
 
 `ThemeProvider` relies on the [context feature of React](https://reactjs.org/docs/context.html) to pass the theme down to the components, so you need to make sure that `ThemeProvider` is a parent of the components you are trying to customize.
 You can learn more about this in [the API section](/styles/api/#themeprovider).
 
 ## Theme configuration variables
 
-Changing the theme configuration variables is the most effective way to match Material-UI to your needs.
+Changing the theme configuration variables is the most effective way to match MUI to your needs.
 The following sections cover the most important theme variables:
 
 - [`.palette`](/customization/palette/)
@@ -33,7 +33,7 @@ You can check out the [default theme section](/customization/default-theme/) to 
 
 ### Custom variables
 
-When using Material-UI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere.
+When using MUI's theme with the [styling solution](/styles/basics/) or [any others](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere.
 For instance:
 
 ```jsx
@@ -72,8 +72,8 @@ declare module '@mui/material/styles' {
 
 The community has built great tools to build a theme:
 
-- [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/): A tool to help design and customize themes for the Material-UI component library. Includes basic site templates to show various components and how they are affected by the theme
-- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): Is an online tool for creating Material-UI themes via Material Design Color Tool.
+- [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/): A tool to help design and customize themes for the MUI component library. Includes basic site templates to show various components and how they are affected by the theme
+- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): Is an online tool for creating MUI themes via Material Design Color Tool.
 - [Material palette generator](https://material.io/inline-tools/color/): The Material palette generator can be used to generate a palette for any color you input.
 
 ## Accessing the theme in a component

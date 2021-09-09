@@ -148,7 +148,7 @@ const ToggleButtonGroup = React.forwardRef(function ToggleButtonGroup(inProps, r
           if (isFragment(child)) {
             console.error(
               [
-                "Material-UI: The ToggleButtonGroup component doesn't accept a Fragment as a child.",
+                "MUI: The ToggleButtonGroup component doesn't accept a Fragment as a child.",
                 'Consider providing an array instead.',
               ].join('\n'),
             );

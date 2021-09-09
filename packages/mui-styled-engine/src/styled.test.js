@@ -6,13 +6,13 @@ describe('styled', () => {
     expect(() => {
       styled('span')();
     }).toErrorDev(
-      'Material-UI: Seems like you called `styled("span")()` without a `style` argument',
+      'MUI: Seems like you called `styled("span")()` without a `style` argument',
     );
 
     expect(() => {
       styled('span')(undefined, { color: 'red' });
     }).toErrorDev(
-      'Material-UI: the styled("span")(...args) API requires all its args to be defined',
+      'MUI: the styled("span")(...args) API requires all its args to be defined',
     );
   });
 });

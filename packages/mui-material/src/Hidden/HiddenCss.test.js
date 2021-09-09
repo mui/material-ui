@@ -142,9 +142,9 @@ describe('<HiddenCss />', () => {
         </HiddenCss>,
       );
     }).toErrorDev([
-      'Material-UI: Unsupported props received by `<Hidden implementation="css" />`: xxlUp.',
+      'MUI: Unsupported props received by `<Hidden implementation="css" />`: xxlUp.',
       !strictModeDoubleLoggingSupressed &&
-        'Material-UI: Unsupported props received by `<Hidden implementation="css" />`: xxlUp.',
+        'MUI: Unsupported props received by `<Hidden implementation="css" />`: xxlUp.',
     ]);
   });
 });

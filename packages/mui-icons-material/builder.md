@@ -1,6 +1,6 @@
 # @mui/icons-material-builder
 
-This tool generates Material-UI SvgIcon components for a set of svg icons.
+This tool generates MUI SvgIcon components for a set of svg icons.
 
 ## Running the build
 

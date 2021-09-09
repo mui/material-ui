@@ -2,7 +2,7 @@
   "name": "@mui/utils",
   "version": "5.0.0-rc.1",
   "private": false,
-  "author": "Material-UI Team",
+  "author": "MUI Team",
   "description": "Utility functions for React components.",
   "main": "./src/index.ts",
   "keywords": [
