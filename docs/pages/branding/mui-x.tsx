@@ -160,8 +160,8 @@ const materialUixData = [
     title: 'Built exclusively for React',
     description: (
       <React.Fragment>
-        The team behind MUI has been developing for React, and only React, since 2014. We
-        went all-in on React before most developers.
+        The team behind MUI has been developing for React, and only React, since 2014. We went
+        all-in on React before most developers.
         <br />
         <br />
         As a result the components benefit from the expertise we have built, and leverage the power
@@ -174,12 +174,12 @@ const materialUixData = [
     title: 'TypeScript support',
     description: (
       <React.Fragment>
-        MUI X components are written in TypeScript, this helps keep the type definitions
-        always up to date.
+        MUI X components are written in TypeScript, this helps keep the type definitions always up
+        to date.
         <br />
         <br />
-        Over half of all React web applications are built with TypeScript. If yours is, MUI
-        X is ready for you. (And if it isn&apos;t – we&apos;ve still got you covered! 👍)
+        Over half of all React web applications are built with TypeScript. If yours is, MUI X is
+        ready for you. (And if it isn&apos;t – we&apos;ve still got you covered! 👍)
       </React.Fragment>
     ),
   },
@@ -188,9 +188,8 @@ const materialUixData = [
     title: 'The most popular library',
     description: (
       <React.Fragment>
-        The team behind MUI X also developed the most popular UI library for React:
-        MUI. With MUI X you will benefit from the same expertise gained over many
-        years.
+        The team behind MUI X also developed the most popular UI library for React: MUI. With MUI X
+        you will benefit from the same expertise gained over many years.
         <br />
         <br /> The components are built to the same quality standards: end-to-end tests, polished
         API, type safe, accessible, fast, small. 👌
@@ -227,8 +226,8 @@ const materialUixData = [
         what good is that nice design system if you can&apos;t use it?
         <br />
         <br />
-        MUI X is simple to customize by design, which means that you are in complete and
-        full control of how your components render down to the very last component, class or style.
+        MUI X is simple to customize by design, which means that you are in complete and full
+        control of how your components render down to the very last component, class or style.
       </React.Fragment>
     ),
   },
@@ -260,8 +259,8 @@ function WhyMaterialUix() {
         }}
       >
         Looking to get ahead? We have timely resources. Switch to{' '}
-        <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} /> MUI X to get
-        more components.
+        <Box component="span" sx={{ display: { xs: 'none', sm: 'block' } }} /> MUI X to get more
+        components.
       </Typography>
       <Grid container spacing={3}>
         {materialUixData.map((material) => (
@@ -435,8 +434,7 @@ const communityData = [
       url: 'https://twitter.com/jimboolean/status/1276549134128943106',
       description: (
         <React.Fragment>
-          Working with MUI is like working with an entire UI development team, minus the
-          overhead.
+          Working with MUI is like working with an entire UI development team, minus the overhead.
           <br />
           <br />
           The theming tooling is simple and well-done. The components are common, customizable, and

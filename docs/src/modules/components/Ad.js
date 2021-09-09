@@ -86,15 +86,13 @@ const inHouseAds = [
     name: 'sketch',
     link: 'https://material-ui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-sketch',
     img: '/static/ads-in-house/sketch.png',
-    description:
-      '<b>For Sketch</b>. A large UI kit with over 600 handcrafted MUI symbols 💎.',
+    description: '<b>For Sketch</b>. A large UI kit with over 600 handcrafted MUI symbols 💎.',
   },
   {
     name: 'figma',
     link: 'https://material-ui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=in-house-figma',
     img: '/static/ads-in-house/figma.png',
-    description:
-      '<b>For Figma</b>. A large UI kit with over 600 handcrafted MUI components 🎨.',
+    description: '<b>For Figma</b>. A large UI kit with over 600 handcrafted MUI components 🎨.',
   },
 ];
 

@@ -684,9 +684,7 @@ describe('<Tooltip />', () => {
             </button>
           </Tooltip>,
         );
-      }).toErrorDev(
-        'MUI: You are providing a disabled `button` child to the Tooltip component',
-      );
+      }).toErrorDev('MUI: You are providing a disabled `button` child to the Tooltip component');
     });
 
     it('should not raise a warning when we are controlled', () => {

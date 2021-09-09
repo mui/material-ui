@@ -21,12 +21,8 @@ describe('createTransitions', () => {
   describe('create() function', () => {
     describe('warnings', () => {
       it('should warn when first argument is of bad type', () => {
-        expect(() => create(5554)).toErrorDev(
-          'MUI: Argument "props" must be a string or Array',
-        );
-        expect(() => create({})).toErrorDev(
-          'MUI: Argument "props" must be a string or Array',
-        );
+        expect(() => create(5554)).toErrorDev('MUI: Argument "props" must be a string or Array');
+        expect(() => create({})).toErrorDev('MUI: Argument "props" must be a string or Array');
       });
 
       it('should warn when bad "duration" option type', () => {

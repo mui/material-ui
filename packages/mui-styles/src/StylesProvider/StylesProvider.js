@@ -42,9 +42,7 @@ export default function StylesProvider(props) {
 
   if (process.env.NODE_ENV !== 'production') {
     if (typeof window === 'undefined' && !context.sheetsManager) {
-      console.error(
-        'MUI: You need to use the ServerStyleSheets API when rendering on the server.',
-      );
+      console.error('MUI: You need to use the ServerStyleSheets API when rendering on the server.');
     }
   }
 
