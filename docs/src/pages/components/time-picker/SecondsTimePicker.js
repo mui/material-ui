@@ -25,6 +25,7 @@ export default function SecondsTimePicker() {
           renderInput={(params) => <TextField {...params} />}
         />
         <TimePicker
+          ampmInClock
           views={['minutes', 'seconds']}
           inputFormat="mm:ss"
           mask="__:__"
