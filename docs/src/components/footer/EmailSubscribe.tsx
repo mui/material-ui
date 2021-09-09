@@ -9,6 +9,7 @@ import FormLabel from '@mui/material/FormLabel';
 import FormHelperText from '@mui/material/FormHelperText';
 import InputBase from '@mui/material/InputBase';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+import getBuildContextVars from 'docs/src/getBuildContextVars';
 
 const Form = styled('form')({});
 
@@ -18,15 +19,6 @@ function searchParams(params: any) {
     .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
     .join('&');
 }
-
-const URLS = {
-  production:
-    // Newsletter
-    'https://f0433e60.sibforms.com/serve/MUIEAGtmskkcUYKRfBjMjxsUAl1b-ujarrLB6lOc7P0Oz9oHwTsl70yTYoWYx5b9ID3wvQ8fyBH3bSHLZSqxAoHWxr35LTeQX1Qu2_kCbvRnwNUh5G1FqewcQNhoD6mNGzy2FkTdHhpRulmGa5YzIHVosYpHeqZzEkPa98ZObqt1sK-kYrOd68-G7VYf6GOSzraY-BTkUH1vwJ1u',
-  development:
-    // Newsletter - test
-    'https://f0433e60.sibforms.com/serve/MUIEAMMuohK-i-XUkJaUj3Lq3zr3rVeAPmgssEBsyiTktpqrImORJiFMQ1PLfZ1W1PGb-FzKhlfuPWlLNfx90j5R2qC7C219ec8AVcBsxlIRDG5znwaXr6gzAyth6W93bLiK4otXL_iBLFV43QqHrKZKORXA0LGq6seXbasTiAHh5EtqWFGK2zw8mlwYssGnIT_7ZZXiWC_iqubZ',
-};
 
 export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
   const [form, setForm] = React.useState<{
@@ -40,7 +32,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
     event.preventDefault();
     setForm((current) => ({ ...current, status: 'loading' }));
     try {
-      await fetch(process.env.NODE_ENV === 'production' ? URLS.production : URLS.development, {
+      await fetch(getBuildContextVars().EMAIL_SUBSCRIBE_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
