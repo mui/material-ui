@@ -16,7 +16,7 @@ const Root = styled('div')(({ theme }) => ({
 const Placeholder = styled('a')(({ theme }) => ({
   width: '100%',
   height: 55,
-  fontSize: '14px',
+  fontSize: theme.typography.pxToRem(14),
   fontWeight: 600,
   alignItems: 'center',
   justifyContent: 'center',
