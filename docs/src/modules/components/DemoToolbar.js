@@ -59,7 +59,7 @@ const Root = styled('div')(({ theme }) => ({
   alignItems: 'center',
   '& .MuiSvgIcon-root': {
     fontSize: 17,
-    color: theme.palette.mode === 'dark' ? theme.palette.grey[500] : theme.palette.grey[800],
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[800],
   },
 }));
 
