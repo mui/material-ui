@@ -64,7 +64,7 @@ const ItemLink = styled(Item, {
 })(({ theme, depth }) => {
   return {
     color: theme.palette.text.secondary,
-    fontSize: '0.8125rem',
+    fontSize: theme.typography.pxToRem(13.5),
     '&.app-drawer-active': {
       // color: theme.palette.primary.main,
       color:
@@ -117,7 +117,7 @@ const ItemButton = styled(Item, {
       }
       return theme.palette.text.primary;
     })(),
-    fontSize: depth === 1 ? '0.75rem' : '0.8125rem',
+    fontSize: depth === 1 ? theme.typography.pxToRem(12) : theme.typography.pxToRem(14.5),
     fontWeight: depth === 1 ? 700 : 500,
     margin: theme.spacing(0.5, 0),
     '&:hover': {
@@ -153,7 +153,7 @@ const ItemButton = styled(Item, {
 const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })(
   ({ theme, depth }) => {
     return {
-      padding: depth === 0 ? '0 10px' : '2px 0',
+      padding: depth === 0 ? '0 10px' : '4px 0',
       marginTop: depth === 0 ? theme.spacing(1) : undefined,
       display: 'block',
     };

@@ -164,7 +164,7 @@ function AppNavDrawer(props) {
 
     return (
       <React.Fragment>
-        <ToolbarIE11>
+        <ToolbarIE11> 
           <ToolbarDiv>
             <NextLink href="/" passHref onClick={onClose}>
               <Box component="a" aria-label={t('goToHome')} sx={{ lineHeight: 0, mr: 2 }}>
