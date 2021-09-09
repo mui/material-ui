@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 export default function Head(props) {
   const t = useSelector((state) => state.options.t);
   const {
-    card = 'https://material-ui.com/static/logo.png',
+    card = 'https://v4.material-ui.com/static/logo.png',
     children,
     description = t('strapline'),
     largeCard = false,
@@ -26,7 +26,7 @@ export default function Head(props) {
       {/* Twitter */}
       <meta name="twitter:card" content={largeCard ? 'summary_large_image' : 'summary'} />
       <meta name="twitter:site" content="@MaterialUI" />
-      <meta name="twitter:title" content={title} />
+      <meta name="twitter:title" content={`${title} [v4]`} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={card} />
       {/* Facebook */}
@@ -34,14 +34,14 @@ export default function Head(props) {
       <meta property="og:title" content={title} />
       <meta
         property="og:url"
-        content={`https://material-ui.com${rewriteUrlForNextExport(router.asPath)}`}
+        content={`https://v4.material-ui.com${rewriteUrlForNextExport(router.asPath)}`}
       />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={card} />
       <meta property="og:ttl" content="604800" />
       {/* Algolia */}
       <meta name="docsearch:language" content={userLanguage} />
-      <meta name="docsearch:version" content="master" />
+      <meta name="docsearch:version" content="v4" />
       {children}
     </NextHead>
   );
