@@ -8,7 +8,7 @@
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiAlertTitle" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/AlertTitle/AlertTitle.js",
+  "filename": "/packages/mui-material/src/AlertTitle/AlertTitle.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/alert/\">Alert</a></li></ul>",
   "styledComponent": true,

@@ -117,10 +117,10 @@ If you choose not to use it, you can still disable transitions and animations by
 }
 ```
 
-## Do I have to use JSS to style my app?
+## Do I have to use emotion to style my app?
 
 No, it's not required.
-But this dependency comes built in, so carries no additional bundle size overhead.
+But if you are using the default styled engine (`@mui/styled-engine`) the emotion dependency comes built in, so carries no additional bundle size overhead.
 
 Perhaps, however, you're adding some Material-UI components to an app that already uses another styling solution,
 or are already familiar with a different API, and don't want to learn a new one? In that case, head over to the

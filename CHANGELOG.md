@@ -1,5 +1,84 @@
 ### [Versions](https://material-ui.com/versions/)
 
+## 5.0.0-rc.1
+
+<!-- generated comparing v5.0.0-rc.0..next -->
+
+_Sep 8, 2021_
+
+A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+
+- 📚 Improved the codemod and migration guide for upgrading to v5
+- 🐛 Fixed some bugs and regressions
+
+### `@mui/material@5.0.0-rc.1`
+
+- &#8203;<!-- 46 -->[Autocomplete] Fix virtualization regression (#28129) @oliviertassinari
+- &#8203;<!-- 45 -->[Button] Use deeper imports from unstyled, correct docs (#28074) @michaldudak
+- &#8203;<!-- 44 -->[ButtonBase] Fix ripple persisting on blur (#28186) @michaldudak
+- &#8203;<!-- 14 -->[Link] Infer `ref` type from `component` (#28101) @eps1lon
+- &#8203;<!-- 11 -->[Popper] Fix bundle size regression (#27910) @oliviertassinari
+- &#8203;<!-- 10 -->[Select] Merge `ref` of `Select` and `input` element (#28054) @DouglasPds
+- &#8203;<!-- 07 -->[Tabs] Improve error message formatting for invalid `value` (#28172) @eps1lon
+
+### `@mui/system@5.0.0-rc.1`
+
+- &#8203;<!-- 47 -->[system] Change type of return value of overridesResolver (#28220) @hbjORbj
+- &#8203;<!-- 09 -->[system] Fix zero value condition (#28219) @siriwatknp
+- &#8203;<!-- 08 -->[system] Shorten class names in production (#27932) @oliviertassinari
+
+### `@mui/codemod@5.0.0-rc.1`
+
+- &#8203;<!-- 42 -->[codemod] Fix various reported issues on `preset-safe` (#28183) @mnajdova
+
+### `@mui/lab@5.0.0-alpha.46`
+
+- &#8203;<!-- 43 -->[ClockPicker] Fix to narrow hover area for am hours in am/pm clock (#28207) @eps1lon
+- &#8203;<!-- 13 -->[Masonry] Improve the styling on the demos (#27957) @hbjORbj
+- &#8203;<!-- 12 -->[MasonryItem] Fix crash on unmount when using React 18 (#28202) @eps1lon
+
+### Docs
+
+- &#8203;<!-- 33 -->[docs] Fixes makeStyles migration example (#28213) @RomarQ
+- &#8203;<!-- 32 -->[docs] Fix some outdated migration guide (#28222) @siriwatknp
+- &#8203;<!-- 31 -->[docs] Update previews (#28223) @eps1lon
+- &#8203;<!-- 30 -->[docs] Demo how to use a specific slide direction for Snackbar (#28211) @goncalovf
+- &#8203;<!-- 29 -->[docs] Improve docs for creating dark theme (#28104) @mnajdova
+- &#8203;<!-- 28 -->[docs] Don't use Material theme in unstyled demos (#28073) @michaldudak
+- &#8203;<!-- 27 -->[docs] Fix api doc import example (#28199) @siriwatknp
+- &#8203;<!-- 26 -->[docs] Remove demo for re-creating Material-UI switches (#28042) @eps1lon
+- &#8203;<!-- 25 -->[docs] Improve legibility of CTA on landing page (#28124) @akashshyamdev
+- &#8203;<!-- 24 -->[docs] Fix Link outdated default underline prop (#28134) @outofgamut
+- &#8203;<!-- 23 -->[docs] Fix branding theme leaking on the templates (#28120) @mnajdova
+- &#8203;<!-- 22 -->[docs] Fix wrong package name in codemod (#28118) @aleccaputo
+- &#8203;<!-- 21 -->[docs] Cancelled subscription @oliviertassinari
+- &#8203;<!-- 20 -->[docs] Remove style duplication (#28087) @oliviertassinari
+- &#8203;<!-- 19 -->[docs] Fix migration guide typo (#28113) @paullaros
+- &#8203;<!-- 18 -->[docs] Reorder app bar actions (#28089) @mnajdova
+- &#8203;<!-- 17 -->[docs] Support Material design theme in MarkdownElement (#28109) @eps1lon
+- &#8203;<!-- 16 -->[docs] Improve diamond sponsors in the navigation (#28090) @mnajdova
+- &#8203;<!-- 15 -->[docs] Remove unnecessary comma (#28072) @michaldudak
+- &#8203;<!-- 04 -->[website] Add new careers page (#28184) @hbjORbj
+- &#8203;<!-- 03 -->[website] Disable Next.js font optimization (#28128) @michaldudak
+- &#8203;<!-- 02 -->[website] Polish design-kits & templates (#28131) @siriwatknp
+- &#8203;<!-- 01 -->[website] Update utm referral params #28040 @siriwatknp
+
+### Core
+
+- &#8203;<!-- 41 -->[core] Misc bundle size tracking improvements (#28205) @eps1lon
+- &#8203;<!-- 40 -->[core] Ensure code preview is valid JavaScript (#28215) @eps1lon
+- &#8203;<!-- 39 -->[core] Create @mui/material-next package (#28200) @michaldudak
+- &#8203;<!-- 38 -->[core] Rename directories to match the new package names (#28185) @mnajdova
+- &#8203;<!-- 37 -->[core] Remove unused include (#28187) @eps1lon
+- &#8203;<!-- 36 -->[core] Fix PR detection mechanism for upstream PRs (#28171) @eps1lon
+- &#8203;<!-- 35 -->[core] Simplify ResizeObserver logic (#28037) @oliviertassinari
+- &#8203;<!-- 34 -->[core] Include TS modules in rollup import resolution (#28094) @michaldudak
+- &#8203;<!-- 06 -->[test] Update test to consider unsuppressed double render logs in React 18 (#28068) @eps1lon
+- &#8203;<!-- 05 -->[typescript] Make types of componentsProps consistent (#27499) @michaldudak
+
+All contributors of this release in alphabetical order: @akashshyamdev, @aleccaputo, @DouglasPds, @eps1lon, @goncalovf,
+@hbjORbj, @michaldudak, @mnajdova, @oliviertassinari, @outofgamut, @paullaros, @RomarQ, @siriwatknp
+
 ## 5.0.0-rc.0
 
 <!-- generated comparing v5.0.0-beta.5..next -->
@@ -9,7 +88,7 @@ _Sep 1, 2021_
 A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
 - 🎉 Renamed packages to `@mui/*` as part of rebranding the company, following the strategy of expanding the library scope beyond Material Design. For more details about it, check the [GitHub discussion](https://github.com/mui-org/material-ui/discussions/27803).
-- 🛠 Added `mui-replace` codemod for migrating `@material-ui/*` to new packages `@mui/*`. Check out this [codemod detail](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#mui-replace) or head to [migration guide](https://next.material-ui.com/guides/migration-v4/#preset-safe)
+- 🛠 Added `mui-replace` codemod for migrating `@material-ui/*` to new packages `@mui/*`. Check out this [codemod detail](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#mui-replace) or head to [migration guide](https://next.material-ui.com/guides/migration-v4/#preset-safe)
 - 🧪 Added new `<Mansory>` component to the lab, [check it out](https://next.material-ui.com/components/masonry/). It has been crafted by our first intern, @hbjORbj 👏!
 
 ### `@mui/material@5.0.0-rc.0`
@@ -41,7 +120,7 @@ A big thanks to the 18 contributors who made this release possible. Here are som
 
   > **Note**: `@mui/core` (previously `@material-ui/unstyled`) is not the same as `@material-ui/core`.
 
-  We encourage you to use the [codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#mui-replace) for smooth migration.
+  We encourage you to use the [codemod](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#mui-replace) for smooth migration.
 
 #### Changes
 
@@ -612,7 +691,7 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 
 - 🎉 This is the first beta release of v5! A huge thanks to everyone who helped to make this happen! We're targeting the 1st of September for a stable release, and will use the next two months to polish v5, and ease the migration from v4. You can follow [the v5 stable milestone](https://github.com/mui-org/material-ui/milestone/44) for more details. We now encourage any new projects to start on v5.
 - 🚀 We have completed all the planned breaking changes.
-- ⚒️ We added the codemod CLI to simplify migration to v5 (#26941) @eps1lon. You can find it at [`@material-ui/codemod`](https://github.com/mui-org/material-ui/tree/HEAD/packages/material-ui-codemod).
+- ⚒️ We added the codemod CLI to simplify migration to v5 (#26941) @eps1lon. You can find it at [`@material-ui/codemod`](https://github.com/mui-org/material-ui/tree/HEAD/packages/mui-codemod).
 - 🐛 The majority of other changes in this release were bug fixes, test utilities and docs.
 
 ### `@material-ui/core@5.0.0-beta.0`
@@ -1175,7 +1254,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 
 - 👩‍🎤 We have completed the migration to emotion of all the components (`@material-ui/core` and `@material-ui/lab`) @siriwatknp, @mnajdova.
 - 📦 Save [10 kB gzipped](https://bundlephobia.com/result?p=@material-ui/core@5.0.0-alpha.34) by removing the dependency on `@material-ui/styles` (JSS) from the core and the lab (#26377, #26382, #26376) @mnajdova.
-- ⚒️ Add many new [codemods](https://github.com/mui-org/material-ui/blob/HEAD/packages/material-ui-codemod/README.md) to automate the migration from v4 to v5 (#24867) @mbrookes.
+- ⚒️ Add many new [codemods](https://github.com/mui-org/material-ui/blob/HEAD/packages/mui-codemod/README.md) to automate the migration from v4 to v5 (#24867) @mbrookes.
 - And many more 🐛 bug fixes and 📚 improvements.
 
 ### `@material-ui/core@5.0.0-alpha.35`
@@ -2004,7 +2083,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 #### Breaking changes
 
 - [FormControl] Change default variant from standard to outlined (#24895) @petyosi
-  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#variant-prop) will automatically update your code.
+  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/mui-codemod#variant-prop) will automatically update your code.
 
   ```diff
   -<FormControl value="Standard" />
@@ -2016,7 +2095,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - [Menu] The `selectedMenu` variant will not vertically align the selected item with the anchor anymore. (#25691) @m4theushw
 - [Popover] Remove the `getContentAnchorEl` prop to simplify the positioning logic. (#25691) @m4theushw
 - [Select] Change default variant from standard to outlined (#24895) @petyosi
-  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#variant-prop) will automatically update your code.
+  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/mui-codemod#variant-prop) will automatically update your code.
 
   ```diff
   -<Select value="Standard" />
@@ -3438,7 +3517,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 
 - [Box] Remove deprecated props (#23716) @mnajdova
   All props are now available under the `sx` prop. A deprecation will be landing in v4.
-  Thanks to @mbrookes developers can automate the migration with a [codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#box-sx-prop).
+  Thanks to @mbrookes developers can automate the migration with a [codemod](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#box-sx-prop).
 
   ```diff
   -<Box p={2} bgColor="primary.main">
@@ -3702,7 +3781,7 @@ A big thanks to the 34 contributors who made this release possible. Here are som
 #### Breaking changes
 
 - [TextField] Change default variant from standard to outlined (#23503) @mbrookes
-  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/material-ui-codemod#variant-prop) will automatically update your code.
+  Standard has been removed from the Material Design guidelines. [This codemod](https://github.com/mui-org/material-ui/tree/next/packages/mui-codemod#variant-prop) will automatically update your code.
 
   ```diff
   -<TextField value="Standard" />

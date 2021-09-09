@@ -10,9 +10,11 @@ This is a reference for upgrading your site from Material-UI v4 to v5.
 While there's a lot covered here, you probably won't need to do everything.
 We'll do our best to keep things easy to follow, and as sequential as possible, so you can quickly get rocking on v5!
 
+> 💡 We are excited to share that the org & package names have been changed from `@material-ui` to `@mui` as part of the rebranding effort! For more details about it, check the [GitHub discussion](https://github.com/mui-org/material-ui/discussions/27803).
+
 ## Why you should migrate
 
-This documentation page covers the _how_ of migrating from v4 to v5.
+To get the benefits of bug fixes and a lot of improvements such as the new styling engine. This documentation page covers the _how_ of migrating from v4 to v5.
 The _why_ will be covered in an upcoming blog post on Medium.
 
 ## Migration steps
@@ -20,7 +22,7 @@ The _why_ will be covered in an upcoming blog post on Medium.
 - [Update React & TypeScript](#update-react-amp-typescript-version)
 - [ThemeProvider setup](#themeprovider-setup)
 - [Update Material-UI](#update-material-ui-version)
-- [Run Codemod](#run-codemod)
+- [Run codemods](#run-codemods)
   - [🪄 preset-safe](#preset-safe)
   - [variant-prop (optional)](#variant-prop)
   - [link-underline-hover (optional)](#link-underline-hover)
@@ -105,7 +107,7 @@ npm install @mui/styles@next
 yarn add @mui/styles@next
 ```
 
-> ⚠️ After this step, your application is expected to crash because the style library has changed from **JSS (v4)** to **emotion (v5)**.
+> After the migration, you should remove all `@material-ui/*` packages by running `yarn remove` or `npm uninstall`.
 
 ## Run codemods
 
@@ -119,7 +121,7 @@ This codemod contains most of the transformers that are useful for migration. (*
 npx @mui/codemod@next v5.0.0/preset-safe <path>
 ```
 
-> If you want to run the transformers one by one, check out [preset-safe codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#-preset-safe) for more details.
+> If you want to run the transformers one by one, check out [preset-safe codemod](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#-preset-safe) for more details.
 
 ### variant-prop
 
@@ -145,7 +147,7 @@ However, if you want to keep `variant="standard"` to you components, run this co
 npx @mui/codemod@next v5.0.0/variant-prop <path>
 ```
 
-For more details, checkout [variant-prop codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#variant-prop).
+For more details, checkout [variant-prop codemod](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#variant-prop).
 
 ### link-underline-hover
 
@@ -171,7 +173,7 @@ However, if you want to keep `variant="hover"` to you components, run this codem
 npx @mui/codemod@next v5.0.0/link-underline-hover <path>
 ```
 
-For more details, checkout [link-underline-hover codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#link-underline-hover).
+For more details, checkout [link-underline-hover codemod](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#link-underline-hover).
 
 Once you have completed the codemod step, try running your application again. At this point, it should be running without error. Otherwise check out the [Troubleshooting](#troubleshooting) section. Next step, handling breaking changes in each component.
 
@@ -249,7 +251,7 @@ Here is an example:
  }
 ```
 
-> **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@mui/styled-engine-sc` package.
+> **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui-org/material-ui/blob/next/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@mui/styled-engine-sc` package.
 
 ### Theme structure
 
@@ -2382,7 +2384,7 @@ We recommend two options.
 
 #### Codemod
 
-We provide [a codemod](https://github.com/mui-org/material-ui/blob/next/packages/material-ui-codemod/README.md#jss-to-styled) to help migrate JSS styles to `styled` API, but this approach **increases the CSS specificity**.
+We provide [a codemod](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#jss-to-styled) to help migrate JSS styles to `styled` API, but this approach **increases the CSS specificity**.
 
 ```sh
 npx @mui/codemod@next v5.0.0/jss-to-styled <path>
@@ -2500,27 +2502,27 @@ In some cases, you might want to create multiple styled components in a file ins
 -    color: theme.palette.primary.main,
 -  }
 -}))
-+const Root = style('div')(({ theme }) => ({
++const Root = styled('div')(({ theme }) => ({
 +  display: 'flex',
 +  alignItems: 'center',
 +  borderRadius: 20,
 +  background: theme.palette.grey[50],
 +}))
 
-+const Label = style('span')(({ theme }) => ({
++const Label = styled('span')(({ theme }) => ({
 +  color: theme.palette.primary.main,
 +}))
 
  function Status({ label }) {
-   const classes = useStyles();
+-  const classes = useStyles();
    return (
--    <div className={classe.root}>
+-    <div className={classes.root}>
 -      {icon}
 -      <span className={classes.label}>{label}</span>
 -    </div>
-+    <Root className={classe.root}>
++    <Root>
 +      {icon}
-+      <Label className={classes.label}>{label}</Label>
++      <Label>{label}</Label>
 +    </Root>
    )
  }

@@ -91,14 +91,6 @@ You can extend the outer theme by providing a function:
 
 {{"demo": "pages/customization/theming/ThemeNestingExtend.js"}}
 
-**A note on performance**
-
-The performance implications of nesting the `ThemeProvider` component are linked to JSS's work behind the scenes.
-The main point to understand is that the injected CSS is cached with the following tuple `(styles, theme)`.
-
-- `theme`: If you provide a new theme at each render, a new CSS object will be computed and injected. Both for UI consistency and performance, it's better to render a limited number of theme objects.
-- `styles`: The larger the styles object is, the more work is needed.
-
 ## API
 
 ### `createTheme(options, ...args) => theme`
@@ -109,6 +101,16 @@ Generate a theme base on the options received.
 
 1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
 2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
+
+> Note: Only the first argument (`options`) is being processed by the `createdTheme` function.
+> If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function.
+
+```js
+import { deepmerge } from '@mui/utils';
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme(deepmerge(options1, options2));
+```
 
 #### Returns
 

@@ -37,7 +37,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
-  "filename": "/packages/material-ui/src/Radio/Radio.js",
+  "filename": "/packages/mui-material/src/Radio/Radio.js",
   "inheritance": { "component": "ButtonBase", "pathname": "/api/button-base/" },
   "demos": "<ul><li><a href=\"/components/radio-buttons/\">Radio Buttons</a></li></ul>",
   "styledComponent": true,

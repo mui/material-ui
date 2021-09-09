@@ -9,7 +9,7 @@
   "styles": { "classes": ["root", "dividers"], "globalClasses": {}, "name": "MuiDialogContent" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/DialogContent/DialogContent.js",
+  "filename": "/packages/mui-material/src/DialogContent/DialogContent.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/dialogs/\">Dialogs</a></li></ul>",
   "styledComponent": true,

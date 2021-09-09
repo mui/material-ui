@@ -9,7 +9,7 @@
   "styles": { "classes": ["root", "spacing"], "globalClasses": {}, "name": "MuiCardActions" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/CardActions/CardActions.js",
+  "filename": "/packages/mui-material/src/CardActions/CardActions.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/cards/\">Cards</a></li></ul>",
   "styledComponent": true,
