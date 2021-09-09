@@ -63,8 +63,8 @@ const ItemLink = styled(Item, {
   shouldForwardProp: (prop) => prop !== 'depth',
 })(({ theme, depth }) => {
   return {
-    color: theme.palette.text.secondary,
     fontSize: theme.typography.pxToRem(13.5),
+    color: theme.palette.text.secondary,
     '&.app-drawer-active': {
       // color: theme.palette.primary.main,
       color:
@@ -194,7 +194,7 @@ export default function AppNavDrawerItem(props) {
           depth={depth}
           {...linkProps}
         >
-          {title}
+          {title}          
         </ItemLink>
       </StyledLi>
     );
@@ -213,7 +213,7 @@ export default function AppNavDrawerItem(props) {
           {hasIcon && (
             <Box
               sx={{
-                '& svg': { fontSize: '0.875rem' },
+                '& svg': { fontSize: (theme) => theme.typography.pxToRem(14) },
                 display: 'flex',
                 alignItems: 'center',
                 height: '100%',
