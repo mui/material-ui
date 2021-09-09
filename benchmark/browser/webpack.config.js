@@ -28,11 +28,13 @@ module.exports = {
       },
       {
         test: /\.(jpg|gif|png)$/,
-        loader: 'url-loader',
+        type: 'asset/inline',
       },
     ],
   },
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],
   },
+  // TODO: 'browserslist:modern'
+  target: 'web',
 };
