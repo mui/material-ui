@@ -90,7 +90,7 @@ function AppLayoutDocs(props) {
         <Head title={`${title} - Material-UI`} description={description} />
         {disableAd ? null : (
           <AdGuest>
-            <Ad placement="body" />
+            <Ad />
           </AdGuest>
         )}
         <Main disableToc={disableToc}>
