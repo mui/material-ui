@@ -45,6 +45,8 @@ yarn add @mui/material @emotion/react @emotion/styled
 
 </details>
 
+Please note that `@next` will only point to pre-releases; to get the latest stable release use `@latest` instead.
+
 ## Who sponsors Material-UI?
 
 ### Diamond 💎

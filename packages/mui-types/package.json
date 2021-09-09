@@ -23,12 +23,12 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "https://github.com/mui-org/material-ui/tree/next/packages/mui-types",
+  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/mui-types",
   "scripts": {
     "build": "mkdir build && cpy index.d.ts build/ && yarn build:copy-files",
     "build:copy-files": "node ../../scripts/copy-files.js",
     "prebuild": "rimraf build",
-    "release": "yarn build && npm publish build --tag next",
+    "release": "yarn build && npm publish build",
     "test": "echo 'No runtime test. Type tests are run with the `typescript` script.'",
     "typescript": "tslint -p tsconfig.json \"*.{ts,tsx}\""
   },
