@@ -292,7 +292,7 @@ describe('CSS Vars', () => {
 
     it('use default theme if specify', () => {
       expect(
-        generateGlobalVars({ light: 'light', dark: 'dark' }, { defaultTheme: 'dark' }),
+        generateGlobalVars({ light: 'light', dark: 'dark' }, { defaultSchemeKey: 'dark' }),
       ).to.deep.equal({
         ':root': 'dark',
         '@media(prefers-color-scheme: light)': { ':root': 'light' },

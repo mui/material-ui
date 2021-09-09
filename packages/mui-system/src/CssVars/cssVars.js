@@ -58,24 +58,28 @@ export const makeCssVars = (host) => {
 
 export const generateGlobalVars = (themeCssVars, options = {}) => {
   const {
-    defaultTheme = 'light',
+    defaultSchemeKey = 'light',
     light = 'light',
     dark = 'dark',
     attribute = 'data-theme',
   } = options;
-  const { [defaultTheme]: rootTheme, [light]: lightTheme, [dark]: darkTheme } = themeCssVars;
+  const {
+    [defaultSchemeKey]: rootSchemeVars,
+    [light]: lightScheme,
+    [dark]: darkScheme,
+  } = themeCssVars;
   const attributeThemeVars = {};
   Object.entries(themeCssVars).forEach(([themeName, cssVars]) => {
     attributeThemeVars[`[${attribute}="${themeName}"]`] = cssVars;
   });
   return {
     // system preference
-    ':root': rootTheme || themeCssVars[Object.keys(themeCssVars)[0]],
+    ':root': rootSchemeVars || themeCssVars[Object.keys(themeCssVars)[0]],
     '@media(prefers-color-scheme: light)': {
-      ':root': lightTheme,
+      ':root': lightScheme,
     },
     '@media(prefers-color-scheme: dark)': {
-      ':root': darkTheme,
+      ':root': darkScheme,
     },
     // application preference
     ...attributeThemeVars,
