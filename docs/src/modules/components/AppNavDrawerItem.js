@@ -89,7 +89,7 @@ const ItemLink = styled(Item, {
         ),
       },
     },
-    paddingLeft: 38 + (depth - 2) * 10,
+    paddingLeft: 36 + (depth - 2) * 10,
   };
 });
 
@@ -117,13 +117,13 @@ const ItemButton = styled(Item, {
       }
       return theme.palette.text.primary;
     })(),
-    fontSize: depth === 1 ? '0.75rem' : undefined,
-    fontWeight: depth === 0 ? 500 : 700,
+    fontSize: depth === 1 ? '0.75rem' : '0.8125rem',
+    fontWeight: depth === 1 ? 700 : 500,
     margin: theme.spacing(0.5, 0),
     '&:hover': {
       backgroundColor: depth === 0 ? '' : alpha(theme.palette.primary.main, 0),
       color: (() => {
-        if (depth === 0) {
+        if (depth !== 1) {
           return '';
         }
         if (theme.palette.mode === 'dark') {
@@ -145,7 +145,7 @@ const ItemButton = styled(Item, {
           },
         }
       : {
-          paddingLeft: 38,
+          paddingLeft: 36,
         }),
   };
 });
