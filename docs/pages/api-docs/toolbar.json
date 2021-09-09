@@ -21,7 +21,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/Toolbar/Toolbar.js",
+  "filename": "/packages/mui-material/src/Toolbar/Toolbar.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/app-bar/\">App Bar</a></li></ul>",
   "styledComponent": true,

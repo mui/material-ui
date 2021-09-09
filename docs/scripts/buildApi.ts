@@ -1113,7 +1113,7 @@ async function run(argv: {
   /**
    * components: Array<{ filename: string }>
    * e.g.
-   * [{ filename: '/Users/user/Projects/material-ui/packages/material-ui/src/Accordion/Accordion.js'}, ...]
+   * [{ filename: '/Users/user/Projects/material-ui/packages/mui-material/src/Accordion/Accordion.js'}, ...]
    */
   const components = componentDirectories
     .reduce((directories, componentDirectory) => {

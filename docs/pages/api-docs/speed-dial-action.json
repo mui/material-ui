@@ -34,7 +34,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLButtonElement",
-  "filename": "/packages/material-ui/src/SpeedDialAction/SpeedDialAction.js",
+  "filename": "/packages/mui-material/src/SpeedDialAction/SpeedDialAction.js",
   "inheritance": { "component": "Tooltip", "pathname": "/api/tooltip/" },
   "demos": "<ul><li><a href=\"/components/speed-dial/\">Speed Dial</a></li></ul>",
   "styledComponent": true,

@@ -46,7 +46,7 @@
   },
   "spread": false,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui-lab/src/CalendarPicker/CalendarPicker.tsx",
+  "filename": "/packages/mui-lab/src/CalendarPicker/CalendarPicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/date-picker/\">Date Picker</a></li></ul>",
   "styledComponent": true,

@@ -65,15 +65,15 @@ async function run(context) {
   const workspaceRoot = new URL('../../../', import.meta.url);
   await Promise.all(
     [
-      'core',
-      'icons',
+      'material',
+      'icons-material',
       'lab',
       'private-theming',
       'styled-engine',
       'styles',
       'system',
       'types',
-      'unstyled',
+      'core',
       'utils',
     ].map(async (muiPackageName) => {
       // clean coyp
@@ -83,10 +83,7 @@ async function run(context) {
         // already exists
       }
       await copyDirectory(
-        new URL(
-          `./packages/material-ui${muiPackageName === 'core' ? '' : `-${muiPackageName}`}/build/`,
-          workspaceRoot,
-        ),
+        new URL(`./packages/mui${`-${muiPackageName}`}/build/`, workspaceRoot),
         new URL(`./node_modules/@mui/${muiPackageName}/`, fixtureUrl),
       );
     }),

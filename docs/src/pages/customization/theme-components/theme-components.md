@@ -84,7 +84,7 @@ const theme = createTheme({
 
 If you're using TypeScript, you'll need to specify your new variants/colors, using [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation).
 
-<!-- Tested with packages/material-ui/test/typescript/augmentation/themeComponents.spec.ts -->
+<!-- Tested with packages/mui-material/test/typescript/augmentation/themeComponents.spec.ts -->
 
 ```tsx
 declare module '@mui/material/Button' {

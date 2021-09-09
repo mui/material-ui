@@ -19,7 +19,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLLIElement",
-  "filename": "/packages/material-ui-lab/src/TimelineItem/TimelineItem.js",
+  "filename": "/packages/mui-lab/src/TimelineItem/TimelineItem.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/timeline/\">Timeline</a></li></ul>",
   "styledComponent": true,
