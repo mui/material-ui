@@ -320,7 +320,7 @@ const pages: readonly MuiPage[] = [
       { pathname: '/discover-more/vision' },
       { pathname: '/discover-more/team' },
       { pathname: '/discover-more/changelog' },
-      { pathname: '/discover-more/languages' }
+      { pathname: '/discover-more/languages' },
     ],
   },
   {
@@ -335,7 +335,7 @@ const pages: readonly MuiPage[] = [
   },
   { pathname: '/versions', ordered: false },
   { pathname: '/', ordered: false, disableDrawer: true },
-  { pathname: 'https://medium.com/material-ui', title: 'Blog', icon: 'BookIcon', },
+  { pathname: 'https://medium.com/material-ui', title: 'Blog', icon: 'BookIcon' },
 ];
 
 export default pages;

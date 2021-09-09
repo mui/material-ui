@@ -194,7 +194,7 @@ export default function AppNavDrawerItem(props) {
           depth={depth}
           {...linkProps}
         >
-          {title}          
+          {title}
         </ItemLink>
       </StyledLi>
     );
