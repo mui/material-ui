@@ -1,6 +1,6 @@
 {
   "name": "@mui/material",
-  "version": "5.0.0-rc.0",
+  "version": "5.0.0-rc.1",
   "private": false,
   "author": "Material-UI Team",
   "description": "Quickly build beautiful React apps. Material-UI is a simple and customizable component library to build faster, beautiful, and more accessible React applications. Follow your own design system, or start with Material Design.",
@@ -60,10 +60,10 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.14.8",
-    "@mui/core": "5.0.0-alpha.45",
-    "@mui/system": "5.0.0-rc.0",
-    "@mui/types": "7.0.0-rc.0",
-    "@mui/utils": "5.0.0-rc.0",
+    "@mui/core": "5.0.0-alpha.46",
+    "@mui/system": "5.0.0-rc.1",
+    "@mui/types": "7.0.0-rc.1",
+    "@mui/utils": "5.0.0-rc.1",
     "@popperjs/core": "^2.4.4",
     "@types/react-transition-group": "^4.2.0",
     "clsx": "^1.1.1",
