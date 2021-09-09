@@ -1,0 +1,7 @@
+<NoSsr>
+  <MuiThemeProvider theme={customTheme}>
+    <ThemeProvider theme={customTheme}>
+      <Styledvatar>OP</Styledvatar>
+    </ThemeProvider>
+  </MuiThemeProvider>
+</NoSsr>

@@ -96,7 +96,7 @@
   "name": "DesktopDatePicker",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
-  "filename": "/packages/material-ui-lab/src/DesktopDatePicker/DesktopDatePicker.tsx",
+  "filename": "/packages/mui-lab/src/DesktopDatePicker/DesktopDatePicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/date-picker/\">Date Picker</a></li></ul>",
   "styledComponent": true,

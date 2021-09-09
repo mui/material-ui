@@ -81,7 +81,7 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
   "forwardsRefTo": "undefined",
-  "filename": "/packages/material-ui-lab/src/StaticTimePicker/StaticTimePicker.tsx",
+  "filename": "/packages/mui-lab/src/StaticTimePicker/StaticTimePicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/time-picker/\">Time Picker</a></li></ul>",
   "styledComponent": true,

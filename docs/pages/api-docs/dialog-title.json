@@ -8,7 +8,7 @@
   "styles": { "classes": ["root"], "globalClasses": {}, "name": "MuiDialogTitle" },
   "spread": true,
   "forwardsRefTo": "HTMLHeadingElement",
-  "filename": "/packages/material-ui/src/DialogTitle/DialogTitle.js",
+  "filename": "/packages/mui-material/src/DialogTitle/DialogTitle.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/dialogs/\">Dialogs</a></li></ul>",
   "styledComponent": true,

@@ -9,7 +9,7 @@
   "styles": { "classes": ["root", "spacing"], "globalClasses": {}, "name": "MuiDialogActions" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
-  "filename": "/packages/material-ui/src/DialogActions/DialogActions.js",
+  "filename": "/packages/mui-material/src/DialogActions/DialogActions.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/dialogs/\">Dialogs</a></li></ul>",
   "styledComponent": true,

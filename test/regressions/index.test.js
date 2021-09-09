@@ -66,7 +66,11 @@ async function main() {
   async function takeScreenshot({ testcase, route }) {
     const screenshotPath = path.resolve(screenshotDir, `.${route}.png`);
     await fse.ensureDir(path.dirname(screenshotPath));
-    await testcase.screenshot({ path: screenshotPath, type: 'png' });
+
+    const explicitScreenshotTarget = await page.$('[data-testid="screenshot-target"]');
+    const screenshotTarget = explicitScreenshotTarget || testcase;
+
+    await screenshotTarget.screenshot({ path: screenshotPath, type: 'png' });
   }
 
   // prepare screenshots

@@ -1,0 +1,2 @@
+<Chip label="Deleteable" onDelete={handleDelete} />
+<Chip label="Deleteable" variant="outlined" onDelete={handleDelete} />

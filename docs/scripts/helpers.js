@@ -36,7 +36,7 @@ function getUnstyledFilename(filename, definitionFile = false) {
 
   const separator = filename.indexOf('/') > -1 ? '/' : '\\';
 
-  if (filename.indexOf('material-ui-unstyled') === -1) {
+  if (filename.indexOf('mui-core') === -1) {
     unstyledFile = filename.replace('.d.ts', '').replace('.ts', '').replace('.js', '');
     unstyledFile = unstyledFile.replace(/Styled/g, '');
 
@@ -49,13 +49,13 @@ function getUnstyledFilename(filename, definitionFile = false) {
 
     if (separator === '/') {
       unstyledFile = unstyledFile.replace(
-        /packages\/material-ui-lab|packages\/material-ui/g,
-        'packages/material-ui-unstyled',
+        /packages\/mui-lab|packages\/mui-material/g,
+        'packages/mui-core',
       );
     } else {
       unstyledFile = unstyledFile.replace(
-        /packages\\material-ui-lab|packages\\material-ui/g,
-        'packages\\material-ui-unstyled',
+        /packages\\mui-lab|packages\\mui-material/g,
+        'packages\\mui-core',
       );
     }
 

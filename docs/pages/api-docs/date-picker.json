@@ -107,7 +107,7 @@
   "name": "DatePicker",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
-  "filename": "/packages/material-ui-lab/src/DatePicker/DatePicker.tsx",
+  "filename": "/packages/mui-lab/src/DatePicker/DatePicker.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/date-picker/\">Date Picker</a></li>\n<li><a href=\"/components/pickers/\">Pickers</a></li></ul>",
   "styledComponent": true,

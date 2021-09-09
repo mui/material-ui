@@ -57,7 +57,7 @@
   },
   "spread": true,
   "forwardsRefTo": "HTMLSpanElement",
-  "filename": "/packages/material-ui/src/Rating/Rating.js",
+  "filename": "/packages/mui-material/src/Rating/Rating.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/components/rating/\">Rating</a></li></ul>",
   "styledComponent": true,
