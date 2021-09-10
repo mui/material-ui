@@ -12,7 +12,7 @@ import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRound
 import Link from 'docs/src/modules/components/Link';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppFooter from 'docs/src/layouts/AppFooter';
-import { MuiStats } from 'docs/src/components/home/Testimonials';
+import MuiStatistics from 'docs/src/components/home/MuiStatistics';
 import GradientText from 'docs/src/components/typography/GradientText';
 import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 import IconImage from 'docs/src/components/icon/IconImage';
@@ -49,7 +49,7 @@ const Role = ({
     </div>
     {url && (
       <div style={{ display: 'flex', alignSelf: 'start', paddingTop: '0.5em' }}>
-        <Link href={url} variant="body2">
+        <Link href={url} variant="body2" aria-label={`See ${title} role`}>
           More about this role <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
         </Link>
       </div>
@@ -281,7 +281,7 @@ function CareersContent() {
                 </Box>
               ))}
             </Grid>
-            <MuiStats />
+            <MuiStatistics />
           </Grid>
         </Container>
       </Box>
