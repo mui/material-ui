@@ -269,8 +269,13 @@ export function buildTheme(theme: Theme): ThemeOptions {
           },
           outlined: {
             borderColor:
-              theme.palette.mode === 'dark' ? theme.palette.primaryDark[200] : theme.palette.primaryDark[700],
-            color: theme.palette.mode === 'dark' ? theme.palette.primaryDark[200] : theme.palette.primaryDark[700],
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[200]
+                : theme.palette.primaryDark[700],
+            color:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[200]
+                : theme.palette.primaryDark[700],
           },
         },
       },
@@ -290,7 +295,9 @@ export function buildTheme(theme: Theme): ThemeOptions {
           },
           filled: {
             backgroundColor:
-              theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : theme.palette.primaryDark[700],
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[800]
+                : theme.palette.primaryDark[700],
             '& .MuiAlert-icon': {
               color: theme.palette.primary[100],
             },

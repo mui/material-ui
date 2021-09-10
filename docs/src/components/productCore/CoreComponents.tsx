@@ -231,7 +231,13 @@ export default function CoreComponents() {
                         },
                     }}
                   >
-                    <Table aria-label="demo table" sx={{backgroundColor: (theme) => theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#fff'}}>
+                    <Table
+                      aria-label="demo table"
+                      sx={{
+                        backgroundColor: (theme) =>
+                          theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#fff',
+                      }}
+                    >
                       <TableHead>
                         <TableRow>
                           <TableCell>Dessert</TableCell>

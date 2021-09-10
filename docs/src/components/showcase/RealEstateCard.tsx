@@ -16,7 +16,8 @@ export default function RealEstateCard(props: CardProps) {
         p: 1,
         zIndex: 1,
         ...props.sx,
-        backgroundColor: (theme) => theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#fff'
+        backgroundColor: (theme) =>
+          theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#fff',
       }}
     >
       <CardMedia
