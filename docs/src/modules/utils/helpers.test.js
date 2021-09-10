@@ -36,8 +36,8 @@ const styles = theme => ({
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
-      '@mui/material': 'next',
-      '@mui/core': 'next',
+      '@mui/material': 'latest',
+      '@mui/core': 'latest',
       'prop-types': 'latest',
     });
   });
@@ -62,7 +62,7 @@ const suggestions = [
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/material': 'next',
+      '@mui/material': 'latest',
       '@unexisting/thing': 'latest',
       'autosuggest-highlight': 'latest',
       'prop-types': 'latest',
@@ -86,8 +86,8 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
       'prop-types': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/material': 'next',
-      '@mui/lab': 'next',
+      '@mui/material': 'latest',
+      '@mui/lab': 'latest',
       'date-fns': 'latest',
     });
   });
@@ -100,8 +100,8 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
       '@foo-bar/bip': 'latest',
-      '@mui/material': 'next',
-      '@mui/core': 'next',
+      '@mui/material': 'latest',
+      '@mui/core': 'latest',
       '@types/foo-bar__bip': 'latest',
       '@types/prop-types': 'latest',
       '@types/react-dom': 'latest',
@@ -126,8 +126,8 @@ import {
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/material': 'next',
-      '@mui/lab': 'next',
+      '@mui/material': 'latest',
+      '@mui/lab': 'latest',
       'date-fns': 'latest',
     });
   });
@@ -142,8 +142,8 @@ import lab from '@mui/lab';
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/material': 'next',
-      '@mui/lab': 'next',
+      '@mui/material': 'latest',
+      '@mui/lab': 'latest',
     });
   });
 
@@ -190,8 +190,8 @@ import AdapterMoment from '@mui/lab/AdapterMoment';
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/material': 'next',
-      '@mui/lab': 'next',
+      '@mui/material': 'latest',
+      '@mui/lab': 'latest',
       'date-fns': 'latest',
       dayjs: 'latest',
       luxon: 'latest',

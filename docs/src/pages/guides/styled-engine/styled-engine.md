@@ -24,11 +24,11 @@ By default, `@mui/material` has `@mui/styled-engine` as a dependency, but you ca
 ```diff
  {
    "dependencies": {
--    "@mui/styled-engine": "next"
-+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@next"
+-    "@mui/styled-engine": "latest"
++    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
    },
 +  "resolutions": {
-+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@next"
++    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
 +  },
  }
 ```

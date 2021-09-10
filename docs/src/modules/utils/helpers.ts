@@ -132,7 +132,7 @@ function getMuiPackageVersion(packageName: string, commitRef?: string): string {
     process.env.SOURCE_CODE_REPO !== 'https://github.com/mui-org/material-ui'
   ) {
     // #default-branch-switch
-    return 'next';
+    return 'latest';
   }
   const shortSha = commitRef.slice(0, 8);
   return `https://pkg.csb.dev/mui-org/material-ui/commit/${shortSha}/@mui/${packageName}`;

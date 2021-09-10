@@ -167,6 +167,7 @@ export default function LandingPage() {
         </main>
         <AppFooter />
       </Box>
+      {/* #major-version-switch */}
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger

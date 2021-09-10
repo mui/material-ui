@@ -858,7 +858,7 @@ export default function Page() {
         description="MUI X is the last React UI library you'll ever need.
 It contains the best React Data Grid on the market and a
 growing list of advanced components."
-        card="https://next.material-ui.com/static/branding/mui-x/card.png"
+        card="https://material-ui.com/static/branding/mui-x/card.png"
       />
       <BrandingHeader mode="dark" />
       <AdvancedReactComponent />

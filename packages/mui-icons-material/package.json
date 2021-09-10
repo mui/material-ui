@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/mui-org/material-ui/issues"
   },
-  "homepage": "https://next.material-ui.com/components/material-icons/",
+  "homepage": "https://material-ui.com/components/material-icons/",
   "scripts": {
     "build": "cp -r lib/ build/ && yarn build:typings && yarn build:copy-files",
     "build:lib": "yarn build:node && yarn build:stable",
@@ -33,7 +33,7 @@
     "build:copy-files": "node ../../scripts/copy-files.js",
     "build:typings": "babel-node --config-file ../../babel.config.js ./scripts/create-typings.js",
     "prebuild": "rimraf build",
-    "release": "yarn build && npm publish build --tag next",
+    "release": "yarn build && npm publish build",
     "src:download": "cd ../../ && babel-node --config-file ./babel.config.js packages/mui-icons-material/scripts/download.js",
     "src:icons": "cd ../../ && UV_THREADPOOL_SIZE=64 babel-node --config-file ./babel.config.js packages/mui-icons-material/builder.js --output-dir packages/mui-icons-material/src --svg-dir packages/mui-icons-material/material-icons --renameFilter ./renameFilters/material-design-icons.js && cd packages/mui-icons-material && yarn build:lib:clean",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-icons-material/**/*.test.{js,ts,tsx}'",

@@ -3,7 +3,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 import theme from '../src/theme';
 
-// https://next.material-ui.com/styles/advanced/#next-js
+// https://material-ui.com/styles/advanced/#next-js
 export default class MyDocument extends Document {
   render() {
     return (

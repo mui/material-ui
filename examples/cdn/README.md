@@ -23,20 +23,20 @@ The client has to download the entire library, regardless of which components ar
 
 <!-- #default-branch-switch -->
 
-[The live preview.](https://combinatronics.com/mui-org/material-ui/next/examples/cdn/index.html)
+[The live preview.](https://combinatronics.com/mui-org/material-ui/master/examples/cdn/index.html)
 
 ## UMD releases
 
 We are providing two Universal Module Definition (UMD) files:
 
-- one for development: https://unpkg.com/@mui/material@next/umd/material-ui.development.js
-- one for production: https://unpkg.com/@mui/material@next/umd/material-ui.production.min.js
+- one for development: https://unpkg.com/@mui/material@latest/umd/material-ui.development.js
+- one for production: https://unpkg.com/@mui/material@latest/umd/material-ui.production.min.js
 
 <!-- #default-branch-switch -->
 
 ## What's next?
 
 You now have a working example project.
-You can head back to the documentation, continuing browsing it from the [templates](https://next.material-ui.com/getting-started/templates/) section.
+You can head back to the documentation, continuing browsing it from the [templates](https://material-ui.com/getting-started/templates/) section.
 
 <!-- #default-branch-switch -->
