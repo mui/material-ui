@@ -21,13 +21,11 @@ module.exports = function setKarmaConfig(config) {
     browserDisconnectTolerance: 1, // default 0
     browserNoActivityTimeout: 300000, // default 10000
     colors: true,
-    frameworks: ['mocha'],
+    frameworks: ['mocha', 'webpack'],
     files: [
       {
         pattern: 'test/karma.tests.js',
-        watched: true,
-        served: true,
-        included: true,
+        watched: false,
       },
       {
         pattern: 'test/assets/*.png',
@@ -75,14 +73,18 @@ module.exports = function setKarmaConfig(config) {
         // Helps debugging and build perf.
         // Bundle size is irrelevant for local serving.
         minimize: false,
+        // TODO: profile in production
+        nodeEnv: 'test',
       },
       plugins: [
         new webpack.DefinePlugin({
-          // TODO: profile in production
-          'process.env.NODE_ENV': JSON.stringify('test'),
           'process.env.CI': JSON.stringify(process.env.CI),
           'process.env.KARMA': JSON.stringify(true),
           'process.env.TEST_GATE': JSON.stringify('enable-dispatching-profiler'),
+        }),
+        new webpack.ProvidePlugin({
+          // required by enzyme > cheerio > parse5 > util
+          process: 'process/browser',
         }),
       ],
       module: {
@@ -97,10 +99,6 @@ module.exports = function setKarmaConfig(config) {
           },
         ],
       },
-      node: {
-        // Some tests import fs
-        fs: 'empty',
-      },
       resolve: {
         alias: {
           // "How to use profiling in production"
@@ -108,7 +106,16 @@ module.exports = function setKarmaConfig(config) {
           'react-dom$': 'react-dom/profiling',
         },
         extensions: ['.js', '.ts', '.tsx'],
+        fallback: {
+          // needed by sourcemap
+          fs: false,
+          path: false,
+          // needed by enzyme > cheerio
+          stream: false,
+        },
       },
+      // TODO: 'browserslist:modern'
+      target: 'web',
     },
     webpackMiddleware: {
       noInfo: true,
