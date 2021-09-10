@@ -62,5 +62,6 @@ module.exports = {
     },
   },
   // TODO: 'browserslist:modern'
+  // See https://github.com/webpack/webpack/issues/14203
   target: 'web',
 };

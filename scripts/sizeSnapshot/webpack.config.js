@@ -204,6 +204,7 @@ module.exports = async function webpackConfig(webpack, environment) {
       },
       entry: { [entry.id]: path.join(workspaceRoot, entry.path) },
       // TODO: 'browserslist:modern'
+      // See https://github.com/webpack/webpack/issues/14203
       target: 'web',
     };
 
