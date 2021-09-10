@@ -246,7 +246,7 @@ export function buildTheme(theme: Theme): ThemeOptions {
           text: {
             color:
               theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[100]
+                ? theme.palette.primaryDark[200]
                 : theme.palette.primaryDark[700],
           },
           sizeMedium: {
@@ -267,6 +267,11 @@ export function buildTheme(theme: Theme): ThemeOptions {
               fontSize: '1rem',
             },
           },
+          outlined: {
+            borderColor:
+              theme.palette.mode === 'dark' ? theme.palette.primaryDark[200] : theme.palette.primaryDark[700],
+            color: theme.palette.mode === 'dark' ? theme.palette.primaryDark[200] : theme.palette.primaryDark[700],
+          },
         },
       },
       MuiAlert: {
@@ -279,13 +284,15 @@ export function buildTheme(theme: Theme): ThemeOptions {
             '& .MuiAlert-icon': {
               color:
                 theme.palette.mode === 'dark'
-                  ? theme.palette.primary[500]
+                  ? theme.palette.primaryDark[100]
                   : theme.palette.primaryDark[800],
             },
           },
           filled: {
+            backgroundColor:
+              theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.primaryDark[700],
             '& .MuiAlert-icon': {
-              color: theme.palette.mode === 'dark' ? theme.palette.primary[500] : '#fff',
+              color: theme.palette.primary[100],
             },
           },
           message: {
@@ -335,7 +342,7 @@ export function buildTheme(theme: Theme): ThemeOptions {
             },
             '& .MuiFilledInput-root': {
               backgroundColor:
-                theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#fff',
+                theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : '#fff',
               '&:after': {
                 borderColor:
                   theme.palette.mode === 'dark'
@@ -344,7 +351,7 @@ export function buildTheme(theme: Theme): ThemeOptions {
               },
               '&:hover': {
                 backgroundColor:
-                  theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : '#fff',
+                  theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : '#fff',
               },
             },
             '& .MuiInputLabel-filled.Mui-focused': {
@@ -355,7 +362,7 @@ export function buildTheme(theme: Theme): ThemeOptions {
               '&:after': {
                 borderColor:
                   theme.palette.mode === 'dark'
-                    ? theme.palette.primary[500]
+                    ? theme.palette.primaryDark[500]
                     : theme.palette.primaryDark[800],
               },
             },
