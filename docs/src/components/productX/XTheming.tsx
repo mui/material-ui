@@ -7,6 +7,7 @@ import {
 } from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
 import { createTheme, ThemeProvider, Theme } from '@mui/material/styles';
+import { red } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
@@ -158,7 +159,17 @@ export default function XTheming() {
                 return lightTheme;
               }}
             >
-              <Paper elevation={0} sx={{ height: 418 }}>
+              <Paper
+                elevation={0}
+                sx={{
+                  height: 418,
+                  '& .MuiDataGrid-cell[data-field="status"][data-value="Rejected"]': {
+                    '& .MuiChip-root': {
+                      color: (theme) => (theme.palette.mode === 'dark' ? red[300] : red[500]),
+                    },
+                  },
+                }}
+              >
                 <DataGridPro
                   {...data}
                   columns={getColumns()}

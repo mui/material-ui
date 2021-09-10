@@ -89,20 +89,16 @@ export default function XGridGlobalStyles({
             // -------------------------------
             // table body elements
             '& .MuiDataGrid-viewport': {
-              bgcolor:
+              backgroundColor:
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[900]
                   : theme.palette.grey[50],
-            },
-            '& .MuiDataGrid-cell': {
-              backgroundColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[800]
-                  : theme.palette.grey[50],
-              borderColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[700]
-                  : theme.palette.grey[200],
+              '& .MuiDataGrid-cell': {
+                borderColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[700]
+                    : theme.palette.grey[200],
+              },
             },
             '& .MuiDataGrid-editInputCell': {
               fontSize: '0.75rem',

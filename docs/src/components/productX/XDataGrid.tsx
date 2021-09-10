@@ -160,12 +160,6 @@ export default function XDataGrid() {
                 theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.200',
               '& .MuiDataGrid-root': {
                 '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
-                '& .MuiDataGrid-renderingZone': {
-                  '& .MuiDataGrid-cell': {
-                    bgcolor: (theme) =>
-                      theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50',
-                  },
-                },
                 '& .MuiDataGrid-footerContainer': {
                   minHeight: 48,
                   borderTop: '1px solid',

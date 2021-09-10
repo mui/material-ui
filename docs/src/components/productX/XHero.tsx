@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { DataGridPro } from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
+import { red } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
@@ -112,6 +113,11 @@ export default function XHero() {
                     '& .MuiInputBase-input': {
                       fontSize: '0.875rem',
                       px: 0.5,
+                    },
+                  },
+                  '& .MuiDataGrid-cell[data-field="status"][data-value="Rejected"]': {
+                    '& .MuiChip-root': {
+                      color: (theme) => (theme.palette.mode === 'dark' ? red[300] : red[500]),
                     },
                   },
                 },
