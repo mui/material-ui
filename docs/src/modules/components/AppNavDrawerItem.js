@@ -15,6 +15,8 @@ import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
 import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import BookOutlined from '@mui/icons-material/BookOutlined';
+import ChromeReaderModeOutlined from '@mui/icons-material/ChromeReaderModeOutlined';
 
 const iconsMap = {
   DescriptionIcon: ArticleOutlinedIcon,
@@ -25,6 +27,8 @@ const iconsMap = {
   VisibilityIcon: VisibilityOutlinedIcon,
   StyleIcon: ColorLensOutlinedIcon,
   AddIcon: AddCircleOutlineOutlinedIcon,
+  BookIcon: BookOutlined,
+  ReaderIcon: ChromeReaderModeOutlined,
 };
 
 const Item = styled(({ component: Component = 'div', ...props }) => <Component {...props} />, {
@@ -60,8 +64,8 @@ const Item = styled(({ component: Component = 'div', ...props }) => <Component {
 }));
 
 const ItemLink = styled(Item, {
-  shouldForwardProp: (prop) => prop !== 'depth',
-})(({ theme, depth }) => {
+  shouldForwardProp: (prop) => prop !== 'depth' && prop !== 'hasIcon',
+})(({ theme, hasIcon }) => {
   return {
     fontSize: theme.typography.pxToRem(13.5),
     color: theme.palette.text.secondary,
@@ -89,7 +93,10 @@ const ItemLink = styled(Item, {
         ),
       },
     },
-    paddingLeft: 36 + (depth - 2) * 10,
+    paddingLeft: 36,
+    ...(hasIcon && {
+      paddingLeft: 2,
+    }),
   };
 });
 
@@ -105,8 +112,8 @@ const ItemButtonIcon = styled(KeyboardArrowRightRoundedIcon, {
 });
 
 const ItemButton = styled(Item, {
-  shouldForwardProp: (prop) => prop !== 'depth',
-})(({ depth, theme }) => {
+  shouldForwardProp: (prop) => prop !== 'depth' && prop !== 'hasIcon',
+})(({ depth, hasIcon, theme }) => {
   return {
     color: (() => {
       if (depth === 1) {
@@ -136,17 +143,14 @@ const ItemButton = styled(Item, {
     [`&:hover ${ItemButtonIcon}`]: {
       color: theme.palette.text.primary,
     },
-    ...(depth === 0
-      ? {
-          paddingLeft: 2,
-          '& .KeyboardArrowRightRoundedIcon': {
-            marginLeft: 'auto',
-            marginRight: '5px',
-          },
-        }
-      : {
-          paddingLeft: 36,
-        }),
+    paddingLeft: 36,
+    ...(hasIcon && {
+      paddingLeft: 2,
+    }),
+    '& .KeyboardArrowRightRoundedIcon': {
+      marginLeft: 'auto',
+      marginRight: '5px',
+    },
   };
 });
 
@@ -181,6 +185,26 @@ export default function AppNavDrawerItem(props) {
   const hasIcon = icon && iconsMap[icon];
   const IconComponent = hasIcon ? iconsMap[icon] : React.Fragment;
   const iconProps = hasIcon ? { fontSize: 'small', color: 'primary' } : {};
+  const iconElement = hasIcon ? (
+    <Box
+      sx={{
+        '& svg': { fontSize: (theme) => theme.typography.pxToRem(14) },
+        display: 'flex',
+        alignItems: 'center',
+        height: '100%',
+        marginRight: 1.5,
+        py: 0.5,
+        px: 0.5,
+        borderRadius: '5px',
+        backgroundColor: (theme) =>
+          theme.palette.mode === 'dark'
+            ? theme.palette.primaryDark[700]
+            : theme.palette.primary[50],
+      }}
+    >
+      <IconComponent {...iconProps} />
+    </Box>
+  ) : null;
 
   if (href) {
     return (
@@ -192,8 +216,10 @@ export default function AppNavDrawerItem(props) {
           underline="none"
           onClick={onClick}
           depth={depth}
+          hasIcon={hasIcon}
           {...linkProps}
         >
+          {iconElement}
           {title}
         </ItemLink>
       </StyledLi>
@@ -206,30 +232,12 @@ export default function AppNavDrawerItem(props) {
         <ItemButton
           component={ButtonBase}
           depth={depth}
+          hasIcon={hasIcon}
           disableRipple
           className={topLevel && 'algolia-lvl0'}
           onClick={handleClick}
         >
-          {hasIcon && (
-            <Box
-              sx={{
-                '& svg': { fontSize: (theme) => theme.typography.pxToRem(14) },
-                display: 'flex',
-                alignItems: 'center',
-                height: '100%',
-                marginRight: 1.5,
-                py: 0.5,
-                px: 0.5,
-                borderRadius: '5px',
-                backgroundColor: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[700]
-                    : theme.palette.primary[50],
-              }}
-            >
-              <IconComponent {...iconProps} />
-            </Box>
-          )}
+          {iconElement}
           {title}
           {depth === 0 && <ItemButtonIcon open={open} className="KeyboardArrowRightRoundedIcon" />}
         </ItemButton>

@@ -140,7 +140,7 @@ const Root = styled('div')(({ theme }) => ({
     },
   },
   '& h2 code': {
-    fontSize: theme.typography.pxToRem(24),
+    fontWeight: 'bold',
   },
   '& table': {
     // Trade display table for scroll overflow
