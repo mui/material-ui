@@ -155,8 +155,7 @@ let theme = createTheme({
 theme = createTheme(theme, {
   palette: {
     info: {
-      background: theme.palette.secondary.main,
-      text: theme.palette.primary.main,
+      main: theme.palette.secondary.main,
     },
   },
 });
