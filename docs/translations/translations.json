@@ -113,15 +113,15 @@
   "seeMore": "See more",
   "settings": {
     "color": "Color",
-    "dark": "dark",
+    "dark": "Dark",
     "direction": "Direction",
     "editWebsiteColors": "Edit website colors",
-    "light": "light",
+    "light": "Light",
     "ltr": "Left to right",
     "mode": "Mode",
     "rtl": "Right to left",
     "settings": "Settings",
-    "system": "system"
+    "system": "System"
   },
   "showFullSource": "Show the full source",
   "showJSSource": "Show JavaScript source",
@@ -322,7 +322,6 @@
     "/styles": "Styles (legacy)",
     "/styles/basics": "Basics",
     "/styles/advanced": "Advanced",
-    "https://material-ui.com/store/": "Premium themes",
     "/discover-more": "Discover More",
     "/discover-more/showcase": "Showcase",
     "/discover-more/related-projects": "Related Projects",
@@ -332,6 +331,7 @@
     "/discover-more/team": "Team",
     "/discover-more/changelog": "Changelog",
     "/discover-more/languages": "Languages",
+    "https://material-ui.com/store/": "Templates",
     "/versions": "Versions",
     "https://medium.com/material-ui": "Blog"
   }

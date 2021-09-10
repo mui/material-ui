@@ -214,6 +214,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       fontFamily: ['"IBM Plex Sans"', ...systemFont].join(','),
       fontFamilyCode: ['"IBM Plex Mono"', ...systemFont].join(','),
       fontFamilyTagline: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),
+      fontFamilySystem: systemFont.join(','),
       fontWeightExtraBold: 800,
       h1: {
         fontFamily: ['"PlusJakartaSans-ExtraBold"', ...systemFont].join(','),

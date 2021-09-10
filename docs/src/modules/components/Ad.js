@@ -1,7 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@mui/styles';
-import { createTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -10,33 +8,16 @@ import AdInHouse from 'docs/src/modules/components/AdInHouse';
 import { AdContext, adShape } from 'docs/src/modules/components/AdManager';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
-const styles = (theme) => ({
-  'placement-body-image': {
-    margin: theme.spacing(4, 1, 3),
-    minHeight: 126,
-  },
-  'placement-body-inline': {
-    margin: theme.spacing(4, 0, 3),
-    minHeight: 126,
-    display: 'flex',
-    alignItems: 'flex-end',
-  },
-  'placement-body-inline2': {
-    margin: theme.spacing(4, 0, 3),
-    minHeight: 126,
-    display: 'flex',
-    alignItems: 'flex-end',
-  },
-  paper: {
-    border: `2px solid ${theme.palette.primary.main}`,
-  },
-});
-
 function PleaseDisableAdblock(props) {
   const t = useTranslate();
 
   return (
-    <Paper component="span" elevation={0} sx={{ display: 'block', p: 1.5 }} {...props}>
+    <Paper
+      component="span"
+      elevation={0}
+      sx={{ display: 'block', p: 1.5, border: '2px solid', borderColor: 'primary.main' }}
+      {...props}
+    >
       <Typography variant="body2" display="block" component="span" gutterBottom>
         {t('likeMui')}
       </Typography>
@@ -133,9 +114,7 @@ class AdErrorBoundary extends React.Component {
   }
 }
 
-function Ad(props) {
-  const { classes } = props;
-
+function Ad() {
   const [adblock, setAdblock] = React.useState(null);
   const [carbonOut, setCarbonOut] = React.useState(null);
 
@@ -149,7 +128,7 @@ function Ad(props) {
     children = <span />;
   } else if (adblock) {
     if (randomAdblock < 0.2) {
-      children = <PleaseDisableAdblock className={classes.paper} />;
+      children = <PleaseDisableAdblock />;
       label = 'in-house-adblock';
     } else {
       children = <AdInHouse ad={inHouseAds[Math.floor(inHouseAds.length * randomInHouse)]} />;
@@ -238,8 +217,21 @@ function Ad(props) {
       sx={{
         position: 'relative',
         display: 'block',
+        m: (theme) => theme.spacing(4, 0, 3),
+        ...(adShape === 'image' && {
+          minHeight: 126,
+        }),
+        ...(adShape === 'inline' && {
+          minHeight: 126,
+          display: 'flex',
+          alignItems: 'flex-end',
+        }),
+        ...(adShape === 'inline2' && {
+          minHeight: 126,
+          display: 'flex',
+          alignItems: 'flex-end',
+        }),
       }}
-      className={classes[`placement-body-${adShape}`]}
       data-ga-event-category="ad"
       data-ga-event-action="click"
       data-ga-event-label={eventLabel}
@@ -249,9 +241,4 @@ function Ad(props) {
   );
 }
 
-Ad.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-const defaultTheme = createTheme();
-export default React.memo(withStyles(styles, { defaultTheme })(Ad));
+export default Ad;
