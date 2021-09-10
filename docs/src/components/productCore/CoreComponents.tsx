@@ -223,7 +223,7 @@ export default function CoreComponents() {
                     variant="outlined"
                     sx={{
                       mx: 'auto',
-                      my: 2,
+                      my: 4,
                       maxWidth: 320,
                       '& .MuiTableBody-root > .MuiTableRow-root:last-of-type > .MuiTableCell-root':
                         {
@@ -231,7 +231,7 @@ export default function CoreComponents() {
                         },
                     }}
                   >
-                    <Table aria-label="demo table">
+                    <Table aria-label="demo table" sx={{backgroundColor: (theme) => theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#fff'}}>
                       <TableHead>
                         <TableRow>
                           <TableCell>Dessert</TableCell>
