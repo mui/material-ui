@@ -35,7 +35,8 @@ const Image = styled('img')(({ theme }) => ({
 const Anchor = styled('a')(({ theme }) => ({
   display: 'inline-block',
   position: 'relative',
-  transition: '0.3s',
+  transitionProperty: 'all',
+  transitionDuration: '150ms',
   borderRadius: '50%',
   '&:hover, &:focus': {
     boxShadow:
