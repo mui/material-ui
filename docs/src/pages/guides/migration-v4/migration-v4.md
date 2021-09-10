@@ -31,8 +31,8 @@ The _why_ will be covered in an upcoming blog post on Medium.
 - [Migrate `makeStyles` to emotion](#migrate-makestyles-to-emotion)
 - [Troubleshooting](#troubleshooting)
 
-> 💡 Prefer to create small commits on any changes to help the migration goes smoother.
-> If you encounter any issue, check [Troubleshooting](#troubleshooting) section. For other unknown error, [create an issue](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.md) with this title format `[Migration] Summary of your issue`.
+> 💡 Aim to create small commits on any changes to help the migration go more smoothly.
+> If you encounter any issues, check the [Troubleshooting](#troubleshooting) section. For other unknown errors, [create an issue](https://github.com/mui-org/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.md) with this title format `[Migration] Summary of your issue`.
 
 ## Update React & TypeScript version
 
@@ -49,7 +49,7 @@ The _why_ will be covered in an upcoming blog post on Medium.
 - `@types/react`
 - `@types/react-dom`
 
-> 📝 Please make sure that your application is still **running** without error and **commit** the change before continuing the next step.
+> 📝 Please make sure that your application is still **running** without error and **commit** the change before continuing to the next step.
 
 ## `ThemeProvider` setup
 
@@ -141,19 +141,19 @@ createMuiTheme({
 });
 ```
 
-However, if you want to keep `variant="standard"` to you components, run this codemod or configure theme default props.
+However, if you want to keep `variant="standard"` in your components, run this codemod or configure theme default props.
 
 ```sh
 npx @mui/codemod@next v5.0.0/variant-prop <path>
 ```
 
-For more details, checkout [variant-prop codemod](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#variant-prop).
+For more details, check out [variant-prop codemod](https://github.com/mui-org/material-ui/blob/next/packages/mui-codemod/README.md#variant-prop).
 
 ### link-underline-hover
 
 Transform `<Link/>` component by apply `underline="hover"` if no `underline` prop defined (because default `underline` has changed from `"hover"` in **v4** to `"always"` in **v5**).
 
-> ❗️ You should **NOT** use this codemod if you already define default `underline: "always"` in the theme.
+> ❗️ You should **NOT** use this codemod if you already defined default `underline: "always"` in the theme.
 
 ```js
 // if you have theme setup like this, ❌ don't run this codemod.
@@ -167,7 +167,7 @@ createMuiTheme({
 });
 ```
 
-However, if you want to keep `variant="hover"` to you components, run this codemod or configure theme default props.
+However, if you want to keep `variant="hover"` in your components, run this codemod or configure theme default props.
 
 ```sh
 npx @mui/codemod@next v5.0.0/link-underline-hover <path>
