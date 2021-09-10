@@ -65,7 +65,7 @@ const Item = styled(({ component: Component = 'div', ...props }) => <Component {
 
 const ItemLink = styled(Item, {
   shouldForwardProp: (prop) => prop !== 'depth' && prop !== 'hasIcon',
-})(({ theme, hasIcon }) => {
+})(({ theme, hasIcon, depth }) => {
   return {
     fontSize: theme.typography.pxToRem(13.5),
     color: theme.palette.text.secondary,
@@ -93,7 +93,7 @@ const ItemLink = styled(Item, {
         ),
       },
     },
-    paddingLeft: 36,
+    paddingLeft: 36 + (depth > 2 ? (depth - 2) * 10 : 0),
     ...(hasIcon && {
       paddingLeft: 2,
     }),
@@ -116,7 +116,7 @@ const ItemButton = styled(Item, {
 })(({ depth, hasIcon, theme }) => {
   return {
     color: (() => {
-      if (depth === 1) {
+      if (depth >= 1) {
         if (theme.palette.mode === 'dark') {
           return alpha(theme.palette.grey[500], 0.5);
         }
@@ -130,7 +130,7 @@ const ItemButton = styled(Item, {
     '&:hover': {
       backgroundColor: depth === 0 ? '' : alpha(theme.palette.primary.main, 0),
       color: (() => {
-        if (depth !== 1) {
+        if (depth === 0) {
           return '';
         }
         if (theme.palette.mode === 'dark') {
