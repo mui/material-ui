@@ -321,7 +321,6 @@
     "/styles": "Styles (legacy)",
     "/styles/basics": "Basics",
     "/styles/advanced": "Advanced",
-    "https://material-ui.com/store/": "Premium themes",
     "/discover-more": "Discover More",
     "/discover-more/showcase": "Showcase",
     "/discover-more/related-projects": "Related Projects",
@@ -331,6 +330,7 @@
     "/discover-more/team": "Team",
     "/discover-more/changelog": "Changelog",
     "/discover-more/languages": "Languages",
+    "https://material-ui.com/store/": "Templates",
     "/versions": "Versions",
     "https://medium.com/material-ui": "Blog"
   }
